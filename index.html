@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>USS Fidelity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/lcars.css" />
+</head>
+<body>
+  <div class="lcars" id="app">
+    <!-- top frame -->
+    <div class="elbow elbow-top"><span class="elbow-code">NCC · 001</span></div>
+    <header class="bar bar-top">
+      <div class="bar-title">USS FIDELITY</div>
+      <div class="bar-seg seg-lilac" id="view-title">SYSTEM VIEW · SOL</div>
+      <div class="bar-fill"></div>
+      <button class="beacon" id="beacon" title="Return to Sector 001 (Sol)">
+        <span class="beacon-dot"></span><span class="beacon-text">SECTOR 001</span><span class="beacon-sub" id="beacon-sub">HOME</span>
+      </button>
+      <div class="bar-seg seg-peach mono" id="stardate">—</div>
+      <div class="bar-cap"></div>
+    </header>
+
+    <!-- left rail -->
+    <nav class="rail" aria-label="Views">
+      <div class="rail-group" id="rail-levels"></div>
+      <div class="rail-spacer"></div>
+      <div class="rail-group" id="rail-subviews"></div>
+      <div class="rail-fill"></div>
+    </nav>
+
+    <!-- main viewport -->
+    <main class="viewport" id="viewport">
+      <div class="view-3d" id="system-view"></div>
+      <div class="offline" id="offline" hidden></div>
+      <div class="edge-beacon" id="edge-beacon" hidden><span class="arrow">▲</span><span>SOL · SECTOR 001</span></div>
+      <div class="warp" id="warp"></div>
+      <div class="toast" id="toast" hidden></div>
+    </main>
+
+    <!-- right panel -->
+    <aside class="panel" id="panel"></aside>
+
+    <!-- bottom frame -->
+    <div class="elbow elbow-bottom"></div>
+    <footer class="bar bar-bottom" id="controls"></footer>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
