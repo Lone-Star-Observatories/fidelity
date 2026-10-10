@@ -85,12 +85,41 @@ const marsRaw = (mission, credit) => ({
 });
 
 // Observatory webcams (#37), from the allowlist in webcams.js. Some sites refuse non-browser agents.
-const webcam = ({ url, credit }) => ({
+//   mjpeg: an Axis-style multipart stream: the first complete JPEG frame is kept.
+//   narit: NARIT's sky-camera API names the newest frame (.NET ticks → its dated path).
+const CAM_UA = { 'user-agent': 'Mozilla/5.0 (compatible; USS-Fidelity/0.3; local astronomy explorer)' };
+async function firstMjpegFrame(res) {
+  const reader = res.body.getReader();
+  let buf = Buffer.alloc(0);
+  try {
+    while (buf.length < 8e6) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf = Buffer.concat([buf, Buffer.from(value)]);
+      const a = buf.indexOf(Buffer.from([0xff, 0xd8])), b = a >= 0 ? buf.indexOf(Buffer.from([0xff, 0xd9]), a + 2) : -1;
+      if (b > a) return buf.subarray(a, b + 2);
+    }
+  } finally { reader.cancel().catch(() => {}); }
+  throw new Error('no JPEG frame in the stream');
+}
+async function naritFrame(station, signal) {
+  const api = await fetch('https://weather.narit.or.th/api/GetSkyCamera', { method: 'POST', headers: { ...CAM_UA, 'content-type': 'application/json' }, body: JSON.stringify({ station }), signal });
+  if (!api.ok) throw new Error(`NARIT API HTTP ${api.status}`);
+  const r = await api.json(), j = Array.isArray(r) ? r[0] : r;
+  if (!j?.TicksTime) throw new Error('NARIT API: no frame');
+  const ms = Number((BigInt(j.TicksTime) - 621355968000000000n) / 10000n), day = new Date(ms).toISOString().slice(0, 10);
+  if (!/^[A-Za-z0-9]+$/.test(j.Station) || !Number.isFinite(ms)) throw new Error('NARIT API: unexpected reply');
+  return { url: `https://weather.narit.or.th/skycamera/${j.Station}/${day.slice(0, 4)}/${day}/${j.TicksTime}.jpg`, time: new Date(ms).toISOString() };
+}
+const webcam = ({ url, credit, mjpeg, narit }) => ({
   type: 'image', ttl: 5 * MIN, credit,
   async get() {
-    const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (compatible; USS-Fidelity/0.3; local astronomy explorer)' }, signal: AbortSignal.timeout(45000) });
+    const signal = AbortSignal.timeout(45000);
+    const frame = narit ? await naritFrame(narit, signal) : null;
+    const res = await fetch(frame?.url ?? url, { headers: CAM_UA, signal });
     if (!res.ok) throw new Error(`feed HTTP ${res.status}`);
-    return { body: Buffer.from(await res.arrayBuffer()), type: res.headers.get('content-type')?.startsWith('image/') ? res.headers.get('content-type') : 'image/jpeg', time: lastModified(res) ?? new Date().toISOString() };
+    if (mjpeg) return { body: await firstMjpegFrame(res), type: 'image/jpeg', time: new Date().toISOString() };
+    return { body: Buffer.from(await res.arrayBuffer()), type: res.headers.get('content-type')?.startsWith('image/') ? res.headers.get('content-type') : 'image/jpeg', time: frame?.time ?? lastModified(res) ?? new Date().toISOString() };
   },
 });
 // Harmonized Landsat–Sentinel (HLS) scenes reach GIBS a few days late: walk back to the most
