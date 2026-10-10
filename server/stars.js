@@ -223,6 +223,10 @@ export function matchBinaries(stars, orbitList, maxPc = 100) {
   for (const o of orbitList) {
     const P = (o.hip && byHip.get(o.hip)) || (!o.hip && lit.length ? byPosition(o) : null);
     if (!P || P.distPc > maxPc) continue;
+    // Grade 9 = an astrometric orbit: a wobble of the light centre, the companion never seen.
+    // Several are discredited (van de Kamp's Barnard's Star "companions"); designations with
+    // digits (Aa1, Aa2) mark proposed planets, not stars.
+    if (o.grade === 9 || /\d/.test(o.components) || /[A-Z][a-z]?\d\b/.test(o.designation)) continue;
     const [l1, l2] = componentLetters(o.components);
     if (!l1.startsWith('A')) continue; // orbits between other components need component-level ids
     const measured = MEASURED[o.wds] ?? null;
@@ -240,6 +244,7 @@ export function matchBinaries(stars, orbitList, maxPc = 100) {
       const dm = o.v2 != null && c.mag != null ? Math.abs(c.mag - o.v2) : 2.4;
       if (dm < best) { best = dm; S = c; }
     }
+    if (!S && seen.has([P.id, `${P.id}-${l2.toLowerCase()}`].sort().join('|'))) continue; // same companion, another orbit solution
     if (!S) {
       const props = measured?.props?.[l2] ?? {};
       S = {

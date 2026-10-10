@@ -58,3 +58,13 @@ test('brown dwarfs without a HIP number are joined to their ORB6 orbit by positi
   // 501.557 mas → 6.50 ly, the third-nearest system to the Sun
   assert.ok(Math.abs(stars[0].distPc * 3.26156 - 6.503) < 0.01);
 });
+
+test("unresolved astrometric orbits (ORB6 grade 9) don't invent companions — Barnard's Star stays single", async () => {
+  const { matchBinaries } = await import('../server/stars.js');
+  const barnard = { id: 'hyg-87665', name: "Barnard's Star", hip: 87937, x: -0.01, y: -1.82, z: 0.13, distPc: 1.8238, mag: 9.54, compPrimary: null, source: 'HYG v4' };
+  const vdk = (designation, components, P) => ({ wds: '17578+0442', designation, components, hip: 87937, v2: null, raDeg: 269.45, decDeg: 4.69,
+    periodYears: P, aArcsec: 0.02, i: 0, node: 0, periastronYear: 1950, e: 0, omega: 0, grade: 9, ref: 'Kam1969' });
+  const { edges, extra } = matchBinaries([barnard], [vdk('GJ 699Aa1', '', 12), vdk('GJ 699Aa2', '', 26), vdk('GJ 699Aa', 'Aa', 25)]);
+  assert.equal(edges.length, 0);
+  assert.equal(extra.length, 0);
+});

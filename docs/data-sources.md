@@ -53,6 +53,8 @@
 - **Orbits:** ORB6, matched by Hipparcos number.
 - **Wide pairs:** position matching, which links Proxima to α Cen AB through ORB6's "AC" orbit.
 - **No Hipparcos number:** orbits of the bundled brown dwarfs (Luhman 16) are matched by position.
+- **Not used:** ORB6 grade-9 (astrometric) orbits, whose companions were never seen — e.g. van de Kamp's
+  discredited 1969 "companions" of Barnard's Star — and planet-style designations (Aa1, Aa2).
 
 `src/astro/binary.js` then places each orbit in 3D:
 1. Thiele–Innes on the sky, then parallax to turn arcseconds into AU, then the sky's north/east/line-of-sight axes into the scene frame.
