@@ -257,10 +257,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged SHA4e16d38b98b788468e4f005b56d04282ccfe2f086eebfb1c0e5d20d8fd65ebef; coverage/frame/inputepochs/photometry open. White/blurred gaps are not measured smooth terrain. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "enceladus"
     },
     {
       "id": "sol-tethys",
@@ -8506,7 +8507,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 8,
+      "initialDossiers": 9,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

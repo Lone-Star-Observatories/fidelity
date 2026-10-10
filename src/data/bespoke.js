@@ -7294,6 +7294,131 @@ export const BODY_VISUALS = {
     },
     "surfaceLabel": "HYPOTHETICAL LOCAL MIMAS TERRAIN",
     "skyLabel": "HYPOTHETICAL SKY FROM MIMAS"
+  },
+  "enceladus": {
+    "id": "enceladus",
+    "name": "Enceladus",
+    "aliases": [
+      "Enceladus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged SHA4e16d38b98b788468e4f005b56d04282ccfe2f086eebfb1c0e5d20d8fd65ebef; coverage/frame/inputepochs/photometry open. White/blurred gaps are not measured smooth terrain. No generated globe.",
+    "measured": [
+      "Catalogue radius252.1km and semimajor axis238400km are representative, not dated scene registration.",
+      "Webb NIRSpec IFU program1250 water-emission product observed2022-11-09 released2023-05-30; separate Cassini inset epoch unverified. ESA NIRCam caption conflict retained; NASA detailed record and primary paper identify NIRSpec."
+    ],
+    "modelled": [
+      "Khawaja2025 E5 Cassini ice-grain impact spectra acquired2008-283T19:06:40UTC at17.7km/s constrain organic classes through laboratory comparisons; tentative N/O assignments, quantitative fractions unavailable. No biology or directly observed plumbing follows.",
+      "Villanueva2023 column/outgassing values are model-derived;25±3K rotational excitation is not ambient kinetic gas temperature. Primary plume extent wording40 Enceladus radii; retain publisher radius/size wording differences and non-detection limits."
+    ],
+    "unknown": [
+      "Local composition/fractions, registered observer site, calibrated photometry, globe frame/coverage/epochs, and inset observation epoch."
+    ],
+    "assumed": [
+      "Independent invented ice fractures/blocks/craters and Saturn bands/nearly edge-on rings/phase/light/exposure; no analog map reuse, atmosphere, plume, exposed ocean, biology or survivable landing.",
+      "Saturn spherical58232km at238400minus252.1km, nominal90HFOV: skyGeometry28.30697547degrees/421.637115px target at1672px. Row200 upper-globe chords318/313/313 are not full calibrated diameter; rings excluded.95K helper angular-only, Sun9.58AU off-frame."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "title": "NASA detailed Webb product record",
+        "publicationDate": "2023-05-30"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2314a/",
+        "title": "ESA publisher collage; conflicting NIRCam caption preserved",
+        "publicationDate": "2023-05-30"
+      },
+      {
+        "url": "https://mmhedman.github.io/papers_published/Villanueva_Enc_NA_2023.pdf",
+        "title": "JWST molecular mapping and characterization of Enceladus’ water plume feeding its torus; author-hosted PDF, exclusive publisher/Government-work rights, not asserted CC BY"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41550-025-02655-y",
+        "title": "Khawaja et al organic classes; article CC BY4 with third-party exceptions, no figure adopted",
+        "publicationDate": "2025-10-01"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/enceladus-webb-native.png",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/webb/science/2023/05/STScI-01GYJ8KXBB9GYG58KF9V7WRSGT.png?w=160&fit=clip",
+        "sourcePage": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "sourceUrl": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "credit": "NASA, ESA, CSA, Gerónimo Villanueva (NASA-GSFC); Image Processing: Alyssa Pagan (STScI)",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2022-11-09",
+        "publicationDate": "2023-05-30",
+        "bytes": 24001,
+        "sha256": "da674c36f769e0dd330e19fcab6621bb35b261cba6c9f033e0ee5caf059aa4fc",
+        "width": 160,
+        "height": 160,
+        "description": "NIRSpec IFU monochrome water-emission map assigned blue, collage with separate Cassini inset; not visible colour or resolved geography. Publisher160 display rendition reduces annotation readability; resizing/reencoding does not preserve full pixels. NASA1500PNG/ESA1500JPEG and320PNG retained.",
+        "processing": "Unchanged publisher160 PNG bytes; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL ENCELADUS TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM ENCELADUS",
+    "surfaceImage": {
+      "url": "/bespoke/enceladus-surface-image.jpg",
+      "previewUrl": "/bespoke/enceladus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "enceladus-generated-surfaceImage-original.png",
+      "sourceSha256": "622689106b2f96880f8ad12ef168a90f96077d7a097f5bfcb2a20f8c0a25bad9",
+      "sha256": "32d65cd8fb5834bbd7fcddefd8d2b3397a5995fbdc2596fe950ac809dae7b86b",
+      "previewSha256": "4691b8485d132685bf755aa185d245a73b8c9d1b04bc5a32e366593ef2ca1835",
+      "bytes": 243457,
+      "previewBytes": 8322,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/enceladus-sky-image.jpg",
+      "previewUrl": "/bespoke/enceladus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "enceladus-generated-skyImage-original.png",
+      "sourceSha256": "bc3119076dd49f3ae0945eb8a8f92956dff4d3d3577eb21097e1e176b100c278",
+      "sha256": "e237ed2844de9ede61dcbaf29c9949eead2d30bf2bfb72f67bc86dd557cd9b82",
+      "previewSha256": "dbdf9ca40fcdb19d9e602b402f2d7f1ea1fbb9b85bc893def3cd534218e24c41",
+      "bytes": 164287,
+      "previewBytes": 5400,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
