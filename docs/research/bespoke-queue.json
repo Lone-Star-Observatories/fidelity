@@ -231,10 +231,11 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "amalthea"
     },
     {
       "id": "sol-mimas",
@@ -8504,7 +8505,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 6,
+      "initialDossiers": 7,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

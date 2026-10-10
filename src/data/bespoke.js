@@ -7037,6 +7037,140 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "amalthea": {
+    "id": "amalthea",
+    "name": "Amalthea",
+    "aliases": [
+      "Amalthea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL AMALTHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM AMALTHEA",
+    "measured": [
+      "JunoCam PIA25728 observed2024-03-07 released2024-05-13: processed tiny moon against Jupiter, not resolved surface geography.",
+      "Galileo SSI PIA02532 observed1999-08-12/1999-11-26 released2000-04-24: monochrome stereo pair.",
+      "Catalogue nominal radius83.5km, mass2.08e18kg and semimajor axis181400km retained. Anderson2005 reports Doppler mass(2.08±0.15)e18kg from2002-11-05 encounter."
+    ],
+    "modelled": [
+      "Anderson2005 image-derived volume(2.43±0.22)e6km3 and density857±99kg/m3; porous ice/rock and cold formation are interpretations, not measured local fractions.",
+      "PDS Stooke model explicitly Voyager1/2 only, corrected smeared-limb bulge, no Galileo incorporation; decimal places do not indicate uncertainty.",
+      "skyGeometry Jupiter69911km at181400minus83.5km gives45.358808degrees at90HFOV;165K angular-only helper, computed colour/irradiance not adopted. Representative Sun5.2044AU off frame."
+    ],
+    "assumed": [
+      "Independent invented dark reddish-brown regolith, rocks, ridges, pores and local morphology, fractions/chemistry/albedo/light/exposure.",
+      "Independent schematic Jupiter bands/phase/orientation; no observed-body map reuse."
+    ],
+    "unknown": [
+      "Resolved global texture, local chemistry/fractions, optical calibration and local geographic registration remain unknown.",
+      "Modern shape alternatives, model uncertainty, observer registration and dated scene geometry remain open. No active plume, exposed ocean, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA JunoCam caption",
+        "url": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/"
+      },
+      {
+        "title": "NASA Galileo stereo caption",
+        "url": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/"
+      },
+      {
+        "title": "PDS individual model label",
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml"
+      },
+      {
+        "title": "Anderson et al.2005 primary author abstract",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15919987/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/amalthea-juno-native.jpg",
+        "label": "NATIVE JUNOCAM AMALTHEA DETECTION",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg?w=1020&fit=clip",
+        "observationDate": "2024-03-07",
+        "publicationDate": "2024-05-13",
+        "credit": "Image data: NASA/JPL-Caltech/SwRI/MSSS; image processing by Gerald Eichstädt",
+        "terms": "NASA media guidelines; full data and processing credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+        "bytes": 118764,
+        "description": "Unchanged NASA-served1020display JPEG; publisher resizing/reencoding not full-pixel preservation. Tiny moon detections against processed Jupiter cloud views do not establish resolved Amalthea geography or calibrated visible colour. Original3600JPEG and distinct dynamic3600JPEG retained separately.",
+        "processing": "Copied unchanged; no local crop, recolour or annotation removal."
+      },
+      {
+        "url": "/bespoke/amalthea-galileo-native.jpg",
+        "label": "NATIVE GALILEO SSI STEREO CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+        "observationDate": "1999-08-12 / 1999-11-26",
+        "publicationDate": "2000-04-24",
+        "credit": "NASA/JPL/Cornell University",
+        "terms": "NASA media guidelines; full mission and institution credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+        "bytes": 14865,
+        "description": "Unchanged860x410publisherJPEG stereo pair. Monochrome presentation, differing viewpoints, right north pole truncated by frame; not a seamless map or calibrated visible colour. Ida ejecta/ridge crest alternatives not unique chemistry.",
+        "processing": "Copied unchanged; source pairs and frame truncation retained."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0012120259409547868,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular-only helper;165K not calibrated visible photometry.",
+      "angularDiameterDeg": 45.358808209600525,
+      "centreDiscWidthFraction": 0.41788675843766276,
+      "irradianceEarth": 0.004590433272400362,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/amalthea-surface-image.jpg",
+      "previewUrl": "/bespoke/amalthea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fd6d007a-777d-402c-b993-83cda1a1139a.png",
+      "sourceSha256": "2e96201c2464678ed334be58f2aec2a5b7294d05b87ebc9d4cc4366afecaf055",
+      "sha256": "95211a4bb5fbb0cc7b8243ac038cf2ff75eb92599968750a19a477ceeb438f00",
+      "previewSha256": "07f203768a4fc1c653b2cfc645249df583913bbd464555c5d46e3e9f4c8b96b6",
+      "bytes": 334609,
+      "previewBytes": 56108,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/amalthea-sky-image.jpg",
+      "previewUrl": "/bespoke/amalthea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-83decfd9-2495-4dd2-af9f-8d6fd17f74e8.png",
+      "sourceSha256": "d6f53e912e69390dbb309d5d9bf92efc65e1ba80b0d8baa1cc9d67d0b8e4fb07",
+      "sha256": "48c3befffb97ffef0ab554a1cd55890b165298df52007674023132cb900bce97",
+      "previewSha256": "81d16f2b322e14cc13cb7776aa7e1cdf249b71c163b5dc4a53da11856abbac8a",
+      "bytes": 187883,
+      "previewBytes": 33558,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
