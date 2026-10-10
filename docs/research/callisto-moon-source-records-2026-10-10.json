@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/",
+    "path": "data/research-sources/callisto-spires-caption.html",
+    "bytes": 268686,
+    "sha256": "6bd9f2476b210c894a9cb46b40e618bebd21f8f950fe3d20a712b3bcc64f5747"
+  },
+  {
+    "url": "https://www.jpl.nasa.gov/images/pia03455-callisto-close-up-with-jagged-hills/",
+    "failure": "HTTP Error 403: Forbidden",
+    "sha256": null
+  },
+  {
+    "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/PIA03455.jpg",
+    "failure": "HTTP Error 403: Forbidden",
+    "sha256": null
+  },
+  {
+    "url": "https://www.jpl.nasa.gov/universe/archive/un0108.pdf",
+    "path": "data/research-sources/callisto-jpl-universe-2001.pdf",
+    "bytes": 2980957,
+    "sha256": "6f8ea35197e23c35320e8a90c7dc06f01ccd594bfc81a71eed6dfb56d2113739"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Callisto/Jupiter%20-%20Callisto.jpg",
+    "path": "data/research-sources/callisto-nasa3d-source.jpg",
+    "bytes": 783405,
+    "sha256": "b9f4fa5db94debabd12814853fd132db3449889646a490b6f95a897b2c47b121"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg",
+    "path": "data/research-sources/callisto-spires-nasa-pia03455.jpg",
+    "bytes": 311687,
+    "sha256": "99ba09edec934ad7e6d831c6bf518467c32b3fdb18ec0d7cdd8cbe39a14bcb1a"
+  }
+]

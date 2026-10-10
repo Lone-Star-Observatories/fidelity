@@ -218,7 +218,7 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
+      "nativeImagery": "Own NASA3D globe byte-equal to fetched source; native Galileo PIA03455 JPEG retained unchanged, observation2001-05-25 verified in contemporary JPL newsletter, full NASA/JPL/ASU/Academic Research Lab credit supported; mono panels/strip gaps/locator annotations not seamless colour geography. Recent/product-frame audit and headroom remain open (callisto-moon-preparation-2026-10-10.json); no initial dossier yet",
       "research": "queued",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"

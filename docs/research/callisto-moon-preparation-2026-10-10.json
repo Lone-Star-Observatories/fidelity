@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; all 49 delivered dossiers remain unchanged. No 50th dossier or new embedded image.",
+  "sourceRecords": "callisto-moon-source-records-2026-10-10.json",
+  "nativeAssessment": {
+    "product": "Galileo Solid-State Imaging PIA03455 Callisto Close-up with Jagged Hills",
+    "source": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/",
+    "sourceBytes": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg",
+    "path": "data/research-sources/callisto-spires-nasa-pia03455.jpg",
+    "bytes": 311687,
+    "sha256": "99ba09edec934ad7e6d831c6bf518467c32b3fdb18ec0d7cdd8cbe39a14bcb1a",
+    "sizePixels": [
+      2000,
+      1510
+    ],
+    "format": "jpeg",
+    "inspected": true,
+    "observed": "2001-05-25",
+    "observationEvidence": "JPL Universe August 31, 2001, Volume 31 Number 17, front page (PDF page 9): Galileo pictures taken May 25 from less than 138 km above the surface. Photojournal caption independently specifies May 2001.",
+    "released": "2001-08-22",
+    "credit": "NASA/JPL/Arizona State University, Academic Research Lab",
+    "creditAudit": "Both current NASA and JPL captions include Academic Research Lab. The historical JPL newsletter identifies James Klemaszewski of Academic Research Lab in Phoenix processing/analyzing these images with David A. Williams and Ronald Greeley of Arizona State University. Thus the organization credit is historically supported. The current NASA caption's external punycode link was not followed and is not adopted as an authoritative institutional or terms link; its ownership/history remain unverified.",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limitations": "Monochrome processed close-up panels, black strip gaps/seams, panel outlines, 5 km scale bar, locator lines and globe inset are publisher measurement/presentation context, not a seamless texture or calibrated visible colour. No local mass fractions are measured by this image. Caption-estimated knobs 80\u2013100 m high and ~3 m discernible features are source statements, not new raster/angular calculations. Sublimation, dust migration and impact-ejecta origins are interpretations/hypotheses; no unique chemistry or present-day activity rate established.",
+    "preservation": "Exact NASA-served JPEG bytes retained without editing; no embedding or replacement of an existing asset in this batch. Direct JPL caption and CloudFront JPEG requests returned HTTP403, documented with null hashes; NASA asset alternative succeeded."
+  },
+  "preservedNativeGlobe": {
+    "path": "data/textures/callisto.jpg",
+    "bytes": 783405,
+    "sha256": "b9f4fa5db94debabd12814853fd132db3449889646a490b6f95a897b2c47b121",
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Callisto/Jupiter%20-%20Callisto.jpg",
+    "sourceByteEquality": true,
+    "limitations": "Precise original product association, map projection/frame, coverage, observation epochs, geographic registration and photometric transfer remain open. Byte equality establishes source identity, not those scientific properties."
+  },
+  "next": [
+    "Recover lossless standalone headroom before adding native context and two independent local/observer illustrations; current preview has only 66909 bytes remaining.",
+    "Assess other primary native products and recent observations/artwork before claiming any latest-image coverage; current archive review is not exhaustive and no live resolved Callisto imagery has been verified.",
+    "Retain own-body native globe; any generated local terrain and schematic Jupiter atmosphere, phase, lighting and exposure must be explicitly imagined, independent and unregistered. Use skyGeometry for all angular/raster calculations.",
+    "Keep all physical-ranking and EZ Aquarii crosswalk limitations open; independent Solar System progress does not establish corrected current nearest-body membership."
+  ],
+  "validation": {
+    "testsPassed": 255,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15933091,
+    "headroomBytes": 66909,
+    "decodedImages": 179,
+    "stars": 4234,
+    "detailedSystems": 517,
+    "nativeContextHashesVerified": 37,
+    "priorDossiersDeepEqual": 49,
+    "browserSnapshotSha256": "95fe2ab38ca09f13df2b5ae467f2bf9440a3f25154c5fc32b57614b68c99c277",
+    "browserCompleteReadableSnapshotEquality": true,
+    "htmlParserPackedTextAndApplicationRestoration": "passed",
+    "assetModelShapeCatalogueInputs": "unchanged"
+  }
+}
