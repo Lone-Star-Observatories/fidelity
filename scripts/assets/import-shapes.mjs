@@ -2,6 +2,9 @@
 // PDS body-fixed shape reconstructions, converted into km and the viewer's +Y-north frame.
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { SHAPES } from '../../src/data/shapes.js';
 import { Document, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { weld, simplify, normals, prune, meshopt } from '@gltf-transform/functions';
@@ -99,7 +102,8 @@ export async function makeGLB(shape, target) {
   return {bytes:await io.writeBinary(doc),triangles,maxRadiusKm};
 }
 
-const records={};
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+const records={...SHAPES};
 for(const [id,spec] of Object.entries(sources)) {
  const response=await fetch(spec.url,{signal:AbortSignal.timeout(45000)});if(!response.ok)throw new Error(`${id} HTTP ${response.status}`);
  const text=await response.text(), shape=parseShape(text,spec);
@@ -109,4 +113,5 @@ for(const [id,spec] of Object.entries(sources)) {
  records[id]={url:`/shapes/${id}.glb`,previewUrl:`/shapes/${id}-preview.glb`,source:spec.url,sourceLabel:spec.url.replace('.tab','.xml'),credit:spec.credit,citation:spec.citation,tier:'modelled',units:'km',frame:spec.frame,origin:'Source cartographic/model origin retained; not forcibly moved to centre of mass.',observationDate:spec.observationDate,modelDate:spec.modelDate,retrieved:'2026-10-10',texLon0:-180,processing:'Body frame conversion; geometric decimation; seam-split equirectangular UVs; recomputed normals and Meshopt compression. No terrain synthesized.',triangles:master.triangles,previewTriangles:preview.triangles,maxRadiusKm:master.maxRadiusKm,bytes:master.bytes.length,previewBytes:preview.bytes.length,sha256:createHash('sha256').update(master.bytes).digest('hex'),sourceSha256:createHash('sha256').update(text).digest('hex')};
  console.log(id,records[id].triangles,records[id].previewTriangles);
 }
-await fs.writeFile(new URL('src/data/shapes.js',root),'// Converted PDS body-fixed shape reconstructions.\nexport const SHAPES = '+JSON.stringify(records,null,2)+';\nexport const shapeFor = (id) => SHAPES[id] ?? null;\n');
+await fs.writeFile(new URL('src/data/shapes.js',root),'// Credited body-fixed reconstructions and smooth modelled ellipsoids.\nexport const SHAPES = '+JSON.stringify(records,null,2)+';\nexport const shapeFor = (id) => SHAPES[id] ?? null;\n');
+}

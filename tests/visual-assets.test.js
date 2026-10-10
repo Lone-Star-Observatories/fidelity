@@ -12,7 +12,7 @@ import { SKINS } from '../src/data/skins.js';
 import { planetClass } from '../src/data/systems.js';
 const file = (url) => new URL(`../public${url}`, import.meta.url);
 
-test('PDS geometry decodes in native kilometres with valid triangles and seam-safe UVs', async () => {
+test('body geometry decodes in native kilometres with valid triangles and seam-safe UVs', async () => {
  await MeshoptDecoder.ready;
  const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
  for (const [id,asset] of Object.entries(SHAPES)) for(const preview of [false,true]) {
@@ -37,6 +37,26 @@ test('PDS geometry decodes in native kilometres with valid triangles and seam-sa
   assert.ok(max>asset.maxRadiusKm*0.9&&max<asset.maxRadiusKm*1.01,`${id} units/bounds`);
   assert.equal(asset.tier,'modelled');assert.equal(asset.units,'km');assert.ok(asset.citation&&asset.origin&&asset.sourceLabel);
  }
+});
+
+test('Haumea occultation ellipsoid preserves published axis lengths without invented relief', async()=>{
+ await MeshoptDecoder.ready;
+ const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder});
+ for(const url of [SHAPES.haumea.url,SHAPES.haumea.previewUrl]) {
+  const doc=await io.readBinary(await fs.readFile(file(url))),extents=[0,0,0];
+  for(const node of doc.getRoot().listNodes().filter(node=>node.getMesh()))for(const primitive of node.getMesh().listPrimitives()){
+   const positions=primitive.getAttribute('POSITION'),matrix=new Matrix4().fromArray(node.getWorldMatrix());
+   for(let i=0;i<positions.getCount();i++){
+    const position=new Vector3(...positions.getElement(i,[])).applyMatrix4(matrix);
+    const [x,y,z]=position.toArray();
+    assert.ok(Math.abs((x/1161)**2+(y/513)**2+(z/852)**2-1)<0.001,'smooth published ellipsoid in km');
+    [x,y,z].forEach((value,axis)=>extents[axis]=Math.max(extents[axis],Math.abs(value)));
+   }
+  }
+  [1161,513,852].forEach((axis,i)=>assert.ok(Math.abs(extents[i]-axis)<0.2,'correct long/polar/intermediate axis'));
+ }
+ assert.equal(SHAPES.haumea.label,'OCCULTATION ELLIPSOID');
+ assert.ok(SHAPES.haumea.frame.includes('No calibrated inertial pole'));
 });
 
 test('generated masters and previews have honest provenance and fit delivery budgets', async () => {

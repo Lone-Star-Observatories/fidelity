@@ -70,3 +70,5 @@ The user requested individual researched surface maps/details plus hypothetical 
 - Proxima b/d: individual researched maps and observer views supplied under dry rocky hypotheses, with 2025 artist context. Radius, atmosphere, true mass, composition and stellar colour calibration remain unknown or approximate; further closest planets/stars remain queued.
 
 - Full offline preview size/embedding verification completed for the present library: 9.00 MB, all 71 images decoded with networking disabled, native Ceres/Vesta included. Repeat the enforced 16 MB check as bespoke imagery grows.
+
+- Haumea sphere replacement completed with a smooth published occultation ellipsoid and preview. Ring rendering and physically registered pole/spin/albedo remain queued.

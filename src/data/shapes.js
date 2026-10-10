@@ -1,4 +1,4 @@
-// Converted PDS body-fixed shape reconstructions.
+// Credited body-fixed reconstructions and smooth modelled ellipsoids.
 export const SHAPES = {
   "phobos": {
     "url": "/shapes/phobos.glb",
@@ -119,6 +119,38 @@ export const SHAPES = {
     "previewBytes": 65496,
     "sha256": "09e5e3732ef27d6f9c8ee8049facb31aa0f5c825a501d72fdb39afb9465c2242",
     "sourceSha256": "e9437ac850060a4c527d1045e028ac28f58bfe0386fc1da0bf50405b8128b824"
+  },
+  "haumea": {
+    "semiaxesKm": {
+      "long": 1161,
+      "intermediate": 852,
+      "polar": 513
+    },
+    "source": "https://arxiv.org/abs/2006.03113",
+    "sourceLabel": "https://arxiv.org/pdf/2006.03113",
+    "credit": "Fidelity smooth ellipsoid from Ortiz et al. 2017 occultation/photometry analysis",
+    "citation": "Ortiz et al. (2017), Nature 550, doi:10.1038/nature24051; 2017-01-21 stellar occultation and rotational photometry. Semiaxes 1161 × 852 × 513 km are model-dependent.",
+    "label": "OCCULTATION ELLIPSOID",
+    "tier": "modelled",
+    "units": "km",
+    "frame": "Illustrative axes: +X along long equatorial axis, +Y along shortest/polar axis, −Z toward east along intermediate axis. No calibrated inertial pole, absolute spin phase or terrain longitude registration.",
+    "origin": "Geometric ellipsoid centre; centre of mass is not independently measured.",
+    "observationDate": "2017-01-21",
+    "modelDate": "2017",
+    "retrieved": "2026-10-10",
+    "texLon0": -180,
+    "limits": "One published smooth ellipsoid fit; uncertainties and alternative interior/shape models remain. No terrain relief or ring geometry is included; current attitude is illustrative.",
+    "processing": "Analytic ellipsoid tessellation in km, planetocentric seam-split UVs, normals and Meshopt compression. No resolved topography is asserted.",
+    "url": "/shapes/haumea.glb",
+    "previewUrl": "/shapes/haumea-preview.glb",
+    "triangles": 3968,
+    "previewTriangles": 960,
+    "maxRadiusKm": 1161,
+    "bytes": 107868,
+    "previewBytes": 31612,
+    "sha256": "292c7ccbc65816c8c6e7dd8e4408215187bbe0de3cc5d6484e2a6a628aff224b",
+    "previewSha256": "badf6cd6dad52e8301e7cc41f62fc203f46d8c569605e3de35a122382d8c0202",
+    "sourceSha256": null
   }
 };
 export const shapeFor = (id) => SHAPES[id] ?? null;

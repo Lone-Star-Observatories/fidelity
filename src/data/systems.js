@@ -67,7 +67,7 @@ function physicalFacts(b) {
 function skinFacts(m) {
   const shape = shapeFor(m.id);
   const bespoke = bodyVisualFor(m);
-  const shapeFacts = shape ? [fact('SHAPE', 'PDS RECONSTRUCTION', 'modelled', `${shape.credit}. ${shape.citation} ${shape.frame} Geometry loads on focus; a sphere remains until available.`)] : [];
+  const shapeFacts = shape ? [fact('SHAPE', shape.label ?? 'PDS RECONSTRUCTION', 'modelled', `${shape.credit}. ${shape.citation} ${shape.frame} Geometry loads on focus; a sphere remains until available.`)] : [];
 
   if (m.analog && bespoke?.surfaceMap) return [...shapeFacts, fact('SURFACE', 'BESPOKE RESEARCHED HYPOTHESIS', 'imagined', bespoke.assumed.join(' '))];
   if (m.analog) return [...shapeFacts, fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
