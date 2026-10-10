@@ -17,7 +17,7 @@ export function disposeModel(object) {
     for (const material of (Array.isArray(child.material) ? child.material : [child.material])) {
       if (!material) continue;
       materials.add(material);
-      for (const value of Object.values(material)) if (value?.isTexture) textures.add(value);
+      for (const value of Object.values(material)) if (value?.isTexture && !value.userData.shared) textures.add(value);
     }
   });
   geometries.forEach((g) => g.dispose());
@@ -27,12 +27,14 @@ export function disposeModel(object) {
 
 /** Normalize published visualization to the viewer's catalog-radius envelope.
  * Author axes are preserved: these are illustrative attitudes, not telemetry.
- * The single-file preview keeps its lightweight representative craft.
+ * The single-file preview loads embedded mission geometry.
  */
 export async function loadCraftModel(id) {
   const asset = modelFor(id);
-  if (!asset || snapshot) return null;
-  const { scene } = await loader.loadAsync(asset.url);
+  if (!asset) return null;
+  const url = snapshot?.models?.[asset.url] ?? (!snapshot ? asset.url : null);
+  if (!url) return null;
+  const { scene } = await loader.loadAsync(url);
   const bounds = new THREE.Box3().setFromObject(scene);
   const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
   if (!Number.isFinite(radius) || radius <= 0) {

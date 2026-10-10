@@ -200,7 +200,7 @@ line and distance label, refreshed with the epoch (`updateProximity`). An SVG or
 `public/models/`. `src/views/system/models.js` uses GLTFLoader with local Draco and
 bundled Meshopt decoders. SystemView loads a mission model on focus, replaces its
 pickable meshes, and discards pending results after a system switch. The single-file
-preview retains the representative craft. See `docs/assets.md` for registration limits.
+preview embeds compact mission models. See `docs/assets.md` for registration limits.
 
 ## Reconstructed shapes and class skins
 
@@ -208,7 +208,7 @@ preview retains the representative craft. See `docs/assets.md` for registration 
 
 ## Individual body hypotheses
 
-`src/data/bespoke.js` matches full body names to research dossiers and companion imagery, avoiding ambiguous planet-letter IDs. System construction selects bespoke maps before generic exoplanet skins, and before analog lunar/small-body skins; native scientific maps stay preferred. Planet/Object View shows surface, observer/sky and source-context cards with provenance badges. The catalogue interface resolves local textures and standalone embedded images. `src/astro/appearance.js` computes representative stellar disc geometry; it does not claim calibrated raster photometry. The standalone builder embeds smaller companion images as `bodyImages`; full snapshot size must be checked as the library grows.
+`src/data/bespoke.js` matches full body names to research dossiers and companion imagery, avoiding ambiguous planet-letter IDs. System construction selects bespoke maps before generic exoplanet skins, and before independent generic lunar/small-body placeholders; native scientific maps stay preferred. Planet/Object View shows surface, observer/sky and source-context cards with provenance badges. The catalogue interface resolves local textures and standalone embedded images. `src/astro/appearance.js` computes representative stellar disc geometry; it does not claim calibrated raster photometry. The standalone builder embeds smaller companion images as `bodyImages`; full snapshot size must be checked as the library grows.
 
 Bespoke batches can be added through `scripts/assets/import-body-batch.mjs` and a saved research/input manifest without regenerating previous dossiers. The importer validates aspect ratios and size budgets, then writes compressed assets and the expanded registry. Research cards expose modelled interpretations separately, including ambiguous atmosphere/activity scenarios.
 
@@ -217,3 +217,9 @@ The Proxima b/d dossiers use full-name aliases (Proxima, Proxima Cen and Proxima
 The standalone builder uses build-time Sharp to resize upstream surface previews, preserves transparent rings, and can sample absent native TIFF previews into `data/preview-textures/`. That cache is distinct from normal-resolution backend imagery. Selected-source credits survive resizing. The final HTML has a 16,000,000-byte build gate; the current full catalogue artifact is verified below it and runs with networking disabled.
 
 Shape records can carry a source-specific display label; Haumea uses OCCULTATION ELLIPSOID instead of a PDS reconstruction claim. The native-km loader also supports smooth published ellipsoid fits. Build-time PDS parsing/GLB helpers can be imported without running network imports, and regeneration preserves entries from other shape pipelines.
+
+Borrowed observed-body skins are prohibited: Moon, Mars, Pluto, Sun and Jupiter imagery is never assigned to a different body. Unfinished Solar System maps use independent procedural IMAGINED placeholders labelled BESPOKE QUEUED; existing native maps and completed individual dossiers retain priority. Non-Solar photospheres also use independent procedural illustrations.
+
+Offline spacecraft rendering: the standalone snapshot embeds Meshopt mission preview GLBs keyed by their normal asset URL. The loader selects these data URIs instead of disabling mission models. Previews preserve credited source geometry with reduced detail and existing illustrative attitude/size limits. `scripts/assets/build-craft-previews.mjs` records preview processing, byte counts and SHA-256 hashes; the 16 MB HTML gate remains enforced.
+
+Satellite panel rendering also fixes an undefined body reference in the model credit line. Craft materials receive a dedicated studio environment map so dark metal materials remain legible without changing planet illumination; this lighting is illustrative, not telemetry. Browser checks decode all 24 normal and embedded GLBs, render the ISS route with networking disabled, and verify all 71 offline images. Current standalone size is 14.25 MB.

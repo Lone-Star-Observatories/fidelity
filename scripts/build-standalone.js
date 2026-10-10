@@ -22,6 +22,7 @@ import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
 import { BODY_VISUALS, BESPOKE_TEXTURES } from '../src/data/bespoke.js';
 import { SKINS } from '../src/data/skins.js';
 import { SHAPES } from '../src/data/shapes.js';
+import { MODELS } from '../src/data/models.js';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
@@ -85,6 +86,11 @@ for (const [id, asset] of Object.entries(SHAPES)) {
   const bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl));
   shapes[id] = `data:model/gltf-binary;base64,${bytes.toString('base64')}`;
 }
+const models = {};
+for (const asset of Object.values(MODELS)) {
+  const bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl));
+  models[asset.url] = `data:model/gltf-binary;base64,${bytes.toString('base64')}`;
+}
 const bodyImages = {};
 for (const visual of Object.values(BODY_VISUALS)) {
   for (const asset of [visual.surfaceImage, visual.surfaceMap, visual.skyImage, ...(visual.contextImages ?? [])].filter(Boolean)) {
@@ -130,7 +136,7 @@ const galAll = await galaxies().catch(() => null);
 const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: galAll.groups.rows.filter((r) => r[2] <= 92).map((r) => [r[0], r[1], +r[2].toFixed(1), Math.round(r[3]), Math.round(r[4]), Math.round(r[5])]) } };
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, shapes, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} detailed systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

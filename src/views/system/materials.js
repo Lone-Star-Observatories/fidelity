@@ -1,4 +1,4 @@
-// Materials for realistic bodies: spacecraft mosaics for Sol's worlds, analog skins for
+// Materials for realistic bodies: spacecraft mosaics for Sol's worlds, individual and generated class skins for
 // exoplanets, limb-darkened photospheres for stars. Textures load on demand (backend
 // cache, or the standalone snapshot) and swap in over a procedural placeholder.
 
@@ -66,7 +66,7 @@ const PLANET_FRAG = /* glsl */`
     #include <colorspace_fragment>
   }`;
 
-// Photosphere: quadratic limb darkening; other stars reuse the Sun's granulation recoloured.
+// Photosphere: quadratic limb darkening; other stars use independent procedural illustrations.
 const STAR_FRAG = /* glsl */`
   #include <common>
   #include <logdepthbuf_pars_fragment>

@@ -8,7 +8,7 @@ Local GLBs cover ISS, Hubble, JWST, Voyager 1/2 (shared Voyager model), Juno, Pa
 
 ISS is simplified. Juno, Webb and LRO were welded after removing split normals, simplified and given recomputed normals; fine shading may differ from the originals. Draco and Meshopt decoders are local. The original unsimplified source is linked in every record.
 
-Models load when the craft is focused. While loading, on failure and in the single-file preview the representative IMAGINED craft remains. Normal builds bundle models for offline revisits. Models preserve author axes and are recentered on the bounding box and normalized into the existing catalog-radius envelope. Metres, deployed dimensions, centre of mass and boresight are **not independently calibrated**; attitude remains illustrative. This batch does not meet the final physical registration specification yet.
+Models load when the craft is focused. While loading or on failure the representative IMAGINED craft remains. The single-file preview now embeds compact mission geometry for all 24 registered files. Normal builds bundle models for offline revisits. Models preserve author axes and are recentered on the bounding box and normalized into the existing catalog-radius envelope. Metres, deployed dimensions, centre of mass and boresight are **not independently calibrated**; attitude remains illustrative. This batch does not meet the final physical registration specification yet.
 
 ## Remaining work
 
@@ -84,3 +84,9 @@ The earlier spherical Haumea limitation is now corrected by a smooth occultation
 Master 3968 triangles, preview 960; both use planetocentric seam-split UVs and bundled Meshopt. System and Planet views load the existing native-km path, now using the distinct OCCULTATION ELLIPSOID provenance label. `scripts/assets/build-haumea-shape.mjs` reproduces it. Importing the PDS conversion helper no longer triggers downloads, and subsequent PDS imports preserve this registry entry.
 
 Haumea verification: 102 tests pass (one catalogue-dependent skip), including both GLBs’ published axis lengths and smooth ellipsoid equation. Browser loading confirms native-km scaling and the source-specific label. The updated full offline artifact is 9.04 MB with six embedded shape previews; all 71 images still decode without networking, and embedded Haumea preview bytes match the verified model.
+
+Borrowed observed-body skins are prohibited: Moon, Mars, Pluto, Sun and Jupiter imagery is never assigned to a different body. Unfinished Solar System maps use independent procedural IMAGINED placeholders labelled BESPOKE QUEUED; existing native maps and completed individual dossiers retain priority. Non-Solar photospheres also use independent procedural illustrations.
+
+Offline spacecraft rendering: the standalone snapshot embeds Meshopt mission preview GLBs keyed by their normal asset URL. The loader selects these data URIs instead of disabling mission models. Previews preserve credited source geometry with reduced detail and existing illustrative attitude/size limits. `scripts/assets/build-craft-previews.mjs` records preview processing, byte counts and SHA-256 hashes; the 16 MB HTML gate remains enforced.
+
+Satellite panel rendering also fixes an undefined body reference in the model credit line. Craft materials receive a dedicated studio environment map so dark metal materials remain legible without changing planet illumination; this lighting is illustrative, not telemetry. Browser checks decode all 24 normal and embedded GLBs, render the ISS route with networking disabled, and verify all 71 offline images. Current standalone size is 14.25 MB.

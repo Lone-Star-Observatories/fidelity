@@ -8,6 +8,7 @@
 import * as THREE from 'three';
 import { shapeFor } from '../../data/shapes.js';
 import { loadBodyShape, loadCraftModel, disposeModel } from './models.js';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
@@ -88,6 +89,24 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   scene.add(new THREE.AmbientLight(0xffffff, 0.06)); // rendering aid: keep night sides faintly visible
   const starLight = new THREE.PointLight(0xfff4e0, 2.4, 0, 0);
   root.add(starLight);
+  // Studio environment assigned only to craft materials, never to the scene or planets.
+  let craftEnvironment = null;
+  function inspectCraft(object) {
+    if (!craftEnvironment) {
+      const room = new RoomEnvironment(), generator = new THREE.PMREMGenerator(renderer);
+      craftEnvironment = generator.fromScene(room, 0.04).texture;
+      craftEnvironment.userData.shared = true;
+      room.dispose(); generator.dispose();
+    }
+    object.traverse(o => {
+      for (const material of (Array.isArray(o.material) ? o.material : [o.material])) {
+        if (!material?.isMeshStandardMaterial) continue;
+        material.envMap = craftEnvironment;
+        material.envMapIntensity = 0.8;
+        material.needsUpdate = true;
+      }
+    });
+  }
 
   // ---- sky: real stars as seen from this system (falls back to a decorative field) ----
   const SKY_R = 2e5;
@@ -190,7 +209,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     let mesh, clouds = null;
     if (body.marker) return addMarker(body);
     if (body.kind === 'satellite' || body.kind === 'spacecraft') return addSatelliteNode(body);
-    const placeholder = planetTexture(isStar(body) ? { id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
+    const placeholder = planetTexture(isStar(body) ? { id: body.id, banded: body.banded, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
     if (isStar(body)) {
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), starMaterial(placeholder, body.color, body.skin?.recolour));
       loadTexture(body.skin?.map).then((t) => { if (t) mesh.material.uniforms.uMap.value = t; });
@@ -274,6 +293,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const dish = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.02, 0.06, 24), white);
     dish.position.set(0, -0.2, 0);
     model3d.add(dish);
+    inspectCraft(model3d);
     const mesh = model3d;
     mesh.userData.id = body.id;
     tilt.add(mesh); group.add(tilt);
@@ -294,6 +314,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       const detailed = await loadCraftModel(node.body.id);
       if (!detailed) return;
       if (nodes[node.body.id] !== node) { disposeModel(detailed); return; }
+      inspectCraft(detailed);
       const old = node.mesh;
       const oldMeshes = new Set();
       old.traverse((o) => { if (o.isMesh) oldMeshes.add(o); });

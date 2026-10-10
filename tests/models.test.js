@@ -32,3 +32,19 @@ test('NORAD and Voyager aliases select the intended mission, unknown craft keep 
   assert.equal(modelFor('voyager-2'), MODELS.voyager);
   assert.equal(modelFor('unknown'), null);
 });
+
+test('offline mission previews are self-contained and retain recorded hashes', async () => {
+  let total = 0;
+  for (const [id, asset] of Object.entries(MODELS)) {
+    const bytes = await fs.readFile(new URL(`../public${asset.previewUrl}`, import.meta.url));
+    total += bytes.length;
+    assert.equal(bytes.toString('ascii',0,4),'glTF',id);
+    assert.equal(bytes.length,asset.previewBytes,id);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.previewSha256,id);
+    const gltf=JSON.parse(bytes.toString('utf8',20,20+bytes.readUInt32LE(12)));
+    assert.ok(gltf.buffers.every(b=>!b.uri),id);
+    assert.ok((gltf.images??[]).every(i=>!i.uri),id);
+    assert.ok(!(gltf.extensionsRequired??[]).includes('KHR_draco_mesh_compression'),id);
+  }
+  assert.ok(total < 5e6, `${total} preview bytes`);
+});

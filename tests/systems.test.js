@@ -78,3 +78,20 @@ test('Sol model: Sun, nine major bodies, moons on real parents, small bodies', (
   assert.ok(m.bodies.filter((b) => !b.marker && b.kind !== 'spacecraft').every((b) => b.facts.PHYSICAL.length));
   assert.ok(m.bodies.filter((b) => b.kind === 'spacecraft').every((b) => b.horizons && b.facts.MISSION.length));
 });
+
+test('Solar System skins never borrow another body surface', () => {
+  const model = solSystem();
+  const bespoke = new Set(['erisBespoke', 'haumeaBespoke', 'makemakeBespoke']);
+  for (const body of model.bodies) {
+    if (body.skin?.map) assert.ok(body.skin.map === body.id || bespoke.has(body.skin.map), `${body.id}: ${body.skin.map}`);
+    for (const facts of Object.values(body.facts ?? {})) for (const fact of facts) assert.doesNotMatch(String(fact.value), /ANALOG:/);
+  }
+  const pending = model.bodies.find(b => b.id === 'sedna');
+  assert.equal(pending.skin, undefined);
+  assert.ok(Object.values(pending.facts).flat().some(f => f.value === 'GENERIC PLACEHOLDER · BESPOKE QUEUED' && f.tier === 'imagined'));
+});
+
+test('other stellar components do not borrow Sun or Jupiter imagery', () => {
+  const model = buildStarSystem({star:star(),host:null,planets:[]});
+  assert.equal(model.bodies[0].skin.map, undefined);
+});

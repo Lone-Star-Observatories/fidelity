@@ -54,7 +54,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     resetLive();
     live.satNorad = r[0];
     live.satId = `sat-${r[0]}`;
-    const o = orbitOf(r), cat = catOf(r);
+    const o = orbitOf(r), cat = catOf(r), asset = modelFor(`sat-${r[0]}`);
     const tele = h('dl');
     live.alt = row(tele, 'ALTITUDE', '—', 'computed', 'SGP4 from the latest CelesTrak elements.');
     live.speed = row(tele, 'SPEED', '—', 'computed');
@@ -81,7 +81,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
       h('div', { className: 'body-list' },
         pill('◀ EARTH', () => go({ level: 'system', system: 'sol', body: 'earth' })),
         pill('ALL SATELLITES', () => go({ level: 'system', system: 'sol', body: 'earth' }))),
-      h('p', { className: 'note', textContent: modelFor(b.id) ? `Model: ${modelFor(b.id).credit} (MODELLED). Published visualization loaded on focus; representative IMAGINED fallback while loading, on failure or in the preview. Catalog size, illustrative attitude.` : 'Model: a representative spacecraft (IMAGINED), drawn at catalog size in TRUE scale where the size is known.' }),
+      h('p', { className: 'note', textContent: asset ? `Model: ${asset.credit} (MODELLED). Published visualization loaded on focus; representative IMAGINED fallback while loading, or on failure. Offline previews embed compact mission geometry. Catalog size, illustrative attitude and inspection lighting.` : 'Model: a representative spacecraft (IMAGINED), drawn at catalog size in TRUE scale where the size is known.' }),
       renderLegend(),
     );
     if (feeds[0] && feeds[0].kind !== 'video') openFeed(feeds[0], r);

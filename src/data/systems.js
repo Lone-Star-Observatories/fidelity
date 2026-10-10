@@ -69,8 +69,8 @@ function skinFacts(m) {
   const bespoke = bodyVisualFor(m);
   const shapeFacts = shape ? [fact('SHAPE', shape.label ?? 'PDS RECONSTRUCTION', 'modelled', `${shape.credit}. ${shape.citation} ${shape.frame} Geometry loads on focus; a sphere remains until available.`)] : [];
 
-  if (m.analog && bespoke?.surfaceMap) return [...shapeFacts, fact('SURFACE', 'BESPOKE RESEARCHED HYPOTHESIS', 'imagined', bespoke.assumed.join(' '))];
-  if (m.analog) return [...shapeFacts, fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
+  if (m.surfacePending && bespoke?.surfaceMap) return [...shapeFacts, fact('SURFACE', 'BESPOKE RESEARCHED HYPOTHESIS', 'imagined', bespoke.assumed.join(' '))];
+  if (m.surfacePending) return [...shapeFacts, fact('SURFACE', 'GENERIC PLACEHOLDER · BESPOKE QUEUED', 'imagined', 'Independent procedural illustration. Terrain and colour are unmeasured; native imagery assessment and an individual researched asset are queued.')];
   return [...shapeFacts, fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
 }
 
@@ -80,7 +80,7 @@ function moonBody(m) {
   return {
     id: m.id, name: m.name, kind: 'moon', parent: m.parent, radiusKm: m.radiusKm, massKg: m.massKg, meanTempC: m.meanTempC,
     rotationHours: m.rotationHours || e.P * 24, locked, note: m.note ?? null, discovered: m.discovered,
-    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.analog && bodyVisualFor(m)?.surfaceMap ? { map: bodyVisualFor(m).surfaceMap.key } : m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.surfacePending && bodyVisualFor(m)?.surfaceMap ? { map: bodyVisualFor(m).surfaceMap.key } : m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
     facts: {
       ORBIT: [
         fact('ORBITS', m.parent.toUpperCase(), 'measured'),
@@ -106,7 +106,7 @@ function smallBody(b) {
   return {
     id: b.id, name: b.name, kind: b.kind, radiusKm: b.radiusKm, massKg: b.massKg, meanTempC: b.meanTempC,
     rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt,
-    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.analog && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e },
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.surfacePending && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e },
     facts: {
       ORBIT: [
         fact('REGION', b.belt, 'measured'),
@@ -131,7 +131,7 @@ export function solSystem() {
     facts: { MISSION: [
       fact('STATUS', c.status, 'measured'), fact('LAUNCHED', `${c.launched} · ${c.agency}`, 'measured'),
       fact('POSITION', 'JPL HORIZONS', 'computed', c.center ? `Reconstructed or predicted trajectory relative to ${c.center}, 10-minute steps.` : 'Reconstructed or predicted trajectory (JPL Horizons), daily steps.'),
-    ], RENDERING: [modelFor(c.id) ? fact('MODEL', 'NASA MISSION MODEL', 'modelled', `${modelFor(c.id).credit}. Loaded on focus; a representative IMAGINED craft is shown while loading, on failure, and in the standalone preview. ${modelFor(c.id).fidelity} ${modelFor(c.id).units} ${modelFor(c.id).frame}`) : fact('MODEL', 'REPRESENTATIVE', 'imagined', 'A generic spacecraft shape at the catalog size; not this craft\'s design.')] } });
+    ], RENDERING: [modelFor(c.id) ? fact('MODEL', 'NASA MISSION MODEL', 'modelled', `${modelFor(c.id).credit}. Loaded on focus; a representative IMAGINED craft is shown while loading or on failure. The standalone preview embeds compact mission geometry. Inspection lighting is illustrative. ${modelFor(c.id).fidelity} ${modelFor(c.id).units} ${modelFor(c.id).frame}`) : fact('MODEL', 'REPRESENTATIVE', 'imagined', 'A generic spacecraft shape at the catalog size; not this craft\'s design.')] } });
   for (const l of LAGRANGE) bodies.push({ ...l, radiusKm: 1500, marker: true, orbit: { type: 'lagrange', pair: l.pair, L: l.L }, facts: { ...l.facts } });
   return {
     id: 'sol', name: 'Sol', isSol: true, sector: 'SECTOR 001', distLy: 0,
@@ -157,18 +157,18 @@ export function solSystem() {
  */
 export function planetClass(rEarth, teq) {
   if (rEarth < 1.6) {
-    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'], skin: { map: 'exoLava' }, analog: 'GENERATED CLASS ILLUSTRATION' };
-    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'], skin: { map: 'exoHotRock' }, analog: 'GENERATED CLASS ILLUSTRATION' };
-    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'], skin: { map: 'exoTemperate' }, analog: 'GENERATED CLASS ILLUSTRATION' };
-    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'], skin: { map: 'exoIce' }, analog: 'GENERATED CLASS ILLUSTRATION' };
+    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'], skin: { map: 'exoLava' }, illustration: 'GENERATED CLASS ILLUSTRATION' };
+    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'], skin: { map: 'exoHotRock' }, illustration: 'GENERATED CLASS ILLUSTRATION' };
+    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'], skin: { map: 'exoTemperate' }, illustration: 'GENERATED CLASS ILLUSTRATION' };
+    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'], skin: { map: 'exoIce' }, illustration: 'GENERATED CLASS ILLUSTRATION' };
   }
   if (rEarth < 4) {
-    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true, skin: { map: 'exoSubNeptune', tint: [1.15, 0.95, 0.72] }, analog: 'GENERATED CLASS ILLUSTRATION' }
-      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true, skin: { map: 'exoSubNeptune', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' };
+    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true, skin: { map: 'exoSubNeptune', tint: [1.15, 0.95, 0.72] }, illustration: 'GENERATED CLASS ILLUSTRATION' }
+      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true, skin: { map: 'exoSubNeptune', tint: [1, 1, 1] }, illustration: 'GENERATED CLASS ILLUSTRATION' };
   }
-  if (teq > 1000) return { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true, skin: { map: 'exoHotJupiter' }, analog: 'GENERATED CLASS ILLUSTRATION' };
-  return teq < 150 ? { label: 'COLD GAS GIANT', palette: ['#e3d3a8', '#c9b27f', '#efe6c8'], banded: true, skin: { map: 'exoColdGiant', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' }
-    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true, skin: { map: 'exoGasGiant', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' };
+  if (teq > 1000) return { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true, skin: { map: 'exoHotJupiter' }, illustration: 'GENERATED CLASS ILLUSTRATION' };
+  return teq < 150 ? { label: 'COLD GAS GIANT', palette: ['#e3d3a8', '#c9b27f', '#efe6c8'], banded: true, skin: { map: 'exoColdGiant', tint: [1, 1, 1] }, illustration: 'GENERATED CLASS ILLUSTRATION' }
+    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true, skin: { map: 'exoGasGiant', tint: [1, 1, 1] }, illustration: 'GENERATED CLASS ILLUSTRATION' };
 }
 
 /** Radius from mass (Earth units), after Chen & Kipping (2017) power laws. */
@@ -232,7 +232,7 @@ function starBody(m, measured = {}) {
     color: bd && t.teff < 1000 ? 0x5a1c1c : rgbToHex(blackbodyRGB(t.teff)), spectral: spect, teffK: Math.round(t.teff), massSun, lum,
     metallicity: host?.st_met ?? null, catalog: s, massJup: bd ? p.massJup ?? null : null,
     // Brown dwarfs are banded, cloudy balls more like Jupiter than the Sun.
-    skin: bd ? { map: 'jupiter', recolour: true } : { map: 'sun', recolour: true },
+    skin: { recolour: true }, banded: bd,
     note: p.note ?? null,
     facts: {
       PHYSICAL: [
@@ -249,8 +249,7 @@ function starBody(m, measured = {}) {
           ? 'At this temperature it glows almost only in the infrared: to the eye it would be nearly black. Drawn as a dim ember so you can find it.'
           : 'Sodium and potassium absorb the yellow-green, so L/T dwarfs would look dull red to magenta.')
           : fact('COLOUR', 'BLACKBODY', 'computed', 'Colour of a blackbody at the surface temperature.'),
-        bd ? fact('SURFACE', "JUPITER'S BANDS, RECOLOURED", 'imagined', 'Brown dwarfs have banded, patchy cloud weather (seen in their brightness changes), but no image resolves one; Jupiter stands in.')
-          : fact('SURFACE', "SUN'S GRANULATION, RECOLOURED", 'imagined', 'No surface detail of this star has been resolved; the texture is the Sun\'s.'),
+        fact('SURFACE', 'GENERIC PLACEHOLDER · BESPOKE QUEUED', 'imagined', 'Independent procedural illustration. Photospheric or cloud features are unmeasured; individual researched imagery is queued.'),
       ],
     },
   };
@@ -322,7 +321,7 @@ function planetBodies(rows, star, idFor, notes) {
     if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
     if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
     facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No resolved surface map exists; its illustrative class is inferred from size and temperature.'));
-    facts.RENDERING.push(fact('SKIN', bespoke?.surfaceMap ? 'BESPOKE RESEARCHED HYPOTHESIS' : cls.analog, 'imagined', bespoke?.surfaceMap ? [...bespoke.measured, ...bespoke.assumed, ...bespoke.unknown].join(' ') : 'Generated class illustration guided by radius and temperature. Composition, clouds, colours and terrain are hypotheses; no resolved surface features are measured.'));
+    facts.RENDERING.push(fact('SKIN', bespoke?.surfaceMap ? 'BESPOKE RESEARCHED HYPOTHESIS' : cls.illustration, 'imagined', bespoke?.surfaceMap ? [...bespoke.measured, ...bespoke.assumed, ...bespoke.unknown].join(' ') : 'Generated class illustration guided by radius and temperature. Composition, clouds, colours and terrain are hypotheses; no resolved surface features are measured.'));
     return {
       id: idFor(r), name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30, host: star.id,
       massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, radiusEarth: rE, massEarth: r.pl_bmasse ?? null, teq,

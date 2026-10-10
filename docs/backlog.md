@@ -9,7 +9,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 3 | **Earth neighbourhood: Satellite + Object views** | CelesTrak GP + SGP4 (the ISS, the GEO ring), Van Allen belts (MODELLED), magnetopause driven by live solar wind (linked to the solar weather app), Hill spheres and Lagrange points, asteroid/Kuiper belt samples, planetary rings, the Oort cloud shell (MODELLED). |
 | 4 | ✅ **Quadrant → Universe** (Galaxy done in #10) | Galactic quadrants I–IV plus the Starfleet overlay (IMAGINED), tiled Gaia density, clusters and nebulae; Milky Way model with Sector 001; nearby galaxies with a distance filter (NED/Cosmicflows-4). |
 
-| 6 | ✅ **Realistic skins** | Spacecraft mosaics for every Sol body, Earth's clouds and city lights, real rotation phase, recoloured photospheres for stars, analog skins for exoplanets. Credits shown. |
+| 6 | ✅ **Realistic skins** | Native spacecraft mosaics where available, independent generic placeholders elsewhere, Earth's clouds and city lights, real rotation phase, recoloured photospheres for stars, generated class skins for exoplanets. Credits shown. |
 | 7 | ✅ **Binary and multiple stars** | ORB6 orbits in true 3D, barycentric motion, measured masses (Sirius B as a white dwarf, α Cen A+B with Proxima around the pair), planets riding with their host star. |
 | 8 | ✅ **Star View** | Close-up photosphere, observed template spectrum (Pickles) against the blackbody with line IDs and an infrared range, composition by mass (Asplund 2009 for the Sun, [Fe/H]-scaled otherwise), white dwarfs handled. |
 | 9 | ✅ **Planet View** | Globe, atmosphere by volume (Sol) or measured JWST detections (exoplanets), spectral fingerprints, interior to scale, density on the mass–radius diagram with minimum-mass and unmeasured-radius caveats. |
@@ -72,3 +72,9 @@ The user requested individual researched surface maps/details plus hypothetical 
 - Full offline preview size/embedding verification completed for the present library: 9.00 MB, all 71 images decoded with networking disabled, native Ceres/Vesta included. Repeat the enforced 16 MB check as bespoke imagery grows.
 
 - Haumea sphere replacement completed with a smooth published occultation ellipsoid and preview. Ring rendering and physically registered pole/spin/albedo remain queued.
+
+Borrowed observed-body skins are prohibited: Moon, Mars, Pluto, Sun and Jupiter imagery is never assigned to a different body. Unfinished Solar System maps use independent procedural IMAGINED placeholders labelled BESPOKE QUEUED; existing native maps and completed individual dossiers retain priority. Non-Solar photospheres also use independent procedural illustrations.
+
+Offline spacecraft rendering: the standalone snapshot embeds Meshopt mission preview GLBs keyed by their normal asset URL. The loader selects these data URIs instead of disabling mission models. Previews preserve credited source geometry with reduced detail and existing illustrative attitude/size limits. `scripts/assets/build-craft-previews.mjs` records preview processing, byte counts and SHA-256 hashes; the 16 MB HTML gate remains enforced.
+
+Satellite panel rendering also fixes an undefined body reference in the model credit line. Craft materials receive a dedicated studio environment map so dark metal materials remain legible without changing planet illumination; this lighting is illustrative, not telemetry. Browser checks decode all 24 normal and embedded GLBs, render the ISS route with networking disabled, and verify all 71 offline images. Current standalone size is 14.25 MB.

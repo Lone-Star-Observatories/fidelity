@@ -15,7 +15,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Unmodified original GLB"
+    "processing": "Unmodified original GLB",
+    "previewUrl": "/models/hubble-preview.glb",
+    "previewBytes": 126800,
+    "previewSha256": "20d95aea8322dc2e889b00b297f3d620bf299c7eac19654a32676b17ad232938",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "voyager": {
     "url": "/models/voyager.glb",
@@ -32,7 +36,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Unmodified original GLB"
+    "processing": "Unmodified original GLB",
+    "previewUrl": "/models/voyager-preview.glb",
+    "previewBytes": 166968,
+    "previewSha256": "d32877dda54d634e8377b8a084a759d620cc83f188dec7c2042b90e92b68e2ff",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "juno": {
     "url": "/models/juno.glb",
@@ -49,7 +57,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed"
+    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed",
+    "previewUrl": "/models/juno-preview.glb",
+    "previewBytes": 209812,
+    "previewSha256": "0746da67673bd02b1d8f4408a3414df87d69f3a51d3ebe524b89f85d03bd8194",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "parker": {
     "url": "/models/parker.glb",
@@ -66,7 +78,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Unmodified original GLB"
+    "processing": "Unmodified original GLB",
+    "previewUrl": "/models/parker-preview.glb",
+    "previewBytes": 156900,
+    "previewSha256": "8987ecf865e189f8084402313eadc77793ffc79072bf776bed996b80e3ae914a",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "dscovr": {
     "url": "/models/dscovr.glb",
@@ -83,7 +99,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Unmodified original GLB"
+    "processing": "Unmodified original GLB",
+    "previewUrl": "/models/dscovr-preview.glb",
+    "previewBytes": 79996,
+    "previewSha256": "7006f7dc8333efd77c4887f85c947f33dbf8eb6311416111b0296cc898560ea8",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "mro": {
     "url": "/models/mro.glb",
@@ -100,7 +120,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Unmodified original GLB"
+    "processing": "Unmodified original GLB",
+    "previewUrl": "/models/mro-preview.glb",
+    "previewBytes": 115348,
+    "previewSha256": "25bbe8055a7cb2ad52febf832b5f6e44fd2edff30fd5a184a6112366339585c8",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "iss": {
     "url": "/models/iss.glb",
@@ -117,7 +141,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Welded, simplified (20% target, 1% error ceiling)"
+    "processing": "Welded, simplified (20% target, 1% error ceiling)",
+    "previewUrl": "/models/iss-preview.glb",
+    "previewBytes": 140332,
+    "previewSha256": "4988eec89e147552a1316b33eb94a7220482c8129b99a3228adb49d4799092fd",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "jwst": {
     "url": "/models/jwst.glb",
@@ -134,7 +162,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed"
+    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed",
+    "previewUrl": "/models/jwst-preview.glb",
+    "previewBytes": 109220,
+    "previewSha256": "dbed513a906ff3fb82eb823062d776ea2098549862cd9572aa74ebbc80f6198e",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "lro": {
     "url": "/models/lro.glb",
@@ -151,7 +183,11 @@ export const MODELS = {
     "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
     "sourceDate": null,
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
-    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed"
+    "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed",
+    "previewUrl": "/models/lro-preview.glb",
+    "previewBytes": 94728,
+    "previewSha256": "9173623381dd389e011627ab8bfd1aa0e1ac244f6033efdb6b7d169f77198ef8",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "soho": {
     "url": "/models/soho.glb",
@@ -171,7 +207,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "fac23d6f1032bf08833b08d81a9c945f81e2883ca974f37ff7d99fb94a320d93"
+    "sourceSha256": "fac23d6f1032bf08833b08d81a9c945f81e2883ca974f37ff7d99fb94a320d93",
+    "previewUrl": "/models/soho-preview.glb",
+    "previewBytes": 76276,
+    "previewSha256": "3299e8f4d366ee04943e06d4d6c8f29700baf9610b19054316739d0c7fe30716",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "ace": {
     "url": "/models/ace.glb",
@@ -191,7 +231,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "b03a394e57b6af3a1f3700f450d94a67dd3eaec8a00e125d2d005bd1359b6e9c"
+    "sourceSha256": "b03a394e57b6af3a1f3700f450d94a67dd3eaec8a00e125d2d005bd1359b6e9c",
+    "previewUrl": "/models/ace-preview.glb",
+    "previewBytes": 76280,
+    "previewSha256": "a869be2396561764febb982942adaebf0672a823cf360a19d1a8fddbfbfd98e8",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "stereo-a": {
     "url": "/models/stereo-a.glb",
@@ -211,7 +255,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "0215f18b40bebb3652398b60e51cb5d8c6a4100a33a6a31768b9087d6239d9bf"
+    "sourceSha256": "0215f18b40bebb3652398b60e51cb5d8c6a4100a33a6a31768b9087d6239d9bf",
+    "previewUrl": "/models/stereo-a-preview.glb",
+    "previewBytes": 86576,
+    "previewSha256": "c7df8a9f08a0d84d729b260009d29c6a70be6fb3d619c81ade705192f733c90c",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "pioneer-10": {
     "url": "/models/pioneer-10.glb",
@@ -231,7 +279,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 1024,
-    "sourceSha256": "81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c"
+    "sourceSha256": "81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c",
+    "previewUrl": "/models/pioneer-10-preview.glb",
+    "previewBytes": 133120,
+    "previewSha256": "774772b3b0b0c2cff93a927437dfb606cb2691578ecb8bedb9893425149b090b",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "mars-odyssey": {
     "url": "/models/mars-odyssey.glb",
@@ -251,7 +303,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 1024,
-    "sourceSha256": "ac0faa8dbfb54aabcbe3d06886c3d98dd29d120fd49b1c9fa6abbfbed22b049a"
+    "sourceSha256": "ac0faa8dbfb54aabcbe3d06886c3d98dd29d120fd49b1c9fa6abbfbed22b049a",
+    "previewUrl": "/models/mars-odyssey-preview.glb",
+    "previewBytes": 169448,
+    "previewSha256": "9dae19e1f52ad2bab9ab3da1c56c81de9f293db2457b3931e7e973a2c33e269a",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "sdo": {
     "url": "/models/sdo.glb",
@@ -271,7 +327,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤30% target, 1% error ceiling); normals recomputed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "8ce4607bd65f098eee22f02717a182d6721610c940a961511dfbca832a3eda95"
+    "sourceSha256": "8ce4607bd65f098eee22f02717a182d6721610c940a961511dfbca832a3eda95",
+    "previewUrl": "/models/sdo-preview.glb",
+    "previewBytes": 87848,
+    "previewSha256": "4d14dbf0dbb2783156be21a1f59f22dcf713a103249d3cc4c802a967006fbd22",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "aqua": {
     "url": "/models/aqua.glb",
@@ -291,7 +351,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 1024,
-    "sourceSha256": "f0761181a1d378b6b3e270e8eee8bf20c241b7d577933630369b0cffd4b521e1"
+    "sourceSha256": "f0761181a1d378b6b3e270e8eee8bf20c241b7d577933630369b0cffd4b521e1",
+    "previewUrl": "/models/aqua-preview.glb",
+    "previewBytes": 138448,
+    "previewSha256": "0cc87702a80eda7ddb7672b1e6a5e97b221691f111896f73e1cb480cdf1631fe",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "suomi-npp": {
     "url": "/models/suomi-npp.glb",
@@ -311,7 +375,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 1024,
-    "sourceSha256": "885278277ed8fa864368803b7da2046292754bff01033055d56fe86e8b951ee4"
+    "sourceSha256": "885278277ed8fa864368803b7da2046292754bff01033055d56fe86e8b951ee4",
+    "previewUrl": "/models/suomi-npp-preview.glb",
+    "previewBytes": 130844,
+    "previewSha256": "219b66ed3ea6abb3f7c142fbf30d1f79070f95e38527ccdec5a579fa153366ff",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "landsat-8": {
     "url": "/models/landsat-8.glb",
@@ -331,7 +399,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤30% target, 1% error ceiling); normals recomputed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "8b599e867be20589cd35e55ed1d46da104299b430b1827b548a25d3fad0a314d"
+    "sourceSha256": "8b599e867be20589cd35e55ed1d46da104299b430b1827b548a25d3fad0a314d",
+    "previewUrl": "/models/landsat-8-preview.glb",
+    "previewBytes": 78388,
+    "previewSha256": "cba3aa0c2c84588acc11ce0bee16b2d4cf53f415ccdd2449668f4aa4b19c2aea",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "cubesat-1u": {
     "url": "/models/cubesat-1u.glb",
@@ -351,7 +423,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "bae308ea2e33778c93675909f7dc2e0d5d6916cd685668a463566c61224b1e85"
+    "sourceSha256": "bae308ea2e33778c93675909f7dc2e0d5d6916cd685668a463566c61224b1e85",
+    "previewUrl": "/models/cubesat-1u-preview.glb",
+    "previewBytes": 63804,
+    "previewSha256": "b2afb6946d1960656201f4ba44c674272843867ae898f73abeec319e76a2dce8",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "cubesat-2u": {
     "url": "/models/cubesat-2u.glb",
@@ -371,7 +447,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "30633496ef3aea790ec00782772757c78744ccaf08c9322eca380a6c4ad57ec9"
+    "sourceSha256": "30633496ef3aea790ec00782772757c78744ccaf08c9322eca380a6c4ad57ec9",
+    "previewUrl": "/models/cubesat-2u-preview.glb",
+    "previewBytes": 68860,
+    "previewSha256": "a5501ba86033482cda610ad13528f811d50071f9d4afb7a94fbc6182e3a11d46",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "geo-weather": {
     "url": "/models/geo-weather.glb",
@@ -391,7 +471,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "e2f690d3d59e101d6a75a8b0bdcbe1cf9f58a058d01eaceede8557460a6e9101"
+    "sourceSha256": "e2f690d3d59e101d6a75a8b0bdcbe1cf9f58a058d01eaceede8557460a6e9101",
+    "previewUrl": "/models/geo-weather-preview.glb",
+    "previewBytes": 75596,
+    "previewSha256": "21931fafa08d86c30ea6be0dca235f44c985b594e41cc1ba036fa729e73f9f7b",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "terra": {
     "url": "/models/terra.glb",
@@ -411,7 +495,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤20% target, 2% error ceiling); normals recomputed.",
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources",
     "maxTextureSize": 0,
-    "sourceSha256": "8794857595f7a7d416184fe926ecb50e11bf267dbe471d1cf2728a85e8d017fa"
+    "sourceSha256": "8794857595f7a7d416184fe926ecb50e11bf267dbe471d1cf2728a85e8d017fa",
+    "previewUrl": "/models/terra-preview.glb",
+    "previewBytes": 86872,
+    "previewSha256": "c696b23d0d4f49b81f9909c1c96acd70ccbdc193e2f5f170e56a42f50089332b",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "curiosity": {
     "url": "/models/curiosity.glb",
@@ -431,7 +519,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤20% target, 2% error ceiling); normals recomputed.",
     "sourcePage": "https://science.nasa.gov/resource/curiosity-3d-model/",
     "maxTextureSize": 512,
-    "sourceSha256": "69b31066d3d00f2d7ae09239c26b2be44e4d3a717fe7fc94df01568a1bda2c94"
+    "sourceSha256": "69b31066d3d00f2d7ae09239c26b2be44e4d3a717fe7fc94df01568a1bda2c94",
+    "previewUrl": "/models/curiosity-preview.glb",
+    "previewBytes": 461448,
+    "previewSha256": "b074d738eb6a509018b24b7f251e1f03aa73ebdd15cdafb3a3a6f2f49f5b0b36",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   },
   "europa-clipper": {
     "url": "/models/europa-clipper.glb",
@@ -451,7 +543,11 @@ export const MODELS = {
     "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤20% target, 2% error ceiling); normals recomputed.",
     "sourcePage": "https://science.nasa.gov/missions/europa-clipper/europa-clipper-resources/europa-clipper-downloadable-3d-model/",
     "maxTextureSize": 512,
-    "sourceSha256": "a3f5e4533b31bf4bb25f4332f6879055dfd744f3ff9add23bfa9bdfbefd4f7fe"
+    "sourceSha256": "a3f5e4533b31bf4bb25f4332f6879055dfd744f3ff9add23bfa9bdfbefd4f7fe",
+    "previewUrl": "/models/europa-clipper-preview.glb",
+    "previewBytes": 981024,
+    "previewSha256": "f62deedc77c3ab68e1d66c5221b8df212770e16fe6a44349ed45ee9f2ce5e7b1",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
   }
 };
 

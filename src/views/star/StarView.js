@@ -78,9 +78,10 @@ export function createStarView(container) {
 
   function setStar(body, isSun) {
     if (star) { scene.remove(star); star.geometry.dispose(); star.material.dispose(); }
-    const placeholder = planetTexture({ id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] });
+    const placeholder = planetTexture({ id: body.id, banded: body.banded, palette: ['#d9a35a', '#f2c879', '#b97a3a'] });
     star = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), starMaterial(placeholder, body.color, !isSun));
-    loadTexture('sun').then((t) => { if (t && star) star.material.uniforms.uMap.value = t; });
+    const current = star;
+    if (isSun) loadTexture('sun').then((t) => { if (t && star === current) current.material.uniforms.uMap.value = t; });
     if (isSun) applyLiveSkin(star.material, SUN.skin, settings.get('liveSkins')); // seen from Earth: the live disk faces the camera
     glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.75 }));
     glow.scale.setScalar(3.6);
