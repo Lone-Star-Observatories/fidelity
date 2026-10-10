@@ -107,6 +107,8 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   /** Show stars around `d.center` (from /api/nearby). */
   function load(d) {
     msg = null; arrows = null; sunArrow = null; sunTag = null; proxLines = null; epoch = 0;
+    // arrow length follows the range (10 kyr up to 25 ly, 100 kyr beyond) until one is picked
+    if (!motion.pickedWindow) motion = { ...motion, window: d.radiusLy <= 25 ? 1e4 : 1e5 };
     clearWorld();
     proxTags.clear();
     data = d;
@@ -475,7 +477,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,
-    setMotion(m) { motion = { ...motion, ...m }; refreshMotion(); setEpoch(epoch); },
+    setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; refreshMotion(); setEpoch(epoch); },
     setEpoch, encounters,
     get epoch() { return epoch; },
     get motion() { return motion; },

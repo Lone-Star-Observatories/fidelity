@@ -196,6 +196,31 @@ clock.onChange(syncClock); syncClock();
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
+// The right panel is resizable: drag its left edge (width remembered in settings).
+{
+  const app = $('app'), handle = document.createElement('div');
+  handle.className = 'panel-resize';
+  handle.title = 'Drag to resize the panel (double-click to reset)';
+  app.appendChild(handle);
+  const apply = (w) => (w ? app.style.setProperty('--panel-w', `${w}px`) : app.style.removeProperty('--panel-w'));
+  apply(settings.get('panelWidth'));
+  handle.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    handle.setPointerCapture(e.pointerId);
+    handle.classList.add('drag');
+    const right = app.getBoundingClientRect().right;
+    const move = (ev) => apply(Math.round(Math.max(280, Math.min(window.innerWidth * 0.6, right - ev.clientX - 10))));
+    const up = () => {
+      handle.removeEventListener('pointermove', move); handle.classList.remove('drag');
+      const w = parseInt(app.style.getPropertyValue('--panel-w'), 10);
+      if (w) settings.set('panelWidth', w);
+      window.dispatchEvent(new Event('resize'));
+    };
+    handle.addEventListener('pointermove', move);
+    handle.addEventListener('pointerup', up, { once: true });
+  });
+  handle.addEventListener('dblclick', () => { settings.set('panelWidth', null); apply(null); });
+}
 // replaceChildren would print `null` for skipped optional sections
 const panel = { replaceChildren: (...kids) => panelEl.replaceChildren(...kids.filter((k) => k != null)) };
 const live = {}; // element refs refreshed by the ticker; reset whenever the panel is rebuilt

@@ -11,6 +11,7 @@ const defaults = {
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
+  panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
 };
 
 let state = { ...defaults };

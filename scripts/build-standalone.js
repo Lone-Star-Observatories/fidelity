@@ -27,6 +27,12 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const near = await nearby('sol', 100);
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
+// multiple-star systems with measured orbits within 50 ly, so their System Views show every star
+const iSystem = near.fields.indexOf('system');
+for (const row of near.stars) {
+  if (row[8] > 0 || !row[iSystem] || Math.hypot(row[2], row[3], row[4]) * 3.26156 > 50) continue;
+  try { const d = await starDetail(row[0]); if (d.group?.orbits?.length) details[row[0]] = d; } catch { /* not in the catalogue */ }
+}
 const skies = {};
 for (const id of ['sol', 'hyg-70666']) {
   try { skies[id] = await sky(id); } catch { /* not in this catalogue version */ }
@@ -95,7 +101,7 @@ const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: ga
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap }));
-console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
+console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} detailed systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build
 execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'build', '--mode', 'standalone'], { cwd: root, stdio: 'inherit' });

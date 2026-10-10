@@ -35,7 +35,7 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
 .lcars {
   height: 100%;
   display: grid;
-  grid-template-columns: calc(var(--rail-w) + 14px) 1fr minmax(260px, 330px);
+  grid-template-columns: calc(var(--rail-w) + 14px) minmax(0, 1fr) var(--panel-w, clamp(340px, 30vw, 460px));
   grid-template-rows: 72px 1fr 72px;
   grid-template-areas:
     'elbowT top top'
@@ -163,9 +163,11 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 
 .host-list { display: flex; flex-direction: column; gap: 3px; }
 .host-row {
-  display: flex; justify-content: space-between; gap: 10px; padding: 4px 10px; font-size: 14px;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 10px; min-width: 0; padding: 4px 10px; font-size: 14px;
   color: var(--peach); background: rgba(153, 119, 170, 0.12); border-left: 4px solid var(--orange); text-align: left;
 }
+.host-row > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.host-row > span.mono { flex-shrink: 0; white-space: nowrap; text-align: right; }
 .host-row:hover { background: rgba(255, 204, 153, 0.25); }
 .host-row.on { background: var(--orange); color: #000; }
 .radius-list { grid-template-columns: repeat(4, 1fr); }
@@ -256,7 +258,12 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .panel dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
 .panel .note { color: var(--dim); font-size: 13px; line-height: 1.35; margin: 0; }
 .panel .warn { color: var(--red); font-size: 13px; letter-spacing: 0.06em; }
-.body-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 4px; }
+.body-list .pill { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.body-list .pill.square { min-width: 44px; }
+.panel { position: relative; padding-left: 10px; overflow-x: hidden; }
+.panel-resize { grid-area: panel; justify-self: start; align-self: stretch; width: 8px; margin-left: -4px; cursor: ew-resize; z-index: 3; touch-action: none; }
+.panel-resize:hover, .panel-resize.drag { background: linear-gradient(90deg, transparent 3px, var(--violet) 3px 5px, transparent 5px); }
 
 .pill {
   height: 30px; padding: 0 14px; border-radius: 15px; background: var(--c, var(--peach)); color: #000;
@@ -298,6 +305,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
     grid-template-areas: 'elbowT top' 'rail view' 'panel panel' 'elbowB bottom';
     padding: 8px;
   }
+  .panel-resize { display: none; }
   .bar-title { font-size: 24px; }
   #view-title, #stardate { display: none; }
   .rail-btn { height: 42px; font-size: 13px; }
