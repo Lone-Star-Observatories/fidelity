@@ -212,6 +212,23 @@ button.nav-label:hover { color: #000; background: var(--peach); }
   .sv-rev { display: none; }
 }
 
+/* Planet View */
+.pv-cards { display: flex; flex-direction: column; gap: 18px; }
+.pv-interior-wrap { display: grid; grid-template-columns: minmax(160px, 260px) 1fr; gap: 20px; align-items: center; }
+.pv-interior { width: 100%; height: auto; }
+.pv-layers { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--peach); letter-spacing: 0.05em; }
+.pv-layer { display: grid; grid-template-columns: 16px 1fr auto; gap: 10px; align-items: center; }
+.pv-swatch { width: 14px; height: 14px; border-radius: 3px; }
+.pv-depth { color: var(--dim); font-size: 13px; }
+.sv-chart .mr-curve { fill: none; stroke: var(--dim); stroke-width: 2; }
+.sv-chart .mr-water { stroke-dasharray: 6 4; }
+.sv-chart .mr-iron { stroke-dasharray: 2 3; }
+.sv-chart .mr-hhe { stroke-dasharray: 10 4 2 4; }
+.sv-chart .mr-label { fill: var(--peach); font-size: 11px; letter-spacing: 0.06em; }
+.sv-chart .mr-ref { fill: #7777ee; stroke: #000; stroke-width: 2; }
+.sv-chart .mr-here { fill: var(--gold); font-size: 13px; letter-spacing: 0.06em; font-weight: 600; }
+@media (max-width: 700px) { .pv-interior-wrap { grid-template-columns: 1fr; } }
+
 /* warp streaks when changing focus */
 .warp { position: absolute; inset: 0; pointer-events: none; opacity: 0; z-index: 2;
   background: repeating-conic-gradient(from 0deg, rgba(153,204,255,.0) 0deg 3deg, rgba(153,204,255,.18) 3deg 3.4deg);

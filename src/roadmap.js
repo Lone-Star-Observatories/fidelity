@@ -33,6 +33,6 @@ export const ROADMAP = {
     data: 'NED, Cosmicflows-4, 2MRS.',
   },
   star: { status: 'ONLINE', blurb: '', data: 'Pickles stellar spectra, Asplund 2009 abundances, Exoplanet Archive metallicities.' },
-  planet: { status: 'SCHEDULED · TICKET #9', blurb: '', data: 'NASA/USGS global mosaics; NASA GIBS live imagery for Earth.' },
+  planet: { status: 'ONLINE', blurb: '', data: 'NASA/USGS global mosaics; NASA GIBS live imagery for Earth.' },
   moon: { status: 'NOT YET SCHEDULED', blurb: '', data: 'JPL SSD satellite elements, LRO and mission mosaics.' },
 };

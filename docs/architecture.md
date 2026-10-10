@@ -38,8 +38,11 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   (`src/astro/rotation.js`), and Earth turns by sidereal time.
 - **Star View** (`src/views/star/`) shows a close-up photosphere, the spectrum chart (observed
   template, blackbody, lab line positions, Wien peak, hover readout) and composition bars.
+- **Planet View** (`src/views/planet/`) shows a close-up globe, the atmosphere by volume (or
+  JWST detections, or "not yet measured"), spectral fingerprints, the interior to scale, and
+  the mass–radius diagram against composition curves.
 - **Provenance.** Each value shown in the UI carries a tier badge from `src/data/provenance.js`.
-- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`,
+- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`, `#/planet/<system>/<planet>`,
   `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`. The Sector 001 beacon is
   `#/system/sol`.
 

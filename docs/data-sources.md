@@ -17,7 +17,12 @@
 | Star | Asplund, Grevesse, Sauval & Scott 2009 | Solar photospheric abundances (X, Y, Z and elements by mass) | bundled | ✅ #8 |
 | Star | NASA Exoplanet Archive `st_met` | Measured metallicity [Fe/H]; the element mix is the Sun's scaled to it (MODELLED) | live | ✅ #8 |
 | Star | SDO / SOHO imagery, LSO solar weather app | Live solar imagery and activity | live | ⏳ |
-| Planet | NASA/USGS global mosaics; NASA GIBS (Earth, daily) | Real surfaces; Earthprise layers | live / local | ⏳ |
+| Planet | NASA planetary fact sheets; Curiosity SAM (Franz et al. 2017); New Horizons (Gladstone et al. 2016) | Sol atmospheres by volume and surface pressures | bundled | ✅ #9 |
+| Planet | PREM (Earth), InSight (Mars), Juno (Jupiter), ring seismology (Saturn), published models (others) | Interior layers, drawn to scale (MODELLED) | bundled | ✅ #9 |
+| Planet | Laboratory molecular band positions (HITRAN-era values) | Spectral fingerprints of O₂, O₃, H₂O, CO₂, CH₄, NH₃, CO… (depths illustrative, MODELLED) | bundled | ✅ #9 |
+| Planet | Zeng, Sasselov & Jacobsen 2016/2019 | Mass–radius composition curves (iron, Earth-like, 50% water, H/He) | bundled | ✅ #9 |
+| Planet | JWST/Spitzer papers (Fu 2024, Madhusudhan 2023, Hu 2024, Greene 2023, Zieba 2023, Kreidberg 2019, Moran 2023, Kempton 2023) | Measured exoplanet atmospheres where they exist | bundled | ✅ #9 |
+| Planet | NASA GIBS (Earth, daily) | Live Earth imagery; Earthprise layers | live | ⏳ |
 | Moon | JPL SSD satellite elements; LRO | Moon orbits and surfaces | live | ⏳ |
 | Satellite | CelesTrak GP (OMM/TLE) + SGP4 | Earth-orbit satellites, the ISS | live | ⏳ #3 |
 | Object | JPL SBDB / MPCORB | Asteroid and Kuiper-belt orbits | local / live | ⏳ #3 |

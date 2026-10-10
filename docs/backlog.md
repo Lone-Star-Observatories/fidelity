@@ -12,7 +12,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 6 | ✅ **Realistic skins** | Spacecraft mosaics for every Sol body, Earth's clouds and city lights, real rotation phase, recoloured photospheres for stars, analog skins for exoplanets. Credits shown. |
 | 7 | ✅ **Binary and multiple stars** | ORB6 orbits in true 3D, barycentric motion, measured masses (Sirius B as a white dwarf, α Cen A+B with Proxima around the pair), planets riding with their host star. |
 | 8 | ✅ **Star View** | Close-up photosphere, observed template spectrum (Pickles) against the blackbody with line IDs and an infrared range, composition by mass (Asplund 2009 for the Sun, [Fe/H]-scaled otherwise), white dwarfs handled. |
-| 9 | **Planet View** | Atmosphere and interior composition, density against mass–radius curves, molecular spectral fingerprints. |
+| 9 | ✅ **Planet View** | Globe, atmosphere by volume (Sol) or measured JWST detections (exoplanets), spectral fingerprints, interior to scale, density on the mass–radius diagram with minimum-mass and unmeasured-radius caveats. |
 | 10 | **Galaxy View** | NASA/JPL-Caltech face-on Milky Way, calibrated so Sol and the catalogue stars sit at their true galactic positions. |
 
 Candidates not yet scheduled (to be prioritised): Star View, Planet View (NASA mosaics;

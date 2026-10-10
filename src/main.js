@@ -7,6 +7,7 @@ import { LY_PER_PC } from './astro/frames.js';
 import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
+import { createPlanetView } from './views/planet/PlanetView.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
 import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum } from './data/catalog.js';
@@ -36,6 +37,7 @@ const system = createSystemView($('system-view'), {
   onFrame: (f) => { if (route.level === 'system') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
+const planetView = createPlanetView($('planet-view'));
 const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
@@ -62,13 +64,20 @@ LEVEL_BUTTONS.forEach(([id, label, c], i) => {
 });
 const railSubs = $('rail-subviews');
 for (const [id, label] of SUB_BUTTONS) {
-  const b = h('button', { className: `rail-btn sub${id === 'star' ? '' : ' dormant'}` }, label);
+  const b = h('button', { className: `rail-btn sub${id === 'star' || id === 'planet' ? '' : ' dormant'}` }, label);
   b.dataset.sub = id;
   b.addEventListener('click', () => {
     // Star sub-view currently means "focus the star inside System View".
     if (id === 'star') {
       const b = route.body && system.model?.bodies.find((x) => x.id === route.body && (x.starLike || x.kind === 'star'));
       return go({ level: 'star', system: currentSystem, body: b?.id ?? system.model?.starId ?? 'sun' });
+    }
+    if (id === 'planet') {
+      const m = system.model;
+      const b = route.body && m?.bodies.find((x) => x.id === route.body && !(x.starLike || x.kind === 'star'));
+      const pick = b ?? m?.bodies.find((x) => x.id === 'earth') ?? m?.bodies.find((x) => !(x.starLike || x.kind === 'star'));
+      if (pick) return go({ level: 'planet', system: currentSystem, body: pick.id });
+      return toast('NO KNOWN PLANETS IN THIS SYSTEM');
     }
     toast(`${label} VIEW OFFLINE — ${ROADMAP[id].status}`);
   });
@@ -78,6 +87,7 @@ for (const [id, label] of SUB_BUTTONS) {
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
+  railSubs.querySelector('[data-sub="planet"]').classList.toggle('active', route.level === 'planet');
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -235,7 +245,7 @@ function renderSystemPanel() {
   );
 }
 
-function renderBodyPanel(id, { inStarView = false } = {}) {
+function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any detail view
   resetLive();
   const m = system.model;
   const b = m.bodies.find((x) => x.id === id);
@@ -268,7 +278,7 @@ function renderBodyPanel(id, { inStarView = false } = {}) {
     h('div', { className: 'body-list' },
       inStarView ? pill('◀ SYSTEM VIEW', () => go({ level: 'system', system: m.id, body: b.id })) : pill('◀ SYSTEM', () => go({ level: 'system', system: m.id })),
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
-        pill('PLANET VIEW', () => toast(`PLANET VIEW OFFLINE — ${ROADMAP.planet.status}`))),
+        pill('PLANET VIEW ▸', () => go({ level: 'planet', system: m.id, body: b.id }))),
     renderLegend(),
   );
 }
@@ -433,7 +443,7 @@ function tick() {
       : 'SKY: decorative backdrop (catalogue not loaded).';
   }
 
-  if ((route.level === 'system' || route.level === 'star') && route.body && m && (f || route.level === 'star')) {
+  if (['system', 'star', 'planet'].includes(route.level) && route.body && m && (f || route.level === 'star')) {
     const id = route.body;
     const p = system.positionOf(id);
     const r = system.hostDistance(id);
@@ -493,6 +503,7 @@ onRoute(async (r) => {
   if (r.level === 'system') {
     nav.hide();
     starView.hide();
+    planetView.hide();
     $('offline').hidden = true;
     system.show();
     const fresh = system.model?.id !== r.system;
@@ -513,6 +524,7 @@ onRoute(async (r) => {
   } else if (r.level === 'star') {
     nav.hide();
     system.hide();
+    planetView.hide();
     $('offline').hidden = true;
     if (!(await ensureSystem(r.system)) || route !== r) return;
     const m = system.model;
@@ -525,9 +537,25 @@ onRoute(async (r) => {
     const isWD = b.kind === 'white dwarf';
     if (!isWD) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
     syncRail();
+  } else if (r.level === 'planet') {
+    nav.hide();
+    system.hide();
+    starView.hide();
+    $('offline').hidden = true;
+    if (!(await ensureSystem(r.system)) || route !== r) return;
+    const m = system.model;
+    const b = m.bodies.find((x) => x.id === r.body && !(x.starLike || x.kind === 'star'));
+    if (!b) return go({ level: 'system', system: m.id });
+    $('view-title').textContent = `PLANET VIEW · ${b.name.toUpperCase()}`;
+    syncBeacon();
+    planetView.show();
+    planetView.load(b, { isSol: m.isSol, systemName: m.name });
+    renderBodyPanel(b.id, { inStarView: true });
+    syncRail();
   } else if (r.level === 'navigation') {
     system.hide();
     starView.hide();
+    planetView.hide();
     nav.show();
     if (!r.system) return go({ level: 'navigation', system: currentSystem });
     $('view-title').textContent = 'NAVIGATION';
@@ -538,6 +566,7 @@ onRoute(async (r) => {
     system.hide();
     nav.hide();
     starView.hide();
+    planetView.hide();
     const info = ROADMAP[r.level];
     $('view-title').textContent = `${r.level.toUpperCase()} VIEW`;
     $('beacon-sub').textContent = 'RETURN';

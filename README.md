@@ -53,6 +53,9 @@ ship recognises and which view will use each one.
   Orbits come from the USNO Sixth Orbit Catalog.
 - **Star View:** any star's real spectrum type (observed template against its blackbody,
   with Hα, Na D, Ca II and other lines marked) and what it is made of.
+- **Planet View:** any planet's air by volume, where those gases absorb light, its interior
+  to scale, and where it sits among rocky, watery and gassy worlds. Exoplanets show measured
+  JWST results where they exist and "not yet measured" everywhere else.
 - **Other star systems:** Proxima Centauri, TRAPPIST-1, τ Ceti and hundreds more, built
   from the NASA Exoplanet Archive. Transiting planets sit where their transit timings put
   them. Every unknown is badged as such. The sky is the real one as seen from that star.
