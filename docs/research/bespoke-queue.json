@@ -270,10 +270,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged SHA84f70e3fe6fa48661df4d973f78a540771e629ebbc68e032539d2e28e1d8eea1 source-byte equal; underlying mosaic association/frame/coverage/epochs/photometry open. White/blurred gaps do not measure smooth terrain. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "tethys"
     },
     {
       "id": "sol-dione",
@@ -8507,7 +8508,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 9,
+      "initialDossiers": 10,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
