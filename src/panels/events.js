@@ -7,6 +7,9 @@
 import { CATEGORIES } from '../data/events-schema.js';
 import { loadEvents, eventsFeed, onEvents, jumpJd, modelSpan } from '../data/events.js';
 import { missionClock } from '../views/system/missions.js';
+import { eventVisibility } from '../astro/eventvis.js';
+import { solarEclipses } from '../astro/eclipses.js';
+import { settings } from '../settings.js';
 
 const ORG_FILTERS = [['SpaceX', 'SPACEX'], ['NASA', 'NASA'], ['ESA', 'ESA'], ['private', 'PRIVATE'], ['agencies', 'OTHER AGENCIES']];
 const OTHER_AGENCIES = ['Roscosmos', 'CNSA', 'JAXA', 'ISRO', 'agency', 'Arianespace', 'NOAA'];
@@ -27,8 +30,23 @@ export function countdown(jdEvent, jdNow) {
 }
 const orgMatch = (e, f) => (f === 'agencies' ? e.orgs?.some((o) => OTHER_AGENCIES.includes(o)) : e.orgs?.includes(f));
 
+// "Visible from my location" (#33): the observer setting (shared with the FROM EARTH cards) lives
+// only in this browser's localStorage; nothing here sends it anywhere, the local backend included.
+const myLocation = () => { const o = settings.get('observer'); return o && Number.isFinite(o.lat) && Number.isFinite(o.lon) ? o : null; };
+const visCache = new Map();
+/** Visibility of `e` from the stored location (cached per event and place), or null without one. */
+export function visibilityOf(e, loc = myLocation()) {
+  if (!loc) return null;
+  const k = `${e.id}|${e.time}|${loc.lat}|${loc.lon}`;
+  if (!visCache.has(k)) { try { visCache.set(k, eventVisibility(e, loc)); } catch (err) { visCache.set(k, { visible: null, reason: `NOT COMPUTED (${err.message})`, tier: 'computed' }); } }
+  return visCache.get(k);
+}
+/** Keep an event under the "visible from my location" filter: hide only a definite no. */
+export const passesVisible = (v) => !v || v.visible !== false;
+const llText = (o) => `${Math.abs(o.lat).toFixed(2)}°${o.lat >= 0 ? 'N' : 'S'} ${Math.abs(o.lon).toFixed(2)}°${o.lon >= 0 ? 'E' : 'W'}`;
+
 export function createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ }) {
-  const state = { cat: 'all', orgs: new Set(), past: false, selected: null };
+  const state = { cat: 'all', orgs: new Set(), past: false, selected: null, visibleOnly: !!settings.get('eventsVisibleOnly'), locForm: false };
   let rendered = false;
 
   // ---- video viewer (shares the feed viewer with the Satellite View) ----------------------------
@@ -46,7 +64,27 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
   const closeViewer = () => { const el = $('feed-viewer'); if (el) { el.hidden = true; el.replaceChildren(); } };
 
   // ---- going there ------------------------------------------------------------------------
+  /**
+   * Where to stand for a solar eclipse: the app's own point of greatest eclipse (on the centreline
+   * for a total, annular or hybrid eclipse), so the umbra the System View draws is overhead.
+   */
+  function eclipseStand(e) {
+    const ecl = solarEclipses(e.jd - 0.5, e.jd + 0.5).find((x) => Math.abs(x.greatest - e.jd) < 0.1);
+    const p = ecl?.place ?? (e.location?.lat != null ? e.location : null);
+    return p ? { lat: p.lat, lon: p.lon, jd: ecl?.greatest ?? e.jd, central: !!ecl?.path, kind: ecl?.kind ?? null } : null;
+  }
+  /** Stand on Earth at (lat, lon) 2 min before `jd`, in real time, facing the Sun (#33). */
+  function standAndLook(lat, lon, jd, label) {
+    clock.set(jd - 2 / 1440);
+    clock.setRate(1 / 86400, 'REAL TIME');
+    if (!system.surfaceAt('earth', lat, lon, { lookSun: true })) { system.viewEarthPoint(lat, lon, 12000); return; }
+    toast(`${label} · ${llText({ lat, lon })} · MAXIMUM IN 2 MIN · REAL TIME`);
+  }
   function goTo(e) {
+    if (e.type === 'solar-eclipse') {
+      const s = eclipseStand(e);
+      if (s) { standAndLook(s.lat, s.lon, s.jd, s.central ? 'ON THE CENTRELINE AT GREATEST ECLIPSE' : 'AT GREATEST ECLIPSE'); return; }
+    }
     clock.set(jumpJd(e));
     if (e.model?.kind === 'launch' || e.model?.kind === 'landing') {
       if (e.model?.kind === 'launch') clock.setRate(1 / 86400, 'REAL TIME');
@@ -63,12 +101,57 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
     if (body) go({ level: 'system', system: 'sol', body });
   }
 
+  /** The space view of a solar eclipse (the shadow on the turning Earth), as GO TO EVENT gave before #33. */
+  function viewFromSpace(e) {
+    clock.set(jumpJd(e));
+    if (e.location?.lat != null) system.viewEarthPoint(e.location.lat, e.location.lon, 12000);
+  }
+
   // ---- list ------------------------------------------------------------------------------
+  /** Kind, organisation and time filters. */
+  const baseOk = (e) => (state.cat === 'all' || e.category === state.cat)
+    && (!state.orgs.size || [...state.orgs].some((f) => orgMatch(e, f)))
+    && (state.past ? true : (e.endJd ?? modelSpan(e)?.to ?? e.jd) >= clock.jd - 0.25);
   function filtered(feed) {
-    const now = clock.jd;
-    return feed.events.filter((e) => (state.cat === 'all' || e.category === state.cat)
-      && (!state.orgs.size || [...state.orgs].some((f) => orgMatch(e, f)))
-      && (state.past ? true : (e.endJd ?? modelSpan(e)?.to ?? e.jd) >= now - 0.25));
+    const loc = state.visibleOnly ? myLocation() : null; // ... and, when on, visible from my location
+    return feed.events.filter((e) => baseOk(e) && (!loc || passesVisible(visibilityOf(e, loc))));
+  }
+  /** The row's "why": ✓ / ✕ / ? and the reason, with its provenance badge. */
+  function whyLine(v) {
+    if (!v) return null;
+    const mark = v.visible === true ? '✓' : v.visible === false ? '✕' : '?';
+    return h('span', { className: `event-why ${v.visible === true ? 'yes' : v.visible === false ? 'no' : 'unknown'}` },
+      badge(v.tier, v.tier === 'reported' ? 'Watchable online: the operator\'s webcast, when there is one.' : v.tier === 'modelled' ? 'From the forecast\'s auroral edge and your geomagnetic latitude.' : 'Computed for your location from the app\'s ephemeris (src/astro/eventvis.js).'),
+      ` ${mark} ${v.reason}`);
+  }
+  /** Location controls: shown with the filter, or when asked. Stored in localStorage only. */
+  function locationBlock() {
+    const loc = myLocation();
+    const latIn = h('input', { type: 'number', step: '0.0001', min: -90, max: 90, placeholder: 'LAT (N+)', className: 'fe-in', value: loc?.lat ?? '' });
+    const lonIn = h('input', { type: 'number', step: '0.0001', min: -180, max: 180, placeholder: 'LON (E+)', className: 'fe-in', value: loc?.lon ?? '' });
+    const form = h('form', { className: 'fe-form', hidden: !(state.locForm || (state.visibleOnly && !loc)) }, latIn, lonIn, h('button', { type: 'submit', className: 'pill', textContent: 'SET' }));
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const lat = Number(latIn.value), lon = Number(lonIn.value);
+      if (!(latIn.value !== '' && lonIn.value !== '' && Math.abs(lat) <= 90 && Math.abs(lon) <= 180)) { toast('LATITUDE −90…90, LONGITUDE −180…180 (EAST POSITIVE)'); return; }
+      state.locForm = false;
+      settings.set('observer', { lat, lon, label: llText({ lat, lon }) });
+    });
+    const mine = h('button', { type: 'button', className: 'pill', textContent: 'USE MY LOCATION' });
+    mine.addEventListener('click', () => { // asked for, never automatic; the browser shows its own prompt
+      if (!navigator.geolocation) { mine.textContent = 'NOT AVAILABLE'; return; }
+      mine.textContent = 'LOCATING…';
+      navigator.geolocation.getCurrentPosition((p) => {
+        state.locForm = false;
+        settings.set('observer', { lat: +p.coords.latitude.toFixed(3), lon: +p.coords.longitude.toFixed(3), label: 'MY LOCATION' });
+      }, () => { mine.textContent = 'LOCATION DENIED'; }, { maximumAge: 3600000, timeout: 15000 });
+    });
+    const setBtn = h('button', { type: 'button', className: 'pill', textContent: loc ? 'CHANGE…' : 'TYPE IT…', onclick: () => { state.locForm = !state.locForm; render(); } });
+    return [
+      h('div', { className: 'fe-observer' }, h('span', { textContent: 'MY LOCATION ' }), h('span', { className: 'mono', textContent: loc ? llText(loc) : 'NOT SET' }), mine, setBtn),
+      form,
+      h('p', { className: 'note', textContent: 'Kept only in this browser (localStorage, shared with the FROM EARTH cards); never sent anywhere, not even to the local backend. Visibility is computed here: eclipses from your place\'s own maximum, sky events from the bodies\' altitudes, launches and webcasts count as watchable.' }),
+    ];
   }
   const tierNote = (e) => (e.tier === 'reported' ? `Published by ${e.source?.name ?? 'the operator'}${e.status ? ` · status ${e.status.toUpperCase()}` : ''}. Schedules slip.` : e.tier === 'modelled' ? `Forecast: ${e.source?.name}` : `Computed: ${e.source?.name ?? ''}`);
 
@@ -78,7 +161,7 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
     live.eventCountdowns.push([cd, e]);
     const b = h('button', { className: `host-row event-row${state.selected === e.id ? ' active' : ''}`, title: `${e.title}\n${tierNote(e)}\nClick for details.`, onclick: () => { state.selected = e.id; go({ level: 'events', system: 'sol', body: e.id }); } },
       h('span', {}, soon ? h('span', { className: 'soon-dot', textContent: '● ' }) : null, `${e.title.toUpperCase()}`, e.video?.length ? ' ▶' : '', e.model ? ' ◈' : ''),
-      cd);
+      cd, whyLine(visibilityOf(e)));
     return b;
   }
 
@@ -95,21 +178,29 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
       b.landing.tier === 'modelled' ? 'Drone-ship position modelled from the published downrange distance along the modelled ground track.' : 'Published landing zone.');
     if (e.orgs?.length) row(dl, 'WHO', e.orgs.join(' · ').toUpperCase(), 'reported', 'Organisations involved.');
     if (e.visibility?.note) row(dl, 'SEE IT', e.visibility.note.toUpperCase(), e.tier === 'reported' ? 'modelled' : e.tier, 'Where on Earth this can be seen.');
+    const vis = visibilityOf(e);
+    if (vis) row(dl, 'FROM MY LOCATION', `${vis.visible === true ? '✓' : vis.visible === false ? '✕' : '?'} ${vis.reason}`, vis.tier,
+      vis.tier === 'reported' ? 'Watchable online wherever you are.' : vis.tier === 'modelled' ? 'Forecast auroral edge against your geomagnetic latitude (IGRF dipole).' : 'Computed in this browser for your stored location from the app\'s ephemeris; geometric altitudes, a dark sky = Sun below −6°.');
     for (const t of e.model?.tracks ?? []) row(dl, 'PATH', `${t.label.toUpperCase()} · ${t.points.length} PTS`, t.tier, t.basis);
     if (e.model?.relative) row(dl, 'APPROACH', 'STATION-RELATIVE PROFILE', e.model.relative.tier, e.model.relative.basis);
     const vids = e.video ?? [];
+    const solar = e.type === 'solar-eclipse', loc = myLocation();
+    const fromHere = solar && loc && vis?.visible === true && vis.max ? pill('WATCH FROM MY LOCATION ☉', () => standAndLook(loc.lat, loc.lon, vis.max.jd, vis.inPath ? 'IN THE PATH, AT YOUR MAXIMUM' : 'PARTIAL, AT YOUR MAXIMUM')) : null;
     return [
       h('h3', { textContent: e.title.toUpperCase() }),
       h('div', { className: 'kind', textContent: `${CATEGORIES[e.category]} · ${e.type.replace(/-/g, ' ').toUpperCase()}` }),
       dl,
       e.description ? h('p', { className: 'note', textContent: e.description }) : null,
       h('div', { className: 'body-list' },
-        pill(e.model ? 'GO TO EVENT ◈ ▸' : 'GO TO EVENT ▸', () => goTo(e)),
+        pill(solar ? 'GO TO EVENT ☉ ▸' : e.model ? 'GO TO EVENT ◈ ▸' : 'GO TO EVENT ▸', () => goTo(e)),
+        solar ? pill('VIEW FROM SPACE', () => viewFromSpace(e)) : null,
+        fromHere,
         e.model && e.model.kind !== 'launch' ? pill('1 MIN/S', () => clock.setRate(1 / 1440, '1 MIN/S')) : null,
         ...vids.slice(0, 4).map((v, i) => pill(v.embed ? `WATCH${vids.length > 1 ? ` ${i + 1}` : ''} ▶` : `${(v.publisher ?? 'WEBCAST').toUpperCase()} ↗`,
           () => (v.embed ? openVideo(e.title, `${v.publisher ?? ''}${v.start ? ` · ${v.start.slice(0, 16).replace('T', ' ')} UTC` : ''}`, v, v.publisher) : window.open(v.url, '_blank', 'noopener')))),
         ...(e.links ?? []).slice(0, 3).map((l) => pill(`${l.title.toUpperCase().slice(0, 24)} ↗`, () => window.open(l.url, '_blank', 'noopener')))),
-      e.model ? h('p', { className: 'note', textContent: 'GO TO EVENT sets the ship\'s clock just before it starts and frames it: the modelled flight then plays out in the System View (◈). Paths are generic models pinned to the published pad, landing zones, orbit and timeline, not telemetry.' }) : null,
+      solar ? h('p', { className: 'note', textContent: 'GO TO EVENT (☉) stands you on Earth at the point of greatest eclipse (on the centreline when the eclipse is central), two minutes before it, in real time, looking at the Sun; VIEW FROM SPACE shows the shadow crossing the Earth instead. Never look at the real Sun without eclipse glasses outside totality.' })
+        : e.model ? h('p', { className: 'note', textContent: 'GO TO EVENT sets the ship\'s clock just before it starts and frames it: the modelled flight then plays out in the System View (◈). Paths are generic models pinned to the published pad, landing zones, orbit and timeline, not telemetry.' }) : null,
     ];
   }
 
@@ -153,14 +244,20 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
     });
     const pastBtn = pill('PAST WEEK', () => { state.past = !state.past; render(); });
     pastBtn.classList.toggle('on', state.past);
+    const visBtn = pill('VISIBLE FROM MY LOCATION', () => { state.visibleOnly = !state.visibleOnly; settings.set('eventsVisibleOnly', state.visibleOnly); render(); });
+    visBtn.classList.toggle('on', state.visibleOnly);
+    const loc = myLocation();
+    const notSeen = state.visibleOnly && loc ? feed.events.filter((e) => baseOk(e) && !passesVisible(visibilityOf(e, loc))).length : 0;
     const stale = (feed.sources ?? []).filter((s) => s.status !== 'ok');
     panel.replaceChildren(
       h('h2', { textContent: 'EVENTS' }),
       h('div', { className: 'kind', textContent: `FEED OF ${feed.generated.slice(0, 10)} · ${feed.origin === 'github' ? 'GITHUB' : feed.origin === 'backend' ? 'VIA LOCAL BACKEND' : 'BUNDLED COPY'}` }),
       ...(sel ? detail(sel) : []),
       h('h3', { textContent: 'ON SCREEN NOW' }), (live.eventsActive = h('p', { className: 'note', textContent: '—' })),
-      h('h3', { textContent: 'FILTER' }), h('div', { className: 'body-list' }, catPills), h('div', { className: 'body-list' }, orgPills, pastBtn),
-      h('h3', { textContent: `UPCOMING · ${list.length}` }),
+      h('h3', { textContent: 'FILTER' }), h('div', { className: 'body-list' }, catPills), h('div', { className: 'body-list' }, orgPills, pastBtn), h('div', { className: 'body-list' }, visBtn),
+      ...(state.visibleOnly || loc || state.locForm ? locationBlock() : []),
+      state.visibleOnly && !loc ? h('p', { className: 'warn', textContent: 'SET YOUR LOCATION TO FILTER BY VISIBILITY.' }) : null,
+      h('h3', { textContent: `UPCOMING · ${list.length}${notSeen ? ` · ${notSeen} NOT VISIBLE FROM HERE HIDDEN` : ''}` }),
       h('div', { className: 'host-list' }, list.length ? list.slice(0, 80).map(eventRow) : [h('p', { className: 'note', textContent: 'NOTHING MATCHES THESE FILTERS.' })]),
       ...streamsSection(feed),
       h('h3', { textContent: 'SOURCES' }),
@@ -193,6 +290,7 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
   }
 
   onEvents(() => { if (rendered && panel.isConnected) render(); });
+  settings.onChange((k) => { if (k === 'observer' && rendered && panel.isConnected) render(); }); // a new location: new reasons
 
   return { render, tick, soon, goTo, closeViewer, leave: () => { rendered = false; } };
 }

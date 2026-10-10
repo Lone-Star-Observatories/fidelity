@@ -401,6 +401,22 @@ for ephemeris events), webcasts and channel live streams in the feed viewer, and
 just before the action (launches at T−60 s in real time) and frames the pad, recovery zone or station. A red dot on
 the rail marks an event within 24 hours. The clock gained a 1 MIN/S rate.
 
+VISIBLE FROM MY LOCATION (#33) filters the list with `src/astro/eventvis.js` (`eventVisibility(e, { lat, lon })` →
+`{ visible: true | false | null, reason, tier }`), and every row shows the reason once a location is set. The
+location is the `observer` setting shared with the FROM EARTH cards: typed, or browser geolocation on request, kept
+in localStorage and never sent anywhere (no request carries it; the computation runs in the page). Solar eclipses
+are judged at the place's own maximum (topocentric Sun and Moon from `eclipses.js`, scanned between the contacts):
+in the umbra (path), in the penumbra (partial, with the obscuration) or neither, and whether the Sun is up then;
+lunar eclipses by the Moon's altitude at maximum or during the eclipse; occultations, conjunctions, oppositions,
+elongations, parades and transits by the bodies' altitudes at the event time (a dark sky, Sun below −6°, for the
+night-sky events, the Sun up for transits; slow events also get that night's dark hours; occultations say whether
+the Moon covers the target from here); meteor showers by the radiant; aurora watches by geomagnetic latitude
+(MODELLED); launches, operations and webcasts are always watchable (REPORTED). Comets have no sky position in the
+feed, so they stay "not computed" and are never filtered out. For a solar eclipse GO TO EVENT now stands on Earth
+at the app's own point of greatest eclipse (on the centreline of a central eclipse) two minutes before it, in real
+time, and turns to the Sun (`SystemView.surfaceAt(id, lat, lon, { lookSun })`); VIEW FROM SPACE keeps the old
+framing, and WATCH FROM MY LOCATION stands at the observer's own maximum.
+
 ## Voice: "Computer" (#21)
 
 `src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
