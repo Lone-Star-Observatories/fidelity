@@ -10,13 +10,16 @@ import { eqToGal, frameToScene, starTeff, blackbodyRGB, LY_PER_PC } from '../../
 import { bandStarColour } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
 import { systemName } from '../../panels/navlist.js';
-import { integrateTrack, trackAt } from '../../astro/galpot.js';
+import { integrateTrack, trackAt, closestApproach, linearApproach } from '../../astro/galpot.js';
+import { badge } from '../../data/provenance.js';
+import { createArrivals } from './arrivals.js';
+import { badgeLines, brightLimit } from './drift.js';
 
 const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
-export function createNavigationView(container, { onSelect, onFrame, onDrill }) {
+export function createNavigationView(container, { onSelect, onFrame, onDrill, onArrivals }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -179,6 +182,11 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     controls.maxDistance = r * 6;
     controls.minDistance = 0.2;
     attachTracks();
+    // stars beyond the radius that deep time can bring in (#29)
+    shown = [];
+    if (visitorGeo) visitorGeo.setDrawRange(0, 0);
+    const solStar = d.stars.find((s) => s.id === 'sol');
+    drift.reset(c.id, r, d.stars.map((s) => s.id), solStar ? Math.hypot(solStar.x - c.x, solStar.y - c.y, solStar.z - c.z) * LY_PER_PC : 0);
     encCache = null;
     computeEpoch();
     refreshMotion();
@@ -241,6 +249,11 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   // through the Milky Way (src/astro/galpot.js), ±50 Myr. Stars of one system share the system's
   // best-measured motion (they are bound). Stars with no measured motion are hidden in deep time.
   const LY_PER_KMS_YR = 3.3356e-6;
+  const MAT = {
+    arrows: new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 }),
+    sun: new THREE.LineBasicMaterial({ vertexColors: true }),
+    prox: new THREE.LineBasicMaterial({ color: 0x66ffcc, transparent: true, opacity: 0.55 }),
+  };
   let motion = { mode: 'relative', window: 100000 }, epoch = 0;
   let arrows = null, ptsGeo = null, sunArrow = null, sunTag = null;
   const galOf = (s) => eqToGal([s.x * LY_PER_PC, s.y * LY_PER_PC, s.z * LY_PER_PC]);
@@ -267,7 +280,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     for (const p of placed) {
       const members = bySystem.get(p.star.system ?? p.star.id);
       // the system's motion: measured radial velocity first, then the brightest member
-      const src = [...members].filter((m) => m.vKms).sort((a, b) => (b.rvKnown - a.rvKnown) || ((a.absmag ?? 99) - (b.absmag ?? 99)))[0];
+      const src = [...members].filter((m) => m.vKms).sort((a, b) => (b.rvKnown - a.rvKnown) || ((a.vSrc ? 0 : 1) - (b.vSrc ? 0 : 1)) || ((a.absmag ?? 99) - (b.absmag ?? 99)))[0];
       p.motionFrom = src ?? null;
       if (!src) { p.track = null; continue; }
       const key = `${p.star.id}|${src.id}|${trackSpan}`;
@@ -276,31 +289,88 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     }
   }
   const cur = { pos: [0, 0, 0], vel: [0, 0, 0] }, cRef = { pos: [0, 0, 0], vel: [0, 0, 0] };
+  // Arrivals (#29): far stars integrated in a worker; `shown` holds those inside the sphere now.
+  const drift = createArrivals({ onChange: () => { encCache = null; if (data) setEpoch(epoch); onArrivals?.(drift.status); } });
+  let shown = [], visitorGeo = null, departed = 0;
   /** Positions (scene, ly) and velocities (scene, km/s) of every star at the current epoch. */
   function computeEpoch() {
     if (!data) return;
     const c = placed.find((x) => x.star.id === data.center.id);
     const cg0 = galOf(data.center);
     const rel = motion.mode !== 'galactic' && c?.track;
-    if (rel) trackAt(c.track, epoch, cRef);
+    if (c?.track) trackAt(c.track, epoch, cRef);
+    const R2 = data.radiusLy ** 2, sphere = epoch !== 0 && c?.track; // who is inside the sphere around the centre now
+    departed = 0;
     for (const p of placed) {
       p.hidden = epoch !== 0 && !p.track;
       if (!p.track) { p.now = p.pos.clone(); p.vnow = null; continue; }
       trackAt(p.track, epoch, cur);
+      if (sphere && p !== c && p.star.id !== 'sol' && (cur.pos[0] - cRef.pos[0]) ** 2 + (cur.pos[1] - cRef.pos[1]) ** 2 + (cur.pos[2] - cRef.pos[2]) ** 2 > R2) { p.hidden = true; departed++; }
       const d = rel ? cur.pos.map((x, k) => x - cRef.pos[k]) : cur.pos.map((x, k) => x - cg0[k]);
       const v = rel ? cur.vel.map((x, k) => x - cRef.vel[k]) : cur.vel;
       p.now = epoch === 0 && rel ? p.pos.clone() : new THREE.Vector3(...frameToScene(d));
       p.vnow = new THREE.Vector3(...frameToScene(v));
       p.vabs = new THREE.Vector3(...frameToScene(cur.vel));
     }
+    shown = [];
+    if (sphere) {
+      // Screen tens of thousands of far stars cheaply at their nearest orbit sample (relative
+      // distance minus how far they can close in half a sample), then interpolate the few left.
+      const atSample = new Map(), cS = { pos: [0, 0, 0], vel: [0, 0, 0] };
+      for (const s of drift.stars) {
+        const tr = s.track;
+        if (!tr || Math.abs(epoch) > s.spanYears) continue;
+        const h = tr.sampleMyr, f = epoch / 1e6 / h + tr.n, k = Math.round(f), key = tr.n * 1000 + h;
+        let ref = atSample.get(key);
+        if (!ref) { trackAt(c.track, (k - tr.n) * h * 1e6, cS); ref = [...cS.pos, ...cS.vel]; atSample.set(key, ref); }
+        const sd = tr.data, o = k * 6;
+        const ex = sd[o] - ref[0], ey = sd[o + 1] - ref[1], ez = sd[o + 2] - ref[2];
+        const close = Math.hypot(sd[o + 3] - ref[3], sd[o + 4] - ref[4], sd[o + 5] - ref[5]) * Math.abs(f - k) * h * 3.3356 + 1;
+        if (Math.sqrt(ex * ex + ey * ey + ez * ez) - close > data.radiusLy) continue;
+        trackAt(tr, epoch, cur);
+        const dx = cur.pos[0] - cRef.pos[0], dy = cur.pos[1] - cRef.pos[1], dz = cur.pos[2] - cRef.pos[2];
+        if (dx * dx + dy * dy + dz * dz > R2) continue;
+        const d = rel ? [dx, dy, dz] : cur.pos.map((x, k) => x - cg0[k]);
+        const v = rel ? cur.vel.map((x, k) => x - cRef.vel[k]) : cur.vel;
+        shown.push({ star: s, visitor: true, motionFrom: s, now: new THREE.Vector3(...frameToScene(d)), vnow: new THREE.Vector3(...frameToScene(v)), vabs: new THREE.Vector3(...frameToScene(cur.vel)) });
+      }
+    }
   }
+  /** Points for the arrivals inside the sphere (the buffer grows as more far stars load). */
+  function drawVisitors() {
+    const need = drift.stars.length;
+    if (!visitorGeo || visitorGeo.userData.cap < need) {
+      if (visitorGeo) { world.remove(visitorGeo.userData.points); visitorGeo.dispose(); }
+      const cap = Math.max(1024, need);
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(cap * 3), 3));
+      g.setAttribute('size', new THREE.BufferAttribute(new Float32Array(cap), 1));
+      g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(cap * 3), 3));
+      const pts = new THREE.Points(g, pointMat(false));
+      pts.frustumCulled = false;
+      g.userData = { cap, points: pts };
+      visitorGeo = g;
+    }
+    if (visitorGeo.userData.points.parent !== world) world.add(visitorGeo.userData.points); // clearWorld() drops it on load
+    const pa = visitorGeo.attributes.position, sa = visitorGeo.attributes.size, ca = visitorGeo.attributes.color;
+    shown.forEach((p, i) => {
+      const s = p.star;
+      if (!s.rgb) { const t = starTeff(s).teff; s.rgb = bandStarColour(t, blackbodyRGB(t)); s.size0 = Math.max(2.2, Math.min(15, 8.5 - 0.5 * (s.absmag ?? 12))); }
+      pa.setXYZ(i, p.now.x, p.now.y, p.now.z); sa.setX(i, s.size0); ca.setXYZ(i, ...s.rgb);
+    });
+    visitorGeo.setDrawRange(0, shown.length);
+    for (const [a, w] of [[pa, 3], [sa, 1], [ca, 3]]) { a.clearUpdateRanges(); a.addUpdateRange(0, Math.max(1, shown.length) * w); a.needsUpdate = true; }
+  }
+  /** Every star on the chart right now: today's neighbours still inside, plus arrivals. */
+  const onChart = () => [...placed.filter((p) => !p.hidden), ...shown];
+  const findPlaced = (id) => placed.find((x) => x.star.id === id) ?? shown.find((x) => x.star.id === id);
   function refreshMotion() {
     if (!data) return;
-    for (const o of [arrows, sunArrow]) if (o) { world.remove(o); o.geometry.dispose(); o.material.dispose(); }
+    for (const o of [arrows, sunArrow]) if (o) { world.remove(o); o.geometry.dispose(); } // materials are reused: disposing them every frame recompiled their shaders
     arrows = sunArrow = null;
     if (motion.mode !== 'off') {
       const pos = [], col = [], head = data.radiusLy * 0.035;
-      for (const p of placed) {
+      for (const p of [...placed, ...shown]) {
         if (!p.vnow || p.hidden) continue;
         const a = p.now, b = a.clone().addScaledVector(p.vnow, motion.window * LY_PER_KMS_YR);
         const k = p.motionFrom?.rvKnown ? 1 : 0.45; // dimmer where only the sideways motion is known
@@ -309,7 +379,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
       g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
-      arrows = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 }));
+      arrows = new THREE.LineSegments(g, MAT.arrows);
       world.add(arrows);
       // Sol's own path around the galaxy, in gold, whichever frame the other arrows use
       const sol = placed.find((p) => p.star.id === 'sol');
@@ -321,7 +391,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
         const sg = new THREE.BufferGeometry();
         sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
         sg.setAttribute('color', new THREE.Float32BufferAttribute(sc, 3));
-        sunArrow = new THREE.LineSegments(sg, new THREE.LineBasicMaterial({ vertexColors: true }));
+        sunArrow = new THREE.LineSegments(sg, MAT.sun);
         world.add(sunArrow);
         if (!sunTag) sunTag = label('', 'motion', b);
         sunTag.element.textContent = `SOL → ${Math.round(sol.vabs.length())} KM/S AROUND THE GALAXY${full > cap ? ' · ARROW SHORTENED' : ''}`;
@@ -339,12 +409,12 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   let proxLines = null;
   const proxTags = new Map(); // system key → label
   function updateProximity() {
-    if (proxLines) { world.remove(proxLines); proxLines.geometry.dispose(); proxLines.material.dispose(); proxLines = null; }
+    if (proxLines) { world.remove(proxLines); proxLines.geometry.dispose(); proxLines = null; }
     const sol = placed.find((p) => p.star.id === 'sol');
     const keep = new Set();
     if (sol) {
       const sp = posAt(sol), best = new Map();
-      for (const p of placed) {
+      for (const p of [...placed, ...shown]) {
         if (p === sol || p.hidden) continue;
         const q = posAt(p), d = q.distanceTo(sp);
         if (d > NEAR_SOL_LY) continue;
@@ -359,11 +429,11 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
         let t = proxTags.get(k);
         if (!t) { t = label('', 'prox', mid, () => onSelect(p.star.id)); proxTags.set(k, t); }
         t.position.copy(mid);
-        const members = placed.filter((x) => (x.star.system ?? x.star.id) === k).map((x) => x.star).sort((x, y) => (x.absmag ?? 99) - (y.absmag ?? 99));
+        const members = [...placed, ...shown].filter((x) => (x.star.system ?? x.star.id) === k).map((x) => x.star).sort((x, y) => (x.absmag ?? 99) - (y.absmag ?? 99));
         t.element.textContent = `${systemName(members).toUpperCase()} · ${d.toFixed(2)} LY`;
       }
       if (pts.length) {
-        proxLines = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x66ffcc, transparent: true, opacity: 0.55 }));
+        proxLines = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), MAT.prox);
         world.add(proxLines);
       }
     }
@@ -374,7 +444,10 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     epoch = t;
     if (!ptsGeo) return;
     if (Math.abs(t) > trackSpan * 1e6 && trackSpan < 50) { trackSpan = 50; attachTracks(); }
+    if (t !== 0) drift.ensure(t);
     computeEpoch();
+    drawVisitors();
+    drawBadge();
     const attr = ptsGeo.attributes.position, sz = ptsGeo.attributes.size;
     placed.forEach((p, i) => {
       attr.setXYZ(i, p.now.x, p.now.y, p.now.z);
@@ -391,7 +464,11 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
       target.add(d); controls.target.add(d); camera.position.add(d);
     }
     if (dropGroup) dropGroup.visible = t === 0;
-    if (tempLabel && selectedId) { const sp = placed.find((x) => x.star.id === selectedId); if (sp) tempLabel.position.copy(posAt(sp)); }
+    if (tempLabel && selectedId) {
+      const sp = findPlaced(selectedId);
+      tempLabel.visible = !!sp && !sp.hidden;
+      if (sp) tempLabel.position.copy(posAt(sp));
+    }
     if (hostGeo) {
       const ha = hostGeo.attributes.position, hs = hostGeo.attributes.size;
       hostIdxs.forEach((i, k) => { ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)); hs.setX(k, placed[i].hidden ? 0 : placed[i].size0 + 11); });
@@ -410,32 +487,43 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   function encounters(maxYears = 5e6) {
     const c = placed.find((x) => x.star.id === data?.center.id);
     if (!c?.track) return [];
-    if (encCache?.center === c.star.id && encCache.max === maxYears && encCache.n === placed.length) return encCache.out;
-    const a = { pos: [0, 0, 0], vel: [0, 0, 0] }, b = { pos: [0, 0, 0], vel: [0, 0, 0] };
+    const ds = drift.status, n = `${placed.length}|${ds?.count}|${ds?.loading}`;
+    if (encCache?.center === c.star.id && encCache.max === maxYears && encCache.n === n) return encCache.out;
     const sys = c.star.system ?? c.star.id;
-    const dist = (p, t) => { trackAt(p.track, t, a); trackAt(c.track, t, b); return Math.hypot(a.pos[0] - b.pos[0], a.pos[1] - b.pos[1], a.pos[2] - b.pos[2]); };
-    const out = [], step = 2e4;
+    const out = [];
     for (const p of placed) {
       if (p === c || !p.track || (p.star.system ?? p.star.id) === sys) continue;
-      let best = 0, bestD = Infinity;
-      for (let t = -maxYears; t <= maxYears; t += step) { const d = dist(p, t); if (d < bestD) { bestD = d; best = t; } }
-      let lo = Math.max(-maxYears, best - step), hi = Math.min(maxYears, best + step);
-      for (let k = 0; k < 40; k++) { const m1 = lo + (hi - lo) * 0.382, m2 = lo + (hi - lo) * 0.618; if (dist(p, m1) < dist(p, m2)) hi = m2; else lo = m1; }
-      const t = (lo + hi) / 2;
-      out.push({ star: p.star, tYears: t, dMinLy: dist(p, t), nowLy: p.pos.length(), rvKnown: !!p.motionFrom?.rvKnown });
+      const { tYears, dMinLy } = closestApproach(p.track, c.track, maxYears);
+      out.push({ star: p.star, tYears, dMinLy, nowLy: p.pos.length(), rvKnown: !!p.motionFrom?.rvKnown });
     }
-    encCache = { center: c.star.id, max: maxYears, n: placed.length, out };
+    // Arrivals from beyond the radius (#29): screened along straight lines (with slack for the
+    // galaxy's tidal and vertical pull), then integrated like the rest.
+    if (c.motionFrom) {
+      const cg = galOf(c.star), cv = eqToGal(c.motionFrom.vKms);
+      for (const s of drift.stars) {
+        if (!s.track || (s.system ?? s.id) === sys) continue;
+        const dp = [s.gal[0] - cg[0], s.gal[1] - cg[1], s.gal[2] - cg[2]], r = Math.hypot(...dp);
+        const lin = linearApproach(dp, [s.galV[0] - cv[0], s.galV[1] - cv[1], s.galV[2] - cv[2]]);
+        const myr = Math.min(Math.abs(lin.tYears), maxYears) / 1e6;
+        if (Math.abs(lin.tYears) > maxYears + 1e6 || lin.dLy > 8 + 0.003 * r * myr * myr) continue;
+        const { tYears, dMinLy } = closestApproach(s.track, c.track, Math.min(maxYears, s.spanYears));
+        out.push({ star: s, tYears, dMinLy, nowLy: r, rvKnown: !!s.rvKnown, arrival: true });
+      }
+    }
+    encCache = { center: c.star.id, max: maxYears, n, out };
     return out;
   }
 
   let tempLabel = null; // label for a selected star that isn't labelled by default
   function select(id) {
     selectedId = id;
-    const p = placed.find((x) => x.star.id === id);
+    const p = findPlaced(id);
     if (tempLabel) { world.remove(tempLabel); tempLabel.element.remove(); tempLabel = null; }
     for (const q of placed) q.label?.element.classList.toggle('selected', q.star.id === id);
-    if (p && !p.label) {
-      tempLabel = label(p.star.name.toUpperCase() + (p.star.planets ? ` · ${p.star.planets}` : ''), 'selected', posAt(p), () => onSelect(id));
+    const s = p?.star ?? drift.stars.find((x) => x.id === id);
+    if (s && !p?.label) {
+      tempLabel = label(s.name.toUpperCase() + (s.planets ? ` · ${s.planets}` : '') + (s.arrival ? ' · ARRIVAL' : ''), 'selected', p ? posAt(p) : new THREE.Vector3(), () => onSelect(id));
+      tempLabel.visible = !!p;
     }
     if (p) target.copy(posAt(p));
   }
@@ -446,8 +534,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   const nearestStar = (e) => {
     const r = renderer.domElement.getBoundingClientRect();
     let best = null, bestD = 14;
-    for (const p of placed) {
-      if (p.hidden) continue;
+    for (const p of onChart()) {
       tmp.copy(posAt(p)).project(camera);
       if (tmp.z > 1) continue;
       const d = Math.hypot((tmp.x + 1) / 2 * r.width + r.left - e.clientX, (1 - tmp.y) / 2 * r.height + r.top - e.clientY);
@@ -461,7 +548,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5 || !placed.length) return;
     const r = renderer.domElement.getBoundingClientRect();
     let best = null, bestD = 14;
-    for (const p of placed) {
+    for (const p of onChart()) {
       tmp.copy(posAt(p)).project(camera);
       if (tmp.z > 1) continue;
       const d = Math.hypot((tmp.x + 1) / 2 * r.width + r.left - e.clientX, (1 - tmp.y) / 2 * r.height + r.top - e.clientY);
@@ -503,6 +590,36 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     svg.append(ln, tx);
     return { v, text, ln, tx };
   });
+  // ---- deep-time badge (#29): who is in the sphere, how complete, what is not loaded ---------
+  const driftBadge = document.createElement('div');
+  driftBadge.className = 'drift-badge';
+  driftBadge.hidden = true;
+  container.appendChild(driftBadge);
+  let lastBadge = '';
+  /** Bright stars the catalogue holds completely out to the loaded radius: today versus now. */
+  function likeForLike(st, vis) {
+    if (!st || epoch === 0) return null;
+    const mag = brightLimit(st.loadedLy), R = data.radiusLy;
+    const bright = (p) => p.star.absmag != null && p.star.absmag <= mag;
+    return { mag, today: placed.filter((p) => p.track && p.pos.length() <= R && bright(p)).length, now: vis.filter(bright).length };
+  }
+  function drawBadge() {
+    const st = drift.status;
+    const vis = onChart();
+    const lines = badgeLines({ epoch, radiusLy: data.radiusLy, shown: vis.length, arrived: shown.length, departed,
+      gaia: vis.filter((p) => p.motionFrom?.vSrc).length, hyg: vis.filter((p) => p.motionFrom && !p.motionFrom.vSrc).length,
+      loadedLy: st?.loadedLy ?? data.radiusLy, loading: st?.loading, preview: st?.preview, previewLy: st?.previewLy, density: st?.density, like: likeForLike(st, vis) });
+    const key = lines.map((l) => l.text).join('|');
+    if (key === lastBadge) return;
+    lastBadge = key;
+    driftBadge.hidden = !lines.length;
+    driftBadge.replaceChildren(...lines.map((l) => {
+      const row = document.createElement('div');
+      row.className = l.warn ? 'drift-line warn' : 'drift-line';
+      row.append(badge(l.tier, 'Deep-time arrivals (#29): catalogue stars integrated through the Milky Way model; the panel lists the sources.'), document.createTextNode(` ${l.text}`));
+      return row;
+    }));
+  }
   const invQ = new THREE.Quaternion(), gv = new THREE.Vector3();
   const screenWord = (x, y) => (Math.abs(x) > Math.abs(y) ? (x > 0 ? 'RIGHT' : 'LEFT') : (y > 0 ? 'UP' : 'DOWN'));
   let lastReadout = '';
@@ -557,6 +674,8 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     if (!c) return;
     placed.forEach(({ star }, i) => { const t = starTeff(star).teff; c.setXYZ(i, ...bandStarColour(t, blackbodyRGB(t))); });
     c.needsUpdate = true;
+    for (const s of drift.stars) s.rgb = null;
+    if (data) drawVisitors();
   }
   return {
     recolourBand,
@@ -566,6 +685,9 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; setEpoch(epoch); },
     get unmoved() { return unmovedCount(); },
     setEpoch, encounters,
+    /** Deep-time arrivals (#29): load status, and a star (on the chart or far) by id. */
+    get arrivals() { return drift.status && { ...drift.status, shown: shown.length, departed }; },
+    findStar(id) { return placed.find((x) => x.star.id === id)?.star ?? drift.stars.find((s) => s.id === id) ?? null; },
     get epoch() { return epoch; },
     get motion() { return motion; },
     get message() { return msg?.state ?? null; },

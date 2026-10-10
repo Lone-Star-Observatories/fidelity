@@ -1,0 +1,97 @@
+{
+  "records": [
+    {
+      "name": "farewell-caption",
+      "url": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+      "status": 200,
+      "path": "data/research-sources/mimas-farewell-caption-2026-10-10.html",
+      "bytes": 270815,
+      "sha256": "30812516b9c94f62f81c0c0a9ca93d48d82a7fb8d7a60735b7d1517d3cbb00af",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "cassini-native",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17213/PIA17213.jpg",
+      "status": 200,
+      "path": "data/research-sources/mimas-cassini-native-2026-10-10.jpg",
+      "bytes": 379292,
+      "sha256": "8d36909d2b970b2bcdfcb3a9e684ed99a4366f741e472c2220a6149f37284031",
+      "retrieved": "2026-10-10",
+      "dimensions": [
+        1700,
+        1700
+      ]
+    },
+    {
+      "name": "nature-preview",
+      "url": "https://www.nature.com/articles/s41586-023-06975-9",
+      "status": 200,
+      "path": "data/research-sources/mimas-nature-preview-2026-10-10.html",
+      "bytes": 3038,
+      "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea",
+      "retrieved": "2026-10-10",
+      "assessment": "HTTP200 anti-bot challenge HTML, not article content; hash refers only to challenge bytes. Primary abstract read through web indexed publisher page; full article not obtained here."
+    },
+    {
+      "name": "nasa3d-source",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Mimas/Saturn%20-%20Mimas.jpg",
+      "status": 200,
+      "path": "data/research-sources/mimas-nasa3d-source-2026-10-10.jpg",
+      "bytes": 513028,
+      "sha256": "0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b",
+      "retrieved": "2026-10-10",
+      "matchesExisting": true
+    },
+    {
+      "name": "natural-illumination",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg",
+      "status": 200,
+      "path": "data/research-sources/mimas-natural-illumination-2026-10-10.jpg",
+      "bytes": 118534,
+      "sha256": "8e2cd273ff1f1d287741013f36ef3af225d6523c197c9fabe2a0ccf2893827a1",
+      "retrieved": "2026-10-10",
+      "contentType": "image/jpeg",
+      "dimensions": [
+        1280,
+        1280
+      ]
+    },
+    {
+      "name": "accepted-paper",
+      "url": "https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/94643/A%20recently%20formed%20ocean%20inside%20Saturn%E2%80%99s%20moon%20Mimas%2C%202024%2C%20accepted.pdf?sequence=2",
+      "status": 200,
+      "path": "data/research-sources/mimas-accepted-paper-2026-10-10.pdf",
+      "bytes": 2718,
+      "sha256": "6b1275b4e7d2a6df11a961859f1a042e9beac4985e1844acdfe185c096ed6473",
+      "retrieved": "2026-10-10",
+      "contentType": "text/html",
+      "validPdfSignature": false,
+      "assessment": "Not a PDF: HTTP200 text/html challenge. Saved bytes/hash are response only, not accepted manuscript."
+    },
+    {
+      "name": "denton-rhoden-2025-primary-paper",
+      "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+      "path": "data/research-sources/mimas-denton-rhoden-2025.pdf",
+      "bytes": 4391661,
+      "sha256": "daf48ed7f3756eaf9fa6783270404cf38b0899b8fc67e54a18e37caf037feb4b",
+      "retrieved": "2026-10-10",
+      "validPdfSignature": true,
+      "publicationDate": "2025-09-09",
+      "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only; no figure embedded."
+    },
+    {
+      "name": "Cassini Figure1 NASA640 display rendition",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=640&fit=clip",
+      "status": 200,
+      "path": "data/research-sources/mimas-natural-illumination-display640-2026-10-10.jpg",
+      "bytes": 33774,
+      "sha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+      "retrieved": "2026-10-10",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "observationDate": "2017-01-30",
+      "publicationDate": "2017-03-14",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "processing": "Publisher resized/reencoded monochrome RGB JPEG. Not fullpixelpreservation/independently calibrated visible colour. Larger original1700 andFigure1 1280/1020 retained."
+    }
+  ]
+}

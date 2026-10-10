@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-10",
+  "body": "Enceladus",
+  "status": "Research preparation only; no 53rd dossier or new embedded asset.",
+  "generator": "Built-in imagegen",
+  "prompt": "Create one independent IMAGINED sky observer scientific concept illustration from the Saturn-facing side of Enceladus, wide landscape16:9, nominal90degree horizontal rectilinear field of view. Pale grey fractured water-ice terrain occupies bottom quarter, airless empty black sky above. Saturn centered near upper middle, planet globe apparent diameter about28.31degrees, approximately25.2percent of entire image width (422pixels in a1672pixel-wide image). Soft understated pale cream/ochre cloud bands, approximate oblate globe. Enceladus is near Saturn's equatorial plane: rings nearly edge-on as a thin narrow horizontal line crossing Saturn's equator, NOT broad open elliptical rings. Ring extent, exact phase/latitude/orientation are schematic and uncalibrated with no dated physical registration. No observed Saturn texture or any other body's map may be reused: independently invented schematic bands and local Enceladus ice fractures/blocks. Sun outside frame, illumination/exposure artistic, no calibrated colour claim. No atmosphere around Enceladus, no plume, mist, exposed ocean, biology, humans, spacecraft or survivable landing. Clear small bottom-left text exactly 'IMAGINED SKY FROM ENCELADUS'. No other moons or stars. Single landscape image.",
+  "originalFile": "data/research-sources/enceladus-generated-skyImage-original.png",
+  "generatorOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e4bd1b74-e4b4-40f1-8acc-8b7c520a2699.png",
+  "limitations": "Invented local ice fractures/blocks and Saturn bands/rings/phase/light/exposure, no analog skin/map reuse or dated site registration. No plume, exposed ocean, atmosphere, biology or survivable landing. Geometry angular-only; photometry and full scene calibration remain open.",
+  "bytes": 1994018,
+  "sha256": "bc3119076dd49f3ae0945eb8a8f92956dff4d3d3577eb21097e1e176b100c278",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "geometry": {
+    "radiusKm": 58232,
+    "observerDistanceKm": 238147.9,
+    "angularDiameterDeg": 28.306975470215125,
+    "centreDiscWidthFraction": 0.25217530801573845,
+    "irradianceEarth": 0.00020287374634227602,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical mean-radius angular geometry only; 95K helper RGB/irradiance not adopted. Oblateness/rings/phase/site/exposure uncalibrated.",
+    "targetPixels1672": 421.6371150023147
+  },
+  "inspected": true,
+  "rasterAudit": {
+    "row": 200,
+    "width": 1672,
+    "height": 941,
+    "thresholdRuns": [
+      {
+        "threshold": 5,
+        "left": 672,
+        "right": 989,
+        "width": 318
+      },
+      {
+        "threshold": 10,
+        "left": 673,
+        "right": 985,
+        "width": 313
+      },
+      {
+        "threshold": 20,
+        "left": 673,
+        "right": 985,
+        "width": 313
+      }
+    ],
+    "assessment": "Row through upper globe is threshold-dependent and narrower than the 421.637px nominal geometry target; not a calibrated full globe diameter. Ring extent excluded. FOV/colour/exposure/scene registration remain artistic."
+  },
+  "validation": {
+    "dossiersDeepEqual": 52,
+    "nativeHashesPreserved": 41,
+    "queue": 566,
+    "testsPass": 261,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15951373,
+    "headroomBytes": 48627,
+    "browserImagesDecoded": 189,
+    "completeBrowserReadableSha256": "1ccea4448f269be4c4b56fba1b191869915f120cb4ea08e50a720e54d54567f9",
+    "browserCssApplicationRawHtml": "exact restoration unchanged",
+    "mapModelShapeInputs": "unchanged",
+    "browserScope": "Chrome; other engines open"
+  }
+}

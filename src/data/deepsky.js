@@ -6,7 +6,7 @@
 export const NEBULAE = [
   ['Orion Nebula · M42', 'HII', 83.82, -5.39, 1344, 'The nearest big star nursery; VLBA parallax 414 pc (Menten et al. 2007).'],
   ['Horsehead Nebula', 'dark', 85.25, -2.46, 1375, 'A pillar of dust silhouetted against glowing hydrogen.'],
-  ['California Nebula', 'HII', 60.2, 36.4, 1000, 'Lit by the hot star ξ Persei.'],
+  ['California Nebula', 'HII', 60.825, 36.42, 1000, 'Lit by the hot star ξ Persei.'],
   ['Lagoon Nebula · M8', 'HII', 270.92, -24.38, 4100, ''],
   ['Trifid Nebula · M20', 'HII', 270.6, -23.03, 4100, ''],
   ['Eagle Nebula · M16', 'HII', 274.7, -13.81, 5700, 'Home of the Pillars of Creation.'],
@@ -19,7 +19,7 @@ export const NEBULAE = [
   ['Rho Ophiuchi clouds', 'dark', 246.8, -24.5, 460, 'One of the closest star-forming regions.'],
   ['Taurus Molecular Cloud', 'dark', 67, 26, 450, 'Where many young Sun-like stars are forming.'],
   ['Coalsack', 'dark', 191.0, -63.0, 600, 'A dark cloud visible to the naked eye next to the Southern Cross.'],
-  ['Witch Head Nebula', 'reflection', 76.3, -7.2, 900, 'Reflects light from Rigel.'],
+  ['Witch Head Nebula', 'reflection', 75.5, -7.9, 900, 'Reflects light from Rigel.'],
   ['Helix Nebula', 'PN', 337.41, -20.84, 655, 'One of the closest planetary nebulae: a dying Sun-like star.'],
   ['Ring Nebula · M57', 'PN', 283.4, 33.03, 2570, ''],
   ['Dumbbell Nebula · M27', 'PN', 299.9, 22.72, 1360, ''],

@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-10",
+  "change": "Full standalone application now uses existing gzip-raw-radix120-wide-v1 transport with standard gzip32. Stylesheet remains gzip5/raw120v1; snapshot remains FIDBIN01/gzip32/wide. Existing raw120v1/radix85/base64 decoders remain unchanged. Blob import/revoke and unsupported-gzip message preserved.",
+  "validation": {
+    "testsPass": 261,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15947332,
+    "savedBytes": 4041,
+    "headroomBytes": 52668,
+    "appCompressedBytes": 512722,
+    "previousAppCompressedBytes": 512863,
+    "applicationSha256": "3b9868b222b22390c0ad20d7654716cceade81a82272adfbad4a331acd756463",
+    "completeSnapshotSha256": "1ccea4448f269be4c4b56fba1b191869915f120cb4ea08e50a720e54d54567f9",
+    "browser": "Chrome exact packed HTML text/application/CSS/snapshot restoration,189images,6routes,unsupported message,8worker rows; other engines open",
+    "nativeHashesPreserved": 41,
+    "dossiersPreserved": 52
+  },
+  "rejectedScreening": {
+    "fixedAlignedBlocks": {
+      "256": 23808,
+      "1024": 8192,
+      "4096": 0,
+      "16384": 0
+    },
+    "contentDefinedApproximateBlocks": [
+      {
+        "averageBytes": 512,
+        "repeatedBytes": 177525,
+        "blocks": 28321
+      },
+      {
+        "averageBytes": 2048,
+        "repeatedBytes": 38630,
+        "blocks": 7314
+      },
+      {
+        "averageBytes": 8192,
+        "repeatedBytes": 0,
+        "blocks": 1755
+      }
+    ],
+    "limits": "Raw repeated bytes only, not a gzip saving estimate; dictionary/index overhead and gzip-local redundancy overlap. No block format adopted."
+  },
+  "limitations": "gzip32 adds build cost for only141compressed application bytes of improvement; wider transport supplies most savings. No native/science/map/model/shape/dossier pruning or changes. No53rd Enceladus dossier/new asset embedding.",
+  "next": "Assess compact generated previews at quality80, credited publisher renditions and final additive Enceladus budget, preserving originals/masters and all earlier limitations."
+}

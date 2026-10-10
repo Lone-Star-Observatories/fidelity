@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-10",
+  "status": "Preparation only; no52nd dossier or embedded new image",
+  "body": "Mimas",
+  "originalFile": "data/research-sources/mimas-generated-surfaceImage-original.png",
+  "generatorOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-a8853f10-7903-4ccd-8944-8af471947133.png",
+  "bytes": 3166005,
+  "sha256": "699fa925e0d72d8507f4955f0c91d6cd9825f0e04e6b4296ef5fbbd916e14730",
+  "width": 1672,
+  "height": 941,
+  "tier": "imagined",
+  "credit": "Fidelity / OpenAI image generation",
+  "prompt": "Create one independent hypothetical local-terrain observer illustration for Saturn's moon Mimas, landscape 16:9. Airless black sky above a low gently curved horizon; foreground pale grey cold ice-rich regolith with modest small worn craters and scattered low angular icy fragments, distant subdued crater rims. Low oblique sunlight from outside the frame, strong shadow but readable terrain. No planet in frame, no visible Sun disc, no stars, no atmosphere or clouds, no plume, liquid water, exposed ocean, biology, spacecraft or humans. This is invented local terrain inspired by Mimas's heavily cratered Cassini-observed surface, NOT a registered location or reproduction of any observed body's map. Do not copy or recolour Moon, Mars or another moon's geography. Composition/material fractions, colour, local geology, light and exposure are artistic and not measured. Include clear small readable bottom-left caption exactly 'IMAGINED MIMAS TERRAIN'. Restrained research illustration with fine natural texture, no fantasy structures, no giant Herschel reconstruction claim.",
+  "inspection": "Clear IMAGINED MIMAS TERRAIN label; invented grey craters/blocks, black airless sky. No analog map used. No measured geography, chemistry, exposure or scene registration. Sun outside frame; no angular/raster size computation performed.",
+  "remaining": [
+    "Independent Saturn observer view with skyGeometry angular audit",
+    "Master/preview additive importer and standalone budget validation",
+    "Native integration and individual dossier"
+  ]
+}

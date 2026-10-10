@@ -1,0 +1,355 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "amalthea",
+      "name": "Amalthea",
+      "aliases": [
+        "Amalthea"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "nativeSurface": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
+      "surfaceLabel": "HYPOTHETICAL LOCAL AMALTHEA TERRAIN",
+      "skyLabel": "HYPOTHETICAL SKY FROM AMALTHEA",
+      "measured": [
+        "JunoCam PIA25728 observed2024-03-07 released2024-05-13: processed tiny moon against Jupiter, not resolved surface geography.",
+        "Galileo SSI PIA02532 observed1999-08-12/1999-11-26 released2000-04-24: monochrome stereo pair.",
+        "Catalogue nominal radius83.5km, mass2.08e18kg and semimajor axis181400km retained. Anderson2005 reports Doppler mass(2.08\u00b10.15)e18kg from2002-11-05 encounter."
+      ],
+      "modelled": [
+        "Anderson2005 image-derived volume(2.43\u00b10.22)e6km3 and density857\u00b199kg/m3; porous ice/rock and cold formation are interpretations, not measured local fractions.",
+        "PDS Stooke model explicitly Voyager1/2 only, corrected smeared-limb bulge, no Galileo incorporation; decimal places do not indicate uncertainty.",
+        "skyGeometry Jupiter69911km at181400minus83.5km gives45.358808degrees at90HFOV;165K angular-only helper, computed colour/irradiance not adopted. Representative Sun5.2044AU off frame."
+      ],
+      "assumed": [
+        "Independent invented dark reddish-brown regolith, rocks, ridges, pores and local morphology, fractions/chemistry/albedo/light/exposure.",
+        "Independent schematic Jupiter bands/phase/orientation; no observed-body map reuse."
+      ],
+      "unknown": [
+        "Resolved global texture, local chemistry/fractions, optical calibration and local geographic registration remain unknown.",
+        "Modern shape alternatives, model uncertainty, observer registration and dated scene geometry remain open. No active plume, exposed ocean, biology or survivable landing implied."
+      ],
+      "references": [
+        {
+          "title": "NASA JunoCam caption",
+          "url": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/"
+        },
+        {
+          "title": "NASA Galileo stereo caption",
+          "url": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/"
+        },
+        {
+          "title": "PDS individual model label",
+          "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml"
+        },
+        {
+          "title": "Anderson et al.2005 primary author abstract",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/15919987/"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/amalthea-juno-native.jpg",
+          "label": "NATIVE JUNOCAM AMALTHEA DETECTION",
+          "tier": "measured",
+          "sourceUrl": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg?w=1020&fit=clip",
+          "observationDate": "2024-03-07",
+          "publicationDate": "2024-05-13",
+          "credit": "Image data: NASA/JPL-Caltech/SwRI/MSSS; image processing by Gerald Eichst\u00e4dt",
+          "terms": "NASA media guidelines; full data and processing credit retained.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "sha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+          "bytes": 118764,
+          "description": "Unchanged NASA-served1020display JPEG; publisher resizing/reencoding not full-pixel preservation. Tiny moon detections against processed Jupiter cloud views do not establish resolved Amalthea geography or calibrated visible colour. Original3600JPEG and distinct dynamic3600JPEG retained separately.",
+          "processing": "Copied unchanged; no local crop, recolour or annotation removal."
+        },
+        {
+          "url": "/bespoke/amalthea-galileo-native.jpg",
+          "label": "NATIVE GALILEO SSI STEREO CONTEXT",
+          "tier": "measured",
+          "sourceUrl": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+          "observationDate": "1999-08-12 / 1999-11-26",
+          "publicationDate": "2000-04-24",
+          "credit": "NASA/JPL/Cornell University",
+          "terms": "NASA media guidelines; full mission and institution credit retained.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+          "bytes": 14865,
+          "description": "Unchanged860x410publisherJPEG stereo pair. Monochrome presentation, differing viewpoints, right north pole truncated by frame; not a seamless map or calibrated visible colour. Ida ejecta/ridge crest alternatives not unique chemistry.",
+          "processing": "Copied unchanged; source pairs and frame truncation retained."
+        }
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.0012120259409547868,
+        "horizontalFovDeg": 90,
+        "interpretation": "Jupiter angular-only helper;165K not calibrated visible photometry."
+      },
+      "inputs": {
+        "surfaceImage": "exec-fd6d007a-777d-402c-b993-83cda1a1139a.png",
+        "skyImage": "exec-83decfd9-2495-4dd2-af9f-8d6fd17f74e8.png"
+      }
+    }
+  ],
+  "prompts": {
+    "surface": "Create one wide 16:9 landscape scientific hypothetical observer illustration for Fidelity: local terrain on Jupiter's irregular small moon Amalthea. Independent original scene, do not reuse or recolour any observed Moon, Mars, Pluto, asteroid or other body's geography. Eye-level robotic viewpoint over very dark muted reddish-brown porous granular regolith, scattered worn angular stones, subdued irregular rolling ridge and shallow depression, rough airless small-moon terrain with low gravity. Surface material composition, exact red colour, stones, terrain, porosity and illumination are invented, not resolved observations. Black space above, no atmosphere, clouds, lava, plume, ice ocean, biology, vehicles or human landing. Sun is outside frame, restrained directional lighting from upper left, no visible Jupiter in this local view. Plausible restrained scientific visualization, no exaggerated cinematic glow. Add a small readable unobtrusive caption lower left exactly 'IMAGINED AMALTHEA TERRAIN'. This is not a measured map, no known named crater reproduced. Render full landscape 16:9.",
+    "sky": "Create one independent original wide16:9 scientific hypothetical sky illustration from the Jupiter-facing hemisphere of Amalthea, no reference images, no reused observed maps or analog skins. Eye-level robotic viewpoint: dark muted reddish-brown granular regolith with modest scattered worn rocks and low irregular ridge fills lower quarter; black airless sky above. Large spherical Jupiter high centred in sky, centre at38percent canvas height, diameter41.79percent of canvas width, entirely above horizon. This size is skyGeometry45.3588degrees at nominal90degree horizontalFOV using Jupiter69911km at181400minus83.5km; source1672px target698.7px. Invent your own simplified subdued cream/tan/brown Jupiter cloud bands, nearlyfull phase with soft shaded limb, no actual Jupiter texture/geography. Exact cloud morphology, phase, orientation, terrain, material fractions, reddish hue, light and exposure are invented, not calibrated colour or dated ephemeris. Sun outside frame, no visible Sun, no other moons, rings, dense stars, atmosphere, clouds around observer, lava, plumes, exposed ocean, humans, biology or survivable landing implication. Understated lucid science illustration. Add small lower-left caption exactly 'IMAGINED SKY FROM AMALTHEA'. Full16:9landscape."
+  },
+  "generatedMode": "built-in independent image_gen; no observed references",
+  "sourceRecords": "amalthea-moon-source-records-2026-10-10.json",
+  "assets": {
+    "id": "amalthea",
+    "name": "Amalthea",
+    "aliases": [
+      "Amalthea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL AMALTHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM AMALTHEA",
+    "measured": [
+      "JunoCam PIA25728 observed2024-03-07 released2024-05-13: processed tiny moon against Jupiter, not resolved surface geography.",
+      "Galileo SSI PIA02532 observed1999-08-12/1999-11-26 released2000-04-24: monochrome stereo pair.",
+      "Catalogue nominal radius83.5km, mass2.08e18kg and semimajor axis181400km retained. Anderson2005 reports Doppler mass(2.08\u00b10.15)e18kg from2002-11-05 encounter."
+    ],
+    "modelled": [
+      "Anderson2005 image-derived volume(2.43\u00b10.22)e6km3 and density857\u00b199kg/m3; porous ice/rock and cold formation are interpretations, not measured local fractions.",
+      "PDS Stooke model explicitly Voyager1/2 only, corrected smeared-limb bulge, no Galileo incorporation; decimal places do not indicate uncertainty.",
+      "skyGeometry Jupiter69911km at181400minus83.5km gives45.358808degrees at90HFOV;165K angular-only helper, computed colour/irradiance not adopted. Representative Sun5.2044AU off frame."
+    ],
+    "assumed": [
+      "Independent invented dark reddish-brown regolith, rocks, ridges, pores and local morphology, fractions/chemistry/albedo/light/exposure.",
+      "Independent schematic Jupiter bands/phase/orientation; no observed-body map reuse."
+    ],
+    "unknown": [
+      "Resolved global texture, local chemistry/fractions, optical calibration and local geographic registration remain unknown.",
+      "Modern shape alternatives, model uncertainty, observer registration and dated scene geometry remain open. No active plume, exposed ocean, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA JunoCam caption",
+        "url": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/"
+      },
+      {
+        "title": "NASA Galileo stereo caption",
+        "url": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/"
+      },
+      {
+        "title": "PDS individual model label",
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml"
+      },
+      {
+        "title": "Anderson et al.2005 primary author abstract",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15919987/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/amalthea-juno-native.jpg",
+        "label": "NATIVE JUNOCAM AMALTHEA DETECTION",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg?w=1020&fit=clip",
+        "observationDate": "2024-03-07",
+        "publicationDate": "2024-05-13",
+        "credit": "Image data: NASA/JPL-Caltech/SwRI/MSSS; image processing by Gerald Eichst\u00e4dt",
+        "terms": "NASA media guidelines; full data and processing credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+        "bytes": 118764,
+        "description": "Unchanged NASA-served1020display JPEG; publisher resizing/reencoding not full-pixel preservation. Tiny moon detections against processed Jupiter cloud views do not establish resolved Amalthea geography or calibrated visible colour. Original3600JPEG and distinct dynamic3600JPEG retained separately.",
+        "processing": "Copied unchanged; no local crop, recolour or annotation removal."
+      },
+      {
+        "url": "/bespoke/amalthea-galileo-native.jpg",
+        "label": "NATIVE GALILEO SSI STEREO CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+        "observationDate": "1999-08-12 / 1999-11-26",
+        "publicationDate": "2000-04-24",
+        "credit": "NASA/JPL/Cornell University",
+        "terms": "NASA media guidelines; full mission and institution credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+        "bytes": 14865,
+        "description": "Unchanged860x410publisherJPEG stereo pair. Monochrome presentation, differing viewpoints, right north pole truncated by frame; not a seamless map or calibrated visible colour. Ida ejecta/ridge crest alternatives not unique chemistry.",
+        "processing": "Copied unchanged; source pairs and frame truncation retained."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0012120259409547868,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular-only helper;165K not calibrated visible photometry.",
+      "angularDiameterDeg": 45.358808209600525,
+      "centreDiscWidthFraction": 0.41788675843766276,
+      "irradianceEarth": 0.004590433272400362,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/amalthea-surface-image.jpg",
+      "previewUrl": "/bespoke/amalthea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation \u00b7 researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fd6d007a-777d-402c-b993-83cda1a1139a.png",
+      "sourceSha256": "2e96201c2464678ed334be58f2aec2a5b7294d05b87ebc9d4cc4366afecaf055",
+      "sha256": "95211a4bb5fbb0cc7b8243ac038cf2ff75eb92599968750a19a477ceeb438f00",
+      "previewSha256": "07f203768a4fc1c653b2cfc645249df583913bbd464555c5d46e3e9f4c8b96b6",
+      "bytes": 334609,
+      "previewBytes": 56108,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/amalthea-sky-image.jpg",
+      "previewUrl": "/bespoke/amalthea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation \u00b7 researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-83decfd9-2495-4dd2-af9f-8d6fd17f74e8.png",
+      "sourceSha256": "d6f53e912e69390dbb309d5d9bf92efc65e1ba80b0d8baa1cc9d67d0b8e4fb07",
+      "sha256": "48c3befffb97ffef0ab554a1cd55890b165298df52007674023132cb900bce97",
+      "previewSha256": "81d16f2b322e14cc13cb7776aa7e1cdf249b71c163b5dc4a53da11856abbac8a",
+      "bytes": 187883,
+      "previewBytes": 33558,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "originals": [
+    {
+      "role": "surfaceImage",
+      "path": "data/research-sources/amalthea-generated-surfaceImage-original.png",
+      "codexOriginal": "exec-fd6d007a-777d-402c-b993-83cda1a1139a.png",
+      "bytes": 2638716,
+      "sha256": "2e96201c2464678ed334be58f2aec2a5b7294d05b87ebc9d4cc4366afecaf055",
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "role": "skyImage",
+      "path": "data/research-sources/amalthea-generated-skyImage-original.png",
+      "codexOriginal": "exec-83decfd9-2495-4dd2-af9f-8d6fd17f74e8.png",
+      "bytes": 1731362,
+      "sha256": "d6f53e912e69390dbb309d5d9bf92efc65e1ba80b0d8baa1cc9d67d0b8e4fb07",
+      "size": [
+        1672,
+        941
+      ]
+    }
+  ],
+  "geometryAudit": {
+    "helper": {
+      "angularDiameterDeg": 45.358808209600525,
+      "centreDiscWidthFraction": 0.41788675843766276,
+      "irradianceEarth": 0.004590433272400362,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "targetSourcePixels": 698.7066601077721,
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "row": 310,
+    "widths": [
+      {
+        "threshold": 5,
+        "width": 605
+      },
+      {
+        "threshold": 10,
+        "width": 605
+      },
+      {
+        "threshold": 20,
+        "width": 604
+      }
+    ],
+    "limitation": "Generated Jupiter is undersized relative to nominal skyGeometry target; threshold dependent raster extent, uncalibrated. FOV/colour/exposure/phase/light/registration artistic.165K only angular helper; irradiance and RGB not adopted.",
+    "sun": {
+      "angularDiameterDeg": 0.10239496667257103,
+      "centreDiscWidthFraction": 0.0008935648907777419,
+      "irradianceEarth": 0.03691974252277894,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    }
+  },
+  "primaryPaper": {
+    "source": "https://pubmed.ncbi.nlm.nih.gov/15919987/",
+    "doi": "10.1126/science.1110422",
+    "published": "2005-05-27",
+    "authors": [
+      "John D Anderson",
+      "Torrence V Johnson",
+      "Gerald Schubert",
+      "Sami Asmar",
+      "Robert A Jacobson",
+      "Douglas Johnston",
+      "Eunice L Lau",
+      "George Lewis",
+      "William B Moore",
+      "Anthony Taylor",
+      "Peter C Thomas",
+      "Gudrun Weinwurm"
+    ],
+    "evidence": "Primary author abstract read via indexed PubMed source: Doppler mass(2.08\u00b10.15)e18kg2002-11-05; Voyager1979/Galileo1996-11 to1997-06 image-derived volume(2.43\u00b10.22)e6km3 and density857\u00b199kg/m3. Porous ice+rock/cold formation suggested, not direct composition.",
+    "limitations": "Full-paper/modelframe audit open; no paper figure embedded, no CC licence asserted, no downloaded paper hash invented."
+  },
+  "verification": {
+    "previousDossiersDeepEqual": 50,
+    "registryDossiers": 51,
+    "queueTasks": 566,
+    "nativeContextHashes": 40,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15848284,
+    "headroomBytes": 151716,
+    "readableBrowserSnapshotSha256": "4a8b5ebf799964f64543888f7e1dfd9115d10f59edd01bf27eac5256f5cc8ecf",
+    "browserRawSnapshotTextSha256": "11de8976bd2e8c934e31b412fecaddb5c47cb9329d66ff2f7c7b032072e841b0",
+    "applicationSha256": "bb64a215d5666e4858b9633bc254a869b1368eda9e83214ffee5949ab65ca397",
+    "normalOfflineAmalthea": "4 images decoded; surfacePending retained; no generated globe",
+    "modelShapeMapInputs": "all earlier tracked bytes unchanged",
+    "routes": 6,
+    "unsupportedBrowserMessage": "pass",
+    "offlineEventWorkerRows": 8,
+    "craftModels": 24,
+    "issOffline": "pass",
+    "testsPassed": 260,
+    "testsSkipped": 1,
+    "embeddedImagesDecoded": 186,
+    "nearbyStars": 4234,
+    "details": 517
+  }
+}

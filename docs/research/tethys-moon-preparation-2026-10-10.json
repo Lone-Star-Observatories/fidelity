@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-10",
+  "status": "Research only; all 53 delivered dossiers preserved. No 54th dossier or new embedded asset.",
+  "sourceRecords": "tethys-moon-source-records-2026-10-10.json",
+  "credit": "NASA/JPL-Caltech/Space Science Institute",
+  "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "native": [
+    {
+      "product": "PIA21342",
+      "observed": "2017-05-13",
+      "released": "2017-08-21",
+      "instrument": "Cassini ISS wide-angle visible light",
+      "inspected": true,
+      "limitations": "Tiny Tethys across Saturn rings, night side illuminated by Saturnshine; publisher brightened Tethys by factor two. Not resolved local terrain, calibrated photometry, visible colour or a registered surface observer scene. Caption scale statements retained as source estimates, no new angular/raster calculation."
+    },
+    {
+      "product": "PIA20518",
+      "observed": "2016-11-10",
+      "released": "2017-01-23",
+      "instrument": "Cassini ISS narrow-angle green filter",
+      "inspected": true,
+      "limitations": "Leading hemisphere, north up rotated one degree left. Monochrome green-filter image shows Odysseus/Scheria Montes, not calibrated visible colour or a full registered globe. Source two km/pixel estimate not a new computation."
+    }
+  ],
+  "existingGlobe": {
+    "inspected": true,
+    "unchanged": true,
+    "limitations": "NASA 3D source file matches own Tethys map byte-for-byte. Underlying scientific mosaic identity, input epochs, frame, coverage and photometry remain open. White/blurred polar gaps and seams are not measured smooth terrain.",
+    "sourceByteEqual": true
+  },
+  "next": "Audit own map source and recent primary science; recover standalone headroom before additive native/local/observer integration. No exhaustive newest-observation claim.",
+  "validation": {
+    "testsPassed": 261,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15991039,
+    "headroomBytes": 8961,
+    "prior53DossiersDeepEqual": true,
+    "browserSnapshotApplicationStylesheetExactRestoration": true,
+    "snapshotSha256": "4bad2a97b16e2984b6c9d4d741fed27d9e3ca0077b092931bf79f79f7f8a9d94",
+    "queueTasks": 566
+  },
+  "transportAssessment": {
+    "currentWideBlockBytes": 44,
+    "currentWideBlockDigits": 51,
+    "asymptoticDigitsPerByte": 1.158263604911665,
+    "currentDigitsPerByte": 1.1590909090909092,
+    "limitation": "Increasing radix120 block size alone has less than 0.1 percent asymptotic room versus current 44/51 transport; insufficient for a larger native batch. No codec or science payload changed. Further compression structure remains open."
+  }
+}

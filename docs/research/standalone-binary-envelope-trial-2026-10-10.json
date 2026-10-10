@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-10",
+  "status": "Research-only binary envelope trial; no runtime or build changes",
+  "assetCount": 209,
+  "originalJsonBytes": 23131702,
+  "binaryContainerBytes": 18902575,
+  "zlibJsonGzipBytes": 13338581,
+  "zlibBinaryGzipBytes": 12962085,
+  "gzipSavingsBytes": 376496,
+  "restoredJsonSha256": "95fe2ab38ca09f13df2b5ae467f2bf9440a3f25154c5fc32b57614b68c99c277",
+  "completeReadableByteEquality": true,
+  "limitations": "Same zlib compression settings on both trial inputs; not a comparison to the deployed Zopfli stream. Native images and GLBs decoded then restored to their exact original base64 text, deduplicated only on identical full data URI literals. Production integration needs versioned binary validation, parser bounds/corruption tests, browser restoration and measured Zopfli budgets. No existing asset/model/dossier or generated snapshot replaced."
+}

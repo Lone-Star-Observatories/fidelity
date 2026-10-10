@@ -30,12 +30,10 @@ Exoplanet Archive planet list (cached for a week). Both are stored under `data/`
 | `FIDELITY_PORT` | `4011` | Backend port (binds to `127.0.0.1` only) |
 | `FIDELITY_DATA_DIR` | `./data` | Where on-demand downloads are cached |
 | `FIDELITY_CATALOG_DIRS` | — | Folders with catalogs you already have (e.g. `/Volumes/DATA/catalogs`); separate several with `:` |
-<<<<<<< HEAD
+| `FIDELITY_WINDY_KEY` | — | Optional Windy Webcams API key: adds webcams to Earth's live-signals map (#35). Held by the backend only |
 | `FIDELITY_EVENTS_URL` | the repo's `events/events.json` on GitHub | Where `/api/events` reads the weekly events feed |
-=======
 | `FIDELITY_OPENAI_KEY` (or `OPENAI_API_KEY`) | — | Enables the "Computer" voice (OpenAI Realtime). Held by the backend only; the page never sees it |
 | `FIDELITY_REALTIME_MODEL` | `gpt-realtime` | Realtime model for the voice |
->>>>>>> origin/main
 
 Run `npm run catalogs -- /path/to/catalogs` to see which of your downloaded catalogs the
 ship recognises and which view will use each one.

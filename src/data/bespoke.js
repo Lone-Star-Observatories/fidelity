@@ -6529,6 +6529,896 @@ export const BODY_VISUALS = {
         "limits": "Low-threshold full limb widths275/272/271pixels exceed nominal244.723pixel guide; bright core230/240pixels is smaller. Threshold-sensitive and uncalibrated. FOV, phase, colour, illumination, limb and exposure remain artistic; no calibrated or dated geometry."
       }
     }
+  },
+  "io": {
+    "id": "io",
+    "name": "Io",
+    "aliases": [
+      "Io"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D Galileo/Voyager mosaic preserved. Unchanged JIRAM2024 infrared publisher still and Galileo1999/JunoSRU2023 comparison provide measured context, not calibrated visible albedo. Mosaic frame, coverage, source association and photometric registration remain open.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL VOLCANIC TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM IO",
+    "measured": [
+      "Juno JIRAM observed strong southern-hemisphere infrared emission2024-12-27; saturation and missing field of view remain instrument limits, not surface colours or gaps.",
+      "Juno SRU observed2023-12-30 night-side thermal glow near South Zal Mons under Jupiter-shine. Comparison Galileo panel is circa1999, exact day unverified.",
+      "Catalogue radius1821.6km and semimajor axis421800km preserved. Sulfur dioxide dominates Io's tenuous atmosphere; its surface includes volcanic deposits and SO2 frost."
+    ],
+    "modelled": [
+      "Mura et al.2026 first published2026-01-10 interpret synchronized activity as possible regional reservoir connections, not directly imaged plumbing. Deep magma ocean not ruled out; a shallow global molten layer is disfavoured by referenced tidal-response modelling.",
+      "Representative Sun geometry at5.2044AU via skyGeometry, nominal90degree HFOV, Sun outside frame.",
+      "Spherical Jupiter69911km radius at assumed observer distance421800−1821.6km gives19.164505degrees via skyGeometry; geometry guide only, no dated registration."
+    ],
+    "assumed": [
+      "Invented local pale sulfur-associated deposits, charcoal cooled silicate lava, rocks, cracks and a small glowing fissure. Fractions, visible colours, lava temperature and eruption state unmeasured; no mapped named locality.",
+      "Jupiter-facing hypothetical observer with independently invented cloud bands, phase, orientation, reflected light and exposure; no observed Jupiter map reused. Tenuous atmosphere represented by black sky without Earthlike haze."
+    ],
+    "unknown": [
+      "Local chemistry, rock/grain placement, lava crust age, radiometry, scene registration and actual spectral transfer remain unverified.",
+      "Reservoir topology and global melt geometry remain hypotheses; local connections do not establish a globally molten ocean. No survivable landing claim.",
+      "No verified live Io-specific scientific stream; recent mission images assessed without an exhaustive newest-observation claim."
+    ],
+    "references": [
+      {
+        "title": "NASA Io facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/"
+      },
+      {
+        "title": "JPL JIRAM PIA26594",
+        "url": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+        "observationDate": "2024-12-27",
+        "publicationDate": "2025-04-29"
+      },
+      {
+        "title": "JPL Galileo/SRU PIA26522",
+        "url": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+        "observationDate": "2023-12-30",
+        "publicationDate": "2024-12-12"
+      },
+      {
+        "title": "Mura et al.2026 Synchronized Eruptions: Possible Evidence of Interconnected Subsurface Magma Reservoirs",
+        "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JE009047",
+        "publicationDate": "2026-01-10"
+      },
+      {
+        "title": "Mura et al.2026 lava-lake crust-age modelling",
+        "url": "https://arxiv.org/abs/2603.22062",
+        "publicationDate": "2026-03-23"
+      },
+      {
+        "title": "USGS Galileo/Voyager merged mosaic description; exactNASA3D association open",
+        "url": "https://astrogeology.usgs.gov/search/map/io_galileo_ssi_voyager_color_merged_global_mosaic_1km"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/io-jiram-native.jpg",
+        "label": "NATIVE JIRAM INFRARED CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+        "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26594.jpg",
+        "observationDate": "2024-12-27",
+        "publicationDate": "2025-04-29",
+        "credit": "NASA/JPL/SwRI/ASI — JIRAM Team (A.M.)",
+        "terms": "NASA image/media guidelines; full JPL instrument/team credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+        "bytes": 43806,
+        "description": "PIA26594 publisher static JPG. Infrared false-colour intensity, not visible surface colour. Bright emission saturates detector; gray region is outside field of view. JPEG is the linked still, not the full animation.",
+        "processing": "Copied unchanged from publisher download; no crop, resize, recolour or removal of instrument artifacts."
+      },
+      {
+        "url": "/bespoke/io-sru-native.jpg",
+        "label": "NATIVE GALILEO/SRU COMPARISON",
+        "tier": "measured",
+        "sourceUrl": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+        "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26522.jpg",
+        "observationDate": "2023-12-30",
+        "publicationDate": "2024-12-12",
+        "credit": "NASA/Caltech-JPL/SwRI/LPI/USRA",
+        "terms": "NASA image/media guidelines; full instrument/team credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+        "bytes": 186747,
+        "description": "PIA26522: sunlit Galileo circa1999 panel versus Jupiter-shine JunoSRU2023-12-30. Red arrows/20km scale are publisher annotations, not lava colour. A mountain-fracture fissure connection is a hypothesis; not measured internal plumbing.",
+        "processing": "Original comparison copied unchanged, no conversion/recolour. Exact Galileo observing day unknown."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 5.2044,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.10239496667257103,
+      "centreDiscWidthFraction": 0.0008935648907777419,
+      "irradianceEarth": 0.03691974252277894,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/io-surface-image.jpg",
+      "previewUrl": "/bespoke/io-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fc8747f5-e356-46b0-b3bd-ab8ceb5b163f.png",
+      "sourceSha256": "356985ea84e1c706b410c6d881f1656de38015e76a517266f98a9198c74c3dc7",
+      "sha256": "b1ff371b5c868f3e387aa9bce071cb037126ab9388b2d32c5fa20722bb5e3a77",
+      "previewSha256": "275829f095c0c59b8db41fcc626e7d8ddabb57fc2f1b1d0bc7e8bbca86343cce",
+      "bytes": 375609,
+      "previewBytes": 65870,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/io-sky-image.jpg",
+      "previewUrl": "/bespoke/io-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-36ff3334-e6fd-4300-80fd-1f0c4f2f7e89.png",
+      "sourceSha256": "34742519a7ec505d2c2316c420d4971ef315e209e245408fae577a72410848a3",
+      "sha256": "dd9e094cda0d0be8a748249051db6de07ab6cfbceea9e436e149a777e11ed38e",
+      "previewSha256": "37f713119ff3f46c89e34233f558a7e55c6485274a93b6b134eda2e835d8a61d",
+      "bytes": 212550,
+      "previewBytes": 38835,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "row": 270,
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "longestBrightRunWidthsPixels": [
+          327,
+          318,
+          278
+        ],
+        "targetWidthPixels": 282.26493587538596,
+        "angularGuideDeg": 19.16450484941697,
+        "method": "Longest contiguous central-row RGB-above-threshold run excludes disconnected stars; atmospheric limb and dark terminator remain artistic.",
+        "limits": "Oversized relative to nominal skyGeometry guide; threshold-dependent, not calibrated colour/FOV/phase/lighting/exposure or dated registration."
+      }
+    }
+  },
+  "europa": {
+    "id": "europa",
+    "name": "Europa",
+    "aliases": [
+      "Europa"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D Galileo/Voyager globe preserved; source association/coverage/frame/epochs/photometry audit open. Local SRU photograph is not full globe or calibrated visible colour.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL ICE TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM EUROPA",
+    "measured": [
+      "Juno SRU observed2022-09-29 under Jupiter-shine; white dots are radiation-particle artifacts, not terrain. Monochrome450–1100nm, not calibrated visible colour.",
+      "Catalogue radius1560.8km/semimajor axis671100km preserved. Ridges and chaos are observed; possible plume stains do not confirm activity."
+    ],
+    "modelled": [
+      "Levin et al. published2025-12-17 infer29±10km thermally conductive shell for idealized pure-water ice from2022 MWR data; salinity15mg/kg reduces~5km and possible convective layer adds total thickness. Not universal directly measured thickness.",
+      "skyGeometry Jupiter69911km at671100−1560.8km gives11.98711degrees/90HFOV175.544px at1672wide;165K placeholder only for angular geometry, no photometric transfer.",
+      "Representative Sun5.2044AU off frame via skyGeometry."
+    ],
+    "assumed": [
+      "Invented ice ridges, fractures, sparse blocks and brown non-ice deposits; local chemistry/fractions/colour unmeasured.",
+      "Independent invented Jupiter bands/phase/orientation/light; no observed Jupiter/Moon/Mars/Io map reused. Thin exosphere has black sky."
+    ],
+    "unknown": [
+      "Native map coverage/frame/epochs and observer registration open; local chemistry/biology unmeasured, no active plume or exposed ocean implied.",
+      "No survivable landing claim, no verified live scientific image stream or exhaustive newest-observation claim."
+    ],
+    "references": [
+      {
+        "title": "NASA SRU source",
+        "url": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/"
+      },
+      {
+        "title": "Levin et al. primary ice-shell model",
+        "url": "https://www.nature.com/articles/s41550-025-02718-0"
+      },
+      {
+        "title": "NASA2026-01-27 release,2022 observations",
+        "url": "https://www.nasa.gov/missions/juno/nasas-juno-measures-thickness-of-europas-ice-shell/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/europa-sru-native.jpg",
+        "label": "NATIVE SRU MONOCHROME CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26332/PIA26332.jpg?w=1020&fit=clip",
+        "observationDate": "2022-09-29",
+        "publicationDate": "2024-05-15",
+        "credit": "NASA/JPL-Caltech/SwRI",
+        "terms": "NASA image/media guidelines; full mission credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+        "bytes": 195650,
+        "description": "NASA-served1020px display rendition, not full4059px raster. Monochrome Jupiter-shine photograph; white dots are radiation-particle artifacts, plume stains unconfirmed. Not calibrated visible colour. Full-resolution PNG/JPEG originals retained separately.",
+        "processing": "Copied unchanged from NASA dynamicimage response; publisher resizing/re-encoding disclosed. No local crop/recolour/artifact removal."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 5.2044,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.10239496667257103,
+      "centreDiscWidthFraction": 0.0008935648907777419,
+      "irradianceEarth": 0.03691974252277894,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/europa-surface-image.jpg",
+      "previewUrl": "/bespoke/europa-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-dd6ea2f6-3608-4f1a-8bde-0d6b13c61401.png",
+      "sourceSha256": "6c51a34930593b2e68a00bfd8c9bccdc16489ed11d3bb51b9ef82484a0946d35",
+      "sha256": "df651248619f3c1169b4a797dc2ac658a52eb1dca8825c00a215f793c135846c",
+      "previewSha256": "701dc3f3f2690e16cb7e7e3647954e8ed9ce76ec0565d18e2ddbfd44fbdebe25",
+      "bytes": 292119,
+      "previewBytes": 50940,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/europa-sky-image.jpg",
+      "previewUrl": "/bespoke/europa-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4cac412c-8e52-4968-b9d6-9bb71cbe6993.png",
+      "sourceSha256": "8b65925ed54f38ba5d88014b074a51cbeb70d8bfdba9361d188f0d8bba37176b",
+      "sha256": "cb755d2afb46190473d16af51ec3ea56164fc75b47103b033817524ae096100a",
+      "previewSha256": "2d7c0f59728dd237b0d5024bc28fe8b4d70fabf714164873a9fbb819bdb38ad8",
+      "bytes": 195356,
+      "previewBytes": 35428,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "ganymede": {
+    "id": "ganymede",
+    "name": "Ganymede",
+    "aliases": [
+      "Ganymede"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own NASA3D Galileo/Voyager globe unchanged and source-byte equal; exact coverage/frame/epochs/photometry audit open. JIRAM optical-overlay context is not a new full globe.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL GROOVED ICE",
+    "skyLabel": "HYPOTHETICAL SKY FROM GANYMEDE",
+    "measured": [
+      "JIRAM spectra observed2021-06-07; processed2.08micron band-depth line over older Galileo/Voyager optical mosaic, not visible colour.",
+      "Catalogue radius2634.1km/semimajor axis1070400km preserved; grooved and cratered terrain observed."
+    ],
+    "modelled": [
+      "Tosi et al. published2023-10-30 (January2024 issue) assign infrared bands through laboratory comparisons to salts and possible organic compounds; brine-origin interpretation is not directly observed plumbing or biology. No measured local ingredient fractions.",
+      "skyGeometry sphericalJupiter69911km at1070400−2634.1km gives7.5081489degrees at90HFOV;165K helper placeholder only for angular geometry, not photometric transfer.",
+      "Representative Sun5.2044AU outside field via skyGeometry."
+    ],
+    "assumed": [
+      "Independent invented worn grooved ice bedrock, blocks, dust and dark impurity patches; morphology/chemistry/fractions/colour/exposure are imagined.",
+      "Independent invented Jupiter bands/phase/orientation/light; no observed Moon/Mars/Pluto/Europa/Io/Jupiter skins or analog maps. Tenuous exosphere represented by black sky."
+    ],
+    "unknown": [
+      "Local terrain registration, material fractions/chemistry, albedo/visible colour/exposure and dated observer geometry remain unknown.",
+      "Native map exact product association/coverage/frame/epochs and full photometric transfer remain open; no exposed ocean, active plume, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA JIRAM native caption",
+        "url": "https://science.nasa.gov/photojournal/ganymede-grooved-terrain-as-seen-by-junos-jiram/"
+      },
+      {
+        "title": "Tosi et al. primary spectral analysis",
+        "url": "https://orbi.uliege.be/bitstream/2268/338794/1/s41550-023-02107-5.pdf"
+      },
+      {
+        "title": "Publisher enhanced JunoCam artwork assessment",
+        "url": "https://www.jpl.nasa.gov/images/pia25028-enhanced-ganymede-enhanced-image/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ganymede-jiram-native.jpg",
+        "label": "NATIVE JIRAM SPECTRAL CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/ganymede-grooved-terrain-as-seen-by-junos-jiram/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26075/PIA26075.jpg?w=1020&fit=clip",
+        "observationDate": "2021-06-07",
+        "publicationDate": "2023-10-30",
+        "credit": "NASA/JPL-Caltech/SwRI/ASI/INAF/JIRAM/Brown University",
+        "terms": "NASA image/media guidelines; full instrument/mission credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+        "bytes": 61533,
+        "description": "NASA-served1020px display rendition; resized/re-encoded publisher response, not full6385px raster. Processed2.08micron band-depth colored line over older Galileo/Voyager optical mosaic. Possibly ammonium chloride, not unique chemistry, visible colour or biology. Older optical observing epochs unknown. Original full JPEG retained separately.",
+        "processing": "Copied unchanged from NASA dynamicimage response; no local crop/recolour/annotation removal. Publisher display resizing/re-encoding disclosed."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.007137574184737376,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular size only.165K positive helper input does not define visible colour/emission/irradiance; those computed helper outputs are not adopted photometry.",
+      "angularDiameterDeg": 7.508148903427891,
+      "centreDiscWidthFraction": 0.06561488124170436,
+      "irradianceEarth": 0.00013236593713086503,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/ganymede-surface-image.jpg",
+      "previewUrl": "/bespoke/ganymede-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-05ffeb69-1a5a-4f84-a1bc-087383cef061.png",
+      "sourceSha256": "9dd0818c5e193e202b06d265ea9a92778f03bcbd6b8aa5c1b83345c4149f883d",
+      "sha256": "e1f39469f67c5bbfbefeef788d0a881a0a5df22562d2327d1009ba7d48896070",
+      "previewSha256": "4d44d38c5708db33fd18a4071a5d6aa7d06562e4b24086cad38531c467e2ef06",
+      "bytes": 359335,
+      "previewBytes": 63495,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/ganymede-sky-image.jpg",
+      "previewUrl": "/bespoke/ganymede-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-668b48c6-3052-46da-b57f-97c2076b115c.png",
+      "sourceSha256": "7d1acefb825d834d0a392a87dba8350d9c7664a95eeaf58cad8a8153ba7303cd",
+      "sha256": "de9022e5ce8088027176df90ebb04ca24f583cde7489c0d13d3ba6b5a332949b",
+      "previewSha256": "bcfca5eab4cbaa431c5ebacea2731ff15c04d9e520e44fea20fc1f9c228349aa",
+      "bytes": 246285,
+      "previewBytes": 44602,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "callisto": {
+    "id": "callisto",
+    "name": "Callisto",
+    "aliases": [
+      "Callisto"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own NASA3D Callisto globe preserved byte-equal to source; product association, coverage, frame, input epochs and photometry remain open.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL KNOBBY TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM CALLISTO",
+    "measured": [
+      "Galileo SSI close-up observed2001-05-25, released2001-08-22; monochrome panel presentation not calibrated visible colour.",
+      "Existing catalogue radius2410.3km and semimajor axis1882700km preserved. Native source byte equality verified."
+    ],
+    "modelled": [
+      "Caption estimates bright knobs80–100m high and smallest discernible features about3m; these are source statements, not new raster measurements.",
+      "Sublimation, dust migration and impact-ejecta origins are interpretations/hypotheses, not measured local chemistry or erosion rates.",
+      "skyGeometry spherical Jupiter69911km at1882700−2410.3km:4.2616079degrees for90HFOV.165K positive angular-helper input only; computed colour/irradiance not adopted photometry.",
+      "Representative Sun5.2044AU outside frame; illumination/phase/registration artistic."
+    ],
+    "assumed": [
+      "Independent invented ice-rich rocky worn hummocks, fragments, dust and local terrain; exact morphology, chemistry/fractions, colour and exposure imagined.",
+      "Independent invented schematic Jupiter atmospheric bands/phase/orientation/light; no observed-body analog skins or reused geography. Tenuous exosphere represented by black sky."
+    ],
+    "unknown": [
+      "Local terrain geographic registration, material fractions/chemistry, visible albedo, photometric transfer and dated observer geometry unknown.",
+      "Native map product association/coverage/frame/input epochs remain open; no active plume, exposed ocean, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA native SSI caption",
+        "url": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/"
+      },
+      {
+        "title": "Contemporary JPL Universe observation/credit audit, PDF page9",
+        "url": "https://www.jpl.nasa.gov/universe/archive/un0108.pdf"
+      },
+      {
+        "title": "ESA Juice factsheet: future observations",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Juice/Juice_factsheet"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/callisto-ssi-native.jpg",
+        "label": "NATIVE GALILEO SSI TERRAIN CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg?w=1020&fit=clip",
+        "observationDate": "2001-05-25",
+        "publicationDate": "2001-08-22",
+        "credit": "NASA/JPL/Arizona State University, Academic Research Lab",
+        "terms": "NASA image/media guidelines; full mission/institution credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+        "bytes": 134419,
+        "description": "Unchanged NASA-served1020x770 display rendition; publisher resize/re-encoding, not original full-pixel preservation. Monochrome intensity stored RGB, not calibrated visible colour. Strip gaps/seams, panel outlines, scale and globe locator are processing/presentation context, not seamless terrain. Original2000x1510JPEG retained. Sublimation/dust/impact origins hypothetical. Historical JPL newsletter verifies Academic Research Lab credit; current external credit-link ownership unverified, not adopted as a terms link.",
+        "processing": "Copied unchanged from NASA served response; no local crop/recolour/annotation removal."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.012568960314754,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular size only;165K is positive helper input not visible photometry. Colour/irradiance outputs not adopted.",
+      "angularDiameterDeg": 4.26160790446575,
+      "centreDiscWidthFraction": 0.03720669932298657,
+      "irradianceEarth": 0.00004268534530573517,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/callisto-surface-image.jpg",
+      "previewUrl": "/bespoke/callisto-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-dbae7908-5ec8-4b41-bfaa-1177bba5bfb3.png",
+      "sourceSha256": "1c15ddedae317c955a273066bf9a7c0a8abc83da35eabbe53aee5ef580ef5da5",
+      "sha256": "a29acd57b4cab74abf5d997a81155a35b94348b22253e0dfb81425de0efce907",
+      "previewSha256": "ce8151768c67b8fd9974a3e0fa9dd991fe23403eb2b26923138ce47ea86501f7",
+      "bytes": 366095,
+      "previewBytes": 65544,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/callisto-sky-image.jpg",
+      "previewUrl": "/bespoke/callisto-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-312cbc7d-4502-4597-a385-51392c24dd45.png",
+      "sourceSha256": "0b372d3a50779956f1d63bca604b4a9ff2c0cd28f86fa36caabecabcbbf37b70",
+      "sha256": "60835dc33c3a05c55d9b4acc218394ed74c0fcbd5f89fdd3b8c942282609fbb0",
+      "previewSha256": "adb4ff542a86009ea5f06c96ebc82768edd5a3af809bdf31be559ced4ccac585",
+      "bytes": 217891,
+      "previewBytes": 39778,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "amalthea": {
+    "id": "amalthea",
+    "name": "Amalthea",
+    "aliases": [
+      "Amalthea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL AMALTHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM AMALTHEA",
+    "measured": [
+      "JunoCam PIA25728 observed2024-03-07 released2024-05-13: processed tiny moon against Jupiter, not resolved surface geography.",
+      "Galileo SSI PIA02532 observed1999-08-12/1999-11-26 released2000-04-24: monochrome stereo pair.",
+      "Catalogue nominal radius83.5km, mass2.08e18kg and semimajor axis181400km retained. Anderson2005 reports Doppler mass(2.08±0.15)e18kg from2002-11-05 encounter."
+    ],
+    "modelled": [
+      "Anderson2005 image-derived volume(2.43±0.22)e6km3 and density857±99kg/m3; porous ice/rock and cold formation are interpretations, not measured local fractions.",
+      "PDS Stooke model explicitly Voyager1/2 only, corrected smeared-limb bulge, no Galileo incorporation; decimal places do not indicate uncertainty.",
+      "skyGeometry Jupiter69911km at181400minus83.5km gives45.358808degrees at90HFOV;165K angular-only helper, computed colour/irradiance not adopted. Representative Sun5.2044AU off frame."
+    ],
+    "assumed": [
+      "Independent invented dark reddish-brown regolith, rocks, ridges, pores and local morphology, fractions/chemistry/albedo/light/exposure.",
+      "Independent schematic Jupiter bands/phase/orientation; no observed-body map reuse."
+    ],
+    "unknown": [
+      "Resolved global texture, local chemistry/fractions, optical calibration and local geographic registration remain unknown.",
+      "Modern shape alternatives, model uncertainty, observer registration and dated scene geometry remain open. No active plume, exposed ocean, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA JunoCam caption",
+        "url": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/"
+      },
+      {
+        "title": "NASA Galileo stereo caption",
+        "url": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/"
+      },
+      {
+        "title": "PDS individual model label",
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml"
+      },
+      {
+        "title": "Anderson et al.2005 primary author abstract",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15919987/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/amalthea-juno-native.jpg",
+        "label": "NATIVE JUNOCAM AMALTHEA DETECTION",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg?w=1020&fit=clip",
+        "observationDate": "2024-03-07",
+        "publicationDate": "2024-05-13",
+        "credit": "Image data: NASA/JPL-Caltech/SwRI/MSSS; image processing by Gerald Eichstädt",
+        "terms": "NASA media guidelines; full data and processing credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+        "bytes": 118764,
+        "description": "Unchanged NASA-served1020display JPEG; publisher resizing/reencoding not full-pixel preservation. Tiny moon detections against processed Jupiter cloud views do not establish resolved Amalthea geography or calibrated visible colour. Original3600JPEG and distinct dynamic3600JPEG retained separately.",
+        "processing": "Copied unchanged; no local crop, recolour or annotation removal."
+      },
+      {
+        "url": "/bespoke/amalthea-galileo-native.jpg",
+        "label": "NATIVE GALILEO SSI STEREO CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+        "observationDate": "1999-08-12 / 1999-11-26",
+        "publicationDate": "2000-04-24",
+        "credit": "NASA/JPL/Cornell University",
+        "terms": "NASA media guidelines; full mission and institution credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+        "bytes": 14865,
+        "description": "Unchanged860x410publisherJPEG stereo pair. Monochrome presentation, differing viewpoints, right north pole truncated by frame; not a seamless map or calibrated visible colour. Ida ejecta/ridge crest alternatives not unique chemistry.",
+        "processing": "Copied unchanged; source pairs and frame truncation retained."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0012120259409547868,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular-only helper;165K not calibrated visible photometry.",
+      "angularDiameterDeg": 45.358808209600525,
+      "centreDiscWidthFraction": 0.41788675843766276,
+      "irradianceEarth": 0.004590433272400362,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/amalthea-surface-image.jpg",
+      "previewUrl": "/bespoke/amalthea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fd6d007a-777d-402c-b993-83cda1a1139a.png",
+      "sourceSha256": "2e96201c2464678ed334be58f2aec2a5b7294d05b87ebc9d4cc4366afecaf055",
+      "sha256": "95211a4bb5fbb0cc7b8243ac038cf2ff75eb92599968750a19a477ceeb438f00",
+      "previewSha256": "07f203768a4fc1c653b2cfc645249df583913bbd464555c5d46e3e9f4c8b96b6",
+      "bytes": 334609,
+      "previewBytes": 56108,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/amalthea-sky-image.jpg",
+      "previewUrl": "/bespoke/amalthea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-83decfd9-2495-4dd2-af9f-8d6fd17f74e8.png",
+      "sourceSha256": "d6f53e912e69390dbb309d5d9bf92efc65e1ba80b0d8baa1cc9d67d0b8e4fb07",
+      "sha256": "48c3befffb97ffef0ab554a1cd55890b165298df52007674023132cb900bce97",
+      "previewSha256": "81d16f2b322e14cc13cb7776aa7e1cdf249b71c163b5dc4a53da11856abbac8a",
+      "bytes": 187883,
+      "previewBytes": 33558,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "mimas": {
+    "id": "mimas",
+    "name": "Mimas",
+    "aliases": [
+      "Mimas"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own NASA3D Mimas globe unchanged, SHA0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b; coverage/inputepochs/frame/photometry audit open. No generated globe.",
+    "measured": [
+      "Cassini ISS cratered surface mosaic observed2017-01-30; published2017-03-14.",
+      "Catalogue representative radius198.2km and semimajor axis186000km; no dated local scene registration. NASA overview rounds mean diameter394km/distance186000km; preserve parameter precision alternatives."
+    ],
+    "modelled": [
+      "Lainey2024 orbital/periapsis analysis infers an ocean below20–30km shell, age<25Myr and recent2–3Myr interface evolution; dynamical/thermal inference, not direct ocean imaging.",
+      "Denton/Rhoden2025 Herschel impact models permit ocean-bearing or warm fully frozen shells near melting; morphology alone does not uniquely establish ocean at impact time."
+    ],
+    "unknown": [
+      "Local material fractions/chemistry, subsurface plumbing, registered observer site, calibrated colour/exposure and all globe input epochs/frame details.",
+      "Lainey fullpaper and Denton supplement detailedparameter audit remain open."
+    ],
+    "assumed": [
+      "Invented grey ice-rich local regolith/craters/blocks; no analog map reuse, exposed ocean, active plume, biology or survivable landing.",
+      "Independent schematic Saturn cream bands, approximate oblateness and nearly edge-on rings. Ringextent/phase/orientation/lighting/exposure artistic; no observed Saturn map reused.",
+      "Nominal90degree horizontal FOV; Saturn58232km representative mean spherical radius at186000minus198.2km near-side surface distance.95K helper angular-only, blackbody RGB/irradiance not photometry. Sun9.58AU representative off-frame, not dated scene."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "title": "Cassini Farewell to Mimas / Figure1",
+        "observationDate": "2017-01-30",
+        "publicationDate": "2017-03-14"
+      },
+      {
+        "url": "https://science.nasa.gov/saturn/moons/mimas/",
+        "title": "NASA Mimas overview; older frozen-solid prose differs from later interior models"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41586-023-06975-9",
+        "title": "Lainey2024 orbital ocean inference",
+        "publicationDate": "2024-02-07"
+      },
+      {
+        "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+        "title": "Denton/Rhoden2025 impact alternatives; allrightsreserved researchinput only",
+        "publicationDate": "2025-09-09"
+      }
+    ],
+    "contextImages": [
+      {
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=640&fit=clip",
+        "bytes": 33774,
+        "width": 640,
+        "height": 640,
+        "sha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+        "observationDate": "2017-01-30",
+        "publicationDate": "2017-03-14",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "url": "/bespoke/mimas-cassini-native.jpg",
+        "tier": "measured",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "description": "Cassini ISS ten-frame orthographic mosaic, publisher Figure1 more-natural illumination. RGB-storage monochrome, not calibrated visible colour/photometry;640 display resizing/reencoding does not preserve original pixels. Larger1700/1280/1020 originals retained.",
+        "processing": "Unchanged publisher640 JPEG rendition; no local reencoding.",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/mimas-surface-image.jpg",
+      "previewUrl": "/bespoke/mimas-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "mimas-generated-surfaceImage-original.png",
+      "sourceSha256": "699fa925e0d72d8507f4955f0c91d6cd9825f0e04e6b4296ef5fbbd916e14730",
+      "sha256": "e3073f35a14ebe7bc9bbc9d26966ee87e79d77b7aae6bf03d280d9b5d6fde4f8",
+      "previewSha256": "ac5b6614e8afb64e3560c188f5df10d19b25a22d82e8bfb482d6f9a006f058cf",
+      "bytes": 352614,
+      "previewBytes": 65686,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/mimas-sky-image.jpg",
+      "previewUrl": "/bespoke/mimas-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "mimas-generated-skyImage-original.png",
+      "sourceSha256": "9fd6ed37e088d1814bebdd88d113736ad415ffdd87ffbfd710e1ec9d3ad244c0",
+      "sha256": "bac070f531f3ddc279f7e5eeb5bed34400a9c54a78331be91b68dbd62c96a07c",
+      "previewSha256": "d1c457388ffdb6825fded8243f4afd2ecc4b0c4316f60e64cfb99866798abc93",
+      "bytes": 200693,
+      "previewBytes": 36318,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL MIMAS TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM MIMAS"
+  },
+  "enceladus": {
+    "id": "enceladus",
+    "name": "Enceladus",
+    "aliases": [
+      "Enceladus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged SHA4e16d38b98b788468e4f005b56d04282ccfe2f086eebfb1c0e5d20d8fd65ebef; coverage/frame/inputepochs/photometry open. White/blurred gaps are not measured smooth terrain. No generated globe.",
+    "measured": [
+      "Catalogue radius252.1km and semimajor axis238400km are representative, not dated scene registration.",
+      "Webb NIRSpec IFU program1250 water-emission product observed2022-11-09 released2023-05-30; separate Cassini inset epoch unverified. ESA NIRCam caption conflict retained; NASA detailed record and primary paper identify NIRSpec."
+    ],
+    "modelled": [
+      "Khawaja2025 E5 Cassini ice-grain impact spectra acquired2008-283T19:06:40UTC at17.7km/s constrain organic classes through laboratory comparisons; tentative N/O assignments, quantitative fractions unavailable. No biology or directly observed plumbing follows.",
+      "Villanueva2023 column/outgassing values are model-derived;25±3K rotational excitation is not ambient kinetic gas temperature. Primary plume extent wording40 Enceladus radii; retain publisher radius/size wording differences and non-detection limits."
+    ],
+    "unknown": [
+      "Local composition/fractions, registered observer site, calibrated photometry, globe frame/coverage/epochs, and inset observation epoch."
+    ],
+    "assumed": [
+      "Independent invented ice fractures/blocks/craters and Saturn bands/nearly edge-on rings/phase/light/exposure; no analog map reuse, atmosphere, plume, exposed ocean, biology or survivable landing.",
+      "Saturn spherical58232km at238400minus252.1km, nominal90HFOV: skyGeometry28.30697547degrees/421.637115px target at1672px. Row200 upper-globe chords318/313/313 are not full calibrated diameter; rings excluded.95K helper angular-only, Sun9.58AU off-frame."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "title": "NASA detailed Webb product record",
+        "publicationDate": "2023-05-30"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2314a/",
+        "title": "ESA publisher collage; conflicting NIRCam caption preserved",
+        "publicationDate": "2023-05-30"
+      },
+      {
+        "url": "https://mmhedman.github.io/papers_published/Villanueva_Enc_NA_2023.pdf",
+        "title": "JWST molecular mapping and characterization of Enceladus’ water plume feeding its torus; author-hosted PDF, exclusive publisher/Government-work rights, not asserted CC BY"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41550-025-02655-y",
+        "title": "Khawaja et al organic classes; article CC BY4 with third-party exceptions, no figure adopted",
+        "publicationDate": "2025-10-01"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/enceladus-webb-native.png",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/webb/science/2023/05/STScI-01GYJ8KXBB9GYG58KF9V7WRSGT.png?w=160&fit=clip",
+        "sourcePage": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "sourceUrl": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+        "credit": "NASA, ESA, CSA, Gerónimo Villanueva (NASA-GSFC); Image Processing: Alyssa Pagan (STScI)",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2022-11-09",
+        "publicationDate": "2023-05-30",
+        "bytes": 24001,
+        "sha256": "da674c36f769e0dd330e19fcab6621bb35b261cba6c9f033e0ee5caf059aa4fc",
+        "width": 160,
+        "height": 160,
+        "description": "NIRSpec IFU monochrome water-emission map assigned blue, collage with separate Cassini inset; not visible colour or resolved geography. Publisher160 display rendition reduces annotation readability; resizing/reencoding does not preserve full pixels. NASA1500PNG/ESA1500JPEG and320PNG retained.",
+        "processing": "Unchanged publisher160 PNG bytes; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL ENCELADUS TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM ENCELADUS",
+    "surfaceImage": {
+      "url": "/bespoke/enceladus-surface-image.jpg",
+      "previewUrl": "/bespoke/enceladus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "enceladus-generated-surfaceImage-original.png",
+      "sourceSha256": "622689106b2f96880f8ad12ef168a90f96077d7a097f5bfcb2a20f8c0a25bad9",
+      "sha256": "32d65cd8fb5834bbd7fcddefd8d2b3397a5995fbdc2596fe950ac809dae7b86b",
+      "previewSha256": "4691b8485d132685bf755aa185d245a73b8c9d1b04bc5a32e366593ef2ca1835",
+      "bytes": 243457,
+      "previewBytes": 8322,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/enceladus-sky-image.jpg",
+      "previewUrl": "/bespoke/enceladus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "enceladus-generated-skyImage-original.png",
+      "sourceSha256": "bc3119076dd49f3ae0945eb8a8f92956dff4d3d3577eb21097e1e176b100c278",
+      "sha256": "e237ed2844de9ede61dcbaf29c9949eead2d30bf2bfb72f67bc86dd557cd9b82",
+      "previewSha256": "dbdf9ca40fcdb19d9e602b402f2d7f1ea1fbb9b85bc893def3cd534218e24c41",
+      "bytes": 164287,
+      "previewBytes": 5400,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

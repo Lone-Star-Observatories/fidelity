@@ -9,6 +9,8 @@ import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
 import { detailCards } from './panels/detail.js';
+import { spacecraftComms } from './panels/comms.js';
+import { captureWhenReady } from './panels/surface.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
@@ -27,6 +29,7 @@ import { createSitesPanel } from './panels/sites.js';
 import { createNavList } from './panels/navlist.js';
 import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
 import { createStarCard } from './panels/starcard.js';
+import { deepSkyDetail } from './panels/deepsky.js';
 import { earthPole, moonAxes, poleStar, obliquityDeg } from './astro/orientation.js';
 import { moonGeocentric } from './astro/moons.js';
 import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
@@ -35,6 +38,7 @@ import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
 import { createTimeControl } from './panels/timecontrol.js';
+import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
@@ -88,6 +92,11 @@ let pendingSiteView = null; // VIEW FROM ABOVE a site once its body is framed (#
 const planetView = createPlanetView($('planet-view'), {
   onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
 });
+// FROM THE SURFACE (#36): stand at a picture's site, or render the view there (opts.render captures it)
+const surfaceHooks = {
+  stand: (id, lat, lon, opts = {}) => { pendingSurface = { id, lat, lon, ...opts }; go({ level: 'system', system: currentSystem, body: id }); },
+  mark: (id, list) => planetView.setSurfaceMarks(id, list),
+};
 const galaxy = createGalaxyView($('galaxy-view'), {
   onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; },
   onPickStar: (p) => pickStarIn('galaxy', p),
@@ -98,6 +107,7 @@ const quadrant = createQuadrantView($('quadrant-view'), {
   onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); },
   onPickStar: (p) => pickStarIn('quadrant', p),
   onDrill: (p) => go({ level: 'navigation', system: p?.id ?? 'sol' }),
+  onDetail: () => { if (route.level === 'quadrant') renderQuadrantPanel(); }, // a nebula image or member list arrived (#24)
 });
 const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); }, onDrill: () => go({ level: 'galaxy' }) });
 let quadrantSel = null, universeSel = null, quadrantLoaded = false, universeLoaded = false;
@@ -105,6 +115,7 @@ const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
   onDrill: (id) => go({ level: 'system', system: id }),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
+  onArrivals: (st) => { if (route.level === 'navigation' && !st?.loading) renderNavPanel(); }, // deep-time arrivals loaded (#29)
 });
 
 // ---- rail ----------------------------------------------------------------------------
@@ -411,6 +422,7 @@ const panelEl = $('panel');
   });
   handle.addEventListener('dblclick', () => { settings.set('panelWidth', null); apply(null); });
 }
+collapsibleSections(panelEl, settings); // click a section heading to fold it
 // replaceChildren would print `null` for skipped optional sections
 const panel = { replaceChildren: (...kids) => panelEl.replaceChildren(...kids.filter((k) => k != null)) };
 // SELECTED STAR card for stars clicked in the Galaxy, Quadrant and System (sky) views (#23)
@@ -535,8 +547,8 @@ function renderDsn() {
     live.dsnBoard.replaceChildren(...(dsn?.contacts?.length ? dsnRows(dsn.contacts) : [h('p', { className: 'note', textContent: STANDALONE ? 'Live DSN status needs the local backend (npm start).' : 'NO DATA YET' })]));
   }
   if (live.dsnCraft) {
-    const mine = dsn?.contacts?.filter((c) => String(c.spacecraftId) === live.dsnCraft) ?? [];
-    live.dsnOne.replaceChildren(...(mine.length ? dsnRows(mine) : [h('p', { className: 'note', textContent: dsn ? 'NOT IN CONTACT RIGHT NOW. Antennas are shared by dozens of missions; check back in a few hours.' : 'Live DSN status needs the local backend.' })]));
+    // COMMS (#35): band, rate, power, antenna, complex, age; last seen when not in contact
+    live.dsnOne.replaceChildren(...spacecraftComms(dsn, live.dsnCraft, (c) => system.model?.bodies.find((b) => b.horizons === String(c.spacecraftId))?.name ?? c.code));
   }
 }
 
@@ -751,7 +763,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     ...(b.id === 'jwst' ? [h('h3', { textContent: 'OBSERVING NOW' }), h('div', { className: 'body-list' },
       pill('POINTED AT NOW · RECENT IMAGES ▸', () => satPanel.viewFeed({ kind: 'observing', mission: 'jwst', label: 'OBSERVING' }, 'JWST'))),
       h('p', { className: 'note', textContent: 'From STScI\'s published weekly schedule (the plan) and the newest public images in MAST.' })] : []),
-    ...(b.kind === 'spacecraft' ? [h('h3', { textContent: 'DEEP SPACE NETWORK · LIVE' }), (live.dsnOne = h('div', { className: 'host-list' }))] : []),
+    ...(b.kind === 'spacecraft' ? [h('h3', { textContent: 'COMMS · DEEP SPACE NETWORK' }), (live.dsnOne = h('div', { className: 'cm-list' }))] : []),
     ...(m.isSol && b.id === 'earth' ? [h('h3', { textContent: 'SATELLITES' }), satPanel.searchSection()] : []),
     renderLegend(),
   );
@@ -863,22 +875,8 @@ function objectList(objs, radiusLy, sel, pick) {
 function renderQuadrantPanel() {
   resetLive();
   const R = quadrant.radius, c = quadrant.counts();
-  const sel = quadrant.objects.find((o) => o.id === quadrantSel);
-  const selBlock = sel ? [
-    h('h3', { textContent: 'SELECTED' }), h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
-    factList(sel.kind.endsWith('cluster') ? [
-      { label: 'TYPE', value: sel.kind.toUpperCase(), tier: 'measured', detail: sel.catalogue },
-      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Mean Gaia DR3 parallax of its member stars (Hunt & Reffert 2023).' },
-      { label: 'MEMBERS', value: fmt(sel.members, 0), tier: 'measured', detail: 'Stars Gaia assigns to it.' },
-      { label: 'AGE', value: sel.logAge != null ? `${fmt(10 ** sel.logAge / 1e6, 10 ** sel.logAge > 1e9 ? 0 : 1)} MILLION YEARS` : '—', tier: 'modelled', detail: 'Isochrone fit to its stars\' colours and brightnesses.' },
-      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
-    ] : [
-      { label: 'TYPE', value: NEBULA_KIND[sel.kind], tier: 'measured' },
-      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (parallaxes of associated stars, expansion or extinction).' },
-      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
-    ]),
-    sel.note ? h('p', { className: 'note', textContent: sel.note }) : null,
-  ] : [];
+  const sel = quadrant.object(quadrantSel);
+  const selBlock = deepSkyDetail({ h, factList, fmt, lyText, lightLeft, sel, detail: sel && quadrant.detail(sel.id) }); // #24
   const ages = [[6.7, 'UNDER 10 MILLION YEARS'], [8, '100 MILLION YEARS'], [9.2, 'OVER A BILLION YEARS']];
   panel.replaceChildren(
     h('h2', { textContent: 'OUR QUADRANT' }),
@@ -897,6 +895,7 @@ function renderQuadrantPanel() {
     h('div', { className: 'body-list' }, pill('◀ NAVIGATION', () => go({ level: 'navigation', system: currentSystem })), pill('GALAXY ▸', () => go({ level: 'galaxy' }))),
     factList([
       { label: 'CLUSTERS', value: 'GAIA DR3', tier: 'measured', detail: 'Hunt & Reffert 2023: 7,167 clusters found in Gaia DR3 with distances and ages.' },
+      { label: 'NEBULAE', value: 'REAL IMAGES, 3D BY MODEL', tier: 'measured', detail: 'Hubble, Webb, ESO, Chandra and sky-survey images at true size, distance and orientation (#24). Their depth is MODELLED: select a nebula for its model.' },
       { label: 'BACKGROUND', value: "ARTIST'S CONCEPT", tier: 'imagined', detail: 'NASA/JPL-Caltech PIA10748, calibrated so Sol sits at R₀ (see Galaxy View).' },
     ]),
     renderLegend(),
@@ -968,7 +967,7 @@ function renderNavPanel() {
   const radii = h('div', { className: 'body-list radius-list' }, [10, 25, 50, 100].map((r) =>
     pill(`${r} LY`, () => { navRadius = r; showNavigation(c.id); }, r === d.radiusLy ? 'on' : '')));
 
-  const sel = navSelected && d.stars.find((s) => s.id === navSelected);
+  const sel = navSelected && (d.stars.find((s) => s.id === navSelected) ?? nav.findStar(navSelected)); // or a deep-time arrival (#29)
   let selBlock = [];
   if (sel) {
     const dl = h('dl');
@@ -980,8 +979,8 @@ function renderNavPanel() {
     if (sel.spect) row(dl, 'CLASS', sel.spect, 'measured', 'Spectral type.');
     if (sel.absmag != null) row(dl, 'ABS. MAGNITUDE', fmt(sel.absmag, 2), 'computed', 'From apparent brightness and distance.');
     row(dl, 'KNOWN PLANETS', String(sel.planets || 0), 'measured', sel.planets ? 'NASA Exoplanet Archive.' : 'None detected yet, which is not the same as none.');
-    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : 'HYG v4.4', 'measured',
-      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : 'Hipparcos / Yale / Gliese compilation.');
+    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : sel.vSrc ? 'HYG v4.4 · GAIA DR3 MOTION' : 'HYG v4.4', 'measured',
+      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : sel.vSrc ? 'Hipparcos / Yale / Gliese compilation; position and space motion from Gaia DR3 (#29).' : 'Hipparcos / Yale / Gliese compilation.');
     selBlock = [
       h('h3', { textContent: 'SELECTED' }),
       h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
@@ -1043,13 +1042,25 @@ function motionSection(d) {
     live.epoch,
     h('h3', { textContent: `CLOSEST FUTURE PASSES · ${c.id === 'sol' ? 'SOL' : c.name.toUpperCase()}` }),
     h('div', { className: 'host-list' }, enc.length ? enc.map((e) => {
-      const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}` }),
+      const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}${e.arrival ? ` · NOW ${fmt(e.nowLy, 0)} LY` : ''}` }),
         h('span', { className: 'mono', textContent: `${fmt(e.dMinLy, 2)} LY IN ${yrs(e.tYears)}` }));
-      b.addEventListener('click', () => { selectNavStar(e.star.id); nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; renderNavPanel(); });
+      b.addEventListener('click', () => { nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; selectNavStar(e.star.id); });
       return b;
-    }) : [h('p', { className: 'note', textContent: 'No star in range comes closer within 5 million years.' })]),
-    h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years, from HYG space velocities (Hipparcos proper motions and catalogue radial velocities); a system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at 0.17 ly in 1.3 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
+    }) : [h('p', { className: 'note', textContent: 'No star comes closer within 5 million years.' })]),
+    h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years. Velocities: Gaia DR3 parallaxes, proper motions and radial velocities where Gaia has the star, otherwise HYG (Hipparcos proper motions and catalogue radial velocities); 1 km/s of error moves a star ~3 ly per million years. A system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at ~0.17 ly (10,800 AU) in 1.29 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
+    arrivalsNote(),
   ];
+}
+/** Where deep-time arrivals come from and how far they reach (#29). */
+function arrivalsNote() {
+  const a = nav.arrivals;
+  if (!a) return null;
+  const n = (x) => fmt(x, 0);
+  const text = a.preview
+    ? `Arrivals: this preview only holds stars within ${a.previewLy} ly of Sol, so in deep time the sphere empties sooner than it should. Run the local backend (npm start) for every catalogue star with a measured motion within ${n(1000)} ly.`
+    : a.error ? `Arrivals unavailable: ${a.error}.`
+    : `Arrivals: ${n(a.count)} stars with measured motions out to ${n(a.loadedLy)} ly${a.loading ? ` (${a.loading.toLowerCase()})` : ''} are integrated too; each appears when it enters the sphere and the chart's own stars vanish when they leave. More load as deep time runs further (out to ${n(1000)} ly). Beyond ~${a.density?.halfLy ?? 60} ly the catalogue holds mainly the brighter stars, so arrivals under-count faint red and brown dwarfs.`;
+  return h('p', { className: 'note', textContent: text });
 }
 (function deepLoop(now) {
   requestAnimationFrame(deepLoop);
@@ -1375,7 +1386,11 @@ onRoute(async (r) => {
     $('view-title').textContent = `SYSTEM VIEW · ${m.name.toUpperCase()}${body ? ` · ${body.name.toUpperCase()}` : ''}`;
     syncBeacon();
     if (body) {
-      if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun }); }
+      if (pendingSurface?.id === body.id) {
+        const ps = pendingSurface; pendingSurface = null;
+        system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight });
+        if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
+      }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
       else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
       if (pendingSiteView?.id === body.id) { const pv = pendingSiteView; pendingSiteView = null; system.viewSite(pv.id, pv.lat, pv.lon, pv.span); }
@@ -1418,7 +1433,7 @@ onRoute(async (r) => {
     syncBeacon();
     planetView.show();
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
-    setDetail(detailCards(b, m, { system, clock }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
+    setDetail(detailCards(b, m, { system, clock, surface: surfaceHooks }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
     renderBodyPanel(b.id, { inStarView: true });
     syncRail();
   } else if (r.level === 'galaxy') {

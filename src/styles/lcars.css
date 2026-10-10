@@ -161,6 +161,11 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .orient-gauge svg { display: block; width: 120px; height: 120px; margin: 0 auto; font-family: inherit; letter-spacing: 0.06em; }
 .orient-title { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.12em; color: var(--apricot); }
 .orient-readout { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; color: var(--peach); text-align: center; }
+.drift-badge { position: absolute; left: 12px; top: 12px; max-width: min(70%, 640px); pointer-events: none; background: rgba(0, 0, 0, 0.55); border-left: 3px solid var(--gold); padding: 4px 8px; display: grid; gap: 3px; }
+.drift-badge[hidden] { display: none; }
+.drift-line { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; color: var(--peach); line-height: 1.35; }
+.drift-line.warn { color: var(--orange); }
+.drift-line .badge { transform: scale(0.85); transform-origin: left center; }
 .surface-hud { user-select: none; position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(92%, 900px); z-index: 4;
   background: rgba(0, 0, 0, 0.6); border-left: 4px solid var(--orange); padding: 6px 12px; display: grid; gap: 4px; justify-items: start; }
 .surface-hud > div:first-child { color: var(--orange); font-size: calc(16px * var(--text-scale, 1)); letter-spacing: 0.08em; }
@@ -287,7 +292,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .panel dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
 .panel .note { color: var(--dim); font-size: calc(13px * var(--text-scale, 1)); line-height: 1.35; margin: 0; }
 .panel .warn { color: var(--red); font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.06em; }
-.body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 4px; }
+.body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(130px, calc(50% - 2px)), 1fr)); gap: 4px; } /* two columns at most */
+.panel h3.sec-head { cursor: pointer; user-select: none; display: flex; justify-content: space-between; gap: 8px; }
+.panel h3.sec-head::after { content: '▾'; }
+.panel h3.sec-head.shut::after { content: '▸'; }
+.panel h3.sec-head:hover { filter: brightness(1.12); }
+.panel h3.sec-head:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+.panel .sec-folded { display: none !important; }
 .body-list .pill { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .body-list .pill.square { min-width: 44px; }
 .panel { position: relative; padding-left: 10px; overflow-x: hidden; }
@@ -537,6 +548,11 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .tc-row .pill { height: var(--bar-h); border-radius: 0; }
 .tc-hold { min-width: 110px; --c: var(--orange); }
 .tc-now { --c: var(--ice); flex: 1; }
+/* FROM THE SURFACE (#36) */
+.sf-card details { margin-top: 4px; }
+.sf-card summary { cursor: pointer; color: var(--lilac); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; display: flex; gap: 8px; align-items: center; }
+.sf-card details .note { margin: 4px 0 0 14px; }
+.sf-card .im-pills .pill { text-transform: uppercase; }
 
 /* IAU named features on globes: lighter than site labels, no box */
 .feature-label {

@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-10",
+  "body": "Mimas",
+  "tier": "imagined",
+  "prompt": "Create one independent IMAGINED sky observer illustration from the Saturn-facing side of Mimas, wide landscape16:9, nominal90degree horizontal rectilinear field of view. Pale grey cold cratered ice-rich regolith occupies bottom quarter, airless black sky above. Saturn centered near upper middle, planet globe apparent diameter about36.5degrees, roughly one third of entire image width, about550pixels in a1672pixel-wide image. Soft understated pale ochre/cream cloud bands, oblate globe approximate. Mimas is near Saturn's equatorial plane: show the rings nearly edge-on as a thin narrow horizontal line crossing near Saturn's equator, NOT broad open elliptical rings. Ring extent schematic and uncalibrated, exact phase/latitude/orientation not dated physical registration. No observed Saturn texture or another body's map may be reused: independently invented schematic bands and local Mimas craters/blocks. Sun outside frame, illumination/exposure artistic, no calibrated colour claim. No atmosphere/clouds around Mimas, no plume, exposed ocean, biology, humans or survivable landing. Include clear small bottom-left text exactly 'IMAGINED SKY FROM MIMAS'. Scientific hypothetical illustration, no other moons or stars.",
+  "originalFile": "data/research-sources/mimas-generated-skyImage-original.png",
+  "generatorOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e1887405-5283-40ca-92f6-c6816a8d8d2a.png",
+  "limitations": "Invented local craters/blocks, Saturn bands/ring appearance/phase/light/exposure; no analog map reuse or dated scene registration. Geometry audit pending below.",
+  "bytes": 2137875,
+  "sha256": "9fd6ed37e088d1814bebdd88d113736ad415ffdd87ffbfd710e1ec9d3ad244c0",
+  "geometry": {
+    "radiusKm": 58232,
+    "observerDistanceKm": 185801.8,
+    "angularDiameterDeg": 36.52961489012324,
+    "centreDiscWidthFraction": 0.3300371116761479,
+    "irradianceEarth": 0.00033328788515745215,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical mean-radius representative geometry only;95K helper angular-only, RGB/irradiance not adopted. Saturn oblateness/rings/phase/site/exposure uncalibrated.",
+    "targetPixels1672": 551.8220507225193
+  },
+  "rasterAudit": {
+    "row": 200,
+    "width": 1672,
+    "height": 941,
+    "thresholdRuns": [
+      {
+        "threshold": 5,
+        "left": 627,
+        "right": 1044,
+        "width": 418
+      },
+      {
+        "threshold": 10,
+        "left": 628,
+        "right": 1037,
+        "width": 410
+      },
+      {
+        "threshold": 20,
+        "left": 628,
+        "right": 1037,
+        "width": 410
+      }
+    ],
+    "assessment": "Globe core undersized relative to551.822 target pixels; threshold-dependent, ring extent excluded and uncalibrated. No physical registration/photometry claim."
+  }
+}

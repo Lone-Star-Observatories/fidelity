@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no52nd dossier/new embedding. All51 dossiers unchanged.",
+  "sourceRecords": "mimas-moon-source-records-2026-10-10.json",
+  "native": {
+    "product": "PIA17213 Farewell to Mimas Cassini ISS narrow-angle ten-frame mosaic",
+    "observed": "2017-01-30",
+    "released": "2017-03-14",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "source": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "inspected": true,
+    "processing": "Publisher orthographic projection centred17.5degrees south325.4degrees west. Main1700JPEG has enhanced Saturn-lit left hemisphere. Figure1 served1280JPEG presents more natural illumination; different rendition/pixel count and encoding explicitly retained separately.",
+    "limitations": "Visible-light monochrome mosaic not calibrated visible colour. More natural illumination is publisher wording, not independently calibrated photometry. Both versions retained unchanged, not a seamless global map. Caption250m/pixel and45000km range are source statements not new raster computations. No exhaustive newest-current observation claim."
+  },
+  "nativeGlobe": {
+    "path": "data/textures/mimas.jpg",
+    "bytes": 513028,
+    "sha256": "0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b",
+    "sourceByteEquality": true,
+    "limitations": "Own NASA3D source byte identity verified; specific product association, coverage/input epochs/frame/geographic registration and photometric transfer remain open."
+  },
+  "recentResearch": {
+    "title": "A recently formed ocean inside Saturn\u2019s moon Mimas",
+    "authors": [
+      "V. Lainey",
+      "N. Rambaux",
+      "G. Tobie",
+      "N. Cooper",
+      "Q. Zhang",
+      "B. Noyelles",
+      "K. Bailli\u00e9"
+    ],
+    "doi": "10.1038/s41586-023-06975-9",
+    "published": "2024-02-07",
+    "issueDate": "2024-02-08",
+    "source": "https://www.nature.com/articles/s41586-023-06975-9",
+    "assessment": "Primary publisher indexed abstract read: Cassini orbital motion/periapsis analysis infers global ocean under20\u201330km shell; eccentricity damping suggests age<25million years; simulations reach<30km ocean\u2013ice interface in last2\u20133million years. These are dynamical/thermal inferences, not directly photographed ocean or surface activity.",
+    "access": "Direct publisher request returned HTTP200 anti-bot challenge; attempted institutional accepted-PDF URL returned HTTP200 text/html withoutPDFsignature. Recorded response hashes identify challenge bodies only, not article/PDF. No full-paper bytes or paper licence established; no figure embedded or CC licence asserted.",
+    "limitations": "Full paper/supplement/alternative model and newer2025research audit open; no local chemistry/fractions, exposed ocean/plume or biology inferred."
+  },
+  "next": [
+    "Continue full2024 paper/supplement audit and2025parameter alternatives, with distinct ocean-inference versus crater-formation interpretations.",
+    "Recover standalone headroom before larger native/illustration batches; preserve all fields/models/native bytes.",
+    "Deliver individual Mimas dossier with native context and independent imagined local/observer views, keeping own globe unchanged."
+  ],
+  "verification": {
+    "dossiersUnchanged": 51,
+    "queueTasks": 566,
+    "testsPassed": 260,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15848284,
+    "headroomBytes": 151716,
+    "completeBrowserReadableSha256": "4a8b5ebf799964f64543888f7e1dfd9115d10f59edd01bf27eac5256f5cc8ecf",
+    "exactApplicationAndHtmlParserPayload": "pass"
+  },
+  "newerPrimaryResearch": {
+    "title": "Herschel impact basin probes the onset of a young ocean on mimas",
+    "authors": [
+      "C.A. Denton",
+      "A.R. Rhoden"
+    ],
+    "doi": "10.1016/j.epsl.2025.119614",
+    "availableOnline": "2025-09-09",
+    "accepted": "2025-08-31",
+    "source": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+    "bytes": 4391661,
+    "sha256": "daf48ed7f3756eaf9fa6783270404cf38b0899b8fc67e54a18e37caf037feb4b",
+    "assessment": "Abstract/introduction/methods read directly: iSALE-2D impacts can match Herschel in ocean-bearing or warm fully frozen shells near melting. Basin morphology alone does not uniquely require an ocean at formation. Simulated timing near onset of young ocean is an interpretation. Model assumes axisymmetric vertical impact, idealized target/ice and selected impactor velocities; chemistry, impact conditions and local terrain are not measured by these simulations.",
+    "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only, no figures embedded.",
+    "limitations": "Detailed parameter/supplement audit remains open; modern ocean inference is distinct from photographed surface geology or direct interior observation."
+  },
+  "compactPublisherRendition": {
+    "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=1020&fit=clip",
+    "file": "data/research-sources/mimas-natural-illumination-display-2026-10-10.jpg",
+    "bytes": 74197,
+    "width": 1020,
+    "height": 1020,
+    "sha256": "273834366ce95fba91f3d0283c057499136960bc7cc7e3b624b4201ab5816fa1",
+    "observationDate": "2017-01-30",
+    "publicationDate": "2017-03-14",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "assessment": "Unchanged publisher-served RGB-storage monochrome display rendition, inspected. Publisher resizing/reencoding, not full pixel preservation. More-natural illumination is a caption distinction, not independently calibrated colour or photometry. Original1700 main and1280 Figure1 retained. Research only, not embedded."
+  }
+}

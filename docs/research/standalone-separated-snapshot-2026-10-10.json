@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-10",
+  "change": "Transport compressed snapshot as separate inert raw120 HTML script text; application module compressed separately. Avoid nesting snapshot transport inside application gzip.",
+  "compatibility": "Readable snapshot.json and generated radix85 snapshot-packed.js preserved; legacy base64 and radix85 decoders retained. Normal build and direct standalone Vite builds retain earlier aliases. Builder alone opts into HTML snapshot alias.",
+  "preservation": "All47 dossiers, every native scientific byte, shapes/models/maps and detailed fields unchanged. Snapshot SHA9266001f314c28647379a1d554ae7f7f50594e673a109a1269251205a68aed68 unchanged.",
+  "buildGuards": "Validate snapshot raw envelope against exact gzip before publishing; existing application gzip/transport restoration remains exact. Insert after Vite transforms; callback replacement prevents dollar expansion.",
+  "trial": "First prototype failed strict byte/budget validation because text replacement interpreted dollar patterns in binary ASCII data. Corrected callback replacement; no corrupted trial published.",
+  "validation": {
+    "testsPassed": 220,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "htmlBytes": 15609504,
+    "headroomBytes": 390496,
+    "savedHtmlBytes": 212135,
+    "decodedImages": 173,
+    "detailedSystems": 521,
+    "applicationSha256": "7afeb3ff7def851ee9dc9ac69e5613a56049baa57ba99b07c79d21692ed2dc34",
+    "snapshotRawTextSha256": "57211071713fea30f4d3f50365cda67704c8e067c1092c6c3dcb1509e8988138",
+    "browserChecks": "Exact raw snapshot HTML-parser bytes and complete decoded readable JSON equality; exact restored application module, all native hashes/all47deepEqual, six routes/unsupported gzip message/eight eclipse rows/24craft/ISS offline. Chrome verified; other engines not independently tested."
+  },
+  "backlog": "ACTIVE; Europa SRU larger PNG still research-only; native rendition/lossless derivative and remaining headroom assessment pending. No48th dossier claimed."
+}

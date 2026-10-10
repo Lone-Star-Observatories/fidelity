@@ -1310,6 +1310,19 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   function updateSurface(jd) {
     const s = surface, n = nodes[s.id];
     root.updateMatrixWorld(true);
+    // #36 renders in daylight: move to the nearest point where the Sun stands `daylight`° up
+    if (s.daylight != null && s.sphere) {
+      const sunL = s.object.worldToLocal(nodes[model.starId].group.getWorldPosition(sv.c)).normalize();
+      const v = sv.e.copy(s.local).normalize(), want = (90 - s.daylight) * DEG;
+      if (Math.acos(Math.max(-1, Math.min(1, v.dot(sunL)))) > want) {
+        const w = v.clone().addScaledVector(sunL, -v.dot(sunL));
+        if (w.lengthSq() < 1e-12) w.set(sunL.y, -sunL.x, 0);
+        w.normalize();
+        const nv = sunL.clone().multiplyScalar(Math.cos(want)).addScaledVector(w, Math.sin(want));
+        s.local.copy(nv).multiplyScalar(s.local.length()); s.normal.copy(nv);
+      }
+      s.daylight = null;
+    }
     const centre = n.group.getWorldPosition(sv.c);
     const R = n.body.radiusKm || 1;
     // 2 m above the surface, in the object's own units (spheres are unit radius)
@@ -1334,6 +1347,15 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const sunDir = star.group.getWorldPosition(sv.c).sub(p);
     const sun = altAz(f, sunDir.toArray());
     if (s.lookSun) { s.az = sun.az; s.alt = Math.min(89.9, sun.alt); s.fov = Math.min(s.fov, 6); s.lookSun = false; }
+    // a landscape view (#36 renders): face the parent planet (from a moon) or the Sun if up, with the horizon in frame
+    if (s.lookBest) {
+      const parentN = n.body.kind === 'moon' && nodes[n.body.parent];
+      const planet = parentN ? altAz(f, parentN.group.getWorldPosition(sv.d).sub(p).toArray()) : null;
+      const pick = [planet, sun].find((c) => c && c.alt > 2) ?? planet ?? sun;
+      // the horizon a fifth of the way up the frame, the target inside it (camera fov is vertical)
+      s.fov = Math.max(70, Math.min(110, (Math.max(0, pick.alt) + 6) / 0.8));
+      s.az = pick.az; s.alt = 0.3 * s.fov; s.lookBest = false;
+    }
     hudSun.hidden = sun.alt < -1;
     const air = DAY_SKY[s.id];
     let day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
@@ -1631,13 +1653,28 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     },
     endSiteView() { if (siteView) { endSiteView(); flyTo(focusId); } },
     get siteView() { return siteView ? { id: siteView.id, lat: siteView.lat, lon: siteView.lon } : null; },
-    surfaceAt(id, lat, lon, { lookSun = false } = {}) {
+    surfaceAt(id, lat, lon, { lookSun = false, look = null, daylight = null } = {}) {
       const n = nodes[id];
       if (!n || isStar(n.body)) return false;
       const local = new THREE.Vector3(...latLonToDir(lat, lon));
       enterSurface(id, { object: n.mesh, local, normal: local.clone() });
       surface.lookSun = lookSun;
+      surface.lookBest = look === 'best';
+      surface.daylight = daylight;
       return true;
+    },
+    /** #36: the surface view as a JPEG data URL (≤ maxW px wide) with its read-out, or null when not standing. */
+    capture(maxW = 640) {
+      if (!surface) return null;
+      renderer.render(scene, camera); // the drawing buffer is only readable in the task that drew it
+      const src = renderer.domElement, k = Math.min(1, maxW / src.width);
+      const c = Object.assign(document.createElement('canvas'), { width: Math.round(src.width * k), height: Math.round(src.height * k) });
+      c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+      const ll = surface.sphere ? dirToLatLon(surface.local.toArray()) : null;
+      let lon = ll ? ll.lon + ((nodes[surface.id].body.texLon0 ?? -180) + 180) : null; // planetocentric
+      if (lon > 180) lon -= 360;
+      return { url: c.toDataURL('image/jpeg', 0.82), hud: hudText.textContent, sub: hudSub.textContent, jd: clock.jd,
+        lat: ll?.lat ?? null, lon, look: { az: surface.az, alt: surface.alt, fov: surface.fov } };
     },
     exitSurface: () => exitSurface(true),
     /** Live comet state: activity, coma and tail sizes, heliocentric and geocentric distance, total magnitude. */

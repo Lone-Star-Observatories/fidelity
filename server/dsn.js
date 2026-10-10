@@ -3,8 +3,21 @@
 // spacecraftID is the negative NAIF id, the same id JPL Horizons uses.
 // https://eyes.nasa.gov/dsn/dsn.html
 
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { config } from './config.js';
+
 const URL_DSN = 'https://eyes.nasa.gov/dsn/data/dsn.xml';
 let memo = null; // { at, value }
+// COMMS (#35): when this backend last saw each craft in contact, kept on disk across restarts.
+const lastFile = path.join(config.dataDir, 'cache', 'dsn', 'last-seen.json');
+let lastSeen = null;
+
+/** Fold contacts into the last-seen map { [spacecraftId]: { at, station, dish, band, code } }. */
+export function updateLastSeen(map, contacts, at) {
+  for (const c of contacts) map[c.spacecraftId] = { at, station: c.station, dish: c.dish, band: c.down?.band ?? c.up?.band ?? null, code: c.code };
+  return map;
+}
 
 const attrs = (s) => Object.fromEntries([...s.matchAll(/(\w+)="([^"]*)"/g)].map((m) => [m[1], m[2]]));
 
@@ -43,6 +56,10 @@ export async function dsnNow() {
   const res = await fetch(`${URL_DSN}?r=${Math.floor(Date.now() / 5000)}`, { signal: AbortSignal.timeout(20000) });
   if (!res.ok) throw new Error(`DSN HTTP ${res.status}`);
   const contacts = parseDsn(await res.text());
-  memo = { at: Date.now(), value: { time: new Date().toISOString(), contacts, source: 'NASA DSN Now' } };
+  const time = new Date().toISOString();
+  lastSeen ??= await fs.readFile(lastFile, 'utf8').then(JSON.parse).catch(() => ({}));
+  updateLastSeen(lastSeen, contacts, time);
+  fs.mkdir(path.dirname(lastFile), { recursive: true }).then(() => fs.writeFile(lastFile, JSON.stringify(lastSeen))).catch(() => {});
+  memo = { at: Date.now(), value: { time, contacts, lastSeen, source: 'NASA DSN Now' } };
   return memo.value;
 }

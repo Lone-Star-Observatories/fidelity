@@ -1,0 +1,190 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "ganymede",
+      "name": "Ganymede",
+      "aliases": [
+        "Ganymede"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Own NASA3D Galileo/Voyager globe unchanged and source-byte equal; exact coverage/frame/epochs/photometry audit open. JIRAM optical-overlay context is not a new full globe.",
+      "surfaceLabel": "HYPOTHETICAL LOCAL GROOVED ICE",
+      "skyLabel": "HYPOTHETICAL SKY FROM GANYMEDE",
+      "measured": [
+        "JIRAM spectra observed2021-06-07; processed2.08micron band-depth line over older Galileo/Voyager optical mosaic, not visible colour.",
+        "Catalogue radius2634.1km/semimajor axis1070400km preserved; grooved and cratered terrain observed."
+      ],
+      "modelled": [
+        "Tosi et al. published2023-10-30 (January2024 issue) assign infrared bands through laboratory comparisons to salts and possible organic compounds; brine-origin interpretation is not directly observed plumbing or biology. No measured local ingredient fractions.",
+        "skyGeometry sphericalJupiter69911km at1070400−2634.1km gives7.5081489degrees at90HFOV;165K helper placeholder only for angular geometry, not photometric transfer.",
+        "Representative Sun5.2044AU outside field via skyGeometry."
+      ],
+      "assumed": [
+        "Independent invented worn grooved ice bedrock, blocks, dust and dark impurity patches; morphology/chemistry/fractions/colour/exposure are imagined.",
+        "Independent invented Jupiter bands/phase/orientation/light; no observed Moon/Mars/Pluto/Europa/Io/Jupiter skins or analog maps. Tenuous exosphere represented by black sky."
+      ],
+      "unknown": [
+        "Local terrain registration, material fractions/chemistry, albedo/visible colour/exposure and dated observer geometry remain unknown.",
+        "Native map exact product association/coverage/frame/epochs and full photometric transfer remain open; no exposed ocean, active plume, biology or survivable landing implied."
+      ],
+      "references": [
+        {
+          "title": "NASA JIRAM native caption",
+          "url": "https://science.nasa.gov/photojournal/ganymede-grooved-terrain-as-seen-by-junos-jiram/"
+        },
+        {
+          "title": "Tosi et al. primary spectral analysis",
+          "url": "https://orbi.uliege.be/bitstream/2268/338794/1/s41550-023-02107-5.pdf"
+        },
+        {
+          "title": "Publisher enhanced JunoCam artwork assessment",
+          "url": "https://www.jpl.nasa.gov/images/pia25028-enhanced-ganymede-enhanced-image/"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/ganymede-jiram-native.jpg",
+          "label": "NATIVE JIRAM SPECTRAL CONTEXT",
+          "tier": "measured",
+          "sourceUrl": "https://science.nasa.gov/photojournal/ganymede-grooved-terrain-as-seen-by-junos-jiram/",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26075/PIA26075.jpg?w=1020&fit=clip",
+          "observationDate": "2021-06-07",
+          "publicationDate": "2023-10-30",
+          "credit": "NASA/JPL-Caltech/SwRI/ASI/INAF/JIRAM/Brown University",
+          "terms": "NASA image/media guidelines; full instrument/mission credits retained.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "sha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+          "bytes": 61533,
+          "description": "NASA-served1020px display rendition; resized/re-encoded publisher response, not full6385px raster. Processed2.08micron band-depth colored line over older Galileo/Voyager optical mosaic. Possibly ammonium chloride, not unique chemistry, visible colour or biology. Older optical observing epochs unknown. Original full JPEG retained separately.",
+          "processing": "Copied unchanged from NASA dynamicimage response; no local crop/recolour/annotation removal. Publisher display resizing/re-encoding disclosed."
+        }
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.007137574184737376,
+        "horizontalFovDeg": 90,
+        "interpretation": "Jupiter angular size only.165K positive helper input does not define visible colour/emission/irradiance; those computed helper outputs are not adopted photometry."
+      },
+      "inputs": {
+        "surfaceImage": "exec-05ffeb69-1a5a-4f84-a1bc-087383cef061.png",
+        "skyImage": "exec-668b48c6-3052-46da-b57f-97c2076b115c.png"
+      }
+    }
+  ],
+  "prompts": {
+    "surfaceImage": "Create one independent researched HYPOTHETICAL LOCAL TERRAIN illustration for Ganymede, landscape EXACT16:9 approximately1672x941. No text, labels, border or inset. Low eye-level close view across dusky gray-brown water-ice regolith with broad low parallel grooved ridges, worn icy bedrock and sparse small angular ice blocks. A shallow old crater margin in distance, restrained contrast, fine dusty non-ice patches, no Earth snowdrifts or towering mountains. Hard low sunlight, black vacuum sky occupying upper third. Actual local terrain, groove alignment, chemistry/fractions, albedo, visible colour, lighting and exposure are invented. Ganymede observations show bright grooved terrain and dark cratered terrain; spectral salt/organic interpretations do not establish this local chemical recipe or biology. No liquid ocean, active plume, atmosphere haze, vegetation, people, craft or survivable landing. No observed Moon/Mars/Pluto/Europa/Io skins, no reference images; create independently. Clean restrained physical concept art, not claimed photograph.",
+    "skyImage": "Create one independent HYPOTHETICAL SKY FROM GANYMEDE illustration, landscape EXACT16:9 approximately1672x941, no text/border/inset. Foreground low broad worn parallel grooved icy ridges, muted dusky gray-brown water-ice regolith with sparse angular blocks and dark impurity patches; exact terrain, chemistry, proportions and colour invented. Black vacuum-like sky upper60percent. Place small fully circular Jupiter center x50percent y25percent, diameter6.561488percent of entire image WIDTH, about109.71pixels at1672wide. It is a small distant disc, not huge. Geometry guide skyGeometry sphericalJupiter69911km at1070400minus2634.1km from Ganymede surface, nominal90degreeHFOV7.5081489degree angular diameter. Invent understated beige cream gray cloud bands independently; no observed Jupiter texture or registered GreatRedSpot. Arbitrary near-full phase, orientation, colour and spectral exposure artistic not date/epoch registered. Sun5.2044AU is outside view; hard low sunlight and weak Jupiter-shine on terrain. No blue haze/clouds/ocean/plumes/biology/people/craft/survivablelanding. No analog skins or observed Moon/Mars/Pluto/Europa/Io imagery. Original restrained physical concept art."
+  },
+  "generatedMode": "built-in image_gen, independent generation with no observed-body references",
+  "nativeAssessment": {
+    "PIA24681": "Preliminary green-filter mosaic retained in preparation; seams/final navigation audit disclosed.",
+    "PIA25028": "Artistically enhanced/upscaled; publisher states relocated small features and reconstructed missing top. Assessed as publisher artwork, not used as native exact geography. No verified newest-observation claim.",
+    "live": "No verified live Ganymede resolved-surface stream found; assessment not an exhaustive archive search."
+  },
+  "assets": [
+    {
+      "path": "data/research-sources/exec-05ffeb69-1a5a-4f84-a1bc-087383cef061.png",
+      "bytes": 2965940,
+      "sha256": "9dd0818c5e193e202b06d265ea9a92778f03bcbd6b8aa5c1b83345c4149f883d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "data/research-sources/exec-668b48c6-3052-46da-b57f-97c2076b115c.png",
+      "bytes": 2175195,
+      "sha256": "7d1acefb825d834d0a392a87dba8350d9c7664a95eeaf58cad8a8153ba7303cd",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "public/bespoke/ganymede-surface-image.jpg",
+      "bytes": 359335,
+      "sha256": "e1f39469f67c5bbfbefeef788d0a881a0a5df22562d2327d1009ba7d48896070",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "path": "public/bespoke/ganymede-surface-image-preview.jpg",
+      "bytes": 63495,
+      "sha256": "4d44d38c5708db33fd18a4071a5d6aa7d06562e4b24086cad38531c467e2ef06",
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "public/bespoke/ganymede-sky-image.jpg",
+      "bytes": 246285,
+      "sha256": "de9022e5ce8088027176df90ebb04ca24f583cde7489c0d13d3ba6b5a332949b",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "path": "public/bespoke/ganymede-sky-image-preview.jpg",
+      "bytes": 44602,
+      "sha256": "bcfca5eab4cbaa431c5ebacea2731ff15c04d9e520e44fea20fc1f9c228349aa",
+      "width": 640,
+      "height": 360
+    },
+    {
+      "path": "public/bespoke/ganymede-jiram-native.jpg",
+      "bytes": 61533,
+      "sha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+      "width": 1020,
+      "height": 498
+    }
+  ],
+  "rasterAudit": {
+    "source": "data/research-sources/exec-668b48c6-3052-46da-b57f-97c2076b115c.png",
+    "sizePixels": [
+      1672,
+      941
+    ],
+    "row": 195,
+    "thresholds": [
+      5,
+      10,
+      20
+    ],
+    "centralContiguousWidths": [
+      91,
+      90,
+      90
+    ],
+    "geometry": 7.508148903427891,
+    "targetPixels": 109.7080814361297,
+    "limits": "Small disc cores undersized and threshold-sensitive; FOV/exposure/colour/phase/registration uncalibrated.165K helper is angular-only, computed RGB/irradiance not adopted."
+  },
+  "sourceRecords": "docs/research/ganymede-moon-source-records-2026-10-10.json",
+  "priorNativePreparation": "docs/research/ganymede-moon-preparation-2026-10-10.json",
+  "sunAngularGuide": {
+    "angularDiameterDeg": 0.10239496667257103,
+    "centreDiscWidthFraction": 0.0008935648907777419,
+    "irradianceEarth": 0.03691974252277894,
+    "approximateSrgb": [
+      1,
+      0.9501748635948273,
+      0.9034305975663324
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+  },
+  "validation": {
+    "registryCount": 49,
+    "previous48": "deep-equal",
+    "testsPassed": 255,
+    "skipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15933091,
+    "headroomBytes": 66909,
+    "imagesDecoded": 179,
+    "detailedSystems": 517,
+    "stars": 4234,
+    "snapshotSha256": "95fe2ab38ca09f13df2b5ae467f2bf9440a3f25154c5fc32b57614b68c99c277",
+    "nativeReferencesHashed": 37,
+    "checks": "Exact browser decoded readable snapshot equality, application restoration/HTML parser raw bytes, native hashes,6routes/unsupported message/8offline event rows/24craft and ISS; Ganymede own globe3cards normal/offline; all prior native/model/shape/map inputs preserved.",
+    "compression": "Snapshot Zopfli iterations8 (previous1); standard gzip, unchanged decompressed bytes/runtime transport. Prior48 snapshot trial13012240→12957459gzipbytes with exact equality."
+  }
+}

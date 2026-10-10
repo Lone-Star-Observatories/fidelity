@@ -22,6 +22,7 @@ const defaults = {
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
   textScale: 1,
   stepN: 1,         // STEP control: n …
+  collapsedSections: [], // right-panel section titles folded away
   timePanel: 'rate',   // time control middle panel: rate | timeline
   timelineSpan: 730,   // TIMELINE width in days
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)

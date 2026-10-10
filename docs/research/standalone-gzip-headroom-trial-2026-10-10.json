@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-10",
+  "scope": "Research-only lossless compression trial; no production setting changed",
+  "snapshotSha256": "4a8b5ebf799964f64543888f7e1dfd9115d10f59edd01bf27eac5256f5cc8ecf",
+  "container": "FIDBIN01 unchanged complete binary asset container",
+  "compression": "Standard gzip via existing @gfx/zopfli, iterations 8/16/32",
+  "results": [
+    {
+      "iterations": 8,
+      "bytes": 13115155,
+      "ms": 21060
+    },
+    {
+      "iterations": 16,
+      "bytes": 13110131,
+      "ms": 29932
+    },
+    {
+      "iterations": 32,
+      "bytes": 13104124,
+      "ms": 47711
+    }
+  ],
+  "validation": "Every decompressed container restored byte-identical original JSON text, including every data URI",
+  "gzipBytesSavedAt32": 11031,
+  "decision": "Retain production 8 iterations: modest savings do not provide sufficient headroom for a larger asset batch; continue independent packaging assessment without pruning assets or fields",
+  "limitations": [
+    "No new Mimas dossier or embedded asset",
+    "Trial timings are local measurements, not general performance guarantees",
+    "Other browser engines remain independently unverified"
+  ]
+}

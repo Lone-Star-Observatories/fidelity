@@ -60,41 +60,61 @@ export function vcirc(R) {
 // heliocentric galactic ⇄ galactocentric (kpc), with the tilt that puts the Sun at +z☉
 const TH = Math.asin(Z_SUN_KPC / R_SUN_KPC), C = Math.cos(TH), S = Math.sin(TH);
 export const toGC = ([x, y, z]) => [C * (x - R_SUN_KPC) + S * z, y, -S * (x - R_SUN_KPC) + C * z];
-const toGCv = ([x, y, z]) => [C * x + S * z, y, -S * x + C * z];
-const fromGC = ([x, y, z]) => [C * x - S * z + R_SUN_KPC, y, S * x + C * z];
-const fromGCv = ([x, y, z]) => [C * x - S * z, y, S * x + C * z];
 
 /**
  * Integrate an orbit from a heliocentric galactic position (ly) and Sun-relative galactic
  * velocity (km/s). Returns samples of position (ly, heliocentric galactic axes about the Sun's
  * present position) and velocity (km/s, relative to the Galactic centre) every `sampleMyr`.
  */
-export function integrateTrack(posLy, velKms, { spanMyr = 50, dtMyr = 0.1, sampleMyr = 1 } = {}) {
-  const p0 = toGC(posLy.map((v) => v / LY_PER_KPC));
-  const v0 = toGCv(velKms.map((v, i) => (v + SUN_GAL_KMS[i]) * KPC_PER_MYR));
-  const n = Math.round(spanMyr / sampleMyr), per = Math.round(sampleMyr / dtMyr);
-  const data = new Float64Array((2 * n + 1) * 6);
-  const put = (k, p, v) => {
-    const q = fromGC(p), u = fromGCv(v);
-    data.set([q[0] * LY_PER_KPC, q[1] * LY_PER_KPC, q[2] * LY_PER_KPC, u[0] / KPC_PER_MYR, u[1] / KPC_PER_MYR, u[2] / KPC_PER_MYR], k * 6);
-  };
-  put(n, p0, v0);
+export function integrateTrack(posLy, velKms, opts = {}) {
+  const b = integrateBatch(posLy, velKms, opts);
+  return { n: b.n, sampleMyr: b.sampleMyr, data: b.data };
+}
+
+/**
+ * Integrate many orbits at once (#29): `pos` and `vel` hold 3 numbers per star (as for
+ * integrateTrack). No allocation per step, so tens of thousands of stars fit in a worker.
+ * `Float` picks the storage (Float32Array halves the memory of a large, far set; its ~1e-7
+ * relative precision is ~0.001 ly at 10,000 ly). Star i's track is `trackOf(batch, i)`.
+ */
+export function integrateBatch(pos, vel, { spanMyr = 50, dtMyr = 0.1, sampleMyr = 1, Float = Float64Array } = {}) {
+  const count = Math.floor(pos.length / 3);
+  const n = Math.round(spanMyr / sampleMyr), per = Math.max(1, Math.round(sampleMyr / dtMyr));
+  const stride = (2 * n + 1) * 6;
+  const data = new Float(count * stride);
   const a = [0, 0, 0];
-  for (const dir of [1, -1]) {
-    const p = [...p0], v = [...v0], dt = dir * dtMyr;
-    accel(p[0], p[1], p[2], a);
-    for (let k = 1; k <= n; k++) {
-      for (let s = 0; s < per; s++) {
-        v[0] += 0.5 * dt * a[0]; v[1] += 0.5 * dt * a[1]; v[2] += 0.5 * dt * a[2];
-        p[0] += dt * v[0]; p[1] += dt * v[1]; p[2] += dt * v[2];
-        accel(p[0], p[1], p[2], a);
-        v[0] += 0.5 * dt * a[0]; v[1] += 0.5 * dt * a[1]; v[2] += 0.5 * dt * a[2];
+  const L = LY_PER_KPC, K = KPC_PER_MYR, R0 = R_SUN_KPC;
+  for (let i = 0; i < count; i++) {
+    const hx = pos[3 * i] / L, hy = pos[3 * i + 1] / L, hz = pos[3 * i + 2] / L;
+    const ux = (vel[3 * i] + SUN_GAL_KMS[0]) * K, uy = (vel[3 * i + 1] + SUN_GAL_KMS[1]) * K, uz = (vel[3 * i + 2] + SUN_GAL_KMS[2]) * K;
+    const p0x = C * (hx - R0) + S * hz, p0y = hy, p0z = -S * (hx - R0) + C * hz;
+    const v0x = C * ux + S * uz, v0y = uy, v0z = -S * ux + C * uz;
+    const base = i * stride;
+    const put = (k, px, py, pz, vx, vy, vz) => { // galactocentric → heliocentric galactic (ly, km/s)
+      const o = base + k * 6;
+      data[o] = (C * px - S * pz + R0) * L; data[o + 1] = py * L; data[o + 2] = (S * px + C * pz) * L;
+      data[o + 3] = (C * vx - S * vz) / K; data[o + 4] = vy / K; data[o + 5] = (S * vx + C * vz) / K;
+    };
+    put(n, p0x, p0y, p0z, v0x, v0y, v0z);
+    for (const dir of [1, -1]) {
+      let px = p0x, py = p0y, pz = p0z, vx = v0x, vy = v0y, vz = v0z;
+      const dt = dir * dtMyr, h = 0.5 * dt;
+      accel(px, py, pz, a);
+      for (let k = 1; k <= n; k++) {
+        for (let s = 0; s < per; s++) {
+          vx += h * a[0]; vy += h * a[1]; vz += h * a[2];
+          px += dt * vx; py += dt * vy; pz += dt * vz;
+          accel(px, py, pz, a);
+          vx += h * a[0]; vy += h * a[1]; vz += h * a[2];
+        }
+        put(n + dir * k, px, py, pz, vx, vy, vz);
       }
-      put(n + dir * k, p, v);
     }
   }
-  return { n, sampleMyr, data };
+  return { count, n, sampleMyr, stride, data };
 }
+/** Star i's track in a batch (a view, no copy), usable with trackAt. */
+export const trackOf = (batch, i) => ({ n: batch.n, sampleMyr: batch.sampleMyr, data: batch.data.subarray(i * batch.stride, (i + 1) * batch.stride) });
 
 const LY_PER_KMS_MYR = 1.0227121650537077e-3 * 3261.5637769; // ly travelled in 1 Myr at 1 km/s
 /** Position (ly) and velocity (km/s) on a track at t years from now (cubic Hermite between samples). */
@@ -112,4 +132,30 @@ export function trackAt(track, tYears, out = { pos: [0, 0, 0], vel: [0, 0, 0] })
     out.vel[k] = d00 * p0 + d10 * v0 + d01 * p1 + d11 * v1; // dp/dt in km/s
   }
   return out;
+}
+
+/**
+ * Closest approach of two tracks within ±maxYears: scanned every `stepYears`, then refined
+ * by golden-section search. Returns { tYears, dMinLy }.
+ */
+export function closestApproach(trA, trB, maxYears = 5e6, stepYears = 2e4) {
+  const a = { pos: [0, 0, 0], vel: [0, 0, 0] }, b = { pos: [0, 0, 0], vel: [0, 0, 0] };
+  const dist = (t) => { trackAt(trA, t, a); trackAt(trB, t, b); return Math.hypot(a.pos[0] - b.pos[0], a.pos[1] - b.pos[1], a.pos[2] - b.pos[2]); };
+  let best = 0, bestD = Infinity;
+  for (let t = -maxYears; t <= maxYears; t += stepYears) { const d = dist(t); if (d < bestD) { bestD = d; best = t; } }
+  let lo = Math.max(-maxYears, best - stepYears), hi = Math.min(maxYears, best + stepYears);
+  for (let k = 0; k < 40; k++) { const m1 = lo + (hi - lo) * 0.382, m2 = lo + (hi - lo) * 0.618; if (dist(m1) < dist(m2)) hi = m2; else lo = m1; }
+  const t = (lo + hi) / 2;
+  return { tYears: t, dMinLy: dist(t) };
+}
+
+/**
+ * Straight-line closest approach, for screening thousands of stars before integrating:
+ * relative position (ly) and velocity (km/s) → { tYears, dLy }.
+ */
+export function linearApproach(dp, dv) {
+  const v = dv.map((x) => x * LY_PER_KMS_MYR / 1e6); // ly per year
+  const vv = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
+  const t = vv > 0 ? -(dp[0] * v[0] + dp[1] * v[1] + dp[2] * v[2]) / vv : 0;
+  return { tYears: t, dLy: Math.hypot(dp[0] + v[0] * t, dp[1] + v[1] * t, dp[2] + v[2] * t) };
 }

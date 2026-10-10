@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-10",
+  "status": "research preparation; no48th dossier, no assets embedded",
+  "sources": [
+    {
+      "path": "data/research-sources/europa-sru-pia26332.png",
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/e1a_-_PIA26332_-_SRU_Platypus.png",
+      "bytes": 4166791,
+      "sha256": "3c9f370009a89888189334ff014e28b9524ec5336c493f52276dcbadd46f831d"
+    },
+    {
+      "url": "https://www.jpl.nasa.gov/images/pia26332-europa-seen-up-close-by-junos-sru/",
+      "failure": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "path": "data/research-sources/europa-mwr-2026-release.html",
+      "url": "https://www.nasa.gov/missions/juno/nasas-juno-measures-thickness-of-europas-ice-shell/",
+      "bytes": 311364,
+      "sha256": "1f7e24f1dc4506d12c0cc5799f2194405d5cc4a24a1aa2741f14f05ad0487946"
+    },
+    {
+      "path": "data/research-sources/europa-mwr-levin-2025.html",
+      "url": "https://www.nature.com/articles/s41550-025-02718-0",
+      "bytes": 412848,
+      "sha256": "3363ff76514b7306d076a603f3d899254824f2b1ffc877af74b31105d57d4e21"
+    }
+  ],
+  "nativeAssessment": {
+    "image": "PIA26332 SRU unannotated publisher PNG despite Download JPG label",
+    "observed": "2022-09-29",
+    "released": "2024-05-15",
+    "credit": "NASA/JPL-Caltech/SwRI",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "inspected": true,
+    "sizePixels": [
+      4059,
+      3142
+    ],
+    "limitations": [
+      "Monochrome Jupiter-shine night-side photograph, not calibrated visible colour.",
+      "White dots are penetrating high-energy-particle signatures, not terrain.",
+      "Dark stains are possibly plume-related, not confirmed active plumes.",
+      "Local ridge/chaos photography does not establish complete globe coverage or exact hypothetical observer registration."
+    ],
+    "embedding": "4166791-byte unchanged PNG retained in research; preview headroom insufficient, lossless packaging/source-rendition audit pending. No science source replaced."
+  },
+  "scienceAudit": {
+    "doi": "10.1038/s41550-025-02718-0",
+    "published": "2025-12-17",
+    "issue": "January2026",
+    "terms": "https://creativecommons.org/licenses/by/4.0/",
+    "claim": "MWR observations during2022-09-29 flyby fit idealized pure-water thermally conductive shell29\u00b110km; salinity15mg/kg model reduces estimate~5km; possible convective layer increases total. Not a directly resolved universal thickness.",
+    "modelLimits": "Shallow small scatterers alone are unlikely to carry nutrients to ocean. Imagined local chemistry/terrain must be labelled; no proven biology or survivable landing.",
+    "publicationVsObservation": "NASA release2026-01-27 discusses2022 data, not new2026 surface photography."
+  },
+  "preservedNativeGlobe": {
+    "path": "data/textures/europa.jpg",
+    "bytes": 610862,
+    "sha256": "50d01ca5c01352d1c507bb17fefd1c46ba11260305656250062c6cdac89c8ebf",
+    "limitations": "NASA3D product association/coverage/photometric/frame/epoch audit pending; no replacement or analog skins."
+  },
+  "next": [
+    "Recover standalone headroom without dropping native science, detailed fields or models.",
+    "Audit other unchanged native renditions, map source association and recent credited imagery.",
+    "Deliver individual Europa dossier with independent hypothetical local/observer images through additive importer; retain original PNGs."
+  ],
+  "registryCount": 47,
+  "validation": {
+    "testsPassed": 220,
+    "testsSkipped": 1,
+    "productionAndFullBuild": "passed",
+    "htmlBytes": 15821639,
+    "headroomBytes": 178361,
+    "decodedImages": 173,
+    "detailedSystems": 521,
+    "snapshotSha256": "9266001f314c28647379a1d554ae7f7f50594e673a109a1269251205a68aed68",
+    "applicationSha256": "16dd6e277264ba9da8a79554abca2da110a3bc065a9cc132144f373f0d041a59",
+    "browserChecks": "complete snapshot equality, exact app and HTML parser bytes, six routes, unsupported gzip message, eight eclipse rows,24craft and ISS offline passed",
+    "upstreamPreserved": [
+      "75143fe",
+      "02136c2"
+    ]
+  }
+}

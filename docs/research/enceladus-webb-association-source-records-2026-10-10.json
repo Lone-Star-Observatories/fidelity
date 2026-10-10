@@ -1,0 +1,23 @@
+[
+  {
+    "url": "https://science.nasa.gov/asset/webb/enceladus-plume-webb-nirspec-and-cassini-image/",
+    "path": "data/research-sources/enceladus-webb-nasa-record-2026-10-10.html",
+    "bytes": 297710,
+    "sha256": "201f39f939a360b6e96e6d79e733aa858c5f1c912fddb600d7155effc773e595",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://mmhedman.github.io/papers_published/Villanueva_Enc_NA_2023.pdf",
+    "path": "data/research-sources/enceladus-webb-primary-author-2026-10-10.pdf",
+    "bytes": 1445099,
+    "sha256": "6d9833c3c9b3a01eab3591c00d6a8607417b39a9c93a58a1321cec570b54d60e",
+    "contentType": "application/pdf"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2023/05/STScI-01GYJ8KXBB9GYG58KF9V7WRSGT.png",
+    "path": "data/research-sources/enceladus-webb-nasa-native-2026-10-10.png",
+    "bytes": 831163,
+    "sha256": "6f1fc991e9b63c050910f3e9582aff0995127a7ef69f341d69801c055e679106",
+    "contentType": "image/png"
+  }
+]

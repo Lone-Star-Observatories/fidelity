@@ -159,3 +159,37 @@ test('Deimos preserves its own native globe and distinguishes Hera monochrome fr
  for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
  assert.match(v.unknown.join(' '),/composition/);assert.match(v.assumed.join(' '),/invented/);
 });
+
+test('Io preserves its own globe and labels JIRAM saturation and regional reservoir hypotheses', async () => {
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='io'),v=bodyVisualFor(moon);
+ assert.equal(v.id,'io');assert.equal(moon.skin.map,'io');assert.equal(v.surfaceMap,undefined);
+ assert.match(v.modelled.join(' '),/possible regional/);assert.match(v.modelled.join(' '),/Deep magma ocean not ruled out/);
+ assert.match(v.contextImages[0].description,/not visible surface colour/);assert.match(v.contextImages[0].description,/saturates/);
+ assert.equal(v.contextImages[0].observationDate,'2024-12-27');assert.equal(v.contextImages[0].publicationDate,'2025-04-29');
+ assert.match(v.contextImages[1].description,/circa1999/);assert.match(v.contextImages[1].description,/not lava colour/);
+ for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
+ assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});
+
+test('Europa preserves its native globe and distinguishes SRU display processing from ice-shell modelling',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='europa'),v=bodyVisualFor(moon);assert.equal(v.id,'europa');assert.equal(moon.skin.map,'europa');assert.equal(v.surfaceMap,undefined);
+ assert.match(v.modelled.join(' '),/29±10km/);assert.match(v.modelled.join(' '),/idealized pure-water/);assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/radiation-particle/);
+ assert.equal(v.contextImages[0].observationDate,'2022-09-29');assert.equal(v.contextImages[0].publicationDate,'2024-05-15');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});
+
+
+test('Ganymede preserves its own globe and distinguishes spectral overlay from imagined local chemistry',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='ganymede'),v=bodyVisualFor(moon);assert.equal(v.id,'ganymede');assert.equal(moon.skin.map,'ganymede');assert.equal(v.surfaceMap,undefined);assert.match(v.modelled.join(' '),/laboratory/);assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/older Galileo/);assert.equal(v.contextImages[0].observationDate,'2021-06-07');assert.equal(v.contextImages[0].publicationDate,'2023-10-30');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});
+
+test('Callisto retains own globe and separates SSI panel processing from imagined chemistry',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='callisto'),v=bodyVisualFor(moon);assert.equal(v.id,'callisto');assert.equal(moon.skin.map,'callisto');assert.equal(v.surfaceMap,undefined);assert.equal(v.contextImages[0].observationDate,'2001-05-25');assert.equal(v.contextImages[0].publicationDate,'2001-08-22');assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/Strip gaps/);assert.match(v.contextImages[0].credit,/Academic Research Lab/);assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);assert.match(v.modelled.join(' '),/interpretations/);
+});
+
+test('Amalthea retains pending global surface and distinguishes native detection from stereo context',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='amalthea'),v=bodyVisualFor(moon);assert.equal(v.id,'amalthea');assert.equal(moon.surfacePending,true);assert.equal(moon.skin,undefined);assert.equal(v.surfaceMap,undefined);assert.equal(v.contextImages.length,2);assert.equal(v.contextImages[0].observationDate,'2024-03-07');assert.equal(v.contextImages[1].observationDate,'1999-08-12 / 1999-11-26');assert.match(v.contextImages[0].description,/Tiny moon detections/);assert.match(v.contextImages[1].description,/north pole truncated/);assert.match(v.modelled.join(' '),/no Galileo incorporation/);assert.match(v.modelled.join(' '),/interpretations/);for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');
+});
+
+test('Mimas native provenance renders with a supported measured tier and preserves its own globe',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const m=MOONS.find(x=>x.id==='mimas'),v=bodyVisualFor(m);assert.equal(v.id,'mimas');assert.equal(m.skin.map,'mimas');assert.equal(v.surfaceMap,undefined);assert.equal(v.contextImages[0].tier,'measured');assert.equal(v.contextImages[0].observationDate,'2017-01-30');assert.equal(v.contextImages[0].publicationDate,'2017-03-14');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.match(v.modelled.join(' '),/warm fully frozen/);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');
+});

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no53rd dossier or new embedded asset.",
+  "generator": "Built-in imagegen",
+  "prompt": "Create a wide 16:9 research-guided scientific concept illustration of an invented local view on Saturn's moon Enceladus. This is NOT observed geography or a photometrically calibrated image. Perspective is a hypothetical low unmanned camera above an airless icy surface, looking over modest fractured water-ice terrain and shallow ridges, small scattered pale ice blocks, and sparse subdued impact craters in the middle distance. Black empty sky occupies the top third; no Saturn, Sun, stars, plume, mist, clouds, atmosphere, ocean, exposed liquid, biological material, spacecraft, humans, equipment, or survivable landing depiction. Restrained near-monochrome pale gray ice, softly shaded small fractures; no invented colourful chemical deposits. Deliberately quiet compact composition with broad smooth ice patches and a few irregular intersecting cracks, not an overloaded rocky lunar scene. All ridge locations, blocks, crater shapes, material fractions, texture, lighting, exposure and chemistry are artistic assumptions. Do not reuse or recolour any photograph or observed map of Enceladus or any other body. Build this independent terrain from generic physical descriptions of ice, with no analog skin. Add a small but crisp readable text label inside the upper-left black sky: 'IMAGINED ENCELADUS TERRAIN'. Make it clear, thoughtful and realistic in rendering while preserving the hypothetical status; no extra text, no logos. Output a single landscape image.",
+  "original": "data/research-sources/enceladus-generated-surfaceImage-original.png",
+  "sourceOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-b509136c-6283-49f1-9d15-e109ccac62a6.png",
+  "limitations": "Independent IMAGINED local terrain; all shapes, textures, chemistry/fractions, lighting and exposure invented. No analog map/skin, resolved observation claim, dated site registration, atmosphere, plume, exposed ocean, biology or survivable landing. Observer view/angular calibration, additive importer/master previews and standalone headroom pending.",
+  "originalBytes": 2379749,
+  "originalSha256": "622689106b2f96880f8ad12ef168a90f96077d7a097f5bfcb2a20f8c0a25bad9",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "inspected": true
+}

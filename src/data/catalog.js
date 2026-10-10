@@ -42,8 +42,33 @@ function snapshotNearby(center, radiusLy) {
 /** Stars within `radiusLy` of star `center`, as objects. */
 export async function fetchNearby(center, radiusLy) {
   if (snapshot) return snapshotNearby(center, radiusLy);
-  const d = await get(`/api/nearby?center=${encodeURIComponent(center)}&radiusLy=${radiusLy}`);
+  const url = `/api/nearby?center=${encodeURIComponent(center)}&radiusLy=${radiusLy}`;
+  const d = await get(url);
+  if (d.motions?.status === 'loading') memo.delete(url); // Gaia motions still arriving: ask again next time
   return { ...d, stars: rowsToObjects(d) };
+}
+
+/**
+ * Stars with measured motions in the shell fromLy < d ≤ toLy around `center` (#29): the
+ * stars that can drift into the Navigation View in deep time. The preview has no backend, so
+ * it answers from its own 100 ly snapshot (arrivals beyond that need the local backend).
+ */
+export async function fetchArrivals(center, fromLy, toLy) {
+  if (snapshot) {
+    const all = rowsToObjects(snapshot.nearby), c = all.find((s) => s.id === center);
+    if (!c) throw new Error(`${center} is outside this preview's 100 ly snapshot`);
+    const [a, b] = [fromLy / LY_PER_PC, toLy / LY_PER_PC];
+    const stars = all.filter((s) => s.id !== 'sol' && s.id !== center && s.vKms && (({ x, y, z }) => { const d = Math.hypot(x - c.x, y - c.y, z - c.z); return d > a && d <= b; })(s))
+      .map((s) => ({ id: s.id, name: s.name, x: s.x, y: s.y, z: s.z, absmag: s.absmag, ci: s.ci, system: s.system, v: s.vKms, rvKnown: !!s.rvKnown, vSrc: s.vSrc ?? 0 }));
+    return { center, fromLy, toLy, stars, preview: true, previewLy: 100, density: snapshot.arrivalsDensity ?? null, velocitySources: null };
+  }
+  const url = `/api/arrivals?center=${encodeURIComponent(center)}&fromLy=${fromLy}&toLy=${toLy}`;
+  const d = await get(url);
+  memo.delete(url); // large: the view keeps what it needs
+  const f = Object.fromEntries(d.fields.map((k, i) => [k, i]));
+  const stars = d.stars.map((r) => ({ id: r[f.id], name: r[f.name], x: r[f.x], y: r[f.y], z: r[f.z], absmag: r[f.absmag], ci: r[f.ci], system: r[f.system],
+    v: [r[f.vx], r[f.vy], r[f.vz]], rvKnown: !!(r[f.flags] & 1), vSrc: r[f.flags] >> 1 }));
+  return { ...d, stars };
 }
 
 export async function fetchStar(id) {
@@ -129,6 +154,15 @@ export async function fetchClusters() {
   if (snapshot) return snapshot.clusters ?? null;
   try { return await get('/api/clusters'); } catch { return null; }
 }
+
+/** One cluster's brightest Gaia DR3 members (#24); null offline or in the standalone preview. */
+export async function fetchClusterMembers(name) {
+  if (snapshot) return null;
+  try { return await get(`/api/cluster-members?name=${encodeURIComponent(name)}`); } catch { return null; }
+}
+
+/** URL of a nebula's real image (#24), or null in the standalone preview (images are not embedded). */
+export const nebulaImageUrl = (key) => (snapshot ? null : `/api/nebula-image/${encodeURIComponent(key)}`);
 
 /** Nearby galaxies (UNGC) and galaxy groups (Cosmicflows-4) for the Universe View. */
 export async function fetchGalaxies() {

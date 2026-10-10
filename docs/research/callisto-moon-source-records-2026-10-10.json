@@ -1,0 +1,69 @@
+[
+  {
+    "url": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/",
+    "path": "data/research-sources/callisto-spires-caption.html",
+    "bytes": 268686,
+    "sha256": "6bd9f2476b210c894a9cb46b40e618bebd21f8f950fe3d20a712b3bcc64f5747"
+  },
+  {
+    "url": "https://www.jpl.nasa.gov/images/pia03455-callisto-close-up-with-jagged-hills/",
+    "failure": "HTTP Error 403: Forbidden",
+    "sha256": null
+  },
+  {
+    "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/PIA03455.jpg",
+    "failure": "HTTP Error 403: Forbidden",
+    "sha256": null
+  },
+  {
+    "url": "https://www.jpl.nasa.gov/universe/archive/un0108.pdf",
+    "path": "data/research-sources/callisto-jpl-universe-2001.pdf",
+    "bytes": 2980957,
+    "sha256": "6f8ea35197e23c35320e8a90c7dc06f01ccd594bfc81a71eed6dfb56d2113739"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Callisto/Jupiter%20-%20Callisto.jpg",
+    "path": "data/research-sources/callisto-nasa3d-source.jpg",
+    "bytes": 783405,
+    "sha256": "b9f4fa5db94debabd12814853fd132db3449889646a490b6f95a897b2c47b121"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg",
+    "path": "data/research-sources/callisto-spires-nasa-pia03455.jpg",
+    "bytes": 311687,
+    "sha256": "99ba09edec934ad7e6d831c6bf518467c32b3fdb18ec0d7cdd8cbe39a14bcb1a"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg?w=1020&fit=clip",
+    "path": "data/research-sources/callisto-spires-display-pia03455.jpg",
+    "bytes": 134419,
+    "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6"
+  },
+  {
+    "url": "https://www.esa.int/Science_Exploration/Space_Science/Juice/Juice_factsheet",
+    "publicationDate": null,
+    "observationDate": null,
+    "note": "Future mission context, not a Callisto observation.",
+    "path": "data/research-sources/callisto-juice-factsheet.html",
+    "bytes": 22160,
+    "sha256": "b4ab908298408984904a0b8180592f42521e9b7b126895c8d9ff134486d00357"
+  },
+  {
+    "role": "surface",
+    "path": "data/research-sources/callisto-generated-surface-original.png",
+    "bytes": 3242522,
+    "sha256": "1c15ddedae317c955a273066bf9a7c0a8abc83da35eabbe53aee5ef580ef5da5",
+    "source": "Independent built-in image_gen; original also retained in Codex generated_images directory.",
+    "observationDate": null,
+    "generatedDate": "2026-10-10"
+  },
+  {
+    "role": "sky",
+    "path": "data/research-sources/callisto-generated-sky-original.png",
+    "bytes": 1992308,
+    "sha256": "0b372d3a50779956f1d63bca604b4a9ff2c0cd28f86fa36caabecabcbbf37b70",
+    "source": "Independent built-in image_gen; original also retained in Codex generated_images directory.",
+    "observationDate": null,
+    "generatedDate": "2026-10-10"
+  }
+]

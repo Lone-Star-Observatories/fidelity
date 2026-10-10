@@ -7,9 +7,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
-import { gzipSync, gunzipSync } from 'node:zlib';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
-import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
+import { gunzipSync } from 'node:zlib';
+import { gzipAsync } from '@gfx/zopfli';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
 import { library } from '../server/spectra.js';
@@ -30,7 +31,10 @@ import { MODELS } from '../src/data/models.js';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
 // 1) snapshot: stars within 100 ly of Sol, every planet host's detail, and a few skies
+await motionsReady(); // Gaia DR3 motions (#29), so the preview's deep time matches the app's
 const near = await nearby('sol', 100);
+// deep-time arrivals (#29) come from the snapshot's own 100 ly; the badge needs the catalogue's density near Sol
+const arrivalsDensity = (await arrivals('sol', 0, 1)).density;
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
 // Researched stars without known planets still need their actual Star/System views offline.
@@ -160,9 +164,10 @@ await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
 // the weekly events feed (#32): the bundled copy; the preview refreshes it from GitHub when online
 let eventsSnap = null;
 try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
-const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
+const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, arrivalsDensity, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
-const compressed = gzipSync(snapshotJson, { level: 9 });
+// Zopfli emits standard gzip: spend build time to retain every byte under the preview gate.
+const compressed = await gzipAsync(snapshotJson, { numiterations: 8 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
 const packed = encodeSnapshotBytes(compressed);
 if (!Buffer.from(unpackSnapshotBytes(packed)).equals(compressed)) throw new Error('Snapshot transport round-trip failed.');
@@ -171,11 +176,21 @@ console.log(`lossless snapshot: ${Buffer.byteLength(snapshotJson)} → ${compres
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} detailed systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build
-execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'build', '--mode', 'standalone'], { cwd: root, stdio: 'inherit' });
+execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'build', '--mode', 'standalone'], { cwd: root, stdio: 'inherit', env: { ...process.env, FIDELITY_HTML_SNAPSHOT: '1' } });
 
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
-const html = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
+const binarySnapshot = encodeBinarySnapshot(snapshotJson);
+const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 32 });
+if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
+const snapshotRaw = encodeRawSnapshotBytes(htmlCompressed);
+// Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
+const html = (await fs.readFile(path.join(dist, 'index.html'), 'utf8')).replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
+const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
+if (!snapshotElement || !Buffer.from(unpackSnapshotBytes({ encoding: snapshotElement[1], byteLength: Number(snapshotElement[2]), data: snapshotElement[3] })).equals(htmlCompressed)) {
+  throw new Error('HTML snapshot transport round-trip failed.');
+}
+await fs.writeFile(path.join(dist, 'index.html'), html);
 const assets = await fs.readdir(path.join(dist, 'assets'));
 const css = await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.endsWith('.css'))), 'utf8');
 const js = (await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.endsWith('.js'))), 'utf8')).replaceAll('</script', '<\\/script');
@@ -183,13 +198,17 @@ const body = html.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<script[^>]*src="
 const fonts = (html.match(/<link[^>]+fonts\.(googleapis|gstatic)[^>]*>/g) || []).join('\n');
 // Compress the entire application losslessly as well as its embedded snapshot.
 // Runtime imports the restored module from a Blob without eval().
-const appCompressed = gzipSync(js, { level: 9 });
+const appCompressed = await gzipAsync(js, { numiterations: 32 });
 if (gunzipSync(appCompressed).toString('utf8') !== js) throw new Error('Application compression round-trip failed.');
-const appPacked = encodeApplicationBytes(appCompressed);
-if (!Buffer.from(unpackApplicationBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
+const cssCompressed = await gzipAsync(css, { numiterations: 5 });
+if (gunzipSync(cssCompressed).toString('utf8') !== css) throw new Error('Stylesheet compression round-trip failed.');
+const cssPacked = encodeApplicationBytes(cssCompressed);
+if (!Buffer.from(unpackApplicationBytes(cssPacked)).equals(cssCompressed)) throw new Error('Stylesheet transport round-trip failed.');
+const appPacked = encodeRawSnapshotBytes(appCompressed);
+if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
 const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
-const bootstrap = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const stream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = await new Response(stream).text();\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
-const out = `<title>USS Fidelity</title>\n${fonts}\n<style>\n${css}\n</style>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n<script type="module">\n${bootstrap}\n</script>\n`;
+const bootstrap = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const cssStream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${cssPacked.byteLength},data:document.getElementById("fidelity-stylesheet-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const style = document.createElement('style');\n style.textContent = await new Response(cssStream).text();\n document.head.append(style);\n const stream = new Blob([unpackSnapshotBytes({encoding:"gzip-raw-radix120-wide-v1",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = await new Response(stream).text();\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
+const out = `<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n<script type="module">\n${bootstrap}\n</script>\n`;
 const previewBytes = Buffer.byteLength(out);
 if (previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
 await fs.writeFile(path.join(dist, 'fidelity.html'), out);

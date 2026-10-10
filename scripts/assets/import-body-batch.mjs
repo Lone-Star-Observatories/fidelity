@@ -15,6 +15,8 @@ for (const dossier of batch.bodies) {
   if (visuals[dossier.id]) throw Error(`Dossier already exists: ${dossier.id}`);
   const visual = structuredClone(dossier);
   delete visual.inputs;
+  const previewWidth = dossier.previewWidth ?? 640;
+  if (!Number.isInteger(previewWidth) || previewWidth < 256 || previewWidth > 640) throw Error('Invalid preview width');
   visual.skyModel = { ...visual.skyModel, ...skyGeometry(visual.skyModel) };
   for (const [role, sourceFile] of Object.entries(dossier.inputs)) {
     if (!['surfaceMap', 'surfaceImage', 'skyImage'].includes(role) || path.basename(sourceFile) !== sourceFile) throw Error('Invalid image input');
@@ -23,7 +25,7 @@ for (const dossier of batch.bodies) {
     const metadata = await sharp(raw).metadata();
     if (Math.abs(metadata.width / metadata.height - width / height) > 0.03) throw Error(`Unexpected aspect ratio: ${sourceFile}`);
     const master = await sharp(raw).resize(width, height).jpeg({ quality: 85 }).toBuffer();
-    const preview = await sharp(raw).resize(map ? 512 : 640, map ? 256 : 360).jpeg({ quality: 80 }).toBuffer();
+    const preview = await sharp(raw).resize(map ? 512 : previewWidth, map ? 256 : Math.round(previewWidth * 9 / 16)).jpeg({ quality: 80 }).toBuffer();
     if (master.length > 700 * 1024) throw Error(`Image exceeds budget: ${sourceFile}`);
     const slug = role.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase());
     const url = `/bespoke/${visual.id}-${slug}.jpg`, previewUrl = `/bespoke/${visual.id}-${slug}-preview.jpg`;
@@ -31,7 +33,7 @@ for (const dossier of batch.bodies) {
       observationDate: null, credit: 'Fidelity / OpenAI image generation · researched hypothetical illustration',
       terms: 'Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.',
       sourceFile, sourceSha256: hash(raw), sha256: hash(master), previewSha256: hash(preview),
-      bytes: master.length, previewBytes: preview.length, width, height,
+      bytes: master.length, previewBytes: preview.length, width, height, previewWidth: map ? 512 : previewWidth, previewHeight: map ? 256 : Math.round(previewWidth * 9 / 16),
       processing: visual.kind === 'star' ? 'Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.' : 'Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.' };
     outputs.push([url, master], [previewUrl, preview]);
   }
