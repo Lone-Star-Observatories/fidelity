@@ -6,7 +6,7 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { config } from './config.js';
-import { monthlyVectors, localDay, track } from './horizons.js';
+import { monthlyVectors, localDay, localMonth, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
 import { clusters, galaxies } from './deepsky.js';
 import { gaiaBright } from './gaia.js';
@@ -35,6 +35,7 @@ const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
+  'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/clusters': async () => clusters(),

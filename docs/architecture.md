@@ -69,6 +69,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
+| `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
 | `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |

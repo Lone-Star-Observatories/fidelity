@@ -4,7 +4,7 @@
 // even for two-hour Mars orbits). Trajectories for drawing come as long, coarse tracks.
 
 import snapshot from '#snapshot';
-import { monthUrl, localUrl, trackUrl } from './horizons-urls.js';
+import { monthUrl, localUrl, localMonthUrl, trackUrl } from './horizons-urls.js';
 
 const TDB_UTC = 69.184 / 86400; // Horizons tabulates in TDB; the ship's clock is UTC
 const cache = new Map(); // url → { state: 'loading'|'ready'|'failed', value, at }
@@ -34,10 +34,28 @@ export function heliocentricAt(hz, jdUtc) {
   return [a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f, a[3] + (b[3] - a[3]) * f];
 }
 
+// Planet-relative states: the 10-minute day when it has loaded, else the 20-minute month
+// (one request a month, so fast time-play keeps up), else the last loaded set within two days,
+// so a craft never drops to its planet's centre while data is on the way.
+const lastLocal = new Map(); // `${hz}@${center}` → { pts, jd0, jd1 }
+function localPoints(hz, center, jd) {
+  const k = `${hz}@${center}`;
+  const day = want(localUrl(hz, center, jd));
+  let pts = day?.length ? day : null;
+  if (pts) { want(localUrl(hz, center, jd + 1)); want(localUrl(hz, center, jd - 1)); }
+  else {
+    const month = want(localMonthUrl(hz, center, jd));
+    if (month?.length) { pts = month; want(localMonthUrl(hz, center, jd + 3)); want(localMonthUrl(hz, center, jd - 3)); }
+  }
+  if (pts) { lastLocal.set(k, { pts, jd0: pts[0][0], jd1: pts[pts.length - 1][0] }); return pts; }
+  const last = lastLocal.get(k);
+  return last && jd > last.jd0 - 2 && jd < last.jd1 + 2 ? last.pts : null;
+}
+
 /** Position relative to `center` (NAIF major-body id), J2000 ecliptic km, or null while loading. */
 export function localAt(hz, center, jdUtc) {
   const jd = jdUtc + TDB_UTC;
-  const pts = want(localUrl(hz, center, jd));
+  const pts = localPoints(hz, center, jd);
   if (!pts?.length) return null;
   const step = pts[1][0] - pts[0][0];
   const i = Math.max(0, Math.min(pts.length - 2, Math.floor((jd - pts[0][0]) / step)));
@@ -47,10 +65,20 @@ export function localAt(hz, center, jdUtc) {
   return [0, 1, 2].map((k) => h00 * a[1 + k] + h10 * h * a[4 + k] + h01 * b[1 + k] + h11 * h * b[4 + k]);
 }
 
-/** All planet-relative samples for the day (for drawing the orbit), km. */
+/** The day's planet-relative samples (for drawing the orbit), km; the same array while the day is unchanged. */
+const daySamples = new Map(); // points array → day number → samples
 export function localDaySamples(hz, center, jdUtc) {
-  const pts = want(localUrl(hz, center, jdUtc + TDB_UTC));
-  return pts ? pts.map((p) => [p[1], p[2], p[3]]) : null;
+  const jd = jdUtc + TDB_UTC, pts = localPoints(hz, center, jd);
+  if (!pts) return null;
+  // a month is cut to the UTC day containing now (d = that day's midnight JD)
+  const span = pts[pts.length - 1][0] - pts[0][0], d = span > 1.5 ? Math.floor(jd - 0.5) + 0.5 : 0;
+  let byDay = daySamples.get(pts);
+  if (!byDay) { byDay = new Map(); daySamples.set(pts, byDay); if (daySamples.size > 64) daySamples.delete(daySamples.keys().next().value); }
+  if (!byDay.has(d)) {
+    const sel = d ? pts.filter((p) => p[0] >= d && p[0] <= d + 1.01) : pts;
+    byDay.set(d, (sel.length > 1 ? sel : pts).map((p) => [p[1], p[2], p[3]]));
+  }
+  return byDay.get(d);
 }
 
 /** Heliocentric trajectory points (AU) between two dates, or null while loading. */

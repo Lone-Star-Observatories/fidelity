@@ -620,8 +620,13 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const b = node.body, o = b.orbit;
     let pts = null;
     if (o.center) {
-      const km = localDaySamples(o.hz, NAIF[o.center], jd);
-      if (km) pts = km.map((p) => localMap(nodes[o.center].body, toScene(p).multiplyScalar(1 / AU_KM)));
+      // rebuilt only when the day's samples or the scale change, not every frame
+      const km = localDaySamples(o.hz, NAIF[o.center], jd), cb = nodes[o.center].body;
+      const key = km && `${scaleMix}|${enhancedRadius(cb, model.scale)}`;
+      if (km && (km !== node.trackKm || key !== node.trackKey)) {
+        pts = km.map((p) => localMap(cb, toScene(p).multiplyScalar(1 / AU_KM)));
+        node.trackKm = km; node.trackKey = key;
+      }
     } else if (!node.trackDone) {
       const au = trajectory(o.hz, b.trackFrom ?? isoDate(jd - 365), isoDate(Math.max(jd, 2440587.5 + Date.now() / 86400000) + 365));
       if (au) { pts = au.map((p) => toScene(p)); node.trackDone = true; }
@@ -688,7 +693,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
         b._missing = !off;
         if (!off) return scenePosition(o.center, jd, v);
         localMap(nodes[o.center].body, toScene(off, v).multiplyScalar(1 / AU_KM));
-        return v.add(scenePosition(o.center, jd, tmp5));
+        return addParent(v, o.center, jd);
       }
       const p = heliocentricAt(o.hz, jd);
       b._missing = !p;
@@ -698,13 +703,13 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       const off = satOffset(b, jd);
       if (!off) return v.copy(scenePosition('earth', jd, v));
       localMap(nodes.earth.body, v.copy(off));
-      return v.add(scenePosition('earth', jd, tmp5));
+      return addParent(v, 'earth', jd);
     }
     if (o.type === 'lagrange') return lagrangePosition(o, jd, v);
     if (o.type === 'moon') {
       toScene(moonOffsetKm(b.moon, jd), v).multiplyScalar(1 / AU_KM);
       localMap(nodes[o.parent].body, v);
-      return v.add(scenePosition(o.parent, jd, tmp5));
+      return addParent(v, o.parent, jd);
     }
     if (o.type === 'elements') { sourceOf[id] = 'kepler'; return toScene(smallBodyPosition(nearestElements(o, jd), jd), v); }
     if (o.type === 'sol') {
@@ -720,7 +725,15 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     basisToScene(positionAt(elementsOf(o), o.M0 + (2 * Math.PI * (jd - o.epochJd)) / o.periodDays), o.basis, v);
     return v.add(hostScene(o.host, jd, tmp3));
   }
-  const tmp3 = new THREE.Vector3(), tmp5 = new THREE.Vector3();
+  const tmp3 = new THREE.Vector3();
+  // a parent's position needs its own scratch vector at each level (LRO → Moon → Earth):
+  // sharing one let the Moon's lookup of Earth overwrite itself and throw LRO ~1 AU out
+  const parentTmp = Array.from({ length: 8 }, () => new THREE.Vector3());
+  let depth = 0;
+  function addParent(v, id, jd) {
+    const t = parentTmp[depth++];
+    try { return v.add(scenePosition(id, jd, t)); } finally { depth--; }
+  }
 
   /**
    * Lagrange points of a pair (primary, secondary). L1/L2 sit a Hill radius either side of the

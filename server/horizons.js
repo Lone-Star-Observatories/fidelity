@@ -110,6 +110,22 @@ export async function localDay(body, center, day) {
   });
 }
 
+/**
+ * A calendar month of planet-relative states (km, km/s; 20-minute steps): the stand-in while
+ * a 10-minute day is loading, and what fast time-play runs on (one request per month, not per day).
+ */
+export async function localMonth(body, center, month) {
+  if (!BODY.test(body) || !CENTER.test(center)) throw Object.assign(new Error('bad body or center'), { status: 400 });
+  if (!MONTH.test(month)) throw Object.assign(new Error('month must be YYYY-MM'), { status: 400 });
+  const { start, stop } = monthRange(month);
+  const past = Date.parse(`${stop}T00:00:00Z`) < Date.now() - 86400000;
+  return cached('horizons-local-month', `${body}@${center}-${month}`, past ? 365 * 86400000 : 86400000, async () => {
+    const json = await horizons({ COMMAND: `'${body}'`, CENTER: `'500@${center}'`, START_TIME: `'${start}'`, STOP_TIME: `'${stop}'`,
+      STEP_SIZE: "'20m'", VEC_TABLE: '2', OUT_UNITS: 'KM-S' });
+    return { body, center, month, source: 'JPL Horizons', points: parseStateVectors(json.result || '') };
+  });
+}
+
 /** Heliocentric track (AU) of `body` from `start` to `stop` in about `n` steps, for drawing trajectories. */
 export async function track(body, start, stop, n = 400) {
   if (!BODY.test(body) || !DAY.test(start) || !DAY.test(stop)) throw Object.assign(new Error('bad track request'), { status: 400 });

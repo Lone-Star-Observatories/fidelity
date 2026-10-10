@@ -167,11 +167,22 @@ const pill = (label, onClick, cls = '') => {
 const rateOut = h('div', { className: 'ctl-readout mono' });
 const holdBtn = pill('❚❚', () => clock.toggleHold());
 const dateIn = h('input', { type: 'date', id: 'ship-date', title: 'Jump to date (UTC)' });
-dateIn.addEventListener('change', () => {
+// Typed dates jump on Enter only (each keystroke of a year is a valid, wrong date: "0002", "0020"…);
+// a date picked from the calendar jumps at once. Leaving the field un-entered reverts it to the clock.
+let dateTyped = false;
+const jumpToDate = () => {
+  dateTyped = false;
   if (!dateIn.value) return;
   const [y, m, d] = dateIn.value.split('-').map(Number);
   clock.set(jdFromDate(new Date(Date.UTC(y, m - 1, d, 12))));
+};
+dateIn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); jumpToDate(); dateIn.blur(); }
+  else if (e.key === 'Escape') { dateTyped = false; dateIn.blur(); }
+  else if (e.key.length === 1 || ['Backspace', 'Delete', 'ArrowUp', 'ArrowDown'].includes(e.key)) dateTyped = true;
 });
+dateIn.addEventListener('change', () => { if (!dateTyped) jumpToDate(); });
+dateIn.addEventListener('blur', () => { dateTyped = false; });
 
 const toggle = (key, a, b, labelA, labelB) => {
   const group = h('div', { className: 'ctl-group' });
