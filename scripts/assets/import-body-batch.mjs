@@ -43,7 +43,13 @@ for (const [url, bytes] of outputs) await fs.writeFile(new URL('public' + url, r
 const footer = `\nconst normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;
-  return Object.values(BODY_VISUALS).find(v => v.aliases.some(name => normalize(name) === normalize(body.name))) ?? null;
+  const catalog = body.catalog ?? body.star ?? body;
+  const names = [body.name, catalog.hd && \`HD \${catalog.hd}\`, catalog.gl].filter(Boolean);
+  for (const name of names) {
+    const visual = Object.values(BODY_VISUALS).find(v => v.aliases.some(alias => normalize(alias) === normalize(name)));
+    if (visual) return visual;
+  }
+  return null;
 }
 export const BESPOKE_TEXTURES = Object.fromEntries(Object.values(BODY_VISUALS).filter(v => v.surfaceMap).map(v => [v.surfaceMap.key, v.surfaceMap]));\n`;
 await fs.writeFile(new URL('src/data/bespoke.js', root), '// Individual researched hypotheses; actual maps retain priority.\nexport const BODY_VISUALS = ' + JSON.stringify(visuals, null, 2) + ';\n' + footer);

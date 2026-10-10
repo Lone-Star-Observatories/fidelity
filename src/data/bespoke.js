@@ -5659,12 +5659,304 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "61-cygni-a": {
+    "id": "61-cygni-a",
+    "name": "61 Cygni A",
+    "kind": "star",
+    "aliases": [
+      "61 Cygni A",
+      "61 Cyg A",
+      "GJ 820 A",
+      "Gl 820 A",
+      "HD 201091"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "61 Cygni A is the northern brighter K5V component in the 2025-01-10 Gaia portrait. Component aliases are separate; catalogue binary fields remain unchanged.",
+    "nativeSurface": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
+    "measured": [
+      "Kervella2008 CHARA/FLUOR K-prime interferometry limb-darkened angular diameters A1.775±0.013mas/B1.581±0.022mas. Disc size measurement does not resolve gas-cell geography.",
+      "Gaia special calibration image observed2025-01-10, released2025-01-15. North up/east left, A north of B. False colour represents intensity only; diffraction and background points are not photospheric structure or planets."
+    ],
+    "modelled": [
+      "Kervella2008 radii A0.665±0.005/B0.595±0.008Rsun from angular size and adopted parallax. BVRI surface-brightness temperatures A4400±100/B4040±80K, equations10/11. K-band limb-darkening lookup rounded4400/4000K is not a separate temperature measurement.",
+      "Sanghi2026 Table1 adopts distinct references: radii0.667±0.005/0.594±0.008Rsun and Soubiran temperatures4398±34/4174±47K. These are alternative reference histories; preserved catalogue values not replaced.",
+      "Sanghi2026 Table1 GaiaDR3 component parallaxes285.9949±0.0599/286.0054±0.0289mas; distances3.49624/3.49607pc. Current exhaustive nearest20 ranking remains open.",
+      "September2026 candidate third companion has broad model constraints about8±3MJup and8±3AU; host A versus B unresolved and confirmation required. Not inserted as a confirmed planet.",
+      "Broad hydrogen/helium partly ionized photospheric gas context, not measured bulk fractions or a chemical map."
+    ],
+    "unknown": [
+      "Resolved convective cells, magnetic patch locations, calibrated visible colour/exposure, exact observer epoch and viewing direction.",
+      "Confirmed third companion and host identity; exhaustive current nearest20 boundary."
+    ],
+    "assumed": [
+      "Independent invented gas convection and sparse magnetic patches, no observed Sun or other body map reuse, no solid ground or survivable landing.",
+      "Conceptual free camera at2photosphericradii, nominal120degree horizontal FOV and angular60degrees. Colour, spectral transfer, exposure and registration remain approximate. Binary companion outside arbitrary viewing direction, not dated geometry."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/0806.4049",
+        "title": "Kervella et al.2008, CHARA radii and BVRI surface-brightness temperatures",
+        "publicationDate": "2008-06-25"
+      },
+      {
+        "url": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+        "title": "ESA/Gaia/DPAC2025, final61Cygni calibration image",
+        "publicationDate": "2025-01-15"
+      },
+      {
+        "url": "https://arxiv.org/html/2609.32893v1",
+        "title": "Sanghi et al.2026, candidate third companion with unresolved host",
+        "publicationDate": "2026-09-26"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/61-cygni-gaia-native.png",
+        "source": "https://www.cosmos.esa.int/documents/29201/18625858/2024-10-14_SIF_61Cyg.png/043a4d36-adf2-2510-fe6b-8c2922f74ef7?t=1734512442613",
+        "sourcePage": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+        "label": "NATIVE GAIA BINARY IMAGE · INTENSITY FALSE COLOUR",
+        "credit": "ESA/Gaia/DPAC; full Gaia collaboration.",
+        "terms": "CC BY-SA3.0IGO; original publisher image copied unchanged, shared under the original terms.",
+        "termsUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+        "publicationDate": "2025-01-15",
+        "observationDate": "2025-01-10",
+        "tier": "measured",
+        "sha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+        "bytes": 176033,
+        "description": "Native special Gaia calibration image: northern brighter A and southern fainter B, north up/east left. Intensity-only false colour, diffraction spikes and background stars; not calibrated visible colour or resolved photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "61 Cygni A",
+      "radiusSun": 0.665,
+      "temperatureK": 4400,
+      "distanceAU": 0.00618512145707967,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 3903.4825505189765,
+      "approximateSrgb": [
+        1,
+        0.8443012229715662,
+        0.7192888886816914
+      ],
+      "limits": "Hypothetical camera2photosphericradii, no ground/survivable landing; nominal120degreeFOV, colour/exposure/spectral transfer/registration approximate. Bright cores 664/664/662px versus557.333px geometric target, uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "cyg61ABespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented stellar gas intensity map; no measured longitude frame.",
+      "coverage": "All convection and magnetic patch morphology imagined.",
+      "url": "/bespoke/61-cygni-a-surface-map.jpg",
+      "previewUrl": "/bespoke/61-cygni-a-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4387b1f2-4896-406d-b7df-7dbe80555e82.png",
+      "sourceSha256": "fad447c4a723ea8b30f061ae902d221d659f3d361c6f53964f50b181edd10d42",
+      "sha256": "e1dc8ac8637fec18da40930a8e0d7fc45d09c60bc36c03ab773b2eaa19414e06",
+      "previewSha256": "871154a87b126070abbc8f0e8283252f54b709d50dd6e3eb7b77b408f2de9a27",
+      "bytes": 447600,
+      "previewBytes": 40867,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/61-cygni-a-sky-image.jpg",
+      "previewUrl": "/bespoke/61-cygni-a-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-ff07e86c-7f94-43d5-b874-362f6192da76.png",
+      "sourceSha256": "899708aa9aa70e4be16ab7a7e401205dbf5a512df67ea55921ee7ce10250a5f2",
+      "sha256": "feb32ab0aca7d66a8fb2e7e48cb0a14164b69234942f9bb5075fe05ca4085497",
+      "previewSha256": "613491a21c6093c74db316fc0c5a7ec4fda02ead7b618cb24001818ce762652d",
+      "bytes": 96563,
+      "previewBytes": 18333,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+        "brightCoreWidths": [
+          664,
+          664,
+          662
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+      }
+    }
+  },
+  "61-cygni-b": {
+    "id": "61-cygni-b",
+    "name": "61 Cygni B",
+    "kind": "star",
+    "aliases": [
+      "61 Cygni B",
+      "61 Cyg B",
+      "GJ 820 B",
+      "Gl 820 B",
+      "HD 201092"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "61 Cygni B is the southern fainter K7V component in the 2025-01-10 Gaia portrait. Component aliases are separate; catalogue binary fields remain unchanged.",
+    "nativeSurface": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
+    "measured": [
+      "Kervella2008 CHARA/FLUOR K-prime interferometry limb-darkened angular diameters A1.775±0.013mas/B1.581±0.022mas. Disc size measurement does not resolve gas-cell geography.",
+      "Gaia special calibration image observed2025-01-10, released2025-01-15. North up/east left, A north of B. False colour represents intensity only; diffraction and background points are not photospheric structure or planets."
+    ],
+    "modelled": [
+      "Kervella2008 radii A0.665±0.005/B0.595±0.008Rsun from angular size and adopted parallax. BVRI surface-brightness temperatures A4400±100/B4040±80K, equations10/11. K-band limb-darkening lookup rounded4400/4000K is not a separate temperature measurement.",
+      "Sanghi2026 Table1 adopts distinct references: radii0.667±0.005/0.594±0.008Rsun and Soubiran temperatures4398±34/4174±47K. These are alternative reference histories; preserved catalogue values not replaced.",
+      "Sanghi2026 Table1 GaiaDR3 component parallaxes285.9949±0.0599/286.0054±0.0289mas; distances3.49624/3.49607pc. Current exhaustive nearest20 ranking remains open.",
+      "September2026 candidate third companion has broad model constraints about8±3MJup and8±3AU; host A versus B unresolved and confirmation required. Not inserted as a confirmed planet.",
+      "Broad hydrogen/helium partly ionized photospheric gas context, not measured bulk fractions or a chemical map."
+    ],
+    "unknown": [
+      "Resolved convective cells, magnetic patch locations, calibrated visible colour/exposure, exact observer epoch and viewing direction.",
+      "Confirmed third companion and host identity; exhaustive current nearest20 boundary."
+    ],
+    "assumed": [
+      "Independent invented gas convection and sparse magnetic patches, no observed Sun or other body map reuse, no solid ground or survivable landing.",
+      "Conceptual free camera at2photosphericradii, nominal120degree horizontal FOV and angular60degrees. Colour, spectral transfer, exposure and registration remain approximate. Binary companion outside arbitrary viewing direction, not dated geometry."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/0806.4049",
+        "title": "Kervella et al.2008, CHARA radii and BVRI surface-brightness temperatures",
+        "publicationDate": "2008-06-25"
+      },
+      {
+        "url": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+        "title": "ESA/Gaia/DPAC2025, final61Cygni calibration image",
+        "publicationDate": "2025-01-15"
+      },
+      {
+        "url": "https://arxiv.org/html/2609.32893v1",
+        "title": "Sanghi et al.2026, candidate third companion with unresolved host",
+        "publicationDate": "2026-09-26"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/61-cygni-gaia-native.png",
+        "source": "https://www.cosmos.esa.int/documents/29201/18625858/2024-10-14_SIF_61Cyg.png/043a4d36-adf2-2510-fe6b-8c2922f74ef7?t=1734512442613",
+        "sourcePage": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+        "label": "NATIVE GAIA BINARY IMAGE · INTENSITY FALSE COLOUR",
+        "credit": "ESA/Gaia/DPAC; full Gaia collaboration.",
+        "terms": "CC BY-SA3.0IGO; original publisher image copied unchanged, shared under the original terms.",
+        "termsUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+        "publicationDate": "2025-01-15",
+        "observationDate": "2025-01-10",
+        "tier": "measured",
+        "sha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+        "bytes": 176033,
+        "description": "Native special Gaia calibration image: northern brighter A and southern fainter B, north up/east left. Intensity-only false colour, diffraction spikes and background stars; not calibrated visible colour or resolved photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "61 Cygni B",
+      "radiusSun": 0.595,
+      "temperatureK": 4040,
+      "distanceAU": 0.005534056040544968,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 59.99999999999999,
+      "centreDiscWidthFraction": 0.3333333333333334,
+      "irradianceEarth": 2774.3867188273152,
+      "approximateSrgb": [
+        1,
+        0.8110039183292141,
+        0.6584943167766204
+      ],
+      "limits": "Hypothetical camera2photosphericradii, no ground/survivable landing; nominal120degreeFOV, colour/exposure/spectral transfer/registration approximate. Bright cores 644/644/644px versus557.333px geometric target, uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "cyg61BBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented stellar gas intensity map; no measured longitude frame.",
+      "coverage": "All convection and magnetic patch morphology imagined.",
+      "url": "/bespoke/61-cygni-b-surface-map.jpg",
+      "previewUrl": "/bespoke/61-cygni-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-128a1d59-e94e-4874-a783-a9c6b27fecdf.png",
+      "sourceSha256": "ebc31582fd4eeac7d0689ca73537878e49719faddf4c728f90fb9f3e3db41a06",
+      "sha256": "d9832610e1dcf2ed8bec3a07dd956fc287344bd77948a2a34e4150850c81a9ec",
+      "previewSha256": "a4dfe4187fdacfead040a6a7d2ce2fa59242fd2b31104eeb39647887659b30ba",
+      "bytes": 428769,
+      "previewBytes": 43138,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/61-cygni-b-sky-image.jpg",
+      "previewUrl": "/bespoke/61-cygni-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-aa993dbf-040e-42ce-ab59-f35598d1306c.png",
+      "sourceSha256": "cd3bbaad5b1a34b6569b8c9bb813617bb209e5ba839df3e186eb7f6d8899bd30",
+      "sha256": "5c28248430b329174f312c1d9dadd2aa215f3ed79616d9ff0e4bb9c45e338335",
+      "previewSha256": "c2b6ad748aafd76061040ccf6883ea2c5f4677032aa4ef1f757d3a83622b1de7",
+      "bytes": 83612,
+      "previewBytes": 17121,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+        "brightCoreWidths": [
+          644,
+          644,
+          644
+        ],
+        "geometricTargetPixels": 557.3333333333335,
+        "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+      }
+    }
   }
 };
 
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;
-  return Object.values(BODY_VISUALS).find(v => v.aliases.some(name => normalize(name) === normalize(body.name))) ?? null;
+  const catalog = body.catalog ?? body.star ?? body;
+  const names = [body.name, catalog.hd && `HD ${catalog.hd}`, catalog.gl].filter(Boolean);
+  for (const name of names) {
+    const visual = Object.values(BODY_VISUALS).find(v => v.aliases.some(alias => normalize(alias) === normalize(name)));
+    if (visual) return visual;
+  }
+  return null;
 }
 export const BESPOKE_TEXTURES = Object.fromEntries(Object.values(BODY_VISUALS).filter(v => v.surfaceMap).map(v => [v.surfaceMap.key, v.surfaceMap]));

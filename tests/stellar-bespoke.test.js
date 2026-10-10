@@ -82,7 +82,8 @@ test('Luyten binary aliases choose distinct photospheres and keep inverse-model 
   const a=bodyVisualFor({name:'Gliese 65A'}),b=bodyVisualFor({name:'G 272-61 B'});
   assert.equal(a.id,'luyten-a-star');assert.equal(b.id,'luyten-b-star');
   assert.equal(bodyVisualFor({name:'BL Cet'}),a);assert.equal(bodyVisualFor({name:'UV Ceti'}),b);
-  assert.notEqual(a.surfaceMap.sha256,b.surfaceMap.sha256);assert.notEqual(a.skyImage.sha256,b.skyImage.sha256);
+  assert.notEqual(a.surfaceMap.sha256,b.surfaceMap.sha256);
+assert.notEqual(a.skyImage.sha256,b.skyImage.sha256);
   for(const visual of[a,b]){assert.match(visual.unknown.join(' '),/binary-aware/);assert.match(visual.assumed.join(' '),/no solid ground/);assert.match(visual.modelled.join(' '),/not independent Teff/);assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg-60)<1e-10);assert.equal(visual.contextImages[0].observationDate,'2007-08-29');}
   assert.equal(bodyVisualFor({name:'Luhman 16A'}),null);
   const model=buildStarSystem({star:{id:'a',name:'Gliese 65A',x:1,y:0,z:0,distLy:8.7,spect:'M5.5V',lum:.00147},planets:[]});
@@ -141,4 +142,15 @@ test('EZ Aquarii primary illustration preserves historical component convention 
  assert.match(v.identityNote,/unresolved system/);assert.match(v.assumed.join(' '),/not measured/);
  assert.match(v.contextImages[0].description,/not a spatial photograph/);assert.equal(v.contextImages[0].observationDate,null);
  assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});
+
+test('61 Cygni components retain separate skins and recent Gaia observational context',()=>{
+ const a=bodyVisualFor({name:'61 Cyg A'}),b=bodyVisualFor({name:'61 Cyg B'});
+ assert.equal(a.id,'61-cygni-a');assert.equal(b.id,'61-cygni-b');
+ assert.equal(bodyVisualFor({name:'HD 201091'}),a);assert.equal(bodyVisualFor({name:'HD 201092'}),b);
+ assert.notEqual(a.surfaceMap.sha256,b.surfaceMap.sha256);
+ assert.equal(bodyVisualFor({name:'61 Cyg',catalog:{hd:201091,gl:'Gl 820A'}}),a);
+ assert.equal(bodyVisualFor({name:'61 Cyg',catalog:{hd:201092,gl:'Gl 820B'}}),b);
+ assert.equal(bodyVisualFor({name:'61 Cyg'}),null);
+ for(const v of[a,b]){assert.equal(v.contextImages[0].observationDate,'2025-01-10');assert.match(v.contextImages[0].terms,/CC BY-SA/);assert.match(v.nativeSurface,/host A versus B unresolved/);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);}
 });

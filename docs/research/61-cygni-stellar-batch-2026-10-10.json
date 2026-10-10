@@ -1,0 +1,251 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": [
+      {
+        "id": "61-cygni-a",
+        "kind": "map",
+        "prompt": "Use case: scientific-educational. Asset type: unique stellar intensity texture for Fidelity. Create an independent grayscale equirectangular photospheric gas map for 61-cygni-a, a 4400 K K dwarf of radius 0.665 solar radii. Exact 2:1 landscape aspect ratio. Full frame planar latitude-longitude map, seamless east-west edges; no sphere, no perspective, no limb darkening or global lighting gradients. Fine mottled convective gas intensity, a few irregular subtle darker magnetic patches, all morphology invented; mostly hydrogen/helium partly ionized gas with cool-star molecular opacity. Independent morphology, no copied observed Sun or other star map. Not terrain, no rock, lava, solid ground, field lines, labels, borders or text. Moderate grayscale contrast for emissive tinting in app; not calibrated observation.",
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4387b1f2-4896-406d-b7df-7dbe80555e82.png"
+      },
+      {
+        "id": "61-cygni-a",
+        "kind": "sky",
+        "prompt": "Use case: scientific-educational. Asset type: hypothetical near-photosphere observer scene for Fidelity. Independent conceptual 61-cygni-a 4400 K K dwarf, 0.665 solar radii. Exact 16:9 landscape image. Camera freely floating at twice the stellar photospheric radius from centre, facing the star. Geometric angular diameter 60 degrees at nominal horizontal field of view120 degrees: circular bright photospheric core should occupy exactly one third of full image width, centered, with only a thin subtle glow outside it. Black space around circle. Warm ivory softly amber emissive gas appearance, less orange hue; fine invented gas convection and a few sparse dark magnetic patches, not lava or rock. Lower exposure preserves gas intensity details. Hydrogen/helium partly ionized photosphere, no solid ground, landing, foreground, clouds like a planet, spacecraft, horizons, field lines, text or labels. Binary companion outside arbitrary viewing direction; no unconfirmed planet. Physically motivated artistic colour/exposure, not calibrated real-colour imagery, no epoch-registered spots. Never copy the Sun or another body's map.",
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ff07e86c-7f94-43d5-b874-362f6192da76.png"
+      },
+      {
+        "id": "61-cygni-b",
+        "kind": "map",
+        "prompt": "Use case: scientific-educational. Asset type: unique stellar intensity texture for Fidelity. Create an independent grayscale equirectangular photospheric gas map for 61-cygni-b, a 4040 K K dwarf of radius 0.595 solar radii. Exact 2:1 landscape aspect ratio. Full frame planar latitude-longitude map, seamless east-west edges; no sphere, no perspective, no limb darkening or global lighting gradients. Fine mottled convective gas intensity, a few irregular subtle darker magnetic patches, all morphology invented; mostly hydrogen/helium partly ionized gas with cool-star molecular opacity. Independent morphology, no copied observed Sun or other star map. Not terrain, no rock, lava, solid ground, field lines, labels, borders or text. Moderate grayscale contrast for emissive tinting in app; not calibrated observation.",
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-128a1d59-e94e-4874-a783-a9c6b27fecdf.png"
+      },
+      {
+        "id": "61-cygni-b",
+        "kind": "sky",
+        "prompt": "Use case: scientific-educational. Asset type: hypothetical near-photosphere observer scene for Fidelity. Independent conceptual 61-cygni-b 4040 K K dwarf, 0.595 solar radii. Exact 16:9 landscape image. Camera freely floating at twice the stellar photospheric radius from centre, facing the star. Geometric angular diameter 60 degrees at nominal horizontal field of view120 degrees: circular bright photospheric core should occupy exactly one third of full image width, centered, with only a thin subtle glow outside it. Black space around circle. Warm ivory softly amber emissive gas appearance, slightly warmer orange hue; fine invented gas convection and a few sparse dark magnetic patches, not lava or rock. Lower exposure preserves gas intensity details. Hydrogen/helium partly ionized photosphere, no solid ground, landing, foreground, clouds like a planet, spacecraft, horizons, field lines, text or labels. Binary companion outside arbitrary viewing direction; no unconfirmed planet. Physically motivated artistic colour/exposure, not calibrated real-colour imagery, no epoch-registered spots. Never copy the Sun or another body's map.",
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-aa993dbf-040e-42ce-ab59-f35598d1306c.png"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "id": "61-cygni-a",
+      "name": "61 Cygni A",
+      "kind": "star",
+      "aliases": [
+        "61 Cygni A",
+        "61 Cyg A",
+        "GJ 820 A",
+        "Gl 820 A",
+        "HD 201091"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "61 Cygni A is the northern brighter K5V component in the 2025-01-10 Gaia portrait. Component aliases are separate; catalogue binary fields remain unchanged.",
+      "nativeSurface": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
+      "measured": [
+        "Kervella2008 CHARA/FLUOR K-prime interferometry limb-darkened angular diameters A1.775±0.013mas/B1.581±0.022mas. Disc size measurement does not resolve gas-cell geography.",
+        "Gaia special calibration image observed2025-01-10, released2025-01-15. North up/east left, A north of B. False colour represents intensity only; diffraction and background points are not photospheric structure or planets."
+      ],
+      "modelled": [
+        "Kervella2008 radii A0.665±0.005/B0.595±0.008Rsun from angular size and adopted parallax. BVRI surface-brightness temperatures A4400±100/B4040±80K, equations10/11. K-band limb-darkening lookup rounded4400/4000K is not a separate temperature measurement.",
+        "Sanghi2026 Table1 adopts distinct references: radii0.667±0.005/0.594±0.008Rsun and Soubiran temperatures4398±34/4174±47K. These are alternative reference histories; preserved catalogue values not replaced.",
+        "Sanghi2026 Table1 GaiaDR3 component parallaxes285.9949±0.0599/286.0054±0.0289mas; distances3.49624/3.49607pc. Current exhaustive nearest20 ranking remains open.",
+        "September2026 candidate third companion has broad model constraints about8±3MJup and8±3AU; host A versus B unresolved and confirmation required. Not inserted as a confirmed planet.",
+        "Broad hydrogen/helium partly ionized photospheric gas context, not measured bulk fractions or a chemical map."
+      ],
+      "unknown": [
+        "Resolved convective cells, magnetic patch locations, calibrated visible colour/exposure, exact observer epoch and viewing direction.",
+        "Confirmed third companion and host identity; exhaustive current nearest20 boundary."
+      ],
+      "assumed": [
+        "Independent invented gas convection and sparse magnetic patches, no observed Sun or other body map reuse, no solid ground or survivable landing.",
+        "Conceptual free camera at2photosphericradii, nominal120degree horizontal FOV and angular60degrees. Colour, spectral transfer, exposure and registration remain approximate. Binary companion outside arbitrary viewing direction, not dated geometry."
+      ],
+      "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/0806.4049",
+          "title": "Kervella et al.2008, CHARA radii and BVRI surface-brightness temperatures",
+          "publicationDate": "2008-06-25"
+        },
+        {
+          "url": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+          "title": "ESA/Gaia/DPAC2025, final61Cygni calibration image",
+          "publicationDate": "2025-01-15"
+        },
+        {
+          "url": "https://arxiv.org/html/2609.32893v1",
+          "title": "Sanghi et al.2026, candidate third companion with unresolved host",
+          "publicationDate": "2026-09-26"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/61-cygni-gaia-native.png",
+          "source": "https://www.cosmos.esa.int/documents/29201/18625858/2024-10-14_SIF_61Cyg.png/043a4d36-adf2-2510-fe6b-8c2922f74ef7?t=1734512442613",
+          "sourcePage": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+          "label": "NATIVE GAIA BINARY IMAGE · INTENSITY FALSE COLOUR",
+          "credit": "ESA/Gaia/DPAC; full Gaia collaboration.",
+          "terms": "CC BY-SA3.0IGO; original publisher image copied unchanged, shared under the original terms.",
+          "termsUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+          "publicationDate": "2025-01-15",
+          "observationDate": "2025-01-10",
+          "tier": "measured",
+          "sha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+          "bytes": 176033,
+          "description": "Native special Gaia calibration image: northern brighter A and southern fainter B, north up/east left. Intensity-only false colour, diffraction spikes and background stars; not calibrated visible colour or resolved photospheric geography."
+        }
+      ],
+      "skyModel": {
+        "star": "61 Cygni A",
+        "radiusSun": 0.665,
+        "temperatureK": 4400,
+        "distanceAU": 0.00618512145707967,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "cyg61ABespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented stellar gas intensity map; no measured longitude frame.",
+        "coverage": "All convection and magnetic patch morphology imagined."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+          "brightCoreWidths": [
+            664,
+            664,
+            662
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-4387b1f2-4896-406d-b7df-7dbe80555e82.png",
+        "skyImage": "exec-ff07e86c-7f94-43d5-b874-362f6192da76.png"
+      }
+    },
+    {
+      "id": "61-cygni-b",
+      "name": "61 Cygni B",
+      "kind": "star",
+      "aliases": [
+        "61 Cygni B",
+        "61 Cyg B",
+        "GJ 820 B",
+        "Gl 820 B",
+        "HD 201092"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "61 Cygni B is the southern fainter K7V component in the 2025-01-10 Gaia portrait. Component aliases are separate; catalogue binary fields remain unchanged.",
+      "nativeSurface": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
+      "measured": [
+        "Kervella2008 CHARA/FLUOR K-prime interferometry limb-darkened angular diameters A1.775±0.013mas/B1.581±0.022mas. Disc size measurement does not resolve gas-cell geography.",
+        "Gaia special calibration image observed2025-01-10, released2025-01-15. North up/east left, A north of B. False colour represents intensity only; diffraction and background points are not photospheric structure or planets."
+      ],
+      "modelled": [
+        "Kervella2008 radii A0.665±0.005/B0.595±0.008Rsun from angular size and adopted parallax. BVRI surface-brightness temperatures A4400±100/B4040±80K, equations10/11. K-band limb-darkening lookup rounded4400/4000K is not a separate temperature measurement.",
+        "Sanghi2026 Table1 adopts distinct references: radii0.667±0.005/0.594±0.008Rsun and Soubiran temperatures4398±34/4174±47K. These are alternative reference histories; preserved catalogue values not replaced.",
+        "Sanghi2026 Table1 GaiaDR3 component parallaxes285.9949±0.0599/286.0054±0.0289mas; distances3.49624/3.49607pc. Current exhaustive nearest20 ranking remains open.",
+        "September2026 candidate third companion has broad model constraints about8±3MJup and8±3AU; host A versus B unresolved and confirmation required. Not inserted as a confirmed planet.",
+        "Broad hydrogen/helium partly ionized photospheric gas context, not measured bulk fractions or a chemical map."
+      ],
+      "unknown": [
+        "Resolved convective cells, magnetic patch locations, calibrated visible colour/exposure, exact observer epoch and viewing direction.",
+        "Confirmed third companion and host identity; exhaustive current nearest20 boundary."
+      ],
+      "assumed": [
+        "Independent invented gas convection and sparse magnetic patches, no observed Sun or other body map reuse, no solid ground or survivable landing.",
+        "Conceptual free camera at2photosphericradii, nominal120degree horizontal FOV and angular60degrees. Colour, spectral transfer, exposure and registration remain approximate. Binary companion outside arbitrary viewing direction, not dated geometry."
+      ],
+      "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/0806.4049",
+          "title": "Kervella et al.2008, CHARA radii and BVRI surface-brightness temperatures",
+          "publicationDate": "2008-06-25"
+        },
+        {
+          "url": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+          "title": "ESA/Gaia/DPAC2025, final61Cygni calibration image",
+          "publicationDate": "2025-01-15"
+        },
+        {
+          "url": "https://arxiv.org/html/2609.32893v1",
+          "title": "Sanghi et al.2026, candidate third companion with unresolved host",
+          "publicationDate": "2026-09-26"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/61-cygni-gaia-native.png",
+          "source": "https://www.cosmos.esa.int/documents/29201/18625858/2024-10-14_SIF_61Cyg.png/043a4d36-adf2-2510-fe6b-8c2922f74ef7?t=1734512442613",
+          "sourcePage": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+          "label": "NATIVE GAIA BINARY IMAGE · INTENSITY FALSE COLOUR",
+          "credit": "ESA/Gaia/DPAC; full Gaia collaboration.",
+          "terms": "CC BY-SA3.0IGO; original publisher image copied unchanged, shared under the original terms.",
+          "termsUrl": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+          "publicationDate": "2025-01-15",
+          "observationDate": "2025-01-10",
+          "tier": "measured",
+          "sha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+          "bytes": 176033,
+          "description": "Native special Gaia calibration image: northern brighter A and southern fainter B, north up/east left. Intensity-only false colour, diffraction spikes and background stars; not calibrated visible colour or resolved photospheric geography."
+        }
+      ],
+      "skyModel": {
+        "star": "61 Cygni B",
+        "radiusSun": 0.595,
+        "temperatureK": 4040,
+        "distanceAU": 0.005534056040544968,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "cyg61BBespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented stellar gas intensity map; no measured longitude frame.",
+        "coverage": "All convection and magnetic patch morphology imagined."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+          "brightCoreWidths": [
+            644,
+            644,
+            644
+          ],
+          "geometricTargetPixels": 557.3333333333335,
+          "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-128a1d59-e94e-4874-a783-a9c6b27fecdf.png",
+        "skyImage": "exec-aa993dbf-040e-42ce-ab59-f35598d1306c.png"
+      }
+    }
+  ],
+  "nativeAssessment": [
+    "Recent Gaia actual binary imagery prioritized; unresolved photospheres require independent conceptual maps.",
+    "Gaia image filename mentions2024-10-14 but primary caption explicitly verifies2025-01-10 observation; filename not used as epoch.",
+    "CHARA PDF direct TLS failure and publisher403 documented; original arXivPDF downloaded and hashed. PDF template header2018 not used as publication date; arXivsubmission2008-06-25."
+  ]
+}

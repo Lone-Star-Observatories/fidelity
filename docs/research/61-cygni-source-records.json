@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://www.cosmos.esa.int/web/gaia/iow_20250115",
+    "file": "data/research-sources/61cyg-gaia-2025.html",
+    "bytes": 180152,
+    "sha256": "843582b6f967e24c66ad5127cfc24f6027a7c32344141e31879b766ca2922d5f",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://www.cosmos.esa.int/documents/29201/18625858/2024-10-14_SIF_61Cyg.png/043a4d36-adf2-2510-fe6b-8c2922f74ef7?t=1734512442613",
+    "file": "data/research-sources/61cyg-gaia-2025.png",
+    "bytes": 176033,
+    "sha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/pdf/0806.4049",
+    "file": "data/research-sources/61cyg-kervella-2008.pdf",
+    "bytes": 351434,
+    "sha256": "5cd8e7d402088ecb525afb3a5bef902056112c1dd08f9e2db96dda83d7f2a4c6",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2609.32893v1",
+    "file": "data/research-sources/61cyg-candidate-2026.html",
+    "bytes": 470145,
+    "sha256": "714a4873e53586d32905307736bc34a6b3efd9551282262a60ec5ac59f776fc8",
+    "retrieved": "2026-10-10"
+  }
+]
