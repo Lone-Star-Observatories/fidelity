@@ -72,8 +72,8 @@ function dipoleShell(L1, L2, color, opacity) {
 
 export function vanAllen() {
   return [
-    dipoleShell(...VAN_ALLEN.inner, 0xff6644, 0.16), // protons
-    dipoleShell(...VAN_ALLEN.outer, 0x4499ff, 0.12), // electrons
+    dipoleShell(...VAN_ALLEN.inner, 0xff6644, 0.09), // protons
+    dipoleShell(...VAN_ALLEN.outer, 0x4499ff, 0.07), // electrons
   ];
 }
 

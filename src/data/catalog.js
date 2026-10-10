@@ -94,3 +94,28 @@ export async function fetchSmallBodies() {
   if (snapshot) return snapshot.smallbodies ?? null;
   try { return await get('/api/smallbodies'); } catch { return null; }
 }
+
+/** Every active Earth satellite (compact CelesTrak GP rows). */
+export async function fetchSatellites() {
+  if (snapshot) return snapshot.satellites ?? null;
+  try { return await get('/api/satellites'); } catch { return null; }
+}
+
+/** SATCAT record for one satellite. */
+export async function fetchSatelliteDetail(norad) {
+  if (snapshot) return snapshot.satcat?.[norad] ?? null;
+  try { return await get(`/api/satellites/${norad}`); } catch { return null; }
+}
+
+/** A live feed: images → { url, time, credit }; JSON feeds → { data, time, credit }. */
+export async function fetchFeed(id, kind) {
+  if (snapshot) return null; // live feeds need the local backend
+  if (kind === 'json') { // not memoised: live data
+    const r = await fetch(`/api/feed/${id}`);
+    if (!r.ok) throw new Error(`feed ${id}: HTTP ${r.status}`);
+    return r.json();
+  }
+  const res = await fetch(`/api/feed/${id}`);
+  if (!res.ok) throw new Error(`feed ${id}: HTTP ${res.status}`);
+  return { url: URL.createObjectURL(await res.blob()), time: res.headers.get('x-feed-time'), credit: decodeURIComponent(res.headers.get('x-feed-credit') || '') };
+}

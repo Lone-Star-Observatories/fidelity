@@ -16,6 +16,8 @@ import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
+import { createSatellitePanel } from './panels/satellite.js';
+import { POP_COLORS } from './views/system/belts.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -35,7 +37,7 @@ let navRadius = 25;
 const system = createSystemView($('system-view'), {
   clock,
   onSelect: (id) => go({ level: 'system', system: currentSystem, body: id }),
-  onFrame: (f) => { if (route.level === 'system') lastFrame = f; },
+  onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
 const planetView = createPlanetView($('planet-view'));
@@ -67,7 +69,7 @@ LEVEL_BUTTONS.forEach(([id, label, c], i) => {
 });
 const railSubs = $('rail-subviews');
 for (const [id, label] of SUB_BUTTONS) {
-  const b = h('button', { className: `rail-btn sub${['star', 'planet', 'moon', 'object'].includes(id) ? '' : ' dormant'}` }, label);
+  const b = h('button', { className: 'rail-btn sub' }, label);
   b.dataset.sub = id;
   b.addEventListener('click', () => {
     // Star sub-view currently means "focus the star inside System View".
@@ -81,6 +83,10 @@ for (const [id, label] of SUB_BUTTONS) {
       const pick = b ?? m?.bodies.find((x) => x.id === 'earth') ?? m?.bodies.find((x) => !(x.starLike || x.kind === 'star'));
       if (pick) return go({ level: 'planet', system: currentSystem, body: pick.id });
       return toast('NO KNOWN PLANETS IN THIS SYSTEM');
+    }
+    if (id === 'satellite') {
+      if (currentSystem !== 'sol') return toast('SATELLITE TRACKING COVERS SECTOR 001 ONLY');
+      return go({ level: 'satellite', system: 'sol', body: route.level === 'satellite' ? route.body : '25544' });
     }
     if (id === 'moon' || id === 'object') {
       const m = system.model;
@@ -98,7 +104,7 @@ for (const [id, label] of SUB_BUTTONS) {
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -161,7 +167,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('zones', 'ZONES')),
+  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES')),
   h('div', { className: 'bar-fill' }),
 );
 // Standalone build (e.g. a shared preview) has no backend, so no Horizons proxy.
@@ -216,9 +222,20 @@ function renderLegend() {
     h('p', { className: 'note', textContent: 'Every value is tagged. Hover a badge for what it means.' }));
 }
 
+const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
+
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
 
 // ---- system panels ----------------------------------------------------------------------
+const KEY = [['main', 'MAIN BELT', '2.1–3.3 AU'], ['neo', 'NEAR-EARTH ASTEROIDS', 'CROSS OR APPROACH EARTH\'S ORBIT'], ['trojan', 'JUPITER TROJANS', 'AT JUPITER\'S L4 / L5'],
+  ['centaur', 'CENTAURS', 'BETWEEN JUPITER AND NEPTUNE'], ['tno', 'TRANS-NEPTUNIAN OBJECTS', 'KUIPER BELT AND BEYOND']];
+function colourKey() {
+  return h('div', { className: 'colour-key' }, KEY.map(([k, label, where]) => h('div', { className: 'ck-row' },
+    h('span', { className: 'ck-dot', style: `background:#${POP_COLORS[k].toString(16).padStart(6, '0')}` }),
+    h('span', { textContent: label }), h('span', { className: 'ck-sub', textContent: where }))),
+  h('p', { className: 'note', textContent: 'Every dot is a real object on its measured orbit (JPL Small-Body Database), moving with the clock. Satellite colours are listed under EARTH ORBIT.' }));
+}
+
 function bodyGroups(m) {
   if (!m.isSol) return [['BODIES', m.bodies]];
   return [
@@ -244,6 +261,8 @@ function renderSystemPanel() {
       m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au, s.centre, s.localKm); })),
       pill('NAVIGATION ▸', () => go({ level: 'navigation', system: m.id }))),
     ...(m.isSol ? [
+      h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
+      h('h3', { textContent: 'EARTH ORBIT · SATELLITES' }), satPanel.searchSection(),
       h('h3', { textContent: 'EPHEMERIS' }),
       (live.eph = h('p', { className: 'note' })),
       (live.range = h('p', { className: 'warn' })),
@@ -317,6 +336,7 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
     b.note ? h('p', { className: 'note', textContent: b.note }) : null,
+    ...(m.isSol && b.id === 'earth' ? [h('h3', { textContent: 'SATELLITES' }), satPanel.searchSection()] : []),
     renderLegend(),
   );
 }
@@ -467,7 +487,10 @@ async function ensureSystem(id) {
     }
   }
   currentSystem = id;
-  if (id === 'sol') fetchSmallBodies().then((d) => { const c = system.setBelts(d); if (c) beltCounts = c; });
+  if (id === 'sol') {
+    fetchSmallBodies().then((d) => { const c = system.setBelts(d); if (c) beltCounts = c; });
+    satPanel.load();
+  }
   system.decorativeSky();
   fetchSky(id).then((s) => { if (system.model?.id === id) system.setSky(s.stars); }).catch(() => {});
   return true;
@@ -543,14 +566,14 @@ function tick() {
     }
   }
 }
-setInterval(tick, 200);
+setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); }, 200);
 
 // ---- edge beacon (per animation frame) ---------------------------------------------------
 (function beaconLoop() {
   requestAnimationFrame(beaconLoop);
   const el = $('edge-beacon');
   const b = lastFrame?.beacon;
-  const active = ['system', 'navigation', 'galaxy'].includes(route.level) && $('offline').hidden;
+  const active = ['system', 'navigation', 'galaxy', 'satellite'].includes(route.level) && $('offline').hidden;
   if (!active || !b || b.visible || b.atFocus) { el.hidden = true; return; }
   let { x, y } = b;
   if (b.behind) { x = -x; y = -y; }
@@ -576,6 +599,20 @@ onRoute(async (r) => {
   route = r;
   lastFrame = null;
   syncRail();
+  if (r.level !== 'satellite') satPanel.closeViewer();
+  if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
+  if (r.level === 'satellite') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'satellite' || prev.body !== r.body) warp();
+    const b = await satPanel.show(r.body);
+    if (route !== r) return;
+    $('view-title').textContent = `SATELLITE VIEW · ${b ? b.name : r.body}`;
+    syncBeacon();
+    return;
+  }
   if (r.level === 'system') {
     nav.hide();
     starView.hide();

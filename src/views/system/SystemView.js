@@ -20,6 +20,8 @@ import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { ELEMENTS } from '../../astro/kepler.js';
 import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
+import { createSatelliteLayer } from './satellites.js';
+import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } from './zones.js';
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
@@ -167,6 +169,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     group.add(tilt);
     let mesh, clouds = null;
     if (body.marker) return addMarker(body);
+    if (body.kind === 'satellite') return addSatelliteNode(body);
     const placeholder = planetTexture(isStar(body) ? { id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
     if (isStar(body)) {
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), starMaterial(placeholder, body.color, body.skin?.recolour));
@@ -233,8 +236,45 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     nodes[body.id] = { body, group, tilt, mesh, clouds: null, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: 0xffcc66 };
   }
 
+  // A spacecraft: a representative model (bus, solar wings, antenna) inside a unit sphere.
+  function addSatelliteNode(body) {
+    const group = new THREE.Group(), tilt = new THREE.Group();
+    const model3d = new THREE.Group();
+    const foil = new THREE.MeshStandardMaterial({ color: 0xd4a94f, metalness: 0.6, roughness: 0.35 });
+    const cells = new THREE.MeshStandardMaterial({ color: 0x1d2f6b, metalness: 0.3, roughness: 0.4, side: THREE.DoubleSide });
+    const white = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 0.2, roughness: 0.6 });
+    model3d.add(new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.3, 0.3), foil));
+    for (const s of [-1, 1]) {
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.01, 0.26), cells);
+      wing.position.set(s * 0.5, 0, 0);
+      model3d.add(wing);
+    }
+    const dish = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.02, 0.06, 24), white);
+    dish.position.set(0, -0.2, 0);
+    model3d.add(dish);
+    const mesh = model3d;
+    mesh.userData.id = body.id;
+    tilt.add(mesh); group.add(tilt);
+    const pipGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3));
+    group.add(new THREE.Points(pipGeo, new THREE.PointsMaterial({ size: 5, sizeAttenuation: false, color: 0xffd966 })));
+    const label = makeLabel(body);
+    group.add(label);
+    root.add(group);
+    for (const m of model3d.children) { m.userData.id = body.id; pickables.push(m); }
+    nodes[body.id] = { body, group, tilt, mesh, clouds: null, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: 0xffd966 };
+  }
+
+  /** True geocentric offset (scene axes, AU) of a satellite from SGP4; cached per jd. */
+  function satOffset(b, jd) {
+    if (b._jd === jd && b._off) return b._off;
+    const st = stateAt(b.satrec, jd);
+    b._jd = jd;
+    b._off = st ? toScene(temeToEcliptic(st.position, precessionToJ2000(jd))).multiplyScalar(1 / AU_KM) : null;
+    return b._off;
+  }
+
   // ---- zones & belts (Sol only) -----------------------------------------------------------
-  let zones = null, belts = null;
+  let zones = null, belts = null, sats = null;
   function buildZones() {
     const helio = heliosphere((v) => frameToScene(v));
     zones = {
@@ -299,6 +339,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     nodes = {};
     disposeZones();
     if (belts) { root.remove(belts.points); belts.points.geometry.dispose(); belts.points.material.dispose(); belts = null; }
+    if (sats) { root.remove(sats.points); sats.dispose(); sats = null; }
     pickables = [];
     lit = [];
     for (const tr of tracks) for (const l of [tr.a, tr.b]) { root.remove(l); l.geometry.dispose(); l.material.dispose(); }
@@ -372,10 +413,11 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   // Moon orbits: one period of true parent-relative positions, re-mapped every frame (the
   // ENHANCED compression depends on the scale mix).
   function updateMoonOrbit(node, jd) {
-    const b = node.body, P = b.moon.elements.P;
+    const b = node.body, P = b.periodDays ?? b.moon.elements.P;
+    const rel = (t) => (b.satrec ? (satOffsetAt(b, t) ?? new THREE.Vector3()) : toScene(moonOffsetKm(b.moon, t)).multiplyScalar(1 / AU_KM));
     if (!node.samples || Math.abs(jd - node.orbitJd) > P / 6) {
       node.samples = [];
-      for (let k = 0; k <= 160; k++) node.samples.push(toScene(moonOffsetKm(b.moon, jd + (k / 160 - 0.5) * P)).multiplyScalar(1 / AU_KM));
+      for (let k = 0; k <= 160; k++) node.samples.push(rel(jd + (k / 160 - 0.5) * P));
       node.orbitJd = jd;
       if (!node.orbit) {
         const geo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(161 * 3), 3));
@@ -390,11 +432,12 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     node.orbit.position.copy(parent.pos);
   }
   const tmp4 = new THREE.Vector3();
+  const satOffsetAt = (b, t) => { const st = stateAt(b.satrec, t); return st ? toScene(temeToEcliptic(st.position, precessionToJ2000(t))).multiplyScalar(1 / AU_KM) : null; };
 
   function updateOrbit(node, jd) {
     const o = node.body.orbit;
     if (!o) return;
-    if (o.type === 'moon') return updateMoonOrbit(node, jd);
+    if (o.type === 'moon' || o.type === 'sgp4') return updateMoonOrbit(node, jd);
     if (o.type === 'kepler' && node.orbit) { node.orbit.position.copy(hostScene(o.host, jd)); return; }
     if (node.orbit && Math.abs(jd - node.orbitJd) < 365) return;
     const pts = o.type === 'sol'
@@ -430,6 +473,12 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (isStar(b)) return model.isSol ? v.set(0, 0, 0) : hostScene(id, jd, v);
     const o = b.orbit;
     if (o.type === 'anchor') return scenePosition(o.anchor, jd, v);
+    if (o.type === 'sgp4') {
+      const off = satOffset(b, jd);
+      if (!off) return v.copy(scenePosition('earth', jd, v));
+      localMap(nodes.earth.body, v.copy(off));
+      return v.add(scenePosition('earth', jd, tmp5));
+    }
     if (o.type === 'lagrange') return lagrangePosition(o, jd, v);
     if (o.type === 'moon') {
       toScene(moonOffsetKm(b.moon, jd), v).multiplyScalar(1 / AU_KM);
@@ -588,7 +637,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       if (n.body.locked) {
         // Tidally locked: the prime meridian (texture centre) faces the planet; spin axis = orbit normal.
         const to = tmp6.copy(nodes[n.body.parent].pos).sub(n.pos).normalize();
-        const ahead = scenePosition(id, jd + n.body.moon.elements.P / 50, tmp7).sub(n.pos);
+        const ahead = scenePosition(id, jd + (n.body.periodDays ?? n.body.moon.elements.P) / 50, tmp7).sub(n.pos);
         const up = tmp8.copy(to).negate().cross(ahead).normalize(); // r × v
         const x = to.sub(tmp9.copy(up).multiplyScalar(to.dot(up))).normalize();
         basis.makeBasis(x, up, tmp9.copy(x).cross(up));
@@ -639,6 +688,14 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     root.position.copy(focusPos).negate();
     if (zones) updateZones(jd);
     if (belts) { belts.update(jd); belts.points.visible = settings.get('belts'); }
+    if (sats && nodes.earth) {
+      sats.points.visible = settings.get('satellites');
+      sats.points.position.copy(nodes.earth.pos);
+      sats.update(jd, trueRadius(nodes.earth.body), enhancedRadius(nodes.earth.body, model.scale), scaleMix, clock.rate.days ?? 0);
+    }
+    // near plane follows the camera so 100 m spacecraft can be seen at true scale
+    const near = Math.min(1e-7, Math.max(1e-15, camera.position.length() * 1e-3));
+    if (Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
     updateTracks(jd);
     for (const id in nodes) {
@@ -672,6 +729,24 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     hide() { container.hidden = true; running = false; },
     load,
     setSky, decorativeSky,
+    /** Every active Earth satellite from /api/satellites (Sol only). */
+    setSatellites(data) {
+      if (!model?.isSol || sats || !data?.rows?.length) return null;
+      sats = createSatelliteLayer(data, renderer.getPixelRatio());
+      root.add(sats.points);
+      return sats.count;
+    },
+    /** Add (once) and return a focusable satellite body. */
+    addSatellite(body) {
+      if (!nodes[body.id]) { model.bodies.push(body); addBody(body, 0); }
+      sats?.select(body.norad);
+      return nodes[body.id].body;
+    },
+    showSatelliteCategory(c, on) { sats?.showCategory(c, on); },
+    satelliteState(id) {
+      const b = nodes[id]?.body;
+      return b?.satrec ? stateAt(b.satrec, clock.jd) : null;
+    },
     /** Small-body populations from /api/smallbodies (Sol only). */
     setBelts(data) {
       if (!model?.isSol || belts || !data?.rows?.length) return null;

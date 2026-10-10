@@ -65,6 +65,7 @@ export function createBelts(data, pixelRatio) {
     vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthWrite: false,
     uniforms: { uDt: { value: 0 }, uPixel: { value: pixelRatio }, uSize: { value: 2.2 }, uColors: { value: colors }, uShow: { value: data.populations.map(() => 1) } },
   });
+  geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1e5); // positions come from the shader
   const points = new THREE.Points(geo, mat);
   points.frustumCulled = false;
   const counts = Object.fromEntries(data.populations.map((k, i) => [k, data.rows.filter((r) => r[0] === i).length]));

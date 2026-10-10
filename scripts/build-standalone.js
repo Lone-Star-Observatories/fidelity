@@ -10,6 +10,8 @@ import { nearby, starDetail, sky, galaxyStars } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
+import { satellites, satelliteDetail } from '../server/satellites.js';
+import { FEATURED } from '../src/data/feeds.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
 
 const PLANET_KEYS = new Set(['moon', 'mars', 'pluto', 'mercury', 'jupiter', 'saturn', 'uranus', 'neptune']);
@@ -57,9 +59,14 @@ const galaxy = await galaxyStars(1500, 0);
 // belts: the bigger objects of each population, rounded (≈ 12k of the 61k orbits)
 const sbAll = await smallBodies().catch(() => null);
 const H_MAX = [18, 12.8, 13.2, 99, 99]; // neo, main, trojan, centaur, tno
+// satellites: all but the mega-constellations (1 in 20 Starlink / OneWeb kept so the shells show)
+const satAll = await satellites().catch(() => null);
+const satellitesSnap = satAll && { ...satAll, rows: satAll.rows.filter((r, i) => !['starlink', 'oneweb', 'other'].includes(satAll.categories[r[2]]) || i % 20 === 0) };
+const satcat = {};
+for (const [id] of FEATURED) { try { satcat[id] = await satelliteDetail(id); } catch { /* not active */ } }
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

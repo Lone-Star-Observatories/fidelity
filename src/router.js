@@ -2,8 +2,8 @@
 // Sector 001 beacon all work: #/system/sol, #/system/sol/earth, #/system/hyg-70666/b,
 // #/navigation/sol, #/star/hyg-32263/hyg-118441, #/planet/sol/earth, #/moon/sol/europa, #/object/sol/ceres, …
 
-export const LEVELS = ['universe', 'galaxy', 'quadrant', 'navigation', 'system', 'star', 'planet', 'moon', 'object'];
-const DETAIL = { star: 'sun', planet: 'earth', moon: 'moon', object: 'ceres' };
+export const LEVELS = ['universe', 'galaxy', 'quadrant', 'navigation', 'system', 'star', 'planet', 'moon', 'object', 'satellite'];
+const DETAIL = { star: 'sun', planet: 'earth', moon: 'moon', object: 'ceres', satellite: '25544' };
 
 export function parse(hash = location.hash) {
   const [level, system, body] = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);

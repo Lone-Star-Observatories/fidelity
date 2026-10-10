@@ -13,6 +13,8 @@ import { nearby, starDetail, sky, galaxyStars } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
+import { satellites, satelliteDetail } from './satellites.js';
+import { feed, feedList } from './feeds.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -36,6 +38,8 @@ const routes = {
   'GET /api/galaxy': async (q) => galaxyStars(q.get('maxLy') || '1500', q.get('maxAbs') || '2'),
   'GET /api/spectrum': async (q) => spectrumFor(q.get('type') || '', q.get('feh')),
   'GET /api/smallbodies': async () => smallBodies(),
+  'GET /api/satellites': async () => satellites(),
+  'GET /api/feeds': async () => feedList(),
 };
 
 /** Binary result: sent as-is instead of JSON. */
@@ -45,6 +49,13 @@ const binary = (r) => Object.assign(r, { binary: true });
 const paramRoutes = [
   [/^GET \/api\/stars\/([a-z0-9-]{1,64})$/, (m) => starDetail(m[1])],
   [/^GET \/api\/texture\/([A-Za-z]{1,32})$/, async (m) => binary(await textureResponse(m[1]))],
+  [/^GET \/api\/satellites\/(\d{1,6})$/, (m) => satelliteDetail(m[1])],
+  [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
+    const f = await feed(m[1]);
+    if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };
+    // short cache: these are live images
+    return binary({ body: f.body, type: f.type, maxAge: 300, headers: { 'x-feed-time': f.time ?? '', 'x-feed-credit': encodeURIComponent(f.credit), 'x-feed-cache': f.cache } });
+  }],
 ];
 
 async function serveStatic(req, res, pathname) {
@@ -77,7 +88,7 @@ const server = http.createServer(async (req, res) => {
     try {
       const out = await handler();
       if (out?.binary) {
-        res.writeHead(200, { 'content-type': out.type, 'cache-control': 'public, max-age=604800' });
+        res.writeHead(200, { 'content-type': out.type, 'cache-control': `public, max-age=${out.maxAge ?? 604800}`, ...out.headers });
         res.end(out.body);
       } else send(res, 200, out);
     }

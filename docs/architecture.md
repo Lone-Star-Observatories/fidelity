@@ -9,6 +9,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/binaries.js  ORB6 orbits   │
 │                                      │           │ server/textures.js  imagery       │
 │                                      │           │ server/tiff.js      USGS mosaics  │
+│                                      │           │ server/satellites.js CelesTrak    │
+│                                      │           │ server/feeds.js     live feeds    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -43,7 +45,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   JWST detections, or "not yet measured"), spectral fingerprints, the interior to scale, and
   the mass–radius diagram against composition curves.
 - **Provenance.** Each value shown in the UI carries a tier badge from `src/data/provenance.js`.
-- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`, `#/planet/<system>/<planet>`, `#/moon/sol/<moon>`, `#/object/sol/<body>`,
+- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`, `#/planet/<system>/<planet>`, `#/moon/sol/<moon>`, `#/object/sol/<body>`, `#/satellite/sol/<norad>`,
   `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`. The Sector 001 beacon is
   `#/system/sol`.
 
@@ -60,6 +62,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
+| `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
+| `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) |
+| `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
@@ -100,3 +105,13 @@ a planet's radii (GEO ring, dipole-shell Van Allen belts, Hill spheres) that are
 through the same radial compression as the moons; heliosphere and Oort cloud are heliocentric.
 Regions and Lagrange points are `marker` bodies in the Sol model, so they focus, route
 (`#/system/sol/se-l2`) and show facts like any body. BELTS and ZONES toggle them.
+
+## Satellites
+
+`src/views/system/satellites.worker.js` (inlined by Vite) runs SGP4 for the whole catalogue a
+few times a second and posts positions and velocities; `satellites.js` draws them as points,
+extrapolating along each velocity and applying the Earth-radius compression in the shader. The
+focused satellite is a real node propagated on the main thread every frame (exact at any clock
+rate), with a representative model and its orbit. TEME → J2000 uses IAU 1976 precession
+(`src/astro/sgp4.js`). The camera near plane follows its distance so 100 m spacecraft render at
+TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer.

@@ -17,6 +17,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "satellite.js": "^6.0.2",
     "three": "^0.170.0"
   },
   "devDependencies": {

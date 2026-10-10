@@ -7,11 +7,7 @@ export const ROADMAP = {
     blurb: 'Look outward from the current system: real stars within a chosen radius, systems with known planets highlighted. Select one to warp into its System View.',
     data: 'HYG / Gaia DR3 star catalogues (local), NASA Exoplanet Archive.',
   },
-  satellite: {
-    status: 'SCHEDULED · TICKET #3',
-    blurb: 'Live Earth-orbit traffic: the ISS, the geostationary ring and more.',
-    data: 'CelesTrak GP elements propagated with SGP4.',
-  },
+  satellite: { status: 'ONLINE', blurb: '', data: 'CelesTrak GP + SGP4; NOAA, NICT, NASA live feeds.' },
   object: { status: 'ONLINE', blurb: '', data: 'JPL SBDB orbits and physical data; IGRF-14; Voyager and IBEX heliosphere measurements.' },
   quadrant: {
     status: 'SCHEDULED · TICKET #4',

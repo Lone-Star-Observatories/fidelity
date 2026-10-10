@@ -60,6 +60,10 @@ ship recognises and which view will use each one.
 - **Points of interest:** the asteroid belt, Trojans and Kuiper belt from 61,000 real orbits,
   the geostationary ring, Van Allen belts tilted with Earth's magnetic pole, Lagrange points
   (with what is parked there), Hill spheres, the heliosphere and the Oort cloud.
+- **Satellites:** all ~16,700 active satellites from CelesTrak, moving by SGP4; fly to any of
+  them, read its computed telemetry, and open its live feed where one exists (GOES and
+  Himawari full-disk Earth, SDO's Sun, yesterday's Earth from Terra/Aqua/VIIRS, ISS video and
+  crew, solar wind and X-rays).
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.
