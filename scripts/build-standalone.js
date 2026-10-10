@@ -6,8 +6,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import sharp from 'sharp';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
+import { sampleTiff } from '../server/tiff.js';
 import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
 import { clusters, galaxies } from '../server/deepsky.js';
@@ -20,9 +22,6 @@ import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
 import { BODY_VISUALS, BESPOKE_TEXTURES } from '../src/data/bespoke.js';
 import { SKINS } from '../src/data/skins.js';
 import { SHAPES } from '../src/data/shapes.js';
-import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
-
-const PLANET_KEYS = new Set(['moon', 'mars', 'pluto', 'mercury', 'jupiter', 'saturn', 'uranus', 'neptune']);
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
@@ -43,27 +42,37 @@ for (const id of ['sol', 'hyg-70666']) {
 // surfaces, embedded as data URIs (smaller variants where the full map is large)
 const textures = {}, textureCredits = {};
 const SKIP_IN_PREVIEW = new Set(['venusSurface']); // not used by any view yet
-// Moon and asteroid maps are shrunk to 512 px for the preview (needs python3 + Pillow; else skipped).
-const SHRINK = new Set([...MOONS.map((m) => m.skin.map), ...SMALL_BODIES.map((b) => b.skin.map)].filter((k) => !PLANET_KEYS.has(k)));
-function shrink(buf) {
-  try {
-    return execFileSync('python3', ['-I', '-c', 'import sys,io\nfrom PIL import Image\nim=Image.open(io.BytesIO(sys.stdin.buffer.read())).convert("RGB")\nim.thumbnail((512,256))\nb=io.BytesIO();im.save(b,"JPEG",quality=82);sys.stdout.buffer.write(b.getvalue())'],
-      { input: buf, maxBuffer: 16 * 1024 * 1024 });
-  } catch { return null; }
+// Every upstream surface is a preview, not a full-resolution texture. Keep ring alpha.
+const SHRINK = new Set(Object.keys(TEXTURES).filter(key => key !== 'saturnRing'));
+async function shrink(buf) {
+  return sharp(buf).resize({ width: 512, height: 256, fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 82 }).toBuffer();
 }
 for (const [key, sources] of Object.entries(TEXTURES)) {
   if (SKIP_IN_PREVIEW.has(key)) continue;
   let url = null, buf = null;
   for (const u of [PREVIEW[key], ...sources.map((s) => s.url).reverse()].filter(Boolean)) {
-    if (sources.find((s) => s.url === u)?.tiff) { // range-sampled by the backend: use its cached copy if present
+    if (sources.find((s) => s.url === u)?.tiff) {
       buf = await fs.readFile(path.join(root, 'data/textures', `${key}.png`)).catch(() => null);
+      if (!buf) {
+        const previewPath = path.join(root, 'data/preview-textures', `${key}.png`);
+        buf = await fs.readFile(previewPath).catch(() => null);
+        if (!buf) {
+          try {
+            buf = await sampleTiff(u, 512);
+            await fs.mkdir(path.dirname(previewPath), { recursive: true });
+            await fs.writeFile(previewPath, buf);
+          } catch (error) { console.warn(`  texture ${key}: TIFF preview failed (${error.message})`); }
+        }
+      }
     } else buf = await download(u);
     if (buf) { url = u; break; }
   }
-  if (buf && SHRINK.has(key)) { buf = shrink(buf); url = 'shrunk.jpg'; }
+  const selectedSource = sources.find(s => s.url === url)
+    ?? sources.find(s => url && new URL(s.url).hostname === new URL(url).hostname) ?? sources[0];
+  if (buf && SHRINK.has(key)) { buf = await shrink(buf); url = 'shrunk.jpg'; }
   if (!buf) { console.warn(`  texture ${key}: unavailable, placeholder will be used`); continue; }
   textures[key] = `data:${url.endsWith('.png') ? 'image/png' : 'image/jpeg'};base64,${buf.toString('base64')}`;
-  textureCredits[key] = (sources.find((s) => s.url === url) ?? sources[0]).credit;
+  textureCredits[key] = selectedSource.credit;
 }
 // Local artistic textures and compressed shape previews need no upstream requests.
 for (const [key, asset] of Object.entries({ ...SKINS, ...BESPOKE_TEXTURES })) {
@@ -136,5 +145,7 @@ const js = (await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.end
 const body = html.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<script[^>]*src="[^"]*"[^>]*><\/script>/g, '').trim();
 const fonts = (html.match(/<link[^>]+fonts\.(googleapis|gstatic)[^>]*>/g) || []).join('\n');
 const out = `<title>USS Fidelity</title>\n${fonts}\n<style>\n${css}\n</style>\n${body}\n<script type="module">\n${js}\n</script>\n`;
+const previewBytes = Buffer.byteLength(out);
+if (previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
 await fs.writeFile(path.join(dist, 'fidelity.html'), out);
-console.log(`wrote dist-standalone/fidelity.html (${(out.length / 1e6).toFixed(2)} MB)`);
+console.log(`wrote dist-standalone/fidelity.html (${(previewBytes / 1e6).toFixed(2)} MB)`);

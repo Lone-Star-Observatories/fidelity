@@ -213,3 +213,5 @@ preview retains the representative craft. See `docs/assets.md` for registration 
 Bespoke batches can be added through `scripts/assets/import-body-batch.mjs` and a saved research/input manifest without regenerating previous dossiers. The importer validates aspect ratios and size budgets, then writes compressed assets and the expanded registry. Research cards expose modelled interpretations separately, including ambiguous atmosphere/activity scenarios.
 
 The Proxima b/d dossiers use full-name aliases (Proxima, Proxima Cen and Proxima Centauri) while keeping planet-letter IDs insufficient for visual selection. Neutral albedo maps and illuminated observer images share a research record but retain separate roles.
+
+The standalone builder uses build-time Sharp to resize upstream surface previews, preserves transparent rings, and can sample absent native TIFF previews into `data/preview-textures/`. That cache is distinct from normal-resolution backend imagery. Selected-source credits survive resizing. The final HTML has a 16,000,000-byte build gate; the current full catalogue artifact is verified below it and runs with networking disabled.

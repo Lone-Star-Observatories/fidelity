@@ -68,3 +68,5 @@ The user requested individual researched surface maps/details plus hypothetical 
 - Outer dwarf planets: bespoke researched maps and observer views added for Eris, Haumea and Makemake, with native Hubble context and current gas/activity caveats. Haumea physical shape/ring registration, exact stellar photometry, further moons and nearest systems remain open. See the body queue for remaining work.
 
 - Proxima b/d: individual researched maps and observer views supplied under dry rocky hypotheses, with 2025 artist context. Radius, atmosphere, true mass, composition and stellar colour calibration remain unknown or approximate; further closest planets/stars remain queued.
+
+- Full offline preview size/embedding verification completed for the present library: 9.00 MB, all 71 images decoded with networking disabled, native Ceres/Vesta included. Repeat the enforced 16 MB check as bespoke imagery grows.
