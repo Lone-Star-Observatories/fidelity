@@ -60,3 +60,7 @@ still pending; physical body-frame and dimension calibration remains required.
 ### Visual assets progress — 2026-10-10, second batch
 
 Delivered 15 additional NASA craft/class files, 5 PDS shapes with preview LODs and 8 generated exoplanet class skins. Mission IDs/NORAD aliases and focused shapes are connected to the viewer; standalone includes shape/texture previews. Still open: physical calibration and albedo registration, generic-class catalogue matching, OSIRIS geometry budget, Tiangong/New Horizons/Gaia/Euclid/JUICE and remaining craft, Deimos/Arrokoth/Haumea/Vesta/Ceres shapes, actual map upgrades, brown dwarfs and scene art. Detailed progress and limits: `docs/assets.md`.
+
+### Bespoke imagery expansion — 2026-10-10
+
+The user requested individual researched surface maps/details plus hypothetical observer skies, with generic class maps retained as fallback. Initial Ceres and confirmed Barnard b dossiers and four generated images are delivered and integrated. A 528-body initial queue is in `docs/research/bespoke-queue.json`; workflow and unresolved inventory boundaries are in `docs/research/bespoke-workflow.md`. Continue the nearest exoplanets, unpictured major moons/dwarf planets and nearest stars in verified batches. Preserve actual maps and label unknown chemistry/atmosphere scenarios. Remaining minor-planet moon inventory, current nearest-star boundary, raster stellar-size calibration and total standalone budget checks remain open, alongside the previous craft/shape/scene backlog.

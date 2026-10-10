@@ -134,3 +134,11 @@ See `docs/assets.md` for the remaining asset queue and required metadata.
 ## Additional visual library (2026-10-10)
 
 NASA mission visualizations and class models are credited individually in `src/data/models.js`; exact sources and processing are retained. PDS Small Bodies Node shape reconstructions (Gaskell Phobos, Thomas Hyperion, Stooke Amalthea/Proteus/Halley) are MODELLED, with archive labels, epochs, frames and uncertainty limits in `src/data/shapes.js`. They are historical reconstructions, not current observations. Eight OpenAI-generated exoplanet class maps are IMAGINED and documented in `src/data/skins.js`; composition/cloud choices are hypotheses. See `docs/assets.md` for remaining registration and coverage work.
+
+## Bespoke Ceres and Barnard b dossiers
+
+Ceres: NASA facts, Dawn Occator salt/brine analysis (2020) and NASA's explanation of enhanced versus natural colour. Native Dawn FC globe imagery is retained. PIA24021 is a Dawn-derived perspective rendering with enhanced colours; it is MODELLED context rather than a true-colour surface photograph. Credit NASA/JPL-Caltech/UCLA/MPS/DLR/IDA.
+
+Barnard b: Basant et al. (2025, arXiv:2503.08095) confirms the short-period system; Stefanov et al. (2025, A&A 693 L3) supplies stellar properties and reports no detected TESS transits. ESO's 2024 image is artist context credited ESO/M. Kornmesser, not a surface measurement. Generated terrain/sky is IMAGINED; measured radius, atmosphere and chemistry remain unknown. Full citations and generation metadata are in `src/data/bespoke.js`.
+
+Inventories: JPL recognized planetary satellite discovery table (retrieved 2026-10-10); NASA Exoplanet Archive pscomppars within 10 pc, sorted locally by host distance; Gaia-era 10 pc sample v2 for an initial nearest-star working list. The latter is historical and its current boundary needs review. `docs/research/` preserves selections and sources. JPL Horizons solar angular diameters from Ceres are recorded in `tests/fixtures/ceres-sun-diameter.json` to check observer geometry.

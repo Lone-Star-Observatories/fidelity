@@ -6,6 +6,8 @@ import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } 
 import { settings } from '../../settings.js';
 import { loadBodyShape, disposeModel } from '../system/models.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
+import { bodyVisualFor } from '../../data/bespoke.js';
+import { visualImageUrl } from '../../data/catalog.js';
 import { badge } from '../../data/provenance.js';
 import { dirToLatLon } from '../system/surface.js';
 import { PLANETS } from '../../data/sol.js';
@@ -121,6 +123,30 @@ export function createPlanetView(container, { onSurface } = {}) {
       pivot.add(ring);
       camera.position.z = 10;
     } else camera.position.z = 6.2;
+  }
+
+  function bespokeCards(b) {
+    const visual = bodyVisualFor(b);
+    if (!visual) return [];
+    const note = [...(visual.assumed ?? []), ...(visual.unknown ?? [])].join(' ');
+    const sources = el('div', { className: 'bespoke-sources' }, ...visual.references.map(ref =>
+      el('a', { href: ref.url, target: '_blank', rel: 'noopener noreferrer', textContent: ref.title })));
+    const result = [];
+    for (const [label, asset] of [['SURFACE HYPOTHESIS', visual.surfaceImage ?? visual.surfaceMap], ['SKY FROM THE SURFACE', visual.skyImage]]) {
+      const url = visualImageUrl(asset);
+      if (!url) continue;
+      const content = el('div', {}, el('img', { src: url, loading: 'lazy', className: 'bespoke-image', alt: `${b.name}: ${label.toLowerCase()}, hypothetical illustration` }),
+        el('p', { className: 'note', textContent: note }), el('p', { className: 'note', textContent: asset.credit }));
+      if (asset === visual.skyImage) content.append(el('p', { className: 'note', textContent:
+        `${visual.skyModel.star}: ${visual.skyModel.temperatureK} K; calculated angular diameter ${visual.skyModel.angularDiameterDeg.toFixed(3)}°. Stellar colour and size in this illustration are approximate.` }));
+      result.push(card(label, 'imagined', 'Research constrains this scenario; foreground, viewpoint and unmeasured properties are hypothetical.', content));
+    }
+    result.push(card('RESEARCH CONTEXT', 'modelled', 'Sources distinguish measurements, models and artistic assumptions.',
+      el('p', { className: 'note', textContent: visual.measured.join(' ') }),
+      ...(visual.contextImages ?? []).map(asset => el('div', {},
+        visualImageUrl(asset) ? el('img', { src: visualImageUrl(asset), loading: 'lazy', className: 'bespoke-image', alt: asset.description }) : null,
+        badge(asset.tier, asset.description), el('p', { className: 'note', textContent: `${asset.description} ${asset.credit}` }))), sources));
+    return result;
   }
 
   // ---- atmosphere --------------------------------------------------------------------------
@@ -299,7 +325,7 @@ export function createPlanetView(container, { onSurface } = {}) {
       setGlobe(b);
       current = b;
       // The mass–radius diagram is for planets; moons and small bodies are far off its scale.
-      body.replaceChildren(...[atmosphereCard(b, isSol), fingerprintCard(b, isSol), interiorCard(b, isSol), minor || !mE ? null : massRadiusCard(b, isSol)].filter(Boolean));
+      body.replaceChildren(...bespokeCards(b), ...[atmosphereCard(b, isSol), fingerprintCard(b, isSol), interiorCard(b, isSol), minor || !mE ? null : massRadiusCard(b, isSol)].filter(Boolean));
     },
   };
 }

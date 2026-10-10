@@ -1,3 +1,4 @@
+import { bodyVisualFor } from './bespoke.js';
 // System models: one shape for Sol and for any other star, so the System View and the
 // info panel don't care which system they show. Every displayed fact carries a
 // provenance tier (see provenance.js) and a short note on where it came from.
@@ -65,8 +66,10 @@ function physicalFacts(b) {
 
 function skinFacts(m) {
   const shape = shapeFor(m.id);
+  const bespoke = bodyVisualFor(m);
   const shapeFacts = shape ? [fact('SHAPE', 'PDS RECONSTRUCTION', 'modelled', `${shape.credit}. ${shape.citation} ${shape.frame} Geometry loads on focus; a sphere remains until available.`)] : [];
 
+  if (m.analog && bespoke?.surfaceMap) return [...shapeFacts, fact('SURFACE', 'BESPOKE RESEARCHED HYPOTHESIS', 'imagined', bespoke.assumed.join(' '))];
   if (m.analog) return [...shapeFacts, fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
   return [...shapeFacts, fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
 }
@@ -77,7 +80,7 @@ function moonBody(m) {
   return {
     id: m.id, name: m.name, kind: 'moon', parent: m.parent, radiusKm: m.radiusKm, massKg: m.massKg, meanTempC: m.meanTempC,
     rotationHours: m.rotationHours || e.P * 24, locked, note: m.note ?? null, discovered: m.discovered,
-    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.analog && bodyVisualFor(m)?.surfaceMap ? { map: bodyVisualFor(m).surfaceMap.key } : m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
     facts: {
       ORBIT: [
         fact('ORBITS', m.parent.toUpperCase(), 'measured'),
@@ -103,7 +106,7 @@ function smallBody(b) {
   return {
     id: b.id, name: b.name, kind: b.kind, radiusKm: b.radiusKm, massKg: b.massKg, meanTempC: b.meanTempC,
     rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt,
-    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.skin, orbit: { type: 'elements', el: e },
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.analog && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e },
     facts: {
       ORBIT: [
         fact('REGION', b.belt, 'measured'),
@@ -313,16 +316,18 @@ function planetBodies(rows, star, idFor, notes) {
     if (teq) facts.PHYSICAL.push(fact('EQUILIBRIUM TEMP', `${fmt(teq, 0)} K · ${fmt(teq - 273.15, 0)} °C`, 'computed', `${tNote} Ignores atmosphere and greenhouse effects.`));
     if (r.pl_insol) facts.PHYSICAL.push(fact('STARLIGHT', `${fmt(r.pl_insol, 2)} × EARTH`, 'computed', 'Insolation relative to what Earth receives.'));
     const cls = planetClass(rE, teq ?? 300);
+    const bespoke = bodyVisualFor({ name: r.pl_name });
+    const skin = bespoke?.surfaceMap ? { map: bespoke.surfaceMap.key } : cls.skin;
     if (r.disc_method) facts.DISCOVERY.push(fact('METHOD', discoveryMethod(r.disc_method), 'measured'));
     if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
     if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
     facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No resolved surface map exists; its illustrative class is inferred from size and temperature.'));
-    facts.RENDERING.push(fact('SKIN', cls.analog, 'imagined', 'Generated class illustration guided by radius and temperature. Composition, clouds, colours and terrain are hypotheses; no resolved surface features are measured.'));
+    facts.RENDERING.push(fact('SKIN', bespoke?.surfaceMap ? 'BESPOKE RESEARCHED HYPOTHESIS' : cls.analog, 'imagined', bespoke?.surfaceMap ? [...bespoke.measured, ...bespoke.assumed, ...bespoke.unknown].join(' ') : 'Generated class illustration guided by radius and temperature. Composition, clouds, colours and terrain are hypotheses; no resolved surface features are measured.'));
     return {
       id: idFor(r), name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30, host: star.id,
       massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, radiusEarth: rE, massEarth: r.pl_bmasse ?? null, teq,
       massIsMinimum: /sini/i.test(r.pl_bmassprov || ''), radiusMeasured: rTier === 'measured',
-      palette: cls.palette, banded: !!cls.banded, skin: cls.skin, planetClass: cls.label,
+      palette: cls.palette, banded: !!cls.banded, skin, planetClass: cls.label,
       orbit: { type: 'kepler', host: star.id, a, e, omega, periodDays: P, M0, epochJd, basis }, facts,
     };
   });

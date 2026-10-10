@@ -6,6 +6,8 @@
 
 import snapshot from '#snapshot';
 import { SKINS } from './skins.js';
+import { BESPOKE_TEXTURES } from './bespoke.js';
+const localTextures = { ...SKINS, ...BESPOKE_TEXTURES };
 import { LY_PER_PC } from '../astro/frames.js';
 import { closestTemplate } from '../astro/spectral.js';
 
@@ -62,13 +64,13 @@ export async function fetchSky(center) {
 /** URL for surface texture `key`: the backend's cache, or an image bundled in the preview. */
 export function textureUrl(key) {
   if (snapshot) return snapshot.textures?.[key] ?? null;
-  return SKINS[key]?.url ?? `/api/texture/${encodeURIComponent(key)}`;
+  return localTextures[key]?.url ?? `/api/texture/${encodeURIComponent(key)}`;
 }
 
 /** Image credits, keyed like the textures. */
 export async function fetchTextureCredits() {
   if (snapshot) return snapshot.textureCredits ?? {};
-  const local = Object.fromEntries(Object.entries(SKINS).map(([key, asset]) => [key, asset.credit]));
+  const local = Object.fromEntries(Object.entries(localTextures).map(([key, asset]) => [key, asset.credit]));
   try { return { ...await get('/api/textures'), ...local }; } catch { return local; }
 }
 
@@ -152,4 +154,10 @@ export async function fetchPlanets(center, radiusLy) {
 export async function fetchGaiaBright() {
   if (snapshot) return snapshot.gaiaBright ?? null;
   try { return await get('/api/gaia-bright'); } catch { return null; }
+}
+
+/** Local researched illustration, or its embedded standalone preview. */
+export function visualImageUrl(asset) {
+  if (!asset) return null;
+  return snapshot ? snapshot.bodyImages?.[asset.url] ?? null : asset.url;
 }

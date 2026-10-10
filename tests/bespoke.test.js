@@ -1,0 +1,29 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs/promises';import{createHash}from'node:crypto';import sharp from'sharp';
+import{BODY_VISUALS,bodyVisualFor,BESPOKE_TEXTURES}from'../src/data/bespoke.js';
+test('bespoke matching identifies full body names without confusing planet letters',()=>{
+ assert.equal(bodyVisualFor({id:'b',name:'Barnard b'}),BODY_VISUALS['barnard-b']);
+ assert.equal(bodyVisualFor({id:'b',name:'Proxima Cen b'}),null);
+ assert.equal(bodyVisualFor({id:'ceres',name:'Ceres'}),BODY_VISUALS.ceres);
+ assert.equal(BODY_VISUALS.ceres.surfaceMap,undefined);
+ assert.equal(BESPOKE_TEXTURES.barnardBespoke.tier,'imagined');
+});
+test('bespoke assets and research identify hypothetical coverage and verified local bytes',async()=>{
+ for(const visual of Object.values(BODY_VISUALS)) {
+  assert.ok(visual.references.length>=3&&visual.assumed.length>0&&visual.measured.length>0);
+  for(const asset of [visual.surfaceImage,visual.surfaceMap,visual.skyImage].filter(Boolean)) {
+   const data=await fs.readFile(new URL('../public'+asset.url,import.meta.url));
+   assert.equal(createHash('sha256').update(data).digest('hex'),asset.sha256);assert.equal(data.length,asset.bytes);
+   const metadata=await sharp(data).metadata();assert.deepEqual([metadata.width,metadata.height],[asset.width,asset.height]);
+   const preview=await fs.readFile(new URL('../public'+asset.previewUrl,import.meta.url));assert.equal(createHash('sha256').update(preview).digest('hex'),asset.previewSha256);
+   assert.equal(asset.tier,'imagined');assert.equal(asset.observationDate,null);
+  }
+  assert.ok(visual.skyModel.angularDiameterDeg>0);
+ }
+});
+
+test('system construction prefers a named hypothesis and preserves measured Ceres texture',async()=>{
+ const {buildStarSystem,solSystem}=await import('../src/data/systems.js');
+ const m=buildStarSystem({star:{id:'x',name:"Barnard's Star",x:1.8,y:0,z:0,distPc:1.8,distLy:6,spect:'M4V',lum:.0034},host:{st_teff:3195,st_rad:.185,st_mass:.16},planets:[{pl_name:'Barnard b',pl_letter:'b',pl_orbper:3.154,pl_orbsmax:.0229,pl_bmasse:.299,pl_bmassprov:'Msini',tran_flag:0,pl_eqt:438}]});
+ const b=m.bodies.find(b=>b.id==='b');assert.equal(b.skin.map,'barnardBespoke');assert.equal(b.facts.RENDERING.find(f=>f.label==='SKIN').tier,'imagined');
+ assert.equal(solSystem().bodies.find(b=>b.id==='ceres').skin.map,'ceres');
+});

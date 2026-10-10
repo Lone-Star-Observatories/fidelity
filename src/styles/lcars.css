@@ -362,3 +362,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .pill.chip { font-size: 12px; min-height: 26px; padding: 2px 10px; }
 .host-row.sub { padding-left: 18px; opacity: 0.92; font-size: 13px; }
 .nav-tabs .pill { min-width: 0; }
+
+.bespoke-image { display: block; width: 100%; height: auto; border-radius: 6px; margin: 0.6rem 0; }
+.bespoke-sources { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.8rem; }
+.bespoke-sources a { color: var(--peach); }
