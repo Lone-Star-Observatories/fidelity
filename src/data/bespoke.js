@@ -3959,8 +3959,153 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "lalande-star": {
+    "id": "lalande-star",
+    "name": "Lalande 21185",
+    "kind": "star",
+    "aliases": [
+      "Lalande 21185",
+      "HD 95735",
+      "GJ 411",
+      "Gliese 411",
+      "Gl 411",
+      "HIP 54035"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native2MASS K_s infrared survey finding chart retained unchanged; saturated unresolved stellar source, not a resolved photospheric map or visible-colour measurement.",
+    "measured": [
+      "Hurt2022 Table2 GaiaEDR3 parallax392.753±0.032mas and distance2.54613±0.00021pc; body identity HD95735/GJ411/Lalande21185 is preserved.",
+      "Historical HYG render snapshot has10.46light-years, inconsistent with this primary astrometry; preserved pending catalogue reconciliation, not claimed a current distance ranking.",
+      "Native2MASS northern coadd1154968 K_s atlas FITS UT_DATE991111 matches preview metadata:1999-11-11. Publication day of this service rendering is unknown."
+    ],
+    "modelled": [
+      "Adopted Pineda2021 Table3 empirical Bayesian/interferometry-constrained fits: radius0.392±0.004solar radii, temperature3547±18K, mass0.389±0.008solar masses.",
+      "Hurt2022 Table2 alternative spectroscopic/isochrone fits: radius0.3685+0.0081/-0.0054solar radii and3719+21/-31K; different methodology, both histories retained.",
+      "M2 photospheric gas is partly ionized and molecular; hydrogen/helium is broad stellar-model composition, not measured elemental fractions. Approximate blackbody tint omits molecular absorption and is not calibrated visible colour."
+    ],
+    "unknown": [
+      "Resolved photospheric geography, dated spot distribution, convective appearance, atmospheric elemental fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Entire independent intensity map and observer scene are imagined; fine convection and weak magnetic dimming are illustrative, no dated flare or observed Sun map is reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma; no solid ground or survivable landing. Artistic120-degree horizontal field, exposure and colour remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/2106.07656",
+        "title": "Pineda2021 Table3 empirical stellar parameters and Table5 astrometric inputs",
+        "publicationDate": "2021-06-14"
+      },
+      {
+        "url": "https://arxiv.org/html/2107.09087v2",
+        "title": "Hurt2022 Table2 GaiaEDR3 and alternative stellar fits",
+        "publicationDate": "2022-04-05"
+      },
+      {
+        "url": "https://irsa.ipac.caltech.edu/applications/2MASS/IM/",
+        "title": "Primary 2MASS image inventory and photometric limitations"
+      },
+      {
+        "url": "https://science.nasa.gov/image-article/apod-1996-october-19-lalande-21185-the-nearest-planetary-system/",
+        "title": "Historical1996 JohnWhatmough planetary artwork, not observed star surface",
+        "publicationDate": "1996-10-19"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/lalande-star-native.jpg",
+        "source": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-jpeg?file=%2Fwork%2FTMP_Zc3VSu_2428428%2FIM%2Fkey_41V1kv%2FaK_asky_991111n1530266.jpg",
+        "sourcePage": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=1154968&band=K",
+        "label": "NATIVE INFRARED FINDING CHART",
+        "tier": "measured",
+        "credit": "Two Micron All Sky Survey (2MASS), a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by NASA and the National Science Foundation; image service: NASA/IPAC Infrared Science Archive.",
+        "terms": "Public2MASS science data; primary survey acknowledgement and full credit retained. No calibrated visible colour claimed.",
+        "termsUrl": "https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/doc/sec1_7.html",
+        "publicationDate": null,
+        "observationDate": "1999-11-11",
+        "sha256": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+        "bytes": 34475,
+        "description": "Unchanged IRSA annotated K_s-band preview, coadd1154968, northern scan153 image266. FITS UT_DATE independently verifies1999-11-11. Saturated unresolved Lalande21185 lies near RA11h03m20s Dec+35d58m; grayscale/inverted infrared stretch, coordinate grid and coloured persistence/glint marks are service annotations, not visible colour, resolved photosphere or companions."
+      }
+    ],
+    "skyModel": {
+      "star": "Lalande 21185",
+      "radiusSun": 0.392,
+      "temperatureK": 3547,
+      "distanceAU": 0.003645966332594332,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1648.4898985067396,
+      "approximateSrgb": [
+        1,
+        0.7602377201521329,
+        0.5623785907931205
+      ],
+      "limits": "Conceptual observer altitude two photospheric radii from centre; not a planetary semimajor axis. Approximate blackbody colour omits molecular lines, transfer, exposure and adaptation. Nominal FOV and raster geometry remain artistic."
+    },
+    "surfaceMap": {
+      "key": "lalandeStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured photospheric frame.",
+      "coverage": "Entire intensity/magnetic morphology imagined; renderer applies approximate catalogue tint.",
+      "url": "/bespoke/lalande-star-surface-map.jpg",
+      "previewUrl": "/bespoke/lalande-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-de1345a0-c985-49f9-b2e5-4d364c86c6ad.png",
+      "sourceSha256": "f5b2eb9ce2063f3a03336e79e69cc5d46fd3b97a543291114619ab94e1b93635",
+      "sha256": "3712108a1658da2b465f11dfb85201dfeacdab9d650a29b4772b085b60ca3cc5",
+      "previewSha256": "7f7a08bc592160dce580acce2b9d3709cecfbd94724ce8e66c7751ad8a87aa14",
+      "bytes": 412130,
+      "previewBytes": 40199,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          514,
+          514,
+          514
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Thresholds do not establish a calibrated limb. Nominal FOV, tint, exposure and registration remain artistic."
+      },
+      "url": "/bespoke/lalande-star-sky-image.jpg",
+      "previewUrl": "/bespoke/lalande-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-1d3d89e2-992d-4594-9b55-75160bd7b631.png",
+      "sourceSha256": "8bc6bfc33a303e2591ca232ddef3a71652b3fdf8a3c350e5aa823af9a753db7e",
+      "sha256": "0d4b05a8dbac1193758a6a613038d311f2e3dfafd62c532388701a625aea4fe3",
+      "previewSha256": "5e9b5280619e174abe1abc2ac337f9ccf54c79974786ec153949bdcc3b246d46",
+      "bytes": 66383,
+      "previewBytes": 12844,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
+
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;

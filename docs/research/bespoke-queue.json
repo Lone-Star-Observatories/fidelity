@@ -7550,7 +7550,7 @@
       "distancePc": 2.5461298549469755,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native2MASS K_s infrared survey finding chart retained unchanged; saturated unresolved stellar source, not a resolved photospheric map or visible-colour measurement.",
       "catalogueConstraints": {
         "OBJ_NAME": "HD 95735",
         "OBJ_CAT": "LM",
@@ -7569,9 +7569,10 @@
         "COMMENT": "GJ 411 d candidate planet uncovered by 2022AJ....163..218H",
         "distancePc": 2.5461298549469755
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "lalande-star"
     },
     {
       "id": "star-alf-cma-a",
@@ -8016,7 +8017,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 5,
+      "initialDossiers": 6,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

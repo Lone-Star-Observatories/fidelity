@@ -47,3 +47,17 @@ test('Barnard star stays distinct from its planets and Wolf359 preserves spectra
   assert.equal(wolf.contextImages[0].observationDate, '2020-04-23');
   assert.match(barnard.contextImages[0].description, /time\/motion/);
 });
+
+test('Lalande aliases use its independent stellar map and disclose alternative fits', () => {
+  const visual = bodyVisualFor({ name: 'HD 95735' });
+  assert.equal(visual.id, 'lalande-star');
+  assert.equal(bodyVisualFor({ name: 'Gliese 411' }), visual);
+  assert.equal(bodyVisualFor({ name: 'GJ 411 b' }), null);
+  const model = buildStarSystem({ star: { id: 'l', name: 'Lalande 21185', x: 1, y: 0, z: 0, distLy: 10.46, spect: 'M2V', lum: .02 }, planets: [] });
+  assert.equal(model.bodies[0].skin.map, visual.surfaceMap.key);
+  assert.equal(visual.contextImages[0].observationDate, '1999-11-11');
+  assert.match(visual.contextImages[0].description, /FITS UT_DATE/);
+  assert.match(visual.modelled.join(' '), /3719/);
+  assert.match(visual.measured.join(' '), /inconsistent/);
+  assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg - 60) < 1e-10);
+});
