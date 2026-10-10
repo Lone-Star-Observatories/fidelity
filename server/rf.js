@@ -71,8 +71,10 @@ const nowPlaying = new Map(); // stream url → { title, at }
 /** Pipe a listed radio stream to `res`, metadata removed. */
 export async function streamStation(url, res) {
   if (!url || !((await layerUrls('radio').catch(() => new Set())).has(url) || (await radioGardenHas(url)))) throw forbidden('not a listed station stream');
-  const up = await rawGet(url, { headers: { 'Icy-MetaData': '1' } });
-  if (up.status !== 200) { up.socket.destroy(); throw Object.assign(new Error(`station HTTP ${up.status}`), { status: 502 }); }
+  let up;
+  try { up = await rawGet(url, { headers: { 'Icy-MetaData': '1' } }); }
+  catch { return streamViaFetch(url, res); } // e.g. only an HTTP proxy reaches the internet; SHOUTcast v1 ("ICY 200") still needs the raw socket
+  if (up.status !== 200 || /chunked/i.test(up.headers['transfer-encoding'] ?? '')) { up.socket.destroy(); return streamViaFetch(url, res); } // 426, chunked…: let fetch handle HTTP/1.1
   const metaint = Number(up.headers['icy-metaint']) || 0;
   const name = up.headers['icy-name'] ?? null;
   nowPlaying.set(url, { title: nowPlaying.get(url)?.title ?? null, name, genre: up.headers['icy-genre'] ?? null, bitrate: up.headers['icy-br'] ?? null, at: new Date().toISOString() });
@@ -85,6 +87,21 @@ export async function streamStation(url, res) {
   up.socket.on('error', () => res.end());
   res.on('close', () => up.socket.destroy());
   up.socket.resume();
+}
+/** The same through fetch (honours the environment's proxy). */
+async function streamViaFetch(url, res) {
+  const ac = new AbortController();
+  const r = await fetch(url, { headers: { 'user-agent': UA, 'Icy-MetaData': '1' }, signal: ac.signal });
+  if (!r.ok || !r.body) throw Object.assign(new Error(`station HTTP ${r.status}`), { status: 502 });
+  const metaint = Number(r.headers.get('icy-metaint')) || 0;
+  nowPlaying.set(url, { title: nowPlaying.get(url)?.title ?? null, name: r.headers.get('icy-name'), genre: r.headers.get('icy-genre'), bitrate: r.headers.get('icy-br'), at: new Date().toISOString() });
+  const split = metaint ? icySplitter(metaint, (title) => nowPlaying.set(url, { ...nowPlaying.get(url), title, at: new Date().toISOString() })) : (c) => c;
+  res.writeHead(200, { 'content-type': r.headers.get('content-type') ?? 'audio/mpeg', 'cache-control': 'no-store' });
+  res.on('close', () => ac.abort());
+  try {
+    for await (const chunk of r.body) { const a = split(new Uint8Array(chunk)); if (a.length && !res.write(Buffer.from(a.buffer, a.byteOffset, a.length))) await new Promise((ok) => res.once('drain', ok)); }
+  } catch { /* client left or upstream ended */ }
+  res.end();
 }
 export const stationNowPlaying = (url) => nowPlaying.get(url) ?? { title: null };
 
