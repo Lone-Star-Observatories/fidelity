@@ -47,7 +47,8 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     resetLive();
     const k = SITE_KINDS[s.kind];
     const facts = h('dl');
-    row(facts, 'WHAT', k.label, s.tier === 'planned' ? 'planned' : 'measured', k.hint);
+    row(facts, 'WHAT', s.kind === 'feature' ? s.type.toUpperCase() : k.label, s.tier === 'planned' ? 'planned' : 'measured', k.hint);
+    if (s.diameterKm) row(facts, 'SIZE', `${s.diameterKm.toLocaleString()} KM`, 'measured', 'Diameter or length (USGS Gazetteer).');
     if (s.mission) row(facts, 'MISSION', s.mission.toUpperCase(), 'measured');
     if (s.agency) row(facts, 'BY', s.agency.toUpperCase(), 'measured');
     if (s.vehicle) row(facts, 'LAUNCH VEHICLE', s.vehicle.toUpperCase(), 'measured');
@@ -75,7 +76,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
         pill('WHOLE GLOBE', () => globe())),
       s.note ? h('p', { className: 'note explain', textContent: s.note }) : null,
       ...(s.identity ? [h('h3', { textContent: 'WHOSE ROCKET?' }), h('dl', {}, h('dt', { textContent: 'IDENTITY' }), h('dd', { textContent: s.identity }), badge('modelled', 'Orbit reconstruction; disputed and unconfirmed.'))] : []),
-      h('h3', { textContent: 'MISSION' }), facts,
+      h('h3', { textContent: s.kind === 'feature' ? 'FEATURE' : 'MISSION' }), facts,
       h('h3', { textContent: 'LOCATION' }), where,
       ...(drive ? [h('h3', { textContent: 'TRAVERSE' }), drive] : []),
       ...(s.feeds?.length ? [h('h3', { textContent: 'LIVE FEEDS' }), h('div', { className: 'body-list' }, s.feeds.map((f) => pill(`${f.label} ▸`, () => viewFeed(f, s.name.toUpperCase()))))] : []),

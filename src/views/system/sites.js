@@ -111,7 +111,7 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
     // From orbit only: dots and paths float a few kilometres up so they read on the globe, which from
     // the ground would put them in the sky.
     group.visible = on && focused && !surface;
-    if (!group.visible) return;
+    if (!group.visible) { layer.placed = []; return; }
     if (!pathsRequested) requestPaths();
     for (const [kind, d] of Object.entries(dots)) d.visible = !hidden.has(kind);
     for (const p of paths) p.visible = !hidden.has(p.userData.kind);
@@ -121,7 +121,7 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
     const dist = tmpB.length() / tmpS.x;
     const close = dist < 1.8; // within ~0.8 radii of the surface: every label, otherwise the major ones
     // Near side only (and not right on the limb), majors first, and no two labels overlapping on screen.
-    const placed = [];
+    const placed = (layer.placed = []);
     const order = labels.slice().sort((a, b) => (b.userData.site.major ? 1 : 0) - (a.userData.site.major ? 1 : 0));
     for (const l of order) {
       const s = l.userData.site;
@@ -140,5 +140,6 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
   function dispose() {
     group.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); if (o.isCSS2DObject) o.element.remove(); });
   }
-  return { group, update, dispose, sites: list };
+  const layer = { group, update, dispose, sites: list, placed: [] };
+  return layer;
 }

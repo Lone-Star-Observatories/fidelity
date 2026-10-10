@@ -537,3 +537,10 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .tc-row .pill { height: var(--bar-h); border-radius: 0; }
 .tc-hold { min-width: 110px; --c: var(--orange); }
 .tc-now { --c: var(--ice); flex: 1; }
+
+/* IAU named features on globes: lighter than site labels, no box */
+.feature-label {
+  font-size: 10px; letter-spacing: 0.06em; font-style: italic; color: rgba(255, 245, 225, 0.82); background: none; border: 0; padding: 0 2px;
+  text-shadow: 0 0 3px #000, 0 0 2px #000; white-space: nowrap; pointer-events: auto; cursor: pointer;
+}
+.feature-label:hover { color: var(--orange); }

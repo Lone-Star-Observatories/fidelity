@@ -12,6 +12,7 @@ export const SITE_KINDS = {
   planned: { label: 'PLANNED / CANDIDATE', color: 0xcceeff, hint: 'Proposed: nothing has landed here yet.' },
   observatory: { label: 'OBSERVATORY', color: 0xcc99ff, hint: 'A telescope site, with live views where the operator publishes them.' },
   launch: { label: 'LAUNCH SITE', color: 0xff9966, hint: 'Where rockets leave Earth.' },
+  feature: { label: 'NAMED FEATURE', color: 0xffffff, hint: 'A surface feature with an IAU-approved name (USGS Gazetteer of Planetary Nomenclature).' },
 };
 
 import { OBSERVATORIES } from './observatories.js';

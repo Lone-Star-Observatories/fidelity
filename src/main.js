@@ -68,6 +68,8 @@ let navRadius = 25;
 const system = createSystemView($('system-view'), {
   clock,
   onSelect: (id) => go({ level: 'system', system: currentSystem, body: id }),
+  onFeature: (f) => { const b = system.model?.bodies.find((x) => x.id === f.body); if (b) sitesPanel.show({ ...f, kind: 'feature', tier: 'measured', url: f.gazetteerId ? `https://planetarynames.wr.usgs.gov/Feature/${f.gazetteerId}` : null,
+    short: f.name.toUpperCase(), note: `${f.type}${f.diameterKm ? `, ${f.diameterKm.toLocaleString()} km across` : ''}. Its name is approved by the International Astronomical Union.` }, b); },
   onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
@@ -372,7 +374,7 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -480,7 +482,7 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
   back: (b) => renderBodyPanel(b.id),
   globe: () => system.endSiteView(),
   above: (b, s) => {
-    const span = s.traverseInfo?.spanKm ?? 30;
+    const span = s.traverseInfo?.spanKm ?? (s.diameterKm ? s.diameterKm * 0.6 : 30);
     if (route.level === 'system' && system.focusId === b.id) system.viewSite(b.id, s.lat, s.lon, span);
     else { pendingSiteView = { id: b.id, lat: s.lat, lon: s.lon, span }; go({ level: 'system', system: 'sol', body: b.id }); }
   },

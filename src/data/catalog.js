@@ -186,3 +186,9 @@ export async function fetchObserving(mission) {
   ]);
   return { schedule, recent };
 }
+
+/** IAU named features for a body (USGS Gazetteer, bundled per body), or null if it has none. */
+export async function fetchFeatures(id) {
+  if (snapshot) return null;
+  try { return await get(`/features/${id}.json`); } catch { return null; }
+}
