@@ -183,7 +183,9 @@ side (major sites only until the camera is within ~0.8 radii, greedy screen-spac
 rover traverses fetched from `/api/traverse` the first time the body is focused. The Planet View
 globe gets the dots (`siteDots`). `src/panels/sites.js` renders the SITES OF NOTE section (kind
 filters, stored in `settings.siteHidden`) and the site card (STAND HERE → `surfaceAt`, live feeds
-through the satellite panel's feed viewer). SITES toggles the layer.
+through the satellite panel's feed viewer). Observatories (`src/data/observatories.js`) are Earth
+sites whose feeds are backend webcam ids (`cam-*`, allowlisted in `server/webcams.js`) or YouTube
+streams. SITES toggles the layer.
 
 ## Click anything (#23)
 

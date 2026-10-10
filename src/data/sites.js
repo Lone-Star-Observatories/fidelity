@@ -14,6 +14,8 @@ export const SITE_KINDS = {
   launch: { label: 'LAUNCH SITE', color: 0xff9966, hint: 'Where rockets leave Earth.' },
 };
 
+import { OBSERVATORIES } from './observatories.js';
+
 const site = (body, id, name, lat, lon, kind, extra = {}) => ({ id, body, name, lat, lon, kind, tier: kind === 'planned' ? 'planned' : 'measured', ...extra });
 
 // Earth: launch sites (coordinates of the main pads/centres, WGS84 ≈ planetocentric to 0.2°).
@@ -119,6 +121,8 @@ const TITAN = [
   site("titan", "dragonfly-selk", "Selk crater centre (Dragonfly target region)", 7.0, 161.0, "planned", {"short": "DRAGONFLY · SELK", "mission": "Dragonfly", "agency": "NASA", "major": true, "date": "2034", "approx": "CRATER CENTRE (TARGET REGION)", "note": "A nuclear-powered rotorcraft due to arrive in the 2030s and fly between sites near Selk crater. Planned.", "source": "USGS Gazetteer of Planetary Nomenclature (Selk, feature 14334)", "url": "https://planetarynames.wr.usgs.gov/Feature/14334"}),
 ];
 
+
+for (const [id, name, lat, lon, extra] of OBSERVATORIES) EARTH.push(site('earth', id, name, lat, lon, 'observatory', extra));
 
 export const SITES = [...EARTH, ...MOON, ...MARS, ...VENUS, ...TITAN];
 

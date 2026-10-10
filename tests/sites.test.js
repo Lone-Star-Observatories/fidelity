@@ -51,3 +51,10 @@ test('traverses: GeoJSON lines flatten into one path, thinned but keeping the cu
   assert.ok(t.points.length <= 3);
   close(t.distanceKm, 0.059 + 0.0837 * 2, 0.01, 'km'); // 0.001° of longitude at 18° N on Mars ≈ 56 m
 });
+
+test('every observatory webcam a site offers is on the backend allowlist', async () => {
+  const { FEEDS } = await import('../server/feeds.js');
+  const ids = SITES.flatMap((s) => s.feeds ?? []).filter((f) => f.kind === 'image').map((f) => f.id);
+  assert.ok(ids.length > 30);
+  for (const id of ids) assert.ok(FEEDS[id], `${id} is not a backend feed`);
+});

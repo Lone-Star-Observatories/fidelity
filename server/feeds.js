@@ -5,6 +5,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { config } from './config.js';
+import { WEBCAMS } from './webcams.js';
 
 const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const MIN = 60000;
@@ -82,6 +83,15 @@ const marsRaw = (mission, credit) => ({
   },
 });
 
+// Observatory webcams (#37), from the allowlist in webcams.js. Some sites refuse non-browser agents.
+const webcam = ({ url, credit }) => ({
+  type: 'image', ttl: 5 * MIN, credit,
+  async get() {
+    const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (compatible; USS-Fidelity/0.3; local astronomy explorer)' }, signal: AbortSignal.timeout(45000) });
+    if (!res.ok) throw new Error(`feed HTTP ${res.status}`);
+    return { body: Buffer.from(await res.arrayBuffer()), type: res.headers.get('content-type')?.startsWith('image/') ? res.headers.get('content-type') : 'image/jpeg', time: lastModified(res) ?? new Date().toISOString() };
+  },
+});
 // Harmonized Landsat–Sentinel (HLS) scenes reach GIBS a few days late: walk back to the most
 // recent day with data (a nearly empty JPEG is a day not yet processed).
 const gibsRecent = (layer, credit) => ({
@@ -143,6 +153,7 @@ export const FEEDS = {
   'msg-rss': eumetsat('msg_rss:rgb_naturalenhncd_nrt', '24,-45,72,70', [1400, 760], 'EUMETSAT, Meteosat SEVIRI 5-minute Rapid Scan, Europe (natural colour enhanced)'),
   'sentinel3-olci': eumetsat('copernicus:daily_sentinel3ab_olci_l1_rgb_fulres', '-90,-180,90,180', [2048, 1024], 'EUMETSAT / Copernicus, Sentinel-3A/B OLCI daily RGB mosaic (filling in through the day)'),
   'hls-landsat': gibsRecent('HLS_L30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) L30: Landsat 8/9 OLI scenes of the most recent processed day'),
+  ...Object.fromEntries(Object.entries(WEBCAMS).map(([id, c]) => [`cam-${id}`, webcam(c)])),
   'rover-m20': marsRaw('m20', 'NASA/JPL-Caltech, Perseverance raw image'),
   'rover-msl': marsRaw('msl', 'NASA/JPL-Caltech/MSSS, Curiosity raw image'),
   'hls-sentinel2': gibsRecent('HLS_S30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) S30: Sentinel-2 MSI scenes of the most recent processed day'),

@@ -1,0 +1,38 @@
+// Observatory webcams and all-sky cameras (#37): an allowlist of still images the backend may
+// fetch for the Earth sites. Checked 2026-10-10 (HTTP 200, image, refreshed within minutes). Some
+// operators serve plain HTTP only, or need a browser-like user agent.
+
+export const WEBCAMS = {
+  "subaru-allsky": { url: "https://www.naoj.hawaii.edu/allsky/current_web.png", credit: "NAOJ Subaru Telescope, Subaru Telescope all-sky camera (Maunakea)" },
+  "gemini-north-cloudcam": { url: "https://www.gemini.edu/sciops/schedules/obsStatus/currentstill_Up.png", credit: "NSF NOIRLab / Gemini Observatory, Gemini North cloud cam (zenith view)" },
+  "keck-webcam": { url: "https://www2.keck.hawaii.edu/realtime/webcam/kcam_1.jpg", credit: "W. M. Keck Observatory, W. M. Keck Observatory webcam" },
+  "jcmt-cam": { url: "http://www.eao.hawaii.edu/weather/images/jcmt.jpg", credit: "East Asian Observatory, JCMT webcam (Maunakea, EHT site)" },
+  "apex-cam": { url: "https://www.apex-telescope.org/camera/images/10.0.6.84/image1.jpg", credit: "ESO / APEX (MPIfR, OSO), APEXcam (Chajnantor, EHT site)" },
+  "eso-paranal-pano": { url: "https://www.eso.org/public/archives/static/pano/latest/pano_PV_960x.jpg", credit: "ESO, ESO Paranal (VLT) panorama webcam" },
+  "lasilla-danish-allsky": { url: "https://allsky-dk154.asu.cas.cz/AllSkyCurrentImage.JPG", credit: "Astronomical Institute CAS (Ondrejov), at ESO La Silla, La Silla all-sky camera (Danish 1.54 m)" },
+  "lasilla-rem": { url: "http://www.rem.inaf.it/remwbc/remwbcx.jpg", credit: "INAF REM, at ESO La Silla, REM telescope webcams (La Silla)" },
+  "ctio-webcam": { url: "http://www.ctio.noirlab.edu/~seecam/CTIO_webcam.jpg", credit: "NSF NOIRLab / CTIO, Cerro Tololo (CTIO) webcam" },
+  "gemini-south-allsky": { url: "https://www.gemini.edu/sciops/schedules/obsStatus/allsky.png", credit: "NSF NOIRLab / Gemini Observatory, Gemini South all-sky camera (Cerro Pachon; Rubin site)" },
+  "soar-webcam": { url: "http://www.ctio.noirlab.edu/~soarcam/outer_back_new.jpg", credit: "NSF NOIRLab / SOAR, SOAR Telescope webcam (Cerro Pachon)" },
+  "kitt-peak-allsky": { url: "http://varuna.kpno.noirlab.edu/allsky/AllSkyCurrentImage.JPG", credit: "NSF NOIRLab / KPNO, Kitt Peak all-sky camera" },
+  "mmt-webcam": { url: "https://webcam-images.mmto.arizona.edu/webcam_images/latest_webcam1.jpg", credit: "MMT Observatory (Smithsonian / Univ. of Arizona), MMT Observatory webcam (Mt Hopkins)" },
+  "lbt-allsky": { url: "https://info.lbto.org/pub/images/allsky", credit: "LBT Observatory, Large Binocular Telescope all-sky camera (Mt Graham)" },
+  "apo-allsky": { url: "https://newapo.apo.nmsu.edu/media/skywatcher/result_thumb.png", credit: "Apache Point Observatory (ARC / NMSU), Apache Point Observatory optical all-sky camera" },
+  "mcdonald-pano": { url: "https://live.neos360.com/MCD/VisitorCenter/img/latest/pano_PV.jpg", credit: "McDonald Observatory, UT Austin, McDonald Observatory 360 webcam (Mt Locke / HET)" },
+  "palomar-allsky": { url: "https://algol.palomar.caltech.edu/instruments/allsky/AllSkyCurrentImage.JPG", credit: "Caltech Optical Observatories, Palomar Observatory all-sky camera" },
+  "mt-laguna-hpwren": { url: "https://cdn.hpwren.ucsd.edu/RT/mlo-n-mobo-c.jpg", credit: "HPWREN (UC San Diego), at SDSU Mount Laguna Observatory, Mount Laguna Observatory (HPWREN camera)" },
+  "lick-skycam": { url: "https://mthamilton.ucolick.org/hamcam/skycam/current.jpg", credit: "UC Observatories / Lick Observatory, Lick Observatory SkyCam (Mt Hamilton)" },
+  "mt-wilson-hpwren": { url: "https://cdn.hpwren.ucsd.edu/RT/wilson-n-mobo-c.jpg", credit: "HPWREN (UC San Diego), at Mount Wilson Observatory, Mount Wilson Observatory (HPWREN camera)" },
+  "saao-allsky": { url: "https://suthweather1.saao.ac.za/AllSkyCurrentImageMarked.JPG", credit: "South African Astronomical Observatory, SAAO Sutherland all-sky camera" },
+  "not-caldera": { url: "https://www.not.iac.es/weather/img/dyn/caldera.jpg", credit: "Nordic Optical Telescope, Nordic Optical Telescope webcam (Roque de los Muchachos)" },
+  "gtc-cam": { url: "https://www.gtc.iac.es/multimedia/netcam/camaraExt.jpg", credit: "GRANTECAN / IAC, Gran Telescopio Canarias external webcam" },
+  "lt-cam": { url: "https://telescope.livjm.ac.uk/pics/webcam_ext_1.jpg", credit: "Liverpool John Moores University, Liverpool Telescope external webcam" },
+  "cta-lst1-cam": { url: "https://www.lst1.iac.es/webcams/current1/800.jpg", credit: "CTAO / LST collaboration, CTAO LST-1 webcam (La Palma)" },
+  "south-pole-aro": { url: "https://gml.noaa.gov/webdata/spo/webcam/cmdlfullsize.jpg", credit: "NOAA GML / NSF USAP, South Pole Atmospheric Research Observatory cam (near SPT)" },
+  "sro-allsky": { url: "https://sroftp2.com/SRODATA/Zwo_183MC_TeleTower/Zwo183MC_Latest.jpg", credit: "Sierra Remote Observatories (telescope hosting), Sierra Remote Observatories all-sky camera" },
+  "itelescope-udro": { url: "https://go.itelescope.net/images/allsky/AllSky_UDRO.jpg", credit: "iTelescope.net at Utah Desert Remote Observatories, iTelescope Utah (UDRO) all-sky camera" },
+  "itelescope-sso": { url: "https://go.itelescope.net/images/allsky/AllSky_SSO.jpg", credit: "iTelescope.net at Siding Spring Observatory, iTelescope Siding Spring all-sky camera" },
+  "deep-sky-chile-allsky": { url: "https://go.itelescope.net/images/allsky/AllSky_DSC.jpg", credit: "Deep Sky Chile (hosting) / iTelescope.net, Deep Sky Chile all-sky camera (via iTelescope)" },
+  "eeye-allsky": { url: "https://go.itelescope.net/images/allsky/AllSky_EEYE.jpg", credit: "E-EYE (Entre Encinas y Estrellas) hosting / iTelescope.net, E-EYE Extremadura all-sky camera (via iTelescope)" },
+  "space-atacama-allsky": { url: "https://www.spaceobs.com/lib/meteo/ImageLastFTP_AllSKY.jpg", credit: "San Pedro de Atacama Celestial Explorations (telescope hosting), SPACE San Pedro de Atacama all-sky camera" },
+};
