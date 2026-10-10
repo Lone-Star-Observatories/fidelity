@@ -22,6 +22,8 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
 import { relativeSky, hierarchy, place, besselianYear } from '../../astro/binary.js';
 import { eqToEcl, frameToScene, teffFromBV, blackbodyRGB } from '../../astro/frames.js';
+import { createPaleoEarth } from './paleoearth.js';
+import { jdFromDate } from '../../astro/time.js';
 import { AU_KM, SUN } from '../../data/sol.js';
 import { visualImageUrl } from '../../data/catalog.js';
 
@@ -2006,6 +2008,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     clock.tick(now);
     if (!model) return;
     const jd = clock.jd;
+    updatePaleoEarth(jd);
 
     const targetMix = settings.get('scale') === 'true' || surface ? 1 : 0;
     scaleMix += (targetMix - scaleMix) * 0.08;
@@ -2180,6 +2183,26 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     });
   }
 
+  // ---- Earth through time (#54): sea level, ice sheets and past coastlines on the globe -------------
+  let paleo = null, paleoScenario = null, paleoApplied;
+  const paleoBanner = document.createElement('div');
+  paleoBanner.className = 'paleo-banner';
+  paleoBanner.hidden = true;
+  container.append(paleoBanner);
+  function updatePaleoEarth(jd) {
+    const earth = model?.isSol ? nodes.earth : null;
+    if (!earth?.mesh?.material?.uniforms?.uPaleo) { paleoBanner.hidden = true; return; }
+    paleo ??= createPaleoEarth(earth.mesh.material, { fetchCoastlines: (ma) => fetch(`/api/paleo-coastlines?time=${ma}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))) });
+    if (paleoApplied !== paleoScenario) { paleo.setScenario(paleoScenario); paleoApplied = paleoScenario; }
+    // years from now: the deep-time clock where there is one (#34), else from the calendar JD
+    paleo.update(typeof clock.years === 'number' ? clock.years : (jd - jdFromDate(new Date())) / 365.25);
+    const t = paleo.banner;
+    // today's clouds do not belong on another epoch's Earth
+    if (earth.clouds) { if (t && earth.clouds.visible) { earth.clouds.visible = false; earth.paleoHidClouds = true; } else if (!t && earth.paleoHidClouds) { earth.clouds.visible = true; earth.paleoHidClouds = false; } }
+    paleoBanner.hidden = !t;
+    if (t && paleoBanner.textContent !== t) paleoBanner.textContent = t;
+  }
+
   // ---- scenarios (#53): opt-in "what if" visuals, always labelled MODELLED -------------------------
   //   star: { ra, dec (J2000 deg), mag, label, color? }: a supernova at its real place in the sky.
   //   ring: { body, innerKm, outerKm, label }: a new ring (Desdemona–Cressida debris, Phobos).
@@ -2236,6 +2259,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   return {
+    /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
+    setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */
     setScenario,
     /** In the surface view, turn to face J2000 RA/Dec (deg); false if not standing anywhere. */

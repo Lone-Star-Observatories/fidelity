@@ -45,6 +45,12 @@ const PLANET_FRAG = /* glsl */`
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D uMap; uniform sampler2D uNight; uniform float uHasNight;
   uniform sampler2D uLive; uniform float uHasLive;
+  // Earth through time (#54): sea level (m) against ETOPO1 (R elevation, G flood level from the open ocean,
+  // B open ocean today; ±400 m in 0–1), PaleoMIST ice-sheet masks blended between two time slices, or a
+  // reconstructed land mask (GPlates coastlines) in place of today's continents.
+  uniform float uPaleo; uniform sampler2D uElev; uniform float uSea; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform float uIceMix; uniform float uIceOn;
+  uniform sampler2D uLand; uniform float uLandOn;
+  uniform float uDryOn; // the Messinian: today's Mediterranean floor (uElev alpha) shown dry
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
   // they are right whatever the display scale: the fraction of the Sun's disc an occluder
@@ -126,6 +132,18 @@ const PLANET_FRAG = /* glsl */`
     if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
       vec3 lv = texture2D(uLive, vUv).rgb;
       base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
+    }
+    if (uPaleo > 0.5) {
+      vec3 seaCol = vec3(0.012, 0.035, 0.09), shelfCol = vec3(0.31, 0.29, 0.2), iceCol = vec3(0.86, 0.9, 0.95);
+      if (uLandOn > 0.5) base = mix(seaCol, vec3(0.34, 0.32, 0.21), step(0.5, texture2D(uLand, vUv).r));
+      else {
+        vec3 el = texture2D(uElev, vUv).rgb;
+        float e = el.r * 800.0 - 400.0, spill = el.g * 800.0 - 400.0;
+        if (el.b > 0.5) { if (e > uSea) base = shelfCol; }      // today's sea floor, exposed when the sea falls
+        if (uDryOn > 0.5 && texture2D(uElev, vUv).a > 0.5) base = mix(vec3(0.62, 0.6, 0.55), vec3(0.36, 0.3, 0.24), smoothstep(-200.0, -3000.0, e)); // salt flats to deep dry basin
+        else if (spill < uSea) base = seaCol;                   // land the rising sea reaches
+      }
+      if (uIceOn > 0.5) base = mix(base, iceCol, mix(texture2D(uIceA, vUv).r, texture2D(uIceB, vUv).r, uIceMix));
     }
     if (uBandMode > 0.5) {
       float lit = max(ndl, 0.0) * lightK;
@@ -257,6 +275,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uBandTexPrev: { value: null }, uBandFade: { value: 1 },
       uDiscOn: { value: 0 }, uDiscC: { value: new THREE.Vector2(0.5, 0.5) }, uDiscR: { value: new THREE.Vector2(1, 1) }, uDiscWH: { value: new THREE.Vector2(2, 2) },
       uDiscPA: { value: 0 }, uDiscE: { value: new THREE.Vector3(0, 0, 1) }, uDiscN: { value: new THREE.Vector3(0, 1, 0) },
+      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 }, uDryOn: { value: 0 },
     },
   });
 }

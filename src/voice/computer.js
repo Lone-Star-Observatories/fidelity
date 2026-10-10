@@ -51,6 +51,13 @@ export function parseCommand(text, names) {
     const key = Object.keys(LAYERS).sort((a, b) => b.length - a.length).find((k) => m[2].includes(k)); // 'van allen' before 'belts'
     return key ? { action: 'layer', layer: LAYERS[key], on: m[1] === 'show' || m[1] === 'turn on' } : null;
   }
+  // COMMS (#69): the viewscreen and the receiver
+  if (/^(on screen|put it on screen|yes)\b/.test(t)) return { action: 'comms', command: 'on_screen' };
+  if (/^(off screen|no|audio only)\b/.test(t)) return { action: 'comms', command: 'off_screen' };
+  if (/^close (?:the )?channel\b/.test(t)) return { action: 'comms', command: 'close_channel' };
+  if (/^scan\b/.test(t)) return { action: 'comms', command: 'scan' };
+  m = t.match(/^(?:tune|open (?:a )?channel)(?: to| on)? ([\d.]+ ?(?:k|m)?(?:hz|egahertz|ilohertz)?)$/);
+  if (m) return { action: 'comms', command: 'tune', frequency: m[1].replace(/egahertz/, 'hz').replace(/ilohertz/, 'hz') };
   if (/^(stop|cancel|never mind|silence)\b/.test(t)) return { action: 'stop' };
   return null;
 }
@@ -58,6 +65,7 @@ export function parseCommand(text, names) {
 const TOOLS = [
   { type: 'function', name: 'go_to', description: 'Fly the ship to a body (planet, moon, star, spacecraft, satellite) or star system by name.', parameters: { type: 'object', properties: { name: { type: 'string', description: 'e.g. Europa, Jupiter, Proxima Centauri, ISS, Voyager 1' } }, required: ['name'] } },
   { type: 'function', name: 'set_layer', description: 'Show or hide a display layer.', parameters: { type: 'object', properties: { layer: { type: 'string', enum: ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins'] }, on: { type: 'boolean' } }, required: ['layer', 'on'] } },
+  { type: 'function', name: 'comms', description: "The COMMS viewscreen and receiver: put the hailed station's video on screen (or take it off for audio only), close the channel, scan the receiver for clear signals, or tune/open a channel on a frequency (e.g. '7.074 MHz', '9600 kHz').", parameters: { type: 'object', properties: { command: { type: 'string', enum: ['on_screen', 'off_screen', 'close_channel', 'scan', 'tune'] }, frequency: { type: 'string' } }, required: ['command'] } },
   { type: 'function', name: 'set_time', description: "Set the ship's clock to a date/time (ISO 8601, UTC), or 'now'.", parameters: { type: 'object', properties: { iso: { type: 'string' } }, required: ['iso'] } },
 ];
 const PERSONA = `You are the computer of the starship USS Fidelity, a scientific astronomy explorer. Speak like a ship's computer: calm, precise, brief (two to four sentences unless asked for more). The section ON SCREEN NOW describes exactly what the viewer sees at this moment (view, what the camera is centred on, the clock, layers, anything playing out, and the side panel); when they say "this", "that" or "here", they mean it. Answer from it when it helps; say plainly when something is unknown or modelled. You can act with the tools (fly somewhere, toggle a layer, set the clock) when the viewer asks.`;
@@ -166,6 +174,7 @@ export function createComputer(ctx) {
         const n = ctx.names().find((x) => x.name.toLowerCase() === String(a.name).toLowerCase()) ?? ctx.names().find((x) => x.name.toLowerCase().includes(String(a.name).toLowerCase()));
         if (n) { n.go(); out = { ok: true, flying_to: n.name }; } else out = { ok: false, error: `no body called ${a.name} in the loaded catalogues` };
       } else if (name === 'set_layer') { ctx.setLayer(a.layer, !!a.on); out = { ok: true }; }
+      else if (name === 'comms') { out = ctx.comms ? ctx.comms(a) : { ok: false, error: 'COMMS is not open' }; }
       else if (name === 'set_time') { out = ctx.setTime(a.iso) ? { ok: true } : { ok: false, error: 'unreadable date' }; }
       else out = { ok: false, error: 'unknown tool' };
     } catch (err) { out = { ok: false, error: String(err.message || err) }; }
@@ -222,6 +231,7 @@ export function createComputer(ctx) {
       const c = parseCommand(text, ctx.names());
       if (c?.action === 'go') { c.target.go(); say('ship', `Setting course for ${c.target.name}.`); }
       else if (c?.action === 'layer') { ctx.setLayer(c.layer, c.on); say('ship', `${c.on ? 'Showing' : 'Hiding'} ${c.layer}.`); }
+      else if (c?.action === 'comms') { const r = ctx.comms?.(c) ?? { ok: false }; say('ship', r.ok ? (r.said ?? 'Acknowledged.') : (r.error ?? 'COMMS is not open.')); }
       else say('ship', 'Offline I can only take navigation commands: "go to Mars", "show the zones".');
       closeLine();
     };

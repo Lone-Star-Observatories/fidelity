@@ -42,17 +42,28 @@ function lineChart({ xs, ys, xMin, xMax, yMin, yMax, yTicks, xTicks, label, mark
   return svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'future-chart', role: 'img', 'aria-label': label }, ...kids);
 }
 
-export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel }) {
+export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system }) {
   let la = null, laLoading = false, co2 = null, co2Loading = false, selected = null, span = 'recent';
 
   const shipKyr = () => (typeof clock.years === 'number' ? clock.years : (clock.jd - jdFromDate(new Date())) / 365.25) / 1000;
+  // The System View keeps the planets inside its ephemeris span (the clock's limit there), so a time
+  // outside it is shown on Earth's globe instead, while the planets stay at the ship's clock.
+  const RECORD_YEARS = 798000, PLATES_MA = 250;
   function goTo(e) {
-    if (e.years != null) {
-      if (typeof clock.setYears === 'function') clock.setYears(e.years);
-      else if (Math.abs(e.years) < CALENDAR_YEARS) clock.set(jdFromDate(new Date()) + e.years * 365.25);
-      else { toast(`${fmtYears(e.years)} IS BEYOND THE CLOCK'S CALENDAR (±273 KYR)`); return; }
+    const y = e.years;
+    if (y == null) { go(e.go ?? { level: 'system', system: 'sol', body: 'earth' }); return; }
+    const target = e.go ?? { level: 'system', system: 'sol', body: 'earth' };
+    const lim = clock.limit, jdAt = jdFromDate(new Date()) + y * 365.25;
+    const systemish = !['navigation', 'galaxy', 'quadrant', 'universe'].includes(target.level);
+    if (!systemish || !lim || (jdAt >= lim.minJd && jdAt <= lim.maxJd)) {
+      go(target); // the destination's time limit first, then the time inside it
+      setTimeout(() => { if (typeof clock.setYears === 'function') clock.setYears(y); else clock.set(jdAt); }, 0);
+      return;
     }
-    go(e.go ?? { level: 'system', system: 'sol', body: 'earth' });
+    // beyond the planets' ephemeris: Earth's globe at that epoch, where there is a record or reconstruction
+    if (y < 0 && -y <= RECORD_YEARS) { system?.setEarthEpoch({ years: y }); go({ level: 'system', system: 'sol', body: 'earth' }); toast(`THE GLOBE SHOWS EARTH ${fmtYears(y)}; THE PLANETS STAY AT THE SHIP'S CLOCK (${lim.reason})`); return; }
+    if (y < 0 && -y / 1e6 <= PLATES_MA && -y >= 1e6) { system?.setEarthEpoch({ ma: Math.round(-y / 1e6) }); go({ level: 'system', system: 'sol', body: 'earth' }); toast(`THE GLOBE SHOWS THE CONTINENTS ${fmtYears(y)}; THE PLANETS STAY AT THE SHIP'S CLOCK`); return; }
+    toast(`${fmtYears(y)} IS BEYOND THE SYSTEM VIEW'S RANGE (${lim.reason}) AND EARTH'S RECORDS`);
   }
   const needLa = () => {
     if (la || laLoading) return;
@@ -184,12 +195,15 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
     const facts = h('dl');
     for (const [label, value, tier, detail] of e.facts) row(facts, label, value, tier, detail);
     const canGo = e.years != null || e.go;
+    const globe = e.globe && system ? h('div', { className: 'body-list' }, ...e.globe.map((g) => pill(`ON THE GLOBE: ${g.label} ▸`, () => showGlobe(g))),
+      pill('TODAY\'S EARTH', () => { system.setEarthEpoch(null); toast('TODAY\'S EARTH'); })) : null;
     return [head, h('div', { className: 'future-card' },
       h('div', { className: 'legend' }, badge(e.tier)),
       h('p', { className: 'note explain', textContent: e.summary }),
       e.facts.length ? facts : null,
       ...(e.widget ? WIDGETS[e.widget]() : []),
       h('p', { className: 'note' }, 'SOURCE: ', h('a', { href: e.url, target: '_blank', rel: 'noopener', textContent: e.source })),
+      globe,
       canGo ? h('div', { className: 'body-list' }, pill(e.years ? `GO ${fmtYears(e.years)} ▸` : 'SHOW ▸', () => goTo(e))) : null)];
   }
 
@@ -245,6 +259,12 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
     return [figure, input, info];
   }
 
+  /** Show an epoch on Earth's globe: a time (through the clock), a sea level or a plate reconstruction. */
+  function showGlobe(g) {
+    system.setEarthEpoch(g.years != null ? { years: g.years } : g.ma ? { ma: g.ma } : g.messinian ? { messinian: true } : { sea: g.sea, label: g.label });
+    system.focus('earth');
+  }
+
   function render(id = selected) {
     selected = id;
     panel.replaceChildren(
@@ -262,5 +282,7 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
     const k = Math.round(shipKyr());
     if (k !== lastKyr) { lastKyr = k; render(); }
   }
-  return { render, tick };
+  /** Leaving for a view without Earth's globe: back to today's Earth. */
+  const leave = () => system?.setEarthEpoch(null);
+  return { render, tick, leave };
 }
