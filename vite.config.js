@@ -9,7 +9,7 @@ const here = (p) => fileURLToPath(new URL(p, import.meta.url));
 export default defineConfig(({ mode }) => ({
   server: { host: '127.0.0.1', port: 5173, proxy: { '/api': backend } },
   resolve: {
-    alias: { '#snapshot': here(mode === 'standalone' ? './standalone/snapshot.json' : './src/data/no-snapshot.js') },
+    alias: { '#snapshot-packed': here('./standalone/snapshot-packed.js'), '#snapshot': here(mode === 'standalone' ? './src/data/embedded-snapshot.js' : './src/data/no-snapshot.js') },
   },
   build: {
     target: 'es2022',

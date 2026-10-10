@@ -3,6 +3,7 @@
   "scope": "All Solar System catalogue bodies, all recognized planetary/Pluto moons from JPL, dwarf-planet satellites, 20 closest confirmed archive exoplanets, and 20 stellar components from the Gaia-era nearby snapshot. Individual material/atmosphere assumptions must be explicit. Do not invent solid surfaces for stars or gas giants.",
   "inventoryWorkRemaining": [
     "Refresh nearest stellar ranking from current astrometry before claiming an exhaustive present-day boundary.",
+    "Audit Gl 725 B c archive distance 6.842357 pc against the 2026 discovery-paper distance about 3.5 pc; confirmed archive ranking is not a corrected physical-distance ranking.",
     "Inventory remaining satellites of asteroids and other minor planets separately.",
     "Add further recognized dwarf planets if the IAU roster changes; candidates remain marked candidates."
   ],
@@ -7180,9 +7181,10 @@
         "dec": 44.0247296,
         "disc_year": 2014
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "gj15a-b"
     },
     {
       "id": "exo-gj-15-a-c",
@@ -7211,9 +7213,10 @@
         "dec": 44.0247296,
         "disc_year": 2018
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "gj15a-c"
     },
     {
       "id": "exo-tau-cet-f",

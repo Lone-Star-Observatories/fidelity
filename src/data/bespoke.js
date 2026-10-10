@@ -2205,6 +2205,280 @@ export const BODY_VISUALS = {
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     },
     "researchSourcesRecord": "docs/research/ross128-gl725a-source-records.json"
+  },
+  "gj15a-b": {
+    "id": "gj15a-b",
+    "name": "GJ 15 A b",
+    "aliases": [
+      "GJ 15 A b",
+      "Gl 15 A b",
+      "Gliese 15 A b",
+      "GJ 15A b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "RV detection; no resolved native scientific surface/cloud map located. Composite radii are mass-radius estimates, not measured radii.",
+    "measured": [
+      "Joint HARPS-N/HIRES RV fit: minimum mass 3.03 (+0.46/−0.44) Earth masses; period 11.4407 (+0.0017/−0.0016) days."
+    ],
+    "modelled": [
+      "Adopted composite semimajor axis 0.072 AU; host 3607±68 K and 0.38±0.05 solar radii.",
+      "Archive equilibrium 550 K is a heterogeneous model value, not measured surface temperature; albedo, heat redistribution and atmosphere are unconstrained.",
+      "Inner RV signal was discussed alongside a CARMENES non-detection; the combined 2018 analysis confirms it with a revised amplitude."
+    ],
+    "unknown": [
+      "Physical radius, inclination, true mass, spin, atmospheric composition and pressure, visible colour and geography.",
+      "Habitability and material chemistry cannot be established from minimum mass or temperature estimates."
+    ],
+    "assumed": [
+      "Dry airless silicate/iron hypothesis; atmosphere, composition and surface accessibility not measured.",
+      "Grey segmented uplift blocks, muted copper-tan mineral dust and dark small volcanic basins; every fracture and impact hollow is imagined.",
+      "Black airless sky; no lava, oceans or clouds inferred from equilibrium estimates.",
+      "Invented longitude frame and approximate texture seams; no measured rotation/pole or physical surface registration.",
+      "Nominal 60° horizontal field, representative semimajor-axis illumination; scene not registered to a dated ephemeris. Binary companion B outside chosen field.",
+      "Approximate warm cream/peach host colour; spectrum, exposure and transfer are not calibrated.",
+      "Raster validation: bright-core widths 52/50/50 source pixels versus nominal centred geometric target 71.101 pixels in 1672-pixel frame. Disc is approximate and smaller than geometric target. Photometric and camera calibration remains open."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1804.03476v1",
+        "title": "Pinamonti et al. 2018, joint RV fit and binary modelling, Tables 1 and 3",
+        "publicationDate": "2018-04-10 (arXiv v1); A&A 617 A104, September 2018",
+        "observationDate": "HARPS-N 2012-08-27 to 2017-01-18, plus 15 years of archived HIRES RV measurements; Appendix A epochs."
+      },
+      {
+        "url": "https://doi.org/10.1051/0004-6361/201732535",
+        "title": "Published HADES paper, A&A 617 A104"
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "GJ 15 A b",
+      "hostname": "GJ 15 A",
+      "sy_dist": 3.56228,
+      "pl_rade": 1.55,
+      "pl_bmasse": 3.03,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 11.4407,
+      "pl_orbsmax": 0.072,
+      "pl_eqt": 550,
+      "st_teff": 3607,
+      "st_rad": 0.38,
+      "st_mass": 0.38,
+      "st_spectype": "M1",
+      "ra": 4.6126677,
+      "dec": 44.0247296,
+      "disc_year": 2014
+    },
+    "skyModel": {
+      "star": "GJ 15 A",
+      "radiusSun": 0.38,
+      "temperatureK": 3607,
+      "distanceAU": 0.072,
+      "angularDiameterDeg": 2.8128329020406273,
+      "centreDiscWidthFraction": 0.04252449559375255,
+      "irradianceEarth": 4.247970380958199,
+      "approximateSrgb": [
+        1,
+        0.7667810367635197,
+        0.5750265845101851
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "gj15ABBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up imagined albedo; no measured terrain/cloud frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/gj15a-b-surface-map.jpg",
+      "previewUrl": "/bespoke/gj15a-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4f7b0c3c-ebe9-4e64-acec-02f64c4fa9d2.png",
+      "sourceSha256": "444678e0b74945f3c2af4b927d37e3c541ff6fee84548f561ab318fdb55ae950",
+      "sha256": "85be7ec011844533b4d811852d069b65e15fe2d523fa7cae5e92073e144e913f",
+      "previewSha256": "61618fcc64db9eabdea991398d2dd4290326c8948191343dd8b93c525ac18cbf",
+      "bytes": 570944,
+      "previewBytes": 35309,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in star-only ROI [0.4,0.6,0.08,0.25] (fractions x0,x1,y0,y1), R>180/210/240 G>150 B>80; glare not photosphere.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          52,
+          50,
+          50
+        ],
+        "geometricTargetWidthPixels": 71.10095663275426,
+        "limits": "Nominal camera FOV artistic; off-centre projection, angular scale and colour not calibrated."
+      },
+      "url": "/bespoke/gj15a-b-sky-image.jpg",
+      "previewUrl": "/bespoke/gj15a-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-996368ef-e9c8-4cbe-a78a-60dc3396c573.png",
+      "sourceSha256": "d8bfcccbe8afbd96d5853befa897bc10f8e98c60fec301b20588d6ae75706160",
+      "sha256": "d8ef133872763deffebafd1418144f56ec76f040722a65e12c81652ac3853a6e",
+      "previewSha256": "40ff6703209c61c3c6549c3acc58479684b665a87b9aa4f92abfa52bb57d342a",
+      "bytes": 331080,
+      "previewBytes": 57903,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/gj15a-source-records.json"
+  },
+  "gj15a-c": {
+    "id": "gj15a-c",
+    "name": "GJ 15 A c",
+    "aliases": [
+      "GJ 15 A c",
+      "Gl 15 A c",
+      "Gliese 15 A c",
+      "GJ 15A c"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "RV detection; no resolved native scientific surface/cloud map located. Composite radii are mass-radius estimates, not measured radii.",
+    "measured": [
+      "Joint HARPS-N/HIRES RV fit: minimum mass 36 (+25/−18) Earth masses; period around 7600 days."
+    ],
+    "modelled": [
+      "Adopted composite semimajor axis 5.4 AU; host 3607±68 K and 0.38±0.05 solar radii.",
+      "Archive equilibrium 46.14 K is a heterogeneous model value, not measured surface temperature; albedo, heat redistribution and atmosphere are unconstrained.",
+      "2018 observations did not cover a full outer orbit; eccentricity poorly constrained (e<0.40 at 68% confidence)."
+    ],
+    "unknown": [
+      "Physical radius, inclination, true mass, spin, atmospheric composition and pressure, visible colour and geography.",
+      "Habitability and material chemistry cannot be established from minimum mass or temperature estimates."
+    ],
+    "assumed": [
+      "Hypothetical hydrogen/helium envelope with trace methane and cold condensate hazes; actual chemistry, pressure, cloud depth and accessible ground unknown.",
+      "Cloud-top albedo and hovering observer view; no accessible solid ground is asserted. Every diffuse cell, filament and oval is invented.",
+      "Pearl-grey and slate-blue clouds have an artistic exposure lift; faint host represented as a point with unresolved glare.",
+      "Invented longitude frame and approximate texture seams; no measured rotation/pole or physical surface registration.",
+      "Nominal 60° horizontal field, representative semimajor-axis illumination; scene not registered to a dated ephemeris. Binary companion B outside chosen field.",
+      "Approximate warm cream/peach host colour; spectrum, exposure and transfer are not calibrated.",
+      "Raster validation: bright-core widths 2/2/2 source pixels versus nominal centred geometric target 0.948 pixels in 1672-pixel frame. Subpixel photosphere cannot be resolved; shown point is glare, at an off-centre artistic position. Photometric and camera calibration remains open."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1804.03476v1",
+        "title": "Pinamonti et al. 2018, joint RV fit and binary modelling, Tables 1 and 3",
+        "publicationDate": "2018-04-10 (arXiv v1); A&A 617 A104, September 2018",
+        "observationDate": "HARPS-N 2012-08-27 to 2017-01-18, plus 15 years of archived HIRES RV measurements; Appendix A epochs."
+      },
+      {
+        "url": "https://doi.org/10.1051/0004-6361/201732535",
+        "title": "Published HADES paper, A&A 617 A104"
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "GJ 15 A c",
+      "hostname": "GJ 15 A",
+      "sy_dist": 3.56228,
+      "pl_rade": 6.67,
+      "pl_bmasse": 36,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 7600,
+      "pl_orbsmax": 5.4,
+      "pl_eqt": 46.14,
+      "st_teff": 3607,
+      "st_rad": 0.38,
+      "st_mass": 0.38,
+      "st_spectype": "M1",
+      "ra": 4.6126677,
+      "dec": 44.0247296,
+      "disc_year": 2018
+    },
+    "skyModel": {
+      "star": "GJ 15 A",
+      "radiusSun": 0.38,
+      "temperatureK": 3607,
+      "distanceAU": 5.4,
+      "angularDiameterDeg": 0.03750067318433193,
+      "centreDiscWidthFraction": 0.0005668224967355936,
+      "irradianceEarth": 0.0007551947343925685,
+      "approximateSrgb": [
+        1,
+        0.7667810367635197,
+        0.5750265845101851
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "gj15ACBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up imagined albedo; no measured terrain/cloud frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/gj15a-c-surface-map.jpg",
+      "previewUrl": "/bespoke/gj15a-c-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-2eb817b6-584e-4b16-ac80-eb0a552d878a.png",
+      "sourceSha256": "9b1915edac5fe5e2efa7ae2f9201d1544faeb287a3219b52af02618f6e0253ea",
+      "sha256": "63c8982a09baec64dd39dcc6b410f75c9e61ac20e8aeefb1ec2d2fe4315f7af0",
+      "previewSha256": "c271edd401896f792089a174e4b4a3ef7a9eb9b0a7aeb16f231aead7a7c3b107",
+      "bytes": 314611,
+      "previewBytes": 26506,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in star-only ROI [0.28,0.34,0.1,0.22] (fractions x0,x1,y0,y1), R>180/210/240 G>150 B>80; glare not photosphere.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          2,
+          2,
+          2
+        ],
+        "geometricTargetWidthPixels": 0.9477272145419124,
+        "limits": "Nominal camera FOV artistic; off-centre projection, angular scale and colour not calibrated."
+      },
+      "url": "/bespoke/gj15a-c-sky-image.jpg",
+      "previewUrl": "/bespoke/gj15a-c-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-47aa9335-c25c-4a6d-bbf7-50ea974e0bf3.png",
+      "sourceSha256": "b62a5c8f7f22c41986a42b5c793e462638f4df6a606e43fe078833e5ac816ccd",
+      "sha256": "c8f48f941cfc5d37bb35a09757046fdcb0bd356ff6182482b7a2e599ad63ec83",
+      "previewSha256": "f947b118a212662dbd14d77240ac3b595b2f4140743bf552c8b248ad88c06dd5",
+      "bytes": 101980,
+      "previewBytes": 21321,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/gj15a-source-records.json",
+    "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
+    "skyLabel": "SKY ABOVE THE CLOUDS"
   }
 };
 
