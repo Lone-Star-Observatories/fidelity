@@ -36,7 +36,7 @@ import { fetchTraverse } from '../../data/catalog.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
-import { starBandDelta, paletteIndex, SUN_SIGNATURES } from './bandskin.js';
+import { starBandDelta, paletteIndex, SUN_SIGNATURES, ringBandLook } from './bandskin.js';
 import { bandTexture, hipsUrl, applyBandToMaterial } from './bandtextures.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
@@ -48,6 +48,7 @@ import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
 import { createMagFields } from './magfields.js';
+import { createRadioBelts } from './radiobelts.js'; // #61
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
@@ -263,7 +264,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     for (const id in nodes) {
       const n = nodes[id], u = n.mesh?.material?.uniforms;
       if (n.clouds) n.clouds.visible = full || band.id === 'visible';
-      if (n.ring) n.ring.visible = full || band.id === 'visible' || band.id === 'ir';
+      if (n.ring) { // #61: rings by their own measured look in the band (reflected ice, cold microwave, O Kα X-rays)
+        const r = ringBandLook(n.body, band, p), t = full ? [1, 1, 1] : r.palette ? PAL_RGB[r.palette] : [1, 1, 1], k = full ? 1 : Math.min(1.6, Math.max(0.12, r.gain));
+        n.ring.visible = r.visible; n.ring.material.color?.setRGB(t[0] * k, t[1] * k, t[2] * k);
+      }
       if (isStar(n.body)) { applyStarBand(n, p); continue; }
       if (!u?.uBandMode) continue;
       n.bandLook = applyBandToMaterial(u, n.body, band, p);
@@ -672,6 +676,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     clear();
     clearTransfer();
     magFields = null; // its objects hung on the old nodes, disposed by clear()
+    radioBelts = null; // likewise (#61)
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
@@ -1018,6 +1023,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
 
   // ---- magnetic fields (#38) ---------------------------------------------------------------------
   let magFields = null;
+  let radioBelts = null; // #61
   const magTmp = new THREE.Vector3(), magTmp2 = new THREE.Vector3();
   function updateMagFields(jd, now) {
     if (!model?.isSol) return;
@@ -1592,6 +1598,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     updateMissions(jd);
     updateTransfer(jd);
     updateMagFields(jd, now);
+    if (model?.isSol && band.id !== 'full') { // Jupiter's synchrotron belts in radio bands (#61)
+      radioBelts ??= createRadioBelts({ radial: (body, r) => localMap(body, magTmp.set((r * body.radiusKm) / AU_KM, 0, 0)).length() / displayRadius(body) });
+      radioBelts.update(nodes, `${scaleMix.toFixed(3)}|${model.scale}`, PAL_RGB[paletteIndex(band.palette)]);
+    } else radioBelts?.update({}, '', [0, 0, 0]);
     for (const id in nodes) {
       const c = nodes[id].clouds;
       if (c) {
