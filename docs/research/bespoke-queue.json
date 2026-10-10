@@ -8238,7 +8238,7 @@
       "distancePc": 3.288009555186119,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "NativeESO interferometric fringe graphic retained as measurement/processing context; no resolved photospheric geography found in checked primary sources. No borrowed Sun map.",
       "catalogueConstraints": {
         "OBJ_NAME": "GJ 887",
         "OBJ_CAT": "LM",
@@ -8257,9 +8257,10 @@
         "COMMENT": "...",
         "distancePc": 3.288009555186119
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "gj887-star"
     },
     {
       "id": "star-ross-128",
@@ -8456,7 +8457,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 12,
+      "initialDossiers": 13,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

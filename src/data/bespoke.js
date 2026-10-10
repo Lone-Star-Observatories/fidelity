@@ -5205,6 +5205,166 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "gj887-star": {
+    "id": "gj887-star",
+    "name": "GJ 887",
+    "kind": "star",
+    "aliases": [
+      "GJ 887",
+      "Gl 887",
+      "Gliese 887",
+      "Lacaille 9352",
+      "HD 217987",
+      "HIP 114046"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Hartogh2026 Section2 and SIMBAD verify GJ887=HD217987=Lacaille9352; actualHYG hyg-113687. Not the four planetsGJ887b/c/d/e, whose prior dossiers remain unchanged.",
+    "nativeSurface": "NativeESO interferometric fringe graphic retained as measurement/processing context; no resolved photospheric geography found in checked primary sources. No borrowed Sun map.",
+    "measured": [
+      "ESO eso0232d graphic shows raw black interferometric fringes and wavelet-denoised red data, released2002-11-29; exact observing day unknown. Neither curve is calibrated visible colour or a stellar surface photograph.",
+      "SIMBAD indexes GaiaEDR3 parallax304.1354±0.0200mas; Hartogh2026 Table1 rounds304.135±0.020mas, distance3.2877pc. Historical selection preserved; current exhaustive nearest20ranking remains open.",
+      "Jeffers2020 TESS2018 optical monitoring showed very low brightness variability. Loyd/Shkolnik/France/Wood/Youngblood2020 author-institution abstract reports two far-UV flares in2.8hoursHST monitoring despite optical quietness; no flare-free claim."
+    ],
+    "modelled": [
+      "Hartogh2026 Table1 adopts3688±86K,0.468±0.022Rsun,0.495±0.049Msun,0.0368±0.0040Lsun and[Fe/H]−0.06±0.08 from Mann2015. Primary Mann Table5 continued Gl887 row independently verifies temperature/radius/mass/metallicity. Optical spectrum/bolometric-flux/empirical estimates are not direct resolved photospheric geography.",
+      "Jeffers2020 Table1 alternate radius0.4712±0.086Rsun and mass0.489±0.05Msun retained as different reference histories; prior planet illumination and catalogue rendering parameters unchanged.",
+      "Hartogh2026 age2.9−2.2/+8.0Gyr is model-dependent. Spectral labelsM1V inplanetpapers, MannM1.1 and SIMBADM2V differ; no new resolved classification asserted.",
+      "Hydrogen/helium partlyionized molecular photospheric gas is general stellar-model context, not measured elemental fractions. Optical quietness does not determine UV radiative transfer or exact magnetic patches."
+    ],
+    "unknown": [
+      "Resolved photospheric convection/spot geography, measured composition fractions, calibrated visible colour/exposure, molecular spectral transfer and dated observer registration.",
+      "Current exhaustive nearest20boundary, exact flare location, current spot pattern and native fringe observationday."
+    ],
+    "assumed": [
+      "Independent quiescent intensity pattern with fine gas cells and sparse small magnetic patches; all morphology/longitudes invented, no observed Sun/other-body map reuse.",
+      "Hypothetical freecamera2photosphericradii fromcentre; no solid ground or survivable landing.",
+      "Nominal120degreehorizontalFOV, gas tint/exposure/spectraltransfer and scene registration remain artistic; no actual UVflare recreated as visible image."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/2602.08929v2",
+        "title": "Hartogh etal2026 RedDots, Table1 and Section2 stellar parameters",
+        "publicationDate": "2026-03-04"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1501.01635",
+        "title": "Mann2015 Table5 continued Gl887 parameter row",
+        "publicationDate": "2015-01-07"
+      },
+      {
+        "url": "https://arxiv.org/html/2006.16372",
+        "title": "Jeffers2020 optical variability and alternative parameter history",
+        "publicationDate": "2020-06-29"
+      },
+      {
+        "url": "https://experts.colorado.edu/display/pubid_300174",
+        "title": "Loyd etal2020 author-institution primary abstract, UV flares despite optical quietness",
+        "publicationDate": null
+      },
+      {
+        "url": "https://www.eso.org/public/images/eso0232d/",
+        "title": "ESO native interferometric fringe data and processing graphic",
+        "publicationDate": "2002-11-29"
+      },
+      {
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=GJ+887",
+        "title": "CDS primary identifier and GaiaEDR3 indexed astrometry",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/gj887-star-fringes-native.jpg",
+        "source": "https://cdn.eso.org/images/large/eso0232d.jpg",
+        "sourcePage": "https://www.eso.org/public/images/eso0232d/",
+        "label": "NATIVE INTERFEROMETRIC MEASUREMENT GRAPHIC",
+        "credit": "ESO; GJ887 optical long-baseline interferometric fringes and wavelet noise reduction, imageeso0232d.",
+        "terms": "ESO public image, Creative Commons Attribution4.0; unchanged publisher largeJPEG. Credit retained visibly.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "publicationDate": "2002-11-29",
+        "observationDate": null,
+        "tier": "measured",
+        "sha256": "bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098",
+        "bytes": 130498,
+        "description": "Unchanged ESO graphic released2002-11-29: black rawfringes include atmospheric perturbation, red wavelet-denoised curve is processed measurement. Exact observationday unknown. These are data curves, not a resolved photosphere photograph, measured surface geography or visible-colour reproduction."
+      }
+    ],
+    "skyModel": {
+      "star": "GJ 887",
+      "radiusSun": 0.468,
+      "temperatureK": 3688,
+      "distanceAU": 0.00435283735626058,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1926.660465542755,
+      "approximateSrgb": [
+        1,
+        0.7754439309284207,
+        0.5916472389223643
+      ],
+      "limits": "Conceptual camera2photosphericradii fromcentre;60degree diameter. Nominal120degreeFOV, visible colour, molecular spectral transfer, exposure and bright-core threshold remain artistic/approximate and uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "gj887StarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented longitude/latitude photospheric intensity map; no observed stellar frame.",
+      "coverage": "Entire gas/spot morphology imagined; approximate catalogue tint.",
+      "url": "/bespoke/gj887-star-surface-map.jpg",
+      "previewUrl": "/bespoke/gj887-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-a80b25c2-27b6-44d8-b4d2-00bf307e6ef9.png",
+      "sourceSha256": "2c4490eed3c831c53643152eba4529b6a3218d0e42be995dae1b2cb2a3893426",
+      "sha256": "78b5b12af2c6e48d46808c70714bf41a5c2ab9d66c9af28548ff14dfa9f7ed3d",
+      "previewSha256": "1bce0ed90adce204fe1ab681876be8437d1f2a40749ab763cd1b9dee48842c8d",
+      "bytes": 423659,
+      "previewBytes": 38877,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Central four-neighbour bright component excludes disconnected background stars.",
+        "brightCoreWidths": [
+          556,
+          556,
+          556
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+      },
+      "url": "/bespoke/gj887-star-sky-image.jpg",
+      "previewUrl": "/bespoke/gj887-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4eabaa25-7ab6-413c-a903-b08452efaa1d.png",
+      "sourceSha256": "eb2cf41c6e3b29efd4f621fbe923e3aabb8447b9f9b5f424c4999b2d93d03123",
+      "sha256": "496893083508cf6fda5b691f5e7f62148cc04dd667dd05e7b6d2ea1ceccb1b2c",
+      "previewSha256": "3b33476cf2c13c2cc95ce4a16afc8312ec9076d090f3d890b840ba650b934d36",
+      "bytes": 86874,
+      "previewBytes": 17281,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');

@@ -118,3 +118,12 @@ test('Epsilon Eridani stellar aliases do not select its planet or Rana',()=>{
   assert.match(v.nativeSurface,/tentative/);assert.match(v.assumed.join(' '),/no solid ground/);
   assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
 });
+
+test('GJ887 stellar aliases preserve separate planet maps and native data limits',()=>{
+  const v=bodyVisualFor({name:'Lacaille 9352'});
+  assert.equal(bodyVisualFor({name:'HD 217987'}),v);assert.equal(v.id,'gj887-star');
+  for(const name of['GJ 887 b','GJ 887 c','GJ 887 d','GJ 887 e'])assert.notEqual(bodyVisualFor({name}).surfaceMap.sha256,v.surfaceMap.sha256);
+  assert.match(v.measured.join(' '),/far-UV flares/);assert.match(v.contextImages[0].description,/not a resolved photosphere/);
+  assert.equal(v.contextImages[0].observationDate,null);
+  assert.equal(v.skyModel.radiusSun,.468);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});

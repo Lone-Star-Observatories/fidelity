@@ -1,0 +1,59 @@
+[
+  {
+    "url": "https://www.eso.org/public/images/eso0232d/",
+    "file": "data/research-sources/gj887-star-eso.html",
+    "sha256": "0ea86a4bb92cef1240a3895de5251f95c9c8d862cda7f796074d73132264494c",
+    "bytes": 77790,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://www.eso.org/public/outreach/copyright/",
+    "file": "data/research-sources/gj887-star-eso-terms.html",
+    "sha256": "574bfdd185942662efe1860a9b92e59c283ea7a2370db6c38d726083322d5be2",
+    "bytes": 83242,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2006.16372",
+    "file": "data/research-sources/gj887-star-jeffers.html",
+    "sha256": "a27419f5ea9736ec7e146d35b4a533679dd43a263b2a85b98ac8c67bc2e3c213",
+    "bytes": 294296,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=GJ+887",
+    "file": "data/research-sources/gj887-star-simbad.html",
+    "sha256": "3f715b3bfc044f9251c79efad2f37fa1d364abe9c9ff8c0b34959ac792eb2d44",
+    "bytes": 55374,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2602.08929v2",
+    "file": "data/research-sources/gj887-hartogh-2026.html",
+    "sha256": "858f99665e444933e289451816695041dbb61784636727681d64f3ab7d18f24f",
+    "bytes": 575340,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://cdn.eso.org/images/large/eso0232d.jpg",
+    "file": "data/research-sources/gj887-star-fringes-native.jpg",
+    "sha256": "bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098",
+    "bytes": 130498,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1501.01635",
+    "file": "data/research-sources/ross248-mann.pdf",
+    "sha256": "f1c746e741c6016ddd1cd2bbd21a0ed4dc96d247336e3c45e37f90b9db739513",
+    "bytes": 9339251,
+    "retrieved": "2026-10-10",
+    "note": "Primary Table5 Gl887 row independently checked; source file shared with Ross248 research, not a skin."
+  },
+  {
+    "url": "https://experts.colorado.edu/display/pubid_300174",
+    "file": "data/research-sources/gj887-star-uv-abstract.html",
+    "sha256": "f440972eb837db1cdd2a17d2921103fc3619dbeede90214c73e75a7671fac016",
+    "bytes": 18940,
+    "retrieved": "2026-10-10"
+  }
+]
