@@ -1,0 +1,57 @@
+[
+  {
+    "file": "data/research-sources/eps-ind-2026-paper.html",
+    "url": "https://arxiv.org/html/2603.08780v1",
+    "retrieved": "2026-10-10",
+    "sha256": "7f49d7bafaa54d3cef9039489ad84b6fe06ed3fdf0af5721a0389cd83da20606",
+    "bytes": 251999,
+    "credit": "Matthews et al. 2026",
+    "terms": "CC BY 4.0",
+    "publicationDate": "2026-03-09 (arXiv v1)",
+    "observationDate": "2025-05-10"
+  },
+  {
+    "file": "data/research-sources/eps-ind-2026-native.png",
+    "url": "https://arxiv.org/html/2603.08780v1/c3_data.png",
+    "retrieved": "2026-10-10",
+    "sha256": "b8439936319710d230ab7dd25d512d16ad3daca53a8464ff08af3e51a2ce305d",
+    "bytes": 82180,
+    "credit": "Matthews et al. 2026",
+    "terms": "CC BY 4.0",
+    "publicationDate": "2026-03-09 (arXiv v1)",
+    "observationDate": "2025-05-10"
+  },
+  {
+    "file": "data/research-sources/eps-ind-2024-release.html",
+    "url": "https://esawebb.org/images/weic2421a/",
+    "retrieved": "2026-10-10",
+    "sha256": "5f092739cee075dc464411210b58e993e13478174974825fd307d47bab1952d3",
+    "bytes": 78236,
+    "credit": "ESA/Webb",
+    "terms": "CC BY 4.0",
+    "publicationDate": "2024-07-24",
+    "observationDate": "2023; exact observing day not independently verified"
+  },
+  {
+    "file": "data/research-sources/eps-ind-2024-native.jpg",
+    "url": "https://cdn.esawebb.org/archives/images/screen/weic2421a.jpg",
+    "retrieved": "2026-10-10",
+    "sha256": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+    "bytes": 69456,
+    "credit": "ESA/Webb",
+    "terms": "CC BY 4.0",
+    "publicationDate": "2024-07-24",
+    "observationDate": "2023; exact observing day not independently verified"
+  },
+  {
+    "file": "data/research-sources/eps-ind-terms.html",
+    "url": "https://esawebb.org/copyright/",
+    "retrieved": "2026-10-10",
+    "sha256": "39df83a618a831a5cecb4eec930c18da1f7c52b059e4c9718a955f1f8f561238",
+    "bytes": 58472,
+    "credit": "ESA/Webb",
+    "terms": "CC BY 4.0",
+    "publicationDate": null,
+    "observationDate": null
+  }
+]

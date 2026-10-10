@@ -89,3 +89,28 @@ test('Barnard c/d/e have separate researched maps and geometrically ordered stel
  const angular=id=>BODY_VISUALS[`barnard-${id}`].skyModel.angularDiameterDeg;
  assert.ok(angular('d')>angular('b')&&angular('b')>angular('c')&&angular('c')>angular('e'));
 });
+
+test('Epsilon Indi keeps native point-source imagery separate from invented clouds', async()=>{
+ const {EXO_ATMOSPHERES}=await import('../src/data/planets.js');
+ const {buildStarSystem}=await import('../src/data/systems.js');
+ const archive=JSON.parse(await fs.readFile(new URL('../docs/research/nearest-exoplanets.json',import.meta.url),'utf8'));
+ const row=archive.rows.find(r=>r.pl_name==='eps Ind A b');
+ const model=buildStarSystem({star:{id:'indi',name:'Epsilon Indi A',x:3.6,y:0,z:0,distPc:3.6,distLy:12,spect:'K5V',lum:.2},host:row,planets:[row]});
+ const body=model.bodies.find(b=>b.name===row.pl_name),v=bodyVisualFor(body);
+ assert.equal(v.id,'epsilon-indi-b');assert.equal(body.skin.map,v.surfaceMap.key);
+ assert.equal(bodyVisualFor({name:'Epsilon Indi B b'}),null);
+ assert.equal(v.surfaceMap.tier,'imagined');assert.match(v.nativeSurface,/unresolved/);
+ assert.deepEqual(EXO_ATMOSPHERES[row.pl_name].gases,['NH3']);
+ assert.match(EXO_ATMOSPHERES[row.pl_name].note,/photometry/);
+ assert.equal(v.contextImages.length,2);
+ for(const asset of v.contextImages){
+  assert.equal(asset.tier,'measured');assert.match(asset.description,/point[- ]source/);
+  assert.ok(asset.sourceUrl&&asset.termsUrl);assert.match(asset.terms,/CC BY 4.0/);
+  const bytes=await fs.readFile(new URL('../public'+asset.url,import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);
+  assert.equal((await sharp(bytes).metadata()).format,'jpeg');
+ }
+ assert.equal(v.contextImages[1].sha256,v.contextImages[1].sourceSha256);
+ assert.match(v.unknown.join(' '),/no accessible solid ground/);
+ assert.ok(v.skyImage.rasterValidation.geometricTargetWidthPixels<1);
+});

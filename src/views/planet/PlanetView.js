@@ -148,7 +148,9 @@ export function createPlanetView(container, { onSurface } = {}) {
       ...(visual.modelled ?? []).map(text => el('div', {}, badge('modelled', text), el('p', { className: 'note', textContent: text }))),
       ...(visual.contextImages ?? []).map(asset => el('div', {},
         visualImageUrl(asset) ? el('img', { src: visualImageUrl(asset), loading: 'lazy', className: 'bespoke-image', alt: asset.description }) : null,
-        badge(asset.tier, asset.description), el('p', { className: 'note', textContent: `${asset.description} ${asset.credit}` }))), sources));
+        badge(asset.tier, asset.description), el('p', { className: 'note', textContent: asset.description }),
+        asset.sourceUrl ? el('a', { href: asset.sourceUrl, target: '_blank', rel: 'noopener noreferrer', textContent: asset.credit }) : el('p', { className: 'note', textContent: asset.credit }),
+        asset.termsUrl ? el('a', { href: asset.termsUrl, target: '_blank', rel: 'noopener noreferrer', textContent: asset.terms }) : null)), sources));
     return result;
   }
 

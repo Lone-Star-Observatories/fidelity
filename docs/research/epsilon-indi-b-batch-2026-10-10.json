@@ -1,0 +1,143 @@
+{
+  "generated": "2026-10-10",
+  "generationTool": "OpenAI built-in imagegen",
+  "promptSet": {
+    "surfaceMap": "Independent 2:1 equirectangular cloud albedo, pearl-gray water-ice cirrus above blue-gray gaps; H2/He hypothesis with ammonia/methane; no native-map reuse, terrain or measured visible colour.",
+    "skyImage": "Hypothetical observer hovering above clouds, optically thin dark upper sky, no ground; 4700 K / 0.713 solar-radius host at20.9AU; artistic60-degreeFOV and unresolved subpixel star; faint warm-white point glare and artistic exposure."
+  },
+  "bodies": [
+    {
+      "id": "epsilon-indi-b",
+      "name": "Epsilon Indi Ab",
+      "aliases": [
+        "eps Ind A b",
+        "Epsilon Indi Ab",
+        "Epsilon Indi A b",
+        "HD 209100 b"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Native JWST/MIRI infrared images detect an unresolved planet point source in 2023 and 2025. No resolved surface or cloud-top map exists; infrared display colours do not measure visible colour.",
+      "measured": [
+        "JWST/MIRI directly detected a point source; the second high-significance epoch confirms shared proper motion.",
+        "2025-05-10 F1140C photometry combined with earlier 10.6 μm observations gives a 0.88±0.08 mag colour difference, strong photometric evidence for ammonia."
+      ],
+      "modelled": [
+        "Matthews et al. 2026 orbital fit: dynamical mass 7.63(-0.70,+0.73) Jupiter masses, semimajor axis 20.9(-3.3,+5.8) AU, period 108(-25,+49) years, eccentricity 0.244(-0.083,+0.11). These updated models differ from archive composite orbit values; catalogue snapshot is preserved.",
+        "Effective temperature around 200–300 K is atmospheric/evolutionary inference, not measured solid-ground temperature. Water-ice clouds are the preferred explanation for shallow ammonia absorption; low metallicity or nitrogen depletion remain alternatives.",
+        "Archive host 4700 K and 0.713 solar radius adopted for representative illumination. Archive radius 12.7 Earth radii is not a transit measurement; no resolved planetary radius."
+      ],
+      "unknown": [
+        "Visible colour, actual radius, cloud distribution, pressure, winds, rotation and detailed abundances are not directly measured.",
+        "There is no accessible solid ground; the hypothetical observer floats above clouds. Native infrared point-source size is an instrumental response, not the physical planetary disc."
+      ],
+      "assumed": [
+        "An H2/He envelope with trace ammonia and methane and patchy water-ice cirrus is the selected hypothesis, not a measured composition profile.",
+        "Pearl-gray/ivory feathered cloud sheets above blue-gray gaps and cellular shear patterns are independently invented; no observed planetary map was reused.",
+        "Hovering above the cloud canopy beneath an optically thin upper atmosphere is imagined; altitude, pressure, sky scattering, horizon and exposure are not registered. Clouds are not visibly glowing due to internal heat.",
+        "Representative 20.9 AU distance and artistic 60-degree horizontal field give 0.01818-degree host diameter and 0.000512 Earth stellar irradiation. Warm-white stellar colour is an approximate blackbody guide, not calibrated radiometry.",
+        "Raster validation: thresholds180/210/240 give bright core widths 3/3/3 original pixels versus geometric target 0.459448 pixels. The photosphere is subpixel and represented by unresolved glare; no calibrated disc-size or field claim."
+      ],
+      "references": [
+        {
+          "url": "https://arxiv.org/html/2603.08780v1",
+          "title": "Matthews et al. 2026: repeat JWST detection, ammonia photometry and cloud models",
+          "publicationDate": "2026-03-09 (arXiv v1)",
+          "observationDate": "2025-05-10; original JWST epoch 2023"
+        },
+        {
+          "url": "https://esawebb.org/images/weic2421a/",
+          "title": "ESA/Webb 2024 native MIRI point-source image, false-colour description and credits",
+          "publicationDate": "2024-07-24",
+          "observationDate": "2023; exact day not independently verified"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA Exoplanet Archive composite snapshot retrieved 2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "eps Ind A b",
+        "hostname": "eps Ind A",
+        "sy_dist": 3.63857,
+        "pl_rade": 12.7,
+        "pl_bmasse": 2065.8846455,
+        "pl_bmassprov": "Mass",
+        "pl_orbper": 25450,
+        "pl_orbsmax": 15.76,
+        "pl_eqt": 275,
+        "st_teff": 4700,
+        "st_rad": 0.713,
+        "st_mass": 0.8,
+        "st_spectype": "K5 V",
+        "ra": 330.8714021,
+        "dec": -56.7969023,
+        "disc_year": 2019
+      },
+      "skyModel": {
+        "star": "Epsilon Indi A",
+        "radiusSun": 0.713,
+        "temperatureK": 4700,
+        "distanceAU": 20.9
+      },
+      "surfaceMap": {
+        "key": "epsilonIndiBBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular hypothetical cloud albedo; no measured frame.",
+        "coverage": "Entire cloud morphology invented."
+      },
+      "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
+      "skyLabel": "SKY ABOVE THE CLOUDS",
+      "skyImage": {
+        "rasterValidation": {
+          "method": "Central upper sky ROI x40–60%, y8–27%; R>180/210/240 G>150 B>80; threshold widths include glare.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            3,
+            3,
+            3
+          ],
+          "geometricTargetWidthPixels": 0.4594483973756692,
+          "limits": "Subpixel photosphere represented by uncalibrated glare; artistic camera field and exposure."
+        }
+      },
+      "contextImages": [
+        {
+          "url": "/bespoke/epsilon-indi-b-native-2026.jpg",
+          "tier": "measured",
+          "description": "JWST/MIRI 11.3 μm coronagraphic detection, observed 2025-05-10; grayscale intensity with host-location annotation. Unresolved point source, not a surface photograph.",
+          "credit": "E. C. Matthews et al. 2026, Figure 1, arXiv:2603.08780v1",
+          "terms": "CC BY 4.0; credit retained adjacent to image.",
+          "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sourceUrl": "https://arxiv.org/html/2603.08780v1",
+          "observationDate": "2025-05-10",
+          "publicationDate": "2026-03-09 (arXiv v1)",
+          "sourceSha256": "b8439936319710d230ab7dd25d512d16ad3daca53a8464ff08af3e51a2ce305d",
+          "sha256": "97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106",
+          "bytes": 89216,
+          "processing": "Original 600×600 PNG retained in research source cache; JPEG quality 95 derivative, no recolouring or cropping."
+        },
+        {
+          "url": "/bespoke/epsilon-indi-b-native-2024.jpg",
+          "tier": "measured",
+          "description": "JWST/MIRI 2023 point-source detection released 2024-07-24; 10.6 μm assigned blue and 15.5 μm orange. False colour, not visible planetary colour or a resolved cloud map.",
+          "credit": "ESA/Webb, NASA, CSA, STScI, E. Matthews (Max Planck Institute for Astronomy)",
+          "terms": "CC BY 4.0; credit retained adjacent to image.",
+          "termsUrl": "https://esawebb.org/copyright/",
+          "sourceUrl": "https://esawebb.org/images/weic2421a/",
+          "observationDate": "2023; exact observing day not independently verified",
+          "publicationDate": "2024-07-24",
+          "sourceSha256": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+          "sha256": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+          "bytes": 69456,
+          "processing": "Publisher screensize JPEG copied byte-for-byte; no recolouring or cropping."
+        }
+      ],
+      "researchSourcesRecord": "docs/research/epsilon-indi-b-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-0e8d90f7-b3ed-4ab3-bc38-798a91fe840d.png",
+        "skyImage": "exec-1d609862-ecf1-41ac-8b82-df515912a1aa.png"
+      }
+    }
+  ]
+}

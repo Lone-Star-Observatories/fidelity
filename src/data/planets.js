@@ -96,6 +96,7 @@ export const MOLECULE_NAMES = { O2: 'OXYGEN', O3: 'OZONE', H2O: 'WATER', CO2: 'C
 
 // Measured exoplanet atmospheres (only planets within the app's 212 ly catalogue range).
 export const EXO_ATMOSPHERES = {
+  'eps Ind A b': { gases: ['NH3'], ref: 'Matthews et al. 2026, arXiv:2603.08780 (JWST/MIRI)', note: 'Ammonia inferred from 10.6/11.3 μm photometry. Thick water-ice clouds are a preferred model explanation, not a resolved observation; abundances and visible colour remain uncertain.' },
   'HD 189733 b': { gases: ['H2O', 'CO', 'CO2', 'H2S'], ref: 'Fu et al. 2024, Nature (JWST)', note: 'Hot Jupiter: water, carbon monoxide and dioxide, and the first hydrogen sulfide seen in an exoplanet.' },
   'K2-18 b': { gases: ['CH4', 'CO2'], ref: 'Madhusudhan et al. 2023, ApJL (JWST)', note: 'Methane and carbon dioxide in a temperate sub-Neptune. A claimed dimethyl sulfide signal is not confirmed.' },
   '55 Cnc e': { gases: ['CO', 'CO2'], ref: 'Hu et al. 2024, Nature (JWST)', note: 'A lava world with a secondary atmosphere, probably carbon monoxide or dioxide.' },

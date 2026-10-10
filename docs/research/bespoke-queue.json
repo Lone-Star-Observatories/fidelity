@@ -500,7 +500,7 @@
       "parent": null,
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
+      "nativeImagery": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
       "research": "initial dossier delivered; refinement open",
       "surface": "bespoke hypothetical map delivered",
       "sky": "hypothetical image delivered; photometric calibration remains approximate",
@@ -513,7 +513,7 @@
       "parent": null,
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
+      "nativeImagery": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
       "research": "initial dossier delivered; refinement open",
       "surface": "bespoke hypothetical map delivered",
       "sky": "hypothetical image delivered; photometric calibration remains approximate",
@@ -526,7 +526,7 @@
       "parent": null,
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
+      "nativeImagery": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
       "research": "initial dossier delivered; refinement open",
       "surface": "bespoke hypothetical map delivered",
       "sky": "hypothetical image delivered; photometric calibration remains approximate",
@@ -7325,7 +7325,7 @@
       "distancePc": 3.63857,
       "scope": "20 closest NASA archive planets",
       "source": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
-      "nativeImagery": "unchecked; distinguish direct image of point source from resolved surface",
+      "nativeImagery": "Native JWST/MIRI infrared images detect an unresolved planet point source in 2023 and 2025. No resolved surface or cloud-top map exists; infrared display colours do not measure visible colour.",
       "archiveConstraints": {
         "pl_name": "eps Ind A b",
         "hostname": "eps Ind A",
@@ -7344,9 +7344,10 @@
         "dec": -56.7969023,
         "disc_year": 2019
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "epsilon-indi-b"
     },
     {
       "id": "exo-gj-1061-b",
