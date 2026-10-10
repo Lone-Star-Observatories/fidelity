@@ -40,7 +40,7 @@
     "limitations": "Full paper/supplement/alternative model and newer2025research audit open; no local chemistry/fractions, exposed ocean/plume or biology inferred."
   },
   "next": [
-    "Audit accessible primary full paper and newer thermal/orbital alternatives without inventing download hashes or licences.",
+    "Continue full2024 paper/supplement audit and2025parameter alternatives, with distinct ocean-inference versus crater-formation interpretations.",
     "Recover standalone headroom before larger native/illustration batches; preserve all fields/models/native bytes.",
     "Deliver individual Mimas dossier with native context and independent imagined local/observer views, keeping own globe unchanged."
   ],
@@ -55,5 +55,21 @@
     "headroomBytes": 151716,
     "completeBrowserReadableSha256": "4a8b5ebf799964f64543888f7e1dfd9115d10f59edd01bf27eac5256f5cc8ecf",
     "exactApplicationAndHtmlParserPayload": "pass"
+  },
+  "newerPrimaryResearch": {
+    "title": "Herschel impact basin probes the onset of a young ocean on mimas",
+    "authors": [
+      "C.A. Denton",
+      "A.R. Rhoden"
+    ],
+    "doi": "10.1016/j.epsl.2025.119614",
+    "availableOnline": "2025-09-09",
+    "accepted": "2025-08-31",
+    "source": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+    "bytes": 4391661,
+    "sha256": "daf48ed7f3756eaf9fa6783270404cf38b0899b8fc67e54a18e37caf037feb4b",
+    "assessment": "Abstract/introduction/methods read directly: iSALE-2D impacts can match Herschel in ocean-bearing or warm fully frozen shells near melting. Basin morphology alone does not uniquely require an ocean at formation. Simulated timing near onset of young ocean is an interpretation. Model assumes axisymmetric vertical impact, idealized target/ice and selected impactor velocities; chemistry, impact conditions and local terrain are not measured by these simulations.",
+    "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only, no figures embedded.",
+    "limitations": "Detailed parameter/supplement audit remains open; modern ocean inference is distinct from photographed surface geology or direct interior observation."
   }
 }

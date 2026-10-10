@@ -67,6 +67,17 @@
       "contentType": "text/html",
       "validPdfSignature": false,
       "assessment": "Not a PDF: HTTP200 text/html challenge. Saved bytes/hash are response only, not accepted manuscript."
+    },
+    {
+      "name": "denton-rhoden-2025-primary-paper",
+      "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+      "path": "data/research-sources/mimas-denton-rhoden-2025.pdf",
+      "bytes": 4391661,
+      "sha256": "daf48ed7f3756eaf9fa6783270404cf38b0899b8fc67e54a18e37caf037feb4b",
+      "retrieved": "2026-10-10",
+      "validPdfSignature": true,
+      "publicationDate": "2025-09-09",
+      "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only; no figure embedded."
     }
   ]
 }
