@@ -7,6 +7,7 @@ import { fetchSatellites, fetchSatelliteDetail, fetchFeed, fetchObserving } from
 import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed, youtubeEmbed, youtubeWatch } from '../data/feeds.js';
 import { SAT_COLORS } from '../views/system/satellites.js';
 import { lineChart } from './charts.js';
+import { satelliteComms } from './comms.js';
 
 const MU = 398600.4418, R_EQ = 6378.137, R_MEAN = 6371;
 const STALE_DAYS = 7; // older element sets are flagged: SGP4 error grows ~1–3 km a day in low orbit
@@ -84,6 +85,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
       h('h3', { textContent: 'CATALOGUE' }), live.satcat,
       h('h3', { textContent: feeds.length ? 'LIVE FEEDS' : 'LIVE FEEDS · NONE PUBLIC' }),
       feeds.length ? h('div', { className: 'body-list' }, feeds.map((f) => pill(`${f.label} ▸`, () => openFeed(f, r)))) : h('p', { className: 'note', textContent: 'No public live imagery or telemetry from this spacecraft. Telemetry above is computed from its orbit.' }),
+      h('h3', { textContent: 'COMMS' }), satelliteComms(r[0]), // #35: SatNOGS radio, ISS ham radio
       live.satMission = h('div'),
       h('div', { className: 'body-list' },
         pill('◀ EARTH', () => go({ level: 'system', system: 'sol', body: 'earth' })),

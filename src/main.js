@@ -9,6 +9,7 @@ import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
 import { detailCards } from './panels/detail.js';
+import { spacecraftComms } from './panels/comms.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
@@ -526,8 +527,8 @@ function renderDsn() {
     live.dsnBoard.replaceChildren(...(dsn?.contacts?.length ? dsnRows(dsn.contacts) : [h('p', { className: 'note', textContent: STANDALONE ? 'Live DSN status needs the local backend (npm start).' : 'NO DATA YET' })]));
   }
   if (live.dsnCraft) {
-    const mine = dsn?.contacts?.filter((c) => String(c.spacecraftId) === live.dsnCraft) ?? [];
-    live.dsnOne.replaceChildren(...(mine.length ? dsnRows(mine) : [h('p', { className: 'note', textContent: dsn ? 'NOT IN CONTACT RIGHT NOW. Antennas are shared by dozens of missions; check back in a few hours.' : 'Live DSN status needs the local backend.' })]));
+    // COMMS (#35): band, rate, power, antenna, complex, age; last seen when not in contact
+    live.dsnOne.replaceChildren(...spacecraftComms(dsn, live.dsnCraft, (c) => system.model?.bodies.find((b) => b.horizons === String(c.spacecraftId))?.name ?? c.code));
   }
 }
 
@@ -742,7 +743,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     ...(b.id === 'jwst' ? [h('h3', { textContent: 'OBSERVING NOW' }), h('div', { className: 'body-list' },
       pill('POINTED AT NOW · RECENT IMAGES ▸', () => satPanel.viewFeed({ kind: 'observing', mission: 'jwst', label: 'OBSERVING' }, 'JWST'))),
       h('p', { className: 'note', textContent: 'From STScI\'s published weekly schedule (the plan) and the newest public images in MAST.' })] : []),
-    ...(b.kind === 'spacecraft' ? [h('h3', { textContent: 'DEEP SPACE NETWORK · LIVE' }), (live.dsnOne = h('div', { className: 'host-list' }))] : []),
+    ...(b.kind === 'spacecraft' ? [h('h3', { textContent: 'COMMS · DEEP SPACE NETWORK' }), (live.dsnOne = h('div', { className: 'cm-list' }))] : []),
     ...(m.isSol && b.id === 'earth' ? [h('h3', { textContent: 'SATELLITES' }), satPanel.searchSection()] : []),
     renderLegend(),
   );

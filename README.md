@@ -30,6 +30,7 @@ Exoplanet Archive planet list (cached for a week). Both are stored under `data/`
 | `FIDELITY_PORT` | `4011` | Backend port (binds to `127.0.0.1` only) |
 | `FIDELITY_DATA_DIR` | `./data` | Where on-demand downloads are cached |
 | `FIDELITY_CATALOG_DIRS` | — | Folders with catalogs you already have (e.g. `/Volumes/DATA/catalogs`); separate several with `:` |
+| `FIDELITY_WINDY_KEY` | — | Optional Windy Webcams API key: adds webcams to Earth's live-signals map (#35). Held by the backend only |
 <<<<<<< HEAD
 | `FIDELITY_EVENTS_URL` | the repo's `events/events.json` on GitHub | Where `/api/events` reads the weekly events feed |
 =======
