@@ -287,7 +287,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .panel dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
 .panel .note { color: var(--dim); font-size: calc(13px * var(--text-scale, 1)); line-height: 1.35; margin: 0; }
 .panel .warn { color: var(--red); font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.06em; }
-.body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 4px; }
+.body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(130px, calc(50% - 2px)), 1fr)); gap: 4px; } /* two columns at most */
+.panel h3.sec-head { cursor: pointer; user-select: none; display: flex; justify-content: space-between; gap: 8px; }
+.panel h3.sec-head::after { content: '▾'; }
+.panel h3.sec-head.shut::after { content: '▸'; }
+.panel h3.sec-head:hover { filter: brightness(1.12); }
+.panel h3.sec-head:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+.panel .sec-folded { display: none !important; }
 .body-list .pill { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .body-list .pill.square { min-width: 44px; }
 .panel { position: relative; padding-left: 10px; overflow-x: hidden; }

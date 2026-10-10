@@ -35,6 +35,7 @@ import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
 import { createTimeControl } from './panels/timecontrol.js';
+import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
@@ -408,6 +409,7 @@ const panelEl = $('panel');
   });
   handle.addEventListener('dblclick', () => { settings.set('panelWidth', null); apply(null); });
 }
+collapsibleSections(panelEl, settings); // click a section heading to fold it
 // replaceChildren would print `null` for skipped optional sections
 const panel = { replaceChildren: (...kids) => panelEl.replaceChildren(...kids.filter((k) => k != null)) };
 // SELECTED STAR card for stars clicked in the Galaxy, Quadrant and System (sky) views (#23)
