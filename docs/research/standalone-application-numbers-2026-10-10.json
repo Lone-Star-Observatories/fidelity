@@ -47,5 +47,34 @@
   },
   "preservation": "All54 dossier registry/source manifests/original PNGs/masters/native science/map/model/shape inputs untouched by this batch. Complete rebuilt snapshot byte equality includes195 texture/body images,20 baked band previews,517 details and32 models. No historical snapshot hash equivalence asserted.",
   "upstreamDistinction": "28064df changes generic512px texture previews from lossy JPEG82 to lossy WebP82 and adds baked bands. These upstream preview conversions explain snapshot-byte changes and are distinct from this lossless application packing. Original source maps and unchanged native dossier publisher images remain retained.",
-  "next": "Dione1536masters/recorded256previews, native/local/observer additive dossier budget, then other moons and remaining calibration/ranking/craft/shape backlog. ACTIVE."
+  "next": "Dione1536masters/recorded256previews, native/local/observer additive dossier budget, then other moons and remaining calibration/ranking/craft/shape backlog. ACTIVE.",
+  "postRebaseVerification": {
+    "upstream": "fa29194",
+    "testsPassed": 407,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15891410,
+    "headroomBytes": 108590,
+    "chrome": {
+      "bandImages": 20,
+      "snapshot": "d06a5b5df6c20788348ff7be3af610279c68acb86b03e41012196bf0162edeee",
+      "raw": "834f990a814bf488c3500f5789d3b43ac0026a07efe87be37d93bda20c79c113",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15891410,
+      "compressedBytes": 689046,
+      "applicationSha256": "28c97e3260178bb2121930d72bd0ffb1feac8b4508ad5002b075d6c55b3026d8",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactCssHtmlParser": true,
+    "sixRoutesUnsupportedMessage": true,
+    "workerEventRows": 11,
+    "nativePublisherContextReferencesByteEqual": 44,
+    "notes": "Both documentation additions preserved through append conflict. Upstream Paleo-Earth assets and code remain intact. Pre-rebase measurements above are historical; final merged size is15891410."
+  }
 }
