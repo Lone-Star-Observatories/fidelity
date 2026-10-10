@@ -296,3 +296,35 @@ export function unpackDenseSnapshotBytes(packed) {
   }
   return bytes;
 }
+
+// FIDAPP01 transposes JavaScript numeric token spellings; plain modules remain supported.
+export function restoreApplicationText(bytes) {
+  const decoder = new TextDecoder('utf-8', { fatal: true });
+  if (![70, 73, 68, 65, 80, 80, 48, 49].every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
+  const length = () => { if (at + 4 > bytes.length) throw Error('Truncated application numbers.'); const n = view.getUint32(at, true); at += 4; return n; };
+  const take = n => { if (n > bytes.length - at) throw Error('Truncated application numbers.'); const b = bytes.subarray(at, at + n); at += n; return b; };
+  const skeletonLength = length(), count = length(), groupCount = length();
+  if (groupCount > 255) throw Error('Invalid application group count.');
+  const parts = decoder.decode(take(skeletonLength)).split('\0'), order = take(count);
+  if (!Array.isArray(parts) || parts.length !== count + 1 || parts.some(p => typeof p !== 'string')) throw Error('Invalid application skeleton.');
+  const groups = new Map(); let total = 0;
+  for (let i = 0; i < groupCount; i++) {
+    const width = take(1)[0], size = length();
+    if (!width || !size || groups.has(width) || size > count - total) throw Error('Invalid application number group.');
+    groups.set(width, { size, data: take(width * size), used: 0 }); total += size;
+  }
+  if (total !== count || at !== bytes.length) throw Error('Invalid application number count or trailing bytes.');
+  const result = [parts[0]];
+  for (let i = 0; i < count; i++) {
+    const width = order[i], group = groups.get(width);
+    if (!group || group.used >= group.size) throw Error('Invalid application number reference.');
+    let token = '';
+    for (let digit = 0; digit < width; digit++) token += String.fromCharCode(group.data[digit * group.size + group.used]);
+    group.used++;
+    if (!/^(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|0[xX][0-9a-fA-F]+|0[bB][01]+|0[oO][0-7]+)$/.test(token)) throw Error('Invalid application numeric spelling.');
+    result.push(token, parts[i + 1]);
+  }
+  if ([...groups.values()].some(g => g.used !== g.size)) throw Error('Unused application numbers.');
+  return result.join('');
+}

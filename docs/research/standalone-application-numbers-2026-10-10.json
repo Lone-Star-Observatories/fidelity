@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-10",
+  "status": "Lossless application numeric-token packing delivered; complete standalone and Chrome verification pass. Dione remains prepared, no55th dossier/newembedding.",
+  "upstream": "28064df",
+  "format": "FIDAPP01 application container, standard gzip32, gzip-raw-radix125-wide-v1 envelope",
+  "implementation": {
+    "lexing": "Acorn tokens; eligible original numeric spellings are grouped by ASCII length and transposed. Strings, comments, regex, template text and unsupported BigInt/separator spellings remain literal source segments. No numeric conversion, rounding or pruning.",
+    "skeleton": "UTF8 source segments separated by reserved NUL; original source containing NUL is rejected.",
+    "validation": "Strict bounds, fatal UTF8, segment/token count, group width/uniqueness/count, reference usage, numeric spelling and trailing-byte validation. Complete original JavaScript source restored before Blob module import/revoke. Plain legacy modules remain decodable.",
+    "otherTransports": "FIDNUM01/FIDBIN01 snapshot, dense125/raw120wide/v1/radix85/base64, CSS and unsupported-gzip message preserved.",
+    "bandImages": "Removed overflow fallback that silently omitted baked band images. Every successfully baked preview stays; hard16000000 gate remains."
+  },
+  "sameInputApplicationTrial": {
+    "originalApplicationGzipBytes": 728635,
+    "numericApplicationGzipBytes": 686031,
+    "oldWide120TransportBytes": 844560,
+    "newDense125TransportBytes": 788238,
+    "applicationTransportSavingBytes": 56322
+  },
+  "verification": {
+    "testsPassed": 404,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15887898,
+    "headroomBytes": 112102,
+    "chrome": {
+      "bandImages": 20,
+      "snapshot": "d06a5b5df6c20788348ff7be3af610279c68acb86b03e41012196bf0162edeee",
+      "raw": "834f990a814bf488c3500f5789d3b43ac0026a07efe87be37d93bda20c79c113",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15887898,
+      "compressedBytes": 686031,
+      "applicationSha256": "a86be5fdad94d0c2dd20d2e8f3e5c833fa9612def4bd68f2876cdca411edb091",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactStylesheet": true,
+    "sixRoutes": true,
+    "unsupportedGzipMessage": true,
+    "offlineEventWorkerRows": 11,
+    "otherBrowserEngines": "open"
+  },
+  "preservation": "All54 dossier registry/source manifests/original PNGs/masters/native science/map/model/shape inputs untouched by this batch. Complete rebuilt snapshot byte equality includes195 texture/body images,20 baked band previews,517 details and32 models. No historical snapshot hash equivalence asserted.",
+  "upstreamDistinction": "28064df changes generic512px texture previews from lossy JPEG82 to lossy WebP82 and adds baked bands. These upstream preview conversions explain snapshot-byte changes and are distinct from this lossless application packing. Original source maps and unchanged native dossier publisher images remain retained.",
+  "next": "Dione1536masters/recorded256previews, native/local/observer additive dossier budget, then other moons and remaining calibration/ranking/craft/shape backlog. ACTIVE."
+}
