@@ -11,4 +11,5 @@ Read `docs/architecture.md` first. How we work:
   bound to loopback.
 - **Checks before a PR:** `npm test && npm run build`. Astro math changes need a test
   against JPL Horizons reference values.
-- Work on a branch, open a PR into `main` that references the issue (`#N`), squash-merge.
+- **Commit straight to `main`** (single developer, no PRs). Reference the issue in the
+  commit message (`#N`, or `Closes #N` when it finishes one) and keep `main` green.
