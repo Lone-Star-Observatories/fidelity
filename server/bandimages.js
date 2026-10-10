@@ -16,10 +16,11 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { config } from './config.js';
 import { BANDS, BODY_BAND } from '../src/data/bands.js';
+import { MILKY_WAY } from '../src/data/skylayers.js';
 
 const HIPS2FITS = 'https://alasky.cds.unistra.fr/hips-image-services/hips2fits';
 const UA = { 'user-agent': 'USS-Fidelity/0.3 (local astronomy explorer)' };
-const SKY = new Set(BANDS.flatMap((b) => b.passes.map((p) => p.sky)).filter(Boolean));
+const SKY = new Set([...BANDS.flatMap((b) => b.passes.map((p) => p.sky)).filter(Boolean), MILKY_WAY.hips]);
 const PLANETARY = new Set(Object.values(BODY_BAND).flatMap((m) => Object.values(m)).map((s) => s.hips).filter(Boolean));
 const GIBS = new Set(Object.values(BODY_BAND).flatMap((m) => Object.values(m)).map((s) => s.gibs).filter(Boolean));
 // layer sets whose newest day lags by several days (e.g. SMAP): ask GIBS for its default (latest) time

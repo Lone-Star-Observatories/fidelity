@@ -1,0 +1,89 @@
+{
+  "status": "research-only preparation; no 55th dossier or new embedded assets",
+  "body": "Dione",
+  "date": "2026-10-10",
+  "catalogue": {
+    "radiusKm": 561.4,
+    "massKg": 1.0955e+21,
+    "semimajorAxisKm": 377700
+  },
+  "sources": [
+    {
+      "source": "https://science.nasa.gov/photojournal/dramatic-dione/",
+      "captionPath": "data/research-sources/dione-dramatic-dione-caption.html",
+      "captionBytes": 266430,
+      "captionSha256": "f3c06ca8ea531d707e1691681a69040862be6138d670623ff20c4eeb120566c7",
+      "imageUrls": [
+        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17197/PIA17197.jpg"
+      ],
+      "imagePath": "data/research-sources/dione-PIA17197.jpg",
+      "imageBytes": 28181,
+      "imageSha256": "02cb0ceee991807ce3cb5fe0fe486e8194a3bc66612ace4a350bc8b2303ef5cf",
+      "observed": "2012-07-23",
+      "released": "2018-03-12",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "interpretation": "Cassini NAC polarized plus green-sensitive filter; monochrome, not calibrated visible colour. Bulk core/ice inference is not a local composition measurement.",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true
+    },
+    {
+      "source": "https://science.nasa.gov/photojournal/cassinis-closest-views-of-dione-i/",
+      "captionPath": "data/research-sources/dione-cassinis-closest-views-of-dione-i-caption.html",
+      "captionBytes": 267445,
+      "captionSha256": "bd62987ee1797831509ff112c025925684267e922466fade4ed04bd34217fa00",
+      "imageUrls": [
+        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19653/PIA19653.jpg"
+      ],
+      "imagePath": "data/research-sources/dione-PIA19653.jpg",
+      "imageBytes": 75243,
+      "imageSha256": "ae6ede02650727baece49c0a0f14f86652fcea155cb070ab5492d4b40f9b339a",
+      "observed": "2015-08-17",
+      "released": "2015-08-20",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "interpretation": "Page describes simultaneous WAC/NAC composite and links separate figure. Main 602x1022 JPEG visually shows monochrome terrain without obvious inset boundary. Exact camera/panel-to-file association remains open; do not silently call it the WAC composite or NAC-only. Caption north is down; 32/3 m per pixel are publisher estimates, not new raster calculations.",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true
+    },
+    {
+      "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Dione/Saturn%20-%20Dione.jpg",
+      "path": "data/research-sources/dione-nasa3d-source.jpg",
+      "bytes": 574654,
+      "sha256": "c55d228900524557b6aff323f4b9391fc9816433e213a24ccf348c9b4291f89e",
+      "existingMap": "data/textures/dione.jpg",
+      "sourceByteEqual": true,
+      "limitations": "Source byte identity verified; frame, coverage, input observation epochs and photometric calibration remain open. No resolved generated globe adopted."
+    },
+    {
+      "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia19/pia19653/figures/PIA19653_fig1.jpg",
+      "path": "data/research-sources/dione-PIA19653-fig1.jpg",
+      "bytes": 164075,
+      "sha256": "c372fcef76a953659df8c2ea3f80b8b9090827bfbcddec7cb3b39d55b444ef23",
+      "status": "Visually inspected: 1024-square monochrome terrain, no visible inset boundary. Main portrait JPEG is 602x1022. Both downloads are retained separately; caption composite/panel-to-file association remains unresolved, no WAC/NAC-specific assignment adopted.",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "credit": "NASA/JPL-Caltech/Space Science Institute"
+    }
+  ],
+  "preservation": "All 54 dossiers, native/model/shape/map and original generated assets unchanged. No newest-observation claim. Larger downloads require standalone headroom before integration.",
+  "next": [
+    "Audit PIA19653 figure/product association and recent primary sources",
+    "Recover lossless standalone headroom",
+    "Independent local and Saturn observer views using skyGeometry, then additive dossier"
+  ],
+  "verification": {
+    "testsPassed": 284,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15962194,
+    "browser": {
+      "snapshot": "addef83ba76fe640a3fa6c9029e4b5041d1e4af5b2e2819b7597fbb0922fa23b",
+      "raw": "da5a94bf64697e14a8ca69cd1f5646fba3dfbe5f9631cd9f5fbd43f012d0a684",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "queueTasks": 566,
+    "dossiers": 54
+  }
+}

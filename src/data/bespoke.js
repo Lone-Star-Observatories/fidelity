@@ -7419,6 +7419,126 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "tethys": {
+    "id": "tethys",
+    "name": "Tethys",
+    "aliases": [
+      "Tethys"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged SHA84f70e3fe6fa48661df4d973f78a540771e629ebbc68e032539d2e28e1d8eea1 source-byte equal; underlying mosaic association/frame/coverage/epochs/photometry open. White/blurred gaps do not measure smooth terrain. No generated globe.",
+    "measured": [
+      "Catalogue radius531.1km, mass6.1745e20kg and semimajor axis295000km are representative catalogue values, not dated observer registration.",
+      "Cassini ISS PIA20518 leading-hemisphere green-filter image observed2016-11-10 released2017-01-23; cratered surface, Odysseus basin and Scheria Montes central peaks visible. Monochrome not calibrated visible colour. Sourcecaption2km/pixel is its own estimate, not recomputed here.",
+      "PIA21342 wide-angle visible image observed2017-05-13 released2017-08-21 shows tiny Tethys in Saturnshine near rings; publisher brightened moon2x. Retained as research context, not local terrain or calibrated photometry."
+    ],
+    "modelled": [
+      "Spherical Saturn angular geometry is an observer guide, not a physically registered Cassini reconstruction. No new interior, chemistry or activity model is inferred from the adopted monochrome image."
+    ],
+    "unknown": [
+      "Local material fractions and chemistry, registered observer site/phase, true-colour and photometric calibration, own globe mosaic input epochs/frame/coverage. Additional recent primary/scientific-product audit remains open; no exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Independent invented local craters/blocks/regolith, material fractions/chemistry, Saturn bands/nearly-edge-on rings/phase/lighting/exposure; no observed-body analog map reused. No atmosphere, plume, exposed ocean, biology or survivable landing.",
+      "Saturn mean radius58232km at295000minus531.1km, nominal90HFOV: skyGeometry22.81113948degrees/337.303485px target at1672px; source row200 globe chords364/362/361px at thresholds5/10/20 are oversized relative to guide and not full calibrated diameter; rings excluded.95K helper angular-only; Sun9.58AU off-frame."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/heres-looking-at-you-tethys/",
+        "title": "Cassini PIA20518 own Tethys leading hemisphere",
+        "publicationDate": "2017-01-23"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/saturn-lit-tethys/",
+        "title": "PIA21342 Saturnshine context; moon enhanced2x",
+        "publicationDate": "2017-08-21"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Tethys",
+        "title": "NASA3D own globe file association; scientific mosaic audit remains open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/tethys-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia20/pia20518/PIA20518.jpg?w=640&fit=clip",
+        "sourcePage": "https://science.nasa.gov/photojournal/heres-looking-at-you-tethys/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/heres-looking-at-you-tethys/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2016-11-10",
+        "publicationDate": "2017-01-23",
+        "bytes": 24614,
+        "sha256": "1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca",
+        "width": 640,
+        "height": 640,
+        "description": "Cassini ISS green-filter monochrome view of cratered Tethys including Odysseus/Scheria Montes. Not calibrated visible colour or a seamless globe. Publisher640 display rendition is resized/reencoded, not full pixel preservation; original JPEG retained.",
+        "processing": "Unchanged NASA-served640 JPEG bytes; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL TETHYS TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM TETHYS",
+    "surfaceImage": {
+      "url": "/bespoke/tethys-surface-image.jpg",
+      "previewUrl": "/bespoke/tethys-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "tethys-generated-surfaceImage-original.png",
+      "sourceSha256": "21ebd7596ea983a1eba6afe4cebe7c599b41409b5940d2565a33c169ac881f4d",
+      "sha256": "ca6070f37305502968bffb093bcaf3b4b432f8e38dfbc39040a591b615c5d93c",
+      "previewSha256": "76738d458cbd5fc0982c4edae9ebcf281c30c84bb0c8daf4900a2dea3967ba14",
+      "bytes": 390576,
+      "previewBytes": 10860,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/tethys-sky-image.jpg",
+      "previewUrl": "/bespoke/tethys-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "tethys-generated-skyImage-original.png",
+      "sourceSha256": "f316bef5552be0c159f7f6437423ec7b1ab174fc7b57f05c09fd35c0bda9dcf9",
+      "sha256": "c80ceb68e1255dedff9e716ccc9b85290adfbd8c6c1361c7fcb2bfbdff9c81fd",
+      "previewSha256": "4cb93bdeada9ac383cf3c5911ee8144285be0bd8c994eaba031855aa4f4fa425",
+      "bytes": 198894,
+      "previewBytes": 6569,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

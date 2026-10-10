@@ -2,6 +2,7 @@
 // browser can't do alone (CORS-less upstreams, local catalogs, disk caching).
 // Zero runtime dependencies — Node 20+ only.
 
+import { starSearch } from './search.js';
 import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -57,6 +58,7 @@ const routes = {
   'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/star-lookup': async (q) => starLookup(q),
+  'GET /api/star-search': async (q) => starSearch(q.get('q') || ''), // text search (#63)
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),

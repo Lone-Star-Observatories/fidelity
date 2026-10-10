@@ -17,6 +17,7 @@ import { orbits as loadOrbits, MEASURED, componentLetters } from './binaries.js'
 import { NEIGHBOURS, BROWN_DWARF_PROPS } from './neighbours.js';
 import { hipMotions } from './gaia.js';
 import { spaceMotion } from '../src/astro/spacemotion.js';
+import { starAliases } from '../src/data/search.js';
 
 const gunzip = promisify(zlib.gunzip);
 const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
@@ -83,6 +84,7 @@ export function parseHyg(text) {
     stars.push({
       id: r.id === '0' ? 'sol' : `hyg-${r.id}`,
       name: starName(r),
+      alt: starAliases(r), // every designation, for the text search (#63)
       hip: r.hip ? Number(r.hip) : null,
       hd: r.hd ? Number(r.hd) : null,
       gl: r.gl || null,

@@ -50,6 +50,8 @@ const PLANET_FRAG = /* glsl */`
   // (the Moon for Earth, Earth for the Moon, a moon for Jupiter…) hides from each point.
   uniform float uOccOn; uniform vec3 uOccRel; uniform float uOccR; uniform vec3 uSunRel; uniform float uSunR;
   uniform float uBodyR; uniform vec3 uCentreW; uniform vec3 uUmbraTint;
+  // Planetshine (#49): the parent planet's reflected light on a moon's night side (colour × display exposure)
+  uniform vec3 uPsPos; uniform vec3 uPsCol;
   // The spectrum filter (#28): 0 normal; 1 real band map; 2 predicted reflected; 3 predicted thermal;
   // 4 not observed; 5 modelled high-energy glow. Non-visible bands are false colour (palette).
   uniform float uBandMode; uniform sampler2D uBandTex; uniform vec2 uBandLevels; uniform float uBandGain; uniform float uPalette;
@@ -170,6 +172,7 @@ const PLANET_FRAG = /* glsl */`
     }
     // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
     vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK));
+    if (uPsCol.r + uPsCol.g + uPsCol.b > 0.0) col += base * uPsCol * max(dot(N, normalize(uPsPos - vPosW)), 0.0) * (1.0 - smoothstep(-0.05, 0.2, ndl * lightK));
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
       col += texture2D(uNight, vUv).rgb * night * 1.4;
@@ -224,6 +227,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
       uOccOn: { value: 0 }, uOccRel: { value: new THREE.Vector3() }, uOccR: { value: 1 }, uSunRel: { value: new THREE.Vector3() }, uSunR: { value: 696000 },
       uBodyR: { value: 1 }, uCentreW: { value: new THREE.Vector3() }, uUmbraTint: { value: new THREE.Color(0, 0, 0) },
+      uPsPos: { value: new THREE.Vector3() }, uPsCol: { value: new THREE.Color(0, 0, 0) },
       uBandMode: { value: 0 }, uBandTex: { value: null }, uBandLevels: { value: new THREE.Vector2(0, 1) }, uBandGain: { value: 1 }, uPalette: { value: 4 },
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
       uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
