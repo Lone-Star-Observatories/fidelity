@@ -11,6 +11,7 @@ import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
 import { nearby, starDetail, sky } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
+import { spectrumFor } from './spectra.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -31,6 +32,7 @@ const routes = {
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),
+  'GET /api/spectrum': async (q) => spectrumFor(q.get('type') || '', q.get('feh')),
 };
 
 /** Binary result: sent as-is instead of JSON. */

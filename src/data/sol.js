@@ -10,7 +10,7 @@ export const LIGHT_SECONDS_PER_AU = 499.004784;
 
 export const SUN = {
   id: 'sun', name: 'Sol', kind: 'star', spectral: 'G2V',
-  radiusKm: 695700, massKg: 1.9885e30, teffK: 5772, rotationHours: 609.12,
+  radiusKm: 695700, massKg: 1.9885e30, massSun: 1, teffK: 5772, rotationHours: 609.12,
   pole: [286.13, 63.87], color: 0xffd27a, skin: { map: 'sun' }, iau: [84.176, 14.1844],
 };
 

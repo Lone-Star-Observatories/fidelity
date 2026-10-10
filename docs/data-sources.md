@@ -13,6 +13,9 @@
 | System | IAU WGCCRE 2015 rotation models; GMST for Earth | Real rotation phase: Earth's day/night falls where it really is | bundled | ✅ |
 | System | Surface imagery (below) | Realistic skins for every body | live, cached in `data/textures/` | ✅ #6 |
 | System | JPL DE kernels (`de440.bsp`) | Offline ephemeris-grade positions | local | ⏳ |
+| Star | [Pickles 1998](https://ui.adsabs.harvard.edu/abs/1998PASP..110..863P) UVKLIB, via the STScI CDBS reference atlas | 131 observed, flux-calibrated spectra (O5–M10, classes I–V). Each star gets the closest type, labelled as a template and not its own spectrum. | downloaded once (131 FITS), cached as JSON | ✅ #8 |
+| Star | Asplund, Grevesse, Sauval & Scott 2009 | Solar photospheric abundances (X, Y, Z and elements by mass) | bundled | ✅ #8 |
+| Star | NASA Exoplanet Archive `st_met` | Measured metallicity [Fe/H]; the element mix is the Sun's scaled to it (MODELLED) | live | ✅ #8 |
 | Star | SDO / SOHO imagery, LSO solar weather app | Live solar imagery and activity | live | ⏳ |
 | Planet | NASA/USGS global mosaics; NASA GIBS (Earth, daily) | Real surfaces; Earthprise layers | live / local | ⏳ |
 | Moon | JPL SSD satellite elements; LRO | Moon orbits and surfaces | live | ⏳ |

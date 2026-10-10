@@ -32,7 +32,7 @@ export const ROADMAP = {
     blurb: 'Look outward at nearby galaxies — the Local Group, Virgo, Laniakea — with a distance filter.',
     data: 'NED, Cosmicflows-4, 2MRS.',
   },
-  star: { status: 'NOT YET SCHEDULED', blurb: '', data: 'SDO, SOHO, Gaia DR3 astrophysical parameters.' },
-  planet: { status: 'NOT YET SCHEDULED', blurb: '', data: 'NASA/USGS global mosaics; NASA GIBS live imagery for Earth.' },
+  star: { status: 'ONLINE', blurb: '', data: 'Pickles stellar spectra, Asplund 2009 abundances, Exoplanet Archive metallicities.' },
+  planet: { status: 'SCHEDULED · TICKET #9', blurb: '', data: 'NASA/USGS global mosaics; NASA GIBS live imagery for Earth.' },
   moon: { status: 'NOT YET SCHEDULED', blurb: '', data: 'JPL SSD satellite elements, LRO and mission mosaics.' },
 };

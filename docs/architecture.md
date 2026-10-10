@@ -36,8 +36,10 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   with an optional night-side emission map), the cloud layer and the limb-darkened
   photosphere. Sol bodies are oriented with the IAU pole and prime meridian
   (`src/astro/rotation.js`), and Earth turns by sidereal time.
+- **Star View** (`src/views/star/`) shows a close-up photosphere, the spectrum chart (observed
+  template, blackbody, lab line positions, Wien peak, hover readout) and composition bars.
 - **Provenance.** Each value shown in the UI carries a tier badge from `src/data/provenance.js`.
-- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`),
+- **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`,
   `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`. The Sector 001 beacon is
   `#/system/sol`.
 
@@ -52,6 +54,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
 | `GET /api/textures` | Credit line for each texture |
+| `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
 

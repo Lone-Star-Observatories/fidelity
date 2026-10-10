@@ -51,6 +51,8 @@ ship recognises and which view will use each one.
 - **Binary and multiple stars:** Sirius A and B on their measured 50-year orbit (Sirius B
   as a white dwarf smaller than Earth), α Centauri A and B with Proxima circling the pair.
   Orbits come from the USNO Sixth Orbit Catalog.
+- **Star View:** any star's real spectrum type (observed template against its blackbody,
+  with Hα, Na D, Ca II and other lines marked) and what it is made of.
 - **Other star systems:** Proxima Centauri, TRAPPIST-1, τ Ceti and hundreds more, built
   from the NASA Exoplanet Archive. Transiting planets sit where their transit timings put
   them. Every unknown is badged as such. The sky is the real one as seen from that star.

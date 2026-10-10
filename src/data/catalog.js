@@ -6,6 +6,7 @@
 
 import snapshot from '#snapshot';
 import { LY_PER_PC } from '../astro/frames.js';
+import { closestTemplate } from '../astro/spectral.js';
 
 const memo = new Map();
 
@@ -67,4 +68,17 @@ export function textureUrl(key) {
 export async function fetchTextureCredits() {
   if (snapshot) return snapshot.textureCredits ?? {};
   try { return await get('/api/textures'); } catch { return {}; }
+}
+
+/** Best-matching observed template spectrum for a spectral type (null if none). */
+export async function fetchSpectrum(type, feh) {
+  if (!type || type === '—') return null;
+  if (snapshot) {
+    const lib = snapshot.spectra;
+    const t = lib && closestTemplate(lib.entries, type, feh ?? null);
+    return t ? { requested: type, template: t.type, exact: t.score < 0.6, grid: lib.grid, flux: t.flux, source: lib.source } : null;
+  }
+  try {
+    return await get(`/api/spectrum?type=${encodeURIComponent(type)}${feh != null ? `&feh=${feh}` : ''}`);
+  } catch { return null; }
 }

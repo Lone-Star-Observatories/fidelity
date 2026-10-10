@@ -8,6 +8,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { nearby, starDetail, sky } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
+import { library } from '../server/spectra.js';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
@@ -33,8 +34,11 @@ for (const [key, sources] of Object.entries(TEXTURES)) {
   textures[key] = `data:${url.endsWith('.png') ? 'image/png' : 'image/jpeg'};base64,${buf.toString('base64')}`;
   textureCredits[key] = (sources.find((s) => s.url === url) ?? sources[0]).credit;
 }
+// stellar spectrum library, thinned to 4 nm steps for the preview
+const lib = await library();
+const spectra = { ...lib, grid: { ...lib.grid, step: lib.grid.step * 2 }, entries: lib.entries.map((e) => ({ ...e, flux: e.flux.filter((_, i) => i % 2 === 0) })) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

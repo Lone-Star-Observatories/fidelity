@@ -124,10 +124,10 @@ async function exoplanetRows() {
     'hostname', 'hip_name', 'hd_name', 'gaia_dr3_id', 'ra', 'dec', 'sy_dist', 'sy_pnum',
     'pl_name', 'pl_letter', 'pl_orbsmax', 'pl_orbper', 'pl_orbeccen', 'pl_orbincl', 'pl_orblper', 'pl_tranmid',
     'pl_rade', 'pl_bmasse', 'pl_bmassprov', 'pl_eqt', 'pl_insol', 'tran_flag',
-    'st_teff', 'st_rad', 'st_mass', 'st_lum', 'st_spectype', 'disc_method', 'disc_year', 'disc_facility',
+    'st_teff', 'st_rad', 'st_mass', 'st_lum', 'st_met', 'st_metratio', 'st_spectype', 'disc_method', 'disc_year', 'disc_facility',
   ];
   const query = `select ${cols.join(',')} from pscomppars where sy_dist <= ${MAX_PLANET_HOST_PC}`;
-  const { value } = await cached('exoplanets', `pscomppars-${MAX_PLANET_HOST_PC}pc`, WEEK, async () => {
+  const { value } = await cached('exoplanets', `pscomppars-${MAX_PLANET_HOST_PC}pc-v2`, WEEK, async () => {
     const res = await fetch(`${TAP}?query=${encodeURIComponent(query)}&format=json`, { signal: AbortSignal.timeout(60000) });
     if (!res.ok) throw new Error(`Exoplanet Archive HTTP ${res.status}`);
     return res.json();
