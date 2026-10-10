@@ -11,7 +11,7 @@ import { dsnNow } from './dsn.js';
 import { clusters, galaxies } from './deepsky.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
-import { nearby, starDetail, sky, galaxyStars } from './stars.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
@@ -40,6 +40,7 @@ const routes = {
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
+  'GET /api/planets': async (q) => nearbyPlanets(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),
   'GET /api/galaxy': async (q) => galaxyStars(q.get('maxLy') || '1500', q.get('maxAbs') || '2'),

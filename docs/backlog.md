@@ -18,11 +18,11 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 12 | ✅ **Points of interest** | Belts from 61k real orbits (GPU-propagated), GEO ring, Van Allen belts, Lagrange points, Hill spheres, heliosphere, Oort cloud. |
 | 13 | ✅ **Every active Earth satellite** | CelesTrak + SGP4, travel to any satellite, live feeds and telemetry. |
 | 14 | ✅ **Deep-space spacecraft** | Horizons fleet with DSN Now link status. |
-| 15 | **Navigation filters** | List and drill into nearest systems, stars, planets, nebulae. |
+| 15 | ✅ **Navigation filters** | List and drill into nearest systems, stars, planets, nebulae. |
 | 16 | ✅ **Message light-time** | A light pulse to Earth and back, arrival and reply years, lifetimes beyond 75 ly. |
 | 17 | ✅ **Live skins** | Today's Sun (SDO) and Earth (GIBS); honest Moon. |
 | 19 | **Realism pass** | Comet tails, surface view on double-click, real shapes, spin axes and wobble, magnetospheres, the Sun's field and heliosphere asymmetry, explainers. |
-| 20 | **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
+| 20 | ✅ **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
 | 21 | **Voice: "Computer"** | Local wake word, ChatGPT voice through a backend relay (key stays local), spoken answers about what's on screen. |
 | 22 | **3D Milky Way** | Volumetric bulge, bar, disks, arms and dust instead of the flat image; fainter under the stars. |
 | 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view. |

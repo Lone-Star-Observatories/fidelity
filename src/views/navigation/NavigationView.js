@@ -105,7 +105,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
 
   /** Show stars around `d.center` (from /api/nearby). */
   function load(d) {
-    msg = null;
+    msg = null; arrows = null; epoch = 0;
     clearWorld();
     data = d;
     selectedId = null;
@@ -130,12 +130,14 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     g.setAttribute('size', new THREE.BufferAttribute(size, 1));
     g.setAttribute('color', new THREE.BufferAttribute(col, 3));
     world.add(new THREE.Points(g, pointMat(false)));
+    ptsGeo = g;
 
     const hg = new THREE.BufferGeometry();
     hg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(hostIdx.flatMap((i) => [pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]])), 3));
     hg.setAttribute('size', new THREE.BufferAttribute(new Float32Array(hostIdx.map((i) => size[i] + 11)), 1));
     hg.setAttribute('color', new THREE.BufferAttribute(new Float32Array(hostIdx.flatMap(() => [1, 0.6, 0])), 3));
     world.add(new THREE.Points(hg, pointMat(true)));
+    hostGeo = hg; hostIdxs = hostIdx;
 
     // Labels: the current system, Sol, the nearest planet hosts and the brightest named
     // stars. Everything else is labelled on selection, so the chart stays readable.
@@ -161,6 +163,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     const r = d.radiusLy;
     controls.maxDistance = r * 6;
     controls.minDistance = 0.2;
+    refreshMotion();
     target.set(0, 0, 0);
     controls.target.set(0, 0, 0);
     camera.position.set(r * 0.8, r * 1.1, r * 1.9);
@@ -212,6 +215,79 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     msg.tag.position.copy(msg.sprite.position);
     msg.state = { travelled, dist: msg.dist, out, done: travelled >= 2 * msg.dist, from: msg.from, to: msg.to };
     msg.el.textContent = msg.state.done ? 'REPLY RECEIVED' : out ? `MESSAGE · ${(msg.dist - travelled).toFixed(2)} LY TO GO` : `REPLY · ${(2 * msg.dist - travelled).toFixed(2)} LY TO GO`;
+  }
+
+  // ---- space motion & deep time (#20) ------------------------------------------------------
+  // Velocities: HYG space velocities (km/s, Sun-relative; transverse only where no radial
+  // velocity is known), turned into light-years per year in the scene frame. Motion is linear:
+  // good for a few million years, after which galactic orbits curve.
+  const LY_PER_KMS_YR = 3.3356e-6;
+  // Sun's motion around the galaxy: Schönrich et al. 2010 (U, V, W) plus a 233 km/s circular speed.
+  const SUN_GAL_KMS = [11.1, 12.24 + 233, 7.25];
+  let motion = { mode: 'off', window: 100000 }, epoch = 0;
+  let arrows = null, ptsGeo = null;
+  const velOf = (s, c) => {
+    if (!s.vKms) return null;
+    const cv = c?.vKms ?? c?.v;
+    const rel = cv && motion.mode !== 'galactic' ? s.vKms.map((v, i) => v - cv[i]) : s.vKms;
+    const g = eqToGal(rel);
+    if (motion.mode === 'galactic') for (let i = 0; i < 3; i++) g[i] += SUN_GAL_KMS[i];
+    return new THREE.Vector3(...frameToScene(g)).multiplyScalar(LY_PER_KMS_YR);
+  };
+  function refreshMotion() {
+    if (!data) return;
+    const c = data.center;
+    for (const p of placed) p.vel = velOf(p.star, c);
+    if (arrows) { world.remove(arrows); arrows.geometry.dispose(); arrows.material.dispose(); arrows = null; }
+    if (motion.mode !== 'off') {
+      const pos = [], col = [];
+      for (const p of placed) {
+        if (!p.vel) continue;
+        const a = p.pos.clone().addScaledVector(p.vel, epoch), b = a.clone().addScaledVector(p.vel, motion.window);
+        pos.push(a.x, a.y, a.z, b.x, b.y, b.z);
+        const k = p.star.rvKnown ? 1 : 0.45; // dimmer where only the sideways motion is known
+        col.push(0.6 * k, 0.85 * k, 1 * k, 0.15, 0.25, 0.4);
+      }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+      arrows = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 }));
+      world.add(arrows);
+    }
+  }
+  /** Move every star to epoch `t` years from now (linear motion relative to the centre star). */
+  function setEpoch(t) {
+    epoch = t;
+    if (!ptsGeo) return;
+    const attr = ptsGeo.attributes.position;
+    placed.forEach((p, i) => {
+      const q = p.vel && motion.mode !== 'galactic' ? p.pos.clone().addScaledVector(p.vel, t) : p.pos;
+      attr.setXYZ(i, q.x, q.y, q.z);
+      if (p.label) p.label.position.copy(q);
+    });
+    attr.needsUpdate = true;
+    if (hostGeo) {
+      const ha = hostGeo.attributes.position;
+      hostIdxs.forEach((i, k) => ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)));
+      ha.needsUpdate = true;
+    }
+    if (motion.mode !== 'off') refreshMotion();
+  }
+  let hostGeo = null, hostIdxs = [];
+  /** Closest approaches to the centre star within ±maxYears (linear motion): [{ star, dMinLy, tYears }]. */
+  function encounters(maxYears = 5e6) {
+    const c = data?.center;
+    const out = [];
+    for (const p of placed) {
+      const cv = c.vKms ?? c.v;
+      if (p.star.id === c.id || !p.star.vKms || !cv) continue;
+      const v = new THREE.Vector3(...frameToScene(eqToGal(p.star.vKms.map((x, i) => x - cv[i])))).multiplyScalar(LY_PER_KMS_YR);
+      const v2 = v.lengthSq();
+      if (!v2) continue;
+      const t = Math.max(-maxYears, Math.min(maxYears, -p.pos.dot(v) / v2));
+      out.push({ star: p.star, tYears: t, dMinLy: p.pos.clone().addScaledVector(v, t).length(), nowLy: p.pos.length(), rvKnown: !!p.star.rvKnown });
+    }
+    return out;
   }
 
   let tempLabel = null; // label for a selected star that isn't labelled by default
@@ -283,6 +359,10 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,
+    setMotion(m) { motion = { ...motion, ...m }; refreshMotion(); setEpoch(epoch); },
+    setEpoch, encounters,
+    get epoch() { return epoch; },
+    get motion() { return motion; },
     get message() { return msg?.state ?? null; },
     setMessageSpeed(lyPerSec) { // keep the pulse where it is
       if (!msg) return;

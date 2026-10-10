@@ -6,7 +6,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { nearby, starDetail, sky, galaxyStars } from '../server/stars.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
@@ -90,7 +90,7 @@ const galAll = await galaxies().catch(() => null);
 const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: galAll.groups.rows.filter((r) => r[2] <= 92).map((r) => [r[0], r[1], +r[2].toFixed(1), Math.round(r[3]), Math.round(r[4]), Math.round(r[5])]) } };
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

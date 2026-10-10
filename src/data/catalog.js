@@ -131,3 +131,17 @@ export async function fetchGalaxies() {
   if (snapshot) return snapshot.galaxies ?? null;
   try { return await get('/api/galaxies'); } catch { return null; }
 }
+
+/** Known planets within `radiusLy` of `center`, nearest first. */
+export async function fetchPlanets(center, radiusLy) {
+  if (!snapshot) return get(`/api/planets?center=${encodeURIComponent(center)}&radiusLy=${radiusLy}`);
+  // preview: the Sol-centred list, re-measured from `center` using the snapshot's star positions
+  const all = rowsToObjects(snapshot.nearby), c = all.find((s) => s.id === center);
+  const pos = new Map(all.map((s) => [s.id, s]));
+  const p = snapshot.planets;
+  if (!c || !p) return { fields: p?.fields ?? [], planets: [] };
+  const iDist = p.fields.indexOf('distLy'), iHost = p.fields.indexOf('hostId');
+  const rows = p.planets.map((r) => { const h = pos.get(r[iHost]); const out = r.slice(); out[iDist] = h ? Math.hypot(h.x - c.x, h.y - c.y, h.z - c.z) * LY_PER_PC : Infinity; return out; })
+    .filter((r) => r[iDist] <= radiusLy).sort((a, b) => a[iDist] - b[iDist]);
+  return { fields: p.fields, planets: rows };
+}

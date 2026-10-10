@@ -15,12 +15,13 @@ import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
+import { createNavList } from './panels/navlist.js';
 import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn } from './data/spacecraft-ephem.js';
@@ -231,6 +232,9 @@ function renderLegend() {
     h('p', { className: 'note', textContent: 'Every value is tagged. Hover a badge for what it means.' }));
 }
 
+const navList = createNavList({ h, pill, fmt, fetchPlanets, fetchClusters,
+  go: (r) => { if (r.select) quadrantSel = r.select; go(r); },
+  onSelectStar: (id) => selectNavStar(id), onRerender: () => { if (route.level === 'navigation') renderNavPanel(); } });
 const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
 
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
@@ -597,14 +601,9 @@ function renderNavPanel() {
     h('h3', { textContent: 'SENSOR RANGE' }), radii,
     h('p', { className: 'note', textContent: `${inRange.length} STARS · ${hosts.length} WITH KNOWN PLANETS WITHIN ${d.radiusLy} LY` }),
     ...selBlock,
+    ...navList.render(d, (s) => distLy(s, c), navSelected),
+    ...motionSection(d),
     ...transmissionSection(d, sel),
-    h('h3', { textContent: 'PLANETARY SYSTEMS · NEAREST FIRST' }),
-    h('div', { className: 'host-list' }, hosts.slice(0, 60).map((s) => {
-      const b = h('button', { className: `host-row${s.id === navSelected ? ' on' : ''}` },
-        h('span', { textContent: s.name.toUpperCase() }), h('span', { className: 'mono', textContent: `${fmt(distLy(s, c), 1)} LY · ${s.planets}` }));
-      b.addEventListener('click', () => selectNavStar(s.id));
-      return b;
-    })),
     h('h3', { textContent: 'CHART' }),
     factList([
       { label: 'STAR POSITIONS', value: 'PARALLAX', tier: 'measured', detail: d.sources.stars },
@@ -617,6 +616,58 @@ function renderNavPanel() {
     renderLegend(),
   );
 }
+
+// ---- space motion & deep time (#20) ---------------------------------------------------------
+const DEEP_RATES = [[1e3, '1 KYR / S'], [1e4, '10 KYR / S'], [1e5, '100 KYR / S'], [1e6, '1 MYR / S']];
+const DEEP_MAX = 5e6; // linear motion is fair for a few million years
+let deepRate = 1e4, deepDir = 0, deepLast = null;
+const yrs = (t) => (Math.abs(t) >= 1e6 ? `${fmt(t / 1e6, 2)} MILLION YEARS` : `${fmt(t, 0)} YEARS`);
+function motionSection(d) {
+  const m = nav.motion, c = d.center;
+  const enc = nav.encounters(DEEP_MAX).filter((e) => e.tYears > 0 && e.dMinLy < e.nowLy).sort((a, b) => a.dMinLy - b.dMinLy).slice(0, 6);
+  live.epoch = h('p', { className: 'warn mono' });
+  return [
+    h('h3', { textContent: 'SPACE MOTION' }),
+    h('div', { className: 'body-list' },
+      pill('OFF', () => { nav.setMotion({ mode: 'off' }); renderNavPanel(); }, m.mode === 'off' ? 'on' : ''),
+      pill(`RELATIVE TO ${c.id === 'sol' ? 'SOL' : c.name.toUpperCase()}`, () => { nav.setMotion({ mode: 'relative' }); renderNavPanel(); }, m.mode === 'relative' ? 'on' : ''),
+      pill('AROUND THE GALAXY', () => { nav.setMotion({ mode: 'galactic' }); renderNavPanel(); }, m.mode === 'galactic' ? 'on' : '')),
+    m.mode === 'off' ? null : h('div', { className: 'body-list' }, [[1e4, '10 KYR'], [1e5, '100 KYR'], [1e6, '1 MYR']].map(([w, label]) =>
+      pill(`ARROWS · ${label}`, () => { nav.setMotion({ window: w }); renderNavPanel(); }, m.window === w ? 'on' : ''))),
+    h('p', { className: 'note', textContent: m.mode === 'galactic'
+      ? 'Each arrow is a star\'s path around the galactic centre over the window (Sun: ~245 km/s towards l = 90°). Everything here is carried along together, which is why the neighbourhood holds together.'
+      : m.mode === 'relative' ? `Arrows: where each star goes, seen from ${c.id === 'sol' ? 'the Sun' : c.name}. Dim arrows have no measured radial velocity, so only their sideways motion is known.` : 'Show where each star is heading.' }),
+    h('div', { className: 'ctl-label', textContent: 'DEEP TIME' }),
+    h('div', { className: 'body-list' },
+      pill('◀◀', () => { deepDir = -1; }, 'square'), pill('❚❚', () => { deepDir = 0; }, 'square'), pill('▶▶', () => { deepDir = 1; if (nav.motion.mode === 'galactic') nav.setMotion({ mode: 'relative' }); }, 'square'),
+      pill('NOW', () => { deepDir = 0; nav.setEpoch(0); }, 'square')),
+    h('div', { className: 'body-list' }, DEEP_RATES.map(([r, label]) => pill(label, () => { deepRate = r; renderNavPanel(); }, r === deepRate ? 'on' : ''))),
+    live.epoch,
+    h('h3', { textContent: `CLOSEST FUTURE PASSES · ${c.id === 'sol' ? 'SOL' : c.name.toUpperCase()}` }),
+    h('div', { className: 'host-list' }, enc.length ? enc.map((e) => {
+      const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}` }),
+        h('span', { className: 'mono', textContent: `${fmt(e.dMinLy, 2)} LY IN ${yrs(e.tYears)}` }));
+      b.addEventListener('click', () => { selectNavStar(e.star.id); nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; renderNavPanel(); });
+      return b;
+    }) : [h('p', { className: 'note', textContent: 'No star in range comes closer within 5 million years.' })]),
+    h('p', { className: 'note', textContent: 'Straight-line motion from HYG space velocities (Hipparcos proper motions and catalogue radial velocities). * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at 0.17 ly in 1.3 million years.' }),
+  ];
+}
+(function deepLoop(now) {
+  requestAnimationFrame(deepLoop);
+  const dt = deepLast == null ? 0 : (now - deepLast) / 1000;
+  deepLast = now;
+  if (route.level !== 'navigation') return;
+  if (deepDir) {
+    const t = Math.max(-DEEP_MAX, Math.min(DEEP_MAX, nav.epoch + deepDir * deepRate * dt));
+    if (t === nav.epoch) deepDir = 0;
+    nav.setEpoch(t);
+  }
+  if (live.epoch) {
+    const t = nav.epoch;
+    live.epoch.textContent = t === 0 ? 'EPOCH: NOW' : `EPOCH: ${t > 0 ? '+' : '−'}${yrs(Math.abs(t))} · YEAR ${fmt(yearOf(clock.jd) + t, 0)}`;
+  }
+})();
 
 // ---- message light-time (#16) --------------------------------------------------------------
 const ago = (iso) => {
@@ -832,6 +883,7 @@ onRoute(async (r) => {
     if (r.level === 'quadrant') {
       $('view-title').textContent = 'QUADRANT VIEW · AROUND SECTOR 001';
       quadrant.show();
+      if (quadrantSel) quadrant.select(quadrantSel);
       renderQuadrantPanel();
       if (!quadrantLoaded) {
         quadrantLoaded = true;

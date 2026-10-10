@@ -59,6 +59,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/vectors?body=399&month=2026-10` | Daily heliocentric vectors for a calendar month |
 | `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
+| `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
 | `GET /api/textures` | Credit line for each texture |
@@ -155,3 +156,13 @@ supergalactic frame (`galToSupergal` in `src/astro/frames.js`), Mly; Cosmicflows
 are their velocity-space direction scaled to the measured distance. Both filter points in the
 shader by radius (`uRadius`) and labels by distance. Label `visible` must be a strict boolean
 (CSS2DRenderer only hides on `=== false`).
+
+## Navigation lists and star motion
+
+`src/panels/navlist.js` builds the SYSTEMS / STARS / PLANETS / DEEP SKY lists with filters;
+systems are stars sharing a `system` id (from the backend's component grouping), and open to
+show their stars and planets. `/api/nearby` rows carry each star's space velocity (`vKms`,
+HYG's pc/yr converted to km/s; `rvKnown` = 0 means sideways motion only). The Navigation View
+draws motion arrows relative to the current star or around the galaxy (adding the Sun's
+Schönrich 2010 motion and a 233 km/s circular speed), moves stars linearly to any epoch within
+±5 Myr, and finds each star's closest approach.

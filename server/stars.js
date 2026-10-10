@@ -20,6 +20,7 @@ const gunzip = promisify(zlib.gunzip);
 const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
 const TAP = 'https://exoplanetarchive.ipac.caltech.edu/TAP/sync';
 const LY_PER_PC = 3.26156;
+const KMS_PER_PC_YR = 977792.2; // 1 pc/yr in km/s
 const MAX_PLANET_HOST_PC = 65; // ≈ 212 ly: covers a 100 ly radius around any star within ~110 ly of Sol
 const WEEK = 7 * 86400000;
 
@@ -87,6 +88,9 @@ export function parseHyg(text) {
       distPc: dist,
       mag: num(f[col.mag]), absmag: num(f[col.absmag]),
       spect: f[col.spect] || null, ci: num(f[col.ci]), lum: num(f[col.lum]),
+      // space velocity, km/s (HYG gives pc/yr); without a radial velocity it is the transverse part only
+      v: f[col.vx] !== undefined ? [num(f[col.vx]), num(f[col.vy]), num(f[col.vz])].map((x) => (x == null ? 0 : x * KMS_PER_PC_YR)) : null,
+      rvKnown: num(f[col.rv]) != null && num(f[col.rv]) !== 0,
       // HYG groups multiple-star components under their primary's id
       compPrimary: r.compPrimary && r.compPrimary !== r.id ? (r.compPrimary === '0' ? 'sol' : `hyg-${r.compPrimary}`) : null,
       source: 'HYG v4',
@@ -335,11 +339,14 @@ export async function nearby(centerId, radiusLy) {
     const d = Math.hypot(dx, dy, dz);
     if (d > rPc && s.id !== 'sol') continue; // Sol (Sector 001) is always included
     const p = cat.planetsOf.get(s.id);
-    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : s.brownDwarf ? 2 : 1]);
+    const g = cat.groupOf.get(s.id);
+    const system = g && g.members.size > 1 ? [...g.members].sort()[0] : null; // a stable id shared by a system's stars
+    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : s.brownDwarf ? 2 : 1,
+      system, s.v ? s.v.map((x) => +x.toFixed(2)) : null, s.rvKnown ? 1 : 0]);
   }
   return {
     center: summary(cat, c), radiusLy: r,
-    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'spect', 'planets', 'archiveOnly'],
+    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'spect', 'planets', 'archiveOnly', 'system', 'vKms', 'rvKnown'],
     stars: rows,
     sources: { stars: `HYG v4.4 (${cat.hygFrom})`, planets: cat.planetError ? `unavailable: ${cat.planetError}` : 'NASA Exoplanet Archive pscomppars' },
   };
@@ -348,6 +355,27 @@ export async function nearby(centerId, radiusLy) {
 function summary(cat, s) {
   const p = cat.planetsOf.get(s.id);
   return { ...s, distLy: s.distPc * LY_PER_PC, planetCount: p ? p.planets.length : 0 };
+}
+
+/** Planets around stars within `radiusLy` of `centerId`, nearest first (compact rows). */
+export async function nearbyPlanets(centerId, radiusLy) {
+  const r = Number(radiusLy);
+  if (!(r > 0 && r <= 150)) throw bad('radiusLy must be in (0, 150]');
+  const cat = await catalog();
+  const c = centerOf(cat, centerId);
+  const rows = [];
+  for (const [id, { planets }] of cat.planetsOf) {
+    const s = cat.byId.get(id);
+    if (!s) continue;
+    const d = Math.hypot(s.x - c.x, s.y - c.y, s.z - c.z) * LY_PER_PC;
+    if (d > r) continue;
+    for (const p of planets) {
+      rows.push([p.pl_name, id, s.name, +d.toFixed(3), p.pl_rade ?? null, p.pl_bmasse ?? null, /sini/i.test(p.pl_bmassprov || '') ? 1 : 0,
+        p.pl_orbper ?? null, p.pl_orbsmax ?? null, p.pl_eqt ?? null, p.pl_insol ?? null, p.tran_flag === 1 ? 1 : 0, p.disc_year ?? null, p.disc_method ?? null, p.pl_letter ?? null]);
+    }
+  }
+  rows.sort((a, b) => a[3] - b[3]);
+  return { center: c.id, radiusLy: r, fields: ['name', 'hostId', 'host', 'distLy', 'radiusEarth', 'massEarth', 'massIsMin', 'periodDays', 'aAU', 'teqK', 'insol', 'transits', 'year', 'method', 'letter'], planets: rows };
 }
 
 /** One star and its known planets (raw archive rows). */

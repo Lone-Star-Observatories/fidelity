@@ -338,3 +338,6 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .nav-label.neb { background: none; border: 0; font-size: 11px; letter-spacing: 0.06em; }
 .nav-label.neb-HII { color: #ff8aa0; } .nav-label.neb-PN { color: #66e0c0; } .nav-label.neb-SNR { color: #d4aaff; }
 .nav-label.neb-dark { color: #c8b49a; } .nav-label.neb-reflection { color: #99b0ff; }
+.pill.chip { font-size: 12px; min-height: 26px; padding: 2px 10px; }
+.host-row.sub { padding-left: 18px; opacity: 0.92; font-size: 13px; }
+.nav-tabs .pill { min-width: 0; }

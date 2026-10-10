@@ -67,6 +67,11 @@ ship recognises and which view will use each one.
 - **Deep-space fleet:** Voyagers, New Horizons, Parker, JWST, Juno, the Mars orbiters and
   more from JPL Horizons, with their trajectories, and NASA DSN Now showing which dish is
   talking to each right now and how fast.
+- **Navigation lists:** nearest systems, stars (by class), planets (rocky, temperate, giants…)
+  and deep-sky objects, with drill-down from a system to its stars and planets.
+- **Star motion and deep time:** arrows showing where every star is heading (relative to us or
+  around the galaxy), a clock running up to a million years a second, and the closest future
+  passes (α Centauri, Ross 248, Gliese 710).
 - **Light-time messages:** send a light pulse from any star to Earth (or from Earth to any star)
   and watch it cross the chart at 1 ly per 10 s, with the year it arrives and the year a reply
   comes back; long trips are counted in human lifetimes.
