@@ -37,6 +37,7 @@ import { createSkyEventsPanel } from './panels/skyevents.js';
 import { createTimeControl } from './panels/timecontrol.js';
 import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
+import { createTransferPanel } from './panels/transfer.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -483,6 +484,7 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
+const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
@@ -717,6 +719,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
+  if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));

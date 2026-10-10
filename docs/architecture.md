@@ -254,6 +254,21 @@ shows the live umbra/penumbra outlines and the path of totality, the surface vie
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
 `?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
 
+## Launch windows and transfers (#45)
+
+`src/astro/lambert.js` solves Lambert's problem with Izzo's 2015 algorithm (Householder iterations on the
+non-dimensional time-of-flight equation, multi-revolution low/high paths, prograde or retrograde) and propagates
+two-body orbits with universal variables. `src/astro/transfer.js` builds on the app's ephemeris (Standish elements
+for planets, SBDB elements for small bodies; moons via their parent planet): `transfer()` gives C3, departure and
+arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circular orbit, a 1.1 × 100 R ellipse for the
+giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
+local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%
+of each. Body panels (`src/panels/transfer.js`) list the next windows with Hohmann and synodic facts and an
+explainer diagram; picking one draws the transfer in the System View (`setTransfer`: thick dashed arc, departure and
+arrival markers, a ghost craft riding it while the clock is inside the flight) and opens the porkchop
+(`src/panels/porkchop.js`: departure × arrival grid shaded by C3 on a one-hue ramp, marching-squares contours,
+optimum ringed, hover readout, click to fly a cell). Mars offers a check against Perseverance's Horizons cruise.
+
 ## Events feed and mission replays (#32, #33)
 
 `scripts/events/build-events.js` (weekly GitHub Action `.github/workflows/events.yml`, or `npm run events`) writes

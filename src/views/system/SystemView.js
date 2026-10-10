@@ -47,6 +47,7 @@ import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
+import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
 
@@ -668,6 +669,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   /** Show a system model (see src/data/systems.js). */
   function load(m) {
     clear();
+    clearTransfer();
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
@@ -775,7 +777,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     } else if (!node.trackDone) {
       const au = trajectory(o.hz, b.trackFrom ?? isoDate(jd - 365), isoDate(Math.max(jd, 2440587.5 + Date.now() / 86400000) + 365));
       if (au) {
-        pts = au.map((p) => toScene(p)); node.trackDone = true;
+        pts = au.map((p) => toScene(p.length > 3 ? p.slice(1) : p)); node.trackDone = true; // rows are [jd, x, y, z] AU
         // the published (predicted) ephemeris stops inside the window: mark where (#26)
         const end = ephemerisEnd(o.hz);
         if (end && pts.length) {
@@ -1011,6 +1013,51 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     for (const key of ['centre', 'north', 'south']) set(eclipseLines[key], (e.path?.[key] ?? []).map((g) => inertialPoint(jd, g.lat, g.lon)));
   }
   const tmpE = new THREE.Vector3();
+
+  // ---- transfer orbits (#45) -------------------------------------------------------------------
+  // The computed Lambert arc (dashed), departure and arrival markers, a ghost craft riding it while
+  // the clock is inside the flight, and optionally a real mission's Horizons track to compare.
+  let transferViz = null;
+  function clearTransfer() {
+    if (!transferViz) return;
+    for (const o of transferViz.objs) { root.remove(o); o.geometry?.dispose(); o.material?.dispose(); o.element?.remove(); }
+    transferViz = null;
+  }
+  function setTransfer(spec) {
+    clearTransfer();
+    if (!spec?.x || !model?.isSol) return;
+    const { x } = spec, objs = [];
+    const toV = (p) => toScene(p, new THREE.Vector3());
+    const arcPts = transferArc(x, 160).map(toV);
+    const seg = [];
+    for (let i = 1; i < arcPts.length; i += 2) seg.push(...arcPts[i - 1].toArray(), ...arcPts[i].toArray()); // every other step: a dashed look
+    const arc = new LineSegments2(new LineSegmentsGeometry().setPositions(seg), new LineMaterial({ color: 0xff9900, linewidth: 2.6, transparent: true, opacity: 0.95, depthWrite: false, resolution: fat.resolution }));
+    arc.frustumCulled = false; arc.renderOrder = 3;
+    objs.push(arc);
+    if (spec.compare?.length) {
+      const cmp = new THREE.Line(new THREE.BufferGeometry().setFromPoints(spec.compare.map((p) => toV(p.length > 3 ? p.slice(1) : p))), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85, depthWrite: false }));
+      cmp.frustumCulled = false; objs.push(cmp);
+    }
+    const tag = (text, cls) => { const el = document.createElement('div'); el.className = `nav-label mission-label ${cls}`; el.textContent = text; const o = new CSS2DObject(el); objs.push(o); return o; };
+    const dot = (color, size) => { const p = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)), new THREE.PointsMaterial({ color, size, sizeAttenuation: false, depthWrite: false })); p.frustumCulled = false; objs.push(p); return p; };
+    const iso = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
+    const dep = dot(0x99ccff, 8), arr = dot(0xff9966, 8), craft = dot(0xff9900, 9);
+    dep.position.copy(arcPts[0]); arr.position.copy(arcPts.at(-1));
+    const depTag = tag(`DEPART EARTH ${iso(x.depJd)}`, 'site'), arrTag = tag(`ARRIVE ${iso(x.arrJd)}`, 'site'), craftTag = tag('', 'transfer');
+    depTag.position.copy(arcPts[0]); arrTag.position.copy(arcPts.at(-1));
+    for (const o of objs) root.add(o);
+    transferViz = { x, spec, objs, craft, craftTag };
+  }
+  function updateTransfer(jd) {
+    if (!transferViz) return;
+    const { x, craft, craftTag, spec } = transferViz;
+    const p = transferPosition(x, jd), on = !!p && !surface;
+    craft.visible = craftTag.visible = on;
+    if (on) {
+      toScene(p, craft.position); craftTag.position.copy(craft.position);
+      craftTag.element.textContent = `${spec.label ?? 'TRANSFER'} · DAY ${Math.floor(jd - x.depJd)} OF ${Math.round(x.tofDays)} · COMPUTED`;
+    }
+  }
 
   // ---- mission activity from the events feed (#32) ---------------------------------------------
   let missions = null, missionEvents = [], satrecFor = () => null;
@@ -1483,6 +1530,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     updateEclipseLines(jd);
     updateTracks(jd);
     updateMissions(jd);
+    updateTransfer(jd);
     for (const id in nodes) {
       const c = nodes[id].clouds;
       if (c) {
@@ -1546,6 +1594,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       return nodes[body.id].body;
     },
     showSatelliteCategory(c, on) { sats?.showCategory(c, on); },
+    /** Draw a transfer orbit (#45): { x: transfer(), label, compare?: Horizons AU points } or null to clear. */
+    setTransfer,
+    /** Heliocentric AU position on the drawn transfer at `jd`, or null. */
+    transferPositionAt: (jd) => (transferViz ? transferPosition(transferViz.x, jd) : null),
     /** Events-feed items with a flight model (#32); `opts.satrecFor(norad)` positions stations. */
     setMissionEvents(list, opts = {}) {
       missionEvents = list ?? [];

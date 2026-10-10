@@ -48,7 +48,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 42 | **Fly the USS Fidelity** | Original pilotable ship model; thrusters, impulse, warp (TNG scale, IMAGINED); autopilot to any object; chase and bridge cameras; real-travel-time panel (light, chemical, ion, light sail, time dilation). |
 | 43 | **Look at** | View any body from any other (surface or orbit) at true apparent size and phase, light-time corrected, with zoom from naked eye to telescope. |
 | 44 | **Future missions** | Confirmed, planned and proposed missions (Dragonfly, MMX, EnVision, Uranus Orbiter…) with tiered badges, cards and ghost trajectories. |
-| 45 | **Launch windows and trajectories** | Lambert solver, porkchop plots (C3, v∞, Δv), next windows for every Solar System target, transfer arcs drawn in the System View. |
+| 45 | ✅ **Launch windows and trajectories** | Izzo Lambert solver (multi-rev), porkchop plots (C3 shading, contours, hover, click to fly), the next windows to every planet, moon (via its parent) and catalogued small body with C3, v∞ and Δv from LEO, transfer arcs and a ghost craft in the System View, Hohmann/synodic explainer, Perseverance check against Horizons. Gravity-assist sequences still to do. |
 | 46 | **Crew cards** | Nationality flag, headshot and bio for everyone in space (ISS, Tiangong, crewed missions), with live days-in-space. |
 | 47 | **Sun and Moon size in the surface view** | Verify true angular size against FOV, show it, FOV presets (naked eye, 50 mm, binoculars, telescope), physical glare. |
 | 48 | **Milky Way and deep sky from the surface** | All-sky Milky Way band, nebulae, clusters and galaxies at true positions and sizes, constellations. |
