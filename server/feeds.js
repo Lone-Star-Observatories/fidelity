@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { config } from './config.js';
 import { WEBCAMS } from './webcams.js';
+import { norhFeed } from './solarradio.js';
 
 const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const MIN = 60000;
@@ -184,6 +185,9 @@ export const FEEDS = {
   'sdo-131': helioviewer(9, 'SDO,AIA,AIA,131', 'NASA SDO AIA 131 Å (flaring plasma, 10 million K), via Helioviewer'),
   'sdo-1600': helioviewer(15, 'SDO,AIA,AIA,1600', 'NASA SDO AIA 1600 Å (ultraviolet: upper photosphere and transition region), via Helioviewer'),
   'sdo-hmimag': helioviewer(19, 'SDO,HMI,HMI,magnetogram', 'NASA SDO HMI line-of-sight magnetogram (white and black: opposite magnetic polarities), via Helioviewer'),
+  // Spectrum filter (#28): the Sun in microwaves, archival Nobeyama Radioheliograph maps (server/solarradio.js)
+  'norh-17': norhFeed('ifa', 'Nobeyama Radioheliograph 17 GHz (1.76 cm), operated by NAOJ/ICCON; archival map of 7 January 2014 (NoRH closed in 2020)'),
+  'norh-34': norhFeed('ifz', 'Nobeyama Radioheliograph 34 GHz (8.8 mm), operated by NAOJ/ICCON; archival map of 7 January 2014 (NoRH closed in 2020)'),
   'lasco-c2': helioviewer(4, 'SOHO,LASCO,C2,white-light', 'ESA/NASA SOHO LASCO C2 coronagraph (outer corona to 6 solar radii; the white circle marks the hidden Sun), via Helioviewer', 11.9),
   'lasco-c3': helioviewer(5, 'SOHO,LASCO,C3,white-light', 'ESA/NASA SOHO LASCO C3 coronagraph (corona and solar wind to 30 solar radii; stars and planets pass behind), via Helioviewer', 56),
   // Ground-based: NSO GONG H-alpha network, six observatories around the world, one image a minute.

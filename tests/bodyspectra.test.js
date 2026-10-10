@@ -51,6 +51,8 @@ test('IPAC tables from the Exoplanet Archive parse', () => {
 test('sky surveys span the spectrum and new live feeds are allowlisted', () => {
   const bands = new Set(Object.values(SURVEYS).map((s) => s.band));
   for (const b of ['gamma', 'x-ray', 'uv', 'visible', 'near-ir', 'mid-ir', 'far-ir', 'microwave', 'radio']) assert.ok(bands.has(b), b);
-  assert.equal(Object.keys(surveyList()).length, Object.keys(SURVEYS).length);
+  // hidden surveys (single-band UV maps for the spectrum filter's Magellanic Clouds, #28) stay out of the cards' list
+  assert.equal(Object.keys(surveyList()).length, Object.values(SURVEYS).filter((s) => !s.hidden).length);
+  assert.ok(!surveyList().galexnuv && SURVEYS.galexnuv.format === 'png');
   for (const f of ['gong-halpha', 'moon-now', 'sdo-171', 'sdo-131', 'sdo-1600', 'sdo-hmimag', 'lasco-c2', 'lasco-c3']) assert.ok(FEEDS[f], f);
 });

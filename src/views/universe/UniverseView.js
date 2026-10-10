@@ -1,6 +1,9 @@
 // Universe View — the nearby universe in supergalactic coordinates (the plane of the Local
 // Supercluster horizontal), centred on the Milky Way: 869 named nearby galaxies (UNGC) and
 // 38,000 galaxy groups with measured distances (Cosmicflows-4), with a distance filter.
+// Spectrum filter (#28): galaxies are re-weighted by morphological type for the band
+// (src/astro/galaxyband.js galaxyTypeWeight: ellipticals bright in the near-IR and X-rays, spirals in
+// the far-IR and radio, irregulars in the UV and HI), in the band's false colour. MODELLED.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -9,6 +12,10 @@ import { radecToSupergal, galToSupergal, frameToScene, blackbodyRGB } from '../.
 import { GALAXY_NAMES, GALAXY_CLUSTERS } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 import { onClicks } from '../pick.js';
+import { currentBand, onBand } from '../../data/bandstate.js';
+import { galaxyTypeWeight } from '../../astro/galaxyband.js';
+import { PAL_RGB } from '../system/starband.js';
+import { paletteIndex } from '../system/bandskin.js';
 
 export const MLY_PER_MPC = 3.26156;
 // Morphological type (de Vaucouleurs T) → colour: ellipticals/lenticulars red-gold, spirals white, irregulars blue.
@@ -93,6 +100,24 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
     tag('SUPERGALACTIC PLANE', 'spoke', new THREE.Vector3(R * 1.05, 0, 0));
   }
 
+  // the spectrum filter (#28): a galaxy's colour in the band, from its type (groups: a spiral-like mix)
+  function bandColour(T, base) {
+    const { band, pass, full } = currentBand();
+    if (full || !pass?.filter) return base;
+    const w = galaxyTypeWeight(T, pass.filter), k = Math.min(1.6, Math.sqrt(w)); // compressed for display
+    const t = band.palette === 'visible' ? base : PAL_RGB[paletteIndex(band.palette)];
+    return [t[0] * k, t[1] * k, t[2] * k];
+  }
+  function recolourBand() {
+    for (const [pts, rows, colourOf] of [[ungcPts, ungcRows, (r) => bandColour(r[4], blackbodyRGB(typeTeff(r[4])))], [groupPts, groupRows, (r) => { const k = Math.min(1, 0.6 + 0.15 * Math.log10(r[1])); return bandColour(null, [0.75 * k, 0.8 * k, k]); }]]) {
+      if (!pts) continue;
+      const c = pts.geometry.attributes.color;
+      rows.forEach((r, i) => c.setXYZ(i, ...colourOf(r)));
+      c.needsUpdate = true;
+    }
+  }
+  onBand(recolourBand);
+
   const objects = [];
   let ungcPts = null, groupPts = null, groupRows = [], ungcRows = [];
   const sgScene = (ra, dec, d) => new THREE.Vector3(...frameToScene(radecToSupergal(ra, dec, d)));
@@ -120,6 +145,7 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
       objects.push({ id, name: common, catalogue: name, kind: 'galaxy', pos, distLy: mpc * MLY_PER_MPC * 1e6, type: T, absB, diameterKpc: kpc, method });
       tag(common.toUpperCase(), 'host', pos, { kind: 'object', onClick: () => onSelect?.(id) });
     }
+    recolourBand();
   }
   for (const [name, ra, dec, mly, note] of GALAXY_CLUSTERS) {
     const pos = sgScene(ra, dec, mly);
@@ -206,7 +232,7 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
   return {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
-    setGalaxies, setRadius, select,
+    setGalaxies, setRadius, select, recolourBand,
     get radius() { return radius; },
     get objects() { return objects; },
     counts() {

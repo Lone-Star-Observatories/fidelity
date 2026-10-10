@@ -10,12 +10,20 @@
 // the spiral pattern turns at its own slower-near-the-centre pattern speed, the Sun's frame
 // (Sol, quadrant spokes, catalogue reach) rides with the Sun, and the satellite galaxies follow
 // orbits integrated in a simple halo. All MODELLED; badged as such in the panel.
+//
+// Spectrum filter (#28): the model re-weights its components for the band (model.setBand), and the
+// Magellanic Clouds swap to a real image in that band (src/data/satellite-bands.js): optical DSS2 in
+// full spectrum and visible, Spitzer in the infrared, GALEX/Swift UV, ROSAT, Fermi, Planck, HI4PI.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
-import { bandStarColour } from '../../data/bandstate.js';
+import { bandStarColour, currentBand, onBand } from '../../data/bandstate.js';
+import { cloudImageFor, cloudCredit, cloudSurveyUrl } from '../../data/satellite-bands.js';
+import { galaxyBandNote } from '../../astro/galaxyband.js';
+import { PAL_RGB } from '../system/starband.js';
+import { paletteIndex } from '../system/bandskin.js';
 import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, VC_KMS, KMS_KLY_PER_MYR, CORE_KLY, OMEGA_SUN, OMEGA_PATTERN,
   SATELLITE_ORBITS, integrateOrbit, orbitAt, kpcToScene } from '../../astro/galaxy.js';
 import { loadTexture } from '../system/materials.js';
@@ -44,9 +52,28 @@ const STAR_FRAG = `
   void main() { float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.15, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 // Satellite-galaxy images: camera-facing quads, additive, with the square edges faded out.
 const IMG_FRAG = `
-  uniform sampler2D uMap; uniform float uOpacity; varying vec2 vUv;
+  uniform sampler2D uMap; uniform float uOpacity; uniform vec3 uTint; uniform float uMono; varying vec2 vUv;
   void main() { float f = smoothstep(0.5, 0.28, length(vUv - 0.5));
-    vec3 c = max(texture2D(uMap, vUv).rgb - 0.03, 0.0); gl_FragColor = vec4(c * f * uOpacity, 1.0); }`;
+    vec3 c = max(texture2D(uMap, vUv).rgb - 0.03, 0.0);
+    c = mix(c, dot(c, vec3(0.333)) * uTint * 1.5, uMono); // a band's false colour (#28)
+    gl_FragColor = vec4(c * f * uOpacity, 1.0); }`;
+const STANDALONE = import.meta.env?.MODE === 'standalone';
+// band images of the Clouds, loaded once: a survey cutout, or two drawn one over the other (UV)
+const imgCache = new Map();
+const loadImg = (url) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = url; });
+function cloudTexture(over, under) {
+  const key = `${over}|${under ?? ''}`;
+  if (!imgCache.has(key)) imgCache.set(key, Promise.all([loadImg(over), under ? loadImg(under) : null]).then(([a, b]) => {
+    if (!a && !b) return null;
+    const c = document.createElement('canvas'); c.width = c.height = 512;
+    const g = c.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, 512, 512);
+    if (b) g.drawImage(b, 0, 0, 512, 512);
+    if (a) g.drawImage(a, 0, 0, 512, 512); // transparent where it has no data, so the one below shows
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }));
+  return imgCache.get(key);
+}
 const IMG_VERT = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
 /** Gaia BP−RP → an approximate B−V, for colouring (observed colours: distant stars are reddened by dust). */
 export const bprpToBV = (bprp) => 0.78 * bprp;
@@ -122,18 +149,42 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     const body = new THREE.Group();
     body.add(new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 12), new THREE.MeshBasicMaterial({ color: 0x9999ff })));
     if (s.texture) {
-      const mat = new THREE.ShaderMaterial({ uniforms: { uMap: { value: null }, uOpacity: { value: 1.3 } }, vertexShader: IMG_VERT, fragmentShader: IMG_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+      const mat = new THREE.ShaderMaterial({ uniforms: { uMap: { value: null }, uOpacity: { value: 1.3 }, uTint: { value: new THREE.Color(1, 1, 1) }, uMono: { value: 0 } }, vertexShader: IMG_VERT, fragmentShader: IMG_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
       const quad = new THREE.Mesh(new THREE.PlaneGeometry(s.diameterKly * 1.3, s.diameterKly * 1.3), mat);
       quad.visible = false;
-      loadTexture(s.texture).then((t) => { if (t) { mat.uniforms.uMap.value = t; quad.visible = true; body.children[0].visible = false; } });
       body.add(quad);
       body.userData.quad = quad;
+      body.userData.mat = mat;
     }
     scene.add(body);
     const label = tag(s.name, 'host', [0, 0, 0], true, body);
     label.position.set(s.diameterKly * 0.4, 0, 0);
     return { ...s, orbit, body, label, shown: '' };
   });
+  // ---- the spectrum filter (#28): the galaxy model and the Clouds follow the band ---------------
+  let bandInfo = { model: galaxyBandNote(null), clouds: {} };
+  function applyCloudBand(s, cb) {
+    const quad = s.body.userData.quad, mat = s.body.userData.mat, marker = s.body.children[0];
+    const img = cloudImageFor(cb), tint = PAL_RGB[paletteIndex(cb.band.palette)];
+    mat.uniforms.uTint.value.setRGB(...tint);
+    mat.uniforms.uMono.value = !cb.full && cb.band.palette !== 'visible' ? 1 : 0;
+    const show = (t, info) => { if (bandInfo.clouds[s.id] !== info) return; if (t) { mat.uniforms.uMap.value = t; quad.visible = true; marker.visible = false; } else { quad.visible = false; marker.visible = true; info.value = 'IMAGE UNAVAILABLE'; info.tier = 'computed'; } };
+    // the standalone preview has no backend for survey cutouts: only the bundled Spitzer mosaics
+    const useSpitzer = img?.texture || (STANDALONE && cb.full);
+    if (!img && !useSpitzer) { quad.visible = false; marker.visible = true; bandInfo.clouds[s.id] = { value: 'NOT OBSERVED IN THIS BAND', tier: 'computed', detail: 'Interstellar gas absorbs the extreme ultraviolet; no image of the Clouds exists here.' }; return; }
+    if (STANDALONE && !useSpitzer) { quad.visible = false; marker.visible = true; bandInfo.clouds[s.id] = { value: 'BAND IMAGE NEEDS THE LOCAL BACKEND', tier: 'computed', detail: 'The standalone preview only carries the Spitzer infrared images.' }; return; }
+    const shown = useSpitzer ? { id: 'spitzer', label: 'SPITZER · INFRARED', credit: { lmc: 'NASA/JPL-Caltech/M. Meixner (STScI) & the SAGE Legacy Team, PIA07136: Spitzer 3.6–24 µm mosaic.', smc: 'NASA/JPL-Caltech/STScI, PIA12485: Spitzer infrared mosaic.' }, nearest: !img?.texture, ...(img?.texture ? img : {}) } : img;
+    const info = { value: `${shown.label}${shown.nearest ? ' · NEAREST MAPPED BAND' : ''}`, tier: 'measured', detail: cloudCredit(shown, s.id) };
+    bandInfo.clouds[s.id] = info;
+    if (useSpitzer) loadTexture(s.texture).then((t) => show(t, info));
+    else cloudTexture(cloudSurveyUrl(shown.survey, s.id), shown.under ? cloudSurveyUrl(shown.under, s.id) : null).then((t) => show(t, info));
+  }
+  function applyBand(cb = currentBand()) {
+    const w = model.setBand(cb);
+    bandInfo = { model: galaxyBandNote(w), clouds: {} };
+    for (const s of satellites) if (s.body.userData.quad) applyCloudBand(s, cb);
+  }
+
   function placeSatellites(t) {
     const sun = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * t);
     for (const s of satellites) {
@@ -273,6 +324,8 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
   frameOn([0, 0, 0], 150);
   camera.position.copy(want.pos);
   placeSatellites(0);
+  applyBand();
+  onBand(applyBand);
 
   let running = false;
   function resize() {
@@ -325,6 +378,8 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     hide() { container.hidden = true; running = false; },
     setStars, setGaia, setTime, applyLook,
     get modelComponents() { return model.components; },
+    /** The spectrum filter (#28): { model: { value, detail, dark }, clouds: { lmc|smc: { value, tier, detail } } }. */
+    get bandInfo() { return bandInfo; },
     get epoch() { return epoch; },
     get gaiaCount() { return gaiaCount; },
     view(which) {

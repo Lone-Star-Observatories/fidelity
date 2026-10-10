@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { eqToGal, frameToScene, teffFromBV, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
-import { bandStarColour } from '../../data/bandstate.js';
+import { bandStarColour, currentBand, onBand } from '../../data/bandstate.js';
 import { R0_KLY, Z_SUN_KLY } from '../../astro/galaxy.js';
 import { createGalaxyPlane } from '../galaxy/plane.js';
 import { createGalaxyModel } from '../galaxy/model.js';
@@ -63,6 +63,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   model.tune({ scale: 1500, maxSize: 1.6, gain: 0.3 });
   scene.add(model.group);
   const applyLook = () => { plane.visible = !!settings.get('galaxyArt'); model.setBrightness(settings.get('galaxyBright') ?? 0.45); };
+  model.setBand(currentBand()); onBand((cb) => model.setBand(cb)); // the spectrum filter (#28)
   applyLook();
 
   const uniforms = { uPixel: { value: renderer.getPixelRatio() }, uRadius: { value: 3000 } };

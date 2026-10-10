@@ -50,7 +50,8 @@ import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js'
 import { useEarthEphemeris } from './astro/eclipses.js';
 import { createComputer } from './voice/computer.js';
 import { BANDS, bandById, passById } from './data/bands.js';
-import { setCurrentBand, currentBand } from './data/bandstate.js';
+import { setCurrentBand, currentBand, onBand } from './data/bandstate.js';
+import { typeBandNote } from './astro/galaxyband.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -249,6 +250,12 @@ function applyBandEverywhere() {
   if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
 }
 settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
+// panels that describe the band (#28): Galaxy, Universe and Star views re-render when it changes
+onBand(() => queueMicrotask(() => {
+  if (route?.level === 'galaxy') renderGalaxyPanel();
+  else if (route?.level === 'universe') renderUniversePanel();
+  else if (route?.level === 'star' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body, { inStarView: true });
+}));
 // ---- "Computer" (#21) ----------------------------------------------------------------------
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
@@ -841,11 +848,22 @@ function renderGalaxyPanel() {
       { label: 'NEAR STARS', value: 'HYG · TO 1.5 KLY', tier: 'measured', detail: 'Every HYG star within 1,500 ly brighter than absolute magnitude 2, at its parallax position.' },
       { label: 'FAR STARS', value: gaia ? `${fmt(gaia, 0)} · GAIA DR3` : 'GAIA DR3 · LOADING', tier: 'measured', detail: 'Gaia DR3 stars brighter than G = 9 with parallax better than 10%, beyond ~1.6 kly: they trace the Orion Spur and reach into the Perseus and Sagittarius arms. Dust hides everything farther, which is why the galaxy beyond is still drawn from a concept.' },
       { label: 'STARS IN OTHER GALAXIES', value: 'ONLY THE BRIGHTEST', tier: 'measured', detail: 'Gaia measures individual stars in the Magellanic Clouds, but their parallaxes are too small to place them one by one; Hubble resolves stars in Andromeda. So the Clouds are shown as images.' },
-      { label: 'MAGELLANIC CLOUDS', value: 'SPITZER INFRARED', tier: 'measured', detail: 'Real images: LMC PIA07136 (NASA/JPL-Caltech/M. Meixner, SAGE), SMC PIA12485 (NASA/JPL-Caltech/STScI). Drawn at their real diameters, 32 kly and 19 kly, always facing you.' },
+      ...galaxyBandFacts(), // the spectrum filter (#28)
       { label: 'SATELLITE ORBITS', value: 'INTEGRATED · ±2 GYR', tier: 'modelled', detail: 'From HST proper motions (Kallivayalil et al. 2013) and Law & Majewski 2010 for Sagittarius, in a simple halo (233 km/s, no dynamical friction). The Clouds may be on their first pass, so treat the past half (dashed) as a sketch.' },
     ]),
     renderLegend(),
   );
+}
+/** The spectrum filter (#28) in the Galaxy panel: what the model shows in the band, and each Cloud's image. */
+function galaxyBandFacts() {
+  const bi = galaxy.bandInfo, cb = currentBand(), out = [];
+  if (!cb.full) out.push({ label: `SPECTRUM · ${cb.band.short ?? cb.band.label}`, value: bi.model.value, tier: bi.model.dark ? 'computed' : 'modelled',
+    detail: `${bi.model.detail} Each component of the model is re-weighted by its spectrum through ${cb.pass?.label ?? 'the band'} (src/astro/galaxyband.js); the gas disc and the Fermi and eROSITA bubbles exist only outside the visible.` });
+  for (const [id, name] of [['lmc', 'LMC IMAGE'], ['smc', 'SMC IMAGE']]) {
+    const c = bi.clouds[id];
+    if (c) out.push({ label: name, value: c.value, tier: c.tier, detail: `${c.detail} Drawn at the Cloud's real diameter (LMC 32 kly, SMC 19 kly), always facing you.` });
+  }
+  return out;
 }
 (function galLoop(now) {
   requestAnimationFrame(galLoop);
@@ -946,6 +964,8 @@ function renderUniversePanel() {
       { label: 'LOCAL GROUP MOTION', value: `${MOTION.lg.kms} KM/S`, tier: 'measured', detail: `Gold arrow. The cosmic microwave background looks hotter one way than the other: we move through it towards l = ${MOTION.lg.l}°, b = +${MOTION.lg.b}° (COBE, Planck), mostly pulled by the Great Attractor and the Shapley Supercluster. That is ${fmt(MOTION.lg.kms * 3.3356e-3, 1)} million ly every billion years.` },
       { label: 'ANDROMEDA', value: `${-MOTION.m31.radialKms} KM/S CLOSING`, tier: 'measured', detail: `Red arrow (zoom to 3 or 10 MLY). Its blueshift and Hubble proper motions (~${MOTION.m31.tangentialKms} km/s sideways; van der Marel et al. 2019) give a near head-on approach.` },
       { label: 'MILKOMEDA', value: `IN ~${MOTION.m31.mergeGyr} BILLION YR`, tier: 'modelled', detail: 'N-body simulations put the first pass in ~4 billion years and the merger into one elliptical galaxy ~2 billion years later; newer Gaia-based work gives it only ~50% odds within 10 billion years (Sawala et al. 2025).' },
+      ...(currentBand().full ? [] : [{ label: `SPECTRUM · ${currentBand().band.short ?? currentBand().band.label}`, value: 'RE-WEIGHTED BY TYPE', tier: 'modelled',
+        detail: `${typeBandNote(currentBand().pass?.filter) ?? ''} Each galaxy's catalogued blue brightness is scaled by a typical spectrum of its type through ${currentBand().pass?.label ?? 'the band'} (src/astro/galaxyband.js), in the band's false colour; groups as a spiral-like mix. Not measured galaxy by galaxy.` }]), // #28
       { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
     ]),
     h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),

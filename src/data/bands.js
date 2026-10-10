@@ -80,6 +80,9 @@ export const passById = (band, id) => band.passes.find((p) => p.id === id) ?? ba
 //   hips: a planetary HiPS (equirectangular via hips2fits, longitude −180…180); gibs: NASA GIBS
 //   WMS layers (yesterday); feed: a live feed id (server/feeds.js); credit, and a note when the map
 //   is in a neighbouring bandpass rather than the selected one.
+const ghzNm = (g) => 299792458 / g;
+const NORH17 = [ghzNm(17.017), ghzNm(16.983)], NORH34 = [ghzNm(34.05), ghzNm(33.95)];
+const NORH_CREDIT = (g) => `Nobeyama Radioheliograph ${g} GHz, operated by NAOJ/ICCON: archival full-disc map of 7 January 2014 (brightness temperature; NoRH closed in 2020)`;
 export const BODY_BAND = {
   sun: {
     'uv-1600': { feed: 'sdo-1600', credit: 'NASA SDO AIA 1600 Å via Helioviewer' }, 'uv-1700': { feed: 'sdo-1700', credit: 'NASA SDO AIA 1700 Å via Helioviewer' },
@@ -89,11 +92,29 @@ export const BODY_BAND = {
     'x-335': { feed: 'sdo-335', credit: 'NASA SDO AIA 335 Å via Helioviewer' },
     xray: { feed: 'sdo-94', credit: 'NASA SDO AIA 94 Å via Helioviewer', note: 'EUV 94 Å (6 MK corona): the hottest SDO channel, nearest to soft X-rays' },
     uv: { feed: 'sdo-1600', credit: 'NASA SDO AIA 1600 Å via Helioviewer', note: 'AIA 1600 Å: the nearest solar UV channel' },
+    // microwave (#28): archival Nobeyama Radioheliograph maps (server/solarradio.js); range = the map's wavelength span (nm)
+    'mw-ku': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
+    'mw-23': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
+    'mw-33': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm) · archival, 2014' },
+    'mw-41': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    'mw-61': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    'mw-94': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    microwave: { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm) · archival, 2014' },
   },
   earth: {
     'ir-10': { gibs: 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_Infrared,Himawari_AHI_Band13_Clean_Infrared', credit: 'NOAA GOES-16/18 ABI and JMA Himawari-9 AHI band 13 (10.3 µm), via NASA GIBS; Europe/Africa not covered (Meteosat not in GIBS)', partial: true },
     ir: { gibs: 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_Infrared,Himawari_AHI_Band13_Clean_Infrared', credit: 'GOES / Himawari 10.3 µm via NASA GIBS', note: '10.3 µm clean IR window: cloud tops cold (bright), ground warm', partial: true },
     uv: { gibs: 'OMPS_Aerosol_Index', credit: 'NASA OMPS UV aerosol index (from 340/380 nm radiances), via NASA GIBS', note: 'UV aerosol index: smoke and dust absorbing ultraviolet', partial: true },
+    // microwave (#28): GPM GMI brightness-temperature colour composite (ascending + descending passes); radio: SMAP's 1.41 GHz radiometer
+    microwave: { gibs: 'GMI_Brightness_Temp_Dsc,GMI_Brightness_Temp_Asc', range: [ghzNm(183.31), ghzNm(10.65)], partial: true,
+      credit: 'NASA/JAXA GPM Microwave Imager (GMI) brightness temperature, three-channel colour composite (Negri et al. 1989) of its 10–183 GHz channels, via NASA GIBS; daily swaths, gaps between orbits',
+      note: 'GPM GMI microwave brightness temperature: oceans blue-green, land brown, snow white, rain and cloud grey' },
+    'radio-nvss': { gibs: 'SMAP_L3_Passive_Brightness_Temp_H', latest: true, range: [ghzNm(1.4135), ghzNm(1.4085)], partial: true,
+      credit: 'NASA SMAP L-band radiometer, 1.41 GHz (21 cm) brightness temperature, H polarisation (SPL3SMP), via NASA GIBS; latest day, swaths with gaps',
+      note: 'SMAP 1.41 GHz brightness temperature: warm land, radio-cold sea' },
+    'radio-hi': { gibs: 'SMAP_L3_Passive_Brightness_Temp_H', latest: true, range: [ghzNm(1.4135), ghzNm(1.4085)], partial: true,
+      credit: 'NASA SMAP L-band radiometer, 1.41 GHz (21 cm) brightness temperature, H polarisation (SPL3SMP), via NASA GIBS; latest day, swaths with gaps',
+      note: 'SMAP 1.41 GHz brightness temperature, in the protected band beside the 21 cm line' },
   },
   mars: {
     'ir-12': { hips: 'CDS/P/Mars/THEMIS-Day-100m-v12', credit: 'NASA/ASU Mars Odyssey THEMIS daytime IR mosaic, 12.6 µm (CDS HiPS)' },
