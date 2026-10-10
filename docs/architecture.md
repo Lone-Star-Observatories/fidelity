@@ -18,6 +18,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/signals.js   signals map   │
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/events.js    events feed   │
+│                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -100,6 +101,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/surveys` · `GET /api/survey/:key?ra=&dec=&fov=[&size=]` | Sky-survey list; a JPEG cutout (north up, east left; 404 where the survey has no coverage) from CDS hips2fits (`server/imagery.js`) |
 | `GET /api/nasa-images?q=&must=` · `GET /api/nasa-image/:id/(thumb\|medium)` | NASA Image Library search (captions must name the body); preview images |
+| `GET /api/surface-images?body=` · `GET /api/surface-image?src=` | FROM THE SURFACE (#36): `{ body, curated, live, pending, errors }`: the curated landed imagery of `src/data/surface-images.js` with local preview URLs, plus (Mars) the newest Perseverance and Curiosity raw images at each rover's latest traverse point (cached 1 h); an image from an allowlisted host/path only (`SURFACE_HOSTS`), JPEG/PNG verified, cached a year (`server/surfaceimages.js`) |
 | `GET /api/psg?body=&month=YYYY-MM` | PSG modelled spectrum `{ wavelengthUm, total, reflected?, thermal? }` W/sr/m²/µm (`server/bodyspectra.js`) |
 | `GET /api/star-spectrum?ra=&dec=[&distLy=]` | Gaia DR3 XP spectrum `{ found, gaiaId, nm, flux, err }` of the star SIMBAD finds there |
 | `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
@@ -219,6 +221,21 @@ Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed
 (`observingBody` in `src/panels/satellite.js`): for JWST, the visit in progress (with a progress
 bar) and what comes next, from STScI's published schedule (PLANNED); for both, a grid of the newest
 public MAST images that opens each one large.
+
+## From the surface (#36)
+
+`src/panels/surface.js` builds the FROM THE SURFACE card for every Planet, Moon and Object View (passed to
+`detailCards` as `surface` hooks by `main.js`). `surfaceSelection` (`src/data/surface-images.js`) decides: real
+pictures from the surface where they exist (MEASURED: curated archival sets keyed to #37 site ids, live Mars raw
+images, Earth's observatory webcams), sorted nearest the last rendered spot; otherwise the card leads with the
+in-app render (IMAGINED). RENDER AT a site sets `pendingSurface` with `look: 'best'` (face the parent planet or the
+Sun, horizon a fifth of the way up) and `daylight: 20` (walk to the nearest point where the Sun is 20° up, so a
+render is not a black night); after ~3 s `captureWhenReady` calls `SystemView.capture()` (re-renders and copies the
+canvas in the same task, so no `preserveDrawingBuffer`) and keeps the JPEG with the HUD read-out, time and actual
+lat/lon in `localStorage` (a per-viewer convenience; renders can always be redone). The render's inputs (map, horizon
+distance from the radius, gravity, sky model, the star's and parent's computed apparent sizes) are listed under the
+IMAGINED badge. Each image's site is a camera marker on the Planet View globe (`setSurfaceMarks`); clicking one
+stands there. No AI image service: it would need hosting and would be invention presented as a picture.
 
 ## Surface sites (#37)
 

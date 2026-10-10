@@ -12,7 +12,7 @@ import { bodyVisualFor } from '../../data/bespoke.js';
 import { visualImageUrl } from '../../data/catalog.js';
 import { badge } from '../../data/provenance.js';
 import { dirToLatLon } from '../system/surface.js';
-import { siteDots } from '../system/sites.js';
+import { siteDots, siteDir } from '../system/sites.js';
 import { PLANETS } from '../../data/sol.js';
 import { SOL_ATMOSPHERES, SOL_INTERIORS, INTERIOR_SOURCES, BANDS, MOLECULE_NAMES, EXO_ATMOSPHERES, MR_CURVES, density } from '../../data/planets.js';
 
@@ -80,12 +80,57 @@ export function createPlanetView(container, { onSurface } = {}) {
     const { lat, lon } = dirToLatLon(globe.worldToLocal(hit.point.clone()).toArray());
     onSurface?.(current.id, lat, lon);
   });
+  // #36: FROM THE SURFACE markers (a picture was taken here; click to stand there)
+  let marks = null;
+  const MARK_COLOR = { measured: '#ffcc66', live: '#66ff99', render: '#cc99ff' };
+  const markTex = {};
+  const markTexture = (kind) => markTex[kind] ??= (() => {
+    const c = Object.assign(document.createElement('canvas'), { width: 64, height: 64 });
+    const g = c.getContext('2d');
+    g.fillStyle = '#000'; g.beginPath(); g.arc(32, 32, 30, 0, Math.PI * 2); g.fill();
+    g.fillStyle = MARK_COLOR[kind] ?? '#fff'; g.beginPath(); g.arc(32, 32, 25, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#000'; g.fillRect(16, 25, 32, 19); g.fillRect(25, 20, 12, 6); // a camera
+    g.fillStyle = MARK_COLOR[kind] ?? '#fff'; g.beginPath(); g.arc(32, 34, 6, 0, Math.PI * 2); g.fill();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.userData.shared = true; return t;
+  })();
+  function setMarks(list) {
+    if (marks) { pivot.remove(marks); for (const s of marks.children) s.material.dispose(); marks = null; }
+    if (!globeBody || !list?.length) return;
+    marks = new THREE.Group();
+    for (const m of list) {
+      const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: markTexture(m.kind), depthWrite: false }));
+      s.position.set(...siteDir(globeBody, m.lat, m.lon).map((c) => c * 1.03));
+      s.scale.setScalar(0.075);
+      s.userData.mark = m;
+      marks.add(s);
+    }
+    pivot.add(marks);
+  }
+  renderer.domElement.addEventListener('click', (e) => {
+    if (!marks || !globe || !current) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
+    const hit = ray.intersectObjects([globe, ...marks.children], true)[0];
+    const m = hit?.object?.userData?.mark;
+    if (!m) return;
+    const { lat, lon } = dirToLatLon(siteDir(globeBody, m.lat, m.lon));
+    onSurface?.(current.id, lat, lon);
+  });
+  renderer.domElement.addEventListener('pointermove', (e) => {
+    if (!marks) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
+    const m = ray.intersectObjects([globe, ...marks.children], true)[0]?.object?.userData?.mark;
+    renderer.domElement.style.cursor = m ? 'pointer' : '';
+    renderer.domElement.title = m ? `${m.label} · click to stand here` : 'Double-click to stand here and look up';
+  });
 
   function frame(now) {
     if (!running) return;
     requestAnimationFrame(frame);
     if (globe) globe.rotation.y = now * 0.00012;
     if (sites && globe) sites.rotation.y = globe.rotation.y;
+    if (marks && globe) marks.rotation.y = globe.rotation.y;
     if (clouds) clouds.rotation.y = now * 0.000128;
     for (const m of mats) m.uniforms.uSunPos.value.copy(sun);
     renderer.render(scene, camera);
@@ -93,7 +138,7 @@ export function createPlanetView(container, { onSurface } = {}) {
 
   function setGlobe(b) {
     for (const o of [...pivot.children]) { pivot.remove(o); disposeModel(o); }
-    mats = []; clouds = null;
+    mats = []; clouds = null; marks = null;
     const placeholder = planetTexture(b.palette ? b : { id: b.id, palette: ['#777', '#888', '#666'] });
     const mat = planetMaterial(placeholder, { tint: b.skin?.tint, ambient: 0.05 });
     applySkin(mat, b.skin);
@@ -334,6 +379,8 @@ export function createPlanetView(container, { onSurface } = {}) {
     hide() { container.hidden = true; running = false; },
     /** Cards built outside the view (observing data, imagery, spectra), shown under the hero. */
     setExtras(nodes) { extras.replaceChildren(...nodes.filter(Boolean)); },
+    /** #36: camera markers on the globe for body `id` ([{ lat, lon (planetocentric), kind, label }]). */
+    setSurfaceMarks(id, list) { if (current?.id === id) setMarks(list); },
     load(b, { isSol = false, systemName = '' } = {}) {
       const minor = ['moon', 'asteroid', 'comet', 'dwarf planet'].includes(b.kind) && b.id !== 'pluto';
       const view = b.kind === 'moon' ? 'MOON VIEW' : minor ? 'OBJECT VIEW' : 'PLANET VIEW';

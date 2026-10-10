@@ -10,6 +10,7 @@ import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
 import { detailCards } from './panels/detail.js';
 import { spacecraftComms } from './panels/comms.js';
+import { captureWhenReady } from './panels/surface.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
@@ -87,6 +88,11 @@ let pendingSurface = null;
 const planetView = createPlanetView($('planet-view'), {
   onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
 });
+// FROM THE SURFACE (#36): stand at a picture's site, or render the view there (opts.render captures it)
+const surfaceHooks = {
+  stand: (id, lat, lon, opts = {}) => { pendingSurface = { id, lat, lon, ...opts }; go({ level: 'system', system: currentSystem, body: id }); },
+  mark: (id, list) => planetView.setSurfaceMarks(id, list),
+};
 const galaxy = createGalaxyView($('galaxy-view'), {
   onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; },
   onPickStar: (p) => pickStarIn('galaxy', p),
@@ -1369,7 +1375,11 @@ onRoute(async (r) => {
     $('view-title').textContent = `SYSTEM VIEW · ${m.name.toUpperCase()}${body ? ` · ${body.name.toUpperCase()}` : ''}`;
     syncBeacon();
     if (body) {
-      if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun }); }
+      if (pendingSurface?.id === body.id) {
+        const ps = pendingSurface; pendingSurface = null;
+        system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight });
+        if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
+      }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
       else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
       renderBodyPanel(body.id);
@@ -1411,7 +1421,7 @@ onRoute(async (r) => {
     syncBeacon();
     planetView.show();
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
-    setDetail(detailCards(b, m, { system, clock }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
+    setDetail(detailCards(b, m, { system, clock, surface: surfaceHooks }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
     renderBodyPanel(b.id, { inStarView: true });
     syncRail();
   } else if (r.level === 'galaxy') {

@@ -543,3 +543,8 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .tc-row .pill { height: var(--bar-h); border-radius: 0; }
 .tc-hold { min-width: 110px; --c: var(--orange); }
 .tc-now { --c: var(--ice); flex: 1; }
+/* FROM THE SURFACE (#36) */
+.sf-card details { margin-top: 4px; }
+.sf-card summary { cursor: pointer; color: var(--lilac); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; display: flex; gap: 8px; align-items: center; }
+.sf-card details .note { margin: 4px 0 0 14px; }
+.sf-card .im-pills .pill { text-transform: uppercase; }

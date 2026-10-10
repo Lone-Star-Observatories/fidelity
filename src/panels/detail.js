@@ -4,6 +4,7 @@
 
 import { createFromEarthCard } from './fromearth.js';
 import { createImageryCard } from './imagery.js';
+import { createSurfaceCard } from './surface.js';
 import { bodySpectrumCard, starSpectrumCard, exoSpectraCard } from './spectra.js';
 import { toRaDec } from '../astro/observe.js';
 import { createCommsCard } from './comms.js';
@@ -35,7 +36,7 @@ const firstWord = (s) => s.toLowerCase().match(/[a-z0-9-]+/)?.[0] ?? s.toLowerCa
  * Cards for body `b` of model `m`. `system` gives positions (Sol), `clock` the ship's time.
  * Returns { top, spectrum, tick(), dispose() }.
  */
-export function detailCards(b, m, { system, clock }) {
+export function detailCards(b, m, { system, clock, surface = null }) {
   const getJd = () => clock.jd;
   const parts = [];
   let sky = null;
@@ -69,6 +70,8 @@ export function detailCards(b, m, { system, clock }) {
   // COMMS (#35): live links for Earth, the Moon and Mars; Earth also gets the live-signals map
   const comms = m.isSol ? createCommsCard(b.id, { system }) : null;
   if (comms) parts.push(comms, ...(comms.extra ? [comms.extra] : []));
+  // FROM THE SURFACE (#36): landed imagery or an in-app render, for anything with a surface view
+  if (!star && surface) parts.push(createSurfaceCard(b, m, { system, hooks: surface }));
 
   const spectrum = [];
   if (star && !m.isSol) {

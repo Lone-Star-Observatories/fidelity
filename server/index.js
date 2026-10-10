@@ -28,6 +28,7 @@ import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
 import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
 import { signalLayers, signalLayer } from './signals.js';
+import { surfaceImages, surfaceImage } from './surfaceimages.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -76,6 +77,8 @@ const routes = {
   'GET /api/exo-spectrum': async (q) => exoSpectrum(q.get('path') || ''),
   'GET /api/signals': async () => signalLayers(), // COMMS (#35)
   'GET /api/comms/raw-image': async (q) => binary(await rawImage(q.get('url') || '')),
+  'GET /api/surface-images': async (q) => surfaceImages(q),
+  'GET /api/surface-image': async (q) => binary(await surfaceImage(q)),
 };
 
 /** Binary result: sent as-is instead of JSON. */
