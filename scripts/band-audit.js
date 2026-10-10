@@ -12,6 +12,7 @@
 import fs from 'node:fs/promises';
 import { BANDS } from '../src/data/bands.js';
 import { bandLook, ringBandLook } from '../src/views/system/bandskin.js';
+import { sunBandLook } from '../src/views/system/starband.js';
 import { REFS } from '../src/data/band-physics.js';
 import { SUN, PLANETS } from '../src/data/sol.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
@@ -104,8 +105,8 @@ const HIPS = (id, what, res) => ({ archive: 'CDS HiPS (hips2fits)', id, what, li
 const PDS = (what, fetch = 'not yet: needs an allowlisted PDS route (GeoTIFF/IMG) in the backend') => ({ archive: 'NASA PDS', what, licence: 'public domain (NASA)', proj: 'equirectangular/polar stereographic', fetch });
 const K = {
   // Sun
-  'sun|radio': { obs: 'map', what: 'Daily disc flux F10.7 since 1947 (DRAO); radioheliograph images at 17/34 GHz (Nobeyama 1992–2020) and metre wavelengths (Nançay, LOFAR).', mech: 'thermal free-free from chromosphere/corona (10⁴–10⁶ K), gyroresonance over sunspots, non-thermal bursts', img: [{ archive: 'NoRH / Nançay', what: 'radioheliograph synoptic images', fetch: 'belongs to the #28 agent (solar radio via Nobeyama)' }], src: ['Tapping13'], fix: 'Sketch over the photosphere stays; real Nobeyama imagery is the #28 agent\'s.' },
-  'sun|microwave': { obs: 'map', what: 'ALMA single-dish full-disc maps at 3 mm and 1.3 mm; Nobeyama 17/34 GHz.', mech: 'chromospheric free-free, 6,000–10,000 K', src: ['Shimojo24'], fix: 'Sketch stays; imagery is the #28 agent\'s.' },
+  'sun|radio': { obs: 'map', what: 'Daily disc flux F10.7 since 1947 (DRAO); radioheliograph images at 17/34 GHz (Nobeyama 1992–2020), 3–24 GHz (Siberian Radioheliograph, daily) and metre wavelengths (Nançay, LOFAR).', mech: 'thermal free-free from chromosphere/corona (10⁴–10⁶ K), gyroresonance over sunspots, non-thermal bursts', img: [{ archive: 'Siberian Radioheliograph', what: '3.0 GHz daily full-disc map', fetch: 'yes: live feed srh-3000 (#28)' }, { archive: 'Nançay / LOFAR / EOVSA', what: 'metre-wave and 1–18 GHz images', fetch: 'no: not fetchable (re-checked 2026-10-10)' }], src: ['Tapping13'], fix: 'Measured SRH 3 GHz map; below 3 GHz (408 MHz, 1.4, 2.4 GHz) MODELLED · PREDICTED discs from measured inputs (quiet-Sun Tb, HMI-placed active regions, F10.7/RSTN total), never MEASURED (#28).' },
+  'sun|microwave': { obs: 'map', what: 'ALMA single-dish full-disc maps at 3 mm and 1.3 mm; Nobeyama 17/34 GHz.', mech: 'chromospheric free-free, 6,000–10,000 K', img: [{ archive: 'Nobeyama Radioheliograph', what: '17/34 GHz archival maps', fetch: 'yes: norh-17 / norh-34 (#28)' }], src: ['Shimojo24'], fix: 'Archival Nobeyama 17/34 GHz maps (MEASURED, dated); ALMA mm maps not fetched.' },
   'sun|ir': { obs: 'image', what: 'Photosphere seen by many IR telescopes (limb darkening, opacity minimum at 1.6 µm).', mech: 'photospheric thermal', fix: 'Computed blackbody colour is appropriate.' },
   'sun|visible': { obs: 'image', what: 'SDO HMI continuum, live.', mech: 'photospheric thermal', img: [{ archive: 'Helioviewer (SDO)', what: 'HMI continuum', fetch: 'yes: live skin' }] },
   'sun|uv': { obs: 'image', what: 'SDO AIA 1600/1700 Å live; Lyman-α imaged by Solar Orbiter EUI HRI-Lyα and PROBA2 LYRA (disc flux).', mech: 'upper photosphere/chromosphere continuum and lines', img: [{ archive: 'Helioviewer (SDO AIA)', what: '1600/1700 Å', fetch: 'yes: live feed' }], fix: 'FUV and Lyman-α now take AIA 1600 as the nearest channel (labelled); NUV/UVW1/UVM2/F225W/F275W are the photosphere\'s computed colour (the band-level AIA fallback on them was removed).' },
@@ -255,9 +256,14 @@ const HIPS_VIS = { europa: 'CDS/P/Europa/Voyager-GalileoSSI-500m', ganymede: 'CD
 
 // ---- rows ---------------------------------------------------------------------------------------
 const bodies = [{ ...SUN }, ...PLANETS, ...MOONS.map((m) => ({ ...m, kind: m.kind ?? 'moon' })), ...SMALL_BODIES, { id: 'rings', name: "Saturn's rings", kind: 'rings' }];
+const current = { bandLook, ringBandLook };
 const looks = (mod, b, band) => band.passes.map((p) => {
   if (b.id === 'rings') { const r = mod.ringBandLook ? mod.ringBandLook({ id: 'saturn' }, band, p) : { visible: ['visible', 'ir'].includes(band.id), label: ['visible', 'ir'].includes(band.id) ? 'SHOWN (VISIBLE/IR ONLY)' : 'HIDDEN' }; return { pass: p.id, mode: r.visible ? 'ring' : 'hidden', tier: r.tier ?? 'computed', label: r.label }; }
-  if (b.kind === 'star') return { pass: p.id, mode: 'star', tier: '—', label: 'Sun: see SystemView applyStarBand (BODY_BAND.sun, SUN_SIGNATURES, blackbody)' };
+  if (b.kind === 'star') {
+    if (mod !== current) return { pass: p.id, mode: 'star', tier: '—', label: 'Sun: see SystemView applyStarBand (BODY_BAND.sun, SUN_SIGNATURES, blackbody)' };
+    const l = sunBandLook(band, p);
+    return { pass: p.id, mode: l?.feed ? 'real' : 'star', tier: l?.tier ?? '—', label: l?.label ?? 'FULL', ...(l?.feed ? { map: l.feed } : {}) };
+  }
   const l = mod.bandLook(b, band, p);
   return { pass: p.id, mode: l.mode, tier: l.tier, label: l.label, ...(l.source ? { map: l.source.hips ?? l.source.gibs ?? l.source.feed ?? (l.source.archive && `archive:${l.source.archive.id}`) ?? (l.source.disc && `disc:${l.source.disc.id}`) } : {}), ...(l.belts ? { belts: +l.belts.toFixed(2) } : {}) };
 });
@@ -272,7 +278,7 @@ const groupKey = (l) =>`${l.mode}|${l.map ?? ''}|${l.label.replace(/[0-9.×]+/g,
 const rows = [];
 for (const b of bodies) for (const band of BANDS.filter((x) => x.id !== 'full')) {
   const cls = classOf(b), k = K[`${b.id}|${band.id}`] ?? (b.id === 'sun' ? null : CLASS[cls]?.[band.id]) ?? { obs: 'none', what: 'No observation found in this audit.' };
-  const after = looks({ bandLook, ringBandLook }, b, band);
+  const after = looks(current, b, band);
   const prevRow = prev?.rows?.filter((r) => r.body === b.id && r.band === band.id) ?? [];
   const bef = before ? looks(before, b, band) : null;
   const groups = new Map();
