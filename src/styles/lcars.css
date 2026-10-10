@@ -588,3 +588,8 @@ button.nav-label:hover { color: #000; background: var(--peach); }
   text-shadow: 0 0 3px #000, 0 0 2px #000; white-space: nowrap; pointer-events: auto; cursor: pointer;
 }
 .feature-label:hover { color: var(--orange); }
+
+/* LOOK AT (#43) readout under the surface HUD */
+.surface-look { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; margin-top: 4px; }
+.surface-look:empty, .surface-look:empty ~ .surface-look-btns { display: none; }
+.surface-look-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }

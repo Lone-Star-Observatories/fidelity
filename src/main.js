@@ -766,6 +766,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
         detailLevel(b) ? pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })) : null,
       b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
+    ...(m.isSol && !inStarView ? lookAtSection(b, m) : []),
     ...(m.isSol ? sitesPanel.section(b) : []),
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
@@ -780,6 +781,27 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
 }
 
 const moonsOf = (m, id) => m.bodies.filter((x) => x.kind === 'moon' && x.parent === id);
+
+// LOOK AT (#43): see another body from this one, at its true size, phase and position
+function lookAtSection(b, m) {
+  if (b.marker) return [];
+  const ground = !(b.starLike || b.kind === 'star' || b.kind === 'spacecraft' || b.kind === 'satellite');
+  const look = (target, mode) => { system.lookAt(b.id, target, { mode }); };
+  const picks = [b.parent, ...moonsOf(m, b.id).slice(0, 6).map((x) => x.id), 'sun', 'earth']
+    .filter((id, i, a) => id && id !== b.id && a.indexOf(id) === i && m.bodies.some((x) => x.id === id));
+  const name = (id) => m.bodies.find((x) => x.id === id)?.name.toUpperCase() ?? id;
+  const sel = h('select', { className: 'ctl-select look-select', title: 'Anything else: planets, moons, small bodies, spacecraft' },
+    h('option', { value: '', textContent: 'ANY BODY…' }),
+    ...m.bodies.filter((x) => x.id !== b.id && !x.marker).map((x) => h('option', { value: x.id, textContent: x.name })));
+  let mode = ground ? 'surface' : 'orbit';
+  const modeBtn = ground ? pill('FROM THE SURFACE', () => { mode = mode === 'surface' ? 'orbit' : 'surface'; modeBtn.textContent = mode === 'surface' ? 'FROM THE SURFACE' : 'FROM ORBIT'; }, 'square') : null;
+  sel.addEventListener('change', () => { if (sel.value) look(sel.value, mode); });
+  return [h('h3', { textContent: `LOOK AT · FROM ${b.name.toUpperCase()}` }),
+    h('div', { className: 'body-list' }, ...picks.map((id) => pill(`${name(id)} ▸`, () => look(id, mode))), sel, modeBtn),
+    h('p', { className: 'note', textContent: ground
+      ? 'Stand on it where the target is up in the sky (or hover above it, FROM ORBIT): true size, phase and light-time, with naked-eye and telescope fields.'
+      : 'Hover just above it and look: true size, phase and light-time.' })];
+}
 
 function renderOfflinePanel(level) {
   resetLive();

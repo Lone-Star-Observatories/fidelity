@@ -290,6 +290,19 @@ near plane follows the distance to the site); other bodies' labels hide meanwhil
 their NASA model at the end of their path (`loadCraftModel`, enlarged). Site cards add PHOTOS from
 `/api/nasa-images` (mission + surface first, then the mission alone), badged REPORTED.
 
+## LOOK AT (#43)
+
+`system.lookAt(obs, target, { mode, apparent })` uses the surface view: FROM THE SURFACE stands on the
+observer where the target is ~35° up and tracks it (dragging stops tracking; ⌖ TRACK resumes);
+FROM ORBIT hovers just above the observer on the side facing the target, ignoring the horizon
+(stars and spacecraft can only be observers this way). Both run at TRUE scale. In APPARENT mode
+the target is drawn where it was when the arriving light left (one light-time iteration);
+GEOMETRIC draws it where it is now. The HUD reads out angular size (vs the full Moon), illuminated
+fraction and phase angle, distance, light-time, altitude/azimuth and the next rise or set
+(`orientationAt` re-derives the observer's orientation at any time; 10-minute search over 4 days,
+bisected), and the field with its magnification over a 60° naked-eye field. The math is in
+`src/astro/lookat.js`; tests compare Earth from the Moon against JPL Horizons (site 301).
+
 ## Click anything (#23)
 
 `src/views/pick.js` does screen-space point picking (`pickPoint`) and click/double-click
