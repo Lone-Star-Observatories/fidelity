@@ -1,0 +1,84 @@
+{
+  "retrieved": "2026-10-10",
+  "records": [
+    {
+      "name": "juno-caption",
+      "url": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+      "status": 200,
+      "path": "data/research-sources/amalthea-juno-caption-2026-10-10.html",
+      "bytes": 271553,
+      "sha256": "3a2e88da97a081ccc05027480073e7fe1112d4b0ebf73c33ae80798846793895",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "galileo-caption",
+      "url": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+      "status": 200,
+      "path": "data/research-sources/amalthea-galileo-caption-2026-10-10.html",
+      "bytes": 267702,
+      "sha256": "e33d1ca73ce418610baf57b0575ae75b459a5e10c9aea00f8d02ec4c4835cd45",
+      "retrieved": "2026-10-10",
+      "imageLinks": [
+        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+        "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.tif"
+      ]
+    },
+    {
+      "name": "juno-native",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg?crop=faces%2Cfocalpoint&fit=clip&h=3600&w=3600",
+      "status": 200,
+      "path": "data/research-sources/amalthea-juno-native-2026-10-10.jpg",
+      "bytes": 746320,
+      "sha256": "866752bcc64e93aadead2a71e7104c915bdf104c9def562687a90a9c97096ac3",
+      "retrieved": "2026-10-10",
+      "dimensions": [
+        3600,
+        3600
+      ]
+    },
+    {
+      "name": "shape-label",
+      "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml",
+      "status": 200,
+      "path": "data/research-sources/amalthea-shape-label-2026-10-10.xml",
+      "bytes": 7253,
+      "sha256": "28dc9407ec6bcc566522edbede2bc7255e3f5fd8ed7167df49a4aa227e9d7aed",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "shape-source",
+      "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.tab",
+      "status": 200,
+      "path": "data/research-sources/amalthea-shape-source-2026-10-10.tab",
+      "bytes": 70226,
+      "sha256": "031ee6036cf67e170d39da24487672cd3d4dd2bbb5e9391cf1e3ad56c67706f1",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "galileo-native",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02532/PIA02532.jpg",
+      "status": 200,
+      "path": "data/research-sources/amalthea-galileo-native-2026-10-10.jpg",
+      "bytes": 14865,
+      "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+      "dimensions": [
+        860,
+        410
+      ],
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "juno-original",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25728/PIA25728.jpg",
+      "status": 200,
+      "path": "data/research-sources/amalthea-juno-original-2026-10-10.jpg",
+      "bytes": 732349,
+      "sha256": "50315f174a2fb07efb56943251337d31486b0e62dd79558abc4bdc7d2fe9c759",
+      "dimensions": [
+        3600,
+        3600
+      ],
+      "retrieved": "2026-10-10"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; all 50 dossiers unchanged. No 51st dossier or embedded Amalthea imagery.",
+  "sourceRecords": "amalthea-moon-source-records-2026-10-10.json",
+  "nativeAssessment": [
+    {
+      "product": "PIA25728 JunoCam",
+      "observed": "2024-03-07",
+      "released": "2024-05-13",
+      "credit": "Image data: NASA/JPL-Caltech/SwRI/MSSS; image processing by Gerald Eichst\u00e4dt",
+      "source": "https://science.nasa.gov/photojournal/nasas-juno-mission-spots-jupiters-tiny-moon-amalthea/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "Two processed Jupiter views with tiny Amalthea detections; not a resolved surface map or calibrated visible colour. Original publisher JPEG and distinct dynamically served 3600px JPEG both retained with independent hashes. Their identical dimensions do not establish identical bytes or pixels. No exhaustive newest-observation claim."
+    },
+    {
+      "product": "PIA02532 Galileo SSI stereo pair",
+      "observed": [
+        "1999-08-12",
+        "1999-11-26"
+      ],
+      "released": "2000-04-24",
+      "credit": "NASA/JPL/Cornell University",
+      "source": "https://science.nasa.gov/photojournal/bright-streak-on-amalthea/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "Monochrome stereo presentation, differing views and illumination; right image north pole cut by camera frame. Ida bright streak origins (ejecta or ridge crest) are alternatives, not unique chemistry. No seamless globe, calibrated visible colour or local observer registration established. Source feature sizes/ranges are caption statements, not newly computed raster sizes."
+    }
+  ],
+  "shapeAudit": {
+    "source": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.tab",
+    "label": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/j5amalthea.xml",
+    "sourceSha256": "031ee6036cf67e170d39da24487672cd3d4dd2bbb5e9391cf1e3ad56c67706f1",
+    "matchesExistingSourceHash": true,
+    "verifiedLabel": "Voyager 1/2 planetocentric grid, west-positive longitude, 5-degree spacing and km radii. Corrected Stooke 1994 bulge near latitude 0 longitude 315 caused by a smeared limb image; explicitly does not incorporate Galileo results. Decimal places do not express radius uncertainty.",
+    "limitations": "Existing model preserved; no modern Galileo-derived shape replacement, independent model uncertainty or physical scene registration claimed."
+  },
+  "preservedModels": [
+    {
+      "path": "public/shapes/amalthea.glb",
+      "bytes": 131800,
+      "sha256": "b36b924bae2084e7339adb48c24c48272dea6f93ca101f3f32b499611273b3f6"
+    },
+    {
+      "path": "public/shapes/amalthea-preview.glb",
+      "bytes": 67180,
+      "sha256": "61cac6df927bda9752ff6a69f228fbdc7f47342f17bb0f4d3bea679ba38b13e3"
+    },
+    {
+      "path": "public/shapes/phobos.glb",
+      "bytes": 603656,
+      "sha256": "e9bc4470e6f8595ad6a2d0f16d672e845a3d31d12e6f806d347108242d35a166"
+    },
+    {
+      "path": "public/shapes/phobos-preview.glb",
+      "bytes": 72980,
+      "sha256": "10edb4bc96d43983c30062fe985d5cbae56b74b498f33d2e5643b5f77e1d4f64"
+    }
+  ],
+  "surfaceStatus": "Catalogue surfacePending remains true; no observed map from another body assigned. Independent imagined views and any eventual hypothetical texture require explicit labels.",
+  "next": [
+    "Assess compact credited recent Juno rendition and preserve original; retain Galileo pair unchanged.",
+    "Audit modern shape/measurement alternatives before generating independent Amalthea terrain and observer views.",
+    "Recover further standalone headroom as needed, preserve all science fields/native/model bytes."
+  ],
+  "verification": {
+    "dossiersUnchanged": 50,
+    "queueTasks": 566,
+    "testsPassed": 259,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15611500,
+    "headroomBytes": 388500,
+    "browserReadableSnapshotSha256": "4530750955b0467c512e9e405019381839d50cfb15deeb12ca9fd3db4cd47ac1",
+    "browserHtmlParserPackedBytes": "unchanged exact equality",
+    "applicationSha256": "433b89ae9b07ad95c8854ab09f4f7fd1d27cace1fc1eac0b605929baba3d6578"
+  }
+}
