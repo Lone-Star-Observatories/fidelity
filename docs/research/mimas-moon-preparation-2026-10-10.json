@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no52nd dossier/new embedding. All51 dossiers unchanged.",
+  "sourceRecords": "mimas-moon-source-records-2026-10-10.json",
+  "native": {
+    "product": "PIA17213 Farewell to Mimas Cassini ISS narrow-angle ten-frame mosaic",
+    "observed": "2017-01-30",
+    "released": "2017-03-14",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "source": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "inspected": true,
+    "processing": "Publisher orthographic projection centred17.5degrees south325.4degrees west. Main1700JPEG has enhanced Saturn-lit left hemisphere. Figure1 served1280JPEG presents more natural illumination; different rendition/pixel count and encoding explicitly retained separately.",
+    "limitations": "Visible-light monochrome mosaic not calibrated visible colour. More natural illumination is publisher wording, not independently calibrated photometry. Both versions retained unchanged, not a seamless global map. Caption250m/pixel and45000km range are source statements not new raster computations. No exhaustive newest-current observation claim."
+  },
+  "nativeGlobe": {
+    "path": "data/textures/mimas.jpg",
+    "bytes": 513028,
+    "sha256": "0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b",
+    "sourceByteEquality": true,
+    "limitations": "Own NASA3D source byte identity verified; specific product association, coverage/input epochs/frame/geographic registration and photometric transfer remain open."
+  },
+  "recentResearch": {
+    "title": "A recently formed ocean inside Saturn\u2019s moon Mimas",
+    "authors": [
+      "V. Lainey",
+      "N. Rambaux",
+      "G. Tobie",
+      "N. Cooper",
+      "Q. Zhang",
+      "B. Noyelles",
+      "K. Bailli\u00e9"
+    ],
+    "doi": "10.1038/s41586-023-06975-9",
+    "published": "2024-02-07",
+    "issueDate": "2024-02-08",
+    "source": "https://www.nature.com/articles/s41586-023-06975-9",
+    "assessment": "Primary publisher indexed abstract read: Cassini orbital motion/periapsis analysis infers global ocean under20\u201330km shell; eccentricity damping suggests age<25million years; simulations reach<30km ocean\u2013ice interface in last2\u20133million years. These are dynamical/thermal inferences, not directly photographed ocean or surface activity.",
+    "access": "Direct publisher request returned HTTP200 anti-bot challenge; attempted institutional accepted-PDF URL returned HTTP200 text/html withoutPDFsignature. Recorded response hashes identify challenge bodies only, not article/PDF. No full-paper bytes or paper licence established; no figure embedded or CC licence asserted.",
+    "limitations": "Full paper/supplement/alternative model and newer2025research audit open; no local chemistry/fractions, exposed ocean/plume or biology inferred."
+  },
+  "next": [
+    "Audit accessible primary full paper and newer thermal/orbital alternatives without inventing download hashes or licences.",
+    "Recover standalone headroom before larger native/illustration batches; preserve all fields/models/native bytes.",
+    "Deliver individual Mimas dossier with native context and independent imagined local/observer views, keeping own globe unchanged."
+  ],
+  "verification": {
+    "dossiersUnchanged": 51,
+    "queueTasks": 566,
+    "testsPassed": 260,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15848284,
+    "headroomBytes": 151716,
+    "completeBrowserReadableSha256": "4a8b5ebf799964f64543888f7e1dfd9115d10f59edd01bf27eac5256f5cc8ecf",
+    "exactApplicationAndHtmlParserPayload": "pass"
+  }
+}
