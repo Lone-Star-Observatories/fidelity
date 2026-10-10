@@ -59,10 +59,18 @@ test('every observatory webcam a site offers is on the backend allowlist', async
   for (const id of ids) assert.ok(FEEDS[id], `${id} is not a backend feed`);
 });
 
-test('bundled lunar traverses exist for every site that names one, and start where they should', async () => {
+test('bundled lunar and Mars traverses exist for every site that names one, and start where they should', async () => {
   const fs = await import('node:fs/promises');
   const moon = JSON.parse(await fs.readFile(new URL('../public/traverses/moon.json', import.meta.url), 'utf8'));
-  for (const s of SITES.filter((x) => x.traverse?.startsWith('moon:'))) assert.ok(moon[s.traverse.slice(5)]?.paths?.length, s.traverse);
+  const mars = JSON.parse(await fs.readFile(new URL('../public/traverses/mars.json', import.meta.url), 'utf8'));
+  for (const s of SITES.filter((x) => /^(moon|mars):/.test(x.traverse ?? ''))) {
+    const [file, key] = s.traverse.split(':');
+    assert.ok({ moon, mars }[file][key]?.paths?.length, s.traverse);
+  }
+  close(mars.opportunity.distanceKm, 45, 1, 'Opportunity km');
+  const oppEnd = sitesFor('mars').find((x) => x.id === 'opportunity-final');
+  const kmM = ([lo1, la1], [lo2, la2]) => Math.hypot((lo2 - lo1) * Math.cos(la1 * Math.PI / 180), la2 - la1) * Math.PI / 180 * 3389.5;
+  assert.ok(kmM(mars.opportunity.paths[0].at(-1), [oppEnd.lon, oppEnd.lat]) < 1, 'Opportunity ends in Perseverance Valley');
   const km = ([lo1, la1], [lo2, la2]) => Math.hypot((lo2 - lo1) * Math.cos(la1 * Math.PI / 180), la2 - la1) * Math.PI / 180 * 1737.4;
   const a11 = sitesFor('moon').find((x) => x.id === 'apollo11-lm');
   assert.ok(km(moon.apollo11.paths[0][0], [a11.lon, a11.lat]) < 0.05, 'Apollo 11 walk starts at the LM');

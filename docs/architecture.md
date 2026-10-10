@@ -217,6 +217,16 @@ through the satellite panel's feed viewer). Observatories (`src/data/observatori
 sites whose feeds are backend webcam ids (`cam-*`, allowlisted in `server/webcams.js`) or YouTube
 streams. SITES toggles the layer.
 
+## Named features and FROM ABOVE
+
+`src/views/system/features.js` labels IAU features on a focused globe from
+`public/features/<body>.json`: a feature is labelled once it spans ~26 px, biggest first, near side
+only, avoiding the site labels (`sites.placed`); NAMES toggles them and a click opens the same card
+as a site. FROM ABOVE (`system.viewSite(id, lat, lon, spanKm)`) swoops the camera down over a site or
+feature and orbits it there (OrbitControls target on the site, which follows the turning body; the
+near plane follows the distance to the site); other bodies' labels hide meanwhile. Live rovers get
+their NASA model at the end of their path (`loadCraftModel`, enlarged).
+
 ## Click anything (#23)
 
 `src/views/pick.js` does screen-space point picking (`pickPoint`) and click/double-click

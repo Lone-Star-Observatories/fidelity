@@ -11,7 +11,7 @@ import zlib from 'node:zlib';
 import { solSystem } from '../src/data/systems.js';
 
 const BUCKET = 'https://asc-planetarynames-data.s3.us-west-2.amazonaws.com';
-const MAX_PER_BODY = 1200;
+const MAX_PER_BODY = 5000; // every approved name (Mars, the Moon and Venus have ~2,000 each)
 const out = new URL('../public/features/', import.meta.url);
 
 /** Files in a zip archive (central directory), inflated on demand. */
