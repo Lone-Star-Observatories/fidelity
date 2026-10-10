@@ -6,8 +6,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import { eqToGal, frameToScene, starTeff, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
-import { bandStarColour } from '../../data/bandstate.js';
+import { eqToGal, frameToScene, LY_PER_PC } from '../../astro/frames.js';
+import { navStarLook } from './starlook.js';
+import { currentBand } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
 import { systemName } from '../../panels/navlist.js';
 import { integrateTrack, trackAt, closestApproach, linearApproach } from '../../astro/galpot.js';
@@ -44,15 +45,18 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
   const pointMat = (ring) => new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
     uniforms: { uPixel: { value: renderer.getPixelRatio() } },
-    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel;
-      void main() { vColor = color; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
+    // `dark` (0/1): a star that emits essentially nothing in the spectrum band, drawn as a hollow marker
+    vertexShader: `attribute float size; attribute vec3 color; attribute float dark; varying vec3 vColor; varying float vDark; uniform float uPixel;
+      void main() { vColor = color; vDark = dark; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
         gl_PointSize = size * uPixel; }`,
     fragmentShader: ring
       ? `varying vec3 vColor; void main() { float d = length(gl_PointCoord - 0.5);
           float a = smoothstep(0.5, 0.44, d) * smoothstep(0.34, 0.40, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`
-      : `varying vec3 vColor; void main() { float d = length(gl_PointCoord - 0.5);
-          float core = smoothstep(0.22, 0.0, d); float halo = smoothstep(0.5, 0.0, d) * 0.45;
-          float a = max(core, halo); if (a < 0.02) discard; gl_FragColor = vec4(vColor * (0.7 + core * 0.6), a); }`,
+      // a solid disc with a white-hot centre and a soft halo, so even a 6 px M dwarf reads on the chart
+      : `varying vec3 vColor; varying float vDark; void main() { float d = length(gl_PointCoord - 0.5);
+          if (vDark > 0.5) { float r = smoothstep(0.5, 0.42, d) * smoothstep(0.24, 0.32, d); if (r < 0.02) discard; gl_FragColor = vec4(vColor, r * 0.8); return; }
+          float core = smoothstep(0.34, 0.12, d); float halo = smoothstep(0.5, 0.15, d) * 0.55;
+          float a = max(core, halo); if (a < 0.02) discard; gl_FragColor = vec4(mix(vColor, vec3(1.0), core * 0.18) * (0.9 + core * 0.25), a); }`,
   });
 
   let data = null;       // { center, stars, radiusLy, ... }
@@ -134,21 +138,22 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     drawChart(d.radiusLy);
 
     const n = placed.length;
-    const pos = new Float32Array(n * 3), size = new Float32Array(n), col = new Float32Array(n * 3);
+    const pos = new Float32Array(n * 3), size = new Float32Array(n), col = new Float32Array(n * 3), dark = new Float32Array(n);
     const hostIdx = [];
     placed.forEach(({ star: s, pos: p }, i) => {
       pos.set([p.x, p.y, p.z], i * 3);
-      // size encodes luminosity (absolute magnitude); colour comes from B−V or spectral class
-      const M = s.absmag ?? 12;
-      size[i] = Math.max(2.2, Math.min(15, 8.5 - 0.5 * M));
-      placed[i].size0 = size[i];
-      { const t = starTeff(s).teff; col.set(bandStarColour(t, blackbodyRGB(t)), i * 3); } // spectrum filter (#28)
+      // size encodes luminosity in the spectrum band (#28); colour comes from B−V or spectral class
+      const look = navStarLook(s);
+      size[i] = placed[i].size0 = look.size;
+      col.set(look.rgb, i * 3);
+      dark[i] = look.dark ? 1 : 0;
       if (s.planets) hostIdx.push(i);
     });
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     g.setAttribute('size', new THREE.BufferAttribute(size, 1));
     g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    g.setAttribute('dark', new THREE.BufferAttribute(dark, 1));
     world.add(new THREE.Points(g, pointMat(false)));
     ptsGeo = g;
 
@@ -158,6 +163,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     hg.setAttribute('color', new THREE.BufferAttribute(new Float32Array(hostIdx.flatMap(() => [1, 0.6, 0])), 3));
     world.add(new THREE.Points(hg, pointMat(true)));
     hostGeo = hg; hostIdxs = hostIdx;
+    drawBandKey();
 
     // Labels: the current system, Sol, the nearest planet hosts and the brightest named
     // stars. Everything else is labelled on selection, so the chart stays readable.
@@ -348,20 +354,21 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
       g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(cap * 3), 3));
       g.setAttribute('size', new THREE.BufferAttribute(new Float32Array(cap), 1));
       g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(cap * 3), 3));
+      g.setAttribute('dark', new THREE.BufferAttribute(new Float32Array(cap), 1));
       const pts = new THREE.Points(g, pointMat(false));
       pts.frustumCulled = false;
       g.userData = { cap, points: pts };
       visitorGeo = g;
     }
     if (visitorGeo.userData.points.parent !== world) world.add(visitorGeo.userData.points); // clearWorld() drops it on load
-    const pa = visitorGeo.attributes.position, sa = visitorGeo.attributes.size, ca = visitorGeo.attributes.color;
+    const pa = visitorGeo.attributes.position, sa = visitorGeo.attributes.size, ca = visitorGeo.attributes.color, da = visitorGeo.attributes.dark;
     shown.forEach((p, i) => {
       const s = p.star;
-      if (!s.rgb) { const t = starTeff(s).teff; s.rgb = bandStarColour(t, blackbodyRGB(t)); s.size0 = Math.max(2.2, Math.min(15, 8.5 - 0.5 * (s.absmag ?? 12))); }
-      pa.setXYZ(i, p.now.x, p.now.y, p.now.z); sa.setX(i, s.size0); ca.setXYZ(i, ...s.rgb);
+      if (!s.rgb) { const look = navStarLook(s); s.rgb = look.rgb; s.size0 = look.size; s.dark = look.dark ? 1 : 0; }
+      pa.setXYZ(i, p.now.x, p.now.y, p.now.z); sa.setX(i, s.size0); ca.setXYZ(i, ...s.rgb); da.setX(i, s.dark);
     });
     visitorGeo.setDrawRange(0, shown.length);
-    for (const [a, w] of [[pa, 3], [sa, 1], [ca, 3]]) { a.clearUpdateRanges(); a.addUpdateRange(0, Math.max(1, shown.length) * w); a.needsUpdate = true; }
+    for (const [a, w] of [[pa, 3], [sa, 1], [ca, 3], [da, 1]]) { a.clearUpdateRanges(); a.addUpdateRange(0, Math.max(1, shown.length) * w); a.needsUpdate = true; }
   }
   /** Every star on the chart right now: today's neighbours still inside, plus arrivals. */
   const onChart = () => [...placed.filter((p) => !p.hidden), ...shown];
@@ -684,14 +691,32 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     }
   }
 
-  /** Re-colour the stars for the current spectrum band (#28). */
+  // In a spectrum band: what size and the hollow markers mean (the System View's sky follows the same rule)
+  const bandKey = document.createElement('div');
+  bandKey.className = 'drift-badge nav-band-key';
+  bandKey.hidden = true;
+  container.appendChild(bandKey);
+  function drawBandKey() {
+    const { band, pass, full } = currentBand();
+    bandKey.hidden = full;
+    if (full) return;
+    const name = band.id === 'custom' ? 'CUSTOM CURVE' : `${band.label}${pass?.label ? ` · ${pass.label}` : ''}`;
+    const nDark = placed.filter((p) => navStarLook(p.star).dark).length;
+    const line = (tier, text, why) => { const row = document.createElement('div'); row.className = 'drift-line'; row.append(badge(tier, why), document.createTextNode(` ${text}`)); return row; };
+    bandKey.replaceChildren(
+      line('computed', `${name}: STAR SIZE = BRIGHTNESS IN THIS BAND (BLACKBODY AT T_EFF VS V, VEGA SYSTEM)`, 'Spectrum filter (#28): each star\'s absolute magnitude shifted by its computed band-minus-V colour, as in the System View sky.'),
+      ...(nDark ? [line('computed', `○ ${nDark} NOT OBSERVED IN THIS BAND: A PHOTOSPHERE EMITS ALMOST NOTHING HERE · POSITION ONLY`, 'No measured flux of these stars in this band; the hollow marker keeps their place on the chart.')] : []));
+  }
+
+  /** Re-colour and re-size the stars for the current spectrum band (#28); the frame loop applies size0. */
   function recolourBand() {
-    const c = ptsGeo?.attributes?.color;
+    const c = ptsGeo?.attributes?.color, dk = ptsGeo?.attributes?.dark;
     if (!c) return;
-    placed.forEach(({ star }, i) => { const t = starTeff(star).teff; c.setXYZ(i, ...bandStarColour(t, blackbodyRGB(t))); });
-    c.needsUpdate = true;
+    placed.forEach((p, i) => { const look = navStarLook(p.star); c.setXYZ(i, ...look.rgb); dk.setX(i, look.dark ? 1 : 0); p.size0 = look.size; });
+    c.needsUpdate = true; dk.needsUpdate = true;
     for (const s of drift.stars) s.rgb = null;
-    if (data) drawVisitors();
+    if (data) setEpoch(epoch); // re-sizes the chart, its planet-host rings and the arrivals
+    drawBandKey();
   }
   return {
     recolourBand,

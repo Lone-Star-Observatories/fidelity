@@ -642,6 +642,12 @@ band (Vega system); the System View sky becomes the band's survey (a shader maps
 sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
 Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
 its badge and a false-colour key.
+In the Navigation View (`src/views/navigation/starlook.js`, `bandStarLook` in bandstate.js) a star's
+point size is its luminosity in the band: absolute magnitude minus the band-minus-V Δmag, the same
+shift the System View applies to its sky stars, with a 6 px floor so the M dwarfs that make up most
+of the neighbourhood always read under the velocity arrows. Colour keeps full strength (the band's
+hue); a star whose photosphere emits essentially nothing in the band (radio, X-ray, gamma) becomes a
+hollow NOT OBSERVED marker instead of vanishing, and a key on the chart says so (COMPUTED).
 
 **Band audit (#61).** `docs/research/band-audit.json` (written by `scripts/band-audit.js`) records,
 for every Sol body × band, what has been observed, what imagery exists, the mechanism, what the app
