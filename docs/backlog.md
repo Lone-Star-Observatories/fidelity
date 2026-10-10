@@ -31,6 +31,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
 | 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |
 | 27 | **UI polish** | Thicker orbits, wider resizable panel, legend spacing, Horizons on by default. |
+| 28 | **Spectral filtering** | Filter every view by band (full, IR, visible, microwave, X-ray, gamma) then common bandpass; real band imagery where it exists, band skins derived from the visible image and spectral signature for generic planets. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
