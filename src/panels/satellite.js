@@ -4,7 +4,7 @@ import { modelFor } from '../data/models.js';
 
 import { satrecFromRow, precessionToJ2000, temeToEcliptic, subPoint } from '../astro/sgp4.js';
 import { fetchSatellites, fetchSatelliteDetail, fetchFeed } from '../data/catalog.js';
-import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed } from '../data/feeds.js';
+import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed, youtubeEmbed, youtubeWatch } from '../data/feeds.js';
 import { SAT_COLORS } from '../views/system/satellites.js';
 import { lineChart } from './charts.js';
 
@@ -180,8 +180,11 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
   async function openFeed(f, r) {
     const name = r[1];
     if (f.kind === 'video') {
-      frame(`${name} · ${f.label}`, 'LIVE', h('div', {}, h('iframe', { src: f.url, allow: 'autoplay; encrypted-media; picture-in-picture', allowFullscreen: true, className: 'fv-video', title: f.label }),
-        h('a', { href: f.link, target: '_blank', rel: 'noopener', className: 'fv-link', textContent: 'OPEN NASA LIVE ↗' })), f.credit);
+      const show = (st) => frame(`${name} · ${f.label}`, `LIVE · ${st.label}`, h('div', {},
+        h('iframe', { src: youtubeEmbed(st.id), allow: 'autoplay; encrypted-media; picture-in-picture', allowFullscreen: true, className: 'fv-video', title: `${f.label} · ${st.label}` }),
+        h('div', { className: 'body-list' }, f.streams.map((s) => pill(s === st ? `● ${s.label}` : s.label, () => show(s)))),
+        h('a', { href: youtubeWatch(st.id), target: '_blank', rel: 'noopener', className: 'fv-link', textContent: 'OPEN ON YOUTUBE ↗' })), st.credit);
+      show(f.streams[0]);
       return;
     }
     frame(`${name} · ${f.label}`, 'LOADING…', h('p', { className: 'note', textContent: 'Contacting the spacecraft\'s data service…' }), '');

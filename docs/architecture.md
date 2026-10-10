@@ -126,7 +126,7 @@ extrapolating along each velocity and applying the Earth-radius compression in t
 focused satellite is a real node propagated on the main thread every frame (exact at any clock
 rate), with a representative model and its orbit. TEME → J2000 uses IAU 1976 precession
 (`src/astro/sgp4.js`). The camera near plane follows its distance so 100 m spacecraft render at
-TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer.
+TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer (ISS video embeds the YouTube streams in `ISS_STREAMS`, switchable in the viewer).
 
 ## Deep-space fleet
 
