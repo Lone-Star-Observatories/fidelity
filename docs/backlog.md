@@ -33,6 +33,12 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 27 | **UI polish** | Thicker orbits, wider resizable panel, legend spacing, Horizons on by default. |
 | 28 | **Spectral filtering** | Filter every view by band (full, radio, microwave, IR, visible, UV, X-ray, gamma) then common bandpass. Per body and band: real image if one exists, else a predicted skin (best image convolved with the expected spectral response), else "not observed". |
 | 29 | **Deep-time arrivals** | Load and integrate stars well beyond the view radius (prefer Gaia DR3 velocities) so stars that move into the neighbourhood appear as today's neighbours disperse; badge catalogue completeness. |
+| 30 | **Eclipses, transits, alignments** | Solar eclipse umbra/penumbra on Earth, lunar eclipses, transits, occultations, conjunctions; validated against the Five Millennium Canon. |
+| 31 | **Corona easter egg** | Real totality photograph of the corona in the surface view inside the umbra. |
+| 32 | **Events feed** | Self-hosted `/events` service (computed + launches), cached by `/api/events`, offline fallback. |
+| 33 | **Notable events button** | List upcoming events; click to jump the clock and fly to the best view. |
+| 34 | **Unified time control** | One time control on its own bottom row, live to Gyr/s, replacing the per-view deep/galactic time. |
+| 35 | **COMMS and live-signals map** | COMMS section for anything with live links (DSN, SatNOGS, ISS video/ham, Moon and Mars telemetry); Earth map of radio stations, SDR receivers, webcams and traffic cams. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
