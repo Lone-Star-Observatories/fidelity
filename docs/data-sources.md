@@ -39,6 +39,7 @@
 | Moon | [JPL SSD mean satellite elements](https://ssd.jpl.nasa.gov/sats/elem/) (Laplace-plane geometry, precession), phase fitted to JPL Horizons 2016–2036 by `scripts/fit-moons.js`; the Moon by the ELP-2000/82 series as given by Meeus (ch. 47, 60 terms each in longitude, distance, latitude; 1–4″ against Horizons) | 26 moons, parent-relative, tested against Horizons | bundled | ✅ #11 |
 | Sky events | Computed (`src/astro/eclipses.js`) from the app's ephemeris; validated against the [NASA/GSFC Five Millennium Canon](https://eclipse.gsfc.nasa.gov/) (Espenak & Meeus) and NASA eclipse pages | Solar/lunar eclipses with contacts, paths and durations; transits; lunar occultations; Galilean-moon events; oppositions, elongations, conjunctions, parades. Also the time control's TIMELINE markers (#34). ~10 s (Horizons Sun) / ~1 min (Kepler Sun) for eclipses, ±10 min for Jupiter's moons | computed | ✅ #30 |
 | Spectrum filter: sky | [CDS hips2fits](https://alasky.cds.unistra.fr/hips-image-services/hips2fits) renderings of all-sky HiPS surveys: Haslam 408 MHz, HI4PI, NVSS, WMAP K–W, 2MASS, AllWISE, AKARI FIS, Mellinger, ROSAT RASS, Swift BAT, Fermi-LAT | The background sky in each band (MEASURED); catalogue stars re-weighted by their blackbody where there is no survey | cached a year (`/api/hips`) | ◐ #28 |
+| Spectrum filter: bodies (#61 audit) | Every body × band audited in [`docs/research/band-audit.json`](research/band-audit.json) (summary below). New real maps: LRO WAC 643 nm (Moon, R/r), MESSENGER MDIS 750 nm LOI (Mercury, R/I/i), THEMIS 12.6 µm extended to 7.7–22 µm (Mars), Magellan 12.6 cm emissivity as Venus's 2.4 GHz emission; measured disc spectra: Karkoschka 1998 (PDS) albedos, VLA/WMAP/CLASS/GMRT brightness temperatures (`src/data/band-physics.js`) | Measured tables (values pinned in `tests/bandaudit.test.js`); the drawn discs, belts, aurorae and hot spots stay MODELLED; estimates are labelled ESTIMATED | bundled; maps via `/api/hips` | ✅ #61 |
 | Spectrum filter: bodies | Planetary HiPS (Mars THEMIS IR, Venus Magellan radar and emissivity, Titan Cassini RADAR and ISS 938 nm, Moon Clementine 750 nm, Mercury MDIS colour); NASA GIBS (GOES/Himawari 10.3 µm, OMPS UV aerosol index); SDO AIA 94–1700 Å via Helioviewer; [SVO Filter Profile Service](http://svo2.cab.inta-csic.es/theory/fps/) curves (Johnson, SDSS, 2MASS, WISE, GALEX, Swift UVOT, HST WFC3, JWST) | Real band maps (MEASURED); otherwise predicted skins from approximate reflectance spectra and thermal models (MODELLED · PREDICTED, sources in `bandskin.js`), observed high-energy signatures, or NOT OBSERVED | cached (`/api/hips`, `/api/gibs-band`, `/api/feed`) | ◐ #28 |
 | Moon | [NASA 3D Resources](https://github.com/nasa/NASA-3D-Resources) global maps (Voyager, Galileo, Cassini, New Horizons); USGS Astrogeology Dawn mosaics for Ceres and Vesta, range-sampled from the GeoTIFFs by `server/tiff.js` | Moon and asteroid surfaces | downloaded once to `data/textures/` | ✅ #11 |
 | Satellite | [CelesTrak GP](https://celestrak.org/NORAD/documentation/gp-data-formats.php) (OMM) + groups, SATCAT; SGP4 via [satellite.js](https://github.com/shashwatak/satellite-js) | All ~16,700 active satellites, categories, owner/launch/size; tested against JPL Horizons' ISS | live, cached 12 h (CelesTrak asks ≥ 2 h) | ✅ #13 |
@@ -248,3 +249,41 @@ Epsilon Indi Ab: Matthews et al. arXiv:2603.08780v1 (2026-03-09, CC BY 4.0), inc
 
 GJ 1061 b: Dreizler et al. arXiv:2504.10926v1 (2025-04-15, CC BY 4.0) and discovery arXiv:1908.04717v1 (2019-08-13; journal2020-01-29), plus the NASA catalogue page updated2026-03-13. The source record distinguishes the v1 abstract mass from the selected Table 4 D5 posterior. ESPRESSO Table 5 coverage is BJD2460219.807560–2460301.566125, preserved in its stated scale without a UTC conversion. No figures or native planetary photograph were reused. Source bytes/hashes and dates are in docs/research/gj1061-b-source-records.json.
 | Spectrum filter (#28) | Fermi-LAT quiet Sun (Abdo et al. 2011) and Moon (Abdo et al. 2012); orbital gamma-ray spectrometers: MESSENGER GRS (Mercury), Mars Odyssey GRS, Dawn GRaND (Vesta, Ceres), Lunar Prospector/Kaguya (Moon); F10.7 and ALMA/Nobeyama for the Sun's radio and millimetre emission | Gamma-ray glows: DETECTED bodies cited, every other solid body or atmosphere PREDICTED (cosmic-ray albedo) and labelled so; the Sun's gamma, radio and microwave emission where a photosphere alone would be dark | bundled (`src/views/system/bandskin.js`) | ✅ #28 |
+
+## Spectrum filter audit (#61)
+
+`docs/research/band-audit.json` (`node scripts/band-audit.js`) has one row per body × band (88 bodies
+including Saturn's rings, 7 bands: 616 cells), split by bandpass where the verdict differs (815
+rows). Each row gives what was observed (map, image, disc-integrated flux, detection, upper limit or
+none), the imagery that exists and whether the backend can fetch it, the mechanism, the app's look
+before and after #61, and keys into a source list (87 references, 85 checked against Crossref,
+arXiv or the publisher during the audit; the two unchecked are marked `verified: false`). 73 cells
+cite body-specific literature; the rest carry class-level notes (icy moon, rocky body, comet)
+that say what exists for the class, not for that body.
+
+Main corrections (before → after):
+
+| Body · band | Before | After | Source |
+|---|---|---|---|
+| Jupiter · radio | one 350 K disc; "non-thermal not modelled" | measured Tb spectrum (270 K at 3 GHz … 136 K in the 23 GHz NH₃ band … 173 K at 94 GHz) plus synchrotron belts drawn as a modelled glow, 67–98% of the flux below 2.5 GHz | de Pater et al. 2019 (Icarus 322, 168); Weiland et al. 2011 (ApJS 192, 19); de Pater et al. 2003; Girard et al. 2016 |
+| Saturn, Uranus, Neptune · microwave | 200 K | WMAP disc temperatures (Saturn 134–146 K, Uranus 121–168 K); Saturn's rings shown at 7–20 K | Weiland et al. 2011 |
+| Venus · microwave/radio | 700 K; Magellan radar image on 408 MHz–1.4 GHz; emissivity map on WMAP bands | measured spectrum 554 K (0.6 GHz) → 680 K (4.9 GHz) → 295 K (218 GHz); 2.4 GHz shows the 12.6 cm emissivity map (the surface's own emission) | Mohan et al. 2019; Butler et al. 2001; Dahal et al. 2023 (PSJ 4, 154) |
+| Europa, Ganymede, Callisto · microwave | one surface temperature (~113 K) | subsurface temperature × effective emissivity: colder than the surface at all Juno MWR channels, Europa rising and Ganymede falling with frequency | Levin et al. 2025 (Nat. Astron. 10, 84); Brown et al. 2023; Zhang et al. LPSC 2024; de Kleer et al. 2021; Camarca et al. 2023 |
+| Moon, Mercury, Mars · microwave/radio | 390/95 K, 700/100 K, 290/180 K surface | diurnal swing damped with depth (Mars anchored to WMAP's 178–204 K) | Piddington & Minnett 1949; Weiland et al. 2011; Mitchell & de Pater 1994 |
+| Io · 3–5 µm | 130 K surface | volcanic hot spots (sketch) | de Kleer & de Pater 2016; Veeder et al. 1994 |
+| Jupiter, Saturn · 5 µm | 125 K / 95 K cloud tops | ~220 K / 170 K through the 5 µm window (estimates) | — |
+| Venus · 1–2.3 µm | reflected only | night-side window glow | Allen & Crawford 1984; Mueller et al. 2020 |
+| X-ray | Uranus, Pluto, Io, Europa, Saturn, Mercury NOT OBSERVED | detected sketches; Neptune and comets PREDICTED, not detected | Dunn et al. 2021; Lisse et al. 2017; Elsner et al. 2002; Bhardwaj et al. 2005; Nittler et al. 2011; Lisse et al. 1996 |
+| Far-UV, Lyman-α | reflected, or NOT OBSERVED at Lyman-α | aurorae (Jupiter, Saturn, Uranus, Earth, Ganymede), Io/Europa emission, H coronae; other bodies PREDICTED | Feldman et al. 2000; Saur et al. 2015; Lamy et al. 2012; Chaffin et al. 2014; Gladstone et al. 2012 |
+| Giants and Titan · UV–1 µm reflectance | hand table (e.g. Jupiter at 1 µm ×0.82 of 550 nm) | measured full-disc albedo (Jupiter ×0.20) | Karkoschka 1998, PDS ESO-J/S/N/U-SPECTROPHOTOMETER-4-V2.0 |
+| Wrong fallbacks | THEMIS 12.6 µm on 2MASS J; GOES 10.3 µm on Earth's near-IR; Titan 938 nm on 22 µm; AIA 94 Å on 14–195 keV | removed; each map only on passes it fits (new `range` field) | — |
+| Sun · hard X-ray | AIA 94 Å map | flare/quiet-Sun sketch (GOES XRS, RHESSI, NuSTAR) | Grefenstette et al. 2016 |
+
+Unverified or deferred (recorded in the JSON): cm-wave values for Saturn, Uranus and Neptune and the
+low-frequency end of Jupiter's thermal and synchrotron spectra are estimates (labelled ESTIMATED);
+the icy moons' emissivity amplitudes are illustrative (the trends are cited); Juno MWR Europa/Ganymede
+brightness temperatures were not available as numbers; Titan's 2.2 cm value is an estimate. Imagery
+that exists but needs a new allowlisted PDS route (Diviner, Lunar Prospector GRS, MESSENGER XRS, Mars
+Odyssey GRS, LAMP, Cassini radiometry), or is on JAXA DARTS / CLPDS (Akatsuki UVI/IR2/LIR, Chang'e
+microwave), is listed but not wired. The THEMIS night-time HiPS renders but there is one map per pass.
+Solar radioheliograph imagery (Nobeyama) and Earth microwave maps belong to the #28 work.

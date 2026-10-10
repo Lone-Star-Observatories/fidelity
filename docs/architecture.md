@@ -470,6 +470,21 @@ sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band 
 Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
 its badge and a false-colour key.
 
+**Band audit (#61).** `docs/research/band-audit.json` (written by `scripts/band-audit.js`) records,
+for every Sol body × band, what has been observed, what imagery exists, the mechanism, what the app
+showed before and shows now, and the sources. The measured physics behind it lives in
+`src/data/band-physics.js`: `brightnessTempK` (disc brightness-temperature spectra of the giants and
+Venus, VLA/WMAP/CLASS), `subsurfaceTemps` (airless bodies at λ ≥ 0.3 mm: the diurnal swing damped
+with depth, Piddington & Minnett, times an effective emissivity for scattering ice, Juno MWR/ALMA),
+`synchrotron` (Jupiter's belts' share of the flux) and `RING_TB` (Saturn's rings, WMAP).
+`bandLook` calls them for λ ≥ 0.3 mm and adds `belts` (drawn by `radiobelts.js`: seeded points in
+the JRM09 magnetic-equator frame, through the radial compression) and `gain` (the disc dims beside
+them). Giant-planet and Titan reflectance is the measured Karkoschka (1998) spectrum
+(`src/data/reflectance-karkoschka.js`, from `scripts/karkoschka.js`). New glow kinds in the planet
+shader: 5 auroral ovals over a faint disc, 6 volcanic hot spots (Io, 3–5 µm), 7 Venus's near-IR
+night-side windows. `ringBandLook` sets Saturn's ring tint per band. `BODY_BAND` entries carry
+`range: [nmLo, nmHi]`; band-level keys only where the map fits every pass.
+
 ## Milky Way model
 
 `src/views/galaxy/model.js` builds the galaxy as seeded particle layers (thin and thick disc,

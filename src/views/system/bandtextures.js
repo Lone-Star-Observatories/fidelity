@@ -53,7 +53,7 @@ export function applyBandToMaterial(u, body, band, pass) {
     else { look.mode = 'dark'; look.label = 'REAL MAP NEEDS THE LOCAL BACKEND'; }
   } else {
     u.uBandMode.value = { reflected: 2, thermal: 3, dark: 4, glow: 5 }[look.mode];
-    if (look.gain != null) u.uBandGain.value = look.gain;
+    u.uBandGain.value = look.gain ?? 1; // thermal looks dim the disc when non-thermal belts carry most of the flux (#61)
     if (look.glow) u.uGlow.value = look.glow;
   }
   u.__look = look;

@@ -121,12 +121,23 @@ const PLANET_FRAG = /* glsl */`
       } else if (uBandMode < 2.5) {
         bc = pal(clamp(dot(base, vec3(0.299, 0.587, 0.114)) * uBandGain * dayK * 1.4, 0.0, 1.0), uPalette);
       } else if (uBandMode < 3.5) {
-        bc = thermal;
+        bc = thermal * uBandGain;
       } else if (uBandMode < 4.5) {
         bc = vec3(0.012) + base * 0.012;
       } else {
         vec3 V = normalize(cameraPosition - vPosW);
         float g = uGlow < 1.5 ? 0.5 : uGlow < 2.5 ? lit : uGlow < 3.5 ? smoothstep(0.8, 0.96, abs(dot(N, uPoleW))) : pow(1.0 - abs(dot(N, V)), 4.0);
+        float pz = abs(dot(N, uPoleW));
+        if (uGlow > 4.5 && uGlow < 5.5) g = 0.16 * lit + smoothstep(0.86, 0.91, pz) * (1.0 - smoothstep(0.94, 0.985, pz)); // auroral ovals ~15–25° from the poles over a faint disc (#61)
+        else if (uGlow > 5.5 && uGlow < 6.5) { // volcanic hot spots: a sketch, scattered over a cold disc (Io, #61)
+          vec2 cell = vUv * vec2(40.0, 20.0), cid = floor(cell);
+          float h = fract(sin(dot(cid, vec2(12.9898, 78.233))) * 43758.5453);
+          g = 0.05 + 0.08 * lit + step(0.9, h) * smoothstep(0.42, 0.0, length(fract(cell) - 0.5)) * (0.4 + 0.6 * fract(h * 37.0));
+        } else if (uGlow > 6.5) { // Venus near-IR: sunlit cloud tops by day; heat through the windows by night, clouds in silhouette (#61)
+          vec2 q = vUv * vec2(9.0, 6.0);
+          float m = 0.5 + 0.25 * sin(q.x * 3.1 + sin(q.y * 2.3) * 2.0) + 0.25 * sin(q.y * 4.7 + sin(q.x * 1.7) * 3.0);
+          g = lit * 0.85 + (1.0 - smoothstep(-0.05, 0.12, ndl)) * 0.45 * m;
+        }
         bc = pal(g * uBandGain, uPalette);
       }
       gl_FragColor = vec4(bc, uAlphaFromLuma > 0.5 ? 0.0 : 1.0);
