@@ -47,6 +47,7 @@ export const TIMELINE = [
       ['ALL OF GREENLAND', '+7.4 M', 'measured', 'Ice volume (Morlighem et al. 2017)'],
       ['ALL OF ANTARCTICA', '+58 M', 'measured', 'Ice volume (Morlighem et al. 2020)']],
     source: AR6, url: AR6_URL,
+    globe: [{ label: 'SEA +6.8 M · 2300, SSP5-8.5 HIGH END', sea: 6.8 }, { label: 'SEA +7.4 M · ALL OF GREENLAND', sea: 7.4 }, { label: 'SEA +65 M · ALL THE ICE ON EARTH', sea: 65 }],
   },
   {
     id: 'next-glaciation', group: 'climate', title: 'THE NEXT ICE AGE (DELAYED)', tier: 'modelled',
@@ -73,6 +74,7 @@ export const TIMELINE = [
       ['ICE SHEETS', 'ICE-6G_C RECONSTRUCTION', 'modelled', 'Peltier, Argus & Drummond 2015'],
       ['CO₂', '~190 PPM', 'measured', 'EPICA Dome C']],
     source: 'Lambeck et al. 2014, PNAS 111, 15296; Clark et al. 2009', url: 'https://doi.org/10.1073/pnas.1411762111', widget: 'paleo',
+    globe: [{ label: 'THE ICE-AGE GLOBE, 21,000 YEARS AGO', years: -21000 }],
   },
   {
     id: 'records', group: 'ice', title: 'THE RECORD: ICE, CO₂ AND SEA LEVEL', tier: 'measured', widget: 'paleo',
@@ -168,6 +170,14 @@ export const TIMELINE = [
     source: 'USGS Hawaiian Volcano Observatory', url: 'https://www.usgs.gov/volcanoes/kamaehuakanaloa',
   },
   {
+    id: 'pangaea', group: 'geology', title: 'PANGAEA AND THE DRIFTING CONTINENTS', tier: 'modelled',
+    when: 'PANGAEA ~250 MILLION YEARS AGO · THE CRETACEOUS ~100 MA', window: [-2.5e8, -1e8], years: -2.5e8,
+    summary: 'All the continents were joined in Pangaea at the end of the Permian; it broke up as the Atlantic opened. The globe can show the continents\' outlines reconstructed back to 250 million years ago from plate motions, magnetic stripes and hotspot tracks.',
+    facts: [['PLATE MODEL', 'MÜLLER ET AL. 2019', 'modelled', 'Global plate reconstruction (Tectonics 38, 1884), through the GPlates Web Service']],
+    source: 'Müller et al. 2019, Tectonics 38, 1884; GPlates Web Service', url: 'https://doi.org/10.1029/2018TC005462',
+    globe: [{ label: 'PANGAEA, 250 MILLION YEARS AGO', ma: 250 }, { label: 'THE CRETACEOUS, 100 MILLION YEARS AGO', ma: 100 }, { label: '20 MILLION YEARS AGO', ma: 20 }],
+  },
+  {
     id: 'erosion', group: 'geology', title: 'EROSION AND THE NEXT SUPERCONTINENT', tier: 'modelled',
     when: 'BADLANDS GONE IN ~500 KYR · SUPERCONTINENT IN ~200–250 MYR', window: [5e5, 2.5e8], years: 5e5,
     summary: 'South Dakota\'s Badlands erode about 2.5 cm a year and will be gone in half a million years. Over tens to hundreds of millions of years mountain ranges like the Rockies wear down. The continents keep drifting: in ~200–250 million years they gather again into a supercontinent (Pangaea Proxima, Amasia or Aurica, depending on the model).',
@@ -208,6 +218,7 @@ export const TIMELINE = [
       ['CRATER', '~180 KM', 'measured', 'Gravity and seismic surveys'],
       ['SPECIES LOST', '~75%', 'measured', 'Fossil record']],
     source: 'Renne et al. 2013, Science 339, 684; Schulte et al. 2010', url: 'https://doi.org/10.1126/science.1230492', widget: 'impact',
+    globe: [{ label: 'THE WORLD 66 MILLION YEARS AGO', ma: 66 }],
   },
   {
     id: 'catalina', group: 'hazards', title: 'COMET C/1999 F1 (CATALINA) AND COMET IMPACTS', tier: 'computed', widget: 'comet',
