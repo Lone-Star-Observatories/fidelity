@@ -10,7 +10,8 @@ const defaults = {
   belts: true,      // System View: asteroid and Kuiper-belt populations
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
-  missions: true,   // System View: launches, landings, dockings and spacewalks from the events feed (#32)
+  missions: true,
+  voiceInterrupt: false, // Computer: false = replies always finish (STOP button / Esc still stop them); true = a confident wake word interrupts   // System View: launches, landings, dockings and spacewalks from the events feed (#32)
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
   axes: false,       // System View: spin axes, and Earth's precession circle on the sky
   fields: false,     // System View: the Sun's magnetic field (Parker spiral, current sheet)

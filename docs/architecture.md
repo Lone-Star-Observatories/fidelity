@@ -243,9 +243,14 @@ the rail marks an event within 24 hours. The clock gained a 1 MIN/S rate.
 `src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
 from the microphone (AudioWorklet, resampled to 16 kHz) and DTW over MFCCs compares them with the
 viewer's three recordings (localStorage). Only after it fires does `src/voice/computer.js` stream
-24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with the view title, clock and the
-panel's text as instructions and three tools (`go_to`, `set_layer`, `set_time`). Replies play
-and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. Without a key
+24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with a description of the screen as
+instructions (`screenContext` in `main.js`: view and route, what the camera is centred on or the surface
+spot, clock and rate, scale, layers, spectral band, missions playing out, an open video/feed window, the
+selected star and the side panel's text; refreshed at each wake and after every tool call) and three tools
+(`go_to`, `set_layer`, `set_time`). Replies finish: while one plays, heard sound is not even matched
+against the wake word, and the server VAD may not cancel it (`interrupt_response: false`); STOP or Esc
+ends it, and the INTERRUPT toggle lets a confident wake word (within 0.7 × the trained threshold) barge in. Replies play
+and are transcribed in the COMPUTER panel. Without a key
 (or the backend), the browser's on-device recogniser, where available, handles "go to …" and
 "show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
 resampler, command parsing.

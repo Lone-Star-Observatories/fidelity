@@ -76,3 +76,13 @@ test('the voice relay refuses other websites and a missing key', async () => {
     assert.equal(await status({}), 503);
   } finally { relay.close(); delete process.env.FIDELITY_OPENAI_KEY; }
 });
+
+test('replies finish: noise and echo never interrupt; a confident wake word can when INTERRUPT is on', async () => {
+  const { shouldWake, BARGE_IN_STRICTNESS } = await import('../src/voice/computer.js');
+  const threshold = 10;
+  assert.equal(shouldWake({ replying: false, interrupt: false, distance: 9, threshold }), true, 'idle: normal wake');
+  assert.equal(shouldWake({ replying: false, interrupt: false, distance: 11, threshold }), false);
+  assert.equal(shouldWake({ replying: true, interrupt: false, distance: 1, threshold }), false, 'default: the reply finishes');
+  assert.equal(shouldWake({ replying: true, interrupt: true, distance: 9, threshold }), false, 'a loose match is not enough mid-reply');
+  assert.equal(shouldWake({ replying: true, interrupt: true, distance: threshold * BARGE_IN_STRICTNESS - 0.1, threshold }), true);
+});
