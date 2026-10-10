@@ -33,6 +33,8 @@ import { createGalaxyPlane } from './plane.js';
 import { createGalaxyModel, ARMS, armRadius, armToScene } from './model.js';
 import { settings } from '../../settings.js';
 import { pickPoint, onClicks } from '../pick.js';
+import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
+import { METERS } from '../cameraMath.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -339,15 +341,31 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
   new ResizeObserver(resize).observe(container);
 
   const tmp = new THREE.Vector3();
+  // camera controls (#39): Sol, Sgr A* and the satellite galaxies are what FLY speeds up near
+  const eachLandmark = (fn) => {
+    const s = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch);
+    fn(s.x, s.y, s.z, 0);
+    fn(0, 0, 0, 0.5);
+    for (const g of satellites) fn(g.body.position.x, g.body.position.y, g.body.position.z, (g.diameterKly ?? 2) / 2);
+  };
+  const rig = createCameraRig({
+    key: 'galaxy', camera, controls, dom: labels.domElement, container, target, metersPerUnit: METERS.kly, maxFov: 100, minFov: 0.2,
+    nearest: (pos) => Math.max(0.003, nearestPoint(pos, eachLandmark)),
+    ahead: (pos, dir) => aheadPoint(pos, dir, eachLandmark, 4),
+    fit: () => { follow = false; want.pos = null; rig.frameSphere(new THREE.Vector3(), 52, 1.02); }, // the disc, ~50 kly in radius
+    reset: () => { want.pos = null; follow = false; frameOn([0, 0, 0], 150); },
+  });
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (want.pos) {
-      controls.target.lerp(target, 0.08);
-      camera.position.lerp(want.pos, 0.08);
-      if (camera.position.distanceTo(want.pos) < 0.01 * want.pos.distanceTo(target) + 1e-4) want.pos = null;
+    if (rig.update()) {
+      if (want.pos) {
+        controls.target.lerp(target, motionK(0.08));
+        camera.position.lerp(want.pos, motionK(0.08));
+        if (camera.position.distanceTo(want.pos) < 0.01 * want.pos.distanceTo(target) + 1e-4) want.pos = null;
+      }
+      controls.update();
     }
-    controls.update();
     fleetGroup.visible = !!settings.get('starfleet');
     const show = settings.get('labels');
     for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
@@ -377,12 +395,14 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setStars, setGaia, setTime, applyLook,
+    camera: rig,
     get modelComponents() { return model.components; },
     /** The spectrum filter (#28): { model: { value, detail, dark }, clouds: { lmc|smc: { value, tier, detail } } }. */
     get bandInfo() { return bandInfo; },
     get epoch() { return epoch; },
     get gaiaCount() { return gaiaCount; },
     view(which) {
+      rig.setMode('orbit', { retarget: false });
       follow = which === 'sol';
       if (which === 'galaxy') frameOn([0, 0, 0], 150);
       else if (which === 'sol') frameOn(new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch).toArray(), 5.5, 0.7);

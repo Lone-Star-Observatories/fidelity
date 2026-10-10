@@ -32,8 +32,11 @@ const defaults = {
   bandPass: null,    // its bandpass (null = the band's default)
   curve: null,       // spectrum control (#66): the transmission curve { parts, excl } (null = from band/bandPass; see src/data/curve.js)
   voiceStatus: 'auto', // #62: say "Processing" while band images load: 'on' | 'off' | 'auto' (on while the Computer is listening)
-  observer: null,   // detail views' FROM EARTH card: { lat, lon, label } (null = Greenwich)
+  observer: null,   // detail views' FROM EARTH card and the EVENTS "visible from my location" filter (#33): { lat, lon, label } (null = Greenwich / not set); never leaves the browser
+  eventsVisibleOnly: false, // EVENTS: show only what can be seen (or watched) from the observer location
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
+  cameraModes: {},  // camera mode per view (#39): { system: 'orbit' | 'look' | 'fly', galaxy: …, … }
+  zoomToCursor: false, // ORBIT: the wheel zooms towards the pointer (#39)
 };
 
 let state = { ...defaults };

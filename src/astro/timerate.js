@@ -1,8 +1,12 @@
 // The time control's maths (#34): the RATE slider's logarithmic scale and the TIMELINE's ticks.
 //   Slider positions run −1000…1000. A dead zone around 0 is HOLD; beyond it |rate| grows
-//   logarithmically from real time (1 s/s) to 1 millennium/s, with detents at each unit.
+//   logarithmically from real time (1 s/s) to 1 Gyr/s, with detents at each unit.
+//   Also the clock readout: a calendar date inside JavaScript's dates, else an offset ("+1.2 MYR").
+
+import { JD_MIN, JD_MAX, YEAR_DAYS } from './clock.js';
 
 export const SLIDER_MAX = 1000, DEAD = 80;
+const JD_UNIX = 2440587.5;
 const SEC = 1 / 86400;
 // rate units (days per unit); the detents are 1 of each
 export const RATE_UNITS = [
@@ -11,6 +15,7 @@ export const RATE_UNITS = [
   { days: 7, one: 'WEEK', many: 'WEEKS', tick: 'WK' }, { days: 30.436875, one: 'MONTH', many: 'MONTHS', tick: 'MO' },
   { days: 365.2425, one: 'YEAR', many: 'YEARS', tick: 'YR' }, { days: 3652.425, one: 'DECADE', many: 'DECADES', tick: 'DEC' },
   { days: 36524.25, one: 'CENTURY', many: 'CENTURIES', tick: 'CEN' }, { days: 365242.5, one: 'MILLENNIUM', many: 'MILLENNIA', tick: 'KYR' },
+  { days: 365.25e6, one: 'MYR', many: 'MYR', tick: 'MYR' }, { days: 365.25e9, one: 'GYR', many: 'GYR', tick: 'GYR' },
 ];
 const L0 = Math.log10(SEC), L1 = Math.log10(RATE_UNITS.at(-1).days);
 const SNAP = 0.1; // decades either side of a detent that snap to it
@@ -36,7 +41,43 @@ export function rateLabel(days) {
   if (Math.abs(a / SEC - 1) < 1e-6) return days > 0 ? 'REAL TIME' : '−1 SEC/S';
   const u = [...RATE_UNITS].reverse().find((x) => a >= x.days * 0.9995) ?? RATE_UNITS[0];
   const n = a / u.days, txt = n < 9.95 ? String(+n.toFixed(1)) : String(Math.round(n));
+  if (u.tick === 'KYR' && n >= 9.95) return `${sign}${txt} KYR/S`; // "100 KYR/S" rather than "100 MILLENNIA/S"
   return `${sign}${txt} ${txt === '1' ? u.one : u.many}/S`;
+}
+
+// ---- the clock readout ----------------------------------------------------------------------
+const OFFSET_UNITS = [[1e9, 'GYR'], [1e6, 'MYR'], [1e3, 'KYR'], [1, 'YR']];
+/** A deep-time offset in years: "+1.2 MYR", "−300 KYR", "+2.0 GYR", "NOW" (one decimal below 100). */
+export function formatOffset(years) {
+  if (!Number.isFinite(years)) return '—';
+  const a = Math.abs(years), sign = years < 0 ? '−' : '+';
+  if (a < 0.05) return 'NOW';
+  let i = OFFSET_UNITS.findIndex(([f]) => a >= f * 0.99995);
+  if (i < 0) i = OFFSET_UNITS.length - 1;
+  const [f, unit] = OFFSET_UNITS[i], v = a / f;
+  const txt = v < 99.95 ? v.toFixed(1) : String(Math.round(v));
+  return `${sign}${txt} ${unit}`;
+}
+/**
+ * What the clock shows at JD `jd` (possibly beyond the calendar) when the present is `now`: the UTC
+ * date and time "YYYY-MM-DD HH:MM:SS" inside JavaScript's dates, otherwise the offset from now.
+ */
+export function clockReadout(jd, now) {
+  if (jd >= JD_MIN && jd <= JD_MAX) return new Date((jd - JD_UNIX) * 86400000).toISOString().replace('T', ' ').replace(/\.\d+Z$/, ''); // ±YYYYYY beyond 9999
+  return formatOffset((jd - now) / YEAR_DAYS);
+}
+
+/**
+ * Ticks for a deep-time timeline from `fromYears` to `toYears` (offsets from now) drawn `px` wide,
+ * at least `minPx` apart: [{ years, label }] on round 1-2-5 steps, labelled as offsets.
+ */
+export function deepTicks(fromYears, toYears, px, minPx = 80) {
+  const want = ((toYears - fromYears) * minPx) / px;
+  const p = 10 ** Math.floor(Math.log10(want));
+  const step = [1, 2, 5, 10].map((k) => k * p).find((s) => s >= want);
+  const out = [];
+  for (let y = Math.ceil(fromYears / step) * step; y <= toYears && out.length < 500; y += step) out.push({ years: y, label: formatOffset(Math.abs(y) < step / 2 ? 0 : y) });
+  return out;
 }
 
 // ---- timeline ticks -------------------------------------------------------------------------
@@ -44,7 +85,6 @@ export function rateLabel(days) {
 const STEPS = [{ days: 1 / 24 }, { days: 6 / 24 }, { days: 1 }, { days: 7 }, { months: 1 }, { months: 12 }, { months: 120 }, { months: 1200 },
   { months: 12000 }, { months: 120000 }];
 const MONTH = 30.436875;
-const JD_UNIX = 2440587.5;
 const dateOf = (jd) => new Date((jd - JD_UNIX) * 86400000);
 const jdOf = (ms) => ms / 86400000 + JD_UNIX;
 const yearStr = (y) => (y <= 0 ? `${1 - y} BCE` : String(y));

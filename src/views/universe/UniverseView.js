@@ -12,6 +12,8 @@ import { radecToSupergal, galToSupergal, frameToScene, blackbodyRGB } from '../.
 import { GALAXY_NAMES, GALAXY_CLUSTERS } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 import { onClicks } from '../pick.js';
+import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
+import { METERS } from '../cameraMath.js';
 import { currentBand, onBand } from '../../data/bandstate.js';
 import { galaxyTypeWeight } from '../../astro/galaxyband.js';
 import { PAL_RGB } from '../system/starband.js';
@@ -228,19 +230,30 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
   }
   new ResizeObserver(resize).observe(container);
   const tmp = new THREE.Vector3();
+  // camera controls (#39): the Milky Way, galaxies and clusters are what FLY speeds up near
+  const eachObject = (fn) => { fn(0, 0, 0, 0.05); for (const o of objects) if (o.distLy <= radius * 1.02e6) fn(o.pos.x, o.pos.y, o.pos.z, 0); };
+  const rig = createCameraRig({
+    key: 'universe', camera, controls, dom: labels.domElement, container, target, metersPerUnit: METERS.mly,
+    nearest: (pos) => Math.max(0.01, nearestPoint(pos, eachObject)),
+    ahead: (pos, dir) => aheadPoint(pos, dir, eachObject),
+    fit: () => rig.frameSphere(selected ? selected.pos : new THREE.Vector3(), selected ? Math.max(0.3, (selected.diameterKpc ?? 30) * 3.26e-3 * 4) : radius, 1.02),
+    reset: () => rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(radius * 0.4, radius * 0.9, radius * 1.5) }),
+  });
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (controls.target.distanceToSquared(target) > 1e-6) {
-      const delta = tmp.copy(target).sub(controls.target).multiplyScalar(0.08);
-      controls.target.add(delta); camera.position.add(delta);
+    if (rig.update()) {
+      if (controls.target.distanceToSquared(target) > 1e-6) {
+        const delta = tmp.copy(target).sub(controls.target).multiplyScalar(motionK(0.08));
+        controls.target.add(delta); camera.position.add(delta);
+      }
+      controls.update();
     }
     if (zoomTo != null) { // a selected galaxy with a form: ease in until it fills the view
       const off = camera.position.clone().sub(controls.target), d = off.length(), nd = d + (zoomTo - d) * 0.08;
       camera.position.copy(controls.target).addScaledVector(off.normalize(), nd);
       if (Math.abs(nd - zoomTo) < zoomTo * 0.01) zoomTo = null;
     }
-    controls.update();
     forms.update(camera, container.clientHeight || 600, radius);
     const show = settings.get('labels');
     // labels for objects inside the filter, and not swamped: only those beyond 2% of the radius
@@ -255,6 +268,7 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setGalaxies, setRadius, select, recolourBand,
+    camera: rig,
     get radius() { return radius; },
     get objects() { return objects; },
     /** The image-and-shape record of a galaxy (#50), or null. */

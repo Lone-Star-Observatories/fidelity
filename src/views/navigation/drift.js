@@ -27,17 +27,35 @@ const n = (x) => Math.round(x).toLocaleString('en-US');
 /** Hipparcos (and so HYG) is complete to V ≈ 7.5: the faintest absolute magnitude complete out to `ly`. */
 export const brightLimit = (ly) => 7.5 - 5 * Math.log10(ly / 3.26156 / 10);
 
+const lyOr = (x, maxLy) => (x == null ? `≥${n(maxLy)}` : n(x));
+/**
+ * "G 220→325" per absolute-magnitude class: how far out the catalogue alone and the catalogue
+ * plus the Gaia DR3 RV slice hold at least half the class's density near Sol.
+ */
+export function classLine(classes, maxLy = OUTER_LY) {
+  return classes.map((c) => (c.hygLy === c.mergedLy ? `${c.label} ${lyOr(c.hygLy, maxLy)}` : `${c.label} ${lyOr(c.hygLy, maxLy)}→${lyOr(c.mergedLy, maxLy)}`)).join(' · ');
+}
+
 /**
  * Lines for the chart's deep-time badge: [{ tier, text, warn? }]. `s` = { epoch, radiusLy,
- * shown, arrived, departed, gaia, hyg, loadedLy, loading, preview, previewLy,
- * density: { rho0PerLy3, halfLy }, like: { mag, today, now } }.
+ * shown, arrived, departed, gaia, gaiaOnly, hyg, loadedLy, loading, preview, previewLy,
+ * density: { rho0PerLy3, halfLy }, like: { mag, today, now },
+ * gaiaRv: { status, error }, completeness: { gaiaLy, classes, density } }.
  */
 export function badgeLines(s) {
   if (!s.epoch) return [];
   const out = [{ tier: 'computed', text: `${n(s.shown)} STARS WITHIN ${s.radiusLy} LY · ${n(s.arrived)} ARRIVED FROM BEYOND TODAY'S ${s.radiusLy} LY · ${n(s.departed)} LEFT` }];
-  const c = completeness(s.shown, s.radiusLy, s.density?.rho0PerLy3);
+  const cm = s.completeness, dens = cm?.density ?? s.density;
+  const c = completeness(s.shown, s.radiusLy, dens?.rho0PerLy3);
   const pct = c == null ? '' : c < 0.01 ? ' · UNDER 1%' : ` · ~${Math.min(100, Math.round(c * 100))}%`;
-  out.push({ tier: 'measured', text: `ARRIVALS: BRIGHT STARS ONLY BEYOND ~${s.density?.halfLy ?? 60} LY · CATALOGUE INCOMPLETE${pct}${c == null ? '' : " OF THE CATALOGUE'S STAR DENSITY NEAR SOL"}` });
+  const ofNear = c == null ? '' : " OF THE CATALOGUE'S STAR DENSITY NEAR SOL";
+  if (cm) {
+    // with the Gaia DR3 RV slice: the half-density radius before and after, and per class
+    out.push({ tier: 'computed', text: `ARRIVALS: HYG + GAIA DR3 RV STARS · DENSITY HALVES BEYOND ~${dens.halfLy ?? n(OUTER_LY)} LY (HYG ALONE ~${s.density?.halfLy ?? 60})${pct}${ofNear}` });
+    out.push({ tier: 'computed', text: `HALF-COMPLETE TO, LY (HYG→+GAIA RV, WHICH ENDS AT ${n(cm.gaiaLy)} LY): ${classLine(cm.classes)}` });
+  } else out.push({ tier: 'measured', text: `ARRIVALS: BRIGHT STARS ONLY BEYOND ~${s.density?.halfLy ?? 60} LY · CATALOGUE INCOMPLETE${pct}${ofNear}` });
+  if (s.gaiaRv?.status === 'loading') out.push({ tier: 'computed', warn: true, text: 'LOADING GAIA DR3 RADIAL-VELOCITY STARS (≤ 326 LY) · ~25 S THE FIRST TIME' });
+  else if (s.gaiaRv?.status === 'error') out.push({ tier: 'computed', warn: true, text: `GAIA DR3 RV STARS UNAVAILABLE (${String(s.gaiaRv.error ?? '').slice(0, 60).toUpperCase()}) · HYG ONLY` });
   if (s.like && s.like.today >= 5) out.push({ tier: 'computed', text: `LIKE FOR LIKE, STARS BRIGHTER THAN ABS. MAG ${s.like.mag.toFixed(1)} (IN THE CATALOGUE OUT TO ${n(s.loadedLy)} LY): ${n(s.like.today)} TODAY · ${n(s.like.now)} NOW` });
   if (s.loading) out.push({ tier: 'computed', text: s.loading, warn: true });
   else {
@@ -45,6 +63,8 @@ export function badgeLines(s) {
     if (s.preview && v < 100) out.push({ tier: 'computed', warn: true, text: `PREVIEW: ARRIVALS ONLY FROM ITS ${s.previewLy} LY SNAPSHOT · STARS FASTER THAN ${n(v)} KM/S ARE MISSING · RUN THE LOCAL BACKEND FOR ${n(OUTER_LY)} LY` });
     else if (v < 75) out.push({ tier: 'computed', warn: true, text: `STARS FASTER THAN ${n(v)} KM/S ARRIVING FROM BEYOND ${n(s.loadedLy)} LY ARE NOT LOADED · THE SPHERE THINS OUT` });
   }
-  out.push({ tier: 'measured', text: `VELOCITIES SHOWN: ${n(s.gaia)} GAIA DR3 · ${n(s.hyg)} HYG (HIPPARCOS) · DIM ARROWS: NO RADIAL VELOCITY` });
+  out.push({ tier: 'measured', text: s.gaiaOnly
+    ? `VELOCITIES SHOWN: ${n(s.gaia)} GAIA DR3 (HIPPARCOS STARS) · ${n(s.gaiaOnly)} GAIA DR3 RV-ONLY · ${n(s.hyg)} HYG · DIM ARROWS: NO RADIAL VELOCITY`
+    : `VELOCITIES SHOWN: ${n(s.gaia)} GAIA DR3 · ${n(s.hyg)} HYG (HIPPARCOS) · DIM ARROWS: NO RADIAL VELOCITY` });
   return out;
 }

@@ -6,18 +6,18 @@ import { createClock, JD_MAX } from '../src/astro/clock.js';
 globalThis.performance ??= { now: () => Date.now() };
 const jd = (s) => Date.parse(s) / 86400000 + 2440587.5;
 
-test('rate slider: HOLD in the middle, real time to a millennium per second, both ways', () => {
+test('rate slider: HOLD in the middle, real time to a billion years per second, both ways', () => {
   assert.equal(sliderToDays(0), 0);
   assert.equal(sliderToDays(DEAD - 1), 0);
   assert.equal(sliderToDays(DEAD + 1), 1 / 86400); // snaps to the REAL TIME detent
-  assert.equal(sliderToDays(SLIDER_MAX), 365242.5);
-  assert.equal(sliderToDays(-SLIDER_MAX), -365242.5);
-  for (const d of [1 / 86400, 1 / 1440, 1 / 24, 1, 7, 365.2425, 36524.25]) {
+  assert.equal(sliderToDays(SLIDER_MAX), 365.25e9);
+  assert.equal(sliderToDays(-SLIDER_MAX), -365.25e9);
+  for (const d of [1 / 86400, 1 / 1440, 1 / 24, 1, 7, 365.2425, 36524.25, 365242.5, 365.25e6, 365.25e9]) {
     assert.equal(sliderToDays(daysToSlider(d)), d, `detent ${d}`);
     assert.equal(sliderToDays(daysToSlider(-d)), -d);
   }
   assert.ok(daysToSlider(1) > daysToSlider(1 / 24) && daysToSlider(365) > daysToSlider(30));
-  assert.equal(daysToSlider(1e9), SLIDER_MAX); // clamped
+  assert.equal(daysToSlider(1e13), SLIDER_MAX); // clamped
 });
 
 test('rate labels', () => {

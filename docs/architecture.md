@@ -73,7 +73,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/health` | Liveness and configured catalog folders |
 | `GET /api/horizons/vectors?body=399&month=2026-10` | Daily heliocentric vectors for a calendar month |
 | `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts, space velocity (`vKms`), `rvKnown` and velocity source `vSrc` (0 HYG, 1 Gaia DR3, 2 Gaia DR3 astrometry + catalogue RV); `motions` says whether Gaia motions have loaded |
-| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc), plus the catalogue's density near Sol. 0–250 ly ≈ 17k rows / 1.5 MB, 250–1,000 ly ≈ 65k rows / 5.7 MB |
+| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc; vSrc 3 = a Gaia DR3 RV-slice star not in HYG, sent with `name` null for "Gaia DR3 &lt;source_id&gt;"), plus the catalogue's density near Sol, `gaiaRv` (slice status and counts) and `completeness` (half-complete radius per absolute-magnitude class, HYG alone and with the slice; the merged density). The slice loads in the background on the first request (≈ 25 s once, then from a year-long disk cache); until then `gaiaRv.status` is `loading` and the client asks again. `gaia=0` leaves it out. 25–250 ly ≈ 81k rows / 7.3 MB (2.8 MB gzipped), 250–1,000 ly ≈ 128k rows / 11.7 MB (4.5 MB gzipped); JSON responses over 256 kB are gzipped when the browser accepts it |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
@@ -125,12 +125,16 @@ and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
 mode is disabled there. Band imagery (#28, #62) is backend-only: the standalone spectrum control
 computes predicted skins and re-weighted stars but bakes no previews yet. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
-(the 1,000 ly catalogue is backend-only); the chart badge says so when that runs short.
+(the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
+snapshot does not grow); the chart badge says so when that runs short.
 
 ## Adding a view
 
 1. Create `src/views/<level>/<Name>View.js` exporting `create…View(container, deps)` with
-   `show()` and `hide()`.
+   `show()` and `hide()`. Give it the camera cluster (`createCameraRig` from
+   `src/views/cameraControls.js`, exposed as `camera`; see "Camera controls" below) and call
+   `rig.update(now)` every frame, running the view's own target easing and `controls.update()` only
+   when it returns true.
 2. Mount it in `src/main.js` routing; remove its entry from `src/roadmap.js`.
 3. Add any upstream it needs as a backend route with a cache namespace. Don't fetch
    non-CORS upstreams from the browser.
@@ -244,6 +248,51 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
+## Camera controls (#39)
+
+Every 3D view (System, Navigation, Quadrant, Galaxy, Universe, the Star and Planet/Moon/Object
+globes, and the surface view) carries the same camera cluster, bottom-left (beside the Navigation
+View's orientation gauge; under the globe in the detail views). `src/views/cameraControls.js`
+(`createCameraRig`) builds it and owns the keyboard, pointer and touch handling; the maths is pure
+and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
+
+- **Modes.** ORBIT is each view's OrbitControls. LOOK turns the camera on the spot (drag: the sky
+  follows the pointer; pitch stops short of the poles). FLY adds W A S D / arrows and Q / E (down /
+  up), Shift ×5; speed is 0.8 × the distance to the nearest surface per second (`flySpeed`), so it
+  works from 100 m above a moon to 100 Mly out. In LOOK and FLY, zoom (wheel, pinch, + / −, the
+  slider) changes the field of view. Touch: one finger orbits or looks, two fingers pinch (zoom in
+  ORBIT and LOOK, forward/back in FLY) and pan (slide in FLY). Choosing ORBIT again returns smoothly:
+  the view's `toOrbit` hook or, by default, a new target on the line of sight at the distance of
+  whatever is in front (`ahead`), then a 0.7 s slerp to face it and back to the view's field. Keys:
+  1 / 2 / 3 modes, + / − zoom, F fill view, Shift+F full screen, R reset, B link, C zoom to cursor;
+  tooltips show them. The mode is remembered per view (`settings.cameraModes`).
+- **Framing.** FILL VIEW frames the selection with `fitDistance` (the sphere's angular radius equals
+  the narrower half field, so tall and wide viewports both fit; the right panel is its own grid
+  column, so the viewport's aspect already accounts for it): a body's disc (rings included), a
+  star's planetary orbits (the farthest orbit vertex), a region's extent, the Navigation sphere, the
+  Galaxy disc, a selected nebula or cluster, the Quadrant or Universe filter radius. RESET returns to
+  the view's default framing. The rig's own flights (`flyTo`, `frameSphere`) ease distance in log
+  space and turn the view direction; under `prefers-reduced-motion` they, the System View's flights,
+  the views' target easing (`motionK`) and the warp streaks jump instead.
+- **Read-outs** are in real units: ORBIT shows the width of the view at the target
+  (`VIEW 12 AU ACROSS`, picking M, KM, MILLION KM, AU, LY, KLY, MLY or GLY), LOOK / FLY and the
+  surface view the field (`0.6° FIELD`). The slider is logarithmic between the controls' min and max
+  distance (or field).
+- **Full screen** (`cam-full` on `#app`) hides the rail and side panel and widens the viewport; Esc
+  or the button restores it. The detail views also expand their globe to the whole viewport.
+- **Bookmarks.** LINK writes `?t=<ISO>[&hold=1]&cam=<mode,x,y,z,qx,qy,qz,qw,fov[,tx,ty,tz]>` before the
+  route's hash, copies it, and `main.js` applies it once the route's view has framed itself
+  (`applyPendingCam`). Positions are in the view's frame and unit; the System View's are AU
+  relative to the routed body. The surface view writes `&surface=lat,lon&cam=s,az,alt,fov`.
+- **System View.** The floating origin stays on the focus in ORBIT and LOOK. In FLY it rides on the
+  nearest body (`anchorId`, handed over with hysteresis when another body is 30% nearer), so the camera
+  co-moves with it and stays precise; you cannot fly below a surface. Returning to ORBIT picks the
+  body nearest the line of sight (within 2° or 1.2 × its apparent radius) or the body you rode with,
+  re-expresses the camera relative to it and flies there without a second route flight
+  (`quietFocus`). The body flights of the panel and route keep working in LOOK and FLY (orbit-style
+  while they run). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
+  RESET back to the zenith.
 
 Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
 every disc covers 2·asin(R/d) from the first frame; the HUD reports the true and the drawn diameter of
@@ -386,7 +435,7 @@ each planet material darkens per fragment by the fraction of the Sun its nearest
 hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon red), Earth
 shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
-`?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
+`?t=<ISO time>[&hold]` sets the ship's clock from the URL (`&cam=…` restores a camera, #39); `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
 
 ## Launch windows and transfers (#45)
 
@@ -498,6 +547,22 @@ for ephemeris events), webcasts and channel live streams in the feed viewer, and
 just before the action (launches at T−60 s in real time) and frames the pad, recovery zone or station. A red dot on
 the rail marks an event within 24 hours. The clock gained a 1 MIN/S rate.
 
+VISIBLE FROM MY LOCATION (#33) filters the list with `src/astro/eventvis.js` (`eventVisibility(e, { lat, lon })` →
+`{ visible: true | false | null, reason, tier }`), and every row shows the reason once a location is set. The
+location is the `observer` setting shared with the FROM EARTH cards: typed, or browser geolocation on request, kept
+in localStorage and never sent anywhere (no request carries it; the computation runs in the page). Solar eclipses
+are judged at the place's own maximum (topocentric Sun and Moon from `eclipses.js`, scanned between the contacts):
+in the umbra (path), in the penumbra (partial, with the obscuration) or neither, and whether the Sun is up then;
+lunar eclipses by the Moon's altitude at maximum or during the eclipse; occultations, conjunctions, oppositions,
+elongations, parades and transits by the bodies' altitudes at the event time (a dark sky, Sun below −6°, for the
+night-sky events, the Sun up for transits; slow events also get that night's dark hours; occultations say whether
+the Moon covers the target from here); meteor showers by the radiant; aurora watches by geomagnetic latitude
+(MODELLED); launches, operations and webcasts are always watchable (REPORTED). Comets have no sky position in the
+feed, so they stay "not computed" and are never filtered out. For a solar eclipse GO TO EVENT now stands on Earth
+at the app's own point of greatest eclipse (on the centreline of a central eclipse) two minutes before it, in real
+time, and turns to the Sun (`SystemView.surfaceAt(id, lat, lon, { lookSun })`); VIEW FROM SPACE keeps the old
+framing, and WATCH FROM MY LOCATION stands at the observer's own maximum.
+
 ## Voice: "Computer" (#21)
 
 `src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
@@ -519,14 +584,37 @@ resampler, command parsing.
 
 The STEP control moves the clock by n units (minute … millennium; months and longer step the
 calendar via `stepJd`, clamping to the month length) with ◀| / |▶ or the `[` / `]` keys, and RUN sets a
-custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder. n may be
-fractional or negative; it and the unit are remembered.
+custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder (which runs on to
+±1 millennium, Myr and Gyr per second). n may be fractional or negative; it and the unit are remembered.
+The units run on to MYR and GYR (mean lengths, Julian years) for deep time.
+
+## One clock, deep time and view limits (#34)
+
+`src/astro/clock.js` keeps one double-precision JD that may run far beyond JavaScript's dates
+(±273,790 years; a double still resolves ~10 s at 2 Gyr). `clock.jd` is that time clamped to the
+calendar, so every date-based consumer always gets a valid `Date`; `clock.deepJd` is the unclamped
+JD, `clock.years` the offset from now in Julian years and `clock.inCalendar` says which applies. The
+readout (`clockReadout` / `formatOffset` in `timerate.js`) shows a UTC date inside the calendar and
+an offset such as "+1.2 MYR" or "−2.0 GYR" beyond it; the top-bar stardate shows `DEEP TIME · …`.
+
+Each view sets the part of time valid for it (`clock.setLimit`, from `limitFor(level)` in `main.js`
+on every route change and when the EPHEMERIS toggle changes): the System View and its detail
+views use the ephemeris span (KEPLER ELEMENTS 3000 BCE–3000 CE; JPL HORIZONS 1–9999 CE, the
+`YYYY-MM` months the backend can ask for), the Navigation View ORBITS INTEGRATED ±50 MYR, the Galaxy
+View SATELLITE ORBITS ±2 GYR, Quadrant and Universe the calendar. Nothing goes past ±2 Gyr. When
+time reaches a limit, or a new view's limit is narrower than the current time, the clock is
+brought to the edge and held, and `clock.clamped` gives the reason, shown under the readout as
+`⚠ STOPPED · <reason>` (otherwise `RANGE · <reason>`); the TIMELINE shades what lies outside. The
+clock ticks in `main.js`'s time-control loop whatever view is showing (the System View also ticks
+it; a second tick in the same frame does nothing). `syncDeepTime` then hands the Navigation View
+its epoch (`nav.setEpoch`, whole years from now) and the Galaxy View its time (`galaxy.setTime`,
+Myr) whenever they change; the panels only show the epoch and point to the TIME row.
 
 ## Text size
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 millennium/s through HOLD and real time to +1 millennium/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The clock stops (HOLD) at the edge of JavaScript's date range, ±273,790 years.
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 
@@ -634,7 +722,7 @@ the arm pattern speed and integrated satellite orbits (`integrateOrbit`, leapfro
 halo, ±2 Gyr). The Galaxy View turns stars in the vertex shader by −Ω(R)·t about +y (the disc
 turns towards scene −z at the Sun), the image and arm labels in `patternGroup` at Ωp, and Sol,
 spokes, reach ring and Starfleet overlay in `sunGroup` at Ω☉. Satellite images are additive,
-camera-facing quads. The time loop lives in `main.js` (`galLoop`).
+camera-facing quads. Galactic time is the ship's clock (#34): `syncDeepTime` in `main.js` sets it, within ±2 Gyr.
 
 ## Navigation lists and star motion
 

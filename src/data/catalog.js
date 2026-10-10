@@ -67,7 +67,8 @@ export async function fetchArrivals(center, fromLy, toLy) {
   const d = await get(url);
   memo.delete(url); // large: the view keeps what it needs
   const f = Object.fromEntries(d.fields.map((k, i) => [k, i]));
-  const stars = d.stars.map((r) => ({ id: r[f.id], name: r[f.name], x: r[f.x], y: r[f.y], z: r[f.z], absmag: r[f.absmag], ci: r[f.ci], system: r[f.system],
+  // Gaia-only rows (#29: the DR3 radial-velocity slice) carry no name: "Gaia DR3 <source_id>"
+  const stars = d.stars.map((r) => ({ id: r[f.id], name: r[f.name] ?? `Gaia DR3 ${String(r[f.id]).replace(/^gdr3-/, '')}`, x: r[f.x], y: r[f.y], z: r[f.z], absmag: r[f.absmag], ci: r[f.ci], system: r[f.system],
     v: [r[f.vx], r[f.vy], r[f.vz]], rvKnown: !!(r[f.flags] & 1), vSrc: r[f.flags] >> 1 }));
   return { ...d, stars };
 }

@@ -1,28 +1,36 @@
-// The time control (#34): the bottom bar's top row. A readout of the ship's clock with a date
-// field, a middle panel that swaps between the RATE slider (one logarithmic scale from −1
-// millennium/s through HOLD and real time to +1 millennium/s, with detents at each unit) and the
-// TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel to zoom, click an event
-// to go to it), and the HOLD / RUN / NOW and step controls.
+// The time control (#34): the bottom bar's top row, the one control for every view's time. A
+// readout of the ship's clock (a calendar date, or an offset such as "+1.2 MYR" beyond JavaScript's
+// dates) with a date field and the active view's range (and, when time stopped there, why), a
+// middle panel that swaps between the RATE slider (one logarithmic scale from −1 Gyr/s through
+// HOLD and real time to +1 Gyr/s, with detents at each unit) and the TIMELINE (a zoomable strip
+// centred on the clock: drag to scrub, wheel to zoom, click an event to go to it; the part outside
+// the view's range is shaded), and the HOLD / REVERSE / NOW and step controls.
 
-import { sliderToDays, daysToSlider, rateLabel, timelineTicks, RATE_UNITS, SLIDER_MAX } from '../astro/timerate.js';
+import { sliderToDays, daysToSlider, rateLabel, timelineTicks, deepTicks, clockReadout, RATE_UNITS, SLIDER_MAX } from '../astro/timerate.js';
+import { JD_MIN, JD_MAX, YEAR_DAYS } from '../astro/clock.js';
+import { badge } from '../data/provenance.js';
 import { skyEvents, onSkyEvents, skyEventsWindow } from '../data/skyevents.js';
 import { eventsFeed, onEvents } from '../data/events.js';
 import { eventTitle, watchFrom } from './skyevents.js';
-import { dateFromJd } from '../astro/time.js';
+import { dateFromJd, jdFromDate } from '../astro/time.js';
 
 // what the timeline marks, and in which colour (CSS custom properties of the LCARS palette)
 const MARK = (e) => (e.type === 'solar' ? '--gold' : e.type === 'lunar' ? '--rose' : e.type === 'transit' ? '--ice'
   : e.kind === 'opposition' ? '--apricot' : e.kind === 'planetary parade' ? '--lilac' : null);
-const ZOOMS = [['DAY', 1], ['MONTH', 30.436875], ['YEAR', 365.25], ['DECADE', 3652.5], ['CENTURY', 36525], ['KYR', 365250]];
-const SPAN_MIN = 0.25, SPAN_MAX = 3.6525e6;
+const ZOOMS = [['DAY', 1], ['MONTH', 30.436875], ['YEAR', 365.25], ['DECADE', 3652.5], ['CENTURY', 36525], ['KYR', 365250],
+  ['MYR', 365.25e6], ['GYR', 365.25e9]];
+const SPAN_MIN = 0.25, SPAN_MAX = 4 * 365.25e9;
+const CAL_SPAN = 3.6525e6; // calendar ticks up to a 10,000-year window; offset ticks beyond
 
 export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepControls }) {
   const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim() || '#fc9';
 
   // ---- readout -------------------------------------------------------------------------------
   const clockOut = h('div', { className: 'tc-clock mono' });
-  const readout = h('div', { className: 'tc-readout', title: 'The ship\'s clock (UTC). Type a date and press Enter to go there.' },
-    clockOut, h('div', { className: 'tc-date' }, h('span', { textContent: 'GO TO' }), dateIn));
+  const limitOut = h('div', { className: 'tc-limit' });
+  const clockBadge = badge('computed', 'The ship\'s clock: UTC from this computer\'s clock, run forward or back at the chosen rate. Beyond JavaScript\'s dates (±273,790 years) it counts Julian years from now.');
+  const readout = h('div', { className: 'tc-readout', title: 'The ship\'s clock (UTC; beyond ±273 kyr, years from now). Type a date and press Enter to go there.' },
+    h('div', { className: 'tc-clockline' }, clockOut, clockBadge), limitOut, h('div', { className: 'tc-date' }, h('span', { textContent: 'GO TO' }), dateIn));
 
   // ---- the middle panel: RATE or TIMELINE ----------------------------------------------------
   const rateOut = h('div', { className: 'tc-rate mono' });
@@ -37,7 +45,7 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
     const pos = (daysToSlider(days) + SLIDER_MAX) / (2 * SLIDER_MAX);
     ticks.append(h('span', { className: `tc-tick ${cls}`, textContent: label, style: `left: calc(${(pos * 100).toFixed(2)}% + ${(13 - 26 * pos).toFixed(1)}px)` }));
   };
-  const shown = RATE_UNITS.filter((u) => ['HR', 'DAY', 'MO', 'YR', 'CEN', 'KYR'].includes(u.tick));
+  const shown = RATE_UNITS.filter((u) => ['HR', 'DAY', 'YR', 'KYR', 'MYR', 'GYR'].includes(u.tick));
   for (const u of [...shown].reverse()) tickAt(-u.days, `−${u.tick}`);
   tickAt(0, 'HOLD', 'hold');
   tickAt(RATE_UNITS[0].days, 'REAL', 'real');
@@ -77,7 +85,7 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
     const g = canvas.getContext('2d');
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     g.clearRect(0, 0, w, ht);
-    const jd = clock.jd, from = jd - span / 2, to = jd + span / 2, x = (t) => ((t - from) / span) * w;
+    const jd = clock.deepJd, from = jd - span / 2, to = jd + span / 2, x = (t) => ((t - from) / span) * w;
     const scale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-scale')) || 1;
     const font = `${Math.round(11 * scale)}px Antonio, 'Arial Narrow', sans-serif`;
     g.font = font; g.textBaseline = 'alphabetic';
@@ -85,10 +93,18 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
     // the window the sky-events list was computed for
     const win = skyEventsWindow();
     if (win) { g.fillStyle = 'rgba(153, 119, 170, 0.18)'; g.fillRect(x(win.from), axisY - 3, x(win.to) - x(win.from), 6); }
+    // outside the active view's range: shaded, with the reason
+    const lim = clock.limit;
+    g.fillStyle = 'rgba(204, 102, 102, 0.22)';
+    if (lim.minJd > from) g.fillRect(0, 0, Math.min(w, x(lim.minJd)), ht);
+    if (lim.maxJd < to) g.fillRect(Math.max(0, x(lim.maxJd)), 0, w, ht);
     g.fillStyle = css('--violet'); g.fillRect(0, axisY - 1, w, 2);
-    // ticks
+    // ticks: calendar dates, or offsets from now in deep time
     g.fillStyle = css('--lilac'); g.strokeStyle = css('--violet'); g.lineWidth = 1;
-    for (const t of timelineTicks(from, to, w, 70 * scale)) {
+    const now = jdFromDate(new Date());
+    const tks = span <= CAL_SPAN && from >= JD_MIN && to <= JD_MAX ? timelineTicks(from, to, w, 70 * scale)
+      : deepTicks((from - now) / YEAR_DAYS, (to - now) / YEAR_DAYS, w, 70 * scale).map((k) => ({ jd: now + k.years * YEAR_DAYS, label: k.label }));
+    for (const t of tks) {
       const tx = Math.round(x(t.jd)) + 0.5;
       g.beginPath(); g.moveTo(tx, axisY); g.lineTo(tx, axisY + 6); g.stroke();
       g.fillText(t.label, tx + 3, axisY + 6 + 11 * scale);
@@ -127,7 +143,7 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
   let drag = null;
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
-    drag = { x0: e.clientX, jd0: clock.jd, moved: false, rate: clock.snapshot() };
+    drag = { x0: e.clientX, jd0: clock.deepJd, moved: false, rate: clock.snapshot() };
     clock.setRate(0);
   });
   canvas.addEventListener('pointermove', (e) => {
@@ -156,10 +172,12 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
   const panes = h('div', { className: 'tc-panes' }, ratePane, linePane);
   const mid = h('div', { className: 'tc-mid' }, h('div', { className: 'tc-head' }, tabRate, tabLine, hint, zooms, rateOut), panes);
 
-  // ---- right: HOLD / NOW and the step controls ----------------------------------------------
+  // ---- right: HOLD / REVERSE / NOW and the step controls -------------------------------------
   const holdBtn = pill('❚❚ HOLD', () => clock.toggleHold(), 'square tc-hold');
+  const revBtn = pill('⇄ REV', () => clock.reverse(rateLabel), 'square tc-rev');
+  revBtn.title = 'Run at the same speed the other way';
   const right = h('div', { className: 'tc-right' },
-    h('div', { className: 'tc-row' }, holdBtn, pill('NOW', () => clock.now(), 'square tc-now')),
+    h('div', { className: 'tc-row' }, holdBtn, revBtn, pill('NOW', () => clock.now(), 'square tc-now')),
     h('div', { className: 'tc-row', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' }, ...stepControls));
 
   const row = h('div', { className: 'bar-row time-row' }, h('div', { className: 'ctl-label tc-label', textContent: 'TIME' }), readout, mid, right);
@@ -176,8 +194,20 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
   const syncRate = () => {
     rateOut.textContent = clock.rate.label;
     holdBtn.textContent = clock.rate.days === 0 ? '▶ RESUME' : '❚❚ HOLD';
+    revBtn.disabled = clock.rate.days === 0;
+    syncLimit();
     if (document.activeElement !== slider) slider.value = String(daysToSlider(clock.rate.days));
   };
+  // the active view's range, and why time stopped when it sits at an edge
+  let limitKey = '';
+  function syncLimit() {
+    const c = clock.clamped, key = `${clock.limit.reason}|${c}`;
+    if (key === limitKey) return;
+    limitKey = key;
+    limitOut.textContent = c ? `⚠ STOPPED · ${c}` : `RANGE · ${clock.limit.reason}`;
+    limitOut.classList.toggle('warn', !!c);
+    limitOut.title = c ? 'Time stopped at the edge of what this view can show. Change view, or run the other way.' : 'The part of time this view can show; the clock stops at its edges.';
+  }
   clock.onChange(syncRate);
   syncPanel(); syncRate();
 
@@ -185,8 +215,9 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
     el: row,
     /** Per frame: the readout and, when shown, the timeline. */
     frame() {
-      const d = dateFromJd(clock.jd);
-      clockOut.textContent = Number.isNaN(d.getTime()) ? '—' : d.toISOString().slice(0, 19).replace('T', ' ');
+      clockOut.textContent = clockReadout(clock.deepJd, jdFromDate(new Date()));
+      clockOut.title = clock.inCalendar ? 'UTC' : 'Julian years from now (beyond JavaScript\'s calendar)';
+      syncLimit();
       if (!linePane.hidden) draw();
     },
   };
