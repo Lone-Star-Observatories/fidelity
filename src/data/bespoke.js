@@ -4103,6 +4103,319 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "sirius-a-star": {
+    "id": "sirius-a-star",
+    "name": "Sirius A",
+    "kind": "star",
+    "stellarClass": "A-type main-sequence",
+    "aliases": [
+      "Sirius",
+      "Sirius A",
+      "alf CMa A",
+      "Alpha Canis Majoris A",
+      "HD 48915",
+      "HIP 32349",
+      "Gl 244A",
+      "GJ 244 A"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Native Hubble SiriusA is the overexposed central object; separate A-type main-sequence component, not SiriusB.",
+    "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+    "measured": [
+      "Bond2017 dynamical mass2.063±0.023solar masses; interferometric angular diameter constrains inferred radius.",
+      "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+      "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+    ],
+    "modelled": [
+      "Bond2017 adopted interferometry/flux estimates1.7144±0.0090solar radii and9845±64K. Other compilations differ by several percent.",
+      "A-type photospheric hydrogen/helium gas and observed metal-line peculiarities do not establish literal metal terrain or measured abundance fractions here.",
+      "Existing binary renderer uses1.711Rsun9940K; catalogue/binary parameters remain preserved as an alternative history."
+    ],
+    "unknown": [
+      "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+    ],
+    "assumed": [
+      "Independent weak photospheric intensity mottling and observer disc; all morphology imagined, no observed Sun map or another body map reused.",
+      "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+      "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1703.10625",
+        "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+        "publicationDate": "2017-03-30"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1809.01240",
+        "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+        "publicationDate": "2018"
+      },
+      {
+        "url": "https://esahubble.org/images/heic0516a/",
+        "title": "Primary Hubble binary image, component identities and observation date",
+        "publicationDate": "2005-12-13"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/sirius-binary-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+        "sourcePage": "https://esahubble.org/images/heic0516a/",
+        "label": "NATIVE BINARY OBSERVATION",
+        "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+        "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2005-12-13",
+        "observationDate": "2003-10-15",
+        "tier": "measured",
+        "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "bytes": 176877,
+        "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+      }
+    ],
+    "skyModel": {
+      "star": "Sirius A",
+      "radiusSun": 1.7144,
+      "temperatureK": 9845,
+      "distanceAU": 0.015945522144387044,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 97837.29081294339,
+      "approximateSrgb": [
+        0.7951725044392769,
+        0.8577353072314808,
+        1
+      ],
+      "limits": "Conceptual observer2photospheric radii from centre; no planetary semimajor axis. Approximate spectral tint omits lines, transfer, exposure and adaptation. Nominal FOV and raster limb remain artistic."
+    },
+    "surfaceMap": {
+      "key": "siriusAStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+      "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied.",
+      "url": "/bespoke/sirius-a-star-surface-map.jpg",
+      "previewUrl": "/bespoke/sirius-a-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-25f6f456-b3b4-45c9-a18a-18845a667577.png",
+      "sourceSha256": "0874c6f5d691c4352efc3132334618ec5870f9e12c059fbca4a37ca2cddeee0c",
+      "sha256": "aa0f70a61ed47f5e9f7ac1db584ff83ccd396dbae031eaecb237a6b6a5426a0d",
+      "previewSha256": "280fc6d80f286d851ec7dcb53996d1c468a01782bafa1eaf81942d6f8ee7b62c",
+      "bytes": 279933,
+      "previewBytes": 23492,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          544,
+          538,
+          477
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+      },
+      "url": "/bespoke/sirius-a-star-sky-image.jpg",
+      "previewUrl": "/bespoke/sirius-a-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-141d8dfc-acf1-483b-9f3a-5881165978a0.png",
+      "sourceSha256": "17ee43796fb61183177c46fce8e113c6f5efb380843f15237e4142b3ee0c007c",
+      "sha256": "e68c2e440b306c734b349a14178ef47470db32dc7e368b9b613287f8705f0efa",
+      "previewSha256": "1fdc9e2fb7cd5d08faa9408580533e154ebb5f8042a41011f931f2126ce35247",
+      "bytes": 41804,
+      "previewBytes": 8875,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "sirius-b-star": {
+    "id": "sirius-b-star",
+    "name": "Sirius B",
+    "kind": "star",
+    "stellarClass": "DA white dwarf",
+    "aliases": [
+      "Sirius B",
+      "alf CMa B",
+      "Alpha Canis Majoris B",
+      "Gl 244B",
+      "GJ 244 B",
+      "Gliese 244 B"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Native Hubble SiriusB is the tiny dot lower left; separate hot DA hydrogen-atmosphere white dwarf, not SiriusA.",
+    "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+    "measured": [
+      "Bond2017 dynamical mass1.018±0.011solar masses; DA hydrogen-line spectrum supports a hydrogen-dominated atmosphere.",
+      "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+      "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+    ],
+    "modelled": [
+      "Bond2017 STIS atmosphere/absolute-flux fits:25369±46K and0.008098±0.000046solar radii. Carbon/oxygen degenerate interior is theoretical and hidden beneath gaseous hydrogen atmosphere; no solid surface is asserted.",
+      "Joyce2018 alternative radius0.00803±0.00011solar radii and25922K, differential gravitational-redshift mass1.017±0.025solar masses. Authors prefer binary-aware Bond parallax over linear GaiaDR2 astrometry.",
+      "Existing binary renderer uses0.0084Rsun25000K; catalogue/binary parameters remain preserved as an alternative history."
+    ],
+    "unknown": [
+      "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+    ],
+    "assumed": [
+      "Independent almost-smooth hot hydrogen photospheric intensity map and observer disc; all faint mottling imagined. No dramatic solar granulation, hidden carbon/oxygen-core terrain or observed Sun map reuse.",
+      "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+      "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+    ],
+    "surfaceLabel": "WHITE-DWARF PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1703.10625",
+        "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+        "publicationDate": "2017-03-30"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1809.01240",
+        "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+        "publicationDate": "2018"
+      },
+      {
+        "url": "https://esahubble.org/images/heic0516a/",
+        "title": "Primary Hubble binary image, component identities and observation date",
+        "publicationDate": "2005-12-13"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2112.05234",
+        "title": "Lucas2021/2022 Keck2020 images, PSF and nondetection limits",
+        "publicationDate": "2021-12-09"
+      },
+      {
+        "url": "https://github.com/mileslucas/sirius-b",
+        "title": "Primary author figure2 and CC BY4 data licence"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/sirius-binary-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+        "sourcePage": "https://esahubble.org/images/heic0516a/",
+        "label": "NATIVE BINARY OBSERVATION",
+        "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+        "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2005-12-13",
+        "observationDate": "2003-10-15",
+        "tier": "measured",
+        "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "bytes": 176877,
+        "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+      },
+      {
+        "url": "/bespoke/sirius-b-keck-native.png",
+        "source": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+        "sourcePage": "https://github.com/mileslucas/sirius-b/blob/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+        "label": "NATIVE INFRARED POINT-SOURCE FIGURE",
+        "credit": "Miles Lucas, Michael Bottom, Garreth Ruane and Sam Ragland; W. M. Keck Observatory/NIRC2.",
+        "terms": "CC BY4.0 author arXiv paper and primary data release; full author attribution retained.",
+        "termsUrl": "https://arxiv.org/abs/2112.05234",
+        "publicationDate": "2021-12-09",
+        "observationDate": "2020-11-21",
+        "tier": "measured",
+        "sha256": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+        "sourceSha256": "188854788be3044e1e510a340bf327de470ca354b24a0bf81bf9a731637cd68e",
+        "bytes": 101362,
+        "description": "Lucasetal Figure2 median frame from second Keck/NIRC2 epoch2020-11-21, L-prime3.776microns. Unresolved instrumentalPSF with speckles/diffraction, not photospheric geography, calibrated visible colour or companions. Entire author PDF figure rendered to lossless576x477PNG withPDF.js2x; no crop/image content edit, original PDF hash retained. Paper reports no confirmed companions in2020three-epoch search; this is not proof none exist."
+      }
+    ],
+    "skyModel": {
+      "star": "Sirius B",
+      "radiusSun": 0.008098,
+      "temperatureK": 25369,
+      "distanceAU": 0.0000753189677585431,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 4313749.581769146,
+      "approximateSrgb": [
+        0.6410966783412286,
+        0.7591471057593826,
+        1
+      ],
+      "limits": "Conceptual observer2photospheric radii from centre; no planetary semimajor axis. Approximate spectral tint omits lines, transfer, exposure and adaptation. Nominal FOV and raster limb remain artistic."
+    },
+    "surfaceMap": {
+      "key": "siriusBStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+      "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied.",
+      "url": "/bespoke/sirius-b-star-surface-map.jpg",
+      "previewUrl": "/bespoke/sirius-b-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e3d5dd9b-161c-4035-812e-cb3c7895352d.png",
+      "sourceSha256": "a5a476a5fad319e1d16a33a3ff8d315ac0c37e938337968638f8b55763d5884e",
+      "sha256": "866b41f0e5cc6a8cd47b33c945e4a041957832f58e2ff8dac331b6344982121f",
+      "previewSha256": "f2170e0accbfb7964deb9aafe26e7725aabb748aca38948f6b1e65566c7ffe4e",
+      "bytes": 113594,
+      "previewBytes": 8712,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          507,
+          497,
+          382
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+      },
+      "url": "/bespoke/sirius-b-star-sky-image.jpg",
+      "previewUrl": "/bespoke/sirius-b-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-72e4d5f1-3fcd-4ad8-9d06-efec4e52d149.png",
+      "sourceSha256": "e17338a7e807b3bc8f316db9c4b639efc2d8fc449b618c3549b3114ca9b89ad3",
+      "sha256": "052cff8ce35cff5374c5938b705374aabcd4afd9fb9492c12df5673f54e12f4d",
+      "previewSha256": "4e087558a1535b48106a9d82ea43bd539a461c39ff48b43f42a6c057421e5aac",
+      "bytes": 30030,
+      "previewBytes": 6584,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

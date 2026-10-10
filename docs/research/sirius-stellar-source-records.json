@@ -1,0 +1,112 @@
+[
+  {
+    "url": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+    "file": "data/research-sources/sirius-hubble-native.jpg",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2005-12-13",
+    "observationDate": "2003-10-15",
+    "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+    "bytes": 176877,
+    "terms": "ESA/Hubble CC BY4.0 full credit retained"
+  },
+  {
+    "url": "https://esahubble.org/images/heic0516a/",
+    "file": "data/research-sources/sirius-hubble-page.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2005-12-13",
+    "observationDate": null,
+    "sha256": "2f74ed57f1bc4f9de31c7440b8babe3475afe659d43fa8bc70bc62589e60dd37",
+    "bytes": 53605,
+    "terms": "ESA/Hubble CC BY4.0 full credit retained"
+  },
+  {
+    "url": "https://esahubble.org/copyright/",
+    "file": "data/research-sources/sirius-hubble-terms.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": null,
+    "observationDate": null,
+    "sha256": "5e6b3e4e798de25c84c76234db5f1ca9cdbb6a7a1e2dbfe9100ed70089f5c844",
+    "bytes": 43653,
+    "terms": "ESA/Hubble CC BY4.0 full credit retained"
+  },
+  {
+    "url": "https://arxiv.org/html/1703.10625",
+    "file": "data/research-sources/sirius-bond.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2017-03-30",
+    "observationDate": null,
+    "sha256": "cd580404aa78ac23337da614105ad27f0eade4d73b76d6e5706b46200071c6ef",
+    "bytes": 347993,
+    "terms": "Primary research citation; no figures reused yet"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1809.01240",
+    "file": "data/research-sources/sirius-joyce.pdf",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2018-09-04",
+    "observationDate": null,
+    "sha256": "ac24a6dd3aab7d9837e30a9f757ce944cb7a09041ff87c45c7182f028b6535c7",
+    "bytes": 3332786,
+    "terms": "Primary research citation; no figures reused yet"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2112.05234",
+    "file": "data/research-sources/sirius-lucas.pdf",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2021-12-09",
+    "observationDate": null,
+    "sha256": "aed963f6cbc793a4ff51f7522e21ae3913d2c5b51e394c7105839b8dd923771d",
+    "bytes": 1276872,
+    "terms": "Primary research citation; no figures reused yet"
+  },
+  {
+    "url": "https://iopscience.iop.org/article/10.3847/1538-3881/ac4032",
+    "file": "data/research-sources/sirius-lucas-publisher.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2022-01-21",
+    "observationDate": null,
+    "sha256": "d7877b024c119bb1a0b285e41a1ab2723cc39ceddde2e2fb5a322cee48ec8b90",
+    "bytes": 14375,
+    "terms": "Primary research citation; no figures reused yet",
+    "error": "HTTP200bot-managerCAPTCHA, not paper content; publisher imagery inaccessible. Primary arXiv CC BY4 and author repository used instead."
+  },
+  {
+    "url": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+    "file": "data/research-sources/sirius-b-keck-psf.pdf",
+    "sha256": "188854788be3044e1e510a340bf327de470ca354b24a0bf81bf9a731637cd68e",
+    "bytes": 59171,
+    "retrieved": "2026-10-10",
+    "publicationDate": "2021-12-09",
+    "observationDate": "2020-11-21",
+    "terms": "Lucas etal2021 arXiv CC BY4.0; primary author paper figure2, entire PDF unchanged."
+  },
+  {
+    "url": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+    "file": "public/bespoke/sirius-b-keck-native.png",
+    "sourceSha256": "188854788be3044e1e510a340bf327de470ca354b24a0bf81bf9a731637cd68e",
+    "sha256": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+    "bytes": 101362,
+    "width": 576,
+    "height": 477,
+    "retrieved": "2026-10-10",
+    "publicationDate": "2021-12-09",
+    "observationDate": "2020-11-21",
+    "terms": "CC BY4.0. Complete author Figure2 PDF rasterized with PDF.js at2x, no crop or image content edit. Chart colour is instrumental falsecolour, not photospheric colour."
+  },
+  {
+    "url": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/README.md",
+    "file": "data/research-sources/sirius-lucas-readme.md",
+    "retrieved": "2026-10-10",
+    "sha256": "a50693aae939b1687a83c8677466f17c64136bb7cb60198cade278d142ad2535",
+    "bytes": 2315,
+    "terms": "Primary author data licence and attribution/arXiv paper licence records"
+  },
+  {
+    "url": "https://arxiv.org/abs/2112.05234",
+    "file": "data/research-sources/sirius-lucas-arxiv.html",
+    "retrieved": "2026-10-10",
+    "sha256": "b28c308dfd5b1fd3a2ace069caa55e5d5f2957fef20ebbc3b96d6a5d9b00f7fa",
+    "bytes": 43137,
+    "terms": "Primary author data licence and attribution/arXiv paper licence records"
+  }
+]

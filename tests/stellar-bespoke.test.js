@@ -61,3 +61,19 @@ test('Lalande aliases use its independent stellar map and disclose alternative f
   assert.match(visual.measured.join(' '), /inconsistent/);
   assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg - 60) < 1e-10);
 });
+
+test('Sirius components keep separate photospheres and a gaseous white-dwarf identity', () => {
+  const a = bodyVisualFor({ name: 'Sirius' }), b = bodyVisualFor({ name: 'alf CMa B' });
+  assert.equal(a.id, 'sirius-a-star');
+  assert.equal(b.id, 'sirius-b-star');
+  assert.notEqual(a.surfaceMap.sha256, b.surfaceMap.sha256);
+  assert.match(b.stellarClass, /white dwarf/);
+  assert.match(b.modelled.join(' '), /hydrogen atmosphere/);
+  assert.match(b.contextImages[1].description, /instrumentalPSF/);
+  assert.equal(b.contextImages[1].observationDate, '2020-11-21');
+  assert.equal(a.contextImages[0].sha256, b.contextImages[0].sha256);
+  const model = buildStarSystem({ star: { id: 'b', name: 'Sirius B', x: 1, y: 0, z: 0, distLy: 8.6, spect: 'DA2', lum: .024 }, planets: [], measured: { mass: 1.018, props: { radiusSun: .0084, teff: 25000, whiteDwarf: true }, ref: 'Binary literature' } });
+  assert.equal(model.bodies[0].kind, 'white dwarf');
+  assert.equal(model.bodies[0].skin.map, b.surfaceMap.key);
+  assert.ok(Math.abs(skyGeometry(b.skyModel).angularDiameterDeg - 60) < 1e-10);
+});
