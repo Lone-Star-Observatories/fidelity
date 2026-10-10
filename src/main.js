@@ -33,6 +33,7 @@ import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
+import { createTimeControl } from './panels/timecontrol.js';
 import { createEventsPanel } from './panels/events.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
@@ -302,8 +303,6 @@ const pill = (label, onClick, cls = '') => {
   b.addEventListener('click', onClick);
   return b;
 };
-const rateOut = h('div', { className: 'ctl-readout mono' });
-const holdBtn = pill('❚❚', () => clock.toggleHold());
 const dateIn = h('input', { type: 'date', id: 'ship-date', title: 'Jump to date (UTC)' });
 // Typed dates jump on Enter only (each keystroke of a year is a valid, wrong date: "0002", "0020"…);
 // a date picked from the calendar jumps at once. Leaving the field un-entered reverts it to the clock.
@@ -358,16 +357,12 @@ window.addEventListener('keydown', (e) => {
   else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
 });
 
-// two rows: the time controls above, everything else on the elbow's arm below
-controls.append(scrollRow(h('div', { className: 'bar-row' },
-  h('div', { className: 'ctl-group' },
-    h('div', { className: 'ctl-label', textContent: 'TIME' }),
-    pill('◀◀', () => clock.slower(), 'square'), holdBtn, pill('▶▶', () => clock.faster(), 'square'),
-    rateOut, pill('NOW', () => clock.now(), 'square'), dateIn),
-  h('div', { className: 'ctl-group', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' },
-    h('div', { className: 'ctl-label', textContent: 'STEP' }),
-    pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')),
-  h('div', { className: 'bar-fill' }))), scrollRow(h('div', { className: 'bar-row' },
+// two rows: the time control above (#34), everything else on the elbow's arm below
+const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
+  stepControls: [pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')] });
+const tcLoop = () => { timeCtl.frame(); requestAnimationFrame(tcLoop); };
+requestAnimationFrame(tcLoop);
+controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
@@ -381,11 +376,6 @@ if (STANDALONE) {
   const hz = [...controls.querySelectorAll('.pill')].find((b) => b.textContent === 'JPL HORIZONS');
   hz.title = 'Bundled JPL Horizons months only in this preview (Keplerian elements outside them); run `npm start` for any date.';
 }
-const syncClock = () => {
-  rateOut.textContent = clock.rate.label;
-  holdBtn.textContent = clock.rate.days === 0 ? '▶' : '❚❚';
-};
-clock.onChange(syncClock); syncClock();
 applyBandEverywhere(); // the remembered spectrum band
 
 // ---- panel helpers ----------------------------------------------------------------------

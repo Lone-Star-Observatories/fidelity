@@ -19,6 +19,8 @@ const defaults = {
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
   textScale: 1,
   stepN: 1,         // STEP control: n …
+  timePanel: 'rate',   // time control middle panel: rate | timeline
+  timelineSpan: 730,   // TIMELINE width in days
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)
   band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
   bandPass: null,    // its bandpass (null = the band's default)

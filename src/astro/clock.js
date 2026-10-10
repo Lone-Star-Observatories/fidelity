@@ -37,6 +37,10 @@ export function stepJd(jd, n, unitId) {
   return Number.isNaN(target.getTime()) ? jd + n * u.days : target.getTime() / 86400000 + 2440587.5;
 }
 
+// JavaScript dates span ±100,000,000 days around 1970 (±273,790 years): the clock stops at the edge.
+export const JD_MIN = 2440587.5 - 9.99e7, JD_MAX = 2440587.5 + 9.99e7;
+const HOLD = RATES.findIndex((r) => r.days === 0);
+
 export function createClock() {
   let jd = jdFromDate(new Date());
   let rateIdx = REAL;
@@ -52,12 +56,16 @@ export function createClock() {
     tick(now = performance.now()) {
       jd += ((custom ?? RATES[rateIdx]).days * (now - last)) / 1000;
       last = now;
+      if (jd < JD_MIN || jd > JD_MAX) { jd = Math.min(JD_MAX, Math.max(JD_MIN, jd)); custom = null; rateIdx = HOLD; emit(); }
     },
-    set(newJd) { jd = newJd; emit(); },
+    set(newJd) { jd = Math.min(JD_MAX, Math.max(JD_MIN, newJd)); emit(); },
+    /** The current rate, to hand back to restore() (e.g. after scrubbing the timeline). */
+    snapshot() { return { rateIdx, custom }; },
+    restore(s) { rateIdx = s.rateIdx; custom = s.custom; emit(); },
     /** Move the clock by n units (see stepJd). */
-    step(n, unitId) { jd = stepJd(jd, n, unitId); emit(); },
+    step(n, unitId) { jd = Math.min(JD_MAX, Math.max(JD_MIN, stepJd(jd, n, unitId))); emit(); },
     /** Run at `days` per second with a label (e.g. 3 DAYS/S); 0 holds. */
-    setRate(days, label) { custom = days === 0 ? null : { days, label }; if (days === 0) rateIdx = RATES.findIndex((r) => r.days === 0); emit(); },
+    setRate(days, label) { custom = days === 0 ? null : { days, label }; if (days === 0) rateIdx = HOLD; emit(); },
     now() { jd = jdFromDate(new Date()); rateIdx = REAL; custom = null; emit(); },
     faster() { if (custom) { rateIdx = nearest(custom.days); custom = null; } rateIdx = Math.min(RATES.length - 1, rateIdx + 1); emit(); },
     slower() { if (custom) { rateIdx = nearest(custom.days); custom = null; } rateIdx = Math.max(0, rateIdx - 1); emit(); },

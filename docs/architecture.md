@@ -282,7 +282,7 @@ fractional or negative; it and the unit are remembered.
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-The bottom bar has two rows: TIME and STEP on top, the view toggles (scale, spectrum, ephemeris, layers) on the elbow's arm below; each row scrolls sideways with the mouse wheel when its controls overflow.
+The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 millennium/s through HOLD and real time to +1 millennium/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The clock stops (HOLD) at the edge of JavaScript's date range, ±273,790 years.
 
 ## Spectrum filter (#28)
 
