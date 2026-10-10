@@ -14,6 +14,6 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'es2022',
     chunkSizeWarningLimit: 2500,
-    ...(mode === 'standalone' ? { outDir: 'dist-standalone', rollupOptions: { output: { inlineDynamicImports: true } } } : {}),
+    ...(mode === 'standalone' ? { minify: 'terser', terserOptions: { compress: { passes: 2 }, mangle: true }, outDir: 'dist-standalone', rollupOptions: { output: { inlineDynamicImports: true } } } : {}),
   },
 }));

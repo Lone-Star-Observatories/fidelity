@@ -35,6 +35,14 @@ export async function loadCraftModel(id) {
   const url = snapshot?.models?.[asset.url] ?? (!snapshot ? asset.url : null);
   if (!url) return null;
   const { scene } = await loader.loadAsync(url);
+  // NASA's imported gold material is diffuse; use reflective gold for inspection.
+  if (id === 'jwst') scene.traverse(child => {
+    for (const material of (Array.isArray(child.material) ? child.material : [child.material])) {
+      if (!material?.isMeshStandardMaterial || !/^JWST-gold(?:-|$)/.test(material.name)) continue;
+      material.color.set(0xd4af37); material.metalness = 1; material.roughness = 0.18;
+      material.side = THREE.DoubleSide; material.needsUpdate = true;
+    }
+  });
   const bounds = new THREE.Box3().setFromObject(scene);
   const radius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
   if (!Number.isFinite(radius) || radius <= 0) {

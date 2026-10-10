@@ -611,3 +611,15 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .nav-label.sky-dso.cl { color: var(--peach); }
 .nav-label.sky-con { color: #7f9bd6; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.18em; opacity: 0.7; pointer-events: none; }
 .nav-label.sky-con.rank3 { opacity: 0.45; }
+
+/* IAU named features on globes: lighter than site labels, no box */
+.feature-label {
+  font-size: 10px; letter-spacing: 0.06em; font-style: italic; color: rgba(255, 245, 225, 0.82); background: none; border: 0; padding: 0 2px;
+  text-shadow: 0 0 3px #000, 0 0 2px #000; white-space: nowrap; pointer-events: auto; cursor: pointer;
+}
+.feature-label:hover { color: var(--orange); }
+
+/* LOOK AT (#43) readout under the surface HUD */
+.surface-look { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; margin-top: 4px; }
+.surface-look:empty, .surface-look:empty ~ .surface-look-btns { display: none; }
+.surface-look-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }

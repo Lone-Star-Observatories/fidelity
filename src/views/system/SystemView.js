@@ -31,8 +31,10 @@ import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
-import { createSiteLayer } from './sites.js';
-import { fetchTraverse, fetchClusters } from '../../data/catalog.js';
+import { createSiteLayer, siteDir } from './sites.js';
+import { fetchTraverse, fetchFeatures, fetchClusters } from '../../data/catalog.js';
+import { createFeatureLayer } from './features.js';
+import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, C_KM_S } from '../../astro/lookat.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
@@ -51,7 +53,7 @@ import { createMagFields } from './magfields.js';
 import { createSkyGlare } from './skyglare.js';
 import { createSkyLayers } from './skylayers.js';
 import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, litFraction } from '../../astro/planetshine.js';
-import { angularDiameterDeg, FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
+import { FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
@@ -92,7 +94,7 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFrame, onPickStar, onDrillStar, onDeepSky }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky }) {
   let hiddenKinds = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
   const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
@@ -421,10 +423,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     group.add(label);
     root.add(group);
     // #37: landing, impact and rover sites on this globe
-    const sites = model.isSol && !isStar(body) ? createSiteLayer(body, { onSite: (s) => onSite?.(s), loadTraverse: fetchTraverse }) : null;
+    const sites = model.isSol && !isStar(body) ? createSiteLayer(body, { onSite: (s) => onSite?.(s), loadTraverse: fetchTraverse, loadModel: async (id) => { const m = await loadCraftModel(id); if (m) inspectCraft(m); return m; } }) : null;
     if (sites) tilt.add(sites.group);
+    // IAU named features (craters, montes, valles…) on worlds with a surface
+    const features = model.isSol && !isStar(body) && !['jupiter', 'saturn', 'uranus', 'neptune', 'earth'].includes(body.id)
+      ? createFeatureLayer(body, { onFeature: (f) => onFeature?.(f), load: fetchFeatures }) : null;
+    if (features) tilt.add(features.group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites, features };
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -657,6 +663,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       root.remove(n.group);
       n.label.element.remove();
       n.sites?.dispose();
+      n.features?.dispose();
       // Geometries and materials are per-body; textures are shared through the loader cache.
       disposeModel(n.mesh);
       n.group.traverse((o) => { if (o === n.mesh || n.mesh.getObjectById(o.id)) return; o.geometry?.dispose(); o.material?.dispose(); });
@@ -1151,6 +1158,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // ---- focus & camera flight ---------------------------------------------------------
   let focusId = 'sun';
   let flight = null; // { from: Vector3 (scene), t0, dur, d0 }
+  // VIEW FROM ABOVE (#37): the camera hovers over a surface site, orbiting it rather than the body's centre
+  let siteView = null; // { id, lat, lon, spanKm, ready, last: Vector3, r }
+  const siteWorld = (n, lat, lon, out) => { const g = n.sites?.group ?? n.tilt; g.updateWorldMatrix(true, false); return out.set(...siteDir(n.body, lat, lon)).applyMatrix4(g.matrixWorld); };
+  function endSiteView() { if (!siteView) return; siteView = null; controls.target.set(0, 0, 0); }
   const focusPos = new THREE.Vector3();
   let scaleMix = settings.get('scale') === 'true' ? 1 : 0;
 
@@ -1176,6 +1187,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   function flyTo(id, { overview = null } = {}) {
     if (!nodes[id]) return;
     if (surface) exitSurface(false);
+    endSiteView();
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
     flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
     focusId = id;
@@ -1270,11 +1282,23 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // from a moon: find the parent planet (#49)
   const hudPlanet = Object.assign(document.createElement('button'), { className: 'pill', hidden: true });
   hudPlanet.addEventListener('click', () => { if (surface) surface.lookParent = true; });
-  hud.append(hudText, hudSub, hudBack, hudSun, hudPlanet, hudFov);
   const planetArrow = Object.assign(document.createElement('div'), { className: 'edge-beacon planet-arrow', hidden: true });
   planetArrow.innerHTML = '<span class="arrow">▲</span><span class="txt"></span>';
   container.appendChild(planetArrow);
   const parentTag = (() => { const el = document.createElement('div'); el.className = 'nav-label host parent-tag'; const o = new CSS2DObject(el); o.center.set(-0.08, 0.5); o.visible = false; scene.add(o); return o; })();
+  // LOOK AT (#43): what you're looking at, and buttons to re-track it, go naked-eye, or toggle light-time
+  const hudLook = document.createElement('div');
+  hudLook.className = 'surface-look';
+  const hudTrack = Object.assign(document.createElement('button'), { className: 'pill', textContent: '⌖ TRACK', title: 'Keep the target centred' });
+  hudTrack.addEventListener('click', () => { if (surface?.look) { surface.look.track = true; } });
+  const hudFit = Object.assign(document.createElement('button'), { className: 'pill', textContent: '⤢ FIT TARGET', title: 'Zoom so the target fills a quarter of the field' });
+  hudFit.addEventListener('click', () => { if (surface?.look) surface.look.fitted = false; });
+  const hudLt = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'APPARENT', title: 'Apparent: where it was when its light left (as astronomers see it). Geometric: where it is now.' });
+  hudLt.addEventListener('click', () => { if (surface?.look) { surface.look.apparent = !surface.look.apparent; hudLt.textContent = surface.look.apparent ? 'APPARENT' : 'GEOMETRIC'; } });
+  const hudLookBtns = document.createElement('div');
+  hudLookBtns.className = 'surface-look-btns';
+  hudLookBtns.append(hudTrack, hudFit, hudLt); // field presets (NAKED EYE … TELESCOPE) are in the #47 row
+  hud.append(hudText, hudSub, hudLook, hudBack, hudSun, hudPlanet, hudLookBtns, hudFov);
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1295,6 +1319,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   const zenithTag = (() => { const el = document.createElement('div'); el.className = 'nav-label compass zenith'; el.textContent = '+ ZENITH'; const o = new CSS2DObject(el); o.visible = false; scene.add(o); return o; })();
 
   function enterSurface(id, { object, local, normal }) {
+    siteView = null;
     const n = nodes[id];
     if (!n) return;
     const sphere = object === n.mesh;
@@ -1314,6 +1339,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     const s = surface;
     surface = null;
     hud.hidden = true;
+    hudLook.textContent = '';
     for (const c of [...compass, zenithTag, parentTag]) c.visible = false;
     planetArrow.hidden = true;
     skyMat.uniforms.uFade.value = 1;
@@ -1340,6 +1366,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   window.addEventListener('pointerup', () => { lookDrag = null; });
   labels.domElement.addEventListener('pointermove', (e) => {
     if (!surface || !lookDrag) return;
+    if (surface.look && !surface.look.orbit) surface.look.track = false; // looking around: ⌖ TRACK brings it back
     const k = surface.fov / container.clientHeight;
     surface.az = (surface.az - (e.clientX - lookDrag[0]) * k + 360) % 360;
     surface.alt = Math.max(-15, Math.min(90, surface.alt + (e.clientY - lookDrag[1]) * k));
@@ -1348,7 +1375,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   labels.domElement.addEventListener('wheel', (e) => {
     if (!surface) return;
     e.preventDefault();
-    surface.fov = Math.max(0.2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+    surface.fov = Math.max(surface.look ? 0.02 : 0.2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
     surface.preset = null;
   }, { passive: false });
 
@@ -1374,6 +1401,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       else show = true; // stars and planets
       // daylight: only the Sun, the planet overhead (from a moon) and our own moon
       if (show && s.day > 0.5 && !isStar(b) && !(b.kind === 'moon' && b.parent === s.id) && id !== here.parent) show = false;
+      if (s.look?.target === id) show = true; // LOOK AT: the target is always drawn (even a spacecraft or a far moon)
       n.group.visible = show;
       n.label.visible = show;
     }
@@ -1392,7 +1420,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     const lit = litFraction(angleBetween(sunPos.clone().sub(pos).toArray(), p.clone().sub(pos).toArray()));
     const name = pn.body.name.toUpperCase(), deg = disc.deg;
     const sz = deg >= 1 ? `${deg.toFixed(1)}°` : `${deg.toFixed(2)}°`;
-    if (s.lookParent) { s.az = a.az; s.alt = Math.min(89.9, Math.max(-5, a.alt)); s.fov = Math.min(110, Math.max(deg * 4, 1)); s.preset = null; s.lookParent = false; if (a.alt < 0) flashHud(`${name} IS BELOW THE HORIZON`); }
+    if (s.lookParent) { s.az = a.az; s.alt = Math.min(89.9, Math.max(-5, a.alt)); s.fov = Math.min(110, Math.max(deg * 4, 1)); s.preset = null; s.lookParent = false; if (s.look) s.look.track = false; if (a.alt < 0) flashHud(`${name} IS BELOW THE HORIZON`); }
     hudPlanet.textContent = `◉ LOOK AT ${name}`;
     // a locked moon keeps its parent fixed in the sky: below the horizon means never (bar libration)
     const libration = b.id === 'moon' ? 8 : 1; // the Moon's optical libration reaches ~8°; the others' is tiny
@@ -1427,6 +1455,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (!best) return;
     const f = s.frame, a = altAz(f, best.pos.clone().sub(camera.position).toArray());
     s.az = a.az; s.alt = Math.min(89.9, a.alt); s.fov = Math.max(0.2, Math.min(110, best.deg * 3)); s.preset = null;
+    if (s.look) s.look.track = false;
   }
   // ---- the corona in totality (#31) -----------------------------------------------------------
   // A real photograph of the corona fades in when the Moon fully covers the Sun, its streamer
@@ -1493,6 +1522,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   function updateSurface(jd) {
     const s = surface, n = nodes[s.id];
     root.updateMatrixWorld(true);
+    if (s.look?.orbit) return updateOrbitLook(jd);
     // #36 renders in daylight: move to the nearest point where the Sun stands `daylight`° up
     if (s.daylight != null && s.sphere) {
       const sunL = s.object.worldToLocal(nodes[model.starId].group.getWorldPosition(sv.c)).normalize();
@@ -1529,7 +1559,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     const star = nodes[model.starId];
     const sunDir = star.group.getWorldPosition(sv.c).sub(p);
     const sun = altAz(f, sunDir.toArray());
-    if (s.lookSun) { s.az = sun.az; s.alt = Math.min(89.9, sun.alt); s.fov = Math.min(s.fov, 6); s.lookSun = false; }
+    if (s.lookSun) { s.az = sun.az; s.alt = Math.min(89.9, sun.alt); s.fov = Math.min(s.fov, 6); s.lookSun = false; if (s.look) s.look.track = false; }
+    if (s.look) { // LOOK AT: follow the target across the sky
+      const tn = nodes[s.look.target];
+      const t = tn ? altAz(f, tn.group.getWorldPosition(sv.d).sub(p).toArray()) : null;
+      if (t && s.look.track) { s.az = t.az; s.alt = Math.max(-15, Math.min(89.9, t.alt)); }
+      s.look.altAz = t;
+      updateLookReadout(jd, p);
+    }
     // a landscape view (#36 renders): face the parent planet (from a moon) or the Sun if up, with the horizon in frame
     if (s.lookBest) {
       const parentN = n.body.kind === 'moon' && nodes[n.body.parent];
@@ -1602,6 +1639,119 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
   }
 
+  // ---- LOOK AT (#43) ---------------------------------------------------------------------------
+  // Stand on (or hover just above) one body and look at another, at TRUE scale: its real angular
+  // size, phase, light-time-corrected position, and when it rises and sets.
+  const oA = new THREE.Vector3(), oB = new THREE.Vector3(), oC = new THREE.Vector3(), oQ = new THREE.Quaternion(), oM = new THREE.Matrix4(), Y = new THREE.Vector3(0, 1, 0);
+  /** The body's orientation at `jd` (quaternion of its tilt group) and extra spin about local +y. */
+  function orientationAt(id, jd, q) {
+    const n = nodes[id], b = n.body;
+    const toS = (v) => new THREE.Vector3(...frameToScene(eqToEcl(v)));
+    if (model.isSol && (id === 'moon' || id === 'earth')) {
+      const ax = id === 'earth' ? earthAxes(jd, b.texLon0 ?? -180) : moonAxes(jd, b.texLon0 ?? -180);
+      q.setFromRotationMatrix(oM.makeBasis(toS(ax.x), toS(ax.y), toS(ax.z))); return 0;
+    }
+    if (b.locked && nodes[b.parent]) {
+      const pos = scenePosition(id, jd, new THREE.Vector3());
+      const to = scenePosition(b.parent, jd, new THREE.Vector3()).sub(pos).normalize();
+      const ahead = scenePosition(id, jd + (b.periodDays ?? b.moon?.elements.P ?? 1) / 50, new THREE.Vector3()).sub(pos);
+      const up = to.clone().negate().cross(ahead).normalize();
+      const x = to.sub(up.clone().multiplyScalar(to.dot(up))).normalize();
+      q.setFromRotationMatrix(oM.makeBasis(x, up, x.clone().cross(up))); return 0;
+    }
+    if (b.iau && b.pole) {
+      const ax = bodyAxes(b.pole, b.iau, jd, b.texLon0 ?? -180);
+      q.setFromRotationMatrix(oM.makeBasis(toS(ax.x), toS(ax.y), toS(ax.z))); return 0;
+    }
+    q.copy(n.tilt.quaternion);
+    return b.rotationHours ? ((jd * 24) / b.rotationHours) * Math.PI * 2 % (Math.PI * 2) : 0;
+  }
+  /** Altitude (deg) of the LOOK AT target from the standing point at `jd`. */
+  function lookAltAt(L, jd) {
+    const c = scenePosition(L.obs, jd, oA);
+    const spin = orientationAt(L.obs, jd, oQ);
+    const up = oC.copy(L.local).normalize().applyAxisAngle(Y, spin).applyQuaternion(oQ);
+    const d = scenePosition(L.target, jd, oB).sub(c).normalize();
+    return Math.asin(Math.max(-1, Math.min(1, up.dot(d)))) / DEG;
+  }
+  /** Next rise and set within 4 days (10-minute steps, refined by bisection), or 'ALWAYS UP' / 'NEVER RISES'. */
+  function riseSet(L, jd) {
+    const step = 10 / 1440, h0 = -0.3;
+    let prev = lookAltAt(L, jd), rise = null, set = null;
+    const refine = (a, b) => { for (let k = 0; k < 12; k++) { const m = (a + b) / 2; ((lookAltAt(L, m) > h0) === (lookAltAt(L, a) > h0)) ? (a = m) : (b = m); } return (a + b) / 2; };
+    for (let t = jd + step; t <= jd + 4 && (rise == null || set == null); t += step) {
+      const a = lookAltAt(L, t);
+      if (prev <= h0 && a > h0 && rise == null) rise = refine(t - step, t);
+      if (prev > h0 && a <= h0 && set == null) set = refine(t - step, t);
+      prev = a;
+    }
+    return { rise, set, up: lookAltAt(L, jd) > h0 };
+  }
+  const inTime = (days) => { const m = Math.round(days * 1440); return m < 60 ? `${m} MIN` : `${Math.floor(m / 60)} H ${String(m % 60).padStart(2, '0')} MIN`; };
+
+  function updateLookReadout(jd, eye) {
+    const L = surface.look, tn = nodes[L.target], star = nodes[model.starId];
+    if (!tn) return;
+    const tp = tn.group.getWorldPosition(oA), sp = star.group.getWorldPosition(oB);
+    const dKm = tp.distanceTo(eye) * AU_KM;
+    const deg = angularDiameterDeg(tn.body.radiusKm || 0.001, dKm);
+    if (!L.fitted) { surface.fov = fitFov(deg); L.fitted = scaleMix === 1; } // keep fitting until TRUE scale has settled
+    const ph = isStar(tn.body) ? null : lookPhase(sp.clone().sub(tp).toArray(), eye.clone().sub(tp).toArray());
+    const lt = dKm / C_KM_S;
+    let sky = '';
+    if (!L.orbit && L.altAz) {
+      if (performance.now() - (L.rsAt ?? 0) > 3000) { L.rs = riseSet(L, jd); L.rsAt = performance.now(); }
+      const rs = L.rs;
+      const next = rs ? (rs.up ? (rs.set != null ? ` · SETS IN ${inTime(rs.set - jd)}` : ' · ALWAYS UP') : (rs.rise != null ? ` · RISES IN ${inTime(rs.rise - jd)}` : ' · DOES NOT RISE IN 4 DAYS')) : '';
+      sky = L.altAz.alt >= 0 ? ` · ${L.altAz.alt.toFixed(1)}° UP, AZ ${Math.round(L.altAz.az)}°${next}` : ` · BELOW THE HORIZON${next}`;
+    }
+    const m = magnification(surface.fov);
+    const text = `${tn.body.name.toUpperCase()} · ${describeSize(deg)}${ph ? ` · ${Math.round(ph.illuminated * 100)}% LIT (PHASE ${Math.round(ph.angleDeg)}°)` : ''} · ${Math.round(dKm).toLocaleString()} KM${sky}`
+      + ` · ${L.apparent ? `AS IT WAS ${fmtLightTime(lt)} AGO` : `GEOMETRIC (LIGHT TAKES ${fmtLightTime(lt)})`} · FIELD ${surface.fov < 1 ? surface.fov.toFixed(2) : surface.fov.toFixed(1)}°${m > 1.05 ? ` · ×${m < 10 ? m.toFixed(1) : Math.round(m)}` : ' · NAKED EYE'}${L.track || L.orbit ? '' : ' · NOT TRACKING'}`;
+    if (hudLook.textContent !== text) hudLook.textContent = text;
+    L.info = { deg, dKm, lt, illuminated: ph?.illuminated ?? null, phaseDeg: ph?.angleDeg ?? null, alt: L.altAz?.alt ?? null };
+  }
+  /** From orbit: hover just above the observer on the side facing the target and frame it. */
+  function updateOrbitLook(jd) {
+    const s = surface, L = s.look, n = nodes[L.obs], tn = nodes[L.target];
+    if (!n || !tn) return;
+    const c = n.group.getWorldPosition(sv.c), tp = tn.group.getWorldPosition(sv.d);
+    const u = sv.e.copy(tp).sub(c).normalize();
+    const p = sv.a.copy(c).addScaledVector(u, Math.max(displayRadius(n.body) * 1.25, 1e-12));
+    camera.position.copy(p);
+    camera.up.copy(Y.clone().applyQuaternion(n.tilt.getWorldQuaternion(sv.q)));
+    camera.lookAt(tp);
+    if (Math.abs(camera.fov - s.fov) > 1e-3) { camera.fov = s.fov; camera.updateProjectionMatrix(); }
+    camera.near = 1e-14; camera.far = 1e6; camera.updateProjectionMatrix();
+    for (const cc of [...compass, zenithTag]) cc.visible = false;
+    scene.background = null; skyMat.uniforms.uFade.value = 1; s.day = 0; hudSun.hidden = true;
+    updateLookReadout(jd, p);
+    const text = `FROM ${n.body.name.toUpperCase()} · LOOKING AT ${tn.body.name.toUpperCase()}`;
+    if (hudText.textContent !== text) hudText.textContent = text;
+    const sub = 'FROM JUST ABOVE IT, IGNORING THE HORIZON · TRUE SCALE · WHEEL TO ZOOM · ESC TO RETURN';
+    if (hudSub.textContent !== sub) hudSub.textContent = sub;
+  }
+  /** LOOK AT `target` from `obs`: standing on it where the target is ~35° up, or hovering above it. */
+  function lookAtBody(obs, target, { mode = 'surface', apparent = true } = {}) {
+    const n = nodes[obs], tn = nodes[target];
+    if (!n || !tn || obs === target) return false;
+    const noGround = isStar(n.body) || n.body.marker || n.body.kind === 'spacecraft' || n.body.kind === 'satellite';
+    const orbit = mode === 'orbit' || noGround;
+    root.updateMatrixWorld(true);
+    let local = new THREE.Vector3(0, 1, 0);
+    if (!orbit) {
+      const dirL = n.mesh.worldToLocal(tn.group.getWorldPosition(new THREE.Vector3())).normalize();
+      const w = new THREE.Vector3().crossVectors(dirL, Y);
+      if (w.lengthSq() < 1e-8) w.set(1, 0, 0);
+      w.normalize();
+      local = dirL.clone().multiplyScalar(Math.cos(55 * DEG)).addScaledVector(w, Math.sin(55 * DEG)).normalize();
+    }
+    enterSurface(obs, { object: n.mesh, local, normal: local.clone() });
+    surface.look = { obs, target, apparent, orbit, local: local.clone(), track: true, fitted: false };
+    hudLt.textContent = apparent ? 'APPARENT' : 'GEOMETRIC';
+    return true;
+  }
+
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
   const tmp2 = new THREE.Vector3();
@@ -1621,6 +1771,39 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     camera.updateProjectionMatrix();
   }
   new ResizeObserver(resize).observe(container);
+
+  // Hover over the site: first frame places the camera above it (a little south, looking down and
+  // north) at a height that fits its paths; afterwards the camera follows the turning, moving body.
+  const svP = new THREE.Vector3(), svN = new THREE.Vector3(), svQ = new THREE.Quaternion(), svD = new THREE.Vector3();
+  function updateSiteView() {
+    const n = nodes[siteView.id];
+    if (!n || focusId !== siteView.id) { endSiteView(); return; }
+    siteWorld(n, siteView.lat, siteView.lon, svP);
+    const r = displayRadius(n.body);
+    if (!siteView.ready) {
+      svN.copy(svP).normalize();
+      const h = Math.max(2, siteView.spanKm * 2.2) / n.body.radiusKm * r; // height (scene units) that fits the span
+      const pole = tmp6.set(0, 1, 0).applyQuaternion(n.tilt.getWorldQuaternion(svQ)).normalize();
+      const south = pole.sub(tmp8.copy(svN).multiplyScalar(pole.dot(svN))).normalize().negate();
+      const dest = svN.clone().multiplyScalar(h).addScaledVector(south, h * 0.45); // offset from the site
+      siteView.anim = { t0: performance.now(), from: camera.position.clone().sub(svP), dest };
+      controls.target.copy(svP);
+      siteView.ready = true; siteView.last = svP.clone(); siteView.r = r;
+    }
+    const a = siteView.anim;
+    if (a) { // swoop down: direction blended, distance eased in log space
+      const k = ease(Math.min(1, (performance.now() - a.t0) / 1800));
+      svD.copy(a.from).normalize().lerp(tmp9.copy(a.dest).normalize(), k).normalize()
+        .multiplyScalar(Math.exp(Math.log(a.from.length()) + (Math.log(a.dest.length()) - Math.log(a.from.length())) * k));
+      camera.position.copy(svP).add(svD);
+      if (k >= 1) siteView.anim = null;
+    } else if (r !== siteView.r) { // ENHANCED ⇄ TRUE: keep the same view of the site
+      camera.position.copy(svP).add(tmp9.copy(camera.position).sub(siteView.last).multiplyScalar(r / siteView.r));
+    } else camera.position.add(tmp9.copy(svP).sub(siteView.last));
+    siteView.r = r;
+    controls.target.copy(svP);
+    siteView.last.copy(svP);
+  }
 
   function frame(now) {
     if (!running) return;
@@ -1649,7 +1832,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
         const zonesOn = settings.get('zones'), fid = focusId;
         const nearEarth = ['earth', 'moon', 'geo-ring', 'van-allen', 'hill-spheres'].includes(fid) || fid.startsWith('em-') || fid === 'se-l1' || fid === 'se-l2';
         const local = n.body.anchor === 'earth' || n.body.pair === 'earth-moon' || (n.body.pair === 'sun-earth' && n.body.L <= 2);
-        n.label.visible = id === fid || (zonesOn && showLabels && (local ? nearEarth : n.body.kind === 'lagrange point' || overviewAU != null));
+        n.label.visible = !siteView && (id === fid || (zonesOn && showLabels && (local ? nearEarth : n.body.kind === 'lagrange point' || overviewAU != null)));
         n.group.visible = n.label.visible || n.body.kind === 'lagrange point' && zonesOn;
         continue;
       }
@@ -1684,10 +1867,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       const local = n.body.kind === 'moon' || (n.body.kind === 'spacecraft' && n.body.parent);
       const near = !local || fb.id === n.body.parent || fb.parent === n.body.parent || fb.id === n.body.id;
       const minorFar = n.body.orbit?.type === 'elements' && overviewAU != null && overviewAU < 6 && n.body.belt !== 'MAIN BELT';
-      n.label.visible = (showLabels && near && !minorFar) || id === focusId;
+      n.label.visible = !siteView && ((showLabels && near && !minorFar) || id === focusId); // hovering over a site: only its own labels
       n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
       n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, size: siteViewSize, spin: n.mesh.rotation.y });
+      if (n.features) { n.features.group.rotation.y = n.mesh.rotation.y; n.features.update({ on: settings.get('features'), focused: id === focusId, surface: surface?.id === id, camera, size: siteViewSize, blocked: n.sites?.placed }); }
       if (n.body.orbit) {
         updateOrbit(n, jd);
         n.orbit.visible = (showOrbits || id === focusId) && !surface;
@@ -1697,6 +1881,13 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       }
     }
 
+    // LOOK AT, apparent: draw the target where it was when the light now arriving left it
+    if (surface?.look?.apparent && nodes[surface.look.target] && nodes[surface.look.obs]) {
+      const L = surface.look, tn = nodes[L.target];
+      const ltDays = (tn.pos.distanceTo(nodes[L.obs].pos) * AU_KM) / C_KM_S / 86400;
+      scenePosition(L.target, jd - ltDays, tn.pos);
+      tn.group.position.copy(tn.pos);
+    }
     // Camera flight: slide the floating origin from the old focus to the new one
     // while easing the camera's distance (log-space, so 30 AU → 1e-4 AU feels smooth).
     const target = nodes[focusId].pos;
@@ -1710,7 +1901,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     } else {
       focusPos.copy(target);
       // Switching ENHANCED ⇄ TRUE while framing a body: keep it the same size on screen.
-      if (!surface && overviewAU == null && framedRadius) {
+      if (siteView && !surface) updateSiteView();
+      else if (!surface && overviewAU == null && framedRadius) {
         const r = displayRadius(nodes[focusId].body);
         camera.position.multiplyScalar(r / framedRadius);
         framedRadius = r;
@@ -1726,7 +1918,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       sats.update(jd, trueRadius(nodes.earth.body), enhancedRadius(nodes.earth.body, model.scale), scaleMix, clock.rate.days ?? 0);
     }
     // near plane follows the camera so 100 m spacecraft can be seen at true scale
-    const near = Math.min(1e-7, Math.max(1e-15, camera.position.length() * 1e-3));
+    const near = Math.min(1e-7, Math.max(1e-15, (siteView ? camera.position.distanceTo(controls.target) : camera.position.length()) * 1e-3));
     if (!surface && Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
     updateShadows(jd);
@@ -1754,7 +1946,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
     if (surface) { updateSurface(jd); surfaceSky(); }
     else {
-      controls.minDistance = viewEnvelope(nodes[focusId].body) * 1.3;
+      controls.minDistance = siteView ? displayRadius(nodes[focusId].body) * 2e-5 : viewEnvelope(nodes[focusId].body) * 1.3;
       controls.update();
     }
 
@@ -1840,6 +2032,18 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     get model() { return model; },
     focus(id, opts) { flyTo(id, opts); },
     /** Stand on body `id` at latitude/longitude (deg) and look up. */
+    /** VIEW FROM ABOVE: hover over a surface site, framing `spanKm` around it (#37). */
+    viewSite(id, lat, lon, spanKm = 30) {
+      if (!nodes[id]) return false;
+      if (focusId !== id || surface) flyTo(id);
+      siteView = { id, lat, lon, spanKm, ready: false };
+      return true;
+    },
+    endSiteView() { if (siteView) { endSiteView(); flyTo(focusId); } },
+    get siteView() { return siteView ? { id: siteView.id, lat: siteView.lat, lon: siteView.lon } : null; },
+    /** LOOK AT (#43): view `target` from `obs` ('surface' or 'orbit'); `apparent` corrects for light-time. */
+    lookAt(obs, target, opts) { return lookAtBody(obs, target, opts); },
+    get lookInfo() { return surface?.look ? { ...surface.look.info, obs: surface.look.obs, target: surface.look.target, orbit: surface.look.orbit } : null; },
     surfaceAt(id, lat, lon, { lookSun = false, look = null, daylight = null } = {}) {
       const n = nodes[id];
       if (!n || isStar(n.body)) return false;
