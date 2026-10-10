@@ -77,6 +77,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
+| `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
@@ -443,6 +444,19 @@ ENHANCED stays consistent with the moons and TRUE shows Jupiter's magnetosphere 
 FIELDS toggle) controls both this and the Sun's Parker spiral. `src/panels/magnetic.js` adds a MAGNETIC FIELD
 section to body panels. Not done: a PFSS model from today's magnetogram, draped fields at Venus, Titan and comets,
 and stellar Zeeman-Doppler fields.
+
+## Future events (#53)
+
+The FUTURE rail entry (`#/future/<id>`) lists what is coming, grouped as stellar deaths, close passes,
+the Solar System and the Sun (`src/data/future-events.js`, rendered by `src/panels/futureevents.js`;
+not to be confused with `src/panels/future.js`, the future missions of #44). Calculations live in
+`src/astro/future.js`: supernova peak magnitudes from distance and a type's absolute magnitude, with
+template light curves (Type II-P, stripped-envelope) giving days in daylight and as a naked-eye star;
+the Sun's main-sequence brightening (Gough 1981) and habitable zone (Kopparapu et al. 2013); the
+run of pole stars from the app's precession model; a passing star's direct and tidal pull. Supernova
+timing is always a MODELLED window, never a date; Sirius is explained as impossible. GO TO sets the
+clock (an ISO date, or years ahead; past the calendar's ±273 kyr it needs the deep-time clock,
+`clock.setYears`) and routes to the place to watch.
 
 ## Events feed and mission replays (#32, #33)
 

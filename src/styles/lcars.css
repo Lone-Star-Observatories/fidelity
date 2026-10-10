@@ -673,3 +673,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .band-processing.pulse { animation: band-pulse 3s ease-in-out infinite; }
 .band-processing.failed { background: var(--red); animation: none; }
 @keyframes band-pulse { 0% { opacity: 1; } 15% { opacity: 0.35; } 30% { opacity: 1; } 100% { opacity: 1; } }
+
+/* ---- FUTURE events (#53) ------------------------------------------------------------------------ */
+.future-card { display: flex; flex-direction: column; gap: 8px; padding: 6px 0 10px 12px; border-left: 4px solid var(--violet); }
+.future-chart { width: 100%; max-width: 420px; height: auto; display: block; font-family: inherit; }
+.future-chart .fc-axis { stroke: var(--violet); stroke-width: 1; }
+.future-chart .fc-ref { stroke: var(--dim); stroke-width: 1; stroke-dasharray: 3 3; }
+.future-chart .fc-label { fill: var(--dim); font-size: 10px; letter-spacing: 0.06em; }
+.future-chart .fc-line { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linejoin: round; }
+.future-chart .fc-band { fill: var(--gold); fill-opacity: 0.16; stroke: none; }
+.host-row.event-row.future-open { outline: 2px solid var(--gold); outline-offset: -2px; }

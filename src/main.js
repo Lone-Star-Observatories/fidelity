@@ -42,6 +42,7 @@ import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
+import { createFutureEventsPanel } from './panels/futureevents.js';
 import { createMagneticPanel } from './panels/magnetic.js';
 import { createSearch } from './panels/search.js';
 import { PLANETSHINE } from './astro/planetshine.js';
@@ -189,11 +190,16 @@ const eventsBtn = h('button', { className: 'rail-btn sub events-btn', title: 'La
 eventsBtn.dataset.sub = 'events';
 eventsBtn.addEventListener('click', () => go({ level: 'events', system: 'sol' }));
 railSubs.append(eventsBtn);
+// FUTURE (#53): supernovae, stellar passes, impacts and the Sun's evolution
+const futureBtn = h('button', { className: 'rail-btn sub', title: 'Future events: supernovae, close stellar passes, impact risks, the Sun\'s evolution' }, 'FUTURE');
+futureBtn.dataset.sub = 'future';
+futureBtn.addEventListener('click', () => go({ level: 'future', system: 'sol' }));
+railSubs.append(futureBtn);
 
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object', 'satellite', 'events']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite', 'events', 'future']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -605,6 +611,7 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
 const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
+const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
 createSearch({ h, badge, $, go, clock, actions: {
@@ -1540,6 +1547,17 @@ onRoute(async (r) => {
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
   if (r.level !== 'events') eventsPanel.leave();
+  if (r.level === 'future') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'future') warp();
+    $('view-title').textContent = 'FUTURE · SUPERNOVAE, PASSING STARS, IMPACTS, THE SUN';
+    syncBeacon();
+    futureEvents.render(r.body);
+    return;
+  }
   if (r.level === 'events') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;
