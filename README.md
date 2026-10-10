@@ -54,6 +54,9 @@ ship recognises and which view will use each one.
   Luhman 16 A and B on their 26.6-year orbit, and WISE 0855−0714, the coldest known (285 K).
 - **Star View:** any star's real spectrum type (observed template against its blackbody,
   with Hα, Na D, Ca II and other lines marked) and what it is made of.
+- **Moons and small bodies:** 26 moons on orbits checked against JPL Horizons, Ceres, Vesta,
+  the dwarf planets, Sedna and Halley's comet, with spacecraft maps where they exist; Moon
+  View and Object View for their make-up.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.

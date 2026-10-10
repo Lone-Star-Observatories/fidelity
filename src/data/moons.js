@@ -1,0 +1,148 @@
+// Sol's major moons and notable small bodies.
+//
+// Moon orbits: JPL SSD mean elements (epoch 2000-01-01.5 TDB unless noted), referred to each
+// moon's Laplace plane (pole RA/Dec given), or the planet's equator for Uranus' and Pluto's
+// moons. Columns: a (km), e, ω, M, i, Ω (deg), P (days), apsidal and nodal precession
+// periods (years). Physical data: NASA planetary satellite fact sheets and JPL SSD
+// (https://ssd.jpl.nasa.gov/sats/phys_par/). Small bodies: JPL Small-Body Database
+// osculating elements (epoch JD 2461200.5 = 2026-06-08, J2000 ecliptic) and SBDB physical
+// parameters; dwarf planet sizes and masses from occultations and their moons' orbits.
+
+// JPL's equatorial frames use the pole on the side the planet spins (Uranus: opposite to IAU north).
+import { MOON_FIT } from './moon-fit.js';
+
+const URANUS_POLE = [77.311, 15.175];
+const PLUTO_POLE = [132.993, -6.163];
+const NASA3D = 'NASA 3D Resources';
+
+const el = (a, e, w, M, i, node, P, Papsis, Pnode, pole, frame = 'laplace', epochJd = 2451545.0) =>
+  ({ a, e, w, M, i, node, P, Papsis, Pnode, pole, frame, epochJd });
+
+// id, name, parent, radius km, mass kg, elements, skin map (or analog), discovery, extra
+export const MOONS = [
+  { id: 'moon', name: 'Moon', parent: 'earth', radiusKm: 1737.4, massKg: 7.346e22, meanTempC: -20,
+    elements: el(384400, 0.0554, 318.15, 135.27, 5.16, 125.08, 27.322, 5.997, 18.6, null, 'ecliptic'),
+    skin: { map: 'moon' }, discovered: 'Prehistoric', note: 'The only world beyond Earth where people have walked (Apollo, 1969–72).' },
+  { id: 'phobos', name: 'Phobos', parent: 'mars', radiusKm: 11.08, massKg: 1.0659e16,
+    elements: el(9375, 0.015, 216.3, 189.7, 1.1, 169.2, 0.3187, 1.1, 2.3, [317.7, 52.9]),
+    skin: { map: 'phobos' }, discovered: '1877 · Asaph Hall', note: 'Spiralling inward: it will break up into a ring in about 30–50 million years.' },
+  { id: 'deimos', name: 'Deimos', parent: 'mars', radiusKm: 6.2, massKg: 1.4762e15,
+    elements: el(23457, 0.0, 0.0, 205.0, 1.8, 54.3, 1.2625, 0, 56.2, [316.6, 53.5]),
+    skin: { map: 'deimos' }, discovered: '1877 · Asaph Hall' },
+  { id: 'io', name: 'Io', parent: 'jupiter', radiusKm: 1821.6, massKg: 8.9319e22, meanTempC: -143,
+    elements: el(421800, 0.004, 49.1, 330.9, 0.0, 0.0, 1.762732, 1.333, 0, [268.1, 64.5]),
+    skin: { map: 'io' }, discovered: '1610 · Galileo Galilei', note: 'The most volcanic body known: tidal heating from Jupiter drives over 400 active volcanoes.' },
+  { id: 'europa', name: 'Europa', parent: 'jupiter', radiusKm: 1560.8, massKg: 4.7998e22, meanTempC: -160,
+    elements: el(671100, 0.009, 45.0, 345.4, 0.5, 184.0, 3.525463, 1.394, 30.202, [268.1, 64.5]),
+    skin: { map: 'europa' }, discovered: '1610 · Galileo Galilei', note: 'A salty ocean lies under its ice shell; Europa Clipper arrives in 2030.' },
+  { id: 'ganymede', name: 'Ganymede', parent: 'jupiter', radiusKm: 2634.1, massKg: 1.4819e23, meanTempC: -163,
+    elements: el(1070400, 0.001, 198.3, 324.8, 0.2, 58.5, 7.155588, 68.301, 137.812, [268.2, 64.6]),
+    skin: { map: 'ganymede' }, discovered: '1610 · Galileo Galilei', note: 'The largest moon in the Solar System, bigger than Mercury, with its own magnetic field.' },
+  { id: 'callisto', name: 'Callisto', parent: 'jupiter', radiusKm: 2410.3, massKg: 1.0759e23, meanTempC: -139,
+    elements: el(1882700, 0.007, 43.8, 87.4, 0.3, 309.1, 16.69044, 277.921, 577.264, [268.7, 64.8]),
+    skin: { map: 'callisto' }, discovered: '1610 · Galileo Galilei' },
+  { id: 'amalthea', name: 'Amalthea', parent: 'jupiter', radiusKm: 83.5, massKg: 2.08e18,
+    elements: el(181400, 0.003, 180.1, 310.6, 0.4, 282.9, 0.499918, 0.196, 0.393, [268.1, 64.5]),
+    skin: { map: 'moon', tint: [1.15, 0.72, 0.55] }, analog: 'THE MOON, REDDENED', discovered: '1892 · E. E. Barnard' },
+  { id: 'mimas', name: 'Mimas', parent: 'saturn', radiusKm: 198.2, massKg: 3.7493e19,
+    elements: el(186000, 0.02, 160.4, 275.3, 1.6, 66.2, 0.942422, 0.493, 0.986, [40.6, 83.5]),
+    skin: { map: 'mimas' }, discovered: '1789 · William Herschel', note: 'The giant crater Herschel spans a third of its diameter.' },
+  { id: 'enceladus', name: 'Enceladus', parent: 'saturn', radiusKm: 252.1, massKg: 1.0802e20, meanTempC: -198,
+    elements: el(238400, 0.005, 119.5, 57.0, 0.0, 0.0, 1.370218, 2.916, 0, [40.6, 83.5]),
+    skin: { map: 'enceladus' }, discovered: '1789 · William Herschel', note: 'Geysers at its south pole vent a subsurface ocean into space; Cassini flew through them.' },
+  { id: 'tethys', name: 'Tethys', parent: 'saturn', radiusKm: 531.1, massKg: 6.1745e20,
+    elements: el(295000, 0.001, 335.3, 0.0, 1.1, 273.0, 1.887802, 0.005, 4.982, [40.6, 83.5]),
+    skin: { map: 'tethys' }, discovered: '1684 · G. D. Cassini' },
+  { id: 'dione', name: 'Dione', parent: 'saturn', radiusKm: 561.4, massKg: 1.0955e21,
+    elements: el(377700, 0.002, 116.0, 212.0, 0.0, 0.0, 2.736916, 11.698, 0, [40.6, 83.5]),
+    skin: { map: 'dione' }, discovered: '1684 · G. D. Cassini' },
+  { id: 'rhea', name: 'Rhea', parent: 'saturn', radiusKm: 763.8, massKg: 2.3065e21,
+    elements: el(527200, 0.001, 44.3, 31.5, 0.3, 133.7, 4.517503, 33.939, 35.775, [40.6, 83.5]),
+    skin: { map: 'rhea' }, discovered: '1672 · G. D. Cassini' },
+  { id: 'titan', name: 'Titan', parent: 'saturn', radiusKm: 2574.7, massKg: 1.3452e23, meanTempC: -179,
+    elements: el(1221900, 0.029, 78.3, 11.7, 0.3, 78.6, 15.945448, 346.68, 687.37, [36.4, 84.0]),
+    skin: { map: 'titan' }, discovered: '1655 · Christiaan Huygens', note: 'A thick nitrogen atmosphere and lakes of liquid methane; Huygens landed in 2005 and Dragonfly launches in 2028.' },
+  { id: 'hyperion', name: 'Hyperion', parent: 'saturn', radiusKm: 135, massKg: 5.62e18, rotationHours: 0, chaotic: true,
+    elements: el(1481500, 0.105, 214.0, 122.9, 0.6, 87.1, 21.276658, 20.843, 257.625, [40.2, 83.6]),
+    skin: { map: 'moon', tint: [1.05, 0.95, 0.85] }, analog: 'THE MOON, BEIGE', discovered: '1848 · Bond, Bond & Lassell', note: 'A sponge-like moon that tumbles chaotically: its spin is unpredictable.' },
+  { id: 'iapetus', name: 'Iapetus', parent: 'saturn', radiusKm: 734.5, massKg: 1.8056e21,
+    elements: el(3561700, 0.028, 254.5, 74.8, 7.6, 86.5, 79.331002, 1662.9, 3130.302, [288.7, 78.9]),
+    skin: { map: 'iapetus' }, discovered: '1671 · G. D. Cassini', note: 'Two-toned: its leading side is coal-dark, its trailing side bright ice.' },
+  { id: 'phoebe', name: 'Phoebe', parent: 'saturn', radiusKm: 106.5, massKg: 8.292e18, rotationHours: 9.27, locked: false,
+    elements: el(12929400, 0.164, 240.3, 308.0, 175.2, 192.7, 550.30391, 468.321, 741.483, [276.0, 67.5]),
+    skin: { map: 'moon', tint: [0.55, 0.55, 0.58] }, analog: 'THE MOON, DARKENED', discovered: '1899 · W. H. Pickering', note: 'Retrograde and dark: probably a captured Kuiper-belt object.' },
+  { id: 'miranda', name: 'Miranda', parent: 'uranus', radiusKm: 235.8, massKg: 6.4e19,
+    elements: el(129846, 0.001, 154.8, 73.0, 4.4, 100.9, 1.413479, 8.939, 17.787, URANUS_POLE, 'equatorial'),
+    skin: { map: 'miranda' }, discovered: '1948 · Gerard Kuiper' },
+  { id: 'ariel', name: 'Ariel', parent: 'uranus', radiusKm: 578.9, massKg: 1.251e21,
+    elements: el(190929, 0.001, 9.6, 193.5, 0.0, 0.0, 2.520379, 28.901, 0, URANUS_POLE, 'equatorial'),
+    skin: { map: 'ariel' }, discovered: '1851 · William Lassell' },
+  { id: 'umbriel', name: 'Umbriel', parent: 'uranus', radiusKm: 584.7, massKg: 1.275e21,
+    elements: el(265986, 0.004, 183.4, 253.0, 0.1, 174.8, 4.144177, 64.126, 129.745, URANUS_POLE, 'equatorial'),
+    skin: { map: 'umbriel' }, discovered: '1851 · William Lassell' },
+  { id: 'titania', name: 'Titania', parent: 'uranus', radiusKm: 788.9, massKg: 3.4e21,
+    elements: el(436298, 0.002, 184.0, 68.1, 0.1, 29.5, 8.705869, 579.928, 1644.649, URANUS_POLE, 'equatorial'),
+    skin: { map: 'titania' }, discovered: '1787 · William Herschel' },
+  { id: 'oberon', name: 'Oberon', parent: 'uranus', radiusKm: 761.4, massKg: 3.076e21,
+    elements: el(583511, 0.002, 132.2, 143.6, 0.1, 76.8, 13.463237, 158.604, 192.798, URANUS_POLE, 'equatorial'),
+    skin: { map: 'oberon' }, discovered: '1787 · William Herschel' },
+  { id: 'triton', name: 'Triton', parent: 'neptune', radiusKm: 1353.4, massKg: 2.139e22, meanTempC: -235,
+    // node period 688 yr (Jacobson 2009): the table's 340 yr misplaces the orbit plane by 4° by 2026 against Horizons
+    elements: el(354800, 0.0, 0.0, 63.0, 157.3, 178.1, 5.876994, 0, 688, [299.8, 43.1]),
+    skin: { map: 'triton' }, discovered: '1846 · William Lassell', note: 'Orbits backwards: almost certainly a captured Kuiper-belt dwarf planet, with nitrogen geysers.' },
+  { id: 'proteus', name: 'Proteus', parent: 'neptune', radiusKm: 210, massKg: 4.4e19,
+    elements: el(117600, 0.0, 0.0, 276.8, 0.0, 0.0, 1.122315, 0, 0, [299.8, 42.6]),
+    skin: { map: 'moon', tint: [0.6, 0.6, 0.62] }, analog: 'THE MOON, DARKENED', discovered: '1989 · Voyager 2' },
+  { id: 'nereid', name: 'Nereid', parent: 'neptune', radiusKm: 170, massKg: 3.1e19, rotationHours: 11.59, locked: false,
+    elements: el(5513900, 0.751, 296.8, 318.5, 5.1, 319.5, 360.133039, 7990.433, 9426.334, null, 'ecliptic', 2458849.5),
+    skin: { map: 'moon', tint: [0.85, 0.85, 0.88] }, analog: 'THE MOON, GREYED', discovered: '1949 · Gerard Kuiper' },
+  { id: 'charon', name: 'Charon', parent: 'pluto', radiusKm: 606, massKg: 1.586e21,
+    elements: el(19600, 0.0, 0.0, 304.1, 0.0, 0.0, 6.387222, 0, 0, PLUTO_POLE, 'equatorial'),
+    skin: { map: 'charon' }, discovered: '1978 · James Christy', note: 'So large relative to Pluto that the pair orbit a point in space between them.' },
+];
+
+// name, kind, radius km, mass kg (null = unmeasured), SBDB elements [epoch JD, a AU, e, i, Ω, ω, M], skin, IAU pole/rotation
+const sb = (id, name, kind, radiusKm, massKg, [epochJd, a, e, i, node, w, M], extra = {}) =>
+  ({ id, name, kind, radiusKm, massKg, elements: { epochJd, a, e, i, node, w, M }, ...extra });
+
+for (const m of MOONS) if (MOON_FIT[m.id]) m.elements.fit = MOON_FIT[m.id];
+
+export const SMALL_BODIES = [
+  sb('ceres', 'Ceres', 'dwarf planet', 469.7, 9.384e20, [2461200.5, 2.765552595034094, 0.07969229514816586, 10.58802780183462, 80.24862682043221, 73.29421453021587, 274.4193463761342],
+    { skin: { map: 'ceres' }, pole: [291.418, 66.764], iau: [170.65, 952.1532], rotationHours: 9.07417, belt: 'MAIN BELT', discovered: '1801 · Giuseppe Piazzi', meanTempC: -105,
+      note: 'The largest body in the asteroid belt; Dawn orbited it 2015–18 and found bright salt deposits from a briny interior.' }),
+  sb('vesta', 'Vesta', 'asteroid', 261.4, 2.59e20, [2461200.5, 2.361365965127599, 0.09020374382834395, 7.143925545058711, 103.701293265032, 151.4686478221564, 81.19015607686903],
+    { skin: { map: 'vesta' }, pole: [309.031, 42.235], iau: [285.39, 1617.3329428], rotationHours: 5.342, belt: 'MAIN BELT', discovered: '1807 · Heinrich Olbers',
+      note: 'A protoplanet with an iron core; meteorites from its giant Rheasilvia impact basin land on Earth (HED meteorites).' }),
+  sb('pallas', 'Pallas', 'asteroid', 256.5, 2.04e20, [2461200.5, 2.769559010737709, 0.2307000995648547, 34.93279321851542, 172.8866193357694, 310.9699161652136, 254.2496521742734],
+    { skin: { map: 'moon', tint: [0.9, 0.9, 0.95] }, analog: 'THE MOON', rotationHours: 7.8132, belt: 'MAIN BELT', discovered: '1802 · Heinrich Olbers' }),
+  sb('hygiea', 'Hygiea', 'asteroid', 203.6, 1.05e20, [2461200.5, 3.150974033963701, 0.1067092741240963, 3.829529946447122, 283.1198927508594, 312.4242387344704, 252.0344242359649],
+    { skin: { map: 'moon', tint: [0.6, 0.58, 0.56] }, analog: 'THE MOON, DARKENED', rotationHours: 13.828, belt: 'MAIN BELT', discovered: '1849 · Annibale de Gasparis' }),
+  sb('haumea', 'Haumea', 'dwarf planet', 798, 4.006e21, [2461200.5, 43.06029023650952, 0.1944430148898797, 28.20847393040364, 121.7860561329425, 240.6905472508661, 223.2104118812299],
+    { skin: { map: 'moon', tint: [1.2, 1.2, 1.25] }, analog: 'THE MOON, ICE-BRIGHTENED', rotationHours: 3.9154, belt: 'KUIPER BELT', discovered: '2004 · Brown et al. / Ortiz et al.',
+      note: 'Spins every 3.9 hours, stretching it into an egg about 2,300 km long; it has a ring.' }),
+  sb('makemake', 'Makemake', 'dwarf planet', 715, null, [2461200.5, 45.57093317300052, 0.1588889953992523, 29.02785603743067, 79.2948338209406, 297.0922733397207, 169.9379962048232],
+    { skin: { map: 'pluto', tint: [1.1, 0.9, 0.8] }, analog: 'PLUTO, REDDENED', rotationHours: 22.83, belt: 'KUIPER BELT', discovered: '2005 · Brown, Trujillo & Rabinowitz' }),
+  sb('eris', 'Eris', 'dwarf planet', 1163, 1.6466e22, [2461200.5, 67.93394687853566, 0.4382385347971672, 43.9258279471791, 36.00477044417249, 150.7949235840312, 211.774434275007],
+    { skin: { map: 'moon', tint: [1.3, 1.3, 1.32] }, analog: 'THE MOON, FROSTED', rotationHours: 378.9, belt: 'SCATTERED DISC', discovered: '2005 · Brown, Trujillo & Rabinowitz', meanTempC: -243,
+      note: 'Almost Pluto\'s size and 27% more massive; its discovery led the IAU to define "dwarf planet" in 2006.' }),
+  sb('gonggong', 'Gonggong', 'dwarf planet', 615, 1.75e21, [2461200.5, 66.86666567773766, 0.5042510000302973, 30.89906721170288, 336.8383156185827, 206.6232839773693, 111.664541568459],
+    { skin: { map: 'mars', tint: [0.95, 0.75, 0.7] }, analog: 'MARS, DESATURATED', rotationHours: 22.4, belt: 'SCATTERED DISC', discovered: '2007 · Schwamb, Brown & Rabinowitz' }),
+  sb('quaoar', 'Quaoar', 'dwarf planet', 555, 1.2e21, [2461200.5, 43.15617622670811, 0.03520019261837198, 7.991575800732639, 188.9191248092036, 163.209046106457, 292.8487574842713],
+    { skin: { map: 'mars', tint: [0.8, 0.7, 0.68] }, analog: 'MARS, DIMMED', rotationHours: 17.68, belt: 'KUIPER BELT', discovered: '2002 · Trujillo & Brown', note: 'Has a ring far outside where rings should be able to survive.' }),
+  sb('orcus', 'Orcus', 'dwarf planet', 455, 6.3e20, [2461200.5, 39.37686537914865, 0.2205240628250881, 20.55681019612, 268.4053519455824, 73.56848606705262, 189.0972913554275],
+    { skin: { map: 'moon', tint: [0.8, 0.82, 0.85] }, analog: 'THE MOON', rotationHours: 13.19, belt: 'KUIPER BELT (PLUTINO)', discovered: '2004 · Brown, Trujillo & Rabinowitz' }),
+  sb('sedna', 'Sedna', 'dwarf planet', 497, null, [2461200.5, 543.7195289104732, 0.8598824585187618, 11.92527582847476, 144.5061662673739, 311.0987725939751, 358.5956944005428],
+    { skin: { map: 'mars', tint: [1.1, 0.6, 0.5] }, analog: 'MARS, REDDENED', rotationHours: 10.27, belt: 'INNER OORT CLOUD', discovered: '2003 · Brown, Trujillo & Rabinowitz',
+      note: 'Never comes closer than 76 AU; its 11,000-year orbit hints at an unseen planet or a passing star long ago. Near perihelion now.' }),
+  sb('arrokoth', 'Arrokoth', 'asteroid', 9, 7.5e14, [2461200.5, 44.05257835991367, 0.03555717645015258, 2.450613924655929, 159.0377267890618, 188.8507463365642, 310.9839309924138],
+    { skin: { map: 'mars', tint: [1.0, 0.65, 0.55] }, analog: 'MARS, REDDENED', rotationHours: 15.92, belt: 'KUIPER BELT (COLD CLASSICAL)', discovered: '2014 · New Horizons team (Hubble)',
+      note: 'A pristine two-lobed contact binary, 36 km long; New Horizons flew past on 1 Jan 2019. Drawn as a sphere.' }),
+  sb('halley', '1P/Halley', 'comet', 5.5, 2.2e14, [2439875.5, 17.92863504856923, 0.9679359956953211, 162.1905300439129, 59.09894720612437, 112.2414314637764, 274.3823371366792],
+    { skin: { map: 'moon', tint: [0.35, 0.33, 0.32] }, analog: 'THE MOON, BLACKENED', rotationHours: 52.8, belt: 'HALLEY-TYPE COMET', discovered: 'Recorded since 240 BC · orbit by Edmond Halley 1705',
+      note: 'Back in 2061. The orbit is the 1968 osculating one (SBDB); planetary tugs shift its timing by days to weeks.' }),
+];
+
+export const MOON_CREDIT = {
+  base: `${NASA3D}: global mosaics from Voyager, Galileo, Cassini and New Horizons imagery`,
+};

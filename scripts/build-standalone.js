@@ -9,6 +9,9 @@ import { execFileSync } from 'node:child_process';
 import { nearby, starDetail, sky, galaxyStars } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
+import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
+
+const PLANET_KEYS = new Set(['moon', 'mars', 'pluto', 'mercury', 'jupiter', 'saturn', 'uranus', 'neptune']);
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
@@ -23,13 +26,24 @@ for (const id of ['sol', 'hyg-70666', 'exo-trappist-1', 'hyg-8087', 'hyg-16496']
 // surfaces, embedded as data URIs (smaller variants where the full map is large)
 const textures = {}, textureCredits = {};
 const SKIP_IN_PREVIEW = new Set(['venusSurface']); // not used by any view yet
+// Moon and asteroid maps are shrunk to 512 px for the preview (needs python3 + Pillow; else skipped).
+const SHRINK = new Set([...MOONS.map((m) => m.skin.map), ...SMALL_BODIES.map((b) => b.skin.map)].filter((k) => !PLANET_KEYS.has(k)));
+function shrink(buf) {
+  try {
+    return execFileSync('python3', ['-I', '-c', 'import sys,io\nfrom PIL import Image\nim=Image.open(io.BytesIO(sys.stdin.buffer.read())).convert("RGB")\nim.thumbnail((512,256))\nb=io.BytesIO();im.save(b,"JPEG",quality=82);sys.stdout.buffer.write(b.getvalue())'],
+      { input: buf, maxBuffer: 16 * 1024 * 1024 });
+  } catch { return null; }
+}
 for (const [key, sources] of Object.entries(TEXTURES)) {
   if (SKIP_IN_PREVIEW.has(key)) continue;
   let url = null, buf = null;
   for (const u of [PREVIEW[key], ...sources.map((s) => s.url).reverse()].filter(Boolean)) {
-    buf = await download(u);
+    if (sources.find((s) => s.url === u)?.tiff) { // range-sampled by the backend: use its cached copy if present
+      buf = await fs.readFile(path.join(root, 'data/textures', `${key}.png`)).catch(() => null);
+    } else buf = await download(u);
     if (buf) { url = u; break; }
   }
+  if (buf && SHRINK.has(key)) { buf = shrink(buf); url = 'shrunk.jpg'; }
   if (!buf) { console.warn(`  texture ${key}: unavailable, placeholder will be used`); continue; }
   textures[key] = `data:${url.endsWith('.png') ? 'image/png' : 'image/jpeg'};base64,${buf.toString('base64')}`;
   textureCredits[key] = (sources.find((s) => s.url === url) ?? sources[0]).credit;

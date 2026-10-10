@@ -25,6 +25,17 @@ export const SOL_ATMOSPHERES = {
     gases: [['H₂', 'H2', 80], ['He', 'He', 19], ['CH₄', 'CH4', 1.5]] },
   pluto: { kind: 'ATMOSPHERE', pressureBar: 1e-5, source: 'New Horizons (Gladstone et al. 2016)',
     gases: [['N₂', 'N2', 99.5], ['CH₄', 'CH4', 0.45], ['CO', 'CO', 0.05]] },
+  moon: { kind: 'EXOSPHERE', pressureBar: 3e-15, source: 'LADEE and Apollo surface instruments (NASA fact sheet)',
+    gases: [['Ar', 'Ar', 40], ['He', 'He', 40], ['Ne', 'Ne', 19], ['Na', 'Na', 0.5], ['K', 'K', 0.1]] },
+  io: { kind: 'ATMOSPHERE', pressureBar: 1e-9, source: 'Ground-based and Galileo spectroscopy (Lellouch et al. 2007)',
+    gases: [['SO₂', 'SO2', 90], ['SO', 'SO', 5], ['Na', 'Na', 1], ['K', 'K', 0.1]] },
+  europa: { kind: 'EXOSPHERE', pressureBar: 1e-12, source: 'Hubble (Hall et al. 1995); Juno (2024)', gases: [['O₂', 'O2', 95], ['H₂', 'H2', 4], ['Na', 'Na', 0.5]] },
+  titan: { kind: 'ATMOSPHERE', pressureBar: 1.45, source: 'Huygens probe (Niemann et al. 2005, 2010)',
+    gases: [['N₂', 'N2', 98.4], ['CH₄', 'CH4', 1.48], ['H₂', 'H2', 0.1], ['CO', 'CO', 0.005]] },
+  enceladus: { kind: 'SOUTH-POLE PLUMES', pressureBar: null, source: 'Cassini INMS (Waite et al. 2017)',
+    gases: [['H₂O', 'H2O', 97], ['CO₂', 'CO2', 0.6], ['CH₄', 'CH4', 0.2], ['NH₃', 'NH3', 0.6], ['H₂', 'H2', 0.9]] },
+  triton: { kind: 'ATMOSPHERE', pressureBar: 1.4e-5, source: 'Voyager 2; stellar occultations (Lellouch et al. 2010)',
+    gases: [['N₂', 'N2', 99.9], ['CH₄', 'CH4', 0.02], ['CO', 'CO', 0.03]] },
 };
 
 // Interior layers, outer radius as a fraction of the planet radius (inside → out).
@@ -38,11 +49,25 @@ export const SOL_INTERIORS = {
   uranus: [['ROCKY CORE', 0.2, 'rock'], ['WATER–AMMONIA–METHANE ICES', 0.75, 'ice'], ['H₂ / He / CH₄ ENVELOPE', 1, 'gas']],
   neptune: [['ROCKY CORE', 0.25, 'rock'], ['WATER–AMMONIA–METHANE ICES', 0.8, 'ice'], ['H₂ / He / CH₄ ENVELOPE', 1, 'gas']],
   pluto: [['ROCKY CORE', 0.72, 'rock'], ['WATER ICE (POSSIBLE OCEAN)', 0.98, 'ice'], ['NITROGEN-ICE CRUST', 1, 'crust']],
+  moon: [['IRON CORE', 0.19, 'iron'], ['MANTLE', 0.98, 'rock'], ['ANORTHOSITE CRUST', 1, 'crust']],
+  io: [['IRON / IRON-SULFIDE CORE', 0.52, 'iron'], ['SILICATE MANTLE (PARTLY MOLTEN)', 0.98, 'rock'], ['SULFUR-RICH CRUST', 1, 'crust']],
+  europa: [['IRON CORE', 0.38, 'iron'], ['ROCKY MANTLE', 0.92, 'rock'], ['SALTY OCEAN', 0.985, 'water'], ['ICE SHELL', 1, 'ice']],
+  ganymede: [['IRON CORE', 0.25, 'iron'], ['SILICATE MANTLE', 0.45, 'rock'], ['HIGH-PRESSURE ICE', 0.88, 'ice'], ['SALTY OCEAN', 0.94, 'water'], ['ICE SHELL', 1, 'ice']],
+  callisto: [['ROCK–ICE MIX', 0.85, 'rock'], ['POSSIBLE OCEAN', 0.93, 'water'], ['ICE CRUST', 1, 'ice']],
+  titan: [['HYDRATED ROCK CORE', 0.77, 'rock'], ['HIGH-PRESSURE ICE', 0.86, 'ice'], ['WATER–AMMONIA OCEAN', 0.96, 'water'], ['ICE SHELL', 1, 'ice']],
+  enceladus: [['ROCKY CORE', 0.75, 'rock'], ['GLOBAL OCEAN', 0.92, 'water'], ['ICE SHELL', 1, 'ice']],
+  triton: [['ROCKY CORE', 0.7, 'rock'], ['WATER ICE MANTLE', 0.97, 'ice'], ['NITROGEN-ICE CRUST', 1, 'crust']],
+  charon: [['ROCKY CORE', 0.7, 'rock'], ['WATER ICE MANTLE', 1, 'ice']],
+  ceres: [['HYDRATED ROCK INTERIOR', 0.85, 'rock'], ['BRINE-RICH LAYER', 0.92, 'water'], ['ICE–ROCK–SALT CRUST', 1, 'crust']],
+  vesta: [['IRON CORE', 0.42, 'iron'], ['OLIVINE MANTLE', 0.92, 'rock'], ['BASALTIC CRUST', 1, 'crust']],
 };
 
 export const INTERIOR_SOURCES = {
   earth: 'Seismology (PREM, Dziewonski & Anderson 1981)', mars: 'InSight seismology (Stähler et al. 2021)',
   jupiter: 'Juno gravity (Wahl et al. 2017)', saturn: 'Ring seismology (Mankovich & Fuller 2021)',
+  moon: 'Apollo seismology (Weber et al. 2011)', io: 'Galileo gravity (Anderson et al. 2001)', europa: 'Galileo gravity and magnetometry (Anderson et al. 1998; Kivelson et al. 2000)',
+  ganymede: 'Galileo gravity and Hubble aurorae (Saur et al. 2015)', titan: 'Cassini gravity and tides (Iess et al. 2012)',
+  enceladus: 'Cassini gravity and libration (Thomas et al. 2016)', ceres: 'Dawn gravity (Ermakov et al. 2017)', vesta: 'Dawn gravity (Russell et al. 2012)',
 };
 
 // Absorption bands in the 300–2500 nm range (nm, rough half-width), laboratory positions.
@@ -59,11 +84,15 @@ export const BANDS = {
   SO2: [[300, 20, '']],
   Na: [[589, 2, 'D lines']],
   K: [[766, 2, '']],
+  SO: [[2400, 60, '']],
+  Ne: [[640, 2, '']],
+  Ar: [[812, 2, '']],
+  He: [[1083, 2, '']],
   H2S: [[1590, 30, ''], [2630, 40, '']],
 };
 
 export const MOLECULE_NAMES = { O2: 'OXYGEN', O3: 'OZONE', H2O: 'WATER', CO2: 'CARBON DIOXIDE', CH4: 'METHANE', NH3: 'AMMONIA',
-  CO: 'CARBON MONOXIDE', H2: 'HYDROGEN', N2: 'NITROGEN', SO2: 'SULFUR DIOXIDE', Na: 'SODIUM', K: 'POTASSIUM', H2S: 'HYDROGEN SULFIDE', Ar: 'ARGON', He: 'HELIUM' };
+  CO: 'CARBON MONOXIDE', H2: 'HYDROGEN', N2: 'NITROGEN', SO2: 'SULFUR DIOXIDE', Na: 'SODIUM', K: 'POTASSIUM', H2S: 'HYDROGEN SULFIDE', Ar: 'ARGON', He: 'HELIUM', SO: 'SULFUR MONOXIDE', Ne: 'NEON' };
 
 // Measured exoplanet atmospheres (only planets within the app's 212 ly catalogue range).
 export const EXO_ATMOSPHERES = {

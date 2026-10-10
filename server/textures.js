@@ -10,14 +10,20 @@ import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { config } from './config.js';
+import { sampleTiff } from './tiff.js';
 
 const run = promisify(execFile);
 const SSS = 'https://www.solarsystemscope.com/textures/download/';
 const NASA = 'https://images-assets.nasa.gov/image/';
 const EO = 'https://eoimages.gsfc.nasa.gov/images/imagerecords/';
+const N3D = 'https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/';
+const USGS = 'https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/';
 const SSS_CREDIT = 'Solar System Scope (CC BY 4.0), from NASA mission imagery';
 
 const src = (url, credit) => ({ url, credit });
+const n3d = (name, mission) => src(`${N3D}${encodeURIComponent(name)}/${encodeURIComponent(name)}.jpg`, `NASA 3D Resources: global mosaic from ${mission} imagery`);
+// USGS Astrogeology mosaics are multi-GB-class GeoTIFFs: sampled down to a 2048 px PNG.
+const usgs = (file, credit) => ({ url: `${USGS}${file}`, credit: `USGS Astrogeology, ${credit}`, tiff: true });
 
 export const TEXTURES = {
   sun: [src(`${SSS}2k_sun.jpg`, `${SSS_CREDIT} (SDO)`)],
@@ -39,6 +45,28 @@ export const TEXTURES = {
   uranus: [src(`${SSS}2k_uranus.jpg`, `${SSS_CREDIT} (Voyager 2)`)],
   neptune: [src(`${SSS}2k_neptune.jpg`, `${SSS_CREDIT} (Voyager 2)`)],
   pluto: [src(`${NASA}PIA11707/PIA11707~orig.jpg`, 'NASA/JHUAPL/SwRI New Horizons global colour mosaic (PIA11707); the black band was in polar night and never imaged')],
+  phobos: [n3d('Mars - Phobos', 'Viking and Mars Global Surveyor')],
+  deimos: [n3d('Mars - Deimos', 'Viking')],
+  io: [n3d('Jupiter - Io (A)', 'Galileo and Voyager')],
+  europa: [n3d('Jupiter - Europa', 'Galileo and Voyager')],
+  ganymede: [n3d('Jupiter - Ganymede', 'Galileo and Voyager')],
+  callisto: [n3d('Jupiter - Callisto', 'Galileo and Voyager')],
+  mimas: [n3d('Saturn - Mimas', 'Cassini')],
+  enceladus: [n3d('Saturn - Enceladus', 'Cassini')],
+  tethys: [n3d('Saturn - Tethys', 'Cassini')],
+  dione: [n3d('Saturn - Dione', 'Cassini')],
+  rhea: [n3d('Saturn - Rhea', 'Cassini')],
+  titan: [n3d('Saturn - Titan', 'Cassini (infrared, through the haze)')],
+  iapetus: [n3d('Saturn - Iapetus', 'Cassini')],
+  miranda: [n3d('Uranus - Miranda', 'Voyager 2 (southern hemisphere only)')],
+  ariel: [n3d('Uranus - Ariel', 'Voyager 2 (southern hemisphere only)')],
+  umbriel: [n3d('Uranus - Umbriel', 'Voyager 2 (southern hemisphere only)')],
+  titania: [n3d('Uranus - Titania', 'Voyager 2 (southern hemisphere only)')],
+  oberon: [n3d('Uranus - Oberon', 'Voyager 2 (southern hemisphere only)')],
+  triton: [n3d('Neptune - Triton', 'Voyager 2')],
+  charon: [n3d('Pluto - Charon', 'New Horizons')],
+  ceres: [usgs('Ceres_Dawn_FC_DLR_global_20ppd_Oct2015.tif', 'Dawn Framing Camera global mosaic (DLR, 2015)')],
+  vesta: [usgs('Vesta_Dawn_FC_HAMO_Mosaic_Global_74ppd.tif', 'Dawn Framing Camera HAMO global mosaic')],
   milkyWay: [src(`${NASA}PIA10748/PIA10748~orig.jpg`, "NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748: artist's concept from Spitzer data")],
 };
 
@@ -72,7 +100,7 @@ export async function download(url) {
 }
 
 const inflight = new Map();
-const fileFor = (key, url) => path.join(config.dataDir, 'textures', key + path.extname(new URL(url).pathname));
+const fileFor = (key, url) => path.join(config.dataDir, 'textures', key + (url.endsWith('.tif') ? '.png' : path.extname(new URL(url).pathname)));
 
 /** Path to the cached file for `key` (and which source it came from), downloading on first use. */
 export async function texturePath(key) {
@@ -84,7 +112,7 @@ export async function texturePath(key) {
   if (!inflight.has(key)) {
     inflight.set(key, (async () => {
       for (const s of sources) {
-        const buf = await download(s.url);
+        const buf = s.tiff ? await sampleTiff(s.url).catch(() => null) : await download(s.url);
         if (!buf) continue;
         const file = fileFor(key, s.url);
         await fs.mkdir(path.dirname(file), { recursive: true });

@@ -27,7 +27,7 @@ const card = (title, tier, detail, ...body) => el('section', { className: 'sv-ca
   el('div', { className: 'sv-card-head' }, el('h3', { textContent: title }), tier ? badge(tier, detail) : null), ...body);
 
 // Interior layer fills: one warm ramp, hottest (iron) darkest-saturated, crust lightest.
-const LAYER_FILL = { iron: '#8a4d10', 'iron-liquid': '#b0651a', metallic: '#7a6a8a', rock: '#a87c4a', ice: '#5f7f99', gas: '#c9b48a', crust: '#d9c3a0' };
+const LAYER_FILL = { iron: '#8a4d10', 'iron-liquid': '#b0651a', metallic: '#7a6a8a', rock: '#a87c4a', ice: '#5f7f99', gas: '#c9b48a', crust: '#d9c3a0', water: '#2f5f9f' };
 
 export function createPlanetView(container) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -252,18 +252,21 @@ export function createPlanetView(container) {
     show() { container.hidden = false; if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load(b, { isSol = false, systemName = '' } = {}) {
-      title.replaceChildren(el('h2', { textContent: b.name.toUpperCase() }), el('div', { className: 'kind', textContent: `PLANET VIEW · ${systemName.toUpperCase()}` }));
-      const mE = isSol ? b.massKg / 5.972e24 : b.massEarth;
+      const minor = ['moon', 'asteroid', 'comet', 'dwarf planet'].includes(b.kind) && b.id !== 'pluto';
+      const view = b.kind === 'moon' ? 'MOON VIEW' : minor ? 'OBJECT VIEW' : 'PLANET VIEW';
+      title.replaceChildren(el('h2', { textContent: b.name.toUpperCase() }), el('div', { className: 'kind', textContent: `${view} · ${systemName.toUpperCase()}` }));
+      const mE = isSol ? (b.massKg ? b.massKg / 5.972e24 : null) : b.massEarth;
       const rE = b.radiusKm / 6371;
       heroFacts.replaceChildren(...[
         ['RADIUS', `${fmt(b.radiusKm)} KM · ${rE.toFixed(2)} × EARTH`],
         ['MASS', mE ? `${mE.toPrecision(3)} × EARTH${b.massIsMinimum ? ' (MIN)' : ''}` : 'UNKNOWN'],
         ['DENSITY', mE ? `${density(mE * 5.972e24, b.radiusKm).toFixed(2)} G/CM³` : '—'],
-        ['TEMPERATURE', isSol ? `${b.meanTempC} °C MEAN` : b.teq ? `${fmt(b.teq)} K EQUILIBRIUM` : '—'],
-        ['CLASS', isSol ? (b.kind === 'dwarf planet' ? 'DWARF PLANET' : rE > 3 ? 'GIANT PLANET' : 'ROCKY PLANET') : b.planetClass],
+        ['TEMPERATURE', isSol ? (b.meanTempC != null ? `${b.meanTempC} °C MEAN` : '—') : b.teq ? `${fmt(b.teq)} K EQUILIBRIUM` : '—'],
+        ['CLASS', isSol ? (b.kind === 'moon' ? `MOON OF ${b.parent.toUpperCase()}` : minor ? b.kind.toUpperCase() : b.kind === 'dwarf planet' ? 'DWARF PLANET' : rE > 3 ? 'GIANT PLANET' : 'ROCKY PLANET') : b.planetClass],
       ].flatMap(([k, v]) => [el('dt', { textContent: k }), el('dd', { textContent: v })]));
       setGlobe(b);
-      body.replaceChildren(...[atmosphereCard(b, isSol), fingerprintCard(b, isSol), interiorCard(b, isSol), massRadiusCard(b, isSol)].filter(Boolean));
+      // The mass–radius diagram is for planets; moons and small bodies are far off its scale.
+      body.replaceChildren(...[atmosphereCard(b, isSol), fingerprintCard(b, isSol), interiorCard(b, isSol), minor || !mE ? null : massRadiusCard(b, isSol)].filter(Boolean));
     },
   };
 }

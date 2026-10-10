@@ -23,9 +23,11 @@
 | Planet | Zeng, Sasselov & Jacobsen 2016/2019 | Mass–radius composition curves (iron, Earth-like, 50% water, H/He) | bundled | ✅ #9 |
 | Planet | JWST/Spitzer papers (Fu 2024, Madhusudhan 2023, Hu 2024, Greene 2023, Zieba 2023, Kreidberg 2019, Moran 2023, Kempton 2023) | Measured exoplanet atmospheres where they exist | bundled | ✅ #9 |
 | Planet | NASA GIBS (Earth, daily) | Live Earth imagery; Earthprise layers | live | ⏳ |
-| Moon | JPL SSD satellite elements; LRO | Moon orbits and surfaces | live | ⏳ |
+| Moon | [JPL SSD mean satellite elements](https://ssd.jpl.nasa.gov/sats/elem/) (Laplace-plane geometry, precession), phase fitted to JPL Horizons 2016–2036 by `scripts/fit-moons.js`; the Moon by a truncated ELP-2000/82 series (Meeus ch. 47) | 26 moons, parent-relative, tested against Horizons | bundled | ✅ #11 |
+| Moon | [NASA 3D Resources](https://github.com/nasa/NASA-3D-Resources) global maps (Voyager, Galileo, Cassini, New Horizons); USGS Astrogeology Dawn mosaics for Ceres and Vesta, range-sampled from the GeoTIFFs by `server/tiff.js` | Moon and asteroid surfaces | downloaded once to `data/textures/` | ✅ #11 |
 | Satellite | CelesTrak GP (OMM/TLE) + SGP4 | Earth-orbit satellites, the ISS | live | ⏳ #3 |
-| Object | JPL SBDB / MPCORB | Asteroid and Kuiper-belt orbits | local / live | ⏳ #3 |
+| Object | [JPL SBDB](https://ssd-api.jpl.nasa.gov/doc/sbdb.html) osculating elements + physical parameters | Ceres, Vesta, Pallas, Hygiea, the dwarf planets, Sedna, Arrokoth, Halley | bundled (`src/data/moons.js`) | ✅ #11 |
+| Object | JPL SBDB query API / MPCORB | Belt populations (thousands of real orbits) | live | ⏳ #12 |
 | Object | NOAA SWPC solar wind (DSCOVR/ACE) | Magnetopause stand-off distance | live | ⏳ #3 |
 | Object | Physical constants and models | GEO ring, Van Allen belts, Hill spheres, Lagrange points, Oort cloud (MODELLED) | bundled | ⏳ #3 |
 | Navigation / System | [HYG v4.4](https://codeberg.org/astronexus/hyg) (Hipparcos + Yale + Gliese, 119,614 stars) | Star positions (parallax), magnitudes, B−V colour, spectral type, names; the real night sky from any star | local, else downloaded once (13.6 MB) to `data/catalogs/` | ✅ |

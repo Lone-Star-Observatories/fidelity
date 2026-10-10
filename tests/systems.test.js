@@ -66,9 +66,14 @@ test('discovery method codes are spelled out', () => {
   assert.equal(discoveryMethod('Something New'), 'SOMETHING NEW');
 });
 
-test('Sol model keeps its nine bodies and Sector 001 identity', () => {
+test('Sol model: Sun, nine major bodies, moons on real parents, small bodies', () => {
   const m = solSystem();
-  assert.equal(m.bodies.length, 10);
+  assert.equal(m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star').length, 10);
+  const ids = new Set(m.bodies.map((b) => b.id));
+  const moons = m.bodies.filter((b) => b.kind === 'moon');
+  assert.ok(moons.length >= 20 && moons.every((b) => ids.has(b.parent)));
+  assert.ok(m.bodies.some((b) => b.id === 'ceres' && b.orbit.type === 'elements'));
+  assert.equal(ids.size, m.bodies.length, 'ids are unique');
   assert.equal(m.sector, 'SECTOR 001');
   assert.ok(m.bodies.every((b) => b.facts.PHYSICAL.length));
 });

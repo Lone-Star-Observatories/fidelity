@@ -67,7 +67,7 @@ LEVEL_BUTTONS.forEach(([id, label, c], i) => {
 });
 const railSubs = $('rail-subviews');
 for (const [id, label] of SUB_BUTTONS) {
-  const b = h('button', { className: `rail-btn sub${id === 'star' || id === 'planet' ? '' : ' dormant'}` }, label);
+  const b = h('button', { className: `rail-btn sub${['star', 'planet', 'moon', 'object'].includes(id) ? '' : ' dormant'}` }, label);
   b.dataset.sub = id;
   b.addEventListener('click', () => {
     // Star sub-view currently means "focus the star inside System View".
@@ -82,6 +82,14 @@ for (const [id, label] of SUB_BUTTONS) {
       if (pick) return go({ level: 'planet', system: currentSystem, body: pick.id });
       return toast('NO KNOWN PLANETS IN THIS SYSTEM');
     }
+    if (id === 'moon' || id === 'object') {
+      const m = system.model;
+      const want = (x) => (id === 'moon' ? x.kind === 'moon' : x.orbit?.type === 'elements');
+      const cur = route.body && m?.bodies.find((x) => x.id === route.body);
+      const pick = (cur && want(cur) && cur) || (id === 'moon' && cur && m.bodies.find((x) => x.kind === 'moon' && x.parent === cur.id)) || m?.bodies.find(want);
+      if (pick) return go({ level: id, system: currentSystem, body: pick.id });
+      return toast(id === 'moon' ? 'NO KNOWN MOONS IN THIS SYSTEM' : 'NO CATALOGUED OBJECTS IN THIS SYSTEM YET');
+    }
     toast(`${label} VIEW OFFLINE — ${ROADMAP[id].status}`);
   });
   railSubs.append(b);
@@ -90,7 +98,7 @@ for (const [id, label] of SUB_BUTTONS) {
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  railSubs.querySelector('[data-sub="planet"]').classList.toggle('active', route.level === 'planet');
+  for (const k of ['planet', 'moon', 'object']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -210,17 +218,27 @@ function renderLegend() {
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
 
 // ---- system panels ----------------------------------------------------------------------
+function bodyGroups(m) {
+  if (!m.isSol) return [['BODIES', m.bodies]];
+  return [
+    ['STAR & PLANETS', m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star')],
+    ['DWARF PLANETS, ASTEROIDS & COMETS', m.bodies.filter((b) => b.orbit?.type === 'elements')],
+  ];
+}
+const detailLevel = (b) => (b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
 function renderSystemPanel() {
   resetLive();
   const m = system.model;
   panel.replaceChildren(
     h('h2', { textContent: m.name.toUpperCase() }),
     h('div', { className: 'kind', textContent: m.subtitle }),
-    h('h3', { textContent: 'BODIES' }),
-    h('div', { className: 'body-list' }, m.bodies.map((b) => pill(b.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: b.id })))),
+    ...bodyGroups(m).flatMap(([title, list]) => [
+      h('h3', { textContent: title }),
+      h('div', { className: 'body-list' }, list.map((b) => pill(b.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: b.id })))),
+    ]),
     h('h3', { textContent: 'SURVEY' }),
     h('div', { className: 'body-list' },
-      m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au, s.centre); })),
+      m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au, s.centre, s.localKm); })),
       pill('NAVIGATION ▸', () => go({ level: 'navigation', system: m.id }))),
     ...(m.isSol ? [
       h('h3', { textContent: 'EPHEMERIS' }),
@@ -253,8 +271,9 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
   const m = system.model;
   const b = m.bodies.find((x) => x.id === id);
   const isStar = !!(b.starLike || b.kind === 'star');
-  const star = m.bodies.find((x) => x.id === (b.orbit?.host ?? m.starId)) ?? m.bodies[0];
+  const star = m.bodies.find((x) => x.id === (b.orbit?.host ?? b.parent ?? m.starId)) ?? m.bodies[0];
   const pos = h('dl');
+  live.posKm = b.kind === 'moon';
   if (!isStar) live.pos = row(pos, `FROM ${star.name.toUpperCase()}`, '—', 'computed');
   live.posTier = pos.lastChild;
   if (m.isSol && id !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
@@ -281,10 +300,16 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
     h('div', { className: 'body-list' },
       inStarView ? pill('◀ SYSTEM VIEW', () => go({ level: 'system', system: m.id, body: b.id })) : pill('◀ SYSTEM', () => go({ level: 'system', system: m.id })),
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
-        pill('PLANET VIEW ▸', () => go({ level: 'planet', system: m.id, body: b.id }))),
+        pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })),
+      b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
+    ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
+      h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
+    b.note ? h('p', { className: 'note', textContent: b.note }) : null,
     renderLegend(),
   );
 }
+
+const moonsOf = (m, id) => m.bodies.filter((x) => x.kind === 'moon' && x.parent === id);
 
 function renderOfflinePanel(level) {
   resetLive();
@@ -479,13 +504,15 @@ function tick() {
       : 'SKY: decorative backdrop (catalogue not loaded).';
   }
 
-  if (['system', 'star', 'planet'].includes(route.level) && route.body && m && (f || route.level === 'star')) {
+  if (['system', 'star', 'planet', 'moon', 'object'].includes(route.level) && route.body && m && (f || route.level === 'star')) {
     const id = route.body;
     const p = system.positionOf(id);
     const r = system.hostDistance(id);
-    if (live.pos) live.pos.textContent = `${fmt(r, r < 0.1 ? 4 : 3)} AU`;
+    if (live.pos) live.pos.textContent = live.posKm ? `${fmt(r * AU_KM, 0)} KM` : `${fmt(r, r < 0.1 ? 4 : 3)} AU`;
     if (live.posTier) {
-      const src = !m.isSol ? 'Keplerian orbit from Exoplanet Archive elements.'
+      const bb = m.bodies.find((x) => x.id === id);
+      const src = bb?.kind === 'moon' ? 'Moon ephemeris (see ORBIT · POSITION).' : bb?.orbit?.type === 'elements' ? 'Two-body orbit from JPL SBDB elements.'
+        : !m.isSol ? 'Keplerian orbit from Exoplanet Archive elements.'
         : f?.sources[id] === 'horizons' ? 'JPL Horizons ephemeris (DE441).' : 'Keplerian elements (Standish, JPL).';
       live.posTier.title = `${TIERS.computed.hint}\n${src}`;
     }
@@ -575,7 +602,7 @@ onRoute(async (r) => {
     const noTemplate = b.kind === 'white dwarf' || b.kind === 'brown dwarf';
     if (!noTemplate) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
     syncRail();
-  } else if (r.level === 'planet') {
+  } else if (r.level === 'planet' || r.level === 'moon' || r.level === 'object') {
     nav.hide();
     system.hide();
     starView.hide();
@@ -585,7 +612,8 @@ onRoute(async (r) => {
     const m = system.model;
     const b = m.bodies.find((x) => x.id === r.body && !(x.starLike || x.kind === 'star'));
     if (!b) return go({ level: 'system', system: m.id });
-    $('view-title').textContent = `PLANET VIEW · ${b.name.toUpperCase()}`;
+    if (detailLevel(b) !== r.level) return go({ level: detailLevel(b), system: m.id, body: b.id });
+    $('view-title').textContent = `${r.level.toUpperCase()} VIEW · ${b.name.toUpperCase()}`;
     syncBeacon();
     planetView.show();
     planetView.load(b, { isSol: m.isSol, systemName: m.name });

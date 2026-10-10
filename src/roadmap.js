@@ -30,5 +30,5 @@ export const ROADMAP = {
   },
   star: { status: 'ONLINE', blurb: '', data: 'Pickles stellar spectra, Asplund 2009 abundances, Exoplanet Archive metallicities.' },
   planet: { status: 'ONLINE', blurb: '', data: 'NASA/USGS global mosaics; NASA GIBS live imagery for Earth.' },
-  moon: { status: 'NOT YET SCHEDULED', blurb: '', data: 'JPL SSD satellite elements, LRO and mission mosaics.' },
+  moon: { status: 'ONLINE', blurb: '', data: 'JPL SSD satellite elements fitted to Horizons; NASA mission mosaics.' },
 };

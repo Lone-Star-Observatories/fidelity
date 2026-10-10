@@ -17,6 +17,8 @@ import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture } from './materials.js';
 import { bodyAxes } from '../../astro/rotation.js';
+import { moonOffsetKm } from '../../astro/moons.js';
+import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -38,6 +40,13 @@ const enhancedRadius = (b, scale) => Math.max(trueRadius(b),
     ? (scale < 1 ? 0.045 : 0.07) * Math.pow(b.radiusKm / 695700, 0.4) // keeps a white dwarf visibly smaller than its companion
     : 0.022 * Math.pow(b.radiusKm / 6371, 0.42)) * scale);
 export const enhancement = (b, scale = 1) => enhancedRadius(b, scale) / trueRadius(b);
+
+/**
+ * Distances around a planet (moons, satellites, belts) in ENHANCED mode: the planet is drawn
+ * hundreds of times too big, so x = r / R is compressed logarithmically outside the surface
+ * (keeps every moon outside its planet and in order). TRUE mode is exact.
+ */
+export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -191,13 +200,15 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     tilt.add(mesh);
     // A fixed-size pip keeps true-scale worlds findable when they are sub-pixel.
     const pipGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3));
+    const minor = body.kind === 'moon' || body.orbit?.type === 'elements';
     group.add(new THREE.Points(pipGeo, new THREE.PointsMaterial({
-      size: isStar(body) ? 6 : 4, sizeAttenuation: false, color: body.color ?? orbitColor(body, i) })));
+      size: isStar(body) ? 6 : minor ? 3 : 4, sizeAttenuation: false, color: body.color ?? (minor ? 0xbbbbbb : orbitColor(body, i)) })));
     pickables.push(mesh);
     const label = makeLabel(body);
     group.add(label);
     root.add(group);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: orbitColor(body, i) };
+    const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
+    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color };
   }
 
   function clear() {
@@ -225,7 +236,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     for (const o of m.binary?.orbits ?? []) addBinaryTrack(o);
     const star = m.bodies.find((x) => x.id === m.starId);
     starLight.color.setHex(star.color ?? 0xfff4e0);
-    const outer = Math.max(...m.survey.map((x) => x.au));
+    const outer = Math.max(...m.survey.map((x) => x.au ?? 0));
     controls.maxDistance = outer * 40;
     focusId = m.starId;
     focusPos.set(0, 0, 0);
@@ -279,18 +290,43 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
   }
 
+  // Moon orbits: one period of true parent-relative positions, re-mapped every frame (the
+  // ENHANCED compression depends on the scale mix).
+  function updateMoonOrbit(node, jd) {
+    const b = node.body, P = b.moon.elements.P;
+    if (!node.samples || Math.abs(jd - node.orbitJd) > P / 6) {
+      node.samples = [];
+      for (let k = 0; k <= 160; k++) node.samples.push(toScene(moonOffsetKm(b.moon, jd + (k / 160 - 0.5) * P)).multiplyScalar(1 / AU_KM));
+      node.orbitJd = jd;
+      if (!node.orbit) {
+        const geo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(161 * 3), 3));
+        node.orbit = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: node.color, transparent: true, opacity: 0.4 }));
+        node.orbit.frustumCulled = false;
+        root.add(node.orbit);
+      }
+    }
+    const parent = nodes[b.parent], attr = node.orbit.geometry.attributes.position;
+    node.samples.forEach((v, k) => { localMap(parent.body, tmp4.copy(v)); attr.setXYZ(k, tmp4.x, tmp4.y, tmp4.z); });
+    attr.needsUpdate = true;
+    node.orbit.position.copy(parent.pos);
+  }
+  const tmp4 = new THREE.Vector3();
+
   function updateOrbit(node, jd) {
     const o = node.body.orbit;
     if (!o) return;
+    if (o.type === 'moon') return updateMoonOrbit(node, jd);
     if (o.type === 'kepler' && node.orbit) { node.orbit.position.copy(hostScene(o.host, jd)); return; }
     if (node.orbit && Math.abs(jd - node.orbitJd) < 365) return;
     const pts = o.type === 'sol'
       ? orbitPath(node.body.id, jd, 512).map((p) => toScene(p))
+      : o.type === 'elements' ? smallBodyOrbit(o.el, 512).map((p) => toScene(p))
       : ellipse(elementsOf(o), 256).map((p) => basisToScene(p, o.basis));
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
     if (node.orbit) { node.orbit.geometry.dispose(); node.orbit.geometry = geo; }
     else {
-      node.orbit = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: node.color, transparent: true, opacity: 0.45 }));
+      // small bodies' orbits stay faint so the planets read first
+      node.orbit = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: node.color, transparent: true, opacity: o.type === 'elements' ? 0.16 : 0.45 }));
       root.add(node.orbit);
     }
     node.orbitJd = jd;
@@ -315,6 +351,12 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (!b) return v.set(0, 0, 0);
     if (isStar(b)) return model.isSol ? v.set(0, 0, 0) : hostScene(id, jd, v);
     const o = b.orbit;
+    if (o.type === 'moon') {
+      toScene(moonOffsetKm(b.moon, jd), v).multiplyScalar(1 / AU_KM);
+      localMap(nodes[o.parent].body, v);
+      return v.add(scenePosition(o.parent, jd, tmp5));
+    }
+    if (o.type === 'elements') { sourceOf[id] = 'kepler'; return toScene(smallBodyPosition(o.el, jd), v); }
     if (o.type === 'sol') {
       if (settings.get('ephemeris') === 'horizons') {
         horizons ??= createHorizonsEphemeris(Object.fromEntries(model.bodies.map((x) => [x.id, x])), (st) => { horizonsStatus = st; });
@@ -328,7 +370,16 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     basisToScene(positionAt(elementsOf(o), o.M0 + (2 * Math.PI * (jd - o.epochJd)) / o.periodDays), o.basis, v);
     return v.add(hostScene(o.host, jd, tmp3));
   }
-  const tmp3 = new THREE.Vector3();
+  const tmp3 = new THREE.Vector3(), tmp5 = new THREE.Vector3();
+
+  /** Map a true parent-relative offset (AU, in place) to its displayed offset at the current scale mix. */
+  function localMap(parent, v) {
+    const r = v.length();
+    if (!r) return v;
+    const R = trueRadius(parent), Re = enhancedRadius(parent, model.scale);
+    const rE = Re * compressRadii(r / R);
+    return v.multiplyScalar((rE * Math.pow(r / rE, scaleMix)) / r);
+  }
 
   // ---- focus & camera flight ---------------------------------------------------------
   let focusId = 'sun';
@@ -368,6 +419,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
   const tmp2 = new THREE.Vector3();
+  const tmp6 = new THREE.Vector3(), tmp7 = new THREE.Vector3(), tmp8 = new THREE.Vector3(), tmp9 = new THREE.Vector3();
   const basis = new THREE.Matrix4();
   const beaconScreen = new THREE.Vector3();
   let running = false;
@@ -399,7 +451,16 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       scenePosition(id, jd, n.pos);
       n.group.position.copy(n.pos);
       n.tilt.scale.setScalar(displayRadius(n.body));
-      if (n.body.iau && n.body.pole) {
+      if (n.body.locked) {
+        // Tidally locked: the prime meridian (texture centre) faces the planet; spin axis = orbit normal.
+        const to = tmp6.copy(nodes[n.body.parent].pos).sub(n.pos).normalize();
+        const ahead = scenePosition(id, jd + n.body.moon.elements.P / 50, tmp7).sub(n.pos);
+        const up = tmp8.copy(to).negate().cross(ahead).normalize(); // r × v
+        const x = to.sub(tmp9.copy(up).multiplyScalar(to.dot(up))).normalize();
+        basis.makeBasis(x, up, tmp9.copy(x).cross(up));
+        n.tilt.quaternion.setFromRotationMatrix(basis);
+        n.mesh.rotation.y = 0;
+      } else if (n.body.iau && n.body.pole) {
         // Real orientation: IAU pole + prime meridian (Earth by sidereal time).
         const ax = bodyAxes(n.body.pole, n.body.iau, jd, n.body.texLon0 ?? -180);
         const toS = (v) => new THREE.Vector3(...frameToScene(eqToEcl(v)));
@@ -409,7 +470,11 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       } else {
         n.mesh.rotation.y = ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2);
       }
-      n.label.visible = showLabels || id === focusId;
+      const fb = nodes[focusId].body;
+      const near = n.body.kind !== 'moon' || fb.id === n.body.parent || fb.parent === n.body.parent;
+      const minorFar = n.body.orbit?.type === 'elements' && overviewAU != null && overviewAU < 6 && n.body.belt !== 'MAIN BELT';
+      n.label.visible = (showLabels && near && !minorFar) || id === focusId;
+      n.group.visible = n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3;
       n.label.element.classList.toggle('focused', id === focusId);
       if (n.body.orbit) {
         updateOrbit(n, jd);
@@ -472,7 +537,10 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     setSky, decorativeSky,
     get model() { return model; },
     focus(id, opts) { flyTo(id, opts); },
-    overview(au, centre) { flyTo(centre && nodes[centre] ? centre : model.starId, { overview: au }); },
+    overview(au, centre, localKm) {
+      if (localKm && nodes[centre]) au = 2.4 * localMap(nodes[centre].body, new THREE.Vector3(localKm / AU_KM, 0, 0)).length();
+      flyTo(centre && nodes[centre] ? centre : model.starId, { overview: au });
+    },
     get focusId() { return focusId; },
     /** Scene position of a body, AU. */
     positionOf: (id) => scenePosition(id, clock.jd, new THREE.Vector3()).toArray(),
@@ -481,6 +549,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       const b = nodes[id]?.body;
       const p = scenePosition(id, clock.jd, new THREE.Vector3());
       if (!b || isStar(b)) return p.length();
+      if (b.orbit?.type === 'moon') return Math.hypot(...moonOffsetKm(b.moon, clock.jd)) / AU_KM;
       return p.distanceTo(b.orbit?.host ? hostScene(b.orbit.host, clock.jd, new THREE.Vector3()) : new THREE.Vector3());
     },
     enhancementOf: (id) => enhancement(nodes[id].body, model.scale),

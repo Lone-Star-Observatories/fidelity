@@ -3,6 +3,8 @@
 // provenance tier (see provenance.js) and a short note on where it came from.
 
 import { AU_KM, SUN, PLANETS } from './sol.js';
+import { MOONS, SMALL_BODIES } from './moons.js';
+import { meanMotion } from '../astro/smallbodies.js';
 import { eqToEcl, frameToScene, starTeff, blackbodyRGB, rgbToHex } from '../astro/frames.js';
 
 const DEG = Math.PI / 180;
@@ -42,13 +44,87 @@ function solFacts(b) {
   };
 }
 
+const sci = (x) => x.toExponential(3).replace('e+', ' × 10^');
+const G = 6.674e-11;
+
+function physicalFacts(b) {
+  const out = [fact('RADIUS', `${fmt(b.radiusKm, b.radiusKm < 100 ? 1 : 0)} KM`, 'measured', b.kind === 'moon' ? 'Mean radius (JPL SSD).' : 'From occultations and spacecraft (JPL SBDB).')];
+  if (b.massKg) {
+    out.push(fact('MASS', `${sci(b.massKg)} KG`, 'measured', 'From its pull on neighbours or spacecraft.'));
+    out.push(fact('DENSITY', `${fmt((b.massKg * 1000) / ((4 / 3) * Math.PI * (b.radiusKm * 1e5) ** 3), 2)} G/CM³`, 'computed', 'Mass ÷ volume. Below ~2: mostly ice; ~3: rock; above 4: rock with iron.'));
+    out.push(fact('SURFACE G', `${fmt((G * b.massKg) / (b.radiusKm * 1000) ** 2, 3)} M/S²`, 'computed', 'GM / R².'));
+  } else out.push(fact('MASS', 'NOT MEASURED', 'imagined', 'No moon or spacecraft has weighed it yet.'));
+  if (b.meanTempC != null) out.push(fact('MEAN TEMP', `${b.meanTempC} °C`, 'measured'));
+  if (b.discovered) out.push(fact('DISCOVERED', b.discovered.toUpperCase(), 'measured'));
+  return out;
+}
+
+function skinFacts(m) {
+  if (m.analog) return [fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
+  return [fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
+}
+
+function moonBody(m) {
+  const e = m.elements;
+  const locked = m.locked !== false && !m.chaotic;
+  return {
+    id: m.id, name: m.name, kind: 'moon', parent: m.parent, radiusKm: m.radiusKm, massKg: m.massKg, meanTempC: m.meanTempC,
+    rotationHours: m.rotationHours || e.P * 24, locked, note: m.note ?? null, discovered: m.discovered,
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
+    facts: {
+      ORBIT: [
+        fact('ORBITS', m.parent.toUpperCase(), 'measured'),
+        fact('DISTANCE', `${fmt(e.a, 0)} KM · ${fmt(e.a / PLANETS.find((p) => p.id === m.parent).radiusKm, 1)} × ${m.parent.toUpperCase()} RADII`, 'measured', 'Mean semi-major axis (JPL SSD).'),
+        fact('PERIOD', `${fmt(e.P, e.P < 10 ? 3 : 1)} DAYS`, 'measured', 'Sidereal period (JPL SSD).'),
+        fact('ECCENTRICITY', fmt(e.e, 3), 'measured'),
+        fact('INCLINATION', `${fmt(e.i, 1)}°${e.i > 90 ? ' · RETROGRADE' : ''}`, 'measured', e.frame === 'ecliptic' ? 'To the ecliptic.' : 'To the local Laplace plane (≈ the planet\'s equator for close moons).'),
+        fact('POSITION', m.id === 'moon' ? 'LUNAR THEORY' : 'MEAN ELEMENTS', 'computed', m.id === 'moon'
+          ? 'Truncated ELP-2000/82 series (Meeus): within ~0.01° of JPL DE440.'
+          : `JPL SSD mean elements with precession; phase fitted to JPL Horizons 2016–2036 (scatter ${e.fit?.rmsDeg ?? '?'}°).`),
+      ],
+      PHYSICAL: [...physicalFacts(m), ...(locked ? [fact('ROTATION', 'TIDALLY LOCKED', 'measured', 'Always shows the same face to its planet, so its day equals its orbit.')] : m.chaotic ? [fact('ROTATION', 'CHAOTIC TUMBLE', 'measured', 'Cassini found its spin changes unpredictably.')] : [fact('DAY', `${fmt(m.rotationHours, 2)} H`, 'measured')])],
+      RENDERING: skinFacts(m),
+    },
+  };
+}
+
+function smallBody(b) {
+  const e = b.elements;
+  const periodYears = 360 / meanMotion(e) / 365.25;
+  const q = e.a * (1 - e.e), Q = e.a * (1 + e.e);
+  return {
+    id: b.id, name: b.name, kind: b.kind, radiusKm: b.radiusKm, massKg: b.massKg, meanTempC: b.meanTempC,
+    rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt,
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.skin, orbit: { type: 'elements', el: e },
+    facts: {
+      ORBIT: [
+        fact('REGION', b.belt, 'measured'),
+        fact('ORBIT SIZE', `${fmt(e.a, 2)} AU · ${fmt(q, 2)}–${fmt(Q, 1)} AU`, 'measured', 'Semi-major axis, and closest–farthest from the Sun (JPL SBDB).'),
+        fact('YEAR', `${fmt(periodYears, periodYears < 10 ? 2 : 0)} YEARS`, 'computed', "Kepler's third law."),
+        fact('ECCENTRICITY', fmt(e.e, 3), 'measured'),
+        fact('INCLINATION', `${fmt(e.i, 1)}°${e.i > 90 ? ' · RETROGRADE' : ''}`, 'measured', 'To the ecliptic.'),
+        fact('POSITION', 'OSCULATING ORBIT', 'computed', `Two-body orbit from JPL SBDB elements at JD ${e.epochJd}; planetary tugs are ignored, so it drifts slowly away from that date.`),
+      ],
+      PHYSICAL: [...physicalFacts(b), fact('DAY', `${fmt(b.rotationHours, 2)} H`, 'measured', 'Rotation period from its light curve (JPL SBDB).')],
+      RENDERING: skinFacts(b),
+    },
+  };
+}
+
 export function solSystem() {
   const bodies = [SUN, ...PLANETS].map((b) => ({ ...b, orbit: b.kind === 'star' ? null : { type: 'sol' }, facts: solFacts(b) }));
+  bodies.push(...MOONS.map(moonBody), ...SMALL_BODIES.map(smallBody));
   return {
     id: 'sol', name: 'Sol', isSol: true, sector: 'SECTOR 001', distLy: 0,
-    subtitle: 'SECTOR 001 · G2V MAIN-SEQUENCE STAR · 9 MAJOR BODIES',
+    subtitle: `SECTOR 001 · G2V MAIN-SEQUENCE STAR · 9 MAJOR BODIES · ${MOONS.length} MOONS · ${SMALL_BODIES.length} SMALL BODIES`,
     bodies, starId: 'sun', scale: 1, solDirection: null, planeNormal: [0, 1, 0],
-    survey: [{ label: 'INNER SYSTEM', au: 4.2 }, { label: 'OUTER SYSTEM', au: 80 }],
+    survey: [
+      { label: 'INNER SYSTEM', au: 4.2 }, { label: 'OUTER SYSTEM', au: 80 }, { label: 'SCATTERED DISC', au: 260 },
+      { label: 'EARTH & MOON', centre: 'earth', localKm: 420000 }, { label: 'MARS MOONS', centre: 'mars', localKm: 25000 },
+      { label: 'JUPITER MOONS', centre: 'jupiter', localKm: 1.95e6 }, { label: 'SATURN MOONS', centre: 'saturn', localKm: 3.7e6 },
+      { label: 'URANUS MOONS', centre: 'uranus', localKm: 6e5 }, { label: 'NEPTUNE MOONS', centre: 'neptune', localKm: 4e5 },
+      { label: 'PLUTO & CHARON', centre: 'pluto', localKm: 22000 },
+    ],
     notes: [],
   };
 }
