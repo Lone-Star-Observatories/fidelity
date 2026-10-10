@@ -205,10 +205,11 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "Own NASA3D globe byte-equal to fetched source; JunoCam PIA24681 and JIRAM PIA26075 retained with source hashes; preliminary seams, spectral processing, historical mosaic epochs and final-product audit remain open (ganymede-moon-preparation-2026-10-10.json); no initial dossier yet",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D Galileo/Voyager globe unchanged and source-byte equal; exact coverage/frame/epochs/photometry audit open. JIRAM optical-overlay context is not a new full globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ganymede"
     },
     {
       "id": "sol-callisto",
@@ -8502,7 +8503,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 4,
+      "initialDossiers": 5,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

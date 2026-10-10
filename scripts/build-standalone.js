@@ -167,7 +167,7 @@ try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'event
 const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, arrivalsDensity, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
 // Zopfli emits standard gzip: spend build time to retain every byte under the preview gate.
-const compressed = await gzipAsync(snapshotJson, { numiterations: 1 });
+const compressed = await gzipAsync(snapshotJson, { numiterations: 8 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
 const packed = encodeSnapshotBytes(compressed);
 if (!Buffer.from(unpackSnapshotBytes(packed)).equals(compressed)) throw new Error('Snapshot transport round-trip failed.');
