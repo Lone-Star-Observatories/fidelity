@@ -276,6 +276,16 @@ catalogue, asks `/api/star-search` for stars and exoplanets (HYG designations ke
 `alt`), groups hits by kind with badges and routes a pick through `go()` or shell actions (stand at a
 site, select in the Quadrant or Universe View, open a mission card, set the clock for a sky event).
 
+## Universe View galaxy forms (#50)
+
+`src/views/universe/galaxyforms.js` builds a form for each galaxy in `src/data/galaxy-images.js` once
+the UNGC rows arrive (distance from UNGC, size from D25). Sky directions at the galaxy come from
+finite differences through `radecToSupergal`; the disc lies along the major axis (PA) and the minor
+axis tilted towards us by the inclination (towards the stated near side when known). Each disc vertex
+gets the uv where it projects on our sky, so from the Milky Way the disc shows the cutout exactly.
+Forms fade in between 6 and 30 px apparent size; `select` eases the camera to ~3× the galaxy's size.
+Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached route as #24).
+
 ## Space telescopes
 
 Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed viewer

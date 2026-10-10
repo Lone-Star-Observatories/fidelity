@@ -179,7 +179,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .explain-label.on { fill: var(--orange); font-weight: 700; }
 .explain-note { font-size: calc(7px * var(--text-scale, 1)); fill: var(--dim); letter-spacing: 0.06em; }
 .panel .note.explain { color: var(--peach); }
-.nav-label.motion { color: #ffcc66; background: none; border: 0; pointer-events: none; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; }
+.nav-label.motion { color: #ffcc66; background: none; border: 0; pointer-events: auto; cursor: help; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; }
 .nav-label.fleet { color: var(--rose); background: none; border: 0; pointer-events: none; font-size: calc(16px * var(--text-scale, 1)); letter-spacing: 0.22em; }
 .nav-label.quadrant { color: rgba(204, 153, 204, 0.55); background: none; border: 0; pointer-events: none; font-size: calc(15px * var(--text-scale, 1)); letter-spacing: 0.2em; }
 

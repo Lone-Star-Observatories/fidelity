@@ -44,12 +44,12 @@ export const FAMOUS_CLUSTERS = {
   'NGC 6121': 'M4', 'NGC 6656': 'M22', 'NGC 3603': 'NGC 3603', 'Trumpler 14': 'Trumpler 14 (Carina)',
 };
 
-// UNGC names → common names.
+// UNGC names → common names (UNGC lists most Messier galaxies under their NGC numbers).
 export const GALAXY_NAMES = {
   MESSIER031: 'Andromeda · M31', MESSIER033: 'Triangulum · M33', LMC: 'Large Magellanic Cloud', SMC: 'Small Magellanic Cloud', MESSIER081: "Bode's Galaxy · M81",
-  MESSIER082: 'Cigar Galaxy · M82', NGC5128: 'Centaurus A', MESSIER101: 'Pinwheel · M101', NGC0253: 'Sculptor Galaxy', MESSIER083: 'Southern Pinwheel · M83',
-  IC0342: 'IC 342', MESSIER094: 'M94', MESSIER064: 'Black Eye · M64', MESSIER051a: 'Whirlpool · M51', NGC6822: "Barnard's Galaxy", MESSIER032: 'M32', MESSIER110: 'M110',
-  Maffei1: 'Maffei 1', Maffei2: 'Maffei 2', CenAdwarfs: '', NGC4945: 'NGC 4945', NGC0300: 'NGC 300', NGC0055: 'NGC 55', MESSIER106: 'M106', NGC4214: 'NGC 4214', WLM: 'WLM',
+  MESSIER082: 'Cigar Galaxy · M82', NGC5128: 'Centaurus A', MESSIER101: 'Pinwheel · M101', NGC0253: 'Sculptor Galaxy', NGC5236: 'Southern Pinwheel · M83',
+  IC0342: 'IC 342', NGC4736: 'M94', NGC4826: 'Black Eye · M64', NGC5194: 'Whirlpool · M51', NGC6822: "Barnard's Galaxy", MESSIER032: 'M32', NGC0205: 'M110',
+  Maffei1: 'Maffei 1', Maffei2: 'Maffei 2', NGC4945: 'NGC 4945', NGC0300: 'NGC 300', NGC0055: 'NGC 55', NGC4258: 'M106', NGC4214: 'NGC 4214', WLM: 'WLM', NGC4594: 'Sombrero · M104', IC0010: 'IC 10',
 };
 
 // Clusters of galaxies and superclusters beyond the nearby-galaxy catalogue: [name, RA°, Dec°, distance Mly, note].

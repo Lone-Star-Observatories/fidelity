@@ -951,6 +951,18 @@ function renderQuadrantPanel() {
   );
 }
 
+/** Image, orientation and shape rows for a galaxy drawn with its real image (#50). */
+function galaxyFormFacts(g) {
+  if (!g) return [];
+  return [
+    { label: 'IMAGE', value: `${g.img.survey === 'twomass' ? '2MASS NEAR-IR' : 'DSS2 COLOUR'} · ${g.img.date}`, tier: 'measured', detail: `${g.img.credit}. ${g.img.licence}. Cutout ${g.img.fov.toFixed(0)}′ wide, north up, centred on RA ${g.ra.toFixed(3)}°, Dec ${g.dec.toFixed(3)}°.` },
+    { label: 'ORIENTATION', value: `PA ${g.pa}° · INCLINATION ${g.incl}°${g.near ? ` · ${g.near} SIDE NEARER` : ''}`, tier: g.orient, detail: `${g.orientSource}.${g.near ? '' : ' Which side is nearer is not established here: one of the two mirror-image tilts is drawn.'}` },
+    { label: 'SIZE', value: `D25 ${g.d25}′`, tier: 'measured', detail: 'Major axis to the 25 mag/arcsec² isophote (RC3 / HyperLEDA), drawn at the galaxy\'s distance.' },
+    { label: 'SHAPE', value: g.type === 'elliptical' ? 'ELLIPSOID GLOW + IMAGE ON THE SKY PLANE' : g.type === 'spiral' ? 'DISC + BULGE + THICKNESS GLOW' : 'DISC + THICKNESS GLOW', tier: 'modelled',
+      detail: g.type === 'elliptical' ? 'An oblate ellipsoid with the observed axis ratio; the true 3D shape of an elliptical is not known from one viewpoint.' : 'The image is projected onto a thin disc (scale height ~2% of D25) so it looks exactly as observed from the Milky Way; seen from elsewhere, the disc texture is an approximation (the far side, dust and bulge are not reconstructed).' },
+  ];
+}
+
 function renderUniversePanel() {
   resetLive();
   const R = universe.radius, c = universe.counts();
@@ -963,6 +975,7 @@ function renderUniversePanel() {
       ...(sel.diameterKpc ? [{ label: 'DIAMETER', value: `${fmt(sel.diameterKpc * 3.26156, 0)},000 LY`, tier: 'measured', detail: 'Holmberg-like diameter at 26.5 mag/arcsec² (UNGC).' }] : []),
       ...(sel.absB != null ? [{ label: 'BRIGHTNESS', value: `M_B ${fmt(sel.absB, 1)}`, tier: 'computed', detail: 'Absolute blue magnitude; the Milky Way is about −20.8.' }] : []),
       { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+      ...galaxyFormFacts(universe.formOf(sel.id)),
     ] : [
       { label: 'TYPE', value: 'CLUSTER OF GALAXIES', tier: 'measured' },
       { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (Cosmicflows).' },
@@ -995,6 +1008,7 @@ function renderUniversePanel() {
       { label: 'ANDROMEDA', value: `${-MOTION.m31.radialKms} KM/S CLOSING`, tier: 'measured', detail: `Red arrow (zoom to 3 or 10 MLY). Its blueshift and Hubble proper motions (~${MOTION.m31.tangentialKms} km/s sideways; van der Marel et al. 2019) give a near head-on approach.` },
       { label: 'MILKOMEDA', value: `IN ~${MOTION.m31.mergeGyr} BILLION YR`, tier: 'modelled', detail: 'N-body simulations put the first pass in ~4 billion years and the merger into one elliptical galaxy ~2 billion years later; newer Gaia-based work gives it only ~50% odds within 10 billion years (Sawala et al. 2025).' },
       { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
+      { label: 'GALAXY IMAGES', value: '17 NEAREST BIG GALAXIES', tier: 'measured', detail: 'Zoom in (or select one) and M31, M33, M81, M82, M83, M101, M51, M104, NGC 253, NGC 4945, Centaurus A, M32, M110, NGC 6822, IC 10 and Maffei 1/2 appear at their real D25 size from their survey images (DSS2; 2MASS behind the Milky Way), turned to their measured position angle and inclination. Shapes are MODELLED over MEASURED imagery; the Magellanic Clouds\' Spitzer images are in the Galaxy View (#18).' },
     ]),
     h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),
     renderLegend(),
