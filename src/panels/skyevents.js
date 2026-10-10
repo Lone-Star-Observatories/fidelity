@@ -39,7 +39,7 @@ export function eventDetail(e) {
   return '';
 }
 /** Where to watch it from: [body to fly to]. */
-const watchFrom = (e) => (e.type === 'solar' ? 'earth' : e.type === 'lunar' ? 'moon' : e.type === 'transit' ? 'sun' : e.type === 'occultation' ? 'moon'
+export const watchFrom = (e) => (e.type === 'solar' ? 'earth' : e.type === 'lunar' ? 'moon' : e.type === 'transit' ? 'sun' : e.type === 'occultation' ? 'moon'
   : e.kind === 'opposition' || e.kind === 'greatest elongation' ? e.body : e.kind === 'conjunction' ? e.body.split('–')[0] : 'earth');
 /** Which events belong in a body's panel. */
 const relevant = (id, e) => {

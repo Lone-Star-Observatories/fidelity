@@ -21,7 +21,11 @@ import { satellites, satelliteDetail } from './satellites.js';
 import { feed, feedList } from './feeds.js';
 import { traverse } from './traverse.js';
 import { jwstSchedule, recentImages, preview } from './observing.js';
+import { eventsFeed } from './events.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
+import { hipsImage, gibsBand } from './bandimages.js';
+import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
+import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -37,6 +41,8 @@ const send = (res, status, body, type = 'application/json') => {
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/voice/status': async () => voiceStatus(),
+  'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '')),
+  'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '')),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),
@@ -59,6 +65,13 @@ const routes = {
   'GET /api/feeds': async () => feedList(),
   'GET /api/observing/jwst/schedule': async () => jwstSchedule(),
   'GET /api/observing/preview': async (q) => binary({ ...(await preview(q.get('uri'))), maxAge: 86400 }),
+  'GET /api/events': async () => eventsFeed(),
+  'GET /api/surveys': async () => surveyList(),
+  'GET /api/nasa-images': async (q) => nasaImages(q),
+  'GET /api/psg': async (q) => psgSpectrum(q.get('body') || '', q.get('month') || ''),
+  'GET /api/star-spectrum': async (q) => starSpectrum(q),
+  'GET /api/exo-spectra': async (q) => exoSpectraList(q.get('planet') || ''),
+  'GET /api/exo-spectrum': async (q) => exoSpectrum(q.get('path') || ''),
 };
 
 /** Binary result: sent as-is instead of JSON. */
@@ -71,6 +84,8 @@ const paramRoutes = [
   [/^GET \/api\/satellites\/(\d{1,6})$/, (m) => satelliteDetail(m[1])],
   [/^GET \/api\/observing\/(hst|jwst)\/recent$/, (m) => recentImages(m[1])],
   [/^GET \/api\/traverse\/([a-z0-9-]{1,16})$/, (m) => traverse(m[1])],
+  [/^GET \/api\/survey\/([a-z0-9]{2,16})$/, async (m, q) => binary(await surveyCutout(m[1], q))],
+  [/^GET \/api\/nasa-image\/([A-Za-z0-9_.\-]{2,80})\/(thumb|medium)$/, async (m) => binary(await nasaImage(m[1], m[2]))],
   [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
     const f = await feed(m[1]);
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };
@@ -103,7 +118,7 @@ const server = http.createServer(async (req, res) => {
   let handler = routes[key] && (() => routes[key](url.searchParams));
   for (const [re, fn] of paramRoutes) {
     const m = !handler && key.match(re);
-    if (m) handler = () => fn(m);
+    if (m) handler = () => fn(m, url.searchParams);
   }
   if (handler) {
     try {

@@ -11,7 +11,8 @@
     "start": "node server/index.js",
     "catalogs": "node scripts/catalogs.js",
     "test": "node --test \"tests/**/*.test.js\"",
-    "build:standalone": "node scripts/build-standalone.js"
+    "build:standalone": "node scripts/build-standalone.js",
+    "events": "node scripts/events/build-events.js"
   },
   "engines": {
     "node": ">=20"

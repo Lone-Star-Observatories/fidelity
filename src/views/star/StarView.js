@@ -58,9 +58,11 @@ export function createStarView(container) {
   const spectrumBox = el('section', { className: 'sv-card' });
   const compositionBox = el('section', { className: 'sv-card' });
   const researchBox = el('div', { className: 'stellar-research' });
+  const extras = el('div', { className: 'pv-cards' }); // FROM EARTH and imagery (src/panels)
+  const ownSpectrum = el('div', { className: 'pv-cards' }); // the star's measured Gaia spectrum
   container.replaceChildren(el('div', { className: 'sv' },
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)),
-    spectrumBox, compositionBox, researchBox));
+    extras, spectrumBox, ownSpectrum, compositionBox, researchBox));
 
   function sizeHero() {
     const w = hero.clientWidth || 260;
@@ -260,6 +262,8 @@ export function createStarView(container) {
   return {
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
+    /** Cards built outside the view: `top` under the hero, `spectrum` after the template spectrum. */
+    setExtras({ top = [], spectrum = [] } = {}) { extras.replaceChildren(...top.filter(Boolean)); ownSpectrum.replaceChildren(...spectrum.filter(Boolean)); },
     /** Show `body` (a star body from a system model); `spectrum` from /api/spectrum or null. */
     load(body, { isSun = false, systemName = '', spectrum = null } = {}) {
       current = { body, isSun, spectrum };

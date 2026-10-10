@@ -1,0 +1,71 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/2106.07656",
+    "file": "data/research-sources/lalande-pineda.pdf",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2021-06-14",
+    "observationDate": null,
+    "sha256": "cd3292addc2e9065a6a36acb143b96b8637fb9defbd61991e6f54f019732ba97",
+    "bytes": 6094474,
+    "terms": "Primary research/metadata citation; no paper figures reused"
+  },
+  {
+    "url": "https://arxiv.org/html/2107.09087v2",
+    "file": "data/research-sources/lalande-hurt.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2022-04-05",
+    "observationDate": null,
+    "sha256": "b648a720350120a50c01b8b95132bc62938f092a283a5897d15d18bc14a7e35f",
+    "bytes": 330999,
+    "terms": "Primary research/metadata citation; no paper figures reused"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_sia?POS=165.83414,35.96988&SIZE=0&band=K&FORMAT=ALL",
+    "file": "data/research-sources/lalande-2mass-sia.xml",
+    "retrieved": "2026-10-10",
+    "publicationDate": null,
+    "observationDate": null,
+    "sha256": "50b8b6ba4a5e1622395f25fce6a61871742785d60b64bdc510c2eb8393954878",
+    "bytes": 16379,
+    "terms": "Primary research/metadata citation; no paper figures reused"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/doc/sec1_7.html",
+    "file": "data/research-sources/lalande-2mass-credits.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2003-02-27",
+    "observationDate": null,
+    "sha256": "509c590900a2fa7257b3a9ec818a98c49a7cc29874f37c17d8fc381b22665255",
+    "bytes": 2621,
+    "terms": "Primary research/metadata citation; no paper figures reused"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=1154968&band=K",
+    "file": "data/research-sources/lalande-2mass-preview.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": null,
+    "observationDate": "1999-11-11",
+    "sha256": "a938c77514c1b04b1a996bb26e85ab5d127f9e6036d0ea12a380bd0e17bd2eae",
+    "bytes": 6484,
+    "terms": "2MASS/IRSA scientific data credit; publisher preview copied unchanged; ephemeral delivery URL with stable coadd source page"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-jpeg?file=%2Fwork%2FTMP_Zc3VSu_2428428%2FIM%2Fkey_41V1kv%2FaK_asky_991111n1530266.jpg",
+    "file": "public/bespoke/lalande-star-native.jpg",
+    "retrieved": "2026-10-10",
+    "publicationDate": null,
+    "observationDate": "1999-11-11",
+    "sha256": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+    "bytes": 34475,
+    "terms": "2MASS/IRSA scientific data credit; publisher preview copied unchanged; ephemeral delivery URL with stable coadd source page"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im?ds=asky&atdir=/ti04&dh=991111n&scan=153&name=ki1530266.fits",
+    "file": "data/research-sources/lalande-2mass-native.fits",
+    "retrieved": "2026-10-10",
+    "observationDate": "1999-11-11",
+    "sha256": "514307429c67132f7264fb7715d107581c0cedc0289504aa99baa52462527d66",
+    "bytes": 1713600,
+    "terms": "Primary2MASS science FITS provenance; preview is independently retained unchanged"
+  }
+]

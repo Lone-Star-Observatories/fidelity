@@ -4,13 +4,23 @@
 //   Wake: a chirp, then the next utterance streams through the backend relay (/api/voice) to
 //     the OpenAI Realtime API with the current view and panel facts as context; the reply is
 //     spoken and transcribed. The model can act: go to a body, toggle a layer, set the clock.
-//   Barge-in: the wake word during a reply stops it ("Computer, stop" stops too).
+//   Replies finish: noise (or the ship's own voice coming back through the speakers) never cuts
+//     them off. STOP or Esc ends one; with INTERRUPT on, only a confident wake word (well inside
+//     the trained threshold) barges in.
 //   Offline or no key: on-device speech recognition (where the browser offers it) handles
 //     navigation commands; otherwise push-to-talk explains what is missing.
 
 import { RATE, createEndpointer, matchWake, loadTemplates, saveTemplates, resampler } from './wake.js';
 
 const OUT_RATE = 24000;
+/** During a reply the wake word must be this much closer than the trained threshold to interrupt. */
+export const BARGE_IN_STRICTNESS = 0.7;
+/** Does a heard utterance (DTW `distance` from the wake word) start a turn? While a reply plays, only with
+ * INTERRUPT on and only for a confident match, so noise and the ship's own voice never cut it off. */
+export function shouldWake({ replying, interrupt, distance, threshold }) {
+  if (!replying) return distance < threshold;
+  return interrupt && distance < threshold * BARGE_IN_STRICTNESS;
+}
 const TAP = `class Tap extends AudioWorkletProcessor { process(i) { const c = i[0] && i[0][0]; if (c) this.port.postMessage(c.slice(0)); return true; } }
 registerProcessor('fidelity-tap', Tap);`;
 
@@ -50,7 +60,7 @@ const TOOLS = [
   { type: 'function', name: 'set_layer', description: 'Show or hide a display layer.', parameters: { type: 'object', properties: { layer: { type: 'string', enum: ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins'] }, on: { type: 'boolean' } }, required: ['layer', 'on'] } },
   { type: 'function', name: 'set_time', description: "Set the ship's clock to a date/time (ISO 8601, UTC), or 'now'.", parameters: { type: 'object', properties: { iso: { type: 'string' } }, required: ['iso'] } },
 ];
-const PERSONA = `You are the computer of the starship USS Fidelity, a scientific astronomy explorer. Speak like a ship's computer: calm, precise, brief (two to four sentences unless asked for more). Answer about what the viewer is looking at, using the on-screen facts below when they help; say plainly when something is unknown or modelled. You can act with the tools (fly somewhere, toggle a layer, set the clock) when the viewer asks.`;
+const PERSONA = `You are the computer of the starship USS Fidelity, a scientific astronomy explorer. Speak like a ship's computer: calm, precise, brief (two to four sentences unless asked for more). The section ON SCREEN NOW describes exactly what the viewer sees at this moment (view, what the camera is centred on, the clock, layers, anything playing out, and the side panel); when they say "this", "that" or "here", they mean it. Answer from it when it helps; say plainly when something is unknown or modelled. You can act with the tools (fly somewhere, toggle a layer, set the clock) when the viewer asks.`;
 
 /**
  * The voice controller. `ctx` supplies the app: context() → string (view + selection + panel
@@ -98,11 +108,13 @@ export function createComputer(ctx) {
     mic = audio = node = null;
   }
 
+  const replying = () => state === 'speaking' || state === 'thinking' || playEnd > (outCtx?.currentTime ?? 0);
   function onUtterance(u) {
     if (enrol) { enrol.got.push(u); enrol.step?.(enrol.got.length); return; }
     if (!wake || streaming) return;
-    const { match } = matchWake(u, wake);
-    if (match) wakeUp();
+    const r = replying(), interrupt = !!ctx.canInterrupt?.();
+    if (r && !interrupt) return; // let the reply finish; skip the matching altogether
+    if (shouldWake({ replying: r, interrupt, distance: matchWake(u, wake).distance, threshold: wake.threshold })) wakeUp();
   }
 
   // ---- the relay ---------------------------------------------------------------------------
@@ -121,7 +133,7 @@ export function createComputer(ctx) {
     send({ type: 'session.update', session: {
       type: 'realtime', instructions: `${PERSONA}\n\nON SCREEN NOW:\n${ctx.context()}`, output_modalities: ['audio'], tools: TOOLS, tool_choice: 'auto',
       audio: {
-        input: { format: { type: 'audio/pcm', rate: OUT_RATE }, turn_detection: { type: 'server_vad', silence_duration_ms: 700, create_response: true }, transcription: { model: 'gpt-4o-mini-transcribe' } },
+        input: { format: { type: 'audio/pcm', rate: OUT_RATE }, turn_detection: { type: 'server_vad', threshold: 0.6, prefix_padding_ms: 300, silence_duration_ms: 800, create_response: true, interrupt_response: false }, transcription: { model: 'gpt-4o-mini-transcribe' } },
         output: { format: { type: 'audio/pcm', rate: OUT_RATE }, voice: 'alloy' },
       },
     } });
@@ -135,13 +147,13 @@ export function createComputer(ctx) {
       say('you', m.transcript); closeLine();
       if (/^\s*(computer[, ]*)?(stop|cancel|silence)\b/i.test(m.transcript ?? '')) stopSpeaking();
     }
-    if (t === 'response.output_audio.delta' || t === 'response.audio.delta') { set('speaking'); play(base64Pcm16(m.delta)); }
+    if (t === 'response.output_audio.delta' || t === 'response.audio.delta') { streaming = false; set('speaking'); play(base64Pcm16(m.delta)); }
     if (t === 'response.output_audio_transcript.delta' || t === 'response.audio_transcript.delta') say('ship', m.delta);
     if (t === 'response.function_call_arguments.done') runTool(m.name, m.arguments, m.call_id);
     if (t === 'response.done') {
       closeLine();
       const calls = (m.response?.output ?? []).filter((o) => o.type === 'function_call');
-      if (calls.length) send({ type: 'response.create' }); // speak after acting
+      if (calls.length) setTimeout(() => { sessionUpdate(); send({ type: 'response.create' }); }, 700); // let the screen change, then speak about the new view
       else setTimeout(() => { if (state === 'speaking' || state === 'thinking') set('listening'); }, Math.max(0, (playEnd - (outCtx?.currentTime ?? 0)) * 1000));
     }
   }

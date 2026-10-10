@@ -3356,6 +3356,1066 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "alpha-centauri-a-star": {
+    "id": "alpha-centauri-a-star",
+    "name": "Alpha Centauri A",
+    "kind": "star",
+    "aliases": [
+      "Alpha Centauri A",
+      "Alpha Cen A",
+      "alf Cen A",
+      "Rigil Kentaurus",
+      "HD 128620"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "A is Rigil Kentaurus / G2V, left in Hubble portrait.",
+    "nativeSurface": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
+    "measured": [
+      "Kervella2017 H-band interferometric limb-darkened diameter8.502±0.038mas; radius1.2234±0.0053 solar radii using747.17±0.61mas parallax.",
+      "The Hubble portrait records A left and B right; released2016-08-29, filters457nm and850nm; exact observing day unverified."
+    ],
+    "modelled": [
+      "Adopted representative effective temperature5795K (±19K reference uncertainty) from interferometric radii and bolometric flux, reviewed by Thévenin2023 quoting Morel2018/Kervella2017. Hydrogen/helium plasma and outer convection are stellar-model context, not measured abundance mass fractions.",
+      "Thévenin2023 also reports updated radius/temperature alternatives A1.2175Rsun5800K/B0.8591Rsun5236K using Akeson2021 astrometry; catalogue and orbit values preserved.",
+      "Webb2025 graphic combines infrared data, subtraction and annotations; source publisher classifies Artwork. S1 remains a candidate, not a confirmed planet or observed stellar surface."
+    ],
+    "unknown": [
+      "Resolved convection, actual magnetic spot pattern, calibrated visible intensity/colour, precise abundance fractions and chromospheric geometry."
+    ],
+    "assumed": [
+      "Independent two modest dim magnetic patches and finer granulation; all photospheric geography invented, no Sun or another component map reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree field; no solid ground or physically survivable landing.",
+      "Companion lies outside this chosen field; no dated binary orientation, companion angular location or photometric calibration is claimed."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1610.06185v1",
+        "title": "Kervella et al., interferometric radii and limb darkening",
+        "publicationDate": "2016-10-19"
+      },
+      {
+        "url": "https://alphacen2023.sciencesconf.org/data/pages/alphaCen_thevenin.pdf",
+        "title": "Thévenin2023, fundamental parameters and alternative atmosphere fits",
+        "publicationDate": "2023-06"
+      },
+      {
+        "url": "https://esahubble.org/images/potw1635a/",
+        "title": "ESA/Hubble native binary portrait",
+        "publicationDate": "2016-08-29"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2515c/",
+        "title": "ESA/Webb2025 annotated infrared observation graphic",
+        "publicationDate": "2025-08-07"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/alpha-centauri-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/large/potw1635a.jpg",
+        "sourcePage": "https://esahubble.org/images/potw1635a/",
+        "credit": "ESA/Hubble & NASA",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2016-08-29",
+        "observationDate": null,
+        "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "bytes": 107856,
+        "tier": "measured",
+        "description": "A left, B right: unresolved optical/near-infrared point sources, not resolved surfaces."
+      },
+      {
+        "url": "/bespoke/alpha-centauri-webb.jpg",
+        "source": "https://cdn.esawebb.org/archives/images/screen/weic2515c.jpg",
+        "sourcePage": "https://esawebb.org/images/weic2515c/",
+        "credit": "NASA, ESA, CSA, STScI, A. Sanghi (Caltech), C. Beichman (JPL), D. Mawet (Caltech), J. DePasquale (STScI)",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esawebb.org/copyright/",
+        "publicationDate": "2025-08-07",
+        "observationDate": null,
+        "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "bytes": 122690,
+        "tier": "modelled",
+        "description": "2025 annotated infrared observational composite; diffraction, coronagraph and subtraction patterns are instrumental. A/B and candidate S1 identified by original publisher; no visible-colour photosphere.",
+        "label": "NATIVE INFRARED DATA · ANNOTATED GRAPHIC"
+      }
+    ],
+    "skyModel": {
+      "star": "Alpha Centauri A",
+      "radiusSun": 1.2234,
+      "temperatureK": 5795,
+      "distanceAU": 0.011378763294122208,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 11745.061564082493,
+      "approximateSrgb": [
+        1,
+        0.9517261540134383,
+        0.9060424466767338
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "alphaCentauriABespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured stellar geography/frame.",
+      "coverage": "Entire photosphere imagined; neutral intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/alpha-centauri-a-star-surface-map.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-a-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e8457ef9-f92a-4b1e-9956-6172d1c8aa1b.png",
+      "sourceSha256": "75ce390124ca460733e4ead25c31e9c97d33dee65e5c207ee0ee88a468a89a63",
+      "sha256": "18c734022d7a7a1220620ccc9c35dd9ac84366eafee7a377db4417456a849724",
+      "previewSha256": "baf17362a82b86f2e3d7be121fe190768b487798eef9d3ec9cbff8d9922ba812",
+      "bytes": 367537,
+      "previewBytes": 35177,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          453,
+          453,
+          451
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Bright thresholds do not establish a calibrated limb. Colour, exposure, magnetic regions, FOV and orientation are artistic."
+      },
+      "url": "/bespoke/alpha-centauri-a-star-sky-image.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-a-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-9119edd6-c736-43aa-9ecd-a27079300643.png",
+      "sourceSha256": "96a20e6fd8698ab22697255629ab59e4ef88b49b23747d1b375938c258de675c",
+      "sha256": "098c42b771cb3f7a6c516d764030c4454acf66b309d36b5d55ef0b1cd563adf9",
+      "previewSha256": "d1bfe9a1bd14d1e69e2dbf7700773397f7f09684974b8525899d696bc051f152",
+      "bytes": 59078,
+      "previewBytes": 11641,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "alpha-centauri-b-star": {
+    "id": "alpha-centauri-b-star",
+    "name": "Alpha Centauri B",
+    "kind": "star",
+    "aliases": [
+      "Alpha Centauri B",
+      "Alpha Cen B",
+      "alf Cen B",
+      "Toliman",
+      "HD 128621"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "B is Toliman / K1V, right in Hubble portrait.",
+    "nativeSurface": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
+    "measured": [
+      "Kervella2017 H-band interferometric limb-darkened diameter5.999±0.025mas; radius0.8632±0.0037 solar radii using747.17±0.61mas parallax.",
+      "The Hubble portrait records A left and B right; released2016-08-29, filters457nm and850nm; exact observing day unverified."
+    ],
+    "modelled": [
+      "Adopted representative effective temperature5231K (±21K reference uncertainty) from interferometric radii and bolometric flux, reviewed by Thévenin2023 quoting Morel2018/Kervella2017. Hydrogen/helium plasma and outer convection are stellar-model context, not measured abundance mass fractions.",
+      "Thévenin2023 also reports updated radius/temperature alternatives A1.2175Rsun5800K/B0.8591Rsun5236K using Akeson2021 astrometry; catalogue and orbit values preserved.",
+      "Webb2025 graphic combines infrared data, subtraction and annotations; source publisher classifies Artwork. S1 remains a candidate, not a confirmed planet or observed stellar surface."
+    ],
+    "unknown": [
+      "Resolved convection, actual magnetic spot pattern, calibrated visible intensity/colour, precise abundance fractions and chromospheric geometry."
+    ],
+    "assumed": [
+      "Independent three irregular dim magnetic groups and distinct tangled cells; all photospheric geography invented, no Sun or another component map reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree field; no solid ground or physically survivable landing.",
+      "Companion lies outside this chosen field; no dated binary orientation, companion angular location or photometric calibration is claimed."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1610.06185v1",
+        "title": "Kervella et al., interferometric radii and limb darkening",
+        "publicationDate": "2016-10-19"
+      },
+      {
+        "url": "https://alphacen2023.sciencesconf.org/data/pages/alphaCen_thevenin.pdf",
+        "title": "Thévenin2023, fundamental parameters and alternative atmosphere fits",
+        "publicationDate": "2023-06"
+      },
+      {
+        "url": "https://esahubble.org/images/potw1635a/",
+        "title": "ESA/Hubble native binary portrait",
+        "publicationDate": "2016-08-29"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2515c/",
+        "title": "ESA/Webb2025 annotated infrared observation graphic",
+        "publicationDate": "2025-08-07"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/alpha-centauri-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/large/potw1635a.jpg",
+        "sourcePage": "https://esahubble.org/images/potw1635a/",
+        "credit": "ESA/Hubble & NASA",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2016-08-29",
+        "observationDate": null,
+        "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "bytes": 107856,
+        "tier": "measured",
+        "description": "A left, B right: unresolved optical/near-infrared point sources, not resolved surfaces."
+      },
+      {
+        "url": "/bespoke/alpha-centauri-webb.jpg",
+        "source": "https://cdn.esawebb.org/archives/images/screen/weic2515c.jpg",
+        "sourcePage": "https://esawebb.org/images/weic2515c/",
+        "credit": "NASA, ESA, CSA, STScI, A. Sanghi (Caltech), C. Beichman (JPL), D. Mawet (Caltech), J. DePasquale (STScI)",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esawebb.org/copyright/",
+        "publicationDate": "2025-08-07",
+        "observationDate": null,
+        "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "bytes": 122690,
+        "tier": "modelled",
+        "description": "2025 annotated infrared observational composite; diffraction, coronagraph and subtraction patterns are instrumental. A/B and candidate S1 identified by original publisher; no visible-colour photosphere.",
+        "label": "NATIVE INFRARED DATA · ANNOTATED GRAPHIC"
+      }
+    ],
+    "skyModel": {
+      "star": "Alpha Centauri B",
+      "radiusSun": 0.8632,
+      "temperatureK": 5231,
+      "distanceAU": 0.00802856667932507,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 7797.949466399684,
+      "approximateSrgb": [
+        1,
+        0.9117845260802663,
+        0.8380680822793982
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "alphaCentauriBBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured stellar geography/frame.",
+      "coverage": "Entire photosphere imagined; neutral intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/alpha-centauri-b-star-surface-map.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-b-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-3155d3d2-5ad9-44cf-bdf9-4f7b002310b8.png",
+      "sourceSha256": "3d3528ebbebbad777302c8c543452026666a41ba805fa82d9ebf3bb452cee2e7",
+      "sha256": "510b8ce1463f77cddab7b22ce34dc1ffa6ec03214f4102d2fd18426296106189",
+      "previewSha256": "83b90aa3a213be4ed63e3179f9eacf769c11b97c17d54904ed719b277d15d723",
+      "bytes": 388277,
+      "previewBytes": 36794,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          443,
+          443,
+          443
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Bright thresholds do not establish a calibrated limb. Colour, exposure, magnetic regions, FOV and orientation are artistic."
+      },
+      "url": "/bespoke/alpha-centauri-b-star-sky-image.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-b-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-5926dfa7-f63b-4442-8497-21653219e388.png",
+      "sourceSha256": "ac81b599b4bf31bc77b8f6a628a62eb6f4218e4621ea1fe5537a574818cd16b5",
+      "sha256": "0d1da2abd079a03cd84d9a22427df4d2544050718b13257ec64d4b34e04f6958",
+      "previewSha256": "10edecfab26a2f1645e7085f46894758855cf178b3499dd1b27b6cf0b9b66c8d",
+      "bytes": 55244,
+      "previewBytes": 10992,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "barnard-star": {
+    "id": "barnard-star",
+    "name": "Barnard's Star",
+    "kind": "star",
+    "aliases": [
+      "Barnard's Star",
+      "Barnard Star",
+      "Barnards Star",
+      "GJ 699",
+      "Gliese 699",
+      "HIP 87937"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native DSS2 multi-epoch point-source field; displayed red/yellow/blue locations encode motion, not calibrated stellar colour.",
+    "measured": [
+      "BarnardStar/GJ699 is a nearby M dwarf with rapid proper motion; DSS2 exposures show distinct epoch positions.",
+      "Native ESO survey composite released2018-11-14; precise three plate observing epochs are not independently verified."
+    ],
+    "modelled": [
+      "Adopted3195±28K and0.185±0.006solar radii from Stefanov2025 Table1; atmospheric/interferometric fits, not resolved surface geography. Primary values checked through published table; direct publisher PDF download returned403, no figure reused.",
+      "Cool molecular photospheric gas is only partly ionized. Hydrogen/helium is a broad stellar-model composition, not a fully ionized outer-layer or measured abundance-fraction claim."
+    ],
+    "unknown": [
+      "Actual convective morphology, magnetic patch geography, photospheric intensity contrast, detailed hydrogen/helium/metal abundance fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Independent weak sparse magnetic dimming and subtle fine convective mottling; hydrogen/helium plasma stellar-model context. No measured spots or dated flare are claimed.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree horizontal field; no solid ground or survivable landing.",
+      "Independent intensity and observer images; no observed Sun or another star map reused. Stellar tint, exposure, magnetic geometry and raster registration remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://www.aanda.org/articles/aa/pdf/2025/01/aa52450-24.pdf",
+        "title": "Stefanov2025 Table1 stellar parameters",
+        "publicationDate": "2025-01"
+      },
+      {
+        "url": "https://arxiv.org/html/2503.08095v1",
+        "title": "Basant2025 four-planet confirmation and stellar activity",
+        "publicationDate": "2025-03-11"
+      },
+      {
+        "url": "https://eso.org/public/images/eso1837d/",
+        "title": "ESO/DSS2 native multi-epoch stellar field",
+        "publicationDate": "2018-11-14"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/barnard-star-native.jpg",
+        "source": "https://cdn.eso.org/images/screen/eso1837d.jpg",
+        "sourcePage": "https://eso.org/public/images/eso1837d/",
+        "credit": "ESO/Digitized Sky Survey 2 · Acknowledgement: Davide De Martin · E — Red Dots",
+        "terms": "CC BY4.0; full ESO/DSS2 credits retained.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "publicationDate": "2018-11-14",
+        "observationDate": null,
+        "sha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+        "bytes": 633054,
+        "tier": "measured",
+        "description": "DSS2 multi-epoch wide-field image shows BarnardStar at three positions. Red/yellow/blue depict time/motion, not calibrated visible colour or resolved photosphere."
+      }
+    ],
+    "skyModel": {
+      "star": "Barnard's Star",
+      "radiusSun": 0.185,
+      "temperatureK": 3195,
+      "distanceAU": 0.0017206728865559984,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1085.2379850224106,
+      "approximateSrgb": [
+        1,
+        0.7194683096347383,
+        0.48158519102838504
+      ],
+      "limits": "Conceptual observer altitude is assumed, not a planetary semimajor axis. Camera field, spectra, molecular absorption, exposure and adaptation prevent calibrated colour/raster claims."
+    },
+    "surfaceMap": {
+      "key": "barnardStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured surface frame.",
+      "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/barnard-star-surface-map.jpg",
+      "previewUrl": "/bespoke/barnard-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-26853285-09fb-46af-9f28-bdd5f10e8d82.png",
+      "sourceSha256": "6a07b46f2ece9848b18522e4667683784b806416ede2fe1ef4dc5fe5774368a5",
+      "sha256": "c2641a5f041991b067961c2aa529d51e78565bfb68ec0ace0aa30fb004787d7a",
+      "previewSha256": "1633a0de5237237f9434fef734aaadf9ba77c2af987129f4a729d5828a8d7ea3",
+      "bytes": 396406,
+      "previewBytes": 36009,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          526,
+          526,
+          518
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold widths do not locate a calibrated stellar limb. FOV, colour, spectral tint and exposure remain artistic."
+      },
+      "url": "/bespoke/barnard-star-sky-image.jpg",
+      "previewUrl": "/bespoke/barnard-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-b2079f13-1e64-47d5-a5ab-ea992cd14337.png",
+      "sourceSha256": "25d233b7517758983ddc390aea0d752632c01ede0fed61aea42e72adad168983",
+      "sha256": "c547fc86b242916527fed6e7efc3d4570d1fdfb75578e8599fe6f1320c5df209",
+      "previewSha256": "22a272fb302332edb44c8263661c5869a1d089b01e70be0a5ecf9d6fc67a68db",
+      "bytes": 58608,
+      "previewBytes": 11607,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "wolf-star": {
+    "id": "wolf-star",
+    "name": "Wolf 359",
+    "kind": "star",
+    "aliases": [
+      "Wolf 359",
+      "CN Leo",
+      "GJ 406",
+      "Gliese 406"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native New Horizons/Earth processed grayscale stereo point-source scene, not resolved photosphere.",
+    "measured": [
+      "Wolf359/CNLeo/GJ406 is the same M6 active dwarf; Gaia-era parallax415.18±0.07mas gives2.4086±0.0004pc in Bowens-Rubin2023.",
+      "Native LORRI Wolf359 frames were observed2020-04-23 at7:45:07/12/17UT; processed NewHorizons/Earth stereo product released2020-06-10."
+    ],
+    "modelled": [
+      "Pineda2021 Table8 empirical Bayesian stellar fits give0.110±0.003solar masses,0.144±0.004solar radii and2749+44/-41K. These are inferred stellar parameters, not resolved surface measurements.",
+      "Bowens-Rubin2023 Table1 mislabels radius with a mass unit; original Pineda radius-column units checked as solar radii. Lin2025 uses alternative0.16Rsun2800K; both are disclosed, catalogue values preserved.",
+      "Lin2025 observed quiescent optical spectra2021-04-20: strong TiO absorption means an ideal blackbody overestimates optical output. Approximate blackbody tint is not a measured visible spectrum.",
+      "Cool molecular photospheric gas is only partly ionized. Hydrogen/helium is a broad stellar-model composition, not a fully ionized outer-layer or measured abundance-fraction claim."
+    ],
+    "unknown": [
+      "Actual convective morphology, magnetic patch geography, photospheric intensity contrast, detailed hydrogen/helium/metal abundance fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Independent three modest asymmetric magnetic patches and fine emissive mottling; fully convective hydrogen/helium stellar-model context. No dated flare is simulated.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree horizontal field; no solid ground or survivable landing.",
+      "Independent intensity and observer images; no observed Sun or another star map reused. Stellar tint, exposure, magnetic geometry and raster registration remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/2106.07656",
+        "title": "Pineda2021 Table8 inferred stellar parameters",
+        "publicationDate": "2021-06-14"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2309.03402",
+        "title": "Bowens-Rubin2023 Wolf359 imaging/RV and identification",
+        "publicationDate": "2023-09-06"
+      },
+      {
+        "url": "https://arxiv.org/html/2509.21505v1",
+        "title": "Lin2025 optical spectra, flares and blackbody limitations",
+        "publicationDate": "2025-09-25"
+      },
+      {
+        "url": "https://pluto.jhuapl.edu/Learn/Parallax/Parallax-Images.php",
+        "title": "Primary mission image dates, processing and credit instructions"
+      },
+      {
+        "url": "https://arxiv.org/abs/2506.21666",
+        "title": "2025 NewHorizons interstellar navigation demonstration",
+        "publicationDate": "2025-06"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/wolf-star-native.jpg",
+        "source": "https://www.nasa.gov/wp-content/uploads/2020/06/nh-wolf359-parallel.jpg?resize=1024,529",
+        "sourcePage": "https://www.nasa.gov/solar-system/nasas-new-horizons-conducts-the-first-interstellar-parallax-experiment/",
+        "credit": "NASA/Johns Hopkins Applied Physics Laboratory/Southwest Research Institute; Earth image: Mt. Lemmon Observatory, John F. Kielkopf (University of Louisville), Karen A. Collins (Harvard and Smithsonian Center for Astrophysics); stereo assembly: Tod Lauer, John Spencer, Brian May.",
+        "terms": "NASA published image and mission image-use permission; complete primary credits retained.",
+        "termsUrl": "https://pluto.jhuapl.edu/Learn/Parallax/Parallax-Images.php",
+        "publicationDate": "2020-06-10",
+        "observationDate": "2020-04-23",
+        "sha256": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+        "bytes": 67049,
+        "tier": "measured",
+        "description": "Processed grayscale NewHorizons/Earth parallel stereo: NewHorizons left. Unresolved stellar point source; no visible-colour or photospheric surface information. Publisher1024px JPEG rendition copied unchanged."
+      }
+    ],
+    "skyModel": {
+      "star": "Wolf 359",
+      "radiusSun": 0.144,
+      "temperatureK": 2749,
+      "distanceAU": 0.0013393345711571014,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 594.7582784950865,
+      "approximateSrgb": [
+        1,
+        0.6608195916046241,
+        0.35820236857795673
+      ],
+      "limits": "Conceptual observer altitude is assumed, not a planetary semimajor axis. Camera field, spectra, molecular absorption, exposure and adaptation prevent calibrated colour/raster claims."
+    },
+    "surfaceMap": {
+      "key": "wolfStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured surface frame.",
+      "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/wolf-star-surface-map.jpg",
+      "previewUrl": "/bespoke/wolf-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-b547e1ac-9e49-42a0-b851-b923b3f45473.png",
+      "sourceSha256": "251533e6c178763da3ad649b0236534f980d713d21ffbf45adfb4bdd17895f57",
+      "sha256": "49616c692578ca2fba39774aef1387ab8e0fb6e5150815e25aad5a50cc3a6329",
+      "previewSha256": "57a949ff4993b0743fec0fc0c2c620bb206b7f55fa9d7e257b4e962d49f8ddea",
+      "bytes": 366367,
+      "previewBytes": 33075,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          553,
+          553,
+          525
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold widths do not locate a calibrated stellar limb. FOV, colour, spectral tint and exposure remain artistic."
+      },
+      "url": "/bespoke/wolf-star-sky-image.jpg",
+      "previewUrl": "/bespoke/wolf-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-06261d3d-5ea3-4a8c-95c5-26a408022e5c.png",
+      "sourceSha256": "acd6b8b6421c936cf62b85ea4a1a7d3285267d0be4c9f48d163afea770abaf52",
+      "sha256": "0b75c2ba089141a882aa3a9d6ae1c1760a10e334b0d1827c3d1c7c1e70558c5a",
+      "previewSha256": "53f06bfc024f326e3e00a5428595424da87bdd13a5d7e80f1831ff21dca769f6",
+      "bytes": 69844,
+      "previewBytes": 13717,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "lalande-star": {
+    "id": "lalande-star",
+    "name": "Lalande 21185",
+    "kind": "star",
+    "aliases": [
+      "Lalande 21185",
+      "HD 95735",
+      "GJ 411",
+      "Gliese 411",
+      "Gl 411",
+      "HIP 54035"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native2MASS K_s infrared survey finding chart retained unchanged; saturated unresolved stellar source, not a resolved photospheric map or visible-colour measurement.",
+    "measured": [
+      "Hurt2022 Table2 GaiaEDR3 parallax392.753±0.032mas and distance2.54613±0.00021pc; body identity HD95735/GJ411/Lalande21185 is preserved.",
+      "Historical HYG render snapshot has10.46light-years, inconsistent with this primary astrometry; preserved pending catalogue reconciliation, not claimed a current distance ranking.",
+      "Native2MASS northern coadd1154968 K_s atlas FITS UT_DATE991111 matches preview metadata:1999-11-11. Publication day of this service rendering is unknown."
+    ],
+    "modelled": [
+      "Adopted Pineda2021 Table3 empirical Bayesian/interferometry-constrained fits: radius0.392±0.004solar radii, temperature3547±18K, mass0.389±0.008solar masses.",
+      "Hurt2022 Table2 alternative spectroscopic/isochrone fits: radius0.3685+0.0081/-0.0054solar radii and3719+21/-31K; different methodology, both histories retained.",
+      "M2 photospheric gas is partly ionized and molecular; hydrogen/helium is broad stellar-model composition, not measured elemental fractions. Approximate blackbody tint omits molecular absorption and is not calibrated visible colour."
+    ],
+    "unknown": [
+      "Resolved photospheric geography, dated spot distribution, convective appearance, atmospheric elemental fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Entire independent intensity map and observer scene are imagined; fine convection and weak magnetic dimming are illustrative, no dated flare or observed Sun map is reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma; no solid ground or survivable landing. Artistic120-degree horizontal field, exposure and colour remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/2106.07656",
+        "title": "Pineda2021 Table3 empirical stellar parameters and Table5 astrometric inputs",
+        "publicationDate": "2021-06-14"
+      },
+      {
+        "url": "https://arxiv.org/html/2107.09087v2",
+        "title": "Hurt2022 Table2 GaiaEDR3 and alternative stellar fits",
+        "publicationDate": "2022-04-05"
+      },
+      {
+        "url": "https://irsa.ipac.caltech.edu/applications/2MASS/IM/",
+        "title": "Primary 2MASS image inventory and photometric limitations"
+      },
+      {
+        "url": "https://science.nasa.gov/image-article/apod-1996-october-19-lalande-21185-the-nearest-planetary-system/",
+        "title": "Historical1996 JohnWhatmough planetary artwork, not observed star surface",
+        "publicationDate": "1996-10-19"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/lalande-star-native.jpg",
+        "source": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-jpeg?file=%2Fwork%2FTMP_Zc3VSu_2428428%2FIM%2Fkey_41V1kv%2FaK_asky_991111n1530266.jpg",
+        "sourcePage": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=1154968&band=K",
+        "label": "NATIVE INFRARED FINDING CHART",
+        "tier": "measured",
+        "credit": "Two Micron All Sky Survey (2MASS), a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by NASA and the National Science Foundation; image service: NASA/IPAC Infrared Science Archive.",
+        "terms": "Public2MASS science data; primary survey acknowledgement and full credit retained. No calibrated visible colour claimed.",
+        "termsUrl": "https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/doc/sec1_7.html",
+        "publicationDate": null,
+        "observationDate": "1999-11-11",
+        "sha256": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+        "bytes": 34475,
+        "description": "Unchanged IRSA annotated K_s-band preview, coadd1154968, northern scan153 image266. FITS UT_DATE independently verifies1999-11-11. Saturated unresolved Lalande21185 lies near RA11h03m20s Dec+35d58m; grayscale/inverted infrared stretch, coordinate grid and coloured persistence/glint marks are service annotations, not visible colour, resolved photosphere or companions."
+      }
+    ],
+    "skyModel": {
+      "star": "Lalande 21185",
+      "radiusSun": 0.392,
+      "temperatureK": 3547,
+      "distanceAU": 0.003645966332594332,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1648.4898985067396,
+      "approximateSrgb": [
+        1,
+        0.7602377201521329,
+        0.5623785907931205
+      ],
+      "limits": "Conceptual observer altitude two photospheric radii from centre; not a planetary semimajor axis. Approximate blackbody colour omits molecular lines, transfer, exposure and adaptation. Nominal FOV and raster geometry remain artistic."
+    },
+    "surfaceMap": {
+      "key": "lalandeStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured photospheric frame.",
+      "coverage": "Entire intensity/magnetic morphology imagined; renderer applies approximate catalogue tint.",
+      "url": "/bespoke/lalande-star-surface-map.jpg",
+      "previewUrl": "/bespoke/lalande-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-de1345a0-c985-49f9-b2e5-4d364c86c6ad.png",
+      "sourceSha256": "f5b2eb9ce2063f3a03336e79e69cc5d46fd3b97a543291114619ab94e1b93635",
+      "sha256": "3712108a1658da2b465f11dfb85201dfeacdab9d650a29b4772b085b60ca3cc5",
+      "previewSha256": "7f7a08bc592160dce580acce2b9d3709cecfbd94724ce8e66c7751ad8a87aa14",
+      "bytes": 412130,
+      "previewBytes": 40199,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          514,
+          514,
+          514
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Thresholds do not establish a calibrated limb. Nominal FOV, tint, exposure and registration remain artistic."
+      },
+      "url": "/bespoke/lalande-star-sky-image.jpg",
+      "previewUrl": "/bespoke/lalande-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-1d3d89e2-992d-4594-9b55-75160bd7b631.png",
+      "sourceSha256": "8bc6bfc33a303e2591ca232ddef3a71652b3fdf8a3c350e5aa823af9a753db7e",
+      "sha256": "0d4b05a8dbac1193758a6a613038d311f2e3dfafd62c532388701a625aea4fe3",
+      "previewSha256": "5e9b5280619e174abe1abc2ac337f9ccf54c79974786ec153949bdcc3b246d46",
+      "bytes": 66383,
+      "previewBytes": 12844,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "sirius-a-star": {
+    "id": "sirius-a-star",
+    "name": "Sirius A",
+    "kind": "star",
+    "stellarClass": "A-type main-sequence",
+    "aliases": [
+      "Sirius",
+      "Sirius A",
+      "alf CMa A",
+      "Alpha Canis Majoris A",
+      "HD 48915",
+      "HIP 32349",
+      "Gl 244A",
+      "GJ 244 A"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Native Hubble SiriusA is the overexposed central object; separate A-type main-sequence component, not SiriusB.",
+    "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+    "measured": [
+      "Bond2017 dynamical mass2.063±0.023solar masses; interferometric angular diameter constrains inferred radius.",
+      "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+      "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+    ],
+    "modelled": [
+      "Bond2017 adopted interferometry/flux estimates1.7144±0.0090solar radii and9845±64K. Other compilations differ by several percent.",
+      "A-type photospheric hydrogen/helium gas and observed metal-line peculiarities do not establish literal metal terrain or measured abundance fractions here.",
+      "Existing binary renderer uses1.711Rsun9940K; catalogue/binary parameters remain preserved as an alternative history."
+    ],
+    "unknown": [
+      "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+    ],
+    "assumed": [
+      "Independent weak photospheric intensity mottling and observer disc; all morphology imagined, no observed Sun map or another body map reused.",
+      "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+      "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1703.10625",
+        "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+        "publicationDate": "2017-03-30"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1809.01240",
+        "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+        "publicationDate": "2018"
+      },
+      {
+        "url": "https://esahubble.org/images/heic0516a/",
+        "title": "Primary Hubble binary image, component identities and observation date",
+        "publicationDate": "2005-12-13"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/sirius-binary-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+        "sourcePage": "https://esahubble.org/images/heic0516a/",
+        "label": "NATIVE BINARY OBSERVATION",
+        "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+        "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2005-12-13",
+        "observationDate": "2003-10-15",
+        "tier": "measured",
+        "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "bytes": 176877,
+        "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+      }
+    ],
+    "skyModel": {
+      "star": "Sirius A",
+      "radiusSun": 1.7144,
+      "temperatureK": 9845,
+      "distanceAU": 0.015945522144387044,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 97837.29081294339,
+      "approximateSrgb": [
+        0.7951725044392769,
+        0.8577353072314808,
+        1
+      ],
+      "limits": "Conceptual observer2photospheric radii from centre; no planetary semimajor axis. Approximate spectral tint omits lines, transfer, exposure and adaptation. Nominal FOV and raster limb remain artistic."
+    },
+    "surfaceMap": {
+      "key": "siriusAStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+      "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied.",
+      "url": "/bespoke/sirius-a-star-surface-map.jpg",
+      "previewUrl": "/bespoke/sirius-a-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-25f6f456-b3b4-45c9-a18a-18845a667577.png",
+      "sourceSha256": "0874c6f5d691c4352efc3132334618ec5870f9e12c059fbca4a37ca2cddeee0c",
+      "sha256": "aa0f70a61ed47f5e9f7ac1db584ff83ccd396dbae031eaecb237a6b6a5426a0d",
+      "previewSha256": "280fc6d80f286d851ec7dcb53996d1c468a01782bafa1eaf81942d6f8ee7b62c",
+      "bytes": 279933,
+      "previewBytes": 23492,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          544,
+          538,
+          477
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+      },
+      "url": "/bespoke/sirius-a-star-sky-image.jpg",
+      "previewUrl": "/bespoke/sirius-a-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-141d8dfc-acf1-483b-9f3a-5881165978a0.png",
+      "sourceSha256": "17ee43796fb61183177c46fce8e113c6f5efb380843f15237e4142b3ee0c007c",
+      "sha256": "e68c2e440b306c734b349a14178ef47470db32dc7e368b9b613287f8705f0efa",
+      "previewSha256": "1fdc9e2fb7cd5d08faa9408580533e154ebb5f8042a41011f931f2126ce35247",
+      "bytes": 41804,
+      "previewBytes": 8875,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "sirius-b-star": {
+    "id": "sirius-b-star",
+    "name": "Sirius B",
+    "kind": "star",
+    "stellarClass": "DA white dwarf",
+    "aliases": [
+      "Sirius B",
+      "alf CMa B",
+      "Alpha Canis Majoris B",
+      "Gl 244B",
+      "GJ 244 B",
+      "Gliese 244 B"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Native Hubble SiriusB is the tiny dot lower left; separate hot DA hydrogen-atmosphere white dwarf, not SiriusA.",
+    "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+    "measured": [
+      "Bond2017 dynamical mass1.018±0.011solar masses; DA hydrogen-line spectrum supports a hydrogen-dominated atmosphere.",
+      "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+      "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+    ],
+    "modelled": [
+      "Bond2017 STIS atmosphere/absolute-flux fits:25369±46K and0.008098±0.000046solar radii. Carbon/oxygen degenerate interior is theoretical and hidden beneath gaseous hydrogen atmosphere; no solid surface is asserted.",
+      "Joyce2018 alternative radius0.00803±0.00011solar radii and25922K, differential gravitational-redshift mass1.017±0.025solar masses. Authors prefer binary-aware Bond parallax over linear GaiaDR2 astrometry.",
+      "Existing binary renderer uses0.0084Rsun25000K; catalogue/binary parameters remain preserved as an alternative history."
+    ],
+    "unknown": [
+      "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+    ],
+    "assumed": [
+      "Independent almost-smooth hot hydrogen photospheric intensity map and observer disc; all faint mottling imagined. No dramatic solar granulation, hidden carbon/oxygen-core terrain or observed Sun map reuse.",
+      "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+      "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+    ],
+    "surfaceLabel": "WHITE-DWARF PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1703.10625",
+        "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+        "publicationDate": "2017-03-30"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1809.01240",
+        "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+        "publicationDate": "2018"
+      },
+      {
+        "url": "https://esahubble.org/images/heic0516a/",
+        "title": "Primary Hubble binary image, component identities and observation date",
+        "publicationDate": "2005-12-13"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2112.05234",
+        "title": "Lucas2021/2022 Keck2020 images, PSF and nondetection limits",
+        "publicationDate": "2021-12-09"
+      },
+      {
+        "url": "https://github.com/mileslucas/sirius-b",
+        "title": "Primary author figure2 and CC BY4 data licence"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/sirius-binary-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+        "sourcePage": "https://esahubble.org/images/heic0516a/",
+        "label": "NATIVE BINARY OBSERVATION",
+        "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+        "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2005-12-13",
+        "observationDate": "2003-10-15",
+        "tier": "measured",
+        "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "bytes": 176877,
+        "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+      },
+      {
+        "url": "/bespoke/sirius-b-keck-native.png",
+        "source": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+        "sourcePage": "https://github.com/mileslucas/sirius-b/blob/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+        "label": "NATIVE INFRARED POINT-SOURCE FIGURE",
+        "credit": "Miles Lucas, Michael Bottom, Garreth Ruane and Sam Ragland; W. M. Keck Observatory/NIRC2.",
+        "terms": "CC BY4.0 author arXiv paper and primary data release; full author attribution retained.",
+        "termsUrl": "https://arxiv.org/abs/2112.05234",
+        "publicationDate": "2021-12-09",
+        "observationDate": "2020-11-21",
+        "tier": "measured",
+        "sha256": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+        "sourceSha256": "188854788be3044e1e510a340bf327de470ca354b24a0bf81bf9a731637cd68e",
+        "bytes": 101362,
+        "description": "Lucasetal Figure2 median frame from second Keck/NIRC2 epoch2020-11-21, L-prime3.776microns. Unresolved instrumentalPSF with speckles/diffraction, not photospheric geography, calibrated visible colour or companions. Entire author PDF figure rendered to lossless576x477PNG withPDF.js2x; no crop/image content edit, original PDF hash retained. Paper reports no confirmed companions in2020three-epoch search; this is not proof none exist."
+      }
+    ],
+    "skyModel": {
+      "star": "Sirius B",
+      "radiusSun": 0.008098,
+      "temperatureK": 25369,
+      "distanceAU": 0.0000753189677585431,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 4313749.581769146,
+      "approximateSrgb": [
+        0.6410966783412286,
+        0.7591471057593826,
+        1
+      ],
+      "limits": "Conceptual observer2photospheric radii from centre; no planetary semimajor axis. Approximate spectral tint omits lines, transfer, exposure and adaptation. Nominal FOV and raster limb remain artistic."
+    },
+    "surfaceMap": {
+      "key": "siriusBStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+      "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied.",
+      "url": "/bespoke/sirius-b-star-surface-map.jpg",
+      "previewUrl": "/bespoke/sirius-b-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e3d5dd9b-161c-4035-812e-cb3c7895352d.png",
+      "sourceSha256": "a5a476a5fad319e1d16a33a3ff8d315ac0c37e938337968638f8b55763d5884e",
+      "sha256": "866b41f0e5cc6a8cd47b33c945e4a041957832f58e2ff8dac331b6344982121f",
+      "previewSha256": "f2170e0accbfb7964deb9aafe26e7725aabb748aca38948f6b1e65566c7ffe4e",
+      "bytes": 113594,
+      "previewBytes": 8712,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          507,
+          497,
+          382
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+      },
+      "url": "/bespoke/sirius-b-star-sky-image.jpg",
+      "previewUrl": "/bespoke/sirius-b-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-72e4d5f1-3fcd-4ad8-9d06-efec4e52d149.png",
+      "sourceSha256": "e17338a7e807b3bc8f316db9c4b639efc2d8fc449b618c3549b3114ca9b89ad3",
+      "sha256": "052cff8ce35cff5374c5938b705374aabcd4afd9fb9492c12df5673f54e12f4d",
+      "previewSha256": "4e087558a1535b48106a9d82ea43bd539a461c39ff48b43f42a6c057421e5aac",
+      "bytes": 30030,
+      "previewBytes": 6584,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

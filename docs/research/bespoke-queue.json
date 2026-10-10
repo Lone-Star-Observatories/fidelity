@@ -495,6 +495,438 @@
       "sky": "queued"
     },
     {
+      "id": "sol-juno",
+      "bodyId": "juno-3",
+      "name": "Juno",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-psyche",
+      "bodyId": "psyche-16",
+      "name": "Psyche",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-europa-52",
+      "bodyId": "europa-52",
+      "name": "Europa (52)",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-davida",
+      "bodyId": "davida",
+      "name": "Davida",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-interamnia",
+      "bodyId": "interamnia",
+      "name": "Interamnia",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-eunomia",
+      "bodyId": "eunomia",
+      "name": "Eunomia",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-sylvia",
+      "bodyId": "sylvia",
+      "name": "Sylvia",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-euphrosyne",
+      "bodyId": "euphrosyne",
+      "name": "Euphrosyne",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-cybele",
+      "bodyId": "cybele",
+      "name": "Cybele",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-hebe",
+      "bodyId": "hebe",
+      "name": "Hebe",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-iris",
+      "bodyId": "iris",
+      "name": "Iris",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-lutetia",
+      "bodyId": "lutetia",
+      "name": "Lutetia",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-ida",
+      "bodyId": "ida",
+      "name": "Ida",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-gaspra",
+      "bodyId": "gaspra",
+      "name": "Gaspra",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-mathilde",
+      "bodyId": "mathilde",
+      "name": "Mathilde",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-teins",
+      "bodyId": "steins",
+      "name": "Šteins",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-annefrank",
+      "bodyId": "annefrank",
+      "name": "Annefrank",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-dinkinesh",
+      "bodyId": "dinkinesh",
+      "name": "Dinkinesh",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-donaldjohanson",
+      "bodyId": "donaldjohanson",
+      "name": "Donaldjohanson",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-eros",
+      "bodyId": "eros",
+      "name": "Eros",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-itokawa",
+      "bodyId": "itokawa",
+      "name": "Itokawa",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-ryugu",
+      "bodyId": "ryugu",
+      "name": "Ryugu",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-bennu",
+      "bodyId": "bennu",
+      "name": "Bennu",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-apophis",
+      "bodyId": "apophis",
+      "name": "Apophis",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-didymos",
+      "bodyId": "didymos",
+      "name": "Didymos",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-toutatis",
+      "bodyId": "toutatis",
+      "name": "Toutatis",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-phaethon",
+      "bodyId": "phaethon",
+      "name": "Phaethon",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-ganymed",
+      "bodyId": "ganymed",
+      "name": "Ganymed",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-hektor",
+      "bodyId": "hektor",
+      "name": "Hektor",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-patroclus",
+      "bodyId": "patroclus",
+      "name": "Patroclus",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-eurybates",
+      "bodyId": "eurybates",
+      "name": "Eurybates",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-polymele",
+      "bodyId": "polymele",
+      "name": "Polymele",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-leucus",
+      "bodyId": "leucus",
+      "name": "Leucus",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-orus",
+      "bodyId": "orus",
+      "name": "Orus",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-chiron",
+      "bodyId": "chiron",
+      "name": "Chiron",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-chariklo",
+      "bodyId": "chariklo",
+      "name": "Chariklo",
+      "parent": null,
+      "kind": "asteroid",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
       "id": "sol-haumea",
       "bodyId": "haumea",
       "name": "Haumea",
@@ -7422,7 +7854,7 @@
       "distancePc": 1.3458950201884252,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf Cen A",
         "OBJ_CAT": "*",
@@ -7441,9 +7873,10 @@
         "COMMENT": "...",
         "distancePc": 1.3458950201884252
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "alpha-centauri-a-star"
     },
     {
       "id": "star-alf-cen-b",
@@ -7453,7 +7886,7 @@
       "distancePc": 1.3458950201884252,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf Cen B",
         "OBJ_CAT": "*",
@@ -7472,9 +7905,10 @@
         "COMMENT": "...",
         "distancePc": 1.3458950201884252
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "alpha-centauri-b-star"
     },
     {
       "id": "star-barnard-s-star",
@@ -7484,7 +7918,7 @@
       "distancePc": 1.828233981355542,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native DSS2 multi-epoch point-source field; displayed red/yellow/blue locations encode motion, not calibrated stellar colour.",
       "catalogueConstraints": {
         "OBJ_NAME": "Barnard's Star",
         "OBJ_CAT": "LM",
@@ -7503,9 +7937,10 @@
         "COMMENT": "Barnard's Star b: planet detected by 2018Natur.563..365R but controversial based on 2021AJ....162...61L",
         "distancePc": 1.828233981355542
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "barnard-star"
     },
     {
       "id": "star-wolf-359",
@@ -7515,7 +7950,7 @@
       "distancePc": 2.4085972527489603,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native New Horizons/Earth processed grayscale stereo point-source scene, not resolved photosphere.",
       "catalogueConstraints": {
         "OBJ_NAME": "Wolf 359",
         "OBJ_CAT": "LM",
@@ -7534,9 +7969,10 @@
         "COMMENT": "Wolf 359 b and c: unconfirmed planets 2019arXiv190604644T",
         "distancePc": 2.4085972527489603
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "wolf-star"
     },
     {
       "id": "star-hd-95735",
@@ -7546,7 +7982,7 @@
       "distancePc": 2.5461298549469755,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native2MASS K_s infrared survey finding chart retained unchanged; saturated unresolved stellar source, not a resolved photospheric map or visible-colour measurement.",
       "catalogueConstraints": {
         "OBJ_NAME": "HD 95735",
         "OBJ_CAT": "LM",
@@ -7565,9 +8001,10 @@
         "COMMENT": "GJ 411 d candidate planet uncovered by 2022AJ....163..218H",
         "distancePc": 2.5461298549469755
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "lalande-star"
     },
     {
       "id": "star-alf-cma-a",
@@ -7577,7 +8014,7 @@
       "distancePc": 2.6370612589330453,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf CMa A",
         "OBJ_CAT": "*",
@@ -7596,9 +8033,10 @@
         "COMMENT": "...",
         "distancePc": 2.6370612589330453
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "sirius-a-star"
     },
     {
       "id": "star-alf-cma-b",
@@ -7608,7 +8046,7 @@
       "distancePc": 2.670301206312975,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf CMa B",
         "OBJ_CAT": "WD",
@@ -7627,9 +8065,10 @@
         "COMMENT": "...",
         "distancePc": 2.670301206312975
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "sirius-b-star"
     },
     {
       "id": "star-g-272-61-b",
@@ -8012,12 +8451,12 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 1,
+      "initialDossiers": 7,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {
       "selected": 2,
-      "initialDossiers": 0,
+      "initialDossiers": 1,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "moon": {

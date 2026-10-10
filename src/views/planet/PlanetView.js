@@ -3,6 +3,8 @@
 
 import * as THREE from 'three';
 import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { applyBandToMaterial } from '../system/bandtextures.js';
+import { currentBand, onBand } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
 import { loadBodyShape, disposeModel } from '../system/models.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
@@ -45,7 +47,15 @@ export function createPlanetView(container, { onSurface } = {}) {
   const pivot = new THREE.Group();
   pivot.rotation.z = 0.35;
   scene.add(pivot);
-  let globe = null, clouds = null, sites = null, mats = [], running = false;
+  let globe = null, clouds = null, sites = null, mats = [], running = false, globeBody = null;
+  // the spectrum filter (#28): the globe takes the same band look as in the System View
+  function applyBand() {
+    if (!globeBody || !mats[0]) return;
+    const { band, pass } = currentBand();
+    applyBandToMaterial(mats[0].uniforms, globeBody, band, pass);
+    if (clouds) clouds.visible = band.id === 'full' || band.id === 'visible';
+  }
+  onBand(applyBand);
   const sun = new THREE.Vector3(-9, 2, 6); // light from the left, a little towards us
 
   const hero = el('div', { className: 'sv-hero' });
@@ -53,8 +63,9 @@ export function createPlanetView(container, { onSurface } = {}) {
   const heroFacts = el('dl', { className: 'sv-hero-facts' });
   const title = el('div', { className: 'sv-title' });
   const body = el('div', { className: 'pv-cards' });
+  const extras = el('div', { className: 'pv-cards' }); // FROM EARTH, imagery, spectra (src/panels)
   container.replaceChildren(el('div', { className: 'sv' },
-    el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), body));
+    el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), extras, body));
   new ResizeObserver(() => { const w = hero.clientWidth || 260; renderer.setSize(w, w, false); }).observe(hero);
   // double-click the globe to stand on that spot and look up (System View surface mode)
   let current = null;
@@ -89,6 +100,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     mats.push(mat);
     globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 64), mat);
     pivot.add(globe);
+    globeBody = b;
     const pendingGlobe = globe;
     loadBodyShape(b.id, b.radiusKm).then((shape) => {
       if (!shape) return;
@@ -113,6 +125,7 @@ export function createPlanetView(container, { onSurface } = {}) {
       clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 128, 64), cm);
       pivot.add(clouds);
     }
+    applyBand();
     // today's imagery (with today's clouds) where the backend can fetch it
     const myClouds = clouds;
     applyLiveSkin(mat, b.skin, settings.get('liveSkins')).then((l) => { if (l && myClouds) myClouds.visible = false; });
@@ -319,6 +332,8 @@ export function createPlanetView(container, { onSurface } = {}) {
   return {
     show() { container.hidden = false; if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
+    /** Cards built outside the view (observing data, imagery, spectra), shown under the hero. */
+    setExtras(nodes) { extras.replaceChildren(...nodes.filter(Boolean)); },
     load(b, { isSol = false, systemName = '' } = {}) {
       const minor = ['moon', 'asteroid', 'comet', 'dwarf planet'].includes(b.kind) && b.id !== 'pluto';
       const view = b.kind === 'moon' ? 'MOON VIEW' : minor ? 'OBJECT VIEW' : 'PLANET VIEW';

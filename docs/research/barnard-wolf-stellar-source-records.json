@@ -1,0 +1,131 @@
+[
+  {
+    "url": "https://cdn.eso.org/images/screen/eso1837d.jpg",
+    "file": "data/research-sources/barnard-star-native.jpg",
+    "publicationDate": "2018-11-14",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "CC BY4.0 ESO/DSS2; full credit retained",
+    "sha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+    "bytes": 633054
+  },
+  {
+    "url": "https://eso.org/public/images/eso1837d/",
+    "file": "data/research-sources/barnard-star-native-page.html",
+    "publicationDate": "2018-11-14",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "ESO source description",
+    "sha256": "a6b572d2ed2e010025940b2670c82283251ba5284c6a0e62604e6211e473de12",
+    "bytes": 85634
+  },
+  {
+    "url": "https://www.eso.org/public/outreach/copyright/",
+    "file": "data/research-sources/barnard-star-terms.html",
+    "publicationDate": null,
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "ESO image-use policy",
+    "sha256": "574bfdd185942662efe1860a9b92e59c283ea7a2370db6c38d726083322d5be2",
+    "bytes": 83242
+  },
+  {
+    "url": "https://arxiv.org/html/2503.08095v1",
+    "file": "data/research-sources/barnard-star-parameters.html",
+    "publicationDate": "2025-03-11",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "59c7f9af5042e7404edc9c4f1e81d1623b64c3538d7ccdf9279821a218e62ffd",
+    "bytes": 305665
+  },
+  {
+    "url": "https://arxiv.org/pdf/2309.03402",
+    "file": "data/research-sources/wolf-star-parameters.pdf",
+    "publicationDate": "2023-09-06",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "b09aaeeebc64d9ab0a745870f78a77baf28445f3c4bf2f5eff36b808845caed4",
+    "bytes": 4331048
+  },
+  {
+    "url": "https://arxiv.org/pdf/2106.07656",
+    "file": "data/research-sources/wolf-star-pineda.pdf",
+    "publicationDate": "2021-06-14",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "cd3292addc2e9065a6a36acb143b96b8637fb9defbd61991e6f54f019732ba97",
+    "bytes": 6094474
+  },
+  {
+    "url": "https://arxiv.org/html/2509.21505v1",
+    "file": "data/research-sources/wolf-star-flares.html",
+    "publicationDate": "2025-09-25",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "82a4bdba2a128caa0dfbc90634dbf626525854ad3d6ce82cd1ca9652847f055f",
+    "bytes": 415353
+  },
+  {
+    "url": "https://www.nasa.gov/solar-system/nasas-new-horizons-conducts-the-first-interstellar-parallax-experiment/",
+    "file": "data/research-sources/wolf-star-native-page.html",
+    "publicationDate": "2020-06-10",
+    "observationDate": "2020-04-22/23 (NASA campaign; 2025 paper specifies2020-04-23)",
+    "retrieved": "2026-10-10",
+    "terms": "NASA source observation; full instrument/team credits retained",
+    "sha256": "071c95f7c06329cac25fe20b1aca279e7f8a10346fd1b7cec93e646df8bd0c86",
+    "bytes": 318893
+  },
+  {
+    "url": "https://arxiv.org/abs/2506.21666",
+    "file": "data/research-sources/wolf-star-navigation.html",
+    "publicationDate": "2025-06-26",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "8ca9be5db2f7210560ea7188b40fdc579db6ea69e34b984dce305f72c1063174",
+    "bytes": 52625
+  },
+  {
+    "url": "https://www.nasa.gov/wp-content/uploads/2020/06/nh-wolf359-parallel.jpg?resize=1024,529",
+    "file": "data/research-sources/wolf-star-native.jpg",
+    "publicationDate": "2020-06-10",
+    "observationDate": "2020-04-22/23 (NASA campaign; 2025 paper specifies2020-04-23)",
+    "retrieved": "2026-10-10",
+    "terms": "NASA media usage guidelines; full embedded/publisher credits retained",
+    "sha256": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+    "bytes": 67049
+  },
+  {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "file": "data/research-sources/wolf-star-terms.html",
+    "publicationDate": null,
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "NASA media usage guidelines",
+    "sha256": "34a1a2985bcaf2d661296deda2f2a978bcc2f5f91208cf47253409bb4b29b060",
+    "bytes": 320650
+  },
+  {
+    "url": "https://pluto.jhuapl.edu/Learn/Parallax/Parallax-Images.php",
+    "file": "data/research-sources/wolf-parallax-team-page.html",
+    "retrieved": "2026-10-10",
+    "observationDate": "2020-04-23 Wolf359 LORRI7:45:07/12/17UT; Earthepoch specified by primary mission page",
+    "publicationDate": null,
+    "terms": "Primary mission page explicitly permits image use and specifies NewHorizons and ground-image credits.",
+    "sha256": "d2df93a311f937b25aec03991d2b8fbad551f10304cdff55d7b88b1b2774fde7",
+    "bytes": 30105
+  },
+  {
+    "url": "https://www.aanda.org/articles/aa/pdf/2025/01/aa52450-24.pdf",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2025-01",
+    "downloadStatus": "HTTP403; primary Table1 accessed through browser tool index",
+    "sha256": null,
+    "terms": "Research citation only; no figures reused.",
+    "observationDate": null
+  }
+]

@@ -11,8 +11,11 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/tiff.js      USGS mosaics  │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
+│                                      │           │ server/imagery.js   surveys, NASA │
+│                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
 │                                      │           │ server/dsn.js       DSN Now       │
 │                                      │           │ server/deepsky.js   VizieR        │
+│                                      │           │ server/events.js    events feed   │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -43,12 +46,19 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   (`src/astro/rotation.js`), and Earth turns by sidereal time.
 - **Star View** (`src/views/star/`) shows a close-up photosphere, the spectrum chart (observed
   template, blackbody, lab line positions, Wien peak, hover readout) and composition bars.
+- **Detail cards** (#60, `src/panels/detail.js`): every Star, Planet, Moon and Object View opens with
+  FROM EARTH (`fromearth.js`: theskylive-style observing data for the viewer's location, from
+  `src/astro/observe.js`, plus the `eyepiece.js` telescope drawing), IMAGERY (`imagery.js`: live
+  feeds, survey cutouts gamma→radio, NASA archive with a lightbox) and a spectrum (`spectra.js`:
+  PSG for Sol bodies, Gaia XP for stars, Exoplanet Archive for exoplanets). The views expose
+  `setExtras`; `main.js` ticks the cards from its 200 ms loop. The observer location is the
+  `observer` setting (browser geolocation or typed; default Greenwich).
 - **Planet View** (`src/views/planet/`) shows a close-up globe, the atmosphere by volume (or
   JWST detections, or "not yet measured"), spectral fingerprints, the interior to scale, and
   the mass–radius diagram against composition curves.
 - **Provenance.** Each value shown in the UI carries a tier badge from `src/data/provenance.js`.
 - **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`), `#/star/<system>/<star>`, `#/planet/<system>/<planet>`, `#/moon/sol/<moon>`, `#/object/sol/<body>`, `#/satellite/sol/<norad>`,
-  `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`. The Sector 001 beacon is
+  `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`, `#/events[/<event id>]`. The Sector 001 beacon is
   `#/system/sol`.
 
 ## Backend API
@@ -66,6 +76,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
@@ -81,8 +92,14 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
+| `GET /api/surveys` · `GET /api/survey/:key?ra=&dec=&fov=[&size=]` | Sky-survey list; a JPEG cutout (north up, east left; 404 where the survey has no coverage) from CDS hips2fits (`server/imagery.js`) |
+| `GET /api/nasa-images?q=&must=` · `GET /api/nasa-image/:id/(thumb\|medium)` | NASA Image Library search (captions must name the body); preview images |
+| `GET /api/psg?body=&month=YYYY-MM` | PSG modelled spectrum `{ wavelengthUm, total, reflected?, thermal? }` W/sr/m²/µm (`server/bodyspectra.js`) |
+| `GET /api/star-spectrum?ra=&dec=[&distLy=]` | Gaia DR3 XP spectrum `{ found, gaiaId, nm, flux, err }` of the star SIMBAD finds there |
+| `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
+| `GET /api/events` | The weekly events feed (`events/events.json` from GitHub, `FIDELITY_EVENTS_URL` to override; cached 3 h; the bundled copy when offline or newer), with `streams` refreshed from the curated YouTube channels' RSS every 15 min. Adds `origin`, `cache`, `error` |
 
 ## Standalone preview
 
@@ -105,7 +122,9 @@ mode is disabled there.
 
 `src/astro/moons.js` gives parent-relative positions (the Moon from a lunar theory, the rest
 from JPL mean elements with a Horizons-fitted phase in `src/data/moon-fit.js`, regenerated by
-`node scripts/fit-moons.js`); `src/astro/smallbodies.js` propagates SBDB osculating orbits.
+`node scripts/fit-moons.js`); `src/astro/smallbodies.js` propagates SBDB osculating orbits. The 49 named small bodies are
+grouped in the body list by region (dwarf planets, asteroid belt, near-Earth, Jupiter Trojans,
+centaurs/Kuiper belt/comets); those without a mosaic draw as plain spheres (`surfacePending`).
 In ENHANCED scale a planet is drawn hundreds of times too big, so distances around it are
 compressed (`compressRadii`: linear inside the planet, logarithmic outside) to keep every moon
 outside its planet and in order; TRUE scale is exact. Synchronous moons keep the texture's
@@ -235,17 +254,77 @@ shows the live umbra/penumbra outlines and the path of totality, the surface vie
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
 `?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
 
+## Events feed and mission replays (#32, #33)
+
+`scripts/events/build-events.js` (weekly GitHub Action `.github/workflows/events.yml`, or `npm run events`) writes
+`events/events.json`, schema `fidelity.events/1` (`src/data/events-schema.js`, shared by generator, backend, app and
+tests): launches and operations from Launch Library 2 (`scripts/events/ll2.js`), sky events from the app's own
+ephemeris plus meteor showers, comets and aurora forecasts (`scripts/events/sky.js`), and webcasts
+(`server/youtube.js`). Each run drops events that are over (`elapsed` in the schema module: past their end, their
+modelled flight and their date precision) and adds the new ones. A failed source keeps last week's still-upcoming
+events, marked stale. A weekly Claude Routine (Mondays 07:47 UTC) checks the Action's publish and rebuilds the file
+itself if the Action did not. Times on tracks are seconds from the
+event time.
+
+Launches, landings and dockings with a minute-or-better time carry a `model`: Earth-fixed tracks
+`[t, lat, lon, altKm]` (ascent and coast, booster returns, re-entry) and station-relative LVLH profiles
+`[t, radialKm, alongKm, crossKm]`, all generated by `src/astro/trajectory.js`. In the System View,
+`src/views/system/missions.js` draws whichever are live at the ship's clock: tracks are converted with
+`fixedToInertial` so they turn with the ground, and pass through the same radial compression as satellites
+(`localMap`); station-relative vehicles are placed in the station's SGP4 frame, so a docking is seen at true scale
+from the Satellite View. Labels give mission time, altitude and the timeline phase; MISSIONS toggles the layer.
+
+`src/panels/events.js` is the EVENTS rail entry (`#/events[/<id>]`): filters by kind and organisation, detail with
+provenance on every value (REPORTED for published schedules and sites, MODELLED for paths and forecasts, COMPUTED
+for ephemeris events), webcasts and channel live streams in the feed viewer, and GO TO EVENT, which sets the clock
+just before the action (launches at T−60 s in real time) and frames the pad, recovery zone or station. A red dot on
+the rail marks an event within 24 hours. The clock gained a 1 MIN/S rate.
+
 ## Voice: "Computer" (#21)
 
 `src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
 from the microphone (AudioWorklet, resampled to 16 kHz) and DTW over MFCCs compares them with the
 viewer's three recordings (localStorage). Only after it fires does `src/voice/computer.js` stream
-24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with the view title, clock and the
-panel's text as instructions and three tools (`go_to`, `set_layer`, `set_time`). Replies play
-and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. Without a key
+24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with a description of the screen as
+instructions (`screenContext` in `main.js`: view and route, what the camera is centred on or the surface
+spot, clock and rate, scale, layers, spectral band, missions playing out, an open video/feed window, the
+selected star and the side panel's text; refreshed at each wake and after every tool call) and three tools
+(`go_to`, `set_layer`, `set_time`). Replies finish: while one plays, heard sound is not even matched
+against the wake word, and the server VAD may not cancel it (`interrupt_response: false`); STOP or Esc
+ends it, and the INTERRUPT toggle lets a confident wake word (within 0.7 × the trained threshold) barge in. Replies play
+and are transcribed in the COMPUTER panel. Without a key
 (or the backend), the browser's on-device recogniser, where available, handles "go to …" and
 "show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
 resampler, command parsing.
+
+## Time steps
+
+The STEP control moves the clock by n units (minute … millennium; months and longer step the
+calendar via `stepJd`, clamping to the month length) with ◀| / |▶ or the `[` / `]` keys, and RUN sets a
+custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder. n may be
+fractional or negative; it and the unit are remembered.
+
+## Text size
+
+Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
+bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
+The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 millennium/s through HOLD and real time to +1 millennium/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The clock stops (HOLD) at the edge of JavaScript's date range, ±273,790 years.
+
+## Spectrum filter (#28)
+
+`src/data/bands.js` lists the bands (FULL, RADIO … GAMMA), their bandpasses with filter curves
+(`src/astro/bands.js`: SVO curves bundled by `scripts/filters.js`, top-hats in frequency/energy
+elsewhere; `bandResponse` is the photon-weighted convolution, tested against band-averaged
+Planck, Vega's zero point and the Rayleigh–Jeans limit), the all-sky survey for each, and real
+body maps (`BODY_BAND`). `bandskin.js` decides each body's look in a band: real map, predicted
+reflected skin (the visible image × the body's reflectance through the filter), predicted thermal
+emission (Planck from a day/night or cloud-top temperature model), an observed high-energy
+signature, or NOT OBSERVED. The planet shader draws all of these in per-band false colour
+(`materials.js`, uniforms set by `bandtextures.js`); stars are tinted by their blackbody in the
+band (Vega system); the System View sky becomes the band's survey (a shader maps RA/Dec onto the
+sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
+Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
+its badge and a false-colour key.
 
 ## Milky Way model
 
@@ -325,3 +404,16 @@ Craft preview rebuilding accepts selected model IDs and `--texture-size=128`; om
 The standalone snapshot is now gzip-compressed losslessly and stored as base64 in the ignored generated `standalone/snapshot-packed.js`. The `#snapshot` alias selects `src/data/embedded-snapshot.js`; top-level await decodes it once with browser DecompressionStream before dependent modules execute. All catalogue fields, native imagery and GLB bytes are preserved. The builder checks exact gzip round-trip equality and still retains readable snapshot.json for inspection. Normal builds use the unchanged null snapshot. A current browser with gzip DecompressionStream support is required; unsupported browsers show a clear message.
 
 Individual dossiers may carry `statusNote`; Planet View inserts a PLANET STATUS card ahead of their hypothetical imagery, distinguishing catalogue membership from disputed independent detection evidence. Tau Ceti f/g/h use conditional map/sky labels. The queue carries the same discovery-status notice. Previous dossiers omit this optional field and retain their existing cards.
+
+## From Earth (#60)
+
+`src/astro/observe.js` turns the app's heliocentric ecliptic positions (`system.positionOf(id, jd)`,
+scene axes mapped back to the ecliptic) into what an observer on Earth sees: astrometric J2000
+RA/Dec with light-time iteration, elongation, phase angle and illuminated fraction, equatorial
+angular diameter, magnitude (`src/data/photometry.js`) and the constellation (Roman 1987 boundaries,
+position precessed to B1875 with IAU 1976). Horizon work precesses to the equinox of date and uses
+the IAU 1982 GMST; rise/transit/set scan the observer's local mean solar day in 6–12 minute steps and
+bisect (upper limb and parallax for the Sun and Moon). Stars use their catalogue J2000 position.
+`tests/observe.test.js` checks all 48 Sol bodies against a JPL Horizons observer table and
+Auckland rise/set times (`tests/fixtures/horizons-observer-2026-10-10.json`). The standalone preview
+keeps FROM EARTH (computed in the browser) but not imagery or spectra (backend only).

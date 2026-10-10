@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { eqToGal, frameToScene, starTeff, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
+import { bandStarColour } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
 import { systemName } from '../../panels/navlist.js';
 import { integrateTrack, trackAt } from '../../astro/galpot.js';
@@ -136,7 +137,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
       const M = s.absmag ?? 12;
       size[i] = Math.max(2.2, Math.min(15, 8.5 - 0.5 * M));
       placed[i].size0 = size[i];
-      col.set(blackbodyRGB(starTeff(s).teff), i * 3);
+      { const t = starTeff(s).teff; col.set(bandStarColour(t, blackbodyRGB(t)), i * 3); } // spectrum filter (#28)
       if (s.planets) hostIdx.push(i);
     });
     const g = new THREE.BufferGeometry();
@@ -497,7 +498,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   ].map(([v, text, color]) => {
     const ln = document.createElementNS(SVGNS, 'line'), tx = document.createElementNS(SVGNS, 'text');
     ln.setAttribute('stroke', color); ln.setAttribute('stroke-width', '2'); ln.setAttribute('x1', '0'); ln.setAttribute('y1', '0');
-    tx.setAttribute('fill', color); tx.setAttribute('font-size', '10'); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
+    tx.setAttribute('fill', color); tx.setAttribute('font-size', String(10 * (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-scale')) || 1))); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
     tx.textContent = text;
     svg.append(ln, tx);
     return { v, text, ln, tx };
@@ -550,7 +551,15 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
     }
   }
 
+  /** Re-colour the stars for the current spectrum band (#28). */
+  function recolourBand() {
+    const c = ptsGeo?.attributes?.color;
+    if (!c) return;
+    placed.forEach(({ star }, i) => { const t = starTeff(star).teff; c.setXYZ(i, ...bandStarColour(t, blackbodyRGB(t))); });
+    c.needsUpdate = true;
+  }
   return {
+    recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,

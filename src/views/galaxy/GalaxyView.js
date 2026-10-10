@@ -15,6 +15,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
+import { bandStarColour } from '../../data/bandstate.js';
 import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, VC_KMS, KMS_KLY_PER_MYR, CORE_KLY, OMEGA_SUN, OMEGA_PATTERN,
   SATELLITE_ORBITS, integrateOrbit, orbitAt, kpcToScene } from '../../astro/galaxy.js';
 import { loadTexture } from '../system/materials.js';
@@ -181,7 +182,7 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     const n = rows.length, pos = new Float32Array(n * 3), col = new Float32Array(n * 3);
     rows.forEach(([gx, gy, gz, m10, c100], i) => {
       pos.set(galToScene([gx, gy, gz], 0.001), i * 3);
-      const c = blackbodyRGB(teffFromBV(colourOf(c100)));
+      const t = teffFromBV(colourOf(c100)), c = bandStarColour(t, blackbodyRGB(t)); // spectrum filter (#28)
       const k = Math.min(1, Math.max(0.35, 0.9 - m10 / 40));
       col.set([c[0] * k, c[1] * k, c[2] * k], i * 3);
     });
@@ -191,6 +192,7 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     const u = { ...starUniforms, uSize: { value: size } };
     const p = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms: u, vertexShader: STAR_VERT, fragmentShader: STAR_FRAG, transparent: true, depthWrite: false }));
     p.frustumCulled = false;
+    p.userData.band = { rows, colourOf };
     scene.add(p);
     return p;
   }
@@ -305,7 +307,20 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     onFrame?.({ beacon: { x: tmp.x, y: tmp.y, behind, atFocus: false, visible: !behind && Math.abs(tmp.x) <= 1 && Math.abs(tmp.y) <= 1 } });
   }
 
+  /** Re-colour the stars for the current spectrum band (#28). */
+  function recolourBand() {
+    for (const p of Object.values(layers)) {
+      if (!p?.userData.band) continue;
+      const { rows, colourOf } = p.userData.band, c = p.geometry.attributes.color;
+      rows.forEach(([, , , m10, c100], i) => {
+        const t = teffFromBV(colourOf(c100)), rgb = bandStarColour(t, blackbodyRGB(t)), k = Math.min(1, Math.max(0.35, 0.9 - m10 / 40));
+        c.setXYZ(i, rgb[0] * k, rgb[1] * k, rgb[2] * k);
+      });
+      c.needsUpdate = true;
+    }
+  }
   return {
+    recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setStars, setGaia, setTime, applyLook,

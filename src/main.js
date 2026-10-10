@@ -1,6 +1,6 @@
 // USS Fidelity — bridge console. Wires the LCARS shell, router, clock and views.
 
-import { createClock } from './astro/clock.js';
+import { createClock, STEP_UNITS } from './astro/clock.js';
 import { shipDate, dateFromJd, jdFromDate, isoDay } from './astro/time.js';
 import { VALID_RANGE } from './astro/kepler.js';
 import { LY_PER_PC } from './astro/frames.js';
@@ -8,6 +8,7 @@ import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
+import { detailCards } from './panels/detail.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
@@ -33,10 +34,16 @@ import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
+import { createTimeControl } from './panels/timecontrol.js';
+import { createEventsPanel } from './panels/events.js';
+import { loadEvents, onEvents, eventsFeed } from './data/events.js';
+import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
 import { createComputer } from './voice/computer.js';
+import { BANDS, bandById, passById } from './data/bands.js';
+import { setCurrentBand, currentBand } from './data/bandstate.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -150,10 +157,16 @@ for (const [id, label] of SUB_BUTTONS) {
   railSubs.append(b);
 }
 
+// EVENTS (#32/#33): the weekly events feed; a dot when something happens within 24 hours
+const eventsBtn = h('button', { className: 'rail-btn sub events-btn', title: 'Launches, landings, dockings, spacewalks and sky events' }, 'EVENTS');
+eventsBtn.dataset.sub = 'events';
+eventsBtn.addEventListener('click', () => go({ level: 'events', system: 'sol' }));
+railSubs.append(eventsBtn);
+
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object', 'satellite']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite', 'events']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -177,12 +190,82 @@ $('beacon').addEventListener('click', () => go({ level: 'system', system: 'sol' 
 
 // ---- bottom controls ----------------------------------------------------------------------
 const controls = $('controls');
+// ---- text size ------------------------------------------------------------------------------
+const TEXT_STEPS = [0.8, 0.9, 1, 1.1, 1.25, 1.4, 1.6];
+const textOut = h('div', { className: 'ctl-readout mono text-size', title: 'Text size' });
+function applyTextScale() {
+  const v = settings.get('textScale') ?? 1;
+  document.documentElement.style.setProperty('--text-scale', String(v));
+  textOut.textContent = `${Math.round(v * 100)}%`;
+  window.dispatchEvent(new Event('resize')); // labels and panels re-measure
+}
+const stepText = (dir) => {
+  const v = settings.get('textScale') ?? 1;
+  const i = TEXT_STEPS.reduce((best, s, k) => (Math.abs(s - v) < Math.abs(TEXT_STEPS[best] - v) ? k : best), 0);
+  settings.set('textScale', TEXT_STEPS[Math.max(0, Math.min(TEXT_STEPS.length - 1, i + dir))]);
+};
+settings.onChange((k) => { if (k === 'textScale') applyTextScale(); });
+applyTextScale();
+{ // in the top bar, so it is always in reach
+  const btn = (label, dir, title) => Object.assign(h('button', { className: 'pill square', textContent: label, title }), { onclick: () => stepText(dir) });
+  $('text-size').append(btn('A−', -1, 'Smaller text'), textOut, btn('A+', 1, 'Larger text'));
+}
+// each bottom-bar row scrolls sideways with the mouse wheel when its controls overflow
+const scrollRow = (row) => { row.addEventListener('wheel', (e) => { if (row.scrollWidth > row.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { row.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false }); return row; };
+// ---- the spectrum filter (#28) ------------------------------------------------------------
+const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
+const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
+const microns = (s) => s.replace(/ ?µm\b/g, ' MICRONS'); // 'µ' upper-cases to Greek 'Μ'
+function syncBandControls() {
+  const b = bandById(settings.get('band')), p = passById(b, settings.get('bandPass'));
+  bandSel.value = b.id;
+  passSel.replaceChildren(...b.passes.map((x) => h('option', { value: x.id, textContent: x.label })));
+  passSel.hidden = !b.passes.length;
+  if (p) passSel.value = p.id;
+}
+// read the choice first: clearing bandPass re-syncs the controls from the stored (old) band
+bandSel.addEventListener('change', () => { const id = bandSel.value; settings.set('bandPass', null); settings.set('band', id); });
+passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
+function applyBandEverywhere() {
+  setCurrentBand(settings.get('band'), settings.get('bandPass'));
+  syncBandControls();
+  system.setBand(settings.get('band'), settings.get('bandPass'));
+  for (const v of [nav, galaxy, quadrant]) v.recolourBand?.();
+  document.body.dataset.band = settings.get('band');
+  if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
+}
+settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
 // ---- "Computer" (#21) ----------------------------------------------------------------------
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
   connecting: 'CONNECTING…', hearing: 'GO AHEAD…', thinking: 'WORKING…', speaking: 'SPEAKING' };
+/** What is on screen right now, for the ship's computer: the view, what it is centred on, the clock and
+ * scale, layers, band, anything playing out (missions, eclipses, a webcast) and the side panel's text. */
+function screenContext() {
+  const lines = [], sel = route.body && system.model?.bodies.find((b) => b.id === route.body);
+  lines.push(`VIEW: ${$('view-title').textContent}`);
+  lines.push(`ROUTE: ${route.level}${route.system ? ` / system ${system.model?.name ?? route.system}` : ''}${route.body ? ` / ${sel?.name ?? route.body}` : ''}`);
+  if (['system', 'satellite', 'events'].includes(route.level) && system.model) {
+    const f = system.model.bodies.find((b) => b.id === system.focusId);
+    lines.push(`CAMERA CENTRED ON: ${f?.name ?? system.focusId}${system.onSurface ? ` (standing on the surface of ${system.model.bodies.find((b) => b.id === system.onSurface.id)?.name ?? system.onSurface.id}, looking up)` : ''}`);
+  }
+  const d = dateFromJd(clock.jd);
+  lines.push(`SHIP'S CLOCK: ${d.toISOString().slice(0, 16).replace('T', ' ')} UTC, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}`);
+  lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
+  const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
+  lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
+  const cb = currentBand();
+  if (!cb.full) lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+  const active = system.activeMissions?.map((id) => eventsFeed()?.events.find((e) => e.id === id)?.title).filter(Boolean) ?? [];
+  if (active.length) lines.push(`PLAYING OUT IN THE 3D VIEW (modelled paths): ${active.join('; ')}`);
+  const fv = $('feed-viewer');
+  if (fv && !fv.hidden) lines.push(`VIDEO / FEED WINDOW OPEN: ${fv.querySelector('.fv-title')?.textContent ?? ''} ${fv.querySelector('.fv-sub')?.textContent ?? ''}`.trim());
+  if (starCard?.current) lines.push(`SELECTED STAR CARD: ${starCard.current.name ?? starCard.current.id ?? 'a catalogue star'}`);
+  lines.push('', 'SIDE PANEL (badges in brackets give each value\'s provenance):', (panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 6000));
+  return lines.join('\n');
+}
 const computer = createComputer({
-  context: () => `${$('view-title').textContent} · ship's clock ${dateFromJd(clock.jd).toISOString().slice(0, 16)} UTC\n${(panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 2500)}`,
+  context: () => screenContext(),
   names: () => {
     const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }) }));
     for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }) });
@@ -190,6 +273,7 @@ const computer = createComputer({
   },
   setLayer: (k, on) => settings.set(k, on),
   setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
+  canInterrupt: () => !!settings.get('voiceInterrupt'),
   status: () => fetch('/api/voice/status').then((r) => (r.ok ? r.json() : null)).catch(() => null),
   onState: (st, _d, log) => renderVoice(st, log),
 });
@@ -206,7 +290,8 @@ function renderVoice(st = computer.state, log = computer.log) {
       pill(st === 'off' ? 'LISTEN' : 'STOP LISTENING', () => computer.listen(st === 'off').catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
-      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null),
+      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null,
+      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); })),
     h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
   const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
 }
@@ -221,8 +306,6 @@ const pill = (label, onClick, cls = '') => {
   b.addEventListener('click', onClick);
   return b;
 };
-const rateOut = h('div', { className: 'ctl-readout mono' });
-const holdBtn = pill('❚❚', () => clock.toggleHold());
 const dateIn = h('input', { type: 'date', id: 'ship-date', title: 'Jump to date (UTC)' });
 // Typed dates jump on Enter only (each keystroke of a year is a valid, wrong date: "0002", "0020"…);
 // a date picked from the calendar jumps at once. Leaving the field un-entered reverts it to the clock.
@@ -257,29 +340,46 @@ const flag = (key, label) => {
   return b;
 };
 
-controls.append(
-  h('div', { className: 'ctl-group' },
-    h('div', { className: 'ctl-label', textContent: 'TIME' }),
-    pill('◀◀', () => clock.slower(), 'square'), holdBtn, pill('▶▶', () => clock.faster(), 'square'),
-    rateOut, pill('NOW', () => clock.now(), 'square'), dateIn),
+// ---- step the clock by n units, or run at n units per second -------------------------------
+const stepIn = h('input', { type: 'number', className: 'ctl-num', step: 'any', title: 'How many units (decimals and negatives allowed)', value: String(settings.get('stepN') ?? 1) });
+const stepUnit = h('select', { className: 'ctl-select', title: 'Step unit' }, STEP_UNITS.map((u) => h('option', { value: u.id, textContent: u.label })));
+stepUnit.value = settings.get('stepUnit') ?? 'day';
+const stepN = () => { const n = Number(stepIn.value); return Number.isFinite(n) && n !== 0 ? n : 1; };
+stepIn.addEventListener('change', () => settings.set('stepN', stepN()));
+stepUnit.addEventListener('change', () => settings.set('stepUnit', stepUnit.value));
+const unitOf = () => STEP_UNITS.find((u) => u.id === stepUnit.value) ?? STEP_UNITS[2];
+const stepBy = (dir) => clock.step(dir * stepN(), unitOf().id);
+const runAt = () => {
+  const n = stepN(), u = unitOf();
+  clock.setRate(n * u.days, `${n} ${u.label}${Math.abs(n) === 1 ? '' : 'S'}/S`.replace('MILLENNIUMS', 'MILLENNIA').replace('CENTURYS', 'CENTURIES'));
+};
+// [ and ] step back and forward from anywhere but a text field
+window.addEventListener('keydown', (e) => {
+  if (e.target.closest?.('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '[') stepBy(-1); else if (e.key === ']') stepBy(1);
+  else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
+});
+
+// two rows: the time control above (#34), everything else on the elbow's arm below
+const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
+  stepControls: [pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')] });
+const tcLoop = () => { timeCtl.frame(); requestAnimationFrame(tcLoop); };
+requestAnimationFrame(tcLoop);
+controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
+  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE')),
-  h('div', { className: 'bar-fill' }),
-);
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
 if (STANDALONE) {
   const hz = [...controls.querySelectorAll('.pill')].find((b) => b.textContent === 'JPL HORIZONS');
   hz.title = 'Bundled JPL Horizons months only in this preview (Keplerian elements outside them); run `npm start` for any date.';
 }
-const syncClock = () => {
-  rateOut.textContent = clock.rate.label;
-  holdBtn.textContent = clock.rate.days === 0 ? '▶' : '❚❚';
-};
-clock.onChange(syncClock); syncClock();
+applyBandEverywhere(); // the remembered spectrum band
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
@@ -381,6 +481,21 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
+const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
+{
+  let satrecs = new Map();
+  const attach = (f) => f && system.setMissionEvents(f.events, { satrecFor: (n) => satrecs.get(n) ?? null });
+  onEvents(attach);
+  loadEvents().then((f) => {
+    if (!f?.events.some((e) => e.target?.norad)) return;
+    satPanel.load().then((d) => {
+      const want = new Set(f.events.map((e) => e.target?.norad).filter(Boolean));
+      satrecs = new Map((d?.rows ?? []).filter((r) => want.has(r[0])).map((r) => [r[0], satrecFromRow(r)]));
+      attach(f);
+    });
+  });
+}
 
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
 
@@ -427,12 +542,27 @@ function bodyGroups(m) {
   if (!m.isSol) return [['BODIES', m.bodies]];
   return [
     ['STAR & PLANETS', m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star')],
-    ['DWARF PLANETS, ASTEROIDS & COMETS', m.bodies.filter((b) => b.orbit?.type === 'elements')],
+    // small bodies by region (JPL SBDB orbit class)
+    ...(() => {
+      const small = m.bodies.filter((b) => b.orbit?.type === 'elements');
+      const of = (re) => small.filter((b) => re.test(b.belt ?? ''));
+      return [
+        ['DWARF PLANETS', small.filter((b) => b.kind === 'dwarf planet')],
+        ['ASTEROID BELT', of(/MAIN BELT/).filter((b) => b.kind !== 'dwarf planet')],
+        ['NEAR-EARTH ASTEROIDS', of(/NEAR-EARTH/)],
+        ['JUPITER TROJANS', of(/TROJAN/)],
+        ['CENTAURS, KUIPER BELT & COMETS', small.filter((b) => b.kind !== 'dwarf planet' && !/MAIN BELT|NEAR-EARTH|TROJAN/.test(b.belt ?? ''))],
+      ];
+    })(),
     ['SPACECRAFT · DEEP SPACE', m.bodies.filter((b) => b.kind === 'spacecraft')],
     ['REGIONS', m.bodies.filter((b) => b.kind === 'region')],
     ['LAGRANGE POINTS', m.bodies.filter((b) => b.kind === 'lagrange point')],
   ];
 }
+// FROM EARTH, imagery and spectra cards of the open detail view (src/panels/detail.js)
+let detail = null;
+function setDetail(d, place) { detail?.dispose(); detail = d; place(d); }
+
 const detailLevel = (b) => (b.marker || b.kind === 'spacecraft' ? null : b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
 function renderSystemPanel() {
   renderSystemPanelInner();
@@ -569,6 +699,18 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     row(dl, 'CURRENT SHEET TILT', `${SOLAR.tiltDeg}°`, 'modelled', 'The wavy boundary between outward and inward field. Its tilt follows the solar cycle (~10° at minimum, ~70° near maximum); 45° is a stand-in for the 2026 declining phase.');
     row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
+  }
+  {
+    // the spectrum filter (#28): how this body is drawn in the band, and the sky survey behind it
+    const cb = currentBand(), look = system.bandLookOf(b.id);
+    if (!cb.full) {
+      const dl = h('dl');
+      if (look) row(dl, 'IN THIS BAND', look.label, look.tier, look.detail);
+      const sky = system.bandSky();
+      row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
+      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
+        h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+    }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
@@ -1118,7 +1260,9 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); }, 200);
+setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
+setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
+loadEvents().then(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0));
 
 // ---- edge beacon (per animation frame) ---------------------------------------------------
 (function beaconLoop() {
@@ -1149,10 +1293,11 @@ function syncBeacon() {
 onRoute(async (r) => {
   const prev = route;
   route = r;
+  setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
   syncRail();
-  if (r.level !== 'satellite') satPanel.closeViewer();
+  if (r.level !== 'satellite' && !(r.level === 'events' && prev?.level === 'events')) satPanel.closeViewer(); // keep a webcast playing while browsing events
   if (r.level !== 'quadrant') quadrant.hide();
   if (r.level !== 'universe') universe.hide();
   if (r.level === 'quadrant' || r.level === 'universe') {
@@ -1181,6 +1326,18 @@ onRoute(async (r) => {
     return;
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
+  if (r.level !== 'events') eventsPanel.leave();
+  if (r.level === 'events') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'events') { warp(); system.focus('earth'); }
+    $('view-title').textContent = 'EVENTS · LAUNCHES, LANDINGS, STATION OPS, SKY';
+    syncBeacon();
+    eventsPanel.render(r.body);
+    return;
+  }
   if (r.level === 'satellite') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;
@@ -1230,6 +1387,7 @@ onRoute(async (r) => {
     syncBeacon();
     starView.show();
     starView.load(b, { isSun: m.isSol, systemName: m.name });
+    setDetail(detailCards(b, m, { system, clock }), (d) => starView.setExtras(d));
     renderBodyPanel(b.id, { inStarView: true });
     const noTemplate = b.kind === 'white dwarf' || b.kind === 'brown dwarf';
     if (!noTemplate) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
@@ -1249,6 +1407,7 @@ onRoute(async (r) => {
     syncBeacon();
     planetView.show();
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
+    setDetail(detailCards(b, m, { system, clock }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
     renderBodyPanel(b.id, { inStarView: true });
     syncRail();
   } else if (r.level === 'galaxy') {

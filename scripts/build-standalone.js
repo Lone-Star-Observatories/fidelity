@@ -21,7 +21,7 @@ import { SPACECRAFT } from '../src/data/spacecraft.js';
 import { BODIES as SOL_BODIES } from '../src/data/sol.js';
 import { monthlyVectors, localDay, track } from '../server/horizons.js';
 import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
-import { BODY_VISUALS, BESPOKE_TEXTURES } from '../src/data/bespoke.js';
+import { BODY_VISUALS, BESPOKE_TEXTURES, bodyVisualFor } from '../src/data/bespoke.js';
 import { SKINS } from '../src/data/skins.js';
 import { SHAPES } from '../src/data/shapes.js';
 import { MODELS } from '../src/data/models.js';
@@ -32,6 +32,10 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const near = await nearby('sol', 100);
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
+// Researched stars without known planets still need their actual Star/System views offline.
+for (const row of near.stars) {
+  if (!details[row[0]] && bodyVisualFor({ name: row[1] })?.kind === 'star') details[row[0]] = await starDetail(row[0]);
+}
 // multiple-star systems with measured orbits within 50 ly, so their System Views show every star
 const iSystem = near.fields.indexOf('system');
 for (const row of near.stars) {
@@ -151,7 +155,10 @@ const galAll = await galaxies().catch(() => null);
 const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: galAll.groups.rows.filter((r) => r[2] <= 92).map((r) => [r[0], r[1], +r[2].toFixed(1), Math.round(r[3]), Math.round(r[4]), Math.round(r[5])]) } };
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-const snapshotJson = JSON.stringify({ nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
+// the weekly events feed (#32): the bundled copy; the preview refreshes it from GitHub when online
+let eventsSnap = null;
+try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
+const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
 const compressed = gzipSync(snapshotJson, { level: 9 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');

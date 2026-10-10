@@ -24,6 +24,8 @@ export function requestEvents(jd, earthRows = () => null) {
 export const skyEvents = () => events;
 /** 'horizons' when the Sun came from JPL Horizons vectors, else 'kepler'. */
 export const skyEventsSource = () => source;
+/** The jd window the list covers, or null before the first result. */
+export const skyEventsWindow = () => window_;
 export const onSkyEvents = (fn) => (listeners.add(fn), () => listeners.delete(fn));
 /** The solar eclipse under way at `jd` (between its first and last penumbral contacts), if any. */
 export const solarEclipseAt = (jd) => events.find((e) => e.type === 'solar' && e.contacts.P1 && e.contacts.P4 && jd >= e.contacts.P1 && jd <= e.contacts.P4) ?? null;

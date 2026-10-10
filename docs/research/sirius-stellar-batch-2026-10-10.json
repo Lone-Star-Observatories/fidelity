@@ -1,0 +1,269 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "aMap": "Use case: scientific-educational. Asset: Fidelity bespoke Sirius A / Alpha Canis Majoris A photosphere intensity map. New independent 2:1 equirectangular rectangle filling image,2048x1024. Adopt Bond2017 radius1.7144Rsun temperature9845K, A-type chemically peculiar main-sequence star, hydrogen/helium broad stellar model with observed metal-line peculiarities not a literal metallic solid surface. Neutral grayscale intensity texture, very subtle fine shallow mottling and weak broad intensity variations only; much smoother than solar granulation. Whole morphology invented; no observed spot locations or Sun texture reuse. Self-emitting atmospheric gas, no solid ground. Seamless horizontal wrap, no spherical disc or baked limb/lighting, no black space, no text, no huge dark sunspots, no flares, no lava, no geographical continents.",
+      "aSky": "Use case: scientific-educational. Asset: Fidelity hypothetical near-photosphere observer Sirius A / Alpha Canis Majoris A. New independent16:9 landscape1672x941 preferred. Adopt Bond2017 radius1.7144solar radii,9845K, luminous main-sequence A-type star, hydrogen/helium atmospheric gas with metal-line chemical peculiarities. Camera2photospheric radii from centre, one radius above atmosphere, no ground or survivable landing. skyGeometry angular diameter60deg at artistic120deg horizontal rectilinear FOV -> photospheric disc557pixels wide on1672frame. Centre discx836y470, near-white very faint icy blue tint with restrained exposure, almost smooth luminous disc, subtle fine shallow intensity mottling, gentle limb darkening; black space with very thin halo. Entire morphology and exposure imagined, visible colour approximate. Companion outside chosen viewing direction/FOV, do not draw extra stars. No solar-map copying, no huge spots or flames or rocky terrain or horizon or spacecraft or text.",
+      "bMap": "Use case: scientific-educational. Asset: Fidelity bespoke Sirius B / Alpha Canis Majoris B white-dwarf photosphere intensity map. New independent2:1equirectangular rectangle filling frame2048x1024. Adopt Bond2017 radius0.008098Rsun25369K; Joyce2018 alternative0.00803Rsun25922K remains different fit. DA hydrogen-dominated hot gaseous atmosphere above a theoretical carbon/oxygen degenerate interior. Render neutral grayscale nearly uniform smooth emissive intensity, only extremely subtle invented broad irregular intensity changes, no claim of observed patches. Hot radiative white dwarf must not show dramatic solar convection, rocky/metal/crystalline ground, ice, molten lava, clouds or magnetic spots. Smooth horizontal wrap, no polar seam, no baked spherical limb, no sphere or black background or labels. No observed Sun/otherbody map reuse. Whole intensity morphology a restrained hypothetical illustration, not resolved observation.",
+      "bSky": "Use case: scientific-educational. Asset: Fidelity hypothetical observer near Sirius B / Alpha Canis Majoris B. Create independent16:9 landscape1672x941. Adopt Bond2017 DA white dwarf radius0.008098Rsun25369K, hydrogen-dominated gaseous outer atmosphere, theoretical degenerate carbon/oxygen interior hidden. Camera2photospheric radii from centre (one radius above photosphere), no solid ground or survivable landing. skyGeometry60degree angular disc at artistic120degree horizontal rectilinear FOV; clean photosphere diameter557pixels on1672width, centredx836y470. Smooth pale blue-white nearly uniform luminous circular disc with gentle limb darkening, controlled exposure, extremely faint invented intensity variations; black space and very narrow halo only. Do not use a rocky/crystalline or Earthlike surface, flames, large spots or solar granulation. Choose camera direction with Sirius A outside FOV, no second disc. No terrain, horizon, landing craft, text. Approximate spectral colour/exposure/morphology, no calibrated observation or copied Sun map."
+    },
+    "refinements": [
+      {
+        "asset": "aSky",
+        "prompt": "Use case: scientific-educational. Asset: Fidelity hypothetical near-photosphere observer Sirius A / Alpha Canis Majoris A. New independent16:9 landscape1672x941 preferred. Adopt Bond2017 radius1.7144solar radii,9845K, luminous main-sequence A-type star, hydrogen/helium atmospheric gas with metal-line chemical peculiarities. Camera2photospheric radii from centre, one radius above atmosphere, no ground or survivable landing. skyGeometry angular diameter60deg at artistic120deg horizontal rectilinear FOV -> photospheric disc557pixels wide on1672frame. Centre discx836y470, near-white very faint icy blue tint with restrained exposure, almost smooth luminous disc, subtle fine shallow intensity mottling, gentle limb darkening; black space with very thin halo. Entire morphology and exposure imagined, visible colour approximate. Companion outside chosen viewing direction/FOV, do not draw extra stars. No solar-map copying, no huge spots or flames or rocky terrain or horizon or spacecraft or text.\nTargeted size correction: current disc is about840pixels wide. Preserve exact1672x941image dimensions, colour, restrained morphology and black space. Shrink clean luminous disc to557pixels diameter (abouttwo thirds currentdiameter), centrex836y470, very thin halo. Change depicted disc size only. Required disc is one third frame width, not half.",
+        "originalFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-7f92142e-a851-45ef-b502-1719f44a9bc5.png",
+        "refinedFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-141d8dfc-acf1-483b-9f3a-5881165978a0.png",
+        "originalSha256": "6d112e25671dbb53a100e77c2f95b43a0c84134d922a3635c298828f8b794e5a"
+      },
+      {
+        "asset": "bSky",
+        "prompt": "Use case: scientific-educational. Asset: Fidelity hypothetical observer near Sirius B / Alpha Canis Majoris B. Create independent16:9 landscape1672x941. Adopt Bond2017 DA white dwarf radius0.008098Rsun25369K, hydrogen-dominated gaseous outer atmosphere, theoretical degenerate carbon/oxygen interior hidden. Camera2photospheric radii from centre (one radius above photosphere), no solid ground or survivable landing. skyGeometry60degree angular disc at artistic120degree horizontal rectilinear FOV; clean photosphere diameter557pixels on1672width, centredx836y470. Smooth pale blue-white nearly uniform luminous circular disc with gentle limb darkening, controlled exposure, extremely faint invented intensity variations; black space and very narrow halo only. Do not use a rocky/crystalline or Earthlike surface, flames, large spots or solar granulation. Choose camera direction with Sirius A outside FOV, no second disc. No terrain, horizon, landing craft, text. Approximate spectral colour/exposure/morphology, no calibrated observation or copied Sun map.\nTargeted size correction: current disc is about840pixels wide. Preserve exact1672x941image dimensions, colour, restrained morphology and black space. Shrink clean luminous disc to557pixels diameter (abouttwo thirds currentdiameter), centrex836y470, very thin halo. Change depicted disc size only. Required disc is one third frame width, not half.",
+        "originalFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-aa702bdb-4d06-489b-b0ac-d0141253bbea.png",
+        "refinedFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-72e4d5f1-3fcd-4ad8-9d06-efec4e52d149.png",
+        "originalSha256": "4e77b66b279c8cc7e0be125e94681e2902a51ea3cb299d90bab6b9fd724110fd"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "id": "sirius-a-star",
+      "name": "Sirius A",
+      "kind": "star",
+      "stellarClass": "A-type main-sequence",
+      "aliases": [
+        "Sirius",
+        "Sirius A",
+        "alf CMa A",
+        "Alpha Canis Majoris A",
+        "HD 48915",
+        "HIP 32349",
+        "Gl 244A",
+        "GJ 244 A"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "Native Hubble SiriusA is the overexposed central object; separate A-type main-sequence component, not SiriusB.",
+      "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+      "measured": [
+        "Bond2017 dynamical mass2.063±0.023solar masses; interferometric angular diameter constrains inferred radius.",
+        "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+        "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+      ],
+      "modelled": [
+        "Bond2017 adopted interferometry/flux estimates1.7144±0.0090solar radii and9845±64K. Other compilations differ by several percent.",
+        "A-type photospheric hydrogen/helium gas and observed metal-line peculiarities do not establish literal metal terrain or measured abundance fractions here.",
+        "Existing binary renderer uses1.711Rsun9940K; catalogue/binary parameters remain preserved as an alternative history."
+      ],
+      "unknown": [
+        "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+      ],
+      "assumed": [
+        "Independent weak photospheric intensity mottling and observer disc; all morphology imagined, no observed Sun map or another body map reused.",
+        "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+        "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+      ],
+      "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/html/1703.10625",
+          "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+          "publicationDate": "2017-03-30"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1809.01240",
+          "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+          "publicationDate": "2018"
+        },
+        {
+          "url": "https://esahubble.org/images/heic0516a/",
+          "title": "Primary Hubble binary image, component identities and observation date",
+          "publicationDate": "2005-12-13"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/sirius-binary-native.jpg",
+          "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+          "sourcePage": "https://esahubble.org/images/heic0516a/",
+          "label": "NATIVE BINARY OBSERVATION",
+          "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+          "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+          "termsUrl": "https://esahubble.org/copyright/",
+          "publicationDate": "2005-12-13",
+          "observationDate": "2003-10-15",
+          "tier": "measured",
+          "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+          "bytes": 176877,
+          "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+        }
+      ],
+      "skyModel": {
+        "star": "Sirius A",
+        "radiusSun": 1.7144,
+        "temperatureK": 9845,
+        "distanceAU": 0.015945522144387044,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "siriusAStarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+        "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "brightCoreWidths": [
+            544,
+            538,
+            477
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-25f6f456-b3b4-45c9-a18a-18845a667577.png",
+        "skyImage": "exec-141d8dfc-acf1-483b-9f3a-5881165978a0.png"
+      }
+    },
+    {
+      "id": "sirius-b-star",
+      "name": "Sirius B",
+      "kind": "star",
+      "stellarClass": "DA white dwarf",
+      "aliases": [
+        "Sirius B",
+        "alf CMa B",
+        "Alpha Canis Majoris B",
+        "Gl 244B",
+        "GJ 244 B",
+        "Gliese 244 B"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "Native Hubble SiriusB is the tiny dot lower left; separate hot DA hydrogen-atmosphere white dwarf, not SiriusA.",
+      "nativeSurface": "Native unresolved stellar observations retained as context; no resolved photospheric geography or visible-colour calibration established.",
+      "measured": [
+        "Bond2017 dynamical mass1.018±0.011solar masses; DA hydrogen-line spectrum supports a hydrogen-dominated atmosphere.",
+        "Bond2017 adopted system parallax378.9±1.4mas; current component astrometry and exhaustive nearest20boundary remain unverified.",
+        "Native Hubble image observed2003-10-15, released2005-12-13; bright centralA and faint lower-leftB are explicitly distinguished."
+      ],
+      "modelled": [
+        "Bond2017 STIS atmosphere/absolute-flux fits:25369±46K and0.008098±0.000046solar radii. Carbon/oxygen degenerate interior is theoretical and hidden beneath gaseous hydrogen atmosphere; no solid surface is asserted.",
+        "Joyce2018 alternative radius0.00803±0.00011solar radii and25922K, differential gravitational-redshift mass1.017±0.025solar masses. Authors prefer binary-aware Bond parallax over linear GaiaDR2 astrometry.",
+        "Existing binary renderer uses0.0084Rsun25000K; catalogue/binary parameters remain preserved as an alternative history."
+      ],
+      "unknown": [
+        "Resolved photospheric intensity geography, actual magnetic/convective morphology and calibrated visible colour/exposure; component distance ranking remains open."
+      ],
+      "assumed": [
+        "Independent almost-smooth hot hydrogen photospheric intensity map and observer disc; all faint mottling imagined. No dramatic solar granulation, hidden carbon/oxygen-core terrain or observed Sun map reuse.",
+        "Conceptual camera two photospheric radii from centre, one radius above gas; no solid ground or survivable landing. Companion outside chosen viewing direction/FOV; no dated binary scene registration claimed.",
+        "Nominal120-degree FOV, exposure, spectral transfer and approximate blue-white tint remain artistic."
+      ],
+      "surfaceLabel": "WHITE-DWARF PHOTOSPHERE HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/html/1703.10625",
+          "title": "Bond2017 Sirius orbital masses and inferred atmosphere/radii",
+          "publicationDate": "2017-03-30"
+        },
+        {
+          "url": "https://arxiv.org/pdf/1809.01240",
+          "title": "Joyce2018 differential redshift and alternative SiriusB fit",
+          "publicationDate": "2018"
+        },
+        {
+          "url": "https://esahubble.org/images/heic0516a/",
+          "title": "Primary Hubble binary image, component identities and observation date",
+          "publicationDate": "2005-12-13"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2112.05234",
+          "title": "Lucas2021/2022 Keck2020 images, PSF and nondetection limits",
+          "publicationDate": "2021-12-09"
+        },
+        {
+          "url": "https://github.com/mileslucas/sirius-b",
+          "title": "Primary author figure2 and CC BY4 data licence"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/sirius-binary-native.jpg",
+          "source": "https://cdn.esahubble.org/archives/images/screen/heic0516a.jpg",
+          "sourcePage": "https://esahubble.org/images/heic0516a/",
+          "label": "NATIVE BINARY OBSERVATION",
+          "credit": "NASA, ESA, H. Bond (STScI), and M. Barstow (University of Leicester)",
+          "terms": "ESA/Hubble CC BY4.0; full original credit retained.",
+          "termsUrl": "https://esahubble.org/copyright/",
+          "publicationDate": "2005-12-13",
+          "observationDate": "2003-10-15",
+          "tier": "measured",
+          "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+          "bytes": 176877,
+          "description": "HST/WFPC2 observing date2003-10-15 verified by publisher: overexposed SiriusA at centre, unresolved SiriusB lower left. Diffraction spikes and rings are instrument artifacts. Publisher lists430/750nmSTIS and1.042micronWFPC2 bands; exact channel assignment is not independently reconstructed. Processed colour is not calibrated visible photospheric colour. Publisher JPEG copied unchanged."
+        },
+        {
+          "url": "/bespoke/sirius-b-keck-native.png",
+          "source": "https://raw.githubusercontent.com/mileslucas/sirius-b/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+          "sourcePage": "https://github.com/mileslucas/sirius-b/blob/eb0bc6fa31836506bf755662677e00842db92358/paper/figures/psf.pdf",
+          "label": "NATIVE INFRARED POINT-SOURCE FIGURE",
+          "credit": "Miles Lucas, Michael Bottom, Garreth Ruane and Sam Ragland; W. M. Keck Observatory/NIRC2.",
+          "terms": "CC BY4.0 author arXiv paper and primary data release; full author attribution retained.",
+          "termsUrl": "https://arxiv.org/abs/2112.05234",
+          "publicationDate": "2021-12-09",
+          "observationDate": "2020-11-21",
+          "tier": "measured",
+          "sha256": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+          "sourceSha256": "188854788be3044e1e510a340bf327de470ca354b24a0bf81bf9a731637cd68e",
+          "bytes": 101362,
+          "description": "Lucasetal Figure2 median frame from second Keck/NIRC2 epoch2020-11-21, L-prime3.776microns. Unresolved instrumentalPSF with speckles/diffraction, not photospheric geography, calibrated visible colour or companions. Entire author PDF figure rendered to lossless576x477PNG withPDF.js2x; no crop/image content edit, original PDF hash retained. Paper reports no confirmed companions in2020three-epoch search; this is not proof none exist."
+        }
+      ],
+      "skyModel": {
+        "star": "Sirius B",
+        "radiusSun": 0.008098,
+        "temperatureK": 25369,
+        "distanceAU": 0.0000753189677585431,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "siriusBStarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular invented longitude; no measured surface frame.",
+        "coverage": "Entire photospheric intensity morphology imagined; approximate catalogue tint applied."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "brightCoreWidths": [
+            507,
+            497,
+            382
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "Edited luminous disc remains an approximate illustration; thresholds, FOV, limb, exposure and tint do not establish calibration."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-e3d5dd9b-161c-4035-812e-cb3c7895352d.png",
+        "skyImage": "exec-72e4d5f1-3fcd-4ad8-9d06-efec4e52d149.png"
+      }
+    }
+  ]
+}
