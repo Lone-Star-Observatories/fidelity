@@ -127,3 +127,10 @@ test('GJ887 stellar aliases preserve separate planet maps and native data limits
   assert.equal(v.contextImages[0].observationDate,null);
   assert.equal(v.skyModel.radiusSun,.468);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
 });
+
+test('Ross128 stellar identity preserves planet skin and multi-epoch native limits',()=>{
+ const v=bodyVisualFor({name:'FI Vir'});assert.equal(v.id,'ross128-star');assert.equal(bodyVisualFor({name:'GJ 447'}),v);
+ assert.notEqual(v.surfaceMap.sha256,bodyVisualFor({name:'Ross 128 b'}).surfaceMap.sha256);
+ assert.match(v.contextImages[0].description,/proper motion, not companions/);assert.equal(v.contextImages[0].observationDate,null);
+ assert.equal(v.skyModel.radiusSun,.1967);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});

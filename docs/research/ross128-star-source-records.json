@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://cdn.eso.org/images/screen/eso1736b.jpg",
+    "file": "public/bespoke/ross128-star-dss-native.jpg",
+    "bytes": 287611,
+    "sha256": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://www.eso.org/public/images/eso1736b/",
+    "file": "data/research-sources/ross128-star-eso.html",
+    "bytes": 86428,
+    "sha256": "59579d212c26e52b1f18567cd5b0c431d8fde1208e1d5a07028d736de544c4fc",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/1805.11633v2",
+    "file": "data/research-sources/ross128-star-souto.html",
+    "bytes": 128370,
+    "sha256": "4631e6a7734e75ab2cbe31a029b2b76ca5d092096a2a55135f43c2996a199a30",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "file": "data/research-sources/ross128-star-bonfils-2017.pdf",
+    "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+    "bytes": 962738,
+    "sha256": "c2f19678946a87471ebb7f6eca61f99472537eb93373053c24d5fddd48940cec",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1501.01635",
+    "file": "data/research-sources/ross248-mann.pdf",
+    "sha256": "f1c746e741c6016ddd1cd2bbd21a0ed4dc96d247336e3c45e37f90b9db739513",
+    "bytes": 9339251,
+    "verified": "Mann2015Table5 continued Gl447 independently verified from page30. Shared original source paper; no image/map reused."
+  }
+]

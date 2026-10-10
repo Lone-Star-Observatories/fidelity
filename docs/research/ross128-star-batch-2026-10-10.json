@@ -1,0 +1,131 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "map": "Use case: scientific-educational. Create an independent bespoke EXACT 2:1 equirectangular grayscale photospheric intensity map for Ross128/FI Vir/GJ447 M4 dwarf, NOT planet Ross128b. Adopt representative3192K radius0.1967Rsun. Full rectangle filled with finely textured molecular partlyionized hydrogen/helium gas convection. Quiescent old slowly rotating star: sparse small subdued darker magnetic patches, no large Sunlike sunspots, fine irregular lowcontrast cells. Morphology and longitudes imagined, not observed geography. Uniform exposure, no sphere, lighting gradient, limb, ground, rocks, clouds of a planet, flare, fieldlines, text, grid or borders. Seamless left/right edges, full longitude/latitude, northup. Grayscale intensity only for approximate renderer tint. Never reuse Sun or another body's observed map.",
+      "sky": "Use case: scientific-educational. Independent hypothetical near-photosphere observer of Ross128/FI Vir/GJ447 M4 dwarf NOT planet. EXACT16:9 canvas1672x941 or1536x864. Freecamera at2photosphericradii fromcentre. Entire circular gas star centered in black space. Representative3192K radius.1967Rsun, angular60degrees through geometry at2R. Artistic rectilinear120degree horizontalFOV requires bright core ONE THIRD imagewidth about557px at1672wide. Disc small centered with generous black surrounding. Warm pale cream peach-white glow subdued amberlimb, artistic exposure and molecular spectral transfer, not calibrated colour; do not make saturatedred. Fine imagined moleculargas convection, sparse small darkerpatches. Quiescent with no giantflares. Minimalhalo. Sparse verydim backgroundstars. No ground, horizon, solid surface, planets, companion, human, fieldlines, text or diagram. No observed Sun or otherbody image reuse. No datedregistration or survivablelanding claim."
+    },
+    "refinements": []
+  },
+  "bodies": [
+    {
+      "id": "ross128-star",
+      "name": "Ross 128",
+      "kind": "star",
+      "aliases": [
+        "Ross 128",
+        "FI Vir",
+        "GJ 447",
+        "Gl 447",
+        "Gliese 447",
+        "HIP 57548",
+        "LHS 315"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "SIMBAD verifies FI Vir/GJ447/HIP57548; actualHYG hyg-57375. Bonfils manuscript prose FY Virginis conflicts with verified FI Vir and is not adopted. Distinct from planet Ross128b.",
+      "nativeSurface": "Native DSS2 multi-epoch point-source field retained unchanged. No resolved photospheric map found in checked primary sources; ESO planet artwork assessed, not used as stellar skin.",
+      "measured": [
+        "ESO DSS2 optical630/797nm field combines photographs spanning more than40years; multiple central appearances are proper motion across epochs, not companions. Released2017-11-15; exact individual observationdays unknown.",
+        "SIMBAD indexes GaiaEDR3 parallax296.3053±0.0302mas; older BonfilsTable1 Gaia2016parallax295.80±0.54mas is a distinct history. Current exhaustive nearest20boundary remains open.",
+        "Bonfils2017/2018 describes slow rotation and weak magnetic activity from K2/ASAS/HARPS. Quiescent illustration does not claim flare-free emission."
+      ],
+      "modelled": [
+        "BonfilsTable1 adopts Mann2015 optical-spectrum/flux/empirical3192±60K,0.1967±0.0077Rsun,0.168±0.017Msun,[M/H]−0.02±0.08,L0.00362±0.00039Lsun. These are model-dependent estimates, not resolved surface measurements. Primary Mann2015Table5 continued Gl447 row independently verifies these adopted values.",
+        "Souto2018Table1 alternate MARCS3231±100K/logg4.96±0.11 versusPHOENIX3223±100K/logg4.89±0.11; near-solar metallicity+0.03±0.09. 1D LTE spectral synthesis, APOGEE1.5–1.7micron spectra observed2014-01-28. These alternatives remain distinct; earlier planet illumination and catalogue fields unchanged.",
+        "Hydrogen/helium partlyionized molecular photospheric gas is broad stellar model context, not measured bulk fractions. Molecular opacity prevents a blackbody tint from establishing calibrated visible colour."
+      ],
+      "unknown": [
+        "Resolved convection/spot geography, photospheric bulk fractions, calibrated visible colour/exposure/FOV and dated observer registration.",
+        "Current exhaustive nearest20boundary and exact native DSS2 plate days."
+      ],
+      "assumed": [
+        "Independent imagined fine gas convection with sparse small darker magnetic patches; all longitudes/morphology invented, no observed Sun/otherbody map reused.",
+        "Hypothetical freecamera2photosphericradii fromcentre; no solid ground or survivable landing.",
+        "Nominal120degreehorizontalFOV, colour/exposure and molecularspectraltransfer remain approximate."
+      ],
+      "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+          "title": "Bonfils2017/2018 Table1 adopted stellar parameters",
+          "publicationDate": "2017-11-08"
+        },
+        {
+          "url": "https://arxiv.org/html/1805.11633v2",
+          "title": "Souto2018 APOGEE spectral analysis and alternate Table1 models",
+          "publicationDate": "2018-06-14"
+        },
+        {
+          "url": "https://www.eso.org/public/images/eso1736b/",
+          "title": "Native DSS2 multi-epoch optical field",
+          "publicationDate": "2017-11-15"
+        },
+        {
+          "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Ross+128",
+          "title": "CDS primary identity and indexed GaiaEDR3 astrometry",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/ross128-star-dss-native.jpg",
+          "source": "https://cdn.eso.org/images/screen/eso1736b.jpg",
+          "sourcePage": "https://www.eso.org/public/images/eso1736b/",
+          "label": "NATIVE MULTI-EPOCH DSS2 FIELD",
+          "credit": "Digitized Sky Survey2. Acknowledgement: Davide De Martin; via ESO imageeso1736b.",
+          "terms": "ESO public image CC BY4.0; unchanged publisher screensize JPEG, credit retained.",
+          "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+          "publicationDate": "2017-11-15",
+          "observationDate": null,
+          "tier": "measured",
+          "sha256": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+          "bytes": 287611,
+          "description": "Unchanged DSS2 optical630/797nm composite released2017-11-15. More than40years of plate epochs create multiple central Ross128 appearances through proper motion, not companions. Exact plate days unknown; unresolved field is not photospheric geography or calibrated visible colour."
+        }
+      ],
+      "skyModel": {
+        "star": "Ross 128",
+        "radiusSun": 0.1967,
+        "temperatureK": 3192,
+        "distanceAU": 0.001829493820462513,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "ross128StarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented longitude/latitude gas intensity map; no observed stellar frame.",
+        "coverage": "All gas morphology/longitudes imagined; approximate renderer tint."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "method": "Central four-neighbour bright component excludes disconnected background stars.",
+          "brightCoreWidths": [
+            617,
+            617,
+            617
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-8679eccb-0fe4-4b17-b146-8a4c4d10c14b.png",
+        "skyImage": "exec-9f0e7625-f310-4f57-bce1-5e18c1d6b66b.png"
+      }
+    }
+  ],
+  "nativeAssessment": [
+    "Native DSS2 observation retained; no resolved stellar photospheric image found.",
+    "ESO1736a planet artist impression assessed but not stellar photography.",
+    "Current exhaustive ranking and current astrometric boundary remain audit items."
+  ]
+}

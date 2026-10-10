@@ -8270,7 +8270,7 @@
       "distancePc": 3.3748973551646504,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native DSS2 multi-epoch point-source field retained unchanged. No resolved photospheric map found in checked primary sources; ESO planet artwork assessed, not used as stellar skin.",
       "catalogueConstraints": {
         "OBJ_NAME": "Ross 128",
         "OBJ_CAT": "LM",
@@ -8289,9 +8289,10 @@
         "COMMENT": "...",
         "distancePc": 3.3748973551646504
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ross128-star"
     },
     {
       "id": "star-gj-866-a",
@@ -8457,7 +8458,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 13,
+      "initialDossiers": 14,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

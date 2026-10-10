@@ -5365,8 +5365,159 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ross128-star": {
+    "id": "ross128-star",
+    "name": "Ross 128",
+    "kind": "star",
+    "aliases": [
+      "Ross 128",
+      "FI Vir",
+      "GJ 447",
+      "Gl 447",
+      "Gliese 447",
+      "HIP 57548",
+      "LHS 315"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "SIMBAD verifies FI Vir/GJ447/HIP57548; actualHYG hyg-57375. Bonfils manuscript prose FY Virginis conflicts with verified FI Vir and is not adopted. Distinct from planet Ross128b.",
+    "nativeSurface": "Native DSS2 multi-epoch point-source field retained unchanged. No resolved photospheric map found in checked primary sources; ESO planet artwork assessed, not used as stellar skin.",
+    "measured": [
+      "ESO DSS2 optical630/797nm field combines photographs spanning more than40years; multiple central appearances are proper motion across epochs, not companions. Released2017-11-15; exact individual observationdays unknown.",
+      "SIMBAD indexes GaiaEDR3 parallax296.3053±0.0302mas; older BonfilsTable1 Gaia2016parallax295.80±0.54mas is a distinct history. Current exhaustive nearest20boundary remains open.",
+      "Bonfils2017/2018 describes slow rotation and weak magnetic activity from K2/ASAS/HARPS. Quiescent illustration does not claim flare-free emission."
+    ],
+    "modelled": [
+      "BonfilsTable1 adopts Mann2015 optical-spectrum/flux/empirical3192±60K,0.1967±0.0077Rsun,0.168±0.017Msun,[M/H]−0.02±0.08,L0.00362±0.00039Lsun. These are model-dependent estimates, not resolved surface measurements. Primary Mann2015Table5 continued Gl447 row independently verifies these adopted values.",
+      "Souto2018Table1 alternate MARCS3231±100K/logg4.96±0.11 versusPHOENIX3223±100K/logg4.89±0.11; near-solar metallicity+0.03±0.09. 1D LTE spectral synthesis, APOGEE1.5–1.7micron spectra observed2014-01-28. These alternatives remain distinct; earlier planet illumination and catalogue fields unchanged.",
+      "Hydrogen/helium partlyionized molecular photospheric gas is broad stellar model context, not measured bulk fractions. Molecular opacity prevents a blackbody tint from establishing calibrated visible colour."
+    ],
+    "unknown": [
+      "Resolved convection/spot geography, photospheric bulk fractions, calibrated visible colour/exposure/FOV and dated observer registration.",
+      "Current exhaustive nearest20boundary and exact native DSS2 plate days."
+    ],
+    "assumed": [
+      "Independent imagined fine gas convection with sparse small darker magnetic patches; all longitudes/morphology invented, no observed Sun/otherbody map reused.",
+      "Hypothetical freecamera2photosphericradii fromcentre; no solid ground or survivable landing.",
+      "Nominal120degreehorizontalFOV, colour/exposure and molecularspectraltransfer remain approximate."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+        "title": "Bonfils2017/2018 Table1 adopted stellar parameters",
+        "publicationDate": "2017-11-08"
+      },
+      {
+        "url": "https://arxiv.org/html/1805.11633v2",
+        "title": "Souto2018 APOGEE spectral analysis and alternate Table1 models",
+        "publicationDate": "2018-06-14"
+      },
+      {
+        "url": "https://www.eso.org/public/images/eso1736b/",
+        "title": "Native DSS2 multi-epoch optical field",
+        "publicationDate": "2017-11-15"
+      },
+      {
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Ross+128",
+        "title": "CDS primary identity and indexed GaiaEDR3 astrometry",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ross128-star-dss-native.jpg",
+        "source": "https://cdn.eso.org/images/screen/eso1736b.jpg",
+        "sourcePage": "https://www.eso.org/public/images/eso1736b/",
+        "label": "NATIVE MULTI-EPOCH DSS2 FIELD",
+        "credit": "Digitized Sky Survey2. Acknowledgement: Davide De Martin; via ESO imageeso1736b.",
+        "terms": "ESO public image CC BY4.0; unchanged publisher screensize JPEG, credit retained.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "publicationDate": "2017-11-15",
+        "observationDate": null,
+        "tier": "measured",
+        "sha256": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+        "bytes": 287611,
+        "description": "Unchanged DSS2 optical630/797nm composite released2017-11-15. More than40years of plate epochs create multiple central Ross128 appearances through proper motion, not companions. Exact plate days unknown; unresolved field is not photospheric geography or calibrated visible colour."
+      }
+    ],
+    "skyModel": {
+      "star": "Ross 128",
+      "radiusSun": 0.1967,
+      "temperatureK": 3192,
+      "distanceAU": 0.001829493820462513,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1081.1677110791106,
+      "approximateSrgb": [
+        1,
+        0.7191018637846154,
+        0.48084225935692265
+      ],
+      "limits": "Hypothetical camera at2photosphericradii, no solid ground or survivable landing. Nominal120degreeFOV, colour, moleculartransfer, exposure and scene registration remain approximate;617pixel cores versus557.333target, not calibrated."
+    },
+    "surfaceMap": {
+      "key": "ross128StarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented longitude/latitude gas intensity map; no observed stellar frame.",
+      "coverage": "All gas morphology/longitudes imagined; approximate renderer tint.",
+      "url": "/bespoke/ross128-star-surface-map.jpg",
+      "previewUrl": "/bespoke/ross128-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-8679eccb-0fe4-4b17-b146-8a4c4d10c14b.png",
+      "sourceSha256": "7793e718cc077e1cc9dbf74f78f2c8a8eb64b51e280f41c92504fae0d1a8508a",
+      "sha256": "19442aabfe144b90143acf501d577d53d824324e806f0aef0ec680a5b2a89ba2",
+      "previewSha256": "52e68b7a981809b2a7f878aaaebbfed8f1d65bafa48b8f59f114716f87065c8d",
+      "bytes": 404967,
+      "previewBytes": 35542,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Central four-neighbour bright component excludes disconnected background stars.",
+        "brightCoreWidths": [
+          617,
+          617,
+          617
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+      },
+      "url": "/bespoke/ross128-star-sky-image.jpg",
+      "previewUrl": "/bespoke/ross128-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-9f0e7625-f310-4f57-bce1-5e18c1d6b66b.png",
+      "sourceSha256": "323200527045e5aca5132548344c9c01595ea6014db8fbbff21fe1a1fd141fb8",
+      "sha256": "60b6616a3cc38a2758683f5a477748afd77681d39c49b9eed086af4c0b02a173",
+      "previewSha256": "d039ab93c56516f231233fc832590132cc08116345aa839e62d4da9c40ab4892",
+      "bytes": 69140,
+      "previewBytes": 14393,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
+
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;
