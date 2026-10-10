@@ -8206,7 +8206,7 @@
       "distancePc": 3.2198104084901282,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "NativeALMA star/debrisbelt point-source image retained. No resolved visible photospheric geography found in checked sources. Recent2026 JWST coronagraph analysis targets the planet and retains a tentative low-SNR feature, not a confirmed planet/visible stellar surface image.",
       "catalogueConstraints": {
         "OBJ_NAME": "eps Eri",
         "OBJ_CAT": "*",
@@ -8225,9 +8225,10 @@
         "COMMENT": "...",
         "distancePc": 3.2198104084901282
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "epsilon-eridani-star"
     },
     {
       "id": "star-gj-887",
@@ -8455,7 +8456,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 11,
+      "initialDossiers": 12,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

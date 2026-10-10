@@ -107,3 +107,14 @@ test('Ross248 aliases select its own map and preserve distinct parameter methods
   assert.match(v.contextImages[0].description,/not companions/);
   assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
 });
+
+test('Epsilon Eridani stellar aliases do not select its planet or Rana',()=>{
+  const v=bodyVisualFor({name:'Ran'});
+  assert.equal(bodyVisualFor({name:'HD 22049'}),v);assert.equal(bodyVisualFor({name:'Gl 144'}),v);
+  assert.equal(v.id,'epsilon-eridani-star');assert.equal(bodyVisualFor({name:'Rana'}),null);
+  assert.notEqual(v.surfaceMap.sha256,bodyVisualFor({name:'eps Eri b'}).surfaceMap.sha256);
+  assert.match(v.contextImages[0].description,/background galaxies/);
+  assert.equal(v.contextImages[0].observationDate,'2019-12-16/2019-12-23');
+  assert.match(v.nativeSurface,/tentative/);assert.match(v.assumed.join(' '),/no solid ground/);
+  assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});

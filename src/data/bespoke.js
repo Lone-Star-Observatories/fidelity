@@ -5052,6 +5052,159 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "epsilon-eridani-star": {
+    "id": "epsilon-eridani-star",
+    "name": "Epsilon Eridani",
+    "kind": "star",
+    "aliases": [
+      "Epsilon Eridani",
+      "eps Eri",
+      "epsilon Eri",
+      "Ran",
+      "HD 22049",
+      "GJ 144",
+      "Gl 144",
+      "Gliese 144",
+      "HIP 16537"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "SIMBAD identifiers verify Ran=epsEri=HD22049=GJ144/HIP16537; actualHYG hyg-16496. Not Rana/deltaEridani or EpsilonEridanib, whose earlier dossier remains unchanged.",
+    "nativeSurface": "NativeALMA star/debrisbelt point-source image retained. No resolved visible photospheric geography found in checked sources. Recent2026 JWST coronagraph analysis targets the planet and retains a tentative low-SNR feature, not a confirmed planet/visible stellar surface image.",
+    "measured": [
+      "Baines/Armstrong2011 preprint/2012 Table3 optical interferometry limb-darkened angular diameter2.153±0.028mas, uniform-disk2.080±0.028mas. Three observing nights in2010; exampleTable2 begins2010-11-18, exact complete epoch list not inferred from partialtable.",
+      "Booth etal2023 Table1 nativeALMA Band6 1.29mm observations2019-12-16/17/18/22/23, project2019.1.00696.S, beam1.6×1.2arcsec; unresolved central star and resolved dustbelt.",
+      "SIMBAD primary identifier/astrometry entry indexes GaiaEDR3 parallax310.5773±0.1355mas; propermotionRAcosDec−974.758±0.160 andDec20.876±0.120mas/yr. This is not a recomputed exhaustive nearest20ranking."
+    ],
+    "modelled": [
+      "Baines/Armstrong Table3 radius0.74±0.01Rsun, effective temperature5039±126K, luminosity0.32±0.03Lsun, mass0.82±0.05Msun. Radius combines angular diameter with adopted Benedict2006 parallax311.73±0.11mas; temperature uses bolometric flux, mass Yonsei-Yale isochrones. Estimated age~1Gyr is model-dependent.",
+      "Existing planet illumination adopted NASA archive composite0.759106Rsun/5020.38K; preserved without overwriting. Stellar catalogue rendering parameters and historical coordinates remain unchanged. Differences reflect measurement/reference histories, not a coherent joint refit.",
+      "ALMA CLEAN interferometric reconstruction is observational intensity, without primary-beam correction inFigure1a; starposition has53percent beam response. Two off-centre point sources are consistent with background galaxies, not companion planets. Resolved belt/clump models are not photospheric morphology.",
+      "Hydrogen/helium partlyionized photospheric gas and convection/magneticregions are general Kdwarf-model context, not measured gas abundance fractions or fixed surface geography."
+    ],
+    "unknown": [
+      "Resolved photospheric spot/convection geography, magnetic longitudes, measured composition fractions, calibrated visible colour/exposure and dated observer registration.",
+      "Current exhaustive nearest20stellar ranking and reconciliation of bright-star/planet-aware astrometry; exact updated coherent stellar fit."
+    ],
+    "assumed": [
+      "Independent invented gas intensity/spot morphology and conceptual observer; no observed Sun or another-body skin reuse.",
+      "Hypothetical camera2photosphericradii fromcentre; no solid ground or survivable landing.",
+      "Nominal120degreehorizontalFOV, colour, exposure and spectraltransfer remain artistic. Debrisbelt/planet outside assumed observer direction; no dated orbital registration claimed."
+    ],
+    "surfaceLabel": "PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/1112.0447",
+        "title": "Baines/Armstrong optical interferometry and inferred stellar parameters, Table3",
+        "publicationDate": "2011-12-02"
+      },
+      {
+        "url": "https://arxiv.org/html/2303.13584",
+        "title": "Booth etal2023 nativeALMA star/debrisbelt, Figure1 and Table1",
+        "publicationDate": "2023-03-23"
+      },
+      {
+        "url": "https://arxiv.org/html/2609.19131v1",
+        "title": "Llop-Sayson etal2026 updated planet model; tentative feature remains unconfirmed",
+        "publicationDate": "2026-09-16"
+      },
+      {
+        "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=eps+Eri",
+        "title": "CDS/SIMBAD component aliases and GaiaEDR3 reference history",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/epsilon-star-alma-native.png",
+        "source": "https://arxiv.org/html/2303.13584v1/fig1a.png",
+        "sourcePage": "https://arxiv.org/html/2303.13584",
+        "label": "NATIVE MILLIMETRE STAR AND DEBRIS BELT",
+        "credit": "Mark Booth, Tim D. Pearce, Alexander V. Krivov, Mark C. Wyatt, William R. F. Dent, Antonio S. Hales, Jean-François Lestrade, Fernando Cruz-Sáenz de Miera, Virginie C. Faramaz, Torsten Löhne and Miguel Chavez-Dagostino; ALMA (ESO/NAOJ/NRAO), project2019.1.00696.S.",
+        "terms": "Unchanged author Figure1a with full attribution in user-authorized credited-use context; arXiv distribution licence is not asserted as CC BY.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "publicationDate": "2023-03-23",
+        "observationDate": "2019-12-16/2019-12-23",
+        "tier": "measured",
+        "sha256": "a2db47771bbab7aa025841cf8229aa7ee073c6df0462639ad489f5cadcf9cfbf",
+        "bytes": 319546,
+        "description": "Unchanged nativeALMA1.29mm Figure1a CLEAN image, observed2019-12-16/17/18/22/23. Central point is the unresolved star; off-centre points are consistent with background galaxies, not planets/stellar companions. Belt is resolved dust emission. False-colour scale, beam and uncorrected primary-beam sensitivity are instrumental/reconstruction context, not calibrated visible colour or photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Epsilon Eridani",
+      "radiusSun": 0.74,
+      "temperatureK": 5039,
+      "distanceAU": 0.006882691546223994,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 6714.581812732347,
+      "approximateSrgb": [
+        1,
+        0.8971974977282111,
+        0.8128408880476404
+      ],
+      "limits": "Conceptual camera2photosphericradii fromcentre;60degree diameter, nominal120degreeFOV. Raster size, exposure, visible colour and spectral transfer remain artistic and uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "epsilonEridaniStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented longitude/latitude photospheric intensity map; no measured surface frame.",
+      "coverage": "Entire gas/spot morphology invented; approximate catalogue tint.",
+      "url": "/bespoke/epsilon-eridani-star-surface-map.jpg",
+      "previewUrl": "/bespoke/epsilon-eridani-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-41598aaa-d4c4-40f3-913f-d8d4960e65ac.png",
+      "sourceSha256": "3f431cd2a72b4451bff913e6df7e119b0df5a654489371bdda4b1b38ffcc6820",
+      "sha256": "ea4859a5a8025bffcffa37430d655441ce6d5ea1a10a7ea2bf0f1d605975199c",
+      "previewSha256": "db9cc1cfadd65325572646f8763a4644efbac7acedc402aec222a9f046d11500",
+      "bytes": 551118,
+      "previewBytes": 46445,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Central four-neighbour bright component excludes disconnected background stars.",
+        "brightCoreWidths": [
+          427,
+          426,
+          424
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+      },
+      "url": "/bespoke/epsilon-eridani-star-sky-image.jpg",
+      "previewUrl": "/bespoke/epsilon-eridani-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-82ccedc1-7515-49eb-9132-7d38222aac78.png",
+      "sourceSha256": "35c209b529f7deb0fbe5320e8160d208ab1fe9bd7c5f3e50e1518ba230e4c52a",
+      "sha256": "8b80006534504d1f949ac8dc269de27c2db190ed6ec1f9469b679b097c46177e",
+      "previewSha256": "7ce66969e19e1d365ae4388c12a005d5ec1c852befed70bcad279f3b2b4e9e37",
+      "bytes": 88063,
+      "previewBytes": 20633,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');

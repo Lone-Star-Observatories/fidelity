@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/1112.0447",
+    "file": "data/research-sources/epsilon-star-baines.pdf",
+    "sha256": "87b58f739c4e0f9f164f3af16f6e1113bfb4fd043ce5477ad21cecb67f1e2633",
+    "bytes": 633799,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2303.13584",
+    "file": "data/research-sources/epsilon-star-alma.html",
+    "sha256": "c046065a46f83f261d1303bfac5622d5cc3c88ed2597afe6e96153a98c495006",
+    "bytes": 273480,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2303.13584v1/fig1a.png",
+    "file": "data/research-sources/epsilon-star-alma-native.png",
+    "sha256": "a2db47771bbab7aa025841cf8229aa7ee073c6df0462639ad489f5cadcf9cfbf",
+    "bytes": 319546,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=eps+Eri",
+    "file": "data/research-sources/epsilon-star-simbad.html",
+    "sha256": "974ec2a7fcfc71b2ce5602a3e7d604c352b41e8e261b8a4fd9a47c99c587218b",
+    "bytes": 67541,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2609.19131v1",
+    "file": "data/research-sources/epsilon-eri-2609.19131v1.html",
+    "sha256": "880089dcc5b7005f3bb4b5916c71c093e47c82bcd2ec9d8dd4e06d1369317ef9",
+    "bytes": 1409548,
+    "retrieved": "2026-10-10"
+  }
+]

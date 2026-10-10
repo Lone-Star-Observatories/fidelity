@@ -1,0 +1,151 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "map": "Independent bespoke intensity texture for Epsilon Eridani / Ran / HD22049 / GJ144, K2V star, not its planet. Research constraint Baines & Armstrong2012 Table3: interferometric radius0.74±0.01Rsun, effective temperature5039±126K. Create exactly2:1 flat equirectangular seamless grayscale luminous gas intensity map filling wholeframe; no sphere/lighting/shadows/labels. Photospheric partlyionized hydrogen/helium gas, invented very fine granulation, scattered small dark magnetic regions and subtle larger broken midlatitude patch group, no fixed actual longitude or calibrated brightness. Active Kdwarf context, all morphology invented, quiescent no giant flare. No observed Sun or other star/body map reuse. Seamfriendly left/right, modestcontrast, gas texture not rock/terrain/oceans/clouddeck. No field lines, stars, horizon, solidground or corona image. Renderer will provide approximate tint. Original scientific concept art.",
+      "sky": "Independent scientific concept art observer of EpsilonEridani/Ran K2V star, 16:9 landscape. Hypothetical free camera2photosphericradii fromcentre pointing at whole luminousgasstar inblackspace, no solidground/horizon/survivablelanding. BainesArmstrong2012 radius0.74Rsun temperature5039K. At2R angular diameter60degrees; nominal rectilinear horizontal FOV120deg => bright photospheric core should be ONE THIRD totalimagewidth, about557pixels at1672width. Centered round disk allvisible, broadblackspace around, tiny dim backgroundstars. Pale warmivory yellow-white interior, subdued warmamber limb, artistic exposure and spectraltransfer, not calibrated colour. Invented very fine gasgranulation and sparse small dark magneticregions, restrainedcontrast, minimalhalo, no hugeflare. No Sunphotograph reuse/otherbodymaps, no planets/companions/text/grid/fieldlines/solidground. Tiny grains of luminous partlyionizedHHe gas not terrain. Corediameter1/3width, centered, no bigcorona. Observerdirection/epoch artistic, planet/debrisbelt outside narrow central subject and not portrayed as measured."
+    },
+    "refinements": [
+      {
+        "asset": "skyImage",
+        "originalFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1e1ac25e-cad6-411e-99fb-2fe765008b79.png",
+        "editedFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f47a0430-feaa-4212-ba0f-b2a706c4e995.png",
+        "prompt": "Edit only stellar disk size in this EpsilonEridani/Ran conceptual observer. Preserve original independent gas morphology, pale yellow-white warmth, black space,16:9frame. Reduce centered luminous photospheric disk diameter by about15percent to approximately ONE THIRD full image width (geometric target557pixels at1672wide). Keep whole disk circular and centered. Minimal faint halo, surrounding blackspace canexpand. No text/ground/horizon/planets/fieldlines/giantflares, no observed Sunreuse. At2Rcentre60degreeangular diameter withnominal120degree horizontal rectilinearFOV. Colour/exposure remain artistic. Only smallerstellarcore; retain finegranulation and patch placement.",
+        "originalSha256": "9032360c4cd714b10e50355c72977610b5cfab9a785707a0aee0e92b18db7527",
+        "editedSha256": "ee739f5a0812713f3c5cbfcaecc56d158879698a7a53b696373a502cc2245c9f"
+      },
+      {
+        "asset": "skyImage",
+        "originalFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f47a0430-feaa-4212-ba0f-b2a706c4e995.png",
+        "editedFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-82ccedc1-7515-49eb-9132-7d38222aac78.png",
+        "prompt": "Preserve this Epsilon Eridani illustration exactly in subject and small centered star, but correct the canvas aspect ratio to EXACT16:9 landscape (1672x941 or1536x864). Expand black space vertically to achieve16:9, do not crop or stretch star. Star is round, independently invented gas texture, no solidground/text/planet/fieldlines. Keep disk centered and allvisible. Bright disk diameter should be approximately557 of1672pixels (one third totalwidth), with minimalhalo and pale warmivory yellow-white ratherthan orange-red. Camera2Rcentre, conceptual60degreeangular diameter, nominal120FOV; artisticcolour/exposure. Exact16:9 canvas is required for import; originalimage1708x920 is too wide. Correct only framing and approximate disk width, preserve gas pattern, no observedSunreuse.",
+        "originalSha256": "ee739f5a0812713f3c5cbfcaecc56d158879698a7a53b696373a502cc2245c9f",
+        "editedSha256": "35c209b529f7deb0fbe5320e8160d208ab1fe9bd7c5f3e50e1518ba230e4c52a"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "id": "epsilon-eridani-star",
+      "name": "Epsilon Eridani",
+      "kind": "star",
+      "aliases": [
+        "Epsilon Eridani",
+        "eps Eri",
+        "epsilon Eri",
+        "Ran",
+        "HD 22049",
+        "GJ 144",
+        "Gl 144",
+        "Gliese 144",
+        "HIP 16537"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "SIMBAD identifiers verify Ran=epsEri=HD22049=GJ144/HIP16537; actualHYG hyg-16496. Not Rana/deltaEridani or EpsilonEridanib, whose earlier dossier remains unchanged.",
+      "nativeSurface": "NativeALMA star/debrisbelt point-source image retained. No resolved visible photospheric geography found in checked sources. Recent2026 JWST coronagraph analysis targets the planet and retains a tentative low-SNR feature, not a confirmed planet/visible stellar surface image.",
+      "measured": [
+        "Baines/Armstrong2011 preprint/2012 Table3 optical interferometry limb-darkened angular diameter2.153±0.028mas, uniform-disk2.080±0.028mas. Three observing nights in2010; exampleTable2 begins2010-11-18, exact complete epoch list not inferred from partialtable.",
+        "Booth etal2023 Table1 nativeALMA Band6 1.29mm observations2019-12-16/17/18/22/23, project2019.1.00696.S, beam1.6×1.2arcsec; unresolved central star and resolved dustbelt.",
+        "SIMBAD primary identifier/astrometry entry indexes GaiaEDR3 parallax310.5773±0.1355mas; propermotionRAcosDec−974.758±0.160 andDec20.876±0.120mas/yr. This is not a recomputed exhaustive nearest20ranking."
+      ],
+      "modelled": [
+        "Baines/Armstrong Table3 radius0.74±0.01Rsun, effective temperature5039±126K, luminosity0.32±0.03Lsun, mass0.82±0.05Msun. Radius combines angular diameter with adopted Benedict2006 parallax311.73±0.11mas; temperature uses bolometric flux, mass Yonsei-Yale isochrones. Estimated age~1Gyr is model-dependent.",
+        "Existing planet illumination adopted NASA archive composite0.759106Rsun/5020.38K; preserved without overwriting. Stellar catalogue rendering parameters and historical coordinates remain unchanged. Differences reflect measurement/reference histories, not a coherent joint refit.",
+        "ALMA CLEAN interferometric reconstruction is observational intensity, without primary-beam correction inFigure1a; starposition has53percent beam response. Two off-centre point sources are consistent with background galaxies, not companion planets. Resolved belt/clump models are not photospheric morphology.",
+        "Hydrogen/helium partlyionized photospheric gas and convection/magneticregions are general Kdwarf-model context, not measured gas abundance fractions or fixed surface geography."
+      ],
+      "unknown": [
+        "Resolved photospheric spot/convection geography, magnetic longitudes, measured composition fractions, calibrated visible colour/exposure and dated observer registration.",
+        "Current exhaustive nearest20stellar ranking and reconciliation of bright-star/planet-aware astrometry; exact updated coherent stellar fit."
+      ],
+      "assumed": [
+        "Independent invented gas intensity/spot morphology and conceptual observer; no observed Sun or another-body skin reuse.",
+        "Hypothetical camera2photosphericradii fromcentre; no solid ground or survivable landing.",
+        "Nominal120degreehorizontalFOV, colour, exposure and spectraltransfer remain artistic. Debrisbelt/planet outside assumed observer direction; no dated orbital registration claimed."
+      ],
+      "surfaceLabel": "PHOTOSPHERIC INTENSITY HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/pdf/1112.0447",
+          "title": "Baines/Armstrong optical interferometry and inferred stellar parameters, Table3",
+          "publicationDate": "2011-12-02"
+        },
+        {
+          "url": "https://arxiv.org/html/2303.13584",
+          "title": "Booth etal2023 nativeALMA star/debrisbelt, Figure1 and Table1",
+          "publicationDate": "2023-03-23"
+        },
+        {
+          "url": "https://arxiv.org/html/2609.19131v1",
+          "title": "Llop-Sayson etal2026 updated planet model; tentative feature remains unconfirmed",
+          "publicationDate": "2026-09-16"
+        },
+        {
+          "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=eps+Eri",
+          "title": "CDS/SIMBAD component aliases and GaiaEDR3 reference history",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/epsilon-star-alma-native.png",
+          "source": "https://arxiv.org/html/2303.13584v1/fig1a.png",
+          "sourcePage": "https://arxiv.org/html/2303.13584",
+          "label": "NATIVE MILLIMETRE STAR AND DEBRIS BELT",
+          "credit": "Mark Booth, Tim D. Pearce, Alexander V. Krivov, Mark C. Wyatt, William R. F. Dent, Antonio S. Hales, Jean-François Lestrade, Fernando Cruz-Sáenz de Miera, Virginie C. Faramaz, Torsten Löhne and Miguel Chavez-Dagostino; ALMA (ESO/NAOJ/NRAO), project2019.1.00696.S.",
+          "terms": "Unchanged author Figure1a with full attribution in user-authorized credited-use context; arXiv distribution licence is not asserted as CC BY.",
+          "termsUrl": "https://info.arxiv.org/help/license/index.html",
+          "publicationDate": "2023-03-23",
+          "observationDate": "2019-12-16/2019-12-23",
+          "tier": "measured",
+          "sha256": "a2db47771bbab7aa025841cf8229aa7ee073c6df0462639ad489f5cadcf9cfbf",
+          "bytes": 319546,
+          "description": "Unchanged nativeALMA1.29mm Figure1a CLEAN image, observed2019-12-16/17/18/22/23. Central point is the unresolved star; off-centre points are consistent with background galaxies, not planets/stellar companions. Belt is resolved dust emission. False-colour scale, beam and uncorrected primary-beam sensitivity are instrumental/reconstruction context, not calibrated visible colour or photospheric geography."
+        }
+      ],
+      "skyModel": {
+        "star": "Epsilon Eridani",
+        "radiusSun": 0.74,
+        "temperatureK": 5039,
+        "distanceAU": 0.006882691546223994,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "epsilonEridaniStarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented longitude/latitude photospheric intensity map; no measured surface frame.",
+        "coverage": "Entire gas/spot morphology invented; approximate catalogue tint."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "method": "Central four-neighbour bright component excludes disconnected background stars.",
+          "brightCoreWidths": [
+            427,
+            426,
+            424
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-41598aaa-d4c4-40f3-913f-d8d4960e65ac.png",
+        "skyImage": "exec-82ccedc1-7515-49eb-9132-7d38222aac78.png"
+      }
+    }
+  ],
+  "nativeAssessment": [
+    "ESO Supernova0503_B is NASA/JPL-Caltech planetary artist impression, not native photospheric image; assessed but not reused.",
+    "RecentJWST2025epoch/2026publication coronagraph data targetplanet; no resolved host photosphere or confirmed planet image asserted.",
+    "Author2023ALMAfigure preferred over derivativeCommons display. Observed2019, not recent2023observation."
+  ]
+}
