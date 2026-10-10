@@ -26,6 +26,8 @@ import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
+import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
+import { signalLayers, signalLayer } from './signals.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -72,6 +74,8 @@ const routes = {
   'GET /api/star-spectrum': async (q) => starSpectrum(q),
   'GET /api/exo-spectra': async (q) => exoSpectraList(q.get('planet') || ''),
   'GET /api/exo-spectrum': async (q) => exoSpectrum(q.get('path') || ''),
+  'GET /api/signals': async () => signalLayers(), // COMMS (#35)
+  'GET /api/comms/raw-image': async (q) => binary(await rawImage(q.get('url') || '')),
 };
 
 /** Binary result: sent as-is instead of JSON. */
@@ -86,6 +90,10 @@ const paramRoutes = [
   [/^GET \/api\/traverse\/([a-z0-9-]{1,16})$/, (m) => traverse(m[1])],
   [/^GET \/api\/survey\/([a-z0-9]{2,16})$/, async (m, q) => binary(await surveyCutout(m[1], q))],
   [/^GET \/api\/nasa-image\/([A-Za-z0-9_.\-]{2,80})\/(thumb|medium)$/, async (m) => binary(await nasaImage(m[1], m[2]))],
+  [/^GET \/api\/comms\/satnogs\/(\d{1,6})$/, (m) => satnogs(m[1])], // COMMS (#35)
+  [/^GET \/api\/comms\/mars-raw\/(m20|msl)$/, (m) => marsRaw(m[1])],
+  [/^GET \/api\/comms\/mars-weather\/(m20|msl)$/, (m) => marsWeather(m[1])],
+  [/^GET \/api\/signals\/([a-z]{1,16})$/, (m) => signalLayer(m[1])],
   [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
     const f = await feed(m[1]);
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };

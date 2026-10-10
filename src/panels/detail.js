@@ -6,6 +6,7 @@ import { createFromEarthCard } from './fromearth.js';
 import { createImageryCard } from './imagery.js';
 import { bodySpectrumCard, starSpectrumCard, exoSpectraCard } from './spectra.js';
 import { toRaDec } from '../astro/observe.js';
+import { createCommsCard } from './comms.js';
 
 const isStarBody = (b) => !!(b.starLike || b.kind === 'star' || b.kind === 'white dwarf' || b.kind === 'brown dwarf');
 
@@ -65,6 +66,9 @@ export function detailCards(b, m, { system, clock }) {
   if (fe) parts.push(fe);
   const imagery = imageryTarget && (imageryTarget.sky() || imageryTarget.id === 'earth' || imageryTarget.id === 'sun') ? createImageryCard(imageryTarget) : null;
   if (imagery) parts.push(imagery);
+  // COMMS (#35): live links for Earth, the Moon and Mars; Earth also gets the live-signals map
+  const comms = m.isSol ? createCommsCard(b.id, { system }) : null;
+  if (comms) parts.push(comms, ...(comms.extra ? [comms.extra] : []));
 
   const spectrum = [];
   if (star && !m.isSol) {
@@ -76,7 +80,7 @@ export function detailCards(b, m, { system, clock }) {
   return {
     top: parts.map((p) => p.node),
     spectrum: spectrum.filter(Boolean),
-    tick() { fe?.tick(); imagery?.tick(); },
+    tick() { fe?.tick(); imagery?.tick(); comms?.tick(); },
     dispose() { for (const p of parts) p.dispose?.(); },
   };
 }

@@ -14,6 +14,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/imagery.js   surveys, NASA │
 │                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
 │                                      │           │ server/dsn.js       DSN Now       │
+│                                      │           │ server/comms.js     SatNOGS, Mars │
+│                                      │           │ server/signals.js   signals map   │
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/events.js    events feed   │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
@@ -86,7 +88,11 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
-| `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
+| `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }`, plus `lastSeen` per craft (when this backend last saw it in contact) |
+| `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
+| `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
+| `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
+| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, `windy` with `FIDELITY_WINDY_KEY`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
 | `GET /api/star-lookup?ra=&dec=[&distLy=][&gaia=1]` | Identify a star by position: SIMBAD (brightest stellar object in the cone) and optionally Gaia DR3 (best parallax match), cached |
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
@@ -158,6 +164,19 @@ falls back to the standalone snapshot keyed by the same URLs (`src/data/horizons
 Craft that orbit or hover near a body are positioned relative to it and pass through its radial
 compression. Panel distances always use true (uncompressed) positions. The backend queues
 Horizons calls three at a time.
+
+## COMMS and the live-signals map (#35)
+
+`src/panels/comms.js` builds every COMMS section from one entry shape (`commsEntry`: name, value, source,
+age that ticks every second, badge, link up / not in contact, links): `spacecraftComms` (the spacecraft
+panel's DSN section, from the 20 s poll in `main.js`), `satelliteComms` (Satellite View: SatNOGS, and the
+ISS's ARISS frequencies from `src/data/comms.js`) and `createCommsCard` (Earth, Moon, Mars detail views,
+added by `detail.js`; it polls `/api/dsn` itself and matches craft to a body by DSN code, `BODY_CRAFT`).
+`src/panels/signalsmap.js` is Earth's LIVE SIGNALS card: an equirectangular canvas over `/api/texture/earth`
+with wheel/drag zoom, one pill per layer, and a click list whose links open the operator's page or stream in
+a new window (nothing third-party is embedded or fetched by the browser; rover thumbnails come through
+`/api/comms/raw-image`). Styles live in `src/styles/comms.css`. The standalone preview shows a "needs the
+local backend" note and only the bundled observatory and volcano markers.
 
 ## Light-time messages
 
