@@ -88,3 +88,9 @@ export async function fetchGalaxyStars() {
   if (snapshot) return snapshot.galaxy ?? null;
   try { return await get('/api/galaxy?maxLy=1500&maxAbs=2'); } catch { return null; }
 }
+
+/** Small-body populations (real orbits) for the Sol System View. */
+export async function fetchSmallBodies() {
+  if (snapshot) return snapshot.smallbodies ?? null;
+  try { return await get('/api/smallbodies'); } catch { return null; }
+}

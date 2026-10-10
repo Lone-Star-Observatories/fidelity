@@ -59,6 +59,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
+| `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
@@ -89,3 +90,13 @@ In ENHANCED scale a planet is drawn hundreds of times too big, so distances arou
 compressed (`compressRadii`: linear inside the planet, logarithmic outside) to keep every moon
 outside its planet and in order; TRUE scale is exact. Synchronous moons keep the texture's
 prime meridian facing the planet.
+
+## Belts and zones
+
+`src/views/system/belts.js` draws every small-body population as points whose positions are
+solved from their orbital elements in the vertex shader (Kepler's equation, 10 Newton steps),
+so 61k objects move with the clock at no CPU cost. `src/views/system/zones.js` builds shapes in
+a planet's radii (GEO ring, dipole-shell Van Allen belts, Hill spheres) that are re-mapped
+through the same radial compression as the moons; heliosphere and Oort cloud are heliocentric.
+Regions and Lagrange points are `marker` bodies in the Sol model, so they focus, route
+(`#/system/sol/se-l2`) and show facts like any body. BELTS and ZONES toggle them.

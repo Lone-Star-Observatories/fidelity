@@ -75,5 +75,5 @@ test('Sol model: Sun, nine major bodies, moons on real parents, small bodies', (
   assert.ok(m.bodies.some((b) => b.id === 'ceres' && b.orbit.type === 'elements'));
   assert.equal(ids.size, m.bodies.length, 'ids are unique');
   assert.equal(m.sector, 'SECTOR 001');
-  assert.ok(m.bodies.every((b) => b.facts.PHYSICAL.length));
+  assert.ok(m.bodies.filter((b) => !b.marker).every((b) => b.facts.PHYSICAL.length));
 });

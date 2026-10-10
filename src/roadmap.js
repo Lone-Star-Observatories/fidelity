@@ -12,11 +12,7 @@ export const ROADMAP = {
     blurb: 'Live Earth-orbit traffic: the ISS, the geostationary ring and more.',
     data: 'CelesTrak GP elements propagated with SGP4.',
   },
-  object: {
-    status: 'SCHEDULED · TICKET #3',
-    blurb: 'Belts, rings and regions of interest: Van Allen belts, magnetopause, gravity spheres, asteroid and Kuiper belts, the Oort cloud.',
-    data: 'JPL SBDB / MPCORB, NOAA SWPC solar wind, physical models.',
-  },
+  object: { status: 'ONLINE', blurb: '', data: 'JPL SBDB orbits and physical data; IGRF-14; Voyager and IBEX heliosphere measurements.' },
   quadrant: {
     status: 'SCHEDULED · TICKET #4',
     blurb: 'Zoom out to our quadrant of the Milky Way: star systems, clusters and nebulae.',

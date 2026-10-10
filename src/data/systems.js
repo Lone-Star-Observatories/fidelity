@@ -4,6 +4,7 @@
 
 import { AU_KM, SUN, PLANETS } from './sol.js';
 import { MOONS, SMALL_BODIES } from './moons.js';
+import { REGIONS, LAGRANGE } from './poi.js';
 import { meanMotion } from '../astro/smallbodies.js';
 import { eqToEcl, frameToScene, starTeff, blackbodyRGB, rgbToHex } from '../astro/frames.js';
 
@@ -114,6 +115,9 @@ function smallBody(b) {
 export function solSystem() {
   const bodies = [SUN, ...PLANETS].map((b) => ({ ...b, orbit: b.kind === 'star' ? null : { type: 'sol' }, facts: solFacts(b) }));
   bodies.push(...MOONS.map(moonBody), ...SMALL_BODIES.map(smallBody));
+  // Points of interest: drawn by the System View's zone overlays; focusable like bodies.
+  for (const r of REGIONS) bodies.push({ ...r, radiusKm: 1, marker: true, orbit: { type: 'anchor', anchor: r.anchor }, facts: { ...r.facts } });
+  for (const l of LAGRANGE) bodies.push({ ...l, radiusKm: 1500, marker: true, orbit: { type: 'lagrange', pair: l.pair, L: l.L }, facts: { ...l.facts } });
   return {
     id: 'sol', name: 'Sol', isSol: true, sector: 'SECTOR 001', distLy: 0,
     subtitle: `SECTOR 001 · G2V MAIN-SEQUENCE STAR · 9 MAJOR BODIES · ${MOONS.length} MOONS · ${SMALL_BODIES.length} SMALL BODIES`,

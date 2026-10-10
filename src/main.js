@@ -11,7 +11,7 @@ import { createPlanetView } from './views/planet/PlanetView.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -161,7 +161,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS')),
+  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('zones', 'ZONES')),
   h('div', { className: 'bar-fill' }),
 );
 // Standalone build (e.g. a shared preview) has no backend, so no Horizons proxy.
@@ -196,6 +196,7 @@ function row(dl, label, value, tier, detail) {
   return dd;
 }
 let credits = {};
+let beltCounts = null;
 fetchTextureCredits().then((c) => { credits = c; });
 
 const factList = (facts, body) => {
@@ -223,9 +224,11 @@ function bodyGroups(m) {
   return [
     ['STAR & PLANETS', m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star')],
     ['DWARF PLANETS, ASTEROIDS & COMETS', m.bodies.filter((b) => b.orbit?.type === 'elements')],
+    ['REGIONS', m.bodies.filter((b) => b.kind === 'region')],
+    ['LAGRANGE POINTS', m.bodies.filter((b) => b.kind === 'lagrange point')],
   ];
 }
-const detailLevel = (b) => (b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
+const detailLevel = (b) => (b.marker ? null : b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
 function renderSystemPanel() {
   resetLive();
   const m = system.model;
@@ -279,6 +282,11 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
   if (m.isSol && id !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
   live.light = row(pos, m.isSol ? 'LIGHT TIME' : 'STARLIGHT TRAVEL', '—', 'computed',
     m.isSol ? 'Light travel time from Earth (or from Sol, for Earth).' : 'Time for light to reach this world from its star.');
+  if (b.kind === 'region') {
+    pos.replaceChildren();
+    live.pos = live.earth = live.light = null;
+    row(pos, 'CENTRED ON', b.anchor === 'sun' ? 'SOL' : 'EARTH', 'computed');
+  }
   if (isStar) {
     pos.replaceChildren();
     if (m.multiplicity > 1) live.pos = row(pos, 'FROM BARYCENTRE', '—', 'computed', 'Distance from the centre of mass of the whole star system, from the ORB6 orbits.');
@@ -287,7 +295,11 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
 
   const groups = Object.entries(b.facts || {}).filter(([, f]) => f.length);
   const look = h('dl');
-  live.size = row(look, 'SIZE ON SCREEN', '—', 'imagined', 'Enhanced scale enlarges bodies so they are visible.');
+  if (!b.marker) live.size = row(look, 'SIZE ON SCREEN', '—', 'imagined', 'Enhanced scale enlarges bodies so they are visible.');
+  if (b.id === 'main-belt' || b.id === 'kuiper-belt' || b.id === 'trojans') {
+    const c = beltCounts;
+    if (c) row(look, 'DRAWN HERE', `${fmt((b.id === 'main-belt' ? c.main : b.id === 'trojans' ? c.trojan : c.tno + c.centaur), 0)} REAL ORBITS`, 'measured', 'JPL Small-Body Database orbits; positions solved live from Kepler\'s equation.');
+  }
 
   panel.replaceChildren(
     h('h2', { textContent: b.name.toUpperCase() }),
@@ -300,7 +312,7 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
     h('div', { className: 'body-list' },
       inStarView ? pill('◀ SYSTEM VIEW', () => go({ level: 'system', system: m.id, body: b.id })) : pill('◀ SYSTEM', () => go({ level: 'system', system: m.id })),
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
-        pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })),
+        detailLevel(b) ? pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })) : null,
       b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
@@ -455,6 +467,7 @@ async function ensureSystem(id) {
     }
   }
   currentSystem = id;
+  if (id === 'sol') fetchSmallBodies().then((d) => { const c = system.setBelts(d); if (c) beltCounts = c; });
   system.decorativeSky();
   fetchSky(id).then((s) => { if (system.model?.id === id) system.setSky(s.stars); }).catch(() => {});
   return true;

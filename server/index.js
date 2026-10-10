@@ -12,6 +12,7 @@ import { cacheStats } from './cache.js';
 import { nearby, starDetail, sky, galaxyStars } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
+import { smallBodies } from './smallbodies.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -34,6 +35,7 @@ const routes = {
   'GET /api/textures': async () => textureCredits(),
   'GET /api/galaxy': async (q) => galaxyStars(q.get('maxLy') || '1500', q.get('maxAbs') || '2'),
   'GET /api/spectrum': async (q) => spectrumFor(q.get('type') || '', q.get('feh')),
+  'GET /api/smallbodies': async () => smallBodies(),
 };
 
 /** Binary result: sent as-is instead of JSON. */

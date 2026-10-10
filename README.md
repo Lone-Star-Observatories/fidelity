@@ -57,6 +57,9 @@ ship recognises and which view will use each one.
 - **Moons and small bodies:** 26 moons on orbits checked against JPL Horizons, Ceres, Vesta,
   the dwarf planets, Sedna and Halley's comet, with spacecraft maps where they exist; Moon
   View and Object View for their make-up.
+- **Points of interest:** the asteroid belt, Trojans and Kuiper belt from 61,000 real orbits,
+  the geostationary ring, Van Allen belts tilted with Earth's magnetic pole, Lagrange points
+  (with what is parked there), Hill spheres, the heliosphere and the Oort cloud.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.

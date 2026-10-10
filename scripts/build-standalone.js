@@ -9,6 +9,7 @@ import { execFileSync } from 'node:child_process';
 import { nearby, starDetail, sky, galaxyStars } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
+import { smallBodies } from '../server/smallbodies.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
 
 const PLANET_KEYS = new Set(['moon', 'mars', 'pluto', 'mercury', 'jupiter', 'saturn', 'uranus', 'neptune']);
@@ -53,8 +54,12 @@ const lib = await library();
 const spectra = { ...lib, grid: { ...lib.grid, step: lib.grid.step * 2 }, entries: lib.entries.map((e) => ({ ...e, flux: e.flux.filter((_, i) => i % 2 === 0) })) };
 // galaxy: the luminous stars (M ≤ 0) within 1.5 kly — ≈8k of the 46k the backend serves
 const galaxy = await galaxyStars(1500, 0);
+// belts: the bigger objects of each population, rounded (≈ 12k of the 61k orbits)
+const sbAll = await smallBodies().catch(() => null);
+const H_MAX = [18, 12.8, 13.2, 99, 99]; // neo, main, trojan, centaur, tno
+const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

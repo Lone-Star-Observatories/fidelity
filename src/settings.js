@@ -7,6 +7,8 @@ const defaults = {
   labels: true,
   orbits: true,
   starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
+  belts: true,      // System View: asteroid and Kuiper-belt populations
+  zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
 };
 
 let state = { ...defaults };
