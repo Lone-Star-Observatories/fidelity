@@ -1,0 +1,31 @@
+[
+  {
+    "product": "PIA21342",
+    "source": "https://science.nasa.gov/photojournal/saturn-lit-tethys/",
+    "captionPath": "data/research-sources/tethys-PIA21342-caption.html",
+    "captionBytes": 268244,
+    "captionSha256": "9f8fa410c1715b72c6e2618dc7bc616655a8d92c93c3547e7fe93513c242f093",
+    "imageUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21342/PIA21342.jpg",
+    "path": "data/research-sources/tethys-PIA21342-native.jpg",
+    "bytes": 55133,
+    "sha256": "adb892b518514b5abb3539f168bda1ba3cf61ca7aee60de10805447133cfa2aa"
+  },
+  {
+    "product": "PIA20518",
+    "source": "https://science.nasa.gov/photojournal/heres-looking-at-you-tethys/",
+    "captionPath": "data/research-sources/tethys-PIA20518-caption.html",
+    "captionBytes": 268904,
+    "captionSha256": "28b28d065214dcad5a6445009a4a107da5d3e8a21355dcc6c730c471f16c4f05",
+    "imageUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20518/PIA20518.jpg",
+    "path": "data/research-sources/tethys-PIA20518-native.jpg",
+    "bytes": 54174,
+    "sha256": "23e666e1e00b6fd35feaa1f5586e0238323c286003e122a46a59b600f473be36"
+  },
+  {
+    "product": "existing own Tethys globe",
+    "path": "data/textures/tethys.jpg",
+    "bytes": 597139,
+    "sha256": "84f70e3fe6fa48661df4d973f78a540771e629ebbc68e032539d2e28e1d8eea1",
+    "associationAudit": "Source association, input epochs, frame, coverage and photometry remain open."
+  }
+]
