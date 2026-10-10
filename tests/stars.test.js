@@ -44,3 +44,17 @@ test('matchHosts: HIP number, then position, else an archive-only star', () => {
   assert.equal(planetsOf.get('exo-trappist-1').planets.length, 2);
   assert.ok(Math.abs(Math.hypot(extra[0].x, extra[0].y, extra[0].z) - 12.43) < 1e-9);
 });
+
+test('brown dwarfs without a HIP number are joined to their ORB6 orbit by position', async () => {
+  const { NEIGHBOURS } = await import('../server/neighbours.js');
+  const { matchBinaries } = await import('../server/stars.js');
+  const stars = NEIGHBOURS.map((n) => ({ ...n }));
+  const orbit = { wds: '10493-5319', designation: 'LUH  16', components: '', hip: null, v2: 15.9,
+    raDeg: 162.3284, decDeg: -53.3184, periodYears: 26.55, aArcsec: 1.764, i: 79.92, node: 130.02, periastronYear: 2018.06, e: 0.344, omega: 136.67 };
+  const { edges } = matchBinaries(stars, [orbit]);
+  assert.equal(edges.length, 1);
+  assert.equal(edges[0].primaryId, 'bd-luhman-16a');
+  assert.equal(edges[0].secondaryId, 'bd-luhman-16b');
+  // 501.557 mas → 6.50 ly, the third-nearest system to the Sun
+  assert.ok(Math.abs(stars[0].distPc * 3.26156 - 6.503) < 0.01);
+});

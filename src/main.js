@@ -356,7 +356,8 @@ function renderNavPanel() {
     if (sel.spect) row(dl, 'CLASS', sel.spect, 'measured', 'Spectral type.');
     if (sel.absmag != null) row(dl, 'ABS. MAGNITUDE', fmt(sel.absmag, 2), 'computed', 'From apparent brightness and distance.');
     row(dl, 'KNOWN PLANETS', String(sel.planets || 0), 'measured', sel.planets ? 'NASA Exoplanet Archive.' : 'None detected yet, which is not the same as none.');
-    row(dl, 'CATALOGUE', sel.archiveOnly ? 'EXOPLANET ARCHIVE' : 'HYG v4.4', 'measured', sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : 'Hipparcos / Yale / Gliese compilation.');
+    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : 'HYG v4.4', 'measured',
+      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : 'Hipparcos / Yale / Gliese compilation.');
     selBlock = [
       h('h3', { textContent: 'SELECTED' }),
       h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
@@ -571,8 +572,8 @@ onRoute(async (r) => {
     starView.show();
     starView.load(b, { isSun: m.isSol, systemName: m.name });
     renderBodyPanel(b.id, { inStarView: true });
-    const isWD = b.kind === 'white dwarf';
-    if (!isWD) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
+    const noTemplate = b.kind === 'white dwarf' || b.kind === 'brown dwarf';
+    if (!noTemplate) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
     syncRail();
   } else if (r.level === 'planet') {
     nav.hide();

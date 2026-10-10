@@ -111,12 +111,13 @@ function starBody(m, measured = {}) {
   let radiusSun = p.radiusSun ?? host?.st_rad, radiusTier = 'computed';
   let radiusNote = p.radiusSun ? `${measured.ref}.` : 'Exoplanet Archive (stellar models fitted to observations).';
   if (p.radiusSun && p.whiteDwarf) radiusNote = `${measured.ref}. A white dwarf: about Earth-sized, with roughly the Sun's mass.`;
+  if (p.brownDwarf) { radiusTier = 'modelled'; radiusNote = 'Evolutionary models: every brown dwarf is about the size of Jupiter, whatever its mass.'; }
   if (!radiusSun) {
     radiusSun = lum ? Math.sqrt(lum) * (5772 / t.teff) ** 2 : 1;
     radiusTier = lum ? 'computed' : 'imagined';
     radiusNote = lum ? 'From luminosity and temperature (Stefan–Boltzmann).' : 'Unknown; drawn Sun-sized.';
   }
-  let massSun = measured.mass ?? host?.st_mass, massTier = measured.mass ? 'measured' : 'computed';
+  let massSun = measured.mass ?? host?.st_mass ?? (p.brownDwarf ? 0.005 : null), massTier = measured.mass ? 'measured' : p.brownDwarf ? 'modelled' : 'computed';
   let massNote = measured.mass ? `Dynamical mass from the binary orbit (${measured.ref}).` : 'Exoplanet Archive.';
   if (!massSun) {
     massSun = lum ? Math.max(0.08, Math.pow(lum, 1 / 3.5)) : 1;
@@ -124,25 +125,37 @@ function starBody(m, measured = {}) {
     massNote = lum ? 'Main-sequence mass–luminosity relation (L ∝ M^3.5).' : 'Unknown; assumed one solar mass.';
   }
   const spect = p.spect || s.spect || host?.st_spectype || '—';
+  const bd = !!p.brownDwarf;
+  const massFact = bd
+    ? fact('MASS', `${typeof p.massJup === 'number' ? fmt(p.massJup, 1) : p.massJup ?? '?'} × JUPITER`, measured.mass ? 'measured' : 'modelled',
+      measured.mass ? `Astrometric mass from the binary orbit (${measured.ref}). Below ~75 Jupiters a body never fuses ordinary hydrogen.` : `${measured.ref ?? 'Models'}: from its temperature and an assumed age.`)
+    : fact('MASS', `${fmt(massSun, 3)} × SUN`, massTier, massNote);
   const body = {
-    id: s.id, name: s.name, kind: p.whiteDwarf ? 'white dwarf' : 'star', starLike: true,
+    id: s.id, name: s.name, kind: p.whiteDwarf ? 'white dwarf' : bd ? 'brown dwarf' : 'star', starLike: true,
     radiusKm: radiusSun * R_SUN_KM, rotationHours: 600,
-    color: rgbToHex(blackbodyRGB(t.teff)), spectral: spect, teffK: Math.round(t.teff), massSun, lum,
-    metallicity: host?.st_met ?? null, catalog: s,
-    skin: { map: 'sun', recolour: true },
+    // Below ~1000 K almost nothing is emitted in visible light: draw a dim ember.
+    color: bd && t.teff < 1000 ? 0x5a1c1c : rgbToHex(blackbodyRGB(t.teff)), spectral: spect, teffK: Math.round(t.teff), massSun, lum,
+    metallicity: host?.st_met ?? null, catalog: s, massJup: bd ? p.massJup ?? null : null,
+    // Brown dwarfs are banded, cloudy balls more like Jupiter than the Sun.
+    skin: bd ? { map: 'jupiter', recolour: true } : { map: 'sun', recolour: true },
+    note: p.note ?? null,
     facts: {
       PHYSICAL: [
-        fact('CLASS', spect, spect === '—' ? 'imagined' : 'measured', p.whiteDwarf ? 'White dwarf spectral class.' : 'Spectral type.'),
+        fact('CLASS', spect, spect === '—' ? 'imagined' : 'measured', p.whiteDwarf ? 'White dwarf spectral class.' : bd ? 'Brown dwarf class: L (dusty clouds), T (methane), Y (the coldest, water clouds).' : 'Spectral type.'),
         fact('SURFACE TEMP', `${fmt(t.teff, 0)} K`, t.how === 'measured' ? 'measured' : t.how === 'unknown' ? 'imagined' : 'computed',
           t.how === 'measured' ? (p.teff ? `${measured.ref}.` : 'Exoplanet Archive.') : `Estimated from ${t.how}.`),
         fact('RADIUS', `${fmt(radiusSun, radiusSun < 0.1 ? 4 : 3)} × SUN · ${fmt(radiusSun * R_SUN_KM, 0)} KM`, radiusTier, radiusNote),
-        fact('MASS', `${fmt(massSun, 3)} × SUN`, massTier, massNote),
+        massFact,
         ...(lum ? [fact('LUMINOSITY', `${fmt(lum, lum < 0.01 ? 5 : 3)} × SUN`, 'computed', 'From brightness and parallax distance.')] : []),
         fact('DISTANCE FROM SOL', `${fmt(s.distLy, 2)} LY`, 'measured', 'Parallax.'),
       ],
       RENDERING: [
-        fact('COLOUR', 'BLACKBODY', 'computed', 'Colour of a blackbody at the surface temperature.'),
-        fact('SURFACE', "SUN'S GRANULATION, RECOLOURED", 'imagined', 'No surface detail of this star has been resolved; the texture is the Sun\'s.'),
+        bd ? fact('COLOUR', t.teff < 1000 ? 'ALMOST INVISIBLE' : 'DEEP RED-MAGENTA', 'computed', t.teff < 1000
+          ? 'At this temperature it glows almost only in the infrared: to the eye it would be nearly black. Drawn as a dim ember so you can find it.'
+          : 'Sodium and potassium absorb the yellow-green, so L/T dwarfs would look dull red to magenta.')
+          : fact('COLOUR', 'BLACKBODY', 'computed', 'Colour of a blackbody at the surface temperature.'),
+        bd ? fact('SURFACE', "JUPITER'S BANDS, RECOLOURED", 'imagined', 'Brown dwarfs have banded, patchy cloud weather (seen in their brightness changes), but no image resolves one; Jupiter stands in.')
+          : fact('SURFACE', "SUN'S GRANULATION, RECOLOURED", 'imagined', 'No surface detail of this star has been resolved; the texture is the Sun\'s.'),
       ],
     },
   };
@@ -251,7 +264,9 @@ export function buildStarSystem(detail) {
 
   // stars: the requested one first
   const ordered = [...members].sort((a, b) => (a.star.id === detail.star.id ? -1 : b.star.id === detail.star.id ? 1 : 0));
+  if (detail.measured && !measuredOf[detail.star.id]) measuredOf[detail.star.id] = detail.measured;
   const stars = ordered.map((m) => starBody(m, measuredOf[m.star.id]));
+  for (const st of stars) if (st.note) notes.push(`${st.name}: ${st.note}`);
   const starById = Object.fromEntries(stars.map((s) => [s.id, s]));
 
   // planets, keyed by letter when only one star has planets (keeps routes like /hyg-70666/b)

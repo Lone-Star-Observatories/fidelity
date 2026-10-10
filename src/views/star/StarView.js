@@ -84,6 +84,11 @@ export function createStarView(container) {
 
   // ---- spectrum chart -----------------------------------------------------------------
   let range = 'visible';
+  // Brown dwarfs: the molecules and alkali metals that define the L, T and Y classes.
+  const BROWN_DWARF_BANDS = [
+    { nm: 589, label: 'Na I' }, { nm: 768, label: 'K I' }, { nm: 990, label: 'FeH' }, { nm: 1140, label: 'H₂O' },
+    { nm: 1400, label: 'H₂O' }, { nm: 1650, label: 'CH₄' }, { nm: 1900, label: 'H₂O' }, { nm: 2300, label: 'CH₄ / CO' },
+  ];
   let current = null; // { body, spectrum, isSun }
 
   function drawSpectrum() {
@@ -135,7 +140,7 @@ export function createStarView(container) {
     s.append(Object.assign(svg('text', { x: X(565), y: H - m.b + 4, class: 'tick muted', 'text-anchor': 'middle' }), { textContent: 'VISIBLE' }));
 
     // lines, labelled at the top
-    const lines = STELLAR_LINES.filter((l) => l.nm >= x0 && l.nm <= x1 && (range !== 'visible' || l.nm < 1000));
+    const lines = (body.kind === 'brown dwarf' ? BROWN_DWARF_BANDS : STELLAR_LINES).filter((l) => l.nm >= x0 && l.nm <= x1 && (range !== 'visible' || l.nm < 1000));
     let lastX = -99;
     for (const l of lines) {
       const x = X(l.nm);
@@ -200,7 +205,7 @@ export function createStarView(container) {
       el('div', { className: 'sv-chart-wrap' }, s, tip),
       el('p', { className: 'note', textContent: spectrum
         ? 'Dips are absorption lines: atoms in the star\'s atmosphere absorbing their own colours of light. The gap between the dashed curve and the observed one is the star\'s chemistry.'
-        : `${body.kind === 'white dwarf' ? 'White dwarfs are not in the stellar template library' : 'No template matched'}; the curve is the blackbody at its temperature. ${body.spectral?.startsWith('DA') ? 'A DA white dwarf shows only very broad hydrogen (Balmer) lines, widened by its immense surface gravity.' : ''}` }),
+        : `${body.kind === 'white dwarf' ? 'White dwarfs are not in the stellar template library' : body.kind === 'brown dwarf' ? 'Brown dwarfs are too cool for the stellar template library, and emit mostly beyond 1 µm' : 'No template matched'}; the curve is the blackbody at its temperature. ${body.spectral?.startsWith('DA') ? 'A DA white dwarf shows only very broad hydrogen (Balmer) lines, widened by its immense surface gravity.' : ''}` }),
     );
   }
 
@@ -234,7 +239,8 @@ export function createStarView(container) {
     heroFacts.replaceChildren(...[
       ['CLASS', body.spectral], ['TEMPERATURE', `${fmt(body.teffK)} K`],
       ['RADIUS', `${(body.radiusKm / 695700).toFixed(body.radiusKm < 70000 ? 4 : 3)} × SUN`],
-      ['MASS', `${body.massSun?.toFixed(3) ?? '—'} × SUN`], ['PEAK EMISSION', `${fmt(wienPeakNm(body.teffK))} nm`],
+      body.kind === 'brown dwarf' ? ['MASS', `${body.massJup ?? '?'} × JUPITER`] : ['MASS', `${body.massSun?.toFixed(3) ?? '—'} × SUN`],
+      ['PEAK EMISSION', wienPeakNm(body.teffK) > 2500 ? `${fmt(wienPeakNm(body.teffK) / 1000, 1)} µm (BEYOND THIS CHART)` : `${fmt(wienPeakNm(body.teffK))} nm`],
     ].flatMap(([k, v]) => [el('dt', { textContent: k }), el('dd', { textContent: v })]));
   }
 
@@ -244,6 +250,7 @@ export function createStarView(container) {
     /** Show `body` (a star body from a system model); `spectrum` from /api/spectrum or null. */
     load(body, { isSun = false, systemName = '', spectrum = null } = {}) {
       current = { body, isSun, spectrum };
+      if (body.kind === 'brown dwarf') range = 'ir';
       title.replaceChildren(el('h2', { textContent: body.name.toUpperCase() }), el('div', { className: 'kind', textContent: `STAR VIEW · ${systemName.toUpperCase()}` }));
       setStar(body, isSun);
       setHeroFacts(body);

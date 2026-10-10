@@ -14,6 +14,7 @@ import { config } from './config.js';
 import { cached } from './cache.js';
 import { scanCatalogs } from './catalogs.js';
 import { orbits as loadOrbits, MEASURED, componentLetters } from './binaries.js';
+import { NEIGHBOURS, BROWN_DWARF_PROPS } from './neighbours.js';
 
 const gunzip = promisify(zlib.gunzip);
 const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
@@ -213,8 +214,14 @@ export function matchBinaries(stars, orbitList, maxPc = 100) {
     return out;
   };
   const edges = [], extra = [], seen = new Set();
+  // Objects with no Hipparcos number (brown dwarfs) are matched to their orbit by position.
+  const lit = stars.filter((s) => s.source === 'literature' && !s.compPrimary);
+  const byPosition = (o) => {
+    const u = unit(o.raDeg, o.decDeg);
+    return lit.find((s) => (s.x * u[0] + s.y * u[1] + s.z * u[2]) / s.distPc > Math.cos(2 / 60 * DEG)) ?? null;
+  };
   for (const o of orbitList) {
-    const P = o.hip && byHip.get(o.hip);
+    const P = (o.hip && byHip.get(o.hip)) || (!o.hip && lit.length ? byPosition(o) : null);
     if (!P || P.distPc > maxPc) continue;
     const [l1, l2] = componentLetters(o.components);
     if (!l1.startsWith('A')) continue; // orbits between other components need component-level ids
@@ -281,6 +288,7 @@ export function catalog() {
   catalogPromise ??= (async () => {
     const { text, from } = await hygText();
     const stars = parseHyg(text);
+    stars.push(...NEIGHBOURS.map((n) => ({ ...n })));
     let planetsOf = new Map(), planetError = null;
     try {
       const m = matchHosts(stars, await exoplanetRows());
@@ -322,7 +330,7 @@ export async function nearby(centerId, radiusLy) {
     const d = Math.hypot(dx, dy, dz);
     if (d > rPc && s.id !== 'sol') continue; // Sol (Sector 001) is always included
     const p = cat.planetsOf.get(s.id);
-    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : 1]);
+    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : s.brownDwarf ? 2 : 1]);
   }
   return {
     center: summary(cat, c), radiusLy: r,
@@ -352,7 +360,7 @@ export async function starDetail(id) {
     orbits: g.edges.map((e) => ({ ...e.orbit, primaryId: e.primaryId, secondaryId: e.secondaryId, letters: e.letters, measured: e.measured })),
     source: 'ORB6 (USNO/GSU Sixth Catalog of Orbits of Visual Binary Stars) + HYG component grouping',
   } : null;
-  return { star: summary(cat, s), host: p ? p.host : null, planets: p ? p.planets : [], group };
+  return { star: summary(cat, s), host: p ? p.host : null, planets: p ? p.planets : [], group, measured: BROWN_DWARF_PROPS[id] ?? null };
 }
 
 /**

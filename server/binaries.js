@@ -81,6 +81,11 @@ export const MEASURED = {
     props: { A: { radiusSun: 2.048, teff: 6530 }, B: { radiusSun: 0.01232, teff: 7740, spect: 'DQZ', whiteDwarf: true } } },
   '14396-6050': { ref: 'Akeson et al. 2021; Kervella et al. 2017', mass: { A: 1.0788, B: 0.9092, C: 0.1221 },
     props: { A: { radiusSun: 1.2175, teff: 5790 }, B: { radiusSun: 0.8591, teff: 5178 }, C: { radiusSun: 0.1542, teff: 2900 } } },
+  // Luhman 16 AB: astrometric masses (Lazorenko & Sahlmann 2018) in M☉; ORB6 orbit Bedin et al. 2024.
+  '10493-5319': { ref: 'Lazorenko & Sahlmann 2018; Bedin et al. 2024', mass: { A: 34.2 / 1047.57, B: 27.9 / 1047.57 },
+    props: { A: { radiusSun: 0.1, teff: 1350, spect: 'L7.5', brownDwarf: true, massJup: 34.2 },
+      B: { radiusSun: 0.1, teff: 1210, spect: 'T0.5', brownDwarf: true, massJup: 27.9,
+        note: 'Weather has been mapped on it: patchy clouds that change within hours (Crossfield et al. 2014, Doppler imaging).' } } },
   '18055+0230': { ref: 'Eggenberger et al. 2008', mass: { A: 0.89, B: 0.73 } },
   '21069+3845': { ref: 'Kervella et al. 2008', mass: { A: 0.70, B: 0.63 } },
 };

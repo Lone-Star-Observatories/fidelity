@@ -46,6 +46,17 @@ export function starComposition(body, isSun = false) {
         : [{ el: 'C', name: 'CARBON (CORE)', frac: 0.49 }, { el: 'O', name: 'OXYGEN (CORE)', frac: 0.49 }, { el: 'He', name: 'HELIUM LAYER', frac: 0.01 }, { el: 'H', name: 'HYDROGEN SKIN', frac: 0.0001 }],
     };
   }
+  if (body.kind === 'brown dwarf') {
+    const t = body.teffK ?? 1000;
+    const clouds = t > 1300 ? 'IRON AND SILICATE (ROCK-VAPOUR) CLOUDS' : t > 500 ? 'METHANE AND WATER ABSORPTION, CLOUDS SINKING' : 'WATER-ICE CLOUDS';
+    const mf = massFractions(0);
+    return {
+      ...mf, brownDwarf: true, tier: 'modelled', feh: null,
+      title: 'BROWN DWARF · SOLAR MIX',
+      note: `A failed star: too light to fuse ordinary hydrogen, it only burned its deuterium early on and has been cooling ever since. Made of the same hydrogen–helium mix as the Sun; at ${Math.round(t)} K its atmosphere shows ${clouds.toLowerCase()}.`,
+      clouds,
+    };
+  }
   const feh = isSun ? 0 : body.metallicity;
   const mf = massFractions(feh ?? 0);
   return {

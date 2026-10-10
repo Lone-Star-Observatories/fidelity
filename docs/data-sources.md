@@ -32,7 +32,8 @@
 | Navigation / System | [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/) `pscomppars` (TAP) | Planets within 212 ly of Sol: orbits, sizes, masses (and whether they are true or minimum masses), transit flags and times, host-star parameters | live, cached 7 days | ✅ |
 | System | [ORB6](https://www.astro.gsu.edu/wds/orb6.html), the Sixth Catalog of Orbits of Visual Binary Stars (USNO/GSU) | 4,007 visual-binary orbits (P, a, i, Ω, T, e, ω) used for true-3D binary and multiple systems | downloaded once, refreshed monthly | ✅ #7 |
 | System | Literature masses (Bond et al. 2015/2017; Akeson et al. 2021; Kervella et al. 2008/2017; Eggenberger et al. 2008) | Measured component masses and white-dwarf properties for Sirius, Procyon, α Cen (with Proxima), 70 Oph and 61 Cyg | bundled | ✅ #7 |
-| Navigation | Gaia DR3 | Fainter neighbours HYG misses (red and brown dwarfs) | local | ⏳ |
+| Navigation / System | Literature astrometry: Luhman 2013/2014; Bedin et al. 2024; Luhman & Esplin 2016; masses Lazorenko & Sahlmann 2018; WISE 0855 temperature Luhman et al. 2024 (JWST) | The nearest brown dwarfs HYG misses: Luhman 16 AB (6.5 ly, on its ORB6 orbit) and WISE 0855−0714 (7.4 ly), in `server/neighbours.js` | bundled | ✅ |
+| Navigation | Gaia DR3 | The other faint neighbours HYG misses (red and brown dwarfs) | local | ⏳ |
 | Quadrant | Gaia DR3 (tiled level-of-detail), cluster catalogues, OpenNGC | Star density, clusters, nebulae | local | ⏳ #4 |
 | Galaxy | [PIA10748](https://photojournal.jpl.nasa.gov/catalog/PIA10748) face-on Milky Way (NASA/JPL-Caltech/R. Hurt, from Spitzer), calibrated against the annotated [PIA19341](https://photojournal.jpl.nasa.gov/catalog/PIA19341) | The galaxy image under the stars (IMAGINED: an artist's concept) | downloaded once to `data/` | ✅ #10 |
 | Galaxy | GRAVITY Collaboration 2019 (R₀ = 8.178 kpc); Bennett & Bovy 2019 (z₀ = 20.8 pc); LMC/SMC/Sgr dSph distances (Pietrzyński 2019, Graczyk 2020, Vasiliev & Belokurov 2020) | Sol's place in the galaxy, satellite galaxies | bundled | ✅ #10 |
@@ -45,6 +46,7 @@
 - **Membership:** HYG's component grouping (e.g. Sirius B is HYG "Gl 244B" under Sirius).
 - **Orbits:** ORB6, matched by Hipparcos number.
 - **Wide pairs:** position matching, which links Proxima to α Cen AB through ORB6's "AC" orbit.
+- **No Hipparcos number:** orbits of the bundled brown dwarfs (Luhman 16) are matched by position.
 
 `src/astro/binary.js` then places each orbit in 3D:
 1. Thiele–Innes on the sky, then parallax to turn arcseconds into AU, then the sky's north/east/line-of-sight axes into the scene frame.

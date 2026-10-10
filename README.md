@@ -50,7 +50,8 @@ ship recognises and which view will use each one.
   **warp** to it.
 - **Binary and multiple stars:** Sirius A and B on their measured 50-year orbit (Sirius B
   as a white dwarf smaller than Earth), α Centauri A and B with Proxima circling the pair.
-  Orbits come from the USNO Sixth Orbit Catalog.
+  Orbits come from the USNO Sixth Orbit Catalog. The nearest brown dwarfs are there too:
+  Luhman 16 A and B on their 26.6-year orbit, and WISE 0855−0714, the coldest known (285 K).
 - **Star View:** any star's real spectrum type (observed template against its blackbody,
   with Hα, Na D, Ca II and other lines marked) and what it is made of.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and

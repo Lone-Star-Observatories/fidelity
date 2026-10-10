@@ -16,4 +16,4 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 10 | ✅ **Galaxy View** | NASA/JPL-Caltech face-on Milky Way (IMAGINED artwork), calibrated so Sol lands at R₀ = 26.7 kly and the 46k brightest catalogue stars within 1.5 kly sit at their true galactic positions; arms, Sgr A*, satellite galaxies, IAU quadrants and the optional Starfleet overlay. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), Moon View, and a catalog ingestion/tiling pipeline for the
-RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View.
+RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
