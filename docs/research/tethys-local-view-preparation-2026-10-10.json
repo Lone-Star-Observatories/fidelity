@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no 54th dossier or embedding.",
+  "body": "tethys",
+  "generator": "Built-in imagegen",
+  "generationId": "exec-93dcb25b-781b-4584-8064-6bf8c5d45aaa",
+  "path": "data/research-sources/tethys-generated-surfaceImage-original.png",
+  "prompt": "Create one independent research-guided hypothetical local surface illustration of Saturn's moon TETHYS, landscape 16:9, no references or reused observed-body maps. Tethys is an icy cratered moon; Cassini's own PIA20518 green-filter view shows abundant impact craters and the large Odysseus basin with central peaks. This scene is NOT a reconstruction of a named site. Invent a modest cold airless pale gray ice-rich regolith foreground, scattered angular ice-like blocks, overlapping small craters and distant low crater rims under oblique dim sunlight, black empty sky. No Saturn or Sun disk in frame, no stars, no atmosphere, clouds, plumes, ocean, organisms, vegetation, spacecraft, astronaut or implication of a survivable landing. Never use Moon, Mars, Pluto or another body's geography or recoloured skin. Do not depict chemically specific colours or internal ocean. Keep textures plausible but visibly illustrative, no diagnostic feature registration. Material fractions, chemistry, roughness, block distribution, topography, exposure, palette and light are imagined. Add a clear legible footer in the image exactly 'IMAGINED \u00b7 LOCAL VIEW OF TETHYS' and a smaller second line 'Terrain, materials and lighting are illustrative'. Scientific context artwork for the Fidelity astronomy viewer.",
+  "inspected": true,
+  "limitations": "Independent invented local terrain, blocks, crater rims, material fractions, chemistry, palette, roughness, exposure and lighting. No observed-body analog map reused. Not a dated or registered Tethys site, measured geography, calibrated photometry or survivable landing. No angular or raster-size computation; no celestial disk in frame.",
+  "sourceContext": "docs/research/tethys-moon-preparation-2026-10-10.json",
+  "next": "Retain original; prepare Saturn observer using skyGeometry, masters/previews and recover standalone headroom before additive integration.",
+  "bytes": 3456044,
+  "sha256": "21ebd7596ea983a1eba6afe4cebe7c599b41409b5940d2565a33c169ac881f4d",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "validation": {
+    "testsPassed": 280,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "failed hard budget gate",
+    "attemptedHtmlBytes": 16025052,
+    "excessBytes": 25052,
+    "upstreamIntegrated": "dac2cab",
+    "newEmbedding": false,
+    "remaining": "Recover lossless headroom without dropping upstream features, science, native bytes or fields; then rerun full/browser checks."
+  }
+}
