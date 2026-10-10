@@ -19,6 +19,7 @@ import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
 import { satellites, satelliteDetail } from './satellites.js';
 import { feed, feedList } from './feeds.js';
+import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -33,6 +34,7 @@ const send = (res, status, body, type = 'application/json') => {
 
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
+  'GET /api/voice/status': async () => voiceStatus(),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),
@@ -113,6 +115,12 @@ const server = http.createServer(async (req, res) => {
   }
   if (url.pathname.startsWith('/api/')) return send(res, 404, { error: 'unknown endpoint' });
   serveStatic(req, res, url.pathname);
+});
+
+// "Computer" voice relay (#21): ws://host/api/voice → OpenAI Realtime, key held here
+server.on('upgrade', (req, socket) => {
+  if (new URL(req.url, 'http://local').pathname === '/api/voice') handleVoiceUpgrade(req, socket);
+  else socket.destroy();
 });
 
 server.listen(config.port, config.host, () => {

@@ -379,3 +379,16 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 
 /* where a spacecraft's published ephemeris stops (#26) */
 .nav-label.ephem-end { color: var(--orange); font-size: 11px; opacity: 0.85; }
+
+/* "Computer" voice panel (#21) */
+.voice-panel { position: absolute; right: 16px; bottom: 16px; z-index: 5; width: min(420px, calc(100% - 32px)); max-height: 60%; display: grid; grid-template-rows: auto auto 1fr auto;
+  background: rgba(0, 0, 0, 0.9); border: 2px solid var(--orange); border-radius: 18px; overflow: hidden; }
+.vp-head { display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 16px; background: var(--orange); color: #000; letter-spacing: 0.08em; }
+.vp-head b { flex: 1; }
+.vp-state { padding: 6px 16px; font-size: 13px; letter-spacing: 0.06em; color: var(--peach); }
+.vp-state.live::before { content: '● '; color: var(--red); }
+.vp-log { overflow: auto; padding: 4px 16px 8px; display: grid; gap: 6px; font-size: 14px; }
+.vp-log .you { color: var(--sky); }
+.vp-log .ship { color: var(--peach); }
+.vp-actions { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 10px 10px; }
+.pill.listening { background: var(--red); color: #000; }

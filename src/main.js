@@ -35,6 +35,7 @@ import { createSkyEventsPanel } from './panels/skyevents.js';
 import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
+import { createComputer } from './voice/computer.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -174,6 +175,45 @@ $('beacon').addEventListener('click', () => go({ level: 'system', system: 'sol' 
 
 // ---- bottom controls ----------------------------------------------------------------------
 const controls = $('controls');
+// ---- "Computer" (#21) ----------------------------------------------------------------------
+let voiceBtn = null, voiceStars = null;
+const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
+  connecting: 'CONNECTING…', hearing: 'GO AHEAD…', thinking: 'WORKING…', speaking: 'SPEAKING' };
+const computer = createComputer({
+  context: () => `${$('view-title').textContent} · ship's clock ${dateFromJd(clock.jd).toISOString().slice(0, 16)} UTC\n${(panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 2500)}`,
+  names: () => {
+    const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }) }));
+    for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }) });
+    return out;
+  },
+  setLayer: (k, on) => settings.set(k, on),
+  setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
+  status: () => fetch('/api/voice/status').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  onState: (st, _d, log) => renderVoice(st, log),
+});
+function renderVoice(st = computer.state, log = computer.log) {
+  voiceBtn?.classList.toggle('listening', st !== 'off');
+  const vp = $('voice-panel');
+  if (vp.hidden) return;
+  const live = st === 'hearing' || st === 'training';
+  vp.replaceChildren(
+    h('div', { className: 'vp-head' }, h('b', { textContent: 'COMPUTER' }), pill('✕', () => { vp.hidden = true; }, 'square')),
+    h('div', { className: `vp-state${live ? ' live' : ''}`, textContent: VOICE_STATES[st] ?? st.toUpperCase() }),
+    h('div', { className: 'vp-log' }, log.slice(-12).map((l) => h('div', { className: l.who, textContent: `${l.who === 'you' ? 'YOU' : 'FIDELITY'}: ${l.text}` }))),
+    h('div', { className: 'vp-actions' },
+      pill(st === 'off' ? 'LISTEN' : 'STOP LISTENING', () => computer.listen(st === 'off').catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
+      pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
+      pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
+      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null),
+    h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
+  const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
+}
+function openVoice() {
+  const vp = $('voice-panel');
+  vp.hidden = !vp.hidden;
+  if (!voiceStars) fetchNearby('sol', 25).then((d) => { voiceStars = d?.stars ?? []; }).catch(() => { voiceStars = []; });
+  renderVoice();
+}
 const pill = (label, onClick, cls = '') => {
   const b = h('button', { className: `pill ${cls}`, textContent: label });
   b.addEventListener('click', onClick);
@@ -224,7 +264,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
   h('div', { className: 'bar-fill' }),
 );
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot

@@ -65,6 +65,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
+| `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
@@ -207,6 +208,18 @@ hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon re
 shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
 `?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
+
+## Voice: "Computer" (#21)
+
+`src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
+from the microphone (AudioWorklet, resampled to 16 kHz) and DTW over MFCCs compares them with the
+viewer's three recordings (localStorage). Only after it fires does `src/voice/computer.js` stream
+24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with the view title, clock and the
+panel's text as instructions and three tools (`go_to`, `set_layer`, `set_time`). Replies play
+and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. Without a key
+(or the backend), the browser's on-device recogniser, where available, handles "go to …" and
+"show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
+resampler, command parsing.
 
 ## Milky Way model
 
