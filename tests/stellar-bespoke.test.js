@@ -16,3 +16,20 @@ test('Proxima star skin selects its own plasma hypothesis without capturing its 
   assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg - 60) < 1e-10);
   assert.match(visual.assumed.join(' '), /No ground/);
 });
+
+test('Alpha Centauri components select independent skins and retain correctly labelled native binary data', () => {
+  const a = bodyVisualFor({ name: 'Rigil Kentaurus' }), b = bodyVisualFor({ name: 'Toliman' });
+  assert.equal(a.id, 'alpha-centauri-a-star');
+  assert.equal(b.id, 'alpha-centauri-b-star');
+  assert.notEqual(a.surfaceMap.sha256, b.surfaceMap.sha256);
+  assert.notEqual(a.skyImage.sha256, b.skyImage.sha256);
+  assert.match(a.identityNote, /left/);
+  assert.match(b.identityNote, /right/);
+  assert.equal(a.contextImages[0].sha256, b.contextImages[0].sha256);
+  assert.equal(a.contextImages[1].tier, 'modelled');
+  assert.match(a.contextImages[1].label, /ANNOTATED/);
+  for (const visual of [a, b]) {
+    assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg - 60) < 1e-10);
+    assert.match(visual.assumed.join(' '), /no solid ground/);
+  }
+});

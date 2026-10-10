@@ -7422,7 +7422,7 @@
       "distancePc": 1.3458950201884252,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf Cen A",
         "OBJ_CAT": "*",
@@ -7441,9 +7441,10 @@
         "COMMENT": "...",
         "distancePc": 1.3458950201884252
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "alpha-centauri-a-star"
     },
     {
       "id": "star-alf-cen-b",
@@ -7453,7 +7454,7 @@
       "distancePc": 1.3458950201884252,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf Cen B",
         "OBJ_CAT": "*",
@@ -7472,9 +7473,10 @@
         "COMMENT": "...",
         "distancePc": 1.3458950201884252
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "alpha-centauri-b-star"
     },
     {
       "id": "star-barnard-s-star",
@@ -8012,7 +8014,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 1,
+      "initialDossiers": 3,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

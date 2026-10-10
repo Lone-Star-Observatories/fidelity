@@ -3356,6 +3356,324 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "alpha-centauri-a-star": {
+    "id": "alpha-centauri-a-star",
+    "name": "Alpha Centauri A",
+    "kind": "star",
+    "aliases": [
+      "Alpha Centauri A",
+      "Alpha Cen A",
+      "alf Cen A",
+      "Rigil Kentaurus",
+      "HD 128620"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "A is Rigil Kentaurus / G2V, left in Hubble portrait.",
+    "nativeSurface": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
+    "measured": [
+      "Kervella2017 H-band interferometric limb-darkened diameter8.502±0.038mas; radius1.2234±0.0053 solar radii using747.17±0.61mas parallax.",
+      "The Hubble portrait records A left and B right; released2016-08-29, filters457nm and850nm; exact observing day unverified."
+    ],
+    "modelled": [
+      "Adopted representative effective temperature5795K (±19K reference uncertainty) from interferometric radii and bolometric flux, reviewed by Thévenin2023 quoting Morel2018/Kervella2017. Hydrogen/helium plasma and outer convection are stellar-model context, not measured abundance mass fractions.",
+      "Thévenin2023 also reports updated radius/temperature alternatives A1.2175Rsun5800K/B0.8591Rsun5236K using Akeson2021 astrometry; catalogue and orbit values preserved.",
+      "Webb2025 graphic combines infrared data, subtraction and annotations; source publisher classifies Artwork. S1 remains a candidate, not a confirmed planet or observed stellar surface."
+    ],
+    "unknown": [
+      "Resolved convection, actual magnetic spot pattern, calibrated visible intensity/colour, precise abundance fractions and chromospheric geometry."
+    ],
+    "assumed": [
+      "Independent two modest dim magnetic patches and finer granulation; all photospheric geography invented, no Sun or another component map reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree field; no solid ground or physically survivable landing.",
+      "Companion lies outside this chosen field; no dated binary orientation, companion angular location or photometric calibration is claimed."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1610.06185v1",
+        "title": "Kervella et al., interferometric radii and limb darkening",
+        "publicationDate": "2016-10-19"
+      },
+      {
+        "url": "https://alphacen2023.sciencesconf.org/data/pages/alphaCen_thevenin.pdf",
+        "title": "Thévenin2023, fundamental parameters and alternative atmosphere fits",
+        "publicationDate": "2023-06"
+      },
+      {
+        "url": "https://esahubble.org/images/potw1635a/",
+        "title": "ESA/Hubble native binary portrait",
+        "publicationDate": "2016-08-29"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2515c/",
+        "title": "ESA/Webb2025 annotated infrared observation graphic",
+        "publicationDate": "2025-08-07"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/alpha-centauri-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/large/potw1635a.jpg",
+        "sourcePage": "https://esahubble.org/images/potw1635a/",
+        "credit": "ESA/Hubble & NASA",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2016-08-29",
+        "observationDate": null,
+        "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "bytes": 107856,
+        "tier": "measured",
+        "description": "A left, B right: unresolved optical/near-infrared point sources, not resolved surfaces."
+      },
+      {
+        "url": "/bespoke/alpha-centauri-webb.jpg",
+        "source": "https://cdn.esawebb.org/archives/images/screen/weic2515c.jpg",
+        "sourcePage": "https://esawebb.org/images/weic2515c/",
+        "credit": "NASA, ESA, CSA, STScI, A. Sanghi (Caltech), C. Beichman (JPL), D. Mawet (Caltech), J. DePasquale (STScI)",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esawebb.org/copyright/",
+        "publicationDate": "2025-08-07",
+        "observationDate": null,
+        "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "bytes": 122690,
+        "tier": "modelled",
+        "description": "2025 annotated infrared observational composite; diffraction, coronagraph and subtraction patterns are instrumental. A/B and candidate S1 identified by original publisher; no visible-colour photosphere.",
+        "label": "NATIVE INFRARED DATA · ANNOTATED GRAPHIC"
+      }
+    ],
+    "skyModel": {
+      "star": "Alpha Centauri A",
+      "radiusSun": 1.2234,
+      "temperatureK": 5795,
+      "distanceAU": 0.011378763294122208,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 11745.061564082493,
+      "approximateSrgb": [
+        1,
+        0.9517261540134383,
+        0.9060424466767338
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "alphaCentauriABespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured stellar geography/frame.",
+      "coverage": "Entire photosphere imagined; neutral intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/alpha-centauri-a-star-surface-map.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-a-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e8457ef9-f92a-4b1e-9956-6172d1c8aa1b.png",
+      "sourceSha256": "75ce390124ca460733e4ead25c31e9c97d33dee65e5c207ee0ee88a468a89a63",
+      "sha256": "18c734022d7a7a1220620ccc9c35dd9ac84366eafee7a377db4417456a849724",
+      "previewSha256": "baf17362a82b86f2e3d7be121fe190768b487798eef9d3ec9cbff8d9922ba812",
+      "bytes": 367537,
+      "previewBytes": 35177,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          453,
+          453,
+          451
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Bright thresholds do not establish a calibrated limb. Colour, exposure, magnetic regions, FOV and orientation are artistic."
+      },
+      "url": "/bespoke/alpha-centauri-a-star-sky-image.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-a-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-9119edd6-c736-43aa-9ecd-a27079300643.png",
+      "sourceSha256": "96a20e6fd8698ab22697255629ab59e4ef88b49b23747d1b375938c258de675c",
+      "sha256": "098c42b771cb3f7a6c516d764030c4454acf66b309d36b5d55ef0b1cd563adf9",
+      "previewSha256": "d1bfe9a1bd14d1e69e2dbf7700773397f7f09684974b8525899d696bc051f152",
+      "bytes": 59078,
+      "previewBytes": 11641,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "alpha-centauri-b-star": {
+    "id": "alpha-centauri-b-star",
+    "name": "Alpha Centauri B",
+    "kind": "star",
+    "aliases": [
+      "Alpha Centauri B",
+      "Alpha Cen B",
+      "alf Cen B",
+      "Toliman",
+      "HD 128621"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "B is Toliman / K1V, right in Hubble portrait.",
+    "nativeSurface": "Hubble optical/near-infrared unresolved binary point sources plus Webb infrared observational graphic. Neither resolves photospheric geography; displayed false colours are not calibrated visible colours.",
+    "measured": [
+      "Kervella2017 H-band interferometric limb-darkened diameter5.999±0.025mas; radius0.8632±0.0037 solar radii using747.17±0.61mas parallax.",
+      "The Hubble portrait records A left and B right; released2016-08-29, filters457nm and850nm; exact observing day unverified."
+    ],
+    "modelled": [
+      "Adopted representative effective temperature5231K (±21K reference uncertainty) from interferometric radii and bolometric flux, reviewed by Thévenin2023 quoting Morel2018/Kervella2017. Hydrogen/helium plasma and outer convection are stellar-model context, not measured abundance mass fractions.",
+      "Thévenin2023 also reports updated radius/temperature alternatives A1.2175Rsun5800K/B0.8591Rsun5236K using Akeson2021 astrometry; catalogue and orbit values preserved.",
+      "Webb2025 graphic combines infrared data, subtraction and annotations; source publisher classifies Artwork. S1 remains a candidate, not a confirmed planet or observed stellar surface."
+    ],
+    "unknown": [
+      "Resolved convection, actual magnetic spot pattern, calibrated visible intensity/colour, precise abundance fractions and chromospheric geometry."
+    ],
+    "assumed": [
+      "Independent three irregular dim magnetic groups and distinct tangled cells; all photospheric geography invented, no Sun or another component map reused.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree field; no solid ground or physically survivable landing.",
+      "Companion lies outside this chosen field; no dated binary orientation, companion angular location or photometric calibration is claimed."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1610.06185v1",
+        "title": "Kervella et al., interferometric radii and limb darkening",
+        "publicationDate": "2016-10-19"
+      },
+      {
+        "url": "https://alphacen2023.sciencesconf.org/data/pages/alphaCen_thevenin.pdf",
+        "title": "Thévenin2023, fundamental parameters and alternative atmosphere fits",
+        "publicationDate": "2023-06"
+      },
+      {
+        "url": "https://esahubble.org/images/potw1635a/",
+        "title": "ESA/Hubble native binary portrait",
+        "publicationDate": "2016-08-29"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2515c/",
+        "title": "ESA/Webb2025 annotated infrared observation graphic",
+        "publicationDate": "2025-08-07"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/alpha-centauri-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/large/potw1635a.jpg",
+        "sourcePage": "https://esahubble.org/images/potw1635a/",
+        "credit": "ESA/Hubble & NASA",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "publicationDate": "2016-08-29",
+        "observationDate": null,
+        "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "bytes": 107856,
+        "tier": "measured",
+        "description": "A left, B right: unresolved optical/near-infrared point sources, not resolved surfaces."
+      },
+      {
+        "url": "/bespoke/alpha-centauri-webb.jpg",
+        "source": "https://cdn.esawebb.org/archives/images/screen/weic2515c.jpg",
+        "sourcePage": "https://esawebb.org/images/weic2515c/",
+        "credit": "NASA, ESA, CSA, STScI, A. Sanghi (Caltech), C. Beichman (JPL), D. Mawet (Caltech), J. DePasquale (STScI)",
+        "terms": "CC BY4.0; complete publisher credit retained.",
+        "termsUrl": "https://esawebb.org/copyright/",
+        "publicationDate": "2025-08-07",
+        "observationDate": null,
+        "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "bytes": 122690,
+        "tier": "modelled",
+        "description": "2025 annotated infrared observational composite; diffraction, coronagraph and subtraction patterns are instrumental. A/B and candidate S1 identified by original publisher; no visible-colour photosphere.",
+        "label": "NATIVE INFRARED DATA · ANNOTATED GRAPHIC"
+      }
+    ],
+    "skyModel": {
+      "star": "Alpha Centauri B",
+      "radiusSun": 0.8632,
+      "temperatureK": 5231,
+      "distanceAU": 0.00802856667932507,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 7797.949466399684,
+      "approximateSrgb": [
+        1,
+        0.9117845260802663,
+        0.8380680822793982
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "alphaCentauriBBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured stellar geography/frame.",
+      "coverage": "Entire photosphere imagined; neutral intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/alpha-centauri-b-star-surface-map.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-b-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-3155d3d2-5ad9-44cf-bdf9-4f7b002310b8.png",
+      "sourceSha256": "3d3528ebbebbad777302c8c543452026666a41ba805fa82d9ebf3bb452cee2e7",
+      "sha256": "510b8ce1463f77cddab7b22ce34dc1ffa6ec03214f4102d2fd18426296106189",
+      "previewSha256": "83b90aa3a213be4ed63e3179f9eacf769c11b97c17d54904ed719b277d15d723",
+      "bytes": 388277,
+      "previewBytes": 36794,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          443,
+          443,
+          443
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Bright thresholds do not establish a calibrated limb. Colour, exposure, magnetic regions, FOV and orientation are artistic."
+      },
+      "url": "/bespoke/alpha-centauri-b-star-sky-image.jpg",
+      "previewUrl": "/bespoke/alpha-centauri-b-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-5926dfa7-f63b-4442-8497-21653219e388.png",
+      "sourceSha256": "ac81b599b4bf31bc77b8f6a628a62eb6f4218e4621ea1fe5537a574818cd16b5",
+      "sha256": "0d1da2abd079a03cd84d9a22427df4d2544050718b13257ec64d4b34e04f6958",
+      "previewSha256": "10edecfab26a2f1645e7085f46894758855cf178b3499dd1b27b6cf0b9b66c8d",
+      "bytes": 55244,
+      "previewBytes": 10992,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

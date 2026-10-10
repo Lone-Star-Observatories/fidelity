@@ -10,7 +10,7 @@ const link = (href, textContent) => el('a', { href, textContent, target: '_blank
 export function stellarResearchCards(body) {
   const visual = bodyVisualFor(body);
   if (visual?.kind !== 'star') return [];
-  const images = [...(visual.contextImages ?? []).map(asset => ['NATIVE STELLAR OBSERVATION', asset]),
+  const images = [...(visual.contextImages ?? []).map(asset => [asset.label ?? 'NATIVE STELLAR OBSERVATION', asset]),
     [visual.surfaceLabel, visual.surfaceMap], [visual.skyLabel, visual.skyImage]];
   const cards = images.map(([title, asset]) => el('section', { className: 'sv-card stellar-image-card' },
     el('h3', { textContent: title }), badge(asset.tier),
