@@ -9,7 +9,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gunzipSync } from 'node:zlib';
 import { gzipAsync } from '@gfx/zopfli';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -186,7 +186,7 @@ const dist = path.join(root, 'dist-standalone');
 const binarySnapshot = encodeNumericSnapshot(snapshotJson);
 const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 32 });
 if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
-const snapshotRaw = encodeRawSnapshotBytes(htmlCompressed);
+const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed);
 // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
 const html = (await fs.readFile(path.join(dist, 'index.html'), 'utf8')).replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
 const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);

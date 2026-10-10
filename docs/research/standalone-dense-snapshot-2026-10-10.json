@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-10",
+  "status": "Verified lossless full snapshot envelope",
+  "change": "Full snapshot envelope gzip-raw-radix125-wide-v1 uses 47 compressed bytes per 54 ASCII digits. Excludes NUL, CR and less-than; allows TAB/LF/VT/FF/ESC that Chrome raw-script parsing preserves. Exact BigInt376-bit bounds, length/digit/padding checks retained.",
+  "preservation": "Standard gzip and complete FIDNUM01/FIDBIN01 snapshot unchanged; readable JSON, every native/model/shape/map byte and all54 dossiers preserved. Prior raw120 wide/v1, radix85 and base64 decoders retained. Application/CSS transports and Blob import/revoke unchanged. No Dione embedding or55th dossier.",
+  "trial": "Numeric XOR/subtraction column trials increased zlib9 size from13486203 to13645007/13637601; rejected.",
+  "limitations": "Chrome verified; other browser engines remain open. Raw payload must be inserted after HTML transforms and preserved verbatim.",
+  "validation": {
+    "testsPassed": 354,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "smallChromeParser": "65536 random bytes exact payload text and binary roundtrip",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15926772,
+    "headroom": 73228,
+    "snapshotCompressedBytes": 13220572,
+    "oldRaw120PayloadBytes": 15323868,
+    "newRaw125PayloadBytes": 15189606,
+    "browser": {
+      "snapshot": "4fe53fc94d8fd52cbe1341da384399e3c29eea899498d88d8c543e78a0c39793",
+      "raw": "98478dbac8b9df5334d0e265d54ef8778b4714e99275f4df3bfe2265854787a5",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15926772,
+      "compressedBytes": 609269,
+      "applicationSha256": "768bfa8cf1e32bae0c734aa4f74136855171791629643a892a39c4f9674534bf",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "css": "Exact style bytes and HTML-parser payload verified",
+    "offlineRoutes": 6,
+    "unsupportedMessage": "verified",
+    "offlineWorkerRows": 11,
+    "upstreamIntegrated": "a6251db"
+  }
+}
