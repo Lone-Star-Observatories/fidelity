@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; registry remains 42. Independent Procyon A/B images and route integration pending.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/pdf/1510.00485",
+      "file": "data/research-sources/procyon-bond-2015.pdf",
+      "bytes": 942669,
+      "sha256": "d7da7af99d19c851b794555230c4df452fe68ba9b7fd7fda7ff74caf930af05d"
+    },
+    {
+      "url": "https://arxiv.org/html/1510.00485v1",
+      "file": "data/research-sources/procyon-bond-2015.html",
+      "bytes": 342325,
+      "sha256": "6909cfcedbb5feda4dc2583d2357ed44f119d045b06b9b2a4cd4df6c90ddbad4"
+    },
+    {
+      "url": "https://arxiv.org/pdf/1305.0587",
+      "file": "data/research-sources/procyon-age-2013.pdf",
+      "bytes": 291093,
+      "sha256": "114c3cff5e005949a28ec9fab9bc7368265484c21647347924fb5ac90fa3f8ef"
+    },
+    {
+      "url": "https://arxiv.org/pdf/astro-ph/0309148",
+      "file": "data/research-sources/procyon-kervella-2003.pdf",
+      "bytes": 218094,
+      "sha256": "6f6db1655410db707bec7017622676b87d7b86d74f276e9e95f41a494c19635a"
+    },
+    {
+      "url": "https://arxiv.org/html/1510.00485v1/blueprocyon_cropcrop.png",
+      "file": "data/research-sources/procyon-hubble-native.png",
+      "bytes": 92927,
+      "sha256": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6"
+    }
+  ],
+  "identity": {
+    "A": "F5 IV-V subgiant; HD61421/HIP37279/GJ280A",
+    "B": "DQZ helium-dominated atmosphere white dwarf; GJ280B. Do not copy Sirius B DA hydrogen-atmosphere assumptions."
+  },
+  "measurements": {
+    "Bond2015Table10DynamicalMassSun": {
+      "A": [
+        1.478,
+        0.012
+      ],
+      "B": [
+        0.592,
+        0.006
+      ]
+    },
+    "Bond2015Table9WeightedParallaxMas": [
+      285.0,
+      0.7
+    ],
+    "Kervella2003Table1LimbDiameterMas": [
+      5.448,
+      0.053
+    ]
+  },
+  "modelled": {
+    "A": "Kervella2003 adopts spectroscopic 6530\u00b150K (Allende Prieto2002); Hipparcos/interferometric radius 2.048\u00b10.025Rsun. Its older model mass1.42\u00b1.04 is distinct from Bond2015 dynamical1.478\u00b1.012. No catalogue overwrite.",
+    "B": "Bond2015 atmosphere/STIS fit7740\u00b150K, radius.01232\u00b1.00032Rsun adjusted from Provencal2002 .01234\u00b1.00032. Helium photosphere with carbon and trace metals; theoretical C/O degenerate interior hidden. Cooling age1.37\u00b1.04Gyr.",
+    "ageHistory": "Liebert2013 age1.87\u00b1.13Gyr/cooling1.19\u00b1.11 uses older preliminary B mass.553\u00b1.015; Bond2015 revised masses/overshoot age~2.7Gyr remain distinct."
+  },
+  "native": {
+    "description": "Unchanged author HST/WFPC2 binary PNG, visually inspected: bright central A exposure inset, faint B left. Near-UV F218W, false colour, PSF/diffraction and overexposure do not resolve photospheric geography or establish visible colour.",
+    "observationDate": "1997-11-27",
+    "authorReleaseDate": "2015-10-02",
+    "imagePublicationDate": null,
+    "captionExposure": "0.14 second A inset superposed on100second B frame; separation4.706arcsec and near-UV contrast8.5mag. Nearby prose0.11second wording needs epoch/figure reconciliation before final dossier.",
+    "credits": "Howard E. Bond; Ronald L. Gilliland; Gail H. Schaefer; Pierre Demarque; Terrence M. Girard; Jay B. Holberg; Donald Gudehus; Brian D. Mason; Vera Kozhurina-Platais; Matthew R. Burleigh; Martin A. Barstow; Edmund P. Nelan; NASA/ESA HST/WFPC2; STScI/MAST/AURA, NASA contract NAS5-26555.",
+    "terms": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "rights": "arXiv perpetual non-exclusive distribution licence is not asserted CC BY. Retain full credits and authorized research context."
+  },
+  "unknowns": [
+    "Current binary-aware astrometry and exhaustive nearest20 ranking unverified; historical membership preserved pending EZ Aquarii B/C reconciliation.",
+    "Exact image publication day and author HTML/PDF figure numbering need verification.",
+    "Resolved photospheric morphology, visible colour, magnetic patch locations and observer epoch registration unmeasured."
+  ],
+  "next": [
+    "Assess recent native imagery and independent A parameter alternatives.",
+    "Create four independent plasma/intensity and near-photosphere observer images; no ground or survivable landing, no observed Sun/other-body map reuse.",
+    "Compute every angular/raster quantity through skyGeometry; FOV/exposure/colour remain artistic.",
+    "Additive importer, preserve all42 prior dossiers, full offline byte equality/native/model hashes and16MB gate."
+  ]
+}

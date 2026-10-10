@@ -8334,7 +8334,7 @@
       "distancePc": 3.4964380683468437,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
       "catalogueConstraints": {
         "OBJ_NAME": "61 Cyg B",
         "OBJ_CAT": "*",
@@ -8366,7 +8366,7 @@
       "distancePc": 3.49656525738973,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native Gaia 2025 image resolves the two stars as point sources, not photospheric geography. No resolved photospheric map found in checked primary sources. September2026 third companion remains a candidate with host A versus B unresolved.",
       "catalogueConstraints": {
         "OBJ_NAME": "61 Cyg A",
         "OBJ_CAT": "*",
