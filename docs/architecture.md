@@ -297,6 +297,22 @@ days on this mission and in total counting live, Wikidata's time in space, links
 structured source and say so. Where a portrait's licence is unclear, initials stand in. The standalone snapshot
 carries the facts without images.
 
+## Magnetic fields (#38)
+
+`src/astro/magnetic.js` holds each body's dipole (equatorial surface field, tilt, north-end longitude, polarity,
+offset), its typical magnetopause stand-off and bow shock, and sources: Earth and Jupiter derived from their
+degree-1 Gauss coefficients (IGRF-14 2025, Juno JRM09), the rest from MESSENGER, Cassini, Voyager 2 and Galileo;
+Mars and the Moon get crustal-anomaly loops instead. Field lines are dipole shells r = L sin²θ out to 0.8 × the
+stand-off; the magnetopause is Shue et al. 1998 (Earth's driven by the live DSCOVR/ACE wind and IMF Bz; other
+planets α = 0.6 at their typical stand-off) and the bow shock a conic. `src/views/system/magfields.js` hangs the lines
+in each body's tilt frame (copying its spin, so the giants' axes turn with System III), coloured by |B| on a log ramp
+with chevrons along the field, and draws the boundaries around the body facing the Sun (Ganymede's facing the
+corotating plasma, its trailing side). Every distance goes through the body's radial compression (`localMap`), so
+ENHANCED stays consistent with the moons and TRUE shows Jupiter's magnetosphere at full size. MAG FIELDS (the old
+FIELDS toggle) controls both this and the Sun's Parker spiral. `src/panels/magnetic.js` adds a MAGNETIC FIELD
+section to body panels. Not done: a PFSS model from today's magnetogram, draped fields at Venus, Titan and comets,
+and stellar Zeeman-Doppler fields.
+
 ## Events feed and mission replays (#32, #33)
 
 `scripts/events/build-events.js` (weekly GitHub Action `.github/workflows/events.yml`, or `npm run events`) writes

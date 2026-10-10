@@ -47,6 +47,7 @@ import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
+import { createMagFields } from './magfields.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
@@ -670,6 +671,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   function load(m) {
     clear();
     clearTransfer();
+    magFields = null; // its objects hung on the old nodes, disposed by clear()
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
@@ -1013,6 +1015,27 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     for (const key of ['centre', 'north', 'south']) set(eclipseLines[key], (e.path?.[key] ?? []).map((g) => inertialPoint(jd, g.lat, g.lon)));
   }
   const tmpE = new THREE.Vector3();
+
+  // ---- magnetic fields (#38) ---------------------------------------------------------------------
+  let magFields = null;
+  const magTmp = new THREE.Vector3(), magTmp2 = new THREE.Vector3();
+  function updateMagFields(jd, now) {
+    if (!model?.isSol) return;
+    const show = !!settings.get('fields') && !surface;
+    if (!magFields && !show) return;
+    magFields ??= createMagFields({
+      radial: (body, r) => localMap(body, magTmp.set((r * body.radiusKm) / AU_KM, 0, 0)).length() / displayRadius(body),
+      toDisplayAU: (body, km) => localMap(body, km.clone().multiplyScalar(1 / AU_KM)),
+      upstream: (body, id) => {
+        if (id === 'ganymede') { // the corotating plasma overtakes Ganymede: upstream is its trailing side
+          scenePosition(id, jd + 0.01, magTmp2).sub(scenePosition(id, jd, magTmp));
+          return magTmp2.clone().negate().normalize();
+        }
+        return nodes[model.starId].pos.clone().sub(nodes[id].pos).normalize();
+      },
+    });
+    magFields.update(nodes, show, `${scaleMix.toFixed(3)}|${model.scale}`, now);
+  }
 
   // ---- transfer orbits (#45) -------------------------------------------------------------------
   // The computed Lambert arc (dashed), departure and arrival markers, a ghost craft riding it while
@@ -1546,6 +1569,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     updateTracks(jd);
     updateMissions(jd);
     updateTransfer(jd);
+    updateMagFields(jd, now);
     for (const id in nodes) {
       const c = nodes[id].clouds;
       if (c) {
@@ -1609,6 +1633,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       return nodes[body.id].body;
     },
     showSatelliteCategory(c, on) { sats?.showCategory(c, on); },
+    /** Live solar wind for Earth's magnetopause (#38): { Dp nPa, Bz nT, time }. */
+    setSolarWind(w) { if (!magFields) updateMagFields(clock.jd, performance.now()); magFields?.setWind(w); },
+    /** Current magnetopause stand-off (body radii) for a body with a field, or null. */
+    magnetopauseOf: (id) => magFields?.standoffOf(id) ?? null,
     /** Draw a transfer orbit (#45): { x: transfer(), label, compare?: Horizons AU points } or null to clear. */
     setTransfer,
     /** Heliocentric AU position on the drawn transfer at `jd`, or null. */
