@@ -540,7 +540,18 @@ function bodyGroups(m) {
   if (!m.isSol) return [['BODIES', m.bodies]];
   return [
     ['STAR & PLANETS', m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star')],
-    ['DWARF PLANETS, ASTEROIDS & COMETS', m.bodies.filter((b) => b.orbit?.type === 'elements')],
+    // small bodies by region (JPL SBDB orbit class)
+    ...(() => {
+      const small = m.bodies.filter((b) => b.orbit?.type === 'elements');
+      const of = (re) => small.filter((b) => re.test(b.belt ?? ''));
+      return [
+        ['DWARF PLANETS', small.filter((b) => b.kind === 'dwarf planet')],
+        ['ASTEROID BELT', of(/MAIN BELT/).filter((b) => b.kind !== 'dwarf planet')],
+        ['NEAR-EARTH ASTEROIDS', of(/NEAR-EARTH/)],
+        ['JUPITER TROJANS', of(/TROJAN/)],
+        ['CENTAURS, KUIPER BELT & COMETS', small.filter((b) => b.kind !== 'dwarf planet' && !/MAIN BELT|NEAR-EARTH|TROJAN/.test(b.belt ?? ''))],
+      ];
+    })(),
     ['SPACECRAFT · DEEP SPACE', m.bodies.filter((b) => b.kind === 'spacecraft')],
     ['REGIONS', m.bodies.filter((b) => b.kind === 'region')],
     ['LAGRANGE POINTS', m.bodies.filter((b) => b.kind === 'lagrange point')],

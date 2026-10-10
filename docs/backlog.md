@@ -14,7 +14,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 8 | ✅ **Star View** | Close-up photosphere, observed template spectrum (Pickles) against the blackbody with line IDs and an infrared range, composition by mass (Asplund 2009 for the Sun, [Fe/H]-scaled otherwise), white dwarfs handled. |
 | 9 | ✅ **Planet View** | Globe, atmosphere by volume (Sol) or measured JWST detections (exoplanets), spectral fingerprints, interior to scale, density on the mass–radius diagram with minimum-mass and unmeasured-radius caveats. |
 | 10 | ✅ **Galaxy View** | NASA/JPL-Caltech face-on Milky Way (IMAGINED artwork), calibrated so Sol lands at R₀ = 26.7 kly and the 46k brightest catalogue stars within 1.5 kly sit at their true galactic positions; arms, Sgr A*, satellite galaxies, IAU quadrants and the optional Starfleet overlay. |
-| 11 | ✅ **Moons, dwarf planets, asteroids** | 26 moons (JPL elements, Horizons-fitted, tested) and 13 small bodies (SBDB) with real mosaics where they exist; Moon View and Object View (the Planet View fed with moon data). |
+| 11 | ✅ **Moons, dwarf planets, asteroids** | 26 moons (JPL elements, Horizons-fitted, tested) and 49 small bodies (SBDB: dwarf planets, Psyche, Juno, Davida, NEAs, Lucy Trojans, centaurs) with real mosaics where they exist; Moon View and Object View (the Planet View fed with moon data). |
 | 12 | ✅ **Points of interest** | Belts from 61k real orbits (GPU-propagated), GEO ring, Van Allen belts, Lagrange points, Hill spheres, heliosphere, Oort cloud. |
 | 13 | ✅ **Every active Earth satellite** | CelesTrak + SGP4, travel to any satellite, live feeds and telemetry. |
 | 14 | ✅ **Deep-space spacecraft** | Horizons fleet with DSN Now link status. |

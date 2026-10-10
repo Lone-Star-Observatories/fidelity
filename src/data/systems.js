@@ -58,7 +58,8 @@ function physicalFacts(b) {
     out.push(fact('MASS', `${sci(b.massKg)} KG`, 'measured', 'From its pull on neighbours or spacecraft.'));
     out.push(fact('DENSITY', `${fmt((b.massKg * 1000) / ((4 / 3) * Math.PI * (b.radiusKm * 1e5) ** 3), 2)} G/CM³`, 'computed', 'Mass ÷ volume. Below ~2: mostly ice; ~3: rock; above 4: rock with iron.'));
     out.push(fact('SURFACE G', `${fmt((G * b.massKg) / (b.radiusKm * 1000) ** 2, 3)} M/S²`, 'computed', 'GM / R².'));
-  } else out.push(fact('MASS', 'NOT MEASURED', 'imagined', 'No moon or spacecraft has weighed it yet.'));
+  } else out.push(fact('MASS', 'NO JPL SBDB VALUE', 'measured', b.kind === 'moon' ? 'No moon or spacecraft has weighed it yet.' : 'JPL\'s Small-Body Database lists no mass (GM) for it; published estimates from orbital perturbations are not used here.'));
+  if (b.spectral) out.push(fact('SPECTRAL TYPE', b.spectral, 'measured', 'Asteroid taxonomy from its reflectance spectrum (Tholen / SMASS, JPL SBDB): C carbon-rich, S stony, M/X metallic or enstatite, B/F/G/P/D dark primitive classes.'));
   if (b.meanTempC != null) out.push(fact('MEAN TEMP', `${b.meanTempC} °C`, 'measured'));
   if (b.discovered) out.push(fact('DISCOVERED', b.discovered.toUpperCase(), 'measured'));
   return out;
@@ -105,7 +106,7 @@ function smallBody(b) {
   const q = e.a * (1 - e.e), Q = e.a * (1 + e.e);
   return {
     id: b.id, name: b.name, kind: b.kind, radiusKm: b.radiusKm, massKg: b.massKg, meanTempC: b.meanTempC,
-    rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt, comet: b.comet ?? null,
+    rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt, comet: b.comet ?? null, spectral: b.spectral ?? null,
     palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.surfacePending && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e, alt: b.altElements ?? null },
     facts: {
       ORBIT: [
