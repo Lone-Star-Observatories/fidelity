@@ -153,8 +153,8 @@
       "parent": "mars",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
+      "nativeImagery": "own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending",
+      "research": "native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
     },
@@ -165,8 +165,8 @@
       "parent": "mars",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
+      "nativeImagery": "own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending",
+      "research": "native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
     },

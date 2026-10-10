@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-10",
+  "status": "Native research preparation only; 44 delivered dossiers unchanged. Phobos/Deimos individual dossiers and observer scenes pending.",
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia10/pia10368/PIA10368.jpg?crop=faces%2Cfocalpoint&fit=clip&h=3300&w=3374",
+      "file": "data/research-sources/phobos-hirise-2008.jpg",
+      "bytes": 652671,
+      "sha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/mars/downloadable_items/3/7/37713_Deimos-Mars-Moon-MRO-HiRISE-PIA11826.jpg?crop=faces%2Cfocalpoint&fit=clip&h=772&w=1505",
+      "file": "data/research-sources/deimos-hirise-2009.jpg",
+      "bytes": 49295,
+      "sha256": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/phobos-from-6800-kilometers-color/",
+      "file": "data/research-sources/phobos-hirise-caption.html",
+      "bytes": 270868,
+      "sha256": "c1ec72c13233753bc4aca379dacbcd685694d67118e29ad62e461bc4afbc2d02"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/martian-moon-deimos-in-high-resolution-2/",
+      "file": "data/research-sources/deimos-hirise-caption.html",
+      "bytes": 265359,
+      "sha256": "8d1e4d099c3525769a27b3b2f7b48d132170c7da3bb730f6b523210a8b45cd44"
+    }
+  ],
+  "existingMaps": [
+    {
+      "body": "phobos",
+      "file": "data/textures/phobos.jpg",
+      "bytes": 601584,
+      "sha256": "8ec807b353eb28f44b5aa24b8a887935ee5563f5b63bde2430a9988220f71463",
+      "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Mars%20-%20Phobos/Mars%20-%20Phobos.jpg",
+      "limits": "Existing own-body NASA mosaic preserved. Exact input observation list, gap treatment, longitude/frame and calibrated photometric transfer remain to audit; server mission attribution is not an independent source-image audit."
+    },
+    {
+      "body": "deimos",
+      "file": "data/textures/deimos.jpg",
+      "bytes": 480429,
+      "sha256": "204e89cc7dc128e9fa6ae5f14cc23dc7917a4a8ccab9feff1a9544d22b354dce",
+      "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Mars%20-%20Deimos/Mars%20-%20Deimos.jpg",
+      "limits": "Existing own-body NASA mosaic preserved. Exact input observation list, gap treatment, longitude/frame and calibrated photometric transfer remain to audit; server mission attribution is not an independent source-image audit."
+    }
+  ],
+  "credit": "NASA/JPL-Caltech/University of Arizona; Mars Reconnaissance Orbiter/HiRISE. HiRISE operated by University of Arizona, instrument built by Ball Aerospace; spacecraft built by Lockheed Martin, mission managed by JPL/Caltech for NASA.",
+  "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "observations": {
+    "phobos": {
+      "date": "2008-03-23",
+      "release": "2008-04-09",
+      "id": "PSP_007769_9010 / PIA10368",
+      "bands": "blue-green, red, near-infrared composite",
+      "scale": "6.8 metres per source pixel; smallest visible features about20 metres",
+      "limits": "Enhanced channel composite is not calibrated naked-eye colour. Stickney is about9km; grooves origin interpretations in2008 caption are historical hypotheses, not independently updated here."
+    },
+    "deimos": {
+      "date": "2009-02-21",
+      "release": "2009-03-09",
+      "ids": [
+        "ESP_012065_9000",
+        "ESP_012068_9000",
+        "PIA11826"
+      ],
+      "bands": "near-infrared, red, blue-green enhanced colour",
+      "scale": "about20 metres per source pixel; smallest visible features about60 metres",
+      "limits": "Two observations5h35m apart under different illumination. Enhanced colour is not calibrated naked-eye colour;2024 page migration is not observation date."
+    }
+  },
+  "shapePreservation": {
+    "phobos": "Existing Gaskell PDS full/preview GLBs unchanged. Native body-frame/albedo registration remains unverified.",
+    "deimos": "Cited native shape reconstruction remains pending."
+  },
+  "next": [
+    "Verify exact NASA3D source mosaic provenance and recent native observations before adopting assets.",
+    "Inspect downloaded JPEGs; publish unchanged native context additively.",
+    "Retain native globe maps; create independent research-guided hypothetical local observer scenes only where needed.",
+    "Recover standalone headroom before larger native Phobos image embedding."
+  ],
+  "externalBlockers": [],
+  "processing": "NASA dynamicimage publisher JPEG renditions downloaded byte-for-byte without local crop, recolour or resize; URL fit/crop parameters retained. Equality to archival TIFF or historical original JPEG is not asserted.",
+  "inspection": "Both downloaded JPEGs visually inspected: Phobos craters/grooves and Deimos two lighting views with publisher2km scale retained.",
+  "validation": {
+    "tests": "207 pass,1 catalogue skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15656761,
+    "snapshotSha256": "c0e105790db48b57593c92acad67d37d72e3542de18076c7c3f0fc83285e5c28",
+    "registryCount": 44
+  }
+}
