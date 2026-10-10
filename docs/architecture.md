@@ -28,7 +28,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   calendar month.
 - **Scale.** Each level is its own scene in its natural unit (km, AU, ly, Mly). The System
   View uses AU with a *floating origin*: the focused body sits at (0,0,0). It also uses a
-  logarithmic depth buffer, so true-scale Earth (4×10⁻⁵ AU) and Neptune's orbit (30 AU)
+  logarithmic depth buffer (orbit lines are drawn as screen-space Line2 twins of their thin lines, `fatlines.js`), so true-scale Earth (4×10⁻⁵ AU) and Neptune's orbit (30 AU)
   render together. Camera flights ease distance in log space.
 - **Frames.** Catalogue positions are J2000 equatorial parsecs. The System View uses the
   ecliptic frame, so every system's sky and the direction to Sol share one frame. The

@@ -17,6 +17,7 @@ import { gaiaBright } from '../server/gaia.js';
 import { satellites, satelliteDetail } from '../server/satellites.js';
 import { FEATURED } from '../src/data/feeds.js';
 import { SPACECRAFT } from '../src/data/spacecraft.js';
+import { BODIES as SOL_BODIES } from '../src/data/sol.js';
 import { monthlyVectors, localDay, track } from '../server/horizons.js';
 import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
 import { BODY_VISUALS, BESPOKE_TEXTURES } from '../src/data/bespoke.js';
@@ -133,6 +134,12 @@ for (const c of SPACECRAFT) {
       horizons[trackUrl(c.horizons, from, to)] = (await track(c.horizons, from, to, 400)).value.points.map((p) => p.map((v, i) => (i ? +v.toFixed(4) : v)));
     }
   } catch (err) { console.warn(`  spacecraft ${c.id}: ${err.message}`); }
+}
+// planets (and Pluto): this month's and next month's Horizons vectors, so the EPHEMERIS toggle works offline
+for (const b of SOL_BODIES.filter((x) => x.horizons)) {
+  for (const jd of [jdNow, jdNow + 31]) {
+    try { horizons[monthUrl(b.horizons, jd)] = (await monthlyVectors(b.horizons, isoD(jd).slice(0, 7))).value.points.map((p) => p.map((v, i) => (i ? +v.toFixed(7) : v))); } catch (err) { console.warn(`  horizons ${b.id}: ${err.message}`); }
+  }
 }
 // quadrant & universe: all clusters; nearby galaxies; Cosmicflows groups within 300 Mly (≈ 92 Mpc)
 const clustersSnap = await clusters().catch(() => null);

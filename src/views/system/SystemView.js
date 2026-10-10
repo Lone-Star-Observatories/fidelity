@@ -7,6 +7,7 @@
 
 import * as THREE from 'three';
 import { shapeFor } from '../../data/shapes.js';
+import { createFatLines } from './fatlines.js';
 import { loadBodyShape, loadCraftModel, disposeModel } from './models.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -70,6 +71,7 @@ const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 export function createSystemView(container, { clock, onSelect, onFrame, onPickStar, onDrillStar }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
+  const fat = createFatLines(); // thick orbit lines (#27)
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   container.appendChild(renderer.domElement);
@@ -510,6 +512,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       if (n.orbit) { root.remove(n.orbit); n.orbit.geometry.dispose(); n.orbit.material.dispose(); }
     }
     nodes = {};
+    fat.prune(new Set());
     disposeZones();
     if (belts) { root.remove(belts.points); belts.points.geometry.dispose(); belts.points.material.dispose(); belts = null; }
     if (sats) { root.remove(sats.points); sats.dispose(); sats = null; }
@@ -1043,6 +1046,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     if (!w || !h) return;
     renderer.setSize(w, h, false);
     labels.setSize(w, h);
+    fat.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
@@ -1116,6 +1120,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
         updateOrbit(n, jd);
         n.orbit.visible = showOrbits || id === focusId;
         n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
+        fat.sync(n.orbit, id === focusId ? 3 : 1.6);
       }
     }
 

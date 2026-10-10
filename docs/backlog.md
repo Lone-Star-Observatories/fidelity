@@ -30,7 +30,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 24 | **3D nebulae and clusters** | Best-effort 3D nebula models with real imagery; clusters drawn from their Gaia members; major stars in nebulae investigable. |
 | 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
 | 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |
-| 27 | **UI polish** | Thicker orbits, wider resizable panel, legend spacing, Horizons on by default. |
+| 27 | ✅ **UI polish** | Screen-space orbit lines (1.6 px, 3 px when selected), a wider panel resizable by dragging its edge, legend spacing, JPL Horizons on by default (Kepler while loading or offline; the standalone preview bundles this month and next). |
 | 28 | **Spectral filtering** | Filter every view by band (full, radio, microwave, IR, visible, UV, X-ray, gamma) then common bandpass. Per body and band: real image if one exists, else a predicted skin (best image convolved with the expected spectral response), else "not observed". |
 | 29 | **Deep-time arrivals** | Load and integrate stars well beyond the view radius (prefer Gaia DR3 velocities) so stars that move into the neighbourhood appear as today's neighbours disperse; badge catalogue completeness. |
 | 30 | **Eclipses, transits, alignments** | Solar eclipse umbra/penumbra on Earth, lunar eclipses, transits, occultations, conjunctions; validated against the Five Millennium Canon. |

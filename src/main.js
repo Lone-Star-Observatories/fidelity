@@ -212,12 +212,11 @@ controls.append(
   h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
   h('div', { className: 'bar-fill' }),
 );
-// Standalone build (e.g. a shared preview) has no backend, so no Horizons proxy.
+// The standalone preview has no backend: Horizons there is the months bundled in its snapshot
+// (this month and next), Keplerian elements outside them.
 if (STANDALONE) {
-  settings.set('ephemeris', 'kepler');
   const hz = [...controls.querySelectorAll('.pill')].find((b) => b.textContent === 'JPL HORIZONS');
-  hz.disabled = true;
-  hz.title = 'Needs the local backend: run `npm start` from the fidelity repo.';
+  hz.title = 'Bundled JPL Horizons months only in this preview (Keplerian elements outside them); run `npm start` for any date.';
 }
 const syncClock = () => {
   rateOut.textContent = clock.rate.label;

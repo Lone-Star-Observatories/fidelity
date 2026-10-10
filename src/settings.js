@@ -3,7 +3,7 @@ const KEY = 'fidelity.settings.v1';
 
 const defaults = {
   scale: 'enhanced',   // 'enhanced' | 'true'
-  ephemeris: 'kepler', // 'kepler' | 'horizons'
+  ephemeris: 'horizons', // 'kepler' | 'horizons' (Horizons falls back to Kepler month by month while loading or offline)
   labels: true,
   orbits: true,
   starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay

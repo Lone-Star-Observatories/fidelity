@@ -35,7 +35,7 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
 .lcars {
   height: 100%;
   display: grid;
-  grid-template-columns: calc(var(--rail-w) + 14px) minmax(0, 1fr) var(--panel-w, clamp(340px, 30vw, 460px));
+  grid-template-columns: calc(var(--rail-w) + 14px) minmax(0, 1fr) var(--panel-w, clamp(380px, 32vw, 520px));
   grid-template-rows: 72px 1fr 72px;
   grid-template-areas:
     'elbowT top top'
@@ -296,7 +296,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .badge-computed { background: var(--orange); }
 .badge-modelled { background: var(--lilac); }
 .badge-imagined { background: var(--rose); }
-.legend { display: flex; flex-wrap: wrap; gap: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
 
 /* ---- bottom controls ------------------------------------------------------------- */
 .ctl-group { display: flex; gap: 3px; align-items: flex-end; height: var(--bar-h); }

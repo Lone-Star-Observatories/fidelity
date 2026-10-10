@@ -95,6 +95,24 @@ async function horizonsOnce(params) {
   return res.json();
 }
 
+const MON = { JAN: '01', FEB: '02', MAR: '03', APR: '04', MAY: '05', JUN: '06', JUL: '07', AUG: '08', SEP: '09', OCT: '10', NOV: '11', DEC: '12' };
+/**
+ * Run `get(from, to)`; when Horizons says the (predicted) ephemeris starts or ends inside the
+ * range, run it again on the part that exists and report where the ephemeris starts/ends.
+ * `margin` days are kept clear of the edge.
+ */
+async function clipped(get, start, stop, margin = 0) {
+  try { return { points: await get(start, stop), ephemerisStart: null, ephemerisEnd: null }; } catch (err) {
+    const after = String(err.message).match(/after A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
+    const before = String(err.message).match(/prior to A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
+    if (!after && !before) throw err;
+    const d = (m, shift) => new Date(Date.parse(`${m[1]}-${MON[m[2]]}-${m[3]}T00:00:00Z`) + shift * 86400000).toISOString().slice(0, 10);
+    const from = before ? d(before, 1) : start, to = after ? d(after, -margin) : stop;
+    if (Date.parse(to) <= Date.parse(from)) throw err;
+    return { points: await get(from, to), ephemerisStart: before ? d(before, 0) : null, ephemerisEnd: after ? d(after, 0) : null };
+  }
+}
+
 /**
  * One UTC day of planet-relative states (km, km/s; 10-minute steps) for a spacecraft orbiting
  * `center` (a major-body id, e.g. 499 Mars). Past days are kept; today/future refreshed daily.
@@ -120,9 +138,10 @@ export async function localMonth(body, center, month) {
   const { start, stop } = monthRange(month);
   const past = Date.parse(`${stop}T00:00:00Z`) < Date.now() - 86400000;
   return cached('horizons-local-month', `${body}@${center}-${month}`, past ? 365 * 86400000 : 86400000, async () => {
-    const json = await horizons({ COMMAND: `'${body}'`, CENTER: `'500@${center}'`, START_TIME: `'${start}'`, STOP_TIME: `'${stop}'`,
-      STEP_SIZE: "'20m'", VEC_TABLE: '2', OUT_UNITS: 'KM-S' });
-    return { body, center, month, source: 'JPL Horizons', points: parseStateVectors(json.result || '') };
+    const get = async (from, to) => parseStateVectors((await horizons({ COMMAND: `'${body}'`, CENTER: `'500@${center}'`, START_TIME: `'${from}'`, STOP_TIME: `'${to}'`,
+      STEP_SIZE: "'20m'", VEC_TABLE: '2', OUT_UNITS: 'KM-S' })).result || '');
+    const { points, ephemerisStart, ephemerisEnd } = await clipped(get, start, stop);
+    return { body, center, month, source: 'JPL Horizons', points, ephemerisStart, ephemerisEnd };
   });
 }
 
@@ -130,22 +149,13 @@ export async function localMonth(body, center, month) {
 export async function track(body, start, stop, n = 400) {
   if (!BODY.test(body) || !DAY.test(start) || !DAY.test(stop)) throw Object.assign(new Error('bad track request'), { status: 400 });
   const days = Math.max(1, Math.round((Date.parse(stop) - Date.parse(start)) / 86400000 / Math.min(1000, Math.max(10, Number(n) || 400))));
-  const MON = { JAN: '01', FEB: '02', MAR: '03', APR: '04', MAY: '05', JUN: '06', JUL: '07', AUG: '08', SEP: '09', OCT: '10', NOV: '11', DEC: '12' };
-  return cached('horizons-track', `${body}-${start}-${stop}-${days}`, THIRTY_DAYS, async () => {
+  return cached('horizons-track', `v2-${body}-${start}-${stop}-${days}`, THIRTY_DAYS, async () => {
     const get = async (from, to) => {
       const json = await horizons({ COMMAND: `'${body}'`, CENTER: "'500@10'", START_TIME: `'${from}'`, STOP_TIME: `'${to}'`,
         STEP_SIZE: `'${days}d'`, VEC_TABLE: '1', OUT_UNITS: 'AU-D' });
       return parseVectors(json.result || '');
     };
-    let points;
-    try { points = await get(start, stop); } catch (err) {
-      // predicted ephemerides end (or start) somewhere: clip the track to what exists
-      const after = String(err.message).match(/after A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
-      const before = String(err.message).match(/prior to A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
-      if (!after && !before) throw err;
-      const d = (m, shift) => new Date(Date.parse(`${m[1]}-${MON[m[2]]}-${m[3]}T00:00:00Z`) + shift * 86400000).toISOString().slice(0, 10);
-      points = await get(before ? d(before, 1) : start, after ? d(after, -1) : stop);
-    }
-    return { body, start, stop, stepDays: days, source: 'JPL Horizons', points };
+    const { points, ephemerisStart, ephemerisEnd } = await clipped(get, start, stop, 1);
+    return { body, start, stop, stepDays: days, source: 'JPL Horizons', points, ephemerisStart, ephemerisEnd };
   });
 }

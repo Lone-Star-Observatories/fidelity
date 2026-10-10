@@ -1,12 +1,17 @@
 // Client for the backend's Horizons proxy. Loads one calendar month of daily
 // vectors per body on demand (the backend stores them on disk), and interpolates.
 
+import snapshot from '#snapshot';
 import { dateFromJd } from '../astro/time.js';
 
 const months = new Map(); // `${body}|${YYYY-MM}` → Promise<points | null>
 
 function load(body, month) {
   const key = `${body}|${month}`;
+  if (!months.has(key) && snapshot) { // standalone: the months bundled in the snapshot, else Kepler
+    const pts = snapshot.horizons?.[`/api/horizons/vectors?body=${body}&month=${month}`];
+    months.set(key, pts ? Promise.resolve(pts) : Promise.reject(new Error('not bundled')));
+  }
   if (!months.has(key)) {
     months.set(key, fetch(`/api/horizons/vectors?body=${body}&month=${month}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
