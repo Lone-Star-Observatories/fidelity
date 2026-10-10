@@ -505,9 +505,9 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .bar-bottom > .bar-row.time-row { height: calc(var(--bar-h) * 2.5); align-items: stretch; }
 .time-row > * { height: auto; }
 .time-row .tc-label { height: auto; align-items: flex-end; padding-bottom: 8px; }
-.tc-readout { width: 220px; border: 2px solid var(--violet); padding: 4px 12px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.tc-readout { width: max-content; min-width: 200px; border: 2px solid var(--violet); padding: 4px 12px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
 .tc-clock { color: var(--gold); font-size: calc(23px * var(--text-scale, 1)); white-space: nowrap; }
-.tc-date { display: flex; align-items: center; gap: 6px; color: var(--violet); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; }
+.tc-date { display: flex; align-items: center; gap: 6px; color: var(--violet); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; white-space: nowrap; }
 .bar-bottom .tc-date input[type='date'] { height: 24px; padding: 0 4px; font-size: calc(13px * var(--text-scale, 1)); }
 .tc-mid { flex: 1 0 520px; min-width: 520px; border: 2px solid var(--violet); padding: 3px 10px 2px; display: grid; grid-template-rows: auto 1fr; gap: 2px; }
 .tc-head { display: flex; align-items: center; gap: 4px; min-width: 0; }
