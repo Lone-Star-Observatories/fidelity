@@ -17,7 +17,7 @@ const L0 = Math.log10(AXIS[0]), L1 = Math.log10(AXIS[1]);
 const TICKS = [[1e-6, '1 fm'], [1e-3, '1 pm'], [1, '1 nm'], [1e3, '1 µm'], [1e6, '1 mm'], [1e9, '1 m']];
 const UNIT_TICKS = [[1.24e-6, '1 GeV'], [1.24e-3, '1 MeV'], [1.24, '1 keV'], [1240, '1 eV'], [3e5, '1 THz'], [3e8, '1 GHz'], [3e9, '100 MHz']];
 const pct = (x) => `${Math.round(x * 100)}%`;
-const RES_TEXT = { preview: 'PREVIEW · LOADING FULL RESOLUTION', loading: 'LOADING', full: 'FULL RESOLUTION', failed: 'FULL RESOLUTION FAILED', 'failed-preview': 'PREVIEW ONLY · FULL RESOLUTION FAILED' };
+const RES_TEXT = { preview: 'PREVIEW · LOADING FULL RESOLUTION', loading: 'LOADING', full: 'FULL RESOLUTION', failed: 'FULL RESOLUTION FAILED', 'failed-preview': 'PREVIEW ONLY · FULL RESOLUTION FAILED', baked: 'BAKED OFFLINE PREVIEW' };
 export const resText = (res) => RES_TEXT[res] ?? '';
 
 /**
@@ -220,7 +220,7 @@ export function createSpectrumControl({ h, pill, getCurve, setCurve, context = (
     if (look) {
       const bl = h('dl');
       bl.append(h('dt', { textContent: ctx.body.name.toUpperCase() }), h('dd', { textContent: `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}` }), badge(look.tier, look.detail));
-      for (const s of look.sources ?? []) bl.append(h('dt', { textContent: s.drawn ? 'REAL · DRAWN' : 'REAL · LISTED' }), h('dd', { textContent: `${s.credit} · ${pct(s.weight)}` }), badge('measured', s.note ?? s.credit));
+      for (const s of look.sources ?? []) bl.append(h('dt', { textContent: `${s.predicted ? 'MODELLED' : 'REAL'} · ${s.drawn ? 'DRAWN' : 'LISTED'}` }), h('dd', { textContent: `${s.credit} · ${pct(s.weight)}` }), badge(s.predicted ? 'modelled' : 'measured', s.note ?? s.credit));
       if (look.notObserved?.length) bl.append(h('dt', { textContent: 'NOT OBSERVED' }), h('dd', { textContent: look.notObserved.map((r) => fmtRange(...r)).join(', ') }), badge('computed', 'Parts of the curve with no real image and nothing to predict from.'));
       else if (look.uncovered?.length) bl.append(h('dt', { textContent: 'NO REAL IMAGE' }), h('dd', { textContent: look.uncovered.map((r) => fmtRange(...r)).join(', ') }), badge('modelled', 'Predicted there (MODELLED · PREDICTED).'));
       kids.push(bl);

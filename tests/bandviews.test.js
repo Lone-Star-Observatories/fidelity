@@ -88,11 +88,15 @@ test('Star View photosphere: the Sun shows NoRH in the microwave, its measured s
   assert.equal(starBandLook({ isSun: true }, mw.band, mw.pass).tier, 'measured');
   assert.equal(starBandLook({ isSun: true, noFeeds: true }, mw.band, mw.pass).mode, 'glow', 'standalone: the measured-signature sketch');
   const r = pass('radio-408');
-  assert.equal(starBandLook({ isSun: true }, r.band, r.pass).mode, 'glow');
+  const r408 = starBandLook({ isSun: true }, r.band, r.pass);
+  assert.equal(r408.feed, 'sunmodel-408', '408 MHz: the modelled disc (#28)');
+  assert.equal(r408.tier, 'modelled', 'a modelled disc is never MEASURED');
+  assert.equal(starBandLook({ isSun: true, noFeeds: true }, r.band, r.pass).mode, 'glow', 'standalone without a baked copy: the radio sketch');
   assert.equal(starBandLook({ isSun: false, teff: 5772 }, r.band, r.pass).mode, 'dark');
   const custom = { id: 'custom', palette: 'microwave', passes: [] };
   assert.equal(starBandLook({ isSun: true }, custom, { id: 'custom', filter: ghz(16.5, 17.5) }).feed, 'norh-17', 'custom curve matched by range');
-  assert.equal(starBandLook({ isSun: true }, custom, { id: 'custom', filter: ghz(1.0, 1.2) }).mode, 'glow', 'custom radio curve: the radio sketch');
+  const cr = starBandLook({ isSun: true }, custom, { id: 'custom', filter: ghz(1.0, 1.2) });
+  assert.ok(!cr.feed && cr.tier === 'modelled' && /F10\.7/.test(cr.detail), 'custom radio curve clear of every map: the radio sketch');
   assert.equal(sunSignatureKey(1e-5), 'gamma');
   const ks = pass('ir-Ks');
   const cool = starBandLook({ teff: 3000 }, ks.band, ks.pass), hot = starBandLook({ teff: 20000 }, ks.band, ks.pass);

@@ -13,6 +13,8 @@ import * as THREE from 'three';
 import { starMaterial, loadTexture, applyLiveSkin, loadLive } from '../system/materials.js';
 import { currentBand, onBand } from '../../data/bandstate.js';
 import { starBandLook, PAL_RGB } from '../system/starband.js';
+import { bakedFeed } from '../../data/bandbake.js';
+import { feedCredit } from '../system/bandtextures.js';
 import { paletteIndex } from '../system/bandskin.js';
 import { effectiveNm } from '../../astro/bands.js';
 import { SUN } from '../../data/sol.js';
@@ -124,7 +126,7 @@ export function createStarView(container) {
   function applyBand() {
     if (!star || !current) return;
     const { band, pass } = currentBand(), u = star.material.uniforms, mesh = star, glowNow = glow;
-    const look = starBandLook({ teff: current.body.teffK ?? 5772, isSun: current.isSun, noFeeds: STANDALONE }, band, pass);
+    const look = starBandLook({ teff: current.body.teffK ?? 5772, isSun: current.isSun, hasFeed: (id) => !STANDALONE || !!bakedFeed(id) }, band, pass);
     bandLook = look; bandFeedTime = null;
     u.uBandDisk.value = 0;
     const setGlow = (t) => {
@@ -144,8 +146,8 @@ export function createStarView(container) {
       loadLive(look.feed, 6 * 3600000).then((l) => {
         if (bandLook !== look || star !== mesh) return;
         if (!l) { look.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; look.tier = 'computed'; drawBandCard(); return; }
-        u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk;
-        bandFeedTime = l.time; drawBandCard();
+        u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; u.uBandMix.value = look.mix ?? 1; if (l.disk) u.uDiskR.value = l.disk;
+        feedCredit(look, l); bandFeedTime = l.time; drawBandCard();
       });
     } else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
     drawBandCard();

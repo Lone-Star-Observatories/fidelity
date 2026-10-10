@@ -37,10 +37,12 @@ import { createFeatureLayer } from './features.js';
 import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, C_KM_S } from '../../astro/lookat.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
-import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
-import { starBandDelta, paletteIndex, SUN_SIGNATURES, ringBandLook } from './bandskin.js';
-import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, FULL_DELAY_MS } from './bandtextures.js';
-import { prepare, skyLayers as curveSkyLayers, curveStarDelta, curveStarRgb, starCurveLook, sunCurveLook } from './curvelook.js';
+import { BANDS, bandById, passById } from '../../data/bands.js';
+import { starBandDelta, paletteIndex, ringBandLook } from './bandskin.js';
+import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, feedCredit, FULL_DELAY_MS } from './bandtextures.js';
+import { prepare, skyLayers as curveSkyLayers, curveStarDelta, curveStarRgb, starCurveLook } from './curvelook.js';
+import { starBandLook } from './starband.js';
+import { bakedFeed, bakedHips, bakedText } from '../../data/bandbake.js';
 import { curveFromLegacy } from '../../data/curve.js';
 import { bandLoads } from '../../data/bandload.js';
 import { currentBand } from '../../data/bandstate.js';
@@ -268,7 +270,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     bandTexture(hipsUrl(layer.sky, 'preview')).then((r) => {
       if (!r || !current() || shown) return;
       u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'preview'; look.res = mesh.userData.res = 'preview';
+      if (STANDALONE_BANDS) { look.res = mesh.userData.res = 'baked'; const b = bakedHips(layer.sky); if (b) look.label = `${layer.skyCredit} · ${bakedText(b)}`; }
     });
+    if (STANDALONE_BANDS) return; // the standalone preview: only its baked copy (#28)
     const full = new Promise((ok) => setTimeout(ok, FULL_DELAY_MS)).then(() => (!current() ? true : bandTexture(hipsUrl(layer.sky)).then((r) => {
       if (!current()) return true;
       if (!r) { look.res = mesh.userData.res = shown ? 'failed-preview' : 'failed'; return null; }
@@ -291,7 +295,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   function applySkyBand() {
     const full = band.id === 'full';
     skyNow = full ? { layers: [], measured: 0 } : curveSkyLayers(bandCurve());
-    const layers = STANDALONE_BANDS ? [] : skyNow.layers;
+    // the standalone preview draws the surveys it carries baked (#28), re-weighted among themselves
+    const baked = STANDALONE_BANDS ? skyNow.layers.filter((L) => bakedHips(L.sky)) : null, bw = baked?.reduce((a, L) => a + L.weight, 0);
+    const layers = STANDALONE_BANDS ? baked.map((L) => ({ ...L, weight: L.weight / bw })) : skyNow.layers;
+    if (STANDALONE_BANDS) skyNow = { ...skyNow, layers, measured: layers.length ? skyNow.measured * bw : 0 }; // approximately: the share of the overlap the baked surveys carry
     // a running average: layer k drawn at w_k / Σ_{j≤k} w_j over the ones before gives each its weight
     let acc = 0;
     skyBands.forEach((m, i) => { if (i >= layers.length) { m.visible = false; m.userData.look = null; } });
@@ -339,7 +346,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
   /** An SDO frame on the Sun's disc, preview first (#62). */
   function showSunFeed(n, u, feed, look) {
-    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); });
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;
@@ -351,35 +358,20 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     u.uBandDisk.value = 0;
     if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
     const sol = model.isSol && n.body.id === model.starId;
-    if (curve) { // a custom curve (#66): SDO where it overlaps, the Sun's signatures, the photosphere through T(λ)
-      const prep = prepare(curve), teff = n.body.teffK ?? 5772;
-      if (sol) {
-        const s = sunCurveLook(prep, teff);
-        n.bandLook = s.look;
-        if (s.feed?.feed && s.realShare >= 0.5 && !STANDALONE_BANDS) { u.uBandTint.value.setRGB(1, 1, 1); showSunFeed(n, u, s.feed.feed, s.look); return; }
-        u.uBandTint.value.setRGB(...s.tint);
-        restoreStarDisk(n);
-        return;
-      }
-      const s = starCurveLook(teff, prep, n.body.name);
+    if (sol) { // the Sun: the same look as the Star View (starband.js): its maps by bandpass id, or by `range` overlap for a custom curve, weighted (#28)
+      const s = starBandLook({ teff: n.body.teffK ?? 5772, isSun: true, hasFeed: (id) => !STANDALONE_BANDS || !!bakedFeed(id) }, band, p);
+      n.bandLook = s;
+      u.uBandTint.value.setRGB(...s.tint);
+      if (s.feed) { if (u.uBandMix) u.uBandMix.value = s.mix; showSunFeed(n, u, s.feed, s); return; }
+      restoreStarDisk(n);
+      return;
+    }
+    if (curve) { // a custom curve (#66): the photosphere through T(λ)
+      const s = starCurveLook(n.body.teffK ?? 5772, prepare(curve), n.body.name);
       u.uBandTint.value.setRGB(...s.tint); n.bandLook = s.look;
       return;
     }
-    const src = sol ? bodyBandSource('sun', band, p) : null;
-    if (src?.feed && !STANDALONE_BANDS) {
-      n.bandLook = { mode: 'real', tier: 'measured', label: src.note ?? 'REAL IMAGE IN THIS BAND', detail: src.credit };
-      showSunFeed(n, u, src.feed, n.bandLook);
-      u.uBandTint.value.setRGB(1, 1, 1);
-      return;
-    }
     const tint = PAL_RGB[paletteIndex(band.palette)];
-    // the Sun's corona, chromosphere and cosmic-ray glow where its photosphere's blackbody says "nothing"
-    const sig = sol ? SUN_SIGNATURES[band.id] : null;
-    if (sig) {
-      u.uBandTint.value.setRGB(tint[0] * sig.gain, tint[1] * sig.gain, tint[2] * sig.gain);
-      n.bandLook = { mode: 'glow', tier: 'modelled', label: sig.label, detail: sig.why };
-      return;
-    }
     const teff = n.body.teffK ?? 5772, d = starBandDelta(teff, p);
     if (d === -Infinity) { u.uBandTint.value.setRGB(0.02, 0.02, 0.02); n.bandLook = { mode: 'dark', tier: 'computed', label: 'NOT OBSERVED IN THIS BAND', detail: `A ${Math.round(teff)} K photosphere emits almost nothing in ${p?.label ?? band.label}; no image or measured flux of this star is available here.` }; return; }
     const k = Math.max(0.05, Math.min(3, 10 ** (0.4 * Math.max(-6, Math.min(6, d)) * 0.35)));
