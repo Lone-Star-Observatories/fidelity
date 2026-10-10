@@ -19,7 +19,7 @@ const pill = (label, on, onClick, extra = '') => {
   b.addEventListener('click', onClick);
   return b;
 };
-const COLOURS = { radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', video: '#ffcc66', windy: '#cc99cc' };
+const COLOURS = { radiogarden: '#66cc66', radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', video: '#ffcc66', windy: '#cc99cc' };
 
 // curated, bundled layer: observatory cams (#37) and volcano observatories
 const VIDEO = {
@@ -59,7 +59,7 @@ export function createSignalsMap(opts = {}) {
   const credits = el('div', { className: 'sm-credits' });
   const notes = el('p', { className: 'note', textContent: STANDALONE
     ? 'Radio stations, SDR receivers and traffic cameras load through the local backend (npm start); this preview shows only the bundled observatory and volcano views.'
-    : 'Radio Garden (no public API) and the WebSDR.org list (re-use needs permission) are links only, awaiting permission. Aircraft (OpenSky) are not shown yet.' });
+    : 'Radio Garden shows when its export is in data/radio-garden/stations.json (local only, not redistributed). The WebSDR.org list (re-use needs permission) is a link only. Aircraft (OpenSky) are not shown yet.' });
   node.append(pills, frame, info, credits, notes);
 
   // ---- view: equirectangular, centre (cx lon, cy lat) and zoom ----------------------------------
@@ -138,7 +138,7 @@ export function createSignalsMap(opts = {}) {
       const [lat, lon, name, href, detail, extra] = m;
       const primary = opts.onPick ? el('button', { type: 'button', className: 'pill cm-link sm-pick', textContent: opts.pickLabel?.(id) ?? 'SELECT', onclick: () => opts.onPick(id, m, l) }) : null;
       const links = [[l.kind === 'audio' ? 'HOMEPAGE ↗' : l.kind === 'sdr' ? 'OPEN RECEIVER ↗' : id === 'traffic' ? 'CURRENT IMAGE ↗' : 'OPEN ↗', href]];
-      if (id === 'radio' && extra) links.push(['LISTEN ↗', extra]);
+      if ((id === 'radio' || id === 'radiogarden') && extra) links.push([id === 'radiogarden' && m[6]?.n > 1 ? `LISTEN (1 OF ${m[6].n}) ↗` : 'LISTEN ↗', extra]);
       if (id === 'traffic' && extra) links.push([/\.m3u8/.test(extra) ? 'HLS VIDEO ↗' : 'VIDEO CLIP ↗', extra]);
       return el('div', { className: 'cm-entry sm-hit' },
         el('div', { className: 'cm-head' }, el('span', { className: 'sm-dot', style: `background:${COLOURS[id]}` }), el('span', { className: 'cm-name', textContent: name }),
@@ -187,12 +187,12 @@ export function createSignalsMap(opts = {}) {
   // ---- layers ------------------------------------------------------------------------------------
   function drawPills() {
     pills.replaceChildren(el('span', { className: 'im-label', textContent: 'SHOW' }), ...[...layers].map(([id, l]) => {
-      const n = l.state === 'ready' ? ` · ${l.count.toLocaleString()}` : l.state === 'loading' ? ' · …' : l.state === 'error' ? ' · UNAVAILABLE' : l.state === 'nokey' ? ' · NEEDS KEY' : '';
+      const n = l.state === 'ready' ? ` · ${l.count.toLocaleString()}` : l.state === 'loading' ? ' · …' : l.state === 'error' ? ' · UNAVAILABLE' : l.state === 'nokey' ? (l.needsFile ? ' · NEEDS LOCAL EXPORT' : ' · NEEDS KEY') : '';
       const b = pill(`${l.label}${n}`, l.on && l.state === 'ready', () => { l.on = !l.on; drawPills(); draw(); }, l.state === 'ready' ? '' : ' sm-wait');
       b.style.setProperty('--dot', COLOURS[id] ?? '#fff');
       if (l.state !== 'ready') b.disabled = l.state !== 'loading';
       return b;
-    }), ...(STANDALONE ? [] : [['WEBSDR.ORG ↗', 'http://websdr.org/'], ['RADIO GARDEN ↗', 'https://radio.garden/']].map(([t, u]) =>
+    }), ...(STANDALONE ? [] : [['WEBSDR.ORG ↗', 'http://websdr.org/']].map(([t, u]) =>
       el('a', { className: 'pill sm-await', href: u, target: '_blank', rel: 'noopener noreferrer', textContent: `${t.replace(' ↗', '')} · AWAITING PERMISSION ↗` }))));
     credits.replaceChildren(...[...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) =>
       el('p', { className: 'note credit', textContent: `${l.label}: ${l.credit} Licence: ${l.licence}.${l.fetched ? ` List fetched ${l.fetched.slice(0, 16).replace('T', ' ')} UTC.` : ''}` })));

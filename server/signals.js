@@ -7,7 +7,11 @@
 // map makers). WebSDR.org's list says it "may not be re-used ... without prior permission" and
 // Radio Garden has no public API: both are links only, awaiting permission.
 
+import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { cached } from './cache.js';
+import { config } from './config.js';
 
 const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const MIN = 60000, HOUR = 60 * MIN;
@@ -117,6 +121,41 @@ export function parseWindy(j) {
   return out;
 }
 
+// ---- Radio Garden, from a local export (#69) ----------------------------------------------------
+// Radio Garden has no public API; a user-supplied export ({ "Place,CC": { coords: { n, e }, urls: [{ name,
+// url }] } }) in data/radio-garden/stations.json (or FIDELITY_RADIO_GARDEN_FILE) is read locally and never
+// committed or redistributed. The map gets one marker per place; a place's streams load on demand.
+export const radioGardenFile = () => process.env.FIDELITY_RADIO_GARDEN_FILE || path.join(config.dataDir, 'radio-garden', 'stations.json');
+let rg = null;
+/** Parse an export (it may contain bare NaN) → { places: [{ name, country, lat, lon, streams }], urls: Set }. */
+export function parseRadioGarden(text) {
+  const j = JSON.parse(String(text).replace(/:\s*NaN\b/g, ': null'));
+  const places = [], urls = new Set();
+  for (const [key, v] of Object.entries(j ?? {})) {
+    const lat = Number(v?.coords?.n), lon = Number(v?.coords?.e);
+    if (!okLatLon(lat, lon)) continue;
+    const streams = (v.urls ?? []).map((u) => ({ name: clip(u?.name ?? 'Unnamed station', 60) || 'Unnamed station', url: httpUrl(u?.url) })).filter((u) => u.url);
+    if (!streams.length) continue;
+    for (const u of streams) urls.add(u.url);
+    const [name, country] = key.split(',');
+    places.push({ name: clip(name), country: clip(country ?? '', 4), lat: r4(lat), lon: r4(lon), streams });
+  }
+  return { places, urls };
+}
+async function radioGarden() {
+  rg ??= fs.readFile(radioGardenFile(), 'utf8').then(parseRadioGarden).catch((err) => { rg = null; throw err; });
+  return rg;
+}
+/** GET /api/signals/radiogarden/place?i= → that place's streams. */
+export async function radioGardenPlace(i) {
+  const { places } = await radioGarden();
+  const p = places[Number(i)];
+  if (!p) throw Object.assign(new Error('unknown place'), { status: 404 });
+  return p;
+}
+/** Is `url` a stream in the local Radio Garden export? */
+export async function radioGardenHas(url) { try { return (await radioGarden()).urls.has(url); } catch { return false; } }
+
 // ---- layers -------------------------------------------------------------------------------------
 
 const RADIO_SERVERS = ['de1.api.radio-browser.info', 'de2.api.radio-browser.info', 'fi1.api.radio-browser.info'];
@@ -125,17 +164,24 @@ const CALTRANS_DISTRICTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 export const LAYERS = {
   radio: {
     label: 'RADIO STATIONS', kind: 'audio', ttl: 12 * HOUR,
-    credit: 'Radio Browser (radio-browser.info): community-run open database of internet radio stations; free to use. The 1,500 most-listened stations with a location.',
+    credit: 'Radio Browser (radio-browser.info): community-run open database of internet radio stations; free to use. Every station with a location (about 13,000; those without coordinates cannot be mapped).',
     licence: 'Open data, free to use (radio-browser.info)', home: 'https://www.radio-browser.info/',
     async get() {
       let last;
       for (const host of RADIO_SERVERS) {
         try {
-          return parseRadioBrowser(await get(`https://${host}/json/stations/search?has_geo_info=true&hidebroken=true&order=clickcount&reverse=true&limit=1500`));
+          return parseRadioBrowser(await get(`https://${host}/json/stations/search?has_geo_info=true&hidebroken=true&order=clickcount&reverse=true&limit=100000`, { timeoutMs: 240000 })); // ~17 MB, cached 12 h
         } catch (err) { last = err; }
       }
       throw last;
     },
+  },
+  radiogarden: {
+    label: 'RADIO GARDEN · LOCAL EXPORT', kind: 'audio', ttl: 0, local: true,
+    credit: 'Radio Garden station list, from an export you supplied (data/radio-garden/stations.json). Read locally; not redistributed. Radio Garden has no public API.',
+    licence: 'Your local copy; Radio Garden (radio.garden) owns its directory', home: 'https://radio.garden/',
+    // [lat, lon, place, homepage, detail, first stream, { place index, streams }]
+    async get() { return (await radioGarden()).places.map((p, i) => [p.lat, p.lon, p.name, 'https://radio.garden/', `${p.country} · ${p.streams.length} STATION${p.streams.length > 1 ? 'S' : ''}`, p.streams[0].url, { rg: i, n: p.streams.length }]); },
   },
   kiwisdr: {
     label: 'SDR RECEIVERS · KIWISDR', kind: 'sdr', ttl: HOUR,
@@ -179,10 +225,9 @@ export const LAYERS = {
 export function signalLayers() {
   return {
     layers: Object.entries(LAYERS).map(([id, l]) => ({ id, label: l.label, kind: l.kind, credit: l.credit, licence: l.licence, home: l.home,
-      available: !l.needsKey || !!process.env[l.needsKey], needsKey: l.needsKey ?? null })),
+      available: l.local ? existsSync(radioGardenFile()) : !l.needsKey || !!process.env[l.needsKey], needsKey: l.needsKey ?? null, needsFile: l.local ? radioGardenFile() : null })),
     linksOnly: [
       { label: 'WEBSDR.ORG', home: 'http://websdr.org/', note: 'The WebSDR list may not be re-used in another site or automated system without permission: link only, awaiting permission.' },
-      { label: 'RADIO GARDEN', home: 'https://radio.garden/', note: 'No public API: link only, awaiting permission.' },
     ],
   };
 }
@@ -192,6 +237,10 @@ export async function signalLayer(id) {
   const l = Object.hasOwn(LAYERS, id) ? LAYERS[id] : null;
   if (!l) throw bad('unknown layer');
   if (l.needsKey && !process.env[l.needsKey]) throw Object.assign(new Error(`${l.label} needs ${l.needsKey} on the backend`), { status: 404 });
-  const { value, storedAt, cache, error } = await cached('signals', `v1-${id}`, l.ttl, () => l.get());
+  if (l.local) { // read straight from the local file each time (no cache copy of someone else's directory)
+    try { const markers = await l.get(); return { layer: id, label: l.label, kind: l.kind, count: markers.length, markers, fetched: null, cache: 'local', error: null, credit: l.credit, licence: l.licence }; }
+    catch { throw Object.assign(new Error(`${l.label}: put the export at ${radioGardenFile()}`), { status: 404 }); }
+  }
+  const { value, storedAt, cache, error } = await cached('signals', `${id === 'radio' ? 'v2' : 'v1'}-${id}`, l.ttl, () => l.get());
   return { layer: id, label: l.label, kind: l.kind, count: value.length, markers: value, fetched: new Date(storedAt).toISOString(), cache, error: error ?? null, credit: l.credit, licence: l.licence };
 }

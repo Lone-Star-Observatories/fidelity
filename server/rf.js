@@ -12,7 +12,7 @@
 import net from 'node:net';
 import tls from 'node:tls';
 import { spawn } from 'node:child_process';
-import { signalLayer } from './signals.js';
+import { signalLayer, radioGardenHas } from './signals.js';
 import { encodeFrame, decodeFrames, acceptKey, allowedOrigin } from './voice.js';
 import { kiwiTag, findSignals, kiwiTuneCommands, KIWI_SND_SETUP, KIWI_WF_SETUP, icySplitter } from '../src/data/rf.js';
 
@@ -70,7 +70,7 @@ const nowPlaying = new Map(); // stream url → { title, at }
 
 /** Pipe a listed radio stream to `res`, metadata removed. */
 export async function streamStation(url, res) {
-  if (!url || !(await layerUrls('radio')).has(url)) throw forbidden('not a listed station stream');
+  if (!url || !((await layerUrls('radio').catch(() => new Set())).has(url) || (await radioGardenHas(url)))) throw forbidden('not a listed station stream');
   const up = await rawGet(url, { headers: { 'Icy-MetaData': '1' } });
   if (up.status !== 200) { up.socket.destroy(); throw Object.assign(new Error(`station HTTP ${up.status}`), { status: 502 }); }
   const metaint = Number(up.headers['icy-metaint']) || 0;
