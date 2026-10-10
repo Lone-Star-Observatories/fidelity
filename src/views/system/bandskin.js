@@ -56,8 +56,29 @@ const GLOWS = {
     mars: { kind: 2, gain: 0.6, why: 'Day-side X-ray fluorescence and a faint exospheric halo (Chandra 2001).' },
     jupiter: { kind: 3, gain: 1, why: 'Auroral X-ray hot spots at both poles (Chandra, XMM-Newton).' },
     earth: { kind: 3, gain: 0.8, why: 'Auroral X-rays from electron precipitation (PIXIE, Polar).' } },
-  gamma: { moon: { kind: 1, gain: 0.6, why: 'Cosmic rays striking the regolith: the Moon outshines the quiet Sun above 100 MeV (Fermi-LAT, EGRET).' },
-    earth: { kind: 4, gain: 1, why: 'Cosmic rays striking the upper atmosphere make Earth\'s limb glow (Fermi-LAT, EGRET).' } },
+  // Cosmic rays make every solid surface and every atmosphere glow in gamma rays (pion decay above
+  // ~100 MeV, nuclear lines at MeV). Only the Moon (and Earth's limb, from orbit) is close enough
+  // for Fermi to see; Mercury, Mars, Vesta and Ceres were measured by orbiting spectrometers.
+  gamma: { moon: { kind: 1, gain: 0.6, detected: true, why: 'Cosmic rays striking the regolith. Fermi-LAT and EGRET see it from Earth orbit: about 1.1×10⁻⁶ photons cm⁻² s⁻¹ above 100 MeV, brightest at solar minimum. That is about twice the Sun\'s disc, and about equal to the disc plus its halo (Abdo et al. 2011, 2012). Lunar Prospector and Kaguya mapped its MeV nuclear lines from orbit.' },
+    earth: { kind: 4, gain: 1, detected: true, why: 'Cosmic rays striking the upper atmosphere make Earth\'s limb the brightest gamma-ray source in Fermi\'s sky (seen from low orbit). Thunderstorms add terrestrial gamma-ray flashes.' },
+    mercury: { kind: 1, gain: 0.35, detected: true, why: 'Cosmic-ray glow of the surface, measured from orbit by MESSENGER\'s gamma-ray spectrometer (K, Th, U, Si, Fe lines). Far too faint to see from Earth.' },
+    mars: { kind: 1, gain: 0.35, detected: true, why: 'Cosmic-ray glow of the surface through the thin air, mapped from orbit by Mars Odyssey\'s gamma-ray spectrometer (it found the buried water ice). Far too faint to see from Earth.' },
+    vesta: { kind: 1, gain: 0.3, detected: true, why: 'Cosmic-ray glow of the surface, measured from orbit by Dawn\'s GRaND spectrometer. Far too faint to see from Earth.' },
+    ceres: { kind: 1, gain: 0.3, detected: true, why: 'Cosmic-ray glow of the surface, measured from orbit by Dawn\'s GRaND spectrometer (near-surface ice). Far too faint to see from Earth.' },
+    jupiter: { kind: 4, gain: 0.15, why: 'Predicted cosmic-ray glow of the upper atmosphere (its magnetic field shields much of it). Not confirmed: a tentative Fermi-LAT signal (Leane & Linden 2023) awaits confirmation.' } },
+};
+// Bodies with thick atmospheres glow at the limb; every other solid body glows across its disc.
+const THICK_AIR = new Set(['venus', 'earth', 'titan', 'jupiter', 'saturn', 'uranus', 'neptune']);
+function predictedGamma(body) {
+  const air = THICK_AIR.has(body.id);
+  return { kind: air ? 4 : 1, gain: 0.15, why: `Predicted, not detected: cosmic rays striking ${air ? 'its upper atmosphere' : 'its surface'} should make ${body.name} glow faintly in gamma rays, as they do the Moon${air ? ' and Earth' : ''}. It is too far away and too faint for any gamma-ray telescope.` };
+}
+
+// The Sun's own emission where a photosphere's blackbody says "nothing": measured signatures.
+export const SUN_SIGNATURES = {
+  gamma: { gain: 0.7, label: 'DETECTED BY FERMI-LAT · SKETCH', why: 'Fermi-LAT detects the quiet Sun above 100 MeV. Cosmic-ray protons hitting the photosphere make the disc glow (4.6×10⁻⁷ photons cm⁻² s⁻¹ at the 2008–09 solar minimum), and cosmic-ray electrons scattering sunlight make an inverse-Compton halo tens of degrees wide (6.8×10⁻⁷; Abdo et al. 2011). The disc emission reaches beyond 100 GeV and is strongest at solar minimum (HAWC, Fermi). Flares add bursts above 1 GeV. The detection is measured; this view is a sketch (false-colour tint over the visible photosphere\'s pattern).' },
+  radio: { gain: 0.9, label: 'MEASURED DAILY (F10.7) · SKETCH', why: 'The corona and chromosphere shine by thermal free-free emission: brightness temperatures of ~10⁴ K at centimetre and ~10⁶ K at metre wavelengths, far above the photosphere\'s blackbody. The 10.7 cm flux (F10.7) has been measured daily since 1947; flares add radio bursts. This view is a sketch: a false-colour tint over the visible photosphere\'s pattern.' },
+  microwave: { gain: 0.9, label: 'MEASURED (ALMA, NOBEYAMA) · SKETCH', why: 'At millimetre wavelengths we see the chromosphere, 6,000–10,000 K (ALMA, Nobeyama), brighter than the photosphere\'s blackbody predicts. This view is a sketch: a false-colour tint over the visible photosphere\'s pattern.' },
 };
 const PALETTE = { asis: 0, radio: 1, microwave: 2, infrared: 3, visible: 4, ultraviolet: 5, xray: 6, gamma: 7 };
 export const paletteIndex = (name) => PALETTE[name] ?? 4;
@@ -85,8 +106,9 @@ export function bandLook(body, band, pass) {
     return { mode: 'thermal', tier: 'modelled', palette: pal, thermal, um: nm / 1000, label: t.airless ? `PREDICTED THERMAL · ${t.tss} K DAY · ${t.night} K NIGHT` : `PREDICTED THERMAL · ${radio ? t.radio : t.ir} K`,
       detail: `Predicted thermal emission through ${pass.label}: Planck emission at ${t.airless ? `T = ${t.tss} K·cos^¼ on the day side, ${t.night} K at night` : `a ${radio ? 'microwave/radio brightness' : 'cloud-top'} temperature of ${radio ? t.radio : t.ir} K`}, in false colour. Non-thermal radio (e.g. Jupiter's radiation belts) is not modelled.` };
   }
-  const glow = GLOWS[band.id]?.[body.id];
-  if (glow) return { mode: 'glow', tier: 'modelled', palette: pal, glow: glow.kind, gain: glow.gain, label: 'MODELLED SIGNATURE', detail: glow.why };
+  const glow = GLOWS[band.id]?.[body.id] ?? (band.id === 'gamma' && !body.starLike && body.kind !== 'star' && !body.marker && body.kind !== 'spacecraft' ? predictedGamma(body) : null);
+  if (glow) return { mode: 'glow', tier: 'modelled', palette: pal, glow: glow.kind, gain: glow.gain,
+    label: glow.detected ? 'DETECTED · MODELLED SKETCH' : band.id === 'gamma' && !GLOWS.gamma[body.id] ? 'PREDICTED · NOT DETECTED' : 'MODELLED SIGNATURE', detail: glow.why };
   return { mode: 'dark', tier: 'computed', palette: pal, label: 'NOT OBSERVED IN THIS BAND', detail: `No image of ${body.name} in ${pass.label}, and no spectral signature to predict one from.` };
 }
 

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { planck, rayleighJeans, planckBand, bandResponse, filter, ghz, effectiveNm, topHat } from '../src/astro/bands.js';
 import { BANDS, bandById, passById } from '../src/data/bands.js';
-import { bandLook, starBandDelta } from '../src/views/system/bandskin.js';
+import { bandLook, starBandDelta, SUN_SIGNATURES } from '../src/views/system/bandskin.js';
 
 test('band-averaged Planck flux: a flat spectrum averages to itself, a blackbody to its in-band mean', () => {
   const V = filter('johnson-V');
@@ -39,7 +39,13 @@ test('the look rule: real image, else predicted from a signature, else not obser
   assert.ok(v.gain < 0.5, 'the UV absorber darkens Venus');
   assert.equal(bandLook({ id: 'moon', name: 'Moon' }, ...at('ir', 'ir-W4')).mode, 'thermal');
   assert.equal(bandLook({ id: 'moon', name: 'Moon' }, ...at('gamma')).mode, 'glow');
-  assert.equal(bandLook({ id: 'saturn', name: 'Saturn' }, ...at('gamma')).mode, 'dark');
+  // every solid body and atmosphere glows under cosmic rays: detections are cited, the rest predicted
+  assert.match(bandLook({ id: 'moon', name: 'Moon' }, ...at('gamma')).label, /DETECTED/);
+  assert.match(bandLook({ id: 'mars', name: 'Mars' }, ...at('gamma')).label, /DETECTED/);
+  const sat = bandLook({ id: 'saturn', name: 'Saturn' }, ...at('gamma'));
+  assert.equal(sat.mode, 'glow'); assert.match(sat.label, /PREDICTED/); assert.equal(sat.glow, 4, 'an atmosphere glows at the limb');
+  assert.equal(bandLook({ id: 'iapetus', name: 'Iapetus' }, ...at('gamma')).glow, 1, 'an airless surface glows across its disc');
+  assert.equal(bandLook({ id: 'juno', name: 'Juno', kind: 'spacecraft' }, ...at('gamma')).mode, 'dark');
 });
 
 test('stars: cool ones brighten in the infrared, hot ones in the ultraviolet (Vega system)', () => {
@@ -47,6 +53,7 @@ test('stars: cool ones brighten in the infrared, hot ones in the ultraviolet (Ve
   assert.ok(starBandDelta(3500, Ks) > 2.5 && starBandDelta(20000, Ks) < 0);
   assert.ok(starBandDelta(20000, FUV) > 0 && starBandDelta(4000, FUV) < -5);
   assert.ok(Math.abs(starBandDelta(9600, Ks)) < 1e-9, 'Vega is colour 0');
-  assert.equal(starBandDelta(5772, passById(bandById('gamma'))), -Infinity);
+  assert.equal(starBandDelta(5772, passById(bandById('gamma'))), -Infinity); // a photosphere alone; the Sun's measured signatures are separate
+  for (const b of ['gamma', 'radio', 'microwave']) assert.ok(SUN_SIGNATURES[b], `the Sun is a measured ${b} source`);
   assert.ok(topHat(500, 600).points.length > 2);
 });

@@ -709,6 +709,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       const sky = system.bandSky();
       row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
       extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
+        look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail }) : null,
         h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
     }
   }

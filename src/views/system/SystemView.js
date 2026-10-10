@@ -36,7 +36,7 @@ import { fetchTraverse } from '../../data/catalog.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
-import { starBandDelta, paletteIndex } from './bandskin.js';
+import { starBandDelta, paletteIndex, SUN_SIGNATURES } from './bandskin.js';
 import { bandTexture, hipsUrl, applyBandToMaterial } from './bandtextures.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
@@ -285,7 +285,15 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       u.uBandTint.value.setRGB(1, 1, 1);
       return;
     }
-    const teff = n.body.teffK ?? 5772, d = starBandDelta(teff, p), tint = PAL_RGB[paletteIndex(band.palette)];
+    const tint = PAL_RGB[paletteIndex(band.palette)];
+    // the Sun's corona, chromosphere and cosmic-ray glow where its photosphere's blackbody says "nothing"
+    const sig = model.isSol && n.body.id === model.starId ? SUN_SIGNATURES[band.id] : null;
+    if (sig) {
+      u.uBandTint.value.setRGB(tint[0] * sig.gain, tint[1] * sig.gain, tint[2] * sig.gain);
+      n.bandLook = { mode: 'glow', tier: 'modelled', label: sig.label, detail: sig.why };
+      return;
+    }
+    const teff = n.body.teffK ?? 5772, d = starBandDelta(teff, p);
     if (d === -Infinity) { u.uBandTint.value.setRGB(0.02, 0.02, 0.02); n.bandLook = { mode: 'dark', tier: 'computed', label: 'NOT OBSERVED IN THIS BAND', detail: `A ${Math.round(teff)} K photosphere emits almost nothing in ${p?.label ?? band.label}; no image or measured flux of this star is available here.` }; return; }
     const k = Math.max(0.05, Math.min(3, 10 ** (0.4 * Math.max(-6, Math.min(6, d)) * 0.35)));
     u.uBandTint.value.setRGB(tint[0] * k, tint[1] * k, tint[2] * k);
