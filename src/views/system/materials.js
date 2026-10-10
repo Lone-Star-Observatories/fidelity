@@ -4,6 +4,7 @@
 
 import * as THREE from 'three';
 import { textureUrl } from '../../data/catalog.js';
+import { bakedFeed } from '../../data/bandbake.js';
 
 const loader = new THREE.TextureLoader();
 const cache = new Map();
@@ -44,6 +45,11 @@ const PLANET_FRAG = /* glsl */`
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D uMap; uniform sampler2D uNight; uniform float uHasNight;
   uniform sampler2D uLive; uniform float uHasLive;
+  // Earth through time (#54): sea level (m) against ETOPO1 (R elevation, G flood level from the open ocean,
+  // B open ocean today; ±400 m in 0–1), PaleoMIST ice-sheet masks blended between two time slices, or a
+  // reconstructed land mask (GPlates coastlines) in place of today's continents.
+  uniform float uPaleo; uniform sampler2D uElev; uniform float uSea; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform float uIceMix; uniform float uIceOn;
+  uniform sampler2D uLand; uniform float uLandOn;
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
   // they are right whatever the display scale: the fraction of the Sun's disc an occluder
@@ -110,6 +116,17 @@ const PLANET_FRAG = /* glsl */`
     if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
       vec3 lv = texture2D(uLive, vUv).rgb;
       base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
+    }
+    if (uPaleo > 0.5) {
+      vec3 seaCol = vec3(0.012, 0.035, 0.09), shelfCol = vec3(0.31, 0.29, 0.2), iceCol = vec3(0.86, 0.9, 0.95);
+      if (uLandOn > 0.5) base = mix(seaCol, vec3(0.34, 0.32, 0.21), step(0.5, texture2D(uLand, vUv).r));
+      else {
+        vec3 el = texture2D(uElev, vUv).rgb;
+        float e = el.r * 800.0 - 400.0, spill = el.g * 800.0 - 400.0;
+        if (el.b > 0.5) { if (e > uSea) base = shelfCol; }      // today's sea floor, exposed when the sea falls
+        else if (spill < uSea) base = seaCol;                   // land the rising sea reaches
+      }
+      if (uIceOn > 0.5) base = mix(base, iceCol, mix(texture2D(uIceA, vUv).r, texture2D(uIceB, vUv).r, uIceMix));
     }
     if (uBandMode > 0.5) {
       float lit = max(ndl, 0.0) * lightK;
@@ -189,6 +206,7 @@ const STAR_FRAG = /* glsl */`
   uniform sampler2D uMap; uniform vec3 uColor; uniform float uRecolour;
   uniform sampler2D uDisk; uniform float uHasDisk; uniform vec3 uEarthDir; uniform vec3 uNorth; uniform float uDiskR;
   uniform vec3 uBandTint; uniform float uBandDisk; // spectrum filter (#28): tint, and 1 when uDisk is a band image shown as-is
+  uniform float uBandMix; // its weight over the tinted photosphere (a custom curve that the map covers only in part; 1 otherwise)
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   void main() {
     #include <logdepthbuf_fragment>
@@ -197,6 +215,7 @@ const STAR_FRAG = /* glsl */`
     float limb = 1.0 - 0.55 * (1.0 - mu) - 0.25 * (1.0 - mu) * (1.0 - mu);
     vec3 tex = texture2D(uMap, vUv).rgb;
     vec3 c = (uRecolour > 0.5 ? dot(tex, vec3(0.299, 0.587, 0.114)) * 2.2 * uColor : tex * 1.25) * limb * 1.35;
+    vec3 under = c * uBandTint; // the predicted look under a partly weighted band map
     if (uHasDisk > 0.5) {
       // The live full-disk image (solar north up, as seen from Earth) projected onto the Earth-facing hemisphere.
       float facing = dot(N, uEarthDir);
@@ -209,7 +228,12 @@ const STAR_FRAG = /* glsl */`
       vec3 live = dot(texture2D(uDisk, uvd).rgb, vec3(0.299, 0.587, 0.114)) * warm * 1.1;
       vec3 far = dot(tex, vec3(0.299, 0.587, 0.114)) * warm * limb * 1.6;
       c = mix(far, live, smoothstep(0.08, 0.3, facing));
-      if (uBandDisk > 0.5) c = mix(c * 0.15, texture2D(uDisk, uvd).rgb * 1.2, smoothstep(0.08, 0.3, facing)); // SDO in its own colours
+      if (uBandDisk > 0.5) { // SDO (or NoRH, SRH, a modelled radio disc) in its own colours, weighted over the predicted look
+        c = mix(under, mix(c * 0.15, texture2D(uDisk, uvd).rgb * 1.2, smoothstep(0.08, 0.3, facing)), uBandMix);
+        gl_FragColor = vec4(c, 1.0);
+        #include <colorspace_fragment>
+        return;
+      }
     }
     c *= uBandTint;
     gl_FragColor = vec4(c, 1.0);
@@ -232,6 +256,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
       uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
       uBandTexPrev: { value: null }, uBandFade: { value: 1 },
+      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 },
     },
   });
 }
@@ -249,7 +274,7 @@ export function starMaterial(placeholder, color, recolour) {
     vertexShader: VERT, fragmentShader: STAR_FRAG,
     uniforms: { uMap: { value: placeholder }, uColor: { value: linear(color) }, uRecolour: { value: recolour ? 1 : 0 },
       uDisk: { value: null }, uHasDisk: { value: 0 }, uEarthDir: { value: new THREE.Vector3(0, 0, 1) }, uNorth: { value: new THREE.Vector3(0, 1, 0) }, uDiskR: { value: 0.39 },
-      uBandTint: { value: new THREE.Color(1, 1, 1) }, uBandDisk: { value: 0 } },
+      uBandTint: { value: new THREE.Color(1, 1, 1) }, uBandDisk: { value: 0 }, uBandMix: { value: 1 } },
   });
 }
 
@@ -274,7 +299,7 @@ export const liveInfo = new Map(); // feed id → { time, credit } once loaded
 export function loadLive(id, maxAgeMs = 15 * 60000) {
   const c = live.get(id);
   if (c && Date.now() - c.at < maxAgeMs) return c.p;
-  const p = (import.meta.env?.MODE === 'standalone' ? Promise.resolve(null) : fetch(`/api/feed/${id}`).then(async (r) => {
+  const p = (import.meta.env?.MODE === 'standalone' ? loadBakedFeed(id) : fetch(`/api/feed/${id}`).then(async (r) => {
     if (!r.ok) return null;
     const url = URL.createObjectURL(await r.blob());
     const meta = { time: r.headers.get('x-feed-time'), credit: decodeURIComponent(r.headers.get('x-feed-credit') || ''), disk: Number(r.headers.get('x-feed-disk')) || null };
@@ -285,6 +310,18 @@ export function loadLive(id, maxAgeMs = 15 * 60000) {
   }).catch(() => null));
   live.set(id, { p, at: Date.now() });
   return p;
+}
+
+/** The standalone preview: a feed's baked copy (src/data/bandbake.js, #28), with its real date and size; null if none was baked. */
+function loadBakedFeed(id) {
+  const b = bakedFeed(id);
+  if (!b) return Promise.resolve(null);
+  return new Promise((res) => loader.load(b.src, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null))).then((texture) => {
+    if (!texture) return null;
+    const meta = { time: b.time ?? null, credit: b.credit ?? '', disk: b.disk ?? null, baked: b };
+    liveInfo.set(id, meta);
+    return { texture, ...meta };
+  });
 }
 
 /** Apply a body's live skin (Earth: daily global mosaic; Sun: full-disk image) if enabled. */

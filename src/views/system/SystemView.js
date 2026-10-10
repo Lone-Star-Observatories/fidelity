@@ -22,6 +22,8 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
 import { relativeSky, hierarchy, place, besselianYear } from '../../astro/binary.js';
 import { eqToEcl, frameToScene, teffFromBV, blackbodyRGB } from '../../astro/frames.js';
+import { createPaleoEarth } from './paleoearth.js';
+import { jdFromDate } from '../../astro/time.js';
 import { AU_KM, SUN } from '../../data/sol.js';
 import { visualImageUrl } from '../../data/catalog.js';
 
@@ -34,13 +36,17 @@ import { pickPoint } from '../pick.js';
 import { createSiteLayer, siteDir } from './sites.js';
 import { fetchTraverse, fetchFeatures, fetchClusters } from '../../data/catalog.js';
 import { createFeatureLayer } from './features.js';
-import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, C_KM_S } from '../../astro/lookat.js';
+import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, NAKED_EYE_FOV, C_KM_S } from '../../astro/lookat.js';
+import { createCameraRig, reducedMotion } from '../cameraControls.js';
+import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
-import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
-import { starBandDelta, paletteIndex, SUN_SIGNATURES, ringBandLook } from './bandskin.js';
-import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, FULL_DELAY_MS } from './bandtextures.js';
-import { prepare, skyLayers as curveSkyLayers, curveStarDelta, curveStarRgb, starCurveLook, sunCurveLook } from './curvelook.js';
+import { BANDS, bandById, passById } from '../../data/bands.js';
+import { starBandDelta, paletteIndex, ringBandLook } from './bandskin.js';
+import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, feedCredit, FULL_DELAY_MS } from './bandtextures.js';
+import { prepare, skyLayers as curveSkyLayers, curveStarDelta, curveStarRgb, starCurveLook } from './curvelook.js';
+import { starBandLook } from './starband.js';
+import { bakedFeed, bakedHips, bakedText } from '../../data/bandbake.js';
 import { curveFromLegacy } from '../../data/curve.js';
 import { bandLoads } from '../../data/bandload.js';
 import { currentBand } from '../../data/bandstate.js';
@@ -268,7 +274,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     bandTexture(hipsUrl(layer.sky, 'preview')).then((r) => {
       if (!r || !current() || shown) return;
       u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'preview'; look.res = mesh.userData.res = 'preview';
+      if (STANDALONE_BANDS) { look.res = mesh.userData.res = 'baked'; const b = bakedHips(layer.sky); if (b) look.label = `${layer.skyCredit} · ${bakedText(b)}`; }
     });
+    if (STANDALONE_BANDS) return; // the standalone preview: only its baked copy (#28)
     const full = new Promise((ok) => setTimeout(ok, FULL_DELAY_MS)).then(() => (!current() ? true : bandTexture(hipsUrl(layer.sky)).then((r) => {
       if (!current()) return true;
       if (!r) { look.res = mesh.userData.res = shown ? 'failed-preview' : 'failed'; return null; }
@@ -291,7 +299,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   function applySkyBand() {
     const full = band.id === 'full';
     skyNow = full ? { layers: [], measured: 0 } : curveSkyLayers(bandCurve());
-    const layers = STANDALONE_BANDS ? [] : skyNow.layers;
+    // the standalone preview draws the surveys it carries baked (#28), re-weighted among themselves
+    const baked = STANDALONE_BANDS ? skyNow.layers.filter((L) => bakedHips(L.sky)) : null, bw = baked?.reduce((a, L) => a + L.weight, 0);
+    const layers = STANDALONE_BANDS ? baked.map((L) => ({ ...L, weight: L.weight / bw })) : skyNow.layers;
+    if (STANDALONE_BANDS) skyNow = { ...skyNow, layers, measured: layers.length ? skyNow.measured * bw : 0 }; // approximately: the share of the overlap the baked surveys carry
     // a running average: layer k drawn at w_k / Σ_{j≤k} w_j over the ones before gives each its weight
     let acc = 0;
     skyBands.forEach((m, i) => { if (i >= layers.length) { m.visible = false; m.userData.look = null; } });
@@ -339,7 +350,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
   /** An SDO frame on the Sun's disc, preview first (#62). */
   function showSunFeed(n, u, feed, look) {
-    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); });
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;
@@ -351,35 +362,20 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     u.uBandDisk.value = 0;
     if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
     const sol = model.isSol && n.body.id === model.starId;
-    if (curve) { // a custom curve (#66): SDO where it overlaps, the Sun's signatures, the photosphere through T(λ)
-      const prep = prepare(curve), teff = n.body.teffK ?? 5772;
-      if (sol) {
-        const s = sunCurveLook(prep, teff);
-        n.bandLook = s.look;
-        if (s.feed?.feed && s.realShare >= 0.5 && !STANDALONE_BANDS) { u.uBandTint.value.setRGB(1, 1, 1); showSunFeed(n, u, s.feed.feed, s.look); return; }
-        u.uBandTint.value.setRGB(...s.tint);
-        restoreStarDisk(n);
-        return;
-      }
-      const s = starCurveLook(teff, prep, n.body.name);
+    if (sol) { // the Sun: the same look as the Star View (starband.js): its maps by bandpass id, or by `range` overlap for a custom curve, weighted (#28)
+      const s = starBandLook({ teff: n.body.teffK ?? 5772, isSun: true, hasFeed: (id) => !STANDALONE_BANDS || !!bakedFeed(id) }, band, p);
+      n.bandLook = s;
+      u.uBandTint.value.setRGB(...s.tint);
+      if (s.feed) { if (u.uBandMix) u.uBandMix.value = s.mix; showSunFeed(n, u, s.feed, s); return; }
+      restoreStarDisk(n);
+      return;
+    }
+    if (curve) { // a custom curve (#66): the photosphere through T(λ)
+      const s = starCurveLook(n.body.teffK ?? 5772, prepare(curve), n.body.name);
       u.uBandTint.value.setRGB(...s.tint); n.bandLook = s.look;
       return;
     }
-    const src = sol ? bodyBandSource('sun', band, p) : null;
-    if (src?.feed && !STANDALONE_BANDS) {
-      n.bandLook = { mode: 'real', tier: 'measured', label: src.note ?? 'REAL IMAGE IN THIS BAND', detail: src.credit };
-      showSunFeed(n, u, src.feed, n.bandLook);
-      u.uBandTint.value.setRGB(1, 1, 1);
-      return;
-    }
     const tint = PAL_RGB[paletteIndex(band.palette)];
-    // the Sun's corona, chromosphere and cosmic-ray glow where its photosphere's blackbody says "nothing"
-    const sig = sol ? SUN_SIGNATURES[band.id] : null;
-    if (sig) {
-      u.uBandTint.value.setRGB(tint[0] * sig.gain, tint[1] * sig.gain, tint[2] * sig.gain);
-      n.bandLook = { mode: 'glow', tier: 'modelled', label: sig.label, detail: sig.why };
-      return;
-    }
     const teff = n.body.teffK ?? 5772, d = starBandDelta(teff, p);
     if (d === -Infinity) { u.uBandTint.value.setRGB(0.02, 0.02, 0.02); n.bandLook = { mode: 'dark', tier: 'computed', label: 'NOT OBSERVED IN THIS BAND', detail: `A ${Math.round(teff)} K photosphere emits almost nothing in ${p?.label ?? band.label}; no image or measured flux of this star is available here.` }; return; }
     const k = Math.max(0.05, Math.min(3, 10 ** (0.4 * Math.max(-6, Math.min(6, d)) * 0.35)));
@@ -1260,13 +1256,17 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     return 9;
   }
 
-  function flyTo(id, { overview = null } = {}) {
+  function flyTo(id, { overview = null, distance = null, dir = null } = {}) {
     if (!nodes[id]) return;
     if (surface) exitSurface(false);
     endSiteView();
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
-    flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
+    // #39: honour prefers-reduced-motion; `distance` overrides the landing distance (FILL VIEW), `dir` turns the view (RESET)
+    flight = { from: focusPos.clone(), t0: performance.now(), dur: reducedMotion() ? 1 : 1600, d0: camera.position.length(), d1: distance,
+      dir0: dir ? camera.position.clone().normalize() : null, dir1: dir ? dir.clone().normalize() : null };
+    controls.target.set(0, 0, 0); // zoom-to-cursor may have moved it off the focus
     focusId = id;
+    anchorId = id;
     void upgradeCraft(nodes[id]);
     void upgradeShape(nodes[id]);
     overviewAU = overview;
@@ -1404,6 +1404,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     scaleMix = 1; // TRUE scale at once: an easing disc would be the wrong size for its first seconds
     flight = null;
     focusId = id;
+    anchorId = id; // FREE MOVE resumes from this body when we leave the surface
     overviewAU = null;
     if (settings.get('scale') !== 'true') settings.set('scale', 'true');
     controls.enabled = false;
@@ -1425,7 +1426,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (g) g.visible = true;
     camera.fov = 50; camera.updateProjectionMatrix();
     camera.up.set(0, 1, 0);
-    controls.enabled = true;
+    controls.enabled = rig.mode === 'orbit';
     if (restore) {
       if (s.prevScale !== settings.get('scale')) settings.set('scale', s.prevScale);
       // back out above the spot we stood on
@@ -1827,6 +1828,126 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     hudLt.textContent = apparent ? 'APPARENT' : 'GEOMETRIC';
     return true;
   }
+  // ---- camera controls (#39): ORBIT / LOOK / FLY, zoom, FILL VIEW, RESET, bookmarks ---------------
+  let anchorId = 'sun'; // FREE MOVE: the body the floating origin rides on (the nearest one)
+  let nearestSurf = 1; // AU from the camera to the nearest surface
+  let quietFocus = null; // the return to ORBIT already flies to this body; skip the route's own flight
+  const camWorld = (v) => v.copy(focusPos).add(camera.position); // camera in root coordinates
+  const flyable = (n) => n && !n.body.marker && !n.body._missing && n.group.visible !== false;
+  /** Track the nearest body; hand the origin over when another one is clearly nearer (hysteresis). */
+  function updateAnchor() {
+    if (!nodes[anchorId]) anchorId = focusId;
+    const c = camWorld(tmp6);
+    let best = anchorId, bestD = c.distanceTo(nodes[anchorId].pos) - viewEnvelope(nodes[anchorId].body);
+    const anchorD = bestD;
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (id === anchorId || !flyable(n)) continue;
+      const d = c.distanceTo(n.pos) - viewEnvelope(n.body);
+      if (d < bestD) { best = id; bestD = d; }
+    }
+    if (best !== anchorId && bestD < 0.7 * anchorD) {
+      camera.position.add(nodes[anchorId].pos).sub(nodes[best].pos);
+      anchorId = best;
+    }
+    nearestSurf = Math.max(1e-12, Math.min(bestD, anchorD)); // ≥ 15 cm
+  }
+  /** The body nearest the line of sight (within 2° or its own apparent size), else null. */
+  function aheadBody() {
+    const c = camWorld(tmp6), f = tmp7.set(0, 0, -1).applyQuaternion(camera.quaternion);
+    let best = null, bestD = Infinity;
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (!flyable(n)) continue;
+      const v = tmp8.copy(n.pos).sub(c), dist = v.length(), along = v.dot(f);
+      if (along <= 0 || dist === 0) continue;
+      const angle = Math.acos(Math.min(1, along / dist)), angR = Math.asin(Math.min(1, viewEnvelope(n.body) / dist));
+      if (angle < Math.max(2 * DEG, angR * 1.2) && dist < bestD) { best = id; bestD = dist; }
+    }
+    return best;
+  }
+  /** The selection's framing distance (AU): a body's disc, a star's planetary orbits, a region's extent. */
+  function fitAU() {
+    const n = nodes[focusId], b = n.body, aspect = camera.aspect || 1;
+    if (b.marker) return markerView(b);
+    if (isStar(b) && overviewAU != null) {
+      // the planets' orbits: the farthest point of any of them from the focus (the camera's pivot)
+      root.updateMatrixWorld(true);
+      let far = 0;
+      for (const id in nodes) {
+        const m = nodes[id], pos = m.orbit?.geometry?.attributes?.position;
+        if (!pos || m.body.kind !== 'planet' || m.group.visible === false) continue;
+        for (let i = 0; i < pos.count; i++) far = Math.max(far, tmp6.fromBufferAttribute(pos, i).applyMatrix4(m.orbit.matrixWorld).length());
+      }
+      if (far > 0) return fitDistance(far, camera.fov, aspect, 1.02);
+    }
+    const ring = b.rings ? b.rings.outerKm / b.radiusKm : 1;
+    return fitDistance(viewEnvelope(b) * ring, camera.fov, aspect, 1.05);
+  }
+  const rig = createCameraRig({
+    key: 'system', camera, controls, dom: labels.domElement, container,
+    // near a body drawn enlarged (ENHANCED), lengths are in that body's own scale: undo its enlargement
+    metersPerUnit: () => {
+      const n = model && nodes[focusId];
+      if (!n) return METERS.au;
+      const r = displayRadius(n.body), d = camera.position.distanceTo(controls.target);
+      return d < r * 200 ? METERS.au * (trueRadius(n.body) / r) : METERS.au;
+    },
+    minFov: 0.05, maxFov: 100,
+    nearest: () => nearestSurf,
+    busy: () => !!flight || !!siteView, // FROM ABOVE (#37) drives the camera itself
+    override: () => (surface ? {
+      fov: surface.fov, minFov: surface.look ? 0.02 : 2, maxFov: 110, // LOOK AT (#43) zooms to telescope fields
+      setFov: (v) => { surface.fov = v; },
+      fit: () => { if (surface.look) surface.look.fitted = false; else surface.fov = 70; }, // LOOK AT: fit the target
+      reset: () => { surface.az = 0; surface.alt = 90; surface.fov = 70; },
+    } : null),
+    toOrbit(prev) {
+      if (surface || !model) return true;
+      // orbit whatever is in front of you; otherwise the body you rode with (FLY) or the focus (LOOK)
+      const id = aheadBody() ?? (prev === 'fly' ? anchorId : focusId);
+      if (!nodes[id]) return true;
+      const c = camWorld(tmp9.set(0, 0, 0)).clone();
+      focusPos.copy(nodes[id].pos);
+      camera.position.copy(c).sub(focusPos);
+      controls.target.set(0, 0, 0);
+      const d = camera.position.length(), env = viewEnvelope(nodes[id].body);
+      if (id !== focusId || d < env * 1.3) {
+        flight = { from: focusPos.clone(), t0: performance.now(), dur: reducedMotion() ? 1 : 1200, d0: Math.max(d, 1e-15), d1: Math.max(d, env * 1.6) };
+      }
+      const changed = id !== focusId;
+      focusId = id; anchorId = id; overviewAU = null; framedRadius = null;
+      if (changed) { quietFocus = id; setTimeout(() => { if (quietFocus === id) quietFocus = null; }, 2000); onSelect?.(id); }
+      return true;
+    },
+    moved() { // don't fly into the ground
+      const r = viewEnvelope(nodes[anchorId]?.body ?? nodes[focusId].body) * 1.0005;
+      if (camera.position.length() < r) camera.position.setLength(r);
+    },
+    fit() { if (model && nodes[focusId]) flyTo(focusId, { overview: overviewAU != null ? fitAU() : null, distance: fitAU() }); },
+    reset() {
+      if (!model) return;
+      const s = model.survey[0];
+      if (overviewAU != null && focusId === (s.centre && nodes[s.centre] ? s.centre : model.starId)) flyTo(focusId, { overview: s.au, dir: new THREE.Vector3(0, 0.45, 0.9) });
+      else flyTo(focusId);
+    },
+    state(mode) {
+      if (surface) return { mode: 'surface', az: surface.az, alt: surface.alt, fov: surface.fov };
+      // relative to the routed (focused) body, whatever the origin rides on
+      const p = camWorld(new THREE.Vector3()).sub(nodes[focusId].pos);
+      return { mode, p: p.toArray(), q: camera.quaternion.toArray(), fov: camera.fov };
+    },
+    apply(s) {
+      if (s.mode === 'surface') { if (surface) { surface.az = s.az; surface.alt = s.alt; surface.fov = s.fov; } return; }
+      flight = null;
+      anchorId = focusId;
+      focusPos.copy(nodes[focusId].pos);
+      camera.position.fromArray(s.p);
+      camera.quaternion.fromArray(s.q);
+      controls.target.set(0, 0, 0);
+      framedRadius = null;
+    },
+  });
 
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
@@ -1887,6 +2008,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     clock.tick(now);
     if (!model) return;
     const jd = clock.jd;
+    updatePaleoEarth(jd);
 
     const targetMix = settings.get('scale') === 'true' || surface ? 1 : 0;
     scaleMix += (targetMix - scaleMix) * 0.08;
@@ -1970,10 +2092,15 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (flight) {
       const t = Math.min(1, (now - flight.t0) / flight.dur), k = ease(t);
       focusPos.lerpVectors(flight.from, target, k);
-      const d1 = overviewAU ?? viewDistance(focusId); // live, so a scale switch mid-flight still lands well
+      const d1 = flight.d1 ?? overviewAU ?? viewDistance(focusId); // live, so a scale switch mid-flight still lands well
       const d = Math.exp(Math.log(flight.d0) + (Math.log(d1) - Math.log(flight.d0)) * k);
+      if (flight.dir1) camera.position.copy(flight.dir0).lerp(flight.dir1, k);
       camera.position.setLength(d);
       if (t >= 1) { flight = null; framedRadius = displayRadius(nodes[focusId].body); }
+    } else if (rig.mode === 'fly' && !surface) {
+      // FREE MOVE (#39): the floating origin rides on the nearest body, so the camera moves with it and stays precise
+      updateAnchor();
+      focusPos.copy(nodes[anchorId].pos);
     } else {
       focusPos.copy(target);
       // Switching ENHANCED ⇄ TRUE while framing a body: keep it the same size on screen.
@@ -2024,10 +2151,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (surface && !skyClustersAsked) { skyClustersAsked = true; fetchClusters().then((d) => skyLayers.setClusters(d)).catch(() => {}); }
     skyLayers.update({ on: !!surface && band.id === 'full', fade: skyMat.uniforms.uFade.value, camera,
       flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
+    const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
     else {
       controls.minDistance = siteView ? displayRadius(nodes[focusId].body) * 2e-5 : viewEnvelope(nodes[focusId].body) * 1.3;
-      controls.update();
+      if (orbiting) controls.update();
     }
 
     renderer.render(scene, camera);
@@ -2049,7 +2177,93 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     });
   }
 
+  // ---- Earth through time (#54): sea level, ice sheets and past coastlines on the globe -------------
+  let paleo = null, paleoScenario = null, paleoApplied;
+  const paleoBanner = document.createElement('div');
+  paleoBanner.className = 'paleo-banner';
+  paleoBanner.hidden = true;
+  container.append(paleoBanner);
+  function updatePaleoEarth(jd) {
+    const earth = model?.isSol ? nodes.earth : null;
+    if (!earth?.mesh?.material?.uniforms?.uPaleo) { paleoBanner.hidden = true; return; }
+    paleo ??= createPaleoEarth(earth.mesh.material, { fetchCoastlines: (ma) => fetch(`/api/paleo-coastlines?time=${ma}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))) });
+    if (paleoApplied !== paleoScenario) { paleo.setScenario(paleoScenario); paleoApplied = paleoScenario; }
+    // years from now: the deep-time clock where there is one (#34), else from the calendar JD
+    paleo.update(typeof clock.years === 'number' ? clock.years : (jd - jdFromDate(new Date())) / 365.25);
+    const t = paleo.banner;
+    // today's clouds do not belong on another epoch's Earth
+    if (earth.clouds) { if (t && earth.clouds.visible) { earth.clouds.visible = false; earth.paleoHidClouds = true; } else if (!t && earth.paleoHidClouds) { earth.clouds.visible = true; earth.paleoHidClouds = false; } }
+    paleoBanner.hidden = !t;
+    if (t && paleoBanner.textContent !== t) paleoBanner.textContent = t;
+  }
+
+  // ---- scenarios (#53): opt-in "what if" visuals, always labelled MODELLED -------------------------
+  //   star: { ra, dec (J2000 deg), mag, label, color? }: a supernova at its real place in the sky.
+  //   ring: { body, innerKm, outerKm, label }: a new ring (Desdemona–Cressida debris, Phobos).
+  let scenario = null;
+  function clearScenario() {
+    if (!scenario) return;
+    if (scenario.star) { scene.remove(scenario.star); scenario.star.geometry.dispose(); }
+    if (scenario.ring) { scenario.ring.parent?.remove(scenario.ring); scenario.ring.geometry.dispose(); }
+    for (const l of scenario.labels) l.parent?.remove(l), l.element.remove();
+    scenario = null;
+  }
+  function scenarioLabel(text) {
+    const el = document.createElement('button');
+    el.className = 'body-label scenario-label';
+    el.textContent = `${text} ✕`;
+    el.title = 'A modelled scenario (#53). Click to remove it.';
+    el.addEventListener('pointerdown', (e) => e.stopPropagation());
+    el.addEventListener('click', (e) => { e.stopPropagation(); setScenario(null); });
+    const obj = new CSS2DObject(el);
+    obj.center.set(-0.1, 0.5);
+    return obj;
+  }
+  function setScenario(s) {
+    clearScenario();
+    if (!s) return;
+    scenario = { labels: [] };
+    if (s.star) {
+      const d = poleVector([s.star.ra, s.star.dec]).multiplyScalar(SKY_R * 0.97);
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array([d.x, d.y, d.z]), 3));
+      g.setAttribute('size', new THREE.BufferAttribute(new Float32Array([Math.min(34, Math.max(4, 6.2 - 1.6 * s.star.mag))]), 1));
+      g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(s.star.color ?? [0.85, 0.9, 1]), 3));
+      // the sky's own point shader; not faded by daylight: brighter than magnitude −4 it shows by day
+      const mat = skyMat.clone();
+      mat.uniforms = { uPixel: skyMat.uniforms.uPixel, uFade: { value: s.star.mag < -4 ? 1 : skyMat.uniforms.uFade.value } };
+      scenario.star = new THREE.Points(g, mat);
+      scenario.star.renderOrder = 0; scenario.star.frustumCulled = false;
+      const label = scenarioLabel(s.star.label);
+      label.position.copy(d);
+      scenario.star.add(label); scenario.labels.push(label);
+      scene.add(scenario.star);
+    }
+    if (s.ring && nodes[s.ring.body]) {
+      const n = nodes[s.ring.body], r = n.body.radiusKm;
+      const geo = new THREE.RingGeometry(s.ring.innerKm / r, s.ring.outerKm / r, 160, 1);
+      const mat = new THREE.MeshBasicMaterial({ color: 0xc9b9a8, transparent: true, opacity: 0.42, side: THREE.DoubleSide, depthWrite: false });
+      scenario.ring = new THREE.Mesh(geo, mat);
+      scenario.ring.rotation.x = -Math.PI / 2;
+      n.tilt.add(scenario.ring); // in the planet's equator, scaled with it like its real rings
+      const label = scenarioLabel(s.ring.label);
+      label.position.set(s.ring.outerKm / r, 0, 0);
+      scenario.ring.add(label); scenario.labels.push(label);
+    }
+  }
+
   return {
+    /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
+    setEarthEpoch(s) { paleoScenario = s ?? null; },
+    /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */
+    setScenario,
+    /** In the surface view, turn to face J2000 RA/Dec (deg); false if not standing anywhere. */
+    lookAtSky(ra, dec) {
+      if (!surface?.frame) return false;
+      const a = altAz(surface.frame, poleVector([ra, dec]).toArray());
+      surface.az = a.az; surface.alt = Math.max(-5, Math.min(89.9, a.alt));
+      return a;
+    },
     /** The spectrum filter (#28): band id and bandpass id (null = the band's default). */
     setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); curve = null; applyBand(); },
     /** The spectrum control's curve (#66): follows the shared state (bandstate.js currentBand()). */
@@ -2114,7 +2328,13 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return belts.counts;
     },
     get model() { return model; },
-    focus(id, opts) { flyTo(id, opts); },
+    focus(id, opts) { if (quietFocus === id && focusId === id) { quietFocus = null; return; } flyTo(id, opts); },
+    /** The camera controls (#39): mode, zoom, fit, reset, bookmark state. */
+    camera: rig,
+    /** True while the return to ORBIT (#39) is already flying to `id` (no warp, no second flight). */
+    quietFocus: (id) => quietFocus === id && focusId === id,
+    /** Where we stand (texture lat/lon, as surfaceAt takes them), or null. */
+    surfaceSpot: () => (surface?.sphere ? dirToLatLon(surface.local.toArray()) : null),
     /** Stand on body `id` at latitude/longitude (deg) and look up. */
     /** VIEW FROM ABOVE: hover over a surface site, framing `spanKm` around it (#37). */
     viewSite(id, lat, lon, spanKm = 30) {

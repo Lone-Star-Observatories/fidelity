@@ -2,6 +2,8 @@
 // absorb light, what is inside it, and where it sits among rocky, watery and gassy worlds.
 
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { createCameraRig } from '../cameraControls.js';
 import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
 import { applyBandToMaterial } from '../system/bandtextures.js';
 import { currentBand, onBand } from '../../data/bandstate.js';
@@ -66,7 +68,27 @@ export function createPlanetView(container, { onSurface } = {}) {
   const extras = el('div', { className: 'pv-cards' }); // FROM EARTH, imagery, spectra (src/panels)
   container.replaceChildren(el('div', { className: 'sv' },
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), extras, body));
-  new ResizeObserver(() => { const w = hero.clientWidth || 260; renderer.setSize(w, w, false); }).observe(hero);
+  // camera controls (#39): drag to turn the globe, wheel / pinch / slider to zoom, FILL VIEW, full-screen globe
+  const controls = new OrbitControls(camera, renderer.domElement);
+  Object.assign(controls, { enableDamping: true, dampingFactor: 0.08, enablePan: false, minDistance: 1.12, maxDistance: 40, rotateSpeed: 0.6 });
+  const outerRadius = () => (globeBody?.rings ? globeBody.rings.outerKm / globeBody.radiusKm : 1);
+  const defaultZ = () => (globeBody?.rings ? 10 : 6.2);
+  const rig = createCameraRig({
+    key: 'planet', camera, controls, dom: renderer.domElement, container, host: hero, inline: true,
+    metersPerUnit: () => (globeBody?.radiusKm ?? 1) * 1000, minFov: 0.2, maxFov: 80, noCursorZoom: true,
+    nearest: (p) => Math.max(1e-4, p.length() - 1),
+    toOrbit: () => { controls.target.set(0, 0, 0); return true; }, // always orbit the globe; the settle turns back to it
+    fit: () => rig.frameSphere(new THREE.Vector3(), outerRadius(), 1.04),
+    reset: () => rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(0, 0, defaultZ()) }),
+    onFullscreen: (on) => { container.classList.toggle('hero-full', on); if (on) container.scrollTop = 0; sizeHero(); },
+  });
+  function sizeHero() {
+    const w = hero.clientWidth || 260, h = container.classList.contains('hero-full') ? hero.clientHeight || w : w;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(sizeHero).observe(hero);
   // double-click the globe to stand on that spot and look up (System View surface mode)
   let current = null;
   const ray = new THREE.Raycaster();
@@ -133,6 +155,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     if (marks && globe) marks.rotation.y = globe.rotation.y;
     if (clouds) clouds.rotation.y = now * 0.000128;
     for (const m of mats) m.uniforms.uSunPos.value.copy(sun);
+    if (rig.update(now)) controls.update();
     renderer.render(scene, camera);
   }
 
@@ -184,8 +207,9 @@ export function createPlanetView(container, { onSurface } = {}) {
       const ring = new THREE.Mesh(geo, rm);
       ring.rotation.x = -Math.PI / 2 + 0.45;
       pivot.add(ring);
-      camera.position.z = 10;
-    } else camera.position.z = 6.2;
+    }
+    camera.position.set(0, 0, defaultZ());
+    controls.target.set(0, 0, 0);
   }
 
   function bespokeCards(b) {
@@ -376,6 +400,7 @@ export function createPlanetView(container, { onSurface } = {}) {
 
   return {
     show() { container.hidden = false; if (!running) { running = true; requestAnimationFrame(frame); } },
+    camera: rig,
     hide() { container.hidden = true; running = false; },
     /** Cards built outside the view (observing data, imagery, spectra), shown under the hero. */
     setExtras(nodes) { extras.replaceChildren(...nodes.filter(Boolean)); },

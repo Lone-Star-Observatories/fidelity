@@ -74,16 +74,22 @@ export function realSources(bodyId) {
   }
   return [...groups.values()].map((g) => ({ id: g.id, source: g.source, keys: g.keys, response: normalised(g.rs.length === 1 ? g.rs[0] : union(g.rs)) }));
 }
-/** Real maps overlapping the curve, best-covered first: [{ …source, overlap, weight }] and the measured fraction. */
+/**
+ * Maps overlapping the curve, best-covered first: [{ …source, overlap, weight }], the fraction they cover (`mapped`) and
+ * the part of it that is MEASURED (`measured`): a `predicted: true` entry (a modelled disc, e.g. the Sun below 3 GHz) is
+ * drawn like a map but counted as MODELLED · PREDICTED.
+ */
 export function realOverlap(p, bodyId) {
-  if (!p.f || !(p.tot > 0)) return { list: [], measured: 0, cover: null };
+  if (!p.f || !(p.tot > 0)) return { list: [], measured: 0, mapped: 0, cover: null };
   const list = realSources(bodyId).map((s) => ({ ...s, overlap: logIntegral([p.f, s.response]) })).filter((s) => s.overlap > p.tot * 1e-4)
     .sort((a, b) => b.overlap - a.overlap);
   const sum = list.reduce((a, s) => a + s.overlap, 0);
   for (const s of list) s.weight = s.overlap / sum;
   const cover = list.length ? union(list.map((s) => s.response)) : null;
-  return { list, cover, measured: coveredFraction(p.f, cover) };
+  const meas = list.filter((s) => !s.source.predicted), mapped = coveredFraction(p.f, cover);
+  return { list, cover, mapped, measured: meas.length === list.length ? mapped : meas.length ? coveredFraction(p.f, union(meas.map((s) => s.response))) : 0 };
 }
+const mapTag = (s) => (s.source.predicted ? ' [MODELLED · PREDICTED map]' : '');
 
 // ---- predicted segments -----------------------------------------------------------------------
 /** The predicted part of the curve is looked at in these segments (bandLook's own regimes). */
@@ -136,7 +142,7 @@ export function curveLook(body, curve) {
   const hue = (g) => (th ? compositeHue(g, p.f, th) : null);
   const sum = (mode) => segs.filter((s) => s.look.mode === mode).reduce((a, s) => a + s.w, 0);
   const pick = (mode) => segs.filter((s) => s.look.mode === mode).sort((a, b) => b.w - a.w);
-  const mix = { real: real.measured, reflected: sum('reflected'), thermal: sum('thermal'), glow: sum('glow'), dark: sum('dark') };
+  const mix = { real: real.mapped, reflected: sum('reflected'), thermal: sum('thermal'), glow: sum('glow'), dark: sum('dark') };
   // reflected: one gain (weighted), a composite hue that keeps each segment's own gain (Mars stays red)
   const refl = pick('reflected'), therm = pick('thermal'), glow = pick('glow');
   // one gain over all the reflected light (photon-weighted like bandLook), so a single filter keeps its old gain
@@ -150,21 +156,22 @@ export function curveLook(body, curve) {
   const overlapF = best ? multiplyF(p.f, best.response) : null; // the part of T the drawn map covers
   const realHue = best && th ? compositeHue(overlapF, p.f, th) : null;
   const realEff = overlapF ? effectiveNm(overlapF) : 0;
-  const predicted = mix.reflected + mix.thermal + mix.glow;
+  // a modelled map (predicted: true) is drawn like a real one but counts as predicted
+  const measured = real.measured, predicted = mix.reflected + mix.thermal + mix.glow + Math.max(0, real.mapped - real.measured);
   const uncovered = uncoveredRanges(p.f, (nm) => !!real.cover && evalT(real.cover, nm) >= 0.5);
   const notObserved = uncoveredRanges(p.f, (nm) => (real.cover && evalT(real.cover, nm) >= 0.5) || segs.some((s) => s.look.mode !== 'dark' && nm >= s.seg.lo && nm < s.seg.hi));
-  const shares = [['measured', mix.real], ['modelled', predicted], ['computed', mix.dark]].sort((a, b) => b[1] - a[1]);
-  const label = mix.real + predicted < 1e-3 ? 'NOT OBSERVED THROUGH THIS CURVE'
-    : [mix.real > 0.005 ? `${pct(mix.real)} MEASURED` : null, predicted > 0.005 ? `${pct(predicted)} PREDICTED` : null, mix.dark > 0.005 ? `${pct(mix.dark)} NOT OBSERVED` : null].filter(Boolean).join(' · ');
+  const shares = [['measured', measured], ['modelled', predicted], ['computed', mix.dark]].sort((a, b) => b[1] - a[1]);
+  const label = measured + predicted < 1e-3 ? 'NOT OBSERVED THROUGH THIS CURVE'
+    : [measured > 0.005 ? `${pct(measured)} MEASURED` : null, predicted > 0.005 ? `${pct(predicted)} PREDICTED` : null, mix.dark > 0.005 ? `${pct(mix.dark)} NOT OBSERVED` : null].filter(Boolean).join(' · ');
   const detail = [
-    real.list.length ? `Real imagery (MEASURED), weighted by overlap with the curve: ${real.list.map((s) => `${s.source.credit} ${pct(s.weight)}${s === best ? ' (drawn)' : ' (listed, not drawn: one map per globe)'}`).join('; ')}.` : 'No real map of this body overlaps the curve.',
+    real.list.length ? `Real imagery (MEASURED), weighted by overlap with the curve: ${real.list.map((s) => `${s.source.credit}${mapTag(s)} ${pct(s.weight)}${s === best ? ' (drawn)' : ' (listed, not drawn: one map per globe)'}`).join('; ')}.` : 'No real map of this body overlaps the curve.',
     predicted > 0.005 ? `Predicted (MODELLED · PREDICTED) where no real map covers the curve: ${segs.filter((s) => s.look.mode !== 'dark').map((s) => `${fmtRange(s.seg.lo, s.seg.hi)} ${s.look.mode} ${pct(s.w)}`).join(', ')}.` : null,
     notObserved.length ? `NOT OBSERVED: ${notObserved.map((r) => fmtRange(...r)).join(', ')}.` : null,
     p.desc.composite ? `Colour: three-band composite (blue ${fmtRange(...th[0])}, green ${fmtRange(...th[1])}, red ${fmtRange(...th[2])}).` : null,
   ].filter(Boolean).join(' ');
-  return { mode: mix.real + predicted < 1e-3 ? 'dark' : 'curve', tier: shares[0][0], palette: pal, composite: !!th, label, detail, mix,
+  return { mode: measured + predicted < 1e-3 ? 'dark' : 'curve', tier: shares[0][0], palette: pal, composite: !!th, label, detail, mix,
     real: best ? { source: best.source, id: best.id, hue: realHue, palette: best.source.gibs ? 0 : pal, lit: realEff < 2600 && !best.source.gibs } : null,
-    sources: real.list.map((s) => ({ id: s.id, credit: s.source.credit, note: s.source.note, weight: s.weight, drawn: s === best, partial: !!s.source.partial })),
+    sources: real.list.map((s) => ({ id: s.id, credit: s.source.credit, note: s.source.note, weight: s.weight, drawn: s === best, partial: !!s.source.partial, predicted: !!s.source.predicted })),
     reflected, thermalPart, glowPart, segments: segs.map((s) => ({ range: [s.seg.lo, s.seg.hi], mode: s.look.mode, w: s.w, label: s.look.label })),
     uncovered, notObserved };
 }
@@ -281,16 +288,19 @@ export function sunCurveLook(p, teff = 5772) {
   const norm = wSig + wPhoto;
   const t = norm > 0 ? tint.map((x) => x / norm) : [0.02, 0.02, 0.02];
   const best = real.list[0] ?? null;
-  const predicted = wSig, computed = wPhoto;
-  const label = [real.measured > 0.005 ? `${pct(real.measured)} MEASURED` : null, predicted > 0.005 ? `${pct(predicted)} MEASURED SIGNATURE · SKETCH` : null,
+  const predicted = wSig, computed = wPhoto, modelMap = Math.max(0, real.mapped - real.measured);
+  const label = [real.measured > 0.005 ? `${pct(real.measured)} MEASURED` : null, modelMap > 0.005 ? `${pct(modelMap)} MODELLED MAP · PREDICTED` : null,
+    predicted > 0.005 ? `${pct(predicted)} MEASURED SIGNATURE · SKETCH` : null,
     computed > 0.005 ? `${pct(computed)} COMPUTED` : null, wDark > 0.005 ? `${pct(wDark)} NOT OBSERVED` : null].filter(Boolean).join(' · ') || 'NOT OBSERVED THROUGH THIS CURVE';
-  const tier = [['measured', real.measured], ['modelled', predicted], ['computed', computed + wDark]].sort((a, b) => b[1] - a[1])[0][0];
-  const detail = [real.list.length ? `SDO frames overlapping the curve: ${real.list.map((s) => `${s.source.credit} ${pct(s.weight)}${s === best ? ' (drawn)' : ''}`).join('; ')}.` : null,
+  const tier = [['measured', real.measured], ['modelled', predicted + modelMap], ['computed', computed + wDark]].sort((a, b) => b[1] - a[1])[0][0];
+  const detail = [real.list.length ? `Solar maps overlapping the curve (SDO, Nobeyama, SRH; modelled discs marked): ${real.list.map((s) => `${s.source.credit}${mapTag(s)} ${pct(s.weight)}${s === best ? ' (drawn)' : ''}`).join('; ')}.` : null,
     parts.length ? `${parts.join('; ')}.` : null].filter(Boolean).join(' ');
-  // the disc shows the SDO frame when real imagery outweighs the predicted parts (the dark parts show nothing either way)
-  const realShare = real.measured > 0 ? real.measured / (real.measured + norm) : 0;
-  return { feed: best?.source ?? null, realWeight: real.measured, realShare, tint: t, look: { mode: best && realShare >= 0.5 ? 'real' : norm > 0 ? 'curve' : 'dark', tier, label, detail,
-    sources: real.list.map((s) => ({ id: s.id, credit: s.source.credit, weight: s.weight, drawn: s === best })) } };
+  // Weighted like any body (#28): the drawn map's share of what is shown, map vs (signatures + photosphere); the
+  // dark parts show nothing either way. The disc blends the map over the predicted tint by this share.
+  const realShare = real.mapped > 0 ? real.mapped / (real.mapped + norm) : 0;
+  return { feed: best?.source ?? null, realWeight: real.mapped, measured: real.measured, realShare, tint: t,
+    look: { mode: best && realShare >= 0.5 ? 'real' : norm > 0 ? 'curve' : 'dark', tier, label, detail,
+      sources: real.list.map((s) => ({ id: s.id, credit: s.source.credit, weight: s.weight, drawn: s === best, predicted: !!s.source.predicted })) } };
 }
 
 // ---- the sky ----------------------------------------------------------------------------------

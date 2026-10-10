@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeBinarySnapshot, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -93,4 +93,18 @@ test('numeric snapshot rejects truncation, invalid ordering, digit corruption an
   const invalidOrder=valid.slice(); invalidOrder[20+skeletonLength]=255; assert.throws(()=>restoreSnapshotText(invalidOrder));
   const invalidDigit=valid.slice(); invalidDigit[20+skeletonLength+3+5]=65; assert.throws(()=>restoreSnapshotText(invalidDigit));
   const trailing=new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
+});
+
+
+test('dense raw transport preserves all bytes, partial blocks and rejects invalid envelopes', async () => {
+  for (const bytes of [randomBytes(4097), ...Array.from({length:95}, (_, length) => new Uint8Array(length).fill(255))]) {
+    const packed = encodeDenseSnapshotBytes(bytes);
+    assert.deepEqual(unpackSnapshotBytes(packed), new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data, /[\0\r<]/);
+    assert.throws(() => unpackSnapshotBytes({...packed, data: packed.data + 'a'}));
+    if (packed.data.length) assert.throws(() => unpackSnapshotBytes({...packed, data: '<' + packed.data.slice(1)}));
+  }
+  const snapshot = {label: 'α # \"', number: -1e-12, bytes:'data:image/png;base64,AAEC//8='};
+  assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync(JSON.stringify(snapshot)))), snapshot);
+  assert.throws(() => unpackSnapshotBytes({encoding:'gzip-raw-radix125-wide-v1', byteLength:47, data:'\x7f'.repeat(54)}));
 });

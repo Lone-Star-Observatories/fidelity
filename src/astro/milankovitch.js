@@ -26,14 +26,16 @@ function row(t, i, f) {
 export const precessionIndex = (o) => o.e * Math.sin(o.pi);
 
 /** Daily mean insolation (W/m²) at latitude `latDeg` when the Sun's true longitude is `lonDeg` (90 = June solstice). */
-export function insolation(o, latDeg, lonDeg = 90) {
+export function insolation(o, latDeg, lonDeg = 90, s0 = S0) {
   const phi = latDeg * DEG, lam = lonDeg * DEG;
   const dec = Math.asin(Math.sin(o.eps) * Math.sin(lam));
   const aOverR = (1 + o.e * Math.cos(lam - o.pi - Math.PI)) / (1 - o.e * o.e);
   const c = -Math.tan(phi) * Math.tan(dec);
   const H0 = c >= 1 ? 0 : c <= -1 ? Math.PI : Math.acos(c); // polar night / midnight sun
-  return (S0 / Math.PI) * aOverR ** 2 * (H0 * Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.sin(H0));
+  return (s0 / Math.PI) * aOverR ** 2 * (H0 * Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.sin(H0));
 }
+/** Mars' solar constant at its mean distance (1.5237 au). */
+export const S0_MARS = S0 / 1.5237 ** 2;
 /** The classic Milankovitch forcing: daily mean insolation at 65° N on the June solstice. */
 export const summer65N = (o) => insolation(o, 65, 90);
 

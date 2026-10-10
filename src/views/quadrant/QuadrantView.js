@@ -15,6 +15,8 @@ import { NEBULAE, FAMOUS_CLUSTERS, ageTeff } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 import { pickPoint, onClicks } from '../pick.js';
 import { createDeepSky3D } from './deepsky3d.js';
+import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
+import { METERS } from '../cameraMath.js';
 import { radecVec } from '../../astro/skyplane.js';
 import { fetchClusterMembers, nebulaImageUrl } from '../../data/catalog.js';
 
@@ -288,23 +290,43 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   }
   new ResizeObserver(resize).observe(container);
   const tmp = new THREE.Vector3();
+  // camera controls (#39): Sol, the clusters and the nebulae are what FLY speeds up near
+  const eachObject = (fn) => {
+    fn(0, 0, 0, 0);
+    for (const o of objects) if (o.distLy <= radius * 1.02) fn(o.pos.x, o.pos.y, o.pos.z, sizeOf(o) / 3.5);
+  };
+  const sizeOf = (o) => { const neb = ds.nebulae.get(o.id); return o.r50pc ? o.r50pc * LY_PER_PC * 2 : neb ? neb.objectLy : 1; };
+  const rig = createCameraRig({
+    key: 'quadrant', camera, controls, dom: labels.domElement, container, target, metersPerUnit: METERS.ly, minFov: 0.1,
+    nearest: (pos) => Math.max(0.05, nearestPoint(pos, eachObject)),
+    ahead: (pos, dir) => aheadPoint(pos, dir, eachObject),
+    fit: () => {
+      zoomGoal = null; zoomDir = null;
+      if (selected) rig.frameSphere(selected.pos, Math.max(0.2, sizeOf(selected)), 1.1);
+      else rig.frameSphere(new THREE.Vector3(), radius, 1.02);
+    },
+    reset: () => { zoomGoal = null; zoomDir = null; rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(radius * 0.35, radius * 1.0, radius * 1.4) }); },
+  });
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (controls.target.distanceToSquared(target) > 1) {
-      const delta = tmp.copy(target).sub(controls.target).multiplyScalar(0.08);
-      controls.target.add(delta); camera.position.add(delta);
+    if (rig.update()) {
+      if (controls.target.distanceToSquared(target) > 1) {
+        const delta = tmp.copy(target).sub(controls.target).multiplyScalar(motionK(0.08));
+        controls.target.add(delta); camera.position.add(delta);
+      }
+      if (zoomGoal) {
+        const k = motionK(0.08);
+        const off = tmp.copy(camera.position).sub(controls.target), len = off.length();
+        const next = Math.exp(Math.log(len) + (Math.log(zoomGoal) - Math.log(len)) * k);
+        off.divideScalar(len);
+        if (zoomDir) off.lerp(zoomDir, k).normalize();
+        camera.position.copy(controls.target).add(off.multiplyScalar(next));
+        if (Math.abs(Math.log(next / zoomGoal)) < 0.01 && (!zoomDir || off.angleTo(zoomDir) < 0.01)) { zoomGoal = null; zoomDir = null; }
+      }
+      controls.update();
     }
-    if (zoomGoal) {
-      const off = tmp.copy(camera.position).sub(controls.target), len = off.length();
-      const next = Math.exp(Math.log(len) + (Math.log(zoomGoal) - Math.log(len)) * 0.08);
-      off.divideScalar(len);
-      if (zoomDir) off.lerp(zoomDir, 0.08).normalize();
-      camera.position.copy(controls.target).add(off.multiplyScalar(next));
-      if (Math.abs(Math.log(next / zoomGoal)) < 0.01 && (!zoomDir || off.angleTo(zoomDir) < 0.01)) { zoomGoal = null; zoomDir = null; }
-    }
-    controls.update();
-    const camDist = camera.position.distanceTo(controls.target);
+    const camDist = rig.mode === 'orbit' ? camera.position.distanceTo(controls.target) : rig.nearest(); // FLY: the nearest object
     const near = Math.max(0.002, Math.min(1, camDist * 0.01));
     if (Math.abs(near - camera.near) > camera.near * 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     const now = performance.now();
@@ -330,6 +352,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setStars, setClusters, setRadius, select, applyLook,
+    camera: rig,
     get radius() { return radius; },
     get objects() { return objects; },
     /** Any selectable object, including clusters without a landmark label. */

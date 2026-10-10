@@ -6,9 +6,11 @@ import { starSearch } from './search.js';
 import { streamStation, stationNowPlaying, cameraMedia, rfDevices, localScan, handleKiwiUpgrade, handleLocalUpgrade } from './rf.js';
 import { impactRisk } from './risk.js';
 import { co2 } from './co2.js';
+import { paleoCoastlines } from './paleomap.js';
 import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { config } from './config.js';
 import { monthlyVectors, localDay, localMonth, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
@@ -42,9 +44,16 @@ const MIME = {
   '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
 };
 
-const send = (res, status, body, type = 'application/json') => {
+const send = (res, status, body, type = 'application/json', req = null) => {
+  const out = type === 'application/json' ? JSON.stringify(body) : body;
+  // large JSON (deep-time arrivals run to megabytes) goes gzipped when the browser accepts it
+  if (req && typeof out === 'string' && out.length > 256 * 1024 && /\bgzip\b/.test(req.headers['accept-encoding'] || '')) {
+    res.writeHead(status, { 'content-type': type, 'cache-control': 'no-store', 'content-encoding': 'gzip', vary: 'accept-encoding' });
+    res.end(zlib.gzipSync(out, { level: 4 }));
+    return;
+  }
   res.writeHead(status, { 'content-type': type, 'cache-control': 'no-store' });
-  res.end(type === 'application/json' ? JSON.stringify(body) : body);
+  res.end(out);
 };
 
 const routes = {
@@ -59,6 +68,7 @@ const routes = {
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/impact-risk': async () => impactRisk(),
   'GET /api/co2': async () => co2(),
+  'GET /api/paleo-coastlines': async (q) => paleoCoastlines(q.get('time') || ''),
   'GET /api/clusters': async () => clusters(),
   'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),
@@ -73,7 +83,7 @@ const routes = {
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
-  'GET /api/arrivals': async (q) => arrivals(q.get('center') || 'sol', q.get('fromLy') || '0', q.get('toLy') || '250'),
+  'GET /api/arrivals': async (q) => arrivals(q.get('center') || 'sol', q.get('fromLy') || '0', q.get('toLy') || '250', { gaia: q.get('gaia') !== '0' }),
   'GET /api/planets': async (q) => nearbyPlanets(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),
@@ -160,7 +170,7 @@ const server = http.createServer(async (req, res) => {
       if (out?.binary) {
         res.writeHead(200, { 'content-type': out.type, 'cache-control': `public, max-age=${out.maxAge ?? 604800}`, ...out.headers });
         res.end(out.body);
-      } else send(res, 200, out);
+      } else send(res, 200, out, 'application/json', req);
     }
     catch (err) {
       if (!err.status) console.warn(`${key}${url.search} → ${err.message || err}`);

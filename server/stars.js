@@ -15,7 +15,7 @@ import { cached } from './cache.js';
 import { scanCatalogs } from './catalogs.js';
 import { orbits as loadOrbits, MEASURED, componentLetters } from './binaries.js';
 import { NEIGHBOURS, BROWN_DWARF_PROPS } from './neighbours.js';
-import { hipMotions } from './gaia.js';
+import { hipMotions, gaiaRvSlice } from './gaia.js';
 import { spaceMotion } from '../src/astro/spacemotion.js';
 import { starAliases } from '../src/data/search.js';
 
@@ -297,7 +297,7 @@ export function buildGroups(stars, edges) {
 
 // Where a star's velocity comes from: HYG (Hipparcos proper motion + catalogue RV), Gaia DR3
 // (astrometry + Gaia RV), or Gaia DR3 astrometry with the catalogue's RV (or none).
-export const VSRC = ['HYG', 'Gaia DR3', 'Gaia DR3 + catalogue RV'];
+export const VSRC = ['HYG', 'Gaia DR3', 'Gaia DR3 + catalogue RV', 'Gaia DR3 RV slice (not in HYG)'];
 
 /**
  * Give each HYG star with a good Gaia DR3 match (parallax/error > 10) a Gaia position and
@@ -361,6 +361,43 @@ export async function motionsReady() {
 }
 
 /**
+ * Load the Gaia DR3 RV slice in the background (first asked for by /api/arrivals, so the
+ * standalone build never fetches it) and merge it once the Hipparcos motions are in, so the
+ * de-duplication compares Gaia positions with Gaia positions where it can.
+ */
+function startGaiaRv(cat) {
+  const g = cat.gaiaRv;
+  if (g.status === 'loading' || g.status === 'ok') return cat.gaiaRvReady;
+  if (g.status === 'error' && Date.now() - g.at < GAIA_RETRY_MS) return cat.gaiaRvReady;
+  cat.gaiaRv = { status: 'loading', stars: [] };
+  cat.gaiaRvReady = (async () => {
+    const v = await gaiaRvSlice();
+    await startGaia(cat);
+    const t0 = Date.now();
+    const { added, matched, noisy } = mergeGaiaRv(cat.stars, v.rows, { pos: posOf });
+    const ly = (s) => ({ d: s.distPc * LY_PER_PC, M: s.absmag });
+    const hyg = cat.stars.filter((s) => s.id !== 'sol').map(ly);
+    const before = completenessByClass(hyg), after = completenessByClass([...hyg, ...added.map(ly)]);
+    cat.gaiaRv = {
+      status: 'ok', stars: added, byId: new Map(added.map((s) => [s.id, s])), rows: v.rows.length, matched, noisy, added: added.length,
+      via: v.via, fetchMs: v.ms, mergeMs: Date.now() - t0, fetched: v.fetched, source: v.source,
+      completeness: {
+        gaiaLy: +(100 * LY_PER_PC).toFixed(0), // parallax > 10 mas
+        classes: before.map((c, i) => ({ label: c.label, mv: c.mv, hygLy: c.completeLy, mergedLy: after[i].completeLy })),
+        density: densityProfile([...cat.stars, ...added]),
+      },
+    };
+  })().catch((err) => { cat.gaiaRv = { status: 'error', stars: [], error: String(err.message || err), at: Date.now() }; });
+  return cat.gaiaRvReady;
+}
+const gaiaRvStatus = (cat) => {
+  const g = cat.gaiaRv;
+  return g.status === 'ok'
+    ? { status: 'ok', rows: g.rows, matched: g.matched, noisy: g.noisy, added: g.added, via: g.via, fetchMs: g.fetchMs, mergeMs: g.mergeMs, fetched: g.fetched, source: g.source }
+    : { status: g.status, error: g.error ?? null };
+};
+
+/**
  * How complete the catalogue is with distance from Sol: its star density within 20 ly, and the
  * distance where the density of a 10 ly shell first falls below half of that (beyond it, the
  * catalogue holds mainly the brighter stars).
@@ -384,6 +421,107 @@ export function densityProfile(stars) {
     if (rho < 0.5 * rho0) { halfLy = edges[k] - 10; break; }
   }
   return { rho0PerLy3: rho0, halfLy, refLy: 20 };
+}
+
+// ---- the Gaia DR3 radial-velocity slice (#29) ------------------------------------------------
+
+/** Johnson V from Gaia G and BP−RP (Riello et al. 2021, valid −0.5 < BP−RP < 5); G − 0.3 without a colour. */
+export function gaiaV(g, bprp) {
+  if (bprp == null) return g + 0.3;
+  const x = Math.max(-0.5, Math.min(5, bprp));
+  return g - (-0.02704 + 0.01424 * x - 0.2156 * x * x + 0.01426 * x ** 3);
+}
+/** Rough B−V from BP−RP, only for drawing a star's colour (≈ 0.65 for the Sun, ≈ 1.5 for an M dwarf). */
+export const gaiaBV = (bprp) => (bprp == null ? null : +Math.max(-0.3, Math.min(2, bprp * (0.83 - 0.11 * Math.max(0, bprp)))).toFixed(2));
+
+/**
+ * Merge the Gaia DR3 RV slice with the catalogue: a Gaia row is the same star as a catalogue
+ * star when position, parallax and magnitude all agree. Tolerances follow how well the
+ * catalogue knows the star: 3″ / 10% for stars that already carry Gaia astrometry; 5″ plus
+ * 20 years of proper motion / 25% for Hipparcos stars (J2000 positions vs Gaia's 2016.0);
+ * 100″ plus 66 years of proper motion / 45% for Gliese, Yale and literature rows (old
+ * positions, photometric distances). V (from G and BP−RP) must agree within 1.5 mag (1.2 for
+ * the rough rows) where the catalogue has one, so a fainter companion Gaia resolves next to a
+ * catalogue star stays a star of its own. Within 15″ and 0.3 mag the parallax test is waived
+ * (some Gliese distances are off by 2×). Returns the Gaia-only stars as catalogue-like
+ * records (`vSrc` 3), how many rows matched, and how many were dropped as RVs with errors
+ * ≥ `maxRvErr` km/s (`noisy`).
+ */
+export function mergeGaiaRv(stars, rows, { pos = (s) => s.motion ?? s, maxRvErr = 5 } = {}) {
+  const CELL = 0.005; // rad, ≈ 17′ — far more than any match tolerance
+  const grid = new Map(), key = (i, j, k) => `${i},${j},${k}`;
+  for (const s of stars) {
+    const p = pos(s), d = Math.hypot(p.x, p.y, p.z);
+    if (!(d > 0) || d > 130) continue;
+    const u = [p.x / d, p.y / d, p.z / d], k = key(...u.map((c) => Math.floor(c / CELL)));
+    if (!grid.has(k)) grid.set(k, []);
+    // how well the catalogue knows this star: Gaia astrometry (the same 2016.0 epoch), a
+    // Hipparcos parallax with J2000 positions, or neither (Gliese / Yale / literature rows,
+    // whose positions can be ~1′ out and distances ~40% out)
+    const q = s.motion ? 0 : s.hip ? 1 : 2;
+    grid.get(k).push({ s, u, plx: 1000 / d, posArcsec: [3, 5, 100][q], pmYears: [1, 16.5 * 1.2, 66][q], plxFrac: [0.1, 0.25, 0.45][q], dMag: [1.5, 1.5, 1.2][q] });
+  }
+  const added = [];
+  let matched = 0, noisy = 0;
+  for (const r of rows) {
+    const [sid, ra, dec, plx, pmra, pmdec, rv, g, bprp, rvErr] = r;
+    if (rvErr != null && !(rvErr < maxRvErr)) { noisy++; continue; } // RV too uncertain (or spurious) to follow
+    const u = unit(ra, dec), c = u.map((x) => Math.floor(x / CELL));
+    const pm = Math.hypot(pmra, pmdec) / 1000; // ″/yr
+    const V = gaiaV(g, bprp);
+    let hit = null;
+    for (let i = -1; i <= 1 && !hit; i++) for (let j = -1; j <= 1 && !hit; j++) for (let k = -1; k <= 1 && !hit; k++) {
+      for (const e of grid.get(key(c[0] + i, c[1] + j, c[2] + k)) ?? []) {
+        const sep = Math.acos(Math.min(1, u[0] * e.u[0] + u[1] * e.u[1] + u[2] * e.u[2])) * 206265;
+        const tol = e.posArcsec + pm * e.pmYears;
+        if (sep > tol) continue;
+        const dV = e.s.mag != null ? Math.abs(e.s.mag - V) : null;
+        // nearly the same place and brightness: the same star even when an old distance is far off
+        const twin = dV != null && dV <= 0.3 && sep <= Math.min(15, tol);
+        if (!twin && Math.abs(e.plx - plx) > Math.max(e.plxFrac * plx, 2)) continue;
+        if (dV != null && dV > e.dMag) continue;
+        hit = e.s; break;
+      }
+    }
+    if (hit) { matched++; continue; }
+    const m = spaceMotion({ raDeg: ra, decDeg: dec, plxMas: plx, pmraMasYr: pmra, pmdecMasYr: pmdec, rvKms: rv });
+    const distPc = 1000 / plx;
+    added.push({
+      id: `gdr3-${sid}`, name: `Gaia DR3 ${sid}`, gaia: sid, hip: null, hd: null, gl: null,
+      x: m.pos[0], y: m.pos[1], z: m.pos[2], distPc, mag: +V.toFixed(2), absmag: +(V - 5 * Math.log10(distPc / 10)).toFixed(2), ci: gaiaBV(bprp), spect: null,
+      motion: { x: m.pos[0], y: m.pos[1], z: m.pos[2], v: m.vel, rvKnown: true, vSrc: 3 }, source: 'Gaia DR3',
+    });
+  }
+  return { added, matched, noisy };
+}
+
+// Absolute-magnitude (V) bins with the dwarfs that dominate them.
+export const MV_CLASSES = [['B–A', -Infinity, 2], ['F', 2, 4], ['G', 4, 5.5], ['K', 5.5, 8.8], ['M0–M3', 8.8, 12], ['M4+', 12, Infinity]];
+/**
+ * How far out each absolute-magnitude class is complete in a list of { d (ly), M }: its density
+ * inside the smallest radius (≥ 20 ly) holding 30 of its stars, then shells outward each
+ * expected to hold ≥ 30; the class is complete out to the first shell holding fewer than half
+ * of what that density predicts. `completeLy` null = complete out to `maxLy`.
+ */
+export function completenessByClass(list, maxLy = 1000) {
+  const vol = (a, b) => (4 / 3) * Math.PI * (b ** 3 - a ** 3);
+  return MV_CLASSES.map(([label, lo, hi]) => {
+    const ds = list.filter((s) => s.M != null && s.M >= lo && s.M < hi && s.d <= maxLy).map((s) => s.d).sort((a, b) => a - b);
+    const within = (r) => { let a = 0, b = ds.length; while (a < b) { const m = (a + b) >> 1; if (ds[m] <= r) a = m + 1; else b = m; } return a; };
+    let ref = null;
+    for (let r = 20; r <= 300; r += 10) if (within(r) >= 30) { ref = r; break; }
+    if (!ref) return { label, mv: [lo, hi], refLy: null, completeLy: 0, n: ds.length };
+    const rho = within(ref) / vol(0, ref);
+    let a = ref, completeLy = null;
+    while (a < maxLy) {
+      let b = a;
+      while (b < maxLy && rho * vol(a, b) < 30) b += 5;
+      if (rho * vol(a, b) < 30) break; // too few expected before maxLy to tell
+      if (within(b) - within(a) < 0.5 * rho * vol(a, b)) { completeLy = a; break; }
+      a = b;
+    }
+    return { label, mv: [lo, hi], refLy: ref, completeLy, n: ds.length };
+  });
 }
 
 // ---- service -----------------------------------------------------------------------------
@@ -410,7 +548,7 @@ export function catalog() {
     } catch (err) { binaryError = String(err.message || err); }
     const groupOf = buildGroups(stars, edges);
     const byId = new Map(stars.map((s) => [s.id, s]));
-    const cat = { stars, byId, planetsOf, planetError, groupOf, binaryError, hygFrom: from, motions: { status: 'none' }, gaiaReady: null };
+    const cat = { stars, byId, planetsOf, planetError, groupOf, binaryError, hygFrom: from, motions: { status: 'none' }, gaiaReady: null, gaiaRv: { status: 'none', stars: [] }, gaiaRvReady: null };
     cat.density = densityProfile(stars);
     return cat;
   })().catch((err) => { catalogPromise = null; throw err; });
@@ -462,13 +600,16 @@ const motionStatus = (cat) => ({ status: cat.motions.status, gaiaStars: cat.moti
  * system's shared motion. Compact rows (positions pc, velocities km/s, equatorial);
  * flags = rvKnown + 2 × velocity source (VSRC index).
  */
-export async function arrivals(centerId, fromLy, toLy) {
+export async function arrivals(centerId, fromLy, toLy, { gaia = false, waitMs = 8000 } = {}) {
   const a = Number(fromLy), b = Number(toLy);
   if (!(a >= 0 && b > a && b <= 1000)) throw bad('need 0 ≤ fromLy < toLy ≤ 1000');
   const cat = await catalog();
   const c = centerOf(cat, centerId), cp = posOf(c);
-  const rows = [], counts = [0, 0, 0];
+  // the Gaia DR3 RV slice (opt-in: the route asks for it, the standalone builder does not)
+  if (gaia) await Promise.race([startGaiaRv(cat), new Promise((r) => setTimeout(r, waitMs).unref?.())]);
+  const rows = [], counts = VSRC.map(() => 0);
   const aPc = a / LY_PER_PC, bPc = b / LY_PER_PC;
+  const r3 = (x) => Math.round(x * 1000) / 1000, r2 = (x) => Math.round(x * 100) / 100;
   for (const s of cat.stars) {
     if (s.id === 'sol' || s.id === c.id) continue;
     const q = posOf(s);
@@ -480,12 +621,23 @@ export async function arrivals(centerId, fromLy, toLy) {
     rows.push([s.id, s.name, +q.x.toFixed(4), +q.y.toFixed(4), +q.z.toFixed(4), s.absmag != null ? +s.absmag.toFixed(2) : null,
       s.ci, systemId(cat, s), +m.v[0].toFixed(3), +m.v[1].toFixed(3), +m.v[2].toFixed(3), (m.rvKnown ? 1 : 0) + 2 * m.vSrc]);
   }
+  // Gaia-only stars: compact rows (name null = "Gaia DR3 <source_id>", 0.001 pc, 0.01 km/s)
+  const gv = gaia && cat.gaiaRv.status === 'ok';
+  if (gv) {
+    for (const s of cat.gaiaRv.stars) {
+      const m = s.motion, d = Math.hypot(m.x - cp.x, m.y - cp.y, m.z - cp.z);
+      if (d <= aPc || d > bPc || s.id === c.id) continue;
+      counts[3]++;
+      rows.push([s.id, null, r3(m.x), r3(m.y), r3(m.z), s.absmag, s.ci, null, r2(m.v[0]), r2(m.v[1]), r2(m.v[2]), 1 + 2 * 3]);
+    }
+  }
   return {
     center: c.id, fromLy: a, toLy: b,
     fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'system', 'vx', 'vy', 'vz', 'flags'],
     stars: rows, velocitySources: Object.fromEntries(VSRC.map((k, i) => [k, counts[i]])),
     density: cat.density, motions: motionStatus(cat),
-    source: `HYG v4.4${cat.motions.status === 'ok' ? ' + Gaia DR3 motions' : ''}; stars with a measured proper motion only`,
+    ...(gaia ? { gaiaRv: gaiaRvStatus(cat), completeness: gv ? cat.gaiaRv.completeness : null } : {}),
+    source: `HYG v4.4${cat.motions.status === 'ok' ? ' + Gaia DR3 motions' : ''}${gv ? ' + Gaia DR3 RV slice (≤ 326 ly)' : ''}; stars with a measured proper motion only`,
   };
 }
 

@@ -21,6 +21,7 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
 import { bandStarColour, currentBand, onBand } from '../../data/bandstate.js';
 import { cloudImageFor, cloudCredit, cloudSurveyUrl } from '../../data/satellite-bands.js';
+import { bakedBand, bakedText } from '../../data/bandbake.js';
 import { galaxyBandNote } from '../../astro/galaxyband.js';
 import { PAL_RGB } from '../system/starband.js';
 import { paletteIndex } from '../system/bandskin.js';
@@ -33,6 +34,8 @@ import { createGalaxyPlane } from './plane.js';
 import { createGalaxyModel, ARMS, armRadius, armToScene } from './model.js';
 import { settings } from '../../settings.js';
 import { pickPoint, onClicks } from '../pick.js';
+import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
+import { METERS } from '../cameraMath.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -172,11 +175,14 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     // the standalone preview has no backend for survey cutouts: only the bundled Spitzer mosaics
     const useSpitzer = img?.texture || (STANDALONE && cb.full);
     if (!img && !useSpitzer) { quad.visible = false; marker.visible = true; bandInfo.clouds[s.id] = { value: 'NOT OBSERVED IN THIS BAND', tier: 'computed', detail: 'Interstellar gas absorbs the extreme ultraviolet; no image of the Clouds exists here.' }; return; }
-    if (STANDALONE && !useSpitzer) { quad.visible = false; marker.visible = true; bandInfo.clouds[s.id] = { value: 'BAND IMAGE NEEDS THE LOCAL BACKEND', tier: 'computed', detail: 'The standalone preview only carries the Spitzer infrared images.' }; return; }
+    // the standalone preview carries a few survey cutouts baked in (#28; src/data/bandbake.js); otherwise only Spitzer
+    const baked = STANDALONE && !useSpitzer && img ? bakedBand(cloudSurveyUrl(img.survey, s.id)) : null;
+    if (STANDALONE && !useSpitzer && !baked) { quad.visible = false; marker.visible = true; bandInfo.clouds[s.id] = { value: 'BAND IMAGE NEEDS THE LOCAL BACKEND', tier: 'computed', detail: 'The standalone preview carries the Spitzer infrared images and a few baked survey cutouts, not this one.' }; return; }
     const shown = useSpitzer ? { id: 'spitzer', label: 'SPITZER · INFRARED', credit: { lmc: 'NASA/JPL-Caltech/M. Meixner (STScI) & the SAGE Legacy Team, PIA07136: Spitzer 3.6–24 µm mosaic.', smc: 'NASA/JPL-Caltech/STScI, PIA12485: Spitzer infrared mosaic.' }, nearest: !img?.texture, ...(img?.texture ? img : {}) } : img;
-    const info = { value: `${shown.label}${shown.nearest ? ' · NEAREST MAPPED BAND' : ''}`, tier: 'measured', detail: cloudCredit(shown, s.id) };
+    const info = { value: `${shown.label}${shown.nearest ? ' · NEAREST MAPPED BAND' : ''}${baked ? ` · ${bakedText(baked)}` : ''}`, tier: 'measured', detail: `${cloudCredit(shown, s.id)}${baked ? ' Offline preview: a small copy baked when the file was built.' : ''}` };
     bandInfo.clouds[s.id] = info;
     if (useSpitzer) loadTexture(s.texture).then((t) => show(t, info));
+    else if (baked) { const under = shown.under ? bakedBand(cloudSurveyUrl(shown.under, s.id)) : null; cloudTexture(baked.src, under?.src ?? null).then((t) => show(t, info)); }
     else cloudTexture(cloudSurveyUrl(shown.survey, s.id), shown.under ? cloudSurveyUrl(shown.under, s.id) : null).then((t) => show(t, info));
   }
   function applyBand(cb = currentBand()) {
@@ -339,15 +345,31 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
   new ResizeObserver(resize).observe(container);
 
   const tmp = new THREE.Vector3();
+  // camera controls (#39): Sol, Sgr A* and the satellite galaxies are what FLY speeds up near
+  const eachLandmark = (fn) => {
+    const s = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch);
+    fn(s.x, s.y, s.z, 0);
+    fn(0, 0, 0, 0.5);
+    for (const g of satellites) fn(g.body.position.x, g.body.position.y, g.body.position.z, (g.diameterKly ?? 2) / 2);
+  };
+  const rig = createCameraRig({
+    key: 'galaxy', camera, controls, dom: labels.domElement, container, target, metersPerUnit: METERS.kly, maxFov: 100, minFov: 0.2,
+    nearest: (pos) => Math.max(0.003, nearestPoint(pos, eachLandmark)),
+    ahead: (pos, dir) => aheadPoint(pos, dir, eachLandmark, 4),
+    fit: () => { follow = false; want.pos = null; rig.frameSphere(new THREE.Vector3(), 52, 1.02); }, // the disc, ~50 kly in radius
+    reset: () => { want.pos = null; follow = false; frameOn([0, 0, 0], 150); },
+  });
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (want.pos) {
-      controls.target.lerp(target, 0.08);
-      camera.position.lerp(want.pos, 0.08);
-      if (camera.position.distanceTo(want.pos) < 0.01 * want.pos.distanceTo(target) + 1e-4) want.pos = null;
+    if (rig.update()) {
+      if (want.pos) {
+        controls.target.lerp(target, motionK(0.08));
+        camera.position.lerp(want.pos, motionK(0.08));
+        if (camera.position.distanceTo(want.pos) < 0.01 * want.pos.distanceTo(target) + 1e-4) want.pos = null;
+      }
+      controls.update();
     }
-    controls.update();
     fleetGroup.visible = !!settings.get('starfleet');
     const show = settings.get('labels');
     for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
@@ -377,12 +399,14 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setStars, setGaia, setTime, applyLook,
+    camera: rig,
     get modelComponents() { return model.components; },
     /** The spectrum filter (#28): { model: { value, detail, dark }, clouds: { lmc|smc: { value, tier, detail } } }. */
     get bandInfo() { return bandInfo; },
     get epoch() { return epoch; },
     get gaiaCount() { return gaiaCount; },
     view(which) {
+      rig.setMode('orbit', { retarget: false });
       follow = which === 'sol';
       if (which === 'galaxy') frameOn([0, 0, 0], 150);
       else if (which === 'sol') frameOn(new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch).toArray(), 5.5, 0.7);
