@@ -18,6 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
+  if (packed?.encoding === 'gzip-raw-radix120-v1') return unpackApplicationBytes(packed);
   // Existing base64 snapshots remain readable.
   if (typeof packed === 'string') return Uint8Array.from(atob(packed), character => character.charCodeAt(0));
   if (packed?.encoding !== 'gzip-radix85-v1' || !Number.isSafeInteger(packed.byteLength)

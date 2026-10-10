@@ -171,11 +171,18 @@ console.log(`lossless snapshot: ${Buffer.byteLength(snapshotJson)} → ${compres
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} detailed systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build
-execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'build', '--mode', 'standalone'], { cwd: root, stdio: 'inherit' });
+execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js'), 'build', '--mode', 'standalone'], { cwd: root, stdio: 'inherit', env: { ...process.env, FIDELITY_HTML_SNAPSHOT: '1' } });
 
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
-const html = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
+const snapshotRaw = encodeApplicationBytes(compressed);
+// Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
+const html = (await fs.readFile(path.join(dist, 'index.html'), 'utf8')).replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
+const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
+if (!snapshotElement || !Buffer.from(unpackSnapshotBytes({ encoding: snapshotElement[1], byteLength: Number(snapshotElement[2]), data: snapshotElement[3] })).equals(compressed)) {
+  throw new Error('HTML snapshot transport round-trip failed.');
+}
+await fs.writeFile(path.join(dist, 'index.html'), html);
 const assets = await fs.readdir(path.join(dist, 'assets'));
 const css = await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.endsWith('.css'))), 'utf8');
 const js = (await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.endsWith('.js'))), 'utf8')).replaceAll('</script', '<\\/script');
