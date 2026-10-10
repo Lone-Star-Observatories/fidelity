@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { validateFeed, youtubeId, youtubeEmbed, TYPES } from '../src/data/events-schema.js';
+import { validateFeed, youtubeId, youtubeEmbed, TYPES, elapsed } from '../src/data/events-schema.js';
 import { launchAzimuth, headingForInclination, ascentTrack, boosterReturn, reentryTrack, proximityProfile, sampleTrack, inverse, destination, inclinationOf } from '../src/astro/trajectory.js';
 import { isoDuration, orbitParams, launchEvent, opsEvent, ll2Type, portFor, recoveryZone, streamsFrom } from '../scripts/events/ll2.js';
 import { cometPosition, solarLongitude, whenSolarLongitude, auroraEvents, auroraLatitude } from '../scripts/events/sky.js';
@@ -158,4 +158,20 @@ test('YouTube helpers', () => {
 test('mission clock and phases', () => {
   assert.equal(missionClock(-60), 'T−01:00'); assert.equal(missionClock(135), 'T+02:15'); assert.equal(missionClock(4272), 'T+01:11:12');
   assert.equal(phaseAt([{ name: 'MECO', t: 135 }, { name: 'SECO-1', t: 510 }], 200), 'MECO');
+});
+
+test('elapsed events: end, modelled flight and date precision', () => {
+  const now = Date.parse('2026-10-10T12:00:00Z');
+  assert.equal(elapsed({ time: '2026-10-10T11:00:00Z', precision: 'minute' }, now), true);
+  assert.equal(elapsed({ time: '2026-10-10T11:00:00Z', end: '2026-10-10T17:30:00Z', precision: 'minute' }, now), false, 'spacewalk under way');
+  assert.equal(elapsed({ time: '2026-10-10T11:58:00Z', precision: 'minute', model: { tracks: [{ points: [[0, 0, 0, 0], [5400, 0, 0, 200]] }] } }, now), false, 'launch still flying');
+  assert.equal(elapsed({ time: '2026-10-10T00:00:00Z', precision: 'day' }, now), false, 'today, time unknown');
+  assert.equal(elapsed({ time: '2026-10-01T00:00:00Z', precision: 'month' }, now), false, 'NET October');
+  assert.equal(elapsed({ time: '2026-09-01T00:00:00Z', precision: 'month' }, now), true);
+});
+
+test('the published feed holds no events that were over when it was generated', () => {
+  const feed = JSON.parse(fs.readFileSync(new URL('../events/events.json', import.meta.url), 'utf8'));
+  const at = Date.parse(feed.generated);
+  assert.deepEqual(feed.events.filter((e) => elapsed(e, at)).map((e) => e.id), []);
 });

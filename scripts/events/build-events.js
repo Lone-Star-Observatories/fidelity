@@ -7,12 +7,14 @@
 //   Live streams            YouTube channel RSS (YOUTUBE_API_KEY optional, adds live/upcoming state)
 //
 // A source that fails keeps its events from the previous file (marked stale) so one outage never
-// empties the feed. Options: --out <file>, --days <n> (operations look-ahead, default 60).
+// empties the feed. Events that are over (past their end, modelled flight and date precision) are
+// dropped, so each week's file holds only what is under way or still to come.
+// Options: --out <file>, --days <n> (operations look-ahead, default 60).
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SCHEMA, validateFeed } from '../../src/data/events-schema.js';
+import { SCHEMA, validateFeed, elapsed } from '../../src/data/events-schema.js';
 import { LL2, launchEvent, opsEvent, streamsFrom } from './ll2.js';
 import { ephemerisEvents, meteorShowers, cometEvents, fetchComets, auroraEvents, useHorizonsEarth } from './sky.js';
 import { CHANNELS, rssStreams, apiStreams, mergeStreams } from '../../server/youtube.js';
@@ -20,7 +22,7 @@ import { CHANNELS, rssStreams, apiStreams, mergeStreams } from '../../server/you
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
 const OUT = path.resolve(arg('--out', path.join(root, 'events/events.json')));
-const OPS_DAYS = Number(arg('--days', 60)), SKY_DAYS = 365, PAST_DAYS = 7;
+const OPS_DAYS = Number(arg('--days', 60)), SKY_DAYS = 365, PAST_DAYS = 2; // look back only to catch events still under way
 const UA = 'USS-Fidelity-events/1.0 (+https://github.com/Lone-Star-Observatories/fidelity)';
 
 const now = Date.now(), jdNow = now / 86400000 + 2440587.5;
@@ -41,7 +43,7 @@ const ll2Headers = process.env.LL2_TOKEN ? { authorization: `Token ${process.env
 
 let previous = null;
 try { previous = JSON.parse(await fs.readFile(OUT, 'utf8')); } catch { /* first run */ }
-const keep = (pred) => (previous?.events ?? []).filter(pred).map((e) => ({ ...e, stale: true }));
+const keep = (pred) => (previous?.events ?? []).filter((e) => pred(e) && !elapsed(e, now)).map((e) => ({ ...e, stale: true }));
 
 const sources = [], events = [];
 async function source(id, meta, fn, fallback) {
@@ -101,7 +103,9 @@ await source('aurora', { name: 'NOAA SWPC Kp forecast and 27-day outlook', url: 
 
 events.sort((a, b) => Date.parse(a.time) - Date.parse(b.time) || a.id.localeCompare(b.id));
 // de-duplicate ids (an LL2 item can appear in both the previous and upcoming lists)
-const unique = [...new Map(events.map((e) => [e.id, e])).values()];
+const all = [...new Map(events.map((e) => [e.id, e])).values()];
+const unique = all.filter((e) => !elapsed(e, now));
+console.log(`  dropped ${all.length - unique.length} elapsed`);
 
 let rss = [], api = [];
 try { rss = await rssStreams(fetchText, { now }); } catch (err) { console.warn(`  youtube rss: ${err.message}`); }
