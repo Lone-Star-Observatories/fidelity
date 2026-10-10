@@ -9,6 +9,7 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { eqToGal, frameToScene, teffFromBV, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
 import { R0_KLY, Z_SUN_KLY } from '../../astro/galaxy.js';
 import { createGalaxyPlane } from '../galaxy/plane.js';
+import { createGalaxyModel } from '../galaxy/model.js';
 import { NEBULAE, FAMOUS_CLUSTERS, ageTeff } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 
@@ -50,6 +51,14 @@ export function createQuadrantView(container, { onSelect, onFrame } = {}) {
   plane.position.set(R0_KLY * 1000, -Z_SUN_KLY * 1000, 0);
   plane.renderOrder = -2;
   scene.add(plane);
+  const model = createGalaxyModel({ pixelRatio: renderer.getPixelRatio() });
+  model.group.scale.setScalar(1000);
+  model.group.position.copy(plane.position);
+  // up close each particle stands for millions of stars: keep them faint and small behind the real ones
+  model.tune({ scale: 1500, maxSize: 1.6, gain: 0.3 });
+  scene.add(model.group);
+  const applyLook = () => { plane.visible = !!settings.get('galaxyArt'); model.setBrightness(settings.get('galaxyBright') ?? 0.45); };
+  applyLook();
 
   const uniforms = { uPixel: { value: renderer.getPixelRatio() }, uRadius: { value: 3000 } };
   const pointsMat = () => new THREE.ShaderMaterial({ uniforms, vertexShader: POINTS_VERT, fragmentShader: POINTS_FRAG, transparent: true, depthWrite: false });
@@ -190,7 +199,7 @@ export function createQuadrantView(container, { onSelect, onFrame } = {}) {
   return {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
-    setStars, setClusters, setRadius, select,
+    setStars, setClusters, setRadius, select, applyLook,
     get radius() { return radius; },
     get objects() { return objects; },
     /** Counts of what lies within the current radius. */

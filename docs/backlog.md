@@ -25,7 +25,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 18 | ✅ **Galaxy motion & images** | Spitzer images of the Magellanic Clouds at their real sizes; galactic time from 1 kyr/s to 50 Myr/s over ±2 Gyr (differential rotation, arm pattern speed, the Sun's frame); satellite-galaxy orbits integrated in a halo; Local Group vs CMB and Andromeda arrows in the Universe View; 55k Gaia DR3 stars beyond 1.5 kly. |
 | 20 | ✅ **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
 | 21 | **Voice: "Computer"** | Local wake word, ChatGPT voice through a backend relay (key stays local), spoken answers about what's on screen. |
-| 22 | **3D Milky Way** | Volumetric bulge, bar, disks, arms and dust instead of the flat image; fainter under the stars. |
+| 22 | ✅ **3D Milky Way** | Particle model: bar and bulge, thin and thick discs, Reid 2019 arms with dust lanes and HII regions, halo; faint by default with a brightness choice; artwork optional. |
 | 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view (done in the System and Planet views). |
 | 24 | **3D nebulae and clusters** | Best-effort 3D nebula models with real imagery; clusters drawn from their Gaia members; major stars in nebulae investigable. |
 | 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
@@ -49,6 +49,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 43 | **Look at** | View any body from any other (surface or orbit) at true apparent size and phase, light-time corrected, with zoom from naked eye to telescope. |
 | 44 | **Future missions** | Confirmed, planned and proposed missions (Dragonfly, MMX, EnVision, Uranus Orbiter…) with tiered badges, cards and ghost trajectories. |
 | 45 | **Launch windows and trajectories** | Lambert solver, porkchop plots (C3, v∞, Δv), next windows for every Solar System target, transfer arcs drawn in the System View. |
+| 46 | **Crew cards** | Nationality flag, headshot and bio for everyone in space (ISS, Tiangong, crewed missions), with live days-in-space. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.

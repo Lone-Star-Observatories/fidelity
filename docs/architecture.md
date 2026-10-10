@@ -169,6 +169,14 @@ wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (b
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
 
+## Milky Way model
+
+`src/views/galaxy/model.js` builds the galaxy as seeded particle layers (thin and thick disc,
+bar/bulge, nuclear cluster, Reid 2019 arms, HII regions, dust drawn with normal blending under
+the additive starlight, halo) in galactocentric kly. The Galaxy View puts it in `patternGroup`
+(turns at the pattern speed); the Quadrant View scales it ×1000 and tunes it faint and small
+(`model.tune`) so real stars read first. `galaxyBright` and `galaxyArt` settings control it.
+
 ## Galactic deep time
 
 `src/astro/galaxy.js` holds the dynamics: a flat rotation curve with a soft core (`omega(R)`),

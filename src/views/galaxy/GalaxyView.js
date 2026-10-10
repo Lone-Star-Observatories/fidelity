@@ -1,10 +1,10 @@
 // Galaxy View — the Milky Way face-on, with Sol and the catalogue stars where they really are.
 //
-// The image is NASA/JPL-Caltech/R. Hurt's artist's concept (PIA10748), built from Spitzer
-// data: no one has photographed our galaxy from outside, so it is badged IMAGINED. It is
-// calibrated against the annotated version (PIA19341: the same artwork, rotated, with the
-// Sun marked) so that the galactic centre is at the image centre and Sol lands at the
-// measured R₀ = 26.7 kly (GRAVITY Collaboration 2019). Units: thousands of light-years.
+// The galaxy itself is a volumetric particle model (#22, ./model.js): bar and bulge, thin and
+// thick discs, Reid et al. 2019 spiral arms with dust lanes and HII regions, and the stellar
+// halo, badged MODELLED. NASA/JPL-Caltech/R. Hurt's face-on artist's concept (PIA10748),
+// calibrated so Sol lands at R₀ = 26.7 kly (GRAVITY 2019), is an optional IMAGINED overlay.
+// Units: thousands of light-years.
 //
 // Deep time (#18): stars turn differentially on a flat rotation curve (in the vertex shader),
 // the spiral pattern turns at its own slower-near-the-centre pattern speed, the Sun's frame
@@ -15,19 +15,15 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
-import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, imageMapper, VC_KMS, KMS_KLY_PER_MYR, CORE_KLY, OMEGA_SUN, OMEGA_PATTERN,
+import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, VC_KMS, KMS_KLY_PER_MYR, CORE_KLY, OMEGA_SUN, OMEGA_PATTERN,
   SATELLITE_ORBITS, integrateOrbit, orbitAt, kpcToScene } from '../../astro/galaxy.js';
 import { loadTexture } from '../system/materials.js';
 
 export { R0_KLY, Z_SUN_KLY, IMAGE, galToScene };
 import { createGalaxyPlane } from './plane.js';
+import { createGalaxyModel, ARMS, armRadius, armToScene } from './model.js';
 import { settings } from '../../settings.js';
 
-// Arm names, at PIA19341's label positions (1308 px image, centre 653.5).
-const PIA19341 = { size: 1308, sun: [416.0, 668.8], labels: [
-  ['PERSEUS ARM', 553, 418], ['ORION–CYGNUS SPUR', 470, 590], ['SCUTUM–CENTAURUS ARM', 800, 917],
-  ['SAGITTARIUS–CARINA ARM', 788, 1033], ['OUTER ARM', 200, 503],
-] };
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
 const STAR_VERT = `
@@ -74,10 +70,16 @@ export function createGalaxyView(container, { onFrame } = {}) {
   controls.maxDistance = 900;
 
   // ---- the image, in the galactic plane --------------------------------------------------
-  const W = IMAGE.widthKly;
-  const map = imageMapper(IMAGE.sunOffset[0], IMAGE.sunOffset[1]);
-  const plane = createGalaxyPlane();
+  const plane = createGalaxyPlane({ opacity: 0.55 });
   scene.add(plane);
+  // the volumetric model (#22) is the default; the artwork is an optional overlay
+  const model = createGalaxyModel({ pixelRatio: renderer.getPixelRatio() });
+  model.tune({ scale: 150 });
+  const applyLook = () => {
+    plane.visible = !!settings.get('galaxyArt');
+    model.setBrightness(settings.get('galaxyBright') ?? 0.45);
+  };
+  applyLook();
 
   // ---- labels ------------------------------------------------------------------------------
   const tags = [];
@@ -95,17 +97,15 @@ export function createGalaxyView(container, { onFrame } = {}) {
   // frames that turn with time: the spiral pattern and the Sun's own frame
   const patternGroup = new THREE.Group(), sunGroup = new THREE.Group();
   scene.remove(plane);
-  patternGroup.add(plane);
+  patternGroup.add(plane, model.group);
   scene.add(patternGroup, sunGroup);
   const sol = galToScene([0, 0, 0]);
   tag('◆ SOL · SECTOR 001', 'sol', sol, true, sunGroup);
   tag('SGR A* · GALACTIC CENTRE', 'center', [0, 0, 0], true);
-  for (const [name, px, py] of PIA19341.labels) {
-    // PIA19341 is PIA10748 rotated 90° clockwise; express its label in PIA10748 fractions first
-    const c = (PIA19341.size - 1) / 2;
-    const du = (px - c) / PIA19341.size, dv = (py - c) / PIA19341.size;
-    const [x, z] = map(dv, -du).map((v) => v * W); // undo the 90° turn
-    tag(name, 'spoke', [x, 0, z], false, patternGroup);
+  // arm names where the model draws them (middle of each arm's fitted range, Reid et al. 2019)
+  for (const arm of ARMS) {
+    const b = (arm.range[0] + arm.range[1]) / 2;
+    tag(arm.name.toUpperCase(), 'spoke', armToScene(b, armRadius(arm, b) + 0.3), false, patternGroup);
   }
 
   // ---- satellite galaxies: integrated orbits, Spitzer images ---------------------------------
@@ -279,7 +279,8 @@ export function createGalaxyView(container, { onFrame } = {}) {
   return {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
-    setStars, setGaia, setTime,
+    setStars, setGaia, setTime, applyLook,
+    get modelComponents() { return model.components; },
     get epoch() { return epoch; },
     get gaiaCount() { return gaiaCount; },
     view(which) {
