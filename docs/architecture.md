@@ -81,13 +81,13 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set, or GIBS's latest day for sets marked `latest` (`server/bandimages.js`). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
 | `GET /api/observing/:mission/recent` | Newest public HST or JWST images from MAST: `{ images: [{ target, instrument, filters, observed, preview }] }`; `GET /api/observing/preview?uri=mast:…` serves a preview (MAST product URIs only, cached on disk) |
 | `GET /api/traverse/:id` | A Mars rover's drive path (`m20`, `msl`): `{ points: [[lon, lat], …], distanceKm, sol, credit }`, planetocentric east-positive, from NASA/JPL MMGIS, thinned (`server/traverse.js`) |
-| `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
+| `GET /api/feed/:id[?size=preview]` | A live feed: images as binary with `x-feed-time` / `x-feed-credit` (SDO/LASCO frames also at 256×256 with `size=preview`, #62); JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
@@ -120,7 +120,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
-mode is disabled there. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
+mode is disabled there. Band imagery (#28, #62) is backend-only: the standalone spectrum control
+computes predicted skins and re-weighted stars but bakes no previews yet. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
 (the 1,000 ly catalogue is backend-only); the chart badge says so when that runs short.
 
 ## Adding a view
@@ -510,6 +511,40 @@ Views consume the band only through `currentBand()`/`onBand()` and decide by wav
   `/api/gibs-band`; entries marked `latest` ask GIBS for its default (latest) day.
 - **Standalone preview**: band imagery is not baked (deferred, see the backlog); band looks there
   are predicted, sketched or the bundled Spitzer images.
+**The transmission curve (#66).** The SPECTRUM button opens a translucent overlay
+(`src/panels/spectrum.js`) with one log-wavelength axis from 10⁻⁶ nm to 10 m and the curve T(λ) ∈ [0, 1]
+over colour-coded bands. The state is a curve (`src/data/curve.js`): parts (a bandpass filter, the CIE
+photopic eye, or a window lo–hi with a transmission) combined by max, minus excluded ranges; it is the
+`curve` setting (old `band`/`bandPass` settings map onto the curve of that bandpass). `currentBand()`
+still returns `{ band, pass, full }` (plus `curve`, `custom`, `prep`): a curve that is exactly one
+bandpass canonicalises to that band and pass, so every old result is reproduced exactly; any other
+curve gives a synthetic band `custom` (the dominant band's palette) and pass (`filter: { points }`,
+`curve`). Views computed from T(λ) (`src/views/system/curvelook.js`, integrals in log wavelength):
+- bodies: every `BODY_BAND` map whose bandpass R_i overlaps T, weighted by ∫T·R_i (normalised); the
+  measured fraction is ∫min(T, max R̂_i)/∫T. The best-covered map is drawn, others listed. The rest,
+  max(0, T − max R̂), is predicted segment by segment with `bandLook()` (reflected 150 nm–2.6 µm, thermal
+  beyond, X-ray/gamma glows); the planet shader's mode 6 blends real map, reflected, thermal and glow
+  by those weights. The badge text gives the mix ("62% MEASURED · 38% PREDICTED") and NOT OBSERVED ranges.
+  A `BODY_BAND` entry's bandpass is its optional `range: [nmLo, nmHi]`, else the filter of the pass it is
+  keyed by, else (band-level key) the pass showing the same map, else the union of the band's passes.
+- the Sun: SDO frames by overlap, its measured radio/microwave/gamma signatures, the photosphere for the rest;
+- stars: a blackbody through T relative to V (Vega system, COMPUTED), 90 nm–30 µm;
+- the sky: every overlapping all-sky survey, blended by overlap (one sphere each); none: re-weighted stars.
+- colour: a narrow curve keeps its band's palette; a wide one (two bands with ≥ 10% each, more than ×3
+  in wavelength, or a visible curve wider than ×1.33) is a three-band composite: the curve's log range
+  in thirds, short → blue, middle → green, long → red, with a key in the panel.
+The readout (effective wavelength, equivalent width, bands included, colour) is also in the Computer's
+screen context (`describeCurve().text`).
+
+**Instant previews and "Processing" (#62).** Every real map and survey loads as a preview first
+(`size=preview`), then full resolution 350 ms later (so rapid switching does not fetch every band),
+cross-faded in by the shader (`uBandTexPrev`/`uBandFade`, the sky's `uPrev`/`uXf`); previews of every
+band are prefetched one at a time after start-up. Each look carries `res` (PREVIEW → LOADING → FULL, or
+FAILED with the preview kept); a newer look always wins (`u.__look` guards). Full-resolution loads are
+tracked by `src/data/bandload.js`: a new generation per change; while anything is pending a PROCESSING… n
+pill pulses and, with VOICE STATUS on (default: on while the Computer listens), the browser's own
+speech synthesis says "Processing" every 3 s (skipped while the Computer is replying), "Complete" at
+the end if it spoke, "Unable to complete" once on the first failure. No API key or network is needed.
 
 ## Milky Way model
 

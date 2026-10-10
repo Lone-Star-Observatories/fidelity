@@ -32,15 +32,17 @@ const gibs = (layer, credit) => ({
 });
 // Helioviewer source ids: AIA 193 = 11, AIA 304 = 13, HMI continuum = 18.
 // SDO AIA/HMI and SOHO LASCO ids: 4 C2, 5 C3, 8–16 AIA 94…1700, 18 HMI continuum, 19 HMI magnetogram.
-const helioviewer = (sourceId, layer, credit, scale = 2.42) => ({
-  type: 'image', ttl: 15 * MIN, credit,
-  async get() {
+const helioviewer = (sourceId, layer, credit, scale0 = 2.42) => ({
+  type: 'image', ttl: 15 * MIN, credit, preview: true,
+  // preview (#62): the same field of view at 256×256 (four times the arcsec per pixel)
+  async get({ preview = false } = {}) {
+    const px = preview ? 256 : 1024, scale = scale0 * (1024 / px);
     const now = new Date().toISOString().slice(0, 19) + 'Z';
     const closest = await (await fetchOk(`https://api.helioviewer.org/v2/getClosestImage/?date=${now}&sourceId=${sourceId}`)).json().catch(() => null);
-    const q = `date=${now}&imageScale=${scale}&layers=[${layer},1,100]&x0=0&y0=0&width=1024&height=1024&display=true`;
+    const q = `date=${now}&imageScale=${scale}&layers=[${layer},1,100]&x0=0&y0=0&width=${px}&height=${px}&display=true`;
     const res = await fetchOk(`https://api.helioviewer.org/v2/takeScreenshot/?${q}`, 90000);
     // fraction of the image width covered by the solar radius (for projecting the disk onto a sphere)
-    const disk = closest?.rsun && closest?.scale ? (closest.rsun * closest.scale) / (scale * 1024) : null;
+    const disk = closest?.rsun && closest?.scale ? (closest.rsun * closest.scale) / (scale * px) : null;
     return { body: Buffer.from(await res.arrayBuffer()), type: 'image/png', time: closest?.date ? `${closest.date.replace(' ', 'T')}Z` : now, disk };
   },
 });
@@ -264,9 +266,10 @@ const dir = path.join(config.dataDir, 'feeds');
 const inflight = new Map();
 
 /** Latest value of feed `id`: { body, type, time, credit, fetched, cache }. Serves a stale copy if the source is down. */
-export async function feed(id) {
-  const f = FEEDS[id];
-  if (!f) throw Object.assign(new Error(`unknown feed ${id}`), { status: 404 });
+export async function feed(id0, { preview = false } = {}) {
+  const f = FEEDS[id0];
+  if (!f) throw Object.assign(new Error(`unknown feed ${id0}`), { status: 404 });
+  const pre = preview && f.preview, id = pre ? `${id0}.preview` : id0; // #62: a small copy, cached on its own
   const metaFile = path.join(dir, `${id}.json`), bodyFile = path.join(dir, `${id}.bin`);
   let meta = null;
   try { meta = JSON.parse(await fs.readFile(metaFile, 'utf8')); } catch { /* none */ }
@@ -275,7 +278,7 @@ export async function feed(id) {
   if (!inflight.has(id)) {
     inflight.set(id, (async () => {
       try {
-        const got = await f.get();
+        const got = await f.get({ preview: pre });
         await fs.mkdir(dir, { recursive: true });
         meta = { type: got.type ?? 'application/json', time: got.time, disk: got.disk ?? null, credit: got.credit, fetched: new Date().toISOString(), ...(f.type === 'json' ? { body: got.body } : {}) };
         if (f.type === 'image') await fs.writeFile(bodyFile, got.body);

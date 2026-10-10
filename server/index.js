@@ -46,8 +46,8 @@ const send = (res, status, body, type = 'application/json') => {
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/voice/status': async () => voiceStatus(),
-  'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '')),
-  'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '')),
+  'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '', q.get('size') || '')),
+  'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '', q.get('size') || '')),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),
@@ -104,8 +104,8 @@ const paramRoutes = [
   [/^GET \/api\/comms\/mars-raw\/(m20|msl)$/, (m) => marsRaw(m[1])],
   [/^GET \/api\/comms\/mars-weather\/(m20|msl)$/, (m) => marsWeather(m[1])],
   [/^GET \/api\/signals\/([a-z]{1,16})$/, (m) => signalLayer(m[1])],
-  [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
-    const f = await feed(m[1]);
+  [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m, q) => {
+    const f = await feed(m[1], { preview: q?.get('size') === 'preview' }); // #62: 256×256 solar frames
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };
     // short cache: these are live images
     return binary({ body: f.body, type: f.type, maxAge: 300, headers: { 'x-feed-time': f.time ?? '', 'x-feed-disk': f.disk ?? '', 'x-feed-credit': encodeURIComponent(f.credit), 'x-feed-cache': f.cache } });

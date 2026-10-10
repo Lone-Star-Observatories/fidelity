@@ -28,6 +28,8 @@ const defaults = {
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)
   band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
   bandPass: null,    // its bandpass (null = the band's default)
+  curve: null,       // spectrum control (#66): the transmission curve { parts, excl } (null = from band/bandPass; see src/data/curve.js)
+  voiceStatus: 'auto', // #62: say "Processing" while band images load: 'on' | 'off' | 'auto' (on while the Computer is listening)
   observer: null,   // detail views' FROM EARTH card: { lat, lon, label } (null = Greenwich)
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
 };

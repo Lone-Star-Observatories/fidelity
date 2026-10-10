@@ -593,3 +593,53 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .surface-look { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; margin-top: 4px; }
 .surface-look:empty, .surface-look:empty ~ .surface-look-btns { display: none; }
 .surface-look-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+/* SPECTRUM control (#66): a translucent overlay above the view */
+.spectrum-overlay { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 6; max-height: min(72%, 640px); display: flex; flex-direction: column; gap: 6px;
+  padding: 8px 12px 10px; background: rgba(0, 0, 0, 0.58); border: 2px solid var(--lilac); border-radius: 18px; overflow: hidden; }
+.sp-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sp-head > b { color: var(--lilac); letter-spacing: 0.08em; margin-right: 6px; }
+.sp-presets { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; flex: 1; }
+.sp-presets .sp-fill { flex: 1; }
+.sp-plot { flex: none; display: block; touch-action: none; user-select: none; cursor: crosshair; }
+.sp-plot .sp-band-label, .sp-plot .sp-tick-label, .sp-plot .sp-unit-label, .sp-plot .sp-axis-label { fill: var(--peach); font-size: 11px; letter-spacing: 0.06em; }
+.sp-plot .sp-band-label { fill: #000; font-weight: 600; }
+.sp-plot .sp-unit-label { fill: var(--dim); }
+.sp-plot .sp-tick, .sp-plot .sp-pass-tick { stroke: var(--peach); stroke-width: 1; opacity: 0.6; }
+.sp-plot .sp-pass-tick { stroke: var(--ice); }
+.sp-plot .sp-curve { fill: none; stroke: var(--gold); stroke-width: 2; }
+.sp-plot .sp-curve-fill { fill: rgba(255, 204, 102, 0.3); stroke: none; }
+.sp-plot .sp-curve { filter: drop-shadow(0 0 2px #000); }
+.sp-plot .sp-win { fill: rgba(153, 204, 255, 0.12); stroke: var(--ice); stroke-dasharray: 3 3; cursor: grab; }
+.sp-plot .sp-handle { fill: transparent; cursor: ew-resize; }
+.sp-plot .sp-handle:hover { fill: rgba(153, 204, 255, 0.35); }
+.sp-plot .sp-top { cursor: ns-resize; }
+.sp-plot .sp-excl { fill: url(#sp-hatch); stroke: var(--red); }
+.sp-plot .sp-full { fill: var(--peach); font-size: 13px; letter-spacing: 0.08em; opacity: 0.8; }
+.sp-body { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 12px; min-height: 0; flex: 1 1 auto; overflow: auto; }
+@media (max-width: 900px) { .sp-body { grid-template-columns: 1fr; } }
+.sp-h { color: var(--orange); letter-spacing: 0.1em; font-size: calc(13px * var(--text-scale, 1)); margin: 2px 0 4px; }
+.sp-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 2px 0; font-size: calc(13px * var(--text-scale, 1)); }
+.sp-row-out b { color: var(--red); }
+.sp-range { color: var(--dim); font-variant-numeric: tabular-nums; flex: 1; min-width: 12em; }
+.sp-pass { min-width: 12em; }
+.sp-tag { font-size: 10px; padding: 0 5px; border-radius: 6px; background: var(--blue); color: #000; }
+.sp-io { display: inline-flex; gap: 2px; }
+.sp-io .pill { min-width: 34px; height: 22px; font-size: 11px; }
+.pill.out { --c: var(--red); }
+.sp-t { width: 4em; background: #000; color: var(--peach); border: 1px solid var(--lilac); border-radius: 6px; }
+.sp-in { flex: 1; min-width: 16em; height: 28px; background: #000; color: var(--peach); border: 2px solid var(--lilac); border-radius: 14px; padding: 0 10px; font: inherit; }
+.sp-in.bad { border-color: var(--red); }
+.sp-band-det summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; cursor: pointer; padding: 3px 0; }
+.sp-band-det > .sp-row { padding-left: 22px; }
+.sp-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+.sp-readout dl { margin: 4px 0; }
+.sp-key { display: flex; height: 18px; margin: 6px 0 4px; border-radius: 9px; overflow: hidden; font-size: calc(11px * var(--text-scale, 1)); }
+.sp-key span { flex: 1; text-align: center; color: #000; line-height: 18px; }
+.sp-key .k0 { background: #4060ff; } .sp-key .k1 { background: #40ff60; } .sp-key .k2 { background: #ff4030; }
+
+/* "Processing" while full-resolution band images load (#62): pulses with each 3 s announcement */
+.band-processing { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); z-index: 7; padding: 4px 16px; border-radius: 14px;
+  background: var(--gold); color: #000; letter-spacing: 0.12em; font-size: calc(13px * var(--text-scale, 1)); pointer-events: auto; }
+.band-processing.pulse { animation: band-pulse 3s ease-in-out infinite; }
+.band-processing.failed { background: var(--red); animation: none; }
+@keyframes band-pulse { 0% { opacity: 1; } 15% { opacity: 0.35; } 30% { opacity: 1; } 100% { opacity: 1; } }

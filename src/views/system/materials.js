@@ -54,6 +54,11 @@ const PLANET_FRAG = /* glsl */`
   // 4 not observed; 5 modelled high-energy glow. Non-visible bands are false colour (palette).
   uniform float uBandMode; uniform sampler2D uBandTex; uniform vec2 uBandLevels; uniform float uBandGain; uniform float uPalette;
   uniform vec4 uThermal; uniform float uBandUm; uniform float uGlow; uniform vec3 uPoleW; uniform float uBandLit;
+  // 6: a transmission curve (#66): weights uMix (real map, reflected, thermal, glow), each with its
+  // palette (uMixPal) or, in a three-band composite, its hue (uMixHue column, w = 1). uBandTexPrev and
+  // uBandFade cross-fade a band map's preview into its full resolution (#62).
+  uniform vec4 uMix; uniform vec4 uMixPal; uniform mat4 uMixHue; uniform float uGlowGain;
+  uniform sampler2D uBandTexPrev; uniform float uBandFade;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   vec3 pal(float t, float p) {
     t = clamp(t, 0.0, 1.0);
@@ -67,6 +72,8 @@ const PLANET_FRAG = /* glsl */`
     else { b = vec3(0.35, 0.0, 0.35); c = vec3(1.0, 0.3, 0.8); d = vec3(1.0, 0.9, 1.0); }
     return t < 0.333 ? mix(a, b, t * 3.0) : t < 0.666 ? mix(b, c, (t - 0.333) * 3.0) : mix(c, d, (t - 0.666) * 3.0);
   }
+  vec3 colz(float x, float p, vec4 hue) { return hue.w > 0.5 ? clamp(x, 0.0, 1.0) * hue.rgb : pal(x, p); }
+  vec4 bandSample() { vec4 c = texture2D(uBandTex, vUv); return uBandFade < 0.999 ? mix(texture2D(uBandTexPrev, vUv), c, uBandFade) : c; }
   float planckRel(float um, float T, float Tref) { // B_λ(T) / B_λ(Tref)
     float x = min(14387.77 / (um * max(T, 1.0)), 80.0), xr = min(14387.77 / (um * max(Tref, 1.0)), 80.0);
     return (exp(xr) - 1.0) / (exp(x) - 1.0);
@@ -110,8 +117,25 @@ const PLANET_FRAG = /* glsl */`
       // false-colour scale: full brightness at 1.3× the body's hottest modelled temperature
       vec3 thermal = pal(pow(clamp(planckRel(uBandUm, T, 1.3 * max(uThermal.x, uThermal.z)), 0.0, 1.0), 0.35), uPalette);
       vec3 bc;
-      if (uBandMode < 1.5) {
-        vec4 t = texture2D(uBandTex, vUv);
+      if (uBandMode > 5.5) {
+        vec3 acc = vec3(0.0); float ws = 0.0;
+        if (uMix.x > 0.0) {
+          vec4 t = bandSample();
+          float l = pow(clamp((dot(t.rgb, vec3(0.333)) - uBandLevels.x) * uBandLevels.y, 0.0, 1.0), 1.4);
+          vec3 rc = uMixPal.x < 0.5 && uMixHue[0].w < 0.5 ? t.rgb : colz(l * 0.92, uMixPal.x, uMixHue[0]);
+          if (uBandLit > 0.5) rc *= dayK;
+          acc += uMix.x * t.a * rc; ws += uMix.x * t.a; // gaps in a partial map: the predicted parts fill in
+        }
+        if (uMix.y > 0.0) { acc += uMix.y * colz(clamp(dot(base, vec3(0.299, 0.587, 0.114)) * uBandGain * dayK * 1.4, 0.0, 1.0), uMixPal.y, uMixHue[1]); ws += uMix.y; }
+        if (uMix.z > 0.0) { acc += uMix.z * colz(pow(clamp(planckRel(uBandUm, T, 1.3 * max(uThermal.x, uThermal.z)), 0.0, 1.0), 0.35), uMixPal.z, uMixHue[2]); ws += uMix.z; }
+        if (uMix.w > 0.0) {
+          vec3 V = normalize(cameraPosition - vPosW);
+          float g = uGlow < 1.5 ? 0.5 : uGlow < 2.5 ? lit : uGlow < 3.5 ? smoothstep(0.8, 0.96, abs(dot(N, uPoleW))) : pow(1.0 - abs(dot(N, V)), 4.0);
+          acc += uMix.w * colz(g * uGlowGain, uMixPal.w, uMixHue[3]); ws += uMix.w;
+        }
+        bc = ws > 0.0 ? acc / ws : vec3(0.012) + base * 0.012;
+      } else if (uBandMode < 1.5) {
+        vec4 t = bandSample();
         float l = pow(clamp((dot(t.rgb, vec3(0.333)) - uBandLevels.x) * uBandLevels.y, 0.0, 1.0), 1.4);
         // a thermal map of an airless body is a daytime mosaic: the night side is far colder now
         if (uBandLit < 0.5 && uThermal.w > 0.5) l *= mix(0.2, 1.0, pow(clamp(planckRel(uBandUm, T, uThermal.x), 0.0, 1.0), 0.35)); // vs its own day side
@@ -202,6 +226,8 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uBodyR: { value: 1 }, uCentreW: { value: new THREE.Vector3() }, uUmbraTint: { value: new THREE.Color(0, 0, 0) },
       uBandMode: { value: 0 }, uBandTex: { value: null }, uBandLevels: { value: new THREE.Vector2(0, 1) }, uBandGain: { value: 1 }, uPalette: { value: 4 },
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
+      uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
+      uBandTexPrev: { value: null }, uBandFade: { value: 1 },
     },
   });
 }
