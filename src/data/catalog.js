@@ -173,3 +173,13 @@ export async function fetchTraverse(id) {
   if (snapshot) return null; // traverses need the local backend
   try { return await get(`/api/traverse/${id}`); } catch { return null; }
 }
+
+/** Space telescopes: JWST's schedule now/next and the newest public HST/JWST images; null offline. */
+export async function fetchObserving(mission) {
+  if (snapshot) return null; // needs the local backend
+  const [schedule, recent] = await Promise.all([
+    mission === 'jwst' ? fetch('/api/observing/jwst/schedule').then((r) => (r.ok ? r.json() : null)).catch(() => null) : null,
+    fetch(`/api/observing/${mission}/recent`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]);
+  return { schedule, recent };
+}

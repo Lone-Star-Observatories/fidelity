@@ -408,3 +408,19 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .site-observatory { color: #cc99ff; }
 .site-launch { color: #ff9966; }
 .site-filter.off { opacity: 0.45; }
+
+/* space telescopes: now observing + newest images */
+.obs { width: 100%; min-width: 0; display: grid; gap: 10px; justify-self: stretch; }
+.obs-tag { font-size: 11px; letter-spacing: 0.12em; color: var(--lilac); display: flex; gap: 6px; align-items: center; }
+.obs-target { font-size: 22px; color: var(--orange); letter-spacing: 0.05em; }
+.obs-meta { font-size: 11px; color: var(--peach); letter-spacing: 0.06em; }
+.obs-bar { height: 5px; background: #222; border-radius: 3px; overflow: hidden; }
+.obs-bar span { display: block; height: 100%; background: var(--orange); }
+.obs-row { display: grid; grid-template-columns: 70px 1fr auto; gap: 8px; font-size: 12px; padding: 2px 0; border-bottom: 1px solid #222; }
+.obs-row span:last-child { color: var(--dim); font-size: 10px; }
+.obs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
+.obs-thumb { background: #111; border: 1px solid #333; border-radius: 4px; padding: 0; cursor: pointer; color: var(--peach); font-size: 9px; overflow: hidden; }
+.obs-thumb img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.obs-thumb span { display: block; padding: 2px 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.obs-thumb:hover { border-color: var(--orange); }
+.obs-big:empty { display: none; }

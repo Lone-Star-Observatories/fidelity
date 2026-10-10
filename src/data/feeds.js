@@ -21,6 +21,7 @@ export const SAT_FEEDS = {
   51850: [{ kind: 'image', id: 'goes-west', label: 'FULL DISK · NOW' }], // GOES-18
   41836: [{ kind: 'image', id: 'himawari', label: 'FULL DISK · NOW' }], // Himawari-9
   36395: [{ kind: 'image', id: 'sdo-hmi', label: 'SUN · VISIBLE' }, { kind: 'image', id: 'sdo-193', label: 'SUN · CORONA 193 Å' }, { kind: 'image', id: 'sdo-304', label: 'SUN · 304 Å' }], // SDO
+  20580: [{ kind: 'observing', mission: 'hst', label: 'RECENT IMAGES' }], // Hubble
   25994: [{ kind: 'image', id: 'gibs-terra', label: "YESTERDAY'S EARTH" }], // Terra
   27424: [{ kind: 'image', id: 'gibs-aqua', label: "YESTERDAY'S EARTH" }], // Aqua
   37849: [{ kind: 'image', id: 'gibs-snpp', label: "YESTERDAY'S EARTH" }], // Suomi NPP
