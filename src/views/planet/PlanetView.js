@@ -12,6 +12,7 @@ import { bodyVisualFor } from '../../data/bespoke.js';
 import { visualImageUrl } from '../../data/catalog.js';
 import { badge } from '../../data/provenance.js';
 import { dirToLatLon } from '../system/surface.js';
+import { siteDots } from '../system/sites.js';
 import { PLANETS } from '../../data/sol.js';
 import { SOL_ATMOSPHERES, SOL_INTERIORS, INTERIOR_SOURCES, BANDS, MOLECULE_NAMES, EXO_ATMOSPHERES, MR_CURVES, density } from '../../data/planets.js';
 
@@ -46,7 +47,7 @@ export function createPlanetView(container, { onSurface } = {}) {
   const pivot = new THREE.Group();
   pivot.rotation.z = 0.35;
   scene.add(pivot);
-  let globe = null, clouds = null, mats = [], running = false, globeBody = null;
+  let globe = null, clouds = null, sites = null, mats = [], running = false, globeBody = null;
   // the spectrum filter (#28): the globe takes the same band look as in the System View
   function applyBand() {
     if (!globeBody || !mats[0]) return;
@@ -84,6 +85,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     if (!running) return;
     requestAnimationFrame(frame);
     if (globe) globe.rotation.y = now * 0.00012;
+    if (sites && globe) sites.rotation.y = globe.rotation.y;
     if (clouds) clouds.rotation.y = now * 0.000128;
     for (const m of mats) m.uniforms.uSunPos.value.copy(sun);
     renderer.render(scene, camera);
@@ -112,6 +114,9 @@ export function createPlanetView(container, { onSurface } = {}) {
       pendingGlobe.geometry.dispose();
       globe = shape; pivot.add(globe);
     }).catch((error) => console.warn(`Body shape unavailable: ${b.id}`, error));
+    // #37: sites of note as dots, turning with the globe (SITES toggle and filters)
+    sites = settings.get('sites') ? siteDots(b, new Set(settings.get('siteHidden') ?? [])) : null;
+    if (sites) pivot.add(sites);
     if (b.skin?.clouds) {
       const cm = cloudMaterial(placeholder);
       cm.uniforms.uMap.value = new THREE.Texture();

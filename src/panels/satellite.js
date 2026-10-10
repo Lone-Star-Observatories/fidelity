@@ -3,7 +3,7 @@ import { modelFor } from '../data/models.js';
 // whatever live feed it has (images, video, crew, solar data). Depends on the shell's helpers.
 
 import { satrecFromRow, precessionToJ2000, temeToEcliptic, subPoint } from '../astro/sgp4.js';
-import { fetchSatellites, fetchSatelliteDetail, fetchFeed } from '../data/catalog.js';
+import { fetchSatellites, fetchSatelliteDetail, fetchFeed, fetchObserving } from '../data/catalog.js';
 import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed, youtubeEmbed, youtubeWatch } from '../data/feeds.js';
 import { SAT_COLORS } from '../views/system/satellites.js';
 import { lineChart } from './charts.js';
@@ -193,6 +193,10 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
         const img = await fetchFeed(f.id, 'image');
         if (!img) throw new Error('live feeds need the local backend (npm start)');
         frame(`${name} · ${f.label}`, `${img.time ? img.time.slice(0, 16).replace('T', ' ') + ' UTC · ' + age(img.time) : ''}`, h('img', { src: img.url, className: 'fv-img', alt: f.label }), img.credit);
+      } else if (f.kind === 'observing') {
+        const o = await fetchObserving(f.mission);
+        if (!o) throw new Error('needs the local backend (npm start)');
+        frame(`${name} · ${f.label}`, f.mission === 'jwst' ? 'SCHEDULE · RECENT IMAGES' : 'RECENT IMAGES', observingBody(f.mission, o), o.recent?.source ?? '');
       } else if (f.kind === 'crew') {
         const j = await fetchFeed(f.id, 'json');
         const people = (j.data.people ?? []).filter((p) => (f.craft === 'ISS' ? p.iss : !p.iss));
@@ -209,6 +213,40 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     } catch (err) {
       frame(`${name} · ${f.label}`, 'UNAVAILABLE', h('p', { className: 'warn', textContent: String(err.message || err) }), '', 'imagined');
     }
+  }
+
+  // ---- space telescopes: what it is pointed at, and its newest public images ------------------
+  const utc = (iso) => `${iso.slice(0, 16).replace('T', ' ')} UTC`;
+  const hm = (s) => (s >= 3600 ? `${Math.floor(s / 3600)} H ${Math.round((s % 3600) / 60)} MIN` : `${Math.round(s / 60)} MIN`);
+  function observingBody(mission, { schedule, recent }) {
+    const parts = [];
+    if (mission === 'jwst' && schedule) {
+      const n = schedule.now;
+      if (n) {
+        const end = Date.parse(n.start) + n.durationSec * 1000, left = Math.max(0, (end - Date.now()) / 1000);
+        const pct = Math.min(100, Math.max(0, 100 * (1 - left / n.durationSec)));
+        parts.push(h('div', { className: 'obs-now' },
+          h('div', { className: 'obs-tag' }, 'POINTED AT NOW ', badge('planned', 'From STScI\'s published weekly schedule: the plan, which can shift if a visit fails or is rescheduled.')),
+          h('div', { className: 'obs-target', textContent: n.target }),
+          h('div', { className: 'obs-meta', textContent: [n.instrument, n.category, n.keywords].filter(Boolean).join(' · ').toUpperCase() }),
+          h('div', { className: 'obs-bar' }, h('span', { style: `width:${pct.toFixed(1)}%` })),
+          h('div', { className: 'obs-meta', textContent: `STARTED ${utc(n.start)} · ${hm(left)} LEFT${n.parallels?.length ? ` · PARALLEL: ${n.parallels.map((p) => p.instrument).join(', ').toUpperCase()}` : ''}` })));
+      } else parts.push(h('p', { className: 'note', textContent: 'Between science visits now (slewing, calibrating or momentum management).' }));
+      if (schedule.next?.length) parts.push(h('div', { className: 'obs-list' }, h('div', { className: 'obs-tag', textContent: 'UP NEXT' }),
+        ...schedule.next.slice(0, 6).map((v) => h('div', { className: 'obs-row' }, h('span', { className: 'mono', textContent: utc(v.start).slice(11) }), h('b', { textContent: v.target || '—' }), h('span', { textContent: v.instrument.toUpperCase() })))));
+    }
+    if (mission === 'hst') parts.push(h('p', { className: 'note' }, 'Hubble\'s live timeline is not published as open data; ',
+      h('a', { href: 'https://spacetelescopelive.org/', target: '_blank', rel: 'noopener', textContent: 'Space Telescope Live ↗' }), ' (STScI) shows what it is observing right now.'));
+    const imgs = recent?.images ?? [];
+    if (imgs.length) {
+      const big = h('div', { className: 'obs-big' });
+      const show = (im) => big.replaceChildren(h('img', { src: im.preview, className: 'fv-img', alt: im.target }),
+        h('div', { className: 'obs-meta', textContent: `${im.target} · ${im.instrument} · ${im.filters} · OBSERVED ${utc(im.observed)} · ${Math.round(im.exposureSec ?? 0)} S${im.pi ? ` · PI ${im.pi}` : ''}`.toUpperCase() }),
+        im.title ? h('div', { className: 'note', textContent: im.title }) : null);
+      parts.push(h('div', { className: 'obs-tag' }, 'NEWEST PUBLIC IMAGES ', badge('measured', 'Calibrated MAST previews (single filter, grayscale), newest first, one per target and instrument. Many programmes keep data private for up to a year, so the very latest pointings appear later.')),
+        h('div', { className: 'obs-grid' }, imgs.map((im) => { const t = h('button', { className: 'obs-thumb', title: `${im.target} · ${im.instrument} · ${utc(im.observed)}` }, h('img', { src: im.preview, alt: im.target, loading: 'lazy' }), h('span', { textContent: im.target })); t.addEventListener('click', () => show(im)); return t; })), big);
+    } else parts.push(h('p', { className: 'note', textContent: 'No recent public images could be loaded.' }));
+    return h('div', { className: 'obs' }, parts);
   }
 
   /** Solar-wind panel (DSCOVR/ACE at L1), used by the satellite search section. */
@@ -261,5 +299,6 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     return box;
   }
 
-  return { show, tick, searchSection, load, closeViewer: () => { const v = viewer(); if (v) { v.hidden = true; v.replaceChildren(); } } };
+  // Other panels (surface sites) reuse the viewer: viewFeed(feed, title)
+  return { show, tick, searchSection, load, viewFeed: (f, name) => openFeed(f, [null, name]), closeViewer: () => { const v = viewer(); if (v) { v.hidden = true; v.replaceChildren(); } } };
 }

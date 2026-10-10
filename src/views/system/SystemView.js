@@ -31,6 +31,8 @@ import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
+import { createSiteLayer } from './sites.js';
+import { fetchTraverse } from '../../data/catalog.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
@@ -84,7 +86,10 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onFrame, onPickStar, onDrillStar }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFrame, onPickStar, onDrillStar }) {
+  let hiddenKinds = null, hiddenSet = new Set();
+  const siteViewSize = { w: 1, h: 1 };
+  const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
   const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
   const fat = createFatLines(); // thick orbit lines (#27)
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -396,8 +401,11 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const label = makeLabel(body);
     group.add(label);
     root.add(group);
+    // #37: landing, impact and rover sites on this globe
+    const sites = model.isSol && !isStar(body) ? createSiteLayer(body, { onSite: (s) => onSite?.(s), loadTraverse: fetchTraverse }) : null;
+    if (sites) tilt.add(sites.group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites };
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -629,6 +637,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       const n = nodes[id];
       root.remove(n.group);
       n.label.element.remove();
+      n.sites?.dispose();
       // Geometries and materials are per-body; textures are shared through the loader cache.
       disposeModel(n.mesh);
       n.group.traverse((o) => { if (o === n.mesh || n.mesh.getObjectById(o.id)) return; o.geometry?.dispose(); o.material?.dispose(); });
@@ -1350,6 +1359,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     renderer.setSize(w, h, false);
     labels.setSize(w, h);
     fat.setSize(w, h);
+    siteViewSize.w = w; siteViewSize.h = h;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
@@ -1419,6 +1429,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       n.label.visible = (showLabels && near && !minorFar) || id === focusId;
       n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
+      n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, size: siteViewSize, spin: n.mesh.rotation.y });
       if (n.body.orbit) {
         updateOrbit(n, jd);
         n.orbit.visible = (showOrbits || id === focusId) && !surface;

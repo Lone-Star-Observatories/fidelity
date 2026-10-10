@@ -5,8 +5,6 @@
 // embed no longer resolves). The viewer offers them as channels; if one is offline, try the next.
 export const ISS_STREAMS = [
   { id: 'awQzjn72bI0', label: 'NASA HD', credit: 'NASA — live high-definition views from the ISS (official stream; blank or blue screen during loss of signal)' },
-  { id: 'xONYM4PxVNA', label: 'ISS LIVE · 4K', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
-  { id: 't6UWFH7dm_s', label: 'ISS LIVE · 4K II', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
   { id: 'fO9e9jnhYK8', label: 'SEN 4K', credit: 'Sen — 24/7 Earth from Sen\'s 4K cameras on the ISS' },
 ];
 /** Embed and watch URLs for a YouTube stream id. */
@@ -23,6 +21,7 @@ export const SAT_FEEDS = {
   51850: [{ kind: 'image', id: 'goes-west', label: 'FULL DISK · NOW' }], // GOES-18
   41836: [{ kind: 'image', id: 'himawari', label: 'FULL DISK · NOW' }], // Himawari-9
   36395: [{ kind: 'image', id: 'sdo-hmi', label: 'SUN · VISIBLE' }, { kind: 'image', id: 'sdo-193', label: 'SUN · CORONA 193 Å' }, { kind: 'image', id: 'sdo-304', label: 'SUN · 304 Å' }], // SDO
+  20580: [{ kind: 'observing', mission: 'hst', label: 'RECENT IMAGES' }], // Hubble
   25994: [{ kind: 'image', id: 'gibs-terra', label: "YESTERDAY'S EARTH" }], // Terra
   27424: [{ kind: 'image', id: 'gibs-aqua', label: "YESTERDAY'S EARTH" }], // Aqua
   37849: [{ kind: 'image', id: 'gibs-snpp', label: "YESTERDAY'S EARTH" }], // Suomi NPP

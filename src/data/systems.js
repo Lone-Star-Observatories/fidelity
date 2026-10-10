@@ -75,6 +75,8 @@ function skinFacts(m) {
   return [...shapeFacts, fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
 }
 
+const parentRadiusKm = (id) => (PLANETS.find((p) => p.id === id) ?? SMALL_BODIES.find((b) => b.id === id)).radiusKm;
+
 function moonBody(m) {
   const e = m.elements;
   const locked = m.locked !== false && !m.chaotic;
@@ -85,10 +87,11 @@ function moonBody(m) {
     facts: {
       ORBIT: [
         fact('ORBITS', m.parent.toUpperCase(), 'measured'),
-        fact('DISTANCE', `${fmt(e.a, 0)} KM · ${fmt(e.a / PLANETS.find((p) => p.id === m.parent).radiusKm, 1)} × ${m.parent.toUpperCase()} RADII`, 'measured', 'Mean semi-major axis (JPL SSD).'),
+        fact('DISTANCE', `${fmt(e.a, e.a < 10 ? 2 : 0)} KM · ${fmt(e.a / parentRadiusKm(m.parent), 1)} × ${m.parent.toUpperCase()} RADII`, 'measured', m.phaseUnknown ? 'Semi-major axis (published orbit solution).' : 'Mean semi-major axis (JPL SSD).'),
         fact('PERIOD', `${fmt(e.P, e.P < 10 ? 3 : 1)} DAYS`, 'measured', 'Sidereal period (JPL SSD).'),
         fact('ECCENTRICITY', fmt(e.e, 3), 'measured'),
         fact('INCLINATION', `${fmt(e.i, 1)}°${e.i > 90 ? ' · RETROGRADE' : ''}`, 'measured', e.frame === 'ecliptic' ? 'To the ecliptic.' : 'To the local Laplace plane (≈ the planet\'s equator for close moons).'),
+        m.phaseUnknown ? fact('POSITION', 'ORBIT ONLY · PHASE ILLUSTRATIVE', 'imagined', 'Its orbit size, period and plane are measured, but where it is along the orbit right now is not computed here.') :
         fact('POSITION', m.id === 'moon' ? 'LUNAR THEORY' : 'MEAN ELEMENTS', 'computed', m.id === 'moon'
           ? 'Truncated ELP-2000/82 series (Meeus): within ~0.01° of JPL DE440.'
           : `JPL SSD mean elements with precession; phase fitted to JPL Horizons 2016–2036 (scatter ${e.fit?.rmsDeg ?? '?'}°).`),

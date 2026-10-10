@@ -99,6 +99,11 @@ export const MOONS = [
   { id: 'charon', name: 'Charon', parent: 'pluto', radiusKm: 606, massKg: 1.586e21,
     elements: el(19600, 0.0, 0.0, 304.1, 0.0, 0.0, 6.387222, 0, 0, PLUTO_POLE, 'equatorial'),
     skin: { map: 'charon' }, discovered: '1978 · James Christy', note: 'So large relative to Pluto that the pair orbit a point in space between them.' },
+  // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
+  // The orbital phase is not tracked here, so its position along the orbit is illustrative.
+  { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,
+    elements: el(1.152, 0.028, 0, 0, 0, 0, 0.473799, 0, 0, [78.22, -70.79], 'equatorial'), surfacePending: true,
+    discovered: '2003 · Pravec et al. (light curves)', note: 'DART struck it on 26 Sep 2022, the first test of deflecting an asteroid: its 11 h 55 min orbit shrank by 33 minutes.' },
 ];
 
 // name, kind, radius km, mass kg (null = unmeasured), SBDB elements [epoch JD, a AU, e, i, Ω, ω, M], skin, IAU pole/rotation
@@ -159,17 +164,17 @@ export const SMALL_BODIES = [
   sb('donaldjohanson', 'Donaldjohanson', 'asteroid', 1.948, null, [2461200.5, 2.383835831129859, 0.1868593763038477, 4.425205239728406, 262.7765342454273, 212.8821499078564, 147.8525890028124],
     { surfacePending: true, belt: 'MAIN BELT', note: "Lucy flew past in April 2025: an elongated, possibly contact-binary body." }),
   sb('eros', 'Eros', 'asteroid', 8.42, 6.687e15, [2461200.5, 1.458243716760167, 0.2228779627700761, 10.82854410314273, 304.2679713350896, 178.9181319135911, 62.51145501986792],
-    { surfacePending: true, rotationHours: 5.27, belt: 'NEAR-EARTH (AMOR)', spectral: 'S', note: "NEAR Shoemaker orbited it in 2000 and landed on it in 2001, the first landing on an asteroid." }),
+    { surfacePending: true, pole: [11.37, 17.22], iau: [326.07, 1639.38864745], rotationHours: 5.27, belt: 'NEAR-EARTH (AMOR)', spectral: 'S', note: "NEAR Shoemaker orbited it in 2000 and landed on it in 2001, the first landing on an asteroid." }),
   sb('itokawa', 'Itokawa', 'asteroid', 0.165, 3.146e10, [2461200.5, 1.324052284342771, 0.2801776414987972, 1.620940810523569, 69.07449749929083, 162.8409022415483, 170.653905937934],
-    { surfacePending: true, rotationHours: 12.132, belt: 'NEAR-EARTH (APOLLO)', spectral: 'S(IV)', note: "Japan's Hayabusa collected grains from this 330 m rubble pile in 2005 and returned them in 2010." }),
+    { surfacePending: true, pole: [90.53, -66.30], rotationHours: 12.132, belt: 'NEAR-EARTH (APOLLO)', spectral: 'S(IV)', note: "Japan's Hayabusa collected grains from this 330 m rubble pile in 2005 and returned them in 2010." }),
   sb('ryugu', 'Ryugu', 'asteroid', 0.448, 4.495e11, [2461200.5, 1.190918932702464, 0.1910730046480051, 5.866442486408568, 251.2897123995624, 211.608993811871, 62.34067409463987],
-    { surfacePending: true, rotationHours: 7.63262, belt: 'NEAR-EARTH (APOLLO)', spectral: 'Cb', note: "Hayabusa2 sampled this carbon-rich 'spinning top' and returned 5.4 g to Earth in 2020." }),
+    { surfacePending: true, pole: [96.3956, -66.3937], rotationHours: 7.63262, belt: 'NEAR-EARTH (APOLLO)', spectral: 'Cb', note: "Hayabusa2 sampled this carbon-rich 'spinning top' and returned 5.4 g to Earth in 2020." }),
   sb('bennu', 'Bennu', 'asteroid', 0.242, 7.327e10, [2461227.5, 1.1259344836122092, 0.2036774931253423, 6.032992786690121, 1.966544281733721, 66.40678632137188, 94.73009854159568],
-    { surfacePending: true, rotationHours: 4.296061, belt: 'NEAR-EARTH (APOLLO)', spectral: 'B', note: "OSIRIS-REx returned 121 g of it in 2023; the best-tracked potential impactor (about 1 in 2,700 for 2182)." }),
+    { surfacePending: true, pole: [85.4522, -60.3678], rotationHours: 4.296061, belt: 'NEAR-EARTH (APOLLO)', spectral: 'B', note: "OSIRIS-REx returned 121 g of it in 2023; the best-tracked potential impactor (about 1 in 2,700 for 2182)." }),
   sb('apophis', 'Apophis', 'asteroid', 0.17, null, [2461200.5, 0.9223592206975018, 0.1911492279663492, 3.340996879880978, 203.8936514240762, 126.6795706895841, 175.3304026592739],
     { surfacePending: true, rotationHours: 30.56, belt: 'NEAR-EARTH (ATEN)', spectral: 'Sq', note: "Will pass about 32,000 km above Earth on 13 April 2029, visible to the naked eye; OSIRIS-APEX will meet it." }),
   sb('didymos', 'Didymos', 'asteroid', 0.39, null, [2461200.5, 1.642709608529702, 0.3831233242624545, 3.413876519313629, 72.9858236207145, 319.5807001349104, 260.8612886320632],
-    { surfacePending: true, rotationHours: 2.2593, belt: 'NEAR-EARTH (APOLLO)', spectral: 'S', note: "NASA's DART struck its moon Dimorphos in 2022 and shortened its orbit by 33 minutes; ESA's Hera arrives in 2026." }),
+    { surfacePending: true, pole: [78.22, -70.79], rotationHours: 2.2593, belt: 'NEAR-EARTH (APOLLO)', spectral: 'S', note: "NASA's DART struck its moon Dimorphos in 2022 and shortened its orbit by 33 minutes; ESA's Hera arrives in 2026." }),
   sb('toutatis', 'Toutatis', 'asteroid', 2.7, null, [2461200.5, 2.543047155641573, 0.6246302247178447, 0.4480836624628189, 125.3654799655549, 277.8615384113277, 125.5161576467994],
     { surfacePending: true, rotationHours: 176, belt: 'NEAR-EARTH (APOLLO)', spectral: 'Sk', note: "A slowly tumbling near-Earth asteroid; China's Chang'e 2 flew past in 2012." }),
   sb('phaethon', 'Phaethon', 'asteroid', 3.125, null, [2461200.5, 1.271464620808291, 0.8896722843932238, 22.31052728711458, 265.0988060362809, 322.3001684921124, 301.485823791198],
@@ -218,6 +223,11 @@ export const SMALL_BODIES = [
       // 2061-07-28.7): two-body motion from the 1968 set alone puts that perihelion ~5 months late.
       altElements: [{ epochJd: 2474033.5, a: 17.735623, e: 0.9665768, i: 161.96512, node: 59.392316, w: 112.052104, M: 359.9904974 }], discovered: 'Recorded since 240 BC · orbit by Edmond Halley 1705',
       note: 'Back in 2061. The orbit is the 1968 osculating one (SBDB); planetary tugs shift its timing by days to weeks.' }),
+  // #37: 67P, where Philae landed (Eros, Itokawa, Ryugu, Bennu and Didymos are above). Elements:
+  // JPL Horizons osculating at 2026-06-25 (SBDB's solution is from 2015); pole from SBDB. Drawn as a sphere.
+  sb('67p', '67P/Churyumov–Gerasimenko', 'comet', 1.65, 9.98e12, [2461216.5, 3.458913069061047, 0.6495469549577491, 3.866369645780778, 36.29278553201564, 22.23556143749892, 259.7212569240411],
+    { surfacePending: true, pole: [69.3, 64.1], rotationHours: 12.76129, belt: 'JUPITER-FAMILY COMET', comet: { M1: 12.9, K1: 7.5, perihelion: '2028-04-09' }, discovered: '1969 · Klim Churyumov & Svetlana Gerasimenko',
+      note: 'Rosetta orbited it for two years and its lander Philae bounced to rest under a cliff (2014). A 4 km rubber-duck shape, drawn as a sphere.' }),
 ];
 
 export const MOON_CREDIT = {

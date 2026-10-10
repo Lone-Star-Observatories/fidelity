@@ -167,3 +167,22 @@ export async function fetchStarLookup(ra, dec, distLy, gaia = false) {
   if (snapshot) return null;
   try { return await get(`/api/star-lookup?ra=${ra.toFixed(5)}&dec=${dec.toFixed(5)}${distLy ? `&distLy=${Math.round(distLy)}` : ''}${gaia ? '&gaia=1' : ''}`); } catch { return null; }
 }
+
+/** A Mars rover's traverse (#37): { points: [[lon, lat], …], distanceKm, sol, credit }, or null offline. */
+export async function fetchTraverse(id) {
+  if (snapshot) return null; // traverses need the local backend (or the bundled lunar file)
+  if (id.startsWith('moon:')) { // static, mapped by LROC from orbital imaging: shipped with the app
+    try { return (await get('/traverses/moon.json'))[id.slice(5)] ?? null; } catch { return null; }
+  }
+  try { return await get(`/api/traverse/${id}`); } catch { return null; }
+}
+
+/** Space telescopes: JWST's schedule now/next and the newest public HST/JWST images; null offline. */
+export async function fetchObserving(mission) {
+  if (snapshot) return null; // needs the local backend
+  const [schedule, recent] = await Promise.all([
+    mission === 'jwst' ? fetch('/api/observing/jwst/schedule').then((r) => (r.ok ? r.json() : null)).catch(() => null) : null,
+    fetch(`/api/observing/${mission}/recent`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]);
+  return { schedule, recent };
+}

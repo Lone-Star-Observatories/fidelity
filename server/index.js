@@ -19,6 +19,8 @@ import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
 import { satellites, satelliteDetail } from './satellites.js';
 import { feed, feedList } from './feeds.js';
+import { traverse } from './traverse.js';
+import { jwstSchedule, recentImages, preview } from './observing.js';
 import { eventsFeed } from './events.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
@@ -61,6 +63,8 @@ const routes = {
   'GET /api/smallbodies': async () => smallBodies(),
   'GET /api/satellites': async () => satellites(),
   'GET /api/feeds': async () => feedList(),
+  'GET /api/observing/jwst/schedule': async () => jwstSchedule(),
+  'GET /api/observing/preview': async (q) => binary({ ...(await preview(q.get('uri'))), maxAge: 86400 }),
   'GET /api/events': async () => eventsFeed(),
   'GET /api/surveys': async () => surveyList(),
   'GET /api/nasa-images': async (q) => nasaImages(q),
@@ -78,6 +82,8 @@ const paramRoutes = [
   [/^GET \/api\/stars\/([a-z0-9-]{1,64})$/, (m) => starDetail(m[1])],
   [/^GET \/api\/texture\/([A-Za-z]{1,32})$/, async (m) => binary(await textureResponse(m[1]))],
   [/^GET \/api\/satellites\/(\d{1,6})$/, (m) => satelliteDetail(m[1])],
+  [/^GET \/api\/observing\/(hst|jwst)\/recent$/, (m) => recentImages(m[1])],
+  [/^GET \/api\/traverse\/([a-z0-9-]{1,16})$/, (m) => traverse(m[1])],
   [/^GET \/api\/survey\/([a-z0-9]{2,16})$/, async (m, q) => binary(await surveyCutout(m[1], q))],
   [/^GET \/api\/nasa-image\/([A-Za-z0-9_.\-]{2,80})\/(thumb|medium)$/, async (m) => binary(await nasaImage(m[1], m[2]))],
   [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
