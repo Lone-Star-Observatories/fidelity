@@ -34,3 +34,36 @@ export async function gaiaBright() {
   });
   return value;
 }
+
+// ---- space motions for the Navigation View (#29) -------------------------------------------
+// Gaia DR3 astrometry and radial velocities for Hipparcos stars within ~1,090 ly (parallax
+// > 3 mas), via Gaia's own Hipparcos-2 cross-match. ≈ 63k rows (≈ 8 MB of CSV, ~1 min); cached
+// for 90 days. Rows: [hip, ra°, dec°, parallax mas, parallax error, pmra*, pmdec mas/yr, RV
+// km/s | null, RV error | null].
+const HIP_ADQL = `SELECT h.original_ext_source_id AS hip, g.ra, g.dec, g.parallax, g.parallax_error, g.pmra, g.pmdec, g.radial_velocity, g.radial_velocity_error
+FROM gaiadr3.hipparcos2_best_neighbour AS h JOIN gaiadr3.gaia_source AS g ON g.source_id = h.source_id WHERE g.parallax > 3`;
+
+/** Parse the cross-match CSV into compact rows (exported for tests). */
+export function parseHipMotions(csv) {
+  const rows = [];
+  for (const l of csv.trim().split('\n').slice(1)) {
+    const f = l.split(',');
+    const n = f.map((x) => (x === '' ? null : Number(x)));
+    if (!(n[0] > 0) || n[3] == null || n[5] == null || n[6] == null) continue;
+    rows.push([n[0], +n[1].toFixed(7), +n[2].toFixed(7), +n[3].toFixed(4), +n[4].toFixed(4), +n[5].toFixed(4), +n[6].toFixed(4),
+      n[7] == null ? null : +n[7].toFixed(3), n[8] == null ? null : +n[8].toFixed(3)]);
+  }
+  return rows;
+}
+
+export async function hipMotions() {
+  const { value } = await cached('gaia', 'hip-motions-3mas-v1', 90 * 86400000, async () => {
+    const body = new URLSearchParams({ REQUEST: 'doQuery', LANG: 'ADQL', FORMAT: 'csv', QUERY: HIP_ADQL });
+    const res = await fetch(TAP, { method: 'POST', body, signal: AbortSignal.timeout(300000) });
+    if (!res.ok) throw new Error(`Gaia TAP HTTP ${res.status}`);
+    const text = await res.text();
+    if (!text.startsWith('hip,')) throw new Error(`Gaia TAP: ${text.slice(0, 120).replace(/\s+/g, ' ')}`);
+    return { fields: ['hip', 'ra', 'dec', 'plx', 'plxErr', 'pmra', 'pmdec', 'rv', 'rvErr'], rows: parseHipMotions(text), source: 'Gaia DR3 gaia_source × hipparcos2_best_neighbour (parallax > 3 mas)' };
+  });
+  return value;
+}

@@ -9,7 +9,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
-import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
 import { library } from '../server/spectra.js';
@@ -30,7 +30,10 @@ import { MODELS } from '../src/data/models.js';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
 // 1) snapshot: stars within 100 ly of Sol, every planet host's detail, and a few skies
+await motionsReady(); // Gaia DR3 motions (#29), so the preview's deep time matches the app's
 const near = await nearby('sol', 100);
+// deep-time arrivals (#29) come from the snapshot's own 100 ly; the badge needs the catalogue's density near Sol
+const arrivalsDensity = (await arrivals('sol', 0, 1)).density;
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
 // Researched stars without known planets still need their actual Star/System views offline.
@@ -160,7 +163,7 @@ await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
 // the weekly events feed (#32): the bundled copy; the preview refreshes it from GitHub when online
 let eventsSnap = null;
 try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
-const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
+const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, arrivalsDensity, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
 const compressed = gzipSync(snapshotJson, { level: 9 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');

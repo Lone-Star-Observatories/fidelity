@@ -15,6 +15,8 @@ import { cached } from './cache.js';
 import { scanCatalogs } from './catalogs.js';
 import { orbits as loadOrbits, MEASURED, componentLetters } from './binaries.js';
 import { NEIGHBOURS, BROWN_DWARF_PROPS } from './neighbours.js';
+import { hipMotions } from './gaia.js';
+import { spaceMotion } from '../src/astro/spacemotion.js';
 
 const gunzip = promisify(zlib.gunzip);
 const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
@@ -91,6 +93,7 @@ export function parseHyg(text) {
       // space velocity, km/s (HYG gives pc/yr); without a radial velocity it is the transverse part only
       v: f[col.vx] !== undefined ? [num(f[col.vx]), num(f[col.vy]), num(f[col.vz])].map((x) => (x == null ? 0 : x * KMS_PER_PC_YR)) : null,
       rvKnown: num(f[col.rv]) != null && num(f[col.rv]) !== 0,
+      rv: num(f[col.rv]) || null,
       // HYG groups multiple-star components under their primary's id
       compPrimary: r.compPrimary && r.compPrimary !== r.id ? (r.compPrimary === '0' ? 'sol' : `hyg-${r.compPrimary}`) : null,
       source: 'HYG v4',
@@ -288,6 +291,99 @@ export function buildGroups(stars, edges) {
   return of;
 }
 
+// ---- space motions (#29) -------------------------------------------------------------------
+
+// Where a star's velocity comes from: HYG (Hipparcos proper motion + catalogue RV), Gaia DR3
+// (astrometry + Gaia RV), or Gaia DR3 astrometry with the catalogue's RV (or none).
+export const VSRC = ['HYG', 'Gaia DR3', 'Gaia DR3 + catalogue RV'];
+
+/**
+ * Give each HYG star with a good Gaia DR3 match (parallax/error > 10) a Gaia position and
+ * velocity in `s.motion`. Gaia RVs with errors under 5 km/s win; otherwise the catalogue RV is
+ * kept; with neither, the motion is sideways only. Returns the number of stars updated.
+ */
+export function applyGaia(stars, rows) {
+  const byHip = new Map(rows.map((r) => [r[0], r]));
+  let n = 0;
+  for (const s of stars) {
+    const r = s.hip && byHip.get(s.hip);
+    if (!r) continue;
+    const [, ra, dec, plx, plxErr, pmra, pmdec, rv, rvErr] = r;
+    if (!(plx > 0 && plxErr > 0 && plx / plxErr > 10)) continue;
+    const gaiaRv = rv != null && rvErr != null && rvErr < 5;
+    const useRv = gaiaRv ? rv : s.rvKnown ? s.rv : null;
+    const m = spaceMotion({ raDeg: ra, decDeg: dec, plxMas: plx, pmraMasYr: pmra, pmdecMasYr: pmdec, rvKms: useRv });
+    s.motion = { x: m.pos[0], y: m.pos[1], z: m.pos[2], v: m.vel, rvKnown: useRv != null, vSrc: gaiaRv ? 1 : 2 };
+    n++;
+  }
+  return n;
+}
+/** Position used for the Navigation View: Gaia DR3 where matched, else HYG. */
+const posOf = (s) => s.motion ?? s;
+/** A star's own measured motion { v, rvKnown, vSrc } or null. */
+function ownMotion(s) {
+  if (s.id === 'sol') return { v: [0, 0, 0], rvKnown: false, vSrc: 0 }; // velocities are Sun-relative
+  if (s.motion) return s.motion;
+  if (s.v && s.v.some((x) => x !== 0)) return { v: s.v, rvKnown: s.rvKnown, vSrc: 0 };
+  return null;
+}
+const rank = (m, s) => (m.rvKnown ? 0 : 4) + (m.vSrc === 1 ? 0 : m.vSrc === 2 ? 1 : 2) + Math.min(0.99, ((s.absmag ?? 30) + 10) / 50);
+/** The motion a system shares (stars of a bound system move together): measured RV first, then Gaia, then the brightest. */
+function systemMotion(cat, s) {
+  const g = cat.groupOf.get(s.id);
+  if (!g || g.members.size < 2) return ownMotion(s);
+  let best = null, bestR = Infinity;
+  for (const id of g.members) {
+    const m = cat.byId.get(id), mm = m && ownMotion(m);
+    if (mm && rank(mm, m) < bestR) { best = mm; bestR = rank(mm, m); }
+  }
+  return best;
+}
+
+const GAIA_RETRY_MS = 10 * 60000;
+/** Load Gaia DR3 motions in the background (≈1 min the first time, then from the disk cache). */
+function startGaia(cat) {
+  if (cat.motions.status === 'loading' || cat.motions.status === 'ok') return cat.gaiaReady;
+  if (cat.motions.status === 'error' && Date.now() - cat.motions.at < GAIA_RETRY_MS) return cat.gaiaReady;
+  cat.motions = { status: 'loading' };
+  cat.gaiaReady = hipMotions()
+    .then((v) => { cat.motions = { status: 'ok', stars: applyGaia(cat.stars, v.rows), source: v.source }; })
+    .catch((err) => { cat.motions = { status: 'error', error: String(err.message || err), at: Date.now() }; });
+  return cat.gaiaReady;
+}
+/** Resolves once Gaia motions are applied (or have failed): for the standalone builder. */
+export async function motionsReady() {
+  const cat = await catalog();
+  await startGaia(cat);
+  return cat.motions;
+}
+
+/**
+ * How complete the catalogue is with distance from Sol: its star density within 20 ly, and the
+ * distance where the density of a 10 ly shell first falls below half of that (beyond it, the
+ * catalogue holds mainly the brighter stars).
+ */
+export function densityProfile(stars) {
+  const LY = LY_PER_PC, edges = [];
+  for (let r = 30; r <= 1000; r += 10) edges.push(r); // outer edges of 10 ly shells beyond 20 ly
+  const counts = new Array(edges.length).fill(0);
+  let inner = 0;
+  for (const s of stars) {
+    const d = s.distPc * LY;
+    if (d <= 20) inner++;
+    const k = Math.ceil((d - 20) / 10) - 1;
+    if (k >= 0 && k < counts.length) counts[k]++;
+  }
+  const vol = (a, b) => (4 / 3) * Math.PI * (b ** 3 - a ** 3);
+  const rho0 = inner / vol(0, 20);
+  let halfLy = null;
+  for (let k = 0; k < counts.length; k++) {
+    const rho = counts[k] / vol(edges[k] - 10, edges[k]);
+    if (rho < 0.5 * rho0) { halfLy = edges[k] - 10; break; }
+  }
+  return { rho0PerLy3: rho0, halfLy, refLy: 20 };
+}
+
 // ---- service -----------------------------------------------------------------------------
 
 let catalogPromise = null;
@@ -312,9 +408,11 @@ export function catalog() {
     } catch (err) { binaryError = String(err.message || err); }
     const groupOf = buildGroups(stars, edges);
     const byId = new Map(stars.map((s) => [s.id, s]));
-    return { stars, byId, planetsOf, planetError, groupOf, binaryError, hygFrom: from };
+    const cat = { stars, byId, planetsOf, planetError, groupOf, binaryError, hygFrom: from, motions: { status: 'none' }, gaiaReady: null };
+    cat.density = densityProfile(stars);
+    return cat;
   })().catch((err) => { catalogPromise = null; throw err; });
-  return catalogPromise;
+  return catalogPromise.then((cat) => { startGaia(cat); return cat; });
 }
 
 const notFound = (msg) => Object.assign(new Error(msg), { status: 404 });
@@ -333,22 +431,59 @@ export async function nearby(centerId, radiusLy) {
   const cat = await catalog();
   const c = centerOf(cat, centerId);
   const rPc = r / LY_PER_PC;
+  const cp = posOf(c);
   const rows = [];
   for (const s of cat.stars) {
-    const dx = s.x - c.x, dy = s.y - c.y, dz = s.z - c.z;
-    const d = Math.hypot(dx, dy, dz);
+    const q = posOf(s);
+    const d = Math.hypot(q.x - cp.x, q.y - cp.y, q.z - cp.z);
     if (d > rPc && s.id !== 'sol') continue; // Sol (Sector 001) is always included
     const p = cat.planetsOf.get(s.id);
-    const g = cat.groupOf.get(s.id);
-    const system = g && g.members.size > 1 ? [...g.members].sort()[0] : null; // a stable id shared by a system's stars
-    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : s.brownDwarf ? 2 : 1,
-      system, s.v ? s.v.map((x) => +x.toFixed(2)) : null, s.rvKnown ? 1 : 0]);
+    const m = ownMotion(s);
+    rows.push([s.id, s.name, q.x, q.y, q.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : s.brownDwarf ? 2 : 1,
+      systemId(cat, s), m ? m.v.map((x) => +x.toFixed(3)) : null, m?.rvKnown ? 1 : 0, m ? m.vSrc : null]);
   }
   return {
-    center: summary(cat, c), radiusLy: r,
-    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'spect', 'planets', 'archiveOnly', 'system', 'vKms', 'rvKnown'],
+    center: { ...summary(cat, c), x: cp.x, y: cp.y, z: cp.z, ...(c.motion ? { distPc: Math.hypot(cp.x, cp.y, cp.z), distLy: Math.hypot(cp.x, cp.y, cp.z) * LY_PER_PC } : {}) }, radiusLy: r,
+    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'spect', 'planets', 'archiveOnly', 'system', 'vKms', 'rvKnown', 'vSrc'],
     stars: rows,
-    sources: { stars: `HYG v4.4 (${cat.hygFrom})`, planets: cat.planetError ? `unavailable: ${cat.planetError}` : 'NASA Exoplanet Archive pscomppars' },
+    sources: { stars: `HYG v4.4 (${cat.hygFrom})${cat.motions.status === 'ok' ? '; Gaia DR3 positions and motions where matched' : ''}`, planets: cat.planetError ? `unavailable: ${cat.planetError}` : 'NASA Exoplanet Archive pscomppars' },
+    motions: motionStatus(cat),
+  };
+}
+
+const systemId = (cat, s) => { const g = cat.groupOf.get(s.id); return g && g.members.size > 1 ? [...g.members].sort()[0] : null; }; // a stable id shared by a system's stars
+const motionStatus = (cat) => ({ status: cat.motions.status, gaiaStars: cat.motions.stars ?? 0, error: cat.motions.error ?? null, sources: VSRC });
+
+/**
+ * Stars with a measured space motion in the shell fromLy < d ≤ toLy around `centerId` (#29):
+ * the stars that can drift into the Navigation View's sphere in deep time. Each carries its
+ * system's shared motion. Compact rows (positions pc, velocities km/s, equatorial);
+ * flags = rvKnown + 2 × velocity source (VSRC index).
+ */
+export async function arrivals(centerId, fromLy, toLy) {
+  const a = Number(fromLy), b = Number(toLy);
+  if (!(a >= 0 && b > a && b <= 1000)) throw bad('need 0 ≤ fromLy < toLy ≤ 1000');
+  const cat = await catalog();
+  const c = centerOf(cat, centerId), cp = posOf(c);
+  const rows = [], counts = [0, 0, 0];
+  const aPc = a / LY_PER_PC, bPc = b / LY_PER_PC;
+  for (const s of cat.stars) {
+    if (s.id === 'sol' || s.id === c.id) continue;
+    const q = posOf(s);
+    const d = Math.hypot(q.x - cp.x, q.y - cp.y, q.z - cp.z);
+    if (d <= aPc || d > bPc) continue;
+    const m = systemMotion(cat, s);
+    if (!m) continue;
+    counts[m.vSrc]++;
+    rows.push([s.id, s.name, +q.x.toFixed(4), +q.y.toFixed(4), +q.z.toFixed(4), s.absmag != null ? +s.absmag.toFixed(2) : null,
+      s.ci, systemId(cat, s), +m.v[0].toFixed(3), +m.v[1].toFixed(3), +m.v[2].toFixed(3), (m.rvKnown ? 1 : 0) + 2 * m.vSrc]);
+  }
+  return {
+    center: c.id, fromLy: a, toLy: b,
+    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'system', 'vx', 'vy', 'vz', 'flags'],
+    stars: rows, velocitySources: Object.fromEntries(VSRC.map((k, i) => [k, counts[i]])),
+    density: cat.density, motions: motionStatus(cat),
+    source: `HYG v4.4${cat.motions.status === 'ok' ? ' + Gaia DR3 motions' : ''}; stars with a measured proper motion only`,
   };
 }
 

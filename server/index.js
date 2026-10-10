@@ -14,7 +14,7 @@ import { gaiaBright } from './gaia.js';
 import { starLookup } from './lookup.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
-import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from './stars.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, arrivals } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
@@ -60,6 +60,7 @@ const routes = {
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
+  'GET /api/arrivals': async (q) => arrivals(q.get('center') || 'sol', q.get('fromLy') || '0', q.get('toLy') || '250'),
   'GET /api/planets': async (q) => nearbyPlanets(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),

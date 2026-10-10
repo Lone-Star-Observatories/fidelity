@@ -112,6 +112,7 @@ const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
   onDrill: (id) => go({ level: 'system', system: id }),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
+  onArrivals: (st) => { if (route.level === 'navigation' && !st?.loading) renderNavPanel(); }, // deep-time arrivals loaded (#29)
 });
 
 // ---- rail ----------------------------------------------------------------------------
@@ -957,7 +958,7 @@ function renderNavPanel() {
   const radii = h('div', { className: 'body-list radius-list' }, [10, 25, 50, 100].map((r) =>
     pill(`${r} LY`, () => { navRadius = r; showNavigation(c.id); }, r === d.radiusLy ? 'on' : '')));
 
-  const sel = navSelected && d.stars.find((s) => s.id === navSelected);
+  const sel = navSelected && (d.stars.find((s) => s.id === navSelected) ?? nav.findStar(navSelected)); // or a deep-time arrival (#29)
   let selBlock = [];
   if (sel) {
     const dl = h('dl');
@@ -969,8 +970,8 @@ function renderNavPanel() {
     if (sel.spect) row(dl, 'CLASS', sel.spect, 'measured', 'Spectral type.');
     if (sel.absmag != null) row(dl, 'ABS. MAGNITUDE', fmt(sel.absmag, 2), 'computed', 'From apparent brightness and distance.');
     row(dl, 'KNOWN PLANETS', String(sel.planets || 0), 'measured', sel.planets ? 'NASA Exoplanet Archive.' : 'None detected yet, which is not the same as none.');
-    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : 'HYG v4.4', 'measured',
-      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : 'Hipparcos / Yale / Gliese compilation.');
+    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : sel.vSrc ? 'HYG v4.4 · GAIA DR3 MOTION' : 'HYG v4.4', 'measured',
+      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : sel.vSrc ? 'Hipparcos / Yale / Gliese compilation; position and space motion from Gaia DR3 (#29).' : 'Hipparcos / Yale / Gliese compilation.');
     selBlock = [
       h('h3', { textContent: 'SELECTED' }),
       h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
@@ -1032,13 +1033,25 @@ function motionSection(d) {
     live.epoch,
     h('h3', { textContent: `CLOSEST FUTURE PASSES · ${c.id === 'sol' ? 'SOL' : c.name.toUpperCase()}` }),
     h('div', { className: 'host-list' }, enc.length ? enc.map((e) => {
-      const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}` }),
+      const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}${e.arrival ? ` · NOW ${fmt(e.nowLy, 0)} LY` : ''}` }),
         h('span', { className: 'mono', textContent: `${fmt(e.dMinLy, 2)} LY IN ${yrs(e.tYears)}` }));
-      b.addEventListener('click', () => { selectNavStar(e.star.id); nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; renderNavPanel(); });
+      b.addEventListener('click', () => { nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; selectNavStar(e.star.id); });
       return b;
-    }) : [h('p', { className: 'note', textContent: 'No star in range comes closer within 5 million years.' })]),
-    h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years, from HYG space velocities (Hipparcos proper motions and catalogue radial velocities); a system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at 0.17 ly in 1.3 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
+    }) : [h('p', { className: 'note', textContent: 'No star comes closer within 5 million years.' })]),
+    h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years. Velocities: Gaia DR3 parallaxes, proper motions and radial velocities where Gaia has the star, otherwise HYG (Hipparcos proper motions and catalogue radial velocities); 1 km/s of error moves a star ~3 ly per million years. A system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at ~0.17 ly (10,800 AU) in 1.29 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
+    arrivalsNote(),
   ];
+}
+/** Where deep-time arrivals come from and how far they reach (#29). */
+function arrivalsNote() {
+  const a = nav.arrivals;
+  if (!a) return null;
+  const n = (x) => fmt(x, 0);
+  const text = a.preview
+    ? `Arrivals: this preview only holds stars within ${a.previewLy} ly of Sol, so in deep time the sphere empties sooner than it should. Run the local backend (npm start) for every catalogue star with a measured motion within ${n(1000)} ly.`
+    : a.error ? `Arrivals unavailable: ${a.error}.`
+    : `Arrivals: ${n(a.count)} stars with measured motions out to ${n(a.loadedLy)} ly${a.loading ? ` (${a.loading.toLowerCase()})` : ''} are integrated too; each appears when it enters the sphere and the chart's own stars vanish when they leave. More load as deep time runs further (out to ${n(1000)} ly). Beyond ~${a.density?.halfLy ?? 60} ly the catalogue holds mainly the brighter stars, so arrivals under-count faint red and brown dwarfs.`;
+  return h('p', { className: 'note', textContent: text });
 }
 (function deepLoop(now) {
   requestAnimationFrame(deepLoop);

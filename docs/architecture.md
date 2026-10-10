@@ -71,7 +71,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 |---|---|
 | `GET /api/health` | Liveness and configured catalog folders |
 | `GET /api/horizons/vectors?body=399&month=2026-10` | Daily heliocentric vectors for a calendar month |
-| `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts |
+| `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts, space velocity (`vKms`), `rvKnown` and velocity source `vSrc` (0 HYG, 1 Gaia DR3, 2 Gaia DR3 astrometry + catalogue RV); `motions` says whether Gaia motions have loaded |
+| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc), plus the catalogue's density near Sol. 0–250 ly ≈ 17k rows / 1.5 MB, 250–1,000 ly ≈ 65k rows / 5.7 MB |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
@@ -118,7 +119,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
-mode is disabled there.
+mode is disabled there. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
+(the 1,000 ly catalogue is backend-only); the chart badge says so when that runs short.
 
 ## Adding a view
 
@@ -418,6 +420,27 @@ found along the same orbits (20 kyr scan + golden-section refinement). Arrows ha
 motion is a separate gold arrow (capped at 0.6 × the radius). Systems within 8 ly of Sol get a
 line and distance label, refreshed with the epoch (`updateProximity`). An SVG orientation gauge
 (`.orient-gauge`) shows where the galactic centre, rotation and north point on screen.
+
+**Arrivals (#29).** Stars move ~3.3 ly per Myr for every km/s, so in a few Myr today's neighbours
+leave and others arrive from hundreds of ly away. `src/views/navigation/arrivals.js` loads
+`/api/arrivals` shells around the centre star (radius → 250 ly with the chart, 250 → 1,000 ly once
+the inner shell stops covering stars up to 100 km/s) and integrates them in a worker
+(`orbits.worker.js`, `integrateBatch` in `galpot.js`: same potential and leapfrog, Float32 tracks;
+±5 Myr at 0.1 Myr steps sampled every Myr, re-integrated to ±50 Myr at 0.25 Myr steps sampled
+every 2.5 Myr once deep time passes 5 Myr; tested to agree within 0.1 ly). Each epoch,
+`computeEpoch` screens every far star at its nearest sample and interpolates the few that can be
+inside the sphere; those are drawn as a second point cloud with arrows, labels on selection, the
+8-ly-of-Sol lines and picking. Today's stars that leave the sphere vanish (Sol and the centre
+stay). Closest passes screen far stars along straight lines (slack for tidal and vertical pull)
+and integrate the rest. The chart badge (`.drift-badge`, `drift.js`) counts stars in the sphere,
+arrivals and departures; reports completeness against the catalogue's own density within 20 ly of
+Sol and the distance where it halves; compares like with like (stars bright enough to be complete
+out to the loaded radius, Hipparcos V ≈ 7.5); says when stars faster than *v* = (loaded − radius)
+/ |t| are not loaded, or what is still loading. Velocities: the backend fetches Gaia DR3
+astrometry and RVs for Hipparcos stars within ~1,090 ly once (`hipMotions` in `server/gaia.js`,
+~1 min, cached 90 days; meanwhile HYG velocities are used and the client re-asks) and
+`applyGaia` gives 62k HYG stars Gaia positions and velocities (parallax/error > 10; Gaia RV with
+error < 5 km/s, else the catalogue RV).
 ## Spacecraft visualization assets
 
 `src/data/models.js` maps craft IDs and satellite NORAD IDs to credited local GLBs in

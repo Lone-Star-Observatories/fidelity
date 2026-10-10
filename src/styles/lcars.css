@@ -161,6 +161,11 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .orient-gauge svg { display: block; width: 120px; height: 120px; margin: 0 auto; font-family: inherit; letter-spacing: 0.06em; }
 .orient-title { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.12em; color: var(--apricot); }
 .orient-readout { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; color: var(--peach); text-align: center; }
+.drift-badge { position: absolute; left: 12px; top: 12px; max-width: min(70%, 640px); pointer-events: none; background: rgba(0, 0, 0, 0.55); border-left: 3px solid var(--gold); padding: 4px 8px; display: grid; gap: 3px; }
+.drift-badge[hidden] { display: none; }
+.drift-line { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; color: var(--peach); line-height: 1.35; }
+.drift-line.warn { color: var(--orange); }
+.drift-line .badge { transform: scale(0.85); transform-origin: left center; }
 .surface-hud { user-select: none; position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(92%, 900px); z-index: 4;
   background: rgba(0, 0, 0, 0.6); border-left: 4px solid var(--orange); padding: 6px 12px; display: grid; gap: 4px; justify-items: start; }
 .surface-hud > div:first-child { color: var(--orange); font-size: calc(16px * var(--text-scale, 1)); letter-spacing: 0.08em; }
