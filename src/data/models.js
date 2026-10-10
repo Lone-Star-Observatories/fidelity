@@ -17,9 +17,10 @@ export const MODELS = {
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
     "processing": "Unmodified original GLB",
     "previewUrl": "/models/hubble-preview.glb",
-    "previewBytes": 126800,
-    "previewSha256": "20d95aea8322dc2e889b00b297f3d620bf299c7eac19654a32676b17ad232938",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 121648,
+    "previewSha256": "575f89a3de459153419e7ad0aeb7af96c902da22ba15f9fe8892d16f45abd9c1",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "voyager": {
     "url": "/models/voyager.glb",
@@ -38,9 +39,10 @@ export const MODELS = {
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
     "processing": "Unmodified original GLB",
     "previewUrl": "/models/voyager-preview.glb",
-    "previewBytes": 166968,
-    "previewSha256": "d32877dda54d634e8377b8a084a759d620cc83f188dec7c2042b90e92b68e2ff",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 160008,
+    "previewSha256": "b059a6449fe51b55df74bcd8ba2f44f8fbcb1c56f595bffbed9e3f2a61e801bf",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "juno": {
     "url": "/models/juno.glb",
@@ -59,9 +61,10 @@ export const MODELS = {
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
     "processing": "Removed split normals, welded and simplified (30% target, 1% error ceiling); recomputed normals; Meshopt compressed",
     "previewUrl": "/models/juno-preview.glb",
-    "previewBytes": 209812,
-    "previewSha256": "0746da67673bd02b1d8f4408a3414df87d69f3a51d3ebe524b89f85d03bd8194",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 169460,
+    "previewSha256": "12ca53b1db7748b06719963676ae6aec72c74dc4027188770d2485b07902dc9f",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "parker": {
     "url": "/models/parker.glb",
@@ -80,9 +83,10 @@ export const MODELS = {
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
     "processing": "Unmodified original GLB",
     "previewUrl": "/models/parker-preview.glb",
-    "previewBytes": 156900,
-    "previewSha256": "8987ecf865e189f8084402313eadc77793ffc79072bf776bed996b80e3ae914a",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 155744,
+    "previewSha256": "dbe633d768b7667a8263caac532848e03f1a7b801566579d06b864163e029ca3",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "dscovr": {
     "url": "/models/dscovr.glb",
@@ -122,9 +126,10 @@ export const MODELS = {
     "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
     "processing": "Unmodified original GLB",
     "previewUrl": "/models/mro-preview.glb",
-    "previewBytes": 115348,
-    "previewSha256": "25bbe8055a7cb2ad52febf832b5f6e44fd2edff30fd5a184a6112366339585c8",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 109408,
+    "previewSha256": "082aaa3d39463e47388e28556b536053c4d73c9c06771421c91855d50c0dbe51",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "iss": {
     "url": "/models/iss.glb",
@@ -281,9 +286,10 @@ export const MODELS = {
     "maxTextureSize": 1024,
     "sourceSha256": "81443a7fa01cca0dda878cd27692b3307f9c332c4eb8e55a844499d7b350573c",
     "previewUrl": "/models/pioneer-10-preview.glb",
-    "previewBytes": 133120,
-    "previewSha256": "774772b3b0b0c2cff93a927437dfb606cb2691578ecb8bedb9893425149b090b",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 125892,
+    "previewSha256": "15b251376e476ed480b1262119d7ff7561632a01c8712d082a7fab42c9a4d22c",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "mars-odyssey": {
     "url": "/models/mars-odyssey.glb",
@@ -305,9 +311,10 @@ export const MODELS = {
     "maxTextureSize": 1024,
     "sourceSha256": "ac0faa8dbfb54aabcbe3d06886c3d98dd29d120fd49b1c9fa6abbfbed22b049a",
     "previewUrl": "/models/mars-odyssey-preview.glb",
-    "previewBytes": 169448,
-    "previewSha256": "9dae19e1f52ad2bab9ab3da1c56c81de9f293db2457b3931e7e973a2c33e269a",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 147760,
+    "previewSha256": "784144cfff5484cb98a0168922b1f10dc336a5411aa6bf7a3f182a92b4ea5566",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "sdo": {
     "url": "/models/sdo.glb",
@@ -353,9 +360,10 @@ export const MODELS = {
     "maxTextureSize": 1024,
     "sourceSha256": "f0761181a1d378b6b3e270e8eee8bf20c241b7d577933630369b0cffd4b521e1",
     "previewUrl": "/models/aqua-preview.glb",
-    "previewBytes": 138448,
-    "previewSha256": "0cc87702a80eda7ddb7672b1e6a5e97b221691f111896f73e1cb480cdf1631fe",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 135280,
+    "previewSha256": "66d555ffd32bf6e082d862b6cecf241b412e8193ab914d04a6bf68d9954f02a0",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "suomi-npp": {
     "url": "/models/suomi-npp.glb",
@@ -377,9 +385,10 @@ export const MODELS = {
     "maxTextureSize": 1024,
     "sourceSha256": "885278277ed8fa864368803b7da2046292754bff01033055d56fe86e8b951ee4",
     "previewUrl": "/models/suomi-npp-preview.glb",
-    "previewBytes": 130844,
-    "previewSha256": "219b66ed3ea6abb3f7c142fbf30d1f79070f95e38527ccdec5a579fa153366ff",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 120888,
+    "previewSha256": "358965cbb4e4bcfeb90c905f8edc5a9db5b82d1cf7c658e2c6d3052620536257",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "landsat-8": {
     "url": "/models/landsat-8.glb",

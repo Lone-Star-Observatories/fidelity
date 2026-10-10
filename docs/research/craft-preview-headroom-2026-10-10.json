@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-10",
+  "method": "Selectively rebuild texture-bearing previews at 128 pixels; exact decoded geometry accessor arrays and node matrices/child hierarchy compared to previous previews. Full models SHA256 verified unchanged. Texture detail decreases only in standalone previews.",
+  "rows": [
+    {
+      "id": "hubble",
+      "beforeBytes": 126800,
+      "afterBytes": 121648,
+      "saved": 5152,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "e5ba4de15c7d359ac8fa1ab7e286aff42dec09c0fadae3db99252587f39fa384"
+    },
+    {
+      "id": "voyager",
+      "beforeBytes": 166968,
+      "afterBytes": 160008,
+      "saved": 6960,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "bd86ded828dd3f459293aee4ffc3cd0998d8db67439317c8299650a1174c3289"
+    },
+    {
+      "id": "juno",
+      "beforeBytes": 209812,
+      "afterBytes": 169460,
+      "saved": 40352,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "8cbf0eb99a59cbc598a3fc52d604eb4c577ea8e80dd253bb2812bb031b933c86"
+    },
+    {
+      "id": "parker",
+      "beforeBytes": 156900,
+      "afterBytes": 155744,
+      "saved": 1156,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "4d26e84efd29a78c5d07e474f6272bb111668b58da5a7555e305a65c72ddb1c5"
+    },
+    {
+      "id": "mro",
+      "beforeBytes": 115348,
+      "afterBytes": 109408,
+      "saved": 5940,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "0f92872363ebe1984738caa4a5739863b125a1bc890b3c77bff23d8daa406747"
+    },
+    {
+      "id": "pioneer-10",
+      "beforeBytes": 133120,
+      "afterBytes": 125892,
+      "saved": 7228,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "6a8e5344e2a824427de1c7681cc936ff0eb0eb56c443a21c4618533c56db071e"
+    },
+    {
+      "id": "mars-odyssey",
+      "beforeBytes": 169448,
+      "afterBytes": 147760,
+      "saved": 21688,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "bbfd2c3967e348801354d7d4d41199ea2caf053544c87198195fefff8118b205"
+    },
+    {
+      "id": "aqua",
+      "beforeBytes": 138448,
+      "afterBytes": 135280,
+      "saved": 3168,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "cff20ab85dd630a700a75dbb1d0dc816cb26eae5f228dd12425f31aaa74181e0"
+    },
+    {
+      "id": "suomi-npp",
+      "beforeBytes": 130844,
+      "afterBytes": 120888,
+      "saved": 9956,
+      "geometryAccessorsAndNodeTransformsIdentical": true,
+      "normalModelSha256": "ee9f4f6fb868365f6fdc35a7304f88bf542e99b8f0173f4300785b393bebd4e9"
+    }
+  ],
+  "totalSavedGLBBytes": 101600
+}

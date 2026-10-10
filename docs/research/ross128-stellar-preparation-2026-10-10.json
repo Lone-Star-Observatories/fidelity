@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-10",
+  "status": "Preparation only; no new stellar images delivered",
+  "identity": {
+    "name": "Ross 128",
+    "aliases": [
+      "GJ 447",
+      "Gliese 447",
+      "HIP 57548",
+      "LHS 315",
+      "FI Vir"
+    ],
+    "aliasCaveat": "SIMBAD identifies FI Vir; Bonfils manuscript prose says FY Virginis. Preserve verified FI Vir; do not adopt FY as an alias without independent nomenclature verification."
+  },
+  "primaryReferences": [
+    {
+      "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+      "file": "data/research-sources/ross128-star-bonfils-2017.pdf",
+      "sha256": "c2f19678946a87471ebb7f6eca61f99472537eb93373053c24d5fddd48940cec",
+      "manuscriptDate": "2017-11-08",
+      "table": "Table 1",
+      "parameters": {
+        "temperatureK": [
+          3192,
+          60
+        ],
+        "radiusSun": [
+          0.1967,
+          0.0077
+        ],
+        "massSun": [
+          0.168,
+          0.017
+        ],
+        "metallicity": [
+          -0.02,
+          0.08
+        ],
+        "luminositySun": [
+          0.00362,
+          0.00039
+        ]
+      },
+      "method": "Adopted Mann2015 spectrum/flux/empirical parameters; not direct resolved surface measurements. Independent Mann row and alternative current fits remain to audit."
+    },
+    {
+      "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Ross+128",
+      "checked": "2026-10-10",
+      "parallaxMas": [
+        296.3053,
+        0.0302
+      ],
+      "reference": "2020yCat.1350....0G Gaia EDR3",
+      "spectralType": "dM4",
+      "sourceHash": null,
+      "hashNote": "Web tool text verified, original response bytes not saved; no invented hash."
+    }
+  ],
+  "remaining": [
+    "Assess native stellar point-source/measurement imagery and original terms/epochs before generation.",
+    "Check alternative stellar parameter fits, current ranking and HYG route identity.",
+    "Generate independent gas intensity map and conceptual near-photosphere view. Planet Ross128b dossier must remain unchanged.",
+    "Use skyGeometry for all angular/raster computations; no solid ground or calibrated colour claims."
+  ],
+  "ranking": "Historical selection preserved; exhaustive current ranking unresolved."
+}
