@@ -71,22 +71,23 @@ test('the composition path agrees with the single-bandpass rule (a pass plus a f
 });
 
 test('real maps contribute by overlap ∫T·R dlnλ, normalised; the rest is predicted, and uncovered ranges are reported', () => {
-  // Earth's 10.3 µm GOES/Himawari map (ir-10 = 10.0–10.7 µm): a window exactly on it is all measured
-  const on = curveLook({ id: 'earth', name: 'Earth' }, { parts: [{ lo: 10000, hi: 10700 }] });
+  // Earth's 10.3 µm GOES/Himawari map (its audited range: ABI/AHI band 13, 10.1–10.6 µm): a window exactly on it is all measured
+  const on = curveLook({ id: 'earth', name: 'Earth' }, { parts: [{ lo: 10100, hi: 10600 }] });
   near(on.mix.real, 1, 1e-3, 'exactly covered'); assert.equal(on.sources.length, 1); near(on.sources[0].weight, 1, 1e-12);
   assert.equal(on.tier, 'measured'); assert.match(on.label, /^100% MEASURED/);
-  // 8–14 µm: measured = ln(10.7/10)/ln(14/8), the rest predicted thermal
+  // 8–14 µm: measured = ln(10.6/10.1)/ln(14/8), the rest predicted thermal
   const wide = curveLook({ id: 'earth', name: 'Earth' }, { parts: [{ lo: 8000, hi: 14000 }] });
-  near(wide.mix.real, Math.log(10.7 / 10) / Math.log(14 / 8), 2e-3, 'measured fraction');
+  near(wide.mix.real, Math.log(10.6 / 10.1) / Math.log(14 / 8), 2e-3, 'measured fraction');
   near(wide.mix.thermal, 1 - wide.mix.real, 2e-3, 'predicted thermal');
   assert.match(wide.label, /\d+% MEASURED · \d+% PREDICTED/);
-  assert.equal(wide.uncovered.length, 2, 'below and above the map'); near(wide.uncovered[0][1], 10000, 200); near(wide.uncovered[1][0], 10700, 200);
+  assert.equal(wide.uncovered.length, 2, 'below and above the map'); near(wide.uncovered[0][1], 10100, 200); near(wide.uncovered[1][0], 10600, 200);
   // two maps (Titan: Cassini ISS 938 nm in Johnson I, Cassini RADAR 2.2 cm): weights ∝ overlap
   const c = { parts: [{ pass: 'vis-I' }, { pass: 'mw-ku' }], excl: [] }, p = prepare(c), r = realOverlap(p, 'titan');
   assert.equal(r.list.length, 2);
   const o = r.list.map((s) => logIntegral([p.f, s.response]));
   near(r.list[0].weight, o[0] / (o[0] + o[1]), 1e-12); near(r.list[0].weight + r.list[1].weight, 1, 1e-12);
-  near(r.measured, 1, 1e-3, 'both parts covered by real maps');
+  // the audit (#61) gives each map its own channel width (ISS 928–948 nm, RADAR 2.2 cm), narrower than the passes
+  assert.ok(r.measured > 0 && r.measured < 1, `partly covered by real maps: ${r.measured}`);
   const tl = curveLook({ id: 'titan', name: 'Titan' }, c);
   assert.equal(tl.sources.filter((s) => s.drawn).length, 1, 'one map drawn, the other listed');
   // nothing overlaps: all predicted (or not observed)
@@ -95,9 +96,9 @@ test('real maps contribute by overlap ∫T·R dlnλ, normalised; the rest is pre
   // an audit-supplied `range` on a BODY_BAND entry is honoured
   BODY_BAND.__test = { ir: { hips: 'X', credit: 'test', range: [1000, 2000] } };
   try { assert.deepEqual(support(realSources('__test')[0].response), [1000, 2000]); } finally { delete BODY_BAND.__test; }
-  // a band-level entry takes the bandpass that shows the same map (Mars 'ir' → THEMIS at ir-12)
-  const mars = BODY_BAND.mars;
-  assert.equal(entryResponse('ir', mars.ir, mars), passById(bandById('ir'), 'ir-12').filter);
+  // a band-level entry takes the bandpass that shows the same map (as Mars 'ir' → THEMIS at ir-12 did before the #61 audit gave every entry a range)
+  const themis = { hips: 'THEMIS', credit: 'test' }, map = { 'ir-12': themis, ir: themis };
+  assert.equal(entryResponse('ir', map.ir, map), passById(bandById('ir'), 'ir-12').filter);
 });
 
 test('wide curves: band shares, a three-band composite, and the sky blended by overlap', () => {
