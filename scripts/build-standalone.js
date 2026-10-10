@@ -9,7 +9,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gunzipSync } from 'node:zlib';
 import { gzipAsync } from '@gfx/zopfli';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -183,7 +183,7 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
-const binarySnapshot = encodeBinarySnapshot(snapshotJson);
+const binarySnapshot = encodeNumericSnapshot(snapshotJson);
 const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 32 });
 if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
 const snapshotRaw = encodeRawSnapshotBytes(htmlCompressed);

@@ -84,7 +84,72 @@ export function encodeBinarySnapshot(text) {
   for (const a of assets) { length(a.prefix.length); put(a.prefix); length(a.bytes.length); put(a.bytes); }
   return output;
 }
+const numericMagic = new TextEncoder().encode('FIDNUM01');
+const numericLexemes = /"(?:[^"\\]|\\.)*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
+// Transpose decimal lexemes by length, without converting or rounding numbers.
+// Only the JSON header changes layout; every binary asset remains unchanged.
+export function encodeNumericSnapshot(text) {
+  const binary = encodeBinarySnapshot(text), view = new DataView(binary.buffer);
+  const headerLength = view.getUint32(8, true);
+  const header = new TextDecoder('utf-8', { fatal: true }).decode(binary.subarray(12, 12 + headerLength));
+  const groups = new Map(), order = [];
+  const skeleton = new TextEncoder().encode(header.replace(numericLexemes, token => {
+    if (token[0] === '"') return token;
+    if (token.length > 255) throw Error('Snapshot numeric lexeme too long.');
+    if (!groups.has(token.length)) groups.set(token.length, []);
+    groups.get(token.length).push(token); order.push(token.length); return '#';
+  }));
+  const tail = binary.subarray(12 + headerLength);
+  const total = 20 + skeleton.length + order.length + tail.length
+    + [...groups].reduce((sum, [length, values]) => sum + 5 + length * values.length, 0);
+  if (total > 0xffffffff) throw Error('Numeric snapshot too large.');
+  const output = new Uint8Array(total), outView = new DataView(output.buffer); let at = 0;
+  const put = bytes => { output.set(bytes, at); at += bytes.length; };
+  const length = n => { outView.setUint32(at, n, true); at += 4; };
+  put(numericMagic); length(skeleton.length); length(order.length); length(groups.size);
+  put(skeleton); put(order);
+  for (const [width, values] of [...groups].sort((a, b) => a[0] - b[0])) {
+    output[at++] = width; length(values.length);
+    for (let digit = 0; digit < width; digit++) for (const value of values) output[at++] = value.charCodeAt(digit);
+  }
+  put(tail); return output;
+}
+function restoreNumericSnapshot(bytes) {
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
+  const length = () => { if (at + 4 > bytes.length) throw Error('Truncated numeric snapshot.'); const n = view.getUint32(at, true); at += 4; return n; };
+  const take = n => { if (n > bytes.length - at) throw Error('Truncated numeric snapshot.'); const b = bytes.subarray(at, at + n); at += n; return b; };
+  const skeletonLength = length(), count = length(), groupCount = length();
+  if (groupCount > 255) throw Error('Invalid numeric group count.');
+  const skeleton = new TextDecoder('utf-8', { fatal: true }).decode(take(skeletonLength)), order = take(count);
+  const groups = new Map(); let totalCount = 0;
+  for (let i = 0; i < groupCount; i++) {
+    const width = take(1)[0], size = length();
+    if (!width || !size || groups.has(width) || size > count - totalCount) throw Error('Invalid numeric group.');
+    groups.set(width, { size, data: take(width * size), used: 0 }); totalCount += size;
+  }
+  if (totalCount !== count) throw Error('Invalid numeric token count.');
+  let index = 0;
+  const header = skeleton.replace(/"(?:[^"\\]|\\.)*"|#/g, token => {
+    if (token !== '#') return token;
+    const group = groups.get(order[index++]);
+    if (!group || group.used >= group.size) throw Error('Invalid numeric reference.');
+    let value = '';
+    for (let digit = 0; digit < order[index - 1]; digit++) value += String.fromCharCode(group.data[digit * group.size + group.used]);
+    group.used++;
+    if (!/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(value)) throw Error('Invalid numeric lexeme.');
+    return value;
+  });
+  if (index !== count || [...groups.values()].some(group => group.used !== group.size)) throw Error('Unused numeric tokens.');
+  const headerBytes = new TextEncoder().encode(header), tail = bytes.subarray(at);
+  const binary = new Uint8Array(12 + headerBytes.length + tail.length);
+  binary.set(binaryMagic); new DataView(binary.buffer).setUint32(8, headerBytes.length, true);
+  binary.set(headerBytes, 12); binary.set(tail, 12 + headerBytes.length);
+  // The existing binary decoder validates all asset lengths and references.
+  const restored = restoreSnapshotText(binary); JSON.parse(restored); return restored;
+}
+
 export function restoreSnapshotText(bytes) {
+  if (numericMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes);
   const decoder = new TextDecoder('utf-8', { fatal: true });
   if (!binaryMagic.every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;

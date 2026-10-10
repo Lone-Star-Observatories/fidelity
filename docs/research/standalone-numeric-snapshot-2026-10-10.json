@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-10",
+  "issue": "#3",
+  "status": "verified; ready to commit",
+  "format": "FIDNUM01",
+  "purpose": "Recover lossless standalone headroom after new vehicle models and upstream detailed Perseverance integration exceeded the 16,000,000-byte gate.",
+  "encoding": {
+    "header": "The existing FIDBIN01 JSON header is lexed outside quoted strings. Decimal number text is replaced with # placeholders; one-byte lexeme widths retain order. Tokens are grouped by width and transposed by digit position. No numeric conversion, rounding or field removal occurs.",
+    "assets": "The original FIDBIN01 binary asset tail is copied unchanged. Decode restores the original header and invokes the existing strict binary asset decoder.",
+    "compression": "Standard gzip, Zopfli32 iterations; wide raw120 transport unchanged.",
+    "compatibility": "FIDBIN01, plain JSON, raw120v1/wide, radix85 and legacy base64 decoders retained. Readable snapshot.json and generated legacy gzip8/radix85 snapshot-packed.js remain complete. Application gzip32/wide, CSS gzip5/raw120v1, Blob module import/revoke and unsupported-browser message remain."
+  },
+  "validationRules": [
+    "Bounds-checked lengths and group data",
+    "At most255 groups; positive unique widths and positive counts",
+    "Total grouped count equals order count",
+    "Every reference uses an existing group and consumes each token exactly once",
+    "Reconstructed lexemes match JSON decimal grammar",
+    "UTF-8 fatal decode; restored JSON parses",
+    "Existing binary asset prefix, reference, truncation and trailing-byte checks remain"
+  ],
+  "screening": {
+    "containerBytes": 19834207,
+    "headerBytes": 6193287,
+    "numericTokens": 648385,
+    "baselineGzip": 13726864,
+    "trialGzip": 13443292,
+    "saving": 283572,
+    "exactHeaderRoundtrip": true,
+    "groupCounts": [
+      {
+        "length": 2,
+        "count": 19857
+      },
+      {
+        "length": 1,
+        "count": 69224
+      },
+      {
+        "length": 6,
+        "count": 141344
+      },
+      {
+        "length": 8,
+        "count": 36408
+      },
+      {
+        "length": 7,
+        "count": 51792
+      },
+      {
+        "length": 9,
+        "count": 13815
+      },
+      {
+        "length": 3,
+        "count": 57154
+      },
+      {
+        "length": 4,
+        "count": 102635
+      },
+      {
+        "length": 5,
+        "count": 111018
+      },
+      {
+        "length": 11,
+        "count": 4038
+      },
+      {
+        "length": 12,
+        "count": 1507
+      },
+      {
+        "length": 10,
+        "count": 7811
+      },
+      {
+        "length": 18,
+        "count": 10668
+      },
+      {
+        "length": 20,
+        "count": 814
+      },
+      {
+        "length": 19,
+        "count": 5253
+      },
+      {
+        "length": 16,
+        "count": 752
+      },
+      {
+        "length": 17,
+        "count": 9084
+      },
+      {
+        "length": 15,
+        "count": 198
+      },
+      {
+        "length": 21,
+        "count": 255
+      },
+      {
+        "length": 14,
+        "count": 473
+      },
+      {
+        "length": 13,
+        "count": 4186
+      },
+      {
+        "length": 22,
+        "count": 43
+      },
+      {
+        "length": 23,
+        "count": 51
+      },
+      {
+        "length": 24,
+        "count": 5
+      }
+    ],
+    "limitations": "Screening only: no versioned production format or independent decoder adopted."
+  },
+  "preservation": "All53 dossiers,42 native references, original generated PNGs/masters, all native science/model/map/shape source files unchanged; no additional Tethys dossier or embedded asset. Existing source/frame/coverage/photometric/component/ranking limitations remain.",
+  "next": "Tethys independent Saturn observer, masters/previews and additive native/local/observer integration within gate; more lossless headroom before larger batches. Remaining Solar System/craft/shape/calibration/ranking backlog ACTIVE.",
+  "verification": {
+    "tests": {
+      "pass": 284,
+      "skip": 1
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15919609,
+    "headroomBytes": 80391,
+    "previousFailedBuildBytes": 16219460,
+    "differenceFromPreviousBuildBytes": 299851,
+    "comparisonLimit": "Previous failed build is historical, not a controlled same-snapshot Zopfli comparison; dynamic upstream snapshot inputs can change. The screening compares the same container with zlib9.",
+    "browser": {
+      "snapshot": "b99619753fe0fbf80e8fdaa2666f952e87092d7538bbb872a190ee5ed6c39b53",
+      "raw": "3fbe748f3cb78e66864dd4fe9a202886ac8fb5824cbaf9423dc7239a99a6aa9f",
+      "magic": "FIDNUM01",
+      "images": 192,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15919609,
+      "compressedBytes": 534674,
+      "applicationSha256": "ed890a6a3e89558768cd1e8ec3bdb804af0c65b1712f9b0c2b308f974674da84",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "stylesheet": {
+      "bytes": 39637,
+      "sha256": "7cd84016c3f713e0943127b9ea20efb947504aae49839694157a0a330fb87563",
+      "exactRestoration": true,
+      "htmlParserPackedTextEquality": true
+    },
+    "offlineRoutes": 6,
+    "unsupportedBrowserMessage": "verified",
+    "offlineEventWorkerRows": 11,
+    "normalModelsLoaded": 32,
+    "browserScope": "Chrome; other engines not independently tested",
+    "queue": {
+      "tasks": 566,
+      "initialDossiers": 53
+    }
+  }
+}

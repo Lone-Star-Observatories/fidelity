@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -76,4 +76,21 @@ test('binary snapshot rejects truncated lengths, excess data and invalid referen
   const badLength=valid.slice();new DataView(badLength.buffer).setUint32(8,0xffffffff,true);assert.throws(()=>restoreSnapshotText(badLength));
   const trailing=new Uint8Array(valid.length+1);trailing.set(valid);assert.throws(()=>restoreSnapshotText(trailing));
   const badReference=valid.slice();const at=new TextDecoder().decode(valid).indexOf('ASSET_0')+6;badReference[at]=49;assert.throws(()=>restoreSnapshotText(badReference));
+});
+
+
+test('numeric snapshot preserves exact decimal lexemes, whitespace, quoted digits and binary assets', async () => {
+  const text = '{ "label": "# 12.34 α \\"quoted\\"", "values": [-0, 1.2300, 2e+03, -1E-12, 12345678901234567890123], "asset": "data:image/png;base64,AAEC" }';
+  const bytes = encodeNumericSnapshot(text);
+  assert.equal(restoreSnapshotText(bytes), text);
+  assert.deepEqual(await decodeSnapshot(encodeRawSnapshotBytes(gzipSync(bytes))), JSON.parse(text));
+  assert.equal(restoreSnapshotText(encodeNumericSnapshot('{"only":"# 123"}')), '{"only":"# 123"}');
+});
+test('numeric snapshot rejects truncation, invalid ordering, digit corruption and trailing bytes', () => {
+  const valid = encodeNumericSnapshot('{"values":[12,34,5]}');
+  for (const size of [8,12,19,valid.length-1]) assert.throws(() => restoreSnapshotText(valid.slice(0,size)));
+  const skeletonLength = new DataView(valid.buffer).getUint32(8,true);
+  const invalidOrder=valid.slice(); invalidOrder[20+skeletonLength]=255; assert.throws(()=>restoreSnapshotText(invalidOrder));
+  const invalidDigit=valid.slice(); invalidDigit[20+skeletonLength+3+5]=65; assert.throws(()=>restoreSnapshotText(invalidDigit));
+  const trailing=new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
 });
