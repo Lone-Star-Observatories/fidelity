@@ -15,6 +15,7 @@ import { AU_KM } from '../../data/sol.js';
 import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
+import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin } from './materials.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { ELEMENTS } from '../../astro/kepler.js';
@@ -90,12 +91,12 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   const SKY_R = 2e5;
   const skyMat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
-    uniforms: { uPixel: { value: renderer.getPixelRatio() } },
+    uniforms: { uPixel: { value: renderer.getPixelRatio() }, uFade: { value: 1 } },
     vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel;
       void main() { vColor = color; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
         gl_PointSize = size * uPixel; }`,
-    fragmentShader: `varying vec3 vColor; void main() { float d = length(gl_PointCoord - 0.5);
-        float a = smoothstep(0.5, 0.0, d); gl_FragColor = vec4(vColor, a); }`,
+    fragmentShader: `varying vec3 vColor; uniform float uFade; void main() { float d = length(gl_PointCoord - 0.5);
+        float a = smoothstep(0.5, 0.0, d) * uFade; if (a < 0.01) discard; gl_FragColor = vec4(vColor, a); }`,
   });
   const sky = new THREE.Points(new THREE.BufferGeometry(), skyMat);
   sky.renderOrder = -1;
@@ -636,6 +637,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
 
   function flyTo(id, { overview = null } = {}) {
     if (!nodes[id]) return;
+    if (surface) exitSurface(false);
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
     flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
     focusId = id;
@@ -647,13 +649,185 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   const ray = new THREE.Raycaster();
   let down = null;
   labels.domElement.addEventListener('pointerdown', (e) => { down = [e.clientX, e.clientY]; });
-  labels.domElement.addEventListener('pointerup', (e) => {
-    if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+  const pick = (e) => {
     const r = renderer.domElement.getBoundingClientRect();
     ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
-    const hit = ray.intersectObjects(pickables, false)[0];
-    if (hit) onSelect(hit.object.userData.id);
+    return ray.intersectObjects(pickables, false)[0];
+  };
+  let clickTimer = null;
+  labels.domElement.addEventListener('pointerup', (e) => {
+    if (surface || !down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+    const hit = pick(e);
+    // wait a moment so a double-click goes to the surface instead of starting a flight
+    clearTimeout(clickTimer);
+    if (hit) clickTimer = setTimeout(() => onSelect(hit.object.userData.id), 260);
   });
+  labels.domElement.addEventListener('dblclick', (e) => {
+    if (surface) return;
+    clearTimeout(clickTimer);
+    const hit = pick(e);
+    if (!hit) return;
+    const id = hit.object.userData.id, n = nodes[id];
+    if (!n || isStar(n.body) || n.body.marker || n.body.kind === 'satellite' || n.body.kind === 'spacecraft') { flashHud(isStar(n?.body ?? {}) ? 'A STAR HAS NO SURFACE TO STAND ON' : 'NO SURFACE HERE'); return; }
+    const local = hit.object.worldToLocal(hit.point.clone());
+    const normal = hit.face ? hit.face.normal.clone() : local.clone().normalize();
+    enterSurface(id, { object: hit.object, local, normal });
+  });
+
+  // ---- surface view: stand where you double-clicked and look up ---------------------------
+  // The camera sits 2 m above the surface, turns with the body, and starts at the zenith.
+  // TRUE scale while standing (the sky must be real); drag to look around, wheel to zoom.
+  let surface = null; // { id, object, local (object frame), normal (object frame), az, alt, fov, prevScale, sphere }
+  const hud = document.createElement('div');
+  hud.className = 'surface-hud';
+  hud.hidden = true;
+  const hudText = document.createElement('div'), hudSub = document.createElement('div');
+  hudSub.className = 'surface-sub';
+  const hudBack = Object.assign(document.createElement('button'), { className: 'pill', textContent: '▲ BACK TO ORBIT' });
+  hudBack.addEventListener('click', () => exitSurface(true));
+  hud.append(hudText, hudSub, hudBack);
+  container.appendChild(hud);
+  const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
+  flash.hidden = true;
+  container.appendChild(flash);
+  let flashT = null;
+  function flashHud(text) { flash.textContent = text; flash.hidden = false; clearTimeout(flashT); flashT = setTimeout(() => { flash.hidden = true; }, 2200); }
+  const compass = ['N', 'E', 'S', 'W'].map((t, i) => {
+    const el = document.createElement('div');
+    el.className = 'nav-label compass';
+    el.textContent = t;
+    const o = new CSS2DObject(el);
+    o.center.set(0.5, 0.5);
+    o.visible = false;
+    o.userData.az = i * 90;
+    scene.add(o);
+    return o;
+  });
+  const zenithTag = (() => { const el = document.createElement('div'); el.className = 'nav-label compass zenith'; el.textContent = '+ ZENITH'; const o = new CSS2DObject(el); o.visible = false; scene.add(o); return o; })();
+
+  function enterSurface(id, { object, local, normal }) {
+    const n = nodes[id];
+    if (!n) return;
+    const sphere = object === n.mesh;
+    surface = { id, object, local, normal: sphere ? local.clone().normalize() : normal.normalize(), az: 0, alt: 90, fov: 70,
+      prevScale: settings.get('scale'), sphere, frame: null };
+    flight = null;
+    focusId = id;
+    overviewAU = null;
+    if (settings.get('scale') !== 'true') settings.set('scale', 'true');
+    controls.enabled = false;
+    hud.hidden = false;
+    onSelect?.(id, { surface: true });
+  }
+  function exitSurface(restore = true) {
+    if (!surface) return;
+    const s = surface;
+    surface = null;
+    hud.hidden = true;
+    for (const c of [...compass, zenithTag]) c.visible = false;
+    skyMat.uniforms.uFade.value = 1;
+    scene.background = null;
+    camera.fov = 50; camera.updateProjectionMatrix();
+    camera.up.set(0, 1, 0);
+    controls.enabled = true;
+    if (restore) {
+      if (s.prevScale !== settings.get('scale')) settings.set('scale', s.prevScale);
+      // back out above the spot we stood on
+      const out = tmp.copy(camera.position).normalize();
+      camera.position.copy(out.lengthSq() ? out : tmp.set(0, 0.6, 1).normalize()).multiplyScalar(viewDistance(s.id));
+      controls.target.set(0, 0, 0);
+      framedRadius = null;
+    }
+  }
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && surface && !container.hidden) exitSurface(true); });
+  // look around: drag (azimuth/altitude), wheel (field of view)
+  let lookDrag = null;
+  labels.domElement.addEventListener('pointerdown', (e) => { if (surface) lookDrag = [e.clientX, e.clientY]; });
+  window.addEventListener('pointerup', () => { lookDrag = null; });
+  labels.domElement.addEventListener('pointermove', (e) => {
+    if (!surface || !lookDrag) return;
+    const k = surface.fov / container.clientHeight;
+    surface.az = (surface.az - (e.clientX - lookDrag[0]) * k + 360) % 360;
+    surface.alt = Math.max(-15, Math.min(90, surface.alt + (e.clientY - lookDrag[1]) * k));
+    lookDrag = [e.clientX, e.clientY];
+  });
+  labels.domElement.addEventListener('wheel', (e) => {
+    if (!surface) return;
+    e.preventDefault();
+    surface.fov = Math.max(2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+  }, { passive: false });
+
+  const sv = { a: new THREE.Vector3(), b: new THREE.Vector3(), c: new THREE.Vector3(), d: new THREE.Vector3(), e: new THREE.Vector3(), q: new THREE.Quaternion() };
+  /**
+   * What you'd see from the ground: the Sun, the planets, our own moon (or, from a moon, its
+   * planet and sibling moons). Belts, satellites, spacecraft, orbit lines, zones and markers are
+   * chart overlays, not sky, so they go; in daylight only the Sun and the brightest neighbours stay.
+   */
+  function surfaceSky() {
+    const s = surface, here = nodes[s.id].body;
+    if (zones) for (const o of [zones.geo.object, ...zones.va.map((z) => z.object), zones.helio.group, zones.oort, ...zones.hill.map((h) => h.shape.object)]) o.visible = false;
+    if (belts) belts.points.visible = false;
+    if (sats) sats.points.visible = false;
+    for (const id in nodes) {
+      const n = nodes[id], b = n.body;
+      if (n.orbit) n.orbit.visible = false;
+      let show;
+      if (id === s.id) { n.group.visible = true; n.label.visible = false; continue; } // the ground underfoot
+      else if (b.marker || b.kind === 'satellite' || b.kind === 'spacecraft' || b.orbit?.type === 'elements') show = false;
+      else if (b.kind === 'moon') show = b.parent === s.id || b.parent === here.parent; // our moon(s), or sibling moons
+      else show = true; // stars and planets
+      // daylight: only the Sun, the planet overhead (from a moon) and our own moon
+      if (show && s.day > 0.5 && !isStar(b) && !(b.kind === 'moon' && b.parent === s.id) && id !== here.parent) show = false;
+      n.group.visible = show;
+      n.label.visible = show;
+    }
+  }
+  /** Place the camera on the surface for this frame (after positions and orientations are set). */
+  function updateSurface() {
+    const s = surface, n = nodes[s.id];
+    root.updateMatrixWorld(true);
+    const centre = n.group.getWorldPosition(sv.c);
+    const R = n.body.radiusKm || 1;
+    // 2 m above the surface, in the object's own units (spheres are unit radius)
+    const lift = s.sphere ? 1 + 0.002 / R : 1;
+    const p = s.object.localToWorld(sv.a.copy(s.local).multiplyScalar(s.sphere ? lift / s.local.length() : 1));
+    if (!s.sphere) p.add(sv.b.copy(s.normal).transformDirection(s.object.matrixWorld).multiplyScalar(0.002 / AU_KM));
+    const up = s.sphere ? sv.b.copy(p).sub(centre).normalize() : sv.b.copy(s.normal).transformDirection(s.object.matrixWorld);
+    const pole = new THREE.Vector3(0, 1, 0).applyQuaternion(n.tilt.getWorldQuaternion(sv.q));
+    const f = horizonFrame(up.toArray(), pole.toArray());
+    s.frame = f;
+    const { dir, camUp } = surfaceLook(f, s.az, s.alt);
+    camera.position.copy(p);
+    camera.up.set(...camUp);
+    camera.lookAt(sv.d.copy(p).add(sv.e.set(...dir))); // p stays the standing point
+    if (Math.abs(camera.fov - s.fov) > 1e-3) { camera.fov = s.fov; camera.updateProjectionMatrix(); }
+    camera.near = 1e-14; camera.far = 1e6; camera.updateProjectionMatrix();
+    // compass on the horizon, zenith marker
+    for (const c of compass) { const d = surfaceLook(f, c.userData.az, 0).dir; c.position.set(p.x + d[0] * 1e-3, p.y + d[1] * 1e-3, p.z + d[2] * 1e-3); c.visible = true; }
+    zenithTag.position.set(p.x + f.up[0] * 1e-3, p.y + f.up[1] * 1e-3, p.z + f.up[2] * 1e-3); zenithTag.visible = true;
+    // the Sun: altitude, daylight sky
+    const star = nodes[model.starId];
+    const sunDir = star.group.getWorldPosition(sv.c).sub(p);
+    const sun = altAz(f, sunDir.toArray());
+    const air = DAY_SKY[s.id];
+    const day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
+    if (air && day > 0) {
+      const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
+      scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
+    } else scene.background = null;
+    skyMat.uniforms.uFade.value = air?.hidesStars ? Math.max(0, 1 - day * 1.6) : 1;
+    s.day = air?.hidesStars ? day : 0;
+    // read-out
+    const ll = s.sphere ? dirToLatLon(s.local.toArray()) : null;
+    const where = ll ? `${Math.abs(ll.lat).toFixed(2)}°${ll.lat >= 0 ? 'N' : 'S'} ${Math.abs(ll.lon).toFixed(2)}°${ll.lon >= 0 ? 'E' : 'W'}` : 'ON ITS SURFACE';
+    const giant = (n.body.radiusKm ?? 0) > 20000;
+    const text = `${giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON'} ${n.body.name.toUpperCase()} · ${where}`;
+    const look = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
+    const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°`;
+    const sub = `${look} · ${sunTxt} · FOV ${Math.round(s.fov)}°${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    if (hudText.textContent !== text) hudText.textContent = text;
+    if (hudSub.textContent !== sub) hudSub.textContent = sub;
+  }
 
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
@@ -749,7 +923,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     } else {
       focusPos.copy(target);
       // Switching ENHANCED ⇄ TRUE while framing a body: keep it the same size on screen.
-      if (overviewAU == null && framedRadius) {
+      if (!surface && overviewAU == null && framedRadius) {
         const r = displayRadius(nodes[focusId].body);
         camera.position.multiplyScalar(r / framedRadius);
         framedRadius = r;
@@ -765,7 +939,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
     // near plane follows the camera so 100 m spacecraft can be seen at true scale
     const near = Math.min(1e-7, Math.max(1e-15, camera.position.length() * 1e-3));
-    if (Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
+    if (!surface && Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
     updateTracks(jd);
     for (const id in nodes) {
@@ -780,8 +954,11 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
-    controls.minDistance = displayRadius(nodes[focusId].body) * 1.3;
-    controls.update();
+    if (surface) { updateSurface(); surfaceSky(); }
+    else {
+      controls.minDistance = displayRadius(nodes[focusId].body) * 1.3;
+      controls.update();
+    }
 
     renderer.render(scene, camera);
     labels.render(scene, camera);
@@ -834,6 +1011,16 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     },
     get model() { return model; },
     focus(id, opts) { flyTo(id, opts); },
+    /** Stand on body `id` at latitude/longitude (deg) and look up. */
+    surfaceAt(id, lat, lon) {
+      const n = nodes[id];
+      if (!n || isStar(n.body)) return false;
+      const local = new THREE.Vector3(...latLonToDir(lat, lon));
+      enterSurface(id, { object: n.mesh, local, normal: local.clone() });
+      return true;
+    },
+    exitSurface: () => exitSurface(true),
+    get onSurface() { return surface ? { id: surface.id } : null; },
     overview(au, centre, localKm) {
       if (localKm && nodes[centre]) au = 2.4 * localMap(nodes[centre].body, new THREE.Vector3(localKm / AU_KM, 0, 0)).length();
       flyTo(centre && nodes[centre] ? centre : model.starId, { overview: au });

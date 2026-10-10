@@ -159,6 +159,16 @@ shader by radius (`uRadius`) and labels by distance. Label `visible` must be a s
 (CSS2DRenderer only hides on `=== false`). The Universe View also draws the Local Group's
 CMB motion and Andromeda's approach (`MOTION`).
 
+## Surface view
+
+Double-click a body in the System View (or its globe in the Planet View) to stand there
+2 m up and look straight up (`src/views/system/surface.js`: texture lat/lon ⇄ mesh
+direction, local horizon frame, alt/az). The camera turns with the body each frame, the
+scale switches to TRUE while standing, drag looks around (sky follows the cursor) and the
+wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
+satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
+twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
 ## Galactic deep time
 
 `src/astro/galaxy.js` holds the dynamics: a flat rotation curve with a soft core (`omega(R)`),

@@ -48,7 +48,11 @@ const system = createSystemView($('system-view'), {
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
-const planetView = createPlanetView($('planet-view'));
+// Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
+let pendingSurface = null;
+const planetView = createPlanetView($('planet-view'), {
+  onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
+});
 const galaxy = createGalaxyView($('galaxy-view'), { onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; } });
 let galaxyStarsLoaded = false;
 const quadrant = createQuadrantView($('quadrant-view'), { onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); } });
@@ -994,7 +998,9 @@ onRoute(async (r) => {
     $('view-title').textContent = `SYSTEM VIEW · ${m.name.toUpperCase()}${body ? ` · ${body.name.toUpperCase()}` : ''}`;
     syncBeacon();
     if (body) {
-      if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
+      if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon); }
+      else if (system.onSurface?.id === body.id) { /* standing on it already */ }
+      else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
       renderBodyPanel(body.id);
     } else {
       if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au, m.survey[0].centre);

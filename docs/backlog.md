@@ -21,12 +21,12 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 15 | ✅ **Navigation filters** | List and drill into nearest systems, stars, planets, nebulae. |
 | 16 | ✅ **Message light-time** | A light pulse to Earth and back, arrival and reply years, lifetimes beyond 75 ly. |
 | 17 | ✅ **Live skins** | Today's Sun (SDO) and Earth (GIBS); honest Moon. |
-| 19 | **Realism pass** | Comet tails, surface view on double-click, real shapes, spin axes and wobble, magnetospheres, the Sun's field and heliosphere asymmetry, explainers. |
+| 19 | **Realism pass** | Comet tails, ~~surface view on double-click~~ (done), real shapes, spin axes and wobble, magnetospheres, the Sun's field and heliosphere asymmetry, explainers. |
 | 18 | ✅ **Galaxy motion & images** | Spitzer images of the Magellanic Clouds at their real sizes; galactic time from 1 kyr/s to 50 Myr/s over ±2 Gyr (differential rotation, arm pattern speed, the Sun's frame); satellite-galaxy orbits integrated in a halo; Local Group vs CMB and Andromeda arrows in the Universe View; 55k Gaia DR3 stars beyond 1.5 kly. |
 | 20 | ✅ **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
 | 21 | **Voice: "Computer"** | Local wake word, ChatGPT voice through a backend relay (key stays local), spoken answers about what's on screen. |
 | 22 | **3D Milky Way** | Volumetric bulge, bar, disks, arms and dust instead of the flat image; fainter under the stars. |
-| 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view. |
+| 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view (done in the System and Planet views). |
 | 24 | **3D nebulae and clusters** | Best-effort 3D nebula models with real imagery; clusters drawn from their Gaia members; major stars in nebulae investigable. |
 | 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
 | 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |

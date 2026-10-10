@@ -6,6 +6,7 @@ import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } 
 import { settings } from '../../settings.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
 import { badge } from '../../data/provenance.js';
+import { dirToLatLon } from '../system/surface.js';
 import { PLANETS } from '../../data/sol.js';
 import { SOL_ATMOSPHERES, SOL_INTERIORS, INTERIOR_SOURCES, BANDS, MOLECULE_NAMES, EXO_ATMOSPHERES, MR_CURVES, density } from '../../data/planets.js';
 
@@ -30,7 +31,7 @@ const card = (title, tier, detail, ...body) => el('section', { className: 'sv-ca
 // Interior layer fills: one warm ramp, hottest (iron) darkest-saturated, crust lightest.
 const LAYER_FILL = { iron: '#8a4d10', 'iron-liquid': '#b0651a', metallic: '#7a6a8a', rock: '#a87c4a', ice: '#5f7f99', gas: '#c9b48a', crust: '#d9c3a0', water: '#2f5f9f' };
 
-export function createPlanetView(container) {
+export function createPlanetView(container, { onSurface } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -51,6 +52,19 @@ export function createPlanetView(container) {
   container.replaceChildren(el('div', { className: 'sv' },
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), body));
   new ResizeObserver(() => { const w = hero.clientWidth || 260; renderer.setSize(w, w, false); }).observe(hero);
+  // double-click the globe to stand on that spot and look up (System View surface mode)
+  let current = null;
+  const ray = new THREE.Raycaster();
+  renderer.domElement.title = 'Double-click to stand here and look up';
+  renderer.domElement.addEventListener('dblclick', (e) => {
+    if (!globe || !current) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
+    const hit = ray.intersectObject(globe, false)[0];
+    if (!hit) return;
+    const { lat, lon } = dirToLatLon(globe.worldToLocal(hit.point.clone()).toArray());
+    onSurface?.(current.id, lat, lon);
+  });
 
   function frame(now) {
     if (!running) return;
@@ -269,6 +283,7 @@ export function createPlanetView(container) {
         ['CLASS', isSol ? (b.kind === 'moon' ? `MOON OF ${b.parent.toUpperCase()}` : minor ? b.kind.toUpperCase() : b.kind === 'dwarf planet' ? 'DWARF PLANET' : rE > 3 ? 'GIANT PLANET' : 'ROCKY PLANET') : b.planetClass],
       ].flatMap(([k, v]) => [el('dt', { textContent: k }), el('dd', { textContent: v })]));
       setGlobe(b);
+      current = b;
       // The mass–radius diagram is for planets; moons and small bodies are far off its scale.
       body.replaceChildren(...[atmosphereCard(b, isSol), fingerprintCard(b, isSol), interiorCard(b, isSol), minor || !mE ? null : massRadiusCard(b, isSol)].filter(Boolean));
     },

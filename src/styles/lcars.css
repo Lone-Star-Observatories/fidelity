@@ -157,6 +157,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .orient-gauge svg { display: block; width: 120px; height: 120px; margin: 0 auto; font-family: inherit; letter-spacing: 0.06em; }
 .orient-title { font-size: 10px; letter-spacing: 0.12em; color: var(--apricot); }
 .orient-readout { font-size: 10px; letter-spacing: 0.06em; color: var(--peach); text-align: center; }
+.surface-hud { user-select: none; position: absolute; left: 50%; top: 12px; transform: translateX(-50%); max-width: min(92%, 900px); z-index: 4;
+  background: rgba(0, 0, 0, 0.6); border-left: 4px solid var(--orange); padding: 6px 12px; display: grid; gap: 4px; justify-items: start; }
+.surface-hud > div:first-child { color: var(--orange); font-size: 16px; letter-spacing: 0.08em; }
+.surface-sub { color: var(--peach); font-size: 12px; letter-spacing: 0.04em; line-height: 1.35; }
+.surface-flash { position: absolute; left: 50%; top: 45%; transform: translateX(-50%); z-index: 4; color: var(--orange); background: rgba(0,0,0,0.65); padding: 6px 14px; letter-spacing: 0.1em; pointer-events: none; }
+.nav-label.compass { color: var(--gold); background: none; border: 0; font-size: 16px; letter-spacing: 0.1em; pointer-events: none; text-shadow: 0 0 4px #000; }
+.nav-label.compass.zenith { font-size: 11px; color: var(--peach); }
 .nav-label.motion { color: #ffcc66; background: none; border: 0; pointer-events: none; font-size: 10px; letter-spacing: 0.06em; }
 .nav-label.fleet { color: var(--rose); background: none; border: 0; pointer-events: none; font-size: 16px; letter-spacing: 0.22em; }
 .nav-label.quadrant { color: rgba(204, 153, 204, 0.55); background: none; border: 0; pointer-events: none; font-size: 15px; letter-spacing: 0.2em; }
