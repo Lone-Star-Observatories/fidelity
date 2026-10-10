@@ -60,7 +60,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     const t = s.traverseInfo;
     const drive = t ? h('dl') : null;
     if (t) {
-      row(drive, 'DRIVEN', `${t.distanceKm.toLocaleString()} KM`, 'measured', `${t.credit}. Summed along the published localized drive path.`);
+      row(drive, s.traverseVerb ?? 'DRIVEN', `${t.distanceKm.toLocaleString()} KM`, 'measured', `${t.credit}. Summed along the published path.`);
       if (t.sol != null) row(drive, 'PATH UP TO', `SOL ${t.sol}`, 'measured');
       row(drive, 'NOW AT', `${fmtLat(t.last[1])} · ${fmtLon(t.last[0])}`, 'measured', 'End of the published traverse (the white dot).');
     }

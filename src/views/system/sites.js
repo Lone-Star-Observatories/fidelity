@@ -68,8 +68,8 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
         s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit, last: t.points.at(-1) };
         const pos = t.points.flatMap(([lon, lat]) => siteDir(body, lat, lon).map((c) => c * PATH_R));
         const line = new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)),
-          new THREE.LineBasicMaterial({ color: SITE_KINDS.rover.color, transparent: true, opacity: 0.95 }));
-        line.userData.kind = 'rover';
+          new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 }));
+        line.userData.kind = s.kind;
         // the rover now: a brighter dot at the end of its path
         const now = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos.slice(-3), 3)),
           new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff }));
@@ -90,7 +90,7 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
     if (!group.visible) return;
     if (!pathsRequested) requestPaths();
     for (const [kind, d] of Object.entries(dots)) d.visible = !hidden.has(kind);
-    for (const p of paths) p.visible = !hidden.has('rover');
+    for (const p of paths) p.visible = !hidden.has(p.userData.kind);
     group.getWorldPosition(tmpA);
     group.getWorldScale(tmpS);
     tmpB.copy(camera.position).sub(tmpA);

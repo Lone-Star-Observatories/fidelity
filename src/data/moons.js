@@ -99,6 +99,11 @@ export const MOONS = [
   { id: 'charon', name: 'Charon', parent: 'pluto', radiusKm: 606, massKg: 1.586e21,
     elements: el(19600, 0.0, 0.0, 304.1, 0.0, 0.0, 6.387222, 0, 0, PLUTO_POLE, 'equatorial'),
     skin: { map: 'charon' }, discovered: '1978 · James Christy', note: 'So large relative to Pluto that the pair orbit a point in space between them.' },
+  // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
+  // The orbital phase is not tracked here, so its position along the orbit is illustrative.
+  { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,
+    elements: el(1.152, 0.028, 0, 0, 0, 0, 0.473799, 0, 0, [78.22, -70.79], 'equatorial'), surfacePending: true,
+    discovered: '2003 · Pravec et al. (light curves)', note: 'DART struck it on 26 Sep 2022, the first test of deflecting an asteroid: its 11 h 55 min orbit shrank by 33 minutes.' },
 ];
 
 // name, kind, radius km, mass kg (null = unmeasured), SBDB elements [epoch JD, a AU, e, i, Ω, ω, M], skin, IAU pole/rotation
@@ -144,6 +149,27 @@ export const SMALL_BODIES = [
       // 2061-07-28.7): two-body motion from the 1968 set alone puts that perihelion ~5 months late.
       altElements: [{ epochJd: 2474033.5, a: 17.735623, e: 0.9665768, i: 161.96512, node: 59.392316, w: 112.052104, M: 359.9904974 }], discovered: 'Recorded since 240 BC · orbit by Edmond Halley 1705',
       note: 'Back in 2061. The orbit is the 1968 osculating one (SBDB); planetary tugs shift its timing by days to weeks.' }),
+  // #37: the small bodies spacecraft have touched. Elements: JPL SBDB (epoch 2026-06-08) or, for
+  // Bennu and 67P, JPL Horizons osculating elements at 2026-06-25 (SBDB's solutions are older).
+  // Poles: SBDB (RA/Dec). All drawn as spheres of their mean radius; orientation illustrative except Eros.
+  sb('eros', '433 Eros', 'asteroid', 8.42, 6.687e15, [2461200.5, 1.458243716760167, 0.2228779627700761, 10.82854410314273, 304.2679713350896, 178.9181319135911, 62.51145501986792],
+    { surfacePending: true, pole: [11.37, 17.22], iau: [326.07, 1639.38864745], rotationHours: 5.27, belt: 'NEAR-EARTH (AMOR)', discovered: '1898 · Gustav Witt',
+      note: 'A 34 km peanut; NEAR Shoemaker orbited it for a year and then landed, though built only as an orbiter (2001). Drawn as a sphere.' }),
+  sb('itokawa', '25143 Itokawa', 'asteroid', 0.165, 3.51e10, [2461200.5, 1.324052284342771, 0.2801776414987972, 1.620940810523569, 69.07449749929083, 162.8409022415483, 170.653905937934],
+    { surfacePending: true, pole: [90.53, -66.30], rotationHours: 12.132, belt: 'NEAR-EARTH (APOLLO)', discovered: '1998 · LINEAR',
+      note: 'A 535 m rubble pile shaped like a sea otter; Hayabusa brought back the first asteroid dust (2010). Drawn as a sphere.' }),
+  sb('ryugu', '162173 Ryugu', 'asteroid', 0.448, 4.5e11, [2461200.5, 1.190918932702464, 0.1910730046480051, 5.866442486408568, 251.2897123995624, 211.608993811871, 62.34067409463987],
+    { surfacePending: true, pole: [96.3956, -66.3937], rotationHours: 7.63262, belt: 'NEAR-EARTH (APOLLO)', discovered: '1999 · LINEAR',
+      note: 'A spinning-top rubble pile; Hayabusa2 touched down twice and returned 5.4 g of samples (2020). Drawn as a sphere.' }),
+  sb('bennu', '101955 Bennu', 'asteroid', 0.2422, 7.329e10, [2461216.5, 1.125940757035206, 0.2036785985930620, 6.032981384513211, 1.966545538322302, 66.40834897298510, 85.65368423905571],
+    { surfacePending: true, pole: [85.4522, -60.3678], rotationHours: 4.296061, belt: 'NEAR-EARTH (APOLLO)', discovered: '1999 · LINEAR',
+      note: 'OSIRIS-REx tagged it in 2020 and dropped 121.6 g of samples in Utah in 2023; a small chance of hitting Earth in the 2180s. Drawn as a sphere.' }),
+  sb('didymos', '65803 Didymos', 'asteroid', 0.3825, 5.4e11, [2461200.5, 1.642709608529702, 0.3831233242624545, 3.413876519313629, 72.9858236207145, 319.5807001349104, 260.8612886320632],
+    { surfacePending: true, pole: [78.22, -70.79], rotationHours: 2.2593, belt: 'NEAR-EARTH (APOLLO)', discovered: '1996 · Spacewatch',
+      note: 'The larger of a binary pair; DART hit its moon Dimorphos in 2022 and shortened its orbit by 33 minutes. ESA\'s Hera arrives in 2026.' }),
+  sb('67p', '67P/Churyumov–Gerasimenko', 'comet', 1.65, 9.98e12, [2461216.5, 3.458913069061047, 0.6495469549577491, 3.866369645780778, 36.29278553201564, 22.23556143749892, 259.7212569240411],
+    { surfacePending: true, pole: [69.3, 64.1], rotationHours: 12.76129, belt: 'JUPITER-FAMILY COMET', comet: { M1: 12.9, K1: 7.5, perihelion: '2028-04-09' }, discovered: '1969 · Klim Churyumov & Svetlana Gerasimenko',
+      note: 'Rosetta orbited it for two years and its lander Philae bounced to rest under a cliff (2014). A 4 km rubber-duck shape, drawn as a sphere.' }),
 ];
 
 export const MOON_CREDIT = {

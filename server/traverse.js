@@ -1,4 +1,4 @@
-// Mars rover traverses: the published drive paths from NASA/JPL's MMGIS mission maps, fetched on
+// Mars rover traverses (and Ingenuity's flights): the published paths from NASA/JPL's MMGIS mission maps, fetched on
 // demand, thinned to a few thousand points and cached for six hours (active rovers drive daily).
 
 import { cached } from './cache.js';
@@ -7,6 +7,7 @@ const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const MARS_KM = 3389.5;
 export const TRAVERSES = {
   m20: { url: 'https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_traverse.json', credit: 'NASA/JPL-Caltech MMGIS, Perseverance traverse (localized drives)' },
+  heli: { url: 'https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_flight_path.json', credit: 'NASA/JPL-Caltech MMGIS, Ingenuity flight paths (72 flights)' },
   msl: { url: 'https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_traverse.json', credit: 'NASA/JPL-Caltech MMGIS, Curiosity traverse (localized drives)' },
 };
 
@@ -29,7 +30,8 @@ export function flattenTraverse(geo, maxPoints = 4000) {
       const last = pts.at(-1);
       if (Number.isFinite(p[0]) && Number.isFinite(p[1]) && !(last && last[0] === p[0] && last[1] === p[1])) pts.push(p);
     }
-    if (f.properties?.sol != null) sol = Math.max(sol ?? 0, Number(f.properties.sol));
+    const fs = f.properties?.sol ?? f.properties?.Sol;
+    if (fs != null) sol = Math.max(sol ?? 0, Number(fs));
   }
   let km = 0;
   for (let i = 1; i < pts.length; i++) km += arcKm(pts[i - 1], pts[i]);
