@@ -127,7 +127,10 @@ snapshot does not grow); the chart badge says so when that runs short.
 ## Adding a view
 
 1. Create `src/views/<level>/<Name>View.js` exporting `create…View(container, deps)` with
-   `show()` and `hide()`.
+   `show()` and `hide()`. Give it the camera cluster (`createCameraRig` from
+   `src/views/cameraControls.js`, exposed as `camera`; see "Camera controls" below) and call
+   `rig.update(now)` every frame, running the view's own target easing and `controls.update()` only
+   when it returns true.
 2. Mount it in `src/main.js` routing; remove its entry from `src/roadmap.js`.
 3. Add any upstream it needs as a backend route with a cache namespace. Don't fetch
    non-CORS upstreams from the browser.
@@ -242,6 +245,51 @@ wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (b
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
 
+## Camera controls (#39)
+
+Every 3D view (System, Navigation, Quadrant, Galaxy, Universe, the Star and Planet/Moon/Object
+globes, and the surface view) carries the same camera cluster, bottom-left (beside the Navigation
+View's orientation gauge; under the globe in the detail views). `src/views/cameraControls.js`
+(`createCameraRig`) builds it and owns the keyboard, pointer and touch handling; the maths is pure
+and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
+
+- **Modes.** ORBIT is each view's OrbitControls. LOOK turns the camera on the spot (drag: the sky
+  follows the pointer; pitch stops short of the poles). FLY adds W A S D / arrows and Q / E (down /
+  up), Shift ×5; speed is 0.8 × the distance to the nearest surface per second (`flySpeed`), so it
+  works from 100 m above a moon to 100 Mly out. In LOOK and FLY, zoom (wheel, pinch, + / −, the
+  slider) changes the field of view. Touch: one finger orbits or looks, two fingers pinch (zoom in
+  ORBIT and LOOK, forward/back in FLY) and pan (slide in FLY). Choosing ORBIT again returns smoothly:
+  the view's `toOrbit` hook or, by default, a new target on the line of sight at the distance of
+  whatever is in front (`ahead`), then a 0.7 s slerp to face it and back to the view's field. Keys:
+  1 / 2 / 3 modes, + / − zoom, F fill view, Shift+F full screen, R reset, B link, C zoom to cursor;
+  tooltips show them. The mode is remembered per view (`settings.cameraModes`).
+- **Framing.** FILL VIEW frames the selection with `fitDistance` (the sphere's angular radius equals
+  the narrower half field, so tall and wide viewports both fit; the right panel is its own grid
+  column, so the viewport's aspect already accounts for it): a body's disc (rings included), a
+  star's planetary orbits (the farthest orbit vertex), a region's extent, the Navigation sphere, the
+  Galaxy disc, a selected nebula or cluster, the Quadrant or Universe filter radius. RESET returns to
+  the view's default framing. The rig's own flights (`flyTo`, `frameSphere`) ease distance in log
+  space and turn the view direction; under `prefers-reduced-motion` they, the System View's flights,
+  the views' target easing (`motionK`) and the warp streaks jump instead.
+- **Read-outs** are in real units: ORBIT shows the width of the view at the target
+  (`VIEW 12 AU ACROSS`, picking M, KM, MILLION KM, AU, LY, KLY, MLY or GLY), LOOK / FLY and the
+  surface view the field (`0.6° FIELD`). The slider is logarithmic between the controls' min and max
+  distance (or field).
+- **Full screen** (`cam-full` on `#app`) hides the rail and side panel and widens the viewport; Esc
+  or the button restores it. The detail views also expand their globe to the whole viewport.
+- **Bookmarks.** LINK writes `?t=<ISO>[&hold=1]&cam=<mode,x,y,z,qx,qy,qz,qw,fov[,tx,ty,tz]>` before the
+  route's hash, copies it, and `main.js` applies it once the route's view has framed itself
+  (`applyPendingCam`). Positions are in the view's frame and unit; the System View's are AU
+  relative to the routed body. The surface view writes `&surface=lat,lon&cam=s,az,alt,fov`.
+- **System View.** The floating origin stays on the focus in ORBIT and LOOK. In FLY it rides on the
+  nearest body (`anchorId`, handed over with hysteresis when another body is 30% nearer), so the camera
+  co-moves with it and stays precise; you cannot fly below a surface. Returning to ORBIT picks the
+  body nearest the line of sight (within 2° or 1.2 × its apparent radius) or the body you rode with,
+  re-expresses the camera relative to it and flies there without a second route flight
+  (`quietFocus`). The body flights of the panel and route keep working in LOOK and FLY (orbit-style
+  while they run). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
+  RESET back to the zenith.
+
 ## Space telescopes
 
 Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed viewer
@@ -339,7 +387,7 @@ each planet material darkens per fragment by the fraction of the Sun its nearest
 hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon red), Earth
 shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
-`?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
+`?t=<ISO time>[&hold]` sets the ship's clock from the URL (`&cam=…` restores a camera, #39); `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
 
 ## Launch windows and transfers (#45)
 

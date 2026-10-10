@@ -602,3 +602,40 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .surface-look { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; margin-top: 4px; }
 .surface-look:empty, .surface-look:empty ~ .surface-look-btns { display: none; }
 .surface-look-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+
+/* ---- camera cluster (#39): mode, zoom, read-out, fit/reset/link/full-screen, bottom-left of every 3D view ---- */
+.cam-cluster {
+  position: absolute; left: 12px; bottom: 12px; z-index: 3; display: grid; gap: 4px; width: 236px;
+  background: rgba(0, 0, 0, 0.6); border-left: 3px solid var(--orange); padding: 5px 6px; user-select: none;
+}
+.cam-cluster.beside-gauge { left: 176px; }
+.cam-row { display: flex; gap: 3px; align-items: center; }
+.cam-btn {
+  flex: 1; min-width: 0; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--violet); color: #000;
+  font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.08em; white-space: nowrap;
+}
+.cam-btn:hover { filter: brightness(1.2); }
+.cam-btn.on { background: var(--ice); }
+.cam-btn[disabled] { opacity: 0.35; cursor: default; filter: none; }
+.cam-btn[hidden] { display: none; }
+.cam-btn.cam-mode { background: var(--apricot); }
+.cam-btn.cam-mode.on { background: var(--ice); }
+.cam-btn.cam-tool { flex: 0 0 26px; padding: 0; }
+.cam-btn.cam-zoom { flex: 0 0 24px; padding: 0; font-size: calc(15px * var(--text-scale, 1)); }
+.cam-slider { flex: 1; min-width: 0; accent-color: var(--orange); height: 18px; margin: 0 2px; }
+.cam-readout { font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.08em; color: var(--peach); text-align: center; font-variant-numeric: tabular-nums; }
+/* detail views: under the globe, overlaid when the globe fills the viewport */
+.cam-cluster.inline { position: static; width: auto; margin-top: 6px; }
+.detail-view.hero-full { overflow: hidden; }
+.detail-view.hero-full .sv-hero { position: absolute; inset: 0; z-index: 3; background: #000; }
+.detail-view.hero-full .sv-hero canvas { width: 100%; height: 100%; }
+.detail-view.hero-full .cam-cluster.inline { position: absolute; left: 12px; bottom: 12px; width: 236px; margin: 0; }
+/* full-screen viewport: the side panel and rail go, the 3D view takes their room (Esc restores) */
+.lcars.cam-full { grid-template-columns: 0 minmax(0, 1fr) 0; }
+.lcars.cam-full .rail, .lcars.cam-full .panel, .lcars.cam-full .panel-resize, .lcars.cam-full .elbow { display: none; }
+.lcars.cam-full .viewport { margin: 0; }
+@media (max-width: 900px) {
+  .lcars.cam-full { grid-template-columns: 0 1fr; grid-template-rows: 72px 80vh auto; grid-template-areas: 'elbowT top' 'rail view' 'elbowB bottom'; }
+  .cam-cluster.beside-gauge { left: 12px; bottom: 172px; }
+}
+@media (prefers-reduced-motion: reduce) { .warp.go { animation: none; } }

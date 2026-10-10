@@ -6,6 +6,8 @@
 // star's measured metallicity.
 
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { createCameraRig } from '../cameraControls.js';
 import { starMaterial, loadTexture, applyLiveSkin } from '../system/materials.js';
 import { SUN } from '../../data/sol.js';
 import { settings } from '../../settings.js';
@@ -64,9 +66,24 @@ export function createStarView(container) {
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)),
     extras, spectrumBox, ownSpectrum, compositionBox, researchBox));
 
+  // camera controls (#39): drag to turn, wheel / pinch / slider to zoom, FILL VIEW, full-screen star
+  const controls = new OrbitControls(camera, renderer.domElement);
+  Object.assign(controls, { enableDamping: true, dampingFactor: 0.08, enablePan: false, minDistance: 1.12, maxDistance: 40, rotateSpeed: 0.6 });
+  let starBody = null;
+  const rig = createCameraRig({
+    key: 'star', camera, controls, dom: renderer.domElement, container, host: hero, inline: true,
+    metersPerUnit: () => (starBody?.radiusKm ?? 695700) * 1000, minFov: 0.2, maxFov: 80, noCursorZoom: true,
+    nearest: (p) => Math.max(1e-4, p.length() - 1),
+    toOrbit: () => { controls.target.set(0, 0, 0); return true; }, // always orbit the globe; the settle turns back to it
+    fit: () => rig.frameSphere(new THREE.Vector3(), 1, 1.04),
+    reset: () => rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(0, 0, 5.2) }),
+    onFullscreen: (on) => { container.classList.toggle('hero-full', on); if (on) container.scrollTop = 0; sizeHero(); },
+  });
   function sizeHero() {
-    const w = hero.clientWidth || 260;
-    renderer.setSize(w, w, false);
+    const w = hero.clientWidth || 260, h = container.classList.contains('hero-full') ? hero.clientHeight || w : w;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
   }
   new ResizeObserver(sizeHero).observe(hero);
 
@@ -76,8 +93,9 @@ export function createStarView(container) {
     if (star) {
       star.rotation.y = now * 0.00004;
       const u = star.material.uniforms;
-      if (u.uHasDisk.value) { u.uEarthDir.value.copy(camera.position).normalize(); u.uNorth.value.set(0, 1, 0); }
+      if (u.uHasDisk.value) { u.uEarthDir.value.set(0, 0, 1); u.uNorth.value.set(0, 1, 0); } // Earth is where the default camera stands: orbit round to see the far side
     }
+    if (rig.update(now)) controls.update();
     renderer.render(scene, camera);
   }
 
@@ -261,12 +279,15 @@ export function createStarView(container) {
 
   return {
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
+    camera: rig,
     hide() { container.hidden = true; running = false; },
     /** Cards built outside the view: `top` under the hero, `spectrum` after the template spectrum. */
     setExtras({ top = [], spectrum = [] } = {}) { extras.replaceChildren(...top.filter(Boolean)); ownSpectrum.replaceChildren(...spectrum.filter(Boolean)); },
     /** Show `body` (a star body from a system model); `spectrum` from /api/spectrum or null. */
     load(body, { isSun = false, systemName = '', spectrum = null } = {}) {
       current = { body, isSun, spectrum };
+      starBody = body;
+      camera.position.set(0, 0, 5.2); controls.target.set(0, 0, 0);
       if (body.kind === 'brown dwarf') range = 'ir';
       title.replaceChildren(el('h2', { textContent: body.name.toUpperCase() }), el('div', { className: 'kind', textContent: `STAR VIEW · ${systemName.toUpperCase()}` }));
       setStar(body, isSun);
