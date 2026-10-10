@@ -134,3 +134,11 @@ test('Ross128 stellar identity preserves planet skin and multi-epoch native limi
  assert.match(v.contextImages[0].description,/proper motion, not companions/);assert.equal(v.contextImages[0].observationDate,null);
  assert.equal(v.skyModel.radiusSun,.1967);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
 });
+
+test('EZ Aquarii primary illustration preserves historical component convention and assumptions',()=>{
+ const v=bodyVisualFor({name:'EZ Aqr A'});assert.equal(v.id,'ez-aquarii-a');assert.equal(bodyVisualFor({name:'GJ 866 A'}),v);
+ assert.equal(bodyVisualFor({name:'GJ 866 B'}),null);assert.equal(bodyVisualFor({name:'GJ 866 C'}),null);
+ assert.match(v.identityNote,/unresolved system/);assert.match(v.assumed.join(' '),/not measured/);
+ assert.match(v.contextImages[0].description,/not a spatial photograph/);assert.equal(v.contextImages[0].observationDate,null);
+ assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});

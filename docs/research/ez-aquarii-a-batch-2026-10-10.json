@@ -1,0 +1,126 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "map": "Use case: scientific-educational. Generate independent bespoke EXACT2:1 equirectangular grayscale photospheric intensity map for EZ Aquarii A/GJ866A, M5 dwarf in triple system, not companion B or C. Dynamical mass .1216solar known. Choose illustrative unmeasured A-only2900K and radius.15Rsun, explicitly conceptual, partlyionized molecular hydrogen/helium gas. Fine lowcontrast turbulent gas cells, sparse subdued medium magnetic patches suited to active lateM dwarf; morphology entirely imagined. Full rectangle uniform intensity no sphere/lighting gradient/limb/ground/rock/planetcloud/flare/fieldline/text/grid/border. Left-right seamless, full longitude/latitude, no measured frame registration. Grayscale map for approximate renderer tint. Do not reuse Sun or any observed otherbody imagery.",
+      "sky": "Use case: scientific-educational. Independent hypothetical observer of EZ Aquarii A/GJ866A lateM gasstar, NOT B,C or planet. Exact16:9 landscape1672x941 or1536x864. Unmeasured chosen illustration A-onlytemperature2900K radius.15Rsun. Freecamera2photosphericradii fromcentre, angular60degrees, nominalrectilinear120degreeHFOV requires centered whole gasdiskdiameter one third imagewidth557px at1672wide. Generous blackspace with sparse verydimstars; minimalhalo. Soft warmpeach palecream photosphere, subduedamberlimb, artistic exposure/molecular spectraltransfer not truecolour calibration. Invented fine gasconvection sparse small darker magneticregions, no giantflare. Companions outside arbitrarily chosen viewing direction; do not show companions without epoch geometry. No solidground horizonlandingplanet humans textfieldlines grid. Not survivablelanding. No observedSun/otherbodymapreuse. Entire disk visible, geometry approximate."
+    },
+    "refinements": []
+  },
+  "bodies": [
+    {
+      "id": "ez-aquarii-a",
+      "name": "EZ Aquarii A",
+      "kind": "star",
+      "aliases": [
+        "EZ Aqr A",
+        "EZ Aquarii A",
+        "GJ 866 A",
+        "Gl 866 A",
+        "Gliese 866 A",
+        "EZ Aqr"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "Delfosse1999 labels A-C inner binary and AC-B outer orbit. ExistingHYG hyg-119518 EZ Aqr represents the unresolved system; this primary visual represents A explicitly, not a resolved identification or companion B/C skin. Bare EZ Aqr alias retained only for that existing primary route. Current component-aware astrometry/ranking unresolved.",
+      "nativeSurface": "Native ELODIE cross-correlation measurement with ORBIT fit retained unchanged as spectroscopy/model context. No resolved A photospheric geography found in checked sources. SIMBAD component page unavailable via web tool; no invented astrometry.",
+      "measured": [
+        "Delfosse1999Table1 dynamicalmass A0.1216±0.0029Msun, B0.1161±0.0029Msun,C0.0957±0.0023Msun. A-C is inner pair; do not infer B/C brown-dwarf status from catalogue LM? category.",
+        "CFHTPUEO/KIR1998-07-23 angular measurement resolves AC photocentre fromB, notAfromC. ELODIE spectra collected1995-09 to1999-07.",
+        "Figure1 contains triple-lined spectral cross-correlation and ORBIT adjustment, not a spatial photograph. Caption JD2550389.3191 conflicts with Table3 JD2450389.319 dated1996-11-01; exact figureepoch not asserted."
+      ],
+      "modelled": [
+        "Delfosse1999Table2 innerP3.78652days, outerP822.6days; Table1 orbitalparallax290.4±2.7mas. Historical10pcA selection uses293.6±0.9mas from2010reference; distinct fits preserved, no current astrometry replacement.",
+        "Combined spectral type M5.5V from historical system reference. Independent A-only radius/temperature not verified; common2650K not in checkedDelfosse1999paper. Older binary-only estimates may blendA+C.",
+        "Partlyionized molecularHHe photospheric gas is broad stellar model context, not measured bulkfractions or resolved chemical map.",
+        "Delfosse2000Table1 adopts revisedSeg00a masses A0.1187±0.0011,B0.1145±0.0012,C0.0930±0.0008Msun; distinct later reference history, no catalogue update."
+      ],
+      "unknown": [
+        "Independent current A-only effective temperature/radius, precise bulkcomposition, resolved cells/spotlongitudes, calibrated visible colour and exposure.",
+        "Current component-aware astrometry/exhaustive nearest20boundary, observerepoch and exact companion viewgeometry.",
+        "Modern WDS/SIMBAD component lettering versus historical DelfosseA-C convention needs reconciliation; no modern WDS alias attached."
+      ],
+      "assumed": [
+        "Explicit illustrative A-only2900K and0.15Rsun, not measured or uniquely inferred from combined spectrum. This does not alter catalogue fields or other components.",
+        "Independent invented fine gasconvection/smallmagneticpatches; no observedSun/otherbodymapreuse, no solid ground or survivable landing.",
+        "Freecamera at2assumedphotosphericradii, nominal120degreeHFOV; companions outside an arbitrary viewing direction, not an epochregistered scene. Colour/moleculartransfer/exposure/FOV remain approximate."
+      ],
+      "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/html/astro-ph/9909409",
+          "title": "Delfosse/Forveille/Udry/Beuzit/Mayor/Perrier1999, component masses and hierarchical orbits",
+          "publicationDate": "1999-09-23"
+        },
+        {
+          "url": "https://gruze.org/10pc/The10pcSample_v2.json",
+          "title": "Historical10pc component identities and selection; current reconciliation remains open"
+        },
+        {
+          "url": "https://cdsarc.u-strasbg.fr/ftp/vizier/aa/papers/0364001/2300217.pdf",
+          "title": "Delfosse2000 revised component mass table citingSeg00a, primary indexed text checked"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/ez-aquarii-a-correlation-native.png",
+          "source": "https://arxiv.org/html/astro-ph/9909409v1/correlation_6.png",
+          "sourcePage": "https://arxiv.org/html/astro-ph/9909409",
+          "label": "NATIVE SPECTROSCOPY WITH ORBIT MODEL FIT",
+          "credit": "X.Delfosse,T.Forveille,S.Udry,J.-L.Beuzit,M.Mayor,C.Perrier; OHP1.93m/ELODIE, ORBIT adjustment, Figure1(1999).",
+          "terms": "Unchanged author Figure1 from arXiv; distribution licence not asserted CC BY. Credited reuse in user-authorized project context.",
+          "termsUrl": "https://arxiv.org/abs/astro-ph/9909409",
+          "publicationDate": "1999-09-23",
+          "observationDate": null,
+          "tier": "modelled",
+          "sha256": "f656bdf79fc322861298cf2a7072582889473e87dbca70df6d585346c80e942d",
+          "bytes": 29471,
+          "description": "Unchanged triple-lined ELODIE cross-correlation measurement with ORBIT adjustment, not a spatial photograph or visible-colour photosphere. Caption JD2550389.3191 conflicts with Table3 JD2450389.319/1996-11-01; precise figuredate unasserted. General ELODIE epochs1995-09 to1999-07."
+        }
+      ],
+      "skyModel": {
+        "star": "EZ Aquarii A",
+        "radiusSun": 0.15,
+        "temperatureK": 2900,
+        "distanceAU": 0.0013951401782886473,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "ezAquariiABespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented primary gas intensity map, no measured stellar frame.",
+        "coverage": "All gas morphology/longitudes imagined; assumed A-only temperature/radius."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "method": "Central four-neighbour bright component excludes disconnected background stars.",
+          "brightCoreWidths": [
+            529,
+            529,
+            528
+          ],
+          "geometricTargetPixels": 557.3333333333336,
+          "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-69d63e7e-e52f-4faf-aa73-0a6c63d52e7d.png",
+        "skyImage": "exec-fc33789f-bbdc-4118-b793-82953dd9e6b4.png"
+      }
+    }
+  ],
+  "nativeAssessment": [
+    "Figure1 is spectroscopy with fittedORBITmodel, not direct photosphere image.",
+    "ComponentA SIMBAD page unavailable, ADS1990paper unavailable via web tool. Downloads not fabricated.",
+    "No current independent A-only radius/temperature verified; illustrative values explicitly assumed.",
+    "Delfosse2000 original PDF download failed certificate verification; primary indexed text verified, original bytes/hash not asserted."
+  ]
+}

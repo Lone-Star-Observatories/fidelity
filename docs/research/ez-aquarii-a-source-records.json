@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://arxiv.org/html/astro-ph/9909409v1/correlation_6.png",
+    "file": "public/bespoke/ez-aquarii-a-correlation-native.png",
+    "bytes": 29471,
+    "sha256": "f656bdf79fc322861298cf2a7072582889473e87dbca70df6d585346c80e942d",
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/astro-ph/9909409",
+    "file": "data/research-sources/ez-aquarii-delfosse-1999.html",
+    "bytes": 101900,
+    "sha256": "9f320701b9edac3535b7161b36731bb94a00af171159365ae1235cc1de58f932",
+    "retrieved": "2026-10-10"
+  }
+]

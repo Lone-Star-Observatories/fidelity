@@ -5515,6 +5515,150 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ez-aquarii-a": {
+    "id": "ez-aquarii-a",
+    "name": "EZ Aquarii A",
+    "kind": "star",
+    "aliases": [
+      "EZ Aqr A",
+      "EZ Aquarii A",
+      "GJ 866 A",
+      "Gl 866 A",
+      "Gliese 866 A",
+      "EZ Aqr"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Delfosse1999 labels A-C inner binary and AC-B outer orbit. ExistingHYG hyg-119518 EZ Aqr represents the unresolved system; this primary visual represents A explicitly, not a resolved identification or companion B/C skin. Bare EZ Aqr alias retained only for that existing primary route. Current component-aware astrometry/ranking unresolved.",
+    "nativeSurface": "Native ELODIE cross-correlation measurement with ORBIT fit retained unchanged as spectroscopy/model context. No resolved A photospheric geography found in checked sources. SIMBAD component page unavailable via web tool; no invented astrometry.",
+    "measured": [
+      "Delfosse1999Table1 dynamicalmass A0.1216±0.0029Msun, B0.1161±0.0029Msun,C0.0957±0.0023Msun. A-C is inner pair; do not infer B/C brown-dwarf status from catalogue LM? category.",
+      "CFHTPUEO/KIR1998-07-23 angular measurement resolves AC photocentre fromB, notAfromC. ELODIE spectra collected1995-09 to1999-07.",
+      "Figure1 contains triple-lined spectral cross-correlation and ORBIT adjustment, not a spatial photograph. Caption JD2550389.3191 conflicts with Table3 JD2450389.319 dated1996-11-01; exact figureepoch not asserted."
+    ],
+    "modelled": [
+      "Delfosse1999Table2 innerP3.78652days, outerP822.6days; Table1 orbitalparallax290.4±2.7mas. Historical10pcA selection uses293.6±0.9mas from2010reference; distinct fits preserved, no current astrometry replacement.",
+      "Combined spectral type M5.5V from historical system reference. Independent A-only radius/temperature not verified; common2650K not in checkedDelfosse1999paper. Older binary-only estimates may blendA+C.",
+      "Partlyionized molecularHHe photospheric gas is broad stellar model context, not measured bulkfractions or resolved chemical map.",
+      "Delfosse2000Table1 adopts revisedSeg00a masses A0.1187±0.0011,B0.1145±0.0012,C0.0930±0.0008Msun; distinct later reference history, no catalogue update."
+    ],
+    "unknown": [
+      "Independent current A-only effective temperature/radius, precise bulkcomposition, resolved cells/spotlongitudes, calibrated visible colour and exposure.",
+      "Current component-aware astrometry/exhaustive nearest20boundary, observerepoch and exact companion viewgeometry.",
+      "Modern WDS/SIMBAD component lettering versus historical DelfosseA-C convention needs reconciliation; no modern WDS alias attached."
+    ],
+    "assumed": [
+      "Explicit illustrative A-only2900K and0.15Rsun, not measured or uniquely inferred from combined spectrum. This does not alter catalogue fields or other components.",
+      "Independent invented fine gasconvection/smallmagneticpatches; no observedSun/otherbodymapreuse, no solid ground or survivable landing.",
+      "Freecamera at2assumedphotosphericradii, nominal120degreeHFOV; companions outside an arbitrary viewing direction, not an epochregistered scene. Colour/moleculartransfer/exposure/FOV remain approximate."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/astro-ph/9909409",
+        "title": "Delfosse/Forveille/Udry/Beuzit/Mayor/Perrier1999, component masses and hierarchical orbits",
+        "publicationDate": "1999-09-23"
+      },
+      {
+        "url": "https://gruze.org/10pc/The10pcSample_v2.json",
+        "title": "Historical10pc component identities and selection; current reconciliation remains open"
+      },
+      {
+        "url": "https://cdsarc.u-strasbg.fr/ftp/vizier/aa/papers/0364001/2300217.pdf",
+        "title": "Delfosse2000 revised component mass table citingSeg00a, primary indexed text checked"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ez-aquarii-a-correlation-native.png",
+        "source": "https://arxiv.org/html/astro-ph/9909409v1/correlation_6.png",
+        "sourcePage": "https://arxiv.org/html/astro-ph/9909409",
+        "label": "NATIVE SPECTROSCOPY WITH ORBIT MODEL FIT",
+        "credit": "X.Delfosse,T.Forveille,S.Udry,J.-L.Beuzit,M.Mayor,C.Perrier; OHP1.93m/ELODIE, ORBIT adjustment, Figure1(1999).",
+        "terms": "Unchanged author Figure1 from arXiv; distribution licence not asserted CC BY. Credited reuse in user-authorized project context.",
+        "termsUrl": "https://arxiv.org/abs/astro-ph/9909409",
+        "publicationDate": "1999-09-23",
+        "observationDate": null,
+        "tier": "modelled",
+        "sha256": "f656bdf79fc322861298cf2a7072582889473e87dbca70df6d585346c80e942d",
+        "bytes": 29471,
+        "description": "Unchanged triple-lined ELODIE cross-correlation measurement with ORBIT adjustment, not a spatial photograph or visible-colour photosphere. Caption JD2550389.3191 conflicts with Table3 JD2450389.319/1996-11-01; precise figuredate unasserted. General ELODIE epochs1995-09 to1999-07."
+      }
+    ],
+    "skyModel": {
+      "star": "EZ Aquarii A",
+      "radiusSun": 0.15,
+      "temperatureK": 2900,
+      "distanceAU": 0.0013951401782886473,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 736.6030757519585,
+      "approximateSrgb": [
+        1,
+        0.6816786297548326,
+        0.40318515446390524
+      ],
+      "limits": "Assumed A-only2900K/.15Rsun illustration; hypothetical camera at2photosphericradii, no solid ground or survivable landing. Nominal120degreeFOV, colour, moleculartransfer, exposure and scene registration remain approximate;529/529/528pixel cores versus557.333target, not calibrated."
+    },
+    "surfaceMap": {
+      "key": "ezAquariiABespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented primary gas intensity map, no measured stellar frame.",
+      "coverage": "All gas morphology/longitudes imagined; assumed A-only temperature/radius.",
+      "url": "/bespoke/ez-aquarii-a-surface-map.jpg",
+      "previewUrl": "/bespoke/ez-aquarii-a-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-69d63e7e-e52f-4faf-aa73-0a6c63d52e7d.png",
+      "sourceSha256": "2be91186da6aa56087bf309146b24805c63adc75c7edeb8642a3a1c6c1b301fe",
+      "sha256": "59423bdf07421665de495ed0d7071683aa9f3c5d4240a5a12d5a144103fa7360",
+      "previewSha256": "3b92d000d5b32b1d069e611b91e32524279c6befedc188d88d8781b0a1791f22",
+      "bytes": 309245,
+      "previewBytes": 28092,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Central four-neighbour bright component excludes disconnected background stars.",
+        "brightCoreWidths": [
+          529,
+          529,
+          528
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Nominal camera FOV, exposure, spectral transfer, colour and bright limb threshold remain approximate and uncalibrated."
+      },
+      "url": "/bespoke/ez-aquarii-a-sky-image.jpg",
+      "previewUrl": "/bespoke/ez-aquarii-a-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fc33789f-bbdc-4118-b793-82953dd9e6b4.png",
+      "sourceSha256": "387edd94d8acfd3e517946187c6522dbf9a5ad12ce979858a58bf73c8e1cf024",
+      "sha256": "4d55be84584cdd02e60212bf43c5aea44cf977120da9a0701e215ff06d782b4b",
+      "previewSha256": "8cd6b5d1237c6c792956f031e51ec2970c184ac7ba5a998b944368d69fddf126",
+      "bytes": 66404,
+      "previewBytes": 13566,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
