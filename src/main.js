@@ -40,6 +40,9 @@ import { createSkyEventsPanel } from './panels/skyevents.js';
 import { createTimeControl } from './panels/timecontrol.js';
 import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
+import { createTransferPanel } from './panels/transfer.js';
+import { createFuturePanel } from './panels/future.js';
+import { createMagneticPanel } from './panels/magnetic.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -385,7 +388,7 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -502,6 +505,9 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
+const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
+const magneticPanel = createMagneticPanel({ h, row, settings, system });
+const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
@@ -611,6 +617,7 @@ function renderSystemPanelInner() {
       })),
     ...(m.isSol ? [
       h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
+      ...futurePanel.systemSection(m),
       h('h3', { textContent: 'EARTH ORBIT · SATELLITES' }), satPanel.searchSection(),
       h('h3', { textContent: 'DEEP SPACE NETWORK · NOW' }), (live.dsnBoard = h('div', { className: 'host-list' })),
       h('p', { className: 'note', textContent: 'NASA DSN Now: who the 34 m and 70 m dishes are talking to, refreshed every 20 s.' }),
@@ -736,6 +743,9 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
+  if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
+  if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
+  if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
@@ -1283,6 +1293,8 @@ function tick() {
 }
 setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
+setInterval(() => { if (settings.get('fields') && system.model?.isSol) magneticPanel.refreshWind(); }, 60000); // Earth's magnetopause follows the live solar wind (#38)
+settings.onChange((k, v) => { if (k === 'fields' && v) magneticPanel.refreshWind(); });
 loadEvents().then(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0));
 
 // ---- edge beacon (per animation frame) ---------------------------------------------------
