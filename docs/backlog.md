@@ -44,6 +44,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 38 | **Magnetic fields** | Toggleable field lines, magnetopauses and bow shocks for the Sun, Earth, giants, Mercury, Ganymede; crustal fields of Mars and the Moon. |
 | 39 | **Framing and camera** | Fill view, fullscreen, zoom controls with real-unit readouts, orbit / free look / free fly modes, saved viewpoints. |
 | 40 | **Postcards** | Capture the view as an LCARS-framed image with provenance and credits; save or share to socials. |
+| 41 | **Star Trek universe objects** | Shipyards (Utopia Planitia), starbases (Spacedock, DS9), sector numbers, territories, Neutral Zone, wormhole, canon homeworlds at real stars (Vulcan at 40 Eridani A); all IMAGINED and toggleable. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
