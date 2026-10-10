@@ -2,6 +2,7 @@
 // for one site: mission, date, what happened, coordinates with their source, "stand here", and any
 // live feed (rover raw images, observatory webcams and streams).
 
+import { modelPreview, siteModelId } from './model-preview.js';
 import { sitesFor, SITE_KINDS } from '../data/sites.js';
 
 const fmtLat = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'N' : 'S'}`;
@@ -76,7 +77,8 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
         pill('WHOLE GLOBE', () => globe())),
       s.note ? h('p', { className: 'note explain', textContent: s.note }) : null,
       ...(s.identity ? [h('h3', { textContent: 'WHOSE ROCKET?' }), h('dl', {}, h('dt', { textContent: 'IDENTITY' }), h('dd', { textContent: s.identity }), badge('modelled', 'Orbit reconstruction; disputed and unconfirmed.'))] : []),
-      h('h3', { textContent: s.kind === 'feature' ? 'FEATURE' : 'MISSION' }), facts,
+      h('h3', { textContent: s.kind === 'impact' ? 'IMPACT' : 'MISSION' }), facts,
+      ...(siteModelId(s) ? [h('h3', { textContent: 'VEHICLE MODEL' }), modelPreview(siteModelId(s)), badge('modelled', 'Drag to rotate. Visualization; dimensions and configuration are approximate.')] : []),
       h('h3', { textContent: 'LOCATION' }), where,
       ...(drive ? [h('h3', { textContent: 'TRAVERSE' }), drive] : []),
       ...(s.feeds?.length ? [h('h3', { textContent: 'LIVE FEEDS' }), h('div', { className: 'body-list' }, s.feeds.map((f) => pill(`${f.label} ▸`, () => viewFeed(f, s.name.toUpperCase()))))] : []),
