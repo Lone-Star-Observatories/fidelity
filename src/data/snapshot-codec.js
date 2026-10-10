@@ -18,6 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
+  if (packed?.encoding === 'gzip-raw-radix120-wide-v1') return unpackRawSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-v1') return unpackApplicationBytes(packed);
   // Existing base64 snapshots remain readable.
   if (typeof packed === 'string') return Uint8Array.from(atob(packed), character => character.charCodeAt(0));
@@ -57,6 +58,44 @@ const applicationAlphabet = Array.from({ length: 128 }, (_, code) => code)
   .filter(code => ![0, 9, 10, 11, 12, 13, 27, 60].includes(code))
   .map(code => String.fromCharCode(code)).join('');
 const applicationDigits = new Map([...applicationAlphabet].map((character, index) => [character, index]));
+// Wider exact integer blocks reduce ASCII overhead; gzip and decoded bytes stay identical.
+export function encodeRawSnapshotBytes(bytes) {
+  const chunks = [];
+  for (let offset = 0; offset < bytes.length; offset += 44) {
+    let value = 0n;
+    for (let index = 0; index < 44; index++) value = (value << 8n) + BigInt(bytes[offset + index] ?? 0);
+    const block = Array(51);
+    for (let index = 50; index >= 0; index--) {
+      block[index] = applicationAlphabet[Number(value % 120n)];
+      value /= 120n;
+    }
+    chunks.push(block.join(''));
+  }
+  return { encoding: 'gzip-raw-radix120-wide-v1', byteLength: bytes.length, data: chunks.join('') };
+}
+export function unpackRawSnapshotBytes(packed) {
+  if (packed?.encoding !== 'gzip-raw-radix120-wide-v1' || !Number.isSafeInteger(packed.byteLength)
+      || packed.byteLength < 0 || typeof packed.data !== 'string'
+      || packed.data.length !== Math.ceil(packed.byteLength / 44) * 51) throw Error('Invalid packed snapshot.');
+  const bytes = new Uint8Array(packed.byteLength);
+  for (let offset = 0; offset < packed.data.length; offset += 51) {
+    let value = 0n;
+    for (let index = 0; index < 51; index++) {
+      const digit = applicationDigits.get(packed.data[offset + index]);
+      if (digit === undefined) throw Error('Invalid snapshot digit.');
+      value = value * 120n + BigInt(digit);
+    }
+    if (value >= (1n << 352n)) throw Error('Invalid snapshot block.');
+    const byteOffset = offset / 51 * 44;
+    for (let index = 43; index >= 0; index--) {
+      const byte = Number(value & 255n);
+      if (byteOffset + index < bytes.length) bytes[byteOffset + index] = byte;
+      else if (byte !== 0) throw Error('Invalid snapshot padding.');
+      value >>= 8n;
+    }
+  }
+  return bytes;
+}
 export function encodeApplicationBytes(bytes) {
   const chunks = [];
   for (let offset = 0; offset < bytes.length; offset += 6) {
