@@ -11,6 +11,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/tiff.js      USGS mosaics  │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
+│                                      │           │ server/dsn.js       DSN Now       │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -65,6 +66,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
+| `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
+| `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
+| `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
@@ -115,3 +119,12 @@ focused satellite is a real node propagated on the main thread every frame (exac
 rate), with a representative model and its orbit. TEME → J2000 uses IAU 1976 precession
 (`src/astro/sgp4.js`). The camera near plane follows its distance so 100 m spacecraft render at
 TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer.
+
+## Deep-space fleet
+
+`src/data/spacecraft.js` lists the craft by NAIF id; `src/data/spacecraft-ephem.js` loads their
+Horizons data lazily (Hermite interpolation for planet-relative states, TDB→UTC applied) and
+falls back to the standalone snapshot keyed by the same URLs (`src/data/horizons-urls.js`).
+Craft that orbit or hover near a body are positioned relative to it and pass through its radial
+compression. Panel distances always use true (uncompressed) positions. The backend queues
+Horizons calls three at a time.

@@ -6,7 +6,8 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { config } from './config.js';
-import { monthlyVectors } from './horizons.js';
+import { monthlyVectors, localDay, track } from './horizons.js';
+import { dsnNow } from './dsn.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
 import { nearby, starDetail, sky, galaxyStars } from './stars.js';
@@ -30,6 +31,9 @@ const send = (res, status, body, type = 'application/json') => {
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
+  'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
+  'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
+  'GET /api/dsn': async () => dsnNow(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
@@ -92,7 +96,10 @@ const server = http.createServer(async (req, res) => {
         res.end(out.body);
       } else send(res, 200, out);
     }
-    catch (err) { send(res, err.status || 502, { error: String(err.message || err) }); }
+    catch (err) {
+      if (!err.status) console.warn(`${key}${url.search} → ${err.message || err}`);
+      send(res, err.status || 502, { error: String(err.message || err) });
+    }
     return;
   }
   if (url.pathname.startsWith('/api/')) return send(res, 404, { error: 'unknown endpoint' });

@@ -5,6 +5,7 @@
 import { AU_KM, SUN, PLANETS } from './sol.js';
 import { MOONS, SMALL_BODIES } from './moons.js';
 import { REGIONS, LAGRANGE } from './poi.js';
+import { SPACECRAFT } from './spacecraft.js';
 import { meanMotion } from '../astro/smallbodies.js';
 import { eqToEcl, frameToScene, starTeff, blackbodyRGB, rgbToHex } from '../astro/frames.js';
 
@@ -117,6 +118,11 @@ export function solSystem() {
   bodies.push(...MOONS.map(moonBody), ...SMALL_BODIES.map(smallBody));
   // Points of interest: drawn by the System View's zone overlays; focusable like bodies.
   for (const r of REGIONS) bodies.push({ ...r, radiusKm: 1, marker: true, orbit: { type: 'anchor', anchor: r.anchor }, facts: { ...r.facts } });
+  for (const c of SPACECRAFT) bodies.push({ ...c, parent: c.center, radiusKm: c.sizeKm, rotationHours: 1e9, orbit: { type: 'horizons', hz: c.horizons, center: c.center },
+    facts: { MISSION: [
+      fact('STATUS', c.status, 'measured'), fact('LAUNCHED', `${c.launched} · ${c.agency}`, 'measured'),
+      fact('POSITION', 'JPL HORIZONS', 'computed', c.center ? `Reconstructed or predicted trajectory relative to ${c.center}, 10-minute steps.` : 'Reconstructed or predicted trajectory (JPL Horizons), daily steps.'),
+    ], RENDERING: [fact('MODEL', 'REPRESENTATIVE', 'imagined', 'A generic spacecraft shape at the real size; not this craft\'s design.')] } });
   for (const l of LAGRANGE) bodies.push({ ...l, radiusKm: 1500, marker: true, orbit: { type: 'lagrange', pair: l.pair, L: l.L }, facts: { ...l.facts } });
   return {
     id: 'sol', name: 'Sol', isSol: true, sector: 'SECTOR 001', distLy: 0,

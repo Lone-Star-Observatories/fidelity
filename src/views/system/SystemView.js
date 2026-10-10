@@ -22,6 +22,10 @@ import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
+import { heliocentricAt, localAt, localDaySamples, trajectory } from '../../data/spacecraft-ephem.js';
+
+const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599, saturn: 699 };
+const isoDate = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
 import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } from './zones.js';
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
@@ -169,7 +173,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     group.add(tilt);
     let mesh, clouds = null;
     if (body.marker) return addMarker(body);
-    if (body.kind === 'satellite') return addSatelliteNode(body);
+    if (body.kind === 'satellite' || body.kind === 'spacecraft') return addSatelliteNode(body);
     const placeholder = planetTexture(isStar(body) ? { id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
     if (isStar(body)) {
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), starMaterial(placeholder, body.color, body.skin?.recolour));
@@ -368,6 +372,10 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   }
 
   const isStar = (b) => b.starLike || b.kind === 'star';
+  function truePosition(id, jd = clock.jd) {
+    unmapped = true;
+    try { return scenePosition(id, jd, new THREE.Vector3()); } finally { unmapped = false; }
+  }
   const elementsOf = (o) => ({ a: o.a, e: o.e, I: 0, node: 0, peri: o.omega });
   const basisToScene = ([x, y, z], { u, v, n }, out = new THREE.Vector3()) =>
     out.set(u[0] * x + v[0] * y + n[0] * z, u[1] * x + v[1] * y + n[1] * z, u[2] * x + v[2] * y + n[2] * z);
@@ -434,10 +442,39 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   const tmp4 = new THREE.Vector3();
   const satOffsetAt = (b, t) => { const st = stateAt(b.satrec, t); return st ? toScene(temeToEcliptic(st.position, precessionToJ2000(t))).multiplyScalar(1 / AU_KM) : null; };
 
+  // Spacecraft trajectories: the day's planet-relative arc (re-mapped each frame) or the
+  // heliocentric path from launch (or the recent past) to a year ahead.
+  function updateCraftTrack(node, jd) {
+    const b = node.body, o = b.orbit;
+    let pts = null;
+    if (o.center) {
+      const km = localDaySamples(o.hz, NAIF[o.center], jd);
+      if (km) pts = km.map((p) => localMap(nodes[o.center].body, toScene(p).multiplyScalar(1 / AU_KM)));
+    } else if (!node.trackDone) {
+      const au = trajectory(o.hz, b.trackFrom ?? isoDate(jd - 365), isoDate(Math.max(jd, 2440587.5 + Date.now() / 86400000) + 365));
+      if (au) { pts = au.map((p) => toScene(p)); node.trackDone = true; }
+    }
+    if (pts && pts.length > 1) {
+      const geo = new THREE.BufferGeometry().setFromPoints(pts);
+      if (node.orbit) { node.orbit.geometry.dispose(); node.orbit.geometry = geo; }
+      else {
+        node.orbit = new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0xffd966, transparent: true, opacity: 0.3 }));
+        node.orbit.frustumCulled = false;
+        root.add(node.orbit);
+      }
+    }
+    if (node.orbit && o.center) node.orbit.position.copy(nodes[o.center].pos);
+    if (!node.orbit) { // placeholder so the frame loop can toggle it
+      node.orbit = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffd966, transparent: true, opacity: 0.5 }));
+      root.add(node.orbit);
+    }
+  }
+
   function updateOrbit(node, jd) {
     const o = node.body.orbit;
     if (!o) return;
     if (o.type === 'moon' || o.type === 'sgp4') return updateMoonOrbit(node, jd);
+    if (o.type === 'horizons') return updateCraftTrack(node, jd);
     if (o.type === 'kepler' && node.orbit) { node.orbit.position.copy(hostScene(o.host, jd)); return; }
     if (node.orbit && Math.abs(jd - node.orbitJd) < 365) return;
     const pts = o.type === 'sol'
@@ -473,6 +510,18 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (isStar(b)) return model.isSol ? v.set(0, 0, 0) : hostScene(id, jd, v);
     const o = b.orbit;
     if (o.type === 'anchor') return scenePosition(o.anchor, jd, v);
+    if (o.type === 'horizons') {
+      if (o.center) {
+        const off = localAt(o.hz, NAIF[o.center], jd);
+        b._missing = !off;
+        if (!off) return scenePosition(o.center, jd, v);
+        localMap(nodes[o.center].body, toScene(off, v).multiplyScalar(1 / AU_KM));
+        return v.add(scenePosition(o.center, jd, tmp5));
+      }
+      const p = heliocentricAt(o.hz, jd);
+      b._missing = !p;
+      return p ? toScene(p, v) : v.set(0, 0, 0);
+    }
     if (o.type === 'sgp4') {
       const off = satOffset(b, jd);
       if (!off) return v.copy(scenePosition('earth', jd, v));
@@ -533,7 +582,9 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   }
 
   /** Map a true parent-relative offset (AU, in place) to its displayed offset at the current scale mix. */
+  let unmapped = false; // true while computing physical (not displayed) positions
   function localMap(parent, v) {
+    if (unmapped) return v;
     const r = v.length();
     if (!r) return v;
     const R = trueRadius(parent), Re = enhancedRadius(parent, model.scale);
@@ -654,15 +705,16 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
         n.mesh.rotation.y = ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2);
       }
       const fb = nodes[focusId].body;
-      const near = n.body.kind !== 'moon' || fb.id === n.body.parent || fb.parent === n.body.parent;
+      const local = n.body.kind === 'moon' || (n.body.kind === 'spacecraft' && n.body.parent);
+      const near = !local || fb.id === n.body.parent || fb.parent === n.body.parent || fb.id === n.body.id;
       const minorFar = n.body.orbit?.type === 'elements' && overviewAU != null && overviewAU < 6 && n.body.belt !== 'MAIN BELT';
       n.label.visible = (showLabels && near && !minorFar) || id === focusId;
-      n.group.visible = n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3;
+      n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
       if (n.body.orbit) {
         updateOrbit(n, jd);
         n.orbit.visible = showOrbits || id === focusId;
-        n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : 0.45;
+        n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
       }
     }
 
@@ -762,12 +814,14 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     },
     get focusId() { return focusId; },
     /** Scene position of a body, AU. */
-    positionOf: (id) => scenePosition(id, clock.jd, new THREE.Vector3()).toArray(),
-    /** Distance (AU) from a body to its own star (planets) or to the system's centre (stars). */
+    /** True (physical) scene position of a body, AU: no ENHANCED compression around planets. */
+    positionOf: (id) => truePosition(id).toArray(),
+    /** Distance (AU) from a body to its own star (planets), its parent (moons, local craft) or the system's centre (stars). */
     hostDistance(id) {
       const b = nodes[id]?.body;
-      const p = scenePosition(id, clock.jd, new THREE.Vector3());
+      const p = truePosition(id);
       if (!b || isStar(b)) return p.length();
+      if (b.parent && nodes[b.parent]) return p.distanceTo(truePosition(b.parent));
       if (b.orbit?.type === 'moon') return Math.hypot(...moonOffsetKm(b.moon, clock.jd)) / AU_KM;
       return p.distanceTo(b.orbit?.host ? hostScene(b.orbit.host, clock.jd, new THREE.Vector3()) : new THREE.Vector3());
     },

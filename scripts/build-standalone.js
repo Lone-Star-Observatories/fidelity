@@ -12,6 +12,9 @@ import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
 import { satellites, satelliteDetail } from '../server/satellites.js';
 import { FEATURED } from '../src/data/feeds.js';
+import { SPACECRAFT } from '../src/data/spacecraft.js';
+import { monthlyVectors, localDay, track } from '../server/horizons.js';
+import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
 
 const PLANET_KEYS = new Set(['moon', 'mars', 'pluto', 'mercury', 'jupiter', 'saturn', 'uranus', 'neptune']);
@@ -23,7 +26,7 @@ const near = await nearby('sol', 100);
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
 const skies = {};
-for (const id of ['sol', 'hyg-70666', 'exo-trappist-1', 'hyg-8087', 'hyg-16496']) {
+for (const id of ['sol', 'hyg-70666', 'exo-trappist-1']) {
   try { skies[id] = await sky(id); } catch { /* not in this catalogue version */ }
 }
 // surfaces, embedded as data URIs (smaller variants where the full map is large)
@@ -64,9 +67,25 @@ const satAll = await satellites().catch(() => null);
 const satellitesSnap = satAll && { ...satAll, rows: satAll.rows.filter((r, i) => !['starlink', 'oneweb', 'other'].includes(satAll.categories[r[2]]) || i % 20 === 0) };
 const satcat = {};
 for (const [id] of FEATURED) { try { satcat[id] = await satelliteDetail(id); } catch { /* not active */ } }
+// spacecraft: this month's vectors, today's local states, and trajectories (keyed by the client's URLs)
+const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599 };
+const horizons = {};
+const jdNow = 2440587.5 + Date.now() / 86400000;
+const isoD = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
+for (const c of SPACECRAFT) {
+  try {
+    if (c.center) {
+      for (const jd of [jdNow, jdNow + 1]) horizons[localUrl(c.horizons, NAIF[c.center], jd)] = (await localDay(c.horizons, String(NAIF[c.center]), isoD(jd))).value.points.filter((_, i) => i % 2 === 0);
+    } else {
+      horizons[monthUrl(c.horizons, jdNow)] = (await monthlyVectors(c.horizons, isoD(jdNow).slice(0, 7))).value.points;
+      const from = c.trackFrom ?? isoD(jdNow - 365), to = isoD(jdNow + 365);
+      horizons[trackUrl(c.horizons, from, to)] = (await track(c.horizons, from, to, 400)).value.points.map((p) => p.map((v, i) => (i ? +v.toFixed(4) : v)));
+    }
+  } catch (err) { console.warn(`  spacecraft ${c.id}: ${err.message}`); }
+}
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat, horizons }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

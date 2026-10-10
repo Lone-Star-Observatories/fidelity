@@ -18,6 +18,7 @@ import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
 import { POP_COLORS } from './views/system/belts.js';
+import { fetchDsn } from './data/spacecraft-ephem.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -229,6 +230,35 @@ const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM
 // ---- system panels ----------------------------------------------------------------------
 const KEY = [['main', 'MAIN BELT', '2.1–3.3 AU'], ['neo', 'NEAR-EARTH ASTEROIDS', 'CROSS OR APPROACH EARTH\'S ORBIT'], ['trojan', 'JUPITER TROJANS', 'AT JUPITER\'S L4 / L5'],
   ['centaur', 'CENTAURS', 'BETWEEN JUPITER AND NEPTUNE'], ['tno', 'TRANS-NEPTUNIAN OBJECTS', 'KUIPER BELT AND BEYOND']];
+// ---- Deep Space Network ----------------------------------------------------------------------
+let dsn = null;
+async function pollDsn() {
+  try { dsn = await fetchDsn(); } catch { /* offline */ }
+  renderDsn();
+}
+if (!STANDALONE) { pollDsn(); setInterval(pollDsn, 20000); }
+const STATIONS = { Goldstone: 'GOLDSTONE, USA', Madrid: 'MADRID, SPAIN', Canberra: 'CANBERRA, AUSTRALIA' };
+const rate = (b) => (b >= 1e6 ? `${(b / 1e6).toFixed(1)} Mb/s` : b >= 1e3 ? `${(b / 1e3).toFixed(1)} kb/s` : `${b.toFixed(b < 10 ? 1 : 0)} b/s`);
+function dsnRows(contacts) {
+  return contacts.map((c) => {
+    const craft = system.model?.bodies.find((b) => b.horizons === String(c.spacecraftId));
+    const btn = h('button', { className: 'host-row' },
+      h('span', { textContent: `${craft ? craft.name.toUpperCase() : c.code} · ${c.dish}` }),
+      h('span', { className: 'mono', textContent: `${c.down ? `↓ ${rate(c.down.rate)} · ${c.down.power} dBm` : '↑ UPLINK'} · ${STATIONS[c.station] ?? c.station}` }));
+    if (craft) btn.addEventListener('click', () => go({ level: 'system', system: 'sol', body: craft.id }));
+    return btn;
+  });
+}
+function renderDsn() {
+  if (live.dsnBoard) {
+    live.dsnBoard.replaceChildren(...(dsn?.contacts?.length ? dsnRows(dsn.contacts) : [h('p', { className: 'note', textContent: STANDALONE ? 'Live DSN status needs the local backend (npm start).' : 'NO DATA YET' })]));
+  }
+  if (live.dsnCraft) {
+    const mine = dsn?.contacts?.filter((c) => String(c.spacecraftId) === live.dsnCraft) ?? [];
+    live.dsnOne.replaceChildren(...(mine.length ? dsnRows(mine) : [h('p', { className: 'note', textContent: dsn ? 'NOT IN CONTACT RIGHT NOW. Antennas are shared by dozens of missions; check back in a few hours.' : 'Live DSN status needs the local backend.' })]));
+  }
+}
+
 function colourKey() {
   return h('div', { className: 'colour-key' }, KEY.map(([k, label, where]) => h('div', { className: 'ck-row' },
     h('span', { className: 'ck-dot', style: `background:#${POP_COLORS[k].toString(16).padStart(6, '0')}` }),
@@ -241,12 +271,18 @@ function bodyGroups(m) {
   return [
     ['STAR & PLANETS', m.bodies.filter((b) => b.orbit?.type === 'sol' || b.kind === 'star')],
     ['DWARF PLANETS, ASTEROIDS & COMETS', m.bodies.filter((b) => b.orbit?.type === 'elements')],
+    ['SPACECRAFT · DEEP SPACE', m.bodies.filter((b) => b.kind === 'spacecraft')],
     ['REGIONS', m.bodies.filter((b) => b.kind === 'region')],
     ['LAGRANGE POINTS', m.bodies.filter((b) => b.kind === 'lagrange point')],
   ];
 }
-const detailLevel = (b) => (b.marker ? null : b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
+const detailLevel = (b) => (b.marker || b.kind === 'spacecraft' ? null : b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
 function renderSystemPanel() {
+  renderSystemPanelInner();
+  renderDsn();
+}
+
+function renderSystemPanelInner() {
   resetLive();
   const m = system.model;
   panel.replaceChildren(
@@ -263,6 +299,8 @@ function renderSystemPanel() {
     ...(m.isSol ? [
       h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
       h('h3', { textContent: 'EARTH ORBIT · SATELLITES' }), satPanel.searchSection(),
+      h('h3', { textContent: 'DEEP SPACE NETWORK · NOW' }), (live.dsnBoard = h('div', { className: 'host-list' })),
+      h('p', { className: 'note', textContent: 'NASA DSN Now: who the 34 m and 70 m dishes are talking to, refreshed every 20 s.' }),
       h('h3', { textContent: 'EPHEMERIS' }),
       (live.eph = h('p', { className: 'note' })),
       (live.range = h('p', { className: 'warn' })),
@@ -288,17 +326,24 @@ function renderSystemPanel() {
   );
 }
 
-function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any detail view
+function renderBodyPanel(id, opts) {
+  renderBodyPanelInner(id, opts);
+  const b = system.model.bodies.find((x) => x.id === id);
+  if (b?.kind === 'spacecraft') live.dsnCraft = b.horizons;
+  renderDsn();
+}
+
+function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: any detail view
   resetLive();
   const m = system.model;
   const b = m.bodies.find((x) => x.id === id);
   const isStar = !!(b.starLike || b.kind === 'star');
   const star = m.bodies.find((x) => x.id === (b.orbit?.host ?? b.parent ?? m.starId)) ?? m.bodies[0];
   const pos = h('dl');
-  live.posKm = b.kind === 'moon';
+  live.posKm = b.kind === 'moon' || (b.kind === 'spacecraft' && !!b.parent);
   if (!isStar) live.pos = row(pos, `FROM ${star.name.toUpperCase()}`, '—', 'computed');
   live.posTier = pos.lastChild;
-  if (m.isSol && id !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
+  if (m.isSol && id !== 'earth' && b.parent !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
   live.light = row(pos, m.isSol ? 'LIGHT TIME' : 'STARLIGHT TRAVEL', '—', 'computed',
     m.isSol ? 'Light travel time from Earth (or from Sol, for Earth).' : 'Time for light to reach this world from its star.');
   if (b.kind === 'region') {
@@ -336,6 +381,7 @@ function renderBodyPanel(id, { inStarView = false } = {}) { // inStarView: any d
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
     b.note ? h('p', { className: 'note', textContent: b.note }) : null,
+    ...(b.kind === 'spacecraft' ? [h('h3', { textContent: 'DEEP SPACE NETWORK · LIVE' }), (live.dsnOne = h('div', { className: 'host-list' }))] : []),
     ...(m.isSol && b.id === 'earth' ? [h('h3', { textContent: 'SATELLITES' }), satPanel.searchSection()] : []),
     renderLegend(),
   );

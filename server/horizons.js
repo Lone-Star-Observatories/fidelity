@@ -8,6 +8,17 @@ const API = 'https://ssd.jpl.nasa.gov/api/horizons.api';
 const THIRTY_DAYS = 30 * 86400000;
 
 const MONTH = /^(\d{4})-(0[1-9]|1[0-2])$/;
+
+// Horizons rejects bursts of parallel requests: run at most three at a time, with one retry.
+let active = 0;
+const waiting = [];
+async function queued(fn) {
+  if (active >= 3) await new Promise((r) => waiting.push(r));
+  active++;
+  try {
+    try { return await fn(); } catch { await new Promise((r) => setTimeout(r, 1500)); return await fn(); }
+  } finally { active--; waiting.shift()?.(); }
+}
 // Horizons COMMAND: major-body ids (e.g. 399) or small-body designations ("DES=1P;").
 const BODY = /^-?\d{1,9}$/;
 
@@ -45,12 +56,80 @@ export async function monthlyVectors(body, month) {
   });
   // Past months never change; the current/future ones are refreshed monthly.
   return cached('horizons', `${body}-${month}`, THIRTY_DAYS, async () => {
-    const res = await fetch(`${API}?${params}`, { signal: AbortSignal.timeout(20000) });
-    if (!res.ok) throw new Error(`Horizons HTTP ${res.status}`);
-    const json = await res.json();
+    const json = await queued(async () => {
+      const res = await fetch(`${API}?${params}`, { signal: AbortSignal.timeout(20000) });
+      if (!res.ok) throw new Error(`Horizons HTTP ${res.status}`);
+      return res.json();
+    });
     return {
       body, month, source: 'JPL Horizons', signature: json.signature,
       points: parseVectors(json.result || ''),
     };
+  });
+}
+
+const DAY = /^(\d{4})-(\d{2})-(\d{2})$/;
+const CENTER = /^\d{1,3}$/;
+const nextDay = (d) => new Date(Date.parse(`${d}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
+
+/** Parse a CSV VECTORS table with velocities (VEC_TABLE=2): [[jd, x, y, z, vx, vy, vz], ...]. */
+export function parseStateVectors(text) {
+  const soe = text.indexOf('$$SOE'), eoe = text.indexOf('$$EOE');
+  if (soe < 0 || eoe < 0) {
+    const msg = text.match(/No ephemeris.*|Cannot.*|ERROR.*/i);
+    throw new Error(msg ? msg[0].trim() : 'Horizons returned no ephemeris table');
+  }
+  return text.slice(soe + 5, eoe).trim().split('\n').map((line) => {
+    const c = line.split(',').map((s) => s.trim());
+    return [Number(c[0]), ...c.slice(2, 8).map(Number)];
+  });
+}
+
+async function horizons(params) {
+  return queued(() => horizonsOnce(params));
+}
+async function horizonsOnce(params) {
+  const res = await fetch(`${API}?${new URLSearchParams({ format: 'json', OBJ_DATA: 'NO', MAKE_EPHEM: 'YES', EPHEM_TYPE: 'VECTORS',
+    REF_PLANE: 'ECLIPTIC', REF_SYSTEM: 'ICRF', CSV_FORMAT: 'YES', ...params })}`, { signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`Horizons HTTP ${res.status}`);
+  return res.json();
+}
+
+/**
+ * One UTC day of planet-relative states (km, km/s; 10-minute steps) for a spacecraft orbiting
+ * `center` (a major-body id, e.g. 499 Mars). Past days are kept; today/future refreshed daily.
+ */
+export async function localDay(body, center, day) {
+  if (!BODY.test(body) || !CENTER.test(center)) throw Object.assign(new Error('bad body or center'), { status: 400 });
+  if (!DAY.test(day)) throw Object.assign(new Error('day must be YYYY-MM-DD'), { status: 400 });
+  const past = Date.parse(`${nextDay(day)}T00:00:00Z`) < Date.now() - 86400000;
+  return cached('horizons-local', `${body}@${center}-${day}`, past ? 365 * 86400000 : 86400000, async () => {
+    const json = await horizons({ COMMAND: `'${body}'`, CENTER: `'500@${center}'`, START_TIME: `'${day}'`, STOP_TIME: `'${nextDay(day)} 00:10'`,
+      STEP_SIZE: "'10m'", VEC_TABLE: '2', OUT_UNITS: 'KM-S' });
+    return { body, center, day, source: 'JPL Horizons', points: parseStateVectors(json.result || '') };
+  });
+}
+
+/** Heliocentric track (AU) of `body` from `start` to `stop` in about `n` steps, for drawing trajectories. */
+export async function track(body, start, stop, n = 400) {
+  if (!BODY.test(body) || !DAY.test(start) || !DAY.test(stop)) throw Object.assign(new Error('bad track request'), { status: 400 });
+  const days = Math.max(1, Math.round((Date.parse(stop) - Date.parse(start)) / 86400000 / Math.min(1000, Math.max(10, Number(n) || 400))));
+  const MON = { JAN: '01', FEB: '02', MAR: '03', APR: '04', MAY: '05', JUN: '06', JUL: '07', AUG: '08', SEP: '09', OCT: '10', NOV: '11', DEC: '12' };
+  return cached('horizons-track', `${body}-${start}-${stop}-${days}`, THIRTY_DAYS, async () => {
+    const get = async (from, to) => {
+      const json = await horizons({ COMMAND: `'${body}'`, CENTER: "'500@10'", START_TIME: `'${from}'`, STOP_TIME: `'${to}'`,
+        STEP_SIZE: `'${days}d'`, VEC_TABLE: '1', OUT_UNITS: 'AU-D' });
+      return parseVectors(json.result || '');
+    };
+    let points;
+    try { points = await get(start, stop); } catch (err) {
+      // predicted ephemerides end (or start) somewhere: clip the track to what exists
+      const after = String(err.message).match(/after A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
+      const before = String(err.message).match(/prior to A\.D\. (\d{4})-([A-Z]{3})-(\d{2})/);
+      if (!after && !before) throw err;
+      const d = (m, shift) => new Date(Date.parse(`${m[1]}-${MON[m[2]]}-${m[3]}T00:00:00Z`) + shift * 86400000).toISOString().slice(0, 10);
+      points = await get(before ? d(before, 1) : start, after ? d(after, -1) : stop);
+    }
+    return { body, start, stop, stepDays: days, source: 'JPL Horizons', points };
   });
 }
