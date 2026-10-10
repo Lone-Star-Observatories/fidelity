@@ -1,0 +1,23 @@
+{
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia10/pia10368/PIA10368.jpg?crop=faces%2Cfocalpoint&fit=clip&h=3300&w=3374",
+      "file": "data/research-sources/phobos-hirise-2008.jpg",
+      "bytes": 652671,
+      "sha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549"
+    },
+    {
+      "url": "https://science.nasa.gov/mars/moons/phobos/",
+      "file": "data/research-sources/phobos-nasa-facts.html",
+      "bytes": 296783,
+      "sha256": "3e1920bad0a7c2c3274a6ba1dc7c7064fe07a42711049604ee0bc500c9c68a84"
+    },
+    {
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Mars_Express_tracks_the_phases_of_Phobos",
+      "file": "data/research-sources/phobos-esa-phases-2019.html",
+      "bytes": 16189,
+      "sha256": "dc22e09a368469d114ec70d37096bf5e58efe67b481a9bf7dddeab68b52489ae"
+    }
+  ],
+  "newerNativeAssessment": "ESA2019-11-17 phase movie assessed; useful photometry/phase context, individual raw-frame source/terms/epoch audit remains pending. HiRISE2008 selected for single resolved colour-composite context; not claimed most recent observation."
+}

@@ -134,3 +134,16 @@ test('all twenty archive-selected planets now have individual initial dossiers',
  assert.ok(v.unknown.some(s=>s.includes('composition')));
  assert.ok(Math.abs(v.skyModel.angularDiameterDeg-3.959505454)<1e-6);
 });
+
+test('Phobos keeps its native globe and shape while local scenes remain hypothetical',async()=>{
+ const{MOONS}=await import('../src/data/moons.js');const{SHAPES}=await import('../src/data/shapes.js');
+ const moon=MOONS.find(b=>b.id==='phobos'),v=bodyVisualFor(moon);
+ assert.equal(moon.skin.map,'phobos');assert.equal(v.surfaceMap,undefined);
+ assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');
+ assert.match(v.unknown.join(' '),/Groove formation remains uncertain/);
+ assert.match(v.skyImage.rasterValidation.limits,/oversized/);
+ const a=v.contextImages[0];assert.equal(a.tier,'measured');assert.equal(a.observationDate,'2008-03-23');
+ assert.equal(a.publicationDate,'2008-04-09');assert.match(a.description,/not calibrated/);
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
+ assert.match(SHAPES.phobos.source,/gaskell/);assert.notEqual(bodyVisualFor({name:'Deimos'})?.id,'phobos');
+});

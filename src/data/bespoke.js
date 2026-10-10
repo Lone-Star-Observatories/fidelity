@@ -6231,6 +6231,139 @@ export const BODY_VISUALS = {
         "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
       }
     }
+  },
+  "phobos": {
+    "id": "phobos",
+    "name": "Phobos",
+    "aliases": [
+      "Phobos"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D Viking/MGS mosaic and existing Gaskell PDS shape preserved. HiRISE native2008 context is unchanged enhanced-colour resolved imagery. Exact map coverage/frame/photometric transfer and shape/albedo registration remain unverified.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL REGOLITH",
+    "skyLabel": "HYPOTHETICAL SKY FROM PHOBOS",
+    "measured": [
+      "Phobos is a dark, cratered irregular moon with grooves and fragmental surface material. Native HiRISE observes resolved relief; enhanced bands are not calibrated naked-eye colour.",
+      "Existing catalogue radius11.08km and orbital semimajor axis9375km are preserved, not revised by this illustration."
+    ],
+    "modelled": [
+      "Representative Sun geometry at1.524AU uses skyGeometry; nominal90degree horizontal FOV. Sun is outside the sky illustration.",
+      "Spherical Mars angular guide42.531degrees uses skyGeometry with radius3396.2km and assumed observer distance9375−11.08km. This is a geometry guide, not dated Mars/Phobos alignment."
+    ],
+    "assumed": [
+      "Airless hypothetical locality with gray granular regolith and invented stones, grooves and slopes; no registered landing site or measured metre-scale geography.",
+      "Mars-facing observer near the sub-Mars hemisphere; invented Mars phase/orientation and independently imagined broad surface pattern, not a native Mars map. Exposure, reflected light and colour are artistic.",
+      "Approximate Mars row width709px versus650.726px geometric guide at1672x941; observer disc remains oversized and uncalibrated."
+    ],
+    "unknown": [
+      "Material fractions, small-scale fragment placement, exact albedo, local horizon and camera registration are not measured.",
+      "Groove formation remains uncertain; historical2008 impact-ejecta interpretation differs from later tidal/rolling-debris hypotheses. No dated alignment, photometric calibration or survivable landing claimed."
+    ],
+    "references": [
+      {
+        "title": "NASA Phobos facts",
+        "url": "https://science.nasa.gov/mars/moons/phobos/"
+      },
+      {
+        "title": "NASA HiRISE Phobos PIA10368",
+        "url": "https://science.nasa.gov/photojournal/phobos-from-6800-kilometers-color/",
+        "publicationDate": "2008-04-09",
+        "observationDate": "2008-03-23"
+      },
+      {
+        "title": "ESA Mars Express phase observations and groove uncertainty",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Mars_Express/Mars_Express_tracks_the_phases_of_Phobos",
+        "publicationDate": "2019-12-12",
+        "observationDate": "2019-11-17"
+      },
+      {
+        "title": "NASA3D own-body texture source; original mosaic registration audit open",
+        "url": "https://science.nasa.gov/3d-resources/mars-phobos/"
+      },
+      {
+        "title": "Gaskell PDS Phobos shape archive",
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/gaskell.phobos.shape-model/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/phobos-hirise-native.jpg",
+        "label": "NATIVE HiRISE RESOLVED CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/phobos-from-6800-kilometers-color/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia10/pia10368/PIA10368.jpg?crop=faces%2Cfocalpoint&fit=clip&h=3300&w=3374",
+        "publicationDate": "2008-04-09",
+        "observationDate": "2008-03-23",
+        "credit": "NASA/JPL-Caltech/University of Arizona · MRO/HiRISE; instrument Ball Aerospace, spacecraft Lockheed Martin",
+        "terms": "NASA image/media usage guidelines; full mission/instrument credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549",
+        "bytes": 652671,
+        "description": "PSP_007769_9010 / PIA10368: resolved2008 Phobos image, near-infrared/red/blue-green enhanced channel composite, not calibrated naked-eye colour. Publisher JPEG rendition preserved unchanged; no equivalence to archival TIFF asserted.",
+        "processing": "Copied unchanged from the recorded NASA publisher rendition URL; no local crop, resize or recolour."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 1.524,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.34967527602832627,
+      "centreDiscWidthFraction": 0.0030515019112243072,
+      "irradianceEarth": 0.43055641666838884,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/phobos-surface-image.jpg",
+      "previewUrl": "/bespoke/phobos-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-eb733a77-527c-4fca-8742-26c0cac79674.png",
+      "sourceSha256": "ade9fe90bca5569170debe444709eb17c123474ac60e9b8e6abaafbd91affbba",
+      "sha256": "696cd8120ff3229af604a9792a05f5e788ccb5f5e2c7f708c3e5bf30eadc387a",
+      "previewSha256": "97041ce176acf944b7b7f0205aafe44f2f511026811ea10a5268efa80c737e42",
+      "bytes": 351309,
+      "previewBytes": 64645,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/phobos-sky-image.jpg",
+      "previewUrl": "/bespoke/phobos-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-072e5df4-2443-4aa3-9fb5-213bc3999545.png",
+      "sourceSha256": "ef5e1e6f84216e7748182ca0c5359333cf7320a32c6ffa561fbc7fd673885d06",
+      "sha256": "c888f2cf0a7973a674971635dbcde4d190daad0c7e9db21518cd3123a3559d38",
+      "previewSha256": "c5e456d7c3b08000e2fa72b02b6069b1251ae5747eaeda165cb03d1e793f48cd",
+      "bytes": 175826,
+      "previewBytes": 31596,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "approximateMarsWidthPixels": 709,
+        "geometricMarsTargetWidthPixels": 650.7256596161664,
+        "method": "Source row350, RGB lower thresholds35/25/20, includes modelled atmospheric limb; spherical42.531degree guide via skyGeometry at nominal90degreeHFOV.",
+        "limits": "Mars is oversized by this approximate row check. Raster size, exposure, visible colour, phase and viewpoint are not calibrated. Sun is outside frame."
+      }
+    }
   }
 };
 
