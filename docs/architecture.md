@@ -128,3 +128,9 @@ falls back to the standalone snapshot keyed by the same URLs (`src/data/horizons
 Craft that orbit or hover near a body are positioned relative to it and pass through its radial
 compression. Panel distances always use true (uncompressed) positions. The backend queues
 Horizons calls three at a time.
+
+## Light-time messages
+
+`NavigationView.sendMessage(from, to, lyPerSec)` animates a pulse out and a reply back;
+`src/data/lighttime.js` formats years, spans (lifetimes of 75 years beyond that) and the
+human-scale sentence. The navigation panel's TRANSMISSION card reads the pulse state live.

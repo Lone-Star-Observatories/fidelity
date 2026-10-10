@@ -334,3 +334,4 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .ck-row { display: grid; grid-template-columns: 12px 1fr; column-gap: 8px; align-items: center; }
 .ck-dot { width: 10px; height: 10px; border-radius: 50%; grid-row: span 2; }
 .ck-sub { grid-column: 2; color: #998f88; font-size: 11px; letter-spacing: 0.04em; }
+.nav-label.message { color: #99ddff; background: none; border: 0; pointer-events: none; font-size: 12px; letter-spacing: 0.08em; }

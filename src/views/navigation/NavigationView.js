@@ -105,6 +105,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
 
   /** Show stars around `d.center` (from /api/nearby). */
   function load(d) {
+    msg = null;
     clearWorld();
     data = d;
     selectedId = null;
@@ -165,6 +166,54 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     camera.position.set(r * 0.8, r * 1.1, r * 1.9);
   }
 
+  // ---- a light-speed message and its reply ------------------------------------------------
+  // The pulse covers `lyPerSec` light-years per real second: out to the far end, then back.
+  let msg = null;
+  const glow = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const g = c.getContext('2d'), grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grd.addColorStop(0, 'rgba(255,255,255,1)'); grd.addColorStop(0.25, 'rgba(255,255,255,0.8)'); grd.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = grd; g.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(c);
+  })();
+  function clearMessage() {
+    if (!msg) return;
+    for (const o of [msg.sprite, msg.trail, msg.path, msg.tag]) { world.remove(o); o.geometry?.dispose(); o.material?.dispose(); if (o.isCSS2DObject) o.element.remove(); }
+    msg = null;
+  }
+  /** Start a message from star `fromId` to `toId`; returns the distance (ly) or null. */
+  function sendMessage(fromId, toId, lyPerSec = 0.1) {
+    clearMessage();
+    const a = placed.find((p) => p.star.id === fromId), b = placed.find((p) => p.star.id === toId);
+    if (!a || !b) return null;
+    const dist = a.pos.distanceTo(b.pos);
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: 0x99ddff, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+    sprite.scale.setScalar(Math.max(0.35, dist * 0.04));
+    const trail = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a.pos, a.pos]), new THREE.LineBasicMaterial({ color: 0x99ddff, transparent: true, opacity: 0.9 }));
+    const path = new THREE.Line(new THREE.BufferGeometry().setFromPoints([a.pos, b.pos]), new THREE.LineDashedMaterial({ color: 0x99ddff, dashSize: dist / 60, gapSize: dist / 60, transparent: true, opacity: 0.35 }));
+    path.computeLineDistances();
+    const el = document.createElement('div');
+    el.className = 'nav-label message';
+    const tag = new CSS2DObject(el);
+    tag.center.set(-0.15, 1.4);
+    world.add(path, trail, sprite, tag);
+    msg = { a: a.pos.clone(), b: b.pos.clone(), dist, lyPerSec, t0: performance.now(), sprite, trail, path, tag, el, from: a.star, to: b.star, paused: 0 };
+    return dist;
+  }
+  function stepMessage(now) {
+    if (!msg) return;
+    const travelled = Math.min(2 * msg.dist, ((now - msg.t0) / 1000) * msg.lyPerSec);
+    const out = travelled <= msg.dist;
+    const f = out ? travelled / msg.dist : 2 - travelled / msg.dist;
+    msg.sprite.position.lerpVectors(msg.a, msg.b, f);
+    msg.sprite.material.color.setHex(out ? 0x99ddff : 0xffcc66);
+    msg.trail.material.color.setHex(out ? 0x99ddff : 0xffcc66);
+    msg.trail.geometry.setFromPoints([out ? msg.a : msg.b, msg.sprite.position]);
+    msg.tag.position.copy(msg.sprite.position);
+    msg.state = { travelled, dist: msg.dist, out, done: travelled >= 2 * msg.dist, from: msg.from, to: msg.to };
+    msg.el.textContent = msg.state.done ? 'REPLY RECEIVED' : out ? `MESSAGE · ${(msg.dist - travelled).toFixed(2)} LY TO GO` : `REPLY · ${(2 * msg.dist - travelled).toFixed(2)} LY TO GO`;
+  }
+
   let tempLabel = null; // label for a selected star that isn't labelled by default
   function select(id) {
     selectedId = id;
@@ -215,6 +264,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
       camera.position.add(delta);
     }
     controls.update();
+    stepMessage(performance.now());
     const show = settings.get('labels');
     for (const p of placed) if (p.label) p.label.visible = show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId;
     renderer.render(scene, camera);
@@ -232,7 +282,14 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   return {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
-    load, select,
+    load, select, sendMessage, clearMessage,
+    get message() { return msg?.state ?? null; },
+    setMessageSpeed(lyPerSec) { // keep the pulse where it is
+      if (!msg) return;
+      const travelled = msg.state?.travelled ?? 0;
+      msg.lyPerSec = lyPerSec;
+      msg.t0 = performance.now() - (travelled / lyPerSec) * 1000;
+    },
     get data() { return data; },
     get selectedId() { return selectedId; },
   };

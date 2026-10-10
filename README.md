@@ -67,6 +67,9 @@ ship recognises and which view will use each one.
 - **Deep-space fleet:** Voyagers, New Horizons, Parker, JWST, Juno, the Mars orbiters and
   more from JPL Horizons, with their trajectories, and NASA DSN Now showing which dish is
   talking to each right now and how fast.
+- **Light-time messages:** send a light pulse from any star to Earth (or from Earth to any star)
+  and watch it cross the chart at 1 ly per 10 s, with the year it arrives and the year a reply
+  comes back; long trips are counted in human lifetimes.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.

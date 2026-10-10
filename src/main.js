@@ -17,6 +17,7 @@ import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
+import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn } from './data/spacecraft-ephem.js';
 
@@ -295,7 +296,12 @@ function renderSystemPanelInner() {
     h('h3', { textContent: 'SURVEY' }),
     h('div', { className: 'body-list' },
       m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au, s.centre, s.localKm); })),
-      pill('NAVIGATION ▸', () => go({ level: 'navigation', system: m.id }))),
+      pill('NAVIGATION ▸', () => go({ level: 'navigation', system: m.id })),
+      m.isSol ? null : pill('MESSAGE TO EARTH ▸', () => {
+        pendingMessage = true;
+        navRadius = [10, 25, 50, 100].find((r) => r > m.distLy * 1.05) ?? 100; // keep Earth on the chart
+        go({ level: 'navigation', system: m.id });
+      })),
     ...(m.isSol ? [
       h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
       h('h3', { textContent: 'EARTH ORBIT · SATELLITES' }), satPanel.searchSection(),
@@ -477,6 +483,7 @@ function renderNavPanel() {
     h('h3', { textContent: 'SENSOR RANGE' }), radii,
     h('p', { className: 'note', textContent: `${inRange.length} STARS · ${hosts.length} WITH KNOWN PLANETS WITHIN ${d.radiusLy} LY` }),
     ...selBlock,
+    ...transmissionSection(d, sel),
     h('h3', { textContent: 'PLANETARY SYSTEMS · NEAREST FIRST' }),
     h('div', { className: 'host-list' }, hosts.slice(0, 60).map((s) => {
       const b = h('button', { className: `host-row${s.id === navSelected ? ' on' : ''}` },
@@ -495,6 +502,46 @@ function renderNavPanel() {
     h('p', { className: 'note', textContent: 'The catalogue misses many faint red and brown dwarfs, so the real neighbourhood is more crowded than shown.' }),
     renderLegend(),
   );
+}
+
+// ---- message light-time (#16) --------------------------------------------------------------
+const yearOf = (jd) => { const d = dateFromJd(jd); return d.getUTCFullYear() + (d - Date.UTC(d.getUTCFullYear(), 0, 1)) / (365.25 * 86400000); };
+const SPEEDS = [[1, '1 LY / S'], [0.1, '1 LY / 10 S'], [1 / 60, '1 LY / MIN']];
+let msgSpeed = 0.1, msgSent = null, pendingMessage = false;
+
+function transmissionSection(d, sel) {
+  const c = d.center, sol = d.stars.find((s) => s.id === 'sol');
+  const far = c.id === 'sol' ? (sel && sel.id !== 'sol' ? sel : null) : sol;
+  if (!far) return [h('h3', { textContent: 'TRANSMISSION' }), h('p', { className: 'note', textContent: 'Select a star to send it a message from Earth and see when a reply could come back.' })];
+  const dist = distLy(far, c), y0 = yearOf(clock.jd);
+  const from = c.id === 'sol' ? 'EARTH' : c.name.toUpperCase(), to = far.id === 'sol' ? 'EARTH' : far.name.toUpperCase();
+  const dl = h('dl');
+  row(dl, 'DISTANCE', `${fmt(dist, 2)} LY`, 'measured', 'From parallax: light needs one year per light-year.');
+  row(dl, 'SENT', fmtYear(y0), 'computed', 'The ship\'s clock.');
+  row(dl, `REACHES ${to}`, fmtYear(y0 + dist), 'computed', `After ${span(dist)} at the speed of light.`);
+  row(dl, 'REPLY BACK', fmtYear(y0 + 2 * dist), 'computed', 'If they answer the moment it arrives.');
+  row(dl, 'ROUND TRIP', span(2 * dist), 'computed', dist > LIFETIME_YEARS / 2 ? `Measured in human lifetimes of ${LIFETIME_YEARS} years.` : '');
+  const human = humanScale(2 * dist);
+  live.msgNow = h('p', { className: 'warn mono' });
+  const speeds = h('div', { className: 'body-list' }, SPEEDS.map(([v, label]) => pill(label, () => { msgSpeed = v; nav.setMessageSpeed(v); renderNavPanel(); }, v === msgSpeed ? 'on' : '')));
+  return [
+    h('h3', { textContent: `TRANSMISSION · ${from} → ${to}` }), dl,
+    h('p', { className: 'note', textContent: human }),
+    h('div', { className: 'body-list' }, pill(nav.message ? 'RESEND ▸' : 'TRANSMIT ▸', () => {
+      nav.sendMessage(c.id, far.id, msgSpeed); msgSent = { y0, dist }; renderNavPanel();
+    })),
+    h('div', { className: 'ctl-label', textContent: 'PLAYBACK' }), speeds,
+    live.msgNow,
+  ];
+}
+
+function tickMessage() {
+  const s = nav.message;
+  if (!live.msgNow || !s || !msgSent) return;
+  const y = msgSent.y0 + s.travelled;
+  live.msgNow.textContent = s.done ? `REPLY RECEIVED · ${fmtYear(msgSent.y0 + 2 * s.dist)} · ${span(2 * s.dist)} AFTER SENDING`
+    : s.out ? `OUTBOUND · ${fmt(s.travelled, 2)} / ${fmt(s.dist, 2)} LY · MESSAGE YEAR ${fmtYear(y)}`
+      : `REPLY · ${fmt(s.travelled - s.dist, 2)} / ${fmt(s.dist, 2)} LY · MESSAGE YEAR ${fmtYear(y)}`;
 }
 
 function selectNavStar(id) {
@@ -553,6 +600,12 @@ async function showNavigation(center) {
     $('offline').hidden = true;
     nav.load(d);
     navSelected = null;
+    msgSent = null;
+    if (pendingMessage && d.center.id !== 'sol') {
+      pendingMessage = false;
+      nav.sendMessage(d.center.id, 'sol', msgSpeed);
+      msgSent = { y0: yearOf(clock.jd), dist: distLy(d.stars.find((s) => s.id === 'sol'), d.center) };
+    }
     renderNavPanel();
     $('view-title').textContent = `NAVIGATION · ${d.center.name.toUpperCase()}`;
   } catch (err) {
@@ -612,7 +665,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); }, 200);
+setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); }, 200);
 
 // ---- edge beacon (per animation frame) ---------------------------------------------------
 (function beaconLoop() {
