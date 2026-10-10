@@ -4348,7 +4348,7 @@ export const BODY_VISUALS = {
       "star": "Sirius B",
       "radiusSun": 0.008098,
       "temperatureK": 25369,
-      "distanceAU": 0.0000753189677585431,
+      "distanceAU": 7.53189677585431e-05,
       "horizontalFovDeg": 120,
       "angularDiameterDeg": 60.00000000000001,
       "centreDiscWidthFraction": 0.3333333333333335,
@@ -6696,6 +6696,119 @@ export const BODY_VISUALS = {
         "method": "Longest contiguous central-row RGB-above-threshold run excludes disconnected stars; atmospheric limb and dark terminator remain artistic.",
         "limits": "Oversized relative to nominal skyGeometry guide; threshold-dependent, not calibrated colour/FOV/phase/lighting/exposure or dated registration."
       }
+    }
+  },
+  "europa": {
+    "id": "europa",
+    "name": "Europa",
+    "aliases": [
+      "Europa"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D Galileo/Voyager globe preserved; source association/coverage/frame/epochs/photometry audit open. Local SRU photograph is not full globe or calibrated visible colour.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL ICE TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM EUROPA",
+    "measured": [
+      "Juno SRU observed2022-09-29 under Jupiter-shine; white dots are radiation-particle artifacts, not terrain. Monochrome450–1100nm, not calibrated visible colour.",
+      "Catalogue radius1560.8km/semimajor axis671100km preserved. Ridges and chaos are observed; possible plume stains do not confirm activity."
+    ],
+    "modelled": [
+      "Levin et al. published2025-12-17 infer29±10km thermally conductive shell for idealized pure-water ice from2022 MWR data; salinity15mg/kg reduces~5km and possible convective layer adds total thickness. Not universal directly measured thickness.",
+      "skyGeometry Jupiter69911km at671100−1560.8km gives11.98711degrees/90HFOV175.544px at1672wide;165K placeholder only for angular geometry, no photometric transfer.",
+      "Representative Sun5.2044AU off frame via skyGeometry."
+    ],
+    "assumed": [
+      "Invented ice ridges, fractures, sparse blocks and brown non-ice deposits; local chemistry/fractions/colour unmeasured.",
+      "Independent invented Jupiter bands/phase/orientation/light; no observed Jupiter/Moon/Mars/Io map reused. Thin exosphere has black sky."
+    ],
+    "unknown": [
+      "Native map coverage/frame/epochs and observer registration open; local chemistry/biology unmeasured, no active plume or exposed ocean implied.",
+      "No survivable landing claim, no verified live scientific image stream or exhaustive newest-observation claim."
+    ],
+    "references": [
+      {
+        "title": "NASA SRU source",
+        "url": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/"
+      },
+      {
+        "title": "Levin et al. primary ice-shell model",
+        "url": "https://www.nature.com/articles/s41550-025-02718-0"
+      },
+      {
+        "title": "NASA2026-01-27 release,2022 observations",
+        "url": "https://www.nasa.gov/missions/juno/nasas-juno-measures-thickness-of-europas-ice-shell/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/europa-sru-native.jpg",
+        "label": "NATIVE SRU MONOCHROME CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26332/PIA26332.jpg?w=1020&fit=clip",
+        "observationDate": "2022-09-29",
+        "publicationDate": "2024-05-15",
+        "credit": "NASA/JPL-Caltech/SwRI",
+        "terms": "NASA image/media guidelines; full mission credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+        "bytes": 195650,
+        "description": "NASA-served1020px display rendition, not full4059px raster. Monochrome Jupiter-shine photograph; white dots are radiation-particle artifacts, plume stains unconfirmed. Not calibrated visible colour. Full-resolution PNG/JPEG originals retained separately.",
+        "processing": "Copied unchanged from NASA dynamicimage response; publisher resizing/re-encoding disclosed. No local crop/recolour/artifact removal."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 5.2044,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.10239496667257103,
+      "centreDiscWidthFraction": 0.0008935648907777419,
+      "irradianceEarth": 0.03691974252277894,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/europa-surface-image.jpg",
+      "previewUrl": "/bespoke/europa-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-dd6ea2f6-3608-4f1a-8bde-0d6b13c61401.png",
+      "sourceSha256": "6c51a34930593b2e68a00bfd8c9bccdc16489ed11d3bb51b9ef82484a0946d35",
+      "sha256": "df651248619f3c1169b4a797dc2ac658a52eb1dca8825c00a215f793c135846c",
+      "previewSha256": "701dc3f3f2690e16cb7e7e3647954e8ed9ce76ec0565d18e2ddbfd44fbdebe25",
+      "bytes": 292119,
+      "previewBytes": 50940,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/europa-sky-image.jpg",
+      "previewUrl": "/bespoke/europa-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4cac412c-8e52-4968-b9d6-9bb71cbe6993.png",
+      "sourceSha256": "8b65925ed54f38ba5d88014b074a51cbeb70d8bfdba9361d188f0d8bba37176b",
+      "sha256": "cb755d2afb46190473d16af51ec3ea56164fc75b47103b033817524ae096100a",
+      "previewSha256": "2d7c0f59728dd237b0d5024bc28fe8b4d70fabf714164873a9fbb819bdb38ad8",
+      "bytes": 195356,
+      "previewBytes": 35428,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
   }
 };

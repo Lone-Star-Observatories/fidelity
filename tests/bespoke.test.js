@@ -170,3 +170,9 @@ test('Io preserves its own globe and labels JIRAM saturation and regional reserv
  for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
  assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
 });
+
+test('Europa preserves its native globe and distinguishes SRU display processing from ice-shell modelling',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='europa'),v=bodyVisualFor(moon);assert.equal(v.id,'europa');assert.equal(moon.skin.map,'europa');assert.equal(v.surfaceMap,undefined);
+ assert.match(v.modelled.join(' '),/29±10km/);assert.match(v.modelled.join(' '),/idealized pure-water/);assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/radiation-particle/);
+ assert.equal(v.contextImages[0].observationDate,'2022-09-29');assert.equal(v.contextImages[0].publicationDate,'2024-05-15');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});
