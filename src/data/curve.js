@@ -381,5 +381,6 @@ export function uncoveredRanges(f, covered, perDecade = 40) {
     const m = Math.sqrt(xs[i - 1] * xs[i]);
     if (evalT(f, m) > peak * 0.01 && !covered(m)) out.push([xs[i - 1], xs[i]]);
   }
-  return mergeRanges(out);
+  // drop slivers (under 0.1% of a decade) left at band edges where coverage meets end to end
+  return mergeRanges(out).filter(([lo, hi]) => Math.log10(hi / lo) > 1e-3);
 }

@@ -151,3 +151,9 @@ test('units: parsing typed windows and formatting ranges', () => {
   assert.deepEqual(uncoveredRanges(windowFilter(10, 20), () => false).length, 1);
   assert.ok(union([windowFilter(1, 2), windowFilter(3, 4)]).points.length >= 8);
 });
+
+test('uncovered ranges ignore zero-width slivers at band edges', () => {
+  const f = { points: [[1e6, 1], [3e7, 1]] }; // 1 mm – 3 cm
+  assert.deepEqual(uncoveredRanges(f, (nm) => nm < 2.9999e7), []);
+  assert.equal(uncoveredRanges(f, (nm) => nm < 1e7).length, 1);
+});
