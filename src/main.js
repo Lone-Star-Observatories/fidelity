@@ -33,7 +33,7 @@ import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
 import { createEventsPanel } from './panels/events.js';
-import { loadEvents, onEvents } from './data/events.js';
+import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
@@ -234,8 +234,33 @@ settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEveryw
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
   connecting: 'CONNECTING…', hearing: 'GO AHEAD…', thinking: 'WORKING…', speaking: 'SPEAKING' };
+/** What is on screen right now, for the ship's computer: the view, what it is centred on, the clock and
+ * scale, layers, band, anything playing out (missions, eclipses, a webcast) and the side panel's text. */
+function screenContext() {
+  const lines = [], sel = route.body && system.model?.bodies.find((b) => b.id === route.body);
+  lines.push(`VIEW: ${$('view-title').textContent}`);
+  lines.push(`ROUTE: ${route.level}${route.system ? ` / system ${system.model?.name ?? route.system}` : ''}${route.body ? ` / ${sel?.name ?? route.body}` : ''}`);
+  if (['system', 'satellite', 'events'].includes(route.level) && system.model) {
+    const f = system.model.bodies.find((b) => b.id === system.focusId);
+    lines.push(`CAMERA CENTRED ON: ${f?.name ?? system.focusId}${system.onSurface ? ` (standing on the surface of ${system.model.bodies.find((b) => b.id === system.onSurface.id)?.name ?? system.onSurface.id}, looking up)` : ''}`);
+  }
+  const d = dateFromJd(clock.jd);
+  lines.push(`SHIP'S CLOCK: ${d.toISOString().slice(0, 16).replace('T', ' ')} UTC, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}`);
+  lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
+  const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
+  lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
+  const cb = currentBand();
+  if (!cb.full) lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+  const active = system.activeMissions?.map((id) => eventsFeed()?.events.find((e) => e.id === id)?.title).filter(Boolean) ?? [];
+  if (active.length) lines.push(`PLAYING OUT IN THE 3D VIEW (modelled paths): ${active.join('; ')}`);
+  const fv = $('feed-viewer');
+  if (fv && !fv.hidden) lines.push(`VIDEO / FEED WINDOW OPEN: ${fv.querySelector('.fv-title')?.textContent ?? ''} ${fv.querySelector('.fv-sub')?.textContent ?? ''}`.trim());
+  if (starCard?.current) lines.push(`SELECTED STAR CARD: ${starCard.current.name ?? starCard.current.id ?? 'a catalogue star'}`);
+  lines.push('', 'SIDE PANEL (badges in brackets give each value\'s provenance):', (panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 6000));
+  return lines.join('\n');
+}
 const computer = createComputer({
-  context: () => `${$('view-title').textContent} · ship's clock ${dateFromJd(clock.jd).toISOString().slice(0, 16)} UTC\n${(panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 2500)}`,
+  context: () => screenContext(),
   names: () => {
     const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }) }));
     for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }) });
@@ -243,6 +268,7 @@ const computer = createComputer({
   },
   setLayer: (k, on) => settings.set(k, on),
   setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
+  canInterrupt: () => !!settings.get('voiceInterrupt'),
   status: () => fetch('/api/voice/status').then((r) => (r.ok ? r.json() : null)).catch(() => null),
   onState: (st, _d, log) => renderVoice(st, log),
 });
@@ -259,7 +285,8 @@ function renderVoice(st = computer.state, log = computer.log) {
       pill(st === 'off' ? 'LISTEN' : 'STOP LISTENING', () => computer.listen(st === 'off').catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
-      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null),
+      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null,
+      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); })),
     h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
   const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
 }
@@ -327,6 +354,7 @@ const runAt = () => {
 window.addEventListener('keydown', (e) => {
   if (e.target.closest?.('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === '[') stepBy(-1); else if (e.key === ']') stepBy(1);
+  else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
 });
 
 controls.append(
