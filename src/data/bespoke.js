@@ -7171,6 +7171,129 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "mimas": {
+    "id": "mimas",
+    "name": "Mimas",
+    "aliases": [
+      "Mimas"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own NASA3D Mimas globe unchanged, SHA0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b; coverage/inputepochs/frame/photometry audit open. No generated globe.",
+    "measured": [
+      "Cassini ISS cratered surface mosaic observed2017-01-30; published2017-03-14.",
+      "Catalogue representative radius198.2km and semimajor axis186000km; no dated local scene registration. NASA overview rounds mean diameter394km/distance186000km; preserve parameter precision alternatives."
+    ],
+    "modelled": [
+      "Lainey2024 orbital/periapsis analysis infers an ocean below20–30km shell, age<25Myr and recent2–3Myr interface evolution; dynamical/thermal inference, not direct ocean imaging.",
+      "Denton/Rhoden2025 Herschel impact models permit ocean-bearing or warm fully frozen shells near melting; morphology alone does not uniquely establish ocean at impact time."
+    ],
+    "unknown": [
+      "Local material fractions/chemistry, subsurface plumbing, registered observer site, calibrated colour/exposure and all globe input epochs/frame details.",
+      "Lainey fullpaper and Denton supplement detailedparameter audit remain open."
+    ],
+    "assumed": [
+      "Invented grey ice-rich local regolith/craters/blocks; no analog map reuse, exposed ocean, active plume, biology or survivable landing.",
+      "Independent schematic Saturn cream bands, approximate oblateness and nearly edge-on rings. Ringextent/phase/orientation/lighting/exposure artistic; no observed Saturn map reused.",
+      "Nominal90degree horizontal FOV; Saturn58232km representative mean spherical radius at186000minus198.2km near-side surface distance.95K helper angular-only, blackbody RGB/irradiance not photometry. Sun9.58AU representative off-frame, not dated scene."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "title": "Cassini Farewell to Mimas / Figure1",
+        "observationDate": "2017-01-30",
+        "publicationDate": "2017-03-14"
+      },
+      {
+        "url": "https://science.nasa.gov/saturn/moons/mimas/",
+        "title": "NASA Mimas overview; older frozen-solid prose differs from later interior models"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41586-023-06975-9",
+        "title": "Lainey2024 orbital ocean inference",
+        "publicationDate": "2024-02-07"
+      },
+      {
+        "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6954367e3a4062070665bd26/1767126654169/dentonrhoden2025.pdf",
+        "title": "Denton/Rhoden2025 impact alternatives; allrightsreserved researchinput only",
+        "publicationDate": "2025-09-09"
+      }
+    ],
+    "contextImages": [
+      {
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=640&fit=clip",
+        "bytes": 33774,
+        "width": 640,
+        "height": 640,
+        "sha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+        "observationDate": "2017-01-30",
+        "publicationDate": "2017-03-14",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "url": "/bespoke/mimas-cassini-native.jpg",
+        "tier": "measured",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "description": "Cassini ISS ten-frame orthographic mosaic, publisher Figure1 more-natural illumination. RGB-storage monochrome, not calibrated visible colour/photometry;640 display resizing/reencoding does not preserve original pixels. Larger1700/1280/1020 originals retained.",
+        "processing": "Unchanged publisher640 JPEG rendition; no local reencoding.",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-mimas/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/mimas-surface-image.jpg",
+      "previewUrl": "/bespoke/mimas-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "mimas-generated-surfaceImage-original.png",
+      "sourceSha256": "699fa925e0d72d8507f4955f0c91d6cd9825f0e04e6b4296ef5fbbd916e14730",
+      "sha256": "e3073f35a14ebe7bc9bbc9d26966ee87e79d77b7aae6bf03d280d9b5d6fde4f8",
+      "previewSha256": "ac5b6614e8afb64e3560c188f5df10d19b25a22d82e8bfb482d6f9a006f058cf",
+      "bytes": 352614,
+      "previewBytes": 65686,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/mimas-sky-image.jpg",
+      "previewUrl": "/bespoke/mimas-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "mimas-generated-skyImage-original.png",
+      "sourceSha256": "9fd6ed37e088d1814bebdd88d113736ad415ffdd87ffbfd710e1ec9d3ad244c0",
+      "sha256": "bac070f531f3ddc279f7e5eeb5bed34400a9c54a78331be91b68dbd62c96a07c",
+      "previewSha256": "d1c457388ffdb6825fded8243f4afd2ecc4b0c4316f60e64cfb99866798abc93",
+      "bytes": 200693,
+      "previewBytes": 36318,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL MIMAS TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM MIMAS"
   }
 };
 

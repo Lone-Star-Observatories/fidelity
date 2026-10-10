@@ -244,10 +244,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D Mimas globe unchanged, SHA0836f8f98719dc1cb1ccc58b23d5f3e50cc3ba01d1a7f0535b4f7d11695a378b; coverage/inputepochs/frame/photometry audit open. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "mimas"
     },
     {
       "id": "sol-enceladus",
@@ -8505,7 +8506,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 7,
+      "initialDossiers": 8,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

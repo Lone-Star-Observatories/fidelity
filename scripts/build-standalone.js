@@ -181,7 +181,7 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
 const binarySnapshot = encodeBinarySnapshot(snapshotJson);
-const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 8 });
+const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 32 });
 if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
 const snapshotRaw = encodeRawSnapshotBytes(htmlCompressed);
 // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.

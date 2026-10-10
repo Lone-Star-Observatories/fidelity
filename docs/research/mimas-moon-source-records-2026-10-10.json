@@ -78,6 +78,20 @@
       "validPdfSignature": true,
       "publicationDate": "2025-09-09",
       "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only; no figure embedded."
+    },
+    {
+      "name": "Cassini Figure1 NASA640 display rendition",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=640&fit=clip",
+      "status": 200,
+      "path": "data/research-sources/mimas-natural-illumination-display640-2026-10-10.jpg",
+      "bytes": 33774,
+      "sha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+      "retrieved": "2026-10-10",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "observationDate": "2017-01-30",
+      "publicationDate": "2017-03-14",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "processing": "Publisher resized/reencoded monochrome RGB JPEG. Not fullpixelpreservation/independently calibrated visible colour. Larger original1700 andFigure1 1280/1020 retained."
     }
   ]
 }
