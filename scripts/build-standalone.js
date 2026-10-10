@@ -11,6 +11,7 @@ import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
 import { clusters, galaxies } from '../server/deepsky.js';
+import { gaiaBright } from '../server/gaia.js';
 import { satellites, satelliteDetail } from '../server/satellites.js';
 import { FEATURED } from '../src/data/feeds.js';
 import { SPACECRAFT } from '../src/data/spacecraft.js';
@@ -60,6 +61,9 @@ const lib = await library();
 const spectra = { ...lib, grid: { ...lib.grid, step: lib.grid.step * 2 }, entries: lib.entries.map((e) => ({ ...e, flux: e.flux.filter((_, i) => i % 2 === 0) })) };
 // galaxy: the luminous stars (M ≤ 0) within 1.5 kly — ≈8k of the 46k the backend serves
 const galaxy = await galaxyStars(1500, 0);
+// Gaia beyond 1.5 kly: the 8,000 most luminous of ≈55k (they trace the arms best)
+const gaiaAll = await gaiaBright().catch(() => null);
+const gaiaSnap = gaiaAll && { ...gaiaAll, stars: gaiaAll.stars.slice().sort((a, b) => a[3] - b[3]).slice(0, 8000) };
 // belts: the bigger objects of each population, rounded (≈ 12k of the 61k orbits)
 const sbAll = await smallBodies().catch(() => null);
 const H_MAX = [18, 12.8, 13.2, 99, 99]; // neo, main, trojan, centaur, tno
@@ -90,7 +94,7 @@ const galAll = await galaxies().catch(() => null);
 const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: galAll.groups.rows.filter((r) => r[2] <= 92).map((r) => [r[0], r[1], +r[2].toFixed(1), Math.round(r[3]), Math.round(r[4]), Math.round(r[5])]) } };
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build

@@ -83,7 +83,10 @@ ship recognises and which view will use each one.
   2.5 billion ly, with a distance filter.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
-  true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.
+  true positions, 55k Gaia stars beyond them, the IAU quadrants and an optional Starfleet
+  Alpha–Delta overlay. Galactic time runs from 1 kyr/s to 50 Myr/s: the disc shears, the
+  arms turn at their pattern speed, and the Magellanic Clouds (real Spitzer images) and the
+  Sagittarius dwarf follow their orbits.
 - **Planet View:** any planet's air by volume, where those gases absorb light, its interior
   to scale, and where it sits among rocky, watery and gassy worlds. Exoplanets show measured
   JWST results where they exist and "not yet measured" everywhere else.

@@ -38,3 +38,30 @@ test('galaxyStars rejects silly ranges', async () => {
   await assert.rejects(() => galaxyStars(0, 2));
   await assert.rejects(() => galaxyStars(1500, 99));
 });
+
+import { omega, OMEGA_SUN, OMEGA_PATTERN, GALACTIC_YEAR_MYR, rotationAngle, SATELLITE_ORBITS, integrateOrbit, orbitAt, kpcToScene } from '../src/astro/galaxy.js';
+
+test('galactic rotation: ~215 Myr year at the Sun, pattern near corotation, inner disc faster', () => {
+  assert.ok(GALACTIC_YEAR_MYR > 200 && GALACTIC_YEAR_MYR < 240, String(GALACTIC_YEAR_MYR));
+  assert.ok(Math.abs(OMEGA_PATTERN / OMEGA_SUN - 1) < 0.05);
+  assert.ok(omega(10) > omega(R0_KLY) && omega(40) < omega(R0_KLY));
+  // after a short time the Sun has moved towards l = 90° (scene −z)
+  const a = rotationAngle(R0_KLY, 1);
+  const z = -(-R0_KLY) * Math.sin(a); // three.js rotation about +y: z' = −x·sinθ + z·cosθ
+  assert.ok(z < 0);
+});
+
+test('satellite orbits: integration reproduces the present and stays bound', () => {
+  for (const s of SATELLITE_ORBITS) {
+    const o = integrateOrbit(s.pos, s.vel);
+    const now = orbitAt(o, 0);
+    s.pos.forEach((x, k) => close(now[k], x, 1e-9));
+    const r = o.points.map((p) => Math.hypot(...p));
+    assert.ok(Math.max(...r) < 400 && Math.min(...r) > 1, `${s.id} ${Math.min(...r)} ${Math.max(...r)}`);
+  }
+  // the LMC is ~50 kpc out and near pericentre now
+  const lmc = integrateOrbit(SATELLITE_ORBITS[0].pos, SATELLITE_ORBITS[0].vel);
+  close(Math.hypot(...orbitAt(lmc, 0)), 49.6, 0.5);
+  // scene: LMC lies below the plane (galactic south)
+  assert.ok(kpcToScene(orbitAt(lmc, 0))[1] < 0);
+});

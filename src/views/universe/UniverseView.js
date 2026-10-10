@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import { radecToSupergal, frameToScene, blackbodyRGB } from '../../astro/frames.js';
+import { radecToSupergal, galToSupergal, frameToScene, blackbodyRGB } from '../../astro/frames.js';
 import { GALAXY_NAMES, GALAXY_CLUSTERS } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 
@@ -13,6 +13,14 @@ export const MLY_PER_MPC = 3.26156;
 // Morphological type (de Vaucouleurs T) → colour: ellipticals/lenticulars red-gold, spirals white, irregulars blue.
 export const typeTeff = (T) => (T == null ? 6500 : T <= 0 ? 4300 : T <= 5 ? 6200 : 9000);
 export const typeName = (T) => (T == null ? 'GALAXY' : T <= -3 ? 'ELLIPTICAL' : T <= 0 ? 'LENTICULAR' : T <= 8 ? 'SPIRAL' : T === 9 || T === 10 ? 'IRREGULAR' : 'DWARF');
+
+// Motion of the Milky Way's neighbourhood. CMB dipole: the Local Group moves 627 ± 22 km/s
+// towards l = 276°, b = +30° (Kogut et al. 1993; Planck 2020). Andromeda: −110 km/s radial,
+// ~57 km/s tangential (van der Marel et al. 2019); merger in ~4.5 Gyr (Sohn/van der Marel 2012).
+export const MOTION = {
+  lg: { kms: 627, l: 276, b: 30 },
+  m31: { ra: 10.6847, dec: 41.269, mly: 2.5, radialKms: -110, tangentialKms: 57, mergeGyr: 4.5 },
+};
 
 const VERT = `
   attribute float size; attribute vec3 color; varying vec3 vColor; varying float vFar; uniform float uPixel; uniform float uRadius;
@@ -121,12 +129,33 @@ export function createUniverseView(container, { onSelect, onFrame } = {}) {
   tag('MILKY WAY · SECTOR 001', 'sol', new THREE.Vector3(), { always: true });
   makePoints([[0, 0, 0, 10, 1, 0.85, 0.55]]);
 
+  // ---- motion (#18): the Local Group against the CMB, and Andromeda closing on us ---------------
+  const D = Math.PI / 180;
+  const galDir = (l, b) => new THREE.Vector3(...frameToScene(galToSupergal([Math.cos(b * D) * Math.cos(l * D), Math.cos(b * D) * Math.sin(l * D), Math.sin(b * D)]))).normalize();
+  const lgDir = galDir(MOTION.lg.l, MOTION.lg.b);
+  const lgArrow = new THREE.ArrowHelper(lgDir, new THREE.Vector3(), 1, 0xffcc66);
+  const m31 = sgScene(MOTION.m31.ra, MOTION.m31.dec, MOTION.m31.mly);
+  const m31Arrow = new THREE.ArrowHelper(m31.clone().negate().normalize(), m31, 1, 0xff8866);
+  scene.add(lgArrow, m31Arrow);
+  const lgTag = tag(`LOCAL GROUP → ${MOTION.lg.kms} KM/S VS THE CMB`, 'motion', lgDir, { kind: 'motion', always: true });
+  const m31Tag = tag(`ANDROMEDA → ${-MOTION.m31.radialKms} KM/S CLOSING · MERGES IN ~${MOTION.m31.mergeGyr} GYR`, 'motion', m31, { kind: 'motion' });
+  function scaleMotion(R) {
+    const L = R * 0.3;
+    lgArrow.setLength(L, L * 0.18, L * 0.08);
+    lgTag.position.copy(lgDir).multiplyScalar(L * 1.05);
+    const d = m31.length() * 0.75;
+    m31Arrow.setLength(d, Math.min(d * 0.25, R * 0.03), Math.min(d * 0.1, R * 0.012));
+    m31Tag.position.copy(m31).multiplyScalar(0.6);
+    for (const t of tags) if (t.obj === m31Tag) t.dist = R <= 10 ? m31.length() : Infinity; // only once Andromeda stands clear of the crowd
+  }
+
   let radius = 30;
   const target = new THREE.Vector3();
   function setRadius(R) {
     radius = R;
     uniforms.uRadius.value = R * 1.02;
     drawChart(R);
+    scaleMotion(R);
     controls.maxDistance = R * 6;
     target.set(0, 0, 0);
     camera.position.set(R * 0.4, R * 0.9, R * 1.5);

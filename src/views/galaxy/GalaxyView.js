@@ -5,12 +5,19 @@
 // calibrated against the annotated version (PIA19341: the same artwork, rotated, with the
 // Sun marked) so that the galactic centre is at the image centre and Sol lands at the
 // measured R₀ = 26.7 kly (GRAVITY Collaboration 2019). Units: thousands of light-years.
+//
+// Deep time (#18): stars turn differentially on a flat rotation curve (in the vertex shader),
+// the spiral pattern turns at its own slower-near-the-centre pattern speed, the Sun's frame
+// (Sol, quadrant spokes, catalogue reach) rides with the Sun, and the satellite galaxies follow
+// orbits integrated in a simple halo. All MODELLED; badged as such in the panel.
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
-import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, imageMapper } from '../../astro/galaxy.js';
+import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, imageMapper, VC_KMS, KMS_KLY_PER_MYR, CORE_KLY, OMEGA_SUN, OMEGA_PATTERN,
+  SATELLITE_ORBITS, integrateOrbit, orbitAt, kpcToScene } from '../../astro/galaxy.js';
+import { loadTexture } from '../system/materials.js';
 
 export { R0_KLY, Z_SUN_KLY, IMAGE, galToScene };
 import { createGalaxyPlane } from './plane.js';
@@ -21,11 +28,30 @@ const PIA19341 = { size: 1308, sun: [416.0, 668.8], labels: [
   ['PERSEUS ARM', 553, 418], ['ORION–CYGNUS SPUR', 470, 590], ['SCUTUM–CENTAURUS ARM', 800, 917],
   ['SAGITTARIUS–CARINA ARM', 788, 1033], ['OUTER ARM', 200, 503],
 ] };
-// Satellite galaxies: galactic longitude, latitude (deg) and distance (kly).
-const SATELLITES = [
-  ['LARGE MAGELLANIC CLOUD', 280.47, -32.89, 163], ['SMALL MAGELLANIC CLOUD', 302.8, -44.3, 203],
-  ['SAGITTARIUS DWARF', 5.6, -14.2, 85],
-];
+
+// Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
+const STAR_VERT = `
+  attribute vec3 color; varying vec3 vColor; uniform float uT; uniform float uPixel; uniform float uSize;
+  void main() {
+    vColor = color;
+    float R = length(position.xz);
+    float a = -${(VC_KMS * KMS_KLY_PER_MYR).toFixed(6)} / sqrt(R * R + ${(CORE_KLY * CORE_KLY).toFixed(4)}) * uT;
+    float c = cos(a), s = sin(a);
+    vec3 p = vec3(position.x * c + position.z * s, position.y, -position.x * s + position.z * c);
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+    gl_PointSize = uSize * uPixel;
+  }`;
+const STAR_FRAG = `
+  varying vec3 vColor;
+  void main() { float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.15, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
+// Satellite-galaxy images: camera-facing quads, additive, with the square edges faded out.
+const IMG_FRAG = `
+  uniform sampler2D uMap; uniform float uOpacity; varying vec2 vUv;
+  void main() { float f = smoothstep(0.5, 0.28, length(vUv - 0.5));
+    vec3 c = max(texture2D(uMap, vUv).rgb - 0.03, 0.0); gl_FragColor = vec4(c * f * uOpacity, 1.0); }`;
+const IMG_VERT = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+/** Gaia BP−RP → an approximate B−V, for colouring (observed colours: distant stars are reddened by dust). */
+export const bprpToBV = (bprp) => 0.78 * bprp;
 
 const DEG = Math.PI / 180;
 const lbdToGal = (l, b, d) => [d * Math.cos(b * DEG) * Math.cos(l * DEG), d * Math.cos(b * DEG) * Math.sin(l * DEG), d * Math.sin(b * DEG)];
@@ -55,38 +81,69 @@ export function createGalaxyView(container, { onFrame } = {}) {
 
   // ---- labels ------------------------------------------------------------------------------
   const tags = [];
-  function tag(text, cls, pos, always = false) {
+  function tag(text, cls, pos, always = false, parent = scene) {
     const el = document.createElement('div');
     el.className = `nav-label ${cls}`;
     el.textContent = text;
     const o = new CSS2DObject(el);
     o.position.set(...pos);
     o.center.set(-0.08, 0.5);
-    scene.add(o);
+    parent.add(o);
     tags.push({ o, always });
     return o;
   }
+  // frames that turn with time: the spiral pattern and the Sun's own frame
+  const patternGroup = new THREE.Group(), sunGroup = new THREE.Group();
+  scene.remove(plane);
+  patternGroup.add(plane);
+  scene.add(patternGroup, sunGroup);
   const sol = galToScene([0, 0, 0]);
-  tag('◆ SOL · SECTOR 001', 'sol', sol, true);
+  tag('◆ SOL · SECTOR 001', 'sol', sol, true, sunGroup);
   tag('SGR A* · GALACTIC CENTRE', 'center', [0, 0, 0], true);
   for (const [name, px, py] of PIA19341.labels) {
     // PIA19341 is PIA10748 rotated 90° clockwise; express its label in PIA10748 fractions first
     const c = (PIA19341.size - 1) / 2;
     const du = (px - c) / PIA19341.size, dv = (py - c) / PIA19341.size;
     const [x, z] = map(dv, -du).map((v) => v * W); // undo the 90° turn
-    tag(name, 'spoke', [x, 0, z]);
+    tag(name, 'spoke', [x, 0, z], false, patternGroup);
   }
-  for (const [name, l, b, d] of SATELLITES) {
-    const p = galToScene(lbdToGal(l, b, d));
-    tag(`${name} · ${d} KLY`, 'host', p, true);
-    const dot = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 12), new THREE.MeshBasicMaterial({ color: 0x9999ff }));
-    dot.position.set(...p);
-    scene.add(dot);
+
+  // ---- satellite galaxies: integrated orbits, Spitzer images ---------------------------------
+  const satellites = SATELLITE_ORBITS.map((s) => {
+    const orbit = integrateOrbit(s.pos, s.vel);
+    const pts = orbit.points.map((p) => new THREE.Vector3(...kpcToScene(p)));
+    const half = (pts.length - 1) / 2;
+    const past = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts.slice(0, half + 1)), new THREE.LineDashedMaterial({ color: 0x8888cc, transparent: true, opacity: 0.35, dashSize: 3, gapSize: 3 }));
+    past.computeLineDistances();
+    const future = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts.slice(half)), new THREE.LineBasicMaterial({ color: 0x9999ff, transparent: true, opacity: 0.5 }));
+    scene.add(past, future);
+    const body = new THREE.Group();
+    body.add(new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 12), new THREE.MeshBasicMaterial({ color: 0x9999ff })));
+    if (s.texture) {
+      const mat = new THREE.ShaderMaterial({ uniforms: { uMap: { value: null }, uOpacity: { value: 1.3 } }, vertexShader: IMG_VERT, fragmentShader: IMG_FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+      const quad = new THREE.Mesh(new THREE.PlaneGeometry(s.diameterKly * 1.3, s.diameterKly * 1.3), mat);
+      quad.visible = false;
+      loadTexture(s.texture).then((t) => { if (t) { mat.uniforms.uMap.value = t; quad.visible = true; body.children[0].visible = false; } });
+      body.add(quad);
+      body.userData.quad = quad;
+    }
+    scene.add(body);
+    const label = tag(s.name, 'host', [0, 0, 0], true, body);
+    label.position.set(s.diameterKly * 0.4, 0, 0);
+    return { ...s, orbit, body, label, shown: '' };
+  });
+  function placeSatellites(t) {
+    const sun = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * t);
+    for (const s of satellites) {
+      s.body.position.set(...kpcToScene(orbitAt(s.orbit, t)));
+      const text = `${s.name} · ${Math.round(s.body.position.distanceTo(sun))} KLY`;
+      if (text !== s.shown) { s.label.element.textContent = text; s.shown = text; }
+    }
   }
 
   // ---- quadrants ------------------------------------------------------------------------------
   const quadGroup = new THREE.Group(), fleetGroup = new THREE.Group();
-  scene.add(quadGroup, fleetGroup);
+  sunGroup.add(quadGroup, fleetGroup);
   const line = (group, a, b, color, opacity = 0.45, dashed = false) => {
     const g = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), new THREE.Vector3(...b)]);
     const m = dashed ? new THREE.LineDashedMaterial({ color, transparent: true, opacity, dashSize: 1.5, gapSize: 1 }) : new THREE.LineBasicMaterial({ color, transparent: true, opacity });
@@ -115,29 +172,64 @@ export function createGalaxyView(container, { onFrame } = {}) {
     for (const [n, x, z] of fleet) fleetGroup.add(tag(`${n} QUADRANT`, 'fleet', [x, 0, z]));
   }
 
-  // ---- catalogue stars around Sol ------------------------------------------------------------
-  let stars = null, reachRing = null;
-  function setStars(d) {
-    if (stars) { scene.remove(stars); stars.geometry.dispose(); stars.material.dispose(); }
-    if (!d) return;
-    const n = d.stars.length, pos = new Float32Array(n * 3), col = new Float32Array(n * 3);
-    d.stars.forEach(([gx, gy, gz, m10, ci100], i) => {
+  // ---- stars: HYG within 1.5 kly, Gaia DR3 beyond ---------------------------------------------
+  const starUniforms = { uT: { value: 0 }, uPixel: { value: renderer.getPixelRatio() }, uSize: { value: 2 } };
+  const layers = {};
+  let reachRing = null;
+  function makeStars(rows, colourOf, size) {
+    const n = rows.length, pos = new Float32Array(n * 3), col = new Float32Array(n * 3);
+    rows.forEach(([gx, gy, gz, m10, c100], i) => {
       pos.set(galToScene([gx, gy, gz], 0.001), i * 3);
-      const c = blackbodyRGB(teffFromBV(ci100 != null ? ci100 / 100 : 0.6));
+      const c = blackbodyRGB(teffFromBV(colourOf(c100)));
       const k = Math.min(1, Math.max(0.35, 0.9 - m10 / 40));
       col.set([c[0] * k, c[1] * k, c[2] * k], i * 3);
     });
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     g.setAttribute('color', new THREE.BufferAttribute(col, 3));
-    stars = new THREE.Points(g, new THREE.PointsMaterial({ size: 2, sizeAttenuation: false, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false }));
-    scene.add(stars);
+    const u = { ...starUniforms, uSize: { value: size } };
+    const p = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms: u, vertexShader: STAR_VERT, fragmentShader: STAR_FRAG, transparent: true, depthWrite: false }));
+    p.frustumCulled = false;
+    scene.add(p);
+    return p;
+  }
+  function setLayer(key, rows, colourOf, size) {
+    if (layers[key]) { scene.remove(layers[key]); layers[key].geometry.dispose(); layers[key].material.dispose(); }
+    layers[key] = rows?.length ? makeStars(rows, colourOf, size) : null;
+  }
+  function setStars(d) {
+    if (!d) return;
+    setLayer('hyg', d.stars, (c) => (c != null ? c / 100 : 0.6), 2);
     if (!reachRing) {
       const pts = [];
       for (let k = 0; k <= 128; k++) { const a = (k / 128) * Math.PI * 2; pts.push(new THREE.Vector3(sol[0] + Math.cos(a) * d.maxLy / 1000, sol[1], sol[2] + Math.sin(a) * d.maxLy / 1000)); }
       reachRing = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x9999ff, transparent: true, opacity: 0.7 }));
-      scene.add(reachRing);
-      tag(`STAR CATALOGUE REACH · ${(d.maxLy / 1000).toFixed(1)} KLY`, 'ring', [sol[0], sol[1], sol[2] - d.maxLy / 1000 - 0.2]);
+      sunGroup.add(reachRing);
+      tag(`HYG CATALOGUE REACH · ${(d.maxLy / 1000).toFixed(1)} KLY`, 'ring', [sol[0], sol[1], sol[2] - d.maxLy / 1000 - 0.2], false, sunGroup);
+    }
+  }
+  let gaiaCount = 0;
+  function setGaia(d) {
+    if (!d?.stars) return;
+    gaiaCount = d.stars.length;
+    setLayer('gaia', d.stars, (c) => (c != null ? bprpToBV(c / 100) : 0.6), 1.6);
+  }
+
+  // ---- deep time -------------------------------------------------------------------------------
+  const Y = new THREE.Vector3(0, 1, 0);
+  let epoch = 0, follow = false;
+  function setTime(tMyr) {
+    const before = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch);
+    epoch = tMyr;
+    for (const l of Object.values(layers)) if (l) l.material.uniforms.uT.value = tMyr;
+    starUniforms.uT.value = tMyr;
+    patternGroup.rotation.y = -OMEGA_PATTERN * tMyr;
+    sunGroup.rotation.y = -OMEGA_SUN * tMyr;
+    placeSatellites(tMyr);
+    if (follow) { // keep Sol in frame when looking at the neighbourhood
+      const d = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * tMyr).sub(before);
+      target.add(d); controls.target.add(d); camera.position.add(d);
+      if (want.pos) want.pos.add(d);
     }
   }
 
@@ -149,6 +241,7 @@ export function createGalaxyView(container, { onFrame } = {}) {
   }
   frameOn([0, 0, 0], 150);
   camera.position.copy(want.pos);
+  placeSatellites(0);
 
   let running = false;
   function resize() {
@@ -173,23 +266,29 @@ export function createGalaxyView(container, { onFrame } = {}) {
     controls.update();
     fleetGroup.visible = !!settings.get('starfleet');
     const show = settings.get('labels');
-    for (const t of tags) if (!t.o.parent || t.o.parent === scene) t.o.visible = show || t.always;
+    for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
+    for (const s of satellites) if (s.body.userData.quad) s.body.userData.quad.quaternion.copy(camera.quaternion);
     renderer.render(scene, camera);
     labels.render(scene, camera);
-    tmp.set(...sol).project(camera);
-    const behind = new THREE.Vector3(...sol).applyMatrix4(camera.matrixWorldInverse).z > 0;
+    const solNow = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch);
+    tmp.copy(solNow).project(camera);
+    const behind = solNow.clone().applyMatrix4(camera.matrixWorldInverse).z > 0;
     onFrame?.({ beacon: { x: tmp.x, y: tmp.y, behind, atFocus: false, visible: !behind && Math.abs(tmp.x) <= 1 && Math.abs(tmp.y) <= 1 } });
   }
 
   return {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
-    setStars,
+    setStars, setGaia, setTime,
+    get epoch() { return epoch; },
+    get gaiaCount() { return gaiaCount; },
     view(which) {
+      follow = which === 'sol';
       if (which === 'galaxy') frameOn([0, 0, 0], 150);
-      else if (which === 'sol') frameOn(sol, 5.5, 0.7);
+      else if (which === 'sol') frameOn(new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch).toArray(), 5.5, 0.7);
+      else if (which === 'gaia') { follow = true; frameOn(new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch).toArray(), 22, 0.75); }
       else if (which === 'centre') frameOn([0, 0, 0], 18, 0.6);
-      else if (which === 'satellites') frameOn([-10, -40, -40], 320, 0.9);
+      else if (which === 'satellites') frameOn([0, -55, 75], 360, 0.6);
     },
   };
 }

@@ -9,6 +9,7 @@ import { config } from './config.js';
 import { monthlyVectors, localDay, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
 import { clusters, galaxies } from './deepsky.js';
+import { gaiaBright } from './gaia.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from './stars.js';
@@ -36,6 +37,7 @@ const routes = {
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/clusters': async () => clusters(),
+  'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),

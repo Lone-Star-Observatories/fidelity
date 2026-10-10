@@ -72,6 +72,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
 | `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
+| `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/catalogs` | Inventory of local catalog folders |
@@ -155,7 +156,17 @@ View); clusters coloured by age, nebulae by kind. `src/views/universe/UniverseVi
 supergalactic frame (`galToSupergal` in `src/astro/frames.js`), Mly; Cosmicflows group positions
 are their velocity-space direction scaled to the measured distance. Both filter points in the
 shader by radius (`uRadius`) and labels by distance. Label `visible` must be a strict boolean
-(CSS2DRenderer only hides on `=== false`).
+(CSS2DRenderer only hides on `=== false`). The Universe View also draws the Local Group's
+CMB motion and Andromeda's approach (`MOTION`).
+
+## Galactic deep time
+
+`src/astro/galaxy.js` holds the dynamics: a flat rotation curve with a soft core (`omega(R)`),
+the arm pattern speed and integrated satellite orbits (`integrateOrbit`, leapfrog in a log
+halo, ±2 Gyr). The Galaxy View turns stars in the vertex shader by −Ω(R)·t about +y (the disc
+turns towards scene −z at the Sun), the image and arm labels in `patternGroup` at Ωp, and Sol,
+spokes, reach ring and Starfleet overlay in `sunGroup` at Ω☉. Satellite images are additive,
+camera-facing quads. The time loop lives in `main.js` (`galLoop`).
 
 ## Navigation lists and star motion
 

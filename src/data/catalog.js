@@ -145,3 +145,9 @@ export async function fetchPlanets(center, radiusLy) {
     .filter((r) => r[iDist] <= radiusLy).sort((a, b) => a[iDist] - b[iDist]);
   return { fields: p.fields, planets: rows };
 }
+
+/** Bright distant Gaia DR3 stars for the Galaxy View (same row shape as fetchGalaxyStars). */
+export async function fetchGaiaBright() {
+  if (snapshot) return snapshot.gaiaBright ?? null;
+  try { return await get('/api/gaia-bright'); } catch { return null; }
+}

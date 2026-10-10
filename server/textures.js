@@ -68,12 +68,16 @@ export const TEXTURES = {
   ceres: [usgs('Ceres_Dawn_FC_DLR_global_20ppd_Oct2015.tif', 'Dawn Framing Camera global mosaic (DLR, 2015)')],
   vesta: [usgs('Vesta_Dawn_FC_HAMO_Mosaic_Global_74ppd.tif', 'Dawn Framing Camera HAMO global mosaic')],
   milkyWay: [src(`${NASA}PIA10748/PIA10748~orig.jpg`, "NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748: artist's concept from Spitzer data")],
+  // the Magellanic Clouds as Spitzer saw them in infrared (real images, false colour)
+  lmc: [src(`${NASA}PIA07136/PIA07136~large.jpg`, 'NASA/JPL-Caltech/M. Meixner (STScI) & the SAGE Legacy Team, PIA07136: Spitzer infrared mosaic')],
+  smc: [src(`${NASA}PIA12485/PIA12485~large.jpg`, 'NASA/JPL-Caltech/STScI, PIA12485: Spitzer infrared mosaic')],
 };
 
 // Smaller variants for the standalone preview, which embeds every image in one HTML file.
 export const PREVIEW = {
   earth: `${SSS}2k_earth_daymap.jpg`, earthClouds: `${SSS}2k_earth_clouds.jpg`, earthNight: `${SSS}2k_earth_nightmap.jpg`,
   jupiter: `${NASA}PIA07782/PIA07782~large.jpg`, pluto: `${NASA}PIA11707/PIA11707~large.jpg`, milkyWay: `${NASA}PIA10748/PIA10748~large.jpg`,
+  lmc: `${NASA}PIA07136/PIA07136~small.jpg`, smc: `${NASA}PIA12485/PIA12485~small.jpg`,
 };
 
 const MIME = { '.jpg': 'image/jpeg', '.png': 'image/png' };

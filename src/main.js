@@ -9,13 +9,14 @@ import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
+import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
-import { createUniverseView, typeName, MLY_PER_MPC } from './views/universe/UniverseView.js';
+import { createUniverseView, typeName, MLY_PER_MPC, MOTION } from './views/universe/UniverseView.js';
 import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -424,19 +425,38 @@ function renderOfflinePanel(level) {
 }
 
 // ---- galaxy panel ------------------------------------------------------------------------
+// Galactic deep time (#18): Myr per second of wall clock, within ±2 Gyr.
+const GAL_RATES = [[0.001, '1 KYR / S'], [0.1, '100 KYR / S'], [1, '1 MYR / S'], [10, '10 MYR / S'], [50, '50 MYR / S']];
+const GAL_MAX = 2000;
+let galRate = 1, galDir = 0, galLast = null;
+const myr = (t) => (Math.abs(t) < 1 ? `${fmt(t * 1000, 0)} THOUSAND YEARS` : Math.abs(t) < 1000 ? `${fmt(t, Math.abs(t) < 10 ? 1 : 0)} MILLION YEARS` : `${fmt(t / 1000, 2)} BILLION YEARS`);
+function galEpochText() {
+  const t = galaxy.epoch;
+  if (Math.abs(t) < 1e-6) return 'NOW';
+  return `${t > 0 ? '+' : '−'}${myr(Math.abs(t))} · ${fmt(Math.abs(t) / GALACTIC_YEAR_MYR, 2)} GALACTIC YEARS · SUN TURNED ${fmt((Math.abs(t) * OMEGA_SUN * 180) / Math.PI % 360, 0)}°`;
+}
 function renderGalaxyPanel() {
   resetLive();
   const fleet = pill(settings.get('starfleet') ? 'STARFLEET OVERLAY: ON' : 'STARFLEET OVERLAY: OFF', () => {
     settings.set('starfleet', !settings.get('starfleet'));
     renderGalaxyPanel();
   }, settings.get('starfleet') ? 'on' : '');
+  live.galEpoch = h('p', { className: 'warn mono', textContent: galEpochText() });
+  const gaia = galaxy.gaiaCount;
   panel.replaceChildren(
     h('h2', { textContent: 'MILKY WAY' }),
     h('div', { className: 'kind', textContent: 'BARRED SPIRAL GALAXY · SEEN FROM GALACTIC NORTH' }),
     h('h3', { textContent: 'VIEW' }),
     h('div', { className: 'body-list' },
-      pill('WHOLE GALAXY', () => galaxy.view('galaxy')), pill('SOLAR NEIGHBOURHOOD', () => galaxy.view('sol')),
+      pill('WHOLE GALAXY', () => galaxy.view('galaxy')), pill('SOLAR NEIGHBOURHOOD', () => galaxy.view('sol')), pill('GAIA STARS', () => galaxy.view('gaia')),
       pill('GALACTIC CENTRE', () => galaxy.view('centre')), pill('SATELLITE GALAXIES', () => galaxy.view('satellites'))),
+    h('h3', { textContent: 'GALACTIC TIME' }),
+    h('div', { className: 'body-list' },
+      pill('◀◀', () => { galDir = -1; }, 'square'), pill('❚❚', () => { galDir = 0; }, 'square'), pill('▶▶', () => { galDir = 1; }, 'square'),
+      pill('NOW', () => { galDir = 0; galaxy.setTime(0); }, 'square')),
+    h('div', { className: 'body-list' }, GAL_RATES.map(([r, label]) => pill(label, () => { galRate = r; renderGalaxyPanel(); }, r === galRate ? 'on' : ''))),
+    live.galEpoch,
+    h('p', { className: 'note', textContent: 'Stars circle the centre on a flat rotation curve, so the inner disc laps the outer and the neighbourhood smears into an arc. The spiral arms are a pattern that turns at its own speed; the Sun sits close to corotation, so it keeps pace with them. The satellite galaxies follow their orbits (±2 billion years).' }),
     h('h3', { textContent: 'QUADRANTS' }),
     h('div', { className: 'body-list' }, fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
     h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. The Starfleet overlay draws Star Trek\'s Alpha–Delta quadrants, centred on the galactic core.' }),
@@ -444,16 +464,32 @@ function renderGalaxyPanel() {
     factList([
       { label: 'SOL → CENTRE', value: `${R0_KLY.toFixed(1)} KLY`, tier: 'measured', detail: 'R₀ = 8.178 kpc from stars orbiting Sgr A* (GRAVITY Collaboration 2019).' },
       { label: 'SOL ABOVE PLANE', value: '68 LY', tier: 'measured', detail: 'z₀ = 20.8 pc (Bennett & Bovy 2019).' },
-      { label: 'SOL ORBIT SPEED', value: '≈ 230 KM/S', tier: 'measured', detail: 'Circular velocity at the Sun (e.g. Eilers et al. 2019).' },
-      { label: 'GALACTIC YEAR', value: '≈ 225 MILLION YR', tier: 'computed', detail: '2πR₀ / v.' },
+      { label: 'SOL ORBIT SPEED', value: `≈ ${VC_KMS} KM/S`, tier: 'measured', detail: 'Circular velocity at the Sun (e.g. Eilers et al. 2019); the Sun itself moves ~12 km/s faster than that (Schönrich et al. 2010).' },
+      { label: 'GALACTIC YEAR', value: `≈ ${fmt(GALACTIC_YEAR_MYR, 0)} MILLION YR`, tier: 'computed', detail: '2πR₀ / v. The last time the Sun was here, the first dinosaurs were appearing.' },
+      { label: 'ARM PATTERN SPEED', value: '28.2 KM/S/KPC', tier: 'measured', detail: `From the birthplaces of Gaia open clusters (Dias et al. 2019): one turn in ${fmt((2 * Math.PI) / OMEGA_PATTERN, 0)} million years, close to the Sun's own.` },
+      { label: 'ROTATION MODEL', value: 'FLAT CURVE', tier: 'modelled', detail: 'Every star on a circular orbit at its present radius; real stars also oscillate in and out and up and down (epicycles), so this shows the shear, not individual futures.' },
       { label: 'STARS', value: '100–400 BILLION', tier: 'modelled', detail: 'From the galaxy\'s mass and light; nobody has counted them.' },
       { label: 'SGR A* MASS', value: '4.3 MILLION × SUN', tier: 'measured', detail: 'From the orbit of the star S2 (GRAVITY 2019); imaged by the Event Horizon Telescope in 2022.' },
       { label: 'IMAGE', value: "ARTIST'S CONCEPT", tier: 'imagined', detail: `NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748, built from Spitzer data. We cannot photograph our galaxy from outside. Scaled so Sol sits at R₀; the image spans ${IMAGE.widthKly.toFixed(0)} kly.` },
-      { label: 'BLUE DOTS', value: 'CATALOGUE STARS', tier: 'measured', detail: 'Every HYG star within 1,500 ly brighter than absolute magnitude 2, at its parallax position. That is as far as the catalogue reaches: a tiny bubble in the galaxy.' },
+      { label: 'NEAR STARS', value: 'HYG · TO 1.5 KLY', tier: 'measured', detail: 'Every HYG star within 1,500 ly brighter than absolute magnitude 2, at its parallax position.' },
+      { label: 'FAR STARS', value: gaia ? `${fmt(gaia, 0)} · GAIA DR3` : 'GAIA DR3 · LOADING', tier: 'measured', detail: 'Gaia DR3 stars brighter than G = 9 with parallax better than 10%, beyond ~1.6 kly: they trace the Orion Spur and reach into the Perseus and Sagittarius arms. Dust hides everything farther, which is why the galaxy beyond is still drawn from a concept.' },
+      { label: 'STARS IN OTHER GALAXIES', value: 'ONLY THE BRIGHTEST', tier: 'measured', detail: 'Gaia measures individual stars in the Magellanic Clouds, but their parallaxes are too small to place them one by one; Hubble resolves stars in Andromeda. So the Clouds are shown as images.' },
+      { label: 'MAGELLANIC CLOUDS', value: 'SPITZER INFRARED', tier: 'measured', detail: 'Real images: LMC PIA07136 (NASA/JPL-Caltech/M. Meixner, SAGE), SMC PIA12485 (NASA/JPL-Caltech/STScI). Drawn at their real diameters, 32 kly and 19 kly, always facing you.' },
+      { label: 'SATELLITE ORBITS', value: 'INTEGRATED · ±2 GYR', tier: 'modelled', detail: 'From HST proper motions (Kallivayalil et al. 2013) and Law & Majewski 2010 for Sagittarius, in a simple halo (233 km/s, no dynamical friction). The Clouds may be on their first pass, so treat the past half (dashed) as a sketch.' },
     ]),
     renderLegend(),
   );
 }
+(function galLoop(now) {
+  requestAnimationFrame(galLoop);
+  const dt = galLast == null ? 0 : Math.min(0.25, (now - galLast) / 1000);
+  galLast = now;
+  if (route.level !== 'galaxy' || !galDir) return;
+  const t = Math.max(-GAL_MAX, Math.min(GAL_MAX, galaxy.epoch + galDir * galRate * dt));
+  if (t === galaxy.epoch) galDir = 0;
+  galaxy.setTime(t);
+  if (live.galEpoch) live.galEpoch.textContent = galEpochText();
+})(performance.now());
 
 // ---- quadrant & universe panels ------------------------------------------------------------
 const hex = (n) => `#${n.toString(16).padStart(6, '0')}`;
@@ -549,6 +585,9 @@ function renderUniversePanel() {
     factList([
       { label: 'NEARBY GALAXIES', value: '869 · UNGC', tier: 'measured', detail: 'Karachentsev et al. 2013: every known galaxy within ~11 Mpc (36 million ly).' },
       { label: 'GROUPS', value: '38,000 · COSMICFLOWS-4', tier: 'measured', detail: 'Tully et al. 2023: galaxy groups with distances measured independently of redshift.' },
+      { label: 'LOCAL GROUP MOTION', value: `${MOTION.lg.kms} KM/S`, tier: 'measured', detail: `Gold arrow. The cosmic microwave background looks hotter one way than the other: we move through it towards l = ${MOTION.lg.l}°, b = +${MOTION.lg.b}° (COBE, Planck), mostly pulled by the Great Attractor and the Shapley Supercluster. That is ${fmt(MOTION.lg.kms * 3.3356e-3, 1)} million ly every billion years.` },
+      { label: 'ANDROMEDA', value: `${-MOTION.m31.radialKms} KM/S CLOSING`, tier: 'measured', detail: `Red arrow (zoom to 3 or 10 MLY). Its blueshift and Hubble proper motions (~${MOTION.m31.tangentialKms} km/s sideways; van der Marel et al. 2019) give a near head-on approach.` },
+      { label: 'MILKOMEDA', value: `IN ~${MOTION.m31.mergeGyr} BILLION YR`, tier: 'modelled', detail: 'N-body simulations put the first pass in ~4 billion years and the merger into one elliptical galaxy ~2 billion years later; newer Gaia-based work gives it only ~50% odds within 10 billion years (Sawala et al. 2025).' },
       { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
     ]),
     h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),
@@ -977,7 +1016,11 @@ onRoute(async (r) => {
     $('beacon-sub').textContent = currentSystem === 'sol' ? 'HOME' : 'RETURN';
     galaxy.show();
     renderGalaxyPanel();
-    if (!galaxyStarsLoaded) { galaxyStarsLoaded = true; fetchGalaxyStars().then((d) => galaxy.setStars(d)); }
+    if (!galaxyStarsLoaded) {
+      galaxyStarsLoaded = true;
+      fetchGalaxyStars().then((d) => galaxy.setStars(d));
+      fetchGaiaBright().then((d) => { galaxy.setGaia(d); if (route.level === 'galaxy') renderGalaxyPanel(); });
+    }
   } else if (r.level === 'navigation') {
     system.hide();
     starView.hide();
