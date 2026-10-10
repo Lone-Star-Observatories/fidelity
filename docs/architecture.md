@@ -242,6 +242,15 @@ wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (b
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
 
+Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
+every disc covers 2·asin(R/d) from the first frame; the HUD reports the true and the drawn diameter of
+the Sun and the Moon (or the parent planet) and the field as horizontal × vertical. FOV presets set
+`camera.fov` from a horizontal field (cameras, eye) or a round field's diameter (binoculars,
+telescope). The orbit-view glare sprite is hidden while standing; `skyglare.js` draws a glare plane
+fixed in the observer's field (it does not grow with magnification), outside the disc only, scaled by
+`glareStrength` (illuminance ∝ 1/d², airmass extinction, eclipse obscuration). ENLARGED ×4 multiplies
+the Sun's and the Moon's mesh scale and says so in the HUD.
+
 ## Text search (#63)
 
 `src/data/search.js` is the pure matcher (fold to lower case without accents, Greek letters spelled

@@ -599,3 +599,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .search-row.on, .search-row:hover { background: rgba(204, 153, 204, 0.22); }
 .search-note { color: var(--dim); font-size: calc(12px * var(--text-scale, 1)); padding: 8px; margin: 0; line-height: 1.4; }
 @media (max-width: 760px) { .search-input { width: 110px; } .search-input:focus { width: 60vw; } }
+/* surface view field-of-view presets (#47) */
+.surface-presets { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 4px; }
+.surface-presets .pill { height: 24px; font-size: calc(11px * var(--text-scale, 1)); padding: 0 10px; }
+.surface-presets .pill.on { background: var(--orange); }

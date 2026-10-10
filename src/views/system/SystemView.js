@@ -48,6 +48,8 @@ import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
 import { createMagFields } from './magfields.js';
+import { createSkyGlare } from './skyglare.js';
+import { angularDiameterDeg, FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
@@ -1194,7 +1196,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     }, 260);
   });
   labels.domElement.addEventListener('dblclick', (e) => {
-    if (surface) return;
+    if (surface) { zoomOnDisc(e); return; }
     clearTimeout(clickTimer);
     const hit = pick(e);
     if (!hit) return;
@@ -1209,7 +1211,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // ---- surface view: stand where you double-clicked and look up ---------------------------
   // The camera sits 2 m above the surface, turns with the body, and starts at the zenith.
   // TRUE scale while standing (the sky must be real); drag to look around, wheel to zoom.
-  let surface = null; // { id, object, local (object frame), normal (object frame), az, alt, fov, prevScale, sphere }
+  let surface = null, skyGlare = null; // { id, object, local (object frame), normal (object frame), az, alt, fov, prevScale, sphere }
   const hud = document.createElement('div');
   hud.className = 'surface-hud';
   hud.hidden = true;
@@ -1220,7 +1222,18 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // turn to the Sun (and zoom in): the way to watch an eclipse (#31)
   const hudSun = Object.assign(document.createElement('button'), { className: 'pill', textContent: '☉ LOOK AT THE SUN' });
   hudSun.addEventListener('click', () => { if (surface) surface.lookSun = true; });
-  hud.append(hudText, hudSub, hudBack, hudSun);
+  // field-of-view presets and the optional (labelled) enlarged Sun and Moon (#47)
+  const hudFov = document.createElement('div');
+  hudFov.className = 'surface-presets';
+  const presetBtns = FOV_PRESETS.map((p) => {
+    const b = Object.assign(document.createElement('button'), { className: 'pill', textContent: `${p.label} ${p.deg}°`, title: p.note });
+    b.addEventListener('click', () => { if (surface) { surface.fov = presetFov(p, camera.aspect); surface.preset = p.id; } });
+    return b;
+  });
+  const hudBig = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'TRUE SIZE', title: 'Sun and Moon at their true angular size. Click to enlarge them ×4 (labelled IMAGINED) for visibility.' });
+  hudBig.addEventListener('click', () => { if (surface) surface.enlarge = surface.enlarge === 1 ? 4 : 1; });
+  hudFov.append(...presetBtns, hudBig);
+  hud.append(hudText, hudSub, hudBack, hudSun, hudFov);
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1245,7 +1258,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (!n) return;
     const sphere = object === n.mesh;
     surface = { id, object, local, normal: sphere ? local.clone().normalize() : normal.normalize(), az: 0, alt: 90, fov: 70,
-      prevScale: settings.get('scale'), sphere, frame: null };
+      prevScale: settings.get('scale'), sphere, frame: null, enlarge: 1, preset: null, sizes: null };
+    scaleMix = 1; // TRUE scale at once: an easing disc would be the wrong size for its first seconds
     flight = null;
     focusId = id;
     overviewAU = null;
@@ -1262,6 +1276,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     for (const c of [...compass, zenithTag]) c.visible = false;
     skyMat.uniforms.uFade.value = 1;
     scene.background = null;
+    skyGlare?.hide();
+    const g = nodes[model?.starId]?.mesh?.children?.find((ch) => ch.isSprite);
+    if (g) g.visible = true;
     camera.fov = 50; camera.updateProjectionMatrix();
     camera.up.set(0, 1, 0);
     controls.enabled = true;
@@ -1289,7 +1306,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   labels.domElement.addEventListener('wheel', (e) => {
     if (!surface) return;
     e.preventDefault();
-    surface.fov = Math.max(2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+    surface.fov = Math.max(0.2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+    surface.preset = null;
   }, { passive: false });
 
   const sv = { a: new THREE.Vector3(), b: new THREE.Vector3(), c: new THREE.Vector3(), d: new THREE.Vector3(), e: new THREE.Vector3(), q: new THREE.Quaternion() };
@@ -1317,6 +1335,20 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       n.group.visible = show;
       n.label.visible = show;
     }
+  }
+  /** Double-click in the surface view: frame the Sun, Moon or planet nearest the cursor (#47). */
+  function zoomOnDisc(e) {
+    const s = surface, r = renderer.domElement.getBoundingClientRect();
+    let best = null;
+    for (const d of s.sizes ?? []) {
+      const q = d.pos.clone().project(camera);
+      if (q.z > 1) continue;
+      const px = Math.hypot(((q.x + 1) / 2) * r.width + r.left - e.clientX, ((1 - q.y) / 2) * r.height + r.top - e.clientY);
+      if (px < 60 && (!best || px < best.px)) best = { ...d, px };
+    }
+    if (!best) return;
+    const f = s.frame, a = altAz(f, best.pos.clone().sub(camera.position).toArray());
+    s.az = a.az; s.alt = Math.min(89.9, a.alt); s.fov = Math.max(0.2, Math.min(110, best.deg * 3)); s.preset = null;
   }
   // ---- the corona in totality (#31) -----------------------------------------------------------
   // A real photograph of the corona fades in when the Moon fully covers the Sun, its streamer
@@ -1437,9 +1469,32 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     s.eclipse = s.id === 'earth' && llNow && model.isSol ? eclipseDaylight(jd, llNow.lat, llNow.lon, surfacePoint) : null;
     if (s.eclipse) day *= s.eclipse.light;
     updateCorona(p, s.eclipse);
-    // the Sun's glare sprite goes with the sunlight that is left
+    // the Sun's glare (#47): the orbit-view sprite goes; a glare fixed in the observer's field, as
+    // bright as the sunlight that reaches the ground, takes over outside the exact disc
     const glare = nodes[model.starId]?.mesh?.children?.find((ch) => ch.isSprite);
-    if (glare) glare.material.opacity = 0.85 * (s.eclipse ? 1 - s.eclipse.obscuration : 1);
+    if (glare) glare.visible = false;
+    const sunPos = star.group.getWorldPosition(sv.d.clone());
+    const sunDistKm = sunPos.distanceTo(p) * AU_KM;
+    const sunDeg = angularDiameterDeg(star.body.radiusKm, sunDistKm);
+    skyGlare ??= createSkyGlare(scene);
+    const hasAir = !!DAY_SKY[s.id] && !DAY_SKY[s.id].always;
+    skyGlare.update({ sunPos, eye: p, camera, sunRadiusDeg: (sunDeg / 2) * s.enlarge, fovDeg: s.fov,
+      strength: glareStrength(sunDistKm / AU_KM, sun.alt, { obscuration: s.eclipse?.obscuration ?? 0, k: hasAir ? 0.2 : 0 }) * 0.9 });
+    // apparent sizes of the Sun and the other big discs in this sky, true and as rendered
+    const discs = [{ id: model.starId, label: 'SUN', pos: sunPos, deg: sunDeg }];
+    const other = s.id === 'earth' ? 'moon' : n.body.kind === 'moon' ? n.body.parent : null;
+    if (other && nodes[other]) {
+      const on = nodes[other], op = on.group.getWorldPosition(new THREE.Vector3());
+      discs.push({ id: other, label: on.body.name.toUpperCase(), pos: op, deg: angularDiameterDeg(on.body.radiusKm, op.distanceTo(p) * AU_KM) });
+    }
+    for (const d of discs) { // rendered: the mesh's world radius over its distance (TRUE scale makes them equal)
+      const m = nodes[d.id].mesh;
+      if (s.enlarge !== 1) nodes[d.id].tilt.scale.multiplyScalar(s.enlarge);
+      m.updateWorldMatrix(true, false);
+      const wr = new THREE.Vector3().setFromMatrixScale(m.matrixWorld).x;
+      d.renderedDeg = (2 * Math.asin(Math.min(1, wr / d.pos.distanceTo(p))) * 180) / Math.PI;
+    }
+    s.sizes = discs;
     if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
@@ -1455,9 +1510,17 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
     const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ` · TOTAL ECLIPSE: TOTALITY${coronaTxt}` : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN${coronaTxt}`) : '';
     const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
-    const sub = `${look} · ${sunTxt} · FOV ${Math.round(s.fov)}°${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    const dp = (x) => (x >= 1 ? x.toFixed(1) : x >= 0.1 ? x.toFixed(2) : x >= 0.01 ? x.toFixed(3) : `${(x * 3600).toFixed(1)}″`).replace(/(\d)$/, '$1°');
+    const sizes = `${discs.map((d) => `${d.label} ${dp(d.deg)}`).join(' · ')}${s.enlarge !== 1 ? ` · SUN & ${discs[1]?.label ?? 'MOON'} ENLARGED ×${s.enlarge} (IMAGINED, NOT TRUE SIZE)` : ''}`;
+    const hfov = horizontalFov(s.fov, camera.aspect);
+    const fovTxt = `FOV ${hfov < 10 ? hfov.toFixed(1) : Math.round(hfov)}° × ${s.fov < 10 ? s.fov.toFixed(1) : Math.round(s.fov)}°${s.preset ? ` (${FOV_PRESETS.find((x) => x.id === s.preset).label})` : ''}`;
+    presetBtns.forEach((b, i) => b.classList.toggle('on', s.preset === FOV_PRESETS[i].id));
+    hudBig.textContent = s.enlarge === 1 ? 'TRUE SIZE' : `ENLARGED ×${s.enlarge}`;
+    hudBig.classList.toggle('on', s.enlarge !== 1);
+    const sub = `${look} · ${sunTxt} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
+    hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
   }
 
   // ---- frame loop -------------------------------------------------------------------------
@@ -1487,8 +1550,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (!model) return;
     const jd = clock.jd;
 
-    const targetMix = settings.get('scale') === 'true' ? 1 : 0;
+    const targetMix = settings.get('scale') === 'true' || surface ? 1 : 0;
     scaleMix += (targetMix - scaleMix) * 0.08;
+    if (surface) scaleMix = 1;
     if (Math.abs(targetMix - scaleMix) < 1e-3) scaleMix = targetMix;
     const showLabels = settings.get('labels'), showOrbits = settings.get('orbits');
 
@@ -1700,6 +1764,17 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       surface.lookSun = lookSun;
       surface.lookBest = look === 'best';
       surface.daylight = daylight;
+      return true;
+    },
+    /** The surface view's apparent sizes (#47): [{ id, label, deg (true), renderedDeg }], and the field. */
+    surfaceInfo() { return surface ? { fov: surface.fov, hfov: horizontalFov(surface.fov, camera.aspect), preset: surface.preset, enlarge: surface.enlarge, az: surface.az, alt: surface.alt,
+      sizes: (surface.sizes ?? []).map(({ id, label, deg, renderedDeg }) => ({ id, label, deg, renderedDeg })) } : null; },
+    /** Point the surface camera: { az, alt, fov, preset, enlarge } (any subset). */
+    surfaceLook(o = {}) {
+      if (!surface) return false;
+      if (o.preset) { const p = FOV_PRESETS.find((x) => x.id === o.preset); if (p) { surface.fov = presetFov(p, camera.aspect); surface.preset = p.id; } }
+      for (const k of ['az', 'alt', 'fov', 'enlarge']) if (o[k] != null) surface[k] = o[k];
+      if (o.target) { const d = (surface.sizes ?? []).find((x) => x.id === o.target); if (d && surface.frame) { const a = altAz(surface.frame, d.pos.clone().sub(camera.position).toArray()); surface.az = a.az; surface.alt = Math.min(89.9, a.alt); } }
       return true;
     },
     /** #36: the surface view as a JPEG data URL (≤ maxW px wide) with its read-out, or null when not standing. */
