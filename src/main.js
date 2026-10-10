@@ -206,8 +206,8 @@ applyTextScale();
   const btn = (label, dir, title) => Object.assign(h('button', { className: 'pill square', textContent: label, title }), { onclick: () => stepText(dir) });
   $('text-size').append(btn('A−', -1, 'Smaller text'), textOut, btn('A+', 1, 'Larger text'));
 }
-// the bottom bar scrolls sideways with the mouse wheel when its controls overflow
-controls.addEventListener('wheel', (e) => { if (controls.scrollWidth > controls.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { controls.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
+// each bottom-bar row scrolls sideways with the mouse wheel when its controls overflow
+const scrollRow = (row) => { row.addEventListener('wheel', (e) => { if (row.scrollWidth > row.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { row.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false }); return row; };
 // ---- the spectrum filter (#28) ------------------------------------------------------------
 const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
 const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
@@ -357,7 +357,8 @@ window.addEventListener('keydown', (e) => {
   else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
 });
 
-controls.append(
+// two rows: the time controls above, everything else on the elbow's arm below
+controls.append(scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' },
     h('div', { className: 'ctl-label', textContent: 'TIME' }),
     pill('◀◀', () => clock.slower(), 'square'), holdBtn, pill('▶▶', () => clock.faster(), 'square'),
@@ -365,14 +366,14 @@ controls.append(
   h('div', { className: 'ctl-group', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' },
     h('div', { className: 'ctl-label', textContent: 'STEP' }),
     pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')),
+  h('div', { className: 'bar-fill' }))), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
   h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
-  h('div', { className: 'bar-fill' }),
-);
+  h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
 if (STANDALONE) {

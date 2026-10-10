@@ -268,7 +268,7 @@ fractional or negative; it and the unit are remembered.
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-The bottom bar scrolls sideways with the mouse wheel when its controls overflow.
+The bottom bar has two rows: TIME and STEP on top, the view toggles (scale, spectrum, ephemeris, layers) on the elbow's arm below; each row scrolls sideways with the mouse wheel when its controls overflow.
 
 ## Spectrum filter (#28)
 

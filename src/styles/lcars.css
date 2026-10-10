@@ -37,7 +37,7 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
   height: 100%;
   display: grid;
   grid-template-columns: calc(var(--rail-w) + 14px) minmax(0, 1fr) var(--panel-w, clamp(380px, 32vw, 520px));
-  grid-template-rows: 72px 1fr 72px;
+  grid-template-rows: 72px 1fr calc(72px + var(--bar-h) + var(--gap));
   grid-template-areas:
     'elbowT top top'
     'rail view panel'
@@ -59,7 +59,10 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
 /* ---- bars ---------------------------------------------------------------------- */
 .bar { display: flex; gap: var(--gap); align-items: flex-start; min-width: 0; }
 .bar-top { grid-area: top; }
-.bar-bottom { grid-area: bottom; align-items: flex-end; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.bar-bottom { grid-area: bottom; flex-direction: column; justify-content: flex-end; align-items: stretch; }
+.bar-bottom > .bar-row { display: flex; gap: var(--gap); align-items: flex-end; min-width: 0; height: var(--bar-h); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.bar-row > * { flex: none; }
+.bar-row > .bar-fill { flex: 1 0 24px; }
 .bar > * { height: var(--bar-h); flex: none; }
 .bar-title {
   color: var(--orange); font-size: calc(34px * var(--text-scale, 1)); line-height: 30px; font-weight: 600;
@@ -328,7 +331,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
   .lcars {
     height: auto; min-height: 100%;
     grid-template-columns: calc(var(--rail-w) + 10px) 1fr;
-    grid-template-rows: 72px 62vh auto 72px;
+    grid-template-rows: 72px 62vh auto calc(72px + var(--bar-h) + var(--gap));
     grid-template-areas: 'elbowT top' 'rail view' 'panel panel' 'elbowB bottom';
     padding: 8px;
   }
@@ -419,6 +422,6 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .text-size-ctl { display: flex; align-items: center; gap: 3px; height: var(--bar-h); margin-right: 6px; }
 .text-size-ctl .pill { height: var(--bar-h); min-width: 36px; }
 .ctl-readout.text-size { min-width: 52px; text-align: center; height: var(--bar-h); display: flex; align-items: center; justify-content: center; color: var(--peach); }
-.bar-bottom { scrollbar-width: thin; scrollbar-color: var(--lilac) transparent; }
+.bar-bottom > .bar-row { scrollbar-width: thin; scrollbar-color: var(--lilac) transparent; }
 .ctl-num { width: 64px; height: 30px; align-self: flex-end; background: #000; color: var(--peach); border: 2px solid var(--lilac); border-radius: 14px; padding: 0 8px;
   font: inherit; font-size: calc(13px * var(--text-scale, 1)); text-align: right; }
