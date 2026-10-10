@@ -19,6 +19,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
+│                                      │           │ server/search.js    star search   │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -240,6 +241,17 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
+## Text search (#63)
+
+`src/data/search.js` is the pure matcher (fold to lower case without accents, Greek letters spelled
+out; exact > prefix > word prefix > substring > typo-tolerant Damerau–Levenshtein, which runs only
+when exact matching finds little), shared by the browser and `server/search.js`. `src/data/search-index.js`
+builds the static entries (Sol bodies with aliases and minor-planet numbers, spacecraft with acronyms,
+missions, sites, deep sky); `src/panels/search.js` adds the events feed, sky events and the satellite
+catalogue, asks `/api/star-search` for stars and exoplanets (HYG designations kept by `parseHyg` as
+`alt`), groups hits by kind with badges and routes a pick through `go()` or shell actions (stand at a
+site, select in the Quadrant or Universe View, open a mission card, set the clock for a sky event).
 
 ## Space telescopes
 

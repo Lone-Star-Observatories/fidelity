@@ -19,7 +19,7 @@ import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -43,6 +43,9 @@ import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
 import { createMagneticPanel } from './panels/magnetic.js';
+import { createSearch } from './panels/search.js';
+import { FUTURE_MISSIONS } from './data/future-missions.js';
+import { SITES } from './data/sites.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -500,6 +503,20 @@ const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, 
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
+createSearch({ h, badge, $, go, clock, actions: {
+  satellites: () => satPanel.load(),
+  stars: (q) => fetchStarSearch(q),
+  mission: (id) => { const m = FUTURE_MISSIONS.find((x) => x.id === id); if (m) futurePanel.openCard(m); },
+  site: (id) => {
+    const s = SITES.find((x) => x.id === id);
+    if (!s) return;
+    if (route.level === 'system' && currentSystem === 'sol' && system.focusId === s.body) system.surfaceAt(s.body, s.lat, s.lon);
+    else { pendingSurface = { id: s.body, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: s.body }); }
+  },
+  quadrant: (id) => { quadrantSel = id; if (route.level === 'quadrant') { quadrant.select(id); renderQuadrantPanel(); } else go({ level: 'quadrant' }); },
+  universe: (id) => { universeSel = id; if (route.level === 'universe') { universe.select(id); renderUniversePanel(); } else go({ level: 'universe' }); },
+} });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
   let satrecs = new Map();
@@ -1336,15 +1353,16 @@ onRoute(async (r) => {
       if (!quadrantLoaded) {
         quadrantLoaded = true;
         fetchGalaxyStars().then((d) => quadrant.setStars(d));
-        fetchClusters().then((d) => { quadrant.setClusters(d); if (route.level === 'quadrant') renderQuadrantPanel(); });
+        fetchClusters().then((d) => { quadrant.setClusters(d); if (quadrantSel) quadrant.select(quadrantSel); if (route.level === 'quadrant') renderQuadrantPanel(); });
       }
     } else {
       $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
       universe.show();
+      if (universeSel) universe.select(universeSel);
       renderUniversePanel();
       if (!universeLoaded) {
         universeLoaded = true;
-        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (route.level === 'universe') renderUniversePanel(); });
+        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (universeSel) universe.select(universeSel); if (route.level === 'universe') renderUniversePanel(); });
       }
     }
     return;
