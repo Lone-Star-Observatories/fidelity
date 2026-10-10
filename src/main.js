@@ -177,6 +177,28 @@ $('beacon').addEventListener('click', () => go({ level: 'system', system: 'sol' 
 
 // ---- bottom controls ----------------------------------------------------------------------
 const controls = $('controls');
+// ---- text size ------------------------------------------------------------------------------
+const TEXT_STEPS = [0.8, 0.9, 1, 1.1, 1.25, 1.4, 1.6];
+const textOut = h('div', { className: 'ctl-readout mono text-size', title: 'Text size' });
+function applyTextScale() {
+  const v = settings.get('textScale') ?? 1;
+  document.documentElement.style.setProperty('--text-scale', String(v));
+  textOut.textContent = `${Math.round(v * 100)}%`;
+  window.dispatchEvent(new Event('resize')); // labels and panels re-measure
+}
+const stepText = (dir) => {
+  const v = settings.get('textScale') ?? 1;
+  const i = TEXT_STEPS.reduce((best, s, k) => (Math.abs(s - v) < Math.abs(TEXT_STEPS[best] - v) ? k : best), 0);
+  settings.set('textScale', TEXT_STEPS[Math.max(0, Math.min(TEXT_STEPS.length - 1, i + dir))]);
+};
+settings.onChange((k) => { if (k === 'textScale') applyTextScale(); });
+applyTextScale();
+{ // in the top bar, so it is always in reach
+  const btn = (label, dir, title) => Object.assign(h('button', { className: 'pill square', textContent: label, title }), { onclick: () => stepText(dir) });
+  $('text-size').append(btn('A−', -1, 'Smaller text'), textOut, btn('A+', 1, 'Larger text'));
+}
+// the bottom bar scrolls sideways with the mouse wheel when its controls overflow
+controls.addEventListener('wheel', (e) => { if (controls.scrollWidth > controls.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { controls.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
 // ---- the spectrum filter (#28) ------------------------------------------------------------
 const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
 const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });

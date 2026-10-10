@@ -222,6 +222,12 @@ and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. W
 "show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
 resampler, command parsing.
 
+## Text size
+
+Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
+bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
+The bottom bar scrolls sideways with the mouse wheel when its controls overflow.
+
 ## Spectrum filter (#28)
 
 `src/data/bands.js` lists the bands (FULL, RADIO … GAMMA), their bandpasses with filter curves

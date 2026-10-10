@@ -498,7 +498,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill }) 
   ].map(([v, text, color]) => {
     const ln = document.createElementNS(SVGNS, 'line'), tx = document.createElementNS(SVGNS, 'text');
     ln.setAttribute('stroke', color); ln.setAttribute('stroke-width', '2'); ln.setAttribute('x1', '0'); ln.setAttribute('y1', '0');
-    tx.setAttribute('fill', color); tx.setAttribute('font-size', '10'); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
+    tx.setAttribute('fill', color); tx.setAttribute('font-size', String(10 * (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-scale')) || 1))); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
     tx.textContent = text;
     svg.append(ln, tx);
     return { v, text, ln, tx };
