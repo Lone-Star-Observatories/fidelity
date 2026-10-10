@@ -205,9 +205,8 @@ export async function fetchStarLookup(ra, dec, distLy, gaia = false) {
 /** A Mars rover's traverse (#37): { points: [[lon, lat], …], distanceKm, sol, credit }, or null offline. */
 export async function fetchTraverse(id) {
   if (snapshot) return null; // traverses need the local backend (or the bundled lunar file)
-  if (id.startsWith('moon:')) { // static, mapped by LROC from orbital imaging: shipped with the app
-    try { return (await get('/traverses/moon.json'))[id.slice(5)] ?? null; } catch { return null; }
-  }
+  const m = /^(moon|mars):(.+)$/.exec(id); // finished traverses, mapped once: shipped with the app
+  if (m) { try { return (await get(`/traverses/${m[1]}.json`))[m[2]] ?? null; } catch { return null; } }
   try { return await get(`/api/traverse/${id}`); } catch { return null; }
 }
 
@@ -219,4 +218,10 @@ export async function fetchObserving(mission) {
     fetch(`/api/observing/${mission}/recent`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ]);
   return { schedule, recent };
+}
+
+/** IAU named features for a body (USGS Gazetteer, bundled per body), or null if it has none. */
+export async function fetchFeatures(id) {
+  if (snapshot) return null;
+  try { return await get(`/features/${id}.json`); } catch { return null; }
 }

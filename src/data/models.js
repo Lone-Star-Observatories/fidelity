@@ -559,6 +559,31 @@ export const MODELS = {
     "previewSha256": "47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1",
     "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
     "previewTextureSize": 128
+  },
+  "perseverance": {
+    "url": "/models/perseverance.glb",
+    "source": "https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/25042_Perseverance.glb",
+    "credit": "NASA/JPL-Caltech",
+    "licence": "NASA Science mission visualization; credited source retained. Use authorized by project owner.",
+    "tier": "modelled",
+    "fidelity": "Published mission or class visualization; dimensions and body frame not independently calibrated.",
+    "retrieved": "2026-10-10",
+    "bytes": 1179032,
+    "triangles": 30412,
+    "sha256": "8e7715bd33ce1c4d3cd120b2af05e21dc11c825d21ec9c95f74eea47122ac825",
+    "frame": "Original author frame, retained; attitude is illustrative.",
+    "units": "Author units retained; viewer normalizes to existing catalog radius. Origin is bounding-box centre for display, not verified centre of mass.",
+    "sourceDate": null,
+    "sourceDateNote": "Asset creation date not supplied; NASA listing date is not an observation date.",
+    "processing": "Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed. Split normals removed before welding and simplification (≤20% target, 2% error ceiling); normals recomputed.",
+    "previewUrl": "/models/perseverance-preview.glb",
+    "previewBytes": 263368,
+    "previewSha256": "8c9a2a2011f45ec46eb9f62dd5a1713a702b6016f09f0913f4f4d6069ef8ebed",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128,
+    "sourcePage": "https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/",
+    "maxTextureSize": 512,
+    "sourceSha256": "484f00aa5d3739b127b6d413e77149a2d74ae87b76ae57463c4b91965ffb4990"
   }
 };
 

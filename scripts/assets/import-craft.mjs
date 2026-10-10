@@ -24,6 +24,7 @@ const imports = {
   'landsat-8': ['Landsat 8'], 'cubesat-1u': ['CubeSat - 1 RU Generic'], 'cubesat-2u': ['CubeSat - 2 RU Generic'],
   'geo-weather': ['Geostationary Operational Environmental Satellites'],
   'europa-clipper': { source: 'https://assets.science.nasa.gov/content/dam/science/missions/europa-clipper/3d/clipper_spacecraft.glb', credit: 'NASA/JPL-Caltech, Europa Clipper team', sourcePage: 'https://science.nasa.gov/missions/europa-clipper/europa-clipper-resources/europa-clipper-downloadable-3d-model/' },
+  perseverance: { source: 'https://assets.science.nasa.gov/content/dam/science/psd/mars/resources/gltf_files/25042_Perseverance.glb', credit: 'NASA/JPL-Caltech', sourcePage: 'https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/' },
   curiosity: { source: 'https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/c/Curiosity_static.glb', credit: 'NASA Visualization Technology Applications and Development (VTAD)', sourcePage: 'https://science.nasa.gov/resource/curiosity-3d-model/' },
 };
 
@@ -54,7 +55,7 @@ export async function importCraft(id, spec) {
     }
     for (const mesh of doc.getRoot().listMeshes()) for (const p of mesh.listPrimitives()) { p.setAttribute('TEXCOORD_0', null); p.setAttribute('TEXCOORD_1', null); }
   }
-  await doc.transform(dedup(), flatten(), join(), prune(), textureCompress({ encoder: sharp, resize: ['curiosity', 'europa-clipper'].includes(id) ? [512, 512] : [1024, 1024], quality: 65, ...(id === 'europa-clipper' ? {targetFormat:'webp'} : {}) }));
+  await doc.transform(dedup(), flatten(), join(), prune(), textureCompress({ encoder: sharp, resize: ['curiosity', 'perseverance', 'europa-clipper'].includes(id) ? [512, 512] : [1024, 1024], quality: 65, ...(id === 'europa-clipper' ? {targetFormat:'webp'} : {}) }));
   let processing = 'Deduplicated, flattened and joined; textures limited to 1024²; Meshopt compressed.';
   if (id === 'osiris-apex') processing += ' Source texture detail replaced by mean material colours to permit simplification; shape and original configuration retained.';
   if (count(doc) > 50000) {

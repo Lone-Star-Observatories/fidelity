@@ -15,6 +15,7 @@ const defaults = {
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
   axes: false,       // System View: spin axes, and Earth's precession circle on the sky
   fields: false,     // System View: MAG FIELDS: the Sun's field (Parker spiral, current sheet) and planetary magnetospheres (#38)
+  features: true,    // System View: IAU names of craters, mountains, valleys… on rocky and icy worlds
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
   siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model

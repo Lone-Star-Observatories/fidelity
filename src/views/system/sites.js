@@ -10,7 +10,9 @@ import { sitesFor, SITE_KINDS } from '../../data/sites.js';
 /** Unit direction in the globe's local frame for planetocentric lat / east lon (honours a body's texture offset). */
 export const siteDir = (body, lat, lon) => latLonToDir(lat, lon - ((body.texLon0 ?? -180) + 180));
 
-const DOT_R = 1.004, PATH_R = 1.002;
+// Just above the faceted globe (a 96-segment sphere dips ≤ 0.054% below radius 1 between vertices),
+// so paths sit on the ground when you fly down to a site rather than kilometres up.
+const DOT_R = 1.0008, PATH_R = 1.0006;
 const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), tmpC = new THREE.Vector3(), tmpS = new THREE.Vector3();
 
 /** Just the dots (Planet / Moon / Object View globes): a group per kind, or null if the body has no sites. */
@@ -27,7 +29,7 @@ export function siteDots(body, hidden = new Set()) {
   return group;
 }
 
-export function createSiteLayer(body, { onSite, loadTraverse }) {
+export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
   const list = sitesFor(body.id);
   if (!list.length) return null;
   const group = new THREE.Group();
@@ -67,7 +69,10 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
         const segs = (t?.paths ?? (t?.points ? [t.points] : [])).filter((p) => p.length > 1);
         if (!segs.length) return;
         const last = segs.at(-1).at(-1);
-        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit ?? t.source, last, live: !!t.points };
+        // extent of the paths around the site (km), for framing VIEW FROM ABOVE
+        const R = body.radiusKm, c = Math.cos(s.lat * Math.PI / 180);
+        const spanKm = Math.max(...segs.flat().map(([lon, lat]) => Math.hypot((((lon - s.lon + 540) % 360) - 180) * c, lat - s.lat) * Math.PI / 180 * R));
+        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit ?? t.source, last, live: !!t.points, spanKm };
         const mat = new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 });
         const line = new THREE.Group();
         line.userData.kind = s.kind;
@@ -80,6 +85,19 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
           new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff })));
         group.add(line);
         paths.push(line);
+        // a live rover gets its NASA model at the end of its path, hugely enlarged so it can be found
+        if (t.points && s.model && loadModel) loadModel(s.model).then((m) => {
+          if (!m) return;
+          const sizeKm = Math.max(0.4, spanKm * 0.07), up = new THREE.Vector3(...siteDir(body, last[1], last[0]));
+          const holder = new THREE.Group();
+          holder.position.copy(up).multiplyScalar(PATH_R + sizeKm / R * 0.6);
+          holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+          holder.scale.setScalar(sizeKm / R);
+          holder.add(m);
+          holder.userData.kind = s.kind;
+          line.add(holder);
+          s.traverseInfo.modelScale = Math.round((sizeKm * 1000) / (s.modelSizeM ?? 3));
+        }).catch(() => {});
       }).catch(() => {});
     }
   }
@@ -93,7 +111,7 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
     // From orbit only: dots and paths float a few kilometres up so they read on the globe, which from
     // the ground would put them in the sky.
     group.visible = on && focused && !surface;
-    if (!group.visible) return;
+    if (!group.visible) { layer.placed = []; return; }
     if (!pathsRequested) requestPaths();
     for (const [kind, d] of Object.entries(dots)) d.visible = !hidden.has(kind);
     for (const p of paths) p.visible = !hidden.has(p.userData.kind);
@@ -103,7 +121,7 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
     const dist = tmpB.length() / tmpS.x;
     const close = dist < 1.8; // within ~0.8 radii of the surface: every label, otherwise the major ones
     // Near side only (and not right on the limb), majors first, and no two labels overlapping on screen.
-    const placed = [];
+    const placed = (layer.placed = []);
     const order = labels.slice().sort((a, b) => (b.userData.site.major ? 1 : 0) - (a.userData.site.major ? 1 : 0));
     for (const l of order) {
       const s = l.userData.site;
@@ -122,5 +140,6 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
   function dispose() {
     group.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); if (o.isCSS2DObject) o.element.remove(); });
   }
-  return { group, update, dispose, sites: list };
+  const layer = { group, update, dispose, sites: list, placed: [] };
+  return layer;
 }

@@ -7,7 +7,7 @@ import { sitesFor, SITE_KINDS } from '../data/sites.js';
 const fmtLat = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'N' : 'S'}`;
 const fmtLon = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'E' : 'W'}`;
 
-export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, back }) {
+export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back }) {
   const hidden = () => new Set(settings.get('siteHidden') ?? []);
   const toggleKind = (k) => {
     const s = hidden();
@@ -47,7 +47,8 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     resetLive();
     const k = SITE_KINDS[s.kind];
     const facts = h('dl');
-    row(facts, 'WHAT', k.label, s.tier === 'planned' ? 'planned' : 'measured', k.hint);
+    row(facts, 'WHAT', s.kind === 'feature' ? s.type.toUpperCase() : k.label, s.tier === 'planned' ? 'planned' : 'measured', k.hint);
+    if (s.diameterKm) row(facts, 'SIZE', `${s.diameterKm.toLocaleString()} KM`, 'measured', 'Diameter or length (USGS Gazetteer).');
     if (s.mission) row(facts, 'MISSION', s.mission.toUpperCase(), 'measured');
     if (s.agency) row(facts, 'BY', s.agency.toUpperCase(), 'measured');
     if (s.vehicle) row(facts, 'LAUNCH VEHICLE', s.vehicle.toUpperCase(), 'measured');
@@ -62,6 +63,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     if (t) {
       if (t.distanceKm != null) row(drive, s.traverseVerb ?? 'DRIVEN', `${t.distanceKm.toLocaleString()} KM`, 'measured', `${t.credit}. Summed along the published path.`);
       if (t.sol != null) row(drive, 'PATH UP TO', `SOL ${t.sol}`, 'measured');
+      if (t.modelScale) row(drive, 'ROVER MODEL', `NASA MODEL · ENLARGED ×${t.modelScale.toLocaleString()}`, 'imagined', 'Drawn at its current position, enlarged so it can be found from above; the real rover is about 3 m long.');
       if (t.live) row(drive, 'NOW AT', `${fmtLat(t.last[1])} · ${fmtLon(t.last[0])}`, 'measured', 'End of the published traverse (the white dot).');
     }
     panel.replaceChildren(
@@ -69,16 +71,44 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
       h('div', { className: 'kind', textContent: `${body.name.toUpperCase()} · SITE OF NOTE · ${k.label}` }),
       h('div', { className: 'body-list' },
         pill('◀ BACK', () => back(body)),
-        pill('STAND HERE ▸', () => stand(body, s))),
+        pill('FROM ABOVE ▸', () => above(body, s)),
+        pill('STAND HERE ▸', () => stand(body, s)),
+        pill('WHOLE GLOBE', () => globe())),
       s.note ? h('p', { className: 'note explain', textContent: s.note }) : null,
       ...(s.identity ? [h('h3', { textContent: 'WHOSE ROCKET?' }), h('dl', {}, h('dt', { textContent: 'IDENTITY' }), h('dd', { textContent: s.identity }), badge('modelled', 'Orbit reconstruction; disputed and unconfirmed.'))] : []),
-      h('h3', { textContent: 'MISSION' }), facts,
+      h('h3', { textContent: s.kind === 'feature' ? 'FEATURE' : 'MISSION' }), facts,
       h('h3', { textContent: 'LOCATION' }), where,
       ...(drive ? [h('h3', { textContent: 'TRAVERSE' }), drive] : []),
       ...(s.feeds?.length ? [h('h3', { textContent: 'LIVE FEEDS' }), h('div', { className: 'body-list' }, s.feeds.map((f) => pill(`${f.label} ▸`, () => viewFeed(f, s.name.toUpperCase()))))] : []),
+      ...photos(s),
       s.url ? h('p', { className: 'note credit' }, 'SOURCE · ', h('a', { href: s.url, target: '_blank', rel: 'noopener', textContent: `${s.source} ↗` })) : h('p', { className: 'note credit', textContent: `SOURCE · ${s.source}` }),
       renderLegend(),
     );
+  }
+
+  /** PHOTOS: NASA Image and Video Library results for the mission (backend-cached), click to enlarge. */
+  function photos(s) {
+    if (!s.mission || ['feature', 'observatory', 'launch', 'planned'].includes(s.kind)) return [];
+    const term = s.mission.split(/[(/]/)[0].trim();
+    if (term.length < 3) return [];
+    const grid = h('div', { className: 'obs-grid' }), big = h('div', { className: 'obs-big' });
+    const note = h('p', { className: 'note', textContent: 'Searching the NASA Image and Video Library…' });
+    const search = (q) => fetch(`/api/nasa-images?${new URLSearchParams({ q, must: term.toLowerCase() })}`).then((r) => (r.ok ? r.json() : null));
+    const where = s.body === 'moon' ? 'lunar surface' : `${s.body} surface`;
+    // surface pictures first (a bare mission name finds anniversary events and launch-pad shots), then anything
+    search(`${term} ${where}`).then((a) => ((a?.items?.length ?? 0) >= 4 ? a : search(term))).then((res) => {
+      const items = (res?.items ?? []).slice(0, 12);
+      if (!items.length) { note.textContent = 'No photos found in the NASA library for this mission.'; return; }
+      note.textContent = 'From the NASA Image and Video Library, as captioned by NASA (some are artwork or diagrams: read the caption).';
+      grid.replaceChildren(...items.map((it) => {
+        const b = h('button', { className: 'obs-thumb', title: it.title }, h('img', { src: `/api/nasa-image/${encodeURIComponent(it.nasaId)}/thumb`, alt: it.title, loading: 'lazy' }), h('span', { textContent: it.title }));
+        b.addEventListener('click', () => big.replaceChildren(h('img', { src: `/api/nasa-image/${encodeURIComponent(it.nasaId)}/medium`, className: 'fv-img', alt: it.title }),
+          h('div', { className: 'obs-meta', textContent: `${it.title}${it.date ? ` · ${it.date}` : ''}${it.center ? ` · ${it.center}` : ''}`.toUpperCase() }),
+          it.description ? h('p', { className: 'note', textContent: it.description }) : null));
+        return b;
+      }));
+    }).catch(() => { note.textContent = 'Photos need the local backend.'; });
+    return [h('h3', {}, 'PHOTOS ', badge('reported', 'Published by NASA with its caption; not checked image by image.')), note, grid, big];
   }
 
   return { section, show };
