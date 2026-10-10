@@ -27,6 +27,7 @@ import { createSitesPanel } from './panels/sites.js';
 import { createNavList } from './panels/navlist.js';
 import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
 import { createStarCard } from './panels/starcard.js';
+import { deepSkyDetail } from './panels/deepsky.js';
 import { earthPole, moonAxes, poleStar, obliquityDeg } from './astro/orientation.js';
 import { moonGeocentric } from './astro/moons.js';
 import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
@@ -95,6 +96,7 @@ const quadrant = createQuadrantView($('quadrant-view'), {
   onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); },
   onPickStar: (p) => pickStarIn('quadrant', p),
   onDrill: (p) => go({ level: 'navigation', system: p?.id ?? 'sol' }),
+  onDetail: () => { if (route.level === 'quadrant') renderQuadrantPanel(); }, // a nebula image or member list arrived (#24)
 });
 const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); }, onDrill: () => go({ level: 'galaxy' }) });
 let quadrantSel = null, universeSel = null, quadrantLoaded = false, universeLoaded = false;
@@ -854,22 +856,8 @@ function objectList(objs, radiusLy, sel, pick) {
 function renderQuadrantPanel() {
   resetLive();
   const R = quadrant.radius, c = quadrant.counts();
-  const sel = quadrant.objects.find((o) => o.id === quadrantSel);
-  const selBlock = sel ? [
-    h('h3', { textContent: 'SELECTED' }), h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
-    factList(sel.kind.endsWith('cluster') ? [
-      { label: 'TYPE', value: sel.kind.toUpperCase(), tier: 'measured', detail: sel.catalogue },
-      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Mean Gaia DR3 parallax of its member stars (Hunt & Reffert 2023).' },
-      { label: 'MEMBERS', value: fmt(sel.members, 0), tier: 'measured', detail: 'Stars Gaia assigns to it.' },
-      { label: 'AGE', value: sel.logAge != null ? `${fmt(10 ** sel.logAge / 1e6, 10 ** sel.logAge > 1e9 ? 0 : 1)} MILLION YEARS` : '—', tier: 'modelled', detail: 'Isochrone fit to its stars\' colours and brightnesses.' },
-      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
-    ] : [
-      { label: 'TYPE', value: NEBULA_KIND[sel.kind], tier: 'measured' },
-      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (parallaxes of associated stars, expansion or extinction).' },
-      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
-    ]),
-    sel.note ? h('p', { className: 'note', textContent: sel.note }) : null,
-  ] : [];
+  const sel = quadrant.object(quadrantSel);
+  const selBlock = deepSkyDetail({ h, factList, fmt, lyText, lightLeft, sel, detail: sel && quadrant.detail(sel.id) }); // #24
   const ages = [[6.7, 'UNDER 10 MILLION YEARS'], [8, '100 MILLION YEARS'], [9.2, 'OVER A BILLION YEARS']];
   panel.replaceChildren(
     h('h2', { textContent: 'OUR QUADRANT' }),
@@ -888,6 +876,7 @@ function renderQuadrantPanel() {
     h('div', { className: 'body-list' }, pill('◀ NAVIGATION', () => go({ level: 'navigation', system: currentSystem })), pill('GALAXY ▸', () => go({ level: 'galaxy' }))),
     factList([
       { label: 'CLUSTERS', value: 'GAIA DR3', tier: 'measured', detail: 'Hunt & Reffert 2023: 7,167 clusters found in Gaia DR3 with distances and ages.' },
+      { label: 'NEBULAE', value: 'REAL IMAGES, 3D BY MODEL', tier: 'measured', detail: 'Hubble, Webb, ESO, Chandra and sky-survey images at true size, distance and orientation (#24). Their depth is MODELLED: select a nebula for its model.' },
       { label: 'BACKGROUND', value: "ARTIST'S CONCEPT", tier: 'imagined', detail: 'NASA/JPL-Caltech PIA10748, calibrated so Sol sits at R₀ (see Galaxy View).' },
     ]),
     renderLegend(),

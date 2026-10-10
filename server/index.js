@@ -8,7 +8,8 @@ import path from 'node:path';
 import { config } from './config.js';
 import { monthlyVectors, localDay, localMonth, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
-import { clusters, galaxies } from './deepsky.js';
+import { clusters, galaxies, clusterMembers } from './deepsky.js';
+import { nebulaImage } from './nebulae.js';
 import { gaiaBright } from './gaia.js';
 import { starLookup } from './lookup.js';
 import { scanCatalogs } from './catalogs.js';
@@ -49,6 +50,7 @@ const routes = {
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/clusters': async () => clusters(),
+  'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/star-lookup': async (q) => starLookup(q),
   'GET /api/galaxies': async () => galaxies(),
@@ -80,6 +82,7 @@ const binary = (r) => Object.assign(r, { binary: true });
 // Routes with a path parameter.
 const paramRoutes = [
   [/^GET \/api\/stars\/([a-z0-9-]{1,64})$/, (m) => starDetail(m[1])],
+  [/^GET \/api\/nebula-image\/([a-z0-9-]{1,32})$/, async (m) => binary(await nebulaImage(m[1]))],
   [/^GET \/api\/texture\/([A-Za-z]{1,32})$/, async (m) => binary(await textureResponse(m[1]))],
   [/^GET \/api\/satellites\/(\d{1,6})$/, (m) => satelliteDetail(m[1])],
   [/^GET \/api\/observing\/(hst|jwst)\/recent$/, (m) => recentImages(m[1])],

@@ -130,6 +130,15 @@ export async function fetchClusters() {
   try { return await get('/api/clusters'); } catch { return null; }
 }
 
+/** One cluster's brightest Gaia DR3 members (#24); null offline or in the standalone preview. */
+export async function fetchClusterMembers(name) {
+  if (snapshot) return null;
+  try { return await get(`/api/cluster-members?name=${encodeURIComponent(name)}`); } catch { return null; }
+}
+
+/** URL of a nebula's real image (#24), or null in the standalone preview (images are not embedded). */
+export const nebulaImageUrl = (key) => (snapshot ? null : `/api/nebula-image/${encodeURIComponent(key)}`);
+
 /** Nearby galaxies (UNGC) and galaxy groups (Cosmicflows-4) for the Universe View. */
 export async function fetchGalaxies() {
   if (snapshot) return snapshot.galaxies ?? null;

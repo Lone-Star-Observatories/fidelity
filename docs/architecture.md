@@ -15,6 +15,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
 │                                      │           │ server/dsn.js       DSN Now       │
 │                                      │           │ server/deepsky.js   VizieR        │
+│                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -87,7 +88,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
 | `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
-| `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
+| `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
+| `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
+| `GET /api/nebula-image/:key` | A landmark nebula's real image (allowlist: `src/data/nebula3d.js`), downloaded once to `data/nebulae/`, JPEG/PNG checked (`server/nebulae.js`) |
 | `GET /api/star-lookup?ra=&dec=[&distLy=][&gaia=1]` | Identify a star by position: SIMBAD (brightest stellar object in the cone) and optionally Gaia DR3 (best parallax match), cached |
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
@@ -183,6 +186,26 @@ are their velocity-space direction scaled to the measured distance. Both filter 
 shader by radius (`uRadius`) and labels by distance. Label `visible` must be a strict boolean
 (CSS2DRenderer only hides on `=== false`). The Universe View also draws the Local Group's
 CMB motion and Andromeda's approach (`MOTION`).
+
+## 3D nebulae and cluster members (#24)
+
+`src/data/nebula3d.js` gives each Quadrant View nebula a real image (credit, licence, date, centre, field
+of view, "north is θ° left of vertical" from the publisher's AVM metadata) and a 3D model (`blister`,
+`cloud`, `shell`, `filled`, `barrel`; radius R in arcmin, depth in R, literature reference).
+`src/views/quadrant/deepsky3d.js` draws each as a box in the plane of the sky at the nebula's distance
+(`skyBasis` in `src/astro/skyplane.js`: faces Sol, north along celestial north; physical size = angular
+size × distance) and ray-marches it: every sample takes the image pixel behind it along our line of
+sight, weighted by the model profile divided by its integral along that sightline, so from Sol the volume
+adds up to exactly the image (MEASURED) and from anywhere else shows the model (MODELLED). Dark clouds are drawn
+as a dust volume only (their image is the star field behind them), its opacity from how dark the blurred image is;
+survey cutouts are sampled one mip level softer so their stars don't streak through the volume. Images load when a nebula is selected
+or more than ~10 px on screen. Clusters load their members (`/api/cluster-members`) when selected or
+larger than ~40 px (three at a time, 30 kept): measured directions, G brightness, BP−RP dereddened by the
+cluster's A_V; along the line of sight `memberDistance` shrinks each parallax distance toward the cluster's
+by inverse variance and fills what parallax cannot pin with a reproducible scatter as wide as r50
+(the panel counts both). Globulars add a glow for their unresolved core. Members, stars in
+`NEBULA_STARS` and their labels open the #23 star card; cluster and nebula dots select them. Selecting a
+nebula flies in from Sol's side. In the standalone preview images and members are not available (said so).
 
 ## Surface view
 
