@@ -9,6 +9,7 @@ import { config } from './config.js';
 import { monthlyVectors } from './horizons.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
+import { nearby, starDetail, sky } from './stars.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -26,7 +27,14 @@ const routes = {
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
+  'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
+  'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
 };
+
+// Routes with a path parameter.
+const paramRoutes = [
+  [/^GET \/api\/stars\/([a-z0-9-]{1,64})$/, (m) => starDetail(m[1])],
+];
 
 async function serveStatic(req, res, pathname) {
   const rel = path.normalize(decodeURIComponent(pathname)).replace(/^([/\\])+/, '');
@@ -48,9 +56,14 @@ async function serveStatic(req, res, pathname) {
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://local');
-  const handler = routes[`${req.method} ${url.pathname}`];
+  const key = `${req.method} ${url.pathname}`;
+  let handler = routes[key] && (() => routes[key](url.searchParams));
+  for (const [re, fn] of paramRoutes) {
+    const m = !handler && key.match(re);
+    if (m) handler = () => fn(m);
+  }
   if (handler) {
-    try { send(res, 200, await handler(url.searchParams)); }
+    try { send(res, 200, await handler()); }
     catch (err) { send(res, err.status || 502, { error: String(err.message || err) }); }
     return;
   }

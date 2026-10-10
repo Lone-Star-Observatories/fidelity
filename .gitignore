@@ -3,4 +3,5 @@ node_modules/
 /data/
 .DS_Store
 *.log
-/dist-artifact/
+/dist-standalone/
+/standalone/

@@ -1,0 +1,274 @@
+// Star catalogue + known planets, for the Navigation View and other System Views.
+//
+// Stars: the HYG database (Hipparcos, Yale Bright Star, Gliese; https://codeberg.org/astronexus/hyg),
+// read from a local copy if FIDELITY_CATALOG_DIRS has one, otherwise downloaded once into
+// data/catalogs/. Planets: the NASA Exoplanet Archive composite table (pscomppars) via TAP,
+// cached for a week. Hosts are matched to catalogue stars by HIP/HD number, then by sky
+// position + distance; hosts too faint for HYG (e.g. TRAPPIST-1) are added from the archive.
+
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import zlib from 'node:zlib';
+import { promisify } from 'node:util';
+import { config } from './config.js';
+import { cached } from './cache.js';
+import { scanCatalogs } from './catalogs.js';
+
+const gunzip = promisify(zlib.gunzip);
+const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
+const TAP = 'https://exoplanetarchive.ipac.caltech.edu/TAP/sync';
+const LY_PER_PC = 3.26156;
+const MAX_PLANET_HOST_PC = 65; // ≈ 212 ly: covers a 100 ly radius around any star within ~110 ly of Sol
+const WEEK = 7 * 86400000;
+
+// ---- CSV ---------------------------------------------------------------------------------
+
+/** Minimal RFC 4180 line splitter (quoted fields, doubled quotes). */
+export function splitCsvLine(line) {
+  const out = [];
+  let cur = '', q = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (q) {
+      if (c === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+      else if (c === '"') q = false;
+      else cur += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { out.push(cur); cur = ''; }
+    else cur += c;
+  }
+  out.push(cur);
+  return out;
+}
+
+const num = (s) => (s === '' || s == null ? null : Number(s));
+
+const GREEK = { Alp: 'α', Bet: 'β', Gam: 'γ', Del: 'δ', Eps: 'ε', Zet: 'ζ', Eta: 'η', The: 'θ', Iot: 'ι', Kap: 'κ',
+  Lam: 'λ', Mu: 'μ', Nu: 'ν', Xi: 'ξ', Omi: 'ο', Pi: 'π', Rho: 'ρ', Sig: 'σ', Tau: 'τ', Ups: 'υ', Phi: 'φ', Chi: 'χ', Psi: 'ψ', Ome: 'ω' };
+
+/** Best human-readable designation for a HYG row. */
+export function starName(r) {
+  if (r.proper) return r.proper;
+  if (r.bayer && r.con) {
+    const [, letter, idx] = r.bayer.match(/^([A-Za-z]+)(?:-?(\d+))?$/) || [, r.bayer, ''];
+    return `${GREEK[letter] ?? letter}${idx ? `${idx}` : ''} ${r.con}`;
+  }
+  if (r.flam && r.con) return `${r.flam} ${r.con}`;
+  if (r.gl) return r.gl.replace(/^Gl\b/, 'Gliese');
+  if (r.hip) return `HIP ${r.hip}`;
+  if (r.hd) return `HD ${r.hd}`;
+  return `HYG ${r.id}`;
+}
+
+/** Parse HYG CSV text into star records (only stars with a known distance). */
+export function parseHyg(text) {
+  const lines = text.split(/\r?\n/);
+  const head = splitCsvLine(lines[0]);
+  const col = Object.fromEntries(head.map((h, i) => [h, i]));
+  const stars = [];
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i]) continue;
+    const f = splitCsvLine(lines[i]);
+    const dist = num(f[col.dist]);
+    if (dist == null || dist >= 100000) continue; // HYG uses 100000 pc for "unknown"
+    const r = {
+      id: f[col.id], hip: f[col.hip], hd: f[col.hd], gl: f[col.gl], proper: f[col.proper],
+      bayer: f[col.bayer], flam: f[col.flam], con: f[col.con],
+    };
+    stars.push({
+      id: r.id === '0' ? 'sol' : `hyg-${r.id}`,
+      name: starName(r),
+      hip: r.hip ? Number(r.hip) : null,
+      hd: r.hd ? Number(r.hd) : null,
+      gl: r.gl || null,
+      x: num(f[col.x]), y: num(f[col.y]), z: num(f[col.z]), // parsecs, equatorial J2000
+      distPc: dist,
+      mag: num(f[col.mag]), absmag: num(f[col.absmag]),
+      spect: f[col.spect] || null, ci: num(f[col.ci]), lum: num(f[col.lum]),
+      source: 'HYG v4',
+    });
+  }
+  return stars;
+}
+
+// ---- loading -----------------------------------------------------------------------------
+
+async function hygText() {
+  // 1) a copy already on local disk (e.g. the RAID)
+  if (config.catalogDirs.length) {
+    const { catalogs } = await scanCatalogs();
+    const local = catalogs.find((c) => c.id === 'hyg')?.paths.find((p) => /hyg[^/\\]*\.csv(\.gz)?$/i.test(p));
+    if (local) return { text: await readMaybeGz(local), from: local };
+  }
+  // 2) our own downloaded copy
+  const file = path.join(config.dataDir, 'catalogs', path.basename(HYG_URL));
+  try { return { text: await readMaybeGz(file), from: file }; } catch { /* download */ }
+  const res = await fetch(HYG_URL, { signal: AbortSignal.timeout(180000) });
+  if (!res.ok) throw new Error(`HYG download failed: HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await fs.writeFile(file, buf);
+  return { text: (await gunzip(buf)).toString('utf8'), from: HYG_URL };
+}
+
+async function readMaybeGz(file) {
+  const buf = await fs.readFile(file);
+  return (file.endsWith('.gz') ? await gunzip(buf) : buf).toString('utf8');
+}
+
+async function exoplanetRows() {
+  const cols = [
+    'hostname', 'hip_name', 'hd_name', 'gaia_dr3_id', 'ra', 'dec', 'sy_dist', 'sy_pnum',
+    'pl_name', 'pl_letter', 'pl_orbsmax', 'pl_orbper', 'pl_orbeccen', 'pl_orbincl', 'pl_orblper', 'pl_tranmid',
+    'pl_rade', 'pl_bmasse', 'pl_bmassprov', 'pl_eqt', 'pl_insol', 'tran_flag',
+    'st_teff', 'st_rad', 'st_mass', 'st_lum', 'st_spectype', 'disc_method', 'disc_year', 'disc_facility',
+  ];
+  const query = `select ${cols.join(',')} from pscomppars where sy_dist <= ${MAX_PLANET_HOST_PC}`;
+  const { value } = await cached('exoplanets', `pscomppars-${MAX_PLANET_HOST_PC}pc`, WEEK, async () => {
+    const res = await fetch(`${TAP}?query=${encodeURIComponent(query)}&format=json`, { signal: AbortSignal.timeout(60000) });
+    if (!res.ok) throw new Error(`Exoplanet Archive HTTP ${res.status}`);
+    return res.json();
+  });
+  return value;
+}
+
+// ---- cross-match -------------------------------------------------------------------------
+
+const DEG = Math.PI / 180;
+const unit = (raDeg, decDeg) => [Math.cos(decDeg * DEG) * Math.cos(raDeg * DEG), Math.cos(decDeg * DEG) * Math.sin(raDeg * DEG), Math.sin(decDeg * DEG)];
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/** Group archive rows by host and attach each host to a catalogue star (or a new one). */
+export function matchHosts(stars, rows) {
+  const byHip = new Map(), byHd = new Map();
+  for (const s of stars) {
+    if (s.hip) byHip.set(s.hip, s);
+    if (s.hd) byHd.set(s.hd, s);
+  }
+  const hosts = new Map();
+  for (const r of rows) {
+    if (!hosts.has(r.hostname)) hosts.set(r.hostname, { host: r, planets: [] });
+    hosts.get(r.hostname).planets.push(r);
+  }
+  const near = stars.filter((s) => s.distPc <= MAX_PLANET_HOST_PC * 1.2);
+  const planetsOf = new Map(); // starId → { host, planets }
+  const extra = [];
+  for (const [name, entry] of hosts) {
+    const h = entry.host;
+    const hip = h.hip_name && Number(h.hip_name.replace(/^HIP\s*/, ''));
+    const hd = h.hd_name && Number(h.hd_name.replace(/^HD\s*/, ''));
+    let star = (hip && byHip.get(hip)) || (hd && byHd.get(hd)) || null;
+    if (!star) {
+      // Position match: 5′ tolerates proper motion between catalogue epochs; distance within 15%.
+      const u = unit(h.ra, h.dec);
+      let best = null, bestAng = 5 / 60;
+      for (const s of near) {
+        if (Math.abs(s.distPc - h.sy_dist) > 0.15 * h.sy_dist) continue;
+        const ang = Math.acos(Math.min(1, (s.x * u[0] + s.y * u[1] + s.z * u[2]) / s.distPc)) / DEG;
+        if (ang < bestAng) { best = s; bestAng = ang; }
+      }
+      star = best;
+    }
+    if (!star) {
+      const u = unit(h.ra, h.dec);
+      star = {
+        id: `exo-${slug(name)}`, name, hip: null, hd: null, gl: null,
+        x: u[0] * h.sy_dist, y: u[1] * h.sy_dist, z: u[2] * h.sy_dist, distPc: h.sy_dist,
+        mag: null, absmag: null, spect: h.st_spectype, ci: null, lum: h.st_lum != null ? 10 ** h.st_lum : null,
+        source: 'NASA Exoplanet Archive',
+      };
+      extra.push(star);
+    }
+    planetsOf.set(star.id, entry);
+  }
+  return { planetsOf, extra };
+}
+
+// ---- service -----------------------------------------------------------------------------
+
+let catalogPromise = null;
+
+/** Load (once) the stars + planet hosts. Planet data failing leaves stars usable. */
+export function catalog() {
+  catalogPromise ??= (async () => {
+    const { text, from } = await hygText();
+    const stars = parseHyg(text);
+    let planetsOf = new Map(), planetError = null;
+    try {
+      const m = matchHosts(stars, await exoplanetRows());
+      planetsOf = m.planetsOf;
+      stars.push(...m.extra);
+    } catch (err) { planetError = String(err.message || err); }
+    const byId = new Map(stars.map((s) => [s.id, s]));
+    return { stars, byId, planetsOf, planetError, hygFrom: from };
+  })().catch((err) => { catalogPromise = null; throw err; });
+  return catalogPromise;
+}
+
+const notFound = (msg) => Object.assign(new Error(msg), { status: 404 });
+const bad = (msg) => Object.assign(new Error(msg), { status: 400 });
+
+function centerOf(cat, id) {
+  const c = cat.byId.get(id || 'sol');
+  if (!c) throw notFound(`unknown star ${id}`);
+  return c;
+}
+
+/** Stars within `radiusLy` of `centerId`. Compact rows keep the payload small. */
+export async function nearby(centerId, radiusLy) {
+  const r = Number(radiusLy);
+  if (!(r > 0 && r <= 150)) throw bad('radiusLy must be in (0, 150]');
+  const cat = await catalog();
+  const c = centerOf(cat, centerId);
+  const rPc = r / LY_PER_PC;
+  const rows = [];
+  for (const s of cat.stars) {
+    const dx = s.x - c.x, dy = s.y - c.y, dz = s.z - c.z;
+    const d = Math.hypot(dx, dy, dz);
+    if (d > rPc && s.id !== 'sol') continue; // Sol (Sector 001) is always included
+    const p = cat.planetsOf.get(s.id);
+    rows.push([s.id, s.name, s.x, s.y, s.z, s.absmag, s.ci, s.spect, p ? p.planets.length : 0, s.source === 'HYG v4' ? 0 : 1]);
+  }
+  return {
+    center: summary(cat, c), radiusLy: r,
+    fields: ['id', 'name', 'x', 'y', 'z', 'absmag', 'ci', 'spect', 'planets', 'archiveOnly'],
+    stars: rows,
+    sources: { stars: `HYG v4.4 (${cat.hygFrom})`, planets: cat.planetError ? `unavailable: ${cat.planetError}` : 'NASA Exoplanet Archive pscomppars' },
+  };
+}
+
+function summary(cat, s) {
+  const p = cat.planetsOf.get(s.id);
+  return { ...s, distLy: s.distPc * LY_PER_PC, planetCount: p ? p.planets.length : 0 };
+}
+
+/** One star and its known planets (raw archive rows). */
+export async function starDetail(id) {
+  const cat = await catalog();
+  const s = cat.byId.get(id);
+  if (!s) throw notFound(`unknown star ${id}`);
+  const p = cat.planetsOf.get(id);
+  return { star: summary(cat, s), host: p ? p.host : null, planets: p ? p.planets : [] };
+}
+
+/**
+ * The naked-eye sky as seen from `centerId`: unit directions (equatorial) + apparent
+ * magnitude from there, for stars brighter than `maxMag`.
+ */
+export async function sky(centerId, maxMag = 6.5) {
+  const m = Number(maxMag);
+  if (!(m > -2 && m <= 8)) throw bad('maxMag must be in (-2, 8]');
+  const cat = await catalog();
+  const c = centerOf(cat, centerId);
+  const rows = [];
+  for (const s of cat.stars) {
+    if (s.id === c.id || s.absmag == null) continue;
+    const dx = s.x - c.x, dy = s.y - c.y, dz = s.z - c.z;
+    const d = Math.hypot(dx, dy, dz);
+    if (d < 1e-6) continue;
+    const app = s.absmag + 5 * Math.log10(d / 10);
+    if (app > m) continue;
+    rows.push([+(dx / d).toFixed(5), +(dy / d).toFixed(5), +(dz / d).toFixed(5), +app.toFixed(2), s.ci, app < 1.6 ? s.name : null]);
+  }
+  return { center: c.id, maxMag: m, fields: ['dx', 'dy', 'dz', 'mag', 'ci', 'name'], stars: rows };
+}

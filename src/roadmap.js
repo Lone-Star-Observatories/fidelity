@@ -3,7 +3,7 @@
 
 export const ROADMAP = {
   navigation: {
-    status: 'SCHEDULED · TICKET #2',
+    status: 'ONLINE · NEEDS THE LOCAL BACKEND',
     blurb: 'Look outward from the current system: real stars within a chosen radius, systems with known planets highlighted. Select one to warp into its System View.',
     data: 'HYG / Gaia DR3 star catalogues (local), NASA Exoplanet Archive.',
   },

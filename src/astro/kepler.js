@@ -61,8 +61,8 @@ export function eccentricAnomaly(M, e) {
   return E;
 }
 
-/** Rotate orbital-plane coordinates (x′, y′) into J2000 ecliptic (x, y, z). */
-function toEcliptic(xp, yp, { I, peri, node }) {
+/** Rotate orbital-plane coordinates (x′, y′) into the reference frame (x, y, z). */
+export function toEcliptic(xp, yp, { I, peri, node }) {
   const w = peri - node;
   const cw = Math.cos(w), sw = Math.sin(w);
   const cO = Math.cos(node), sO = Math.sin(node);
@@ -74,18 +74,16 @@ function toEcliptic(xp, yp, { I, peri, node }) {
   ];
 }
 
-/** Heliocentric J2000 ecliptic position [x, y, z] in AU of `body` at Julian Date `jd`. */
-export function heliocentric(body, jd) {
-  const el = elementsAt(body, jd);
-  const E = eccentricAnomaly(el.L - el.peri, el.e);
+/** Position for elements `el` (a, e, I, peri, node; radians) at mean anomaly `M`. */
+export function positionAt(el, M) {
+  const E = eccentricAnomaly(M, el.e);
   const xp = el.a * (Math.cos(E) - el.e);
   const yp = el.a * Math.sqrt(1 - el.e * el.e) * Math.sin(E);
   return toEcliptic(xp, yp, el);
 }
 
-/** `segments` points tracing the full orbit ellipse of `body` at `jd` (for drawing). */
-export function orbitPath(body, jd, segments = 360) {
-  const el = elementsAt(body, jd);
+/** `segments` points tracing the full ellipse described by elements `el`. */
+export function ellipse(el, segments = 360) {
   const b = el.a * Math.sqrt(1 - el.e * el.e);
   const pts = [];
   for (let i = 0; i <= segments; i++) {
@@ -94,3 +92,12 @@ export function orbitPath(body, jd, segments = 360) {
   }
   return pts;
 }
+
+/** Heliocentric J2000 ecliptic position [x, y, z] in AU of `body` at Julian Date `jd`. */
+export function heliocentric(body, jd) {
+  const el = elementsAt(body, jd);
+  return positionAt(el, el.L - el.peri);
+}
+
+/** Points tracing the full orbit ellipse of `body` at `jd` (for drawing). */
+export const orbitPath = (body, jd, segments = 360) => ellipse(elementsAt(body, jd), segments);

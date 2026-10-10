@@ -139,6 +139,31 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
   background: var(--gold); color: #000; padding: 8px 18px; border-radius: 18px; letter-spacing: 0.06em;
 }
 
+/* navigation chart labels */
+.nav-label {
+  font-size: 11px; letter-spacing: 0.09em; white-space: nowrap; padding: 1px 6px;
+  color: var(--peach); background: rgba(0, 0, 0, 0.5); border-left: 3px solid var(--dim); pointer-events: auto;
+}
+button.nav-label:hover { color: #000; background: var(--peach); }
+.nav-label.host { border-color: var(--orange); color: var(--gold); }
+.nav-label.sol { border-color: var(--blue); color: var(--blue); font-size: 12px; }
+.nav-label.center { border-color: var(--ice); color: #000; background: var(--ice); }
+.nav-label.named { color: var(--dim); border-color: transparent; background: none; }
+.nav-label.selected { color: #000; background: var(--orange); border-color: var(--orange); }
+.nav-label.ring { color: var(--violet); background: none; border: 0; pointer-events: none; }
+.nav-label.spoke { color: var(--apricot); background: none; border: 0; pointer-events: none; font-size: 10px; }
+.nav-label.quadrant { color: rgba(204, 153, 204, 0.55); background: none; border: 0; pointer-events: none; font-size: 15px; letter-spacing: 0.2em; }
+
+.host-list { display: flex; flex-direction: column; gap: 3px; }
+.host-row {
+  display: flex; justify-content: space-between; gap: 10px; padding: 4px 10px; font-size: 14px;
+  color: var(--peach); background: rgba(153, 119, 170, 0.12); border-left: 4px solid var(--orange); text-align: left;
+}
+.host-row:hover { background: rgba(255, 204, 153, 0.25); }
+.host-row.on { background: var(--orange); color: #000; }
+.radius-list { grid-template-columns: repeat(4, 1fr); }
+.panel h2.sel-name { font-size: 24px; color: var(--gold); }
+
 /* warp streaks when changing focus */
 .warp { position: absolute; inset: 0; pointer-events: none; opacity: 0; z-index: 2;
   background: repeating-conic-gradient(from 0deg, rgba(153,204,255,.0) 0deg 3deg, rgba(153,204,255,.18) 3deg 3.4deg);

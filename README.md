@@ -4,8 +4,8 @@ An LCARS-style ship's console for exploring real NASA and astronomical data, fro
 orbit out to nearby galaxies. It runs locally. Data is loaded on demand and stored on
 your machine.
 
-**Status:** System View for Sector 001 (Sol) is online. Every other view shows an OFFLINE
-screen that links to its ticket. See [`docs/backlog.md`](docs/backlog.md).
+**Status:** System View (Sol and any nearby star) and Navigation View are online. Every
+other view shows an OFFLINE screen that links to its ticket. See [`docs/backlog.md`](docs/backlog.md).
 
 ## Run it
 
@@ -18,7 +18,11 @@ npm run build && npm start        # → http://127.0.0.1:4011
 # or, while developing:
 npm run dev                       # → http://127.0.0.1:5173 (proxies /api to the backend)
 npm test                          # orbital mechanics checked against JPL Horizons
+npm run build:standalone          # → dist-standalone/fidelity.html, a backend-free preview
 ```
+
+The first Navigation visit downloads the HYG star catalogue (13.6 MB, once) and the NASA
+Exoplanet Archive planet list (cached for a week). Both are stored under `data/`.
 
 | Env var | Default | Purpose |
 |---|---|---|
@@ -40,6 +44,12 @@ ship recognises and which view will use each one.
 - Read light-time and distances. Every value carries a provenance badge:
   MEASURED · COMPUTED · MODELLED · IMAGINED.
 - The **Sector 001** beacon is always in the top bar; an edge arrow points back to Sol.
+- **Navigation:** look outward 10–100 light-years from any star. The chart is in the
+  galactic frame with quadrants I–IV, and planet hosts are ringed. Select a star and
+  **warp** to it.
+- **Other star systems:** Proxima Centauri, TRAPPIST-1, τ Ceti and hundreds more, built
+  from the NASA Exoplanet Archive. Transiting planets sit where their transit timings put
+  them. Every unknown is badged as such. The sky is the real one as seen from that star.
 
 ## Docs
 

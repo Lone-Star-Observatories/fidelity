@@ -1,17 +1,20 @@
 // Hash router. Every view has an address so the back button, deep links and the
-// Sector 001 beacon all work: #/system/sol, #/system/sol/earth, #/navigation, …
+// Sector 001 beacon all work: #/system/sol, #/system/sol/earth, #/system/hyg-70666/b,
+// #/navigation/sol, …
 
 export const LEVELS = ['universe', 'galaxy', 'quadrant', 'navigation', 'system'];
-export const HOME = '#/system/sol';
 
 export function parse(hash = location.hash) {
-  const [level, system, body] = hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+  const [level, system, body] = hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
   if (!LEVELS.includes(level)) return { level: 'system', system: 'sol', body: null };
-  return { level, system: system || 'sol', body: body || null };
+  if (level === 'navigation') return { level, system: system || null, body: null };
+  return { level, system: system || 'sol', body: level === 'system' ? body || null : null };
 }
 
 export function href({ level, system = 'sol', body = null }) {
-  return level === 'system' ? `#/system/${system}${body ? `/${body}` : ''}` : `#/${level}`;
+  if (level === 'system') return `#/system/${system}${body ? `/${body}` : ''}`;
+  if (level === 'navigation') return `#/navigation${system ? `/${system}` : ''}`;
+  return `#/${level}`;
 }
 
 let listener = () => {};
