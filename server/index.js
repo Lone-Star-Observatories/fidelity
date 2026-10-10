@@ -8,6 +8,7 @@ import path from 'node:path';
 import { config } from './config.js';
 import { monthlyVectors, localDay, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
+import { clusters, galaxies } from './deepsky.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
 import { nearby, starDetail, sky, galaxyStars } from './stars.js';
@@ -34,6 +35,8 @@ const routes = {
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
+  'GET /api/clusters': async () => clusters(),
+  'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),

@@ -72,6 +72,10 @@ ship recognises and which view will use each one.
   comes back; long trips are counted in human lifetimes.
 - **Live skins:** Earth wears yesterday's satellite mosaic with its real clouds, the Sun
   today's SDO image with today's sunspots (toggle LIVE).
+- **Quadrant View:** 7,000 Gaia star clusters (coloured by age) and landmark nebulae around
+  Sector 001, over the Milky Way's arms.
+- **Universe View:** every known galaxy within 36 million ly and 38,000 galaxy groups out to
+  2.5 billion ly, with a distance filter.
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.

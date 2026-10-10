@@ -119,3 +119,15 @@ export async function fetchFeed(id, kind) {
   if (!res.ok) throw new Error(`feed ${id}: HTTP ${res.status}`);
   return { url: URL.createObjectURL(await res.blob()), time: res.headers.get('x-feed-time'), credit: decodeURIComponent(res.headers.get('x-feed-credit') || '') };
 }
+
+/** Star clusters (Hunt & Reffert 2023) for the Quadrant View. */
+export async function fetchClusters() {
+  if (snapshot) return snapshot.clusters ?? null;
+  try { return await get('/api/clusters'); } catch { return null; }
+}
+
+/** Nearby galaxies (UNGC) and galaxy groups (Cosmicflows-4) for the Universe View. */
+export async function fetchGalaxies() {
+  if (snapshot) return snapshot.galaxies ?? null;
+  try { return await get('/api/galaxies'); } catch { return null; }
+}

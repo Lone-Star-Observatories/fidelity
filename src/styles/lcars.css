@@ -335,3 +335,6 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .ck-dot { width: 10px; height: 10px; border-radius: 50%; grid-row: span 2; }
 .ck-sub { grid-column: 2; color: #998f88; font-size: 11px; letter-spacing: 0.04em; }
 .nav-label.message { color: #99ddff; background: none; border: 0; pointer-events: none; font-size: 12px; letter-spacing: 0.08em; }
+.nav-label.neb { background: none; border: 0; font-size: 11px; letter-spacing: 0.06em; }
+.nav-label.neb-HII { color: #ff8aa0; } .nav-label.neb-PN { color: #66e0c0; } .nav-label.neb-SNR { color: #d4aaff; }
+.nav-label.neb-dark { color: #c8b49a; } .nav-label.neb-reflection { color: #99b0ff; }

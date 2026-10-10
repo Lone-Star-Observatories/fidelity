@@ -13,7 +13,7 @@ import { teffFromBV, blackbodyRGB } from '../../astro/frames.js';
 import { R0_KLY, Z_SUN_KLY, IMAGE, galToScene, imageMapper } from '../../astro/galaxy.js';
 
 export { R0_KLY, Z_SUN_KLY, IMAGE, galToScene };
-import { loadTexture } from '../system/materials.js';
+import { createGalaxyPlane } from './plane.js';
 import { settings } from '../../settings.js';
 
 // Arm names, at PIA19341's label positions (1308 px image, centre 653.5).
@@ -50,21 +50,8 @@ export function createGalaxyView(container, { onFrame } = {}) {
   // ---- the image, in the galactic plane --------------------------------------------------
   const W = IMAGE.widthKly;
   const map = imageMapper(IMAGE.sunOffset[0], IMAGE.sunOffset[1]);
-  const plane = new THREE.Mesh(new THREE.PlaneGeometry(W, W), new THREE.MeshBasicMaterial({ color: 0x222222, transparent: true, depthWrite: false }));
-  // Orient the plane: image right → map(1,0), image down → map(0,1), normal → galactic north.
-  {
-    const [rx, rz] = map(1, 0), [dx, dz] = map(0, 1);
-    const right = new THREE.Vector3(rx, 0, rz), up = new THREE.Vector3(-dx, 0, -dz), normal = new THREE.Vector3().crossVectors(right, up);
-    plane.rotation.set(0, 0, 0);
-    plane.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(right, up, normal));
-  }
+  const plane = createGalaxyPlane();
   scene.add(plane);
-  loadTexture('milkyWay').then((t) => {
-    if (!t) return;
-    plane.material.map = t;
-    plane.material.color.set(0xffffff);
-    plane.material.needsUpdate = true;
-  });
 
   // ---- labels ------------------------------------------------------------------------------
   const tags = [];

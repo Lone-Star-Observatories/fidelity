@@ -9,9 +9,13 @@ import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
+import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
+import { createUniverseView, typeName, MLY_PER_MPC } from './views/universe/UniverseView.js';
+import { NEBULA_KIND } from './data/deepsky.js';
+import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -45,6 +49,9 @@ const starView = createStarView($('star-view'));
 const planetView = createPlanetView($('planet-view'));
 const galaxy = createGalaxyView($('galaxy-view'), { onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; } });
 let galaxyStarsLoaded = false;
+const quadrant = createQuadrantView($('quadrant-view'), { onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); } });
+const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); } });
+let quadrantSel = null, universeSel = null, quadrantLoaded = false, universeLoaded = false;
 const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
@@ -56,7 +63,7 @@ const LEVEL_BUTTONS = [
   ['quadrant', 'QUADRANT', 'var(--apricot)'], ['navigation', 'NAVIGATION', 'var(--gold)'],
   ['system', 'SYSTEM', 'var(--peach)'],
 ];
-const LIVE_LEVELS = new Set(['galaxy', 'navigation', 'system']);
+const LIVE_LEVELS = new Set(['universe', 'galaxy', 'quadrant', 'navigation', 'system']);
 const SUB_BUTTONS = [['star', 'STAR'], ['planet', 'PLANET'], ['moon', 'MOON'], ['satellite', 'SATELLITE'], ['object', 'OBJECT']];
 
 const railLevels = $('rail-levels');
@@ -444,6 +451,107 @@ function renderGalaxyPanel() {
   );
 }
 
+// ---- quadrant & universe panels ------------------------------------------------------------
+const hex = (n) => `#${n.toString(16).padStart(6, '0')}`;
+const keyRow = (color, label, sub) => h('div', { className: 'ck-row' }, h('span', { className: 'ck-dot', style: `background:${color}` }), h('span', { textContent: label }), h('span', { className: 'ck-sub', textContent: sub }));
+const lightLeft = (ly) => (ly < 1e4 ? `LIGHT LEFT IN ${Math.round(yearOf(clock.jd) - ly)}` : ly < 1e6 ? `LIGHT LEFT ${fmt(ly / 1000, 0)},000 YEARS AGO` : `LIGHT LEFT ${fmt(ly / 1e6, ly < 1e7 ? 1 : 0)} MILLION YEARS AGO`);
+const lyText = (ly) => (ly < 1e4 ? `${fmt(ly, 0)} LY` : ly < 1e6 ? `${fmt(ly / 1000, 1)} KLY` : `${fmt(ly / 1e6, 1)} MLY`);
+
+function objectList(objs, radiusLy, sel, pick) {
+  const inside = objs.filter((o) => o.distLy <= radiusLy * 1.02).sort((a, b) => a.distLy - b.distLy);
+  return h('div', { className: 'host-list' }, inside.slice(0, 60).map((o) => {
+    const b = h('button', { className: `host-row${o.id === sel ? ' on' : ''}` }, h('span', { textContent: o.name.toUpperCase() }), h('span', { className: 'mono', textContent: lyText(o.distLy) }));
+    b.addEventListener('click', () => pick(o.id));
+    return b;
+  }));
+}
+
+function renderQuadrantPanel() {
+  resetLive();
+  const R = quadrant.radius, c = quadrant.counts();
+  const sel = quadrant.objects.find((o) => o.id === quadrantSel);
+  const selBlock = sel ? [
+    h('h3', { textContent: 'SELECTED' }), h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
+    factList(sel.kind.endsWith('cluster') ? [
+      { label: 'TYPE', value: sel.kind.toUpperCase(), tier: 'measured', detail: sel.catalogue },
+      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Mean Gaia DR3 parallax of its member stars (Hunt & Reffert 2023).' },
+      { label: 'MEMBERS', value: fmt(sel.members, 0), tier: 'measured', detail: 'Stars Gaia assigns to it.' },
+      { label: 'AGE', value: sel.logAge != null ? `${fmt(10 ** sel.logAge / 1e6, 10 ** sel.logAge > 1e9 ? 0 : 1)} MILLION YEARS` : '—', tier: 'modelled', detail: 'Isochrone fit to its stars\' colours and brightnesses.' },
+      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+    ] : [
+      { label: 'TYPE', value: NEBULA_KIND[sel.kind], tier: 'measured' },
+      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (parallaxes of associated stars, expansion or extinction).' },
+      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+    ]),
+    sel.note ? h('p', { className: 'note', textContent: sel.note }) : null,
+  ] : [];
+  const ages = [[6.7, 'UNDER 10 MILLION YEARS'], [8, '100 MILLION YEARS'], [9.2, 'OVER A BILLION YEARS']];
+  panel.replaceChildren(
+    h('h2', { textContent: 'OUR QUADRANT' }),
+    h('div', { className: 'kind', textContent: 'THE MILKY WAY AROUND SECTOR 001 · GALACTIC PLANE HORIZONTAL' }),
+    h('h3', { textContent: 'RANGE' }),
+    h('div', { className: 'body-list' }, [1000, 3000, 10000, 30000].map((r) => pill(`${fmt(r / 1000, 0)} KLY`, () => { quadrant.setRadius(r); renderQuadrantPanel(); }, r === R ? 'on' : ''))),
+    h('p', { className: 'note', textContent: `${fmt(c.clusters, 0)} STAR CLUSTERS · ${c.nebulae} LANDMARK NEBULAE WITHIN ${fmt(R, 0)} LY` }),
+    ...selBlock,
+    h('h3', { textContent: 'LANDMARKS · NEAREST FIRST' }), objectList(quadrant.objects, R, quadrantSel, (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); }),
+    h('h3', { textContent: 'KEY' }),
+    h('div', { className: 'colour-key' },
+      ...ages.map(([a, l]) => keyRow(hex(rgbToHex(blackbodyRGB(ageTeff(a)))), `CLUSTER · ${l}`, a < 7 ? 'HOT BLUE STARS STILL SHINING' : a > 9 ? 'ONLY COOL RED STARS LEFT' : '')),
+      ...Object.entries(NEBULA_COLORS).map(([k, col]) => keyRow(hex(col), NEBULA_KIND[k], '')),
+      keyRow('#d8d0c0', 'STARS (HYG, BRIGHTER THAN M = 2)', 'OUT TO 1.5 KLY')),
+    h('div', { className: 'body-list' }, pill('◀ NAVIGATION', () => go({ level: 'navigation', system: currentSystem })), pill('GALAXY ▸', () => go({ level: 'galaxy' }))),
+    factList([
+      { label: 'CLUSTERS', value: 'GAIA DR3', tier: 'measured', detail: 'Hunt & Reffert 2023: 7,167 clusters found in Gaia DR3 with distances and ages.' },
+      { label: 'BACKGROUND', value: "ARTIST'S CONCEPT", tier: 'imagined', detail: 'NASA/JPL-Caltech PIA10748, calibrated so Sol sits at R₀ (see Galaxy View).' },
+    ]),
+    renderLegend(),
+  );
+}
+
+function renderUniversePanel() {
+  resetLive();
+  const R = universe.radius, c = universe.counts();
+  const sel = universe.objects.find((o) => o.id === universeSel);
+  const selBlock = sel ? [
+    h('h3', { textContent: 'SELECTED' }), h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
+    factList(sel.kind === 'galaxy' ? [
+      { label: 'TYPE', value: typeName(sel.type), tier: 'measured', detail: `Morphological type T = ${sel.type} (UNGC).` },
+      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: `Method: ${sel.method ?? '—'} (Cep = Cepheids, TRGB = tip of the red-giant branch, TF = Tully–Fisher, h = Hubble flow).` },
+      ...(sel.diameterKpc ? [{ label: 'DIAMETER', value: `${fmt(sel.diameterKpc * 3.26156, 0)},000 LY`, tier: 'measured', detail: 'Holmberg-like diameter at 26.5 mag/arcsec² (UNGC).' }] : []),
+      ...(sel.absB != null ? [{ label: 'BRIGHTNESS', value: `M_B ${fmt(sel.absB, 1)}`, tier: 'computed', detail: 'Absolute blue magnitude; the Milky Way is about −20.8.' }] : []),
+      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+    ] : [
+      { label: 'TYPE', value: 'CLUSTER OF GALAXIES', tier: 'measured' },
+      { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (Cosmicflows).' },
+      { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+    ]),
+    sel.note ? h('p', { className: 'note', textContent: sel.note }) : null,
+  ] : [];
+  panel.replaceChildren(
+    h('h2', { textContent: 'THE NEARBY UNIVERSE' }),
+    h('div', { className: 'kind', textContent: 'CENTRED ON THE MILKY WAY · SUPERGALACTIC PLANE HORIZONTAL' }),
+    h('h3', { textContent: 'DISTANCE FILTER' }),
+    h('div', { className: 'body-list' }, [3, 30, 100, 300, 1000, 2500].map((r) => pill(`${fmt(r, 0)} MLY`, () => { universe.setRadius(r); renderUniversePanel(); }, r === R ? 'on' : ''))),
+    h('p', { className: 'note', textContent: `${fmt(c.galaxies, 0)} CATALOGUED NEARBY GALAXIES · ${fmt(c.groups, 0)} GALAXY GROUPS WITHIN ${fmt(R, 0)} MILLION LY` }),
+    ...selBlock,
+    h('h3', { textContent: 'LANDMARKS · NEAREST FIRST' }), objectList(universe.objects, R * 1e6, universeSel, (id) => { universeSel = id; universe.select(id); renderUniversePanel(); }),
+    h('h3', { textContent: 'KEY' }),
+    h('div', { className: 'colour-key' },
+      keyRow(hex(rgbToHex(blackbodyRGB(4300))), 'ELLIPTICAL / LENTICULAR', 'OLD STARS'),
+      keyRow(hex(rgbToHex(blackbodyRGB(6200))), 'SPIRAL', ''),
+      keyRow(hex(rgbToHex(blackbodyRGB(9000))), 'IRREGULAR / DWARF', 'YOUNG STARS'),
+      keyRow('#c0ccff', 'GALAXY GROUP (COSMICFLOWS-4)', 'SIZE = NUMBER OF GALAXIES')),
+    h('div', { className: 'body-list' }, pill('◀ GALAXY', () => go({ level: 'galaxy' }))),
+    factList([
+      { label: 'NEARBY GALAXIES', value: '869 · UNGC', tier: 'measured', detail: 'Karachentsev et al. 2013: every known galaxy within ~11 Mpc (36 million ly).' },
+      { label: 'GROUPS', value: '38,000 · COSMICFLOWS-4', tier: 'measured', detail: 'Tully et al. 2023: galaxy groups with distances measured independently of redshift.' },
+      { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
+    ]),
+    h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),
+    renderLegend(),
+  );
+}
+
 // ---- navigation panel --------------------------------------------------------------------
 let navSelected = null;
 
@@ -715,6 +823,32 @@ onRoute(async (r) => {
   lastFrame = null;
   syncRail();
   if (r.level !== 'satellite') satPanel.closeViewer();
+  if (r.level !== 'quadrant') quadrant.hide();
+  if (r.level !== 'universe') universe.hide();
+  if (r.level === 'quadrant' || r.level === 'universe') {
+    system.hide(); nav.hide(); starView.hide(); planetView.hide(); galaxy.hide();
+    $('offline').hidden = true;
+    $('beacon-sub').textContent = currentSystem === 'sol' ? 'HOME' : 'RETURN';
+    if (r.level === 'quadrant') {
+      $('view-title').textContent = 'QUADRANT VIEW · AROUND SECTOR 001';
+      quadrant.show();
+      renderQuadrantPanel();
+      if (!quadrantLoaded) {
+        quadrantLoaded = true;
+        fetchGalaxyStars().then((d) => quadrant.setStars(d));
+        fetchClusters().then((d) => { quadrant.setClusters(d); if (route.level === 'quadrant') renderQuadrantPanel(); });
+      }
+    } else {
+      $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
+      universe.show();
+      renderUniversePanel();
+      if (!universeLoaded) {
+        universeLoaded = true;
+        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (route.level === 'universe') renderUniversePanel(); });
+      }
+    }
+    return;
+  }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
   if (r.level === 'satellite') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
@@ -819,3 +953,4 @@ onRoute(async (r) => {
     renderOfflinePanel(r.level);
   }
 });
+

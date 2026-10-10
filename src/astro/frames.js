@@ -64,3 +64,16 @@ export function blackbodyRGB(t) {
 }
 
 export const rgbToHex = ([r, g, b]) => (Math.round(r * 255) << 16) | (Math.round(g * 255) << 8) | Math.round(b * 255);
+
+// IAU galactic → de Vaucouleurs supergalactic: the supergalactic north pole is at galactic
+// (l, b) = (47.37°, +6.32°) and SGL = 0 points at (137.37°, 0°).
+const gunit = (l, b) => { const L = l * Math.PI / 180, B = b * Math.PI / 180; return [Math.cos(B) * Math.cos(L), Math.cos(B) * Math.sin(L), Math.sin(B)]; };
+const SG_Z = gunit(47.37, 6.32), SG_X = gunit(137.37, 0);
+const SG_Y = [SG_Z[1] * SG_X[2] - SG_Z[2] * SG_X[1], SG_Z[2] * SG_X[0] - SG_Z[0] * SG_X[2], SG_Z[0] * SG_X[1] - SG_Z[1] * SG_X[0]];
+/** Galactic Cartesian → supergalactic Cartesian. */
+export const galToSupergal = (v) => [SG_X, SG_Y, SG_Z].map((a) => a[0] * v[0] + a[1] * v[1] + a[2] * v[2]);
+/** Equatorial RA/Dec (deg) and distance → supergalactic Cartesian (same unit as d). */
+export function radecToSupergal(ra, dec, d) {
+  const a = ra * Math.PI / 180, de = dec * Math.PI / 180;
+  return galToSupergal(eqToGal([d * Math.cos(de) * Math.cos(a), d * Math.cos(de) * Math.sin(a), d * Math.sin(de)]));
+}

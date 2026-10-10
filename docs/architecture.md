@@ -12,6 +12,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/dsn.js       DSN Now       │
+│                                      │           │ server/deepsky.js   VizieR        │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -69,6 +70,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
 | `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
+| `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
+| `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
@@ -142,3 +145,13 @@ Earth's GIBS mosaic in the planet shader (base map shows through swath gaps and 
 the separate cloud layer hides), the Sun's SDO disk projected orthographically onto the
 Earth-facing hemisphere (solar north up, radius from Helioviewer's metadata) in the star
 shader. System, Star and Planet views all use it; it refreshes every 15 minutes.
+
+## Quadrant and Universe views
+
+`src/views/quadrant/QuadrantView.js`: heliocentric galactic frame in light-years, Sol at the
+origin, over the calibrated Milky Way plane (`src/views/galaxy/plane.js`, shared with the Galaxy
+View); clusters coloured by age, nebulae by kind. `src/views/universe/UniverseView.js`:
+supergalactic frame (`galToSupergal` in `src/astro/frames.js`), Mly; Cosmicflows group positions
+are their velocity-space direction scaled to the measured distance. Both filter points in the
+shader by radius (`uRadius`) and labels by distance. Label `visible` must be a strict boolean
+(CSS2DRenderer only hides on `=== false`).

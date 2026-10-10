@@ -40,11 +40,11 @@
 | System | Literature masses (Bond et al. 2015/2017; Akeson et al. 2021; Kervella et al. 2008/2017; Eggenberger et al. 2008) | Measured component masses and white-dwarf properties for Sirius, Procyon, α Cen (with Proxima), 70 Oph and 61 Cyg | bundled | ✅ #7 |
 | Navigation / System | Literature astrometry: Luhman 2013/2014; Bedin et al. 2024; Luhman & Esplin 2016; masses Lazorenko & Sahlmann 2018; WISE 0855 temperature Luhman et al. 2024 (JWST) | The nearest brown dwarfs HYG misses: Luhman 16 AB (6.5 ly, on its ORB6 orbit) and WISE 0855−0714 (7.4 ly), in `server/neighbours.js` | bundled | ✅ |
 | Navigation | Gaia DR3 | The other faint neighbours HYG misses (red and brown dwarfs) | local | ⏳ |
-| Quadrant | Gaia DR3 (tiled level-of-detail), cluster catalogues, OpenNGC | Star density, clusters, nebulae | local | ⏳ #4 |
+| Quadrant | [Hunt & Reffert 2023](https://doi.org/10.1051/0004-6361/202346285) (VizieR J/A+A/673/A114): 7,167 Gaia DR3 star clusters with distances, members, ages; curated nebulae with literature distances (`src/data/deepsky.js`) | Our corner of the Milky Way | VizieR, cached 90 days (`/api/clusters`) | ✅ #4 |
 | Galaxy | [PIA10748](https://photojournal.jpl.nasa.gov/catalog/PIA10748) face-on Milky Way (NASA/JPL-Caltech/R. Hurt, from Spitzer), calibrated against the annotated [PIA19341](https://photojournal.jpl.nasa.gov/catalog/PIA19341) | The galaxy image under the stars (IMAGINED: an artist's concept) | downloaded once to `data/` | ✅ #10 |
 | Galaxy | GRAVITY Collaboration 2019 (R₀ = 8.178 kpc); Bennett & Bovy 2019 (z₀ = 20.8 pc); LMC/SMC/Sgr dSph distances (Pietrzyński 2019, Graczyk 2020, Vasiliev & Belokurov 2020) | Sol's place in the galaxy, satellite galaxies | bundled | ✅ #10 |
 | Galaxy | Harris globular clusters | Globular cluster halo | local | ⏳ #4 |
-| Universe | NED, Cosmicflows-4, 2MRS | Nearby galaxies and distances | local / live | ⏳ #4 |
+| Universe | [UNGC](https://doi.org/10.1088/0004-6256/145/4/101) (Karachentsev et al. 2013, J/AJ/145/101): 869 galaxies within ~11 Mpc; [Cosmicflows-4](https://doi.org/10.3847/1538-4357/ac94d8) groups (Tully et al. 2023, J/ApJ/944/94): 38,053 groups with redshift-independent distances; curated galaxy clusters | The nearby universe, supergalactic frame, distance filter | VizieR, cached 90 days (`/api/galaxies`) | ✅ #4 |
 
 ## Multiple stars
 

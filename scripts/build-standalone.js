@@ -10,6 +10,7 @@ import { nearby, starDetail, sky, galaxyStars } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { library } from '../server/spectra.js';
 import { smallBodies } from '../server/smallbodies.js';
+import { clusters, galaxies } from '../server/deepsky.js';
 import { satellites, satelliteDetail } from '../server/satellites.js';
 import { FEATURED } from '../src/data/feeds.js';
 import { SPACECRAFT } from '../src/data/spacecraft.js';
@@ -26,7 +27,7 @@ const near = await nearby('sol', 100);
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
 const skies = {};
-for (const id of ['sol', 'hyg-70666', 'exo-trappist-1']) {
+for (const id of ['sol', 'hyg-70666']) {
   try { skies[id] = await sky(id); } catch { /* not in this catalogue version */ }
 }
 // surfaces, embedded as data URIs (smaller variants where the full map is large)
@@ -83,9 +84,13 @@ for (const c of SPACECRAFT) {
     }
   } catch (err) { console.warn(`  spacecraft ${c.id}: ${err.message}`); }
 }
+// quadrant & universe: all clusters; nearby galaxies; Cosmicflows groups within 300 Mly (≈ 92 Mpc)
+const clustersSnap = await clusters().catch(() => null);
+const galAll = await galaxies().catch(() => null);
+const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: galAll.groups.rows.filter((r) => r[2] <= 92).map((r) => [r[0], r[1], +r[2].toFixed(1), Math.round(r[3]), Math.round(r[4]), Math.round(r[5])]) } };
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
-await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat, horizons }));
+await fs.writeFile(path.join(root, 'standalone/snapshot.json'), JSON.stringify({ nearby: near, details, skies, textures, textureCredits, spectra, galaxy, smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap }));
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} planetary systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 
 // 2) build
