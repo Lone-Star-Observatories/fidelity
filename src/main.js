@@ -648,7 +648,7 @@ const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, 
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel, system, settings });
-const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel });
+const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
 createSearch({ h, badge, $, go, clock, actions: {
@@ -1595,7 +1595,8 @@ onRoute(async (r) => {
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
   if (r.level !== 'events') eventsPanel.leave();
-  if (r.level !== 'future' && r.level !== 'system') futureEvents.leave(); // a scenario stays while you look at it in the System View
+  if (r.level !== 'future' && r.level !== 'system') futureEvents.leave();
+  if (r.level !== 'timeline' && r.level !== 'system' && r.level !== 'planet') earthTimeline.leave(); // the epoch stays while you look at Earth // a scenario stays while you look at it in the System View
   if (r.level === 'timeline') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;

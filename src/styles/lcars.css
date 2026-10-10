@@ -739,3 +739,5 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .future-chart .fc-dot { fill: var(--orange); stroke: #000; stroke-width: 1; }
 .body-label.scenario-label { color: var(--lilac); border-color: var(--lilac); font-style: italic; pointer-events: auto; }
 .nav-band-key { left: auto; right: 12px; max-width: min(46%, 460px); border-left-color: var(--blue, #9cf); }
+.paleo-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); z-index: 4; max-width: min(860px, 90%); padding: 4px 14px; border-radius: 14px;
+  background: rgba(0, 0, 0, 0.7); border: 2px solid var(--lilac); color: var(--lilac); letter-spacing: 0.08em; font-size: calc(12px * var(--text-scale, 1)); text-align: center; pointer-events: none; }

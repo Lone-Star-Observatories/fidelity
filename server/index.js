@@ -5,6 +5,7 @@
 import { starSearch } from './search.js';
 import { impactRisk } from './risk.js';
 import { co2 } from './co2.js';
+import { paleoCoastlines } from './paleomap.js';
 import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -66,6 +67,7 @@ const routes = {
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/impact-risk': async () => impactRisk(),
   'GET /api/co2': async () => co2(),
+  'GET /api/paleo-coastlines': async (q) => paleoCoastlines(q.get('time') || ''),
   'GET /api/clusters': async () => clusters(),
   'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),
