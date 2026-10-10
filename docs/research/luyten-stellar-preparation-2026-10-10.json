@@ -1,0 +1,129 @@
+{
+  "researched": "2026-10-10",
+  "status": "research preparation; no new surface or observer assets delivered",
+  "identityEvidence": {
+    "source": "https://arxiv.org/html/1702.02946",
+    "locator": "Table 1 observation journal",
+    "A": "GJ65 A = BL Ceti = Luyten726-8 A = G 272-61 A",
+    "B": "GJ65 B = UV Ceti = Luyten726-8 B = G 272-61 B",
+    "warning": "Kervella2016 abstract lists UV+BL before component types; use explicit component-labelled observing log instead of positional inference."
+  },
+  "measurements": {
+    "source": "https://arxiv.org/html/1607.04351",
+    "A": {
+      "radiusSun": 0.165,
+      "radiusErrorSun": 0.006,
+      "massSun": 0.1225,
+      "massErrorSun": 0.0043
+    },
+    "B": {
+      "radiusSun": 0.159,
+      "radiusErrorSun": 0.006,
+      "massSun": 0.1195,
+      "massErrorSun": 0.0043
+    },
+    "method": "Interferometric radii with model limb darkening and adopted parallax; orbital dynamical masses.",
+    "adoptedParallaxMas": 373.7,
+    "adoptedParallaxErrorMas": 2.7
+  },
+  "astrometryLimit": "Historical selection lists B parallax373.844312268399mas and A367.711896181477mas, inconsistent component distances for this bound pair. Retain historical selection; reconcile binary-aware astrometry before a current distance ranking claim.",
+  "magneticConstraints": {
+    "source": "https://arxiv.org/html/1702.02946",
+    "observed": "2013-09-21 and2013-09-24 CFHT/ESPaDOnS spectra",
+    "A": {
+      "totalFluxKilogauss": 5.2,
+      "modelledLargeScaleKilogauss": 0.3,
+      "topology": "complex non-axisymmetric"
+    },
+    "B": {
+      "totalFluxKilogauss": 6.7,
+      "modelledLargeScaleKilogauss": 1.3,
+      "topology": "approximately axisymmetric dipolar"
+    },
+    "limitation": "Spectropolarimetric inversions constrain field models, not a native optical photograph of photospheric geography."
+  },
+  "nativeAssessment": [
+    {
+      "source": "https://arxiv.org/html/1607.04351",
+      "locator": "Figure3",
+      "kind": "NACO binary point-source images at two epochs",
+      "status": "Two publisher/authored raster panels downloaded unchanged and visually verified; integration pending bandpass/terms and temperature checks.",
+      "limit": "Resolved binary separation does not resolve photospheric geography or establish visible colour.",
+      "panelEpochs": [
+        "2007-08-29 (Table2 UT08:15)",
+        "2011-09-23 (Table2 UT06:28)"
+      ],
+      "credit": "P. Kervella, A. Mérand, C. Ledoux, B.-O. Demory and J.-B. Le Bouquin; ESO/VLT/NACO.",
+      "terms": "https://info.arxiv.org/help/license/index.html",
+      "licenseNote": "arXiv perpetual non-exclusive distribution license is displayed; no CC license inferred. User-authorized credited use remains distinct from publisher licensing."
+    },
+    {
+      "source": "https://arxiv.org/html/2406.17280",
+      "publication": "2024-06-25 arXiv v1",
+      "observations": [
+        "2011-01-08 VLA",
+        "2011-01-28 VLA",
+        "2014-07-23 ALMA"
+      ],
+      "terms": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "credit": "Kathryn Plant, Gregg Hallinan and Tim Bastian; VLA/NRAO and ALMA.",
+      "assessment": "Recent analysis of older radio observations; not recent visible photospheric imagery. No raster selected yet."
+    }
+  ],
+  "unknown": [
+    "Adopted component effective temperatures still require a parameter-source check. A2900K MARCS line-mask model in Kochukhov2017 is an analysis assumption, not independent component temperature measurement.",
+    "Exact Figure3 panel filters and rendering metadata; epochs and A/B labels now verified directly in panels and Table2.",
+    "Current binary-aware distance reconciliation and exhaustive nearest20 component ranking.",
+    "Resolved optical morphology, calibrated visible colour and dated observer companion registration."
+  ],
+  "next": [
+    "Verify Figure3 panel labels/epochs and publisher or author source terms; retain actual source hashes.",
+    "Verify independent temperature estimates, then generate four independent A/B map and conceptual near-photosphere assets.",
+    "Use skyGeometry for observer angular and raster target computations; retain approximate colour/FOV labels.",
+    "Integrate through additive importer and actual routes; preserve previous32 dossiers."
+  ],
+  "sources": [
+    {
+      "url": "https://arxiv.org/html/1607.04351",
+      "file": "data/research-sources/luyten-1607.04351.html",
+      "bytes": 285787,
+      "sha256": "cac4c62942632b2dd9e0ae79ac9d669edc25d47736a11c700c2de20168bfa67c",
+      "retrieved": "2026-10-10",
+      "status": 200
+    },
+    {
+      "url": "https://arxiv.org/html/1702.02946",
+      "file": "data/research-sources/luyten-1702.02946.html",
+      "bytes": 89927,
+      "sha256": "fbc3a750f09e646c423edfa3b80e2b699ba8980bef861864683920b866ba30cf",
+      "retrieved": "2026-10-10",
+      "status": 200
+    },
+    {
+      "url": "https://arxiv.org/html/2406.17280",
+      "file": "data/research-sources/luyten-2406.17280.html",
+      "bytes": 164236,
+      "sha256": "fcd32e2fa8fe8df0add3a8705dda6c399af0744de60a322fafe1c52b212e59aa",
+      "retrieved": "2026-10-10",
+      "status": 200
+    },
+    {
+      "url": "https://arxiv.org/html/1607.04351v3/x1.png",
+      "file": "data/research-sources/luyten-naco-panel-1.png",
+      "bytes": 94353,
+      "sha256": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+      "retrieved": "2026-10-10",
+      "status": 200,
+      "processing": "Downloaded byte-identically; not integrated pending panel metadata verification."
+    },
+    {
+      "url": "https://arxiv.org/html/1607.04351v3/x2.png",
+      "file": "data/research-sources/luyten-naco-panel-2.png",
+      "bytes": 95832,
+      "sha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+      "retrieved": "2026-10-10",
+      "status": 200,
+      "processing": "Downloaded byte-identically; not integrated pending panel metadata verification."
+    }
+  ]
+}
