@@ -8,6 +8,7 @@ const defaults = {
   orbits: true,
   starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
   belts: true,      // System View: asteroid and Kuiper-belt populations
+  liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
 };

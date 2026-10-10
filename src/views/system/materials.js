@@ -42,6 +42,7 @@ const PLANET_FRAG = /* glsl */`
   #include <common>
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D uMap; uniform sampler2D uNight; uniform float uHasNight;
+  uniform sampler2D uLive; uniform float uHasLive;
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   void main() {
@@ -50,6 +51,10 @@ const PLANET_FRAG = /* glsl */`
     float ndl = dot(N, normalize(uSunPos - vPosW));
     vec4 tex = texture2D(uMap, vUv);
     vec3 base = tex.rgb * uTint;
+    if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
+      vec3 lv = texture2D(uLive, vUv).rgb;
+      base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
+    }
     vec3 col = base * (uAmbient + max(ndl, 0.0) * uSunColor);
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
@@ -65,14 +70,29 @@ const STAR_FRAG = /* glsl */`
   #include <common>
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D uMap; uniform vec3 uColor; uniform float uRecolour;
+  uniform sampler2D uDisk; uniform float uHasDisk; uniform vec3 uEarthDir; uniform vec3 uNorth; uniform float uDiskR;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   void main() {
     #include <logdepthbuf_fragment>
-    float mu = clamp(dot(normalize(vNormalW), normalize(cameraPosition - vPosW)), 0.0, 1.0);
+    vec3 N = normalize(vNormalW);
+    float mu = clamp(dot(N, normalize(cameraPosition - vPosW)), 0.0, 1.0);
     float limb = 1.0 - 0.55 * (1.0 - mu) - 0.25 * (1.0 - mu) * (1.0 - mu);
     vec3 tex = texture2D(uMap, vUv).rgb;
-    vec3 c = uRecolour > 0.5 ? dot(tex, vec3(0.299, 0.587, 0.114)) * 2.2 * uColor : tex * 1.25;
-    gl_FragColor = vec4(c * limb * 1.35, 1.0);
+    vec3 c = (uRecolour > 0.5 ? dot(tex, vec3(0.299, 0.587, 0.114)) * 2.2 * uColor : tex * 1.25) * limb * 1.35;
+    if (uHasDisk > 0.5) {
+      // The live full-disk image (solar north up, as seen from Earth) projected onto the Earth-facing hemisphere.
+      float facing = dot(N, uEarthDir);
+      vec3 up = normalize(uNorth - uEarthDir * dot(uNorth, uEarthDir));
+      vec3 right = normalize(cross(-uEarthDir, up));
+      vec2 uvd = vec2(0.5 + dot(N, right) * uDiskR, 0.5 + dot(N, up) * uDiskR);
+      // HMI continuum is a brightness image: give the disk and the stand-in far side one colour,
+      // so the Sun reads as one star (limb darkening is already in the live image)
+      vec3 warm = uColor * 1.9;
+      vec3 live = dot(texture2D(uDisk, uvd).rgb, vec3(0.299, 0.587, 0.114)) * warm * 1.1;
+      vec3 far = dot(tex, vec3(0.299, 0.587, 0.114)) * warm * limb * 1.6;
+      c = mix(far, live, smoothstep(0.08, 0.3, facing));
+    }
+    gl_FragColor = vec4(c, 1.0);
     #include <colorspace_fragment>
   }`;
 
@@ -82,7 +102,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
   return new THREE.ShaderMaterial({
     vertexShader: VERT, fragmentShader: PLANET_FRAG,
     uniforms: {
-      uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 },
+      uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 }, uLive: { value: null }, uHasLive: { value: 0 },
       uTint: { value: new THREE.Color(...tint) }, uSunPos: { value: new THREE.Vector3() },
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
     },
@@ -100,7 +120,8 @@ export function cloudMaterial(placeholder) {
 export function starMaterial(placeholder, color, recolour) {
   return new THREE.ShaderMaterial({
     vertexShader: VERT, fragmentShader: STAR_FRAG,
-    uniforms: { uMap: { value: placeholder }, uColor: { value: linear(color) }, uRecolour: { value: recolour ? 1 : 0 } },
+    uniforms: { uMap: { value: placeholder }, uColor: { value: linear(color) }, uRecolour: { value: recolour ? 1 : 0 },
+      uDisk: { value: null }, uHasDisk: { value: 0 }, uEarthDir: { value: new THREE.Vector3(0, 0, 1) }, uNorth: { value: new THREE.Vector3(0, 1, 0) }, uDiskR: { value: 0.39 } },
   });
 }
 
@@ -115,4 +136,43 @@ export function applySkin(material, skin) {
       material.uniforms.uHasNight.value = 1;
     });
   }
+}
+
+// ---- live skins (#17): today's imagery from the backend's feed cache ----------------------------
+const live = new Map(); // feed id → Promise<{ texture, time, credit, disk } | null>
+export const liveInfo = new Map(); // feed id → { time, credit } once loaded
+
+/** Load live feed `id` as a texture (null in the standalone preview or if unavailable). */
+export function loadLive(id, maxAgeMs = 15 * 60000) {
+  const c = live.get(id);
+  if (c && Date.now() - c.at < maxAgeMs) return c.p;
+  const p = (import.meta.env?.MODE === 'standalone' ? Promise.resolve(null) : fetch(`/api/feed/${id}`).then(async (r) => {
+    if (!r.ok) return null;
+    const url = URL.createObjectURL(await r.blob());
+    const meta = { time: r.headers.get('x-feed-time'), credit: decodeURIComponent(r.headers.get('x-feed-credit') || ''), disk: Number(r.headers.get('x-feed-disk')) || null };
+    const texture = await new Promise((res) => loader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; res(t); }, undefined, () => res(null)));
+    if (!texture) return null;
+    liveInfo.set(id, meta);
+    return { texture, ...meta };
+  }).catch(() => null));
+  live.set(id, { p, at: Date.now() });
+  return p;
+}
+
+/** Apply a body's live skin (Earth: daily global mosaic; Sun: full-disk image) if enabled. */
+export function applyLiveSkin(material, skin, enabled) {
+  if (!skin?.live) return Promise.resolve(null);
+  if (!enabled) { material.uniforms.uHasLive && (material.uniforms.uHasLive.value = 0); material.uniforms.uHasDisk && (material.uniforms.uHasDisk.value = 0); return Promise.resolve(null); }
+  return loadLive(skin.live, skin.liveDisk ? 15 * 60000 : 6 * 3600000).then((l) => {
+    if (!l) return null;
+    if (skin.liveDisk) {
+      material.uniforms.uDisk.value = l.texture;
+      material.uniforms.uHasDisk.value = 1;
+      if (l.disk) material.uniforms.uDiskR.value = l.disk;
+    } else {
+      material.uniforms.uLive.value = l.texture;
+      material.uniforms.uHasLive.value = 1;
+    }
+    return l;
+  });
 }

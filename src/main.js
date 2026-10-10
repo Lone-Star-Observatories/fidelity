@@ -169,7 +169,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES')),
+  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('liveSkins', 'LIVE')),
   h('div', { className: 'bar-fill' }),
 );
 // Standalone build (e.g. a shared preview) has no backend, so no Horizons proxy.
@@ -365,6 +365,12 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
 
   const groups = Object.entries(b.facts || {}).filter(([, f]) => f.length);
   const look = h('dl');
+  if (b.skin?.live) {
+    live.skinBody = b.id;
+    live.skin = row(look, 'LIVE SKIN', STANDALONE ? 'NEEDS THE LOCAL BACKEND' : 'LOADING…', 'measured',
+      b.id === 'sun' ? 'Latest SDO HMI full-disk image (Helioviewer), projected onto the Earth-facing hemisphere; the far side is a stand-in map.'
+        : "Yesterday's global mosaic from NOAA-20 VIIRS (NASA GIBS), with its real clouds; the Blue Marble fills swath gaps and polar night.");
+  }
   if (!b.marker) live.size = row(look, 'SIZE ON SCREEN', '—', 'imagined', 'Enhanced scale enlarges bodies so they are visible.');
   if (b.id === 'main-belt' || b.id === 'kuiper-belt' || b.id === 'trojans') {
     const c = beltCounts;
@@ -505,6 +511,11 @@ function renderNavPanel() {
 }
 
 // ---- message light-time (#16) --------------------------------------------------------------
+const ago = (iso) => {
+  if (!iso) return '';
+  const m = (Date.now() - Date.parse(iso.endsWith('Z') ? iso : `${iso}Z`)) / 60000;
+  return m < 90 ? `${Math.max(0, Math.round(m))} MIN OLD` : m < 2880 ? `${(m / 60).toFixed(1)} H OLD` : `${(m / 1440).toFixed(1)} DAYS OLD`;
+};
 const yearOf = (jd) => { const d = dateFromJd(jd); return d.getUTCFullYear() + (d - Date.UTC(d.getUTCFullYear(), 0, 1)) / (365.25 * 86400000); };
 const SPEEDS = [[1, '1 LY / S'], [0.1, '1 LY / 10 S'], [1 / 60, '1 LY / MIN']];
 let msgSpeed = 0.1, msgSent = null, pendingMessage = false;
@@ -639,7 +650,7 @@ function tick() {
       : 'SKY: decorative backdrop (catalogue not loaded).';
   }
 
-  if (['system', 'star', 'planet', 'moon', 'object'].includes(route.level) && route.body && m && (f || route.level === 'star')) {
+  if (['system', 'star', 'planet', 'moon', 'object'].includes(route.level) && route.body && m && (f || route.level !== 'system')) {
     const id = route.body;
     const p = system.positionOf(id);
     const r = system.hostDistance(id);
@@ -658,6 +669,11 @@ function tick() {
       live.earth.textContent = `${fmt(ref)} AU · ${fmt((ref * AU_KM) / 1e6, 1)} M KM`;
     }
     if (live.light) live.light.textContent = r === 0 && !live.earth ? '—' : lightTime(ref);
+    if (live.skin) {
+      const l = system.liveSkinOf(live.skinBody);
+      live.skin.textContent = !settings.get('liveSkins') ? 'OFF (TOGGLE LIVE)' : l ? `${l.time ? l.time.slice(0, 16).replace('T', ' ') + ' UTC' : 'TODAY'} · ${ago(l.time)}` : STANDALONE ? 'NEEDS THE LOCAL BACKEND' : 'LOADING…';
+      if (l) live.skin.nextSibling.title = `${TIERS.measured.hint}\n${l.credit}`;
+    }
     if (live.size) {
       const k = system.enhancementOf(id) ** (1 - (f?.scaleMix ?? 0));
       live.size.textContent = k > 1.5 ? `×${fmt(k, 0)} ENLARGED` : 'TRUE SCALE';

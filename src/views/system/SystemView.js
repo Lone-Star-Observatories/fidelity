@@ -15,7 +15,7 @@ import { AU_KM } from '../../data/sol.js';
 import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
-import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture } from './materials.js';
+import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin } from './materials.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { ELEMENTS } from '../../astro/kepler.js';
 import { MASS_RATIO } from '../../data/poi.js';
@@ -149,6 +149,19 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   let nodes = {}; // id → { body, group, tilt, mesh, label, orbit, pos }
   let pickables = [];
   let lit = []; // planet materials that need the star's position each frame
+  // Live skins: re-applied when the setting changes and refreshed every 15 minutes.
+  let liveTargets = [];
+  const liveState = {}; // body id → { time, credit } while a live skin is showing
+  function refreshLive() {
+    for (const t of liveTargets) {
+      applyLiveSkin(t.material, t.skin, settings.get('liveSkins')).then((l) => {
+        if (l && settings.get('liveSkins')) liveState[t.id] = { time: l.time, credit: l.credit, feed: t.skin.live };
+        else delete liveState[t.id];
+      });
+    }
+  }
+  settings.onChange((k) => { if (k === 'liveSkins') refreshLive(); });
+  setInterval(refreshLive, 15 * 60000);
 
   function makeLabel(body) {
     const el = document.createElement('button');
@@ -178,6 +191,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (isStar(body)) {
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), starMaterial(placeholder, body.color, body.skin?.recolour));
       loadTexture(body.skin?.map).then((t) => { if (t) mesh.material.uniforms.uMap.value = t; });
+      if (body.skin?.live) liveTargets.push({ id: body.id, material: mesh.material, skin: body.skin });
       const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.85 }));
       glow.scale.setScalar(6);
       mesh.add(glow);
@@ -185,6 +199,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       const mat = planetMaterial(placeholder, { tint: body.skin?.tint });
       mat.userData.host = body.orbit?.host ?? model.starId;
       applySkin(mat, body.skin);
+      if (body.skin?.live) liveTargets.push({ id: body.id, material: mat, skin: body.skin });
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), mat);
       lit.push(mat);
       if (body.skin?.clouds) {
@@ -346,6 +361,8 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (sats) { root.remove(sats.points); sats.dispose(); sats = null; }
     pickables = [];
     lit = [];
+    liveTargets = [];
+    for (const k of Object.keys(liveState)) delete liveState[k];
     for (const tr of tracks) for (const l of [tr.a, tr.b]) { root.remove(l); l.geometry.dispose(); l.material.dispose(); }
     tracks.length = 0;
   }
@@ -357,6 +374,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
     if (m.isSol) buildZones();
+    refreshLive();
     for (const o of m.binary?.orbits ?? []) addBinaryTrack(o);
     const star = m.bodies.find((x) => x.id === m.starId);
     starLight.color.setHex(star.color ?? 0xfff4e0);
@@ -752,7 +770,15 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     updateTracks(jd);
     for (const id in nodes) {
       const c = nodes[id].clouds;
-      if (c) c.rotation.y = (now / 1000) * 0.004; // clouds: a static 2004 snapshot, drifted gently so they read as weather
+      if (c) {
+        c.rotation.y = (now / 1000) * 0.004; // clouds: a static 2004 snapshot, drifted gently so they read as weather
+        c.visible = !liveState[id]; // today's imagery already has today's clouds
+      }
+    }
+    if (liveState.sun && nodes.sun && nodes.earth) { // the live solar disk faces Earth, solar north up
+      const u = nodes.sun.mesh.material.uniforms;
+      u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
+      u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
     controls.minDistance = displayRadius(nodes[focusId].body) * 1.3;
     controls.update();
@@ -826,5 +852,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       return p.distanceTo(b.orbit?.host ? hostScene(b.orbit.host, clock.jd, new THREE.Vector3()) : new THREE.Vector3());
     },
     enhancementOf: (id) => enhancement(nodes[id].body, model.scale),
+    /** { time, credit, feed } if body `id` wears a live skin right now. */
+    liveSkinOf: (id) => liveState[id] ?? null,
   };
 }

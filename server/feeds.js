@@ -36,7 +36,9 @@ const helioviewer = (sourceId, layer, credit) => ({
     const closest = await (await fetchOk(`https://api.helioviewer.org/v2/getClosestImage/?date=${now}&sourceId=${sourceId}`)).json().catch(() => null);
     const q = `date=${now}&imageScale=2.42&layers=[${layer},1,100]&x0=0&y0=0&width=1024&height=1024&display=true`;
     const res = await fetchOk(`https://api.helioviewer.org/v2/takeScreenshot/?${q}`, 90000);
-    return { body: Buffer.from(await res.arrayBuffer()), type: 'image/png', time: closest?.date ? `${closest.date.replace(' ', 'T')}Z` : now };
+    // fraction of the image width covered by the solar radius (for projecting the disk onto a sphere)
+    const disk = closest?.rsun && closest?.scale ? (closest.rsun * closest.scale) / (2.42 * 1024) : null;
+    return { body: Buffer.from(await res.arrayBuffer()), type: 'image/png', time: closest?.date ? `${closest.date.replace(' ', 'T')}Z` : now, disk };
   },
 });
 const goes = (sat, credit) => ({
@@ -119,7 +121,7 @@ export async function feed(id) {
       try {
         const got = await f.get();
         await fs.mkdir(dir, { recursive: true });
-        meta = { type: got.type ?? 'application/json', time: got.time, fetched: new Date().toISOString(), ...(f.type === 'json' ? { body: got.body } : {}) };
+        meta = { type: got.type ?? 'application/json', time: got.time, disk: got.disk ?? null, fetched: new Date().toISOString(), ...(f.type === 'json' ? { body: got.body } : {}) };
         if (f.type === 'image') await fs.writeFile(bodyFile, got.body);
         await fs.writeFile(metaFile, JSON.stringify(meta));
         return read('miss');

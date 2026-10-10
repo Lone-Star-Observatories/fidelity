@@ -6,7 +6,9 @@
 // star's measured metallicity.
 
 import * as THREE from 'three';
-import { starMaterial, loadTexture } from '../system/materials.js';
+import { starMaterial, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { SUN } from '../../data/sol.js';
+import { settings } from '../../settings.js';
 import { glowTexture, planetTexture } from '../system/textures.js';
 import { badge } from '../../data/provenance.js';
 import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/composition.js';
@@ -66,7 +68,11 @@ export function createStarView(container) {
   function frame(now) {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (star) star.rotation.y = now * 0.00004;
+    if (star) {
+      star.rotation.y = now * 0.00004;
+      const u = star.material.uniforms;
+      if (u.uHasDisk.value) { u.uEarthDir.value.copy(camera.position).normalize(); u.uNorth.value.set(0, 1, 0); }
+    }
     renderer.render(scene, camera);
   }
 
@@ -75,6 +81,7 @@ export function createStarView(container) {
     const placeholder = planetTexture({ id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] });
     star = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), starMaterial(placeholder, body.color, !isSun));
     loadTexture('sun').then((t) => { if (t && star) star.material.uniforms.uMap.value = t; });
+    if (isSun) applyLiveSkin(star.material, SUN.skin, settings.get('liveSkins')); // seen from Earth: the live disk faces the camera
     glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.75 }));
     glow.scale.setScalar(3.6);
     star.add(glow);

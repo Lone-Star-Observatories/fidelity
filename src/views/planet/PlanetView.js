@@ -2,7 +2,8 @@
 // absorb light, what is inside it, and where it sits among rocky, watery and gassy worlds.
 
 import * as THREE from 'three';
-import { planetMaterial, cloudMaterial, applySkin, loadTexture } from '../system/materials.js';
+import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { settings } from '../../settings.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
 import { badge } from '../../data/provenance.js';
 import { PLANETS } from '../../data/sol.js';
@@ -77,6 +78,9 @@ export function createPlanetView(container) {
       clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 128, 64), cm);
       pivot.add(clouds);
     }
+    // today's imagery (with today's clouds) where the backend can fetch it
+    const myClouds = clouds;
+    applyLiveSkin(mat, b.skin, settings.get('liveSkins')).then((l) => { if (l && myClouds) myClouds.visible = false; });
     if (b.rings) {
       const inner = b.rings.innerKm / b.radiusKm, outer = b.rings.outerKm / b.radiusKm;
       const geo = new THREE.RingGeometry(inner, outer, 160, 1);

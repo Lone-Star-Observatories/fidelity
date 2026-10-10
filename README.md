@@ -70,6 +70,8 @@ ship recognises and which view will use each one.
 - **Light-time messages:** send a light pulse from any star to Earth (or from Earth to any star)
   and watch it cross the chart at 1 ly per 10 s, with the year it arrives and the year a reply
   comes back; long trips are counted in human lifetimes.
+- **Live skins:** Earth wears yesterday's satellite mosaic with its real clouds, the Sun
+  today's SDO image with today's sunspots (toggle LIVE).
 - **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
   calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
   true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.

@@ -58,7 +58,7 @@ const paramRoutes = [
     const f = await feed(m[1]);
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };
     // short cache: these are live images
-    return binary({ body: f.body, type: f.type, maxAge: 300, headers: { 'x-feed-time': f.time ?? '', 'x-feed-credit': encodeURIComponent(f.credit), 'x-feed-cache': f.cache } });
+    return binary({ body: f.body, type: f.type, maxAge: 300, headers: { 'x-feed-time': f.time ?? '', 'x-feed-disk': f.disk ?? '', 'x-feed-credit': encodeURIComponent(f.credit), 'x-feed-cache': f.cache } });
   }],
 ];
 

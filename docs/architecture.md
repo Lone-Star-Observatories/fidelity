@@ -134,3 +134,11 @@ Horizons calls three at a time.
 `NavigationView.sendMessage(from, to, lyPerSec)` animates a pulse out and a reply back;
 `src/data/lighttime.js` formats years, spans (lifetimes of 75 years beyond that) and the
 human-scale sentence. The navigation panel's TRANSMISSION card reads the pulse state live.
+
+## Live skins
+
+`applyLiveSkin` (`src/views/system/materials.js`) layers a feed image over a body's base map:
+Earth's GIBS mosaic in the planet shader (base map shows through swath gaps and polar night;
+the separate cloud layer hides), the Sun's SDO disk projected orthographically onto the
+Earth-facing hemisphere (solar north up, radius from Helioviewer's metadata) in the star
+shader. System, Star and Planet views all use it; it refreshes every 15 minutes.

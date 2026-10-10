@@ -11,7 +11,7 @@ export const LIGHT_SECONDS_PER_AU = 499.004784;
 export const SUN = {
   id: 'sun', name: 'Sol', kind: 'star', spectral: 'G2V',
   radiusKm: 695700, massKg: 1.9885e30, massSun: 1, teffK: 5772, rotationHours: 609.12,
-  pole: [286.13, 63.87], color: 0xffd27a, skin: { map: 'sun' }, iau: [84.176, 14.1844],
+  pole: [286.13, 63.87], color: 0xffd27a, skin: { map: 'sun', live: 'sdo-hmi', liveDisk: true }, iau: [84.176, 14.1844],
 };
 
 // rotationHours < 0 means retrograde rotation.
@@ -24,7 +24,7 @@ export const PLANETS = [
     palette: ['#e8d3a2', '#d9bf85', '#f1e2bd'], banded: true, horizons: '299', skin: { map: 'venus' }, iau: [160.2, -1.4813688] },
   { id: 'earth', name: 'Earth', kind: 'planet', radiusKm: 6371.0, massKg: 5.972e24, gravity: 9.8,
     rotationHours: 23.9345, periodDays: 365.256, meanTempC: 15, pole: [0, 90],
-    palette: ['#1f4fa0', '#2f7d4a', '#e9eef2'], earthlike: true, horizons: '399', skin: { map: 'earth', night: 'earthNight', clouds: 'earthClouds' }, iau: 'gmst' },
+    palette: ['#1f4fa0', '#2f7d4a', '#e9eef2'], earthlike: true, horizons: '399', skin: { map: 'earth', night: 'earthNight', clouds: 'earthClouds', live: 'gibs-noaa20' }, iau: 'gmst' },
   { id: 'mars', name: 'Mars', kind: 'planet', radiusKm: 3389.5, massKg: 6.417e23, gravity: 3.7,
     rotationHours: 24.6229, periodDays: 687.0, meanTempC: -65, pole: [317.269, 54.432],
     palette: ['#b5532f', '#8f3d22', '#d27a4f'], horizons: '499', skin: { map: 'mars' }, iau: [176.63, 350.89198226] },
