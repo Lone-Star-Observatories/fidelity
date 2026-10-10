@@ -169,6 +169,17 @@ wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (b
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
 
+## Realism layers (#19)
+
+`src/astro/orientation.js` turns Earth (precessing, nutating pole; GMST from the equinox of
+date) and the Moon (IAU 2009, so it librates) in the System View. The AXES toggle draws spin
+axes in each body's `tilt` group and Earth's precession circle on the sky sphere. Comets
+(`comet.js`) carry a coma, ion and dust tail oriented each frame from the Sun line and the
+trailing velocity; bodies can carry `altElements` per apparition and the nearest epoch is used.
+FIELDS draws `solarfield.js` (Parker spiral, current sheet) in the Sun's equatorial frame,
+turning at the Carrington rate. Points of interest carry `explain` text; Lagrange points get
+the `lagrangeDiagram` SVG (`src/panels/explainers.js`).
+
 ## Milky Way model
 
 `src/views/galaxy/model.js` builds the galaxy as seeded particle layers (thin and thick disc,

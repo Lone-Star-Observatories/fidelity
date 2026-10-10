@@ -105,8 +105,8 @@ function smallBody(b) {
   const q = e.a * (1 - e.e), Q = e.a * (1 + e.e);
   return {
     id: b.id, name: b.name, kind: b.kind, radiusKm: b.radiusKm, massKg: b.massKg, meanTempC: b.meanTempC,
-    rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt,
-    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.surfacePending && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e },
+    rotationHours: b.rotationHours ?? 24, pole: b.pole, iau: b.iau, note: b.note ?? null, belt: b.belt, comet: b.comet ?? null,
+    palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: b.surfacePending && bodyVisualFor(b)?.surfaceMap ? { map: bodyVisualFor(b).surfaceMap.key } : b.skin, orbit: { type: 'elements', el: e, alt: b.altElements ?? null },
     facts: {
       ORBIT: [
         fact('REGION', b.belt, 'measured'),

@@ -21,6 +21,9 @@ import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin } from './materials.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
+import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
+import { createComet, cometMagnitude } from './comet.js';
+import { createSolarField } from './solarfield.js';
 import { ELEMENTS } from '../../astro/kepler.js';
 import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
@@ -247,6 +250,14 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
     mesh.userData.id = body.id;
     tilt.add(mesh);
+    // spin axis through the poles (AXES toggle): north half warm, south half cool
+    const axisGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 0, 1.75, 0, 0, 0, 0, 0, -1.75, 0], 3))
+      .setAttribute('color', new THREE.Float32BufferAttribute([1, 0.7, 0.3, 1, 0.7, 0.3, 0.4, 0.7, 1, 0.4, 0.7, 1], 3));
+    const axis = new THREE.LineSegments(axisGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.85 }));
+    axis.visible = false;
+    tilt.add(axis);
+    let comet = null;
+    if (body.comet) { comet = createComet(renderer.getPixelRatio()); group.add(comet.group); }
     // A fixed-size pip keeps true-scale worlds findable when they are sub-pixel.
     const pipGeo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3));
     const minor = body.kind === 'moon' || body.orbit?.type === 'elements';
@@ -257,7 +268,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     group.add(label);
     root.add(group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet };
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -370,7 +381,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   // ---- zones & belts (Sol only) -----------------------------------------------------------
   let zones = null, belts = null, sats = null;
   function buildZones() {
-    const helio = heliosphere((v) => frameToScene(v));
+    const helio = heliosphere((v) => frameToScene(v), eqToEcl);
     zones = {
       geo: geoRing(), va: vanAllen(), helio, oort: oortCloud(),
       hill: model.bodies.filter((b) => ELEMENTS[b.id] && b.massKg).map((b) => {
@@ -381,7 +392,70 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     };
     root.add(zones.geo.object, ...zones.va.map((z) => z.object), helio.group, zones.oort, ...zones.hill.map((h) => h.shape.object));
   }
+  // the Sun's field (FIELDS toggle) and Earth's precession circle on the sky (AXES toggle)
+  let solarField = null, precession = null;
+  function buildSolarExtras() {
+    const f = createSolarField();
+    const outer = new THREE.Group();
+    outer.add(f.group);
+    outer.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), poleVector(nodes[model.starId].body.pole));
+    solarField = { ...f, outer };
+    root.add(outer);
+    // the north celestial pole traces a circle about the ecliptic pole every ~25,772 years
+    const k = new THREE.Vector3(...frameToScene(eqToEcl(ECLIPTIC_POLE)));
+    const pts = [];
+    for (let i = 0; i <= 256; i++) {
+      const jd = 2451545 + (i / 256) * 25772 * 365.25;
+      pts.push(new THREE.Vector3(...frameToScene(eqToEcl(earthPole(jd, { withNutation: false })))).multiplyScalar(SKY_R * 0.98));
+    }
+    const circle = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xffaa55, transparent: true, opacity: 0.5, depthWrite: false }));
+    circle.frustumCulled = false;
+    const now = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)),
+      new THREE.PointsMaterial({ color: 0xffaa55, size: 7, sizeAttenuation: false, depthWrite: false }));
+    now.frustumCulled = false;
+    const el = document.createElement('div');
+    el.className = 'nav-label motion';
+    el.textContent = 'NORTH CELESTIAL POLE · PRECESSION CIRCLE 25,772 YR';
+    const tagObj = new CSS2DObject(el);
+    precession = { circle, now, tag: tagObj, k };
+    scene.add(circle, now, tagObj);
+  }
+  function disposeSolarExtras() {
+    if (solarField) { root.remove(solarField.outer); solarField.outer.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); }); solarField = null; }
+    if (precession) { for (const o of [precession.circle, precession.now, precession.tag]) { scene.remove(o); o.geometry?.dispose(); o.material?.dispose(); } precession.tag.element.remove(); precession = null; }
+  }
+  function updateExtras(jd) {
+    const axesOn = !!settings.get('axes') && !surface, fieldsOn = !!settings.get('fields') && !surface;
+    for (const id in nodes) if (nodes[id].axis) nodes[id].axis.visible = axesOn && !nodes[id].body.marker;
+    if (solarField) {
+      solarField.outer.visible = fieldsOn;
+      solarField.outer.position.copy(nodes[model.starId].pos);
+      solarField.rotate(jd);
+    }
+    if (precession) {
+      const on = axesOn && model.isSol;
+      precession.circle.visible = precession.now.visible = precession.tag.visible = on;
+      if (on) {
+        const p = new THREE.Vector3(...frameToScene(eqToEcl(earthPole(jd)))).multiplyScalar(SKY_R * 0.98);
+        precession.now.geometry.attributes.position.setXYZ(0, p.x, p.y, p.z);
+        precession.now.geometry.attributes.position.needsUpdate = true;
+        precession.tag.position.copy(p);
+      }
+    }
+    // comets: coma and tails from the Sun's direction and the comet's motion
+    const sun = nodes[model.starId];
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (!n.comet) continue;
+      const anti = tmp6.copy(n.pos).sub(sun.pos);
+      const rAU = truePosition(id).distanceTo(truePosition(model.starId));
+      const trail = scenePosition(id, jd - 2, tmp7).sub(n.pos);
+      n.cometState = n.comet.update(anti, trail, rAU, displayRadius(n.body), 1);
+      n.cometState.rAU = rAU;
+    }
+  }
   function disposeZones() {
+    disposeSolarExtras();
     if (!zones) return;
     const objs = [zones.geo.object, ...zones.va.map((z) => z.object), zones.helio.group, zones.oort, ...zones.hill.map((h) => h.shape.object)];
     for (const o of objs) { root.remove(o); o.traverse((x) => { x.geometry?.dispose(); x.material?.dispose(); }); }
@@ -449,7 +523,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
-    if (m.isSol) buildZones();
+    if (m.isSol) { buildZones(); buildSolarExtras(); }
     refreshLive();
     for (const o of m.binary?.orbits ?? []) addBinaryTrack(o);
     const star = m.bodies.find((x) => x.id === m.starId);
@@ -573,7 +647,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (node.orbit && Math.abs(jd - node.orbitJd) < 365) return;
     const pts = o.type === 'sol'
       ? orbitPath(node.body.id, jd, 512).map((p) => toScene(p))
-      : o.type === 'elements' ? smallBodyOrbit(o.el, 512).map((p) => toScene(p))
+      : o.type === 'elements' ? smallBodyOrbit(nearestElements(o, jd), 512).map((p) => toScene(p))
       : ellipse(elementsOf(o), 256).map((p) => basisToScene(p, o.basis));
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
     if (node.orbit) { node.orbit.geometry.dispose(); node.orbit.geometry = geo; }
@@ -628,7 +702,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       localMap(nodes[o.parent].body, v);
       return v.add(scenePosition(o.parent, jd, tmp5));
     }
-    if (o.type === 'elements') { sourceOf[id] = 'kepler'; return toScene(smallBodyPosition(o.el, jd), v); }
+    if (o.type === 'elements') { sourceOf[id] = 'kepler'; return toScene(smallBodyPosition(nearestElements(o, jd), jd), v); }
     if (o.type === 'sol') {
       if (settings.get('ephemeris') === 'horizons') {
         horizons ??= createHorizonsEphemeris(Object.fromEntries(model.bodies.map((x) => [x.id, x])), (st) => { horizonsStatus = st; });
@@ -674,6 +748,9 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const n = B.clone().cross(ahead).normalize();
     return v.copy(B).applyAxisAngle(n, (L === 4 ? 1 : -1) * Math.PI / 3);
   }
+
+  /** The element set whose epoch is nearest `jd` (comets carry one per apparition). */
+  const nearestElements = (o, jd) => (o.alt ?? []).reduce((best, el) => (Math.abs(el.epochJd - jd) < Math.abs(best.epochJd - jd) ? el : best), o.el);
 
   /** Map a true parent-relative offset (AU, in place) to its displayed offset at the current scale mix. */
   let unmapped = false; // true while computing physical (not displayed) positions
@@ -851,6 +928,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       if (n.orbit) n.orbit.visible = false;
       let show;
       if (id === s.id) { n.group.visible = true; n.label.visible = false; continue; } // the ground underfoot
+      else if (b.comet) show = (n.cometState?.activity ?? 0) > 0.01; // an active comet is a sight; a dormant one is invisible
       else if (b.marker || b.kind === 'satellite' || b.kind === 'spacecraft' || b.orbit?.type === 'elements') show = false;
       else if (b.kind === 'moon') show = b.parent === s.id || b.parent === here.parent; // our moon(s), or sibling moons
       else show = true; // stars and planets
@@ -955,7 +1033,15 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
         n.group.visible = n.label.visible || n.body.kind === 'lagrange point' && zonesOn;
         continue;
       }
-      if (n.body.locked) {
+      if (model.isSol && (id === 'moon' || id === 'earth')) {
+        // Earth: precessing, nutating pole and sidereal time from the equinox of date.
+        // Moon: IAU 2009 rotation, so it librates as seen from Earth.
+        const ax = id === 'earth' ? earthAxes(jd, n.body.texLon0 ?? -180) : moonAxes(jd, n.body.texLon0 ?? -180);
+        const toS = (v) => new THREE.Vector3(...frameToScene(eqToEcl(v)));
+        basis.makeBasis(toS(ax.x), toS(ax.y), toS(ax.z));
+        n.tilt.quaternion.setFromRotationMatrix(basis);
+        n.mesh.rotation.y = 0;
+      } else if (n.body.locked) {
         // Tidally locked: the prime meridian (texture centre) faces the planet; spin axis = orbit normal.
         const to = tmp6.copy(nodes[n.body.parent].pos).sub(n.pos).normalize();
         const ahead = scenePosition(id, jd + (n.body.periodDays ?? n.body.moon.elements.P) / 50, tmp7).sub(n.pos);
@@ -1009,6 +1095,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
     root.position.copy(focusPos).negate();
     if (zones) updateZones(jd);
+    updateExtras(jd);
     if (belts) { belts.update(jd); belts.points.visible = settings.get('belts'); }
     if (sats && nodes.earth) {
       sats.points.visible = settings.get('satellites');
@@ -1098,6 +1185,13 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       return true;
     },
     exitSurface: () => exitSurface(true),
+    /** Live comet state: activity, coma and tail sizes, heliocentric and geocentric distance, total magnitude. */
+    cometState(id) {
+      const n = nodes[id];
+      if (!n?.comet || !n.cometState) return null;
+      const dEarth = nodes.earth ? truePosition(id).distanceTo(truePosition('earth')) : null;
+      return { ...n.cometState, deltaAU: dEarth, mag: dEarth ? cometMagnitude(n.body.comet, dEarth, n.cometState.rAU) : null };
+    },
     get onSurface() { return surface ? { id: surface.id } : null; },
     overview(au, centre, localKm) {
       if (localKm && nodes[centre]) au = 2.4 * localMap(nodes[centre].body, new THREE.Vector3(localKm / AU_KM, 0, 0)).length();

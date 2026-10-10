@@ -11,6 +11,8 @@ const defaults = {
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
+  axes: false,       // System View: spin axes, and Earth's precession circle on the sky
+  fields: false,     // System View: the Sun's magnetic field (Parker spiral, current sheet)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)

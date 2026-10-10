@@ -17,7 +17,7 @@ Models load when the craft is focused. While loading or on failure the represent
 - Body geometry: Deimos, Arrokoth, Haumea; then Vesta and Ceres. Use cited shape reconstructions and document frame, units and centre.
 - Maps: improve Titan; document Uranian coverage and Pluto polar night; assess Ceres/Vesta colour. Never silently fabricate unobserved coverage.
 - Imagined skins: brown-dwarf weather and unresolved stellar surfaces; further review of generated exoplanet class skins. Store composition, temperature assumptions, cloud species, palette and scientific references with each generated map.
-- Scene art: satellite galaxies, asymmetric heliosphere, comet coma and tails, Oort cloud.
+- Scene art: satellite galaxies, Oort cloud. (The asymmetric heliosphere, IBEX ribbon, comet comae and tails and the Sun's Parker-spiral field are now procedural and physics-driven, #19; art passes on top are optional.)
 
 ## Delivery specification
 

@@ -23,6 +23,10 @@ import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
 import { createNavList } from './panels/navlist.js';
+import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
+import { earthPole, moonAxes, poleStar, obliquityDeg } from './astro/orientation.js';
+import { moonGeocentric } from './astro/moons.js';
+import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
 import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn } from './data/spacecraft-ephem.js';
@@ -182,7 +186,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('liveSkins', 'LIVE')),
+  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
   h('div', { className: 'bar-fill' }),
 );
 // Standalone build (e.g. a shared preview) has no backend, so no Horizons proxy.
@@ -418,11 +422,52 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     if (c) row(look, 'DRAWN HERE', `${fmt((b.id === 'main-belt' ? c.main : b.id === 'trojans' ? c.trojan : c.tno + c.centaur), 0)} REAL ORBITS`, 'measured', 'JPL Small-Body Database orbits; positions solved live from Kepler\'s equation.');
   }
 
+  // #19: spin axis, comet activity, the Sun's field, explainers
+  const extra = [];
+  if (m.isSol && (b.id === 'earth' || b.id === 'moon')) {
+    const dl = h('dl');
+    live.axisBody = b.id;
+    if (b.id === 'earth') {
+      live.axis1 = row(dl, 'POLE STAR', '—', 'computed', 'The bright star nearest the north celestial pole on the shown date. Precession moves the pole around a circle: Thuban in 2700 BC, Polaris now, Vega around AD 14,000.');
+      live.axis2 = row(dl, 'AXIAL TILT', '—', 'computed', 'Obliquity of the ecliptic of date (IAU 1980; it swings between 22.1° and 24.5° over 41,000 years, held at the J2000 value beyond ±2,000 years).');
+      row(dl, 'PRECESSION', '25,772 YEARS', 'measured', 'The axis sweeps a 23.4°-radius cone, driven by the Sun and Moon pulling on Earth\'s equatorial bulge (50.29″ a year).');
+      row(dl, 'NUTATION', '18.6 YEARS · ±9″', 'measured', 'A nod on top of precession, from the Moon\'s tilted orbit turning (IAU 1980 largest terms).');
+    } else {
+      live.axis1 = row(dl, 'LIBRATION', '—', 'computed', 'Where the Earth stands in the Moon\'s sky: the near side wobbles about ±7.9° east–west (uniform spin on an elliptical orbit) and ±6.7° north–south (tilted axis), so we see 59% of the surface over time. IAU 2009 rotation model.');
+      row(dl, 'ROTATION MODEL', 'IAU 2009', 'measured', 'Pole and prime meridian with the E1–E13 periodic terms (Archinal et al. 2011).');
+    }
+    extra.push(h('h3', { textContent: 'SPIN AXIS' }), dl, h('p', { className: 'note', textContent: 'Toggle AXES to draw spin axes, and Earth\'s precession circle among the stars.' }));
+  }
+  if (b.comet) {
+    const dl = h('dl');
+    live.cometBody = b.id;
+    live.comet1 = row(dl, 'ACTIVITY', '—', 'modelled', 'Ices sublimate from ~5 AU inwards (water within ~3 AU): the coma and tails grow as it nears the Sun.');
+    live.comet2 = row(dl, 'TOTAL MAGNITUDE', '—', 'computed', `m = M1 + 5 log Δ + K1 log r with M1 ${b.comet.M1}, K1 ${b.comet.K1} (JPL SBDB). Naked eye below ~6.`);
+    live.comet3 = row(dl, 'TAILS', '—', 'modelled', 'Ion tail straight away from the Sun (blue), dust tail curving behind (yellow-white); lengths scaled from Halley in 1986.');
+    if (b.comet.perihelion) row(dl, 'NEXT PERIHELION', b.comet.perihelion, 'computed', 'Set the date there to see it active.');
+    extra.push(h('h3', { textContent: 'COMET' }), dl);
+  }
+  if (m.isSol && b.id === 'sun') {
+    const dl = h('dl');
+    row(dl, 'FIELD AT 1 AU', `${SOLAR.b1AU_nT} NT`, 'measured', 'Typical interplanetary field strength at Earth (OMNI); it falls as 1/r² near the Sun and 1/r far out.');
+    row(dl, 'SPIRAL ANGLE AT 1 AU', `${fmt(spiralAngleDeg(1), 0)}°`, 'computed', `Parker spiral for a ${SOLAR.windKms} km/s wind and the Sun's 25.38-day sidereal rotation.`);
+    row(dl, 'CURRENT SHEET TILT', `${SOLAR.tiltDeg}°`, 'modelled', 'The wavy boundary between outward and inward field. Its tilt follows the solar cycle (~10° at minimum, ~70° near maximum); 45° is a stand-in for the 2026 declining phase.');
+    row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
+    extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
+  }
+  if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
+  if (b.kind === 'lagrange point') {
+    const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
+    extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
+  }
+
   panel.replaceChildren(
     h('h2', { textContent: b.name.toUpperCase() }),
     h('div', { className: 'kind', textContent: `${sectorName(m)} · ${b.kind.toUpperCase()}` }),
+    ...(b.marker ? extra : []),
     h('h3', { textContent: 'POSITION' }), pos,
     ...groups.flatMap(([g, facts]) => [h('h3', { textContent: g }), factList(facts, b)]),
+    ...(b.marker ? [] : extra),
     b.skin?.map && credits[b.skin.map] ? h('p', { className: 'note credit', textContent: `IMAGE · ${credits[b.skin.map]}` }) : null,
     look,
     (live.range = h('p', { className: 'warn' })),
@@ -907,6 +952,25 @@ function tick() {
       const l = system.liveSkinOf(live.skinBody);
       live.skin.textContent = !settings.get('liveSkins') ? 'OFF (TOGGLE LIVE)' : l ? `${l.time ? l.time.slice(0, 16).replace('T', ' ') + ' UTC' : 'TODAY'} · ${ago(l.time)}` : STANDALONE ? 'NEEDS THE LOCAL BACKEND' : 'LOADING…';
       if (l) live.skin.nextSibling.title = `${TIERS.measured.hint}\n${l.credit}`;
+    }
+    if (live.axis1 && live.axisBody === 'earth') {
+      const ps = poleStar(clock.jd);
+      live.axis1.textContent = `${ps.name.toUpperCase()} · ${fmt(ps.sep, ps.sep < 2 ? 2 : 1)}° FROM THE POLE`;
+      live.axis2.textContent = `${fmt(obliquityDeg(clock.jd), 3)}°`;
+    } else if (live.axis1 && live.axisBody === 'moon') {
+      const g = moonGeocentric(clock.jd), rr = Math.hypot(...g), E = 23.4392911 * Math.PI / 180;
+      const d = [-g[0] / rr, (-g[1] * Math.cos(E) + g[2] * Math.sin(E)) / rr, (-g[1] * Math.sin(E) - g[2] * Math.cos(E)) / rr];
+      const ax = moonAxes(clock.jd), dot = (u, v) => u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+      const lat = Math.asin(dot(d, ax.y)) * 180 / Math.PI, lon = Math.atan2(-dot(d, ax.z), dot(d, ax.x)) * 180 / Math.PI;
+      live.axis1.textContent = `EARTH AT ${fmt(Math.abs(lon), 1)}°${lon >= 0 ? 'E' : 'W'} ${fmt(Math.abs(lat), 1)}°${lat >= 0 ? 'N' : 'S'}`;
+    }
+    if (live.comet1) {
+      const c = system.cometState(live.cometBody);
+      if (c) {
+        live.comet1.textContent = c.activity > 0.01 ? `ACTIVE · ${fmt(c.rAU, 2)} AU FROM THE SUN` : `DORMANT · ${fmt(c.rAU, 1)} AU FROM THE SUN`;
+        live.comet2.textContent = c.mag != null ? `${fmt(c.mag, 1)}${c.mag < 6 ? ' · NAKED EYE' : ''}` : '—';
+        live.comet3.textContent = c.activity > 0.01 ? `ION ${fmt(c.ionAU, 2)} AU · DUST ${fmt(c.dustAU, 2)} AU · COMA ${fmt(c.comaKm, 0)} KM` : 'NONE (FROZEN NUCLEUS)';
+      }
     }
     if (live.size) {
       const k = system.enhancementOf(id) ** (1 - (f?.scaleMix ?? 0));

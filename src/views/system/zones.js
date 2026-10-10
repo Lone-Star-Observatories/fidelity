@@ -92,28 +92,94 @@ export function hillSphere(x, color) {
 
 /**
  * Heliosphere: termination shock and heliopause as blunt shells, nose towards the interstellar
- * inflow. Crossing distances are MEASURED (Voyagers); the overall shape is MODELLED, tail stretched.
+ * inflow, tail stretched. Each shell is fitted to the two places it has been measured: the
+ * Voyagers crossed at different distances (V1 north, V2 south: 94 vs 84 AU, 121.6 vs 119 AU),
+ * because the interstellar magnetic field pushes harder on the southern flank. A linear
+ * north–south term through the two crossing directions fits both exactly. Plus the IBEX ribbon
+ * (a ring of energetic-neutral-atom emission, centre ecliptic 221°, +39°, radius ~74°;
+ * McComas et al. 2009) and the interstellar field draped around the heliopause (potential
+ * field around the nose sphere: SCHEMATIC). Crossings MEASURED; the shapes MODELLED.
  */
-export function heliosphere(toScene) {
+export const VOYAGER_DIRS = { v1: { ra: 257.5, dec: 12.2 }, v2: { ra: 297.0, dec: -56.9 } }; // approximate outbound directions (J2000)
+export const IBEX_RIBBON = { lon: 221, lat: 39, radiusDeg: 74 };
+const shellBase = (c) => 1 + 0.9 * (1 - c) ** 1.5; // 1 at the nose, ~3.5 down the tail
+/** Fit nose radius rN and asymmetry k so r(dir) = rN·base(c)·(1 + k·(dir·ŝ)) passes both crossings. */
+export function fitShell(R1, R2, c1, c2, s1, s2) {
+  // R1 / (rN b1) − 1 = k s1 ; R2 / (rN b2) − 1 = k s2  →  solve for rN, k
+  const b1 = shellBase(c1), b2 = shellBase(c2);
+  const rN = (R1 * s2 / b1 - R2 * s1 / b2) / (s2 - s1);
+  return { rN, k: (R1 / (rN * b1) - 1) / s1 };
+}
+export function heliosphere(toScene, eqToEclFn) {
   const group = new THREE.Group();
-  const [lon, lat] = HELIO.noseLonLat;
-  const nose = new THREE.Vector3(...toScene([Math.cos(lat * DEG) * Math.cos(lon * DEG), Math.cos(lat * DEG) * Math.sin(lon * DEG), Math.sin(lat * DEG)])).normalize();
-  const shell = (rNose, color) => {
+  const dirLL = (lon, lat) => new THREE.Vector3(...toScene([Math.cos(lat * DEG) * Math.cos(lon * DEG), Math.cos(lat * DEG) * Math.sin(lon * DEG), Math.sin(lat * DEG)])).normalize();
+  const dirEq = ({ ra, dec }) => new THREE.Vector3(...toScene(eqToEclFn([Math.cos(dec * DEG) * Math.cos(ra * DEG), Math.cos(dec * DEG) * Math.sin(ra * DEG), Math.sin(dec * DEG)]))).normalize();
+  const nose = dirLL(...HELIO.noseLonLat);
+  const v1 = dirEq(VOYAGER_DIRS.v1), v2 = dirEq(VOYAGER_DIRS.v2);
+  const sAxis = v1.clone().sub(v2).normalize();
+  const fits = {};
+  const shell = (name, [R1, R2], color) => {
+    const f = fitShell(R1, R2, v1.dot(nose), v2.dot(nose), v1.dot(sAxis), v2.dot(sAxis));
+    fits[name] = f;
     const g = new THREE.SphereGeometry(1, 48, 24);
     const p = g.attributes.position, v = new THREE.Vector3();
     for (let k = 0; k < p.count; k++) {
       v.fromBufferAttribute(p, k);
-      const c = v.dot(nose); // 1 at the nose, −1 down the tail
-      v.multiplyScalar(rNose * (1 + 0.9 * (1 - c) ** 1.5));
+      v.multiplyScalar(f.rN * shellBase(v.dot(nose)) * (1 + f.k * v.dot(sAxis)));
       p.setXYZ(k, v.x, v.y, v.z);
     }
     const m = new THREE.LineSegments(new THREE.WireframeGeometry(g), new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.12 }));
     m.frustumCulled = false;
     return m;
   };
-  const mean = (a) => (a[0] + a[1]) / 2;
-  group.add(shell(mean(HELIO.terminationShock), 0x66ccff), shell(mean(HELIO.heliopause), 0xcc99ff));
-  return { group, nose };
+  group.add(shell('terminationShock', HELIO.terminationShock, 0x66ccff), shell('heliopause', HELIO.heliopause, 0xcc99ff));
+  // where the Voyagers crossed
+  const marks = [];
+  for (const [v, ts, hp] of [[v1, HELIO.terminationShock[0], HELIO.heliopause[0]], [v2, HELIO.terminationShock[1], HELIO.heliopause[1]]]) {
+    for (const r of [ts, hp]) marks.push(...v.clone().multiplyScalar(r).toArray());
+  }
+  const crossings = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(marks, 3)),
+    new THREE.PointsMaterial({ color: 0xffcc66, size: 7, sizeAttenuation: false }));
+  crossings.frustumCulled = false;
+  group.add(crossings);
+  // IBEX ribbon: a circle on the sky, drawn just outside the heliopause
+  const rc = dirLL(IBEX_RIBBON.lon, IBEX_RIBBON.lat);
+  const u = new THREE.Vector3().crossVectors(rc, Math.abs(rc.y) < 0.9 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0)).normalize();
+  const w = new THREE.Vector3().crossVectors(rc, u);
+  const rib = [], ra = IBEX_RIBBON.radiusDeg * DEG, R = 150;
+  for (let i = 0; i <= 180; i++) {
+    const t = (i / 180) * 2 * Math.PI;
+    const d = rc.clone().multiplyScalar(Math.cos(ra)).addScaledVector(u, Math.sin(ra) * Math.cos(t)).addScaledVector(w, Math.sin(ra) * Math.sin(t));
+    rib.push(d.multiplyScalar(R));
+  }
+  const ribbon = new THREE.Line(new THREE.BufferGeometry().setFromPoints(rib), new THREE.LineBasicMaterial({ color: 0xffaa55, transparent: true, opacity: 0.45 }));
+  ribbon.frustumCulled = false;
+  group.add(ribbon);
+  // interstellar field draped over the nose: field lines of a uniform field bent around a sphere
+  // of the heliopause nose radius (ψ = sin²θ (r² − R³/r) = const), in planes through the field axis
+  const b = rc.clone(), Rn = fits.heliopause.rN, drape = [];
+  const side0 = new THREE.Vector3().crossVectors(b, nose).normalize();
+  for (let plane = 0; plane < 4; plane++) {
+    const side = side0.clone().applyAxisAngle(b, (plane / 4) * Math.PI);
+    for (const C of [0.15, 0.5, 1.2, 2.4].map((x) => x * Rn * Rn)) {
+      for (const sgn of [1, -1]) {
+        let prev = null;
+        for (let i = 1; i < 120; i++) {
+          const th = (i / 120) * Math.PI, s2 = Math.sin(th) ** 2;
+          let r = Math.sqrt(C / s2) + Rn; // Newton on r³ − (C/s²) r − R³ = 0
+          for (let it = 0; it < 12; it++) r -= (r ** 3 - (C / s2) * r - Rn ** 3) / (3 * r * r - C / s2);
+          if (!(r > Rn) || r > 8 * Rn) { prev = null; continue; }
+          const p = b.clone().multiplyScalar(r * Math.cos(th)).addScaledVector(side, sgn * r * Math.sin(th));
+          if (prev) drape.push(prev, p);
+          prev = p;
+        }
+      }
+    }
+  }
+  const ismf = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(drape), new THREE.LineBasicMaterial({ color: 0x9999ff, transparent: true, opacity: 0.18 }));
+  ismf.frustumCulled = false;
+  group.add(ismf);
+  return { group, nose, fits };
 }
 
 /** Oort cloud: points in a shell, inner 2,000 AU to outer 100,000 AU, denser inward (∝ r^-3.5). */

@@ -139,7 +139,10 @@ export const SMALL_BODIES = [
     { surfacePending: true, rotationHours: 15.92, belt: 'KUIPER BELT (COLD CLASSICAL)', discovered: '2014 · New Horizons team (Hubble)',
       note: 'A pristine two-lobed contact binary, 36 km long; New Horizons flew past on 1 Jan 2019. Drawn as a sphere.' }),
   sb('halley', '1P/Halley', 'comet', 5.5, 2.2e14, [2439875.5, 17.92863504856923, 0.9679359956953211, 162.1905300439129, 59.09894720612437, 112.2414314637764, 274.3823371366792],
-    { surfacePending: true, rotationHours: 52.8, belt: 'HALLEY-TYPE COMET', discovered: 'Recorded since 240 BC · orbit by Edmond Halley 1705',
+    { surfacePending: true, rotationHours: 52.8, belt: 'HALLEY-TYPE COMET', comet: { M1: 5.5, K1: 8, perihelion: '2061-07-28' },
+      // JPL Horizons osculating elements for the 2061 apparition (epoch 2061-07-28 TDB, perihelion
+      // 2061-07-28.7): two-body motion from the 1968 set alone puts that perihelion ~5 months late.
+      altElements: [{ epochJd: 2474033.5, a: 17.735623, e: 0.9665768, i: 161.96512, node: 59.392316, w: 112.052104, M: 359.9904974 }], discovered: 'Recorded since 240 BC · orbit by Edmond Halley 1705',
       note: 'Back in 2061. The orbit is the 1968 osculating one (SBDB); planetary tugs shift its timing by days to weeks.' }),
 ];
 
