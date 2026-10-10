@@ -3,6 +3,7 @@
 // Zero runtime dependencies — Node 20+ only.
 
 import { starSearch } from './search.js';
+import { streamStation, stationNowPlaying, cameraMedia, rfDevices, localScan, handleKiwiUpgrade, handleLocalUpgrade } from './rf.js';
 import { impactRisk } from './risk.js';
 import { co2 } from './co2.js';
 import http from 'node:http';
@@ -63,6 +64,10 @@ const routes = {
   'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/star-lookup': async (q) => starLookup(q),
   'GET /api/star-search': async (q) => starSearch(q.get('q') || ''), // text search (#63)
+  'GET /api/comms/nowplaying': async (q) => stationNowPlaying(q.get('u') || ''), // COMMS (#69)
+  'GET /api/comms/media': async (q) => cameraMedia(q.get('u') || ''),
+  'GET /api/rf/devices': async () => rfDevices(),
+  'GET /api/rf/local/scan': async (q) => localScan(q.get('from'), q.get('to')),
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
@@ -139,6 +144,10 @@ async function serveStatic(req, res, pathname) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://local');
   const key = `${req.method} ${url.pathname}`;
+  if (key === 'GET /api/comms/stream') { // a live audio stream: piped, not buffered (#69)
+    try { await streamStation(url.searchParams.get('u') || '', res); } catch (err) { if (!res.headersSent) send(res, err.status || 502, { error: String(err.message || err) }); else res.end(); }
+    return;
+  }
   let handler = routes[key] && (() => routes[key](url.searchParams));
   for (const [re, fn] of paramRoutes) {
     const m = !handler && key.match(re);
@@ -164,7 +173,10 @@ const server = http.createServer(async (req, res) => {
 
 // "Computer" voice relay (#21): ws://host/api/voice → OpenAI Realtime, key held here
 server.on('upgrade', (req, socket) => {
-  if (new URL(req.url, 'http://local').pathname === '/api/voice') handleVoiceUpgrade(req, socket);
+  const p = new URL(req.url, 'http://local').pathname;
+  if (p === '/api/voice') handleVoiceUpgrade(req, socket);
+  else if (p === '/api/rf/kiwi') handleKiwiUpgrade(req, socket); // COMMS receivers (#69)
+  else if (p === '/api/rf/local') handleLocalUpgrade(req, socket);
   else socket.destroy();
 });
 

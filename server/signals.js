@@ -112,7 +112,7 @@ export function parseWindy(j) {
     const lat = Number(w.location?.latitude), lon = Number(w.location?.longitude);
     const href = httpUrl(w.urls?.detail) ?? httpUrl(w.player?.day);
     if (!okLatLon(lat, lon) || !href) continue;
-    out.push([r4(lat), r4(lon), clip(w.title), href, `WINDY · ${clip([w.location?.city, w.location?.country].filter(Boolean).join(', '), 40).toUpperCase()}`, null]);
+    out.push([r4(lat), r4(lon), clip(w.title), href, `WINDY · ${clip([w.location?.city, w.location?.country].filter(Boolean).join(', '), 40).toUpperCase()}`, httpUrl(w.player?.day)]); // extra: Windy's embeddable player (COMMS on screen, #69)
   }
   return out;
 }
