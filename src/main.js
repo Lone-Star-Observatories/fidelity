@@ -76,6 +76,7 @@ const system = createSystemView($('system-view'), {
 const starView = createStarView($('star-view'));
 // Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
 let pendingSurface = null;
+let pendingSiteView = null; // VIEW FROM ABOVE a site once its body is framed (#37)
 // ?surface=25.7,32.65 stands on the routed body there (e.g. #/system/sol/earth) once it is framed; &look=sun turns to the Sun
 {
   const sf = new URLSearchParams(location.search).get('surface')?.split(',').map(Number);
@@ -477,6 +478,12 @@ const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLeg
 const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend,
   viewFeed: (f, name) => satPanel.viewFeed(f, name),
   back: (b) => renderBodyPanel(b.id),
+  globe: () => system.endSiteView(),
+  above: (b, s) => {
+    const span = s.traverseInfo?.spanKm ?? 30;
+    if (route.level === 'system' && system.focusId === b.id) system.viewSite(b.id, s.lat, s.lon, span);
+    else { pendingSiteView = { id: b.id, lat: s.lat, lon: s.lon, span }; go({ level: 'system', system: 'sol', body: b.id }); }
+  },
   stand: (b, s) => {
     if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
@@ -1369,6 +1376,7 @@ onRoute(async (r) => {
       if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun }); }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
       else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
+      if (pendingSiteView?.id === body.id) { const pv = pendingSiteView; pendingSiteView = null; system.viewSite(pv.id, pv.lat, pv.lon, pv.span); }
       renderBodyPanel(body.id);
     } else {
       if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au, m.survey[0].centre);

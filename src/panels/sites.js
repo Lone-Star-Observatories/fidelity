@@ -7,7 +7,7 @@ import { sitesFor, SITE_KINDS } from '../data/sites.js';
 const fmtLat = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'N' : 'S'}`;
 const fmtLon = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'E' : 'W'}`;
 
-export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, back }) {
+export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back }) {
   const hidden = () => new Set(settings.get('siteHidden') ?? []);
   const toggleKind = (k) => {
     const s = hidden();
@@ -69,7 +69,9 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
       h('div', { className: 'kind', textContent: `${body.name.toUpperCase()} · SITE OF NOTE · ${k.label}` }),
       h('div', { className: 'body-list' },
         pill('◀ BACK', () => back(body)),
-        pill('STAND HERE ▸', () => stand(body, s))),
+        pill('FROM ABOVE ▸', () => above(body, s)),
+        pill('STAND HERE ▸', () => stand(body, s)),
+        pill('WHOLE GLOBE', () => globe())),
       s.note ? h('p', { className: 'note explain', textContent: s.note }) : null,
       ...(s.identity ? [h('h3', { textContent: 'WHOSE ROCKET?' }), h('dl', {}, h('dt', { textContent: 'IDENTITY' }), h('dd', { textContent: s.identity }), badge('modelled', 'Orbit reconstruction; disputed and unconfirmed.'))] : []),
       h('h3', { textContent: 'MISSION' }), facts,

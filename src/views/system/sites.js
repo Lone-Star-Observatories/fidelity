@@ -10,7 +10,9 @@ import { sitesFor, SITE_KINDS } from '../../data/sites.js';
 /** Unit direction in the globe's local frame for planetocentric lat / east lon (honours a body's texture offset). */
 export const siteDir = (body, lat, lon) => latLonToDir(lat, lon - ((body.texLon0 ?? -180) + 180));
 
-const DOT_R = 1.004, PATH_R = 1.002;
+// Just above the faceted globe (a 96-segment sphere dips ≤ 0.054% below radius 1 between vertices),
+// so paths sit on the ground when you fly down to a site rather than kilometres up.
+const DOT_R = 1.0008, PATH_R = 1.0006;
 const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3(), tmpC = new THREE.Vector3(), tmpS = new THREE.Vector3();
 
 /** Just the dots (Planet / Moon / Object View globes): a group per kind, or null if the body has no sites. */
@@ -67,7 +69,10 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
         const segs = (t?.paths ?? (t?.points ? [t.points] : [])).filter((p) => p.length > 1);
         if (!segs.length) return;
         const last = segs.at(-1).at(-1);
-        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit ?? t.source, last, live: !!t.points };
+        // extent of the paths around the site (km), for framing VIEW FROM ABOVE
+        const R = body.radiusKm, c = Math.cos(s.lat * Math.PI / 180);
+        const spanKm = Math.max(...segs.flat().map(([lon, lat]) => Math.hypot((((lon - s.lon + 540) % 360) - 180) * c, lat - s.lat) * Math.PI / 180 * R));
+        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit ?? t.source, last, live: !!t.points, spanKm };
         const mat = new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 });
         const line = new THREE.Group();
         line.userData.kind = s.kind;
