@@ -7539,6 +7539,126 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "dione": {
+    "id": "dione",
+    "name": "Dione",
+    "aliases": [
+      "Dione"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged SHA c55d228900524557b6aff323f4b9391fc9816433e213a24ccf348c9b4291f89e source-byte equal; underlying mosaic association/frame/coverage/epochs/photometry open. No generated globe.",
+    "measured": [
+      "Catalogue radius561.4km, mass1.0955e21kg and semimajor axis377700km are representative catalogue values, not dated observer registration.",
+      "Cassini PIA19653 own Dione cratered terrain observed2015-08-17 released2015-08-20. Monochrome not calibrated visible colour. Caption describes simultaneous WAC/NAC composite; adopted portrait download lacks an obvious inset. Exact camera/panel-to-file association remains open. North-down and32/3m per pixel are source-caption descriptions/estimates, not a new raster calculation or a camera assignment to this file.",
+      "PIA17197 observed2012-07-23 released2018-03-12 is an older polarized/green-sensitive monochrome observation retained as research context; release date is not observation date."
+    ],
+    "modelled": [
+      "Spherical Saturn angular geometry is an observer guide, not a physically registered Cassini reconstruction. Bulk core/ice composition inference does not measure local fractions, chemistry or visible colour."
+    ],
+    "unknown": [
+      "Local material fractions/chemistry, registered observer site/phase, calibrated visible colour/photometry, own globe input epochs/frame/coverage and exact PIA19653 camera/panel association. Additional recent primary/scientific-product audit remains open; no exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Independent invented local craters/blocks/regolith/fractures, material fractions/chemistry, Saturn bands/nearly-edge-on rings/phase/light/exposure. No observed-body analog map reused; no atmosphere, plume, exposed ocean, biology or survivable landing.",
+      "Saturn mean radius58232km at377700minus561.4km nominal90HFOV: skyGeometry17.76455338degrees/261.298356targetpx at1672px. Row150 upper-globe chords301/299/297px threshold5/10/20 exceed guide, not full calibrated diameter; rings excluded.95K helper angular-only; Sun9.58AU off-frame."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/cassinis-closest-views-of-dione-i/",
+        "title": "Cassini PIA19653 own Dione terrain; exact camera/panel association open",
+        "publicationDate": "2015-08-20"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/dramatic-dione/",
+        "title": "Cassini PIA17197 polarized/green monochrome context",
+        "publicationDate": "2018-03-12"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Dione",
+        "title": "NASA3D own Dione globe; frame/coverage/epochs/photometry audit open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/dione-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia19/pia19653/PIA19653.jpg?w=377&h=640&fit=clip&crop=faces%2Cfocalpoint&format=jpeg",
+        "sourcePage": "https://science.nasa.gov/photojournal/cassinis-closest-views-of-dione-i/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/cassinis-closest-views-of-dione-i/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2015-08-17",
+        "publicationDate": "2015-08-20",
+        "bytes": 39526,
+        "sha256": "b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81",
+        "width": 377,
+        "height": 640,
+        "description": "Cassini PIA19653 monochrome cratered Dione terrain, not calibrated visible colour or registered globe. Caption describes WAC/NAC composite; exact camera/panel association to adopted portrait file remains open. NASA-served377x640 display rendition resized/reencoded, not full pixel preservation; original602x1022 and separate1024 figure retained.",
+        "processing": "Unchanged NASA-served JPEG bytes; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL DIONE TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM DIONE",
+    "surfaceImage": {
+      "url": "/bespoke/dione-surface-image.jpg",
+      "previewUrl": "/bespoke/dione-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "dione-generated-surfaceImage-original.png",
+      "sourceSha256": "58e4ffc6ee790386ec9159a7a6b164fc4c9b474398061d3eb22342d8c04808c1",
+      "sha256": "76146b3eab0cacdb5a82f6dec7cc1813e41b60a21f4a49abce8838964863cf64",
+      "previewSha256": "9246064a2c06df1da5b62e14538c0591d69abc8151cb21d8fe3707e8eca46b3a",
+      "bytes": 360668,
+      "previewBytes": 10879,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/dione-sky-image.jpg",
+      "previewUrl": "/bespoke/dione-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "dione-generated-skyImage-original.png",
+      "sourceSha256": "8f603b59de7c7c9d5257304ac4fad13f7848ddc9d6d99c723291a21573881219",
+      "sha256": "bcdef91c39052c37feadbd467908de6d970541681d62563fdd3982093212d0d8",
+      "previewSha256": "bb2c114e37d6ab9afde97e1fa45631be3c13bff3c0f615c732d06c28e620beb8",
+      "bytes": 230319,
+      "previewBytes": 7625,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

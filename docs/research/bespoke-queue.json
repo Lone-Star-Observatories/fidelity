@@ -283,10 +283,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged SHA c55d228900524557b6aff323f4b9391fc9816433e213a24ccf348c9b4291f89e source-byte equal; underlying mosaic association/frame/coverage/epochs/photometry open. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "dione"
     },
     {
       "id": "sol-rhea",
@@ -8508,7 +8509,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 10,
+      "initialDossiers": 11,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
