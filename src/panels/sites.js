@@ -62,6 +62,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     if (t) {
       if (t.distanceKm != null) row(drive, s.traverseVerb ?? 'DRIVEN', `${t.distanceKm.toLocaleString()} KM`, 'measured', `${t.credit}. Summed along the published path.`);
       if (t.sol != null) row(drive, 'PATH UP TO', `SOL ${t.sol}`, 'measured');
+      if (t.modelScale) row(drive, 'ROVER MODEL', `NASA MODEL · ENLARGED ×${t.modelScale.toLocaleString()}`, 'imagined', 'Drawn at its current position, enlarged so it can be found from above; the real rover is about 3 m long.');
       if (t.live) row(drive, 'NOW AT', `${fmtLat(t.last[1])} · ${fmtLon(t.last[0])}`, 'measured', 'End of the published traverse (the white dot).');
     }
     panel.replaceChildren(

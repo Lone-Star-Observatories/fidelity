@@ -410,7 +410,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     group.add(label);
     root.add(group);
     // #37: landing, impact and rover sites on this globe
-    const sites = model.isSol && !isStar(body) ? createSiteLayer(body, { onSite: (s) => onSite?.(s), loadTraverse: fetchTraverse }) : null;
+    const sites = model.isSol && !isStar(body) ? createSiteLayer(body, { onSite: (s) => onSite?.(s), loadTraverse: fetchTraverse, loadModel: async (id) => { const m = await loadCraftModel(id); if (m) inspectCraft(m); return m; } }) : null;
     if (sites) tilt.add(sites.group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
     nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites };

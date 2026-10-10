@@ -29,7 +29,7 @@ export function siteDots(body, hidden = new Set()) {
   return group;
 }
 
-export function createSiteLayer(body, { onSite, loadTraverse }) {
+export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
   const list = sitesFor(body.id);
   if (!list.length) return null;
   const group = new THREE.Group();
@@ -85,6 +85,19 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
           new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff })));
         group.add(line);
         paths.push(line);
+        // a live rover gets its NASA model at the end of its path, hugely enlarged so it can be found
+        if (t.points && s.model && loadModel) loadModel(s.model).then((m) => {
+          if (!m) return;
+          const sizeKm = Math.max(0.4, spanKm * 0.07), up = new THREE.Vector3(...siteDir(body, last[1], last[0]));
+          const holder = new THREE.Group();
+          holder.position.copy(up).multiplyScalar(PATH_R + sizeKm / R * 0.6);
+          holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
+          holder.scale.setScalar(sizeKm / R);
+          holder.add(m);
+          holder.userData.kind = s.kind;
+          line.add(holder);
+          s.traverseInfo.modelScale = Math.round((sizeKm * 1000) / (s.modelSizeM ?? 3));
+        }).catch(() => {});
       }).catch(() => {});
     }
   }
