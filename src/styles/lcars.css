@@ -603,3 +603,6 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .surface-presets { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 4px; }
 .surface-presets .pill { height: 24px; font-size: calc(11px * var(--text-scale, 1)); padding: 0 10px; }
 .surface-presets .pill.on { background: var(--orange); }
+.planet-arrow { color: var(--peach); text-shadow: 0 0 4px #000; }
+.planet-arrow .txt { background: rgba(0, 0, 0, 0.55); padding: 1px 6px; white-space: nowrap; }
+.parent-tag { color: var(--peach); }

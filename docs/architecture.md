@@ -251,6 +251,12 @@ fixed in the observer's field (it does not grow with magnification), outside the
 `glareStrength` (illuminance ∝ 1/d², airmass extinction, eclipse obscuration). ENLARGED ×4 multiplies
 the Sun's and the Moon's mesh scale and says so in the HUD.
 
+Planetshine (#49, `src/astro/planetshine.js`): `updatePlanetshine` computes, in true geometry, each
+moon's planetshine fraction p·(R/d)²·Φ(α) and feeds the planet shader's second light (`uPsPos`,
+`uPsCol` = tint × `planetshineDisplay(f)`), lowering the fake ambient for those moons. Standing on a
+moon, `updateParentFinder` labels the parent with its size and lit fraction, draws an edge arrow when
+it is off screen, aims ◉ LOOK AT and explains when a locked moon's far side never sees it.
+
 ## Text search (#63)
 
 `src/data/search.js` is the pure matcher (fold to lower case without accents, Greek letters spelled

@@ -49,6 +49,7 @@ import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
 import { createMagFields } from './magfields.js';
 import { createSkyGlare } from './skyglare.js';
+import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, litFraction } from '../../astro/planetshine.js';
 import { angularDiameterDeg, FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
@@ -952,6 +953,33 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // sunlight refracted through an occluder's atmosphere into its umbra (Earth: the red eclipsed Moon), MODELLED
   const UMBRA_TINT = { earth: [0.42, 0.13, 0.05] };
   const shadowTmp = { c: new THREE.Vector3(), s: new THREE.Vector3(), o: new THREE.Vector3(), best: new THREE.Vector3() };
+  /**
+   * Planetshine (#49): each moon of a planet in PLANETSHINE gets a second light from its parent,
+   * p·(R/d)²·Φ(α) of its sunlight (true geometry), shown through planetshineDisplay's exposure.
+   */
+  const psState = {}; // moon id → { f, alpha, parent } for panels and the surface view
+  function planetshineAt(id, jd) { // call with unmapped = true
+    const b = nodes[id]?.body, spec = b?.kind === 'moon' && PLANETSHINE[b.parent];
+    if (!spec || !nodes[b.parent]) return null;
+    const P = scenePosition(b.parent, jd, new THREE.Vector3()), M = scenePosition(id, jd, new THREE.Vector3()).sub(P), S = scenePosition(model.starId, jd, new THREE.Vector3()).sub(P);
+    const alpha = angleBetween(S.toArray(), M.toArray());
+    return (psState[id] = { f: planetshineFraction(spec.p, nodes[b.parent].body.radiusKm, M.length() * AU_KM, alpha), alpha, parent: b.parent, name: spec.name, spec });
+  }
+  function updatePlanetshine(jd) {
+    if (!model?.isSol) return;
+    unmapped = true;
+    try {
+      for (const m of lit) {
+        const st = planetshineAt(m.userData.body, jd);
+        if (!st) continue;
+        const { f, spec } = st, b = nodes[m.userData.body].body;
+        const k = settings.get('planetshine') === false ? 0 : planetshineDisplay(f);
+        m.uniforms.uPsCol.value.setRGB(spec.tint[0] * k, spec.tint[1] * k, spec.tint[2] * k);
+        m.uniforms.uAmbient.value = k > 0 ? 0.008 : 0.035; // the fake ambient gives way to the real light
+        m.uniforms.uPsPos.value.copy(nodes[b.parent].pos).add(root.position);
+      }
+    } finally { unmapped = false; }
+  }
   function updateShadows(jd) {
     if (!model?.isSol) return;
     const truePos = {};
@@ -1233,7 +1261,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   const hudBig = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'TRUE SIZE', title: 'Sun and Moon at their true angular size. Click to enlarge them ×4 (labelled IMAGINED) for visibility.' });
   hudBig.addEventListener('click', () => { if (surface) surface.enlarge = surface.enlarge === 1 ? 4 : 1; });
   hudFov.append(...presetBtns, hudBig);
-  hud.append(hudText, hudSub, hudBack, hudSun, hudFov);
+  // from a moon: find the parent planet (#49)
+  const hudPlanet = Object.assign(document.createElement('button'), { className: 'pill', hidden: true });
+  hudPlanet.addEventListener('click', () => { if (surface) surface.lookParent = true; });
+  hud.append(hudText, hudSub, hudBack, hudSun, hudPlanet, hudFov);
+  const planetArrow = Object.assign(document.createElement('div'), { className: 'edge-beacon planet-arrow', hidden: true });
+  planetArrow.innerHTML = '<span class="arrow">▲</span><span class="txt"></span>';
+  container.appendChild(planetArrow);
+  const parentTag = (() => { const el = document.createElement('div'); el.className = 'nav-label host parent-tag'; const o = new CSS2DObject(el); o.center.set(-0.08, 0.5); o.visible = false; scene.add(o); return o; })();
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1273,7 +1308,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     const s = surface;
     surface = null;
     hud.hidden = true;
-    for (const c of [...compass, zenithTag]) c.visible = false;
+    for (const c of [...compass, zenithTag, parentTag]) c.visible = false;
+    planetArrow.hidden = true;
     skyMat.uniforms.uFade.value = 1;
     scene.background = null;
     skyGlare?.hide();
@@ -1334,6 +1370,42 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       if (show && s.day > 0.5 && !isStar(b) && !(b.kind === 'moon' && b.parent === s.id) && id !== here.parent) show = false;
       n.group.visible = show;
       n.label.visible = show;
+    }
+    if (parentTag.visible && nodes[here.parent]) nodes[here.parent].label.visible = false; // its fuller tag stands in (#49)
+  }
+  /**
+   * From a moon (#49): the parent planet's label with size and phase, an arrow at the screen edge
+   * when it is out of view, LOOK AT, and where it cannot be seen (below the horizon, or never from
+   * the far side of a tidally locked moon).
+   */
+  function updateParentFinder(s, n, p, f, sunPos, disc) {
+    const b = n.body, pn = b.kind === 'moon' && nodes[b.parent];
+    hudPlanet.hidden = !pn;
+    if (!pn || !disc) { parentTag.visible = false; planetArrow.hidden = true; s.parentNote = null; return; }
+    const pos = disc.pos, a = altAz(f, pos.clone().sub(p).toArray());
+    const lit = litFraction(angleBetween(sunPos.clone().sub(pos).toArray(), p.clone().sub(pos).toArray()));
+    const name = pn.body.name.toUpperCase(), deg = disc.deg;
+    const sz = deg >= 1 ? `${deg.toFixed(1)}°` : `${deg.toFixed(2)}°`;
+    if (s.lookParent) { s.az = a.az; s.alt = Math.min(89.9, Math.max(-5, a.alt)); s.fov = Math.min(110, Math.max(deg * 4, 1)); s.preset = null; s.lookParent = false; if (a.alt < 0) flashHud(`${name} IS BELOW THE HORIZON`); }
+    hudPlanet.textContent = `◉ LOOK AT ${name}`;
+    // a locked moon keeps its parent fixed in the sky: below the horizon means never (bar libration)
+    const libration = b.id === 'moon' ? 8 : 1; // the Moon's optical libration reaches ~8°; the others' is tiny
+    s.parentNote = a.alt >= 0 ? null : b.locked ? (a.alt < -libration ? `${name} NEVER RISES FROM HERE (FAR SIDE)` : `${name} SITS ON THE HORIZON; LIBRATION LIFTS IT INTO VIEW AT TIMES`) : `${name} IS BELOW THE HORIZON`;
+    parentTag.element.textContent = `${name} · ${sz} · ${Math.round(lit * 100)}% LIT`;
+    parentTag.element.title = `Apparent diameter (COMPUTED) and the lit fraction of its disc, (1 + cos phase angle)/2. ${psState[b.id] ? `${psState[b.id].name} here: ${psState[b.id].f.toExponential(1)} of sunlight.` : ''}`;
+    parentTag.position.copy(pos);
+    const q = pos.clone().project(camera), onScreen = q.z < 1 && Math.abs(q.x) < 0.98 && Math.abs(q.y) < 0.98;
+    parentTag.visible = onScreen && a.alt > -0.5;
+    planetArrow.hidden = onScreen;
+    if (!onScreen) {
+      let x = q.x, y = q.y;
+      if (q.z > 1) { x = -x; y = -y; }
+      const mx = Math.max(Math.abs(x), Math.abs(y)) || 1; x /= mx; y /= mx;
+      const W = container.clientWidth, H = container.clientHeight, inset = 60;
+      planetArrow.style.left = `${inset + ((x + 1) / 2) * (W - 2 * inset)}px`;
+      planetArrow.style.top = `${inset + ((-y + 1) / 2) * (H - 2 * inset)}px`;
+      planetArrow.querySelector('.arrow').style.transform = `rotate(${Math.atan2(x, y)}rad)`;
+      planetArrow.querySelector('.txt').textContent = s.parentNote ?? `${name} · ${Math.round(a.alt)}° UP · AZ ${Math.round(a.az)}° · ${sz} · ${Math.round(lit * 100)}% LIT`;
     }
   }
   /** Double-click in the surface view: frame the Sun, Moon or planet nearest the cursor (#47). */
@@ -1495,6 +1567,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       d.renderedDeg = (2 * Math.asin(Math.min(1, wr / d.pos.distanceTo(p))) * 180) / Math.PI;
     }
     s.sizes = discs;
+    updateParentFinder(s, n, p, f, sunPos, discs[1]);
     if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
@@ -1517,7 +1590,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     presetBtns.forEach((b, i) => b.classList.toggle('on', s.preset === FOV_PRESETS[i].id));
     hudBig.textContent = s.enlarge === 1 ? 'TRUE SIZE' : `ENLARGED ×${s.enlarge}`;
     hudBig.classList.toggle('on', s.enlarge !== 1);
-    const sub = `${look} · ${sunTxt} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    const sub = `${look} · ${sunTxt}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
     hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
@@ -1651,6 +1724,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (!surface && Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
     updateShadows(jd);
+    updatePlanetshine(jd);
     updateEclipseLines(jd);
     updateTracks(jd);
     updateMissions(jd);
@@ -1765,6 +1839,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       surface.lookBest = look === 'best';
       surface.daylight = daylight;
       return true;
+    },
+    /** Planetshine on a moon now (#49): { f (fraction of sunlight), alpha (phase angle at the planet), parent, name } or null. */
+    planetshineOf(id) {
+      if (psState[id] || !model?.isSol) return psState[id] ?? null;
+      unmapped = true;
+      try { return planetshineAt(id, clock.jd); } finally { unmapped = false; }
     },
     /** The surface view's apparent sizes (#47): [{ id, label, deg (true), renderedDeg }], and the field. */
     surfaceInfo() { return surface ? { fov: surface.fov, hfov: horizontalFov(surface.fov, camera.aspect), preset: surface.preset, enlarge: surface.enlarge, az: surface.az, alt: surface.alt,

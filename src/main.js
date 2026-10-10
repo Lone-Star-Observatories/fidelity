@@ -44,6 +44,7 @@ import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
 import { createMagneticPanel } from './panels/magnetic.js';
 import { createSearch } from './panels/search.js';
+import { PLANETSHINE } from './astro/planetshine.js';
 import { FUTURE_MISSIONS } from './data/future-missions.js';
 import { SITES } from './data/sites.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
@@ -754,6 +755,14 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
   if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
+  if (m.isSol && b.kind === 'moon' && PLANETSHINE[b.parent]) { // #49
+    const ps = PLANETSHINE[b.parent], st = system.planetshineOf(b.id), dl = h('dl');
+    const parent = m.bodies.find((x) => x.id === b.parent)?.name ?? b.parent;
+    row(dl, ps.name, st ? `${st.f.toExponential(1)} OF SUNLIGHT · ${parent.toUpperCase()} ${Math.round((1 + Math.cos(st.alpha)) / 2 * 100)}% LIT FROM HERE` : 'COMPUTING…', 'computed',
+      `Sunlight reflected by ${parent} onto ${b.name}'s night side: geometric albedo × (radius / distance)² × Lambert phase law. ${ps.source}. For comparison, earthshine on the Moon at new Moon is ~1×10⁻⁴ (BBSO: Qiu et al. 2003; Pallé et al. 2003).`);
+    row(dl, 'ON SCREEN', 'BRIGHTENED (LOG EXPOSURE)', 'modelled', 'The eye adapts to a night side; a screen cannot show 10⁻⁴ beside full sunlight, so planetshine is drawn at 4% of full brightness for 10⁻⁴, +3% per decade, in the reflected light\'s colour.');
+    extra.push(h('h3', { textContent: 'PLANETSHINE' }), dl);
+  }
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
