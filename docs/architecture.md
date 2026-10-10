@@ -175,8 +175,12 @@ systems are stars sharing a `system` id (from the backend's component grouping),
 show their stars and planets. `/api/nearby` rows carry each star's space velocity (`vKms`,
 HYG's pc/yr converted to km/s; `rvKnown` = 0 means sideways motion only). The Navigation View
 draws motion arrows relative to the current star or around the galaxy (adding the Sun's
-Schönrich 2010 motion and a 233 km/s circular speed), moves stars linearly to any epoch within
-±5 Myr, and finds each star's closest approach. Arrows have four-barbed heads; Sol's galactic
+Schönrich 2010 motion and a 233 km/s circular speed). Deep time integrates every star's orbit
+in a Milky Way mass model (`src/astro/galpot.js`: gala's MilkyWayPotential, leapfrog at
+0.1 Myr, sampled every Myr, cubic Hermite in between; ±5 Myr up front, extended to ±50 Myr on
+demand), so positions and arrows follow curved orbits. A system's stars share its best-measured
+motion; stars with no measured motion are hidden away from the present. Closest approaches are
+found along the same orbits (20 kyr scan + golden-section refinement). Arrows have four-barbed heads; Sol's galactic
 motion is a separate gold arrow (capped at 0.6 × the radius). Systems within 8 ly of Sol get a
 line and distance label, refreshed with the epoch (`updateProximity`). An SVG orientation gauge
 (`.orient-gauge`) shows where the galactic centre, rotation and north point on screen.

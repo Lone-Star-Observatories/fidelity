@@ -682,13 +682,13 @@ function renderNavPanel() {
 }
 
 // ---- space motion & deep time (#20) ---------------------------------------------------------
-const DEEP_RATES = [[1e3, '1 KYR / S'], [1e4, '10 KYR / S'], [1e5, '100 KYR / S'], [1e6, '1 MYR / S']];
-const DEEP_MAX = 5e6; // linear motion is fair for a few million years
+const DEEP_RATES = [[1e3, '1 KYR / S'], [1e4, '10 KYR / S'], [1e5, '100 KYR / S'], [1e6, '1 MYR / S'], [1e7, '10 MYR / S']];
+const DEEP_MAX = 5e7; // orbits are integrated ±50 Myr (src/astro/galpot.js)
 let deepRate = 1e4, deepDir = 0, deepLast = null;
 const yrs = (t) => (Math.abs(t) >= 1e6 ? `${fmt(t / 1e6, 2)} MILLION YEARS` : `${fmt(t, 0)} YEARS`);
 function motionSection(d) {
   const m = nav.motion, c = d.center;
-  const enc = nav.encounters(DEEP_MAX).filter((e) => e.tYears > 0 && e.dMinLy < e.nowLy).sort((a, b) => a.dMinLy - b.dMinLy).slice(0, 6);
+  const enc = nav.encounters(5e6).filter((e) => e.tYears > 0 && e.dMinLy < e.nowLy).sort((a, b) => a.dMinLy - b.dMinLy).slice(0, 6);
   live.epoch = h('p', { className: 'warn mono' });
   return [
     h('h3', { textContent: 'SPACE MOTION' }),
@@ -699,7 +699,7 @@ function motionSection(d) {
     m.mode === 'off' ? null : h('div', { className: 'body-list' }, [[1e4, '10 KYR'], [1e5, '100 KYR'], [1e6, '1 MYR']].map(([w, label]) =>
       pill(`ARROWS · ${label}`, () => { nav.setMotion({ window: w }); renderNavPanel(); }, m.window === w ? 'on' : ''))),
     h('p', { className: 'note', textContent: m.mode === 'galactic'
-      ? 'Each arrow is a star\'s path around the galactic centre over the window (Sun: ~246 km/s towards l = 90°). Run deep time and the whole neighbourhood streams that way together, the chart riding along with it; the slow spreading is each star\'s own 20–50 km/s. Stars with no measured motion are assumed to move with the Sun. Straight lines: fair for a few million years, before the orbits visibly curve.'
+      ? 'Each arrow is a star\'s velocity around the galactic centre right now in deep time (Sun: ~245 km/s towards l = 90°), drawn over the arrow window. Run deep time and the neighbourhood streams that way together, the chart riding along; the slow spreading is each star\'s own 20–50 km/s, and the arrows turn as the orbits curve.'
       : m.mode === 'relative' ? `Arrows: where each star goes, seen from ${c.id === 'sol' ? 'the Sun' : c.name}. Dim arrows have no measured radial velocity, so only their sideways motion is known. The gold arrow is Sol's own path around the galaxy (~250 km/s), which carries the whole neighbourhood with it.` : 'Show where each star is heading.' }),
     h('p', { className: 'note', textContent: 'Green lines: every system within 8 ly of Sol, with its distance. Run deep time to watch stars come and go.' }),
     h('div', { className: 'ctl-label', textContent: 'DEEP TIME' }),
@@ -715,7 +715,7 @@ function motionSection(d) {
       b.addEventListener('click', () => { selectNavStar(e.star.id); nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; renderNavPanel(); });
       return b;
     }) : [h('p', { className: 'note', textContent: 'No star in range comes closer within 5 million years.' })]),
-    h('p', { className: 'note', textContent: 'Straight-line motion from HYG space velocities (Hipparcos proper motions and catalogue radial velocities). * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at 0.17 ly in 1.3 million years.' }),
+    h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years, from HYG space velocities (Hipparcos proper motions and catalogue radial velocities); a system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at 0.17 ly in 1.3 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
   ];
 }
 (function deepLoop(now) {

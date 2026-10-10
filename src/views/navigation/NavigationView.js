@@ -9,6 +9,9 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { eqToGal, frameToScene, starTeff, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
 import { settings } from '../../settings.js';
 import { systemName } from '../../panels/navlist.js';
+import { integrateTrack, trackAt } from '../../astro/galpot.js';
+
+const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
@@ -132,6 +135,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
       // size encodes luminosity (absolute magnitude); colour comes from B−V or spectral class
       const M = s.absmag ?? 12;
       size[i] = Math.max(2.2, Math.min(15, 8.5 - 0.5 * M));
+      placed[i].size0 = size[i];
       col.set(blackbodyRGB(starTeff(s).teff), i * 3);
       if (s.planets) hostIdx.push(i);
     });
@@ -173,6 +177,9 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     const r = d.radiusLy;
     controls.maxDistance = r * 6;
     controls.minDistance = 0.2;
+    attachTracks();
+    encCache = null;
+    computeEpoch();
     refreshMotion();
     target.set(0, 0, 0);
     controls.target.set(0, 0, 0);
@@ -228,15 +235,14 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   }
 
   // ---- space motion & deep time (#20) ------------------------------------------------------
-  // Velocities: HYG space velocities (km/s, Sun-relative; transverse only where no radial
-  // velocity is known), turned into light-years per year in the scene frame. Motion is linear:
-  // good for a few million years, after which galactic orbits curve.
+  // Every star with a measured space velocity (HYG: Hipparcos proper motion + catalogue radial
+  // velocity; sideways only where no radial velocity is known) is integrated on its real orbit
+  // through the Milky Way (src/astro/galpot.js), ±50 Myr. Stars of one system share the system's
+  // best-measured motion (they are bound). Stars with no measured motion are hidden in deep time.
   const LY_PER_KMS_YR = 3.3356e-6;
-  // Sun's motion around the galaxy: Schönrich et al. 2010 (U, V, W) plus a 233 km/s circular speed.
-  const SUN_GAL_KMS = [11.1, 12.24 + 233, 7.25];
   let motion = { mode: 'relative', window: 100000 }, epoch = 0;
   let arrows = null, ptsGeo = null, sunArrow = null, sunTag = null;
-  const SOL_GAL = new THREE.Vector3(...frameToScene(SUN_GAL_KMS)).multiplyScalar(LY_PER_KMS_YR);
+  const galOf = (s) => eqToGal([s.x * LY_PER_PC, s.y * LY_PER_PC, s.z * LY_PER_PC]);
   /** Shaft plus a four-barbed head (visible from any angle) from a to b, pushed into pos/col. */
   function pushArrow(pos, col, a, b, cTail, cHead, headLen) {
     const d = b.clone().sub(a), len = d.length();
@@ -251,27 +257,52 @@ export function createNavigationView(container, { onSelect, onFrame }) {
       pos.push(b.x, b.y, b.z, e.x, e.y, e.z); col.push(...cHead, ...cHead);
     }
   }
-  const velOf = (s, c) => {
-    // no measured motion: in the galactic frame assume it moves with the Sun's neighbourhood
-    if (!s.vKms) return motion.mode === 'galactic' ? SOL_GAL.clone() : null;
-    const cv = c?.vKms ?? c?.v;
-    const rel = cv && motion.mode !== 'galactic' ? s.vKms.map((v, i) => v - cv[i]) : s.vKms;
-    const g = eqToGal(rel);
-    if (motion.mode === 'galactic') for (let i = 0; i < 3; i++) g[i] += SUN_GAL_KMS[i];
-    return new THREE.Vector3(...frameToScene(g)).multiplyScalar(LY_PER_KMS_YR);
-  };
+  // Orbits are integrated ±5 Myr up front and extended to ±50 Myr only when deep time goes further.
+  let trackSpan = 5;
+  /** Attach an orbit to every placed star (cached across loads by star id). */
+  function attachTracks() {
+    const bySystem = new Map();
+    for (const p of placed) { const k = p.star.system ?? p.star.id; if (!bySystem.has(k)) bySystem.set(k, []); bySystem.get(k).push(p.star); }
+    for (const p of placed) {
+      const members = bySystem.get(p.star.system ?? p.star.id);
+      // the system's motion: measured radial velocity first, then the brightest member
+      const src = [...members].filter((m) => m.vKms).sort((a, b) => (b.rvKnown - a.rvKnown) || ((a.absmag ?? 99) - (b.absmag ?? 99)))[0];
+      p.motionFrom = src ?? null;
+      if (!src) { p.track = null; continue; }
+      const key = `${p.star.id}|${src.id}|${trackSpan}`;
+      if (!TRACKS.has(key)) TRACKS.set(key, integrateTrack(galOf(p.star), eqToGal(src.vKms), { spanMyr: trackSpan }));
+      p.track = TRACKS.get(key);
+    }
+  }
+  const cur = { pos: [0, 0, 0], vel: [0, 0, 0] }, cRef = { pos: [0, 0, 0], vel: [0, 0, 0] };
+  /** Positions (scene, ly) and velocities (scene, km/s) of every star at the current epoch. */
+  function computeEpoch() {
+    if (!data) return;
+    const c = placed.find((x) => x.star.id === data.center.id);
+    const cg0 = galOf(data.center);
+    const rel = motion.mode !== 'galactic' && c?.track;
+    if (rel) trackAt(c.track, epoch, cRef);
+    for (const p of placed) {
+      p.hidden = epoch !== 0 && !p.track;
+      if (!p.track) { p.now = p.pos.clone(); p.vnow = null; continue; }
+      trackAt(p.track, epoch, cur);
+      const d = rel ? cur.pos.map((x, k) => x - cRef.pos[k]) : cur.pos.map((x, k) => x - cg0[k]);
+      const v = rel ? cur.vel.map((x, k) => x - cRef.vel[k]) : cur.vel;
+      p.now = epoch === 0 && rel ? p.pos.clone() : new THREE.Vector3(...frameToScene(d));
+      p.vnow = new THREE.Vector3(...frameToScene(v));
+      p.vabs = new THREE.Vector3(...frameToScene(cur.vel));
+    }
+  }
   function refreshMotion() {
     if (!data) return;
-    const c = data.center;
-    for (const p of placed) p.vel = velOf(p.star, c);
     for (const o of [arrows, sunArrow]) if (o) { world.remove(o); o.geometry.dispose(); o.material.dispose(); }
     arrows = sunArrow = null;
     if (motion.mode !== 'off') {
       const pos = [], col = [], head = data.radiusLy * 0.035;
       for (const p of placed) {
-        if (!p.vel) continue;
-        const a = p.pos.clone().addScaledVector(p.vel, epoch), b = a.clone().addScaledVector(p.vel, motion.window);
-        const k = p.star.rvKnown ? 1 : 0.45; // dimmer where only the sideways motion is known
+        if (!p.vnow || p.hidden) continue;
+        const a = p.now, b = a.clone().addScaledVector(p.vnow, motion.window * LY_PER_KMS_YR);
+        const k = p.motionFrom?.rvKnown ? 1 : 0.45; // dimmer where only the sideways motion is known
         pushArrow(pos, col, a, b, [0.15, 0.25, 0.4], [0.6 * k, 0.85 * k, 1 * k], head);
       }
       const g = new THREE.BufferGeometry();
@@ -281,9 +312,9 @@ export function createNavigationView(container, { onSelect, onFrame }) {
       world.add(arrows);
       // Sol's own path around the galaxy, in gold, whichever frame the other arrows use
       const sol = placed.find((p) => p.star.id === 'sol');
-      if (sol && motion.mode !== 'galactic') {
-        const a = posAt(sol), full = motion.window * SOL_GAL.length(), cap = data.radiusLy * 0.6;
-        const b = a.clone().addScaledVector(SOL_GAL.clone().normalize(), Math.min(full, cap));
+      if (sol?.vabs && motion.mode !== 'galactic') {
+        const a = sol.now, full = motion.window * LY_PER_KMS_YR * sol.vabs.length(), cap = data.radiusLy * 0.6;
+        const b = a.clone().addScaledVector(sol.vabs.clone().normalize(), Math.min(full, cap));
         const sp = [], sc = [];
         pushArrow(sp, sc, a, b, [0.5, 0.35, 0.1], [1, 0.8, 0.3], head * 1.4);
         const sg = new THREE.BufferGeometry();
@@ -292,15 +323,14 @@ export function createNavigationView(container, { onSelect, onFrame }) {
         sunArrow = new THREE.LineSegments(sg, new THREE.LineBasicMaterial({ vertexColors: true }));
         world.add(sunArrow);
         if (!sunTag) sunTag = label('', 'motion', b);
-        sunTag.element.textContent = `SOL → ${Math.round(Math.hypot(...SUN_GAL_KMS))} KM/S AROUND THE GALAXY${full > cap ? ' · ARROW SHORTENED' : ''}`;
+        sunTag.element.textContent = `SOL → ${Math.round(sol.vabs.length())} KM/S AROUND THE GALAXY${full > cap ? ' · ARROW SHORTENED' : ''}`;
         sunTag.position.copy(b);
         sunTag.visible = true;
       } else if (sunTag) sunTag.visible = false;
     } else if (sunTag) sunTag.visible = false;
     updateProximity();
   }
-  // where a star is at the current epoch (stars only move in the relative frame)
-  const posAt = (p) => (p.vel ? p.pos.clone().addScaledVector(p.vel, epoch) : p.pos.clone());
+  const posAt = (p) => (p.now ?? p.pos).clone();
   const chartOffset = new THREE.Vector3();
 
   // ---- anything within 8 ly of Sol gets a line and its distance ------------------------------
@@ -314,7 +344,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     if (sol) {
       const sp = posAt(sol), best = new Map();
       for (const p of placed) {
-        if (p === sol) continue;
+        if (p === sol || p.hidden) continue;
         const q = posAt(p), d = q.distanceTo(sp);
         if (d > NEAR_SOL_LY) continue;
         const k = p.star.system ?? p.star.id;
@@ -338,17 +368,19 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     }
     for (const [k, t] of proxTags) if (!keep.has(k)) { world.remove(t); t.element.remove(); proxTags.delete(k); }
   }
-  /** Move every star to epoch `t` years from now (linear motion relative to the centre star). */
+  /** Move every star to epoch `t` years from now along its integrated orbit. */
   function setEpoch(t) {
     epoch = t;
     if (!ptsGeo) return;
-    const attr = ptsGeo.attributes.position;
+    if (Math.abs(t) > trackSpan * 1e6 && trackSpan < 50) { trackSpan = 50; attachTracks(); }
+    computeEpoch();
+    const attr = ptsGeo.attributes.position, sz = ptsGeo.attributes.size;
     placed.forEach((p, i) => {
-      const q = p.vel ? p.pos.clone().addScaledVector(p.vel, t) : p.pos;
-      attr.setXYZ(i, q.x, q.y, q.z);
-      if (p.label) p.label.position.copy(q);
+      attr.setXYZ(i, p.now.x, p.now.y, p.now.z);
+      sz.setX(i, p.hidden ? 0 : p.size0);
+      if (p.label) p.label.position.copy(p.now);
     });
-    attr.needsUpdate = true;
+    attr.needsUpdate = true; sz.needsUpdate = true;
     // keep the chart and camera with the centre star (it only moves in the galactic frame)
     const cp = placed.find((x) => x.star.id === data.center.id);
     if (cp && chartGroup) {
@@ -360,26 +392,38 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     if (dropGroup) dropGroup.visible = t === 0;
     if (tempLabel && selectedId) { const sp = placed.find((x) => x.star.id === selectedId); if (sp) tempLabel.position.copy(posAt(sp)); }
     if (hostGeo) {
-      const ha = hostGeo.attributes.position;
-      hostIdxs.forEach((i, k) => ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)));
-      ha.needsUpdate = true;
+      const ha = hostGeo.attributes.position, hs = hostGeo.attributes.size;
+      hostIdxs.forEach((i, k) => { ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)); hs.setX(k, placed[i].hidden ? 0 : placed[i].size0 + 11); });
+      ha.needsUpdate = true; hs.needsUpdate = true;
     }
-    if (motion.mode !== 'off') refreshMotion(); else updateProximity();
+    refreshMotion();
   }
   let hostGeo = null, hostIdxs = [];
-  /** Closest approaches to the centre star within ±maxYears (linear motion): [{ star, dMinLy, tYears }]. */
+  /** Hidden in deep time: stars with no measured motion. */
+  const unmovedCount = () => placed.filter((p) => !p.track).length;
+  /**
+   * Closest approaches to the centre star within ±maxYears along the integrated orbits:
+   * scanned every 20 kyr, then refined by golden-section search. Cached per centre.
+   */
+  let encCache = null;
   function encounters(maxYears = 5e6) {
-    const c = data?.center;
-    const out = [];
+    const c = placed.find((x) => x.star.id === data?.center.id);
+    if (!c?.track) return [];
+    if (encCache?.center === c.star.id && encCache.max === maxYears && encCache.n === placed.length) return encCache.out;
+    const a = { pos: [0, 0, 0], vel: [0, 0, 0] }, b = { pos: [0, 0, 0], vel: [0, 0, 0] };
+    const sys = c.star.system ?? c.star.id;
+    const dist = (p, t) => { trackAt(p.track, t, a); trackAt(c.track, t, b); return Math.hypot(a.pos[0] - b.pos[0], a.pos[1] - b.pos[1], a.pos[2] - b.pos[2]); };
+    const out = [], step = 2e4;
     for (const p of placed) {
-      const cv = c.vKms ?? c.v;
-      if (p.star.id === c.id || !p.star.vKms || !cv) continue;
-      const v = new THREE.Vector3(...frameToScene(eqToGal(p.star.vKms.map((x, i) => x - cv[i])))).multiplyScalar(LY_PER_KMS_YR);
-      const v2 = v.lengthSq();
-      if (!v2) continue;
-      const t = Math.max(-maxYears, Math.min(maxYears, -p.pos.dot(v) / v2));
-      out.push({ star: p.star, tYears: t, dMinLy: p.pos.clone().addScaledVector(v, t).length(), nowLy: p.pos.length(), rvKnown: !!p.star.rvKnown });
+      if (p === c || !p.track || (p.star.system ?? p.star.id) === sys) continue;
+      let best = 0, bestD = Infinity;
+      for (let t = -maxYears; t <= maxYears; t += step) { const d = dist(p, t); if (d < bestD) { bestD = d; best = t; } }
+      let lo = Math.max(-maxYears, best - step), hi = Math.min(maxYears, best + step);
+      for (let k = 0; k < 40; k++) { const m1 = lo + (hi - lo) * 0.382, m2 = lo + (hi - lo) * 0.618; if (dist(p, m1) < dist(p, m2)) hi = m2; else lo = m1; }
+      const t = (lo + hi) / 2;
+      out.push({ star: p.star, tYears: t, dMinLy: dist(p, t), nowLy: p.pos.length(), rvKnown: !!p.motionFrom?.rvKnown });
     }
+    encCache = { center: c.star.id, max: maxYears, n: placed.length, out };
     return out;
   }
 
@@ -477,7 +521,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     controls.update();
     stepMessage(performance.now());
     const show = settings.get('labels');
-    for (const p of placed) if (p.label) p.label.visible = show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId;
+    for (const p of placed) if (p.label) p.label.visible = !p.hidden && !!(show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId);
     renderer.render(scene, camera);
     labels.render(scene, camera);
     drawGauge();
@@ -496,7 +540,8 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,
-    setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; refreshMotion(); setEpoch(epoch); },
+    setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; setEpoch(epoch); },
+    get unmoved() { return unmovedCount(); },
     setEpoch, encounters,
     get epoch() { return epoch; },
     get motion() { return motion; },
