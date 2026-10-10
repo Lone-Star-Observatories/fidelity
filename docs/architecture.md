@@ -225,7 +225,8 @@ only, avoiding the site labels (`sites.placed`); NAMES toggles them and a click 
 as a site. FROM ABOVE (`system.viewSite(id, lat, lon, spanKm)`) swoops the camera down over a site or
 feature and orbits it there (OrbitControls target on the site, which follows the turning body; the
 near plane follows the distance to the site); other bodies' labels hide meanwhile. Live rovers get
-their NASA model at the end of their path (`loadCraftModel`, enlarged).
+their NASA model at the end of their path (`loadCraftModel`, enlarged). Site cards add PHOTOS from
+`/api/nasa-images` (mission + surface first, then the mission alone), badged REPORTED.
 
 ## Click anything (#23)
 
