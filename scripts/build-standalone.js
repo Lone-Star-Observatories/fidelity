@@ -9,6 +9,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gunzipSync } from 'node:zlib';
 import { gzipAsync } from '@gfx/zopfli';
+import { minify } from 'terser';
 import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
@@ -210,7 +211,10 @@ if (!Buffer.from(unpackApplicationBytes(cssPacked)).equals(cssCompressed)) throw
 const appPacked = encodeRawSnapshotBytes(appCompressed);
 if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
 const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
-const bootstrap = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const cssStream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${cssPacked.byteLength},data:document.getElementById("fidelity-stylesheet-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const style = document.createElement('style');\n style.textContent = await new Response(cssStream).text();\n document.head.append(style);\n const stream = new Blob([unpackSnapshotBytes({encoding:"gzip-raw-radix120-wide-v1",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = await new Response(stream).text();\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
+const bootstrapSource = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const cssStream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${cssPacked.byteLength},data:document.getElementById("fidelity-stylesheet-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const style = document.createElement('style');\n style.textContent = await new Response(cssStream).text();\n document.head.append(style);\n const stream = new Blob([unpackSnapshotBytes({encoding:"gzip-raw-radix120-wide-v1",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = await new Response(stream).text();\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
+// Minify only the loader; packed data and restored application bytes stay exact.
+const { code: bootstrap } = await minify(bootstrapSource, { module: true, compress: { passes: 2 }, mangle: true, format: { inline_script: true } });
+if (!bootstrap) throw new Error('Offline loader minification failed.');
 const out = `<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n<script type="module">\n${bootstrap}\n</script>\n`;
 const previewBytes = Buffer.byteLength(out);
 if (previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);

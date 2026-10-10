@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-10",
+  "status": "Loader compaction delivered; full standalone still exceeds hard gate. No new successful full artifact or full-browser equality claim.",
+  "upstream": "04c93c7",
+  "change": "Terser minifies and removes unused codec functions only in the generated offline loader; packed snapshot/application/CSS and source inputs are unchanged. Module mode, two compression passes, mangling and inline-script escaping enabled. Legacy codec source and runtime compatibility preserved.",
+  "validation": {
+    "testsPassed": 393,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "failed hard 16000000-byte gate",
+    "fullCandidateBytes": 16049793,
+    "overBudgetBytes": 49793,
+    "chromeFixture": {
+      "exactUnicodeApplicationModule": true,
+      "exactStylesheetText": true,
+      "unsupportedDecompressionStreamMessage": true,
+      "loaderSourceBytes": 17235,
+      "loaderMinifiedBytes": 4105,
+      "fixtureSavingBytes": 13130
+    },
+    "fullBrowserEquality": "not claimed; no new successful full artifact",
+    "otherBrowserEngines": "open"
+  },
+  "preservation": {
+    "dossiers": 54,
+    "newDioneDossier": false,
+    "nativeMapModelShapeOriginalMasterInputs": "unchanged",
+    "queueTasks": 566
+  },
+  "next": "Further lossless headroom recovery, then Dione masters/previews and additive native/local/observer integration. No external blocker; backlog ACTIVE."
+}
