@@ -25,7 +25,8 @@
   "existingGlobe": {
     "inspected": true,
     "unchanged": true,
-    "limitations": "Own Tethys mosaic retained; white/blurred polar gaps and seams are not measured smooth terrain. Source association, input epochs, coordinate frame, coverage and photometric calibration remain open."
+    "limitations": "NASA 3D source file matches own Tethys map byte-for-byte. Underlying scientific mosaic identity, input epochs, frame, coverage and photometry remain open. White/blurred polar gaps and seams are not measured smooth terrain.",
+    "sourceByteEqual": true
   },
   "next": "Audit own map source and recent primary science; recover standalone headroom before additive native/local/observer integration. No exhaustive newest-observation claim.",
   "validation": {
@@ -39,5 +40,12 @@
     "browserSnapshotApplicationStylesheetExactRestoration": true,
     "snapshotSha256": "4bad2a97b16e2984b6c9d4d741fed27d9e3ca0077b092931bf79f79f7f8a9d94",
     "queueTasks": 566
+  },
+  "transportAssessment": {
+    "currentWideBlockBytes": 44,
+    "currentWideBlockDigits": 51,
+    "asymptoticDigitsPerByte": 1.158263604911665,
+    "currentDigitsPerByte": 1.1590909090909092,
+    "limitation": "Increasing radix120 block size alone has less than 0.1 percent asymptotic room versus current 44/51 transport; insufficient for a larger native batch. No codec or science payload changed. Further compression structure remains open."
   }
 }

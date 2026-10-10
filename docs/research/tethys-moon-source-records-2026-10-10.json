@@ -26,6 +26,10 @@
     "path": "data/textures/tethys.jpg",
     "bytes": 597139,
     "sha256": "84f70e3fe6fa48661df4d973f78a540771e629ebbc68e032539d2e28e1d8eea1",
-    "associationAudit": "Source association, input epochs, frame, coverage and photometry remain open."
+    "associationAudit": "NASA 3D file association verified byte-for-byte; underlying scientific mosaic identity, input epochs, frame, coverage and photometry remain open.",
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Tethys/Saturn%20-%20Tethys.jpg",
+    "sourcePage": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Tethys",
+    "fetchedSourcePath": "data/research-sources/tethys-nasa3d-source-2026-10-10.jpg",
+    "sourceByteEqual": true
   }
 ]
