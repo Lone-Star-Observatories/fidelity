@@ -1,0 +1,82 @@
+[
+  {
+    "name": "cassini-caption",
+    "url": "https://science.nasa.gov/photojournal/enceladus-setting-behind-saturn-image-and-movie/",
+    "finalUrl": "https://science.nasa.gov/photojournal/enceladus-setting-behind-saturn-image-and-movie/",
+    "path": "data/research-sources/enceladus-cassini-caption-2026-10-10.html",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 272727,
+    "sha256": "654d530bfbc6a10d3fba9343f2e413ab0feaf6679d61a2bdbbd302ca68451ae4"
+  },
+  {
+    "name": "cassini-native",
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21889/PIA21889.jpg",
+    "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21889/PIA21889.jpg",
+    "path": "data/research-sources/enceladus-cassini-native-2026-10-10.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 21647,
+    "sha256": "164eec2abff6960dc539a32cfa788a4fed16ad149f26bb38f77b9076d1a84d3b"
+  },
+  {
+    "name": "webb-caption",
+    "url": "https://esawebb.org/images/weic2314a/",
+    "finalUrl": "https://esawebb.org/images/weic2314a/",
+    "path": "data/research-sources/enceladus-webb-caption-2026-10-10.html",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 69271,
+    "sha256": "5ea2c352238f31044669cde854dba7eb013447ae35a16be97af8b00c303c03f7"
+  },
+  {
+    "name": "webb-terms",
+    "url": "https://esawebb.org/copyright/",
+    "finalUrl": "https://esawebb.org/copyright/",
+    "path": "data/research-sources/enceladus-webb-terms-2026-10-10.html",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 58839,
+    "sha256": "4eb1754877cf5ac628553ac96f0c41a109d46a239bb1875a0e6daed3db8d1fe9"
+  },
+  {
+    "name": "webb-native",
+    "url": "https://cdn.esawebb.org/archives/images/large/weic2314a.jpg",
+    "finalUrl": "https://cdn.esawebb.org/archives/images/large/weic2314a.jpg",
+    "path": "data/research-sources/enceladus-webb-native-2026-10-10.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 160955,
+    "sha256": "b3d6e32829358f02e9357c5a8e92c863c3f1680c576cd6bab7dfa3a850fceecc"
+  },
+  {
+    "name": "own-globe-source",
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Enceladus/Saturn%20-%20Enceladus.jpg",
+    "finalUrl": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Enceladus/Saturn%20-%20Enceladus.jpg",
+    "path": "data/research-sources/enceladus-own-globe-source-2026-10-10.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 472211,
+    "sha256": "4e16d38b98b788468e4f005b56d04282ccfe2f086eebfb1c0e5d20d8fd65ebef"
+  },
+  {
+    "name": "chemistry-release",
+    "url": "https://www.esa.int/Science_Exploration/Space_Science/Cassini-Huygens/Cassini_proves_complex_chemistry_in_Enceladus_ocean",
+    "finalUrl": "https://www.esa.int/Science_Exploration/Space_Science/Cassini-Huygens/Cassini_proves_complex_chemistry_in_Enceladus_ocean",
+    "path": "data/research-sources/enceladus-chemistry-release-2026-10-10.html",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 24686,
+    "sha256": "f475b15127b80ff1532bfffbfda11d6e1ac2b3567269323d565e70e179a04cc5"
+  },
+  {
+    "name": "chemistry-paper-response",
+    "url": "https://www.nature.com/articles/s41550-025-02655-y",
+    "finalUrl": "https://www.nature.com/articles/s41550-025-02655-y?error=cookies_not_supported&code=9b0467b2-0b93-43f9-8b3c-292223430288",
+    "path": "data/research-sources/enceladus-chemistry-paper-response-2026-10-10.html",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 552698,
+    "sha256": "c5e73c30cf5abb2588b0f17480a92ab81db0c87aed83371905094684f1cfa2ae"
+  }
+]

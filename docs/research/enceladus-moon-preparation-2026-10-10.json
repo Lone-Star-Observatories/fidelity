@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; all52 dossiers unchanged, no53rd dossier or new embedded asset.",
+  "sourceRecords": "enceladus-moon-source-records-2026-10-10.json",
+  "cassini": {
+    "product": "PIA21889 Enceladus Setting Behind Saturn",
+    "observed": "2017-09-13",
+    "released": "2017-09-15",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "source": "https://science.nasa.gov/photojournal/enceladus-setting-behind-saturn-image-and-movie/",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "path": "data/research-sources/enceladus-cassini-native-2026-10-10.jpg",
+    "bytes": 21647,
+    "sha256": "164eec2abff6960dc539a32cfa788a4fed16ad149f26bb38f77b9076d1a84d3b",
+    "dimensions": [
+      1006,
+      1004
+    ],
+    "inspected": true,
+    "limitations": "Unchanged publisher RGB-filter natural-colour composite, not independently calibrated photometry. Small crescent partly occulted by Saturn is not resolved local terrain or a registered globe. Caption has an inconsistent distance expression (810000 million miles versus1.3million kilometres), retained as source error without propagating the miles value. Source8km/pixel statement is not a new raster computation."
+  },
+  "webb": {
+    "product": "weic2314a publisher collage",
+    "released": "2023-05-30",
+    "observed": null,
+    "observationDateStatus": "Specific image-data association/date remains open; release date is not observation date.",
+    "credit": "NASA, ESA, CSA, STScI, G. Villanueva (NASA’s Goddard Space Flight Center), A. Pagan (STScI)",
+    "source": "https://esawebb.org/images/weic2314a/",
+    "terms": "https://esawebb.org/copyright/",
+    "licence": "CC BY4.0, subject to publisher exceptions and full visible credit",
+    "path": "data/research-sources/enceladus-webb-native-2026-10-10.jpg",
+    "bytes": 160955,
+    "sha256": "b3d6e32829358f02e9357c5a8e92c863c3f1680c576cd6bab7dfa3a850fceecc",
+    "dimensions": [
+      1500,
+      1500
+    ],
+    "inspected": true,
+    "limitations": "Unchanged publisher large JPEG collage; Cassini inset and Webb plume are distinct epochs/instruments, annotations not terrain. Infrared blue display not visible colour; unresolved moon/plume image not geography. ESA title labels NIRCam whereas NASA corresponding release labels NIRSpec; exact instrument/product association remains open, do not silently reconcile. Plume extent wording in ESA caption differs from NASA/radius units in primary abstract; no new angular or raster calculation, exact extent interpretation pending primary assessment."
+  },
+  "nativeGlobe": {
+    "path": "data/textures/enceladus.jpg",
+    "bytes": 472211,
+    "sha256": "4e16d38b98b788468e4f005b56d04282ccfe2f086eebfb1c0e5d20d8fd65ebef",
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Enceladus/Saturn%20-%20Enceladus.jpg",
+    "sourceByteEquality": true,
+    "limitations": "Own NASA3D source identity verified. Specific input products, observation epochs, coverage, frame/geographic registration and photometric transfer remain open. Metadata creation date is not an observation date. Visible blank/blurred regions and mosaic boundaries are not measured smooth terrain; missing coverage must not be inferred as a featureless ice surface.",
+    "inspected": true
+  },
+  "recentChemistry": {
+    "doi": "10.1038/s41550-025-02655-y",
+    "published": "2025-10-01",
+    "authors": [
+      "Nozair Khawaja",
+      "Frank Postberg",
+      "Thomas R. O’Sullivan",
+      "Maryse Napoleoni",
+      "Sascha Kempf",
+      "Fabian Klenner",
+      "Yasuhito Sekine",
+      "Maxwell Craddock",
+      "Jon Hillier",
+      "Jonas Simolka",
+      "Lucía Hortal Sánchez",
+      "Ralf Srama"
+    ],
+    "source": "https://www.nature.com/articles/s41550-025-02655-y",
+    "responsePath": "data/research-sources/enceladus-chemistry-paper-response-2026-10-10.html",
+    "responseSha256": "c5e73c30cf5abb2588b0f17480a92ab81db0c87aed83371905094684f1cfa2ae",
+    "responseAssessment": "Actual accessible full article HTML despite cookies-error query, verified main/results/methods/rights sections; hash is HTML response not PDF. No paper figure adopted. Article explicitly CC BY4.0 with third-party exceptions.",
+    "measurementContext": "Cassini E5 ice-grain impact mass spectra; methods closest approach2008-283T19:06:40UTC, encounter17.7km/s. Chemical groups inferred through comparison with laboratory spectra, tentative N/O assignments.",
+    "limitations": "Few high-quality spectra; paper says quantitative analysis impossible. Does not establish local surface fractions, unique molecules for all peaks, directly imaged hydrothermal plumbing, biology or survivable landing."
+  },
+  "openWork": [
+    "Further primary Webb instrument/observation association audit",
+    "Lossless standalone headroom before native integration",
+    "Independent local and Saturn observer illustrations, skyGeometry assessment and additive dossier",
+    "Remaining SolarSystem/native/map/craft/shape/calibration/ranking backlog"
+  ],
+  "verification": {
+    "priorDossiers": 52,
+    "assetInputsUnchanged": true,
+    "queueTasks": 566,
+    "tests": {
+      "pass": 261,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15978925,
+    "headroomBytes": 21075,
+    "images": 189,
+    "details": 517,
+    "nativeContextHashes": 41,
+    "all52DeepEqual": true,
+    "browserReadableSnapshotSha256": "1ccea4448f269be4c4b56fba1b191869915f120cb4ea08e50a720e54d54567f9",
+    "browserRawSnapshotSha256": "6b6826e346a7d6224c1b8fb1fe151a7684aacd248261f7736ce4e2d4dec06b8f",
+    "browserApplicationSha256": "3b9868b222b22390c0ad20d7654716cceade81a82272adfbad4a331acd756463",
+    "htmlParserExactRestoration": true
+  }
+}
