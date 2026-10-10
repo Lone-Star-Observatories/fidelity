@@ -1,0 +1,57 @@
+[
+  {
+    "url": "https://cdn.esahubble.org/archives/images/large/potw1343a.jpg",
+    "file": "data/research-sources/proxima-star-native.jpg",
+    "retrieved": "2026-10-10",
+    "sha256": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+    "bytes": 69746,
+    "observationDate": null,
+    "publicationDate": "2013-10-28",
+    "terms": "CC BY 4.0; ESA/Hubble & NASA, full native image credit retained.",
+    "dateLimit": "Exact observation epochs are not independently verified; publication/release dates are distinct."
+  },
+  {
+    "url": "https://esahubble.org/images/potw1343a/",
+    "file": "data/research-sources/proxima-star-native-page.html",
+    "retrieved": "2026-10-10",
+    "sha256": "df8144a4c56fe10ef63ef13ebecc61cce58519f59b2d5f7616613070c75ff12d",
+    "bytes": 51005,
+    "observationDate": null,
+    "publicationDate": "2013-10-28",
+    "terms": "CC BY 4.0; ESA/Hubble & NASA, full native image credit retained.",
+    "dateLimit": "Exact observation epochs are not independently verified; publication/release dates are distinct."
+  },
+  {
+    "url": "https://esahubble.org/copyright/",
+    "file": "data/research-sources/proxima-star-terms.html",
+    "retrieved": "2026-10-10",
+    "sha256": "071f2350f8a5d73a33cd1f07b38e81d7aaaceb935da9aa055dc8e4b838994256",
+    "bytes": 43653,
+    "observationDate": null,
+    "publicationDate": null,
+    "terms": "ESA/Hubble image-use policy, research reference.",
+    "dateLimit": "Exact observation epochs are not independently verified; publication/release dates are distinct."
+  },
+  {
+    "url": "https://arxiv.org/abs/1704.08449v1",
+    "file": "data/research-sources/proxima-star-ribas2017.html",
+    "retrieved": "2026-10-10",
+    "sha256": "fcd85ae01127d1a54f4f2a86385974ba6e80cc65f09300134d0bd76fde813763",
+    "bytes": 45865,
+    "observationDate": null,
+    "publicationDate": "2017-04-27",
+    "terms": "Research citation only; arXiv distribution rights, no figures copied.",
+    "dateLimit": "Exact observation epochs are not independently verified; publication/release dates are distinct."
+  },
+  {
+    "url": "https://arxiv.org/abs/astro-ph/9909409",
+    "file": "data/research-sources/ez-aqr-masses.html",
+    "retrieved": "2026-10-10",
+    "sha256": "7e4776dcef773a25bbbf8c8527d36ffe18e7ccb367840a47dc07ee8261695624",
+    "bytes": 40411,
+    "observationDate": null,
+    "publicationDate": "1999-09-23",
+    "terms": "Research citation only; arXiv distribution rights, no figures copied.",
+    "dateLimit": "Exact observation epochs are not independently verified; publication/release dates are distinct."
+  }
+]

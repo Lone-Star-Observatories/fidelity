@@ -3,6 +3,8 @@
 
 import * as THREE from 'three';
 import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { applyBandToMaterial } from '../system/bandtextures.js';
+import { currentBand, onBand } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
 import { loadBodyShape, disposeModel } from '../system/models.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
@@ -44,7 +46,15 @@ export function createPlanetView(container, { onSurface } = {}) {
   const pivot = new THREE.Group();
   pivot.rotation.z = 0.35;
   scene.add(pivot);
-  let globe = null, clouds = null, mats = [], running = false;
+  let globe = null, clouds = null, mats = [], running = false, globeBody = null;
+  // the spectrum filter (#28): the globe takes the same band look as in the System View
+  function applyBand() {
+    if (!globeBody || !mats[0]) return;
+    const { band, pass } = currentBand();
+    applyBandToMaterial(mats[0].uniforms, globeBody, band, pass);
+    if (clouds) clouds.visible = band.id === 'full' || band.id === 'visible';
+  }
+  onBand(applyBand);
   const sun = new THREE.Vector3(-9, 2, 6); // light from the left, a little towards us
 
   const hero = el('div', { className: 'sv-hero' });
@@ -87,6 +97,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     mats.push(mat);
     globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 64), mat);
     pivot.add(globe);
+    globeBody = b;
     const pendingGlobe = globe;
     loadBodyShape(b.id, b.radiusKm).then((shape) => {
       if (!shape) return;
@@ -108,6 +119,7 @@ export function createPlanetView(container, { onSurface } = {}) {
       clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 128, 64), cm);
       pivot.add(clouds);
     }
+    applyBand();
     // today's imagery (with today's clouds) where the backend can fetch it
     const myClouds = clouds;
     applyLiveSkin(mat, b.skin, settings.get('liveSkins')).then((l) => { if (l && myClouds) myClouds.visible = false; });

@@ -1,10 +1,21 @@
 // Which live feeds belong to which spacecraft (by NORAD catalogue number). Feed ids are served
 // by the backend (server/feeds.js) and cached briefly; video is embedded from the operator.
 
+// ISS live video: specific YouTube stream ids (the old channel-level `live_stream?channel=`
+// embed no longer resolves). The viewer offers them as channels; if one is offline, try the next.
+export const ISS_STREAMS = [
+  { id: 'awQzjn72bI0', label: 'NASA HD', credit: 'NASA — live high-definition views from the ISS (official stream; blank or blue screen during loss of signal)' },
+  { id: 'xONYM4PxVNA', label: 'ISS LIVE · 4K', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
+  { id: 't6UWFH7dm_s', label: 'ISS LIVE · 4K II', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
+  { id: 'fO9e9jnhYK8', label: 'SEN 4K', credit: 'Sen — 24/7 Earth from Sen\'s 4K cameras on the ISS' },
+];
+/** Embed and watch URLs for a YouTube stream id. */
+export const youtubeEmbed = (id) => `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&playsinline=1`;
+export const youtubeWatch = (id) => `https://www.youtube.com/watch?v=${id}`;
+
 export const SAT_FEEDS = {
   25544: [ // ISS
-    { kind: 'video', label: 'LIVE VIDEO', url: 'https://www.youtube.com/embed/live_stream?channel=UCLA_DiR1FfKNvjuUpBHmylQ', link: 'https://www.nasa.gov/live',
-      credit: 'NASA live stream (often Earth views from the ISS; sometimes other NASA programming)' },
+    { kind: 'video', label: 'LIVE VIDEO', streams: ISS_STREAMS },
     { kind: 'crew', id: 'crew', label: 'CREW ABOARD', craft: 'ISS' },
   ],
   48274: [{ kind: 'crew', id: 'crew', label: 'CREW ABOARD', craft: 'TIANGONG' }], // Tiangong (CSS Tianhe)

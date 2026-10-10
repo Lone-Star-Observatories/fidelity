@@ -1,6 +1,6 @@
 // USS Fidelity — bridge console. Wires the LCARS shell, router, clock and views.
 
-import { createClock } from './astro/clock.js';
+import { createClock, STEP_UNITS } from './astro/clock.js';
 import { shipDate, dateFromJd, jdFromDate, isoDay } from './astro/time.js';
 import { VALID_RANGE } from './astro/kepler.js';
 import { LY_PER_PC } from './astro/frames.js';
@@ -38,6 +38,9 @@ import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
+import { createComputer } from './voice/computer.js';
+import { BANDS, bandById, passById } from './data/bands.js';
+import { setCurrentBand, currentBand } from './data/bandstate.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -183,6 +186,89 @@ $('beacon').addEventListener('click', () => go({ level: 'system', system: 'sol' 
 
 // ---- bottom controls ----------------------------------------------------------------------
 const controls = $('controls');
+// ---- text size ------------------------------------------------------------------------------
+const TEXT_STEPS = [0.8, 0.9, 1, 1.1, 1.25, 1.4, 1.6];
+const textOut = h('div', { className: 'ctl-readout mono text-size', title: 'Text size' });
+function applyTextScale() {
+  const v = settings.get('textScale') ?? 1;
+  document.documentElement.style.setProperty('--text-scale', String(v));
+  textOut.textContent = `${Math.round(v * 100)}%`;
+  window.dispatchEvent(new Event('resize')); // labels and panels re-measure
+}
+const stepText = (dir) => {
+  const v = settings.get('textScale') ?? 1;
+  const i = TEXT_STEPS.reduce((best, s, k) => (Math.abs(s - v) < Math.abs(TEXT_STEPS[best] - v) ? k : best), 0);
+  settings.set('textScale', TEXT_STEPS[Math.max(0, Math.min(TEXT_STEPS.length - 1, i + dir))]);
+};
+settings.onChange((k) => { if (k === 'textScale') applyTextScale(); });
+applyTextScale();
+{ // in the top bar, so it is always in reach
+  const btn = (label, dir, title) => Object.assign(h('button', { className: 'pill square', textContent: label, title }), { onclick: () => stepText(dir) });
+  $('text-size').append(btn('A−', -1, 'Smaller text'), textOut, btn('A+', 1, 'Larger text'));
+}
+// the bottom bar scrolls sideways with the mouse wheel when its controls overflow
+controls.addEventListener('wheel', (e) => { if (controls.scrollWidth > controls.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { controls.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false });
+// ---- the spectrum filter (#28) ------------------------------------------------------------
+const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
+const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
+const microns = (s) => s.replace(/ ?µm\b/g, ' MICRONS'); // 'µ' upper-cases to Greek 'Μ'
+function syncBandControls() {
+  const b = bandById(settings.get('band')), p = passById(b, settings.get('bandPass'));
+  bandSel.value = b.id;
+  passSel.replaceChildren(...b.passes.map((x) => h('option', { value: x.id, textContent: x.label })));
+  passSel.hidden = !b.passes.length;
+  if (p) passSel.value = p.id;
+}
+bandSel.addEventListener('change', () => { settings.set('bandPass', null); settings.set('band', bandSel.value); });
+passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
+function applyBandEverywhere() {
+  setCurrentBand(settings.get('band'), settings.get('bandPass'));
+  syncBandControls();
+  system.setBand(settings.get('band'), settings.get('bandPass'));
+  for (const v of [nav, galaxy, quadrant]) v.recolourBand?.();
+  document.body.dataset.band = settings.get('band');
+  if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
+}
+settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
+// ---- "Computer" (#21) ----------------------------------------------------------------------
+let voiceBtn = null, voiceStars = null;
+const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
+  connecting: 'CONNECTING…', hearing: 'GO AHEAD…', thinking: 'WORKING…', speaking: 'SPEAKING' };
+const computer = createComputer({
+  context: () => `${$('view-title').textContent} · ship's clock ${dateFromJd(clock.jd).toISOString().slice(0, 16)} UTC\n${(panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 2500)}`,
+  names: () => {
+    const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }) }));
+    for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }) });
+    return out;
+  },
+  setLayer: (k, on) => settings.set(k, on),
+  setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
+  status: () => fetch('/api/voice/status').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  onState: (st, _d, log) => renderVoice(st, log),
+});
+function renderVoice(st = computer.state, log = computer.log) {
+  voiceBtn?.classList.toggle('listening', st !== 'off');
+  const vp = $('voice-panel');
+  if (vp.hidden) return;
+  const live = st === 'hearing' || st === 'training';
+  vp.replaceChildren(
+    h('div', { className: 'vp-head' }, h('b', { textContent: 'COMPUTER' }), pill('✕', () => { vp.hidden = true; }, 'square')),
+    h('div', { className: `vp-state${live ? ' live' : ''}`, textContent: VOICE_STATES[st] ?? st.toUpperCase() }),
+    h('div', { className: 'vp-log' }, log.slice(-12).map((l) => h('div', { className: l.who, textContent: `${l.who === 'you' ? 'YOU' : 'FIDELITY'}: ${l.text}` }))),
+    h('div', { className: 'vp-actions' },
+      pill(st === 'off' ? 'LISTEN' : 'STOP LISTENING', () => computer.listen(st === 'off').catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
+      pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
+      pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
+      st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null),
+    h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
+  const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
+}
+function openVoice() {
+  const vp = $('voice-panel');
+  vp.hidden = !vp.hidden;
+  if (!voiceStars) fetchNearby('sol', 25).then((d) => { voiceStars = d?.stars ?? []; }).catch(() => { voiceStars = []; });
+  renderVoice();
+}
 const pill = (label, onClick, cls = '') => {
   const b = h('button', { className: `pill ${cls}`, textContent: label });
   b.addEventListener('click', onClick);
@@ -224,16 +310,39 @@ const flag = (key, label) => {
   return b;
 };
 
+// ---- step the clock by n units, or run at n units per second -------------------------------
+const stepIn = h('input', { type: 'number', className: 'ctl-num', step: 'any', title: 'How many units (decimals and negatives allowed)', value: String(settings.get('stepN') ?? 1) });
+const stepUnit = h('select', { className: 'ctl-select', title: 'Step unit' }, STEP_UNITS.map((u) => h('option', { value: u.id, textContent: u.label })));
+stepUnit.value = settings.get('stepUnit') ?? 'day';
+const stepN = () => { const n = Number(stepIn.value); return Number.isFinite(n) && n !== 0 ? n : 1; };
+stepIn.addEventListener('change', () => settings.set('stepN', stepN()));
+stepUnit.addEventListener('change', () => settings.set('stepUnit', stepUnit.value));
+const unitOf = () => STEP_UNITS.find((u) => u.id === stepUnit.value) ?? STEP_UNITS[2];
+const stepBy = (dir) => clock.step(dir * stepN(), unitOf().id);
+const runAt = () => {
+  const n = stepN(), u = unitOf();
+  clock.setRate(n * u.days, `${n} ${u.label}${Math.abs(n) === 1 ? '' : 'S'}/S`.replace('MILLENNIUMS', 'MILLENNIA').replace('CENTURYS', 'CENTURIES'));
+};
+// [ and ] step back and forward from anywhere but a text field
+window.addEventListener('keydown', (e) => {
+  if (e.target.closest?.('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '[') stepBy(-1); else if (e.key === ']') stepBy(1);
+});
+
 controls.append(
   h('div', { className: 'ctl-group' },
     h('div', { className: 'ctl-label', textContent: 'TIME' }),
     pill('◀◀', () => clock.slower(), 'square'), holdBtn, pill('▶▶', () => clock.faster(), 'square'),
     rateOut, pill('NOW', () => clock.now(), 'square'), dateIn),
+  h('div', { className: 'ctl-group', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' },
+    h('div', { className: 'ctl-label', textContent: 'STEP' }),
+    pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
+  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }),
 );
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
@@ -247,6 +356,7 @@ const syncClock = () => {
   holdBtn.textContent = clock.rate.days === 0 ? '▶' : '❚❚';
 };
 clock.onChange(syncClock); syncClock();
+applyBandEverywhere(); // the remembered spectrum band
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
@@ -544,6 +654,18 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     row(dl, 'CURRENT SHEET TILT', `${SOLAR.tiltDeg}°`, 'modelled', 'The wavy boundary between outward and inward field. Its tilt follows the solar cycle (~10° at minimum, ~70° near maximum); 45° is a stand-in for the 2026 declining phase.');
     row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
+  }
+  {
+    // the spectrum filter (#28): how this body is drawn in the band, and the sky survey behind it
+    const cb = currentBand(), look = system.bandLookOf(b.id);
+    if (!cb.full) {
+      const dl = h('dl');
+      if (look) row(dl, 'IN THIS BAND', look.label, look.tier, look.detail);
+      const sky = system.bandSky();
+      row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
+      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
+        h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+    }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));

@@ -50,7 +50,27 @@ const PLANET_FRAG = /* glsl */`
   // (the Moon for Earth, Earth for the Moon, a moon for Jupiter…) hides from each point.
   uniform float uOccOn; uniform vec3 uOccRel; uniform float uOccR; uniform vec3 uSunRel; uniform float uSunR;
   uniform float uBodyR; uniform vec3 uCentreW; uniform vec3 uUmbraTint;
+  // The spectrum filter (#28): 0 normal; 1 real band map; 2 predicted reflected; 3 predicted thermal;
+  // 4 not observed; 5 modelled high-energy glow. Non-visible bands are false colour (palette).
+  uniform float uBandMode; uniform sampler2D uBandTex; uniform vec2 uBandLevels; uniform float uBandGain; uniform float uPalette;
+  uniform vec4 uThermal; uniform float uBandUm; uniform float uGlow; uniform vec3 uPoleW; uniform float uBandLit;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
+  vec3 pal(float t, float p) {
+    t = clamp(t, 0.0, 1.0);
+    vec3 a = vec3(0.0), b, c, d = vec3(1.0);
+    if (p < 1.5) { b = vec3(0.45, 0.0, 0.0); c = vec3(1.0, 0.55, 0.0); d = vec3(1.0, 1.0, 0.85); }
+    else if (p < 2.5) { b = vec3(0.0, 0.05, 0.35); c = vec3(0.0, 0.7, 0.9); d = vec3(0.9, 1.0, 1.0); }
+    else if (p < 3.5) { b = vec3(0.3, 0.0, 0.45); c = vec3(0.95, 0.25, 0.1); d = vec3(1.0, 0.95, 0.45); }
+    else if (p < 4.5) { b = vec3(0.33); c = vec3(0.66); }
+    else if (p < 5.5) { b = vec3(0.15, 0.0, 0.4); c = vec3(0.55, 0.3, 1.0); d = vec3(0.92, 0.88, 1.0); }
+    else if (p < 6.5) { b = vec3(0.0, 0.2, 0.3); c = vec3(0.2, 0.75, 0.85); d = vec3(0.9, 1.0, 1.0); }
+    else { b = vec3(0.35, 0.0, 0.35); c = vec3(1.0, 0.3, 0.8); d = vec3(1.0, 0.9, 1.0); }
+    return t < 0.333 ? mix(a, b, t * 3.0) : t < 0.666 ? mix(b, c, (t - 0.333) * 3.0) : mix(c, d, (t - 0.666) * 3.0);
+  }
+  float planckRel(float um, float T, float Tref) { // B_λ(T) / B_λ(Tref)
+    float x = min(14387.77 / (um * max(T, 1.0)), 80.0), xr = min(14387.77 / (um * max(Tref, 1.0)), 80.0);
+    return (exp(xr) - 1.0) / (exp(x) - 1.0);
+  }
   float discOverlap(float r1, float r2, float d) { // fraction of disc r1 covered by disc r2 at separation d
     if (d >= r1 + r2) return 0.0;
     if (d <= abs(r1 - r2)) return r2 >= r1 ? 1.0 : (r2 * r2) / (r1 * r1);
@@ -82,6 +102,37 @@ const PLANET_FRAG = /* glsl */`
       vec3 lv = texture2D(uLive, vUv).rgb;
       base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
     }
+    if (uBandMode > 0.5) {
+      float lit = max(ndl, 0.0) * lightK;
+      float dayK = uAmbient + lit * 1.3;
+      // thermal model (also the fallback where a real map has no data)
+      float T = uThermal.w > 0.5 ? (ndl > 0.0 ? max(uThermal.y, uThermal.x * pow(max(ndl, 0.0), 0.25)) : uThermal.y) : uThermal.z * (1.0 + 0.04 * (max(ndl, 0.0) - 0.5));
+      // false-colour scale: full brightness at 1.3× the body's hottest modelled temperature
+      vec3 thermal = pal(pow(clamp(planckRel(uBandUm, T, 1.3 * max(uThermal.x, uThermal.z)), 0.0, 1.0), 0.35), uPalette);
+      vec3 bc;
+      if (uBandMode < 1.5) {
+        vec4 t = texture2D(uBandTex, vUv);
+        float l = pow(clamp((dot(t.rgb, vec3(0.333)) - uBandLevels.x) * uBandLevels.y, 0.0, 1.0), 1.4);
+        // a thermal map of an airless body is a daytime mosaic: the night side is far colder now
+        if (uBandLit < 0.5 && uThermal.w > 0.5) l *= mix(0.2, 1.0, pow(clamp(planckRel(uBandUm, T, uThermal.x), 0.0, 1.0), 0.35)); // vs its own day side
+        bc = uPalette < 0.5 ? t.rgb : pal(l * 0.92, uPalette);
+        if (uBandLit > 0.5) bc *= dayK;
+        bc = mix(vec3(dot(uThermal.w + uThermal.z > 0.0 ? thermal : bc, vec3(0.333))) * 0.3, bc, t.a); // gaps in partial maps: dim grey, so they read as no data
+      } else if (uBandMode < 2.5) {
+        bc = pal(clamp(dot(base, vec3(0.299, 0.587, 0.114)) * uBandGain * dayK * 1.4, 0.0, 1.0), uPalette);
+      } else if (uBandMode < 3.5) {
+        bc = thermal;
+      } else if (uBandMode < 4.5) {
+        bc = vec3(0.012) + base * 0.012;
+      } else {
+        vec3 V = normalize(cameraPosition - vPosW);
+        float g = uGlow < 1.5 ? 0.5 : uGlow < 2.5 ? lit : uGlow < 3.5 ? smoothstep(0.8, 0.96, abs(dot(N, uPoleW))) : pow(1.0 - abs(dot(N, V)), 4.0);
+        bc = pal(g * uBandGain, uPalette);
+      }
+      gl_FragColor = vec4(bc, uAlphaFromLuma > 0.5 ? 0.0 : 1.0);
+      #include <colorspace_fragment>
+      return;
+    }
     // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
     vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK));
     if (uHasNight > 0.5) {
@@ -99,6 +150,7 @@ const STAR_FRAG = /* glsl */`
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D uMap; uniform vec3 uColor; uniform float uRecolour;
   uniform sampler2D uDisk; uniform float uHasDisk; uniform vec3 uEarthDir; uniform vec3 uNorth; uniform float uDiskR;
+  uniform vec3 uBandTint; uniform float uBandDisk; // spectrum filter (#28): tint, and 1 when uDisk is a band image shown as-is
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   void main() {
     #include <logdepthbuf_fragment>
@@ -119,7 +171,9 @@ const STAR_FRAG = /* glsl */`
       vec3 live = dot(texture2D(uDisk, uvd).rgb, vec3(0.299, 0.587, 0.114)) * warm * 1.1;
       vec3 far = dot(tex, vec3(0.299, 0.587, 0.114)) * warm * limb * 1.6;
       c = mix(far, live, smoothstep(0.08, 0.3, facing));
+      if (uBandDisk > 0.5) c = mix(c * 0.15, texture2D(uDisk, uvd).rgb * 1.2, smoothstep(0.08, 0.3, facing)); // SDO in its own colours
     }
+    c *= uBandTint;
     gl_FragColor = vec4(c, 1.0);
     #include <colorspace_fragment>
   }`;
@@ -135,6 +189,8 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
       uOccOn: { value: 0 }, uOccRel: { value: new THREE.Vector3() }, uOccR: { value: 1 }, uSunRel: { value: new THREE.Vector3() }, uSunR: { value: 696000 },
       uBodyR: { value: 1 }, uCentreW: { value: new THREE.Vector3() }, uUmbraTint: { value: new THREE.Color(0, 0, 0) },
+      uBandMode: { value: 0 }, uBandTex: { value: null }, uBandLevels: { value: new THREE.Vector2(0, 1) }, uBandGain: { value: 1 }, uPalette: { value: 4 },
+      uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
     },
   });
 }
@@ -151,7 +207,8 @@ export function starMaterial(placeholder, color, recolour) {
   return new THREE.ShaderMaterial({
     vertexShader: VERT, fragmentShader: STAR_FRAG,
     uniforms: { uMap: { value: placeholder }, uColor: { value: linear(color) }, uRecolour: { value: recolour ? 1 : 0 },
-      uDisk: { value: null }, uHasDisk: { value: 0 }, uEarthDir: { value: new THREE.Vector3(0, 0, 1) }, uNorth: { value: new THREE.Vector3(0, 1, 0) }, uDiskR: { value: 0.39 } },
+      uDisk: { value: null }, uHasDisk: { value: 0 }, uEarthDir: { value: new THREE.Vector3(0, 0, 1) }, uNorth: { value: new THREE.Vector3(0, 1, 0) }, uDiskR: { value: 0.39 },
+      uBandTint: { value: new THREE.Color(1, 1, 1) }, uBandDisk: { value: 0 } },
   });
 }
 

@@ -12,6 +12,8 @@ import { settings } from '../../settings.js';
 import { glowTexture, planetTexture } from '../system/textures.js';
 import { badge } from '../../data/provenance.js';
 import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/composition.js';
+import { bodyVisualFor } from '../../data/bespoke.js';
+import { stellarResearchCards } from './research.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const OBSERVED = '#c97a00'; // validated against the black surface with the blackbody blue
@@ -55,9 +57,10 @@ export function createStarView(container) {
   const title = el('div', { className: 'sv-title' });
   const spectrumBox = el('section', { className: 'sv-card' });
   const compositionBox = el('section', { className: 'sv-card' });
+  const researchBox = el('div', { className: 'stellar-research' });
   container.replaceChildren(el('div', { className: 'sv' },
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)),
-    spectrumBox, compositionBox));
+    spectrumBox, compositionBox, researchBox));
 
   function sizeHero() {
     const w = hero.clientWidth || 260;
@@ -81,6 +84,8 @@ export function createStarView(container) {
     const placeholder = planetTexture({ id: body.id, banded: body.banded, palette: ['#d9a35a', '#f2c879', '#b97a3a'] });
     star = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), starMaterial(placeholder, body.color, !isSun));
     const current = star;
+    const visual = !isSun && bodyVisualFor(body);
+    if (visual?.kind === 'star' && visual.surfaceMap) loadTexture(visual.surfaceMap.key).then(t => { if (t && star === current) current.material.uniforms.uMap.value = t; });
     if (isSun) loadTexture('sun').then((t) => { if (t && star === current) current.material.uniforms.uMap.value = t; });
     if (isSun) applyLiveSkin(star.material, SUN.skin, settings.get('liveSkins')); // seen from Earth: the live disk faces the camera
     glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.75 }));
@@ -264,6 +269,7 @@ export function createStarView(container) {
       setHeroFacts(body);
       drawSpectrum();
       drawComposition();
+      researchBox.replaceChildren(...stellarResearchCards(body));
     },
     setSpectrum(spectrum) { if (current) { current.spectrum = spectrum; drawSpectrum(); } },
   };

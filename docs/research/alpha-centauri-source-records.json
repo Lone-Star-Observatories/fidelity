@@ -1,0 +1,82 @@
+[
+  {
+    "url": "https://cdn.esahubble.org/archives/images/large/potw1635a.jpg",
+    "file": "data/research-sources/alpha-centauri-native.jpg",
+    "publicationDate": "2016-08-29",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "CC BY4.0 ESA/Hubble & NASA",
+    "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+    "bytes": 107856
+  },
+  {
+    "url": "https://esahubble.org/images/potw1635a/",
+    "file": "data/research-sources/alpha-native-page.html",
+    "publicationDate": "2016-08-29",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "ESA/Hubble source description; historical planet claim not adopted",
+    "sha256": "207d750190d966ff44f9b98cc41563fba16449c8ee8ed93122acde4304e37c6d",
+    "bytes": 51629
+  },
+  {
+    "url": "https://arxiv.org/abs/1610.06185v1",
+    "file": "data/research-sources/alpha-radii.html",
+    "publicationDate": "2016-10-19",
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Research citation only; no figures reused",
+    "sha256": "53f7416de95994ff09a4bc399076e0b74633eaece5eab62f49766bf32aef732d",
+    "bytes": 45161
+  },
+  {
+    "url": "https://alphacen2023.sciencesconf.org/data/pages/alphaCen_thevenin.pdf",
+    "file": "data/research-sources/alpha-parameters.pdf",
+    "publicationDate": null,
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "Author conference material; research citation only, no figures reused",
+    "sha256": "c0f249ea8c3e1cd934e914268e5aff116a27f022f6a97c49065bf1887afb1bea",
+    "bytes": 953873
+  },
+  {
+    "url": "https://esahubble.org/copyright/",
+    "file": "data/research-sources/alpha-terms.html",
+    "publicationDate": null,
+    "observationDate": null,
+    "retrieved": "2026-10-10",
+    "terms": "CC BY4.0 image policy",
+    "sha256": "19a8535d5a2380e4b965ce5dce8c7a8d3e2445278ec4b37adeea33de0d1c74eb",
+    "bytes": 43653
+  },
+  {
+    "url": "https://cdn.esawebb.org/archives/images/screen/weic2515c.jpg",
+    "file": "data/research-sources/alpha-centauri-webb.jpg",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2025-08-07",
+    "observationDate": null,
+    "terms": "CC BY4.0; full ESA/Webb source credits; observational composite with graphic annotations, source class Artwork.",
+    "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+    "bytes": 122690
+  },
+  {
+    "url": "https://esawebb.org/images/weic2515c/",
+    "file": "data/research-sources/alpha-webb-page.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": "2025-08-07",
+    "observationDate": null,
+    "terms": "CC BY4.0; full ESA/Webb source credits; observational composite with graphic annotations, source class Artwork.",
+    "sha256": "e20c9d24527e5dffeaeb2c8f2784141566edab0f587f3eaaf7cd4b2b700b18d0",
+    "bytes": 70138
+  },
+  {
+    "url": "https://esawebb.org/copyright/",
+    "file": "data/research-sources/alpha-webb-terms.html",
+    "retrieved": "2026-10-10",
+    "publicationDate": null,
+    "observationDate": null,
+    "terms": "CC BY4.0; full ESA/Webb source credits; observational composite with graphic annotations, source class Artwork.",
+    "sha256": "a27c5b9b894f0eb634d9391e49f2b551adea62f0e2f10f40ceeb68b60a69df18",
+    "bytes": 58472
+  }
+]

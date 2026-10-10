@@ -253,6 +253,11 @@ function starBody(m, measured = {}) {
       ],
     },
   };
+  const visual = bodyVisualFor(body);
+  if (visual?.kind === 'star' && visual.surfaceMap) {
+    body.skin.map = visual.surfaceMap.key;
+    body.facts.RENDERING[1] = fact('SURFACE', 'INDIVIDUAL PHOTOSPHERE HYPOTHESIS', 'imagined', visual.assumed.join(' '));
+  }
   return body;
 }
 

@@ -10,29 +10,58 @@ export const RATES = [
   { days: 7, label: '1 WEEK/S' }, { days: 30, label: '1 MONTH/S' }, { days: 365, label: '1 YEAR/S' },
 ];
 const REAL = RATES.findIndex((r) => r.label === 'REAL TIME');
+// the preset nearest a custom rate (for ◀◀ / ▶▶ after a custom run)
+const nearest = (days) => RATES.reduce((best, r, i) => (Math.abs(Math.log(Math.abs(r.days) + 1e-9) - Math.log(Math.abs(days))) < Math.abs(Math.log(Math.abs(RATES[best].days) + 1e-9) - Math.log(Math.abs(days))) && Math.sign(r.days) === Math.sign(days) ? i : best), REAL);
+
+// Units for stepping the clock by n (months and longer are calendar steps; see stepJd).
+export const STEP_UNITS = [
+  { id: 'minute', label: 'MIN', days: 1 / 1440 }, { id: 'hour', label: 'HOUR', days: 1 / 24 }, { id: 'day', label: 'DAY', days: 1 },
+  { id: 'week', label: 'WEEK', days: 7 }, { id: 'month', label: 'MONTH', months: 1, days: 30.436875 }, { id: 'year', label: 'YEAR', months: 12, days: 365.2425 },
+  { id: 'decade', label: 'DECADE', months: 120, days: 3652.425 }, { id: 'century', label: 'CENTURY', months: 1200, days: 36524.25 },
+  { id: 'millennium', label: 'MILLENNIUM', months: 12000, days: 365242.5 },
+];
+/**
+ * `jd` moved by n units. Months and longer step the calendar (Jan 31 + 1 month → Feb 28/29), so a
+ * yearly step lands on the same date; beyond JavaScript's date range they fall back to mean lengths.
+ */
+export function stepJd(jd, n, unitId) {
+  const u = STEP_UNITS.find((x) => x.id === unitId) ?? STEP_UNITS[2];
+  if (!u.months || !Number.isInteger(n)) return jd + n * u.days;
+  const d = new Date((jd - 2440587.5) * 86400000);
+  if (Number.isNaN(d.getTime())) return jd + n * u.days;
+  const day = d.getUTCDate(), target = new Date(d);
+  target.setUTCDate(1);
+  target.setUTCMonth(target.getUTCMonth() + n * u.months);
+  const len = new Date(Date.UTC(target.getUTCFullYear(), target.getUTCMonth() + 1, 0)).getUTCDate();
+  target.setUTCDate(Math.min(day, len));
+  return Number.isNaN(target.getTime()) ? jd + n * u.days : target.getTime() / 86400000 + 2440587.5;
+}
 
 export function createClock() {
   let jd = jdFromDate(new Date());
   let rateIdx = REAL;
+  let custom = null; // { days, label } when running at a chosen n units per second
   let last = performance.now();
   const listeners = new Set();
   const emit = () => listeners.forEach((fn) => fn(clock));
 
   const clock = {
     get jd() { return jd; },
-    get rate() { return RATES[rateIdx]; },
-    get isNow() { return rateIdx === REAL && Math.abs(jd - jdFromDate(new Date())) < 1 / 1440; },
+    get rate() { return custom ?? RATES[rateIdx]; },
+    get isNow() { return !custom && rateIdx === REAL && Math.abs(jd - jdFromDate(new Date())) < 1 / 1440; },
     tick(now = performance.now()) {
-      jd += (RATES[rateIdx].days * (now - last)) / 1000;
+      jd += ((custom ?? RATES[rateIdx]).days * (now - last)) / 1000;
       last = now;
     },
     set(newJd) { jd = newJd; emit(); },
-    now() { jd = jdFromDate(new Date()); rateIdx = REAL; emit(); },
-    faster() { rateIdx = Math.min(RATES.length - 1, rateIdx + 1); emit(); },
-    slower() { rateIdx = Math.max(0, rateIdx - 1); emit(); },
-    /** Jump to the listed rate nearest `days` per second (e.g. 1 / 1440 = 1 MIN/S). */
-    setRate(days) { rateIdx = RATES.reduce((b, r, i) => (Math.abs(r.days - days) < Math.abs(RATES[b].days - days) ? i : b), 0); emit(); },
-    toggleHold() { rateIdx = RATES[rateIdx].days === 0 ? REAL : RATES.findIndex((r) => r.days === 0); emit(); },
+    /** Move the clock by n units (see stepJd). */
+    step(n, unitId) { jd = stepJd(jd, n, unitId); emit(); },
+    /** Run at `days` per second with a label (e.g. 3 DAYS/S); 0 holds. */
+    setRate(days, label) { custom = days === 0 ? null : { days, label }; if (days === 0) rateIdx = RATES.findIndex((r) => r.days === 0); emit(); },
+    now() { jd = jdFromDate(new Date()); rateIdx = REAL; custom = null; emit(); },
+    faster() { if (custom) { rateIdx = nearest(custom.days); custom = null; } rateIdx = Math.min(RATES.length - 1, rateIdx + 1); emit(); },
+    slower() { if (custom) { rateIdx = nearest(custom.days); custom = null; } rateIdx = Math.max(0, rateIdx - 1); emit(); },
+    toggleHold() { if (custom) { custom = null; rateIdx = RATES.findIndex((r) => r.days === 0); } else rateIdx = RATES[rateIdx].days === 0 ? REAL : RATES.findIndex((r) => r.days === 0); emit(); },
     onChange: (fn) => (listeners.add(fn), () => listeners.delete(fn)),
   };
   return clock;

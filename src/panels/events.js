@@ -49,7 +49,7 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
   function goTo(e) {
     clock.set(jumpJd(e));
     if (e.model?.kind === 'launch' || e.model?.kind === 'landing') {
-      if (e.model?.kind === 'launch') clock.setRate(1 / 86400);
+      if (e.model?.kind === 'launch') clock.setRate(1 / 86400, 'REAL TIME');
       const loc = e.location;
       if (loc?.lat != null) system.viewEarthPoint(loc.lat, loc.lon, e.model.kind === 'launch' ? 6000 : 9000);
       toast(`${e.model.kind === 'launch' ? 'LIFTOFF' : 'TOUCHDOWN'} ${e.model.kind === 'launch' ? 'IN 60 S' : 'IN 45 MIN'} · ${e.model.kind === 'launch' ? 'REAL TIME' : 'TRY 1 MIN/S'}`);
@@ -105,7 +105,7 @@ export function createEventsPanel({ h, pill, row, badge, go, clock, system, toas
       e.description ? h('p', { className: 'note', textContent: e.description }) : null,
       h('div', { className: 'body-list' },
         pill(e.model ? 'GO TO EVENT ◈ ▸' : 'GO TO EVENT ▸', () => goTo(e)),
-        e.model && e.model.kind !== 'launch' ? pill('1 MIN/S', () => clock.setRate(1 / 1440)) : null,
+        e.model && e.model.kind !== 'launch' ? pill('1 MIN/S', () => clock.setRate(1 / 1440, '1 MIN/S')) : null,
         ...vids.slice(0, 4).map((v, i) => pill(v.embed ? `WATCH${vids.length > 1 ? ` ${i + 1}` : ''} ▶` : `${(v.publisher ?? 'WEBCAST').toUpperCase()} ↗`,
           () => (v.embed ? openVideo(e.title, `${v.publisher ?? ''}${v.start ? ` · ${v.start.slice(0, 16).replace('T', ' ')} UTC` : ''}`, v, v.publisher) : window.open(v.url, '_blank', 'noopener')))),
         ...(e.links ?? []).slice(0, 3).map((l) => pill(`${l.title.toUpperCase().slice(0, 24)} ↗`, () => window.open(l.url, '_blank', 'noopener')))),

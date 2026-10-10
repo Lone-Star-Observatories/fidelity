@@ -66,6 +66,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
+| `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
@@ -127,7 +129,7 @@ extrapolating along each velocity and applying the Earth-radius compression in t
 focused satellite is a real node propagated on the main thread every frame (exact at any clock
 rate), with a representative model and its orbit. TEME → J2000 uses IAU 1976 precession
 (`src/astro/sgp4.js`). The camera near plane follows its distance so 100 m spacecraft render at
-TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer.
+TRUE scale. `src/panels/satellite.js` builds the Satellite View panel and feed viewer (ISS video embeds the YouTube streams in `ISS_STREAMS`, switchable in the viewer).
 
 ## Deep-space fleet
 
@@ -232,6 +234,47 @@ provenance on every value (REPORTED for published schedules and sites, MODELLED 
 for ephemeris events), webcasts and channel live streams in the feed viewer, and GO TO EVENT, which sets the clock
 just before the action (launches at T−60 s in real time) and frames the pad, recovery zone or station. A red dot on
 the rail marks an event within 24 hours. The clock gained a 1 MIN/S rate.
+
+## Voice: "Computer" (#21)
+
+`src/voice/wake.js` spots the wake word on the machine: an energy endpointer cuts utterances
+from the microphone (AudioWorklet, resampled to 16 kHz) and DTW over MFCCs compares them with the
+viewer's three recordings (localStorage). Only after it fires does `src/voice/computer.js` stream
+24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with the view title, clock and the
+panel's text as instructions and three tools (`go_to`, `set_layer`, `set_time`). Replies play
+and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. Without a key
+(or the backend), the browser's on-device recogniser, where available, handles "go to …" and
+"show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
+resampler, command parsing.
+
+## Time steps
+
+The STEP control moves the clock by n units (minute … millennium; months and longer step the
+calendar via `stepJd`, clamping to the month length) with ◀| / |▶ or the `[` / `]` keys, and RUN sets a
+custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder. n may be
+fractional or negative; it and the unit are remembered.
+
+## Text size
+
+Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
+bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
+The bottom bar scrolls sideways with the mouse wheel when its controls overflow.
+
+## Spectrum filter (#28)
+
+`src/data/bands.js` lists the bands (FULL, RADIO … GAMMA), their bandpasses with filter curves
+(`src/astro/bands.js`: SVO curves bundled by `scripts/filters.js`, top-hats in frequency/energy
+elsewhere; `bandResponse` is the photon-weighted convolution, tested against band-averaged
+Planck, Vega's zero point and the Rayleigh–Jeans limit), the all-sky survey for each, and real
+body maps (`BODY_BAND`). `bandskin.js` decides each body's look in a band: real map, predicted
+reflected skin (the visible image × the body's reflectance through the filter), predicted thermal
+emission (Planck from a day/night or cloud-top temperature model), an observed high-energy
+signature, or NOT OBSERVED. The planet shader draws all of these in per-band false colour
+(`materials.js`, uniforms set by `bandtextures.js`); stars are tinted by their blackbody in the
+band (Vega system); the System View sky becomes the band's survey (a shader maps RA/Dec onto the
+sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
+Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
+its badge and a false-colour key.
 
 ## Milky Way model
 
