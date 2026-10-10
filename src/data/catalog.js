@@ -167,3 +167,9 @@ export async function fetchStarLookup(ra, dec, distLy, gaia = false) {
   if (snapshot) return null;
   try { return await get(`/api/star-lookup?ra=${ra.toFixed(5)}&dec=${dec.toFixed(5)}${distLy ? `&distLy=${Math.round(distLy)}` : ''}${gaia ? '&gaia=1' : ''}`); } catch { return null; }
 }
+
+/** A Mars rover's traverse (#37): { points: [[lon, lat], …], distanceKm, sol, credit }, or null offline. */
+export async function fetchTraverse(id) {
+  if (snapshot) return null; // traverses need the local backend
+  try { return await get(`/api/traverse/${id}`); } catch { return null; }
+}

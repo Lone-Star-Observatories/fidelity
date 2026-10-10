@@ -57,6 +57,30 @@ const swpc = (file, keep, credit) => ({
   },
 });
 
+// Mars rovers: the newest full-frame raw image from a navigation, mast or hazard camera
+// (raw images reach NASA's public site within hours of downlink; nothing from Mars is live video).
+const pickRaw = (rows, re) => rows.find((r) => re.test(r.instrument)) ?? rows[0];
+const marsRaw = (mission, credit) => ({
+  type: 'image', ttl: 30 * MIN, credit,
+  async get() {
+    let img;
+    if (mission === 'm20') {
+      const j = await (await fetchOk('https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&num=100&page=0&order=sol+desc&extended=sample_type::full,')).json();
+      const rows = (j.images ?? []).map((r) => ({ instrument: r.camera?.instrument ?? '', url: r.image_files?.large ?? r.image_files?.full_res, sol: r.sol, taken: r.date_taken_utc, title: r.title }));
+      img = pickRaw(rows, /NAVCAM|MCZ|HAZ/);
+    } else {
+      const j = await (await fetchOk('https://mars.nasa.gov/api/v1/raw_image_items/?order=sol%20desc,date_taken%20desc&per_page=100&page=0&condition_1=msl:mission')).json();
+      const rows = (j.items ?? []).filter((r) => !r.is_thumbnail && r.extended?.sample_type === 'full').map((r) => ({ instrument: r.instrument ?? '', url: r.https_url ?? r.url, sol: r.sol, taken: r.date_taken, title: r.title }));
+      img = pickRaw(rows, /NAV|MAST|HAZ/);
+    }
+    if (!img?.url) throw new Error('no raw images listed');
+    const res = await fetchOk(img.url.replace(/^http:/, 'https:'));
+    const time = img.taken ? `${img.taken.replace(/Z$/, '').slice(0, 19)}Z` : lastModified(res);
+    return { body: Buffer.from(await res.arrayBuffer()), type: res.headers.get('content-type') || 'image/jpeg', time,
+      credit: `${credit} · sol ${img.sol} · ${img.instrument.replace(/_/g, ' ')}` };
+  },
+});
+
 // Harmonized Landsat–Sentinel (HLS) scenes reach GIBS a few days late: walk back to the most
 // recent day with data (a nearly empty JPEG is a day not yet processed).
 const gibsRecent = (layer, credit) => ({
@@ -118,6 +142,8 @@ export const FEEDS = {
   'msg-rss': eumetsat('msg_rss:rgb_naturalenhncd_nrt', '24,-45,72,70', [1400, 760], 'EUMETSAT, Meteosat SEVIRI 5-minute Rapid Scan, Europe (natural colour enhanced)'),
   'sentinel3-olci': eumetsat('copernicus:daily_sentinel3ab_olci_l1_rgb_fulres', '-90,-180,90,180', [2048, 1024], 'EUMETSAT / Copernicus, Sentinel-3A/B OLCI daily RGB mosaic (filling in through the day)'),
   'hls-landsat': gibsRecent('HLS_L30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) L30: Landsat 8/9 OLI scenes of the most recent processed day'),
+  'rover-m20': marsRaw('m20', 'NASA/JPL-Caltech, Perseverance raw image'),
+  'rover-msl': marsRaw('msl', 'NASA/JPL-Caltech/MSSS, Curiosity raw image'),
   'hls-sentinel2': gibsRecent('HLS_S30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) S30: Sentinel-2 MSI scenes of the most recent processed day'),
   epic: {
     type: 'image', ttl: 2 * 60 * MIN, credit: 'NASA EPIC team, DSCOVR EPIC natural colour (from L1, 1.5 million km)',
@@ -156,14 +182,14 @@ export async function feed(id) {
   const metaFile = path.join(dir, `${id}.json`), bodyFile = path.join(dir, `${id}.bin`);
   let meta = null;
   try { meta = JSON.parse(await fs.readFile(metaFile, 'utf8')); } catch { /* none */ }
-  const read = async (cache) => ({ ...meta, credit: f.credit, cache, body: f.type === 'image' ? await fs.readFile(bodyFile) : meta.body });
+  const read = async (cache) => ({ ...meta, credit: meta.credit ?? f.credit, cache, body: f.type === 'image' ? await fs.readFile(bodyFile) : meta.body });
   if (meta && Date.now() - Date.parse(meta.fetched) < f.ttl) return read('hit');
   if (!inflight.has(id)) {
     inflight.set(id, (async () => {
       try {
         const got = await f.get();
         await fs.mkdir(dir, { recursive: true });
-        meta = { type: got.type ?? 'application/json', time: got.time, disk: got.disk ?? null, fetched: new Date().toISOString(), ...(f.type === 'json' ? { body: got.body } : {}) };
+        meta = { type: got.type ?? 'application/json', time: got.time, disk: got.disk ?? null, credit: got.credit, fetched: new Date().toISOString(), ...(f.type === 'json' ? { body: got.body } : {}) };
         if (f.type === 'image') await fs.writeFile(bodyFile, got.body);
         await fs.writeFile(metaFile, JSON.stringify(meta));
         return read('miss');

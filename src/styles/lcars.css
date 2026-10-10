@@ -300,6 +300,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .badge-computed { background: var(--orange); }
 .badge-modelled { background: var(--lilac); }
 .badge-imagined { background: var(--rose); }
+.badge-planned { background: var(--ice); }
 .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
 
 /* ---- bottom controls ------------------------------------------------------------- */
@@ -392,3 +393,18 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .vp-log .ship { color: var(--peach); }
 .vp-actions { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 10px 10px; }
 .pill.listening { background: var(--red); color: #000; }
+
+/* #37 surface sites: labels on globes and the panel's kind colours (match SITE_KINDS) */
+.site-label {
+  font-size: 10px; letter-spacing: 0.08em; color: var(--peach); padding: 0 5px 0 4px; border: 0;
+  border-left: 2px solid currentColor; background: rgba(0, 0, 0, 0.6); white-space: nowrap; pointer-events: auto; cursor: pointer;
+}
+.site-label:hover { color: #000 !important; background: var(--peach); }
+.site-crewed { color: #ffcc66; }
+.site-lander { color: #99ccff; }
+.site-rover { color: #66ff99; }
+.site-impact { color: #ff6655; }
+.site-planned { color: #cceeff; }
+.site-observatory { color: #cc99ff; }
+.site-launch { color: #ff9966; }
+.site-filter.off { opacity: 0.45; }

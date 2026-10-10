@@ -22,6 +22,7 @@ import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
+import { createSitesPanel } from './panels/sites.js';
 import { createNavList } from './panels/navlist.js';
 import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
 import { createStarCard } from './panels/starcard.js';
@@ -60,6 +61,7 @@ let navRadius = 25;
 const system = createSystemView($('system-view'), {
   clock,
   onSelect: (id) => go({ level: 'system', system: currentSystem, body: id }),
+  onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
@@ -264,7 +266,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE')),
   h('div', { className: 'bar-fill' }),
 );
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
@@ -372,6 +374,13 @@ const navList = createNavList({ h, pill, fmt, fetchPlanets, fetchClusters,
 const skyPanel = createSkyEventsPanel({ h, row, pill, go, clock, system });
 const earthHz = earthFromHorizons();
 const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
+const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend,
+  viewFeed: (f, name) => satPanel.viewFeed(f, name),
+  back: (b) => renderBodyPanel(b.id),
+  stand: (b, s) => {
+    if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
+    else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
+  } });
 
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
 
@@ -583,6 +592,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
         detailLevel(b) ? pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })) : null,
       b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
+    ...(m.isSol ? sitesPanel.section(b) : []),
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
     b.note ? h('p', { className: 'note', textContent: b.note }) : null,

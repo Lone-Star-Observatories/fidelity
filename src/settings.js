@@ -13,6 +13,8 @@ const defaults = {
   zones: true,      // System View: GEO ring, Van Allen belts, Hill spheres, heliosphere, Oort cloud, Lagrange points
   axes: false,       // System View: spin axes, and Earth's precession circle on the sky
   fields: false,     // System View: the Sun's magnetic field (Parker spiral, current sheet)
+  sites: true,       // System View: landing, impact and rover sites on globes (#37)
+  siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)

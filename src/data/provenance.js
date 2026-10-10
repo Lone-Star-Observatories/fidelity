@@ -1,4 +1,4 @@
-// "Honest and fun": every value or visual on screen carries one of four badges so a
+// "Honest and fun": every value or visual on screen carries one of four badges (plus PLANNED for proposals) so a
 // viewer always knows what is observed, what is calculated, what is theory and what
 // is artistic licence. See docs/concept.md §Honesty.
 
@@ -7,6 +7,8 @@ export const TIERS = {
   computed: { label: 'COMPUTED', hint: 'Calculated from measurements (orbits, positions, derived values).' },
   modelled: { label: 'MODELLED', hint: 'Theoretical model; not directly observed.' },
   imagined: { label: 'IMAGINED', hint: 'Artistic rendering or exaggeration for visibility.' },
+  // Not a tier of evidence but a status: proposed or candidate places where nothing has happened yet.
+  planned: { label: 'PLANNED', hint: 'Proposed or candidate: nothing has landed or happened here yet.' },
 };
 
 export function badge(tier, detail = '') {

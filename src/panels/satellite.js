@@ -261,5 +261,6 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     return box;
   }
 
-  return { show, tick, searchSection, load, closeViewer: () => { const v = viewer(); if (v) { v.hidden = true; v.replaceChildren(); } } };
+  // Other panels (surface sites) reuse the viewer: viewFeed(feed, title)
+  return { show, tick, searchSection, load, viewFeed: (f, name) => openFeed(f, [null, name]), closeViewer: () => { const v = viewer(); if (v) { v.hidden = true; v.replaceChildren(); } } };
 }

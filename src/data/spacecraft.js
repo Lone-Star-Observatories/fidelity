@@ -29,6 +29,9 @@ export const SPACECRAFT = [
     note: 'Touring Jupiter\'s Trojan asteroids, 2027–2033.' }),
   sc('psyche', 'Psyche', -255, { launched: '2023-10-13', agency: 'NASA', sizeKm: 0.025, status: 'EN ROUTE', trackFrom: '2023-10-14',
     note: 'Bound for the metal-rich asteroid 16 Psyche (arrival 2029), on solar-electric propulsion.' }),
+  // #37: Starman in the Roadster. JPL's solution rests on 2018 tracking; nobody has observed it since.
+  sc('roadster', "Starman's Tesla Roadster", -143205, { launched: '2018-02-06', agency: 'SpaceX', sizeKm: 0.002, status: 'HELIOCENTRIC ORBIT · UNTRACKED', trackFrom: '2025-04-01',
+    note: 'Launched on the first Falcon Heavy, with a mannequin, "Starman", at the wheel. It loops between Earth\'s and just beyond Mars\'s orbit every ~557 days. Last tracked 2018; position extrapolated by JPL. Not observable since.' }),
   sc('stereo-a', 'STEREO-A', -234, { launched: '2006-10-26', agency: 'NASA', sizeKm: 0.006, status: 'OBSERVING THE SUN', trackFrom: '2025-01-01',
     note: 'Watches the Sun from a different angle than Earth, giving storms in 3D.' }),
   sc('hayabusa2', 'Hayabusa2', -37, { launched: '2014-12-03', agency: 'JAXA', sizeKm: 0.006, status: 'EXTENDED MISSION', trackFrom: '2025-01-01',
