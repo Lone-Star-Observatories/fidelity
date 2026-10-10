@@ -112,7 +112,7 @@ button:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
 .viewport { grid-area: view; position: relative; overflow: hidden; margin: 0 10px; border-radius: 4px; background: #000; min-width: 0; }
 .view-3d { position: absolute; inset: 0; }
 .view-3d canvas { display: block; width: 100%; height: 100%; }
-.labels-layer { position: absolute; inset: 0; }
+.labels-layer { position: absolute; inset: 0; z-index: 1; } /* contain CSS2DRenderer's per-label z-indices so windows (feed viewer, voice) stay on top */
 .body-label {
   font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; color: var(--peach); padding: 1px 7px 1px 6px;
   border-left: 3px solid var(--orange); background: rgba(0, 0, 0, 0.55); white-space: nowrap;
@@ -287,9 +287,9 @@ button.nav-label:hover { color: #000; background: var(--peach); }
   padding: 3px 12px; border-radius: 12px 0 0 12px; letter-spacing: 0.1em;
 }
 .panel .kind { color: var(--lilac); letter-spacing: 0.12em; font-size: calc(14px * var(--text-scale, 1)); }
-.panel dl { margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: baseline; font-size: calc(15px * var(--text-scale, 1)); }
-.panel dt { color: var(--dim); letter-spacing: 0.06em; font-size: calc(13px * var(--text-scale, 1)); }
-.panel dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
+.panel dl, .fv-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: baseline; font-size: calc(15px * var(--text-scale, 1)); }
+.panel dt, .fv-card dt { color: var(--dim); letter-spacing: 0.06em; font-size: calc(13px * var(--text-scale, 1)); }
+.panel dd, .fv-card dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
 .panel .note { color: var(--dim); font-size: calc(13px * var(--text-scale, 1)); line-height: 1.35; margin: 0; }
 .panel .warn { color: var(--red); font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.06em; }
 .body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(130px, calc(50% - 2px)), 1fr)); gap: 4px; } /* two columns at most */
@@ -548,6 +548,34 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .tc-row .pill { height: var(--bar-h); border-radius: 0; }
 .tc-hold { min-width: 110px; --c: var(--orange); }
 .tc-now { --c: var(--ice); flex: 1; }
+/* porkchop plot (#45) */
+.porkchop { width: 100%; max-width: 560px; height: auto; display: block; color: var(--text); font-family: inherit; cursor: crosshair; }
+.porkchop .pc-axis line { stroke: var(--dim); }
+.porkchop .pc-axis text, .porkchop .pc-contour { fill: var(--peach); font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.05em; }
+.porkchop .pc-contour { fill: var(--text); opacity: 0.85; }
+.porkchop .pc-best { fill: var(--orange); font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.06em; }
+.porkchop .pc-tip { fill: var(--text); font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.04em; }
+.nav-label.mission-label.transfer { color: var(--orange); }
+
+/* future missions (#44): mission tiers, distinct from provenance badges */
+.mtier { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.1em; padding: 1px 6px; border-radius: 7px; color: #000; margin-left: 4px; white-space: nowrap; vertical-align: middle; }
+.mtier-in-flight { background: var(--ice); }
+.mtier-confirmed { background: var(--gold); }
+.mtier-planned { background: var(--apricot); }
+.mtier-proposed { background: transparent; color: var(--lilac); border: 1px dashed var(--lilac); }
+.mtier-ended { background: transparent; color: var(--dim); border: 1px solid var(--dim); text-decoration: line-through; }
+.fv-card { display: block; place-items: unset; }
+.fv-card > * + * { margin-top: 8px; }
+.nav-label.mission-label.ghost { color: var(--lilac); font-style: italic; }
+/* crew cards (#46) */
+.host-row.crew-row { display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 10px; text-align: left; }
+.crew-name { display: grid; } .crew-name b { color: var(--orange); letter-spacing: 0.05em; font-weight: 600; } .crew-name span { color: var(--peach); font-size: calc(12px * var(--text-scale, 1)); }
+.crew-face { border-radius: 50%; object-fit: cover; background: var(--violet); color: #000; display: inline-grid; place-items: center; font-weight: 700; letter-spacing: 0.05em; }
+.crew-face.s36 { width: 36px; height: 36px; font-size: calc(13px * var(--text-scale, 1)); }
+.crew-face.s96 { width: 96px; height: 96px; font-size: calc(30px * var(--text-scale, 1)); }
+.crew-flag { width: 28px; height: 19px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--dim); }
+.crew-flag.text { display: inline-grid; place-items: center; font-size: calc(10px * var(--text-scale, 1)); color: var(--peach); box-shadow: 0 0 0 1px var(--dim); }
+.crew-head { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
 /* FROM THE SURFACE (#36) */
 .sf-card details { margin-top: 4px; }
 .sf-card summary { cursor: pointer; color: var(--lilac); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; display: flex; gap: 8px; align-items: center; }

@@ -111,6 +111,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
+| `GET /api/crew` · `GET /api/crew/image?file=` | People in space with open-data facts (#46); licensed portraits and flags, cached |
 | `GET /api/events` | The weekly events feed (`events/events.json` from GitHub, `FIDELITY_EVENTS_URL` to override; cached 3 h; the bundled copy when offline or newer), with `streams` refreshed from the curated YouTube channels' RSS every 15 min. Adds `origin`, `cache`, `error` |
 
 ## Standalone preview
@@ -314,6 +315,64 @@ hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon re
 shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
 `?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
+
+## Launch windows and transfers (#45)
+
+`src/astro/lambert.js` solves Lambert's problem with Izzo's 2015 algorithm (Householder iterations on the
+non-dimensional time-of-flight equation, multi-revolution low/high paths, prograde or retrograde) and propagates
+two-body orbits with universal variables. `src/astro/transfer.js` builds on the app's ephemeris (Standish elements
+for planets, SBDB elements for small bodies; moons via their parent planet): `transfer()` gives C3, departure and
+arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circular orbit, a 1.1 × 100 R ellipse for the
+giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
+local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%
+of each. Body panels (`src/panels/transfer.js`) list the next windows with Hohmann and synodic facts and an
+explainer diagram; picking one draws the transfer in the System View (`setTransfer`: thick dashed arc, departure and
+arrival markers, a ghost craft riding it while the clock is inside the flight) and opens the porkchop
+(`src/panels/porkchop.js`: departure × arrival grid shaded by C3 on a one-hue ramp, marching-squares contours,
+optimum ringed, hover readout, click to fly a cell). Mars offers a check against Perseverance's Horizons cruise.
+
+## Future missions (#44)
+
+`src/data/future-missions.js` is the curated list (43 missions, last checked in `CHECKED`): tiers IN FLIGHT,
+CONFIRMED, PLANNED, PROPOSED (with `notSelected` for proposals that lost their competition) and CANCELLED / PAUSED,
+each with agency, target body id, launch and arrival as announced, goal, status, sources, the JPL Horizons id where a
+reference trajectory is published, and a Launch Library 2 pattern so the card shows the live launch date from the
+events feed (#32). `src/panels/future.js` puts FUTURE MISSIONS in the Sol system panel (grouped by tier), an
+UPCOMING section in each target's panel ("Dragonfly arrives 2034-12"; a planet also lists its moons' missions), and
+mission cards in the feed viewer. SHOW PATH draws the Horizons reference trajectory (pre-launch planning tracks such as
+MMX's are MODELLED; craft in flight COMPUTED) or, failing that, a direct transfer in the window nearest the planned
+launch from the #45 solver (MODELLED), as a lilac ghost labelled PLANNED that rides the path on the ship's clock.
+`pathTier`/`factTier` decide the badges and never return MEASURED (tested).
+
+## Crew cards (#46)
+
+`server/crew.js` serves `GET /api/crew`: the community people-in-space feed (corquaid, MIT; cached 6 h) with each
+person enriched once a month from open data, one Wikimedia request at a time with backoff on HTTP 429: the
+Wikipedia page → Wikidata item (birth date, citizenship, time in space P2873, employer, description; CC0), the
+citizenship's flag (P41) and the Commons licence of the feed's portrait. `GET /api/crew/image?file=` serves a
+240 px portrait or a flag only when its Commons licence is public domain or Creative Commons and the file belongs to
+the current crew (not an open proxy), cached 90 days. `src/panels/crew.js` shows the list per craft (ISS, Tiangong
+or everyone: PEOPLE IN SPACE in the satellite search section) with flags, faces and the live mission day, and a card
+per person: role, agency, nationality, birth (year when Wikidata has only the year), employer, mission and launch,
+days on this mission and in total counting live, Wikidata's time in space, links. Spacewalk counts have no open
+structured source and say so. Where a portrait's licence is unclear, initials stand in. The standalone snapshot
+carries the facts without images.
+
+## Magnetic fields (#38)
+
+`src/astro/magnetic.js` holds each body's dipole (equatorial surface field, tilt, north-end longitude, polarity,
+offset), its typical magnetopause stand-off and bow shock, and sources: Earth and Jupiter derived from their
+degree-1 Gauss coefficients (IGRF-14 2025, Juno JRM09), the rest from MESSENGER, Cassini, Voyager 2 and Galileo;
+Mars and the Moon get crustal-anomaly loops instead. Field lines are dipole shells r = L sin²θ out to 0.8 × the
+stand-off; the magnetopause is Shue et al. 1998 (Earth's driven by the live DSCOVR/ACE wind and IMF Bz; other
+planets α = 0.6 at their typical stand-off) and the bow shock a conic. `src/views/system/magfields.js` hangs the lines
+in each body's tilt frame (copying its spin, so the giants' axes turn with System III), coloured by |B| on a log ramp
+with chevrons along the field, and draws the boundaries around the body facing the Sun (Ganymede's facing the
+corotating plasma, its trailing side). Every distance goes through the body's radial compression (`localMap`), so
+ENHANCED stays consistent with the moons and TRUE shows Jupiter's magnetosphere at full size. MAG FIELDS (the old
+FIELDS toggle) controls both this and the Sun's Parker spiral. `src/panels/magnetic.js` adds a MAGNETIC FIELD
+section to body panels. Not done: a PFSS model from today's magnetogram, draped fields at Venus, Titan and comets,
+and stellar Zeeman-Doppler fields.
 
 ## Events feed and mission replays (#32, #33)
 
