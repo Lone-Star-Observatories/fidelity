@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no 53rd dossier/new embedding.",
+  "outputs": [
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/enceladus-surfaceImage-master.webp",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 186716,
+      "sha256": "f2367453f16d5aa309f591682be25964da2af7a50e96c92d6b89d0f1c70f41e5"
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/enceladus-surfaceImage-preview.webp",
+      "width": 640,
+      "quality": 80,
+      "bytes": 37410,
+      "sha256": "8393d4123f9920fc369dfab0ec0e206eb5786e3b6359a1d78e980dc616f2e1a1"
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/enceladus-skyImage-master.webp",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 119264,
+      "sha256": "be9493ca07f3fda08e81ce111a5b80c43a73c2bf75a1e9fd87847c9715a8e68c"
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/enceladus-skyImage-preview.webp",
+      "width": 640,
+      "quality": 80,
+      "bytes": 21016,
+      "sha256": "82e5630a3137fa5b82030b9c67844238566cddc952e67530163b70c80d62365d"
+    }
+  ],
+  "previewInspection": "Both 640px quality80 previews inspected; imagined labels retained. Masters derive only from their independent originals; original PNGs unchanged. No native image transformed.",
+  "screeningTrials": [
+    {
+      "method": "mime-size",
+      "originalGzip9": 13512045,
+      "trialGzip9": 13510265,
+      "exactRoundtrip": true
+    },
+    {
+      "method": "size",
+      "originalGzip9": 13512045,
+      "trialGzip9": 13514334,
+      "exactRoundtrip": true
+    },
+    {
+      "method": "reverse",
+      "originalGzip9": 13512045,
+      "trialGzip9": 13512797,
+      "exactRoundtrip": true
+    }
+  ],
+  "trialLimits": "zlib level9 screening, not production Zopfli32. Every reordered FIDBIN01 trial restores exact original JSON. Only MIME/size order saves1780gzipbytes; neither order nor codec change adopted. Production remains unchanged.",
+  "budget": {
+    "currentFullHtmlBytes": 15951373,
+    "headroomBytes": 48627,
+    "twoPreviewBytes": 58426,
+    "limits": "Raw preview bytes are not an exact HTML increment: gzip/transport/dedup/text overhead requires final build. These previews exceed current raw headroom before native images and dossier text; additive integration needs further recovery or explicitly recorded compact preview sizing."
+  },
+  "preservation": "All52 delivered dossiers/native/map/model/shape inputs unchanged; prior source manifests and limitations retained.",
+  "next": "Assess recorded smaller generated preview dimensions at quality80 with masters preserved and compact credited native publisher renditions; continue lossless recovery before integration.",
+  "validation": {
+    "dossiersDeepEqual": 52,
+    "nativeHashesPreserved": 41,
+    "queue": 566,
+    "testsPass": 261,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15951373,
+    "headroomBytes": 48627,
+    "browserSnapshotSha256": "1ccea4448f269be4c4b56fba1b191869915f120cb4ea08e50a720e54d54567f9",
+    "cssApplicationRawHtml": "exact unchanged browser restoration",
+    "scope": "Chrome; other engines open"
+  }
+}
