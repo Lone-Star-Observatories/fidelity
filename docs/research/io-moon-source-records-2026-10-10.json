@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-10",
+  "sources": [
+    {
+      "file": "data/research-sources/io-jiram-pia26594.jpg",
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26594.jpg",
+      "bytes": 43806,
+      "sha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d"
+    },
+    {
+      "file": "data/research-sources/io-sru-pia26522.jpg",
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26522.jpg",
+      "bytes": 186747,
+      "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72"
+    },
+    {
+      "url": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+      "failure": "HTTP Error 403: Forbidden",
+      "hash": null
+    },
+    {
+      "url": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+      "failure": "HTTP Error 403: Forbidden",
+      "hash": null
+    },
+    {
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JE009047",
+      "failure": "HTTP Error 403: Forbidden",
+      "hash": null
+    },
+    {
+      "file": "data/research-sources/io-mura-2025-preprint.html",
+      "url": "https://arxiv.org/abs/2503.20450",
+      "bytes": 45701,
+      "sha256": "c9fb5bb118999f4ca65a1b87c252ebe26db8a5a003b213cfffcacbf3366559c0"
+    },
+    {
+      "file": "data/research-sources/io-lava-lakes-2026-preprint.html",
+      "url": "https://arxiv.org/abs/2603.22062",
+      "bytes": 45058,
+      "sha256": "60aeb8dd34b80c1a309bcc8b5ef1934db5989dc711a43c927ff24ff2fa4f8eec"
+    },
+    {
+      "file": "data/research-sources/io-nasa-facts-2026.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/",
+      "bytes": 297517,
+      "sha256": "43dd256827ffc16c9e4f0adbd0c4ff74e72ea5f75dfde2fdbe7ba39fd5e1d45f"
+    },
+    {
+      "file": "data/research-sources/io-nasa-facts-detail-2026.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/",
+      "bytes": 275181,
+      "sha256": "9812506650cdde9a2a13ad84b9d0ae7f210e8e5fb8360c19485ec18821a3226a"
+    },
+    {
+      "url": "https://astrogeology.usgs.gov/search/map/io_galileo_ssi_voyager_color_merged_global_mosaic_1km",
+      "failure": "HTTP Error 403: Forbidden",
+      "hash": null
+    },
+    {
+      "file": "data/research-sources/io-nasa3d-source.jpg",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Io%20(A)/Jupiter%20-%20Io%20(A).jpg",
+      "bytes": 702001,
+      "sha256": "fdd79a58331864ec1f93035b3ebb92767b01715d2ce75d5b73cf8537b6af3382"
+    }
+  ],
+  "nativeAssets": [
+    {
+      "url": "/bespoke/io-jiram-native.jpg",
+      "label": "NATIVE JIRAM INFRARED CONTEXT",
+      "tier": "measured",
+      "sourceUrl": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+      "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26594.jpg",
+      "observationDate": "2024-12-27",
+      "publicationDate": "2025-04-29",
+      "credit": "NASA/JPL/SwRI/ASI — JIRAM Team (A.M.)",
+      "terms": "NASA image/media guidelines; full JPL instrument/team credits retained.",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+      "bytes": 43806,
+      "description": "PIA26594 publisher static JPG. Infrared false-colour intensity, not visible surface colour. Bright emission saturates detector; gray region is outside field of view. JPEG is the linked still, not the full animation.",
+      "processing": "Copied unchanged from publisher download; no crop, resize, recolour or removal of instrument artifacts."
+    },
+    {
+      "url": "/bespoke/io-sru-native.jpg",
+      "label": "NATIVE GALILEO/SRU COMPARISON",
+      "tier": "measured",
+      "sourceUrl": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+      "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26522.jpg",
+      "observationDate": "2023-12-30",
+      "publicationDate": "2024-12-12",
+      "credit": "NASA/Caltech-JPL/SwRI/LPI/USRA",
+      "terms": "NASA image/media guidelines; full instrument/team credits retained.",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+      "bytes": 186747,
+      "description": "PIA26522: sunlit Galileo circa1999 panel versus Jupiter-shine JunoSRU2023-12-30. Red arrows/20km scale are publisher annotations, not lava colour. A mountain-fracture fissure connection is a hypothesis; not measured internal plumbing.",
+      "processing": "Original comparison copied unchanged, no conversion/recolour. Exact Galileo observing day unknown."
+    }
+  ],
+  "existingMap": {
+    "file": "data/textures/io.jpg",
+    "bytes": 702001,
+    "sha256": "fdd79a58331864ec1f93035b3ebb92767b01715d2ce75d5b73cf8537b6af3382",
+    "sourceFile": "data/research-sources/io-nasa3d-source.jpg",
+    "downloadedSourceSha256": "fdd79a58331864ec1f93035b3ebb92767b01715d2ce75d5b73cf8537b6af3382",
+    "exactBytesMatch": true,
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Io%20(A)/Jupiter%20-%20Io%20(A).jpg",
+    "limits": "NASA3D source equality checked. USGS merged Galileo/Voyager mosaics assessed, but precise NASA3D-to-USGS product association, image epochs, frame, control network, gap treatment and calibrated colour transfer remain unverified; no native map replacement."
+  },
+  "scientificAudit": {
+    "publisherDate": "2026-01-10",
+    "observationDate": "2024-12-27",
+    "primaryPublisher": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JE009047",
+    "audit": "Primary publisher full text reviewed through browser. Section2 observes00:43–01:56UTC in JIRAM L3.3–3.6micron/M4.5–5micron and spectrometer2–5micron,17–23km spatial resolution; strong saturation. Section3 reservoir connections are possible interpretations. Section1 disfavours shallow global melt but does not rule out a deep ocean. No model temperatures/power used as calibrated visible colour or scene lava temperature. Local download403 retained without invented source hash.",
+    "laterModel": "March23,2026 lava-lake crust-age preprint abstract assessed; detailed model/radiometry remains to audit."
+  },
+  "imageryAssessment": [
+    "No verified live Io-specific scientific stream or exhaustive newest-observation claim. Recent native JIRAM prioritized, plus distinct resolved SRU/Galileo comparison.",
+    "JIRAM static publisher JPG preserved unchanged, not fullanimation; falsecolour emission/saturation/FOVgray areas remain instrument context.",
+    "SRU night-sideJupiter-shine versus older sunlitGalileo circa1999. Red arrows and scale annotations retained, not actual lava colour; precise older epoch unknown.",
+    "Recent Juno Steeple Mountain/lava-lake artwork assessed lower priority than native science, not reused."
+  ],
+  "limits": "All46 earlier dossiers and originals/masters preserved; global colour/geography and observer calibration remain open."
+}

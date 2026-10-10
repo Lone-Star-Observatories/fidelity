@@ -179,10 +179,11 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own-body NASA3D Galileo/Voyager mosaic preserved. Unchanged JIRAM2024 infrared publisher still and Galileo1999/JunoSRU2023 comparison provide measured context, not calibrated visible albedo. Mosaic frame, coverage, source association and photometric registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "io"
     },
     {
       "id": "sol-europa",
@@ -8500,7 +8501,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 2,
+      "initialDossiers": 3,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

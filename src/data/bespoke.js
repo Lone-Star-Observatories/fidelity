@@ -6529,6 +6529,174 @@ export const BODY_VISUALS = {
         "limits": "Low-threshold full limb widths275/272/271pixels exceed nominal244.723pixel guide; bright core230/240pixels is smaller. Threshold-sensitive and uncalibrated. FOV, phase, colour, illumination, limb and exposure remain artistic; no calibrated or dated geometry."
       }
     }
+  },
+  "io": {
+    "id": "io",
+    "name": "Io",
+    "aliases": [
+      "Io"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D Galileo/Voyager mosaic preserved. Unchanged JIRAM2024 infrared publisher still and Galileo1999/JunoSRU2023 comparison provide measured context, not calibrated visible albedo. Mosaic frame, coverage, source association and photometric registration remain open.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL VOLCANIC TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM IO",
+    "measured": [
+      "Juno JIRAM observed strong southern-hemisphere infrared emission2024-12-27; saturation and missing field of view remain instrument limits, not surface colours or gaps.",
+      "Juno SRU observed2023-12-30 night-side thermal glow near South Zal Mons under Jupiter-shine. Comparison Galileo panel is circa1999, exact day unverified.",
+      "Catalogue radius1821.6km and semimajor axis421800km preserved. Sulfur dioxide dominates Io's tenuous atmosphere; its surface includes volcanic deposits and SO2 frost."
+    ],
+    "modelled": [
+      "Mura et al.2026 first published2026-01-10 interpret synchronized activity as possible regional reservoir connections, not directly imaged plumbing. Deep magma ocean not ruled out; a shallow global molten layer is disfavoured by referenced tidal-response modelling.",
+      "Representative Sun geometry at5.2044AU via skyGeometry, nominal90degree HFOV, Sun outside frame.",
+      "Spherical Jupiter69911km radius at assumed observer distance421800−1821.6km gives19.164505degrees via skyGeometry; geometry guide only, no dated registration."
+    ],
+    "assumed": [
+      "Invented local pale sulfur-associated deposits, charcoal cooled silicate lava, rocks, cracks and a small glowing fissure. Fractions, visible colours, lava temperature and eruption state unmeasured; no mapped named locality.",
+      "Jupiter-facing hypothetical observer with independently invented cloud bands, phase, orientation, reflected light and exposure; no observed Jupiter map reused. Tenuous atmosphere represented by black sky without Earthlike haze."
+    ],
+    "unknown": [
+      "Local chemistry, rock/grain placement, lava crust age, radiometry, scene registration and actual spectral transfer remain unverified.",
+      "Reservoir topology and global melt geometry remain hypotheses; local connections do not establish a globally molten ocean. No survivable landing claim.",
+      "No verified live Io-specific scientific stream; recent mission images assessed without an exhaustive newest-observation claim."
+    ],
+    "references": [
+      {
+        "title": "NASA Io facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/"
+      },
+      {
+        "title": "JPL JIRAM PIA26594",
+        "url": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+        "observationDate": "2024-12-27",
+        "publicationDate": "2025-04-29"
+      },
+      {
+        "title": "JPL Galileo/SRU PIA26522",
+        "url": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+        "observationDate": "2023-12-30",
+        "publicationDate": "2024-12-12"
+      },
+      {
+        "title": "Mura et al.2026 Synchronized Eruptions: Possible Evidence of Interconnected Subsurface Magma Reservoirs",
+        "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2025JE009047",
+        "publicationDate": "2026-01-10"
+      },
+      {
+        "title": "Mura et al.2026 lava-lake crust-age modelling",
+        "url": "https://arxiv.org/abs/2603.22062",
+        "publicationDate": "2026-03-23"
+      },
+      {
+        "title": "USGS Galileo/Voyager merged mosaic description; exactNASA3D association open",
+        "url": "https://astrogeology.usgs.gov/search/map/io_galileo_ssi_voyager_color_merged_global_mosaic_1km"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/io-jiram-native.jpg",
+        "label": "NATIVE JIRAM INFRARED CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://www.jpl.nasa.gov/images/pia26594-junos-jiram-captures-hots-spots-on-io/",
+        "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26594.jpg",
+        "observationDate": "2024-12-27",
+        "publicationDate": "2025-04-29",
+        "credit": "NASA/JPL/SwRI/ASI — JIRAM Team (A.M.)",
+        "terms": "NASA image/media guidelines; full JPL instrument/team credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+        "bytes": 43806,
+        "description": "PIA26594 publisher static JPG. Infrared false-colour intensity, not visible surface colour. Bright emission saturates detector; gray region is outside field of view. JPEG is the linked still, not the full animation.",
+        "processing": "Copied unchanged from publisher download; no crop, resize, recolour or removal of instrument artifacts."
+      },
+      {
+        "url": "/bespoke/io-sru-native.jpg",
+        "label": "NATIVE GALILEO/SRU COMPARISON",
+        "tier": "measured",
+        "sourceUrl": "https://www.jpl.nasa.gov/images/pia26522-nasas-juno-sees-glowing-lava-on-io/",
+        "source": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26522.jpg",
+        "observationDate": "2023-12-30",
+        "publicationDate": "2024-12-12",
+        "credit": "NASA/Caltech-JPL/SwRI/LPI/USRA",
+        "terms": "NASA image/media guidelines; full instrument/team credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+        "bytes": 186747,
+        "description": "PIA26522: sunlit Galileo circa1999 panel versus Jupiter-shine JunoSRU2023-12-30. Red arrows/20km scale are publisher annotations, not lava colour. A mountain-fracture fissure connection is a hypothesis; not measured internal plumbing.",
+        "processing": "Original comparison copied unchanged, no conversion/recolour. Exact Galileo observing day unknown."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 5.2044,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.10239496667257103,
+      "centreDiscWidthFraction": 0.0008935648907777419,
+      "irradianceEarth": 0.03691974252277894,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/io-surface-image.jpg",
+      "previewUrl": "/bespoke/io-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-fc8747f5-e356-46b0-b3bd-ab8ceb5b163f.png",
+      "sourceSha256": "356985ea84e1c706b410c6d881f1656de38015e76a517266f98a9198c74c3dc7",
+      "sha256": "b1ff371b5c868f3e387aa9bce071cb037126ab9388b2d32c5fa20722bb5e3a77",
+      "previewSha256": "275829f095c0c59b8db41fcc626e7d8ddabb57fc2f1b1d0bc7e8bbca86343cce",
+      "bytes": 375609,
+      "previewBytes": 65870,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/io-sky-image.jpg",
+      "previewUrl": "/bespoke/io-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-36ff3334-e6fd-4300-80fd-1f0c4f2f7e89.png",
+      "sourceSha256": "34742519a7ec505d2c2316c420d4971ef315e209e245408fae577a72410848a3",
+      "sha256": "dd9e094cda0d0be8a748249051db6de07ab6cfbceea9e436e149a777e11ed38e",
+      "previewSha256": "37f713119ff3f46c89e34233f558a7e55c6485274a93b6b134eda2e835d8a61d",
+      "bytes": 212550,
+      "previewBytes": 38835,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "row": 270,
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "longestBrightRunWidthsPixels": [
+          327,
+          318,
+          278
+        ],
+        "targetWidthPixels": 282.26493587538596,
+        "angularGuideDeg": 19.16450484941697,
+        "method": "Longest contiguous central-row RGB-above-threshold run excludes disconnected stars; atmospheric limb and dark terminator remain artistic.",
+        "limits": "Oversized relative to nominal skyGeometry guide; threshold-dependent, not calibrated colour/FOV/phase/lighting/exposure or dated registration."
+      }
+    }
   }
 };
 

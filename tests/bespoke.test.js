@@ -159,3 +159,14 @@ test('Deimos preserves its own native globe and distinguishes Hera monochrome fr
  for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
  assert.match(v.unknown.join(' '),/composition/);assert.match(v.assumed.join(' '),/invented/);
 });
+
+test('Io preserves its own globe and labels JIRAM saturation and regional reservoir hypotheses', async () => {
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='io'),v=bodyVisualFor(moon);
+ assert.equal(v.id,'io');assert.equal(moon.skin.map,'io');assert.equal(v.surfaceMap,undefined);
+ assert.match(v.modelled.join(' '),/possible regional/);assert.match(v.modelled.join(' '),/Deep magma ocean not ruled out/);
+ assert.match(v.contextImages[0].description,/not visible surface colour/);assert.match(v.contextImages[0].description,/saturates/);
+ assert.equal(v.contextImages[0].observationDate,'2024-12-27');assert.equal(v.contextImages[0].publicationDate,'2025-04-29');
+ assert.match(v.contextImages[1].description,/circa1999/);assert.match(v.contextImages[1].description,/not lava colour/);
+ for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
+ assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});
