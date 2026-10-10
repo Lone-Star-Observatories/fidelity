@@ -72,7 +72,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/health` | Liveness and configured catalog folders |
 | `GET /api/horizons/vectors?body=399&month=2026-10` | Daily heliocentric vectors for a calendar month |
 | `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts, space velocity (`vKms`), `rvKnown` and velocity source `vSrc` (0 HYG, 1 Gaia DR3, 2 Gaia DR3 astrometry + catalogue RV); `motions` says whether Gaia motions have loaded |
-| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc), plus the catalogue's density near Sol. 0–250 ly ≈ 17k rows / 1.5 MB, 250–1,000 ly ≈ 65k rows / 5.7 MB |
+| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc; vSrc 3 = a Gaia DR3 RV-slice star not in HYG, sent with `name` null for "Gaia DR3 &lt;source_id&gt;"), plus the catalogue's density near Sol, `gaiaRv` (slice status and counts) and `completeness` (half-complete radius per absolute-magnitude class, HYG alone and with the slice; the merged density). The slice loads in the background on the first request (≈ 25 s once, then from a year-long disk cache); until then `gaiaRv.status` is `loading` and the client asks again. `gaia=0` leaves it out. 25–250 ly ≈ 81k rows / 7.3 MB (2.8 MB gzipped), 250–1,000 ly ≈ 128k rows / 11.7 MB (4.5 MB gzipped); JSON responses over 256 kB are gzipped when the browser accepts it |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
@@ -121,7 +121,8 @@ with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few 
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
 mode is disabled there. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
-(the 1,000 ly catalogue is backend-only); the chart badge says so when that runs short.
+(the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
+snapshot does not grow); the chart badge says so when that runs short.
 
 ## Adding a view
 

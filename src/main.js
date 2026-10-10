@@ -978,17 +978,20 @@ function renderNavPanel() {
       if (sol) row(dl, 'FROM SOL', `${fmt(distLy(sel, sol), 2)} LY`, 'measured', 'Parallax.');
     }
     if (sel.spect) row(dl, 'CLASS', sel.spect, 'measured', 'Spectral type.');
-    if (sel.absmag != null) row(dl, 'ABS. MAGNITUDE', fmt(sel.absmag, 2), 'computed', 'From apparent brightness and distance.');
-    row(dl, 'KNOWN PLANETS', String(sel.planets || 0), 'measured', sel.planets ? 'NASA Exoplanet Archive.' : 'None detected yet, which is not the same as none.');
-    row(dl, 'CATALOGUE', sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : sel.vSrc ? 'HYG v4.4 · GAIA DR3 MOTION' : 'HYG v4.4', 'measured',
-      sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : sel.vSrc ? 'Hipparcos / Yale / Gliese compilation; position and space motion from Gaia DR3 (#29).' : 'Hipparcos / Yale / Gliese compilation.');
+    const gaiaOnly = sel.vSrc === 3; // a deep-time arrival from the Gaia DR3 RV slice (#29)
+    if (sel.absmag != null) row(dl, 'ABS. MAGNITUDE', fmt(sel.absmag, 2), 'computed', gaiaOnly ? 'V estimated from Gaia G and BP−RP (Riello et al. 2021) and the Gaia parallax.' : 'From apparent brightness and distance.');
+    if (!gaiaOnly) row(dl, 'KNOWN PLANETS', String(sel.planets || 0), 'measured', sel.planets ? 'NASA Exoplanet Archive.' : 'None detected yet, which is not the same as none.');
+    row(dl, 'CATALOGUE', gaiaOnly ? 'GAIA DR3 · RADIAL-VELOCITY SLICE' : sel.archiveOnly === 2 ? 'BROWN DWARF · LITERATURE' : sel.archiveOnly ? 'EXOPLANET ARCHIVE' : sel.vSrc ? 'HYG v4.4 · GAIA DR3 MOTION' : 'HYG v4.4', 'measured',
+      gaiaOnly ? 'Too faint for Hipparcos/HYG: position, parallax, proper motion and radial velocity all from Gaia DR3 (parallax > 10 mas, parallax/error > 10). Loaded only for deep time.'
+        : sel.archiveOnly === 2 ? 'Too faint for Hipparcos; found by WISE. Parallax from the discovery and follow-up papers.' : sel.archiveOnly ? 'Too faint for HYG; position from the Exoplanet Archive.' : sel.vSrc ? 'Hipparcos / Yale / Gliese compilation; position and space motion from Gaia DR3 (#29).' : 'Hipparcos / Yale / Gliese compilation.');
     selBlock = [
       h('h3', { textContent: 'SELECTED' }),
       h('h2', { className: 'sel-name', textContent: sel.name.toUpperCase() }),
       dl,
-      h('div', { className: 'body-list' },
-        pill(sel.id === c.id ? 'ENTER SYSTEM ▸' : 'WARP TO SYSTEM ▸', () => { warp(); go({ level: 'system', system: sel.id }); }),
-        sel.id !== c.id ? pill('NAVIGATE FROM HERE', () => showNavigation(sel.id)) : null),
+      gaiaOnly ? h('p', { className: 'note', textContent: 'Not in the chart catalogue, so there is no system to warp to or chart to centre on it; it appears only in deep time.' })
+        : h('div', { className: 'body-list' },
+          pill(sel.id === c.id ? 'ENTER SYSTEM ▸' : 'WARP TO SYSTEM ▸', () => { warp(); go({ level: 'system', system: sel.id }); }),
+          sel.id !== c.id ? pill('NAVIGATE FROM HERE', () => showNavigation(sel.id)) : null),
     ];
   }
 
@@ -1060,8 +1063,19 @@ function arrivalsNote() {
   const text = a.preview
     ? `Arrivals: this preview only holds stars within ${a.previewLy} ly of Sol, so in deep time the sphere empties sooner than it should. Run the local backend (npm start) for every catalogue star with a measured motion within ${n(1000)} ly.`
     : a.error ? `Arrivals unavailable: ${a.error}.`
-    : `Arrivals: ${n(a.count)} stars with measured motions out to ${n(a.loadedLy)} ly${a.loading ? ` (${a.loading.toLowerCase()})` : ''} are integrated too; each appears when it enters the sphere and the chart's own stars vanish when they leave. More load as deep time runs further (out to ${n(1000)} ly). Beyond ~${a.density?.halfLy ?? 60} ly the catalogue holds mainly the brighter stars, so arrivals under-count faint red and brown dwarfs.`;
+    : `Arrivals: ${n(a.count)} stars with measured motions out to ${n(a.loadedLy)} ly${a.loading ? ` (${a.loading.toLowerCase()})` : ''} are integrated too; each appears when it enters the sphere and the chart's own stars vanish when they leave. More load as deep time runs further (out to ${n(1000)} ly). ${gaiaRvNote(a)}`;
   return h('p', { className: 'note', textContent: text });
+}
+/** What the Gaia DR3 radial-velocity slice adds to the arrivals, and what is still missing (#29). */
+function gaiaRvNote(a) {
+  const n = (x) => fmt(x, 0), g = a.gaiaRv, b = a.bySource ?? [0, 0, 0, 0];
+  const counts = `Loaded so far: ${n(b[1] + b[2])} Hipparcos stars with Gaia DR3 motions, ${n(b[3])} Gaia DR3 radial-velocity stars not in HYG, ${n(b[0])} with HYG motions.`;
+  if (g?.status === 'ok' && a.completeness) {
+    const lost = a.completeness.classes.filter((c) => c.mergedLy != null && c.mergedLy < 200).map((c) => `${c.label} beyond ~${n(c.mergedLy)} ly`);
+    return `${counts} The Gaia slice (${n(g.rows)} stars with a radial velocity and parallax > 10 mas; ${n(g.noisy)} set aside for RV errors of 5 km/s or more, ${n(g.matched)} already in HYG) fills in K and early-M dwarfs out to ${n(a.completeness.gaiaLy)} ly; the sphere's density halves beyond ~${a.completeness.density?.halfLy ?? '?'} ly instead of ~${a.density?.halfLy ?? 60}.${lost.length ? ` Still missing: ${lost.join(', ')} (Gaia measures radial velocities only to G_RVS ≈ 14), and brown dwarfs.` : ''}`;
+  }
+  if (g?.status === 'loading') return `${counts} Gaia DR3 radial-velocity stars are still loading.`;
+  return `${counts} Beyond ~${a.density?.halfLy ?? 60} ly the catalogue holds mainly the brighter stars, so arrivals under-count faint red and brown dwarfs${g?.status === 'error' ? ` (the Gaia DR3 radial-velocity slice failed: ${g.error})` : ''}.`;
 }
 (function deepLoop(now) {
   requestAnimationFrame(deepLoop);

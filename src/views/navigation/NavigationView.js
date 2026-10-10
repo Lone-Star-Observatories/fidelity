@@ -607,8 +607,10 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     const st = drift.status;
     const vis = onChart();
     const lines = badgeLines({ epoch, radiusLy: data.radiusLy, shown: vis.length, arrived: shown.length, departed,
-      gaia: vis.filter((p) => p.motionFrom?.vSrc).length, hyg: vis.filter((p) => p.motionFrom && !p.motionFrom.vSrc).length,
-      loadedLy: st?.loadedLy ?? data.radiusLy, loading: st?.loading, preview: st?.preview, previewLy: st?.previewLy, density: st?.density, like: likeForLike(st, vis) });
+      gaia: vis.filter((p) => p.motionFrom?.vSrc === 1 || p.motionFrom?.vSrc === 2).length, gaiaOnly: vis.filter((p) => p.motionFrom?.vSrc === 3).length,
+      hyg: vis.filter((p) => p.motionFrom && !p.motionFrom.vSrc).length,
+      loadedLy: st?.loadedLy ?? data.radiusLy, loading: st?.loading, preview: st?.preview, previewLy: st?.previewLy, density: st?.density, like: likeForLike(st, vis),
+      gaiaRv: st?.gaiaRv, completeness: st?.completeness });
     const key = lines.map((l) => l.text).join('|');
     if (key === lastBadge) return;
     lastBadge = key;
