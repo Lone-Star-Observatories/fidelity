@@ -2,7 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import fs f
 import{BODY_VISUALS,bodyVisualFor,BESPOKE_TEXTURES}from'../src/data/bespoke.js';
 test('bespoke matching identifies full body names without confusing planet letters',()=>{
  assert.equal(bodyVisualFor({id:'b',name:'Barnard b'}),BODY_VISUALS['barnard-b']);
- assert.equal(bodyVisualFor({id:'b',name:'Proxima Cen b'}),null);
+ assert.equal(bodyVisualFor({id:'b',name:'Unrelated star b'}),null);
  assert.equal(bodyVisualFor({id:'ceres',name:'Ceres'}),BODY_VISUALS.ceres);
  assert.equal(BODY_VISUALS.ceres.surfaceMap,undefined);
  assert.equal(BESPOKE_TEXTURES.barnardBespoke.tier,'imagined');
@@ -46,4 +46,24 @@ test('unresolved dwarf planets get individual hypotheses while native maps retai
  assert.equal(bodies.find(body=>body.id==='pluto').skin.map,'pluto');
  assert.ok(BODY_VISUALS.makemake.measured.some(text=>text.includes('fluorescence')));
  assert.ok(BODY_VISUALS.makemake.references.some(ref=>ref.publicationDate==='2025-09-08'));
+});
+
+test('Proxima b and d retain independent named visuals and unmeasured surface constraints', async()=>{
+ const {buildStarSystem}=await import('../src/data/systems.js');
+ const archive=JSON.parse(await fs.readFile(new URL('../docs/research/nearest-exoplanets.json',import.meta.url),'utf8'));
+ const model=buildStarSystem({star:{id:'proxima',name:'Proxima',x:1.3,y:0,z:0,distPc:1.3,distLy:4.24,spect:'M5.5V',lum:.00151},host:{st_teff:2900,st_rad:.141,st_mass:.1221},planets:archive.rows.slice(0,2)});
+ const b=model.bodies.find(body=>body.name==='Proxima Cen b'),d=model.bodies.find(body=>body.name==='Proxima Cen d');
+ assert.equal(b.skin.map,'proximaBBespoke');assert.equal(d.skin.map,'proximaDBespoke');
+ assert.equal(bodyVisualFor({name:'Proxima Centauri b'}).id,'proxima-b');
+ assert.equal(bodyVisualFor({name:'Proxima d'}).id,'proxima-d');
+ assert.equal(bodyVisualFor({id:'b',name:'b'}),null);
+ assert.ok(BODY_VISUALS['proxima-d'].skyModel.angularDiameterDeg>BODY_VISUALS['proxima-b'].skyModel.angularDiameterDeg);
+ for(const id of ['proxima-b','proxima-d']) {
+  const visual=BODY_VISUALS[id];
+  assert.ok(visual.unknown.some(text=>text.includes('physical radius')));
+  assert.ok(visual.modelled.some(text=>text.includes('not measured surface temperature')));
+  const image=visual.contextImages[0],bytes=await fs.readFile(new URL('../public'+image.url,import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),image.sha256);
+  assert.equal((await sharp(bytes).metadata()).format,'jpeg');assert.equal(image.tier,'imagined');
+ }
 });

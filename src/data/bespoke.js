@@ -580,8 +580,259 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "proxima-b": {
+    "id": "proxima-b",
+    "name": "Proxima Cen b",
+    "aliases": [
+      "Proxima Cen b",
+      "Proxima Centauri b",
+      "Proxima b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No resolved planetary surface image or measured terrain; 2025 source artwork is artistic context only.",
+    "measured": [
+      "Radial-velocity planet: period 11.18465 days, minimum mass 1.055±0.055 Earth masses; 2025 multi-instrument confirmation.",
+      "Proxima is an active M5.5 dwarf; 2025 analysis adopts effective temperature 2900±100 K and radius 0.141±0.021 solar radii."
+    ],
+    "modelled": [
+      "RV-derived semimajor axis 0.04848 AU; equilibrium temperature 218 K assumes Bond albedo 0.3 and redistribution, not measured surface temperature.",
+      "Stellar/planet coplanarity, spin locking, atmospheric survival and climates are hypotheses. No measured radius is available; catalogue radii may be mass-radius estimates.",
+      "The illustrated disc size uses adopted radius and semimajor axis. Blackbody-derived flux from these adopted values differs from the paper luminosity-based incident flux; neither is calibrated image photometry."
+    ],
+    "unknown": [
+      "True planetary mass/inclination, physical radius, atmospheric composition/pressure, water inventory, surface chemistry, geology, spin and cloud cover.",
+      "Surface colours, thermal structure and magnetic field are not measured; a nominal habitable-zone orbit does not establish habitability."
+    ],
+    "assumed": [
+      "One water-poor airless silicate/iron rocky scenario: subdued charcoal/grey/taupe terrain, no ocean, life, atmospheric clouds or glowing lava. Composition and every geographic feature are chosen, not observed.",
+      "Proxima b terrain differs artistically from the other planet; it does not encode a measured difference in mineralogy or crater age.",
+      "60° hypothetical rectilinear view with an artist-chosen observer and stellar elevation. Peach/cream bright photosphere and warm reflected ground light are approximate under exposure and adaptation, not a pure red disc.",
+      "No dated flare, spots or companion-star alignment is invented. Alpha Centauri A/B are omitted from the chosen sky direction; their positions are not inferred."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2507.21751",
+        "title": "Suárez Mascareño et al. 2025, b/d RV confirmation and adopted stellar properties",
+        "publicationDate": "2025-07-29"
+      },
+      {
+        "url": "https://arxiv.org/abs/1608.06827",
+        "title": "Turbet et al., atmospheric and climate scenarios, not measured climate",
+        "publicationDate": "2016-08-24"
+      },
+      {
+        "url": "https://arxiv.org/abs/2605.22925",
+        "title": "Navarro-Piñeiro et al. 2026, stellar activity and possible star/planet interaction",
+        "publicationDate": "2026-05-21"
+      },
+      {
+        "url": "https://iac.es/en/outreach/news/iac-leads-first-scientific-results-nirps-new-infrared-exoplanet-hunter",
+        "title": "IAC 2025 system artwork and source credits",
+        "publicationDate": "2025-07-29"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/references/proxima-iac-2025.jpg",
+        "source": "https://iac.es/sites/default/files/styles/crop_rectangle_21x9_to_1280/public/images/news/planetas_b_d_proxima_centauri_02.jpg?h=ff3fe7f1&itok=YX9pjzOp",
+        "sourcePage": "https://iac.es/en/outreach/news/iac-leads-first-scientific-results-nirps-new-infrared-exoplanet-hunter",
+        "credit": "Gabriel Pérez Díaz (IAC)",
+        "tier": "imagined",
+        "publicationDate": "2025-07-29",
+        "observationDate": null,
+        "retrieved": "2026-10-10",
+        "sha256": "49aa01bf4d40c54ae9eb9a46a0b15dd05ab32ba8fa0590cb63f5b37ae80eff2b",
+        "bytes": 55095,
+        "description": "2025 artist interpretation of the Proxima b/d system accompanying NIRPS confirmation; not observed terrain, composition or calibrated stellar colour.",
+        "terms": "IAC credited source artwork; project owner supplies reuse basis. Original artist credit retained."
+      }
+    ],
+    "skyModel": {
+      "star": "Proxima Centauri",
+      "radiusSun": 0.141,
+      "temperatureK": 2900,
+      "distanceAU": 0.04848,
+      "angularDiameterDeg": 1.5499545499458383,
+      "centreDiscWidthFraction": 0.023428983606485546,
+      "irradianceEarth": 0.5390135773818832,
+      "approximateSrgb": [
+        1,
+        0.6816786297548326,
+        0.40318515446390524
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "proximaBBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, north up; illustrative east-positive longitude with no measured surface frame or geographic registration.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/proxima-b-surface-map.jpg",
+      "previewUrl": "/bespoke/proxima-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-4c21abd3-509b-4d6d-b726-ac5a7a1d5fa7.png",
+      "sourceSha256": "3f53bf1e8924f047b086f88ad0298f4690edbe4fb409cee6c07c4d4271599e98",
+      "sha256": "96103e81bc61909b490d528ee2dc912700689064db26b37adfcb04b53a30c897",
+      "previewSha256": "2c165a95277cfda66902da42689074c2c955f3b31691cc10ea2a4749226cfffb",
+      "bytes": 515295,
+      "previewBytes": 31825,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "promptBrief": "Individual rocky scenario albedo map under neutral lighting and corresponding airless sky view under a 2900 K M dwarf. No Earth analog continents, clouds or life; stellar disc approximate within 60 degree field.",
+    "skyImage": {
+      "url": "/bespoke/proxima-b-sky-image.jpg",
+      "previewUrl": "/bespoke/proxima-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-0821a565-afb3-42e9-a016-98f5193be73e.png",
+      "sourceSha256": "2fc98613e2fc3cbd0e850c27bb8f643c9e3bb0d7cb5e35dc9977d9f4f53e0116",
+      "sha256": "4231749a7201146b0904b148080f6de07c995a7fd542257c60ab3fd635042760",
+      "previewSha256": "ba8d5cbd68ccd453d8a691b28eea9a8f4fd1d8db872a12b641cc1831ad73dd86",
+      "bytes": 261450,
+      "previewBytes": 44457,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "proxima-d": {
+    "id": "proxima-d",
+    "name": "Proxima Cen d",
+    "aliases": [
+      "Proxima Cen d",
+      "Proxima Centauri d",
+      "Proxima d"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No resolved planetary surface image or measured terrain; 2025 source artwork is artistic context only.",
+    "measured": [
+      "Radial-velocity planet: period 5.12338 days, minimum mass 0.26±0.038 Earth masses; 2025 multi-instrument confirmation.",
+      "Proxima is an active M5.5 dwarf; 2025 analysis adopts effective temperature 2900±100 K and radius 0.141±0.021 solar radii."
+    ],
+    "modelled": [
+      "RV-derived semimajor axis 0.02881 AU; equilibrium temperature 282 K assumes Bond albedo 0.3 and redistribution, not measured surface temperature.",
+      "Stellar/planet coplanarity, spin locking, atmospheric survival and climates are hypotheses. No measured radius is available; catalogue radii may be mass-radius estimates.",
+      "The illustrated disc size uses adopted radius and semimajor axis. Blackbody-derived flux from these adopted values differs from the paper luminosity-based incident flux; neither is calibrated image photometry."
+    ],
+    "unknown": [
+      "True planetary mass/inclination, physical radius, atmospheric composition/pressure, water inventory, surface chemistry, geology, spin and cloud cover.",
+      "Surface colours, thermal structure and magnetic field are not measured; a nominal habitable-zone orbit does not establish habitability."
+    ],
+    "assumed": [
+      "One water-poor airless silicate/iron rocky scenario: subdued charcoal/grey/taupe terrain, no ocean, life, atmospheric clouds or glowing lava. Composition and every geographic feature are chosen, not observed.",
+      "Proxima d terrain differs artistically from the other planet; it does not encode a measured difference in mineralogy or crater age.",
+      "60° hypothetical rectilinear view with an artist-chosen observer and stellar elevation. Peach/cream bright photosphere and warm reflected ground light are approximate under exposure and adaptation, not a pure red disc.",
+      "No dated flare, spots or companion-star alignment is invented. Alpha Centauri A/B are omitted from the chosen sky direction; their positions are not inferred."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2507.21751",
+        "title": "Suárez Mascareño et al. 2025, b/d RV confirmation and adopted stellar properties",
+        "publicationDate": "2025-07-29"
+      },
+      {
+        "url": "https://arxiv.org/abs/1608.06827",
+        "title": "Turbet et al., atmospheric and climate scenarios, not measured climate",
+        "publicationDate": "2016-08-24"
+      },
+      {
+        "url": "https://arxiv.org/abs/2605.22925",
+        "title": "Navarro-Piñeiro et al. 2026, stellar activity and possible star/planet interaction",
+        "publicationDate": "2026-05-21"
+      },
+      {
+        "url": "https://iac.es/en/outreach/news/iac-leads-first-scientific-results-nirps-new-infrared-exoplanet-hunter",
+        "title": "IAC 2025 system artwork and source credits",
+        "publicationDate": "2025-07-29"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/references/proxima-iac-2025.jpg",
+        "source": "https://iac.es/sites/default/files/styles/crop_rectangle_21x9_to_1280/public/images/news/planetas_b_d_proxima_centauri_02.jpg?h=ff3fe7f1&itok=YX9pjzOp",
+        "sourcePage": "https://iac.es/en/outreach/news/iac-leads-first-scientific-results-nirps-new-infrared-exoplanet-hunter",
+        "credit": "Gabriel Pérez Díaz (IAC)",
+        "tier": "imagined",
+        "publicationDate": "2025-07-29",
+        "observationDate": null,
+        "retrieved": "2026-10-10",
+        "sha256": "49aa01bf4d40c54ae9eb9a46a0b15dd05ab32ba8fa0590cb63f5b37ae80eff2b",
+        "bytes": 55095,
+        "description": "2025 artist interpretation of the Proxima b/d system accompanying NIRPS confirmation; not observed terrain, composition or calibrated stellar colour.",
+        "terms": "IAC credited source artwork; project owner supplies reuse basis. Original artist credit retained."
+      }
+    ],
+    "skyModel": {
+      "star": "Proxima Centauri",
+      "radiusSun": 0.141,
+      "temperatureK": 2900,
+      "distanceAU": 0.02881,
+      "angularDiameterDeg": 2.6083302389815133,
+      "centreDiscWidthFraction": 0.03943170793318837,
+      "irradianceEarth": 1.526294750983559,
+      "approximateSrgb": [
+        1,
+        0.6816786297548326,
+        0.40318515446390524
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "proximaDBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, north up; illustrative east-positive longitude with no measured surface frame or geographic registration.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/proxima-d-surface-map.jpg",
+      "previewUrl": "/bespoke/proxima-d-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-09ec1bb1-ae65-4028-8638-ee2029873988.png",
+      "sourceSha256": "e38b300d8dbc41f7943630db31bba38588cd1325508ff3de05aa3987fb2d3fc6",
+      "sha256": "96c15494d6880c74d556b37b584939eced183332cb758c1f9f3b90aefee02c30",
+      "previewSha256": "eea963418ab3a9db7938a8db589bb3259533c96ab218cdc7f88f2c6fa33f590a",
+      "bytes": 567136,
+      "previewBytes": 36625,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "promptBrief": "Individual rocky scenario albedo map under neutral lighting and corresponding airless sky view under a 2900 K M dwarf. No Earth analog continents, clouds or life; stellar disc approximate within 60 degree field.",
+    "skyImage": {
+      "url": "/bespoke/proxima-d-sky-image.jpg",
+      "previewUrl": "/bespoke/proxima-d-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-299e353a-c309-42f7-85ef-fc1ea6e915bd.png",
+      "sourceSha256": "aae6a21bfcda9620772d6a201a49d09ac6a11aec6be0db1fc2e1f14d0424d966",
+      "sha256": "a1be423c5cf057d5055eae7df1a27076c4caaaebe7807b20f1fe1cb8676fd26f",
+      "previewSha256": "a2730ea5f58aa0bae2c3b3bf531a776b54d695a016dd1dc5aa1d981791cf3fcd",
+      "bytes": 274252,
+      "previewBytes": 47959,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
+
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;

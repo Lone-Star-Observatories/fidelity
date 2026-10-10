@@ -62,3 +62,11 @@ Sun sizes and bolometric flux are computed at catalogue semimajor-axis distances
 The additive importer `scripts/assets/import-body-batch.mjs <manifest.json> <generated-PNG-directory>` validates all inputs before publishing, rejects aspect/budget mismatches and existing dossier IDs, and preserves earlier dossiers. The source manifest is `docs/research/dwarf-batch-2026-10-10.json`; generated originals remain identified by source filename and SHA-256. Research cards now display modelled interpretations alongside measured constraints.
 
 Validation for this batch: 100 tests pass, one catalogue-dependent skip; production build passes. Browser checks decode all three individual maps and all nine hypothesis/context images and verify the modelled gas alternatives are visible. Full catalogue standalone size remains unverified.
+
+## Proxima b/d batch (2026-10-10)
+
+The two closest confirmed archive planets receive separate researched albedo maps and observer views under explicit water-poor, airless silicate/iron scenarios. No terrain, mineralogy, atmosphere, ocean, rotation state or measured radius is claimed. The dossiers use the 2025 NIRPS multi-instrument masses/periods and adopted stellar values; Proxima d was independently confirmed then. The 2026 stellar-interaction work is context, not an observed planetary magnetic field or rendered flare. Companion imagery includes the credited 2025 IAC artist interpretation by Gabriel Pérez Díaz.
+
+Representative stellar diameter is 1.550° at b and 2.608° at d. Raster disc size and colour are approximate. The blackbody flux calculation from adopted radius/temperature differs from the paper luminosity-based flux; this difference is recorded rather than silently claiming exact photometry. Maps use neutral albedo illumination; observer images use warm stellar illumination. No Alpha Centauri companion alignment is invented. Source manifest: `docs/research/proxima-batch-2026-10-10.json`.
+
+Proxima validation: 101 passing tests, one catalogue-dependent skip; production build and browser decoding/individual cards pass for both planets. The full offline preview check is in progress.

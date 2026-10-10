@@ -6764,9 +6764,10 @@
         "dec": -62.6761821,
         "disc_year": 2016
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "proxima-b"
     },
     {
       "id": "exo-proxima-cen-d",
@@ -6795,9 +6796,10 @@
         "dec": -62.6761821,
         "disc_year": 2025
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "proxima-d"
     },
     {
       "id": "exo-barnard-b",
