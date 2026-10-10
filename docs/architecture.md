@@ -421,14 +421,37 @@ resampler, command parsing.
 
 The STEP control moves the clock by n units (minute … millennium; months and longer step the
 calendar via `stepJd`, clamping to the month length) with ◀| / |▶ or the `[` / `]` keys, and RUN sets a
-custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder. n may be
-fractional or negative; it and the unit are remembered.
+custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder (which runs on to
+±1 millennium, Myr and Gyr per second). n may be fractional or negative; it and the unit are remembered.
+The units run on to MYR and GYR (mean lengths, Julian years) for deep time.
+
+## One clock, deep time and view limits (#34)
+
+`src/astro/clock.js` keeps one double-precision JD that may run far beyond JavaScript's dates
+(±273,790 years; a double still resolves ~10 s at 2 Gyr). `clock.jd` is that time clamped to the
+calendar, so every date-based consumer always gets a valid `Date`; `clock.deepJd` is the unclamped
+JD, `clock.years` the offset from now in Julian years and `clock.inCalendar` says which applies. The
+readout (`clockReadout` / `formatOffset` in `timerate.js`) shows a UTC date inside the calendar and
+an offset such as "+1.2 MYR" or "−2.0 GYR" beyond it; the top-bar stardate shows `DEEP TIME · …`.
+
+Each view sets the part of time valid for it (`clock.setLimit`, from `limitFor(level)` in `main.js`
+on every route change and when the EPHEMERIS toggle changes): the System View and its detail
+views use the ephemeris span (KEPLER ELEMENTS 3000 BCE–3000 CE; JPL HORIZONS 1–9999 CE, the
+`YYYY-MM` months the backend can ask for), the Navigation View ORBITS INTEGRATED ±50 MYR, the Galaxy
+View SATELLITE ORBITS ±2 GYR, Quadrant and Universe the calendar. Nothing goes past ±2 Gyr. When
+time reaches a limit, or a new view's limit is narrower than the current time, the clock is
+brought to the edge and held, and `clock.clamped` gives the reason, shown under the readout as
+`⚠ STOPPED · <reason>` (otherwise `RANGE · <reason>`); the TIMELINE shades what lies outside. The
+clock ticks in `main.js`'s time-control loop whatever view is showing (the System View also ticks
+it; a second tick in the same frame does nothing). `syncDeepTime` then hands the Navigation View
+its epoch (`nav.setEpoch`, whole years from now) and the Galaxy View its time (`galaxy.setTime`,
+Myr) whenever they change; the panels only show the epoch and point to the TIME row.
 
 ## Text size
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 millennium/s through HOLD and real time to +1 millennium/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The clock stops (HOLD) at the edge of JavaScript's date range, ±273,790 years.
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 
@@ -461,7 +484,7 @@ the arm pattern speed and integrated satellite orbits (`integrateOrbit`, leapfro
 halo, ±2 Gyr). The Galaxy View turns stars in the vertex shader by −Ω(R)·t about +y (the disc
 turns towards scene −z at the Sun), the image and arm labels in `patternGroup` at Ωp, and Sol,
 spokes, reach ring and Starfleet overlay in `sunGroup` at Ω☉. Satellite images are additive,
-camera-facing quads. The time loop lives in `main.js` (`galLoop`).
+camera-facing quads. Galactic time is the ship's clock (#34): `syncDeepTime` in `main.js` sets it, within ±2 Gyr.
 
 ## Navigation lists and star motion
 
