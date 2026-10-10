@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-10",
+  "format": "FIDBIN01 binary snapshot container inside standard gzip and wide raw120 transport",
+  "purpose": "Remove embedded base64 compression overhead without changing any decoded fields or asset bytes",
+  "layout": "8-byte versioned magic; little-endian uint32 header UTF8 byte length; header bytes; uint32 asset count; each asset uint32 data-URI-prefix byte length, UTF8 prefix, uint32 binary byte length and original decoded bytes. Header reserved placeholder literals expand back to exact canonical JSON data URI strings; identical full literals deduplicated.",
+  "validationRules": [
+    "Reserved-marker collisions rejected during encoding",
+    "Canonical base64 required",
+    "All byte-length reads and slices bounds checked",
+    "Asset count bounded by remaining container bytes",
+    "Strict UTF8 and data URI prefix validation",
+    "Exact canonical index and reference bounds",
+    "Unused assets/unresolved markers/trailing bytes rejected"
+  ],
+  "compatibility": "Full HTML snapshot only changes compressed inner representation. Readable snapshot.json and generated legacy radix85 snapshot-packed.js keep original gzip JSON transport. Decoder accepts ordinary gzip JSON and FIDBIN01; wide/raw120v1/radix85/base64 compatibility retained. App gzip raw120v1 Blob import/revoke and unsupported-browser message unchanged.",
+  "validation": {
+    "testsPassed": 258,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "beforeHtmlBytes": 15836022,
+    "htmlBytes": 15350935,
+    "savedBytes": 485087,
+    "headroomBytes": 649065,
+    "decodedImages": 179,
+    "stars": 4234,
+    "details": 517,
+    "priorDossiersDeepEqual": 49,
+    "nativeContextHashesExact": 37,
+    "browserCompleteReadableJsonSha256": "95fe2ab38ca09f13df2b5ae467f2bf9440a3f25154c5fc32b57614b68c99c277",
+    "rawSnapshotTextSha256": "e7f28260b8b78051788da6d34208b8d37f2d014c6547d4eeb169254674d4e0f2",
+    "applicationSha256": "52d92a078c82b7ebf62a412308ba64e374a811d638a9b5391be647eb786465da",
+    "exactHtmlParserTextAndModuleRestoration": true,
+    "navigationRoutes": 6,
+    "unsupportedGzipMessage": "passed",
+    "offlineEventWorkerRows": 8,
+    "craftModelsDecoded": 24,
+    "ISSOffline": "passed",
+    "normalOfflineGanymede": "own globe and three images passed",
+    "engine": "Chrome; other engines remain independently untested"
+  },
+  "limits": "No50th dossier or new embedded Callisto asset. All prior original PNG/master/native science/model/shape/map files untouched. Callisto display rendition retained and inspected for subsequent integration; original remains preserved."
+}

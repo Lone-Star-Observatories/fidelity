@@ -32,5 +32,11 @@
     "path": "data/research-sources/callisto-spires-nasa-pia03455.jpg",
     "bytes": 311687,
     "sha256": "99ba09edec934ad7e6d831c6bf518467c32b3fdb18ec0d7cdd8cbe39a14bcb1a"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg?w=1020&fit=clip",
+    "path": "data/research-sources/callisto-spires-display-pia03455.jpg",
+    "bytes": 134419,
+    "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6"
   }
 ]

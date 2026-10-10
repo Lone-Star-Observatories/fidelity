@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -59,4 +59,21 @@ test('wide raw snapshot transport preserves every partial block and rejects corr
   const valid = encodeRawSnapshotBytes(new Uint8Array(44));
   for (const packed of [{...valid, byteLength:-1}, {...valid, byteLength:1.5}, {...valid, data:valid.data.slice(1)}, {...valid, data:'<'.repeat(51)}, {...valid, data:'\x7f'.repeat(51)}, {...valid, byteLength:1, data:valid.data.slice(0,50)+'\x02'}]) assert.throws(() => unpackSnapshotBytes(packed));
   assert.deepEqual(await decodeSnapshot(encodeRawSnapshotBytes(gzipSync(JSON.stringify({label:'α • Hiʻiaka', bytes:'AAEC//8='})))), {label:'α • Hiʻiaka', bytes:'AAEC//8='});
+});
+
+test('binary snapshot restores exact text, duplicate data URIs, Unicode and arbitrary asset bytes', async () => {
+  const uri='data:image/png;base64,'+randomBytes(65537).toString('base64');
+  const text=JSON.stringify({first:uri, duplicate:uri, empty:'data:model/gltf-binary;base64,', label:'α Hiʻiaka', nested:[null,1e-12,false]},null,2);
+  const packed=encodeBinarySnapshot(text);
+  assert.equal(restoreSnapshotText(packed),text);
+  assert.deepEqual(await decodeSnapshot(encodeRawSnapshotBytes(gzipSync(packed))),JSON.parse(text));
+  assert.equal(restoreSnapshotText(new TextEncoder().encode(text)),text);
+  assert.throws(()=>encodeBinarySnapshot('{"label":"__FIDELITY_BINARY_ASSET_"}'));
+});
+test('binary snapshot rejects truncated lengths, excess data and invalid references', () => {
+  const valid=encodeBinarySnapshot('{"x":"data:image/png;base64,AAEC"}');
+  for(const size of [8,9,12,valid.length-1]) assert.throws(()=>restoreSnapshotText(valid.slice(0,size)));
+  const badLength=valid.slice();new DataView(badLength.buffer).setUint32(8,0xffffffff,true);assert.throws(()=>restoreSnapshotText(badLength));
+  const trailing=new Uint8Array(valid.length+1);trailing.set(valid);assert.throws(()=>restoreSnapshotText(trailing));
+  const badReference=valid.slice();const at=new TextDecoder().decode(valid).indexOf('ASSET_0')+6;badReference[at]=49;assert.throws(()=>restoreSnapshotText(badReference));
 });

@@ -49,7 +49,62 @@ export function unpackSnapshotBytes(packed) {
 export async function decodeSnapshot(packed) {
   const bytes = unpackSnapshotBytes(packed);
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return JSON.parse(await new Response(stream).text());
+  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer())));
+}
+
+const binaryMagic = new TextEncoder().encode('FIDBIN01');
+const assetMarker = '__FIDELITY_BINARY_ASSET_';
+const assetPattern = /"(data:[^"\s]*;base64,)([A-Za-z0-9+/=]*)"/g;
+const markerPattern = /"__FIDELITY_BINARY_ASSET_(\d+)__"/g;
+function binaryBase64(bytes) {
+  const parts = [];
+  for (let at = 0; at < bytes.length; at += 16384) parts.push(String.fromCharCode(...bytes.subarray(at, at + 16384)));
+  return btoa(parts.join(''));
+}
+// Binary assets avoid base64 compression overhead. Restoring the original JSON
+// text also restores every embedded data URI and every detailed field exactly.
+export function encodeBinarySnapshot(text) {
+  if (text.includes(assetMarker)) throw Error('Reserved snapshot asset marker.');
+  const assets = [], seen = new Map(), encoder = new TextEncoder();
+  const header = encoder.encode(text.replace(assetPattern, (literal, prefix, data) => {
+    if (!seen.has(literal)) {
+      const bytes = Uint8Array.from(atob(data), c => c.charCodeAt(0));
+      if (binaryBase64(bytes) !== data) throw Error('Noncanonical snapshot asset.');
+      seen.set(literal, assets.length);
+      assets.push({ prefix: encoder.encode(prefix), bytes });
+    }
+    return JSON.stringify(assetMarker + seen.get(literal) + '__');
+  }));
+  const total = 16 + header.length + assets.reduce((sum, a) => sum + 8 + a.prefix.length + a.bytes.length, 0);
+  if (total > 0xffffffff) throw Error('Snapshot container too large.');
+  const output = new Uint8Array(total), view = new DataView(output.buffer); let at = 0;
+  const put = bytes => { output.set(bytes, at); at += bytes.length; };
+  const length = n => { view.setUint32(at, n, true); at += 4; };
+  put(binaryMagic); length(header.length); put(header); length(assets.length);
+  for (const a of assets) { length(a.prefix.length); put(a.prefix); length(a.bytes.length); put(a.bytes); }
+  return output;
+}
+export function restoreSnapshotText(bytes) {
+  const decoder = new TextDecoder('utf-8', { fatal: true });
+  if (!binaryMagic.every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
+  const length = () => { if (at + 4 > bytes.length) throw Error('Truncated snapshot container.'); const n = view.getUint32(at, true); at += 4; return n; };
+  const take = n => { if (n > bytes.length - at) throw Error('Truncated snapshot asset.'); const b = bytes.subarray(at, at + n); at += n; return b; };
+  const header = decoder.decode(take(length())), count = length(), literals = [];
+  if (count > Math.floor((bytes.length - at) / 8)) throw Error('Invalid snapshot asset count.');
+  for (let i = 0; i < count; i++) {
+    const prefix = decoder.decode(take(length()));
+    if (!/^data:[^"\s]*;base64,$/.test(prefix)) throw Error('Invalid snapshot asset prefix.');
+    literals.push(JSON.stringify(prefix + binaryBase64(take(length()))));
+  }
+  if (at !== bytes.length) throw Error('Trailing snapshot container bytes.');
+  const used = new Set();
+  const restored = header.replace(markerPattern, (marker, index) => {
+    if (!Number.isSafeInteger(Number(index)) || String(Number(index)) !== index || Number(index) >= count) throw Error('Invalid snapshot asset reference.');
+    used.add(Number(index)); return literals[Number(index)];
+  });
+  if (used.size !== count || restored.includes(assetMarker)) throw Error('Invalid snapshot asset references.');
+  return restored;
 }
 
 // The application envelope is inert HTML script text, not a JavaScript string.

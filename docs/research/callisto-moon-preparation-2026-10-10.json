@@ -54,5 +54,17 @@
     "browserCompleteReadableSnapshotEquality": true,
     "htmlParserPackedTextAndApplicationRestoration": "passed",
     "assetModelShapeCatalogueInputs": "unchanged"
+  },
+  "publisherDisplayRendition": {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg?w=1020&fit=clip",
+    "path": "data/research-sources/callisto-spires-display-pia03455.jpg",
+    "bytes": 134419,
+    "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+    "sizePixels": [
+      1020,
+      770
+    ],
+    "inspected": true,
+    "limitations": "Unchanged NASA-served display JPEG, publisher resizing/re-encoding and RGB storage of monochrome intensity disclosed; not original full-pixel preservation or calibrated visible colour. Original2000x1510JPEG retained separately. Research input only; not embedded yet."
   }
 }

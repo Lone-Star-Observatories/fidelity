@@ -9,7 +9,7 @@ import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gunzipSync } from 'node:zlib';
 import { gzipAsync } from '@gfx/zopfli';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes } from '../src/data/snapshot-codec.js';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeBinarySnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -180,11 +180,14 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
-const snapshotRaw = encodeRawSnapshotBytes(compressed);
+const binarySnapshot = encodeBinarySnapshot(snapshotJson);
+const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 8 });
+if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
+const snapshotRaw = encodeRawSnapshotBytes(htmlCompressed);
 // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
 const html = (await fs.readFile(path.join(dist, 'index.html'), 'utf8')).replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
 const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
-if (!snapshotElement || !Buffer.from(unpackSnapshotBytes({ encoding: snapshotElement[1], byteLength: Number(snapshotElement[2]), data: snapshotElement[3] })).equals(compressed)) {
+if (!snapshotElement || !Buffer.from(unpackSnapshotBytes({ encoding: snapshotElement[1], byteLength: Number(snapshotElement[2]), data: snapshotElement[3] })).equals(htmlCompressed)) {
   throw new Error('HTML snapshot transport round-trip failed.');
 }
 await fs.writeFile(path.join(dist, 'index.html'), html);
