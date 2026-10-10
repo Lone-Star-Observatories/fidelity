@@ -133,6 +133,8 @@ export function createPlanetView(container, { onSurface } = {}) {
     if (marks && globe) marks.rotation.y = globe.rotation.y;
     if (clouds) clouds.rotation.y = now * 0.000128;
     for (const m of mats) m.uniforms.uSunPos.value.copy(sun);
+    // a whole-disc band image (#28) faces the viewer here, north along the globe's axis (the System View uses Earth's direction)
+    for (const m of mats) if (m.uniforms.uDiscOn?.value > 0.5) { m.uniforms.uDiscE.value.copy(camera.position).normalize(); m.uniforms.uDiscN.value.set(0, 1, 0).applyEuler(pivot.rotation); }
     renderer.render(scene, camera);
   }
 

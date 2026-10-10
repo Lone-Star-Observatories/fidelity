@@ -87,6 +87,14 @@ const SRC = {
   deP84: S('de Pater et al. 1984, Icarus 57, 93 — VLA observations of the Galilean satellites', '10.1016/0019-1035(84)90011-3'),
   Fa10: S('Fa & Jin 2010, Icarus 207, 605 — Chang\'e-1 multichannel radiometer lunar brightness temperatures', '10.1016/j.icarus.2009.11.034'),
   CDS_HiPS: S('CDS MocServer listing of planetary HiPS (queried 2026-10-10)', 'https://alasky.cds.unistra.fr/MocServer/query?ID=CDS/P/*&get=id'),
+  // #28: archive maps and disc images wired as real band imagery
+  Williams17: S('Williams et al. 2017, Icarus 283, 300 — the global surface temperatures of the Moon measured by Diviner', '10.1016/j.icarus.2016.08.012'),
+  Prettyman06: S('Prettyman et al. 2006, JGR 111, E12007 — elemental composition of the lunar surface from Lunar Prospector gamma-ray spectroscopy', '10.1029/2005JE002656'),
+  Boynton07: S('Boynton et al. 2007, JGR 112, E12S99 — H, Si, Cl, K, Fe and Th in the low- and mid-latitude regions of Mars (Odyssey GRS)', '10.1029/2007JE002887'),
+  LeMouelic19: S('Le Mouélic et al. 2019, Icarus 319, 121 — the Cassini VIMS archive of Titan: global infrared colour maps', '10.1016/j.icarus.2018.09.017'),
+  Trek: S('NASA Solar System Treks layer catalogues (Moon, Mars, Mercury, Titan, Venus…; queried 2026-10-10)', 'https://trek.nasa.gov/'),
+  ESAWebb: S('ESA/Webb image archive, CC BY 4.0 (jupiter-auroras1, saturn1, weic2214c, weic2310a)', 'https://esawebb.org/images/'),
+  ESAHubble: S('ESA/Hubble image heic1613a (Jupiter\'s far-UV aurorae), CC BY 4.0', 'https://esahubble.org/images/heic1613a/'),
 };
 
 // ---- what exists, body by body ----------------------------------------------------------------
@@ -199,6 +207,41 @@ const K = {
   'rings|xray': { obs: 'detected', what: 'Chandra O Kα (0.53 keV).', mech: 'fluorescence', src: ['Bhardwaj05r'], fix: 'Rings now shown (were hidden).' },
   'rings|uv': { obs: 'image', what: 'HST and Cassini UVIS ring images.', mech: 'reflected', fix: 'Rings now shown in UV (were hidden).' },
 };
+// #28: real band imagery added after the #61 audit (src/data/bandarchive.js, server/bandarchive.js),
+// and archives looked at but not wired, with the reason. `replace` drops the row's older imagery list.
+const WIRED = (archive, what, licence, fetch, extra = {}) => ({ archive, what, licence, fetch: `yes (#28): ${fetch}`, ...extra });
+const NOT_WIRED = (archive, what, why) => ({ archive, what, fetch: `not wired (#28): ${why}` });
+const TREK = 'NASA Solar System Treks WMTS', PDSG = 'NASA PDS Geosciences Node', PD = 'public domain (NASA)', CCBY = 'CC BY 4.0 (credit the full line)';
+const K28 = {
+  'moon|ir': { replace: true, img: [WIRED(TREK, 'Diviner bolometric brightness temperature at local noon (diviner_tbol_hour12, 0.5°)', PD, '/api/band-archive?id=moon-diviner-noon (PNG tiles mosaicked)'),
+    NOT_WIRED(TREK, 'Diviner midnight temperature, rock abundance, H-parameter', 'one map per bandpass; the noon map is drawn and the model sets the night side')], src: ['Williams17', 'Trek'], fix: '#28: Diviner noon temperature is now the real map from 7.7 to 140 µm.' },
+  'moon|gamma': { replace: true, img: [WIRED(PDSG, 'Lunar Prospector GRS Th, K, FeO abundances (2° equal-area bins, ASCII table)', PD, '/api/band-archive?id=moon-lpgrs-{thorium,potassium,feo} on the new nuclear-line passes'),
+    NOT_WIRED(TREK, 'LP GRS colourised layers', 'colour ramps without a legend; the PDS table is drawn instead')], src: ['Prettyman06'], fix: '#28: new nuclear-line passes (K 1.46, Th 2.61, Fe 7.6 MeV) show the Lunar Prospector maps; > 100 MeV keeps the Fermi glow.' },
+  'moon|uv': { replace: true, img: [NOT_WIRED('NASA PDS Imaging (LROLAM_2001 GDR)', 'LAMP far-UV and Lyman-α albedo maps', 'polar stereographic caps poleward of 80° only, no global map')] },
+  'moon|microwave': { replace: true, img: [NOT_WIRED('NASA PDS Geosciences (chang_e_microwave_processed)', 'Chang\'e-1/-2 MRM brightness temperature maps, 3–37 GHz', 'the maps are 2.6 GB FITS cubes and the browse PNGs are plotted figures (axes, grid, colour bar); no fetchable plain map')] },
+  'mercury|xray': { replace: true, img: [WIRED(PDSG, 'MESSENGER XRS Mg/Si map (8-bit IMG, 4 px/°)', PD, '/api/band-archive?id=mercury-xrs-mg-si on Soft 0.1–2.4 keV'),
+    NOT_WIRED(PDSG, 'XRS Al/Si, S/Si, Ca/Si, Fe/Si maps', 'one map per bandpass; Mg/Si (1.25–1.74 keV lines) is inside the soft band')], src: ['Nittler11', 'Nittler20'], fix: '#28: the XRS Mg/Si map is now the real soft X-ray map (day side, northern hemisphere best).' },
+  'mars|gamma': { replace: true, img: [WIRED(PDSG, 'Mars Odyssey GRS water-equivalent H, K, Th, Fe (5° grid, ASCII table)', PD, '/api/band-archive?id=mars-grs-{h2o,k,th,fe} on the nuclear-line passes')], src: ['Evans06', 'Taylor10', 'Boynton07'], fix: '#28: the Odyssey GRS maps are the real maps on the K, H, Th and Fe line passes.' },
+  'titan|ir': { img: [WIRED(TREK, 'Cassini VIMS global mosaics at 2 and 5 µm (32 px/°)', PD, '/api/band-archive?id=titan-vims-{2um,5um} on Ks, F200W and 5 µm')], src: ['LeMouelic19', 'Trek'], fix: '#28: VIMS 2 and 5 µm methane-window mosaics are real maps.' },
+  'titan|microwave': { img: [NOT_WIRED('NASA PDS Imaging (Cassini RADAR BIDR)', 'Cassini 2.2 cm radiometry', 'per-flyby swaths only; no global brightness-temperature mosaic in CDS HiPS, Trek or a single PDS product')] },
+  'enceladus|microwave': { img: [NOT_WIRED('NASA PDS Imaging (Cassini RADAR)', 'Cassini 2.2 cm radiometry', 'per-flyby swaths only; no global map product found')] },
+  'iapetus|microwave': { img: [NOT_WIRED('NASA PDS Imaging (Cassini RADAR)', 'Cassini 2.2 cm radiometry', 'per-flyby swaths only; no global map product found')] },
+  'venus|uv': { replace: true, img: [NOT_WIRED('JAXA DARTS (vco-v-uvi-3-cdr)', 'Akatsuki UVI 283/365 nm', 'calibrated single images (L2b) only in the public PDS3 archive, no longitude–latitude maps or HiPS; a disc image would need per-frame geometry')] },
+  'venus|ir': { replace: true, img: [NOT_WIRED('JAXA DARTS (vco-v-ir2-3-cdr, vco-v-lir-3-cdr)', 'Akatsuki IR2 night side, LIR 10 µm', 'calibrated single images only, no global maps or HiPS'), { archive: 'ESA PSA', what: 'VIRTIS cubes', fetch: 'no' }] },
+  'jupiter|ir': { img: [WIRED('ESA/Webb', 'JWST NIRCam 1.5–3.6 µm disc image, 27 Jul 2022 (jupiter-auroras1)', CCBY, '/api/band-disc?id=webb-jupiter-2022, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on H, Ks, F200W and W1 (Earth-facing side; the far side predicted).' },
+  'jupiter|uv': { img: [WIRED('ESA/Hubble', 'HST STIS far-UV aurora over a WFC3 visible disc, 2016 (heic1613a)', CCBY, '/api/band-disc?id=hubble-jupiter-aurora-2016 on GALEX FUV, Earth-facing side')], src: ['ESAHubble'], fix: '#28: the Hubble aurora disc image on far-UV (only the aurora is ultraviolet; the disc is visible light).' },
+  'jupiter|xray': { img: [NOT_WIRED('NASA/CXC', 'Chandra auroral X-ray images', 'published as overlays on optical discs, not yet licence-checked and measured; deferred')] },
+  'jupiter|radio': { img: [NOT_WIRED('NRAO / ALMA', 'VLA synchrotron and ALMA ammonia images', 'not yet licence-checked and measured; deferred')] },
+  'saturn|ir': { img: [WIRED('ESA/Webb', 'JWST NIRCam F323N 3.23 µm disc image, 25 Jun 2023 (saturn1)', CCBY, '/api/band-disc?id=webb-saturn-2023 on W1, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb 3.23 µm disc image on W1.' },
+  'uranus|ir': { obs: 'image', what: 'JWST NIRCam, Keck, HST near-IR images (rings, polar cap).', mech: 'reflected (methane bands dark)', img: [WIRED('ESA/Webb', 'JWST NIRCam F140M/F300M disc image, 6 Feb 2023 (weic2310a)', CCBY, '/api/band-disc?id=webb-uranus-2023 on J and W1, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on J and W1.' },
+  'neptune|ir': { obs: 'image', what: 'JWST NIRCam, Keck, HST near-IR images (rings, methane-ice clouds).', mech: 'reflected (methane bands dark)', img: [WIRED('ESA/Webb', 'JWST NIRCam 1.4–4.6 µm disc image, 12 Jul 2022 (weic2214c)', CCBY, '/api/band-disc?id=webb-neptune-2022 on H, Ks, F200W, W1 and F444W, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on H, Ks, F200W, W1 and F444W.' },
+};
+for (const [k, v] of Object.entries(K28)) {
+  const o = K[k] ?? {};
+  K[k] = { ...o, ...(v.obs && !K[k] ? { obs: v.obs, what: v.what, mech: v.mech } : {}), img: [...(v.replace ? [] : o.img ?? []), ...v.img],
+    src: [...(o.src ?? []), ...(v.src ?? [])], fix: [o.fix, v.fix].filter(Boolean).join(' ') || null };
+}
+
 // class defaults where nothing body-specific was found in this audit
 const CLASS = {
   planet: { obs: 'none', what: 'No specific observation found in this audit.' },
@@ -216,7 +259,7 @@ const looks = (mod, b, band) => band.passes.map((p) => {
   if (b.id === 'rings') { const r = mod.ringBandLook ? mod.ringBandLook({ id: 'saturn' }, band, p) : { visible: ['visible', 'ir'].includes(band.id), label: ['visible', 'ir'].includes(band.id) ? 'SHOWN (VISIBLE/IR ONLY)' : 'HIDDEN' }; return { pass: p.id, mode: r.visible ? 'ring' : 'hidden', tier: r.tier ?? 'computed', label: r.label }; }
   if (b.kind === 'star') return { pass: p.id, mode: 'star', tier: '—', label: 'Sun: see SystemView applyStarBand (BODY_BAND.sun, SUN_SIGNATURES, blackbody)' };
   const l = mod.bandLook(b, band, p);
-  return { pass: p.id, mode: l.mode, tier: l.tier, label: l.label, ...(l.source ? { map: l.source.hips ?? l.source.gibs ?? l.source.feed } : {}), ...(l.belts ? { belts: +l.belts.toFixed(2) } : {}) };
+  return { pass: p.id, mode: l.mode, tier: l.tier, label: l.label, ...(l.source ? { map: l.source.hips ?? l.source.gibs ?? l.source.feed ?? (l.source.archive && `archive:${l.source.archive.id}`) ?? (l.source.disc && `disc:${l.source.disc.id}`) } : {}), ...(l.belts ? { belts: +l.belts.toFixed(2) } : {}) };
 });
 // looks with the same mode, tier, label and map are listed once with their passes
 const grouped = (ls) => {

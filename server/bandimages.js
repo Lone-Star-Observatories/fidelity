@@ -52,7 +52,7 @@ function pump() {
 export const PREVIEW = { sky: [256, 128], body: [512, 256] };
 const isPreview = (size) => size === 'preview';
 
-async function cachedImage(key, maxAgeMs, fetcher) {
+export async function cachedImage(key, maxAgeMs, fetcher) {
   const file = fileOf(key);
   try {
     const st = await fs.stat(file);

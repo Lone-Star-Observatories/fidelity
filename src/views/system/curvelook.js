@@ -43,7 +43,7 @@ export function prepare(curve) {
 }
 
 // ---- real maps and their bandpasses -----------------------------------------------------------
-const identity = (s) => (s.hips ? `hips:${s.hips}` : s.gibs ? `gibs:${s.gibs}` : s.feed ? `feed:${s.feed}` : JSON.stringify(s));
+const identity = (s) => (s.hips ? `hips:${s.hips}` : s.gibs ? `gibs:${s.gibs}` : s.feed ? `feed:${s.feed}` : s.archive ? `archive:${s.archive.id}` : s.disc ? `disc:${s.disc.id}` : JSON.stringify(s));
 /**
  * The bandpass of one BODY_BAND entry: its own `range: [nmLo, nmHi]` if given; the filter of the pass
  * it is keyed by; for a band-level key, the pass in that band showing the same map, else the union of
@@ -162,8 +162,10 @@ export function curveLook(body, curve) {
     notObserved.length ? `NOT OBSERVED: ${notObserved.map((r) => fmtRange(...r)).join(', ')}.` : null,
     p.desc.composite ? `Colour: three-band composite (blue ${fmtRange(...th[0])}, green ${fmtRange(...th[1])}, red ${fmtRange(...th[2])}).` : null,
   ].filter(Boolean).join(' ');
-  return { mode: mix.real + predicted < 1e-3 ? 'dark' : 'curve', tier: shares[0][0], palette: pal, composite: !!th, label, detail, mix,
-    real: best ? { source: best.source, id: best.id, hue: realHue, palette: best.source.gibs ? 0 : pal, lit: realEff < 2600 && !best.source.gibs } : null,
+  // a whole-disc image covers only the Earth-facing side (#28)
+  const discTag = best?.source.disc ? ` · DISC IMAGE ${best.source.date} · EARTH-FACING SIDE ONLY` : '';
+  return { mode: mix.real + predicted < 1e-3 ? 'dark' : 'curve', tier: shares[0][0], palette: pal, composite: !!th, label: label + discTag, detail, mix,
+    real: best ? { source: best.source, id: best.id, hue: realHue, palette: best.source.gibs || best.source.disc ? 0 : pal, lit: (realEff < 2600 || !!best.source.lit) && !best.source.gibs && !best.source.unlit && !best.source.disc } : null,
     sources: real.list.map((s) => ({ id: s.id, credit: s.source.credit, note: s.source.note, weight: s.weight, drawn: s === best, partial: !!s.source.partial })),
     reflected, thermalPart, glowPart, segments: segs.map((s) => ({ range: [s.seg.lo, s.seg.hi], mode: s.look.mode, w: s.w, label: s.look.label })),
     uncovered, notObserved };

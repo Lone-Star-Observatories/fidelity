@@ -33,11 +33,12 @@ test('the look rule: real image, else predicted from a signature, else not obser
   const at = (b, p) => { const band = bandById(b); return [band, passById(band, p)]; };
   assert.equal(bandLook({ id: 'mars', name: 'Mars' }, ...at('ir', 'ir-12')).mode, 'real');
   assert.equal(bandLook({ id: 'venus', name: 'Venus' }, ...at('radio', 'radio-s')).mode, 'real');
-  const j = bandLook({ id: 'jupiter', name: 'Jupiter' }, ...at('ir', 'ir-Ks'));
+  const j = bandLook({ id: 'jupiter~', name: 'Jupiter' }, ...at('ir', 'ir-Ks')); // under the Webb disc image (#28)
   assert.equal(j.mode, 'reflected'); assert.ok(j.gain < 0.2, 'methane makes Jupiter dark at 2.2 µm');
   const v = bandLook({ id: 'venus', name: 'Venus' }, ...at('uv', 'uv-nuv'));
   assert.ok(v.gain < 0.5, 'the UV absorber darkens Venus');
-  assert.equal(bandLook({ id: 'moon', name: 'Moon' }, ...at('ir', 'ir-W4')).mode, 'thermal');
+  assert.equal(bandLook({ id: 'moon~', name: 'Moon' }, ...at('ir', 'ir-W4')).mode, 'thermal'); // under the Diviner map (#28)
+  assert.equal(bandLook({ id: 'moon', name: 'Moon' }, ...at('ir', 'ir-W4')).mode, 'real');
   assert.equal(bandLook({ id: 'moon', name: 'Moon' }, ...at('gamma')).mode, 'glow');
   // every solid body and atmosphere glows under cosmic rays: detections are cited, the rest predicted
   assert.match(bandLook({ id: 'moon', name: 'Moon' }, ...at('gamma')).label, /DETECTED/);

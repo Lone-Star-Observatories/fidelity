@@ -61,6 +61,10 @@ const PLANET_FRAG = /* glsl */`
   // uBandFade cross-fade a band map's preview into its full resolution (#62).
   uniform vec4 uMix; uniform vec4 uMixPal; uniform mat4 uMixHue; uniform float uGlowGain;
   uniform sampler2D uBandTexPrev; uniform float uBandFade;
+  // A whole-disc image (#28) instead of a map: projected onto the hemisphere facing uDiscE (towards
+  // Earth), the body's north uDiscN at position angle uDiscPA in the image; disc centre uDiscC (uv),
+  // radii uDiscR and image size uDiscWH in pixels. Its alpha is 0 on the far side (the predicted skin).
+  uniform float uDiscOn; uniform vec2 uDiscC; uniform vec2 uDiscR; uniform vec2 uDiscWH; uniform float uDiscPA; uniform vec3 uDiscE; uniform vec3 uDiscN;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   vec3 pal(float t, float p) {
     t = clamp(t, 0.0, 1.0);
@@ -75,7 +79,18 @@ const PLANET_FRAG = /* glsl */`
     return t < 0.333 ? mix(a, b, t * 3.0) : t < 0.666 ? mix(b, c, (t - 0.333) * 3.0) : mix(c, d, (t - 0.666) * 3.0);
   }
   vec3 colz(float x, float p, vec4 hue) { return hue.w > 0.5 ? clamp(x, 0.0, 1.0) * hue.rgb : pal(x, p); }
-  vec4 bandSample() { vec4 c = texture2D(uBandTex, vUv); return uBandFade < 0.999 ? mix(texture2D(uBandTexPrev, vUv), c, uBandFade) : c; }
+  vec4 bandAt(vec2 uv) { vec4 c = texture2D(uBandTex, uv); return uBandFade < 0.999 ? mix(texture2D(uBandTexPrev, uv), c, uBandFade) : c; }
+  vec4 bandSample() {
+    if (uDiscOn < 0.5) return bandAt(vUv);
+    vec3 N = normalize(vNormalW);
+    vec3 up = normalize(uDiscN - uDiscE * dot(uDiscN, uDiscE));
+    vec3 right = normalize(cross(-uDiscE, up));
+    vec2 p = vec2(dot(N, right), dot(N, up)) * uDiscR;
+    float c = cos(uDiscPA), s = sin(uDiscPA);
+    vec4 t = bandAt(uDiscC + vec2(p.x * c - p.y * s, p.x * s + p.y * c) / uDiscWH);
+    t.a *= smoothstep(0.02, 0.2, dot(N, uDiscE));
+    return t;
+  }
   float planckRel(float um, float T, float Tref) { // B_λ(T) / B_λ(Tref)
     float x = min(14387.77 / (um * max(T, 1.0)), 80.0), xr = min(14387.77 / (um * max(Tref, 1.0)), 80.0);
     return (exp(xr) - 1.0) / (exp(x) - 1.0);
@@ -232,6 +247,8 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
       uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
       uBandTexPrev: { value: null }, uBandFade: { value: 1 },
+      uDiscOn: { value: 0 }, uDiscC: { value: new THREE.Vector2(0.5, 0.5) }, uDiscR: { value: new THREE.Vector2(1, 1) }, uDiscWH: { value: new THREE.Vector2(2, 2) },
+      uDiscPA: { value: 0 }, uDiscE: { value: new THREE.Vector3(0, 0, 1) }, uDiscN: { value: new THREE.Vector3(0, 1, 0) },
     },
   });
 }

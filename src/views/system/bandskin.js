@@ -15,6 +15,7 @@
 // Every verdict is audited, with sources, in docs/research/band-audit.json (#61).
 
 import { bodyBandSource } from '../../data/bands.js';
+import { discLabel } from '../../data/bandarchive.js';
 import { bandResponse, curve, effectiveNm, colourIndex } from '../../astro/bands.js';
 import KARKOSCHKA from '../../data/reflectance-karkoschka.js';
 import { brightnessTempK, subsurfaceTemps, synchrotron, ringTbK, REFS, IR_WINDOWS } from '../../data/band-physics.js';
@@ -196,6 +197,7 @@ function longWaveLook(body, pass, nm, pal, t) {
 export function bandLook(body, band, pass) {
   const pal = paletteIndex(band.palette);
   const real = bodyBandSource(body.id, band, pass);
+  if (real?.disc) return { mode: 'real', source: real, tier: 'measured', palette: 0, label: discLabel(real.date), detail: `${real.note}. ${real.credit}. A whole-disc image, drawn on the hemisphere facing Earth; the far side is the predicted skin.` };
   if (real) return { mode: 'real', source: real, tier: 'measured', palette: real.gibs ? 0 : pal, label: real.note ?? 'REAL MAP IN THIS BAND', detail: real.credit };
   const f = pass?.filter;
   const nm = f ? effectiveNm(f) : null;
