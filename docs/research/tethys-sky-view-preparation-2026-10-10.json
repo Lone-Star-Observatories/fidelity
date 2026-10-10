@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-10",
+  "body": "Tethys",
+  "generator": "Built-in imagegen",
+  "generationId": "exec-03ce9444-bbdc-4fe3-9cb3-d93642ee3cf1",
+  "prompt": "Create one independent IMAGINED sky observer scientific concept illustration from the Saturn-facing side of TETHYS, wide landscape16:9, nominal90degree horizontal rectilinear field of view. Invented pale grey cratered ice-rich regolith with scattered angular blocks occupies bottom quarter, airless empty black sky above. Saturn centered near upper middle, planet globe apparent diameter about22.81degrees, approximately20.17percent of entire image width (337pixels in a1672pixel-wide image). Soft understated pale cream/ochre schematic cloud bands, approximate oblate globe. Tethys is near Saturn's equatorial plane: rings nearly edge-on as a thin narrow horizontal line crossing Saturn's equator, NOT broad open elliptical rings. Ring extent, exact phase/latitude/orientation are schematic and uncalibrated with no dated physical registration. No observed Saturn texture or any other body's map may be reused: independently invented schematic bands and local Tethys craters/blocks. Sun outside frame, illumination/exposure artistic, no calibrated colour claim. No atmosphere around Tethys, no plume, mist, exposed ocean, biology, humans, spacecraft or survivable landing. Clear legible bottom-left text exactly 'IMAGINED SKY FROM TETHYS'. No other moons or stars. Single landscape image.",
+  "originalFile": "data/research-sources/tethys-generated-skyImage-original.png",
+  "bytes": 1791155,
+  "sha256": "f316bef5552be0c159f7f6437423ec7b1ab174fc7b57f05c09fd35c0bda9dcf9",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "inspected": true,
+  "geometry": {
+    "angularDiameterDeg": 22.811139484711003,
+    "centreDiscWidthFraction": 0.20173653396099633,
+    "irradianceEarth": 0.0001326907025533526,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical mean-radius angular guide only.95K RGB/irradiance helper not adopted; rings, oblateness, phase, FOV, colour, exposure and registration artistic.",
+    "radiusKm": 58232,
+    "observerDistanceKm": 294468.9,
+    "targetPixels": 337.30348478278586
+  },
+  "rasterAudit": {
+    "row": 200,
+    "thresholdRuns": [
+      {
+        "threshold": 5,
+        "left": 651,
+        "right": 1014,
+        "width": 364
+      },
+      {
+        "threshold": 10,
+        "left": 653,
+        "right": 1014,
+        "width": 362
+      },
+      {
+        "threshold": 20,
+        "left": 653,
+        "right": 1013,
+        "width": 361
+      }
+    ],
+    "limits": "Horizontal upper-globe chords exclude rings; not full calibrated apparent diameter. Threshold dependent; independent illustration only."
+  },
+  "limitations": "Invented craters/blocks/material chemistry/fractions, Saturn bands/nearly-edge-on rings/phase/light/exposure. No observed-body analog map, dated site, atmosphere, plume, ocean, biology or survivable landing."
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; no 55th dossier or embedding",
+  "body": "dione",
+  "generator": "Built-in imagegen",
+  "generationId": "exec-280e9c07-30dc-476b-a104-55996ddfd693",
+  "path": "data/research-sources/dione-generated-surfaceImage-original.png",
+  "prompt": "Create one independent research-guided hypothetical local surface illustration of Saturn's moon DIONE, landscape 16:9. Use no reference images and no reused observed-body maps. Cassini's own monochrome close views show heavily cratered icy terrain; this is NOT a reconstruction of a named site. Invent a cold airless pale gray ice-rich regolith foreground with scattered angular blocks, shallow overlapping impact craters, a modest distant fractured escarpment and low crater rims under oblique dim sunlight, black empty sky. No celestial disks or stars in frame. No atmosphere, clouds, plume, exposed ocean, biology, astronaut, spacecraft or implication of survivable landing. Never use Moon, Mars, Pluto or any other body's geography or recoloured skin. Material fractions, chemistry, roughness, blocks, topography, exposure, colour and light are imagined. Keep the artwork plausible but illustrative, with no diagnostic feature registration. Add a clear legible footer exactly 'IMAGINED \u00b7 LOCAL VIEW OF DIONE' and a smaller second line 'Terrain, materials and lighting are illustrative'. Scientific context artwork for the Fidelity astronomy viewer.",
+  "inspected": true,
+  "limitations": "Independent invented terrain, blocks, craters, fractures, regolith, fractions, chemistry, light, exposure and colour. No analog map reused, registered site, measured geography, calibrated photometry or survivable landing. No angular/raster computation: no celestial disk in frame.",
+  "sourceContext": "docs/research/dione-moon-preparation-2026-10-10.json",
+  "next": "Preserve original; prepare skyGeometry Saturn observer, masters/previews and recover standalone headroom before additive integration.",
+  "bytes": 3067753,
+  "sha256": "58e4ffc6ee790386ec9159a7a6b164fc4c9b474398061d3eb22342d8c04808c1",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "validation": {
+    "testsPassed": 347,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "failed hard budget gate",
+    "attemptedHtmlBytes": 16047772,
+    "excessBytes": 47772,
+    "upstreamIntegrated": "4a2f702",
+    "newEmbedding": false,
+    "remaining": "Recover lossless headroom without dropping upstream features, science, native bytes or fields; rerun full/browser checks before dossier integration."
+  }
+}

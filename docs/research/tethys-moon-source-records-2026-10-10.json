@@ -31,5 +31,20 @@
     "sourcePage": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Tethys",
     "fetchedSourcePath": "data/research-sources/tethys-nasa3d-source-2026-10-10.jpg",
     "sourceByteEqual": true
+  },
+  {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia20/pia20518/PIA20518.jpg?w=640&fit=clip",
+    "path": "data/research-sources/tethys-PIA20518-publisher640.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 24614,
+    "sha256": "1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca",
+    "product": "PIA20518 publisher640 display rendition",
+    "observationDate": "2016-11-10",
+    "publicationDate": "2017-01-23",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "processing": "Unchanged NASA-served JPEG; publisher resizing/reencoding not full pixel preservation. Original native JPEG retained unchanged.",
+    "inspected": true
   }
 ]

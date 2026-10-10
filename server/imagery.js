@@ -41,9 +41,16 @@ export const SURVEYS = {
     credit: 'NRAO VLA Sky Survey, via CDS hips2fits' },
   hi4pi: { hips: 'CDS/P/HI4PI/NHI', band: 'radio', label: 'HI4PI · 21 CM HYDROGEN', range: '1.42 GHz neutral hydrogen',
     credit: 'HI4PI (EBHIS + GASS) neutral-hydrogen column, via CDS hips2fits' },
+  // Not in the imagery cards (hidden): single-band UV maps for the spectrum filter's Magellanic Clouds (#28),
+  // as asinh-stretched PNGs, transparent where there is no data (GALEX skipped the LMC's bright bar; the Swift
+  // UVOT Magellanic Clouds Survey covers it, Siegel et al. 2015, Hagen et al. 2017)
+  galexnuv: { hips: 'CDS/P/GALEXGR6_7/NUV', band: 'uv', label: 'GALEX NUV', range: '175–280 nm', hidden: true, format: 'png', stretch: 'asinh',
+    credit: 'NASA GALEX GR6/7 near-UV, via CDS hips2fits' },
+  uvotw1: { hips: 'nasa.heasarc/P/Swift/UVOT/int_UVW1', band: 'uv', label: 'SWIFT UVOT UVW1', range: '260 nm', hidden: true, format: 'png', stretch: 'asinh',
+    credit: 'NASA Swift UVOT UVW1 intensity (Swift UVOT Magellanic Clouds Survey), HEASARC HiPS via CDS hips2fits' },
 };
 
-export const surveyList = () => Object.fromEntries(Object.entries(SURVEYS).map(([k, s]) => [k, { band: s.band, label: s.label, range: s.range, credit: s.credit }]));
+export const surveyList = () => Object.fromEntries(Object.entries(SURVEYS).filter(([, s]) => !s.hidden).map(([k, s]) => [k, { band: s.band, label: s.label, range: s.range, credit: s.credit }]));
 
 // ---- binary disk cache ---------------------------------------------------------------------
 const imgDir = path.join(config.dataDir, 'imagery');
@@ -94,7 +101,7 @@ async function covers(hips, ra, dec) {
   return value.covered;
 }
 
-/** GET /api/survey/:key?ra=&dec=&fov= → JPEG cutout (fov in degrees, 0.02–60; 512 px square, north up, east left). */
+/** GET /api/survey/:key?ra=&dec=&fov= → JPEG (or, for single-band maps, PNG) cutout (fov in degrees, 0.02–60; 512 px square, north up, east left). */
 export async function surveyCutout(key, q) {
   const s = SURVEYS[key];
   if (!s) throw Object.assign(new Error(`unknown survey ${key}`), { status: 404 });
@@ -106,7 +113,7 @@ export async function surveyCutout(key, q) {
   // round so nearby requests share a cutout: 1/200 of the field
   const step = fov / 200, r = (x) => (Math.round(x / step) * step).toFixed(5);
   const params = new URLSearchParams({ hips: s.hips, width: size, height: size, fov: fov.toPrecision(4), ra: r(ra), dec: r(dec),
-    projection: fov > 30 ? 'AIT' : 'TAN', coordsys: 'icrs', format: 'jpg' });
+    projection: fov > 30 ? 'AIT' : 'TAN', coordsys: 'icrs', format: s.format ?? 'jpg', ...(s.stretch ? { stretch: s.stretch, min_cut: '0.5%', max_cut: '99.8%' } : {}) });
   const out = await cachedBinary(`survey|${params}`, 180 * DAY, async () =>
     ({ ...(await fetchImage(`https://alasky.cds.unistra.fr/hips-image-services/hips2fits?${params}`)), credit: s.credit }));
   return { body: out.body, type: out.type, maxAge: 30 * 86400, headers: { 'x-credit': encodeURIComponent(s.credit), 'x-cache': out.cache } };

@@ -50,10 +50,17 @@ const PLANET_FRAG = /* glsl */`
   // (the Moon for Earth, Earth for the Moon, a moon for Jupiter…) hides from each point.
   uniform float uOccOn; uniform vec3 uOccRel; uniform float uOccR; uniform vec3 uSunRel; uniform float uSunR;
   uniform float uBodyR; uniform vec3 uCentreW; uniform vec3 uUmbraTint;
+  // Planetshine (#49): the parent planet's reflected light on a moon's night side (colour × display exposure)
+  uniform vec3 uPsPos; uniform vec3 uPsCol;
   // The spectrum filter (#28): 0 normal; 1 real band map; 2 predicted reflected; 3 predicted thermal;
   // 4 not observed; 5 modelled high-energy glow. Non-visible bands are false colour (palette).
   uniform float uBandMode; uniform sampler2D uBandTex; uniform vec2 uBandLevels; uniform float uBandGain; uniform float uPalette;
   uniform vec4 uThermal; uniform float uBandUm; uniform float uGlow; uniform vec3 uPoleW; uniform float uBandLit;
+  // 6: a transmission curve (#66): weights uMix (real map, reflected, thermal, glow), each with its
+  // palette (uMixPal) or, in a three-band composite, its hue (uMixHue column, w = 1). uBandTexPrev and
+  // uBandFade cross-fade a band map's preview into its full resolution (#62).
+  uniform vec4 uMix; uniform vec4 uMixPal; uniform mat4 uMixHue; uniform float uGlowGain;
+  uniform sampler2D uBandTexPrev; uniform float uBandFade;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   vec3 pal(float t, float p) {
     t = clamp(t, 0.0, 1.0);
@@ -67,6 +74,8 @@ const PLANET_FRAG = /* glsl */`
     else { b = vec3(0.35, 0.0, 0.35); c = vec3(1.0, 0.3, 0.8); d = vec3(1.0, 0.9, 1.0); }
     return t < 0.333 ? mix(a, b, t * 3.0) : t < 0.666 ? mix(b, c, (t - 0.333) * 3.0) : mix(c, d, (t - 0.666) * 3.0);
   }
+  vec3 colz(float x, float p, vec4 hue) { return hue.w > 0.5 ? clamp(x, 0.0, 1.0) * hue.rgb : pal(x, p); }
+  vec4 bandSample() { vec4 c = texture2D(uBandTex, vUv); return uBandFade < 0.999 ? mix(texture2D(uBandTexPrev, vUv), c, uBandFade) : c; }
   float planckRel(float um, float T, float Tref) { // B_λ(T) / B_λ(Tref)
     float x = min(14387.77 / (um * max(T, 1.0)), 80.0), xr = min(14387.77 / (um * max(Tref, 1.0)), 80.0);
     return (exp(xr) - 1.0) / (exp(x) - 1.0);
@@ -110,8 +119,25 @@ const PLANET_FRAG = /* glsl */`
       // false-colour scale: full brightness at 1.3× the body's hottest modelled temperature
       vec3 thermal = pal(pow(clamp(planckRel(uBandUm, T, 1.3 * max(uThermal.x, uThermal.z)), 0.0, 1.0), 0.35), uPalette);
       vec3 bc;
-      if (uBandMode < 1.5) {
-        vec4 t = texture2D(uBandTex, vUv);
+      if (uBandMode > 5.5) {
+        vec3 acc = vec3(0.0); float ws = 0.0;
+        if (uMix.x > 0.0) {
+          vec4 t = bandSample();
+          float l = pow(clamp((dot(t.rgb, vec3(0.333)) - uBandLevels.x) * uBandLevels.y, 0.0, 1.0), 1.4);
+          vec3 rc = uMixPal.x < 0.5 && uMixHue[0].w < 0.5 ? t.rgb : colz(l * 0.92, uMixPal.x, uMixHue[0]);
+          if (uBandLit > 0.5) rc *= dayK;
+          acc += uMix.x * t.a * rc; ws += uMix.x * t.a; // gaps in a partial map: the predicted parts fill in
+        }
+        if (uMix.y > 0.0) { acc += uMix.y * colz(clamp(dot(base, vec3(0.299, 0.587, 0.114)) * uBandGain * dayK * 1.4, 0.0, 1.0), uMixPal.y, uMixHue[1]); ws += uMix.y; }
+        if (uMix.z > 0.0) { acc += uMix.z * colz(pow(clamp(planckRel(uBandUm, T, 1.3 * max(uThermal.x, uThermal.z)), 0.0, 1.0), 0.35), uMixPal.z, uMixHue[2]); ws += uMix.z; }
+        if (uMix.w > 0.0) {
+          vec3 V = normalize(cameraPosition - vPosW);
+          float g = uGlow < 1.5 ? 0.5 : uGlow < 2.5 ? lit : uGlow < 3.5 ? smoothstep(0.8, 0.96, abs(dot(N, uPoleW))) : pow(1.0 - abs(dot(N, V)), 4.0);
+          acc += uMix.w * colz(g * uGlowGain, uMixPal.w, uMixHue[3]); ws += uMix.w;
+        }
+        bc = ws > 0.0 ? acc / ws : vec3(0.012) + base * 0.012;
+      } else if (uBandMode < 1.5) {
+        vec4 t = bandSample();
         float l = pow(clamp((dot(t.rgb, vec3(0.333)) - uBandLevels.x) * uBandLevels.y, 0.0, 1.0), 1.4);
         // a thermal map of an airless body is a daytime mosaic: the night side is far colder now
         if (uBandLit < 0.5 && uThermal.w > 0.5) l *= mix(0.2, 1.0, pow(clamp(planckRel(uBandUm, T, uThermal.x), 0.0, 1.0), 0.35)); // vs its own day side
@@ -121,12 +147,23 @@ const PLANET_FRAG = /* glsl */`
       } else if (uBandMode < 2.5) {
         bc = pal(clamp(dot(base, vec3(0.299, 0.587, 0.114)) * uBandGain * dayK * 1.4, 0.0, 1.0), uPalette);
       } else if (uBandMode < 3.5) {
-        bc = thermal;
+        bc = thermal * uBandGain;
       } else if (uBandMode < 4.5) {
         bc = vec3(0.012) + base * 0.012;
       } else {
         vec3 V = normalize(cameraPosition - vPosW);
         float g = uGlow < 1.5 ? 0.5 : uGlow < 2.5 ? lit : uGlow < 3.5 ? smoothstep(0.8, 0.96, abs(dot(N, uPoleW))) : pow(1.0 - abs(dot(N, V)), 4.0);
+        float pz = abs(dot(N, uPoleW));
+        if (uGlow > 4.5 && uGlow < 5.5) g = 0.16 * lit + smoothstep(0.86, 0.91, pz) * (1.0 - smoothstep(0.94, 0.985, pz)); // auroral ovals ~15–25° from the poles over a faint disc (#61)
+        else if (uGlow > 5.5 && uGlow < 6.5) { // volcanic hot spots: a sketch, scattered over a cold disc (Io, #61)
+          vec2 cell = vUv * vec2(40.0, 20.0), cid = floor(cell);
+          float h = fract(sin(dot(cid, vec2(12.9898, 78.233))) * 43758.5453);
+          g = 0.05 + 0.08 * lit + step(0.9, h) * smoothstep(0.42, 0.0, length(fract(cell) - 0.5)) * (0.4 + 0.6 * fract(h * 37.0));
+        } else if (uGlow > 6.5) { // Venus near-IR: sunlit cloud tops by day; heat through the windows by night, clouds in silhouette (#61)
+          vec2 q = vUv * vec2(9.0, 6.0);
+          float m = 0.5 + 0.25 * sin(q.x * 3.1 + sin(q.y * 2.3) * 2.0) + 0.25 * sin(q.y * 4.7 + sin(q.x * 1.7) * 3.0);
+          g = lit * 0.85 + (1.0 - smoothstep(-0.05, 0.12, ndl)) * 0.45 * m;
+        }
         bc = pal(g * uBandGain, uPalette);
       }
       gl_FragColor = vec4(bc, uAlphaFromLuma > 0.5 ? 0.0 : 1.0);
@@ -135,6 +172,7 @@ const PLANET_FRAG = /* glsl */`
     }
     // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
     vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK));
+    if (uPsCol.r + uPsCol.g + uPsCol.b > 0.0) col += base * uPsCol * max(dot(N, normalize(uPsPos - vPosW)), 0.0) * (1.0 - smoothstep(-0.05, 0.2, ndl * lightK));
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
       col += texture2D(uNight, vUv).rgb * night * 1.4;
@@ -189,8 +227,11 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
       uOccOn: { value: 0 }, uOccRel: { value: new THREE.Vector3() }, uOccR: { value: 1 }, uSunRel: { value: new THREE.Vector3() }, uSunR: { value: 696000 },
       uBodyR: { value: 1 }, uCentreW: { value: new THREE.Vector3() }, uUmbraTint: { value: new THREE.Color(0, 0, 0) },
+      uPsPos: { value: new THREE.Vector3() }, uPsCol: { value: new THREE.Color(0, 0, 0) },
       uBandMode: { value: 0 }, uBandTex: { value: null }, uBandLevels: { value: new THREE.Vector2(0, 1) }, uBandGain: { value: 1 }, uPalette: { value: 4 },
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
+      uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
+      uBandTexPrev: { value: null }, uBandFade: { value: 1 },
     },
   });
 }

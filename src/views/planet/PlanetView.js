@@ -55,7 +55,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     if (!globeBody || !mats[0]) return;
     const { band, pass } = currentBand();
     applyBandToMaterial(mats[0].uniforms, globeBody, band, pass);
-    if (clouds) clouds.visible = band.id === 'full' || band.id === 'visible';
+    if (clouds) clouds.visible = band.id === 'full' || (band.dominant ?? band.id) === 'visible'; // a custom curve (#66): its dominant band
   }
   onBand(applyBand);
   const sun = new THREE.Vector3(-9, 2, 6); // light from the left, a little towards us

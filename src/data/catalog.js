@@ -10,6 +10,7 @@ import { BESPOKE_TEXTURES } from './bespoke.js';
 const localTextures = { ...SKINS, ...BESPOKE_TEXTURES };
 import { LY_PER_PC } from '../astro/frames.js';
 import { closestTemplate } from '../astro/spectral.js';
+import { indexEntries, search as searchIndex } from './search.js';
 
 const memo = new Map();
 
@@ -219,6 +220,17 @@ export async function fetchObserving(mission) {
     fetch(`/api/observing/${mission}/recent`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ]);
   return { schedule, recent };
+}
+
+/** Stars and exoplanets by any designation (#63): the backend's catalogue search, or the preview's 100 ly names. */
+let snapIndex = null;
+export async function fetchStarSearch(q) {
+  if (snapshot) {
+    snapIndex ??= indexEntries(rowsToObjects(snapshot.nearby).map((s) => ({ kind: s.planets ? 'exoplanet host' : 'star', id: s.id, name: s.name, system: s.system ?? s.id,
+      distLy: Math.hypot(s.x, s.y, s.z) * LY_PER_PC, planets: s.planets ?? 0, spect: s.spect ?? null })));
+    return { q, hits: searchIndex(snapIndex, q, { limit: 24 }).map(({ _keys, ...h }) => h) };
+  }
+  try { return await get(`/api/star-search?q=${encodeURIComponent(q)}`); } catch { return null; }
 }
 
 /** IAU named features for a body (USGS Gazetteer, bundled per body), or null if it has none. */

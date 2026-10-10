@@ -32,7 +32,7 @@ import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
 import { createSiteLayer, siteDir } from './sites.js';
-import { fetchTraverse, fetchFeatures } from '../../data/catalog.js';
+import { fetchTraverse, fetchFeatures, fetchClusters } from '../../data/catalog.js';
 import { createFeatureLayer } from './features.js';
 import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, NAKED_EYE_FOV, C_KM_S } from '../../astro/lookat.js';
 import { createCameraRig, reducedMotion } from '../cameraControls.js';
@@ -40,8 +40,12 @@ import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
-import { starBandDelta, paletteIndex, SUN_SIGNATURES } from './bandskin.js';
-import { bandTexture, hipsUrl, applyBandToMaterial } from './bandtextures.js';
+import { starBandDelta, paletteIndex, SUN_SIGNATURES, ringBandLook } from './bandskin.js';
+import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, FULL_DELAY_MS } from './bandtextures.js';
+import { prepare, skyLayers as curveSkyLayers, curveStarDelta, curveStarRgb, starCurveLook, sunCurveLook } from './curvelook.js';
+import { curveFromLegacy } from '../../data/curve.js';
+import { bandLoads } from '../../data/bandload.js';
+import { currentBand } from '../../data/bandstate.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
 import { createComet, cometMagnitude } from './comet.js';
@@ -52,6 +56,11 @@ import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
 import { createMagFields } from './magfields.js';
+import { createRadioBelts } from './radiobelts.js'; // #61
+import { createSkyGlare } from './skyglare.js';
+import { createSkyLayers } from './skylayers.js';
+import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, litFraction } from '../../astro/planetshine.js';
+import { FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
@@ -92,7 +101,7 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky }) {
   let hiddenKinds = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
   const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
@@ -213,45 +222,94 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // The sky becomes an all-sky survey in the band (CDS HiPS, MEASURED) or, without one, the
   // catalogue stars re-weighted by their blackbody in the band (COMPUTED); bodies take their band
   // look from bandskin.js (real map, predicted skin, modelled glow, or not observed).
-  let band = BANDS[0], pass = null;
+  // A custom transmission curve (#66) blends every overlapping survey by its overlap with T(λ) and
+  // takes each body's look from curvelook.js. Survey previews show at once, full resolution cross-fades in (#62).
+  let band = BANDS[0], pass = null, curve = null; // curve: the #66 curve when it is not one bandpass
   const PAL_RGB = [[1, 1, 1], [1, 0.55, 0.15], [0.3, 0.85, 1], [1, 0.45, 0.2], [1, 1, 1], [0.7, 0.55, 1], [0.4, 0.9, 1], [1, 0.4, 0.9]];
-  const skyBandMat = new THREE.ShaderMaterial({
+  const skyBandMaterial = () => new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, transparent: true,
-    uniforms: { uMap: { value: null }, uOpacity: { value: 0 }, uFade: { value: 1 } },
+    uniforms: { uMap: { value: null }, uPrev: { value: null }, uXf: { value: 1 }, uOpacity: { value: 0 }, uFade: skyMat.uniforms.uFade },
     vertexShader: `varying vec3 vDir; void main() { vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     // scene (x, y, z) = ecliptic (x, z, −y) → equatorial → RA/Dec; the survey is equirectangular in
     // RA/Dec with RA 0 at the centre, increasing to the left
-    fragmentShader: `varying vec3 vDir; uniform sampler2D uMap; uniform float uOpacity; uniform float uFade;
+    fragmentShader: `varying vec3 vDir; uniform sampler2D uMap; uniform sampler2D uPrev; uniform float uXf; uniform float uOpacity; uniform float uFade;
       void main() { vec3 e = vec3(vDir.x, -vDir.z, vDir.y); float ob = 0.40909280;
         vec3 q = vec3(e.x, e.y * cos(ob) - e.z * sin(ob), e.y * sin(ob) + e.z * cos(ob));
         float ra = atan(q.y, q.x), dec = asin(clamp(q.z, -1.0, 1.0));
         vec2 uv = vec2(fract(0.5 - ra / 6.2831853), 0.5 + dec / 3.1415927);
         vec4 t = texture2D(uMap, uv);
+        if (uXf < 0.999) t = mix(texture2D(uPrev, uv), t, uXf); // preview → full resolution (#62)
         gl_FragColor = vec4(t.rgb, t.a * uOpacity * uFade); // transparent where the survey has no data
         #include <colorspace_fragment>
       }`,
   });
-  const skyBand = new THREE.Mesh(new THREE.SphereGeometry(SKY_R * 0.95, 96, 48), skyBandMat);
-  skyBand.renderOrder = -2; skyBand.frustumCulled = false; skyBand.visible = false;
-  scene.add(skyBand);
+  const skyGeo = new THREE.SphereGeometry(SKY_R * 0.95, 96, 48);
+  const skyBands = []; // one sphere per blended survey
+  const skyBandMesh = (i) => {
+    if (!skyBands[i]) {
+      const m = new THREE.Mesh(skyGeo, skyBandMaterial());
+      m.renderOrder = -2 + i * 0.01; m.frustumCulled = false; m.visible = false; m.userData = {};
+      scene.add(m); skyBands[i] = m;
+    }
+    return skyBands[i];
+  };
   const STANDALONE_BANDS = import.meta.env?.MODE === 'standalone';
-  const skyPass = () => (pass?.sky ? pass : band.passes.find((p) => p.sky) ?? null);
+  let skyNow = { layers: [], measured: 0 };
+  const bandCurve = () => (curve ?? (band.id === 'full' ? { full: true } : curveFromLegacy(band.id, pass?.id)));
+
+  /** One survey on sphere `mesh` at `opacity`: preview at once, full resolution cross-faded in. */
+  function showSurvey(mesh, layer, opacity) {
+    const u = mesh.material.uniforms, look = { sky: layer.sky, res: 'loading', label: layer.skyCredit };
+    layer.look = look;
+    const same = mesh.userData.sky === layer.sky && u.uMap.value;
+    mesh.userData.sky = layer.sky; mesh.userData.look = look;
+    if (same) { u.uOpacity.value = opacity; look.res = mesh.userData.res ?? 'full'; return; }
+    u.uOpacity.value = 0; u.uXf.value = 1;
+    const current = () => mesh.userData.look === look;
+    let shown = null;
+    bandTexture(hipsUrl(layer.sky, 'preview')).then((r) => {
+      if (!r || !current() || shown) return;
+      u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'preview'; look.res = mesh.userData.res = 'preview';
+    });
+    const full = new Promise((ok) => setTimeout(ok, FULL_DELAY_MS)).then(() => (!current() ? true : bandTexture(hipsUrl(layer.sky)).then((r) => {
+      if (!current()) return true;
+      if (!r) { look.res = mesh.userData.res = shown ? 'failed-preview' : 'failed'; return null; }
+      if (shown) {
+        u.uPrev.value = u.uMap.value; u.uXf.value = 0;
+        const t0 = performance.now(), step = () => { const k = Math.min(1, (performance.now() - t0) / 600); u.uXf.value = k; if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }
+      u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'full'; look.res = mesh.userData.res = 'full';
+      return true;
+    })));
+    bandLoads.track(full, layer.skyCredit);
+  }
+  // the night sky from a surface (#48): Milky Way, deep-sky objects, constellations
+  const skyTexLoader = new THREE.TextureLoader();
+  const skyLayers = createSkyLayers({ scene, radius: SKY_R, onPick: (o) => onDeepSky?.(o),
+    loadTexture: (url) => (STANDALONE_BANDS ? Promise.resolve(null) : new Promise((res) => skyTexLoader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null)))) });
+  let skyClustersAsked = false;
 
   function applySkyBand() {
     const full = band.id === 'full';
-    const sp = full ? null : skyPass();
-    skyBand.visible = !!sp && !STANDALONE_BANDS;
-    if (sp && !STANDALONE_BANDS) {
-      const url = hipsUrl(sp.sky);
-      skyBandMat.uniforms.uOpacity.value = 0;
-      bandTexture(url).then((r) => { if (r && skyPass()?.sky === sp.sky) { skyBandMat.uniforms.uMap.value = r.texture; skyBandMat.uniforms.uOpacity.value = 1; } });
-    }
+    skyNow = full ? { layers: [], measured: 0 } : curveSkyLayers(bandCurve());
+    const layers = STANDALONE_BANDS ? [] : skyNow.layers;
+    // a running average: layer k drawn at w_k / Σ_{j≤k} w_j over the ones before gives each its weight
+    let acc = 0;
+    skyBands.forEach((m, i) => { if (i >= layers.length) { m.visible = false; m.userData.look = null; } });
+    layers.forEach((L, i) => { acc += L.weight; const m = skyBandMesh(i); m.visible = true; showSurvey(m, L, L.weight / acc); });
     if (!skyBase) return;
     // catalogue stars: shown over a survey only where the survey shows starlight (IR, visible, UV);
-    // re-weighted by their blackbody in the band
+    // re-weighted by their blackbody in the band (a custom curve: integrated through T(λ))
     const n = skyBase.mags.length, mags = new Float32Array(n), cols = new Float32Array(n * 3);
-    const p = pass ?? band.passes[0], tint = PAL_RGB[paletteIndex(band.palette)];
+    const p = pass ?? band.passes[0], tint = PAL_RGB[paletteIndex(band.palette)], sp = layers.length > 0, prep = curve ? prepare(curve) : null;
     for (let i = 0; i < n; i++) {
+      if (prep) {
+        const d = curveStarDelta(skyBase.teff[i], prep.f), c = curveStarRgb(skyBase.teff[i], prep, [skyBase.cols[i * 3], skyBase.cols[i * 3 + 1], skyBase.cols[i * 3 + 2]]), mx = Math.max(...c) || 1;
+        mags[i] = d === -Infinity || sp ? 99 : skyBase.mags[i] - d;
+        cols.set([c[0] / mx, c[1] / mx, c[2] / mx], i * 3);
+        continue;
+      }
       const d = full || band.id === 'visible' && p?.id === 'vis-V' ? 0 : starBandDelta(skyBase.teff[i], p);
       mags[i] = d === -Infinity || sp ? 99 : skyBase.mags[i] - d;
       const c = full || band.id === 'visible' ? [skyBase.cols[i * 3], skyBase.cols[i * 3 + 1], skyBase.cols[i * 3 + 2]] : tint;
@@ -264,16 +322,26 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   /** Set every body's band look and load what it needs. */
   function applyBand() {
     const full = band.id === 'full', p = pass ?? band.passes[0] ?? null;
+    // a custom curve keeps clouds where it is mostly visible light, rings where visible or infrared
+    const dom = curve ? band.dominant : band.id;
     for (const id in nodes) {
       const n = nodes[id], u = n.mesh?.material?.uniforms;
-      if (n.clouds) n.clouds.visible = full || band.id === 'visible';
-      if (n.ring) n.ring.visible = full || band.id === 'visible' || band.id === 'ir';
+      if (n.clouds) n.clouds.visible = full || dom === 'visible';
+      if (n.ring && curve && band.id === 'custom') n.ring.visible = full || dom === 'visible' || dom === 'ir'; // a custom curve: visible/IR rings
+      else if (n.ring) { // #61: rings by their own measured look in the band (reflected ice, cold microwave, O Kα X-rays)
+        const r = ringBandLook(n.body, band, p), t = full ? [1, 1, 1] : r.palette ? PAL_RGB[r.palette] : [1, 1, 1], k = full ? 1 : Math.min(1.6, Math.max(0.12, r.gain));
+        n.ring.visible = r.visible; n.ring.material.color?.setRGB(t[0] * k, t[1] * k, t[2] * k);
+      }
       if (isStar(n.body)) { applyStarBand(n, p); continue; }
       if (!u?.uBandMode) continue;
       n.bandLook = applyBandToMaterial(u, n.body, band, p);
       if (n.clouds?.material?.uniforms?.uBandMode) n.clouds.material.uniforms.uBandMode.value = 0;
     }
     applySkyBand();
+  }
+  /** An SDO frame on the Sun's disc, preview first (#62). */
+  function showSunFeed(n, u, feed, look) {
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;
@@ -284,16 +352,31 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     queueMicrotask(setGlare);
     u.uBandDisk.value = 0;
     if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
-    const src = model.isSol && n.body.id === model.starId ? bodyBandSource('sun', band, p) : null;
+    const sol = model.isSol && n.body.id === model.starId;
+    if (curve) { // a custom curve (#66): SDO where it overlaps, the Sun's signatures, the photosphere through T(λ)
+      const prep = prepare(curve), teff = n.body.teffK ?? 5772;
+      if (sol) {
+        const s = sunCurveLook(prep, teff);
+        n.bandLook = s.look;
+        if (s.feed?.feed && s.realShare >= 0.5 && !STANDALONE_BANDS) { u.uBandTint.value.setRGB(1, 1, 1); showSunFeed(n, u, s.feed.feed, s.look); return; }
+        u.uBandTint.value.setRGB(...s.tint);
+        restoreStarDisk(n);
+        return;
+      }
+      const s = starCurveLook(teff, prep, n.body.name);
+      u.uBandTint.value.setRGB(...s.tint); n.bandLook = s.look;
+      return;
+    }
+    const src = sol ? bodyBandSource('sun', band, p) : null;
     if (src?.feed && !STANDALONE_BANDS) {
       n.bandLook = { mode: 'real', tier: 'measured', label: src.note ?? 'REAL IMAGE IN THIS BAND', detail: src.credit };
-      loadLive(src.feed).then((l) => { if (!l || n.bandLook?.detail !== src.credit) return; u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
+      showSunFeed(n, u, src.feed, n.bandLook);
       u.uBandTint.value.setRGB(1, 1, 1);
       return;
     }
     const tint = PAL_RGB[paletteIndex(band.palette)];
     // the Sun's corona, chromosphere and cosmic-ray glow where its photosphere's blackbody says "nothing"
-    const sig = model.isSol && n.body.id === model.starId ? SUN_SIGNATURES[band.id] : null;
+    const sig = sol ? SUN_SIGNATURES[band.id] : null;
     if (sig) {
       u.uBandTint.value.setRGB(tint[0] * sig.gain, tint[1] * sig.gain, tint[2] * sig.gain);
       n.bandLook = { mode: 'glow', tier: 'modelled', label: sig.label, detail: sig.why };
@@ -681,6 +764,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     clear();
     clearTransfer();
     magFields = null; // its objects hung on the old nodes, disposed by clear()
+    radioBelts = null; // likewise (#61)
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
@@ -959,6 +1043,33 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // sunlight refracted through an occluder's atmosphere into its umbra (Earth: the red eclipsed Moon), MODELLED
   const UMBRA_TINT = { earth: [0.42, 0.13, 0.05] };
   const shadowTmp = { c: new THREE.Vector3(), s: new THREE.Vector3(), o: new THREE.Vector3(), best: new THREE.Vector3() };
+  /**
+   * Planetshine (#49): each moon of a planet in PLANETSHINE gets a second light from its parent,
+   * p·(R/d)²·Φ(α) of its sunlight (true geometry), shown through planetshineDisplay's exposure.
+   */
+  const psState = {}; // moon id → { f, alpha, parent } for panels and the surface view
+  function planetshineAt(id, jd) { // call with unmapped = true
+    const b = nodes[id]?.body, spec = b?.kind === 'moon' && PLANETSHINE[b.parent];
+    if (!spec || !nodes[b.parent]) return null;
+    const P = scenePosition(b.parent, jd, new THREE.Vector3()), M = scenePosition(id, jd, new THREE.Vector3()).sub(P), S = scenePosition(model.starId, jd, new THREE.Vector3()).sub(P);
+    const alpha = angleBetween(S.toArray(), M.toArray());
+    return (psState[id] = { f: planetshineFraction(spec.p, nodes[b.parent].body.radiusKm, M.length() * AU_KM, alpha), alpha, parent: b.parent, name: spec.name, spec });
+  }
+  function updatePlanetshine(jd) {
+    if (!model?.isSol) return;
+    unmapped = true;
+    try {
+      for (const m of lit) {
+        const st = planetshineAt(m.userData.body, jd);
+        if (!st) continue;
+        const { f, spec } = st, b = nodes[m.userData.body].body;
+        const k = settings.get('planetshine') === false ? 0 : planetshineDisplay(f);
+        m.uniforms.uPsCol.value.setRGB(spec.tint[0] * k, spec.tint[1] * k, spec.tint[2] * k);
+        m.uniforms.uAmbient.value = k > 0 ? 0.008 : 0.035; // the fake ambient gives way to the real light
+        m.uniforms.uPsPos.value.copy(nodes[b.parent].pos).add(root.position);
+      }
+    } finally { unmapped = false; }
+  }
   function updateShadows(jd) {
     if (!model?.isSol) return;
     const truePos = {};
@@ -1027,6 +1138,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
 
   // ---- magnetic fields (#38) ---------------------------------------------------------------------
   let magFields = null;
+  let radioBelts = null; // #61
   const magTmp = new THREE.Vector3(), magTmp2 = new THREE.Vector3();
   function updateMagFields(jd, now) {
     if (!model?.isSol) return;
@@ -1212,7 +1324,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }, 260);
   });
   labels.domElement.addEventListener('dblclick', (e) => {
-    if (surface) return;
+    if (surface) { zoomOnDisc(e); return; }
     clearTimeout(clickTimer);
     const hit = pick(e);
     if (!hit) return;
@@ -1227,7 +1339,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // ---- surface view: stand where you double-clicked and look up ---------------------------
   // The camera sits 2 m above the surface, turns with the body, and starts at the zenith.
   // TRUE scale while standing (the sky must be real); drag to look around, wheel to zoom.
-  let surface = null; // { id, object, local (object frame), normal (object frame), az, alt, fov, prevScale, sphere }
+  let surface = null, skyGlare = null; // { id, object, local (object frame), normal (object frame), az, alt, fov, prevScale, sphere }
   const hud = document.createElement('div');
   hud.className = 'surface-hud';
   hud.hidden = true;
@@ -1238,21 +1350,37 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // turn to the Sun (and zoom in): the way to watch an eclipse (#31)
   const hudSun = Object.assign(document.createElement('button'), { className: 'pill', textContent: '☉ LOOK AT THE SUN' });
   hudSun.addEventListener('click', () => { if (surface) surface.lookSun = true; });
+  // field-of-view presets and the optional (labelled) enlarged Sun and Moon (#47)
+  const hudFov = document.createElement('div');
+  hudFov.className = 'surface-presets';
+  const presetBtns = FOV_PRESETS.map((p) => {
+    const b = Object.assign(document.createElement('button'), { className: 'pill', textContent: `${p.label} ${p.deg}°`, title: p.note });
+    b.addEventListener('click', () => { if (surface) { surface.fov = presetFov(p, camera.aspect); surface.preset = p.id; } });
+    return b;
+  });
+  const hudBig = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'TRUE SIZE', title: 'Sun and Moon at their true angular size. Click to enlarge them ×4 (labelled IMAGINED) for visibility.' });
+  hudBig.addEventListener('click', () => { if (surface) surface.enlarge = surface.enlarge === 1 ? 4 : 1; });
+  hudFov.append(...presetBtns, hudBig);
+  // from a moon: find the parent planet (#49)
+  const hudPlanet = Object.assign(document.createElement('button'), { className: 'pill', hidden: true });
+  hudPlanet.addEventListener('click', () => { if (surface) surface.lookParent = true; });
+  const planetArrow = Object.assign(document.createElement('div'), { className: 'edge-beacon planet-arrow', hidden: true });
+  planetArrow.innerHTML = '<span class="arrow">▲</span><span class="txt"></span>';
+  container.appendChild(planetArrow);
+  const parentTag = (() => { const el = document.createElement('div'); el.className = 'nav-label host parent-tag'; const o = new CSS2DObject(el); o.center.set(-0.08, 0.5); o.visible = false; scene.add(o); return o; })();
   // LOOK AT (#43): what you're looking at, and buttons to re-track it, go naked-eye, or toggle light-time
   const hudLook = document.createElement('div');
   hudLook.className = 'surface-look';
   const hudTrack = Object.assign(document.createElement('button'), { className: 'pill', textContent: '⌖ TRACK', title: 'Keep the target centred' });
   hudTrack.addEventListener('click', () => { if (surface?.look) { surface.look.track = true; } });
-  const hudEye = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'NAKED EYE', title: `A ${NAKED_EYE_FOV}° field, as your eyes see it` });
-  hudEye.addEventListener('click', () => { if (surface) surface.fov = NAKED_EYE_FOV; });
-  const hudFit = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'TELESCOPE', title: 'Zoom so the target fills a quarter of the field' });
+  const hudFit = Object.assign(document.createElement('button'), { className: 'pill', textContent: '⤢ FIT TARGET', title: 'Zoom so the target fills a quarter of the field' });
   hudFit.addEventListener('click', () => { if (surface?.look) surface.look.fitted = false; });
   const hudLt = Object.assign(document.createElement('button'), { className: 'pill', textContent: 'APPARENT', title: 'Apparent: where it was when its light left (as astronomers see it). Geometric: where it is now.' });
   hudLt.addEventListener('click', () => { if (surface?.look) { surface.look.apparent = !surface.look.apparent; hudLt.textContent = surface.look.apparent ? 'APPARENT' : 'GEOMETRIC'; } });
   const hudLookBtns = document.createElement('div');
   hudLookBtns.className = 'surface-look-btns';
-  hudLookBtns.append(hudTrack, hudEye, hudFit, hudLt);
-  hud.append(hudText, hudSub, hudLook, hudBack, hudSun, hudLookBtns);
+  hudLookBtns.append(hudTrack, hudFit, hudLt); // field presets (NAKED EYE … TELESCOPE) are in the #47 row
+  hud.append(hudText, hudSub, hudLook, hudBack, hudSun, hudPlanet, hudLookBtns, hudFov);
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1278,7 +1406,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (!n) return;
     const sphere = object === n.mesh;
     surface = { id, object, local, normal: sphere ? local.clone().normalize() : normal.normalize(), az: 0, alt: 90, fov: 70,
-      prevScale: settings.get('scale'), sphere, frame: null };
+      prevScale: settings.get('scale'), sphere, frame: null, enlarge: 1, preset: null, sizes: null };
+    scaleMix = 1; // TRUE scale at once: an easing disc would be the wrong size for its first seconds
     flight = null;
     focusId = id;
     anchorId = id; // FREE MOVE resumes from this body when we leave the surface
@@ -1294,9 +1423,13 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     surface = null;
     hud.hidden = true;
     hudLook.textContent = '';
-    for (const c of [...compass, zenithTag]) c.visible = false;
+    for (const c of [...compass, zenithTag, parentTag]) c.visible = false;
+    planetArrow.hidden = true;
     skyMat.uniforms.uFade.value = 1;
     scene.background = null;
+    skyGlare?.hide();
+    const g = nodes[model?.starId]?.mesh?.children?.find((ch) => ch.isSprite);
+    if (g) g.visible = true;
     camera.fov = 50; camera.updateProjectionMatrix();
     camera.up.set(0, 1, 0);
     controls.enabled = rig.mode === 'orbit';
@@ -1325,7 +1458,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   labels.domElement.addEventListener('wheel', (e) => {
     if (!surface) return;
     e.preventDefault();
-    surface.fov = Math.max(surface.look ? 0.02 : 2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+    surface.fov = Math.max(surface.look ? 0.02 : 0.2, Math.min(110, surface.fov * Math.exp(e.deltaY * 0.001)));
+    surface.preset = null;
   }, { passive: false });
 
   const sv = { a: new THREE.Vector3(), b: new THREE.Vector3(), c: new THREE.Vector3(), d: new THREE.Vector3(), e: new THREE.Vector3(), q: new THREE.Quaternion() };
@@ -1354,6 +1488,57 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       n.group.visible = show;
       n.label.visible = show;
     }
+    if (parentTag.visible && nodes[here.parent]) nodes[here.parent].label.visible = false; // its fuller tag stands in (#49)
+  }
+  /**
+   * From a moon (#49): the parent planet's label with size and phase, an arrow at the screen edge
+   * when it is out of view, LOOK AT, and where it cannot be seen (below the horizon, or never from
+   * the far side of a tidally locked moon).
+   */
+  function updateParentFinder(s, n, p, f, sunPos, disc) {
+    const b = n.body, pn = b.kind === 'moon' && nodes[b.parent];
+    hudPlanet.hidden = !pn;
+    if (!pn || !disc) { parentTag.visible = false; planetArrow.hidden = true; s.parentNote = null; return; }
+    const pos = disc.pos, a = altAz(f, pos.clone().sub(p).toArray());
+    const lit = litFraction(angleBetween(sunPos.clone().sub(pos).toArray(), p.clone().sub(pos).toArray()));
+    const name = pn.body.name.toUpperCase(), deg = disc.deg;
+    const sz = deg >= 1 ? `${deg.toFixed(1)}°` : `${deg.toFixed(2)}°`;
+    if (s.lookParent) { s.az = a.az; s.alt = Math.min(89.9, Math.max(-5, a.alt)); s.fov = Math.min(110, Math.max(deg * 4, 1)); s.preset = null; s.lookParent = false; if (s.look) s.look.track = false; if (a.alt < 0) flashHud(`${name} IS BELOW THE HORIZON`); }
+    hudPlanet.textContent = `◉ LOOK AT ${name}`;
+    // a locked moon keeps its parent fixed in the sky: below the horizon means never (bar libration)
+    const libration = b.id === 'moon' ? 8 : 1; // the Moon's optical libration reaches ~8°; the others' is tiny
+    s.parentNote = a.alt >= 0 ? null : b.locked ? (a.alt < -libration ? `${name} NEVER RISES FROM HERE (FAR SIDE)` : `${name} SITS ON THE HORIZON; LIBRATION LIFTS IT INTO VIEW AT TIMES`) : `${name} IS BELOW THE HORIZON`;
+    parentTag.element.textContent = `${name} · ${sz} · ${Math.round(lit * 100)}% LIT`;
+    parentTag.element.title = `Apparent diameter (COMPUTED) and the lit fraction of its disc, (1 + cos phase angle)/2. ${psState[b.id] ? `${psState[b.id].name} here: ${psState[b.id].f.toExponential(1)} of sunlight.` : ''}`;
+    parentTag.position.copy(pos);
+    const q = pos.clone().project(camera), onScreen = q.z < 1 && Math.abs(q.x) < 0.98 && Math.abs(q.y) < 0.98;
+    parentTag.visible = onScreen && a.alt > -0.5;
+    planetArrow.hidden = onScreen;
+    if (!onScreen) {
+      let x = q.x, y = q.y;
+      if (q.z > 1) { x = -x; y = -y; }
+      const mx = Math.max(Math.abs(x), Math.abs(y)) || 1; x /= mx; y /= mx;
+      const W = container.clientWidth, H = container.clientHeight, inset = 60;
+      planetArrow.style.left = `${inset + ((x + 1) / 2) * (W - 2 * inset)}px`;
+      planetArrow.style.top = `${inset + ((-y + 1) / 2) * (H - 2 * inset)}px`;
+      planetArrow.querySelector('.arrow').style.transform = `rotate(${Math.atan2(x, y)}rad)`;
+      planetArrow.querySelector('.txt').textContent = s.parentNote ?? `${name} · ${Math.round(a.alt)}° UP · AZ ${Math.round(a.az)}° · ${sz} · ${Math.round(lit * 100)}% LIT`;
+    }
+  }
+  /** Double-click in the surface view: frame the Sun, Moon or planet nearest the cursor (#47). */
+  function zoomOnDisc(e) {
+    const s = surface, r = renderer.domElement.getBoundingClientRect();
+    let best = null;
+    for (const d of s.sizes ?? []) {
+      const q = d.pos.clone().project(camera);
+      if (q.z > 1) continue;
+      const px = Math.hypot(((q.x + 1) / 2) * r.width + r.left - e.clientX, ((1 - q.y) / 2) * r.height + r.top - e.clientY);
+      if (px < 60 && (!best || px < best.px)) best = { ...d, px };
+    }
+    if (!best) return;
+    const f = s.frame, a = altAz(f, best.pos.clone().sub(camera.position).toArray());
+    s.az = a.az; s.alt = Math.min(89.9, a.alt); s.fov = Math.max(0.2, Math.min(110, best.deg * 3)); s.preset = null;
+    if (s.look) s.look.track = false;
   }
   // ---- the corona in totality (#31) -----------------------------------------------------------
   // A real photograph of the corona fades in when the Moon fully covers the Sun, its streamer
@@ -1482,9 +1667,33 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     s.eclipse = s.id === 'earth' && llNow && model.isSol ? eclipseDaylight(jd, llNow.lat, llNow.lon, surfacePoint) : null;
     if (s.eclipse) day *= s.eclipse.light;
     updateCorona(p, s.eclipse);
-    // the Sun's glare sprite goes with the sunlight that is left
+    // the Sun's glare (#47): the orbit-view sprite goes; a glare fixed in the observer's field, as
+    // bright as the sunlight that reaches the ground, takes over outside the exact disc
     const glare = nodes[model.starId]?.mesh?.children?.find((ch) => ch.isSprite);
-    if (glare) glare.material.opacity = 0.85 * (s.eclipse ? 1 - s.eclipse.obscuration : 1);
+    if (glare) glare.visible = false;
+    const sunPos = star.group.getWorldPosition(sv.d.clone());
+    const sunDistKm = sunPos.distanceTo(p) * AU_KM;
+    const sunDeg = angularDiameterDeg(star.body.radiusKm, sunDistKm);
+    skyGlare ??= createSkyGlare(scene);
+    const hasAir = !!DAY_SKY[s.id] && !DAY_SKY[s.id].always;
+    skyGlare.update({ sunPos, eye: p, camera, sunRadiusDeg: (sunDeg / 2) * s.enlarge, fovDeg: s.fov,
+      strength: glareStrength(sunDistKm / AU_KM, sun.alt, { obscuration: s.eclipse?.obscuration ?? 0, k: hasAir ? 0.2 : 0 }) * 0.9 });
+    // apparent sizes of the Sun and the other big discs in this sky, true and as rendered
+    const discs = [{ id: model.starId, label: 'SUN', pos: sunPos, deg: sunDeg }];
+    const other = s.id === 'earth' ? 'moon' : n.body.kind === 'moon' ? n.body.parent : null;
+    if (other && nodes[other]) {
+      const on = nodes[other], op = on.group.getWorldPosition(new THREE.Vector3());
+      discs.push({ id: other, label: on.body.name.toUpperCase(), pos: op, deg: angularDiameterDeg(on.body.radiusKm, op.distanceTo(p) * AU_KM) });
+    }
+    for (const d of discs) { // rendered: the mesh's world radius over its distance (TRUE scale makes them equal)
+      const m = nodes[d.id].mesh;
+      if (s.enlarge !== 1) nodes[d.id].tilt.scale.multiplyScalar(s.enlarge);
+      m.updateWorldMatrix(true, false);
+      const wr = new THREE.Vector3().setFromMatrixScale(m.matrixWorld).x;
+      d.renderedDeg = (2 * Math.asin(Math.min(1, wr / d.pos.distanceTo(p))) * 180) / Math.PI;
+    }
+    s.sizes = discs;
+    updateParentFinder(s, n, p, f, sunPos, discs[1]);
     if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
@@ -1500,9 +1709,17 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
     const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ` · TOTAL ECLIPSE: TOTALITY${coronaTxt}` : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN${coronaTxt}`) : '';
     const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
-    const sub = `${look} · ${sunTxt} · FOV ${Math.round(s.fov)}°${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    const dp = (x) => (x >= 1 ? x.toFixed(1) : x >= 0.1 ? x.toFixed(2) : x >= 0.01 ? x.toFixed(3) : `${(x * 3600).toFixed(1)}″`).replace(/(\d)$/, '$1°');
+    const sizes = `${discs.map((d) => `${d.label} ${dp(d.deg)}`).join(' · ')}${s.enlarge !== 1 ? ` · SUN & ${discs[1]?.label ?? 'MOON'} ENLARGED ×${s.enlarge} (IMAGINED, NOT TRUE SIZE)` : ''}`;
+    const hfov = horizontalFov(s.fov, camera.aspect);
+    const fovTxt = `FOV ${hfov < 10 ? hfov.toFixed(1) : Math.round(hfov)}° × ${s.fov < 10 ? s.fov.toFixed(1) : Math.round(s.fov)}°${s.preset ? ` (${FOV_PRESETS.find((x) => x.id === s.preset).label})` : ''}`;
+    presetBtns.forEach((b, i) => b.classList.toggle('on', s.preset === FOV_PRESETS[i].id));
+    hudBig.textContent = s.enlarge === 1 ? 'TRUE SIZE' : `ENLARGED ×${s.enlarge}`;
+    hudBig.classList.toggle('on', s.enlarge !== 1);
+    const sub = `${look} · ${sunTxt}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
+    hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
   }
 
   // ---- LOOK AT (#43) ---------------------------------------------------------------------------
@@ -1798,8 +2015,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (!model) return;
     const jd = clock.jd;
 
-    const targetMix = settings.get('scale') === 'true' ? 1 : 0;
+    const targetMix = settings.get('scale') === 'true' || surface ? 1 : 0;
     scaleMix += (targetMix - scaleMix) * 0.08;
+    if (surface) scaleMix = 1;
     if (Math.abs(targetMix - scaleMix) < 1e-3) scaleMix = targetMix;
     const showLabels = settings.get('labels'), showOrbits = settings.get('orbits');
 
@@ -1912,11 +2130,16 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (!surface && Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
     updateShadows(jd);
+    updatePlanetshine(jd);
     updateEclipseLines(jd);
     updateTracks(jd);
     updateMissions(jd);
     updateTransfer(jd);
     updateMagFields(jd, now);
+    if (model?.isSol && band.id !== 'full') { // Jupiter's synchrotron belts in radio bands (#61)
+      radioBelts ??= createRadioBelts({ radial: (body, r) => localMap(body, magTmp.set((r * body.radiusKm) / AU_KM, 0, 0)).length() / displayRadius(body) });
+      radioBelts.update(nodes, `${scaleMix.toFixed(3)}|${model.scale}`, PAL_RGB[paletteIndex(band.palette)]);
+    } else radioBelts?.update({}, '', [0, 0, 0]);
     for (const id in nodes) {
       const c = nodes[id].clouds;
       if (c) {
@@ -1929,6 +2152,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
+    // the night sky from a surface (#48)
+    if (surface && !skyClustersAsked) { skyClustersAsked = true; fetchClusters().then((d) => skyLayers.setClusters(d)).catch(() => {}); }
+    skyLayers.update({ on: !!surface && band.id === 'full', fade: skyMat.uniforms.uFade.value, camera,
+      flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
     const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
     else {
@@ -1957,12 +2184,16 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
 
   return {
     /** The spectrum filter (#28): band id and bandpass id (null = the band's default). */
-    setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); applyBand(); },
-    get band() { return { band, pass: pass ?? band.passes[0] ?? null }; },
-    /** How body `id` is drawn in the current band: { mode, tier, label, detail } or null in full spectrum. */
+    setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); curve = null; applyBand(); },
+    /** The spectrum control's curve (#66): follows the shared state (bandstate.js currentBand()). */
+    setCurve() { const cb = currentBand(); band = cb.band; pass = cb.pass; curve = cb.custom ? cb.curve : null; applyBand(); },
+    get band() { return { band, pass: pass ?? band.passes[0] ?? null, curve }; },
+    /** How body `id` is drawn in the current band: { mode, tier, label, detail, res } or null in full spectrum. */
     bandLookOf: (id) => nodes[id]?.bandLook ?? null,
-    /** The sky survey in use, or null. */
-    bandSky: () => (band.id === 'full' ? null : (pass?.sky ? pass : band.passes.find((x) => x.sky)) ?? null),
+    /** The sky survey in use (the most heavily weighted), or null. */
+    bandSky: () => (band.id === 'full' ? null : skyNow.layers[0] ?? null),
+    /** Every survey blended into the sky: [{ sky, skyCredit, weight, look: { res } }] and the measured fraction. */
+    bandSkies: () => (band.id === 'full' ? { layers: [], measured: 0 } : skyNow),
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load,
@@ -2044,6 +2275,23 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       surface.lookSun = lookSun;
       surface.lookBest = look === 'best';
       surface.daylight = daylight;
+      return true;
+    },
+    /** Planetshine on a moon now (#49): { f (fraction of sunlight), alpha (phase angle at the planet), parent, name } or null. */
+    planetshineOf(id) {
+      if (psState[id] || !model?.isSol) return psState[id] ?? null;
+      unmapped = true;
+      try { return planetshineAt(id, clock.jd); } finally { unmapped = false; }
+    },
+    /** The surface view's apparent sizes (#47): [{ id, label, deg (true), renderedDeg }], and the field. */
+    surfaceInfo() { return surface ? { fov: surface.fov, hfov: horizontalFov(surface.fov, camera.aspect), preset: surface.preset, enlarge: surface.enlarge, az: surface.az, alt: surface.alt,
+      sizes: (surface.sizes ?? []).map(({ id, label, deg, renderedDeg }) => ({ id, label, deg, renderedDeg })) } : null; },
+    /** Point the surface camera: { az, alt, fov, preset, enlarge } (any subset). */
+    surfaceLook(o = {}) {
+      if (!surface) return false;
+      if (o.preset) { const p = FOV_PRESETS.find((x) => x.id === o.preset); if (p) { surface.fov = presetFov(p, camera.aspect); surface.preset = p.id; } }
+      for (const k of ['az', 'alt', 'fov', 'enlarge']) if (o[k] != null) surface[k] = o[k];
+      if (o.target) { const d = (surface.sizes ?? []).find((x) => x.id === o.target); if (d && surface.frame) { const a = altAz(surface.frame, d.pos.clone().sub(camera.position).toArray()); surface.az = a.az; surface.alt = Math.min(89.9, a.alt); } }
       return true;
     },
     /** #36: the surface view as a JPEG data URL (≤ maxW px wide) with its read-out, or null when not standing. */

@@ -79,44 +79,73 @@ export const passById = (band, id) => band.passes.find((p) => p.id === id) ?? ba
 // Real maps of bodies, by bandpass id (or band id for any pass in the band).
 //   hips: a planetary HiPS (equirectangular via hips2fits, longitude −180…180); gibs: NASA GIBS
 //   WMS layers (yesterday); feed: a live feed id (server/feeds.js); credit, and a note when the map
-//   is in a neighbouring bandpass rather than the selected one.
+//   is in a neighbouring bandpass rather than the selected one; partial: swaths with gaps;
+//   range: [nmLo, nmHi], the nominal wavelength span the map itself represents (#61). A band-level
+//   key applies to every pass in the band, so it is used only where the map fits them all; the
+//   #61 audit (docs/research/band-audit.json) removed fallbacks that put, e.g., a 12.6 µm thermal
+//   map on 2MASS J or a 12.6 cm radar image on the 408 MHz sky.
+const THEMIS_DAY = { hips: 'CDS/P/Mars/THEMIS-Day-100m-v12', credit: 'NASA/ASU Mars Odyssey THEMIS daytime IR mosaic, band 9 (12.6 µm) (CDS HiPS)', range: [12160, 12980] };
+const AIA = (a, extra) => ({ feed: `sdo-${a}`, credit: `NASA SDO AIA ${a} Å via Helioviewer`, range: a > 500 ? [a / 10 - 5, a / 10 + 5] : [a / 10 - 0.1, a / 10 + 0.1], ...extra });
+const MDIS_750 = { hips: 'CDS/P/Mercury/MESSENGER-MDIS-LOI-166m', credit: 'NASA/JHUAPL/CIW MESSENGER MDIS low-incidence global mosaic, NAC and WAC 750 nm (CDS HiPS)', range: [700, 800] };
+const CLEM_750 = { hips: 'CDS/P/Moon/Clementine-750nm-118m', credit: 'Clementine UVVIS 750 nm mosaic (NASA/USGS; CDS HiPS)', range: [745, 755] };
+const WAC_643 = { hips: 'CDS/P/Moon/LROC-WAC-100m', credit: 'NASA/GSFC/ASU LRO Wide Angle Camera global morphologic map, 643 nm band (CDS HiPS)', range: [623, 663] };
+const GOES_13 = 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_Infrared,Himawari_AHI_Band13_Clean_Infrared';
+const ghzNm = (g) => 299792458 / g;
+const NORH17 = [ghzNm(17.017), ghzNm(16.983)], NORH34 = [ghzNm(34.05), ghzNm(33.95)];
+const NORH_CREDIT = (g) => `Nobeyama Radioheliograph ${g} GHz, operated by NAOJ/ICCON: archival full-disc map of 7 January 2014 (brightness temperature; NoRH closed in 2020)`;
 export const BODY_BAND = {
   sun: {
-    'uv-1600': { feed: 'sdo-1600', credit: 'NASA SDO AIA 1600 Å via Helioviewer' }, 'uv-1700': { feed: 'sdo-1700', credit: 'NASA SDO AIA 1700 Å via Helioviewer' },
-    'x-94': { feed: 'sdo-94', credit: 'NASA SDO AIA 94 Å via Helioviewer' }, 'x-131': { feed: 'sdo-131', credit: 'NASA SDO AIA 131 Å via Helioviewer' },
-    'x-171': { feed: 'sdo-171', credit: 'NASA SDO AIA 171 Å via Helioviewer' }, 'x-193': { feed: 'sdo-193', credit: 'NASA SDO AIA 193 Å via Helioviewer' },
-    'x-211': { feed: 'sdo-211', credit: 'NASA SDO AIA 211 Å via Helioviewer' }, 'x-304': { feed: 'sdo-304', credit: 'NASA SDO AIA 304 Å via Helioviewer' },
-    'x-335': { feed: 'sdo-335', credit: 'NASA SDO AIA 335 Å via Helioviewer' },
-    xray: { feed: 'sdo-94', credit: 'NASA SDO AIA 94 Å via Helioviewer', note: 'EUV 94 Å (6 MK corona): the hottest SDO channel, nearest to soft X-rays' },
-    uv: { feed: 'sdo-1600', credit: 'NASA SDO AIA 1600 Å via Helioviewer', note: 'AIA 1600 Å: the nearest solar UV channel' },
+    'uv-1600': AIA(1600), 'uv-1700': AIA(1700),
+    'x-94': AIA(94), 'x-131': AIA(131), 'x-171': AIA(171), 'x-193': AIA(193), 'x-211': AIA(211), 'x-304': AIA(304), 'x-335': AIA(335),
+    'x-soft': AIA(94, { note: 'EUV 94 Å (6 MK corona): the hottest SDO channel, nearest to soft X-rays' }),
+    'uv-fuv': AIA(1600, { note: 'AIA 1600 Å: the nearest solar UV channel' }),
+    'uv-lya': AIA(1600, { note: 'AIA 1600 Å: the nearest SDO channel to Lyman-α, the Sun\'s brightest UV line' }),
+    // microwave (#28): archival Nobeyama Radioheliograph maps (server/solarradio.js); range = the map's wavelength span (nm)
+    'mw-ku': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
+    'mw-23': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
+    'mw-33': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm) · archival, 2014' },
+    'mw-41': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    'mw-61': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    'mw-94': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
+    microwave: { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm) · archival, 2014' },
   },
   earth: {
-    'ir-10': { gibs: 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_Infrared,Himawari_AHI_Band13_Clean_Infrared', credit: 'NOAA GOES-16/18 ABI and JMA Himawari-9 AHI band 13 (10.3 µm), via NASA GIBS; Europe/Africa not covered (Meteosat not in GIBS)', partial: true },
-    ir: { gibs: 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_Infrared,Himawari_AHI_Band13_Clean_Infrared', credit: 'GOES / Himawari 10.3 µm via NASA GIBS', note: '10.3 µm clean IR window: cloud tops cold (bright), ground warm', partial: true },
-    uv: { gibs: 'OMPS_Aerosol_Index', credit: 'NASA OMPS UV aerosol index (from 340/380 nm radiances), via NASA GIBS', note: 'UV aerosol index: smoke and dust absorbing ultraviolet', partial: true },
+    'ir-10': { gibs: GOES_13, credit: 'NOAA GOES-16/18 ABI and JMA Himawari-9 AHI band 13 (10.3 µm), via NASA GIBS; Europe/Africa not covered (Meteosat not in GIBS)', partial: true, range: [10100, 10600] },
+    'ir-12': { gibs: GOES_13, credit: 'GOES / Himawari 10.3 µm via NASA GIBS', note: '10.3 µm clean IR window, the nearest mapped band: cloud tops cold (bright), ground warm', partial: true, range: [10100, 10600] },
+    uv: { gibs: 'OMPS_Aerosol_Index', credit: 'NASA OMPS UV aerosol index (from 340/380 nm radiances), via NASA GIBS', note: 'UV aerosol index: smoke and dust absorbing ultraviolet', partial: true, range: [340, 380] },
+    // microwave (#28): GPM GMI brightness-temperature colour composite (ascending + descending passes); radio: SMAP's 1.41 GHz radiometer
+    microwave: { gibs: 'GMI_Brightness_Temp_Dsc,GMI_Brightness_Temp_Asc', range: [ghzNm(183.31), ghzNm(10.65)], partial: true,
+      credit: 'NASA/JAXA GPM Microwave Imager (GMI) brightness temperature, three-channel colour composite (Negri et al. 1989) of its 10–183 GHz channels, via NASA GIBS; daily swaths, gaps between orbits',
+      note: 'GPM GMI microwave brightness temperature: oceans blue-green, land brown, snow white, rain and cloud grey' },
+    'radio-nvss': { gibs: 'SMAP_L3_Passive_Brightness_Temp_H', latest: true, range: [ghzNm(1.4135), ghzNm(1.4085)], partial: true,
+      credit: 'NASA SMAP L-band radiometer, 1.41 GHz (21 cm) brightness temperature, H polarisation (SPL3SMP), via NASA GIBS; latest day, swaths with gaps',
+      note: 'SMAP 1.41 GHz brightness temperature: warm land, radio-cold sea' },
+    'radio-hi': { gibs: 'SMAP_L3_Passive_Brightness_Temp_H', latest: true, range: [ghzNm(1.4135), ghzNm(1.4085)], partial: true,
+      credit: 'NASA SMAP L-band radiometer, 1.41 GHz (21 cm) brightness temperature, H polarisation (SPL3SMP), via NASA GIBS; latest day, swaths with gaps',
+      note: 'SMAP 1.41 GHz brightness temperature, in the protected band beside the 21 cm line' },
   },
   mars: {
-    'ir-12': { hips: 'CDS/P/Mars/THEMIS-Day-100m-v12', credit: 'NASA/ASU Mars Odyssey THEMIS daytime IR mosaic, 12.6 µm (CDS HiPS)' },
-    'ir-10': { hips: 'CDS/P/Mars/THEMIS-Day-100m-v12', credit: 'NASA/ASU THEMIS daytime IR, 12.6 µm (CDS HiPS)', note: 'THEMIS 12.6 µm, the nearest mapped band' },
-    ir: { hips: 'CDS/P/Mars/THEMIS-Day-100m-v12', credit: 'NASA/ASU THEMIS daytime IR, 12.6 µm (CDS HiPS)', note: 'THEMIS 12.6 µm thermal mosaic' },
+    'ir-12': THEMIS_DAY,
+    'ir-10': { ...THEMIS_DAY, note: 'THEMIS 12.6 µm, the nearest mapped band' },
+    'ir-F770W': { ...THEMIS_DAY, note: 'THEMIS 12.6 µm daytime thermal mosaic, the nearest mapped band' },
+    'ir-F2100W': { ...THEMIS_DAY, note: 'THEMIS 12.6 µm daytime thermal mosaic, the nearest mapped band' },
+    'ir-W4': { ...THEMIS_DAY, note: 'THEMIS 12.6 µm daytime thermal mosaic, the nearest mapped band' },
   },
   venus: {
-    'radio-s': { hips: 'CDS/P/Venus/Magellan/C3-MDIR-2025m', credit: 'NASA Magellan S-band (12.6 cm) radar mosaic, C3-MDIR (CDS HiPS)' },
-    radio: { hips: 'CDS/P/Venus/Magellan/C3-MDIR-2025m', credit: 'NASA Magellan 12.6 cm radar (CDS HiPS)', note: 'Magellan 12.6 cm radar: Venus seen through its clouds' },
-    microwave: { hips: 'CDS/P/Venus/Magellan/Microwave-Emissivity-4641m', credit: 'NASA Magellan 12.6 cm radiometer emissivity (CDS HiPS)', note: 'Magellan 12.6 cm emissivity, the nearest mapped band' },
+    // the 12.6 cm passive radiometer measured the surface's own emission (emissivity × ~735 K); the SAR images in the same band are radar echoes
+    'radio-s': { hips: 'CDS/P/Venus/Magellan/Microwave-Emissivity-4641m', credit: 'NASA Magellan 12.6 cm (2.385 GHz) radiometer: surface emissivity, i.e. its thermal radio brightness (CDS HiPS)', note: 'Magellan 12.6 cm radiometry: Venus\'s own surface emission, through the clouds', range: [125e6, 127e6] },
   },
   titan: {
-    'mw-ku': { hips: 'CDS/P/Titan/SAR-HiSAR-128ppd', credit: 'NASA/JPL Cassini RADAR SAR/HiSAR, 2.2 cm (CDS HiPS)', partial: true },
-    microwave: { hips: 'CDS/P/Titan/SAR-HiSAR-128ppd', credit: 'NASA/JPL Cassini RADAR, 2.2 cm (CDS HiPS)', note: 'Cassini Ku-band radar swaths', partial: true },
-    'vis-I': { hips: 'CDS/P/Titan/ISS-P19658-4km', credit: 'NASA/JPL/SSI Cassini ISS 938 nm methane-window mosaic (CDS HiPS)' },
-    ir: { hips: 'CDS/P/Titan/ISS-P19658-4km', credit: 'Cassini ISS 938 nm (CDS HiPS)', note: '938 nm near-IR window through the haze' },
+    'mw-ku': { hips: 'CDS/P/Titan/SAR-HiSAR-128ppd', credit: 'NASA/JPL Cassini RADAR SAR/HiSAR, 2.2 cm (CDS HiPS)', note: 'Cassini 2.2 cm radar echoes (active): what reflects, not what glows', partial: true, range: [21.6e6, 22.0e6] },
+    'vis-I': { hips: 'CDS/P/Titan/ISS-P19658-4km', credit: 'NASA/JPL/SSI Cassini ISS 938 nm methane-window mosaic (CDS HiPS)', range: [928, 948] },
+    'vis-z': { hips: 'CDS/P/Titan/ISS-P19658-4km', credit: 'Cassini ISS 938 nm (CDS HiPS)', note: '938 nm near-IR window through the haze', range: [928, 948] },
   },
   moon: {
-    'vis-I': { hips: 'CDS/P/Moon/Clementine-750nm-118m', credit: 'Clementine UVVIS 750 nm mosaic (NASA/USGS; CDS HiPS)' },
-    'vis-R': { hips: 'CDS/P/Moon/Clementine-750nm-118m', credit: 'Clementine 750 nm (CDS HiPS)', note: 'Clementine 750 nm, inside the R band' },
+    'vis-I': CLEM_750, 'vis-i': CLEM_750,
+    'vis-R': { ...WAC_643, note: 'LRO WAC 643 nm, inside the R band' }, 'vis-r': { ...WAC_643, note: 'LRO WAC 643 nm, inside the r band' },
   },
   mercury: {
-    'vis-I': { hips: 'CDS/P/Mercury/MDIS-enhanced-color', credit: 'NASA/JHUAPL MESSENGER MDIS enhanced colour (1000/750/430 nm; CDS HiPS)', note: 'MDIS false colour from 1000, 750 and 430 nm' },
+    'vis-I': { ...MDIS_750, note: 'MDIS 750 nm, on the blue edge of I' }, 'vis-i': MDIS_750, 'vis-R': { ...MDIS_750, note: 'MDIS 750 nm, on the red edge of R' },
   },
 };
 /** The real map of `body` in this pass (or band), if any. */

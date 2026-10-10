@@ -20,7 +20,7 @@ import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -45,7 +45,13 @@ import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
+import { createFutureEventsPanel } from './panels/futureevents.js';
+import { createEarthTimelinePanel } from './panels/earthtimeline.js';
 import { createMagneticPanel } from './panels/magnetic.js';
+import { createSearch } from './panels/search.js';
+import { PLANETSHINE } from './astro/planetshine.js';
+import { FUTURE_MISSIONS } from './data/future-missions.js';
+import { SITES } from './data/sites.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -53,7 +59,12 @@ import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js'
 import { useEarthEphemeris } from './astro/eclipses.js';
 import { createComputer } from './voice/computer.js';
 import { BANDS, bandById, passById } from './data/bands.js';
-import { setCurrentBand, currentBand } from './data/bandstate.js';
+import { setCurrentBand, setCurrentCurve, currentBand, onBand } from './data/bandstate.js';
+import { typeBandNote } from './astro/galaxyband.js';
+import { curveFromLegacy, normCurve, canonical, describeCurve, fmtRange } from './data/curve.js';
+import { createSpectrumControl, resText } from './panels/spectrum.js';
+import { bandLoads, configureBandLoads } from './data/bandload.js';
+import { onBandRes, prefetchPreviews } from './views/system/bandtextures.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -83,6 +94,7 @@ const system = createSystemView($('system-view'), {
   onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
+  onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
@@ -182,11 +194,21 @@ const eventsBtn = h('button', { className: 'rail-btn sub events-btn', title: 'La
 eventsBtn.dataset.sub = 'events';
 eventsBtn.addEventListener('click', () => go({ level: 'events', system: 'sol' }));
 railSubs.append(eventsBtn);
+// FUTURE (#53): supernovae, stellar passes, impacts and the Sun's evolution
+const futureBtn = h('button', { className: 'rail-btn sub', title: 'Future events: supernovae, close stellar passes, impact risks, the Sun\'s evolution' }, 'FUTURE');
+futureBtn.dataset.sub = 'future';
+futureBtn.addEventListener('click', () => go({ level: 'future', system: 'sol' }));
+railSubs.append(futureBtn);
+// EARTH TIMELINE (#54): climate, ice ages, orbital cycles, geology, impacts and the deep future
+const timelineBtn = h('button', { className: 'rail-btn sub', title: 'Earth past and future: climate, ice ages, Milankovitch cycles, geology, impacts, the deep future' }, 'TIMELINE');
+timelineBtn.dataset.sub = 'timeline';
+timelineBtn.addEventListener('click', () => go({ level: 'timeline', system: 'sol' }));
+railSubs.append(timelineBtn);
 
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object', 'satellite', 'events']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite', 'events', 'future', 'timeline']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- camera bookmarks (#39) ---------------------------------------------------------------
@@ -258,29 +280,80 @@ applyTextScale();
 }
 // each bottom-bar row scrolls sideways with the mouse wheel when its controls overflow
 const scrollRow = (row) => { row.addEventListener('wheel', (e) => { if (row.scrollWidth > row.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { row.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false }); return row; };
-// ---- the spectrum filter (#28) ------------------------------------------------------------
-const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
-const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
+// ---- the spectrum control (#28, #66) -----------------------------------------------------------
+// The state is a transmission curve T(λ) (src/data/curve.js), remembered as the `curve` setting; the
+// old `band` / `bandPass` settings map onto the curve of that one bandpass (and still work if set).
 const microns = (s) => s.replace(/ ?µm\b/g, ' MICRONS'); // 'µ' upper-cases to Greek 'Μ'
-function syncBandControls() {
-  const b = bandById(settings.get('band')), p = passById(b, settings.get('bandPass'));
-  bandSel.value = b.id;
-  passSel.replaceChildren(...b.passes.map((x) => h('option', { value: x.id, textContent: x.label })));
-  passSel.hidden = !b.passes.length;
-  if (p) passSel.value = p.id;
+const storedCurve = () => normCurve(settings.get('curve') ?? curveFromLegacy(settings.get('band'), settings.get('bandPass')));
+let syncingLegacy = false;
+function setCurve(c) {
+  const n = normCurve(c), can = canonical(n);
+  syncingLegacy = true; // keep band/bandPass meaningful for anything that still reads them
+  settings.set('band', can.kind === 'full' ? 'full' : can.kind === 'pass' ? can.band.id : describeCurve(n).dominant ?? 'full'); // custom: its dominant band
+  settings.set('bandPass', can.kind === 'pass' ? can.pass.id : null);
+  syncingLegacy = false;
+  settings.set('curve', n.full ? null : n);
 }
-// read the choice first: clearing bandPass re-syncs the controls from the stored (old) band
-bandSel.addEventListener('change', () => { const id = bandSel.value; settings.set('bandPass', null); settings.set('band', id); });
-passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
+let spectrum = null; // the SPECTRUM button and overlay, made with the other controls below
+let bandTimer = null;
 function applyBandEverywhere() {
-  setCurrentBand(settings.get('band'), settings.get('bandPass'));
-  syncBandControls();
-  system.setBand(settings.get('band'), settings.get('bandPass'));
+  bandLoads.begin(); // each change restarts the loading state (#62)
+  performance.mark?.('fidelity:band-change');
+  setCurrentCurve(storedCurve());
+  system.setCurve();
   for (const v of [nav, galaxy, quadrant]) v.recolourBand?.();
-  document.body.dataset.band = settings.get('band');
+  document.body.dataset.band = currentBand().band.id;
+  spectrum?.refresh();
   if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
 }
-settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
+settings.onChange((k) => {
+  if (k === 'curve') { clearTimeout(bandTimer); bandTimer = setTimeout(applyBandEverywhere, 0); } // one apply per burst of changes
+  else if ((k === 'band' || k === 'bandPass') && !syncingLegacy) { settings.set('curve', curveFromLegacy(settings.get('band'), settings.get('bandPass'))); }
+});
+// "Processing" (#62): a local voice every 3 s while full-resolution band images load, and a pulsing pill
+const voiceStatusOn = () => { const v = settings.get('voiceStatus'); return v === 'on' || (v !== 'off' && computer.state !== 'off'); };
+const procPill = h('div', { className: 'band-processing', hidden: true });
+function sayLocal(text) {
+  const synth = globalThis.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+  if (synth.speaking && text === 'Processing') return;
+  const u = new SpeechSynthesisUtterance(text);
+  const v = synth.getVoices().find((x) => /^en/i.test(x.lang) && /female|samantha|zira|karen|serena|google uk english female/i.test(x.name)) ?? synth.getVoices().find((x) => /^en/i.test(x.lang));
+  if (v) u.voice = v;
+  u.rate = 1.05; u.pitch = 0.95; u.volume = 0.85;
+  synth.speak(u);
+}
+let procHide = null;
+function showLoadState(st) {
+  clearTimeout(procHide);
+  if (st.phase === 'loading' && st.pending > 0) {
+    procPill.textContent = `PROCESSING… ${st.pending}`;
+    procPill.title = `Full-resolution band images still loading:\n${st.waiting.join('\n')}`;
+    procHide = setTimeout(() => { procPill.hidden = false; }, 250); // quick loads never flash the pill
+    procPill.classList.remove('pulse'); void procPill.offsetWidth; procPill.classList.add('pulse');
+  } else if (st.phase === 'failed') {
+    procPill.textContent = st.pending > 0 ? `UNABLE TO COMPLETE · ${st.pending} STILL LOADING` : 'UNABLE TO COMPLETE · PREVIEW KEPT';
+    procPill.hidden = false; procPill.classList.add('failed');
+    procHide = setTimeout(() => { procPill.hidden = true; procPill.classList.remove('failed'); }, 6000);
+  } else { procPill.hidden = true; procPill.classList.remove('failed'); }
+  updateBandRow();
+}
+configureBandLoads({ speak: sayLocal, enabled: () => voiceStatusOn(), canSpeak: () => !['speaking', 'thinking', 'hearing', 'connecting'].includes(computer.state), onChange: showLoadState });
+// the panel's IN THIS BAND row follows PREVIEW → LOADING → FULL
+let bandRow = null;
+function updateBandRow() {
+  if (!bandRow) return;
+  const look = system.bandLookOf(bandRow.id);
+  if (look) bandRow.dd.textContent = `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}`;
+  spectrum?.refreshReadout();
+}
+onBandRes(updateBandRow);
+// panels that describe the band (#28): Galaxy, Universe and Star views re-render when it changes
+onBand(() => queueMicrotask(() => {
+  if (route?.level === 'galaxy') renderGalaxyPanel();
+  else if (route?.level === 'universe') renderUniversePanel();
+  else if (route?.level === 'star' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body, { inStarView: true });
+}));
 // ---- "Computer" (#21) ----------------------------------------------------------------------
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
@@ -301,7 +374,12 @@ function screenContext() {
   const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
   const cb = currentBand();
-  if (!cb.full) lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+  if (!cb.full) {
+    lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+    lines.push(describeCurve(cb.curve).text); // the spectrum control's readout (#66), for "what am I looking at?"
+    const fl = system.bandLookOf(route.body ?? system.focusId);
+    if (fl) lines.push(`IN THIS BAND (${route.body ?? system.focusId}): ${fl.label}${fl.res ? ` · ${resText(fl.res)}` : ''}`);
+  }
   const active = system.activeMissions?.map((id) => eventsFeed()?.events.find((e) => e.id === id)?.title).filter(Boolean) ?? [];
   if (active.length) lines.push(`PLAYING OUT IN THE 3D VIEW (modelled paths): ${active.join('; ')}`);
   const fv = $('feed-viewer');
@@ -337,7 +415,8 @@ function renderVoice(st = computer.state, log = computer.log) {
       pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
       st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null,
-      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); })),
+      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); }),
+      pill(`VOICE STATUS ${voiceStatusOn() ? 'ON' : 'OFF'}`, () => { settings.set('voiceStatus', voiceStatusOn() ? 'off' : 'on'); renderVoice(); })),
     h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
   const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
 }
@@ -406,6 +485,12 @@ window.addEventListener('keydown', (e) => {
   else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
 });
 
+spectrum = createSpectrumControl({ h, pill, getCurve: storedCurve, setCurve,
+  context: () => {
+    const id = route?.body ?? system.focusId, b = id && system.model?.bodies.find((x) => x.id === id);
+    return { body: b ? { name: b.name, look: system.bandLookOf(b.id) } : null, sky: system.bandSkies?.() ?? null };
+  },
+  voiceStatus: { get: () => voiceStatusOn(), toggle: () => settings.set('voiceStatus', voiceStatusOn() ? 'off' : 'on') } });
 // two rows: the time control above (#34), everything else on the elbow's arm below
 const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
   stepControls: [pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')] });
@@ -415,10 +500,10 @@ requestAnimationFrame(tcLoop);
 controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
-  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
+  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), spectrum.button),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -426,7 +511,10 @@ if (STANDALONE) {
   const hz = [...controls.querySelectorAll('.pill')].find((b) => b.textContent === 'JPL HORIZONS');
   hz.title = 'Bundled JPL Horizons months only in this preview (Keplerian elements outside them); run `npm start` for any date.';
 }
-applyBandEverywhere(); // the remembered spectrum band
+$('viewport').append(spectrum.overlay, procPill);
+applyBandEverywhere(); // the remembered spectrum curve
+// warm every band's preview once the first views have loaded, one at a time (#62)
+setTimeout(() => { (window.requestIdleCallback ?? ((f) => setTimeout(f, 0)))(() => prefetchPreviews()); }, 8000);
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
@@ -509,6 +597,27 @@ const factList = (facts, body) => {
   return dl;
 };
 
+/** A deep-sky object picked on the surface view's sky (#48): its card in the feed viewer. */
+function deepSkyCard(o) {
+  const v = $('feed-viewer'), dl = h('dl');
+  row(dl, 'KIND', o.sub ?? o.kind.toUpperCase(), 'measured', 'Catalogue classification.');
+  if (o.distLy) row(dl, 'DISTANCE', `${fmt(o.distLy, 0)} LY`, 'measured', o.kind === 'cluster' ? 'Hunt & Reffert 2023 (Gaia DR3 parallaxes).' : 'Literature distance (src/data/deepsky.js).');
+  if (o.sizeArcmin) row(dl, 'SIZE ON THE SKY', o.sizeArcmin >= 60 ? `${(o.sizeArcmin / 60).toFixed(1)}°` : `${o.sizeArcmin.toFixed(1)}′`, 'measured', o.kind === 'galaxy' ? 'D25 major axis (RC3 / HyperLEDA).' : o.kind === 'cluster' ? 'Twice the half-member radius.' : 'Extent of the modelled nebula.');
+  if (o.members) row(dl, 'MEMBERS', fmt(o.members, 0), 'measured', 'Gaia DR3 members (Hunt & Reffert 2023).');
+  if (o.pa != null) row(dl, 'ORIENTATION', `PA ${o.pa}° · INCLINATION ${o.incl}°`, o.orient, o.orientSource);
+  if (o.credit) row(dl, 'IMAGE', o.kind === 'cluster' ? 'NONE (RING AT r50)' : 'SURVEY / PRESS IMAGE', 'measured', `${o.credit}${o.licence ? ` · ${o.licence}` : ''}`);
+  v.hidden = false;
+  v.replaceChildren(
+    h('div', { className: 'fv-head' }, h('span', { className: 'fv-title', textContent: o.name.toUpperCase() }), h('span', { className: 'fv-sub', textContent: 'ON THE SKY FROM HERE' }), badge('measured', o.credit ?? ''),
+      pill('✕', () => { v.hidden = true; v.replaceChildren(); }, 'square')),
+    h('div', { className: 'fv-body fv-card' }, h('div', {}, dl, o.note ? h('p', { className: 'note', textContent: o.note }) : null,
+      h('div', { className: 'body-list' }, pill(o.kind === 'galaxy' ? 'SHOW IN THE UNIVERSE VIEW ▸' : 'SHOW IN THE QUADRANT VIEW ▸', () => {
+        v.hidden = true;
+        if (o.kind === 'galaxy') { universeSel = o.id; go({ level: 'universe' }); } else { quadrantSel = o.id; go({ level: 'quadrant' }); }
+      })))),
+    h('div', { className: 'fv-credit', textContent: o.credit ?? '' }));
+}
+
 function renderLegend() {
   return h('div', {},
     h('h3', { textContent: 'DATA PROVENANCE' }),
@@ -538,7 +647,23 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
 const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
+const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel });
+const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
+createSearch({ h, badge, $, go, clock, actions: {
+  satellites: () => satPanel.load(),
+  stars: (q) => fetchStarSearch(q),
+  mission: (id) => { const m = FUTURE_MISSIONS.find((x) => x.id === id); if (m) futurePanel.openCard(m); },
+  site: (id) => {
+    const s = SITES.find((x) => x.id === id);
+    if (!s) return;
+    if (route.level === 'system' && currentSystem === 'sol' && system.focusId === s.body) system.surfaceAt(s.body, s.lat, s.lon);
+    else { pendingSurface = { id: s.body, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: s.body }); }
+  },
+  quadrant: (id) => { quadrantSel = id; if (route.level === 'quadrant') { quadrant.select(id); renderQuadrantPanel(); } else go({ level: 'quadrant' }); },
+  universe: (id) => { universeSel = id; if (route.level === 'universe') { universe.select(id); renderUniversePanel(); } else go({ level: 'universe' }); },
+} });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
   let satrecs = new Map();
@@ -759,23 +884,43 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
   }
   {
-    // the spectrum filter (#28): how this body is drawn in the band, and the sky survey behind it
+    // the spectrum filter (#28, #66): how this body is drawn in the band or curve, and the sky behind it
     const cb = currentBand(), look = system.bandLookOf(b.id);
+    bandRow = null;
     if (!cb.full) {
       const dl = h('dl');
-      if (look) row(dl, 'IN THIS BAND', look.label, look.tier, look.detail);
-      const sky = system.bandSky();
-      row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
-      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
-        look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail }) : null,
-        h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+      if (look) {
+        const res = look.res ? ` · ${resText(look.res)}` : '';
+        const detail = look.res && look.res !== 'full' ? `${look.detail}\n${look.res.startsWith('failed') ? 'The full-resolution image could not be loaded; the low-resolution preview is shown (still MEASURED).' : 'A low-resolution preview of the real map (MEASURED) is shown while the full resolution loads.'}` : look.detail;
+        bandRow = { id: b.id, dd: row(dl, 'IN THIS BAND', `${look.label}${res}`, look.tier, detail) };
+        for (const s of look.sources ?? []) row(dl, s.drawn ? 'REAL MAP · DRAWN' : 'REAL MAP · LISTED', `${s.credit.split(/[,(]/)[0].trim().toUpperCase()} · ${Math.round(s.weight * 100)}%`, 'measured', `${s.credit}${s.note ? `\n${s.note}` : ''}${s.drawn ? '' : '\nOverlaps the curve but is not drawn: one map per globe (the best-covered).'}`);
+        if (look.notObserved?.length) row(dl, 'NOT OBSERVED', look.notObserved.map((r) => fmtRange(...r)).join(', '), 'computed', 'Parts of the curve with no real image of this body and no spectral signature to predict from.');
+        else if (look.uncovered?.length && look.mode === 'curve') row(dl, 'NO REAL IMAGE', look.uncovered.map((r) => fmtRange(...r)).join(', '), 'modelled', 'Predicted there (MODELLED · PREDICTED).');
+      }
+      const skies = system.bandSkies?.() ?? { layers: [] };
+      if (skies.layers.length) for (const L of skies.layers) row(dl, 'SKY', `${L.skyCredit.split(/[,(]/)[0].trim().toUpperCase()}${skies.layers.length > 1 ? ` · ${Math.round(L.weight * 100)}%` : ''}`, 'measured', L.skyCredit);
+      else row(dl, 'SKY', 'CATALOGUE STARS, RE-WEIGHTED', 'computed', cb.custom ? 'No all-sky survey overlaps the curve: catalogue stars brightened or dimmed by their blackbody through T(λ) relative to V (Vega system).' : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
+      const d = cb.custom ? cb.prep.desc : null;
+      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.custom ? microns(cb.pass.label).toUpperCase() : `${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}`}` }), dl,
+        look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail } ) : null,
+        d?.composite ? h('div', { className: 'sp-key' }, ...d.thirds.map((t, i) => h('span', { className: `k${i}`, textContent: fmtRange(...t) })))
+          : h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
     }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
+  if (m.isSol && b.id === 'earth') extra.push(h('h3', { textContent: 'EARTH THROUGH TIME' }), h('div', { className: 'body-list' }, pill('EARTH TIMELINE ▸', () => go({ level: 'timeline', system: 'sol' })))); // #54
   if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
+  if (m.isSol && b.kind === 'moon' && PLANETSHINE[b.parent]) { // #49
+    const ps = PLANETSHINE[b.parent], st = system.planetshineOf(b.id), dl = h('dl');
+    const parent = m.bodies.find((x) => x.id === b.parent)?.name ?? b.parent;
+    row(dl, ps.name, st ? `${st.f.toExponential(1)} OF SUNLIGHT · ${parent.toUpperCase()} ${Math.round((1 + Math.cos(st.alpha)) / 2 * 100)}% LIT FROM HERE` : 'COMPUTING…', 'computed',
+      `Sunlight reflected by ${parent} onto ${b.name}'s night side: geometric albedo × (radius / distance)² × Lambert phase law. ${ps.source}. For comparison, earthshine on the Moon at new Moon is ~1×10⁻⁴ (BBSO: Qiu et al. 2003; Pallé et al. 2003).`);
+    row(dl, 'ON SCREEN', 'BRIGHTENED (LOG EXPOSURE)', 'modelled', 'The eye adapts to a night side; a screen cannot show 10⁻⁴ beside full sunlight, so planetshine is drawn at 4% of full brightness for 10⁻⁴, +3% per decade, in the reflected light\'s colour.');
+    extra.push(h('h3', { textContent: 'PLANETSHINE' }), dl);
+  }
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
@@ -896,11 +1041,22 @@ function renderGalaxyPanel() {
       { label: 'NEAR STARS', value: 'HYG · TO 1.5 KLY', tier: 'measured', detail: 'Every HYG star within 1,500 ly brighter than absolute magnitude 2, at its parallax position.' },
       { label: 'FAR STARS', value: gaia ? `${fmt(gaia, 0)} · GAIA DR3` : 'GAIA DR3 · LOADING', tier: 'measured', detail: 'Gaia DR3 stars brighter than G = 9 with parallax better than 10%, beyond ~1.6 kly: they trace the Orion Spur and reach into the Perseus and Sagittarius arms. Dust hides everything farther, which is why the galaxy beyond is still drawn from a concept.' },
       { label: 'STARS IN OTHER GALAXIES', value: 'ONLY THE BRIGHTEST', tier: 'measured', detail: 'Gaia measures individual stars in the Magellanic Clouds, but their parallaxes are too small to place them one by one; Hubble resolves stars in Andromeda. So the Clouds are shown as images.' },
-      { label: 'MAGELLANIC CLOUDS', value: 'SPITZER INFRARED', tier: 'measured', detail: 'Real images: LMC PIA07136 (NASA/JPL-Caltech/M. Meixner, SAGE), SMC PIA12485 (NASA/JPL-Caltech/STScI). Drawn at their real diameters, 32 kly and 19 kly, always facing you.' },
+      ...galaxyBandFacts(), // the spectrum filter (#28)
       { label: 'SATELLITE ORBITS', value: 'INTEGRATED · ±2 GYR', tier: 'modelled', detail: 'From HST proper motions (Kallivayalil et al. 2013) and Law & Majewski 2010 for Sagittarius, in a simple halo (233 km/s, no dynamical friction). The Clouds may be on their first pass, so treat the past half (dashed) as a sketch.' },
     ]),
     renderLegend(),
   );
+}
+/** The spectrum filter (#28) in the Galaxy panel: what the model shows in the band, and each Cloud's image. */
+function galaxyBandFacts() {
+  const bi = galaxy.bandInfo, cb = currentBand(), out = [];
+  if (!cb.full) out.push({ label: `SPECTRUM · ${cb.band.short ?? cb.band.label}`, value: bi.model.value, tier: bi.model.dark ? 'computed' : 'modelled',
+    detail: `${bi.model.detail} Each component of the model is re-weighted by its spectrum through ${cb.pass?.label ?? 'the band'} (src/astro/galaxyband.js); the gas disc and the Fermi and eROSITA bubbles exist only outside the visible.` });
+  for (const [id, name] of [['lmc', 'LMC IMAGE'], ['smc', 'SMC IMAGE']]) {
+    const c = bi.clouds[id];
+    if (c) out.push({ label: name, value: c.value, tier: c.tier, detail: `${c.detail} Drawn at the Cloud's real diameter (LMC 32 kly, SMC 19 kly), always facing you.` });
+  }
+  return out;
 }
 
 // ---- quadrant & universe panels ------------------------------------------------------------
@@ -948,6 +1104,18 @@ function renderQuadrantPanel() {
   );
 }
 
+/** Image, orientation and shape rows for a galaxy drawn with its real image (#50). */
+function galaxyFormFacts(g) {
+  if (!g) return [];
+  return [
+    { label: 'IMAGE', value: `${g.img.survey === 'twomass' ? '2MASS NEAR-IR' : 'DSS2 COLOUR'} · ${g.img.date}`, tier: 'measured', detail: `${g.img.credit}. ${g.img.licence}. Cutout ${g.img.fov.toFixed(0)}′ wide, north up, centred on RA ${g.ra.toFixed(3)}°, Dec ${g.dec.toFixed(3)}°.` },
+    { label: 'ORIENTATION', value: `PA ${g.pa}° · INCLINATION ${g.incl}°${g.near ? ` · ${g.near} SIDE NEARER` : ''}`, tier: g.orient, detail: `${g.orientSource}.${g.near ? '' : ' Which side is nearer is not established here: one of the two mirror-image tilts is drawn.'}` },
+    { label: 'SIZE', value: `D25 ${g.d25}′`, tier: 'measured', detail: 'Major axis to the 25 mag/arcsec² isophote (RC3 / HyperLEDA), drawn at the galaxy\'s distance.' },
+    { label: 'SHAPE', value: g.type === 'elliptical' ? 'ELLIPSOID GLOW + IMAGE ON THE SKY PLANE' : g.type === 'spiral' ? 'DISC + BULGE + THICKNESS GLOW' : 'DISC + THICKNESS GLOW', tier: 'modelled',
+      detail: g.type === 'elliptical' ? 'An oblate ellipsoid with the observed axis ratio; the true 3D shape of an elliptical is not known from one viewpoint.' : 'The image is projected onto a thin disc (scale height ~2% of D25) so it looks exactly as observed from the Milky Way; seen from elsewhere, the disc texture is an approximation (the far side, dust and bulge are not reconstructed).' },
+  ];
+}
+
 function renderUniversePanel() {
   resetLive();
   const R = universe.radius, c = universe.counts();
@@ -960,6 +1128,7 @@ function renderUniversePanel() {
       ...(sel.diameterKpc ? [{ label: 'DIAMETER', value: `${fmt(sel.diameterKpc * 3.26156, 0)},000 LY`, tier: 'measured', detail: 'Holmberg-like diameter at 26.5 mag/arcsec² (UNGC).' }] : []),
       ...(sel.absB != null ? [{ label: 'BRIGHTNESS', value: `M_B ${fmt(sel.absB, 1)}`, tier: 'computed', detail: 'Absolute blue magnitude; the Milky Way is about −20.8.' }] : []),
       { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+      ...galaxyFormFacts(universe.formOf(sel.id)),
     ] : [
       { label: 'TYPE', value: 'CLUSTER OF GALAXIES', tier: 'measured' },
       { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (Cosmicflows).' },
@@ -991,7 +1160,10 @@ function renderUniversePanel() {
       { label: 'LOCAL GROUP MOTION', value: `${MOTION.lg.kms} KM/S`, tier: 'measured', detail: `Gold arrow. The cosmic microwave background looks hotter one way than the other: we move through it towards l = ${MOTION.lg.l}°, b = +${MOTION.lg.b}° (COBE, Planck), mostly pulled by the Great Attractor and the Shapley Supercluster. That is ${fmt(MOTION.lg.kms * 3.3356e-3, 1)} million ly every billion years.` },
       { label: 'ANDROMEDA', value: `${-MOTION.m31.radialKms} KM/S CLOSING`, tier: 'measured', detail: `Red arrow (zoom to 3 or 10 MLY). Its blueshift and Hubble proper motions (~${MOTION.m31.tangentialKms} km/s sideways; van der Marel et al. 2019) give a near head-on approach.` },
       { label: 'MILKOMEDA', value: `IN ~${MOTION.m31.mergeGyr} BILLION YR`, tier: 'modelled', detail: 'N-body simulations put the first pass in ~4 billion years and the merger into one elliptical galaxy ~2 billion years later; newer Gaia-based work gives it only ~50% odds within 10 billion years (Sawala et al. 2025).' },
+      ...(currentBand().full ? [] : [{ label: `SPECTRUM · ${currentBand().band.short ?? currentBand().band.label}`, value: 'RE-WEIGHTED BY TYPE', tier: 'modelled',
+        detail: `${typeBandNote(currentBand().pass?.filter) ?? ''} Each galaxy's catalogued blue brightness is scaled by a typical spectrum of its type through ${currentBand().pass?.label ?? 'the band'} (src/astro/galaxyband.js), in the band's false colour; groups as a spiral-like mix. Not measured galaxy by galaxy.` }]), // #28
       { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
+      { label: 'GALAXY IMAGES', value: '17 NEAREST BIG GALAXIES', tier: 'measured', detail: 'Zoom in (or select one) and M31, M33, M81, M82, M83, M101, M51, M104, NGC 253, NGC 4945, Centaurus A, M32, M110, NGC 6822, IC 10 and Maffei 1/2 appear at their real D25 size from their survey images (DSS2; 2MASS behind the Milky Way), turned to their measured position angle and inclination. Shapes are MODELLED over MEASURED imagery; the Magellanic Clouds\' Spitzer images are in the Galaxy View (#18).' },
     ]),
     h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),
     renderLegend(),
@@ -1350,7 +1522,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
+setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
 setInterval(() => { if (settings.get('fields') && system.model?.isSol) magneticPanel.refreshWind(); }, 60000); // Earth's magnetopause follows the live solar wind (#38)
 settings.onChange((k, v) => { if (k === 'fields' && v) magneticPanel.refreshWind(); });
@@ -1406,22 +1578,45 @@ onRoute(async (r) => {
       if (!quadrantLoaded) {
         quadrantLoaded = true;
         fetchGalaxyStars().then((d) => quadrant.setStars(d));
-        fetchClusters().then((d) => { quadrant.setClusters(d); if (route.level === 'quadrant') renderQuadrantPanel(); });
+        fetchClusters().then((d) => { quadrant.setClusters(d); if (quadrantSel) quadrant.select(quadrantSel); if (route.level === 'quadrant') renderQuadrantPanel(); });
       }
     } else {
       $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
       universe.show();
       applyPendingCam(universe.camera);
+      if (universeSel) universe.select(universeSel);
       renderUniversePanel();
       if (!universeLoaded) {
         universeLoaded = true;
-        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (route.level === 'universe') renderUniversePanel(); });
+        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (universeSel) universe.select(universeSel); if (route.level === 'universe') renderUniversePanel(); });
       }
     }
     return;
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
   if (r.level !== 'events') eventsPanel.leave();
+  if (r.level === 'timeline') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'timeline') { warp(); system.focus('earth'); }
+    $('view-title').textContent = 'EARTH TIMELINE · CLIMATE, ICE, CYCLES, GEOLOGY, IMPACTS';
+    syncBeacon();
+    earthTimeline.render(r.body);
+    return;
+  }
+  if (r.level === 'future') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'future') warp();
+    $('view-title').textContent = 'FUTURE · SUPERNOVAE, PASSING STARS, IMPACTS, THE SUN';
+    syncBeacon();
+    futureEvents.render(r.body);
+    return;
+  }
   if (r.level === 'events') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;

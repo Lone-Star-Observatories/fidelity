@@ -1,3 +1,4 @@
+import { GALAXY_IMAGES } from '../src/data/galaxy-images.js';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { skyBasis, physicalSize, planeOffset, radecVec, teffFromBpRp, memberDistance, hashNormal, ARCMIN } from '../src/astro/skyplane.js';
@@ -102,7 +103,7 @@ test('nebula imagery: every landmark has a credited, licensed, allowlisted image
     if (model.centre) assert.ok(sepDeg(...model.centre, img.ra, img.dec) * 60 < Math.min(...img.fov) / 2, `${name} model centre`);
   }
   for (const v of Object.values(CLUSTER_NEBULOSITY)) assert.ok(NEBULA_IMAGES[v.img.key]);
-  assert.equal(Object.keys(NEBULA_IMAGES).length, Object.keys(NEBULA_3D).length + Object.keys(CLUSTER_NEBULOSITY).length, 'image keys are unique');
+  assert.equal(Object.keys(NEBULA_IMAGES).length, Object.keys(NEBULA_3D).length + Object.keys(CLUSTER_NEBULOSITY).length + GALAXY_IMAGES.length, 'image keys are unique'); // + galaxy cutouts (#48, #50)
   for (const [name, neb, ra, dec] of NEBULA_STARS) {
     const e = NEBULA_3D[neb];
     assert.ok(e, `${name}: ${neb}`);

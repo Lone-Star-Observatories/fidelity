@@ -17,6 +17,8 @@ const defaults = {
   fields: false,     // System View: MAG FIELDS: the Sun's field (Parker spiral, current sheet) and planetary magnetospheres (#38)
   features: true,    // System View: IAU names of craters, mountains, valleys… on rocky and icy worlds
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
+  deepsky: true,     // surface view: nebulae, galaxies and star clusters on the sky (#48)
+  constellations: false, // surface view: constellation figures and names (#48)
   siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
@@ -28,6 +30,8 @@ const defaults = {
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)
   band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
   bandPass: null,    // its bandpass (null = the band's default)
+  curve: null,       // spectrum control (#66): the transmission curve { parts, excl } (null = from band/bandPass; see src/data/curve.js)
+  voiceStatus: 'auto', // #62: say "Processing" while band images load: 'on' | 'off' | 'auto' (on while the Computer is listening)
   observer: null,   // detail views' FROM EARTH card and the EVENTS "visible from my location" filter (#33): { lat, lon, label } (null = Greenwich / not set); never leaves the browser
   eventsVisibleOnly: false, // EVENTS: show only what can be seen (or watched) from the observer location
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)

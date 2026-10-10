@@ -19,6 +19,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
+│                                      │           │ server/search.js    star search   │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -76,18 +77,20 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
+| `GET /api/co2` | NOAA GML Mauna Loa monthly CO₂ (the Keeling curve, #54): `rows` of [decimal year, ppm, de-seasonalized ppm] (`server/co2.js`, cached a day) |
+| `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
 | `GET /api/observing/:mission/recent` | Newest public HST or JWST images from MAST: `{ images: [{ target, instrument, filters, observed, preview }] }`; `GET /api/observing/preview?uri=mast:…` serves a preview (MAST product URIs only, cached on disk) |
 | `GET /api/traverse/:id` | A Mars rover's drive path (`m20`, `msl`): `{ points: [[lon, lat], …], distanceKm, sol, credit }`, planetocentric east-positive, from NASA/JPL MMGIS, thinned (`server/traverse.js`) |
-| `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
+| `GET /api/feed/:id[?size=preview]` | A live feed: images as binary with `x-feed-time` / `x-feed-credit` (SDO/LASCO frames also at 256×256 with `size=preview`, #62); JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
@@ -120,7 +123,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
-mode is disabled there. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
+mode is disabled there. Band imagery (#28, #62) is backend-only: the standalone spectrum control
+computes predicted skins and re-weighted stars but bakes no previews yet. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
 
@@ -290,6 +294,50 @@ and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
   while they run). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
   RESET back to the zenith.
 
+Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
+every disc covers 2·asin(R/d) from the first frame; the HUD reports the true and the drawn diameter of
+the Sun and the Moon (or the parent planet) and the field as horizontal × vertical. FOV presets set
+`camera.fov` from a horizontal field (cameras, eye) or a round field's diameter (binoculars,
+telescope). The orbit-view glare sprite is hidden while standing; `skyglare.js` draws a glare plane
+fixed in the observer's field (it does not grow with magnification), outside the disc only, scaled by
+`glareStrength` (illuminance ∝ 1/d², airmass extinction, eclipse obscuration). ENLARGED ×4 multiplies
+the Sun's and the Moon's mesh scale and says so in the HUD.
+
+Night sky (#48, `src/views/system/skylayers.js`, geometry in `src/data/skylayers.js`): shown while
+standing, in the full band. A back-side sphere maps the Gaia DR3 colour flux map (equirectangular
+RA/Dec from hips2fits, through `/api/hips`); deep-sky images are additive quads on the sphere, turned
+by `imageAxes` (north angle, east left as seen from inside) and sized from their field; cluster rings
+use `galToRaDec`; constellation lines and names come from `src/data/constellation-lines.js`. Labels
+behind the camera are hidden by hand (CSS2D shows them when the near plane is tiny). A click opens a
+card in the feed viewer (`deepSkyCard` in `main.js`).
+
+Planetshine (#49, `src/astro/planetshine.js`): `updatePlanetshine` computes, in true geometry, each
+moon's planetshine fraction p·(R/d)²·Φ(α) and feeds the planet shader's second light (`uPsPos`,
+`uPsCol` = tint × `planetshineDisplay(f)`), lowering the fake ambient for those moons. Standing on a
+moon, `updateParentFinder` labels the parent with its size and lit fraction, draws an edge arrow when
+it is off screen, aims ◉ LOOK AT and explains when a locked moon's far side never sees it.
+
+## Text search (#63)
+
+`src/data/search.js` is the pure matcher (fold to lower case without accents, Greek letters spelled
+out; exact > prefix > word prefix > substring > typo-tolerant Damerau–Levenshtein, which runs only
+when exact matching finds little), shared by the browser and `server/search.js`. `src/data/search-index.js`
+builds the static entries (Sol bodies with aliases and minor-planet numbers, spacecraft with acronyms,
+missions, sites, deep sky); `src/panels/search.js` adds the events feed, sky events and the satellite
+catalogue, asks `/api/star-search` for stars and exoplanets (HYG designations kept by `parseHyg` as
+`alt`), groups hits by kind with badges and routes a pick through `go()` or shell actions (stand at a
+site, select in the Quadrant or Universe View, open a mission card, set the clock for a sky event).
+
+## Universe View galaxy forms (#50)
+
+`src/views/universe/galaxyforms.js` builds a form for each galaxy in `src/data/galaxy-images.js` once
+the UNGC rows arrive (distance from UNGC, size from D25). Sky directions at the galaxy come from
+finite differences through `radecToSupergal`; the disc lies along the major axis (PA) and the minor
+axis tilted towards us by the inclination (towards the stated near side when known). Each disc vertex
+gets the uv where it projects on our sky, so from the Milky Way the disc shows the cutout exactly.
+Forms fade in between 6 and 30 px apparent size; `select` eases the camera to ~3× the galaxy's size.
+Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached route as #24).
+
 ## Space telescopes
 
 Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed viewer
@@ -447,6 +495,32 @@ FIELDS toggle) controls both this and the Sun's Parker spiral. `src/panels/magne
 section to body panels. Not done: a PFSS model from today's magnetogram, draped fields at Venus, Titan and comets,
 and stellar Zeeman-Doppler fields.
 
+## Future events (#53)
+
+The FUTURE rail entry (`#/future/<id>`) lists what is coming, grouped as stellar deaths, close passes,
+the Solar System and the Sun (`src/data/future-events.js`, rendered by `src/panels/futureevents.js`;
+not to be confused with `src/panels/future.js`, the future missions of #44). Calculations live in
+`src/astro/future.js`: supernova peak magnitudes from distance and a type's absolute magnitude, with
+template light curves (Type II-P, stripped-envelope) giving days in daylight and as a naked-eye star;
+the Sun's main-sequence brightening (Gough 1981) and habitable zone (Kopparapu et al. 2013); the
+run of pole stars from the app's precession model; a passing star's direct and tidal pull. Supernova
+timing is always a MODELLED window, never a date; Sirius is explained as impossible. GO TO sets the
+clock (an ISO date, or years ahead; past the calendar's ±273 kyr it needs the deep-time clock,
+`clock.setYears`) and routes to the place to watch.
+
+## Earth timeline (#54)
+
+The TIMELINE rail entry (`#/timeline/<id>`, also EARTH TIMELINE in Earth's panel) lists Earth's past
+and future by theme (`src/data/earth-timeline.js`, rendered by `src/panels/earthtimeline.js`), from
+the K–Pg impact to the end of the universe. Live calculations: Milankovitch cycles and 65° N June
+insolation from Laskar et al. (2004) (`src/data/la2004.js`, regenerated by `node scripts/la2004.js`,
+every 1 kyr from 2.7 Myr ago to +1 Myr, loaded on demand) via `src/astro/milankovitch.js`, with a
+readout at the ship's clock; the next perihelion at the June solstice; the Keeling curve
+(`/api/co2`); Earth's slowing spin, ΔT and the leap-minute and leap-hour scenarios after 2035, and
+impact energy, crater and recurrence from the Earth Impact Effects Program (`src/astro/earthtime.js`).
+Recorded past is MEASURED, orbital mechanics COMPUTED, projections and the deep future MODELLED with
+their ranges. GO sets the clock as FUTURE does.
+
 ## Events feed and mission replays (#32, #33)
 
 `scripts/events/build-events.js` (weekly GitHub Action `.github/workflows/events.yml`, or `npm run events`) writes
@@ -557,6 +631,81 @@ band (Vega system); the System View sky becomes the band's survey (a shader maps
 sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
 Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
 its badge and a false-colour key.
+
+**Band audit (#61).** `docs/research/band-audit.json` (written by `scripts/band-audit.js`) records,
+for every Sol body × band, what has been observed, what imagery exists, the mechanism, what the app
+showed before and shows now, and the sources. The measured physics behind it lives in
+`src/data/band-physics.js`: `brightnessTempK` (disc brightness-temperature spectra of the giants and
+Venus, VLA/WMAP/CLASS), `subsurfaceTemps` (airless bodies at λ ≥ 0.3 mm: the diurnal swing damped
+with depth, Piddington & Minnett, times an effective emissivity for scattering ice, Juno MWR/ALMA),
+`synchrotron` (Jupiter's belts' share of the flux) and `RING_TB` (Saturn's rings, WMAP).
+`bandLook` calls them for λ ≥ 0.3 mm and adds `belts` (drawn by `radiobelts.js`: seeded points in
+the JRM09 magnetic-equator frame, through the radial compression) and `gain` (the disc dims beside
+them). Giant-planet and Titan reflectance is the measured Karkoschka (1998) spectrum
+(`src/data/reflectance-karkoschka.js`, from `scripts/karkoschka.js`). New glow kinds in the planet
+shader: 5 auroral ovals over a faint disc, 6 volcanic hot spots (Io, 3–5 µm), 7 Venus's near-IR
+night-side windows. `ringBandLook` sets Saturn's ring tint per band. `BODY_BAND` entries carry
+`range: [nmLo, nmHi]`; band-level keys only where the map fits every pass.
+
+Views consume the band only through `currentBand()`/`onBand()` and decide by wavelength
+(`effectiveNm(pass.filter)`), so a custom transmission curve works too.
+- **Galaxy model** (`model.setBand`, Galaxy and Quadrant views): `src/astro/galaxyband.js` holds each
+  component's display spectrum (thin/thick disc, bulge, nuclear cluster, arm OB stars, HII regions,
+  halo, dust extinction and dust emission, gas, Fermi and eROSITA bubbles) as anchors from γ-rays to
+  408 MHz; `bandResponse` through the filter gives each layer's weight. Narrow filters on Hα/[O III]/
+  [S II] boost HII regions; one on 21 cm, the gas. Dust switches to additive glow when it emits more than it
+  absorbs (far-IR). Three layers exist only outside the visible: the HI gas disc (Kalberla & Kerp
+  2009), the Fermi bubbles and the eROSITA bubbles. Faint bands are auto-levelled (never dimmed);
+  the panel's SPECTRUM fact says what dominates, badged MODELLED (COMPUTED "not observed" in the EUV).
+- **Universe galaxies**: `galaxyTypeWeight(T, filter)` re-weights each UNGC galaxy by its type
+  (E/S0, spiral, irregular), groups as spirals, in the band's false colour; MODELLED.
+- **Magellanic Clouds**: `src/data/satellite-bands.js` picks a real image by wavelength (DSS2 in full
+  and visible, 2MASS, Spitzer, AKARI, Planck, HI4PI, ROSAT, Fermi, GALEX NUV over Swift UVOT) from
+  `/api/survey/:key` (two hidden keys, `galexnuv` and `uvotw1`, return asinh-stretched PNGs). The
+  standalone preview keeps only Spitzer.
+- **Star View**: `src/views/system/starband.js` (`starBandLook`) gives the photosphere's look: the
+  Sun's real image (SDO, or NoRH via `BODY_BAND.sun[…].feed`, matched by `range` for custom curves),
+  its measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the
+  chart's shaded bandpass (or an off-chart pointer) follow the band.
+- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`).
+- **Earth microwave/radio**: GMI brightness-temperature composite and SMAP 1.41 GHz via
+  `/api/gibs-band`; entries marked `latest` ask GIBS for its default (latest) day.
+- **Standalone preview**: band imagery is not baked (deferred, see the backlog); band looks there
+  are predicted, sketched or the bundled Spitzer images.
+**The transmission curve (#66).** The SPECTRUM button opens a translucent overlay
+(`src/panels/spectrum.js`) with one log-wavelength axis from 10⁻⁶ nm to 10 m and the curve T(λ) ∈ [0, 1]
+over colour-coded bands. The state is a curve (`src/data/curve.js`): parts (a bandpass filter, the CIE
+photopic eye, or a window lo–hi with a transmission) combined by max, minus excluded ranges; it is the
+`curve` setting (old `band`/`bandPass` settings map onto the curve of that bandpass). `currentBand()`
+still returns `{ band, pass, full }` (plus `curve`, `custom`, `prep`): a curve that is exactly one
+bandpass canonicalises to that band and pass, so every old result is reproduced exactly; any other
+curve gives a synthetic band `custom` (the dominant band's palette) and pass (`filter: { points }`,
+`curve`). Views computed from T(λ) (`src/views/system/curvelook.js`, integrals in log wavelength):
+- bodies: every `BODY_BAND` map whose bandpass R_i overlaps T, weighted by ∫T·R_i (normalised); the
+  measured fraction is ∫min(T, max R̂_i)/∫T. The best-covered map is drawn, others listed. The rest,
+  max(0, T − max R̂), is predicted segment by segment with `bandLook()` (reflected 150 nm–2.6 µm, thermal
+  beyond, X-ray/gamma glows); the planet shader's mode 6 blends real map, reflected, thermal and glow
+  by those weights. The badge text gives the mix ("62% MEASURED · 38% PREDICTED") and NOT OBSERVED ranges.
+  A `BODY_BAND` entry's bandpass is its optional `range: [nmLo, nmHi]`, else the filter of the pass it is
+  keyed by, else (band-level key) the pass showing the same map, else the union of the band's passes.
+- the Sun: SDO frames by overlap, its measured radio/microwave/gamma signatures, the photosphere for the rest;
+- stars: a blackbody through T relative to V (Vega system, COMPUTED), 90 nm–30 µm;
+- the sky: every overlapping all-sky survey, blended by overlap (one sphere each); none: re-weighted stars.
+- colour: a narrow curve keeps its band's palette; a wide one (two bands with ≥ 10% each, more than ×3
+  in wavelength, or a visible curve wider than ×1.33) is a three-band composite: the curve's log range
+  in thirds, short → blue, middle → green, long → red, with a key in the panel.
+The readout (effective wavelength, equivalent width, bands included, colour) is also in the Computer's
+screen context (`describeCurve().text`).
+
+**Instant previews and "Processing" (#62).** Every real map and survey loads as a preview first
+(`size=preview`), then full resolution 350 ms later (so rapid switching does not fetch every band),
+cross-faded in by the shader (`uBandTexPrev`/`uBandFade`, the sky's `uPrev`/`uXf`); previews of every
+band are prefetched one at a time after start-up. Each look carries `res` (PREVIEW → LOADING → FULL, or
+FAILED with the preview kept); a newer look always wins (`u.__look` guards). Full-resolution loads are
+tracked by `src/data/bandload.js`: a new generation per change; while anything is pending a PROCESSING… n
+pill pulses and, with VOICE STATUS on (default: on while the Computer listens), the browser's own
+speech synthesis says "Processing" every 3 s (skipped while the Computer is replying), "Complete" at
+the end if it spoke, "Unable to complete" once on the first failure. No API key or network is needed.
 
 ## Milky Way model
 
