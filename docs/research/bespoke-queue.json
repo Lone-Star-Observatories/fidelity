@@ -5,7 +5,8 @@
     "Refresh nearest stellar ranking from current astrometry before claiming an exhaustive present-day boundary.",
     "Audit Gl 725 B c archive distance 6.842357 pc against the 2026 discovery-paper distance about 3.5 pc; confirmed archive ranking is not a corrected physical-distance ranking.",
     "Inventory remaining satellites of asteroids and other minor planets separately.",
-    "Add further recognized dwarf planets if the IAU roster changes; candidates remain marked candidates."
+    "Add further recognized dwarf planets if the IAU roster changes; candidates remain marked candidates.",
+    "Reconcile EZ Aquarii B/C LM? catalogue labels with published stellar dynamical masses; both were omitted by exact-category filtering. Historical boundary and present-day astrometry remain open (nearest-stars-audit-2026-10-10.json)."
   ],
   "selection": {
     "planets": "20 confirmed archive planets by host heliocentric distance; each planet counts separately. Equal host distances sorted by planet name. Distances and composite measurements have individual reference histories.",
@@ -7389,7 +7390,7 @@
       "distancePc": 1.301970531170434,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native Hubble WFPC2 point-source image, not a resolved photosphere. R675/I814 filters include near infrared; displayed colour is not calibrated visible colour.",
       "catalogueConstraints": {
         "OBJ_NAME": "Proxima Cen",
         "OBJ_CAT": "LM",
@@ -7408,9 +7409,10 @@
         "COMMENT": "Proxima Cen c: candidate planet 2020SciA....6.7467D. Proxima Cen d: candidate planet 2022A&A...658A.115F",
         "distancePc": 1.301970531170434
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "proxima-star"
     },
     {
       "id": "star-alf-cen-a",
@@ -8010,7 +8012,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 0,
+      "initialDossiers": 1,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

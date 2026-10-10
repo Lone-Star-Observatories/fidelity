@@ -3220,6 +3220,142 @@ export const BODY_VISUALS = {
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     },
     "researchSourcesRecord": "docs/research/gj1061-b-source-records.json"
+  },
+  "proxima-star": {
+    "id": "proxima-star",
+    "name": "Proxima Centauri",
+    "kind": "star",
+    "aliases": [
+      "Proxima Cen",
+      "Proxima Centauri",
+      "Proxima",
+      "GJ 551",
+      "Gliese 551",
+      "HIP 70890"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native Hubble WFPC2 point-source image, not a resolved photosphere. R675/I814 filters include near infrared; displayed colour is not calibrated visible colour.",
+    "measured": [
+      "Ribas et al. 2017 infer effective temperature 2980±80 K, radius 0.146±0.007 solar radii, mass 0.120±0.003 solar masses and luminosity 0.00151±0.00008 solar luminosities from radiative observations/models.",
+      "Hubble WFPC2 records the unresolved star; release 2013-10-28. Exact observation date is not independently verified."
+    ],
+    "modelled": [
+      "A fully convective low-mass hydrogen/helium plasma star; effective temperature is a spectral fit, not a resolved surface thermometer."
+    ],
+    "unknown": [
+      "Resolved magnetic-region geography, convective cell sizes and contrast, detailed abundance fractions, chromospheric geometry and calibrated visible raster colour."
+    ],
+    "assumed": [
+      "Independent photospheric intensity map with invented convective mottling and two dimmer magnetic regions; no observed solar map reused.",
+      "Observer at two photospheric radii from centre, one radius above the photosphere, with artistic 120-degree horizontal field. No ground or physically survivable observer implied.",
+      "Ribas 2017 adopted values differ from earlier planetary dossiers (2900 K / 0.141 solar radii); those dossiers and catalogue fits remain preserved."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1704.08449v1",
+        "title": "Ribas et al. 2017, full spectral radiative properties",
+        "publicationDate": "2017-04-27"
+      },
+      {
+        "url": "https://esahubble.org/images/potw1343a/",
+        "title": "ESA/Hubble native Proxima observation",
+        "publicationDate": "2013-10-28"
+      },
+      {
+        "url": "https://gruze.org/10pc/The10pcSample_v2.json",
+        "title": "Gaia-era 10 pc sample v2; historical component inventory"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/proxima-star-native.jpg",
+        "source": "https://cdn.esahubble.org/archives/images/large/potw1343a.jpg",
+        "sourcePage": "https://esahubble.org/images/potw1343a/",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "terms": "CC BY 4.0; full credit retained.",
+        "credit": "ESA/Hubble & NASA",
+        "tier": "measured",
+        "description": "Unresolved WFPC2 point source, R675/I814 false colour including near infrared; not a resolved photosphere.",
+        "publicationDate": "2013-10-28",
+        "observationDate": null,
+        "sha256": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+        "bytes": 69746
+      }
+    ],
+    "skyModel": {
+      "star": "Proxima Centauri",
+      "radiusSun": 0.146,
+      "temperatureK": 2980,
+      "distanceAU": 0.00135793644020095,
+      "horizontalFovDeg": 120,
+      "observerNote": "Conceptual camera one photospheric radius above plasma; orientation and exposure imagined.",
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 821.3090203565752,
+      "approximateSrgb": [
+        1,
+        0.6922937494969719,
+        0.42558860954259126
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "proximaStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude, no measured stellar frame.",
+      "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/proxima-star-surface-map.jpg",
+      "previewUrl": "/bespoke/proxima-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-ac961f63-ff96-4bea-86f2-b616a7e25af6.png",
+      "sourceSha256": "349fdb62b483f93a6aad9b709996c7b95d091d5c2a01650ed18bf0e03b6457ff",
+      "sha256": "bdaff087b5f638e8e6bbe73003876edd7b8f2a629e186be13e3c1fa808ab4f4b",
+      "previewSha256": "56234b436fc49b2e0f4cbe4149c1613f80df3da94314c3d934336c9865947d1f",
+      "bytes": 382433,
+      "previewBytes": 35309,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          545,
+          545,
+          545
+        ],
+        "limits": "Threshold cores do not locate a calibrated photospheric limb. Field, exposure, colour and magnetic geography remain artistic."
+      },
+      "url": "/bespoke/proxima-star-sky-image.jpg",
+      "previewUrl": "/bespoke/proxima-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-26e6f6e4-cce8-4e82-b7cc-b9b779351033.png",
+      "sourceSha256": "9b10e5d1a9c7d46c0109f1d4ab1258572f98c2360580c658b491ca2f6933faf9",
+      "sha256": "9ba2032fb5bba03666c8ab8c29a75c89778271f5c876fdafc94093360999801d",
+      "previewSha256": "4fe25f5373488bc9f869d3d28096f1963d95e83e042d7b5cf861486cd54e6245",
+      "bytes": 63547,
+      "previewBytes": 12601,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

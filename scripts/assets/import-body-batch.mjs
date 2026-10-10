@@ -32,7 +32,7 @@ for (const dossier of batch.bodies) {
       terms: 'Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.',
       sourceFile, sourceSha256: hash(raw), sha256: hash(master), previewSha256: hash(preview),
       bytes: master.length, previewBytes: preview.length, width, height,
-      processing: 'Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.' };
+      processing: visual.kind === 'star' ? 'Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.' : 'Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.' };
     outputs.push([url, master], [previewUrl, preview]);
   }
   visuals[visual.id] = visual;

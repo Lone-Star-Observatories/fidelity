@@ -1,0 +1,109 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "map": "Independent Proxima 2:1 photospheric intensity map; 2980±80 K, 0.146±0.007 solar radii; H/He plasma, invented fine convection and two dim regions, neutral intensity, no observed Sun reuse.",
+    "sky": "Proxima plasma star in black sky from 2 stellar radii; 60-degree diameter within artistic120-degree field, warm ivory/orange attenuated exposure; invented convection, magnetic patches and faint chromosphere; no ground, no calibrated colour."
+  },
+  "bodies": [
+    {
+      "id": "proxima-star",
+      "name": "Proxima Centauri",
+      "kind": "star",
+      "aliases": [
+        "Proxima Cen",
+        "Proxima Centauri",
+        "Proxima",
+        "GJ 551",
+        "Gliese 551",
+        "HIP 70890"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Native Hubble WFPC2 point-source image, not a resolved photosphere. R675/I814 filters include near infrared; displayed colour is not calibrated visible colour.",
+      "measured": [
+        "Ribas et al. 2017 infer effective temperature 2980±80 K, radius 0.146±0.007 solar radii, mass 0.120±0.003 solar masses and luminosity 0.00151±0.00008 solar luminosities from radiative observations/models.",
+        "Hubble WFPC2 records the unresolved star; release 2013-10-28. Exact observation date is not independently verified."
+      ],
+      "modelled": [
+        "A fully convective low-mass hydrogen/helium plasma star; effective temperature is a spectral fit, not a resolved surface thermometer."
+      ],
+      "unknown": [
+        "Resolved magnetic-region geography, convective cell sizes and contrast, detailed abundance fractions, chromospheric geometry and calibrated visible raster colour."
+      ],
+      "assumed": [
+        "Independent photospheric intensity map with invented convective mottling and two dimmer magnetic regions; no observed solar map reused.",
+        "Observer at two photospheric radii from centre, one radius above the photosphere, with artistic 120-degree horizontal field. No ground or physically survivable observer implied.",
+        "Ribas 2017 adopted values differ from earlier planetary dossiers (2900 K / 0.141 solar radii); those dossiers and catalogue fits remain preserved."
+      ],
+      "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/1704.08449v1",
+          "title": "Ribas et al. 2017, full spectral radiative properties",
+          "publicationDate": "2017-04-27"
+        },
+        {
+          "url": "https://esahubble.org/images/potw1343a/",
+          "title": "ESA/Hubble native Proxima observation",
+          "publicationDate": "2013-10-28"
+        },
+        {
+          "url": "https://gruze.org/10pc/The10pcSample_v2.json",
+          "title": "Gaia-era 10 pc sample v2; historical component inventory"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/proxima-star-native.jpg",
+          "source": "https://cdn.esahubble.org/archives/images/large/potw1343a.jpg",
+          "sourcePage": "https://esahubble.org/images/potw1343a/",
+          "termsUrl": "https://esahubble.org/copyright/",
+          "terms": "CC BY 4.0; full credit retained.",
+          "credit": "ESA/Hubble & NASA",
+          "tier": "measured",
+          "description": "Unresolved WFPC2 point source, R675/I814 false colour including near infrared; not a resolved photosphere.",
+          "publicationDate": "2013-10-28",
+          "observationDate": null,
+          "sha256": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+          "bytes": 69746
+        }
+      ],
+      "skyModel": {
+        "star": "Proxima Centauri",
+        "radiusSun": 0.146,
+        "temperatureK": 2980,
+        "distanceAU": 0.00135793644020095,
+        "horizontalFovDeg": 120,
+        "observerNote": "Conceptual camera one photospheric radius above plasma; orientation and exposure imagined."
+      },
+      "surfaceMap": {
+        "key": "proximaStarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular, invented longitude, no measured stellar frame.",
+        "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1672,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "brightCoreWidths": [
+            545,
+            545,
+            545
+          ],
+          "limits": "Threshold cores do not locate a calibrated photospheric limb. Field, exposure, colour and magnetic geography remain artistic.",
+          "geometricTargetPixels": 557.3333333333336
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-ac961f63-ff96-4bea-86f2-b616a7e25af6.png",
+        "skyImage": "exec-26e6f6e4-cce8-4e82-b7cc-b9b779351033.png"
+      }
+    }
+  ]
+}
