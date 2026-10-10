@@ -1,0 +1,3 @@
+[
+  {"id": "osiris-apex", "reason": "Original OSIRIS-REx mesh remains 91070 triangles after simplification; exceeds the 50000 triangle budget. Not delivered."}
+]

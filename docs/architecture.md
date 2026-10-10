@@ -201,3 +201,7 @@ line and distance label, refreshed with the epoch (`updateProximity`). An SVG or
 bundled Meshopt decoders. SystemView loads a mission model on focus, replaces its
 pickable meshes, and discards pending results after a system switch. The single-file
 preview retains the representative craft. See `docs/assets.md` for registration limits.
+
+## Reconstructed shapes and class skins
+
+`src/data/shapes.js` supplies native-kilometre PDS GLBs. Focus loads replace the sphere while preserving the planet shader, picking and source origin; camera framing uses the model envelope. Meshopt is bundled, including standalone data-URI previews. `src/data/skins.js` supplies local IMAGINED exoplanet maps and credits through the catalogue texture interface. Build-time import tooling is under `scripts/assets/`; it does not add backend dependencies.

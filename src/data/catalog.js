@@ -5,6 +5,7 @@
 // within 100 ly of Sol, their planets, and Sol's sky.
 
 import snapshot from '#snapshot';
+import { SKINS } from './skins.js';
 import { LY_PER_PC } from '../astro/frames.js';
 import { closestTemplate } from '../astro/spectral.js';
 
@@ -61,13 +62,14 @@ export async function fetchSky(center) {
 /** URL for surface texture `key`: the backend's cache, or an image bundled in the preview. */
 export function textureUrl(key) {
   if (snapshot) return snapshot.textures?.[key] ?? null;
-  return `/api/texture/${encodeURIComponent(key)}`;
+  return SKINS[key]?.url ?? `/api/texture/${encodeURIComponent(key)}`;
 }
 
 /** Image credits, keyed like the textures. */
 export async function fetchTextureCredits() {
   if (snapshot) return snapshot.textureCredits ?? {};
-  try { return await get('/api/textures'); } catch { return {}; }
+  const local = Object.fromEntries(Object.entries(SKINS).map(([key, asset]) => [key, asset.credit]));
+  try { return { ...await get('/api/textures'), ...local }; } catch { return local; }
 }
 
 /** Best-matching observed template spectrum for a spectral type (null if none). */

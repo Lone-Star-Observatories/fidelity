@@ -6,6 +6,7 @@ import { AU_KM, SUN, PLANETS } from './sol.js';
 import { MOONS, SMALL_BODIES } from './moons.js';
 import { REGIONS, LAGRANGE } from './poi.js';
 import { SPACECRAFT } from './spacecraft.js';
+import { shapeFor } from './shapes.js';
 import { modelFor } from './models.js';
 import { meanMotion } from '../astro/smallbodies.js';
 import { eqToEcl, frameToScene, starTeff, blackbodyRGB, rgbToHex } from '../astro/frames.js';
@@ -63,8 +64,11 @@ function physicalFacts(b) {
 }
 
 function skinFacts(m) {
-  if (m.analog) return [fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
-  return [fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
+  const shape = shapeFor(m.id);
+  const shapeFacts = shape ? [fact('SHAPE', 'PDS RECONSTRUCTION', 'modelled', `${shape.credit}. ${shape.citation} ${shape.frame} Geometry loads on focus; a sphere remains until available.`)] : [];
+
+  if (m.analog) return [...shapeFacts, fact('SURFACE', `ANALOG: ${m.analog}`, 'imagined', 'No global map of this body exists; a real surface stands in.')];
+  return [...shapeFacts, fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery. Gaps (e.g. Voyager never saw the northern halves of Uranus\' moons) are filled in.')];
 }
 
 function moonBody(m) {
@@ -145,23 +149,23 @@ export function solSystem() {
 
 /**
  * Rough planet class from radius (Earth radii) and equilibrium temperature (K), with an
- * *analog skin*: a real Solar System surface, recoloured. No exoplanet surface has ever
- * been imaged, so these are labelled IMAGINED and name the analog used.
+ * generated class illustration, guided by composition hypotheses. These maps are
+ * IMAGINED; radius and temperature do not establish composition or cloud chemistry.
  */
 export function planetClass(rEarth, teq) {
   if (rEarth < 1.6) {
-    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'], skin: { map: 'mercury', tint: [1.1, 0.55, 0.38] }, analog: 'MERCURY, HEATED' };
-    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'], skin: { map: 'mercury', tint: [1.05, 0.88, 0.74] }, analog: 'MERCURY' };
-    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'], skin: { map: 'mars', tint: [0.85, 0.85, 0.85] }, analog: 'MARS, DESATURATED (NO OCEANS ASSUMED)' };
-    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'], skin: { map: 'moon', tint: [0.86, 0.95, 1.08] }, analog: 'THE MOON, ICE-TINTED' };
+    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'], skin: { map: 'exoLava' }, analog: 'GENERATED CLASS ILLUSTRATION' };
+    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'], skin: { map: 'exoHotRock' }, analog: 'GENERATED CLASS ILLUSTRATION' };
+    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'], skin: { map: 'exoTemperate' }, analog: 'GENERATED CLASS ILLUSTRATION' };
+    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'], skin: { map: 'exoIce' }, analog: 'GENERATED CLASS ILLUSTRATION' };
   }
   if (rEarth < 4) {
-    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true, skin: { map: 'uranus', tint: [1.15, 0.95, 0.72] }, analog: 'URANUS, HAZY' }
-      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true, skin: { map: 'neptune', tint: [1, 1, 1] }, analog: 'NEPTUNE' };
+    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true, skin: { map: 'exoSubNeptune', tint: [1.15, 0.95, 0.72] }, analog: 'GENERATED CLASS ILLUSTRATION' }
+      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true, skin: { map: 'exoSubNeptune', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' };
   }
-  if (teq > 1000) return { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true, skin: { map: 'jupiter', tint: [0.9, 0.5, 0.4] }, analog: 'JUPITER, DARKENED' };
-  return teq < 150 ? { label: 'COLD GAS GIANT', palette: ['#e3d3a8', '#c9b27f', '#efe6c8'], banded: true, skin: { map: 'saturn', tint: [1, 1, 1] }, analog: 'SATURN' }
-    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true, skin: { map: 'jupiter', tint: [1, 1, 1] }, analog: 'JUPITER' };
+  if (teq > 1000) return { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true, skin: { map: 'exoHotJupiter' }, analog: 'GENERATED CLASS ILLUSTRATION' };
+  return teq < 150 ? { label: 'COLD GAS GIANT', palette: ['#e3d3a8', '#c9b27f', '#efe6c8'], banded: true, skin: { map: 'exoColdGiant', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' }
+    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true, skin: { map: 'exoGasGiant', tint: [1, 1, 1] }, analog: 'GENERATED CLASS ILLUSTRATION' };
 }
 
 /** Radius from mass (Earth units), after Chen & Kipping (2017) power laws. */
@@ -312,8 +316,8 @@ function planetBodies(rows, star, idFor, notes) {
     if (r.disc_method) facts.DISCOVERY.push(fact('METHOD', discoveryMethod(r.disc_method), 'measured'));
     if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
     if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
-    facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No image of this planet exists; its class is inferred from size and temperature.'));
-    facts.RENDERING.push(fact('SKIN', `ANALOG: ${cls.analog}`, 'imagined', 'A real Solar System surface, recoloured to suggest this class of world. Not this planet.'));
+    facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No resolved surface map exists; its illustrative class is inferred from size and temperature.'));
+    facts.RENDERING.push(fact('SKIN', cls.analog, 'imagined', 'Generated class illustration guided by radius and temperature. Composition, clouds, colours and terrain are hypotheses; no resolved surface features are measured.'));
     return {
       id: idFor(r), name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30, host: star.id,
       massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, radiusEarth: rE, massEarth: r.pl_bmasse ?? null, teq,

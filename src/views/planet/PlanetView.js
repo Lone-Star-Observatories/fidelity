@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
 import { settings } from '../../settings.js';
+import { loadBodyShape, disposeModel } from '../system/models.js';
 import { planetTexture, ringTexture } from '../system/textures.js';
 import { badge } from '../../data/provenance.js';
 import { dirToLatLon } from '../system/surface.js';
@@ -76,7 +77,7 @@ export function createPlanetView(container, { onSurface } = {}) {
   }
 
   function setGlobe(b) {
-    for (const o of [...pivot.children]) { pivot.remove(o); o.traverse((c) => { c.geometry?.dispose(); c.material?.dispose(); }); }
+    for (const o of [...pivot.children]) { pivot.remove(o); disposeModel(o); }
     mats = []; clouds = null;
     const placeholder = planetTexture(b.palette ? b : { id: b.id, palette: ['#777', '#888', '#666'] });
     const mat = planetMaterial(placeholder, { tint: b.skin?.tint, ambient: 0.05 });
@@ -84,6 +85,19 @@ export function createPlanetView(container, { onSurface } = {}) {
     mats.push(mat);
     globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 64), mat);
     pivot.add(globe);
+    const pendingGlobe = globe;
+    loadBodyShape(b.id, b.radiusKm).then((shape) => {
+      if (!shape) return;
+      if (globe !== pendingGlobe) { disposeModel(shape); return; }
+      shape.traverse((o) => {
+        if (!o.isMesh) return;
+        for (const material of (Array.isArray(o.material) ? o.material : [o.material])) material?.dispose();
+        o.material = mat;
+      });
+      pivot.remove(pendingGlobe);
+      pendingGlobe.geometry.dispose();
+      globe = shape; pivot.add(globe);
+    }).catch((error) => console.warn(`Body shape unavailable: ${b.id}`, error));
     if (b.skin?.clouds) {
       const cm = cloudMaterial(placeholder);
       cm.uniforms.uMap.value = new THREE.Texture();

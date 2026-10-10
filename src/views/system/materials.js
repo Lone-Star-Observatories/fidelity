@@ -17,6 +17,7 @@ export function loadTexture(key) {
       loader.load(url, (t) => {
         t.colorSpace = THREE.SRGBColorSpace;
         t.anisotropy = 8;
+        t.wrapS = THREE.RepeatWrapping; // seam-split shape UVs may cross 1.0
         resolve(t);
       }, undefined, () => resolve(null));
     }));

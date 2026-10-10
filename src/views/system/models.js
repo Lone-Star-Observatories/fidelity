@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { shapeFor } from '../../data/shapes.js';
 import { modelFor } from '../../data/models.js';
 import snapshot from '#snapshot';
 
@@ -43,6 +44,20 @@ export async function loadCraftModel(id) {
   wrapper.add(scene);
   scene.position.sub(centre);
   wrapper.scale.setScalar(1 / radius);
+  wrapper.userData.asset = asset;
+  return wrapper;
+}
+
+/** PDS geometry stays in native km about the original cartographic origin. */
+export async function loadBodyShape(id, radiusKm) {
+  const asset = shapeFor(id);
+  if (!asset || !Number.isFinite(radiusKm) || radiusKm <= 0) return null;
+  const url = snapshot?.shapes?.[id] ?? (!snapshot ? asset.url : null);
+  if (!url) return null;
+  const { scene } = await loader.loadAsync(url);
+  const wrapper = new THREE.Group();
+  wrapper.add(scene);
+  wrapper.scale.setScalar(1 / radiusKm);
   wrapper.userData.asset = asset;
   return wrapper;
 }

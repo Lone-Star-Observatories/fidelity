@@ -56,3 +56,7 @@ RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) w
 Asset production queue: see [assets.md](assets.md). First local mission-model batch
 covers ten craft (nine GLBs). Remaining craft, shape reconstructions and imagery are
 still pending; physical body-frame and dimension calibration remains required.
+
+### Visual assets progress — 2026-10-10, second batch
+
+Delivered 15 additional NASA craft/class files, 5 PDS shapes with preview LODs and 8 generated exoplanet class skins. Mission IDs/NORAD aliases and focused shapes are connected to the viewer; standalone includes shape/texture previews. Still open: physical calibration and albedo registration, generic-class catalogue matching, OSIRIS geometry budget, Tiangong/New Horizons/Gaia/Euclid/JUICE and remaining craft, Deimos/Arrokoth/Haumea/Vesta/Ceres shapes, actual map upgrades, brown dwarfs and scene art. Detailed progress and limits: `docs/assets.md`.

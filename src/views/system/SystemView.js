@@ -6,7 +6,8 @@
 // buffer, so true-scale Earth (4e-5 AU) and Neptune's orbit (30 AU) coexist.
 
 import * as THREE from 'three';
-import { loadCraftModel, disposeModel } from './models.js';
+import { shapeFor } from '../../data/shapes.js';
+import { loadBodyShape, loadCraftModel, disposeModel } from './models.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
@@ -307,6 +308,32 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     } catch (err) {
       node.modelRequested = false;
       console.warn(`Spacecraft model unavailable: ${node.body.id}`, err);
+    }
+  }
+
+  async function upgradeShape(node) {
+    if (!node || !shapeFor(node.body.id) || node.shapeRequested) return;
+    node.shapeRequested = true;
+    try {
+      const detailed = await loadBodyShape(node.body.id, node.body.radiusKm);
+      if (!detailed) return;
+      if (nodes[node.body.id] !== node) { disposeModel(detailed); return; }
+      const old = node.mesh, material = old.material;
+      detailed.traverse((o) => {
+        if (!o.isMesh) return;
+        for (const m of (Array.isArray(o.material) ? o.material : [o.material])) m?.dispose();
+        o.material = material;
+        o.userData.id = node.body.id;
+        pickables.push(o);
+      });
+      pickables = pickables.filter((o) => o !== old);
+      node.tilt.remove(old);
+      old.geometry.dispose();
+      node.mesh = detailed;
+      node.tilt.add(detailed);
+    } catch (err) {
+      node.shapeRequested = false;
+      console.warn(`Body shape unavailable: ${node.body.id}`, err);
     }
   }
 
@@ -648,7 +675,8 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const t = trueRadius(b), e = enhancedRadius(b, model.scale);
     return e * Math.pow(t / e, scaleMix); // log-interpolate between modes
   };
-  const viewDistance = (id) => displayRadius(nodes[id].body) * (isStar(nodes[id].body) ? 14 : 7);
+  const viewEnvelope = (b) => displayRadius(b) * Math.max(1, (shapeFor(b.id)?.maxRadiusKm ?? b.radiusKm) / b.radiusKm);
+  const viewDistance = (id) => viewEnvelope(nodes[id].body) * (isStar(nodes[id].body) ? 14 : 7);
 
   let overviewAU = null; // set when framing the whole system rather than one body
   let framedRadius = null; // focus radius the camera distance was last fitted to
@@ -669,6 +697,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
     focusId = id;
     void upgradeCraft(nodes[id]);
+    void upgradeShape(nodes[id]);
     overviewAU = overview;
     framedRadius = null;
   }
@@ -922,7 +951,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
         n.tilt.quaternion.setFromRotationMatrix(basis);
         n.mesh.rotation.y = 0;
       } else {
-        n.mesh.rotation.y = ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2);
+        n.mesh.rotation.y = n.body.rotationHours ? ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2) : 0;
       }
       const fb = nodes[focusId].body;
       const local = n.body.kind === 'moon' || (n.body.kind === 'spacecraft' && n.body.parent);
@@ -984,7 +1013,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
     if (surface) { updateSurface(); surfaceSky(); }
     else {
-      controls.minDistance = displayRadius(nodes[focusId].body) * 1.3;
+      controls.minDistance = viewEnvelope(nodes[focusId].body) * 1.3;
       controls.update();
     }
 

@@ -130,3 +130,7 @@ states its assets are free and without copyright. Individual author credits, ori
 URLs, processing and checksums are retained in `src/data/models.js`. These published
 visualizations are MODELLED; attitude and dimensional registration remain illustrative.
 See `docs/assets.md` for the remaining asset queue and required metadata.
+
+## Additional visual library (2026-10-10)
+
+NASA mission visualizations and class models are credited individually in `src/data/models.js`; exact sources and processing are retained. PDS Small Bodies Node shape reconstructions (Gaskell Phobos, Thomas Hyperion, Stooke Amalthea/Proteus/Halley) are MODELLED, with archive labels, epochs, frames and uncertainty limits in `src/data/shapes.js`. They are historical reconstructions, not current observations. Eight OpenAI-generated exoplanet class maps are IMAGINED and documented in `src/data/skins.js`; composition/cloud choices are hypotheses. See `docs/assets.md` for remaining registration and coverage work.
