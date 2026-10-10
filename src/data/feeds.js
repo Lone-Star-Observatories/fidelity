@@ -5,8 +5,6 @@
 // embed no longer resolves). The viewer offers them as channels; if one is offline, try the next.
 export const ISS_STREAMS = [
   { id: 'awQzjn72bI0', label: 'NASA HD', credit: 'NASA — live high-definition views from the ISS (official stream; blank or blue screen during loss of signal)' },
-  { id: 'xONYM4PxVNA', label: 'ISS LIVE · 4K', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
-  { id: 't6UWFH7dm_s', label: 'ISS LIVE · 4K II', credit: 'ISS Live (third-party YouTube channel) — NASA ISS camera views' },
   { id: 'fO9e9jnhYK8', label: 'SEN 4K', credit: 'Sen — 24/7 Earth from Sen\'s 4K cameras on the ISS' },
 ];
 /** Embed and watch URLs for a YouTube stream id. */
