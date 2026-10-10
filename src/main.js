@@ -201,16 +201,27 @@ function renderSystemPanel() {
     h('div', { className: 'body-list' }, m.bodies.map((b) => pill(b.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: b.id })))),
     h('h3', { textContent: 'SURVEY' }),
     h('div', { className: 'body-list' },
-      m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au); })),
+      m.survey.map((s) => pill(s.label, () => { warp(); system.overview(s.au, s.centre); })),
       pill('NAVIGATION ▸', () => go({ level: 'navigation', system: m.id }))),
     ...(m.isSol ? [
       h('h3', { textContent: 'EPHEMERIS' }),
       (live.eph = h('p', { className: 'note' })),
       (live.range = h('p', { className: 'warn' })),
     ] : [
-      h('h3', { textContent: 'ORBIT GEOMETRY' }),
-      factList([{ label: 'ORBIT PLANE', value: m.transiting ? 'EDGE-ON TO SOL' : 'UNKNOWN', tier: m.transiting ? 'computed' : 'imagined',
-        detail: m.transiting ? 'At least one planet transits, so the orbits are edge-on as seen from Sol.' : 'No planet transits; the orientation is unknown.' }]),
+      ...(m.binary ? [
+        h('h3', { textContent: 'STAR ORBITS' }),
+        ...m.binary.orbits.map((o) => factList([
+          { label: o.letters.join('–'), value: `${m.bodies.find((b) => b.id === o.primary).name.toUpperCase()} + ${m.bodies.find((b) => b.id === o.secondary).name.toUpperCase()}`, tier: 'measured', detail: `${o.wds} ${o.designation}` },
+          { label: 'PERIOD', value: o.periodYears > 1000 ? `${fmt(o.periodYears, 0)} YR` : `${fmt(o.periodYears, 2)} YR`, tier: 'measured', detail: `ORB6, ${o.ref}. Grade ${o.grade} (1 = definitive, 5 = indeterminate).` },
+          { label: 'SIZE', value: `${fmt(o.aArcsec * o.distPc, 1)} AU`, tier: 'measured', detail: 'Semi-major axis: ORB6 angular size × parallax distance.' },
+        ])),
+        h('p', { className: 'note', textContent: 'Each star moves about the shared centre of mass. Which side of each orbit is nearer to us is ambiguous without radial velocities.' }),
+      ] : []),
+      ...(m.bodies.some((b) => b.kind === 'exoplanet') ? [
+        h('h3', { textContent: 'PLANET ORBITS' }),
+        factList([{ label: 'ORBIT PLANE', value: m.transiting ? 'EDGE-ON TO SOL' : 'UNKNOWN', tier: m.transiting ? 'computed' : 'imagined',
+          detail: m.transiting ? 'At least one planet transits, so the orbits are edge-on as seen from Sol.' : 'No planet transits; the orientation is unknown.' }]),
+      ] : []),
       ...m.notes.map((n) => h('p', { className: 'note', textContent: n })),
     ]),
     (live.sky = h('p', { className: 'note' })),
@@ -222,14 +233,19 @@ function renderBodyPanel(id) {
   resetLive();
   const m = system.model;
   const b = m.bodies.find((x) => x.id === id);
-  const star = m.bodies.find((x) => x.kind === 'star');
+  const isStar = !!(b.starLike || b.kind === 'star');
+  const star = m.bodies.find((x) => x.id === (b.orbit?.host ?? m.starId)) ?? m.bodies[0];
   const pos = h('dl');
-  if (b.kind !== 'star') live.pos = row(pos, `FROM ${star.name.toUpperCase()}`, '—', 'computed');
+  if (!isStar) live.pos = row(pos, `FROM ${star.name.toUpperCase()}`, '—', 'computed');
   live.posTier = pos.lastChild;
   if (m.isSol && id !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
   live.light = row(pos, m.isSol ? 'LIGHT TIME' : 'STARLIGHT TRAVEL', '—', 'computed',
     m.isSol ? 'Light travel time from Earth (or from Sol, for Earth).' : 'Time for light to reach this world from its star.');
-  if (b.kind === 'star') { pos.replaceChildren(); row(pos, 'POSITION', 'SYSTEM CENTRE', 'computed'); }
+  if (isStar) {
+    pos.replaceChildren();
+    if (m.multiplicity > 1) live.pos = row(pos, 'FROM BARYCENTRE', '—', 'computed', 'Distance from the centre of mass of the whole star system, from the ORB6 orbits.');
+    else row(pos, 'POSITION', 'SYSTEM CENTRE', 'computed');
+  }
 
   const groups = Object.entries(b.facts || {}).filter(([, f]) => f.length);
   const look = h('dl');
@@ -245,7 +261,7 @@ function renderBodyPanel(id) {
     (live.range = h('p', { className: 'warn' })),
     h('div', { className: 'body-list' },
       pill('◀ SYSTEM', () => go({ level: 'system', system: m.id })),
-      b.kind === 'star' ? pill('STAR VIEW', () => toast(`STAR VIEW OFFLINE — ${ROADMAP.star.status}`)) :
+      isStar ? pill('STAR VIEW', () => toast(`STAR VIEW OFFLINE — ${ROADMAP.star.status}`)) :
         pill('PLANET VIEW', () => toast(`PLANET VIEW OFFLINE — ${ROADMAP.planet.status}`))),
     renderLegend(),
   );
@@ -414,7 +430,7 @@ function tick() {
   if (route.level === 'system' && route.body && f && m) {
     const id = route.body;
     const p = system.positionOf(id);
-    const r = Math.hypot(...p);
+    const r = system.hostDistance(id);
     if (live.pos) live.pos.textContent = `${fmt(r, r < 0.1 ? 4 : 3)} AU`;
     if (live.posTier) {
       const src = !m.isSol ? 'Keplerian orbit from Exoplanet Archive elements.'
@@ -483,7 +499,7 @@ onRoute(async (r) => {
       if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
       renderBodyPanel(body.id);
     } else {
-      if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au);
+      if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au, m.survey[0].centre);
       renderSystemPanel();
     }
     syncRail();

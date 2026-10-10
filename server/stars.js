@@ -13,6 +13,7 @@ import { promisify } from 'node:util';
 import { config } from './config.js';
 import { cached } from './cache.js';
 import { scanCatalogs } from './catalogs.js';
+import { orbits as loadOrbits, MEASURED, componentLetters } from './binaries.js';
 
 const gunzip = promisify(zlib.gunzip);
 const HYG_URL = 'https://codeberg.org/astronexus/hyg/media/branch/main/data/hyg/CURRENT/hyg_v44.csv.gz';
@@ -73,7 +74,7 @@ export function parseHyg(text) {
     if (dist == null || dist >= 100000) continue; // HYG uses 100000 pc for "unknown"
     const r = {
       id: f[col.id], hip: f[col.hip], hd: f[col.hd], gl: f[col.gl], proper: f[col.proper],
-      bayer: f[col.bayer], flam: f[col.flam], con: f[col.con],
+      bayer: f[col.bayer], flam: f[col.flam], con: f[col.con], compPrimary: f[col.comp_primary],
     };
     stars.push({
       id: r.id === '0' ? 'sol' : `hyg-${r.id}`,
@@ -85,6 +86,8 @@ export function parseHyg(text) {
       distPc: dist,
       mag: num(f[col.mag]), absmag: num(f[col.absmag]),
       spect: f[col.spect] || null, ci: num(f[col.ci]), lum: num(f[col.lum]),
+      // HYG groups multiple-star components under their primary's id
+      compPrimary: r.compPrimary && r.compPrimary !== r.id ? (r.compPrimary === '0' ? 'sol' : `hyg-${r.compPrimary}`) : null,
       source: 'HYG v4',
     });
   }
@@ -184,6 +187,91 @@ export function matchHosts(stars, rows) {
   return { planetsOf, extra };
 }
 
+// ---- multiple stars ----------------------------------------------------------------------
+
+/**
+ * Attach ORB6 visual-binary orbits to catalogue stars. The primary is found by HIP number;
+ * the secondary is a HYG component of the same system (or a star at a matching position and
+ * distance, e.g. Proxima for α Cen AC), chosen by magnitude. Secondaries missing from HYG
+ * are added from the orbit catalogue. Returns orbit edges and the extra stars.
+ */
+export function matchBinaries(stars, orbitList, maxPc = 100) {
+  const byHip = new Map(), members = new Map(), byIdLocal = new Map();
+  for (const s of stars) {
+    byIdLocal.set(s.id, s);
+    if (s.hip) byHip.set(s.hip, s);
+    if (s.compPrimary) { if (!members.has(s.compPrimary)) members.set(s.compPrimary, []); members.get(s.compPrimary).push(s); }
+  }
+  const near = stars.filter((s) => s.distPc <= maxPc * 1.3);
+  // bucket by 1° declination band so each orbit only scans its own patch of sky
+  const decOf = (s) => Math.asin(Math.max(-1, Math.min(1, s.z / s.distPc))) * 180 / Math.PI;
+  const bands = Array.from({ length: 181 }, () => []);
+  for (const s of near) if (s.distPc > 0) bands[Math.round(decOf(s)) + 90].push(s);
+  const around = (P, sepDeg) => {
+    const d = decOf(P), out = [];
+    for (let k = Math.max(0, Math.floor(d - sepDeg) + 90); k <= Math.min(180, Math.ceil(d + sepDeg) + 90); k++) out.push(...bands[k]);
+    return out;
+  };
+  const edges = [], extra = [], seen = new Set();
+  for (const o of orbitList) {
+    const P = o.hip && byHip.get(o.hip);
+    if (!P || P.distPc > maxPc) continue;
+    const [l1, l2] = componentLetters(o.components);
+    if (!l1.startsWith('A')) continue; // orbits between other components need component-level ids
+    const measured = MEASURED[o.wds] ?? null;
+    const sep = Math.max(3 * o.aArcsec, 30) / 3600; // degrees
+    const cands = new Set(members.get(P.compPrimary ?? P.id) ?? []);
+    if (P.compPrimary) cands.add(byIdLocal.get(P.compPrimary));
+    const cosSep = Math.cos(sep * Math.PI / 180);
+    for (const s of around(P, sep + 1)) {
+      if (s === P || Math.abs(s.distPc - P.distPc) > 0.3 * P.distPc) continue;
+      if ((s.x * P.x + s.y * P.y + s.z * P.z) / (s.distPc * P.distPc) > cosSep) cands.add(s);
+    }
+    let S = null, best = 2.5;
+    for (const c of cands) {
+      if (!c || c === P) continue;
+      const dm = o.v2 != null && c.mag != null ? Math.abs(c.mag - o.v2) : 2.4;
+      if (dm < best) { best = dm; S = c; }
+    }
+    if (!S) {
+      const props = measured?.props?.[l2] ?? {};
+      S = {
+        id: `${P.id}-${l2.toLowerCase()}`, name: props.name ?? `${P.name} ${l2}`, hip: null, hd: null, gl: null,
+        x: P.x, y: P.y, z: P.z, distPc: P.distPc,
+        mag: o.v2, absmag: o.v2 != null ? o.v2 - 5 * Math.log10(P.distPc / 10) : null,
+        spect: props.spect ?? null, ci: null, lum: null, compPrimary: P.id, source: 'ORB6',
+      };
+      extra.push(S);
+    }
+    // "Gliese 244B" → "Sirius B" when the primary has a proper name
+    if (/^(Gliese|GJ|HIP|HD|HYG)\b/.test(S.name) && !/^(Gliese|GJ|HIP|HD|HYG)\b/.test(P.name)) S.name = `${P.name} ${l2}`;
+    const key = [P.id, S.id].sort().join('|');
+    if (seen.has(key)) continue; // one orbit per pair (catalogue order = preferred)
+    seen.add(key);
+    edges.push({ orbit: o, primaryId: P.id, secondaryId: S.id, letters: [l1, l2], measured });
+  }
+  return { edges, extra };
+}
+
+/** Union of HYG component grouping and orbit edges: id → { members: Set<id>, edges: [] }. */
+export function buildGroups(stars, edges) {
+  const parent = new Map();
+  const find = (x) => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
+  const union = (a, b) => { if (!parent.has(a)) parent.set(a, a); if (!parent.has(b)) parent.set(b, b); parent.set(find(a), find(b)); };
+  for (const s of stars) if (s.compPrimary) union(s.id, s.compPrimary);
+  for (const e of edges) union(e.primaryId, e.secondaryId);
+  const groups = new Map();
+  for (const id of parent.keys()) {
+    const r = find(id);
+    if (!groups.has(r)) groups.set(r, { members: new Set(), edges: [] });
+    groups.get(r).members.add(id);
+  }
+  for (const e of edges) groups.get(find(e.primaryId)).edges.push(e);
+  const of = new Map();
+  for (const g of groups.values()) for (const id of g.members) of.set(id, g);
+  return of;
+}
+
 // ---- service -----------------------------------------------------------------------------
 
 let catalogPromise = null;
@@ -199,8 +287,15 @@ export function catalog() {
       planetsOf = m.planetsOf;
       stars.push(...m.extra);
     } catch (err) { planetError = String(err.message || err); }
+    let edges = [], binaryError = null;
+    try {
+      const b = matchBinaries(stars, await loadOrbits());
+      edges = b.edges;
+      stars.push(...b.extra);
+    } catch (err) { binaryError = String(err.message || err); }
+    const groupOf = buildGroups(stars, edges);
     const byId = new Map(stars.map((s) => [s.id, s]));
-    return { stars, byId, planetsOf, planetError, hygFrom: from };
+    return { stars, byId, planetsOf, planetError, groupOf, binaryError, hygFrom: from };
   })().catch((err) => { catalogPromise = null; throw err; });
   return catalogPromise;
 }
@@ -248,7 +343,16 @@ export async function starDetail(id) {
   const s = cat.byId.get(id);
   if (!s) throw notFound(`unknown star ${id}`);
   const p = cat.planetsOf.get(id);
-  return { star: summary(cat, s), host: p ? p.host : null, planets: p ? p.planets : [] };
+  const g = cat.groupOf.get(id);
+  const group = g && g.members.size > 1 ? {
+    members: [...g.members].map((mid) => {
+      const m = cat.byId.get(mid), mp = cat.planetsOf.get(mid);
+      return { star: summary(cat, m), host: mp ? mp.host : null, planets: mp ? mp.planets : [] };
+    }),
+    orbits: g.edges.map((e) => ({ ...e.orbit, primaryId: e.primaryId, secondaryId: e.secondaryId, letters: e.letters, measured: e.measured })),
+    source: 'ORB6 (USNO/GSU Sixth Catalog of Orbits of Visual Binary Stars) + HYG component grouping',
+  } : null;
+  return { star: summary(cat, s), host: p ? p.host : null, planets: p ? p.planets : [], group };
 }
 
 /**

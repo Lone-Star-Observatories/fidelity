@@ -22,10 +22,32 @@
 | Object | Physical constants and models | GEO ring, Van Allen belts, Hill spheres, Lagrange points, Oort cloud (MODELLED) | bundled | ⏳ #3 |
 | Navigation / System | [HYG v4.4](https://codeberg.org/astronexus/hyg) (Hipparcos + Yale + Gliese, 119,614 stars) | Star positions (parallax), magnitudes, B−V colour, spectral type, names; the real night sky from any star | local, else downloaded once (13.6 MB) to `data/catalogs/` | ✅ |
 | Navigation / System | [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/) `pscomppars` (TAP) | Planets within 212 ly of Sol: orbits, sizes, masses (and whether they are true or minimum masses), transit flags and times, host-star parameters | live, cached 7 days | ✅ |
+| System | [ORB6](https://www.astro.gsu.edu/wds/orb6.html), the Sixth Catalog of Orbits of Visual Binary Stars (USNO/GSU) | 4,007 visual-binary orbits (P, a, i, Ω, T, e, ω) used for true-3D binary and multiple systems | downloaded once, refreshed monthly | ✅ #7 |
+| System | Literature masses (Bond et al. 2015/2017; Akeson et al. 2021; Kervella et al. 2008/2017; Eggenberger et al. 2008) | Measured component masses and white-dwarf properties for Sirius, Procyon, α Cen (with Proxima), 70 Oph and 61 Cyg | bundled | ✅ #7 |
 | Navigation | Gaia DR3 | Fainter neighbours HYG misses (red and brown dwarfs) | local | ⏳ |
 | Quadrant | Gaia DR3 (tiled level-of-detail), cluster catalogues, OpenNGC | Star density, clusters, nebulae | local | ⏳ #4 |
 | Galaxy | Spiral-arm and bar models, Harris globular clusters | Milky Way structure | bundled / local | ⏳ #4 |
 | Universe | NED, Cosmicflows-4, 2MRS | Nearby galaxies and distances | local / live | ⏳ #4 |
+
+## Multiple stars
+
+`server/stars.js` joins three things:
+- **Membership:** HYG's component grouping (e.g. Sirius B is HYG "Gl 244B" under Sirius).
+- **Orbits:** ORB6, matched by Hipparcos number.
+- **Wide pairs:** position matching, which links Proxima to α Cen AB through ORB6's "AC" orbit.
+
+`src/astro/binary.js` then places each orbit in 3D:
+1. Thiele–Innes on the sky, then parallax to turn arcseconds into AU, then the sky's north/east/line-of-sight axes into the scene frame.
+2. Builds the hierarchy inner pair first, so every star moves about the shared centre of mass.
+
+Provenance:
+
+| Value | Tier |
+|---|---|
+| Orbital elements | MEASURED |
+| Total mass from a³/P² | COMPUTED |
+| Component masses | MEASURED where published, otherwise estimated |
+| Which side of an orbit is nearer to us | Ambiguous without radial velocities, and the panel says so |
 
 ## Surface imagery
 

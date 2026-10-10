@@ -100,40 +100,42 @@ export function transitMeanAnomaly(e, omegaRad) {
   return E - e * Math.sin(E);
 }
 
-/**
- * Build a system model from /api/stars/:id. `detail` = { star, host, planets[] } where
- * planets are NASA Exoplanet Archive pscomppars rows.
- */
-export function buildStarSystem(detail) {
-  const { star: s, host, planets: rows } = detail;
-  const notes = [];
+// ---- stars ---------------------------------------------------------------------------------
 
-  // ---- star ----
-  const t = starTeff({ teff: host?.st_teff, ci: s.ci, spect: s.spect || host?.st_spectype });
+/** One star body. `m` = { star, host } from the API; `measured` = ORB6/literature values for it. */
+function starBody(m, measured = {}) {
+  const { star: s, host } = m;
+  const p = measured.props ?? {};
+  const t = p.teff ? { teff: p.teff, how: 'measured' } : starTeff({ teff: host?.st_teff, ci: s.ci, spect: s.spect || host?.st_spectype });
   const lum = host?.st_lum != null ? 10 ** host.st_lum : s.lum; // archive gives log10(L/Lsun)
-  let radiusSun = host?.st_rad, radiusTier = 'computed', radiusNote = 'Exoplanet Archive (stellar models fitted to observations).';
+  let radiusSun = p.radiusSun ?? host?.st_rad, radiusTier = 'computed';
+  let radiusNote = p.radiusSun ? `${measured.ref}.` : 'Exoplanet Archive (stellar models fitted to observations).';
+  if (p.radiusSun && p.whiteDwarf) radiusNote = `${measured.ref}. A white dwarf: about Earth-sized, with roughly the Sun's mass.`;
   if (!radiusSun) {
     radiusSun = lum ? Math.sqrt(lum) * (5772 / t.teff) ** 2 : 1;
     radiusTier = lum ? 'computed' : 'imagined';
     radiusNote = lum ? 'From luminosity and temperature (Stefan–Boltzmann).' : 'Unknown; drawn Sun-sized.';
   }
-  let massSun = host?.st_mass, massTier = 'computed', massNote = 'Exoplanet Archive.';
+  let massSun = measured.mass ?? host?.st_mass, massTier = measured.mass ? 'measured' : 'computed';
+  let massNote = measured.mass ? `Dynamical mass from the binary orbit (${measured.ref}).` : 'Exoplanet Archive.';
   if (!massSun) {
     massSun = lum ? Math.max(0.08, Math.pow(lum, 1 / 3.5)) : 1;
     massTier = lum ? 'modelled' : 'imagined';
     massNote = lum ? 'Main-sequence mass–luminosity relation (L ∝ M^3.5).' : 'Unknown; assumed one solar mass.';
   }
-  const starColor = rgbToHex(blackbodyRGB(t.teff));
-  const spect = s.spect || host?.st_spectype || '—';
-  const starBody = {
-    id: 'star', name: s.name, kind: 'star', radiusKm: radiusSun * R_SUN_KM, rotationHours: 600,
-    color: starColor, spectral: spect, teffK: Math.round(t.teff), skin: { map: 'sun', recolour: true },
+  const spect = p.spect || s.spect || host?.st_spectype || '—';
+  const body = {
+    id: s.id, name: s.name, kind: p.whiteDwarf ? 'white dwarf' : 'star', starLike: true,
+    radiusKm: radiusSun * R_SUN_KM, rotationHours: 600,
+    color: rgbToHex(blackbodyRGB(t.teff)), spectral: spect, teffK: Math.round(t.teff), massSun, lum,
+    metallicity: host?.st_met ?? null, catalog: s,
+    skin: { map: 'sun', recolour: true },
     facts: {
       PHYSICAL: [
-        fact('CLASS', spect, spect === '—' ? 'imagined' : 'measured', 'Spectral type.'),
+        fact('CLASS', spect, spect === '—' ? 'imagined' : 'measured', p.whiteDwarf ? 'White dwarf spectral class.' : 'Spectral type.'),
         fact('SURFACE TEMP', `${fmt(t.teff, 0)} K`, t.how === 'measured' ? 'measured' : t.how === 'unknown' ? 'imagined' : 'computed',
-          t.how === 'measured' ? 'Exoplanet Archive.' : `Estimated from ${t.how}.`),
-        fact('RADIUS', `${fmt(radiusSun, 3)} × SUN · ${fmt(radiusSun * R_SUN_KM, 0)} KM`, radiusTier, radiusNote),
+          t.how === 'measured' ? (p.teff ? `${measured.ref}.` : 'Exoplanet Archive.') : `Estimated from ${t.how}.`),
+        fact('RADIUS', `${fmt(radiusSun, radiusSun < 0.1 ? 4 : 3)} × SUN · ${fmt(radiusSun * R_SUN_KM, 0)} KM`, radiusTier, radiusNote),
         fact('MASS', `${fmt(massSun, 3)} × SUN`, massTier, massNote),
         ...(lum ? [fact('LUMINOSITY', `${fmt(lum, lum < 0.01 ? 5 : 3)} × SUN`, 'computed', 'From brightness and parallax distance.')] : []),
         fact('DISTANCE FROM SOL', `${fmt(s.distLy, 2)} LY`, 'measured', 'Parallax.'),
@@ -144,100 +146,183 @@ export function buildStarSystem(detail) {
       ],
     },
   };
+  return body;
+}
 
-  // ---- orientation ----
-  const toSol = frameToScene(eqToEcl(norm([-s.x, -s.y, -s.z]))); // direction from the star to Sol, scene frame
+// ---- planets -------------------------------------------------------------------------------
+
+/** Orbital-plane frame for a host's planets: +u towards Sol (so transits line up), n the normal. */
+function planeFrame(host, transiting) {
+  const toSol = frameToScene(eqToEcl(norm([-host.x, -host.y, -host.z])));
+  if (!transiting) return { toSol, n: [0, 1, 0], u: norm([1, 0, 0]), tier: 'imagined',
+    note: 'Orbit orientation is unknown for planets that do not transit; drawn in the ecliptic plane.' };
+  const up = Math.abs(toSol[1]) > 0.95 ? [1, 0, 0] : [0, 1, 0];
+  const n = norm(cross(toSol, up));
+  return { toSol, n, u: toSol, tier: 'computed',
+    note: 'Planets transit, so we see the orbits edge-on from Sol; the orbit plane contains our line of sight. Its roll about that line is unknown.' };
+}
+
+function planetBodies(rows, star, idFor, notes) {
+  const massSun = star.massSun, lum = star.lum;
   const transiting = rows.some((r) => r.tran_flag === 1);
-  let planeNormal, planeTier, planeNote;
-  if (transiting) {
-    const up = Math.abs(toSol[1]) > 0.95 ? [1, 0, 0] : [0, 1, 0];
-    planeNormal = norm(cross(toSol, up));
-    planeTier = 'computed';
-    planeNote = 'Planets transit, so we see the orbits edge-on from Sol; the orbit plane contains our line of sight. Its roll about that line is unknown.';
-  } else {
-    planeNormal = [0, 1, 0];
-    planeTier = 'imagined';
-    planeNote = 'Orbit orientation is unknown for planets that do not transit; drawn in the ecliptic plane.';
+  const plane = planeFrame(star.catalog, transiting);
+  const basis = { u: plane.u, n: plane.n, v: cross(plane.n, plane.u) };
+  const planets = rows.slice().sort((a, b) => (a.pl_orbper ?? 1e9) - (b.pl_orbper ?? 1e9)).map((r) => {
+    const facts = { ORBIT: [], PHYSICAL: [], DISCOVERY: [], RENDERING: [] };
+    // period & semi-major axis (Kepler's third law fills whichever is missing)
+    let P = r.pl_orbper, a = r.pl_orbsmax;
+    if (!a && P) a = Math.cbrt(massSun * (P / 365.25) ** 2);
+    if (!P && a) P = 365.25 * Math.sqrt(a ** 3 / massSun);
+    if (!a) { a = 0.05; P = 365.25 * Math.sqrt(a ** 3 / massSun); notes.push(`${r.pl_name}: orbit unknown, drawn at 0.05 AU.`); }
+    facts.ORBIT.push(fact('PERIOD', `${fmt(P, P < 10 ? 3 : 1)} DAYS`, r.pl_orbper ? 'measured' : 'computed', r.pl_orbper ? '' : "Kepler's third law from the orbit size."));
+    facts.ORBIT.push(fact('ORBIT SIZE', `${fmt(a, 4)} AU`, 'computed', "Semi-major axis, from the period and the star's mass (Kepler's third law)."));
+    const e = r.pl_orbeccen ?? 0;
+    facts.ORBIT.push(fact('ECCENTRICITY', fmt(e, 3), r.pl_orbeccen != null ? 'measured' : 'imagined', r.pl_orbeccen != null ? '' : 'Unknown; assumed circular.'));
+    const omega = (r.pl_orblper ?? 0) * DEG;
+    let M0, epochJd, phaseTier, phaseNote;
+    if (r.tran_flag === 1 && r.pl_tranmid) {
+      M0 = transitMeanAnomaly(e, omega); epochJd = r.pl_tranmid;
+      phaseTier = 'computed'; phaseNote = 'Phase from measured transit times; error grows the further you run the clock from the observations.';
+    } else {
+      M0 = hash(r.pl_name) * 2 * Math.PI; epochJd = 2451545;
+      phaseTier = 'imagined'; phaseNote = 'Where the planet is along its orbit is unknown; position along the orbit is illustrative.';
+    }
+    facts.ORBIT.push(fact('POSITION IN ORBIT', phaseTier === 'computed' ? 'FROM TRANSITS' : 'UNKNOWN', phaseTier, phaseNote));
+    facts.ORBIT.push(fact('ORBIT PLANE', transiting ? 'EDGE-ON TO SOL' : 'UNKNOWN', r.tran_flag === 1 ? plane.tier : transiting ? 'modelled' : 'imagined',
+      r.tran_flag === 1 ? plane.note : transiting ? 'Assumed coplanar with the transiting planets.' : plane.note));
+
+    let rE = r.pl_rade, rTier = 'measured', rNote = 'Measured from the transit depth.';
+    if (r.tran_flag !== 1 && rE) { rTier = 'modelled'; rNote = 'Not measured: the archive estimates it from the mass with a mass–radius relation.'; }
+    if (!rE && r.pl_bmasse) { rE = radiusFromMass(r.pl_bmasse); rTier = 'modelled'; rNote = 'Estimated from mass (Chen & Kipping 2017).'; }
+    if (!rE) { rE = 1; rTier = 'imagined'; rNote = 'Unknown; drawn Earth-sized.'; }
+    facts.PHYSICAL.push(fact('RADIUS', `${fmt(rE, 2)} × EARTH · ${fmt(rE * R_EARTH_KM, 0)} KM`, rTier, rNote));
+    if (r.pl_bmasse) {
+      const prov = r.pl_bmassprov || '';
+      const minimum = /sini/i.test(prov);
+      const fromR = /M-R/i.test(prov);
+      facts.PHYSICAL.push(fact(minimum ? 'MINIMUM MASS' : 'MASS', `${fmt(r.pl_bmasse, 2)} × EARTH`, fromR ? 'modelled' : 'measured',
+        minimum ? 'M·sin i from radial velocity: the true mass is at least this.' : fromR ? 'Estimated from the radius.' : 'Measured.'));
+    }
+    let teq = r.pl_eqt, tNote = 'Exoplanet Archive.';
+    if (!teq && lum) { teq = 278.6 * Math.pow(lum, 0.25) / Math.sqrt(a); tNote = 'From the star\'s luminosity and orbit size, zero albedo.'; }
+    if (teq) facts.PHYSICAL.push(fact('EQUILIBRIUM TEMP', `${fmt(teq, 0)} K · ${fmt(teq - 273.15, 0)} °C`, 'computed', `${tNote} Ignores atmosphere and greenhouse effects.`));
+    if (r.pl_insol) facts.PHYSICAL.push(fact('STARLIGHT', `${fmt(r.pl_insol, 2)} × EARTH`, 'computed', 'Insolation relative to what Earth receives.'));
+    const cls = planetClass(rE, teq ?? 300);
+    if (r.disc_method) facts.DISCOVERY.push(fact('METHOD', discoveryMethod(r.disc_method), 'measured'));
+    if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
+    if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
+    facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No image of this planet exists; its class is inferred from size and temperature.'));
+    facts.RENDERING.push(fact('SKIN', `ANALOG: ${cls.analog}`, 'imagined', 'A real Solar System surface, recoloured to suggest this class of world. Not this planet.'));
+    return {
+      id: idFor(r), name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30, host: star.id,
+      massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, radiusEarth: rE, massEarth: r.pl_bmasse ?? null, teq,
+      massIsMinimum: /sini/i.test(r.pl_bmassprov || ''), radiusMeasured: rTier === 'measured',
+      palette: cls.palette, banded: !!cls.banded, skin: cls.skin, planetClass: cls.label,
+      orbit: { type: 'kepler', host: star.id, a, e, omega, periodDays: P, M0, epochJd, basis }, facts,
+    };
+  });
+  return { planets, transiting, plane };
+}
+
+// ---- systems -------------------------------------------------------------------------------
+
+const MULTIPLICITY = ['', 'SINGLE STAR', 'BINARY STAR', 'TRIPLE STAR', 'QUADRUPLE STAR'];
+
+/**
+ * Build a system model from /api/stars/:id: { star, host, planets, group? } where planets
+ * are NASA Exoplanet Archive pscomppars rows and `group` lists every star of a multiple
+ * system with its ORB6 orbits.
+ */
+export function buildStarSystem(detail) {
+  const notes = [];
+  const members = detail.group?.members ?? [{ star: detail.star, host: detail.host, planets: detail.planets }];
+  const orbitRows = detail.group?.orbits ?? [];
+
+  // component letters and literature values for each member
+  const letterOf = {}, measuredOf = {};
+  for (const o of orbitRows) {
+    letterOf[o.primaryId] ??= o.letters[0];
+    letterOf[o.secondaryId] ??= o.letters[1];
+    for (const [id, l] of [[o.primaryId, o.letters[0]], [o.secondaryId, o.letters[1]]]) {
+      if (o.measured?.mass?.[l] != null && !measuredOf[id]) measuredOf[id] = { mass: o.measured.mass[l], props: o.measured.props?.[l], ref: o.measured.ref };
+      else if (o.measured?.props?.[l] && !measuredOf[id]) measuredOf[id] = { props: o.measured.props[l], ref: o.measured.ref };
+    }
   }
 
-  // ---- planets ----
-  const planets = rows
-    .slice()
-    .sort((a, b) => (a.pl_orbper ?? 1e9) - (b.pl_orbper ?? 1e9))
-    .map((r) => {
-      const facts = { ORBIT: [], PHYSICAL: [], DISCOVERY: [], RENDERING: [] };
-      // period & semi-major axis (Kepler's third law fills whichever is missing)
-      let P = r.pl_orbper, a = r.pl_orbsmax;
-      if (!a && P) a = Math.cbrt(massSun * (P / 365.25) ** 2);
-      if (!P && a) P = 365.25 * Math.sqrt(a ** 3 / massSun);
-      if (!a) { a = 0.05; P = 365.25 * Math.sqrt(a ** 3 / massSun); notes.push(`${r.pl_name}: orbit unknown, drawn at 0.05 AU.`); }
-      facts.ORBIT.push(fact('PERIOD', `${fmt(P, P < 10 ? 3 : 1)} DAYS`, r.pl_orbper ? 'measured' : 'computed', r.pl_orbper ? '' : "Kepler's third law from the orbit size."));
-      facts.ORBIT.push(fact('ORBIT SIZE', `${fmt(a, 4)} AU`, 'computed', "Semi-major axis, from the period and the star's mass (Kepler's third law)."));
-      const e = r.pl_orbeccen ?? 0;
-      facts.ORBIT.push(fact('ECCENTRICITY', fmt(e, 3), r.pl_orbeccen != null ? 'measured' : 'imagined', r.pl_orbeccen != null ? '' : 'Unknown; assumed circular.'));
-      const omega = (r.pl_orblper ?? 0) * DEG;
+  // stars: the requested one first
+  const ordered = [...members].sort((a, b) => (a.star.id === detail.star.id ? -1 : b.star.id === detail.star.id ? 1 : 0));
+  const stars = ordered.map((m) => starBody(m, measuredOf[m.star.id]));
+  const starById = Object.fromEntries(stars.map((s) => [s.id, s]));
 
-      let M0, epochJd, phaseTier, phaseNote;
-      if (r.tran_flag === 1 && r.pl_tranmid) {
-        M0 = transitMeanAnomaly(e, omega); epochJd = r.pl_tranmid;
-        phaseTier = 'computed'; phaseNote = 'Phase from measured transit times; error grows the further you run the clock from the observations.';
-      } else {
-        M0 = hash(r.pl_name) * 2 * Math.PI; epochJd = 2451545;
-        phaseTier = 'imagined'; phaseNote = 'Where the planet is along its orbit is unknown; position along the orbit is illustrative.';
-      }
-      facts.ORBIT.push(fact('POSITION IN ORBIT', phaseTier === 'computed' ? 'FROM TRANSITS' : 'UNKNOWN', phaseTier, phaseNote));
-      facts.ORBIT.push(fact('ORBIT PLANE', transiting ? 'EDGE-ON TO SOL' : 'UNKNOWN', r.tran_flag === 1 ? planeTier : transiting ? 'modelled' : 'imagined',
-        r.tran_flag === 1 ? planeNote : transiting ? 'Assumed coplanar with the transiting planets.' : planeNote));
+  // planets, keyed by letter when only one star has planets (keeps routes like /hyg-70666/b)
+  const hostsWithPlanets = ordered.filter((m) => m.planets.length);
+  const planets = [];
+  let focusPlane = null;
+  for (const m of hostsWithPlanets) {
+    const host = starById[m.star.id];
+    const prefix = hostsWithPlanets.length > 1 ? `${(letterOf[m.star.id] || host.name.split(' ').pop()).toLowerCase()}-` : '';
+    const out = planetBodies(m.planets, host, (r) => `${prefix}${(r.pl_letter || r.pl_name).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, notes);
+    planets.push(...out.planets);
+    if (m.star.id === detail.star.id || !focusPlane) focusPlane = out;
+  }
+  if (!planets.length) notes.push('No planets are known here. That is not the same as none existing: most planet searches would miss small or long-period worlds around this star.');
 
-      // size & mass
-      let rE = r.pl_rade, rTier = 'measured', rNote = 'Measured from the transit depth.';
-      if (r.tran_flag !== 1 && rE) { rTier = 'modelled'; rNote = 'Not measured: the archive estimates it from the mass with a mass–radius relation.'; }
-      if (!rE && r.pl_bmasse) { rE = radiusFromMass(r.pl_bmasse); rTier = 'modelled'; rNote = 'Estimated from mass (Chen & Kipping 2017).'; }
-      if (!rE) { rE = 1; rTier = 'imagined'; rNote = 'Unknown; drawn Earth-sized.'; }
-      facts.PHYSICAL.push(fact('RADIUS', `${fmt(rE, 2)} × EARTH · ${fmt(rE * R_EARTH_KM, 0)} KM`, rTier, rNote));
-      if (r.pl_bmasse) {
-        const prov = r.pl_bmassprov || '';
-        const minimum = /sini/i.test(prov);
-        const fromR = /M-R/i.test(prov);
-        facts.PHYSICAL.push(fact(minimum ? 'MINIMUM MASS' : 'MASS', `${fmt(r.pl_bmasse, 2)} × EARTH`, fromR ? 'modelled' : 'measured',
-          minimum ? 'M·sin i from radial velocity: the true mass is at least this.' : fromR ? 'Estimated from the radius.' : 'Measured.'));
-      }
-      let teq = r.pl_eqt, tNote = 'Exoplanet Archive.';
-      if (!teq && lum) { teq = 278.6 * Math.pow(lum, 0.25) / Math.sqrt(a); tNote = 'From the star\'s luminosity and orbit size, zero albedo.'; }
-      if (teq) facts.PHYSICAL.push(fact('EQUILIBRIUM TEMP', `${fmt(teq, 0)} K · ${fmt(teq - 273.15, 0)} °C`, 'computed', `${tNote} Ignores atmosphere and greenhouse effects.`));
-      if (r.pl_insol) facts.PHYSICAL.push(fact('STARLIGHT', `${fmt(r.pl_insol, 2)} × EARTH`, 'computed', 'Insolation relative to what Earth receives.'));
-      const cls = planetClass(rE, teq ?? 300);
-      if (r.disc_method) facts.DISCOVERY.push(fact('METHOD', discoveryMethod(r.disc_method), 'measured'));
-      if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
-      if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
-      facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No image of this planet exists; its class is inferred from size and temperature.'));
-      facts.RENDERING.push(fact('SKIN', `ANALOG: ${cls.analog}`, 'imagined', 'A real Solar System surface, recoloured to suggest this class of world. Not this planet.'));
+  // binary orbits in scene coordinates, with each star's mass for the barycentre split
+  const toScene = (v) => frameToScene(eqToEcl(v));
+  const binary = orbitRows.length ? {
+    orbits: orbitRows.map((o) => {
+      const P = starById[o.primaryId].catalog;
+      const ra = Math.atan2(P.y, P.x), dec = Math.asin(P.z / P.distPc);
+      const b = { r: [Math.cos(dec) * Math.cos(ra), Math.cos(dec) * Math.sin(ra), Math.sin(dec)],
+        n: [-Math.sin(dec) * Math.cos(ra), -Math.sin(dec) * Math.sin(ra), Math.cos(dec)], e: [-Math.sin(ra), Math.cos(ra), 0] };
+      return { ...o, primary: o.primaryId, secondary: o.secondaryId, distPc: P.distPc,
+        basis: { n: toScene(b.n), e: toScene(b.e), r: toScene(b.r) } };
+    }),
+    mass: Object.fromEntries(stars.map((s) => [s.id, s.massSun])),
+  } : null;
 
-      const id = (r.pl_letter || r.pl_name).toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      return {
-        id, name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30,
-        massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, palette: cls.palette, banded: !!cls.banded, skin: cls.skin,
-        orbit: { type: 'kepler', a, e, omega, periodDays: P, M0, epochJd }, facts,
-      };
-    });
+  // orbit facts on each star
+  for (const o of binary?.orbits ?? []) {
+    const aAU = o.aArcsec * o.distPc;
+    const dyn = aAU ** 3 / o.periodYears ** 2;
+    const pair = `${starById[o.primary].name} + ${starById[o.secondary].name}`;
+    const rows = [
+      fact('PAIR', pair.toUpperCase(), 'measured', `${o.wds} ${o.designation}`),
+      fact('PERIOD', o.periodYears > 1000 ? `${fmt(o.periodYears, 0)} YEARS` : `${fmt(o.periodYears, 2)} YEARS`, 'measured', `ORB6, ${o.ref}. Orbit grade ${o.grade} (1 = definitive, 5 = indeterminate).`),
+      fact('SEMI-MAJOR AXIS', `${fmt(o.aArcsec, 3)}″ · ${fmt(aAU, aAU < 100 ? 2 : 0)} AU`, 'measured', 'Angular size from ORB6, scaled by the parallax distance.'),
+      fact('ECCENTRICITY', fmt(o.e, 3), 'measured', 'ORB6.'),
+      fact('INCLINATION', `${fmt(o.i, 1)}°`, 'measured', 'Relative to the plane of the sky. Which side is nearer to us is ambiguous without radial velocities.'),
+      fact('DYNAMICAL MASS', `${fmt(dyn, 2)} × SUN`, 'computed', "Total mass from Kepler's third law (a³/P²)."),
+    ];
+    for (const id of [o.primary, o.secondary]) (starById[id].facts.ORBIT ??= []).push(...rows);
+  }
 
-  if (!rows.length) notes.push('No planets are known here. That is not the same as none existing: most planet searches would miss small or long-period worlds around this star.');
-
+  const focus = starById[detail.star.id];
   const aMin = planets.length ? Math.min(...planets.map((p) => p.orbit.a)) : null;
-  const aMax = planets.length ? Math.max(...planets.map((p) => p.orbit.a)) : null;
-  const starAU = starBody.radiusKm / AU_KM;
-  const survey = planets.length
-    ? [{ label: 'WHOLE SYSTEM', au: aMax * 3.2 }, ...(planets.length > 3 ? [{ label: 'INNER PLANETS', au: planets[1].orbit.a * 3.2 }] : [])]
-    : [{ label: 'STAR', au: Math.max(starAU * 40, 0.02) }];
+  const survey = [];
+  const focusPlanets = planets.filter((p) => p.host === focus.id);
+  if (focusPlanets.length) {
+    const aMax = Math.max(...focusPlanets.map((p) => p.orbit.a));
+    survey.push({ label: 'PLANETS', au: aMax * 3.2, centre: focus.id });
+    if (focusPlanets.length > 3) survey.push({ label: 'INNER PLANETS', au: focusPlanets[1].orbit.a * 3.2, centre: focus.id });
+  }
+  for (const o of [...(binary?.orbits ?? [])].sort((a, b) => a.periodYears - b.periodYears)) {
+    survey.push({ label: `${o.letters.join('–')} ORBIT`, au: o.aArcsec * o.distPc * (1 + o.e) * 2.6, centre: o.primary });
+  }
+  if (!survey.length) survey.push({ label: 'STAR', au: Math.max((focus.radiusKm / AU_KM) * 40, 0.02), centre: focus.id });
 
+  const n = stars.length;
+  const s = detail.star;
   return {
     id: s.id, name: s.name, isSol: false, distLy: s.distLy,
-    subtitle: `${fmt(s.distLy, 2)} LY FROM SOL · ${spect.toUpperCase()} · ${planets.length || 'NO'} KNOWN PLANET${planets.length === 1 ? '' : 'S'}`,
-    bodies: [starBody, ...planets], starId: 'star',
+    subtitle: `${fmt(s.distLy, 2)} LY FROM SOL · ${n > 1 ? `${MULTIPLICITY[n] ?? `${n}-STAR`} SYSTEM · ` : ''}${focus.spectral.toUpperCase()} · ${planets.length || 'NO'} KNOWN PLANET${planets.length === 1 ? '' : 'S'}`,
+    bodies: [...stars, ...planets], starId: focus.id, stars: stars.map((x) => x.id),
     // Enhanced sizes are relative to the system: shrink everything for compact systems like TRAPPIST-1.
     scale: aMin ? Math.min(1, Math.max(0.02, aMin / 0.387)) : 1,
-    solDirection: toSol, planeNormal, transiting,
+    solDirection: focusPlane?.plane.toSol ?? frameToScene(eqToEcl(norm([-s.x, -s.y, -s.z]))),
+    planeNormal: focusPlane?.plane.n ?? [0, 1, 0],
+    transiting: !!focusPlane?.transiting,
+    binary, multiplicity: n, groupSource: detail.group?.source ?? null,
     survey, notes, source: s.source,
-    massSun,
   };
 }

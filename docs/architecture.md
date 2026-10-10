@@ -6,6 +6,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │ LCARS shell  src/main.js, styles/    │  /api/*   │ server/index.js   static + API    │
 │ router       #/system/sol/earth …    │ ────────▶ │ server/horizons.js  JPL proxy     │
 │ clock        src/astro/clock.js      │           │ server/stars.js     HYG + planets │
+│                                      │           │ server/binaries.js  ORB6 orbits   │
+│                                      │           │ server/textures.js  imagery       │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -28,7 +30,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   Navigation View uses the IAU galactic frame (the plane is horizontal, l = 0° points at the
   galactic centre) and is centred on the current star. See `src/astro/frames.js`.
 - **One system model.** Sol and other stars both become a model (`src/data/systems.js`):
-  bodies, orbits, a survey of camera distances, and facts that each carry a provenance tier.
+  one or more stars (binary orbits in `model.binary`), planets attached to their host star, orbits, a survey of camera distances, and facts that each carry a provenance tier.
   The System View and the info panel render whatever model they're given.
 - **Bodies.** `src/views/system/materials.js` holds the planet shader (lit by the star,
   with an optional night-side emission map), the cloud layer and the limb-darkened
