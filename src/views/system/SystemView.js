@@ -37,7 +37,11 @@ import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, D
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
 import { starBandDelta, paletteIndex, SUN_SIGNATURES } from './bandskin.js';
-import { bandTexture, hipsUrl, applyBandToMaterial } from './bandtextures.js';
+import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, FULL_DELAY_MS } from './bandtextures.js';
+import { prepare, skyLayers, curveStarDelta, curveStarRgb, starCurveLook, sunCurveLook } from './curvelook.js';
+import { curveFromLegacy } from '../../data/curve.js';
+import { bandLoads } from '../../data/bandload.js';
+import { currentBand } from '../../data/bandstate.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
 import { createComet, cometMagnitude } from './comet.js';
@@ -209,45 +213,89 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   // The sky becomes an all-sky survey in the band (CDS HiPS, MEASURED) or, without one, the
   // catalogue stars re-weighted by their blackbody in the band (COMPUTED); bodies take their band
   // look from bandskin.js (real map, predicted skin, modelled glow, or not observed).
-  let band = BANDS[0], pass = null;
+  // A custom transmission curve (#66) blends every overlapping survey by its overlap with T(λ) and
+  // takes each body's look from curvelook.js. Survey previews show at once, full resolution cross-fades in (#62).
+  let band = BANDS[0], pass = null, curve = null; // curve: the #66 curve when it is not one bandpass
   const PAL_RGB = [[1, 1, 1], [1, 0.55, 0.15], [0.3, 0.85, 1], [1, 0.45, 0.2], [1, 1, 1], [0.7, 0.55, 1], [0.4, 0.9, 1], [1, 0.4, 0.9]];
-  const skyBandMat = new THREE.ShaderMaterial({
+  const skyBandMaterial = () => new THREE.ShaderMaterial({
     side: THREE.BackSide, depthWrite: false, transparent: true,
-    uniforms: { uMap: { value: null }, uOpacity: { value: 0 }, uFade: { value: 1 } },
+    uniforms: { uMap: { value: null }, uPrev: { value: null }, uXf: { value: 1 }, uOpacity: { value: 0 }, uFade: skyMat.uniforms.uFade },
     vertexShader: `varying vec3 vDir; void main() { vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
     // scene (x, y, z) = ecliptic (x, z, −y) → equatorial → RA/Dec; the survey is equirectangular in
     // RA/Dec with RA 0 at the centre, increasing to the left
-    fragmentShader: `varying vec3 vDir; uniform sampler2D uMap; uniform float uOpacity; uniform float uFade;
+    fragmentShader: `varying vec3 vDir; uniform sampler2D uMap; uniform sampler2D uPrev; uniform float uXf; uniform float uOpacity; uniform float uFade;
       void main() { vec3 e = vec3(vDir.x, -vDir.z, vDir.y); float ob = 0.40909280;
         vec3 q = vec3(e.x, e.y * cos(ob) - e.z * sin(ob), e.y * sin(ob) + e.z * cos(ob));
         float ra = atan(q.y, q.x), dec = asin(clamp(q.z, -1.0, 1.0));
         vec2 uv = vec2(fract(0.5 - ra / 6.2831853), 0.5 + dec / 3.1415927);
         vec4 t = texture2D(uMap, uv);
+        if (uXf < 0.999) t = mix(texture2D(uPrev, uv), t, uXf); // preview → full resolution (#62)
         gl_FragColor = vec4(t.rgb, t.a * uOpacity * uFade); // transparent where the survey has no data
         #include <colorspace_fragment>
       }`,
   });
-  const skyBand = new THREE.Mesh(new THREE.SphereGeometry(SKY_R * 0.95, 96, 48), skyBandMat);
-  skyBand.renderOrder = -2; skyBand.frustumCulled = false; skyBand.visible = false;
-  scene.add(skyBand);
+  const skyGeo = new THREE.SphereGeometry(SKY_R * 0.95, 96, 48);
+  const skyBands = []; // one sphere per blended survey
+  const skyBandMesh = (i) => {
+    if (!skyBands[i]) {
+      const m = new THREE.Mesh(skyGeo, skyBandMaterial());
+      m.renderOrder = -2 + i * 0.01; m.frustumCulled = false; m.visible = false; m.userData = {};
+      scene.add(m); skyBands[i] = m;
+    }
+    return skyBands[i];
+  };
   const STANDALONE_BANDS = import.meta.env?.MODE === 'standalone';
-  const skyPass = () => (pass?.sky ? pass : band.passes.find((p) => p.sky) ?? null);
+  let skyNow = { layers: [], measured: 0 };
+  const bandCurve = () => (curve ?? (band.id === 'full' ? { full: true } : curveFromLegacy(band.id, pass?.id)));
+
+  /** One survey on sphere `mesh` at `opacity`: preview at once, full resolution cross-faded in. */
+  function showSurvey(mesh, layer, opacity) {
+    const u = mesh.material.uniforms, look = { sky: layer.sky, res: 'loading', label: layer.skyCredit };
+    layer.look = look;
+    const same = mesh.userData.sky === layer.sky && u.uMap.value;
+    mesh.userData.sky = layer.sky; mesh.userData.look = look;
+    if (same) { u.uOpacity.value = opacity; look.res = mesh.userData.res ?? 'full'; return; }
+    u.uOpacity.value = 0; u.uXf.value = 1;
+    const current = () => mesh.userData.look === look;
+    let shown = null;
+    bandTexture(hipsUrl(layer.sky, 'preview')).then((r) => {
+      if (!r || !current() || shown) return;
+      u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'preview'; look.res = mesh.userData.res = 'preview';
+    });
+    const full = new Promise((ok) => setTimeout(ok, FULL_DELAY_MS)).then(() => (!current() ? true : bandTexture(hipsUrl(layer.sky)).then((r) => {
+      if (!current()) return true;
+      if (!r) { look.res = mesh.userData.res = shown ? 'failed-preview' : 'failed'; return null; }
+      if (shown) {
+        u.uPrev.value = u.uMap.value; u.uXf.value = 0;
+        const t0 = performance.now(), step = () => { const k = Math.min(1, (performance.now() - t0) / 600); u.uXf.value = k; if (k < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }
+      u.uMap.value = r.texture; u.uOpacity.value = opacity; shown = 'full'; look.res = mesh.userData.res = 'full';
+      return true;
+    })));
+    bandLoads.track(full, layer.skyCredit);
+  }
 
   function applySkyBand() {
     const full = band.id === 'full';
-    const sp = full ? null : skyPass();
-    skyBand.visible = !!sp && !STANDALONE_BANDS;
-    if (sp && !STANDALONE_BANDS) {
-      const url = hipsUrl(sp.sky);
-      skyBandMat.uniforms.uOpacity.value = 0;
-      bandTexture(url).then((r) => { if (r && skyPass()?.sky === sp.sky) { skyBandMat.uniforms.uMap.value = r.texture; skyBandMat.uniforms.uOpacity.value = 1; } });
-    }
+    skyNow = full ? { layers: [], measured: 0 } : skyLayers(bandCurve());
+    const layers = STANDALONE_BANDS ? [] : skyNow.layers;
+    // a running average: layer k drawn at w_k / Σ_{j≤k} w_j over the ones before gives each its weight
+    let acc = 0;
+    skyBands.forEach((m, i) => { if (i >= layers.length) { m.visible = false; m.userData.look = null; } });
+    layers.forEach((L, i) => { acc += L.weight; const m = skyBandMesh(i); m.visible = true; showSurvey(m, L, L.weight / acc); });
     if (!skyBase) return;
     // catalogue stars: shown over a survey only where the survey shows starlight (IR, visible, UV);
-    // re-weighted by their blackbody in the band
+    // re-weighted by their blackbody in the band (a custom curve: integrated through T(λ))
     const n = skyBase.mags.length, mags = new Float32Array(n), cols = new Float32Array(n * 3);
-    const p = pass ?? band.passes[0], tint = PAL_RGB[paletteIndex(band.palette)];
+    const p = pass ?? band.passes[0], tint = PAL_RGB[paletteIndex(band.palette)], sp = layers.length > 0, prep = curve ? prepare(curve) : null;
     for (let i = 0; i < n; i++) {
+      if (prep) {
+        const d = curveStarDelta(skyBase.teff[i], prep.f), c = curveStarRgb(skyBase.teff[i], prep, [skyBase.cols[i * 3], skyBase.cols[i * 3 + 1], skyBase.cols[i * 3 + 2]]), mx = Math.max(...c) || 1;
+        mags[i] = d === -Infinity || sp ? 99 : skyBase.mags[i] - d;
+        cols.set([c[0] / mx, c[1] / mx, c[2] / mx], i * 3);
+        continue;
+      }
       const d = full || band.id === 'visible' && p?.id === 'vis-V' ? 0 : starBandDelta(skyBase.teff[i], p);
       mags[i] = d === -Infinity || sp ? 99 : skyBase.mags[i] - d;
       const c = full || band.id === 'visible' ? [skyBase.cols[i * 3], skyBase.cols[i * 3 + 1], skyBase.cols[i * 3 + 2]] : tint;
@@ -260,16 +308,22 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   /** Set every body's band look and load what it needs. */
   function applyBand() {
     const full = band.id === 'full', p = pass ?? band.passes[0] ?? null;
+    // a custom curve keeps clouds where it is mostly visible light, rings where visible or infrared
+    const dom = curve ? band.dominant : band.id;
     for (const id in nodes) {
       const n = nodes[id], u = n.mesh?.material?.uniforms;
-      if (n.clouds) n.clouds.visible = full || band.id === 'visible';
-      if (n.ring) n.ring.visible = full || band.id === 'visible' || band.id === 'ir';
+      if (n.clouds) n.clouds.visible = full || dom === 'visible';
+      if (n.ring) n.ring.visible = full || dom === 'visible' || dom === 'ir';
       if (isStar(n.body)) { applyStarBand(n, p); continue; }
       if (!u?.uBandMode) continue;
       n.bandLook = applyBandToMaterial(u, n.body, band, p);
       if (n.clouds?.material?.uniforms?.uBandMode) n.clouds.material.uniforms.uBandMode.value = 0;
     }
     applySkyBand();
+  }
+  /** An SDO frame on the Sun's disc, preview first (#62). */
+  function showSunFeed(n, u, feed, look) {
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;
@@ -280,16 +334,31 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     queueMicrotask(setGlare);
     u.uBandDisk.value = 0;
     if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
-    const src = model.isSol && n.body.id === model.starId ? bodyBandSource('sun', band, p) : null;
+    const sol = model.isSol && n.body.id === model.starId;
+    if (curve) { // a custom curve (#66): SDO where it overlaps, the Sun's signatures, the photosphere through T(λ)
+      const prep = prepare(curve), teff = n.body.teffK ?? 5772;
+      if (sol) {
+        const s = sunCurveLook(prep, teff);
+        n.bandLook = s.look;
+        if (s.feed?.feed && s.realShare >= 0.5 && !STANDALONE_BANDS) { u.uBandTint.value.setRGB(1, 1, 1); showSunFeed(n, u, s.feed.feed, s.look); return; }
+        u.uBandTint.value.setRGB(...s.tint);
+        restoreStarDisk(n);
+        return;
+      }
+      const s = starCurveLook(teff, prep, n.body.name);
+      u.uBandTint.value.setRGB(...s.tint); n.bandLook = s.look;
+      return;
+    }
+    const src = sol ? bodyBandSource('sun', band, p) : null;
     if (src?.feed && !STANDALONE_BANDS) {
       n.bandLook = { mode: 'real', tier: 'measured', label: src.note ?? 'REAL IMAGE IN THIS BAND', detail: src.credit };
-      loadLive(src.feed).then((l) => { if (!l || n.bandLook?.detail !== src.credit) return; u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
+      showSunFeed(n, u, src.feed, n.bandLook);
       u.uBandTint.value.setRGB(1, 1, 1);
       return;
     }
     const tint = PAL_RGB[paletteIndex(band.palette)];
     // the Sun's corona, chromosphere and cosmic-ray glow where its photosphere's blackbody says "nothing"
-    const sig = model.isSol && n.body.id === model.starId ? SUN_SIGNATURES[band.id] : null;
+    const sig = sol ? SUN_SIGNATURES[band.id] : null;
     if (sig) {
       u.uBandTint.value.setRGB(tint[0] * sig.gain, tint[1] * sig.gain, tint[2] * sig.gain);
       n.bandLook = { mode: 'glow', tier: 'modelled', label: sig.label, detail: sig.why };
@@ -1631,12 +1700,16 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
 
   return {
     /** The spectrum filter (#28): band id and bandpass id (null = the band's default). */
-    setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); applyBand(); },
-    get band() { return { band, pass: pass ?? band.passes[0] ?? null }; },
-    /** How body `id` is drawn in the current band: { mode, tier, label, detail } or null in full spectrum. */
+    setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); curve = null; applyBand(); },
+    /** The spectrum control's curve (#66): follows the shared state (bandstate.js currentBand()). */
+    setCurve() { const cb = currentBand(); band = cb.band; pass = cb.pass; curve = cb.custom ? cb.curve : null; applyBand(); },
+    get band() { return { band, pass: pass ?? band.passes[0] ?? null, curve }; },
+    /** How body `id` is drawn in the current band: { mode, tier, label, detail, res } or null in full spectrum. */
     bandLookOf: (id) => nodes[id]?.bandLook ?? null,
-    /** The sky survey in use, or null. */
-    bandSky: () => (band.id === 'full' ? null : (pass?.sky ? pass : band.passes.find((x) => x.sky)) ?? null),
+    /** The sky survey in use (the most heavily weighted), or null. */
+    bandSky: () => (band.id === 'full' ? null : skyNow.layers[0] ?? null),
+    /** Every survey blended into the sky: [{ sky, skyCredit, weight, look: { res } }] and the measured fraction. */
+    bandSkies: () => (band.id === 'full' ? { layers: [], measured: 0 } : skyNow),
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load,

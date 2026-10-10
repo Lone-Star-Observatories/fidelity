@@ -49,8 +49,11 @@ import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
 import { createComputer } from './voice/computer.js';
-import { BANDS, bandById, passById } from './data/bands.js';
-import { setCurrentBand, currentBand } from './data/bandstate.js';
+import { setCurrentCurve, currentBand } from './data/bandstate.js';
+import { curveFromLegacy, normCurve, canonical, describeCurve, fmtRange } from './data/curve.js';
+import { createSpectrumControl, resText } from './panels/spectrum.js';
+import { bandLoads, configureBandLoads } from './data/bandload.js';
+import { onBandRes, prefetchPreviews } from './views/system/bandtextures.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -226,29 +229,74 @@ applyTextScale();
 }
 // each bottom-bar row scrolls sideways with the mouse wheel when its controls overflow
 const scrollRow = (row) => { row.addEventListener('wheel', (e) => { if (row.scrollWidth > row.clientWidth && Math.abs(e.deltaY) > Math.abs(e.deltaX)) { row.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive: false }); return row; };
-// ---- the spectrum filter (#28) ------------------------------------------------------------
-const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
-const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
+// ---- the spectrum control (#28, #66) -----------------------------------------------------------
+// The state is a transmission curve T(λ) (src/data/curve.js), remembered as the `curve` setting; the
+// old `band` / `bandPass` settings map onto the curve of that one bandpass (and still work if set).
 const microns = (s) => s.replace(/ ?µm\b/g, ' MICRONS'); // 'µ' upper-cases to Greek 'Μ'
-function syncBandControls() {
-  const b = bandById(settings.get('band')), p = passById(b, settings.get('bandPass'));
-  bandSel.value = b.id;
-  passSel.replaceChildren(...b.passes.map((x) => h('option', { value: x.id, textContent: x.label })));
-  passSel.hidden = !b.passes.length;
-  if (p) passSel.value = p.id;
+const storedCurve = () => normCurve(settings.get('curve') ?? curveFromLegacy(settings.get('band'), settings.get('bandPass')));
+let syncingLegacy = false;
+function setCurve(c) {
+  const n = normCurve(c), can = canonical(n);
+  syncingLegacy = true; // keep band/bandPass meaningful for anything that still reads them
+  settings.set('band', can.kind === 'full' ? 'full' : can.kind === 'pass' ? can.band.id : describeCurve(n).dominant ?? 'full'); // custom: its dominant band
+  settings.set('bandPass', can.kind === 'pass' ? can.pass.id : null);
+  syncingLegacy = false;
+  settings.set('curve', n.full ? null : n);
 }
-// read the choice first: clearing bandPass re-syncs the controls from the stored (old) band
-bandSel.addEventListener('change', () => { const id = bandSel.value; settings.set('bandPass', null); settings.set('band', id); });
-passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
+let spectrum = null; // the SPECTRUM button and overlay, made with the other controls below
+let bandTimer = null;
 function applyBandEverywhere() {
-  setCurrentBand(settings.get('band'), settings.get('bandPass'));
-  syncBandControls();
-  system.setBand(settings.get('band'), settings.get('bandPass'));
+  bandLoads.begin(); // each change restarts the loading state (#62)
+  performance.mark?.('fidelity:band-change');
+  setCurrentCurve(storedCurve());
+  system.setCurve();
   for (const v of [nav, galaxy, quadrant]) v.recolourBand?.();
-  document.body.dataset.band = settings.get('band');
+  document.body.dataset.band = currentBand().band.id;
+  spectrum?.refresh();
   if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
 }
-settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
+settings.onChange((k) => {
+  if (k === 'curve') { clearTimeout(bandTimer); bandTimer = setTimeout(applyBandEverywhere, 0); } // one apply per burst of changes
+  else if ((k === 'band' || k === 'bandPass') && !syncingLegacy) { settings.set('curve', curveFromLegacy(settings.get('band'), settings.get('bandPass'))); }
+});
+// "Processing" (#62): a local voice every 3 s while full-resolution band images load, and a pulsing pill
+const voiceStatusOn = () => { const v = settings.get('voiceStatus'); return v === 'on' || (v !== 'off' && computer.state !== 'off'); };
+const procPill = h('div', { className: 'band-processing', hidden: true });
+function sayLocal(text) {
+  const synth = globalThis.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+  if (synth.speaking && text === 'Processing') return;
+  const u = new SpeechSynthesisUtterance(text);
+  const v = synth.getVoices().find((x) => /^en/i.test(x.lang) && /female|samantha|zira|karen|serena|google uk english female/i.test(x.name)) ?? synth.getVoices().find((x) => /^en/i.test(x.lang));
+  if (v) u.voice = v;
+  u.rate = 1.05; u.pitch = 0.95; u.volume = 0.85;
+  synth.speak(u);
+}
+let procHide = null;
+function showLoadState(st) {
+  clearTimeout(procHide);
+  if (st.phase === 'loading' && st.pending > 0) {
+    procPill.textContent = `PROCESSING… ${st.pending}`;
+    procPill.title = `Full-resolution band images still loading:\n${st.waiting.join('\n')}`;
+    procHide = setTimeout(() => { procPill.hidden = false; }, 250); // quick loads never flash the pill
+    procPill.classList.remove('pulse'); void procPill.offsetWidth; procPill.classList.add('pulse');
+  } else if (st.phase === 'failed') {
+    procPill.textContent = st.pending > 0 ? `UNABLE TO COMPLETE · ${st.pending} STILL LOADING` : 'UNABLE TO COMPLETE · PREVIEW KEPT';
+    procPill.hidden = false; procPill.classList.add('failed');
+    procHide = setTimeout(() => { procPill.hidden = true; procPill.classList.remove('failed'); }, 6000);
+  } else { procPill.hidden = true; procPill.classList.remove('failed'); }
+  updateBandRow();
+}
+configureBandLoads({ speak: sayLocal, enabled: () => voiceStatusOn(), canSpeak: () => !['speaking', 'thinking', 'hearing', 'connecting'].includes(computer.state), onChange: showLoadState });
+// the panel's IN THIS BAND row follows PREVIEW → LOADING → FULL
+let bandRow = null;
+function updateBandRow() {
+  if (!bandRow) return;
+  const look = system.bandLookOf(bandRow.id);
+  if (look) bandRow.dd.textContent = `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}`;
+  spectrum?.refreshReadout();
+}
+onBandRes(updateBandRow);
 // ---- "Computer" (#21) ----------------------------------------------------------------------
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
@@ -269,7 +317,12 @@ function screenContext() {
   const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
   const cb = currentBand();
-  if (!cb.full) lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+  if (!cb.full) {
+    lines.push(`SPECTRAL BAND: ${cb.band.label}${cb.pass ? ` · ${cb.pass.label}` : ''} (false colour)`);
+    lines.push(describeCurve(cb.curve).text); // the spectrum control's readout (#66), for "what am I looking at?"
+    const fl = system.bandLookOf(route.body ?? system.focusId);
+    if (fl) lines.push(`IN THIS BAND (${route.body ?? system.focusId}): ${fl.label}${fl.res ? ` · ${resText(fl.res)}` : ''}`);
+  }
   const active = system.activeMissions?.map((id) => eventsFeed()?.events.find((e) => e.id === id)?.title).filter(Boolean) ?? [];
   if (active.length) lines.push(`PLAYING OUT IN THE 3D VIEW (modelled paths): ${active.join('; ')}`);
   const fv = $('feed-viewer');
@@ -305,7 +358,8 @@ function renderVoice(st = computer.state, log = computer.log) {
       pill('TALK NOW', () => computer.talk().catch((e) => toast(`MICROPHONE: ${String(e.message || e).toUpperCase()}`))),
       pill(computer.trained ? 'RETRAIN "COMPUTER"' : 'TRAIN "COMPUTER"', () => computer.train(3, (k) => toast(`${k} OF 3 — ${k < 3 ? 'AGAIN' : 'DONE'}`)).catch((e) => toast(String(e.message || e).toUpperCase()))),
       st === 'speaking' || st === 'thinking' ? pill('STOP', () => computer.stop()) : null,
-      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); })),
+      pill(settings.get('voiceInterrupt') ? 'INTERRUPT: WAKE WORD' : 'INTERRUPT: OFF', () => { settings.set('voiceInterrupt', !settings.get('voiceInterrupt')); renderVoice(); }),
+      pill(`VOICE STATUS ${voiceStatusOn() ? 'ON' : 'OFF'}`, () => { settings.set('voiceStatus', voiceStatusOn() ? 'off' : 'on'); renderVoice(); })),
     h('p', { className: 'note', textContent: 'The wake word is recognised on this machine from your own three recordings; only what you say after it goes to the ship\'s computer (OpenAI Realtime, through the local backend, which holds the key).' }));
   const lg = vp.querySelector('.vp-log'); if (lg) lg.scrollTop = lg.scrollHeight;
 }
@@ -374,6 +428,12 @@ window.addEventListener('keydown', (e) => {
   else if (e.key === 'Escape' && (computer.state === 'speaking' || computer.state === 'thinking')) computer.stop(); // Esc ends the computer's reply
 });
 
+spectrum = createSpectrumControl({ h, pill, getCurve: storedCurve, setCurve,
+  context: () => {
+    const id = route?.body ?? system.focusId, b = id && system.model?.bodies.find((x) => x.id === id);
+    return { body: b ? { name: b.name, look: system.bandLookOf(b.id) } : null, sky: system.bandSkies?.() ?? null };
+  },
+  voiceStatus: { get: () => voiceStatusOn(), toggle: () => settings.set('voiceStatus', voiceStatusOn() ? 'off' : 'on') } });
 // two rows: the time control above (#34), everything else on the elbow's arm below
 const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
   stepControls: [pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')] });
@@ -382,7 +442,7 @@ requestAnimationFrame(tcLoop);
 controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
-  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
+  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), spectrum.button),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
   h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
@@ -393,7 +453,10 @@ if (STANDALONE) {
   const hz = [...controls.querySelectorAll('.pill')].find((b) => b.textContent === 'JPL HORIZONS');
   hz.title = 'Bundled JPL Horizons months only in this preview (Keplerian elements outside them); run `npm start` for any date.';
 }
-applyBandEverywhere(); // the remembered spectrum band
+$('viewport').append(spectrum.overlay, procPill);
+applyBandEverywhere(); // the remembered spectrum curve
+// warm every band's preview once the first views have loaded, one at a time (#62)
+setTimeout(() => { (window.requestIdleCallback ?? ((f) => setTimeout(f, 0)))(() => prefetchPreviews()); }, 8000);
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
@@ -720,16 +783,27 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
   }
   {
-    // the spectrum filter (#28): how this body is drawn in the band, and the sky survey behind it
+    // the spectrum filter (#28, #66): how this body is drawn in the band or curve, and the sky behind it
     const cb = currentBand(), look = system.bandLookOf(b.id);
+    bandRow = null;
     if (!cb.full) {
       const dl = h('dl');
-      if (look) row(dl, 'IN THIS BAND', look.label, look.tier, look.detail);
-      const sky = system.bandSky();
-      row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
-      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
-        look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail }) : null,
-        h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+      if (look) {
+        const res = look.res ? ` · ${resText(look.res)}` : '';
+        const detail = look.res && look.res !== 'full' ? `${look.detail}\n${look.res.startsWith('failed') ? 'The full-resolution image could not be loaded; the low-resolution preview is shown (still MEASURED).' : 'A low-resolution preview of the real map (MEASURED) is shown while the full resolution loads.'}` : look.detail;
+        bandRow = { id: b.id, dd: row(dl, 'IN THIS BAND', `${look.label}${res}`, look.tier, detail) };
+        for (const s of look.sources ?? []) row(dl, s.drawn ? 'REAL MAP · DRAWN' : 'REAL MAP · LISTED', `${s.credit.split(/[,(]/)[0].trim().toUpperCase()} · ${Math.round(s.weight * 100)}%`, 'measured', `${s.credit}${s.note ? `\n${s.note}` : ''}${s.drawn ? '' : '\nOverlaps the curve but is not drawn: one map per globe (the best-covered).'}`);
+        if (look.notObserved?.length) row(dl, 'NOT OBSERVED', look.notObserved.map((r) => fmtRange(...r)).join(', '), 'computed', 'Parts of the curve with no real image of this body and no spectral signature to predict from.');
+        else if (look.uncovered?.length && look.mode === 'curve') row(dl, 'NO REAL IMAGE', look.uncovered.map((r) => fmtRange(...r)).join(', '), 'modelled', 'Predicted there (MODELLED · PREDICTED).');
+      }
+      const skies = system.bandSkies?.() ?? { layers: [] };
+      if (skies.layers.length) for (const L of skies.layers) row(dl, 'SKY', `${L.skyCredit.split(/[,(]/)[0].trim().toUpperCase()}${skies.layers.length > 1 ? ` · ${Math.round(L.weight * 100)}%` : ''}`, 'measured', L.skyCredit);
+      else row(dl, 'SKY', 'CATALOGUE STARS, RE-WEIGHTED', 'computed', cb.custom ? 'No all-sky survey overlaps the curve: catalogue stars brightened or dimmed by their blackbody through T(λ) relative to V (Vega system).' : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
+      const d = cb.custom ? cb.prep.desc : null;
+      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.custom ? microns(cb.pass.label).toUpperCase() : `${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}`}` }), dl,
+        look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail } ) : null,
+        d?.composite ? h('div', { className: 'sp-key' }, ...d.thirds.map((t, i) => h('span', { className: `k${i}`, textContent: fmtRange(...t) })))
+          : h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
     }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
