@@ -7,6 +7,7 @@ import { fetchSatellites, fetchSatelliteDetail, fetchFeed, fetchObserving } from
 import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed, youtubeEmbed, youtubeWatch } from '../data/feeds.js';
 import { SAT_COLORS } from '../views/system/satellites.js';
 import { lineChart } from './charts.js';
+import { createCrewView } from './crew.js';
 
 const MU = 398600.4418, R_EQ = 6378.137, R_MEAN = 6371;
 const STALE_DAYS = 7; // older element sets are flagged: SGP4 error grows ~1–3 km a day in low orbit
@@ -14,6 +15,7 @@ const LIVE_DOT = '● LIVE FEED';
 
 export function createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ }) {
   let data = null, byNorad = null, loading = null;
+  const crewView = createCrewView({ h, pill, row, badge, $ }); // #46
 
   function load() {
     loading ??= fetchSatellites().then((d) => {
@@ -198,11 +200,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
         if (!o) throw new Error('needs the local backend (npm start)');
         frame(`${name} · ${f.label}`, f.mission === 'jwst' ? 'SCHEDULE · RECENT IMAGES' : 'RECENT IMAGES', observingBody(f.mission, o), o.recent?.source ?? '');
       } else if (f.kind === 'crew') {
-        const j = await fetchFeed(f.id, 'json');
-        const people = (j.data.people ?? []).filter((p) => (f.craft === 'ISS' ? p.iss : !p.iss));
-        frame(`${name} · ${f.label}`, `${people.length} ABOARD${f.craft === 'ISS' && j.data.expedition ? ` · EXPEDITION ${j.data.expedition}` : ''}`,
-          h('div', { className: 'fv-crew' }, people.map((p) => h('div', { className: 'fv-person' }, h('b', { textContent: p.name.toUpperCase() }), h('span', { textContent: [p.position, p.agency, p.spacecraft].filter(Boolean).join(' · ').toUpperCase() })))),
-          j.credit);
+        crewView.open(f.craft, `${name} · ${f.label}`); // crew cards (#46)
       } else if (f.kind === 'xray') {
         const j = await fetchFeed(f.id, 'json');
         const pts = j.data.map((x) => ({ t: new Date(x.time_tag), v: x.flux }));
@@ -293,7 +291,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
       }));
     });
     box.append(
-      h('div', { className: 'body-list' }, FEATURED.map(([id, label]) => pill(hasFeed(id) ? `● ${label}` : label, () => go({ level: 'satellite', system: 'sol', body: String(id) }))), pill('SOLAR WIND ▸', openSolarWind)),
+      h('div', { className: 'body-list' }, FEATURED.map(([id, label]) => pill(hasFeed(id) ? `● ${label}` : label, () => go({ level: 'satellite', system: 'sol', body: String(id) }))), pill('SOLAR WIND ▸', openSolarWind), pill('PEOPLE IN SPACE ▸', () => crewView.open(null, 'PEOPLE IN SPACE'))),
       input, results, counts,
       h('p', { className: 'note', textContent: `Every active satellite from CelesTrak (US Space Force tracking), positioned with SGP4; mission detail from the UCS Satellite Database. ● marks the ${Object.keys(SAT_FEEDS).length} with a public live feed. Tap a category to hide it.` }));
     return box;

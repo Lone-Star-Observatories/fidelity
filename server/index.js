@@ -22,6 +22,7 @@ import { feed, feedList } from './feeds.js';
 import { traverse } from './traverse.js';
 import { jwstSchedule, recentImages, preview } from './observing.js';
 import { eventsFeed } from './events.js';
+import { crew, crewImage } from './crew.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
@@ -66,6 +67,8 @@ const routes = {
   'GET /api/observing/jwst/schedule': async () => jwstSchedule(),
   'GET /api/observing/preview': async (q) => binary({ ...(await preview(q.get('uri'))), maxAge: 86400 }),
   'GET /api/events': async () => eventsFeed(),
+  'GET /api/crew': async () => crew(),
+  'GET /api/crew/image': async (q) => binary(await crewImage(q.get('file') || '')),
   'GET /api/surveys': async () => surveyList(),
   'GET /api/nasa-images': async (q) => nasaImages(q),
   'GET /api/psg': async (q) => psgSpectrum(q.get('body') || '', q.get('month') || ''),

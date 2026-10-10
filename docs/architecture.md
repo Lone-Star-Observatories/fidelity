@@ -99,6 +99,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
+| `GET /api/crew` · `GET /api/crew/image?file=` | People in space with open-data facts (#46); licensed portraits and flags, cached |
 | `GET /api/events` | The weekly events feed (`events/events.json` from GitHub, `FIDELITY_EVENTS_URL` to override; cached 3 h; the bundled copy when offline or newer), with `streams` refreshed from the curated YouTube channels' RSS every 15 min. Adds `origin`, `cache`, `error` |
 
 ## Standalone preview
@@ -281,6 +282,20 @@ mission cards in the feed viewer. SHOW PATH draws the Horizons reference traject
 MMX's are MODELLED; craft in flight COMPUTED) or, failing that, a direct transfer in the window nearest the planned
 launch from the #45 solver (MODELLED), as a lilac ghost labelled PLANNED that rides the path on the ship's clock.
 `pathTier`/`factTier` decide the badges and never return MEASURED (tested).
+
+## Crew cards (#46)
+
+`server/crew.js` serves `GET /api/crew`: the community people-in-space feed (corquaid, MIT; cached 6 h) with each
+person enriched once a month from open data, one Wikimedia request at a time with backoff on HTTP 429: the
+Wikipedia page → Wikidata item (birth date, citizenship, time in space P2873, employer, description; CC0), the
+citizenship's flag (P41) and the Commons licence of the feed's portrait. `GET /api/crew/image?file=` serves a
+240 px portrait or a flag only when its Commons licence is public domain or Creative Commons and the file belongs to
+the current crew (not an open proxy), cached 90 days. `src/panels/crew.js` shows the list per craft (ISS, Tiangong
+or everyone: PEOPLE IN SPACE in the satellite search section) with flags, faces and the live mission day, and a card
+per person: role, agency, nationality, birth (year when Wikidata has only the year), employer, mission and launch,
+days on this mission and in total counting live, Wikidata's time in space, links. Spacewalk counts have no open
+structured source and say so. Where a portrait's licence is unclear, initials stand in. The standalone snapshot
+carries the facts without images.
 
 ## Events feed and mission replays (#32, #33)
 

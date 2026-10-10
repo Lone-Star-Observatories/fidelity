@@ -562,3 +562,12 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .fv-card { display: block; place-items: unset; }
 .fv-card > * + * { margin-top: 8px; }
 .nav-label.mission-label.ghost { color: var(--lilac); font-style: italic; }
+/* crew cards (#46) */
+.host-row.crew-row { display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 10px; text-align: left; }
+.crew-name { display: grid; } .crew-name b { color: var(--orange); letter-spacing: 0.05em; font-weight: 600; } .crew-name span { color: var(--peach); font-size: calc(12px * var(--text-scale, 1)); }
+.crew-face { border-radius: 50%; object-fit: cover; background: var(--violet); color: #000; display: inline-grid; place-items: center; font-weight: 700; letter-spacing: 0.05em; }
+.crew-face.s36 { width: 36px; height: 36px; font-size: calc(13px * var(--text-scale, 1)); }
+.crew-face.s96 { width: 96px; height: 96px; font-size: calc(30px * var(--text-scale, 1)); }
+.crew-flag { width: 28px; height: 19px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--dim); }
+.crew-flag.text { display: inline-grid; place-items: center; font-size: calc(10px * var(--text-scale, 1)); color: var(--peach); box-shadow: 0 0 0 1px var(--dim); }
+.crew-head { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }

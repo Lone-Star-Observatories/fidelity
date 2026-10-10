@@ -158,9 +158,12 @@ const galaxiesSnap = galAll && { ...galAll, groups: { ...galAll.groups, rows: ga
 const smallbodies = sbAll && { ...sbAll, rows: sbAll.rows.filter((r) => (r[8] ?? 0) < H_MAX[r[0]]).map((r) => r.map((v, i) => (i === 0 || v == null ? v : +v.toFixed(i === 7 ? 1 : 4)))) };
 await fs.mkdir(path.join(root, 'standalone'), { recursive: true });
 // the weekly events feed (#32): the bundled copy; the preview refreshes it from GitHub when online
+// who is in space now (#46): facts only; portraits and flags need the backend, so initials stand in
+let crewSnap = null;
+try { const { crew } = await import('../server/crew.js'); const c = await crew(); crewSnap = { ...c, people: c.people.map((p) => ({ ...p, portrait: p.portrait ? { ...p.portrait, url: null } : null, flag: null })) }; } catch (err) { console.warn(`  crew: ${err.message}`); }
 let eventsSnap = null;
 try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
-const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
+const snapshotJson = JSON.stringify({ events: eventsSnap, crew: crewSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
 const compressed = gzipSync(snapshotJson, { level: 9 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
