@@ -218,7 +218,10 @@ sky by the local obscuration, and body panels list the events (`src/panels/skyev
 `events/events.json`, schema `fidelity.events/1` (`src/data/events-schema.js`, shared by generator, backend, app and
 tests): launches and operations from Launch Library 2 (`scripts/events/ll2.js`), sky events from the app's own
 ephemeris plus meteor showers, comets and aurora forecasts (`scripts/events/sky.js`), and webcasts
-(`server/youtube.js`). A failed source keeps last week's events, marked stale. Times on tracks are seconds from the
+(`server/youtube.js`). Each run drops events that are over (`elapsed` in the schema module: past their end, their
+modelled flight and their date precision) and adds the new ones. A failed source keeps last week's still-upcoming
+events, marked stale. A weekly Claude Routine (Mondays 07:47 UTC) checks the Action's publish and rebuilds the file
+itself if the Action did not. Times on tracks are seconds from the
 event time.
 
 Launches, landings and dockings with a minute-or-better time carry a `model`: Earth-fixed tracks

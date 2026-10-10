@@ -110,3 +110,14 @@ export function modelSpan(e) {
   const pre = m.kind === 'launch' ? 900 : 300, post = m.kind === 'launch' ? 600 : 900;
   return { from: e.jd + (t0 - pre) / 86400, to: e.jd + (t1 + post) / 86400 };
 }
+
+// How long after its nominal time an event of each date precision may still be under way.
+const SLACK_S = { second: 0, minute: 60, hour: 3600, day: 86400, week: 7 * 86400, month: 31 * 86400, quarter: 92 * 86400, 'half-year': 183 * 86400, year: 366 * 86400, decade: 3653 * 86400 };
+/** True once an event is over at `nowMs`: past its end, its modelled flight and its date's precision. */
+export function elapsed(e, nowMs = Date.now()) {
+  const t = Date.parse(e.time);
+  let end = Math.max(e.end ? Date.parse(e.end) : t, t + (SLACK_S[e.precision] ?? 0) * 1000);
+  for (const tr of e.model?.tracks ?? []) end = Math.max(end, t + tr.points.at(-1)[0] * 1000);
+  if (e.model?.relative) end = Math.max(end, t + e.model.relative.points.at(-1)[0] * 1000);
+  return end < nowMs;
+}
