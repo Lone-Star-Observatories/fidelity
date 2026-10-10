@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-10",
+  "body": "Dione",
+  "generator": "Built-in imagegen",
+  "prompt": "Create one independent IMAGINED sky observer scientific concept illustration from the Saturn-facing side of DIONE, wide landscape16:9, nominal90degree horizontal rectilinear field of view. Invented pale grey cratered ice-rich regolith with scattered angular blocks occupies bottom quarter, airless empty black sky above. Saturn centered near upper middle, spherical mean-radius angular guide 17.765degrees and 15.628percent of full image width. Subtle cream/ochre independently invented cloud bands, approximate oblate globe. Dione is near Saturn's equatorial plane: rings nearly edge-on, a thin narrow horizontal line crossing Saturn's equator, not broad open elliptical rings. Ring extent, phase, latitude, orientation are schematic and uncalibrated, without dated registration. No observed Saturn texture or another body's map reused; independent schematic bands and invented local Dione craters/blocks/fractures. Sun outside frame. No stars, other moons, atmosphere around Dione, plume, mist, exposed ocean, biology, humans, spacecraft or survivable landing. Chemistry, terrain, materials, colour, light and exposure imagined. Clear legible bottom-left text exactly 'IMAGINED SKY FROM DIONE'. Single landscape image.",
+  "geometry": {
+    "angularDiameterDeg": 17.764553384703422,
+    "centreDiscWidthFraction": 0.15627892080224456,
+    "irradianceEarth": 8.089420149640219e-05,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical mean-radius angular guide only; 95K RGB/irradiance helper not adopted. Rings, oblateness, phase, FOV, colour, exposure and registration artistic.",
+    "radiusKm": 58232,
+    "observerDistanceKm": 377138.6,
+    "targetPixels": 261.2983555813529
+  },
+  "status": "Preparation only, no55th dossier or embedding",
+  "inspected": true,
+  "limitations": "Independent invented terrain, craters, blocks, fractures, chemistry/fractions, Saturn bands/rings/phase/light/exposure. No analog map, registered site, atmosphere, plume, exposed ocean, biology or survivable landing.",
+  "generationId": "exec-9a285d66-51b1-4727-a023-608998036bea",
+  "originalFile": "data/research-sources/dione-generated-skyImage-original.png",
+  "bytes": 2047341,
+  "sha256": "8f603b59de7c7c9d5257304ac4fad13f7848ddc9d6d99c723291a21573881219",
+  "dimensions": [
+    1672,
+    941
+  ],
+  "rasterAudit": {
+    "row": 150,
+    "thresholdRuns": [
+      {
+        "threshold": 5,
+        "left": 684,
+        "right": 984,
+        "width": 301
+      },
+      {
+        "threshold": 10,
+        "left": 684,
+        "right": 982,
+        "width": 299
+      },
+      {
+        "threshold": 20,
+        "left": 685,
+        "right": 981,
+        "width": 297
+      }
+    ],
+    "limits": "Upper-globe chords exclude rings; threshold-dependent and not full calibrated apparent diameter. Guide and realized image differ."
+  },
+  "verification": {
+    "testsPassed": 390,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15996080,
+    "headroom": 3920,
+    "browser": {
+      "snapshot": "aa6d55dc35e87e2212eaa48f20564686691cf3ccca8bf22dc515229e3f6c66eb",
+      "raw": "e44cdce4b4d49bc560da1b98e39ec5a4ff0f54dc5e1831791792f81a971621fd",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "upstreamIntegrated": "07f3480",
+    "queueTasks": 566,
+    "dossiers": 54
+  }
+}
