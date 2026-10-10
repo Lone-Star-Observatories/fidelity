@@ -20,6 +20,7 @@ import { smallBodies } from './smallbodies.js';
 import { satellites, satelliteDetail } from './satellites.js';
 import { feed, feedList } from './feeds.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
+import { hipsImage, gibsBand } from './bandimages.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -35,6 +36,8 @@ const send = (res, status, body, type = 'application/json') => {
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/voice/status': async () => voiceStatus(),
+  'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '')),
+  'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '')),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),

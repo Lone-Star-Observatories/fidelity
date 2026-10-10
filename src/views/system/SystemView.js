@@ -32,7 +32,10 @@ import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
-import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin } from './materials.js';
+import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
+import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
+import { starBandDelta, paletteIndex } from './bandskin.js';
+import { bandTexture, hipsUrl, applyBandToMaterial } from './bandtextures.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
 import { earthAxes, moonAxes, earthPole, ECLIPTIC_POLE } from '../../astro/orientation.js';
 import { createComet, cometMagnitude } from './comet.js';
@@ -126,6 +129,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   }
 
   // ---- sky: real stars as seen from this system (falls back to a decorative field) ----
+  let bandReady = false; // the spectrum filter (below) is set up after the sky
   const SKY_R = 2e5;
   const skyMat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
@@ -143,6 +147,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   let skySource = 'decorative';
 
   let skyRows = []; // clickable catalogue sky stars (#23)
+  let skyBase = null; // { dirs, mags, cols, teff } as loaded, for re-colouring by band (#28)
   function setSkyPoints(dirs, mags, colors) {
     const n = mags.length, pos = new Float32Array(n * 3), size = new Float32Array(n), col = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
@@ -167,7 +172,9 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       mags[i] = 3 + Math.random() * 3.5;
       cols.set([0.6, 0.62, 0.78], i * 3);
     }
+    skyBase = { dirs, mags, cols, teff: new Float32Array(n).fill(6000) };
     setSkyPoints(dirs, mags, cols);
+    if (bandReady) applySkyBand();
     skySource = 'decorative';
     skyRows = [];
   }
@@ -177,13 +184,114 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   function setSky(rows) {
     skyRows = rows.map(([x, y, z, m, ci, name, id]) => ({ kind: 'sky', eq: [x, y, z], mag: m, name: name ?? null, id: id ?? null }));
     const n = rows.length, dirs = new Float32Array(n * 3), mags = new Float32Array(n), cols = new Float32Array(n * 3);
+    const teff = new Float32Array(n);
     rows.forEach(([x, y, z, m, ci], i) => {
       dirs.set(frameToScene(eqToEcl([x, y, z])), i * 3);
       mags[i] = m;
-      cols.set(blackbodyRGB(teffFromBV(ci ?? 0.6)), i * 3);
+      teff[i] = teffFromBV(ci ?? 0.6);
+      cols.set(blackbodyRGB(teff[i]), i * 3);
     });
+    skyBase = { dirs, mags, cols, teff };
     setSkyPoints(dirs, mags, cols);
+    if (bandReady) applySkyBand();
     skySource = 'catalogue';
+  }
+
+  // ---- the spectrum filter (#28) ----------------------------------------------------------------
+  // The sky becomes an all-sky survey in the band (CDS HiPS, MEASURED) or, without one, the
+  // catalogue stars re-weighted by their blackbody in the band (COMPUTED); bodies take their band
+  // look from bandskin.js (real map, predicted skin, modelled glow, or not observed).
+  let band = BANDS[0], pass = null;
+  const PAL_RGB = [[1, 1, 1], [1, 0.55, 0.15], [0.3, 0.85, 1], [1, 0.45, 0.2], [1, 1, 1], [0.7, 0.55, 1], [0.4, 0.9, 1], [1, 0.4, 0.9]];
+  const skyBandMat = new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite: false, transparent: true,
+    uniforms: { uMap: { value: null }, uOpacity: { value: 0 }, uFade: { value: 1 } },
+    vertexShader: `varying vec3 vDir; void main() { vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+    // scene (x, y, z) = ecliptic (x, z, −y) → equatorial → RA/Dec; the survey is equirectangular in
+    // RA/Dec with RA 0 at the centre, increasing to the left
+    fragmentShader: `varying vec3 vDir; uniform sampler2D uMap; uniform float uOpacity; uniform float uFade;
+      void main() { vec3 e = vec3(vDir.x, -vDir.z, vDir.y); float ob = 0.40909280;
+        vec3 q = vec3(e.x, e.y * cos(ob) - e.z * sin(ob), e.y * sin(ob) + e.z * cos(ob));
+        float ra = atan(q.y, q.x), dec = asin(clamp(q.z, -1.0, 1.0));
+        vec2 uv = vec2(fract(0.5 - ra / 6.2831853), 0.5 + dec / 3.1415927);
+        vec4 t = texture2D(uMap, uv);
+        gl_FragColor = vec4(t.rgb, t.a * uOpacity * uFade); // transparent where the survey has no data
+        #include <colorspace_fragment>
+      }`,
+  });
+  const skyBand = new THREE.Mesh(new THREE.SphereGeometry(SKY_R * 0.95, 96, 48), skyBandMat);
+  skyBand.renderOrder = -2; skyBand.frustumCulled = false; skyBand.visible = false;
+  scene.add(skyBand);
+  const STANDALONE_BANDS = import.meta.env?.MODE === 'standalone';
+  const skyPass = () => (pass?.sky ? pass : band.passes.find((p) => p.sky) ?? null);
+
+  function applySkyBand() {
+    const full = band.id === 'full';
+    const sp = full ? null : skyPass();
+    skyBand.visible = !!sp && !STANDALONE_BANDS;
+    if (sp && !STANDALONE_BANDS) {
+      const url = hipsUrl(sp.sky);
+      skyBandMat.uniforms.uOpacity.value = 0;
+      bandTexture(url).then((r) => { if (r && skyPass()?.sky === sp.sky) { skyBandMat.uniforms.uMap.value = r.texture; skyBandMat.uniforms.uOpacity.value = 1; } });
+    }
+    if (!skyBase) return;
+    // catalogue stars: shown over a survey only where the survey shows starlight (IR, visible, UV);
+    // re-weighted by their blackbody in the band
+    const n = skyBase.mags.length, mags = new Float32Array(n), cols = new Float32Array(n * 3);
+    const p = pass ?? band.passes[0], tint = PAL_RGB[paletteIndex(band.palette)];
+    for (let i = 0; i < n; i++) {
+      const d = full || band.id === 'visible' && p?.id === 'vis-V' ? 0 : starBandDelta(skyBase.teff[i], p);
+      mags[i] = d === -Infinity || sp ? 99 : skyBase.mags[i] - d;
+      const c = full || band.id === 'visible' ? [skyBase.cols[i * 3], skyBase.cols[i * 3 + 1], skyBase.cols[i * 3 + 2]] : tint;
+      cols.set(c, i * 3);
+    }
+    setSkyPoints(skyBase.dirs, mags, cols);
+    sky.visible = !sp;
+  }
+
+  /** Set every body's band look and load what it needs. */
+  function applyBand() {
+    const full = band.id === 'full', p = pass ?? band.passes[0] ?? null;
+    for (const id in nodes) {
+      const n = nodes[id], u = n.mesh?.material?.uniforms;
+      if (n.clouds) n.clouds.visible = full || band.id === 'visible';
+      if (n.ring) n.ring.visible = full || band.id === 'visible' || band.id === 'ir';
+      if (isStar(n.body)) { applyStarBand(n, p); continue; }
+      if (!u?.uBandMode) continue;
+      n.bandLook = applyBandToMaterial(u, n.body, band, p);
+      if (n.clouds?.material?.uniforms?.uBandMode) n.clouds.material.uniforms.uBandMode.value = 0;
+    }
+    applySkyBand();
+  }
+  function applyStarBand(n, p) {
+    const u = n.mesh?.material?.uniforms;
+    if (!u?.uBandTint) return;
+    // the additive glare follows the disc's brightness in the band
+    const glare = n.mesh.children?.find((c) => c.isSprite);
+    const setGlare = () => { if (glare) { const t = u.uBandTint.value; glare.material.opacity = 0.85 * Math.min(1, Math.max(t.r, t.g, t.b)); glare.material.color.set(band.id === 'full' ? n.body.color ?? 0xffffff : 0xffffff).multiply(band.id === 'full' ? new THREE.Color(1, 1, 1) : t.clone().multiplyScalar(1 / Math.max(1e-3, Math.max(t.r, t.g, t.b)))); } };
+    queueMicrotask(setGlare);
+    u.uBandDisk.value = 0;
+    if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
+    const src = model.isSol && n.body.id === model.starId ? bodyBandSource('sun', band, p) : null;
+    if (src?.feed && !STANDALONE_BANDS) {
+      n.bandLook = { mode: 'real', tier: 'measured', label: src.note ?? 'REAL IMAGE IN THIS BAND', detail: src.credit };
+      loadLive(src.feed).then((l) => { if (!l || n.bandLook?.detail !== src.credit) return; u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; });
+      u.uBandTint.value.setRGB(1, 1, 1);
+      return;
+    }
+    const teff = n.body.teffK ?? 5772, d = starBandDelta(teff, p), tint = PAL_RGB[paletteIndex(band.palette)];
+    if (d === -Infinity) { u.uBandTint.value.setRGB(0.02, 0.02, 0.02); n.bandLook = { mode: 'dark', tier: 'computed', label: 'NOT OBSERVED IN THIS BAND', detail: `A ${Math.round(teff)} K photosphere emits almost nothing in ${p?.label ?? band.label}; no image or measured flux of this star is available here.` }; return; }
+    const k = Math.max(0.05, Math.min(3, 10 ** (0.4 * Math.max(-6, Math.min(6, d)) * 0.35)));
+    u.uBandTint.value.setRGB(tint[0] * k, tint[1] * k, tint[2] * k);
+    n.bandLook = { mode: 'computed', tier: 'computed', label: `${d >= 0 ? 'BRIGHTER' : 'FAINTER'} BY ${Math.abs(d).toFixed(1)} MAG THAN IN V`, detail: `A ${Math.round(teff)} K blackbody through ${p?.label}, relative to the V band in the Vega system (COMPUTED). Display brightness compressed.` };
+  }
+  bandReady = true;
+  function restoreStarDisk(n) {
+    const u = n.mesh?.material?.uniforms;
+    if (!u) return;
+    const lt = liveTargets.find((t) => t.id === n.body.id);
+    if (lt) applyLiveSkin(lt.material, lt.skin, settings.get('liveSkins'));
+    else u.uHasDisk.value = 0;
   }
 
   // ---- bodies -------------------------------------------------------------------------
@@ -226,7 +334,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const pole = body.pole ? poleVector(body.pole) : new THREE.Vector3(...model.planeNormal);
     tilt.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pole);
     group.add(tilt);
-    let mesh, clouds = null;
+    let mesh, clouds = null, ringMesh = null;
     if (body.marker) return addMarker(body);
     if (body.kind === 'satellite' || body.kind === 'spacecraft') return addSatelliteNode(body);
     const placeholder = planetTexture(isStar(body) ? { id: body.id, banded: body.banded, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
@@ -265,6 +373,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
         const ring = new THREE.Mesh(geo, ringMat);
         ring.rotation.x = -Math.PI / 2;
         tilt.add(ring); // scaled with the planet via `tilt.scale`
+        ringMesh = ring;
       }
     }
     mesh.userData.id = body.id;
@@ -287,7 +396,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     group.add(label);
     root.add(group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet };
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -546,6 +655,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     m.bodies.forEach(addBody);
     if (m.isSol) { buildZones(); buildSolarExtras(); }
     refreshLive();
+    if (band.id !== 'full') applyBand();
     for (const o of m.binary?.orbits ?? []) addBinaryTrack(o);
     const star = m.bodies.find((x) => x.id === m.starId);
     starLight.color.setHex(star.color ?? 0xfff4e0);
@@ -1375,6 +1485,13 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   }
 
   return {
+    /** The spectrum filter (#28): band id and bandpass id (null = the band's default). */
+    setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); applyBand(); },
+    get band() { return { band, pass: pass ?? band.passes[0] ?? null }; },
+    /** How body `id` is drawn in the current band: { mode, tier, label, detail } or null in full spectrum. */
+    bandLookOf: (id) => nodes[id]?.bandLook ?? null,
+    /** The sky survey in use, or null. */
+    bandSky: () => (band.id === 'full' ? null : (pass?.sky ? pass : band.passes.find((x) => x.sky)) ?? null),
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load,

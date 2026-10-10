@@ -66,6 +66,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
@@ -220,6 +221,22 @@ and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. W
 (or the backend), the browser's on-device recogniser, where available, handles "go to …" and
 "show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
 resampler, command parsing.
+
+## Spectrum filter (#28)
+
+`src/data/bands.js` lists the bands (FULL, RADIO … GAMMA), their bandpasses with filter curves
+(`src/astro/bands.js`: SVO curves bundled by `scripts/filters.js`, top-hats in frequency/energy
+elsewhere; `bandResponse` is the photon-weighted convolution, tested against band-averaged
+Planck, Vega's zero point and the Rayleigh–Jeans limit), the all-sky survey for each, and real
+body maps (`BODY_BAND`). `bandskin.js` decides each body's look in a band: real map, predicted
+reflected skin (the visible image × the body's reflectance through the filter), predicted thermal
+emission (Planck from a day/night or cloud-top temperature model), an observed high-energy
+signature, or NOT OBSERVED. The planet shader draws all of these in per-band false colour
+(`materials.js`, uniforms set by `bandtextures.js`); stars are tinted by their blackbody in the
+band (Vega system); the System View sky becomes the band's survey (a shader maps RA/Dec onto the
+sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
+Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
+its badge and a false-colour key.
 
 ## Milky Way model
 

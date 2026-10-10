@@ -36,6 +36,8 @@ import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
 import { createComputer } from './voice/computer.js';
+import { BANDS, bandById, passById } from './data/bands.js';
+import { setCurrentBand, currentBand } from './data/bandstate.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -175,6 +177,28 @@ $('beacon').addEventListener('click', () => go({ level: 'system', system: 'sol' 
 
 // ---- bottom controls ----------------------------------------------------------------------
 const controls = $('controls');
+// ---- the spectrum filter (#28) ------------------------------------------------------------
+const bandSel = h('select', { className: 'ctl-select', title: 'Spectrum: view everything in one band' }, BANDS.map((b) => h('option', { value: b.id, textContent: b.label })));
+const passSel = h('select', { className: 'ctl-select', title: 'Bandpass within the band' });
+const microns = (s) => s.replace(/ ?µm\b/g, ' MICRONS'); // 'µ' upper-cases to Greek 'Μ'
+function syncBandControls() {
+  const b = bandById(settings.get('band')), p = passById(b, settings.get('bandPass'));
+  bandSel.value = b.id;
+  passSel.replaceChildren(...b.passes.map((x) => h('option', { value: x.id, textContent: x.label })));
+  passSel.hidden = !b.passes.length;
+  if (p) passSel.value = p.id;
+}
+bandSel.addEventListener('change', () => { settings.set('bandPass', null); settings.set('band', bandSel.value); });
+passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
+function applyBandEverywhere() {
+  setCurrentBand(settings.get('band'), settings.get('bandPass'));
+  syncBandControls();
+  system.setBand(settings.get('band'), settings.get('bandPass'));
+  for (const v of [nav, galaxy, quadrant]) v.recolourBand?.();
+  document.body.dataset.band = settings.get('band');
+  if (route?.level === 'system' && route.body && system.model?.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body);
+}
+settings.onChange((k) => { if (k === 'band' || k === 'bandPass') applyBandEverywhere(); });
 // ---- "Computer" (#21) ----------------------------------------------------------------------
 let voiceBtn = null, voiceStars = null;
 const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', listening: 'LISTENING FOR "COMPUTER" (ON THIS MACHINE ONLY)', training: 'SAY "COMPUTER"…',
@@ -262,6 +286,7 @@ controls.append(
     rateOut, pill('NOW', () => clock.now(), 'square'), dateIn),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
+  h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
   h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
@@ -278,6 +303,7 @@ const syncClock = () => {
   holdBtn.textContent = clock.rate.days === 0 ? '▶' : '❚❚';
 };
 clock.onChange(syncClock); syncClock();
+applyBandEverywhere(); // the remembered spectrum band
 
 // ---- panel helpers ----------------------------------------------------------------------
 const panelEl = $('panel');
@@ -560,6 +586,18 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     row(dl, 'CURRENT SHEET TILT', `${SOLAR.tiltDeg}°`, 'modelled', 'The wavy boundary between outward and inward field. Its tilt follows the solar cycle (~10° at minimum, ~70° near maximum); 45° is a stand-in for the 2026 declining phase.');
     row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
+  }
+  {
+    // the spectrum filter (#28): how this body is drawn in the band, and the sky survey behind it
+    const cb = currentBand(), look = system.bandLookOf(b.id);
+    if (!cb.full) {
+      const dl = h('dl');
+      if (look) row(dl, 'IN THIS BAND', look.label, look.tier, look.detail);
+      const sky = system.bandSky();
+      row(dl, 'SKY', sky ? sky.skyCredit.split(/[,(]/)[0].trim().toUpperCase() : 'CATALOGUE STARS, RE-WEIGHTED', sky ? 'measured' : 'computed', sky ? sky.skyCredit : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
+      extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}` }), dl,
+        h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: cb.band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+    }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));

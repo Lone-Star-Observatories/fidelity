@@ -15,6 +15,8 @@ const defaults = {
   fields: false,     // System View: the Sun's magnetic field (Parker spiral, current sheet)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
+  band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
+  bandPass: null,    // its bandpass (null = the band's default)
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
 };
 

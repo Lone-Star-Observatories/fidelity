@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { eqToGal, frameToScene, teffFromBV, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
+import { bandStarColour } from '../../data/bandstate.js';
 import { R0_KLY, Z_SUN_KLY } from '../../astro/galaxy.js';
 import { createGalaxyPlane } from '../galaxy/plane.js';
 import { createGalaxyModel } from '../galaxy/model.js';
@@ -119,7 +120,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     if (stars || !d?.stars) return;
     starRows = d.stars;
     stars = makePoints(d.stars.map(([x, y, z, m10, ci]) => {
-      const c = blackbodyRGB(teffFromBV(ci == null ? 0.6 : ci / 100));
+      const t = teffFromBV(ci == null ? 0.6 : ci / 100), c = bandStarColour(t, blackbodyRGB(t)); // spectrum filter (#28)
       return [...frameToScene([x, y, z]), Math.max(1.6, 4.5 - (m10 / 10) * 0.6), c[0] * 0.8, c[1] * 0.8, c[2] * 0.8];
     }));
   }
@@ -214,7 +215,15 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   }
   setRadius(3000);
 
+  /** Re-colour the stars for the current spectrum band (#28). */
+  function recolourBand() {
+    const c = stars?.geometry?.attributes?.color;
+    if (!c) return;
+    starRows.forEach(([, , , , ci], i) => { const t = teffFromBV(ci == null ? 0.6 : ci / 100), rgb = bandStarColour(t, blackbodyRGB(t)); c.setXYZ(i, rgb[0] * 0.8, rgb[1] * 0.8, rgb[2] * 0.8); });
+    c.needsUpdate = true;
+  }
   return {
+    recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setStars, setClusters, setRadius, select, applyLook,
