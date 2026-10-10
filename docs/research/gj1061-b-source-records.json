@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://arxiv.org/html/2504.10926v1",
+    "publicationDate": "2025-04-15 (arXiv v1)",
+    "credit": "Dreizler et al. 2025",
+    "terms": "CC BY 4.0 author manuscript; research citation, no figures reused.",
+    "observationDate": "ESPRESSO Table5 BJD2460219.807560\u20132460301.566125 (time scale as published; not converted to UTC). HARPS about20-year baseline, exact first/last dates not independently transcribed. Photometric monitoring2014\u20132024.",
+    "sha256": "6dbe0f50ccea303542253dce232676ae4c17b14c42642ea00401345a99287cc7",
+    "bytes": 399505,
+    "retrieved": "2026-10-10",
+    "cachedFile": "data/research-sources/gj1061-0.html",
+    "versionCaveat": "v1 abstract quotes1.07\u00b10.11Earth masses; Table4 D5 lists1.11Earth masses. Dossier uses the explicitly selected D5 table posterior1.11(-0.09,+0.11), with stellar-noise model-average uncertainty(-0.11,+0.15), also used by archive composite."
+  },
+  {
+    "url": "https://arxiv.org/abs/1908.04717v1",
+    "publicationDate": "2019-08-13 (arXiv v1); journal publication2020-01-29",
+    "credit": "Dreizler et al. 2019/2020",
+    "terms": "arXiv distribution rights, research citation only; no figures copied.",
+    "observationDate": "Nightly HARPS RedDots campaign2018 plus archival data; exact first/last epochs not independently transcribed.",
+    "sha256": "c56e42bccda7bcbfe5a2d5f0f801a0af8bc912976272888bc3431f26740b5f60",
+    "bytes": 48427,
+    "retrieved": "2026-10-10",
+    "cachedFile": "data/research-sources/gj1061-1.html"
+  },
+  {
+    "url": "https://science.nasa.gov/exoplanet-catalog/gj-1061-b/",
+    "publicationDate": "2026-03-13 (page update)",
+    "credit": "NASA Science / Exoplanet Archive",
+    "terms": "Research citation only; NASA catalogue render is not native planetary photography.",
+    "observationDate": null,
+    "sha256": "657d56d9266300539774ed09b8432bcbf1bbea3166cc38bed66512efffb9db03",
+    "bytes": 261802,
+    "retrieved": "2026-10-10",
+    "cachedFile": "data/research-sources/gj1061-2.html"
+  }
+]

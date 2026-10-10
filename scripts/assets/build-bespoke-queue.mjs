@@ -21,5 +21,10 @@ for(const entry of entries.values()) {
  if(visual?.contextImages?.some(asset=>asset.tier==='measured'))entry.nativeImagery=visual.nativeSurface;
 }
 const out={updated:'2026-10-10',scope:'All Solar System catalogue bodies, all recognized planetary/Pluto moons from JPL, dwarf-planet satellites, 20 closest confirmed archive exoplanets, and 20 stellar components from the Gaia-era nearby snapshot. Individual material/atmosphere assumptions must be explicit. Do not invent solid surfaces for stars or gas giants.',inventoryWorkRemaining:['Refresh nearest stellar ranking from current astrometry before claiming an exhaustive present-day boundary.','Audit Gl 725 B c archive distance 6.842357 pc against the 2026 discovery-paper distance about 3.5 pc; confirmed archive ranking is not a corrected physical-distance ranking.', 'Inventory remaining satellites of asteroids and other minor planets separately.','Add further recognized dwarf planets if the IAU roster changes; candidates remain marked candidates.'],selection:{planets:planets.selection,stars:stars.selection},entries:[...entries.values()]};
+out.selectionProgress = Object.fromEntries(['exoplanet', 'star', 'white dwarf', 'moon'].map(kind => {
+ const selected = out.entries.filter(entry => entry.kind === kind);
+ return [kind, { selected: selected.length, initialDossiers: selected.filter(entry => entry.visualId).length,
+  limits: 'Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership.' }];
+}));
 await fs.writeFile(new URL('docs/research/bespoke-queue.json',root),JSON.stringify(out,null,2)+'\n');
 console.log(out.entries.length,'body tasks;',Object.keys(BODY_VISUALS).length,'initial dossiers delivered');

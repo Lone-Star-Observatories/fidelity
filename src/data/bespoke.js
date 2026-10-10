@@ -3079,6 +3079,147 @@ export const BODY_VISUALS = {
       }
     ],
     "researchSourcesRecord": "docs/research/epsilon-indi-b-source-records.json"
+  },
+  "gj1061-b": {
+    "id": "gj1061-b",
+    "name": "GJ 1061 b",
+    "aliases": [
+      "GJ 1061 b",
+      "Gliese 1061 b",
+      "Gl 1061 b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No native planetary image or resolved surface map located in the checked discovery/follow-up papers and NASA catalogue. Planet detected by radial velocities; catalogue render is not a photograph.",
+    "measured": [
+      "HARPS and ESPRESSO radial-velocity time series constrain the compact three-planet system; no measured planetary surface or atmospheric spectrum located."
+    ],
+    "modelled": [
+      "Dreizler et al. 2025 Table 4 coplanar Newtonian Model D5: period 3.2073(-0.0003,+0.0002)days and dynamical mass 1.11(-0.09,+0.11)Earth masses. Stellar-noise model-averaged uncertainty is(-0.11,+0.15). This is interaction-model inference, not a transit mass/radius measurement.",
+      "The v1 abstract instead quotes1.07±0.11 Earth masses; this dossier explicitly selects the Table 4 D5 posterior, also used by the archive composite. The discovery2019/2020 minimum-mass value is superseded by the later dynamical model.",
+      "Adopted archive orbit 0.021 AU and host 0.156 solarRadius/2953 K. Table 1 also lists an alternate0.19 solarRadius/2999 K parameter set; angular size depends on the chosen host parameters.",
+      "Planet radius 1.04 Earth radii is inferred assuming Earth density, not a measured radius. Archive equilibrium388.11 K is not measured surface temperature; adopted albedo changes equilibrium models."
+    ],
+    "unknown": [
+      "Physical radius, bulk composition, atmosphere, pressure, visible colour, terrain, rotation and observer location remain unmeasured.",
+      "A rocky composition is plausible from mass but not directly established; atmosphere or volatile-rich alternatives remain possible. Companion planets are outside the chosen field, not registered to an observing date."
+    ],
+    "assumed": [
+      "Selected dry airless silicate/iron scenario; atmospheric absence and chemistry are invented, not detected.",
+      "Pale taupe folded crust belts, slate-gray fractured rock slabs, dark iron-mineral seams and muted warm-brown dust are original invented geography. No liquid water, active lava or vegetation inferred.",
+      "Black sky assumes negligible atmosphere; photospheric mottling, surface illumination, foreground shadows and colour adaptation are artistic.",
+      "Representative semimajor-axis illumination, centred nominal 60-degree rectilinear field; not a dated ephemeris or calibrated camera.",
+      "Raster validation: source width 1672, threshold180/210/240 core widths 87/87/87 pixels versus skyGeometry target 100.105538 pixels. Core/glare and photospheric texture remain approximate; exact field and angular-size calibration open."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/2504.10926v1",
+        "title": "Dreizler et al. 2025, interaction-based masses and unmeasured radii",
+        "publicationDate": "2025-04-15 (arXiv v1)",
+        "observationDate": "HARPS about20-year baseline; ESPRESSO Table5 BJD2460219.807560–2460301.566125"
+      },
+      {
+        "url": "https://arxiv.org/abs/1908.04717v1",
+        "title": "Dreizler et al. 2019/2020, HARPS discovery campaign",
+        "publicationDate": "2019-08-13 (arXiv v1); journal2020-01-29",
+        "observationDate": "RedDots2018 plus archival HARPS"
+      },
+      {
+        "url": "https://science.nasa.gov/exoplanet-catalog/gj-1061-b/",
+        "title": "NASA catalogue: radius labelled estimate, not native surface photography",
+        "publicationDate": "2026-03-13 (page update)"
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA archive composite snapshot retrieved2026-10-10",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "GJ 1061 b",
+      "hostname": "GJ 1061",
+      "sy_dist": 3.67278,
+      "pl_rade": 1.04,
+      "pl_bmasse": 1.11,
+      "pl_bmassprov": "Mass",
+      "pl_orbper": 3.2073,
+      "pl_orbsmax": 0.021,
+      "pl_eqt": 388.11,
+      "st_teff": 2953,
+      "st_rad": 0.156,
+      "st_mass": 0.12,
+      "st_spectype": "M5.5 V",
+      "ra": 54.0032486,
+      "dec": -44.5143104,
+      "disc_year": 2020
+    },
+    "skyModel": {
+      "star": "GJ 1061",
+      "radiusSun": 0.156,
+      "temperatureK": 2953,
+      "distanceAU": 0.021,
+      "angularDiameterDeg": 3.9595054541638004,
+      "centreDiscWidthFraction": 0.059871733289288506,
+      "irradianceEarth": 3.7805858577808165,
+      "approximateSrgb": [
+        1,
+        0.6887433448670173,
+        0.41813027559137395
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "gj1061BBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular albedo hypothesis; no measured physical frame.",
+      "coverage": "All terrain invented.",
+      "url": "/bespoke/gj1061-b-surface-map.jpg",
+      "previewUrl": "/bespoke/gj1061-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-5e35c47a-3f2f-497d-a828-bbd275a7b00c.png",
+      "sourceSha256": "a8c425363c2dea5d57cff50b20a00c74d0ff91b2adf31f0a63775f9f2b4f8f42",
+      "sha256": "74ef56e0145b02bad9a83b3fca610775fcd432068e0a0c411c56bb0326ec0169",
+      "previewSha256": "5a064c2904ca69fdde2af61fd462e409b9681d8fea1b07e2dc85171ebcb52362",
+      "bytes": 529631,
+      "previewBytes": 33547,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "ROI x30–70%, y7–32%; R>180/210/240 G>150 B>80; includes unresolved glare/exposure effects.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          87,
+          87,
+          87
+        ],
+        "geometricTargetWidthPixels": 100.10553805969039,
+        "limits": "Nominal FOV, angular/raster registration and colour remain artistic; photospheric texture imagined."
+      },
+      "url": "/bespoke/gj1061-b-sky-image.jpg",
+      "previewUrl": "/bespoke/gj1061-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-92c3cbb9-a53f-4e3d-855c-666fa20412c7.png",
+      "sourceSha256": "3e0184443e8718f216ff93d72e6cf4413a0ace4a5a8955785f857f6dd18a43d0",
+      "sha256": "d584ff01de1d136252545148dd020f4fd6bc6cf2ca0b44d329d11c72453c4de9",
+      "previewSha256": "16a9a2b1d2c0ceaadd1e4d7fbe9fc205922c5add5241bc542738695b3ea44924",
+      "bytes": 302554,
+      "previewBytes": 55839,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/gj1061-b-source-records.json"
   }
 };
 

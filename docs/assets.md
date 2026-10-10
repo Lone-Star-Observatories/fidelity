@@ -161,3 +161,15 @@ public domain as NASA imagery). Cropped to ±4.5 lunar radii around the Moon, sk
 subtracted, faded to black past 4.3 radii (1024², 26 KB). Its lunar disc spans 11.1% of the width
 and its streamer axis lies 66.9° from the image x-axis; the surface view uses both to scale it
 and turn the streamers onto the solar equator. Badged REPRESENTATIVE for any other eclipse.
+
+## GJ 1061 b and initial closest-20 coverage (2026-10-10)
+
+Dossier 24 supplies an independent albedo map and an airless rock observer hypothesis. No native planetary photograph was found in the checked primary papers and NASA catalogue. Dreizler et al. 2025 Table 4 Model D5 supports an interaction-model dynamical mass of 1.11 Earth masses; the v1 abstract instead quotes 1.07. The table selection and broader stellar-noise uncertainties are explicit. Radius 1.04 Earth radii assumes Earth density; composition and atmosphere remain unmeasured. Pale taupe folded crust belts, slate-gray slabs and dark mineral seams are original inventions.
+
+Using adopted 2953 K / 0.156 solar-radius host and 0.021 AU orbit, skyGeometry gives a 3.959505-degree star and 3.780586 Earth irradiation. A refinement pass changed the source to 1672×940; final bright-core widths are 87/87/87 pixels versus a nominal centred 60-degree field target of 100.105538 pixels. Angular size, field, colour, stellar texture and exposure remain approximate; no calibrated claim. Master PNGs, prompts, hashes, primary-source dates/terms and observation BJD coverage are retained.
+
+All 20 planets in the current archive selection now have individual initial dossiers and unique maps. This is initial coverage, not completion of photometric/physical registration or verification of an exhaustive present-day distance ranking. The Gl 725 B archive-distance discrepancy and disputed Tau Ceti candidates remain disclosed. The 20 stellar components and outstanding Solar System tasks remain queued. Queue generation now reports selection progress.
+
+Validation: 141 tests pass with one catalogue-dependent skip; production and full standalone builds pass. Full HTML is 11,895,102 bytes. All 103 images decode, 24 craft models load and ISS renders offline; the eclipse worker supplies eight offline event rows. Complete browser-decoded snapshot SHA-256 equals the readable original. GJ 1061 b selects its unique map and both observer cards, and all previous 23 dossiers compare unchanged.
+
+Final remote integration preserves the NASA/Carla Thomas 2017 corona photograph, representative-eclipse labels, diamond ring/Baily's beads, surface Sun tracking and hidden surface-view orbit lines. Combined validation: 141 tests pass with one catalogue skip; production and full builds pass. Full HTML is 11,915,098 bytes; all 104 images decode, six navigation levels and unsupported-browser messaging work offline. The native corona JPEG bytes are unchanged in the embedded snapshot; all 24 craft and ISS remain working.

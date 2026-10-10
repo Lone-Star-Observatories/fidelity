@@ -1,0 +1,114 @@
+{
+  "generated": "2026-10-10",
+  "generationTool": "OpenAI built-in imagegen",
+  "promptSet": {
+    "surfaceMap": "Independent seamless2:1 equirectangular hypothetical airless silicate/iron crust; folded belts, pale taupe/slate-gray slabs, dark mineral seams and muted brown dust; no actual-body map reuse.",
+    "skyImage": "Hypothetical airless folded rock observer scene with black sky, centred2953K0.156Rsun host at0.021AU; 3.959505degreephotosphere, nominal60degreeFOV, diameter0.059871733imagewidth; approximatecolour/exposure.",
+    "refinement": "Preserve geography; exact16:9 field and reduced0.059871733width stellar core with quiet invented photospheric mottling."
+  },
+  "bodies": [
+    {
+      "id": "gj1061-b",
+      "name": "GJ 1061 b",
+      "aliases": [
+        "GJ 1061 b",
+        "Gliese 1061 b",
+        "Gl 1061 b"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "No native planetary image or resolved surface map located in the checked discovery/follow-up papers and NASA catalogue. Planet detected by radial velocities; catalogue render is not a photograph.",
+      "measured": [
+        "HARPS and ESPRESSO radial-velocity time series constrain the compact three-planet system; no measured planetary surface or atmospheric spectrum located."
+      ],
+      "modelled": [
+        "Dreizler et al. 2025 Table 4 coplanar Newtonian Model D5: period 3.2073(-0.0003,+0.0002)days and dynamical mass 1.11(-0.09,+0.11)Earth masses. Stellar-noise model-averaged uncertainty is(-0.11,+0.15). This is interaction-model inference, not a transit mass/radius measurement.",
+        "The v1 abstract instead quotes1.07±0.11 Earth masses; this dossier explicitly selects the Table 4 D5 posterior, also used by the archive composite. The discovery2019/2020 minimum-mass value is superseded by the later dynamical model.",
+        "Adopted archive orbit 0.021 AU and host 0.156 solarRadius/2953 K. Table 1 also lists an alternate0.19 solarRadius/2999 K parameter set; angular size depends on the chosen host parameters.",
+        "Planet radius 1.04 Earth radii is inferred assuming Earth density, not a measured radius. Archive equilibrium388.11 K is not measured surface temperature; adopted albedo changes equilibrium models."
+      ],
+      "unknown": [
+        "Physical radius, bulk composition, atmosphere, pressure, visible colour, terrain, rotation and observer location remain unmeasured.",
+        "A rocky composition is plausible from mass but not directly established; atmosphere or volatile-rich alternatives remain possible. Companion planets are outside the chosen field, not registered to an observing date."
+      ],
+      "assumed": [
+        "Selected dry airless silicate/iron scenario; atmospheric absence and chemistry are invented, not detected.",
+        "Pale taupe folded crust belts, slate-gray fractured rock slabs, dark iron-mineral seams and muted warm-brown dust are original invented geography. No liquid water, active lava or vegetation inferred.",
+        "Black sky assumes negligible atmosphere; photospheric mottling, surface illumination, foreground shadows and colour adaptation are artistic.",
+        "Representative semimajor-axis illumination, centred nominal 60-degree rectilinear field; not a dated ephemeris or calibrated camera.",
+        "Raster validation: source width 1672, threshold180/210/240 core widths 87/87/87 pixels versus skyGeometry target 100.105538 pixels. Core/glare and photospheric texture remain approximate; exact field and angular-size calibration open."
+      ],
+      "references": [
+        {
+          "url": "https://arxiv.org/html/2504.10926v1",
+          "title": "Dreizler et al. 2025, interaction-based masses and unmeasured radii",
+          "publicationDate": "2025-04-15 (arXiv v1)",
+          "observationDate": "HARPS about20-year baseline; ESPRESSO Table5 BJD2460219.807560–2460301.566125"
+        },
+        {
+          "url": "https://arxiv.org/abs/1908.04717v1",
+          "title": "Dreizler et al. 2019/2020, HARPS discovery campaign",
+          "publicationDate": "2019-08-13 (arXiv v1); journal2020-01-29",
+          "observationDate": "RedDots2018 plus archival HARPS"
+        },
+        {
+          "url": "https://science.nasa.gov/exoplanet-catalog/gj-1061-b/",
+          "title": "NASA catalogue: radius labelled estimate, not native surface photography",
+          "publicationDate": "2026-03-13 (page update)"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA archive composite snapshot retrieved2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "GJ 1061 b",
+        "hostname": "GJ 1061",
+        "sy_dist": 3.67278,
+        "pl_rade": 1.04,
+        "pl_bmasse": 1.11,
+        "pl_bmassprov": "Mass",
+        "pl_orbper": 3.2073,
+        "pl_orbsmax": 0.021,
+        "pl_eqt": 388.11,
+        "st_teff": 2953,
+        "st_rad": 0.156,
+        "st_mass": 0.12,
+        "st_spectype": "M5.5 V",
+        "ra": 54.0032486,
+        "dec": -44.5143104,
+        "disc_year": 2020
+      },
+      "skyModel": {
+        "star": "GJ 1061",
+        "radiusSun": 0.156,
+        "temperatureK": 2953,
+        "distanceAU": 0.021
+      },
+      "surfaceMap": {
+        "key": "gj1061BBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular albedo hypothesis; no measured physical frame.",
+        "coverage": "All terrain invented."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "method": "ROI x30–70%, y7–32%; R>180/210/240 G>150 B>80; includes unresolved glare/exposure effects.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            87,
+            87,
+            87
+          ],
+          "geometricTargetWidthPixels": 100.10553805969039,
+          "limits": "Nominal FOV, angular/raster registration and colour remain artistic; photospheric texture imagined."
+        }
+      },
+      "researchSourcesRecord": "docs/research/gj1061-b-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-5e35c47a-3f2f-497d-a828-bbd275a7b00c.png",
+        "skyImage": "exec-92c3cbb9-a53f-4e3d-855c-666fa20412c7.png"
+      }
+    }
+  ]
+}

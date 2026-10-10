@@ -114,3 +114,23 @@ test('Epsilon Indi keeps native point-source imagery separate from invented clou
  assert.match(v.unknown.join(' '),/no accessible solid ground/);
  assert.ok(v.skyImage.rasterValidation.geometricTargetWidthPixels<1);
 });
+
+test('all twenty archive-selected planets now have individual initial dossiers', async()=>{
+ const {buildStarSystem}=await import('../src/data/systems.js');
+ const archive=JSON.parse(await fs.readFile(new URL('../docs/research/nearest-exoplanets.json',import.meta.url),'utf8'));
+ assert.equal(archive.rows.length,20);
+ const maps=new Set();
+ for(const row of archive.rows){
+  const v=bodyVisualFor({name:row.pl_name});assert.ok(v,row.pl_name);
+  assert.equal(v.surfaceMap.tier,'imagined');assert.ok(v.skyImage);maps.add(v.surfaceMap.sha256);
+ }
+ assert.equal(maps.size,20);
+ const row=archive.rows.find(r=>r.pl_name==='GJ 1061 b');
+ const model=buildStarSystem({star:{id:'gj1061',name:'GJ1061',x:3.6,y:0,z:0,distPc:3.6,distLy:12,spect:'M5.5V',lum:.0017},host:row,planets:[row]});
+ const v=bodyVisualFor(model.bodies.find(b=>b.name===row.pl_name));
+ assert.equal(v.id,'gj1061-b');assert.equal(bodyVisualFor({name:'GJ 1061 c'}),null);
+ assert.match(v.modelled.join(' '),/interaction-model inference/);
+ assert.match(v.modelled.join(' '),/not a measured radius/);
+ assert.ok(v.unknown.some(s=>s.includes('composition')));
+ assert.ok(Math.abs(v.skyModel.angularDiameterDeg-3.959505454)<1e-6);
+});
