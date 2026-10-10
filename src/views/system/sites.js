@@ -64,16 +64,20 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
     pathsRequested = true;
     for (const s of list.filter((x) => x.traverse)) {
       loadTraverse(s.traverse).then((t) => {
-        if (!t?.points?.length) return;
-        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit, last: t.points.at(-1) };
-        const pos = t.points.flatMap(([lon, lat]) => siteDir(body, lat, lon).map((c) => c * PATH_R));
-        const line = new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)),
-          new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 }));
+        const segs = (t?.paths ?? (t?.points ? [t.points] : [])).filter((p) => p.length > 1);
+        if (!segs.length) return;
+        const last = segs.at(-1).at(-1);
+        s.traverseInfo = { distanceKm: t.distanceKm, sol: t.sol, fetched: t.fetched, credit: t.credit ?? t.source, last, live: !!t.points };
+        const mat = new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 });
+        const line = new THREE.Group();
         line.userData.kind = s.kind;
-        // the rover now: a brighter dot at the end of its path
-        const now = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos.slice(-3), 3)),
-          new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff }));
-        line.add(now);
+        for (const seg of segs) {
+          const pos = seg.flatMap(([lon, lat]) => siteDir(body, lat, lon).map((c) => c * PATH_R));
+          line.add(new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)), mat));
+        }
+        // a live rover's position now: a brighter dot at the end of its path
+        if (t.points) line.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(siteDir(body, last[1], last[0]).map((c) => c * PATH_R), 3)),
+          new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff })));
         group.add(line);
         paths.push(line);
       }).catch(() => {});
