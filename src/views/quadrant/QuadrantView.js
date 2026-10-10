@@ -14,6 +14,9 @@ import { createGalaxyModel } from '../galaxy/model.js';
 import { NEBULAE, FAMOUS_CLUSTERS, ageTeff } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 import { pickPoint, onClicks } from '../pick.js';
+import { createDeepSky3D } from './deepsky3d.js';
+import { radecVec } from '../../astro/skyplane.js';
+import { fetchClusterMembers, nebulaImageUrl } from '../../data/catalog.js';
 
 const DEG = Math.PI / 180;
 export const NEBULA_COLORS = { HII: 0xff6680, PN: 0x55ddbb, SNR: 0xcc99ff, dark: 0xb09a80, reflection: 0x7799ff };
@@ -30,7 +33,7 @@ const POINTS_FRAG = `
   void main() { if (vFar > 0.5) discard; float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 
-export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill } = {}) {
+export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill, onDetail } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -40,11 +43,11 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   container.appendChild(labels.domElement);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, 1, 1, 2e6);
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 2e6);
   const controls = new OrbitControls(camera, labels.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.08;
-  controls.minDistance = 30;
+  controls.minDistance = 0.05; // close enough to walk round a planetary nebula (#24)
   controls.maxDistance = 300000;
 
   // galaxy artwork under everything: galactocentric kly → heliocentric ly
@@ -112,7 +115,9 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   }
 
   // ---- content ----------------------------------------------------------------------------------
-  let stars = null, clusterPts = null, nebPts = null, clusterRows = [];
+  let stars = null, clusterPts = null, nebPts = null, clusterRows = [], clusterPos = [];
+  const ds = createDeepSky3D({ scene, makePoints, fetchMembers: fetchClusterMembers, imageUrl: nebulaImageUrl });
+  ds.onChange = () => { onDetail?.(); };
   const objects = []; // selectable: { id, name, kind, pos, facts }
 
   let starRows = [];
@@ -128,6 +133,8 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   function setClusters(d) { // /api/clusters rows [name, l, b, distPc, members, logAge, type]
     if (clusterPts || !d?.rows) return;
     clusterRows = d.rows;
+    clusterPos = d.rows.map(([, l, b, pc]) => new THREE.Vector3(...lbd(l, b, pc * LY_PER_PC)));
+    ds.addClusterNebulosity(d.rows);
     clusterPts = makePoints(d.rows.map(([, l, b, pc, n, age, type]) => {
       const c = blackbodyRGB(ageTeff(age));
       return [...lbd(l, b, pc * LY_PER_PC), type === 'g' ? 9 : Math.max(2.5, Math.min(9, 1.6 * Math.log10(n ?? 10) + 1)), c[0], c[1], c[2]];
@@ -137,9 +144,23 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       if (!common) continue;
       const pos = new THREE.Vector3(...lbd(l, b, pc * LY_PER_PC));
       const id = `cl-${name}`;
-      objects.push({ id, name: common, catalogue: name, kind: type === 'g' ? 'globular cluster' : 'open cluster', pos, distLy: pc * LY_PER_PC, members: n, logAge: age });
+      objects.push(clusterObject(d.rows.find((r) => r[0] === name), common));
       tag(common.toUpperCase(), 'host', pos, { kind: 'object', onClick: () => onSelect?.(id) });
     }
+  }
+
+  function clusterObject([name, l, b, pc, n, age, type, r50], common = null) {
+    return { id: `cl-${name}`, name: common ?? name, catalogue: name, kind: type === 'g' ? 'globular cluster' : type === 'm' ? 'moving group' : 'open cluster',
+      pos: new THREE.Vector3(...lbd(l, b, pc * LY_PER_PC)), distLy: pc * LY_PER_PC, members: n, logAge: age, r50pc: r50 };
+  }
+  const extra = new Map(); // clusters selected without a landmark label (clicked dots, navigation list)
+  function objectById(id) {
+    let o = objects.find((x) => x.id === id) ?? extra.get(id);
+    if (!o && id?.startsWith('cl-')) {
+      const r = clusterRows.find((x) => x[0] === id.slice(3));
+      if (r) { o = clusterObject(r); extra.set(id, o); }
+    }
+    return o ?? null;
   }
 
   function addNebulae() {
@@ -152,7 +173,22 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       return [pos.x, pos.y, pos.z, 11, c.r, c.g, c.b];
     });
     nebPts = makePoints(rows);
+    ds.init(NEBULAE);
+    // stars inside nebulae: labelled while their nebula is selected, clickable into the star card
+    for (const m of ds.starMeta) {
+      const el = document.createElement('button');
+      el.className = 'nav-label host neb-star';
+      el.textContent = m.name.toUpperCase();
+      el.addEventListener('pointerdown', (e) => e.stopPropagation());
+      el.addEventListener('click', (e) => { e.stopPropagation(); onPickStar?.(nebulaStarPick(m)); });
+      const o = new CSS2DObject(el);
+      o.position.copy(m.pos); o.center.set(-0.12, -0.6); o.visible = false; // below the nebula's own label
+      scene.add(o);
+      starTags.push({ obj: o, nebula: m.nebula });
+    }
   }
+  const starTags = [];
+  const nebulaStarPick = (m) => ({ kind: 'gaia', eq: radecVec(m.ra, m.dec), distLy: m.distLy, name: m.name });
   addNebulae();
   tag('SOL · SECTOR 001', 'sol', new THREE.Vector3(), { always: true });
 
@@ -175,22 +211,74 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     if (!hit) return null;
     const r = starRows[hit.index];
     if (Math.hypot(r[0], r[1], r[2]) > radius * 1.02) return null; // filtered out of view by the shader
-    return { kind: 'hyg', id: r[5] ?? null, gal: [r[0], r[1], r[2]], distLy: Math.hypot(r[0], r[1], r[2]) };
+    return { kind: 'hyg', id: r[5] ?? null, gal: [r[0], r[1], r[2]], distLy: Math.hypot(r[0], r[1], r[2]), px: hit.px };
   }
+  // clicks also reach cluster member stars and stars inside nebulae (#24), and select nebulae and clusters by their dots
+  function pickAny(e) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    const cands = [];
+    const s = pickStar(e);
+    if (s) cands.push({ px: s.px, star: s });
+    const m = ds.pick(camera, rect, e.clientX, e.clientY, radius);
+    if (m) cands.push({ px: m.px - 1, star: m.pick }); // members win ties: they are what is drawn there
+    for (const [pts, ids] of [[nebPts, NEBULAE.map((n) => `neb-${n[0]}`)], [clusterPts, clusterRows.map((r) => `cl-${r[0]}`)]]) {
+      if (!pts) continue;
+      const a = pts.geometry.attributes.position.array, sz = pts.geometry.attributes.size.array;
+      const hit = pickPoint((i) => (sz[i] > 0 ? tmpPick.set(a[i * 3], a[i * 3 + 1], a[i * 3 + 2]) : tmpPick.set(0, 0, 1e9)), a.length / 3, null, camera, rect, e.clientX, e.clientY, 7);
+      if (hit && tmpPick.set(a[hit.index * 3], a[hit.index * 3 + 1], a[hit.index * 3 + 2]).length() <= radius * 1.02) cands.push({ px: hit.px + 2, select: ids[hit.index] });
+    }
+    cands.sort((x, y) => x.px - y.px);
+    return cands[0] ?? null;
+  }
+  const tmpPick = new THREE.Vector3();
   onClicks(labels.domElement, {
-    click: (e) => { const p = pickStar(e); if (p) onPickStar?.(p); },
-    dblclick: (e) => onDrill?.(pickStar(e)),
+    click: (e) => { const p = pickAny(e); if (p?.star) onPickStar?.(p.star); else if (p?.select) onSelect?.(p.select); },
+    dblclick: (e) => { const p = pickAny(e); onDrill?.(p?.star?.kind === 'hyg' ? p.star : null); },
   });
 
   let selected = null;
+  let zoomGoal = null, zoomDir = null;
   function select(id) {
-    selected = objects.find((o) => o.id === id) ?? null;
+    const prev = selected;
+    selected = objectById(id);
     for (const t of tags) t.obj.element.classList.toggle('selected', !!selected && t.obj.position.equals(selected.pos));
-    if (selected) target.copy(selected.pos);
+    if (selected) {
+      target.copy(selected.pos);
+      // fly in close enough to see its shape (#24): nebulae to ~3.5× their size (closer, parallax inside the volume blurs it), clusters to ~25× r50
+      const neb = ds.nebulae.get(id);
+      const size = selected.r50pc ? selected.r50pc * LY_PER_PC * 25 : neb ? neb.objectLy * 3.5 : null;
+      if (size && prev !== selected) zoomGoal = Math.max(0.3, Math.min(size, 3000));
+      // approach a nebula from Sol's side, so it first looks as it does from Earth
+      zoomDir = neb && !id.startsWith('cl-') && prev !== selected ? selected.pos.clone().normalize().negate() : null;
+      if (neb) neb.load();
+      if (id.startsWith('cl-')) { const r = clusterRows.find((x) => `cl-${x[0]}` === id); if (r) ds.loadCluster(r[0], r); }
+    }
     return selected;
   }
+  controls.addEventListener('start', () => { zoomGoal = null; zoomDir = null; });
 
-  let running = false;
+  let running = false, lastLazy = 0;
+  // lazy 3D detail (#24): load images and member lists of what is big on screen; hide a marker
+  // dot once the real thing is drawn there
+  function lazyUpdate() {
+    ds.update(camera, renderer.domElement.clientHeight || 800, radius, selected?.id ?? null, clusterRows, clusterPos);
+    const nsz = nebPts?.geometry.attributes.size;
+    if (nsz) {
+      NEBULAE.forEach((n, i) => { const h = ds.nebulae.get(`neb-${n[0]}`); nsz.setX(i, h?.state === 'ready' && h.px > 30 ? 0 : 11); });
+      nsz.needsUpdate = true;
+    }
+    const csz = clusterPts?.geometry.attributes.size;
+    if (csz) {
+      let dirty = false;
+      clusterRows.forEach((r, i) => {
+        const shown = ds.swarms.get(r[0])?.state === 'ready';
+        const want = shown ? 0 : r[6] === 'g' ? 9 : Math.max(2.5, Math.min(9, 1.6 * Math.log10(r[4] ?? 10) + 1));
+        if (csz.getX(i) !== want) { csz.setX(i, want); dirty = true; }
+      });
+      if (dirty) csz.needsUpdate = true;
+    }
+    for (const t of starTags) t.obj.visible = !!(selected && t.nebula === selected.name);
+  }
   function resize() {
     const { clientWidth: w, clientHeight: h } = container;
     if (!w || !h) return;
@@ -206,9 +294,23 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       const delta = tmp.copy(target).sub(controls.target).multiplyScalar(0.08);
       controls.target.add(delta); camera.position.add(delta);
     }
+    if (zoomGoal) {
+      const off = tmp.copy(camera.position).sub(controls.target), len = off.length();
+      const next = Math.exp(Math.log(len) + (Math.log(zoomGoal) - Math.log(len)) * 0.08);
+      off.divideScalar(len);
+      if (zoomDir) off.lerp(zoomDir, 0.08).normalize();
+      camera.position.copy(controls.target).add(off.multiplyScalar(next));
+      if (Math.abs(Math.log(next / zoomGoal)) < 0.01 && (!zoomDir || off.angleTo(zoomDir) < 0.01)) { zoomGoal = null; zoomDir = null; }
+    }
     controls.update();
+    const camDist = camera.position.distanceTo(controls.target);
+    const near = Math.max(0.002, Math.min(1, camDist * 0.01));
+    if (Math.abs(near - camera.near) > camera.near * 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
+    const now = performance.now();
+    if (now - lastLazy > 400) { lastLazy = now; lazyUpdate(); }
     const show = settings.get('labels');
     for (const t of tags) t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02) || (selected && t.obj.position.equals(selected.pos)));
+    ds.tick(camera, renderer.domElement.clientHeight || 800);
     renderer.render(scene, camera);
     labels.render(scene, camera);
     onFrame?.({});
@@ -229,6 +331,16 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     setStars, setClusters, setRadius, select, applyLook,
     get radius() { return radius; },
     get objects() { return objects; },
+    /** Any selectable object, including clusters without a landmark label. */
+    object: (id) => objectById(id),
+    /** 3D detail state for the panel (#24): the nebula's image stack, the cluster's member swarm, the stars inside. */
+    detail(id) {
+      const o = objectById(id);
+      if (!o) return null;
+      const neb = ds.nebulae.get(id) ?? (o.catalogue ? ds.nebulae.get(`cl-${o.catalogue}`) : null);
+      return { neb, swarm: o.catalogue ? ds.swarms.get(o.catalogue) ?? null : null,
+        stars: ds.starMeta.filter((m) => m.nebula === o.name).map((m) => ({ ...m, pick: () => onPickStar?.(nebulaStarPick(m)) })) };
+    },
     /** Counts of what lies within the current radius. */
     counts() {
       const R = radius / LY_PER_PC;
