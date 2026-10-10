@@ -4760,6 +4760,148 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ross154-star": {
+    "id": "ross154-star",
+    "name": "Ross 154",
+    "kind": "star",
+    "aliases": [
+      "Ross 154",
+      "GJ 729",
+      "Gliese 729",
+      "Gl 729",
+      "V1216 Sgr",
+      "V 1216 Sgr",
+      "HIP 92403"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Wargelin2007/2008 SectionII explicitly identifies Ross154 with Gliese729 and V1216Sgr; not Ross128b or Ross248.",
+    "nativeSurface": "Native Chandra X-ray point-source/extraction-region figure retained; no native resolved photospheric geography or calibrated visible colour found in checked sources.",
+    "measured": [
+      "Wargelin2007/2008 ACIS-S3 ObsID2561 begins2002-09-09T00:01:20UT. X-ray flare and readout streak are detector/source context, not visible photospheric geography.",
+      "Pineda2021 Table5 GaiaEDR3 parallax336.1228±0.0641mas; historical snapshot distance retained and current exhaustive nearest20ranking open."
+    ],
+    "modelled": [
+      "Pineda2021 Table3 continued empirical Bayesian inference:3248+68/-66K,0.200±0.008Rsun and0.177±0.004Msun; bolometric luminosity(1.537±0.018)×10^31erg/s. Radius/mass/temperature are correlated empirical estimates, not resolved photosphere measurements.",
+      "Cool partlyionized molecular hydrogen/helium photospheric gas is broad stellar-model composition, not measured abundance fractions. Coronal X-ray temperatures/abundances must not be treated as photospheric temperature/colour."
+    ],
+    "unknown": [
+      "Resolved visible intensity/spot geography, exact magnetic/convection morphology, measured composition fractions and calibrated visible colour/exposure.",
+      "Current exhaustive nearest20stellar ranking; dated hypothetical observer registration."
+    ],
+    "assumed": [
+      "Independent quiescent photospheric intensity pattern and observer disc; spots/convection/longitudes invented despite historical flare evidence.",
+      "Conceptual camera2photosphericradii fromcentre; no solid ground or survivable landing. No observed Sun or another-body map reuse.",
+      "Nominal120degreeFOV, tint, molecular radiative transfer and exposure artistic; no recreation of2002flare in visible colour."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/2106.07656",
+        "title": "Pineda/Youngblood/France2021 empirical stellar parameters, Table3/5",
+        "publicationDate": "2021-06-14"
+      },
+      {
+        "url": "https://arxiv.org/html/0712.2791",
+        "title": "Wargelin/Kashyap/Drake/García-Alvarez/Ratzlaff2007/2008 native Chandra figure and observation epochs",
+        "publicationDate": "2007-12-17"
+      },
+      {
+        "url": "https://hea-www.cfa.harvard.edu/~bradw/cv/papers/Ross154.pdf",
+        "title": "Primary author published ApJ2008 article",
+        "publicationDate": "2008-03-20"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ross154-chandra-native.png",
+        "source": "https://arxiv.org/html/0712.2791v1/f1a.png",
+        "sourcePage": "https://arxiv.org/html/0712.2791",
+        "label": "NATIVE X-RAY POINT-SOURCE FIELD",
+        "credit": "B. J. Wargelin, V. L. Kashyap, J. J. Drake, D. García-Alvarez and P. W. Ratzlaff; Chandra X-ray Observatory/ACIS-S3.",
+        "terms": "Original author figure with full attribution under user-authorized credited use; no CC licence inferred from arXiv distribution licence.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "publicationDate": "2007-12-17",
+        "observationDate": "2002-09-09",
+        "tier": "measured",
+        "sha256": "e762dcc090e09a894253d9f4325d0e314e7e953976ce5eb60daa8a30d6db570b",
+        "bytes": 42685,
+        "description": "Unchanged author Figure1a native ACIS source field, core pileup/readout streak and extraction-region annotation. Annulus aroundRoss154; weak unrelated secondary point sources/background boxes are analysis regions, not stellar companions or photospheric features. Observed2002-09-09 beginning00:01:20UT. Inverted X-ray intensity does not establish visible colour or photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Ross 154",
+      "radiusSun": 0.2,
+      "temperatureK": 3248,
+      "distanceAU": 0.0018601869043848632,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1159.059200331253,
+      "approximateSrgb": [
+        1,
+        0.7258860622392057,
+        0.4945454996149291
+      ],
+      "limits": "Conceptual observer2photosphericradii fromcentre,60degree geometry verified through skyGeometry; nominal120degreeFOV, spectraltransfer, tint, exposure and raster core approximate, not calibrated or dated registration."
+    },
+    "surfaceMap": {
+      "key": "ross154StarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented longitude/latitude intensity map; no measured stellar surface frame.",
+      "coverage": "Entire gas/spot morphology imagined; approximate catalogue tint.",
+      "url": "/bespoke/ross154-star-surface-map.jpg",
+      "previewUrl": "/bespoke/ross154-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-bd6980c3-ac30-42ae-a492-7832afe35d95.png",
+      "sourceSha256": "2efcb9985e7c29d234b6fe31f78addaeeb9ad16a3eda627b865ce1c53a351e7e",
+      "sha256": "e0092e71a86bec57d6f5bbf3f64f64d1dde88ed2a8c464f70e96e4de156a9bfa",
+      "previewSha256": "abc95abf7d3c866eed7cc61084c8114f8bf937638a26a646c3e0dc6a3d5c0fd1",
+      "bytes": 409483,
+      "previewBytes": 39039,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1671,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          527,
+          527,
+          527
+        ],
+        "geometricTargetPixels": 557.0000000000002,
+        "limits": "Nominal cameraFOV, threshold/limb/exposure and colour remain approximate, not calibrated."
+      },
+      "url": "/bespoke/ross154-star-sky-image.jpg",
+      "previewUrl": "/bespoke/ross154-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-d511a8c2-d965-40fc-b12e-1b8f5248a1d2.png",
+      "sourceSha256": "8def0379058a4f792a5fca429c2dfb85e2a2956c9ac69cc2767b142c2b90fe72",
+      "sha256": "3541c29bfd32bf0bb88bf428cd60839fa359d333061251a4143930eedda66a37",
+      "previewSha256": "c016ec51025c2bb3b697e57a61406d239cdc427a6b24101d6af65bdc54f614eb",
+      "bytes": 59393,
+      "previewBytes": 11778,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

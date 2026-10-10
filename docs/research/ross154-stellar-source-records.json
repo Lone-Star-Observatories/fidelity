@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://arxiv.org/html/0712.2791",
+    "file": "data/research-sources/ross154-wargelin.html",
+    "bytes": 380047,
+    "sha256": "119cd702801d17149e16265b9ebf55c10df4b99140e121b6edf8d83a6f7c34b0",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/html/0712.2791v1/f1a.png",
+    "file": "public/bespoke/ross154-chandra-native.png",
+    "bytes": 42685,
+    "sha256": "e762dcc090e09a894253d9f4325d0e314e7e953976ce5eb60daa8a30d6db570b",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/pdf/2106.07656",
+    "file": "data/research-sources/ross154-pineda.pdf",
+    "bytes": 6094474,
+    "sha256": "cd3292addc2e9065a6a36acb143b96b8637fb9defbd61991e6f54f019732ba97",
+    "retrieved": "2026-10-10",
+    "status": 200
+  }
+]

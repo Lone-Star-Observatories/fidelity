@@ -88,3 +88,11 @@ test('Luyten binary aliases choose distinct photospheres and keep inverse-model 
   const model=buildStarSystem({star:{id:'a',name:'Gliese 65A',x:1,y:0,z:0,distLy:8.7,spect:'M5.5V',lum:.00147},planets:[]});
   assert.equal(model.bodies[0].skin.map,a.surfaceMap.key);
 });
+
+test('Ross154 aliases preserve its own photosphere and keep Xray artifacts separate',()=>{
+  const v=bodyVisualFor({name:'Ross 154'});assert.equal(bodyVisualFor({name:'GJ 729'}),v);assert.equal(bodyVisualFor({name:'V1216 Sgr'}),v);
+  assert.notEqual(v.surfaceMap.sha256,bodyVisualFor({name:'Ross 128 b'}).surfaceMap.sha256);
+  assert.equal(v.contextImages[0].observationDate,'2002-09-09');assert.match(v.contextImages[0].description,/readout streak/);
+  assert.match(v.modelled.join(' '),/Coronal X-ray temperatures/);assert.match(v.assumed.join(' '),/no solid ground/);
+  assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});

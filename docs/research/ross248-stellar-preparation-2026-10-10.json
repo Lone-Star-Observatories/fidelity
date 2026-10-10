@@ -1,0 +1,35 @@
+{
+  "researched": "2026-10-10",
+  "status": "Primary parameter preparation; no Ross248 bespoke assets delivered",
+  "identity": "Ross248=HHAnd=Gl905/GJ905, actual historical HYGid hyg-119585; do not confuse Gliese905.2A/B.",
+  "source": {
+    "url": "https://arxiv.org/html/1904.03231",
+    "file": "data/research-sources/ross248-schweitzer.html",
+    "sha256": "095831c2c78766bf3b4f1bdc74178601e65c0d6116631190d9486a50c2650cfc",
+    "bytes": 2684075,
+    "retrieved": "2026-10-10"
+  },
+  "parameterRow": {
+    "table": "Schweitzer2019 Table2 continued J23419+441/Gl905",
+    "effectiveTemperatureK": 3142,
+    "errorK": 51,
+    "radiusSun": 0.158,
+    "radiusErrorSun": 0.005,
+    "luminositySun": 0.0022,
+    "luminosityErrorSun": 0.00003,
+    "distancePc": 3.155,
+    "distanceErrorPc": 0.001,
+    "method": "Spectroscopic model Teff plus flux/luminosity relation radius; distinguish alternate photometric radius column from adopted radius."
+  },
+  "limits": [
+    "The row also lists photometric radius0.191±0.001Rsun; do not merge it with spectroscopic Teff/radius0.158 without method labels.",
+    "Pineda2021 MUSS Table3 has no GJ905 row; cannot extrapolate Ross154 or another star parameters as measured Ross248 facts.",
+    "Common2930K0.190Rsun summary values require original reference/measurement verification before adoption.",
+    "Native scientific source imagery assessment and current astrometric ranking still open; not an external blocker or completed dossier."
+  ],
+  "next": [
+    "Assess native2MASS/DSS or other primary point-source imagery with dates/sourcehashes/credits.",
+    "Audit alternative empirical temperature/radius sources and explicitly separate methods.",
+    "Generate independent gas photosphere map and hypothetical2Robserver using skyGeometry; preserve other dossiers."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "generated": "2026-10-10",
+  "promptRecord": {
+    "mode": "built-in image_gen",
+    "prompts": {
+      "map": "Scientific-educational bespoke full-coverage stellar photospheric intensity texture for Ross154, GJ729. Exact2:1 equirectangular rectangle, seamless left/right and compressed poles, no sky/sphere/borders/text, neutral grayscale intensity only. Independent invented gas morphology; absolutely no observed Sun or other-body map reused. Pineda2021 empirical Bayesian stellar inference:3248+68/-66K,0.200±0.008solar radii,0.177±0.004solar masses. Cool partly ionized molecular hydrogen/helium stellar gas, no solid terrain. Active flare M3.5 dwarf has historical ChandraXrayflare evidence but this is imagined QUIESCENT photosphere, no calibrated observed spot map. Finely textured subtle convection with several small sparse irregular darker magnetic gas regions, unmeasured longitudes and spots, no huge continuous polar cap, no lava/rock/craters/continents, no visible magnetic lines. Subtle emissive-gas texture, renderer later applies approximate tint.",
+      "sky": "Scientific-educational hypothetical remote camera observer image near Ross154/GJ729 quiescent stellar photosphere. Exact16:9 landscape, e.g1672x941. No ground/horizon/spacecraft/text/companions/survivablelanding. Camera2photosphericradii fromcentre withR0.200Rsun, geometricstellarangular diameter60deg, artisticrectilinear horizontalFOV120deg: central complete luminous disc STRICTbrightcorediameter exactlyone third of canvaswidth,557pixels at1672wide, abundantblacksky aroundit.3248K approximate pale warm cream-orange luminous gas, restrainedorange limb, fine subdued invented gas convection and sparse smalldim magneticregions; not saturatedredfireball and no dramatic flare. Cool partlyionized molecularHHe gas, no lava/rock/craters, no Sunphoto or otherbodymap reuse. Primary flare evidence historical2002ChandraXray; do not recreateflareinvisiblecolour or claimdatedregistration. Spectrum/exposure/FOVartistic, no calibratedtruecolourclaim."
+    },
+    "refinements": [
+      {
+        "asset": "sky",
+        "originalFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-b321da47-072a-45ad-b39c-db2614e1b4bb.png",
+        "editedFile": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-d511a8c2-d965-40fc-b12e-1b8f5248a1d2.png",
+        "prompt": "Edit only scale/framing of this Ross154 hypothetical quiescent observer image. Preserve its own gas texture/spot patterns and tint. Exact16:9 canvas1672x941, centre entire luminous disc, reduce bright photospheric core from660pixels to557pixels (one thirdcanvaswidth). Blackskypadding. No new objects,text,terrain,flare or companions.120degree nominalartisticFOV and60degree stellardisc geometry; no calibratedcolour claim.",
+        "originalSha256": "6ad0be7c87fd0d7d3a9c1eb54bc6622bc6947e9658f349705e7693c876cbd7fb"
+      }
+    ]
+  },
+  "bodies": [
+    {
+      "id": "ross154-star",
+      "name": "Ross 154",
+      "kind": "star",
+      "aliases": [
+        "Ross 154",
+        "GJ 729",
+        "Gliese 729",
+        "Gl 729",
+        "V1216 Sgr",
+        "V 1216 Sgr",
+        "HIP 92403"
+      ],
+      "researchDate": "2026-10-10",
+      "identityNote": "Wargelin2007/2008 SectionII explicitly identifies Ross154 with Gliese729 and V1216Sgr; not Ross128b or Ross248.",
+      "nativeSurface": "Native Chandra X-ray point-source/extraction-region figure retained; no native resolved photospheric geography or calibrated visible colour found in checked sources.",
+      "measured": [
+        "Wargelin2007/2008 ACIS-S3 ObsID2561 begins2002-09-09T00:01:20UT. X-ray flare and readout streak are detector/source context, not visible photospheric geography.",
+        "Pineda2021 Table5 GaiaEDR3 parallax336.1228±0.0641mas; historical snapshot distance retained and current exhaustive nearest20ranking open."
+      ],
+      "modelled": [
+        "Pineda2021 Table3 continued empirical Bayesian inference:3248+68/-66K,0.200±0.008Rsun and0.177±0.004Msun; bolometric luminosity(1.537±0.018)×10^31erg/s. Radius/mass/temperature are correlated empirical estimates, not resolved photosphere measurements.",
+        "Cool partlyionized molecular hydrogen/helium photospheric gas is broad stellar-model composition, not measured abundance fractions. Coronal X-ray temperatures/abundances must not be treated as photospheric temperature/colour."
+      ],
+      "unknown": [
+        "Resolved visible intensity/spot geography, exact magnetic/convection morphology, measured composition fractions and calibrated visible colour/exposure.",
+        "Current exhaustive nearest20stellar ranking; dated hypothetical observer registration."
+      ],
+      "assumed": [
+        "Independent quiescent photospheric intensity pattern and observer disc; spots/convection/longitudes invented despite historical flare evidence.",
+        "Conceptual camera2photosphericradii fromcentre; no solid ground or survivable landing. No observed Sun or another-body map reuse.",
+        "Nominal120degreeFOV, tint, molecular radiative transfer and exposure artistic; no recreation of2002flare in visible colour."
+      ],
+      "surfaceLabel": "QUIESCENT PHOTOSPHERE HYPOTHESIS",
+      "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+      "references": [
+        {
+          "url": "https://arxiv.org/pdf/2106.07656",
+          "title": "Pineda/Youngblood/France2021 empirical stellar parameters, Table3/5",
+          "publicationDate": "2021-06-14"
+        },
+        {
+          "url": "https://arxiv.org/html/0712.2791",
+          "title": "Wargelin/Kashyap/Drake/García-Alvarez/Ratzlaff2007/2008 native Chandra figure and observation epochs",
+          "publicationDate": "2007-12-17"
+        },
+        {
+          "url": "https://hea-www.cfa.harvard.edu/~bradw/cv/papers/Ross154.pdf",
+          "title": "Primary author published ApJ2008 article",
+          "publicationDate": "2008-03-20"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/ross154-chandra-native.png",
+          "source": "https://arxiv.org/html/0712.2791v1/f1a.png",
+          "sourcePage": "https://arxiv.org/html/0712.2791",
+          "label": "NATIVE X-RAY POINT-SOURCE FIELD",
+          "credit": "B. J. Wargelin, V. L. Kashyap, J. J. Drake, D. García-Alvarez and P. W. Ratzlaff; Chandra X-ray Observatory/ACIS-S3.",
+          "terms": "Original author figure with full attribution under user-authorized credited use; no CC licence inferred from arXiv distribution licence.",
+          "termsUrl": "https://info.arxiv.org/help/license/index.html",
+          "publicationDate": "2007-12-17",
+          "observationDate": "2002-09-09",
+          "tier": "measured",
+          "sha256": "e762dcc090e09a894253d9f4325d0e314e7e953976ce5eb60daa8a30d6db570b",
+          "bytes": 42685,
+          "description": "Unchanged author Figure1a native ACIS source field, core pileup/readout streak and extraction-region annotation. Annulus aroundRoss154; weak unrelated secondary point sources/background boxes are analysis regions, not stellar companions or photospheric features. Observed2002-09-09 beginning00:01:20UT. Inverted X-ray intensity does not establish visible colour or photospheric geography."
+        }
+      ],
+      "skyModel": {
+        "star": "Ross 154",
+        "radiusSun": 0.2,
+        "temperatureK": 3248,
+        "distanceAU": 0.0018601869043848632,
+        "horizontalFovDeg": 120
+      },
+      "surfaceMap": {
+        "key": "ross154StarBespoke",
+        "texLon0": -180,
+        "projection": "2:1 invented longitude/latitude intensity map; no measured stellar surface frame.",
+        "coverage": "Entire gas/spot morphology imagined; approximate catalogue tint."
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "sourceWidth": 1671,
+          "sourceHeight": 941,
+          "thresholds": [
+            180,
+            210,
+            240
+          ],
+          "brightCoreWidths": [
+            527,
+            527,
+            527
+          ],
+          "geometricTargetPixels": 557.0000000000002,
+          "limits": "Nominal cameraFOV, threshold/limb/exposure and colour remain approximate, not calibrated."
+        }
+      },
+      "inputs": {
+        "surfaceMap": "exec-bd6980c3-ac30-42ae-a492-7832afe35d95.png",
+        "skyImage": "exec-d511a8c2-d965-40fc-b12e-1b8f5248a1d2.png"
+      }
+    }
+  ]
+}
