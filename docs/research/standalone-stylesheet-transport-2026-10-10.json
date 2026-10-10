@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-10",
+  "change": "Full standalone stylesheet standardgzip5iterations/raw120v1 inert HTML transport restored into style.textContent before application Blob import. Normal production CSS unchanged.",
+  "preservation": "Every stylesheet byte and application module byte restored exactly. Binary snapshotgzip32/wideraw120 FIDBIN01, readableJSON, generatedlegacyradix85gzip8, applicationgzip5/raw120v1/Blob import/revoke and unsupported-browser message retained. All52 dossiers/native/maps/models/shapes and detailed fields unchanged.",
+  "rejectedTrials": [
+    {
+      "method": "Byte-plane shuffle of30 model/octet-stream assets, zlib9",
+      "originalGzipBytes": 13512045,
+      "widths": [
+        2,
+        4,
+        8
+      ],
+      "trialGzipBytes": [
+        13871267,
+        14050994,
+        14162146
+      ],
+      "exactRoundtrips": true,
+      "decision": "Not adopted: larger payloads."
+    },
+    {
+      "method": "Repeated quoted-header-string dictionary, zlib9",
+      "minimumStringLengths": [
+        12,
+        24,
+        48,
+        96
+      ],
+      "entries": [
+        3182,
+        419,
+        32,
+        5
+      ],
+      "originalGzipBytes": 13512045,
+      "trialGzipBytes": [
+        13515880,
+        13510486,
+        13511319,
+        13512079
+      ],
+      "exactHeaderRoundtrips": true,
+      "decision": "Not adopted: negligible savings did not justify another container format. Trial gzip sizes are not productionZopfli sizes."
+    }
+  ],
+  "verification": {
+    "beforeHtmlBytes": 15978925,
+    "afterHtmlBytes": 15951373,
+    "savedBytes": 27552,
+    "headroomBytes": 48627,
+    "stylesheetBytes": 36910,
+    "stylesheetSha256": "abb895d2917bacf8f048aa38253a8cb214d4c4bd8572beda9459d3bbd7d5608f",
+    "stylesheetRawHtmlSha256": "d9db775b0671aa2570ea2f22b241ca4638dcfb8977936ecd14833da114ef2d6f",
+    "browserStyleTextExact": true,
+    "browserPackedHtmlTextExact": true,
+    "browserPageErrors": [],
+    "renderedButtons": 236,
+    "normalProductionBuild": "pass",
+    "fullBuild": "pass",
+    "tests": {
+      "pass": 261,
+      "skip": 1,
+      "fail": 0
+    },
+    "wholeBrowserReadableSnapshotSha256": "1ccea4448f269be4c4b56fba1b191869915f120cb4ea08e50a720e54d54567f9",
+    "rawSnapshotSha256": "6b6826e346a7d6224c1b8fb1fe151a7684aacd248261f7736ce4e2d4dec06b8f",
+    "all52DossiersDeepEqual": true,
+    "nativeContextHashes": 41,
+    "images": 189,
+    "details": 517,
+    "sixOfflineRoutes": "pass",
+    "unsupportedBrowserMessage": "pass",
+    "offlineWorkerEventRows": 8,
+    "applicationSha256": "3b9868b222b22390c0ad20d7654716cceade81a82272adfbad4a331acd756463",
+    "applicationHtmlParserExactRestoration": true,
+    "all189ImagesDecoded": true
+  },
+  "limitations": "Chrome verified; other browser engines not independently tested. Enceladus native/dossier integration still needs more headroom. No asset pruning or source substitution. Backlog ACTIVE."
+}
