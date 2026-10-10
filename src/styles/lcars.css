@@ -187,6 +187,14 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .host-row.event-row { flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
 .host-row.event-row > span:first-child { color: var(--orange); }
 .host-row.event-row > span.mono { white-space: normal; text-align: left; font-size: calc(12px * var(--text-scale, 1)); opacity: 0.85; }
+/* events feed (#32) */
+.host-row.event-row.active { outline: 2px solid var(--gold); }
+.soon-dot { color: var(--red); }
+.rail-btn.events-btn.alert::after { content: '●'; color: var(--red); margin-left: 6px; }
+.nav-label.mission-label { color: #ffcc66; background: rgba(0, 0, 0, 0.55); border: 0; pointer-events: none; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; white-space: nowrap; margin-top: -20px; }
+.nav-label.mission-label.booster { color: var(--ice); }
+.nav-label.mission-label.relative, .nav-label.mission-label.eva { color: var(--lilac); }
+.nav-label.mission-label.site { color: var(--peach); opacity: 0.8; background: none; }
 .host-row.on { background: var(--orange); color: #000; }
 .radius-list { grid-template-columns: repeat(4, 1fr); }
 .panel h2.sel-name { font-size: calc(24px * var(--text-scale, 1)); color: var(--gold); }
@@ -301,6 +309,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .badge-computed { background: var(--orange); }
 .badge-modelled { background: var(--lilac); }
 .badge-imagined { background: var(--rose); }
+.badge-reported { background: var(--gold); }
 .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
 
 /* ---- bottom controls ------------------------------------------------------------- */

@@ -44,6 +44,7 @@ import { ELEMENTS } from '../../astro/kepler.js';
 import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
+import { createMissionLayer } from './missions.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
 
@@ -994,6 +995,21 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   }
   const tmpE = new THREE.Vector3();
 
+  // ---- mission activity from the events feed (#32) ---------------------------------------------
+  let missions = null, missionEvents = [], satrecFor = () => null;
+  const missionMap = (km) => localMap(nodes.earth.body, toScene(km, new THREE.Vector3()).multiplyScalar(1 / AU_KM)).add(nodes.earth.pos);
+  function stationState(norad, jd) {
+    const rec = satrecFor(norad), st = rec && stateAt(rec, jd);
+    if (!st) return null;
+    const P = precessionToJ2000(jd);
+    return { r: temeToEcliptic(st.position, P), v: temeToEcliptic(st.velocity, P) };
+  }
+  function updateMissions(jd) {
+    if (!model?.isSol || !nodes.earth) { missions?.update(jd, false); return; }
+    if (!missions) { missions = createMissionLayer({ root, fat, map: missionMap, stationState }); missions.setEvents(missionEvents); }
+    missions.update(jd, !surface && settings.get('missions') !== false);
+  }
+
   // ---- focus & camera flight ---------------------------------------------------------
   let focusId = 'sun';
   let flight = null; // { from: Vector3 (scene), t0, dur, d0 }
@@ -1447,6 +1463,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     updateShadows(jd);
     updateEclipseLines(jd);
     updateTracks(jd);
+    updateMissions(jd);
     for (const id in nodes) {
       const c = nodes[id].clouds;
       if (c) {
@@ -1510,6 +1527,21 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       return nodes[body.id].body;
     },
     showSatelliteCategory(c, on) { sats?.showCategory(c, on); },
+    /** Events-feed items with a flight model (#32); `opts.satrecFor(norad)` positions stations. */
+    setMissionEvents(list, opts = {}) {
+      missionEvents = list ?? [];
+      if (opts.satrecFor) satrecFor = opts.satrecFor;
+      missions?.setEvents(missionEvents);
+    },
+    /** Ids of the feed events drawn right now. */
+    get activeMissions() { return missions?.active ?? []; },
+    /** Frame Earth with the camera over a ground point (deg) from `distKm` above it. */
+    viewEarthPoint(lat, lon, distKm = 9000) {
+      if (!nodes.earth) return;
+      flyTo('earth', { overview: localMap(nodes.earth.body, new THREE.Vector3((6378 + distKm) / AU_KM, 0, 0)).length() });
+      const p = inertialPoint(clock.jd, lat, lon);
+      camera.position.copy(toScene(p, new THREE.Vector3()).normalize().multiplyScalar(camera.position.length()));
+    },
     satelliteState(id) {
       const b = nodes[id]?.body;
       return b?.satrec ? stateAt(b.satrec, clock.jd) : null;

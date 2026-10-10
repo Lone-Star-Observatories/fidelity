@@ -6,7 +6,7 @@ import { jdFromDate } from './time.js';
 export const RATES = [
   { days: -365, label: '−1 YEAR/S' }, { days: -30, label: '−1 MONTH/S' }, { days: -7, label: '−1 WEEK/S' },
   { days: -1, label: '−1 DAY/S' }, { days: -1 / 24, label: '−1 HOUR/S' }, { days: 0, label: 'HOLD' },
-  { days: 1 / 86400, label: 'REAL TIME' }, { days: 1 / 24, label: '1 HOUR/S' }, { days: 1, label: '1 DAY/S' },
+  { days: 1 / 86400, label: 'REAL TIME' }, { days: 1 / 1440, label: '1 MIN/S' }, { days: 1 / 24, label: '1 HOUR/S' }, { days: 1, label: '1 DAY/S' },
   { days: 7, label: '1 WEEK/S' }, { days: 30, label: '1 MONTH/S' }, { days: 365, label: '1 YEAR/S' },
 ];
 const REAL = RATES.findIndex((r) => r.label === 'REAL TIME');
