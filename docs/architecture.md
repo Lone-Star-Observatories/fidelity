@@ -264,3 +264,5 @@ Standalone image sharing: bespoke map cards now resolve snapshot.textures by ass
 The GJ 887 additions use the existing additive dossier/texture registry, full-name aliases and cloud-card labels. No changes to catalogue fields, mission models or live/native imagery routes. Each standalone globe map is embedded once and reused by the dossier card; observer images remain separate. Registry now 15 dossiers.
 
 The standalone builder transcodes local generated map previews and IMAGINED dossier images to quality-80 WebP at existing dimensions. Scientific context images follow the original embedding path. Registry/normal-build JPEG files and all model/shape GLBs are unchanged; source credits still resolve to the original assets. Combined standalone size is 15.85 MB.
+
+Craft preview rebuilding accepts selected model IDs and `--texture-size=128`; omitted overrides use recorded per-model sizes (otherwise 256). Curiosity/Europa Clipper use 128-pixel preview textures with unchanged mesh/material counts; normal source models remain intact. Ross 128 b and Gl 725 A b use additive full-name dossier matching and disclose approximate raster geometry.

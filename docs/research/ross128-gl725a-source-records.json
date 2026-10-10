@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+    "credit": "Bonfils et al., ESO-hosted author manuscript",
+    "publicationDate": "2017-11-08 (manuscript date)",
+    "observationDate": "HARPS: 2005-07-26 to 2016-04-26",
+    "terms": "Research citation only; no paper figures reused. Paper reuse permission not inferred from credit.",
+    "sha256": "c2f19678946a87471ebb7f6eca61f99472537eb93373053c24d5fddd48940cec",
+    "bytes": 962738,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2411.09506v1",
+    "credit": "Cortés-Zuleta et al.",
+    "publicationDate": "2024-11-14 (arXiv v1); journal A&A 693 A164, January 2025",
+    "observationDate": "SOPHIE March 2021–December 2023; SPIRou February 2019–April 2022; detailed epochs in Appendix A; 27 TESS sectors examined.",
+    "terms": "arXiv v1 HTML CC BY 4.0; research citation only, no figures reused.",
+    "sha256": "b7ec2b92ce054c80bf180cf6c9ab397c8d878b25c773ed3cb1a1bd114cce3e1f",
+    "bytes": 678373,
+    "retrieved": "2026-10-10"
+  }
+]

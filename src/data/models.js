@@ -521,9 +521,10 @@ export const MODELS = {
     "maxTextureSize": 512,
     "sourceSha256": "69b31066d3d00f2d7ae09239c26b2be44e4d3a717fe7fc94df01568a1bda2c94",
     "previewUrl": "/models/curiosity-preview.glb",
-    "previewBytes": 461448,
-    "previewSha256": "b074d738eb6a509018b24b7f251e1f03aa73ebdd15cdafb3a3a6f2f49f5b0b36",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 372188,
+    "previewSha256": "125ba76e779da94479f6085dcf7c4ac63c92c07c53ee67a6dbc8edb780ee48b0",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   },
   "europa-clipper": {
     "url": "/models/europa-clipper.glb",
@@ -545,9 +546,10 @@ export const MODELS = {
     "maxTextureSize": 512,
     "sourceSha256": "a3f5e4533b31bf4bb25f4332f6879055dfd744f3ff9add23bfa9bdfbefd4f7fe",
     "previewUrl": "/models/europa-clipper-preview.glb",
-    "previewBytes": 981024,
-    "previewSha256": "f62deedc77c3ab68e1d66c5221b8df212770e16fe6a44349ed45ee9f2ce5e7b1",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 256 pixels; Meshopt compression. Author axes and existing registration limits retained."
+    "previewBytes": 950348,
+    "previewSha256": "47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
+    "previewTextureSize": 128
   }
 };
 

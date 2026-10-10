@@ -7116,9 +7116,10 @@
         "dec": 0.7992898,
         "disc_year": 2017
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ross128-b"
     },
     {
       "id": "exo-gl-725-a-b",
@@ -7147,9 +7148,10 @@
         "dec": 59.638109,
         "disc_year": 2025
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "gl725a-b"
     },
     {
       "id": "exo-gj-15-a-b",

@@ -1935,6 +1935,276 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ross128-b": {
+    "id": "ross128-b",
+    "name": "Ross 128 b",
+    "aliases": [
+      "Ross 128 b",
+      "GJ 447 b",
+      "Gliese 447 b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "RV detection; no resolved native scientific surface map located. Archive radius is a mass-radius estimate, not a measured radius.",
+    "measured": [
+      "HARPS RV discovery gives a projected minimum mass of 1.35 Earth masses; current archive composite adopts 1.4 Earth masses and period 9.8658 days.",
+      "Host adopted in discovery: 3192±60 K, radius 0.1967±0.0077 solar radii."
+    ],
+    "modelled": [
+      "Adopted archive semimajor axis 0.0496 AU; host 3192 K, 0.1967 solar radii.",
+      "Discovery equilibrium estimates span 213–269 K for different assumed albedos; archive 301 K uses another model. These are not measured ground temperatures."
+    ],
+    "unknown": [
+      "Physical radius, inclination, true mass, spin, atmosphere, pressure, composition, surface accessibility, geography and visible colour.",
+      "Habitable-zone or temperature estimates do not establish habitability, oceans or life."
+    ],
+    "assumed": [
+      "Hypothetical dry silicate/iron rocky body with a thin 0.2-bar nitrogen/carbon-dioxide atmosphere; gas mixture and pressure are invented, not measured.",
+      "Slate-grey fractured uplands, muted buff dust, independent volcanic plains and sparse shallow craters; all geography imagined.",
+      "Thin blue-grey haze and a warm cream/peach white star; scattering, exposure and material colour are artistic.",
+      "Invented north-up longitude frame and imperfect texture seam; no measured pole or physical terrain registration.",
+      "Nominal 60° horizontal camera field; semimajor-axis representative illumination is not a dated ephemeris.",
+      "Raster validation: bright-core widths 150/95/67 original pixels versus geometric target 53.42 pixels in a 1672-pixel image. Glare, star size and colour remain approximate; refinement open."
+    ],
+    "references": [
+      {
+        "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso1736/eso1736a.pdf",
+        "title": "Bonfils et al., A temperate exo-Earth around a quiet M dwarf at 3.4 parsecs",
+        "publicationDate": "2017-11-08 (manuscript date)",
+        "observationDate": "HARPS: 2005-07-26 to 2016-04-26"
+      },
+      {
+        "url": "https://www.eso.org/public/news/eso1736/",
+        "title": "ESO discovery release, research context",
+        "publicationDate": "2017-11-15"
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "Ross 128 b",
+      "hostname": "Ross 128",
+      "sy_dist": 3.37454,
+      "pl_rade": 1.11,
+      "pl_bmasse": 1.4,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 9.8658,
+      "pl_orbsmax": 0.0496,
+      "pl_eqt": 301,
+      "st_teff": 3192,
+      "st_rad": 0.1967,
+      "st_mass": 0.168,
+      "st_spectype": "M4",
+      "ra": 176.9376036,
+      "dec": 0.7992898,
+      "disc_year": 2017
+    },
+    "skyModel": {
+      "star": "Ross 128",
+      "radiusSun": 0.1967,
+      "temperatureK": 3192,
+      "distanceAU": 0.0496,
+      "angularDiameterDeg": 2.113472128629936,
+      "centreDiscWidthFraction": 0.03194874270851919,
+      "irradianceEarth": 1.4709286529534111,
+      "approximateSrgb": [
+        1,
+        0.7191018637846154,
+        0.48084225935692265
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "ross128BBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up hypothesis; no measured terrain frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/ross128-b-surface-map.jpg",
+      "previewUrl": "/bespoke/ross128-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-47d2c500-41ef-4730-847c-e3c29607f24c.png",
+      "sourceSha256": "76f0e8a50ca13c2cd3028a4678717118e8f28705e5e7f982d0829f93325c9eea",
+      "sha256": "c88f2cec461aafa88c693b76208d08aa81f9d0af3cd6b2dd2d4df8a3ccc7f616",
+      "previewSha256": "3dad9afc53a36a1812b6774fa24aa8b33989f59c28b39120aa41a3ee1148cf33",
+      "bytes": 514473,
+      "previewBytes": 33050,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in central star-only ROI (x40–60%, y8–25%); R>180/210/240, G>150, B>80. Glare and photosphere cannot be fully separated.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          150,
+          95,
+          67
+        ],
+        "geometricTargetWidthPixels": 53.418297808644084,
+        "limits": "Nominal 60° camera FOV is artistic; angular/raster scale and colour are not photometrically calibrated."
+      },
+      "url": "/bespoke/ross128-b-sky-image.jpg",
+      "previewUrl": "/bespoke/ross128-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-5499a759-6032-4b93-9c08-9bdc90042bb7.png",
+      "sourceSha256": "9717e815909e3441203c68aa694a53ee3e3b6aef50419b4002b9e44f8b27fc29",
+      "sha256": "fed9994740e761152b376b32f3bc96ce94c899d7915a023820b6cb4f8bcf357c",
+      "previewSha256": "5a076e690d5ae3a5ae51d394375bfd1741b710e40b8e9b913bcba4f8be17363a",
+      "bytes": 238836,
+      "previewBytes": 41343,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/ross128-gl725a-source-records.json"
+  },
+  "gl725a-b": {
+    "id": "gl725a-b",
+    "name": "Gl 725 A b",
+    "aliases": [
+      "Gl 725 A b",
+      "Gl 725A b",
+      "GJ 725 A b",
+      "Gliese 725 A b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "RV detection; no resolved native scientific surface map located. Archive radius is a mass-radius estimate, not a measured radius.",
+    "measured": [
+      "Independent optical SOPHIE and near-infrared SPIRou RV signal: period 11.2201±0.0051 days, minimum mass 2.78±0.35 Earth masses, amplitude 1.67±0.20 m/s.",
+      "No transit found in 27 TESS sectors. Discovery manuscript calls this a candidate; NASA confirmed-planet composite includes it with discovery year 2025."
+    ],
+    "modelled": [
+      "Adopted archive semimajor axis 0.068 AU; host 3433 K, 0.351 solar radii.",
+      "Archive equilibrium 376.1 K is a model, not measured surface temperature. Published radius predictions 1.2–2.0 Earth radii are mass-radius estimates, not transit measurements."
+    ],
+    "unknown": [
+      "Physical radius, inclination, true mass, spin, atmosphere, pressure, composition, surface accessibility, geography and visible colour.",
+      "Habitable-zone or temperature estimates do not establish habitability, oceans or life."
+    ],
+    "assumed": [
+      "Hypothetical dry airless silicate/iron surface; actual atmospheric presence and volatile inventory are unknown.",
+      "Ash-grey volcanic plates, charcoal braided fractures, shallow rounded basins and taupe regolith are wholly imagined; no active lava is inferred.",
+      "Black sky and warm cream star; binary companion B is outside the chosen artistic field. Binary orientation and scene epoch are not registered.",
+      "Invented north-up longitude frame and imperfect texture seam; no measured pole or physical terrain registration.",
+      "Nominal 60° horizontal camera field; semimajor-axis representative illumination is not a dated ephemeris.",
+      "Raster validation: bright-core widths 92/92/90 original pixels versus geometric target 69.54 pixels in a 1672-pixel image. Glare, star size and colour remain approximate; refinement open."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/2411.09506v1",
+        "title": "Cortés-Zuleta et al., Gl 725A b: a potential super-Earth detected with SOPHIE and SPIRou",
+        "publicationDate": "2024-11-14 (arXiv v1); journal A&A 693 A164, January 2025",
+        "observationDate": "SOPHIE March 2021–December 2023; SPIRou February 2019–April 2022; detailed epochs in Appendix A; 27 TESS sectors examined."
+      },
+      {
+        "url": "https://arxiv.org/abs/2411.09506",
+        "title": "Primary manuscript bibliographic record"
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "Gl 725 A b",
+      "hostname": "Gl 725 A",
+      "sy_dist": 3.5214,
+      "pl_rade": 1.48,
+      "pl_bmasse": 2.78,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 11.2201,
+      "pl_orbsmax": 0.068,
+      "pl_eqt": 376.1,
+      "st_teff": 3433,
+      "st_rad": 0.351,
+      "st_mass": 0.33,
+      "st_spectype": "M3",
+      "ra": 280.6834312,
+      "dec": 59.638109,
+      "disc_year": 2025
+    },
+    "skyModel": {
+      "star": "Gl 725 A",
+      "radiusSun": 0.351,
+      "temperatureK": 3433,
+      "distanceAU": 0.068,
+      "angularDiameterDeg": 2.7509908143939326,
+      "centreDiscWidthFraction": 0.041589201626278494,
+      "irradianceEarth": 3.334159190653499,
+      "approximateSrgb": [
+        1,
+        0.7474946672513234,
+        0.5375045369032464
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "gl725ABBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up hypothesis; no measured terrain frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/gl725a-b-surface-map.jpg",
+      "previewUrl": "/bespoke/gl725a-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-f04b8af1-1825-425a-a92b-3a4d58412d2a.png",
+      "sourceSha256": "2660d3d90a400261728d3e8eecc33f5aaaeb0f204a46fc7657aaa58fe8f96106",
+      "sha256": "55502fd95550189c7095042d867319bccce2ca089291cd5aa9b7a8ad51456aae",
+      "previewSha256": "20f7ef47106078a2b84b1a0276ac64dd80843528a0b3d5e50542840db8de5a3d",
+      "bytes": 580744,
+      "previewBytes": 37379,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in central star-only ROI (x40–60%, y8–25%); R>180/210/240, G>150, B>80. Glare and photosphere cannot be fully separated.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          92,
+          92,
+          90
+        ],
+        "geometricTargetWidthPixels": 69.53714511913765,
+        "limits": "Nominal 60° camera FOV is artistic; angular/raster scale and colour are not photometrically calibrated."
+      },
+      "url": "/bespoke/gl725a-b-sky-image.jpg",
+      "previewUrl": "/bespoke/gl725a-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-2bb418bd-e3db-4624-9d6b-47eee1d3087a.png",
+      "sourceSha256": "8124d77320c996823bc64276168120e3e65d43a019ad0c60431a0b4a98a3fe8c",
+      "sha256": "56c39037ba3a9707f824f931618265306c0f75e493762917efcc2928c89b0f20",
+      "previewSha256": "8b516559a6d64962c680aa5a9093ae728d0b1caa1b85d401191bf47cd588fc37",
+      "bytes": 308819,
+      "previewBytes": 54375,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/ross128-gl725a-source-records.json"
   }
 };
 
