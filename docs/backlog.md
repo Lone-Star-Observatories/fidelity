@@ -24,6 +24,12 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 19 | **Realism pass** | Comet tails, surface view on double-click, real shapes, spin axes and wobble, magnetospheres, the Sun's field and heliosphere asymmetry, explainers. |
 | 20 | **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
 | 21 | **Voice: "Computer"** | Local wake word, ChatGPT voice through a backend relay (key stays local), spoken answers about what's on screen. |
+| 22 | **3D Milky Way** | Volumetric bulge, bar, disks, arms and dust instead of the flat image; fainter under the stars. |
+| 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view. |
+| 24 | **3D nebulae and clusters** | Best-effort 3D nebula models with real imagery; clusters drawn from their Gaia members; major stars in nebulae investigable. |
+| 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
+| 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |
+| 27 | **UI polish** | Thicker orbits, wider resizable panel, legend spacing, Horizons on by default. |
 | 18 | **Galaxy motion & images** | Satellite galaxy photos, rotation over 10³–10⁶ yr steps, Local Group motion, Gaia beyond 1.5 kly. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
