@@ -222,6 +222,13 @@ and are transcribed in the COMPUTER panel; the wake word or "stop" interrupts. W
 "show/hide …" locally. Tests: frame codec and relay against a mock upstream, DTW, endpointer,
 resampler, command parsing.
 
+## Time steps
+
+The STEP control moves the clock by n units (minute … millennium; months and longer step the
+calendar via `stepJd`, clamping to the month length) with ◀| / |▶ or the `[` / `]` keys, and RUN sets a
+custom rate of n units per second (`clock.setRate`); ◀◀ / ▶▶ return to the preset ladder. n may be
+fractional or negative; it and the unit are remembered.
+
 ## Text size
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top

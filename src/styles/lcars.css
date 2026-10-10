@@ -411,3 +411,5 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .text-size-ctl .pill { height: var(--bar-h); min-width: 36px; }
 .ctl-readout.text-size { min-width: 52px; text-align: center; height: var(--bar-h); display: flex; align-items: center; justify-content: center; color: var(--peach); }
 .bar-bottom { scrollbar-width: thin; scrollbar-color: var(--lilac) transparent; }
+.ctl-num { width: 64px; height: 30px; align-self: flex-end; background: #000; color: var(--peach); border: 2px solid var(--lilac); border-radius: 14px; padding: 0 8px;
+  font: inherit; font-size: calc(13px * var(--text-scale, 1)); text-align: right; }

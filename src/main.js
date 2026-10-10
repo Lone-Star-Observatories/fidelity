@@ -1,6 +1,6 @@
 // USS Fidelity — bridge console. Wires the LCARS shell, router, clock and views.
 
-import { createClock } from './astro/clock.js';
+import { createClock, STEP_UNITS } from './astro/clock.js';
 import { shipDate, dateFromJd, jdFromDate, isoDay } from './astro/time.js';
 import { VALID_RANGE } from './astro/kepler.js';
 import { LY_PER_PC } from './astro/frames.js';
@@ -301,11 +301,33 @@ const flag = (key, label) => {
   return b;
 };
 
+// ---- step the clock by n units, or run at n units per second -------------------------------
+const stepIn = h('input', { type: 'number', className: 'ctl-num', step: 'any', title: 'How many units (decimals and negatives allowed)', value: String(settings.get('stepN') ?? 1) });
+const stepUnit = h('select', { className: 'ctl-select', title: 'Step unit' }, STEP_UNITS.map((u) => h('option', { value: u.id, textContent: u.label })));
+stepUnit.value = settings.get('stepUnit') ?? 'day';
+const stepN = () => { const n = Number(stepIn.value); return Number.isFinite(n) && n !== 0 ? n : 1; };
+stepIn.addEventListener('change', () => settings.set('stepN', stepN()));
+stepUnit.addEventListener('change', () => settings.set('stepUnit', stepUnit.value));
+const unitOf = () => STEP_UNITS.find((u) => u.id === stepUnit.value) ?? STEP_UNITS[2];
+const stepBy = (dir) => clock.step(dir * stepN(), unitOf().id);
+const runAt = () => {
+  const n = stepN(), u = unitOf();
+  clock.setRate(n * u.days, `${n} ${u.label}${Math.abs(n) === 1 ? '' : 'S'}/S`.replace('MILLENNIUMS', 'MILLENNIA').replace('CENTURYS', 'CENTURIES'));
+};
+// [ and ] step back and forward from anywhere but a text field
+window.addEventListener('keydown', (e) => {
+  if (e.target.closest?.('input, select, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === '[') stepBy(-1); else if (e.key === ']') stepBy(1);
+});
+
 controls.append(
   h('div', { className: 'ctl-group' },
     h('div', { className: 'ctl-label', textContent: 'TIME' }),
     pill('◀◀', () => clock.slower(), 'square'), holdBtn, pill('▶▶', () => clock.faster(), 'square'),
     rateOut, pill('NOW', () => clock.now(), 'square'), dateIn),
+  h('div', { className: 'ctl-group', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' },
+    h('div', { className: 'ctl-label', textContent: 'STEP' }),
+    pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
