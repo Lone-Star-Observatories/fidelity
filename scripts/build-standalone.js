@@ -15,7 +15,7 @@ import { smallBodies } from '../server/smallbodies.js';
 import { clusters, galaxies } from '../server/deepsky.js';
 import { gaiaBright } from '../server/gaia.js';
 import { satellites, satelliteDetail } from '../server/satellites.js';
-import { FEATURED } from '../src/data/feeds.js';
+import { FEATURED, SAT_FEEDS } from '../src/data/feeds.js';
 import { SPACECRAFT } from '../src/data/spacecraft.js';
 import { BODIES as SOL_BODIES } from '../src/data/sol.js';
 import { monthlyVectors, localDay, track } from '../server/horizons.js';
@@ -118,7 +118,8 @@ const H_MAX = [18, 12.8, 13.2, 99, 99]; // neo, main, trojan, centaur, tno
 const satAll = await satellites().catch(() => null);
 const satellitesSnap = satAll && { ...satAll, rows: satAll.rows.filter((r, i) => !['starlink', 'oneweb', 'other'].includes(satAll.categories[r[2]]) || i % 20 === 0) };
 const satcat = {};
-for (const [id] of FEATURED) { try { satcat[id] = await satelliteDetail(id); } catch { /* not active */ } }
+// SATCAT + UCS detail for the featured and live-feed satellites (the full catalogue does not fit the 16 MB budget)
+for (const id of new Set([...FEATURED.map(([n]) => n), ...Object.keys(SAT_FEEDS).map(Number)])) { try { satcat[id] = await satelliteDetail(id); } catch { /* not active */ } }
 // spacecraft: this month's vectors, today's local states, and trajectories (keyed by the client's URLs)
 const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599 };
 const horizons = {};

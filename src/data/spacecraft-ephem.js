@@ -8,6 +8,10 @@ import { monthUrl, localUrl, localMonthUrl, trackUrl } from './horizons-urls.js'
 
 const TDB_UTC = 69.184 / 86400; // Horizons tabulates in TDB; the ship's clock is UTC
 const cache = new Map(); // url → { state: 'loading'|'ready'|'failed', value, at }
+const ends = new Map(); // Horizons id → last date (YYYY-MM-DD) of its published (predicted) ephemeris, when one was hit
+
+/** Where a craft's published ephemeris ends (YYYY-MM-DD), once a request has run into it; else null. */
+export const ephemerisEnd = (hz) => ends.get(String(hz)) ?? null;
 
 function want(url) {
   const c = cache.get(url);
@@ -19,7 +23,11 @@ function want(url) {
   }
   cache.set(url, { state: 'loading', at: Date.now() });
   fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-    .then((j) => cache.set(url, { state: 'ready', value: (j.value ?? j).points, at: Date.now() }))
+    .then((j) => {
+      const v = j.value ?? j;
+      cache.set(url, { state: 'ready', value: v.points, at: Date.now() });
+      if (v.ephemerisEnd) ends.set(String(v.body), v.ephemerisEnd);
+    })
     .catch(() => cache.set(url, { state: 'failed', at: Date.now() }));
   return null;
 }

@@ -57,6 +57,41 @@ const swpc = (file, keep, credit) => ({
   },
 });
 
+// Harmonized Landsat–Sentinel (HLS) scenes reach GIBS a few days late: walk back to the most
+// recent day with data (a nearly empty JPEG is a day not yet processed).
+const gibsRecent = (layer, credit) => ({
+  type: 'image', ttl: 6 * 60 * MIN, credit,
+  async get() {
+    for (let back = 2; back <= 8; back++) {
+      const day = isoDay(new Date(Date.now() - back * 86400000));
+      const q = new URLSearchParams({ SERVICE: 'WMS', REQUEST: 'GetMap', VERSION: '1.3.0', LAYERS: layer, CRS: 'EPSG:4326',
+        BBOX: '-90,-180,90,180', WIDTH: '2048', HEIGHT: '1024', FORMAT: 'image/jpeg', TIME: day });
+      const body = Buffer.from(await (await fetchOk(`https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?${q}`)).arrayBuffer());
+      if (body.length > 40000) return { body, type: 'image/jpeg', time: `${day}T12:00:00Z` };
+    }
+    throw new Error('no recent scenes');
+  },
+});
+// EUMETSAT View: the newest image of a layer; its time comes from the WMS capabilities.
+const EUM = 'https://view.eumetsat.int/geoserver';
+let eumCaps = null; // { at, xml }
+async function eumetsatTime(layer) {
+  if (!eumCaps || Date.now() - eumCaps.at > 10 * MIN) eumCaps = { at: Date.now(), xml: await (await fetchOk(`${EUM}/ows?service=WMS&request=GetCapabilities&version=1.3.0`)).text() };
+  const i = eumCaps.xml.indexOf(`<Name>${layer}</Name>`);
+  const dim = i < 0 ? null : eumCaps.xml.slice(i, i + 4000).match(/<Dimension[^>]*name="time"[^>]*>[^<]*?\/([0-9T:.\-]+Z)\//);
+  return dim ? dim[1].replace('.000Z', 'Z') : null;
+}
+const eumetsat = (layer, bbox, size, credit) => ({
+  type: 'image', ttl: 15 * MIN, credit,
+  async get() {
+    const time = await eumetsatTime(layer).catch(() => null);
+    const q = new URLSearchParams({ service: 'WMS', request: 'GetMap', version: '1.3.0', layers: layer, styles: '', crs: 'EPSG:4326',
+      bbox, width: String(size[0]), height: String(size[1]), format: 'image/jpeg', ...(time ? { time } : {}) });
+    const res = await fetchOk(`${EUM}/wms?${q}`, 90000);
+    return { body: Buffer.from(await res.arrayBuffer()), type: 'image/jpeg', time };
+  },
+});
+
 export const FEEDS = {
   'goes-east': goes('GOES19', 'NOAA/NESDIS STAR, GOES-19 ABI GeoColor full disk'),
   'goes-west': goes('GOES18', 'NOAA/NESDIS STAR, GOES-18 ABI GeoColor full disk'),
@@ -77,6 +112,13 @@ export const FEEDS = {
   'gibs-snpp': gibs('VIIRS_SNPP_CorrectedReflectance_TrueColor', 'NASA GIBS, Suomi NPP VIIRS corrected reflectance (yesterday)'),
   'gibs-noaa20': gibs('VIIRS_NOAA20_CorrectedReflectance_TrueColor', 'NASA GIBS, NOAA-20 VIIRS corrected reflectance (yesterday)'),
   'gibs-noaa21': gibs('VIIRS_NOAA21_CorrectedReflectance_TrueColor', 'NASA GIBS, NOAA-21 VIIRS corrected reflectance (yesterday)'),
+  'mtg-0': eumetsat('mtg_fd:rgb_geocolour', '-81,-81,81,81', [1024, 1024], 'EUMETSAT, Meteosat-12 (MTG-I1) FCI GeoColour RGB, 0° full disk'),
+  'msg-0': eumetsat('msg_fes:rgb_naturalenhncd', '-77,-77,77,77', [1024, 1024], 'EUMETSAT, Meteosat SEVIRI natural colour enhanced RGB, 0° full-disk service'),
+  'msg-iodc': eumetsat('msg_iodc:rgb_naturalenhncd', '-77,-35.5,77,118.5', [1024, 1024], 'EUMETSAT, Meteosat-9 SEVIRI natural colour enhanced RGB, Indian Ocean (45.5° E)'),
+  'msg-rss': eumetsat('msg_rss:rgb_naturalenhncd_nrt', '24,-45,72,70', [1400, 760], 'EUMETSAT, Meteosat SEVIRI 5-minute Rapid Scan, Europe (natural colour enhanced)'),
+  'sentinel3-olci': eumetsat('copernicus:daily_sentinel3ab_olci_l1_rgb_fulres', '-90,-180,90,180', [2048, 1024], 'EUMETSAT / Copernicus, Sentinel-3A/B OLCI daily RGB mosaic (filling in through the day)'),
+  'hls-landsat': gibsRecent('HLS_L30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) L30: Landsat 8/9 OLI scenes of the most recent processed day'),
+  'hls-sentinel2': gibsRecent('HLS_S30_Nadir_BRDF_Adjusted_Reflectance', 'NASA GIBS, Harmonized Landsat Sentinel-2 (HLS) S30: Sentinel-2 MSI scenes of the most recent processed day'),
   epic: {
     type: 'image', ttl: 2 * 60 * MIN, credit: 'NASA EPIC team, DSCOVR EPIC natural colour (from L1, 1.5 million km)',
     async get() {

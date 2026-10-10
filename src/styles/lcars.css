@@ -372,3 +372,6 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .bespoke-image { display: block; width: 100%; height: auto; border-radius: 6px; margin: 0.6rem 0; }
 .bespoke-sources { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.8rem; }
 .bespoke-sources a { color: var(--peach); }
+
+/* where a spacecraft's published ephemeris stops (#26) */
+.nav-label.ephem-end { color: var(--orange); font-size: 11px; opacity: 0.85; }

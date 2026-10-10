@@ -30,7 +30,7 @@ import { moonGeocentric } from './astro/moons.js';
 import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
 import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
-import { fetchDsn } from './data/spacecraft-ephem.js';
+import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -442,6 +442,10 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (m.isSol && id !== 'earth' && b.parent !== 'earth') live.earth = row(pos, 'FROM EARTH', '—', 'computed');
   live.light = row(pos, m.isSol ? 'LIGHT TIME' : 'STARLIGHT TRAVEL', '—', 'computed',
     m.isSol ? 'Light travel time from Earth (or from Sol, for Earth).' : 'Time for light to reach this world from its star.');
+  if (b.kind === 'spacecraft' && b.horizons) {
+    live.ephem = row(pos, 'EPHEMERIS', '—', 'measured', 'JPL Horizons publishes each craft\'s trajectory only as far ahead as its navigators predict; beyond that the craft is not drawn.');
+    live.ephemHz = b.horizons;
+  }
   if (b.kind === 'region') {
     pos.replaceChildren();
     live.pos = live.earth = live.light = null;
@@ -999,6 +1003,11 @@ function tick() {
       live.earth.textContent = `${fmt(ref)} AU · ${fmt((ref * AU_KM) / 1e6, 1)} M KM`;
     }
     if (live.light) live.light.textContent = r === 0 && !live.earth ? '—' : lightTime(ref);
+    if (live.ephem) {
+      const end = ephemerisEnd(live.ephemHz), past = end && clock.jd > jdFromDate(new Date(`${end}T00:00:00Z`));
+      live.ephem.textContent = !end ? 'JPL HORIZONS' : past ? `ENDED ${end} · NOT DRAWN` : `PUBLISHED TO ${end}`;
+      live.ephem.classList.toggle('warn', !!past);
+    }
     if (live.skin) {
       const l = system.liveSkinOf(live.skinBody);
       live.skin.textContent = !settings.get('liveSkins') ? 'OFF (TOGGLE LIVE)' : l ? `${l.time ? l.time.slice(0, 16).replace('T', ' ') + ' UTC' : 'TODAY'} · ${ago(l.time)}` : STANDALONE ? 'NEEDS THE LOCAL BACKEND' : 'LOADING…';

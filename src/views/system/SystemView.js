@@ -31,7 +31,7 @@ import { MASS_RATIO } from '../../data/poi.js';
 import { createBelts } from './belts.js';
 import { createSatelliteLayer } from './satellites.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
-import { heliocentricAt, localAt, localDaySamples, trajectory } from '../../data/spacecraft-ephem.js';
+import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
 
 const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599, saturn: 699 };
 const isoDate = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
@@ -510,6 +510,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       disposeModel(n.mesh);
       n.group.traverse((o) => { if (o === n.mesh || n.mesh.getObjectById(o.id)) return; o.geometry?.dispose(); o.material?.dispose(); });
       if (n.orbit) { root.remove(n.orbit); n.orbit.geometry.dispose(); n.orbit.material.dispose(); }
+      if (n.endMark) { root.remove(n.endMark); n.endMark.element.remove(); }
     }
     nodes = {};
     fat.prune(new Set());
@@ -632,7 +633,19 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       }
     } else if (!node.trackDone) {
       const au = trajectory(o.hz, b.trackFrom ?? isoDate(jd - 365), isoDate(Math.max(jd, 2440587.5 + Date.now() / 86400000) + 365));
-      if (au) { pts = au.map((p) => toScene(p)); node.trackDone = true; }
+      if (au) {
+        pts = au.map((p) => toScene(p)); node.trackDone = true;
+        // the published (predicted) ephemeris stops inside the window: mark where (#26)
+        const end = ephemerisEnd(o.hz);
+        if (end && pts.length) {
+          const el = document.createElement('div');
+          el.className = 'nav-label ephem-end';
+          el.textContent = `◆ ${b.name.toUpperCase()} · EPHEMERIS ENDS ${end}`;
+          node.endMark = new CSS2DObject(el);
+          node.endMark.position.copy(pts[pts.length - 1]);
+          root.add(node.endMark);
+        }
+      }
     }
     if (pts && pts.length > 1) {
       const geo = new THREE.BufferGeometry().setFromPoints(pts);
@@ -1121,6 +1134,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
         n.orbit.visible = showOrbits || id === focusId;
         n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
         fat.sync(n.orbit, id === focusId ? 3 : 1.6);
+        if (n.endMark) n.endMark.visible = n.orbit.visible && !surface;
       }
     }
 

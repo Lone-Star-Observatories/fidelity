@@ -4,11 +4,13 @@ import { modelFor } from '../data/models.js';
 
 import { satrecFromRow, precessionToJ2000, temeToEcliptic, subPoint } from '../astro/sgp4.js';
 import { fetchSatellites, fetchSatelliteDetail, fetchFeed } from '../data/catalog.js';
-import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL } from '../data/feeds.js';
+import { SAT_FEEDS, FEATURED, SAT_SIZE_KM, CATEGORY_LABEL, hasFeed } from '../data/feeds.js';
 import { SAT_COLORS } from '../views/system/satellites.js';
 import { lineChart } from './charts.js';
 
 const MU = 398600.4418, R_EQ = 6378.137, R_MEAN = 6371;
+const STALE_DAYS = 7; // older element sets are flagged: SGP4 error grows ~1–3 km a day in low orbit
+const LIVE_DOT = '● LIVE FEED';
 
 export function createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ }) {
   let data = null, byNorad = null, loading = null;
@@ -46,7 +48,11 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     const b = system.addSatellite(bodyFor(r));
     system.focus(b.id);
     render(r);
-    fetchSatelliteDetail(r[0]).then((d) => { if (d && live.satNorad === r[0]) fillSatcat(d); });
+    fetchSatelliteDetail(r[0]).then((d) => {
+      if (live.satNorad !== r[0]) return;
+      if (d) fillSatcat(d);
+      else live.satMission?.replaceChildren(h('p', { className: 'note', textContent: 'Catalogue and mission detail for this satellite need the local backend (npm start); this preview carries them for the featured and live-feed satellites only.' }));
+    });
     return b;
   }
 
@@ -66,7 +72,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     live.satcat = h('dl');
     panel.replaceChildren(
       h('h2', { textContent: r[1] }),
-      h('div', { className: 'kind', textContent: `SATELLITE · NORAD ${r[0]} · ${r[13] ?? ''} · ${CATEGORY_LABEL[cat] ?? cat}` }),
+      h('div', { className: 'kind', textContent: `SATELLITE · NORAD ${r[0]} · ${r[13] ?? ''} · ${CATEGORY_LABEL[cat] ?? cat}${feeds.length ? ` · ${LIVE_DOT}` : ' · NO PUBLIC FEED'}` }),
       h('h3', { textContent: 'TELEMETRY · COMPUTED' }), tele,
       h('h3', { textContent: 'ORBIT' }),
       factList([
@@ -76,8 +82,9 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
         { label: 'INCLINATION', value: `${o.inc.toFixed(2)}°`, tier: 'measured', detail: o.inc > 96 && o.inc < 100 ? 'Sun-synchronous: it crosses each latitude at the same local time every day.' : '' },
       ]),
       h('h3', { textContent: 'CATALOGUE' }), live.satcat,
-      feeds.length ? h('h3', { textContent: 'LIVE FEEDS' }) : null,
+      h('h3', { textContent: feeds.length ? 'LIVE FEEDS' : 'LIVE FEEDS · NONE PUBLIC' }),
       feeds.length ? h('div', { className: 'body-list' }, feeds.map((f) => pill(`${f.label} ▸`, () => openFeed(f, r)))) : h('p', { className: 'note', textContent: 'No public live imagery or telemetry from this spacecraft. Telemetry above is computed from its orbit.' }),
+      live.satMission = h('div'),
       h('div', { className: 'body-list' },
         pill('◀ EARTH', () => go({ level: 'system', system: 'sol', body: 'earth' })),
         pill('ALL SATELLITES', () => go({ level: 'system', system: 'sol', body: 'earth' }))),
@@ -94,6 +101,38 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     row(live.satcat, 'LAUNCHED', `${d.LAUNCH_DATE} · ${d.LAUNCH_SITE}`, 'measured');
     row(live.satcat, 'TYPE', typ, 'measured');
     if (d.RCS != null) row(live.satcat, 'RADAR SIZE', `${d.RCS.toFixed(2)} M²`, 'measured', 'Radar cross-section: how big it looks to tracking radar.');
+    fillUcs(d.UCS, d.LAUNCH_DATE);
+  }
+
+  /** The UCS Satellite Database record: what the satellite is for, who runs and built it. */
+  function fillUcs(u, launchDate) {
+    const box = live.satMission;
+    if (!box) return;
+    if (!u) {
+      box.replaceChildren(h('h3', { textContent: 'MISSION' }), h('p', { className: 'note', textContent: 'No UCS Satellite Database record: launched after its last edition (1 May 2023), or not listed there.' }));
+      return;
+    }
+    const dl = h('dl'), src = `UCS Satellite Database, ${u.edition} edition.`;
+    if (u.operator) row(dl, 'OPERATOR', `${u.operator}${u.country ? ` · ${u.country}` : ''}`, 'measured', src);
+    if (u.users) row(dl, 'USERS', u.users, 'measured', src);
+    if (u.purpose) row(dl, 'PURPOSE', [u.purpose, u.detail].filter(Boolean).join(' · '), 'measured', src);
+    if (u.contractor) row(dl, 'BUILT BY', `${u.contractor}${u.contractorCountry ? ` · ${u.contractorCountry}` : ''}`, 'measured', src);
+    const mass = [u.launchMassKg != null ? `${u.launchMassKg.toLocaleString()} KG AT LAUNCH` : null, u.dryMassKg != null ? `${u.dryMassKg.toLocaleString()} KG DRY` : null].filter(Boolean).join(' · ');
+    if (mass) row(dl, 'MASS', mass, 'measured', src);
+    if (u.powerW != null) row(dl, 'POWER', `${u.powerW.toLocaleString()} W`, 'measured', `${src} Beginning-of-life electrical power.`);
+    if (u.lifetimeYears != null) {
+      const launched = Date.parse(launchDate || u.launched || '');
+      const age = Number.isFinite(launched) ? (Date.now() - launched) / (365.25 * 86400000) : null;
+      const past = age != null && age > u.lifetimeYears;
+      row(dl, 'DESIGN LIFE', `${u.lifetimeYears} YR${age != null ? ` · ${age.toFixed(1)} YR IN ORBIT${past ? ' (EXTENDED)' : ''}` : ''}`, 'measured', `${src}${past ? ' Still operating beyond its expected lifetime.' : ''}`);
+    }
+    if (u.vehicle || u.site) row(dl, 'LAUNCH', [u.vehicle, u.site].filter(Boolean).join(' · '), 'measured', src);
+    if (u.orbitType) row(dl, 'ORBIT (UCS)', [u.orbitClass, u.orbitType, u.geoLonDeg ? `${u.geoLonDeg}° LONGITUDE` : null].filter(Boolean).join(' · '), 'measured', `${src} Class and type as catalogued.`);
+    box.replaceChildren(...[
+      h('h3', { textContent: 'MISSION' }), dl,
+      u.comments ? h('p', { className: 'note', textContent: u.comments }) : null,
+      u.links?.length ? h('div', { className: 'body-list' }, u.links.map((url) => h('a', { className: 'pill', href: url, target: '_blank', rel: 'noopener', textContent: `${new URL(url).hostname.replace(/^www\./, '').toUpperCase()} ↗` }))) : null,
+      h('p', { className: 'note', textContent: 'Mission detail: UCS Satellite Database (Union of Concerned Scientists), joined to SATCAT by NORAD number.' })].filter(Boolean));
   }
 
   /** Called by the shell's ticker. */
@@ -116,7 +155,9 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     const perp = Math.hypot(r[0] - along * sd[0], r[1] - along * sd[1], r[2] - along * sd[2]);
     live.sun.textContent = along < 0 && perp < R_MEAN ? 'IN EARTH\'S SHADOW' : 'SUNLIT';
     const ageH = ((jd - 2440587.5) * 86400000 - live.satEpoch) / 3600000;
-    live.age.textContent = ageH < 48 ? `${ageH.toFixed(1)} H` : `${(ageH / 24).toFixed(1)} DAYS`;
+    const stale = ageH / 24 > STALE_DAYS;
+    live.age.textContent = `${ageH < 48 ? `${ageH.toFixed(1)} H` : `${(ageH / 24).toFixed(1)} DAYS`}${stale ? ' · STALE' : ''}`;
+    live.age.classList.toggle('warn', stale);
   }
 
   // ---- feed viewer ------------------------------------------------------------------------
@@ -192,7 +233,7 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
       if (!q) return;
       const hits = data.rows.filter((r) => r[1].toUpperCase().includes(q) || String(r[0]) === q).slice(0, 40);
       for (const r of hits) {
-        const b = h('button', { className: 'host-row' }, h('span', { textContent: r[1] }), h('span', { className: 'mono', textContent: `${r[0]} · ${CATEGORY_LABEL[catOf(r)] ?? ''}` }));
+        const b = h('button', { className: 'host-row' }, h('span', { textContent: r[1] }), h('span', { className: 'mono', textContent: `${hasFeed(r[0]) ? `${LIVE_DOT} · ` : ''}${r[0]} · ${CATEGORY_LABEL[catOf(r)] ?? ''}` }));
         b.addEventListener('click', () => go({ level: 'satellite', system: 'sol', body: String(r[0]) }));
         results.append(b);
       }
@@ -201,19 +242,19 @@ export function createSatellitePanel({ h, pill, row, factList, badge, renderLege
     input.addEventListener('input', run);
     load().then((d) => {
       if (!d) { counts.replaceChildren(h('p', { className: 'note', textContent: 'Satellite catalogue unavailable (needs the local backend).' })); return; }
-      const n = {};
-      for (const r of d.rows) n[catOf(r)] = (n[catOf(r)] ?? 0) + 1;
+      const n = {}, liveN = {};
+      for (const r of d.rows) { n[catOf(r)] = (n[catOf(r)] ?? 0) + 1; if (hasFeed(r[0])) liveN[catOf(r)] = (liveN[catOf(r)] ?? 0) + 1; }
       counts.replaceChildren(...d.categories.filter((c) => n[c]).map((c) => {
-        const b = pill(`${CATEGORY_LABEL[c]} · ${n[c].toLocaleString()}`, () => { b.classList.toggle('off'); system.showSatelliteCategory?.(c, !b.classList.contains('off')); });
+        const b = pill(`${CATEGORY_LABEL[c]} · ${n[c].toLocaleString()}${liveN[c] ? ` · ${liveN[c]} LIVE` : ''}`, () => { b.classList.toggle('off'); system.showSatelliteCategory?.(c, !b.classList.contains('off')); });
         b.style.setProperty('--dot', `#${SAT_COLORS[c].toString(16).padStart(6, '0')}`);
         b.classList.add('cat');
         return b;
       }));
     });
     box.append(
-      h('div', { className: 'body-list' }, FEATURED.map(([id, label]) => pill(label, () => go({ level: 'satellite', system: 'sol', body: String(id) }))), pill('SOLAR WIND ▸', openSolarWind)),
+      h('div', { className: 'body-list' }, FEATURED.map(([id, label]) => pill(hasFeed(id) ? `● ${label}` : label, () => go({ level: 'satellite', system: 'sol', body: String(id) }))), pill('SOLAR WIND ▸', openSolarWind)),
       input, results, counts,
-      h('p', { className: 'note', textContent: 'Every active satellite from CelesTrak (US Space Force tracking), positioned with SGP4. Tap a category to hide it.' }));
+      h('p', { className: 'note', textContent: `Every active satellite from CelesTrak (US Space Force tracking), positioned with SGP4; mission detail from the UCS Satellite Database. ● marks the ${Object.keys(SAT_FEEDS).length} with a public live feed. Tap a category to hide it.` }));
     return box;
   }
 

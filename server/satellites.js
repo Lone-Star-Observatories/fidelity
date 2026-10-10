@@ -4,6 +4,7 @@
 // everything is cached for 12 hours. https://celestrak.org/NORAD/documentation/gp-data-formats.php
 
 import { cached } from './cache.js';
+import { ucsRecord } from './ucs.js';
 
 const GP = 'https://celestrak.org/NORAD/elements/gp.php';
 const SATCAT = 'https://celestrak.org/satcat/records.php';
@@ -48,12 +49,13 @@ export async function satellites() {
   return value;
 }
 
-/** SATCAT record for one satellite (owner, launch date and site, type, radar cross-section, orbit). */
+/** SATCAT record for one satellite (owner, launch date and site, type, radar cross-section, orbit), with its UCS record as `UCS`. */
 export async function satelliteDetail(norad) {
   const id = Number(norad);
   if (!Number.isInteger(id) || id <= 0 || id > 999999) throw Object.assign(new Error('bad NORAD id'), { status: 400 });
   const { value } = await cached('celestrak', 'satcat-active', 24 * 3600000, () => json(`${SATCAT}?GROUP=active&FORMAT=json`));
   const rec = value.find((r) => r.NORAD_CAT_ID === id);
   if (!rec) throw Object.assign(new Error(`satellite ${id} not in the active catalogue`), { status: 404 });
-  return rec;
+  // UCS detail (purpose, operator, mass, lifetime…) where the 2023 database has the satellite
+  return { ...rec, UCS: await ucsRecord(id).catch(() => null) };
 }
