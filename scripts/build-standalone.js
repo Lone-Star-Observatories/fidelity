@@ -8,6 +8,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
 import { gzipSync, gunzipSync } from 'node:zlib';
+import { encodeSnapshotBytes, unpackSnapshotBytes } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -162,7 +163,9 @@ const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, details,
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
 const compressed = gzipSync(snapshotJson, { level: 9 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
-await fs.writeFile(path.join(root, 'standalone/snapshot-packed.js'), `export default ${JSON.stringify(compressed.toString('base64'))};\n`);
+const packed = encodeSnapshotBytes(compressed);
+if (!Buffer.from(unpackSnapshotBytes(packed)).equals(compressed)) throw new Error('Snapshot transport round-trip failed.');
+await fs.writeFile(path.join(root, 'standalone/snapshot-packed.js'), `export default ${JSON.stringify(packed)};\n`);
 console.log(`lossless snapshot: ${Buffer.byteLength(snapshotJson)} → ${compressed.length} gzip bytes`);
 console.log(`snapshot: ${near.stars.length} stars, ${Object.keys(details).length} detailed systems, ${Object.keys(skies).length} skies, ${Object.keys(textures).length} textures`);
 

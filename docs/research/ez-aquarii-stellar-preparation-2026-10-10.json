@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation; no40th dossier or generated imagery delivered",
+  "primarySource": {
+    "url": "https://arxiv.org/html/astro-ph/9909409",
+    "file": "data/research-sources/ez-aquarii-delfosse-1999.html",
+    "sha256": "9f320701b9edac3535b7161b36731bb94a00af171159365ae1235cc1de58f932",
+    "publicationDate": "1999-09-23"
+  },
+  "components": {
+    "A": {
+      "massSun": 0.1216,
+      "uncertainty": 0.0029
+    },
+    "B": {
+      "massSun": 0.1161,
+      "uncertainty": 0.0029
+    },
+    "C": {
+      "massSun": 0.0957,
+      "uncertainty": 0.0023
+    }
+  },
+  "identity": "Delfosse1999: A-C inner binary; outer AC-B orbit. All three stellar components near hydrogen burning limit, not brown dwarfs by current exact-category filter inference. Historical selected A preserved pending ranking reconciliation.",
+  "observations": {
+    "spectroscopy": "ELODIE September1995\u2013July1999",
+    "AO": "CFHT PUEO/KIR1998-07-23; resolves AC photocentre from B, not A from C"
+  },
+  "models": {
+    "innerPeriodDays": 3.78652,
+    "outerPeriodDays": 822.6,
+    "orbitalParallaxMas": [
+      290.4,
+      2.7
+    ]
+  },
+  "remaining": [
+    "Check newer component-aware masses, current astrometry and aliases.",
+    "Primary1999paper does not give independent component Teff/radius; do not attach often-repeated2650K to A as measured without source audit. Earlier binary-only2900K inference may blend A+C.",
+    "Assess native resolved AC-B observations, dates/bands/terms; unresolved blended imagery is not component A photospheric geography.",
+    "Generate independent A map/observer after documenting assumptions; no generic or Sun map reused. Companion visibility needs orbital geometry or explicit arbitrary viewing direction."
+  ],
+  "ranking": "EZB/C selection reconciliation remains open; no membership change or exhaustive current ranking claim."
+}
