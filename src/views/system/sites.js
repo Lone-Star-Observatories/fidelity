@@ -84,7 +84,7 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
    * Per frame. `focused`: this body is the camera's focus; `hidden`: set of kinds filtered out;
    * `surface`: standing on this body (dots stay, labels go).
    */
-  function update({ on, focused, surface, hidden, camera, spin = 0 }) {
+  function update({ on, focused, surface, hidden, camera, size, spin = 0 }) {
     group.rotation.y = spin;
     group.visible = on && (focused || surface);
     if (!group.visible) return;
@@ -94,12 +94,22 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
     group.getWorldPosition(tmpA);
     group.getWorldScale(tmpS);
     tmpB.copy(camera.position).sub(tmpA);
-    const close = tmpB.length() / tmpS.x < 3.2; // within ~3 radii: every label, otherwise the major ones
-    for (const l of labels) {
+    const dist = tmpB.length() / tmpS.x;
+    const close = dist < 1.8; // within ~0.8 radii of the surface: every label, otherwise the major ones
+    // Near side only (and not right on the limb), majors first, and no two labels overlapping on screen.
+    const placed = [];
+    const order = labels.slice().sort((a, b) => (b.userData.site.major ? 1 : 0) - (a.userData.site.major ? 1 : 0));
+    for (const l of order) {
       const s = l.userData.site;
-      let show = !surface && !hidden.has(s.kind) && (close || s.major);
-      if (show) { l.getWorldPosition(tmpC).sub(tmpA); show = tmpC.dot(tmpB) > 0; } // near side only
-      l.visible = show;
+      let show = !surface && !hidden.has(s.kind) && (close || !!s.major);
+      if (show) { l.getWorldPosition(tmpC); show = tmpC.clone().sub(tmpA).normalize().dot(tmpB.clone().normalize()) > 0.2; }
+      if (show && size) {
+        tmpC.project(camera);
+        const x = (tmpC.x + 1) * 0.5 * size.w, y = (1 - tmpC.y) * 0.5 * size.h, w = (l.element.textContent.length * 6.4) + 12;
+        show = !placed.some((r) => x < r.x + r.w && x + w > r.x && Math.abs(y - r.y) < 13);
+        if (show) placed.push({ x, y, w });
+      }
+      l.visible = !!show; // CSS2DRenderer hides only on === false
     }
   }
 

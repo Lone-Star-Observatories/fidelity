@@ -59,7 +59,8 @@ const swpc = (file, keep, credit) => ({
 
 // Mars rovers: the newest full-frame raw image from a navigation, mast or hazard camera
 // (raw images reach NASA's public site within hours of downlink; nothing from Mars is live video).
-const pickRaw = (rows, re) => rows.find((r) => re.test(r.instrument)) ?? rows[0];
+// newest image from the first camera family that has one (navigation views beat solar or arm close-ups)
+const pickRaw = (rows, res) => res.map((re) => rows.find((r) => re.test(r.instrument))).find(Boolean) ?? rows[0];
 const marsRaw = (mission, credit) => ({
   type: 'image', ttl: 30 * MIN, credit,
   async get() {
@@ -67,11 +68,11 @@ const marsRaw = (mission, credit) => ({
     if (mission === 'm20') {
       const j = await (await fetchOk('https://mars.nasa.gov/rss/api/?feed=raw_images&category=mars2020&feedtype=json&num=100&page=0&order=sol+desc&extended=sample_type::full,')).json();
       const rows = (j.images ?? []).map((r) => ({ instrument: r.camera?.instrument ?? '', url: r.image_files?.large ?? r.image_files?.full_res, sol: r.sol, taken: r.date_taken_utc, title: r.title }));
-      img = pickRaw(rows, /NAVCAM|MCZ|HAZ/);
+      img = pickRaw(rows, [/NAVCAM/, /HAZ/, /MCZ/]);
     } else {
       const j = await (await fetchOk('https://mars.nasa.gov/api/v1/raw_image_items/?order=sol%20desc,date_taken%20desc&per_page=100&page=0&condition_1=msl:mission')).json();
       const rows = (j.items ?? []).filter((r) => !r.is_thumbnail && r.extended?.sample_type === 'full').map((r) => ({ instrument: r.instrument ?? '', url: r.https_url ?? r.url, sol: r.sol, taken: r.date_taken, title: r.title }));
-      img = pickRaw(rows, /NAV|MAST|HAZ/);
+      img = pickRaw(rows, [/NAV/, /HAZ/, /MAST/]);
     }
     if (!img?.url) throw new Error('no raw images listed');
     const res = await fetchOk(img.url.replace(/^http:/, 'https:'));

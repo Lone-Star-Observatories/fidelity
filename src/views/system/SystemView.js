@@ -84,6 +84,7 @@ const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 export function createSystemView(container, { clock, onSelect, onSite, onFrame, onPickStar, onDrillStar }) {
   let hiddenKinds = null, hiddenSet = new Set();
+  const siteViewSize = { w: 1, h: 1 };
   const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
   const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
   const fat = createFatLines(); // thick orbit lines (#27)
@@ -1232,6 +1233,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     renderer.setSize(w, h, false);
     labels.setSize(w, h);
     fat.setSize(w, h);
+    siteViewSize.w = w; siteViewSize.h = h;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }
@@ -1301,7 +1303,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       n.label.visible = (showLabels && near && !minorFar) || id === focusId;
       n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
-      n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, spin: n.mesh.rotation.y });
+      n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, size: siteViewSize, spin: n.mesh.rotation.y });
       if (n.body.orbit) {
         updateOrbit(n, jd);
         n.orbit.visible = (showOrbits || id === focusId) && !surface;

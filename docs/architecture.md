@@ -68,6 +68,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
+| `GET /api/traverse/:id` | A Mars rover's drive path (`m20`, `msl`): `{ points: [[lon, lat], …], distanceKm, sol, credit }`, planetocentric east-positive, from NASA/JPL MMGIS, thinned (`server/traverse.js`) |
 | `GET /api/feed/:id` | A live feed: images as binary with `x-feed-time` / `x-feed-credit`; JSON feeds as `{ time, credit, data }` (`GET /api/feeds` lists them) |
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
@@ -171,6 +172,18 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
+## Surface sites (#37)
+
+`src/data/sites.js` lists sites per body (planetocentric lat, east lon, kind, source, `approx` for
+uncertain points, `tier: 'planned'` for proposals, optional `traverse` and `feeds`).
+`src/views/system/sites.js` builds a layer per body under its `tilt` group (so it turns and scales
+with the globe; `siteDir` applies `texLon0`): one dot layer per kind, CSS2D labels on the near
+side (major sites only until the camera is within ~0.8 radii, greedy screen-space de-clutter), and
+rover traverses fetched from `/api/traverse` the first time the body is focused. The Planet View
+globe gets the dots (`siteDots`). `src/panels/sites.js` renders the SITES OF NOTE section (kind
+filters, stored in `settings.siteHidden`) and the site card (STAND HERE → `surfaceAt`, live feeds
+through the satellite panel's feed viewer). SITES toggles the layer.
 
 ## Click anything (#23)
 
