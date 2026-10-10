@@ -32,6 +32,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |
 | 27 | **UI polish** | Thicker orbits, wider resizable panel, legend spacing, Horizons on by default. |
 | 28 | **Spectral filtering** | Filter every view by band (full, radio, microwave, IR, visible, UV, X-ray, gamma) then common bandpass. Per body and band: real image if one exists, else a predicted skin (best image convolved with the expected spectral response), else "not observed". |
+| 29 | **Deep-time arrivals** | Load and integrate stars well beyond the view radius (prefer Gaia DR3 velocities) so stars that move into the neighbourhood appear as today's neighbours disperse; badge catalogue completeness. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
