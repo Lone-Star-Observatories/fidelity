@@ -376,3 +376,31 @@ export async function sky(centerId, maxMag = 6.5) {
   }
   return { center: c.id, maxMag: m, fields: ['dx', 'dy', 'dz', 'mag', 'ci', 'name'], stars: rows };
 }
+
+// ---- galaxy ------------------------------------------------------------------------------
+
+// J2000 equatorial → IAU galactic (same matrix as src/astro/frames.js)
+const GAL = [
+  [-0.0548755604, -0.8734370902, -0.4838350155],
+  [0.4941094279, -0.44482963, 0.7469822445],
+  [-0.867666149, -0.1980763734, 0.4559837762],
+];
+
+/**
+ * Catalogue stars for the Galaxy View: heliocentric galactic x/y/z in light-years (x towards
+ * the galactic centre, z towards galactic north), for stars within `maxLy` brighter than
+ * absolute magnitude `maxAbs`. Compact integer rows.
+ */
+export async function galaxyStars(maxLy = 1500, maxAbs = 2) {
+  const d = Number(maxLy), M = Number(maxAbs);
+  if (!(d > 0 && d <= 5000) || !(M >= -10 && M <= 20)) throw bad('maxLy in (0, 5000], maxAbs in [-10, 20]');
+  const cat = await catalog();
+  const rows = [];
+  for (const s of cat.stars) {
+    if (s.absmag == null || s.absmag > M || s.distPc * LY_PER_PC > d) continue;
+    const v = [s.x * LY_PER_PC, s.y * LY_PER_PC, s.z * LY_PER_PC];
+    const g = GAL.map((r) => r[0] * v[0] + r[1] * v[1] + r[2] * v[2]);
+    rows.push([Math.round(g[0]), Math.round(g[1]), Math.round(g[2]), Math.round(s.absmag * 10), s.ci != null ? Math.round(s.ci * 100) : null]);
+  }
+  return { maxLy: d, maxAbs: M, fields: ['gx', 'gy', 'gz', 'absmag10', 'ci100'], stars: rows, source: 'HYG v4.4' };
+}

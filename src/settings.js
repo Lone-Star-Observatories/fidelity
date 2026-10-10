@@ -6,6 +6,7 @@ const defaults = {
   ephemeris: 'kepler', // 'kepler' | 'horizons'
   labels: true,
   orbits: true,
+  starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
 };
 
 let state = { ...defaults };

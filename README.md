@@ -4,7 +4,7 @@ An LCARS-style ship's console for exploring real NASA and astronomical data, fro
 orbit out to nearby galaxies. It runs locally. Data is loaded on demand and stored on
 your machine.
 
-**Status:** System View (Sol and any nearby star) and Navigation View are online. Every
+**Status:** System, Star, Planet, Navigation and Galaxy views are online. Every
 other view shows an OFFLINE screen that links to its ticket. See [`docs/backlog.md`](docs/backlog.md).
 
 ## Run it
@@ -53,6 +53,9 @@ ship recognises and which view will use each one.
   Orbits come from the USNO Sixth Orbit Catalog.
 - **Star View:** any star's real spectrum type (observed template against its blackbody,
   with Hα, Na D, Ca II and other lines marked) and what it is made of.
+- **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
+  calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
+  true positions, the IAU quadrants and an optional Starfleet Alpha–Delta overlay.
 - **Planet View:** any planet's air by volume, where those gases absorb light, its interior
   to scale, and where it sits among rocky, watery and gassy worlds. Exoplanets show measured
   JWST results where they exist and "not yet measured" everywhere else.

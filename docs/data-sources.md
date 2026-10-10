@@ -34,7 +34,9 @@
 | System | Literature masses (Bond et al. 2015/2017; Akeson et al. 2021; Kervella et al. 2008/2017; Eggenberger et al. 2008) | Measured component masses and white-dwarf properties for Sirius, Procyon, α Cen (with Proxima), 70 Oph and 61 Cyg | bundled | ✅ #7 |
 | Navigation | Gaia DR3 | Fainter neighbours HYG misses (red and brown dwarfs) | local | ⏳ |
 | Quadrant | Gaia DR3 (tiled level-of-detail), cluster catalogues, OpenNGC | Star density, clusters, nebulae | local | ⏳ #4 |
-| Galaxy | Spiral-arm and bar models, Harris globular clusters | Milky Way structure | bundled / local | ⏳ #4 |
+| Galaxy | [PIA10748](https://photojournal.jpl.nasa.gov/catalog/PIA10748) face-on Milky Way (NASA/JPL-Caltech/R. Hurt, from Spitzer), calibrated against the annotated [PIA19341](https://photojournal.jpl.nasa.gov/catalog/PIA19341) | The galaxy image under the stars (IMAGINED: an artist's concept) | downloaded once to `data/` | ✅ #10 |
+| Galaxy | GRAVITY Collaboration 2019 (R₀ = 8.178 kpc); Bennett & Bovy 2019 (z₀ = 20.8 pc); LMC/SMC/Sgr dSph distances (Pietrzyński 2019, Graczyk 2020, Vasiliev & Belokurov 2020) | Sol's place in the galaxy, satellite galaxies | bundled | ✅ #10 |
+| Galaxy | Harris globular clusters | Globular cluster halo | local | ⏳ #4 |
 | Universe | NED, Cosmicflows-4, 2MRS | Nearby galaxies and distances | local / live | ⏳ #4 |
 
 ## Multiple stars
@@ -95,3 +97,11 @@ FIDELITY_CATALOG_DIRS=/Volumes/DATA/catalogs npm start   # make them available t
 
 The scanner recognises the catalogs above by file name and lists which view each one
 feeds. Anything it doesn't recognise is listed separately so it can be mapped.
+
+## Galaxy calibration
+
+PIA19341 is PIA10748 rotated 90° clockwise with the Sun marked (pixel 416.0, 668.8 of 1308).
+Mapped back, the Sun sits (0.0117, 0.1816) image-widths from the centre of PIA10748; with
+R₀ = 26.67 kly the image is ≈147 kly across. `src/astro/galaxy.js` holds the numbers and
+`tests/galaxy.test.js` checks that the marked Sun lands at R₀. Catalogue stars are HYG rows
+rotated into galactic coordinates (`/api/galaxy`), so they sit at their true positions on the art.

@@ -8,9 +8,10 @@ import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
+import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -38,6 +39,8 @@ const system = createSystemView($('system-view'), {
 });
 const starView = createStarView($('star-view'));
 const planetView = createPlanetView($('planet-view'));
+const galaxy = createGalaxyView($('galaxy-view'), { onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; } });
+let galaxyStarsLoaded = false;
 const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
@@ -49,7 +52,7 @@ const LEVEL_BUTTONS = [
   ['quadrant', 'QUADRANT', 'var(--apricot)'], ['navigation', 'NAVIGATION', 'var(--gold)'],
   ['system', 'SYSTEM', 'var(--peach)'],
 ];
-const LIVE_LEVELS = new Set(['navigation', 'system']);
+const LIVE_LEVELS = new Set(['galaxy', 'navigation', 'system']);
 const SUB_BUTTONS = [['star', 'STAR'], ['planet', 'PLANET'], ['moon', 'MOON'], ['satellite', 'SATELLITE'], ['object', 'OBJECT']];
 
 const railLevels = $('rail-levels');
@@ -294,6 +297,38 @@ function renderOfflinePanel(level) {
     renderLegend());
 }
 
+// ---- galaxy panel ------------------------------------------------------------------------
+function renderGalaxyPanel() {
+  resetLive();
+  const fleet = pill(settings.get('starfleet') ? 'STARFLEET OVERLAY: ON' : 'STARFLEET OVERLAY: OFF', () => {
+    settings.set('starfleet', !settings.get('starfleet'));
+    renderGalaxyPanel();
+  }, settings.get('starfleet') ? 'on' : '');
+  panel.replaceChildren(
+    h('h2', { textContent: 'MILKY WAY' }),
+    h('div', { className: 'kind', textContent: 'BARRED SPIRAL GALAXY · SEEN FROM GALACTIC NORTH' }),
+    h('h3', { textContent: 'VIEW' }),
+    h('div', { className: 'body-list' },
+      pill('WHOLE GALAXY', () => galaxy.view('galaxy')), pill('SOLAR NEIGHBOURHOOD', () => galaxy.view('sol')),
+      pill('GALACTIC CENTRE', () => galaxy.view('centre')), pill('SATELLITE GALAXIES', () => galaxy.view('satellites'))),
+    h('h3', { textContent: 'QUADRANTS' }),
+    h('div', { className: 'body-list' }, fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
+    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. The Starfleet overlay draws Star Trek\'s Alpha–Delta quadrants, centred on the galactic core.' }),
+    h('h3', { textContent: 'FACTS' }),
+    factList([
+      { label: 'SOL → CENTRE', value: `${R0_KLY.toFixed(1)} KLY`, tier: 'measured', detail: 'R₀ = 8.178 kpc from stars orbiting Sgr A* (GRAVITY Collaboration 2019).' },
+      { label: 'SOL ABOVE PLANE', value: '68 LY', tier: 'measured', detail: 'z₀ = 20.8 pc (Bennett & Bovy 2019).' },
+      { label: 'SOL ORBIT SPEED', value: '≈ 230 KM/S', tier: 'measured', detail: 'Circular velocity at the Sun (e.g. Eilers et al. 2019).' },
+      { label: 'GALACTIC YEAR', value: '≈ 225 MILLION YR', tier: 'computed', detail: '2πR₀ / v.' },
+      { label: 'STARS', value: '100–400 BILLION', tier: 'modelled', detail: 'From the galaxy\'s mass and light; nobody has counted them.' },
+      { label: 'SGR A* MASS', value: '4.3 MILLION × SUN', tier: 'measured', detail: 'From the orbit of the star S2 (GRAVITY 2019); imaged by the Event Horizon Telescope in 2022.' },
+      { label: 'IMAGE', value: "ARTIST'S CONCEPT", tier: 'imagined', detail: `NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748, built from Spitzer data. We cannot photograph our galaxy from outside. Scaled so Sol sits at R₀; the image spans ${IMAGE.widthKly.toFixed(0)} kly.` },
+      { label: 'BLUE DOTS', value: 'CATALOGUE STARS', tier: 'measured', detail: 'Every HYG star within 1,500 ly brighter than absolute magnitude 2, at its parallax position. That is as far as the catalogue reaches: a tiny bubble in the galaxy.' },
+    ]),
+    renderLegend(),
+  );
+}
+
 // ---- navigation panel --------------------------------------------------------------------
 let navSelected = null;
 
@@ -474,7 +509,7 @@ setInterval(tick, 200);
   requestAnimationFrame(beaconLoop);
   const el = $('edge-beacon');
   const b = lastFrame?.beacon;
-  const active = (route.level === 'system' || route.level === 'navigation') && $('offline').hidden;
+  const active = ['system', 'navigation', 'galaxy'].includes(route.level) && $('offline').hidden;
   if (!active || !b || b.visible || b.atFocus) { el.hidden = true; return; }
   let { x, y } = b;
   if (b.behind) { x = -x; y = -y; }
@@ -503,6 +538,7 @@ onRoute(async (r) => {
   if (r.level === 'system') {
     nav.hide();
     starView.hide();
+    galaxy.hide();
     planetView.hide();
     $('offline').hidden = true;
     system.show();
@@ -525,6 +561,7 @@ onRoute(async (r) => {
     nav.hide();
     system.hide();
     planetView.hide();
+    galaxy.hide();
     $('offline').hidden = true;
     if (!(await ensureSystem(r.system)) || route !== r) return;
     const m = system.model;
@@ -541,6 +578,7 @@ onRoute(async (r) => {
     nav.hide();
     system.hide();
     starView.hide();
+    galaxy.hide();
     $('offline').hidden = true;
     if (!(await ensureSystem(r.system)) || route !== r) return;
     const m = system.model;
@@ -552,10 +590,19 @@ onRoute(async (r) => {
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
     renderBodyPanel(b.id, { inStarView: true });
     syncRail();
+  } else if (r.level === 'galaxy') {
+    system.hide(); nav.hide(); starView.hide(); planetView.hide();
+    $('offline').hidden = true;
+    $('view-title').textContent = 'GALAXY VIEW · MILKY WAY';
+    $('beacon-sub').textContent = currentSystem === 'sol' ? 'HOME' : 'RETURN';
+    galaxy.show();
+    renderGalaxyPanel();
+    if (!galaxyStarsLoaded) { galaxyStarsLoaded = true; fetchGalaxyStars().then((d) => galaxy.setStars(d)); }
   } else if (r.level === 'navigation') {
     system.hide();
     starView.hide();
     planetView.hide();
+    galaxy.hide();
     nav.show();
     if (!r.system) return go({ level: 'navigation', system: currentSystem });
     $('view-title').textContent = 'NAVIGATION';
@@ -566,6 +613,7 @@ onRoute(async (r) => {
     system.hide();
     nav.hide();
     starView.hide();
+    galaxy.hide();
     planetView.hide();
     const info = ROADMAP[r.level];
     $('view-title').textContent = `${r.level.toUpperCase()} VIEW`;

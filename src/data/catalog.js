@@ -82,3 +82,9 @@ export async function fetchSpectrum(type, feh) {
     return await get(`/api/spectrum?type=${encodeURIComponent(type)}${feh != null ? `&feh=${feh}` : ''}`);
   } catch { return null; }
 }
+
+/** Catalogue stars around Sol in galactic coordinates (ly), for the Galaxy View. */
+export async function fetchGalaxyStars() {
+  if (snapshot) return snapshot.galaxy ?? null;
+  try { return await get('/api/galaxy?maxLy=1500&maxAbs=2'); } catch { return null; }
+}

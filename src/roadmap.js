@@ -22,11 +22,7 @@ export const ROADMAP = {
     blurb: 'Zoom out to our quadrant of the Milky Way: star systems, clusters and nebulae.',
     data: 'Gaia DR3 (tiled, local), cluster and deep-sky catalogues.',
   },
-  galaxy: {
-    status: 'SCHEDULED · TICKET #4',
-    blurb: 'The Milky Way: spiral arms, the bar, Sgr A*, globular clusters and satellite galaxies, with Sector 001 marked.',
-    data: 'Galactic structure models, Harris globular cluster catalogue.',
-  },
+  galaxy: { status: 'ONLINE', blurb: '', data: 'NASA/JPL-Caltech PIA10748, HYG v4.4, GRAVITY 2019 R₀.' },
   universe: {
     status: 'SCHEDULED · TICKET #4',
     blurb: 'Look outward at nearby galaxies — the Local Group, Virgo, Laniakea — with a distance filter.',

@@ -152,6 +152,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .nav-label.selected { color: #000; background: var(--orange); border-color: var(--orange); }
 .nav-label.ring { color: var(--violet); background: none; border: 0; pointer-events: none; }
 .nav-label.spoke { color: var(--apricot); background: none; border: 0; pointer-events: none; font-size: 10px; }
+.nav-label.fleet { color: var(--rose); background: none; border: 0; pointer-events: none; font-size: 16px; letter-spacing: 0.22em; }
 .nav-label.quadrant { color: rgba(204, 153, 204, 0.55); background: none; border: 0; pointer-events: none; font-size: 15px; letter-spacing: 0.2em; }
 
 .host-list { display: flex; flex-direction: column; gap: 3px; }

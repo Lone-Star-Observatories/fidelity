@@ -9,7 +9,7 @@ import { config } from './config.js';
 import { monthlyVectors } from './horizons.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
-import { nearby, starDetail, sky } from './stars.js';
+import { nearby, starDetail, sky, galaxyStars } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
 
@@ -32,6 +32,7 @@ const routes = {
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),
+  'GET /api/galaxy': async (q) => galaxyStars(q.get('maxLy') || '1500', q.get('maxAbs') || '2'),
   'GET /api/spectrum': async (q) => spectrumFor(q.get('type') || '', q.get('feh')),
 };
 
