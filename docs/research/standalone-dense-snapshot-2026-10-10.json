@@ -35,5 +35,32 @@
     "unsupportedMessage": "verified",
     "offlineWorkerRows": 11,
     "upstreamIntegrated": "a6251db"
+  },
+  "postRebaseValidation": {
+    "upstream": "b347a7f",
+    "testsPassed": 361,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15977035,
+    "headroom": 22965,
+    "browser": {
+      "snapshot": "4fe53fc94d8fd52cbe1341da384399e3c29eea899498d88d8c543e78a0c39793",
+      "raw": "98478dbac8b9df5334d0e265d54ef8778b4714e99275f4df3bfe2265854787a5",
+      "magic": "FIDNUM01",
+      "images": 195,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15977035,
+      "compressedBytes": 652649,
+      "applicationSha256": "e03d0a257efc4cbc0f9c9ed34e002fa2519da60686f67f142eb681a6e76a90fb",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "css": "exact restored style and HTML parser payload verified",
+    "offlineRoutes": 6,
+    "unsupportedMessage": "pass",
+    "offlineWorkerRows": 11
   }
 }
