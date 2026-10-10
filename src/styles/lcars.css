@@ -683,3 +683,5 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .future-chart .fc-line { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linejoin: round; }
 .future-chart .fc-band { fill: var(--gold); fill-opacity: 0.16; stroke: none; }
 .host-row.event-row.future-open { outline: 2px solid var(--gold); outline-offset: -2px; }
+.future-chart .fc-mark { stroke: var(--gold); stroke-width: 2; }
+.future-chart .fc-title { fill: var(--lilac); font-size: 11px; letter-spacing: 0.1em; }

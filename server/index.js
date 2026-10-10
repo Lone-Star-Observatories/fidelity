@@ -4,6 +4,7 @@
 
 import { starSearch } from './search.js';
 import { impactRisk } from './risk.js';
+import { co2 } from './co2.js';
 import http from 'node:http';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -56,6 +57,7 @@ const routes = {
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/impact-risk': async () => impactRisk(),
+  'GET /api/co2': async () => co2(),
   'GET /api/clusters': async () => clusters(),
   'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),

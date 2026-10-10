@@ -43,6 +43,7 @@ import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
 import { createFutureEventsPanel } from './panels/futureevents.js';
+import { createEarthTimelinePanel } from './panels/earthtimeline.js';
 import { createMagneticPanel } from './panels/magnetic.js';
 import { createSearch } from './panels/search.js';
 import { PLANETSHINE } from './astro/planetshine.js';
@@ -195,11 +196,16 @@ const futureBtn = h('button', { className: 'rail-btn sub', title: 'Future events
 futureBtn.dataset.sub = 'future';
 futureBtn.addEventListener('click', () => go({ level: 'future', system: 'sol' }));
 railSubs.append(futureBtn);
+// EARTH TIMELINE (#54): climate, ice ages, orbital cycles, geology, impacts and the deep future
+const timelineBtn = h('button', { className: 'rail-btn sub', title: 'Earth past and future: climate, ice ages, Milankovitch cycles, geology, impacts, the deep future' }, 'TIMELINE');
+timelineBtn.dataset.sub = 'timeline';
+timelineBtn.addEventListener('click', () => go({ level: 'timeline', system: 'sol' }));
+railSubs.append(timelineBtn);
 
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object', 'satellite', 'events', 'future']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite', 'events', 'future', 'timeline']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -612,6 +618,7 @@ const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, 
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel });
+const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
 createSearch({ h, badge, $, go, clock, actions: {
@@ -874,6 +881,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
+  if (m.isSol && b.id === 'earth') extra.push(h('h3', { textContent: 'EARTH THROUGH TIME' }), h('div', { className: 'body-list' }, pill('EARTH TIMELINE ▸', () => go({ level: 'timeline', system: 'sol' })))); // #54
   if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
   if (m.isSol && b.kind === 'moon' && PLANETSHINE[b.parent]) { // #49
     const ps = PLANETSHINE[b.parent], st = system.planetshineOf(b.id), dl = h('dl');
@@ -1477,7 +1485,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
+setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
 setInterval(() => { if (settings.get('fields') && system.model?.isSol) magneticPanel.refreshWind(); }, 60000); // Earth's magnetopause follows the live solar wind (#38)
 settings.onChange((k, v) => { if (k === 'fields' && v) magneticPanel.refreshWind(); });
@@ -1547,6 +1555,17 @@ onRoute(async (r) => {
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
   if (r.level !== 'events') eventsPanel.leave();
+  if (r.level === 'timeline') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'timeline') { warp(); system.focus('earth'); }
+    $('view-title').textContent = 'EARTH TIMELINE · CLIMATE, ICE, CYCLES, GEOLOGY, IMPACTS';
+    syncBeacon();
+    earthTimeline.render(r.body);
+    return;
+  }
   if (r.level === 'future') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;
