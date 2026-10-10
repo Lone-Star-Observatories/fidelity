@@ -62,8 +62,9 @@ export function createPlanetView(container, { onSurface } = {}) {
   const heroFacts = el('dl', { className: 'sv-hero-facts' });
   const title = el('div', { className: 'sv-title' });
   const body = el('div', { className: 'pv-cards' });
+  const extras = el('div', { className: 'pv-cards' }); // FROM EARTH, imagery, spectra (src/panels)
   container.replaceChildren(el('div', { className: 'sv' },
-    el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), body));
+    el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)), extras, body));
   new ResizeObserver(() => { const w = hero.clientWidth || 260; renderer.setSize(w, w, false); }).observe(hero);
   // double-click the globe to stand on that spot and look up (System View surface mode)
   let current = null;
@@ -326,6 +327,8 @@ export function createPlanetView(container, { onSurface } = {}) {
   return {
     show() { container.hidden = false; if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
+    /** Cards built outside the view (observing data, imagery, spectra), shown under the hero. */
+    setExtras(nodes) { extras.replaceChildren(...nodes.filter(Boolean)); },
     load(b, { isSol = false, systemName = '' } = {}) {
       const minor = ['moon', 'asteroid', 'comet', 'dwarf planet'].includes(b.kind) && b.id !== 'pluto';
       const view = b.kind === 'moon' ? 'MOON VIEW' : minor ? 'OBJECT VIEW' : 'PLANET VIEW';

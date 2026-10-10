@@ -22,6 +22,7 @@ const defaults = {
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)
   band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
   bandPass: null,    // its bandpass (null = the band's default)
+  observer: null,   // detail views' FROM EARTH card: { lat, lon, label } (null = Greenwich)
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
 };
 

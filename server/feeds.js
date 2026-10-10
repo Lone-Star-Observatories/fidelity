@@ -29,15 +29,16 @@ const gibs = (layer, credit) => ({
   },
 });
 // Helioviewer source ids: AIA 193 = 11, AIA 304 = 13, HMI continuum = 18.
-const helioviewer = (sourceId, layer, credit) => ({
+// SDO AIA/HMI and SOHO LASCO ids: 4 C2, 5 C3, 8–16 AIA 94…1700, 18 HMI continuum, 19 HMI magnetogram.
+const helioviewer = (sourceId, layer, credit, scale = 2.42) => ({
   type: 'image', ttl: 15 * MIN, credit,
   async get() {
     const now = new Date().toISOString().slice(0, 19) + 'Z';
     const closest = await (await fetchOk(`https://api.helioviewer.org/v2/getClosestImage/?date=${now}&sourceId=${sourceId}`)).json().catch(() => null);
-    const q = `date=${now}&imageScale=2.42&layers=[${layer},1,100]&x0=0&y0=0&width=1024&height=1024&display=true`;
+    const q = `date=${now}&imageScale=${scale}&layers=[${layer},1,100]&x0=0&y0=0&width=1024&height=1024&display=true`;
     const res = await fetchOk(`https://api.helioviewer.org/v2/takeScreenshot/?${q}`, 90000);
     // fraction of the image width covered by the solar radius (for projecting the disk onto a sphere)
-    const disk = closest?.rsun && closest?.scale ? (closest.rsun * closest.scale) / (2.42 * 1024) : null;
+    const disk = closest?.rsun && closest?.scale ? (closest.rsun * closest.scale) / (scale * 1024) : null;
     return { body: Buffer.from(await res.arrayBuffer()), type: 'image/png', time: closest?.date ? `${closest.date.replace(' ', 'T')}Z` : now, disk };
   },
 });
@@ -115,6 +116,40 @@ export const FEEDS = {
   'sdo-1700': helioviewer(16, 'SDO,AIA,AIA,1700', 'NASA SDO AIA 1700 Å (temperature minimum / photosphere UV), via Helioviewer'),
   'sdo-304': helioviewer(13, 'SDO,AIA,AIA,304', 'NASA SDO AIA 304 Å (chromosphere), via Helioviewer'),
   'sdo-hmi': helioviewer(18, 'SDO,HMI,HMI,continuum', 'NASA SDO HMI continuum (visible photosphere, sunspots), via Helioviewer'),
+  'sdo-171': helioviewer(10, 'SDO,AIA,AIA,171', 'NASA SDO AIA 171 Å (quiet corona and coronal loops, 0.6 million K), via Helioviewer'),
+  'sdo-131': helioviewer(9, 'SDO,AIA,AIA,131', 'NASA SDO AIA 131 Å (flaring plasma, 10 million K), via Helioviewer'),
+  'sdo-1600': helioviewer(15, 'SDO,AIA,AIA,1600', 'NASA SDO AIA 1600 Å (ultraviolet: upper photosphere and transition region), via Helioviewer'),
+  'sdo-hmimag': helioviewer(19, 'SDO,HMI,HMI,magnetogram', 'NASA SDO HMI line-of-sight magnetogram (white and black: opposite magnetic polarities), via Helioviewer'),
+  'lasco-c2': helioviewer(4, 'SOHO,LASCO,C2,white-light', 'ESA/NASA SOHO LASCO C2 coronagraph (outer corona to 6 solar radii; the white circle marks the hidden Sun), via Helioviewer', 11.9),
+  'lasco-c3': helioviewer(5, 'SOHO,LASCO,C3,white-light', 'ESA/NASA SOHO LASCO C3 coronagraph (corona and solar wind to 30 solar radii; stars and planets pass behind), via Helioviewer', 56),
+  // Ground-based: NSO GONG H-alpha network, six observatories around the world, one image a minute.
+  'gong-halpha': {
+    type: 'image', ttl: 10 * MIN, credit: 'NSO / AURA / NSF GONG H-alpha network: a ground-based telescope on Earth (chromosphere: filaments, plage, flares)',
+    async get() {
+      for (let back = 0; back <= 1; back++) {
+        const d = new Date(Date.now() - back * 86400000), ym = isoDay(d).slice(0, 7).replace('-', ''), ymd = isoDay(d).replaceAll('-', '');
+        const dirUrl = `https://gong2.nso.edu/HA/hag/${ym}/${ymd}/`;
+        const files = [...(await (await fetchOk(dirUrl)).text()).matchAll(/href="(\d{14}[A-Za-z]h\.jpg)"/g)].map((m) => m[1]);
+        const last = files.sort().at(-1);
+        if (!last) continue;
+        const res = await fetchOk(dirUrl + last);
+        const t = last.slice(0, 14);
+        return { body: Buffer.from(await res.arrayBuffer()), type: 'image/jpeg', time: `${t.slice(0, 4)}-${t.slice(4, 6)}-${t.slice(6, 8)}T${t.slice(8, 10)}:${t.slice(10, 12)}:${t.slice(12, 14)}Z` };
+      }
+      throw new Error('no GONG images today');
+    },
+  },
+  // NASA SVS Dial-a-Moon: the Moon as it appears from Earth this hour (phase, libration, size),
+  // rendered from LRO elevation and colour data: a computed view, not a photograph.
+  'moon-now': {
+    type: 'image', ttl: 60 * MIN, credit: 'NASA Scientific Visualization Studio, Dial-a-Moon: rendered from LRO LOLA/LROC data for this hour (geocentric view)',
+    async get() {
+      const hour = new Date().toISOString().slice(0, 13) + ':00';
+      const j = await (await fetchOk(`https://svs.gsfc.nasa.gov/api/dialamoon/${hour}`)).json();
+      const res = await fetchOk(j.image.url);
+      return { body: Buffer.from(await res.arrayBuffer()), type: 'image/jpeg', time: `${hour}:00Z` };
+    },
+  },
   'gibs-terra': gibs('MODIS_Terra_CorrectedReflectance_TrueColor', 'NASA GIBS, Terra MODIS corrected reflectance (yesterday)'),
   'gibs-aqua': gibs('MODIS_Aqua_CorrectedReflectance_TrueColor', 'NASA GIBS, Aqua MODIS corrected reflectance (yesterday)'),
   'gibs-snpp': gibs('VIIRS_SNPP_CorrectedReflectance_TrueColor', 'NASA GIBS, Suomi NPP VIIRS corrected reflectance (yesterday)'),

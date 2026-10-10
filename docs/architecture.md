@@ -11,6 +11,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/tiff.js      USGS mosaics  │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
+│                                      │           │ server/imagery.js   surveys, NASA │
+│                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
 │                                      │           │ server/dsn.js       DSN Now       │
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/events.js    events feed   │
@@ -44,6 +46,13 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   (`src/astro/rotation.js`), and Earth turns by sidereal time.
 - **Star View** (`src/views/star/`) shows a close-up photosphere, the spectrum chart (observed
   template, blackbody, lab line positions, Wien peak, hover readout) and composition bars.
+- **Detail cards** (#60, `src/panels/detail.js`): every Star, Planet, Moon and Object View opens with
+  FROM EARTH (`fromearth.js`: theskylive-style observing data for the viewer's location, from
+  `src/astro/observe.js`, plus the `eyepiece.js` telescope drawing), IMAGERY (`imagery.js`: live
+  feeds, survey cutouts gamma→radio, NASA archive with a lightbox) and a spectrum (`spectra.js`:
+  PSG for Sol bodies, Gaia XP for stars, Exoplanet Archive for exoplanets). The views expose
+  `setExtras`; `main.js` ticks the cards from its 200 ms loop. The observer location is the
+  `observer` setting (browser geolocation or typed; default Greenwich).
 - **Planet View** (`src/views/planet/`) shows a close-up globe, the atmosphere by volume (or
   JWST detections, or "not yet measured"), spectral fingerprints, the interior to scale, and
   the mass–radius diagram against composition curves.
@@ -80,6 +89,11 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
+| `GET /api/surveys` · `GET /api/survey/:key?ra=&dec=&fov=[&size=]` | Sky-survey list; a JPEG cutout (north up, east left; 404 where the survey has no coverage) from CDS hips2fits (`server/imagery.js`) |
+| `GET /api/nasa-images?q=&must=` · `GET /api/nasa-image/:id/(thumb\|medium)` | NASA Image Library search (captions must name the body); preview images |
+| `GET /api/psg?body=&month=YYYY-MM` | PSG modelled spectrum `{ wavelengthUm, total, reflected?, thermal? }` W/sr/m²/µm (`server/bodyspectra.js`) |
+| `GET /api/star-spectrum?ra=&dec=[&distLy=]` | Gaia DR3 XP spectrum `{ found, gaiaId, nm, flux, err }` of the star SIMBAD finds there |
+| `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
 | `GET /api/events` | The weekly events feed (`events/events.json` from GitHub, `FIDELITY_EVENTS_URL` to override; cached 3 h; the bundled copy when offline or newer), with `streams` refreshed from the curated YouTube channels' RSS every 15 min. Adds `origin`, `cache`, `error` |
@@ -364,3 +378,16 @@ Craft preview rebuilding accepts selected model IDs and `--texture-size=128`; om
 The standalone snapshot is now gzip-compressed losslessly and stored as base64 in the ignored generated `standalone/snapshot-packed.js`. The `#snapshot` alias selects `src/data/embedded-snapshot.js`; top-level await decodes it once with browser DecompressionStream before dependent modules execute. All catalogue fields, native imagery and GLB bytes are preserved. The builder checks exact gzip round-trip equality and still retains readable snapshot.json for inspection. Normal builds use the unchanged null snapshot. A current browser with gzip DecompressionStream support is required; unsupported browsers show a clear message.
 
 Individual dossiers may carry `statusNote`; Planet View inserts a PLANET STATUS card ahead of their hypothetical imagery, distinguishing catalogue membership from disputed independent detection evidence. Tau Ceti f/g/h use conditional map/sky labels. The queue carries the same discovery-status notice. Previous dossiers omit this optional field and retain their existing cards.
+
+## From Earth (#60)
+
+`src/astro/observe.js` turns the app's heliocentric ecliptic positions (`system.positionOf(id, jd)`,
+scene axes mapped back to the ecliptic) into what an observer on Earth sees: astrometric J2000
+RA/Dec with light-time iteration, elongation, phase angle and illuminated fraction, equatorial
+angular diameter, magnitude (`src/data/photometry.js`) and the constellation (Roman 1987 boundaries,
+position precessed to B1875 with IAU 1976). Horizon work precesses to the equinox of date and uses
+the IAU 1982 GMST; rise/transit/set scan the observer's local mean solar day in 6–12 minute steps and
+bisect (upper limb and parallax for the Sun and Moon). Stars use their catalogue J2000 position.
+`tests/observe.test.js` checks all 48 Sol bodies against a JPL Horizons observer table and
+Auckland rise/set times (`tests/fixtures/horizons-observer-2026-10-10.json`). The standalone preview
+keeps FROM EARTH (computed in the browser) but not imagery or spectra (backend only).

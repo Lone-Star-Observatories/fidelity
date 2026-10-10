@@ -1578,9 +1578,8 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       flyTo(centre && nodes[centre] ? centre : model.starId, { overview: au });
     },
     get focusId() { return focusId; },
-    /** Scene position of a body, AU. */
-    /** True (physical) scene position of a body, AU: no ENHANCED compression around planets. */
-    positionOf: (id) => truePosition(id).toArray(),
+    /** True (physical) scene position of a body, AU, at the clock (or at `jd`): no ENHANCED compression around planets. */
+    positionOf: (id, jd) => truePosition(id, jd ?? clock.jd).toArray(),
     /** Distance (AU) from a body to its own star (planets), its parent (moons, local craft) or the system's centre (stars). */
     hostDistance(id) {
       const b = nodes[id]?.body;
@@ -1590,7 +1589,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       if (b.orbit?.type === 'moon') return Math.hypot(...moonOffsetKm(b.moon, clock.jd)) / AU_KM;
       return p.distanceTo(b.orbit?.host ? hostScene(b.orbit.host, clock.jd, new THREE.Vector3()) : new THREE.Vector3());
     },
-    enhancementOf: (id) => enhancement(nodes[id].body, model.scale),
+    enhancementOf: (id) => (nodes[id] ? enhancement(nodes[id].body, model.scale) : 1), // 1 while another system loads
     /** { time, credit, feed } if body `id` wears a live skin right now. */
     liveSkinOf: (id) => liveState[id] ?? null,
   };

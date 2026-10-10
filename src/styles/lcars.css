@@ -425,3 +425,47 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .bar-bottom > .bar-row { scrollbar-width: thin; scrollbar-color: var(--lilac) transparent; }
 .ctl-num { width: 64px; height: 30px; align-self: flex-end; background: #000; color: var(--peach); border: 2px solid var(--lilac); border-radius: 14px; padding: 0 8px;
   font: inherit; font-size: calc(13px * var(--text-scale, 1)); text-align: right; }
+/* detail views: FROM EARTH, imagery and spectra cards (src/panels/fromearth.js, imagery.js, spectra.js) */
+.detail-view .note { color: var(--dim); font-size: 13px; line-height: 1.4; margin: 0; }
+.detail-view a { color: var(--peach); }
+.fe-list { display: grid; grid-template-columns: minmax(150px, max-content) 1fr; gap: 5px 16px; margin: 0; font-size: 15px; }
+.fe-list dt { color: var(--dim); font-size: 12px; letter-spacing: 0.08em; align-self: center; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.fe-list dd { margin: 0; color: var(--peach); align-self: center; overflow-wrap: anywhere; }
+.fe-observer { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; color: var(--lilac); font-size: 13px; letter-spacing: 0.06em; }
+.fe-observer .pill, .fe-form .pill { height: 26px; font-size: 12px; }
+.fe-form { display: flex; gap: 6px; flex-wrap: wrap; }
+.fe-in { width: 120px; background: #000; color: var(--peach); border: 1px solid var(--violet); border-radius: 4px; padding: 3px 6px; font: inherit; font-size: 13px; }
+.im-sub { margin: 6px 0 0; color: var(--gold); font-size: 14px; font-weight: 400; letter-spacing: 0.12em; }
+.im-label { color: var(--dim); font-size: 12px; letter-spacing: 0.1em; align-self: center; }
+.im-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.im-tile { margin: 0; cursor: zoom-in; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.im-tile img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #0b0b0b; border-radius: 4px; display: block; }
+.im-tile figcaption { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-size: 11px; letter-spacing: 0.06em; color: var(--peach); }
+.im-tile .badge { transform: scale(0.85); transform-origin: left center; }
+.im-time { color: var(--dim); font-size: 11px; width: 100%; }
+.im-tile.im-dead { opacity: 0.35; cursor: default; }
+.im-frame { position: relative; }
+.im-cross { position: absolute; left: 50%; top: 50%; width: 22%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none;
+  background: linear-gradient(var(--gold), var(--gold)) center / 2px 100% no-repeat, linear-gradient(var(--gold), var(--gold)) center / 100% 2px no-repeat;
+  mask: radial-gradient(circle, transparent 28%, #000 29%); -webkit-mask: radial-gradient(circle, transparent 28%, #000 29%); }
+.im-lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.88); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.im-lightbox[hidden] { display: none; }
+.im-box { max-width: min(960px, 100%); max-height: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: #000; border-left: 6px solid var(--violet); padding: 12px 16px; }
+.im-box img { max-width: 100%; max-height: 70vh; object-fit: contain; align-self: center; }
+.im-box h4 { margin: 0; color: var(--orange); font-weight: 400; letter-spacing: 0.06em; }
+.im-close { align-self: flex-end; }
+@media (max-width: 700px) {
+  .fe-list { grid-template-columns: 1fr; }
+  .im-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
+.im-pills { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.im-pills .pill { height: 24px; font-size: 12px; padding: 0 10px; justify-content: center; }
+.im-pills .im-label { min-width: 46px; }
+.im-pills .pill { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.ep { display: flex; flex-direction: column; gap: 6px; max-width: 360px; }
+.ep-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ep-svg { width: 100%; height: auto; display: block; }
+.ep-label { fill: var(--peach); font-size: 10px; letter-spacing: 0.06em; }
+.fe-body { display: grid; grid-template-columns: 1fr minmax(220px, 300px); gap: 18px; align-items: start; }
+.fe-body:has(> :only-child) { grid-template-columns: 1fr; }
+@media (max-width: 900px) { .fe-body { grid-template-columns: 1fr; } }

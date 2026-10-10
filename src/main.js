@@ -8,6 +8,7 @@ import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
 import { createStarView } from './views/star/StarView.js';
 import { createPlanetView } from './views/planet/PlanetView.js';
+import { detailCards } from './panels/detail.js';
 import { createGalaxyView, R0_KLY, IMAGE } from './views/galaxy/GalaxyView.js';
 import { GALACTIC_YEAR_MYR, OMEGA_PATTERN, OMEGA_SUN, VC_KMS } from './astro/galaxy.js';
 import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/QuadrantView.js';
@@ -558,6 +559,10 @@ function bodyGroups(m) {
     ['LAGRANGE POINTS', m.bodies.filter((b) => b.kind === 'lagrange point')],
   ];
 }
+// FROM EARTH, imagery and spectra cards of the open detail view (src/panels/detail.js)
+let detail = null;
+function setDetail(d, place) { detail?.dispose(); detail = d; place(d); }
+
 const detailLevel = (b) => (b.marker || b.kind === 'spacecraft' ? null : b.kind === 'moon' ? 'moon' : b.orbit?.type === 'elements' ? 'object' : 'planet');
 function renderSystemPanel() {
   renderSystemPanelInner();
@@ -1251,7 +1256,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
+setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
 loadEvents().then(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0));
 
@@ -1284,6 +1289,7 @@ function syncBeacon() {
 onRoute(async (r) => {
   const prev = route;
   route = r;
+  setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
   syncRail();
@@ -1377,6 +1383,7 @@ onRoute(async (r) => {
     syncBeacon();
     starView.show();
     starView.load(b, { isSun: m.isSol, systemName: m.name });
+    setDetail(detailCards(b, m, { system, clock }), (d) => starView.setExtras(d));
     renderBodyPanel(b.id, { inStarView: true });
     const noTemplate = b.kind === 'white dwarf' || b.kind === 'brown dwarf';
     if (!noTemplate) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
@@ -1396,6 +1403,7 @@ onRoute(async (r) => {
     syncBeacon();
     planetView.show();
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
+    setDetail(detailCards(b, m, { system, clock }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
     renderBodyPanel(b.id, { inStarView: true });
     syncRail();
   } else if (r.level === 'galaxy') {
