@@ -12,6 +12,7 @@ test('offline snapshot preserves catalogue fields, Unicode and embedded asset by
   const packed = gzipSync(JSON.stringify(snapshot)).toString('base64');
   assert.deepEqual(await decodeSnapshot(packed), snapshot);
   assert.deepEqual(await decodeSnapshot(encodeSnapshotBytes(gzipSync(JSON.stringify(snapshot)))), snapshot);
+  assert.deepEqual(await decodeSnapshot(encodeApplicationBytes(gzipSync(JSON.stringify(snapshot)))), snapshot);
 });
 
 test('radix85 transport preserves binary values and partial blocks without script delimiters', () => {

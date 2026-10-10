@@ -1,0 +1,157 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "europa",
+      "name": "Europa",
+      "aliases": [
+        "Europa"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Own-body NASA3D Galileo/Voyager globe preserved; source association/coverage/frame/epochs/photometry audit open. Local SRU photograph is not full globe or calibrated visible colour.",
+      "surfaceLabel": "HYPOTHETICAL LOCAL ICE TERRAIN",
+      "skyLabel": "HYPOTHETICAL SKY FROM EUROPA",
+      "measured": [
+        "Juno SRU observed2022-09-29 under Jupiter-shine; white dots are radiation-particle artifacts, not terrain. Monochrome450\u20131100nm, not calibrated visible colour.",
+        "Catalogue radius1560.8km/semimajor axis671100km preserved. Ridges and chaos are observed; possible plume stains do not confirm activity."
+      ],
+      "modelled": [
+        "Levin et al. published2025-12-17 infer29\u00b110km thermally conductive shell for idealized pure-water ice from2022 MWR data; salinity15mg/kg reduces~5km and possible convective layer adds total thickness. Not universal directly measured thickness.",
+        "skyGeometry Jupiter69911km at671100\u22121560.8km gives11.98711degrees/90HFOV175.544px at1672wide;165K placeholder only for angular geometry, no photometric transfer.",
+        "Representative Sun5.2044AU off frame via skyGeometry."
+      ],
+      "assumed": [
+        "Invented ice ridges, fractures, sparse blocks and brown non-ice deposits; local chemistry/fractions/colour unmeasured.",
+        "Independent invented Jupiter bands/phase/orientation/light; no observed Jupiter/Moon/Mars/Io map reused. Thin exosphere has black sky."
+      ],
+      "unknown": [
+        "Native map coverage/frame/epochs and observer registration open; local chemistry/biology unmeasured, no active plume or exposed ocean implied.",
+        "No survivable landing claim, no verified live scientific image stream or exhaustive newest-observation claim."
+      ],
+      "references": [
+        {
+          "title": "NASA SRU source",
+          "url": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/"
+        },
+        {
+          "title": "Levin et al. primary ice-shell model",
+          "url": "https://www.nature.com/articles/s41550-025-02718-0"
+        },
+        {
+          "title": "NASA2026-01-27 release,2022 observations",
+          "url": "https://www.nasa.gov/missions/juno/nasas-juno-measures-thickness-of-europas-ice-shell/"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/europa-sru-native.jpg",
+          "label": "NATIVE SRU MONOCHROME CONTEXT",
+          "tier": "measured",
+          "sourceUrl": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26332/PIA26332.jpg?w=1020&fit=clip",
+          "observationDate": "2022-09-29",
+          "publicationDate": "2024-05-15",
+          "credit": "NASA/JPL-Caltech/SwRI",
+          "terms": "NASA image/media guidelines; full mission credits retained.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+          "bytes": 195650,
+          "description": "NASA-served1020px display rendition, not full4059px raster. Monochrome Jupiter-shine photograph; white dots are radiation-particle artifacts, plume stains unconfirmed. Not calibrated visible colour. Full-resolution PNG/JPEG originals retained separately.",
+          "processing": "Copied unchanged from NASA dynamicimage response; publisher resizing/re-encoding disclosed. No local crop/recolour/artifact removal."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 5.2044,
+        "horizontalFovDeg": 90
+      },
+      "inputs": {
+        "surfaceImage": "exec-dd6ea2f6-3608-4f1a-8bde-0d6b13c61401.png",
+        "skyImage": "exec-4cac412c-8e52-4968-b9d6-9bb71cbe6993.png"
+      }
+    }
+  ],
+  "prompts": {
+    "surface": "Create one independently imagined LOCAL ICE TERRAIN ON EUROPA, wide16:9 scientific concept observer illustration, no text. Low camera over pale gray ivory water-ice plain, modest paired low ridges receding toward horizon, a few shallow fractures containing muted reddish brown non-ice material whose chemistry is unknown, sparse angular ice blocks. Fine frost and gently corrugated crust, distant low broken chaos blocks. Extremely thin oxygen exosphere represented by black sky, Sun outside frame, restrained low directional illumination and hard shadows; no blue haze, no exposed ocean, no liquid rivers, no active plume, no vegetation/person/spacecraft/survivable landing claim. Ice geometries, local material fractions, colours, exact ridge shapes and illumination are hypothetical, not a measured named place or mapped global geography. No copied or recoloured Moon/Mars/Pluto/Io maps, no reference imagery used. Independent illustration based only on Europa's ridged ice and chaos morphology. Calm restrained contrast, relatively smooth foreground for compact app preview.",
+    "sky": "Create one independently imagined JUPITER-FACING OBSERVER SKY FROM EUROPA, wide16:9, no text. Low observer over pale ivory gray water-ice plain with sparse low double ridges and shallow brownish fractures, few angular ice blocks. Black vacuum-like sky above a distant low horizon; very tenuous oxygen exosphere produces no Earth haze. Put small fully circular Jupiter centered at x50percent y27percent, about10.499percent of image WIDTH across (at1672pixels approximately175.54pixels), a modest distant disc rather than a huge sky-filling planet. Research geometry guide is spherical69911km Jupiter viewed671100minus1560.8km from Europa surface, nominal90degree horizontal FOV, angular diameter11.98711degrees. Invent restrained beige cream gray cloud bands independently, no observedJupiter skin or GreatRedSpot map registration, no image references. Arbitrary full-ish phase and cloud orientation are artistic, not date/epoch geometry. Sun at representative5.2044AU lies outside frame. Hard low sunlight and weak Jupiter-shine on hypothetical ice, no ocean/plume/clouds/blue haze/person/spacecraft/survivable landing claim. Exact local terrain, impurity chemistry, visible colour, exposure and phase remain imagined. No Moon/Mars/Pluto/Io analog textures; compact clean composition."
+  },
+  "generatedMode": "built-in image_gen; independent generations without observed-body references",
+  "assets": [
+    {
+      "path": "data/research-sources/exec-dd6ea2f6-3608-4f1a-8bde-0d6b13c61401.png",
+      "sha256": "6c51a34930593b2e68a00bfd8c9bccdc16489ed11d3bb51b9ef82484a0946d35",
+      "bytes": 2669647,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "data/research-sources/exec-4cac412c-8e52-4968-b9d6-9bb71cbe6993.png",
+      "sha256": "8b65925ed54f38ba5d88014b074a51cbeb70d8bfdba9361d188f0d8bba37176b",
+      "bytes": 1850658,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "public/bespoke/europa-surface-image.jpg",
+      "sha256": "df651248619f3c1169b4a797dc2ac658a52eb1dca8825c00a215f793c135846c",
+      "bytes": 292119
+    },
+    {
+      "path": "public/bespoke/europa-surface-image-preview.jpg",
+      "sha256": "701dc3f3f2690e16cb7e7e3647954e8ed9ce76ec0565d18e2ddbfd44fbdebe25",
+      "bytes": 50940
+    },
+    {
+      "path": "public/bespoke/europa-sky-image.jpg",
+      "sha256": "cb755d2afb46190473d16af51ec3ea56164fc75b47103b033817524ae096100a",
+      "bytes": 195356
+    },
+    {
+      "path": "public/bespoke/europa-sky-image-preview.jpg",
+      "sha256": "2d7c0f59728dd237b0d5024bc28fe8b4d70fabf714164873a9fbb819bdb38ad8",
+      "bytes": 35428
+    },
+    {
+      "path": "public/bespoke/europa-sru-native.jpg",
+      "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+      "bytes": 195650
+    }
+  ],
+  "rasterValidation": {
+    "method": "Row210 longest contiguous RGB-all >5/10/20; no angular arithmetic outside skyGeometry",
+    "sourceSize": [
+      1672,
+      941
+    ],
+    "jupiterAngularDiameterDeg": 11.987109706062919,
+    "targetWidthPixels": 175.54412422508253,
+    "thresholdWidths": [
+      159,
+      159,
+      159
+    ],
+    "limits": "Threshold-dependent rendered disc; FOV/colour/phase/exposure and registration uncalibrated.165K only satisfies helper angular validation, not Jupiter photometry."
+  },
+  "validation": {
+    "testsPassed": 221,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15927416,
+    "headroomBytes": 72584,
+    "decodedImages": 176,
+    "detailedSystems": 521,
+    "snapshotSha256": "ce2f76ec26089914e9480ae6ce794843859b16bb6fd883e2b33c8460b8cbb7f1",
+    "applicationSha256": "03a8c50446ce17a26d09559c9c7f991d68793d6599fd5faee3595012b765f167",
+    "snapshotRawTextSha256": "6add1c767dc6594c30b588b7746274e98bea3534a5624acd3aeee2016c932615",
+    "prior47Dossiers": "deepEqual",
+    "normalAndOfflineEuropa": "own globe and three images verified",
+    "nativeContextHashes": "all verified",
+    "shapeAndModelBytes": "preserved",
+    "browserChecks": "complete snapshot readable equality, exact app and raw HTML snapshot parser bytes, six navigation levels, unsupported message, eight worker rows,24craft and ISS offline verified",
+    "upstreamPreserved": "83b7af7 observatory live views26newsites34cameras"
+  }
+}
