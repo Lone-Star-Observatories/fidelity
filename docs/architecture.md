@@ -176,4 +176,7 @@ show their stars and planets. `/api/nearby` rows carry each star's space velocit
 HYG's pc/yr converted to km/s; `rvKnown` = 0 means sideways motion only). The Navigation View
 draws motion arrows relative to the current star or around the galaxy (adding the Sun's
 Schönrich 2010 motion and a 233 km/s circular speed), moves stars linearly to any epoch within
-±5 Myr, and finds each star's closest approach.
+±5 Myr, and finds each star's closest approach. Arrows have four-barbed heads; Sol's galactic
+motion is a separate gold arrow (capped at 0.6 × the radius). Systems within 8 ly of Sol get a
+line and distance label, refreshed with the epoch (`updateProximity`). An SVG orientation gauge
+(`.orient-gauge`) shows where the galactic centre, rotation and north point on screen.

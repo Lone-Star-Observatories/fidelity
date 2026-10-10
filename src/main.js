@@ -675,7 +675,8 @@ function motionSection(d) {
       pill(`ARROWS · ${label}`, () => { nav.setMotion({ window: w }); renderNavPanel(); }, m.window === w ? 'on' : ''))),
     h('p', { className: 'note', textContent: m.mode === 'galactic'
       ? 'Each arrow is a star\'s path around the galactic centre over the window (Sun: ~245 km/s towards l = 90°). Everything here is carried along together, which is why the neighbourhood holds together.'
-      : m.mode === 'relative' ? `Arrows: where each star goes, seen from ${c.id === 'sol' ? 'the Sun' : c.name}. Dim arrows have no measured radial velocity, so only their sideways motion is known.` : 'Show where each star is heading.' }),
+      : m.mode === 'relative' ? `Arrows: where each star goes, seen from ${c.id === 'sol' ? 'the Sun' : c.name}. Dim arrows have no measured radial velocity, so only their sideways motion is known. The gold arrow is Sol's own path around the galaxy (~250 km/s), which carries the whole neighbourhood with it.` : 'Show where each star is heading.' }),
+    h('p', { className: 'note', textContent: 'Green lines: every system within 8 ly of Sol, with its distance. Run deep time to watch stars come and go.' }),
     h('div', { className: 'ctl-label', textContent: 'DEEP TIME' }),
     h('div', { className: 'body-list' },
       pill('◀◀', () => { deepDir = -1; }, 'square'), pill('❚❚', () => { deepDir = 0; }, 'square'), pill('▶▶', () => { deepDir = 1; if (nav.motion.mode === 'galactic') nav.setMotion({ mode: 'relative' }); }, 'square'),

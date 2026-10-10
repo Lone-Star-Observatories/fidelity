@@ -152,6 +152,11 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .nav-label.selected { color: #000; background: var(--orange); border-color: var(--orange); }
 .nav-label.ring { color: var(--violet); background: none; border: 0; pointer-events: none; }
 .nav-label.spoke { color: var(--apricot); background: none; border: 0; pointer-events: none; font-size: 10px; }
+.nav-label.prox { color: #66ffcc; background: rgba(0, 0, 0, 0.55); border-left: 2px solid #66ffcc; font-size: 10px; }
+.orient-gauge { position: absolute; left: 12px; bottom: 12px; width: 150px; pointer-events: none; background: rgba(0, 0, 0, 0.5); border-left: 3px solid var(--apricot); padding: 4px 6px; }
+.orient-gauge svg { display: block; width: 120px; height: 120px; margin: 0 auto; font-family: inherit; letter-spacing: 0.06em; }
+.orient-title { font-size: 10px; letter-spacing: 0.12em; color: var(--apricot); }
+.orient-readout { font-size: 10px; letter-spacing: 0.06em; color: var(--peach); text-align: center; }
 .nav-label.motion { color: #ffcc66; background: none; border: 0; pointer-events: none; font-size: 10px; letter-spacing: 0.06em; }
 .nav-label.fleet { color: var(--rose); background: none; border: 0; pointer-events: none; font-size: 16px; letter-spacing: 0.22em; }
 .nav-label.quadrant { color: rgba(204, 153, 204, 0.55); background: none; border: 0; pointer-events: none; font-size: 15px; letter-spacing: 0.2em; }

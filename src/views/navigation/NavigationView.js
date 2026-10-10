@@ -105,8 +105,9 @@ export function createNavigationView(container, { onSelect, onFrame }) {
 
   /** Show stars around `d.center` (from /api/nearby). */
   function load(d) {
-    msg = null; arrows = null; epoch = 0;
+    msg = null; arrows = null; sunArrow = null; sunTag = null; proxLines = null; epoch = 0;
     clearWorld();
+    proxTags.clear();
     data = d;
     selectedId = null;
     tempLabel = null;
@@ -224,8 +225,23 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   const LY_PER_KMS_YR = 3.3356e-6;
   // Sun's motion around the galaxy: Schönrich et al. 2010 (U, V, W) plus a 233 km/s circular speed.
   const SUN_GAL_KMS = [11.1, 12.24 + 233, 7.25];
-  let motion = { mode: 'off', window: 100000 }, epoch = 0;
-  let arrows = null, ptsGeo = null;
+  let motion = { mode: 'relative', window: 100000 }, epoch = 0;
+  let arrows = null, ptsGeo = null, sunArrow = null, sunTag = null;
+  const SOL_GAL = new THREE.Vector3(...frameToScene(SUN_GAL_KMS)).multiplyScalar(LY_PER_KMS_YR);
+  /** Shaft plus a four-barbed head (visible from any angle) from a to b, pushed into pos/col. */
+  function pushArrow(pos, col, a, b, cTail, cHead, headLen) {
+    const d = b.clone().sub(a), len = d.length();
+    if (len < 1e-6) return;
+    d.divideScalar(len);
+    pos.push(a.x, a.y, a.z, b.x, b.y, b.z); col.push(...cTail, ...cHead);
+    const h = Math.min(len * 0.3, headLen);
+    const p1 = new THREE.Vector3().crossVectors(d, Math.abs(d.y) > 0.9 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0)).normalize();
+    const p2 = new THREE.Vector3().crossVectors(d, p1);
+    for (const q of [p1, p2, p1.clone().negate(), p2.clone().negate()]) {
+      const e = b.clone().addScaledVector(d, -h).addScaledVector(q, h * 0.45);
+      pos.push(b.x, b.y, b.z, e.x, e.y, e.z); col.push(...cHead, ...cHead);
+    }
+  }
   const velOf = (s, c) => {
     if (!s.vKms) return null;
     const cv = c?.vKms ?? c?.v;
@@ -238,22 +254,77 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     if (!data) return;
     const c = data.center;
     for (const p of placed) p.vel = velOf(p.star, c);
-    if (arrows) { world.remove(arrows); arrows.geometry.dispose(); arrows.material.dispose(); arrows = null; }
+    for (const o of [arrows, sunArrow]) if (o) { world.remove(o); o.geometry.dispose(); o.material.dispose(); }
+    arrows = sunArrow = null;
     if (motion.mode !== 'off') {
-      const pos = [], col = [];
+      const pos = [], col = [], head = data.radiusLy * 0.035;
       for (const p of placed) {
         if (!p.vel) continue;
         const a = p.pos.clone().addScaledVector(p.vel, epoch), b = a.clone().addScaledVector(p.vel, motion.window);
-        pos.push(a.x, a.y, a.z, b.x, b.y, b.z);
         const k = p.star.rvKnown ? 1 : 0.45; // dimmer where only the sideways motion is known
-        col.push(0.6 * k, 0.85 * k, 1 * k, 0.15, 0.25, 0.4);
+        pushArrow(pos, col, a, b, [0.15, 0.25, 0.4], [0.6 * k, 0.85 * k, 1 * k], head);
       }
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
       g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
       arrows = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9 }));
       world.add(arrows);
+      // Sol's own path around the galaxy, in gold, whichever frame the other arrows use
+      const sol = placed.find((p) => p.star.id === 'sol');
+      if (sol && motion.mode !== 'galactic') {
+        const a = posAt(sol), full = motion.window * SOL_GAL.length(), cap = data.radiusLy * 0.6;
+        const b = a.clone().addScaledVector(SOL_GAL.clone().normalize(), Math.min(full, cap));
+        const sp = [], sc = [];
+        pushArrow(sp, sc, a, b, [0.5, 0.35, 0.1], [1, 0.8, 0.3], head * 1.4);
+        const sg = new THREE.BufferGeometry();
+        sg.setAttribute('position', new THREE.Float32BufferAttribute(sp, 3));
+        sg.setAttribute('color', new THREE.Float32BufferAttribute(sc, 3));
+        sunArrow = new THREE.LineSegments(sg, new THREE.LineBasicMaterial({ vertexColors: true }));
+        world.add(sunArrow);
+        if (!sunTag) sunTag = label('', 'motion', b);
+        sunTag.element.textContent = `SOL → ${Math.round(Math.hypot(...SUN_GAL_KMS))} KM/S AROUND THE GALAXY${full > cap ? ' · ARROW SHORTENED' : ''}`;
+        sunTag.position.copy(b);
+        sunTag.visible = true;
+      } else if (sunTag) sunTag.visible = false;
+    } else if (sunTag) sunTag.visible = false;
+    updateProximity();
+  }
+  // where a star is at the current epoch (stars only move in the relative frame)
+  const posAt = (p) => (p.vel && motion.mode !== 'galactic' ? p.pos.clone().addScaledVector(p.vel, epoch) : p.pos.clone());
+
+  // ---- anything within 8 ly of Sol gets a line and its distance ------------------------------
+  const NEAR_SOL_LY = 8;
+  let proxLines = null;
+  const proxTags = new Map(); // system key → label
+  function updateProximity() {
+    if (proxLines) { world.remove(proxLines); proxLines.geometry.dispose(); proxLines.material.dispose(); proxLines = null; }
+    const sol = placed.find((p) => p.star.id === 'sol');
+    const keep = new Set();
+    if (sol) {
+      const sp = posAt(sol), best = new Map();
+      for (const p of placed) {
+        if (p === sol) continue;
+        const q = posAt(p), d = q.distanceTo(sp);
+        if (d > NEAR_SOL_LY) continue;
+        const k = p.star.system ?? p.star.id;
+        if (!best.has(k) || d < best.get(k).d) best.set(k, { p, q, d });
+      }
+      const pts = [];
+      for (const [k, { p, q, d }] of best) {
+        pts.push(sp, q);
+        keep.add(k);
+        const mid = sp.clone().lerp(q, 0.5);
+        let t = proxTags.get(k);
+        if (!t) { t = label('', 'prox', mid, () => onSelect(p.star.id)); proxTags.set(k, t); }
+        t.position.copy(mid);
+        t.element.textContent = `${p.star.name.toUpperCase()} · ${d.toFixed(2)} LY`;
+      }
+      if (pts.length) {
+        proxLines = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x66ffcc, transparent: true, opacity: 0.55 }));
+        world.add(proxLines);
+      }
     }
+    for (const [k, t] of proxTags) if (!keep.has(k)) { world.remove(t); t.element.remove(); proxTags.delete(k); }
   }
   /** Move every star to epoch `t` years from now (linear motion relative to the centre star). */
   function setEpoch(t) {
@@ -271,7 +342,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
       hostIdxs.forEach((i, k) => ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)));
       ha.needsUpdate = true;
     }
-    if (motion.mode !== 'off') refreshMotion();
+    if (motion.mode !== 'off') refreshMotion(); else updateProximity();
   }
   let hostGeo = null, hostIdxs = [];
   /** Closest approaches to the centre star within ±maxYears (linear motion): [{ star, dMinLy, tYears }]. */
@@ -329,6 +400,48 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   }
   new ResizeObserver(resize).observe(container);
 
+  // ---- orientation gauge: which screen direction is the galactic centre, rotation, north ----------
+  const gauge = document.createElement('div');
+  gauge.className = 'orient-gauge';
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(SVGNS, 'svg');
+  svg.setAttribute('viewBox', '-60 -60 120 120');
+  const readout = document.createElement('div');
+  readout.className = 'orient-readout';
+  gauge.append(Object.assign(document.createElement('div'), { className: 'orient-title', textContent: 'ORIENTATION' }), svg, readout);
+  container.appendChild(gauge);
+  const AXES = [ // scene direction, label, colour
+    [new THREE.Vector3(...frameToScene([1, 0, 0])), 'GC', '#ff9966'], [new THREE.Vector3(...frameToScene([-1, 0, 0])), 'ANTI', '#996655'],
+    [new THREE.Vector3(...frameToScene([0, 1, 0])), 'ROT', '#ffcc66'], [new THREE.Vector3(...frameToScene([0, -1, 0])), '270°', '#998855'],
+    [new THREE.Vector3(...frameToScene([0, 0, 1])), 'N', '#99ccff'], [new THREE.Vector3(...frameToScene([0, 0, -1])), 'S', '#667799'],
+  ].map(([v, text, color]) => {
+    const ln = document.createElementNS(SVGNS, 'line'), tx = document.createElementNS(SVGNS, 'text');
+    ln.setAttribute('stroke', color); ln.setAttribute('stroke-width', '2'); ln.setAttribute('x1', '0'); ln.setAttribute('y1', '0');
+    tx.setAttribute('fill', color); tx.setAttribute('font-size', '10'); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('dominant-baseline', 'middle');
+    tx.textContent = text;
+    svg.append(ln, tx);
+    return { v, text, ln, tx };
+  });
+  const invQ = new THREE.Quaternion(), gv = new THREE.Vector3();
+  const screenWord = (x, y) => (Math.abs(x) > Math.abs(y) ? (x > 0 ? 'RIGHT' : 'LEFT') : (y > 0 ? 'UP' : 'DOWN'));
+  let lastReadout = '';
+  function drawGauge() {
+    invQ.copy(camera.quaternion).invert();
+    const words = [];
+    for (const a of AXES) {
+      gv.copy(a.v).applyQuaternion(invQ); // x right, y up, z towards the viewer
+      const x = gv.x * 40, y = -gv.y * 40, away = gv.z < 0;
+      a.ln.setAttribute('x2', x.toFixed(1)); a.ln.setAttribute('y2', y.toFixed(1));
+      a.ln.setAttribute('stroke-dasharray', away ? '3 3' : '');
+      a.ln.setAttribute('opacity', away ? '0.55' : '1');
+      a.tx.setAttribute('x', (gv.x * 52).toFixed(1)); a.tx.setAttribute('y', (-gv.y * 52).toFixed(1));
+      a.tx.setAttribute('opacity', away ? '0.55' : '1');
+      if (a.text === 'GC' || a.text === 'N') words.push(Math.hypot(gv.x, gv.y) < 0.35 ? `${a.text} ${away ? 'INTO SCREEN' : 'TOWARDS YOU'}` : `${a.text} ${screenWord(gv.x, gv.y)}`);
+    }
+    const text = words.join(' · ');
+    if (text !== lastReadout) { readout.textContent = text; lastReadout = text; }
+  }
+
   const beaconV = new THREE.Vector3();
   function frame() {
     if (!running) return;
@@ -345,6 +458,7 @@ export function createNavigationView(container, { onSelect, onFrame }) {
     for (const p of placed) if (p.label) p.label.visible = show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId;
     renderer.render(scene, camera);
     labels.render(scene, camera);
+    drawGauge();
 
     const sol = placed.find((p) => p.star.id === 'sol');
     if (sol) {
