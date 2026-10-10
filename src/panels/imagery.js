@@ -9,6 +9,7 @@
 
 import { badge } from '../data/provenance.js';
 import { formatRa, formatDec } from '../astro/observe.js';
+import { settings } from '../settings.js';
 
 const STANDALONE = import.meta.env.MODE === 'standalone';
 const el = (tag, props = {}, ...kids) => {
@@ -55,6 +56,9 @@ const SURVEY_META = {
   panstarrs: ['visible', 'PAN-STARRS'], mellinger: ['visible', 'NAKED-EYE SKY'], twomass: ['near-ir', '2MASS · NEAR IR'], wise: ['mid-ir', 'WISE · MID IR'],
   akari: ['far-ir', 'AKARI · FAR IR'], planck: ['microwave', 'PLANCK · MICROWAVE'], nvss: ['radio', 'NVSS · RADIO'], hi4pi: ['radio', 'HI4PI · 21 CM'],
 };
+// the spectrum filter's bands (#28, settings 'band') → this strip's survey bands
+const FROM_FILTER = { radio: 'radio', microwave: 'microwave', ir: 'ir', visible: 'visible', uv: 'uv', xray: 'x-ray', gamma: 'gamma' };
+const inBand = (b, surveyBand) => b === 'all' || b === surveyBand || (b === 'ir' && /-ir$/.test(surveyBand));
 const FOVS = [[0.08, '5′'], [0.33, '20′'], [1, '1°'], [5, '5°'], [20, '20°']];
 const ARTWORK = /\b(artist|artist's|illustration|concept|rendering|rendered|animation|simulat|depiction|imagined|visuali[sz]ation)/i;
 
@@ -104,7 +108,7 @@ export function createImageryCard(target) {
   }
 
   // ---- all wavelengths ------------------------------------------------------------------------
-  let fov = target.defaultFov ?? 0.33, centre = null, band = 'all', drawnAt = 0;
+  let fov = target.defaultFov ?? 0.33, centre = null, band = FROM_FILTER[settings.get('band')] ?? 'all', drawnAt = 0;
   const surveyGrid = el('div', { className: 'im-grid im-survey' });
   const where = el('p', { className: 'note mono' });
   const fovPills = el('div', { className: 'im-pills' });
@@ -112,7 +116,7 @@ export function createImageryCard(target) {
   const drawPills = () => {
     fovPills.replaceChildren(el('span', { className: 'im-label', textContent: 'FIELD' }), ...FOVS.map(([f, l]) => pill(l, Math.abs(f - fov) < 1e-6, () => { fov = f; drawPills(); drawSurveys(true); })));
     bandPills.replaceChildren(el('span', { className: 'im-label', textContent: 'BAND' }), pill('ALL', band === 'all', () => { band = 'all'; drawPills(); drawSurveys(true); }),
-      ...BANDS.map(([b, l]) => pill(l, band === b, () => { band = b; drawPills(); drawSurveys(true); })));
+      ...BANDS.map(([b, l]) => pill(l, band === b || (band === 'ir' && /-ir$/.test(b)), () => { band = b; drawPills(); drawSurveys(true); })));
   };
   function drawSurveys(force = false) {
     const s = target.sky();
@@ -123,7 +127,7 @@ export function createImageryCard(target) {
     centre = { ra: s.ra, dec: s.dec };
     drawnAt = performance.now();
     where.textContent = `CENTRE ${formatRa(centre.ra)} · ${formatDec(centre.dec)} (J2000) · FIELD ${FOVS.find(([f]) => f === fov)?.[1] ?? `${fov}°`} · NORTH UP, EAST LEFT`;
-    const keys = SURVEY_ORDER.filter((k) => band === 'all' || SURVEY_META[k][0] === band);
+    const keys = SURVEY_ORDER.filter((k) => inBand(band, SURVEY_META[k][0]));
     surveyGrid.replaceChildren(...keys.map((k) => {
       const [, label] = SURVEY_META[k];
       const src = `/api/survey/${k}?ra=${centre.ra.toFixed(4)}&dec=${centre.dec.toFixed(4)}&fov=${fov}`;

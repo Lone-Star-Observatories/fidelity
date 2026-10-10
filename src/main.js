@@ -221,7 +221,8 @@ function syncBandControls() {
   passSel.hidden = !b.passes.length;
   if (p) passSel.value = p.id;
 }
-bandSel.addEventListener('change', () => { settings.set('bandPass', null); settings.set('band', bandSel.value); });
+// read the choice first: clearing bandPass re-syncs the controls from the stored (old) band
+bandSel.addEventListener('change', () => { const id = bandSel.value; settings.set('bandPass', null); settings.set('band', id); });
 passSel.addEventListener('change', () => settings.set('bandPass', passSel.value));
 function applyBandEverywhere() {
   setCurrentBand(settings.get('band'), settings.get('bandPass'));
