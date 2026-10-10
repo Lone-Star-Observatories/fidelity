@@ -401,6 +401,23 @@ export function buildStarSystem(detail) {
 
   const focus = starById[detail.star.id];
   const aMin = planets.length ? Math.min(...planets.map((p) => p.orbit.a)) : null;
+  // Binary stars: in ENHANCED mode, draw the stars large enough to see against their orbit
+  // (the biggest ≈ 4% of the tightest stellar orbit, at most 15% of its closest approach), keeping
+  // their size order (companions at least half the biggest) and never growing a star past a
+  // quarter of its innermost planet's orbit.
+  const sysScale = aMin ? Math.min(1, Math.max(0.02, aMin / 0.387)) : 1;
+  const binAU = binary?.orbits?.length ? Math.min(...binary.orbits.map((o) => Math.min(0.04, 0.15 * (1 - o.e)) * o.aArcsec * o.distPc)) : null;
+  if (binAU) {
+    const base = (b) => (sysScale < 1 ? 0.045 : 0.07) * Math.pow(b.radiusKm / 695700, 0.4) * sysScale;
+    const biggest = Math.max(...stars.map(base)), boost = binAU / biggest;
+    for (const st of stars) {
+      const own = planets.filter((p) => p.host === st.id).map((p) => p.orbit.a);
+      const cap = own.length ? (0.25 * Math.min(...own)) / base(st) : Infinity;
+      // a white dwarf or brown dwarf companion is shown smaller, but never below half the biggest
+      const floor = (0.5 * binAU) / base(st);
+      st.sizeBoost = Math.max(1, Math.min(Math.max(boost, floor), cap));
+    }
+  }
   const survey = [];
   const focusPlanets = planets.filter((p) => p.host === focus.id);
   if (focusPlanets.length) {
@@ -420,7 +437,7 @@ export function buildStarSystem(detail) {
     subtitle: `${fmt(s.distLy, 2)} LY FROM SOL · ${n > 1 ? `${MULTIPLICITY[n] ?? `${n}-STAR`} SYSTEM · ` : ''}${focus.spectral.toUpperCase()} · ${planets.length || 'NO'} KNOWN PLANET${planets.length === 1 ? '' : 'S'}`,
     bodies: [...stars, ...planets], starId: focus.id, stars: stars.map((x) => x.id),
     // Enhanced sizes are relative to the system: shrink everything for compact systems like TRAPPIST-1.
-    scale: aMin ? Math.min(1, Math.max(0.02, aMin / 0.387)) : 1,
+    scale: sysScale,
     solDirection: focusPlane?.plane.toSol ?? frameToScene(eqToEcl(norm([-s.x, -s.y, -s.z]))),
     planeNormal: focusPlane?.plane.n ?? [0, 1, 0],
     transiting: !!focusPlane?.transiting,

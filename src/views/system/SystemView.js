@@ -47,7 +47,7 @@ function poleVector([raDeg, decDeg]) {
 const trueRadius = (b) => b.radiusKm / AU_KM;
 const enhancedRadius = (b, scale) => Math.max(trueRadius(b),
   (b.starLike || b.kind === 'star'
-    ? (scale < 1 ? 0.045 : 0.07) * Math.pow(b.radiusKm / 695700, 0.4) // keeps a white dwarf visibly smaller than its companion
+    ? (scale < 1 ? 0.045 : 0.07) * Math.pow(b.radiusKm / 695700, 0.4) * (b.sizeBoost ?? 1) // keeps a white dwarf visibly smaller than its companion
     : 0.022 * Math.pow(b.radiusKm / 6371, 0.42)) * scale);
 export const enhancement = (b, scale = 1) => enhancedRadius(b, scale) / trueRadius(b);
 

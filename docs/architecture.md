@@ -35,7 +35,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
   Navigation View uses the IAU galactic frame (the plane is horizontal, l = 0° points at the
   galactic centre) and is centred on the current star. See `src/astro/frames.js`.
 - **One system model.** Sol and other stars both become a model (`src/data/systems.js`):
-  one or more stars (binary orbits in `model.binary`), planets attached to their host star, orbits, a survey of camera distances, and facts that each carry a provenance tier.
+  one or more stars (binary orbits in `model.binary`; in ENHANCED mode each star's `sizeBoost` draws the biggest at ~4% of the tightest stellar orbit, companions at least half that, capped by their own planets), planets attached to their host star, orbits, a survey of camera distances, and facts that each carry a provenance tier.
   The System View and the info panel render whatever model they're given.
 - **Bodies.** `src/views/system/materials.js` holds the planet shader (lit by the star,
   with an optional night-side emission map), the cloud layer and the limb-darkened

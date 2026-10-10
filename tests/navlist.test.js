@@ -11,3 +11,11 @@ test('broad star classes from spectral types', () => {
   assert.equal(starClass({ spect: 'G2V' }), 'G');
   assert.equal(starClass({ spect: '' }), null);
 });
+
+import { systemName } from '../src/panels/navlist.js';
+test('system names: Luhman 16 AB, Sirius AB, mixed names, single stars', () => {
+  assert.equal(systemName([{ name: 'Luhman 16A' }, { name: 'Luhman 16B' }]), 'Luhman 16 AB');
+  assert.equal(systemName([{ name: 'Sirius' }, { name: 'Sirius B' }]), 'Sirius AB');
+  assert.equal(systemName([{ name: 'Rigil Kentaurus' }, { name: 'Toliman' }, { name: 'Proxima Centauri' }]), 'Rigil Kentaurus system');
+  assert.equal(systemName([{ name: 'Wolf 359' }]), 'Wolf 359');
+});

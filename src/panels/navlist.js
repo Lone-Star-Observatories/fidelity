@@ -15,6 +15,18 @@ export function starClass(s) {
   const m = t.match(/^[OBAFGKM]/);
   return m ? m[0] : null;
 }
+/**
+ * A system's name from its stars: "Luhman 16A" + "Luhman 16B" → "Luhman 16 AB"; a primary with a
+ * differently named companion ("Sirius" + "Sirius B") → "Sirius AB"; a single star keeps its name.
+ */
+export function systemName(members) {
+  if (members.length < 2) return members[0]?.name ?? '';
+  const comp = /^(.*?)\s?([A-D][a-z]?)$/;
+  const bases = members.map((m) => { const x = m.name.match(comp); return x ? [x[1], x[2]] : [m.name, 'A']; });
+  const base = bases[0][0];
+  if (!bases.every(([b]) => b === base)) return `${members[0].name} system`;
+  return `${base} ${bases.map(([, l]) => l).sort().join('')}`;
+}
 const PLANET_KINDS = {
   all: ['ALL', () => true],
   rocky: ['ROCKY', (p) => (p.radiusEarth != null ? p.radiusEarth < 1.6 : p.massEarth != null && p.massEarth < 5)],
@@ -72,7 +84,7 @@ export function createNavList({ h, pill, fmt, go, fetchPlanets, fetchClusters, o
     h('p', { className: 'note', textContent: `${systems.length} SYSTEMS` })];
     const list = h('div', { className: 'host-list' });
     for (const s of systems.slice(0, 80)) {
-      const name = s.members.length > 1 ? `${s.primary.name.toUpperCase()} SYSTEM` : s.primary.name.toUpperCase();
+      const name = systemName(s.members).toUpperCase();
       const tagTxt = [s.members.length > 1 ? `${s.members.length}★` : null, s.planets ? `${s.planets} PL` : null].filter(Boolean).join(' · ');
       list.append(rowBtn(name, `${fmt(s.dist, 1)} LY${tagTxt ? ` · ${tagTxt}` : ''}`, state.open === s.key || s.members.some((m) => m.id === selected), () => {
         state.open = state.open === s.key ? null : s.key; onSelectStar(s.primary.id);

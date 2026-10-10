@@ -8,6 +8,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { eqToGal, frameToScene, starTeff, blackbodyRGB, LY_PER_PC } from '../../astro/frames.js';
 import { settings } from '../../settings.js';
+import { systemName } from '../../panels/navlist.js';
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
@@ -317,7 +318,8 @@ export function createNavigationView(container, { onSelect, onFrame }) {
         let t = proxTags.get(k);
         if (!t) { t = label('', 'prox', mid, () => onSelect(p.star.id)); proxTags.set(k, t); }
         t.position.copy(mid);
-        t.element.textContent = `${p.star.name.toUpperCase()} · ${d.toFixed(2)} LY`;
+        const members = placed.filter((x) => (x.star.system ?? x.star.id) === k).map((x) => x.star).sort((x, y) => (x.absmag ?? 99) - (y.absmag ?? 99));
+        t.element.textContent = `${systemName(members).toUpperCase()} · ${d.toFixed(2)} LY`;
       }
       if (pts.length) {
         proxLines = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x66ffcc, transparent: true, opacity: 0.55 }));
