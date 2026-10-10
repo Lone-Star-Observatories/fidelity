@@ -218,10 +218,11 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "Own NASA3D globe byte-equal to fetched source; native Galileo PIA03455 JPEG retained unchanged, observation2001-05-25 verified in contemporary JPL newsletter, full NASA/JPL/ASU/Academic Research Lab credit supported; mono panels/strip gaps/locator annotations not seamless colour geography. Recent/product-frame audit and headroom remain open (callisto-moon-preparation-2026-10-10.json); no initial dossier yet",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D Callisto globe preserved byte-equal to source; product association, coverage, frame, input epochs and photometry remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "callisto"
     },
     {
       "id": "sol-amalthea",
@@ -8503,7 +8504,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 5,
+      "initialDossiers": 6,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

@@ -38,5 +38,32 @@
     "path": "data/research-sources/callisto-spires-display-pia03455.jpg",
     "bytes": 134419,
     "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6"
+  },
+  {
+    "url": "https://www.esa.int/Science_Exploration/Space_Science/Juice/Juice_factsheet",
+    "publicationDate": null,
+    "observationDate": null,
+    "note": "Future mission context, not a Callisto observation.",
+    "path": "data/research-sources/callisto-juice-factsheet.html",
+    "bytes": 22160,
+    "sha256": "b4ab908298408984904a0b8180592f42521e9b7b126895c8d9ff134486d00357"
+  },
+  {
+    "role": "surface",
+    "path": "data/research-sources/callisto-generated-surface-original.png",
+    "bytes": 3242522,
+    "sha256": "1c15ddedae317c955a273066bf9a7c0a8abc83da35eabbe53aee5ef580ef5da5",
+    "source": "Independent built-in image_gen; original also retained in Codex generated_images directory.",
+    "observationDate": null,
+    "generatedDate": "2026-10-10"
+  },
+  {
+    "role": "sky",
+    "path": "data/research-sources/callisto-generated-sky-original.png",
+    "bytes": 1992308,
+    "sha256": "0b372d3a50779956f1d63bca604b4a9ff2c0cd28f86fa36caabecabcbbf37b70",
+    "source": "Independent built-in image_gen; original also retained in Codex generated_images directory.",
+    "observationDate": null,
+    "generatedDate": "2026-10-10"
   }
 ]

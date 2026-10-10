@@ -6923,6 +6923,120 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "callisto": {
+    "id": "callisto",
+    "name": "Callisto",
+    "aliases": [
+      "Callisto"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own NASA3D Callisto globe preserved byte-equal to source; product association, coverage, frame, input epochs and photometry remain open.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL KNOBBY TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM CALLISTO",
+    "measured": [
+      "Galileo SSI close-up observed2001-05-25, released2001-08-22; monochrome panel presentation not calibrated visible colour.",
+      "Existing catalogue radius2410.3km and semimajor axis1882700km preserved. Native source byte equality verified."
+    ],
+    "modelled": [
+      "Caption estimates bright knobs80–100m high and smallest discernible features about3m; these are source statements, not new raster measurements.",
+      "Sublimation, dust migration and impact-ejecta origins are interpretations/hypotheses, not measured local chemistry or erosion rates.",
+      "skyGeometry spherical Jupiter69911km at1882700−2410.3km:4.2616079degrees for90HFOV.165K positive angular-helper input only; computed colour/irradiance not adopted photometry.",
+      "Representative Sun5.2044AU outside frame; illumination/phase/registration artistic."
+    ],
+    "assumed": [
+      "Independent invented ice-rich rocky worn hummocks, fragments, dust and local terrain; exact morphology, chemistry/fractions, colour and exposure imagined.",
+      "Independent invented schematic Jupiter atmospheric bands/phase/orientation/light; no observed-body analog skins or reused geography. Tenuous exosphere represented by black sky."
+    ],
+    "unknown": [
+      "Local terrain geographic registration, material fractions/chemistry, visible albedo, photometric transfer and dated observer geometry unknown.",
+      "Native map product association/coverage/frame/input epochs remain open; no active plume, exposed ocean, biology or survivable landing implied."
+    ],
+    "references": [
+      {
+        "title": "NASA native SSI caption",
+        "url": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/"
+      },
+      {
+        "title": "Contemporary JPL Universe observation/credit audit, PDF page9",
+        "url": "https://www.jpl.nasa.gov/universe/archive/un0108.pdf"
+      },
+      {
+        "title": "ESA Juice factsheet: future observations",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Juice/Juice_factsheet"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/callisto-ssi-native.jpg",
+        "label": "NATIVE GALILEO SSI TERRAIN CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/photojournal/callisto-close-up-with-jagged-hills/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia03/pia03455/PIA03455.jpg?w=1020&fit=clip",
+        "observationDate": "2001-05-25",
+        "publicationDate": "2001-08-22",
+        "credit": "NASA/JPL/Arizona State University, Academic Research Lab",
+        "terms": "NASA image/media guidelines; full mission/institution credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+        "bytes": 134419,
+        "description": "Unchanged NASA-served1020x770 display rendition; publisher resize/re-encoding, not original full-pixel preservation. Monochrome intensity stored RGB, not calibrated visible colour. Strip gaps/seams, panel outlines, scale and globe locator are processing/presentation context, not seamless terrain. Original2000x1510JPEG retained. Sublimation/dust/impact origins hypothetical. Historical JPL newsletter verifies Academic Research Lab credit; current external credit-link ownership unverified, not adopted as a terms link.",
+        "processing": "Copied unchanged from NASA served response; no local crop/recolour/annotation removal."
+      }
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.012568960314754,
+      "horizontalFovDeg": 90,
+      "interpretation": "Jupiter angular size only;165K is positive helper input not visible photometry. Colour/irradiance outputs not adopted.",
+      "angularDiameterDeg": 4.26160790446575,
+      "centreDiscWidthFraction": 0.03720669932298657,
+      "irradianceEarth": 0.00004268534530573517,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/callisto-surface-image.jpg",
+      "previewUrl": "/bespoke/callisto-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-dbae7908-5ec8-4b41-bfaa-1177bba5bfb3.png",
+      "sourceSha256": "1c15ddedae317c955a273066bf9a7c0a8abc83da35eabbe53aee5ef580ef5da5",
+      "sha256": "a29acd57b4cab74abf5d997a81155a35b94348b22253e0dfb81425de0efce907",
+      "previewSha256": "ce8151768c67b8fd9974a3e0fa9dd991fe23403eb2b26923138ce47ea86501f7",
+      "bytes": 366095,
+      "previewBytes": 65544,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/callisto-sky-image.jpg",
+      "previewUrl": "/bespoke/callisto-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-312cbc7d-4502-4597-a385-51392c24dd45.png",
+      "sourceSha256": "0b372d3a50779956f1d63bca604b4a9ff2c0cd28f86fa36caabecabcbbf37b70",
+      "sha256": "60835dc33c3a05c55d9b4acc218394ed74c0fcbd5f89fdd3b8c942282609fbb0",
+      "previewSha256": "adb4ff542a86009ea5f06c96ebc82768edd5a3af809bdf31be559ced4ccac585",
+      "bytes": 217891,
+      "previewBytes": 39778,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
