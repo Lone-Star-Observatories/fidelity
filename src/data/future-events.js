@@ -6,7 +6,7 @@
 // `years` is the offset from now to jump to (null: no date to jump to); `window` is [lo, hi] years.
 // Supernova peaks: Type II-P M_V = −16.7 ± 1 (Anderson et al. 2014); stripped-envelope (Ib/c)
 // M_V ≈ −18 (Drout et al. 2011); a super-luminous/hypernova ≈ −19 to −21 (Gal-Yam 2012). Apparent
-// magnitudes are before interstellar extinction unless an A_V is given.
+// magnitudes are before interstellar extinction unless an A_V is given. RA/Dec: J2000, CDS Sesame (SIMBAD).
 
 export const FUTURE_GROUPS = [
   ['dying', 'STELLAR DEATHS'],
@@ -20,7 +20,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'betelgeuse', group: 'dying', title: 'BETELGEUSE GOES SUPERNOVA', tier: 'modelled',
     when: 'ANY TIME IN THE NEXT ~100,000 YEARS', window: [0, 1e5], years: null,
-    sn: { M: -16.7, Msd: 1, distLy: 548, type: 'IIP', av: 0 },
+    sn: { ra: 88.79293899, dec: 7.407064,  M: -16.7, Msd: 1, distLy: 548, type: 'IIP', av: 0 },
     summary: 'A red supergiant of ~16–19 solar masses burning helium in its core. When the core collapses it becomes a Type II-P supernova: brighter than the half Moon for weeks, visible in daylight for about a year, then fading over a few years. Orion loses a shoulder; a neutron star remains.',
     facts: [['DISTANCE', '548 LY (168 PC, +27/−15)', 'measured', 'Joyce et al. 2020 (seismic + evolutionary modelling)'],
       ['STAGE', 'CORE HELIUM BURNING', 'modelled', 'Joyce et al. 2020: ~100,000 years before collapse. The 2019–20 "Great Dimming" was a dust cloud, not a sign of imminent collapse (Montargès et al. 2021).']],
@@ -29,7 +29,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'antares', group: 'dying', title: 'ANTARES GOES SUPERNOVA', tier: 'modelled',
     when: 'TIMING UNKNOWN (LATE IN ITS LIFE; WELL WITHIN ~1 MILLION YEARS)', window: [0, 1e6], years: null,
-    sn: { M: -16.7, Msd: 1, distLy: 550, type: 'IIP', av: 0 },
+    sn: { ra: 247.35191542, dec: -26.43200261,  M: -16.7, Msd: 1, distLy: 550, type: 'IIP', av: 0 },
     summary: 'The red supergiant heart of Scorpius (~12–15 solar masses). Its collapse would look much like Betelgeuse\'s, low in the southern summer sky; Scorpius loses its heart.',
     facts: [['DISTANCE', '~550 LY (170 PC)', 'measured', 'Hipparcos parallax (van Leeuwen 2007)']],
     source: 'van Leeuwen 2007 (Hipparcos new reduction); Ohnaka et al. 2017', url: 'https://doi.org/10.1051/0004-6361:20078357',
@@ -37,7 +37,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'vy-cma', group: 'dying', title: 'VY CANIS MAJORIS: SUPERNOVA OR SILENT COLLAPSE', tier: 'modelled',
     when: 'TIMING UNKNOWN', window: [0, 1e5], years: null,
-    sn: { M: -16.7, Msd: 1, distLy: 3820, type: 'IIP', av: 0 },
+    sn: { ra: 110.74302556, dec: -25.767554,  M: -16.7, Msd: 1, distLy: 3820, type: 'IIP', av: 0 },
     summary: 'A red hypergiant wrapped in its own dust. Two outcomes are modelled: a supernova, or a direct collapse to a black hole with no explosion, in which case the star simply fades from view over months (as N6946-BH1 appears to have done).',
     facts: [['DISTANCE', '3,820 LY (1.17 KPC)', 'measured', 'Maser parallax, Zhang et al. 2012'],
       ['OUTCOME B', 'FAILED SUPERNOVA → BLACK HOLE', 'modelled', 'Adams et al. 2017 (N6946-BH1, the candidate failed supernova)']],
@@ -46,7 +46,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'eta-carinae', group: 'dying', title: 'ETA CARINAE: SUPERNOVA OR HYPERNOVA', tier: 'modelled',
     when: 'TIMING UNKNOWN', window: [0, 1e6], years: null,
-    sn: { M: -19, Msd: 1.5, distLy: 7500, type: 'Ibc', av: 1.7 },
+    sn: { ra: 161.2647742, dec: -59.6844309,  M: -19, Msd: 1.5, distLy: 7500, type: 'Ibc', av: 1.7 },
     summary: 'A pair of massive stars, the primary ~90–100 solar masses. In its Great Eruption of the 1840s it briefly became the second-brightest star in the sky (about magnitude −1) without being destroyed. Its final explosion could be a super-luminous supernova; seen from 7,500 ly it would still be a single point, brighter than any star.',
     facts: [['DISTANCE', '7,500 LY (2.3 KPC)', 'measured', 'Smith 2006 (expansion parallax of the Homunculus)'],
       ['GREAT ERUPTION', 'PEAK ~MAG −1 IN 1843', 'measured', 'Historical record (Smith & Frew 2011)'],
@@ -56,7 +56,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'wr104', group: 'dying', title: 'WR 104: SUPERNOVA, AND THE GAMMA-RAY BURST QUESTION', tier: 'modelled',
     when: 'TIMING UNKNOWN (WITHIN A FEW HUNDRED THOUSAND YEARS)', window: [0, 5e5], years: null,
-    sn: { M: -18, Msd: 1, distLy: 8400, type: 'Ibc', av: 0 },
+    sn: { ra: 270.51718517, dec: -23.62838008,  M: -18, Msd: 1, distLy: 8400, type: 'Ibc', av: 0 },
     summary: 'A Wolf–Rayet star and an OB companion whose colliding winds wind dust into a pinwheel. Early images suggested we see the spiral face-on, which would put any gamma-ray burst beam pointed at us. Measurements in 2025 found the system tilted 30–40° to our line of sight; a burst beam is only a few degrees wide, so it would miss Earth.',
     facts: [['DISTANCE', '~8,400 LY (2.58 KPC)', 'measured', 'Tuthill et al. 2008'],
       ['TILT TO OUR LINE OF SIGHT', '30–40°', 'measured', 'Han et al. 2025 (Keck observations of the binary orbit)'],
@@ -77,7 +77,7 @@ export const FUTURE_EVENTS = [
   {
     id: 'gliese-710', group: 'passes', title: 'GLIESE 710 PASSES THROUGH THE OORT CLOUD', tier: 'computed',
     when: 'IN ~1.29 MILLION YEARS (±0.04)', window: [1.25e6, 1.33e6], years: 1.29e6,
-    star: { massSun: 0.65, distAu: 10600 },
+    star: { massSun: 0.65, distAu: 10600 }, shower: { startYears: 1.29e6, extraPerYear: 10, durationYears: 3.5e6 },
     summary: 'A K7 dwarf heading almost straight at us. At closest approach it will be ~10,600 au from the Sun, inside the Oort cloud, shining at about magnitude −2.7 (brighter than Jupiter). Its gravity will nudge Oort-cloud comets inward: a modelled shower of perhaps ten extra naked-eye comets a year, arriving over the following few million years. Its pull on the planets is negligible.',
     facts: [['CLOSEST APPROACH', '~10,600 AU (0.051 PC)', 'computed', 'Bailer-Jones et al. 2018 (Gaia DR2); Gaia DR3 agrees'],
       ['WHEN', '1.29 ± 0.04 MYR', 'computed', 'Gaia DR2/DR3 astrometry and radial velocity'],
@@ -130,6 +130,7 @@ export const FUTURE_EVENTS = [
     when: 'WITHIN ~1,000 TO 10 MILLION YEARS', window: [1e3, 1e7], years: null,
     summary: 'Two of Uranus\' small inner moons have orbits so close and chaotic that they are predicted to cross and collide. The debris would spread into a new ring around Uranus.',
     facts: [['TIMESCALE', '10³–10⁷ YEARS', 'modelled', 'French & Showalter 2012 (orbit integrations)']],
+    ring: { body: 'uranus', innerKm: 61500, outerKm: 63500, label: 'NEW RING FROM DESDEMONA + CRESSIDA · MODELLED' },
     source: 'French & Showalter 2012, Icarus 220, 911', url: 'https://doi.org/10.1016/j.icarus.2012.06.031',
     go: { level: 'system', system: 'sol', body: 'uranus' },
   },
@@ -140,6 +141,7 @@ export const FUTURE_EVENTS = [
     facts: [['INWARD DRIFT', '~1.8 M PER CENTURY', 'measured', 'Jacobson 2010; Bills et al. 2005 (shadow timings)'],
       ['RING (BREAK-UP)', '~20–40 MYR', 'modelled', 'Black & Mittal 2015'],
       ['IMPACT (IF IT HOLDS TOGETHER)', '~30–50 MYR', 'modelled', 'Black & Mittal 2015 and earlier tidal-decay estimates']],
+    ring: { body: 'mars', innerKm: 3390 * 1.1, outerKm: 3390 * 1.6, label: 'RING FROM PHOBOS · MODELLED PLACE, ILLUSTRATIVE WIDTH' },
     source: 'Black & Mittal 2015, Nature Geoscience 8, 913; Jacobson 2010', url: 'https://doi.org/10.1038/ngeo2583',
     go: { level: 'system', system: 'sol', body: 'mars' },
   },

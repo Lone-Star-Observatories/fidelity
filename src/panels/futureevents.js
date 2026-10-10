@@ -28,7 +28,7 @@ function lightCurveChart(peak, sd, type) {
     svg('path', { d: band, class: 'fc-band' }), svg('path', { d: path(0), class: 'fc-line' }), ...ticksY, ...ticksX);
 }
 
-export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel }) {
+export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel, system, settings }) {
   let risk = null, riskLoading = false, selected = null;
 
   /** Set the clock `years` ahead (or to an ISO date) and fly to `target`. */
@@ -42,6 +42,43 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     if (e.go) go(e.go);
   }
 
+  // ---- scenario visuals in the System View (#53): opt-in, labelled MODELLED, cleared on leaving FUTURE ----
+  const observer = () => { const o = settings?.get('observer'); return o && Number.isFinite(o.lat) && Number.isFinite(o.lon) ? o : { lat: 51.4779, lon: 0, label: 'GREENWICH' }; };
+  /** The next time (JD, within a sidereal day of `jd`) a star at `raDeg` crosses the meridian at east longitude `lonDeg`. */
+  const nextTransit = (jd, raDeg, lonDeg) => {
+    const lst = (280.46061837 + 360.98564736629 * (jd - 2451545) + lonDeg) % 360;
+    return jd + ((((raDeg - lst) % 360) + 360) % 360) / 360.98564736629;
+  };
+  function showInSky(e) {
+    const { ra, dec, M, distLy, av } = e.sn, peak = apparentMag(M, distLy, av), o = observer();
+    system?.setScenario({ star: { ra, dec, mag: peak, label: `${e.title.split(':')[0].replace(' GOES SUPERNOVA', '')} SUPERNOVA · MAG ${peak.toFixed(1)} · MODELLED` } });
+    clock.set(nextTransit(clock.jd, ra, o.lon));
+    clock.setRate(0);
+    if (!system?.surfaceAt('earth', o.lat, o.lon)) { toast('STAND ON EARTH TO SEE IT IN THE SKY'); return; }
+    let tries = 0;
+    const turn = () => { const a = system.lookAtSky(ra, dec); if (!a && ++tries < 40) return setTimeout(turn, 100); if (a && a.alt < 0) toast(`BELOW THE HORIZON FROM ${(o.label ?? '').toUpperCase() || 'HERE'} (ALTITUDE ${a.alt.toFixed(0)}°): SET ANOTHER OBSERVER`); };
+    turn();
+    toast(`${o.label ? o.label.toUpperCase() : `${o.lat.toFixed(1)}°, ${o.lon.toFixed(1)}°`} · THE STAR AT ITS HIGHEST · CLOCK HELD`);
+  }
+  function showRing(e) {
+    system?.setScenario({ ring: e.ring });
+    system?.focus(e.ring.body);
+    toast(`${e.ring.label} · SHOWN IN THE SYSTEM VIEW`);
+  }
+  /** Gliese 710's modelled comet shower: extra naked-eye comets per year against time (shape illustrative). */
+  function showerChart(sh) {
+    const W = 360, H = 110, L = 34, R = 10, T = 14, B = 18, X0 = 0, X1 = 6e6;
+    const x = (y) => L + ((y - X0) / (X1 - X0)) * (W - L - R), y = (v) => T + (1 - v / 12) * (H - T - B);
+    const rate = (t) => (t < sh.startYears ? 0 : t < sh.startYears + 5e5 ? sh.extraPerYear * (t - sh.startYears) / 5e5 : t < sh.startYears + sh.durationYears ? sh.extraPerYear : Math.max(0, sh.extraPerYear * (1 - (t - sh.startYears - sh.durationYears) / 5e5)));
+    const d = Array.from({ length: 121 }, (_, i) => { const t = (i / 120) * X1; return `${i ? 'L' : 'M'}${x(t).toFixed(1)},${y(rate(t)).toFixed(1)}`; }).join('');
+    return svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'future-chart', role: 'img', 'aria-label': 'Modelled extra comets per year after Gliese 710 passes' },
+      svg('text', { x: L, y: 10, class: 'fc-label fc-title' }, 'EXTRA NAKED-EYE COMETS PER YEAR (MODELLED)'),
+      svg('line', { x1: L, x2: L, y1: T, y2: H - B, class: 'fc-axis' }), svg('line', { x1: L, x2: W - R, y1: H - B, y2: H - B, class: 'fc-axis' }),
+      ...[0, 5, 10].map((v) => svg('text', { x: L - 4, y: y(v) + 3, 'text-anchor': 'end', class: 'fc-label' }, String(v))),
+      ...[[0, 'NOW'], [1.29e6, 'PASS'], [3e6, '3 MYR'], [6e6, '6 MYR']].map(([t, l]) => svg('text', { x: x(t), y: H - 5, 'text-anchor': 'middle', class: 'fc-label' }, l)),
+      svg('line', { x1: x(sh.startYears), x2: x(sh.startYears), y1: T, y2: H - B, class: 'fc-ref' }),
+      svg('path', { d, class: 'fc-line' }));
+  }
   function snSection(e) {
     const { M, Msd, distLy, type, av } = e.sn;
     const peak = apparentMag(M, distLy, av), dl = h('dl');
@@ -51,7 +88,8 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     row(dl, 'IN DAYLIGHT (MAG < −4)', day ? `~${day} DAYS` : 'NO', 'modelled', 'From the light-curve template; −4 is about Venus, visible by day if you know where to look.');
     row(dl, 'NAKED EYE (MAG < 6)', eye >= 3650 ? 'OVER 10 YEARS' : `~${(eye / 365.25).toFixed(1)} YEARS`, 'modelled', 'From the light-curve template; a dark sky.');
     return [dl, h('div', { className: 'explain-figure' }, lightCurveChart(peak, Msd, type)),
-      h('p', { className: 'note', textContent: 'MODELLED light curve (template shape, scaled to the distance); the shaded band is the spread in peak brightness of real supernovae of this type.' })];
+      h('p', { className: 'note', textContent: 'MODELLED light curve (template shape, scaled to the distance); the shaded band is the spread in peak brightness of real supernovae of this type.' }),
+      system ? h('div', { className: 'body-list' }, pill(`SHOW IN THE SKY FROM ${(observer().label ?? 'MY LOCATION').toUpperCase()} ▸`, () => showInSky(e))) : null];
   }
   function poleSection() {
     const runs = poleStarSequence(-3000, 28000, 25).filter((r) => r.minSepDeg < 7);
@@ -151,6 +189,7 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     const head = h('button', { className: `host-row event-row${open ? ' future-open' : ''}`, onclick: () => { selected = open ? null : e.id; render(); } },
       h('span', { textContent: e.title }), h('span', { className: 'mono', textContent: e.when }));
     if (!open) return [head];
+    const ringBtn = e.ring && system ? [h('div', { className: 'body-list' }, pill('SHOW THE RING ▸', () => showRing(e)))] : [];
     const extra = e.sn ? snSection(e) : e.poles ? poleSection() : e.sunTrack ? sunSection() : e.star ? starSection(e) : e.risk ? riskSection() : [];
     const facts = h('dl');
     for (const [label, value, tier, detail] of e.facts) row(facts, label, value, tier, detail);
@@ -158,7 +197,7 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     return [head, h('div', { className: 'future-card' },
       h('div', { className: 'legend' }, badge(e.tier, e.impossible ? 'Computed from measured masses: this cannot happen.' : ''), e.impossible ? h('span', { className: 'warn', textContent: 'NOT POSSIBLE' }) : null),
       h('p', { className: 'note explain', textContent: e.summary }),
-      e.facts.length ? facts : null, ...extra,
+      e.facts.length ? facts : null, ...extra, ...ringBtn,
       h('p', { className: 'note' }, 'SOURCE: ', h('a', { href: e.url, target: '_blank', rel: 'noopener', textContent: e.source })),
       canGo ? h('div', { className: 'body-list' }, pill(e.iso ? 'GO TO THE DATE ▸' : e.years != null ? `GO ${fmtYears(e.years)} AHEAD ▸` : 'SHOW ▸', () => goTo(e))) : null)];
   }
@@ -172,5 +211,7 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
       ...FUTURE_GROUPS.flatMap(([g, title]) => [h('h3', { textContent: title }), h('div', { className: 'host-list' }, FUTURE_EVENTS.filter((e) => e.group === g).flatMap(card))]),
     );
   }
-  return { render };
+  /** Leaving FUTURE: take the scenario visuals away. */
+  const leave = () => system?.setScenario(null);
+  return { render, leave };
 }

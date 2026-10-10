@@ -506,7 +506,12 @@ the Sun's main-sequence brightening (Gough 1981) and habitable zone (Kopparapu e
 run of pole stars from the app's precession model; a passing star's direct and tidal pull. Supernova
 timing is always a MODELLED window, never a date; Sirius is explained as impossible. The Sun's card plots its
 MIST v1.2 track on the HR diagram (`src/data/sun-track.js`, `node scripts/sun-track.js`, loaded on demand); the
-impact-risk card adds the Moon (2024 YR4's odds as reported, ruled out in March 2026). GO TO sets the
+impact-risk card adds the Moon (2024 YR4's odds as reported, ruled out in March 2026). Scenario visuals are
+opt-in through `system.setScenario({ star, ring })`: a supernova drawn at its J2000 position and computed
+magnitude (kept in daylight below magnitude −4) with SHOW IN THE SKY standing you at your observer location
+at the star's next transit (`system.lookAtSky`), and the modelled Desdemona–Cressida and Phobos rings; each
+has a MODELLED label with ✕, and they clear when you leave the FUTURE and System views. Gliese 710's card
+charts the modelled comet shower. GO TO sets the
 clock (an ISO date, or years ahead; past the calendar's ±273 kyr it needs the deep-time clock,
 `clock.setYears`) and routes to the place to watch.
 

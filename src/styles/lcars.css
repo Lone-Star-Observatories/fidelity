@@ -737,3 +737,4 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .timeline-slider { display: flex; flex-direction: column; gap: 6px; }
 .timeline-info { display: flex; flex-direction: column; gap: 6px; }
 .future-chart .fc-dot { fill: var(--orange); stroke: #000; stroke-width: 1; }
+.body-label.scenario-label { color: var(--lilac); border-color: var(--lilac); font-style: italic; pointer-events: auto; }

@@ -2182,7 +2182,71 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     });
   }
 
+  // ---- scenarios (#53): opt-in "what if" visuals, always labelled MODELLED -------------------------
+  //   star: { ra, dec (J2000 deg), mag, label, color? }: a supernova at its real place in the sky.
+  //   ring: { body, innerKm, outerKm, label }: a new ring (Desdemona–Cressida debris, Phobos).
+  let scenario = null;
+  function clearScenario() {
+    if (!scenario) return;
+    if (scenario.star) { scene.remove(scenario.star); scenario.star.geometry.dispose(); }
+    if (scenario.ring) { scenario.ring.parent?.remove(scenario.ring); scenario.ring.geometry.dispose(); }
+    for (const l of scenario.labels) l.parent?.remove(l), l.element.remove();
+    scenario = null;
+  }
+  function scenarioLabel(text) {
+    const el = document.createElement('button');
+    el.className = 'body-label scenario-label';
+    el.textContent = `${text} ✕`;
+    el.title = 'A modelled scenario (#53). Click to remove it.';
+    el.addEventListener('pointerdown', (e) => e.stopPropagation());
+    el.addEventListener('click', (e) => { e.stopPropagation(); setScenario(null); });
+    const obj = new CSS2DObject(el);
+    obj.center.set(-0.1, 0.5);
+    return obj;
+  }
+  function setScenario(s) {
+    clearScenario();
+    if (!s) return;
+    scenario = { labels: [] };
+    if (s.star) {
+      const d = poleVector([s.star.ra, s.star.dec]).multiplyScalar(SKY_R * 0.97);
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array([d.x, d.y, d.z]), 3));
+      g.setAttribute('size', new THREE.BufferAttribute(new Float32Array([Math.min(34, Math.max(4, 6.2 - 1.6 * s.star.mag))]), 1));
+      g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(s.star.color ?? [0.85, 0.9, 1]), 3));
+      // the sky's own point shader; not faded by daylight: brighter than magnitude −4 it shows by day
+      const mat = skyMat.clone();
+      mat.uniforms = { uPixel: skyMat.uniforms.uPixel, uFade: { value: s.star.mag < -4 ? 1 : skyMat.uniforms.uFade.value } };
+      scenario.star = new THREE.Points(g, mat);
+      scenario.star.renderOrder = 0; scenario.star.frustumCulled = false;
+      const label = scenarioLabel(s.star.label);
+      label.position.copy(d);
+      scenario.star.add(label); scenario.labels.push(label);
+      scene.add(scenario.star);
+    }
+    if (s.ring && nodes[s.ring.body]) {
+      const n = nodes[s.ring.body], r = n.body.radiusKm;
+      const geo = new THREE.RingGeometry(s.ring.innerKm / r, s.ring.outerKm / r, 160, 1);
+      const mat = new THREE.MeshBasicMaterial({ color: 0xc9b9a8, transparent: true, opacity: 0.42, side: THREE.DoubleSide, depthWrite: false });
+      scenario.ring = new THREE.Mesh(geo, mat);
+      scenario.ring.rotation.x = -Math.PI / 2;
+      n.tilt.add(scenario.ring); // in the planet's equator, scaled with it like its real rings
+      const label = scenarioLabel(s.ring.label);
+      label.position.set(s.ring.outerKm / r, 0, 0);
+      scenario.ring.add(label); scenario.labels.push(label);
+    }
+  }
+
   return {
+    /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */
+    setScenario,
+    /** In the surface view, turn to face J2000 RA/Dec (deg); false if not standing anywhere. */
+    lookAtSky(ra, dec) {
+      if (!surface?.frame) return false;
+      const a = altAz(surface.frame, poleVector([ra, dec]).toArray());
+      surface.az = a.az; surface.alt = Math.max(-5, Math.min(89.9, a.alt));
+      return a;
+    },
     /** The spectrum filter (#28): band id and bandpass id (null = the band's default). */
     setBand(bandId, passId) { band = bandById(bandId); pass = passById(band, passId); curve = null; applyBand(); },
     /** The spectrum control's curve (#66): follows the shared state (bandstate.js currentBand()). */
