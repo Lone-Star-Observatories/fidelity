@@ -94,6 +94,8 @@ for (const asset of Object.values(MODELS)) {
 const bodyImages = {};
 for (const visual of Object.values(BODY_VISUALS)) {
   for (const asset of [visual.surfaceImage, visual.surfaceMap, visual.skyImage, ...(visual.contextImages ?? [])].filter(Boolean)) {
+    // Surface maps already live in textures; cards resolve the same embedded copy.
+    if (asset.key && textures[asset.key]) continue;
     const bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
     bodyImages[asset.url] = `data:image/jpeg;base64,${bytes.toString('base64')}`;
   }

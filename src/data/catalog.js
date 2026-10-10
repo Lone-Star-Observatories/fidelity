@@ -159,5 +159,5 @@ export async function fetchGaiaBright() {
 /** Local researched illustration, or its embedded standalone preview. */
 export function visualImageUrl(asset) {
   if (!asset) return null;
-  return snapshot ? snapshot.bodyImages?.[asset.url] ?? null : asset.url;
+  return snapshot ? (asset.key && snapshot.textures?.[asset.key]) || snapshot.bodyImages?.[asset.url] || null : asset.url;
 }

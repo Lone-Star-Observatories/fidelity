@@ -132,7 +132,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     const sources = el('div', { className: 'bespoke-sources' }, ...visual.references.map(ref =>
       el('a', { href: ref.url, target: '_blank', rel: 'noopener noreferrer', textContent: ref.title })));
     const result = [];
-    for (const [label, asset] of [['SURFACE HYPOTHESIS', visual.surfaceImage ?? visual.surfaceMap], ['SKY FROM THE SURFACE', visual.skyImage]]) {
+    for (const [label, asset] of [[visual.surfaceLabel ?? 'SURFACE HYPOTHESIS', visual.surfaceImage ?? visual.surfaceMap], [visual.skyLabel ?? 'SKY FROM THE SURFACE', visual.skyImage]]) {
       const url = visualImageUrl(asset);
       if (!url) continue;
       const content = el('div', {}, el('img', { src: url, loading: 'lazy', className: 'bespoke-image', alt: `${b.name}: ${label.toLowerCase()}, hypothetical illustration` }),

@@ -1256,6 +1256,145 @@ export const BODY_VISUALS = {
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     },
     "researchSourcesRecord": "docs/research/barnard-cde-source-records.json"
+  },
+  "epsilon-eridani-b": {
+    "id": "epsilon-eridani-b",
+    "name": "Epsilon Eridani b",
+    "aliases": [
+      "eps Eri b",
+      "Epsilon Eridani b",
+      "epsilon Eri b",
+      "HD 22049 b"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No confirmed direct detection as of September 2026 study. A low-SNR JWST feature remains model-dependent and tentative; no resolved cloud or surface image exists.",
+    "measured": [
+      "K2V host at archive distance 3.2026 pc; radial velocity and Hipparcos/Hubble/Gaia astrometry establish a planetary companion."
+    ],
+    "modelled": [
+      "2025 joint orbital fit: semimajor axis 3.53±0.04 AU, period 7.32±0.07 years and near-circular orbit. September 2026 updated joint model gives mass 0.91±0.06 Jupiter masses.",
+      "Evolutionary/atmospheric inference permits effective temperatures around 150–200 K; water clouds and/or enhanced metallicity can suppress near-infrared emission. Clear enriched models also remain viable. These are conditional constraints, not a measured visible cloud deck.",
+      "Archive host radius 0.759106 solar radii and temperature 5020.38 K adopted for representative illumination, not a coherent refit of the host. Archive planet radius is not a transit measurement."
+    ],
+    "unknown": [
+      "Visible colour, cloud altitude and opacity, exact chemistry, geography, winds, spin, radius and pressure of the observer level.",
+      "No solid accessible surface is inferred. The tentative infrared feature is not a confirmed visible photograph."
+    ],
+    "assumed": [
+      "H2/He envelope with water-condensate cloud deck is the selected illustrative scenario; clear atmosphere remains an alternative.",
+      "Pearl-gray/ivory clouds with subdued buff-gray shear bands and original fluid morphology are invented, not measured colors or borrowed planet imagery.",
+      "Hovering observer above upper clouds with a tenuous dark sky; there is no solid ground. Pressure, altitude and sky scattering are unspecified.",
+      "Representative distance 3.53 AU and nominal 60° horizontal field imply a tiny approximately 0.115° host disc. Generated disc and colour remain approximate; no calibrated raster photometry.",
+      "Map is cloud-top appearance, not terrain or height data; longitude, cloud horizon and scene registration are imagined.",
+      "Raster validation: bright-core width is 7–13 pixels versus a geometric target of 2.90 pixels at 1672-pixel source width; glare/anti-aliasing is unresolved. This image does not accurately reproduce the photospheric disc size. Exact apparent-size calibration remains open."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2609.19131",
+        "title": "Llop-Sayson et al. 2026, updated joint orbital/atmospheric model and tentative imaging feature",
+        "publicationDate": "2026-09-16",
+        "observationDate": "NIRCam February 2024 and 2025-08-29; RV baseline 1981–2024"
+      },
+      {
+        "url": "https://arxiv.org/abs/2502.20561v1",
+        "title": "Thompson et al. 2025, revised orbit from radial velocities and absolute astrometry",
+        "publicationDate": "2025-02-27",
+        "dateNote": "Version 1 submission date; revised version 2 was submitted 2025-10-08."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite constraints retrieved 2026-10-10",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "eps Eri b",
+      "hostname": "eps Eri",
+      "sy_dist": 3.2026,
+      "pl_rade": 13.8,
+      "pl_bmasse": 317.828407,
+      "pl_bmassprov": "Mass",
+      "pl_orbper": 2680,
+      "pl_orbsmax": 3.53,
+      "pl_eqt": 112.26,
+      "st_teff": 5020.38,
+      "st_rad": 0.759106,
+      "st_mass": 0.82,
+      "st_spectype": "K2 V",
+      "ra": 53.2284306,
+      "dec": -9.4581715,
+      "disc_year": 2000
+    },
+    "skyModel": {
+      "star": "Epsilon Eridani",
+      "radiusSun": 0.759106,
+      "temperatureK": 5020.38,
+      "distanceAU": 3.53,
+      "angularDiameterDeg": 0.11459799267777887,
+      "centreDiscWidthFraction": 0.001732148629626691,
+      "irradianceEarth": 0.02646649988147033,
+      "approximateSrgb": [
+        1,
+        0.8957534072789048,
+        0.8103308864322694
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "epsilonEridaniBBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular cloud-top hypothesis; north up, no measured planetary frame.",
+      "coverage": "Entire cloud deck imagined.",
+      "url": "/bespoke/epsilon-eridani-b-surface-map.jpg",
+      "previewUrl": "/bespoke/epsilon-eridani-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-650f90f5-10f1-42d9-95b1-551dbeb3b1c5.png",
+      "sourceSha256": "217550c10ec0a59a474268de5d5e754c85bd301e0b4db45900a66aba14f5a517",
+      "sha256": "c1f732b5918a7b5dc48bfc51f0bc8dc097faf8f3f290081e0e4a68a1ce45a549",
+      "previewSha256": "172fa8ed0337ae6f07ba74fd9be8783304c4886cb3691966ee57b2652cb7f93c",
+      "bytes": 274298,
+      "previewBytes": 22493,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/epsilon-eridani-b-source-records.json",
+    "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
+    "skyLabel": "SKY ABOVE THE CLOUDS",
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Upper 40% bright-core bounding box, R>180/210/240 G>150 B>80; glare and photosphere unresolved.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          13,
+          9,
+          7
+        ],
+        "geometricTargetWidthPixels": 2.89615,
+        "limits": "Minimum threshold core about 2.4 times target; do not treat generated core as a calibrated stellar disc."
+      },
+      "url": "/bespoke/epsilon-eridani-b-sky-image.jpg",
+      "previewUrl": "/bespoke/epsilon-eridani-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-19855b24-c314-4eef-8c5f-f043de36ab13.png",
+      "sourceSha256": "7e1bbb2276567a13fc668b93653b505e48e7d84ecfb9fc939762c9d7f0a3282d",
+      "sha256": "5c1df8c9bae1a257f1a4cf69c9b35ba4887fb6c46cb35d0b371e93ab5417d386",
+      "previewSha256": "6ce0f7a2dea007f03cdf6468132695cf91a0f46a7f270f0e2966c6622173f5da",
+      "bytes": 136403,
+      "previewBytes": 28518,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

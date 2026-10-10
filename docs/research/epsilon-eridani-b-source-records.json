@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://arxiv.org/html/2609.19131v1",
+    "retrieved": "2026-10-10",
+    "bytes": 1409548,
+    "sha256": "880089dcc5b7005f3bb4b5916c71c093e47c82bcd2ec9d8dd4e06d1369317ef9",
+    "credit": "Llop-Sayson et al. 2026",
+    "terms": "arXiv perpetual non-exclusive distribution license; research citation, no paper figures republished."
+  },
+  {
+    "url": "https://arxiv.org/html/2502.20561v1",
+    "retrieved": "2026-10-10",
+    "bytes": 657526,
+    "sha256": "bb70bf5fa6662bc9336c980c19ef8a9418b5a1c21d264dbea76ccca906473442",
+    "credit": "Thompson et al. 2025",
+    "terms": "CC BY 4.0 as linked in version 1 HTML. Research citation only; no paper figures republished."
+  }
+]

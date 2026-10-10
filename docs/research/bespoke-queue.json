@@ -6956,9 +6956,10 @@
         "dec": -9.4581715,
         "disc_year": 2000
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "epsilon-eridani-b"
     },
     {
       "id": "exo-gj-887-b",
