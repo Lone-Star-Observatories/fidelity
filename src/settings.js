@@ -28,7 +28,8 @@ const defaults = {
   stepUnit: 'day',  // … units (minute … millennium)     // TEXT size control: multiplies every font size (0.8–1.6)
   band: 'full',      // spectrum filter (#28): full | radio | microwave | ir | visible | uv | xray | gamma
   bandPass: null,    // its bandpass (null = the band's default)
-  observer: null,   // detail views' FROM EARTH card: { lat, lon, label } (null = Greenwich)
+  observer: null,   // detail views' FROM EARTH card and the EVENTS "visible from my location" filter (#33): { lat, lon, label } (null = Greenwich / not set); never leaves the browser
+  eventsVisibleOnly: false, // EVENTS: show only what can be seen (or watched) from the observer location
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
 };
 

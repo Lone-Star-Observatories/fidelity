@@ -38,9 +38,9 @@ export function createArrivals({ onChange }) {
     }
   }
 
-  async function shell(fromLy, toLy) {
-    const g = gen, rec = { fromLy, toLy, status: 'loading' };
-    st.shells.push(rec);
+  async function shell(fromLy, toLy, again = null) {
+    const g = gen, rec = again ?? { fromLy, toLy, status: 'loading' };
+    if (!again) st.shells.push(rec);
     onChange?.();
     try {
       const d = await fetchArrivals(st.center, fromLy, toLy);
@@ -48,12 +48,18 @@ export function createArrivals({ onChange }) {
       rec.status = 'ok';
       st.density = d.density ?? st.density;
       if (d.preview) { st.preview = true; st.previewLy = d.previewLy; }
-      const fresh = d.stars.filter((s) => !st.exclude.has(s.id)).map((s) => ({
+      // the Gaia DR3 RV slice (#29): how it went, and the completeness it brings
+      if (d.gaiaRv) st.gaiaRv = d.gaiaRv;
+      if (d.completeness) st.completeness = d.completeness;
+      if (d.velocitySources) rec.sources = d.velocitySources;
+      // the backend is still fetching the slice (≈ 25 s the first time): ask again shortly
+      if (d.gaiaRv?.status === 'loading') setTimeout(() => { if (g === gen) shell(fromLy, toLy, rec); }, 15000);
+      const fresh = d.stars.filter((s) => !st.exclude.has(s.id) && !st.ids.has(s.id)).map((s) => ({
         ...s, arrival: true,
         gal: eqToGal([s.x * LY_PER_PC, s.y * LY_PER_PC, s.z * LY_PER_PC]), galV: eqToGal(s.v),
         track: null, spanYears: 0,
       }));
-      st.stars.push(...fresh);
+      for (const s of fresh) { st.ids.add(s.id); st.stars.push(s); } // (push(...fresh) overflows the stack at ~10⁵ stars)
       integrate(fresh, st.span);
     } catch (err) {
       if (g !== gen) return;
@@ -66,7 +72,8 @@ export function createArrivals({ onChange }) {
     /** Start over around `center` (`exclude`: ids already on the chart). */
     reset(center, radiusLy, exclude, solDistLy = 0) {
       gen++; jobs.clear();
-      st = { center, radiusLy, exclude: new Set(exclude), stars: [], shells: [], pending: 0, span: spanFor(0), density: null, preview: false, previewLy: 0, solDistLy };
+      st = { center, radiusLy, exclude: new Set(exclude), ids: new Set(), stars: [], shells: [], pending: 0, span: spanFor(0), density: null, preview: false, previewLy: 0, solDistLy,
+        gaiaRv: null, completeness: null };
       if (radiusLy < INNER_LY) shell(radiusLy, INNER_LY);
     },
     /** Load or integrate more when deep time reaches `epoch` (years). */
@@ -89,8 +96,12 @@ export function createArrivals({ onChange }) {
       const loadedLy = st.preview ? Math.max(st.radiusLy, st.previewLy - st.solDistLy) : Math.max(st.radiusLy, ...ok.map((s) => s.toLy));
       const loading = loadingShell ? `LOADING ARRIVALS ${loadingShell.fromLy}–${loadingShell.toLy.toLocaleString('en-US')} LY…`
         : st.pending ? `INTEGRATING ORBITS · ${st.pending.toLocaleString('en-US')} STARS TO GO…` : null;
+      // stars loaded per velocity source (HYG, Gaia DR3, Gaia DR3 + catalogue RV, Gaia DR3 RV slice)
+      const bySource = [0, 0, 0, 0];
+      for (const s of st.stars) bySource[s.vSrc ?? 0]++;
       return { count: st.stars.length, loadedLy, loading, preview: st.preview, previewLy: st.previewLy, density: st.density,
-        error: st.shells.find((s) => s.status === 'error')?.error ?? null, spanYears: st.span.spanMyr * 1e6 };
+        error: st.shells.find((s) => s.status === 'error')?.error ?? null, spanYears: st.span.spanMyr * 1e6,
+        gaiaRv: st.gaiaRv, completeness: st.completeness, bySource };
     },
   };
 }

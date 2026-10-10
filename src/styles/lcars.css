@@ -198,6 +198,10 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 /* events feed (#32) */
 .host-row.event-row.active { outline: 2px solid var(--gold); }
 .soon-dot { color: var(--red); }
+.event-why { font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.04em; overflow-wrap: anywhere; }
+.event-why.yes { color: var(--ice); }
+.event-why.no { color: var(--dim); }
+.event-why.unknown { color: var(--lilac); }
 .rail-btn.events-btn.alert::after { content: '●'; color: var(--red); margin-left: 6px; }
 .nav-label.mission-label { color: #ffcc66; background: rgba(0, 0, 0, 0.55); border: 0; pointer-events: none; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; white-space: nowrap; margin-top: -20px; }
 .nav-label.mission-label.booster { color: var(--ice); }

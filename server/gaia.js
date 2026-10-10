@@ -67,3 +67,88 @@ export async function hipMotions() {
   });
   return value;
 }
+
+// ---- the Gaia DR3 radial-velocity slice (#29) ----------------------------------------------
+// Every Gaia DR3 star with a radial velocity, parallax > 10 mas (within ~326 ly) and
+// parallax/error > 10: 169,740 rows (≈ 23 MB of CSV; the sync query took ~22 s when measured
+// on 2026-10-10). It fills in the K and M dwarfs that Hipparcos (and so HYG) is too faint for,
+// so the Navigation View's deep-time sphere does not thin out so fast. Gaia's RVs reach
+// G_RVS ≈ 14, so faint M dwarfs are still missing beyond a few tens of light-years. Cached for
+// a year (DR3 does not change). Rows: [source_id (a string: it exceeds 2^53), ra°, dec°,
+// parallax mas, pmra*, pmdec mas/yr, RV km/s, G, BP−RP | null, RV error km/s | null]. The
+// merge drops RVs with errors ≥ 5 km/s, as for the Hipparcos stars: faint stars' DR3 RVs can
+// be spurious (one M dwarf 36 ly away has −374 ± 8 km/s and almost no proper motion, which
+// would bring it within 0.4 ly of the Sun in 29,000 years).
+const TAP_BASE = 'https://gea.esac.esa.int/tap-server/tap';
+export const RV_ADQL = 'SELECT source_id, ra, dec, parallax, pmra, pmdec, radial_velocity, radial_velocity_error, phot_g_mean_mag, bp_rp FROM gaiadr3.gaia_source '
+  + 'WHERE parallax > 10 AND parallax_over_error > 10 AND radial_velocity IS NOT NULL';
+const YEAR = 365 * 86400000;
+
+/** Parse the RV-slice CSV into compact rows (exported for tests). source_id stays a string. */
+export function parseRvSlice(csv) {
+  const lines = csv.trim().split('\n');
+  const head = lines[0].trim().split(',');
+  const col = Object.fromEntries(head.map((h, i) => [h, i]));
+  for (const k of ['source_id', 'ra', 'dec', 'parallax', 'pmra', 'pmdec', 'radial_velocity', 'phot_g_mean_mag']) {
+    if (col[k] == null) throw new Error(`Gaia TAP: no ${k} column`);
+  }
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const f = lines[i].trim().split(',');
+    const sid = f[col.source_id];
+    if (!/^\d{6,20}$/.test(sid)) continue;
+    const n = (k) => (col[k] == null || f[col[k]] == null || f[col[k]] === '' ? null : Number(f[col[k]]));
+    const ra = n('ra'), dec = n('dec'), plx = n('parallax'), pmra = n('pmra'), pmdec = n('pmdec'), rv = n('radial_velocity'), g = n('phot_g_mean_mag'), bprp = n('bp_rp'), rvErr = n('radial_velocity_error');
+    if (![ra, dec, plx, pmra, pmdec, rv, g].every(Number.isFinite) || !(plx > 0)) continue;
+    rows.push([sid, +ra.toFixed(7), +dec.toFixed(7), +plx.toFixed(4), +pmra.toFixed(3), +pmdec.toFixed(3), +rv.toFixed(2), +g.toFixed(3),
+      Number.isFinite(bprp) ? +bprp.toFixed(3) : null, Number.isFinite(rvErr) ? +rvErr.toFixed(2) : null]);
+  }
+  return rows;
+}
+
+/**
+ * Run an ADQL query on the Gaia archive and return its CSV: the sync endpoint first and, if
+ * that fails or times out, an async (UWS) job: submit with PHASE=RUN, poll its phase, fetch
+ * the result. `opts.fetch` is injectable for tests. Resolves to { text, via: 'sync' | 'async' }.
+ */
+export async function tapCsv(adql, { fetch: f = fetch, header, syncTimeoutMs = 180000, asyncTimeoutMs = 20 * 60000, pollMs = 5000, base = TAP_BASE } = {}) {
+  const params = { REQUEST: 'doQuery', LANG: 'ADQL', FORMAT: 'csv', QUERY: adql };
+  const good = (t) => !header || t.startsWith(header);
+  let syncError;
+  try {
+    const res = await f(`${base}/sync`, { method: 'POST', body: new URLSearchParams(params), signal: AbortSignal.timeout(syncTimeoutMs) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    if (!good(text)) throw new Error(text.slice(0, 120).replace(/\s+/g, ' '));
+    return { text, via: 'sync' };
+  } catch (err) { syncError = err; }
+  const sub = await f(`${base}/async`, { method: 'POST', body: new URLSearchParams({ ...params, PHASE: 'RUN' }), redirect: 'manual', signal: AbortSignal.timeout(60000) });
+  const loc = sub.headers?.get?.('location');
+  if (!loc) throw new Error(`Gaia TAP: sync failed (${syncError?.message}) and no async job was created (HTTP ${sub.status})`);
+  const job = new URL(loc, `${base}/async`).href;
+  const until = Date.now() + asyncTimeoutMs;
+  for (;;) {
+    const phase = (await (await f(`${job}/phase`, { signal: AbortSignal.timeout(30000) })).text()).trim();
+    if (phase === 'COMPLETED') break;
+    if (phase === 'ERROR' || phase === 'ABORTED') throw new Error(`Gaia TAP async job ${phase} (sync had failed: ${syncError?.message})`);
+    if (Date.now() > until) throw new Error('Gaia TAP async job timed out');
+    await new Promise((r) => setTimeout(r, pollMs));
+  }
+  const res = await f(`${job}/results/result`, { signal: AbortSignal.timeout(300000) });
+  if (!res.ok) throw new Error(`Gaia TAP async result HTTP ${res.status}`);
+  const text = await res.text();
+  if (!good(text)) throw new Error(`Gaia TAP: ${text.slice(0, 120).replace(/\s+/g, ' ')}`);
+  return { text, via: 'async' };
+}
+
+/** The RV slice, from the disk cache (a year) or the archive. */
+export async function gaiaRvSlice() {
+  const { value, cache } = await cached('gaia', 'rv-slice-10mas-v2', YEAR, async () => {
+    const t0 = Date.now();
+    const { text, via } = await tapCsv(RV_ADQL, { header: 'source_id,' });
+    const rows = parseRvSlice(text);
+    return { fields: ['sourceId', 'ra', 'dec', 'plx', 'pmra', 'pmdec', 'rv', 'g', 'bprp', 'rvErr'], rows, via, ms: Date.now() - t0, csvBytes: text.length,
+      fetched: new Date().toISOString(), source: 'Gaia DR3 gaia_source: radial_velocity not null, parallax > 10 mas, parallax/error > 10' };
+  });
+  return { ...value, cache };
+}
