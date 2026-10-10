@@ -205,7 +205,7 @@
       "parent": "jupiter",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
+      "nativeImagery": "Own NASA3D globe byte-equal to fetched source; JunoCam PIA24681 and JIRAM PIA26075 retained with source hashes; preliminary seams, spectral processing, historical mosaic epochs and final-product audit remain open (ganymede-moon-preparation-2026-10-10.json); no initial dossier yet",
       "research": "queued",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"

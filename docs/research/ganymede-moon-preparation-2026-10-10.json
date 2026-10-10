@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; 48 dossiers unchanged, no49th and no new imagery embedded",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/junos-ganymede-close-up/",
+      "path": "data/research-sources/ganymede-junocam-caption.html",
+      "bytes": 268219,
+      "sha256": "6ebaa521c22d06795bab0f3bd6d9756ca77f8e4ef200b360e7b7808abde39b13"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia24/pia24681/jpeg/PIA24681.jpg?crop=faces%2Cfocalpoint&fit=clip&h=2524&w=1625",
+      "path": "data/research-sources/ganymede-junocam-pia24681.jpg",
+      "bytes": 551464,
+      "sha256": "31aaa3c3f64e1672bec2fc9cfc13a4bd5d13b252b94d638da57ad0e1aca59040"
+    },
+    {
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/PIA26075.jpg",
+      "path": "data/research-sources/ganymede-jiram-pia26075.jpg",
+      "bytes": 893421,
+      "sha256": "8308cb254b2eacd450f63ae994486b1b91d7568fb323b354cd1897a7c56aec42"
+    },
+    {
+      "url": "https://www.jpl.nasa.gov/images/pia26075-ganymede-grooved-terrain-as-seen-by-junos-jiram/",
+      "failure": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Ganymede/Jupiter%20-%20Ganymede.jpg",
+      "path": "data/research-sources/ganymede-nasa3d-source.jpg",
+      "bytes": 710923,
+      "sha256": "1aa9d5a6f20e72230c13ce3d78592fc056e22f1e1ee39ea7acfa7e08d09fe173"
+    }
+  ],
+  "preservedNativeGlobe": {
+    "path": "data/textures/ganymede.jpg",
+    "bytes": 710923,
+    "sha256": "1aa9d5a6f20e72230c13ce3d78592fc056e22f1e1ee39ea7acfa7e08d09fe173",
+    "sourceByteEquality": true,
+    "limitations": "Precise product association, coverage, frame, input epochs and photometric transfer remain unaudited."
+  },
+  "nativeAssessment": {
+    "junocam": {
+      "product": "PIA24681 preliminary green-filter strip mosaic",
+      "observed": "2021-06-07",
+      "released": "2021-06-08",
+      "credit": "NASA/JPL-Caltech/SwRI/MSSS",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "limitations": "Preliminary product lacked precise SPICE kernels and red/blue strips; seams are processing artifacts, not terrain. Monochrome green-filter intensity is not calibrated visible colour. NASA-served dynamic rendition processing must be disclosed.",
+      "inspected": true,
+      "sizePixels": [
+        1625,
+        2524
+      ],
+      "format": "jpeg",
+      "sourceRendition": "NASA dynamic-image response retained unchanged; 1625x2524 served rendition, not an assertion of original TIFF pixel preservation."
+    },
+    "jiram": {
+      "product": "PIA26075 processed infrared spectral-signature transect over older Galileo/Voyager optical mosaic",
+      "observed": "2021-06-07",
+      "released": "2023-10-30",
+      "credit": "NASA/JPL-Caltech/SwRI/ASI/INAF/JIRAM/Brown University",
+      "terms": "https://www.jpl.nasa.gov/jpl-image-use-policy/",
+      "limitations": "Colored line is a processed non-ice spectral signature, possibly ammonium chloride; not visible colour, uniquely established local chemistry or observed biology. Underlying optical mosaic has older input observations whose exact dates remain unaudited.",
+      "inspected": true,
+      "sizePixels": [
+        6385,
+        3119
+      ],
+      "format": "jpeg",
+      "captionAccess": "Publisher caption verified via browser source; direct download of caption returned403, no fabricated local hash."
+    }
+  },
+  "next": [
+    "Inspect native image pixels and exact download dimensions.",
+    "Audit final JunoCam processing and primary spectral paper before selecting assets.",
+    "Recover standalone headroom without dropping science, fields or models, then additive individual local/observer dossier."
+  ],
+  "registryCount": 48,
+  "validation": {
+    "testsPassed": 254,
+    "skipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15816163,
+    "headroomBytes": 183837,
+    "snapshotSha256": "fdb5274567ad3c57352753e086dce01bb8fb3c56f63e2ab6627f2141e40768c9",
+    "registry": "All48 dossiers deep-equal; no49th",
+    "upstream": "17fb3bf integrated including deep-time arrivals/Gaia motions; rebuilt100ly snapshot4234stars517details replaces previous static4289/521 due upstream motion-aware selection, not asset pruning."
+  }
+}

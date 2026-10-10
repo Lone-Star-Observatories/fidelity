@@ -7,7 +7,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
-import { gzipSync, gunzipSync } from 'node:zlib';
+import { gunzipSync } from 'node:zlib';
+import { gzipAsync } from '@gfx/zopfli';
 import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
@@ -165,7 +166,8 @@ let eventsSnap = null;
 try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
 const snapshotJson = JSON.stringify({ events: eventsSnap, nearby: near, arrivalsDensity, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
-const compressed = gzipSync(snapshotJson, { level: 9 });
+// Zopfli emits standard gzip: spend build time to retain every byte under the preview gate.
+const compressed = await gzipAsync(snapshotJson, { numiterations: 1 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
 const packed = encodeSnapshotBytes(compressed);
 if (!Buffer.from(unpackSnapshotBytes(packed)).equals(compressed)) throw new Error('Snapshot transport round-trip failed.');
@@ -193,7 +195,7 @@ const body = html.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<script[^>]*src="
 const fonts = (html.match(/<link[^>]+fonts\.(googleapis|gstatic)[^>]*>/g) || []).join('\n');
 // Compress the entire application losslessly as well as its embedded snapshot.
 // Runtime imports the restored module from a Blob without eval().
-const appCompressed = gzipSync(js, { level: 9 });
+const appCompressed = await gzipAsync(js, { numiterations: 5 });
 if (gunzipSync(appCompressed).toString('utf8') !== js) throw new Error('Application compression round-trip failed.');
 const appPacked = encodeApplicationBytes(appCompressed);
 if (!Buffer.from(unpackApplicationBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');

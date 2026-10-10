@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-10",
+  "change": "Build-time @gfx/zopfli1.0.15 emits standard gzip; snapshot1iteration/application5iterations. Runtime decoders, raw120 scripts, inner radix85/legacy base64 compatibility and Blob import/revoke unchanged.",
+  "reason": "Latest upstream full build exceeded16MB at16042172bytes; no assets dropped.",
+  "trial": {
+    "snapshotZlib9": 13184663,
+    "snapshotZopfli1": 13012240,
+    "applicationZlib9": 527432,
+    "applicationZopfli5": 506134,
+    "uncompressedEquality": true
+  },
+  "final": {
+    "htmlBytes": 15816163,
+    "headroomBytes": 183837,
+    "testsPassed": 254,
+    "skipped": 1,
+    "production": "pass",
+    "full": "pass",
+    "decodedImages": 176,
+    "detailedSystems": 517,
+    "stars": 4234,
+    "browserSnapshotSha": "fdb5274567ad3c57352753e086dce01bb8fb3c56f63e2ab6627f2141e40768c9",
+    "applicationSha": "a446ef94900514751722b9bcfebdca85b97965c3712f3ac07c2136e70a50ac47",
+    "rawSnapshotTextSha": "21bfa1f7dc35d7279e93d423524200fe80f33f8deeab171c76a5b3c988893f61",
+    "checks": "Chrome parsed packed bytes exact, browser decoded snapshot equal readable JSON, six routes, unsupported browser message, eight offline event rows,24craft decode and ISS offline."
+  },
+  "preservation": "All48dossiers and every existing native/master/map/GLB/shape input unchanged; upstream motion-aware catalogue selection preserved.",
+  "limitations": "Slower build compression; Chrome independently checked, other browser engines remain open. New Ganymede downloads are research inputs, not embedded."
+}
