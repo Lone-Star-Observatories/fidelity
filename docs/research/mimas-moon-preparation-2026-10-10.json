@@ -71,5 +71,18 @@
     "assessment": "Abstract/introduction/methods read directly: iSALE-2D impacts can match Herschel in ocean-bearing or warm fully frozen shells near melting. Basin morphology alone does not uniquely require an ocean at formation. Simulated timing near onset of young ocean is an interpretation. Model assumes axisymmetric vertical impact, idealized target/ice and selected impactor velocities; chemistry, impact conditions and local terrain are not measured by these simulations.",
     "terms": "PDF states Elsevier2025 all rights reserved; no CC licence asserted. Research input only, no figures embedded.",
     "limitations": "Detailed parameter/supplement audit remains open; modern ocean inference is distinct from photographed surface geology or direct interior observation."
+  },
+  "compactPublisherRendition": {
+    "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17213/figures/PIA17213_fig1.jpg?w=1020&fit=clip",
+    "file": "data/research-sources/mimas-natural-illumination-display-2026-10-10.jpg",
+    "bytes": 74197,
+    "width": 1020,
+    "height": 1020,
+    "sha256": "273834366ce95fba91f3d0283c057499136960bc7cc7e3b624b4201ab5816fa1",
+    "observationDate": "2017-01-30",
+    "publicationDate": "2017-03-14",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "assessment": "Unchanged publisher-served RGB-storage monochrome display rendition, inspected. Publisher resizing/reencoding, not full pixel preservation. More-natural illumination is a caption distinction, not independently calibrated colour or photometry. Original1700 main and1280 Figure1 retained. Research only, not embedded."
   }
 }
