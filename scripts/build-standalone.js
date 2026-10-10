@@ -104,6 +104,8 @@ for (const visual of Object.values(BODY_VISUALS)) {
     bodyImages[asset.url] = `data:image/${imagined ? 'webp' : 'jpeg'};base64,${bytes.toString('base64')}`;
   }
 }
+// the corona photograph shown in totality (#31)
+bodyImages['/references/corona-2017-08-21.jpg'] = `data:image/jpeg;base64,${(await fs.readFile(path.join(root, 'public/references/corona-2017-08-21.jpg'))).toString('base64')}`;
 // stellar spectrum library, thinned to 4 nm steps for the preview
 const lib = await library();
 const spectra = { ...lib, grid: { ...lib.grid, step: lib.grid.step * 2 }, entries: lib.entries.map((e) => ({ ...e, flux: e.flux.filter((_, i) => i % 2 === 0) })) };

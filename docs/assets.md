@@ -152,3 +152,12 @@ The independently generated map and hovering observer scene choose patchy pearl-
 Validation: 134 tests pass with one catalogue-dependent skip; production and full standalone builds pass. Full HTML is 11,742,348 bytes; all 101 images decode, all 24 craft models load and ISS renders offline. Browser-decoded complete snapshot SHA-256 equals the readable original. The Epsilon Indi route selects its unique map, four image cards, ammonia photometry and active source/terms credits. All prior 22 dossiers remain unchanged.
 
 Final upstream integration preserves eclipse/transit/occultation events, lunar shadow rendering and improved lunar/Horizons ephemerides. Combined validation: 140 tests pass, one catalogue skip; production and full builds pass. Full HTML is 11,781,236 bytes, 101 images decode, 24 craft load and ISS renders offline. Snapshot equality and all six navigation levels plus unsupported-browser messaging remain verified.
+
+## Eclipse corona (#31)
+
+`public/references/corona-2017-08-21.jpg`: NASA/Carla Thomas, the total solar eclipse of
+2017-08-21 photographed from NASA Armstrong's Gulfstream III (NASA image AFRC2017-0233-007,
+public domain as NASA imagery). Cropped to ±4.5 lunar radii around the Moon, sky background
+subtracted, faded to black past 4.3 radii (1024², 26 KB). Its lunar disc spans 11.1% of the width
+and its streamer axis lies 66.9° from the image x-axis; the surface view uses both to scale it
+and turn the streamers onto the solar equator. Badged REPRESENTATIVE for any other eclipse.

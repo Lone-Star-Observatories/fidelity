@@ -116,5 +116,5 @@ export function eclipseDaylight(jd, lat, lon, surfacePoint) {
   if (!solarEclipseAt(jd)) return { light: 1, obscuration: 0 };
   const c = localCircumstances(jd, surfacePoint(lat, lon));
   const total = c.sm > c.ss && c.sep < c.sm - c.ss;
-  return { light: total ? 0.001 : Math.pow(1 - c.obscuration, 0.15), obscuration: c.obscuration, total, magnitude: c.magnitude };
+  return { light: total ? 0.001 : Math.pow(1 - c.obscuration, 0.15), obscuration: c.obscuration, total, magnitude: c.magnitude, sep: c.sep, sm: c.sm, ss: c.ss, eclipse: solarEclipseAt(jd) };
 }

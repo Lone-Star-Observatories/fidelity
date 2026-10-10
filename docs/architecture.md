@@ -206,7 +206,7 @@ each planet material darkens per fragment by the fraction of the Sun its nearest
 hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon red), Earth
 shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
 sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
-`?t=<ISO time>[&hold]` sets the ship's clock from the URL.
+`?t=<ISO time>[&hold]` sets the ship's clock from the URL; `?surface=lat,lon[&look=sun]` stands on the routed body. In totality the surface view fades in a real corona photograph (#31; docs/assets.md) with the diamond ring and Baily's beads at the contacts.
 
 ## Milky Way model
 

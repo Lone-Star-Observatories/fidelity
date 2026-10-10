@@ -66,6 +66,12 @@ const system = createSystemView($('system-view'), {
 const starView = createStarView($('star-view'));
 // Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
 let pendingSurface = null;
+// ?surface=25.7,32.65 stands on the routed body there (e.g. #/system/sol/earth) once it is framed; &look=sun turns to the Sun
+{
+  const sf = new URLSearchParams(location.search).get('surface')?.split(',').map(Number);
+  const id = location.hash.split('/').filter(Boolean)[3];
+  if (sf?.length === 2 && sf.every(Number.isFinite) && id) pendingSurface = { id, lat: sf[0], lon: sf[1], lookSun: new URLSearchParams(location.search).get('look') === 'sun' };
+}
 const planetView = createPlanetView($('planet-view'), {
   onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
 });
@@ -1149,7 +1155,7 @@ onRoute(async (r) => {
     $('view-title').textContent = `SYSTEM VIEW · ${m.name.toUpperCase()}${body ? ` · ${body.name.toUpperCase()}` : ''}`;
     syncBeacon();
     if (body) {
-      if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon); }
+      if (pendingSurface?.id === body.id) { const ps = pendingSurface; pendingSurface = null; system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun }); }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
       else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
       renderBodyPanel(body.id);

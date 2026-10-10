@@ -22,7 +22,11 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
 import { relativeSky, hierarchy, place, besselianYear } from '../../astro/binary.js';
 import { eqToEcl, frameToScene, teffFromBV, blackbodyRGB } from '../../astro/frames.js';
-import { AU_KM } from '../../data/sol.js';
+import { AU_KM, SUN } from '../../data/sol.js';
+import { visualImageUrl } from '../../data/catalog.js';
+
+const SUN_POLE = SUN.pole;
+const loader = new THREE.TextureLoader();
 import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
@@ -985,7 +989,10 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
   hudSub.className = 'surface-sub';
   const hudBack = Object.assign(document.createElement('button'), { className: 'pill', textContent: '▲ BACK TO ORBIT' });
   hudBack.addEventListener('click', () => exitSurface(true));
-  hud.append(hudText, hudSub, hudBack);
+  // turn to the Sun (and zoom in): the way to watch an eclipse (#31)
+  const hudSun = Object.assign(document.createElement('button'), { className: 'pill', textContent: '☉ LOOK AT THE SUN' });
+  hudSun.addEventListener('click', () => { if (surface) surface.lookSun = true; });
+  hud.append(hudText, hudSub, hudBack, hudSun);
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1083,6 +1090,67 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       n.label.visible = show;
     }
   }
+  // ---- the corona in totality (#31) -----------------------------------------------------------
+  // A real photograph of the corona fades in when the Moon fully covers the Sun, its streamer
+  // axis (equatorial near solar minimum, as in 2017) turned onto today's solar equator, its dark
+  // lunar disc scaled to the Moon's apparent size; the diamond ring and Baily's beads flash at
+  // second and third contact.
+  const CORONA = { url: '/references/corona-2017-08-21.jpg', discFrac: 113.83 / 1024, axisDeg: 66.9, date: '2017-08-21',
+    credit: 'NASA/Carla Thomas, total solar eclipse of 2017-08-21 from NASA Armstrong\'s Gulfstream III' };
+  const ARCSEC = Math.PI / 648000;
+  let corona = null;
+  function coronaObjects() {
+    if (corona) return corona;
+    const mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    const url = visualImageUrl({ url: CORONA.url });
+    if (url) loader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; mat.map = t; mat.needsUpdate = true; });
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat);
+    plane.frustumCulled = false; plane.visible = false;
+    const bead = () => { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: 0xfff6e8, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false, transparent: true, opacity: 0 })); sp.visible = false; return sp; };
+    const ring = bead(), beads = [bead(), bead(), bead(), bead(), bead()];
+    scene.add(plane, ring, ...beads);
+    corona = { plane, ring, beads, shown: null };
+    return corona;
+  }
+  const solarNorth = (() => { const [ra, dec] = SUN_POLE.map((x) => (x * Math.PI) / 180); return new THREE.Vector3(...frameToScene(eqToEcl([Math.cos(dec) * Math.cos(ra), Math.cos(dec) * Math.sin(ra), Math.sin(dec)]))); })();
+  const cv = { s: new THREE.Vector3(), m: new THREE.Vector3(), d: new THREE.Vector3(), n: new THREE.Vector3(), x: new THREE.Vector3(), q: new THREE.Quaternion(), r: new THREE.Quaternion(), b: new THREE.Matrix4() };
+  function updateCorona(p, e) {
+    const c = corona ?? (e ? coronaObjects() : null);
+    if (!c) return;
+    const sunN = nodes[model.starId], moonN = nodes.moon;
+    const g = e && e.sm > e.ss && sunN && moonN ? e.sep - (e.sm - e.ss) : Infinity; // < 0 in totality
+    const hide = () => { c.plane.visible = false; c.ring.visible = false; for (const b of c.beads) b.visible = false; c.shown = null; };
+    if (!(g < 6 * ARCSEC)) { hide(); return; }
+    const S = sunN.group.getWorldPosition(cv.s), M = moonN.group.getWorldPosition(cv.m);
+    const d = cv.d.copy(S).sub(p), D = d.length(); d.normalize();
+    // the corona plane: facing us at the Sun, solar north projected on the sky as 'up'
+    const up = cv.n.copy(solarNorth).addScaledVector(d, -solarNorth.dot(d)).normalize();
+    const back = d.clone().negate(), right = cv.x.crossVectors(up, back);
+    c.plane.quaternion.setFromRotationMatrix(cv.b.makeBasis(right, up, back)).multiply(cv.r.setFromAxisAngle(new THREE.Vector3(0, 0, 1), (-CORONA.axisDeg * Math.PI) / 180));
+    c.plane.position.copy(S);
+    c.plane.scale.setScalar((D * Math.tan(e.sm)) / CORONA.discFrac);
+    c.plane.visible = true;
+    c.plane.material.opacity = THREE.MathUtils.smoothstep(-g, -4 * ARCSEC, 3 * ARCSEC); // fades in over the last arcseconds
+    // diamond ring and beads: the last sunlight through lunar valleys, where the limbs meet
+    const limbDir = M.clone().sub(p).normalize();
+    const toward = d.clone().sub(limbDir).addScaledVector(d, -d.clone().sub(limbDir).dot(d)).normalize(); // Moon centre → Sun centre on the sky
+    const rSun = D * Math.tan(e.ss);
+    const ringK = Math.exp(-(((g / ARCSEC) - 1.5) ** 2) / 2) * (g > -1 * ARCSEC ? 1 : 0);
+    c.ring.position.copy(S).addScaledVector(toward, rSun);
+    c.ring.scale.setScalar(rSun * 1.6 * (0.6 + ringK));
+    c.ring.material.opacity = ringK;
+    c.ring.visible = ringK > 0.01;
+    const side = cv.x.crossVectors(toward, d).normalize(), t = performance.now() / 1000;
+    c.beads.forEach((b, i) => {
+      const a = ((i - 2) * 9 * Math.PI) / 180, k = g > -1.5 * ARCSEC && g < 2.5 * ARCSEC ? 0.55 + 0.45 * Math.sin(t * (7 + i * 3) + i * 1.7) : 0;
+      b.position.copy(S).addScaledVector(toward, rSun * Math.cos(a)).addScaledVector(side, rSun * Math.sin(a));
+      b.scale.setScalar(rSun * 0.18);
+      b.material.opacity = k * (i === 2 ? 0 : 1);
+      b.visible = k > 0.01;
+    });
+    c.shown = e.eclipse && Math.abs(e.eclipse.greatest - (Date.parse(`${CORONA.date}T18:26:00Z`) / 86400000 + 2440587.5)) < 1 ? 'measured' : 'representative';
+  }
+
   /** Place the camera on the surface for this frame (after positions and orientations are set). */
   function updateSurface(jd) {
     const s = surface, n = nodes[s.id];
@@ -1110,12 +1178,18 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const star = nodes[model.starId];
     const sunDir = star.group.getWorldPosition(sv.c).sub(p);
     const sun = altAz(f, sunDir.toArray());
+    if (s.lookSun) { s.az = sun.az; s.alt = Math.min(89.9, sun.alt); s.fov = Math.min(s.fov, 6); s.lookSun = false; }
+    hudSun.hidden = sun.alt < -1;
     const air = DAY_SKY[s.id];
     let day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
     // a solar eclipse dims the day by the share of the Sun the Moon hides; totality brings out the stars (#30)
     const llNow = s.sphere ? dirToLatLon(s.local.toArray()) : null;
     s.eclipse = s.id === 'earth' && llNow && model.isSol ? eclipseDaylight(jd, llNow.lat, llNow.lon, surfacePoint) : null;
     if (s.eclipse) day *= s.eclipse.light;
+    updateCorona(p, s.eclipse);
+    // the Sun's glare sprite goes with the sunlight that is left
+    const glare = nodes[model.starId]?.mesh?.children?.find((ch) => ch.isSprite);
+    if (glare) glare.material.opacity = 0.85 * (s.eclipse ? 1 - s.eclipse.obscuration : 1);
     if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
@@ -1128,7 +1202,8 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const giant = (n.body.radiusKm ?? 0) > 20000;
     const text = `${giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON'} ${n.body.name.toUpperCase()} · ${where}`;
     const look = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
-    const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ' · TOTAL ECLIPSE: TOTALITY' : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN`) : '';
+    const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
+    const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ` · TOTAL ECLIPSE: TOTALITY${coronaTxt}` : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN${coronaTxt}`) : '';
     const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
     const sub = `${look} · ${sunTxt} · FOV ${Math.round(s.fov)}°${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
@@ -1220,7 +1295,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       n.label.element.classList.toggle('focused', id === focusId);
       if (n.body.orbit) {
         updateOrbit(n, jd);
-        n.orbit.visible = showOrbits || id === focusId;
+        n.orbit.visible = (showOrbits || id === focusId) && !surface;
         n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
         fat.sync(n.orbit, id === focusId ? 3 : 1.6);
         if (n.endMark) n.endMark.visible = n.orbit.visible && !surface;
@@ -1332,11 +1407,12 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     get model() { return model; },
     focus(id, opts) { flyTo(id, opts); },
     /** Stand on body `id` at latitude/longitude (deg) and look up. */
-    surfaceAt(id, lat, lon) {
+    surfaceAt(id, lat, lon, { lookSun = false } = {}) {
       const n = nodes[id];
       if (!n || isStar(n.body)) return false;
       const local = new THREE.Vector3(...latLonToDir(lat, lon));
       enterSurface(id, { object: n.mesh, local, normal: local.clone() });
+      surface.lookSun = lookSun;
       return true;
     },
     exitSurface: () => exitSurface(true),
