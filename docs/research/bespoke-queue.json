@@ -8174,7 +8174,7 @@
       "distancePc": 3.159745481768477,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Unchanged native2MASS infrared finding chart retained; no resolved photospheric geography or calibrated visible colour found in checked primary sources.",
       "catalogueConstraints": {
         "OBJ_NAME": "Ross 248",
         "OBJ_CAT": "LM",
@@ -8193,9 +8193,10 @@
         "COMMENT": "...",
         "distancePc": 3.159745481768477
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ross248-star"
     },
     {
       "id": "star-eps-eri",
@@ -8454,7 +8455,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 10,
+      "initialDossiers": 11,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

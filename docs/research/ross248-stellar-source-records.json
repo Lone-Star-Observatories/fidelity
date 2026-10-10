@@ -1,0 +1,65 @@
+[
+  {
+    "url": "https://arxiv.org/html/1904.03231",
+    "file": "data/research-sources/ross248-schweitzer.html",
+    "sha256": "095831c2c78766bf3b4f1bdc74178601e65c0d6116631190d9486a50c2650cfc",
+    "bytes": 2684075,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1501.01635",
+    "file": "data/research-sources/ross248-mann.pdf",
+    "sha256": "f1c746e741c6016ddd1cd2bbd21a0ed4dc96d247336e3c45e37f90b9db739513",
+    "bytes": 9339251,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2002.05762",
+    "file": "data/research-sources/ross248-khata.html",
+    "sha256": "322913cd2cf0e681514725342694ba06032bc630614320a5a146eb877d5966fb",
+    "bytes": 686978,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_sia?POS=355.479083,44.177972&SIZE=0.01&band=K&FORMAT=ALL",
+    "file": "data/research-sources/ross248-2mass-sia.xml",
+    "sha256": "9af8d859d6e1d89728cf1eac43c5bf27620a8d60b0c316cdb6791aa141b034b8",
+    "bytes": 10303,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=532189&band=K",
+    "file": "data/research-sources/ross248-2mass-preview.html",
+    "sha256": "92f1cec6d26f196c9c0e3db84eaa74572d3c726251e428e1f1dab281c1dac07f",
+    "bytes": 6482,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im?ds=asky&atdir=/ti04&dh=981029n&scan=042&name=ki0420173.fits",
+    "file": "data/research-sources/ross248-2mass-native.fits",
+    "sha256": "5777843cebdd38968f7ba21c71ef406944a1ff6511479fe5ff2057607a80c9be",
+    "bytes": 1483163,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-jpeg?file=%2Fwork%2FTMP_SJrKJF_2888310%2FIM%2Fkey_iY53XD%2FaK_asky_981029n0420173.jpg",
+    "file": "data/research-sources/ross248-2mass-native.jpg",
+    "sha256": "2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c",
+    "bytes": 43453,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Ross+248",
+    "file": "data/research-sources/ross248-simbad.html",
+    "sha256": "f9ae6b3e42d60c3aac4597f02434d55b61e5b83bb0e74d421a3c82361005a3d6",
+    "bytes": 52816,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/doc/sec1_7.html",
+    "file": "data/research-sources/ross248-2mass-credits.html",
+    "sha256": "509c590900a2fa7257b3a9ec818a98c49a7cc29874f37c17d8fc381b22665255",
+    "bytes": 2621,
+    "retrieved": "2026-10-10"
+  }
+]

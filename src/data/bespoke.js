@@ -4902,9 +4902,158 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ross248-star": {
+    "id": "ross248-star",
+    "name": "Ross 248",
+    "kind": "star",
+    "aliases": [
+      "Ross 248",
+      "HH And",
+      "HH Andromedae",
+      "GJ 905",
+      "Gl 905",
+      "Gliese 905",
+      "LHS 549"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Ross248=HHAnd=Gl905/GJ905, actual historical HYG hyg-119585. Mann2015 Table5 Gl905 coordinates23:41:55.0 +44:10:38 match this field. Not Gliese905.2A/B; historical selection preserved pending current ranking reconciliation.",
+    "nativeSurface": "Unchanged native2MASS infrared finding chart retained; no resolved photospheric geography or calibrated visible colour found in checked primary sources.",
+    "measured": [
+      "Native2MASS K_s atlas coadd532189, northern scan42 image173 observed1998-10-29. Gzip-compressed original FITS header UT_DATE981029 and interactive service UTDate corroborate epoch; rendering publication day unknown.",
+      "Schweitzer2019 Table2 continued J23419+441/Gl905 distance3.155±0.001pc; historical catalogue selection preserved, exhaustive current astrometric ranking open."
+    ],
+    "modelled": [
+      "Selected Schweitzer2019 spectroscopic stellar-model estimate3142±51K, radius0.158±0.005Rsun and luminosity0.00220±0.00003Lsun. Distinct photometric radius column0.191±0.001Rsun is retained as an alternative, not combined with spectroscopic temperature.",
+      "Mann2015 Table5 continued independent optical-spectrum/BT-Settl plus bolometric-flux approach:2930±60K, radius0.1894±0.0079Rsun, empirical mass0.145±0.015Msun and metallicity+0.23±0.08. These model-dependent estimates disagree with the selected spectroscopic pair; not direct resolved surface measurements.",
+      "Khata2020 Table5 reproduces Mann2015 calibration values2930±60K and rounded radius0.189±0.007Rsun; its separately inferred values2904±125K and0.171±0.069Rsun are not the original measured/calibration columns.",
+      "Cool partlyionized molecular hydrogen/helium photospheric gas is broad model composition, not measured abundance fractions. Pineda2021 MUSS has no GJ905 row; no Ross154 parameters extrapolated."
+    ],
+    "unknown": [
+      "Resolved convection/magnetic/spot geography, calibrated visible colour and spectral transfer; measured elemental fractions and dated observer registration.",
+      "Current exhaustive nearest20 ranking and reconciliation of alternative atmosphere/temperature/radius methods."
+    ],
+    "assumed": [
+      "Independent grayscale intensity pattern and quiescent observer; longitudes, gas cells and magnetic patches invented. No observed Sun or another-body map reused.",
+      "Conceptual camera2photosphericradii fromcentre; no solid ground or survivable landing.",
+      "Nominal120degreeFOV, exposure, tint and molecular radiative transfer remain artistic. Infrared chart intensity/overlays do not establish photospheric geography, visible colour or companions."
+    ],
+    "surfaceLabel": "PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1904.03231",
+        "title": "Schweitzer etal2019 CARMENES stellar radii, Table2 J23419+441",
+        "publicationDate": "2019-04-05"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1501.01635",
+        "title": "Mann etal2015 How to Constrain Your M Dwarf, Table5 continued",
+        "publicationDate": "2015-01-07"
+      },
+      {
+        "url": "https://arxiv.org/html/2002.05762",
+        "title": "Khata etal2020 NIR parameter calibrations, Table5 distinct columns",
+        "publicationDate": "2020-02-13"
+      },
+      {
+        "url": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=532189&band=K",
+        "title": "IRSA primary2MASS atlas finding chart and epoch metadata",
+        "publicationDate": null
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ross248-2mass-native.jpg",
+        "source": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-jpeg?file=%2Fwork%2FTMP_SJrKJF_2888310%2FIM%2Fkey_iY53XD%2FaK_asky_981029n0420173.jpg",
+        "sourcePage": "https://irsa.ipac.caltech.edu/cgi-bin/2MASS/IM/nph-im_key?ds=asky&key=532189&band=K",
+        "label": "NATIVE INFRARED FINDING CHART",
+        "credit": "Two Micron All Sky Survey (2MASS), joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by NASA and the National Science Foundation; NASA/IPAC Infrared Science Archive.",
+        "terms": "2MASS/IRSA survey use with full required acknowledgement; unmodified publisher finding-chart JPEG.",
+        "termsUrl": "https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/doc/sec1_7.html",
+        "publicationDate": null,
+        "observationDate": "1998-10-29",
+        "tier": "measured",
+        "sha256": "2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c",
+        "bytes": 43453,
+        "description": "Unchanged2MASS K_s2.159micron atlas finding chart forRoss248 coordinates, observed1998-10-29 northern scan42 image173/coadd532189. Inverted infrared intensity, coordinate grid and persistence/filter-glint artifact overlays are instrumental/finding-chart context, not companions or visible photospheric geography. The target is unresolved; no calibrated visible colour claimed. Rendering publication day unknown."
+      }
+    ],
+    "skyModel": {
+      "star": "Ross 248",
+      "radiusSun": 0.158,
+      "temperatureK": 3142,
+      "distanceAU": 0.001469547654464042,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 59.99999999999999,
+      "centreDiscWidthFraction": 0.3333333333333334,
+      "irradianceEarth": 1015.0005069897328,
+      "approximateSrgb": [
+        1,
+        0.7129432013034972,
+        0.468308090219191
+      ],
+      "limits": "Hypothetical camera2photosphericradii fromcentre;60degree geometric diameter. Nominal120degreeFOV, molecular spectral transfer, exposure, threshold core and colour remain artistic and uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "ross248StarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 invented longitude/latitude intensity map; no measured stellar surface frame.",
+      "coverage": "Entire gas/spot morphology imagined; approximate catalogue tint.",
+      "url": "/bespoke/ross248-star-surface-map.jpg",
+      "previewUrl": "/bespoke/ross248-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e29c7bac-a984-46f8-94f9-f2ef43a18938.png",
+      "sourceSha256": "f84244a6a2c9997e9c5acc0abdbb5485e254cad0d51777ddafda2225425022ae",
+      "sha256": "cebf97d5eaf1e8ccdb27e6e5c33e54675ee4deea023e76abf58e13e24d7df01d",
+      "previewSha256": "25b1ff01b1a0bc493b918c311d93fec7a5ab4e6b02d825f11bc38aaed072e481",
+      "bytes": 449418,
+      "previewBytes": 41508,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Four-neighbour bright component connected to central photosphere; excludes disconnected background stars.",
+        "brightCoreWidths": [
+          499,
+          499,
+          499
+        ],
+        "geometricTargetPixels": 557.3333333333335,
+        "limits": "Nominal cameraFOV, threshold/limb/exposure, molecular transfer and colour remain approximate, not calibrated."
+      },
+      "url": "/bespoke/ross248-star-sky-image.jpg",
+      "previewUrl": "/bespoke/ross248-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-69354a9f-78ea-477b-b934-5a1c7798a47a.png",
+      "sourceSha256": "387de09569e6fdbe3c036c2fa1c8620138d89a31c186a917ecd97cf5ace06469",
+      "sha256": "c56d62d6706233dda16a9dc656aa7e5f6a518ab5155462c89dac9e5bfc04108a",
+      "previewSha256": "c3e08b69ad6b1486e03310ba9a369f09aecde23c2b711a040799491e28f79b7a",
+      "bytes": 69210,
+      "previewBytes": 14304,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
-
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;

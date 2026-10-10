@@ -96,3 +96,14 @@ test('Ross154 aliases preserve its own photosphere and keep Xray artifacts separ
   assert.match(v.modelled.join(' '),/Coronal X-ray temperatures/);assert.match(v.assumed.join(' '),/no solid ground/);
   assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
 });
+
+test('Ross248 aliases select its own map and preserve distinct parameter methods',()=>{
+  const v=bodyVisualFor({name:'Ross 248'});
+  assert.equal(bodyVisualFor({name:'HH And'}),v);assert.equal(bodyVisualFor({name:'Gliese 905'}),v);
+  assert.equal(bodyVisualFor({name:'Gliese 905.2A'}),null);
+  assert.notEqual(v.surfaceMap.sha256,bodyVisualFor({name:'Ross 154'}).surfaceMap.sha256);
+  assert.equal(v.contextImages[0].observationDate,'1998-10-29');
+  assert.match(v.modelled.join(' '),/0.1894±0.0079/);assert.match(v.modelled.join(' '),/not combined/);
+  assert.match(v.contextImages[0].description,/not companions/);
+  assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);
+});
