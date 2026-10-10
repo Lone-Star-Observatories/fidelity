@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-10",
+  "scope": "Lossless standalone application transport; no new body dossier",
+  "baselineCommit": "a9df882e266544af44e8d80ba3d3af299c88dd8f",
+  "encoding": "gzip-raw-radix120-v1",
+  "mechanism": "Six compressed bytes become seven ASCII characters in an inert script raw-text element. The alphabet excludes NUL, TAB, LF, VT, FF, CR, ESC and less-than. Packed data is never inserted into a JavaScript string. The bootstrap reads textContent, validates length, digits, overflow and zero padding, then restores gzip and imports a temporary Blob module.",
+  "preserved": ["Inner gzip-radix85-v1 snapshot transport and legacy gzipbase64 compatibility", "Complete readable and browser-decoded snapshot equality", "All 45 dossiers and generated originals/masters", "All native scientific image bytes, source manifests, GLB and shape inputs", "Normal build and unsupported DecompressionStream message"],
+  "validation": {
+    "testsPassed": 218,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "previousTransportBytesForSameApplication": 15847802,
+    "newFullHtmlBytes": 14796115,
+    "savedBytes": 1051687,
+    "headroomUnder16000000": 1203885,
+    "applicationSha256": "741a3bfac1d18f15d73a323ce07deb7bd1e2fc60d78c71c0168585e2d80b1d76",
+    "applicationRoundTrip": "Exact equality to built module after existing closing-script escape; build gzip/transport round trips and Chrome HTML-parser packed-text hash equality verified",
+    "snapshotSha256": "d4feb42aa93642f1f24bae7d1aa045140dc804689270bd9606e503d225005ad0",
+    "snapshotBaselineNote": "Upstream a9df882 adds surface sites and other catalogue fields. This differs from the earlier Phobos snapshot hash; transport work changes no snapshot inputs and preserves the current complete snapshot exactly.",
+    "imagesDecoded": 165,
+    "detailedSystems": 521,
+    "nativeImageReferencesHashedAndEmbeddedUnchanged": 28,
+    "spacecraftLoadedOffline": 24,
+    "issOffline": "passed",
+    "navigationLevels": 6,
+    "unsupportedBrowserMessage": "passed",
+    "offlineEclipseWorkerRows": 8,
+    "queueTasks": 566,
+    "initialDossiers": 45
+  },
+  "remaining": "Deimos native Hera imagery integration and individual observer illustrations; all calibration, ranking, outstanding Solar System/native-map/craft/shape work remains active. Control-character transport has been verified in current Chrome; other browser engines were not independently exercised."
+}

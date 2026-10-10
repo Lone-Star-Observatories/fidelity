@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -32,4 +32,19 @@ test('radix85 rejects invalid encoding, lengths, digits, overflow and padding', 
 
 test('offline snapshot rejects corrupt gzip instead of serving partial data', async () => {
   await assert.rejects(decodeSnapshot(Buffer.from('not gzip').toString('base64')));
+});
+
+test('raw application transport preserves all bytes and partial blocks without HTML delimiters', () => {
+  for (const bytes of [Uint8Array.from({length:256}, (_, i) => i), randomBytes(4097), ...Array.from({length:8}, (_, length) => new Uint8Array(length).fill(255))]) {
+    const packed = encodeApplicationBytes(bytes);
+    assert.deepEqual(unpackApplicationBytes(packed), new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data, /[\x00\x09-\x0d\x1b<]/);
+  }
+});
+
+test('raw application transport rejects invalid envelopes, overflow and padding', () => {
+  const valid = encodeApplicationBytes(new Uint8Array(6));
+  for (const packed of [null, {}, {...valid, encoding:'other'}, {...valid, byteLength:-1}, {...valid, data:valid.data.slice(1)}, {...valid, data:'<'.repeat(7)}, {...valid, data:'\x7f'.repeat(7)}, {...encodeApplicationBytes(new Uint8Array(1)), data:valid.data.slice(0,6)+'\x02'}]) {
+    assert.throws(() => unpackApplicationBytes(packed));
+  }
 });
