@@ -6,7 +6,7 @@ import { jdFromDate } from './time.js';
 export const RATES = [
   { days: -365, label: '−1 YEAR/S' }, { days: -30, label: '−1 MONTH/S' }, { days: -7, label: '−1 WEEK/S' },
   { days: -1, label: '−1 DAY/S' }, { days: -1 / 24, label: '−1 HOUR/S' }, { days: 0, label: 'HOLD' },
-  { days: 1 / 86400, label: 'REAL TIME' }, { days: 1 / 24, label: '1 HOUR/S' }, { days: 1, label: '1 DAY/S' },
+  { days: 1 / 86400, label: 'REAL TIME' }, { days: 1 / 1440, label: '1 MIN/S' }, { days: 1 / 24, label: '1 HOUR/S' }, { days: 1, label: '1 DAY/S' },
   { days: 7, label: '1 WEEK/S' }, { days: 30, label: '1 MONTH/S' }, { days: 365, label: '1 YEAR/S' },
 ];
 const REAL = RATES.findIndex((r) => r.label === 'REAL TIME');
@@ -30,6 +30,8 @@ export function createClock() {
     now() { jd = jdFromDate(new Date()); rateIdx = REAL; emit(); },
     faster() { rateIdx = Math.min(RATES.length - 1, rateIdx + 1); emit(); },
     slower() { rateIdx = Math.max(0, rateIdx - 1); emit(); },
+    /** Jump to the listed rate nearest `days` per second (e.g. 1 / 1440 = 1 MIN/S). */
+    setRate(days) { rateIdx = RATES.reduce((b, r, i) => (Math.abs(r.days - days) < Math.abs(RATES[b].days - days) ? i : b), 0); emit(); },
     toggleHold() { rateIdx = RATES[rateIdx].days === 0 ? REAL : RATES.findIndex((r) => r.days === 0); emit(); },
     onChange: (fn) => (listeners.add(fn), () => listeners.delete(fn)),
   };

@@ -19,6 +19,7 @@ import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
 import { satellites, satelliteDetail } from './satellites.js';
 import { feed, feedList } from './feeds.js';
+import { eventsFeed } from './events.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -53,6 +54,7 @@ const routes = {
   'GET /api/smallbodies': async () => smallBodies(),
   'GET /api/satellites': async () => satellites(),
   'GET /api/feeds': async () => feedList(),
+  'GET /api/events': async () => eventsFeed(),
 };
 
 /** Binary result: sent as-is instead of JSON. */

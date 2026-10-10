@@ -19,6 +19,7 @@ npm run build && npm start        # → http://127.0.0.1:4011
 npm run dev                       # → http://127.0.0.1:5173 (proxies /api to the backend)
 npm test                          # orbital mechanics checked against JPL Horizons
 npm run build:standalone          # → dist-standalone/fidelity.html, a backend-free preview
+npm run events                    # → events/events.json, the weekly events feed (CI publishes it every Monday)
 ```
 
 The first Navigation visit downloads the HYG star catalogue (13.6 MB, once) and the NASA
@@ -29,6 +30,7 @@ Exoplanet Archive planet list (cached for a week). Both are stored under `data/`
 | `FIDELITY_PORT` | `4011` | Backend port (binds to `127.0.0.1` only) |
 | `FIDELITY_DATA_DIR` | `./data` | Where on-demand downloads are cached |
 | `FIDELITY_CATALOG_DIRS` | — | Folders with catalogs you already have (e.g. `/Volumes/DATA/catalogs`); separate several with `:` |
+| `FIDELITY_EVENTS_URL` | the repo's `events/events.json` on GitHub | Where `/api/events` reads the weekly events feed |
 
 Run `npm run catalogs -- /path/to/catalogs` to see which of your downloaded catalogs the
 ship recognises and which view will use each one.
@@ -43,8 +45,12 @@ ship recognises and which view will use each one.
 - Switch between **ENHANCED** sizes (labelled with how much each body is enlarged) and
   **TRUE** scale.
 - Read light-time and distances. Every value carries a provenance badge:
-  MEASURED · COMPUTED · MODELLED · IMAGINED.
+  MEASURED · COMPUTED · MODELLED · IMAGINED · REPORTED (published schedules and sites).
 - The **Sector 001** beacon is always in the top bar; an edge arrow points back to Sol.
+- **Events:** this week's launches (SpaceX, NASA, ESA, other agencies, private companies), dockings,
+  spacewalks, splashdowns, flybys, eclipses, meteor showers and aurora watches, with webcasts and live
+  space channels. GO TO EVENT replays a launch (ascent, booster landing, deployment), a re-entry or a
+  docking in 3D on modelled paths.
 - **Navigation:** look outward 10–100 light-years from any star. The chart is in the
   galactic frame with quadrants I–IV, and planet hosts are ringed. Select a star and
   **warp** to it.

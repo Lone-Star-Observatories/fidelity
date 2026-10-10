@@ -32,6 +32,9 @@ import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
 import { createSkyEventsPanel } from './panels/skyevents.js';
+import { createEventsPanel } from './panels/events.js';
+import { loadEvents, onEvents } from './data/events.js';
+import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
 import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
 import { useEarthEphemeris } from './astro/eclipses.js';
@@ -147,10 +150,16 @@ for (const [id, label] of SUB_BUTTONS) {
   railSubs.append(b);
 }
 
+// EVENTS (#32/#33): the weekly events feed; a dot when something happens within 24 hours
+const eventsBtn = h('button', { className: 'rail-btn sub events-btn', title: 'Launches, landings, dockings, spacewalks and sky events' }, 'EVENTS');
+eventsBtn.dataset.sub = 'events';
+eventsBtn.addEventListener('click', () => go({ level: 'events', system: 'sol' }));
+railSubs.append(eventsBtn);
+
 function syncRail() {
   for (const b of railLevels.children) b.classList.toggle('active', b.dataset.level === route.level);
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
-  for (const k of ['planet', 'moon', 'object', 'satellite']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
+  for (const k of ['planet', 'moon', 'object', 'satellite', 'events']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
 
 // ---- toast & warp -----------------------------------------------------------------------
@@ -224,7 +233,7 @@ controls.append(
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE')),
+  h('div', { className: 'ctl-group' }, flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'FIELDS'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }),
 );
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
@@ -332,6 +341,21 @@ const navList = createNavList({ h, pill, fmt, fetchPlanets, fetchClusters,
 const skyPanel = createSkyEventsPanel({ h, row, pill, go, clock, system });
 const earthHz = earthFromHorizons();
 const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
+const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
+{
+  let satrecs = new Map();
+  const attach = (f) => f && system.setMissionEvents(f.events, { satrecFor: (n) => satrecs.get(n) ?? null });
+  onEvents(attach);
+  loadEvents().then((f) => {
+    if (!f?.events.some((e) => e.target?.norad)) return;
+    satPanel.load().then((d) => {
+      const want = new Set(f.events.map((e) => e.target?.norad).filter(Boolean));
+      satrecs = new Map((d?.rows ?? []).filter((r) => want.has(r[0])).map((r) => [r[0], satrecFromRow(r)]));
+      attach(f);
+    });
+  });
+}
 
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
 
@@ -1065,7 +1089,9 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); }, 200);
+setInterval(() => { tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); }, 200);
+setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
+loadEvents().then(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0));
 
 // ---- edge beacon (per animation frame) ---------------------------------------------------
 (function beaconLoop() {
@@ -1099,7 +1125,7 @@ onRoute(async (r) => {
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
   syncRail();
-  if (r.level !== 'satellite') satPanel.closeViewer();
+  if (r.level !== 'satellite' && !(r.level === 'events' && prev?.level === 'events')) satPanel.closeViewer(); // keep a webcast playing while browsing events
   if (r.level !== 'quadrant') quadrant.hide();
   if (r.level !== 'universe') universe.hide();
   if (r.level === 'quadrant' || r.level === 'universe') {
@@ -1128,6 +1154,18 @@ onRoute(async (r) => {
     return;
   }
   if (r.level === 'system' && r.body?.startsWith('sat-')) return go({ level: 'satellite', system: 'sol', body: r.body.slice(4) });
+  if (r.level !== 'events') eventsPanel.leave();
+  if (r.level === 'events') {
+    nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
+    $('offline').hidden = true;
+    system.show();
+    if (!(await ensureSystem('sol')) || route !== r) return;
+    if (prev.level !== 'events') { warp(); system.focus('earth'); }
+    $('view-title').textContent = 'EVENTS · LAUNCHES, LANDINGS, STATION OPS, SKY';
+    syncBeacon();
+    eventsPanel.render(r.body);
+    return;
+  }
   if (r.level === 'satellite') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;

@@ -1,0 +1,39 @@
+name: Weekly events feed
+# Rebuilds events/events.json (#32) every Monday and commits it to main; the app's /api/events
+# route and the standalone preview fetch it from raw.githubusercontent.com.
+# Optional repository secrets: LL2_TOKEN (Launch Library 2 API key, higher rate limit) and
+# YOUTUBE_API_KEY (adds live/upcoming broadcast state to the stream list).
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: events-feed
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build the feed
+        env:
+          LL2_TOKEN: ${{ secrets.LL2_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: npm run events
+      - name: Check it
+        run: node --test tests/events.test.js
+      - name: Commit if changed
+        run: |
+          git config user.name 'fidelity-events-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add events/events.json
+          if git diff --cached --quiet; then echo 'No change'; exit 0; fi
+          git commit -m "Weekly events feed $(date -u +%Y-%m-%d) (#32)"
+          git push
