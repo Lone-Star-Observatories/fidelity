@@ -19,6 +19,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/deepsky.js   VizieR        │
 │                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
+│                                      │           │ server/search.js    star search   │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -240,6 +241,50 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
+Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
+every disc covers 2·asin(R/d) from the first frame; the HUD reports the true and the drawn diameter of
+the Sun and the Moon (or the parent planet) and the field as horizontal × vertical. FOV presets set
+`camera.fov` from a horizontal field (cameras, eye) or a round field's diameter (binoculars,
+telescope). The orbit-view glare sprite is hidden while standing; `skyglare.js` draws a glare plane
+fixed in the observer's field (it does not grow with magnification), outside the disc only, scaled by
+`glareStrength` (illuminance ∝ 1/d², airmass extinction, eclipse obscuration). ENLARGED ×4 multiplies
+the Sun's and the Moon's mesh scale and says so in the HUD.
+
+Night sky (#48, `src/views/system/skylayers.js`, geometry in `src/data/skylayers.js`): shown while
+standing, in the full band. A back-side sphere maps the Gaia DR3 colour flux map (equirectangular
+RA/Dec from hips2fits, through `/api/hips`); deep-sky images are additive quads on the sphere, turned
+by `imageAxes` (north angle, east left as seen from inside) and sized from their field; cluster rings
+use `galToRaDec`; constellation lines and names come from `src/data/constellation-lines.js`. Labels
+behind the camera are hidden by hand (CSS2D shows them when the near plane is tiny). A click opens a
+card in the feed viewer (`deepSkyCard` in `main.js`).
+
+Planetshine (#49, `src/astro/planetshine.js`): `updatePlanetshine` computes, in true geometry, each
+moon's planetshine fraction p·(R/d)²·Φ(α) and feeds the planet shader's second light (`uPsPos`,
+`uPsCol` = tint × `planetshineDisplay(f)`), lowering the fake ambient for those moons. Standing on a
+moon, `updateParentFinder` labels the parent with its size and lit fraction, draws an edge arrow when
+it is off screen, aims ◉ LOOK AT and explains when a locked moon's far side never sees it.
+
+## Text search (#63)
+
+`src/data/search.js` is the pure matcher (fold to lower case without accents, Greek letters spelled
+out; exact > prefix > word prefix > substring > typo-tolerant Damerau–Levenshtein, which runs only
+when exact matching finds little), shared by the browser and `server/search.js`. `src/data/search-index.js`
+builds the static entries (Sol bodies with aliases and minor-planet numbers, spacecraft with acronyms,
+missions, sites, deep sky); `src/panels/search.js` adds the events feed, sky events and the satellite
+catalogue, asks `/api/star-search` for stars and exoplanets (HYG designations kept by `parseHyg` as
+`alt`), groups hits by kind with badges and routes a pick through `go()` or shell actions (stand at a
+site, select in the Quadrant or Universe View, open a mission card, set the clock for a sky event).
+
+## Universe View galaxy forms (#50)
+
+`src/views/universe/galaxyforms.js` builds a form for each galaxy in `src/data/galaxy-images.js` once
+the UNGC rows arrive (distance from UNGC, size from D25). Sky directions at the galaxy come from
+finite differences through `radecToSupergal`; the disc lies along the major axis (PA) and the minor
+axis tilted towards us by the inclination (towards the stated near side when known). Each disc vertex
+gets the uv where it projects on our sky, so from the Milky Way the disc shows the cutout exactly.
+Forms fade in between 6 and 30 px apparent size; `select` eases the camera to ~3× the galaxy's size.
+Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached route as #24).
 
 ## Space telescopes
 

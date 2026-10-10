@@ -9,6 +9,8 @@ import { radecToSupergal, galToSupergal, frameToScene, blackbodyRGB } from '../.
 import { GALAXY_NAMES, GALAXY_CLUSTERS } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
 import { onClicks } from '../pick.js';
+import { createGalaxyForms } from './galaxyforms.js';
+import { nebulaImageUrl } from '../../data/catalog.js';
 
 export const MLY_PER_MPC = 3.26156;
 // Morphological type (de Vaucouleurs T) → colour: ellipticals/lenticulars red-gold, spirals white, irregulars blue.
@@ -21,6 +23,12 @@ export const typeName = (T) => (T == null ? 'GALAXY' : T <= -3 ? 'ELLIPTICAL' : 
 export const MOTION = {
   lg: { kms: 627, l: 276, b: 30 },
   m31: { ra: 10.6847, dec: 41.269, mly: 2.5, radialKms: -110, tangentialKms: 57, mergeGyr: 4.5 },
+};
+
+/** What the two arrows mean (KEY and hover labels). */
+export const MOTION_KEY = {
+  lg: `Gold arrow: the Local Group (Milky Way, Andromeda and their neighbours) moves at ${MOTION.lg.kms} ± 22 km/s towards galactic l = ${MOTION.lg.l}°, b = +${MOTION.lg.b}° relative to the cosmic microwave background, measured from the CMB dipole (Kogut et al. 1993; Planck 2020). MEASURED.`,
+  m31: `Red arrow: Andromeda approaches the Milky Way at ${-MOTION.m31.radialKms} km/s (radial velocity, Sun's motion removed), with only ~${MOTION.m31.tangentialKms} km/s sideways (HST/Gaia proper motions, van der Marel et al. 2019), so the two collide in ~${MOTION.m31.mergeGyr} Gyr. MEASURED velocities, MODELLED merger time.`,
 };
 
 const VERT = `
@@ -94,12 +102,17 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
   }
 
   const objects = [];
+  // real images with 3D form for the nearest big galaxies (#50)
+  const texLoader = new THREE.TextureLoader();
+  const forms = createGalaxyForms({ scene, sgScene: (ra, dec, d) => sgScene(ra, dec, d), imageUrl: nebulaImageUrl,
+    loadTexture: (url) => new Promise((res) => texLoader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null))) });
   let ungcPts = null, groupPts = null, groupRows = [], ungcRows = [];
   const sgScene = (ra, dec, d) => new THREE.Vector3(...frameToScene(radecToSupergal(ra, dec, d)));
 
   function setGalaxies(d) {
     if (ungcPts || !d?.ungc) return;
     ungcRows = d.ungc.rows;
+    forms.build(ungcRows);
     groupRows = d.groups.rows;
     // groups: SG Cartesian in velocity units; place along that direction at the measured distance
     groupPts = makePoints(d.groups.rows.map(([, n, dist, x, y, z]) => {
@@ -140,6 +153,7 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
   scene.add(lgArrow, m31Arrow);
   const lgTag = tag(`LOCAL GROUP → ${MOTION.lg.kms} KM/S VS THE CMB`, 'motion', lgDir, { kind: 'motion', always: true });
   const m31Tag = tag(`ANDROMEDA → ${-MOTION.m31.radialKms} KM/S CLOSING · MERGES IN ~${MOTION.m31.mergeGyr} GYR`, 'motion', m31, { kind: 'motion' });
+  lgTag.element.title = MOTION_KEY.lg; m31Tag.element.title = MOTION_KEY.m31;
   function scaleMotion(R) {
     const L = R * 0.3;
     lgArrow.setLength(L, L * 0.18, L * 0.08);
@@ -169,11 +183,13 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
     target.set(0, 0, 0);
     camera.position.set(R * 0.4, R * 0.9, R * 1.5);
   }
-  let selected = null;
+  let selected = null, zoomTo = null;
   function select(id) {
     selected = objects.find((o) => o.id === id) ?? null;
     for (const t of tags) t.obj.element.classList.toggle('selected', !!selected && t.obj.position.equals(selected.pos));
     if (selected) target.copy(selected.pos);
+    const f = selected && forms.formOf(selected.id);
+    zoomTo = f ? Math.max(f.sizeMly * 3.2, 0.06) : null;
     return selected;
   }
 
@@ -193,7 +209,13 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
       const delta = tmp.copy(target).sub(controls.target).multiplyScalar(0.08);
       controls.target.add(delta); camera.position.add(delta);
     }
+    if (zoomTo != null) { // a selected galaxy with a form: ease in until it fills the view
+      const off = camera.position.clone().sub(controls.target), d = off.length(), nd = d + (zoomTo - d) * 0.08;
+      camera.position.copy(controls.target).addScaledVector(off.normalize(), nd);
+      if (Math.abs(nd - zoomTo) < zoomTo * 0.01) zoomTo = null;
+    }
     controls.update();
+    forms.update(camera, container.clientHeight || 600, radius);
     const show = settings.get('labels');
     // labels for objects inside the filter, and not swamped: only those beyond 2% of the radius
     for (const t of tags) t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02 && t.dist >= radius * 0.03) || (selected && t.obj.position.equals(selected.pos)));
@@ -209,6 +231,8 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
     setGalaxies, setRadius, select,
     get radius() { return radius; },
     get objects() { return objects; },
+    /** The image-and-shape record of a galaxy (#50), or null. */
+    formOf: (id) => forms.formOf(id)?.g ?? null,
     counts() {
       const R = radius / MLY_PER_MPC;
       return { galaxies: ungcRows.filter((r) => r[3] <= R).length, groups: groupRows.filter((r) => r[2] <= R).length };

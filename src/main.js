@@ -19,7 +19,7 @@ import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -43,6 +43,10 @@ import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
 import { createFuturePanel } from './panels/future.js';
 import { createMagneticPanel } from './panels/magnetic.js';
+import { createSearch } from './panels/search.js';
+import { PLANETSHINE } from './astro/planetshine.js';
+import { FUTURE_MISSIONS } from './data/future-missions.js';
+import { SITES } from './data/sites.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -80,6 +84,7 @@ const system = createSystemView($('system-view'), {
   onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
+  onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
@@ -388,7 +393,7 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -479,6 +484,27 @@ const factList = (facts, body) => {
   return dl;
 };
 
+/** A deep-sky object picked on the surface view's sky (#48): its card in the feed viewer. */
+function deepSkyCard(o) {
+  const v = $('feed-viewer'), dl = h('dl');
+  row(dl, 'KIND', o.sub ?? o.kind.toUpperCase(), 'measured', 'Catalogue classification.');
+  if (o.distLy) row(dl, 'DISTANCE', `${fmt(o.distLy, 0)} LY`, 'measured', o.kind === 'cluster' ? 'Hunt & Reffert 2023 (Gaia DR3 parallaxes).' : 'Literature distance (src/data/deepsky.js).');
+  if (o.sizeArcmin) row(dl, 'SIZE ON THE SKY', o.sizeArcmin >= 60 ? `${(o.sizeArcmin / 60).toFixed(1)}°` : `${o.sizeArcmin.toFixed(1)}′`, 'measured', o.kind === 'galaxy' ? 'D25 major axis (RC3 / HyperLEDA).' : o.kind === 'cluster' ? 'Twice the half-member radius.' : 'Extent of the modelled nebula.');
+  if (o.members) row(dl, 'MEMBERS', fmt(o.members, 0), 'measured', 'Gaia DR3 members (Hunt & Reffert 2023).');
+  if (o.pa != null) row(dl, 'ORIENTATION', `PA ${o.pa}° · INCLINATION ${o.incl}°`, o.orient, o.orientSource);
+  if (o.credit) row(dl, 'IMAGE', o.kind === 'cluster' ? 'NONE (RING AT r50)' : 'SURVEY / PRESS IMAGE', 'measured', `${o.credit}${o.licence ? ` · ${o.licence}` : ''}`);
+  v.hidden = false;
+  v.replaceChildren(
+    h('div', { className: 'fv-head' }, h('span', { className: 'fv-title', textContent: o.name.toUpperCase() }), h('span', { className: 'fv-sub', textContent: 'ON THE SKY FROM HERE' }), badge('measured', o.credit ?? ''),
+      pill('✕', () => { v.hidden = true; v.replaceChildren(); }, 'square')),
+    h('div', { className: 'fv-body fv-card' }, h('div', {}, dl, o.note ? h('p', { className: 'note', textContent: o.note }) : null,
+      h('div', { className: 'body-list' }, pill(o.kind === 'galaxy' ? 'SHOW IN THE UNIVERSE VIEW ▸' : 'SHOW IN THE QUADRANT VIEW ▸', () => {
+        v.hidden = true;
+        if (o.kind === 'galaxy') { universeSel = o.id; go({ level: 'universe' }); } else { quadrantSel = o.id; go({ level: 'quadrant' }); }
+      })))),
+    h('div', { className: 'fv-credit', textContent: o.credit ?? '' }));
+}
+
 function renderLegend() {
   return h('div', {},
     h('h3', { textContent: 'DATA PROVENANCE' }),
@@ -509,6 +535,20 @@ const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, 
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
+createSearch({ h, badge, $, go, clock, actions: {
+  satellites: () => satPanel.load(),
+  stars: (q) => fetchStarSearch(q),
+  mission: (id) => { const m = FUTURE_MISSIONS.find((x) => x.id === id); if (m) futurePanel.openCard(m); },
+  site: (id) => {
+    const s = SITES.find((x) => x.id === id);
+    if (!s) return;
+    if (route.level === 'system' && currentSystem === 'sol' && system.focusId === s.body) system.surfaceAt(s.body, s.lat, s.lon);
+    else { pendingSurface = { id: s.body, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: s.body }); }
+  },
+  quadrant: (id) => { quadrantSel = id; if (route.level === 'quadrant') { quadrant.select(id); renderQuadrantPanel(); } else go({ level: 'quadrant' }); },
+  universe: (id) => { universeSel = id; if (route.level === 'universe') { universe.select(id); renderUniversePanel(); } else go({ level: 'universe' }); },
+} });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
   let satrecs = new Map();
@@ -746,6 +786,14 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
   if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
+  if (m.isSol && b.kind === 'moon' && PLANETSHINE[b.parent]) { // #49
+    const ps = PLANETSHINE[b.parent], st = system.planetshineOf(b.id), dl = h('dl');
+    const parent = m.bodies.find((x) => x.id === b.parent)?.name ?? b.parent;
+    row(dl, ps.name, st ? `${st.f.toExponential(1)} OF SUNLIGHT · ${parent.toUpperCase()} ${Math.round((1 + Math.cos(st.alpha)) / 2 * 100)}% LIT FROM HERE` : 'COMPUTING…', 'computed',
+      `Sunlight reflected by ${parent} onto ${b.name}'s night side: geometric albedo × (radius / distance)² × Lambert phase law. ${ps.source}. For comparison, earthshine on the Moon at new Moon is ~1×10⁻⁴ (BBSO: Qiu et al. 2003; Pallé et al. 2003).`);
+    row(dl, 'ON SCREEN', 'BRIGHTENED (LOG EXPOSURE)', 'modelled', 'The eye adapts to a night side; a screen cannot show 10⁻⁴ beside full sunlight, so planetshine is drawn at 4% of full brightness for 10⁻⁴, +3% per decade, in the reflected light\'s colour.');
+    extra.push(h('h3', { textContent: 'PLANETSHINE' }), dl);
+  }
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
@@ -934,6 +982,18 @@ function renderQuadrantPanel() {
   );
 }
 
+/** Image, orientation and shape rows for a galaxy drawn with its real image (#50). */
+function galaxyFormFacts(g) {
+  if (!g) return [];
+  return [
+    { label: 'IMAGE', value: `${g.img.survey === 'twomass' ? '2MASS NEAR-IR' : 'DSS2 COLOUR'} · ${g.img.date}`, tier: 'measured', detail: `${g.img.credit}. ${g.img.licence}. Cutout ${g.img.fov.toFixed(0)}′ wide, north up, centred on RA ${g.ra.toFixed(3)}°, Dec ${g.dec.toFixed(3)}°.` },
+    { label: 'ORIENTATION', value: `PA ${g.pa}° · INCLINATION ${g.incl}°${g.near ? ` · ${g.near} SIDE NEARER` : ''}`, tier: g.orient, detail: `${g.orientSource}.${g.near ? '' : ' Which side is nearer is not established here: one of the two mirror-image tilts is drawn.'}` },
+    { label: 'SIZE', value: `D25 ${g.d25}′`, tier: 'measured', detail: 'Major axis to the 25 mag/arcsec² isophote (RC3 / HyperLEDA), drawn at the galaxy\'s distance.' },
+    { label: 'SHAPE', value: g.type === 'elliptical' ? 'ELLIPSOID GLOW + IMAGE ON THE SKY PLANE' : g.type === 'spiral' ? 'DISC + BULGE + THICKNESS GLOW' : 'DISC + THICKNESS GLOW', tier: 'modelled',
+      detail: g.type === 'elliptical' ? 'An oblate ellipsoid with the observed axis ratio; the true 3D shape of an elliptical is not known from one viewpoint.' : 'The image is projected onto a thin disc (scale height ~2% of D25) so it looks exactly as observed from the Milky Way; seen from elsewhere, the disc texture is an approximation (the far side, dust and bulge are not reconstructed).' },
+  ];
+}
+
 function renderUniversePanel() {
   resetLive();
   const R = universe.radius, c = universe.counts();
@@ -946,6 +1006,7 @@ function renderUniversePanel() {
       ...(sel.diameterKpc ? [{ label: 'DIAMETER', value: `${fmt(sel.diameterKpc * 3.26156, 0)},000 LY`, tier: 'measured', detail: 'Holmberg-like diameter at 26.5 mag/arcsec² (UNGC).' }] : []),
       ...(sel.absB != null ? [{ label: 'BRIGHTNESS', value: `M_B ${fmt(sel.absB, 1)}`, tier: 'computed', detail: 'Absolute blue magnitude; the Milky Way is about −20.8.' }] : []),
       { label: 'LIGHT', value: lightLeft(sel.distLy), tier: 'computed' },
+      ...galaxyFormFacts(universe.formOf(sel.id)),
     ] : [
       { label: 'TYPE', value: 'CLUSTER OF GALAXIES', tier: 'measured' },
       { label: 'DISTANCE', value: lyText(sel.distLy), tier: 'measured', detail: 'Literature distance (Cosmicflows).' },
@@ -978,6 +1039,7 @@ function renderUniversePanel() {
       { label: 'ANDROMEDA', value: `${-MOTION.m31.radialKms} KM/S CLOSING`, tier: 'measured', detail: `Red arrow (zoom to 3 or 10 MLY). Its blueshift and Hubble proper motions (~${MOTION.m31.tangentialKms} km/s sideways; van der Marel et al. 2019) give a near head-on approach.` },
       { label: 'MILKOMEDA', value: `IN ~${MOTION.m31.mergeGyr} BILLION YR`, tier: 'modelled', detail: 'N-body simulations put the first pass in ~4 billion years and the merger into one elliptical galaxy ~2 billion years later; newer Gaia-based work gives it only ~50% odds within 10 billion years (Sawala et al. 2025).' },
       { label: 'DOTS', value: 'POSITIONS, NOT SIZES', tier: 'imagined', detail: 'Dot size encodes brightness or richness; real galaxies are far smaller than the gaps between them.' },
+      { label: 'GALAXY IMAGES', value: '17 NEAREST BIG GALAXIES', tier: 'measured', detail: 'Zoom in (or select one) and M31, M33, M81, M82, M83, M101, M51, M104, NGC 253, NGC 4945, Centaurus A, M32, M110, NGC 6822, IC 10 and Maffei 1/2 appear at their real D25 size from their survey images (DSS2; 2MASS behind the Milky Way), turned to their measured position angle and inclination. Shapes are MODELLED over MEASURED imagery; the Magellanic Clouds\' Spitzer images are in the Galaxy View (#18).' },
     ]),
     h('p', { className: 'note', textContent: 'Empty wedges above and below are the Zone of Avoidance: the Milky Way\'s own dust hides what lies behind it.' }),
     renderLegend(),
@@ -1367,15 +1429,16 @@ onRoute(async (r) => {
       if (!quadrantLoaded) {
         quadrantLoaded = true;
         fetchGalaxyStars().then((d) => quadrant.setStars(d));
-        fetchClusters().then((d) => { quadrant.setClusters(d); if (route.level === 'quadrant') renderQuadrantPanel(); });
+        fetchClusters().then((d) => { quadrant.setClusters(d); if (quadrantSel) quadrant.select(quadrantSel); if (route.level === 'quadrant') renderQuadrantPanel(); });
       }
     } else {
       $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
       universe.show();
+      if (universeSel) universe.select(universeSel);
       renderUniversePanel();
       if (!universeLoaded) {
         universeLoaded = true;
-        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (route.level === 'universe') renderUniversePanel(); });
+        fetchGalaxies().then((d) => { universe.setGalaxies(d); if (universeSel) universe.select(universeSel); if (route.level === 'universe') renderUniversePanel(); });
       }
     }
     return;

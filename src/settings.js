@@ -17,6 +17,8 @@ const defaults = {
   fields: false,     // System View: MAG FIELDS: the Sun's field (Parker spiral, current sheet) and planetary magnetospheres (#38)
   features: true,    // System View: IAU names of craters, mountains, valleys… on rocky and icy worlds
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
+  deepsky: true,     // surface view: nebulae, galaxies and star clusters on the sky (#48)
+  constellations: false, // surface view: constellation figures and names (#48)
   siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
