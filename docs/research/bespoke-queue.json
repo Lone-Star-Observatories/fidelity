@@ -500,9 +500,10 @@
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
       "nativeImagery": "analog-only; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "haumea"
     },
     {
       "id": "sol-makemake",
@@ -512,9 +513,10 @@
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
       "nativeImagery": "analog-only; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "makemake"
     },
     {
       "id": "sol-eris",
@@ -524,9 +526,10 @@
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
       "nativeImagery": "analog-only; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "eris"
     },
     {
       "id": "sol-gonggong",

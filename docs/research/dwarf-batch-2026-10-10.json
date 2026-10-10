@@ -1,0 +1,265 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "eris",
+      "name": "Eris",
+      "aliases": [
+        "Eris"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
+      "measured": [
+        "JWST NIRSpec spectra show methane-rich surface ice and nitrogen-ice absorption; visible observations indicate a bright, approximately neutral-colour surface.",
+        "November 2010 stellar occultation constrains diameter to about 2326 km and high visible geometric albedo."
+      ],
+      "modelled": [
+        "Interior thermal processing and surface refresh are proposed explanations for isotope chemistry, not resolved eruption observations."
+      ],
+      "unknown": [
+        "No resolved global terrain map; geography, metre-scale relief, grain structure and precise visible colours are unknown.",
+        "True material reflectance and observer exposure/white balance are not calibrated.",
+        "Atmospheric variability, exact local terrain and sky appearance at a specified epoch."
+      ],
+      "assumed": [
+        "Cold distant-epoch scenario with no optically appreciable atmosphere; pale methane/nitrogen frost covers a low-contrast hypothetical terrain.",
+        "Every crater, ridge and spatial albedo pattern is imagined; illustrative east-positive longitude is not registered to measured terrain.",
+        "Representative semimajor-axis illumination, not a dated landing. Hypothetical 60\u00b0 camera field; subpixel Sun rendered with restrained glare, not an enlarged stellar disc.",
+        "Observer longitude and latitude are unspecified; moons and rings are omitted from the selected sky direction rather than given invented positions."
+      ],
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/2309.05085",
+          "title": "Grundy et al., JWST methane isotopes and nitrogen ice",
+          "publicationDate": "2023-09-10"
+        },
+        {
+          "url": "https://www.eso.org/public/news/eso1142/",
+          "title": "ESO occultation size and reflective surface",
+          "publicationDate": "2011-10-26",
+          "observationDate": "2010-11"
+        },
+        {
+          "url": "https://arxiv.org/abs/2309.05549",
+          "title": "Glein et al., competing methane-origin hypotheses",
+          "publicationDate": "2023-09-11"
+        },
+        {
+          "url": "https://science.gsfc.nasa.gov/690/KuiperBelt.html",
+          "title": "Eris Hubble observation and credits",
+          "observationDate": "2006-08-30"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/references/eris-hubble.jpg",
+          "source": "https://science.gsfc.nasa.gov/690/images/hs-2007-24-c-web.jpg",
+          "sourcePage": "https://science.gsfc.nasa.gov/690/KuiperBelt.html",
+          "credit": "NASA/ESA/M. Brown",
+          "tier": "measured",
+          "observationDate": "2006-08-30",
+          "retrieved": "2026-10-10",
+          "sha256": "2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d",
+          "bytes": 15011,
+          "description": "Processed Hubble telescope detection of the dwarf planet and companion(s); point-source glare does not resolve terrain or establish natural surface colour.",
+          "terms": "NASA image usage guidelines; NASA/ESA and individual source credits retained.",
+          "processing": "HTTP gzip transfer decoded; source JPEG otherwise retained."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 67.93394687853566
+      },
+      "surfaceMap": {
+        "key": "erisBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular, north up; illustrative east-positive longitude. No measured terrain registration.",
+        "coverage": "Entire globe imagined; spectral constraints are disk integrated."
+      },
+      "inputs": {
+        "surfaceMap": "exec-b6bf14b1-39ea-46b3-9e31-edfc46b91539.png",
+        "skyImage": "exec-e3d994ec-44b4-40d1-a74f-6178a084fb7e.png"
+      },
+      "promptBrief": "Individual research-guided albedo texture and observer image; composition and palette as stated in assumptions, no invented atmosphere clouds, 60 degree hypothetical view, unresolved white solar point and exposure-adapted foreground; geometry and spectral photometry not calibrated."
+    },
+    {
+      "id": "haumea",
+      "name": "Haumea",
+      "aliases": [
+        "Haumea"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
+      "measured": [
+        "Near-infrared spectroscopy identifies crystalline water ice; rotational photometry indicates a relatively dark reddish region.",
+        "2017 occultation constrains an elongated body and an equatorial ring; rotation period is about 3.9 hours."
+      ],
+      "modelled": [
+        "Dark-region chemistry and geographic outline are not uniquely inferred from unresolved rotational photometry."
+      ],
+      "unknown": [
+        "No resolved global terrain map; geography, metre-scale relief, grain structure and precise visible colours are unknown.",
+        "True material reflectance and observer exposure/white balance are not calibrated.",
+        "Atmospheric variability, exact local terrain and sky appearance at a specified epoch."
+      ],
+      "assumed": [
+        "Water-ice-dominated ivory/neutral-grey surface, one subdued reddish-brown region with arbitrary map position and boundary.",
+        "Negligible visible atmospheric scattering is a chosen scenario; Haumea atmosphere properties are poorly known. Surface-view horizon is a local hypothetical locality, not a calibrated ellipsoid landing site.",
+        "Every crater, ridge and spatial albedo pattern is imagined; illustrative east-positive longitude is not registered to measured terrain.",
+        "Representative semimajor-axis illumination, not a dated landing. Hypothetical 60\u00b0 camera field; subpixel Sun rendered with restrained glare, not an enlarged stellar disc.",
+        "Observer longitude and latitude are unspecified; moons and rings are omitted from the selected sky direction rather than given invented positions."
+      ],
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/1605.04145",
+          "title": "Dumas et al., Haumea crystalline ice spectroscopy",
+          "publicationDate": "2016-05-13"
+        },
+        {
+          "url": "https://arxiv.org/abs/0911.0009",
+          "title": "Lacerda, rotational dark red spot constraints",
+          "publicationDate": "2009-10-30"
+        },
+        {
+          "url": "https://arxiv.org/abs/2006.03113",
+          "title": "Ortiz et al., 2017 occultation size, shape and ring",
+          "observationDate": "2017-01-21"
+        },
+        {
+          "url": "https://science.nasa.gov/dwarf-planets/haumea/",
+          "title": "NASA Haumea facts and atmospheric limits"
+        },
+        {
+          "url": "https://science.nasa.gov/image-detail/haumea-30jun2015-22-28ok2-final-16x9/",
+          "title": "Haumea Hubble observation and credits",
+          "observationDate": "2015-06-30"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/references/haumea-hubble.jpg",
+          "source": "https://science.nasa.gov/wp-content/uploads/2024/03/haumea-30jun2015-22-28ok2-final-16x9-1.jpg",
+          "sourcePage": "https://science.nasa.gov/image-detail/haumea-30jun2015-22-28ok2-final-16x9/",
+          "credit": "NASA, ESA, D. Ragozzine (Brigham Young University); processing Gladys Kober (NASA/Catholic University of America)",
+          "tier": "measured",
+          "observationDate": "2015-06-30",
+          "retrieved": "2026-10-10",
+          "sha256": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+          "bytes": 1829,
+          "description": "Processed Hubble telescope detection of the dwarf planet and companion(s); point-source glare does not resolve terrain or establish natural surface colour.",
+          "terms": "NASA image usage guidelines; NASA/ESA and individual source credits retained."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 43.06029023650952
+      },
+      "surfaceMap": {
+        "key": "haumeaBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular, north up; illustrative east-positive longitude. No measured terrain registration.",
+        "coverage": "Entire globe imagined; spectral constraints are disk integrated."
+      },
+      "inputs": {
+        "surfaceMap": "exec-4950c8f2-40f9-4e20-9641-a86626aa0518.png",
+        "skyImage": "exec-ec98bec3-b0cb-46dc-8cef-6013ee5fded5.png"
+      },
+      "promptBrief": "Individual research-guided albedo texture and observer image; composition and palette as stated in assumptions, no invented atmosphere clouds, 60 degree hypothetical view, unresolved white solar point and exposure-adapted foreground; geometry and spectral photometry not calibrated."
+    },
+    {
+      "id": "makemake",
+      "name": "Makemake",
+      "aliases": [
+        "Makemake"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "Existing telescope detections and spectra do not resolve geography; replace the catalogue analog with a bespoke hypothetical map.",
+      "measured": [
+        "Methane-rich surface with a red visible spectral slope; JWST spectra support additional hydrocarbon ices.",
+        "2023 January 29\u201330 NIRSpec observations analysed in 2025 detect methane fluorescence and volatile release.",
+        "2011 occultation rules out a dense global Pluto-like atmosphere at that epoch, not all gas."
+      ],
+      "modelled": [
+        "2025 gas interpretations include a tenuous bound atmosphere or expanding coma/plume; neither fully reproduces the data.",
+        "2024 mid-infrared excess may come from a small active region or dust ring; its origin and surface location remain unresolved."
+      ],
+      "unknown": [
+        "No resolved global terrain map; geography, metre-scale relief, grain structure and precise visible colours are unknown.",
+        "True material reflectance and observer exposure/white balance are not calibrated.",
+        "Atmospheric variability, exact local terrain and sky appearance at a specified epoch."
+      ],
+      "assumed": [
+        "Pale cream methane frost with muted ochre/peach-brown irradiation colouring and a few low-contrast darker patches. Colour saturation and spatial distribution are chosen.",
+        "A tenuous gas scenario with negligible visible sky scattering; no blue haze, thick clouds or visible plume. No unlocated hot spot, glowing lava or speculative ring is drawn.",
+        "Every crater, ridge and spatial albedo pattern is imagined; illustrative east-positive longitude is not registered to measured terrain.",
+        "Representative semimajor-axis illumination, not a dated landing. Hypothetical 60\u00b0 camera field; subpixel Sun rendered with restrained glare, not an enlarged stellar disc.",
+        "Observer longitude and latitude are unspecified; moons and rings are omitted from the selected sky direction rather than given invented positions."
+      ],
+      "references": [
+        {
+          "url": "https://arxiv.org/abs/2509.06772",
+          "title": "Protopapa et al., methane gas and hydrocarbon surface",
+          "publicationDate": "2025-09-08",
+          "observationDate": "2023-01-29\u20132023-01-30"
+        },
+        {
+          "url": "https://arxiv.org/abs/2410.22544",
+          "title": "Kiss et al., mid-infrared excess and alternative explanations",
+          "publicationDate": "2024-10-29"
+        },
+        {
+          "url": "https://www.eso.org/public/news/eso1246/",
+          "title": "ESO occultation atmospheric constraints",
+          "publicationDate": "2012-11-21",
+          "observationDate": "2011-04-23"
+        },
+        {
+          "url": "https://arxiv.org/abs/2309.05085",
+          "title": "Grundy et al., methane-rich ice and isotope chemistry",
+          "publicationDate": "2023-09-10"
+        },
+        {
+          "url": "https://science.nasa.gov/missions/hubble/hubble-discovers-moon-orbiting-the-dwarf-planet-makemake/",
+          "title": "Makemake Hubble observation and credits",
+          "observationDate": "2015-04"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/references/makemake-hubble.jpg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif?w=640&f=jpg",
+          "sourcePage": "https://science.nasa.gov/missions/hubble/hubble-discovers-moon-orbiting-the-dwarf-planet-makemake/",
+          "credit": "NASA, ESA, A. Parker and M. Buie (SwRI)",
+          "tier": "measured",
+          "observationDate": "2015-04",
+          "retrieved": "2026-10-10",
+          "sha256": "4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014",
+          "bytes": 14401,
+          "description": "Processed Hubble telescope detection of the dwarf planet and companion(s); point-source glare does not resolve terrain or establish natural surface colour.",
+          "terms": "NASA image usage guidelines; NASA/ESA and individual source credits retained."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 45.57093317300052
+      },
+      "surfaceMap": {
+        "key": "makemakeBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular, north up; illustrative east-positive longitude. No measured terrain registration.",
+        "coverage": "Entire globe imagined; spectral constraints are disk integrated."
+      },
+      "inputs": {
+        "surfaceMap": "exec-49da4465-5d68-4166-af63-8a5f4da0fd31.png",
+        "skyImage": "exec-9490dcf1-7e4f-4faa-a849-28f6dcdea037.png"
+      },
+      "promptBrief": "Individual research-guided albedo texture and observer image; composition and palette as stated in assumptions, no invented atmosphere clouds, 60 degree hypothetical view, unresolved white solar point and exposure-adapted foreground; geometry and spectral photometry not calibrated."
+    }
+  ]
+}

@@ -27,3 +27,23 @@ test('system construction prefers a named hypothesis and preserves measured Cere
  const b=m.bodies.find(b=>b.id==='b');assert.equal(b.skin.map,'barnardBespoke');assert.equal(b.facts.RENDERING.find(f=>f.label==='SKIN').tier,'imagined');
  assert.equal(solSystem().bodies.find(b=>b.id==='ceres').skin.map,'ceres');
 });
+
+test('unresolved dwarf planets get individual hypotheses while native maps retain priority', async()=>{
+ const {solSystem}=await import('../src/data/systems.js');
+ const bodies=solSystem().bodies;
+ for(const id of ['eris','haumea','makemake']) {
+  const body=bodies.find(body=>body.id===id), visual=bodyVisualFor(body);
+  assert.equal(body.skin.map,visual.surfaceMap.key);
+  assert.equal(body.facts.RENDERING.find(f=>f.label==='SURFACE').tier,'imagined');
+  assert.ok(visual.unknown.length&&visual.modelled.length);
+  for(const image of visual.contextImages) {
+   const bytes=await fs.readFile(new URL('../public'+image.url,import.meta.url));
+   assert.equal(createHash('sha256').update(bytes).digest('hex'),image.sha256);
+   assert.equal((await sharp(bytes).metadata()).format,'jpeg');
+   assert.equal(image.tier,'measured');
+  }
+ }
+ assert.equal(bodies.find(body=>body.id==='pluto').skin.map,'pluto');
+ assert.ok(BODY_VISUALS.makemake.measured.some(text=>text.includes('fluorescence')));
+ assert.ok(BODY_VISUALS.makemake.references.some(ref=>ref.publicationDate==='2025-09-08'));
+});

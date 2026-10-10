@@ -143,6 +143,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     }
     result.push(card('RESEARCH CONTEXT', 'modelled', 'Sources distinguish measurements, models and artistic assumptions.',
       el('p', { className: 'note', textContent: visual.measured.join(' ') }),
+      ...(visual.modelled ?? []).map(text => el('div', {}, badge('modelled', text), el('p', { className: 'note', textContent: text }))),
       ...(visual.contextImages ?? []).map(asset => el('div', {},
         visualImageUrl(asset) ? el('img', { src: visualImageUrl(asset), loading: 'lazy', className: 'bespoke-image', alt: asset.description }) : null,
         badge(asset.tier, asset.description), el('p', { className: 'note', textContent: `${asset.description} ${asset.credit}` }))), sources));
