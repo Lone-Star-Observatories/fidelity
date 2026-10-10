@@ -1,0 +1,60 @@
+[
+  {
+    "url": "https://arxiv.org/html/1607.04351",
+    "file": "data/research-sources/luyten-1607.04351.html",
+    "bytes": 285787,
+    "sha256": "cac4c62942632b2dd9e0ae79ac9d669edc25d47736a11c700c2de20168bfa67c",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/html/1702.02946",
+    "file": "data/research-sources/luyten-1702.02946.html",
+    "bytes": 89927,
+    "sha256": "fbc3a750f09e646c423edfa3b80e2b699ba8980bef861864683920b866ba30cf",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/html/2406.17280",
+    "file": "data/research-sources/luyten-2406.17280.html",
+    "bytes": 164236,
+    "sha256": "fcd32e2fa8fe8df0add3a8705dda6c399af0744de60a322fafe1c52b212e59aa",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/html/1607.04351v3/x1.png",
+    "file": "data/research-sources/luyten-naco-panel-1.png",
+    "bytes": 94353,
+    "sha256": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+    "retrieved": "2026-10-10",
+    "status": 200,
+    "processing": "Downloaded byte-identically; not integrated pending panel metadata verification."
+  },
+  {
+    "url": "https://arxiv.org/html/1607.04351v3/x2.png",
+    "file": "data/research-sources/luyten-naco-panel-2.png",
+    "bytes": 95832,
+    "sha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+    "retrieved": "2026-10-10",
+    "status": 200,
+    "processing": "Downloaded byte-identically; not integrated pending panel metadata verification."
+  },
+  {
+    "url": "https://arxiv.org/pdf/1711.09434",
+    "file": "data/research-sources/luyten-temperature-1711.09434.pdf",
+    "bytes": 486121,
+    "sha256": "02f3a8916c4e036d855aa86906bca8e73d35de84ed42d4425ad06c5741ae6738",
+    "retrieved": "2026-10-10",
+    "status": 200
+  },
+  {
+    "url": "https://arxiv.org/html/1706.03979",
+    "file": "data/research-sources/luyten-spots-1706.03979.html",
+    "bytes": 275870,
+    "sha256": "71e48cade253c13f9f3f0e0dbe8f47c6b346ae3f1c5366e8d1f25c0e7d4f60bf",
+    "retrieved": "2026-10-10",
+    "status": 200
+  }
+]

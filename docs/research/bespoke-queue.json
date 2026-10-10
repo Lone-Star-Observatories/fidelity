@@ -8078,7 +8078,7 @@
       "distancePc": 2.6749102960326887,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native NACO binary point-source panels preserved; no native resolved visible photospheric geography or calibrated visible colour established.",
       "catalogueConstraints": {
         "OBJ_NAME": "G 272-61 B",
         "OBJ_CAT": "LM",
@@ -8097,9 +8097,10 @@
         "COMMENT": "...",
         "distancePc": 2.6749102960326887
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "luyten-b-star"
     },
     {
       "id": "star-g-272-61-a",
@@ -8109,7 +8110,7 @@
       "distancePc": 2.719520391873505,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native NACO binary point-source panels preserved; no native resolved visible photospheric geography or calibrated visible colour established.",
       "catalogueConstraints": {
         "OBJ_NAME": "G 272-61 A",
         "OBJ_CAT": "LM",
@@ -8128,9 +8129,10 @@
         "COMMENT": "...",
         "distancePc": 2.719520391873505
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "luyten-a-star"
     },
     {
       "id": "star-ross-154",
@@ -8451,7 +8453,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 7,
+      "initialDossiers": 9,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

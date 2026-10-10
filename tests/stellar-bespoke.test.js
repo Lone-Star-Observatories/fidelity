@@ -77,3 +77,14 @@ test('Sirius components keep separate photospheres and a gaseous white-dwarf ide
   assert.equal(model.bodies[0].skin.map, b.surfaceMap.key);
   assert.ok(Math.abs(skyGeometry(b.skyModel).angularDiameterDeg - 60) < 1e-10);
 });
+
+test('Luyten binary aliases choose distinct photospheres and keep inverse-model limits explicit', () => {
+  const a=bodyVisualFor({name:'Gliese 65A'}),b=bodyVisualFor({name:'G 272-61 B'});
+  assert.equal(a.id,'luyten-a-star');assert.equal(b.id,'luyten-b-star');
+  assert.equal(bodyVisualFor({name:'BL Cet'}),a);assert.equal(bodyVisualFor({name:'UV Ceti'}),b);
+  assert.notEqual(a.surfaceMap.sha256,b.surfaceMap.sha256);assert.notEqual(a.skyImage.sha256,b.skyImage.sha256);
+  for(const visual of[a,b]){assert.match(visual.unknown.join(' '),/binary-aware/);assert.match(visual.assumed.join(' '),/no solid ground/);assert.match(visual.modelled.join(' '),/not independent Teff/);assert.ok(Math.abs(skyGeometry(visual.skyModel).angularDiameterDeg-60)<1e-10);assert.equal(visual.contextImages[0].observationDate,'2007-08-29');}
+  assert.equal(bodyVisualFor({name:'Luhman 16A'}),null);
+  const model=buildStarSystem({star:{id:'a',name:'Gliese 65A',x:1,y:0,z:0,distLy:8.7,spect:'M5.5V',lum:.00147},planets:[]});
+  assert.equal(model.bodies[0].skin.map,a.surfaceMap.key);
+});

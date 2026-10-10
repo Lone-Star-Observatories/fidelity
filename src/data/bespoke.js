@@ -4416,6 +4416,350 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "luyten-a-star": {
+    "id": "luyten-a-star",
+    "name": "BL Ceti",
+    "kind": "star",
+    "aliases": [
+      "BL Ceti",
+      "BL Cet",
+      "G 272-61 A",
+      "G272-61 A",
+      "GJ 65 A",
+      "GJ65A",
+      "Gliese 65A",
+      "Gl 65A",
+      "Luyten 726-8 A"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Kochukhov2017 Table1 explicitly verifies BL Ceti=GJ65A; native NACO A/B annotations retained. Not Luhman16.",
+    "nativeSurface": "Native NACO binary point-source panels preserved; no native resolved visible photospheric geography or calibrated visible colour established.",
+    "measured": [
+      "Kervella2016 interferometric limb-darkened radius 0.165±0.006Rsun, dynamical mass0.1225±0.0043Msun. Radius depends on limb-darkening model and adopted373.70±2.70mas parallax.",
+      "Kochukhov2017 inferred total magnetic flux5.2kG from Zeeman intensification; large-scale field inversion differs from total flux.",
+      "Historical selected catalogue parallax367.711896181477mas differs between bound components; binary-aware distance reconciliation and current nearest20ranking remain open."
+    ],
+    "modelled": [
+      "MacDonald/Mullan/Dieterich2018 revised arXiv1711.09434 Section2 flux/radius analysis infers2784±58K with Kervella radii. Alternative Barnes radii infer2842±98K. Spectral/bolometric corrections are model-dependent; not a direct colour measurement.",
+      "Kochukhov2017 global field inversion0.3kG complex non-axisymmetric; do not depict field lines as directly observed.",
+      "Barnes2017 Doppler reconstruction uses2800K photosphere/2400K spots, not independent Teff measurement. Sparse midlatitude and some highlatitude spots, mean inferred filling1.7%. These2015epoch inversions are not native optical photos or current fixed geography."
+    ],
+    "unknown": [
+      "Current resolved photospheric morphology, measured composition fractions, calibrated visible colour/exposure and dated observer companion registration.",
+      "2011NACO panel exactH versusKs band selection; publisher false-colour transfer function unverified.",
+      "Current binary-aware component astrometry and exhaustive present-day nearest20 boundary."
+    ],
+    "assumed": [
+      "Independent cool molecular, partly ionized hydrogen/helium stellar photosphere intensity pattern; gas and spots invented, no solid ground or survivable landing.",
+      "Sparse smaller spots with some highlatitude dim groups; exact longitudes and convection invented.",
+      "No observed Sun or other-body map reused. Conceptual camera2Rfromcentre, companion outside selected FOV; no dated binary registration. Nominal120degreeFOV, spectral transfer, tint and exposure artistic."
+    ],
+    "surfaceLabel": "INDIVIDUAL PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1607.04351",
+        "title": "Kervella2016 interferometry, masses and NACO Figure3/Table2/3",
+        "publicationDate": "2016-08-02"
+      },
+      {
+        "url": "https://arxiv.org/html/1702.02946",
+        "title": "Kochukhov/Lavail2017 component-labelled magnetic analysis",
+        "publicationDate": "2017-02-09"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1711.09434",
+        "title": "MacDonald/Mullan/Dieterich2018 temperature inference and alternatives",
+        "publicationDate": "2018-05-04"
+      },
+      {
+        "url": "https://arxiv.org/html/1706.03979",
+        "title": "Barnesetal2017 epoch-dependent modelled spot distributions",
+        "publicationDate": "2017-06-13"
+      },
+      {
+        "url": "https://arxiv.org/html/2406.17280",
+        "title": "Plant/Hallinan/Bastian2024 radio analysis of2011/2014epochs",
+        "publicationDate": "2024-06-25"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/luyten-naco-1-native.png",
+        "source": "https://arxiv.org/html/1607.04351v3/x1.png",
+        "sourcePage": "https://arxiv.org/html/1607.04351",
+        "label": "NATIVE INFRARED BINARY OBSERVATION",
+        "tier": "measured",
+        "sha256": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+        "bytes": 94353,
+        "publicationDate": "2016-08-02",
+        "observationDate": "2007-08-29",
+        "credit": "P. Kervella, A. Mérand, C. Ledoux, B.-O. Demory and J.-B. Le Bouquin; ESO/VLT/NACO.",
+        "terms": "Author scientific figure, original full credit retained under user-authorized attributed use. arXiv distribution licence is not asserted to be CC BY.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "description": "Original Figure3 first panel unchanged, A lower right/B upper left. Table2 verifies08:15UT. Table3 associates this epoch with narrowband1.64micron; orange stretch, PSF and annotation are not visible colour or surface geography."
+      },
+      {
+        "url": "/bespoke/luyten-naco-2-native.png",
+        "source": "https://arxiv.org/html/1607.04351v3/x2.png",
+        "sourcePage": "https://arxiv.org/html/1607.04351",
+        "label": "NATIVE INFRARED BINARY OBSERVATION",
+        "tier": "measured",
+        "sha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+        "bytes": 95832,
+        "publicationDate": "2016-08-02",
+        "observationDate": "2011-09-23",
+        "credit": "P. Kervella, A. Mérand, C. Ledoux, B.-O. Demory and J.-B. Le Bouquin; ESO/VLT/NACO.",
+        "terms": "Author scientific figure, original full credit retained under user-authorized attributed use. arXiv distribution licence is not asserted to be CC BY.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "description": "Original Figure3 second panel unchanged, A lower right/B upper left. Table2 verifies06:28UT. Table3 has bothH1.66 andKs2.18micron this epoch; exact panel filter remains unverified. Orange stretch and instrumental PSF do not establish visible colour or surface geography."
+      }
+    ],
+    "skyModel": {
+      "star": "BL Ceti",
+      "radiusSun": 0.165,
+      "temperatureK": 2784,
+      "distanceAU": 0.001534654196117512,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 625.6312884753454,
+      "approximateSrgb": [
+        1,
+        0.6657547216838713,
+        0.36896537996380596
+      ],
+      "limits": "Conceptual observer2photospheric radii fromcentre;60degree geometry verified through skyGeometry. Nominal120degreeFOV, colour/spectral transfer/exposure and raster disc remain artistic, not a survivable landing or dated binary registration."
+    },
+    "surfaceMap": {
+      "key": "luytenAStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude, unregistered.",
+      "coverage": "Entire photospheric intensity geography imagined; component-specific spectral tint approximate.",
+      "url": "/bespoke/luyten-a-star-surface-map.jpg",
+      "previewUrl": "/bespoke/luyten-a-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-01eaa3a5-0dc7-4f0f-a24f-8a109cc1e58a.png",
+      "sourceSha256": "ceffac1f7b7d6d05507ca83710d2d18127f2cbd4d0cc624e02eabeac6706b467",
+      "sha256": "e55ce7c5b8f67bbd20ceb6f22a0d74bbac26f8165d326bc695ca9675513233b4",
+      "previewSha256": "0fa1c48c267bed7303974e4c4baae4675de405824d3905909048dfea2ff950c1",
+      "bytes": 403483,
+      "previewBytes": 36819,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          471,
+          471,
+          471
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold core widths are approximate; cameraFOV/colour/exposure artistic, not calibrated or dated registration."
+      },
+      "url": "/bespoke/luyten-a-star-sky-image.jpg",
+      "previewUrl": "/bespoke/luyten-a-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-7d166371-1ed2-4b26-96c2-02a3c0e12377.png",
+      "sourceSha256": "3d4322e1844793bfc280d4ee7a55908b47e0c34c8a00d09e1259206b5fac6b23",
+      "sha256": "436e79dcb95d0aae5b534a0e1c418b61ba279cf2aecb37dad943b146cbc6ff81",
+      "previewSha256": "a8c64e4b0fa850e7994ecd54ec8990156c7b432d7fc74888c89edd6d3d24ddfc",
+      "bytes": 59633,
+      "previewBytes": 11622,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "luyten-b-star": {
+    "id": "luyten-b-star",
+    "name": "UV Ceti",
+    "kind": "star",
+    "aliases": [
+      "UV Ceti",
+      "UV Cet",
+      "G 272-61 B",
+      "G272-61 B",
+      "GJ 65 B",
+      "GJ65B",
+      "Gliese 65B",
+      "Gl 65B",
+      "Luyten 726-8 B"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Kochukhov2017 Table1 explicitly verifies UV Ceti=GJ65B; native NACO A/B annotations retained. Not Luhman16.",
+    "nativeSurface": "Native NACO binary point-source panels preserved; no native resolved visible photospheric geography or calibrated visible colour established.",
+    "measured": [
+      "Kervella2016 interferometric limb-darkened radius 0.159±0.006Rsun, dynamical mass0.1195±0.0043Msun. Radius depends on limb-darkening model and adopted373.70±2.70mas parallax.",
+      "Kochukhov2017 inferred total magnetic flux6.7kG from Zeeman intensification; large-scale field inversion differs from total flux.",
+      "Historical selected catalogue parallax373.844312268399mas differs between bound components; binary-aware distance reconciliation and current nearest20ranking remain open."
+    ],
+    "modelled": [
+      "MacDonald/Mullan/Dieterich2018 revised arXiv1711.09434 Section2 flux/radius analysis infers2728±60K with Kervella radii. Alternative Barnes radii infer2715±81K. Spectral/bolometric corrections are model-dependent; not a direct colour measurement.",
+      "Kochukhov2017 global field inversion1.3kG approximately axisymmetric dipolar; do not depict field lines as directly observed.",
+      "Barnes2017 Doppler reconstruction uses2800K photosphere/2400K spots, not independent Teff measurement. Larger intermediate-latitude spot groups, mean inferred filling5.6%, little polar structure. These2015epoch inversions are not native optical photos or current fixed geography."
+    ],
+    "unknown": [
+      "Current resolved photospheric morphology, measured composition fractions, calibrated visible colour/exposure and dated observer companion registration.",
+      "2011NACO panel exactH versusKs band selection; publisher false-colour transfer function unverified.",
+      "Current binary-aware component astrometry and exhaustive present-day nearest20 boundary."
+    ],
+    "assumed": [
+      "Independent cool molecular, partly ionized hydrogen/helium stellar photosphere intensity pattern; gas and spots invented, no solid ground or survivable landing.",
+      "More extensive intermediate-latitude dim groups; exact longitudes and convection invented.",
+      "No observed Sun or other-body map reused. Conceptual camera2Rfromcentre, companion outside selected FOV; no dated binary registration. Nominal120degreeFOV, spectral transfer, tint and exposure artistic."
+    ],
+    "surfaceLabel": "INDIVIDUAL PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1607.04351",
+        "title": "Kervella2016 interferometry, masses and NACO Figure3/Table2/3",
+        "publicationDate": "2016-08-02"
+      },
+      {
+        "url": "https://arxiv.org/html/1702.02946",
+        "title": "Kochukhov/Lavail2017 component-labelled magnetic analysis",
+        "publicationDate": "2017-02-09"
+      },
+      {
+        "url": "https://arxiv.org/pdf/1711.09434",
+        "title": "MacDonald/Mullan/Dieterich2018 temperature inference and alternatives",
+        "publicationDate": "2018-05-04"
+      },
+      {
+        "url": "https://arxiv.org/html/1706.03979",
+        "title": "Barnesetal2017 epoch-dependent modelled spot distributions",
+        "publicationDate": "2017-06-13"
+      },
+      {
+        "url": "https://arxiv.org/html/2406.17280",
+        "title": "Plant/Hallinan/Bastian2024 radio analysis of2011/2014epochs",
+        "publicationDate": "2024-06-25"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/luyten-naco-1-native.png",
+        "source": "https://arxiv.org/html/1607.04351v3/x1.png",
+        "sourcePage": "https://arxiv.org/html/1607.04351",
+        "label": "NATIVE INFRARED BINARY OBSERVATION",
+        "tier": "measured",
+        "sha256": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+        "bytes": 94353,
+        "publicationDate": "2016-08-02",
+        "observationDate": "2007-08-29",
+        "credit": "P. Kervella, A. Mérand, C. Ledoux, B.-O. Demory and J.-B. Le Bouquin; ESO/VLT/NACO.",
+        "terms": "Author scientific figure, original full credit retained under user-authorized attributed use. arXiv distribution licence is not asserted to be CC BY.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "description": "Original Figure3 first panel unchanged, A lower right/B upper left. Table2 verifies08:15UT. Table3 associates this epoch with narrowband1.64micron; orange stretch, PSF and annotation are not visible colour or surface geography."
+      },
+      {
+        "url": "/bespoke/luyten-naco-2-native.png",
+        "source": "https://arxiv.org/html/1607.04351v3/x2.png",
+        "sourcePage": "https://arxiv.org/html/1607.04351",
+        "label": "NATIVE INFRARED BINARY OBSERVATION",
+        "tier": "measured",
+        "sha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+        "bytes": 95832,
+        "publicationDate": "2016-08-02",
+        "observationDate": "2011-09-23",
+        "credit": "P. Kervella, A. Mérand, C. Ledoux, B.-O. Demory and J.-B. Le Bouquin; ESO/VLT/NACO.",
+        "terms": "Author scientific figure, original full credit retained under user-authorized attributed use. arXiv distribution licence is not asserted to be CC BY.",
+        "termsUrl": "https://info.arxiv.org/help/license/index.html",
+        "description": "Original Figure3 second panel unchanged, A lower right/B upper left. Table2 verifies06:28UT. Table3 has bothH1.66 andKs2.18micron this epoch; exact panel filter remains unverified. Orange stretch and instrumental PSF do not establish visible colour or surface geography."
+      }
+    ],
+    "skyModel": {
+      "star": "UV Ceti",
+      "radiusSun": 0.159,
+      "temperatureK": 2728,
+      "distanceAU": 0.0014788485889859662,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 576.7916973660537,
+      "approximateSrgb": [
+        1,
+        0.6578282630316081,
+        0.35164068823314665
+      ],
+      "limits": "Conceptual observer2photospheric radii fromcentre;60degree geometry verified through skyGeometry. Nominal120degreeFOV, colour/spectral transfer/exposure and raster disc remain artistic, not a survivable landing or dated binary registration."
+    },
+    "surfaceMap": {
+      "key": "luytenBStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular invented longitude, unregistered.",
+      "coverage": "Entire photospheric intensity geography imagined; component-specific spectral tint approximate.",
+      "url": "/bespoke/luyten-b-star-surface-map.jpg",
+      "previewUrl": "/bespoke/luyten-b-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-36792275-4cb8-4dba-84d1-abd48acae74b.png",
+      "sourceSha256": "66d1ad5c2dc2ae90455a905857681e9ed3517bb085fc56f79bb6017796ca30aa",
+      "sha256": "8504989d97c7788b29ed41843050f32a7e833c474c8e1a532d7e77ae4c8394b6",
+      "previewSha256": "98055995fc4a33099b3606f09072dec05ea610b2692c5f6ac9065afd2e8d535c",
+      "bytes": 444731,
+      "previewBytes": 39460,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          498,
+          498,
+          498
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold core widths are approximate; cameraFOV/colour/exposure artistic, not calibrated or dated registration."
+      },
+      "url": "/bespoke/luyten-b-star-sky-image.jpg",
+      "previewUrl": "/bespoke/luyten-b-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-926f3713-4162-4b64-88e4-4ac5fd31ce0c.png",
+      "sourceSha256": "3eef671f60e53157dedd498b7d17c7fa50b9a073ba42b9c40e8d78d2d35e17ea",
+      "sha256": "ac8ab24efa322b804f7366af67c2b53f4f190ea4545ddce59f1fb44dc27802fb",
+      "previewSha256": "4e486a65e435014aa25ee80afd70285954e87e5386c2527519bf92ddc84ce714",
+      "bytes": 65523,
+      "previewBytes": 13003,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
