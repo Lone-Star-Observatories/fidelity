@@ -30,6 +30,10 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 - **One system model.** Sol and other stars both become a model (`src/data/systems.js`):
   bodies, orbits, a survey of camera distances, and facts that each carry a provenance tier.
   The System View and the info panel render whatever model they're given.
+- **Bodies.** `src/views/system/materials.js` holds the planet shader (lit by the star,
+  with an optional night-side emission map), the cloud layer and the limb-darkened
+  photosphere. Sol bodies are oriented with the IAU pole and prime meridian
+  (`src/astro/rotation.js`), and Earth turns by sidereal time.
 - **Provenance.** Each value shown in the UI carries a tier badge from `src/data/provenance.js`.
 - **Routes.** `#/system/<system>[/<body>]` (system: `sol`, `hyg-<n>` or `exo-<host>`),
   `#/navigation/<system>`, `#/quadrant`, `#/galaxy`, `#/universe`. The Sector 001 beacon is
@@ -44,13 +48,16 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
+| `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
+| `GET /api/textures` | Credit line for each texture |
 | `GET /api/catalogs` | Inventory of local catalog folders |
 | `GET /api/cache` | What is stored on disk |
 
 ## Standalone preview
 
 `npm run build:standalone` writes `dist-standalone/fidelity.html`. It's one self-contained file
-with a bundled snapshot of the stars within 100 ly of Sol, their planets, and a few skies.
+with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
+and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
 mode is disabled there.
 

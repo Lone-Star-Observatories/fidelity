@@ -9,6 +9,12 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 3 | **Earth neighbourhood: Satellite + Object views** | CelesTrak GP + SGP4 (the ISS, the GEO ring), Van Allen belts (MODELLED), magnetopause driven by live solar wind (linked to the solar weather app), Hill spheres and Lagrange points, asteroid/Kuiper belt samples, planetary rings, the Oort cloud shell (MODELLED). |
 | 4 | **Quadrant → Galaxy → Universe** | Galactic quadrants I–IV plus the Starfleet overlay (IMAGINED), tiled Gaia density, clusters and nebulae; Milky Way model with Sector 001; nearby galaxies with a distance filter (NED/Cosmicflows-4). |
 
+| 6 | ✅ **Realistic skins** | Spacecraft mosaics for every Sol body, Earth's clouds and city lights, real rotation phase, recoloured photospheres for stars, analog skins for exoplanets. Credits shown. |
+| 7 | **Binary and multiple stars** | ORB6 visual-binary orbits in true 3D orientation (Sirius A/B), barycentric motion, wide companions. |
+| 8 | **Star View** | Representative observed spectrum (Pickles), blackbody, absorption lines, composition from [Fe/H]. |
+| 9 | **Planet View** | Atmosphere and interior composition, density against mass–radius curves, molecular spectral fingerprints. |
+| 10 | **Galaxy View** | NASA/JPL-Caltech face-on Milky Way, calibrated so Sol and the catalogue stars sit at their true galactic positions. |
+
 Candidates not yet scheduled (to be prioritised): Star View, Planet View (NASA mosaics;
 Earthprise layers on Earth), Moon View, and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View.

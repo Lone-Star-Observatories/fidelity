@@ -8,7 +8,7 @@ import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -168,9 +168,16 @@ function row(dl, label, value, tier, detail) {
   dl.append(h('dt', { textContent: label }), dd, tier ? badge(tier, detail) : h('span'));
   return dd;
 }
-const factList = (facts) => {
+let credits = {};
+fetchTextureCredits().then((c) => { credits = c; });
+
+const factList = (facts, body) => {
   const dl = h('dl');
-  for (const f of facts) row(dl, f.label, f.value, f.tier, f.detail);
+  for (const f of facts) {
+    // Surface facts carry the credit of the image actually in use.
+    const credit = body?.skin?.map && (f.label === 'SURFACE' || f.label === 'SKIN') ? credits[body.skin.map] : null;
+    row(dl, f.label, f.value, f.tier, credit ? `${f.detail}\nImage: ${credit}` : f.detail);
+  }
   return dl;
 };
 
@@ -232,7 +239,8 @@ function renderBodyPanel(id) {
     h('h2', { textContent: b.name.toUpperCase() }),
     h('div', { className: 'kind', textContent: `${sectorName(m)} · ${b.kind.toUpperCase()}` }),
     h('h3', { textContent: 'POSITION' }), pos,
-    ...groups.flatMap(([g, facts]) => [h('h3', { textContent: g }), factList(facts)]),
+    ...groups.flatMap(([g, facts]) => [h('h3', { textContent: g }), factList(facts, b)]),
+    b.skin?.map && credits[b.skin.map] ? h('p', { className: 'note credit', textContent: `IMAGE · ${credits[b.skin.map]}` }) : null,
     look,
     (live.range = h('p', { className: 'warn' })),
     h('div', { className: 'body-list' },

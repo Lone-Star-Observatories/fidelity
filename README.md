@@ -36,7 +36,8 @@ ship recognises and which view will use each one.
 ## What you can do today
 
 - Fly between the Sun, the eight planets and Pluto, all at their real positions for the
-  ship's clock. Positions come from Keplerian elements offline, or from **JPL Horizons**
+  ship's clock, wearing real spacecraft imagery. Earth has clouds and city lights, and its
+  day/night line falls where it really is. Positions come from Keplerian elements offline, or from **JPL Horizons**
   (fetched on demand and cached on disk).
 - Run time forwards or backwards (1 hour/s up to 1 year/s), or jump to any date.
 - Switch between **ENHANCED** sizes (labelled with how much each body is enlarged) and

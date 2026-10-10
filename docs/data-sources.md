@@ -10,6 +10,8 @@
 | System | [JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Ephemeris-grade heliocentric vectors (DE441) | live (through the backend; Horizons has no CORS) | ✅ |
 | System | [NASA Planetary Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/) | Radius, mass, gravity, day/year lengths, temperature | bundled | ✅ |
 | System | IAU WGCCRE 2015 | Spin-axis (pole) directions | bundled | ✅ |
+| System | IAU WGCCRE 2015 rotation models; GMST for Earth | Real rotation phase: Earth's day/night falls where it really is | bundled | ✅ |
+| System | Surface imagery (below) | Realistic skins for every body | live, cached in `data/textures/` | ✅ #6 |
 | System | JPL DE kernels (`de440.bsp`) | Offline ephemeris-grade positions | local | ⏳ |
 | Star | SDO / SOHO imagery, LSO solar weather app | Live solar imagery and activity | live | ⏳ |
 | Planet | NASA/USGS global mosaics; NASA GIBS (Earth, daily) | Real surfaces; Earthprise layers | live / local | ⏳ |
@@ -24,6 +26,21 @@
 | Quadrant | Gaia DR3 (tiled level-of-detail), cluster catalogues, OpenNGC | Star density, clusters, nebulae | local | ⏳ #4 |
 | Galaxy | Spiral-arm and bar models, Harris globular clusters | Milky Way structure | bundled / local | ⏳ #4 |
 | Universe | NED, Cosmicflows-4, 2MRS | Nearby galaxies and distances | local / live | ⏳ #4 |
+
+## Surface imagery
+
+`server/textures.js` lists each body's sources in order of preference. A download is
+kept only if it really is a JPEG or PNG. Node's `fetch` is tried first, then the system
+`curl` for hosts that challenge Node's HTTP client.
+
+| Body | Image | Tier |
+|---|---|---|
+| Earth | NASA Blue Marble Next Generation (Dec 2004), MODIS cloud layer, Black Marble 2016 city lights on the night side | MEASURED |
+| Jupiter | NASA/JPL/SSI Cassini cylindrical map, Dec 2000 (PIA07782) | MEASURED |
+| Pluto | NASA/JHUAPL/SwRI New Horizons global colour mosaic (PIA11707). The southern band was in polar night and is shown black. | MEASURED |
+| Sun, Mercury, Venus (cloud tops), Mars, Saturn with rings, Uranus, Neptune | [Solar System Scope](https://www.solarsystemscope.com/textures/) (CC BY 4.0), built from NASA mission imagery | MEASURED |
+| Other stars | The Sun's granulation recoloured to the star's blackbody colour, with limb darkening | IMAGINED surface, COMPUTED colour |
+| Exoplanets | *Analog skins*: a real Solar System surface recoloured for the planet's class (e.g. hot Jupiter → darkened Jupiter). The panel names the analog. | IMAGINED |
 
 ## How other systems are built
 

@@ -29,9 +29,16 @@ function solFacts(b) {
   if (b.teffK) phys.push(fact('SURFACE TEMP', `${b.teffK} K`, 'measured'));
   if (b.spectral) phys.push(fact('CLASS', b.spectral, 'measured'));
   phys.push(fact('SPIN AXIS', `RA ${b.pole[0]}° DEC ${b.pole[1]}°`, 'measured', 'IAU WGCCRE pole orientation.'));
+  if (b.iau) phys.push(fact('ROTATION PHASE', b.iau === 'gmst' ? 'SIDEREAL TIME' : 'IAU MODEL', 'computed',
+    b.iau === 'gmst' ? 'Earth turns by Greenwich sidereal time, so day and night fall where they really are.'
+      : 'IAU rotation model. Gas giant cloud bands drift, so features will not line up exactly with today.'));
   return {
     PHYSICAL: phys,
-    RENDERING: [fact('APPEARANCE', 'STYLISED', 'imagined', 'Colours are stand-ins; Planet View will load NASA imagery.')],
+    RENDERING: [b.id === 'pluto'
+      ? fact('SURFACE', 'NEW HORIZONS MOSAIC', 'measured', 'Global colour mosaic from the 2015 flyby. The black southern band was in polar night and has never been imaged.')
+      : b.id === 'venus' ? fact('SURFACE', 'CLOUD TOPS', 'measured', 'What you would see: Venus\'s surface is hidden under permanent cloud.')
+      : b.id === 'sun' ? fact('SURFACE', 'PHOTOSPHERE', 'measured', 'Solar imagery with limb darkening applied.')
+      : fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery.')],
   };
 }
 
@@ -48,20 +55,25 @@ export function solSystem() {
 
 // ---- other stars ------------------------------------------------------------------------------
 
-/** Rough planet class from radius (Earth radii) and equilibrium temperature (K). */
+/**
+ * Rough planet class from radius (Earth radii) and equilibrium temperature (K), with an
+ * *analog skin*: a real Solar System surface, recoloured. No exoplanet surface has ever
+ * been imaged, so these are labelled IMAGINED and name the analog used.
+ */
 export function planetClass(rEarth, teq) {
   if (rEarth < 1.6) {
-    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'] };
-    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'] };
-    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'] };
-    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'] };
+    if (teq > 1000) return { label: 'LAVA WORLD', palette: ['#3a2a24', '#c2461f', '#6b3a2a'], skin: { map: 'mercury', tint: [1.1, 0.55, 0.38] }, analog: 'MERCURY, HEATED' };
+    if (teq > 400) return { label: 'HOT ROCKY', palette: ['#8a6a55', '#a07a5f', '#5e4a3e'], skin: { map: 'mercury', tint: [1.05, 0.88, 0.74] }, analog: 'MERCURY' };
+    if (teq > 180) return { label: 'TEMPERATE ROCKY', palette: ['#7d7468', '#9a8f80', '#5f5850'], skin: { map: 'mars', tint: [0.85, 0.85, 0.85] }, analog: 'MARS, DESATURATED (NO OCEANS ASSUMED)' };
+    return { label: 'ICY ROCKY', palette: ['#b9c2c9', '#8f9aa3', '#dfe6ea'], skin: { map: 'moon', tint: [0.86, 0.95, 1.08] }, analog: 'THE MOON, ICE-TINTED' };
   }
   if (rEarth < 4) {
-    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true }
-      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true };
+    return teq > 700 ? { label: 'HOT SUB-NEPTUNE', palette: ['#c9b38f', '#d8c6a5', '#b09572'], banded: true, skin: { map: 'uranus', tint: [1.15, 0.95, 0.72] }, analog: 'URANUS, HAZY' }
+      : { label: 'SUB-NEPTUNE', palette: ['#8fb3d9', '#a6c4e0', '#6f95c0'], banded: true, skin: { map: 'neptune', tint: [1, 1, 1] }, analog: 'NEPTUNE' };
   }
-  return teq > 1000 ? { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true }
-    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true };
+  if (teq > 1000) return { label: 'HOT JUPITER', palette: ['#5b3b3b', '#8a4f3c', '#3f2a2a'], banded: true, skin: { map: 'jupiter', tint: [0.9, 0.5, 0.4] }, analog: 'JUPITER, DARKENED' };
+  return teq < 150 ? { label: 'COLD GAS GIANT', palette: ['#e3d3a8', '#c9b27f', '#efe6c8'], banded: true, skin: { map: 'saturn', tint: [1, 1, 1] }, analog: 'SATURN' }
+    : { label: 'GAS GIANT', palette: ['#d8c3a5', '#b08a63', '#efe3cf', '#a36b45'], banded: true, skin: { map: 'jupiter', tint: [1, 1, 1] }, analog: 'JUPITER' };
 }
 
 /** Radius from mass (Earth units), after Chen & Kipping (2017) power laws. */
@@ -115,7 +127,7 @@ export function buildStarSystem(detail) {
   const spect = s.spect || host?.st_spectype || '—';
   const starBody = {
     id: 'star', name: s.name, kind: 'star', radiusKm: radiusSun * R_SUN_KM, rotationHours: 600,
-    color: starColor, spectral: spect, teffK: Math.round(t.teff),
+    color: starColor, spectral: spect, teffK: Math.round(t.teff), skin: { map: 'sun', recolour: true },
     facts: {
       PHYSICAL: [
         fact('CLASS', spect, spect === '—' ? 'imagined' : 'measured', 'Spectral type.'),
@@ -126,7 +138,10 @@ export function buildStarSystem(detail) {
         ...(lum ? [fact('LUMINOSITY', `${fmt(lum, lum < 0.01 ? 5 : 3)} × SUN`, 'computed', 'From brightness and parallax distance.')] : []),
         fact('DISTANCE FROM SOL', `${fmt(s.distLy, 2)} LY`, 'measured', 'Parallax.'),
       ],
-      RENDERING: [fact('COLOUR', 'BLACKBODY', 'computed', 'Colour of a blackbody at the surface temperature.')],
+      RENDERING: [
+        fact('COLOUR', 'BLACKBODY', 'computed', 'Colour of a blackbody at the surface temperature.'),
+        fact('SURFACE', "SUN'S GRANULATION, RECOLOURED", 'imagined', 'No surface detail of this star has been resolved; the texture is the Sun\'s.'),
+      ],
     },
   };
 
@@ -195,12 +210,13 @@ export function buildStarSystem(detail) {
       if (r.disc_method) facts.DISCOVERY.push(fact('METHOD', discoveryMethod(r.disc_method), 'measured'));
       if (r.disc_year) facts.DISCOVERY.push(fact('YEAR', String(r.disc_year), 'measured'));
       if (r.disc_facility) facts.DISCOVERY.push(fact('FACILITY', r.disc_facility.toUpperCase(), 'measured'));
-      facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No image of this planet exists; its look is inferred from size and temperature.'));
+      facts.RENDERING.push(fact('APPEARANCE', cls.label, 'imagined', 'No image of this planet exists; its class is inferred from size and temperature.'));
+      facts.RENDERING.push(fact('SKIN', `ANALOG: ${cls.analog}`, 'imagined', 'A real Solar System surface, recoloured to suggest this class of world. Not this planet.'));
 
       const id = (r.pl_letter || r.pl_name).toLowerCase().replace(/[^a-z0-9]+/g, '-');
       return {
         id, name: r.pl_name, kind: 'exoplanet', radiusKm: rE * R_EARTH_KM, rotationHours: 30,
-        massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, palette: cls.palette, banded: !!cls.banded,
+        massKg: r.pl_bmasse ? r.pl_bmasse * M_EARTH_KG : null, palette: cls.palette, banded: !!cls.banded, skin: cls.skin,
         orbit: { type: 'kepler', a, e, omega, periodDays: P, M0, epochJd }, facts,
       };
     });

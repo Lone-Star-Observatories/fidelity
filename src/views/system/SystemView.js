@@ -14,6 +14,8 @@ import { AU_KM } from '../../data/sol.js';
 import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
+import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture } from './materials.js';
+import { bodyAxes } from '../../astro/rotation.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -124,6 +126,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   let model = null;
   let nodes = {}; // id → { body, group, tilt, mesh, label, orbit, pos }
   let pickables = [];
+  let lit = []; // planet materials that need the star's position each frame
   let planeBasis = null; // for non-Sol systems: orbital-plane frame → scene
 
   function makeLabel(body) {
@@ -147,20 +150,35 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const pole = body.pole ? poleVector(body.pole) : new THREE.Vector3(...model.planeNormal);
     tilt.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pole);
     group.add(tilt);
-    let mesh;
+    let mesh, clouds = null;
+    const placeholder = planetTexture(body.kind === 'star' ? { id: body.id, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
     if (body.kind === 'star') {
-      mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 32), new THREE.MeshBasicMaterial({ color: body.color }));
-      const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
-      glow.scale.setScalar(9);
+      mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), starMaterial(placeholder, body.color, body.skin?.recolour));
+      loadTexture(body.skin?.map).then((t) => { if (t) mesh.material.uniforms.uMap.value = t; });
+      const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.85 }));
+      glow.scale.setScalar(6);
       mesh.add(glow);
     } else {
-      mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 32), new THREE.MeshStandardMaterial({ map: planetTexture(body), roughness: 0.95, metalness: 0 }));
+      const mat = planetMaterial(placeholder, { tint: body.skin?.tint });
+      applySkin(mat, body.skin);
+      mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), mat);
+      lit.push(mat);
+      if (body.skin?.clouds) {
+        const cm = cloudMaterial(placeholder);
+        clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 96, 48), cm);
+        cm.uniforms.uMap.value = new THREE.Texture(); // invisible until the cloud map arrives
+        loadTexture(body.skin.clouds).then((t) => { if (t) cm.uniforms.uMap.value = t; });
+        lit.push(cm);
+        tilt.add(clouds);
+      }
       if (body.rings) {
         const inner = body.rings.innerKm / body.radiusKm, outer = body.rings.outerKm / body.radiusKm;
-        const geo = new THREE.RingGeometry(inner, outer, 128, 1);
+        const geo = new THREE.RingGeometry(inner, outer, 160, 1);
         const p = geo.attributes.position, uv = geo.attributes.uv;
         for (let k = 0; k < p.count; k++) uv.setXY(k, (Math.hypot(p.getX(k), p.getY(k)) - inner) / (outer - inner), 0.5);
-        const ring = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: ringTexture(), side: THREE.DoubleSide, transparent: true, depthWrite: false }));
+        const ringMat = new THREE.MeshBasicMaterial({ map: ringTexture(), side: THREE.DoubleSide, transparent: true, depthWrite: false });
+        loadTexture(body.skin?.ring).then((t) => { if (t) { ringMat.map = t; ringMat.needsUpdate = true; } });
+        const ring = new THREE.Mesh(geo, ringMat);
         ring.rotation.x = -Math.PI / 2;
         tilt.add(ring); // scaled with the planet via `tilt.scale`
       }
@@ -175,7 +193,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const label = makeLabel(body);
     group.add(label);
     root.add(group);
-    nodes[body.id] = { body, group, tilt, mesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: orbitColor(body, i) };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: orbitColor(body, i) };
   }
 
   function clear() {
@@ -183,11 +201,13 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       const n = nodes[id];
       root.remove(n.group);
       n.label.element.remove();
-      n.group.traverse((o) => { o.geometry?.dispose(); o.material?.map?.dispose(); o.material?.dispose(); });
+      // Geometries and materials are per-body; textures are shared through the loader cache.
+      n.group.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); });
       if (n.orbit) { root.remove(n.orbit); n.orbit.geometry.dispose(); n.orbit.material.dispose(); }
     }
     nodes = {};
     pickables = [];
+    lit = [];
   }
 
   /** Show a system model (see src/data/systems.js). */
@@ -304,6 +324,8 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
 
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
+  const tmp2 = new THREE.Vector3();
+  const basis = new THREE.Matrix4();
   const beaconScreen = new THREE.Vector3();
   let running = false;
 
@@ -334,7 +356,16 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       scenePosition(id, jd, n.pos);
       n.group.position.copy(n.pos);
       n.tilt.scale.setScalar(displayRadius(n.body));
-      n.mesh.rotation.y = ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2);
+      if (n.body.iau && n.body.pole) {
+        // Real orientation: IAU pole + prime meridian (Earth by sidereal time).
+        const ax = bodyAxes(n.body.pole, n.body.iau, jd, n.body.texLon0 ?? -180);
+        const toS = (v) => new THREE.Vector3(...frameToScene(eqToEcl(v)));
+        basis.makeBasis(toS(ax.x), toS(ax.y), toS(ax.z));
+        n.tilt.quaternion.setFromRotationMatrix(basis);
+        n.mesh.rotation.y = 0;
+      } else {
+        n.mesh.rotation.y = ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2);
+      }
       n.label.visible = showLabels || id === focusId;
       n.label.element.classList.toggle('focused', id === focusId);
       if (n.body.orbit) {
@@ -363,6 +394,13 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       }
     }
     root.position.copy(focusPos).negate();
+    const starNode = nodes[model.starId];
+    const sunWorld = tmp2.copy(starNode.pos).add(root.position);
+    for (const m of lit) m.uniforms.uSunPos.value.copy(sunWorld);
+    for (const id in nodes) {
+      const c = nodes[id].clouds;
+      if (c) c.rotation.y = (now / 1000) * 0.004; // clouds: a static 2004 snapshot, drifted gently so they read as weather
+    }
     controls.minDistance = displayRadius(nodes[focusId].body) * 1.3;
     controls.update();
 

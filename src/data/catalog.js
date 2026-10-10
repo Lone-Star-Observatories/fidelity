@@ -56,3 +56,15 @@ export async function fetchSky(center) {
   if (snapshot.skies[center]) return snapshot.skies[center];
   throw new Error('sky not in snapshot');
 }
+
+/** URL for surface texture `key`: the backend's cache, or an image bundled in the preview. */
+export function textureUrl(key) {
+  if (snapshot) return snapshot.textures?.[key] ?? null;
+  return `/api/texture/${encodeURIComponent(key)}`;
+}
+
+/** Image credits, keyed like the textures. */
+export async function fetchTextureCredits() {
+  if (snapshot) return snapshot.textureCredits ?? {};
+  try { return await get('/api/textures'); } catch { return {}; }
+}
