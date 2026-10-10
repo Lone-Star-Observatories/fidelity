@@ -1,0 +1,13 @@
+[
+  {
+    "url": "https://arxiv.org/html/2602.08929v2",
+    "retrieved": "2026-10-10",
+    "sha256": "858f99665e444933e289451816695041dbb61784636727681d64f3ab7d18f24f",
+    "bytes": 575340,
+    "credit": "Hartogh et al. 2026",
+    "terms": "arXiv.org perpetual non-exclusive license on downloaded v2 HTML. Published journal PDF is CC BY 4.0. Research citation only; no figures reused.",
+    "publicationDate": "2026-03-04",
+    "observationDate": "HARPS/ESPRESSO time series; individual observation dates in Table A.1.",
+    "downloadNote": "Published Open University PDF was read through web tool; direct download returned HTTP 403. This hash records the accessible primary arXiv version."
+  }
+]

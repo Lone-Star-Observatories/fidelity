@@ -1,0 +1,393 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "gj887-b",
+      "name": "GJ 887 b",
+      "aliases": [
+        "GJ 887 b",
+        "Gliese 887 b",
+        "Gl 887 b",
+        "HD 217987 b"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "RV detection; no resolved scientific surface/cloud map located. Archive radius is a mass-radius estimate, not an observed radius.",
+      "measured": [
+        "2026 four-planet RV fit: period 9.2619 days; minimum mass 3.9 Earth masses."
+      ],
+      "modelled": [
+        "Derived semimajor axis 0.0683 AU; equilibrium 426 K is not measured surface temperature.",
+        "Adopted host: 3688±86 K and 0.468±0.022 solar radii; representative semimajor-axis illumination is not a dated ephemeris."
+      ],
+      "unknown": [
+        "Physical radius, inclination, true mass, spin, atmosphere, pressure, surface accessibility, material composition, geography and visible colour.",
+        "Habitable-zone placement does not establish habitability, oceans or life."
+      ],
+      "assumed": [
+        "Airless silicate/iron scenario; atmosphere and volatile inventory remain unknown.",
+        "Charcoal solidified volcanic plains, pale fractured ridges and tan dust; every crater, scarp and fragment is imagined.",
+        "Nominal 60° horizontal field; approximate warm cream/peach host colour. Exposure and atmospheric scattering are illustrative.",
+        "Invented longitude and north-up orientation, imperfect seam continuity; no measured pole or scene registration.",
+        "No chemistry, cloud or terrain shown is claimed to be observed.",
+        "Raster validation: bright-core widths 70/70/69 source pixels at thresholds180/210/240 versus geometric target 92.33 pixels in a 1672-pixel image. Disc size, glare and colour remain approximate; exact calibration is refinement work."
+      ],
+      "references": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/202554984",
+          "title": "Hartogh et al. 2026, RedDots four-planet fit, Tables 1 and 3",
+          "publicationDate": "2026-03-04",
+          "observationDate": "HARPS/ESPRESSO time series; individual dates in Table A.1."
+        },
+        {
+          "url": "https://arxiv.org/html/2602.08929v2",
+          "title": "Primary author manuscript, version 2"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA Exoplanet Archive composite snapshot retrieved 2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "GJ 887 b",
+        "hostname": "GJ 887",
+        "sy_dist": 3.28679,
+        "pl_rade": 1.8,
+        "pl_bmasse": 3.9,
+        "pl_bmassprov": "Msini",
+        "pl_orbper": 9.2619,
+        "pl_orbsmax": 0.0683,
+        "pl_eqt": 426,
+        "st_teff": 3688,
+        "st_rad": 0.468,
+        "st_mass": 0.495,
+        "st_spectype": "M1 V",
+        "ra": 346.5027573,
+        "dec": -35.8473489,
+        "disc_year": 2020
+      },
+      "skyModel": {
+        "star": "GJ 887",
+        "radiusSun": 0.468,
+        "temperatureK": 3688,
+        "distanceAU": 0.0683
+      },
+      "surfaceMap": {
+        "key": "gj887BBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular north-up hypothesis; no measured surface/cloud frame.",
+        "coverage": "Entire globe imagined."
+      },
+      "researchSourcesRecord": "docs/research/gj887-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-159cdb7b-6a3c-4bcf-9158-5b5a19fd8223.png",
+        "skyImage": "exec-c97bc8c5-d706-4ebf-8a18-db41bafcf006.png"
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "method": "Bright-core bounding box within star-only central region of original, R>180/210/240 G>150 B>80. Atmospheric glare and photosphere not fully separable.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            70,
+            70,
+            69
+          ],
+          "geometricTargetWidthPixels": 92.32923723405762,
+          "limits": "Geometric target constrains prompt; raster colour/size remains approximate, not calibrated photometry."
+        }
+      }
+    },
+    {
+      "id": "gj887-c",
+      "name": "GJ 887 c",
+      "aliases": [
+        "GJ 887 c",
+        "Gliese 887 c",
+        "Gl 887 c",
+        "HD 217987 c"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "RV detection; no resolved scientific surface/cloud map located. Archive radius is a mass-radius estimate, not an observed radius.",
+      "measured": [
+        "2026 four-planet RV fit: period 21.784 days; minimum mass 6.5 Earth masses."
+      ],
+      "modelled": [
+        "Derived semimajor axis 0.121 AU; equilibrium 320 K is not measured surface temperature.",
+        "Adopted host: 3688±86 K and 0.468±0.022 solar radii; representative semimajor-axis illumination is not a dated ephemeris."
+      ],
+      "unknown": [
+        "Physical radius, inclination, true mass, spin, atmosphere, pressure, surface accessibility, material composition, geography and visible colour.",
+        "Habitable-zone placement does not establish habitability, oceans or life."
+      ],
+      "assumed": [
+        "Volatile-envelope H2/He scenario with water vapor and unspecified pale aerosol; a rocky scenario is also allowed by current mass constraints.",
+        "Cream/peach-gray hazy cloud deck with small shear eddies; pressure, altitude, condensates and aerosol colours are imagined. No accessible solid ground is depicted.",
+        "Nominal 60° horizontal field; approximate warm cream/peach host colour. Exposure and atmospheric scattering are illustrative.",
+        "Invented longitude and north-up orientation, imperfect seam continuity; no measured pole or scene registration.",
+        "No chemistry, cloud or terrain shown is claimed to be observed.",
+        "Raster validation: bright-core widths 71/67/63 source pixels at thresholds180/210/240 versus geometric target 52.10 pixels in a 1672-pixel image. Disc size, glare and colour remain approximate; exact calibration is refinement work."
+      ],
+      "references": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/202554984",
+          "title": "Hartogh et al. 2026, RedDots four-planet fit, Tables 1 and 3",
+          "publicationDate": "2026-03-04",
+          "observationDate": "HARPS/ESPRESSO time series; individual dates in Table A.1."
+        },
+        {
+          "url": "https://arxiv.org/html/2602.08929v2",
+          "title": "Primary author manuscript, version 2"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA Exoplanet Archive composite snapshot retrieved 2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "GJ 887 c",
+        "hostname": "GJ 887",
+        "sy_dist": 3.28679,
+        "pl_rade": 2.43,
+        "pl_bmasse": 6.5,
+        "pl_bmassprov": "Msini",
+        "pl_orbper": 21.784,
+        "pl_orbsmax": 0.121,
+        "pl_eqt": 320,
+        "st_teff": 3688,
+        "st_rad": 0.468,
+        "st_mass": 0.495,
+        "st_spectype": "M1 V",
+        "ra": 346.5027573,
+        "dec": -35.8473489,
+        "disc_year": 2020
+      },
+      "skyModel": {
+        "star": "GJ 887",
+        "radiusSun": 0.468,
+        "temperatureK": 3688,
+        "distanceAU": 0.121
+      },
+      "surfaceMap": {
+        "key": "gj887CBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular north-up hypothesis; no measured surface/cloud frame.",
+        "coverage": "Entire globe imagined."
+      },
+      "researchSourcesRecord": "docs/research/gj887-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-c896a816-d0e5-4146-bcb1-1f9530dbc45f.png",
+        "skyImage": "exec-18eeb654-1735-41cd-886f-fd202fdb041c.png"
+      },
+      "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
+      "skyLabel": "SKY ABOVE THE CLOUDS",
+      "skyImage": {
+        "rasterValidation": {
+          "method": "Bright-core bounding box within star-only central region of original, R>180/210/240 G>150 B>80. Atmospheric glare and photosphere not fully separable.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            71,
+            67,
+            63
+          ],
+          "geometricTargetWidthPixels": 52.09838244298219,
+          "limits": "Geometric target constrains prompt; raster colour/size remains approximate, not calibrated photometry."
+        }
+      }
+    },
+    {
+      "id": "gj887-d",
+      "name": "GJ 887 d",
+      "aliases": [
+        "GJ 887 d",
+        "Gliese 887 d",
+        "Gl 887 d",
+        "HD 217987 d"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "RV detection; no resolved scientific surface/cloud map located. Archive radius is a mass-radius estimate, not an observed radius.",
+      "measured": [
+        "2026 four-planet RV fit: period 50.77 days; minimum mass 6.1 Earth masses."
+      ],
+      "modelled": [
+        "Derived semimajor axis 0.212 AU; equilibrium 241 K is not measured surface temperature.",
+        "Adopted host: 3688±86 K and 0.468±0.022 solar radii; representative semimajor-axis illumination is not a dated ephemeris."
+      ],
+      "unknown": [
+        "Physical radius, inclination, true mass, spin, atmosphere, pressure, surface accessibility, material composition, geography and visible colour.",
+        "Habitable-zone placement does not establish habitability, oceans or life."
+      ],
+      "assumed": [
+        "Volatile-envelope H2/He scenario with water-condensate cloud hypothesis; a rocky scenario is also allowed by current mass constraints.",
+        "Pearl-gray/ivory broken cloud spirals and dark haze gaps; all cloud chemistry, pressures and morphology are imagined. No accessible solid ground is depicted.",
+        "Nominal 60° horizontal field; approximate warm cream/peach host colour. Exposure and atmospheric scattering are illustrative.",
+        "Invented longitude and north-up orientation, imperfect seam continuity; no measured pole or scene registration.",
+        "No chemistry, cloud or terrain shown is claimed to be observed.",
+        "Raster validation: bright-core widths 29/27/26 source pixels at thresholds180/210/240 versus geometric target 29.73 pixels in a 1672-pixel image. Disc size, glare and colour remain approximate; exact calibration is refinement work."
+      ],
+      "references": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/202554984",
+          "title": "Hartogh et al. 2026, RedDots four-planet fit, Tables 1 and 3",
+          "publicationDate": "2026-03-04",
+          "observationDate": "HARPS/ESPRESSO time series; individual dates in Table A.1."
+        },
+        {
+          "url": "https://arxiv.org/html/2602.08929v2",
+          "title": "Primary author manuscript, version 2"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA Exoplanet Archive composite snapshot retrieved 2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "GJ 887 d",
+        "hostname": "GJ 887",
+        "sy_dist": 3.28679,
+        "pl_rade": 2.34,
+        "pl_bmasse": 6.1,
+        "pl_bmassprov": "Msini",
+        "pl_orbper": 50.77,
+        "pl_orbsmax": 0.212,
+        "pl_eqt": 241,
+        "st_teff": 3688,
+        "st_rad": 0.468,
+        "st_mass": 0.495,
+        "st_spectype": "M1 V",
+        "ra": 346.5027573,
+        "dec": -35.8473489,
+        "disc_year": 2026
+      },
+      "skyModel": {
+        "star": "GJ 887",
+        "radiusSun": 0.468,
+        "temperatureK": 3688,
+        "distanceAU": 0.212
+      },
+      "surfaceMap": {
+        "key": "gj887DBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular north-up hypothesis; no measured surface/cloud frame.",
+        "coverage": "Entire globe imagined."
+      },
+      "researchSourcesRecord": "docs/research/gj887-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-500bc68f-7264-4502-a3da-d424f1a16fbd.png",
+        "skyImage": "exec-f62f46f3-b4eb-4c13-9410-7f347d6d8b0d.png"
+      },
+      "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
+      "skyLabel": "SKY ABOVE THE CLOUDS",
+      "skyImage": {
+        "rasterValidation": {
+          "method": "Bright-core bounding box within star-only central region of original, R>180/210/240 G>150 B>80. Atmospheric glare and photosphere not fully separable.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            29,
+            27,
+            26
+          ],
+          "geometricTargetWidthPixels": 29.732153822035244,
+          "limits": "Geometric target constrains prompt; raster colour/size remains approximate, not calibrated photometry."
+        }
+      }
+    },
+    {
+      "id": "gj887-e",
+      "name": "GJ 887 e",
+      "aliases": [
+        "GJ 887 e",
+        "Gliese 887 e",
+        "Gl 887 e",
+        "HD 217987 e"
+      ],
+      "researchDate": "2026-10-10",
+      "nativeSurface": "RV detection; no resolved scientific surface/cloud map located. Archive radius is a mass-radius estimate, not an observed radius.",
+      "measured": [
+        "2026 four-planet RV fit: period 4.4249 days; minimum mass 1.46 Earth masses."
+      ],
+      "modelled": [
+        "Derived semimajor axis 0.0417 AU; equilibrium 544 K is not measured surface temperature.",
+        "Adopted host: 3688±86 K and 0.468±0.022 solar radii; representative semimajor-axis illumination is not a dated ephemeris."
+      ],
+      "unknown": [
+        "Physical radius, inclination, true mass, spin, atmosphere, pressure, surface accessibility, material composition, geography and visible colour.",
+        "Habitable-zone placement does not establish habitability, oceans or life."
+      ],
+      "assumed": [
+        "Dry airless silicate/iron scenario; an atmosphere is not ruled out by radial velocities.",
+        "Gray-brown solidified volcanic plateaus, fractured uplands and quiet fissures are imagined; no molten lava is inferred from equilibrium temperature.",
+        "Nominal 60° horizontal field; approximate warm cream/peach host colour. Exposure and atmospheric scattering are illustrative.",
+        "Invented longitude and north-up orientation, imperfect seam continuity; no measured pole or scene registration.",
+        "No chemistry, cloud or terrain shown is claimed to be observed.",
+        "Raster validation: bright-core widths 95/95/94 source pixels at thresholds180/210/240 versus geometric target 151.35 pixels in a 1672-pixel image. Disc size, glare and colour remain approximate; exact calibration is refinement work."
+      ],
+      "references": [
+        {
+          "url": "https://doi.org/10.1051/0004-6361/202554984",
+          "title": "Hartogh et al. 2026, RedDots four-planet fit, Tables 1 and 3",
+          "publicationDate": "2026-03-04",
+          "observationDate": "HARPS/ESPRESSO time series; individual dates in Table A.1."
+        },
+        {
+          "url": "https://arxiv.org/html/2602.08929v2",
+          "title": "Primary author manuscript, version 2"
+        },
+        {
+          "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+          "title": "NASA Exoplanet Archive composite snapshot retrieved 2026-10-10",
+          "retrieved": "2026-10-10"
+        }
+      ],
+      "archiveConstraints": {
+        "pl_name": "GJ 887 e",
+        "hostname": "GJ 887",
+        "sy_dist": 3.28679,
+        "pl_rade": 1.12,
+        "pl_bmasse": 1.46,
+        "pl_bmassprov": "Msini",
+        "pl_orbper": 4.4249,
+        "pl_orbsmax": 0.0417,
+        "pl_eqt": 544,
+        "st_teff": 3688,
+        "st_rad": 0.468,
+        "st_mass": 0.495,
+        "st_spectype": "M1 V",
+        "ra": 346.5027573,
+        "dec": -35.8473489,
+        "disc_year": 2026
+      },
+      "skyModel": {
+        "star": "GJ 887",
+        "radiusSun": 0.468,
+        "temperatureK": 3688,
+        "distanceAU": 0.0417
+      },
+      "surfaceMap": {
+        "key": "gj887EBespoke",
+        "texLon0": -180,
+        "projection": "2:1 equirectangular north-up hypothesis; no measured surface/cloud frame.",
+        "coverage": "Entire globe imagined."
+      },
+      "researchSourcesRecord": "docs/research/gj887-source-records.json",
+      "inputs": {
+        "surfaceMap": "exec-c2d6df27-d2a0-4aeb-9808-4c922e94ce42.png",
+        "skyImage": "exec-ddb49f5b-9c90-4fa8-8323-7ca7a1fd34e9.png"
+      },
+      "skyImage": {
+        "rasterValidation": {
+          "method": "Bright-core bounding box within star-only central region of original, R>180/210/240 G>150 B>80. Atmospheric glare and photosphere not fully separable.",
+          "sourceWidth": 1672,
+          "thresholdWidthsPixels": [
+            95,
+            95,
+            94
+          ],
+          "geometricTargetWidthPixels": 151.3545962194758,
+          "limits": "Geometric target constrains prompt; raster colour/size remains approximate, not calibrated photometry."
+        }
+      }
+    }
+  ]
+}

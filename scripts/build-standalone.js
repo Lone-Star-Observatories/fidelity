@@ -77,8 +77,8 @@ for (const [key, sources] of Object.entries(TEXTURES)) {
 }
 // Local artistic textures and compressed shape previews need no upstream requests.
 for (const [key, asset] of Object.entries({ ...SKINS, ...BESPOKE_TEXTURES })) {
-  const bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl));
-  textures[key] = `data:image/jpeg;base64,${bytes.toString('base64')}`;
+  const bytes = await sharp(await fs.readFile(path.join(root, 'public', asset.previewUrl))).webp({ quality: 80 }).toBuffer();
+  textures[key] = `data:image/webp;base64,${bytes.toString('base64')}`;
   textureCredits[key] = asset.credit;
 }
 const shapes = {};
@@ -96,8 +96,10 @@ for (const visual of Object.values(BODY_VISUALS)) {
   for (const asset of [visual.surfaceImage, visual.surfaceMap, visual.skyImage, ...(visual.contextImages ?? [])].filter(Boolean)) {
     // Surface maps already live in textures; cards resolve the same embedded copy.
     if (asset.key && textures[asset.key]) continue;
-    const bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
-    bodyImages[asset.url] = `data:image/jpeg;base64,${bytes.toString('base64')}`;
+    let bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
+    const imagined = asset.tier === 'imagined';
+    if (imagined) bytes = await sharp(bytes).webp({ quality: 80 }).toBuffer();
+    bodyImages[asset.url] = `data:image/${imagined ? 'webp' : 'jpeg'};base64,${bytes.toString('base64')}`;
   }
 }
 // stellar spectrum library, thinned to 4 nm steps for the preview
