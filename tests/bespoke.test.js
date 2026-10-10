@@ -145,5 +145,17 @@ test('Phobos keeps its native globe and shape while local scenes remain hypothet
  const a=v.contextImages[0];assert.equal(a.tier,'measured');assert.equal(a.observationDate,'2008-03-23');
  assert.equal(a.publicationDate,'2008-04-09');assert.match(a.description,/not calibrated/);
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
- assert.match(SHAPES.phobos.source,/gaskell/);assert.notEqual(bodyVisualFor({name:'Deimos'})?.id,'phobos');
+assert.match(SHAPES.phobos.source,/gaskell/);assert.notEqual(bodyVisualFor({name:'Deimos'})?.id,'phobos');
+});
+
+test('Deimos preserves its own native globe and distinguishes Hera monochrome from enhanced HiRISE', async () => {
+ const {MOONS}=await import('../src/data/moons.js');
+ const v=bodyVisualFor({name:'Deimos'});assert.equal(v.id,'deimos');assert.equal(v.surfaceMap,undefined);
+ assert.equal(MOONS.find(m=>m.id==='deimos').skin.map,'deimos');
+ assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');
+ assert.equal(v.contextImages[0].observationDate,'2025-03-12');assert.equal(v.contextImages[0].publicationDate,'2025-03-13');
+ assert.match(v.contextImages[0].terms,/ESA Standard Licence/);assert.match(v.contextImages[0].description,/monochromatic|monochrome/);
+ assert.equal(v.contextImages[1].observationDate,'2009-02-21');assert.match(v.contextImages[1].description,/not calibrated/);
+ for(const a of v.contextImages)assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+a.url,import.meta.url))).digest('hex'),a.sha256);
+ assert.match(v.unknown.join(' '),/composition/);assert.match(v.assumed.join(' '),/invented/);
 });

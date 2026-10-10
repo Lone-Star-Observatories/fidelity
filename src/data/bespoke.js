@@ -6364,6 +6364,171 @@ export const BODY_VISUALS = {
         "limits": "Mars is oversized by this approximate row check. Raster size, exposure, visible colour, phase and viewpoint are not calibrated. Sun is outside frame."
       }
     }
+  },
+  "deimos": {
+    "id": "deimos",
+    "name": "Deimos",
+    "aliases": [
+      "Deimos"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Own-body NASA3D mosaic preserved; unchanged native Hera AFC2025 monochrome projected context and HiRISE2009 enhanced-colour resolved context. Exact mosaic coverage/frame/photometric transfer and shape/albedo registration remain unaudited.",
+    "surfaceLabel": "HYPOTHETICAL LOCAL REGOLITH",
+    "skyLabel": "HYPOTHETICAL SKY FROM DEIMOS",
+    "measured": [
+      "Deimos is a small irregular, heavily cratered moon with a smoother appearance from partly filled craters; NASA describes dark dusty surface material, not measured metre-scale grain placement.",
+      "Existing catalogue radius6.2km and orbital semimajor axis23457km preserved. Hera AFC acquired visible monochrome context2025-03-12, released2025-03-13."
+    ],
+    "modelled": [
+      "Representative Sun at1.524AU uses skyGeometry, nominal90degree horizontal FOV; Sun outside frame.",
+      "Spherical Mars guide16.653984degrees at assumed observer distance23457−6.2km uses skyGeometry with3396.2km radius. This is not dated orbital alignment.",
+      "Wargnier et al.2025 HRSC/SRC photometry uses Hapke modelling of2004–2024 images. Reported darkness/porous dust interpretation is model dependent, not a calibrated transfer used in these illustrations; full parameter/shape audit remains open."
+    ],
+    "assumed": [
+      "Hypothetical airless locality with dark gray fine regolith, shallow smooth slopes and sparse stones. Dust colour, grain sizes, fragments and slopes invented; no copied Moon/Mars/Phobos photograph or map.",
+      "Mars-facing observer with invented Mars pattern, phase/orientation and lighting. Exposure, field of view and reflected illumination artistic; no registered landing site or survivable landing claimed."
+    ],
+    "unknown": [
+      "Exact surface composition, dust depth and local grain sizes are unknown; carbonaceous spectral analogy is not a measured compositional recipe.",
+      "Native globe longitude/frame, coverage gaps, radiometry and irregular shape registration require further audit. Hera monochrome exposure contrast and HiRISE enhanced channels do not establish calibrated naked-eye colour.",
+      "No live Deimos-specific scientific image stream verified. Hera2025 context is newer than HiRISE2009; no exhaustive newest-observation claim."
+    ],
+    "references": [
+      {
+        "title": "NASA Deimos facts",
+        "url": "https://science.nasa.gov/mars/moons/deimos/"
+      },
+      {
+        "title": "ESA Hera AFC Deimos context",
+        "url": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera",
+        "observationDate": "2025-03-12",
+        "publicationDate": "2025-03-13"
+      },
+      {
+        "title": "NASA HiRISE Deimos PIA11826",
+        "url": "https://science.nasa.gov/resource/martian-moon-deimos-in-high-resolution-2/",
+        "observationDate": "2009-02-21",
+        "publicationDate": "2009-03-09"
+      },
+      {
+        "title": "Wargnier, Simon, Fornasier, El-Bez-Sebastien, Tirsch, Matz, Gautier, Doressoundiram and Barucci2025 HRSC/SRC photometry",
+        "url": "https://arxiv.org/abs/2509.12804",
+        "publicationDate": "2025-09-16"
+      },
+      {
+        "title": "NASA3D own-body texture; coverage/frame audit open",
+        "url": "https://science.nasa.gov/3d-resources/mars-deimos/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/deimos-hera-afc-native.png",
+        "label": "NATIVE HERA AFC MONOCHROME CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera",
+        "source": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_asteroid_framing_camera/26615627-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera.png",
+        "publicationDate": "2025-03-13",
+        "observationDate": "2025-03-12",
+        "credit": "©ESA / Hera Asteroid Framing Camera",
+        "terms": "ESA Standard Licence: educational, editorial and informational use with attribution; not asserted Creative Commons.",
+        "termsUrl": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+        "sha256": "4962226afb3d7529b43648eaee0a63cc90bc96ce805a7646e91d98af97717849",
+        "bytes": 442932,
+        "description": "Dark Deimos against bright Mars, visible monochromatic AFC image. Publisher1020×1020 PNG from the caption's original-download href, unchanged. Less-seen hemisphere; spacecraft approximately1000km from Deimos. Not a surface map or calibrated visible reflectance.",
+        "processing": "No local crop, resize, conversion or recolour. Caption's23500km from Mars surface wording is not adopted as catalogue semimajor axis."
+      },
+      {
+        "url": "/bespoke/deimos-hirise-native.jpg",
+        "label": "NATIVE HiRISE RESOLVED CONTEXT",
+        "tier": "measured",
+        "sourceUrl": "https://science.nasa.gov/resource/martian-moon-deimos-in-high-resolution-2/",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/mars/downloadable_items/3/7/37713_Deimos-Mars-Moon-MRO-HiRISE-PIA11826.jpg?crop=faces%2Cfocalpoint&fit=clip&h=772&w=1505",
+        "publicationDate": "2009-03-09",
+        "observationDate": "2009-02-21",
+        "credit": "NASA/JPL-Caltech/University of Arizona · MRO/HiRISE; instrument Ball Aerospace, spacecraft Lockheed Martin",
+        "terms": "NASA image/media usage guidelines; full mission/instrument credits retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71",
+        "bytes": 49295,
+        "description": "PIA11826 / ESP_012065_9000 and ESP_012068_9000, two observations5h35apart. Near-infrared/red/blue-green enhanced channels, not calibrated naked-eye colour. Publisher JPEG rendition unchanged, not equivalence to archival TIFF.",
+        "processing": "Copied unchanged; original publisher scale bars and composite retained."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 1.524,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.34967527602832627,
+      "centreDiscWidthFraction": 0.0030515019112243072,
+      "irradianceEarth": 0.43055641666838884,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/deimos-surface-image.jpg",
+      "previewUrl": "/bespoke/deimos-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-80712b7b-66c2-44c4-a238-b0a30ba63b59.png",
+      "sourceSha256": "e669f81cc697839e5d9205a1026c62d6c247aa5cfb545004ba48213a1805a435",
+      "sha256": "083649bb280e02a6d46f5ebdfab3617282b631267c9e99074155942b298f621c",
+      "previewSha256": "6ee219bc2c56b5065468e98e8d5f930f3a3a086025263c597f5aec1f350a2db1",
+      "bytes": 328462,
+      "previewBytes": 54806,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/deimos-sky-image.jpg",
+      "previewUrl": "/bespoke/deimos-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-062263e2-beb8-4fd3-ad88-b66e0d4c30fc.png",
+      "sourceSha256": "0e4f303534524e079b16adff2fab26c00290e69e4e0ada1c6967d6c1ab28cbf9",
+      "sha256": "cd869846ea037aa05894e4e78c205672b7ad7a9145f39306089b3fdc45717193",
+      "previewSha256": "7a343543717ee6b887e7b346e07ea5fc6d804abe2f1d5dd79ec58e582b455606",
+      "bytes": 166590,
+      "previewBytes": 28721,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "row": 260,
+        "approximateMarsWidthPixels": 230,
+        "thresholdWidthsPixels": [
+          275,
+          272,
+          271,
+          240
+        ],
+        "thresholds": [
+          2,
+          5,
+          10,
+          20
+        ],
+        "targetWidthPixels": 244.72292074121026,
+        "angularGuideDeg": 16.65398418909945,
+        "method": "Single row RGB thresholds35/25/20 in black sky; includes artistic atmospheric limb.",
+        "limits": "Low-threshold full limb widths275/272/271pixels exceed nominal244.723pixel guide; bright core230/240pixels is smaller. Threshold-sensitive and uncalibrated. FOV, phase, colour, illumination, limb and exposure remain artistic; no calibrated or dated geometry."
+      }
+    }
   }
 };
 

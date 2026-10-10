@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-10",
+  "sources": [
+    {
+      "file": "data/research-sources/deimos-hera-afc-2025.png",
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_asteroid_framing_camera/26615627-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera_pillars.png",
+      "bytes": 1050734,
+      "sha256": "e86a5595b0875236a3c437144f80d1c8aafbbd0c71f27d9e7f5e3b2f38933354"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-tiri-2025.png",
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_tiri/26615580-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_TIRI_pillars.png",
+      "bytes": 2002446,
+      "sha256": "fc0bfa51c4b6f227703e4ed31e572e4b1ffc76b4b63cd5f70576652286cea8b3"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-afc-caption-2025.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera",
+      "bytes": 13555,
+      "sha256": "2322fe511a35bfa00dcf0243dad6e35b5ae17279aa310e0c741e55e91e4d0018"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-tiri-caption-2025.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_TIRI",
+      "bytes": 13102,
+      "sha256": "eec556ed858f1bbad90a807bf1164b02aedb36d0a1683557a6e7c7536897e0fd"
+    },
+    {
+      "file": "data/research-sources/esa-standard-media-terms.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+      "bytes": 11439,
+      "sha256": "2c0dbe226fa51d3090221b60d4c9b55ca7e08d22e3c0569b5cbced4d8998ee1d"
+    },
+    {
+      "file": "data/research-sources/deimos-nasa-facts-2026.html",
+      "url": "https://science.nasa.gov/mars/moons/deimos/",
+      "bytes": 295938,
+      "sha256": "3d97b67b01531110a6d1ad7a5287002006aa365dcb742e43b1fccb38092e2ad9"
+    },
+    {
+      "file": "data/research-sources/deimos-photometry-2025-abstract.html",
+      "url": "https://arxiv.org/abs/2509.12804",
+      "bytes": 47564,
+      "sha256": "8a4dceaf7dfcdca58a940140546fe3597887352e03e80ed76c468c6291f418e4"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-afc-original-2025.png",
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_asteroid_framing_camera/26615627-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera.png",
+      "bytes": 442932,
+      "sha256": "4962226afb3d7529b43648eaee0a63cc90bc96ce805a7646e91d98af97717849",
+      "discovery": "Original-download href in ESA caption HTML;1020square publisher PNG inspected unchanged."
+    }
+  ],
+  "nativeAssets": [
+    {
+      "url": "/bespoke/deimos-hera-afc-native.png",
+      "label": "NATIVE HERA AFC MONOCHROME CONTEXT",
+      "tier": "measured",
+      "sourceUrl": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera",
+      "source": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_asteroid_framing_camera/26615627-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera.png",
+      "publicationDate": "2025-03-13",
+      "observationDate": "2025-03-12",
+      "credit": "©ESA / Hera Asteroid Framing Camera",
+      "terms": "ESA Standard Licence: educational, editorial and informational use with attribution; not asserted Creative Commons.",
+      "termsUrl": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+      "sha256": "4962226afb3d7529b43648eaee0a63cc90bc96ce805a7646e91d98af97717849",
+      "bytes": 442932,
+      "description": "Dark Deimos against bright Mars, visible monochromatic AFC image. Publisher1020×1020 PNG from the caption's original-download href, unchanged. Less-seen hemisphere; spacecraft approximately1000km from Deimos. Not a surface map or calibrated visible reflectance.",
+      "processing": "No local crop, resize, conversion or recolour. Caption's23500km from Mars surface wording is not adopted as catalogue semimajor axis."
+    },
+    {
+      "url": "/bespoke/deimos-hirise-native.jpg",
+      "label": "NATIVE HiRISE RESOLVED CONTEXT",
+      "tier": "measured",
+      "sourceUrl": "https://science.nasa.gov/resource/martian-moon-deimos-in-high-resolution-2/",
+      "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/mars/downloadable_items/3/7/37713_Deimos-Mars-Moon-MRO-HiRISE-PIA11826.jpg?crop=faces%2Cfocalpoint&fit=clip&h=772&w=1505",
+      "publicationDate": "2009-03-09",
+      "observationDate": "2009-02-21",
+      "credit": "NASA/JPL-Caltech/University of Arizona · MRO/HiRISE; instrument Ball Aerospace, spacecraft Lockheed Martin",
+      "terms": "NASA image/media usage guidelines; full mission/instrument credits retained.",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71",
+      "bytes": 49295,
+      "description": "PIA11826 / ESP_012065_9000 and ESP_012068_9000, two observations5h35apart. Near-infrared/red/blue-green enhanced channels, not calibrated naked-eye colour. Publisher JPEG rendition unchanged, not equivalence to archival TIFF.",
+      "processing": "Copied unchanged; original publisher scale bars and composite retained."
+    }
+  ],
+  "existingMap": {
+    "body": "deimos",
+    "file": "data/textures/deimos.jpg",
+    "bytes": 480429,
+    "sha256": "204e89cc7dc128e9fa6ae5f14cc23dc7917a4a8ccab9feff1a9544d22b354dce",
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Mars%20-%20Deimos/Mars%20-%20Deimos.jpg",
+    "limits": "Existing own-body NASA mosaic preserved. Exact input observation list, gap treatment, longitude/frame and calibrated photometric transfer remain to audit; server mission attribution is not an independent source-image audit."
+  },
+  "assessment": [
+    "Prefer2025Hera visible AFC over older2009HiRISE; both embedded unchanged and separately credited. No live scientific Deimos stream verified; no exhaustive most-recent claim.",
+    "Hera TIRI2002446byte PNG and previous1920AFC1050734byte rendition remain original research inputs. TIRI thermal palette not reused as visible albedo; jointESA/JAXA third-party terms/calibration audit remains open. Original1020AFC chosen, no local image conversion.",
+    "Wargnier et al.2025 abstract reviewed: Hapke modelling interprets HRSC/SRC2004–2024 observations as dark porous dust; full paper parameters/frame/nativefigure audit open. Model albedo/porosity not used as calibrated rendering or measured grain recipe.",
+    "NASA carbonaceous spectral analogy and tentative regolith depth are hypotheses, not measured chemical fractions; no hypothetical debris ring rendered.",
+    "Recent credited artwork assessed lower priority than resolved native mission observations; none copied. No generated globe because own-body NASA texture exists."
+  ],
+  "terms": "ESA Standard Licence for educational/editorial/informational use with attribution, not asserted Creative Commons. TIRI retains ESA/JAXA joint credit and any separate third-party conditions must be reviewed before publication.",
+  "termsUrl": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+}

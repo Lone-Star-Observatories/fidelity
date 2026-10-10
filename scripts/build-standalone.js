@@ -106,7 +106,8 @@ for (const visual of Object.values(BODY_VISUALS)) {
     let bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
     const imagined = asset.tier === 'imagined';
     if (imagined) bytes = await sharp(bytes).webp({ quality: 80 }).toBuffer();
-    bodyImages[asset.url] = `data:image/${imagined ? 'webp' : 'jpeg'};base64,${bytes.toString('base64')}`;
+    const nativeFormat = bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) ? 'png' : 'jpeg';
+    bodyImages[asset.url] = `data:image/${imagined ? 'webp' : nativeFormat};base64,${bytes.toString('base64')}`;
   }
 }
 // the corona photograph shown in totality (#31)

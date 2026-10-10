@@ -166,10 +166,11 @@
       "parent": "mars",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending; newer2025Hera AFC/TIRI source PNGs retained, terms and embedding audit in deimos-hera-native-assessment-2026-10-10.json",
-      "research": "native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own-body NASA3D mosaic preserved; unchanged native Hera AFC2025 monochrome projected context and HiRISE2009 enhanced-colour resolved context. Exact mosaic coverage/frame/photometric transfer and shape/albedo registration remain unaudited.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "deimos"
     },
     {
       "id": "sol-io",
@@ -8499,7 +8500,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 1,
+      "initialDossiers": 2,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
