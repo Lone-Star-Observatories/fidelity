@@ -48,7 +48,7 @@ export const surveyList = () => Object.fromEntries(Object.entries(SURVEYS).map((
 // ---- binary disk cache ---------------------------------------------------------------------
 const imgDir = path.join(config.dataDir, 'imagery');
 const inflight = new Map();
-async function cachedBinary(key, ttlMs, fetcher) {
+export async function cachedBinary(key, ttlMs, fetcher) {
   const name = crypto.createHash('sha1').update(key).digest('hex').slice(0, 20);
   const file = path.join(imgDir, `${name}.bin`), meta = path.join(imgDir, `${name}.json`);
   let stale = null;

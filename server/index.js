@@ -26,6 +26,7 @@ import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
+import { surfaceImages, surfaceImage } from './surfaceimages.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -72,6 +73,8 @@ const routes = {
   'GET /api/star-spectrum': async (q) => starSpectrum(q),
   'GET /api/exo-spectra': async (q) => exoSpectraList(q.get('planet') || ''),
   'GET /api/exo-spectrum': async (q) => exoSpectrum(q.get('path') || ''),
+  'GET /api/surface-images': async (q) => surfaceImages(q),
+  'GET /api/surface-image': async (q) => binary(await surfaceImage(q)),
 };
 
 /** Binary result: sent as-is instead of JSON. */
