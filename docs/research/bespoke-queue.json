@@ -8398,7 +8398,7 @@
       "distancePc": 3.5141973573235874,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native near-UV binary image resolves point sources, not photospheric geography. Recent native imagery assessed; independent conceptual gas map needed.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf CMi A",
         "OBJ_CAT": "*",
@@ -8417,9 +8417,10 @@
         "COMMENT": "...",
         "distancePc": 3.5141973573235874
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "procyon-a"
     },
     {
       "id": "star-alf-cmi-b",
@@ -8429,7 +8430,7 @@
       "distancePc": 3.5141973573235874,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native near-UV binary image resolves point sources, not photospheric geography. Recent native imagery assessed; independent conceptual gas map needed.",
       "catalogueConstraints": {
         "OBJ_NAME": "alf CMi B",
         "OBJ_CAT": "WD",
@@ -8448,9 +8449,10 @@
         "COMMENT": "...",
         "distancePc": 3.5141973573235874
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "procyon-b"
     }
   ],
   "selectionProgress": {
@@ -8461,12 +8463,12 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 17,
+      "initialDossiers": 18,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {
       "selected": 2,
-      "initialDossiers": 1,
+      "initialDossiers": 2,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "moon": {

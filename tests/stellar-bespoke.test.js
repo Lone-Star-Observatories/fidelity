@@ -154,3 +154,13 @@ test('61 Cygni components retain separate skins and recent Gaia observational co
  assert.equal(bodyVisualFor({name:'61 Cyg'}),null);
  for(const v of[a,b]){assert.equal(v.contextImages[0].observationDate,'2025-01-10');assert.match(v.contextImages[0].terms,/CC BY-SA/);assert.match(v.nativeSurface,/host A versus B unresolved/);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);}
 });
+
+test('Procyon component routes preserve subgiant versus helium white dwarf identity',()=>{
+ const a=bodyVisualFor({name:'Procyon'}),b=bodyVisualFor({name:'Procyon B'});
+ assert.equal(a.id,'procyon-a');assert.equal(b.id,'procyon-b');
+ assert.equal(bodyVisualFor({name:'GJ 280 B'}),b);
+ assert.notEqual(a.surfaceMap.sha256,b.surfaceMap.sha256);
+ assert.match(b.modelled.join(' '),/Helium photosphere/);
+ assert.match(b.assumed.join(' '),/interior hidden/);
+ for(const v of[a,b]){assert.equal(v.contextImages[0].observationDate,'1997-11-27');assert.match(v.contextImages[0].terms,/not asserted CC BY/);assert.ok(Math.abs(skyGeometry(v.skyModel).angularDiameterDeg-60)<1e-10);}
+});

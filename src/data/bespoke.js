@@ -5945,6 +5945,292 @@ export const BODY_VISUALS = {
         "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
       }
     }
+  },
+  "procyon-a": {
+    "id": "procyon-a",
+    "name": "Procyon A",
+    "kind": "star",
+    "aliases": [
+      "Procyon A",
+      "GJ 280 A",
+      "Gliese 280 A",
+      "alf CMi A",
+      "Procyon",
+      "HD 61421",
+      "HIP 37279"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Procyon A is HD61421/HIP37279/GJ280A F5IV-V subgiant; Procyon B is GJ280B/WD0736+053 helium-atmosphere DQZ white dwarf. Historical selection retained pending EZ Aquarii B/C/current binary astrometry reconciliation.",
+    "nativeSurface": "Native near-UV binary image resolves point sources, not photospheric geography. Recent native imagery assessed; independent conceptual gas map needed.",
+    "measured": [
+      "Bond2015 Table10 dynamical masses A1.478±.012/B.592±.006Msun; Table9 weighted parallax285.0±.7mas. Distinct historical archive284.56±1.26mas retained, no exhaustive current ranking claim.",
+      "Native HST/WFPC2 F218W1997-11-27 resolves central A and left B, separation4.706arcsec, near-UV contrast8.5mag. PDF page45 Figure1 caption and Table1 verify0.14second A inset/100second B frame. 0.11second is detector minimum and later visits, not an epoch conflict."
+    ],
+    "modelled": [
+      "Kervella2003 adopts spectroscopic 6530±50K (Allende Prieto2002); Hipparcos/interferometric radius 2.048±0.025Rsun. Its older model mass1.42±.04 is distinct from Bond2015 dynamical1.478±.012. No catalogue overwrite.",
+      "Liebert2013 age1.87±.13Gyr/cooling1.19±.11 uses older preliminary B mass.553±.015; Bond2015 revised masses/overshoot age~2.7Gyr remain distinct.",
+      "Bond2015 orbit40.840±.022yr, eccentricity.39785±.00025; catalogue orbital fields preserved. No registered companion position claimed in conceptual scene."
+    ],
+    "unknown": [
+      "Resolved photospheric geography, convection/magnetic patch positions, calibrated visible colour, bulk fractions and scene epoch registration.",
+      "Current binary-aware astrometry and physical nearest20 boundary remain open, including EZ Aquarii B/C reconciliation."
+    ],
+    "assumed": [
+      "Independent invented gaseous intensity cells and emissive appearance, no observed Sun/other-body map reused; no solid ground or survivable landing.",
+      "Broad H/He gas context for A; helium-dominated DQZ gas with trace carbon/metals for B. Theoretical C/O degenerate interior hidden, not exposed terrain.",
+      "Free camera2photosphericradii, nominal120degreeHFOV, arbitrary direction excluding companion; colour, exposure and spectral transfer remain approximate."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1510.00485",
+        "title": "Bond et al.2015, HST Procyon binary astrometry and component models",
+        "publicationDate": "2015-10-02"
+      },
+      {
+        "url": "https://arxiv.org/abs/astro-ph/0309148",
+        "title": "Kervella et al.2003/2004, Procyon A interferometry and adopted spectroscopy",
+        "publicationDate": "2003-09-04"
+      },
+      {
+        "url": "https://arxiv.org/abs/1305.0587",
+        "title": "Liebert et al.2013, distinct earlier Procyon age and preliminary mass assumptions",
+        "publicationDate": "2013-05-03"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/procyon-hubble-native.png",
+        "source": "https://arxiv.org/html/1510.00485v1/blueprocyon_cropcrop.png",
+        "sourcePage": "https://arxiv.org/abs/1510.00485",
+        "label": "NATIVE HST BINARY · NEAR-UV FALSE COLOUR",
+        "credit": "Howard E. Bond; Ronald L. Gilliland; Gail H. Schaefer; Pierre Demarque; Terrence M. Girard; Jay B. Holberg; Donald Gudehus; Brian D. Mason; Vera Kozhurina-Platais; Matthew R. Burleigh; Martin A. Barstow; Edmund P. Nelan; NASA/ESA HST/WFPC2; STScI/MAST/AURA, NASA contract NAS5-26555.",
+        "terms": "arXiv perpetual non-exclusive distribution licence is not asserted CC BY. Retain full credits and authorized research context.",
+        "termsUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+        "publicationDate": "2015-10-02",
+        "observationDate": "1997-11-27",
+        "tier": "measured",
+        "sha256": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6",
+        "bytes": 92927,
+        "description": "Author-paper release2015-10-02; exact raster publication day unknown. Central A0.14s inset, B left100s exposure, near-UV F218W false colour/PSF/diffraction. Not calibrated visible colour or resolved photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Procyon A",
+      "radiusSun": 2.048,
+      "temperatureK": 6530,
+      "distanceAU": 0.019048313900901,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 18936.262333565097,
+      "approximateSrgb": [
+        1,
+        0.9983063673875654,
+        0.9835113979300341
+      ],
+      "limits": "Hypothetical camera2photosphericradii, no ground/survivable landing; nominal120degreeFOV, colour/exposure/spectral transfer/registration approximate. Bright cores 549/548/543px versus557.333px geometric target, uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "procyonABespoke",
+      "texLon0": -180,
+      "projection": "2:1 independent imagined gaseous intensity; longitude frame invented.",
+      "coverage": "Photospheric morphology imagined; no calibrated chemical/brightness map.",
+      "url": "/bespoke/procyon-a-surface-map.jpg",
+      "previewUrl": "/bespoke/procyon-a-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-0f6d1026-3c80-4998-ac39-70a6cc92cd12.png",
+      "sourceSha256": "7166a03b029a28872d66611a8cbc4871166a13fe3f67e8bb98d6b8fd16dc788e",
+      "sha256": "250003bc9de8222d517564c9baf40351f5ac4ebd8be5700f9a8c41b4be5990ec",
+      "previewSha256": "cad147b89d3eddf32fd114eaea71bdd01917066f3fafc0891dcc13580a92c21f",
+      "bytes": 445311,
+      "previewBytes": 41862,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/procyon-a-sky-image.jpg",
+      "previewUrl": "/bespoke/procyon-a-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-0e56b1de-938f-404b-ad25-f8ad1c9cc68f.png",
+      "sourceSha256": "644c92d9bc58a9bf0acc6f61adeacc96ee46c8b2388f0566c3e090c0b1596949",
+      "sha256": "b9ab797821c7b242c01816f9ae7e71ae7792b2e3c1ca71252f20d2ea350ae05c",
+      "previewSha256": "05980291b1b0c7a76c0b9ea7593d0cb56710aff21fe4b4cef1cc74d41cde5b55",
+      "bytes": 72678,
+      "previewBytes": 15303,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+        "brightCoreWidths": [
+          549,
+          548,
+          543
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+      }
+    }
+  },
+  "procyon-b": {
+    "id": "procyon-b",
+    "name": "Procyon B",
+    "kind": "star",
+    "aliases": [
+      "Procyon B",
+      "GJ 280 B",
+      "Gliese 280 B",
+      "alf CMi B"
+    ],
+    "researchDate": "2026-10-10",
+    "identityNote": "Procyon A is HD61421/HIP37279/GJ280A F5IV-V subgiant; Procyon B is GJ280B/WD0736+053 helium-atmosphere DQZ white dwarf. Historical selection retained pending EZ Aquarii B/C/current binary astrometry reconciliation.",
+    "nativeSurface": "Native near-UV binary image resolves point sources, not photospheric geography. Recent native imagery assessed; independent conceptual gas map needed.",
+    "measured": [
+      "Bond2015 Table10 dynamical masses A1.478±.012/B.592±.006Msun; Table9 weighted parallax285.0±.7mas. Distinct historical archive284.56±1.26mas retained, no exhaustive current ranking claim.",
+      "Native HST/WFPC2 F218W1997-11-27 resolves central A and left B, separation4.706arcsec, near-UV contrast8.5mag. PDF page45 Figure1 caption and Table1 verify0.14second A inset/100second B frame. 0.11second is detector minimum and later visits, not an epoch conflict."
+    ],
+    "modelled": [
+      "Bond2015 atmosphere/STIS fit7740±50K, radius.01232±.00032Rsun adjusted from Provencal2002 .01234±.00032. Helium photosphere with carbon and trace metals; theoretical C/O degenerate interior hidden. Cooling age1.37±.04Gyr.",
+      "Liebert2013 age1.87±.13Gyr/cooling1.19±.11 uses older preliminary B mass.553±.015; Bond2015 revised masses/overshoot age~2.7Gyr remain distinct.",
+      "Bond2015 orbit40.840±.022yr, eccentricity.39785±.00025; catalogue orbital fields preserved. No registered companion position claimed in conceptual scene.",
+      "Preserved HYG actual route hyg-118493 labels B spectral DA and distance3.4974pc; primary Bond2015 establishes helium-atmosphere DQZ and shared weighted285mas. This catalogue conflict is disclosed, not silently overwritten or used to select hydrogen gas. A actualhyg-37173 distance3.5142pc; binary-aware reconciliation open."
+    ],
+    "unknown": [
+      "Resolved photospheric geography, convection/magnetic patch positions, calibrated visible colour, bulk fractions and scene epoch registration.",
+      "Current binary-aware astrometry and physical nearest20 boundary remain open, including EZ Aquarii B/C reconciliation."
+    ],
+    "assumed": [
+      "Independent invented gaseous intensity cells and emissive appearance, no observed Sun/other-body map reused; no solid ground or survivable landing.",
+      "Broad H/He gas context for A; helium-dominated DQZ gas with trace carbon/metals for B. Theoretical C/O degenerate interior hidden, not exposed terrain.",
+      "Free camera2photosphericradii, nominal120degreeHFOV, arbitrary direction excluding companion; colour, exposure and spectral transfer remain approximate."
+    ],
+    "surfaceLabel": "QUIESCENT PHOTOSPHERIC INTENSITY HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/1510.00485",
+        "title": "Bond et al.2015, HST Procyon binary astrometry and component models",
+        "publicationDate": "2015-10-02"
+      },
+      {
+        "url": "https://arxiv.org/abs/astro-ph/0309148",
+        "title": "Kervella et al.2003/2004, Procyon A interferometry and adopted spectroscopy",
+        "publicationDate": "2003-09-04"
+      },
+      {
+        "url": "https://arxiv.org/abs/1305.0587",
+        "title": "Liebert et al.2013, distinct earlier Procyon age and preliminary mass assumptions",
+        "publicationDate": "2013-05-03"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/procyon-hubble-native.png",
+        "source": "https://arxiv.org/html/1510.00485v1/blueprocyon_cropcrop.png",
+        "sourcePage": "https://arxiv.org/abs/1510.00485",
+        "label": "NATIVE HST BINARY · NEAR-UV FALSE COLOUR",
+        "credit": "Howard E. Bond; Ronald L. Gilliland; Gail H. Schaefer; Pierre Demarque; Terrence M. Girard; Jay B. Holberg; Donald Gudehus; Brian D. Mason; Vera Kozhurina-Platais; Matthew R. Burleigh; Martin A. Barstow; Edmund P. Nelan; NASA/ESA HST/WFPC2; STScI/MAST/AURA, NASA contract NAS5-26555.",
+        "terms": "arXiv perpetual non-exclusive distribution licence is not asserted CC BY. Retain full credits and authorized research context.",
+        "termsUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+        "publicationDate": "2015-10-02",
+        "observationDate": "1997-11-27",
+        "tier": "measured",
+        "sha256": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6",
+        "bytes": 92927,
+        "description": "Author-paper release2015-10-02; exact raster publication day unknown. Central A0.14s inset, B left100s exposure, near-UV F218W false colour/PSF/diffraction. Not calibrated visible colour or resolved photospheric geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Procyon B",
+      "radiusSun": 0.01232,
+      "temperatureK": 7740,
+      "distanceAU": 0.00011458751331010756,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 37377.08077473294,
+      "approximateSrgb": [
+        0.8837512204317549,
+        0.9106607244711423,
+        1
+      ],
+      "limits": "Hypothetical camera2photosphericradii, no ground/survivable landing; nominal120degreeFOV, colour/exposure/spectral transfer/registration approximate. Bright cores 642/548/248px versus557.333px geometric target, uncalibrated."
+    },
+    "surfaceMap": {
+      "key": "procyonBBespoke",
+      "texLon0": -180,
+      "projection": "2:1 independent imagined gaseous intensity; longitude frame invented.",
+      "coverage": "Photospheric morphology imagined; no calibrated chemical/brightness map.",
+      "url": "/bespoke/procyon-b-surface-map.jpg",
+      "previewUrl": "/bespoke/procyon-b-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-72fbe319-9f90-494d-8402-74eabab475d1.png",
+      "sourceSha256": "bcca4018651598835129bcceb2667e2c14b60696c23b7c5f4719d443efdb63e6",
+      "sha256": "ff75c5bc133fd01edbe562063cee996250d04480ec01dfd188278023574c5cf9",
+      "previewSha256": "ec13810f367cc0e01181e94693d4a1b0445b48a8206b5d5066700eb7f7078266",
+      "bytes": 325437,
+      "previewBytes": 26224,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/procyon-b-sky-image.jpg",
+      "previewUrl": "/bespoke/procyon-b-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-44bc9437-4e71-4c19-8f6b-afc36adcf36b.png",
+      "sourceSha256": "53c76479180606e1538da1515129a696834f3a559bd154110202ac87e3fc2dd6",
+      "sha256": "c6f9b924bddc89dc3635e4c5b08a6f28f7608d03617d476e7473e2f583862518",
+      "previewSha256": "99a252d69025057276ca403781a6771ef759967c8da7f786841085d5c08c9073",
+      "bytes": 87081,
+      "previewBytes": 17510,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated.",
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "method": "Largest four-neighbour bright component at each threshold, excluding isolated gas-cell highlights and background; R>threshold/G>150/B>80.",
+        "brightCoreWidths": [
+          642,
+          548,
+          248
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "NominalFOV, exposure, spectral transfer, colour, threshold and registration approximate; no calibration claim."
+      }
+    }
   }
 };
 

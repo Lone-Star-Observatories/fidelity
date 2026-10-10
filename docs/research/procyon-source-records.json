@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://arxiv.org/pdf/1510.00485",
+    "file": "data/research-sources/procyon-bond-2015.pdf",
+    "bytes": 942669,
+    "sha256": "d7da7af99d19c851b794555230c4df452fe68ba9b7fd7fda7ff74caf930af05d"
+  },
+  {
+    "url": "https://arxiv.org/html/1510.00485v1",
+    "file": "data/research-sources/procyon-bond-2015.html",
+    "bytes": 342325,
+    "sha256": "6909cfcedbb5feda4dc2583d2357ed44f119d045b06b9b2a4cd4df6c90ddbad4"
+  },
+  {
+    "url": "https://arxiv.org/pdf/1305.0587",
+    "file": "data/research-sources/procyon-age-2013.pdf",
+    "bytes": 291093,
+    "sha256": "114c3cff5e005949a28ec9fab9bc7368265484c21647347924fb5ac90fa3f8ef"
+  },
+  {
+    "url": "https://arxiv.org/pdf/astro-ph/0309148",
+    "file": "data/research-sources/procyon-kervella-2003.pdf",
+    "bytes": 218094,
+    "sha256": "6f6db1655410db707bec7017622676b87d7b86d74f276e9e95f41a494c19635a"
+  },
+  {
+    "url": "https://arxiv.org/html/1510.00485v1/blueprocyon_cropcrop.png",
+    "file": "data/research-sources/procyon-hubble-native.png",
+    "bytes": 92927,
+    "sha256": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6"
+  }
+]
