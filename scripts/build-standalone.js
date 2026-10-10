@@ -21,7 +21,7 @@ import { SPACECRAFT } from '../src/data/spacecraft.js';
 import { BODIES as SOL_BODIES } from '../src/data/sol.js';
 import { monthlyVectors, localDay, track } from '../server/horizons.js';
 import { monthUrl, localUrl, trackUrl } from '../src/data/horizons-urls.js';
-import { BODY_VISUALS, BESPOKE_TEXTURES } from '../src/data/bespoke.js';
+import { BODY_VISUALS, BESPOKE_TEXTURES, bodyVisualFor } from '../src/data/bespoke.js';
 import { SKINS } from '../src/data/skins.js';
 import { SHAPES } from '../src/data/shapes.js';
 import { MODELS } from '../src/data/models.js';
@@ -32,6 +32,10 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const near = await nearby('sol', 100);
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
+// Researched stars without known planets still need their actual Star/System views offline.
+for (const row of near.stars) {
+  if (!details[row[0]] && bodyVisualFor({ name: row[1] })?.kind === 'star') details[row[0]] = await starDetail(row[0]);
+}
 // multiple-star systems with measured orbits within 50 ly, so their System Views show every star
 const iSystem = near.fields.indexOf('system');
 for (const row of near.stars) {

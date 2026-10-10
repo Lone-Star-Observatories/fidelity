@@ -33,3 +33,17 @@ test('Alpha Centauri components select independent skins and retain correctly la
     assert.match(visual.assumed.join(' '), /no solid ground/);
   }
 });
+
+test('Barnard star stays distinct from its planets and Wolf359 preserves spectral-model limits', () => {
+  const barnard = bodyVisualFor({ name: "Barnard's Star" }), wolf = bodyVisualFor({ name: 'CN Leo' });
+  assert.equal(barnard.id, 'barnard-star');
+  assert.equal(wolf.id, 'wolf-star');
+  assert.equal(bodyVisualFor({ name: 'Barnard c' }).id, 'barnard-c');
+  assert.equal(bodyVisualFor({ name: 'Barnard e' }).id, 'barnard-e');
+  assert.notEqual(barnard.surfaceMap.sha256, wolf.surfaceMap.sha256);
+  assert.match(wolf.modelled.join(' '), /TiO/);
+  assert.match(wolf.modelled.join(' '), /radius-column units checked/);
+  assert.match(wolf.contextImages[0].credit, /Kielkopf/);
+  assert.equal(wolf.contextImages[0].observationDate, '2020-04-23');
+  assert.match(barnard.contextImages[0].description, /time\/motion/);
+});

@@ -7486,7 +7486,7 @@
       "distancePc": 1.828233981355542,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native DSS2 multi-epoch point-source field; displayed red/yellow/blue locations encode motion, not calibrated stellar colour.",
       "catalogueConstraints": {
         "OBJ_NAME": "Barnard's Star",
         "OBJ_CAT": "LM",
@@ -7505,9 +7505,10 @@
         "COMMENT": "Barnard's Star b: planet detected by 2018Natur.563..365R but controversial based on 2021AJ....162...61L",
         "distancePc": 1.828233981355542
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "barnard-star"
     },
     {
       "id": "star-wolf-359",
@@ -7517,7 +7518,7 @@
       "distancePc": 2.4085972527489603,
       "scope": "20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued",
       "source": "https://gruze.org/10pc/The10pcSample_v2.json",
-      "nativeImagery": "unchecked; point-source photograph does not resolve photosphere",
+      "nativeImagery": "Native New Horizons/Earth processed grayscale stereo point-source scene, not resolved photosphere.",
       "catalogueConstraints": {
         "OBJ_NAME": "Wolf 359",
         "OBJ_CAT": "LM",
@@ -7536,9 +7537,10 @@
         "COMMENT": "Wolf 359 b and c: unconfirmed planets 2019arXiv190604644T",
         "distancePc": 2.4085972527489603
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "wolf-star"
     },
     {
       "id": "star-hd-95735",
@@ -8014,7 +8016,7 @@
     },
     "star": {
       "selected": 19,
-      "initialDossiers": 3,
+      "initialDossiers": 5,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "white dwarf": {

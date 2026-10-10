@@ -3674,9 +3674,293 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "barnard-star": {
+    "id": "barnard-star",
+    "name": "Barnard's Star",
+    "kind": "star",
+    "aliases": [
+      "Barnard's Star",
+      "Barnard Star",
+      "Barnards Star",
+      "GJ 699",
+      "Gliese 699",
+      "HIP 87937"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native DSS2 multi-epoch point-source field; displayed red/yellow/blue locations encode motion, not calibrated stellar colour.",
+    "measured": [
+      "BarnardStar/GJ699 is a nearby M dwarf with rapid proper motion; DSS2 exposures show distinct epoch positions.",
+      "Native ESO survey composite released2018-11-14; precise three plate observing epochs are not independently verified."
+    ],
+    "modelled": [
+      "Adopted3195±28K and0.185±0.006solar radii from Stefanov2025 Table1; atmospheric/interferometric fits, not resolved surface geography. Primary values checked through published table; direct publisher PDF download returned403, no figure reused.",
+      "Cool molecular photospheric gas is only partly ionized. Hydrogen/helium is a broad stellar-model composition, not a fully ionized outer-layer or measured abundance-fraction claim."
+    ],
+    "unknown": [
+      "Actual convective morphology, magnetic patch geography, photospheric intensity contrast, detailed hydrogen/helium/metal abundance fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Independent weak sparse magnetic dimming and subtle fine convective mottling; hydrogen/helium plasma stellar-model context. No measured spots or dated flare are claimed.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree horizontal field; no solid ground or survivable landing.",
+      "Independent intensity and observer images; no observed Sun or another star map reused. Stellar tint, exposure, magnetic geometry and raster registration remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://www.aanda.org/articles/aa/pdf/2025/01/aa52450-24.pdf",
+        "title": "Stefanov2025 Table1 stellar parameters",
+        "publicationDate": "2025-01"
+      },
+      {
+        "url": "https://arxiv.org/html/2503.08095v1",
+        "title": "Basant2025 four-planet confirmation and stellar activity",
+        "publicationDate": "2025-03-11"
+      },
+      {
+        "url": "https://eso.org/public/images/eso1837d/",
+        "title": "ESO/DSS2 native multi-epoch stellar field",
+        "publicationDate": "2018-11-14"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/barnard-star-native.jpg",
+        "source": "https://cdn.eso.org/images/screen/eso1837d.jpg",
+        "sourcePage": "https://eso.org/public/images/eso1837d/",
+        "credit": "ESO/Digitized Sky Survey 2 · Acknowledgement: Davide De Martin · E — Red Dots",
+        "terms": "CC BY4.0; full ESO/DSS2 credits retained.",
+        "termsUrl": "https://www.eso.org/public/outreach/copyright/",
+        "publicationDate": "2018-11-14",
+        "observationDate": null,
+        "sha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+        "bytes": 633054,
+        "tier": "measured",
+        "description": "DSS2 multi-epoch wide-field image shows BarnardStar at three positions. Red/yellow/blue depict time/motion, not calibrated visible colour or resolved photosphere."
+      }
+    ],
+    "skyModel": {
+      "star": "Barnard's Star",
+      "radiusSun": 0.185,
+      "temperatureK": 3195,
+      "distanceAU": 0.0017206728865559984,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 1085.2379850224106,
+      "approximateSrgb": [
+        1,
+        0.7194683096347383,
+        0.48158519102838504
+      ],
+      "limits": "Conceptual observer altitude is assumed, not a planetary semimajor axis. Camera field, spectra, molecular absorption, exposure and adaptation prevent calibrated colour/raster claims."
+    },
+    "surfaceMap": {
+      "key": "barnardStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured surface frame.",
+      "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/barnard-star-surface-map.jpg",
+      "previewUrl": "/bespoke/barnard-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-26853285-09fb-46af-9f28-bdd5f10e8d82.png",
+      "sourceSha256": "6a07b46f2ece9848b18522e4667683784b806416ede2fe1ef4dc5fe5774368a5",
+      "sha256": "c2641a5f041991b067961c2aa529d51e78565bfb68ec0ace0aa30fb004787d7a",
+      "previewSha256": "1633a0de5237237f9434fef734aaadf9ba77c2af987129f4a729d5828a8d7ea3",
+      "bytes": 396406,
+      "previewBytes": 36009,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          526,
+          526,
+          518
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold widths do not locate a calibrated stellar limb. FOV, colour, spectral tint and exposure remain artistic."
+      },
+      "url": "/bespoke/barnard-star-sky-image.jpg",
+      "previewUrl": "/bespoke/barnard-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-b2079f13-1e64-47d5-a5ab-ea992cd14337.png",
+      "sourceSha256": "25d233b7517758983ddc390aea0d752632c01ede0fed61aea42e72adad168983",
+      "sha256": "c547fc86b242916527fed6e7efc3d4570d1fdfb75578e8599fe6f1320c5df209",
+      "previewSha256": "22a272fb302332edb44c8263661c5869a1d089b01e70be0a5ecf9d6fc67a68db",
+      "bytes": 58608,
+      "previewBytes": 11607,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "wolf-star": {
+    "id": "wolf-star",
+    "name": "Wolf 359",
+    "kind": "star",
+    "aliases": [
+      "Wolf 359",
+      "CN Leo",
+      "GJ 406",
+      "Gliese 406"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "Native New Horizons/Earth processed grayscale stereo point-source scene, not resolved photosphere.",
+    "measured": [
+      "Wolf359/CNLeo/GJ406 is the same M6 active dwarf; Gaia-era parallax415.18±0.07mas gives2.4086±0.0004pc in Bowens-Rubin2023.",
+      "Native LORRI Wolf359 frames were observed2020-04-23 at7:45:07/12/17UT; processed NewHorizons/Earth stereo product released2020-06-10."
+    ],
+    "modelled": [
+      "Pineda2021 Table8 empirical Bayesian stellar fits give0.110±0.003solar masses,0.144±0.004solar radii and2749+44/-41K. These are inferred stellar parameters, not resolved surface measurements.",
+      "Bowens-Rubin2023 Table1 mislabels radius with a mass unit; original Pineda radius-column units checked as solar radii. Lin2025 uses alternative0.16Rsun2800K; both are disclosed, catalogue values preserved.",
+      "Lin2025 observed quiescent optical spectra2021-04-20: strong TiO absorption means an ideal blackbody overestimates optical output. Approximate blackbody tint is not a measured visible spectrum.",
+      "Cool molecular photospheric gas is only partly ionized. Hydrogen/helium is a broad stellar-model composition, not a fully ionized outer-layer or measured abundance-fraction claim."
+    ],
+    "unknown": [
+      "Actual convective morphology, magnetic patch geography, photospheric intensity contrast, detailed hydrogen/helium/metal abundance fractions and calibrated visible colour."
+    ],
+    "assumed": [
+      "Independent three modest asymmetric magnetic patches and fine emissive mottling; fully convective hydrogen/helium stellar-model context. No dated flare is simulated.",
+      "Conceptual observer two photospheric radii from centre, one radius above plasma, artistic120-degree horizontal field; no solid ground or survivable landing.",
+      "Independent intensity and observer images; no observed Sun or another star map reused. Stellar tint, exposure, magnetic geometry and raster registration remain approximate."
+    ],
+    "surfaceLabel": "PHOTOSPHERE HYPOTHESIS",
+    "skyLabel": "NEAR-PHOTOSPHERE OBSERVER HYPOTHESIS",
+    "references": [
+      {
+        "url": "https://arxiv.org/pdf/2106.07656",
+        "title": "Pineda2021 Table8 inferred stellar parameters",
+        "publicationDate": "2021-06-14"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2309.03402",
+        "title": "Bowens-Rubin2023 Wolf359 imaging/RV and identification",
+        "publicationDate": "2023-09-06"
+      },
+      {
+        "url": "https://arxiv.org/html/2509.21505v1",
+        "title": "Lin2025 optical spectra, flares and blackbody limitations",
+        "publicationDate": "2025-09-25"
+      },
+      {
+        "url": "https://pluto.jhuapl.edu/Learn/Parallax/Parallax-Images.php",
+        "title": "Primary mission image dates, processing and credit instructions"
+      },
+      {
+        "url": "https://arxiv.org/abs/2506.21666",
+        "title": "2025 NewHorizons interstellar navigation demonstration",
+        "publicationDate": "2025-06"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/wolf-star-native.jpg",
+        "source": "https://www.nasa.gov/wp-content/uploads/2020/06/nh-wolf359-parallel.jpg?resize=1024,529",
+        "sourcePage": "https://www.nasa.gov/solar-system/nasas-new-horizons-conducts-the-first-interstellar-parallax-experiment/",
+        "credit": "NASA/Johns Hopkins Applied Physics Laboratory/Southwest Research Institute; Earth image: Mt. Lemmon Observatory, John F. Kielkopf (University of Louisville), Karen A. Collins (Harvard and Smithsonian Center for Astrophysics); stereo assembly: Tod Lauer, John Spencer, Brian May.",
+        "terms": "NASA published image and mission image-use permission; complete primary credits retained.",
+        "termsUrl": "https://pluto.jhuapl.edu/Learn/Parallax/Parallax-Images.php",
+        "publicationDate": "2020-06-10",
+        "observationDate": "2020-04-23",
+        "sha256": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+        "bytes": 67049,
+        "tier": "measured",
+        "description": "Processed grayscale NewHorizons/Earth parallel stereo: NewHorizons left. Unresolved stellar point source; no visible-colour or photospheric surface information. Publisher1024px JPEG rendition copied unchanged."
+      }
+    ],
+    "skyModel": {
+      "star": "Wolf 359",
+      "radiusSun": 0.144,
+      "temperatureK": 2749,
+      "distanceAU": 0.0013393345711571014,
+      "horizontalFovDeg": 120,
+      "angularDiameterDeg": 60.00000000000001,
+      "centreDiscWidthFraction": 0.3333333333333335,
+      "irradianceEarth": 594.7582784950865,
+      "approximateSrgb": [
+        1,
+        0.6608195916046241,
+        0.35820236857795673
+      ],
+      "limits": "Conceptual observer altitude is assumed, not a planetary semimajor axis. Camera field, spectra, molecular absorption, exposure and adaptation prevent calibrated colour/raster claims."
+    },
+    "surfaceMap": {
+      "key": "wolfStarBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, invented longitude; no measured surface frame.",
+      "coverage": "Entire photosphere imagined; intensity tinted by approximate catalogue colour.",
+      "url": "/bespoke/wolf-star-surface-map.jpg",
+      "previewUrl": "/bespoke/wolf-star-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-b547e1ac-9e49-42a0-b851-b923b3f45473.png",
+      "sourceSha256": "251533e6c178763da3ad649b0236534f980d713d21ffbf45adfb4bdd17895f57",
+      "sha256": "49616c692578ca2fba39774aef1387ab8e0fb6e5150815e25aad5a50cc3a6329",
+      "previewSha256": "57a949ff4993b0743fec0fc0c2c620bb206b7f55fa9d7e257b4e962d49f8ddea",
+      "bytes": 366367,
+      "previewBytes": 33075,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "sourceWidth": 1672,
+        "sourceHeight": 941,
+        "thresholds": [
+          180,
+          210,
+          240
+        ],
+        "brightCoreWidths": [
+          553,
+          553,
+          525
+        ],
+        "geometricTargetPixels": 557.3333333333336,
+        "limits": "Threshold widths do not locate a calibrated stellar limb. FOV, colour, spectral tint and exposure remain artistic."
+      },
+      "url": "/bespoke/wolf-star-sky-image.jpg",
+      "previewUrl": "/bespoke/wolf-star-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-06261d3d-5ea3-4a8c-95c5-26a408022e5c.png",
+      "sourceSha256": "acd6b8b6421c936cf62b85ea4a1a7d3285267d0be4c9f48d163afea770abaf52",
+      "sha256": "0b75c2ba089141a882aa3a9d6ae1c1760a10e334b0d1827c3d1c7c1e70558c5a",
+      "previewSha256": "53f06bfc024f326e3e00a5428595424da87bdd13a5d7e80f1831ff21dca769f6",
+      "bytes": 69844,
+      "previewBytes": 13717,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; photospheric morphology, magnetic regions and emissive appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
-
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;
