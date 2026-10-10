@@ -4,9 +4,17 @@
 // star's own, plus the blackbody curve at its temperature and the lines that reveal its
 // elements. Composition: the Sun's measured photosphere, or the solar mix scaled by the
 // star's measured metallicity.
+//
+// Spectrum filter (#28): the photosphere and a SPECTRUM BAND card follow the current band
+// (./../system/starband.js: the Sun's SDO/NoRH images, its measured signatures, or a blackbody
+// through the filter), and the chart shades the bandpass, or points to it when it is off the chart.
 
 import * as THREE from 'three';
-import { starMaterial, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { starMaterial, loadTexture, applyLiveSkin, loadLive } from '../system/materials.js';
+import { currentBand, onBand } from '../../data/bandstate.js';
+import { starBandLook, PAL_RGB } from '../system/starband.js';
+import { paletteIndex } from '../system/bandskin.js';
+import { effectiveNm } from '../../astro/bands.js';
 import { SUN } from '../../data/sol.js';
 import { settings } from '../../settings.js';
 import { glowTexture, planetTexture } from '../system/textures.js';
@@ -29,6 +37,18 @@ const svg = (tag, attrs = {}) => {
   for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
   return e;
 };
+const STANDALONE = import.meta.env?.MODE === 'standalone';
+const upper = (s) => s.replace(/ ?µm\b/g, ' MICRONS').toUpperCase(); // 'µ' upper-cases to Greek 'Μ'
+/** A wavelength (nm) in the unit people use for it: keV/MeV for X and gamma rays, nm, µm, mm, cm, m. */
+export function wavelengthText(nm) {
+  if (nm < 0.01) return `${(1.23984e-3 / nm).toPrecision(2)} MeV`;
+  if (nm < 10) return `${(1.23984 / nm).toPrecision(2)} keV`;
+  if (nm < 1000) return `${Math.round(nm)} nm`;
+  if (nm < 1e6) return `${(nm / 1000).toPrecision(3)} µm`;
+  if (nm < 1e7) return `${(nm / 1e6).toPrecision(2)} mm`;
+  if (nm < 1e9) return `${(nm / 1e7).toPrecision(3)} cm`;
+  return `${(nm / 1e9).toPrecision(2)} m`;
+}
 const fmt = (n, d = 0) => Number(n).toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d });
 
 /** Approximate visible colour of a wavelength (for the rainbow strip under the chart). */
@@ -57,12 +77,13 @@ export function createStarView(container) {
   const title = el('div', { className: 'sv-title' });
   const spectrumBox = el('section', { className: 'sv-card' });
   const compositionBox = el('section', { className: 'sv-card' });
+  const bandBox = el('section', { className: 'sv-card', hidden: true }); // the spectrum filter (#28)
   const researchBox = el('div', { className: 'stellar-research' });
   const extras = el('div', { className: 'pv-cards' }); // FROM EARTH and imagery (src/panels)
   const ownSpectrum = el('div', { className: 'pv-cards' }); // the star's measured Gaia spectrum
   container.replaceChildren(el('div', { className: 'sv' },
     el('div', { className: 'sv-top' }, hero, el('div', { className: 'sv-hero-text' }, title, heroFacts)),
-    extras, spectrumBox, ownSpectrum, compositionBox, researchBox));
+    bandBox, extras, spectrumBox, ownSpectrum, compositionBox, researchBox));
 
   function sizeHero() {
     const w = hero.clientWidth || 260;
@@ -89,13 +110,63 @@ export function createStarView(container) {
     const visual = !isSun && bodyVisualFor(body);
     if (visual?.kind === 'star' && visual.surfaceMap) loadTexture(visual.surfaceMap.key).then(t => { if (t && star === current) current.material.uniforms.uMap.value = t; });
     if (isSun) loadTexture('sun').then((t) => { if (t && star === current) current.material.uniforms.uMap.value = t; });
-    if (isSun) applyLiveSkin(star.material, SUN.skin, settings.get('liveSkins')); // seen from Earth: the live disk faces the camera
+    // the Sun's live disc (seen from Earth, facing the camera) is applied by applyBand in full spectrum
     glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.75 }));
     glow.scale.setScalar(3.6);
     star.add(glow);
     star.rotation.x = 0.25;
     scene.add(star);
+    applyBand();
   }
+
+  // ---- the spectrum filter (#28): photosphere and band card ------------------------------
+  let bandLook = null, bandFeedTime = null;
+  function applyBand() {
+    if (!star || !current) return;
+    const { band, pass } = currentBand(), u = star.material.uniforms, mesh = star, glowNow = glow;
+    const look = starBandLook({ teff: current.body.teffK ?? 5772, isSun: current.isSun, noFeeds: STANDALONE }, band, pass);
+    bandLook = look; bandFeedTime = null;
+    u.uBandDisk.value = 0;
+    const setGlow = (t) => {
+      const m = Math.max(...t);
+      glowNow.material.opacity = 0.75 * Math.min(1, m);
+      glowNow.material.color.set(current.body.color ?? 0xffffff);
+      if (look) glowNow.material.color.setRGB(...t.map((c) => c / Math.max(1e-3, m)));
+    };
+    if (!look) { // full spectrum: the usual star (and the Sun's live disc, if live skins are on)
+      u.uBandTint.value.setRGB(1, 1, 1); setGlow([1, 1, 1]);
+      if (current.isSun) applyLiveSkin(star.material, SUN.skin, settings.get('liveSkins')); else u.uHasDisk.value = 0;
+      drawBandCard();
+      return;
+    }
+    u.uBandTint.value.setRGB(...look.tint); setGlow(look.tint);
+    if (look.feed) {
+      loadLive(look.feed, 6 * 3600000).then((l) => {
+        if (bandLook !== look || star !== mesh) return;
+        if (!l) { look.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; look.tier = 'computed'; drawBandCard(); return; }
+        u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk;
+        bandFeedTime = l.time; drawBandCard();
+      });
+    } else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
+    drawBandCard();
+  }
+  function drawBandCard() {
+    const { band, pass } = currentBand();
+    bandBox.hidden = !bandLook;
+    if (!bandLook) return;
+    const nm = pass?.filter ? effectiveNm(pass.filter) : null;
+    bandBox.replaceChildren(
+      el('div', { className: 'sv-card-head' }, el('h3', { textContent: `SPECTRUM BAND · ${band.label}${pass ? ` · ${upper(pass.label)}` : ''}` }), badge(bandLook.tier, bandLook.detail)),
+      el('div', { className: 'sv-comp-title', textContent: upper(bandLook.label) }),
+      el('p', { className: 'note', textContent: `${bandLook.detail}${bandFeedTime ? ` Observed ${bandFeedTime.slice(0, 16).replace('T', ' ')} UTC.` : ''}${nm ? ` Effective wavelength ${wavelengthText(nm)}.` : ''}` }),
+      el('div', { className: `band-key band-${band.palette}` }, el('span', { textContent: 'FAINT' }), el('span', { textContent: bandLook.mode === 'real' ? 'IMAGE IN ITS OWN COLOURS' : band.id === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+  }
+  onBand(({ pass }) => {
+    const nm = pass?.filter ? effectiveNm(pass.filter) : null;
+    if (nm && nm > 1000 && nm <= 2500) range = 'ir'; // show the bandpass on the chart when the chart can
+    applyBand();
+    if (current) drawSpectrum();
+  });
 
   // ---- spectrum chart -----------------------------------------------------------------
   let range = 'visible';
@@ -172,6 +243,25 @@ export function createStarView(container) {
       s.append(svg('line', { x1: X(peak), x2: X(peak), y1: m.t, y2: m.t + ph, class: 'peak' }));
       const right = X(peak) > W - m.r - 90;
       s.append(Object.assign(svg('text', { x: X(peak) + (right ? -5 : 5), y: m.t + 14, class: 'tick', 'text-anchor': right ? 'end' : 'start' }), { textContent: `PEAK ${fmt(peak)} nm` }));
+    }
+
+    // the spectrum filter's bandpass (#28): its transmission curve shaded, or a pointer when off the chart
+    const cb = currentBand();
+    if (!cb.full && cb.pass?.filter) {
+      const pal = PAL_RGB[paletteIndex(cb.band.palette)], colour = `rgb(${pal.map((c) => Math.round(255 * c)).join(',')})`;
+      const pts = cb.pass.filter.points, tMax = Math.max(...pts.map((q) => q[1]), 1e-9), nmEff = effectiveNm(cb.pass.filter);
+      const inside = pts.filter(([nm]) => nm >= x0 && nm <= x1);
+      if (inside.length >= 2) {
+        const top = (t) => m.t + ph - (t / tMax) * ph * 0.92;
+        const d = `M${X(inside[0][0]).toFixed(1)},${(m.t + ph).toFixed(1)}` + inside.map(([nm, t]) => `L${X(nm).toFixed(1)},${top(t).toFixed(1)}`).join('') + `L${X(inside.at(-1)[0]).toFixed(1)},${(m.t + ph).toFixed(1)}Z`;
+        s.append(svg('path', { d, fill: colour, 'fill-opacity': 0.16, stroke: colour, 'stroke-opacity': 0.7, 'stroke-width': 1.2, class: 'band-pass' }));
+        const lx = Math.min(Math.max(X(Math.min(Math.max(nmEff, x0), x1)), m.l + 60), W - m.r - 60);
+        s.append(Object.assign(svg('text', { x: lx, y: m.t + ph - 6, class: 'tick', 'text-anchor': 'middle', fill: colour }), { textContent: `BAND · ${upper(cb.pass.label)}` }));
+      } else {
+        const left = nmEff < x0;
+        s.append(Object.assign(svg('text', { x: left ? m.l + 6 : W - m.r - 6, y: m.t + ph - 8, class: 'tick', 'text-anchor': left ? 'start' : 'end', fill: colour }),
+          { textContent: `${left ? '◀ ' : ''}BAND · ${upper(cb.pass.label)} · ${wavelengthText(nmEff)} · OFF THIS CHART${left ? '' : ' ▶'}` }));
+      }
     }
 
     s.append(svg('path', { d: path(bbN), fill: 'none', stroke: BLACKBODY, 'stroke-width': 2, 'stroke-dasharray': '6 4', 'stroke-linecap': 'round' }));

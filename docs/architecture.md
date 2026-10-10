@@ -81,7 +81,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set, or GIBS's latest day for sets marked `latest` (`server/bandimages.js`). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
@@ -484,6 +484,32 @@ them). Giant-planet and Titan reflectance is the measured Karkoschka (1998) spec
 shader: 5 auroral ovals over a faint disc, 6 volcanic hot spots (Io, 3–5 µm), 7 Venus's near-IR
 night-side windows. `ringBandLook` sets Saturn's ring tint per band. `BODY_BAND` entries carry
 `range: [nmLo, nmHi]`; band-level keys only where the map fits every pass.
+
+Views consume the band only through `currentBand()`/`onBand()` and decide by wavelength
+(`effectiveNm(pass.filter)`), so a custom transmission curve works too.
+- **Galaxy model** (`model.setBand`, Galaxy and Quadrant views): `src/astro/galaxyband.js` holds each
+  component's display spectrum (thin/thick disc, bulge, nuclear cluster, arm OB stars, HII regions,
+  halo, dust extinction and dust emission, gas, Fermi and eROSITA bubbles) as anchors from γ-rays to
+  408 MHz; `bandResponse` through the filter gives each layer's weight. Narrow filters on Hα/[O III]/
+  [S II] boost HII regions; one on 21 cm, the gas. Dust switches to additive glow when it emits more than it
+  absorbs (far-IR). Three layers exist only outside the visible: the HI gas disc (Kalberla & Kerp
+  2009), the Fermi bubbles and the eROSITA bubbles. Faint bands are auto-levelled (never dimmed);
+  the panel's SPECTRUM fact says what dominates, badged MODELLED (COMPUTED "not observed" in the EUV).
+- **Universe galaxies**: `galaxyTypeWeight(T, filter)` re-weights each UNGC galaxy by its type
+  (E/S0, spiral, irregular), groups as spirals, in the band's false colour; MODELLED.
+- **Magellanic Clouds**: `src/data/satellite-bands.js` picks a real image by wavelength (DSS2 in full
+  and visible, 2MASS, Spitzer, AKARI, Planck, HI4PI, ROSAT, Fermi, GALEX NUV over Swift UVOT) from
+  `/api/survey/:key` (two hidden keys, `galexnuv` and `uvotw1`, return asinh-stretched PNGs). The
+  standalone preview keeps only Spitzer.
+- **Star View**: `src/views/system/starband.js` (`starBandLook`) gives the photosphere's look: the
+  Sun's real image (SDO, or NoRH via `BODY_BAND.sun[…].feed`, matched by `range` for custom curves),
+  its measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the
+  chart's shaded bandpass (or an off-chart pointer) follow the band.
+- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`).
+- **Earth microwave/radio**: GMI brightness-temperature composite and SMAP 1.41 GHz via
+  `/api/gibs-band`; entries marked `latest` ask GIBS for its default (latest) day.
+- **Standalone preview**: band imagery is not baked (deferred, see the backlog); band looks there
+  are predicted, sketched or the bundled Spitzer images.
 
 ## Milky Way model
 
