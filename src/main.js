@@ -16,7 +16,7 @@ import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
 import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
-import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright } from './data/catalog.js';
+import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -24,6 +24,7 @@ import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
 import { createNavList } from './panels/navlist.js';
 import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
+import { createStarCard } from './panels/starcard.js';
 import { earthPole, moonAxes, poleStar, obliquityDeg } from './astro/orientation.js';
 import { moonGeocentric } from './astro/moons.js';
 import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
@@ -49,6 +50,8 @@ let navRadius = 25;
 const system = createSystemView($('system-view'), {
   clock,
   onSelect: (id) => go({ level: 'system', system: currentSystem, body: id }),
+  onPickStar: (p) => pickStarIn('system', p),
+  onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
@@ -57,13 +60,22 @@ let pendingSurface = null;
 const planetView = createPlanetView($('planet-view'), {
   onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
 });
-const galaxy = createGalaxyView($('galaxy-view'), { onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; } });
+const galaxy = createGalaxyView($('galaxy-view'), {
+  onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; },
+  onPickStar: (p) => pickStarIn('galaxy', p),
+  onDrill: (p) => (p?.id ? go({ level: 'navigation', system: p.id }) : go({ level: 'quadrant' })), // drill down (#23)
+});
 let galaxyStarsLoaded = false;
-const quadrant = createQuadrantView($('quadrant-view'), { onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); } });
-const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); } });
+const quadrant = createQuadrantView($('quadrant-view'), {
+  onSelect: (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); },
+  onPickStar: (p) => pickStarIn('quadrant', p),
+  onDrill: (p) => go({ level: 'navigation', system: p?.id ?? 'sol' }),
+});
+const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); }, onDrill: () => go({ level: 'galaxy' }) });
 let quadrantSel = null, universeSel = null, quadrantLoaded = false, universeLoaded = false;
 const nav = createNavigationView($('navigation-view'), {
   onSelect: (id) => selectNavStar(id),
+  onDrill: (id) => go({ level: 'system', system: id }),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
 });
 
@@ -231,6 +243,29 @@ const panelEl = $('panel');
 }
 // replaceChildren would print `null` for skipped optional sections
 const panel = { replaceChildren: (...kids) => panelEl.replaceChildren(...kids.filter((k) => k != null)) };
+// SELECTED STAR card for stars clicked in the Galaxy, Quadrant and System (sky) views (#23)
+let starCardView = null;
+const starCard = createStarCard({
+  h, row: (...a) => row(...a), fmt: (...a) => fmt(...a), go, fetchStar, fetchStarLookup,
+  onUpdate: () => {
+    if (!starCard?.current) starCardView = null;
+    if (route.level === 'galaxy') renderGalaxyPanel();
+    else if (route.level === 'quadrant') renderQuadrantPanel();
+    else if (route.level === 'system' && starCardView === 'system') renderSkyStarPanel();
+  },
+});
+function pickStarIn(view, p) { starCardView = view; starCard.select(p); }
+const starCardFor = (view) => (starCardView === view && starCard.current ? starCard.section() : []);
+function renderSkyStarPanel() {
+  if (!starCard.current) { const m = system.model; if (m) renderSystemPanel?.(); return; }
+  resetLive();
+  panel.replaceChildren(
+    h('h2', { textContent: 'IN THE SKY' }),
+    h('div', { className: 'kind', textContent: `A STAR SEEN FROM ${(system.model?.name ?? 'HERE').toUpperCase()}` }),
+    ...starCard.section(),
+    h('div', { className: 'body-list' }, pill('◀ BACK TO THE SYSTEM', () => { starCardView = null; starCard.clear(); go({ level: 'system', system: currentSystem }); })),
+    renderLegend());
+}
 const live = {}; // element refs refreshed by the ticker; reset whenever the panel is rebuilt
 const resetLive = () => { for (const k of Object.keys(live)) delete live[k]; };
 
@@ -520,6 +555,8 @@ function renderGalaxyPanel() {
   panel.replaceChildren(
     h('h2', { textContent: 'MILKY WAY' }),
     h('div', { className: 'kind', textContent: 'BARRED SPIRAL GALAXY · SEEN FROM GALACTIC NORTH' }),
+    ...starCardFor('galaxy'),
+    starCardFor('galaxy').length ? null : h('p', { className: 'note', textContent: 'Click any star to investigate it; double-click to drill down (a catalogue star opens Navigation, anywhere else the Quadrant).' }),
     h('h3', { textContent: 'VIEW' }),
     h('div', { className: 'body-list' },
       pill('WHOLE GALAXY', () => galaxy.view('galaxy')), pill('SOLAR NEIGHBOURHOOD', () => galaxy.view('sol')), pill('GAIA STARS', () => galaxy.view('gaia')),
@@ -609,6 +646,7 @@ function renderQuadrantPanel() {
   panel.replaceChildren(
     h('h2', { textContent: 'OUR QUADRANT' }),
     h('div', { className: 'kind', textContent: 'THE MILKY WAY AROUND SECTOR 001 · GALACTIC PLANE HORIZONTAL' }),
+    ...starCardFor('quadrant'),
     h('h3', { textContent: 'RANGE' }),
     h('div', { className: 'body-list' }, [1000, 3000, 10000, 30000].map((r) => pill(`${fmt(r / 1000, 0)} KLY`, () => { quadrant.setRadius(r); renderQuadrantPanel(); }, r === R ? 'on' : ''))),
     h('p', { className: 'note', textContent: `${fmt(c.clusters, 0)} STAR CLUSTERS · ${c.nebulae} LANDMARK NEBULAE WITHIN ${fmt(R, 0)} LY` }),
@@ -660,7 +698,10 @@ function renderUniversePanel() {
       keyRow(hex(rgbToHex(blackbodyRGB(4300))), 'ELLIPTICAL / LENTICULAR', 'OLD STARS'),
       keyRow(hex(rgbToHex(blackbodyRGB(6200))), 'SPIRAL', ''),
       keyRow(hex(rgbToHex(blackbodyRGB(9000))), 'IRREGULAR / DWARF', 'YOUNG STARS'),
-      keyRow('#c0ccff', 'GALAXY GROUP (COSMICFLOWS-4)', 'SIZE = NUMBER OF GALAXIES')),
+      keyRow('#c0ccff', 'GALAXY GROUP (COSMICFLOWS-4)', 'SIZE = NUMBER OF GALAXIES'),
+      keyRow('#ffcc66', 'GOLD ARROW: LOCAL GROUP MOTION', `${MOTION.lg.kms} KM/S THROUGH THE COSMIC MICROWAVE BACKGROUND`),
+      keyRow('#ff8866', 'RED ARROW: ANDROMEDA APPROACHING', `${-MOTION.m31.radialKms} KM/S · MERGER IN ~${MOTION.m31.mergeGyr} GYR`)),
+    h('p', { className: 'note', textContent: 'Double-click the Milky Way to drill down into the Galaxy View.' }),
     h('div', { className: 'body-list' }, pill('◀ GALAXY', () => go({ level: 'galaxy' }))),
     factList([
       { label: 'NEARBY GALAXIES', value: '869 · UNGC', tier: 'measured', detail: 'Karachentsev et al. 2013: every known galaxy within ~11 Mpc (36 million ly).' },
@@ -1010,6 +1051,7 @@ function syncBeacon() {
 onRoute(async (r) => {
   const prev = route;
   route = r;
+  if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
   syncRail();
   if (r.level !== 'satellite') satPanel.closeViewer();

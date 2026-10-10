@@ -18,6 +18,7 @@ import { AU_KM } from '../../data/sol.js';
 import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
+import { pickPoint } from '../pick.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin } from './materials.js';
 import { bodyAxes, meridianDirection } from '../../astro/rotation.js';
@@ -67,7 +68,7 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onFrame }) {
+export function createSystemView(container, { clock, onSelect, onFrame, onPickStar, onDrillStar }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -128,6 +129,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
   scene.add(sky);
   let skySource = 'decorative';
 
+  let skyRows = []; // clickable catalogue sky stars (#23)
   function setSkyPoints(dirs, mags, colors) {
     const n = mags.length, pos = new Float32Array(n * 3), size = new Float32Array(n), col = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
@@ -154,11 +156,13 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     }
     setSkyPoints(dirs, mags, cols);
     skySource = 'decorative';
+    skyRows = [];
   }
   decorativeSky();
 
-  /** rows: [dx, dy, dz (equatorial unit), mag, ci, name] as seen from this system. */
+  /** rows: [dx, dy, dz (equatorial unit), mag, ci, name, id] as seen from this system. */
   function setSky(rows) {
+    skyRows = rows.map(([x, y, z, m, ci, name, id]) => ({ kind: 'sky', eq: [x, y, z], mag: m, name: name ?? null, id: id ?? null }));
     const n = rows.length, dirs = new Float32Array(n * 3), mags = new Float32Array(n), cols = new Float32Array(n * 3);
     rows.forEach(([x, y, z, m, ci], i) => {
       dirs.set(frameToScene(eqToEcl([x, y, z])), i * 3);
@@ -810,12 +814,39 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     return ray.intersectObjects(pickables, false)[0];
   };
   let clickTimer = null;
+  // an orbit line selects its body (#23): ray against the visible orbits, tolerance in screen terms
+  const pickOrbit = (e) => {
+    const r = renderer.domElement.getBoundingClientRect();
+    ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
+    const lines = Object.values(nodes).filter((n) => n.orbit?.visible && n.group.visible !== false).map((n) => n.orbit);
+    let best = null;
+    for (const l of lines) {
+      ray.params.Line.threshold = camera.position.length() * 0.006;
+      const h = ray.intersectObject(l, false)[0];
+      if (h && (!best || h.distance < best.distance)) best = { ...h, id: Object.keys(nodes).find((k) => nodes[k].orbit === l) };
+    }
+    return best?.id ?? null;
+  };
+  // the background stars: the catalogue sky as seen from this system (#23)
+  const pickSky = (e) => {
+    if (!skyRows.length) return null;
+    const pos = sky.geometry.attributes.position.array;
+    const hit = pickPoint(pos, pos.length / 3, sky, camera, renderer.domElement.getBoundingClientRect(), e.clientX, e.clientY, 7);
+    return hit ? skyRows[hit.index] : null;
+  };
   labels.domElement.addEventListener('pointerup', (e) => {
     if (surface || !down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
     const hit = pick(e);
     // wait a moment so a double-click goes to the surface instead of starting a flight
     clearTimeout(clickTimer);
-    if (hit) clickTimer = setTimeout(() => onSelect(hit.object.userData.id), 260);
+    const ev = { clientX: e.clientX, clientY: e.clientY };
+    clickTimer = setTimeout(() => {
+      if (hit) return onSelect(hit.object.userData.id);
+      const orbitOf = pickOrbit(ev);
+      if (orbitOf) return onSelect(orbitOf);
+      const star = pickSky(ev);
+      if (star) onPickStar?.(star);
+    }, 260);
   });
   labels.domElement.addEventListener('dblclick', (e) => {
     if (surface) return;
@@ -823,7 +854,8 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     const hit = pick(e);
     if (!hit) return;
     const id = hit.object.userData.id, n = nodes[id];
-    if (!n || isStar(n.body) || n.body.marker || n.body.kind === 'satellite' || n.body.kind === 'spacecraft') { flashHud(isStar(n?.body ?? {}) ? 'A STAR HAS NO SURFACE TO STAND ON' : 'NO SURFACE HERE'); return; }
+    if (n && isStar(n.body)) { onDrillStar?.(id); return; } // drill down: a star opens its Star View
+    if (!n || n.body.marker || n.body.kind === 'satellite' || n.body.kind === 'spacecraft') { flashHud('NO SURFACE HERE'); return; }
     const local = hit.object.worldToLocal(hit.point.clone());
     const normal = hit.face ? hit.face.normal.clone() : local.clone().normalize();
     enterSurface(id, { object: hit.object, local, normal });

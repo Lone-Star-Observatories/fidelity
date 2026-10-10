@@ -26,7 +26,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 20 | ✅ **Star motions** | Navigation View velocity arrows (Sun-relative and galactocentric) and deep-time steps. |
 | 21 | **Voice: "Computer"** | Local wake word, ChatGPT voice through a backend relay (key stays local), spoken answers about what's on screen. |
 | 22 | ✅ **3D Milky Way** | Particle model: bar and bulge, thin and thick discs, Reid 2019 arms with dust lanes and HII regions, halo; faint by default with a brightness choice; artwork optional. |
-| 23 | **Click anything, double-click to drill down** | Every star investigable; click highlights (orbits too); double-click drills down to the surface view (done in the System and Planet views). |
+| 23 | ✅ **Click anything, double-click to drill down** | Every star in the Galaxy, Quadrant, Navigation and System (sky) views is clickable, with a SIMBAD/Gaia DR3 star card; orbit lines select their body; double-click drills down a level; surface view on bodies. |
 | 24 | **3D nebulae and clusters** | Best-effort 3D nebula models with real imagery; clusters drawn from their Gaia members; major stars in nebulae investigable. |
 | 25 | **Star Trek layer** | Alpha–Delta quadrants always on; canonical planets at their real stars (IMAGINED). |
 | 26 | **Satellite detail & feeds** | UCS database detail for every satellite, clear feed status, trajectory-end markers. |
@@ -53,6 +53,9 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 47 | **Sun and Moon size in the surface view** | Verify true angular size against FOV, show it, FOV presets (naked eye, 50 mm, binoculars, telescope), physical glare. |
 | 48 | **Milky Way and deep sky from the surface** | All-sky Milky Way band, nebulae, clusters and galaxies at true positions and sizes, constellations. |
 | 49 | **Planetshine and finding the planet** | Earthshine and planet-shine on moons' night sides; off-screen marker and LOOK AT for the parent planet from a moon. |
+| 50 | **Universe View galaxy imagery** | Real images of nearby galaxies at their measured position angle and inclination, given 3D form (discs, bulges, ellipsoids). |
+| 51 | **macOS app (Mac App Store)** | SwiftUI + WKWebView shell, Swift port of the `/api/*` backend, sandboxed, offline snapshot, App Store release. |
+| 52 | **iOS / iPadOS app (App Store)** | Same shell and backend on iPhone and iPad, touch-first UI, performance tiers, optional AR sky, App Store release. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.

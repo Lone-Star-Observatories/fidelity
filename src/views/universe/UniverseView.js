@@ -8,6 +8,7 @@ import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRe
 import { radecToSupergal, galToSupergal, frameToScene, blackbodyRGB } from '../../astro/frames.js';
 import { GALAXY_NAMES, GALAXY_CLUSTERS } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
+import { onClicks } from '../pick.js';
 
 export const MLY_PER_MPC = 3.26156;
 // Morphological type (de Vaucouleurs T) → colour: ellipticals/lenticulars red-gold, spirals white, irregulars blue.
@@ -31,7 +32,7 @@ const FRAG = `
   void main() { if (vFar > 0.5) discard; float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 
-export function createUniverseView(container, { onSelect, onFrame } = {}) {
+export function createUniverseView(container, { onSelect, onFrame, onDrill } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -151,6 +152,14 @@ export function createUniverseView(container, { onSelect, onFrame } = {}) {
 
   let radius = 30;
   const target = new THREE.Vector3();
+  // double-click the Milky Way to drill down into the Galaxy View (#23)
+  onClicks(labels.domElement, {
+    dblclick: (e) => {
+      const r = renderer.domElement.getBoundingClientRect(), p = new THREE.Vector3().project(camera);
+      const d = Math.hypot(((p.x + 1) / 2) * r.width + r.left - e.clientX, ((1 - p.y) / 2) * r.height + r.top - e.clientY);
+      if (d < 40) onDrill?.();
+    },
+  });
   function setRadius(R) {
     radius = R;
     uniforms.uRadius.value = R * 1.02;

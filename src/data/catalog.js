@@ -161,3 +161,9 @@ export function visualImageUrl(asset) {
   if (!asset) return null;
   return snapshot ? (asset.key && snapshot.textures?.[asset.key]) || snapshot.bodyImages?.[asset.url] || null : asset.url;
 }
+
+/** Identify a star by position (#23): SIMBAD always, Gaia DR3 when `gaia` (null offline). */
+export async function fetchStarLookup(ra, dec, distLy, gaia = false) {
+  if (snapshot) return null;
+  try { return await get(`/api/star-lookup?ra=${ra.toFixed(5)}&dec=${dec.toFixed(5)}${distLy ? `&distLy=${Math.round(distLy)}` : ''}${gaia ? '&gaia=1' : ''}`); } catch { return null; }
+}

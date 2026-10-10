@@ -23,6 +23,7 @@ export { R0_KLY, Z_SUN_KLY, IMAGE, galToScene };
 import { createGalaxyPlane } from './plane.js';
 import { createGalaxyModel, ARMS, armRadius, armToScene } from './model.js';
 import { settings } from '../../settings.js';
+import { pickPoint, onClicks } from '../pick.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -52,7 +53,7 @@ export const bprpToBV = (bprp) => 0.78 * bprp;
 const DEG = Math.PI / 180;
 const lbdToGal = (l, b, d) => [d * Math.cos(b * DEG) * Math.cos(l * DEG), d * Math.cos(b * DEG) * Math.sin(l * DEG), d * Math.sin(b * DEG)];
 
-export function createGalaxyView(container, { onFrame } = {}) {
+export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -193,7 +194,9 @@ export function createGalaxyView(container, { onFrame } = {}) {
     scene.add(p);
     return p;
   }
+  const layerRows = {};
   function setLayer(key, rows, colourOf, size) {
+    layerRows[key] = rows ?? [];
     if (layers[key]) { scene.remove(layers[key]); layers[key].geometry.dispose(); layers[key].material.dispose(); }
     layers[key] = rows?.length ? makeStars(rows, colourOf, size) : null;
   }
@@ -232,6 +235,32 @@ export function createGalaxyView(container, { onFrame } = {}) {
       if (want.pos) want.pos.add(d);
     }
   }
+
+  // ---- click a star to investigate it (#23); double-click to drill down to the Quadrant View
+  const pv = new THREE.Vector3();
+  function pickStar(e) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    let best = null;
+    for (const key of ['hyg', 'gaia']) {
+      const pts = layers[key];
+      if (!pts) continue;
+      const pos = pts.geometry.attributes.position.array, k = VC_KMS * KMS_KLY_PER_MYR;
+      const at = (i) => { // same differential rotation as the vertex shader
+        const x = pos[i * 3], y = pos[i * 3 + 1], z = pos[i * 3 + 2];
+        const a = (-k / Math.sqrt(x * x + z * z + CORE_KLY * CORE_KLY)) * epoch, c = Math.cos(a), s = Math.sin(a);
+        return pv.set(x * c + z * s, y, -x * s + z * c);
+      };
+      const hit = pickPoint(at, pos.length / 3, null, camera, rect, e.clientX, e.clientY, 8);
+      if (hit && (!best || hit.px < best.px)) best = { ...hit, key };
+    }
+    if (!best) return null;
+    const row = layerRows[best.key][best.index];
+    return { kind: best.key, id: row[5] ?? null, gal: [row[0], row[1], row[2]], distLy: Math.hypot(row[0], row[1], row[2]) };
+  }
+  onClicks(labels.domElement, {
+    click: (e) => { const p = pickStar(e); if (p) onPickStar?.(p); },
+    dblclick: (e) => { const p = pickStar(e); onDrill?.(p); },
+  });
 
   // ---- camera presets --------------------------------------------------------------------------
   const target = new THREE.Vector3(), want = { pos: null };

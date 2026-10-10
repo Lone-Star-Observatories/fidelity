@@ -53,6 +53,7 @@
 | System | IAU 1976 precession + IAU 1980 nutation (largest terms); IAU WGCCRE 2009 Moon rotation (Archinal et al. 2011) | Earth's moving pole and pole star; the Moon's librations (`src/astro/orientation.js`) | bundled | ✅ #19 |
 | System | Comet magnitude law (M1, K1 from JPL SBDB); Halley 2061 elements from JPL Horizons | Comae and tails, activity, total magnitude (`src/views/system/comet.js`) | bundled | ✅ #19 |
 | System | Parker 1958 spiral; tilted-dipole current sheet; Voyager TS/HP crossings; IBEX ribbon (McComas et al. 2009) | The Sun's field, asymmetric heliosphere (`solarfield.js`, `zones.js`) | bundled | ✅ #19 |
+| All views | [SIMBAD](https://simbad.cds.unistra.fr/) TAP (CDS Strasbourg): name, object type, spectral type, other identifiers; [Gaia DR3](https://gea.esac.esa.int/archive/) TAP: astrometry and FLAME/GSP-Phot parameters | The SELECTED STAR card for any clicked star | cone searches cached 30 days (`/api/star-lookup`) | ✅ #23 |
 | Galaxy | Harris globular clusters | Globular cluster halo | local | ⏳ #4 |
 | Universe | [UNGC](https://doi.org/10.1088/0004-6256/145/4/101) (Karachentsev et al. 2013, J/AJ/145/101): 869 galaxies within ~11 Mpc; [Cosmicflows-4](https://doi.org/10.3847/1538-4357/ac94d8) groups (Tully et al. 2023, J/ApJ/944/94): 38,053 groups with redshift-independent distances; curated galaxy clusters | The nearby universe, supergalactic frame, distance filter | VizieR, cached 90 days (`/api/galaxies`) | ✅ #4 |
 

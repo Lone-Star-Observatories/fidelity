@@ -72,6 +72,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
 | `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
+| `GET /api/star-lookup?ra=&dec=[&distLy=][&gaia=1]` | Identify a star by position: SIMBAD (brightest stellar object in the cone) and optionally Gaia DR3 (best parallax match), cached |
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
@@ -168,6 +169,16 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+
+## Click anything (#23)
+
+`src/views/pick.js` does screen-space point picking (`pickPoint`) and click/double-click
+wiring (`onClicks`). The Galaxy View picks HYG and Gaia points (re-applying the shader's
+differential rotation on the CPU), the Quadrant View its catalogue stars, the System View its
+bodies, then orbit lines, then the background sky. `/api/galaxy` and `/api/sky` rows carry the
+HYG id. `src/panels/starcard.js` renders the SELECTED STAR card from the HYG detail and
+`/api/star-lookup`. Double-click drills down one level: Universe → Galaxy → Quadrant →
+Navigation → System → Star View, and bodies → the surface view.
 
 ## Realism layers (#19)
 

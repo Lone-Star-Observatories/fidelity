@@ -413,9 +413,9 @@ export async function sky(centerId, maxMag = 6.5) {
     if (d < 1e-6) continue;
     const app = s.absmag + 5 * Math.log10(d / 10);
     if (app > m) continue;
-    rows.push([+(dx / d).toFixed(5), +(dy / d).toFixed(5), +(dz / d).toFixed(5), +app.toFixed(2), s.ci, app < 1.6 ? s.name : null]);
+    rows.push([+(dx / d).toFixed(5), +(dy / d).toFixed(5), +(dz / d).toFixed(5), +app.toFixed(2), s.ci, app < 1.6 ? s.name : null, s.id]);
   }
-  return { center: c.id, maxMag: m, fields: ['dx', 'dy', 'dz', 'mag', 'ci', 'name'], stars: rows };
+  return { center: c.id, maxMag: m, fields: ['dx', 'dy', 'dz', 'mag', 'ci', 'name', 'id'], stars: rows };
 }
 
 // ---- galaxy ------------------------------------------------------------------------------
@@ -441,7 +441,7 @@ export async function galaxyStars(maxLy = 1500, maxAbs = 2) {
     if (s.absmag == null || s.absmag > M || s.distPc * LY_PER_PC > d) continue;
     const v = [s.x * LY_PER_PC, s.y * LY_PER_PC, s.z * LY_PER_PC];
     const g = GAL.map((r) => r[0] * v[0] + r[1] * v[1] + r[2] * v[2]);
-    rows.push([Math.round(g[0]), Math.round(g[1]), Math.round(g[2]), Math.round(s.absmag * 10), s.ci != null ? Math.round(s.ci * 100) : null]);
+    rows.push([Math.round(g[0]), Math.round(g[1]), Math.round(g[2]), Math.round(s.absmag * 10), s.ci != null ? Math.round(s.ci * 100) : null, s.id]);
   }
-  return { maxLy: d, maxAbs: M, fields: ['gx', 'gy', 'gz', 'absmag10', 'ci100'], stars: rows, source: 'HYG v4.4' };
+  return { maxLy: d, maxAbs: M, fields: ['gx', 'gy', 'gz', 'absmag10', 'ci100', 'id'], stars: rows, source: 'HYG v4.4' };
 }

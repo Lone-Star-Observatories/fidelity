@@ -15,7 +15,7 @@ const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
-export function createNavigationView(container, { onSelect, onFrame }) {
+export function createNavigationView(container, { onSelect, onFrame, onDrill }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -442,6 +442,20 @@ export function createNavigationView(container, { onSelect, onFrame }) {
   // Screen-space picking: nearest star within 14 px of the click.
   let down = null;
   labels.domElement.addEventListener('pointerdown', (e) => { down = [e.clientX, e.clientY]; });
+  const nearestStar = (e) => {
+    const r = renderer.domElement.getBoundingClientRect();
+    let best = null, bestD = 14;
+    for (const p of placed) {
+      if (p.hidden) continue;
+      tmp.copy(posAt(p)).project(camera);
+      if (tmp.z > 1) continue;
+      const d = Math.hypot((tmp.x + 1) / 2 * r.width + r.left - e.clientX, (1 - tmp.y) / 2 * r.height + r.top - e.clientY);
+      if (d < bestD) { best = p; bestD = d; }
+    }
+    return best;
+  };
+  // double-click drills down: open that star's system (#23)
+  labels.domElement.addEventListener('dblclick', (e) => { const p = nearestStar(e); if (p) onDrill?.(p.star.id); });
   labels.domElement.addEventListener('pointerup', (e) => {
     if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5 || !placed.length) return;
     const r = renderer.domElement.getBoundingClientRect();

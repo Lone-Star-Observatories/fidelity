@@ -25,6 +25,16 @@ export function eqToGal([x, y, z]) {
   return GAL.map((r) => r[0] * x + r[1] * y + r[2] * z);
 }
 
+/** IAU galactic → J2000 equatorial (the transpose). */
+export function galToEq([x, y, z]) {
+  return [0, 1, 2].map((i) => GAL[0][i] * x + GAL[1][i] * y + GAL[2][i] * z);
+}
+/** RA, Dec (degrees) of an equatorial vector. */
+export function raDec([x, y, z]) {
+  const r = Math.hypot(x, y, z) || 1;
+  return { ra: ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360, dec: (Math.asin(z / r) * 180) / Math.PI };
+}
+
 /** Galactic longitude/latitude (degrees) of an equatorial vector. */
 export function galacticLB(v) {
   const [x, y, z] = eqToGal(v);

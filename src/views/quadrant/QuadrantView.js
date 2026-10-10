@@ -12,6 +12,7 @@ import { createGalaxyPlane } from '../galaxy/plane.js';
 import { createGalaxyModel } from '../galaxy/model.js';
 import { NEBULAE, FAMOUS_CLUSTERS, ageTeff } from '../../data/deepsky.js';
 import { settings } from '../../settings.js';
+import { pickPoint, onClicks } from '../pick.js';
 
 const DEG = Math.PI / 180;
 export const NEBULA_COLORS = { HII: 0xff6680, PN: 0x55ddbb, SNR: 0xcc99ff, dark: 0xb09a80, reflection: 0x7799ff };
@@ -28,7 +29,7 @@ const POINTS_FRAG = `
   void main() { if (vFar > 0.5) discard; float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 
-export function createQuadrantView(container, { onSelect, onFrame } = {}) {
+export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -113,8 +114,10 @@ export function createQuadrantView(container, { onSelect, onFrame } = {}) {
   let stars = null, clusterPts = null, nebPts = null, clusterRows = [];
   const objects = []; // selectable: { id, name, kind, pos, facts }
 
-  function setStars(d) { // /api/galaxy rows [gx, gy, gz (ly), absmag×10, ci×100]
+  let starRows = [];
+  function setStars(d) { // /api/galaxy rows [gx, gy, gz (ly), absmag×10, ci×100, id]
     if (stars || !d?.stars) return;
+    starRows = d.stars;
     stars = makePoints(d.stars.map(([x, y, z, m10, ci]) => {
       const c = blackbodyRGB(teffFromBV(ci == null ? 0.6 : ci / 100));
       return [...frameToScene([x, y, z]), Math.max(1.6, 4.5 - (m10 / 10) * 0.6), c[0] * 0.8, c[1] * 0.8, c[2] * 0.8];
@@ -162,6 +165,21 @@ export function createQuadrantView(container, { onSelect, onFrame } = {}) {
     camera.position.set(R * 0.35, R * 1.0, R * 1.4);
   }
   const target = new THREE.Vector3();
+
+  // click a star to investigate it (#23); double-click to open Navigation centred on it
+  function pickStar(e) {
+    if (!stars) return null;
+    const pos = stars.geometry.attributes.position.array;
+    const hit = pickPoint(pos, pos.length / 3, stars, camera, renderer.domElement.getBoundingClientRect(), e.clientX, e.clientY, 8);
+    if (!hit) return null;
+    const r = starRows[hit.index];
+    if (Math.hypot(r[0], r[1], r[2]) > radius * 1.02) return null; // filtered out of view by the shader
+    return { kind: 'hyg', id: r[5] ?? null, gal: [r[0], r[1], r[2]], distLy: Math.hypot(r[0], r[1], r[2]) };
+  }
+  onClicks(labels.domElement, {
+    click: (e) => { const p = pickStar(e); if (p) onPickStar?.(p); },
+    dblclick: (e) => onDrill?.(pickStar(e)),
+  });
 
   let selected = null;
   function select(id) {
