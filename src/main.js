@@ -38,6 +38,7 @@ import { createTimeControl } from './panels/timecontrol.js';
 import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
+import { createFuturePanel } from './panels/future.js';
 import { loadEvents, onEvents, eventsFeed } from './data/events.js';
 import { satrecFromRow } from './astro/sgp4.js';
 import { requestEvents } from './data/skyevents.js';
@@ -485,6 +486,7 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
 const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
+const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // Feed items with a flight model play out in the System View; stations are placed by SGP4 from the satellite catalogue.
 {
@@ -594,6 +596,7 @@ function renderSystemPanelInner() {
       })),
     ...(m.isSol ? [
       h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
+      ...futurePanel.systemSection(m),
       h('h3', { textContent: 'EARTH ORBIT · SATELLITES' }), satPanel.searchSection(),
       h('h3', { textContent: 'DEEP SPACE NETWORK · NOW' }), (live.dsnBoard = h('div', { className: 'host-list' })),
       h('p', { className: 'note', textContent: 'NASA DSN Now: who the 34 m and 70 m dishes are talking to, refreshed every 20 s.' }),
@@ -720,6 +723,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
+  if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));

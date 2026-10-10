@@ -269,6 +269,19 @@ arrival markers, a ghost craft riding it while the clock is inside the flight) a
 (`src/panels/porkchop.js`: departure × arrival grid shaded by C3 on a one-hue ramp, marching-squares contours,
 optimum ringed, hover readout, click to fly a cell). Mars offers a check against Perseverance's Horizons cruise.
 
+## Future missions (#44)
+
+`src/data/future-missions.js` is the curated list (43 missions, last checked in `CHECKED`): tiers IN FLIGHT,
+CONFIRMED, PLANNED, PROPOSED (with `notSelected` for proposals that lost their competition) and CANCELLED / PAUSED,
+each with agency, target body id, launch and arrival as announced, goal, status, sources, the JPL Horizons id where a
+reference trajectory is published, and a Launch Library 2 pattern so the card shows the live launch date from the
+events feed (#32). `src/panels/future.js` puts FUTURE MISSIONS in the Sol system panel (grouped by tier), an
+UPCOMING section in each target's panel ("Dragonfly arrives 2034-12"; a planet also lists its moons' missions), and
+mission cards in the feed viewer. SHOW PATH draws the Horizons reference trajectory (pre-launch planning tracks such as
+MMX's are MODELLED; craft in flight COMPUTED) or, failing that, a direct transfer in the window nearest the planned
+launch from the #45 solver (MODELLED), as a lilac ghost labelled PLANNED that rides the path on the ship's clock.
+`pathTier`/`factTier` decide the badges and never return MEASURED (tested).
+
 ## Events feed and mission replays (#32, #33)
 
 `scripts/events/build-events.js` (weekly GitHub Action `.github/workflows/events.yml`, or `npm run events`) writes

@@ -26,7 +26,7 @@ export function hohmannDiagram(aAu, name) {
   const a = (r1 + r2) / 2, b = Math.sqrt(r1 * r2); // half of the transfer ellipse, Sun at a focus
   s.append(sv('path', { d: `M ${r1} 0 A ${a} ${b} 0 0 ${aAu > 1 ? 0 : 1} ${-r2} 0`, fill: 'none', stroke: '#ff9900', 'stroke-width': 2, 'stroke-dasharray': '5 4' }));
   s.append(sv('circle', { cx: r1, cy: 0, r: 4, fill: '#99ccff' }), sv('text', { x: r1, y: 16, 'text-anchor': 'middle', class: 'explain-label' }, 'EARTH AT LAUNCH'));
-  s.append(sv('circle', { cx: -r2, cy: 0, r: 4, fill: '#ff9966' }), sv('text', { x: -r2 + 4, y: 16, 'text-anchor': 'start', class: 'explain-label' }, `${name.toUpperCase()} AT ARRIVAL`));
+  s.append(sv('circle', { cx: -r2, cy: 0, r: 4, fill: '#ff9966' }), sv('text', { x: -r2 + 4, y: -10, 'text-anchor': 'start', class: 'explain-label' }, `${name.toUpperCase()} AT ARRIVAL`));
   s.append(sv('text', { x: -125, y: 112, class: 'explain-note' }, 'CIRCULAR, COPLANAR ORBITS · NOT TO SCALE IN TIME'));
   return s;
 }

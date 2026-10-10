@@ -282,9 +282,9 @@ button.nav-label:hover { color: #000; background: var(--peach); }
   padding: 3px 12px; border-radius: 12px 0 0 12px; letter-spacing: 0.1em;
 }
 .panel .kind { color: var(--lilac); letter-spacing: 0.12em; font-size: calc(14px * var(--text-scale, 1)); }
-.panel dl { margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: baseline; font-size: calc(15px * var(--text-scale, 1)); }
-.panel dt { color: var(--dim); letter-spacing: 0.06em; font-size: calc(13px * var(--text-scale, 1)); }
-.panel dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
+.panel dl, .fv-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: baseline; font-size: calc(15px * var(--text-scale, 1)); }
+.panel dt, .fv-card dt { color: var(--dim); letter-spacing: 0.06em; font-size: calc(13px * var(--text-scale, 1)); }
+.panel dd, .fv-card dd { margin: 0; color: var(--peach); font-variant-numeric: tabular-nums; }
 .panel .note { color: var(--dim); font-size: calc(13px * var(--text-scale, 1)); line-height: 1.35; margin: 0; }
 .panel .warn { color: var(--red); font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.06em; }
 .body-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(max(130px, calc(50% - 2px)), 1fr)); gap: 4px; } /* two columns at most */
@@ -552,3 +552,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .porkchop .pc-tip { fill: var(--text); font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.04em; }
 .nav-label.mission-label.transfer { color: var(--orange); }
 
+/* future missions (#44): mission tiers, distinct from provenance badges */
+.mtier { font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.1em; padding: 1px 6px; border-radius: 7px; color: #000; margin-left: 4px; white-space: nowrap; vertical-align: middle; }
+.mtier-in-flight { background: var(--ice); }
+.mtier-confirmed { background: var(--gold); }
+.mtier-planned { background: var(--apricot); }
+.mtier-proposed { background: transparent; color: var(--lilac); border: 1px dashed var(--lilac); }
+.mtier-ended { background: transparent; color: var(--dim); border: 1px solid var(--dim); text-decoration: line-through; }
+.fv-card { display: block; place-items: unset; }
+.fv-card > * + * { margin-top: 8px; }
+.nav-label.mission-label.ghost { color: var(--lilac); font-style: italic; }
