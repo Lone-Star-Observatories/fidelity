@@ -189,7 +189,9 @@ uncertain points, `tier: 'planned'` for proposals, optional `traverse` and `feed
 `src/views/system/sites.js` builds a layer per body under its `tilt` group (so it turns and scales
 with the globe; `siteDir` applies `texLon0`): one dot layer per kind, CSS2D labels on the near
 side (major sites only until the camera is within ~0.8 radii, greedy screen-space de-clutter), and
-rover traverses fetched from `/api/traverse` the first time the body is focused. The Planet View
+rover and helicopter paths fetched from `/api/traverse` (lunar traverses from the bundled
+`public/traverses/moon.json`, ids `moon:*`) the first time the body is focused. The layer shows
+from orbit only: it floats a few km up, which from the surface view would be in the sky. The Planet View
 globe gets the dots (`siteDots`). `src/panels/sites.js` renders the SITES OF NOTE section (kind
 filters, stored in `settings.siteHidden`) and the site card (STAND HERE → `surfaceAt`, live feeds
 through the satellite panel's feed viewer). Observatories (`src/data/observatories.js`) are Earth

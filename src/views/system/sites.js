@@ -90,7 +90,9 @@ export function createSiteLayer(body, { onSite, loadTraverse }) {
    */
   function update({ on, focused, surface, hidden, camera, size, spin = 0 }) {
     group.rotation.y = spin;
-    group.visible = on && (focused || surface);
+    // From orbit only: dots and paths float a few kilometres up so they read on the globe, which from
+    // the ground would put them in the sky.
+    group.visible = on && focused && !surface;
     if (!group.visible) return;
     if (!pathsRequested) requestPaths();
     for (const [kind, d] of Object.entries(dots)) d.visible = !hidden.has(kind);

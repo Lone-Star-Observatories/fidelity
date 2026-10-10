@@ -58,3 +58,15 @@ test('every observatory webcam a site offers is on the backend allowlist', async
   assert.ok(ids.length > 30);
   for (const id of ids) assert.ok(FEEDS[id], `${id} is not a backend feed`);
 });
+
+test('bundled lunar traverses exist for every site that names one, and start where they should', async () => {
+  const fs = await import('node:fs/promises');
+  const moon = JSON.parse(await fs.readFile(new URL('../public/traverses/moon.json', import.meta.url), 'utf8'));
+  for (const s of SITES.filter((x) => x.traverse?.startsWith('moon:'))) assert.ok(moon[s.traverse.slice(5)]?.paths?.length, s.traverse);
+  const km = ([lo1, la1], [lo2, la2]) => Math.hypot((lo2 - lo1) * Math.cos(la1 * Math.PI / 180), la2 - la1) * Math.PI / 180 * 1737.4;
+  const a11 = sitesFor('moon').find((x) => x.id === 'apollo11-lm');
+  assert.ok(km(moon.apollo11.paths[0][0], [a11.lon, a11.lat]) < 0.05, 'Apollo 11 walk starts at the LM');
+  const l1 = sitesFor('moon').find((x) => x.id === 'lunokhod1-final');
+  assert.ok(km(moon.lunokhod1.paths[0].at(-1), [l1.lon, l1.lat]) < 0.05, 'Lunokhod 1 ends at its final position');
+  close(moon.lunokhod2.distanceKm, 39.16, 0.2, 'Lunokhod 2 km (Karachevtseva 2017)');
+});
