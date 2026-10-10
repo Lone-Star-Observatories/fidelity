@@ -3,7 +3,8 @@
 // → public/paleo/earth-elev.png  (1440×720, 0.25°, equirectangular, north up, longitude −180 at the left)
 //     R: elevation (m), G: the sea level at which this point floods from the open ocean (priority flood,
 //     so basins below sea level such as the Caspian or Death Valley only flood once the sea reaches them),
-//     B: 255 where it is open ocean today. R and G encode −400…+400 m as 0…255 (clamped).
+//     B: 255 where it is open ocean today, A: 255 in the Mediterranean basin (the open ocean east of the Gibraltar
+//     sill, for the Messinian view). R and G encode −400…+400 m as 0…255 (clamped).
 //     From ETOPO1 Ice Surface (Amante & Eakins 2009) via NOAA CoastWatch ERDDAP (dataset etopo180).
 // → public/paleo/ice-<years>.png (1440×720, 255 = ice) for 0, 2,500 … 30,000 years ago: ice-sheet margins
 //     from PaleoMIST 1.0 (Gowan et al. 2021; data Gowan 2019, doi:10.1594/PANGAEA.905800, CC BY 4.0),
@@ -21,7 +22,7 @@ const crc32 = (buf) => { let c = 0xffffffff; for (const b of buf) c = CRC[(c ^ b
 const chunk = (type, data) => { const len = Buffer.alloc(4); len.writeUInt32BE(data.length); const td = Buffer.concat([Buffer.from(type), data]); const crc = Buffer.alloc(4); crc.writeUInt32BE(crc32(td)); return Buffer.concat([len, td, crc]); };
 function png(width, height, channels, pixels) {
   const ihdr = Buffer.alloc(13);
-  ihdr.writeUInt32BE(width, 0); ihdr.writeUInt32BE(height, 4); ihdr[8] = 8; ihdr[9] = channels === 3 ? 2 : 0; ihdr[10] = 0; ihdr[11] = 0; ihdr[12] = 0;
+  ihdr.writeUInt32BE(width, 0); ihdr.writeUInt32BE(height, 4); ihdr[8] = 8; ihdr[9] = channels === 4 ? 6 : channels === 3 ? 2 : 0; ihdr[10] = 0; ihdr[11] = 0; ihdr[12] = 0;
   const raw = Buffer.alloc((width * channels + 1) * height);
   for (let y = 0; y < height; y++) { raw[y * (width * channels + 1)] = 0; pixels.copy?.(raw, y * (width * channels + 1) + 1, y * width * channels, (y + 1) * width * channels) ?? raw.set(pixels.subarray(y * width * channels, (y + 1) * width * channels), y * (width * channels + 1) + 1); }
   return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk('IHDR', ihdr), chunk('IDAT', zlib.deflateSync(raw, { level: 9 })), chunk('IEND', Buffer.alloc(0))]);
@@ -120,9 +121,12 @@ const REGIONS = [['North_America', north, (la) => la > 25], ['Eurasia', north, (
 await fs.mkdir(OUT, { recursive: true });
 const e = await etopo();
 const { ocean, spill } = flood(e);
-const rgb = Buffer.alloc(W * H * 3);
-for (let p = 0; p < W * H; p++) { rgb[p * 3] = enc(e[p]); rgb[p * 3 + 1] = enc(spill[p]); rgb[p * 3 + 2] = ocean[p] ? 255 : 0; }
-await fs.writeFile(new URL('earth-elev.png', OUT), png(W, H, 3, rgb));
+// the Mediterranean: open ocean reachable from the Ionian Sea without passing west of the Gibraltar sill (5.6° W)
+const med = new Uint8Array(W * H), pix = (la, lo) => Math.floor((90 - la) / 0.25) * W + Math.floor((lo + 180) / 0.25);
+for (const st = [pix(35, 18)]; st.length;) { const p = st.pop(); if (med[p] || !ocean[p]) continue; const lo = -180 + ((p % W) + 0.5) * 0.25, la = 90 - (Math.floor(p / W) + 0.5) * 0.25; if (lo < -5.6 || la > 47 || la < 29) continue; med[p] = 1; st.push(...nbrs(p)); }
+const rgba = Buffer.alloc(W * H * 4);
+for (let p = 0; p < W * H; p++) { rgba[p * 4] = enc(e[p]); rgba[p * 4 + 1] = enc(spill[p]); rgba[p * 4 + 2] = ocean[p] ? 255 : 0; rgba[p * 4 + 3] = med[p] ? 255 : 0; }
+await fs.writeFile(new URL('earth-elev.png', OUT), png(W, H, 4, rgba));
 console.log('earth-elev.png', (await fs.stat(new URL('earth-elev.png', OUT))).size, 'bytes');
 
 const zip = await zipEntries();

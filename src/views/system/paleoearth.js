@@ -42,7 +42,7 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
   let parked = null;
   const park = () => { if (!parked) { parked = { live: u.uHasLive.value, night: u.uHasNight.value }; } u.uHasLive.value = 0; u.uHasNight.value = 0; };
   const unpark = () => { if (parked) { u.uHasLive.value = parked.live; u.uHasNight.value = parked.night; parked = null; } };
-  const off = () => { u.uPaleo.value = 0; u.uIceOn.value = 0; u.uLandOn.value = 0; text = null; unpark(); };
+  const off = () => { u.uPaleo.value = 0; u.uIceOn.value = 0; u.uLandOn.value = 0; u.uDryOn.value = 0; text = null; unpark(); };
   async function landTexture(ma) {
     const j = await fetchCoastlines(ma);
     const c = document.createElement('canvas'); c.width = 2048; c.height = 1024;
@@ -72,6 +72,13 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
       const elev = await tex('/paleo/earth-elev.png');
       if (!elev) { off(); return; }
       u.uElev.value = elev;
+      u.uDryOn.value = 0;
+      if (scenario?.messinian) {
+        // the Mediterranean basin east of the Gibraltar sill (flagged in the elevation layer's alpha)
+        u.uSea.value = 0; u.uIceOn.value = 0; u.uDryOn.value = 1; u.uPaleo.value = 1; park();
+        text = 'THE MESSINIAN SALINITY CRISIS, ~5.6 MILLION YEARS AGO · THE MEDITERRANEAN LARGELY DRIED OUT (KRIJGSMAN ET AL. 1999) · TODAY\'S SEA FLOOR SHOWN DRY: A MODELLED SKETCH';
+        return;
+      }
       if (scenario?.sea != null) {
         u.uSea.value = scenario.sea; u.uIceOn.value = 0; u.uPaleo.value = 1; park();
         text = `${scenario.label ?? `SEA LEVEL ${scenario.sea > 0 ? '+' : ''}${scenario.sea} M`} · MODELLED (ETOPO1 FLOODED; ICE NOT REDRAWN)`;

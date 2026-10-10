@@ -50,6 +50,7 @@ const PLANET_FRAG = /* glsl */`
   // reconstructed land mask (GPlates coastlines) in place of today's continents.
   uniform float uPaleo; uniform sampler2D uElev; uniform float uSea; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform float uIceMix; uniform float uIceOn;
   uniform sampler2D uLand; uniform float uLandOn;
+  uniform float uDryOn; // the Messinian: today's Mediterranean floor (uElev alpha) shown dry
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
   // they are right whatever the display scale: the fraction of the Sun's disc an occluder
@@ -124,6 +125,7 @@ const PLANET_FRAG = /* glsl */`
         vec3 el = texture2D(uElev, vUv).rgb;
         float e = el.r * 800.0 - 400.0, spill = el.g * 800.0 - 400.0;
         if (el.b > 0.5) { if (e > uSea) base = shelfCol; }      // today's sea floor, exposed when the sea falls
+        if (uDryOn > 0.5 && texture2D(uElev, vUv).a > 0.5) base = mix(vec3(0.62, 0.6, 0.55), vec3(0.36, 0.3, 0.24), smoothstep(-200.0, -3000.0, e)); // salt flats to deep dry basin
         else if (spill < uSea) base = seaCol;                   // land the rising sea reaches
       }
       if (uIceOn > 0.5) base = mix(base, iceCol, mix(texture2D(uIceA, vUv).r, texture2D(uIceB, vUv).r, uIceMix));
@@ -256,7 +258,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uThermal: { value: new THREE.Vector4(0, 0, 0, 0) }, uBandUm: { value: 10 }, uGlow: { value: 0 }, uPoleW: { value: new THREE.Vector3(0, 1, 0) }, uBandLit: { value: 1 },
       uMix: { value: new THREE.Vector4(0, 0, 0, 0) }, uMixPal: { value: new THREE.Vector4(4, 4, 4, 4) }, uMixHue: { value: new THREE.Matrix4().multiplyScalar(0) }, uGlowGain: { value: 1 },
       uBandTexPrev: { value: null }, uBandFade: { value: 1 },
-      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 },
+      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 }, uDryOn: { value: 0 },
     },
   });
 }

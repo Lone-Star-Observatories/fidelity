@@ -160,6 +160,7 @@ export const TIMELINE = [
     facts: [['AFRICA–EURASIA AT GIBRALTAR', '~4–6 MM/YR', 'measured', 'MORVEL / GPS'],
       ['MESSINIAN SALINITY CRISIS', '5.96–5.33 MA', 'measured', 'Krijgsman et al. 1999']],
     source: 'Krijgsman et al. 1999, Nature 400, 652', url: 'https://doi.org/10.1038/23231',
+    globe: [{ label: 'THE DRY MEDITERRANEAN', messinian: true }],
   },
   {
     id: 'hawaii', group: 'geology', title: 'HAWAIʻI: A NEW ISLAND RISES, THE OLD ONES SINK', tier: 'modelled',

@@ -56,8 +56,8 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
     const lim = clock.limit, jdAt = jdFromDate(new Date()) + y * 365.25;
     const systemish = !['navigation', 'galaxy', 'quadrant', 'universe'].includes(target.level);
     if (!systemish || !lim || (jdAt >= lim.minJd && jdAt <= lim.maxJd)) {
-      if (typeof clock.setYears === 'function') clock.setYears(y); else clock.set(jdAt);
-      go(target);
+      go(target); // the destination's time limit first, then the time inside it
+      setTimeout(() => { if (typeof clock.setYears === 'function') clock.setYears(y); else clock.set(jdAt); }, 0);
       return;
     }
     // beyond the planets' ephemeris: Earth's globe at that epoch, where there is a record or reconstruction
@@ -261,7 +261,7 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
 
   /** Show an epoch on Earth's globe: a time (through the clock), a sea level or a plate reconstruction. */
   function showGlobe(g) {
-    system.setEarthEpoch(g.years != null ? { years: g.years } : g.ma ? { ma: g.ma } : { sea: g.sea, label: g.label });
+    system.setEarthEpoch(g.years != null ? { years: g.years } : g.ma ? { ma: g.ma } : g.messinian ? { messinian: true } : { sea: g.sea, label: g.label });
     system.focus('earth');
   }
 

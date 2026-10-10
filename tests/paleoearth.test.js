@@ -9,13 +9,13 @@ import { SEA_LEVEL } from '../src/data/paleo.js';
 function readPng(file) {
   const b = fs.readFileSync(file); let p = 8, w = 0, h = 0, ch = 0; const idat = [];
   while (p < b.length) { const len = b.readUInt32BE(p), type = b.toString('ascii', p + 4, p + 8), d = b.subarray(p + 8, p + 8 + len);
-    if (type === 'IHDR') { w = d.readUInt32BE(0); h = d.readUInt32BE(4); ch = d[9] === 2 ? 3 : 1; } else if (type === 'IDAT') idat.push(d); p += 12 + len; }
+    if (type === 'IHDR') { w = d.readUInt32BE(0); h = d.readUInt32BE(4); ch = d[9] === 6 ? 4 : d[9] === 2 ? 3 : 1; } else if (type === 'IDAT') idat.push(d); p += 12 + len; }
   const raw = zlib.inflateSync(Buffer.concat(idat)), px = Buffer.alloc(w * h * ch);
   for (let y = 0; y < h; y++) { assert.equal(raw[y * (w * ch + 1)], 0); raw.copy(px, y * w * ch, y * (w * ch + 1) + 1, (y + 1) * (w * ch + 1)); }
   return { w, h, ch, px };
 }
 const elev = readPng(new URL('../public/paleo/earth-elev.png', import.meta.url));
-const at = (lat, lon) => { const j = Math.floor((90 - lat) / 0.25), i = Math.floor((lon + 180) / 0.25), k = (j * elev.w + i) * 3; return { e: (elev.px[k] / 255) * 800 - 400, spill: (elev.px[k + 1] / 255) * 800 - 400, ocean: elev.px[k + 2] > 127 }; };
+const at = (lat, lon) => { const j = Math.floor((90 - lat) / 0.25), i = Math.floor((lon + 180) / 0.25), k = (j * elev.w + i) * elev.ch; return { e: (elev.px[k] / 255) * 800 - 400, spill: (elev.px[k + 1] / 255) * 800 - 400, ocean: elev.px[k + 2] > 127, med: elev.px[k + 3] > 127 }; };
 // the shader's rule
 const seaAt = (p, sea) => (p.ocean ? p.e <= sea : p.spill < sea);
 
@@ -26,6 +26,10 @@ test('sea-level layer: floods only what the open ocean reaches', () => {
   assert.equal(seaAt(at(42, 50.5), 0), false, 'the Caspian is not the open ocean');
   assert.equal(seaAt(at(54.5, 3), 0), true, 'the North Sea today');
   assert.equal(seaAt(at(54.5, 3), -120), false, 'Doggerland at the LGM');
+  assert.equal(at(35, 18).med, true, 'the Ionian Sea is in the Mediterranean basin');
+  assert.equal(at(45, -4).med, false, 'the Bay of Biscay is not');
+  assert.equal(at(36, -8).med, false, 'nor the Gulf of Cadiz, west of the Gibraltar sill');
+  assert.equal(at(43, 34).med, false, 'nor the Black Sea (not open ocean)');
 });
 
 test('ice-sheet masks: none over Canada today, the Laurentide at 20 ka', () => {

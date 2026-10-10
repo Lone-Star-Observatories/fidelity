@@ -39,9 +39,10 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
       const systemish = !e.go || !['navigation', 'galaxy', 'quadrant', 'universe'].includes(e.go.level), lim = clock.limit;
       const jdAt = jdFromDate(new Date()) + e.years * 365.25;
       if (systemish && lim && (jdAt < lim.minJd || jdAt > lim.maxJd)) { toast(`${fmtYears(e.years)} AHEAD IS BEYOND THE SYSTEM VIEW'S RANGE (${lim.reason})${e.ring ? ': SHOW THE RING INSTEAD' : ''}`); return; }
-      if (typeof clock.setYears === 'function') clock.setYears(e.years);
-      else if (Math.abs(e.years) < CALENDAR_YEARS) clock.set(jdFromDate(new Date()) + e.years * 365.25);
-      else { toast(`${fmtYears(e.years)} AHEAD IS BEYOND THE CLOCK'S CALENDAR (±273 KYR)`); return; }
+      // switch view first: the clock takes the destination's limit, then the time is set inside it
+      const setTime = () => { if (typeof clock.setYears === 'function') clock.setYears(e.years); else if (Math.abs(e.years) < CALENDAR_YEARS) clock.set(jdFromDate(new Date()) + e.years * 365.25); else toast(`${fmtYears(e.years)} AHEAD IS BEYOND THE CLOCK'S CALENDAR (±273 KYR)`); };
+      if (e.go) { go(e.go); setTimeout(setTime, 0); } else setTime();
+      return;
     }
     if (e.go) go(e.go);
   }
