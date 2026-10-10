@@ -52,7 +52,7 @@ export function decodeFrames(buf) {
 /** Sec-WebSocket-Accept for a client key. */
 export const acceptKey = (key) => crypto.createHash('sha1').update(key + GUID).digest('base64');
 
-const allowedOrigin = (origin, host) => {
+export const allowedOrigin = (origin, host) => {
   if (!origin) return true; // non-browser clients (tests, curl)
   try {
     const o = new URL(origin);

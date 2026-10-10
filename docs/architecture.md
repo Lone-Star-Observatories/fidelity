@@ -20,6 +20,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
 │                                      │           │ server/search.js    star search   │
+│                                      │           │ server/rf.js        COMMS relays  │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -339,6 +340,20 @@ axis tilted towards us by the inclination (towards the stated near side when kno
 gets the uv where it projects on our sky, so from the Milky Way the disc shows the cutout exactly.
 Forms fade in between 6 and 30 px apparent size; `select` eases the camera to ~3× the galaxy's size.
 Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached route as #24).
+
+## COMMS (#69)
+
+`#/comms` (top-bar COMMS, shown in Sector 001) opens `src/views/comms/CommsView.js` in the viewport:
+two `createSignalsMap` instances (SUBSPACE layers; RF receivers) with a HAIL / SELECT button per hit,
+a viewscreen and the finder (`comms.panel()` in the right panel). Hailing runs HAILING → SIGNAL
+RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station carries; the
+`alwaysOnScreen` setting skips the question). Audio goes `<audio src=/api/comms/stream>` →
+`src/views/comms/audio.js` (jitter buffer for receiver PCM, high-pass, low-pass, automatic notch,
+compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast "ICY 200", fetch
+otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
+the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
+Every upstream URL must be on a cached station list (no open proxy). Voice: the `comms` tool and
+offline phrases ("on screen", "close channel"). Nothing transmits.
 
 ## Space telescopes
 

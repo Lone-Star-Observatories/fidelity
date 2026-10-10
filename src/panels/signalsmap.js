@@ -19,7 +19,7 @@ const pill = (label, on, onClick, extra = '') => {
   b.addEventListener('click', onClick);
   return b;
 };
-const COLOURS = { radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', video: '#ffcc66', windy: '#cc99cc' };
+const COLOURS = { radiogarden: '#66cc66', radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', video: '#ffcc66', windy: '#cc99cc' };
 
 // curated, bundled layer: observatory cams (#37) and volcano observatories
 const VIDEO = {
@@ -27,15 +27,25 @@ const VIDEO = {
   credit: 'Observatory webcams and streams as listed in the SITES layer (each operator\'s own page), and the USGS / Alaska volcano observatories\' webcam pages (US Government work, public domain).',
   licence: 'Operators\' own pages (linked, not embedded)',
   markers: [
-    ...OBSERVATORIES.filter(([, , , , o]) => o.feeds?.length && o.url).map(([, name, lat, lon, o]) => [lat, lon, name, o.url, `${o.agency.toUpperCase()} · ${o.feeds.length} LIVE VIEW${o.feeds.length > 1 ? 'S' : ''}`]),
+    ...OBSERVATORIES.filter(([, , , , o]) => o.feeds?.length && o.url).map(([, name, lat, lon, o]) => {
+      const yt = o.feeds.find((f) => f.kind === 'video')?.streams?.[0]?.id; // a YouTube live stream, for the COMMS viewscreen (#69)
+      return [lat, lon, name, o.url, `${o.agency.toUpperCase()} · ${o.feeds.length} LIVE VIEW${o.feeds.length > 1 ? 'S' : ''}`, null, yt ? { youtube: yt } : null];
+    }),
     ...CURATED_VIDEO,
   ],
 };
 
-export function createSignalsMap() {
-  const layers = new Map([['video', { ...VIDEO, on: true, state: 'ready', count: VIDEO.markers.length, fetched: null }]]);
+/**
+ * opts (COMMS, #69): only: layer ids to show; onPick(layerId, marker, layer): a primary button per
+ * hit (pickLabel(layerId) names it); extra: [{ id, label, colour, kind, markers, credit, licence }]
+ * bundled layers; title.
+ */
+export function createSignalsMap(opts = {}) {
+  const want = (id) => !opts.only || opts.only.includes(id);
+  const layers = new Map(want('video') ? [['video', { ...VIDEO, on: true, state: 'ready', count: VIDEO.markers.length, fetched: null }]] : []);
+  for (const x of opts.extra ?? []) { layers.set(x.id, { on: true, state: 'ready', count: x.markers.length, fetched: null, available: true, ...x }); if (x.colour) COLOURS[x.id] = x.colour; }
   const node = el('section', { className: 'sv-card sm-card' },
-    el('div', { className: 'sv-card-head' }, el('h3', { textContent: 'LIVE SIGNALS · EARTH' }),
+    el('div', { className: 'sv-card-head' }, el('h3', { textContent: opts.title ?? 'LIVE SIGNALS · EARTH' }),
       badge('reported', 'Marker positions are as published by each directory or operator; the feeds behind them are live.')));
   const pills = el('div', { className: 'im-pills sm-pills' });
   const canvas = el('canvas', { className: 'sm-canvas' });
@@ -49,7 +59,7 @@ export function createSignalsMap() {
   const credits = el('div', { className: 'sm-credits' });
   const notes = el('p', { className: 'note', textContent: STANDALONE
     ? 'Radio stations, SDR receivers and traffic cameras load through the local backend (npm start); this preview shows only the bundled observatory and volcano views.'
-    : 'Radio Garden (no public API) and the WebSDR.org list (re-use needs permission) are links only, awaiting permission. Aircraft (OpenSky) are not shown yet.' });
+    : 'Radio Garden shows when its export is in data/radio-garden/stations.json (local only, not redistributed). The WebSDR.org list (re-use needs permission) is a link only. Aircraft (OpenSky) are not shown yet.' });
   node.append(pills, frame, info, credits, notes);
 
   // ---- view: equirectangular, centre (cx lon, cy lat) and zoom ----------------------------------
@@ -126,8 +136,9 @@ export function createSignalsMap() {
     info.replaceChildren(...list.map(({ id, m }) => {
       const l = layers.get(id);
       const [lat, lon, name, href, detail, extra] = m;
+      const primary = opts.onPick ? el('button', { type: 'button', className: 'pill cm-link sm-pick', textContent: opts.pickLabel?.(id) ?? 'SELECT', onclick: () => opts.onPick(id, m, l) }) : null;
       const links = [[l.kind === 'audio' ? 'HOMEPAGE ↗' : l.kind === 'sdr' ? 'OPEN RECEIVER ↗' : id === 'traffic' ? 'CURRENT IMAGE ↗' : 'OPEN ↗', href]];
-      if (id === 'radio' && extra) links.push(['LISTEN ↗', extra]);
+      if ((id === 'radio' || id === 'radiogarden') && extra) links.push([id === 'radiogarden' && m[6]?.n > 1 ? `LISTEN (1 OF ${m[6].n}) ↗` : 'LISTEN ↗', extra]);
       if (id === 'traffic' && extra) links.push([/\.m3u8/.test(extra) ? 'HLS VIDEO ↗' : 'VIDEO CLIP ↗', extra]);
       return el('div', { className: 'cm-entry sm-hit' },
         el('div', { className: 'cm-head' }, el('span', { className: 'sm-dot', style: `background:${COLOURS[id]}` }), el('span', { className: 'cm-name', textContent: name }),
@@ -136,7 +147,7 @@ export function createSignalsMap() {
         el('div', { className: 'cm-meta' },
           el('span', { className: 'cm-status', textContent: id === 'kiwisdr' ? (extra === 1 ? 'FREE SLOT NOW' : extra === 0 ? 'FULL NOW' : '') : id === 'video' ? 'OPERATOR PAGE' : 'LISTED LIVE' }),
           el('span', { textContent: l.label }), l.fetched ? el('span', { className: 'mono', textContent: `LIST ${ago(l.fetched)}` }) : null,
-          ...links.map(([t, u]) => el('a', { className: 'pill cm-link', href: u, target: '_blank', rel: 'noopener noreferrer', textContent: t }))));
+          primary, ...links.filter(([, u]) => u).map(([t, u]) => el('a', { className: 'pill cm-link', href: u, target: '_blank', rel: 'noopener noreferrer', textContent: t }))));
     }), total > list.length ? el('p', { className: 'note', textContent: `+${total - list.length} more here: zoom in.` }) : null);
   }
 
@@ -176,12 +187,12 @@ export function createSignalsMap() {
   // ---- layers ------------------------------------------------------------------------------------
   function drawPills() {
     pills.replaceChildren(el('span', { className: 'im-label', textContent: 'SHOW' }), ...[...layers].map(([id, l]) => {
-      const n = l.state === 'ready' ? ` · ${l.count.toLocaleString()}` : l.state === 'loading' ? ' · …' : l.state === 'error' ? ' · UNAVAILABLE' : l.state === 'nokey' ? ' · NEEDS KEY' : '';
+      const n = l.state === 'ready' ? ` · ${l.count.toLocaleString()}` : l.state === 'loading' ? ' · …' : l.state === 'error' ? ' · UNAVAILABLE' : l.state === 'nokey' ? (l.needsFile ? ' · NEEDS LOCAL EXPORT' : ' · NEEDS KEY') : '';
       const b = pill(`${l.label}${n}`, l.on && l.state === 'ready', () => { l.on = !l.on; drawPills(); draw(); }, l.state === 'ready' ? '' : ' sm-wait');
       b.style.setProperty('--dot', COLOURS[id] ?? '#fff');
       if (l.state !== 'ready') b.disabled = l.state !== 'loading';
       return b;
-    }), ...(STANDALONE ? [] : [['WEBSDR.ORG ↗', 'http://websdr.org/'], ['RADIO GARDEN ↗', 'https://radio.garden/']].map(([t, u]) =>
+    }), ...(STANDALONE ? [] : [['WEBSDR.ORG ↗', 'http://websdr.org/']].map(([t, u]) =>
       el('a', { className: 'pill sm-await', href: u, target: '_blank', rel: 'noopener noreferrer', textContent: `${t.replace(' ↗', '')} · AWAITING PERMISSION ↗` }))));
     credits.replaceChildren(...[...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) =>
       el('p', { className: 'note credit', textContent: `${l.label}: ${l.credit} Licence: ${l.licence}.${l.fetched ? ` List fetched ${l.fetched.slice(0, 16).replace('T', ' ')} UTC.` : ''}` })));
@@ -191,6 +202,7 @@ export function createSignalsMap() {
   if (!STANDALONE) {
     fetch('/api/signals').then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status)))).then((d) => {
       for (const l of d.layers) {
+        if (!want(l.id)) continue;
         layers.set(l.id, { ...l, on: true, state: l.available ? 'loading' : 'nokey', count: 0, markers: null });
         if (!l.available) continue;
         fetch(`/api/signals/${l.id}`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status)))).then((x) => {
@@ -200,10 +212,17 @@ export function createSignalsMap() {
         }).catch(() => { if (!dead) { layers.get(l.id).state = 'error'; drawPills(); } });
       }
       // put the curated layer last so it draws on top
-      const v = layers.get('video'); layers.delete('video'); layers.set('video', v);
+      const v = layers.get('video'); if (v) { layers.delete('video'); layers.set('video', v); }
       drawPills();
     }).catch(() => {});
   }
   requestAnimationFrame(draw);
-  return { node, tick() {}, dispose() { dead = true; ro.disconnect(); } };
+  return {
+    node, tick() {}, dispose() { dead = true; ro.disconnect(); },
+    /** Replace a bundled layer's markers (e.g. the local SDR once detected). */
+    setExtra(id, markers) { const l = layers.get(id); if (l) { l.markers = markers; l.count = markers.length; drawPills(); draw(); } },
+    /** Fly the map to a point. */
+    focus(lat, lon, z = 4) { view.cx = lon; view.cy = lat; view.z = z; clampView(); draw(); },
+    redraw: () => draw(),
+  };
 }

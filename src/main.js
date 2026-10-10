@@ -49,6 +49,7 @@ import { createFutureEventsPanel } from './panels/futureevents.js';
 import { createEarthTimelinePanel } from './panels/earthtimeline.js';
 import { createMagneticPanel } from './panels/magnetic.js';
 import { createSearch } from './panels/search.js';
+import { createCommsView } from './views/comms/CommsView.js';
 import { PLANETSHINE } from './astro/planetshine.js';
 import { FUTURE_MISSIONS } from './data/future-missions.js';
 import { SITES } from './data/sites.js';
@@ -363,6 +364,7 @@ const VOICE_STATES = { off: 'OFF', untrained: 'TRAIN THE WAKE WORD FIRST', liste
 function screenContext() {
   const lines = [], sel = route.body && system.model?.bodies.find((b) => b.id === route.body);
   lines.push(`VIEW: ${$('view-title').textContent}`);
+  if (route.level === 'comms') lines.push(comms.context());
   lines.push(`ROUTE: ${route.level}${route.system ? ` / system ${system.model?.name ?? route.system}` : ''}${route.body ? ` / ${sel?.name ?? route.body}` : ''}`);
   if (['system', 'satellite', 'events'].includes(route.level) && system.model) {
     const f = system.model.bodies.find((b) => b.id === system.focusId);
@@ -396,6 +398,7 @@ const computer = createComputer({
     return out;
   },
   setLayer: (k, on) => settings.set(k, on),
+  comms: (c) => (route.level === 'comms' ? comms.voice(c) : { ok: false, error: 'Open COMMS first (top bar).' }), // #69
   setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
   canInterrupt: () => !!settings.get('voiceInterrupt'),
   status: () => fetch('/api/voice/status').then((r) => (r.ok ? r.json() : null)).catch(() => null),
@@ -650,6 +653,10 @@ const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toas
 const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel, system, settings });
 const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
+// COMMS (#69): SubSpace and RF reception
+const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
+function renderCommsPanel() { resetLive(); panel.replaceChildren(...comms.panel(h, row), renderLegend()); }
+$('comms-tab').addEventListener('click', () => go({ level: 'comms', system: 'sol' }));
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
 createSearch({ h, badge, $, go, clock, actions: {
   satellites: () => satPanel.load(),
@@ -1548,6 +1555,7 @@ loadEvents().then(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() >
 })();
 
 function syncBeacon() {
+  $('comms-tab').hidden = currentSystem !== 'sol'; // COMMS is Sector 001's (#69)
   const m = system.model;
   const away = currentSystem !== 'sol';
   $('beacon-sub').textContent = away && m && m.id === currentSystem ? `${fmt(m.distLy, 1)} LY` : away ? 'RETURN' : 'HOME';
@@ -1597,6 +1605,16 @@ onRoute(async (r) => {
   if (r.level !== 'events') eventsPanel.leave();
   if (r.level !== 'future' && r.level !== 'system') futureEvents.leave();
   if (r.level !== 'timeline' && r.level !== 'system' && r.level !== 'planet') earthTimeline.leave(); // the epoch stays while you look at Earth // a scenario stays while you look at it in the System View
+  if (r.level !== 'comms') { comms.hide(); $('comms-tab').classList.remove('on'); }
+  if (r.level === 'comms') { // COMMS (#69): SubSpace and RF reception, Sector 001
+    system.hide(); nav.hide(); starView.hide(); planetView.hide(); galaxy.hide();
+    $('offline').hidden = true;
+    $('view-title').textContent = 'COMMS · SUBSPACE AND RF RECEPTION';
+    $('comms-tab').classList.add('on');
+    comms.show();
+    renderCommsPanel();
+    return;
+  }
   if (r.level === 'timeline') {
     nav.hide(); starView.hide(); galaxy.hide(); planetView.hide();
     $('offline').hidden = true;
