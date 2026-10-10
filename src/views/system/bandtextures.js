@@ -29,7 +29,9 @@ export function bandTexture(url) {
       const c = document.createElement('canvas'); c.width = 256; c.height = 128;
       const g = c.getContext('2d'); g.drawImage(t.image, 0, 0, 256, 128);
       const d = g.getImageData(0, 0, 256, 128).data, lum = [];
-      for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 128) lum.push((d[i] + d[i + 1] + d[i + 2]) / 765);
+      // in linear light, as the shader samples the (sRGB) texture: levels in sRGB crushed mid-tones to black (#28)
+      const lin = (v) => { const c = v / 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+      for (let i = 0; i < d.length; i += 4) if (d[i + 3] > 128) lum.push((lin(d[i]) + lin(d[i + 1]) + lin(d[i + 2])) / 3);
       lum.sort((a, b) => a - b);
       const lo = lum[Math.floor(lum.length * 0.02)] ?? 0, hi = lum[Math.floor(lum.length * 0.98)] ?? 1;
       levels = [lo, 1 / Math.max(0.02, hi - lo)];
@@ -44,11 +46,15 @@ const sz = (size) => (size === 'preview' ? '&size=preview' : '');
 const backendOrBaked = (url, size) => (!STANDALONE ? url : size === 'preview' ? bakedBand(url)?.src ?? null : null);
 export const hipsUrl = (id, size = '') => backendOrBaked(`/api/hips?id=${encodeURIComponent(id)}${sz(size)}`, size);
 export const gibsUrl = (layers, size = '') => backendOrBaked(`/api/gibs-band?layers=${encodeURIComponent(layers)}${sz(size)}`, size);
+export const archiveUrl = (id, size = '') => backendOrBaked(`/api/band-archive?id=${encodeURIComponent(id)}${sz(size)}`, size);
+export const discUrl = (id, size = '') => backendOrBaked(`/api/band-disc?id=${encodeURIComponent(id)}${sz(size)}`, size);
 /** { preview, full } URLs of a real map (BODY_BAND entry), or null without a backend (standalone: { preview: baked, full: null }). */
 export function realUrls(src) {
   const pair = (url) => (u) => { const preview = url(u, 'preview'), full = url(u); return preview || full ? { preview, full, baked: bakedOf(src) } : null; };
   if (src.hips) return pair(hipsUrl)(src.hips);
   if (src.gibs) return pair(gibsUrl)(src.gibs);
+  if (src.archive) return pair(archiveUrl)(src.archive.id);
+  if (src.disc) return pair(discUrl)(src.disc.id);
   return null;
 }
 /** What a baked image is (its size and date), for the look's label: null outside the standalone preview. */
@@ -139,17 +145,59 @@ export function progressiveFeed(id, look, current, apply) {
  * change to 'dark' when a real map needs the backend). `full` resets to the normal skin. A custom
  * curve (band.id 'custom', see bandstate.js) goes to applyCurveToMaterial.
  */
+/** Point the shader at a whole-disc image's geometry (#28), or switch disc projection off. */
+export function setDisc(u, src) {
+  if (!u?.uDiscOn) return;
+  const d = src?.disc;
+  u.uDiscOn.value = d ? 1 : 0;
+  if (!d) return;
+  u.uDiscC.value.set(d.cx / d.w, 1 - d.cy / d.h); u.uDiscR.value.set(d.re, d.rp); u.uDiscWH.value.set(d.w, d.h);
+  u.uDiscPA.value = ((d.pa ?? 0) * Math.PI) / 180;
+}
+const MIX_CH = { reflected: 1, thermal: 2, glow: 3 };
+/** The predicted skin under a disc image (its far side): one look's part on the mix channels, weight `w`. */
+function predictedUnder(u, look, w, mix) {
+  const ch = MIX_CH[look?.mode];
+  if (!ch) return;
+  mix.setComponent(ch, w);
+  u.uMixPal.value.setComponent(ch, look.palette ?? 4);
+  if (look.mode === 'reflected') u.uBandGain.value = look.gain ?? 1;
+  if (look.mode === 'thermal') { u.uThermal.value.set(...look.thermal); u.uBandUm.value = look.um; }
+  if (look.mode === 'glow') { u.uGlow.value = look.glow; u.uGlowGain.value = look.gain ?? 1; }
+}
+/**
+ * A disc image in one bandpass: drawn through the curve mix (mode 6) so the hemisphere it does not
+ * cover shows the predicted look (`${id}~` asks bandLook for the look without the real image).
+ */
+function applyDisc(u, body, band, pass, look) {
+  const under = bandLook({ ...body, id: `${body.id}~` }, band, pass);
+  u.uMixHue.value.multiplyScalar(0);
+  u.uMixPal.value.set(0, 4, 4, 4); // the image in its own colours
+  u.uMix.value.set(0, 0, 0, 0);
+  predictedUnder(u, under, 1e-3, u.uMix.value); // tiny: wherever the image is, it wins
+  u.uBandLit.value = 0; // the image carries its own lighting
+  u.uBandMode.value = 6;
+  u.__look = look;
+  look.under = under;
+  const urls = realUrls(look.source);
+  if (urls) progressive(u, look, urls, () => { u.uMix.value.x = 1; });
+  else { look.label += ' · NEEDS THE LOCAL BACKEND'; }
+  return look;
+}
+
 export function applyBandToMaterial(u, body, band, pass) {
   if (!u?.uBandMode) return null;
+  setDisc(u, null);
   if (band.id === 'full') { u.uBandMode.value = 0; u.__look = null; return null; }
   if (band.id === 'custom' && pass?.curve) return applyCurveToMaterial(u, body, pass.curve);
   const look = bandLook(body, band, pass);
   u.uPalette.value = look.palette;
   if (look.thermal) u.uThermal.value.set(...look.thermal); else u.uThermal.value.set(0, 0, 0, 0);
   if (look.um) u.uBandUm.value = look.um;
+  if (look.mode === 'real' && look.source.disc && u.uMix) { setDisc(u, look.source); return applyDisc(u, body, band, pass, look); }
   if (look.mode === 'real') {
     const src = look.source, nm = pass?.filter ? effectiveNm(pass.filter) : 550;
-    u.uBandLit.value = nm < 2600 && !src.gibs ? 1 : 0;
+    u.uBandLit.value = (nm < 2600 || src.lit) && !src.gibs && !src.unlit && !src.disc ? 1 : 0;
     // the predicted thermal look stands in under gaps in partial maps and sets the night side
     const t = bandLook({ ...body, id: `${body.id}~` }, band, pass);
     if (t.thermal) { u.uThermal.value.set(...t.thermal); u.uBandUm.value = t.um; }
@@ -170,6 +218,7 @@ export function applyBandToMaterial(u, body, band, pass) {
 /** Material uniforms for a custom transmission curve (#66): mode 6, the curve look's weights and colours. */
 export function applyCurveToMaterial(u, body, curve) {
   if (!u?.uBandMode) return null;
+  setDisc(u, null);
   const look = curveLook(body, curve);
   if (!look) { u.uBandMode.value = 0; u.__look = null; return null; }
   if (look.mode !== 'curve' || !u.uMix) { // a plain look (dark), or an old material without mode 6
@@ -186,6 +235,16 @@ export function applyCurveToMaterial(u, body, curve) {
   u.uPalette.value = pal;
   // the real map joins the mix when its preview (or full map) is on screen
   u.uMix.value.set(0, look.reflected ? m.reflected : 0, look.thermalPart ? m.thermal : 0, look.glowPart ? m.glow : 0);
+  if (look.real?.source.disc) { // a disc image: its far side shows the predicted skin (#28)
+    setDisc(u, look.real.source);
+    u.uMixPal.value.x = 0; u.uMixHue.value.elements[3] = 0; // the image in its own colours
+    if (u.uMix.value.y + u.uMix.value.z + u.uMix.value.w < 1e-3) {
+      const under = curveLook({ ...body, id: `${body.id}~` }, curve);
+      if (under?.mode === 'curve') for (const [part, mode] of [[under.reflected, 'reflected'], [under.thermalPart, 'thermal'], [under.glowPart, 'glow']]) {
+        if (part) predictedUnder(u, { mode, palette: pal, gain: part.gain, thermal: part.thermal, um: part.um, glow: part.glow }, 1e-3 * (under.mix[mode] || 1), u.uMix.value);
+      } else predictedUnder(u, under, 1e-3, u.uMix.value);
+    }
+  }
   u.uBandMode.value = 6;
   u.__look = look;
   if (look.real) {

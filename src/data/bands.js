@@ -2,10 +2,12 @@
 //   Level 1: FULL · RADIO · MICROWAVE · INFRARED · VISIBLE · ULTRAVIOLET · X-RAY · GAMMA
 //   Level 2: a bandpass within the band (the first is the default).
 //   sky: an all-sky survey (CDS HiPS id, rendered through hips2fits) for the background.
-//   BODY_BAND: real maps of bodies in a band (planetary HiPS, NASA GIBS, SDO via Helioviewer).
+//   BODY_BAND: real maps of bodies in a band (planetary HiPS, NASA GIBS, SDO via Helioviewer, and the
+//   archive maps and whole-disc images of src/data/bandarchive.js).
 // Everything else is predicted from the body's spectrum (src/views/system/bandskin.js).
 
 import { filter, ghz, kev, micron, topHat } from '../astro/bands.js';
+import { ARCHIVE_BAND, GAMMA_LINES } from './bandarchive.js';
 
 const f = filter;
 export const BANDS = [
@@ -71,6 +73,11 @@ export const BANDS = [
   ] },
   { id: 'gamma', label: 'GAMMA', short: 'γ', palette: 'gamma', passes: [
     { id: 'g-lat', label: 'Fermi-LAT > 100 MeV', filter: kev(1e5, 1e8), sky: 'CDS/P/Fermi/color', skyCredit: 'Fermi-LAT all-sky (NASA/DOE/Fermi LAT Collaboration; CDS HiPS)' },
+    // nuclear lines that orbital gamma-ray spectrometers map (#28: Lunar Prospector, Mars Odyssey)
+    { id: 'g-k', label: 'K 1.46 MeV line', filter: kev(...GAMMA_LINES.k) },
+    { id: 'g-h', label: 'H 2.22 MeV line', filter: kev(...GAMMA_LINES.h) },
+    { id: 'g-th', label: 'Th 2.61 MeV line', filter: kev(...GAMMA_LINES.th) },
+    { id: 'g-fe', label: 'Fe 7.6 MeV lines', filter: kev(...GAMMA_LINES.fe) },
   ] },
 ];
 export const bandById = (id) => BANDS.find((b) => b.id === id) ?? BANDS[0];
@@ -163,5 +170,7 @@ export const BODY_BAND = {
     'vis-I': { ...MDIS_750, note: 'MDIS 750 nm, on the blue edge of I' }, 'vis-i': MDIS_750, 'vis-R': { ...MDIS_750, note: 'MDIS 750 nm, on the red edge of R' },
   },
 };
+// archive maps and whole-disc images (#28, src/data/bandarchive.js): added to each body's entries
+for (const [body, m] of Object.entries(ARCHIVE_BAND)) BODY_BAND[body] = { ...BODY_BAND[body], ...m };
 /** The real map of `body` in this pass (or band), if any. */
 export const bodyBandSource = (body, band, pass) => BODY_BAND[body]?.[pass?.id] ?? BODY_BAND[body]?.[band.id] ?? null;

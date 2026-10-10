@@ -2144,6 +2144,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
+    if (nodes.earth && band.id !== 'full') for (const id in nodes) { // whole-disc band images face Earth, the body's north as imaged (#28)
+      const n = nodes[id], u = n.mesh?.material?.uniforms;
+      if (!(u?.uDiscOn?.value > 0.5)) continue;
+      u.uDiscE.value.copy(nodes.earth.pos).sub(n.pos).normalize();
+      if (n.body.pole) u.uDiscN.value.copy(poleVector(n.body.pole));
+    }
     // the night sky from a surface (#48)
     if (surface && !skyClustersAsked) { skyClustersAsked = true; fetchClusters().then((d) => skyLayers.setClusters(d)).catch(() => {}); }
     skyLayers.update({ on: !!surface && band.id === 'full', fade: skyMat.uniforms.uFade.value, camera,

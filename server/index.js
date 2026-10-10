@@ -30,6 +30,7 @@ import { eventsFeed } from './events.js';
 import { crew, crewImage } from './crew.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
+import { archiveImage, discImage } from './bandarchive.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
 import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
@@ -59,6 +60,8 @@ const routes = {
   'GET /api/voice/status': async () => voiceStatus(),
   'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '', q.get('size') || '')),
   'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '', q.get('size') || '')),
+  'GET /api/band-archive': async (q) => binary(await archiveImage(q.get('id') || '', q.get('size') || '')),
+  'GET /api/band-disc': async (q) => binary(await discImage(q.get('id') || '', q.get('size') || '')),
   'GET /api/horizons/vectors': async (q) => monthlyVectors(q.get('body') || '', q.get('month') || ''),
   'GET /api/horizons/local': async (q) => localDay(q.get('body') || '', q.get('center') || '', q.get('day') || ''),
   'GET /api/horizons/local-month': async (q) => localMonth(q.get('body') || '', q.get('center') || '', q.get('month') || ''),

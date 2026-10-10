@@ -76,8 +76,9 @@ test('the Moon at cm wavelengths: the diurnal swing is damped (Piddington & Minn
   const r = bandLook({ id: 'moon', name: 'Moon' }, ...at('radio', 'radio-hi'));
   assert.ok(r.thermal[0] - r.thermal[1] < 15, `21 cm swing ${r.thermal}`);
   assert.ok(r.thermal[0] > 200 && r.thermal[0] < 260);
-  const ir = bandLook({ id: 'moon', name: 'Moon' }, ...at('ir', 'ir-W4'));
+  const ir = bandLook({ id: 'moon~', name: 'Moon' }, ...at('ir', 'ir-W4')); // the model under the Diviner map (#28)
   assert.equal(ir.thermal[0], 390, 'the IR still sees the 390 K surface');
+  assert.match(bandLook({ id: 'moon', name: 'Moon' }, ...at('ir', 'ir-W4')).source.archive.id, /diviner/);
 });
 
 test('Europa and Ganymede are microwave-colder than their surfaces; Europa warms with frequency, Ganymede cools (Juno MWR)', () => {
@@ -105,7 +106,7 @@ test('reflectance: the giants use the measured Karkoschka (1998) spectra', () =>
 });
 
 test('X-ray: cited detections and honest non-detections', () => {
-  for (const id of ['uranus', 'pluto', 'io', 'europa', 'saturn', 'mercury']) {
+  for (const id of ['uranus', 'pluto', 'io', 'europa', 'saturn', 'mercury~']) { // Mercury: the model under the XRS map (#28)
     const l = bandLook({ id, name: id }, ...at('xray', 'x-soft'));
     assert.equal(l.mode, 'glow', id); assert.match(l.label, /DETECTED/, id);
   }
@@ -117,7 +118,7 @@ test('X-ray: cited detections and honest non-detections', () => {
 
 test('UV: aurorae in the far-UV, Lyman-α coronae', () => {
   assert.equal(bandLook({ id: 'ganymede', name: 'Ganymede' }, ...at('uv', 'uv-fuv')).glow, 5);
-  assert.equal(bandLook({ id: 'jupiter', name: 'Jupiter' }, ...at('uv', 'uv-fuv')).glow, 5);
+  assert.equal(bandLook({ id: 'jupiter~', name: 'Jupiter' }, ...at('uv', 'uv-fuv')).glow, 5, 'the far side of the Hubble disc image (#28)');
   assert.match(bandLook({ id: 'mars', name: 'Mars' }, ...at('uv', 'uv-lya')).label, /DETECTED/);
   assert.match(bandLook({ id: 'vesta', name: 'Vesta' }, ...at('uv', 'uv-lya')).label, /PREDICTED/, 'no longer NOT OBSERVED, and not claimed');
 });

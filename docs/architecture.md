@@ -13,6 +13,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/imagery.js   surveys, NASA │
 │                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
+│                                      │           │ server/bandarchive.js band maps   │
 │                                      │           │ server/dsn.js       DSN Now       │
 │                                      │           │ server/comms.js     SatNOGS, Mars │
 │                                      │           │ server/signals.js   signals map   │
@@ -85,6 +86,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
 | `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000` (today's Siberian Radioheliograph 3 GHz FITS → PNG) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
+| `GET /api/band-archive?id=…` · `GET /api/band-disc?id=…` | Spectrum filter archive imagery (#28, `server/bandarchive.js`, allowlisted from the `archive`/`disc` entries of `src/data/bandarchive.js`, archive hosts only): a global equirectangular PNG built from NASA Trek WMTS tiles (mosaicked), a PDS 8-bit raster or a PDS ASCII table of binned values (`server/png.js` decodes and encodes PNG without dependencies); a whole-disc JPEG as published by ESA/Webb or ESA/Hubble. `&size=preview`: 512×256 (zoom 0 / resampled) or the publisher's thumbnail. Cached a year through the band upstream queue |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
@@ -208,6 +210,18 @@ Earth's GIBS mosaic in the planet shader (base map shows through swath gaps and 
 the separate cloud layer hides), the Sun's SDO disk projected orthographically onto the
 Earth-facing hemisphere (solar north up, radius from Helioviewer's metadata) in the star
 shader. System, Star and Planet views all use it; it refreshes every 15 minutes.
+
+## Band disc images (#28)
+
+Where a body has no global map in a band but a whole-disc image exists (JWST, Hubble), the
+`BODY_BAND` entry is a `disc` (`src/data/bandarchive.js`: image size, disc centre, equatorial and
+polar radii in pixels, north position angle, all measured on the image, plus the observation date).
+The planet shader's `bandSample` then projects the image orthographically onto the hemisphere facing
+`uDiscE` (Earth, updated per frame in the System View; the camera in the Planet View) with the body's
+pole `uDiscN` rotated to `uDiscPA`; its alpha falls to zero towards the limb and is zero on the far
+side. Disc looks are drawn through the curve mix (mode 6): the image at weight 1, the predicted look
+(`bandLook` for `<id>~`) at 10⁻³, so the far side shows the predicted skin and the near side the image.
+The badge reads DISC IMAGE · date · EARTH-FACING SIDE ONLY. `discUv` mirrors the projection for tests.
 
 ## Quadrant and Universe views
 
