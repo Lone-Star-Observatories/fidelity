@@ -45,18 +45,45 @@ const PLANET_FRAG = /* glsl */`
   uniform sampler2D uMap; uniform sampler2D uNight; uniform float uHasNight;
   uniform sampler2D uLive; uniform float uHasLive;
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
+  // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
+  // they are right whatever the display scale: the fraction of the Sun's disc an occluder
+  // (the Moon for Earth, Earth for the Moon, a moon for Jupiter…) hides from each point.
+  uniform float uOccOn; uniform vec3 uOccRel; uniform float uOccR; uniform vec3 uSunRel; uniform float uSunR;
+  uniform float uBodyR; uniform vec3 uCentreW; uniform vec3 uUmbraTint;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
+  float discOverlap(float r1, float r2, float d) { // fraction of disc r1 covered by disc r2 at separation d
+    if (d >= r1 + r2) return 0.0;
+    if (d <= abs(r1 - r2)) return r2 >= r1 ? 1.0 : (r2 * r2) / (r1 * r1);
+    float a1 = r1 * r1 * acos(clamp((d * d + r1 * r1 - r2 * r2) / (2.0 * d * r1), -1.0, 1.0));
+    float a2 = r2 * r2 * acos(clamp((d * d + r2 * r2 - r1 * r1) / (2.0 * d * r2), -1.0, 1.0));
+    float a3 = 0.5 * sqrt(max(0.0, (-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2)));
+    return clamp((a1 + a2 - a3) / (3.14159265 * r1 * r1), 0.0, 1.0);
+  }
   void main() {
     #include <logdepthbuf_fragment>
     vec3 N = normalize(vNormalW);
     float ndl = dot(N, normalize(uSunPos - vPosW));
+    float lightK = 1.0; float umbraK = 0.0;
+    if (uOccOn > 0.5) {
+      vec3 p = normalize(vPosW - uCentreW) * uBodyR;
+      vec3 toS = uSunRel - p, toO = uOccRel - p;
+      if (dot(toS, toO) > 0.0) {
+        float ls = length(toS), lo = length(toO);
+        float rs = asin(min(1.0, uSunR / ls)), ro = asin(min(1.0, uOccR / lo));
+        float d = atan(length(cross(toS, toO)), dot(toS, toO));
+        float f = discOverlap(rs, ro, d);
+        lightK = 1.0 - f;
+        umbraK = smoothstep(0.9, 1.0, f);
+      }
+    }
     vec4 tex = texture2D(uMap, vUv);
     vec3 base = tex.rgb * uTint;
     if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
       vec3 lv = texture2D(uLive, vUv).rgb;
       base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
     }
-    vec3 col = base * (uAmbient + max(ndl, 0.0) * uSunColor);
+    // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
+    vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK));
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
       col += texture2D(uNight, vUv).rgb * night * 1.4;
@@ -106,6 +133,8 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 }, uLive: { value: null }, uHasLive: { value: 0 },
       uTint: { value: new THREE.Color(...tint) }, uSunPos: { value: new THREE.Vector3() },
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
+      uOccOn: { value: 0 }, uOccRel: { value: new THREE.Vector3() }, uOccR: { value: 1 }, uSunRel: { value: new THREE.Vector3() }, uSunR: { value: 696000 },
+      uBodyR: { value: 1 }, uCentreW: { value: new THREE.Vector3() }, uUmbraTint: { value: new THREE.Color(0, 0, 0) },
     },
   });
 }

@@ -63,5 +63,5 @@ export function createFatLines() {
       twins.delete(thin);
     }
   }
-  return { sync, prune, setSize: (w, h) => resolution.set(w, h) };
+  return { sync, prune, resolution, setSize: (w, h) => resolution.set(w, h) };
 }

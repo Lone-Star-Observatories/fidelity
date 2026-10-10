@@ -8,6 +8,13 @@
 import * as THREE from 'three';
 import { shapeFor } from '../../data/shapes.js';
 import { createFatLines } from './fatlines.js';
+import { deltaT, shadowOutlines, fixedToInertial, inertialPoint } from '../../astro/eclipses.js';
+import { solarEclipseAt } from '../../data/skyevents.js';
+import { eclipseDaylight } from '../../panels/skyevents.js';
+import { surfacePoint } from '../../astro/eclipses.js';
+import { LineSegments2 } from 'three/examples/jsm/lines/LineSegments2.js';
+import { LineSegmentsGeometry } from 'three/examples/jsm/lines/LineSegmentsGeometry.js';
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
 import { loadBodyShape, loadCraftModel, disposeModel } from './models.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -229,6 +236,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     } else {
       const mat = planetMaterial(placeholder, { tint: body.skin?.tint });
       mat.userData.host = body.orbit?.host ?? model.starId;
+      mat.userData.body = body.id;
       applySkin(mat, body.skin);
       if (body.skin?.live) liveTargets.push({ id: body.id, material: mat, skin: body.skin });
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), mat);
@@ -236,6 +244,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       if (body.skin?.clouds) {
         const cm = cloudMaterial(placeholder);
         cm.userData.host = mat.userData.host;
+        cm.userData.body = body.id;
         clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 96, 48), cm);
         cm.uniforms.uMap.value = new THREE.Texture(); // invisible until the cloud map arrives
         loadTexture(body.skin.clouds).then((t) => { if (t) cm.uniforms.uMap.value = t; });
@@ -723,7 +732,8 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     }
     if (o.type === 'lagrange') return lagrangePosition(o, jd, v);
     if (o.type === 'moon') {
-      toScene(moonOffsetKm(b.moon, jd), v).multiplyScalar(1 / AU_KM);
+      // the moon series run on TT (UT + ΔT ≈ 69 s, which is ~37″ of the Moon's motion)
+      toScene(moonOffsetKm(b.moon, jd + deltaT(jd) / 86400), v).multiplyScalar(1 / AU_KM);
       localMap(nodes[o.parent].body, v);
       return addParent(v, o.parent, jd);
     }
@@ -795,6 +805,80 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const rE = Re * compressRadii(r / R);
     return v.multiplyScalar((rE * Math.pow(r / rE, scaleMix)) / r);
   }
+
+  // ---- eclipse shadows (#30) ----------------------------------------------------------------
+  // Each lit body takes the one occluder most nearly between it and the Sun; the shader works out,
+  // per point, how much of the Sun's disc it hides, in true geometry (so ENHANCED scale is fine).
+  const OCCLUDERS = { earth: ['moon'], moon: ['earth'], jupiter: ['io', 'europa', 'ganymede', 'callisto'], io: ['jupiter'], europa: ['jupiter'],
+    ganymede: ['jupiter'], callisto: ['jupiter'], saturn: ['titan'], titan: ['saturn'], mars: ['phobos', 'deimos'], pluto: ['charon'], charon: ['pluto'] };
+  // sunlight refracted through an occluder's atmosphere into its umbra (Earth: the red eclipsed Moon), MODELLED
+  const UMBRA_TINT = { earth: [0.42, 0.13, 0.05] };
+  const shadowTmp = { c: new THREE.Vector3(), s: new THREE.Vector3(), o: new THREE.Vector3(), best: new THREE.Vector3() };
+  function updateShadows(jd) {
+    if (!model?.isSol) return;
+    const truePos = {};
+    unmapped = true;
+    try {
+      const at = (id) => (truePos[id] ??= scenePosition(id, jd, new THREE.Vector3()));
+      for (const m of lit) {
+        const id = m.userData.body, u = m.uniforms, cands = (OCCLUDERS[id] ?? []).filter((o) => nodes[o] && !nodes[o].body._missing);
+        u.uOccOn.value = 0;
+        if (!cands.length || !nodes[id]) continue;
+        const c = shadowTmp.c.copy(at(id)), toS = shadowTmp.s.copy(at(model.starId)).sub(c);
+        const rs = Math.asin(Math.min(1, nodes[model.starId].body.radiusKm / AU_KM / toS.length())), rb = nodes[id].body.radiusKm / AU_KM;
+        let best = null;
+        for (const o of cands) {
+          const v = shadowTmp.o.copy(at(o)).sub(c);
+          if (v.dot(toS) <= 0) continue; // behind the body
+          const ro = Math.asin(Math.min(1, nodes[o].body.radiusKm / AU_KM / v.length()));
+          // could its disc reach the Sun's from somewhere on this body? (the body's own size widens the margin)
+          const margin = v.angleTo(toS) - rs - ro - Math.asin(Math.min(1, rb / v.length())) * 1.05;
+          if (margin < 0 && (!best || margin < best.margin)) best = { o, margin, v: shadowTmp.best.copy(v) };
+        }
+        if (!best) continue;
+        u.uOccOn.value = 1;
+        u.uOccRel.value.copy(best.v).multiplyScalar(AU_KM);
+        u.uOccR.value = nodes[best.o].body.radiusKm;
+        u.uSunRel.value.copy(toS).multiplyScalar(AU_KM);
+        u.uSunR.value = nodes[model.starId].body.radiusKm;
+        u.uBodyR.value = nodes[id].body.radiusKm;
+        u.uCentreW.value.copy(nodes[id].pos).add(root.position);
+        u.uUmbraTint.value.setRGB(...(UMBRA_TINT[best.o] ?? [0, 0, 0]));
+      }
+    } finally { unmapped = false; }
+  }
+
+  // ---- eclipse outlines on Earth (#30) ----------------------------------------------------------
+  // During a solar eclipse: the umbra (or antumbra) and penumbra where they meet the ground now,
+  // and the path of totality/annularity (centre line and limits) turning with the Earth.
+  let eclipseLines = null;
+  const ECL_STYLE = { umbra: [0xff3355, 2.5, 0.95], penumbra: [0xffaa44, 1.6, 0.7], centre: [0xffffff, 1.4, 0.75], north: [0xff6688, 1.2, 0.6], south: [0xff6688, 1.2, 0.6] };
+  function updateEclipseLines(jd) {
+    const e = model?.isSol && nodes.earth && !surface ? solarEclipseAt(jd) : null;
+    if (!e) { if (eclipseLines) for (const l of Object.values(eclipseLines)) l.visible = false; return; }
+    if (!eclipseLines) {
+      eclipseLines = {};
+      for (const [k, [color, width, opacity]] of Object.entries(ECL_STYLE)) {
+        const l = new LineSegments2(new LineSegmentsGeometry(), new LineMaterial({ color, linewidth: width, transparent: true, opacity, depthWrite: false, resolution: fat.resolution }));
+        l.frustumCulled = false;
+        root.add(l);
+        eclipseLines[k] = l;
+      }
+    }
+    const E = nodes.earth, k = (displayRadius(E.body) / trueRadius(E.body)) * 1.004 / AU_KM;
+    const toS = (v) => { const p = toScene(v, tmpE).multiplyScalar(k).add(E.pos); return [p.x, p.y, p.z]; };
+    const set = (line, pts) => { // pts: inertial km or null (breaks)
+      const seg = [];
+      for (let i = 1; i < pts.length; i++) if (pts[i - 1] && pts[i]) seg.push(...toS(pts[i - 1]), ...toS(pts[i]));
+      line.visible = seg.length > 0;
+      if (seg.length) { line.geometry.dispose(); line.geometry = new LineSegmentsGeometry().setPositions(seg); }
+    };
+    const o = shadowOutlines(jd);
+    set(eclipseLines.umbra, o.umbra.map((q) => q && fixedToInertial(jd, q)));
+    set(eclipseLines.penumbra, o.penumbra.map((q) => q && fixedToInertial(jd, q)));
+    for (const key of ['centre', 'north', 'south']) set(eclipseLines[key], (e.path?.[key] ?? []).map((g) => inertialPoint(jd, g.lat, g.lon)));
+  }
+  const tmpE = new THREE.Vector3();
 
   // ---- focus & camera flight ---------------------------------------------------------
   let focusId = 'sun';
@@ -1000,7 +1084,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     }
   }
   /** Place the camera on the surface for this frame (after positions and orientations are set). */
-  function updateSurface() {
+  function updateSurface(jd) {
     const s = surface, n = nodes[s.id];
     root.updateMatrixWorld(true);
     const centre = n.group.getWorldPosition(sv.c);
@@ -1027,7 +1111,11 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const sunDir = star.group.getWorldPosition(sv.c).sub(p);
     const sun = altAz(f, sunDir.toArray());
     const air = DAY_SKY[s.id];
-    const day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
+    let day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
+    // a solar eclipse dims the day by the share of the Sun the Moon hides; totality brings out the stars (#30)
+    const llNow = s.sphere ? dirToLatLon(s.local.toArray()) : null;
+    s.eclipse = s.id === 'earth' && llNow && model.isSol ? eclipseDaylight(jd, llNow.lat, llNow.lon, surfacePoint) : null;
+    if (s.eclipse) day *= s.eclipse.light;
     if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
@@ -1040,7 +1128,8 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const giant = (n.body.radiusKm ?? 0) > 20000;
     const text = `${giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON'} ${n.body.name.toUpperCase()} · ${where}`;
     const look = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
-    const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°`;
+    const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ' · TOTAL ECLIPSE: TOTALITY' : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN`) : '';
+    const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
     const sub = `${look} · ${sunTxt} · FOV ${Math.round(s.fov)}°${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
@@ -1170,6 +1259,8 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
     const near = Math.min(1e-7, Math.max(1e-15, camera.position.length() * 1e-3));
     if (!surface && Math.abs(near - camera.near) / camera.near > 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
     for (const m of lit) m.uniforms.uSunPos.value.copy((nodes[m.userData.host] ?? nodes[model.starId]).pos).add(root.position);
+    updateShadows(jd);
+    updateEclipseLines(jd);
     updateTracks(jd);
     for (const id in nodes) {
       const c = nodes[id].clouds;
@@ -1183,7 +1274,7 @@ export function createSystemView(container, { clock, onSelect, onFrame, onPickSt
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
-    if (surface) { updateSurface(); surfaceSky(); }
+    if (surface) { updateSurface(jd); surfaceSky(); }
     else {
       controls.minDistance = viewEnvelope(nodes[focusId].body) * 1.3;
       controls.update();

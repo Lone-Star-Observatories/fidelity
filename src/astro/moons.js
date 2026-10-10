@@ -1,7 +1,8 @@
 // Natural satellites: parent-relative positions, J2000 ecliptic, km.
 //
-// The Moon: a truncated ELP-2000/82 series (Meeus, Astronomical Algorithms, ch. 47; the
-// largest terms) — about 10″ in longitude and a few km in distance against JPL DE440.
+// The Moon: the ELP-2000/82 series as given by Meeus (Astronomical Algorithms, ch. 47: the 60
+// largest terms in each of longitude, distance and latitude), precessed rigorously to J2000 —
+// about 10″ and a few km against JPL DE440.
 // Other moons: JPL SSD mean orbital elements (https://ssd.jpl.nasa.gov/sats/elem/), referred
 // to each moon's local Laplace plane, with apsidal and nodal precession. Good to a degree
 // or two along the orbit; JPL Horizons is the ephemeris-grade source.
@@ -29,7 +30,14 @@ const LR = [
   [1, 0, -1, 0, -5163, -8379], [1, 1, 0, 0, 4987, -16675], [2, -1, 1, 0, 4036, -12831],
   [2, 0, 2, 0, 3994, -10445], [4, 0, 0, 0, 3861, -11650], [2, 0, -3, 0, 3665, 14403],
   [0, 1, -2, 0, -2689, -7003], [2, 0, -1, 2, -2602, 0], [2, -1, -2, 0, 2390, 10056],
-  [1, 0, 1, 0, -2348, 6322], [2, -2, 0, 0, 2236, -9884],
+  [1, 0, 1, 0, -2348, 6322], [2, -2, 0, 0, 2236, -9884], [0, 1, 2, 0, -2120, 5751], [0, 2, 0, 0, -2069, 0],
+  [2, -2, -1, 0, 2048, -4950], [2, 0, 1, -2, -1773, 4130], [2, 0, 0, 2, -1595, 0], [4, -1, -1, 0, 1215, -3958],
+  [0, 0, 2, 2, -1110, 0], [3, 0, -1, 0, -892, 3258], [2, 1, 1, 0, -810, 2616], [4, -1, -2, 0, 759, -1897],
+  [0, 2, -1, 0, -713, -2117], [2, 2, -1, 0, -700, 2354], [2, 1, -2, 0, 691, 0], [2, -1, 0, -2, 596, 0],
+  [4, 0, 1, 0, 549, -1423], [0, 0, 4, 0, 537, -1117], [4, -1, 0, 0, 520, -1571], [1, 0, -2, 0, -487, -1739],
+  [2, 1, 0, -2, -399, 0], [0, 0, 2, -2, -381, -4421], [1, 1, 1, 0, 351, 0], [3, 0, -2, 0, -340, 0],
+  [4, 0, -3, 0, 330, 0], [2, -1, 2, 0, 327, 0], [0, 2, 1, 0, -323, 1165], [1, 1, -1, 0, 299, 0],
+  [2, 0, 3, 0, 294, 0], [2, 0, -1, -2, 0, 8752],
 ];
 // [D, M, M′, F, Σb (1e-6°)]
 const B = [
@@ -37,6 +45,15 @@ const B = [
   [2, 0, -1, 1, 55413], [2, 0, -1, -1, 46271], [2, 0, 0, 1, 32573], [0, 0, 2, 1, 17198],
   [2, 0, 1, -1, 9266], [0, 0, 2, -1, 8822], [2, -1, 0, -1, 8216], [2, 0, -2, -1, 4324],
   [2, 0, 1, 1, 4200], [2, 1, 0, -1, -3359], [2, -1, -1, 1, 2463], [2, -1, 0, 1, 2211], [2, -1, -1, -1, 2065],
+  [0, 1, -1, -1, -1870], [4, 0, -1, -1, 1828], [0, 1, 0, 1, -1794], [0, 0, 0, 3, -1749], [0, 1, -1, 1, -1565],
+  [1, 0, 0, 1, -1491], [0, 1, 1, 1, -1475], [0, 1, 1, -1, -1410], [0, 1, 0, -1, -1344], [1, 0, 0, -1, -1335],
+  [0, 0, 3, 1, 1107], [4, 0, 0, -1, 1021], [4, 0, -1, 1, 833], [0, 0, 1, -3, 777], [4, 0, -2, 1, 671],
+  [2, 0, 0, -3, 607], [2, 0, 2, -1, 596], [2, -1, 1, -1, 491], [2, 0, -2, 1, -451], [0, 0, 3, -1, 439],
+  [2, 0, 2, 1, 422], [2, 0, -3, -1, 421], [2, 1, -1, 1, -366], [2, 1, 0, 1, -351], [4, 0, 0, 1, 331],
+  [2, -1, 1, 1, 315], [2, -2, 0, -1, 302], [0, 0, 1, 3, -283], [2, 1, 1, -1, -229], [1, 1, 0, -1, 223],
+  [1, 1, 0, 1, 223], [0, 1, -2, -1, -220], [2, 1, -1, -1, -220], [1, 0, 1, 1, -185], [2, -1, -2, -1, 181],
+  [0, 1, 2, 1, -177], [4, 0, -2, -1, 176], [4, -1, -1, -1, 166], [1, 0, 1, -1, -164], [4, 0, 1, -1, 132],
+  [1, 0, -1, -1, -119], [4, -1, 0, -1, 115], [2, -2, 0, 1, 107],
 ];
 
 /** Geocentric Moon, J2000 ecliptic [x, y, z] km. */
@@ -57,9 +74,23 @@ export function moonGeocentric(jd) {
   for (const [d, m, mp, f, b] of B) sb += b * (m ? E ** Math.abs(m) : 1) * sin(d * D + m * M + mp * Mp + f * F);
   sl += 3958 * sin(A1) + 1962 * sin(Lp - F) + 318 * sin(A2);
   sb += -2235 * sin(Lp) + 382 * sin(A3) + 175 * sin(A1 - F) + 175 * sin(A1 + F) + 127 * sin(Lp - Mp) - 115 * sin(Lp + Mp);
-  const lon = Lp + sl / 1e6 - 1.3969713 * T; // mean equinox of date → J2000 (general precession)
-  const lat = sb / 1e6, dist = 385000.56 + sr / 1000;
+  // ecliptic and mean equinox of date → J2000 (Meeus eq. 21.5: rigorous ecliptic precession)
+  const [lon, lat] = eclipticToJ2000(Lp + sl / 1e6, sb / 1e6, T);
+  const dist = 385000.56 + sr / 1000;
   return [dist * cos(lat) * cos(lon), dist * cos(lat) * sin(lon), dist * sin(lat)];
+}
+
+/** Ecliptic longitude/latitude (deg) of the date T (Julian centuries from J2000) → J2000 ecliptic (Meeus 21.5). */
+export function eclipticToJ2000(lonDeg, latDeg, T) {
+  const t = -T, AS = 1 / 3600; // from the date back to J2000
+  const eta = ((47.0029 - 0.06603 * T + 0.000598 * T * T) * t + (-0.03302 + 0.000598 * T) * t * t + 0.00006 * t ** 3) * AS;
+  const Pi = 174.876384 + (3289.4789 * T + 0.60622 * T * T - (869.8089 + 0.50491 * T) * t + 0.03536 * t * t) * AS;
+  const p = ((5029.0966 + 2.22226 * T - 0.000042 * T * T) * t + (1.11113 - 0.000042 * T) * t * t - 0.000006 * t ** 3) * AS;
+  const A = cos(eta) * cos(latDeg) * sin(Pi - lonDeg) - sin(eta) * sin(latDeg);
+  const Bv = cos(latDeg) * cos(Pi - lonDeg);
+  const Cv = cos(eta) * sin(latDeg) + sin(eta) * cos(latDeg) * sin(Pi - lonDeg);
+  const lon = p + Pi - Math.atan2(A, Bv) / DEG;
+  return [lon, Math.asin(Math.max(-1, Math.min(1, Cv))) / DEG];
 }
 
 // ---- other moons -------------------------------------------------------------------------------

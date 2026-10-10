@@ -182,6 +182,10 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .host-row > span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .host-row > span.mono { flex-shrink: 0; white-space: nowrap; text-align: right; }
 .host-row:hover { background: rgba(255, 204, 153, 0.25); }
+/* sky events (#30): title over a wrapping detail line */
+.host-row.event-row { flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
+.host-row.event-row > span:first-child { color: var(--orange); }
+.host-row.event-row > span.mono { white-space: normal; text-align: left; font-size: 12px; opacity: 0.85; }
 .host-row.on { background: var(--orange); color: #000; }
 .radius-list { grid-template-columns: repeat(4, 1fr); }
 .panel h2.sel-name { font-size: 24px; color: var(--gold); }

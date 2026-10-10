@@ -3,19 +3,42 @@
 
 import snapshot from '#snapshot';
 import { dateFromJd } from '../astro/time.js';
+import { interpolateDaily } from '../astro/eclipses.js';
 
 const months = new Map(); // `${body}|${YYYY-MM}` → Promise<points | null>
+const loaded = new Map(); // `${body}|${YYYY-MM}` → points, once they have arrived
+
+/** Every loaded daily row [jd, x, y, z] (AU, TDB) for Horizons body `body` (e.g. '399' for Earth). */
+export const loadedRows = (body) => [...loaded].filter(([k]) => k.startsWith(`${body}|`)).flatMap(([, pts]) => pts);
+/** A sync Earth ephemeris (jdTT → heliocentric AU, or null) from whatever Horizons months have loaded. */
+export function earthFromHorizons() {
+  let runs = [], size = -1;
+  return (jd) => {
+    if (loaded.size !== size) {
+      size = loaded.size; runs = [];
+      for (const r of loadedRows('399').sort((a, b) => a[0] - b[0])) {
+        const last = runs.at(-1);
+        if (last && Math.abs(r[0] - last.at(-1)[0] - 1) < 1e-6) last.push(r); else if (!last || r[0] !== last.at(-1)[0]) runs.push([r]);
+      }
+    }
+    for (const run of runs) { const v = interpolateDaily(run, jd); if (v) return v; }
+    return null;
+  };
+}
+/** Start loading `body`'s month containing `jd` (so loadedRows can use it later). */
+export const preloadMonth = (body, jd) => load(body, monthOf(jd)).catch(() => null);
 
 function load(body, month) {
   const key = `${body}|${month}`;
   if (!months.has(key) && snapshot) { // standalone: the months bundled in the snapshot, else Kepler
     const pts = snapshot.horizons?.[`/api/horizons/vectors?body=${body}&month=${month}`];
+    if (pts) loaded.set(key, pts);
     months.set(key, pts ? Promise.resolve(pts) : Promise.reject(new Error('not bundled')));
   }
   if (!months.has(key)) {
     months.set(key, fetch(`/api/horizons/vectors?body=${body}&month=${month}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((j) => j.value.points)
+      .then((j) => { loaded.set(key, j.value.points); return j.value.points; })
       .catch((err) => { months.delete(key); throw err; }));
   }
   return months.get(key);
@@ -54,12 +77,8 @@ export function createHorizonsEphemeris(bodies, onStatus = () => {}) {
       const month = monthOf(jd);
       const pts = ready.get(`${body.horizons}|${month}`);
       if (!pts) { ensure(body.horizons, month); return null; }
-      const t = jd - pts[0][0];
-      const i = Math.max(0, Math.min(pts.length - 2, Math.floor(t)));
-      const [j0, ...a] = pts[i];
-      const [, ...b] = pts[i + 1];
-      const f = Math.max(0, Math.min(1, jd - j0));
-      return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+      // cubic through the daily vectors (linear would cut ~5,000 km inside Earth's orbit between them)
+      return interpolateDaily(pts, Math.max(pts[0][0], Math.min(pts[pts.length - 1][0], jd)));
     },
   };
 }

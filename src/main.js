@@ -31,6 +31,10 @@ import { spiralAngleDeg, SOLAR } from './views/system/solarfield.js';
 import { fmtYear, span, humanScale, LIFETIME_YEARS } from './data/lighttime.js';
 import { POP_COLORS } from './views/system/belts.js';
 import { fetchDsn, ephemerisEnd } from './data/spacecraft-ephem.js';
+import { createSkyEventsPanel } from './panels/skyevents.js';
+import { requestEvents } from './data/skyevents.js';
+import { loadedRows, earthFromHorizons, preloadMonth } from './data/horizons.js';
+import { useEarthEphemeris } from './astro/eclipses.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -41,6 +45,11 @@ const h = (tag, props = {}, ...kids) => {
 const STANDALONE = import.meta.env.MODE === 'standalone';
 
 const clock = createClock();
+// ?t=2027-08-02T10:06:38Z sets the ship's clock (shareable moments; ?hold to freeze it there)
+{
+  const q = new URLSearchParams(location.search), t = Date.parse(q.get('t') ?? '');
+  if (Number.isFinite(t)) { clock.set(jdFromDate(new Date(t))); if (q.has('hold')) clock.toggleHold(); }
+}
 let route = { level: 'system', system: 'sol', body: null };
 let lastFrame = null;
 let currentSystem = 'sol'; // the system the ship is "in"; Navigation looks outward from it
@@ -314,6 +323,8 @@ function renderLegend() {
 const navList = createNavList({ h, pill, fmt, fetchPlanets, fetchClusters,
   go: (r) => { if (r.select) quadrantSel = r.select; go(r); },
   onSelectStar: (id) => selectNavStar(id), onRerender: () => { if (route.level === 'navigation') renderNavPanel(); } });
+const skyPanel = createSkyEventsPanel({ h, row, pill, go, clock, system });
+const earthHz = earthFromHorizons();
 const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
 
 const sectorName = (m) => (m.isSol ? 'SECTOR 001' : `${fmt(m.distLy, 1)} LY FROM SOL`);
@@ -504,6 +515,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
   }
+  if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
   if (b.explain) extra.push(h('h3', { textContent: 'WHAT IS THIS' }), h('p', { className: 'note explain', textContent: b.explain }));
   if (b.kind === 'lagrange point') {
     const [a, c] = (b.pair ?? 'sun-earth').split('-').map((x) => x.toUpperCase());
@@ -968,6 +980,14 @@ function tick() {
   if (document.activeElement !== dateIn) dateIn.value = isoDay(date);
   const m = system.model;
 
+  // sky events (#30): the Sun from JPL Horizons where its months are loaded, Standish elsewhere
+  const hz = settings.get('ephemeris') === 'horizons';
+  useEarthEphemeris(hz ? earthHz : null);
+  if (m?.isSol) {
+    if (hz) preloadMonth('399', clock.jd);
+    requestEvents(clock.jd, () => (hz ? loadedRows('399') : null));
+    skyPanel.tick();
+  }
   const y = date.getUTCFullYear();
   const outOfRange = m?.isSol && settings.get('ephemeris') === 'kepler' && (y < VALID_RANGE.fromYear || y > VALID_RANGE.toYear);
   if (live.range) live.range.textContent = outOfRange ? `⚠ ${y} IS OUTSIDE THE KEPLER MODEL RANGE (1800–2050) — POSITIONS DEGRADE` : '';

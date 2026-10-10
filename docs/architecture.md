@@ -192,6 +192,22 @@ FIELDS draws `solarfield.js` (Parker spiral, current sheet) in the Sun's equator
 turning at the Carrington rate. Points of interest carry `explain` text; Lagrange points get
 the `lagrangeDiagram` SVG (`src/panels/explainers.js`).
 
+## Eclipses and sky events (#30)
+
+`src/astro/eclipses.js` computes solar and lunar eclipses, Mercury/Venus transits, lunar
+occultations, Galilean-moon transits/shadows/eclipses (plus Jupiter's mutual-event season) and
+alignments (oppositions, greatest elongations, conjunctions, parades) from the app's own
+ephemeris: the Moon (Meeus ch. 47, all 60+60 terms, rigorous precession to J2000), the Sun
+from Earth's heliocentric position (JPL Horizons daily vectors, cubic-interpolated, when
+loaded via `useEarthEphemeris`; Standish elements otherwise), TT = UT + ΔT. Solar shadows are
+limb-tangent cones on the WGS-84 ellipsoid; lunar ones use Danjon's enlargement. The event list
+runs in a worker (`src/data/skyevents.*`) for −45 d…+2 yr around the clock. In the System View
+each planet material darkens per fragment by the fraction of the Sun its nearest occluder
+hides (true geometry, so ENHANCED scale is fine; Earth's umbra tints the Moon red), Earth
+shows the live umbra/penumbra outlines and the path of totality, the surface view dims the
+sky by the local obscuration, and body panels list the events (`src/panels/skyevents.js`).
+`?t=<ISO time>[&hold]` sets the ship's clock from the URL.
+
 ## Milky Way model
 
 `src/views/galaxy/model.js` builds the galaxy as seeded particle layers (thin and thick disc,
