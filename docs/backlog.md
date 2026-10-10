@@ -40,6 +40,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 34 | **Unified time control** | One time control on its own bottom row, live to Gyr/s, replacing the per-view deep/galactic time. |
 | 35 | **COMMS and live-signals map** | COMMS section for anything with live links (DSN, SatNOGS, ISS video/ham, Moon and Mars telemetry); Earth map of radio stations, SDR receivers, webcams and traffic cams. |
 | 36 | **From the surface** | Planet/Moon/Object views show real landed imagery (Apollo, Mars rovers, Venera, Huygens, Hayabusa…) or a generated landscape badged IMAGINED. |
+| 37 | **Surface sites of note** | Apollo, Luna, Chang'e, Mars rover traverses, Venera, Huygens, small-body touchdowns; candidate/planned sites badged; Starman's Tesla Roadster (Horizons −143205) in orbit. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
