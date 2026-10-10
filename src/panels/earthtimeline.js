@@ -5,7 +5,7 @@
 // range and sources. GO TO sets the ship's clock there (deep time where the clock supports it).
 
 import { TIMELINE, TIMELINE_GROUPS } from '../data/earth-timeline.js';
-import { orbitAt, summer65N, precessionIndex, perihelionLongitude, perihelionSeason, nextPerihelionAtJuneSolstice } from '../astro/milankovitch.js';
+import { orbitAt, insolation, S0_MARS, summer65N, precessionIndex, perihelionLongitude, perihelionSeason, nextPerihelionAtJuneSolstice } from '../astro/milankovitch.js';
 import { leapScenarios, dayLength, impactEnergyMt, craterKm, recurrenceYears, LEAP_SECONDS_END } from '../astro/earthtime.js';
 import { deltaT } from '../astro/eclipses.js';
 import { jdFromDate } from '../astro/time.js';
@@ -14,14 +14,15 @@ const SVGNS = 'http://www.w3.org/2000/svg';
 const svg = (tag, attrs = {}, ...kids) => { const el = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v); el.append(...kids); return el; };
 const DEG = 180 / Math.PI;
 const CALENDAR_YEARS = 273000;
-const fmtYears = (y) => { const a = Math.abs(y); const s = a >= 1e9 ? `${+(a / 1e9).toFixed(2)} GYR` : a >= 1e6 ? `${+(a / 1e6).toFixed(2)} MYR` : a >= 1e4 ? `${Math.round(a / 1e3)} KYR` : `${Math.round(a).toLocaleString()} YR`; return y < 0 ? `${s} AGO` : `${s} AHEAD`; };
+const SUP = (n) => String(n).replace(/[0-9-]/g, (c) => '⁰¹²³⁴⁵⁶⁷⁸⁹'['0123456789'.indexOf(c)] ?? '⁻');
+const fmtYears = (y) => { const a = Math.abs(y); const s = a >= 1e12 ? `~${(a / 10 ** Math.floor(Math.log10(a))).toFixed(0)} × 10${SUP(Math.floor(Math.log10(a)))} YR` : a >= 1e9 ? `${+(a / 1e9).toFixed(2)} GYR` : a >= 1e6 ? `${+(a / 1e6).toFixed(2)} MYR` : a >= 1e4 ? `${Math.round(a / 1e3)} KYR` : `${Math.round(a).toLocaleString()} YR`; return y < 0 ? `${s} AGO` : `${s} AHEAD`; };
 const fmtMt = (mt) => (mt >= 1e6 ? `${(mt / 1e6).toFixed(1)} MILLION MT` : mt >= 1e3 ? `${Math.round(mt).toLocaleString()} MT` : `${mt.toFixed(mt < 10 ? 1 : 0)} MT`);
 const fmtRecur = (y) => (y >= 1e6 ? `~EVERY ${+(y / 1e6).toFixed(y >= 1e7 ? 0 : 1)} MYR` : y >= 1e3 ? `~EVERY ${Math.round(y / 1e3)} KYR` : `~EVERY ${Math.round(y)} YR`);
 
 /** A single-series line chart: one y axis, a marker at `mark` (the ship's clock) and `today`. */
-function lineChart({ xs, ys, xMin, xMax, yMin, yMax, yTicks, xTicks, label, mark, today = 0, unit = '' }) {
+function lineChart({ xs, ys, xMin, xMax, yMin, yMax, yTicks, xTicks, label, mark, today = 0, unit = '', band = null, invert = false }) {
   const W = 360, H = 104, L = 40, R = 16, T = 14, B = 18;
-  const x = (v) => L + ((v - xMin) / (xMax - xMin)) * (W - L - R), y = (v) => T + (1 - (v - yMin) / (yMax - yMin)) * (H - T - B);
+  const x = (v) => L + ((v - xMin) / (xMax - xMin)) * (W - L - R), y = (v) => { const f = (Math.min(yMax, Math.max(yMin, v)) - yMin) / (yMax - yMin); return T + (invert ? f : 1 - f) * (H - T - B); };
   let d = '';
   for (let i = 0; i < xs.length; i++) if (xs[i] >= xMin && xs[i] <= xMax) d += `${d ? 'L' : 'M'}${x(xs[i]).toFixed(1)},${y(ys[i]).toFixed(1)}`;
   const kids = [
@@ -31,6 +32,11 @@ function lineChart({ xs, ys, xMin, xMax, yMin, yMax, yTicks, xTicks, label, mark
     ...xTicks.map(([v, t]) => svg('text', { x: x(v), y: H - 5, 'text-anchor': 'middle', class: 'fc-label' }, t)),
   ];
   if (today >= xMin && today <= xMax) kids.push(svg('line', { x1: x(today), x2: x(today), y1: T, y2: H - B, class: 'fc-ref' }));
+  if (band) {
+    const idx = xs.map((v, i) => i).filter((i) => xs[i] >= xMin && xs[i] <= xMax);
+    const pts = [...idx.map((i) => `${x(xs[i]).toFixed(1)},${y(band[0][i]).toFixed(1)}`), ...idx.reverse().map((i) => `${x(xs[i]).toFixed(1)},${y(band[1][i]).toFixed(1)}`)];
+    if (pts.length) kids.push(svg('path', { d: `M${pts.join('L')}Z`, class: 'fc-band' }));
+  }
   kids.push(svg('path', { d, class: 'fc-line' }));
   if (mark != null && mark >= xMin && mark <= xMax) kids.push(svg('line', { x1: x(mark), x2: x(mark), y1: T, y2: H - B, class: 'fc-mark' }));
   return svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'future-chart', role: 'img', 'aria-label': label }, ...kids);
@@ -134,7 +140,41 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
     }
     return [dl];
   }
-  const WIDGETS = { milankovitch, perihelion, keeling, spin, impact: impactTable, comet };
+  let paleo = null, mars = null;
+  const lazy = (which) => {
+    if (which === 'paleo' && !paleo) { paleo = 'loading'; import('../data/paleo.js').then((m) => { paleo = m; render(); }); }
+    if (which === 'mars' && !mars) { mars = 'loading'; import('../data/la2004-mars.js').then((m) => { mars = m.default; render(); }); }
+  };
+  const pastTicks = (ka) => (ka > 1000 ? [[-3000, '3 MA'], [-2000, '2 MA'], [-1000, '1 MA'], [0, 'NOW']] : [[-800, '800 KA'], [-600, '600'], [-400, '400'], [-200, '200'], [0, 'NOW']]);
+  function paleoRecords() {
+    lazy('paleo');
+    if (!paleo || paleo === 'loading') return [h('p', { className: 'note', textContent: 'LOADING THE PALEOCLIMATE RECORDS…' })];
+    const mark = shipKyr(), xsOf = (rows) => rows.map((r) => -r[0]);
+    const { LR04, CO2, SEA_LEVEL } = paleo;
+    return [
+      h('div', { className: 'explain-figure' }, lineChart({ xs: xsOf(LR04), ys: LR04.map((r) => r[1]), xMin: -3000, xMax: 0, yMin: 2.5, yMax: 5.2, yTicks: [3, 4, 5], xTicks: pastTicks(3000), label: 'ICE VOLUME: BENTHIC δ¹⁸O (‰, MORE ICE DOWN)', mark, today: null, invert: true })),
+      h('div', { className: 'explain-figure' }, lineChart({ xs: xsOf(CO2), ys: CO2.map((r) => r[1]), xMin: -810, xMax: 0, yMin: 160, yMax: 320, yTicks: [180, 240, 300], xTicks: pastTicks(800), label: 'CO₂ IN ANTARCTIC ICE (PPM)', mark, today: null })),
+      h('div', { className: 'explain-figure' }, lineChart({ xs: xsOf(SEA_LEVEL), ys: SEA_LEVEL.map((r) => r[1]), band: [SEA_LEVEL.map((r) => r[2]), SEA_LEVEL.map((r) => r[3])], xMin: -800, xMax: 0, yMin: -150, yMax: 30, yTicks: [-120, -60, 0], xTicks: pastTicks(800), label: 'SEA LEVEL (M VS TODAY, 95% RANGE)', mark, today: null })),
+      h('p', { className: 'note', textContent: 'MEASURED: LR04 stack of 57 benthic δ¹⁸O records (Lisiecki & Raymo 2005); Antarctic ice-core CO₂ composite (Bereiter et al. 2015), 1,000-year means; sea-level stack (Spratt & Lisiecki 2016). The present-day sea-level value carries the stack\'s ±10 m spread. Gold line: the ship\'s clock.' })];
+  }
+  function marsCycles() {
+    lazy('mars');
+    if (!mars || mars === 'loading') return [h('p', { className: 'note', textContent: 'LOADING LASKAR 2004 (MARS)…' })];
+    const xs = [], ob = [], ec = [], qn = [];
+    for (let k = -5000; k <= 1000; k += 2) { const o = orbitAt(mars, k); if (!o) continue; xs.push(k); ob.push(o.eps * DEG); ec.push(o.e); qn.push(insolation(o, 85, 90, S0_MARS)); }
+    const mark = shipKyr(), o = orbitAt(mars, mark), dl = h('dl');
+    if (o) {
+      row(dl, 'MARS AT THE SHIP\'S CLOCK', `OBLIQUITY ${(o.eps * DEG).toFixed(1)}° · E ${o.e.toFixed(3)}`, 'computed', 'Laskar et al. 2004 (Icarus 170, 343)');
+      row(dl, '85° N SUMMER-SOLSTICE INSOLATION', `${insolation(o, 85, 90, S0_MARS).toFixed(0)} W/M²`, 'computed', 'Daily mean at the northern summer solstice (Ls 90°), the forcing on the north polar cap.');
+    }
+    const ticks = [[-5000, '5 MA'], [-3000, '3 MA'], [-1000, '1 MA'], [0, 'NOW'], [1000, '+1']];
+    return [dl,
+      h('div', { className: 'explain-figure' }, lineChart({ xs, ys: ob, xMin: -5000, xMax: 1000, yMin: 10, yMax: 50, yTicks: [15, 25, 35, 45], xTicks: ticks, label: 'MARS OBLIQUITY (°)', mark })),
+      h('div', { className: 'explain-figure' }, lineChart({ xs, ys: ec, xMin: -5000, xMax: 1000, yMin: 0, yMax: 0.13, yTicks: [0, 0.05, 0.1], xTicks: ticks, label: 'MARS ECCENTRICITY', mark })),
+      h('div', { className: 'explain-figure' }, lineChart({ xs, ys: qn, xMin: -5000, xMax: 1000, yMin: 150, yMax: 650, yTicks: [200, 400, 600], xTicks: ticks, label: '85° N SUMMER INSOLATION (W/M²)', mark })),
+      h('p', { className: 'note', textContent: 'COMPUTED from Laskar et al. (2004). About 4–5 million years ago Mars\' mean tilt dropped from ~35° to ~25°; over longer spans it is chaotic, so the record beyond ~10–20 Myr is a range, not a prediction.' })];
+  }
+  const WIDGETS = { paleo: paleoRecords, mars: marsCycles, milankovitch, perihelion, keeling, spin, impact: impactTable, comet };
 
   function card(e) {
     const open = selected === e.id;
@@ -153,12 +193,65 @@ export function createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast
       canGo ? h('div', { className: 'body-list' }, pill(e.years ? `GO ${fmtYears(e.years)} ▸` : 'SHOW ▸', () => goTo(e))) : null)];
   }
 
+  // ---- the log time slider: 66 Myr ago … now … 10¹⁰⁰ years ahead -----------------------------------
+  const PAST_LOG = Math.log10(6.6e7), FUTURE_LOG = 100, SMAX = 1000;
+  const sliderToYears = (v) => (v === 0 ? 0 : v < 0 ? -(10 ** ((-v / SMAX) * PAST_LOG)) : 10 ** ((v / SMAX) * FUTURE_LOG));
+  const yearsToSlider = (y) => (Math.abs(y) < 1 ? 0 : y < 0 ? -Math.round((Math.log10(-y) / PAST_LOG) * SMAX) : Math.round((Math.log10(y) / FUTURE_LOG) * SMAX));
+  // eras (Adams & Laughlin 1997 for the far future), [from, to] years from now
+  const ERAS = [
+    [-6.6e7, -2.58e6, 'CENOZOIC: AFTER THE DINOSAURS', 'Mammals spread; the continents near their present places; a warm world cooling.'],
+    [-2.58e6, -11700, 'THE ICE AGES (PLEISTOCENE)', 'Ice sheets come and go with the orbital cycles.'],
+    [-11700, -1, 'THE HOLOCENE', 'A warm interglacial: farming, cities, writing.'],
+    [-1, 1e3, 'NOW: THE HUMAN AGE', 'CO₂ rising a few ppm a year; seas rising.'],
+    [1e3, 1e6, 'A DELAYED ICE AGE', 'Orbital cycles continue; our CO₂ postpones the next glaciation past ~100,000 years.'],
+    [1e6, 6e8, 'DRIFTING CONTINENTS', 'Plates move on; the next supercontinent in ~200–250 Myr.'],
+    [6e8, 3e9, 'THE BIOSPHERE ENDS', 'CO₂ starvation, the oceans lost, the last microbes.'],
+    [3e9, 8e9, 'THE SUN\'S LAST STAGES', 'Red giant, helium flash, planetary nebula, white dwarf.'],
+    [8e9, 1e14, 'THE STELLIFEROUS ERA ENDS', 'The Local Group merges; red dwarfs burn on for trillions of years; star formation ends ~10¹⁴ years.'],
+    [1e14, 1e40, 'THE DEGENERATE ERA', 'White dwarfs, neutron stars and brown dwarfs; galaxies evaporate; protons may decay.'],
+    [1e40, 1e100, 'THE BLACK-HOLE ERA', 'Only black holes, slowly evaporating by Hawking radiation.'],
+    [1e100, Infinity, 'THE DARK ERA', 'Photons, leptons and ever-thinner radiation; heat death in the standard model.'],
+  ];
+  const eraAt = (y) => ERAS.find(([a, b]) => y >= a && y < b) ?? ERAS[3];
+  let scrub = 0;
+  const near = (y) => TIMELINE.filter((e) => {
+    const w = e.window ?? (e.years != null ? [e.years, e.years] : null);
+    if (!w) return false;
+    if (y >= Math.min(...w) && y <= Math.max(...w)) return true;
+    const ly = Math.sign(y) * Math.log10(Math.abs(y) + 1), lw = w.map((v) => Math.sign(v) * Math.log10(Math.abs(v) + 1));
+    return Math.min(...lw.map((v) => Math.abs(v - ly))) < 0.35;
+  });
+  const SW = 360, xOf = (v) => 6 + ((v + SMAX) / (2 * SMAX)) * (SW - 12);
+  function strip() {
+    return svg('svg', { viewBox: `0 0 ${SW} 46`, class: 'future-chart', role: 'img', 'aria-label': 'Epochs on a logarithmic time axis' },
+      ...ERAS.map(([a, b], i) => { const x0 = xOf(yearsToSlider(Math.max(a, -6.6e7))), x1 = xOf(yearsToSlider(Math.min(b, 1e100))); return svg('rect', { x: x0, y: 4, width: Math.max(0, x1 - x0), height: 10, class: `era-band era-${i % 2}` }); }),
+      ...TIMELINE.filter((e) => e.years != null || e.window).map((e) => { const x = xOf(yearsToSlider(e.years ?? e.window[0])); return svg('line', { x1: x, x2: x, y1: 16, y2: 26, class: 'fc-tick' }); }),
+      ...[[-6.6e7, '66 MA'], [-1e4, '10 KA'], [0, 'NOW'], [1e20, '10²⁰'], [1e40, '10⁴⁰'], [1e70, '10⁷⁰'], [1e100, '10¹⁰⁰ YR']].map(([y, t]) => svg('text', { x: xOf(yearsToSlider(y)), y: 40, 'text-anchor': y === -6.6e7 ? 'start' : y === 1e100 ? 'end' : 'middle', class: 'fc-label' }, t)),
+      svg('line', { x1: xOf(yearsToSlider(scrub)), x2: xOf(yearsToSlider(scrub)), y1: 2, y2: 30, class: 'fc-mark' }));
+  }
+  function sliderInfo() {
+    const [, , name, what] = eraAt(scrub), here = near(scrub), dl = h('dl');
+    row(dl, 'TIME', Math.abs(scrub) < 1 ? 'NOW' : fmtYears(scrub), 'computed', 'Logarithmic: each step multiplies the time.');
+    row(dl, 'ERA', name, 'modelled', what);
+    return [dl,
+      here.length ? h('div', { className: 'host-list' }, here.slice(0, 6).map((e) => h('button', { className: 'host-row event-row', onclick: () => { selected = e.id; render(); } }, h('span', { textContent: e.title }), h('span', { className: 'mono', textContent: e.when })))) : h('p', { className: 'note', textContent: 'NOTHING CATALOGUED RIGHT HERE: SLIDE ON.' }),
+      Math.abs(scrub) >= 1 && Math.abs(scrub) <= 2e9 ? h('div', { className: 'body-list' }, pill(`SET THE CLOCK ${fmtYears(scrub)} ▸`, () => goTo({ years: scrub, go: { level: 'system', system: 'sol', body: 'earth' } }))) : null];
+  }
+  function logSlider() {
+    const figure = h('div', { className: 'explain-figure' }, strip()), info = h('div', { className: 'timeline-info' }, ...sliderInfo().filter(Boolean));
+    const input = h('input', { type: 'range', className: 'tc-slider', min: String(-SMAX), max: String(SMAX), step: '1', value: String(yearsToSlider(scrub)), title: 'Time from now, logarithmic: 66 million years ago to 10¹⁰⁰ years ahead' });
+    input.setAttribute('aria-label', 'Time from now (logarithmic)');
+    input.addEventListener('input', () => { scrub = sliderToYears(Number(input.value)); figure.replaceChildren(strip()); info.replaceChildren(...sliderInfo().filter(Boolean)); });
+    return [figure, input, info];
+  }
+
   function render(id = selected) {
     selected = id;
     panel.replaceChildren(
       h('h2', { textContent: 'EARTH TIMELINE' }),
       h('div', { className: 'kind', textContent: 'FROM THE DINOSAURS\' LAST DAY TO THE END OF THE UNIVERSE' }),
       h('p', { className: 'note', textContent: 'The recorded past is MEASURED, orbital mechanics COMPUTED, projections and scenarios MODELLED with their ranges. "What if" scenarios are labelled. Click an epoch for details; GO sets the ship\'s clock.' }),
+      h('h3', { textContent: 'TIME FROM NOW · LOGARITHMIC' }), h('div', { className: 'timeline-slider' }, ...logSlider()),
       ...TIMELINE_GROUPS.flatMap(([g, title]) => [h('h3', { textContent: title }), h('div', { className: 'host-list' }, TIMELINE.filter((e) => e.group === g).flatMap(card))]),
     );
   }

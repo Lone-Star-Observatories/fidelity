@@ -67,9 +67,46 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
       row(dl, g ? `+${g} GYR` : 'TODAY', `${L.toFixed(2)} L☉ · HABITABLE ZONE ${hz.inner.toFixed(2)}–${hz.outer.toFixed(2)} AU`, 'computed', 'Main-sequence luminosity from Gough (1981); habitable zone from Kopparapu et al. (2013).');
     }
     row(dl, 'EARTH LEAVES THE ZONE', `IN ~${earthLeavesHabitableZone().toFixed(1)} GYR`, 'computed', 'When the runaway-greenhouse limit passes 1 au.');
-    return [dl, h('div', { className: 'host-list' }, SUN_STAGES.map((s) => h('div', { className: 'host-row', title: s.detail },
-      h('span', { textContent: `+${s.gyr} GYR · ${s.label}` }), h('span', { className: 'mono', textContent: s.detail })))),
-    h('p', { className: 'note', textContent: 'Late stages MODELLED by Schröder & Smith (2008); the dates beyond the main sequence carry a few hundred million years of uncertainty.' })];
+    const stages = h('dl');
+    for (const st of SUN_STAGES) row(stages, `+${st.gyr} GYR`, `${st.label}: ${st.detail}`, st.computed ? 'computed' : 'modelled', st.computed ? 'Gough 1981 with Kopparapu et al. 2013.' : 'Schröder & Smith 2008.');
+    return [dl, stages,
+    h('p', { className: 'note', textContent: 'Late stages MODELLED by Schröder & Smith (2008); the dates beyond the main sequence carry a few hundred million years of uncertainty.' }),
+    ...hrSection()];
+  }
+  // The Sun's track on the Hertzsprung–Russell diagram (MIST v1.2, 1 M☉, solar metallicity), loaded on demand.
+  let track = null;
+  const PHASE = { '-1': 'PRE-MAIN SEQUENCE', 0: 'MAIN SEQUENCE', 2: 'RED-GIANT BRANCH', 3: 'CORE HELIUM BURNING', 4: 'EARLY AGB', 5: 'THERMALLY PULSING AGB', 6: 'POST-AGB → WHITE DWARF' };
+  function hrSection() {
+    if (!track) { track = 'loading'; import('../data/sun-track.js').then((m) => { track = m.default; if (selected === 'sun-future') render(); }); }
+    if (track === 'loading') return [h('p', { className: 'note', textContent: 'LOADING THE MIST TRACK…' })];
+    const W = 360, H = 230, L = 34, R = 8, T = 10, B = 22, TMAX = 5.3, TMIN = 3.45, LMIN = -4.5, LMAX = 4.2;
+    const x = (lt) => L + ((TMAX - lt) / (TMAX - TMIN)) * (W - L - R), y = (ll) => T + ((LMAX - ll) / (LMAX - LMIN)) * (H - T - B);
+    const pts = track.filter((r) => r[5] >= 0).map((r) => `${x(r[3]).toFixed(1)},${y(r[2]).toFixed(1)}`);
+    const NOW = 4.57e9, i = track.findIndex((r) => r[0] >= NOW), a = track[i - 1], b = track[i], f = (NOW - a[0]) / (b[0] - a[0]);
+    const now = [a[2] + (b[2] - a[2]) * f, a[3] + (b[3] - a[3]) * f];
+    const first = (ph) => track.find((r) => r[5] === ph);
+    const tip = track.filter((r) => r[5] === 2).reduce((m, r) => (r[4] > m[4] ? r : m));
+    const maxR = track.reduce((m, r) => (r[4] > m[4] ? r : m)), last = track.at(-1);
+    const clump = track.filter((r) => r[5] === 3).reduce((m, r) => (r[2] < m[2] ? r : m)); // settled core helium burning (red clump)
+    // [label, log L, log T, dx, dy, anchor]: placed by hand so they clear each other near the giant branch
+    const marks = [['TODAY', now[0], now[1], -6, 12, 'end'], ['RED GIANT BEGINS', first(2)[2], first(2)[3], -6, -5, 'end'], ['TIP · HELIUM FLASH', tip[2], tip[3], -6, 4, 'end'],
+      ['HELIUM BURNING (RED CLUMP)', clump[2], clump[3], -6, 4, 'end'], ['AGB, LARGEST', maxR[2], maxR[3], -6, -4, 'end'], ['WHITE DWARF', last[2], last[3], 6, 12, 'start']];
+    const fig = svg('svg', { viewBox: `0 0 ${W} ${H}`, class: 'future-chart', role: 'img', 'aria-label': 'The Sun\'s evolutionary track on the Hertzsprung–Russell diagram' },
+      svg('line', { x1: L, x2: L, y1: T, y2: H - B, class: 'fc-axis' }), svg('line', { x1: L, x2: W - R, y1: H - B, y2: H - B, class: 'fc-axis' }),
+      ...[-4, -2, 0, 2, 4].map((v) => svg('text', { x: L - 4, y: y(v) + 3, 'text-anchor': 'end', class: 'fc-label' }, v ? `10${v > 0 ? '⁺' : '⁻'}${'⁰¹²³⁴'[Math.abs(v)]}` : '1')),
+      ...[[5, '100,000 K'], [4.5, '30,000'], [4, '10,000'], [3.7, '5,000']].map(([lt, t]) => svg('text', { x: x(lt), y: H - 6, 'text-anchor': 'middle', class: 'fc-label' }, t)),
+      svg('text', { x: L + 4, y: T + 8, class: 'fc-label fc-title' }, 'LUMINOSITY (L☉) VS SURFACE TEMPERATURE'),
+      svg('path', { d: `M${pts.join('L')}`, class: 'fc-line' }),
+      ...marks.flatMap(([t, ll, lt, dx, dy, anchor]) => [svg('circle', { cx: x(lt), cy: y(ll), r: 3, class: 'fc-dot' }),
+        svg('text', { x: x(lt) + dx, y: y(ll) + dy, 'text-anchor': anchor, class: 'fc-label' }, t)]));
+    const dl = h('dl'), ahead = (r) => `+${((r[0] - NOW) / 1e9).toFixed(2)} GYR`;
+    row(dl, 'RED-GIANT BRANCH BEGINS', `${ahead(first(2))}`, 'modelled', 'MIST v1.2 (Choi et al. 2016), 1 M☉, [Fe/H] = 0.');
+    row(dl, 'TIP AND HELIUM FLASH', `${ahead(tip)} · ${Math.round(10 ** tip[4])} R☉ · ${Math.round(10 ** tip[2]).toLocaleString()} L☉ · ${tip[1].toFixed(2)} M☉`, 'modelled', 'MIST v1.2; Schröder & Smith (2008) give +7.59 Gyr, 256 R☉, 2,730 L☉: the models differ in mass loss.');
+    row(dl, 'CORE HELIUM BURNING', `${ahead(clump)} · ~${Math.round(10 ** clump[2])} L☉ · ${Math.round(10 ** clump[4])} R☉`, 'modelled', 'MIST v1.2: the quiet phase after the helium flash.');
+    row(dl, 'LARGEST (THERMALLY PULSING AGB)', `${ahead(maxR)} · ${Math.round(10 ** maxR[4])} R☉ (${(10 ** maxR[4] * 0.00465).toFixed(2)} AU)`, 'modelled', 'MIST v1.2.');
+    row(dl, 'WHITE DWARF', `${last[1].toFixed(2)} M☉`, 'modelled', 'MIST v1.2; Schröder & Smith (2008): 0.54 M☉.');
+    return [h('h3', { textContent: 'THE SUN ON THE HERTZSPRUNG–RUSSELL DIAGRAM' }), h('div', { className: 'explain-figure' }, fig), dl,
+      h('p', { className: 'note', textContent: `MODELLED: MIST v1.2 track (Choi et al. 2016; Dotter 2016). At today's measured age (4.57 Gyr) this grid track gives ${(10 ** now[0]).toFixed(2)} L☉ and ${Math.round(10 ** now[1]).toLocaleString()} K against the real Sun's 1.00 L☉ and 5,772 K: a grid track, not a solar-calibrated model, so its dates carry ~10% systematic uncertainty.` })];
   }
   function starSection(e) {
     const { massSun, distAu } = e.star, p = passingStarPull(massSun, distAu), dl = h('dl');
@@ -77,14 +114,24 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     row(dl, 'TIDAL STRETCH ACROSS EARTH\'S ORBIT', p.tidal.toExponential(1), 'computed', 'The differential part, which is what could change a planet\'s orbit: negligible.');
     return [dl];
   }
+  /** The Moon: no catalogue publishes lunar impact odds; the one well-known case, as reported. */
+  function moonSection() {
+    const dl = h('dl');
+    row(dl, '2024 YR4 (~60 M) · FEB 2025', '1.7% CHANCE OF HITTING THE MOON, 2032-12-22', 'reported', 'NASA CNEOS, February 2025.');
+    row(dl, '2024 YR4 · APR → JUN 2025', '3.8% → 4.3%', 'reported', 'NASA CNEOS, with JWST astrometry from May 2025 (NASA Planetary Defense blog, 2025-06-05).');
+    row(dl, '2024 YR4 · 2026-03-05', 'RULED OUT: IT MISSES THE MOON', 'reported', 'NASA CNEOS, from JWST observations on 2026-02-18 and 2026-02-26.');
+    return [h('h3', { textContent: 'THE MOON' }), dl,
+      h('p', { className: 'note', textContent: 'Sentry and NEOCC list Earth impacts only; no object currently has a published lunar impact probability. YR4 shows how odds change as observations come in.' }),
+      h('p', { className: 'note' }, 'SOURCE: ', h('a', { href: 'https://science.nasa.gov/solar-system/asteroids/2024-yr4', target: '_blank', rel: 'noopener', textContent: 'NASA: 2024 YR4' }))];
+  }
   function riskSection() {
     if (!risk && !riskLoading) {
       riskLoading = true;
       fetch('/api/impact-risk').then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))).then((j) => { risk = j; }).catch((err) => { risk = { error: err.message }; })
         .finally(() => { riskLoading = false; if (selected === 'impact-risk') render(); });
-      return [h('p', { className: 'note', textContent: 'LOADING NASA SENTRY AND ESA NEOCC…' })];
+      return [h('p', { className: 'note', textContent: 'LOADING NASA SENTRY AND ESA NEOCC…' }), ...moonSection()];
     }
-    if (!risk || risk.error) return [h('p', { className: 'warn', textContent: 'Risk lists unavailable: start the local backend (npm start) and go online.' })];
+    if (!risk || risk.error) return [h('p', { className: 'warn', textContent: 'Risk lists unavailable: start the local backend (npm start) and go online.' }), ...moonSection()];
     const list = (title, src, fmt) => (src?.rows ? [h('h3', { textContent: `${title} · ${src.count} OBJECTS` }),
       h('div', { className: 'host-list' }, src.rows.slice(0, 12).map((r) => h('div', { className: 'host-row', title: fmt.title(r) }, h('span', { textContent: fmt.name(r) }), h('span', { className: 'mono', textContent: fmt.line(r) })))),
       h('p', { className: 'note', textContent: `${src.fetched ? `FETCHED ${src.fetched.slice(0, 16).replace('T', ' ')} UTC` : ''}${src.updated ? ` · LIST UPDATED ${src.updated}` : ''}. Sorted by cumulative Palermo scale (0 = as risky as the background; −2 = 1% of it).` })]
@@ -93,7 +140,7 @@ export function createFutureEventsPanel({ h, pill, row, badge, go, clock, toast,
     const tdl = h('dl');
     row(tdl, 'HIGHEST TORINO RATING NOW', String(torino), 'computed', 'Torino scale 0–10 across both lists; 0 = no hazard, 1 = normal (no unusual danger), 2–4 = meriting attention by astronomers, 5+ = threatening.');
     const size = (m) => (m == null ? '?' : m >= 1000 ? `${(m / 1000).toFixed(1)} KM` : `${Math.round(m)} M`);
-    return [tdl,
+    return [tdl, ...moonSection(),
       ...list('NASA SENTRY', risk.sentry, { name: (r) => r.name.toUpperCase(), line: (r) => `${r.years} · P ${r.ip?.toExponential(1)} · PS ${r.psCum} · ${size(r.diameterM)}`, title: (r) => `${r.nImp} potential impacts ${r.years}; cumulative probability ${r.ip}; Palermo ${r.psCum} (max ${r.psMax}); Torino ${r.ts ?? 0}; ~${size(r.diameterM)}; v∞ ${r.vInfKms?.toFixed(1)} km/s; last observed ${r.lastObs}` }),
       ...list('ESA NEOCC', risk.neocc, { name: (r) => `${r.des}${r.name ? ` ${r.name}` : ''}`.toUpperCase(), line: (r) => `${r.date.slice(0, 10)} · P ${r.ipCum?.toExponential(1)} · PS ${r.psCum} · ${size(r.diameterM)}`, title: (r) => `Most likely impact ${r.date} UTC (probability ${r.ipMax}); impacts possible ${r.years}; cumulative ${r.ipCum}; Palermo ${r.psCum}; Torino ${r.ts}; ${size(r.diameterM)}; ${r.vKms} km/s` }),
     ];

@@ -72,7 +72,13 @@ export const TIMELINE = [
     facts: [['SEA LEVEL', '~−130 M', 'measured', 'Lambeck et al. 2014 (far-field sea-level records)'],
       ['ICE SHEETS', 'ICE-6G_C RECONSTRUCTION', 'modelled', 'Peltier, Argus & Drummond 2015'],
       ['CO₂', '~190 PPM', 'measured', 'EPICA Dome C']],
-    source: 'Lambeck et al. 2014, PNAS 111, 15296; Clark et al. 2009', url: 'https://doi.org/10.1073/pnas.1411762111',
+    source: 'Lambeck et al. 2014, PNAS 111, 15296; Clark et al. 2009', url: 'https://doi.org/10.1073/pnas.1411762111', widget: 'paleo',
+  },
+  {
+    id: 'records', group: 'ice', title: 'THE RECORD: ICE, CO₂ AND SEA LEVEL', tier: 'measured', widget: 'paleo',
+    when: '3 MILLION YEARS OF OCEAN SEDIMENT · 800,000 YEARS OF ICE CORES', years: null,
+    summary: 'Seafloor shells record how much water was locked up as ice (their oxygen isotopes), Antarctic ice holds bubbles of ancient air, and old shorelines and corals give sea level. Together they show the ice ages coming and going with the orbital cycles, CO₂ rising and falling with them.',
+    facts: [], source: 'Lisiecki & Raymo 2005; Bereiter et al. 2015, GRL 42, 542; Spratt & Lisiecki 2016, Clim. Past 12, 1079', url: 'https://doi.org/10.5194/cp-12-1079-2016',
   },
   {
     id: 'rebound', group: 'ice', title: 'POST-GLACIAL REBOUND', tier: 'measured',
@@ -110,7 +116,7 @@ export const TIMELINE = [
     facts: [['TILT TODAY', '25.2°', 'measured', 'IAU'],
       ['RANGE, LAST 10 MYR', '~15–45°', 'computed', 'Laskar et al. 2004 (Icarus 170, 343)'],
       ['MAIN OBLIQUITY PERIOD', '~120 KYR', 'computed', 'Ward 1973; Laskar et al. 2004']],
-    source: 'Laskar et al. 2004, Icarus 170, 343', url: 'https://doi.org/10.1016/j.icarus.2004.04.005', go: { level: 'system', system: 'sol', body: 'mars' },
+    source: 'Laskar et al. 2004, Icarus 170, 343', url: 'https://doi.org/10.1016/j.icarus.2004.04.005', go: { level: 'system', system: 'sol', body: 'mars' }, widget: 'mars',
   },
   {
     id: 'spin', group: 'cycles', title: 'EARTH\'S SLOWING SPIN: LEAP SECONDS, MINUTES, HOURS', tier: 'computed', widget: 'spin',

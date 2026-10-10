@@ -120,7 +120,7 @@ export const FUTURE_EVENTS = [
     go: { level: 'system', system: 'sol', body: 'apophis' },
   },
   {
-    id: 'impact-risk', group: 'solar', title: 'IMPACT-RISK LIST: EARTH', tier: 'computed', risk: true,
+    id: 'impact-risk', group: 'solar', title: 'IMPACT-RISK LIST: EARTH AND THE MOON', tier: 'computed', risk: true,
     when: 'NEXT 100 YEARS (AND BEYOND)', window: [0, 1000], years: null,
     summary: 'Every known asteroid with a non-zero chance of hitting Earth, from NASA\'s Sentry and ESA\'s NEOCC, refreshed twice a day. Nearly all are small, faint and poorly observed; most drop off the list when more observations arrive.',
     facts: [], source: 'NASA JPL CNEOS Sentry; ESA NEO Coordination Centre risk list', url: 'https://cneos.jpl.nasa.gov/sentry/',

@@ -731,3 +731,9 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .host-row.event-row.future-open { outline: 2px solid var(--gold); outline-offset: -2px; }
 .future-chart .fc-mark { stroke: var(--gold); stroke-width: 2; }
 .future-chart .fc-title { fill: var(--lilac); font-size: 11px; letter-spacing: 0.1em; }
+.future-chart .era-band.era-0 { fill: var(--violet); fill-opacity: 0.55; }
+.future-chart .era-band.era-1 { fill: var(--lilac); fill-opacity: 0.55; }
+.future-chart .fc-tick { stroke: var(--peach); stroke-width: 1; }
+.timeline-slider { display: flex; flex-direction: column; gap: 6px; }
+.timeline-info { display: flex; flex-direction: column; gap: 6px; }
+.future-chart .fc-dot { fill: var(--orange); stroke: #000; stroke-width: 1; }
