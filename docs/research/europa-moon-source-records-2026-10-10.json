@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-10",
+  "sources": [
+    {
+      "path": "data/research-sources/europa-sru-pia26332.png",
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/e1a_-_PIA26332_-_SRU_Platypus.png",
+      "bytes": 4166791,
+      "sha256": "3c9f370009a89888189334ff014e28b9524ec5336c493f52276dcbadd46f831d"
+    },
+    {
+      "url": "https://www.jpl.nasa.gov/images/pia26332-europa-seen-up-close-by-junos-sru/",
+      "failure": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "path": "data/research-sources/europa-mwr-2026-release.html",
+      "url": "https://www.nasa.gov/missions/juno/nasas-juno-measures-thickness-of-europas-ice-shell/",
+      "bytes": 311364,
+      "sha256": "1f7e24f1dc4506d12c0cc5799f2194405d5cc4a24a1aa2741f14f05ad0487946"
+    },
+    {
+      "path": "data/research-sources/europa-mwr-levin-2025.html",
+      "url": "https://www.nature.com/articles/s41550-025-02718-0",
+      "bytes": 412848,
+      "sha256": "3363ff76514b7306d076a603f3d899254824f2b1ffc877af74b31105d57d4e21"
+    }
+  ],
+  "newSources": [
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia26/pia26332/PIA26332.jpg",
+      "path": "data/research-sources/europa-sru-nasa-pia26332.jpg",
+      "bytes": 1488854,
+      "sha256": "adba9f09f47f26e43cb741127356bf7262e00a97b00edf0c5cff1dd274f880ff"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26332/PIA26332.jpg?w=1020&fit=clip",
+      "path": "data/research-sources/europa-sru-nasa-display-1020.jpg",
+      "bytes": 195650,
+      "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+      "processing": "NASA dynamicimage resized display rendition; full publisher PNG and JPG preserved separately"
+    }
+  ],
+  "caption": {
+    "path": "data/research-sources/europa-nasa-sru-caption.html",
+    "sha256": "7ffdebc8ed9a6287a9a818446bb64c73cbc9ccc92f038d7d6a724a1e5bc63629",
+    "url": "https://science.nasa.gov/photojournal/europa-seen-up-close-by-junos-sru/"
+  },
+  "originalNativeMap": {
+    "path": "data/textures/europa.jpg",
+    "bytes": 610862,
+    "sha256": "50d01ca5c01352d1c507bb17fefd1c46ba11260305656250062c6cdac89c8ebf",
+    "limitations": "NASA3D product association/coverage/photometric/frame/epoch audit pending; no replacement or analog skins."
+  },
+  "failures": [
+    {
+      "url": "https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA26332.jpg",
+      "response": "403",
+      "sha256": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Europa%20(A)/Jupiter%20-%20Europa%20(A).jpg",
+      "response": "404 candidate path; not assigned as verified source",
+      "sha256": null
+    }
+  ],
+  "limits": "No original discarded or changed. NASA1020display derivative is not byte/pixel-identical to full raster; its publisher bytes are copied unchanged, resolution disclosed. Full globe association/frame/epochs and photometry remain open. Levin conductive-shell model alternatives preserved.",
+  "verifiedNasa3dSource": {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Jupiter%20-%20Europa/Jupiter%20-%20Europa.jpg",
+    "path": "data/research-sources/europa-nasa3d-source.jpg",
+    "sha256": "50d01ca5c01352d1c507bb17fefd1c46ba11260305656250062c6cdac89c8ebf",
+    "bytes": 610862,
+    "localMapByteEqual": true
+  }
+}
