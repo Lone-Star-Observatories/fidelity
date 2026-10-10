@@ -6,7 +6,8 @@
     "Audit Gl 725 B c archive distance 6.842357 pc against the 2026 discovery-paper distance about 3.5 pc; confirmed archive ranking is not a corrected physical-distance ranking.",
     "Inventory remaining satellites of asteroids and other minor planets separately.",
     "Add further recognized dwarf planets if the IAU roster changes; candidates remain marked candidates.",
-    "Reconcile EZ Aquarii B/C LM? catalogue labels with published stellar dynamical masses; both were omitted by exact-category filtering. Historical boundary and present-day astrometry remain open (nearest-stars-audit-2026-10-10.json)."
+    "Reconcile EZ Aquarii B/C LM? catalogue labels with published stellar dynamical masses; both were omitted by exact-category filtering. Historical boundary and present-day astrometry remain open (nearest-stars-audit-2026-10-10.json).",
+    "Gl725B distance audit: direct GaiaDR3 inverse parallax3.523139pc and matching TICv8 record3.52247pc contradict archive6.842357pc; archive association cause and exhaustive boundary remain open (nearest-boundary-reconciliation-2026-10-10.json)."
   ],
   "selection": {
     "planets": "20 confirmed archive planets by host heliocentric distance; each planet counts separately. Equal host distances sorted by planet name. Distances and composite measurements have individual reference histories.",
