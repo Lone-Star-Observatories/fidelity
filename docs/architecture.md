@@ -251,6 +251,14 @@ fixed in the observer's field (it does not grow with magnification), outside the
 `glareStrength` (illuminance ∝ 1/d², airmass extinction, eclipse obscuration). ENLARGED ×4 multiplies
 the Sun's and the Moon's mesh scale and says so in the HUD.
 
+Night sky (#48, `src/views/system/skylayers.js`, geometry in `src/data/skylayers.js`): shown while
+standing, in the full band. A back-side sphere maps the Gaia DR3 colour flux map (equirectangular
+RA/Dec from hips2fits, through `/api/hips`); deep-sky images are additive quads on the sphere, turned
+by `imageAxes` (north angle, east left as seen from inside) and sized from their field; cluster rings
+use `galToRaDec`; constellation lines and names come from `src/data/constellation-lines.js`. Labels
+behind the camera are hidden by hand (CSS2D shows them when the near plane is tiny). A click opens a
+card in the feed viewer (`deepSkyCard` in `main.js`).
+
 Planetshine (#49, `src/astro/planetshine.js`): `updatePlanetshine` computes, in true geometry, each
 moon's planetshine fraction p·(R/d)²·Φ(α) and feeds the planet shader's second light (`uPsPos`,
 `uPsCol` = tint × `planetshineDisplay(f)`), lowering the fake ambient for those moons. Standing on a

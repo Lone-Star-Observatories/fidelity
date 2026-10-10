@@ -82,6 +82,7 @@ const system = createSystemView($('system-view'), {
   onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
+  onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
 });
 const starView = createStarView($('star-view'));
@@ -389,7 +390,7 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), bandSel, passSel),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('sites', 'SITES'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -479,6 +480,27 @@ const factList = (facts, body) => {
   }
   return dl;
 };
+
+/** A deep-sky object picked on the surface view's sky (#48): its card in the feed viewer. */
+function deepSkyCard(o) {
+  const v = $('feed-viewer'), dl = h('dl');
+  row(dl, 'KIND', o.sub ?? o.kind.toUpperCase(), 'measured', 'Catalogue classification.');
+  if (o.distLy) row(dl, 'DISTANCE', `${fmt(o.distLy, 0)} LY`, 'measured', o.kind === 'cluster' ? 'Hunt & Reffert 2023 (Gaia DR3 parallaxes).' : 'Literature distance (src/data/deepsky.js).');
+  if (o.sizeArcmin) row(dl, 'SIZE ON THE SKY', o.sizeArcmin >= 60 ? `${(o.sizeArcmin / 60).toFixed(1)}°` : `${o.sizeArcmin.toFixed(1)}′`, 'measured', o.kind === 'galaxy' ? 'D25 major axis (RC3 / HyperLEDA).' : o.kind === 'cluster' ? 'Twice the half-member radius.' : 'Extent of the modelled nebula.');
+  if (o.members) row(dl, 'MEMBERS', fmt(o.members, 0), 'measured', 'Gaia DR3 members (Hunt & Reffert 2023).');
+  if (o.pa != null) row(dl, 'ORIENTATION', `PA ${o.pa}° · INCLINATION ${o.incl}°`, o.orient, o.orientSource);
+  if (o.credit) row(dl, 'IMAGE', o.kind === 'cluster' ? 'NONE (RING AT r50)' : 'SURVEY / PRESS IMAGE', 'measured', `${o.credit}${o.licence ? ` · ${o.licence}` : ''}`);
+  v.hidden = false;
+  v.replaceChildren(
+    h('div', { className: 'fv-head' }, h('span', { className: 'fv-title', textContent: o.name.toUpperCase() }), h('span', { className: 'fv-sub', textContent: 'ON THE SKY FROM HERE' }), badge('measured', o.credit ?? ''),
+      pill('✕', () => { v.hidden = true; v.replaceChildren(); }, 'square')),
+    h('div', { className: 'fv-body fv-card' }, h('div', {}, dl, o.note ? h('p', { className: 'note', textContent: o.note }) : null,
+      h('div', { className: 'body-list' }, pill(o.kind === 'galaxy' ? 'SHOW IN THE UNIVERSE VIEW ▸' : 'SHOW IN THE QUADRANT VIEW ▸', () => {
+        v.hidden = true;
+        if (o.kind === 'galaxy') { universeSel = o.id; go({ level: 'universe' }); } else { quadrantSel = o.id; go({ level: 'quadrant' }); }
+      })))),
+    h('div', { className: 'fv-credit', textContent: o.credit ?? '' }));
+}
 
 function renderLegend() {
   return h('div', {},

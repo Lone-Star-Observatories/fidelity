@@ -32,7 +32,7 @@ import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
 import { createSiteLayer } from './sites.js';
-import { fetchTraverse } from '../../data/catalog.js';
+import { fetchTraverse, fetchClusters } from '../../data/catalog.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
 import { BANDS, bandById, passById, bodyBandSource } from '../../data/bands.js';
@@ -49,6 +49,7 @@ import { createSatelliteLayer } from './satellites.js';
 import { createMissionLayer } from './missions.js';
 import { createMagFields } from './magfields.js';
 import { createSkyGlare } from './skyglare.js';
+import { createSkyLayers } from './skylayers.js';
 import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, litFraction } from '../../astro/planetshine.js';
 import { angularDiameterDeg, FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
@@ -91,7 +92,7 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFrame, onPickStar, onDrillStar }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFrame, onPickStar, onDrillStar, onDeepSky }) {
   let hiddenKinds = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
   const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
@@ -234,6 +235,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
   skyBand.renderOrder = -2; skyBand.frustumCulled = false; skyBand.visible = false;
   scene.add(skyBand);
   const STANDALONE_BANDS = import.meta.env?.MODE === 'standalone';
+  // the night sky from a surface (#48): Milky Way, deep-sky objects, constellations
+  const skyTexLoader = new THREE.TextureLoader();
+  const skyLayers = createSkyLayers({ scene, radius: SKY_R, onPick: (o) => onDeepSky?.(o),
+    loadTexture: (url) => (STANDALONE_BANDS ? Promise.resolve(null) : new Promise((res) => skyTexLoader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null)))) });
+  let skyClustersAsked = false;
   const skyPass = () => (pass?.sky ? pass : band.passes.find((p) => p.sky) ?? null);
 
   function applySkyBand() {
@@ -1742,6 +1748,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
+    // the night sky from a surface (#48)
+    if (surface && !skyClustersAsked) { skyClustersAsked = true; fetchClusters().then((d) => skyLayers.setClusters(d)).catch(() => {}); }
+    skyLayers.update({ on: !!surface && band.id === 'full', fade: skyMat.uniforms.uFade.value, camera,
+      flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
     if (surface) { updateSurface(jd); surfaceSky(); }
     else {
       controls.minDistance = viewEnvelope(nodes[focusId].body) * 1.3;

@@ -8,9 +8,10 @@ import path from 'node:path';
 import { config } from './config.js';
 import { download } from './textures.js';
 import { NEBULA_3D, CLUSTER_NEBULOSITY } from '../src/data/nebula3d.js';
+import { GALAXY_IMAGES } from '../src/data/galaxy-images.js';
 
 /** key → image record, for every allowlisted image. */
-export const NEBULA_IMAGES = Object.fromEntries([...Object.values(NEBULA_3D), ...Object.values(CLUSTER_NEBULOSITY)].map((v) => [v.img.key, v.img]));
+export const NEBULA_IMAGES = Object.fromEntries([...Object.values(NEBULA_3D), ...Object.values(CLUSTER_NEBULOSITY), ...GALAXY_IMAGES].map((v) => [v.img.key, v.img]));
 
 const inflight = new Map();
 const fileFor = (key) => path.join(config.dataDir, 'nebulae', `${key}.jpg`);
