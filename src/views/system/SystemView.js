@@ -31,6 +31,8 @@ import { createHorizonsEphemeris } from '../../data/horizons.js';
 import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
+import { createCameraRig, reducedMotion } from '../cameraControls.js';
+import { fitDistance, METERS } from '../cameraMath.js';
 import { createSiteLayer } from './sites.js';
 import { fetchTraverse } from '../../data/catalog.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
@@ -1137,12 +1139,16 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     return 9;
   }
 
-  function flyTo(id, { overview = null } = {}) {
+  function flyTo(id, { overview = null, distance = null, dir = null } = {}) {
     if (!nodes[id]) return;
     if (surface) exitSurface(false);
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
-    flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
+    // #39: honour prefers-reduced-motion; `distance` overrides the landing distance (FILL VIEW), `dir` turns the view (RESET)
+    flight = { from: focusPos.clone(), t0: performance.now(), dur: reducedMotion() ? 1 : 1600, d0: camera.position.length(), d1: distance,
+      dir0: dir ? camera.position.clone().normalize() : null, dir1: dir ? dir.clone().normalize() : null };
+    controls.target.set(0, 0, 0); // zoom-to-cursor may have moved it off the focus
     focusId = id;
+    anchorId = id;
     void upgradeCraft(nodes[id]);
     void upgradeShape(nodes[id]);
     overviewAU = overview;
@@ -1248,6 +1254,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       prevScale: settings.get('scale'), sphere, frame: null };
     flight = null;
     focusId = id;
+    anchorId = id; // FREE MOVE resumes from this body when we leave the surface
     overviewAU = null;
     if (settings.get('scale') !== 'true') settings.set('scale', 'true');
     controls.enabled = false;
@@ -1264,7 +1271,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     scene.background = null;
     camera.fov = 50; camera.updateProjectionMatrix();
     camera.up.set(0, 1, 0);
-    controls.enabled = true;
+    controls.enabled = rig.mode === 'orbit';
     if (restore) {
       if (s.prevScale !== settings.get('scale')) settings.set('scale', s.prevScale);
       // back out above the spot we stood on
@@ -1460,6 +1467,120 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
   }
 
+  // ---- camera controls (#39): ORBIT / LOOK / FLY, zoom, FILL VIEW, RESET, bookmarks ---------------
+  let anchorId = 'sun'; // FREE MOVE: the body the floating origin rides on (the nearest one)
+  let nearestSurf = 1; // AU from the camera to the nearest surface
+  let quietFocus = null; // the return to ORBIT already flies to this body; skip the route's own flight
+  const camWorld = (v) => v.copy(focusPos).add(camera.position); // camera in root coordinates
+  const flyable = (n) => n && !n.body.marker && !n.body._missing && n.group.visible !== false;
+  /** Track the nearest body; hand the origin over when another one is clearly nearer (hysteresis). */
+  function updateAnchor() {
+    if (!nodes[anchorId]) anchorId = focusId;
+    const c = camWorld(tmp6);
+    let best = anchorId, bestD = c.distanceTo(nodes[anchorId].pos) - viewEnvelope(nodes[anchorId].body);
+    const anchorD = bestD;
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (id === anchorId || !flyable(n)) continue;
+      const d = c.distanceTo(n.pos) - viewEnvelope(n.body);
+      if (d < bestD) { best = id; bestD = d; }
+    }
+    if (best !== anchorId && bestD < 0.7 * anchorD) {
+      camera.position.add(nodes[anchorId].pos).sub(nodes[best].pos);
+      anchorId = best;
+    }
+    nearestSurf = Math.max(1e-12, Math.min(bestD, anchorD)); // ≥ 15 cm
+  }
+  /** The body nearest the line of sight (within 2° or its own apparent size), else null. */
+  function aheadBody() {
+    const c = camWorld(tmp6), f = tmp7.set(0, 0, -1).applyQuaternion(camera.quaternion);
+    let best = null, bestD = Infinity;
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (!flyable(n)) continue;
+      const v = tmp8.copy(n.pos).sub(c), dist = v.length(), along = v.dot(f);
+      if (along <= 0 || dist === 0) continue;
+      const angle = Math.acos(Math.min(1, along / dist)), angR = Math.asin(Math.min(1, viewEnvelope(n.body) / dist));
+      if (angle < Math.max(2 * DEG, angR * 1.2) && dist < bestD) { best = id; bestD = dist; }
+    }
+    return best;
+  }
+  /** The selection's framing distance (AU): a body's disc, a star's planetary orbits, a region's extent. */
+  function fitAU() {
+    const n = nodes[focusId], b = n.body, aspect = camera.aspect || 1;
+    if (b.marker) return markerView(b);
+    if (isStar(b) && overviewAU != null) {
+      // the planets' orbits: the farthest point of any of them from the focus (the camera's pivot)
+      root.updateMatrixWorld(true);
+      let far = 0;
+      for (const id in nodes) {
+        const m = nodes[id], pos = m.orbit?.geometry?.attributes?.position;
+        if (!pos || m.body.kind !== 'planet' || m.group.visible === false) continue;
+        for (let i = 0; i < pos.count; i++) far = Math.max(far, tmp6.fromBufferAttribute(pos, i).applyMatrix4(m.orbit.matrixWorld).length());
+      }
+      if (far > 0) return fitDistance(far, camera.fov, aspect, 1.02);
+    }
+    const ring = b.rings ? b.rings.outerKm / b.radiusKm : 1;
+    return fitDistance(viewEnvelope(b) * ring, camera.fov, aspect, 1.05);
+  }
+  const rig = createCameraRig({
+    key: 'system', camera, controls, dom: labels.domElement, container, metersPerUnit: METERS.au,
+    minFov: 0.05, maxFov: 100,
+    nearest: () => nearestSurf,
+    busy: () => !!flight,
+    override: () => (surface ? {
+      fov: surface.fov, minFov: 2, maxFov: 110,
+      setFov: (v) => { surface.fov = v; },
+      fit: () => { surface.fov = 70; },
+      reset: () => { surface.az = 0; surface.alt = 90; surface.fov = 70; },
+    } : null),
+    toOrbit(prev) {
+      if (surface || !model) return true;
+      // orbit whatever is in front of you; otherwise the body you rode with (FLY) or the focus (LOOK)
+      const id = aheadBody() ?? (prev === 'fly' ? anchorId : focusId);
+      if (!nodes[id]) return true;
+      const c = camWorld(tmp9.set(0, 0, 0)).clone();
+      focusPos.copy(nodes[id].pos);
+      camera.position.copy(c).sub(focusPos);
+      controls.target.set(0, 0, 0);
+      const d = camera.position.length(), env = viewEnvelope(nodes[id].body);
+      if (id !== focusId || d < env * 1.3) {
+        flight = { from: focusPos.clone(), t0: performance.now(), dur: reducedMotion() ? 1 : 1200, d0: Math.max(d, 1e-15), d1: Math.max(d, env * 1.6) };
+      }
+      const changed = id !== focusId;
+      focusId = id; anchorId = id; overviewAU = null; framedRadius = null;
+      if (changed) { quietFocus = id; setTimeout(() => { if (quietFocus === id) quietFocus = null; }, 2000); onSelect?.(id); }
+      return true;
+    },
+    moved() { // don't fly into the ground
+      const r = viewEnvelope(nodes[anchorId]?.body ?? nodes[focusId].body) * 1.0005;
+      if (camera.position.length() < r) camera.position.setLength(r);
+    },
+    fit() { if (model && nodes[focusId]) flyTo(focusId, { overview: overviewAU != null ? fitAU() : null, distance: fitAU() }); },
+    reset() {
+      if (!model) return;
+      const s = model.survey[0];
+      if (overviewAU != null && focusId === (s.centre && nodes[s.centre] ? s.centre : model.starId)) flyTo(focusId, { overview: s.au, dir: new THREE.Vector3(0, 0.45, 0.9) });
+      else flyTo(focusId);
+    },
+    state(mode) {
+      if (surface) return { mode: 'surface', az: surface.az, alt: surface.alt, fov: surface.fov };
+      // relative to the routed (focused) body, whatever the origin rides on
+      const p = camWorld(new THREE.Vector3()).sub(nodes[focusId].pos);
+      return { mode, p: p.toArray(), q: camera.quaternion.toArray(), fov: camera.fov };
+    },
+    apply(s) {
+      if (s.mode === 'surface') { if (surface) { surface.az = s.az; surface.alt = s.alt; surface.fov = s.fov; } return; }
+      flight = null;
+      anchorId = focusId;
+      focusPos.copy(nodes[focusId].pos);
+      camera.position.fromArray(s.p);
+      camera.quaternion.fromArray(s.q);
+      controls.target.set(0, 0, 0);
+      framedRadius = null;
+    },
+  });
+
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
   const tmp2 = new THREE.Vector3();
@@ -1560,10 +1681,15 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
     if (flight) {
       const t = Math.min(1, (now - flight.t0) / flight.dur), k = ease(t);
       focusPos.lerpVectors(flight.from, target, k);
-      const d1 = overviewAU ?? viewDistance(focusId); // live, so a scale switch mid-flight still lands well
+      const d1 = flight.d1 ?? overviewAU ?? viewDistance(focusId); // live, so a scale switch mid-flight still lands well
       const d = Math.exp(Math.log(flight.d0) + (Math.log(d1) - Math.log(flight.d0)) * k);
+      if (flight.dir1) camera.position.copy(flight.dir0).lerp(flight.dir1, k);
       camera.position.setLength(d);
       if (t >= 1) { flight = null; framedRadius = displayRadius(nodes[focusId].body); }
+    } else if (rig.mode === 'fly' && !surface) {
+      // FREE MOVE (#39): the floating origin rides on the nearest body, so the camera moves with it and stays precise
+      updateAnchor();
+      focusPos.copy(nodes[anchorId].pos);
     } else {
       focusPos.copy(target);
       // Switching ENHANCED ⇄ TRUE while framing a body: keep it the same size on screen.
@@ -1604,10 +1730,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
       u.uNorth.value.copy(poleVector(nodes.sun.body.pole));
     }
+    const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
     else {
       controls.minDistance = viewEnvelope(nodes[focusId].body) * 1.3;
-      controls.update();
+      if (orbiting) controls.update();
     }
 
     renderer.render(scene, camera);
@@ -1690,7 +1817,13 @@ export function createSystemView(container, { clock, onSelect, onSite, onFrame, 
       return belts.counts;
     },
     get model() { return model; },
-    focus(id, opts) { flyTo(id, opts); },
+    focus(id, opts) { if (quietFocus === id && focusId === id) { quietFocus = null; return; } flyTo(id, opts); },
+    /** The camera controls (#39): mode, zoom, fit, reset, bookmark state. */
+    camera: rig,
+    /** True while the return to ORBIT (#39) is already flying to `id` (no warp, no second flight). */
+    quietFocus: (id) => quietFocus === id && focusId === id,
+    /** Where we stand (texture lat/lon, as surfaceAt takes them), or null. */
+    surfaceSpot: () => (surface?.sphere ? dirToLatLon(surface.local.toArray()) : null),
     /** Stand on body `id` at latitude/longitude (deg) and look up. */
     surfaceAt(id, lat, lon, { lookSun = false, look = null, daylight = null } = {}) {
       const n = nodes[id];

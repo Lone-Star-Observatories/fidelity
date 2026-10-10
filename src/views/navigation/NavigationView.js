@@ -14,6 +14,8 @@ import { integrateTrack, trackAt, closestApproach, linearApproach } from '../../
 import { badge } from '../../data/provenance.js';
 import { createArrivals } from './arrivals.js';
 import { badgeLines, brightLimit } from './drift.js';
+import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
+import { METERS } from '../cameraMath.js';
 
 const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
@@ -640,17 +642,29 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     if (text !== lastReadout) { readout.textContent = text; lastReadout = text; }
   }
 
+  // camera controls (#39): stars are the bodies FLY speeds up near and returns to ORBIT around
+  const eachStar = (fn) => { for (const p of placed) if (!p.hidden) { const v = p.now ?? p.pos; fn(v.x, v.y, v.z); } };
+  const rig = createCameraRig({
+    key: 'navigation', camera, controls, dom: labels.domElement, container, target, metersPerUnit: METERS.ly, className: 'beside-gauge',
+    nearest: (pos) => Math.max(0.01, nearestPoint(pos, eachStar)),
+    ahead: (pos, dir) => aheadPoint(pos, dir, eachStar),
+    fit: () => { if (data) rig.frameSphere(chartOffset, data.radiusLy, 1.04); },
+    reset: () => { if (!data) return; const r = data.radiusLy; rig.flyTo({ target: chartOffset, position: chartOffset.clone().add(new THREE.Vector3(r * 0.8, r * 1.1, r * 1.9)) }); },
+  });
+
   const beaconV = new THREE.Vector3();
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
-    // glide the orbit target to the selected star
-    if (controls.target.distanceToSquared(target) > 1e-6) {
-      const delta = tmp.copy(target).sub(controls.target).multiplyScalar(0.08);
-      controls.target.add(delta);
-      camera.position.add(delta);
+    if (rig.update()) {
+      // glide the orbit target to the selected star
+      if (controls.target.distanceToSquared(target) > 1e-6) {
+        const delta = tmp.copy(target).sub(controls.target).multiplyScalar(motionK(0.08));
+        controls.target.add(delta);
+        camera.position.add(delta);
+      }
+      controls.update();
     }
-    controls.update();
     stepMessage(performance.now());
     const show = settings.get('labels');
     for (const p of placed) if (p.label) p.label.visible = !p.hidden && !!(show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId);
@@ -682,6 +696,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,
+    camera: rig,
     setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; setEpoch(epoch); },
     get unmoved() { return unmovedCount(); },
     setEpoch, encounters,

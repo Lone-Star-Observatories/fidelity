@@ -29,6 +29,8 @@ const defaults = {
   bandPass: null,    // its bandpass (null = the band's default)
   observer: null,   // detail views' FROM EARTH card: { lat, lon, label } (null = Greenwich)
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
+  cameraModes: {},  // camera mode per view (#39): { system: 'orbit' | 'look' | 'fly', galaxy: …, … }
+  zoomToCursor: false, // ORBIT: the wheel zooms towards the pointer (#39)
 };
 
 let state = { ...defaults };

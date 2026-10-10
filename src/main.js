@@ -23,6 +23,8 @@ import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, f
 import { badge, TIERS } from './data/provenance.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
+import { onBookmark } from './views/cameraControls.js';
+import { encodeCamera, decodeCamera } from './views/cameraMath.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
 import { createSitesPanel } from './panels/sites.js';
@@ -182,6 +184,32 @@ function syncRail() {
   railSubs.querySelector('[data-sub="star"]').classList.toggle('active', route.level === 'star');
   for (const k of ['planet', 'moon', 'object', 'satellite', 'events']) railSubs.querySelector(`[data-sub="${k}"]`).classList.toggle('active', route.level === k);
 }
+
+// ---- camera bookmarks (#39) ---------------------------------------------------------------
+// LINK (or B) puts the camera, its mode and the epoch in the URL: ?t=<ISO>[&hold]&cam=…[&surface=lat,lon]
+// before the route's hash. Opening such a link applies the camera once its view has framed the route.
+let pendingCam = (() => { const c = new URLSearchParams(location.search).get('cam'); return c ? decodeCamera(c) : null; })();
+function applyPendingCam(rig) {
+  if (!pendingCam || !rig) return;
+  const c = pendingCam;
+  pendingCam = null;
+  rig.apply(c);
+}
+onBookmark((state) => {
+  const q = new URLSearchParams(location.search);
+  for (const k of ['cam', 'surface', 'look', 'hold', 't']) q.delete(k);
+  q.set('t', dateFromJd(clock.jd).toISOString());
+  if (clock.rate.days === 0) q.set('hold', '1');
+  if (state.mode === 'surface') {
+    const sp = system.surfaceSpot();
+    if (sp) q.set('surface', `${sp.lat.toFixed(5)},${sp.lon.toFixed(5)}`);
+  }
+  q.set('cam', encodeCamera(state));
+  const url = `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ',').replace(/%3A/g, ':')}${location.hash}`;
+  try { history.replaceState(null, '', url); } catch { /* sandboxed frame */ }
+  const done = () => toast('VIEW LINK COPIED · CAMERA, MODE AND EPOCH'), fail = () => toast('VIEW LINK IS IN THE ADDRESS BAR');
+  try { navigator.clipboard.writeText(url).then(done, fail); } catch { fail(); }
+});
 
 // ---- toast & warp -----------------------------------------------------------------------
 let toastTimer;
@@ -1179,6 +1207,7 @@ async function showNavigation(center) {
     if (token !== loadToken || route.level !== 'navigation') return;
     $('offline').hidden = true;
     nav.load(d);
+    applyPendingCam(nav.camera);
     navSelected = null;
     msgSent = null;
     if (pendingMessage && d.center.id !== 'sol') {
@@ -1332,6 +1361,7 @@ onRoute(async (r) => {
       $('view-title').textContent = 'QUADRANT VIEW · AROUND SECTOR 001';
       quadrant.show();
       if (quadrantSel) quadrant.select(quadrantSel);
+      applyPendingCam(quadrant.camera);
       renderQuadrantPanel();
       if (!quadrantLoaded) {
         quadrantLoaded = true;
@@ -1341,6 +1371,7 @@ onRoute(async (r) => {
     } else {
       $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
       universe.show();
+      applyPendingCam(universe.camera);
       renderUniversePanel();
       if (!universeLoaded) {
         universeLoaded = true;
@@ -1395,12 +1426,13 @@ onRoute(async (r) => {
         if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
       }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
-      else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh) warp(); system.focus(body.id); }
+      else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh && !system.quietFocus(body.id)) warp(); system.focus(body.id); }
       renderBodyPanel(body.id);
     } else {
       if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au, m.survey[0].centre);
       renderSystemPanel();
     }
+    applyPendingCam(system.camera);
     syncRail();
   } else if (r.level === 'star') {
     nav.hide();
@@ -1417,6 +1449,7 @@ onRoute(async (r) => {
     starView.load(b, { isSun: m.isSol, systemName: m.name });
     setDetail(detailCards(b, m, { system, clock }), (d) => starView.setExtras(d));
     renderBodyPanel(b.id, { inStarView: true });
+    applyPendingCam(starView.camera);
     const noTemplate = b.kind === 'white dwarf' || b.kind === 'brown dwarf';
     if (!noTemplate) fetchSpectrum(b.spectral, b.metallicity).then((sp) => { if (route === r) starView.setSpectrum(sp); });
     syncRail();
@@ -1437,6 +1470,7 @@ onRoute(async (r) => {
     planetView.load(b, { isSol: m.isSol, systemName: m.name });
     setDetail(detailCards(b, m, { system, clock, surface: surfaceHooks }), (d) => planetView.setExtras([...d.top, ...d.spectrum]));
     renderBodyPanel(b.id, { inStarView: true });
+    applyPendingCam(planetView.camera);
     syncRail();
   } else if (r.level === 'galaxy') {
     system.hide(); nav.hide(); starView.hide(); planetView.hide();
@@ -1444,6 +1478,7 @@ onRoute(async (r) => {
     $('view-title').textContent = 'GALAXY VIEW · MILKY WAY';
     $('beacon-sub').textContent = currentSystem === 'sol' ? 'HOME' : 'RETURN';
     galaxy.show();
+    applyPendingCam(galaxy.camera);
     renderGalaxyPanel();
     if (!galaxyStarsLoaded) {
       galaxyStarsLoaded = true;
