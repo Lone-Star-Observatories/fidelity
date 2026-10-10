@@ -1,6 +1,7 @@
 // USS Fidelity — bridge console. Wires the LCARS shell, router, clock and views.
 
-import { createClock, STEP_UNITS } from './astro/clock.js';
+import { createClock, STEP_UNITS, yearsLimit, calendarLimit } from './astro/clock.js';
+import { formatOffset } from './astro/timerate.js';
 import { shipDate, dateFromJd, jdFromDate, isoDay } from './astro/time.js';
 import { VALID_RANGE } from './astro/kepler.js';
 import { LY_PER_PC } from './astro/frames.js';
@@ -267,7 +268,7 @@ function screenContext() {
     lines.push(`CAMERA CENTRED ON: ${f?.name ?? system.focusId}${system.onSurface ? ` (standing on the surface of ${system.model.bodies.find((b) => b.id === system.onSurface.id)?.name ?? system.onSurface.id}, looking up)` : ''}`);
   }
   const d = dateFromJd(clock.jd);
-  lines.push(`SHIP'S CLOCK: ${d.toISOString().slice(0, 16).replace('T', ' ')} UTC, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}`);
+  lines.push(`SHIP'S CLOCK: ${clock.inCalendar ? `${d.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `${formatOffset(clock.years)} from now (deep time)`}, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}${clock.clamped ? ` (stopped at this view's limit: ${clock.clamped})` : ''}`);
   lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
   const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
@@ -368,7 +369,7 @@ const unitOf = () => STEP_UNITS.find((u) => u.id === stepUnit.value) ?? STEP_UNI
 const stepBy = (dir) => clock.step(dir * stepN(), unitOf().id);
 const runAt = () => {
   const n = stepN(), u = unitOf();
-  clock.setRate(n * u.days, `${n} ${u.label}${Math.abs(n) === 1 ? '' : 'S'}/S`.replace('MILLENNIUMS', 'MILLENNIA').replace('CENTURYS', 'CENTURIES'));
+  clock.setRate(n * u.days, `${n} ${u.label}${Math.abs(n) === 1 ? '' : 'S'}/S`.replace('MILLENNIUMS', 'MILLENNIA').replace('CENTURYS', 'CENTURIES').replace(/([MG]YR)S\//, '$1/'));
 };
 // [ and ] step back and forward from anywhere but a text field
 window.addEventListener('keydown', (e) => {
@@ -380,7 +381,8 @@ window.addEventListener('keydown', (e) => {
 // two rows: the time control above (#34), everything else on the elbow's arm below
 const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
   stepControls: [pill('◀|', () => stepBy(-1), 'square'), stepIn, stepUnit, pill('|▶', () => stepBy(1), 'square'), pill('RUN', runAt, 'square')] });
-const tcLoop = () => { timeCtl.frame(); requestAnimationFrame(tcLoop); };
+// The clock ticks here, whatever view is showing (the System View also ticks it in its own frame).
+const tcLoop = (now) => { clock.tick(now); syncDeepTime(); timeCtl.frame(); requestAnimationFrame(tcLoop); };
 requestAnimationFrame(tcLoop);
 controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
@@ -815,10 +817,7 @@ function renderOfflinePanel(level) {
 }
 
 // ---- galaxy panel ------------------------------------------------------------------------
-// Galactic deep time (#18): Myr per second of wall clock, within ±2 Gyr.
-const GAL_RATES = [[0.001, '1 KYR / S'], [0.1, '100 KYR / S'], [1, '1 MYR / S'], [10, '10 MYR / S'], [50, '50 MYR / S']];
-const GAL_MAX = 2000;
-let galRate = 1, galDir = 0, galLast = null;
+// Galactic deep time (#18) follows the ship's clock (#34), within ±2 Gyr (see syncDeepTime).
 const myr = (t) => (Math.abs(t) < 1 ? `${fmt(t * 1000, 0)} THOUSAND YEARS` : Math.abs(t) < 1000 ? `${fmt(t, Math.abs(t) < 10 ? 1 : 0)} MILLION YEARS` : `${fmt(t / 1000, 2)} BILLION YEARS`);
 function galEpochText() {
   const t = galaxy.epoch;
@@ -848,11 +847,8 @@ function renderGalaxyPanel() {
       pill(settings.get('galaxyArt') ? 'ARTWORK OVERLAY: ON' : 'ARTWORK OVERLAY: OFF', () => { settings.set('galaxyArt', !settings.get('galaxyArt')); galaxy.applyLook(); quadrant.applyLook(); renderGalaxyPanel(); }, settings.get('galaxyArt') ? 'on' : '')),
     h('p', { className: 'note', textContent: 'A 3D model built from measurements: the bar and bulge, thin and thick discs, the spiral arms traced by masers in star-forming regions (blue: young stars; pink: HII regions; dark: dust lanes) and the halo. Our side of the arms is measured; the far side is extrapolated.' }),
     h('h3', { textContent: 'GALACTIC TIME' }),
-    h('div', { className: 'body-list' },
-      pill('◀◀', () => { galDir = -1; }, 'square'), pill('❚❚', () => { galDir = 0; }, 'square'), pill('▶▶', () => { galDir = 1; }, 'square'),
-      pill('NOW', () => { galDir = 0; galaxy.setTime(0); }, 'square')),
-    h('div', { className: 'body-list' }, GAL_RATES.map(([r, label]) => pill(label, () => { galRate = r; renderGalaxyPanel(); }, r === galRate ? 'on' : ''))),
     live.galEpoch,
+    h('p', { className: 'note', textContent: 'Galactic time is the ship\'s clock: run it from the TIME row below (MYR/S or GYR/S; ⇄ REV runs it backwards, NOW returns). The galaxy shows ±2 billion years, and the clock stops there.' }),
     h('p', { className: 'note', textContent: 'Stars circle the centre on a flat rotation curve, so the inner disc laps the outer and the neighbourhood smears into an arc. The spiral arms are a pattern that turns at its own speed; the Sun sits close to corotation, so it keeps pace with them. The satellite galaxies follow their orbits (±2 billion years).' }),
     h('h3', { textContent: 'QUADRANTS' }),
     h('div', { className: 'body-list' }, fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
@@ -878,16 +874,6 @@ function renderGalaxyPanel() {
     renderLegend(),
   );
 }
-(function galLoop(now) {
-  requestAnimationFrame(galLoop);
-  const dt = galLast == null ? 0 : Math.min(0.25, (now - galLast) / 1000);
-  galLast = now;
-  if (route.level !== 'galaxy' || !galDir) return;
-  const t = Math.max(-GAL_MAX, Math.min(GAL_MAX, galaxy.epoch + galDir * galRate * dt));
-  if (t === galaxy.epoch) galDir = 0;
-  galaxy.setTime(t);
-  if (live.galEpoch) live.galEpoch.textContent = galEpochText();
-})(performance.now());
 
 // ---- quadrant & universe panels ------------------------------------------------------------
 const hex = (n) => `#${n.toString(16).padStart(6, '0')}`;
@@ -1046,9 +1032,7 @@ function renderNavPanel() {
 }
 
 // ---- space motion & deep time (#20) ---------------------------------------------------------
-const DEEP_RATES = [[1e3, '1 KYR / S'], [1e4, '10 KYR / S'], [1e5, '100 KYR / S'], [1e6, '1 MYR / S'], [1e7, '10 MYR / S']];
-const DEEP_MAX = 5e7; // orbits are integrated ±50 Myr (src/astro/galpot.js)
-let deepRate = 1e4, deepDir = 0, deepLast = null;
+// Deep time follows the ship's clock (#34); orbits are integrated ±50 Myr (src/astro/galpot.js).
 const yrs = (t) => (Math.abs(t) >= 1e6 ? `${fmt(t / 1e6, 2)} MILLION YEARS` : `${fmt(t, 0)} YEARS`);
 function motionSection(d) {
   const m = nav.motion, c = d.center;
@@ -1067,16 +1051,13 @@ function motionSection(d) {
       : m.mode === 'relative' ? `Arrows: where each star goes, seen from ${c.id === 'sol' ? 'the Sun' : c.name}. Dim arrows have no measured radial velocity, so only their sideways motion is known. The gold arrow is Sol's own path around the galaxy (~250 km/s), which carries the whole neighbourhood with it.` : 'Show where each star is heading.' }),
     h('p', { className: 'note', textContent: 'Green lines: every system within 8 ly of Sol, with its distance. Run deep time to watch stars come and go.' }),
     h('div', { className: 'ctl-label', textContent: 'DEEP TIME' }),
-    h('div', { className: 'body-list' },
-      pill('◀◀', () => { deepDir = -1; }, 'square'), pill('❚❚', () => { deepDir = 0; }, 'square'), pill('▶▶', () => { deepDir = 1; }, 'square'),
-      pill('NOW', () => { deepDir = 0; nav.setEpoch(0); }, 'square')),
-    h('div', { className: 'body-list' }, DEEP_RATES.map(([r, label]) => pill(label, () => { deepRate = r; renderNavPanel(); }, r === deepRate ? 'on' : ''))),
     live.epoch,
+    h('p', { className: 'note', textContent: 'Deep time is the ship\'s clock: run it from the TIME row below (KYR/S or MYR/S; ⇄ REV runs it backwards, NOW returns). Orbits are integrated ±50 million years, and the clock stops there.' }),
     h('h3', { textContent: `CLOSEST FUTURE PASSES · ${c.id === 'sol' ? 'SOL' : c.name.toUpperCase()}` }),
     h('div', { className: 'host-list' }, enc.length ? enc.map((e) => {
       const b = h('button', { className: 'host-row' }, h('span', { textContent: `${e.star.name.toUpperCase()}${e.rvKnown ? '' : ' *'}${e.arrival ? ` · NOW ${fmt(e.nowLy, 0)} LY` : ''}` }),
         h('span', { className: 'mono', textContent: `${fmt(e.dMinLy, 2)} LY IN ${yrs(e.tYears)}` }));
-      b.addEventListener('click', () => { nav.setMotion({ mode: 'relative' }); nav.setEpoch(e.tYears); deepDir = 0; selectNavStar(e.star.id); });
+      b.addEventListener('click', () => { nav.setMotion({ mode: 'relative' }); clock.setRate(0); clock.setYears(e.tYears); syncDeepTime(); selectNavStar(e.star.id); });
       return b;
     }) : [h('p', { className: 'note', textContent: 'No star comes closer within 5 million years.' })]),
     h('p', { className: 'note', textContent: `Every star follows its integrated orbit through a Milky Way mass model (bulge, disc and dark halo; Bovy 2015), ±50 million years. Velocities: Gaia DR3 parallaxes, proper motions and radial velocities where Gaia has the star, otherwise HYG (Hipparcos proper motions and catalogue radial velocities); 1 km/s of error moves a star ~3 ly per million years. A system's stars share its best-measured motion. * no radial velocity: the real pass could be quite different. Gaia DR3 puts Gliese 710 at ~0.17 ly (10,800 AU) in 1.29 million years.${nav.unmoved ? ` ${nav.unmoved} star${nav.unmoved === 1 ? '' : 's'} with no measured motion ${nav.unmoved === 1 ? 'is' : 'are'} hidden away from the present.` : ''}` }),
@@ -1094,21 +1075,33 @@ function arrivalsNote() {
     : `Arrivals: ${n(a.count)} stars with measured motions out to ${n(a.loadedLy)} ly${a.loading ? ` (${a.loading.toLowerCase()})` : ''} are integrated too; each appears when it enters the sphere and the chart's own stars vanish when they leave. More load as deep time runs further (out to ${n(1000)} ly). Beyond ~${a.density?.halfLy ?? 60} ly the catalogue holds mainly the brighter stars, so arrivals under-count faint red and brown dwarfs.`;
   return h('p', { className: 'note', textContent: text });
 }
-(function deepLoop(now) {
-  requestAnimationFrame(deepLoop);
-  const dt = deepLast == null ? 0 : (now - deepLast) / 1000;
-  deepLast = now;
-  if (route.level !== 'navigation') return;
-  if (deepDir) {
-    const t = Math.max(-DEEP_MAX, Math.min(DEEP_MAX, nav.epoch + deepDir * deepRate * dt));
-    if (t === nav.epoch) deepDir = 0;
-    nav.setEpoch(t);
+
+// ---- one clock for every view (#34) ---------------------------------------------------------
+// Each view honours the part of time valid for it: the clock stops at its edges, with the reason.
+const NAV_LIMIT_YEARS = 5e7, GALAXY_LIMIT_YEARS = 2e9;
+function limitFor(level) {
+  if (level === 'navigation') return yearsLimit(NAV_LIMIT_YEARS, 'ORBITS INTEGRATED ±50 MYR');
+  if (level === 'galaxy') return yearsLimit(GALAXY_LIMIT_YEARS, 'SATELLITE ORBITS ±2 GYR');
+  if (level === 'quadrant' || level === 'universe') return null; // the calendar (±273 kyr)
+  // the System View and its detail views: the ephemeris's span
+  return settings.get('ephemeris') === 'horizons'
+    ? calendarLimit(1, 9999, 'JPL HORIZONS · 1–9999 CE') // the backend asks Horizons for YYYY-MM months
+    : calendarLimit(-2999, 3000, 'KEPLER ELEMENTS · 3000 BCE–3000 CE'); // Standish's long-span elements
+}
+const applyTimeLimit = () => clock.setLimit(limitFor(route.level));
+settings.onChange((k) => { if (k === 'ephemeris') applyTimeLimit(); });
+/** Deep-time views follow the clock: the Navigation View's epoch (years) and the Galaxy View's (Myr). */
+function syncDeepTime() {
+  const y = Math.round(clock.years); // whole years: at the present the views show the catalogue epoch exactly
+  if (route.level === 'navigation') {
+    const t = Math.max(-NAV_LIMIT_YEARS, Math.min(NAV_LIMIT_YEARS, y));
+    if (t !== nav.epoch) nav.setEpoch(t);
+    if (live.epoch) live.epoch.textContent = t === 0 ? 'EPOCH: NOW' : `EPOCH: ${t > 0 ? '+' : '−'}${yrs(Math.abs(t))} · YEAR ${fmt(yearOf(jdFromDate(new Date())) + t, 0)}`;
+  } else if (route.level === 'galaxy') {
+    const t = Math.max(-GALAXY_LIMIT_YEARS, Math.min(GALAXY_LIMIT_YEARS, y)) / 1e6;
+    if (t !== galaxy.epoch) { galaxy.setTime(t); if (live.galEpoch) live.galEpoch.textContent = galEpochText(); }
   }
-  if (live.epoch) {
-    const t = nav.epoch;
-    live.epoch.textContent = t === 0 ? 'EPOCH: NOW' : `EPOCH: ${t > 0 ? '+' : '−'}${yrs(Math.abs(t))} · YEAR ${fmt(yearOf(clock.jd) + t, 0)}`;
-  }
-})();
+}
 
 // ---- message light-time (#16) --------------------------------------------------------------
 const ago = (iso) => {
@@ -1230,7 +1223,7 @@ async function showNavigation(center) {
 function tick() {
   const f = lastFrame;
   const date = dateFromJd(clock.jd);
-  $('stardate').textContent = `${shipDate(date)} · ${date.toISOString().slice(0, 16).replace('T', ' ')} UTC`;
+  $('stardate').textContent = clock.inCalendar ? `${shipDate(date)} · ${date.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `DEEP TIME · ${formatOffset(clock.years)}`;
   if (document.activeElement !== dateIn) dateIn.value = isoDay(date);
   const m = system.model;
 
@@ -1348,6 +1341,7 @@ function syncBeacon() {
 onRoute(async (r) => {
   const prev = route;
   route = r;
+  applyTimeLimit(); // the new view's valid time range (#34)
   setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
