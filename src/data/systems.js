@@ -6,6 +6,7 @@ import { AU_KM, SUN, PLANETS } from './sol.js';
 import { MOONS, SMALL_BODIES } from './moons.js';
 import { REGIONS, LAGRANGE } from './poi.js';
 import { SPACECRAFT } from './spacecraft.js';
+import { modelFor } from './models.js';
 import { meanMotion } from '../astro/smallbodies.js';
 import { eqToEcl, frameToScene, starTeff, blackbodyRGB, rgbToHex } from '../astro/frames.js';
 
@@ -123,7 +124,7 @@ export function solSystem() {
     facts: { MISSION: [
       fact('STATUS', c.status, 'measured'), fact('LAUNCHED', `${c.launched} · ${c.agency}`, 'measured'),
       fact('POSITION', 'JPL HORIZONS', 'computed', c.center ? `Reconstructed or predicted trajectory relative to ${c.center}, 10-minute steps.` : 'Reconstructed or predicted trajectory (JPL Horizons), daily steps.'),
-    ], RENDERING: [fact('MODEL', 'REPRESENTATIVE', 'imagined', 'A generic spacecraft shape at the real size; not this craft\'s design.')] } });
+    ], RENDERING: [modelFor(c.id) ? fact('MODEL', 'NASA MISSION MODEL', 'modelled', `${modelFor(c.id).credit}. Loaded on focus; a representative IMAGINED craft is shown while loading, on failure, and in the standalone preview. ${modelFor(c.id).fidelity} ${modelFor(c.id).units} ${modelFor(c.id).frame}`) : fact('MODEL', 'REPRESENTATIVE', 'imagined', 'A generic spacecraft shape at the catalog size; not this craft\'s design.')] } });
   for (const l of LAGRANGE) bodies.push({ ...l, radiusKm: 1500, marker: true, orbit: { type: 'lagrange', pair: l.pair, L: l.L }, facts: { ...l.facts } });
   return {
     id: 'sol', name: 'Sol', isSol: true, sector: 'SECTOR 001', distLy: 0,

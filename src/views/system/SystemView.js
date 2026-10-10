@@ -6,6 +6,7 @@
 // buffer, so true-scale Earth (4e-5 AU) and Neptune's orbit (30 AU) coexist.
 
 import * as THREE from 'three';
+import { loadCraftModel, disposeModel } from './models.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { heliocentric, orbitPath, positionAt, ellipse } from '../../astro/kepler.js';
@@ -284,6 +285,31 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     nodes[body.id] = { body, group, tilt, mesh, clouds: null, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color: 0xffd966 };
   }
 
+  // Load only the focused craft. A system switch invalidates pending results.
+  async function upgradeCraft(node) {
+    if (!node || !['spacecraft', 'satellite'].includes(node.body.kind) || node.modelRequested) return;
+    node.modelRequested = true;
+    try {
+      const detailed = await loadCraftModel(node.body.id);
+      if (!detailed) return;
+      if (nodes[node.body.id] !== node) { disposeModel(detailed); return; }
+      const old = node.mesh;
+      const oldMeshes = new Set();
+      old.traverse((o) => { if (o.isMesh) oldMeshes.add(o); });
+      pickables = pickables.filter((o) => !oldMeshes.has(o));
+      node.tilt.remove(old);
+      disposeModel(old);
+      detailed.traverse((o) => {
+        if (o.isMesh) { o.userData.id = node.body.id; pickables.push(o); }
+      });
+      node.mesh = detailed;
+      node.tilt.add(detailed);
+    } catch (err) {
+      node.modelRequested = false;
+      console.warn(`Spacecraft model unavailable: ${node.body.id}`, err);
+    }
+  }
+
   /** True geocentric offset (scene axes, AU) of a satellite from SGP4; cached per jd. */
   function satOffset(b, jd) {
     if (b._jd === jd && b._off) return b._off;
@@ -353,7 +379,8 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
       root.remove(n.group);
       n.label.element.remove();
       // Geometries and materials are per-body; textures are shared through the loader cache.
-      n.group.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); });
+      disposeModel(n.mesh);
+      n.group.traverse((o) => { if (o === n.mesh || n.mesh.getObjectById(o.id)) return; o.geometry?.dispose(); o.material?.dispose(); });
       if (n.orbit) { root.remove(n.orbit); n.orbit.geometry.dispose(); n.orbit.material.dispose(); }
     }
     nodes = {};
@@ -641,6 +668,7 @@ export function createSystemView(container, { clock, onSelect, onFrame }) {
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
     flight = { from: focusPos.clone(), t0: performance.now(), dur: 1600, d0: camera.position.length() };
     focusId = id;
+    void upgradeCraft(nodes[id]);
     overviewAU = overview;
     framedRadius = null;
   }

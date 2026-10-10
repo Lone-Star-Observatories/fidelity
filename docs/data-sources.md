@@ -121,3 +121,12 @@ Mapped back, the Sun sits (0.0117, 0.1816) image-widths from the centre of PIA10
 R₀ = 26.67 kly the image is ≈147 kly across. `src/astro/galaxy.js` holds the numbers and
 `tests/galaxy.test.js` checks that the marked Sun lands at R₀. Catalogue stars are HYG rows
 rotated into galactic coordinates (`/api/galaxy`), so they sit at their true positions on the art.
+
+## Spacecraft model sources
+
+Local mission GLBs from [NASA 3D Resources](https://github.com/nasa/NASA-3D-Resources)
+cover ISS, Hubble, JWST, Voyager 1/2, Juno, Parker, DSCOVR, MRO and LRO. The repository
+states its assets are free and without copyright. Individual author credits, original
+URLs, processing and checksums are retained in `src/data/models.js`. These published
+visualizations are MODELLED; attitude and dimensional registration remain illustrative.
+See `docs/assets.md` for the remaining asset queue and required metadata.

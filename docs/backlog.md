@@ -52,3 +52,7 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
+
+Asset production queue: see [assets.md](assets.md). First local mission-model batch
+covers ten craft (nine GLBs). Remaining craft, shape reconstructions and imagery are
+still pending; physical body-frame and dimension calibration remains required.

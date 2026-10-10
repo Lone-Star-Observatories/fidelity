@@ -194,3 +194,10 @@ found along the same orbits (20 kyr scan + golden-section refinement). Arrows ha
 motion is a separate gold arrow (capped at 0.6 × the radius). Systems within 8 ly of Sol get a
 line and distance label, refreshed with the epoch (`updateProximity`). An SVG orientation gauge
 (`.orient-gauge`) shows where the galactic centre, rotation and north point on screen.
+## Spacecraft visualization assets
+
+`src/data/models.js` maps craft IDs and satellite NORAD IDs to credited local GLBs in
+`public/models/`. `src/views/system/models.js` uses GLTFLoader with local Draco and
+bundled Meshopt decoders. SystemView loads a mission model on focus, replaces its
+pickable meshes, and discards pending results after a system switch. The single-file
+preview retains the representative craft. See `docs/assets.md` for registration limits.
