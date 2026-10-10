@@ -2479,6 +2479,435 @@ export const BODY_VISUALS = {
     "researchSourcesRecord": "docs/research/gj15a-source-records.json",
     "surfaceLabel": "CLOUD-TOP HYPOTHESIS",
     "skyLabel": "SKY ABOVE THE CLOUDS"
+  },
+  "tau-cet-f": {
+    "id": "tau-cet-f",
+    "name": "tau Cet f",
+    "aliases": [
+      "tau Cet f",
+      "Tau Ceti f",
+      "HD 10700 f",
+      "Gliese 71 f"
+    ],
+    "researchDate": "2026-10-10",
+    "statusNote": "ARCHIVE-LISTED, DISPUTED PLANET. The proposed 636-day signal is below the 2025 ESPRESSO detection limits. Non-detection does not rule it out, but independent confirmation remains uncertain. Every image is conditional on this body existing; it is not an observed surface.",
+    "nativeSurface": "No resolved native scientific planetary surface map located. Archive membership differs from the independent confirmation evidence; no planet is imaged here.",
+    "measured": [
+      "2017 study analyses archival HARPS and HIRES radial velocities; physical surfaces, atmospheres and radii were not measured.",
+      "2025 ESPRESSO study analyses 136 nightly measurements across 1565.9 days, with no unambiguous planet detections around Tau Ceti."
+    ],
+    "modelled": [
+      "2017 conditional Keplerian fit: period 636.13 days (1%–99% posterior interval 588.44–647.83); projected minimum mass 3.93 Earth masses (interval 2.56–4.98). These values depend on the planetary interpretation of a disputed RV signal.",
+      "Adopted archive semimajor axis 1.334 AU, radius estimate 1.81 Earth radii, host 5310 K and 0.83 solar radii. Planet radius is a mass-radius estimate, not a transit measurement.",
+      "Archive equilibrium 201.97 K is not measured surface temperature; albedo and atmosphere are unknown.",
+      "The proposed 636-day signal is below the 2025 ESPRESSO detection limits. Non-detection does not rule it out, but independent confirmation remains uncertain."
+    ],
+    "unknown": [
+      "Planetary existence and independent confirmation, orbital inclination, true mass, physical radius, spin, atmosphere, pressure, clouds, material chemistry, terrain and visible colour.",
+      "Habitable-zone placement does not establish habitability, oceans or life."
+    ],
+    "assumed": [
+      "Conditional scene only: the named planet is disputed; its surface is not observed.",
+      "Conditional frozen rock/water-ice scenario with an invented thin 0.1-bar nitrogen atmosphere; pressure, ice and atmospheric existence not measured.",
+      "Pale-grey silicate highlands, milky frost, blue-grey frozen basins and long tectonic valleys are wholly imagined; no liquid ocean or biology.",
+      "Weak blue-grey sky scattering and surface frost are artistic; a volatile envelope is also possible and no accessible ground is established.",
+      "Invented longitude/north-up frame and imperfect texture seams; no measured pole or scene registration.",
+      "Nominal 60° horizontal camera field, semimajor-axis illumination; no dated observer ephemeris. Warm ivory-white star appearance is an artistic colour guide.",
+      "Raster validation after star-size refinement: bright-core widths 17/16/15 source pixels versus geometric target 8.379 pixels in 1672-pixel frame. Glare and photosphere remain incompletely separated; camera, size and colour are not calibrated."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1708.02051v1",
+        "title": "Feng et al. 2017, candidate-signal fits Table 5",
+        "publicationDate": "2017-08-07 (arXiv v1)",
+        "observationDate": "Archival HARPS and HIRES; Fig. 1 time series; conservative HARPS subset excludes observations before JD2453500. Exact first/last epochs not independently transcribed."
+      },
+      {
+        "url": "https://arxiv.org/html/2507.07514v1",
+        "title": "Figueira et al. 2025, independent ESPRESSO limits Section 8.4",
+        "publicationDate": "2025-07-10 (arXiv v1)",
+        "observationDate": "ESPRESSO GTO: 136 nightly measurements across 1565.9 days (Table 8). Exact start/end dates are not independently transcribed; individual epochs in supplementary tables."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot (membership is not independent confirmation)",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "tau Cet f",
+      "hostname": "tau Cet",
+      "sy_dist": 3.60304,
+      "pl_rade": 1.81,
+      "pl_bmasse": 3.93,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 636.13,
+      "pl_orbsmax": 1.334,
+      "pl_eqt": 201.97,
+      "st_teff": 5310,
+      "st_rad": 0.83,
+      "st_mass": 0.783,
+      "st_spectype": "G8.5V",
+      "ra": 26.0093029,
+      "dec": -15.9337987,
+      "disc_year": 2017
+    },
+    "skyModel": {
+      "star": "Tau Ceti",
+      "radiusSun": 0.83,
+      "temperatureK": 5310,
+      "distanceAU": 1.334,
+      "angularDiameterDeg": 0.3315676018748938,
+      "centreDiscWidthFraction": 0.005011656531860919,
+      "irradianceEarth": 0.2772792177980726,
+      "approximateSrgb": [
+        1,
+        0.9176316035321856,
+        0.8481171538623429
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "CONDITIONAL SURFACE HYPOTHESIS",
+    "skyLabel": "CONDITIONAL SKY FROM THE SURFACE",
+    "surfaceMap": {
+      "key": "tauCetFBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up imagined albedo; no measured surface frame.",
+      "coverage": "Entire globe imagined, conditional on planetary existence.",
+      "url": "/bespoke/tau-cet-f-surface-map.jpg",
+      "previewUrl": "/bespoke/tau-cet-f-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-355500e8-f567-4884-a4dc-1b74a1991634.png",
+      "sourceSha256": "2a6bb0e7e5fd95d67d977bfa88993e2b577d7aab8935427ef856dc2baa8bf459",
+      "sha256": "650e7334d2fe75b7d71b5e7a7f06e89e54e66db09af12b5415b0741a07412086",
+      "previewSha256": "435fe75123fdeeeafe68460a67c7091781df2896ea0803be34ca90abfbecb82a",
+      "bytes": 544170,
+      "previewBytes": 37365,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in star-only ROI x40–60%, y7–28%; R>180/210/240, G>150, B>80; glare not calibrated photosphere.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          17,
+          16,
+          15
+        ],
+        "geometricTargetWidthPixels": 8.379489721271456,
+        "limits": "Nominal camera field and angular/raster scale approximate; no calibrated photometry."
+      },
+      "url": "/bespoke/tau-cet-f-sky-image.jpg",
+      "previewUrl": "/bespoke/tau-cet-f-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-dcd63655-a707-4ee7-9199-2ebd3c9bfdb9.png",
+      "sourceSha256": "5623f9c6da0844e3a62517e5a8cdcc859c5fac0ecf97cd770d800e965e8f7cad",
+      "sha256": "baec7fd54efaf07c65960686c94cf609b4cc49a72c8145c63ee43831b12aa9de",
+      "previewSha256": "d6ca0e65965de3fc6ac0fe9a4ee2af28eb4834698907cce772224446398ed74e",
+      "bytes": 271758,
+      "previewBytes": 50187,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/tau-ceti-source-records.json"
+  },
+  "tau-cet-g": {
+    "id": "tau-cet-g",
+    "name": "tau Cet g",
+    "aliases": [
+      "tau Cet g",
+      "Tau Ceti g",
+      "HD 10700 g",
+      "Gliese 71 g"
+    ],
+    "researchDate": "2026-10-10",
+    "statusNote": "ARCHIVE-LISTED, DISPUTED PLANET. 2025 ESPRESSO finds weak 20-day structure without significant evidence for a planet; stellar rotation harmonics could produce the signal. Independent planetary confirmation remains uncertain. Every image is conditional on this body existing; it is not an observed surface.",
+    "nativeSurface": "No resolved native scientific planetary surface map located. Archive membership differs from the independent confirmation evidence; no planet is imaged here.",
+    "measured": [
+      "2017 study analyses archival HARPS and HIRES radial velocities; physical surfaces, atmospheres and radii were not measured.",
+      "2025 ESPRESSO study analyses 136 nightly measurements across 1565.9 days, with no unambiguous planet detections around Tau Ceti."
+    ],
+    "modelled": [
+      "2017 conditional Keplerian fit: period 20 days (1%–99% posterior interval 19.99–20.02); projected minimum mass 1.75 Earth masses (interval 1.35–2.00). These values depend on the planetary interpretation of a disputed RV signal.",
+      "Adopted archive semimajor axis 0.133 AU, radius estimate 1.18 Earth radii, host 5310 K and 0.83 solar radii. Planet radius is a mass-radius estimate, not a transit measurement.",
+      "Archive equilibrium 639.65 K is not measured surface temperature; albedo and atmosphere are unknown.",
+      "2025 ESPRESSO finds weak 20-day structure without significant evidence for a planet; stellar rotation harmonics could produce the signal. Independent planetary confirmation remains uncertain."
+    ],
+    "unknown": [
+      "Planetary existence and independent confirmation, orbital inclination, true mass, physical radius, spin, atmosphere, pressure, clouds, material chemistry, terrain and visible colour.",
+      "Habitable-zone placement does not establish habitability, oceans or life."
+    ],
+    "assumed": [
+      "Conditional scene only: the named planet is disputed; its surface is not observed.",
+      "Conditional dry airless silicate/iron hypothesis; actual atmosphere and chemistry unknown.",
+      "Charcoal basaltic shields, muted reddish-brown mineral dust, light sandy streaks and broad low domes are imagined; no active lava is inferred.",
+      "Black sky chooses no atmosphere, rather than demonstrating its absence.",
+      "Invented longitude/north-up frame and imperfect texture seams; no measured pole or scene registration.",
+      "Nominal 60° horizontal camera field, semimajor-axis illumination; no dated observer ephemeris. Warm ivory-white star appearance is an artistic colour guide.",
+      "Raster validation after star-size refinement: bright-core widths 55/53/49 source pixels versus geometric target 84.082 pixels in 1672-pixel frame. Glare and photosphere remain incompletely separated; camera, size and colour are not calibrated."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1708.02051v1",
+        "title": "Feng et al. 2017, candidate-signal fits Table 5",
+        "publicationDate": "2017-08-07 (arXiv v1)",
+        "observationDate": "Archival HARPS and HIRES; Fig. 1 time series; conservative HARPS subset excludes observations before JD2453500. Exact first/last epochs not independently transcribed."
+      },
+      {
+        "url": "https://arxiv.org/html/2507.07514v1",
+        "title": "Figueira et al. 2025, independent ESPRESSO limits Section 8.4",
+        "publicationDate": "2025-07-10 (arXiv v1)",
+        "observationDate": "ESPRESSO GTO: 136 nightly measurements across 1565.9 days (Table 8). Exact start/end dates are not independently transcribed; individual epochs in supplementary tables."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot (membership is not independent confirmation)",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "tau Cet g",
+      "hostname": "tau Cet",
+      "sy_dist": 3.60304,
+      "pl_rade": 1.18,
+      "pl_bmasse": 1.75,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 20,
+      "pl_orbsmax": 0.133,
+      "pl_eqt": 639.65,
+      "st_teff": 5310,
+      "st_rad": 0.83,
+      "st_mass": 0.783,
+      "st_spectype": "G8.5V",
+      "ra": 26.0093029,
+      "dec": -15.9337987,
+      "disc_year": 2017
+    },
+    "skyModel": {
+      "star": "Tau Ceti",
+      "radiusSun": 0.83,
+      "temperatureK": 5310,
+      "distanceAU": 0.133,
+      "angularDiameterDeg": 3.3261103558696257,
+      "centreDiscWidthFraction": 0.05028826376071205,
+      "irradianceEarth": 27.8949570754631,
+      "approximateSrgb": [
+        1,
+        0.9176316035321856,
+        0.8481171538623429
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "CONDITIONAL SURFACE HYPOTHESIS",
+    "skyLabel": "CONDITIONAL SKY FROM THE SURFACE",
+    "surfaceMap": {
+      "key": "tauCetGBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up imagined albedo; no measured surface frame.",
+      "coverage": "Entire globe imagined, conditional on planetary existence.",
+      "url": "/bespoke/tau-cet-g-surface-map.jpg",
+      "previewUrl": "/bespoke/tau-cet-g-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-723e84a4-521d-4535-a941-60987aa1c87d.png",
+      "sourceSha256": "bbc0e9f456adfd9e949c83a9502f8409365b297fa3f5020b74fd3aac6e656da6",
+      "sha256": "8b837f2721db7debcccd1dc50e3772e3fffa4a52eb9e66f7a4aa34d3a70170cc",
+      "previewSha256": "cbb2348e6e239b2045171adff22e0ec44f2ef5ba28d0d0cb059fb78b1c7bbaf1",
+      "bytes": 509413,
+      "previewBytes": 31422,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in star-only ROI x40–60%, y7–28%; R>180/210/240, G>150, B>80; glare not calibrated photosphere.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          55,
+          53,
+          49
+        ],
+        "geometricTargetWidthPixels": 84.08197700791055,
+        "limits": "Nominal camera field and angular/raster scale approximate; no calibrated photometry."
+      },
+      "url": "/bespoke/tau-cet-g-sky-image.jpg",
+      "previewUrl": "/bespoke/tau-cet-g-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-7dbb11cb-d471-46e3-a29b-d6bc25ba2983.png",
+      "sourceSha256": "b04cea32be231c245d42158e89004bf81ac8ff3cc5dba982bef999795e1d80a7",
+      "sha256": "5267ba1bc9a3002055ea93daa95108937c108afbb031dbae9f9011b5f653b058",
+      "previewSha256": "1b018ae3253ee90ac0fb0de08414037bd6769bcdf99bb4cff15a1e9d1cf19760",
+      "bytes": 270711,
+      "previewBytes": 50963,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/tau-ceti-source-records.json"
+  },
+  "tau-cet-h": {
+    "id": "tau-cet-h",
+    "name": "tau Cet h",
+    "aliases": [
+      "tau Cet h",
+      "Tau Ceti h",
+      "HD 10700 h",
+      "Gliese 71 h"
+    ],
+    "researchDate": "2026-10-10",
+    "statusNote": "ARCHIVE-LISTED, DISPUTED PLANET. The proposed 49-day planet is close to the 2025 ESPRESSO compatibility limit, and that study does not unambiguously detect planets around Tau Ceti. Independent confirmation remains uncertain. Every image is conditional on this body existing; it is not an observed surface.",
+    "nativeSurface": "No resolved native scientific planetary surface map located. Archive membership differs from the independent confirmation evidence; no planet is imaged here.",
+    "measured": [
+      "2017 study analyses archival HARPS and HIRES radial velocities; physical surfaces, atmospheres and radii were not measured.",
+      "2025 ESPRESSO study analyses 136 nightly measurements across 1565.9 days, with no unambiguous planet detections around Tau Ceti."
+    ],
+    "modelled": [
+      "2017 conditional Keplerian fit: period 49.41 days (1%–99% posterior interval 49.31–49.49); projected minimum mass 1.83 Earth masses (interval 1.57–2.51). These values depend on the planetary interpretation of a disputed RV signal.",
+      "Adopted archive semimajor axis 0.243 AU, radius estimate 1.19 Earth radii, host 5310 K and 0.83 solar radii. Planet radius is a mass-radius estimate, not a transit measurement.",
+      "Archive equilibrium 473.22 K is not measured surface temperature; albedo and atmosphere are unknown.",
+      "The proposed 49-day planet is close to the 2025 ESPRESSO compatibility limit, and that study does not unambiguously detect planets around Tau Ceti. Independent confirmation remains uncertain."
+    ],
+    "unknown": [
+      "Planetary existence and independent confirmation, orbital inclination, true mass, physical radius, spin, atmosphere, pressure, clouds, material chemistry, terrain and visible colour.",
+      "Habitable-zone placement does not establish habitability, oceans or life."
+    ],
+    "assumed": [
+      "Conditional scene only: the named planet is disputed; its surface is not observed.",
+      "Conditional dry airless silicate/iron hypothesis; actual atmosphere and chemistry unknown.",
+      "Light-grey crumpled plates, pale taupe dust, curved wrinkle ridges and isolated darker volcanic patches are imagined; no active lava or water inferred.",
+      "Black sky chooses no atmosphere, rather than demonstrating its absence.",
+      "Invented longitude/north-up frame and imperfect texture seams; no measured pole or scene registration.",
+      "Nominal 60° horizontal camera field, semimajor-axis illumination; no dated observer ephemeris. Warm ivory-white star appearance is an artistic colour guide.",
+      "Raster validation after star-size refinement: bright-core widths 49/49/47 source pixels versus geometric target 46.007 pixels in 1672-pixel frame. Glare and photosphere remain incompletely separated; camera, size and colour are not calibrated."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/html/1708.02051v1",
+        "title": "Feng et al. 2017, candidate-signal fits Table 5",
+        "publicationDate": "2017-08-07 (arXiv v1)",
+        "observationDate": "Archival HARPS and HIRES; Fig. 1 time series; conservative HARPS subset excludes observations before JD2453500. Exact first/last epochs not independently transcribed."
+      },
+      {
+        "url": "https://arxiv.org/html/2507.07514v1",
+        "title": "Figueira et al. 2025, independent ESPRESSO limits Section 8.4",
+        "publicationDate": "2025-07-10 (arXiv v1)",
+        "observationDate": "ESPRESSO GTO: 136 nightly measurements across 1565.9 days (Table 8). Exact start/end dates are not independently transcribed; individual epochs in supplementary tables."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive composite snapshot (membership is not independent confirmation)",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "archiveConstraints": {
+      "pl_name": "tau Cet h",
+      "hostname": "tau Cet",
+      "sy_dist": 3.60304,
+      "pl_rade": 1.19,
+      "pl_bmasse": 1.83,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 49.41,
+      "pl_orbsmax": 0.243,
+      "pl_eqt": 473.22,
+      "st_teff": 5310,
+      "st_rad": 0.83,
+      "st_mass": 0.783,
+      "st_spectype": "G8.5V",
+      "ra": 26.0093029,
+      "dec": -15.9337987,
+      "disc_year": 2017
+    },
+    "skyModel": {
+      "star": "Tau Ceti",
+      "radiusSun": 0.83,
+      "temperatureK": 5310,
+      "distanceAU": 0.243,
+      "angularDiameterDeg": 1.820284633026857,
+      "centreDiscWidthFraction": 0.02751590700989427,
+      "irradianceEarth": 8.356346351468558,
+      "approximateSrgb": [
+        1,
+        0.9176316035321856,
+        0.8481171538623429
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "CONDITIONAL SURFACE HYPOTHESIS",
+    "skyLabel": "CONDITIONAL SKY FROM THE SURFACE",
+    "surfaceMap": {
+      "key": "tauCetHBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular north-up imagined albedo; no measured surface frame.",
+      "coverage": "Entire globe imagined, conditional on planetary existence.",
+      "url": "/bespoke/tau-cet-h-surface-map.jpg",
+      "previewUrl": "/bespoke/tau-cet-h-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-342240b8-6a5a-4cc3-8eef-2aaf2a9f50b8.png",
+      "sourceSha256": "37dc741dfb917737a212eff959703b8934f0838bfac98a596ce7f39f461c73bc",
+      "sha256": "0fe2afeef6078fe4f31d64c92f7ab05a6387ece571be6eb5d6abdfabc4f29e14",
+      "previewSha256": "dd508756c967f1033e7f408d275516a6beda49582fd132883fe9559c88123a3f",
+      "bytes": 614386,
+      "previewBytes": 39819,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core bounding box in star-only ROI x40–60%, y7–28%; R>180/210/240, G>150, B>80; glare not calibrated photosphere.",
+        "sourceWidth": 1672,
+        "thresholdWidthsPixels": [
+          49,
+          49,
+          47
+        ],
+        "geometricTargetWidthPixels": 46.00659652054322,
+        "limits": "Nominal camera field and angular/raster scale approximate; no calibrated photometry."
+      },
+      "url": "/bespoke/tau-cet-h-sky-image.jpg",
+      "previewUrl": "/bespoke/tau-cet-h-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-7d7cbbc1-fb6d-4674-b9ad-82c86924bbcf.png",
+      "sourceSha256": "ab44d3681ff362eaa68ab893991cefa0d151eb0c61b7920453247a5352f93db2",
+      "sha256": "df559aacb17354a1189fc1539ce749f481e5e72826840526d74ec1935f18fbc4",
+      "previewSha256": "00583cf4be51fbfad764f2e01f54d7196354ff6ee9cc088d634c1e6770f0f0b0",
+      "bytes": 296825,
+      "previewBytes": 54898,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/tau-ceti-source-records.json"
   }
 };
 

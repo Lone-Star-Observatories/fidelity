@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://arxiv.org/html/1708.02051v1",
+    "credit": "Feng et al. 2017",
+    "publicationDate": "2017-08-07 (arXiv v1)",
+    "observationDate": "Archival HARPS and HIRES; Fig. 1 time series; conservative HARPS subset excludes observations before JD2453500. Exact first/last epochs not independently transcribed.",
+    "terms": "arXiv distribution license; research citation only, no paper figures reused.",
+    "sha256": "0ea4fcfcb4cf0cb20ec4c49704adb596bd7152352e07be6d8039b8e3670822d8",
+    "bytes": 310383,
+    "retrieved": "2026-10-10"
+  },
+  {
+    "url": "https://arxiv.org/html/2507.07514v1",
+    "credit": "Figueira et al. 2025",
+    "publicationDate": "2025-07-10 (arXiv v1)",
+    "observationDate": "ESPRESSO GTO: 136 nightly measurements across 1565.9 days (Table 8). Exact start/end dates are not independently transcribed; individual epochs in supplementary tables.",
+    "terms": "CC BY 4.0 author manuscript HTML; research citation only, no figures reused.",
+    "sha256": "ad7404cd86efc2341666e7aebbc8ab15f96e754ec99117091835d30e07bf2f1d",
+    "bytes": 780766,
+    "retrieved": "2026-10-10"
+  }
+]

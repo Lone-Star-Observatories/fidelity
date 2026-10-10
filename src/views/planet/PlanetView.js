@@ -132,6 +132,8 @@ export function createPlanetView(container, { onSurface } = {}) {
     const sources = el('div', { className: 'bespoke-sources' }, ...visual.references.map(ref =>
       el('a', { href: ref.url, target: '_blank', rel: 'noopener noreferrer', textContent: ref.title })));
     const result = [];
+    if (visual.statusNote) result.push(card('PLANET STATUS', 'modelled', 'Archive membership and independent detection evidence can differ.',
+      el('p', { className: 'note', textContent: visual.statusNote })));
     for (const [label, asset] of [[visual.surfaceLabel ?? 'SURFACE HYPOTHESIS', visual.surfaceImage ?? visual.surfaceMap], [visual.skyLabel ?? 'SKY FROM THE SURFACE', visual.skyImage]]) {
       const url = visualImageUrl(asset);
       if (!url) continue;
