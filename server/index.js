@@ -8,12 +8,13 @@ import path from 'node:path';
 import { config } from './config.js';
 import { monthlyVectors, localDay, localMonth, track } from './horizons.js';
 import { dsnNow } from './dsn.js';
-import { clusters, galaxies } from './deepsky.js';
+import { clusters, galaxies, clusterMembers } from './deepsky.js';
+import { nebulaImage } from './nebulae.js';
 import { gaiaBright } from './gaia.js';
 import { starLookup } from './lookup.js';
 import { scanCatalogs } from './catalogs.js';
 import { cacheStats } from './cache.js';
-import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from './stars.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, arrivals } from './stars.js';
 import { textureResponse, textureCredits } from './textures.js';
 import { spectrumFor } from './spectra.js';
 import { smallBodies } from './smallbodies.js';
@@ -27,6 +28,9 @@ import { voiceStatus, handleVoiceUpgrade } from './voice.js';
 import { hipsImage, gibsBand } from './bandimages.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
+import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
+import { signalLayers, signalLayer } from './signals.js';
+import { surfaceImages, surfaceImage } from './surfaceimages.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -50,12 +54,14 @@ const routes = {
   'GET /api/horizons/track': async (q) => track(q.get('body') || '', q.get('start') || '', q.get('stop') || '', q.get('n')),
   'GET /api/dsn': async () => dsnNow(),
   'GET /api/clusters': async () => clusters(),
+  'GET /api/cluster-members': async (q) => clusterMembers(q.get('name') || ''),
   'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/star-lookup': async (q) => starLookup(q),
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),
   'GET /api/nearby': async (q) => nearby(q.get('center') || 'sol', q.get('radiusLy') || '50'),
+  'GET /api/arrivals': async (q) => arrivals(q.get('center') || 'sol', q.get('fromLy') || '0', q.get('toLy') || '250'),
   'GET /api/planets': async (q) => nearbyPlanets(q.get('center') || 'sol', q.get('radiusLy') || '50'),
   'GET /api/sky': async (q) => sky(q.get('center') || 'sol', q.get('maxMag') || '6.5'),
   'GET /api/textures': async () => textureCredits(),
@@ -75,6 +81,10 @@ const routes = {
   'GET /api/star-spectrum': async (q) => starSpectrum(q),
   'GET /api/exo-spectra': async (q) => exoSpectraList(q.get('planet') || ''),
   'GET /api/exo-spectrum': async (q) => exoSpectrum(q.get('path') || ''),
+  'GET /api/signals': async () => signalLayers(), // COMMS (#35)
+  'GET /api/comms/raw-image': async (q) => binary(await rawImage(q.get('url') || '')),
+  'GET /api/surface-images': async (q) => surfaceImages(q),
+  'GET /api/surface-image': async (q) => binary(await surfaceImage(q)),
 };
 
 /** Binary result: sent as-is instead of JSON. */
@@ -83,12 +93,17 @@ const binary = (r) => Object.assign(r, { binary: true });
 // Routes with a path parameter.
 const paramRoutes = [
   [/^GET \/api\/stars\/([a-z0-9-]{1,64})$/, (m) => starDetail(m[1])],
+  [/^GET \/api\/nebula-image\/([a-z0-9-]{1,32})$/, async (m) => binary(await nebulaImage(m[1]))],
   [/^GET \/api\/texture\/([A-Za-z]{1,32})$/, async (m) => binary(await textureResponse(m[1]))],
   [/^GET \/api\/satellites\/(\d{1,6})$/, (m) => satelliteDetail(m[1])],
   [/^GET \/api\/observing\/(hst|jwst)\/recent$/, (m) => recentImages(m[1])],
   [/^GET \/api\/traverse\/([a-z0-9-]{1,16})$/, (m) => traverse(m[1])],
   [/^GET \/api\/survey\/([a-z0-9]{2,16})$/, async (m, q) => binary(await surveyCutout(m[1], q))],
   [/^GET \/api\/nasa-image\/([A-Za-z0-9_.\-]{2,80})\/(thumb|medium)$/, async (m) => binary(await nasaImage(m[1], m[2]))],
+  [/^GET \/api\/comms\/satnogs\/(\d{1,6})$/, (m) => satnogs(m[1])], // COMMS (#35)
+  [/^GET \/api\/comms\/mars-raw\/(m20|msl)$/, (m) => marsRaw(m[1])],
+  [/^GET \/api\/comms\/mars-weather\/(m20|msl)$/, (m) => marsWeather(m[1])],
+  [/^GET \/api\/signals\/([a-z]{1,16})$/, (m) => signalLayer(m[1])],
   [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m) => {
     const f = await feed(m[1]);
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };

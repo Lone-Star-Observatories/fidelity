@@ -176,3 +176,8 @@ test('Europa preserves its native globe and distinguishes SRU display processing
  assert.match(v.modelled.join(' '),/29±10km/);assert.match(v.modelled.join(' '),/idealized pure-water/);assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/radiation-particle/);
  assert.equal(v.contextImages[0].observationDate,'2022-09-29');assert.equal(v.contextImages[0].publicationDate,'2024-05-15');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
 });
+
+
+test('Ganymede preserves its own globe and distinguishes spectral overlay from imagined local chemistry',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const moon=MOONS.find(m=>m.id==='ganymede'),v=bodyVisualFor(moon);assert.equal(v.id,'ganymede');assert.equal(moon.skin.map,'ganymede');assert.equal(v.surfaceMap,undefined);assert.match(v.modelled.join(' '),/laboratory/);assert.match(v.contextImages[0].description,/display rendition/);assert.match(v.contextImages[0].description,/older Galileo/);assert.equal(v.contextImages[0].observationDate,'2021-06-07');assert.equal(v.contextImages[0].publicationDate,'2023-10-30');assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),v.contextImages[0].sha256);assert.equal(v.surfaceImage.tier,'imagined');assert.equal(v.skyImage.tier,'imagined');assert.match(v.unknown.join(' '),/chemistry/);
+});

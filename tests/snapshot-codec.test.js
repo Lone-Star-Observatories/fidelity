@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -48,4 +48,15 @@ test('raw application transport rejects invalid envelopes, overflow and padding'
   for (const packed of [null, {}, {...valid, encoding:'other'}, {...valid, byteLength:-1}, {...valid, data:valid.data.slice(1)}, {...valid, data:'<'.repeat(7)}, {...valid, data:'\x7f'.repeat(7)}, {...encodeApplicationBytes(new Uint8Array(1)), data:valid.data.slice(0,6)+'\x02'}]) {
     assert.throws(() => unpackApplicationBytes(packed));
   }
+});
+
+test('wide raw snapshot transport preserves every partial block and rejects corrupt envelopes', async () => {
+  for (const bytes of [randomBytes(4097), ...Array.from({length:89}, (_, length) => new Uint8Array(length).fill(255))]) {
+    const packed = encodeRawSnapshotBytes(bytes);
+    assert.deepEqual(unpackSnapshotBytes(packed), new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data, /[\x00\x09-\x0d\x1b<]/);
+  }
+  const valid = encodeRawSnapshotBytes(new Uint8Array(44));
+  for (const packed of [{...valid, byteLength:-1}, {...valid, byteLength:1.5}, {...valid, data:valid.data.slice(1)}, {...valid, data:'<'.repeat(51)}, {...valid, data:'\x7f'.repeat(51)}, {...valid, byteLength:1, data:valid.data.slice(0,50)+'\x02'}]) assert.throws(() => unpackSnapshotBytes(packed));
+  assert.deepEqual(await decodeSnapshot(encodeRawSnapshotBytes(gzipSync(JSON.stringify({label:'α • Hiʻiaka', bytes:'AAEC//8='})))), {label:'α • Hiʻiaka', bytes:'AAEC//8='});
 });

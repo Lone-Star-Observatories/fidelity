@@ -4,8 +4,10 @@
 
 import { createFromEarthCard } from './fromearth.js';
 import { createImageryCard } from './imagery.js';
+import { createSurfaceCard } from './surface.js';
 import { bodySpectrumCard, starSpectrumCard, exoSpectraCard } from './spectra.js';
 import { toRaDec } from '../astro/observe.js';
+import { createCommsCard } from './comms.js';
 
 const isStarBody = (b) => !!(b.starLike || b.kind === 'star' || b.kind === 'white dwarf' || b.kind === 'brown dwarf');
 
@@ -34,7 +36,7 @@ const firstWord = (s) => s.toLowerCase().match(/[a-z0-9-]+/)?.[0] ?? s.toLowerCa
  * Cards for body `b` of model `m`. `system` gives positions (Sol), `clock` the ship's time.
  * Returns { top, spectrum, tick(), dispose() }.
  */
-export function detailCards(b, m, { system, clock }) {
+export function detailCards(b, m, { system, clock, surface = null }) {
   const getJd = () => clock.jd;
   const parts = [];
   let sky = null;
@@ -65,6 +67,11 @@ export function detailCards(b, m, { system, clock }) {
   if (fe) parts.push(fe);
   const imagery = imageryTarget && (imageryTarget.sky() || imageryTarget.id === 'earth' || imageryTarget.id === 'sun') ? createImageryCard(imageryTarget) : null;
   if (imagery) parts.push(imagery);
+  // COMMS (#35): live links for Earth, the Moon and Mars; Earth also gets the live-signals map
+  const comms = m.isSol ? createCommsCard(b.id, { system }) : null;
+  if (comms) parts.push(comms, ...(comms.extra ? [comms.extra] : []));
+  // FROM THE SURFACE (#36): landed imagery or an in-app render, for anything with a surface view
+  if (!star && surface) parts.push(createSurfaceCard(b, m, { system, hooks: surface }));
 
   const spectrum = [];
   if (star && !m.isSol) {
@@ -76,7 +83,7 @@ export function detailCards(b, m, { system, clock }) {
   return {
     top: parts.map((p) => p.node),
     spectrum: spectrum.filter(Boolean),
-    tick() { fe?.tick(); imagery?.tick(); },
+    tick() { fe?.tick(); imagery?.tick(); comms?.tick(); },
     dispose() { for (const p of parts) p.dispose?.(); },
   };
 }

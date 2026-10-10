@@ -14,8 +14,12 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/imagery.js   surveys, NASA │
 │                                      │           │ server/bodyspectra.js PSG/Gaia/NEA│
 │                                      │           │ server/dsn.js       DSN Now       │
+│                                      │           │ server/comms.js     SatNOGS, Mars │
+│                                      │           │ server/signals.js   signals map   │
 │                                      │           │ server/deepsky.js   VizieR        │
+│                                      │           │ server/nebulae.js   nebula images │
 │                                      │           │ server/events.js    events feed   │
+│                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -67,7 +71,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 |---|---|
 | `GET /api/health` | Liveness and configured catalog folders |
 | `GET /api/horizons/vectors?body=399&month=2026-10` | Daily heliocentric vectors for a calendar month |
-| `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts |
+| `GET /api/nearby?center=sol&radiusLy=25` | Stars within a radius of a star (Sol always included), with planet counts, space velocity (`vKms`), `rvKnown` and velocity source `vSrc` (0 HYG, 1 Gaia DR3, 2 Gaia DR3 astrometry + catalogue RV); `motions` says whether Gaia motions have loaded |
+| `GET /api/arrivals?center=sol&fromLy=25&toLy=250` | Deep-time arrivals (#29): stars with a measured motion in the shell `fromLy < d ≤ toLy` (≤ 1,000 ly), each with its system's shared motion: `[id, name, x, y, z pc, absmag, B−V, system, vx, vy, vz km/s, flags]` (flags = rvKnown + 2 × vSrc), plus the catalogue's density near Sol. 0–250 ly ≈ 17k rows / 1.5 MB, 250–1,000 ly ≈ 65k rows / 5.7 MB |
 | `GET /api/stars/<id>` | One star, its archive host row and its planets |
 | `GET /api/planets?center=sol&radiusLy=50` | Known planets around stars in range, nearest first (radius, mass, period, temperature, insolation, discovery) |
 | `GET /api/sky?center=<id>&maxMag=6.5` | The naked-eye sky from a star: directions and apparent magnitudes |
@@ -86,14 +91,21 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/horizons/local?body=-74&center=499&day=YYYY-MM-DD` | One day of planet-relative states (km, km/s; 10 min) for orbiters |
 | `GET /api/horizons/local-month?body=-74&center=499&month=YYYY-MM` | A month of planet-relative states (20 min): stand-in while a day loads, and what fast time-play runs on. Month and track responses clipped by a predicted ephemeris's end carry `ephemerisEnd` (drawn as an end marker) |
 | `GET /api/horizons/track?body=-31&start=…&stop=…&n=400` | Heliocentric trajectory (AU), clipped to where the ephemeris exists |
-| `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }` |
-| `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type]` (Hunt & Reffert 2023) |
+| `GET /api/dsn` | DSN Now contacts `{ station, dish, spacecraftId (NAIF), down/up rate & power, rangeKm }`, plus `lastSeen` per craft (when this backend last saw it in contact) |
+| `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
+| `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
+| `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
+| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, `windy` with `FIDELITY_WINDY_KEY`) (`server/signals.js`) |
+| `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
+| `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
+| `GET /api/nebula-image/:key` | A landmark nebula's real image (allowlist: `src/data/nebula3d.js`), downloaded once to `data/nebulae/`, JPEG/PNG checked (`server/nebulae.js`) |
 | `GET /api/star-lookup?ra=&dec=[&distLy=][&gaia=1]` | Identify a star by position: SIMBAD (brightest stellar object in the cone) and optionally Gaia DR3 (best parallax match), cached |
 | `GET /api/gaia-bright` | Gaia DR3 stars G < 9, parallax/error > 10, beyond ~1.6 kly: `[gx, gy, gz]` ly, M_G×10, BP−RP×100 (ESA TAP, cached 90 days) |
 | `GET /api/galaxies` | `{ ungc: [name, ra, dec, distMpc, T, M_B, D_kpc, method], groups: [pgc, n, distMpc, SGX, SGY, SGZ] }` |
 | `GET /api/galaxy?maxLy=1500&maxAbs=2` | Bright catalogue stars as heliocentric galactic `[gx, gy, gz]` ly, absmag×10, B−V×100 |
 | `GET /api/surveys` · `GET /api/survey/:key?ra=&dec=&fov=[&size=]` | Sky-survey list; a JPEG cutout (north up, east left; 404 where the survey has no coverage) from CDS hips2fits (`server/imagery.js`) |
 | `GET /api/nasa-images?q=&must=` · `GET /api/nasa-image/:id/(thumb\|medium)` | NASA Image Library search (captions must name the body); preview images |
+| `GET /api/surface-images?body=` · `GET /api/surface-image?src=` | FROM THE SURFACE (#36): `{ body, curated, live, pending, errors }`: the curated landed imagery of `src/data/surface-images.js` with local preview URLs, plus (Mars) the newest Perseverance and Curiosity raw images at each rover's latest traverse point (cached 1 h); an image from an allowlisted host/path only (`SURFACE_HOSTS`), JPEG/PNG verified, cached a year (`server/surfaceimages.js`) |
 | `GET /api/psg?body=&month=YYYY-MM` | PSG modelled spectrum `{ wavelengthUm, total, reflected?, thermal? }` W/sr/m²/µm (`server/bodyspectra.js`) |
 | `GET /api/star-spectrum?ra=&dec=[&distLy=]` | Gaia DR3 XP spectrum `{ found, gaiaId, nm, flux, err }` of the star SIMBAD finds there |
 | `GET /api/exo-spectra?planet=` · `GET /api/exo-spectrum?path=` | Exoplanet Archive spectra list; one spectrum's points `{ um, width, value, errHi, errLo, limit }` |
@@ -108,7 +120,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
-mode is disabled there.
+mode is disabled there. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
+(the 1,000 ly catalogue is backend-only); the chart badge says so when that runs short.
 
 ## Adding a view
 
@@ -160,6 +173,19 @@ Craft that orbit or hover near a body are positioned relative to it and pass thr
 compression. Panel distances always use true (uncompressed) positions. The backend queues
 Horizons calls three at a time.
 
+## COMMS and the live-signals map (#35)
+
+`src/panels/comms.js` builds every COMMS section from one entry shape (`commsEntry`: name, value, source,
+age that ticks every second, badge, link up / not in contact, links): `spacecraftComms` (the spacecraft
+panel's DSN section, from the 20 s poll in `main.js`), `satelliteComms` (Satellite View: SatNOGS, and the
+ISS's ARISS frequencies from `src/data/comms.js`) and `createCommsCard` (Earth, Moon, Mars detail views,
+added by `detail.js`; it polls `/api/dsn` itself and matches craft to a body by DSN code, `BODY_CRAFT`).
+`src/panels/signalsmap.js` is Earth's LIVE SIGNALS card: an equirectangular canvas over `/api/texture/earth`
+with wheel/drag zoom, one pill per layer, and a click list whose links open the operator's page or stream in
+a new window (nothing third-party is embedded or fetched by the browser; rover thumbnails come through
+`/api/comms/raw-image`). Styles live in `src/styles/comms.css`. The standalone preview shows a "needs the
+local backend" note and only the bundled observatory and volcano markers.
+
 ## Light-time messages
 
 `NavigationView.sendMessage(from, to, lyPerSec)` animates a pulse out and a reply back;
@@ -185,6 +211,26 @@ shader by radius (`uRadius`) and labels by distance. Label `visible` must be a s
 (CSS2DRenderer only hides on `=== false`). The Universe View also draws the Local Group's
 CMB motion and Andromeda's approach (`MOTION`).
 
+## 3D nebulae and cluster members (#24)
+
+`src/data/nebula3d.js` gives each Quadrant View nebula a real image (credit, licence, date, centre, field
+of view, "north is θ° left of vertical" from the publisher's AVM metadata) and a 3D model (`blister`,
+`cloud`, `shell`, `filled`, `barrel`; radius R in arcmin, depth in R, literature reference).
+`src/views/quadrant/deepsky3d.js` draws each as a box in the plane of the sky at the nebula's distance
+(`skyBasis` in `src/astro/skyplane.js`: faces Sol, north along celestial north; physical size = angular
+size × distance) and ray-marches it: every sample takes the image pixel behind it along our line of
+sight, weighted by the model profile divided by its integral along that sightline, so from Sol the volume
+adds up to exactly the image (MEASURED) and from anywhere else shows the model (MODELLED). Dark clouds are drawn
+as a dust volume only (their image is the star field behind them), its opacity from how dark the blurred image is;
+survey cutouts are sampled one mip level softer so their stars don't streak through the volume. Images load when a nebula is selected
+or more than ~10 px on screen. Clusters load their members (`/api/cluster-members`) when selected or
+larger than ~40 px (three at a time, 30 kept): measured directions, G brightness, BP−RP dereddened by the
+cluster's A_V; along the line of sight `memberDistance` shrinks each parallax distance toward the cluster's
+by inverse variance and fills what parallax cannot pin with a reproducible scatter as wide as r50
+(the panel counts both). Globulars add a glow for their unresolved core. Members, stars in
+`NEBULA_STARS` and their labels open the #23 star card; cluster and nebula dots select them. Selecting a
+nebula flies in from Sol's side. In the standalone preview images and members are not available (said so).
+
 ## Surface view
 
 Double-click a body in the System View (or its globe in the Planet View) to stand there
@@ -201,6 +247,21 @@ Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed
 (`observingBody` in `src/panels/satellite.js`): for JWST, the visit in progress (with a progress
 bar) and what comes next, from STScI's published schedule (PLANNED); for both, a grid of the newest
 public MAST images that opens each one large.
+
+## From the surface (#36)
+
+`src/panels/surface.js` builds the FROM THE SURFACE card for every Planet, Moon and Object View (passed to
+`detailCards` as `surface` hooks by `main.js`). `surfaceSelection` (`src/data/surface-images.js`) decides: real
+pictures from the surface where they exist (MEASURED: curated archival sets keyed to #37 site ids, live Mars raw
+images, Earth's observatory webcams), sorted nearest the last rendered spot; otherwise the card leads with the
+in-app render (IMAGINED). RENDER AT a site sets `pendingSurface` with `look: 'best'` (face the parent planet or the
+Sun, horizon a fifth of the way up) and `daylight: 20` (walk to the nearest point where the Sun is 20° up, so a
+render is not a black night); after ~3 s `captureWhenReady` calls `SystemView.capture()` (re-renders and copies the
+canvas in the same task, so no `preserveDrawingBuffer`) and keeps the JPEG with the HUD read-out, time and actual
+lat/lon in `localStorage` (a per-viewer convenience; renders can always be redone). The render's inputs (map, horizon
+distance from the radius, gravity, sky model, the star's and parent's computed apparent sizes) are listed under the
+IMAGINED badge. Each image's site is a camera marker on the Planet View globe (`setSurfaceMarks`); clicking one
+stands there. No AI image service: it would need hosting and would be invention presented as a picture.
 
 ## Surface sites (#37)
 
@@ -418,6 +479,27 @@ found along the same orbits (20 kyr scan + golden-section refinement). Arrows ha
 motion is a separate gold arrow (capped at 0.6 × the radius). Systems within 8 ly of Sol get a
 line and distance label, refreshed with the epoch (`updateProximity`). An SVG orientation gauge
 (`.orient-gauge`) shows where the galactic centre, rotation and north point on screen.
+
+**Arrivals (#29).** Stars move ~3.3 ly per Myr for every km/s, so in a few Myr today's neighbours
+leave and others arrive from hundreds of ly away. `src/views/navigation/arrivals.js` loads
+`/api/arrivals` shells around the centre star (radius → 250 ly with the chart, 250 → 1,000 ly once
+the inner shell stops covering stars up to 100 km/s) and integrates them in a worker
+(`orbits.worker.js`, `integrateBatch` in `galpot.js`: same potential and leapfrog, Float32 tracks;
+±5 Myr at 0.1 Myr steps sampled every Myr, re-integrated to ±50 Myr at 0.25 Myr steps sampled
+every 2.5 Myr once deep time passes 5 Myr; tested to agree within 0.1 ly). Each epoch,
+`computeEpoch` screens every far star at its nearest sample and interpolates the few that can be
+inside the sphere; those are drawn as a second point cloud with arrows, labels on selection, the
+8-ly-of-Sol lines and picking. Today's stars that leave the sphere vanish (Sol and the centre
+stay). Closest passes screen far stars along straight lines (slack for tidal and vertical pull)
+and integrate the rest. The chart badge (`.drift-badge`, `drift.js`) counts stars in the sphere,
+arrivals and departures; reports completeness against the catalogue's own density within 20 ly of
+Sol and the distance where it halves; compares like with like (stars bright enough to be complete
+out to the loaded radius, Hipparcos V ≈ 7.5); says when stars faster than *v* = (loaded − radius)
+/ |t| are not loaded, or what is still loading. Velocities: the backend fetches Gaia DR3
+astrometry and RVs for Hipparcos stars within ~1,090 ly once (`hipMotions` in `server/gaia.js`,
+~1 min, cached 90 days; meanwhile HYG velocities are used and the client re-asks) and
+`applyGaia` gives 62k HYG stars Gaia positions and velocities (parallax/error > 10; Gaia RV with
+error < 5 km/s, else the catalogue RV).
 ## Spacecraft visualization assets
 
 `src/data/models.js` maps craft IDs and satellite NORAD IDs to credited local GLBs in

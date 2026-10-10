@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://science.nasa.gov/photojournal/ganymede-grooved-terrain-as-seen-by-junos-jiram/",
+    "path": "data/research-sources/ganymede-jiram-nasa-caption.html",
+    "bytes": 269315,
+    "sha256": "48dedce1bf6101c45b7616240261051fa9ec2ba2c9fa4e143d5de2051b05bd27"
+  },
+  {
+    "url": "https://orbi.uliege.be/bitstream/2268/338794/1/s41550-023-02107-5.pdf",
+    "path": "data/research-sources/ganymede-tosi-2023.pdf",
+    "bytes": 3041816,
+    "sha256": "e33a396f3a8d0601c7b7ff4216dd824ff43bc3c5096783aa3543b0d2523fbf7d",
+    "published": "2023-10-30",
+    "issue": "Nature Astronomy8 January2024 82\u201393",
+    "observed": "2021-06-07",
+    "authors": "Federico Tosi, Alessandro Mura, Alessandra Cofano, Francesca Zambon, Christopher R. Glein, Mauro Ciarniello, Jonathan I. Lunine, Giuseppe Piccioni, Christina Plainaki, Roberto Sordini, Alberto Adriani, Scott J. Bolton, Candice J. Hansen, Tom A. Nordheim, Alessandro Moirano, Livio Agostini, Francesca Altieri, Shawn M. Brooks, Andrea Cicchetti, Bianca Maria Dinelli, Davide Grassi, Alessandra Migliorini, Maria Luisa Moriconi, Raffaella Noschese, Pietro Scarica, Giuseppe Sindoni, Stefania Stefani, Diego Turrini",
+    "terms": "Institutional repository PDF retained as credited research source; no CC licence asserted and no paper figure embedded.",
+    "interpretation": "Laboratory-comparison spectral assignments support salts and possible organic compounds; endogenic brines are an interpretation, not resolved plumbing or biology. No adopted local abundances."
+  },
+  {
+    "url": "https://www.jpl.nasa.gov/images/pia25028-enhanced-ganymede-enhanced-image/",
+    "failure": "HTTP Error 403: Forbidden",
+    "sha256": null,
+    "browserAssessment": "Caption verified via web source: extended/upscaled/artistically enhanced, missing top reconstructed and small features extracted elsewhere on Ganymede. Not adopted as exact measured geography.",
+    "credit": "NASA/JPL-Caltech/SwRI/MSSS/Kalleheikki Kannisto \u00a9 CC BY (version not specified in caption)",
+    "observed": "2021-06-07",
+    "released": "2021-12-17"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26075/PIA26075.jpg?w=1020&fit=clip",
+    "path": "data/research-sources/ganymede-jiram-display-1020.jpg",
+    "bytes": 61533,
+    "sha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+    "processing": "NASA-served1020px resized/re-encoded display rendition, not full-resolution pixel preservation. Original6385publisherJPEG retained separately."
+  }
+]

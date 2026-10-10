@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-10",
+  "change": "Lossless wide raw120 snapshot envelope",
+  "encoding": "gzip-raw-radix120-wide-v1",
+  "blocks": {
+    "bytes": 44,
+    "asciiDigits": 51,
+    "integerArithmetic": "BigInt, exact 352-bit blocks",
+    "capacity": "120^51 exceeds 256^44; overflow >=2^352 rejected",
+    "padding": "Zero only, checked during decode"
+  },
+  "compatibility": [
+    "Existing gzip-raw-radix120-v1 application/snapshot envelopes",
+    "Legacy gzip-radix85-v1 snapshots",
+    "Legacy gzip base64 snapshots",
+    "Normal build and generated standalone/snapshot-packed.js unchanged transport"
+  ],
+  "preservation": "No science fields or native/map/model/shape/dossier bytes changed; only outer snapshot ASCII packaging changes. Standard gzip remains exact and the Blob module bootstrap/import/revoke remains in use.",
+  "htmlSafety": "Same 120-character ASCII alphabet excludes NUL/TAB/LF/VT/FF/CR/ESC/less-than. Insert inert script payload after Vite HTML transforms through callback replacement. Browser DOM packed-text hash equals source text.",
+  "validation": {
+    "testsPassed": 256,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "beforeHtmlBytes": 15933091,
+    "afterHtmlBytes": 15836022,
+    "savedBytes": 97069,
+    "headroomBytes": 163978,
+    "browserSnapshotSha256": "95fe2ab38ca09f13df2b5ae467f2bf9440a3f25154c5fc32b57614b68c99c277",
+    "rawSnapshotTextSha256": "2ad7d6b15c1856b5d41716df2594168b99b28e2d039048cf2e7850659dfcdfe4",
+    "applicationSha256": "20f71474c2f19c3dd8ba6f2e11d5486dcaf24b883a822b2577b14909746c2296",
+    "imagesDecoded": 179,
+    "stars": 4234,
+    "details": 517,
+    "routes": 6,
+    "unsupportedGzipMessage": "passed",
+    "offlineWorkerRows": 8,
+    "node13MBRandomBenchmarkMs": {
+      "encode": 917.185,
+      "decode": 781.348
+    },
+    "browserEngine": "Chrome; other browser engines not independently tested",
+    "priorDossiersDeepEqual": 49,
+    "nativeReferenceHashes": 37,
+    "craftModelsDecoded": 24,
+    "ISSOffline": "passed",
+    "normalAndOfflineGanymede": "own globe and three images passed"
+  },
+  "next": "Callisto full native/independent local/observer integration still requires further headroom. No50th dossier claimed; backlog active."
+}

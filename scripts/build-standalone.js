@@ -7,9 +7,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
-import { gzipSync, gunzipSync } from 'node:zlib';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes } from '../src/data/snapshot-codec.js';
-import { nearby, starDetail, sky, galaxyStars, nearbyPlanets } from '../server/stars.js';
+import { gunzipSync } from 'node:zlib';
+import { gzipAsync } from '@gfx/zopfli';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes } from '../src/data/snapshot-codec.js';
+import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
 import { library } from '../server/spectra.js';
@@ -30,7 +31,10 @@ import { MODELS } from '../src/data/models.js';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 
 // 1) snapshot: stars within 100 ly of Sol, every planet host's detail, and a few skies
+await motionsReady(); // Gaia DR3 motions (#29), so the preview's deep time matches the app's
 const near = await nearby('sol', 100);
+// deep-time arrivals (#29) come from the snapshot's own 100 ly; the badge needs the catalogue's density near Sol
+const arrivalsDensity = (await arrivals('sol', 0, 1)).density;
 const details = {};
 for (const row of near.stars) if (row[8] > 0) details[row[0]] = await starDetail(row[0]);
 // Researched stars without known planets still need their actual Star/System views offline.
@@ -163,9 +167,10 @@ let crewSnap = null;
 try { const { crew } = await import('../server/crew.js'); const c = await crew(); crewSnap = { ...c, people: c.people.map((p) => ({ ...p, portrait: p.portrait ? { ...p.portrait, url: null } : null, flag: null })) }; } catch (err) { console.warn(`  crew: ${err.message}`); }
 let eventsSnap = null;
 try { eventsSnap = JSON.parse(await fs.readFile(path.join(root, 'events', 'events.json'), 'utf8')); } catch { console.warn('  events: no events/events.json (run npm run events)'); }
-const snapshotJson = JSON.stringify({ events: eventsSnap, crew: crewSnap, nearby: near, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
+const snapshotJson = JSON.stringify({ events: eventsSnap, crew: crewSnap, nearby: near, arrivalsDensity, details, skies, textures, textureCredits, shapes, models, bodyImages, spectra, galaxy, planets: await nearbyPlanets('sol', 100), smallbodies, satellites: satellitesSnap, satcat, horizons, clusters: clustersSnap, galaxies: galaxiesSnap, gaiaBright: gaiaSnap });
 await fs.writeFile(path.join(root, 'standalone/snapshot.json'), snapshotJson);
-const compressed = gzipSync(snapshotJson, { level: 9 });
+// Zopfli emits standard gzip: spend build time to retain every byte under the preview gate.
+const compressed = await gzipAsync(snapshotJson, { numiterations: 8 });
 if (gunzipSync(compressed).toString('utf8') !== snapshotJson) throw new Error('Snapshot compression round-trip failed.');
 const packed = encodeSnapshotBytes(compressed);
 if (!Buffer.from(unpackSnapshotBytes(packed)).equals(compressed)) throw new Error('Snapshot transport round-trip failed.');
@@ -178,7 +183,7 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
-const snapshotRaw = encodeApplicationBytes(compressed);
+const snapshotRaw = encodeRawSnapshotBytes(compressed);
 // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
 const html = (await fs.readFile(path.join(dist, 'index.html'), 'utf8')).replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
 const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
@@ -193,7 +198,7 @@ const body = html.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<script[^>]*src="
 const fonts = (html.match(/<link[^>]+fonts\.(googleapis|gstatic)[^>]*>/g) || []).join('\n');
 // Compress the entire application losslessly as well as its embedded snapshot.
 // Runtime imports the restored module from a Blob without eval().
-const appCompressed = gzipSync(js, { level: 9 });
+const appCompressed = await gzipAsync(js, { numiterations: 5 });
 if (gunzipSync(appCompressed).toString('utf8') !== js) throw new Error('Application compression round-trip failed.');
 const appPacked = encodeApplicationBytes(appCompressed);
 if (!Buffer.from(unpackApplicationBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
