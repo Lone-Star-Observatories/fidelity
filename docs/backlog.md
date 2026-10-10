@@ -47,6 +47,8 @@ Tracked as GitHub issues in this repo. This file mirrors the plan.
 | 41 | **Star Trek universe objects** | Shipyards (Utopia Planitia), starbases (Spacedock, DS9), sector numbers, territories, Neutral Zone, wormhole, canon homeworlds at real stars (Vulcan at 40 Eridani A); all IMAGINED and toggleable. |
 | 42 | **Fly the USS Fidelity** | Original pilotable ship model; thrusters, impulse, warp (TNG scale, IMAGINED); autopilot to any object; chase and bridge cameras; real-travel-time panel (light, chemical, ion, light sail, time dilation). |
 | 43 | **Look at** | View any body from any other (surface or orbit) at true apparent size and phase, light-time corrected, with zoom from naked eye to telescope. |
+| 44 | **Future missions** | Confirmed, planned and proposed missions (Dragonfly, MMX, EnVision, Uranus Orbiter…) with tiered badges, cards and ghost trajectories. |
+| 45 | **Launch windows and trajectories** | Lambert solver, porkchop plots (C3, v∞, Δv), next windows for every Solar System target, transfer arcs drawn in the System View. |
 
 Candidates not yet scheduled (to be prioritised): Earthprise layers on Earth (GIBS), and a catalog ingestion/tiling pipeline for the
 RAID datasets. Gaia DR3 neighbours (the faint red and brown dwarfs HYG misses) would complete the Navigation View; the two nearest brown-dwarf systems (Luhman 16, WISE 0855) are already bundled.
