@@ -84,7 +84,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000` (today's Siberian Radioheliograph 3 GHz FITS → PNG) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
@@ -123,8 +123,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 with a bundled snapshot of the stars within 100 ly of Sol, their planets, a few skies,
 and preview-sized surface images.
 It needs no backend, so it can be shared or published as a Claude artifact. JPL Horizons
-mode is disabled there. Band imagery (#28, #62) is backend-only: the standalone spectrum control
-computes predicted skins and re-weighted stars but bakes no previews yet. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
+mode is disabled there. Band imagery (#28, #62) is mostly backend-only: the standalone carries a small
+budgeted set of baked previews (`snapshot.bandImages`, see "Spectrum filter") and otherwise computes
+predicted skins and re-weighted stars. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
 
@@ -672,16 +673,43 @@ Views consume the band only through `currentBand()`/`onBand()` and decide by wav
 - **Magellanic Clouds**: `src/data/satellite-bands.js` picks a real image by wavelength (DSS2 in full
   and visible, 2MASS, Spitzer, AKARI, Planck, HI4PI, ROSAT, Fermi, GALEX NUV over Swift UVOT) from
   `/api/survey/:key` (two hidden keys, `galexnuv` and `uvotw1`, return asinh-stretched PNGs). The
-  standalone preview keeps only Spitzer.
-- **Star View**: `src/views/system/starband.js` (`starBandLook`) gives the photosphere's look: the
-  Sun's real image (SDO, or NoRH via `BODY_BAND.sun[…].feed`, matched by `range` for custom curves),
-  its measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the
-  chart's shaded bandpass (or an off-chart pointer) follow the band.
+  standalone preview keeps Spitzer plus baked 128×128 cutouts (LMC ROSAT, HI4PI, Planck; SMC HI4PI).
+- **The Sun, in the Star and System views alike**: `src/views/system/starband.js` (`sunBandLook`, used by
+  `starBandLook` and by `SystemView.applyStarBand`) gives the photosphere's look: one bandpass takes the
+  `BODY_BAND.sun` map keyed by its id (the old rule, reproduced exactly); a custom curve takes every map
+  whose `range` overlaps it (SDO, NoRH, SRH, the modelled radio discs), weighted like any body
+  (`sunCurveLook`): the best-covered map is drawn on the Earth-facing disc and blended over the predicted
+  tint (signatures, photosphere) by its share (`mix` → the star shader's `uBandMix`). Otherwise its
+  measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the chart's shaded
+  bandpass (or an off-chart pointer) follow the band.
 - **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`).
+- **Sun radio** (`server/solarmodel.js`): feed `srh-3000` is today's Siberian Radioheliograph 3.0 GHz
+  CLEAN map (MEASURED; the map nearest Badary's noon that passes a sanity check, smoothed to the beam,
+  256×256). Below 3 GHz no imager is fetchable, so feeds `sunmodel-408`, `sunmodel-1400`, `sunmodel-2400`
+  are MODELLED · PREDICTED discs: Zirin et al. (1991) quiet-Sun Tb saturating to the 10⁶ K corona, limb
+  brightening at dm and a larger disc at m wavelengths, active regions placed from the SDO HMI
+  magnetogram (feed `sdo-hmimag`, decoded by a dependency-free PNG reader), the total set by the day's
+  RSTN flux at the nearest frequency (NOAA SWPC) or else F10.7. Their `BODY_BAND` entries carry
+  `predicted: true`: `bandLook` badges them MODELLED, `realOverlap` returns `mapped` (drawn) apart from
+  `measured`, so a curve counts them as PREDICTED; the feed's credit (shown as the badge detail) names
+  the inputs: F10.7 value and date, the RSTN reading, the HMI frame time.
 - **Earth microwave/radio**: GMI brightness-temperature composite and SMAP 1.41 GHz via
   `/api/gibs-band`; entries marked `latest` ask GIBS for its default (latest) day.
-- **Standalone preview**: band imagery is not baked (deferred, see the backlog); band looks there
-  are predicted, sketched or the bundled Spitzer images.
+- **Standalone preview**: `scripts/standalone-bands.js` bakes a budgeted set of previews into
+  `snapshot.bandImages` (WebP, keyed by the backend URL they replace; `src/data/bandbake.js`): the Sun
+  (SDO AIA 171/304/1600/94/193, SRH 3 GHz, NoRH 17 GHz, the modelled 1.4 GHz and 408 MHz discs, 192×192),
+  the System View sky (Haslam 408 MHz, WMAP K, 2MASS, AllWISE, AKARI, HI4PI, Fermi; 256×128) and Magellanic
+  Cloud cutouts (128×128). `hipsUrl`/`gibsUrl`/`realUrls`, `loadLive`, `loadFeedPreview`/`progressiveFeed`
+  and the Galaxy View's Clouds use them offline; a look showing one says BAKED w×h · date (res `baked`).
+  Everything else is predicted, sketched or the bundled Spitzer images, as before. The builder spends at
+  most 60 kB on them and drops them if the HTML would exceed the 16 MB gate. Measured 2026-10-10 (same
+  day, same network): before, 15,994,261 bytes (5,739 under the gate; the live snapshot data had grown
+  since the 15,926,772 recorded that morning); the upstream surface previews re-encoded as WebP q82
+  instead of JPEG q82 (same 512×256, same source) save ~123 kB of snapshot; the 20 baked band images
+  cost 31,638 bytes; after, 15,892,264 bytes (107,736 under). Verified offline in Chromium
+  (`context.setOffline(true)`, `file://…/fidelity.html`): the System View's Sun in AIA 171 Å, the
+  modelled 1.4 GHz and 408 MHz discs with the Haslam sky, a 3 GHz window adding the SRH map (2%,
+  listed), the Star View in AIA 304 Å and the Galaxy View's LMC/SMC in HI4PI, all from baked copies.
 **The transmission curve (#66).** The SPECTRUM button opens a translucent overlay
 (`src/panels/spectrum.js`) with one log-wavelength axis from 10⁻⁶ nm to 10 m and the curve T(λ) ∈ [0, 1]
 over colour-coded bands. The state is a curve (`src/data/curve.js`): parts (a bandpass filter, the CIE
@@ -698,7 +726,7 @@ curve gives a synthetic band `custom` (the dominant band's palette) and pass (`f
   by those weights. The badge text gives the mix ("62% MEASURED · 38% PREDICTED") and NOT OBSERVED ranges.
   A `BODY_BAND` entry's bandpass is its optional `range: [nmLo, nmHi]`, else the filter of the pass it is
   keyed by, else (band-level key) the pass showing the same map, else the union of the band's passes.
-- the Sun: SDO frames by overlap, its measured radio/microwave/gamma signatures, the photosphere for the rest;
+- the Sun: its maps by overlap (SDO, NoRH, SRH; a modelled radio disc counts as PREDICTED), drawn weighted by their share, its measured radio/microwave/gamma signatures, the photosphere for the rest;
 - stars: a blackbody through T relative to V (Vega system, COMPUTED), 90 nm–30 µm;
 - the sky: every overlapping all-sky survey, blended by overlap (one sphere each); none: re-weighted stars.
 - colour: a narrow curve keeps its band's palette; a wide one (two bands with ≥ 10% each, more than ×3

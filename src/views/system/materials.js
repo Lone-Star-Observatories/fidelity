@@ -4,6 +4,7 @@
 
 import * as THREE from 'three';
 import { textureUrl } from '../../data/catalog.js';
+import { bakedFeed } from '../../data/bandbake.js';
 
 const loader = new THREE.TextureLoader();
 const cache = new Map();
@@ -189,6 +190,7 @@ const STAR_FRAG = /* glsl */`
   uniform sampler2D uMap; uniform vec3 uColor; uniform float uRecolour;
   uniform sampler2D uDisk; uniform float uHasDisk; uniform vec3 uEarthDir; uniform vec3 uNorth; uniform float uDiskR;
   uniform vec3 uBandTint; uniform float uBandDisk; // spectrum filter (#28): tint, and 1 when uDisk is a band image shown as-is
+  uniform float uBandMix; // its weight over the tinted photosphere (a custom curve that the map covers only in part; 1 otherwise)
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   void main() {
     #include <logdepthbuf_fragment>
@@ -197,6 +199,7 @@ const STAR_FRAG = /* glsl */`
     float limb = 1.0 - 0.55 * (1.0 - mu) - 0.25 * (1.0 - mu) * (1.0 - mu);
     vec3 tex = texture2D(uMap, vUv).rgb;
     vec3 c = (uRecolour > 0.5 ? dot(tex, vec3(0.299, 0.587, 0.114)) * 2.2 * uColor : tex * 1.25) * limb * 1.35;
+    vec3 under = c * uBandTint; // the predicted look under a partly weighted band map
     if (uHasDisk > 0.5) {
       // The live full-disk image (solar north up, as seen from Earth) projected onto the Earth-facing hemisphere.
       float facing = dot(N, uEarthDir);
@@ -209,7 +212,12 @@ const STAR_FRAG = /* glsl */`
       vec3 live = dot(texture2D(uDisk, uvd).rgb, vec3(0.299, 0.587, 0.114)) * warm * 1.1;
       vec3 far = dot(tex, vec3(0.299, 0.587, 0.114)) * warm * limb * 1.6;
       c = mix(far, live, smoothstep(0.08, 0.3, facing));
-      if (uBandDisk > 0.5) c = mix(c * 0.15, texture2D(uDisk, uvd).rgb * 1.2, smoothstep(0.08, 0.3, facing)); // SDO in its own colours
+      if (uBandDisk > 0.5) { // SDO (or NoRH, SRH, a modelled radio disc) in its own colours, weighted over the predicted look
+        c = mix(under, mix(c * 0.15, texture2D(uDisk, uvd).rgb * 1.2, smoothstep(0.08, 0.3, facing)), uBandMix);
+        gl_FragColor = vec4(c, 1.0);
+        #include <colorspace_fragment>
+        return;
+      }
     }
     c *= uBandTint;
     gl_FragColor = vec4(c, 1.0);
@@ -249,7 +257,7 @@ export function starMaterial(placeholder, color, recolour) {
     vertexShader: VERT, fragmentShader: STAR_FRAG,
     uniforms: { uMap: { value: placeholder }, uColor: { value: linear(color) }, uRecolour: { value: recolour ? 1 : 0 },
       uDisk: { value: null }, uHasDisk: { value: 0 }, uEarthDir: { value: new THREE.Vector3(0, 0, 1) }, uNorth: { value: new THREE.Vector3(0, 1, 0) }, uDiskR: { value: 0.39 },
-      uBandTint: { value: new THREE.Color(1, 1, 1) }, uBandDisk: { value: 0 } },
+      uBandTint: { value: new THREE.Color(1, 1, 1) }, uBandDisk: { value: 0 }, uBandMix: { value: 1 } },
   });
 }
 
@@ -274,7 +282,7 @@ export const liveInfo = new Map(); // feed id → { time, credit } once loaded
 export function loadLive(id, maxAgeMs = 15 * 60000) {
   const c = live.get(id);
   if (c && Date.now() - c.at < maxAgeMs) return c.p;
-  const p = (import.meta.env?.MODE === 'standalone' ? Promise.resolve(null) : fetch(`/api/feed/${id}`).then(async (r) => {
+  const p = (import.meta.env?.MODE === 'standalone' ? loadBakedFeed(id) : fetch(`/api/feed/${id}`).then(async (r) => {
     if (!r.ok) return null;
     const url = URL.createObjectURL(await r.blob());
     const meta = { time: r.headers.get('x-feed-time'), credit: decodeURIComponent(r.headers.get('x-feed-credit') || ''), disk: Number(r.headers.get('x-feed-disk')) || null };
@@ -285,6 +293,18 @@ export function loadLive(id, maxAgeMs = 15 * 60000) {
   }).catch(() => null));
   live.set(id, { p, at: Date.now() });
   return p;
+}
+
+/** The standalone preview: a feed's baked copy (src/data/bandbake.js, #28), with its real date and size; null if none was baked. */
+function loadBakedFeed(id) {
+  const b = bakedFeed(id);
+  if (!b) return Promise.resolve(null);
+  return new Promise((res) => loader.load(b.src, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null))).then((texture) => {
+    if (!texture) return null;
+    const meta = { time: b.time ?? null, credit: b.credit ?? '', disk: b.disk ?? null, baked: b };
+    liveInfo.set(id, meta);
+    return { texture, ...meta };
+  });
 }
 
 /** Apply a body's live skin (Earth: daily global mosaic; Sun: full-disk image) if enabled. */

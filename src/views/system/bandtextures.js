@@ -14,6 +14,7 @@ import { effectiveNm } from '../../astro/bands.js';
 import { bandLoads } from '../../data/bandload.js';
 import { BANDS, BODY_BAND } from '../../data/bands.js';
 import { loadLive } from './materials.js';
+import { bakedBand, bakedFeed, bakedText } from '../../data/bandbake.js';
 
 const STANDALONE = import.meta.env?.MODE === 'standalone';
 const loader = new THREE.TextureLoader();
@@ -38,13 +39,31 @@ export function bandTexture(url) {
   return cache.get(url);
 }
 const sz = (size) => (size === 'preview' ? '&size=preview' : '');
-export const hipsUrl = (id, size = '') => (STANDALONE ? null : `/api/hips?id=${encodeURIComponent(id)}${sz(size)}`);
-export const gibsUrl = (layers, size = '') => (STANDALONE ? null : `/api/gibs-band?layers=${encodeURIComponent(layers)}${sz(size)}`);
-/** { preview, full } URLs of a real map (BODY_BAND entry), or null without a backend. */
+// The standalone preview has no backend: a preview URL resolves to its baked copy (src/data/bandbake.js), if any;
+// full resolution is never available there.
+const backendOrBaked = (url, size) => (!STANDALONE ? url : size === 'preview' ? bakedBand(url)?.src ?? null : null);
+export const hipsUrl = (id, size = '') => backendOrBaked(`/api/hips?id=${encodeURIComponent(id)}${sz(size)}`, size);
+export const gibsUrl = (layers, size = '') => backendOrBaked(`/api/gibs-band?layers=${encodeURIComponent(layers)}${sz(size)}`, size);
+/** { preview, full } URLs of a real map (BODY_BAND entry), or null without a backend (standalone: { preview: baked, full: null }). */
 export function realUrls(src) {
-  if (src.hips) return hipsUrl(src.hips) && { preview: hipsUrl(src.hips, 'preview'), full: hipsUrl(src.hips) };
-  if (src.gibs) return gibsUrl(src.gibs) && { preview: gibsUrl(src.gibs, 'preview'), full: gibsUrl(src.gibs) };
+  const pair = (url) => (u) => { const preview = url(u, 'preview'), full = url(u); return preview || full ? { preview, full, baked: bakedOf(src) } : null; };
+  if (src.hips) return pair(hipsUrl)(src.hips);
+  if (src.gibs) return pair(gibsUrl)(src.gibs);
   return null;
+}
+/** What a baked image is (its size and date), for the look's label: null outside the standalone preview. */
+export const bakedOf = (src) => (!STANDALONE ? null : src.hips ? bakedBand(`/api/hips?id=${encodeURIComponent(src.hips)}&size=preview`)
+  : src.gibs ? bakedBand(`/api/gibs-band?layers=${encodeURIComponent(src.gibs)}&size=preview`) : src.feed ? bakedFeed(src.feed) : null);
+/** Mark a look as showing a baked offline copy (standalone): res 'baked', its size and date in the label. */
+export function markBaked(look, b) {
+  if (!b || look.baked) return;
+  look.baked = b; look.res = 'baked'; look.label = `${look.label} · ${bakedText(b)}`;
+}
+/** A feed image arrived (live, preview or baked): a modelled disc's credit names that day's inputs (#28). */
+export function feedCredit(look, l) {
+  if (!l) return;
+  if (look.predicted && l.credit) look.detail = l.credit;
+  if (l.baked) markBaked(look, l.baked);
 }
 
 // ---- preview → full -------------------------------------------------------------------------
@@ -72,9 +91,10 @@ function progressive(u, look, urls, onShow) {
   bandTexture(urls.preview).then((r) => {
     if (!r || !current() || shown === 'full') return;
     u.uBandTex.value = r.texture; u.uBandLevels.value.set(...r.levels); u.uBandFade.value = 1;
-    shown = 'preview'; look.res = 'preview'; onShow(); notify();
+    shown = 'preview'; look.res = 'preview'; if (!urls.full) markBaked(look, urls.baked); onShow(); notify();
     performance.mark?.('fidelity:band-preview'); // for timing the instant switch (#62)
   });
+  if (!urls.full) return; // the standalone preview: its baked copy is all there is
   const full = later(FULL_DELAY_MS).then(() => (!current() ? true : bandTexture(urls.full).then((r) => {
     if (!current()) return true;
     if (!r) { look.res = shown ? 'failed-preview' : 'failed'; notify(); return null; }
@@ -89,19 +109,21 @@ function progressive(u, look, urls, onShow) {
 /** A live feed's 256×256 preview (#62), e.g. an SDO frame. */
 const feedPreviews = new Map();
 export function loadFeedPreview(id) {
-  if (STANDALONE) return Promise.resolve(null);
+  if (STANDALONE) return loadLive(id); // its baked copy (materials.js), or null
   if (!feedPreviews.has(id)) feedPreviews.set(id, fetch(`/api/feed/${id}?size=preview`).then(async (r) => {
     if (!r.ok) return null;
     const url = URL.createObjectURL(await r.blob()), disk = Number(r.headers.get('x-feed-disk')) || null;
+    const credit = decodeURIComponent(r.headers.get('x-feed-credit') || ''), time = r.headers.get('x-feed-time');
     const texture = await new Promise((res) => loader.load(url, (t) => { t.colorSpace = THREE.SRGBColorSpace; res(t); }, undefined, () => res(null)));
-    return texture ? { texture, disk } : null;
+    return texture ? { texture, disk, credit, time } : null;
   }).catch(() => null).then((v) => { if (!v) feedPreviews.delete(id); return v; }));
   return feedPreviews.get(id);
 }
-/** A feed (SDO) on a star disc: preview, then full; `apply(l)` while `current()` holds. */
+/** A feed (SDO) on a star disc: preview, then full; `apply(l)` while `current()` holds. Standalone: the baked copy only. */
 export function progressiveFeed(id, look, current, apply) {
   let shown = null;
   look.res = 'loading';
+  if (STANDALONE) { loadLive(id).then((l) => { if (!l || !current()) { if (current()) { look.res = 'failed'; notify(); } return; } apply(l); look.res = 'baked'; notify(); }); return; }
   loadFeedPreview(id).then((l) => { if (!l || !current() || shown) return; apply(l); shown = 'preview'; look.res = 'preview'; notify(); });
   const full = later(FULL_DELAY_MS).then(() => (!current() ? true : loadLive(id).then((l) => {
     if (!current()) return true;

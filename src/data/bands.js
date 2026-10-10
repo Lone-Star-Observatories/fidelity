@@ -93,6 +93,14 @@ const GOES_13 = 'GOES-West_ABI_Band13_Clean_Infrared,GOES-East_ABI_Band13_Clean_
 const ghzNm = (g) => 299792458 / g;
 const NORH17 = [ghzNm(17.017), ghzNm(16.983)], NORH34 = [ghzNm(34.05), ghzNm(33.95)];
 const NORH_CREDIT = (g) => `Nobeyama Radioheliograph ${g} GHz, operated by NAOJ/ICCON: archival full-disc map of 7 January 2014 (brightness temperature; NoRH closed in 2020)`;
+// radio (#28): no solar imager below 3 GHz is fetchable, so these discs are MODELLED · PREDICTED from measured inputs
+// (server/solarmodel.js: quiet-Sun spectrum, limb, active regions from SDO HMI, total from NOAA F10.7/RSTN);
+// `predicted: true` makes every consumer badge them MODELLED · PREDICTED, never MEASURED. The feed's own credit
+// names the day's inputs (F10.7 value and date, HMI frame time).
+const SUN_MODEL = (feed, lo, hi, label) => ({ feed, predicted: true, range: [ghzNm(hi), ghzNm(lo)],
+  credit: `MODELLED · PREDICTED solar ${label} disc (not an observation): quiet-Sun brightness temperature from Zirin, Baumert & Hurford 1991, limb from Shibasaki et al. 2011, active regions placed from the SDO HMI magnetogram, total flux from the day's NOAA SWPC F10.7 / RSTN measurement`,
+  note: `MODELLED · PREDICTED ${label} DISC` });
+const SRH_3 = [ghzNm(3.01), ghzNm(2.99)];
 export const BODY_BAND = {
   sun: {
     'uv-1600': AIA(1600), 'uv-1700': AIA(1700),
@@ -108,6 +116,13 @@ export const BODY_BAND = {
     'mw-61': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
     'mw-94': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
     microwave: { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm) · archival, 2014' },
+    // radio (#28): today's measured Siberian Radioheliograph map at 3.0 GHz (keyed by its own id, so only a curve
+    // overlapping 3 GHz shows it), and the modelled discs at the radio bandpasses below 3 GHz
+    'srh-3000': { feed: 'srh-3000', range: SRH_3, credit: 'Siberian Radioheliograph (ISTP SB RAS, Badary) 3.0 GHz (10 cm) CLEAN map, brightness temperature, the latest of the day', note: 'SRH 3.0 GHz (10 cm): today\'s measured map' },
+    'radio-408': SUN_MODEL('sunmodel-408', 0.38, 0.44, '408 MHz'),
+    'radio-hi': SUN_MODEL('sunmodel-1400', 1.36, 1.44, '1.4 GHz'),
+    'radio-nvss': SUN_MODEL('sunmodel-1400', 1.36, 1.44, '1.4 GHz'),
+    'radio-s': SUN_MODEL('sunmodel-2400', 2.3, 2.45, '2.4 GHz'),
   },
   earth: {
     'ir-10': { gibs: GOES_13, credit: 'NOAA GOES-16/18 ABI and JMA Himawari-9 AHI band 13 (10.3 µm), via NASA GIBS; Europe/Africa not covered (Meteosat not in GIBS)', partial: true, range: [10100, 10600] },

@@ -196,7 +196,7 @@ function longWaveLook(body, pass, nm, pal, t) {
 export function bandLook(body, band, pass) {
   const pal = paletteIndex(band.palette);
   const real = bodyBandSource(body.id, band, pass);
-  if (real) return { mode: 'real', source: real, tier: 'measured', palette: real.gibs ? 0 : pal, label: real.note ?? 'REAL MAP IN THIS BAND', detail: real.credit };
+  if (real) return { mode: 'real', source: real, tier: real.predicted ? 'modelled' : 'measured', predicted: !!real.predicted, palette: real.gibs ? 0 : pal, label: real.note ?? 'REAL MAP IN THIS BAND', detail: real.credit };
   const f = pass?.filter;
   const nm = f ? effectiveNm(f) : null;
   if (!f) return { mode: 'dark', tier: 'computed', palette: pal, label: 'NOT OBSERVED IN THIS BAND', detail: 'No bandpass selected.' };
