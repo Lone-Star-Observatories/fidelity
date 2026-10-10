@@ -107,4 +107,4 @@ Validation after integrating upstream comet/orientation features: 130 tests pass
 
 Offline generated previews now use quality-80 WebP at their existing dimensions, saving 370,928 bytes compared with JPEG embedding in the combined build. This is additional lossy preview compression; the normal JPEG assets, original generated PNGs, recorded source/master hashes, and native scientific imagery are preserved. All model GLBs, shape previews and scientific context images are byte-for-byte unchanged in the snapshot. Browser checks decode all 83 images, render the eight new images and prior dossiers, and retain ISS rendering offline.
 
-The final rebase also preserves upstream star selection/lookup and double-click navigation. Its additional stellar position fields increase snapshot size; the combined 15.85 MB preview remains below the gate, with 130 passing tests and all 83 images decoded offline.
+The final rebase also preserves upstream star selection/lookup and double-click navigation. Its additional stellar identifiers increase snapshot size; the combined 15.85 MB preview remains below the gate, with 130 passing tests and all 83 images decoded offline.
