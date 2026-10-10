@@ -6860,9 +6860,10 @@
         "dec": 4.7379808,
         "disc_year": 2025
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "barnard-c"
     },
     {
       "id": "exo-barnard-d",
@@ -6891,9 +6892,10 @@
         "dec": 4.7379808,
         "disc_year": 2025
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "barnard-d"
     },
     {
       "id": "exo-barnard-e",
@@ -6922,9 +6924,10 @@
         "dec": 4.7379808,
         "disc_year": 2025
       },
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "research": "initial dossier delivered; refinement open",
+      "surface": "bespoke hypothetical map delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "barnard-e"
     },
     {
       "id": "exo-eps-eri-b",

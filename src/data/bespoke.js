@@ -830,6 +830,432 @@ export const BODY_VISUALS = {
       "height": 864,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "barnard-c": {
+    "id": "barnard-c",
+    "name": "Barnard c",
+    "aliases": [
+      "Barnard c",
+      "Barnard's Star c",
+      "GJ 699 c",
+      "Gl 699 c"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No resolved surface imagery; detection is radial velocity, not a direct terrain image. Archive radius is a mass-radius estimate, not a transit measurement.",
+    "measured": [
+      "2025 MAROON-X/ESPRESSO RV solution: period 4.1244 days; minimum mass 0.335±0.03 Earth masses. RV observations span 2021–2023.",
+      "Host adopted effective temperature 3195±28 K and stellar radius 0.185±0.006 solar radii from the 2024 stellar analysis."
+    ],
+    "modelled": [
+      "RV-derived semimajor axis 0.0274 AU. Equilibrium temperature 400 K assumes zero albedo and full heat redistribution; not measured surface temperature.",
+      "The 2026 stability/composition analysis favours rocky planets under its dynamical assumptions; this does not resolve ground chemistry, atmosphere or geography.",
+      "Stellar diameter/blackbody flux use representative semimajor-axis distance, not a dated viewpoint. No measured planet radius or physical surface frame is inferred."
+    ],
+    "unknown": [
+      "True mass and inclination, physical radius, atmosphere and pressure, water inventory, minerals, surface colour, spin and climate.",
+      "Every basin, fracture, crater, grain and sky viewpoint is unobserved. Transit non-detection does not establish an airless body."
+    ],
+    "assumed": [
+      "One explicitly hypothetical water-poor airless silicate/iron scenario. No clouds, ocean, life, snow or molten lava is inferred from the equilibrium temperature.",
+      "Ash-gray/taupe basin and fractured uplands. This distinct artist palette/geography is not evidence of a compositional difference among planets.",
+      "60° hypothetical horizontal field; warm cream/peach stellar colour and reflected lighting are approximate under exposure. Raster disc size is checked separately and is not calibrated photometry.",
+      "Neutral albedo texture has artistic relief shading and imperfect seam continuity; neither height nor geographic registration is measured. Observer terrain does not identify a coordinate on the generated globe.",
+      "Raster bright-core diameter differs from the geometric target: approximately 11% smaller. Exact apparent-size calibration remains refinement work."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2503.08095",
+        "title": "Basant et al. 2025, four planets confirmed with independent MAROON-X and ESPRESSO RVs",
+        "publicationDate": "2025-03-11",
+        "observationDate": "2021–2023"
+      },
+      {
+        "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso2414/eso2414a.pdf",
+        "title": "González Hernández et al. 2024, adopted stellar properties; candidates later confirmed",
+        "publicationDate": "2024-10-01",
+        "dateNote": "ESO release date; linked manuscript bears August 26, 2024 draft date."
+      },
+      {
+        "url": "https://academic.oup.com/mnras/article/550/2/stag1207/8715836",
+        "title": "2026 Barnard system stability, composition and evolution; conditional modelling context",
+        "publicationDate": null,
+        "publicationYear": 2026,
+        "dateNote": "Exact publication date not verified; abstract/title and stability assumptions reviewed."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive pscomppars, retrieved 2026-10-10",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [],
+    "archiveConstraints": {
+      "pl_name": "Barnard c",
+      "hostname": "Barnard's star",
+      "sy_dist": 1.82655,
+      "pl_rade": 0.743,
+      "pl_bmasse": 0.335,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 4.1244,
+      "pl_orbsmax": 0.0274,
+      "pl_eqt": 400,
+      "st_teff": 3195,
+      "st_rad": 0.185,
+      "st_mass": 0.162,
+      "st_spectype": "M3.5-4 V",
+      "ra": 269.4486144,
+      "dec": 4.7379808,
+      "disc_year": 2025
+    },
+    "skyModel": {
+      "star": "Barnard's Star",
+      "radiusSun": 0.185,
+      "temperatureK": 3195,
+      "distanceAU": 0.0274,
+      "angularDiameterDeg": 3.5986679251053038,
+      "centreDiscWidthFraction": 0.05441173529680164,
+      "irradianceEarth": 4.279770604338242,
+      "approximateSrgb": [
+        1,
+        0.7194683096347383,
+        0.48158519102838504
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "barnardCBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, north up; illustrative east-positive longitude, no measured planetary frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/barnard-c-surface-map.jpg",
+      "previewUrl": "/bespoke/barnard-c-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-6fb0ccb1-efa2-4233-a37f-db4f17b2f46b.png",
+      "sourceSha256": "9ee65f443bbabad3862b0173082b1e8e566307c8843a8a15aebfd335ca089b06",
+      "sha256": "cda23358793c249f3f59759c569ddf6688577ad4b4b8ed8478dd846317ed08f2",
+      "previewSha256": "617fcf18100c1a469fad840fb31021fbbc5c8632a2a5b6d43d015e7a6c093711",
+      "bytes": 542009,
+      "previewBytes": 32437,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "promptBrief": "Individual airless rocky scenario with neutral albedo map and warm M-dwarf observer view. Composition and terrain remain hypothetical; stellar disc diameter constrained geometrically.",
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core horizontal bbox in upper 40% of original source image; thresholds R>180/210/240,G>150,B>80 exclude faint glare. Approximate photospheric boundary, not photometry.",
+        "sourceWidth": 1671,
+        "brightCoreWidthPixels": 81,
+        "widthFraction": 0.04847396768402154,
+        "limits": "Generated geometry remains approximate; c core is about 11% below target, d about 1% above, e about 17% below. No calibrated angular or spectral rendering claimed."
+      },
+      "url": "/bespoke/barnard-c-sky-image.jpg",
+      "previewUrl": "/bespoke/barnard-c-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-a7d37119-a85b-485e-aedc-063a2126fa2c.png",
+      "sourceSha256": "13ee473a0ae0d741fca9e5c63f3e47f620ecf5fb3db6c0a09670d8f5e0fd39e5",
+      "sha256": "aaba2dd85e3d7cceabb951bf21753586ffc8376520c0403efeda51692572314d",
+      "previewSha256": "08f3aa4e98dec23e874b1311ced57692774865600bae31a5afbef6d4dda8a644",
+      "bytes": 217776,
+      "previewBytes": 41354,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/barnard-cde-source-records.json"
+  },
+  "barnard-d": {
+    "id": "barnard-d",
+    "name": "Barnard d",
+    "aliases": [
+      "Barnard d",
+      "Barnard's Star d",
+      "GJ 699 d",
+      "Gl 699 d"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No resolved surface imagery; detection is radial velocity, not a direct terrain image. Archive radius is a mass-radius estimate, not a transit measurement.",
+    "measured": [
+      "2025 MAROON-X/ESPRESSO RV solution: period 2.3402 days; minimum mass 0.263±0.024 Earth masses. RV observations span 2021–2023.",
+      "Host adopted effective temperature 3195±28 K and stellar radius 0.185±0.006 solar radii from the 2024 stellar analysis."
+    ],
+    "modelled": [
+      "RV-derived semimajor axis 0.0188 AU. Equilibrium temperature 483 K assumes zero albedo and full heat redistribution; not measured surface temperature.",
+      "The 2026 stability/composition analysis favours rocky planets under its dynamical assumptions; this does not resolve ground chemistry, atmosphere or geography.",
+      "Stellar diameter/blackbody flux use representative semimajor-axis distance, not a dated viewpoint. No measured planet radius or physical surface frame is inferred."
+    ],
+    "unknown": [
+      "True mass and inclination, physical radius, atmosphere and pressure, water inventory, minerals, surface colour, spin and climate.",
+      "Every basin, fracture, crater, grain and sky viewpoint is unobserved. Transit non-detection does not establish an airless body."
+    ],
+    "assumed": [
+      "One explicitly hypothetical water-poor airless silicate/iron scenario. No clouds, ocean, life, snow or molten lava is inferred from the equilibrium temperature.",
+      "Light-gray fractured plateau and dark rubble streaks. This distinct artist palette/geography is not evidence of a compositional difference among planets.",
+      "60° hypothetical horizontal field; warm cream/peach stellar colour and reflected lighting are approximate under exposure. Raster disc size is checked separately and is not calibrated photometry.",
+      "Neutral albedo texture has artistic relief shading and imperfect seam continuity; neither height nor geographic registration is measured. Observer terrain does not identify a coordinate on the generated globe.",
+      "Raster bright-core diameter differs from the geometric target: approximately 1% larger. Exact apparent-size calibration remains refinement work."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2503.08095",
+        "title": "Basant et al. 2025, four planets confirmed with independent MAROON-X and ESPRESSO RVs",
+        "publicationDate": "2025-03-11",
+        "observationDate": "2021–2023"
+      },
+      {
+        "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso2414/eso2414a.pdf",
+        "title": "González Hernández et al. 2024, adopted stellar properties; candidates later confirmed",
+        "publicationDate": "2024-10-01",
+        "dateNote": "ESO release date; linked manuscript bears August 26, 2024 draft date."
+      },
+      {
+        "url": "https://academic.oup.com/mnras/article/550/2/stag1207/8715836",
+        "title": "2026 Barnard system stability, composition and evolution; conditional modelling context",
+        "publicationDate": null,
+        "publicationYear": 2026,
+        "dateNote": "Exact publication date not verified; abstract/title and stability assumptions reviewed."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive pscomppars, retrieved 2026-10-10",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [],
+    "archiveConstraints": {
+      "pl_name": "Barnard d",
+      "hostname": "Barnard's star",
+      "sy_dist": 1.82655,
+      "pl_rade": 0.694,
+      "pl_bmasse": 0.263,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 2.3402,
+      "pl_orbsmax": 0.0188,
+      "pl_eqt": 483,
+      "st_teff": 3195,
+      "st_rad": 0.185,
+      "st_mass": 0.162,
+      "st_spectype": "M3.5-4 V",
+      "ra": 269.4486144,
+      "dec": 4.7379808,
+      "disc_year": 2025
+    },
+    "skyModel": {
+      "star": "Barnard's Star",
+      "radiusSun": 0.185,
+      "temperatureK": 3195,
+      "distanceAU": 0.0188,
+      "angularDiameterDeg": 5.245837088494805,
+      "centreDiscWidthFraction": 0.07934623557177979,
+      "irradianceEarth": 9.090879863379861,
+      "approximateSrgb": [
+        1,
+        0.7194683096347383,
+        0.48158519102838504
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "barnardDBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, north up; illustrative east-positive longitude, no measured planetary frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/barnard-d-surface-map.jpg",
+      "previewUrl": "/bespoke/barnard-d-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-e915db66-ad1c-4e41-8d72-4f3505b1bfec.png",
+      "sourceSha256": "77dce10bdd711fd5c070f85f87ce4f7d543cf5fc955637f7e92533b28f94ca88",
+      "sha256": "12fa94c2d253491cb9ca4fa3a1ad5adcd427ad99da4ae4b9ac7a2af25afe777b",
+      "previewSha256": "4f50af8a8d77bf5bdf6139b901c39af843bd5caadf5c24d873854a93928381cb",
+      "bytes": 577193,
+      "previewBytes": 35803,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "promptBrief": "Individual airless rocky scenario with neutral albedo map and warm M-dwarf observer view. Composition and terrain remain hypothetical; stellar disc diameter constrained geometrically.",
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core horizontal bbox in upper 40% of original source image; thresholds R>180/210/240,G>150,B>80 exclude faint glare. Approximate photospheric boundary, not photometry.",
+        "sourceWidth": 1672,
+        "brightCoreWidthPixels": 134,
+        "widthFraction": 0.08014354066985646,
+        "limits": "Generated geometry remains approximate; c core is about 11% below target, d about 1% above, e about 17% below. No calibrated angular or spectral rendering claimed."
+      },
+      "url": "/bespoke/barnard-d-sky-image.jpg",
+      "previewUrl": "/bespoke/barnard-d-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-16baaa8b-88d6-4ee2-8666-380f383fce8f.png",
+      "sourceSha256": "eabe85fe707fe83be553da0a76393d7fee734e5c6a242e7d0db367e59588135b",
+      "sha256": "192db45e35c521befb1df276cb7f0191afe9ccd88d24dcc8ad71665e23dbbd94",
+      "previewSha256": "d4a675d6428e18e8fca120cf5384ed9a25d6def87f4c2781a81d9ad427328eab",
+      "bytes": 243138,
+      "previewBytes": 49116,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/barnard-cde-source-records.json"
+  },
+  "barnard-e": {
+    "id": "barnard-e",
+    "name": "Barnard e",
+    "aliases": [
+      "Barnard e",
+      "Barnard's Star e",
+      "GJ 699 e",
+      "Gl 699 e"
+    ],
+    "researchDate": "2026-10-10",
+    "nativeSurface": "No resolved surface imagery; detection is radial velocity, not a direct terrain image. Archive radius is a mass-radius estimate, not a transit measurement.",
+    "measured": [
+      "2025 MAROON-X/ESPRESSO RV solution: period 6.7392 days; minimum mass 0.193±0.033 Earth masses. RV observations span 2021–2023.",
+      "Host adopted effective temperature 3195±28 K and stellar radius 0.185±0.006 solar radii from the 2024 stellar analysis."
+    ],
+    "modelled": [
+      "RV-derived semimajor axis 0.0381 AU. Equilibrium temperature 340 K assumes zero albedo and full heat redistribution; not measured surface temperature.",
+      "The 2026 stability/composition analysis favours rocky planets under its dynamical assumptions; this does not resolve ground chemistry, atmosphere or geography.",
+      "Stellar diameter/blackbody flux use representative semimajor-axis distance, not a dated viewpoint. No measured planet radius or physical surface frame is inferred."
+    ],
+    "unknown": [
+      "True mass and inclination, physical radius, atmosphere and pressure, water inventory, minerals, surface colour, spin and climate.",
+      "Every basin, fracture, crater, grain and sky viewpoint is unobserved. Transit non-detection does not establish an airless body."
+    ],
+    "assumed": [
+      "One explicitly hypothetical water-poor airless silicate/iron scenario. No clouds, ocean, life, snow or molten lava is inferred from the equilibrium temperature.",
+      "Dark gray/brown dust plains and subdued low ridges. This distinct artist palette/geography is not evidence of a compositional difference among planets.",
+      "60° hypothetical horizontal field; warm cream/peach stellar colour and reflected lighting are approximate under exposure. Raster disc size is checked separately and is not calibrated photometry.",
+      "Neutral albedo texture has artistic relief shading and imperfect seam continuity; neither height nor geographic registration is measured. Observer terrain does not identify a coordinate on the generated globe.",
+      "Raster bright-core diameter differs from the geometric target: approximately 17% smaller. Exact apparent-size calibration remains refinement work."
+    ],
+    "references": [
+      {
+        "url": "https://arxiv.org/abs/2503.08095",
+        "title": "Basant et al. 2025, four planets confirmed with independent MAROON-X and ESPRESSO RVs",
+        "publicationDate": "2025-03-11",
+        "observationDate": "2021–2023"
+      },
+      {
+        "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso2414/eso2414a.pdf",
+        "title": "González Hernández et al. 2024, adopted stellar properties; candidates later confirmed",
+        "publicationDate": "2024-10-01",
+        "dateNote": "ESO release date; linked manuscript bears August 26, 2024 draft date."
+      },
+      {
+        "url": "https://academic.oup.com/mnras/article/550/2/stag1207/8715836",
+        "title": "2026 Barnard system stability, composition and evolution; conditional modelling context",
+        "publicationDate": null,
+        "publicationYear": 2026,
+        "dateNote": "Exact publication date not verified; abstract/title and stability assumptions reviewed."
+      },
+      {
+        "url": "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name%2Chostname%2Csy_dist%2Cpl_rade%2Cpl_bmasse%2Cpl_bmassprov%2Cpl_orbper%2Cpl_orbsmax%2Cpl_eqt%2Cst_teff%2Cst_rad%2Cst_mass%2Cst_spectype%2Cra%2Cdec%2Cdisc_year+from+pscomppars+where+sy_dist+is+not+null+and+sy_dist+%3C+10&format=json",
+        "title": "NASA Exoplanet Archive pscomppars, retrieved 2026-10-10",
+        "retrieved": "2026-10-10"
+      }
+    ],
+    "contextImages": [],
+    "archiveConstraints": {
+      "pl_name": "Barnard e",
+      "hostname": "Barnard's star",
+      "sy_dist": 1.82655,
+      "pl_rade": 0.637,
+      "pl_bmasse": 0.193,
+      "pl_bmassprov": "Msini",
+      "pl_orbper": 6.7392,
+      "pl_orbsmax": 0.0381,
+      "pl_eqt": 340,
+      "st_teff": 3195,
+      "st_rad": 0.185,
+      "st_mass": 0.162,
+      "st_spectype": "M3.5-4 V",
+      "ra": 269.4486144,
+      "dec": 4.7379808,
+      "disc_year": 2025
+    },
+    "skyModel": {
+      "star": "Barnard's Star",
+      "radiusSun": 0.185,
+      "temperatureK": 3195,
+      "distanceAU": 0.0381,
+      "angularDiameterDeg": 2.587812980433553,
+      "centreDiscWidthFraction": 0.03912143021025076,
+      "irradianceEarth": 2.2134599368377033,
+      "approximateSrgb": [
+        1,
+        0.7194683096347383,
+        0.48158519102838504
+      ],
+      "horizontalFovDeg": 60,
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceMap": {
+      "key": "barnardEBespoke",
+      "texLon0": -180,
+      "projection": "2:1 equirectangular, north up; illustrative east-positive longitude, no measured planetary frame.",
+      "coverage": "Entire globe imagined.",
+      "url": "/bespoke/barnard-e-surface-map.jpg",
+      "previewUrl": "/bespoke/barnard-e-surface-map-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-c4a036f9-d4b3-47ae-8cda-f9f16ac27278.png",
+      "sourceSha256": "408e759ff5c52170879607b1744e9d464238c9de3fbab03d5a33e12cae9b3d43",
+      "sha256": "b63669e2ca46344442049a55bb7ca68e01f314b45d77ded72f300f1ff748414c",
+      "previewSha256": "eb0db2bde739b6fb27caf8c99c2d0e0e5761d9f2587db10b60f7c91265a1389e",
+      "bytes": 545330,
+      "previewBytes": 32960,
+      "width": 2048,
+      "height": 1024,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "promptBrief": "Individual airless rocky scenario with neutral albedo map and warm M-dwarf observer view. Composition and terrain remain hypothetical; stellar disc diameter constrained geometrically.",
+    "skyImage": {
+      "rasterValidation": {
+        "method": "Bright-core horizontal bbox in upper 40% of original source image; thresholds R>180/210/240,G>150,B>80 exclude faint glare. Approximate photospheric boundary, not photometry.",
+        "sourceWidth": 1672,
+        "brightCoreWidthPixels": 54,
+        "widthFraction": 0.03229665071770335,
+        "limits": "Generated geometry remains approximate; c core is about 11% below target, d about 1% above, e about 17% below. No calibrated angular or spectral rendering claimed."
+      },
+      "url": "/bespoke/barnard-e-sky-image.jpg",
+      "previewUrl": "/bespoke/barnard-e-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "exec-929b777a-540f-4a6b-b923-bce3f4af8e70.png",
+      "sourceSha256": "6e8630610a54a862ecbec237c9fca8ae6c341e9c7891d565823fd26a37e4f39b",
+      "sha256": "be655b00ccfe35b8c457405d91a4bf91fbed7583c03e6eb3398f85cc471a1226",
+      "previewSha256": "9b5e130dc970099ab9e96e1f24a14d7bd6cfa85105f120e796f3b88bd03024ea",
+      "bytes": 206295,
+      "previewBytes": 37525,
+      "width": 1536,
+      "height": 864,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "researchSourcesRecord": "docs/research/barnard-cde-source-records.json"
   }
 };
 

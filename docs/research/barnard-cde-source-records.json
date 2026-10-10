@@ -1,0 +1,21 @@
+[
+  {
+    "url": "https://arxiv.org/html/2503.08095v1",
+    "retrieved": "2026-10-10",
+    "bytes": 305665,
+    "sha256": "59c7f9af5042e7404edc9c4f1e81d1623b64c3538d7ccdf9279821a218e62ffd",
+    "localCache": "data/research-sources/barnard-2025.html"
+  },
+  {
+    "url": "https://www.eso.org/public/archives/releases/sciencepapers/eso2414/eso2414a.pdf",
+    "retrieved": "2026-10-10",
+    "bytes": 6797238,
+    "sha256": "eac86a28ed86a419f5973eb627aec6ce42768baa33877658ee1498d716601220",
+    "localCache": "data/research-sources/barnard-2024.pdf"
+  },
+  {
+    "localInventory": "docs/research/nearest-exoplanets.json",
+    "sha256": "b392ca7db8f3d31b5735852346da0a98cc0c1c7169814b7838e8686842155b09",
+    "note": "Existing 2026-10-10 NASA archive inventory; full source query retained in that file."
+  }
+]

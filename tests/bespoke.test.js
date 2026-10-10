@@ -67,3 +67,25 @@ test('Proxima b and d retain independent named visuals and unmeasured surface co
   assert.equal((await sharp(bytes).metadata()).format,'jpeg');assert.equal(image.tier,'imagined');
  }
 });
+
+test('Barnard c/d/e have separate researched maps and geometrically ordered stellar skies', async()=>{
+ const {buildStarSystem}=await import('../src/data/systems.js');
+ const archive=JSON.parse(await fs.readFile(new URL('../docs/research/nearest-exoplanets.json',import.meta.url),'utf8'));
+ const planets=archive.rows.filter(r=>/^Barnard [bcde]$/.test(r.pl_name));
+ const model=buildStarSystem({star:{id:'barnard',name:"Barnard's Star",x:1.8,y:0,z:0,distPc:1.8,distLy:6,spect:'M4V',lum:.003558},host:{st_teff:3195,st_rad:.185,st_mass:.162},planets});
+ const maps=new Set();
+ for(const letter of ['b','c','d','e']) {
+  const body=model.bodies.find(b=>b.name===`Barnard ${letter}`),visual=bodyVisualFor(body);
+  assert.equal(body.skin.map,visual.surfaceMap.key);maps.add(visual.surfaceMap.sha256);
+  assert.equal(bodyVisualFor({name:`GJ 699 ${letter}`}),letter==='b'?null:visual);
+  if(letter!=='b'){
+   assert.ok(visual.unknown.some(s=>s.includes('physical radius')));
+   assert.ok(visual.modelled.some(s=>s.includes('not measured surface temperature')));
+   assert.ok(Math.abs(visual.skyImage.rasterValidation.widthFraction / visual.skyModel.centreDiscWidthFraction - 1) < 0.2);
+   assert.ok(visual.assumed.some(s=>s.includes('Exact apparent-size calibration')));
+  }
+ }
+ assert.equal(maps.size,4);
+ const angular=id=>BODY_VISUALS[`barnard-${id}`].skyModel.angularDiameterDeg;
+ assert.ok(angular('d')>angular('b')&&angular('b')>angular('c')&&angular('c')>angular('e'));
+});
