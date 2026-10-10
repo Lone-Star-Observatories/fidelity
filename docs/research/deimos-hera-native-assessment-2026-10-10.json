@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-10",
+  "status": "Newer native observation assessment; not yet published in the app or standalone, registry remains44.",
+  "sources": [
+    {
+      "file": "data/research-sources/deimos-hera-afc-2025.png",
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_asteroid_framing_camera/26615627-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera_pillars.png",
+      "bytes": 1050734,
+      "sha256": "e86a5595b0875236a3c437144f80d1c8aafbbd0c71f27d9e7f5e3b2f38933354"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-tiri-2025.png",
+      "url": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2025/03/mars_and_deimos_viewed_by_hera_s_tiri/26615580-1-eng-GB/Mars_and_Deimos_viewed_by_Hera_s_TIRI_pillars.png",
+      "bytes": 2002446,
+      "sha256": "fc0bfa51c4b6f227703e4ed31e572e4b1ffc76b4b63cd5f70576652286cea8b3"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-afc-caption-2025.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_Asteroid_Framing_Camera",
+      "bytes": 13555,
+      "sha256": "2322fe511a35bfa00dcf0243dad6e35b5ae17279aa310e0c741e55e91e4d0018"
+    },
+    {
+      "file": "data/research-sources/deimos-hera-tiri-caption-2025.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2025/03/Mars_and_Deimos_viewed_by_Hera_s_TIRI",
+      "bytes": 13102,
+      "sha256": "eec556ed858f1bbad90a807bf1164b02aedb36d0a1683557a6e7c7536897e0fd"
+    },
+    {
+      "file": "data/research-sources/esa-standard-media-terms.html",
+      "url": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+      "bytes": 11439,
+      "sha256": "2c0dbe226fa51d3090221b60d4c9b55ca7e08d22e3c0569b5cbced4d8998ee1d"
+    }
+  ],
+  "observationDate": "2025-03-12",
+  "publicationDate": "2025-03-13",
+  "afc": {
+    "credit": "\u00a9ESA / Hera Asteroid Framing Camera",
+    "description": "Visible-light monochromatic image: dark Deimos against Mars. Approximately1000km spacecraft-to-Deimos distance. Less-seen hemisphere. Native publisher PNG preserved unchanged.",
+    "limits": "Projected scene, not equirectangular surface/albedo map; exposure contrast is not calibrated visible reflectance. Caption says23500km from Mars surface; do not silently treat this as orbital semimajor axis or update catalogue from that wording."
+  },
+  "tiri": {
+    "credit": "\u00a9ESA/JAXA / Hera Thermal Infrared Imager",
+    "description": "Mid-infrared false-colour temperature-related scene; bright Deimos contrasted against Mars.",
+    "limits": "Not visible-light surface colour; do not copy temperature palette to albedo map. Exact thermal calibration/bandpass/numeric surface temperatures not independently audited."
+  },
+  "termsUrl": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+  "terms": "ESA Standard Licence for educational/editorial/informational use with attribution, not asserted Creative Commons. TIRI retains ESA/JAXA joint credit and any separate third-party conditions must be reviewed before publication.",
+  "next": [
+    "Prefer newer native AFC context after preserving full native bytes and recovering sufficient standalone headroom.",
+    "Audit remaining mission/instrument calibration and map registration before combining with native globe.",
+    "2025Deimos photometry paper https://arxiv.org/abs/2509.12804 identified, full parameter audit pending."
+  ],
+  "inspection": "AFC and TIRI publisher PNGs visually inspected unchanged,1920x1920 and1920x2043. TIRI brightness-temperature legend preserved; no detector-to-raster or thermal calibration claimed.",
+  "standaloneHeadroomBytes": 1099058
+}

@@ -180,7 +180,15 @@ const css = await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.end
 const js = (await fs.readFile(path.join(dist, 'assets', assets.find((f) => f.endsWith('.js'))), 'utf8')).replaceAll('</script', '<\\/script');
 const body = html.match(/<body>([\s\S]*)<\/body>/)[1].replace(/<script[^>]*src="[^"]*"[^>]*><\/script>/g, '').trim();
 const fonts = (html.match(/<link[^>]+fonts\.(googleapis|gstatic)[^>]*>/g) || []).join('\n');
-const out = `<title>USS Fidelity</title>\n${fonts}\n<style>\n${css}\n</style>\n${body}\n<script type="module">\n${js}\n</script>\n`;
+// Compress the entire application losslessly as well as its embedded snapshot.
+// Runtime imports the restored module from a Blob; no executable text is evaluated.
+const appCompressed = gzipSync(js, { level: 9 });
+if (gunzipSync(appCompressed).toString('utf8') !== js) throw new Error('Application compression round-trip failed.');
+const appPacked = encodeSnapshotBytes(appCompressed);
+if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
+const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
+const bootstrap = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const stream = new Blob([unpackSnapshotBytes(${JSON.stringify(appPacked)})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = await new Response(stream).text();\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
+const out = `<title>USS Fidelity</title>\n${fonts}\n<style>\n${css}\n</style>\n${body}\n<script type="module">\n${bootstrap}\n</script>\n`;
 const previewBytes = Buffer.byteLength(out);
 if (previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
 await fs.writeFile(path.join(dist, 'fidelity.html'), out);

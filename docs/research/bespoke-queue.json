@@ -165,7 +165,7 @@
       "parent": "mars",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending",
+      "nativeImagery": "own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending; newer2025Hera AFC/TIRI source PNGs retained, terms and embedding audit in deimos-hera-native-assessment-2026-10-10.json",
       "research": "native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
