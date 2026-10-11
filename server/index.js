@@ -36,7 +36,7 @@ import { archiveImage, discImage } from './bandarchive.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
 import { psgSpectrum, starSpectrum, exoSpectraList, exoSpectrum } from './bodyspectra.js';
 import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
-import { signalLayers, signalLayer, radioGardenPlace } from './signals.js';
+import { signalLayers, signalLayer, stationPlace } from './signals.js';
 import { surfaceImages, surfaceImage } from './surfaceimages.js';
 
 const MIME = {
@@ -77,7 +77,7 @@ const routes = {
   'GET /api/gaia-bright': async () => gaiaBright(),
   'GET /api/star-lookup': async (q) => starLookup(q),
   'GET /api/star-search': async (q) => starSearch(q.get('q') || ''), // text search (#63)
-  'GET /api/signals/radiogarden/place': async (q) => radioGardenPlace(q.get('i')), // a place's streams from the local export (#69)
+  'GET /api/signals/stations/place': async (q) => stationPlace(q.get('i')), // a place's streams from your station list (#69)
   'GET /api/comms/nowplaying': async (q) => stationNowPlaying(q.get('u') || ''), // COMMS (#69)
   'GET /api/comms/media': async (q) => cameraMedia(q.get('u') || ''),
   'GET /api/rf/devices': async () => rfDevices(),

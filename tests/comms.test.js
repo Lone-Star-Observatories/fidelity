@@ -103,13 +103,28 @@ test('DSN helpers: body filters by code, last seen, dish size, ages and light ti
   assert.equal(formatLight(lightSeconds(1)), '8 MIN 19 S');
 });
 
-test('Radio Garden export: places with streams, NaN names tolerated (#69)', async () => {
-  const { parseRadioGarden } = await import('../server/signals.js');
+test('station list by city: places with streams, NaN names tolerated (#69)', async () => {
+  const { parseStationList } = await import('../server/signals.js');
   const text = '{"Aachen,DE": {"coords": {"n": 50.7753, "e": 6.0839}, "urls": [{"name": "Antenne Ac", "url": "https://a.example/live"}, {"name": NaN, "url": "http://b.example:8000/x"}, {"name": "Bad", "url": "ftp://nope"}]}, "Nowhere,XX": {"coords": {"n": 0, "e": 0}, "urls": [{"name": "Z", "url": "https://z"}]}}';
-  const { places, urls } = parseRadioGarden(text);
+  const { places, urls } = parseStationList(text);
   assert.equal(places.length, 1);
   assert.equal(places[0].name, 'Aachen');
   assert.equal(places[0].country, 'DE');
   assert.deepEqual(places[0].streams.map((s) => s.name), ['Antenne Ac', 'Unnamed station']);
   assert.ok(urls.has('http://b.example:8000/x') && !urls.has('ftp://nope'));
+});
+
+test('WebSDR receiver list: entities decoded, bands and range summarised (#69)', async () => {
+  const { parseWebSdrList } = await import('../server/signals.js');
+  const m = parseWebSdrList([
+    { url: 'http://websdr.ewi.utwente.nl:8901/', desc: 'BATC &#38; AMSAT-UK QO-100 (Es&#39;Hail-2)', qth: 'JO32KF', lat: 52.2292, lon: 6.875, users: '311', show: true,
+      bands: [{ l: 0, h: 29.1596, a: 'Mini-Whip' }, { l: 10489.5, h: 10490, a: '1.3m Dish -&gt; LNB' }] },
+    { url: 'http://hidden/', show: false, lat: 1, lon: 1, bands: [] },
+    { url: 'http://neg/', desc: 'x', lat: 40, lon: -70, users: '-5', bands: [] },
+  ]);
+  assert.equal(m.length, 2);
+  assert.equal(m[0][2], "BATC & AMSAT-UK QO-100 (Es'Hail-2)");
+  assert.match(m[0][4], /0\.00–10490 MHz · 2 BANDS · 311 LISTENING · JO32KF/);
+  assert.equal(m[0][6].bands[1].a, '1.3m Dish -> LNB');
+  assert.equal(m[1][5], 0); // negative listener counts read as nobody
 });
