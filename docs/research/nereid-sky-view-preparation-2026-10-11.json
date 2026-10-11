@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-11",
+  "body": "Nereid",
+  "status": "Research-only independent original prepared; no67th dossier or new embedding",
+  "prompt": "Independent hypothetical scientific observer illustration from Nereid, Neptune's eccentric-orbit unlocked moon. Wide16:9 1672x941. Invent a low dark-gray granular foreground with small angular blocks, shallow depressions and modest pale frost-like patches, no terrain copied from any observed Moon, Mars, Pluto, Triton, Phoebe, Hyperion or other body. All morphology, material fractions and visible colour invented; Webb disk-integrated water-ice signatures do not map this site. Nearly black sky/no conspicuous haze is an assumed no-visible-atmosphere scene, not measured atmosphere absence. Put a very small pale blue-gray Neptune disk centered approximately x=1000 y=210, diameter30pixels in1672wide frame. Shared skyGeometry for24622km mean spherical Neptune at assumed near-pericentre centre distance1372961.1km minus170km Nereid radius gives2.055392595degree angular diameter and29.993352targetpixels at nominal90degree horizontalFOV. This is an assumed representative orbital phase, not a dated ephemeris; Nereid's distance changes, it is not tidally locked, no permanent Neptune-facing site. Neptune has only very faint independently invented broad bands, near-full phase chosen artistically. Axis/camera attitude, phase, blue-gray colour, lighting/exposure assumed; mean radius omits oblateness. Omit rings as an artistic exposure choice, not a visibility claim. No Sun, stars, other disks, plume, liquid/ocean, biology, people, spacecraft or survivable landing suggestion. Clean readable footer exact 'IMAGINED SKY FROM NEREID' with smaller 'Assumed near-pericentre distance, attitude and colour'. Restrained scientific photographic illustration, unmistakably hypothetical.",
+  "original": {
+    "path": "data/research-sources/nereid-generated-skyImage-original.png",
+    "bytes": 2987473,
+    "sha256": "46f13c6b88b73026e5b5f7aeba352bfe78c38929420766275af80a2cf3228811",
+    "width": 1672,
+    "height": 941,
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bf76efe2-6add-4415-b3eb-e7b7971ba29f.png"
+  },
+  "inspection": "IMAGINED label, independent foreground and invented Neptune disk; no other disk. Neptune is visibly oversized relative to the nominal geometric target.",
+  "limits": "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+  "sources": [
+    "docs/research/nereid-moon-preparation-2026-10-11.json"
+  ],
+  "geometry": {
+    "method": "skyGeometry",
+    "neptuneMeanRadiusKm": 24622,
+    "nereidCatalogueRadiusKm": 170,
+    "assumedNearPericentre": {
+      "centreDistanceKm": 1372961.1,
+      "observerDistanceKm": 1372791.1,
+      "angularDiameterDeg": 2.0553925951321026,
+      "targetPixelsAt1672": 29.993352422815754
+    },
+    "semimajorAxisScenario": {
+      "centreDistanceKm": 5513900,
+      "observerDistanceKm": 5513730,
+      "angularDiameterDeg": 0.5117194247417983,
+      "targetPixelsAt1672": 7.466523474993202
+    },
+    "apoapseScenario": {
+      "centreDistanceKm": 9654838.899999999,
+      "observerDistanceKm": 9654668.899999999,
+      "angularDiameterDeg": 0.292239584183711,
+      "targetPixelsAt1672": 4.26406314941274
+    },
+    "nominalHorizontalFovDeg": 90,
+    "thresholdRuns": [
+      {
+        "row": 181,
+        "threshold": 5,
+        "width": 151
+      },
+      {
+        "row": 181,
+        "threshold": 10,
+        "width": 43
+      },
+      {
+        "row": 181,
+        "threshold": 20,
+        "width": 41
+      }
+    ],
+    "limits": "Threshold chords are phase/exposure/background sensitive, oversized, not a calibrated full diameter. Eccentric unlocked orbit: assumed distance/attitude/phase, no dated ephemeris or permanently Neptune-facing site. Mean spherical radius omits oblateness; ring omission artistic, not invisibility. 60K helper used only for angular geometry, not photometry/colour. No Sun disk."
+  },
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15974183,
+    "completeSnapshotSha256": "3ab787302e4d31da523217bfd8ab036c5f3f7eb82ba1d11a6b924b6a91223cd5",
+    "readableSnapshotUnchangedFromBaseline": true,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "3ab787302e4d31da523217bfd8ab036c5f3f7eb82ba1d11a6b924b6a91223cd5",
+      "raw": "062901f912237d603fcd210e96eb5abbe55b5dcbec8d5a9a30382fc1c49e6395",
+      "magic": "FIDBRT01",
+      "images": 231,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15974183,
+      "compressedBytes": 788461,
+      "applicationSha256": "25db2a73a8464d326324133777d3ae62c7845255ace5c125e2d4b4f9e9c6b242",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "preservation": "All66dossiers379trackedregistry/bespoke/map/model/shape inputs unchanged; originals/default copies/native science preserved. No67th/newembedding; other browser engines open. Codecs unchanged.",
+    "headroomBytes": 25817
+  }
+}
