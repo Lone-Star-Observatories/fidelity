@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-10",
+  "change": "Lossless full snapshot gzip128 iterations; application32 and CSS5 unchanged",
+  "preservation": [
+    "Compressed bytes unchanged by transport; no field pruning, rounding, image recompression or model changes.",
+    "Default encodeDenseSnapshotBytes version1 retains47byte54digit format; explicitversion2 only fullbuilder snapshot/application.",
+    "Legacydense125v1/raw120wide/v1/radix85/base64/FIDAPP01/FIDNUM01/FIDBIN01/CSS/Blob import-revoke/unsupported-gzip paths retained.",
+    "All56 dossiers deeply equal; originalPNGs/masters/native/map/model/shape inputs unchanged; no57th Titan embedding."
+  ],
+  "comparison": {
+    "priorHtmlBytes": 15998450,
+    "htmlBytes": 15990034,
+    "savedBytes": 8416,
+    "headroom": 9966,
+    "sameCompleteReadableJsonSha256": true,
+    "sameApplicationSha256": true,
+    "sameCssSha256": true,
+    "tradeoff": "Increased build-time compression work; standard gzip browser decoding unchanged."
+  },
+  "verification": {
+    "testsPass": 453,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990034,
+    "headroom": 9966,
+    "queueTasks": 566,
+    "registryCount": 56,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "54777fa315750ed5e94545c8972b15d078c16641680b25f376b41cae67b500c6",
+      "raw": "aa8e10779ba51bcc051b17ac4f617ccd20045343b9e3a0c49aa5d3dac70b77bd",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15990034,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "offlineRoutes": 6,
+    "unsupportedBrowserMessage": "verified",
+    "workerRows": 11,
+    "nativeContextSourceHashes": "verified from complete snapshot",
+    "normalOfflineRhea": "ownmap3cards pass",
+    "otherBrowserEngines": "open"
+  },
+  "next": "More headroom before Titan native integration; DISR calibration and haze/Saturn visibility audits remain open. Backlog ACTIVE."
+}
