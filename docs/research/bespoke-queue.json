@@ -387,10 +387,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "OwnNASA3D globe retained unchanged/source-byte-equal SHAf1378bc2880bb0d4ddad50815083987aab38c9aae630cbd65465c6773495e511. FullUSGS/Tammy Becker & JPL/Caltech credit;2025-05-30 publisher metadata not observation. Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "umbriel"
     },
     {
       "id": "sol-titania",
@@ -8516,7 +8517,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 18,
+      "initialDossiers": 19,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

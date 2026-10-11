@@ -8731,6 +8731,200 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "umbriel": {
+    "id": "umbriel",
+    "name": "Umbriel",
+    "aliases": [
+      "Umbriel"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "OwnNASA3D globe retained unchanged/source-byte-equal SHAf1378bc2880bb0d4ddad50815083987aab38c9aae630cbd65465c6773495e511. FullUSGS/Tammy Becker & JPL/Caltech credit;2025-05-30 publisher metadata not observation. Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+    "measured": [
+      "Existing Umbriel584.7km,1.275e21kg,265986km/4.144177day model inputs preserved; catalogue precision is not measurement uncertainty.",
+      "Voyager2 narrow-angle camera, clear filter observed1986-01-24/imageaddition1996-01-31. Background spots are data noise, not stars. Bright annulus nature unknown; frost/cold trapping and impact or interior-origin deposits are hypotheses. Historical caption approximate1200km diameter/16percent reflectivity/10km resolution/557000km range/110km crater/140km annulus are caption values, not new skyGeometry raster computations or updated physical measurements. No Moon terrain analogy used.",
+      "Section3.2 reports prominent trailing CO2/CO-related bands including4.27/4.67micron; leading4.27micron strong, leading4.02/4.67micron weaker>2sigma. Trailing4.41/4.47/4.59micron lower-confidence probable features, not secure detections. This distinguishes Umbriel from Ariel; no body swap.",
+      "Umbriel-specific NIRSpecIFU1786 trailing2023-09-08T15:15:18UTC/leading2023-09-06T21:10:19UTC,8461.6seconds each (Table1). Disk-integrated spectra are not resolved visible terrain."
+    ],
+    "modelled": [
+      "Axisymmetric iSALE2D vertical90degree impact into idealized water-ice layers over liquid ocean,200m simulation resolution. Complex Wunda morphology can require past thin≤50km and/or warm≥240K ice or different structural/compositional properties. These temperatures/thicknesses concern simulated past ice-shell scenarios, not ambient terrain or measured current shell.",
+      "Complex morphology itself is uncertain at Voyager resolution. Melt production, ocean uplifting, impact-induced cryovolcanism, salt/CO2 chemistry and deposit origins remain hypothetical; no directly detected ocean, plume, eruption, current heat, local material fraction or biology. Porosity, thermal-gradient choice, phase/melt-pressure thresholds and relaxation alter interpretations. Ceres comparison is a modelling analogy only, never a skin/geography source. Supplement/Dataverse outputs/revised licence audit open.",
+      "Laboratory crystallineCO2 lattice modes, layered/grain/roughness alternatives, carbonate/clathrate/OCN assignments and native/radiolytic origins are interpretations. Umbriel laboratory matches less compelling than Ariel for several features. No local chemistry/fractions or mapped Voyager pixels, ocean/conduit/plume/biology detection; nondetection not absence.",
+      "skyGeometry spherical meanUranus25362km at265986minus584.7km, nominal90HFOV10.967213386130908deg /160.512478535targetpxat1672."
+    ],
+    "unknown": [
+      "Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+      "Final2026journal/supplement/exactproduct/independentcalibration open. Brown2026PNAS isotope correction association remains an unverified lead; no body-specific isotope values adopted.",
+      "Bright annulus composition/origin unknown; local material fractions and dated local registration unknown. Saved coauthor-hosted PDF says2026AmericanGeophysicalUnionAllRightsReserved. Current publisher page states copyright line changed2026-06-11; revised terms remain unverified. No CC licence assertion or paper figure embedded."
+    ],
+    "assumed": [
+      "Every local terrain feature, grain/block dimension, material chemistry/fraction, grey colour, lighting and exposure is invented. No analog observed-body skin or Wunda/Voyager location registration. Wunda impact simulations are conditional past-interior hypotheses, not measurements of this scene or current activity. No angular/raster size computation is claimed because no astronomical disk appears.",
+      "Globe oversized; threshold-sensitive row chords are not calibrated full diameter. Local terrain, chemistry/fractions, Uranus colour/bands/phase, illumination/exposure and camera/axis attitude invented. Spherical mean-radius geometry omits oblateness; no dated ephemeris or site registration. Rings omitted as artistic exposure choice, not invisibility claim. No analog observed-body map or foreground atmosphere/plume/liquid/ocean/biology/landing. Generated row240threshold5/10/20 widths239/236/235 oversized vs160.51248target, not calibrated full diameter.60K helper angular only, Sun19.2AUoffframe. Small preview annotations require readable card labels."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "title": "NASA Voyager2 PIA00040 Umbriel closest approach",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-31",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/uranus-umbriel/",
+        "title": "OwnNASA3D Umbriel globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6988dd8e112b025c8471fa31/1770577294270/JGR%2BPlanets%2B-%2B2026%2B-%2BDenton%2B-%2BAssessing%2Bthe%2BPlausibility%2Bof%2BPast%2BCryovolcanism%2Bon%2BUmbriel%2BUsing%2Bthe%2BWunda%2BImpact%2BCrater.pdf",
+        "title": "Assessing the Plausibility of Past Cryovolcanism on Umbriel Using the Wunda Impact Crater",
+        "authors": [
+          "C. A. Denton",
+          "J. E. C. Scully",
+          "J. C. Castillo-Rogez",
+          "M. M. Sori",
+          "C. M. Elder",
+          "E. J. Leonard",
+          "R. Cartwright",
+          "T. A. Nordheim",
+          "C. Beddingfield"
+        ],
+        "doi": "10.1029/2025JE009282",
+        "publicationDate": "2026-02-08",
+        "terms": "Saved coauthor-hosted PDF says2026AmericanGeophysicalUnionAllRightsReserved. Current publisher page states copyright line changed2026-06-11; revised terms remain unverified. No CC licence assertion or paper figure embedded.",
+        "termsUrl": "https://onlinelibrary.wiley.com/terms-and-conditions",
+        "sha256": "573bbe19df8bab024d1faf34ec6571b8f70bfd1872dd86feeac7af3befe1836f"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "submittedDate": "2026-07-06",
+        "revisionDate": "2026-07-08",
+        "terms": "Specific arXiv record explicitly links CC BY4.0; not inferred from generic distribution. Full18authors/title/arXivversion retained. No figure embedded or transformed.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "observationDate": "2023-09-06/2023-09-08",
+        "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/umbriel-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00040/PIA00040.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media usage guidance; not asserted CC BY",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-31",
+        "bytes": 7480,
+        "sha256": "9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf",
+        "width": 400,
+        "height": 400,
+        "description": "Actual Voyager2 clear-filter monochrome Umbriel; background specks are noise, annulus nature unknown, not calibrated colour or registered terrain.",
+        "processing": "Unchanged full publisher JPEG; monochrome, not calibrated visible colour or registered local terrain. No Fidelity resize/re-encoding; full publisher TIFF retained separately. Background spots are data noise, not stars. Bright annulus nature unknown; frost/cold trapping and impact or interior-origin deposits are hypotheses. Historical caption approximate1200km diameter/16percent reflectivity/10km resolution/557000km range/110km crater/140km annulus are caption values, not new skyGeometry raster computations or updated physical measurements. No Moon terrain analogy used."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL UMBRIEL TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM UMBRIEL — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "method": "src/astro/appearance.js skyGeometry",
+      "uranusMeanRadiusKm": 25362,
+      "umbrielRepresentativeOrbitalDistanceKm": 265986,
+      "umbrielRadiusKm": 584.7,
+      "observerDistanceKm": 265401.3,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 10.967213386130908,
+      "centreDiscWidthFraction": 0.09600028620517442,
+      "temperatureK": 60,
+      "temperaturePurpose": "Only angular helper input; irradiance and blackbody colour outputs are not adopted as physical Uranus photometry.",
+      "sun": "Off frame; no rendered Sun size claim.",
+      "targetWidthPixels": 160.51247853505163
+    },
+    "surfaceImage": {
+      "url": "/bespoke/umbriel-surface-image.jpg",
+      "previewUrl": "/bespoke/umbriel-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "umbriel-generated-surfaceImage-original.png",
+      "sourceSha256": "2d657b2f938cca03c5df683209cececc6bc91a3d7d3f0e46f22b6ca8c2accc4e",
+      "sha256": "dfeeb0fcbeac68e048d4e6770831e2e5e73195409fd3a5be06efefc3e61a171c",
+      "previewSha256": "5001e0bc16906cc6f5218f3cab0ecde4349c3369970a78b17c09e7b1912d2fca",
+      "bytes": 330991,
+      "previewBytes": 10414,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/umbriel-sky-image.jpg",
+      "previewUrl": "/bespoke/umbriel-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "umbriel-generated-skyImage-original.png",
+      "sourceSha256": "1b361200dc11d837eb93cff655cf5ad8de69f575e019a6e8a8932aa2c35f5b0e",
+      "sha256": "6708bea21371f4d43ec12dc52deceb67091643da5570a046a5e8ef823a106ae4",
+      "previewSha256": "41bbb76d230b965ce14562f056d1df2519c6ceeeca74e984529358fd02abd53a",
+      "bytes": 224698,
+      "previewBytes": 7311,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
