@@ -366,8 +366,10 @@ RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station 
 compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast "ICY 200", fetch
 otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
 the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
-Every upstream URL must be on a cached station list (no open proxy). Voice: the `comms` tool and
-offline phrases ("on screen", "close channel"). Nothing transmits.
+Every upstream URL must be on a cached station list (no open proxy). The RF receiver console (`src/views/comms/receiver.js`) opens for KiwiSDR (`ws /api/rf/kiwi`) and the
+local SDR (`ws /api/rf/local`): it tunes, shows a scrolling waterfall, plays received audio through the
+chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
+(on screen, off screen, tune, scan, close channel) and offline phrases. Nothing transmits.
 
 ## Space telescopes
 

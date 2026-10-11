@@ -12,7 +12,8 @@
 
 import { createSignalsMap } from '../../panels/signalsmap.js';
 import { createCommsAudio } from './audio.js';
-import { stationMedia } from '../../data/rf.js';
+import { stationMedia, parseFrequency } from '../../data/rf.js';
+import { createReceiver } from './receiver.js';
 
 const STANDALONE = import.meta.env?.MODE === 'standalone';
 const el = (tag, props = {}, ...kids) => {
@@ -24,6 +25,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export function createCommsView(container, { badge, pill, settings, onPanel, toast }) {
   const audio = createCommsAudio();
+  const rxConsole = createReceiver({ audio, pill, badge, onPanel: () => onPanel?.() });
   let mode = 'subspace', station = null, prompt = null, devices = null, receiver = null, hailToken = 0;
   const radioEl = el('audio', { preload: 'none', crossOrigin: 'anonymous' });
 
@@ -131,6 +133,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     hailToken++;
     clearInterval(refresh); clearInterval(npTimer); cancelAnimationFrame(vizRaf);
     radioEl.pause(); radioEl.removeAttribute('src'); radioEl.load();
+    rxConsole.close();
     audio.flush();
     station = null; prompt = null;
     if (render) { idle(); onPanel?.(); }
@@ -151,11 +154,17 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     d.textContent = [devices.rx.length ? `RX: ${devices.rx.map((x) => x.label).join(', ')}` : 'NO LOCAL RECEIVER', devices.tx.length ? `TX-CAPABLE: ${devices.tx.map((x) => x.label).join(', ')} · TRANSMIT NOT ENABLED` : 'NO TX DEVICE'].join(' · ');
   }
 
-  /** RF: a receiver picked on the map (its console is still to come). */
+  /** RF: a receiver picked on the map. KiwiSDR and the local SDR open a listening console; WebSDR links out. */
   function selectReceiver(layerId, m, layer) {
     closeChannel(false);
-    receiver = { layerId, m, layer, name: m[2], local: layerId === 'localsdr' };
-    setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'RECEIVER CONSOLE PENDING' }));
+    const local = layerId === 'localsdr';
+    receiver = { layerId, m, layer, name: m[2], url: m[3], local };
+    if (layerId === 'kiwisdr' || local) {
+      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer }, (...kids) => setScreen(...kids));
+    } else {
+      receiver.consoleBox = null;
+      setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'OPENS ON THE OPERATOR\'S OWN PAGE' }));
+    }
     onPanel?.();
   }
 
@@ -214,6 +223,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
         pill('CLOSE CHANNEL', () => closeChannel()),
         href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'STATION PAGE ↗' }) : null,
         station.media.stream ? h('a', { className: 'pill', href: station.media.stream, target: '_blank', rel: 'noopener noreferrer', textContent: 'STREAM ↗' }) : null));
+    } else if (mode === 'rf' && receiver?.consoleBox) {
+      out.push(receiver.consoleBox);
     } else if (mode === 'rf' && receiver) {
       const [lat, lon, name, href, detail, extra] = receiver.m, dl = h('dl');
       out.push(h('h3', { textContent: 'RECEIVER' }), h('h2', { className: 'sel-name', textContent: name.toUpperCase() }));
@@ -238,9 +249,15 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     if (c.command === 'on_screen') return station?.media.video ? onScreen(true) : { ok: false, error: station ? 'This channel carries no video.' : 'No station hailed.' };
     if (c.command === 'off_screen') return station ? onScreen(false) : { ok: false, error: 'No station hailed.' };
     if (c.command === 'close_channel') return closeChannel();
-    return { ok: false, error: 'The RF receiver console is not built yet.' };
+    if (c.command === 'scan') return rxConsole.active && rxConsole.scan() ? { ok: true, said: 'Scanning for signals.' } : { ok: false, error: 'Tune in to a receiver first.' };
+    if (c.command === 'tune') {
+      const hz = parseFrequency(c.frequency ?? '', { defaultUnit: 'kHz' });
+      if (!hz) return { ok: false, error: 'I did not catch the frequency.' };
+      return rxConsole.active && rxConsole.tune(hz) ? { ok: true, said: `Tuning to ${(hz / 1e6).toFixed(3)} megahertz.` } : { ok: false, error: 'Tune in to a receiver first.' };
+    }
+    return { ok: false, error: 'Say on screen, off screen, scan, tune, or close channel.' };
   }
-  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}.`;
+  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : rxConsole.active ? `: receiver ${rxConsole.info?.name} open at ${(rxConsole.info?.freqHz / 1e6).toFixed(3)} MHz ${rxConsole.info?.mode}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}.`;
 
   let started = false;
   return {
