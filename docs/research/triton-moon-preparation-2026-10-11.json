@@ -202,5 +202,31 @@
     }
   ],
   "catalogue": "Radius1353.4km mass2.139e22kg semimajor354800km period5.876994days preserved; retrograde orbit; decimal precision not uncertainty.",
-  "next": "Triton independent local/Neptune observer using skyGeometry, thin nitrogen atmosphere and assumed haze/visibility limits; master/previews/additive66th budget; remainingbacklogACTIVE."
+  "next": "Triton independent local/Neptune observer using skyGeometry, thin nitrogen atmosphere and assumed haze/visibility limits; master/previews/additive66th budget; remainingbacklogACTIVE.",
+  "authorCountNote": "Specific citation metadata has52 unique authors; abbreviated UI count differs. Full metadata list retained.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15944727,
+    "headroomBytes": 55273,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "eb119afe98708c3a5598404806247c1ed01d9e1e193f7314878a8e2457f6eac4",
+      "raw": "ab61a02b52b578318f9c150f06b6193dfc2e32bc85a7fab24f6b8ae2e40e96c3",
+      "magic": "FIDBRT01",
+      "images": 228,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15944727,
+      "compressedBytes": 785947,
+      "applicationSha256": "15f4c6136e014d652ed945308f4a7d8a6397fb64a23aae386e2cb3720c1da52d",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All65 registry entries unchanged; 362 tracked registry/bespoke/map/model/shape files exact. Source hashes verified; normal/offline Oberon3cards and native hashes pass.",
+    "limits": "Chrome verified; other engines open. Interbuild differences unaudited; no saving attribution. No66th/new embedding."
+  }
 }
