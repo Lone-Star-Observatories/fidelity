@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-10",
+  "status": "Research-only local view preparation; all58 dossiers retained. No59th or new embedding.",
+  "generator": "Built-in image_gen; scientific-educational; no image references",
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Iapetus hypothetical local terrain card, standalone wide landscape illustration.\nPrimary request: Generate an independent research-guided IMAGINED local view from Iapetus. This is an invented unregistered site, not a reconstruction of a Cassini photograph, NASA globe, Moon, Mars, Callisto or another body's map.\nScene/backdrop: Airless Saturnian moon, low rolling heavily cratered horizon beneath black sky. Foreground invented uneven granular charcoal-brown regolith, scattered angular blocks and a few pale patches on protected slopes. Depict a plausible dark-terrain study, not measured chemistry, material fractions, frost depth or active sublimation.\nStyle/medium: Restrained realistic scientific concept illustration, wide 16:9 landscape, camera close to terrain with foreground texture and middle-distance craters. No giant equatorial mountain ridge is implied at this unknown site.\nLighting/mood: Low directional sunlight from outside frame, long shadows, muted dark brown/grey and dull pale material. Exposure and visible colour are artistic.\nText (verbatim): Large readable upper-left label \"IMAGINED \u2014 IAPETUS\". Lower-left label \"HYPOTHETICAL LOCAL TERRAIN\".\nConstraints: No reference images, no observed analog skin. No Saturn, rings, Sun disk, stars or other astronomical disk in this local study; no angular/raster size claim needed. No atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, spacecraft, astronaut or survivable landing. Never imply dated site, calibrated colour, observed local composition, registered globe or measured thermal migration. Only the two requested labels, no numerical scales.",
+  "original": {
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ac71063a-bf81-4280-88a6-89cd1e7fd5be.png",
+    "path": "data/research-sources/iapetus-generated-surfaceImage-original.png",
+    "bytes": 2748293,
+    "sha256": "09c2d0c06f97fc9d16aadc431d311e5b811dd0ef13f72c77c746d15721638e97",
+    "width": 1672,
+    "height": 941
+  },
+  "inspected": true,
+  "limitations": "Independent IMAGINED cratered dark-terrain study. Terrain, blocks, pale patches, chemistry/fractions, colour, light and exposure are invented, not measured at a Cassini or globe-registered site. No observed analog map used. No atmosphere, plume, liquid, exposed ocean, biology or survivable landing. No Saturn/rings/Sun/stars disk; no angular/raster size calculation needed. Labels readable in original; compact preview readability still requires assessment.",
+  "preservation": {
+    "dossiers": 58,
+    "trackedMapModelShapeFiles": 69,
+    "allEqualHEAD": true
+  },
+  "next": "Saturn observer using skyGeometry and Iapetus inclined orbit/camera attitude limits; recover lossless standalone headroom before additive integration.",
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15997661,
+    "headroomBytes": 2339,
+    "completeSnapshotSha256": "d8fd68eaf23c564dd59190e54d54d732e889e1e36927433f2d5447f8fb4172d7",
+    "exactSameReadableSnapshotAsBefore": true,
+    "browser": "Chrome; other engines open",
+    "checks": "Exact full JSON, application, CSS and HTML-parser payloads;207images20bands517details32models;native hashes and normal/offline Hyperion3cards;6routes unsupportedgzip11workerrows.",
+    "queue": 566
+  }
+}
