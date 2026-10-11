@@ -55,6 +55,7 @@
     "trackedAssetBytesPreserved": 404,
     "browser": "Chrome exact complete readable JSON and HTML parser payload; 237 images, 20 bands, 517 details, 32 model entries. No new model-load or route verification claim; other engines open.",
     "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
-    "interbuildLimit": "Difference from earlier eb1cc385 snapshot not independently audited; no compression or asset savings attribution."
+    "interbuildLimit": "Difference from earlier eb1cc385 snapshot not independently audited; no compression or asset savings attribution.",
+    "scope": "Checks completed before rebasing concurrent upstream 918878b postcard changes; combined application not revalidated in this research batch."
   }
 }
