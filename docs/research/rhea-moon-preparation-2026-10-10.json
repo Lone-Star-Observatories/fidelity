@@ -7,7 +7,8 @@
     "massKg": 2.3065e+21,
     "semimajorAxisKm": 527200,
     "source": "src/data/moons.js",
-    "limitations": "Representative catalogue values; not a dated observer solution."
+    "limitations": "Representative catalogue values; not a dated observer solution.",
+    "captionAlternative": "PIA21354 caption quotes 1527 km across, while the existing catalogue keeps radius763.8 km. Rounded representations retained separately; no silent catalogue edit."
   },
   "sources": [
     {
@@ -140,6 +141,36 @@
       "applicationSha256": "41f013a82d0db33d281a37bbd1e21324c323c2420e5988d17a9ece82d6ecef0c",
       "htmlParserPreservesEveryPackedByte": true
     },
-    "exactCssAndHtmlParser": true
+    "exactCssAndHtmlParser": true,
+    "postMerge": {
+      "base": "a0116c3",
+      "testsPassed": 433,
+      "testsSkipped": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15968450,
+      "headroomBytes": 31550,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "b376b378237646ffce2209ef26b0a9d3e11efb1132a7bb62ca8f453f3a589018",
+        "raw": "8d11c18938e50bd413843b67f8d0bcbd0886e379632da47c81a6be4b415e28b2",
+        "magic": "FIDNUM01",
+        "images": 198,
+        "details": 517,
+        "models": 32
+      },
+      "application": {
+        "htmlBytes": 15968450,
+        "compressedBytes": 700764,
+        "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+        "htmlParserPreservesEveryPackedByte": true
+      },
+      "exactCssAndHtmlParser": true,
+      "offlineRoutes": 6,
+      "unsupportedBrowserMessage": "verified",
+      "offlineEventWorkerRows": 11,
+      "browserScope": "Chrome; other engines remain untested",
+      "all55DossiersUnchanged": true
+    }
   }
 }
