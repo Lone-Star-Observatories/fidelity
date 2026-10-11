@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no60th dossier or new embedding.",
+  "body": "Phoebe",
+  "native": {
+    "product": "PIA18411",
+    "observed": "2004-06-11",
+    "released": "2014-06-11",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "terms": "NASA media guidelines; not asserted CC BY.",
+    "width": 5182,
+    "height": 3455,
+    "inspected": true,
+    "limitations": "Approach/departure monochrome mosaics from one flyby; anniversary release is not a2014 observation. Publisher rescaling, sharpening and contrast enhancement prevent independent visible-colour/photometry claims. Shadowed regions and mosaic boundaries are not new terrain. Caption80/65m per pixel and80/83degree phases are source estimates, not newly computed raster scales. No global map or local scene registration adopted. No exhaustive newest-observation claim."
+  },
+  "shapeAssessment": {
+    "source": "https://sbn.psi.edu/pds/resource/weirichphoebeshape.html",
+    "releaseDate": "2023-10-16",
+    "citation": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023). Phoebe SPC Shape Model and Assessment Products Bundle V1.0. NASA PDS.",
+    "identifier": "urn:nasa:pds:satellite-phoebe.cassini.shape-models-maps::1.0",
+    "doi": "10.26033/3k3c-5713",
+    "scope": "Publisher bundle description assessed; quality-assessment products and actual geometry/frame not downloaded/verified. Direct bundle XML/document index returned403, recorded without invented hashes. No new model adopted.",
+    "olderAlternative": "Gaskell V2.0 PDS describes August4,2012 Cassini-derived model; release-specific model identity must not be silently conflated with2023 bundle."
+  },
+  "catalogue": {
+    "radiusKm": 106.5,
+    "rotationHours": 9.27,
+    "locked": false,
+    "semimajorAxisKm": 12929400,
+    "surfacePending": true,
+    "limitations": "Retrograde orbit and unlocked rotation; no permanently Saturn-facing local site. No existing own Phoebe globe or shape found in current catalogue/assets; do not use analog skins. Origin/capture hypotheses are not measured local composition."
+  },
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/phoebe-PIA18411-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 1192296,
+      "sha256": "1c013f10ecf1e50c24074b7933fc3d6137588267bfcbbe89d5b6182bf79c9572"
+    },
+    {
+      "path": "data/research-sources/phoebe-PIA18411-caption.html",
+      "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 272027,
+      "sha256": "b102ff110247bf5832266dd6e854562f0e738188808aca7569ab752c709ee274"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/bundle_satellite-phoebe.cassini.shape-models-maps.xml",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "path": "data/research-sources/phoebe-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 320651,
+      "sha256": "ef1127ef5c1f925f965a90edd07566c7448fcac9878ade8279caf3972edfbfe9"
+    }
+  ],
+  "open": [
+    "Recover lossless standalone headroom before native/illustration embedding.",
+    "Compact credited publisher rendition assessment; preserve full original.",
+    "Actual PDS geometry, quality, frame/coverage and uncertainty audit.",
+    "Primary spectroscopy and origin-model assessment; no local chemical fractions inferred from grayscale.",
+    "Independent local/observer views using skyGeometry for every angular/raster calculation."
+  ],
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996609,
+    "headroomBytes": 3391,
+    "completeSnapshotSha256": "9e5c1302237ca8e0dbcd5a831f58b74e3f2fdd7dc8eedf4cef5e382e23979bc4",
+    "browser": "Chrome exactJSON/application/CSS/HTMLparser210images20bands517details32models; unchanged hashes and HTML size. Other engines remain open.",
+    "preservation": "No registry/map/model/shape/native-input changes; all59 existing dossiers unchanged. Research downloads are new separate files."
+  }
+}

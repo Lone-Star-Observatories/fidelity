@@ -1,5 +1,11 @@
 # Fidelity visual assets
 
+## Phoebe native/shape preparation (2026-10-11, #3)
+
+Research-only: unchanged full Cassini PIA18411 publisher JPEG is retained and inspected, with source/caption/terms hashes in docs/research/phoebe-moon-preparation-2026-10-11.json. Observation2004-06-11 and anniversary publication2014-06-11 are separate; full NASA/JPL-Caltech/Space Science Institute credit and active NASA terms are retained, without CC BY assertion. Monochrome, contrast enhancement, sharpening and rescaling do not establish calibrated visible colour or a registered globe. All59 dossiers and prior native/model/map/shape inputs remain unchanged; no60th dossier or new embedding.
+
+The2023 Phoebe SPC bundle is identified separately from the older Gaskell model. Its published citation/DOI and release are recorded; direct XML/document downloads403 remain documented without invented hashes or verified geometry/uncertainty claims. Current Phoebe stays surfacePending; no analog globe is adopted. Unlocked rotation and retrograde orbit prohibit assuming a permanently Saturn-facing observer site. Geometry/frame/quality, spectroscopy, primary origin models and independent views remain open; further headroom is essential before embedding.
+
 ## Iapetus individual dossier59 (2026-10-11, #3)
 
 Iapetus now has two independent IMAGINED local/Saturn observer views, retaining original PNGs, full prompts,1536 JPEG85 masters and recorded256 previews (offline WebP80). Invented craters, blocks, dark regolith/pale patches, material chemistry/fractions, Saturn bands/rings, phase, colour, exposure and light are not observations. No analog map, dated Cassini site, atmosphere, plume, liquid, exposed ocean, biology or survivable landing is implied. Small annotations have limited readability; readable card labels carry limitations. Its own NASA3D globe remains source-byte equal and unchanged (SHA2569acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405); product associations, frame, coverage, input epochs and photometry remain open.
