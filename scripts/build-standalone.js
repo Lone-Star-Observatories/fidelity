@@ -200,7 +200,7 @@ const dist = path.join(root, 'dist-standalone');
 const viteHtml = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 async function assemble(snapshotJson) {
   const binarySnapshot = encodeNumericSnapshot(snapshotJson);
-  const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 16, blocksplittingmax: 0 });
+  const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 32, blocksplittingmax: 0 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
   const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed, 2);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
@@ -219,7 +219,7 @@ async function assemble(snapshotJson) {
   // Runtime imports the restored module from a Blob without eval().
   const appBinary = encodeApplicationNumbers(js);
   if (restoreApplicationText(appBinary) !== js) throw new Error('Application numeric round-trip failed.');
-  const appCompressed = await gzipAsync(appBinary, { numiterations: 32 });
+  const appCompressed = await gzipAsync(appBinary, { numiterations: 32, blocksplittingmax: 0 });
   if (restoreApplicationText(gunzipSync(appCompressed)) !== js) throw new Error('Application compression round-trip failed.');
   const cssCompressed = await gzipAsync(css, { numiterations: 5 });
   if (gunzipSync(cssCompressed).toString('utf8') !== css) throw new Error('Stylesheet compression round-trip failed.');

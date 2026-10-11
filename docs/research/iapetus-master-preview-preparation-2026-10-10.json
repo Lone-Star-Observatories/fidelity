@@ -1,0 +1,74 @@
+{
+  "status": "Research-only; original PNGs preserved; no59th dossier/new embedding.",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "source": "data/research-sources/iapetus-generated-surfaceImage-original.png",
+      "path": "data/research-sources/iapetus-surfaceImage-master1536.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 342150,
+      "sha256": "36d669f587ecd70838303ea30708ad1c96f6ce4717e2183769d1c55f86f4d7b7"
+    },
+    {
+      "role": "surfaceImage",
+      "source": "data/research-sources/iapetus-generated-surfaceImage-original.png",
+      "path": "data/research-sources/iapetus-surfaceImage-preview256.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 11337,
+      "sha256": "51a961004a651b9e46c92c7caf1f51feedaa41a97fb9fc0d0a2bafc21c03cf3a"
+    },
+    {
+      "role": "skyImage",
+      "source": "data/research-sources/iapetus-generated-skyImage-original.png",
+      "path": "data/research-sources/iapetus-skyImage-master1536.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 193478,
+      "sha256": "3f4c5b67aed61938df711b486b6dd9ab607f18f5b4a67f404a06d9bf8c418e06"
+    },
+    {
+      "role": "skyImage",
+      "source": "data/research-sources/iapetus-generated-skyImage-original.png",
+      "path": "data/research-sources/iapetus-skyImage-preview256.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 6834,
+      "sha256": "a4687a14e0816f32519c46702e94ebb87868e5e96a61a7e1630ea6bf2b56fbde"
+    }
+  ],
+  "limitations": "Generated preview annotations have limited readability; require readable card labels. Saturn scale, inclined-orbit/ring/camera assumptions and all prior preparation science limits remain open. Exact additive HTML increment pending.",
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15982933,
+    "headroomBytes": 17067,
+    "completeSnapshotSha256": "a89cccdde3a84270af1497ee5109088fa06652222306d6eb921a43bc69e6a399",
+    "browser": "Chrome exactJSON/app/CSS/HTMLparser207images20bands517details32models nativehashes normalofflineHyperion3cards6routes unsupportedgzip11workerrows;other engines open.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/time"
+    ],
+    "preservation": "All58 dossiers69trackedmapmodelshapesexact unchanged.",
+    "attribution": "Same-input transport saving14728; fullHTML difference includes recorded interbuild feed changes."
+  }
+}
