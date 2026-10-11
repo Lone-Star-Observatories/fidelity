@@ -111,6 +111,13 @@ test('new real maps: Sun NoRH and Earth GMI/SMAP carry their wavelength range', 
   assert.ok(BODY_BAND.earth['radio-nvss'].latest && BODY_BAND.earth['radio-nvss'].range[0] < 2.13e8);
 });
 
+test('#72 ROSAT sky: the float count-rate HiPS, not CDS/P/RASS (16-bit photon counts that average to 0 at all-sky scale)', () => {
+  const x = pass('x-soft').pass;
+  // hips2fits renders CDS/P/RASS all black at 256×128 and at 2048×1024 alike (checked 2026-10-11: 99.5% of pixels 0)
+  assert.equal(x.sky, 'ov-gso/P/RASS');
+  assert.match(x.skyCredit, /ROSAT All-Sky Survey 0\.1–2\.4 keV/);
+});
+
 test('NoRH decoder: FITS header and big-endian floats in, PNG out with the disc fraction', () => {
   const card = (k, v) => `${k.padEnd(8)}= ${String(v).padStart(20)}`.padEnd(80);
   const cards = [card('SIMPLE', 'T'), card('BITPIX', -32), card('NAXIS', 2), card('NAXIS1', 4), card('NAXIS2', 2),

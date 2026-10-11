@@ -2,8 +2,9 @@
 // backend code the app uses (server/feeds.js, server/bandimages.js, server/imagery.js), re-encoded as
 // small WebP and keyed by the URL the app would ask the backend for (src/data/bandbake.js reads them).
 //   The Sun: SDO AIA EUV/UV, Nobeyama 17 GHz, SRH 3 GHz and the modelled 1.4 GHz disc (256×256 → 192×192)
-//   The System View sky: all-sky surveys from radio to gamma rays (256×128). Not ROSAT: hips2fits renders its
-//     256×128 preview all black (sparse counts at that scale), so a baked copy would show nothing.
+//   The System View sky: all-sky surveys from radio to gamma rays (256×128). Not ROSAT (now the float count-rate
+//     HiPS ov-gso/P/RASS, #72, no longer blank) and not the SRH 6/12.96 GHz Sun (#72): no headroom under the 16 MB
+//     gate (7,238 bytes on 2026-10-11); the standalone's Ku pass shows the baked Nobeyama 17 GHz map instead.
 //   The Galaxy View: Magellanic Cloud cutouts in a few bands (128×128)
 // Images are added in priority order until the byte budget is spent; anything unavailable is skipped
 // (the app then falls back to its predicted looks, as before).

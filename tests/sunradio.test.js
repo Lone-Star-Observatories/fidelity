@@ -11,7 +11,8 @@ import { starBandLook } from '../src/views/system/starband.js';
 import { starBandDelta, SUN_SIGNATURES, paletteIndex, bandLook } from '../src/views/system/bandskin.js';
 import { prepare, sunCurveLook, curveLook } from '../src/views/system/curvelook.js';
 import { encodePng } from '../server/solarradio.js';
-import { modelDisc, quietTb, zirinTb, discFlux, tbToSfu, sfuToTb, decodePng, srhToPng, srhUsable, solarRadiusArcsec } from '../server/solarmodel.js';
+import { modelDisc, quietTb, zirinTb, discFlux, tbToSfu, sfuToTb, decodePng, srhToPng, srhUsable, solarRadiusArcsec, srhMapNames, srhHour, SRH_ARRAYS } from '../server/solarmodel.js';
+import { FEEDS } from '../server/feeds.js';
 
 const nm = (g) => 299792458 / g; // GHz → nm
 const win = (lo, hi) => ({ parts: [{ key: 'w', lo, hi }], excl: [] });
@@ -182,4 +183,62 @@ test('SRH 3 GHz: FITS (4.9″/px, Tb in K) to a binned PNG with the disc fractio
   assert.equal(img.w, W / 2, 'binned 2×2');
   assert.ok(img.rgba[(16 * 32 + 16) * 4] > 100 && img.rgba[0] < 30, 'the disc glows, the sky is dark');
   assert.ok(Math.abs(solarRadiusArcsec(Date.UTC(2026, 0, 3)) - 975.9) < 1 && Math.abs(solarRadiusArcsec(Date.UTC(2026, 6, 4)) - 943.7) < 1, 'perihelion/aphelion');
+});
+
+// ---- #72: today's SRH 6 and 12.96 GHz maps; Nobeyama as the fallback and above 13 GHz ----------------------------
+test('#72 Sun microwave passes: SRH 12.96 GHz for Ku (MEASURED, today), Nobeyama behind it and above 13 GHz', () => {
+  const at = (id) => { const p = BANDS.flatMap((b) => b.passes.map((x) => ({ band: b, pass: x }))).find((x) => x.pass.id === id); return (o = {}) => starBandLook({ isSun: true, ...o }, p.band, p.pass); };
+  const ku = at('mw-ku')();
+  assert.equal(ku.feed, 'srh-12960'); assert.equal(ku.tier, 'measured'); assert.match(ku.label, /latest daily measured map/);
+  assert.equal(ku.fallback.feed, 'norh-17', 'the archival Nobeyama map stands behind it');
+  assert.match(ku.fallback.label, /archival/); assert.equal(ku.fallback.tier, 'measured');
+  // the standalone: no baked SRH copy, Nobeyama baked → the fallback, labelled archival
+  const off = at('mw-ku')({ hasFeed: (id) => id === 'norh-17' });
+  assert.equal(off.feed, 'norh-17'); assert.match(off.label, /archival/);
+  assert.equal(at('mw-ku')({ hasFeed: () => false }).mode, 'glow', 'nothing baked: the measured-signature sketch');
+  // SRH publishes nothing above 13 GHz: 23 GHz keeps Nobeyama 17 GHz, 41–94 GHz the nearest archival 34 GHz map
+  assert.equal(at('mw-23')().feed, 'norh-17'); assert.match(at('mw-23')().label, /archival/);
+  for (const id of ['mw-41', 'mw-61', 'mw-94']) { const l = at(id)(); assert.equal(l.feed, 'norh-34', id); assert.match(l.label, /nearest.*archival/, id); }
+  assert.equal(at('mw-33')().feed, 'norh-34');
+});
+
+test('#72 SRH entries carry their frequency as range; a custom curve on 6 or 12.96 GHz picks today\'s map', () => {
+  const inRange = (s, g) => s.range[0] < nm(g) && nm(g) < s.range[1];
+  assert.ok(inRange(BODY_BAND.sun['srh-3000'], 3) && inRange(BODY_BAND.sun['srh-6000'], 6) && inRange(BODY_BAND.sun['mw-ku'], 12.96));
+  assert.ok(!inRange(BODY_BAND.sun['mw-ku'], 13.8) && !inRange(BODY_BAND.sun['mw-ku'], 12.2), 'the map\'s own frequency, not the pass\'s');
+  const six = systemSun(win(nm(6.005), nm(5.995)));
+  assert.equal(six.feed, 'srh-6000'); assert.equal(six.tier, 'measured'); assert.ok(six.mix > 0.95);
+  const ku = systemSun(win(nm(12.965), nm(12.955)));
+  assert.equal(ku.feed, 'srh-12960'); assert.equal(ku.tier, 'measured');
+  const s = sunCurveLook(prepare(win(nm(20), nm(5))));
+  const ids = s.look.sources.map((x) => x.id);
+  for (const f of ['feed:srh-6000', 'feed:srh-12960', 'feed:norh-17']) assert.ok(ids.includes(f), `${f} listed for a 5–20 GHz curve`);
+  assert.ok(!ids.includes('feed:norh-34'));
+});
+
+test('#72 SRH map listings: both naming schemes, the frequency matched exactly, the hour read', () => {
+  const html = ['srh_I_2026-10-10T03:59:38_3000.fit', 'srh_20261010T041339_12960_I.fit', 'srh_20261010T041339_12960_V.fit',
+    'srh_20261010T031412_6000_I.fit', 'srh_20261010T021753_6000.ms/', 'srh_20241015T004344_12200_I.fit'].map((n) => `<a href="./${n}">${n}</a>`).join('\n');
+  assert.deepEqual(srhMapNames(html, 3000), ['srh_I_2026-10-10T03:59:38_3000.fit']);
+  assert.deepEqual(srhMapNames(html, 12960), ['srh_20261010T041339_12960_I.fit'], 'Stokes I only, not V nor 12.2 GHz');
+  assert.deepEqual(srhMapNames(html, 6000), ['srh_20261010T031412_6000_I.fit']);
+  assert.ok(Math.abs(srhHour('srh_20261010T041339_12960_I.fit') - (4 + 13 / 60)) < 1e-9 && Math.abs(srhHour('srh_I_2026-10-10T03:59:38_3000.fit') - (3 + 59 / 60)) < 1e-9);
+  assert.deepEqual(Object.keys(SRH_ARRAYS).map(Number), [3000, 6000, 12960]);
+  for (const id of ['srh-3000', 'srh-6000', 'srh-12960']) assert.ok(FEEDS[id] && /Siberian Radioheliograph/.test(FEEDS[id].credit), id);
+});
+
+test('#72 SRH 6/12.96 GHz FITS: DATE-OBS as a full date-time, a per-feed brightness scale', () => {
+  const W = 64, card = (k, v) => `${k.padEnd(8)}= ${String(v).padStart(20)}`.padEnd(80), str = (k, v) => `${k.padEnd(8)}= '${v}'`.padEnd(80);
+  const cards = [card('SIMPLE', 'T'), card('BITPIX', -32), card('NAXIS', 2), card('NAXIS1', W), card('NAXIS2', W), str('DATE-OBS', '2026-10-10T04:13:39'), str('T-OBS', '04:13:39'),
+    str('INSTRUME', 'SRH1224'), str('FREQUENC', '12960'), card('CDELT1', 39.2), card('CDELT2', 39.2), card('CRPIX1', 32), card('CRPIX2', 32), 'END'.padEnd(80)];
+  const head = Buffer.from(cards.join('').padEnd(2880), 'latin1'), data = Buffer.alloc(Math.ceil((W * W * 4) / 2880) * 2880);
+  // a 2×10⁴ K disc on a 7×10³ K CLEAN plateau
+  for (let y = 0; y < W; y++) for (let x = 0; x < W; x++) data.writeFloatBE(Math.hypot(x - 31, y - 31) * 39.2 / 960 < 1 ? 2e4 : 7e3, (y * W + x) * 4);
+  const fits = Buffer.concat([head, data]);
+  const out = srhToPng(fits, { lo: 8e3, hi: 1e5 });
+  assert.equal(out.time, '2026-10-10T04:13:39Z'); assert.equal(out.freq, 12960);
+  const img = decodePng(out.png), dflt = decodePng(srhToPng(fits).png);
+  assert.equal(img.rgba[0], 0, 'the plateau is dark on the 12.96 GHz scale');
+  assert.ok(dflt.rgba[0] > 30, '…and would glow on the default 3×10³ K floor');
+  assert.ok(img.rgba[(16 * 32 + 16) * 4] > 80, 'the disc glows');
 });

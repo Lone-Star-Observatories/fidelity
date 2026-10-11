@@ -87,7 +87,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000` (today's Siberian Radioheliograph 3 GHz FITS → PNG) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `srh-12960` (the latest daily Siberian Radioheliograph 12.96 GHz FITS → PNG, #72) and `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000`/`srh-6000` (SRH 3 and 6 GHz) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
 | `GET /api/band-archive?id=…` · `GET /api/band-disc?id=…` | Spectrum filter archive imagery (#28, `server/bandarchive.js`, allowlisted from the `archive`/`disc` entries of `src/data/bandarchive.js`, archive hosts only): a global equirectangular PNG built from NASA Trek WMTS tiles (mosaicked), a PDS 8-bit raster or a PDS ASCII table of binned values (`server/png.js` decodes and encodes PNG without dependencies); a whole-disc JPEG as published by ESA/Webb, ESA/Hubble, Chandra (`chandra.harvard.edu`) or NOIRLab (`storage.noirlab.edu`) (#72). `&size=preview`: 512×256 (zoom 0 / resampled) or the publisher's thumbnail (an entry without `preview` serves the image itself). Cached a year through the band upstream queue. `&meta=1` (#72): the map's physical scale as JSON `{ id, kind, scale: { min, max, unit, what, tier, source, stretch, … } | null }` (grey 0 → min, 255 → max, linear): for a table, the 1st–99th percentile stretch its image is drawn with (image cache keys carry the stretch version), computed from the same cached table and cached beside the image; for the XRS raster and Diviner, the documented scaling in `scale` (`src/data/bandarchive.js`); null for Titan's VIMS mosaics |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
@@ -728,15 +728,21 @@ Views consume the band only through `currentBand()`/`onBand()` and decide by wav
 - **The Sun, in the Star and System views alike**: `src/views/system/starband.js` (`sunBandLook`, used by
   `starBandLook` and by `SystemView.applyStarBand`) gives the photosphere's look: one bandpass takes the
   `BODY_BAND.sun` map keyed by its id (the old rule, reproduced exactly); a custom curve takes every map
-  whose `range` overlaps it (SDO, NoRH, SRH, the modelled radio discs), weighted like any body
+  whose `range` overlaps it (SDO, NoRH, SRH 3/6/12.96 GHz, the modelled radio discs), weighted like any body
   (`sunCurveLook`): the best-covered map is drawn on the Earth-facing disc and blended over the predicted
   tint (signatures, photosphere) by its share (`mix` → the star shader's `uBandMix`). Otherwise its
   measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the chart's shaded
   bandpass (or an off-chart pointer) follow the band.
-- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`).
+- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`). The
+  13.8 GHz (Ku) pass shows the latest daily SRH 12.96 GHz map (feed `srh-12960`, #72); its `BODY_BAND` entry
+  carries a `fallback` (Nobeyama 17 GHz, labelled archival): `sunBandLook` returns it when the map cannot be
+  shown (the standalone has no baked SRH 12.96 GHz copy) and as `look.fallback`, which the Star View
+  (`showFeed`) and System View (`showSunFeed` → `progressiveFeed(…, onFail)`) switch to when the feed fails.
+  SRH publishes maps only at 3.0, 6.0 and 12.96 GHz, so 23–94 GHz keep Nobeyama, labelled archival 2014.
 - **Sun radio** (`server/solarmodel.js`): feed `srh-3000` is today's Siberian Radioheliograph 3.0 GHz
   CLEAN map (MEASURED; the map nearest Badary's noon that passes a sanity check, smoothed to the beam,
-  256×256). Below 3 GHz no imager is fetchable, so feeds `sunmodel-408`, `sunmodel-1400`, `sunmodel-2400`
+  256×256); `srh-6000` and `srh-12960` (#72) the same from the SRH0612 and SRH1224 arrays (`srhFeed(credit,
+  MHz, scale)`, the beam ∝ 1/f, 12.96 GHz on its own log scale). Below 3 GHz no imager is fetchable, so feeds `sunmodel-408`, `sunmodel-1400`, `sunmodel-2400`
   are MODELLED · PREDICTED discs: Zirin et al. (1991) quiet-Sun Tb saturating to the 10⁶ K corona, limb
   brightening at dm and a larger disc at m wavelengths, active regions placed from the SDO HMI
   magnetogram (feed `sdo-hmimag`, decoded by a dependency-free PNG reader), the total set by the day's

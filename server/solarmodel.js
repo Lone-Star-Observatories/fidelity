@@ -3,8 +3,9 @@
 // 1. MEASURED: the Siberian Radioheliograph (SRH, ISTP SB RAS, Badary; Altyntsev et al. 2020, STP 6, 30)
 //    publishes CLEANed full-disc maps every few minutes during its day (~00–09 UT): 512×512 float32
 //    FITS, 4.9″/px, Stokes I brightness temperature (K), in
-//    https://ftp.rao.istp.ac.ru/SRH/SRH0306/cleanMaps/<yyyymmdd>/. The 3–6 GHz array's lowest
-//    published map frequency is 3,000 MHz (10 cm): feed `srh-3000`.
+//    https://ftp.rao.istp.ac.ru/SRH/<array>/cleanMaps/<yyyymmdd>/. Each array publishes maps at one
+//    frequency: SRH0306 3,000 MHz (10 cm, feed `srh-3000`), SRH0612 6,000 MHz (5 cm, `srh-6000`) and
+//    SRH1224 12,960 MHz (2.3 cm, `srh-12960`, #72). Nothing above 13 GHz is published as a map.
 // 2. MODELLED · PREDICTED, below 3 GHz (no full-disc imager is fetchable there: Nobeyama closed in 2020
 //    and was 17/34 GHz; Nançay, MUSER, LOFAR and the MWA publish no fetchable daily disc images;
 //    RSTN and DRAO measure the whole-disc flux only). A disc built from measured inputs:
@@ -124,20 +125,41 @@ export function tbPng(tb, w, h, lo = 1e4, hi = 3e6) {
   return encodePng(rgb, w, h);
 }
 
-// ---- SRH 3.0 GHz ---------------------------------------------------------------------------------
-const SRH = 'https://ftp.rao.istp.ac.ru/SRH/SRH0306/cleanMaps';
-/** An SRH clean map → { png, disk, time, freq }. */
-export function srhToPng(fits) {
+// ---- SRH: 3.0 GHz (SRH0306), 6.0 GHz (SRH0612), 12.96 GHz (SRH1224) ------------------------------
+const SRH_ROOT = 'https://ftp.rao.istp.ac.ru/SRH';
+/**
+ * The arrays and the one frequency each publishes as daily CLEAN maps in <array>/cleanMaps/<yyyymmdd>/ (checked
+ * 2026-10-11): SRH0306 3,000 MHz (srh_I_<iso>_3000.fit), SRH0612 6,000 MHz and SRH1224 12,960 MHz
+ * (srh_<yyyymmddThhmmss>_<MHz>_I.fit; SRH1224 was 12,200 MHz until early 2026; 7.0/9.4/11.8 GHz maps exist only
+ * for January 2022). The arrays' other frequencies (to 24 GHz) are only raw correlator data
+ * (<array>/<yyyy>/<mm>/<dd>/srh_*.fit), which would need calibrating and imaging.
+ */
+export const SRH_ARRAYS = { 3000: 'SRH0306', 6000: 'SRH0612', 12960: 'SRH1224' };
+/** Stokes I map file names for `mhz` in a cleanMaps day listing (either naming scheme). */
+export function srhMapNames(html, mhz) {
+  const re = new RegExp(`href="\\./(srh_I_\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d_${mhz}\\.fit|srh_\\d{8}T\\d{6}_${mhz}_I\\.fit)"`, 'g');
+  return [...new Set([...html.matchAll(re)].map((m) => m[1]))];
+}
+/** UT hour of an SRH map file name. */
+export const srhHour = (n) => { const m = n.match(/T(\d\d):?(\d\d):?\d\d/); return Number(m[1]) + Number(m[2]) / 60; };
+/** An SRH clean map → { png, disk, time, freq }, on a log brightness-temperature scale lo…hi K. */
+export function srhToPng(fits, { lo = 3e3, hi = 3e5 } = {}) {
   const { header, w, h, data } = parseFits(fits);
   const top = new Float32Array(w * h);
   for (let y = 0; y < h; y++) top.set(data.subarray((h - 1 - y) * w, (h - y) * w), y * w); // FITS row 0 is solar south
-  const time = header['DATE-OBS'] && header['T-OBS'] ? `${header['DATE-OBS']}T${String(header['T-OBS']).slice(0, 8)}Z` : null;
+  // DATE-OBS is a date (3 GHz maps, time in T-OBS) or a full date-time (6 and 12.96 GHz maps)
+  const d = String(header['DATE-OBS'] ?? '');
+  const time = d.includes('T') ? `${d.slice(0, 19)}Z` : d && header['T-OBS'] ? `${d}T${String(header['T-OBS']).slice(0, 8)}Z` : null;
   const disk = header.CDELT1 ? solarRadiusArcsec(time ? Date.parse(time) : Date.now()) / (Math.abs(header.CDELT1) * w) : null;
-  // smoothed to the beam (σ = 2.5 px = 12″; the beam's minor axis is ~24″) and binned 2×2 to 256×256: the CLEAN
-  // residual pits read as speckle at full sampling and the binned map keeps all the resolution the beam has
-  const s = blur(top, w, 2.5), half = w >> 1, bin = new Float32Array(half * half);
+  const freq = Number(header.FREQUENC) || null;
+  // smoothed to the beam and binned 2×2 to 256×256: the CLEAN residual pits read as speckle at full sampling and the
+  // binned map keeps all the resolution the beam has. 3 GHz: σ = 2.5 px = 12″ (the beam's minor axis is ~24″); the
+  // beam shrinks as 1/f, so σ = 2.5 px × 3 GHz / f, at least 1 px (4.9″)
+  const s = blur(top, w, Math.max(1, (2.5 * 3000) / (freq ?? 3000))), half = w >> 1, bin = new Float32Array(half * half);
   for (let y = 0; y < half; y++) for (let x = 0; x < half; x++) bin[y * half + x] = (s[2 * y * w + 2 * x] + s[2 * y * w + 2 * x + 1] + s[(2 * y + 1) * w + 2 * x] + s[(2 * y + 1) * w + 2 * x + 1]) / 4;
-  return { png: tbPng(bin, half, half, 3e3, 3e5), disk, time, freq: Number(header.FREQUENC) || null };
+  // log scale, 3×10³–3×10⁵ K by default (3 and 6 GHz). The 12.96 GHz maps sit on a ~7×10³ K CLEAN plateau filling the
+  // imaged square around the disc (the quiet disc is ~2×10⁴ K there), so that feed uses 8×10³–10⁵ K: the plateau dark
+  return { png: tbPng(bin, half, half, lo, hi), disk, time, freq };
 }
 /**
  * Is this SRH map usable? Early and late in Badary's day (low Sun) the CLEAN maps can fail: a negative or flat disc.
@@ -155,26 +177,26 @@ export function srhUsable(fits) {
   const disc = d / Math.max(1, nd), sky = s / Math.max(1, ns);
   return disc > 3000 && disc < 2e5 && sky < disc / 3;
 }
-/** Today's (or the last two days') SRH 3.0 GHz map nearest Badary's local noon (04:00 UT) that passes srhUsable. */
-export const srhFeed = (credit) => ({
+/** Today's (or the last two days') SRH map at `mhz` (a key of SRH_ARRAYS) nearest Badary's local noon (04:00 UT) that passes srhUsable. */
+export const srhFeed = (credit, mhz = 3000, scale = {}) => ({
   type: 'image', ttl: 60 * 60000, credit,
   async get() {
+    const base = `${SRH_ROOT}/${SRH_ARRAYS[mhz]}/cleanMaps`;
     for (let back = 0; back <= 2; back++) {
       const day = new Date(Date.now() - back * 86400000).toISOString().slice(0, 10).replaceAll('-', '');
-      const list = await fetch(`${SRH}/${day}/`, { headers: UA, signal: AbortSignal.timeout(60000) });
-      if (!list.ok) continue;
-      const names = [...new Set([...(await list.text()).matchAll(/href="\.\/(srh_I_\d{4}-\d\d-\d\dT(\d\d):(\d\d):\d\d_3000\.fit)"/g)].map((m) => m[1]))];
-      const hour = (n) => { const m = n.match(/T(\d\d):(\d\d)/); return Number(m[1]) + Number(m[2]) / 60; };
-      for (const name of names.sort((a, b) => Math.abs(hour(a) - 4) - Math.abs(hour(b) - 4)).slice(0, 4)) {
-        const res = await fetch(`${SRH}/${day}/${name}`, { headers: UA, signal: AbortSignal.timeout(90000) });
-        if (!res.ok) continue;
+      const list = await fetch(`${base}/${day}/`, { headers: UA, signal: AbortSignal.timeout(60000) }).catch(() => null);
+      if (!list?.ok) continue;
+      const names = srhMapNames(await list.text(), mhz);
+      for (const name of names.sort((a, b) => Math.abs(srhHour(a) - 4) - Math.abs(srhHour(b) - 4)).slice(0, 4)) {
+        const res = await fetch(`${base}/${day}/${name}`, { headers: UA, signal: AbortSignal.timeout(90000) }).catch(() => null);
+        if (!res?.ok) continue;
         const fits = Buffer.from(await res.arrayBuffer());
-        if (!srhUsable(fits)) continue;
-        const out = srhToPng(fits);
+        try { if (!srhUsable(fits)) continue; } catch { continue; } // a truncated or odd file: try the next
+        const out = srhToPng(fits, scale);
         return { body: out.png, type: 'image/png', time: out.time, disk: out.disk, credit: `${credit} · ${out.time ?? name}` };
       }
     }
-    throw new Error('no usable SRH 3 GHz map in the last three days');
+    throw new Error(`no usable SRH ${mhz / 1000} GHz map in the last three days`);
   },
 });
 
