@@ -408,6 +408,35 @@
     "unsupportedBrowserMessage": "verified",
     "offlineEventWorkerRows": 11,
     "browserScope": "Chrome; other engines remain untested",
-    "buildBase": "38bef65"
+    "buildBase": "38bef65",
+    "postMerge": {
+      "base": "52d5a0d",
+      "testsPassed": 428,
+      "testsSkipped": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15967328,
+      "headroomBytes": 32672,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "b376b378237646ffce2209ef26b0a9d3e11efb1132a7bb62ca8f453f3a589018",
+        "raw": "8d11c18938e50bd413843b67f8d0bcbd0886e379632da47c81a6be4b415e28b2",
+        "magic": "FIDNUM01",
+        "images": 198,
+        "details": 517,
+        "models": 32
+      },
+      "application": {
+        "htmlBytes": 15967328,
+        "compressedBytes": 699815,
+        "applicationSha256": "d84335c14a82db2293fee78cc2f50c83482970a5636c5591468bac93184c3c72",
+        "htmlParserPreservesEveryPackedByte": true
+      },
+      "normalOfflineDione": "Own map and three cards verified",
+      "offlineRoutes": 6,
+      "eventRows": 11,
+      "all32CraftModelsLoad": true,
+      "exactCssAndHtmlParser": true
+    }
   }
 }
