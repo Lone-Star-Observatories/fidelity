@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10",
+  "body": "Titan",
+  "status": "research preparation only; no57th dossier or new embedded asset",
+  "role": "skyImage",
+  "generator": "OpenAI built-in imagegen",
+  "prompt": "Create one independent wide 16:9 educational observer illustration for Fidelity: hypothetical SKY FROM TITAN viewed from a low surface observer. Composition is mostly an opaque softly layered amber and tawny aerosol sky, with only a narrow dark ochre foreground at the bottom and a very low indistinct horizon. Invent the haze appearance independently, do not copy any observed planet or Moon/Mars/Pluto photograph, terrain or map. This is an artistic assumption of strong haze obscuration, NOT a calculated radiative-transfer result or a dated Huygens site. No visible Saturn disk, rings, Sun disk, stars, blue sky, sharp astronomical silhouette, spacecraft, astronaut, organisms, active rain, liquid puddle, plume or ocean. No survivable landing implication. Diffuse dim warm illumination, low contrast, restrained naturalistic atmospheric texture; no dramatic storm or tall mountains. Any foreground stones, materials, haze opacity, layering, colour, exposure and lighting are invented, not measured chemistry or local fractions. Make this a distinct sky study, not a close pebble portrait. At upper left include exactly legible text 'IMAGINED · SKY FROM TITAN'. At lower left include exactly 'Haze visibility assumed · no calibrated Saturn transmission'. Only these two text lines. Keep the label readable and most of the image devoted to haze.",
+  "originalPath": "data/research-sources/titan-generated-skyImage-original.png",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9942732a-4479-451f-930f-1d1ea2928748.png",
+  "inspection": "Inspected independent amber haze sky with narrow invented rocky foreground. Both labels readable. No Saturn, rings, Sun disk, stars, spacecraft, life, surface liquid or active precipitation. Layered brightness and haze texture are artistic, not calibrated cloud structure or measured optical depth.",
+  "research": [
+    "docs/research/titan-moon-preparation-2026-10-10.json",
+    "docs/research/titan-huygens-native-preparation-2026-10-10.json",
+    "docs/research/titan-disr-calibration-assessment-2026-10-10.json",
+    "docs/research/titan-local-view-preparation-2026-10-10.json"
+  ],
+  "limits": [
+    "Strong haze obscuration is an explicit illustrative assumption, not a solved Saturn visibility/transmission model. No inference that Saturn is always invisible from every Titan site or wavelength.",
+    "No astronomical disk and no angular/raster size computation. skyGeometry does not establish atmospheric transmission.",
+    "Terrain, material chemistry/fractions, haze opacity/layering, colour, exposure and lighting invented; no dated Huygens site, calibrated local colour or global map.",
+    "No other observed body photograph or map used as reference; no analog skin.",
+    "No rain, liquid surface, plume, ocean, biology or survivable landing implied.",
+    "Original PNG preserved unchanged, default original retained. Research-only masters/recorded previews documented separately; additive import and standalone headroom recovery remain pending."
+  ],
+  "preservation": "All56 dossiers and earlier originalPNG/master/native/map/model/shape inputs preserved; no runtime asset registry changes.",
+  "original": {
+    "bytes": 1655355,
+    "sha256": "c4444bcdd9d506f827995d0a8782fe7502a72a54e6184429cd51e6774ec72d98",
+    "mime": "image/png",
+    "dimensions": [
+      1672,
+      941
+    ]
+  }
+}

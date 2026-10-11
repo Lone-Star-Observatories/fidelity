@@ -1,5 +1,13 @@
 # Fidelity visual assets
 
+## Titan sky and compact illustration preparation (2026-10-10, #3)
+
+Titan now has a separately prepared independent IMAGINED sky study, with a narrow invented foreground and amber haze. No Saturn, rings, Sun disk or stars appear. Strong obscuration is an illustrative assumption, not a calibrated atmospheric-transmission calculation or a claim that Saturn is invisible at every site and wavelength. Haze layering, optical depth, terrain, chemistry, colour, exposure and illumination remain invented. No astronomical disk requires angular/raster sizing; `skyGeometry` alone cannot establish visibility through haze. The full prompt, untouched PNG and hash are recorded in `docs/research/titan-sky-view-preparation-2026-10-10.json`.
+
+Both Titan original views now have research-only 1536-pixel JPEG85 masters and recorded256-pixel JPEG80 previews, with hashes in `docs/research/titan-master-preview-preparation-2026-10-10.json`. The compact previews total11,486 bytes; combined with the previously assessed unchanged Huygens320 publisher JPEG they total18,109 raw bytes before metadata and transport. Exact embedding cost still requires an additive trial and more standalone headroom. Small image annotations are poorly readable at256; future card labels must carry the limitations. All originals, actual Huygens imagery, native maps, models and prior56 dossiers remain preserved. No57th dossier or new runtime embedding is claimed.
+
+Verification:453 tests pass,1 skips; production and full builds pass. FullHTML15,988,982 bytes leaves11,018 bytes. Chrome restores the complete current readable snapshot exactly (SHA256 `4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef`), application and CSS, and decodes201 body/texture images and20 bands with517 detailed entries and32 models. All56 dossiers remain deeply equal; native context hashes and normal/offline Rhea own-map3-card views pass. A saved-before-build recursive snapshot audit identifies only five SDO src/time/disk triplets and SRH3000 src/time/credit/disk changes relative to the preceding `ba5b7` snapshot. Earlier unaudited interbuild differences remain open. No packaging-savings attribution or other-browser verification is claimed.
+
 Preference: live imagery → recent actual observations → recent artistic imagery → AI-generated imagery informed by the body's composition, colour, clouds and known features. A recent publication date does not make an old observation recent. Record both dates when known; do not invent missing dates. Credit every asset and retain its source's stated terms.
 
 ## Delivered spacecraft batch (2026-10-10)

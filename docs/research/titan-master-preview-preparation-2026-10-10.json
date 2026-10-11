@@ -1,0 +1,245 @@
+{
+  "date": "2026-10-10",
+  "body": "Titan",
+  "status": "Research only; no57th dossier or new embedding",
+  "records": [
+    {
+      "role": "surfaceImage",
+      "kind": "original",
+      "path": "data/research-sources/titan-generated-surfaceImage-original.png",
+      "bytes": 2431806,
+      "sha256": "8ec28379bb936e5f58553e818635b5a6aff7a4021670846806c4e8d14b3303a2",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/titan-surfaceImage-master1536.jpg",
+      "bytes": 254774,
+      "sha256": "74804a8c91efb13f114ac7e098c5de00b3d16f6434c3ac73f674c9d8d4abd7f6",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/titan-surfaceImage-preview256.jpg",
+      "bytes": 7850,
+      "sha256": "99c78f46ecf62c0e1292dde8b594a9919331fcafaf192a71c3070a19c7d4dc71",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "role": "skyImage",
+      "kind": "original",
+      "path": "data/research-sources/titan-generated-skyImage-original.png",
+      "bytes": 1655355,
+      "sha256": "c4444bcdd9d506f827995d0a8782fe7502a72a54e6184429cd51e6774ec72d98",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/titan-skyImage-master1536.jpg",
+      "bytes": 78140,
+      "sha256": "b78e0069eeb1fff496ebd79d69530b8e93dc50e5138071008d154cd38abd7d84",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/titan-skyImage-preview256.jpg",
+      "bytes": 3636,
+      "sha256": "e7e48abc84892c347e5967e91421509ded66fb12dfc5b907a85f25d7a14afd99",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "processing": "Generated illustrations only: 1536 JPEG85 masters and recorded256 JPEG80 previews. Original PNGs and native publisher images preserved unchanged.",
+  "limitations": [
+    "Small in-image annotations have limited readability at256; readable card labels required on integration.",
+    "No calibrated terrain, chemistry, lighting, visible colour, haze optical depth or Saturn transmission. No dated Huygens site or analog body map.",
+    "Sky contains no astronomical disk; no angular/raster size calculation needed.",
+    "Exact standalone increment requires trial build; current headroom inadequate for a larger batch."
+  ],
+  "research": [
+    "docs/research/titan-local-view-preparation-2026-10-10.json",
+    "docs/research/titan-sky-view-preparation-2026-10-10.json"
+  ],
+  "next": "Recover lossless headroom, then trial additive individual dossier with credited unchanged Huygens native rendition.",
+  "inspection": "Both256x144 previews inspected. IMAGINED headings are small and footer text is poorly readable at compact size; full originals/masters retain readable labels and future card labels must carry limitations.",
+  "previewRawBytes": 11486,
+  "compactNativeRawBytes": 6623,
+  "combinedRawBytesBeforeTextAndTransport": 18109,
+  "verification": {
+    "tests": {
+      "pass": 453,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15988982,
+    "headroomBytes": 11018,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef",
+      "raw": "8336741185486dca57e44f9899c5f3f29eaa0708354f338d5d6f2c885c9e8f34",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15988982,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "CSSsha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "all56DossiersDeepEqual": true,
+    "nativeContextHashes": "all available embedded native contexts match source manifest SHA256; normal/offline Rhea own map and3cards pass",
+    "scope": "Chrome verified; other browser engines remain open. No new six-route/worker checks in this research-only batch; prior verified limits retained."
+  },
+  "interbuildAudit": {
+    "baselineSHA256": "ba5b7e36ad9bb7e76774f8ce41494b133e86e66f7383f55a9b476aa23d5eefff",
+    "currentSHA256": "4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef",
+    "changes": [
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+        "before": {
+          "length": 3619,
+          "sha256": "64b5244bbdc2920724a7cf692ce9dd3b395e04281dc721db132bad342f65786b"
+        },
+        "after": {
+          "length": 3607,
+          "sha256": "e92cb211912cb0ea1c777bb2f2cc1a033ee60893a6785b59de0dfed200e224a2"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+        "before": "2026-10-11T02:05:33Z",
+        "after": "2026-10-11T02:32:33Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+        "before": 0.3872533568237716,
+        "after": 0.38725336744250266
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+        "before": {
+          "length": 4359,
+          "sha256": "9356dd91de22d86d61361c8dd0ac971eb5f11fc8bee221f3a8e5d962a7463e04"
+        },
+        "after": {
+          "length": 4323,
+          "sha256": "34d5821e4a4b125467efb3a45a6b03af3bf30322caa0b4ea7618d3837ce7cd0f"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+        "before": "2026-10-11T02:06:53Z",
+        "after": "2026-10-11T02:33:41Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+        "before": 0.38725340720037266,
+        "after": 0.3872533883906758
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+        "before": {
+          "length": 1327,
+          "sha256": "2e81d34aabb172e78334ba0158ceaf9481d65e5da4b12d13990cd20c536ea48c"
+        },
+        "after": {
+          "length": 1359,
+          "sha256": "84bfd8f4b5a9053f13039d956594c880c54e50f3c57b96b6302fbb0d310fb66b"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+        "before": "2026-10-11T02:07:02Z",
+        "after": "2026-10-11T02:34:14Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+        "before": 0.38725336059250776,
+        "after": 0.38725334876355894
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+        "before": {
+          "length": 2255,
+          "sha256": "563d589e95618892ac090a068b718fa5fd8753eece0d71e1e13b8cdf7b5baf0e"
+        },
+        "after": {
+          "length": 2231,
+          "sha256": "b00e4edf01dc266e5548b3e994a6736f9c2fca6522918976c5e9bb0c48ef4283"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+        "before": "2026-10-11T02:04:59Z",
+        "after": "2026-10-11T02:31:59Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+        "before": 0.38725334634381975,
+        "after": 0.38725335871395977
+      },
+      {
+        "path": "/bandImages//api/feed/srh-3000?size=preview/src",
+        "before": {
+          "length": 2271,
+          "sha256": "a62b76ac161b5dc452e11b4dc9d8cc104e238b2d81f55085b8f9ee3fd73bea62"
+        },
+        "after": {
+          "length": 2591,
+          "sha256": "ec2efeebe7dc154308e79ac83f813a0cb9e9576b8d0895d8d463b388001f829d"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/srh-3000?size=preview/time",
+        "before": "2026-10-11T01:27:07Z",
+        "after": "2026-10-11T02:15:13Z"
+      },
+      {
+        "path": "/bandImages//api/feed/srh-3000?size=preview/credit",
+        "before": "Siberian Radioheliograph (ISTP SB RAS, Badary) 3.0 GHz (10 cm) CLEAN full-disc map, brightness temperature · 2026-10-11T01:27:07Z",
+        "after": "Siberian Radioheliograph (ISTP SB RAS, Badary) 3.0 GHz (10 cm) CLEAN full-disc map, brightness temperature · 2026-10-11T02:15:13Z"
+      },
+      {
+        "path": "/bandImages//api/feed/srh-3000?size=preview/disk",
+        "before": 0.3833255872931527,
+        "after": 0.38332924525473494
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+        "before": {
+          "length": 3919,
+          "sha256": "50c8dd2ed481e592afef9d6acea07fb0162431a33b6e33ed57f1a433fadce76e"
+        },
+        "after": {
+          "length": 3907,
+          "sha256": "762e05d25232ae1424b275ae15b1ed2c5bfe2f777b08ff17b1010fade70f05ba"
+        }
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+        "before": "2026-10-11T02:06:05Z",
+        "after": "2026-10-11T02:32:29Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+        "before": 0.3872533818517236,
+        "after": 0.38725338199017095
+      }
+    ],
+    "conclusion": "Direct recursive comparison finds only five SDO src/time/disk triplets and SRH3000 src/time/credit/disk fields changed. No dossier/native/model/map/shape field changes. No compression savings attribution; earlier unaudited interbuild changes remain open."
+  }
+}
