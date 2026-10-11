@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no60th dossier/new embedding.",
+  "native": {
+    "product": "PIA18411",
+    "observed": "2004-06-11",
+    "released": "2014-06-11",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "terms": "NASA media guidelines, not asserted CC BY.",
+    "inspected": true,
+    "limitations": "Unchanged NASA-served compact JPEG; publisher resizing/reencoding is NOT full original pixel preservation. Full5182x3455 publisher JPEG retained unchanged. Processed monochrome, sharpening/contrast/phase, map registration and photometry limitations from prior preparation retained."
+  },
+  "primaryAssessment": {
+    "title": "Phoebe: a surface dominated by water",
+    "authors": [
+      "Wesley C. Fraser",
+      "Michael E. Brown"
+    ],
+    "source": "https://arxiv.org/abs/1803.04979",
+    "submitted": "2018-03-13",
+    "relatedDoi": "10.3847/1538-3881/aac213",
+    "scope": "Primary abstract assessed only; no full-paper/PDF/figure or final-publication-date verification claimed.",
+    "results": "Authors reanalyse40 VIMS images with geometry correction; water-band variation is associated with impact basins in sampled coverage. Broad coverage is not complete global evidence or quantified local ice fraction.",
+    "interpretation": "Basin exposure of richer subsurface layers and shared outer-Solar-System origins are hypotheses, not a measured local geology/composition solution. Absorption depth does not supply calibrated visible colour or invented scene geography.",
+    "licence": "Linked arXiv nonexclusive distribution, NOT CC BY; no paper figure embedded."
+  },
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/phoebe-PIA18411-display320.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+      "bytes": 11336,
+      "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+      "mime": "image/jpeg"
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-abstract.html",
+      "url": "https://arxiv.org/abs/1803.04979",
+      "bytes": 45168,
+      "sha256": "7014364bc5d64bdf3a40501aa77710fa300faa469329b6c51689636d03366b20",
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-licence.html",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "mime": "text/html; charset=utf-8"
+    }
+  ],
+  "open": [
+    "Independent Saturn observer using skyGeometry and unlocked/retrograde camera constraints.",
+    "Masters/recorded previews and additive integration budget; recover headroom.",
+    "Full spectroscopy paper and PDS geometry/quality/frame audit."
+  ],
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996609,
+    "headroomBytes": 3391,
+    "completeSnapshotSha256": "7e4a777775d9133f8338e872230bdf232936e641d76ec19f0222f2018a0f142e",
+    "browser": "Chrome exactcurrentreadableJSON/application/CSS/HTMLparser210images20bands517details32models; application/CSS unchanged. Other engines open.",
+    "preservation": "All59 dossiers and native/map/model/shape inputs unchanged; no60th/newembedding.",
+    "interbuildDifference": "Prior9e5c to7e4a completeJSON difference not recursively audited; no cause or asset/compression saving attribution."
+  }
+}

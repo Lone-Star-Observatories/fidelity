@@ -1,5 +1,11 @@
 # Fidelity visual assets
 
+## Phoebe local/compact-native preparation (2026-10-11, #3)
+
+An independent built-in IMAGINED local illustration is retained as its original PNG with full prompt/hash in docs/research/phoebe-local-view-preparation-2026-10-11.json. Invented craters, blocks, regolith, pale patches, chemistry/fractions, colour, light and exposure are not a registered Cassini/PDS site. No analog map, atmosphere, plume, liquid, ocean, biology or survivable landing is implied. No astronomical disk appears, so no angular/raster-size claim is made.
+
+The unchanged NASA-served compact PIA18411 JPEG is retained separately; publisher resize/reencoding is not full original pixel preservation. Full original, full NASA/JPL-Caltech/Space Science Institute credit, active NASA terms and2004 observation/2014 release remain preserved. Fraser/Brown2018 primary abstract provides VIMS absorption/geometry context; sampled coverage is not exhaustive global evidence or quantified local ice fractions. Basin exposure/origin interpretations remain hypotheses. Linked arXiv nonexclusive distribution is not CC BY; full paper remains open and no figure is embedded. Source records are in docs/research/phoebe-compact-native-preparation-2026-10-11.json. All59 dossiers and existing science/model/map/shape inputs remain unchanged; no60th/new embedding.
+
 ## Phoebe native/shape preparation (2026-10-11, #3)
 
 Research-only: unchanged full Cassini PIA18411 publisher JPEG is retained and inspected, with source/caption/terms hashes in docs/research/phoebe-moon-preparation-2026-10-11.json. Observation2004-06-11 and anniversary publication2014-06-11 are separate; full NASA/JPL-Caltech/Space Science Institute credit and active NASA terms are retained, without CC BY assertion. Monochrome, contrast enhancement, sharpening and rescaling do not establish calibrated visible colour or a registered globe. All59 dossiers and prior native/model/map/shape inputs remain unchanged; no60th dossier or new embedding.
