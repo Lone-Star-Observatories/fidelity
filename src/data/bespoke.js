@@ -9728,6 +9728,211 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "proteus": {
+    "id": "proteus",
+    "name": "Proteus",
+    "aliases": [
+      "Proteus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe adopted; surfacePending remains true. Existing Voyager-derived Stooke PDS shape unchanged, with frame, attitude, uncertainty and registration open.",
+    "measured": [
+      "Monochrome irregular body with coarse relief and strong illumination/processing. Not calibrated visible colour or registered local geography. No globe adopted. Overview range870000km/resolution8km per pixel/reflectance6percent are source estimates, not new raster calculations or mapped local fractions.",
+      "146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change.",
+      "Proteus weak4.27micron CO2 absorption marginally stronger trailing; deep3micron OH absorption and no clear water-ice bands. Nondetection is not proof of absolute absence. Proteus either lacks or has much weaker2.72micron feature than Larissa/Galatea/rings; do not assign their stronger magnesium-phyllosilicate signature to Proteus.",
+      "Direct PDS label verifies Voyager2 ISS narrow-angle derived Proteus/Stooke1994 DOI10.1007/BF00572198; source fetched byte-identical to recorded sourceSha256. Planetocentric west-positive5degree radial grid in km; decimal places explicitly not uncertainty. Label creation2016-09-30/publication2025 are model/archive metadata, not image observation. Historical geometry/frame/attitude and current uncertainty remain open; full/preview GLB unchanged."
+    ],
+    "modelled": [
+      "Hydrated carrier unidentified. Tentative3.07micron ammonia-bearing interpretation, but Proteus strength argues against ammoniated phyllosilicate carrier. Aqueous alteration, impact dehydration, primordial-satellite destruction/reaccretion and tidally shredded KBO alternatives are models, not current liquid water, directly observed history, local fractions, plumes/ocean/biology. Ceres/meteorite analogies do not authorize skins.",
+      "skyGeometry representative Neptune angular diameter24.214852427388628degrees;358.67241861796003targetpixels at1672wide and nominal90degree horizontalFOV. This constrains angular geometry only."
+    ],
+    "unknown": [
+      "Exact Voyager camera/filter/PDS product crosswalk remains open. Native JPEG/TIFF unchanged, no Fidelity transformation. NASA overview870000km/8km per pixel is a different depicted view, not PIA00062 range/resolution.",
+      "Scattered Neptune light/custom reduction, sensitivity outside1.7–4.5microns, unresolved disk spectra not visible terrain or Voyager pixel chemistry. Final record/licence, raw products, calibration and dynamical history audit open.",
+      "Local material fractions, atmosphere, irregular-body site height, spin/orbit attitude, dated scene registration and resolved globe remain unverified."
+    ],
+    "assumed": [
+      "Invented relief, blocks, grain sizes, chemistry fractions, colour, lighting and exposure. No analog skin, dated Voyager/Pharos/shape-registered site, observed geography, plume, liquid, ocean, biology or survivable landing. Almostblacksky is assumed transparency, not measured atmosphere absence. No astronomical disk and no angular/raster computation. Proteus-specific unresolved spectra do not determine local material fractions; hydrated carrier unknown and no clear waterice bands is not proof of absence. Existing PDS shape remains unchanged; no resolved globe adopted.",
+      "Invented terrain, chemistry fractions, grain sizes, grey colour and Neptune bands/colour/phase/light/exposure. No analog map, dated Voyager/Pharos/PDS-registered site, foreground atmosphere/plume/liquid/ocean/biology/landing. Almostblacksky assumed transparency, not measured atmosphere absence. Mean spherical Neptune omits oblateness; Proteus irregular shape/site height, attitude and spin/orbit registration remain uncertain. Rings omitted artistically, not an invisibility claim.60K angular helper only: irradiance/blackbody outputs not adopted for colour or photometry. Sun30.07AU offframe. No observed body's map or new globe adopted.",
+      "Threshold-sensitive upper globe chords, not independently calibrated full diameter; no calibrated photometry/colour/scene registration.",
+      "Small preview annotations require readable card labels. No clear water-ice bands does not prove absence. No analog skin or dated Voyager/Pharos/PDS site."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "title": "NASA Voyager 2 Proteus PIA00062",
+        "credit": "NASA/JPL",
+        "observationDate": "1989-08-25",
+        "publicationDate": "1996-01-29",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/2607.27481",
+        "title": "Neptune’s Inner Moons and Rings Are Exposed Icy Body Interiors",
+        "authors": [
+          "M. Ryleigh Davis",
+          "Matthew Belyakov",
+          "Ian Wong",
+          "Zachariah Milby",
+          "Michael E. Brown"
+        ],
+        "doi": "10.1126/sciadv.aeb1437",
+        "publicationDate": "2026-07-29",
+        "terms": "Arxiv record links CC BY4.0, but also states AAAS author version personal use/not redistribution. Conflicting permission statements preserved; no redistribution/figure embedded. Final publisher licence and version crosswalk remain open.",
+        "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+        "observations": {
+          "instrument": "JWST NIRSpec IFU PRISM clear filter",
+          "program": 4645,
+          "dates": [
+            "2024-12-13",
+            "2024-12-16"
+          ],
+          "utcRanges": [
+            "17:40:01–18:08:43",
+            "13:02:12–13:30:54"
+          ],
+          "exposures": "Four291.8s observations per date; total2334.4s as paper",
+          "pipeline": "1.18.0",
+          "calibration": "jwst1364.pmap",
+          "archive": "https://doi.org/10.17909/1cqh-hy49",
+          "code": "https://data.caltech.edu/records/vwdse-4d488"
+        }
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.tab",
+        "title": "NASA PDS Proteus Stooke shape",
+        "credit": "Philip J. Stooke / NASA PDS Small Bodies Node",
+        "sourceLabel": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.xml",
+        "sha256": "d079c8eac52d84224d5cb413526ff9415ab33afd48965e7e025544832ddd1868"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "product": "PIA00062",
+        "credit": "NASA/JPL",
+        "observationDate": "1989-08-25",
+        "publicationDate": "1996-01-29",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance, not asserted CC BY",
+        "inspection": "Monochrome irregular body with coarse relief and strong illumination/processing. Not calibrated visible colour or registered local geography. No globe adopted. Overview range870000km/resolution8km per pixel/reflectance6percent are source estimates, not new raster calculations or mapped local fractions.",
+        "limits": "Exact Voyager camera/filter/PDS product crosswalk remains open. Native JPEG/TIFF unchanged, no Fidelity transformation. NASA overview870000km/8km per pixel is a different depicted view, not PIA00062 range/resolution.",
+        "sourcePage": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "width": 600,
+        "height": 800,
+        "caption": "146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change.",
+        "url": "/bespoke/proteus-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/proteus-PIA00062-original.jpg",
+        "bytes": 12596,
+        "sha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "tier": "measured",
+        "terms": "NASA media guidance, not asserted CC BY",
+        "description": "Actual Voyager 2 Proteus surface-detail image; monochrome, not calibrated visible colour or registered local geography.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize or re-encoding. TIFF retained. 146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL PROTEUS TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM PROTEUS",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "neptuneMeanRadiusKm": 24622,
+      "proteusCatalogueRadiusKm": 210,
+      "representativeCentreDistanceKm": 117600,
+      "observerDistanceKm": 117390,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 24.214852427388628,
+      "targetPixelsAt1672": 358.67241861796003,
+      "raster": {
+        "row": 250,
+        "runs": [
+          {
+            "threshold": 5,
+            "start": 952,
+            "end": 1324,
+            "span": 373
+          },
+          {
+            "threshold": 10,
+            "start": 967,
+            "end": 1324,
+            "span": 358
+          },
+          {
+            "threshold": 20,
+            "start": 974,
+            "end": 1323,
+            "span": 350
+          }
+        ],
+        "limits": "Threshold-sensitive upper globe chords, not independently calibrated full diameter; no calibrated photometry/colour/scene registration."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/proteus-surface-image.jpg",
+      "previewUrl": "/bespoke/proteus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "proteus-generated-surfaceImage-original.png",
+      "sourceSha256": "a91f296d307dd239c01e2c0b2f03a26e900e582824e79d7739f719c94e9a05c3",
+      "sha256": "354961e10025367289e2d0ed697e9f5dc990e97887832e6c3af417988877253f",
+      "previewSha256": "6100a30b75b6e30a0b1e30cf575a2ac1f6a0c14b02d6985c5c79baac17b83ce0",
+      "bytes": 359740,
+      "previewBytes": 11204,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/proteus-sky-image.jpg",
+      "previewUrl": "/bespoke/proteus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "proteus-generated-skyImage-original.png",
+      "sourceSha256": "1d68d7084218a1dcf888eec02ae9d051db5696b22623412a762a2844157335cd",
+      "sha256": "c3a41e42b20b36e9d3a5bfd3356300a1a88092c195c08b70a0ab1582ab39a8bb",
+      "previewSha256": "d8e59723fea2d74aa62f303fff99db20a6f0f9f59d10abd5148260f82f0fe0bf",
+      "bytes": 271601,
+      "previewBytes": 7459,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
