@@ -126,6 +126,34 @@ const JWST_URANUS = {
   range: [1330, 3160],
 };
 
+// #72: more whole-disc images, each measured on the image (docs/data-sources.md, "Band disc images").
+// Chandra publishes the X-ray-only frame beside the X-ray + Hubble composite at the same size; the
+// limb is only visible in the composite, so the geometry was fitted there (the two register at zero
+// shift) and the North angle from the belts (7°, as Jupiter's pole stood on the sky in Feb 2007).
+// Its thumbnail is a crop, so the 62 kB full image is also the preview (no `preview`).
+const NOIRLAB = (id) => ({ url: `https://storage.noirlab.edu/media/archives/images/large/${id}.jpg`, preview: `https://storage.noirlab.edu/media/archives/images/thumb300y/${id}.jpg` });
+const CXC_JUPITER = {
+  disc: { id: 'chandra-jupiter-2007', url: 'https://chandra.harvard.edu/photo/2007/jupiter/jupiter_xray.jpg', w: 576, h: 572, cx: 290.4, cy: 272.7, re: 175, rp: 164, pa: 7 },
+  date: '2007-02',
+  credit: 'NASA/CXC/SwRI/R. Gladstone et al. — Chandra ACIS X-ray image, 8, 10 and 24 Feb 2007 (15 h), the X-ray-only frame of chandra.harvard.edu/photo/2007/jupiter; Chandra materials carry no copyright claim (NASA guidelines), public domain',
+  note: 'Chandra soft X-rays (~0.3–2 keV) alone: auroral hot spots at both poles, the rest of the disc only a few scattered counts (reflected solar X-rays)',
+  range: keV(0.3, 2),
+};
+const GEMINI_JUPITER_M = {
+  disc: { id: 'gemini-jupiter-m-2017', ...NOIRLAB('noirlab2116a'), w: 1400, h: 1304, cx: 697, cy: 652, re: 646, rp: 611, pa: 0 },
+  date: '2017-01-11',
+  credit: 'International Gemini Observatory/NOIRLab/NSF/AURA, M.H. Wong (UC Berkeley) et al.; acknowledgment M. Zamani — Gemini North NIRI M′ 4.68 µm mosaic, lucky imaging (NOIRLab noirlab2116a, CC BY 4.0)',
+  note: 'Gemini M′ 4.68 µm: heat from below the clouds; bright where the clouds are thin (the hot spots north of the equator), the Great Red Spot dark',
+  range: [4550, 4790],
+};
+const GEMINI_IO_L = {
+  disc: { id: 'gemini-io-l-2013', ...NOIRLAB('gemini1405a'), w: 434, h: 479, cx: 193.5, cy: 268.3, re: 120, rp: 120, pa: 0 },
+  date: '2013-08-29',
+  credit: 'Katherine de Kleer/UC Berkeley/Gemini Observatory/AURA — Gemini North NIRI + Altair adaptive optics, L′ 3.78 µm (the filter per UC Berkeley\'s release of the same frame; de Kleer et al. 2014, Icarus 242, 352) (NOIRLab gemini1405a, CC BY 4.0)',
+  note: 'Gemini L′ 3.78 µm: volcanic heat — the 29 Aug 2013 outburst 201308C (upper right), Loki (centre), the fading Rarog/Heno outbursts (bottom); the disc glows faintly in reflected sunlight',
+  range: [3420, 4120],
+};
+
 export const ARCHIVE_BAND = {
   moon: {
     'ir-F770W': { ...DIVINER_NOON, note: `${DIVINER_NOON.note} · F770W is inside Diviner's channel 3` },
@@ -149,7 +177,11 @@ export const ARCHIVE_BAND = {
   jupiter: {
     'ir-H': JWST_JUPITER, 'ir-Ks': JWST_JUPITER, 'ir-F200W': JWST_JUPITER, 'ir-W1': JWST_JUPITER,
     'uv-fuv': HST_JUPITER_UV,
+    'x-soft': CXC_JUPITER,
+    'ir-F444W': GEMINI_JUPITER_M,
+    'ir-5': { ...GEMINI_JUPITER_M, note: `${GEMINI_JUPITER_M.note} · M′ is the short side of the same 5 µm window, just below this 4.9–5.2 µm pass` },
   },
+  io: { 'ir-W1': { ...GEMINI_IO_L, note: `${GEMINI_IO_L.note} · L′ lies on the red edge of W1` } },
   saturn: { 'ir-W1': { ...JWST_SATURN, note: `${JWST_SATURN.note} · 3.23 µm, inside WISE W1` } },
   neptune: { 'ir-H': JWST_NEPTUNE, 'ir-Ks': JWST_NEPTUNE, 'ir-F200W': JWST_NEPTUNE, 'ir-W1': JWST_NEPTUNE, 'ir-F444W': JWST_NEPTUNE },
   uranus: { 'ir-J': { ...JWST_URANUS, note: `${JWST_URANUS.note} · F140M on the red edge of J` }, 'ir-W1': JWST_URANUS },

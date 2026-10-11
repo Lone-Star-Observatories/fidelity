@@ -35,7 +35,7 @@ test('every archive map and disc image: credit, range, an allowlisted source, ke
       assert.ok(['trek', 'img8', 'bins'].includes(s.archive.kind));
     } else {
       assert.ok(discIds().includes(s.disc.id), `${at}: allowlisted`);
-      assert.match(s.disc.url, HOSTS); assert.match(s.disc.preview, HOSTS);
+      assert.match(s.disc.url, HOSTS); if (s.disc.preview) assert.match(s.disc.preview, HOSTS); // no preview: the image itself is small
       assert.match(s.date, /^\d{4}(-\d\d){0,2}$/, `${at}: date`);
       assert.match(s.credit, /CC BY 4\.0|public domain/, `${at}: licence`);
     }
@@ -67,7 +67,7 @@ test('disc images: geometry inside the image, north and size from the image', ()
 });
 
 test('a curve covering a disc image\'s range gives it weight; the label says what it covers', () => {
-  for (const [body, key] of [['jupiter', 'ir-F200W'], ['saturn', 'ir-W1'], ['neptune', 'ir-Ks'], ['uranus', 'ir-W1'], ['jupiter', 'uv-fuv']]) {
+  for (const [body, key] of [['jupiter', 'ir-F200W'], ['saturn', 'ir-W1'], ['neptune', 'ir-Ks'], ['uranus', 'ir-W1'], ['jupiter', 'uv-fuv'], ['jupiter', 'x-soft'], ['jupiter', 'ir-F444W'], ['io', 'ir-W1']]) {
     const s = BODY_BAND[body][key];
     const curve = { parts: [{ lo: s.range[0], hi: s.range[1] }], excl: [] };
     const o = realOverlap(prepare(curve), body);
@@ -206,4 +206,25 @@ test('the bar\'s ends: the scale through the auto-levels (sRGB texture, linear-l
   assert.match(scaleDetail({ ...sc, stretch: 'p1-p99', bins: 3, dataMin: 0, dataMax: 9 }, th), /1st and 99th percentiles of the table's 3 bins/);
   assert.equal(shownScale(null), null); assert.equal(shownScale({ min: 1, max: 1, unit: 'K' }), null);
   assert.deepEqual([0.782055, 11.24, 395.4, 0, 4120].map(fmtScaleValue), ['0.78', '11', '395', '0', '4,120']);
+
+test('#72 disc images: Chandra X-rays, Gemini 4.7 µm Jupiter, Gemini 3.8 µm Io — measured geometry, licence, allowlisted hosts', async () => {
+  const x = BODY_BAND.jupiter['x-soft'], m = BODY_BAND.jupiter['ir-F444W'], io = BODY_BAND.io['ir-W1'];
+  // Chandra 2007 (576×572): limb fitted on the X-ray + Hubble composite, north from the belts (7°, as the sky had it)
+  assert.deepEqual([x.disc.w, x.disc.h, x.disc.pa], [576, 572, 7]);
+  assert.ok(Math.abs(x.disc.rp / x.disc.re - 0.935) < 0.01, 'Jupiter\'s oblateness');
+  assert.ok(Math.abs(2 * x.disc.re * (61 / 576) - 37) < 2.5, 'about 37″ across on Chandra\'s 61″ frame');
+  assert.equal(x.disc.preview, undefined, 'Chandra\'s thumbnail is a crop: the image itself is the preview');
+  assert.match(x.note, /X-rays.*alone/); assert.match(x.credit, /public domain/);
+  assert.ok(x.range[0] > 0.5 && x.range[1] < 5, 'soft X-rays (nm)');
+  // Gemini M′ (1400×1304) north up, the same disc on F444W and (labelled) the 5 µm pass
+  assert.deepEqual([m.disc.w, m.disc.h, m.disc.pa], [1400, 1304, 0]);
+  assert.equal(BODY_BAND.jupiter['ir-5'].disc, m.disc); assert.match(BODY_BAND.jupiter['ir-5'].note, /just below this/);
+  assert.match(m.credit, /CC BY 4\.0/); assert.match(io.credit, /CC BY 4\.0/);
+  // Io: a sphere (one radius), at L′; the look is the measured disc, not the hot-spot sketch
+  assert.equal(io.disc.re, io.disc.rp); assert.ok(io.range[0] < 3780 && io.range[1] > 3780, 'L′ 3.78 µm');
+  assert.equal(bandLook({ id: 'io', name: 'Io' }, bandById('ir'), passById(bandById('ir'), 'ir-W1')).tier, 'measured');
+  for (const s of [x, m, io]) assert.match(s.disc.url, HOSTS);
+  for (const u of ['https://chandra.harvard.edu/photo/2007/jupiter/jupiter_xray.jpg', 'https://storage.noirlab.edu/media/archives/images/large/noirlab2116a.jpg']) assert.match(u, HOSTS);
+  for (const u of ['https://chandra.harvard.edu.evil.com/x.jpg', 'http://storage.noirlab.edu/x.jpg', 'https://noirlab.edu/public/images/x/']) assert.doesNotMatch(u, HOSTS);
+  assert.ok(discIds().includes('chandra-jupiter-2007') && discIds().includes('gemini-jupiter-m-2017') && discIds().includes('gemini-io-l-2013'));
 });

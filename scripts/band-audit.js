@@ -95,6 +95,11 @@ const SRC = {
   LeMouelic19: S('Le Mouélic et al. 2019, Icarus 319, 121 — the Cassini VIMS archive of Titan: global infrared colour maps', '10.1016/j.icarus.2018.09.017'),
   Trek: S('NASA Solar System Treks layer catalogues (Moon, Mars, Mercury, Titan, Venus…; queried 2026-10-10)', 'https://trek.nasa.gov/'),
   ESAWebb: S('ESA/Webb image archive, CC BY 4.0 (jupiter-auroras1, saturn1, weic2214c, weic2310a)', 'https://esawebb.org/images/'),
+  CXC07: S('Chandra photo album, Jupiter 2007 (X-ray-only frame jupiter_xray.jpg; X-ray: NASA/CXC/SwRI/R. Gladstone et al.); no copyright asserted (NASA guidelines)', 'https://chandra.harvard.edu/photo/2007/jupiter/'),
+  NOIRLabJ: S('NOIRLab noirlab2116a, Gemini North NIRI M′ 4.68 µm Jupiter, 11 Jan 2017 (M.H. Wong et al.), CC BY 4.0', 'https://noirlab.edu/public/images/noirlab2116a/'),
+  NOIRLabIo: S('NOIRLab gemini1405a, Gemini North NIRI/Altair Io, 29 Aug 2013 (K. de Kleer); L′ 3.78 µm per UC Berkeley\'s release of the same frame; CC BY 4.0', 'https://noirlab.edu/public/images/gemini1405a/'),
+  deKleer14: S('de Kleer et al. 2014, Icarus 242, 352 — near-infrared monitoring of Io and the 29 Aug 2013 outburst', '10.1016/j.icarus.2014.06.006'),
+  dePater19A: S('de Pater et al. 2019, AJ 158, 139 — first ALMA millimetre maps of Jupiter (Bands 3 and 6, Jan 2017)', 'https://arxiv.org/abs/1907.11820'),
   ESAHubble: S('ESA/Hubble image heic1613a (Jupiter\'s far-UV aurorae), CC BY 4.0', 'https://esahubble.org/images/heic1613a/'),
 };
 
@@ -231,12 +236,31 @@ const K28 = {
   'venus|ir': { replace: true, img: [NOT_WIRED('JAXA DARTS (vco-v-ir2-3-cdr, vco-v-lir-3-cdr)', 'Akatsuki IR2 night side, LIR 10 µm', 'calibrated single images only, no global maps or HiPS'), { archive: 'ESA PSA', what: 'VIRTIS cubes', fetch: 'no' }] },
   'jupiter|ir': { img: [WIRED('ESA/Webb', 'JWST NIRCam 1.5–3.6 µm disc image, 27 Jul 2022 (jupiter-auroras1)', CCBY, '/api/band-disc?id=webb-jupiter-2022, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on H, Ks, F200W and W1 (Earth-facing side; the far side predicted).' },
   'jupiter|uv': { img: [WIRED('ESA/Hubble', 'HST STIS far-UV aurora over a WFC3 visible disc, 2016 (heic1613a)', CCBY, '/api/band-disc?id=hubble-jupiter-aurora-2016 on GALEX FUV, Earth-facing side')], src: ['ESAHubble'], fix: '#28: the Hubble aurora disc image on far-UV (only the aurora is ultraviolet; the disc is visible light).' },
-  'jupiter|xray': { img: [NOT_WIRED('NASA/CXC', 'Chandra auroral X-ray images', 'published as overlays on optical discs, not yet licence-checked and measured; deferred')] },
-  'jupiter|radio': { img: [NOT_WIRED('NRAO / ALMA', 'VLA synchrotron and ALMA ammonia images', 'not yet licence-checked and measured; deferred')] },
   'saturn|ir': { img: [WIRED('ESA/Webb', 'JWST NIRCam F323N 3.23 µm disc image, 25 Jun 2023 (saturn1)', CCBY, '/api/band-disc?id=webb-saturn-2023 on W1, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb 3.23 µm disc image on W1.' },
   'uranus|ir': { obs: 'image', what: 'JWST NIRCam, Keck, HST near-IR images (rings, polar cap).', mech: 'reflected (methane bands dark)', img: [WIRED('ESA/Webb', 'JWST NIRCam F140M/F300M disc image, 6 Feb 2023 (weic2310a)', CCBY, '/api/band-disc?id=webb-uranus-2023 on J and W1, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on J and W1.' },
   'neptune|ir': { obs: 'image', what: 'JWST NIRCam, Keck, HST near-IR images (rings, methane-ice clouds).', mech: 'reflected (methane bands dark)', img: [WIRED('ESA/Webb', 'JWST NIRCam 1.4–4.6 µm disc image, 12 Jul 2022 (weic2214c)', CCBY, '/api/band-disc?id=webb-neptune-2022 on H, Ks, F200W, W1 and F444W, Earth-facing side')], src: ['ESAWebb'], fix: '#28: the Webb disc image on H, Ks, F200W, W1 and F444W.' },
 };
+// #72 (follow-ups to #28): more whole-disc images, and what was looked at but not wired, with the reason.
+const WIRED72 = (archive, what, licence, fetch) => ({ archive, what, licence, fetch: `yes (#72): ${fetch}` });
+const NOT72 = (archive, what, why) => ({ archive, what, fetch: `not wired (#72): ${why}` });
+const K72 = {
+  'jupiter|xray': { img: [WIRED72('NASA/CXC (Chandra photo album)', 'Chandra ACIS X-ray-only frame, 8/10/24 Feb 2007 (photo/2007/jupiter/jupiter_xray.jpg); geometry fitted on the same-size X-ray + Hubble composite', 'public domain (no copyright asserted, NASA guidelines)', '/api/band-disc?id=chandra-jupiter-2007 on Soft 0.1–2.4 keV, Earth-facing side'),
+    NOT72('NASA/CXC (Chandra photo album)', 'Chandra 2016 (Dunn et al., Oct 2011) X-ray + Hubble pair', 'two-panel composite; its X-ray-only frame is a different, unregistered crop — the 2007 frame is wired instead'),
+    NOT72('NASA/CXC (Chandra photo album)', 'Chandra 2017 polar X-ray images (May/Jun 2016)', 'reprojected onto Juno polar views, not as seen from Earth')], src: ['CXC07', 'Gladstone02'], fix: '#72: the Chandra 2007 X-ray image (X-rays only: polar aurorae, a faint disc) is the real soft X-ray look on the Earth-facing side.' },
+  'jupiter|radio': { img: [NOT72('NRAO (public.nrao.edu, CC BY 4.0)', 'VLA 20 cm synchrotron belts, Jun/Jul 1994 (jupsynch_large) and "Jupiter in radio waves" (Jupiter_VR48_hi_large)', 'no limb in the image (the belts reach 2–3 Jupiter radii), and neither scale nor north is given, so the disc cannot be measured; the emission is off the planet, so drawing it on the sphere would misplace it'),
+    NOT72('NRAO (VLASS)', 'VLASS 3 GHz image of Jupiter', 'the gallery page serves a logo instead of the image; no fetchable file')] },
+  'jupiter|microwave': { img: [NOT72('NRAO / ALMA (CC BY 4.0)', 'ALMA 1.3 mm (Band 6, 223–243 GHz) longitude-smeared disc image, 3–5 Jan 2017 (jupiter_ALMA_redfig2)', 'no spectrum-filter pass at 1.3 mm (the highest is 82–106 GHz) — needs a new pass; also a limb-darkened disc was subtracted'),
+    NOT72('NRAO / ALMA', 'ALMA 3 mm (Band 3, 90–105 GHz) disc', 'published only as a panel of the paper\'s Fig. 2 (de Pater et al. 2019), not as a fetchable image'),
+    NOT72('NRAO', 'VLA 2–3 cm maps (2013–2016, de Pater et al.)', 'released as cylindrical crops and close-ups, not a whole disc or global map')], src: ['dePater19A'] },
+  'jupiter|ir': { img: [WIRED72('NOIRLab (Gemini North)', 'Gemini NIRI M′ 4.68 µm lucky-imaging mosaic, 11 Jan 2017 (noirlab2116a)', 'CC BY 4.0', '/api/band-disc?id=gemini-jupiter-m-2017 on F444W and 5 µm, Earth-facing side'),
+    NOT72('ESO (CC BY 4.0)', 'VLT VISIR 10.7/8.6 µm images (eso1623b, eso1010a)', 'two-wavelength composites and close-ups, not one whole disc in one band')], src: ['NOIRLabJ'], fix: '#72: the Gemini 4.68 µm disc replaces the 220 K estimate on F444W and 5 µm (Earth-facing side).' },
+  'jupiter|visible': { img: [NOT72('NASA/JPL-Caltech/SwRI/MSSS (JunoCam)', 'JunoCam whole-disc frames', 'Jupiter\'s visible passes already show a measured global map; JunoCam\'s whole-disc frames are from Juno\'s polar, high-phase vantage, not Earth\'s, so they would be misplaced on the Earth-facing hemisphere')] },
+  'io|ir': { img: [WIRED72('NOIRLab (Gemini North)', 'Gemini NIRI/Altair L′ 3.78 µm image, 29 Aug 2013 (gemini1405a): 201308C, Loki, Rarog/Heno', 'CC BY 4.0', '/api/band-disc?id=gemini-io-l-2013 on W1, Earth-facing side'),
+    NOT72('ESO (CC BY 4.0)', 'VLT NACO Brγ 2.17 µm and Brγ + L′ images, 5 Dec 2001 (eso0204b/c)', 'Brγ alone is reflected light (no hot spots); the L′ composite has a latitude–longitude grid and labels drawn in'),
+    NOT72('W. M. Keck Observatory', 'Keck AO Io images (de Kleer & de Pater)', 'no open licence on the published images'),
+    NOT72('NASA/JPL-Caltech/SwRI/ASI/INAF (Juno JIRAM)', 'JIRAM 4.8 µm Io images', 'taken from Juno, far from Earth\'s direction (high sub-spacecraft latitudes); a disc image is drawn as seen from Earth')], src: ['NOIRLabIo', 'deKleer14'], fix: '#72: the Gemini L′ disc image is the real look on W1 (Earth-facing side; the far side keeps the hot-spot sketch).' },
+};
+for (const [k, v] of Object.entries(K72)) K28[k] = K28[k] ? { ...K28[k], img: [...K28[k].img, ...v.img], src: [...(K28[k].src ?? []), ...(v.src ?? [])], fix: [K28[k].fix, v.fix].filter(Boolean).join(' ') || undefined } : v;
 for (const [k, v] of Object.entries(K28)) {
   const o = K[k] ?? {};
   K[k] = { ...o, ...(v.obs && !K[k] ? { obs: v.obs, what: v.what, mech: v.mech } : {}), img: [...(v.replace ? [] : o.img ?? []), ...v.img],

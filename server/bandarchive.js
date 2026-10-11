@@ -13,7 +13,8 @@
 //     cached beside the image); the XRS raster and Diviner: the product's documented scaling
 //     (`scale` in src/data/bandarchive.js).
 //   GET /api/band-disc?id=webb-jupiter-2022[&size=preview]
-//     a whole-disc image (JPEG/PNG as published; the preview is the publisher's own small rendition).
+//     a whole-disc image (JPEG/PNG as published; the preview is the publisher's own small rendition,
+//     or the image itself where the publisher's thumbnail is a crop, e.g. Chandra's).
 // Only ids in BODY_BAND can be asked for, and only from the archive hosts below (not an open proxy).
 // PNG decoding and encoding are dependency-free (server/png.js).
 
@@ -25,7 +26,7 @@ const UA = { 'user-agent': 'USS-Fidelity/0.3 (local astronomy explorer)' };
 const all = Object.values(BODY_BAND).flatMap((m) => Object.values(m));
 const ARCHIVE = new Map(all.filter((s) => s.archive).map((s) => [s.archive.id, s.archive]));
 const DISC = new Map(all.filter((s) => s.disc).map((s) => [s.disc.id, s.disc]));
-export const HOSTS = /^https:\/\/(pds-geosciences\.wustl\.edu|trek\.nasa\.gov|cdn\.esawebb\.org|cdn\.esahubble\.org)\//;
+export const HOSTS = /^https:\/\/(pds-geosciences\.wustl\.edu|trek\.nasa\.gov|cdn\.esawebb\.org|cdn\.esahubble\.org|chandra\.harvard\.edu|storage\.noirlab\.edu)\//;
 const YEAR = 365 * 86400000;
 const isPreview = (size) => size === 'preview';
 const notFound = (what) => Object.assign(new Error(`unknown ${what}`), { status: 404 });
