@@ -374,10 +374,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "Own NASA3D globe source-byte-equal; original Voyager PIA00041 colour composite/PIA01534 clear-filter mosaic retained with full NASA/JPL credits, observation1986-01-24 and separate publication dates/hashes. Black north/coverage gaps not terrain; colour/frame/epochs/shape registration remain open. Recent disk-integrated spectroscopy is not resolved geography; substantial lossless headroom needed before embedding",
-      "research": "native provenance and2024full/2026abstract spectroscopy preparation saved; individual dossier pending (ariel-moon-preparation-2026-10-11.json)",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged/source-byte-equal SHAfc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee. Partial southern coverage with black unobserved northern region and visible coverage edges/low-detail areas. Black/blurred areas do not establish dark/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. Own-body map unchanged; no analog or replacement adopted.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ariel"
     },
     {
       "id": "sol-umbriel",
@@ -8515,7 +8516,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 17,
+      "initialDossiers": 18,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

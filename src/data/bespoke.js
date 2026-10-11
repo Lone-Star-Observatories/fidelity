@@ -8525,8 +8525,215 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "ariel": {
+    "id": "ariel",
+    "name": "Ariel",
+    "aliases": [
+      "Ariel"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe retained unchanged/source-byte-equal SHAfc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee. Partial southern coverage with black unobserved northern region and visible coverage edges/low-detail areas. Black/blurred areas do not establish dark/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. Own-body map unchanged; no analog or replacement adopted.",
+    "measured": [
+      "Existing catalogue radius578.9km, mass1.251e21kg, representative semimajor axis190929km and period2.520379days preserved; no inferred uncertainty or silent update.",
+      "PIA00041 observed1986-01-24; image addition1996-01-29. Voyager2 NAC green/blue/violet-filter composite of southern hemisphere. Colour-channel fringes visible near edges; not independently calibrated visible colour or registered globe geography. Caption170000km range/about3km resolution and1200km diameter are historical publisher estimates, not new raster/angular calculations or replacements for catalogue radius578.9km. Later2025page update is not new observation. No exhaustive newest-observation claim.",
+      "PIA01534 observed1986-01-24; image addition1999-05-08. Four clear-filter NAC frames assembled as a monochrome mosaic. Gaps/seams/black background are not terrain; not independently calibrated visible colour or seamless globe. Caption130000km/about2.4km resolution and5–10km craters are source estimates, not new raster calculations. Faulting/deposition/fluid-flow alternatives remain interpretations, not current active cryovolcanism.",
+      "CO2 spectral peaks/bands and4.67micronCO ice band are detected with hemispheric differences. The4.02micron feature may include carbonate minerals; identification remains tentative. No compelling G395M evidence for NH-bearing species, hydrocarbons orH2O2 is not an exhaustive absence claim: strongwater absorption may obscureNH-bearing species."
+    ],
+    "modelled": [
+      "More-than-about10mm CO2 deposits derive from optical penetration/mean-path and laboratory/Hapke–Mie comparisons, not direct local thickness/geographic mapping. Mixture grain diameters/fractions, temperatures, possible carbonates/clathrates, replenishment/seasonal migration, radiolysis versus interior origins, ocean chemistry/pH and isotope/escape histories are models or hypotheses. Section5 explicitly leaves physical state and conduit associations difficult to determine from disk-integrated spectra and calls for resolved orbital spectroscopy. No direct ocean, plume, exposed liquid, biology or quantified local chemistry claim; no observed-body analog terrain reuse.",
+      "CO/CO2 spectral features are measured. Laboratory crystallineCO2 lattice oscillations can explain many4.8–5.25micron features previously assigned other species. Carbonate4.02micron and clathrate4.40micron assignments remain favoured interpretations rather than direct local chemistry;4.59micronOCN-minus has a CO2-laboratory shoulder alternative. Roughness/grain-boundary/layered laboratory fits do not establish local material fractions or a visible surface map. Dual native/radiolytic origins are proposed, not directly observed conduits/ocean/plumes or biology. H2O2 nondetection is not proof of absence. Orbital spatially resolved observations are still needed to associate chemistry with geological terrain. No observed-body analog terrain adopted.",
+      "skyGeometry spherical mean Uranus radius25362km at190929−578.9km; nominal90degreeHFOV 15.313569592943965degrees /224.7792445600696targetpixels at1672."
+    ],
+    "unknown": [
+      "Exact native globe product association/frame/epochs/coverage/photometry/shape registration remain open; black north/gaps are not terrain.",
+      "Recent fullpaper finaljournal/supplement/exactMAST correspondence and independent calibration remain open.2023spectra re-reduced in2026 are not new visible terrain.",
+      "Local chemical fractions, terrain, calibrated visible colour/exposure and dated Voyager/local registration unknown."
+    ],
+    "assumed": [
+      "Independent grey regolith/blocks/cratered ridges/valley/scarp and Uranus band patterns, colour/phase/exposure/light invented; no observed-body analog map reused. No atmosphere/plume/liquid/exposed ocean/biology/survivable landing or dated site.",
+      "Assumed camera/planet-axis attitude, semimajor-axis sphere ignoring oblateness. Uranus rings omitted for artistic exposure, not observational invisibility. Generated row230 spans346/340/337px at thresholds5/10/20, oversized against224.779target, phase/exposure-sensitive and not calibrated full diameter.60K helper angular only, not visible photometry; Sun19.2AUoffframe.256pixel annotations limited; readable card labels required."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "title": "NASA Voyager2 PIA00041 southern colour composite",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/ariels-densely-pitted-surface/",
+        "title": "NASA Voyager2 PIA01534 clear-filter mosaic",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1999-05-08"
+      },
+      {
+        "url": "https://mmhedman.github.io/papers_published/Cartwright_Ariel_ApJL_2024.pdf",
+        "title": "JWST Reveals CO Ice, Concentrated CO2 Deposits, and Evidence for Carbonates Potentially Sourced from Ariel’s Interior",
+        "authors": [
+          "Richard J. Cartwright",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Stephen C. Tegler",
+          "Marc Neveu",
+          "Ujjwal Raut",
+          "Christopher R. Glein",
+          "Tom A. Nordheim",
+          "Joshua P. Emery",
+          "Julie C. Castillo-Rogez",
+          "Eric Quirico",
+          "Silvia Protopapa",
+          "Chloe B. Beddingfield",
+          "Matthew M. Hedman",
+          "Katherine de Kleer",
+          "Riley A. DeColibus",
+          "Anastasia N. Morgan",
+          "Ryan Wochner",
+          "Kevin P. Hand",
+          "Geronimo L. Villanueva",
+          "Sara Faggi",
+          "Noemi Pinilla-Alonso",
+          "David E. Trilling",
+          "Michael M. Mueller"
+        ],
+        "publicationDate": "2024-07-24",
+        "observationDate": "2023-09-06/2023-09-07",
+        "doi": "10.3847/2041-8213/ad566a",
+        "terms": "Explicit CC BY4.0 original-content notice on PDFpage1, retaining authors/title/journal/DOI attribution. No figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "submittedDate": "2026-07-06",
+        "revisionDate": "2026-07-08",
+        "terms": "Specific record links CC BY4.0; draftJuly9 is not observation or final publication date. FullPDF retained; no figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Ariel/Uranus%20-%20Ariel.jpg",
+        "title": "OwnNASA3D Ariel map source; frame/coverage/epochs/photometry open"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ariel-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "bytes": 45924,
+        "sha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c",
+        "width": 845,
+        "height": 650,
+        "description": "Actual Voyager2 green/blue/violet southern Ariel composite; colour fringes and incomplete coverage, not calibrated visible colour or registered local scene.",
+        "processing": "Unchanged full845x650 publisher JPEG, no Fidelity resize/re-encoding.320x246 and160x123 publisher renditions and fullPIA01534 originals retained separately/source hashes. Green/blue/violet composite has colour-channel fringes; not independently calibrated visible colour or registered globe/local geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL ARIEL TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM ARIEL — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "uranusMeanRadiusKm": 25362,
+      "arielRadiusKm": 578.9,
+      "representativeCentreDistanceKm": 190929,
+      "observerDistanceKm": 190350.1,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 15.313569592943965,
+      "targetGlobeWidthPxAt1672": 224.7792445600696,
+      "temperatureHelperK": 60,
+      "limits": "Sphere/representative orbit, not dated ephemeris. Generated346/340/337px rows oversized and uncalibrated; camera/axis/phase assumed, inclination/oblateness/rings open."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/ariel-surface-image.jpg",
+      "previewUrl": "/bespoke/ariel-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "ariel-generated-surfaceImage-original.png",
+      "sourceSha256": "66ab35e6749db05a2f0aa416d155a5928e0b7f520c299dcf33a45d5a9e54a387",
+      "sha256": "07e4f57f4a76a32a6061bec568b06cc7b616478dce11b645d47ff8d0f22e9013",
+      "previewSha256": "c455f7aa4805fef209ac48fdeef1b4986e108d72c45b729f75ababddb39f8258",
+      "bytes": 339946,
+      "previewBytes": 10402,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/ariel-sky-image.jpg",
+      "previewUrl": "/bespoke/ariel-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "ariel-generated-skyImage-original.png",
+      "sourceSha256": "717549da2f0b06d772d5828fd4d2d96efc36bebc674d596e21f8db165d2b27ac",
+      "sha256": "cbc7ce63d85dba46440a3678462fb31ded6a3a3a5b56a3e1049a992aed68e08c",
+      "previewSha256": "0df6b782cd68f18b698b5e8edb35c52f4479fbbc457114c52edfbaec6d0077fe",
+      "bytes": 251235,
+      "previewBytes": 8426,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
+
 const normalize = (name) => String(name ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export function bodyVisualFor(body) {
   if (!body) return null;
