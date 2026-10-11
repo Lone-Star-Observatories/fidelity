@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-11",
+  "body": "Ariel",
+  "status": "Research-only; no62nd dossier/new embedding.",
+  "generator": "Built-in image_gen; scientific-educational; independent new generation without referenced images",
+  "prompt": "Use case: scientific-educational. Create one independent IMAGINED SKY FROM ARIEL illustration, landscape 16:9 nominal90degree horizontal field of view. Independently invented pale gray granular regolith, angular blocks and low cratered valley ridges occupy bottom third, sharp airless horizon and black sky. Uranus high above horizon: spherical mean-radius25362km at190929minus578.9km distance gives15.313569592944degrees angular diameter via skyGeometry; target224.779245pixel globe diameter at1672pixel width, approximately13.44percent picture width. Restrained pale cyan globe, modest artistic phase and smooth subtly banded cloud appearance, no deep blue dramatic storms. Independently invented Uranus pattern, colour and exposure, not calibrated visible photometry. Do not use or recolour any observed Uranus, Moon, Mars, Pluto or other map/image; independently design terrain, planet pattern and geometry. No rings depicted: omission is artistic exposure choice not evidence of invisibility, ring/planet-axis and camera orientation not dated/calibrated; mean sphere neglects oblateness. Hypothetical Uranus-facing attitude, no named or dated Voyager site. No Sun, stars, foreground atmosphere/haze/cloud, plume, liquid, exposed ocean, biology, people, spacecraft or survivable landing. No mapped CO/CO2 deposits or measured local carbonate/clathrate/chemistry fractions. Clear title 'IMAGINED — SKY FROM ARIEL'. Footer 'Hypothetical attitude · uncalibrated colour and terrain'. All terrain/material chemistry, planet pattern, phase, lighting and exposure invented.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ec5ad45b-d475-4a0e-9aa4-d38250683247.png",
+  "retainedPath": "data/research-sources/ariel-generated-skyImage-original.png",
+  "inspected": true,
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "uranusMeanRadiusKm": 25362,
+    "arielRadiusKm": 578.9,
+    "representativeCentreDistanceKm": 190929,
+    "observerDistanceKm": 190350.1,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 15.313569592943965,
+    "targetPixelsAt1672": 224.7792445600696,
+    "temperatureHelperK": 60,
+    "limits": "Spherical mean-radius/semimajor-axis approximation, not dated ephemeris;60K helper angular only, not Uranus visible colour or irradiance. Mean sphere ignores oblateness."
+  },
+  "rasterAudit": {
+    "row": 230,
+    "widths": [
+      {
+        "threshold": 5,
+        "start": 657,
+        "end": 1002,
+        "width": 346
+      },
+      {
+        "threshold": 10,
+        "start": 663,
+        "end": 1002,
+        "width": 340
+      },
+      {
+        "threshold": 20,
+        "start": 665,
+        "end": 1001,
+        "width": 337
+      }
+    ],
+    "limits": "Generated globe oversized versus224.779pixel target. Threshold/phase/exposure-sensitive runs are not a calibrated full limb diameter; precise calibration/registration remains open."
+  },
+  "limitations": "Invented local terrain relief/blocks/grains/material chemistry/fractions, Uranus band/cloud pattern, pale cyan colour, phase/light/exposure. No analog observed-body map or dated Voyager/globe site. Hypothetical camera and planetary axis orientation assumed. Rings omitted as an artistic exposure choice, not proof of invisibility. No foreground atmosphere/haze/cloud, plume, liquid, exposed ocean, biology, lander or survivable landing. Sun/stars absent. Readable IMAGINED title; footer readability at small preview remains to be assessed.",
+  "next": "Original-preserving masters/recorded previews; substantial lossless headroom before additive dossier.",
+  "original": {
+    "bytes": 2222506,
+    "sha256": "717549da2f0b06d772d5828fd4d2d96efc36bebc674d596e21f8db165d2b27ac",
+    "width": 1672,
+    "height": 941,
+    "defaultCopyByteEqual": true
+  },
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998750,
+    "headroomBytes": 1250,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "ac55c603fc83c0ebb03ae4d38759e72774ecf66b27fbfbd237b440765ccddd1f",
+      "raw": "ae5d1e6ee663beaad810ceb33fd5418a5026bb297765547fffe08ac8d15d1858",
+      "magic": "FIDNUM02",
+      "images": 216,
+      "details": 517,
+      "models": 32
+    },
+    "application": "{\"htmlBytes\":15998750,\"compressedBytes\":718744,\"applicationSha256\":\"223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384\",\"htmlParserPreservesEveryPackedByte\":true}",
+    "stylesheet": "{\n  cssBytes: 54935,\n  cssSha256: '960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772',\n  rawSha256: '456c98b515807cfb8a99452b7bd6c5a28a59fd78ac689d2c0c14a6b0ad3c2159',\n  exactRestoredStyle: true,\n  htmlParserPreservedPackedText: true,\n  background: 'rgb(0, 0, 0)',\n  buttons: 393,\n  pageErrors: []\n}",
+    "normalOfflineMiranda": "normal Miranda3images and native context verified\noffline Miranda3images and native context verified",
+    "preservation": "All61 dossiers deepEqual;354trackedregistry/bespoke/map/model/shape inputs exact to HEAD. All originals/native/provenance preserved. Complete snapshot equals prior ac55c603 baseline; app/CSS unchanged. No62nd dossier/new embedding.",
+    "limits": "Chrome verified; other browser engines remain open. No headroom gain claimed. Both prepared views remain imagined and uncalibrated."
+  }
+}
