@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-11",
+  "body": "Nix",
+  "catalogueId": "sol-nix",
+  "status": "Research-only composition preparation; no new dossier or embedding.",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/nix-Cook2017-LPSC2478.pdf",
+      "url": "https://www.hou.usra.edu/meetings/lpsc2017/pdf/2478.pdf",
+      "bytes": 986715,
+      "sha256": "0348027cd0d9fe794603645896e75a8633fa6ab8769ab772db2e28c97e2df8c3",
+      "pages": 2
+    },
+    {
+      "path": "data/research-sources/nix-Holler2025-LPI7028.pdf",
+      "url": "https://www.hou.usra.edu/meetings/plutosystem2025/pdf/7028.pdf",
+      "bytes": 1928794,
+      "sha256": "a62efc11f17e3406c50df76f9cbe4c102610514486006b82cd778f0a33b534dd",
+      "pages": 2
+    },
+    {
+      "path": "data/research-sources/nix-pds-composition-profile.html",
+      "url": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=NH-P%2FPSA-LEISA%2FMVIC-5-COMP-V1.0",
+      "bytes": 39525,
+      "sha256": "ea24769ac310a345024ad899b3bb01135ee308992a1b60bdd9907ca5c856b030",
+      "status": 200
+    }
+  ],
+  "Cook2017": {
+    "type": "Two-page LPSC XLVIII abstract 2478, preliminary conference report, not final 2018 article.",
+    "authors": [
+      "J. C. Cook",
+      "R. P. Binzel",
+      "D. P. Cruikshank",
+      "C. M. Dalle Ore",
+      "A. Earle",
+      "K. Ennico",
+      "W. M. Grundy",
+      "C. Howett",
+      "D. J. Jennings",
+      "A. W. Lunsford",
+      "C. B. Olkin",
+      "A. H. Parker",
+      "S. Philippe",
+      "S. Protopapa",
+      "D. Reuter",
+      "B. Schmitt",
+      "J. A. Stansberry",
+      "S. A. Stern",
+      "A. Verbiscer",
+      "H. A. Weaver",
+      "L. A. Young",
+      "New Horizons Surface Composition Theme Team",
+      "Ralph Instrument Team"
+    ],
+    "observations": "2015-07-14 encounter; two Nix LEISA scans at publisher approximate ranges 60,000/162,000 km. Exact scan time/product crosswalk open.",
+    "measurement": "1.5/2.0 micron water-ice bands; 1.65 micron crystalline signature and additional approximately 2.2 micron feature. Nix approximately 130 detector pixels in closest scan, source estimate not a new raster calculation.",
+    "model": "Hapke intimate mixtures use amorphous/crystalline water-ice grain sizes and tholin components, assume 50 K; fitted mixtures, temperature and grain sizes are not direct local composition/temperature measurements. NH3-water mixture or other ammoniated carrier proposed, not unique chemistry. Ceres comparison does not authorize Ceres terrain reuse.",
+    "limits": "Noise-pattern removal, motion correction and extraction matter; reported little band-depth variation does not establish uniform centimetre-scale terrain or assign spectra to native MVIC pixels. Full Cook2018 DOI10.1016/j.icarus.2018.05.024 remains open; publisher web access returned internal error, no final-paper hash or licence invented."
+  },
+  "Holler2025": {
+    "type": "Two-page conference abstract 7028, LPI contribution3059; not asserted peer-reviewed final paper. Exact publication day remains unknown.",
+    "authors": [
+      "B. J. Holler",
+      "D. Wang",
+      "D. Chittiraibalan",
+      "J. A. Stansberry",
+      "N. Pinilla-Alonso",
+      "E. Lellouch",
+      "T. Bertrand",
+      "R. Brunetto",
+      "R. J. Cartwright",
+      "A. C. de Souza Feliciano",
+      "E. Fern\u00e1ndez-Valenzuela",
+      "P. Lavvas",
+      "F. Merlin",
+      "K. T. Murray",
+      "S. Protopapa",
+      "G. Villanueva",
+      "I. Wong"
+    ],
+    "observationDates": [
+      "2022-10-05",
+      "2022-10-08",
+      "2022-10-10"
+    ],
+    "program": 1658,
+    "instrument": "JWST NIRCam",
+    "filters": [
+      "F070W",
+      "F090W",
+      "F115W",
+      "F140M"
+    ],
+    "measurement": "Aperture photometry of unresolved Nix/Hydra in short-wavelength images, nearby-background correction for Pluto/Charon contamination. Only one image per filter/date due to dither issue. Not present in long-wavelength images; Styx/Kerberos undetectable in this observation setup, not absence.",
+    "interpretation": "Comparison to DiSCo-TNO program2418 spectral classes and water-rich Haumea family is closest to water-rich family but discrepant at shorter wavelengths; similarities are not identity or local fractions. Red material and primordial-impact-layer origins are hypotheses, not direct history, chemistry or dated local terrain. No other-body map adopted.",
+    "limits": "These 0.7\u20131.4 micron measurements do not resolve geography, uniquely identify chemistry or calibrate visible colour/native MVIC/observer scene. MAST exposure/extraction/calibration crosswalk and final publication remain open.",
+    "credit": "NASA/ESA/CSA James Webb Space Telescope; STScI operated by AURA under NASA contract NAS5-03127; programs1658/2418."
+  },
+  "PDS": "Official profile identifies derived composition cubes for separate Pluto/Charon/Nix/Hydra/Kerberos targets. Metadata retained; no product bytes or map adopted, no calibration/geographic registration claim.",
+  "terms": "No explicit CC licence verified for either conference PDF; retained as research inputs. No figure, data cube or derivative embedded. NASA image terms remain separately recorded and are not blanket paper licences.",
+  "preservation": {
+    "dossiers": 68,
+    "newEmbedding": false,
+    "productionCodecsChanged": false,
+    "trackedEarlierInputsByteEqual": 389
+  },
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15992747,
+    "headroomBytes": 7253,
+    "queue": 566,
+    "completeSnapshotSha256": "84dd0f852411f07f69e71b4d72dca822e086a33c7290a775a4a0860c1fd5f015",
+    "rawSnapshotSha256": "5a78a932d4e7be83488322980ffbd19f750a1172f8b2cf7ef144b62f7f9fbb08",
+    "browser": "Chrome exact complete readable JSON and HTML-parser snapshot text; 237 decoded images, 20 bands, 517 details, 32 model entries; no page errors. Other engines remain open.",
+    "attribution": "Complete readable JSON hash and full HTML byte count identical to verified 9dfb70a build; no savings claimed, production codecs unchanged."
+  }
+}
