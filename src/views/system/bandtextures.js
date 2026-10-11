@@ -125,14 +125,18 @@ export function loadFeedPreview(id) {
   }).catch(() => null).then((v) => { if (!v) feedPreviews.delete(id); return v; }));
   return feedPreviews.get(id);
 }
-/** A feed (SDO) on a star disc: preview, then full; `apply(l)` while `current()` holds. Standalone: the baked copy only. */
-export function progressiveFeed(id, look, current, apply) {
+/**
+ * A feed (SDO) on a star disc: preview, then full; `apply(l)` while `current()` holds. Standalone: the baked copy only.
+ * `onFail()` (optional): called instead of marking the look FAILED when nothing could be shown (#72: a fallback map).
+ */
+export function progressiveFeed(id, look, current, apply, onFail = null) {
   let shown = null;
   look.res = 'loading';
-  if (STANDALONE) { loadLive(id).then((l) => { if (!l || !current()) { if (current()) { look.res = 'failed'; notify(); } return; } apply(l); look.res = 'baked'; notify(); }); return; }
+  if (STANDALONE) { loadLive(id).then((l) => { if (!l || !current()) { if (current()) { if (onFail) onFail(); else { look.res = 'failed'; notify(); } } return; } apply(l); look.res = 'baked'; notify(); }); return; }
   loadFeedPreview(id).then((l) => { if (!l || !current() || shown) return; apply(l); shown = 'preview'; look.res = 'preview'; notify(); });
   const full = later(FULL_DELAY_MS).then(() => (!current() ? true : loadLive(id).then((l) => {
     if (!current()) return true;
+    if (!l && !shown && onFail) { onFail(); return null; }
     if (!l) { look.res = shown ? 'failed-preview' : 'failed'; notify(); return null; }
     apply(l); shown = 'full'; look.res = 'full'; notify();
     return true;

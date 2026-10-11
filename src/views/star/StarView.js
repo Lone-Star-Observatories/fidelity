@@ -160,14 +160,16 @@ export function createStarView(container) {
       return;
     }
     u.uBandTint.value.setRGB(...look.tint); setGlow(look.tint);
-    if (look.feed) {
-      loadLive(look.feed, 6 * 3600000).then((l) => {
-        if (bandLook !== look || star !== mesh) return;
-        if (!l) { look.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; look.tier = 'computed'; drawBandCard(); return; }
-        u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; u.uBandMix.value = look.mix ?? 1; if (l.disk) u.uDiskR.value = l.disk;
-        feedCredit(look, l); bandFeedTime = l.time; drawBandCard();
-      });
-    } else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
+    const showFeed = (lk) => loadLive(lk.feed, 6 * 3600000).then((l) => {
+      if (bandLook !== lk || star !== mesh) return;
+      // #72: a map that fails to load (today's SRH) gives way to its fallback (archival Nobeyama), labelled as such
+      if (!l && lk.fallback) { bandLook = lk.fallback; drawBandCard(); showFeed(lk.fallback); return; }
+      if (!l) { lk.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; lk.tier = 'computed'; drawBandCard(); return; }
+      u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; u.uBandMix.value = lk.mix ?? 1; if (l.disk) u.uDiskR.value = l.disk;
+      feedCredit(lk, l); bandFeedTime = l.time; drawBandCard();
+    });
+    if (look.feed) showFeed(look);
+    else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
     drawBandCard();
   }
   function drawBandCard() {
