@@ -1,0 +1,174 @@
+{
+  "status": "Research-only masters/previews; no56th dossier or new embedding",
+  "body": "Rhea",
+  "records": [
+    {
+      "role": "surfaceImage",
+      "kind": "original",
+      "path": "data/research-sources/rhea-generated-surfaceImage-original.png",
+      "bytes": 3261765,
+      "sha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+      "width": 1672,
+      "height": 940
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/rhea-surfaceImage-master1536.jpg",
+      "bytes": 392520,
+      "sha256": "e92856a60c8d4ca6ccf012739e67f50ce4cf8c9d1458f6bafb39f54b9447c730",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/rhea-surfaceImage-preview256.jpg",
+      "bytes": 11342,
+      "sha256": "868ca0df0c077d964b2f932253c22af2d7a2869263c4d76188b56d7db6f2eac6",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "role": "skyImage",
+      "kind": "original",
+      "path": "data/research-sources/rhea-generated-skyImage-original.png",
+      "bytes": 1823737,
+      "sha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/rhea-skyImage-master1536.jpg",
+      "bytes": 205187,
+      "sha256": "26feedfd553dff92bc28d5f1f92280c8c5dde0bc410b35fcf5937c89de0f1424",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/rhea-skyImage-preview256.jpg",
+      "bytes": 6791,
+      "sha256": "99c9d9a76437839cf143d6da2d1a51d245565b6912c4d22970362a6eb2a9007e",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "processing": "Generated illustrations only: 1536x864 JPEG85 masters and recorded256x144 JPEG80 previews. Original PNGs preserved. Native publisher images unchanged.",
+  "limitations": [
+    "Small in-image labels may be unreadable in compact previews; card labels required.",
+    "Prior terrain, chemistry, exosphere, no confirmed Rhea ring and undersized uncalibrated Saturn limitations remain unchanged."
+  ],
+  "next": "Recover offline headroom and assess credited compact publisher rendition before additive integration.",
+  "inspection": "Both256 previews inspected: IMAGINED title remains recognizable; footer annotations too small for reliable reading. Card labels required. Saturn remains substantially undersized and uncalibrated.",
+  "previewTotalJpegBytes": 18133,
+  "snapshotAudit": {
+    "comparison": "Saved0487 readable JSON versus current02b0 rebuild",
+    "differences": [
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+        "beforeSha256": "666655096ebf6db050956146f18820d6965aa2a8deab74cf4c60e286b57bf89a",
+        "afterSha256": "021ff836876afeb2778ea0df8e5af5f482613253049a871b4b28be59b9d2298e"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+        "beforeSha256": "e6778ab7e7e4ad541aa247314a1ae8545d4fbbb42cb293d9d7584b3a1e46094e",
+        "afterSha256": "effbcc256ea57f1d055b105292301094b73381b836d5ec7cc5beec0979b5365f"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+        "beforeSha256": "da9198fb12399c66a8d6cea090e169f153ea2dcbbb3b821d9cfd2e3fdc0e0eaa",
+        "afterSha256": "cb8a84580ba152769430d58453032ccb43c027c5e4f6d55205aa49c4da232e5d"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+        "beforeSha256": "2eaea2fae1b4f7d499e1c2247471c744a43e049747679ce74b7180272663d6cd",
+        "afterSha256": "bc2d1486f80780caa7bbd7198ac26857184297d3962a99fa08d22ea6eaa3f3ae"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+        "beforeSha256": "a22048c2901b8a5f265dce32812d164f2f8c0765e2e7c53bbb78a55c4ab3417a",
+        "afterSha256": "246e8625046ab2b8d17ed56bbad70f537aaee34f612048b631c94dd57e431c5f"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+        "beforeSha256": "d65464ec829577d3c325dd8136100cdfaceb848a539fb7ea8cde2f4836ec2812",
+        "afterSha256": "f25af966dc4d2c54c6c6d6353dc9a36a410d745881d080669c0d38d7cc6c8b6c"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+        "beforeSha256": "73069dee7a716c7850ef75bfa35fe4fd57f4927ea52ed4da6b1e4da77bd370e8",
+        "afterSha256": "f6cbfb32a7e387a5cfac7a8258428b28c019208ac2bab0a0687caaceea4455ee"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+        "beforeSha256": "9b600946ef68909e5c76f64798ecd42e855f46bcf4144870c96346e3dc1afca3",
+        "afterSha256": "b370ab478bd826adc1388f047d12499bfe1aff54a4b553df82b5731a08e6ea52"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+        "beforeSha256": "6c91ae4db79126dab0dc307f2aa096e5976a34240984b33e652c25fe337e720c",
+        "afterSha256": "b8d09008de41ede7713d1ebc122de2a1c1a588f124fb7e25a8478e4f70b29f21"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+        "beforeSha256": "9926d7f37e2f4d4b9a29ac1c6685d130ed3a1a80b95559d02a11855a5501448f",
+        "afterSha256": "2764fcc0566f93b744f832ae80ac341da33035f4dd9643bf26f3fee87026f263"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+        "beforeSha256": "233ffd8febe593dc07d2ffa333e1a8e5d641ad6d5bfbf91aafa357100ec8f059",
+        "afterSha256": "a2310bf1681c846e1f7ecd4763aa729dd7eee1a2260c8181469a9c6980df8a48"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+        "beforeSha256": "80b2e86235704a3f03d07e35fea80b6b68b26fa5b220c28d541713902d2e5032",
+        "afterSha256": "3f974362b3db3e17f298d422f6c18bde71dd4fcb7e5446243cdd97bade0fd3cc"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+        "beforeSha256": "cbed60883c91baa2dd298dab785a50a85ef75058c2a4693697cc190eae01439d",
+        "afterSha256": "f780da2e888083ebbb18f0ab03e7d50ca18def5187c6e823435882708d571558"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+        "beforeSha256": "8344914a0b5b87f3def1b2b643c7ea525202aab6c3feea743bf00922ce533bfe",
+        "afterSha256": "fda48e75242486355d5b1dc646aa208996efd8471d1038c11ec6b1e91e390c48"
+      },
+      {
+        "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+        "beforeSha256": "d6f9210e177298dd2d99e42c12c379c39fdc1047e06f75175438f251ad5be9ab",
+        "afterSha256": "50355c91c6fafb925696c19ca18a31e72cebfad513b4e09f37a5ca9f8d67d185"
+      }
+    ],
+    "interpretation": "These changed snapshot fields are directly verified. Earlier b376-to0487 cause remains unaudited."
+  },
+  "verification": {
+    "all55DossiersDeepEqual": true,
+    "testsPassed": 433,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15968288,
+    "headroomBytes": 31712,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "02b0c8db85e94bb7665b5b8dd26dfe0f8496881ff3467ea610e2db697deb9155",
+      "raw": "3c3e3b4736350f47944b8d061f7d44930b221194614d8d54305100b23364af38",
+      "magic": "FIDNUM01",
+      "images": 198,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15968288,
+      "compressedBytes": 700764,
+      "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactCss": true
+  }
+}
