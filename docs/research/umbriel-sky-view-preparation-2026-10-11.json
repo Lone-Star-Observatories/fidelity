@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-11",
+  "body": "Umbriel",
+  "status": "Research-only independent observer preparation; no 63rd dossier/new embedding.",
+  "generator": "Built-in image_gen; scientific-educational",
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity hypothetical SKY FROM UMBRIEL illustration, landscape 16:9.\nPrimary request: independently invent an airless local observer scene on Uranus's moon Umbriel with a schematic Uranus disk above low dark cratered terrain. No input images; no observed-body map reuse.\nComposition: low charcoal-grey granular foreground with scattered angular blocks and shallow crater rims, black sky. Uranus high above horizon, away from titles. Representative spherical skyGeometry gives angular diameter10.967213386130908 degrees for mean radius25362km at265986minus584.7km, nominal90degree horizontal field. Target centred full globe width9.6000286205percent of image width (about160.51248pixels if1672wide). Keep the globe modest, roughly one tenth of frame width, not a huge planet. This requested scale is a geometric guide, not calibrated image registration.\nAppearance: Uranus pale subdued cyan with independently invented very faint bands; partial illuminated disk whose full spherical outline is intelligible. Planet colour, band pattern, phase, lighting and exposure are artistic. Camera/axis orientation assumed, no dated ephemeris; spherical model omits oblateness. Omit rings as an artistic exposure choice, not a claim they are invisible. No Sun or stars.\nText verbatim: clear upper-left \"IMAGINED · SKY FROM UMBRIEL\" and readable bottom-left \"Terrain, colour, phase and camera attitude assumed\".\nConstraints: all terrain, blocks, grains, chemistry and fractions invented; no registered Voyager or Wunda site. Do not copy, recolour or reuse Moon, Mars, Pluto, Uranus or any other observed body's imagery or map. No atmosphere, haze, cloud over foreground, vapour, plume, eruption, liquid, exposed ocean, biology, human, craft or survivable landing. Conditional Wunda impact models do not establish current ocean or activity. Realistic restrained educational rendering.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-0afaf5e5-503f-4f3f-90a7-920dd4b36e33.png",
+  "retainedPath": "data/research-sources/umbriel-generated-skyImage-original.png",
+  "inspected": true,
+  "inspection": "Readable IMAGINED SKY FROM UMBRIEL label and assumption footer. Independent cratered regolith/blocks, black sky and schematic cyan Uranus. Generated globe visibly exceeds requested geometric width; not calibrated geography, visible colour or photometry.",
+  "geometry": {
+    "method": "src/astro/appearance.js skyGeometry",
+    "uranusMeanRadiusKm": 25362,
+    "umbrielRepresentativeOrbitalDistanceKm": 265986,
+    "umbrielRadiusKm": 584.7,
+    "observerDistanceKm": 265401.3,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 10.967213386130908,
+    "centreDiscWidthFraction": 0.09600028620517442,
+    "temperatureK": 60,
+    "temperaturePurpose": "Only angular helper input; irradiance and blackbody colour outputs are not adopted as physical Uranus photometry.",
+    "sun": "Off frame; no rendered Sun size claim.",
+    "targetWidthPixels": 160.51247853505163
+  },
+  "limitations": "Globe oversized; threshold-sensitive row chords are not calibrated full diameter. Local terrain, chemistry/fractions, Uranus colour/bands/phase, illumination/exposure and camera/axis attitude invented. Spherical mean-radius geometry omits oblateness; no dated ephemeris or site registration. Rings omitted as artistic exposure choice, not invisibility claim. No analog observed-body map or foreground atmosphere/plume/liquid/ocean/biology/landing.",
+  "next": "Original-preserving masters/recorded previews and additive Umbriel63 budget, retaining full native/paper provenance and all62 prior dossiers.",
+  "original": {
+    "bytes": 1961295,
+    "sha256": "1b361200dc11d837eb93cff655cf5ad8de69f575e019a6e8a8932aa2c35f5b0e",
+    "width": 1672,
+    "height": 941,
+    "defaultCopyByteEqual": true
+  },
+  "rasterAudit": {
+    "row": 240,
+    "thresholds": [
+      5,
+      10,
+      20
+    ],
+    "widths": [
+      239,
+      236,
+      235
+    ],
+    "limits": "Bright disk row chords only; phase/exposure sensitive, not calibrated full diameter."
+  },
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15830848,
+    "headroomBytes": 169152,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "43eb320da2cdfdd470e95fbc0e139dfa7ce8c83414915c60e9c74e113d5975ed",
+      "raw": "da1defc4c43a78edba573ca4ef9152e0ccef626630248f9e69e402e5c7d1b92f",
+      "magic": "FIDBRT01",
+      "images": 219,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15830848,
+      "compressedBytes": 780775,
+      "applicationSha256": "bf4669f7e3577872e97fccde3c65b2b3597bdded0a8accc4b91c480c95ad52bd",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "stylesheet": "{\n  cssBytes: 54935,\n  cssSha256: '960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772',\n  rawSha256: '456c98b515807cfb8a99452b7bd6c5a28a59fd78ac689d2c0c14a6b0ad3c2159',\n  exactRestoredStyle: true,\n  htmlParserPreservedPackedText: true,\n  background: 'rgb(0, 0, 0)',\n  buttons: 393,\n  pageErrors: []\n}",
+    "preservation": "All62 dossiers deepEqual to saved prior62; every tracked registry/bespoke/map/model/shape/native input remains unchanged to HEAD. Both original generated PNGs/default copies retained byte-identical with full prompts. No63rd dossier/new embedding; queue566unchanged.",
+    "attribution": "Interbuild snapshot6834ff-to43eb32 differs; origin not independently audited. No asset/compression savings attribution.",
+    "limits": "Chrome verified; other engines open. Native/model/map/shape inputs and production FIDBRT01/Brotli11 inner/standardgzip9 outer, application32/unlimited, CSS5 and all legacy decoders/Blob paths unchanged."
+  }
+}

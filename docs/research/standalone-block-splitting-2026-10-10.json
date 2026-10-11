@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-10",
+  "status": "Verified adopted compression settings",
+  "change": "Full binary snapshot standard-gzip Zopfli128/default15-block limit to16iterations/blocksplittingmax0. Application32 and CSS5 unchanged; runtime encodings/decoders unchanged.",
+  "sameInput": {
+    "snapshotSHA256": "4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef",
+    "baseline": {
+      "iterations": 128,
+      "blocksplittingmax": 15,
+      "gzipBytes": 13189667,
+      "transportBytes": 15148011
+    },
+    "trial": {
+      "iterations": 16,
+      "blocksplittingmax": 0,
+      "gzipBytes": 13137116,
+      "transportBytes": 15087784
+    },
+    "gzipBytesSaved": 52551,
+    "transportBytesSaved": 60227,
+    "exactRoundTrips": true
+  },
+  "preservation": "All56 dossiers deeply equal. No native/image/model/map/shape changes, field pruning, numeric rounding, or lossy conversion. Original PNGs/masters retained. No57th Titan dossier or embedding.",
+  "compatibility": "Standard gzip DecompressionStream, dense125v2/v1, raw120wide/v1, radix85/base64, FIDAPP01/FIDNUM01/FIDBIN01, CSS restoration, Blob import/revoke and unsupported-browser message retained.",
+  "limits": "Chrome verified; other browser engines remain open. Standard gzip remains required. No Titan embedding yet; recovered headroom permits an additive trial, not an unmeasured fit claim.",
+  "verification": {
+    "tests": {
+      "pass": 453,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15928755,
+    "headroomBytes": 71245,
+    "fullHtmlBytesSavedAgainstSameCompleteInput": 60227,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef",
+      "raw": "184d1a91d69f9175fc3880b249b2f31ef05b7446c0592b2c14f9a53e2fb5f2f3",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15928755,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "CSSsha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "sameReadableSnapshotBytes": true,
+    "nativeContextHashes": "pass",
+    "normalOfflineRheaOwnMap3Cards": "pass",
+    "sixOfflineRoutes": "pass",
+    "unsupportedGzipMessage": "pass",
+    "offlineWorkerEventRows": 11
+  }
+}

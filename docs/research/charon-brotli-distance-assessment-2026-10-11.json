@@ -1,0 +1,43 @@
+{
+  "snapshotSha256": "c2317d3c8bc423fc1721c4bf82dcf3550d6e307d73e93ae941eaf0175a9cb5eb",
+  "binaryBytes": 19779532,
+  "results": [
+    {
+      "postfix": 0,
+      "direct": 0,
+      "innerBytes": 13125242,
+      "outerGzipBytes": 13128328,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "postfix": 1,
+      "direct": 16,
+      "innerBytes": 13125242,
+      "outerGzipBytes": 13128328,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "postfix": 2,
+      "direct": 32,
+      "innerBytes": 13125242,
+      "outerGzipBytes": 13128328,
+      "nativeAndBundledJsExact": true
+    }
+  ],
+  "status": "Research-only; no production setting changed and no Charon dossier embedded.",
+  "interpretation": "All three requested settings produced identical byte counts. No savings demonstrated; whether the encoder selected identical distance parameters internally was not inspected.",
+  "preservation": "Exact native Brotli inverse and bundled JavaScript full JSON restoration verified for every candidate. Existing source inputs unchanged.",
+  "doNotRepeat": "These postfix/direct combinations have now been screened.",
+  "validation": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990906,
+    "headroomBytes": 9094,
+    "browser": "Chrome exact full readable JSON and HTML-parser snapshot payload; 237 images, 20 band images, 517 details, 32 models. Other engines remain open.",
+    "completeSnapshotSha256": "d193de8e7caff6254e076bdaf38c736060b6693998cf1bdbe1031412277c4c85",
+    "attribution": "Rebuilt live-feed differences have not been independently audited; no savings attribution. Production codecs unchanged.",
+    "registry": 68,
+    "queue": 566
+  }
+}

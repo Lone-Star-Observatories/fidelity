@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-11",
+  "body": "Hydra",
+  "status": "Research-only LORRI preparation; no new dossier, embedding, map or shape.",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/hydra-PIA19711-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.jpg",
+      "bytes": 17311,
+      "sha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 1050,
+      "height": 704,
+      "format": "JPEG",
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/hydra-PIA19711-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.tif",
+      "bytes": 740226,
+      "sha256": "e8368f06769a9264fc2d621806e28918c9b10dacc286bd745e3dc31eb340cb17",
+      "status": 200,
+      "contentType": "image/tiff",
+      "width": 1050,
+      "height": 704,
+      "format": "TIFF",
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/hydra-PIA19711-caption.html",
+      "url": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+      "bytes": 267797,
+      "sha256": "b0019f2266ca213d441eb200d90946a3e2b62e2da7164993d1e0dd1242b5f084",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    }
+  ],
+  "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+  "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/; active NASA terms, not asserted CC BY. Prior downloaded terms hash retained in hydra-moon-preparation-2026-10-11.json.",
+  "imageAdditionDate": "2015-07-15",
+  "observationDate": "Exact acquisition UTC/date not given by this caption; encounter-era image, product crosswalk open.",
+  "limitations": [
+    "LORRI monochrome brightness variation does not establish calibrated visible colour, local composition or complete geography.",
+    "Caption 43 by 33 km, 3 km/pixel, approximately 400000 miles range and approximately 10 km dark structure are historical source estimates, not new raster calculations or current global shape axes.",
+    "Water-ice interpretation in this early caption is a hypothesis; later spectral evidence remains separately recorded and not a pixel chemistry map.",
+    "Page update2025-09-23 is not an observation date. No exhaustive newest-image claim. Exact product, processing, phase, rotation and shape registration remain open."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "newEmbedding": false,
+    "trackedEarlierInputs": 389
+  },
+  "visualInspection": [
+    "Unchanged JPEG inspected: coarse block-like monochrome sampling against a black background; blocks are image sampling, not rocks, cracks or terrain cells.",
+    "No Charon or other body is included in this image; no map or texture adopted. Background does not measure atmospheric absence."
+  ],
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991432,
+    "headroomBytes": 8568,
+    "queue": 566,
+    "completeSnapshotSha256": "13ef9cbc468017d0028f3d41a9745dff3b7c97850500be9998107fa341e833d2",
+    "rawTransportSha256": "1b3d1fa16b3f81bf0e727472f905a7eed5b1ea60ba5b0961059bd045de6d92b0",
+    "browser": "Chrome exact complete readableJSON and HTML-parser transport; 237 images, 20 bands, 517 details, 32 model entries, no errors. Other engines open.",
+    "attribution": "Interbuild differences unaudited; no asset or compression savings attribution. Production codecs unchanged."
+  }
+}

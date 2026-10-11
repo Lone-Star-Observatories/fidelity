@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "body": "Oberon",
+  "mode": "Built-in imagegen new independent illustration",
+  "status": "Prepared; additive integration pending",
+  "prompt": "Use case: illustration-story. Scientific explorer hypothetical local terrain card, wide 16:9. Independently invent a cautious near-ground landscape on Oberon, Uranus moon: old cratered grey ice-rich-looking regolith with low rounded crater rims, scattered angular blocks, a few brighter patches and a distant modest ridge. New imagined terrain, not any named Voyager crater or registered globe site. Never imitate or reuse Moon, Callisto, Mars or another observed body geography. Black airless sky without planets, Sun, stars, haze or clouds. Restrained greys, subtle brown dust, low-angle artistic light. Material chemistry, fractions, relief, brightness and exposure are unknown artistic assumptions. No liquid, ocean, plume, eruption, life, people, structures or craft, no survivable landing implication. Sober photographic illustration. Text verbatim large top-left \"OBERON · IMAGINED\"; bottom-left \"Invented terrain · no registered site\". No coordinates, scale bars or additional labels.",
+  "original": {
+    "path": "data/research-sources/oberon-generated-surfaceImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-20f48de7-4aee-4bb0-a267-b89a0407239f.png",
+    "bytes": 3072631,
+    "sha256": "ecdd9b62bdac8c1bb42d4c1bc25f636d278fccd73ec33d825792e1001f54bcc6",
+    "width": 1672,
+    "height": 941
+  },
+  "master": {
+    "path": "data/research-sources/oberon-generated-surfaceImage-master.jpg",
+    "bytes": 369859,
+    "sha256": "fc2003554f4008ae57f8533a6ba8c567c5d46d784366a3e9cbb0b66bba99a25c",
+    "width": 1536,
+    "height": 864,
+    "quality": 85
+  },
+  "preview": {
+    "path": "data/research-sources/oberon-generated-surfaceImage-preview256.jpg",
+    "bytes": 11888,
+    "sha256": "25b0b497c2d0dda3c2494d21c12e14ba529b7403168cb662e039b3a251e74b3a",
+    "width": 256,
+    "height": 144,
+    "quality": 80
+  },
+  "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required."
+}

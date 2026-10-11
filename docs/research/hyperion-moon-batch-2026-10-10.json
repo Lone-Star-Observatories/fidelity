@@ -1,0 +1,360 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "hyperion",
+      "name": "Hyperion",
+      "aliases": [
+        "Hyperion"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe adopted; surfacePending true retained. Existing PDS shape/preview unchanged. Frame, uncertainty and chaotic attitude audit open.",
+      "measured": [
+        "Representative catalogue radius135km, mass5.62e18kg and semimajor axis1481500km retained; not dated camera geometry.",
+        "Cassini PIA17193/PIA17194 observed2015-05-31 released2015-06-02; full original JPEG/TIFF source bytes retained separately."
+      ],
+      "modelled": [
+        "Existing model frame/centre-of-figure and 2018 archive provenance retained, not independently reverified this batch. Direct PDS source/label/document requests returned403."
+      ],
+      "unknown": [
+        "Current chaotic body attitude, physical terrain registration and shape uncertainty remain open.",
+        "Native monochrome views do not establish calibrated visible colour or a global map; no measured local chemistry/fractions.",
+        "PIA17194 Photojournal755feet230m/pixel versus separate resource145feet230m caption conflict retained without an independent raster scale solution."
+      ],
+      "assumed": [
+        "All terrain, blocks, depressions, porosity appearance, material chemistry/fractions, colour, phase, rings, illumination and exposure invented. No analog body map or observed image used as reference.",
+        "No registered Cassini/PDS site or dated present-day attitude; chaotic spin does not define a permanently Saturn-facing location.",
+        "No local atmosphere, cloud, haze, plume, liquid, exposed ocean, biology or survivable landing implied.",
+        "Generated Saturn globe is substantially undersized relative to skyGeometry guide; row185 bright-region thresholds exclude rings and are not a calibrated full diameter.",
+        "Original PNGs and full prompts retained;1536JPEG85 masters and recorded256 previews with offlineWebP80. Small annotations have limited readability; card labels required.",
+        "Off-frame Sun helper9.58AU is angular only, not a calibrated illumination model."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+          "title": "Cassini PIA17193 near-infrared native image",
+          "publicationDate": "2015-06-02"
+        },
+        {
+          "url": "https://science.nasa.gov/photojournal/spongy-surface/",
+          "title": "Cassini PIA17194 visible monochrome view",
+          "publicationDate": "2015-06-02"
+        },
+        {
+          "url": "https://science.nasa.gov/resource/spongy-surface/",
+          "title": "Separate caption with inconsistent feet scale"
+        },
+        {
+          "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.xml",
+          "title": "PDS Hyperion shape label; direct access403"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/hyperion-cassini-native.jpg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17193/PIA17193.jpg?w=320&fit=clip",
+          "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+          "credit": "NASA/JPL-Caltech/Space Science Institute",
+          "terms": "NASA image/media guidelines; not asserted CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "2015-05-31",
+          "publicationDate": "2015-06-02",
+          "bytes": 15942,
+          "sha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+          "width": 320,
+          "height": 320,
+          "description": "Cassini NAC862nm near-infrared monochrome publisher image. Unchanged NASA-served320 display JPEG; publisher resizing/reencoding disclosed, not full original pixel preservation. Full1024JPEG83186 and TIFF originals retained. Not calibrated visible colour, local material chemistry or registered globe.",
+          "processing": "Unchanged publisher display rendition; no local transformation."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 9.58,
+        "horizontalFovDeg": 90
+      },
+      "saturnGeometry": {
+        "angularDiameterDeg": 4.505719665298651,
+        "centreDiscWidthFraction": 0.03934009765362271,
+        "irradianceEarth": 0.000005243185255436207,
+        "approximateSrgb": [
+          1,
+          0.2663545845364998,
+          0
+        ],
+        "horizontalFovDeg": 90,
+        "limits": "Spherical mean-radius skyGeometry angular guide only. 95 K RGB/irradiance helper not adopted for Saturn visible colour. Hypothetical camera direction, rings/phase/FOV/exposure/light and chaotic attitude uncalibrated.",
+        "radiusKm": 58232,
+        "observerDistanceKm": 1481365,
+        "targetPixels": 65.77664327685717
+      },
+      "inputs": {
+        "surfaceImage": "hyperion-generated-surfaceImage-original.png",
+        "skyImage": "hyperion-generated-skyImage-original.png"
+      },
+      "surfaceLabel": "HYPOTHETICAL LOCAL HYPERION TERRAIN",
+      "skyLabel": "HYPOTHETICAL SKY FROM HYPERION"
+    }
+  ],
+  "sourceRecords": {
+    "generated": {
+      "surfaceImage": {
+        "generator": "Built-in imagegen",
+        "generationId": "exec-e80abb2f-4721-4477-8043-de00a6f3bb34",
+        "originalFile": "data/research-sources/hyperion-generated-surfaceImage-original.png",
+        "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e80abb2f-4721-4477-8043-de00a6f3bb34.png",
+        "bytes": 3602485,
+        "sha256": "9671a409f183b4eaac93a0746b88e24ffe5de35b43594dd54eeb1662e0642e60",
+        "width": 1672,
+        "height": 941,
+        "prompt": "Create a standalone independent scientific imagination illustration for the Fidelity astronomical explorer: a hypothetical local view on Saturn's irregular moon HYPERION, landscape 16:9. Entire terrain is independently invented, never copied, recoloured, or mapped from Moon, Mars, Pluto, or any observed astronomical image. An unmanned camera near a gently uneven foreground shows porous-looking grey-tan regolith, scattered small irregular blocks, deep bowl-like depressions in a middle-distance ridge, darker material in some hollow floors, sharp sunlight and black vacuum sky. Convey an irregular battered icy small moon qualitatively; this is not observed microscopic porosity or measured chemistry. Terrain details, dimensions, material fractions, ice visibility, colour, illumination, exposure, and camera position are artistic assumptions. Do not reproduce identifiable Cassini Hyperion geography or imply registration to a PDS shape. No Saturn, rings, Sun disk, stars, atmosphere, haze, clouds, plume, lava, liquid, ocean, life, people, spacecraft, or survivable landing. Hyperion rotates chaotically; the view has no dated attitude or permanently Saturn-facing site. Render sober realistic illustrative textures, not a cartoon, with low distant relief and readable foreground. Large clear discreet top-left label 'IMAGINED · HYPERION LOCAL VIEW'. Bottom annotation 'Invented terrain · no registered site or measured material fractions'.",
+        "inspected": true
+      },
+      "skyImage": {
+        "generator": "Built-in imagegen",
+        "generationId": "exec-1030a542-0d27-45d4-824d-3130ad3d79bf",
+        "originalFile": "data/research-sources/hyperion-generated-skyImage-original.png",
+        "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1030a542-0d27-45d4-824d-3130ad3d79bf.png",
+        "bytes": 1568668,
+        "sha256": "416cc40f85b591a711930083ff81b847d6462f5e51fc1890a59923047bc8295a",
+        "width": 1672,
+        "height": 941,
+        "prompt": "Create an independent IMAGINED astronomical observer illustration from a hypothetical location on HYPERION, landscape16:9, nominal90degree horizontal rectilinear field of view. Bottom quarter independently invented grey-tan cratered terrain with scattered blocks and shallow shadowed pits, black vacuum sky. Small Saturn high in upper middle, spherical mean-radius angular guide4.50572degrees, disk3.93401percent of full width; rings extend beyond disk as a narrow nearly edge-on thin line, not a broad open ellipse. Subtle cream-ochre independently invented bands. Hyperion rotates chaotically: this is one assumed camera attitude, NOT a permanently Saturn-facing site, dated orientation or registered PDS terrain. Ring opening, extent, phase, oblateness, light, exposure, colours and material chemistry/fractions are artistic and uncalibrated. Do not copy/recolour any observed Moon/Mars/Pluto/Saturn or other body maps. Do not reproduce identifiable Cassini geography. Sun outside frame; no stars, other moons, local atmosphere, haze, clouds, plume, liquid, ocean, life, humans, spacecraft or survivable landing. Large readable top-left label 'IMAGINED · SKY FROM HYPERION'. Bottom text 'Assumed attitude · chaotic spin · uncalibrated Saturn view'. Scientific concept illustration with realistic restrained textures. The small disk must remain small rather than a dramatic giant planet.",
+        "inspected": true
+      }
+    },
+    "native": {
+      "file": "data/research-sources/hyperion-PIA17193-display320.jpg",
+      "bytes": 15942,
+      "sha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+      "width": 320,
+      "height": 320
+    },
+    "researchPreparation": "hyperion-moon-preparation-2026-10-10.json",
+    "nativeOriginals": "hyperion-moon-source-records-2026-10-10.json"
+  },
+  "rasterAssessment": {
+    "geometry": {
+      "angularDiameterDeg": 4.505719665298651,
+      "centreDiscWidthFraction": 0.03934009765362271,
+      "irradianceEarth": 0.000005243185255436207,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical mean-radius skyGeometry angular guide only. 95 K RGB/irradiance helper not adopted for Saturn visible colour. Hypothetical camera direction, rings/phase/FOV/exposure/light and chaotic attitude uncalibrated.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 1481365,
+      "targetPixels": 65.77664327685717
+    },
+    "runs": [
+      {
+        "row": 185,
+        "threshold": 5,
+        "width": 39
+      },
+      {
+        "row": 185,
+        "threshold": 10,
+        "width": 35
+      },
+      {
+        "row": 185,
+        "threshold": 20,
+        "width": 31
+      }
+    ],
+    "limitation": "Generated Saturn globe is substantially undersized relative to skyGeometry guide; row185 bright-region thresholds exclude rings and are not a calibrated full diameter."
+  },
+  "verification": {
+    "tests": {
+      "passed": 453,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "htmlBytes": 15997661,
+    "headroomBytes": 2339,
+    "registryDossiers": 58,
+    "queueEntries": 566,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "60966bd3153ee9ddc96b5e24bc15bac04d2284f46fb4b3a941cee83de682a5a5",
+      "raw": "7e6c2d0cebc603191f574a9c0de0907b34441e12b8229fe32f8e1612d3753a6c",
+      "magic": "FIDNUM01",
+      "images": 207,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15997661,
+      "compressedBytes": 717383,
+      "applicationSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All57 prior dossiers deepEqual;69 tracked map/model/shape files equal HEAD bytes. Original generated PNG copies/default originals verified; prior originals/masters/native/map/model/shape bytes preserved. No generated globe.",
+    "normalOffline": "Hyperion surfacePending true, own existing shape retained and three bespoke cards decode in normal/offline routes. All native context source hashes verified.",
+    "routes": "Six offline routes, unsupported gzip message and11 event worker rows passed.",
+    "interbuildDifferences": [
+      "/bodyImages//bespoke/hyperion-cassini-native.jpg",
+      "/bodyImages//bespoke/hyperion-sky-image.jpg",
+      "/bodyImages//bespoke/hyperion-surface-image.jpg",
+      "/crew/cache"
+    ],
+    "interbuildAssessment": "Three new Hyperion bodyImages and crew cache only; net HTML increment is not solely attributed to assets.",
+    "otherBrowserEngines": "Not independently verified"
+  },
+  "deliveredVisual": {
+    "id": "hyperion",
+    "name": "Hyperion",
+    "aliases": [
+      "Hyperion"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe adopted; surfacePending true retained. Existing PDS shape/preview unchanged. Frame, uncertainty and chaotic attitude audit open.",
+    "measured": [
+      "Representative catalogue radius135km, mass5.62e18kg and semimajor axis1481500km retained; not dated camera geometry.",
+      "Cassini PIA17193/PIA17194 observed2015-05-31 released2015-06-02; full original JPEG/TIFF source bytes retained separately."
+    ],
+    "modelled": [
+      "Existing model frame/centre-of-figure and 2018 archive provenance retained, not independently reverified this batch. Direct PDS source/label/document requests returned403."
+    ],
+    "unknown": [
+      "Current chaotic body attitude, physical terrain registration and shape uncertainty remain open.",
+      "Native monochrome views do not establish calibrated visible colour or a global map; no measured local chemistry/fractions.",
+      "PIA17194 Photojournal755feet230m/pixel versus separate resource145feet230m caption conflict retained without an independent raster scale solution."
+    ],
+    "assumed": [
+      "All terrain, blocks, depressions, porosity appearance, material chemistry/fractions, colour, phase, rings, illumination and exposure invented. No analog body map or observed image used as reference.",
+      "No registered Cassini/PDS site or dated present-day attitude; chaotic spin does not define a permanently Saturn-facing location.",
+      "No local atmosphere, cloud, haze, plume, liquid, exposed ocean, biology or survivable landing implied.",
+      "Generated Saturn globe is substantially undersized relative to skyGeometry guide; row185 bright-region thresholds exclude rings and are not a calibrated full diameter.",
+      "Original PNGs and full prompts retained;1536JPEG85 masters and recorded256 previews with offlineWebP80. Small annotations have limited readability; card labels required.",
+      "Off-frame Sun helper9.58AU is angular only, not a calibrated illumination model."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "title": "Cassini PIA17193 near-infrared native image",
+        "publicationDate": "2015-06-02"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/spongy-surface/",
+        "title": "Cassini PIA17194 visible monochrome view",
+        "publicationDate": "2015-06-02"
+      },
+      {
+        "url": "https://science.nasa.gov/resource/spongy-surface/",
+        "title": "Separate caption with inconsistent feet scale"
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.xml",
+        "title": "PDS Hyperion shape label; direct access403"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/hyperion-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17193/PIA17193.jpg?w=320&fit=clip",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2015-05-31",
+        "publicationDate": "2015-06-02",
+        "bytes": 15942,
+        "sha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+        "width": 320,
+        "height": 320,
+        "description": "Cassini NAC862nm near-infrared monochrome publisher image. Unchanged NASA-served320 display JPEG; publisher resizing/reencoding disclosed, not full original pixel preservation. Full1024JPEG83186 and TIFF originals retained. Not calibrated visible colour, local material chemistry or registered globe.",
+        "processing": "Unchanged publisher display rendition; no local transformation."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 4.505719665298651,
+      "centreDiscWidthFraction": 0.03934009765362271,
+      "irradianceEarth": 0.000005243185255436207,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical mean-radius skyGeometry angular guide only. 95 K RGB/irradiance helper not adopted for Saturn visible colour. Hypothetical camera direction, rings/phase/FOV/exposure/light and chaotic attitude uncalibrated.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 1481365,
+      "targetPixels": 65.77664327685717
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL HYPERION TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM HYPERION",
+    "surfaceImage": {
+      "url": "/bespoke/hyperion-surface-image.jpg",
+      "previewUrl": "/bespoke/hyperion-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hyperion-generated-surfaceImage-original.png",
+      "sourceSha256": "9671a409f183b4eaac93a0746b88e24ffe5de35b43594dd54eeb1662e0642e60",
+      "sha256": "504f341c026c163de79c7eda843aa7ec01fed86b468588adaed5157f3096142a",
+      "previewSha256": "fd7e14744d25f7a05f81b5bceb939d80d7b2a804cd0a27f97b9c6c411b0f7970",
+      "bytes": 458097,
+      "previewBytes": 13870,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hyperion-sky-image.jpg",
+      "previewUrl": "/bespoke/hyperion-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hyperion-generated-skyImage-original.png",
+      "sourceSha256": "416cc40f85b591a711930083ff81b847d6462f5e51fc1890a59923047bc8295a",
+      "sha256": "d974022eb8b34137e140679cb3b9816f81b2e3e45a9525c3b4dd9f03c7e02a9d",
+      "previewSha256": "b9b02ece5e3b07a1cb401342cb4ccc9b9856a0ce65ae691c586dc9f4634f3683",
+      "bytes": 187432,
+      "previewBytes": 6432,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  }
+}

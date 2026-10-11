@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no60th dossier or new embedding.",
+  "body": "Phoebe",
+  "generator": "Built-in OpenAI image generation; independent prompt without referenced images.",
+  "prompt": "Create one independent scientific-educational hypothetical local-terrain illustration for Saturn's moon Phoebe, landscape 16:9. This is an IMAGINED observer scene, not a map, not a reconstruction of a dated Cassini site, and not copied or recoloured from any observed Moon, Mars, Pluto or other body. Independently invent dark charcoal-grey, low-reflectance cratered regolith, scattered angular modest stones, irregular shallow depressions, sparse small pale patches whose chemistry and fractions are unknown. Restrained realism, subtle low relief in foreground with a rounded low ridge far away. Black airless sky occupying upper third; no atmospheric haze/clouds, no visible Saturn, rings, Sun, stars or any astronomical disk. No water pools, liquid, active plumes, exposed ocean, biological forms, spacecraft, people or survivable landing implication. Spectroscopy suggests water absorption in sampled regions, but do not imply quantified ice fraction or pure ice crystals; pale material is an artistic hypothesis. Artistic daylight exposure and spectral transfer, no radiometric calibration. Clear legible upper-left label 'IMAGINED \u2014 PHOEBE' and bottom-left 'HYPOTHETICAL LOCAL TERRAIN'. Keep material colour and geological features explicitly generic and invented.",
+  "originalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-6724096c-e2cc-4cb7-b31e-2553cbf6417d.png",
+  "researchCopy": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+  "inspected": true,
+  "limitations": "Invented craters, depressions, blocks, dark regolith/pale patches, material chemistry/fractions, colour, light and exposure; not a registered Cassini/PDS site. No analog map or observed body skin reused. No atmosphere, cloud, plume, liquid, exposed ocean, biology or survivable landing. No Sun/Saturn/rings/stars/disk in frame; no angular/raster size computation. Observer orientation and native/shape/science calibration remain open.",
+  "bytes": 3116085,
+  "sha256": "37a92d2ff04b124e097de7e00b61a5c173c9de59c8ef5c4055f63db359454e62",
+  "width": 1672,
+  "height": 941,
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996609,
+    "headroomBytes": 3391,
+    "completeSnapshotSha256": "7e4a777775d9133f8338e872230bdf232936e641d76ec19f0222f2018a0f142e",
+    "browser": "Chrome exactcurrentreadableJSON/application/CSS/HTMLparser210images20bands517details32models; application/CSS unchanged. Other engines open.",
+    "preservation": "All59 dossiers and native/map/model/shape inputs unchanged; no60th/newembedding.",
+    "interbuildDifference": "Prior9e5c to7e4a completeJSON difference not recursively audited; no cause or asset/compression saving attribution."
+  }
+}

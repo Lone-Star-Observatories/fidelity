@@ -1,0 +1,514 @@
+{
+  "generated": "2026-10-11",
+  "status": "Verified additive dossier60; calibration, shape and broader backlog remain open.",
+  "bodies": [
+    {
+      "id": "phoebe",
+      "name": "Phoebe",
+      "aliases": [
+        "Phoebe"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-11",
+      "previewWidth": 256,
+      "nativeSurface": "No own resolved globe or shape adopted; surfacePending remains true. Identified2023 SPC bundle and older Gaskell V2 are distinct products; direct XML/document403 and actual geometry/quality/frame audit remain open. No analog globe skin.",
+      "measured": [
+        "Catalogue radius106.5km, representative orbital semimajor axis12929400km and unlocked9.27hour rotation; retrograde orbit. Publisher219km longest/204km shortest dimensions retained separately, without replacing catalogue mean radius.",
+        "Cassini PIA18411 observed2004-06-11; anniversary release2014-06-11 is not a new observation. Monochrome approach/departure images were publisher rescaled, sharpened and contrast enhanced.",
+        "Caption80/65m per pixel and80/83degree phase are publisher estimates, not newly derived raster scale or dated local registration."
+      ],
+      "modelled": [
+        "skyGeometry Saturn spherical58232km at12929400minus106.5km, nominal90degree HFOV:0.516108496207degrees,7.53056549654 target globe pixels at1672.",
+        "Fraser/Brown2018 primary abstract reanalysis40 VIMS images with geometry correction supports water-band variation in sampled coverage; basin exposure/origin interpretations are hypotheses, not local fractions or measured invented terrain."
+      ],
+      "unknown": [
+        "Full spectroscopy paper/figure and final publication-date audit; linked arXiv nonexclusive distribution is not CC BY. No figure embedded.",
+        "Actual2023 shape geometry/uncertainty/frame, older-shape association and resolved globe coverage/epochs/photometry remain open.",
+        "Material chemistry/fractions, calibrated visible colour, lighting/exposure and local registration unknown.",
+        "Saturn row16113pixel brightness spans include rings and are not globe diameters; precise globe separation and raster calibration remain open."
+      ],
+      "assumed": [
+        "IMAGINED independent local and sky illustrations invent craters, stones, regolith, pale patches, chemistry/fractions, colours and lighting. No analog body map or registered Cassini/PDS site.",
+        "Unlocked retrograde orbit means no permanent Saturn-facing site; camera attitude, Saturn bands/rings, variable opening and phase assumed.95K helper RGB/irradiance not adopted as visible photometry. Sun9.58AU off frame.",
+        "No atmosphere, haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. Tiny Saturn/small annotations have limited preview readability; readable card labels carry limitations."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+          "title": "Cassini PIA18411 Arrival and Departure at Phoebe",
+          "publicationDate": "2014-06-11"
+        },
+        {
+          "url": "https://arxiv.org/abs/1803.04979",
+          "title": "Fraser and Brown2018 primary abstract only",
+          "publicationDate": "2018-03-13"
+        },
+        {
+          "url": "https://sbn.psi.edu/pds/resource/weirichphoebeshape.html",
+          "title": "2023 Phoebe SPC bundle; actual geometry audit open"
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA image/media terms"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/phoebe-cassini-native.jpg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+          "sourcePage": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+          "credit": "NASA/JPL-Caltech/Space Science Institute",
+          "terms": "NASA media guidelines, not asserted CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "2004-06-11",
+          "publicationDate": "2014-06-11",
+          "bytes": 11336,
+          "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+          "width": 320,
+          "height": 213,
+          "description": "Actual Cassini processed monochrome approach/departure comparison; not calibrated visible colour or registered local/globe geography.2004 observation/2014 anniversary release distinct.",
+          "processing": "Unchanged NASA-served compact JPEG; publisher resizing/reencoding NOT full original pixel preservation. Full5182x3455 original1192296byteJPEG retained unchanged with source hash."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 9.58,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 0.05562675517362789,
+        "centreDiscWidthFraction": 0.00048543505312076185,
+        "irradianceEarth": 0.010896047349863365,
+        "approximateSrgb": [
+          1,
+          0.9501748635948273,
+          0.9034305975663324
+        ],
+        "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+      },
+      "saturnGeometry": {
+        "angularDiameterDeg": 0.5161084962070008,
+        "centreDiscWidthFraction": 0.004503926732379489,
+        "irradianceEarth": 6.882873268598307e-8,
+        "approximateSrgb": [
+          1,
+          0.2663545845364998,
+          0
+        ],
+        "horizontalFovDeg": 90,
+        "limits": "Spherical angular guide only;95K colour/irradiance not visible photometry. Unlocked retrograde Phoebe: camera attitude/ring opening/phase assumed, no permanent Saturn-facing site or dated ephemeris registration. Row161 spans13px at thresholds5/10/20 include rings, not globe diameter; precise globe separation/calibration open.",
+        "radiusKm": 58232,
+        "observerDistanceKm": 12929293.5,
+        "targetPixels": 7.530565496538506
+      },
+      "surfaceLabel": "IMAGINED LOCAL PHOEBE TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM PHOEBE — ASSUMED ATTITUDE",
+      "surfaceImage": {
+        "url": "/bespoke/phoebe-surface-image.jpg",
+        "previewUrl": "/bespoke/phoebe-surface-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "phoebe-generated-surfaceImage-original.png",
+        "sourceSha256": "37a92d2ff04b124e097de7e00b61a5c173c9de59c8ef5c4055f63db359454e62",
+        "sha256": "9d09c6953eec268450a285cd6e1dfdf696b52ab4320fedc2de4b261cd34f4330",
+        "previewSha256": "c7a344daef00ff72a17139e8d5bcbaa4fa93a8346020feb144c82f088fa56f57",
+        "bytes": 375611,
+        "previewBytes": 10315,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "skyImage": {
+        "url": "/bespoke/phoebe-sky-image.jpg",
+        "previewUrl": "/bespoke/phoebe-sky-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "phoebe-generated-skyImage-original.png",
+        "sourceSha256": "f3896436c08b03ed39947ee7c05a6bb40c9088222e4549e32e89b4ddb960fb4d",
+        "sha256": "ab9806aabf8ddac2e5ebfb0134e4a1349458280c4a7eda7ed61315eb68e910c9",
+        "previewSha256": "86ba5f166367f129e5736c4a6ee47151d17490bd73cd445e874834f33c247ea1",
+        "bytes": 214069,
+        "previewBytes": 6233,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "inputs": {
+        "surfaceImage": "phoebe-generated-surfaceImage-original.png",
+        "skyImage": "phoebe-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/phoebe-PIA18411-display320.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+      "bytes": 11336,
+      "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+      "mime": "image/jpeg"
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-abstract.html",
+      "url": "https://arxiv.org/abs/1803.04979",
+      "bytes": 45168,
+      "sha256": "7014364bc5d64bdf3a40501aa77710fa300faa469329b6c51689636d03366b20",
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-licence.html",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "mime": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/phoebe-PIA18411-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 1192296,
+      "sha256": "1c013f10ecf1e50c24074b7933fc3d6137588267bfcbbe89d5b6182bf79c9572"
+    },
+    {
+      "path": "data/research-sources/phoebe-PIA18411-caption.html",
+      "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 272027,
+      "sha256": "b102ff110247bf5832266dd6e854562f0e738188808aca7569ab752c709ee274"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/bundle_satellite-phoebe.cassini.shape-models-maps.xml",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "path": "data/research-sources/phoebe-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 320651,
+      "sha256": "ef1127ef5c1f925f965a90edd07566c7448fcac9878ade8279caf3972edfbfe9"
+    }
+  ],
+  "generation": [
+    {
+      "date": "2026-10-11",
+      "status": "Research-only; no60th dossier or new embedding.",
+      "body": "Phoebe",
+      "generator": "Built-in OpenAI image generation; independent prompt without referenced images.",
+      "prompt": "Create one independent scientific-educational hypothetical local-terrain illustration for Saturn's moon Phoebe, landscape 16:9. This is an IMAGINED observer scene, not a map, not a reconstruction of a dated Cassini site, and not copied or recoloured from any observed Moon, Mars, Pluto or other body. Independently invent dark charcoal-grey, low-reflectance cratered regolith, scattered angular modest stones, irregular shallow depressions, sparse small pale patches whose chemistry and fractions are unknown. Restrained realism, subtle low relief in foreground with a rounded low ridge far away. Black airless sky occupying upper third; no atmospheric haze/clouds, no visible Saturn, rings, Sun, stars or any astronomical disk. No water pools, liquid, active plumes, exposed ocean, biological forms, spacecraft, people or survivable landing implication. Spectroscopy suggests water absorption in sampled regions, but do not imply quantified ice fraction or pure ice crystals; pale material is an artistic hypothesis. Artistic daylight exposure and spectral transfer, no radiometric calibration. Clear legible upper-left label 'IMAGINED — PHOEBE' and bottom-left 'HYPOTHETICAL LOCAL TERRAIN'. Keep material colour and geological features explicitly generic and invented.",
+      "originalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-6724096c-e2cc-4cb7-b31e-2553cbf6417d.png",
+      "researchCopy": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+      "inspected": true,
+      "limitations": "Invented craters, depressions, blocks, dark regolith/pale patches, material chemistry/fractions, colour, light and exposure; not a registered Cassini/PDS site. No analog map or observed body skin reused. No atmosphere, cloud, plume, liquid, exposed ocean, biology or survivable landing. No Sun/Saturn/rings/stars/disk in frame; no angular/raster size computation. Observer orientation and native/shape/science calibration remain open.",
+      "bytes": 3116085,
+      "sha256": "37a92d2ff04b124e097de7e00b61a5c173c9de59c8ef5c4055f63db359454e62",
+      "width": 1672,
+      "height": 941,
+      "verification": {
+        "tests": "453pass1skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15996609,
+        "headroomBytes": 3391,
+        "completeSnapshotSha256": "7e4a777775d9133f8338e872230bdf232936e641d76ec19f0222f2018a0f142e",
+        "browser": "Chrome exactcurrentreadableJSON/application/CSS/HTMLparser210images20bands517details32models; application/CSS unchanged. Other engines open.",
+        "preservation": "All59 dossiers and native/map/model/shape inputs unchanged; no60th/newembedding.",
+        "interbuildDifference": "Prior9e5c to7e4a completeJSON difference not recursively audited; no cause or asset/compression saving attribution."
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "status": "Research-only; no60th dossier or new embedding.",
+      "body": "Phoebe",
+      "generator": "Built-in OpenAI image generation; independent prompt without referenced images.",
+      "prompt": "Create one independent scientific-educational IMAGINED SKY FROM PHOEBE illustration, landscape 16:9, nominal 90 degree horizontal field of view. Dark charcoal-grey independently invented cratered regolith and modest scattered angular stones occupy bottom third; black airless sky above. No copied/recoloured observed Moon/Mars/Pluto or other body map. Tiny Saturn high in sky: spherical globe angular diameter 0.5161085 degrees, approximately 7.53 pixels wide for 1672 pixel output at this FOV. Saturn must be a very small distant speck with only a hint of rings, not a large planet; ring extent/opening artistic and uncalibrated. Do not enlarge it for drama. Phoebe rotates independently and is retrograde; this is an assumed momentary camera attitude, not a permanent Saturn-facing site or dated ephemeris. Ring opening and phase assumed. Restrained hypothetical daylight exposure on dark foreground; terrain, pale patches, chemistry/fractions, Saturn colour/bands, rings, lighting, exposure all invented. No Sun, stars, atmospheric haze/clouds, active plumes, liquid, ocean, biology, people, spacecraft or survivable landing implication. No registered Cassini or PDS site. Clear upper-left text 'IMAGINED — SKY FROM PHOEBE'; bottom-left 'HYPOTHETICAL ATTITUDE · UNCALIBRATED'. Keep Saturn very tiny.",
+      "originalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cabfaf02-192f-4112-bfae-850335795224.png",
+      "researchCopy": "data/research-sources/phoebe-generated-skyImage-original.png",
+      "inspected": true,
+      "geometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "saturnRadiusKm": 58232,
+        "representativeCentreDistanceKm": 12929400,
+        "phoebeRadiusKm": 106.5,
+        "observerDistanceKm": 12929293.5,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 0.5161084962070008,
+        "targetGlobeWidthPxAt1672": 7.530565496538506,
+        "temperatureHelperK": 95,
+        "limits": "95K used for angular helper only; blackbody RGB/irradiance not Saturn visible photometry. Representative spherical geometry, not dated ephemeris. Sun off frame."
+      },
+      "limitations": "Invented terrain, blocks, craters, pale patches, chemistry/fractions, Saturn colour/bands, rings, phase, lighting and exposure. No analog map or registered Cassini/PDS site. Unlocked retrograde Phoebe has no permanently Saturn-facing site; camera attitude and variable ring opening assumed. Tiny Saturn appears approximately plausible but globe/ring separation and precise raster calibration remain open; do not adopt a ring-contaminated width as globe diameter. No atmosphere/cloud/plume/liquid/exposed ocean/biology/survivable landing. Original local and observer PNGs retained; own resolved globe/shape not adopted. Full integration needs more headroom.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 1835862,
+      "sha256": "f3896436c08b03ed39947ee7c05a6bb40c9088222e4549e32e89b4ddb960fb4d",
+      "rasterAudit": {
+        "row": 161,
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "runs": [
+          [
+            1157,
+            1169
+          ],
+          [
+            1157,
+            1169
+          ],
+          [
+            1157,
+            1169
+          ]
+        ],
+        "widthsPx": [
+          13,
+          13,
+          13
+        ],
+        "limits": "These full brightness runs include rings, phase/exposure and diagonal edges; not adopted as spherical globe diameter. skyGeometry globe target7.5305655px. Precise globe separation/calibration open."
+      },
+      "verification": {
+        "tests": "453pass1skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15997135,
+        "headroomBytes": 2865,
+        "completeSnapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+        "applicationSha256": "f21a0ec47b5a0bcfe0075f51ec01abdf272878cbaa5fb7f95bb225b5523c76b1",
+        "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+        "browser": "Chrome exact complete current readableJSON/application/CSS/HTMLparser;210images20bands517details32models decode. Other engines open.",
+        "preservation": "All59 dossier registry entries unchanged from HEAD;69 tracked map/model/shape files exact. Original local/sky PNGs/full prompts retained; no60th/newembedding.",
+        "interbuildDifferencePaths": [
+          "/bandImages//api/feed/sdo-171?size=preview/src",
+          "/bandImages//api/feed/sdo-171?size=preview/time",
+          "/bandImages//api/feed/sdo-171?size=preview/disk",
+          "/bandImages//api/feed/sdo-94?size=preview/src",
+          "/bandImages//api/feed/sdo-94?size=preview/time",
+          "/bandImages//api/feed/sdo-94?size=preview/disk",
+          "/bandImages//api/feed/sdo-193?size=preview/src",
+          "/bandImages//api/feed/sdo-193?size=preview/time",
+          "/bandImages//api/feed/sdo-193?size=preview/disk"
+        ],
+        "attribution": "Compared with saved7e4a baseline, differences only SDO171/94/193 src/time/disk triplets; no asset/compression saving attribution."
+      }
+    }
+  ],
+  "masterPreparation": {
+    "date": "2026-10-11",
+    "status": "Research-only; all original PNGs/full prompts preserved; no60th dossier or embedding.",
+    "images": [
+      {
+        "role": "surfaceImage",
+        "source": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+        "path": "data/research-sources/phoebe-surfaceImage-master1536.jpg",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "bytes": 375611,
+        "sha256": "9d09c6953eec268450a285cd6e1dfdf696b52ab4320fedc2de4b261cd34f4330"
+      },
+      {
+        "role": "surfaceImage",
+        "source": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+        "path": "data/research-sources/phoebe-surfaceImage-preview256.jpg",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "bytes": 10315,
+        "sha256": "c7a344daef00ff72a17139e8d5bcbaa4fa93a8346020feb144c82f088fa56f57"
+      },
+      {
+        "role": "skyImage",
+        "source": "data/research-sources/phoebe-generated-skyImage-original.png",
+        "path": "data/research-sources/phoebe-skyImage-master1536.jpg",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "bytes": 214069,
+        "sha256": "ab9806aabf8ddac2e5ebfb0134e4a1349458280c4a7eda7ed61315eb68e910c9"
+      },
+      {
+        "role": "skyImage",
+        "source": "data/research-sources/phoebe-generated-skyImage-original.png",
+        "path": "data/research-sources/phoebe-skyImage-preview256.jpg",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "bytes": 6233,
+        "sha256": "86ba5f166367f129e5736c4a6ee47151d17490bd73cd445e874834f33c247ea1"
+      }
+    ],
+    "limitations": "Small preview annotations and tiny Saturn have limited readability; readable card labels required. Saturn raster calibration, variable ring opening/phase and unlocked retrograde camera attitude remain open. No map/shape adopted. Exact additive HTML budget pending.",
+    "verification": {
+      "tests": "453pass1skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15997135,
+      "headroomBytes": 2865,
+      "completeSnapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+      "applicationSha256": "f21a0ec47b5a0bcfe0075f51ec01abdf272878cbaa5fb7f95bb225b5523c76b1",
+      "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+      "browser": "Chrome exact complete current readableJSON/application/CSS/HTMLparser;210images20bands517details32models decode. Other engines open.",
+      "preservation": "All59 dossier registry entries unchanged from HEAD;69 tracked map/model/shape files exact. Original local/sky PNGs/full prompts retained; no60th/newembedding.",
+      "interbuildDifferencePaths": [
+        "/bandImages//api/feed/sdo-171?size=preview/src",
+        "/bandImages//api/feed/sdo-171?size=preview/time",
+        "/bandImages//api/feed/sdo-171?size=preview/disk",
+        "/bandImages//api/feed/sdo-94?size=preview/src",
+        "/bandImages//api/feed/sdo-94?size=preview/time",
+        "/bandImages//api/feed/sdo-94?size=preview/disk",
+        "/bandImages//api/feed/sdo-193?size=preview/src",
+        "/bandImages//api/feed/sdo-193?size=preview/time",
+        "/bandImages//api/feed/sdo-193?size=preview/disk"
+      ],
+      "attribution": "Compared with saved7e4a baseline, differences only SDO171/94/193 src/time/disk triplets; no asset/compression saving attribution."
+    }
+  },
+  "nativeAndShapePreparation": {
+    "date": "2026-10-11",
+    "status": "Research-only; no60th dossier or new embedding.",
+    "body": "Phoebe",
+    "native": {
+      "product": "PIA18411",
+      "observed": "2004-06-11",
+      "released": "2014-06-11",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "terms": "NASA media guidelines; not asserted CC BY.",
+      "width": 5182,
+      "height": 3455,
+      "inspected": true,
+      "limitations": "Approach/departure monochrome mosaics from one flyby; anniversary release is not a2014 observation. Publisher rescaling, sharpening and contrast enhancement prevent independent visible-colour/photometry claims. Shadowed regions and mosaic boundaries are not new terrain. Caption80/65m per pixel and80/83degree phases are source estimates, not newly computed raster scales. No global map or local scene registration adopted. No exhaustive newest-observation claim."
+    },
+    "shapeAssessment": {
+      "source": "https://sbn.psi.edu/pds/resource/weirichphoebeshape.html",
+      "releaseDate": "2023-10-16",
+      "citation": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023). Phoebe SPC Shape Model and Assessment Products Bundle V1.0. NASA PDS.",
+      "identifier": "urn:nasa:pds:satellite-phoebe.cassini.shape-models-maps::1.0",
+      "doi": "10.26033/3k3c-5713",
+      "scope": "Publisher bundle description assessed; quality-assessment products and actual geometry/frame not downloaded/verified. Direct bundle XML/document index returned403, recorded without invented hashes. No new model adopted.",
+      "olderAlternative": "Gaskell V2.0 PDS describes August4,2012 Cassini-derived model; release-specific model identity must not be silently conflated with2023 bundle."
+    },
+    "catalogue": {
+      "radiusKm": 106.5,
+      "rotationHours": 9.27,
+      "locked": false,
+      "semimajorAxisKm": 12929400,
+      "surfacePending": true,
+      "limitations": "Retrograde orbit and unlocked rotation; no permanently Saturn-facing local site. No existing own Phoebe globe or shape found in current catalogue/assets; do not use analog skins. Origin/capture hypotheses are not measured local composition."
+    },
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/phoebe-PIA18411-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg",
+        "status": 200,
+        "mime": "image/jpeg",
+        "bytes": 1192296,
+        "sha256": "1c013f10ecf1e50c24074b7933fc3d6137588267bfcbbe89d5b6182bf79c9572"
+      },
+      {
+        "path": "data/research-sources/phoebe-PIA18411-caption.html",
+        "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "status": 200,
+        "mime": "text/html; charset=UTF-8",
+        "bytes": 272027,
+        "sha256": "b102ff110247bf5832266dd6e854562f0e738188808aca7569ab752c709ee274"
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/bundle_satellite-phoebe.cassini.shape-models-maps.xml",
+        "error": "HTTP Error 403: Forbidden",
+        "sha256": null
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/",
+        "error": "HTTP Error 403: Forbidden",
+        "sha256": null
+      },
+      {
+        "path": "data/research-sources/phoebe-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "status": 200,
+        "mime": "text/html; charset=UTF-8",
+        "bytes": 320651,
+        "sha256": "ef1127ef5c1f925f965a90edd07566c7448fcac9878ade8279caf3972edfbfe9"
+      }
+    ],
+    "open": [
+      "Recover lossless standalone headroom before native/illustration embedding.",
+      "Compact credited publisher rendition assessment; preserve full original.",
+      "Actual PDS geometry, quality, frame/coverage and uncertainty audit.",
+      "Primary spectroscopy and origin-model assessment; no local chemical fractions inferred from grayscale.",
+      "Independent local/observer views using skyGeometry for every angular/raster calculation."
+    ],
+    "verification": {
+      "tests": "453pass1skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15996609,
+      "headroomBytes": 3391,
+      "completeSnapshotSha256": "9e5c1302237ca8e0dbcd5a831f58b74e3f2fdd7dc8eedf4cef5e382e23979bc4",
+      "browser": "Chrome exactJSON/application/CSS/HTMLparser210images20bands517details32models; unchanged hashes and HTML size. Other engines remain open.",
+      "preservation": "No registry/map/model/shape/native-input changes; all59 existing dossiers unchanged. Research downloads are new separate files."
+    }
+  },
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975343,
+    "headroomBytes": 24657,
+    "completeSnapshotSha256": "b9ef4f07b0994f100a67fecb1007c06e2f46c5f8ef51a2112663e9d4992324bb",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact full currentJSON/application/CSS/HTMLparser;213images20bands517details32models; native hashes, normal/offline Phoebe3cards, six routes, unsupportedgzip and11worker rows pass. Other engines open.",
+    "preservation": "All59 earlier dossiers deepEqual;69trackedmaps/model/shapes byte-identical to HEAD. All original PNGs/full prompts/master/native research inputs retained.",
+    "interbuildDifferencePaths": [
+      "/bodyImages//bespoke/phoebe-surface-image.jpg",
+      "/bodyImages//bespoke/phoebe-sky-image.jpg",
+      "/bodyImages//bespoke/phoebe-cassini-native.jpg",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/srh-3000?size=preview/src",
+      "/bandImages//api/feed/srh-3000?size=preview/time",
+      "/bandImages//api/feed/srh-3000?size=preview/credit",
+      "/bandImages//api/feed/srh-3000?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "attribution": "Snapshot changes are only three Phoebe body images plus recorded SDO/SRH feed fields. Net size increment not solely asset-attributed.",
+    "queue": "566 tasks,60 initial dossiers; surfacePending moon rows now explicitly avoid claiming preserved native globe."
+  }
+}

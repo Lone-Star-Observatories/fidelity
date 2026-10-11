@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-10",
+  "status": "Verified adopted lossless settings",
+  "sameInputTrials": [
+    {
+      "kind": "application",
+      "options": {
+        "numiterations": 16,
+        "blocksplittingmax": 0
+      },
+      "gzipBytes": 714007,
+      "transportBytes": 820034,
+      "textSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+      "exact": true
+    },
+    {
+      "kind": "application",
+      "options": {
+        "numiterations": 32,
+        "blocksplittingmax": 0
+      },
+      "gzipBytes": 713743,
+      "transportBytes": 819771,
+      "textSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+      "exact": true
+    },
+    {
+      "kind": "snapshot",
+      "options": {
+        "numiterations": 32,
+        "blocksplittingmax": 0
+      },
+      "gzipBytes": 13184183,
+      "transportBytes": 15141699,
+      "textSha256": "00fee24d72c45cef5d99a7d357d738636b381c134ffad975c1d80e39ab2c5544",
+      "exact": true
+    }
+  ],
+  "baseline": {
+    "snapshotGzipBytes": 13193282,
+    "snapshotTransportBytes": 15152219,
+    "snapshotIterations": 16,
+    "snapshotBlockLimit": 0,
+    "applicationGzipBytes": 717383,
+    "applicationTransportBytes": 823979,
+    "applicationIterations": 32,
+    "applicationBlockLimit": 15
+  },
+  "adopted": {
+    "snapshotIterations": 32,
+    "snapshotBlockLimit": 0,
+    "applicationIterations": 32,
+    "applicationBlockLimit": 0,
+    "snapshotTransportSaved": 10520,
+    "applicationTransportSaved": 4208,
+    "totalSameInputTransportSaved": 14728
+  },
+  "preservation": "No science/fields/numeric rounding/native/map/model/shape/registry changes; standard gzip and all legacy transports/Blob/unsupported message retained. All58 dossiers preserved.",
+  "limits": "More headroom still needed before Iapetus integration. Compression trades build time for bytes. No59th/new embedding.",
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15982933,
+    "headroomBytes": 17067,
+    "completeSnapshotSha256": "a89cccdde3a84270af1497ee5109088fa06652222306d6eb921a43bc69e6a399",
+    "browser": "Chrome exactJSON/app/CSS/HTMLparser207images20bands517details32models nativehashes normalofflineHyperion3cards6routes unsupportedgzip11workerrows;other engines open.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/time"
+    ],
+    "preservation": "All58 dossiers69trackedmapmodelshapesexact unchanged.",
+    "attribution": "Same-input transport saving14728; fullHTML difference includes recorded interbuild feed changes."
+  }
+}

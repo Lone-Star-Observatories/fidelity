@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-11",
+  "body": "Styx",
+  "status": "Research only; no dossier, embedding, globe or shape adopted.",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/styx-lorri-original.jpg",
+      "url": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg",
+      "bytes": 169990,
+      "sha256": "30adbdf59e7718272aadc23d9668fa2db55bf300dbb8612e9b99269843384f65"
+    },
+    {
+      "path": "data/research-sources/styx-lorri-article.html",
+      "url": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+      "bytes": 278545,
+      "sha256": "6fad28ddea71f97fb478b5b74f5051dba88217d75a1ea34778b16810c88d9026"
+    },
+    {
+      "path": "data/research-sources/styx-overview.html",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/moons/styx/",
+      "bytes": 260867,
+      "sha256": "dafb0d710c9ed09aae2ec75f2f614600aa4ae77d734e1cb0fcb25f8be50aefe0"
+    },
+    {
+      "path": "data/research-sources/styx-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320651,
+      "sha256": "8b5c3fa0f3c4c32b54e97ac3f18f989ebdc7eb49f35efbec741954374d9d827f"
+    }
+  ],
+  "native": {
+    "width": 1200,
+    "height": 955,
+    "format": "JPEG",
+    "mode": "RGB",
+    "inspected": true,
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA images/media terms; not asserted CC BY.",
+    "publication": "2015-10-09",
+    "downlink": "2015-10-05",
+    "observationConflict": {
+      "articleText": "2015-07-13, approximately 12.5 hours before Pluto closest approach",
+      "articleCaptionAndCurrentOverview": "2015-07-14",
+      "resolution": "Unresolved; preserve both, exact acquisition UTC/raw-product crosswalk open."
+    }
+  },
+  "limitations": [
+    "Blurred monochrome LORRI composite stored as RGB is not calibrated visible colour, resolved local terrain or a registered global map.",
+    "Orbit inset is a schematic context diagram, not native geography; its coloured Pluto/Charon disks must not become body maps.",
+    "Black background/noise is not evidence for atmospheric absence or stars.",
+    "Historical 7 by 5 km apparent extent and 631000 km range are caption estimates, not new raster calculations or current global axes.",
+    "Overview discovery-era 10\u201324 km size estimate is distinct; no silent catalogue update.",
+    "Brightness/size-based icy-surface inference is not measured local material fractions or spectroscopy.",
+    "No exhaustive newest-imagery claim. Rotation, shape, current attitude, raw product, processing, photometric and spectral association audits remain open.",
+    "No angular/raster computation performed; future observer calculations must use skyGeometry and variable barycentric Pluto/Charon distances."
+  ],
+  "preservation": "All 68 delivered dossiers, original PNGs/default copies, masters, native images, maps/models/shapes and provenance retained; production codecs unchanged.",
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15993273,
+    "headroomBytes": 6727,
+    "preservedTrackedInputs": 404,
+    "queueTasks": 566,
+    "dossiers": 68,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "08a519b060052e0460f1500a7ac900f8052f8382dacbd70537e08560366d58fd",
+      "raw": "d6d17de3c38b3cab0ff9bf31c6a27c1d36e7dea0b28862aff11bf6e8b7a1e484",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact current readable JSON and HTML-parser payload; 237 images and 20 bands decode, 517 detail and 32 model entries, no page errors. Other engines open. Prior-to-current interbuild snapshot differences not audited; no asset/compression savings attribution. No new native-hash, actual-route or model-load claim."
+  }
+}

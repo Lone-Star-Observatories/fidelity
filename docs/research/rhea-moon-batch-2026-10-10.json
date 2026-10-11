@@ -1,0 +1,641 @@
+{
+  "generated": "2026-10-10",
+  "bodies": [
+    {
+      "id": "rhea",
+      "name": "Rhea",
+      "aliases": [
+        "Rhea"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "previewWidth": 256,
+      "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHA487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac; frame/coverage/input epochs/photometry open. No generated globe.",
+      "measured": [
+        "Representative catalogue radius763.8km, mass2.3065e21kg, semimajor axis527200km; not dated scene registration.",
+        "Cassini NAC visible-light PIA21354 observed2017-05-02/released2017-11-20, monochrome northern hemisphere. Caption370000km/2km per pixel estimates are publisher values, not new raster calculations; rounded1527km caption diameter preserved separately.",
+        "NASA overview reports tenuous O2/CO2 exosphere detected2010; no strict gasless claim or visible haze/cloud inference."
+      ],
+      "modelled": [
+        "Bulk ice/rock and sputtering/radiolysis interpretations do not establish local chemical fractions.",
+        "Tiscareno/Burns/Cuzzi/Hedman2010 imaging-search abstract rejects earlier ring explanation; no confirmed Rhea ring. Abstract-only assessment, full paper audit open; no CC licence assertion."
+      ],
+      "unknown": [
+        "Globe input epochs/frame/coverage/photometry, local material fractions, registered site/orientation/phase, calibrated visible colour and further recent primary/product audit. No exhaustive newest-observation claim."
+      ],
+      "assumed": [
+        "Independent invented terrain/material chemistry/fractions/lighting/exposure, without analog-map reuse or dated site registration.",
+        "Rhea's detected tenuous O2/CO2 exosphere does not establish visible haze/clouds; no strictly gasless claim.",
+        "No active plume/exposed ocean/biology/survivable landing or confirmed Rhea ring.",
+        "No celestial disk in frame; no angular/raster computation performed.",
+        "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+        "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+        "No confirmed Rhea ring; only schematic Saturn rings.",
+        "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame.",
+        "skyGeometry Saturn58232km radius at527200minus763.8km nominal90HFOV12.70159454degrees186.091095targetpx1672. Row200 thresholds5/10/20 upper-globe chords76/68/56 substantially undersized, not full calibrated diameter; rings excluded95K angular-only Sun off-frame. Small preview footer labels limited; readable card labels required."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/above-rhea/",
+          "title": "Cassini PIA21354 Above Rhea",
+          "publicationDate": "2017-11-20"
+        },
+        {
+          "url": "https://science.nasa.gov/saturn/moons/rhea/",
+          "title": "Rhea overview and tenuous exosphere"
+        },
+        {
+          "url": "https://arxiv.org/abs/1008.1764",
+          "title": "Tiscareno et al2010 no imaging evidence of rings: abstract-only"
+        },
+        {
+          "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Rhea",
+          "title": "Own NASA3D Rhea globe; registration audit open"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/rhea-cassini-native.jpg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+          "sourcePage": "https://science.nasa.gov/photojournal/above-rhea/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/above-rhea/",
+          "credit": "NASA/JPL-Caltech/Space Science Institute",
+          "terms": "NASA image/media usage guidelines; full credit retained.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "2017-05-02",
+          "publicationDate": "2017-11-20",
+          "bytes": 6768,
+          "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+          "width": 320,
+          "height": 320,
+          "description": "Cassini NAC PIA21354 northern Rhea in visible monochrome, not calibrated colour/registered geography. Unchanged NASA320 display rendition: publisher resizing/re-encoding is not full pixel preservation;640 and both1020 originals retained.",
+          "processing": "Unchanged NASA-served JPEG; no local native reencoding."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 9.58,
+        "horizontalFovDeg": 90
+      },
+      "inputs": {
+        "surfaceImage": "rhea-generated-surfaceImage-original.png",
+        "skyImage": "rhea-generated-skyImage-original.png"
+      },
+      "surfaceLabel": "HYPOTHETICAL LOCAL RHEA TERRAIN",
+      "skyLabel": "HYPOTHETICAL SKY FROM RHEA"
+    }
+  ],
+  "sourceRecords": {
+    "local": {
+      "status": "research-only preparation; no56th dossier/new embedding",
+      "body": "Rhea",
+      "date": "2026-10-10",
+      "generator": "OpenAI built-in image generation",
+      "generationId": "exec-f89232f9-9da6-4f98-ba3a-9b1107be15c8",
+      "originalPath": "data/research-sources/rhea-generated-surfaceImage-original.png",
+      "prompt": "Create an independent research-guided hypothetical local terrain view on Saturn's moon Rhea, landscape 16:9. It is an IMAGINED illustration, not a reconstructed photograph or a map. Use NO reference photograph, observed-body map, analog skin, copied Moon/Mars/Pluto terrain or pre-existing planetary globe. Low camera above rough pale gray ice-rich granular regolith, scattered small angular blocks, shallow overlapping crater rims and a distant modest fractured scarp. Make the terrain independently invented, quiet and desolate under black space, with no celestial disc in frame, no haze/clouds, no astronauts/craft, no active plume, exposed ocean, biology or survivable landing implication. Rhea has a detected extremely tenuous oxygen/carbon-dioxide exosphere; it does not justify a visible atmospheric glow or clouds. Material colour, chemistry fractions, geology placement, sunlight direction/exposure and scale are artistic assumptions, not measurements. Avoid suggesting confirmed rings around Rhea. Crisp scientific concept artwork with subdued grayscale terrain, no elaborate annotations. Add clearly legible in-image title 'IMAGINED LOCAL VIEW OF RHEA' and small footer 'Invented terrain and lighting • not a dated or registered site'. The whole scene must be newly composed, without any observed-body map reuse.",
+      "limitations": [
+        "Independent invented terrain/material chemistry/fractions/lighting/exposure, without analog-map reuse or dated site registration.",
+        "Rhea's detected tenuous O2/CO2 exosphere does not establish visible haze/clouds; no strictly gasless claim.",
+        "No active plume/exposed ocean/biology/survivable landing or confirmed Rhea ring.",
+        "No celestial disk in frame; no angular/raster computation performed."
+      ],
+      "next": "Saturn observer using skyGeometry, masters/previews and further offline headroom before additive integration.",
+      "originalBytes": 3261765,
+      "originalSha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+      "width": 1672,
+      "height": 940,
+      "inspected": true,
+      "inspection": "Readable IMAGINED title/footer, independent cratered rough regolith and blocks/scarp under black sky; no visible atmosphere or celestial disk.",
+      "verification": {
+        "all55DossiersDeepEqual": true,
+        "testsPassed": 433,
+        "testsSkipped": 1,
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15968504,
+        "headroomBytes": 31496,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "0487b71a3d75dc4c699af67db637a9aa0c7268850351e2bb11d2de362a7ad590",
+          "raw": "874b0b463cd1e1e112ece8ccfc1bd21aecf16b8fabf5e9850e2765b8a116db26",
+          "magic": "FIDNUM01",
+          "images": 198,
+          "details": 517,
+          "models": 32
+        },
+        "application": {
+          "htmlBytes": 15968504,
+          "compressedBytes": 700764,
+          "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+          "htmlParserPreservesEveryPackedByte": true
+        },
+        "exactCssAndHtmlParser": true,
+        "scope": "Chrome; other engines open",
+        "snapshotNote": "Current complete browser JSON equals current readable bytes. SHA differs from earlier b376 build; exact inter-build difference origin not audited. No registry/native/map/model/shape source inputs changed."
+      }
+    },
+    "sky": {
+      "status": "research-only preparation; no56th/new embedding",
+      "body": "Rhea",
+      "date": "2026-10-10",
+      "generator": "OpenAI built-in image generation",
+      "generationId": "exec-138407fb-b5b3-43b8-a178-81c34949b588",
+      "originalPath": "data/research-sources/rhea-generated-skyImage-original.png",
+      "prompt": "Create a newly composed independent scientific concept illustration labelled IMAGINED SKY FROM RHEA, landscape16:9. Hypothetical low observer above Rhea's independently invented pale-gray ice-rich regolith, a few angular blocks and shallow crater rim in lower third; black space above. No observed-body map or analog skin: do not copy/recolour any Moon/Mars/Pluto/Jupiter/Saturn image or texture. Show one small schematic Saturn globe near upper centre, nominal90-degree horizontal FOV: angular guide12.70159454degrees, spherical globe excluding rings about11.13percent of image width (roughly186pixels at1672 width). Keep Saturn small; do not enlarge it for drama. Its cream-gray bands are independently invented, modestly lit with artistic phase, nearly edge-on schematic rings as a narrow line, not measured registration. Rhea has a detected extremely tenuousO2/CO2 exosphere, but do not depict visible haze/clouds/atmospheric glow. No rings around Rhea, only Saturn's rings. Sun out of frame. No craft/people/active plume/exposed ocean/biology/survivable landing. Terrain morphology/material colour/chemistry fractions, band/ring appearance, phase/light/exposure/site orientation are assumptions not measurements. Clear in-image title 'IMAGINED SKY FROM RHEA', small footer 'Invented terrain, Saturn appearance and lighting • not a dated site'. Crisp subdued independent artwork.",
+      "limits": [
+        "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+        "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+        "No confirmed Rhea ring; only schematic Saturn rings.",
+        "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame."
+      ],
+      "originalBytes": 1823737,
+      "originalSha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+      "width": 1672,
+      "height": 941,
+      "inspected": true,
+      "geometry": {
+        "angularDiameterDeg": 12.701594542298535,
+        "centreDiscWidthFraction": 0.11129850150326333,
+        "irradianceEarth": 0.000041517182244665894,
+        "approximateSrgb": [
+          1,
+          0.2663545845364998,
+          0
+        ],
+        "horizontalFovDeg": 90,
+        "limits": "Spherical representative angular guide only. 95K helper is not a visible RGB/irradiance/exposure prediction; Saturn bands/rings/phase/light artistic; no dated site/orientation registration.",
+        "targetPixels1672": 186.09109451345628,
+        "radiusKm": 58232,
+        "distanceKm": 526436.2
+      },
+      "rasterAudit": {
+        "row": 200,
+        "thresholds": [
+          {
+            "threshold": 5,
+            "left": 790,
+            "right": 865,
+            "width": 76
+          },
+          {
+            "threshold": 10,
+            "left": 790,
+            "right": 857,
+            "width": 68
+          },
+          {
+            "threshold": 20,
+            "left": 802,
+            "right": 857,
+            "width": 56
+          }
+        ],
+        "limitations": "Upper globe chords at row200 exclude rings and do not establish full calibrated diameter. The rendered globe is substantially undersized against skyGeometry guide; ring width is not globe diameter."
+      },
+      "inspection": "Readable IMAGINED title/footer, black sky, invented terrain and small schematic Saturn. Small globe remains an uncalibrated artistic result, not a physically registered scene.",
+      "verification": {
+        "all55DossiersDeepEqual": true,
+        "testsPassed": 433,
+        "testsSkipped": 1,
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15968504,
+        "headroomBytes": 31496,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "0487b71a3d75dc4c699af67db637a9aa0c7268850351e2bb11d2de362a7ad590",
+          "raw": "874b0b463cd1e1e112ece8ccfc1bd21aecf16b8fabf5e9850e2765b8a116db26",
+          "magic": "FIDNUM01",
+          "images": 198,
+          "details": 517,
+          "models": 32
+        },
+        "application": {
+          "htmlBytes": 15968504,
+          "compressedBytes": 700764,
+          "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+          "htmlParserPreservesEveryPackedByte": true
+        },
+        "exactCssAndHtmlParser": true,
+        "scope": "Chrome; other engines open",
+        "snapshotNote": "Current complete browser JSON equals current readable bytes. SHA differs from earlier b376 build; exact inter-build difference origin not audited. No registry/native/map/model/shape source inputs changed."
+      }
+    },
+    "native": {
+      "status": "Research-only compact publisher renditions; no56th dossier or new embedding",
+      "body": "Rhea",
+      "product": "PIA21354",
+      "source": "https://science.nasa.gov/photojournal/above-rhea/",
+      "observationDate": "2017-05-02",
+      "publicationDate": "2017-11-20",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "records": [
+        {
+          "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=640&w=640",
+          "path": "data/research-sources/rhea-PIA21354-display640.jpg",
+          "bytes": 24663,
+          "sha256": "24efa3aacca5f3a43b3314e7fcdcafcaccf9a5c5cba56a8418204e2e1ad43ac2",
+          "width": 640,
+          "height": 640,
+          "format": "jpeg"
+        },
+        {
+          "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+          "path": "data/research-sources/rhea-PIA21354-display320.jpg",
+          "bytes": 6768,
+          "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+          "width": 320,
+          "height": 320,
+          "format": "jpeg"
+        }
+      ],
+      "inspected": true,
+      "inspection": "Both unchanged NASA-served JPEGs show monochrome cratered northern hemisphere and dark limb/background. The320 rendition retains broad morphology at reduced detail.",
+      "limitations": [
+        "Publisher resizing/re-encoding is not full-pixel preservation; original1020 JPEG and distinct prior1020 dynamic rendition retained.",
+        "Visible-light NAC monochrome, not calibrated colour/photometry or registered globe.",
+        "Caption370000km/2km-per-pixel estimates retained as publisher estimates, no new raster measurement.",
+        "All prior exosphere, no confirmed Rhea ring, generated terrain and undersized Saturn limitations retained."
+      ],
+      "budget": {
+        "generatedJpegPreviewBytes": 18133,
+        "native320Bytes": 6768,
+        "combinedRawBytes": 24901,
+        "note": "Raw sum only; full HTML incremental cost remains unverified and must pass hard16MB gate before publishing."
+      },
+      "next": "Trial additive Rhea dossier using unchanged publisher320 rendition and independent256 previews; recover further lossless headroom if exact full build exceeds gate.",
+      "verification": {
+        "all55DossiersDeepEqual": true,
+        "testsPassed": 442,
+        "testsSkipped": 1,
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15971009,
+        "headroomBytes": 28991,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "02b0c8db85e94bb7665b5b8dd26dfe0f8496881ff3467ea610e2db697deb9155",
+          "raw": "3c3e3b4736350f47944b8d061f7d44930b221194614d8d54305100b23364af38",
+          "magic": "FIDNUM01",
+          "images": 198,
+          "details": 517,
+          "models": 32
+        },
+        "application": {
+          "htmlBytes": 15971009,
+          "compressedBytes": 703082,
+          "applicationSha256": "aa05644c0f5e29935dbbe07efd376164efd5374d7d41b4e0d9cfe627130fd17f",
+          "htmlParserPreservesEveryPackedByte": true
+        },
+        "exactCss": true,
+        "upstream": "0ece353 spectrum integration preserved",
+        "scope": "Chrome; other engines open"
+      }
+    },
+    "masters": {
+      "status": "Research-only masters/previews; no56th dossier or new embedding",
+      "body": "Rhea",
+      "records": [
+        {
+          "role": "surfaceImage",
+          "kind": "original",
+          "path": "data/research-sources/rhea-generated-surfaceImage-original.png",
+          "bytes": 3261765,
+          "sha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+          "width": 1672,
+          "height": 940
+        },
+        {
+          "role": "surfaceImage",
+          "kind": "master",
+          "path": "data/research-sources/rhea-surfaceImage-master1536.jpg",
+          "bytes": 392520,
+          "sha256": "e92856a60c8d4ca6ccf012739e67f50ce4cf8c9d1458f6bafb39f54b9447c730",
+          "width": 1536,
+          "height": 864
+        },
+        {
+          "role": "surfaceImage",
+          "kind": "preview",
+          "path": "data/research-sources/rhea-surfaceImage-preview256.jpg",
+          "bytes": 11342,
+          "sha256": "868ca0df0c077d964b2f932253c22af2d7a2869263c4d76188b56d7db6f2eac6",
+          "width": 256,
+          "height": 144
+        },
+        {
+          "role": "skyImage",
+          "kind": "original",
+          "path": "data/research-sources/rhea-generated-skyImage-original.png",
+          "bytes": 1823737,
+          "sha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "role": "skyImage",
+          "kind": "master",
+          "path": "data/research-sources/rhea-skyImage-master1536.jpg",
+          "bytes": 205187,
+          "sha256": "26feedfd553dff92bc28d5f1f92280c8c5dde0bc410b35fcf5937c89de0f1424",
+          "width": 1536,
+          "height": 864
+        },
+        {
+          "role": "skyImage",
+          "kind": "preview",
+          "path": "data/research-sources/rhea-skyImage-preview256.jpg",
+          "bytes": 6791,
+          "sha256": "99c9d9a76437839cf143d6da2d1a51d245565b6912c4d22970362a6eb2a9007e",
+          "width": 256,
+          "height": 144
+        }
+      ],
+      "processing": "Generated illustrations only: 1536x864 JPEG85 masters and recorded256x144 JPEG80 previews. Original PNGs preserved. Native publisher images unchanged.",
+      "limitations": [
+        "Small in-image labels may be unreadable in compact previews; card labels required.",
+        "Prior terrain, chemistry, exosphere, no confirmed Rhea ring and undersized uncalibrated Saturn limitations remain unchanged."
+      ],
+      "next": "Recover offline headroom and assess credited compact publisher rendition before additive integration.",
+      "inspection": "Both256 previews inspected: IMAGINED title remains recognizable; footer annotations too small for reliable reading. Card labels required. Saturn remains substantially undersized and uncalibrated.",
+      "previewTotalJpegBytes": 18133,
+      "snapshotAudit": {
+        "comparison": "Saved0487 readable JSON versus current02b0 rebuild",
+        "differences": [
+          {
+            "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+            "beforeSha256": "666655096ebf6db050956146f18820d6965aa2a8deab74cf4c60e286b57bf89a",
+            "afterSha256": "021ff836876afeb2778ea0df8e5af5f482613253049a871b4b28be59b9d2298e"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+            "beforeSha256": "e6778ab7e7e4ad541aa247314a1ae8545d4fbbb42cb293d9d7584b3a1e46094e",
+            "afterSha256": "effbcc256ea57f1d055b105292301094b73381b836d5ec7cc5beec0979b5365f"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+            "beforeSha256": "da9198fb12399c66a8d6cea090e169f153ea2dcbbb3b821d9cfd2e3fdc0e0eaa",
+            "afterSha256": "cb8a84580ba152769430d58453032ccb43c027c5e4f6d55205aa49c4da232e5d"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+            "beforeSha256": "2eaea2fae1b4f7d499e1c2247471c744a43e049747679ce74b7180272663d6cd",
+            "afterSha256": "bc2d1486f80780caa7bbd7198ac26857184297d3962a99fa08d22ea6eaa3f3ae"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+            "beforeSha256": "a22048c2901b8a5f265dce32812d164f2f8c0765e2e7c53bbb78a55c4ab3417a",
+            "afterSha256": "246e8625046ab2b8d17ed56bbad70f537aaee34f612048b631c94dd57e431c5f"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+            "beforeSha256": "d65464ec829577d3c325dd8136100cdfaceb848a539fb7ea8cde2f4836ec2812",
+            "afterSha256": "f25af966dc4d2c54c6c6d6353dc9a36a410d745881d080669c0d38d7cc6c8b6c"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+            "beforeSha256": "73069dee7a716c7850ef75bfa35fe4fd57f4927ea52ed4da6b1e4da77bd370e8",
+            "afterSha256": "f6cbfb32a7e387a5cfac7a8258428b28c019208ac2bab0a0687caaceea4455ee"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+            "beforeSha256": "9b600946ef68909e5c76f64798ecd42e855f46bcf4144870c96346e3dc1afca3",
+            "afterSha256": "b370ab478bd826adc1388f047d12499bfe1aff54a4b553df82b5731a08e6ea52"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+            "beforeSha256": "6c91ae4db79126dab0dc307f2aa096e5976a34240984b33e652c25fe337e720c",
+            "afterSha256": "b8d09008de41ede7713d1ebc122de2a1c1a588f124fb7e25a8478e4f70b29f21"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+            "beforeSha256": "9926d7f37e2f4d4b9a29ac1c6685d130ed3a1a80b95559d02a11855a5501448f",
+            "afterSha256": "2764fcc0566f93b744f832ae80ac341da33035f4dd9643bf26f3fee87026f263"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+            "beforeSha256": "233ffd8febe593dc07d2ffa333e1a8e5d641ad6d5bfbf91aafa357100ec8f059",
+            "afterSha256": "a2310bf1681c846e1f7ecd4763aa729dd7eee1a2260c8181469a9c6980df8a48"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+            "beforeSha256": "80b2e86235704a3f03d07e35fea80b6b68b26fa5b220c28d541713902d2e5032",
+            "afterSha256": "3f974362b3db3e17f298d422f6c18bde71dd4fcb7e5446243cdd97bade0fd3cc"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+            "beforeSha256": "cbed60883c91baa2dd298dab785a50a85ef75058c2a4693697cc190eae01439d",
+            "afterSha256": "f780da2e888083ebbb18f0ab03e7d50ca18def5187c6e823435882708d571558"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+            "beforeSha256": "8344914a0b5b87f3def1b2b643c7ea525202aab6c3feea743bf00922ce533bfe",
+            "afterSha256": "fda48e75242486355d5b1dc646aa208996efd8471d1038c11ec6b1e91e390c48"
+          },
+          {
+            "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+            "beforeSha256": "d6f9210e177298dd2d99e42c12c379c39fdc1047e06f75175438f251ad5be9ab",
+            "afterSha256": "50355c91c6fafb925696c19ca18a31e72cebfad513b4e09f37a5ca9f8d67d185"
+          }
+        ],
+        "interpretation": "These changed snapshot fields are directly verified. Earlier b376-to0487 cause remains unaudited."
+      },
+      "verification": {
+        "all55DossiersDeepEqual": true,
+        "testsPassed": 433,
+        "testsSkipped": 1,
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15968288,
+        "headroomBytes": 31712,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "02b0c8db85e94bb7665b5b8dd26dfe0f8496881ff3467ea610e2db697deb9155",
+          "raw": "3c3e3b4736350f47944b8d061f7d44930b221194614d8d54305100b23364af38",
+          "magic": "FIDNUM01",
+          "images": 198,
+          "details": 517,
+          "models": 32
+        },
+        "application": {
+          "htmlBytes": 15968288,
+          "compressedBytes": 700764,
+          "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+          "htmlParserPreservesEveryPackedByte": true
+        },
+        "exactCss": true
+      }
+    }
+  },
+  "deliveredVisual": {
+    "id": "rhea",
+    "name": "Rhea",
+    "aliases": [
+      "Rhea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHA487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac; frame/coverage/input epochs/photometry open. No generated globe.",
+    "measured": [
+      "Representative catalogue radius763.8km, mass2.3065e21kg, semimajor axis527200km; not dated scene registration.",
+      "Cassini NAC visible-light PIA21354 observed2017-05-02/released2017-11-20, monochrome northern hemisphere. Caption370000km/2km per pixel estimates are publisher values, not new raster calculations; rounded1527km caption diameter preserved separately.",
+      "NASA overview reports tenuous O2/CO2 exosphere detected2010; no strict gasless claim or visible haze/cloud inference."
+    ],
+    "modelled": [
+      "Bulk ice/rock and sputtering/radiolysis interpretations do not establish local chemical fractions.",
+      "Tiscareno/Burns/Cuzzi/Hedman2010 imaging-search abstract rejects earlier ring explanation; no confirmed Rhea ring. Abstract-only assessment, full paper audit open; no CC licence assertion."
+    ],
+    "unknown": [
+      "Globe input epochs/frame/coverage/photometry, local material fractions, registered site/orientation/phase, calibrated visible colour and further recent primary/product audit. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Independent invented terrain/material chemistry/fractions/lighting/exposure, without analog-map reuse or dated site registration.",
+      "Rhea's detected tenuous O2/CO2 exosphere does not establish visible haze/clouds; no strictly gasless claim.",
+      "No active plume/exposed ocean/biology/survivable landing or confirmed Rhea ring.",
+      "No celestial disk in frame; no angular/raster computation performed.",
+      "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+      "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+      "No confirmed Rhea ring; only schematic Saturn rings.",
+      "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame.",
+      "skyGeometry Saturn58232km radius at527200minus763.8km nominal90HFOV12.70159454degrees186.091095targetpx1672. Row200 thresholds5/10/20 upper-globe chords76/68/56 substantially undersized, not full calibrated diameter; rings excluded95K angular-only Sun off-frame. Small preview footer labels limited; readable card labels required."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/above-rhea/",
+        "title": "Cassini PIA21354 Above Rhea",
+        "publicationDate": "2017-11-20"
+      },
+      {
+        "url": "https://science.nasa.gov/saturn/moons/rhea/",
+        "title": "Rhea overview and tenuous exosphere"
+      },
+      {
+        "url": "https://arxiv.org/abs/1008.1764",
+        "title": "Tiscareno et al2010 no imaging evidence of rings: abstract-only"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Rhea",
+        "title": "Own NASA3D Rhea globe; registration audit open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/rhea-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+        "sourcePage": "https://science.nasa.gov/photojournal/above-rhea/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/above-rhea/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2017-05-02",
+        "publicationDate": "2017-11-20",
+        "bytes": 6768,
+        "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+        "width": 320,
+        "height": 320,
+        "description": "Cassini NAC PIA21354 northern Rhea in visible monochrome, not calibrated colour/registered geography. Unchanged NASA320 display rendition: publisher resizing/re-encoding is not full pixel preservation;640 and both1020 originals retained.",
+        "processing": "Unchanged NASA-served JPEG; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL RHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM RHEA",
+    "surfaceImage": {
+      "url": "/bespoke/rhea-surface-image.jpg",
+      "previewUrl": "/bespoke/rhea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-surfaceImage-original.png",
+      "sourceSha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+      "sha256": "e92856a60c8d4ca6ccf012739e67f50ce4cf8c9d1458f6bafb39f54b9447c730",
+      "previewSha256": "868ca0df0c077d964b2f932253c22af2d7a2869263c4d76188b56d7db6f2eac6",
+      "bytes": 392520,
+      "previewBytes": 11342,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/rhea-sky-image.jpg",
+      "previewUrl": "/bespoke/rhea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-skyImage-original.png",
+      "sourceSha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+      "sha256": "26feedfd553dff92bc28d5f1f92280c8c5dde0bc410b35fcf5937c89de0f1424",
+      "previewSha256": "99c9d9a76437839cf143d6da2d1a51d245565b6912c4d22970362a6eb2a9007e",
+      "bytes": 205187,
+      "previewBytes": 6791,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "allPrior55DeepEqual": true,
+  "verification": {
+    "allPrior55DeepEqual": true,
+    "registryCount": 56,
+    "queueTasks": 566,
+    "testsPassed": 446,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15994970,
+    "headroomBytes": 5030,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "5466d0a5883680392499dfe76274ba3d9011d677ed1636abbe1c9c40b72a8d56",
+      "raw": "c74db12d2e42c723d535f809270963142809b81b0dcbfbdd25a15003dbfae1c6",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15994970,
+      "compressedBytes": 705287,
+      "applicationSha256": "b2d94f07e0dd5136e60815df7977704ca3dbdbd8f13d45cbc89c16bac5f0c75e",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactCss": true,
+    "normalAndOfflineRhea": "own globe and3cards pass",
+    "allNativeContextHashes": "pass",
+    "sixRoutes": "pass",
+    "unsupportedGzipMessage": "pass",
+    "offlineWorkerRows": 11,
+    "scope": "Chrome; other engines open",
+    "compression": "Snapshot standardgzip64 iterations saves6858 HTMLbytes against same-input32 trial16001828; exact originalJSON restored. Applicationgzip32/CSS5 and all codecs preserved."
+  }
+}

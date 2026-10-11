@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-11",
+  "body": "Hydra",
+  "status": "Research-only original-preserving masters/previews; no new dossier or embedding",
+  "method": "Pillow Lanczos resize from unchanged independent built-in originals, JPEG85 masters/JPEG80 previews; generated illustrations only, no native scientific transformation",
+  "assets": {
+    "surfaceImage": {
+      "master": {
+        "path": "data/research-sources/hydra-generated-surfaceImage-master.jpg",
+        "bytes": 350132,
+        "sha256": "e177fac011656bd65d71a19846180852b787b5dac0f99c2cb1592b739a66991f",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "mime": "image/jpeg"
+      },
+      "preview": {
+        "path": "data/research-sources/hydra-generated-surfaceImage-preview.jpg",
+        "bytes": 10661,
+        "sha256": "e7d087437383fb5b98da800d2b56787e383b2ed7b259be0049407beccd199733",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "mime": "image/jpeg"
+      }
+    },
+    "skyImage": {
+      "master": {
+        "path": "data/research-sources/hydra-generated-skyImage-master.jpg",
+        "bytes": 201608,
+        "sha256": "8887a84232fefcb1fabc167c84fda91142e7ca69dd98e2b837c83d5417c481af",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "mime": "image/jpeg"
+      },
+      "preview": {
+        "path": "data/research-sources/hydra-generated-skyImage-preview.jpg",
+        "bytes": 6553,
+        "sha256": "efd393dd1474f5dead30b4fefe055a53bb26a12ccb513101b9555cc7247dd200",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "mime": "image/jpeg"
+      }
+    }
+  },
+  "rawPreviewBytes": 17214,
+  "limitations": [
+    "Both original PNGs, default copies and full prompts preserved; all native scientific inputs unchanged.",
+    "Small footers/disks have limited readability; future card labels required.",
+    "Observer disks oversized and uncalibrated; consistent undated barycentric geometry, rapid nonsynchronous rotation, no permanent Pluto-facing site and all recorded material/phase/colour/transmission assumptions remain.",
+    "Substantial lossless headroom required before further embedding; exact additive cost requires a full build."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "registryByteIdentical": true,
+    "trackedInputsByteIdentical": 404,
+    "newEmbedding": false
+  },
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996955,
+    "headroomBytes": 3045,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+      "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact current readableJSON and HTML-parser snapshot restoration,237 images20 bands decode,517 detail32 model entries,no errors; identical previous9035486 JSON and HTML bytes. Other engines open; no new native-hash/model-load/route claim. Production codecs unchanged; no savings attribution."
+  },
+  "inspection": "Viewed both1536 masters and sky256 preview: original compositions retained, master footers legible; compact footer/disks too small for reliable reading, card labels required."
+}

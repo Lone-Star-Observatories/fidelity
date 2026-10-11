@@ -1,0 +1,1344 @@
+{
+  "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM3_ESM.zip",
+  "path": "data/research-sources/charon-Protopapa2024-source-data.zip",
+  "bytes": 2676988,
+  "sha256": "cd22ee944e9db5e7047bfdca130975fcebf2966cd43ce2bcda477bb9dbe93d8e",
+  "members": [
+    {
+      "name": "Source Data/",
+      "bytes": 0
+    },
+    {
+      "name": "__MACOSX/._Source Data",
+      "bytes": 220
+    },
+    {
+      "name": "Source Data/.DS_Store",
+      "bytes": 8196
+    },
+    {
+      "name": "__MACOSX/Source Data/._.DS_Store",
+      "bytes": 120
+    },
+    {
+      "name": "Source Data/supplementary_fig4/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/supplementary_fig3/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/supplementary_fig5/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/fig1/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/supplementary_fig1/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/fig2/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/fig3/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/fig4/",
+      "bytes": 0
+    },
+    {
+      "name": "Source Data/supplementary_fig4/.DS_Store",
+      "bytes": 6148
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig4/._.DS_Store",
+      "bytes": 120
+    },
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_a.txt",
+      "bytes": 465531
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig4/._sp_supplementary_fig4_Charon_a.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_c.txt",
+      "bytes": 463663
+    },
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_b.txt",
+      "bytes": 465925
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig4/._sp_supplementary_fig4_Charon_b.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon.txt",
+      "bytes": 10434
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig3/._sp_supplementary_fig3_Charon.txt",
+      "bytes": 276
+    },
+    {
+      "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon_model.txt",
+      "bytes": 6958
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig3/._sp_supplementary_fig3_Charon_model.txt",
+      "bytes": 276
+    },
+    {
+      "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_PSG.txt",
+      "bytes": 4721648
+    },
+    {
+      "name": "Source Data/supplementary_fig5/.DS_Store",
+      "bytes": 6148
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig5/._.DS_Store",
+      "bytes": 120
+    },
+    {
+      "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_CALSPEC.txt",
+      "bytes": 955809
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_g_Charon_JWST.txt",
+      "bytes": 222768
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_g_Charon_JWST.txt",
+      "bytes": 276
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_004.txt",
+      "bytes": 222959
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_004.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_005.txt",
+      "bytes": 220505
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_005.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_103.txt",
+      "bytes": 222196
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_103.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_106.txt",
+      "bytes": 220703
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_106.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_g_Charon_NH.txt",
+      "bytes": 5446
+    },
+    {
+      "name": "__MACOSX/Source Data/fig1/._sp_fig1_g_Charon_NH.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_amorphous_NH3_40K.txt",
+      "bytes": 17945
+    },
+    {
+      "name": "Source Data/supplementary_fig1/.DS_Store",
+      "bytes": 6148
+    },
+    {
+      "name": "__MACOSX/Source Data/supplementary_fig1/._.DS_Store",
+      "bytes": 120
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_crystalline_NH3_100K.txt",
+      "bytes": 17781
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_2.txt",
+      "bytes": 4013
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_1.txt",
+      "bytes": 3944
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_NH4Cl.txt",
+      "bytes": 17739
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_model.txt",
+      "bytes": 19875
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_H2O:NH3_50K.txt",
+      "bytes": 17807
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_amorphous_CO2_8K.txt",
+      "bytes": 3986
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Europa_model.txt",
+      "bytes": 1951
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K.txt",
+      "bytes": 4344
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Charon_model.txt",
+      "bytes": 9132
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Europa.txt",
+      "bytes": 13159
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_65K.txt",
+      "bytes": 1073
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Charon_model.txt",
+      "bytes": 9220
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Europa_model.txt",
+      "bytes": 8644
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K.txt",
+      "bytes": 1068
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K.txt",
+      "bytes": 1026
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Europa_model.txt",
+      "bytes": 1480
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Charon.txt",
+      "bytes": 2256
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K.txt",
+      "bytes": 4302
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Europa.txt",
+      "bytes": 2200
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K_irradiated.txt",
+      "bytes": 4409
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Charon_model.txt",
+      "bytes": 1516
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_amorphous_CO2_8K.txt",
+      "bytes": 19808
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_70K.txt",
+      "bytes": 15059
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_114K.txt",
+      "bytes": 1074
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K_irradiated.txt",
+      "bytes": 1094
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Europa_model.txt",
+      "bytes": 8665
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_114K.txt",
+      "bytes": 4368
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Europa.txt",
+      "bytes": 31087
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K_irradiated.txt",
+      "bytes": 1133
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Charon.txt",
+      "bytes": 13812
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Europa.txt",
+      "bytes": 12946
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Charon_model.txt",
+      "bytes": 9222
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_70K.txt",
+      "bytes": 78347
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_65K.txt",
+      "bytes": 4367
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K_irradiated.txt",
+      "bytes": 4370
+    },
+    {
+      "name": "Source Data/fig3/sp_fig3_Charon_model.txt",
+      "bytes": 92465
+    },
+    {
+      "name": "__MACOSX/Source Data/fig3/._sp_fig3_Charon_model.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_Charon.txt",
+      "bytes": 14642
+    },
+    {
+      "name": "__MACOSX/Source Data/fig4/._sp_fig4_b_Charon.txt",
+      "bytes": 176
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_Europa.txt",
+      "bytes": 14752
+    },
+    {
+      "name": "Source Data/fig4/.DS_Store",
+      "bytes": 6148
+    },
+    {
+      "name": "__MACOSX/Source Data/fig4/._.DS_Store",
+      "bytes": 120
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_low_irradiation_fluence.txt",
+      "bytes": 8177
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_low_irradiation_fluence.txt",
+      "bytes": 8186
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2O_ice_irradiated.txt",
+      "bytes": 6794
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_high_irradiation_fluence.txt",
+      "bytes": 8186
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_c_Charon.txt",
+      "bytes": 21912
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_c_Europa.txt",
+      "bytes": 21858
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_high_irradiation_fluence.txt",
+      "bytes": 8177
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_Europa.txt",
+      "bytes": 22069
+    }
+  ],
+  "textProducts": [
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_a.txt",
+      "bytes": 465531,
+      "sha256": "4cdd8399144af283187f3adec8254f9c6a0f8b3546048f99683e683dac48f2f8",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Supplementary Figure 4 data behind the figure",
+        "#Comment: The JWST spectrum of Charon corresponding to observation \\#103 prior correction for Pluto's flux contamination",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Flux density (MJy)",
+        "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+      ],
+      "dataRows": 8161
+    },
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_c.txt",
+      "bytes": 463663,
+      "sha256": "a6a2c292e8509b3778b7dcd084bdec50c484fe4543db946fbe9992a4b9992c9f",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Supplementary Figure 4 data behind the figure",
+        "#Comment: The JWST spectrum of Charon corresponding to observation \\#103 after correction for Pluto's flux contamination",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Flux density (MJy)",
+        "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+      ],
+      "dataRows": 8128
+    },
+    {
+      "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_b.txt",
+      "bytes": 465925,
+      "sha256": "b166d5388c016cfd74edae5b162498dca5f472815320010650b427ee470dde19",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Pluto",
+        "#Telescope: JWST",
+        "#Table: Supplementary Figure 4 data behind the figure",
+        "#Comment: The JWST spectrum of Pluto\u2019s flux contamination",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Flux density (MJy)",
+        "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+      ],
+      "dataRows": 8169
+    },
+    {
+      "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon.txt",
+      "bytes": 10434,
+      "sha256": "2f997a86ae46d9abfe96a05a2e9b7a516d25ae11fdb3001a2b5d69dc3e6f3574",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Supplementary Figure 3 panel a data behind the figure",
+        "#Comment: The grand-average spectrum of Charon obtained by averaging four JWST/NIRSpec IFU observations.",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 373
+    },
+    {
+      "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon_model.txt",
+      "bytes": 6958,
+      "sha256": "b5d94d9a99b60d0ac0f7f477410445712f4db2da1b1fef6b3ee542c58e391586",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Table: Supplementary Figure 3 panel a data behind the figure",
+        "#Comment: Spectral model of Charon's spectrum.",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F"
+      ],
+      "dataRows": 373
+    },
+    {
+      "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_PSG.txt",
+      "bytes": 4721648,
+      "sha256": "c043240bcdaa456bcd451d1e5fdc9b7064f02cd3cce5e151b543358a987eb7c9",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Sun",
+        "#Table: Supplementary Figure 5 data behind the figure",
+        "#Comment: Solar flux density at 1 au",
+        "#Comment: Spectrum sourced from the Planetary Spectrum Generator (PSG)",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Flux density (MJy)"
+      ],
+      "dataRows": 124247
+    },
+    {
+      "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_CALSPEC.txt",
+      "bytes": 955809,
+      "sha256": "ccf882f1ab6844db4907045778b4ef7eb8f6491d2294a6d9ecd75e47c05a6951",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Sun",
+        "#Table: Supplementary Figure 5 data behind the figure",
+        "#Comment: Solar flux density at 1 au",
+        "#Comment: Spectrum sourced from the CALSPEC database sun_mod_001.fits",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Flux density (MJy)"
+      ],
+      "dataRows": 25146
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_g_Charon_JWST.txt",
+      "bytes": 222768,
+      "sha256": "7f76f1d656ffd6dc2e61f7379a4118c28be5d0aecbd574da61550d7484b18148",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Figure 1 panel g data behind the figure -- The grand-average spectrum of Charon obtained by averaging four JWST/NIRSpec IFU observations.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 8235
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_004.txt",
+      "bytes": 222959,
+      "sha256": "7878443c24d01b5d377524c246cfddc220b404630ca5f73043d3f2aa4b4996c2",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Observation#: 004",
+        "#Telescope: JWST",
+        "#Table: Figure 1 panel f data behind the figure",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 8235
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_005.txt",
+      "bytes": 220505,
+      "sha256": "7ea88ef1333add895b99ed656061f2fc497fbc445099b808e14c056c5ec25007",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Observation#: 005",
+        "#Telescope: JWST",
+        "#Table: Figure 1 panel f data behind the figure",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 8134
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_103.txt",
+      "bytes": 222196,
+      "sha256": "fd0fad129adabb51fa3c1ab2014ea3a837f37c38f73284a497fda5076ba74869",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Observation#: 103",
+        "#Telescope: JWST",
+        "#Table: Figure 1 panel f data behind the figure",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 8221
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_f_Charon_106.txt",
+      "bytes": 220703,
+      "sha256": "1d08c04ab164a2a64ce67610b100464929e66841560945e800f0838ac6c19314",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Observation#: 106",
+        "#Telescope: JWST",
+        "#Table: Figure 1 panel f data behind the figure",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 8165
+    },
+    {
+      "name": "Source Data/fig1/sp_fig1_g_Charon_NH.txt",
+      "bytes": 5446,
+      "sha256": "e2e7155db6d649714599df6af005847741d3faada4763ea2881e881f5f44999f",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: New Horizons",
+        "#Table: Figure 1 panel g data behind the figure -- Comparison data from New Horizons",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F",
+        "#Column 2: Error (1-sigma error on the I/F)"
+      ],
+      "dataRows": 191
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_amorphous_NH3_40K.txt",
+      "bytes": 17945,
+      "sha256": "a45cac0d8c2d066cb56d217d172433dbe9cfdbbca17dc57d7bbb0a39c5e0e324",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Supplementary Figure 1 panel b data behind the figure",
+        "#Comment: Spectrum of NH3 amorphous 40 K",
+        "#Comment: Refer to Roser, J. E., Ricca, A., Cartwright, R. J., Dalle Ore, C. & Cruikshank, D. P. Planet. Sci. J. 2, 240 (2021).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: k"
+      ],
+      "dataRows": 970
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_crystalline_NH3_100K.txt",
+      "bytes": 17781,
+      "sha256": "03654acaa1b76f4cd5bdee574b677d6620613e8bf280735881e40d0e1b827ba2",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Supplementary Figure 1 panel b data behind the figure",
+        "#Comment: Spectrum of NH3 crystalline 100K",
+        "#Comment: Refer to Hudson, R. L., Gerakines, P. A. & Yarnall, Y. Y. Astrophys. J. 925, 156 (2022).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: k"
+      ],
+      "dataRows": 970
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_2.txt",
+      "bytes": 4013,
+      "sha256": "78cbd007ee965e62e583460f2e3425e01c5abc2999ee4c8cc0242eea02a33f8d",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: New Horizons",
+        "#Table: Supplementary Figure 1 panel a data behind the figure",
+        "#Comment: New Horizons/LEISA spectrum of Charon from regions that showcase the most pronounced 2.21-micron absorption band",
+        "#Comment: See figure caption for more details.",
+        "#Comment: Refer to Protopapa, S. et al. in The pluto system after new horizons (eds Stern, S. A., Moore, J. M., Grundy, W. M., Young, L. A. & Binzel, R. P.) Surface Composition of Charon 433\u2013456 (2021).",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Relative Reflectance"
+      ],
+      "dataRows": 192
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_1.txt",
+      "bytes": 3944,
+      "sha256": "2d531916fcc9d3ec29439f49972c9357b2aee7f11b9697236205c29ede4217f9",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: New Horizons",
+        "#Table: Supplementary Figure 1 panel a data behind the figure",
+        "#Comment: New Horizons/LEISA disk-averaged spectrum of Charon",
+        "#Comment: See figure caption for more details.",
+        "#Comment: Refer to Protopapa, S. et al. in The pluto system after new horizons (eds Stern, S. A., Moore, J. M., Grundy, W. M., Young, L. A. & Binzel, R. P.) Surface Composition of Charon 433\u2013456 (2021).",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Relative Reflectance"
+      ],
+      "dataRows": 191
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_NH4Cl.txt",
+      "bytes": 17739,
+      "sha256": "e6a4cb6bbc042797f33c5666c6b244c5933f91800c6253aaaa9ffa776b5d8c98",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Supplementary Figure 1 panel b data behind the figure",
+        "#Comment: Spectrum of NH4Cl",
+        "#Comment: Refer to de Sanctis, M. C. et al. Nature 536, 54\u201357 (2016).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: k"
+      ],
+      "dataRows": 970
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_model.txt",
+      "bytes": 19875,
+      "sha256": "fff567b420042b047a697826f8170377b938f948a9e753946216d8eb5b3ed8d1",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Supplementary Figure 1 panel a data behind the figure",
+        "#Comment: Model of the 2.0-micron band of Charon",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F"
+      ],
+      "dataRows": 1094
+    },
+    {
+      "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_H2O:NH3_50K.txt",
+      "bytes": 17807,
+      "sha256": "129b914ab3b38081e7d25cff8871b7ba7d652e68308ba285c931584eee5bad8c",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Supplementary Figure 1 panel b data behind the figure",
+        "#Comment: Spectrum of NH3 diluted in H2O (10% NH3) 50K",
+        "#Comment: Refer to Zheng, W., Jewitt, D. & Kaiser, R. I. Astrophys. J. Suppl. Ser. 181, 53\u201361 (2009).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: Absorbance"
+      ],
+      "dataRows": 970
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_amorphous_CO2_8K.txt",
+      "bytes": 3986,
+      "sha256": "c0cbd7f4f78c135e00ae1af3f866f115cc5552e41eea5ad26c8ce698caa0c792",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of amorphous CO2 at 8K",
+        "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 205
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Europa_model.txt",
+      "bytes": 1951,
+      "sha256": "e154c55f29026b93095114fe82dc0917a9c0b31647220d8313db7ea40813e6d7",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel a data behind the figure",
+        "#Comment: Model of the local continuum around the CO2 band of Europa",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Normalized Reflectance"
+      ],
+      "dataRows": 97
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K.txt",
+      "bytes": 4344,
+      "sha256": "259795af23fc5e436654752a83ae14eb909eadac924235e7bc942350a078c9c0",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 25K",
+        "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Charon_model.txt",
+      "bytes": 9132,
+      "sha256": "8139483bc382f00446736ed5b0814a1b029aa2aad284b755a60ba7a5670d07f1",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel a data behind the figure",
+        "#Comment: Model of the local continuum around the CO2 band of Charon",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: I/F"
+      ],
+      "dataRows": 497
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Europa.txt",
+      "bytes": 13159,
+      "sha256": "c66918d2427e7a381b68f5d46df9ea9d3224592bd2e905572e06d5ac289f4984",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel b data behind the figure",
+        "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+        "#Comment: The Europa spectrum is normalized to Charon\u2019s I/F level at 4.28\u20134.29 \u03bcm",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Normalized Reflectance",
+        "#Column 2: Error (1-sigma error on the normalized reflectance)"
+      ],
+      "dataRows": 470
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_65K.txt",
+      "bytes": 1073,
+      "sha256": "a5d59837c7660f5fae491f0a4f91d1ce200fbe42f593b0c747d9754f628e1d1c",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of CO\u2082:H\u2082O:CH\u2083OH (1:0.8:0.9) at 65K",
+        "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240\u2013253 (1999).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 42
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Charon_model.txt",
+      "bytes": 9220,
+      "sha256": "1460ec441b4667ef93d2ea5f1812cae116dcdea73a494382b193597fc4cf9743",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Model of the continuum divided Charon's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 502
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Europa_model.txt",
+      "bytes": 8644,
+      "sha256": "3ee980d0bbfe883a29e2b11200fd7846b10ad228ac2fbe33eb475692c0a0e6ca",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Model of the continuum divided Europa's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 470
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K.txt",
+      "bytes": 1068,
+      "sha256": "9638ceb296c30f12ed850d4a2cdc79130fa1f83b615d4004d91af6dd5fd7a7d9",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 25K",
+        "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 43
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K.txt",
+      "bytes": 1026,
+      "sha256": "479bf1412fe2deef53aadea9eca930061b3d91a000eff553732bccee6031f470",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 43
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Europa_model.txt",
+      "bytes": 1480,
+      "sha256": "e32761c2d2dc71d4915d5d3bc52650c4ce2bf358a55afdfe2e0ee45f7dfa87d0",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Model of the continuum divided Europa's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 72
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Charon.txt",
+      "bytes": 2256,
+      "sha256": "44db66f8d4a1199e686fc7c1b12a2e6e24a281f037ad4fe5a3b7ac5201e253a3",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Continuum divided Charon's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)",
+        "#"
+      ],
+      "dataRows": 74
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K.txt",
+      "bytes": 4302,
+      "sha256": "e240e699e8f598f16dae74cf1081a158767c84747c07a226051d3471d71235e3",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Europa.txt",
+      "bytes": 2200,
+      "sha256": "f23bb5d7f38346fe9f65ff9c89e3b1910adee4d7891094482323f297999255ca",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Continuum divided Europa's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)"
+      ],
+      "dataRows": 72
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K_irradiated.txt",
+      "bytes": 4409,
+      "sha256": "f9123164f9174b0b3f39a87cc4556c544b2b2efcc8c2165afeba0889ec7ced37",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 25K irradiated with 100 keV H\u207a (fluence of 8.04 X 10^15 H\u207a/cm\u00b2)",
+        "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_Charon_model.txt",
+      "bytes": 1516,
+      "sha256": "370019e66370778d0a58ff393c1eaaa448bb1959a50e4042aee0ec89f0a3ec29",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Model of the continuum divided Charon's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 74
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_amorphous_CO2_8K.txt",
+      "bytes": 19808,
+      "sha256": "53a557544d7448e42dd8be3d92d657c94bcbbe4da3683fe5b9161b13b88bc2de",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of amorphous CO2 at 8K",
+        "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 1084
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_70K.txt",
+      "bytes": 15059,
+      "sha256": "1cd96baefb91ff17469723c652d45833ccce6315ee8d19c643fd6f1f69ab0709",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 70K",
+        "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 820
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_114K.txt",
+      "bytes": 1074,
+      "sha256": "207df98545f894fea1e53daccd550a7a05fe9cab798054a17d36ba9594b45c51",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of CO\u2082:H\u2082O:CH\u2083OH (1:0.8:0.9) at 114K",
+        "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240\u2013253 (1999).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 42
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K_irradiated.txt",
+      "bytes": 1094,
+      "sha256": "ed4bf12b19b7a186dc7802dd37d564fdd4bf66dd86bd8aaa27cb0de3f32e4981",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 KeV electrons (fluence: 9.30 \u00d7 10^17 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 43
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Europa_model.txt",
+      "bytes": 8665,
+      "sha256": "902280837aab005ba2c7662e0e9bce8216e67b8a26c5ab88cbdaf8e24ce4d42c",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel b data behind the figure",
+        "#Comment: Model of the local continuum around the CO2 band of Europa",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Normalized Reflectance"
+      ],
+      "dataRows": 470
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_114K.txt",
+      "bytes": 4368,
+      "sha256": "622c92bd1d706967ff88a3149337f0bdb067ffe1a2caf14f399008b21ec661d2",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of CO\u2082:H\u2082O:CH\u2083OH (1:0.8:0.9) at 114K",
+        "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240\u2013253 (1999).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_a_Europa.txt",
+      "bytes": 31087,
+      "sha256": "f16c2b5c968ed11f7fe0e1ee944a676e2d2c45e56e901358ebe858d17a4a6d4f",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel a data behind the figure",
+        "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+        "#Comment: The Europa spectrum is normalized to Charon\u2019s I/F level at 2.52\u20132.54 \u03bcm",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Normalized Reflectance",
+        "#Column 2: Error (1-sigma error on the normalized reflectance)"
+      ],
+      "dataRows": 1134
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K_irradiated.txt",
+      "bytes": 1133,
+      "sha256": "e693b33dafde1d243844db1f963fd52118017b21e6b6550a17fc6c71ec49e3ba",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel c data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 25K irradiated with 100 keV H\u207a (fluence of 8.04 X 10^15 H\u207a/cm\u00b2)",
+        "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 43
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Charon.txt",
+      "bytes": 13812,
+      "sha256": "d211ff05cfa60f05b8300f9cd008acf720f364682f31ffc9d25dd427d387c178",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Continuum divided Charon's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)",
+        "#"
+      ],
+      "dataRows": 502
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_Europa.txt",
+      "bytes": 12946,
+      "sha256": "8a53424e92d5e5b3f8b9ba205f86e3ac3da5a757d25225dc515b8abd735013c9",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Continuum divided Europa's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)"
+      ],
+      "dataRows": 470
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_b_Charon_model.txt",
+      "bytes": 9222,
+      "sha256": "ceff50d46c1d5f24dfe4ab3f19226f9c342e12a227faf148c8c21089d95ed46b",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel b data behind the figure",
+        "#Comment: Model of the local continuum around the CO2 band of Charon",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: I/F"
+      ],
+      "dataRows": 502
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_70K.txt",
+      "bytes": 78347,
+      "sha256": "14f538941ce831dca3333de1ff39fcb9dddcec7170d8b34e3f298ee51de44b7f",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of crystalline CO2 at 70K",
+        "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 4336
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_65K.txt",
+      "bytes": 4367,
+      "sha256": "d2aefd402fd4819e91360fd3188466efd203dba4b803d5620bc5a31ea8ea77c3",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of CO\u2082:H\u2082O:CH\u2083OH (1:0.8:0.9) at 65K",
+        "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240\u2013253 (1999).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K_irradiated.txt",
+      "bytes": 4370,
+      "sha256": "a50302346eb72fd63ed4c9ed6262d5d403d8f32a90e9ae674ba06ff607d15256",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 2 panel d data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 KeV electrons (fluence: 9.30 \u00d7 10^17 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 225
+    },
+    {
+      "name": "Source Data/fig3/sp_fig3_Charon_model.txt",
+      "bytes": 92465,
+      "sha256": "88013120e52d220a155c993100e3a2e706e65b6625de66c5ac2f9dff6291617f",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 3 data behind the figure",
+        "#Comment: Spectral model of the grand-average spectrum of Charon, observed with the JWST/NIRSpec.",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (micron)",
+        "#Column 1: I/F model ",
+        "#Column 2: I/F model r_unit1 component",
+        "#Column 3: I/F model r_unit2 Hapke component",
+        "#Column 4: I/F model r_unit2 Fresnel component"
+      ],
+      "dataRows": 2046
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_Charon.txt",
+      "bytes": 14642,
+      "sha256": "dfdd7dff62721bc1d88267621ca302a48ddcf644cf352681d24510422abbef9c",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Figure 4 panel b data behind the figure",
+        "#Comment: Continuum divided Charon's spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#"
+      ],
+      "dataRows": 802
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_Europa.txt",
+      "bytes": 14752,
+      "sha256": "c5af1cf662cb920ad73373b1f9f15a38854c620242624005ff06e3f318a1cdaf",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 4 panel b data behind the figure",
+        "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+        "#Comment: Conitnuum divided Europa spectrum",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 800
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_low_irradiation_fluence.txt",
+      "bytes": 8177,
+      "sha256": "74b03fc4b45b713d3837e3d3948bd0d7b78971b9da016e94982ebf702b612d91",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 4 panel a data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.00 \u00d7 10^15 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Relative Reflectance"
+      ],
+      "dataRows": 436
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_low_irradiation_fluence.txt",
+      "bytes": 8186,
+      "sha256": "7b1e1cae82f005d7a9fd8a0ad78b6a99b8ae97e0dfdef646e968751ab6252f05",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 4 panel b data behind the figure",
+        "#Comment: Continuum divided spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.00 \u00d7 10^15 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 436
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2O_ice_irradiated.txt",
+      "bytes": 6794,
+      "sha256": "02322972b116d19cabae044f1a5624980f70ec4efc3e0af6befe0a1312e56f60",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 4 panel b data behind the figure",
+        "#Comment: Spectrum of H\u2082O ice at 80K, irradiated with 100 keV protons (fluence: 2.7 \u00d7 10^15 ions/cm\u00b2)",
+        "#Comment: Refer to Loeffler, M. J. et al. Icarus 180, 265\u2013273 (2006).",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 358
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_high_irradiation_fluence.txt",
+      "bytes": 8186,
+      "sha256": "dd31821ec44e274b80e5f59d880ca0479e2d5afaf4d11397ebda2f792d9d1bdc",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 4 panel b data behind the figure",
+        "#Comment: Continuum divided spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.30 \u00d7 10^17 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance"
+      ],
+      "dataRows": 436
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_c_Charon.txt",
+      "bytes": 21912,
+      "sha256": "defb28d90d6074ceb2df498797a5c0cae04bd85419a2413411f823deffd63953",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Charon",
+        "#Telescope: JWST",
+        "#Table: Figure 4 panel c data behind the figure",
+        "#Comment: The Charon spectrum continuum divided",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)"
+      ],
+      "dataRows": 802
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_c_Europa.txt",
+      "bytes": 21858,
+      "sha256": "6b6b7d77de21e59c2f6ed18eb858a8a0e9dc9397f3203a16ae7eff27f75ca50d",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 4 panel c data behind the figure",
+        "#Comment: The Europa spectrum continuum divided",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Reflectance",
+        "#Column 2: Error (1-sigma error on the reflectance)"
+      ],
+      "dataRows": 800
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_high_irradiation_fluence.txt",
+      "bytes": 8177,
+      "sha256": "a879ecdd9d70e432387a3f8bcb7df2a07282c7177a116ee32fd0830daad9a638",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Table: Figure 4 panel a data behind the figure",
+        "#Comment: Spectrum of H\u2082O:CO\u2082 (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.30 \u00d7 10^17 e\u207b/cm\u00b2)",
+        "#Comment: Refer to this paper",
+        "#Comment: See figure caption for more details.",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Relative Reflectance"
+      ],
+      "dataRows": 436
+    },
+    {
+      "name": "Source Data/fig4/sp_fig4_a_Europa.txt",
+      "bytes": 22069,
+      "sha256": "2c64d846be84accf7895904f38229b38135fab16b95da1f6fdb743e738f88c51",
+      "header": [
+        "#Author: Silvia Protopapa",
+        "#Target: Europa",
+        "#Telescope: JWST",
+        "#Table: Figure 4 panel a data behind the figure",
+        "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+        "#Comment: The Europa spectrum is normalized to Charon\u2019s I/F level at 2.52\u20132.54 \u03bcm",
+        "#Column 0: Wavelength (\u03bcm)",
+        "#Column 1: Normalized Reflectance",
+        "#Column 2: Error (1-sigma error on the normalized reflectance)"
+      ],
+      "dataRows": 800
+    }
+  ],
+  "date": "2026-10-11",
+  "scope": "Research only; archive retained unchanged, headers and row counts inspected. No figure or numerical data newly embedded.",
+  "assessment": [
+    "Four individual Charon visit spectra 004/005/103/106 and grand-average are labelled separately from New Horizons comparison spectra and spectral models.",
+    "Supplementary Figure 4 filenames all contain Charon, but file b header explicitly targets Pluto contamination. Do not assign that spectrum to Charon; a is visit103 before correction and c is after correction.",
+    "Archive includes Europa comparison and laboratory compounds. These are not Charon local measurements or body skins.",
+    "Disk-integrated spectra and model I/F are not a natural-colour image, calibrated scene photometry, a geography map or direct local fractions.",
+    "Source-data files do not establish correct camera/range/product association for the inconsistent NASA natural-colour caption. MAST raw/calibrated product and extraction audit remain open."
+  ],
+  "terms": "Current parent publisher article CC BY-NC-ND 4.0, not CC BY; third-party exceptions and laboratory source references retained. No automatic relicensing of every archive member and no derivative/figure embedding.",
+  "validation": {
+    "zipCrc": "All members verified",
+    "dossiers": 68,
+    "productionInputs": "unchanged",
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989591,
+    "headroomBytes": 10409,
+    "completeSnapshotSha256": "c2317d3c8bc423fc1721c4bf82dcf3550d6e307d73e93ae941eaf0175a9cb5eb",
+    "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+    "browser": "Chrome exact readable JSON/application/CSS/HTML-parser payloads;237 images20 bands517 details32 models decode; other engines open.",
+    "preservation": "All68 dossiers and389 tracked earlier inputs byte-equal.",
+    "attribution": "Interbuild snapshot changes unaudited; no net savings attribution. Production codecs unchanged."
+  },
+  "references": [
+    "https://www.nature.com/articles/s41467-024-51826-4",
+    "https://www.nature.com/articles/s41467-024-51826-4#Sec22",
+    "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  ],
+  "credit": "Silvia Protopapa, Ujjwal Raut, Ian Wong, John Stansberry, Geronimo L. Villanueva, Jason Cook, Bryan Holler, William M. Grundy, Rosario Brunetto, Richard J. Cartwright, Bereket Mamo, Joshua P. Emery, Alex H. Parker, Aurelie Guilbert-Lepoutre, Noemi Pinilla-Alonso, Stefanie N. Milam, Heidi B. Hammel; laboratory/comparison sources identified in each retained header.",
+  "publicationDate": "2024-10-01",
+  "observationDates": "JWST visits0042022-09-24,0052023-04-18,1062023-04-19,1032023-04-21 per previously assessed publisher supplement; laboratory/comparison dates not newly independently audited."
+}

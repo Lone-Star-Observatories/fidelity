@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-11",
+  "body": "Nix",
+  "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+  "sources": [
+    "src/data/sol.js Pluto radius/mass",
+    "src/data/moons.js Charon radius/mass and19600km separation",
+    "docs/research/nix-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric48694km and50x35x33km ellipsoid"
+  ],
+  "assumptions": {
+    "circularCoplanarSystem": true,
+    "nixBarycentricRadiusKm": 48694,
+    "plutoCharonSeparationKm": 19600,
+    "nixObserverHeightKm": 25,
+    "heightUse": "Assumed25km maximum ellipsoid semiaxis, not a registered surface normal or measured site height",
+    "phase": "Illustrative right-angle barycentric configuration; no dated ephemeris",
+    "horizontalFovDeg": 90,
+    "temperatureK": 40,
+    "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+  },
+  "barycentricOffsetsKm": {
+    "pluto": 2126.8199233716477,
+    "charon": 17473.180076628352
+  },
+  "geometry": {
+    "pluto": {
+      "radiusKm": 1188.3,
+      "representativeDistancesKm": {
+        "alignedNear": 46542.180076628356,
+        "rightAngle": 48715.42469025532,
+        "alignedFar": 50795.819923371644
+      },
+      "angularResults": {
+        "alignedNear": {
+          "angularDiameterDeg": 2.9260328529675395,
+          "centreDiscWidthFraction": 0.025540004659400133,
+          "targetPixels1672": 42.702887790517025
+        },
+        "rightAngle": {
+          "angularDiameterDeg": 2.7954730474779614,
+          "centreDiscWidthFraction": 0.02439994491418415,
+          "targetPixels1672": 40.7967078965159
+        },
+        "alignedFar": {
+          "angularDiameterDeg": 2.68096022303844,
+          "centreDiscWidthFraction": 0.023400061102331955,
+          "targetPixels1672": 39.12490216309903
+        }
+      }
+    },
+    "charon": {
+      "radiusKm": 606,
+      "representativeDistancesKm": {
+        "alignedNear": 31195.819923371648,
+        "rightAngle": 51709.105365709016,
+        "alignedFar": 66142.18007662836
+      },
+      "angularResults": {
+        "alignedNear": {
+          "angularDiameterDeg": 2.2261589250467386,
+          "centreDiscWidthFraction": 0.01942934575970378,
+          "targetPixels1672": 32.48586611022472
+        },
+        "rightAngle": {
+          "angularDiameterDeg": 1.3429757480285875,
+          "centreDiscWidthFraction": 0.011720210886991928,
+          "targetPixels1672": 19.596192603050504
+        },
+        "alignedFar": {
+          "angularDiameterDeg": 1.0499118152679519,
+          "centreDiscWidthFraction": 0.009162465401776,
+          "targetPixels1672": 15.319642151769472
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+    "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+    "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+    "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+    "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+    "All68 dossiers and original/native/map/model/shape bytes preserved. Headroom recovery essential before prepared Charon69 or further embedding."
+  ],
+  "verification": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991695,
+    "headroomBytes": 8305,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+      "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+  }
+}

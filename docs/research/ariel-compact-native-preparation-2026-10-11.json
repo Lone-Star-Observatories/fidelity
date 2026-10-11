@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-11",
+  "body": "Ariel",
+  "status": "Research-only; no62nd dossier or new embedded asset.",
+  "product": "Voyager2 PIA00041",
+  "observed": "1986-01-24",
+  "publisherImageAdditionDate": "1996-01-29",
+  "credit": "NASA/JPL",
+  "captionUrl": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+  "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "licence": "NASA media guidelines; not asserted CC BY.",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/ariel-PIA00041-display320.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 11157,
+      "sha256": "f32504f7ab6d167950b4b8de2d181f3dfa009e05a233edf234115df5f740660b",
+      "width": 320,
+      "height": 246
+    },
+    {
+      "path": "data/research-sources/ariel-PIA00041-display160.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg?crop=faces%2Cfocalpoint&fit=clip&h=160&w=160",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 3425,
+      "sha256": "75ddfc0013ed8b50cde9f39a9968418f0aa5a301c4cd5be54f15c5f74d784d04",
+      "width": 160,
+      "height": 123
+    }
+  ],
+  "inspection": "Both unchanged publisher JPEG responses inspected. Southern illuminated partial disk, channels/fringes and black background remain visible;160 rendition has limited detail.",
+  "processing": "Publisher resizing and JPEG re-encoding, not full pixel preservation. Green/blue/violet composite is not independently calibrated visible colour or registered globe geography. Caption historical resolution estimates remain source estimates; no new angular/raster calculation.",
+  "preservation": "Full845x650 PIA00041 JPEG45924 SHA604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c and1330x1508 PIA01534 JPEG92377 SHAdb3bf26a6cc53a65c25640be2e1b7f2d11eccdc8d42ce08f069775ba15bbdeec retained unchanged. OwnNASA3D map, all61dossiers, originalPNG/prompts/masters and all science/native/model/shape inputs preserved.",
+  "budget": "Prepared generated previews18828rawbytes plus160native3425 total22253beforemetadata/transport. Lastverified1250headroom insufficient; exact additive build not attempted.",
+  "openWork": [
+    "Substantial conforming lossless headroom before additive Ariel dossier62.",
+    "All previous science/coverage/frame/epochs/photometry/shape, source-association and observer calibration limitations remain open."
+  ],
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15999276,
+    "headroomBytes": 724,
+    "completeBrowserReadableSnapshotSha256": "dcd33dee51240ecc778bf835992a5d9cd7573df45a3d1c7d8bcfd0a4ba413fc1",
+    "applicationSha256": "223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "rawSnapshotHtmlParserSha256": "6fd46b1e364f89cbeacca1e9f2ae548c30de1dc805be31c5a2b0c3ac48beef33",
+    "browser": "Chrome exact complete readableJSON/application/CSS/HTMLparser.216images20bands517details32models decode. Actual normal/offline Miranda ownmap3cards/nativecontext hashes pass. Otherengines remain open.",
+    "preservation": "All61 dossiers deepEqual;354tracked registry/bespoke/map/model/shape inputs exact. No new embedded asset; all original/master/native/source inputs preserved.",
+    "queueTasks": 566,
+    "compression": "Production FIDNUM02gzip128unlimited,FIDAPP01app32unlimited,CSS5dense125v2; all legacy decoders/Blob/revoke/unsupported unchanged.",
+    "attribution": "ac55-toDcd33 interbuild snapshot differences are unaudited. No asset or compression savings attribution; this research batch changes no snapshot input registry/map/model/bespoke files."
+  }
+}

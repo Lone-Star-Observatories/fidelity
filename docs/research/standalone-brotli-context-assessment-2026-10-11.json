@@ -1,0 +1,83 @@
+{
+  "snapshotSha256": "f0ad46a94ef06058d51c35e6d782b39e9ebe3a4f23c91c06e4961c8f5338ebe0",
+  "binaryBytes": 19779484,
+  "results": [
+    {
+      "mode": 0,
+      "disableContext": false,
+      "innerBytes": 13129373,
+      "outerGzipBytes": 13132551,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "mode": 0,
+      "disableContext": true,
+      "innerBytes": 13154059,
+      "outerGzipBytes": 13157288,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "mode": 1,
+      "disableContext": false,
+      "innerBytes": 13129373,
+      "outerGzipBytes": 13132551,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "mode": 1,
+      "disableContext": true,
+      "innerBytes": 13154059,
+      "outerGzipBytes": 13157288,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "mode": 2,
+      "disableContext": false,
+      "innerBytes": 13124437,
+      "outerGzipBytes": 13127673,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "mode": 2,
+      "disableContext": true,
+      "innerBytes": 13148067,
+      "outerGzipBytes": 13151277,
+      "nativeAndBundledJsExact": true
+    }
+  ],
+  "date": "2026-10-11",
+  "status": "Adopted snapshot-only Brotli MODE_FONT with literal context modelling enabled; binary bytes never interpreted or modified. No69th/newembedding.",
+  "reproducibleScript": "standalone-brotli-context-screen-2026-10-11.mjs",
+  "screening": "Frozen f0ad46a9 full FIDNUM02 quality11: GENERIC/TEXT context-enabled13132551outergzip; FONT13127673 saves4878gzipbytes. Disabling literal context increases all modes. Native and bundledJS exact fullJSON roundtrips pass every candidate. Do not repeat rejected mode/context combinations.",
+  "verification": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "beforeHtmlBytes": 15993799,
+    "htmlBytes": 15987487,
+    "headroomBytes": 12513,
+    "sameInputHtmlSavingBytes": 6312,
+    "sameInputProof": "Entire HTML outside snapshot envelope byte-identical; complete readableJSON before/after mode change byte-identical. Earlier frozen screen input differs from this rebuilt current input; screen gzip saving is not substituted for this exact HTML saving.",
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "1e9c5a3eea77f061fc74e275d7ba20833079aedcc96c2fc63d0fd9435aac5b43",
+      "raw": "6b8ffc6714309bbe467878a96e6f2fc8fba0e3b03a4a56587225e0e83f00dd9c",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15987487,
+      "compressedBytes": 683438,
+      "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+      "htmlParserPreservesEveryPackedByte": true,
+      "browserExactApplication": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All68 dossiers/389tracked registry/bespoke/model/shape inputs byte-identical; original PNG/master/native/provenance unchanged; own Charon map matches fresh source exactly.",
+    "routes": "Actual normal/offline Proteus3cards/noownmap/native hashes, six routes/unsupportedgzip/11workerrows pass",
+    "otherEngines": "open",
+    "codecs": "Only build-time snapshot Brotli MODE_FONT parameter changes. FIDBRT01quality11outergzip9FIDNUM02, independent application FIDBRT01/FIDAPP01, CSS5dense125v2/alllegacy decoders/Blob/notices unchanged."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "baseline": 13484700,
+  "results": [
+    {
+      "maximum": 64,
+      "tokens": 155873,
+      "gzipBytes": 13489390,
+      "exactHeaderRoundtrip": true,
+      "groupCount": 63
+    },
+    {
+      "maximum": 256,
+      "tokens": 156426,
+      "gzipBytes": 13498601,
+      "exactHeaderRoundtrip": true,
+      "groupCount": 138
+    },
+    {
+      "maximum": 4096,
+      "tokens": 156435,
+      "gzipBytes": 13496853,
+      "exactHeaderRoundtrip": true,
+      "groupCount": 147
+    }
+  ],
+  "date": "2026-10-11",
+  "scope": "Research-only exact UTF-8 string-lexeme byte transpose of FIDNUM02 skeleton, grouped by byte length. Numeric groups and binary asset tail unchanged.",
+  "decision": "Rejected: every screening payload larger than baseline even before group metadata/decoder overhead. No production change or full candidate.",
+  "limits": "zlib9 screening is not production Zopfli compression. Header inverse exact; trial concatenations are measurement streams, not validated production containers. No lossless headroom or complete browser candidate claim.",
+  "baselineSnapshotSha256": "dcd33dee51240ecc778bf835992a5d9cd7573df45a3d1c7d8bcfd0a4ba413fc1",
+  "reproducibility": "Reported screening uses this exact snapshot hash. Live snapshot regeneration changed an earlier screening input; those earlier byte counts are not used here and no interbuild saving is attributed.",
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15999276,
+    "headroomBytes": 724,
+    "completeBrowserReadableSnapshotSha256": "dcd33dee51240ecc778bf835992a5d9cd7573df45a3d1c7d8bcfd0a4ba413fc1",
+    "applicationSha256": "223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "rawSnapshotHtmlParserSha256": "6fd46b1e364f89cbeacca1e9f2ae548c30de1dc805be31c5a2b0c3ac48beef33",
+    "browser": "Chrome exact complete readableJSON/application/CSS/HTMLparser.216images20bands517details32models decode. Actual normal/offline Miranda ownmap3cards/nativecontext hashes pass. Otherengines remain open.",
+    "preservation": "All61 dossiers deepEqual;354tracked registry/bespoke/map/model/shape inputs exact. No new embedded asset; all original/master/native/source inputs preserved.",
+    "queueTasks": 566,
+    "compression": "Production FIDNUM02gzip128unlimited,FIDAPP01app32unlimited,CSS5dense125v2; all legacy decoders/Blob/revoke/unsupported unchanged.",
+    "attribution": "ac55-toDcd33 interbuild snapshot differences are unaudited. No asset or compression savings attribution; this research batch changes no snapshot input registry/map/model/bespoke files."
+  }
+}

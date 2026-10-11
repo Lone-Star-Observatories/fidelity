@@ -26,6 +26,7 @@ import { badge } from '../../data/provenance.js';
 import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/composition.js';
 import { bodyVisualFor } from '../../data/bespoke.js';
 import { stellarResearchCards } from './research.js';
+import { makeSnapshot } from '../snapshot.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const OBSERVED = '#c97a00'; // validated against the black surface with the blackbody blue
@@ -372,6 +373,8 @@ export function createStarView(container) {
   }
 
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => renderer.render(scene, camera), restore: sizeHero }),
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
     camera: rig,
     hide() { container.hidden = true; running = false; },

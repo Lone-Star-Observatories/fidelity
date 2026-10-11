@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-11",
+  "body": "Ariel",
+  "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+  "authors": [
+    "Richard J. Cartwright",
+    "Sasha Cryan",
+    "Rosario Brunetto",
+    "Apolline Leclef",
+    "Eric Quirico",
+    "Bryan J. Holler",
+    "William M. Grundy",
+    "Tom A. Nordheim",
+    "Ujjwal Raut",
+    "Matthew M. Hedman",
+    "Riley A. DeColibus",
+    "Chloe B. Beddingfield",
+    "Marc Neveu",
+    "Christopher R. Glein",
+    "Sara Faggi",
+    "Geronimo L. Villanueva",
+    "Noemi Pinilla-Alonso",
+    "Stephanie M. Menten"
+  ],
+  "url": "https://arxiv.org/pdf/2607.05600v2",
+  "abstractUrl": "https://arxiv.org/abs/2607.05600",
+  "submitted": "2026-07-06",
+  "revised": "2026-07-08",
+  "version": "v2",
+  "pdfDraftHeaderDate": "2026-07-09",
+  "publisherStatus": "Primary abstract reports accepted in PSJ; final journal record remains unverified. PDF draft headerJuly9 differs from arXiv revisionJuly8 and is not an observation date.",
+  "licence": "Specific arXiv record explicitly links CC BY4.0; not inferred from generic distribution. Full18authors/title/arXivversion retained. No figure embedded or transformed.",
+  "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "sourceRecord": {
+    "path": "data/research-sources/ariel-Cartwright2026-v2.pdf",
+    "url": "https://arxiv.org/pdf/2607.05600v2",
+    "status": 200,
+    "bytes": 4279565,
+    "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+    "pages": 29
+  },
+  "scope": "Full29page PDF retained; section2/Table1, Figure1 caption, section3 feature-identification alternatives and section5 conclusions assessed. No independent spectral re-reduction or local geography claim.",
+  "observations": {
+    "program": 1786,
+    "instrument": "NIRSpec IFU G395M/F290LP",
+    "wavelengthMicrons": [
+      2.87,
+      5.25
+    ],
+    "resolvingPowerApprox": 1000,
+    "dithers": 4,
+    "arielTrailing": {
+      "date": "2023-09-06",
+      "startUT": "19:35:03",
+      "seconds": 3793.1,
+      "reportedMidObservationLongitudeDegrees": 293.4,
+      "latitudeDegrees": 64.5
+    },
+    "arielLeading": {
+      "date": "2023-09-07",
+      "startUT": "17:32:06",
+      "seconds": 3734.8,
+      "reportedMidObservationLongitudeDegrees": 64.0,
+      "latitudeDegrees": 64.5
+    },
+    "archiveDoi": "10.17909/nj36-mt02",
+    "reportedPipeline": "Science Calibration Pipeline1.20.1;CRDSjwst1464.pmap;NSClean/templatePSF extraction",
+    "limits": "Ariel2023 spectra re-reduced with updated pipeline, extending previously presented structure to5.25microns. These are not2026 observations or resolved visible terrain. 2024record/reduction/longitude estimates preserved separately; exact archive product association and independent calibration remain open."
+  },
+  "assessment": "CO/CO2 spectral features are measured. Laboratory crystallineCO2 lattice oscillations can explain many4.8\u20135.25micron features previously assigned other species. Carbonate4.02micron and clathrate4.40micron assignments remain favoured interpretations rather than direct local chemistry;4.59micronOCN-minus has a CO2-laboratory shoulder alternative. Roughness/grain-boundary/layered laboratory fits do not establish local material fractions or a visible surface map. Dual native/radiolytic origins are proposed, not directly observed conduits/ocean/plumes or biology. H2O2 nondetection is not proof of absence. Orbital spatially resolved observations are still needed to associate chemistry with geological terrain. No observed-body analog terrain adopted.",
+  "openWork": [
+    "Finaljournal record/supplement and exactMAST product audit.",
+    "Independent reduction/calibration and nativeglobe frame/coverage/photometry."
+  ],
+  "preservation": "Research-only; all61dossiers/native/map/model/shape/original/master/provenance inputs unchanged; no62nd or new embedding.",
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15999276,
+    "headroomBytes": 724,
+    "completeBrowserReadableSnapshotSha256": "dcd33dee51240ecc778bf835992a5d9cd7573df45a3d1c7d8bcfd0a4ba413fc1",
+    "applicationSha256": "223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "rawSnapshotHtmlParserSha256": "6fd46b1e364f89cbeacca1e9f2ae548c30de1dc805be31c5a2b0c3ac48beef33",
+    "browser": "Chrome exact complete readableJSON/application/CSS/HTMLparser.216images20bands517details32models decode. Actual normal/offline Miranda ownmap3cards/nativecontext hashes pass. Otherengines remain open.",
+    "preservation": "All61 dossiers deepEqual;354tracked registry/bespoke/map/model/shape inputs exact. No new embedded asset; all original/master/native/source inputs preserved.",
+    "queueTasks": 566,
+    "compression": "Production FIDNUM02gzip128unlimited,FIDAPP01app32unlimited,CSS5dense125v2; all legacy decoders/Blob/revoke/unsupported unchanged.",
+    "attribution": "ac55-toDcd33 interbuild snapshot differences are unaudited. No asset or compression savings attribution; this research batch changes no snapshot input registry/map/model/bespoke files."
+  }
+}

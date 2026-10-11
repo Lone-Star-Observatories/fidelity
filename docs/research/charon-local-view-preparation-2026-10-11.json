@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-11",
+  "body": "Charon",
+  "status": "Research-only independent local original prepared; no69th dossier or new embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Use case: scientific-educational\nAsset type: independent hypothetical local observer illustration for Fidelity's Charon dossier, preparation only.\nPrimary request: A wide realistic scientific illustration of independently invented local terrain on Pluto's moon Charon. Generate from scratch without any input photograph or map. Never reuse or recolour Moon, Mars, Pluto or another observed body's terrain.\nScene: low viewpoint over cold neutral grey granular terrain with scattered angular blocks, shallow worn depressions, fractured low ridges and a distant broken crater rim. A few muted pale patches may be present but their chemistry is unknown and invented. Modest hard directional illumination with artistic exposure and grey colour. Do not depict a known New Horizons site, named canyon or crater, red polar cap, or registered globe location. Measured disk-integrated water, CO2 and peroxide spectral features and modelled mixture fractions do not identify these local materials.\nComposition: landscape16:9, detailed foreground, restrained distant horizon, nearly black sky. Omit Pluto, Sun, stars and all astronomical disks; no angular-size depiction is made.\nText verbatim: \"IMAGINED LOCAL CHARON TERRAIN\" and small footer \"Invented relief and materials \u00b7 No observed site registration\". Legible restrained typography.\nConstraints: no people, spacecraft, habitat, landing or survivability implication. No atmosphere clouds or conspicuous haze, plume, liquid, ocean, biology, glowing lava or interior cutaway. Black sky is assumed transparency, not a measurement of atmospheric absence. Terrain, blocks, grain sizes, chemistry, colour, light and exposure are invented. Not a photograph or calibrated map.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f8905418-189f-435d-92a4-fb0418098845.png",
+  "originalPath": "data/research-sources/charon-generated-surfaceImage-original.png",
+  "inspection": "Viewed original: label and footer legible, independently invented grey blocks/depressions/ridges and black sky. No astronomical disk, plume, liquid, biology, spacecraft or landing depiction. No observed map input.",
+  "limitations": [
+    "Terrain, blocks, grain sizes, chemistry, colour, light and exposure invented.",
+    "Not a registered New Horizons site or observed globe map; no analog body skin.",
+    "Disk-integrated spectra and best-fit mixture fractions do not map these local materials.",
+    "Black sky is assumed transparency, not measured atmospheric absence.",
+    "No astronomical disk, so no angular/raster-size claim.",
+    "Own Charon globe and all68 earlier dossiers preserved; observer/master/preview/additive69 and substantial headroom remain pending."
+  ],
+  "original": {
+    "path": "data/research-sources/charon-generated-surfaceImage-original.png",
+    "bytes": 3290476,
+    "sha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+    "width": 1672,
+    "height": 941,
+    "mime": "image/png"
+  },
+  "verification": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989591,
+    "headroomBytes": 10409,
+    "preservation": "All68 dossiers and389 tracked registry/bespoke/model/shape inputs byte-identical. Complete snapshot SHA e813273c0fb6267a69350fd9ef833d2ef1104e6c5f9b2147eba8b80298e69e99 byte-identical to prior supplement build.",
+    "browser": "Chrome exact complete readableJSON/app c943a85a/CSS960361a/HTMLparser;237images20bands517details32models native hashes and actual normal/offlineProteus3cards/noownmap pass; other engines open.",
+    "production": "All codecs, full science/native fields, legacy decoders, Blob paths and notices unchanged. No embedding or size-saving claim."
+  }
+}

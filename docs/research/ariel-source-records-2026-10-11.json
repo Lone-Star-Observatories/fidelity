@@ -1,0 +1,66 @@
+[
+  {
+    "path": "data/research-sources/ariel-PIA00041-caption.html",
+    "url": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 267160,
+    "sha256": "86de6e68e4a9a02f1075439e2acc9ffeb7507b0e0c428dcebae017dd3591f34b"
+  },
+  {
+    "path": "data/research-sources/ariel-PIA01534-caption.html",
+    "url": "https://science.nasa.gov/photojournal/ariels-densely-pitted-surface/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 267043,
+    "sha256": "988527f6ff617abd9f70e754a1d023ca97888a5bad526bcb8439d7ff00e7bc02"
+  },
+  {
+    "path": "data/research-sources/ariel-PIA00041-original.jpg",
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 45924,
+    "sha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c"
+  },
+  {
+    "path": "data/research-sources/ariel-PIA01534-original.jpg",
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01534/PIA01534.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 92377,
+    "sha256": "db3bf26a6cc53a65c25640be2e1b7f2d11eccdc8d42ce08f069775ba15bbdeec"
+  },
+  {
+    "path": "data/research-sources/ariel-nasa3d-source.jpg",
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Ariel/Uranus%20-%20Ariel.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 254331,
+    "sha256": "fc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee"
+  },
+  {
+    "path": "data/research-sources/ariel-nasa-terms.html",
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 320653,
+    "sha256": "c5b8ccde2f5a4b131557d12ea206bbd2334f315930049c5e06d893414f50fdc2"
+  },
+  {
+    "path": "data/research-sources/ariel-Cartwright2024-author.pdf",
+    "url": "https://mmhedman.github.io/papers_published/Cartwright_Ariel_ApJL_2024.pdf",
+    "status": 200,
+    "mime": "application/pdf",
+    "bytes": 4245774,
+    "sha256": "49b750f76902a15bd2fe46d2ca5e4494585ade77fe358b8e10ba4d3d116f49ea"
+  },
+  {
+    "path": "data/research-sources/ariel-Cartwright2026-abstract.html",
+    "url": "https://arxiv.org/abs/2607.05600",
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "bytes": 46575,
+    "sha256": "8992cee8cfd506eed6816793a8176b385ce627a7632757d20bf870575c96ced8"
+  }
+]

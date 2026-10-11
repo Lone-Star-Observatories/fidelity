@@ -34,6 +34,7 @@ Exoplanet Archive planet list (cached for a week). Both are stored under `data/`
 | `FIDELITY_EVENTS_URL` | the repo's `events/events.json` on GitHub | Where `/api/events` reads the weekly events feed |
 | `FIDELITY_OPENAI_KEY` (or `OPENAI_API_KEY`) | — | Enables the "Computer" voice (OpenAI Realtime). Held by the backend only; the page never sees it |
 | `FIDELITY_REALTIME_MODEL` | `gpt-realtime` | Realtime model for the voice |
+| `FIDELITY_IMAGE_MODEL` | `gpt-image-1` | Image model for the optional postcard AI STYLIZE step (#40); uses the same OpenAI key, off unless you press STYLIZE |
 
 Run `npm run catalogs -- /path/to/catalogs` to see which of your downloaded catalogs the
 ship recognises and which view will use each one.

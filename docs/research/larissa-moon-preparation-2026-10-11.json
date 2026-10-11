@@ -1,0 +1,61 @@
+{
+  "body": "Larissa (Neptune VII), not asteroid 1162 Larissa",
+  "status": "research-only; no new dossier or embedding",
+  "retrieved": "2026-10-11",
+  "sources": [
+    {
+      "path": "data/research-sources/larissa-voyager-overview-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Larissa_732X520.jpg",
+      "bytes": 47564,
+      "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349"
+    },
+    {
+      "path": "data/research-sources/larissa-overview.html",
+      "url": "https://science.nasa.gov/neptune/moons/larissa/",
+      "bytes": 259491,
+      "sha256": "e691e66307ad540d89e515170c3eb659e0a9dbe0458c924194cdc8a62cececdb"
+    },
+    {
+      "path": "data/research-sources/larissa-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320651,
+      "sha256": "466d5b7039ae819c193fbecea7ebf419468e727b42c457b7d95c2d167fc12fc1"
+    }
+  ],
+  "nativeImage": {
+    "dimensions": [
+      732,
+      520
+    ],
+    "credit": "NASA/JPL",
+    "observationDate": null,
+    "publicationDate": null,
+    "dateLimits": "NASA overview identifies Voyager 2 views and 1989 discovery; exact acquisition UTC, original release date and product crosswalk remain unverified. Asset path 2023/07 is not an observation date.",
+    "terms": "Active NASA images/media terms retained; no CC BY assertion.",
+    "inspection": "Two coarse monochrome moon views on black background. Blur and sampling are not local terrain or calibrated visible colour. Black background does not measure atmospheric absence.",
+    "processing": "Downloaded publisher JPEG unchanged; source rendition history and original science pixels remain unverified."
+  },
+  "limitations": [
+    "No globe/map/shape adopted or generated.",
+    "No angular/raster computation made; no new resolution or size claim.",
+    "Overview discovery narrative distinguishes initial 1981 ground observation from official July 1989 Voyager discovery; no silent catalogue change.",
+    "PIA00063 is a Neptune cloud image and must not be assigned to Larissa.",
+    "Exact camera/filter/phase, product identifiers, geometry, frame, coverage, photometry and current shape/rotation assessment remain open.",
+    "Body-specific 2026 spectra must be assessed separately from Proteus and Galatea; no other body chemistry or map assigned."
+  ],
+  "preservation": "All 68 dossiers and existing imagery, maps, models, shapes, native science, masters, originals and provenance retained. Production codecs unchanged.",
+  "validation": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15993010,
+    "headroomBytes": 6990,
+    "queue": 566,
+    "deliveredDossiers": 68,
+    "trackedAssetBytesPreserved": 404,
+    "browser": "Chrome exact complete readable JSON and HTML parser payload; 237 images, 20 bands, 517 details, 32 model entries. No new model-load or route verification claim; other engines open.",
+    "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+    "interbuildLimit": "Difference from earlier eb1cc385 snapshot not independently audited; no compression or asset savings attribution.",
+    "scope": "Checks completed before rebasing concurrent upstream 918878b postcard changes; combined application not revalidated in this research batch."
+  }
+}

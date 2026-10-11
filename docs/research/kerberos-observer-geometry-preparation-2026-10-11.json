@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-11",
+  "body": "Kerberos",
+  "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+  "sources": [
+    "src/data/sol.js Pluto radius/mass",
+    "src/data/moons.js Charon radius/mass and 19600km separation",
+    "docs/research/kerberos-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2: barycentric 57783km, explicitly poor bilobed 19x10x9km ellipsoid fit"
+  ],
+  "assumptions": {
+    "circularCoplanarSystem": true,
+    "plutoCharonSeparationKm": 19600,
+    "heightUse": "Assumed maximum fitted semiaxis of an explicitly poor bilobed fit; not measured site height, local normal, registered shape or uncertainty",
+    "observerPositionKm": [
+      57792.5,
+      0
+    ],
+    "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+    "plutoPositionKm": [
+      0,
+      2126.8199233716477
+    ],
+    "charonPositionKm": [
+      0,
+      -17473.180076628352
+    ],
+    "horizontalFovDeg": 90,
+    "temperatureK": 40,
+    "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+    "kerberosBarycentricRadiusKm": 57783,
+    "kerberosObserverHeightKm": 9.5
+  },
+  "barycentricOffsetsKm": {
+    "pluto": 2126.8199233716477,
+    "charon": 17473.180076628352
+  },
+  "geometry": {
+    "pluto": {
+      "radiusKm": 1188.3,
+      "representativeDistancesKm": {
+        "alignedNear": 55665.680076628356,
+        "rightAngle": 57831.621274493504,
+        "alignedFar": 59919.319923371644
+      },
+      "computed": {
+        "alignedNear": {
+          "distanceKm": 55665.680076628356,
+          "angularDiameterDeg": 2.4463815680862893,
+          "targetWidthPixels1672": 35.70046123641225
+        },
+        "rightAngle": {
+          "distanceKm": 57831.621274493504,
+          "angularDiameterDeg": 2.3547452112016045,
+          "targetWidthPixels1672": 34.36281248216893
+        },
+        "alignedFar": {
+          "distanceKm": 59919.319923371644,
+          "angularDiameterDeg": 2.2726906299950134,
+          "targetWidthPixels1672": 33.16506970522227
+        }
+      }
+    },
+    "charon": {
+      "radiusKm": 606,
+      "representativeDistancesKm": {
+        "alignedNear": 40319.319923371644,
+        "rightAngle": 60376.19628827475,
+        "alignedFar": 75265.68007662836
+      },
+      "computed": {
+        "alignedNear": {
+          "distanceKm": 40319.319923371644,
+          "angularDiameterDeg": 1.7223777507405102,
+          "targetWidthPixels1672": 25.133024727715515
+        },
+        "rightAngle": {
+          "distanceKm": 60376.19628827475,
+          "angularDiameterDeg": 1.1501826061078493,
+          "targetWidthPixels1672": 16.782823430968488
+        },
+        "alignedFar": {
+          "distanceKm": 75265.68007662836,
+          "angularDiameterDeg": 0.9226414350382006,
+          "targetWidthPixels1672": 13.462508312003195
+        }
+      }
+    }
+  },
+  "limitations": [
+    "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+    "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+    "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+    "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+    "Future Pluto and Charon appearances must be independently invented; no other body map may become Kerberos terrain.",
+    "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+    "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedInputsByteIdentical": 404,
+    "registryByteIdentical": true,
+    "newEmbedding": false
+  },
+  "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=57783+9.5 and binary mass offsets from 19600km separation.",
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990906,
+    "headroomBytes": 9094,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+      "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome complete readableJSON and HTML-parser payload equality; 237 images and 20 band images decode, 517 detail and 32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+  }
+}

@@ -1,0 +1,612 @@
+{
+  "date": "2026-10-11",
+  "status": "Oberon individual dossier65 delivered; backlogACTIVE",
+  "bodies": [
+    {
+      "id": "oberon",
+      "name": "Oberon",
+      "aliases": [
+        "Oberon"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-11",
+      "previewWidth": 256,
+      "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHAed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open. Current Oberon NASA3D page labels JPEG as Oberon but actual href points to uranus---ariel/Uranus%20-%20Ariel.jpg and alt says Ariel. Page listed248.37KB is not adopted as Oberon source size. The explicitly Oberon GitHub file51214bytes matches existing map. No Ariel image downloaded or assigned to Oberon. TIFF href names Oberon but not downloaded/verified.",
+      "measured": [
+        "Existing catalogue radius761.4km mass3.076e21kg semimajor583511km/period13.463237days preserved; decimal precision is not uncertainty.",
+        "Voyager2 narrow-angle camera violet/clear/green filter colour reconstruction observed1986-01-24/imageaddition1996-01-29. Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim.",
+        "Section3.2 reports trailing4.02/4.14/4.20/4.27/4.67/4.90micron features>3sigma; trailing5.17weaker>2sigma. Leading4.27>3sigma and4.02>2sigma. Do not assign Titania5.17confidence or Ariel richer features to Oberon.",
+        "Oberon-specific NIRSpecIFU1786 trailing2023-09-03T08:37:01UTC/leading2023-09-11T00:10:40UTC3152.2s each. Spectra are not resolved visible terrain."
+      ],
+      "modelled": [
+        "Disk-integrated features are measurements; laboratory lattice/grain/layer/roughness/chemical-origin interpretations are models. No local chemistry/fractions/Voyager pixel mapping/ocean/plume/biology detection; nondetection not absence. No isotope values adopted. Final journal/supplement/product association/calibration remain open.",
+        "skyGeometry mean spherical Uranus25362km at583511minus761.4km nominal90HFOV4.988745362528712deg72.83656832564338targetpxat1672."
+      ],
+      "unknown": [
+        "Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open.",
+        "Full retained29page joint paper Table1, section2 and section3.2 assessed specifically for Oberon.2026revision/draft not observation; exact products/calibration/final publication/supplement OPEN.",
+        "Local material fractions and dated registration unknown; possible erupted carbon-rich material is hypothesis, not detected present activity."
+      ],
+      "assumed": [
+        "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+        "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+        "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame. Row210 threshold5/10/20 widths89/71/48 phase/exposure sensitive versus72.83657target, not calibrated full diameter. Invented Uranus bands/colour/phase/exposure."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+          "title": "NASA Voyager2 Oberon PIA00034",
+          "observationDate": "1986-01-24",
+          "publicationDate": "1996-01-29",
+          "credit": "NASA/JPL",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+          "title": "NASA3D Oberon own globe",
+          "credit": "USGS/Tammy Becker & JPL/Caltech",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2607.05600v2",
+          "title": "Cartwright2026 carbon oxides on Uranian moons, Oberon-specific assessment",
+          "authors": [
+            "Richard J. Cartwright",
+            "Sasha Cryan",
+            "Rosario Brunetto",
+            "Apolline Leclef",
+            "Eric Quirico",
+            "Bryan J. Holler",
+            "William M. Grundy",
+            "Tom A. Nordheim",
+            "Ujjwal Raut",
+            "Matthew M. Hedman",
+            "Riley A. DeColibus",
+            "Chloe B. Beddingfield",
+            "Marc Neveu",
+            "Christopher R. Glein",
+            "Sara Faggi",
+            "Geronimo L. Villanueva",
+            "Noemi Pinilla-Alonso",
+            "Stephanie M. Menten"
+          ],
+          "terms": "Specific record links CC BY4.0; no paper figure embedded.",
+          "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+          "observationDate": "2023-09-03/2023-09-11"
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA media terms"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/oberon-voyager-native.jpg",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+          "sourcePage": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+          "credit": "NASA/JPL",
+          "terms": "NASA media guidance; not asserted CC BY",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "1986-01-24",
+          "publicationDate": "1996-01-29",
+          "bytes": 14095,
+          "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+          "width": 500,
+          "height": 500,
+          "description": "Actual Voyager2 Oberon violet/clear/green reconstructed colour composite; not calibrated visible colour or registered local terrain.",
+          "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. Full TIFF retained separately. Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 19.2,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 0.02775543223147933,
+        "centreDiscWidthFraction": 0.0002422118436133154,
+        "irradianceEarth": 0.002712673611111111,
+        "approximateSrgb": [
+          1,
+          0.9501748635948273,
+          0.9034305975663324
+        ],
+        "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+      },
+      "surfaceLabel": "IMAGINED LOCAL OBERON TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM OBERON — ASSUMED ATTITUDE",
+      "uranusGeometry": {
+        "radiusKm": 25362,
+        "centreDistanceKm": 582749.6,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 4.988745362528712,
+        "targetPixelsAt1672": 72.83656832564338,
+        "rasterRow": 210,
+        "runs": [
+          {
+            "threshold": 5,
+            "width": 89
+          },
+          {
+            "threshold": 10,
+            "width": 71
+          },
+          {
+            "threshold": 20,
+            "width": 48
+          }
+        ],
+        "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+      },
+      "surfaceImage": {
+        "url": "/bespoke/oberon-surface-image.jpg",
+        "previewUrl": "/bespoke/oberon-surface-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "oberon-generated-surfaceImage-original.png",
+        "sourceSha256": "ecdd9b62bdac8c1bb42d4c1bc25f636d278fccd73ec33d825792e1001f54bcc6",
+        "sha256": "fc2003554f4008ae57f8533a6ba8c567c5d46d784366a3e9cbb0b66bba99a25c",
+        "previewSha256": "25b0b497c2d0dda3c2494d21c12e14ba529b7403168cb662e039b3a251e74b3a",
+        "bytes": 369859,
+        "previewBytes": 11888,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "skyImage": {
+        "url": "/bespoke/oberon-sky-image.jpg",
+        "previewUrl": "/bespoke/oberon-sky-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "oberon-generated-skyImage-original.png",
+        "sourceSha256": "cd884d83fac0a627e1966fef244188a816176cbd318de32037e2d1916e6af32d",
+        "sha256": "f7a987daaaeacbb21bf1434efb43bda1c54e1694fa0c95b578829b830bb09c21",
+        "previewSha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
+        "bytes": 267327,
+        "previewBytes": 8935,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      }
+    }
+  ],
+  "inputs": {
+    "surfaceImage": "oberon-generated-surfaceImage-original.png",
+    "skyImage": "oberon-generated-skyImage-original.png"
+  },
+  "provenance": [
+    {
+      "path": "docs/research/oberon-moon-preparation-2026-10-11.json",
+      "sha256": "2d3e399b433c45a6e22a8b53b5f15efd367b6644dadda22fa97477eb7758ff4c",
+      "record": {
+        "date": "2026-10-11",
+        "body": "Oberon",
+        "status": "Research-only preparation; all64 delivered dossiers unchanged, no65th/new embedding.",
+        "native": {
+          "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "bytes": 14095,
+          "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+          "path": "data/research-sources/oberon-PIA00034-original.jpg",
+          "width": 500,
+          "height": 500,
+          "credit": "NASA/JPL",
+          "sourcePage": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "licence": "NASA media guidance; not asserted CC BY",
+          "observationDate": "1986-01-24",
+          "imageAdditionDate": "1996-01-29",
+          "instrument": "Voyager2 narrow-angle camera violet/clear/green filter colour reconstruction",
+          "limits": "Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim."
+        },
+        "retainedTiff": {
+          "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.tif",
+          "status": 200,
+          "contentType": "image/tiff",
+          "bytes": 232107,
+          "sha256": "3396df9692021c9f754dd57fa90b0cca60a8d32959f7d17e4dfbf9d8607944c8",
+          "path": "data/research-sources/oberon-PIA00034-original.tif"
+        },
+        "map": {
+          "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Oberon/Uranus%20-%20Oberon.jpg",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "bytes": 51214,
+          "sha256": "ed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460",
+          "path": "data/research-sources/oberon-nasa3d-source.jpg",
+          "existingPath": "data/textures/oberon.jpg",
+          "byteEqualFetchedSource": true,
+          "credit": "USGS/Tammy Becker & JPL/Caltech",
+          "sourcePage": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+          "publicationMetadataDate": "2025-05-30",
+          "sourceAssociationConflict": "Current Oberon NASA3D page labels JPEG as Oberon but actual href points to uranus---ariel/Uranus%20-%20Ariel.jpg and alt says Ariel. Page listed248.37KB is not adopted as Oberon source size. The explicitly Oberon GitHub file51214bytes matches existing map. No Ariel image downloaded or assigned to Oberon. TIFF href names Oberon but not downloaded/verified.",
+          "limits": "Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open."
+        },
+        "science": {
+          "sourcePath": "data/research-sources/ariel-Cartwright2026-v2.pdf",
+          "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+          "url": "https://arxiv.org/pdf/2607.05600v2",
+          "record": "https://arxiv.org/abs/2607.05600v2",
+          "licence": "Specific record links CC BY4.0; no paper figure embedded.",
+          "scope": "Full retained29page joint paper Table1, section2 and section3.2 assessed specifically for Oberon.2026revision/draft not observation; exact products/calibration/final publication/supplement OPEN.",
+          "observations": [
+            {
+              "hemisphere": "trailing",
+              "utc": "2023-09-03T08:37:01Z",
+              "seconds": 3152.2,
+              "midObservationLongitudeDeg": 247.1,
+              "latitudeDeg": 63.9
+            },
+            {
+              "hemisphere": "leading",
+              "utc": "2023-09-11T00:10:40Z",
+              "seconds": 3152.2,
+              "midObservationLongitudeDeg": 91.5,
+              "latitudeDeg": 63.9
+            }
+          ],
+          "instrument": "NIRSpecIFU GO1786 G395M/F290LP 2.87–5.25microns R~1000; four dithers NRSIRS2RAPID",
+          "reduction": "Pipeline1.20.1 CRDSjwst1464.pmap; archive DOI10.17909/nj36-mt02",
+          "measurements": "Section3.2 reports trailing4.02/4.14/4.20/4.27/4.67/4.90micron features>3sigma; trailing5.17weaker>2sigma. Leading4.27>3sigma and4.02>2sigma. Do not assign Titania5.17confidence or Ariel richer features to Oberon.",
+          "limits": "Disk-integrated features are measurements; laboratory lattice/grain/layer/roughness/chemical-origin interpretations are models. No local chemistry/fractions/Voyager pixel mapping/ocean/plume/biology detection; nondetection not absence. No isotope values adopted. Final journal/supplement/product association/calibration remain open.",
+          "authors": [
+            "Richard J. Cartwright",
+            "Sasha Cryan",
+            "Rosario Brunetto",
+            "Apolline Leclef",
+            "Eric Quirico",
+            "Bryan J. Holler",
+            "William M. Grundy",
+            "Tom A. Nordheim",
+            "Ujjwal Raut",
+            "Matthew M. Hedman",
+            "Riley A. DeColibus",
+            "Chloe B. Beddingfield",
+            "Marc Neveu",
+            "Christopher R. Glein",
+            "Sara Faggi",
+            "Geronimo L. Villanueva",
+            "Noemi Pinilla-Alonso",
+            "Stephanie M. Menten"
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+            "status": 200,
+            "contentType": "image/jpeg",
+            "bytes": 14095,
+            "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+            "path": "data/research-sources/oberon-PIA00034-original.jpg"
+          },
+          {
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.tif",
+            "status": 200,
+            "contentType": "image/tiff",
+            "bytes": 232107,
+            "sha256": "3396df9692021c9f754dd57fa90b0cca60a8d32959f7d17e4dfbf9d8607944c8",
+            "path": "data/research-sources/oberon-PIA00034-original.tif"
+          },
+          {
+            "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Oberon/Uranus%20-%20Oberon.jpg",
+            "status": 200,
+            "contentType": "image/jpeg",
+            "bytes": 51214,
+            "sha256": "ed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460",
+            "path": "data/research-sources/oberon-nasa3d-source.jpg"
+          },
+          {
+            "url": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "bytes": 266644,
+            "sha256": "109d728e6b6754aa19ca7d3c2fdc7636d5db671c62ea05645802f5f0cb8b589b",
+            "path": "data/research-sources/oberon-PIA00034-caption.html"
+          },
+          {
+            "url": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "bytes": 250593,
+            "sha256": "f8a4f96eee596933ce6bbbe888f37cd3057d6e5e8d66b6d2154464ea9a1b09a8",
+            "path": "data/research-sources/oberon-nasa3d-caption.html"
+          },
+          {
+            "url": "https://science.nasa.gov/uranus/moons/oberon/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "bytes": 257420,
+            "sha256": "902afc54dcc63ec10eb965b8512aab77e56cdd32ff995cb5015443807024ad42",
+            "path": "data/research-sources/oberon-nasa-overview.html"
+          },
+          {
+            "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "bytes": 320652,
+            "sha256": "dde6afcafef05ae970211674f779be224c20108e7b463d988ac172ca01495e17",
+            "path": "data/research-sources/oberon-nasa-media-terms.html"
+          }
+        ],
+        "downloadFailure": "First parallel download attempt encountered transient network timeout; retry obtained sources with actual hashes. Failed response not assigned a content hash.",
+        "catalogue": "Existing radius761.4km mass3.076e21kg semimajor583511km period13.463237days preserved; decimal precision not uncertainty.",
+        "next": "Independent local/Uranus observer using skyGeometry and explicit attitude/ring/oblateness limits; originals/masters/recorded256 previews/additive65th; remainingbacklogACTIVE.",
+        "verification": {
+          "tests": "456 pass,1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15912904,
+          "headroomBytes": 87096,
+          "browser": {
+            "bandImages": 20,
+            "snapshot": "8060e1c327f9097d53312152f2421ca337ab24e338906de6758a823c6deb2ffd",
+            "raw": "2cbe004d9eefa4dea6fd422eef6708a86b74b3b9f4002109f8bb1e54287558e7",
+            "magic": "FIDBRT01",
+            "images": 225,
+            "details": 517,
+            "models": 32
+          },
+          "application": {
+            "htmlBytes": 15912904,
+            "compressedBytes": 784576,
+            "applicationSha256": "f20a68652b79cec0be15636a060467bda18120346656b0e53b324ea55a53841f",
+            "htmlParserPreservesEveryPackedByte": true
+          },
+          "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+          "preservation": "All64 dossiers registry byte-identical; 368 tracked bespoke/map/model/shape files byte-identical; all new source hashes verified.",
+          "limits": "Chrome verified; other engines open. Interbuild readable snapshot difference not audited; no asset/compression savings attribution. No65th/new embedding."
+        }
+      }
+    },
+    {
+      "path": "docs/research/oberon-local-view-preparation-2026-10-11.json",
+      "sha256": "88757ef672aa1ab76c0c3c639f6946167d663b0e3bcf1352a3144b4835a78118",
+      "record": {
+        "date": "2026-10-11",
+        "body": "Oberon",
+        "mode": "Built-in imagegen new independent illustration",
+        "status": "Prepared; additive integration pending",
+        "prompt": "Use case: illustration-story. Scientific explorer hypothetical local terrain card, wide 16:9. Independently invent a cautious near-ground landscape on Oberon, Uranus moon: old cratered grey ice-rich-looking regolith with low rounded crater rims, scattered angular blocks, a few brighter patches and a distant modest ridge. New imagined terrain, not any named Voyager crater or registered globe site. Never imitate or reuse Moon, Callisto, Mars or another observed body geography. Black airless sky without planets, Sun, stars, haze or clouds. Restrained greys, subtle brown dust, low-angle artistic light. Material chemistry, fractions, relief, brightness and exposure are unknown artistic assumptions. No liquid, ocean, plume, eruption, life, people, structures or craft, no survivable landing implication. Sober photographic illustration. Text verbatim large top-left \"OBERON · IMAGINED\"; bottom-left \"Invented terrain · no registered site\". No coordinates, scale bars or additional labels.",
+        "original": {
+          "path": "data/research-sources/oberon-generated-surfaceImage-original.png",
+          "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-20f48de7-4aee-4bb0-a267-b89a0407239f.png",
+          "bytes": 3072631,
+          "sha256": "ecdd9b62bdac8c1bb42d4c1bc25f636d278fccd73ec33d825792e1001f54bcc6",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/oberon-generated-surfaceImage-master.jpg",
+          "bytes": 369859,
+          "sha256": "fc2003554f4008ae57f8533a6ba8c567c5d46d784366a3e9cbb0b66bba99a25c",
+          "width": 1536,
+          "height": 864,
+          "quality": 85
+        },
+        "preview": {
+          "path": "data/research-sources/oberon-generated-surfaceImage-preview256.jpg",
+          "bytes": 11888,
+          "sha256": "25b0b497c2d0dda3c2494d21c12e14ba529b7403168cb662e039b3a251e74b3a",
+          "width": 256,
+          "height": 144,
+          "quality": 80
+        },
+        "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required."
+      }
+    },
+    {
+      "path": "docs/research/oberon-sky-view-preparation-2026-10-11.json",
+      "sha256": "6e0a81e103e50cdec015315a1379432393099343b173f89465cc32009dc4152b",
+      "record": {
+        "date": "2026-10-11",
+        "body": "Oberon",
+        "mode": "Built-in imagegen new independent illustration",
+        "status": "Prepared; additive integration pending",
+        "prompt": "Use case: illustration-story. Hypothetical scientific explorer observer card, wide16:9. Independently invent a near-ground view from Oberon toward Uranus. Grey old cratered regolith with scattered angular blocks and a low distant rim under black airless sky. A small pale cyan spherical Uranus disk detached from horizon in upper central sky; requested diameter only4.356254percent of image width (about73px if1672wide), not enlarged for drama. Schematic size follows skyGeometry mean radius25362km at583511minus761.4km, angular diameter4.988745degrees nominal90degree horizontal FOV. Subtle independently invented Uranian bands and quarter-phase artistic shading. Camera and axis attitude assumed, oblateness omitted. Rings omitted as an artistic exposure choice, not invisibility. No Sun/stars, foreground atmosphere/haze/clouds, liquid/ocean/plumes/eruption/life/people/craft. No analog body map, Moon/Callisto/Mars terrain, or dated Voyager/globe site. Terrain chemistry/fractions, Uranus pattern/colour/phase/exposure/light are invented and uncalibrated. Text verbatim large top-left \"OBERON · IMAGINED SKY\"; bottom-left \"Assumed attitude · artistic colour and exposure\". Sober illustrative photographic realism with restrained grey terrain.",
+        "original": {
+          "path": "data/research-sources/oberon-generated-skyImage-original.png",
+          "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e34deed3-08b5-411b-b98d-b00e878bf7e3.png",
+          "bytes": 2662458,
+          "sha256": "cd884d83fac0a627e1966fef244188a816176cbd318de32037e2d1916e6af32d",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/oberon-generated-skyImage-master.jpg",
+          "bytes": 267327,
+          "sha256": "f7a987daaaeacbb21bf1434efb43bda1c54e1694fa0c95b578829b830bb09c21",
+          "width": 1536,
+          "height": 864,
+          "quality": 85
+        },
+        "preview": {
+          "path": "data/research-sources/oberon-generated-skyImage-preview256.jpg",
+          "bytes": 8935,
+          "sha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
+          "width": 256,
+          "height": 144,
+          "quality": 80
+        },
+        "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+        "geometry": {
+          "radiusKm": 25362,
+          "centreDistanceKm": 582749.6,
+          "horizontalFovDeg": 90,
+          "angularDiameterDeg": 4.988745362528712,
+          "targetPixelsAt1672": 72.83656832564338,
+          "rasterRow": 210,
+          "runs": [
+            {
+              "threshold": 5,
+              "width": 89
+            },
+            {
+              "threshold": 10,
+              "width": 71
+            },
+            {
+              "threshold": 20,
+              "width": 48
+            }
+          ],
+          "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+        }
+      }
+    },
+    {
+      "path": "docs/research/oberon-master-preview-preparation-2026-10-11.json",
+      "sha256": "52a1c8e89f44828820a32eee44a01c2aa5343f7c20fe49151979768614aa1d3d",
+      "record": {
+        "date": "2026-10-11",
+        "status": "Original PNGs/default copies/prompts retained; generated-only JPEG masters/previews; no native transformation.",
+        "records": [
+          {
+            "date": "2026-10-11",
+            "body": "Oberon",
+            "mode": "Built-in imagegen new independent illustration",
+            "status": "Prepared; additive integration pending",
+            "prompt": "Use case: illustration-story. Scientific explorer hypothetical local terrain card, wide 16:9. Independently invent a cautious near-ground landscape on Oberon, Uranus moon: old cratered grey ice-rich-looking regolith with low rounded crater rims, scattered angular blocks, a few brighter patches and a distant modest ridge. New imagined terrain, not any named Voyager crater or registered globe site. Never imitate or reuse Moon, Callisto, Mars or another observed body geography. Black airless sky without planets, Sun, stars, haze or clouds. Restrained greys, subtle brown dust, low-angle artistic light. Material chemistry, fractions, relief, brightness and exposure are unknown artistic assumptions. No liquid, ocean, plume, eruption, life, people, structures or craft, no survivable landing implication. Sober photographic illustration. Text verbatim large top-left \"OBERON · IMAGINED\"; bottom-left \"Invented terrain · no registered site\". No coordinates, scale bars or additional labels.",
+            "original": {
+              "path": "data/research-sources/oberon-generated-surfaceImage-original.png",
+              "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-20f48de7-4aee-4bb0-a267-b89a0407239f.png",
+              "bytes": 3072631,
+              "sha256": "ecdd9b62bdac8c1bb42d4c1bc25f636d278fccd73ec33d825792e1001f54bcc6",
+              "width": 1672,
+              "height": 941
+            },
+            "master": {
+              "path": "data/research-sources/oberon-generated-surfaceImage-master.jpg",
+              "bytes": 369859,
+              "sha256": "fc2003554f4008ae57f8533a6ba8c567c5d46d784366a3e9cbb0b66bba99a25c",
+              "width": 1536,
+              "height": 864,
+              "quality": 85
+            },
+            "preview": {
+              "path": "data/research-sources/oberon-generated-surfaceImage-preview256.jpg",
+              "bytes": 11888,
+              "sha256": "25b0b497c2d0dda3c2494d21c12e14ba529b7403168cb662e039b3a251e74b3a",
+              "width": 256,
+              "height": 144,
+              "quality": 80
+            },
+            "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required."
+          },
+          {
+            "date": "2026-10-11",
+            "body": "Oberon",
+            "mode": "Built-in imagegen new independent illustration",
+            "status": "Prepared; additive integration pending",
+            "prompt": "Use case: illustration-story. Hypothetical scientific explorer observer card, wide16:9. Independently invent a near-ground view from Oberon toward Uranus. Grey old cratered regolith with scattered angular blocks and a low distant rim under black airless sky. A small pale cyan spherical Uranus disk detached from horizon in upper central sky; requested diameter only4.356254percent of image width (about73px if1672wide), not enlarged for drama. Schematic size follows skyGeometry mean radius25362km at583511minus761.4km, angular diameter4.988745degrees nominal90degree horizontal FOV. Subtle independently invented Uranian bands and quarter-phase artistic shading. Camera and axis attitude assumed, oblateness omitted. Rings omitted as an artistic exposure choice, not invisibility. No Sun/stars, foreground atmosphere/haze/clouds, liquid/ocean/plumes/eruption/life/people/craft. No analog body map, Moon/Callisto/Mars terrain, or dated Voyager/globe site. Terrain chemistry/fractions, Uranus pattern/colour/phase/exposure/light are invented and uncalibrated. Text verbatim large top-left \"OBERON · IMAGINED SKY\"; bottom-left \"Assumed attitude · artistic colour and exposure\". Sober illustrative photographic realism with restrained grey terrain.",
+            "original": {
+              "path": "data/research-sources/oberon-generated-skyImage-original.png",
+              "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e34deed3-08b5-411b-b98d-b00e878bf7e3.png",
+              "bytes": 2662458,
+              "sha256": "cd884d83fac0a627e1966fef244188a816176cbd318de32037e2d1916e6af32d",
+              "width": 1672,
+              "height": 941
+            },
+            "master": {
+              "path": "data/research-sources/oberon-generated-skyImage-master.jpg",
+              "bytes": 267327,
+              "sha256": "f7a987daaaeacbb21bf1434efb43bda1c54e1694fa0c95b578829b830bb09c21",
+              "width": 1536,
+              "height": 864,
+              "quality": 85
+            },
+            "preview": {
+              "path": "data/research-sources/oberon-generated-skyImage-preview256.jpg",
+              "bytes": 8935,
+              "sha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
+              "width": 256,
+              "height": 144,
+              "quality": 80
+            },
+            "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+            "geometry": {
+              "radiusKm": 25362,
+              "centreDistanceKm": 582749.6,
+              "horizontalFovDeg": 90,
+              "angularDiameterDeg": 4.988745362528712,
+              "targetPixelsAt1672": 72.83656832564338,
+              "rasterRow": 210,
+              "runs": [
+                {
+                  "threshold": 5,
+                  "width": 89
+                },
+                {
+                  "threshold": 10,
+                  "width": 71
+                },
+                {
+                  "threshold": 20,
+                  "width": 48
+                }
+              ],
+              "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15950250,
+    "compressedBytes": 785947,
+    "applicationSha256": "15f4c6136e014d652ed945308f4a7d8a6397fb64a23aae386e2cb3720c1da52d",
+    "htmlParserPreservesEveryPackedByte": true,
+    "headroomBytes": 49750,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "f927330ba019ab6c57273743c9e059f3ad141f243e96a2fea19303151cd7d06b",
+      "raw": "89c0b9cee751b21d853bd56ae38478b3f257740b115d5f0f24f332af924c01e1",
+      "magic": "FIDBRT01",
+      "images": 228,
+      "details": 517,
+      "models": 32
+    },
+    "css": "{\n  cssBytes: 54935,\n  cssSha256: '960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772',\n  rawSha256: '456c98b515807cfb8a99452b7bd6c5a28a59fd78ac689d2c0c14a6b0ad3c2159',\n  exactRestoredStyle: true,\n  htmlParserPreservedPackedText: true,\n  background: 'rgb(0, 0, 0)',\n  buttons: 393,\n  pageErrors: []\n}\n",
+    "normalOfflineCards": "normal Oberon3images and native context verified\noffline Oberon3images and native context verified\n",
+    "preservation": "All64 prior dossiers deepEqual;368 tracked earlier bespoke/map/model/shape files byte-identical to HEAD; all original/default PNGs/full prompts/master/nativeJPEG/TIFF/PDF/source manifests retained.",
+    "snapshotDifferencePaths": [
+      "/bodyImages//bespoke/oberon-surface-image.jpg",
+      "/bodyImages//bespoke/oberon-sky-image.jpg",
+      "/bodyImages//bespoke/oberon-voyager-native.jpg",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "limits": "Chrome verified, other engines open. No sole-asset/compression size-change attribution. FIDBRT01Brotli11/outergzip9/FIDNUM02/FIDAPP01app32unlimitedCSS5dense125v2 alllegacy Blob/notices unchanged."
+  },
+  "next": "Triton native/provenance and independent views; remaining SolarSystem/craft/shape/calibration/ranking. Recover further headroom before larger assets."
+}

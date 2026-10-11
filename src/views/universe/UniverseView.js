@@ -20,6 +20,7 @@ import { PAL_RGB } from '../system/starband.js';
 import { paletteIndex } from '../system/bandskin.js';
 import { createGalaxyForms } from './galaxyforms.js';
 import { nebulaImageUrl } from '../../data/catalog.js';
+import { makeSnapshot } from '../snapshot.js';
 
 export const MLY_PER_MPC = 3.26156;
 // Morphological type (de Vaucouleurs T) → colour: ellipticals/lenticulars red-gold, spirals white, irregulars blue.
@@ -265,6 +266,8 @@ export function createUniverseView(container, { onSelect, onFrame, onDrill } = {
   setRadius(30);
 
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize }),
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     setGalaxies, setRadius, select, recolourBand,

@@ -1,0 +1,88 @@
+{
+  "retrieved": "2026-10-11",
+  "records": [
+    {
+      "url": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+      "path": "data/research-sources/hyperion-PIA17193-caption.html",
+      "bytes": 268367,
+      "sha256": "8b008878c418d49f84d4f6b07a737cf1fa1cdcf41be349f1b2d43d450df002dc",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17193/PIA17193.jpg",
+      "path": "data/research-sources/hyperion-PIA17193-original.jpg",
+      "bytes": 83186,
+      "sha256": "2117a70ac6acbc8e5f256d8c4c0adcff2b761598fc333da82989061419c4f72c",
+      "contentType": "image/jpeg",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17193/PIA17193.tif",
+      "path": "data/research-sources/hyperion-PIA17193-original.tif",
+      "bytes": 1049818,
+      "sha256": "e2ef4afa7ded7f5dd711a51ffd4cac27e2c2fd75c65cda57e363015aedf7c115",
+      "contentType": "image/tiff",
+      "width": 1024,
+      "height": 1024,
+      "format": "tiff"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/spongy-surface/",
+      "path": "data/research-sources/hyperion-PIA17194-caption.html",
+      "bytes": 268124,
+      "sha256": "1d68e1fdead71c7bc8bbce79ca0225f8e6d68fe6cb9fcf130af99f9b315c6eb4",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17194/PIA17194.jpg",
+      "path": "data/research-sources/hyperion-PIA17194-original.jpg",
+      "bytes": 124058,
+      "sha256": "07befb8eecdff0ab410f9c98d045d5d08a73962140b8bcac2b41204be4900710",
+      "contentType": "image/jpeg",
+      "width": 1024,
+      "height": 1024,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia17/pia17194/PIA17194.tif",
+      "path": "data/research-sources/hyperion-PIA17194-original.tif",
+      "bytes": 1049818,
+      "sha256": "cf6387e6a15406b51240d1283f7358e814b2c0966d0a87c3d2b9aa75e23b8f30",
+      "contentType": "image/tiff",
+      "width": 1024,
+      "height": 1024,
+      "format": "tiff"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.tab",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.xml",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/document/hyperion_document.pdf",
+      "error": "HTTP Error 403: Forbidden",
+      "sha256": null
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/hyperion-nasa-media-terms.html",
+      "bytes": 320651,
+      "sha256": "a88661f350463006cb19c1bd884407c384c57a2015fe26da839c77624f0144cc",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/spongy-surface/",
+      "path": "data/research-sources/hyperion-PIA17194-resource-caption.html",
+      "bytes": 248947,
+      "sha256": "be0416bf8aebcc5fc98b2292b6bb11341ccafd407fb80ddff2615bcf429c9f90",
+      "contentType": "text/html"
+    }
+  ]
+}

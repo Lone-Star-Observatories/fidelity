@@ -1,0 +1,60 @@
+{
+  "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+  "trials": [
+    {
+      "version": 1,
+      "containerBytes": 2638724,
+      "gzip32UnlimitedBytes": 717165,
+      "transportBytes": 823716,
+      "exactRoundtrip": true
+    },
+    {
+      "version": 2,
+      "containerBytes": 2489992,
+      "gzip32UnlimitedBytes": 716967,
+      "transportBytes": 823453,
+      "exactRoundtrip": true
+    }
+  ],
+  "date": "2026-10-11",
+  "status": "Rejected research-only candidate; production restored unchanged",
+  "method": "FIDAPP02 exact per-width sorted character alphabet, minimum bit width, strict padding and spelling validation. Same original full application, standard gzip32 iterations/unlimited blocks, dense125v2 transport. No numeric value conversion.",
+  "screening": {
+    "gzipLevel9BaselineBytes": 757510,
+    "gzipLevel9CandidateBytes": 751074,
+    "savingBytes": 6436,
+    "notProductionResult": true
+  },
+  "decision": "Production gzip savings198bytes / transport263bytes before additional decoder overhead are insufficient. Candidate is not adopted. Trial full build interrupted before publishing; no successful candidate HTML/browser claim. Restored production full build verified separately.",
+  "preservation": "All60 dossiers336trackedregistrybespokemapmodelinputs unchanged; no61st or newembedding. Originals/master/native bytes retained. Default FIDAPP01 encoder compared byte-identically against HEAD for entire application.",
+  "validation": "Candidate exact application container and gzip roundtrip pass; corruption/truncation/trailing/alphabet/code/padding tests passed before rejection. Candidate test/code reverted with production.",
+  "limitations": [
+    "Do not equate zlib screening savings with Zopfli production savings.",
+    "No net candidate HTML saving or browser success claimed.",
+    "Miranda additive budget and further headroom remain pending."
+  ],
+  "restoredProductionVerification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975343,
+    "headroomBytes": 24657,
+    "completeBrowserReadableSnapshotSha256": "f0903970112e925fc4560e7fa5dacbe98bbc854bb366435ac76ef36c860f6dfe",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact full readableJSON/application/CSS/HTMLparser;213images20bands517details32models nativecontext hashes prior59deepEqual normalofflinePhoebe3cards6routesunsupported11worker pass; otherengines open.",
+    "trackedInputsByteIdentical": 336,
+    "registryDossiers": 60,
+    "queueTasks": 566,
+    "interbuildDifferenceCount": 6,
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk"
+    ],
+    "attribution": "Only listed snapshot differences directly audited; no net compression or asset saving attributed to interbuild size."
+  }
+}

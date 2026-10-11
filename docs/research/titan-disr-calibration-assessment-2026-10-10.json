@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-10",
+  "body": "Titan",
+  "status": "research-only; no57th dossier or new embedded asset",
+  "paper": {
+    "title": "The reflectance spectrum of Titan’s surface at the Huygens landing site determined by the Descent Imager/Spectral Radiometer",
+    "authors": [
+      "S.E. Schröder",
+      "H.U. Keller"
+    ],
+    "journal": "Planetary and Space Science56(5),753–769 April2008",
+    "doi": "10.1016/j.pss.2007.10.011",
+    "arxivPosted": "2017-02-02",
+    "observationDate": "2005-01-14",
+    "downloadedPdfPages": 23,
+    "datesLimit": "PDF footer separately says ©2017 and preprint submitted November7,2018; retain these inconsistent document dates, not a new observation or corrected journal date."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/titan-disr-schroeder-keller-2008.pdf",
+      "url": "https://arxiv.org/pdf/1702.00653",
+      "bytes": 1429176,
+      "sha256": "94ee19ab4888c244b904047826185f56920bac9b59d2ac1daaae96f3a953be88"
+    },
+    {
+      "path": "data/research-sources/titan-disr-schroeder-keller-abstract.html",
+      "url": "https://arxiv.org/abs/1702.00653",
+      "bytes": 44946,
+      "sha256": "f456c60a9681c7cc6eedb8eba7285c890740253dd6c89d7d922762de5f4f64f2"
+    },
+    {
+      "path": "data/research-sources/titan-disr-archive-movie-description.html",
+      "url": "https://archives.esac.esa.int/psa/ftp/CASSINI-HUYGENS/DISR/HP-SSA-DISR-2-3-EDR-RDR-V1.3/EXTRAS/MOVIES/TECH_MOVIE/DESCRIPTION_OF_TECH_MOVIE.HTM",
+      "bytes": 22453,
+      "sha256": "9ca6eaffb53b1024b25d9317d24331b99fad0f67c2f1f4be8846e633aacd2cc7"
+    },
+    {
+      "path": "data/research-sources/titan-disr-arxiv-distribution-terms.html",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+    }
+  ],
+  "terms": [
+    {
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "scope": "Linked arXiv record grants distribution only; not blanket CC BY."
+    },
+    {
+      "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "scope": "Downloaded manuscript first-page explicit ©2017 CC-BY-NC-ND4.0 notice; not CC BY4.0. Research retained, no figure embedded or derivative made."
+    }
+  ],
+  "assessment": [
+    {
+      "location": "PDF pp19–21, sections5–6",
+      "finding": "Reconstruction uses measured calibration-lamp flux and finds higher reflectance than earlier flux-ratio methods. Authors interpret the change as an opposition effect; calibration, geometry and surface heterogeneity alternatives remain discussed."
+    },
+    {
+      "location": "PDF p21 section6",
+      "finding": "Visible red slope and near-IR blue slope are spectral results; the1500nm feature has competing tholin/water-ice interpretations. DISR evidence for water ice is explicitly inconclusive, not a local measured material fraction."
+    },
+    {
+      "location": "PDF p21 section6",
+      "finding": "Atmospheric methane4.5±0.5% inferred by absorption-band modelling, sensitive to coefficient choices; not a universal Titan terrain/material abundance. Surface liquid methane layer unsupported in these spectra; shallow wet soil is not excluded."
+    },
+    {
+      "location": "PDF pp19–20 section5",
+      "finding": "Diffuse illumination and phase sensitivity prevent treating a publisher landing JPEG as an independently calibrated visible-colour global map. No new sky/raster size computation performed."
+    },
+    {
+      "location": "ESA archive DISR technical movie description",
+      "finding": "Erich Karkoschka/UArizona/DISR team/NASA/ESA ©2006UArizona; lamp probes480–1600nm, surface image apparent brightness varies with exposure. Movie includes an explicitly separate Moon scale comparison; never adopt that panel as Titan terrain. No movie downloaded or embedded."
+    }
+  ],
+  "open": [
+    "Exact PIA07232 DISR image identifiers, exposures and spectral transfer still unassociated; paper does not independently register/calibrate that publisher JPEG.",
+    "Full visibility/radiative-transfer calculation for Saturn through Titan haze remains open. Angular skyGeometry alone does not prove surface visibility.",
+    "No unique local chemistry fractions, current rain, biology or survivable landing claim.",
+    "More standalone headroom required before native plus independent-view integration."
+  ],
+  "preservation": "All56 dossiers and originalPNG/master/native/map/model/shape inputs unchanged; no source replaced.",
+  "verification": {
+    "testsPass": 453,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990034,
+    "headroom": 9966,
+    "registryCount": 56,
+    "queueTasks": 566,
+    "all56DeepEqual": true,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "f1f59eb574da38c01a2f231047ea018ce77c6f60e8f172b9d91484ce9c1130c9",
+      "raw": "c8df4779e5c6a79d0f2691da679b8e0fa0687699208fa2814c0a175f51c1f5d0",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15990034,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "nativeContextHashes": "verified from complete browser-equal snapshot",
+    "normalOfflineRhea": "ownmap3cards pass",
+    "runtimeSourceInputsChanged": false,
+    "interbuildSnapshotHashDifference": "Current f1f59e versus prior54777 differs; exact browser/readable equality verified. Origin of inter-build difference not audited; no attribution claimed.",
+    "otherBrowserEngines": "open"
+  }
+}

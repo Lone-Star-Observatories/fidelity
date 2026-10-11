@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-10",
+  "body": "Titan",
+  "status": "research preparation only; no57th dossier or new embedded asset",
+  "role": "surfaceImage",
+  "generator": "OpenAI built-in imagegen",
+  "prompt": "Create one wide 16:9 scientific observer illustration for Fidelity: hypothetical local surface view on Titan, Saturn's moon. Independently invent a low flat pebble-strewn plain with softly rounded centimetre-scale-looking stones and a few shallow drainage-like depressions; this is NOT the Huygens landing site or any observed terrain. Do not copy or recolour Moon, Mars, Pluto, any planet map or any existing photograph. Low viewpoint over subdued ochre-brown material under deep amber diffuse daylight in thick nitrogen/methane aerosol haze. Soft shallow shadows and rapidly lost contrast toward a hazy level horizon; no blue sky, no stars, no visible Sun disk, no visible Saturn or rings. No liquid puddles, active rain, plants, life, plume, ocean, spacecraft, astronaut or survivable-landing implication. Stone chemistry, material proportions, morphology, lighting, colour, exposure and haze appearance are all invented illustrative assumptions; do not suggest measured local fractions or calibrated colour. Water ice identity at the Huygens landing site is inconclusive in DISR spectra, so do not label stones as proven water ice. No photoreal satellite/global-map insets. Elegant educational composition with usable central scene. At upper-left put exact clearly readable small but legible text 'IMAGINED \u00b7 TITAN LOCAL VIEW'. At lower-left put exact text 'Invented terrain \u00b7 haze and colour uncalibrated'. These are the only words. Preserve ample image area, naturalistic cinematic texture but restrained light; no oversharpening or dramatic mountains.",
+  "originalPath": "data/research-sources/titan-generated-surfaceImage-original.png",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1f821452-6b58-4716-8d4e-9d52b311bd23.png",
+  "inspection": "Inspected independent ochre pebble plain, invented shallow depressions and amber haze. Clear IMAGINED TITAN LOCAL VIEW and invented-terrain/uncalibrated-haze-colour text. No Saturn, rings, stars, Sun disk, spacecraft, organism or surface liquid. Rocks and shadow/exposure remain invented; texture is not a measured site or Huygens reconstruction.",
+  "research": [
+    "docs/research/titan-moon-preparation-2026-10-10.json",
+    "docs/research/titan-huygens-native-preparation-2026-10-10.json",
+    "docs/research/titan-disr-calibration-assessment-2026-10-10.json"
+  ],
+  "limits": [
+    "Material chemistry and fractions, stone sizes, terrain, haze optical depth/transmission, colour, exposure and lighting are assumed artistic values, not independent measurements.",
+    "No observed body map/photograph used as reference; no Moon/Mars/Pluto analog skin.",
+    "Not a global map or dated/registered Huygens site. Original native Huygens JPEG remains preferred actual local observation, preserved separately.",
+    "No active precipitation, liquid surface, plume, ocean, biology or survivable landing implied.",
+    "No angular/raster size computation: no astronomical disk in scene. Saturn visibility/transmission remains open.",
+    "No masters, previews or additive import yet; headroom recovery required before embedding."
+  ],
+  "preservation": "All56 prior dossiers and originalPNG/master/native/map/model/shape inputs preserved; source PNG retained unchanged and default original not removed.",
+  "original": {
+    "bytes": 2431806,
+    "sha256": "8ec28379bb936e5f58553e818635b5a6aff7a4021670846806c4e8d14b3303a2",
+    "mime": "image/png",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "compactNativeAssessment": {
+    "path": "data/research-sources/titan-huygens-PIA07232-display320.jpg",
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/p/i/a/0/PIA07232_1-1.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+    "bytes": 6623,
+    "sha256": "6d7f3db8f048c2d9d03e86f533a53379ca4089271ee3c45a812b977fe3ad6c28",
+    "dimensions": [
+      252,
+      320
+    ],
+    "mime": "image/jpeg",
+    "credit": "NASA/JPL/ESA/University of Arizona",
+    "observationDate": "2005-01-14",
+    "NASApublicationDate": "2005-01-15",
+    "ESApublicationDate": "2005-01-14",
+    "sourcePage": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+    "terms": [
+      "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+    ],
+    "inspection": "Unchanged NASA served publisher rendition inspected: full vertical local pebble view and surrounding white border retained. Research only, not embedded.",
+    "processing": "Publisher resized/reencoded; original546x693 JPEG and distinct full-size display retained unchanged. Not full-pixel preservation or independent colour calibration.",
+    "limits": "Exact instrument image/exposure/spectral-transfer association open. No global-map registration or local measured water-ice fractions. Terms not asserted CC BY."
+  },
+  "verification": {
+    "testsPass": 453,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989245,
+    "headroom": 10755,
+    "all56DeepEqual": true,
+    "queueTasks": 566,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "ba5b7e36ad9bb7e76774f8ce41494b133e86e66f7383f55a9b476aa23d5eefff",
+      "raw": "95ba1fccf0861cd841d3a47fe74953380770a58b08fab2a8bdba2934d8fe7e6e",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15989245,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "nativeContextHashes": "verified",
+    "normalOfflineRhea": "ownmap3cards pass",
+    "runtimeSourceInputsChanged": false,
+    "interbuildDifference": "Current complete JSON differs from previousf1f59; exact current browser/readable equality verified, interbuild source of difference unaudited. No compression-change savings attributed.",
+    "otherBrowserEngines": "open"
+  }
+}

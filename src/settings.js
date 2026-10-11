@@ -40,6 +40,7 @@ const defaults = {
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
   cameraModes: {},  // camera mode per view (#39): { system: 'orbit' | 'look' | 'fly', galaxy: …, … }
   zoomToCursor: false, // ORBIT: the wheel zooms towards the pointer (#39)
+  postcard: {},     // postcards (#40): { size, labels, frame, link, quality, mastodon, stylizeOk } (stays in this browser)
 };
 
 let state = { ...defaults };

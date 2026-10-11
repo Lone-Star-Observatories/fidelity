@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-11",
+  "body": "Nix",
+  "status": "Research-only retained masters/previews; no new dossier or embedding",
+  "masterFormat": "1536px JPEG quality85",
+  "previewFormat": "256px JPEG quality80; eventual offline generated WebP quality80",
+  "assets": [
+    {
+      "role": "surfaceImage",
+      "original": {
+        "path": "data/research-sources/nix-generated-surfaceImage-original.png",
+        "bytes": 3171203,
+        "sha256": "b30fc8783020d84d88ac9903240c04298963c2d2ec324adec266205147aaeb73",
+        "width": 1672,
+        "height": 941
+      },
+      "master": {
+        "path": "data/research-sources/nix-generated-surfaceImage-master.jpg",
+        "bytes": 360919,
+        "sha256": "e8779081192f65dd1061f8f9a7dbb0a35be3548dda7cf36f9a979fc3df541542",
+        "width": 1536,
+        "height": 864
+      },
+      "preview": {
+        "path": "data/research-sources/nix-generated-surfaceImage-preview.jpg",
+        "bytes": 9604,
+        "sha256": "ec44127f31d1ef960c01e740664b770517426f161eeaa044940fb20aefeea03a",
+        "width": 256,
+        "height": 144
+      }
+    },
+    {
+      "role": "skyImage",
+      "original": {
+        "path": "data/research-sources/nix-generated-skyImage-original.png",
+        "bytes": 2298953,
+        "sha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+        "width": 1672,
+        "height": 941
+      },
+      "master": {
+        "path": "data/research-sources/nix-generated-skyImage-master.jpg",
+        "bytes": 261117,
+        "sha256": "d87dc7cb0f2e1624ec017a2b5592a71468a982bbdfdcb6a789934907caf167d2",
+        "width": 1536,
+        "height": 864
+      },
+      "preview": {
+        "path": "data/research-sources/nix-generated-skyImage-preview.jpg",
+        "bytes": 7728,
+        "sha256": "f88a05691d4bb9c2f2089869042c614e56bdb96e238d4f6125c452a1a5d5fd74",
+        "width": 256,
+        "height": 144
+      }
+    }
+  ],
+  "limitations": [
+    "Original PNGs and full builtin prompts preserved. Format/size derivatives are lossy, not native scientific data.",
+    "Invented terrain/chemistry/fractions/colour/light and Pluto/Charon appearances; no analog skin or dated site registration.",
+    "Both generated sky disks oversized; previous skyGeometry and threshold audits retained, not calibrated full diameters.",
+    "Tiny preview footers and disk markings require readable card labels; previews do not establish geography or photometry.",
+    "Black sky assumes transparency, not measured absence; rotating Nix has no permanent Pluto-facing site.",
+    "No new embedding. Substantial conforming lossless headroom required before Charon69 or Nix dossier."
+  ],
+  "previewRawBytes": 17332,
+  "preservation": {
+    "trackedInputsByteIdentical": 389,
+    "dossiers": 68
+  },
+  "inspection": "Both 256px previews inspected; small footers and disk markings require card labels.",
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991695,
+    "headroomBytes": 8305,
+    "completeSnapshotSha256": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+    "browser": "Chrome complete readable JSON and HTML-parser transport equality; 237 images, 20 bands, 517 details, 32 model entries; no errors. Other engines open.",
+    "attribution": "JSON and HTML byte-identical to previous verified batch; no savings claim. Production codecs unchanged.",
+    "queue": 566
+  }
+}

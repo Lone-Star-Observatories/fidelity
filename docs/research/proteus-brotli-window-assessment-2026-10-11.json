@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only rejected parameter screen; no production change/no68th/newembedding",
+  "method": "Same full FIDNUM02 container; Node native Brotli quality11 window20–24, outer standardgzip9. Native decompression and bundledJS decoder restore complete originalJSON every trial. Window22 is production default. No field conversion/rounding/pruning/native or image transformation.",
+  "snapshotSha256": "7e127d0926d1fa371cfdd13c813b9f90e55c5ee20bdad9108f25e6e085d301cf",
+  "binaryBytes": 19750156,
+  "results": [
+    {
+      "window": 20,
+      "innerBytes": 13130504,
+      "outerGzipBytes": 13131089
+    },
+    {
+      "window": 21,
+      "innerBytes": 13115900,
+      "outerGzipBytes": 13116774
+    },
+    {
+      "window": 22,
+      "innerBytes": 13100952,
+      "outerGzipBytes": 13104157
+    },
+    {
+      "window": 23,
+      "innerBytes": 13109848,
+      "outerGzipBytes": 13113215
+    },
+    {
+      "window": 24,
+      "innerBytes": 13105626,
+      "outerGzipBytes": 13108988
+    }
+  ],
+  "sizeHintTrial": {
+    "window": 22,
+    "innerBytes": 13100952,
+    "outerGzipBytes": 13104157
+  },
+  "sizeHint": "BROTLI_PARAM_SIZE_HINT=binary.length at window22 produces identical sizes; not adopted.",
+  "conclusion": "Every alternate window is larger; size hint has no gain. No headroom/compression saving claim. Production codec unchanged. Do not repeat these window/sizehint trials.",
+  "next": "Substantial lossless headroom still required before additiveProteus68 using retained native/independent views and full scientific/provenance fields.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15992330,
+    "headroomBytes": 7670,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "520dc1d549e3e543e151a59679bb4327b52b6f60e4d72ab9a15ce4850435fe31",
+      "raw": "a4ba617b7ffd8ca03166ff51da85fb399ca701959999e2de872880eabeec4e77",
+      "magic": "FIDBRT01",
+      "images": 234,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15992330,
+      "compressedBytes": 790781,
+      "applicationSha256": "55e6d91d0ca785be6136626e7d1d85082a7ef5afd7f77a6bfd5b407f4b7e7549",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "preservation": "All67 prior dossiers deepEqual;384 tracked registry/bespoke/map/model/shape inputs exact; originals/native/masters preserved; actual normal/offline Nereid3cards/noownmap/nativehashes pass. Other engines open. Codecs unchanged.",
+    "interbuildDiff": [
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "attribution": "Only15 SDO src/time/disk fields differ; net size difference not attributed to rejected compression trials."
+  }
+}

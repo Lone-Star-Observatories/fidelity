@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-11",
+  "body": "Styx",
+  "status": "Research-only masters/previews; originals retained, no embedding",
+  "method": "Pillow Lanczos technical resize; JPEG85 masters, JPEG80 previews. No native scientific image transformed.",
+  "records": [
+    {
+      "field": "surfaceImage",
+      "original": {
+        "path": "data/research-sources/styx-generated-surfaceImage-original.png",
+        "bytes": 3092597,
+        "sha256": "a1501311263abef93455330fe907f6f74a72ed07577f34e3948746f23df5deb8",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "master": {
+        "path": "data/research-sources/styx-generated-surfaceImage-master.jpg",
+        "bytes": 354749,
+        "sha256": "501433e497e03660f7f40bfd3f258bf329aad5d6df67619c4c35a641ec9b663f",
+        "dimensions": [
+          1536,
+          864
+        ],
+        "quality": 85
+      },
+      "preview": {
+        "path": "data/research-sources/styx-generated-surfaceImage-preview.jpg",
+        "bytes": 10101,
+        "sha256": "dbd426666aeb669e94f8e9dcf2c8612ee1387e1b5849b332514a53c52d782b74",
+        "dimensions": [
+          256,
+          144
+        ],
+        "quality": 80
+      }
+    },
+    {
+      "field": "skyImage",
+      "original": {
+        "path": "data/research-sources/styx-generated-skyImage-original.png",
+        "bytes": 2222118,
+        "sha256": "d1fcc647962db37b4cb2f35777af77e445c176237fb65c407699caa3fe00dde6",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "master": {
+        "path": "data/research-sources/styx-generated-skyImage-master.jpg",
+        "bytes": 265231,
+        "sha256": "727cdcac3483f2554032d53111d94e6d0d581b451df361aac0003b7593822c12",
+        "dimensions": [
+          1536,
+          864
+        ],
+        "quality": 85
+      },
+      "preview": {
+        "path": "data/research-sources/styx-generated-skyImage-preview.jpg",
+        "bytes": 9114,
+        "sha256": "e1898a044bb8446822c5bd51e2096066108d1d55f8b508eef1ccd4afbd98a2ec",
+        "dimensions": [
+          256,
+          144
+        ],
+        "quality": 80
+      }
+    }
+  ],
+  "previewRawBytes": 19215,
+  "limitations": [
+    "Terrain, chemistry fractions, disk patterns, colour, phase, lighting and exposure invented; no other-body map reused.",
+    "Undated circular coplanar barycentric geometry with assumed camera attitude and8km fitted semiaxis height, not a measured local normal. Nonsynchronous Styx has no permanent Pluto-facing site.",
+    "Black sky and ring omission artistic, not measured absence or calibrated transmission. No plume, liquid ocean, biology or survivable landing.",
+    "Small preview footer/disks require readable card labels. All68 dossiers preserved; no69th or embedding."
+  ],
+  "validation": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15986961,
+    "headroomBytes": 13039,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "eb1cc385fa576e699581bb7b48f837bfdd5bc6088f17e7f8805f88b86c9afe06",
+      "raw": "08f7113cc696c63b9e17bd3f08d105b82a94e623c5cd629a453db3c6da5ee237",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "preservation": "All68 dossiers and404 tracked existing imagery/texture/model/shape inputs byte-identical; all original PNGs/default copies/native science preserved. No69th or embedding.",
+    "limitations": "Chrome exact complete readableJSON and HTMLparser packed snapshot,237 image decodes20 bands517details32 model entries, no errors. Other engines open; no new route/model-load/native-hash claim. Interbuild changes unaudited, no savings attribution; codecs unchanged."
+  }
+}

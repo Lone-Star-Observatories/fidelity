@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "body": "Titania",
+  "mode": "Built-in imagegen new independent illustration",
+  "status": "Prepared; additive integration pending",
+  "prompt": "Use case: illustration-story. Asset type: scientific explorer hypothetical local terrain card, wide 16:9. Primary request: independently invent a cautious near-ground scene on Titania, Uranus moon, with grey ice-rich-looking regolith, scattered angular blocks, low crater rims and a distant modest fault scarp cutting an old cratered plain. This is a new imagined landscape, not a reconstruction of a named Voyager site or any existing Moon, Mars or other body map. Black airless sky with no astronomical disk, stars, haze or clouds. Low-angle artistic illumination, restrained greys with subtle brown dust; material fractions, chemistry, relief and lighting are unmeasured artistic choices. No exposed liquid, ocean, plume, cryovolcanic eruption, life, people, buildings or landing craft. Composition: foreground blocks and shallow depression, distant scarp below horizon, detailed sober photographic illustration. Text verbatim: large clear top-left \"TITANIA · IMAGINED\"; bottom-left \"Invented terrain · no registered site\". No other labels, scale bars or coordinates. Do not imitate observed geography or use an analog skin.",
+  "original": {
+    "path": "data/research-sources/titania-generated-surfaceImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5ea274aa-bd06-4c17-b210-459a840f188a.png",
+    "bytes": 3304959,
+    "sha256": "b45a0fa4cead33151555ee22a130b40a0ac949aac564a9721bdb0a0d779a6ed9",
+    "width": 1672,
+    "height": 941
+  },
+  "master": {
+    "path": "data/research-sources/titania-generated-surfaceImage-master.jpg",
+    "bytes": 379776,
+    "sha256": "fd59e904e07e8bf5636eac02d0aab4aa085f207ea7b2d3d6c6cf1ec68493c6be",
+    "width": 1536,
+    "height": 864,
+    "quality": 85
+  },
+  "preview": {
+    "path": "data/research-sources/titania-generated-surfaceImage-preview256.jpg",
+    "bytes": 11894,
+    "sha256": "aefa78cba7e70fbd38b8025d1c96ccfb681fcdf180de892d9e637cb7a08ae593",
+    "width": 256,
+    "height": 144,
+    "quality": 80
+  },
+  "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required."
+}

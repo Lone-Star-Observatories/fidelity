@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only native preparation; no new dossier, asset embedding, globe or shape adopted.",
+  "body": "Nix",
+  "catalogueId": "sol-nix",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/nix-PIA20287-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.jpg",
+      "bytes": 26108,
+      "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 1042,
+      "height": 1024,
+      "mode": "L",
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/nix-PIA20287-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.tif",
+      "bytes": 475974,
+      "sha256": "f3878175f14f69acf48a88d8bb9295c8f515bfd274272dce2c67676a4bcf28ff",
+      "status": 200,
+      "contentType": "image/tiff",
+      "width": 1042,
+      "height": 1024,
+      "mode": "L",
+      "format": "TIFF"
+    },
+    {
+      "path": "data/research-sources/nix-PIA20287-caption.html",
+      "url": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+      "bytes": 267143,
+      "sha256": "40baefa2064e4d5df7bceb5a1cee39b895e3ec8737a88feb13c1a655a1f42bae",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/nix-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320632,
+      "sha256": "ea8510fb50b4895635c7ba5a804fdba9788d7cd33dfe09d2a4a170ee8e2a99a6",
+      "status": 200
+    }
+  ],
+  "product": "PIA20287",
+  "observationDate": "2015-07-14",
+  "imageAdditionDate": "2015-12-18",
+  "pageUpdateDate": "2025-09-23 (not observation)",
+  "instrument": "New Horizons Ralph MVIC panchromatic",
+  "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "assessment": "NASA educational/informational media guidelines, with third-party exceptions and no endorsement. Not asserted CC BY."
+  },
+  "inspection": "Unchanged 1042x1024 grayscale JPEG inspected: irregular half-lit body, broad craterlike relief with blur and dark unilluminated areas. TIFF retained unchanged. No transform or new raster-scale computation.",
+  "captionEstimates": {
+    "rangeKm": 23000,
+    "illuminatedExtentKm": [
+      19,
+      47
+    ],
+    "qualification": "Publisher approximate caption estimates; illuminated dimensions are not three-dimensional axes, global diameter or independently measured raster scale."
+  },
+  "identity": "Caption title and text identify Nix. Page taxonomy lists target Pluto and satellite of Sun; those parent taxonomy fields are not adopted as Nix physical associations.",
+  "limits": [
+    "Panchromatic grayscale does not establish calibrated visible colour, local chemistry or photometry.",
+    "Blur/noise and dark unilluminated portions are not mapped terrain or measured material fractions.",
+    "This perspective is not a complete registered globe; coverage, frame, attitude and calibrated product association remain open.",
+    "No newest-observation or exhaustive native-source claim.",
+    "Other Pluto moons must not receive this image or Nix geography.",
+    "Primary shape, rotation, compositional and dynamical research remains open before independent observer views.",
+    "Charon dossier 69 remains pending lossless standalone headroom; this research does not solve that budget."
+  ],
+  "preservation": {
+    "registryDossiers": 68,
+    "trackedEarlierInputsByteEqual": 389,
+    "newEmbedding": false
+  },
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990906,
+    "headroomBytes": 9094,
+    "queue": 566,
+    "browser": "Chrome exact complete readable JSON and HTML-parser payload; 237 images, 20 bands, 517 details, 32 models; no errors. Other engines remain open.",
+    "completeSnapshotSha256": "d193de8e7caff6254e076bdaf38c736060b6693998cf1bdbe1031412277c4c85",
+    "attribution": "Exact same rebuilt snapshot hash and HTML byte count as ec147b7. Production codecs unchanged; no saving claimed."
+  }
+}

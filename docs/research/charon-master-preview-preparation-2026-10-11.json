@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-11",
+  "body": "Charon",
+  "status": "Research-only retained masters/previews; no new embedding",
+  "masterFormat": "1536px JPEG quality85",
+  "previewFormat": "256px JPEG quality80; eventual offline generated WebP quality80",
+  "assets": [
+    {
+      "role": "surfaceImage",
+      "original": {
+        "path": "data/research-sources/charon-generated-surfaceImage-original.png",
+        "bytes": 3290476,
+        "sha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+        "width": 1672,
+        "height": 941
+      },
+      "master": {
+        "path": "data/research-sources/charon-generated-surfaceImage-master.jpg",
+        "bytes": 393714,
+        "sha256": "776c5ff9ae162bf90d3654e4aef26a66981edbeed06b51f54d3158da4370c07a",
+        "width": 1536,
+        "height": 864
+      },
+      "preview": {
+        "path": "data/research-sources/charon-generated-surfaceImage-preview.jpg",
+        "bytes": 11270,
+        "sha256": "222bd6a5c0478314538569033fe455ff4c560584199a226f0e44bf0d08440db1",
+        "width": 256,
+        "height": 144
+      }
+    },
+    {
+      "role": "skyImage",
+      "original": {
+        "path": "data/research-sources/charon-generated-skyImage-original.png",
+        "bytes": 2976004,
+        "sha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+        "width": 1672,
+        "height": 941
+      },
+      "master": {
+        "path": "data/research-sources/charon-generated-skyImage-master.jpg",
+        "bytes": 308031,
+        "sha256": "ae4c02df69c261339cc8013b252f5f70497df6aae0ab60ada1a4da42bc295cb2",
+        "width": 1536,
+        "height": 864
+      },
+      "preview": {
+        "path": "data/research-sources/charon-generated-skyImage-preview.jpg",
+        "bytes": 9246,
+        "sha256": "c85fa2dad2544a0c3521e809ad04f50b0c736b87aaa8fc1642a6c522f52a01d5",
+        "width": 256,
+        "height": 144
+      }
+    }
+  ],
+  "limitations": [
+    "Small footers require readable card labels. All originals/default copies/full prompts retained. Native imagery unchanged; no observed map reused."
+  ]
+}

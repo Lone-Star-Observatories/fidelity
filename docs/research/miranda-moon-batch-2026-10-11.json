@@ -1,0 +1,294 @@
+{
+  "generated": "2026-10-11",
+  "status": "Verified additive dossier61; raster/photometry/frame/coverage/shape and broader backlog remain open.",
+  "bodies": [
+    {
+      "id": "miranda",
+      "name": "Miranda",
+      "aliases": [
+        "Miranda"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-11",
+      "previewWidth": 256,
+      "nativeSurface": "Own NASA3D globe retained unchanged, source-byte-equal SHA844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81. Southern-only coverage; black north and blurred gaps are not observed dark/smooth terrain. Product association, frame, coverage mask, epochs, photometry and shape registration remain open.",
+      "measured": [
+        "Catalogue mean radius235.8km, representative semimajor axis129846km and orbital period1.413479days retained. Current JPL mean radius235.8\u00b1.7km is separate from shape axes; existing catalogue mass6.4e19kg not silently reconciled to current JPL GM4.3\u00b1.2km3/s2.",
+        "Voyager2 PIA18185 observed1986-01-24, image addition1986-01-25. PIA00043 same observation, addition1996-08-01. Later web updates are not new observations.",
+        "Clear-filter monochrome and mosaic seams/missing pieces do not establish calibrated visible colour or complete geography. Caption resolution/scarp estimates are source estimates, not newly computed raster scale."
+      ],
+      "modelled": [
+        "skyGeometry spherical Uranus mean radius25362km at129846\u2212235.8km, nominal90degree HFOV:22.568788325degrees,333.625002target pixels at1672.",
+        "El Moutamid/\u0106uk2026-09-25 primary abstract: conditional resonance/tidal-heating simulations and QU~600 may approach formation requirements; not directly measured present heat, ocean or plumbing."
+      ],
+      "unknown": [
+        "Full2026 paper/supplement and quantitative model audit remain open. Nonexclusive arXiv distribution is not CC BY; no figure embedded.",
+        "Own globe product/frame/coverage/epochs/photometry and shape registration remain open. Northern gaps must not be interpreted as terrain.",
+        "Local chemistry/material fractions, calibrated colour/exposure and dated site registration unknown.",
+        "Uranus row250threshold5/10/20 spans386/383/382px are oversized phase/exposure-sensitive runs, not calibrated complete diameter; precise limb audit remains open."
+      ],
+      "assumed": [
+        "Independent IMAGINED illustrations invent regolith, ridges/fault scarp, angular blocks, slopes, grain sizes, chemistry/fractions, colour, phase, illumination and exposure. No analog body map or registered Voyager/globe site.",
+        "Hypothetical Uranus-facing camera/axis orientation; inclined orbit and planetary oblateness remain limitations. Uranus bands/cloud appearance and phase artistic. Ring omission is artistic exposure, not proof of invisibility.60K angular helper RGB/irradiance not adopted as visible photometry; Sun19.2AU off frame.",
+        "No foreground atmosphere, haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. Small footers need readable card labels."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+          "title": "Voyager2 PIA18185 Miranda Icy Face",
+          "publicationDate": "1986-01-25"
+        },
+        {
+          "url": "https://science.nasa.gov/photojournal/miranda-high-resolution-mosaic/",
+          "title": "Voyager2 PIA00043 high-resolution mosaic",
+          "publicationDate": "1996-08-01"
+        },
+        {
+          "url": "https://arxiv.org/abs/2609.31580",
+          "title": "El Moutamid and \u0106uk2026 primary abstract only",
+          "publicationDate": "2026-09-25"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/planets/phys_par.html",
+          "title": "JPL planetary physical parameters: mean Uranus radius"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par.html",
+          "title": "JPL satellite physical parameters"
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA image/media terms"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/miranda-voyager-native.jpg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg?crop=faces%2Cfocalpoint&fit=clip&h=96&w=96",
+          "sourcePage": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+          "credit": "NASA/JPL-Caltech",
+          "terms": "NASA media guidelines, not asserted CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "1986-01-24",
+          "publicationDate": "1986-01-25",
+          "bytes": 2790,
+          "sha256": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+          "width": 95,
+          "height": 96,
+          "description": "Actual Voyager2 clear-filter monochrome Miranda image; no calibrated visible colour, registered local view or full northern coverage.",
+          "processing": "Unchanged NASA-served95x96 thumbnail JPEG; publisher resizing/reencoding NOT full pixel preservation.159x160 and318x320 renditions and full571x57460745bytePIA18185 plus2500x2200PIA00043 originals retained unchanged with complete source hashes. Small native preview has limited detail; original sources remain linked."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 19.2,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 0.02775543223147933,
+        "centreDiscWidthFraction": 0.0002422118436133154,
+        "irradianceEarth": 0.002712673611111111,
+        "approximateSrgb": [
+          1,
+          0.9501748635948273,
+          0.9034305975663324
+        ],
+        "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+      },
+      "surfaceLabel": "IMAGINED LOCAL MIRANDA TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM MIRANDA \u2014 ASSUMED ATTITUDE",
+      "uranusGeometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "uranusMeanRadiusKm": 25362,
+        "mirandaRadiusKm": 235.8,
+        "representativeCentreDistanceKm": 129846,
+        "observerDistanceKm": 129610.2,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 22.568788325000032,
+        "targetGlobeWidthPxAt1672": 333.62500218991465,
+        "temperatureHelperK": 60,
+        "limits": "Spherical mean-radius/semimajor-axis approximation, not dated ephemeris.60K angular helper only, not visible photometry. Raster spans386/383/382px oversized not calibrated diameter; camera/axis/ring opening/phase assumed, orbit inclination/oblateness open."
+      },
+      "surfaceImage": {
+        "url": "/bespoke/miranda-surface-image.jpg",
+        "previewUrl": "/bespoke/miranda-surface-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation \u00b7 researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "miranda-generated-surfaceImage-original.png",
+        "sourceSha256": "94efe92559a3cbe2e2147854ce3fa3a9324387bf32cbf57b0cb0e6da4e89aa0a",
+        "sha256": "60cc60386d806e2bf12474bcda3ff9eb0121f68d225a3e4ac6a62ad9efa7ff43",
+        "previewSha256": "4fa29836c161839c8c0534d924f5bff0e1c00eb268eff0ea705b78e38a214d78",
+        "bytes": 385669,
+        "previewBytes": 10804,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "skyImage": {
+        "url": "/bespoke/miranda-sky-image.jpg",
+        "previewUrl": "/bespoke/miranda-sky-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-11",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation \u00b7 researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "miranda-generated-skyImage-original.png",
+        "sourceSha256": "e6abdfd22d23cebfaddcd6b73f64400bf8850d8eaf9de73e52743bdedf3c18ae",
+        "sha256": "09a99bbfb929106778410e24aba814a8453c7e0e801214fde9852943c28e3423",
+        "previewSha256": "db6d5035892ec206367dfb5ecbb04e00ea931d8f5ecc6412556d3eff4b96d89d",
+        "bytes": 234105,
+        "previewBytes": 8198,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "inputs": {
+        "surfaceImage": "miranda-generated-surfaceImage-original.png",
+        "skyImage": "miranda-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "preparationRecords": [
+    "miranda-moon-preparation-2026-10-11.json",
+    "miranda-local-view-preparation-2026-10-11.json",
+    "miranda-sky-view-preparation-2026-10-11.json"
+  ],
+  "generationPrompts": {
+    "local": "Create one independent research-guided hypothetical observer illustration for the Fidelity astronomy explorer: local terrain on Miranda, Uranus's moon. Landscape 16:9. Eye-level robotic camera above a small invented patch of cold pale gray granular regolith, scattered angular blocks, low overlapping ridges and a modest fault scarp in the distance. Airless sharp horizon with black sky; low oblique artistic illumination. Restrained neutral gray colours, fine texture, scientifically cautious illustration. Miranda's Voyager southern terrain includes cratered and tectonically varied provinces, but this scene must be independently invented, NOT copied or registered to Voyager or any map. Do not use images/maps/textures of the Moon, Mars, Pluto or any other observed body. No Uranus, rings, Sun, stars, other astronomical disks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, people or spacecraft. No landing/survival implication. All local slopes, stones, grain sizes, chemistry and proportions, colour, exposure and illumination are invented. No interior or ocean shown; tidal-heating/ocean models are hypotheses. Clear legible upper-left title exactly 'MIRANDA \u00b7 IMAGINED LOCAL VIEW'. Small lower-left footer exactly 'Invented terrain \u00b7 no dated site registration'. Single cinematic landscape image, not a collage, diagram or globe.",
+    "sky": "Create one independent scientific educational IMAGINED SKY FROM MIRANDA illustration, landscape16:9 nominal90degree horizontal field of view. Independently invented pale gray granular regolith, scattered angular blocks and low fault ridges occupy bottom third, sharp airless horizon and black sky. Uranus high above horizon: spherical mean-radius approximation25362km at129846minus235.8km observer distance gives angular diameter22.568788325degrees via skyGeometry, target333.625pixel globe width at1672pixel output. A restrained pale cyan globe approximately one fifth of picture width; no exaggerated deep blue, dramatic stripes or storms. Independently invented smooth haze/cloud appearance on Uranus, colour, phase and lighting artistic not calibrated. Do NOT reuse actual Uranus, Moon, Mars, Pluto or any observed-body map, image or recoloured skin. No visible rings: omission is an artistic exposure choice not proof rings invisible; ring opening/camera and planetary-axis orientation not dated or calibrated. Hypothetical Uranus-facing attitude without named site, ephemeris or registered Voyager geography; Miranda orbit is inclined relative Uranus equator, do not assume Saturn-like rings. No Sun, stars, foreground atmosphere/haze/cloud, plume, liquid, ocean, biology, people, spacecraft or survivable landing. Terrain slopes/blocks/regolith material fractions and chemistry, phase, light and exposure all invented. Clear upper-left title exactly 'IMAGINED \u2014 SKY FROM MIRANDA'. Bottom-left footer exactly 'Hypothetical attitude \u00b7 uncalibrated colour and terrain'. Single landscape scene."
+  },
+  "preparedGeneratedFiles": [
+    {
+      "role": "surfaceImage",
+      "input": "data/research-sources/miranda-generated-surfaceImage-original.png",
+      "bytes": 3282922,
+      "sha256": "94efe92559a3cbe2e2147854ce3fa3a9324387bf32cbf57b0cb0e6da4e89aa0a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/miranda-surfaceImage-master.jpg",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 385669,
+      "sha256": "60cc60386d806e2bf12474bcda3ff9eb0121f68d225a3e4ac6a62ad9efa7ff43"
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/miranda-surfaceImage-preview.jpg",
+      "width": 256,
+      "quality": 80,
+      "bytes": 10804,
+      "sha256": "4fa29836c161839c8c0534d924f5bff0e1c00eb268eff0ea705b78e38a214d78"
+    },
+    {
+      "role": "skyImage",
+      "input": "data/research-sources/miranda-generated-skyImage-original.png",
+      "bytes": 2081385,
+      "sha256": "e6abdfd22d23cebfaddcd6b73f64400bf8850d8eaf9de73e52743bdedf3c18ae",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/miranda-skyImage-master.jpg",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 234105,
+      "sha256": "09a99bbfb929106778410e24aba814a8453c7e0e801214fde9852943c28e3423"
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/miranda-skyImage-preview.jpg",
+      "width": 256,
+      "quality": 80,
+      "bytes": 8198,
+      "sha256": "db6d5035892ec206367dfb5ecbb04e00ea931d8f5ecc6412556d3eff4b96d89d"
+    }
+  ],
+  "compactNative160Assessment": {
+    "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg?crop=faces%2Cfocalpoint&fit=clip&h=160&w=160",
+    "bytes": 7004,
+    "sha256": "c0ac87a89518b48b96fe342d7bd93bc6f789c79c8df94f9c48134cff541370cd",
+    "path": "data/research-sources/miranda-PIA18185-display160.jpg",
+    "width": 159,
+    "height": 160,
+    "inspected": true,
+    "credit": "NASA/JPL-Caltech",
+    "observationDate": "1986-01-24",
+    "publicationDate": "1986-01-25",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limits": "Selected budget trial; unchanged publisher resized/reencodedJPEG NOT full pixel preservation/calibratedcolour. All larger originals retained."
+  },
+  "budgetTrials": [
+    {
+      "nativeRendition": 318,
+      "iterations": 64,
+      "htmlBytes": 16024524,
+      "result": "Failed hard16MB gate; unpublished candidate, previous artifact retained."
+    },
+    {
+      "nativeRendition": 159,
+      "iterations": 128,
+      "htmlBytes": 16003221,
+      "result": "Failed hard16MB gate; unpublished candidate."
+    },
+    {
+      "nativeRendition": 95,
+      "iterations": 128,
+      "htmlBytes": 15998224,
+      "result": "Pass;1776bytes headroom. Native unchanged publisher thumbnail; all larger inputs preserved."
+    }
+  ],
+  "native96Assessment": {
+    "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg?crop=faces%2Cfocalpoint&fit=clip&h=96&w=96",
+    "bytes": 2790,
+    "sha256": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+    "path": "data/research-sources/miranda-PIA18185-display96.jpg",
+    "width": 95,
+    "height": 96,
+    "inspected": true,
+    "credit": "NASA/JPL-Caltech",
+    "observationDate": "1986-01-24",
+    "publicationDate": "1986-01-25",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limits": "Small actual publisher thumbnail has limited detail. Unchanged resized/reencoded JPEG NOT full pixel preservation/calibratedcolour. Full sources linked and retained; no new resolved geography."
+  },
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998224,
+    "headroomBytes": 1776,
+    "compression": "Snapshot standardgzip128iterations/unlimited blocks; application32/unlimited CSS5 unchanged. Increased build cost. Exact text restored; all legacy formats retained.",
+    "completeBrowserReadableSnapshotSha256": "0b873c096a637fd6412312f260c73399ef34f4f99ce4b9157efeafc5971f2b64",
+    "applicationSha256": "223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact whole readableJSON/application/CSS/HTMLparser;216images20bands517details32models decoded; all native context hashes; actual normal/offline Miranda own-map3cards; six routes,unsupportedgzip,11workerrows pass; all32normalmodels load. Otherengines open.",
+    "prior60DossiersDeepEqual": true,
+    "priorTrackedRegistryBespokeMapModelShapeInputsExact": 348,
+    "allPreparedOriginalPngMasterPreviewHashesExact": true,
+    "registryDossiers": 61,
+    "queueTasks": 566,
+    "snapshotDifferencePaths": [
+      "/bodyImages//bespoke/miranda-surface-image.jpg",
+      "/bodyImages//bespoke/miranda-sky-image.jpg",
+      "/bodyImages//bespoke/miranda-voyager-native.jpg"
+    ],
+    "attribution": "Only listed snapshot differences audited; native rendition/iteration/feed inputs differ across trials, no sole compression or asset saving attribution."
+  }
+}

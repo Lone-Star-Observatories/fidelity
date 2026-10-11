@@ -45,6 +45,9 @@ if (typeof window !== 'undefined') {
 let bookmarkHandler = null;
 /** main.js turns a camera state into a URL (it knows the route and the clock). */
 export function onBookmark(fn) { bookmarkHandler = fn; }
+let postcardHandler = null;
+/** main.js opens the POSTCARD dialog for the active view (#40). */
+export function onPostcard(fn) { postcardHandler = fn; }
 
 // ---- helpers for views whose objects are points (stars, clusters, galaxies) -------------------
 /** Distance from `pos` to the nearest of the points `each(fn)` hands over (fn(x, y, z[, r])). */
@@ -124,6 +127,7 @@ export function createCameraRig(o) {
     btn('FIT', 'Fill view: frame the selection [F]', () => fit()),
     btn('RESET', 'Reset view: the default framing [R]', () => reset()),
     btn('LINK', 'Copy a link that reopens this view: camera, mode and epoch [B]', () => bookmark()),
+    btn('POSTCARD', 'Capture this view as an image to save or share [P]', () => postcardHandler?.(key)),
     cursorBtn, fsBtn);
   el.append(modeRow, zoomRow, readout, toolRow);
   for (const t of ['pointerdown', 'pointerup', 'click', 'dblclick', 'wheel']) el.addEventListener(t, (e) => e.stopPropagation());
@@ -376,7 +380,7 @@ export function createCameraRig(o) {
 
   // ---- keyboard -------------------------------------------------------------------------------
   window.addEventListener('keydown', (e) => {
-    if (!active() || e.metaKey || e.ctrlKey || e.altKey || e.target.closest?.('input, select, textarea, [contenteditable]')) return;
+    if (!active() || e.metaKey || e.ctrlKey || e.altKey || e.target.closest?.('input, select, textarea, [contenteditable]') || document.querySelector('.pc-overlay')) return;
     shift = e.shiftKey;
     if (free() && mode === 'fly' && FLY_KEYS[e.code]) { keys.add(FLY_KEYS[e.code]); e.preventDefault(); return; }
     if (e.repeat && !['+', '=', '-', '_'].includes(e.key)) return;
@@ -390,6 +394,7 @@ export function createCameraRig(o) {
       case 'F': toggleFullscreen(); break;
       case 'r': case 'R': reset(); break;
       case 'b': case 'B': bookmark(); break;
+      case 'p': case 'P': postcardHandler?.(key); break;
       case 'c': case 'C': if (!o.override?.() && mode === 'orbit') toggleCursor(); break;
       default: return;
     }
