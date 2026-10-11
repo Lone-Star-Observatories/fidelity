@@ -144,6 +144,16 @@ snapshot does not grow); the chart badge says so when that runs short.
 3. Add any upstream it needs as a backend route with a cache namespace. Don't fetch
    non-CORS upstreams from the browser.
 4. Tag every displayed value with a provenance badge, and update `docs/data-sources.md`.
+5. Add the level to `viewKey` / `CURTAIN_LABEL` in `src/main.js` so it opens behind the loading curtain.
+
+**Loading curtain.** Switching main views (`viewKey`: Universe, Galaxy, Quadrant, Navigation per
+system, the System View and the levels drawn in it per system, each Star/Planet/Moon/Object view)
+drops a blank LOADING curtain over the viewport (`src/views/viewcurtain.js`). It counts every
+texture and model three.js loads (`THREE.DefaultLoadingManager`) and every `fetch()` started after
+the switch, and lifts once 30% of them have arrived (`curtainReady`: never before 250 ms, not before
+600 ms once something started, after 450 ms if nothing started because the view was cached, and
+always by 15 s). The view keeps loading and drawing behind it; SHOW NOW lifts it at once. Focusing a
+body inside the same view doesn't drop it.
 
 ## Moons and small bodies
 
