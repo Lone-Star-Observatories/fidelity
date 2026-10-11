@@ -144,6 +144,16 @@ snapshot does not grow); the chart badge says so when that runs short.
 3. Add any upstream it needs as a backend route with a cache namespace. Don't fetch
    non-CORS upstreams from the browser.
 4. Tag every displayed value with a provenance badge, and update `docs/data-sources.md`.
+5. Add the level to `viewKey` / `CURTAIN_LABEL` in `src/main.js` so it opens behind the loading curtain.
+
+**Loading curtain.** Switching main views (`viewKey`: Universe, Galaxy, Quadrant, Navigation per
+system, the System View and the levels drawn in it per system, each Star/Planet/Moon/Object view)
+drops a blank LOADING curtain over the viewport (`src/views/viewcurtain.js`). It counts every
+texture and model three.js loads (`THREE.DefaultLoadingManager`) and every `fetch()` started after
+the switch, and lifts once 30% of them have arrived (`curtainReady`: never before 250 ms, not before
+600 ms once something started, after 450 ms if nothing started because the view was cached, and
+always by 15 s). The view keeps loading and drawing behind it; SHOW NOW lifts it at once. Focusing a
+body inside the same view doesn't drop it.
 
 ## Moons and small bodies
 
@@ -369,6 +379,16 @@ otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, 
 the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
 Every upstream URL must be on a cached station list (no open proxy). Voice: the `comms` tool and
 offline phrases ("on screen", "close channel"). Nothing transmits.
+
+The map is line art in the LCARS tactical style: today's coastlines and borders from Natural Earth
+1:50m (`public/shapes/world-50m.json`, built by `scripts/build-worldmap.mjs`, decoded by
+`src/data/worldmap.js`: arcs shared by two countries are borders, the rest coastline; outlines are
+unwrapped across the antimeridian and drawn at ±360° as well) over a navy graticule, as cached
+`Path2D`s under a lon/lat transform so zoom and pan stay smooth. With `fill: true` (COMMS) it covers
+its frame edge to edge inside LCARS bars. Pointing at a marker rings it and shows a card (name,
+detail, list, position, how many more are under the cursor); pointing at land highlights the
+country and names it in the readout. The main viewer sits beside the map when the COMMS view is at
+least 1,000 px wide (a container query), otherwise above it, smaller.
 
 ## Space telescopes
 

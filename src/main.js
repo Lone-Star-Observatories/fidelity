@@ -54,6 +54,7 @@ import { createEarthTimelinePanel } from './panels/earthtimeline.js';
 import { createMagneticPanel } from './panels/magnetic.js';
 import { createSearch } from './panels/search.js';
 import { createCommsView } from './views/comms/CommsView.js';
+import { createViewCurtain } from './views/viewcurtain.js';
 import { PLANETSHINE } from './astro/planetshine.js';
 import { FUTURE_MISSIONS } from './data/future-missions.js';
 import { SITES } from './data/sites.js';
@@ -86,6 +87,15 @@ const clock = createClock();
   if (Number.isFinite(t)) { clock.set(jdFromDate(new Date(t))); if (q.has('hold')) clock.toggleHold(); }
 }
 let route = { level: 'system', system: 'sol', body: null };
+// Main views open behind a loading curtain until ~30% of their imagery and data has arrived
+const curtain = createViewCurtain($('viewport'));
+const SHARES_SYSTEM = ['system', 'events', 'future', 'timeline', 'satellite']; // these draw in the System View
+const CURTAIN_LABEL = { universe: 'UNIVERSE VIEW', galaxy: 'GALAXY VIEW', quadrant: 'QUADRANT VIEW', navigation: 'NAVIGATION', system: 'SYSTEM VIEW',
+  star: 'STAR VIEW', planet: 'PLANET VIEW', moon: 'MOON VIEW', object: 'OBJECT VIEW', comms: 'COMMS' };
+/** Which view a route draws in: a change of key drops the curtain (focusing a body inside a view doesn't). */
+const viewKey = (r) => (!r ? '' : SHARES_SYSTEM.includes(r.level) ? `system:${r.system ?? 'sol'}`
+  : r.level === 'navigation' ? `navigation:${r.system ?? ''}` : ['star', 'planet', 'moon', 'object'].includes(r.level) ? `${r.level}:${r.system}:${r.body}` : r.level);
+let routedOnce = false;
 let lastFrame = null;
 let currentSystem = 'sol'; // the system the ship is "in"; Navigation looks outward from it
 let navRadius = 25;
@@ -1706,6 +1716,8 @@ function syncBeacon() {
 onRoute(async (r) => {
   const prev = route;
   route = r;
+  if (!routedOnce || viewKey(prev) !== viewKey(r)) curtain.begin(CURTAIN_LABEL[SHARES_SYSTEM.includes(r.level) ? 'system' : r.level] ?? 'VIEW');
+  routedOnce = true;
   applyTimeLimit(); // the new view's valid time range (#34)
   setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;

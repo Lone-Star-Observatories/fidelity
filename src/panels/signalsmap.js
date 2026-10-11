@@ -1,4 +1,5 @@
-// LIVE SIGNALS · EARTH (#35): a flat map of places you can listen to or watch right now: internet
+// LIVE SIGNALS · EARTH (#35): a line-art map (LCARS tactical style: today's coastlines and borders,
+// Natural Earth via src/data/worldmap.js) of places you can listen to or watch right now: internet
 // radio stations, public SDR receivers, traffic cameras, observatory and volcano cams (and Windy
 // webcams when the backend has a key). Markers come from the backend (/api/signals/:layer), which
 // fetches and caches each open source; clicking lists what is under the cursor, each opening the
@@ -7,6 +8,7 @@
 import { badge } from '../data/provenance.js';
 import { CURATED_VIDEO, ago } from '../data/comms.js';
 import { OBSERVATORIES } from '../data/observatories.js';
+import { decodeWorld, countryAt } from '../data/worldmap.js';
 
 const STANDALONE = import.meta.env.MODE === 'standalone';
 const el = (tag, props = {}, ...kids) => {
@@ -38,38 +40,43 @@ const VIDEO = {
 /**
  * opts (COMMS, #69): only: layer ids to show; onPick(layerId, marker, layer): a primary button per
  * hit (pickLabel(layerId) names it); extra: [{ id, label, colour, kind, markers, credit, licence }]
- * bundled layers; title.
+ * bundled layers; title; fill: the map takes its frame's height (CSS) instead of a 2:1 strip.
  */
 export function createSignalsMap(opts = {}) {
   const want = (id) => !opts.only || opts.only.includes(id);
   const layers = new Map(want('video') ? [['video', { ...VIDEO, on: true, state: 'ready', count: VIDEO.markers.length, fetched: null }]] : []);
   for (const x of opts.extra ?? []) { layers.set(x.id, { on: true, state: 'ready', count: x.markers.length, fetched: null, available: true, ...x }); if (x.colour) COLOURS[x.id] = x.colour; }
-  const node = el('section', { className: 'sv-card sm-card' },
+  const node = el('section', { className: `sv-card sm-card${opts.fill ? ' sm-fillcard' : ''}` },
     el('div', { className: 'sv-card-head' }, el('h3', { textContent: opts.title ?? 'LIVE SIGNALS · EARTH' }),
       badge('reported', 'Marker positions are as published by each directory or operator; the feeds behind them are live.')));
   const pills = el('div', { className: 'im-pills sm-pills' });
   const canvas = el('canvas', { className: 'sm-canvas' });
-  const frame = el('div', { className: 'sm-frame' }, canvas,
+  const tip = el('div', { className: 'sm-tip', hidden: true });
+  const readout = el('div', { className: 'sm-readout mono' });
+  const frame = el('div', { className: `sm-frame${opts.fill ? ' sm-fill' : ''}` }, canvas, tip, readout,
+    el('div', { className: 'sm-lcars-top' }, el('span', { className: 'sm-lcars-title', textContent: opts.title ?? 'LIVE SIGNALS · EARTH' })),
+    el('div', { className: 'sm-lcars-side' }, el('i'), el('i'), el('i'), el('i')),
     el('div', { className: 'sm-zoom' }, ...[['+', 1.6], ['−', 1 / 1.6], ['⟲', 0]].map(([l, f]) => {
       const b = el('button', { type: 'button', className: 'pill square', textContent: l });
-      b.addEventListener('click', () => { if (f) zoomAt(view.cx, view.cy, f); else Object.assign(view, { cx: 0, cy: 0, z: 1 }); draw(); });
+      b.addEventListener('click', () => { if (f) zoomAt(view.cy, view.cx, f); else Object.assign(view, { cx: 0, cy: 0, z: 1 }); clampView(); draw(); });
       return b;
     })));
-  const info = el('div', { className: 'sm-info' }, el('p', { className: 'note', textContent: 'Click a marker to see what is there; scroll or use + / − to zoom, drag to pan.' }));
+  const info = el('div', { className: 'sm-info' }, el('p', { className: 'note', textContent: 'Point at a marker for its details; click to list what is there. Scroll or + / − to zoom, drag to pan.' }));
   const credits = el('div', { className: 'sm-credits' });
   const notes = el('p', { className: 'note', textContent: STANDALONE
     ? 'Radio stations, SDR receivers and traffic cameras load through the local backend (npm start); this preview shows only the bundled observatory and volcano views.'
     : 'Radio Garden shows when its export is in data/radio-garden/stations.json (local only, not redistributed). The WebSDR.org list (re-use needs permission) is a link only. Aircraft (OpenSky) are not shown yet.' });
   node.append(pills, frame, info, credits, notes);
 
-  // ---- view: equirectangular, centre (cx lon, cy lat) and zoom ----------------------------------
+  // ---- view: equirectangular, centre (cx lon, cy lat), zoom z; at z = 1 the map covers the frame -----
   const view = { cx: 0, cy: 0, z: 1 };
-  let W = 0, H = 0, texture = null;
-  const toXY = (lat, lon) => [W / 2 + ((lon - view.cx) / 360) * W * view.z, H / 2 - ((lat - view.cy) / 180) * H * view.z];
-  const toLL = (x, y) => [view.cy - ((y - H / 2) / (H * view.z)) * 180, view.cx + ((x - W / 2) / (W * view.z)) * 360];
+  let W = 0, H = 0, world = null, paths = null, hover = null, hoverCountry = null;
+  const scale = () => Math.max(W / 360, H / 180) * view.z; // px per degree
+  const toXY = (lat, lon) => { const k = scale(); return [W / 2 + (lon - view.cx) * k, H / 2 - (lat - view.cy) * k]; };
+  const toLL = (x, y) => { const k = scale(); return [view.cy - (y - H / 2) / k, view.cx + (x - W / 2) / k]; };
   const clampView = () => {
-    view.z = Math.min(48, Math.max(1, view.z));
-    const hx = 180 / view.z, hy = 90 / view.z;
+    view.z = Math.min(64, Math.max(1, view.z));
+    const k = scale() || 1, hx = Math.min(180, W / 2 / k), hy = Math.min(90, H / 2 / k);
     view.cx = Math.min(180 - hx, Math.max(-180 + hx, view.cx));
     view.cy = Math.min(90 - hy, Math.max(-90 + hy, view.cy));
   };
@@ -83,30 +90,57 @@ export function createSignalsMap(opts = {}) {
     clampView();
   }
 
-  if (!STANDALONE) {
-    const img = new Image();
-    img.onload = () => { texture = img; draw(); };
-    img.src = '/api/texture/earth';
-  }
+  // today's coastlines and borders, as paths in degrees (drawn under a lon/lat → px transform)
+  const ringPath = (p, r) => r.forEach(([lon, lat], j) => (j ? p.lineTo(lon, lat) : p.moveTo(lon, lat)));
+  fetch(`${import.meta.env.BASE_URL ?? '/'}shapes/world-50m.json`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status)))).then((topo) => {
+    world = decodeWorld(topo);
+    const line = (ids) => { const p = new Path2D(); for (const i of ids) ringPath(p, world.arcs[i]); return p; };
+    const land = new Path2D();
+    for (const c of world.countries) for (const poly of c.polys) for (const r of poly) ringPath(land, r);
+    paths = { land, coast: line(world.coast), borders: line(world.borders) };
+    draw();
+  }).catch(() => {}); // the grid alone (e.g. the standalone preview, which doesn't bundle the outlines)
+  const countryPath = (c) => (c.path ??= (() => { const p = new Path2D(); for (const poly of c.polys) for (const r of poly) ringPath(p, r); return p; })());
 
   /**
-   * Paint the map on `g` over a w × h area. The equirectangular map is mapW × mapW/2 at zoom 1, centred on
-   * the view (the screen uses its own size; a postcard covers its shape). `k` scales markers and lines.
+   * Paint the map on `g` (in CSS px; `dpr` is the canvas's device-pixel ratio) over a w × h area at
+   * `s` px per degree, centred on the view. `k` scales markers and lines (a postcard is bigger).
    */
-  function paint(g, w, h, mapW, k = 1) {
-    const mapH = mapW / 2;
-    const xy = (lat, lon) => [w / 2 + ((lon - view.cx) / 360) * mapW * view.z, h / 2 - ((lat - view.cy) / 180) * mapH * view.z];
-    g.fillStyle = '#05070c'; g.fillRect(0, 0, w, h);
+  function paint(g, w, h, s, { dpr = 1, k = 1, highlight = true } = {}) {
+    const xy = (lat, lon) => [w / 2 + (lon - view.cx) * s, h / 2 - (lat - view.cy) * s];
+    const bg = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+    bg.addColorStop(0, '#0a1430'); bg.addColorStop(1, '#03060f');
+    g.fillStyle = bg; g.fillRect(0, 0, w, h);
     const [x0, y0] = xy(90, -180), [x1, y1] = xy(-90, 180);
-    if (texture) { g.globalAlpha = 0.75; g.drawImage(texture, x0, y0, x1 - x0, y1 - y0); g.globalAlpha = 1; }
-    g.strokeStyle = 'rgba(153,153,255,0.18)'; g.lineWidth = k;
-    for (let lon = -180; lon <= 180; lon += 30) { const [x] = xy(0, lon); g.beginPath(); g.moveTo(x, y0); g.lineTo(x, y1); g.stroke(); }
-    for (let lat = -60; lat <= 60; lat += 30) { const [, y] = xy(lat, 0); g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke(); }
-    const r = Math.min(4, 1.6 + view.z * 0.25) * k;
+    // graticule: 10° fine, 30° bold
+    for (const [step, a] of [[10, 0.07], [30, 0.16]]) {
+      g.strokeStyle = `rgba(110,150,255,${a})`; g.lineWidth = k; g.beginPath();
+      for (let lon = -180; lon <= 180; lon += step) { const [x] = xy(0, lon); g.moveTo(x, y0); g.lineTo(x, y1); }
+      for (let lat = -90; lat <= 90; lat += step) { const [, y] = xy(lat, 0); g.moveTo(x0, y); g.lineTo(x1, y); }
+      g.stroke();
+    }
+    if (paths) {
+      g.save();
+      g.setTransform(dpr * s, 0, 0, -dpr * s, dpr * (w / 2 - view.cx * s), dpr * (h / 2 + view.cy * s));
+      const hp = highlight && hoverCountry && countryPath(hoverCountry);
+      for (const shift of [-360, 0, 360]) { // outlines are unwrapped across the antimeridian (worldmap.js)
+        g.save(); g.translate(shift, 0);
+        g.fillStyle = 'rgba(40,80,190,0.30)'; g.fill(paths.land, 'evenodd');
+        if (hp) { g.fillStyle = 'rgba(120,170,255,0.28)'; g.fill(hp, 'evenodd'); }
+        g.lineJoin = 'round';
+        g.strokeStyle = 'rgba(120,160,255,0.45)'; g.lineWidth = (0.8 * k) / s; g.stroke(paths.borders);
+        g.shadowColor = '#4f8cff'; g.shadowBlur = 6 * dpr * k;
+        g.strokeStyle = '#8fb8ff'; g.lineWidth = (1.3 * k) / s; g.stroke(paths.coast);
+        if (hp) { g.strokeStyle = '#d6e6ff'; g.lineWidth = (1.6 * k) / s; g.stroke(hp); }
+        g.restore();
+      }
+      g.restore();
+    }
+    const r = Math.min(4.5, 1.8 + view.z * 0.25) * k;
     for (const [id, l] of layers) {
       if (!l.on || !l.markers) continue;
       g.fillStyle = COLOURS[id] ?? '#fff';
-      g.globalAlpha = id === 'video' ? 1 : 0.8;
+      g.globalAlpha = id === 'video' ? 1 : 0.85;
       for (const m of l.markers) {
         const [x, y] = xy(m[0], m[1]);
         if (x < -5 * k || y < -5 * k || x > w + 5 * k || y > h + 5 * k) continue;
@@ -114,26 +148,36 @@ export function createSignalsMap(opts = {}) {
       }
     }
     g.globalAlpha = 1;
+    if (highlight && hover) { // the marker under the cursor: a ring and crosshair ticks
+      const [x, y] = xy(hover.m[0], hover.m[1]);
+      g.strokeStyle = COLOURS[hover.id] ?? '#fff'; g.lineWidth = 2;
+      g.beginPath(); g.arc(x, y, r + 6, 0, 2 * Math.PI); g.stroke();
+      g.beginPath();
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { g.moveTo(x + dx * (r + 9), y + dy * (r + 9)); g.lineTo(x + dx * (r + 15), y + dy * (r + 15)); }
+      g.stroke();
+    }
   }
   function draw() {
     const dpr = window.devicePixelRatio || 1;
-    W = canvas.clientWidth; H = Math.round(W / 2);
-    if (!W) return;
-    canvas.style.height = `${H}px`;
+    W = canvas.clientWidth; H = opts.fill ? canvas.clientHeight : Math.round(W / 2);
+    if (!W || !H) return;
+    if (!opts.fill) canvas.style.height = `${H}px`;
+    clampView();
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     const g = canvas.getContext('2d');
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    paint(g, W, H, W);
+    paint(g, W, H, scale(), { dpr });
   }
   /** #40: the map as shown, repainted at w × h for a postcard (covering the card, markers scaled to match). */
   function snapshot(w, h) {
     const c = Object.assign(document.createElement('canvas'), { width: w, height: h });
-    const mapW = Math.max(w, 2 * h);
-    paint(c.getContext('2d'), w, h, mapW, mapW / (W || mapW));
+    const s = Math.max(w / 360, h / 180) * view.z; // the screen's rule (cover the frame) at the card's size
+    paint(c.getContext('2d'), w, h, s, { k: s / (scale() || s), highlight: false });
     return c;
   }
-  /** #40: the credits of what the map shows (the Earth image and each layer that is on). */
-  const shownCredits = () => [...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) => `${l.label}: ${l.credit}`);
+  /** #40: the credits of what the map shows (the outlines and each layer that is on). */
+  const shownCredits = () => [...(paths ? ['MAP: Natural Earth 1:50m coastlines and borders (public domain)'] : []),
+    ...[...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) => `${l.label}: ${l.credit}`)];
 
   function hits(px, py, max = 14) {
     const out = [];
@@ -176,14 +220,34 @@ export function createSignalsMap(opts = {}) {
     if (drag) {
       const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
       if (Math.hypot(dx, dy) > 3) drag.moved = true;
-      if (drag.moved) { view.cx = drag.cx - (dx / (W * view.z)) * 360; view.cy = drag.cy + (dy / (H * view.z)) * 180; clampView(); draw(); }
+      if (drag.moved) { const k = scale(); view.cx = drag.cx - dx / k; view.cy = drag.cy + dy / k; clampView(); tip.hidden = true; draw(); }
       return;
     }
     const [x, y] = local(e);
-    const h = hits(x, y, 1);
+    const h = hits(x, y, 1e6);
     canvas.style.cursor = h.length ? 'pointer' : 'grab';
-    canvas.title = h.length ? h[0].m[2] : '';
+    const [lat, lon] = toLL(x, y);
+    const c = !h.length && world ? countryAt(world, lat, lon) : null;
+    readout.textContent = `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}${c ? ` · ${c.name.toUpperCase()}` : ''}`;
+    const nh = h[0] ?? null;
+    if (nh?.m !== hover?.m || c !== hoverCountry) { hover = nh; hoverCountry = c; draw(); }
+    showTip(nh, h.length, x, y);
   });
+  canvas.addEventListener('pointerleave', () => { tip.hidden = true; readout.textContent = ''; if (hover || hoverCountry) { hover = hoverCountry = null; draw(); } });
+  /** The hover card: name, what it is, where, which list; how many more are under the cursor. */
+  function showTip(h, n, x, y) {
+    if (!h) { tip.hidden = true; return; }
+    const l = layers.get(h.id), [lat, lon, name, , detail] = h.m;
+    tip.replaceChildren(
+      el('div', { className: 'sm-tip-name' }, el('span', { className: 'sm-dot', style: `background:${COLOURS[h.id]}` }), ` ${name}`),
+      detail ? el('div', { className: 'sm-tip-row mono', textContent: detail }) : null,
+      el('div', { className: 'sm-tip-row mono', textContent: `${l.label} · ${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}` }),
+      el('div', { className: 'sm-tip-row mono dim', textContent: n > 1 ? `+${n - 1} MORE HERE · CLICK TO LIST` : 'CLICK FOR DETAILS' }));
+    tip.hidden = false;
+    const fw = frame.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+    tip.style.left = `${Math.max(8, Math.min(fw - tw - 8, x + 16))}px`;
+    tip.style.top = `${y - th - 12 < 8 ? y + 18 : y - th - 12}px`;
+  }
   canvas.addEventListener('pointerup', (e) => {
     const wasDrag = drag?.moved;
     drag = null;
