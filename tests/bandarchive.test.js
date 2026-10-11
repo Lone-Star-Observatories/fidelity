@@ -206,6 +206,7 @@ test('the bar\'s ends: the scale through the auto-levels (sRGB texture, linear-l
   assert.match(scaleDetail({ ...sc, stretch: 'p1-p99', bins: 3, dataMin: 0, dataMax: 9 }, th), /1st and 99th percentiles of the table's 3 bins/);
   assert.equal(shownScale(null), null); assert.equal(shownScale({ min: 1, max: 1, unit: 'K' }), null);
   assert.deepEqual([0.782055, 11.24, 395.4, 0, 4120].map(fmtScaleValue), ['0.78', '11', '395', '0', '4,120']);
+});
 
 test('#72 disc images: Chandra X-rays, Gemini 4.7 µm Jupiter, Gemini 3.8 µm Io — measured geometry, licence, allowlisted hosts', async () => {
   const x = BODY_BAND.jupiter['x-soft'], m = BODY_BAND.jupiter['ir-F444W'], io = BODY_BAND.io['ir-W1'];
