@@ -7659,6 +7659,137 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "rhea": {
+    "id": "rhea",
+    "name": "Rhea",
+    "aliases": [
+      "Rhea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHA487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac; frame/coverage/input epochs/photometry open. No generated globe.",
+    "measured": [
+      "Representative catalogue radius763.8km, mass2.3065e21kg, semimajor axis527200km; not dated scene registration.",
+      "Cassini NAC visible-light PIA21354 observed2017-05-02/released2017-11-20, monochrome northern hemisphere. Caption370000km/2km per pixel estimates are publisher values, not new raster calculations; rounded1527km caption diameter preserved separately.",
+      "NASA overview reports tenuous O2/CO2 exosphere detected2010; no strict gasless claim or visible haze/cloud inference."
+    ],
+    "modelled": [
+      "Bulk ice/rock and sputtering/radiolysis interpretations do not establish local chemical fractions.",
+      "Tiscareno/Burns/Cuzzi/Hedman2010 imaging-search abstract rejects earlier ring explanation; no confirmed Rhea ring. Abstract-only assessment, full paper audit open; no CC licence assertion."
+    ],
+    "unknown": [
+      "Globe input epochs/frame/coverage/photometry, local material fractions, registered site/orientation/phase, calibrated visible colour and further recent primary/product audit. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Independent invented terrain/material chemistry/fractions/lighting/exposure, without analog-map reuse or dated site registration.",
+      "Rhea's detected tenuous O2/CO2 exosphere does not establish visible haze/clouds; no strictly gasless claim.",
+      "No active plume/exposed ocean/biology/survivable landing or confirmed Rhea ring.",
+      "No celestial disk in frame; no angular/raster computation performed.",
+      "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+      "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+      "No confirmed Rhea ring; only schematic Saturn rings.",
+      "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame.",
+      "skyGeometry Saturn58232km radius at527200minus763.8km nominal90HFOV12.70159454degrees186.091095targetpx1672. Row200 thresholds5/10/20 upper-globe chords76/68/56 substantially undersized, not full calibrated diameter; rings excluded95K angular-only Sun off-frame. Small preview footer labels limited; readable card labels required."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/above-rhea/",
+        "title": "Cassini PIA21354 Above Rhea",
+        "publicationDate": "2017-11-20"
+      },
+      {
+        "url": "https://science.nasa.gov/saturn/moons/rhea/",
+        "title": "Rhea overview and tenuous exosphere"
+      },
+      {
+        "url": "https://arxiv.org/abs/1008.1764",
+        "title": "Tiscareno et al2010 no imaging evidence of rings: abstract-only"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Rhea",
+        "title": "Own NASA3D Rhea globe; registration audit open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/rhea-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+        "sourcePage": "https://science.nasa.gov/photojournal/above-rhea/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/above-rhea/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2017-05-02",
+        "publicationDate": "2017-11-20",
+        "bytes": 6768,
+        "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+        "width": 320,
+        "height": 320,
+        "description": "Cassini NAC PIA21354 northern Rhea in visible monochrome, not calibrated colour/registered geography. Unchanged NASA320 display rendition: publisher resizing/re-encoding is not full pixel preservation;640 and both1020 originals retained.",
+        "processing": "Unchanged NASA-served JPEG; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL RHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM RHEA",
+    "surfaceImage": {
+      "url": "/bespoke/rhea-surface-image.jpg",
+      "previewUrl": "/bespoke/rhea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-surfaceImage-original.png",
+      "sourceSha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+      "sha256": "e92856a60c8d4ca6ccf012739e67f50ce4cf8c9d1458f6bafb39f54b9447c730",
+      "previewSha256": "868ca0df0c077d964b2f932253c22af2d7a2869263c4d76188b56d7db6f2eac6",
+      "bytes": 392520,
+      "previewBytes": 11342,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/rhea-sky-image.jpg",
+      "previewUrl": "/bespoke/rhea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-skyImage-original.png",
+      "sourceSha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+      "sha256": "26feedfd553dff92bc28d5f1f92280c8c5dde0bc410b35fcf5937c89de0f1424",
+      "previewSha256": "99c9d9a76437839cf143d6da2d1a51d245565b6912c4d22970362a6eb2a9007e",
+      "bytes": 205187,
+      "previewBytes": 6791,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
