@@ -379,6 +379,16 @@ the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / 
 Every upstream URL must be on a cached station list (no open proxy). Voice: the `comms` tool and
 offline phrases ("on screen", "close channel"). Nothing transmits.
 
+The map is line art in the LCARS tactical style: today's coastlines and borders from Natural Earth
+1:50m (`public/shapes/world-50m.json`, built by `scripts/build-worldmap.mjs`, decoded by
+`src/data/worldmap.js`: arcs shared by two countries are borders, the rest coastline; outlines are
+unwrapped across the antimeridian and drawn at ±360° as well) over a navy graticule, as cached
+`Path2D`s under a lon/lat transform so zoom and pan stay smooth. With `fill: true` (COMMS) it covers
+its frame edge to edge inside LCARS bars. Pointing at a marker rings it and shows a card (name,
+detail, list, position, how many more are under the cursor); pointing at land highlights the
+country and names it in the readout. The main viewer sits beside the map when the COMMS view is at
+least 1,000 px wide (a container query), otherwise above it, smaller.
+
 ## Space telescopes
 
 Hubble's satellite feed and JWST's body panel open an OBSERVING card in the feed viewer

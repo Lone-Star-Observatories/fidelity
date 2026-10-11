@@ -33,14 +33,16 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     el('h2', { textContent: 'COMMS · SECTOR 001' }),
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
     el('span', { className: 'cx-dev mono' }));
-  const subMap = createSignalsMap({ only: ['radiogarden', 'radio', 'traffic', 'windy', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
-  const rfMap = createSignalsMap({ only: ['kiwisdr'], title: 'RF · RECEIVERS', onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
+  const subMap = createSignalsMap({ only: ['radiogarden', 'radio', 'traffic', 'windy', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
+  const rfMap = createSignalsMap({ only: ['kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
     extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (rtl-sdr tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
   const screen = el('div', { className: 'cx-screen' });
   const screenFrame = el('div', { className: 'cx-screen-frame' }, screen, el('div', { className: 'cx-screen-label mono', textContent: 'MAIN VIEWER' }));
   const consoleBox = el('div', { className: 'cx-console' });
   const mapBox = el('div', { className: 'cx-map' });
-  container.replaceChildren(el('div', { className: 'cx-wrap' }, head, mapBox, screenFrame, consoleBox));
+  // the map fills the view; the main viewer sits beside it when there is room, above it when not (CSS)
+  container.replaceChildren(el('div', { className: 'cx-wrap' }, head,
+    el('div', { className: 'cx-body' }, mapBox, el('div', { className: 'cx-side' }, screenFrame, consoleBox))));
 
   // ---- viewscreen ---------------------------------------------------------------------------------
   const setScreen = (...kids) => screen.replaceChildren(...kids);
