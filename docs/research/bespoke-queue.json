@@ -374,8 +374,8 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
+      "nativeImagery": "Own NASA3D globe source-byte-equal; original Voyager PIA00041 colour composite/PIA01534 clear-filter mosaic retained with full NASA/JPL credits, observation1986-01-24 and separate publication dates/hashes. Black north/coverage gaps not terrain; colour/frame/epochs/shape registration remain open. Recent disk-integrated spectroscopy is not resolved geography; substantial lossless headroom needed before embedding",
+      "research": "native provenance and2024full/2026abstract spectroscopy preparation saved; individual dossier pending (ariel-moon-preparation-2026-10-11.json)",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
     },

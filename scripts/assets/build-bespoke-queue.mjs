@@ -23,6 +23,11 @@ for(const entry of entries.values()) {
 }
 for(const name of ['phobos','deimos']) { const entry=entries.get(`sol-${name}`); if(!entry.visualId) { entry.research='native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)'; entry.nativeImagery='own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending'; if(name==='deimos') entry.nativeImagery+='; newer2025Hera AFC/TIRI source PNGs retained, terms and embedding audit in deimos-hera-native-assessment-2026-10-10.json'; } }
 const ganymedeEntry=entries.get('sol-ganymede');
+const arielEntry=entries.get('sol-ariel');
+if(arielEntry && !arielEntry.visualId) {
+ arielEntry.research='native provenance and2024full/2026abstract spectroscopy preparation saved; individual dossier pending (ariel-moon-preparation-2026-10-11.json)';
+ arielEntry.nativeImagery='Own NASA3D globe source-byte-equal; original Voyager PIA00041 colour composite/PIA01534 clear-filter mosaic retained with full NASA/JPL credits, observation1986-01-24 and separate publication dates/hashes. Black north/coverage gaps not terrain; colour/frame/epochs/shape registration remain open. Recent disk-integrated spectroscopy is not resolved geography; substantial lossless headroom needed before embedding';
+}
 const callistoEntry=entries.get('sol-callisto');
 if(callistoEntry && !callistoEntry.visualId) callistoEntry.nativeImagery='Own NASA3D globe byte-equal to fetched source; native Galileo PIA03455 JPEG retained unchanged, observation2001-05-25 verified in contemporary JPL newsletter, full NASA/JPL/ASU/Academic Research Lab credit supported; mono panels/strip gaps/locator annotations not seamless colour geography. Recent/product-frame audit and headroom remain open (callisto-moon-preparation-2026-10-10.json); no initial dossier yet';
 if(ganymedeEntry && !ganymedeEntry.visualId) ganymedeEntry.nativeImagery='Own NASA3D globe byte-equal to fetched source; JunoCam PIA24681 and JIRAM PIA26075 retained with source hashes; preliminary seams, spectral processing, historical mosaic epochs and final-product audit remain open (ganymede-moon-preparation-2026-10-10.json); no initial dossier yet';

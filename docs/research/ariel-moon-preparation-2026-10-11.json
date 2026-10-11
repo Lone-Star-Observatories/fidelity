@@ -1,0 +1,246 @@
+{
+  "date": "2026-10-11",
+  "body": "Ariel",
+  "status": "Research-only. All61 dossiers and source inputs preserved; no62nd dossier or new embedding.",
+  "native": [
+    {
+      "product": "PIA00041",
+      "observed": "1986-01-24",
+      "publisherImageAdditionDate": "1996-01-29",
+      "credit": "NASA/JPL",
+      "width": 845,
+      "height": 650,
+      "bytes": 45924,
+      "inspected": true,
+      "processing": "Voyager2 NAC green/blue/violet-filter composite of southern hemisphere. Colour-channel fringes visible near edges; not independently calibrated visible colour or registered globe geography. Caption170000km range/about3km resolution and1200km diameter are historical publisher estimates, not new raster/angular calculations or replacements for catalogue radius578.9km. Later2025page update is not new observation. No exhaustive newest-observation claim."
+    },
+    {
+      "product": "PIA01534",
+      "observed": "1986-01-24",
+      "publisherImageAdditionDate": "1999-05-08",
+      "credit": "NASA/JPL",
+      "width": 1330,
+      "height": 1508,
+      "bytes": 92377,
+      "inspected": true,
+      "processing": "Four clear-filter NAC frames assembled as a monochrome mosaic. Gaps/seams/black background are not terrain; not independently calibrated visible colour or seamless globe. Caption130000km/about2.4km resolution and5–10km craters are source estimates, not new raster calculations. Faulting/deposition/fluid-flow alternatives remain interpretations, not current active cryovolcanism."
+    }
+  ],
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "description": "Active NASA media guidelines; fullNASA/JPL credits retained. Not asserted CC BY. Original publisher JPEGs downloaded unchanged; TIFFs not downloaded or hashed."
+  },
+  "ownGlobe": {
+    "path": "data/textures/ariel.jpg",
+    "bytes": 254331,
+    "sha256": "fc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee",
+    "width": 1440,
+    "height": 720,
+    "matchesFetchedSourceByteForByte": true,
+    "inspected": true,
+    "limitations": "Partial southern coverage with black unobserved northern region and visible coverage edges/low-detail areas. Black/blurred areas do not establish dark/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. Own-body map unchanged; no analog or replacement adopted."
+  },
+  "catalogue": {
+    "radiusKm": 578.9,
+    "massKg": 1.251e+21,
+    "semimajorAxisKm": 190929,
+    "periodDays": 2.520379,
+    "inclinationDegrees": 0,
+    "limits": "Existing catalogue values preserved; no independently inferred precision, uncertainty or silent update. Publisher rounded diameters remain distinct."
+  },
+  "primaryAssessment2024": {
+    "title": "JWST Reveals CO Ice, Concentrated CO2 Deposits, and Evidence for Carbonates Potentially Sourced from Ariel’s Interior",
+    "doi": "10.3847/2041-8213/ad566a",
+    "url": "https://mmhedman.github.io/papers_published/Cartwright_Ariel_ApJL_2024.pdf",
+    "authors": [
+      "Richard J. Cartwright",
+      "Bryan J. Holler",
+      "William M. Grundy",
+      "Stephen C. Tegler",
+      "Marc Neveu",
+      "Ujjwal Raut",
+      "Christopher R. Glein",
+      "Tom A. Nordheim",
+      "Joshua P. Emery",
+      "Julie C. Castillo-Rogez",
+      "Eric Quirico",
+      "Silvia Protopapa",
+      "Chloe B. Beddingfield",
+      "Matthew M. Hedman",
+      "Katherine de Kleer",
+      "Riley A. DeColibus",
+      "Anastasia N. Morgan",
+      "Ryan Wochner",
+      "Kevin P. Hand",
+      "Geronimo L. Villanueva",
+      "Sara Faggi",
+      "Noemi Pinilla-Alonso",
+      "David E. Trilling",
+      "Michael M. Mueller"
+    ],
+    "pages": 16,
+    "received": "2024-05-07",
+    "revised": "2024-06-08",
+    "accepted": "2024-06-09",
+    "published": "2024-07-24",
+    "issueDate": "2024-08-01",
+    "licence": "Explicit CC BY4.0 original-content notice on PDFpage1, retaining authors/title/journal/DOI attribution. No figure embedded.",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "scope": "Full16page coauthor-hosted published PDF retained. Page1 attribution/abstract; section2 observing methods; sections3–5 and AppendixA model alternatives assessed. This is not a calibrated raster or local resolved geography.",
+    "observations": {
+      "program": 1786,
+      "instrument": "JWST NIRSpec IFU G395M/F290LP",
+      "wavelengthMicrons": [
+        2.87,
+        5.1
+      ],
+      "resolvingPower": "about1000",
+      "trailingDate": "2023-09-06",
+      "leadingDate": "2023-09-07",
+      "trailingSubobserverWestLongitudeDegrees": 293,
+      "leadingSubobserverWestLongitudeDegrees": 63,
+      "subobserverNorthLatitudeDegrees": 64.5,
+      "trailingOnTargetSecondsApprox": 3793,
+      "leadingOnTargetSecondsApprox": 3735,
+      "dithersPerObservation": 4,
+      "archiveDoi": "10.17909/cwsn-7z50",
+      "limits": "Dates/geometry/integration times are reported by section2; exact MAST product correspondence and independent re-reduction remain open. Disk-integrated hemispheric spectra do not assign species to any invented local scene or Voyager pixel."
+    },
+    "measurements": "CO2 spectral peaks/bands and4.67micronCO ice band are detected with hemispheric differences. The4.02micron feature may include carbonate minerals; identification remains tentative. No compelling G395M evidence for NH-bearing species, hydrocarbons orH2O2 is not an exhaustive absence claim: strongwater absorption may obscureNH-bearing species.",
+    "modelsAndUnknowns": "More-than-about10mm CO2 deposits derive from optical penetration/mean-path and laboratory/Hapke–Mie comparisons, not direct local thickness/geographic mapping. Mixture grain diameters/fractions, temperatures, possible carbonates/clathrates, replenishment/seasonal migration, radiolysis versus interior origins, ocean chemistry/pH and isotope/escape histories are models or hypotheses. Section5 explicitly leaves physical state and conduit associations difficult to determine from disk-integrated spectra and calls for resolved orbital spectroscopy. No direct ocean, plume, exposed liquid, biology or quantified local chemistry claim; no observed-body analog terrain reuse."
+  },
+  "recentPrimaryAssessment2026": {
+    "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+    "url": "https://arxiv.org/abs/2607.05600",
+    "submitted": "2026-07-06",
+    "revised": "2026-07-08",
+    "version": "v2",
+    "authors": [
+      "Richard J. Cartwright",
+      "Sasha Cryan",
+      "Rosario Brunetto",
+      "Apolline Leclef",
+      "Eric Quirico",
+      "Bryan J. Holler",
+      "William M. Grundy",
+      "Tom A. Nordheim",
+      "Ujjwal Raut",
+      "Matthew M. Hedman",
+      "Riley A. DeColibus",
+      "Chloe B. Beddingfield",
+      "Marc Neveu",
+      "Christopher R. Glein",
+      "Sara Faggi",
+      "Geronimo L. Villanueva",
+      "Noemi Pinilla-Alonso",
+      "Stephanie M. Menten"
+    ],
+    "publisherStatus": "Abstract reports accepted in AAS PSJ; final journal record not independently assessed.",
+    "scope": "Primary abstract only; fullPDF/supplement not downloaded or assessed, no invented paper hash or figure use.",
+    "licence": "Abstract links explicitly toCCBY4.0; this assertion is specific to this record, not inferred from generic arXiv distribution.",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "assessment": "Ariel/Umbriel trailing concentration is consistent with radiolytic production; thick crystalline laboratory analog signatures, tentative carbonate/13CO2-clathrate bands and system-wideCO2 motivate potentially native origins modified by irradiation/seasonal cycles. Native/interior/radiolytic origin remains uncertain, not directly observed plumbing or local fractions. Recent spectroscopy is not new resolved visible terrain."
+  },
+  "openWork": [
+    "Further recent/native product audit; no exhaustive newest-observation claim.",
+    "Resolved globe product/frame/coverage/epoch/photometry and shape registration audit.",
+    "2026fullpaper/finaljournal/supplement and2025medialgroove primary alternatives.",
+    "Independent local/Uranus observer views, fullprompts/masters/recordedpreviews; no angular/raster computation in this research batch.",
+    "Lossless standalone headroom recovery before additive integration; prior1776bytes insufficient for these fullnative JPEGs, exact incremental embedding cost remains unbuilt.",
+    "Otherbrowser engines remain independently untested."
+  ],
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/ariel-PIA00041-caption.html",
+      "url": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 267160,
+      "sha256": "86de6e68e4a9a02f1075439e2acc9ffeb7507b0e0c428dcebae017dd3591f34b"
+    },
+    {
+      "path": "data/research-sources/ariel-PIA01534-caption.html",
+      "url": "https://science.nasa.gov/photojournal/ariels-densely-pitted-surface/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 267043,
+      "sha256": "988527f6ff617abd9f70e754a1d023ca97888a5bad526bcb8439d7ff00e7bc02"
+    },
+    {
+      "path": "data/research-sources/ariel-PIA00041-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 45924,
+      "sha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c"
+    },
+    {
+      "path": "data/research-sources/ariel-PIA01534-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01534/PIA01534.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 92377,
+      "sha256": "db3bf26a6cc53a65c25640be2e1b7f2d11eccdc8d42ce08f069775ba15bbdeec"
+    },
+    {
+      "path": "data/research-sources/ariel-nasa3d-source.jpg",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Ariel/Uranus%20-%20Ariel.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 254331,
+      "sha256": "fc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee"
+    },
+    {
+      "path": "data/research-sources/ariel-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 320653,
+      "sha256": "c5b8ccde2f5a4b131557d12ea206bbd2334f315930049c5e06d893414f50fdc2"
+    },
+    {
+      "path": "data/research-sources/ariel-Cartwright2024-author.pdf",
+      "url": "https://mmhedman.github.io/papers_published/Cartwright_Ariel_ApJL_2024.pdf",
+      "status": 200,
+      "mime": "application/pdf",
+      "bytes": 4245774,
+      "sha256": "49b750f76902a15bd2fe46d2ca5e4494585ade77fe358b8e10ba4d3d116f49ea"
+    },
+    {
+      "path": "data/research-sources/ariel-Cartwright2026-abstract.html",
+      "url": "https://arxiv.org/abs/2607.05600",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "bytes": 46575,
+      "sha256": "8992cee8cfd506eed6816793a8176b385ce627a7632757d20bf870575c96ced8"
+    }
+  ],
+  "preservation": {
+    "registryDossiers": 61,
+    "trackedRegistryBespokeMapModelShapeInputsExact": 354,
+    "newEmbeddedAssets": 0,
+    "originalsAndNativeInputs": "All prior originals/masters/prompts/source hashes and science bytes unchanged; new research downloads retained locally with committed provenance records."
+  },
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998750,
+    "headroomBytes": 1250,
+    "completeBrowserReadableSnapshotSha256": "d52e91d0a096105599f5113fc0f68a749aedbe9f7a3910a44fbe80017a38cf68",
+    "applicationSha256": "223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "rawSnapshotHtmlParserSha256": "369519a8f32d051633f3392787f5cb6c649e1f6a4953d71a2c5bfb28f5285d66",
+    "browser": "Chrome exact complete readableJSON/application/CSS/HTMLparser;216images20bands517details32models allimage decoding and nativecontext hashes. Actual normal/offline Miranda ownmap3cards, six routes, unsupportedgzip,11offline worker rows pass; all32normal models load. Otherbrowserengines remain open.",
+    "preservation": "All61 registry dossiers deepEqual;354tracked registry/bespoke/map/model/shape inputs exact againstHEAD. OwnArielmapsource byte-equal.8newsource hashes verified; no new embedded asset.",
+    "snapshotCompression": "Production FIDNUM02 standardgzip128 unlimited blocks;FIDAPP01app32unlimited,CSS5dense125v2 and alllegacy decoders/Blob/revoke/unsupported unchanged.",
+    "snapshotDifferenceFromPriorVerifiedBuild": [
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk"
+    ],
+    "attribution": "Only SDO94src/time/disk fields differ from saved0b873 baseline. No asset/compression saving attribution; research inputs are not embedded.",
+    "queueTasks": 566,
+    "dossiers": 61
+  }
+}
