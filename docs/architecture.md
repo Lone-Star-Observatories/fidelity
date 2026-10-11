@@ -924,8 +924,9 @@ the CSS2D label layer (backgrounds, borders and text from computed styles; `data
 out), then restores the screen size. `base: false` gives the label layer alone (TECHNICAL style overlays it).
 `src/panels/postcard.js` is the dialog and the frame compositor; `postcard-core.js` holds the DOM-free parts
 (sizes, frame layout, provenance line, caption, share links, stylize prompts and cost). `main.js` `describePostcard()`
-says what is in frame: the System View's `framed()` lists bodies at least 3 px across with their skin map, live feed
-and whether the surface is IMAGINED; `postcardFacts` adds the paleo-Earth banner and scenarios; settings add ENHANCED
+says what is in frame: the System View's `framed()` lists bodies (not markers) at least 3 px across with their skin map,
+live feed, whether the surface is IMAGINED, and the rendered phase (lit fraction and lit side, for the stylize prompt);
+COMMS repaints its 2D map (`signalsmap.js` `snapshot()`) and credits the layers shown; `postcardFacts` adds the paleo-Earth banner and scenarios; settings add ENHANCED
 sizes, the surface view and NASA's Milky Way artwork. The provenance line and credits are stamped with or without the
 frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/stylize.js`): JSON only and same-origin
 (so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached

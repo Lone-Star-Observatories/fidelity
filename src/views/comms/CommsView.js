@@ -22,8 +22,9 @@ const el = (tag, props = {}, ...kids) => {
 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export function createCommsView(container, { badge, pill, settings, onPanel, toast }) {
+export function createCommsView(container, { badge, pill, settings, onPanel, toast, onPostcard }) {
   const audio = createCommsAudio();
+  let keyHooked = false;
   let mode = 'subspace', station = null, prompt = null, devices = null, receiver = null, hailToken = 0;
   const radioEl = el('audio', { preload: 'none', crossOrigin: 'anonymous' });
 
@@ -32,7 +33,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   const head = el('div', { className: 'cx-head' },
     el('h2', { textContent: 'COMMS · SECTOR 001' }),
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
-    el('span', { className: 'cx-dev mono' }));
+    el('span', { className: 'cx-dev mono' }),
+    onPostcard ? pill('POSTCARD', () => onPostcard()) : null);
   const subMap = createSignalsMap({ only: ['radiogarden', 'radio', 'traffic', 'windy', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
   const rfMap = createSignalsMap({ only: ['kiwisdr'], title: 'RF · RECEIVERS', onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
     extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (rtl-sdr tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
@@ -239,9 +241,13 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
 
   let started = false;
   return {
-    show() { container.hidden = false; if (!started) { started = true; setMode('subspace'); } else (mode === 'subspace' ? subMap : rfMap).redraw(); },
+    show() { container.hidden = false; // P opens a postcard here too (#40); the 3D views' camera bars handle it elsewhere
+      if (!keyHooked && onPostcard) { keyHooked = true; window.addEventListener('keydown', (e) => { if (!container.hidden && (e.key === 'p' || e.key === 'P') && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest?.('input, select, textarea, [contenteditable]') && !document.querySelector('.pc-overlay')) { e.preventDefault(); onPostcard(); } }); } if (!started) { started = true; setMode('subspace'); } else (mode === 'subspace' ? subMap : rfMap).redraw(); },
     hide() { container.hidden = true; closeChannel(false); },
     panel, voice, context,
     get mode() { return mode; },
+    /** #40: postcards of the active map (the 2D map repainted at the postcard's size; no labels layer). */
+    snapshot: (w, h, o = {}) => (o.base === false ? null : (mode === 'subspace' ? subMap : rfMap).snapshot(w, h)), // no separate label layer
+    get postcardCredits() { return (mode === 'subspace' ? subMap : rfMap).shownCredits(); },
   };
 }

@@ -249,7 +249,7 @@ onBookmark((state) => {
 // ---- postcards (#40) ------------------------------------------------------------------------
 const SYSTEM_LEVELS = ['system', 'events', 'future', 'timeline', 'satellite'];
 const viewOf = (lvl) => (SYSTEM_LEVELS.includes(lvl) ? system : lvl === 'star' ? starView : ['planet', 'moon', 'object'].includes(lvl) ? planetView
-  : lvl === 'galaxy' ? galaxy : lvl === 'quadrant' ? quadrant : lvl === 'universe' ? universe : lvl === 'navigation' ? nav : null);
+  : lvl === 'galaxy' ? galaxy : lvl === 'quadrant' ? quadrant : lvl === 'universe' ? universe : lvl === 'navigation' ? nav : lvl === 'comms' ? comms : null);
 const latLonText = (lat, lon) => `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
 /** What the active view shows, for the postcard's stamps: place, provenance tiers, image credits, scene facts. */
 function describePostcard() {
@@ -265,7 +265,11 @@ function describePostcard() {
     const where = m.isSol ? 'the Solar System' : `the ${m.name} system`;
     subject = focus ? `${m.isSol && ['moon', 'sun'].includes(focus.id) ? 'The ' : ''}${focus.name} in ${where}` : where.charAt(0).toUpperCase() + where.slice(1);
     tiers.measured.push('STARS'); tiers.computed.push('POSITIONS');
-    for (const f of system.framed?.(3) ?? []) {
+    const shot = system.framed?.(3) ?? [];
+    const phases = shot.filter((f) => f.lit != null && f.px >= 6).slice(0, 6)
+      .map((f) => `${f.name} ${Math.round(f.lit * 100)}% lit${f.from ? `, lit from the ${f.from}` : ''}`);
+    if (phases.length) lighting = `${phases.join('; ')} (as rendered; keep every terminator where it is)`;
+    for (const f of shot) {
       bodies.push(f.name);
       if (f.live) { tiers.measured.push('LIVE IMAGERY'); if (f.live.credit) imgCredits.push(f.live.credit); }
       else if (f.imagined) tiers.imagined.push(`${f.name.toUpperCase()}'S SURFACE`);
@@ -279,7 +283,7 @@ function describePostcard() {
       place = `STANDING ON ${name.toUpperCase()}${sp ? ` · ${latLonText(sp.lat, lon)}` : ''}`;
       subject = `From the surface of ${name}${sp ? `, ${latLonText(sp.lat, lon)}` : ''}`;
       tiers.imagined.push('SURFACE');
-      lighting = 'as rendered: the Sun\'s position and every phase come from the ship\'s clock';
+      lighting = `${lighting ? `${lighting}. ` : ''}Standing on the ground: the Sun's position and every phase come from the ship's clock`;
       if (settings.get('deepsky')) imgCredits.push('Deep-sky images: DSS2 (STScI/AURA) and others, credited per object in the app');
     } else if (settings.get('scale') !== 'true') tiers.imagined.push('BODY SIZES (ENLARGED)');
     const pf = system.postcardFacts ?? {};
@@ -294,6 +298,12 @@ function describePostcard() {
     imgCredits.push('Digitized Sky Survey 2 (POSS-II / UK Schmidt; STScI/AURA) and 2MASS (UMass/IPAC-Caltech, NASA/NSF), via CDS hips2fits');
   } else if (v === nav) {
     tiers.measured.push('STARS'); tiers.computed.push('ORBITS');
+  } else if (v === comms) {
+    tiers.measured.push('EARTH MAP'); tiers.reported.push('STATION POSITIONS');
+    if (credits.earth) imgCredits.push(credits.earth);
+    imgCredits.push(...comms.postcardCredits);
+    subject = comms.mode === 'rf' ? 'Radio receivers around the world' : 'Live stations and cameras around the world';
+    place = comms.mode === 'rf' ? 'COMMS · RF RECEIVERS ON EARTH' : 'COMMS · SUBSPACE STATIONS ON EARTH';
   } else if (v === starView) {
     const b = system.model?.bodies.find((x) => x.id === route.body);
     tiers.measured.push('STAR DATA');
@@ -779,7 +789,7 @@ const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, t
 const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // COMMS (#69): SubSpace and RF reception
-const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
+const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPostcard: () => postcard.open(), onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
 function renderCommsPanel() { resetLive(); panel.replaceChildren(...comms.panel(h, row), renderLegend()); }
 $('comms-tab').addEventListener('click', () => go({ level: 'comms', system: 'sol' }));
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions

@@ -77,7 +77,7 @@ export function composePostcard(d, art, o, { stamp = null, overlay = null } = {}
   const s = L.s, gap = L.gap, bar = Math.round(22 * s), elbowW = Math.round(150 * s), r = Math.round(46 * s), pad = Math.round(18 * s);
   // top-left elbow, bar segments, then the title row
   rrect(g, 0, 0, elbowW, L.top, [r, 0, 0, 0], C.orange);
-  g.fillStyle = '#000'; g.beginPath(); g.roundRect(L.side, bar, elbowW, L.top, [Math.round(22 * s), 0, 0, 0]); g.fill();
+  g.fillStyle = '#000'; g.beginPath(); g.roundRect(L.side, bar, elbowW, L.top - bar, [Math.round(22 * s), 0, 0, 0]); g.fill(); // the elbow's inner curve stops at the picture's edge
   const segs = [[C.orange, 0.42], [C.lilac, 0.18], [C.gold, 0.28], [C.blue, 0.12]];
   let x = elbowW + gap;
   for (const [col, f] of segs) { const sw = (w - elbowW - gap * segs.length) * f; rrect(g, x, 0, sw, bar, f === 0.12 ? [0, bar / 2, bar / 2, 0] : 0, col); x += sw + gap; }

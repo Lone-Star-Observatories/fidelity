@@ -89,6 +89,32 @@ export function createSignalsMap(opts = {}) {
     img.src = '/api/texture/earth';
   }
 
+  /**
+   * Paint the map on `g` over a w × h area. The equirectangular map is mapW × mapW/2 at zoom 1, centred on
+   * the view (the screen uses its own size; a postcard covers its shape). `k` scales markers and lines.
+   */
+  function paint(g, w, h, mapW, k = 1) {
+    const mapH = mapW / 2;
+    const xy = (lat, lon) => [w / 2 + ((lon - view.cx) / 360) * mapW * view.z, h / 2 - ((lat - view.cy) / 180) * mapH * view.z];
+    g.fillStyle = '#05070c'; g.fillRect(0, 0, w, h);
+    const [x0, y0] = xy(90, -180), [x1, y1] = xy(-90, 180);
+    if (texture) { g.globalAlpha = 0.75; g.drawImage(texture, x0, y0, x1 - x0, y1 - y0); g.globalAlpha = 1; }
+    g.strokeStyle = 'rgba(153,153,255,0.18)'; g.lineWidth = k;
+    for (let lon = -180; lon <= 180; lon += 30) { const [x] = xy(0, lon); g.beginPath(); g.moveTo(x, y0); g.lineTo(x, y1); g.stroke(); }
+    for (let lat = -60; lat <= 60; lat += 30) { const [, y] = xy(lat, 0); g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke(); }
+    const r = Math.min(4, 1.6 + view.z * 0.25) * k;
+    for (const [id, l] of layers) {
+      if (!l.on || !l.markers) continue;
+      g.fillStyle = COLOURS[id] ?? '#fff';
+      g.globalAlpha = id === 'video' ? 1 : 0.8;
+      for (const m of l.markers) {
+        const [x, y] = xy(m[0], m[1]);
+        if (x < -5 * k || y < -5 * k || x > w + 5 * k || y > h + 5 * k) continue;
+        g.beginPath(); g.arc(x, y, id === 'video' ? r + 1.5 * k : r, 0, 2 * Math.PI); g.fill();
+      }
+    }
+    g.globalAlpha = 1;
+  }
   function draw() {
     const dpr = window.devicePixelRatio || 1;
     W = canvas.clientWidth; H = Math.round(W / 2);
@@ -97,25 +123,17 @@ export function createSignalsMap(opts = {}) {
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     const g = canvas.getContext('2d');
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    g.fillStyle = '#05070c'; g.fillRect(0, 0, W, H);
-    const [x0, y0] = toXY(90, -180), [x1, y1] = toXY(-90, 180);
-    if (texture) { g.globalAlpha = 0.75; g.drawImage(texture, x0, y0, x1 - x0, y1 - y0); g.globalAlpha = 1; }
-    g.strokeStyle = 'rgba(153,153,255,0.18)'; g.lineWidth = 1;
-    for (let lon = -180; lon <= 180; lon += 30) { const [x] = toXY(0, lon); g.beginPath(); g.moveTo(x, y0); g.lineTo(x, y1); g.stroke(); }
-    for (let lat = -60; lat <= 60; lat += 30) { const [, y] = toXY(lat, 0); g.beginPath(); g.moveTo(x0, y); g.lineTo(x1, y); g.stroke(); }
-    const r = Math.min(4, 1.6 + view.z * 0.25);
-    for (const [id, l] of layers) {
-      if (!l.on || !l.markers) continue;
-      g.fillStyle = COLOURS[id] ?? '#fff';
-      g.globalAlpha = id === 'video' ? 1 : 0.8;
-      for (const m of l.markers) {
-        const [x, y] = toXY(m[0], m[1]);
-        if (x < -5 || y < -5 || x > W + 5 || y > H + 5) continue;
-        g.beginPath(); g.arc(x, y, id === 'video' ? r + 1.5 : r, 0, 2 * Math.PI); g.fill();
-      }
-    }
-    g.globalAlpha = 1;
+    paint(g, W, H, W);
   }
+  /** #40: the map as shown, repainted at w × h for a postcard (covering the card, markers scaled to match). */
+  function snapshot(w, h) {
+    const c = Object.assign(document.createElement('canvas'), { width: w, height: h });
+    const mapW = Math.max(w, 2 * h);
+    paint(c.getContext('2d'), w, h, mapW, mapW / (W || mapW));
+    return c;
+  }
+  /** #40: the credits of what the map shows (the Earth image and each layer that is on). */
+  const shownCredits = () => [...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) => `${l.label}: ${l.credit}`);
 
   function hits(px, py, max = 14) {
     const out = [];
@@ -224,5 +242,6 @@ export function createSignalsMap(opts = {}) {
     /** Fly the map to a point. */
     focus(lat, lon, z = 4) { view.cx = lon; view.cy = lat; view.z = z; clampView(); draw(); },
     redraw: () => draw(),
+    snapshot, shownCredits,
   };
 }
