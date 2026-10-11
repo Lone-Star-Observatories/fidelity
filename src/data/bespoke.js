@@ -7790,6 +7790,158 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "titan": {
+    "id": "titan",
+    "name": "Titan",
+    "aliases": [
+      "Titan"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHAa213516e3ccbe46bfbdb576963859c82c75799612ccab775ec3cf24b451feca0; frame/coverage/input epochs/photometry remain open. No generated globe.",
+    "measured": [
+      "Representative catalogue radius2574.7km, mass1.3452e23kg, semimajor axis1221900km and meanTempC−179 retained; not dated scene registration.",
+      "Huygens actual local landing-site observation2005-01-14, NASA publication2005-01-15 and ESA page2005-01-14.2023 asset migration is not a new observation.",
+      "Webb2023-07-11/Keck2023-07-14 six-panel infrared composite released2025-05-14 retained separately with NASA/ESA/CSA/STScI/Keck Observatory CC BY4 credits; not independently calibrated visible colour, resolved surface or registered globe."
+    ],
+    "modelled": [
+      "Schröder/Keller2008 DISR spectral calibration depends on lamp reconstruction, phase/opposition effect and heterogeneity. Water-ice identity at the landing site is inconclusive; alternatives do not establish local material fractions.",
+      "DISR methane4.5±0.5% absorption-model inference is atmospheric and coefficient-dependent, not terrain composition or an everywhere-current abundance. Liquid surface layer unsupported in that footprint; shallow wet soil not excluded.",
+      "Nixon2025 methyl-radical spectroscopy and rising infrared clouds do not establish local chemical fractions, biology or directly observed rain. Primary abstract only; full paper audit remains open."
+    ],
+    "unknown": [
+      "Exact PIA07232 DISR product/exposure/spectral-transfer association, independent visible-colour calibration and site/global-map registration remain open.",
+      "Haze optical depth and Saturn visibility/transmission for specific site, date and wavelength remain open; no assertion Saturn is always invisible.",
+      "Own globe input epochs, frame, coverage, photometry and local material fractions remain unverified. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Material chemistry and fractions, stone sizes, terrain, haze optical depth/transmission, colour, exposure and lighting are assumed artistic values, not independent measurements.",
+      "No observed body map/photograph used as reference; no Moon/Mars/Pluto analog skin.",
+      "Not a global map or dated/registered Huygens site. Original native Huygens JPEG remains preferred actual local observation, preserved separately.",
+      "No active precipitation, liquid surface, plume, ocean, biology or survivable landing implied.",
+      "No angular/raster size computation: no astronomical disk in scene. Saturn visibility/transmission remains open.",
+      "Strong haze obscuration is an explicit illustrative assumption, not a solved Saturn visibility/transmission model. No inference that Saturn is always invisible from every Titan site or wavelength.",
+      "No astronomical disk and no angular/raster size computation. skyGeometry does not establish atmospheric transmission.",
+      "Terrain, material chemistry/fractions, haze opacity/layering, colour, exposure and lighting invented; no dated Huygens site, calibrated local colour or global map.",
+      "No other observed body photograph or map used as reference; no analog skin.",
+      "No rain, liquid surface, plume, ocean, biology or survivable landing implied.",
+      "Both views are independent IMAGINED illustrations. Original PNGs/full prompts retained; generated masters/recorded256 previews resampled, offline WebP80. Small annotations poorly readable; card labels carry limitations.",
+      "Sun helper at9.58AU/HFOV90 is a representative off-frame angular guide only; temperature5772K is not a calibrated Titan illumination/exposure model. No Sun/Saturn disk in scene, so no in-image angular/raster size claim."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "title": "Huygens actual local surface publisher image PIA07232",
+        "publicationDate": "2005-01-15"
+      },
+      {
+        "url": "https://www.esa.int/ESA_Multimedia/Images/2005/01/First_colour_view_of_Titan_s_surface",
+        "title": "ESA Huygens colour-view caption",
+        "publicationDate": "2005-01-14"
+      },
+      {
+        "url": "https://arxiv.org/abs/1702.00653",
+        "title": "S.E. Schröder/H.U. Keller2008 DISR reflectance calibration; PDF CC BY-NC-ND4; no figure embedded"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2511b/",
+        "title": "Webb/Keck infrared cloud composite; research original retained",
+        "publicationDate": "2025-05-14"
+      },
+      {
+        "url": "https://arxiv.org/abs/2505.10655",
+        "title": "Nixon et al2025 Titan spectroscopy; abstract-only assessment, explicitly linked CC BY4"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Titan",
+        "title": "Own NASA3D Titan globe; frame/coverage/photometry open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/titan-huygens-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/p/i/a/0/PIA07232_1-1.jpg",
+        "sourcePage": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "sourceUrl": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "credit": "NASA/JPL/ESA/University of Arizona",
+        "terms": "NASA image/media guidelines and ESA Standard Licence educational/editorial/informational use with third-party caveats; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "termsLinks": [
+          "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+        ],
+        "tier": "measured",
+        "observationDate": "2005-01-14",
+        "publicationDate": "2005-01-15",
+        "ESApublicationDate": "2005-01-14",
+        "bytes": 18436,
+        "sha256": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+        "width": 546,
+        "height": 693,
+        "description": "Actual Huygens local landing-site scene2005-01-14, publisher reflection-spectrum colour. Unchanged full546x693 publisher JPEG; original source bytes retained exactly. Distinct publisher display/320 renditions also preserved separately. Not a global map, independently calibrated visible colour or measured local water-ice fractions; exact DISR product association remains open.",
+        "processing": "Unchanged full publisher JPEG; no local resizing/reencoding or pixel modification."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL TITAN TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM TITAN",
+    "surfaceImage": {
+      "url": "/bespoke/titan-surface-image.jpg",
+      "previewUrl": "/bespoke/titan-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titan-generated-surfaceImage-original.png",
+      "sourceSha256": "8ec28379bb936e5f58553e818635b5a6aff7a4021670846806c4e8d14b3303a2",
+      "sha256": "74804a8c91efb13f114ac7e098c5de00b3d16f6434c3ac73f674c9d8d4abd7f6",
+      "previewSha256": "99c78f46ecf62c0e1292dde8b594a9919331fcafaf192a71c3070a19c7d4dc71",
+      "bytes": 254774,
+      "previewBytes": 7850,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/titan-sky-image.jpg",
+      "previewUrl": "/bespoke/titan-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titan-generated-skyImage-original.png",
+      "sourceSha256": "c4444bcdd9d506f827995d0a8782fe7502a72a54e6184429cd51e6774ec72d98",
+      "sha256": "b78e0069eeb1fff496ebd79d69530b8e93dc50e5138071008d154cd38abd7d84",
+      "previewSha256": "e7e48abc84892c347e5967e91421509ded66fb12dfc5b907a85f25d7a14afd99",
+      "bytes": 78140,
+      "previewBytes": 3636,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
