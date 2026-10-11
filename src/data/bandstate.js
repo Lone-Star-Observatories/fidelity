@@ -7,7 +7,7 @@
 import { BANDS, bandById, passById } from './bands.js';
 import { starBandDelta, paletteIndex } from '../views/system/bandskin.js';
 import { curveFromLegacy, normCurve } from './curve.js';
-import { prepare, curveStarRgb } from '../views/system/curvelook.js';
+import { prepare, curveStarRgb, curveStarDelta } from '../views/system/curvelook.js';
 
 let band = BANDS[0], pass = null, curve = { full: true, parts: [], excl: [] }, prep = prepare(curve), custom = null;
 const listeners = new Set();
@@ -52,4 +52,19 @@ export function bandStarColour(teff, rgb) {
   const k = Math.max(0.08, Math.min(1.6, 10 ** (0.4 * Math.max(-6, Math.min(6, d)) * 0.5)));
   const t = b.id === 'visible' ? rgb : PAL_RGB[paletteIndex(b.palette)];
   return [t[0] * k, t[1] * k, t[2] * k];
+}
+
+/**
+ * A star in the current band for views that encode brightness as size (Navigation): the same rule as
+ * bandStarColour and the System View's sky, split into { rgb: hue at full strength (max channel 1),
+ * dMag: how much brighter in this band than in V (Vega system, COMPUTED; 0 in full spectrum and V),
+ * dark: true where a photosphere emits essentially nothing (radio, X-ray, gamma: NOT OBSERVED) }.
+ */
+export function bandStarLook(teff, rgb) {
+  const { band: b, pass: p, full } = currentBand();
+  if (!custom && (full || (b.id === 'visible' && p?.id === 'vis-V'))) return { rgb, dMag: 0, dark: false };
+  const d = custom ? curveStarDelta(teff, prep.f) : starBandDelta(teff, p);
+  if (d === -Infinity) return { rgb: [0, 0, 0], dMag: -Infinity, dark: true };
+  const c = bandStarColour(teff, rgb), mx = Math.max(...c) || 1;
+  return { rgb: c.map((x) => x / mx), dMag: Math.max(-6, Math.min(6, d)), dark: false };
 }
