@@ -23,6 +23,7 @@ import { solSystem, buildStarSystem } from './data/systems.js';
 import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { shownScale, scaleDetail } from './data/bandarchive.js';
+import { DETAIL_LEVELS, DETAIL_MAX, DETAIL_FLAGS, flagsForLevel, levelOfFlags } from './data/detail.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { onBookmark } from './views/cameraControls.js';
@@ -389,7 +390,7 @@ function screenContext() {
   const d = dateFromJd(clock.jd);
   lines.push(`SHIP'S CLOCK: ${clock.inCalendar ? `${d.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `${formatOffset(clock.years)} from now (deep time)`}, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}${clock.clamped ? ` (stopped at this view's limit: ${clock.clamped})` : ''}`);
   lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
-  const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
+  const on = ['labels', 'orbits', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
   const cb = currentBand();
   if (!cb.full) {
@@ -484,6 +485,29 @@ const flag = (key, label) => {
   return b;
 };
 
+// DETAIL slider: the System View's layers step by step, from the bare system (star, planets, moons,
+// orbits) at the left to every layer at the right; it writes the layer flags, and reads them back
+const detailCtl = (() => {
+  const input = h('input', { type: 'range', className: 'detail-slider', min: '0', max: String(DETAIL_MAX), step: '1',
+    title: `DETAIL: drag right to add map elements (${DETAIL_LEVELS.map((l) => l.label.replace(/^\+ /, '')).join(' → ')})` });
+  const read = h('div', { className: 'detail-read' });
+  let writing = false;
+  input.addEventListener('input', () => {
+    writing = true;
+    for (const [k, v] of Object.entries(flagsForLevel(Number(input.value)))) if (settings.get(k) !== v) settings.set(k, v);
+    writing = false; sync();
+  });
+  const sync = () => {
+    if (writing) return;
+    const n = levelOfFlags(settings.get);
+    input.value = String(n);
+    read.textContent = DETAIL_LEVELS[n].label;
+    input.style.setProperty('--fill', `${(n / DETAIL_MAX) * 100}%`);
+  };
+  settings.onChange((k) => { if (DETAIL_FLAGS.includes(k)) sync(); }); sync();
+  return h('div', { className: 'ctl-group detail-ctl' }, h('div', { className: 'ctl-label', textContent: 'DETAIL' }), h('div', { className: 'detail-box' }, input, read));
+})();
+
 // ---- step the clock by n units, or run at n units per second -------------------------------
 const stepIn = h('input', { type: 'number', className: 'ctl-num', step: 'any', title: 'How many units (decimals and negatives allowed)', value: String(settings.get('stepN') ?? 1) });
 const stepUnit = h('select', { className: 'ctl-select', title: 'Step unit' }, STEP_UNITS.map((u) => h('option', { value: u.id, textContent: u.label })));
@@ -522,7 +546,8 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), spectrum.button),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  detailCtl,
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('dwarfs', 'DWARFS'), flag('smallBodies', 'SMALL BODIES'), flag('spacecraft', 'CRAFT'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.

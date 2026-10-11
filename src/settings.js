@@ -8,6 +8,9 @@ const defaults = {
   orbits: true,
   starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
   belts: true,      // System View: asteroid and Kuiper-belt populations
+  dwarfs: true,     // System View: dwarf planets (DETAIL slider)
+  smallBodies: true, // System View: the catalogued asteroids and comets (DETAIL slider)
+  spacecraft: true, // System View: interplanetary craft and the tracked Earth-orbit craft drawn as bodies (DETAIL slider)
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
   missions: true,

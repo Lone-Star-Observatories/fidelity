@@ -67,6 +67,7 @@ import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, lit
 import { FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
+import { hiddenByDetail } from '../../data/detail.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
 
 const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599, saturn: 699 };
@@ -1282,8 +1283,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const pick = (e) => {
     const r = renderer.domElement.getBoundingClientRect();
     ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
-    return ray.intersectObjects(pickables, false)[0];
+    return ray.intersectObjects(pickables, false).find((hit) => shown(hit.object)); // nothing hidden (DETAIL slider, far moons) is clickable
   };
+  const shown = (o) => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
   let clickTimer = null;
   // an orbit line selects its body (#23): ray against the visible orbits, tolerance in screen terms
   const pickOrbit = (e) => {
@@ -2064,17 +2066,18 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
         n.mesh.rotation.y = n.body.rotationHours ? ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2) : 0;
       }
       const fb = nodes[focusId].body;
+      const culled = id !== focusId && hiddenByDetail(n.body, settings.get); // DETAIL slider: a focused body always shows
       const local = n.body.kind === 'moon' || (n.body.kind === 'spacecraft' && n.body.parent);
       const near = !local || fb.id === n.body.parent || fb.parent === n.body.parent || fb.id === n.body.id;
       const minorFar = n.body.orbit?.type === 'elements' && overviewAU != null && overviewAU < 6 && n.body.belt !== 'MAIN BELT';
-      n.label.visible = !siteView && ((showLabels && near && !minorFar) || id === focusId); // hovering over a site: only its own labels
-      n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
+      n.label.visible = !culled && !siteView && ((showLabels && near && !minorFar) || id === focusId); // hovering over a site: only its own labels
+      n.group.visible = !culled && !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
       n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, size: siteViewSize, spin: n.mesh.rotation.y });
       if (n.features) { n.features.group.rotation.y = n.mesh.rotation.y; n.features.update({ on: settings.get('features'), focused: id === focusId, surface: surface?.id === id, camera, size: siteViewSize, blocked: n.sites?.placed }); }
       if (n.body.orbit) {
         updateOrbit(n, jd);
-        n.orbit.visible = (showOrbits || id === focusId) && !surface;
+        n.orbit.visible = (showOrbits || id === focusId) && !surface && !culled;
         n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
         fat.sync(n.orbit, id === focusId ? 3 : 1.6);
         if (n.endMark) n.endMark.visible = n.orbit.visible && !surface;
