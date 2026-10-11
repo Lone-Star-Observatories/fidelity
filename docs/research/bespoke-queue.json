@@ -361,10 +361,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged, source-byte-equal SHA844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81. Southern-only coverage; black north and blurred gaps are not observed dark/smooth terrain. Product association, frame, coverage mask, epochs, photometry and shape registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "miranda"
     },
     {
       "id": "sol-ariel",
@@ -8514,7 +8515,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 16,
+      "initialDossiers": 17,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
