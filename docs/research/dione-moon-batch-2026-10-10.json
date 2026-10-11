@@ -437,6 +437,35 @@
       "eventRows": 11,
       "all32CraftModelsLoad": true,
       "exactCssAndHtmlParser": true
+    },
+    "finalMerged": {
+      "base": "f69eff9",
+      "testsPassed": 429,
+      "testsSkipped": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15967760,
+      "headroomBytes": 32240,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "b376b378237646ffce2209ef26b0a9d3e11efb1132a7bb62ca8f453f3a589018",
+        "raw": "8d11c18938e50bd413843b67f8d0bcbd0886e379632da47c81a6be4b415e28b2",
+        "magic": "FIDNUM01",
+        "images": 198,
+        "details": 517,
+        "models": 32
+      },
+      "application": {
+        "htmlBytes": 15967760,
+        "compressedBytes": 700195,
+        "applicationSha256": "41f013a82d0db33d281a37bbd1e21324c323c2420e5988d17a9ece82d6ecef0c",
+        "htmlParserPreservesEveryPackedByte": true
+      },
+      "normalOfflineDione": "Own map and three cards verified",
+      "offlineRoutes": 6,
+      "eventRows": 11,
+      "all32CraftModelsLoad": true,
+      "exactCssAndHtmlParser": true
     }
   }
 }
