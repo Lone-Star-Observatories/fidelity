@@ -7,11 +7,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
-import { gunzipSync } from 'node:zlib';
+import { gunzipSync, gzipSync, brotliCompressSync, brotliDecompressSync, constants } from 'node:zlib';
+import { decompress as decodeBrotli } from 'brotli/decompress';
 import { gzipAsync } from '@gfx/zopfli';
 import { minify } from 'terser';
 import { encodeApplicationNumbers } from './application-numbers.js';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeNumericSnapshot, restoreSnapshotText, restoreApplicationText } from '../src/data/snapshot-codec.js';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeNumericSnapshot, wrapBrotliSnapshot, restoreSnapshotText, restoreApplicationText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -200,8 +201,10 @@ const dist = path.join(root, 'dist-standalone');
 const viteHtml = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 async function assemble(snapshotJson) {
   const binarySnapshot = encodeNumericSnapshot(snapshotJson, 2);
-  const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 128, blocksplittingmax: 0 });
-  if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
+  const innerCompressed = brotliCompressSync(binarySnapshot, { params: { [constants.BROTLI_PARAM_QUALITY]: 11 } });
+  if (!brotliDecompressSync(innerCompressed).equals(Buffer.from(binarySnapshot))) throw new Error('Native Brotli round-trip failed.');
+  const htmlCompressed = gzipSync(wrapBrotliSnapshot(binarySnapshot, innerCompressed), { level: 9 });
+  if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
   const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed, 2);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
   const html = viteHtml.replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
@@ -232,7 +235,8 @@ async function assemble(snapshotJson) {
   // Minify only the loader; packed data and restored application bytes stay exact.
   const { code: bootstrap } = await minify(bootstrapSource, { module: true, compress: { passes: 2 }, mangle: true, format: { inline_script: true } });
   if (!bootstrap) throw new Error('Offline loader minification failed.');
-  const out = `<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n<script type="module">\n${bootstrap}\n</script>\n`;
+  const notices = (await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')).replaceAll('<', '&lt;');
+  const out = `<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n<script type="module">\n${bootstrap}\n</script>\n`;
   return { out, html };
 }
 let { out } = await assemble(snapshotJson);

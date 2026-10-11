@@ -50,7 +50,7 @@ export function unpackSnapshotBytes(packed) {
 export async function decodeSnapshot(packed) {
   const bytes = unpackSnapshotBytes(packed);
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer())));
+  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer()), packed?.decodeBrotli));
 }
 
 const binaryMagic = new TextEncoder().encode('FIDBIN01');
@@ -176,7 +176,35 @@ function restoreNumericSnapshot(bytes, nibble = false) {
   const restored = restoreSnapshotText(binary); JSON.parse(restored); return restored;
 }
 
-export function restoreSnapshotText(bytes) {
+const brotliMagic = new TextEncoder().encode('FIDBRT01');
+function snapshotCrc32(bytes) {
+  let crc = 0xffffffff;
+  for (const byte of bytes) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit++) crc = (crc >>> 1) ^ ((crc & 1) ? 0xedb88320 : 0);
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+// An optional lossless inner stage; the outer envelope remains standard gzip.
+// The decoder is supplied only by the standalone HTML module, not normal builds.
+export function wrapBrotliSnapshot(original, compressed) {
+  if (!original.length || original.length > 536870912 || !compressed.length) throw Error('Invalid Brotli snapshot size.');
+  const bytes = new Uint8Array(20 + compressed.length), view = new DataView(bytes.buffer);
+  bytes.set(brotliMagic); view.setUint32(8, original.length, true);
+  view.setUint32(12, compressed.length, true); view.setUint32(16, snapshotCrc32(original), true);
+  bytes.set(compressed, 20); return bytes;
+}
+export function restoreSnapshotText(bytes, decodeBrotli) {
+  if (brotliMagic.every((value, index) => bytes[index] === value)) {
+    if (bytes.length < 20 || typeof decodeBrotli !== 'function') throw Error('Invalid Brotli snapshot decoder or header.');
+    const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    const size = view.getUint32(8, true), payload = view.getUint32(12, true);
+    if (!size || size > 536870912 || !payload || payload !== bytes.length - 20) throw Error('Invalid Brotli snapshot lengths.');
+    const restored = decodeBrotli(bytes.subarray(20), size);
+    if (!(restored instanceof Uint8Array) || restored.length !== size || snapshotCrc32(restored) !== view.getUint32(16, true)) throw Error('Invalid Brotli snapshot checksum or output.');
+    if (brotliMagic.every((value, index) => restored[index] === value)) throw Error('Nested Brotli snapshot.');
+    return restoreSnapshotText(restored);
+  }
   if (numericNibbleMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes, true);
   if (numericMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes);
   const decoder = new TextDecoder('utf-8', { fatal: true });
