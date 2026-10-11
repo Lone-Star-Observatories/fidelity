@@ -1,0 +1,16 @@
+{
+  "localPrompt": "Create a standalone independent scientific imagination illustration for the Fidelity astronomical explorer: a hypothetical local view on Saturn's irregular moon HYPERION, landscape 16:9. Entire terrain is independently invented, never copied, recoloured, or mapped from Moon, Mars, Pluto, or any observed astronomical image. An unmanned camera near a gently uneven foreground shows porous-looking grey-tan regolith, scattered small irregular blocks, deep bowl-like depressions in a middle-distance ridge, darker material in some hollow floors, sharp sunlight and black vacuum sky. Convey an irregular battered icy small moon qualitatively; this is not observed microscopic porosity or measured chemistry. Terrain details, dimensions, material fractions, ice visibility, colour, illumination, exposure, and camera position are artistic assumptions. Do not reproduce identifiable Cassini Hyperion geography or imply registration to a PDS shape. No Saturn, rings, Sun disk, stars, atmosphere, haze, clouds, plume, lava, liquid, ocean, life, people, spacecraft, or survivable landing. Hyperion rotates chaotically; the view has no dated attitude or permanently Saturn-facing site. Render sober realistic illustrative textures, not a cartoon, with low distant relief and readable foreground. Large clear discreet top-left label 'IMAGINED · HYPERION LOCAL VIEW'. Bottom annotation 'Invented terrain · no registered site or measured material fractions'.",
+  "skyPrompt": "Create an independent IMAGINED astronomical observer illustration from a hypothetical location on HYPERION, landscape16:9, nominal90degree horizontal rectilinear field of view. Bottom quarter independently invented grey-tan cratered terrain with scattered blocks and shallow shadowed pits, black vacuum sky. Small Saturn high in upper middle, spherical mean-radius angular guide4.50572degrees, disk3.93401percent of full width; rings extend beyond disk as a narrow nearly edge-on thin line, not a broad open ellipse. Subtle cream-ochre independently invented bands. Hyperion rotates chaotically: this is one assumed camera attitude, NOT a permanently Saturn-facing site, dated orientation or registered PDS terrain. Ring opening, extent, phase, oblateness, light, exposure, colours and material chemistry/fractions are artistic and uncalibrated. Do not copy/recolour any observed Moon/Mars/Pluto/Saturn or other body maps. Do not reproduce identifiable Cassini geography. Sun outside frame; no stars, other moons, local atmosphere, haze, clouds, plume, liquid, ocean, life, humans, spacecraft or survivable landing. Large readable top-left label 'IMAGINED · SKY FROM HYPERION'. Bottom text 'Assumed attitude · chaotic spin · uncalibrated Saturn view'. Scientific concept illustration with realistic restrained textures. The small disk must remain small rather than a dramatic giant planet.",
+  "geometry": {
+    "angularDiameterDeg": 4.505719665298651,
+    "centreDiscWidthFraction": 0.03934009765362271,
+    "irradianceEarth": 0.000005243185255436207,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+  }
+}
