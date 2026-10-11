@@ -102,7 +102,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
-| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, `windy` with `FIDELITY_WINDY_KEY`) (`server/signals.js`) |
+| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
 | `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
 | `GET /api/nebula-image/:key` | A landmark nebula's real image (allowlist: `src/data/nebula3d.js`), downloaded once to `data/nebulae/`, JPEG/PNG checked (`server/nebulae.js`) |
@@ -377,8 +377,11 @@ RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station 
 compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast "ICY 200", fetch
 otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
 the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
-Every upstream URL must be on a cached station list (no open proxy). Voice: the `comms` tool and
-offline phrases ("on screen", "close channel"). Nothing transmits.
+Every upstream URL must be on a cached station list (no open proxy). The RF receiver console (`src/views/comms/receiver.js`) opens for KiwiSDR (`ws /api/rf/kiwi`) and the
+local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
+rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
+chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
+(on screen, off screen, tune, scan, close channel) and offline phrases. Nothing transmits.
 
 The map is line art in the LCARS tactical style: today's coastlines and borders from Natural Earth
 1:50m (`public/shapes/world-50m.json`, built by `scripts/build-worldmap.mjs`, decoded by

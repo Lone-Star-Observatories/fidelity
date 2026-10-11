@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseTransmitters, parseObservations, parseWeather } from '../server/comms.js';
-import { parseRadioBrowser, parseKiwiList, parseTfl, parseCaltrans, parseNzta, parseWindy, signalLayers } from '../server/signals.js';
+import { parseRadioBrowser, parseKiwiList, parseTfl, parseCaltrans, parseNzta, parseTrafficCams, parseWorldCams, signalLayers } from '../server/signals.js';
 import { updateLastSeen } from '../server/dsn.js';
 import { contactsFor, lastSeenFor, dishSize, ago, lightSeconds, formatLight } from '../src/data/comms.js';
 
@@ -74,16 +74,22 @@ test('Traffic cameras: TfL, Caltrans and NZTA', () => {
   assert.deepEqual(nz[0].slice(0, 4), [-43.9196, 171.7211, 'SH1 Tinwald', 'https://trafficnz.info/camera/714.jpg']);
 });
 
-test('Windy is optional: listed as needing a key, parsed when present', () => {
-  const saved = process.env.FIDELITY_WINDY_KEY;
-  delete process.env.FIDELITY_WINDY_KEY;
-  const w = signalLayers().layers.find((l) => l.id === 'windy');
-  assert.equal(w.available, false);
-  assert.equal(w.needsKey, 'FIDELITY_WINDY_KEY');
-  assert.ok(!JSON.stringify(signalLayers()).includes('x-windy-api-key'));
-  if (saved) process.env.FIDELITY_WINDY_KEY = saved;
-  const rows = parseWindy({ webcams: [{ title: 'Zermatt', location: { latitude: 46.02, longitude: 7.75, city: 'Zermatt', country: 'Switzerland' }, urls: { detail: 'https://windy.com/webcams/1' } }] });
-  assert.equal(rows[0][3], 'https://windy.com/webcams/1');
+test('camera layers from local GeoJSON: live only, entities and ids handled (#69)', () => {
+  assert.equal(signalLayers().layers.find((l) => l.id === 'windy'), undefined); // Windy removed
+  const tc = parseTrafficCams({ features: [
+    { geometry: { coordinates: [-150.97, 59.78] }, properties: { name: 'Bradley Lake', live_status: 'live', official_url: 'https://weathercams.faa.gov/x', attribution: 'Camera: FAA WeatherCams', state: 'AK' } },
+    { geometry: { coordinates: [-100, 40] }, properties: { name: 'Dead', live_status: 'dead', official_url: 'https://x/dead' } },
+    { geometry: { coordinates: [0, 0] }, properties: { name: 'NoCoord', live_status: 'live', official_url: 'https://x/z' } },
+  ] });
+  assert.equal(tc.length, 1);
+  assert.deepEqual(tc[0], [59.78, -150.97, 'Bradley Lake', 'https://weathercams.faa.gov/x', 'CAMERA: FAA WEATHERCAMS · AK']);
+  const wc = parseWorldCams({ features: [
+    { geometry: { coordinates: [7.15, 62.2] }, properties: { name: 'Eidsvatnet', category: 'bousai', countryName: 'Norway', is_live: true, video_id: 'v__vWu-ryq0' } },
+    { geometry: { coordinates: [1, 1] }, properties: { name: 'Off', is_live: false, video_id: 'zzz' } },
+  ] });
+  assert.equal(wc.length, 1);
+  assert.equal(wc[0][6].youtube, 'v__vWu-ryq0');
+  assert.equal(wc[0][3], 'https://www.youtube.com/watch?v=v__vWu-ryq0');
 });
 
 test('DSN helpers: body filters by code, last seen, dish size, ages and light time', () => {
@@ -103,13 +109,28 @@ test('DSN helpers: body filters by code, last seen, dish size, ages and light ti
   assert.equal(formatLight(lightSeconds(1)), '8 MIN 19 S');
 });
 
-test('Radio Garden export: places with streams, NaN names tolerated (#69)', async () => {
-  const { parseRadioGarden } = await import('../server/signals.js');
+test('station list by city: places with streams, NaN names tolerated (#69)', async () => {
+  const { parseStationList } = await import('../server/signals.js');
   const text = '{"Aachen,DE": {"coords": {"n": 50.7753, "e": 6.0839}, "urls": [{"name": "Antenne Ac", "url": "https://a.example/live"}, {"name": NaN, "url": "http://b.example:8000/x"}, {"name": "Bad", "url": "ftp://nope"}]}, "Nowhere,XX": {"coords": {"n": 0, "e": 0}, "urls": [{"name": "Z", "url": "https://z"}]}}';
-  const { places, urls } = parseRadioGarden(text);
+  const { places, urls } = parseStationList(text);
   assert.equal(places.length, 1);
   assert.equal(places[0].name, 'Aachen');
   assert.equal(places[0].country, 'DE');
   assert.deepEqual(places[0].streams.map((s) => s.name), ['Antenne Ac', 'Unnamed station']);
   assert.ok(urls.has('http://b.example:8000/x') && !urls.has('ftp://nope'));
+});
+
+test('WebSDR receiver list: entities decoded, bands and range summarised (#69)', async () => {
+  const { parseWebSdrList } = await import('../server/signals.js');
+  const m = parseWebSdrList([
+    { url: 'http://websdr.ewi.utwente.nl:8901/', desc: 'BATC &#38; AMSAT-UK QO-100 (Es&#39;Hail-2)', qth: 'JO32KF', lat: 52.2292, lon: 6.875, users: '311', show: true,
+      bands: [{ l: 0, h: 29.1596, a: 'Mini-Whip' }, { l: 10489.5, h: 10490, a: '1.3m Dish -&gt; LNB' }] },
+    { url: 'http://hidden/', show: false, lat: 1, lon: 1, bands: [] },
+    { url: 'http://neg/', desc: 'x', lat: 40, lon: -70, users: '-5', bands: [] },
+  ]);
+  assert.equal(m.length, 2);
+  assert.equal(m[0][2], "BATC & AMSAT-UK QO-100 (Es'Hail-2)");
+  assert.match(m[0][4], /0\.00–10490 MHz · 2 BANDS · 311 LISTENING · JO32KF/);
+  assert.equal(m[0][6].bands[1].a, '1.3m Dish -> LNB');
+  assert.equal(m[1][5], 0); // negative listener counts read as nobody
 });

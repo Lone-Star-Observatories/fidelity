@@ -3,9 +3,9 @@
 //   [lat, lon, name, href, detail, extra?]
 // so the browser draws thousands of them on a map without talking to any third party.
 //
-// Sources are only those with open terms (or, for the KiwiSDR list, a mirror published for
-// map makers). WebSDR.org's list says it "may not be re-used ... without prior permission" and
-// Radio Garden has no public API: both are links only, awaiting permission.
+// Sources: open directories (Radio Browser, traffic agencies), the KiwiSDR list's map-maker mirror,
+// and two lists you supply as local files (a radio station list by city and the WebSDR receiver
+// list), read from data/ and never committed.
 
 import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -109,26 +109,25 @@ export function parseNzta(xml) {
   return out;
 }
 
-/** Windy Webcams API v3 → markers (needs FIDELITY_WINDY_KEY; the key never leaves the backend). */
-export function parseWindy(j) {
-  const out = [];
-  for (const w of j?.webcams ?? []) {
-    const lat = Number(w.location?.latitude), lon = Number(w.location?.longitude);
-    const href = httpUrl(w.urls?.detail) ?? httpUrl(w.player?.day);
-    if (!okLatLon(lat, lon) || !href) continue;
-    out.push([r4(lat), r4(lon), clip(w.title), href, `WINDY · ${clip([w.location?.city, w.location?.country].filter(Boolean).join(', '), 40).toUpperCase()}`, httpUrl(w.player?.day)]); // extra: Windy's embeddable player (COMMS on screen, #69)
-  }
-  return out;
-}
+// ---- local lists you supply (#69) ---------------------------------------------------------------
+// Files in data/ (gitignored): read locally, never committed or redistributed.
+//   stations: { "Place,CC": { coords: { n, e }, urls: [{ name, url }] } } — radio streams by city
+//   websdr:   [{ url, desc, qth, lat, lon, users, bands: [{ l, h (MHz), a (antenna) }], cont, show }]
+//   trafficcams / worldcams: GeoJSON FeatureCollections of public cameras (FAA/DOT pages; YouTube live webcams)
+const localFile = (env, ...parts) => process.env[env] || path.join(config.dataDir, ...parts);
+export const stationsFile = () => {
+  const f = localFile('FIDELITY_STATIONS_FILE', 'stations', 'stations.json');
+  return existsSync(f) ? f : path.join(config.dataDir, 'radio-garden', 'stations.json'); // the earlier location
+};
+export const websdrFile = () => localFile('FIDELITY_WEBSDR_FILE', 'websdr', 'sdrs.json');
+export const trafficCamsFile = () => localFile('FIDELITY_TRAFFICCAMS_FILE', 'trafficcams', 'cameras.geojson');
+export const worldCamsFile = () => localFile('FIDELITY_WORLDCAMS_FILE', 'worldcams', 'world-spots.geojson');
 
-// ---- Radio Garden, from a local export (#69) ----------------------------------------------------
-// Radio Garden has no public API; a user-supplied export ({ "Place,CC": { coords: { n, e }, urls: [{ name,
-// url }] } }) in data/radio-garden/stations.json (or FIDELITY_RADIO_GARDEN_FILE) is read locally and never
-// committed or redistributed. The map gets one marker per place; a place's streams load on demand.
-export const radioGardenFile = () => process.env.FIDELITY_RADIO_GARDEN_FILE || path.join(config.dataDir, 'radio-garden', 'stations.json');
-let rg = null;
-/** Parse an export (it may contain bare NaN) → { places: [{ name, country, lat, lon, streams }], urls: Set }. */
-export function parseRadioGarden(text) {
+const unhtml = (x) => String(x ?? '').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+
+let cities = null;
+/** Parse a station list by city (it may contain bare NaN) → { places: [{ name, country, lat, lon, streams }], urls: Set }. */
+export function parseStationList(text) {
   const j = JSON.parse(String(text).replace(/:\s*NaN\b/g, ': null'));
   const places = [], urls = new Set();
   for (const [key, v] of Object.entries(j ?? {})) {
@@ -142,19 +141,62 @@ export function parseRadioGarden(text) {
   }
   return { places, urls };
 }
-async function radioGarden() {
-  rg ??= fs.readFile(radioGardenFile(), 'utf8').then(parseRadioGarden).catch((err) => { rg = null; throw err; });
-  return rg;
+async function cityStations() {
+  cities ??= fs.readFile(stationsFile(), 'utf8').then(parseStationList).catch((err) => { cities = null; throw err; });
+  return cities;
 }
-/** GET /api/signals/radiogarden/place?i= → that place's streams. */
-export async function radioGardenPlace(i) {
-  const { places } = await radioGarden();
+/** GET /api/signals/stations/place?i= → that place's streams. */
+export async function stationPlace(i) {
+  const { places } = await cityStations();
   const p = places[Number(i)];
   if (!p) throw Object.assign(new Error('unknown place'), { status: 404 });
   return p;
 }
-/** Is `url` a stream in the local Radio Garden export? */
-export async function radioGardenHas(url) { try { return (await radioGarden()).urls.has(url); } catch { return false; } }
+/** Is `url` a stream in the station list? */
+export async function stationListHas(url) { try { return (await cityStations()).urls.has(url); } catch { return false; } }
+
+/** The WebSDR receiver list → markers [lat, lon, name, url, detail, users>0 ? 1 : 0, { bands, qth, users }]. */
+export function parseWebSdrList(rows) {
+  const out = [], seen = new Set();
+  for (const r of Array.isArray(rows) ? rows : []) {
+    const lat = Number(r?.lat), lon = Number(r?.lon), url = httpUrl(r?.url);
+    if (r?.show === false || !url || !okLatLon(lat, lon) || seen.has(url)) continue;
+    seen.add(url);
+    const bands = (r.bands ?? []).map((b) => ({ l: Number(b.l), h: Number(b.h), a: clip(unhtml(b.a), 80) })).filter((b) => Number.isFinite(b.l) && Number.isFinite(b.h) && b.h > b.l);
+    const lo = bands.length ? Math.min(...bands.map((b) => b.l)) : null, hi = bands.length ? Math.max(...bands.map((b) => b.h)) : null;
+    const users = Math.max(0, Number(r.users) || 0);
+    const range = lo != null ? `${lo < 1 ? lo.toFixed(2) : lo.toFixed(lo < 100 ? 1 : 0)}–${hi.toFixed(hi < 100 ? 1 : 0)} MHz` : null;
+    out.push([r4(lat), r4(lon), clip(unhtml(r.desc), 90) || url, url, [range, `${bands.length} BAND${bands.length === 1 ? '' : 'S'}`, `${users} LISTENING`, clip(r.qth, 10).trim()].filter(Boolean).join(' · '),
+      users > 0 ? 1 : 0, { bands, qth: clip(r.qth, 10).trim(), users }]);
+  }
+  return out;
+}
+
+/** FAA / state-DOT camera GeoJSON (livetrafficcam.com) → markers [lat, lon, name, official_url, detail]; live cameras only. */
+export function parseTrafficCams(geojson) {
+  const out = [], seen = new Set();
+  for (const f of geojson?.features ?? []) {
+    const [lon, lat] = f?.geometry?.coordinates ?? [];
+    const p = f?.properties ?? {}, url = httpUrl(p.official_url);
+    if (p.live_status !== 'live' || !url || !okLatLon(Number(lat), Number(lon)) || seen.has(url)) continue;
+    seen.add(url);
+    out.push([r4(Number(lat)), r4(Number(lon)), clip(p.name) || 'Camera', url, [clip(p.attribution ?? '', 40), p.state].filter(Boolean).join(' · ').toUpperCase()]);
+  }
+  return out;
+}
+/** World live-cam GeoJSON (public YouTube webcams) → markers [lat, lon, name, '', detail, null, { youtube }]; live only. */
+export function parseWorldCams(geojson) {
+  const out = [], seen = new Set();
+  for (const f of geojson?.features ?? []) {
+    const [lon, lat] = f?.geometry?.coordinates ?? [];
+    const p = f?.properties ?? {}, id = typeof p.video_id === 'string' ? p.video_id.replace(/[^A-Za-z0-9_-]/g, '') : null;
+    if (p.is_live === false || !id || !okLatLon(Number(lat), Number(lon)) || seen.has(id)) continue;
+    seen.add(id);
+    out.push([r4(Number(lat)), r4(Number(lon)), clip(p.name) || 'Live webcam', `https://www.youtube.com/watch?v=${id}`,
+      [clip(p.category ?? '', 20), clip(p.countryName ?? '', 40)].filter(Boolean).join(' · ').toUpperCase(), null, { youtube: id }]);
+  }
+  return out;
+}
 
 // ---- layers -------------------------------------------------------------------------------------
 
@@ -176,12 +218,18 @@ export const LAYERS = {
       throw last;
     },
   },
-  radiogarden: {
-    label: 'RADIO GARDEN · LOCAL EXPORT', kind: 'audio', ttl: 0, local: true,
-    credit: 'Radio Garden station list, from an export you supplied (data/radio-garden/stations.json). Read locally; not redistributed. Radio Garden has no public API.',
-    licence: 'Your local copy; Radio Garden (radio.garden) owns its directory', home: 'https://radio.garden/',
-    // [lat, lon, place, homepage, detail, first stream, { place index, streams }]
-    async get() { return (await radioGarden()).places.map((p, i) => [p.lat, p.lon, p.name, 'https://radio.garden/', `${p.country} · ${p.streams.length} STATION${p.streams.length > 1 ? 'S' : ''}`, p.streams[0].url, { rg: i, n: p.streams.length }]); },
+  stations: {
+    label: 'RADIO · STATIONS BY CITY', kind: 'audio', ttl: 0, local: true, file: stationsFile,
+    credit: 'Radio station list by city, from the file you supplied (data/stations/stations.json). Read locally; not committed.',
+    licence: 'Your local list; each station\'s stream is its own',
+    // [lat, lon, place, homepage, detail, first stream, { place index, count }]
+    async get() { return (await cityStations()).places.map((p, i) => [p.lat, p.lon, p.name, '', `${p.country} · ${p.streams.length} STATION${p.streams.length > 1 ? 'S' : ''}`, p.streams[0].url, { place: i, n: p.streams.length }]); },
+  },
+  websdr: {
+    label: 'SDR RECEIVERS · WEBSDR', kind: 'sdr', ttl: 0, local: true, file: websdrFile,
+    credit: 'WebSDR receiver list, from the file you supplied (data/websdr/sdrs.json): receivers running PA3FWM\'s WebSDR software, each its operator\'s own. Read locally; not committed.',
+    licence: 'Your local list; receivers are the operators\' own',
+    async get() { return parseWebSdrList(JSON.parse(await fs.readFile(websdrFile(), 'utf8'))); },
   },
   kiwisdr: {
     label: 'SDR RECEIVERS · KIWISDR', kind: 'sdr', ttl: HOUR,
@@ -204,20 +252,17 @@ export const LAYERS = {
       return ok;
     },
   },
-  windy: {
-    label: 'WEBCAMS · WINDY', kind: 'camera', ttl: 6 * HOUR, needsKey: 'FIDELITY_WINDY_KEY',
-    credit: 'Windy Webcams API (windy.com): webcams contributed by their owners. Needs a free API key in FIDELITY_WINDY_KEY on the backend.',
-    licence: 'Windy Webcams API terms (attribution, key required)', home: 'https://api.windy.com/webcams',
-    async get() {
-      const key = process.env.FIDELITY_WINDY_KEY;
-      const out = [];
-      for (let offset = 0; offset < 1000; offset += 50) { // the free tier pages 50 at a time
-        const page = parseWindy(await get(`https://api.windy.com/webcams/api/v3/webcams?limit=50&offset=${offset}&include=location,urls`, { headers: { 'x-windy-api-key': key } }));
-        out.push(...page);
-        if (page.length < 50) break;
-      }
-      return out;
-    },
+  trafficcams: {
+    label: 'TRAFFIC & WEATHER CAMS', kind: 'camera', ttl: 0, local: true, file: trafficCamsFile,
+    credit: 'FAA WeatherCams and state-DOT traffic cameras, from the file you supplied (data/trafficcams/cameras.geojson, via livetrafficcam.com). Only cameras marked live are shown; each links to its operating agency\'s own page.',
+    licence: 'Each camera carries its operating agency\'s attribution', home: 'https://livetrafficcam.com/',
+    async get() { return parseTrafficCams(JSON.parse(await fs.readFile(trafficCamsFile(), 'utf8'))); },
+  },
+  worldcams: {
+    label: 'LIVE WEBCAMS · WORLD', kind: 'camera', ttl: 0, local: true, file: worldCamsFile,
+    credit: 'Public live webcams broadcast on YouTube, from the file you supplied (data/worldcams/world-spots.geojson). Only streams marked live are shown; each is its channel\'s own public broadcast, embedded from YouTube.',
+    licence: 'Each webcam is its broadcaster\'s own public YouTube stream', home: 'https://www.youtube.com/',
+    async get() { return parseWorldCams(JSON.parse(await fs.readFile(worldCamsFile(), 'utf8'))); },
   },
 };
 
@@ -225,10 +270,8 @@ export const LAYERS = {
 export function signalLayers() {
   return {
     layers: Object.entries(LAYERS).map(([id, l]) => ({ id, label: l.label, kind: l.kind, credit: l.credit, licence: l.licence, home: l.home,
-      available: l.local ? existsSync(radioGardenFile()) : !l.needsKey || !!process.env[l.needsKey], needsKey: l.needsKey ?? null, needsFile: l.local ? radioGardenFile() : null })),
-    linksOnly: [
-      { label: 'WEBSDR.ORG', home: 'http://websdr.org/', note: 'The WebSDR list may not be re-used in another site or automated system without permission: link only, awaiting permission.' },
-    ],
+      available: l.local ? existsSync(l.file()) : !l.needsKey || !!process.env[l.needsKey], needsKey: l.needsKey ?? null, needsFile: l.local ? l.file() : null })),
+    linksOnly: [],
   };
 }
 
@@ -239,7 +282,7 @@ export async function signalLayer(id) {
   if (l.needsKey && !process.env[l.needsKey]) throw Object.assign(new Error(`${l.label} needs ${l.needsKey} on the backend`), { status: 404 });
   if (l.local) { // read straight from the local file each time (no cache copy of someone else's directory)
     try { const markers = await l.get(); return { layer: id, label: l.label, kind: l.kind, count: markers.length, markers, fetched: null, cache: 'local', error: null, credit: l.credit, licence: l.licence }; }
-    catch { throw Object.assign(new Error(`${l.label}: put the export at ${radioGardenFile()}`), { status: 404 }); }
+    catch { throw Object.assign(new Error(`${l.label}: put the list at ${l.file()}`), { status: 404 }); }
   }
   const { value, storedAt, cache, error } = await cached('signals', `${id === 'radio' ? 'v2' : 'v1'}-${id}`, l.ttl, () => l.get());
   return { layer: id, label: l.label, kind: l.kind, count: value.length, markers: value, fetched: new Date(storedAt).toISOString(), cache, error: error ?? null, credit: l.credit, licence: l.licence };

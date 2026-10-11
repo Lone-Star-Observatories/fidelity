@@ -12,7 +12,8 @@
 
 import { createSignalsMap } from '../../panels/signalsmap.js';
 import { createCommsAudio } from './audio.js';
-import { stationMedia } from '../../data/rf.js';
+import { stationMedia, parseFrequency } from '../../data/rf.js';
+import { createReceiver } from './receiver.js';
 
 const STANDALONE = import.meta.env?.MODE === 'standalone';
 const el = (tag, props = {}, ...kids) => {
@@ -24,6 +25,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export function createCommsView(container, { badge, pill, settings, onPanel, toast, onPostcard }) {
   const audio = createCommsAudio();
+  const rxConsole = createReceiver({ audio, pill, badge, onPanel: () => onPanel?.() });
   let keyHooked = false;
   let mode = 'subspace', station = null, prompt = null, devices = null, receiver = null, hailToken = 0;
   const radioEl = el('audio', { preload: 'none', crossOrigin: 'anonymous' });
@@ -35,8 +37,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
     el('span', { className: 'cx-dev mono' }),
     onPostcard ? pill('POSTCARD', () => onPostcard()) : null);
-  const subMap = createSignalsMap({ only: ['radiogarden', 'radio', 'traffic', 'windy', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
-  const rfMap = createSignalsMap({ only: ['kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
+  const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
+  const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
     extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (rtl-sdr tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
   const screen = el('div', { className: 'cx-screen' });
   const screenFrame = el('div', { className: 'cx-screen-frame' }, screen, el('div', { className: 'cx-screen-label mono', textContent: 'MAIN VIEWER' }));
@@ -135,6 +137,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     hailToken++;
     clearInterval(refresh); clearInterval(npTimer); cancelAnimationFrame(vizRaf);
     radioEl.pause(); radioEl.removeAttribute('src'); radioEl.load();
+    rxConsole.close();
     audio.flush();
     station = null; prompt = null;
     if (render) { idle(); onPanel?.(); }
@@ -146,7 +149,9 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     if (STANDALONE) return;
     try { devices = await fetch('/api/rf/devices').then((r) => r.json()); } catch { devices = null; }
     const obs = settings.get('observer');
-    if (devices?.rx?.length) rfMap.setExtra('localsdr', [[obs?.lat ?? 51.4779, obs?.lon ?? 0, `LOCAL SDR · ${devices.rx[0].label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '', `${(devices.rx[0].rangeHz[0] / 1e6).toFixed(0)}–${(devices.rx[0].rangeHz[1] / 1e6).toFixed(0)} MHz · THIS MACHINE`, 1]]);
+    if (devices?.rx?.length) rfMap.setExtra('localsdr', devices.rx.map((dev, i) => [(obs?.lat ?? 51.4779) + i * 0.12, obs?.lon ?? 0,
+      `LOCAL SDR · ${dev.label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '',
+      `${(dev.rangeHz[0] / 1e6).toFixed(0)}–${(dev.rangeHz[1] / 1e6).toFixed(0)} MHz · THIS MACHINE`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0] }]));
     syncDev();
   }
   function syncDev() {
@@ -155,18 +160,25 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     d.textContent = [devices.rx.length ? `RX: ${devices.rx.map((x) => x.label).join(', ')}` : 'NO LOCAL RECEIVER', devices.tx.length ? `TX-CAPABLE: ${devices.tx.map((x) => x.label).join(', ')} · TRANSMIT NOT ENABLED` : 'NO TX DEVICE'].join(' · ');
   }
 
-  /** RF: a receiver picked on the map (its console is still to come). */
+  /** RF: a receiver picked on the map. KiwiSDR and the local SDR open a listening console; WebSDR links out. */
   function selectReceiver(layerId, m, layer) {
     closeChannel(false);
-    receiver = { layerId, m, layer, name: m[2], local: layerId === 'localsdr' };
-    setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'RECEIVER CONSOLE PENDING' }));
+    const local = layerId === 'localsdr';
+    receiver = { layerId, m, layer, name: m[2], url: m[3], local };
+    if (layerId === 'kiwisdr' || local) {
+      const dev = local ? (m[6] ?? {}) : {};
+      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer, driver: dev.driver ?? 'rtl', minHz: dev.minHz, maxHz: dev.maxHz }, (...kids) => setScreen(...kids));
+    } else {
+      receiver.consoleBox = null;
+      setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'OPENS ON THE OPERATOR\'S OWN PAGE' }));
+    }
     onPanel?.();
   }
 
-  // ---- Radio Garden: a place has many stations; pick one in the finder ---------------------------------
+  // ---- stations by city: a place has many stations; pick one in the finder ---------------------------------
   async function loadPlace() {
     if (station?.media.place == null || station.choices) return;
-    try { station.choices = (await fetch(`/api/signals/radiogarden/place?i=${station.media.place}`).then((r) => r.json())).streams; } catch { station.choices = []; }
+    try { station.choices = (await fetch(`/api/signals/stations/place?i=${station.media.place}`).then((r) => r.json())).streams; } catch { station.choices = []; }
     onPanel?.();
   }
   function chooseStream(s) {
@@ -186,7 +198,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     requestAnimationFrame(() => (m === 'subspace' ? subMap : rfMap).redraw());
     consoleBox.replaceChildren(el('p', { className: 'note', textContent: m === 'subspace'
       ? 'SubSpace: signals carried at light speed over the internet. Hail a station on the map: its video can go on screen; otherwise its audio plays and its details are in the finder.'
-      : 'RF: radio receivers. Public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in) are on the map. The receiver console (dial, waterfall, scan) is still to come. Nothing here transmits.' }));
+      : 'RF: radio receivers. WebSDR receivers (your list, HF to 10 GHz), public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in) are on the map. The receiver console (dial, waterfall, scan) is still to come. Nothing here transmits.' }));
     if (m === 'rf' && !devices) loadDevices();
     idle();
     onPanel?.();
@@ -218,16 +230,23 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
         pill('CLOSE CHANNEL', () => closeChannel()),
         href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'STATION PAGE ↗' }) : null,
         station.media.stream ? h('a', { className: 'pill', href: station.media.stream, target: '_blank', rel: 'noopener noreferrer', textContent: 'STREAM ↗' }) : null));
+    } else if (mode === 'rf' && receiver?.consoleBox) {
+      out.push(receiver.consoleBox);
     } else if (mode === 'rf' && receiver) {
       const [lat, lon, name, href, detail, extra] = receiver.m, dl = h('dl');
       out.push(h('h3', { textContent: 'RECEIVER' }), h('h2', { className: 'sel-name', textContent: name.toUpperCase() }));
-      row(dl, 'TYPE', receiver.local ? 'LOCAL SDR (THIS MACHINE)' : 'KIWISDR (PUBLIC)', receiver.local ? 'measured' : 'reported', receiver.local ? 'Detected with the rtl-sdr tools.' : receiver.layer.credit ?? '');
+      row(dl, 'TYPE', receiver.local ? 'LOCAL SDR (THIS MACHINE)' : receiver.layerId === 'websdr' ? 'WEBSDR (PUBLIC)' : 'KIWISDR (PUBLIC)', receiver.local ? 'measured' : 'reported', receiver.local ? 'Detected with the rtl-sdr tools.' : receiver.layer.credit ?? '');
       row(dl, 'COVERAGE', detail || '—', 'reported', 'As listed by the operator.');
-      if (!receiver.local) row(dl, 'SLOTS', extra === 1 ? 'FREE SLOT NOW' : extra === 0 ? 'FULL NOW' : '—', 'reported', 'From the public KiwiSDR list.');
+      const info = receiver.m[6];
+      if (receiver.layerId === 'kiwisdr') row(dl, 'SLOTS', extra === 1 ? 'FREE SLOT NOW' : extra === 0 ? 'FULL NOW' : '—', 'reported', 'From the public KiwiSDR list.');
+      if (receiver.layerId === 'websdr') { row(dl, 'LISTENING', String(info?.users ?? 0), 'reported', 'Listeners when the list was taken.'); if (info?.qth) row(dl, 'LOCATOR', info.qth, 'reported', 'Maidenhead grid square.'); }
       row(dl, 'LOCATION', `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`, 'reported', 'Position as listed.');
-      out.push(dl, h('p', { className: 'note', textContent: 'The receiver console (tuning, waterfall, scan) is still to come.' }),
+      out.push(dl);
+      if (info?.bands?.length) out.push(h('h3', { textContent: `BANDS · ${info.bands.length}` }), h('div', { className: 'host-list' }, info.bands.map((b) => h('div', { className: 'host-row' },
+        h('span', { textContent: `${b.l < 1 ? (b.l * 1000).toFixed(0) + ' kHz' : b.l.toFixed(3) + ' MHz'} – ${b.h < 1 ? (b.h * 1000).toFixed(0) + ' kHz' : b.h.toFixed(3) + ' MHz'}` }), h('span', { className: 'mono', textContent: (b.a || '').toUpperCase() })))));
+      out.push(h('p', { className: 'note', textContent: 'The receiver console (tuning, waterfall, scan) is still to come; OPEN RECEIVER listens on the operator\'s own page.' }),
         h('div', { className: 'body-list' }, href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'OPEN RECEIVER ↗' }) : null));
-    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser, Radio Garden), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map.' }));
+    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map.' }));
     if (mode === 'rf' && devices) out.push(h('h3', { textContent: 'HARDWARE' }), h('p', { className: 'note', textContent: head.querySelector('.cx-dev').textContent }));
     return out;
   }
@@ -237,9 +256,15 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     if (c.command === 'on_screen') return station?.media.video ? onScreen(true) : { ok: false, error: station ? 'This channel carries no video.' : 'No station hailed.' };
     if (c.command === 'off_screen') return station ? onScreen(false) : { ok: false, error: 'No station hailed.' };
     if (c.command === 'close_channel') return closeChannel();
-    return { ok: false, error: 'The RF receiver console is not built yet.' };
+    if (c.command === 'scan') return rxConsole.active && rxConsole.scan() ? { ok: true, said: 'Scanning for signals.' } : { ok: false, error: 'Tune in to a receiver first.' };
+    if (c.command === 'tune') {
+      const hz = parseFrequency(c.frequency ?? '', { defaultUnit: 'kHz' });
+      if (!hz) return { ok: false, error: 'I did not catch the frequency.' };
+      return rxConsole.active && rxConsole.tune(hz) ? { ok: true, said: `Tuning to ${(hz / 1e6).toFixed(3)} megahertz.` } : { ok: false, error: 'Tune in to a receiver first.' };
+    }
+    return { ok: false, error: 'Say on screen, off screen, scan, tune, or close channel.' };
   }
-  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}.`;
+  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : rxConsole.active ? `: receiver ${rxConsole.info?.name} open at ${(rxConsole.info?.freqHz / 1e6).toFixed(3)} MHz ${rxConsole.info?.mode}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}.`;
 
   let started = false;
   return {
