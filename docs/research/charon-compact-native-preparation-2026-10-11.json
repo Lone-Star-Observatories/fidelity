@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-11",
+  "body": "Charon",
+  "status": "Research-only compact publisher renditions; no69th dossier or new embedding",
+  "source": "https://science.nasa.gov/resource/true-colors-of-charon/",
+  "observationDate": "2015-07-14",
+  "publicationDate": "2018-07-23",
+  "migrationDate": "2023-09-09",
+  "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+  "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "licence": "NASA media terms with credited third-party caveats; not asserted CC BY",
+  "records": [
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+      "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+      "path": "data/research-sources/charon-natural-display320.jpg",
+      "bytes": 10097,
+      "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+      "width": 320,
+      "height": 320,
+      "format": "JPEG",
+      "contentType": "image/jpeg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=160&h=160&fit=clip&crop=faces%2Cfocalpoint",
+      "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=160&h=160&fit=clip&crop=faces%2Cfocalpoint",
+      "path": "data/research-sources/charon-natural-display160.jpg",
+      "bytes": 3068,
+      "sha256": "073fbcb55fdaddf4fc4c8053646f800b6c2b8ec55ab02f5205258d4e5b166a38",
+      "width": 160,
+      "height": 160,
+      "format": "JPEG",
+      "contentType": "image/jpeg"
+    }
+  ],
+  "inspection": "Viewed320px and160px publisher JPEGs: Charon globe with muted polar region, grey terrain and fractures. No Pluto heart/Sputnik terrain assigned.160px detail limited.",
+  "limitations": [
+    "NASA-served display JPEGs unchanged locally; publisher resizing/re-encoding disclosed, not full-pixel preservation of retained2000px PNG.",
+    "Publisher natural-colour approximation is not independent visible photometric calibration or registered geography.",
+    "NASA Charon caption repeats the Pluto page MVIC/range35445km and Sputnik wording; direct primary product/camera/range association remains open. No correction silently adopted.",
+    "Observation2015-07-14, publication2018-07-23 and2023migration metadata remain distinct; not a new2018 or2023 observation.",
+    "All68 dossiers/native/maps/models/shapes/originals/masters/provenance preserved. No69th or new embedding; substantial lossless headroom remains necessary."
+  ],
+  "associationAudit": {
+    "comparisonSource": "https://science.nasa.gov/resource/true-colors-of-pluto/",
+    "finding": "Current official pages repeat the same range/single-MVIC/Pluto-Sputnik paragraph. This corroborates a caption association inconsistency, not the correct Charon range or detector-product crosswalk.",
+    "scope": "Web-search excerpts checked; comparison page not downloaded, no fabricated page hash. Original NASA Charon caption hash already retained."
+  },
+  "verification": {
+    "tests": "458pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991695,
+    "headroomBytes": 8305,
+    "completeSnapshotSha256": "fe0ffd54ca64171610148a67a70a6495ea17b98a64090ed8c28c45ae06801738",
+    "browser": "Chrome exact readableJSON/application/CSS and HTML-parser payloads;237images20bands517details32models decode. Other engines open.",
+    "preservation": "389tracked earlier inputs byte-identical; all68 dossiers unchanged; new source JPEGs verified unchanged.",
+    "attribution": "Interbuild snapshot differences unaudited; no asset/compression savings claim. Production codecs unchanged."
+  }
+}
