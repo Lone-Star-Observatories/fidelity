@@ -5,11 +5,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import zlib from 'node:zlib';
 import { BODY_BAND, BANDS, bandById, passById } from '../src/data/bands.js';
-import { ARCHIVE_BAND, discUv, discLabel } from '../src/data/bandarchive.js';
+import { ARCHIVE_BAND, discUv, discLabel, shownScale, scaleDetail, fmtScaleValue } from '../src/data/bandarchive.js';
 import { bandLook } from '../src/views/system/bandskin.js';
 import { curveLook, realOverlap, prepare } from '../src/views/system/curvelook.js';
 import { windowFilter, logIntegral, clip } from '../src/data/curve.js';
-import { HOSTS, archiveIds, discIds, archiveImage, discImage, binsToRgba, img8ToRgba, trekMosaic } from '../server/bandarchive.js';
+import { HOSTS, archiveIds, discIds, archiveImage, archiveMeta, discImage, binsToRgba, img8ToRgba, trekMosaic, binsStretch, quantile, scaleOf, STRETCH } from '../server/bandarchive.js';
 import { decodePng, encodePng, resample } from '../server/png.js';
 import { effectiveNm } from '../src/astro/bands.js';
 
@@ -141,4 +141,69 @@ test('Trek tiles mosaic in WMTS order; unknown ids and foreign hosts are refused
   await assert.rejects(trekMosaic('X', 0, async () => { throw Object.assign(new Error('gone'), { status: 404 }); }), /no tiles/);
   await assert.rejects(archiveImage('../../etc/passwd'), (e) => e.status === 404);
   await assert.rejects(discImage('https://example.com/x.jpg'), (e) => e.status === 404);
+});
+
+// ---- physical scales (#72) ----------------------------------------------------------------------
+const archiveOf = (id) => entries.find((e) => e.s.archive?.id === id).s.archive;
+
+test('a table is stretched 1st → 99th percentile, clipped beyond, and the stretch is what the scale reports', () => {
+  // a synthetic 10° grid: 0, 1, … 98 ppm and one hot spot of 1000 ppm (plus a no-data row and junk)
+  const vals = [...Array(99).keys(), 1000];
+  const at = (i) => [(i % 10) * 10 - 85, Math.floor(i / 10) * 10 + 5];
+  const rows = vals.map((v, i) => `${at(i)[0]} ${at(i)[1]} ${v}`).concat(['5 355 9999.999', 'junk line']);
+  const st = binsStretch(vals.concat([9999.999]));
+  assert.equal(st.n, 100); assert.equal(st.dataMin, 0); assert.equal(st.dataMax, 1000);
+  assert.ok(Math.abs(st.min - 0.99) < 1e-9, `p1 ${st.min}`); // (n − 1)·0.01 = 0.99, between 0 and 1
+  assert.ok(Math.abs(st.max - (98 + 0.01 * 902)) < 1e-9, `p99 ${st.max}`); // 98.01: between 98 and 1000
+  assert.deepEqual([quantile([1, 2, 3], 0), quantile([1, 2, 3], 0.5), quantile([1, 2, 3], 1), quantile([7], 0.99)], [1, 2, 3, 7]);
+  const m = binsToRgba(rows.join('\n'), { cols: [0, 1, 2], cell: 10 }, 36, 18);
+  assert.equal(m.min, st.min); assert.equal(m.max, st.max);
+  const grey = (lat, lon) => { const x = Math.floor((lon + 180) / 10) % 36, y = Math.floor((90 - lat) / 10); return m.data[(y * 36 + x) * 4]; };
+  // cell centres sit on pixel centres here (10° cells, 10° pixels), so each pixel is its own cell's value
+  assert.equal(grey(-85, 5), 0, '0 ppm is below the 1st percentile: black');
+  assert.equal(grey(...at(99)), 255, 'the 1000 ppm outlier is clipped to white');
+  assert.equal(grey(...at(50)), Math.round(((50 - st.min) / (st.max - st.min)) * 255), '50 ppm on the linear stretch');
+  // the scale the backend reports, in the shown unit (FeO: g/g × 100 = wt%)
+  const sc = scaleOf({ kind: 'bins', scale: { unit: 'wt%', what: 'FeO', factor: 100, tier: 'computed', source: 'x' } }, { min: 0.0412, max: 0.2093, dataMin: 0.03, dataMax: 0.25, n: 11306 });
+  assert.deepEqual(sc, { unit: 'wt%', what: 'FeO', tier: 'computed', source: 'x', min: 4.12, max: 20.93, dataMin: 3, dataMax: 25, bins: 11306, stretch: STRETCH.version });
+  assert.equal(scaleOf({ kind: 'trek' }), null, 'no scale: null');
+  assert.deepEqual([binsStretch([2, 2, 2]).min, binsStretch([2, 2, 2]).max], [2, 2], 'a flat table: its range');
+});
+
+test('every element/abundance map and Diviner carry a pinned unit; documented scales from the product', async () => {
+  const pins = {
+    'moon-lpgrs-thorium': ['ppm', 'Th', 1], 'moon-lpgrs-potassium': ['ppm', 'K', 1], 'moon-lpgrs-feo': ['wt%', 'FeO', 100],
+    'mars-grs-h2o': ['wt%', 'H₂O', 1], 'mars-grs-k': ['wt%', 'K', 1], 'mars-grs-th': ['ppm', 'Th', 1], 'mars-grs-fe': ['wt%', 'Fe', 1],
+    'mercury-xrs-mg-si': ['Mg/Si', '', 1], 'moon-diviner-noon': ['K', '', 1],
+  };
+  for (const [id, [unit, what, factor]] of Object.entries(pins)) {
+    const s = archiveOf(id).scale;
+    assert.ok(s, id); assert.equal(s.unit, unit, id); assert.equal(s.what, what, id); assert.equal(s.factor ?? 1, factor, id);
+    assert.ok(['measured', 'computed'].includes(s.tier) && s.source.length > 20, `${id}: tier and source`);
+    if (archiveOf(id).kind === 'bins') assert.equal(s.tier, 'computed', `${id}: an abundance derived from a measured spectrum`);
+  }
+  // the LP table's columns are the ones its label names (W_FEO 12 in g/g, W_K 13 and W_TH 14 in ppm)
+  assert.deepEqual(['moon-lpgrs-feo', 'moon-lpgrs-potassium', 'moon-lpgrs-thorium'].map((id) => archiveOf(id).cols[4]), [12, 13, 14]);
+  // documented: the XRS label (DN × 0.0030668824, 0.782055 at DN 255) and Diviner's Trek raster (0–400 K)
+  const xrs = await archiveMeta('mercury-xrs-mg-si'), div = await archiveMeta('moon-diviner-noon');
+  assert.equal(xrs.scale.min, 0); assert.equal(xrs.scale.max, 0.782055); assert.ok(Math.abs(255 * 0.0030668824 - xrs.scale.max) < 1e-6);
+  assert.equal(div.scale.min, 0); assert.equal(div.scale.max, 400); assert.equal(div.scale.tier, 'measured'); assert.equal(div.scale.stretch, 'documented');
+  assert.equal((await archiveMeta('titan-vims-2um')).scale, null, 'Titan\'s VIMS mosaics have no physical scale');
+  await assert.rejects(archiveMeta('nope'), (e) => e.status === 404);
+});
+
+test('the bar\'s ends: the scale through the auto-levels (sRGB texture, linear-light levels)', () => {
+  const sc = { min: 0, max: 400, unit: 'K', what: '', stretch: 'documented', source: 'Trek', tier: 'measured' };
+  const full = shownScale(sc, [0, 1]);
+  assert.equal(full.lo, 0); assert.ok(Math.abs(full.hi - 400) < 1e-9); assert.equal(full.text, '0 – 400 K');
+  assert.equal(full.loText, '0 K', 'nothing below 0 K: not clipped'); assert.equal(full.hiText, '400 K');
+  // black point at linear 0.2140 (sRGB 0.5), white at linear 1: 200 K → 400 K, clipped below
+  const lin = (c) => ((c + 0.055) / 1.055) ** 2.4, l = shownScale(sc, [lin(0.5), 1 / (1 - lin(0.5))]);
+  assert.ok(Math.abs(l.lo - 200) < 1e-6 && Math.abs(l.hi - 400) < 1e-6, `${l.lo} ${l.hi}`);
+  assert.equal(l.loText, '≤ 200 K');
+  const th = shownScale({ min: 0.31, max: 11.2, unit: 'ppm', what: 'Th', stretch: 'p1-p99', bins: 11306, dataMin: 0.2, dataMax: 13, source: 's', tier: 'computed' }, [0, 1]);
+  assert.equal(th.text, '0.31 – 11 ppm Th'); assert.equal(th.loText, '≤ 0.31 ppm Th'); assert.equal(th.hiText, '≥ 11 ppm Th', 'a percentile stretch clips both ends');
+  assert.match(scaleDetail({ ...sc, stretch: 'p1-p99', bins: 3, dataMin: 0, dataMax: 9 }, th), /1st and 99th percentiles of the table's 3 bins/);
+  assert.equal(shownScale(null), null); assert.equal(shownScale({ min: 1, max: 1, unit: 'K' }), null);
+  assert.deepEqual([0.782055, 11.24, 395.4, 0, 4120].map(fmtScaleValue), ['0.78', '11', '395', '0', '4,120']);
 });

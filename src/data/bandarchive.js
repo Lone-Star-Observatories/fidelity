@@ -17,6 +17,11 @@
 //       pa        the position angle of the body's north pole in the image, degrees counter-
 //                 clockwise from image-up (0: north up; −90: north to the right).
 //     date: when the image was taken; the disc is drawn as if seen from Earth's direction now.
+//   archive.scale (#72): the map's physical scale, grey 0 → min, 255 → max, linear (GET
+//     /api/band-archive?id=…&meta=1): unit, what (the quantity), tier (MEASURED or COMPUTED: an
+//     abundance derived from a measured spectrum), source; min/max where the product documents them
+//     (a raster's PDS label, a Trek layer's raster), else the backend's stretch of the table
+//     (1st–99th percentile of its bins) times factor (the table's units → unit).
 //   range: [nmLo, nmHi], the wavelength (or energy) span the image represents; note: what the
 //   colours mean; partial: the map has gaps; unlit: not sunlight (gamma rays from cosmic-ray
 //   interactions and radioactivity glow on the night side too); lit: reflected sunlight although
@@ -34,21 +39,26 @@ export const GAMMA_LINES = { k: [1400, 1520], h: [2150, 2300], th: [2540, 2690],
 
 // ---- Moon -------------------------------------------------------------------------------------
 const DIVINER_NOON = {
-  archive: { id: 'moon-diviner-noon', kind: 'trek', layer: 'Moon/EQ/diviner_tbol_hour12', zoom: 0 },
+  archive: {
+    id: 'moon-diviner-noon', kind: 'trek', layer: 'Moon/EQ/diviner_tbol_hour12', zoom: 0,
+    scale: { unit: 'K', what: '', min: 0, max: 400, tier: 'measured', source: 'Moon Trek layer diviner_tbol_hour12: its Float64 raster (Trek ImageServer) spans 0 to 400.08 K, and its tiles are grey linear over that span (checked 2026-10-11 against the raster: 0.0 K + 1.563 K per grey level, median residual 1.4 K)' },
+  },
   credit: 'NASA/GSFC/UCLA LRO Diviner Lunar Radiometer: bolometric brightness temperature at local noon, from its seven thermal channels (7.55–400 µm), Global Cumulative Product 2009–2015 in 0.5° bins (Williams et al. 2017, Icarus 283, 300), via NASA Moon Trek; NASA data, public domain',
   note: 'Diviner noon temperature (7.5–400 µm): bright = hot; the night side is far colder now (shown by the model)',
   range: [7550, 400000],
 };
-const LP = (col, what, line, lineKeV) => ({
-  archive: { id: `moon-lpgrs-${what.toLowerCase()}`, kind: 'bins', url: LPGRS, cols: [1, 2, 3, 4, col] },
+// scale: the PDS label's units (W_K and W_TH in ppm, W_FEO a weight fraction in g/g, shown as wt%)
+const LP = (col, what, line, lineKeV, scale) => ({
+  archive: { id: `moon-lpgrs-${what.toLowerCase()}`, kind: 'bins', url: LPGRS, cols: [1, 2, 3, 4, col], scale: { tier: 'computed', source: 'Prettyman et al. 2006 abundances (PDS LP-L-GRS-5-ELEM-ABUNDANCE-V1.0, label units)', ...scale } },
   credit: `NASA Lunar Prospector Gamma-Ray Spectrometer: ${what} abundance (2° equal-area bins, Prettyman et al. 2006, JGR 111, E12007; PDS LP-L-GRS-5-ELEM-ABUNDANCE-V1.0); NASA data, public domain`,
   note: `${what} abundance from the ${line} γ-ray line (a derived map of a measured spectrum): bright = more ${what === 'FeO' ? what : what.toLowerCase()}`,
   range: keV(...lineKeV), unlit: true,
 });
 
 // ---- Mars -------------------------------------------------------------------------------------
-const ODY = (el, what, line, lineKeV) => ({
-  archive: { id: `mars-grs-${el}`, kind: 'bins', url: ODYGRS(el), cols: [0, 1, 2], cell: 5 },
+// scale: the PDS label's CONCENTRATION unit (WEIGHT PERCENT for H2O, K and Fe; PARTS PER MILLION for Th)
+const ODY = (el, what, line, lineKeV, scale) => ({
+  archive: { id: `mars-grs-${el}`, kind: 'bins', url: ODYGRS(el), cols: [0, 1, 2], cell: 5, scale: { tier: 'computed', source: 'Boynton et al. 2007 concentrations (PDS ODY-M-GRS-5-ELEMENTS-V1.0, label units)', ...scale } },
   credit: `NASA/University of Arizona Mars Odyssey Gamma Ray Spectrometer: ${what} (Boynton et al. 2007, JGR 112, E12S99; 5° grid smoothed with a 10° boxcar, PDS ODY-M-GRS-5-ELEMENTS-V1.0); NASA data, public domain`,
   note: `${what} from the ${line} γ-ray line (a derived map of a measured spectrum): bright = more; no data near the poles (seasonal CO₂ frost)`,
   range: keV(...lineKeV), partial: true, unlit: true,
@@ -56,7 +66,11 @@ const ODY = (el, what, line, lineKeV) => ({
 
 // ---- Mercury ----------------------------------------------------------------------------------
 const XRS_MGSI = {
-  archive: { id: 'mercury-xrs-mg-si', kind: 'img8', url: XRS('mg_si'), width: 1440, height: 720 },
+  archive: {
+    id: 'mercury-xrs-mg-si', kind: 'img8', url: XRS('mg_si'), width: 1440, height: 720,
+    // drawn grey = DN, so grey 255 is the label's maximum (DN 0 is no data, transparent)
+    scale: { unit: 'Mg/Si', what: '', min: 0, max: 0.782055, tier: 'computed', source: 'PDS label XRS_MAP_MG_SI_20150424: value = DN × 0.0030668824 (SCALING_FACTOR), DERIVED_MAXIMUM 0.782055 at DN 255, MISSING_CONSTANT 0. The label calls the ratio unitless; Nittler et al. 2020 give the XRS ratios by weight' },
+  },
   credit: 'NASA/JHUAPL/CIW MESSENGER X-Ray Spectrometer: Mg/Si abundance ratio from solar-induced X-ray fluorescence, 2011–2015, 4 px/°, 0 to 0.78 (Nittler et al. 2020, Icarus 345, 113716; PDS MESS-H-XRS-3-RDR-MAPS-V1.0); NASA data, public domain',
   note: 'MESSENGER XRS Mg/Si from Mg Kα and Si Kα fluorescence (1.25–1.74 keV): bright = magnesium-rich; mostly the northern hemisphere',
   range: keV(1.2, 1.8), partial: true,
@@ -116,15 +130,15 @@ export const ARCHIVE_BAND = {
   moon: {
     'ir-F770W': { ...DIVINER_NOON, note: `${DIVINER_NOON.note} · F770W is inside Diviner's channel 3` },
     'ir-10': DIVINER_NOON, 'ir-12': DIVINER_NOON, 'ir-F2100W': DIVINER_NOON, 'ir-W4': DIVINER_NOON, 'ir-90': DIVINER_NOON, 'ir-140': DIVINER_NOON,
-    'g-k': LP(13, 'Potassium', '1.46 MeV ⁴⁰K', GAMMA_LINES.k),
-    'g-th': LP(14, 'Thorium', '2.61 MeV ²⁰⁸Tl (Th decay chain)', GAMMA_LINES.th),
-    'g-fe': LP(12, 'FeO', '7.63 MeV Fe neutron-capture', GAMMA_LINES.fe),
+    'g-k': LP(13, 'Potassium', '1.46 MeV ⁴⁰K', GAMMA_LINES.k, { unit: 'ppm', what: 'K' }),
+    'g-th': LP(14, 'Thorium', '2.61 MeV ²⁰⁸Tl (Th decay chain)', GAMMA_LINES.th, { unit: 'ppm', what: 'Th' }),
+    'g-fe': LP(12, 'FeO', '7.63 MeV Fe neutron-capture', GAMMA_LINES.fe, { unit: 'wt%', what: 'FeO', factor: 100 }),
   },
   mars: {
-    'g-h': ODY('h2o', 'water-equivalent hydrogen', '2.22 MeV H neutron-capture', GAMMA_LINES.h),
-    'g-k': ODY('k', 'potassium', '1.46 MeV ⁴⁰K', GAMMA_LINES.k),
-    'g-th': ODY('th', 'thorium', '2.61 MeV ²⁰⁸Tl (Th decay chain)', GAMMA_LINES.th),
-    'g-fe': ODY('fe', 'iron', '7.63 MeV Fe neutron-capture', GAMMA_LINES.fe),
+    'g-h': ODY('h2o', 'water-equivalent hydrogen', '2.22 MeV H neutron-capture', GAMMA_LINES.h, { unit: 'wt%', what: 'H₂O' }),
+    'g-k': ODY('k', 'potassium', '1.46 MeV ⁴⁰K', GAMMA_LINES.k, { unit: 'wt%', what: 'K' }),
+    'g-th': ODY('th', 'thorium', '2.61 MeV ²⁰⁸Tl (Th decay chain)', GAMMA_LINES.th, { unit: 'ppm', what: 'Th' }),
+    'g-fe': ODY('fe', 'iron', '7.63 MeV Fe neutron-capture', GAMMA_LINES.fe, { unit: 'wt%', what: 'Fe' }),
   },
   mercury: { 'x-soft': XRS_MGSI },
   titan: {
@@ -153,4 +167,33 @@ export function discUv(d, N, E, P) {
   const f = E.map((x) => -x), right = norm([f[1] * up[2] - f[2] * up[1], f[2] * up[0] - f[0] * up[2], f[0] * up[1] - f[1] * up[0]]);
   const px = dot(N, right) * d.re, py = dot(N, up) * d.rp, a = ((d.pa ?? 0) * Math.PI) / 180;
   return { u: d.cx / d.w + (px * Math.cos(a) - py * Math.sin(a)) / d.w, v: 1 - d.cy / d.h + (px * Math.sin(a) + py * Math.cos(a)) / d.h, facing: dot(N, E) };
+}
+
+// ---- the physical scale on screen (#72) -------------------------------------------------------
+const srgbEncode = (l) => (l <= 0.0031308 ? 12.92 * l : 1.055 * l ** (1 / 2.4) - 0.055);
+/** A scale value for a legend: integers from 100, else two significant figures. */
+export const fmtScaleValue = (v) => (Math.abs(v) >= 100 ? Math.round(v).toLocaleString('en-US') : String(Number(v.toPrecision(2))));
+/**
+ * The values at the ends of the false-colour bar for an archive map with `scale` (grey 0 → min,
+ * 255 → max, linear; from GET /api/band-archive?id=…&meta=1) drawn with the auto-levels `levels`
+ * ([lo, gain] in linear light, bandtextures.js bandTexture): the bar's FAINT end is linear light lo, its
+ * BRIGHT end lo + 1/gain; the texture is sRGB, so grey/255 = sRGB-encode(linear). Values past the ends
+ * are clipped (clipLo/clipHi). Returns null without a usable scale.
+ */
+export function shownScale(scale, levels = [0, 1]) {
+  if (!scale || !Number.isFinite(scale.min) || !Number.isFinite(scale.max) || !(scale.max > scale.min)) return null;
+  const [lo, gain] = levels, hi = lo + 1 / gain, c = (x) => Math.min(1, Math.max(0, x));
+  const at = (lin) => scale.min + srgbEncode(c(lin)) * (scale.max - scale.min);
+  const a = at(lo), b = at(hi), unit = `${scale.unit}${scale.what ? ` ${scale.what}` : ''}`;
+  const clipLo = lo > 1e-4 || scale.stretch === 'p1-p99', clipHi = hi < 1 - 1e-4 || scale.stretch === 'p1-p99';
+  return { lo: a, hi: b, unit, clipLo, clipHi, text: `${fmtScaleValue(a)} – ${fmtScaleValue(b)} ${unit}`,
+    loText: `${clipLo ? '≤ ' : ''}${fmtScaleValue(a)} ${unit}`, hiText: `${clipHi ? '≥ ' : ''}${fmtScaleValue(b)} ${unit}` };
+}
+/** The tooltip of a shown scale: where the numbers come from and what the bar does with them. */
+export function scaleDetail(scale, s) {
+  const f = fmtScaleValue, u = s.unit;
+  const grey = scale.stretch === 'p1-p99'
+    ? `The map's grey runs linearly from ${f(scale.min)} (black) to ${f(scale.max)} ${u} (white): the 1st and 99th percentiles of the table's ${scale.bins} bins (all of them span ${f(scale.dataMin)}–${f(scale.dataMax)}); values beyond are clipped.`
+    : `The map's grey runs linearly from ${f(scale.min)} (black) to ${f(scale.max)} ${u} (white).`;
+  return `${scale.source}.\n${grey}\nOn screen the image is auto-levelled: the bar's ends are the values at its black and white points (clipped beyond), and its colours follow the image's light, not the value in equal steps.`;
 }

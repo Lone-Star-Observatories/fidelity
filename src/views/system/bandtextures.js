@@ -47,6 +47,14 @@ const backendOrBaked = (url, size) => (!STANDALONE ? url : size === 'preview' ? 
 export const hipsUrl = (id, size = '') => backendOrBaked(`/api/hips?id=${encodeURIComponent(id)}${sz(size)}`, size);
 export const gibsUrl = (layers, size = '') => backendOrBaked(`/api/gibs-band?layers=${encodeURIComponent(layers)}${sz(size)}`, size);
 export const archiveUrl = (id, size = '') => backendOrBaked(`/api/band-archive?id=${encodeURIComponent(id)}${sz(size)}`, size);
+/** An archive map's physical scale (#72): GET /api/band-archive?id=…&meta=1 → its scale, or null (none, or no backend). */
+const scales = new Map();
+export function archiveScale(id) {
+  if (STANDALONE) return Promise.resolve(null); // these maps are backend-only there
+  if (!scales.has(id)) scales.set(id, fetch(`/api/band-archive?id=${encodeURIComponent(id)}&meta=1`).then((r) => (r.ok ? r.json() : null))
+    .then((j) => j?.scale ?? null).catch(() => null).then((v) => { if (!v) scales.delete(id); return v; }));
+  return scales.get(id);
+}
 export const discUrl = (id, size = '') => backendOrBaked(`/api/band-disc?id=${encodeURIComponent(id)}${sz(size)}`, size);
 /** { preview, full } URLs of a real map (BODY_BAND entry), or null without a backend (standalone: { preview: baked, full: null }). */
 export function realUrls(src) {
@@ -93,10 +101,12 @@ function fadeIn(u, ms = 600) {
 function progressive(u, look, urls, onShow) {
   let shown = null;
   look.res = 'loading';
+  // an archive map's physical scale for the panel's bar (#72); look.levels says where its ends fall
+  if (look.source?.archive?.scale) archiveScale(look.source.archive.id).then((s) => { if (s && u.__look === look) { look.scale = s; notify(); } });
   const current = () => u.__look === look;
   bandTexture(urls.preview).then((r) => {
     if (!r || !current() || shown === 'full') return;
-    u.uBandTex.value = r.texture; u.uBandLevels.value.set(...r.levels); u.uBandFade.value = 1;
+    u.uBandTex.value = r.texture; u.uBandLevels.value.set(...r.levels); u.uBandFade.value = 1; look.levels = r.levels;
     shown = 'preview'; look.res = 'preview'; if (!urls.full) markBaked(look, urls.baked); onShow(); notify();
     performance.mark?.('fidelity:band-preview'); // for timing the instant switch (#62)
   });
@@ -105,7 +115,7 @@ function progressive(u, look, urls, onShow) {
     if (!current()) return true;
     if (!r) { look.res = shown ? 'failed-preview' : 'failed'; notify(); return null; }
     if (shown === 'preview' && u.uBandTexPrev) { u.uBandTexPrev.value = u.uBandTex.value; fadeIn(u); } else if (u.uBandFade) u.uBandFade.value = 1;
-    u.uBandTex.value = r.texture; u.uBandLevels.value.set(...r.levels);
+    u.uBandTex.value = r.texture; u.uBandLevels.value.set(...r.levels); look.levels = r.levels;
     shown = 'full'; look.res = 'full'; onShow(); notify();
     performance.mark?.('fidelity:band-full');
     return true;
