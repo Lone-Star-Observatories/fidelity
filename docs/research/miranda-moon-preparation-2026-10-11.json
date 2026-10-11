@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; all60 dossiers preserved, no61st dossier or new embedding.",
+  "body": "Miranda",
+  "native": [
+    {
+      "product": "PIA18185",
+      "observed": "1986-01-24",
+      "publisherImageAdditionDate": "1986-01-25",
+      "credit": "NASA/JPL-Caltech",
+      "width": 571,
+      "height": 574,
+      "inspected": true,
+      "limitations": "Monochrome Voyager2 NAC publisher image, not independently calibrated visible colour or registered globe geography. Image addition date is separate from observation; no exhaustive newest-observation claim."
+    },
+    {
+      "product": "PIA00043",
+      "observed": "1986-01-24",
+      "publisherImageAdditionDate": "1996-08-01",
+      "credit": "NASA/JPL",
+      "width": 2500,
+      "height": 2200,
+      "inspected": true,
+      "limitations": "Clear-filter NAC computer-assembled mosaic. Missing pieces, black areas, rectangular edges and seams are not terrain. Caption560–740m resolution and0.5–5km scarps are source estimates, not new angular/raster computations. Later page-update metadata is not a new observation. Not calibrated visible colour or global coverage."
+    }
+  ],
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "description": "Active NASA media guidelines; not asserted CC BY."
+  },
+  "ownGlobe": {
+    "path": "data/textures/miranda.jpg",
+    "bytes": 321268,
+    "sha256": "844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81",
+    "matchesFetchedSourceByteForByte": true,
+    "inspected": true,
+    "limitations": "NASA3D source and current texture byte-identical. Source route describes Voyager2 southern hemisphere only. Large black northern area, irregular coverage boundary and low-detail regions must not imply observed black/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. No analog map or replacement adopted."
+  },
+  "catalogue": {
+    "radiusKm": 235.8,
+    "semimajorAxisKm": 129846,
+    "periodDays": 1.413479,
+    "inclinationDegrees": 4.4,
+    "limitations": "Existing catalogue values retained, not newly inferred precision/uncertainty.2026 abstract quotes4.3degrees separately; no silent catalogue correction."
+  },
+  "primaryAssessment": {
+    "url": "https://arxiv.org/abs/2609.31580",
+    "title": "Inclination of Miranda as a Constraint on the Tidal Dissipation of Uranus",
+    "authors": [
+      "Maryame El Moutamid",
+      "Matija Ćuk"
+    ],
+    "submitted": "2026-09-25",
+    "scope": "Primary abstract only; full paper and supplements not assessed, no paper PDF hash or figure use claimed.",
+    "licenceUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+    "licence": "Nonexclusive distribution, not CC BY.",
+    "interpretation": "SIMPL N-body simulations with assumed fast Uranus tidal dissipation and varied satellite internal responses explore Ariel–Umbriel5:3 resonance excitation of Miranda inclination. QU~600 heating approaching corona-formation requirements is conditional model output, not measured present heat flux, direct ocean detection or resolved plumbing."
+  },
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/miranda-PIA18185-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 60745,
+      "sha256": "9da053ee630b15cb944759270a18b6bb92e76f72913ff0e6c64cb389eadf83ad"
+    },
+    {
+      "path": "data/research-sources/miranda-PIA18185-caption.html",
+      "url": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 265274,
+      "sha256": "63b7de52c3010065a56e1dce1ae3433d88f8e524116eea4e9095c4f6ecb630ac"
+    },
+    {
+      "path": "data/research-sources/miranda-PIA00043-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00043/PIA00043.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 294440,
+      "sha256": "0d956006134404b180750cbf314e9f1e2f190c354a3798e391df179b7fbe82ef"
+    },
+    {
+      "path": "data/research-sources/miranda-PIA00043-caption.html",
+      "url": "https://science.nasa.gov/photojournal/miranda-high-resolution-mosaic/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 268529,
+      "sha256": "6b2b3c6f7de6211f440871365a8662ee6c79d0acfe90eda27d4d2691ca3260f8"
+    },
+    {
+      "path": "data/research-sources/miranda-nasa3d-source.jpg",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Miranda/Uranus%20-%20Miranda.jpg",
+      "status": 200,
+      "mime": "image/jpeg",
+      "bytes": 321268,
+      "sha256": "844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81"
+    },
+    {
+      "path": "data/research-sources/miranda-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 320632,
+      "sha256": "4377be69e0573439995a8fe942ea1837dd44f70f5055fa868e5ab754f37e260c"
+    },
+    {
+      "path": "data/research-sources/miranda-2026-inclination-abstract.html",
+      "url": "https://arxiv.org/abs/2609.31580",
+      "status": 200,
+      "mime": "text/html; charset=utf-8",
+      "bytes": 42526,
+      "sha256": "e533fd1ce58d6cc5554747d179f671466c3a3799bd843caff4ead866e1c27325"
+    }
+  ],
+  "open": [
+    "Full current primary interior/heating-paper and supplement audit; competing model histories retained.",
+    "Native compact publisher rendition assessment preserving full originals.",
+    "Independent local/Uranus observer views; use skyGeometry for every angular/raster calculation, assumed camera/phase/ring attitude explicit.",
+    "Lossless standalone headroom recovery before larger embedding.",
+    "Globe frame/coverage/calibration and model/shape registration audit."
+  ],
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975606,
+    "headroomBytes": 24394,
+    "completeSnapshotSha256": "c780f9a032ec9f6fe1fae5e460650f3afa53fb249cb37cbb79f4ef5841dd3c6a",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "browser": "Chrome exact whole readableJSON/application/CSS/HTMLparser;213 images20 bands517 details32 models. Other engines open.",
+    "preservation": "336 tracked registry/bespoke/map/model inputs byte-identical to HEAD. All60 dossiers unchanged.",
+    "snapshotDifferences": [
+      "/satcat/51850/PERIOD",
+      "/satcat/51850/INCLINATION",
+      "/satcat/60133/PERIOD",
+      "/satcat/60133/INCLINATION",
+      "/satcat/60133/APOGEE",
+      "/satcat/60133/PERIGEE",
+      "/satcat/40732/PERIOD",
+      "/satcat/40732/INCLINATION",
+      "/satcat/40732/APOGEE",
+      "/satcat/40732/PERIGEE",
+      "/satcat/41836/PERIOD",
+      "/satcat/41836/APOGEE",
+      "/satcat/41836/PERIGEE",
+      "/satcat/54743/PERIOD",
+      "/satcat/28912/PERIOD",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/src"
+    ],
+    "attribution": "Interbuild feed changes listed explicitly; no asset/compression savings claim."
+  }
+}

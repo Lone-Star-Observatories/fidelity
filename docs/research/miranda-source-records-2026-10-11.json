@@ -1,0 +1,58 @@
+[
+  {
+    "path": "data/research-sources/miranda-PIA18185-original.jpg",
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 60745,
+    "sha256": "9da053ee630b15cb944759270a18b6bb92e76f72913ff0e6c64cb389eadf83ad"
+  },
+  {
+    "path": "data/research-sources/miranda-PIA18185-caption.html",
+    "url": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 265274,
+    "sha256": "63b7de52c3010065a56e1dce1ae3433d88f8e524116eea4e9095c4f6ecb630ac"
+  },
+  {
+    "path": "data/research-sources/miranda-PIA00043-original.jpg",
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00043/PIA00043.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 294440,
+    "sha256": "0d956006134404b180750cbf314e9f1e2f190c354a3798e391df179b7fbe82ef"
+  },
+  {
+    "path": "data/research-sources/miranda-PIA00043-caption.html",
+    "url": "https://science.nasa.gov/photojournal/miranda-high-resolution-mosaic/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 268529,
+    "sha256": "6b2b3c6f7de6211f440871365a8662ee6c79d0acfe90eda27d4d2691ca3260f8"
+  },
+  {
+    "path": "data/research-sources/miranda-nasa3d-source.jpg",
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Miranda/Uranus%20-%20Miranda.jpg",
+    "status": 200,
+    "mime": "image/jpeg",
+    "bytes": 321268,
+    "sha256": "844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81"
+  },
+  {
+    "path": "data/research-sources/miranda-nasa-terms.html",
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "status": 200,
+    "mime": "text/html; charset=UTF-8",
+    "bytes": 320632,
+    "sha256": "4377be69e0573439995a8fe942ea1837dd44f70f5055fa868e5ab754f37e260c"
+  },
+  {
+    "path": "data/research-sources/miranda-2026-inclination-abstract.html",
+    "url": "https://arxiv.org/abs/2609.31580",
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "bytes": 42526,
+    "sha256": "e533fd1ce58d6cc5554747d179f671466c3a3799bd843caff4ead866e1c27325"
+  }
+]
