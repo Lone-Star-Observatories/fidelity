@@ -1,0 +1,106 @@
+{
+  "snapshotSha256": "fe0ffd54ca64171610148a67a70a6495ea17b98a64090ed8c28c45ae06801738",
+  "binaryBytes": 19779459,
+  "frequency": [
+    481615,
+    392473,
+    323679,
+    285398,
+    276910,
+    266113,
+    256111,
+    240995,
+    231245,
+    236051,
+    439313,
+    128861,
+    0,
+    532
+  ],
+  "results": [
+    {
+      "name": "identity",
+      "map": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "innerBytes": 13126899,
+      "gzipBytes": 13130012,
+      "exactContainerAndJson": true
+    },
+    {
+      "name": "frequency",
+      "map": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        9,
+        1,
+        11,
+        13,
+        12
+      ],
+      "innerBytes": 13128157,
+      "gzipBytes": 13131423,
+      "exactContainerAndJson": true
+    },
+    {
+      "name": "frequency-high",
+      "map": [
+        13,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        3,
+        4,
+        12,
+        2,
+        0,
+        1
+      ],
+      "innerBytes": 13126885,
+      "gzipBytes": 13130013,
+      "exactContainerAndJson": true
+    }
+  ],
+  "scope": "Research only numeric nibble codebook relabeling. No numeric value or layout changes. Gzip sizes exclude production envelope and decoder overhead.",
+  "date": "2026-10-11",
+  "adopted": false,
+  "conclusion": "Frequency-ranked code assignments produce 1411 and 1 more outer gzip bytes than identity before any codebook/decoder overhead. Neither adopted. This preserves numeric token order, digit layout, values, spelling and all binary asset bytes; it only screens reversible nibble code assignments. Do not repeat these codebook candidates.",
+  "preservation": "All 68 dossiers and production inputs unchanged. Research script only; original PNGs, masters, native sources, maps, models, shapes and provenance retained.",
+  "validation": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15988539,
+    "headroomBytes": 11461,
+    "trackedInputsByteEqual": 389,
+    "queue": 566,
+    "browser": "Chrome exact complete readable JSON, application, CSS and HTML-parser payload bytes; 237 images, 20 bands, 517 details and 32 models decoded. Other engines open.",
+    "completeSnapshotSha256": "b84516da1280eb817ac3c952674c17b21ec86da1461555726dd4f1e0647b79ba",
+    "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+    "attribution": "Rebuilt snapshot differs from prior verification; interbuild changes not audited. No net HTML saving attributed to research trial. Production codecs unchanged."
+  }
+}
