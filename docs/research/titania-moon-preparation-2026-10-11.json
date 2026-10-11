@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-11",
+  "body": "Titania",
+  "status": "Research-only native and body-specific spectral preparation; no64th dossier or new embedding.",
+  "native": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00039/PIA00039.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 33782,
+    "sha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+    "path": "data/research-sources/titania-PIA00039-original.jpg",
+    "width": 640,
+    "height": 760,
+    "credit": "NASA/JPL",
+    "observationDate": "1986-01-24",
+    "imageAdditionDate": "1996-01-29",
+    "sourcePage": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media guidance; not asserted CC BY",
+    "instrument": "Voyager2 narrow-angle camera clear filter; two-image composite",
+    "limits": "Monochrome does not establish calibrated visible colour or registered local terrain. Historical caption range369000km/resolution13km/diameterover1600km/valley and crater dimensions are source estimates, not new raster computations or updated measurements. Bright sunward valley wall partly lighting; possible young frost is a hypothesis, not measured local chemistry or detected present activity. Publisher highest-resolution title does not establish an exhaustive newest-observation claim."
+  },
+  "map": {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Titania/Uranus%20-%20Titania.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 284122,
+    "sha256": "087425752c8f5090965f5a4fac7d50a4c450563edd50b807bbc1d45ebeedd312",
+    "path": "data/research-sources/titania-nasa3d-source.jpg",
+    "existingPath": "data/textures/titania.jpg",
+    "byteEqualFetchedSource": true,
+    "credit": "USGS/Tammy Becker & JPL/Caltech",
+    "publicationMetadataDate": "2025-05-30",
+    "limits": "Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open."
+  },
+  "science": {
+    "sourcePath": "data/research-sources/ariel-Cartwright2026-v2.pdf",
+    "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+    "url": "https://arxiv.org/pdf/2607.05600v2",
+    "record": "https://arxiv.org/abs/2607.05600v2",
+    "licence": "Specific record links CC BY4.0; no paper figure embedded.",
+    "scope": "Full retained29page joint paper Table1, section2 and section3.2 assessed for Titania; published2026 draft/revision are distinct from2023 observation dates. Final journal record/supplement/exact product association/calibration remain open.",
+    "observations": [
+      {
+        "hemisphere": "trailing",
+        "utc": "2023-09-23T20:13:15Z",
+        "seconds": 2567.6,
+        "midObservationLongitudeDeg": 275.1,
+        "latitudeDeg": 63.9
+      },
+      {
+        "hemisphere": "leading",
+        "utc": "2023-09-10T01:03:46Z",
+        "seconds": 2567.6,
+        "midObservationLongitudeDeg": 102.5,
+        "latitudeDeg": 64.1
+      }
+    ],
+    "instrument": "NIRSpecIFU GO1786 G395M/F290LP 2.87–5.25microns R~1000; four dithers NRSIRS2RAPID",
+    "reduction": "Pipeline1.20.1 CRDSjwst1464.pmap; archive DOI10.17909/nj36-mt02",
+    "measurements": "Trailing4.02/4.14/4.20/4.27/4.67/4.90 and5.17micron features reported>3sigma. Leading4.27 and4.02>3sigma, weak4.67>2sigma. Do not assign Ariel richer feature set or Umbriel exposure dates to Titania.",
+    "limits": "Spectral features versus laboratory lattice/grain/layer/roughness and chemical-origin interpretations remain distinct. No mapped local chemistry, Voyager pixel association, ocean/plume detection or biology. Nondetection is not absence. Complementary Tegler2026 isotopic study remains unaudited; no isotope numbers adopted.",
+    "authors": [
+      "Richard J. Cartwright",
+      "Sasha Cryan",
+      "Rosario Brunetto",
+      "Apolline Leclef",
+      "Eric Quirico",
+      "Bryan J. Holler",
+      "William M. Grundy",
+      "Tom A. Nordheim",
+      "Ujjwal Raut",
+      "Matthew M. Hedman",
+      "Riley A. DeColibus",
+      "Chloe B. Beddingfield",
+      "Marc Neveu",
+      "Christopher R. Glein",
+      "Sara Faggi",
+      "Geronimo L. Villanueva",
+      "Noemi Pinilla-Alonso",
+      "Stephanie M. Menten"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00039/PIA00039.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 33782,
+      "sha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+      "path": "data/research-sources/titania-PIA00039-original.jpg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00039/PIA00039.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "bytes": 145097,
+      "sha256": "daf5916e8a1b02bc73084faaeb372e39fb4f8a8f8e4db476955f9f849fbdd86b",
+      "path": "data/research-sources/titania-PIA00039-original.tif"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Titania/Uranus%20-%20Titania.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 284122,
+      "sha256": "087425752c8f5090965f5a4fac7d50a4c450563edd50b807bbc1d45ebeedd312",
+      "path": "data/research-sources/titania-nasa3d-source.jpg"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/titania-at-closest-approach/",
+      "status": 404,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 223720,
+      "sha256": "856977939f3daba38cb47dae4c2785bcbf87261710e26648be86014e3ce64d81"
+    },
+    {
+      "url": "https://science.nasa.gov/3d-resources/uranus-titania/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 250613,
+      "sha256": "9c704e157ce8c5bba57152665c79ef4da04b8a71f81ad2b3f5eb747484cedd16",
+      "path": "data/research-sources/titania-nasa3d-caption.html"
+    },
+    {
+      "url": "https://science.nasa.gov/uranus/moons/titania/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 258224,
+      "sha256": "28923cec33bbfa610f1651a591903b9cb75cc441a23592318fabe353377157ec",
+      "path": "data/research-sources/titania-nasa-overview.html"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 320652,
+      "sha256": "bc16812332908583d64cf84e13641e31ca4165fee1b01d2815cde3bd833bc7d9",
+      "path": "data/research-sources/titania-nasa-media-terms.html"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+      "status": 200,
+      "path": "data/research-sources/titania-PIA00039-caption.html",
+      "bytes": 266969,
+      "sha256": "f447e7916970c0ed4132555c3b5aae49382d5bb45fa45d2ac68d14e94f4b1eaa"
+    }
+  ],
+  "next": "Independent Titania local/Uranus observer views using skyGeometry and explicit attitude/ring/oblateness limits, retained originals/masters and recorded256 previews, then additive64th dossier and Oberon/restbacklog.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15857674,
+    "compressedBytes": 783234,
+    "applicationSha256": "007a5d8456c339dd224639e410df73561a8e04ec84c705d7a1673f6e1fbbcdf7",
+    "htmlParserPreservesEveryPackedByte": true,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "0481fe2465df4064082de5ba06f78d6dd8339a0976e9322b43a9f5bdee2abec7",
+      "raw": "01a6a1afcf425cac748390eaca011936248bfb4eec4c09422b4357d6e43335f4",
+      "magic": "FIDBRT01",
+      "images": 222,
+      "details": 517,
+      "models": 32
+    },
+    "cssVerification": "{\n  cssBytes: 54935,\n  cssSha256: '960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772',\n  rawSha256: '456c98b515807cfb8a99452b7bd6c5a28a59fd78ac689d2c0c14a6b0ad3c2159',\n  exactRestoredStyle: true,\n  htmlParserPreservedPackedText: true,\n  background: 'rgb(0, 0, 0)',\n  buttons: 393,\n  pageErrors: []\n}\n",
+    "preservation": "All63 existing dossiers unchanged; registry text byte-identical to HEAD. No existing map/model/shape/native inputs modified. New sources hash verified.",
+    "queueTasks": 566,
+    "limits": "Chrome verified; other engines open. Interbuild snapshot differences unaudited; no asset/compression savings attribution.",
+    "headroomBytes": 142326
+  }
+}
