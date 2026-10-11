@@ -202,7 +202,9 @@ const dist = path.join(root, 'dist-standalone');
 const viteHtml = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 async function assemble(snapshotJson) {
   const binarySnapshot = encodeNumericSnapshot(snapshotJson, 2);
-  const innerCompressed = brotliCompressSync(binarySnapshot, { params: { [constants.BROTLI_PARAM_QUALITY]: 11 } });
+  // FONT tunes Brotli's lossless coding; it does not reinterpret container bytes.
+  // Complete native and bundled-decoder round trips remain mandatory below.
+  const innerCompressed = brotliCompressSync(binarySnapshot, { params: { [constants.BROTLI_PARAM_QUALITY]: 11, [constants.BROTLI_PARAM_MODE]: constants.BROTLI_MODE_FONT } });
   if (!brotliDecompressSync(innerCompressed).equals(Buffer.from(binarySnapshot))) throw new Error('Native Brotli round-trip failed.');
   const htmlCompressed = gzipSync(wrapBrotliSnapshot(binarySnapshot, innerCompressed), { level: 9 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
