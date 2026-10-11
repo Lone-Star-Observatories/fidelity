@@ -368,7 +368,8 @@ compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast 
 otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
 the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
 Every upstream URL must be on a cached station list (no open proxy). The RF receiver console (`src/views/comms/receiver.js`) opens for KiwiSDR (`ws /api/rf/kiwi`) and the
-local SDR (`ws /api/rf/local`): it tunes, shows a scrolling waterfall, plays received audio through the
+local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
+rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
 chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
 (on screen, off screen, tune, scan, close channel) and offline phrases. Nothing transmits.
 

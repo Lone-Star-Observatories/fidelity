@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import net from 'node:net';
-import { rawGet, sndFrame, streamStation, cameraMedia } from '../server/rf.js';
+import { rawGet, sndFrame, streamStation, cameraMedia, rxStreamCmd, rxScanCmd, deviceRange } from '../server/rf.js';
 import { kiwiTag, parseKiwiSnd } from '../src/data/rf.js';
 
 test('rawGet reads a SHOUTcast "ICY 200 OK" answer that fetch would refuse', async () => {
@@ -39,4 +39,27 @@ test('rtl_fm PCM becomes a Kiwi-style SND message the browser already parses', (
 test('the relays refuse anything not on the station lists (no open proxy)', async () => {
   await assert.rejects(streamStation('', {}), (e) => e.status === 403 || e.status === 502 || e.status === 400);
   await assert.rejects(cameraMedia(''), (e) => e.status === 403 || e.status === 502 || e.status === 400);
+});
+
+test('receive command builders pick the right tool per device, never transmit (#69)', () => {
+  const full = { rtl_fm: true, rtl_power: true, rx_fm: true, rx_power: true };
+  // RTL uses rtl_fm; bladeRF/hackRF use rx_fm with a SoapySDR driver string
+  assert.deepEqual(rxStreamCmd('rtl', { freqHz: 7074000, mode: 'usb' }, full), { cmd: 'rtl_fm', args: ['-f', '7074000', '-M', 'usb', '-s', '12000', '-l', '0', '-'] });
+  const blade = rxStreamCmd('bladerf', { freqHz: 145e6, mode: 'nbfm', gain: 30 }, full);
+  assert.equal(blade.cmd, 'rx_fm');
+  assert.ok(blade.args.includes('driver=bladerf') && blade.args.includes('-g') && blade.args.includes('30'));
+  // no transmit vocabulary anywhere in the built commands
+  assert.ok(!JSON.stringify(blade).match(/\btx\b|transmit|-M wbfm.*tx/i));
+  // missing rx_tools → a helpful error, not a bad command
+  assert.ok(rxStreamCmd('bladerf', { freqHz: 1, mode: 'am' }, { rtl_fm: true }).error.includes('rx_fm'));
+  assert.ok(rxStreamCmd('rtl', { freqHz: 1, mode: 'am' }, {}).error.includes('rtl_fm'));
+  // scans mirror the same tool choice
+  assert.equal(rxScanCmd('rtl', { fromHz: 88e6, toHz: 108e6, step: 1e4 }, full).cmd, 'rtl_power');
+  assert.ok(rxScanCmd('bladerf', { fromHz: 430e6, toHz: 440e6, step: 1e3 }, full).args.includes('driver=bladerf'));
+});
+
+test('device ranges: bladeRF and HackRF reach well past the RTL ceiling (#69)', () => {
+  assert.deepEqual(deviceRange('rtl'), [24e6, 1766e6]);
+  assert.deepEqual(deviceRange('bladerf'), [47e6, 6e9]);
+  assert.deepEqual(deviceRange('hackrf'), [1e6, 6e9]);
 });

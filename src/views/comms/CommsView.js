@@ -145,7 +145,9 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     if (STANDALONE) return;
     try { devices = await fetch('/api/rf/devices').then((r) => r.json()); } catch { devices = null; }
     const obs = settings.get('observer');
-    if (devices?.rx?.length) rfMap.setExtra('localsdr', [[obs?.lat ?? 51.4779, obs?.lon ?? 0, `LOCAL SDR · ${devices.rx[0].label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '', `${(devices.rx[0].rangeHz[0] / 1e6).toFixed(0)}–${(devices.rx[0].rangeHz[1] / 1e6).toFixed(0)} MHz · THIS MACHINE`, 1]]);
+    if (devices?.rx?.length) rfMap.setExtra('localsdr', devices.rx.map((dev, i) => [(obs?.lat ?? 51.4779) + i * 0.12, obs?.lon ?? 0,
+      `LOCAL SDR · ${dev.label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '',
+      `${(dev.rangeHz[0] / 1e6).toFixed(0)}–${(dev.rangeHz[1] / 1e6).toFixed(0)} MHz · THIS MACHINE`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0] }]));
     syncDev();
   }
   function syncDev() {
@@ -160,7 +162,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     const local = layerId === 'localsdr';
     receiver = { layerId, m, layer, name: m[2], url: m[3], local };
     if (layerId === 'kiwisdr' || local) {
-      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer }, (...kids) => setScreen(...kids));
+      const dev = local ? (m[6] ?? {}) : {};
+      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer, driver: dev.driver ?? 'rtl', minHz: dev.minHz, maxHz: dev.maxHz }, (...kids) => setScreen(...kids));
     } else {
       receiver.consoleBox = null;
       setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'OPENS ON THE OPERATOR\'S OWN PAGE' }));

@@ -145,7 +145,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   // ---- tuning -------------------------------------------------------------------------------------
   let box = null;
   function setFreq(hz) {
-    rx.freqHz = Math.max(0, Math.min(rx.local ? 1766e6 : 30e6, Math.round(hz)));
+    rx.freqHz = Math.max(rx.minHz, Math.min(rx.maxHz, Math.round(hz)));
     if (box?._freq) box._freq.value = (rx.freqHz / 1000).toFixed(3);
     updateReadout(); retune();
   }
@@ -159,7 +159,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   function retune() {
     if (ws?.readyState !== 1) return;
     rx.playing = true;
-    const msg = rx.local ? { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, gain: null } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
+    const msg = rx.local ? { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, gain: null, driver: rx.driver } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
     ws.send(JSON.stringify(msg));
   }
 
@@ -170,7 +170,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
     let signals = [];
     if (rx.local) {
       try {
-        const j = await fetch(`/api/rf/local/scan?from=${Math.max(24e6, rx.freqHz - 2e6)}&to=${Math.min(1766e6, rx.freqHz + 2e6)}`).then((r) => r.json());
+        const j = await fetch(`/api/rf/local/scan?from=${Math.max(rx.minHz, rx.freqHz - 2e6)}&to=${Math.min(rx.maxHz, rx.freqHz + 2e6)}&driver=${rx.driver}`).then((r) => r.json());
         signals = j.signals ?? [];
       } catch { results.replaceChildren(el('p', { className: 'warn', textContent: 'Sweep failed (is the dongle busy?).' })); return; }
     } else {
@@ -191,7 +191,9 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   // ---- lifecycle ----------------------------------------------------------------------------------
   function open(receiver, setScreen) {
     close();
-    rx = { ...receiver, freqHz: receiver.local ? 98.1e6 : 9.6e6, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20 };
+    const minHz = receiver.minHz ?? (receiver.local ? 24e6 : 0), maxHz = receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6);
+    const startHz = receiver.local ? Math.min(Math.max(98.1e6, minHz), maxHz) : 9.6e6;
+    rx = { ...receiver, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20 };
     rx.mode = receiver.local ? suggestMode(rx.freqHz) : 'am';
     if (rx.mode === 'wbfm') rx.mode = 'nbfm';
     rx.bwHz = (MODE_BW[rx.mode] ?? [6000])[1] ?? 6000;
@@ -203,7 +205,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
     ws.onmessage = (e) => {
       if (typeof e.data !== 'string') return onFrame(e.data);
       let m; try { m = JSON.parse(e.data); } catch { return; }
-      if (m.type === 'open') { setState('LINK OPEN · RECEIVING'); retune(); }
+      if (m.type === 'open') { if (m.rate) rx.rate = m.rate; setState('LINK OPEN · RECEIVING'); retune(); }
       else if (m.type === 'error') setState(`RECEIVER: ${m.message}`);
       else if (m.type === 'closed') setState('RECEIVER CLOSED THE LINK');
     };
