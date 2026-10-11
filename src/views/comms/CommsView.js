@@ -33,7 +33,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     el('h2', { textContent: 'COMMS · SECTOR 001' }),
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
     el('span', { className: 'cx-dev mono' }));
-  const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'windy', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
+  const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
   const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
     extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (rtl-sdr tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
   const screen = el('div', { className: 'cx-screen' });

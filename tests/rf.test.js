@@ -92,6 +92,7 @@ test('what a station can put on screen', () => {
   assert.deepEqual(stationMedia('radio', [0, 0, 'R', 'https://home', '', 'https://stream']), { video: null, audio: true, stream: 'https://stream' });
   assert.equal(stationMedia('traffic', [0, 0, 'Cam', 'https://img.jpg', '', 'https://clip.mp4']).video, 'mp4');
   assert.equal(stationMedia('traffic', [0, 0, 'Cam', 'https://img.jpg', '', 'https://x.m3u8']).video, 'image');
-  assert.equal(stationMedia('windy', [0, 0, 'W', 'https://page', '', null]).video, null);
+  assert.equal(stationMedia('worldcams', [0, 0, 'W', 'https://yt', '', null, { youtube: 'abc' }]).video, 'youtube');
+  assert.equal(stationMedia('trafficcams', [0, 0, 'Cam', 'https://page', '', null]).video, null);
   assert.equal(stationMedia('video', [0, 0, 'V', 'https://page', '', null, { youtube: 'abc' }]).video, 'youtube');
 });

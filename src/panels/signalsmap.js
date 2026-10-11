@@ -1,5 +1,5 @@
 // LIVE SIGNALS · EARTH (#35): a flat map of places you can listen to or watch right now: internet
-// radio stations, public SDR receivers, traffic cameras, observatory and volcano cams (and Windy
+// radio stations, public SDR receivers, traffic and weather cameras, live YouTube webcams, observatory
 // webcams when the backend has a key). Markers come from the backend (/api/signals/:layer), which
 // fetches and caches each open source; clicking lists what is under the cursor, each opening the
 // operator's own page or stream in a new window (nothing third-party is embedded).
@@ -19,7 +19,7 @@ const pill = (label, on, onClick, extra = '') => {
   b.addEventListener('click', onClick);
   return b;
 };
-const COLOURS = { stations: '#66cc66', websdr: '#66ccff', radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', video: '#ffcc66', windy: '#cc99cc' };
+const COLOURS = { stations: '#66cc66', websdr: '#66ccff', radio: '#ff9900', kiwisdr: '#99ccff', traffic: '#cc6666', trafficcams: '#cc8866', worldcams: '#cc99cc', video: '#ffcc66' };
 
 // curated, bundled layer: observatory cams (#37) and volcano observatories
 const VIDEO = {

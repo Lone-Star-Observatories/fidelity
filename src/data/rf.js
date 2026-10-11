@@ -182,7 +182,8 @@ export function stationMedia(layer, marker) {
     if (extra && /\.mp4(\?|$)/i.test(extra)) return { video: 'mp4', src: extra, still: href, audio: false };
     return { video: 'image', src: href, audio: false };
   }
-  if (layer === 'windy') return extra ? { video: 'iframe', src: extra, audio: false } : { video: null, audio: false };
+  if (layer === 'worldcams') return marker[6]?.youtube ? { video: 'youtube', src: marker[6].youtube, audio: true } : { video: null, audio: false };
+  if (layer === 'trafficcams') return { video: null, audio: false }; // FAA/DOT cams: a page link, not embeddable
   if (layer === 'video') return marker[6]?.youtube ? { video: 'youtube', src: marker[6].youtube, audio: true } : { video: null, audio: false };
   return { video: null, audio: false };
 }

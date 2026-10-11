@@ -102,7 +102,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
-| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, `windy` with `FIDELITY_WINDY_KEY`) (`server/signals.js`) |
+| `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
 | `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
 | `GET /api/nebula-image/:key` | A landmark nebula's real image (allowlist: `src/data/nebula3d.js`), downloaded once to `data/nebulae/`, JPEG/PNG checked (`server/nebulae.js`) |

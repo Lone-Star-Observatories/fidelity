@@ -109,28 +109,19 @@ export function parseNzta(xml) {
   return out;
 }
 
-/** Windy Webcams API v3 → markers (needs FIDELITY_WINDY_KEY; the key never leaves the backend). */
-export function parseWindy(j) {
-  const out = [];
-  for (const w of j?.webcams ?? []) {
-    const lat = Number(w.location?.latitude), lon = Number(w.location?.longitude);
-    const href = httpUrl(w.urls?.detail) ?? httpUrl(w.player?.day);
-    if (!okLatLon(lat, lon) || !href) continue;
-    out.push([r4(lat), r4(lon), clip(w.title), href, `WINDY · ${clip([w.location?.city, w.location?.country].filter(Boolean).join(', '), 40).toUpperCase()}`, httpUrl(w.player?.day)]); // extra: Windy's embeddable player (COMMS on screen, #69)
-  }
-  return out;
-}
-
 // ---- local lists you supply (#69) ---------------------------------------------------------------
 // Files in data/ (gitignored): read locally, never committed or redistributed.
 //   stations: { "Place,CC": { coords: { n, e }, urls: [{ name, url }] } } — radio streams by city
 //   websdr:   [{ url, desc, qth, lat, lon, users, bands: [{ l, h (MHz), a (antenna) }], cont, show }]
+//   trafficcams / worldcams: GeoJSON FeatureCollections of public cameras (FAA/DOT pages; YouTube live webcams)
 const localFile = (env, ...parts) => process.env[env] || path.join(config.dataDir, ...parts);
 export const stationsFile = () => {
   const f = localFile('FIDELITY_STATIONS_FILE', 'stations', 'stations.json');
   return existsSync(f) ? f : path.join(config.dataDir, 'radio-garden', 'stations.json'); // the earlier location
 };
 export const websdrFile = () => localFile('FIDELITY_WEBSDR_FILE', 'websdr', 'sdrs.json');
+export const trafficCamsFile = () => localFile('FIDELITY_TRAFFICCAMS_FILE', 'trafficcams', 'cameras.geojson');
+export const worldCamsFile = () => localFile('FIDELITY_WORLDCAMS_FILE', 'worldcams', 'world-spots.geojson');
 
 const unhtml = (x) => String(x ?? '').replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 
@@ -177,6 +168,32 @@ export function parseWebSdrList(rows) {
     const range = lo != null ? `${lo < 1 ? lo.toFixed(2) : lo.toFixed(lo < 100 ? 1 : 0)}–${hi.toFixed(hi < 100 ? 1 : 0)} MHz` : null;
     out.push([r4(lat), r4(lon), clip(unhtml(r.desc), 90) || url, url, [range, `${bands.length} BAND${bands.length === 1 ? '' : 'S'}`, `${users} LISTENING`, clip(r.qth, 10).trim()].filter(Boolean).join(' · '),
       users > 0 ? 1 : 0, { bands, qth: clip(r.qth, 10).trim(), users }]);
+  }
+  return out;
+}
+
+/** FAA / state-DOT camera GeoJSON (livetrafficcam.com) → markers [lat, lon, name, official_url, detail]; live cameras only. */
+export function parseTrafficCams(geojson) {
+  const out = [], seen = new Set();
+  for (const f of geojson?.features ?? []) {
+    const [lon, lat] = f?.geometry?.coordinates ?? [];
+    const p = f?.properties ?? {}, url = httpUrl(p.official_url);
+    if (p.live_status !== 'live' || !url || !okLatLon(Number(lat), Number(lon)) || seen.has(url)) continue;
+    seen.add(url);
+    out.push([r4(Number(lat)), r4(Number(lon)), clip(p.name) || 'Camera', url, [clip(p.attribution ?? '', 40), p.state].filter(Boolean).join(' · ').toUpperCase()]);
+  }
+  return out;
+}
+/** World live-cam GeoJSON (public YouTube webcams) → markers [lat, lon, name, '', detail, null, { youtube }]; live only. */
+export function parseWorldCams(geojson) {
+  const out = [], seen = new Set();
+  for (const f of geojson?.features ?? []) {
+    const [lon, lat] = f?.geometry?.coordinates ?? [];
+    const p = f?.properties ?? {}, id = typeof p.video_id === 'string' ? p.video_id.replace(/[^A-Za-z0-9_-]/g, '') : null;
+    if (p.is_live === false || !id || !okLatLon(Number(lat), Number(lon)) || seen.has(id)) continue;
+    seen.add(id);
+    out.push([r4(Number(lat)), r4(Number(lon)), clip(p.name) || 'Live webcam', `https://www.youtube.com/watch?v=${id}`,
+      [clip(p.category ?? '', 20), clip(p.countryName ?? '', 40)].filter(Boolean).join(' · ').toUpperCase(), null, { youtube: id }]);
   }
   return out;
 }
@@ -235,20 +252,17 @@ export const LAYERS = {
       return ok;
     },
   },
-  windy: {
-    label: 'WEBCAMS · WINDY', kind: 'camera', ttl: 6 * HOUR, needsKey: 'FIDELITY_WINDY_KEY',
-    credit: 'Windy Webcams API (windy.com): webcams contributed by their owners. Needs a free API key in FIDELITY_WINDY_KEY on the backend.',
-    licence: 'Windy Webcams API terms (attribution, key required)', home: 'https://api.windy.com/webcams',
-    async get() {
-      const key = process.env.FIDELITY_WINDY_KEY;
-      const out = [];
-      for (let offset = 0; offset < 1000; offset += 50) { // the free tier pages 50 at a time
-        const page = parseWindy(await get(`https://api.windy.com/webcams/api/v3/webcams?limit=50&offset=${offset}&include=location,urls`, { headers: { 'x-windy-api-key': key } }));
-        out.push(...page);
-        if (page.length < 50) break;
-      }
-      return out;
-    },
+  trafficcams: {
+    label: 'TRAFFIC & WEATHER CAMS', kind: 'camera', ttl: 0, local: true, file: trafficCamsFile,
+    credit: 'FAA WeatherCams and state-DOT traffic cameras, from the file you supplied (data/trafficcams/cameras.geojson, via livetrafficcam.com). Only cameras marked live are shown; each links to its operating agency\'s own page.',
+    licence: 'Each camera carries its operating agency\'s attribution', home: 'https://livetrafficcam.com/',
+    async get() { return parseTrafficCams(JSON.parse(await fs.readFile(trafficCamsFile(), 'utf8'))); },
+  },
+  worldcams: {
+    label: 'LIVE WEBCAMS · WORLD', kind: 'camera', ttl: 0, local: true, file: worldCamsFile,
+    credit: 'Public live webcams broadcast on YouTube, from the file you supplied (data/worldcams/world-spots.geojson). Only streams marked live are shown; each is its channel\'s own public broadcast, embedded from YouTube.',
+    licence: 'Each webcam is its broadcaster\'s own public YouTube stream', home: 'https://www.youtube.com/',
+    async get() { return parseWorldCams(JSON.parse(await fs.readFile(worldCamsFile(), 'utf8'))); },
   },
 };
 

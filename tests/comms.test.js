@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseTransmitters, parseObservations, parseWeather } from '../server/comms.js';
-import { parseRadioBrowser, parseKiwiList, parseTfl, parseCaltrans, parseNzta, parseWindy, signalLayers } from '../server/signals.js';
+import { parseRadioBrowser, parseKiwiList, parseTfl, parseCaltrans, parseNzta, parseTrafficCams, parseWorldCams, signalLayers } from '../server/signals.js';
 import { updateLastSeen } from '../server/dsn.js';
 import { contactsFor, lastSeenFor, dishSize, ago, lightSeconds, formatLight } from '../src/data/comms.js';
 
@@ -74,16 +74,22 @@ test('Traffic cameras: TfL, Caltrans and NZTA', () => {
   assert.deepEqual(nz[0].slice(0, 4), [-43.9196, 171.7211, 'SH1 Tinwald', 'https://trafficnz.info/camera/714.jpg']);
 });
 
-test('Windy is optional: listed as needing a key, parsed when present', () => {
-  const saved = process.env.FIDELITY_WINDY_KEY;
-  delete process.env.FIDELITY_WINDY_KEY;
-  const w = signalLayers().layers.find((l) => l.id === 'windy');
-  assert.equal(w.available, false);
-  assert.equal(w.needsKey, 'FIDELITY_WINDY_KEY');
-  assert.ok(!JSON.stringify(signalLayers()).includes('x-windy-api-key'));
-  if (saved) process.env.FIDELITY_WINDY_KEY = saved;
-  const rows = parseWindy({ webcams: [{ title: 'Zermatt', location: { latitude: 46.02, longitude: 7.75, city: 'Zermatt', country: 'Switzerland' }, urls: { detail: 'https://windy.com/webcams/1' } }] });
-  assert.equal(rows[0][3], 'https://windy.com/webcams/1');
+test('camera layers from local GeoJSON: live only, entities and ids handled (#69)', () => {
+  assert.equal(signalLayers().layers.find((l) => l.id === 'windy'), undefined); // Windy removed
+  const tc = parseTrafficCams({ features: [
+    { geometry: { coordinates: [-150.97, 59.78] }, properties: { name: 'Bradley Lake', live_status: 'live', official_url: 'https://weathercams.faa.gov/x', attribution: 'Camera: FAA WeatherCams', state: 'AK' } },
+    { geometry: { coordinates: [-100, 40] }, properties: { name: 'Dead', live_status: 'dead', official_url: 'https://x/dead' } },
+    { geometry: { coordinates: [0, 0] }, properties: { name: 'NoCoord', live_status: 'live', official_url: 'https://x/z' } },
+  ] });
+  assert.equal(tc.length, 1);
+  assert.deepEqual(tc[0], [59.78, -150.97, 'Bradley Lake', 'https://weathercams.faa.gov/x', 'CAMERA: FAA WEATHERCAMS · AK']);
+  const wc = parseWorldCams({ features: [
+    { geometry: { coordinates: [7.15, 62.2] }, properties: { name: 'Eidsvatnet', category: 'bousai', countryName: 'Norway', is_live: true, video_id: 'v__vWu-ryq0' } },
+    { geometry: { coordinates: [1, 1] }, properties: { name: 'Off', is_live: false, video_id: 'zzz' } },
+  ] });
+  assert.equal(wc.length, 1);
+  assert.equal(wc[0][6].youtube, 'v__vWu-ryq0');
+  assert.equal(wc[0][3], 'https://www.youtube.com/watch?v=v__vWu-ryq0');
 });
 
 test('DSN helpers: body filters by code, last seen, dish size, ages and light time', () => {
