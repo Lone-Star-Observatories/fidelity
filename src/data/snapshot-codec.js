@@ -194,8 +194,7 @@ export function wrapBrotliSnapshot(original, compressed) {
   view.setUint32(12, compressed.length, true); view.setUint32(16, snapshotCrc32(original), true);
   bytes.set(compressed, 20); return bytes;
 }
-export function restoreSnapshotText(bytes, decodeBrotli) {
-  if (brotliMagic.every((value, index) => bytes[index] === value)) {
+function unwrapBrotliBytes(bytes, decodeBrotli) {
     if (bytes.length < 20 || typeof decodeBrotli !== 'function') throw Error('Invalid Brotli snapshot decoder or header.');
     const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
     const size = view.getUint32(8, true), payload = view.getUint32(12, true);
@@ -203,6 +202,11 @@ export function restoreSnapshotText(bytes, decodeBrotli) {
     const restored = decodeBrotli(bytes.subarray(20), size);
     if (!(restored instanceof Uint8Array) || restored.length !== size || snapshotCrc32(restored) !== view.getUint32(16, true)) throw Error('Invalid Brotli snapshot checksum or output.');
     if (brotliMagic.every((value, index) => restored[index] === value)) throw Error('Nested Brotli snapshot.');
+    return restored;
+}
+export function restoreSnapshotText(bytes, decodeBrotli) {
+  if (brotliMagic.every((value, index) => bytes[index] === value)) {
+    const restored = unwrapBrotliBytes(bytes, decodeBrotli);
     return restoreSnapshotText(restored);
   }
   if (numericNibbleMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes, true);
@@ -359,7 +363,8 @@ export function unpackDenseSnapshotBytes(packed) {
 }
 
 // FIDAPP01 transposes JavaScript numeric token spellings; plain modules remain supported.
-export function restoreApplicationText(bytes) {
+export function restoreApplicationText(bytes, decodeBrotli) {
+  if (brotliMagic.every((value, index) => bytes[index] === value)) return restoreApplicationText(unwrapBrotliBytes(bytes, decodeBrotli));
   const decoder = new TextDecoder('utf-8', { fatal: true });
   if (![70, 73, 68, 65, 80, 80, 48, 49].every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
