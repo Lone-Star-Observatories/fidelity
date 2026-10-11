@@ -1,5 +1,5 @@
 // Individual researched hypotheses; actual maps retain priority.
-export const BODY_VISUALS ={
+export const BODY_VISUALS = {
   "ceres": {
     "id": "ceres",
     "name": "Ceres",
@@ -9506,6 +9506,222 @@ export const BODY_VISUALS ={
       "previewSha256": "d2a64423b360f24a38601c14dd5bb068170f1d969b2a2552b95748c5dafd2c99",
       "bytes": 238544,
       "previewBytes": 6889,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "nereid": {
+    "id": "nereid",
+    "name": "Nereid",
+    "aliases": [
+      "Nereid"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture.",
+    "measured": [
+      "Voyager2; precise camera/filter/PDS association remains open; observed1989-08-24/imageaddition1996-01-29. Tiny monochrome disk on black background; unresolved terrain. No map adopted, no analog skin, no calibrated visible colour or geography.",
+      "Disk-integrated spectral absorptions support crystalline water ice; spectral slopes and band depths differ from sampled Kuiper-belt objects. This is not a local chemistry map or resolved visible terrain.",
+      "4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date."
+    ],
+    "modelled": [
+      "Unidentified dark material and regular-satellite origin remain interpretations. N-body simulations provide plausible evolution after Triton capture, not a directly observed history or posterior probability of origin. Supplement shows ejected/destroyed Triton and other outcomes. Unsampled Nereid-like KBOs are not ruled out. No local fractions, current ocean/plume/biology, calibrated visible colour, D/H or isotope values adopted.",
+      "skyGeometry representative near-pericentre Neptune2.0553925951321026deg29.993352422815754targetpx at1672, nominal90HFOV; semimajor-axis7.466523474993202px and apoapse4.26406314941274px are assumed orbital scenarios, not dated geometry."
+    ],
+    "unknown": [
+      "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture.",
+      "Local material fractions, atmosphere, camera/filter/PDS association, rotation/orbit cross-reference and dated scene registration remain unverified. Recent disk-integrated spectra do not map Voyager pixels."
+    ],
+    "assumed": [
+      "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+      "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+      "Threshold chords are phase/exposure/background sensitive, oversized, not a calibrated full diameter. Eccentric unlocked orbit: assumed distance/attitude/phase, no dated ephemeris or permanently Neptune-facing site. Mean spherical radius omits oblateness; ring omission artistic, not invisibility. 60K helper used only for angular geometry, not photometry/colour. No Sun disk.",
+      "Row181 thresholds5/10/20 spans151/43/41 versus29.993352target: oversized/background-sensitive, not calibrated full diameter. Compact footers/tiny Neptune require card labels. Black sky assumes no conspicuous haze, not measured absence of atmosphere or calibrated transmission. Sun30.07AU off-frame angular helper only."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/nereid/",
+        "title": "NASA Voyager2 Nereid PIA00054",
+        "observationDate": "1989-08-24",
+        "publicationDate": "1996-01-29",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://authors.library.caltech.edu/records/3d4cc-g7952",
+        "title": "Nereid as a regular satellite of Neptune",
+        "authors": [
+          "Matthew Belyakov",
+          "M. Ryleigh Davis",
+          "Ian Wong",
+          "Konstantin Batygin",
+          "Michael E. Brown"
+        ],
+        "doi": "10.1126/sciadv.aeb1429",
+        "publicationDate": "2026-05-20",
+        "issueDate": "2026-05-22",
+        "terms": "Published PDF and Caltech record explicitly CC BY4.0, authors/AAAS notice retained; no figure embedded. Arxiv author version permission/nonexclusive status must be assessed separately.",
+        "sha256": "51a9d8cc3d63d44839c7875c07dd8b8d57b11b57f521d61b1345160a3e85ece4",
+        "observations": {
+          "date": "2024-11-23",
+          "startUTC": "03:28:53",
+          "endUTC": "05:24:45",
+          "program": 4645,
+          "instrument": "JWST NIRSpec IFU PRISM",
+          "wavelengthMicrons": [
+            0.6,
+            5.3
+          ],
+          "nominalResolvingPower": [
+            30,
+            300
+          ],
+          "dithers": 4,
+          "exposurePerDitherSeconds": 160.5,
+          "archive": "https://doi.org/10.17909/2bj1-h545",
+          "analysisArchive": "https://doi.org/10.22002/gf82m-rzz66"
+        }
+      },
+      {
+        "url": "https://doi.org/10.17909/2bj1-h545",
+        "title": "JWST NIRSpec program4645 observations"
+      },
+      {
+        "url": "https://doi.org/10.22002/gf82m-rzz66",
+        "title": "Nereid analysis data"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "product": "PIA00054",
+        "credit": "NASA/JPL",
+        "sourcePage": "https://science.nasa.gov/photojournal/nereid/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance, not asserted CC BY",
+        "observationDate": "1989-08-24",
+        "imageAdditionDate": "1996-01-29",
+        "instrument": "Voyager2; precise camera/filter/PDS association remains open",
+        "inspection": "Tiny monochrome disk on black background; unresolved terrain. No map adopted, no analog skin, no calibrated visible colour or geography.",
+        "captionLimits": "4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date.",
+        "url": "/bespoke/nereid-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "bytes": 1099,
+        "sha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+        "path": "data/research-sources/nereid-PIA00054-original.jpg",
+        "width": 200,
+        "height": 200,
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nereid/",
+        "tier": "measured",
+        "terms": "NASA media guidance, not asserted CC BY",
+        "publicationDate": "1996-01-29",
+        "description": "Actual Voyager2 tiny unresolved Nereid disk; not resolved terrain, calibrated visible colour or registered geography.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. TIFF retained. 4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL NEREID TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM NEREID — ASSUMED NEAR-PERICENTRE",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "neptuneMeanRadiusKm": 24622,
+      "nereidCatalogueRadiusKm": 170,
+      "assumedNearPericentre": {
+        "centreDistanceKm": 1372961.1,
+        "observerDistanceKm": 1372791.1,
+        "angularDiameterDeg": 2.0553925951321026,
+        "targetPixelsAt1672": 29.993352422815754
+      },
+      "semimajorAxisScenario": {
+        "centreDistanceKm": 5513900,
+        "observerDistanceKm": 5513730,
+        "angularDiameterDeg": 0.5117194247417983,
+        "targetPixelsAt1672": 7.466523474993202
+      },
+      "apoapseScenario": {
+        "centreDistanceKm": 9654838.899999999,
+        "observerDistanceKm": 9654668.899999999,
+        "angularDiameterDeg": 0.292239584183711,
+        "targetPixelsAt1672": 4.26406314941274
+      },
+      "nominalHorizontalFovDeg": 90,
+      "thresholdRuns": [
+        {
+          "row": 181,
+          "threshold": 5,
+          "width": 151
+        },
+        {
+          "row": 181,
+          "threshold": 10,
+          "width": 43
+        },
+        {
+          "row": 181,
+          "threshold": 20,
+          "width": 41
+        }
+      ],
+      "limits": "Threshold chords are phase/exposure/background sensitive, oversized, not a calibrated full diameter. Eccentric unlocked orbit: assumed distance/attitude/phase, no dated ephemeris or permanently Neptune-facing site. Mean spherical radius omits oblateness; ring omission artistic, not invisibility. 60K helper used only for angular geometry, not photometry/colour. No Sun disk."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/nereid-surface-image.jpg",
+      "previewUrl": "/bespoke/nereid-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nereid-generated-surfaceImage-original.png",
+      "sourceSha256": "1389e85b5fae54d84277096da5026ae122aa8dee24c86b77375990b40c68e3cd",
+      "sha256": "4b9fa61ddca064950ce00a342d188a4a0434b0ac94dfe546bd164a33989403c6",
+      "previewSha256": "d34455d8a960f79bfa7bcc2c83e8cc0f850038d535547a014c1757bf274190ae",
+      "bytes": 336538,
+      "previewBytes": 10526,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/nereid-sky-image.jpg",
+      "previewUrl": "/bespoke/nereid-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nereid-generated-skyImage-original.png",
+      "sourceSha256": "46f13c6b88b73026e5b5f7aeba352bfe78c38929420766275af80a2cf3228811",
+      "sha256": "d98d0f511ce8f4c578520d8e8cddfb78c89921f22e6d9afb563554fcd1a0ef53",
+      "previewSha256": "f1327d06119e298eade4e97e8b5d149f67f655d320160045123fab51ebf4827c",
+      "bytes": 307207,
+      "previewBytes": 8166,
       "width": 1536,
       "height": 864,
       "previewWidth": 256,
