@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-11",
+  "body": "Triton",
+  "status": "Research-only observer original prepared; no66th dossier or new embedding",
+  "prompt": "Use case: illustration-story. Scientific hypothetical observer card for Fidelity, wide 16:9 1672x941. Independently imagined view from Triton icy foreground toward Neptune. New low frost-like pale grey/pinkish terrain with shallow depressions, small blocks and modest distant ridges, no reuse of any observed moon/planet map or registered Voyager location. Nearly black sky; Triton has a real very tenuous nitrogen atmosphere, no conspicuous haze is an artistic transparency assumption, not an airless claim or calibrated transmission. Place a small pale blue-grey Neptune disk in upper middle, centre approximately x=960 y=220, full globe diameter about117 pixels in this1672wide image, using shared skyGeometry7.9892137degree angular diameter with nominal90degree horizontalFOV. Show broad very subtle independently invented cloud bands, modest near-full phase. Colour, band morphology, phase, lighting, exposure, camera axis and attitude are assumed, not dated ephemeris or calibrated visible colour. Mean spherical Neptune approximation omits oblateness. Do not reuse Neptune observed surface artwork. Rings omitted as artistic exposure choice, not proof of invisibility. No Sun, stars or other disks; off-frame dim Sun. No plumes, geysers, liquid, exposed ocean, biology, craft, people or survivable landing implication. Text clear lower-left: \"IMAGINED SKY FROM TRITON\". Smaller footer: \"Assumed attitude, colour and atmosphere transparency\". Restrained scientific photographic illustration.",
+  "original": {
+    "path": "data/research-sources/triton-generated-skyImage-original.png",
+    "bytes": 2616819,
+    "sha256": "f389b1c5790ffea81e471c9388addacd600f2dcb9048e27f535d272e8ad7e613",
+    "width": 1672,
+    "height": 941,
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2d94da41-888f-4920-98ee-fc1f10b1953d.png"
+  },
+  "inspection": "Independent IMAGINED foreground and Neptune disk; no rings, Sun, stars, plume, liquid, biology or craft. Image labels present. Neptune visibly oversized; row threshold chords remain uncalibrated.",
+  "geometry": {
+    "method": "skyGeometry",
+    "meanNeptuneRadiusKm": 24622,
+    "representativeCentreDistanceKm": 354800,
+    "tritonRadiusKm": 1353.4,
+    "observerDistanceKm": 353446.6,
+    "nominalHorizontalFovDeg": 90,
+    "angularDiameterDeg": 7.9892136658463535,
+    "targetDiskWidthAt1672": 116.75947815585727,
+    "thresholdRuns": [
+      {
+        "threshold": 5,
+        "row": 230,
+        "width": 350
+      },
+      {
+        "threshold": 10,
+        "row": 230,
+        "width": 184
+      },
+      {
+        "threshold": 20,
+        "row": 230,
+        "width": 173
+      }
+    ],
+    "limitations": "Threshold chords are phase/exposure-sensitive, not calibrated full diameter. Mean spherical approximation omits oblateness. Camera/axis attitude, colour, invented bands, phase, lighting and exposure assumed; no dated ephemeris. 60K angular helper only, not photometry. Real tenuous N2 atmosphere; nearly black sky is assumed transparency, not airless or calibrated transmission. Rings omitted artistically, not proof of invisibility."
+  },
+  "limitations": "No analog map or registered Voyager/globe site. Terrain, frost-like texture, chemistry/fractions, Neptune bands and colour invented. No active plume, exposed ocean/liquid, biology or survivable landing implication.",
+  "sources": [
+    "docs/research/triton-moon-preparation-2026-10-11.json"
+  ],
+  "next": "Additive individual dossier budget trial with preserved own map/native sources and all65 previous dossiers.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15951565,
+    "headroomBytes": 48435,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "3ec247d2a9999b6fbfbad17e12c4ae623ee6bd355d076e826ff8918d483d03cf",
+      "raw": "aeab3073e01d4f065368aacb91c50724cfed383080bed4e1b9953918bd20da88",
+      "magic": "FIDBRT01",
+      "images": 228,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15951565,
+      "compressedBytes": 785947,
+      "applicationSha256": "15f4c6136e014d652ed945308f4a7d8a6397fb64a23aae386e2cb3720c1da52d",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All65 registry dossiers and362 tracked registry/bespoke/map/model/shape inputs byte-identical to HEAD; native hashes and normal/offline Oberon own-map3cards verified. All original PNGs/default copies/native science and provenance retained.",
+    "snapshotDifferencePaths": [
+      "snapshot.bandImages./api/feed/sdo-171?size=preview.src",
+      "snapshot.bandImages./api/feed/sdo-171?size=preview.time",
+      "snapshot.bandImages./api/feed/sdo-171?size=preview.disk",
+      "snapshot.bandImages./api/feed/sdo-304?size=preview.src",
+      "snapshot.bandImages./api/feed/sdo-304?size=preview.time",
+      "snapshot.bandImages./api/feed/sdo-304?size=preview.disk",
+      "snapshot.bandImages./api/feed/sdo-1600?size=preview.src",
+      "snapshot.bandImages./api/feed/sdo-1600?size=preview.time",
+      "snapshot.bandImages./api/feed/sdo-1600?size=preview.disk",
+      "snapshot.bandImages./api/feed/sdo-94?size=preview.src",
+      "snapshot.bandImages./api/feed/sdo-94?size=preview.time",
+      "snapshot.bandImages./api/feed/sdo-94?size=preview.disk",
+      "snapshot.bandImages./api/feed/sdo-193?size=preview.src",
+      "snapshot.bandImages./api/feed/sdo-193?size=preview.time",
+      "snapshot.bandImages./api/feed/sdo-193?size=preview.disk"
+    ],
+    "attribution": "Direct interbuild JSON diff only15SDO src/time/disk fields. No asset/compression savings attribution. Other browser engines remain open. Production codecs unchanged; no66th dossier/new embedding."
+  }
+}
