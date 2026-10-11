@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-10",
+  "status": "Research-only independent observer preparation; no59th dossier/new embedding.",
+  "generator": "Built-in image_gen; no references",
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity hypothetical sky from Iapetus, wide 16:9 illustration.\nGenerate an independent IMAGINED observer scene from an unregistered Iapetus site. No reference image or observed body map reuse. Low narrow foreground of invented dark granular cratered terrain and angular blocks under black airless sky.\nSaturn is a SMALL pale muted globe near upper middle, approximately27pixels globe diameter in1672px wide image, nominal90degree horizontal FOV. skyGeometry spherical Saturn58232km at3561700minus734.5km gives1.87398420677degrees and widthfraction.016355055295. Rings may extend beyond globe, but are not part of that diameter.\nShow a modest open ring ellipse as an EXPLICITLY ASSUMED orbital/camera phase illustration: Iapetus inclined orbit means ring opening varies, so do not inherit an always edge-on ring view. No date, site, ephemeris or calibrated opening angle claimed. Globe bands, ring brightness, orientation, phase and illumination are schematic invented features, no Jupiter/Saturn photograph template. Blackbody95K helper is angular only and must not dictate visible orange globe.\nSmall planet must remain small and retain wide empty sky; no giant dramatic Saturn. No visible Sun or stars, atmosphere, haze, clouds, plume, liquid, ocean, biology, craft or astronaut. No survivable landing or permanent registered Saturn-facing site claim.\nLarge exact label upper left \"IMAGINED \u2014 SKY FROM IAPETUS\". Lower left \"ASSUMED CAMERA AND RING ORIENTATION\". Invented terrain, chemistry/fractions, colour, exposure and light are artistic.",
+  "original": {
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-eb30e15b-e935-416f-b983-6d4c363845f8.png",
+    "path": "data/research-sources/iapetus-generated-skyImage-original.png",
+    "bytes": 1630656,
+    "sha256": "3cab827f76887809cee11626163c4484acf1a57b03c58e5094d4f4a1789269f3",
+    "width": 1672,
+    "height": 941
+  },
+  "inspected": true,
+  "geometry": {
+    "radiusKm": 58232,
+    "representativeDistanceKm": 3560965.5,
+    "angularDiameterDeg": 1.8739842067705352,
+    "centreDiscWidthFraction": 0.016355055294701642,
+    "irradianceEarth": 9.0736877390816e-07,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical semimajor representative;95K colour/irradiance not used for visible appearance. Inclined orbit means variable ring opening; depicted phase/camera/ring orientation assumed, no dated site/ephemeris or calibrated opening angle.",
+    "targetGlobePixels": 27.345652452741145
+  },
+  "rasterAssessment": {
+    "row": 240,
+    "thresholds": [
+      5,
+      10,
+      20
+    ],
+    "brightChordWidths": [
+      49,
+      49,
+      49
+    ],
+    "limits": "Row240 thresholds measure49px spans contaminated by ring pixels; not adopted as a globe diameter. Visual globe appears oversized relative27.345652px target. Rings excluded from geometric target; precise globe-only raster calibration remains open."
+  },
+  "limitations": "Invented terrain/blocks/chemistry fractions/Saturn bands/rings/phase/light/colour/exposure. No analog body map, registered Cassini/globe site, atmosphere, haze, plume, liquid, ocean, biology, craft or survivable landing. No permanent Saturn-facing site claim. Small preview label readability pending.",
+  "next": "Masters/recorded previews and lossless headroom essential before additive integration.",
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15997398,
+    "headroom": 2602,
+    "completeBrowserSnapshotSha256": "00fee24d72c45cef5d99a7d357d738636b381c134ffad975c1d80e39ab2c5544",
+    "exactApplicationSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+    "checks": "Chrome complete JSON/app/CSS/HTMLparser equality207images20bands517details32models allnativehashes normalofflineHyperion3cards6routesunsupported11worker; other engines open.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/time"
+    ],
+    "attribution": "No asset savings attribution; research-only original not embedded."
+  },
+  "preservation": {
+    "dossiers": 58,
+    "trackedMapModelShapeFiles": 69,
+    "allEqualHEAD": true
+  }
+}
