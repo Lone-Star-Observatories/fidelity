@@ -478,7 +478,9 @@ arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circul
 giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
 local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%
 of each. Body panels (`src/panels/transfer.js`) list the next windows with Hohmann and synodic facts and an
-explainer diagram; picking one draws the transfer in the System View (`setTransfer`: thick dashed arc, departure and
+explainer diagram. The list follows the ship's clock: each search remembers the date it ran from, and
+`windowsStale()` triggers a new search when the clock goes back before that date or past all but the last window.
+Searches are throttled to one every 1.5 s while the clock runs. Picking a window draws the transfer in the System View (`setTransfer`: thick dashed arc, departure and
 arrival markers, a ghost craft riding it while the clock is inside the flight) and opens the porkchop
 (`src/panels/porkchop.js`: departure × arrival grid shaded by C3 on a one-hue ramp, marching-squares contours,
 optimum ringed, hover readout, click to fly a cell). Mars offers a check against Perseverance's Horizons cruise.

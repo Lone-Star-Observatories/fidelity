@@ -1529,7 +1529,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
+setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (['planet', 'moon', 'object'].includes(route.level)) transferPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
 setInterval(() => { if (settings.get('fields') && system.model?.isSol) magneticPanel.refreshWind(); }, 60000); // Earth's magnetopause follows the live solar wind (#38)
 settings.onChange((k, v) => { if (k === 'fields' && v) magneticPanel.refreshWind(); });

@@ -78,3 +78,16 @@ test('contours: marching squares finds the level crossings', () => {
   assert.equal(segs.length, 4);
   for (const [x1, y1, x2, y2] of segs) assert.ok([x1, y1, x2, y2].every((v) => v >= 0.5 && v <= 1.5));
 });
+
+test('launch windows: a search goes stale when the clock leaves what it covered', async () => {
+  const { windowsStale, upcoming } = await import('../src/astro/transfer.js');
+  const w = (o, c) => ({ opens: o, closes: c, best: {} });
+  const e = { fromJd: 1000, ws: [w(1100, 1150), w(1900, 1950), w(2700, 2760)] };
+  assert.equal(windowsStale(e, 1000), false);
+  assert.equal(windowsStale(e, 1120), false); // inside the first window: still the next one
+  assert.equal(upcoming(e, 1200).length, 2);
+  assert.equal(windowsStale(e, 1960), true); // only the last window remains: search again from here
+  assert.equal(windowsStale(e, 900), true); // the clock went back before the search
+  assert.equal(windowsStale({ fromJd: 1000, ws: [] }, 1020), false);
+  assert.equal(windowsStale({ fromJd: 1000, ws: [] }, 1100), true);
+});

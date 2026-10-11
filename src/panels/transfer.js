@@ -3,7 +3,7 @@
 // View; a Hohmann/synodic explainer; and, for Mars, a check against Perseverance's real path.
 // Everything is COMPUTED from the app's ephemeris (Standish/SBDB elements) and Izzo's Lambert solver.
 
-import { planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv } from '../astro/transfer.js';
+import { planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv, upcoming, windowsStale } from '../astro/transfer.js';
 import { smallBodyPosition } from '../astro/smallbodies.js';
 import { ELEMENTS } from '../astro/kepler.js';
 import { porkchopSvg } from './porkchop.js';
@@ -50,8 +50,40 @@ export function targetFor(b, bodies) {
 }
 
 export function createTransferPanel({ h, pill, row, system, clock, toast, $, badge }) {
-  const cache = new Map(); // body id → windows
+  const cache = new Map(); // body id → { fromJd, ws }: the windows searched from that date
   let shown = null; // { body, x }
+  let live = null; // the open launch-window section: { key, t, box, render }
+  let lastSearch = 0, searching = false;
+
+  /** Search the next windows for target `t` from the clock's date (a few tens of ms of Lambert solves). */
+  function search(t) {
+    const fromJd = Math.floor(clock.jd);
+    const years = t.aAu > 6 ? 14 : t.aAu > 3 ? 10 : 7;
+    let ws = [];
+    try { ws = launchWindows(t, fromJd, { aAu: t.aAu, years, stepDays: t.aAu > 3 ? 8 : 4, count: 5, minGapDays: Math.max(120, 0.6 * synodicDays(365.25636, t.periodDays)) }); } catch (err) { console.warn('windows', err); }
+    return { fromJd, ws };
+  }
+  /**
+   * Re-run the search when the clock leaves what it covered: before its start, or past all but the
+   * last window (so the list always shows the next ones). Throttled while the clock runs fast.
+   */
+  function refresh(first = false) {
+    if (!live) return;
+    if (!live.box.isConnected && !first) { live = null; return; }
+    const e = cache.get(live.key);
+    if (e && !windowsStale(e, clock.jd)) { live.render(); return; }
+    const now = performance.now();
+    if (searching || (!first && now - lastSearch < 1500)) return;
+    lastSearch = now; searching = true;
+    const l = live;
+    if (e) l.box.replaceChildren(h('p', { className: 'note', textContent: `THE CLOCK MOVED · SEARCHING WINDOWS FROM ${iso(clock.jd)}…` }));
+    setTimeout(() => {
+      try { cache.set(l.key, search(l.t)); } finally { searching = false; }
+      l.shownSig = null;
+      if (l.box.isConnected) l.render();
+    }, 30);
+  }
+  clock.onChange(() => refresh());
 
   function show(x, t, compare = null) {
     shown = { body: t.id, x };
@@ -98,19 +130,19 @@ export function createTransferPanel({ h, pill, row, system, clock, toast, $, bad
         pill('PORKCHOP ▸', () => openPorkchop(w, t)),
         pill('CLEAR', () => { system.setTransfer(null); sel.replaceChildren(); })));
     };
-    const windowRow = (w) => h('button', { className: 'host-row event-row', title: 'Click to draw this transfer and set the clock to its departure.', onclick: () => pick(w) },
-      h('span', { textContent: `${iso(w.opens)} – ${iso(w.closes)}` }),
+    const windowRow = (w, jd) => h('button', { className: 'host-row event-row', title: 'Click to draw this transfer and set the clock to its departure.', onclick: () => pick(w) },
+      h('span', { textContent: `${iso(w.opens)} – ${iso(w.closes)}${w.opens <= jd ? ' · OPEN NOW' : ''}` }),
       h('span', { className: 'mono', textContent: `BEST ${iso(w.best.depJd)} · ${days(w.best.tofDays)} · C3 ${w.best.c3.toFixed(1)} · ΔV ${w.best.dvTotal.toFixed(1)} KM/S` }));
-    const fill = (ws) => box.replaceChildren(...(ws.length ? ws.map(windowRow) : [h('p', { className: 'note', textContent: 'NO DIRECT WINDOW FOUND IN THE NEXT DECADE.' })]));
-    const key = b.id;
-    if (cache.has(key)) fill(cache.get(key));
-    else setTimeout(() => {
-      const years = t.aAu > 6 ? 14 : t.aAu > 3 ? 10 : 7;
-      let ws = [];
-      try { ws = launchWindows(t, Math.floor(clock.jd), { aAu: t.aAu, years, stepDays: t.aAu > 3 ? 8 : 4, count: 5, minGapDays: Math.max(120, 0.6 * synodicDays(365.25636, t.periodDays)) }); } catch (err) { console.warn('windows', err); }
-      cache.set(key, ws);
-      if (box.isConnected) fill(ws);
-    }, 30);
+    live = { key: b.id, t, box, shownSig: null, render() {
+      const e = cache.get(b.id), jd = clock.jd;
+      if (!e) return;
+      const ws = upcoming(e, jd), sig = ws.map((w) => `${w.opens}:${w.opens <= jd}`).join() || `none:${e.fromJd}`;
+      if (sig === this.shownSig) return; // unchanged: keep the rows (and any hover) as they are
+      this.shownSig = sig;
+      box.replaceChildren(...(ws.length ? ws.map((w) => windowRow(w, jd)) : [h('p', { className: 'note', textContent: 'NO DIRECT WINDOW FOUND IN THE NEXT DECADE.' })]),
+        h('p', { className: 'note', textContent: `SEARCHED FROM ${iso(e.fromJd)} · FOLLOWS THE SHIP'S CLOCK` }));
+    } };
+    refresh(true);
     const hm = hohmann(1, Math.max(0.3, t.aAu)), syn = synodicDays(365.25636, t.periodDays);
     const facts = h('dl');
     row(facts, 'HOHMANN', `${days(hm.tofDays)} · ΔV ${injectionDv(hm.dv1).toFixed(2)} KM/S FROM LEO`, 'computed', 'Idealised circular, coplanar orbits at the mean distance: the textbook minimum.');
@@ -142,5 +174,5 @@ export function createTransferPanel({ h, pill, row, system, clock, toast, $, bad
     poll();
   }
 
-  return { section, get shown() { return shown; } };
+  return { section, tick: () => refresh(), get shown() { return shown; } };
 }

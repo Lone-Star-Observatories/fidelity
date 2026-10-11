@@ -139,3 +139,12 @@ export function transferPosition(x, jd) {
   if (jd < x.depJd || jd > x.arrJd) return null;
   return propagate(MU_SUN, x.r1, x.v1, (jd - x.depJd) * DAY).r.map((c) => c / AU);
 }
+
+/** Windows of a search `e` = { fromJd, ws } still to come at `jd` (one that has opened but not closed counts). */
+export const upcoming = (e, jd) => e.ws.filter((w) => w.closes >= jd);
+/** Whether a search no longer answers "the next windows" at `jd`: it started later, or fewer than two (or none) remain. */
+export function windowsStale(e, jd) {
+  if (jd < e.fromJd - 1) return true;
+  if (!e.ws.length) return Math.abs(jd - e.fromJd) > 30;
+  return upcoming(e, jd).length < Math.min(2, e.ws.length);
+}
