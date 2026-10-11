@@ -1,0 +1,79 @@
+{
+  "status": "Research-only native preparation; no57th dossier/new embedding",
+  "body": "Titan",
+  "sourceRecords": [
+    {
+      "url": "https://esawebb.org/media/archives/images/large/weic2511b.jpg",
+      "path": "data/research-sources/titan-webb-keck-weic2511b.jpg",
+      "bytes": 283288,
+      "sha256": "194cb477cfec21e12a8704d443eaa89fce6c62092a30d52965cc10b09b0b284e",
+      "width": 2576,
+      "height": 1634,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://esawebb.org/images/weic2511b/",
+      "path": "data/research-sources/titan-webb-keck-caption.html",
+      "bytes": 69521,
+      "sha256": "87dd956a349a7dd35845243036459edce2fe0bc98a41da9e25a33763f92d056c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Titan/Saturn%20-%20Titan.jpg",
+      "path": "data/research-sources/titan-nasa3d-source.jpg",
+      "bytes": 49233,
+      "sha256": "a213516e3ccbe46bfbdb576963859c82c75799612ccab775ec3cf24b451feca0",
+      "width": 720,
+      "height": 360,
+      "format": "jpeg"
+    },
+    {
+      "path": "data/textures/titan.jpg",
+      "bytes": 49233,
+      "sha256": "a213516e3ccbe46bfbdb576963859c82c75799612ccab775ec3cf24b451feca0",
+      "sourceByteEqual": true
+    }
+  ],
+  "native": {
+    "product": "weic2511b",
+    "sourcePage": "https://esawebb.org/images/weic2511b/",
+    "observationDates": [
+      "2023-07-11 Webb",
+      "2023-07-14 Keck"
+    ],
+    "publicationDate": "2025-05-14",
+    "credit": "NASA, ESA, CSA, STScI, Keck Observatory",
+    "termsUrl": "https://esawebb.org/copyright/",
+    "inspected": true,
+    "limits": [
+      "Six-panel infrared collage with arrows and atmospheric-layer labels; not local terrain or calibrated visible colour.",
+      "Webb composite F140M/F150W/F200W blue/green/red; Keck H2 1-0/Kp/He1b blue/green/red. Middle2.12micron and right1.64Webb/2.17Keck probe different atmospheric depths; no geographic registration asserted.",
+      "Evidence for upward cloud evolution does not directly observe precipitation. Release2025 is not observation2025.",
+      "No exhaustive newest-observation claim; exact science product/calibration audit pending."
+    ],
+    "terms": "ESA/Webb CC BY4.0, full unaltered image credit and active links required; scientific papers excluded from blanket website licence."
+  },
+  "ownGlobe": "NASA3D globe byte-equal fetched source; underlying product/frame/coverage/inputepochs/photometry remain open.",
+  "primary": {
+    "url": "https://arxiv.org/abs/2505.10655",
+    "title": "The Atmosphere of Titan in Late Northern Summer from JWST and Keck Observations",
+    "submitted": "2025-05-15",
+    "doi": "10.1038/s41550-025-02537-3",
+    "assessment": "Abstract only, Conor A.Nixon and44 coauthors; no full-paper or paper-figure embedding claim. Methyl radical and non-LTE CO/CO2 spectroscopy separate from cloud images, not local terrain chemistry/fractions or biology.",
+    "fullPaperAudit": "open",
+    "license": "The arXiv record links explicitly to CC BY4.0; separate from the ESA/Webb website paper exclusion. Full-paper audit remains open.",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "next": "Audit Huygens native surface imagery and primary paper; independently generated local/observer hypotheses need haze/transmission limits and skyGeometry; recover lossless headroom before embedding.",
+  "verification": {
+    "all56DossiersDeepEqual": true,
+    "testsPassed": 452,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "failed hard16MB gate",
+    "attemptedHtmlBytes": 16004831,
+    "overBudgetBytes": 4831,
+    "upstream": "2b04560 postcards preserved",
+    "newSuccessfulOfflineArtifact": false,
+    "newFullBrowserVerification": false
+  }
+}
