@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no61st dossier or new embedding.",
+  "body": "Miranda",
+  "generation": {
+    "tool": "built-in image_gen",
+    "mode": "independent new generation; no reference image",
+    "prompt": "Create one independent research-guided hypothetical observer illustration for the Fidelity astronomy explorer: local terrain on Miranda, Uranus's moon. Landscape 16:9. Eye-level robotic camera above a small invented patch of cold pale gray granular regolith, scattered angular blocks, low overlapping ridges and a modest fault scarp in the distance. Airless sharp horizon with black sky; low oblique artistic illumination. Restrained neutral gray colours, fine texture, scientifically cautious illustration. Miranda's Voyager southern terrain includes cratered and tectonically varied provinces, but this scene must be independently invented, NOT copied or registered to Voyager or any map. Do not use images/maps/textures of the Moon, Mars, Pluto or any other observed body. No Uranus, rings, Sun, stars, other astronomical disks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, people or spacecraft. No landing/survival implication. All local slopes, stones, grain sizes, chemistry and proportions, colour, exposure and illumination are invented. No interior or ocean shown; tidal-heating/ocean models are hypotheses. Clear legible upper-left title exactly 'MIRANDA · IMAGINED LOCAL VIEW'. Small lower-left footer exactly 'Invented terrain · no dated site registration'. Single cinematic landscape image, not a collage, diagram or globe.",
+    "defaultOriginalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ccdeaab9-9424-4927-b05b-72d2334e2649.png",
+    "researchCopy": "data/research-sources/miranda-generated-surfaceImage-original.png",
+    "bytes": 3282922,
+    "sha256": "94efe92559a3cbe2e2147854ce3fa3a9324387bf32cbf57b0cb0e6da4e89aa0a",
+    "width": 1672,
+    "height": 941,
+    "inspected": true,
+    "limitations": "IMAGINED label and invented-terrain footer visible. Independently invented regolith, ridges, fault scarp, blocks, slopes, grain sizes, chemistry/fractions, colour, light and exposure; not a dated Voyager/globe-registered site. No analog body map, atmosphere, plume, liquid, exposed ocean, biology or survivable landing. No astronomical disk appears, so no angular/raster computation or claim is made."
+  },
+  "compactNative": {
+    "product": "PIA18185",
+    "path": "data/research-sources/miranda-PIA18185-display320.jpg",
+    "sourceUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+    "bytes": 25272,
+    "sha256": "7fc2c3fde06ed70f6c0c02bbe6ebad7e9a40fccf69ddc5b6845258fa73b4518a",
+    "width": 318,
+    "height": 320,
+    "inspected": true,
+    "credit": "NASA/JPL-Caltech",
+    "observed": "1986-01-24",
+    "publisherImageAdditionDate": "1986-01-25",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limitations": "Unchanged NASA-served publisher rendition. Publisher resize/re-encoding, not full pixel preservation; full60745byte571x574 original retained. Monochrome not calibrated visible colour, resolved global geography or dated local registration; NASA media guidelines not asserted CC BY. Query320 results318x320 actual dimensions."
+  },
+  "preservation": "All60 dossiers and every original/master/native/map/model/shape input preserved. No master/preview/import or catalogue change.",
+  "open": [
+    "Independent Uranus observer geometry and camera/ring/phase assumptions using skyGeometry.",
+    "Masters and recorded compact previews; readable card labels needed for small annotations.",
+    "Lossless headroom before embedding; compact native25272bytes alone exceeds previous24394headroom, actual HTML increment requires a build.",
+    "Full primary heating/interior audit and globe frame/coverage/photometry remain open."
+  ],
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975080,
+    "headroomBytes": 24920,
+    "completeSnapshotSha256": "2932d22beb1daa1547a010003b236956d303eb79534068064949e10ccc7a4ac5",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "browser": "Chrome exact whole readableJSON/application/CSS/HTMLparser;213 images20 bands517 details32 models. Other engines open.",
+    "preservation": "336 tracked registry/bespoke/map/model inputs byte-identical to HEAD. All60 dossiers unchanged.",
+    "attribution": "Recursive comparison found differences only under satellites (rows and fetched timestamp); source feed evolution is not independently audited. No asset/compression savings attribution.",
+    "snapshotDifferenceSummary": {
+      "/satellites": 13335
+    }
+  }
+}

@@ -47,7 +47,11 @@ export function sunBandLook(band, pass, { teff = 5772, hasFeed = () => true } = 
     return { tint: s.tint, feed, mix: feed ? s.realShare : 0, predicted: !!s.feed?.predicted, ...look };
   }
   const src = bodyBandSource('sun', band, pass);
-  if (src?.feed && hasFeed(src.feed)) return { tint: [1, 1, 1], feed: src.feed, mix: 1, ...mapLook(src) };
+  // an entry's `fallback` (#72: archival Nobeyama behind today's SRH map) is shown when its own map cannot be (the
+  // standalone without a baked copy), and is carried as `look.fallback` for the views to switch to if the map fails to load
+  const fb = src?.fallback?.feed && hasFeed(src.fallback.feed) ? { tint: [1, 1, 1], feed: src.fallback.feed, mix: 1, ...mapLook(src.fallback) } : null;
+  if (src?.feed && hasFeed(src.feed)) return { tint: [1, 1, 1], feed: src.feed, mix: 1, ...mapLook(src), ...(fb ? { fallback: fb } : {}) };
+  if (fb) return fb;
   return photosphereLook({ teff, isSun: true }, band, pass);
 }
 

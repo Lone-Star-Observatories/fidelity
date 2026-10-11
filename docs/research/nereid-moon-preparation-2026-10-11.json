@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-11",
+  "body": "Nereid",
+  "status": "Research-only; all66 delivered dossiers unchanged, no67th/new embedding.",
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 1099,
+      "sha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+      "path": "data/research-sources/nereid-PIA00054-original.jpg",
+      "width": 200,
+      "height": 200
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "bytes": 1249,
+      "sha256": "c2ec381cdc521587228619620030dfceaca566af950d1481cb02f19f91bcb7a3",
+      "path": "data/research-sources/nereid-PIA00054-original.tif",
+      "width": 200,
+      "height": 200
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/nereid/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 264240,
+      "sha256": "a7c2137f00ee3d9bee09559131e3bd83b96716765bf3485a6ac84dfdbd9f7842",
+      "path": "data/research-sources/nereid-caption.html"
+    },
+    {
+      "url": "https://science.nasa.gov/neptune/moons/nereid/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 259551,
+      "sha256": "812905a7177421b889b4435e0e641c85d649ee47436f81598d21d60227086a98",
+      "path": "data/research-sources/nereid-overview.html"
+    },
+    {
+      "url": "https://authors.library.caltech.edu/records/3d4cc-g7952",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 109457,
+      "sha256": "60e34ba94b800d58093437793fb342904295a116693a9510fd753f9130a00e9b",
+      "path": "data/research-sources/nereid-Belyakov2026-record.html"
+    },
+    {
+      "url": "https://authors.library.caltech.edu/records/3d4cc-g7952/files/sciadv.aeb1429.pdf?download=1&fresh=20261011",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 8779281,
+      "sha256": "51a9d8cc3d63d44839c7875c07dd8b8d57b11b57f521d61b1345160a3e85ece4",
+      "path": "data/research-sources/nereid-Belyakov2026-published.pdf"
+    },
+    {
+      "url": "https://authors.library.caltech.edu/records/3d4cc-g7952/files/sciadv.aeb1429_sm.pdf?download=1&fresh=20261011",
+      "status": 200,
+      "contentType": "application/octet-stream",
+      "bytes": 767402,
+      "sha256": "15696655a18c2f852f7970bf9b86915b22695a92ca8edab650b7c3ab0909ee8c",
+      "path": "data/research-sources/nereid-Belyakov2026-supplement.pdf"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 320653,
+      "sha256": "40f759ff6485f3854e23ddc8b4733db1d3855a23b367906d5491f789a40e67c1",
+      "path": "data/research-sources/nereid-nasa-media-terms.html"
+    }
+  ],
+  "native": {
+    "product": "PIA00054",
+    "credit": "NASA/JPL",
+    "sourcePage": "https://science.nasa.gov/photojournal/nereid/",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media guidance, not asserted CC BY",
+    "observationDate": "1989-08-24",
+    "imageAdditionDate": "1996-01-29",
+    "instrument": "Voyager2; precise camera/filter/PDS association remains open",
+    "inspection": "Tiny monochrome disk on black background; unresolved terrain. No map adopted, no analog skin, no calibrated visible colour or geography.",
+    "captionLimits": "4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date."
+  },
+  "map": {
+    "surfacePending": true,
+    "adoptedMap": null,
+    "adoptedShape": null,
+    "limits": "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture."
+  },
+  "primary": {
+    "title": "Nereid as a regular satellite of Neptune",
+    "doi": "10.1126/sciadv.aeb1429",
+    "authors": [
+      "Matthew Belyakov",
+      "M. Ryleigh Davis",
+      "Ian Wong",
+      "Konstantin Batygin",
+      "Michael E. Brown"
+    ],
+    "publishedOnline": "2026-05-20",
+    "issueDate": "2026-05-22",
+    "licence": "Published PDF and Caltech record explicitly CC BY4.0, authors/AAAS notice retained; no figure embedded. Arxiv author version permission/nonexclusive status must be assessed separately.",
+    "pages": 8,
+    "supplementPages": 5,
+    "assessment": "Full published methods/results/discussion and supplementary text assessed; eight PDF pages include seven article pages plus publisher notice.",
+    "observations": {
+      "date": "2024-11-23",
+      "startUTC": "03:28:53",
+      "endUTC": "05:24:45",
+      "program": 4645,
+      "instrument": "JWST NIRSpec IFU PRISM",
+      "wavelengthMicrons": [
+        0.6,
+        5.3
+      ],
+      "nominalResolvingPower": [
+        30,
+        300
+      ],
+      "dithers": 4,
+      "exposurePerDitherSeconds": 160.5,
+      "archive": "https://doi.org/10.17909/2bj1-h545",
+      "analysisArchive": "https://doi.org/10.22002/gf82m-rzz66"
+    },
+    "measurements": "Disk-integrated spectral absorptions support crystalline water ice; spectral slopes and band depths differ from sampled Kuiper-belt objects. This is not a local chemistry map or resolved visible terrain.",
+    "interpretations": "Unidentified dark material and regular-satellite origin remain interpretations. N-body simulations provide plausible evolution after Triton capture, not a directly observed history or posterior probability of origin. Supplement shows ejected/destroyed Triton and other outcomes. Unsampled Nereid-like KBOs are not ruled out. No local fractions, current ocean/plume/biology, calibrated visible colour, D/H or isotope values adopted."
+  },
+  "catalogue": {
+    "radiusKm": 170,
+    "rotationHours": 11.59,
+    "locked": false,
+    "semimajorAxisKm": 5513900,
+    "eccentricity": 0.751,
+    "limits": "Highly eccentric unlocked orbit: observer distance/phase vary; no permanent Neptune-facing site or constant apparent angular diameter. Physical/orbit/rotation cross-reference and dated camera registration remain open."
+  },
+  "verification": {
+    "registryCount": 66,
+    "trackedInputsByteEqual": 379,
+    "sourceHashesVerified": true,
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15974183,
+    "headroomBytes": 25817,
+    "completeSnapshotSha256": "3ab787302e4d31da523217bfd8ab036c5f3f7eb82ba1d11a6b924b6a91223cd5",
+    "interbuildDifferences": [
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "attribution": "No asset or compression savings attribution; feed difference origins not independently audited.",
+    "browser": "Chrome exact completeJSON/application/CSS/HTMLparser;231images20bands517details32models/native hashes; actual normal/offline Triton3cards; sixroutes/unsupportedgzip/11worker rows pass. Other engines open."
+  },
+  "next": "Independent local/Neptune observer views only after body-specific geometry/attitude assumptions recorded through skyGeometry; additive67th dossier budget pending, preserve full native and all66 originals/masters."
+}

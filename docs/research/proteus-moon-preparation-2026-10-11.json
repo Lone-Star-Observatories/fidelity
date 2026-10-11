@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-11",
+  "body": "Proteus",
+  "status": "Research-only;67 dossiers unchanged, no68th/new embedding.",
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "path": "data/research-sources/proteus-PIA00062-original.jpg",
+      "bytes": 12596,
+      "sha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "path": "data/research-sources/proteus-PIA00062-original.tif",
+      "bytes": 70545,
+      "sha256": "d281c0bb52e079d2d55ba96c63067ebb3df5c9db785a575d0c28b4fb919af340"
+    },
+    {
+      "url": "https://science.nasa.gov/neptune/moons/proteus/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "path": "data/research-sources/proteus-overview.html",
+      "bytes": 259783,
+      "sha256": "0431d30aeb39c09f7d4505b4b1e3ffddfd11644ea4a865ab358571e53710e749"
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.27481",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/proteus-arxiv-record.html",
+      "bytes": 44042,
+      "sha256": "ea278633b7891b18dfc2d5d6fe162deef47466a5d0fd0656b7a2d409951252d8"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2607.27481",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/proteus-Davis2026-author.pdf",
+      "bytes": 740854,
+      "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.tab",
+      "status": 200,
+      "contentType": null,
+      "path": "data/research-sources/proteus-stooke-source.tab",
+      "bytes": 70226,
+      "sha256": "d079c8eac52d84224d5cb413526ff9415ab33afd48965e7e025544832ddd1868"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.xml",
+      "status": 200,
+      "contentType": "text/xml",
+      "path": "data/research-sources/proteus-stooke-label.xml",
+      "bytes": 6278,
+      "sha256": "2db42d2c7238b54cbde71e813f189c72b8cb1b1b91a82db184b9d6948a89b886"
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/catalog/PIA00062",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "path": "data/research-sources/proteus-caption.html",
+      "bytes": 264577,
+      "sha256": "ebc0fb5fb285622674207bae936bc95282857544ad2256c2bf1ba5c084245b0f"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/neptunes-moon-proteus/",
+      "error": "HTTP Error 404: Not Found",
+      "sha256": null
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "path": "data/research-sources/proteus-nasa-media-terms.html",
+      "bytes": 320652,
+      "sha256": "fadf47a3fcee64e386414ab9df9cd89e8ddffa91586ba29bed2b6b1bc2c004a2"
+    }
+  ],
+  "native": {
+    "product": "PIA00062",
+    "credit": "NASA/JPL",
+    "observationDate": "1989-08-25",
+    "publicationDate": "1996-01-29",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media guidance, not asserted CC BY",
+    "inspection": "Monochrome irregular body with coarse relief and strong illumination/processing. Not calibrated visible colour or registered local geography. No globe adopted. Overview range870000km/resolution8km per pixel/reflectance6percent are source estimates, not new raster calculations or mapped local fractions.",
+    "limits": "Exact Voyager camera/filter/PDS product crosswalk remains open. Native JPEG/TIFF unchanged, no Fidelity transformation. NASA overview870000km/8km per pixel is a different depicted view, not PIA00062 range/resolution.",
+    "sourcePage": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+    "width": 600,
+    "height": 800,
+    "caption": "146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change."
+  },
+  "shape": {
+    "url": "/shapes/proteus.glb",
+    "previewUrl": "/shapes/proteus-preview.glb",
+    "source": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.tab",
+    "sourceLabel": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.xml",
+    "credit": "Philip J. Stooke / NASA PDS Small Bodies Node",
+    "citation": "Stooke Small Bodies Shape Models, urn:nasa:pds:small_bodies.stooke.shape-models; Stooke (1993, 1994) and archive bundle_description.txt.",
+    "tier": "modelled",
+    "units": "km",
+    "frame": "Planetocentric radial grid, source west-positive longitude converted to east-positive. +X prime meridian, +Y north, −Z east. Original cartographic origin retained; it need not equal centre of figure or mass.",
+    "origin": "Source cartographic/model origin retained; not forcibly moved to centre of mass.",
+    "observationDate": "Voyager encounters, 1979 or 1989; see per-file label",
+    "modelDate": "Pre-Galileo models; PDS4 migration 2025",
+    "retrieved": "2026-10-10",
+    "texLon0": -180,
+    "processing": "Body frame conversion; geometric decimation; seam-split equirectangular UVs; recomputed normals and Meshopt compression. No terrain synthesized.",
+    "triangles": 5040,
+    "previewTriangles": 1790,
+    "maxRadiusKm": 232.50000000000003,
+    "bytes": 137452,
+    "previewBytes": 68812,
+    "sha256": "4c3d10987d8e886f8530f5be9c9c0f12832084a3b2072cd215ecddf3cedb6548",
+    "sourceSha256": "d079c8eac52d84224d5cb413526ff9415ab33afd48965e7e025544832ddd1868",
+    "audit": "Direct PDS label verifies Voyager2 ISS narrow-angle derived Proteus/Stooke1994 DOI10.1007/BF00572198; source fetched byte-identical to recorded sourceSha256. Planetocentric west-positive5degree radial grid in km; decimal places explicitly not uncertainty. Label creation2016-09-30/publication2025 are model/archive metadata, not image observation. Historical geometry/frame/attitude and current uncertainty remain open; full/preview GLB unchanged."
+  },
+  "primary": {
+    "title": "Neptune’s Inner Moons and Rings Are Exposed Icy Body Interiors",
+    "doi": "10.1126/sciadv.aeb1437",
+    "record": "https://arxiv.org/abs/2607.27481",
+    "authors": [
+      "M. Ryleigh Davis",
+      "Matthew Belyakov",
+      "Ian Wong",
+      "Zachariah Milby",
+      "Michael E. Brown"
+    ],
+    "publicationDate": "2026-07-29",
+    "version": "arxiv2607.27481v1 author manuscript26pages including supplement",
+    "licence": "Arxiv record links CC BY4.0, but also states AAAS author version personal use/not redistribution. Conflicting permission statements preserved; no redistribution/figure embedded. Final publisher licence and version crosswalk remain open.",
+    "assessment": "Results, Proteus-specific discussion, methods and supplementary TableS1 assessed; final publisher/PDF licence crosswalk open.",
+    "observations": {
+      "instrument": "JWST NIRSpec IFU PRISM clear filter",
+      "program": 4645,
+      "dates": [
+        "2024-12-13",
+        "2024-12-16"
+      ],
+      "utcRanges": [
+        "17:40:01–18:08:43",
+        "13:02:12–13:30:54"
+      ],
+      "exposures": "Four291.8s observations per date; total2334.4s as paper",
+      "pipeline": "1.18.0",
+      "calibration": "jwst1364.pmap",
+      "archive": "https://doi.org/10.17909/1cqh-hy49",
+      "code": "https://data.caltech.edu/records/vwdse-4d488"
+    },
+    "measurements": "Proteus weak4.27micron CO2 absorption marginally stronger trailing; deep3micron OH absorption and no clear water-ice bands. Nondetection is not proof of absolute absence. Proteus either lacks or has much weaker2.72micron feature than Larissa/Galatea/rings; do not assign their stronger magnesium-phyllosilicate signature to Proteus.",
+    "interpretations": "Hydrated carrier unidentified. Tentative3.07micron ammonia-bearing interpretation, but Proteus strength argues against ammoniated phyllosilicate carrier. Aqueous alteration, impact dehydration, primordial-satellite destruction/reaccretion and tidally shredded KBO alternatives are models, not current liquid water, directly observed history, local fractions, plumes/ocean/biology. Ceres/meteorite analogies do not authorize skins.",
+    "limits": "Scattered Neptune light/custom reduction, sensitivity outside1.7–4.5microns, unresolved disk spectra not visible terrain or Voyager pixel chemistry. Final record/licence, raw products, calibration and dynamical history audit open.",
+    "termsUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "next": "Independent local/Neptune observer views require skyGeometry and explicit attitude/phase/material assumptions; no resolved globe. Recover lossless headroom before embedding. Preserve all67 earlier dossiers, native science and shape bytes.",
+  "verification": {
+    "dossiers": 67,
+    "trackedInputsByteEqual": 384,
+    "sourceHashesVerified": true,
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996275,
+    "headroomBytes": 3725,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "b61050c4d4d1b4b704cd676036b3474cb860f01553a2e0d965b91e01f5760a61",
+      "raw": "88acf9c68a154fdd8736f72006bbf33216d84e6c3c4f6c15b3043fb21157bd8e",
+      "magic": "FIDBRT01",
+      "images": 234,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15996275,
+      "compressedBytes": 790781,
+      "applicationSha256": "55e6d91d0ca785be6136626e7d1d85082a7ef5afd7f77a6bfd5b407f4b7e7549",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "completeReadableSnapshotUnchanged": true,
+    "normalOffline": "Nereid3cards/native hashes verified",
+    "otherEngines": "open",
+    "codecs": "unchanged; no68th/new embedding"
+  }
+}

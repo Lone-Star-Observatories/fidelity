@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-11",
+  "body": "Charon",
+  "status": "Research-only; no69th dossier or new embedding; all68 preserved",
+  "source": {
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM1_ESM.pdf",
+    "finalUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM1_ESM.pdf",
+    "path": "data/research-sources/charon-Protopapa2024-supplement.pdf",
+    "bytes": 6252290,
+    "sha256": "be80c7704ff71350737193a848663c46be9d8b2d5ef36f936c3d2c4303cbdb89",
+    "contentType": "application/pdf",
+    "pdfMagic": true
+  },
+  "pages": 8,
+  "publicationDate": "2024-10-01",
+  "doi": "10.1038/s41467-024-51826-4",
+  "terms": "Current publisher article licence CC BY-NC-ND4.0, not CC BY. Supplement retained for research; no figure or derivative embedded; third-party exceptions remain applicable.",
+  "assessment": "All eight pages extracted; Supplementary Table1 and Figure1\u20135 captions assessed. Raw MAST product and calibration reproduction remain open.",
+  "observations": [
+    {
+      "filename": "jw01191004001_03101_00001",
+      "dateUTC": "2022-09-24",
+      "startUTC": "17:35:06.553",
+      "observation": "004",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191004001_03101_00002",
+      "dateUTC": "2022-09-24",
+      "startUTC": "17:41:49.112",
+      "observation": "004",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191004001_03103_00001",
+      "dateUTC": "2022-09-24",
+      "startUTC": "17:50:48.902",
+      "observation": "004",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191004001_03103_00002",
+      "dateUTC": "2022-09-24",
+      "startUTC": "17:58:41.734",
+      "observation": "004",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191004001_03105_00001",
+      "dateUTC": "2022-09-24",
+      "startUTC": "18:08:48.432",
+      "observation": "004",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191004001_03105_00002",
+      "dateUTC": "2022-09-24",
+      "startUTC": "18:21:18.447",
+      "observation": "004",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191005001_03101_00001",
+      "dateUTC": "2023-04-18",
+      "startUTC": "01:29:16.432",
+      "observation": "005",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191005001_03101_00002",
+      "dateUTC": "2023-04-18",
+      "startUTC": "01:35:51.119",
+      "observation": "005",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191005001_03103_00001",
+      "dateUTC": "2023-04-18",
+      "startUTC": "01:45:04.734",
+      "observation": "005",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191005001_03103_00002",
+      "dateUTC": "2023-04-18",
+      "startUTC": "01:53:06.205",
+      "observation": "005",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191005001_03105_00001",
+      "dateUTC": "2023-04-18",
+      "startUTC": "02:03:04.343",
+      "observation": "005",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191005001_03105_00002",
+      "dateUTC": "2023-04-18",
+      "startUTC": "02:15:42.999",
+      "observation": "005",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191103001_03101_00001",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:00:42.847",
+      "observation": "103",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191103001_03101_00002",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:07:23.103",
+      "observation": "103",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191103001_03103_00001",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:16:31.149",
+      "observation": "103",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191103001_03103_00002",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:24:24.365",
+      "observation": "103",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191103001_03105_00001",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:34:30.759",
+      "observation": "103",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191103001_03105_00002",
+      "dateUTC": "2023-04-21",
+      "startUTC": "07:47:01.158",
+      "observation": "103",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191106001_03101_00001",
+      "dateUTC": "2023-04-19",
+      "startUTC": "04:59:16.507",
+      "observation": "106",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191106001_03101_00002",
+      "dateUTC": "2023-04-19",
+      "startUTC": "05:05:51.195",
+      "observation": "106",
+      "grating": "G140H",
+      "filter": "F100LP",
+      "effectiveExposureSeconds": 204.244
+    },
+    {
+      "filename": "jw01191106001_03103_00001",
+      "dateUTC": "2023-04-19",
+      "startUTC": "05:15:04.809",
+      "observation": "106",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191106001_03103_00002",
+      "dateUTC": "2023-04-19",
+      "startUTC": "05:23:06.281",
+      "observation": "106",
+      "grating": "G235H",
+      "filter": "F170LP",
+      "effectiveExposureSeconds": 277.189
+    },
+    {
+      "filename": "jw01191106001_03105_00001",
+      "dateUTC": "2023-04-19",
+      "startUTC": "05:33:04.419",
+      "observation": "106",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    },
+    {
+      "filename": "jw01191106001_03105_00002",
+      "dateUTC": "2023-04-19",
+      "startUTC": "05:45:43.074",
+      "observation": "106",
+      "grating": "G395H",
+      "filter": "F290LP",
+      "effectiveExposureSeconds": 554.378
+    }
+  ],
+  "effectiveExposurePerVisitSeconds": 2071.622,
+  "roundedExposureConflict": "Exact table two exposures each 204.244/277.189/554.378 seconds sum2071.622; main article reported2072 is consistent rounding. Prior rounded settings408/554/1109 sum2071 retained as rounded values, not a data discrepancy.",
+  "spectralLimits": [
+    "Supplementary Figure3 80% crystalline H2O/18% amorphous H2O/2% crystalline CO2 is an areal mixture best-fit model to the grand-average spectrum, not measured local terrain fractions.",
+    "Supplementary Figure1 LEISA pixel-by-pixel Hapke-derived crystalline H2O fraction and 2.21micron band-depth maps are distinct model products, not calibration or chemistry registration for the natural-colour PNG. NH3 diluted in water is a spectral candidate, not uniquely established local material.",
+    "Supplementary Figure4 observation103 Pluto flux contamination averages5%, rising to47% at2.8\u20133micron and38% at4.19\u20135.3micron. These are extraction-specific values, not a universal correction for other visits or visible images.",
+    "Supplementary Figure5 compares synthetic and measured solar spectra; CALSPEC model disagreement beyond4.3micron is relevant to spectral transfer, not visible scene photometry."
+  ],
+  "open": [
+    "NASA natural-colour caption Charon versus Pluto/Sputnik wording and camera/range crosswalk",
+    "MAST data products and independent calibration/extraction reproduction",
+    "Native map frame/coverage/epochs/photometry/shape registration",
+    "Source Data zip audit; no claimed download/hash",
+    "Standalone headroom before additive69 and independent views"
+  ],
+  "verification": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989591,
+    "headroomBytes": 10409,
+    "preservation": "All68 earlier dossiers and389 tracked registry/bespoke/model/shape inputs byte-identical; supplement SHA verified.",
+    "browser": "Chrome complete readableJSON e813273c0fb6267a69350fd9ef833d2ef1104e6c5f9b2147eba8b80298e69e99 exact; original app c943a85a and CSS960361a exact; HTML parser packed payloads,237images20bands517details32models/native hashes and actual normal/offline Proteus3cards/no own map pass. Other engines remain open.",
+    "interbuildDiff": [
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src"
+    ],
+    "attribution": "Only15 SDO src/time/disk fields differ from prior verified snapshot; no research or compression size attribution. Production codecs unchanged."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-11",
+  "body": "Umbriel",
+  "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+  "authors": [
+    "Richard J. Cartwright",
+    "Sasha Cryan",
+    "Rosario Brunetto",
+    "Apolline Leclef",
+    "Eric Quirico",
+    "Bryan J. Holler",
+    "William M. Grundy",
+    "Tom A. Nordheim",
+    "Ujjwal Raut",
+    "Matthew M. Hedman",
+    "Riley A. DeColibus",
+    "Chloe B. Beddingfield",
+    "Marc Neveu",
+    "Christopher R. Glein",
+    "Sara Faggi",
+    "Geronimo L. Villanueva",
+    "Noemi Pinilla-Alonso",
+    "Stephanie M. Menten"
+  ],
+  "url": "https://arxiv.org/pdf/2607.05600v2",
+  "submitted": "2026-07-06",
+  "revised": "2026-07-08",
+  "pdfDraftHeaderDate": "2026-07-09",
+  "publisherStatus": "Primary abstract reports accepted in PSJ; final journal record remains unverified. PDF draft headerJuly9 differs from arXiv revisionJuly8 and is not an observation date.",
+  "licence": "Specific arXiv record explicitly links CC BY4.0; not inferred from generic distribution. Full18authors/title/arXivversion retained. No figure embedded or transformed.",
+  "licenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "sourceRecord": {
+    "path": "data/research-sources/ariel-Cartwright2026-v2.pdf",
+    "url": "https://arxiv.org/pdf/2607.05600v2",
+    "status": 200,
+    "bytes": 4279565,
+    "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+    "pages": 29
+  },
+  "scope": "Full retained29page version; section2/Table1, section3.2 measurements and laboratory-fit discussion assessed specifically for Umbriel. No independent re-reduction/figure embedding.",
+  "observations": {
+    "program": 1786,
+    "instrument": "NIRSpec IFU G395M/F290LP",
+    "trailing": {
+      "date": "2023-09-08",
+      "startUT": "15:15:18",
+      "exposureSeconds": 8461.6,
+      "midObservationLongitudeDegrees": 272.2,
+      "latitudeDegrees": 64.1
+    },
+    "leading": {
+      "date": "2023-09-06",
+      "startUT": "21:10:19",
+      "exposureSeconds": 8461.6,
+      "midObservationLongitudeDegrees": 119.8,
+      "latitudeDegrees": 64.1
+    },
+    "reduction": "Pipeline1.20.1, CRDSjwst1464.pmap, four dithers, NSClean/template PSF-fitting; dataDOI10.17909/nj36-mt02. Reported apertures/spaxels are source method values, not new raster computations."
+  },
+  "measured": "Section3.2 reports prominent trailing CO2/CO-related bands including4.27/4.67micron; leading4.27micron strong, leading4.02/4.67micron weaker>2sigma. Trailing4.41/4.47/4.59micron lower-confidence probable features, not secure detections. This distinguishes Umbriel from Ariel; no body swap.",
+  "modelled": "Laboratory crystallineCO2 lattice modes, layered/grain/roughness alternatives, carbonate/clathrate/OCN assignments and native/radiolytic origins are interpretations. Umbriel laboratory matches less compelling than Ariel for several features. No local chemistry/fractions or mapped Voyager pixels, ocean/conduit/plume/biology detection; nondetection not absence.",
+  "unknown": "Final2026journal/supplement/exactproduct/independentcalibration open. Brown2026PNAS isotope correction association remains an unverified lead; no body-specific isotope values adopted."
+}

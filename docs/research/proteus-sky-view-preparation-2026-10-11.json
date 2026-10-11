@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-11",
+  "body": "Proteus",
+  "status": "Research-only independent observer original prepared; no68th dossier/new embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Use case: scientific-educational. Create an independent hypothetical observer illustration from Proteus, Neptune's irregular moon. Wide16:9 1672x941. Independently invent neutral dark-gray granular ground, angular blocks and modest shallow depressions beneath nearlyblacksky. Never copy or recolour any observed Moon/Mars/Triton/Nereid/Pluto terrain or map. No dated Voyager/Pharos/PDS-shape registered site. All local relief, chemistry fractions, grain sizes and colour invented; disk-integrated Proteus spectra cannot map this scene and no clear ice bands does not prove absence. No exposed water ice assertion. Place an independently invented pale blue-gray Neptune near x1050,y220 with full sphere diameter359pixels at1672wide. Shared skyGeometry uses Neptune mean radius24622km at representative centre distance117600km minus catalogue Proteus210km: angular diameter24.214852427388628degrees, central width fraction0.21451699678107658 at nominal90degree horizontalFOV, target358.67241861796005pixels. This is assumed sub-Neptune-facing camera attitude, not a dated ephemeris or shape-registered site; irregular Proteus radius/site height and precise spin/orbit registration remain uncertain. Neptune's bands, blue-gray colour, near-full phase, axis/camera orientation, lighting and exposure are artistic; mean radius omits oblateness.60K is angular-helper-only, not colour or photometry: do not use blackbody colour. Omit rings as artistic exposure choice, not proof of invisibility. Sun30.07AU off-frame, no stars or other disks. Blacksky transparency is assumed, not measured atmosphere absence. No foreground clouds/haze, plume, liquid/ocean, biology, people, craft, structures or landing/survivability implication. Footer exact 'IMAGINED SKY FROM PROTEUS' smaller 'Assumed distance, attitude, colour and terrain'. Keep labels clearly legible; restrained realistic scientific illustration.",
+  "limits": "Invented terrain, chemistry fractions, grain sizes, grey colour and Neptune bands/colour/phase/light/exposure. No analog map, dated Voyager/Pharos/PDS-registered site, foreground atmosphere/plume/liquid/ocean/biology/landing. Almostblacksky assumed transparency, not measured atmosphere absence. Mean spherical Neptune omits oblateness; Proteus irregular shape/site height, attitude and spin/orbit registration remain uncertain. Rings omitted artistically, not an invisibility claim.60K angular helper only: irradiance/blackbody outputs not adopted for colour or photometry. Sun30.07AU offframe. No observed body's map or new globe adopted.",
+  "inspection": "Inspected original: readable IMAGINED label/footer and independent foreground. Row250 spans373/358/350 versus nominal target 358.67241861796003px; threshold-sensitive, not calibrated diameter.",
+  "sources": [
+    "docs/research/proteus-moon-preparation-2026-10-11.json"
+  ],
+  "original": {
+    "path": "data/research-sources/proteus-generated-skyImage-original.png",
+    "bytes": 2790093,
+    "sha256": "1d68d7084218a1dcf888eec02ae9d051db5696b22623412a762a2844157335cd",
+    "width": 1672,
+    "height": 941,
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-dce68843-3039-4fee-b8b9-b0002f747fe6.png"
+  },
+  "geometry": {
+    "method": "skyGeometry",
+    "neptuneMeanRadiusKm": 24622,
+    "proteusCatalogueRadiusKm": 210,
+    "representativeCentreDistanceKm": 117600,
+    "observerDistanceKm": 117390,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 24.214852427388628,
+    "targetPixelsAt1672": 358.67241861796003,
+    "raster": {
+      "row": 250,
+      "runs": [
+        {
+          "threshold": 5,
+          "start": 952,
+          "end": 1324,
+          "span": 373
+        },
+        {
+          "threshold": 10,
+          "start": 967,
+          "end": 1324,
+          "span": 358
+        },
+        {
+          "threshold": 20,
+          "start": 974,
+          "end": 1323,
+          "span": 350
+        }
+      ],
+      "limits": "Threshold-sensitive upper globe chords, not independently calibrated full diameter; no calibrated photometry/colour/scene registration."
+    }
+  },
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15992593,
+    "headroomBytes": 7407,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "7e127d0926d1fa371cfdd13c813b9f90e55c5ee20bdad9108f25e6e085d301cf",
+      "raw": "bc4b971e609e112037166d73d8e7cf14235bc26972fd61706b9abe77bd682a1d",
+      "magic": "FIDBRT01",
+      "images": 234,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15992593,
+      "compressedBytes": 790781,
+      "applicationSha256": "55e6d91d0ca785be6136626e7d1d85082a7ef5afd7f77a6bfd5b407f4b7e7549",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "preservation": "All67 prior dossiers deepEqual;384 tracked registry/bespoke/map/model/shape inputs byte-identical; native hashes and actual normal/offline Nereid3cards/noownmap pass. Complete readableJSON byte-identical to baseline; codecs unchanged; other browser engines open."
+  }
+}

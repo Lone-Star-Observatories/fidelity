@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-11",
+  "body": "Oberon",
+  "status": "Research-only preparation; all64 delivered dossiers unchanged, no65th/new embedding.",
+  "native": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 14095,
+    "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+    "path": "data/research-sources/oberon-PIA00034-original.jpg",
+    "width": 500,
+    "height": 500,
+    "credit": "NASA/JPL",
+    "sourcePage": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media guidance; not asserted CC BY",
+    "observationDate": "1986-01-24",
+    "imageAdditionDate": "1996-01-29",
+    "instrument": "Voyager2 narrow-angle camera violet/clear/green filter colour reconstruction",
+    "limits": "Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim."
+  },
+  "retainedTiff": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.tif",
+    "status": 200,
+    "contentType": "image/tiff",
+    "bytes": 232107,
+    "sha256": "3396df9692021c9f754dd57fa90b0cca60a8d32959f7d17e4dfbf9d8607944c8",
+    "path": "data/research-sources/oberon-PIA00034-original.tif"
+  },
+  "map": {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Oberon/Uranus%20-%20Oberon.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 51214,
+    "sha256": "ed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460",
+    "path": "data/research-sources/oberon-nasa3d-source.jpg",
+    "existingPath": "data/textures/oberon.jpg",
+    "byteEqualFetchedSource": true,
+    "credit": "USGS/Tammy Becker & JPL/Caltech",
+    "sourcePage": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+    "publicationMetadataDate": "2025-05-30",
+    "sourceAssociationConflict": "Current Oberon NASA3D page labels JPEG as Oberon but actual href points to uranus---ariel/Uranus%20-%20Ariel.jpg and alt says Ariel. Page listed248.37KB is not adopted as Oberon source size. The explicitly Oberon GitHub file51214bytes matches existing map. No Ariel image downloaded or assigned to Oberon. TIFF href names Oberon but not downloaded/verified.",
+    "limits": "Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open."
+  },
+  "science": {
+    "sourcePath": "data/research-sources/ariel-Cartwright2026-v2.pdf",
+    "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+    "url": "https://arxiv.org/pdf/2607.05600v2",
+    "record": "https://arxiv.org/abs/2607.05600v2",
+    "licence": "Specific record links CC BY4.0; no paper figure embedded.",
+    "scope": "Full retained29page joint paper Table1, section2 and section3.2 assessed specifically for Oberon.2026revision/draft not observation; exact products/calibration/final publication/supplement OPEN.",
+    "observations": [
+      {
+        "hemisphere": "trailing",
+        "utc": "2023-09-03T08:37:01Z",
+        "seconds": 3152.2,
+        "midObservationLongitudeDeg": 247.1,
+        "latitudeDeg": 63.9
+      },
+      {
+        "hemisphere": "leading",
+        "utc": "2023-09-11T00:10:40Z",
+        "seconds": 3152.2,
+        "midObservationLongitudeDeg": 91.5,
+        "latitudeDeg": 63.9
+      }
+    ],
+    "instrument": "NIRSpecIFU GO1786 G395M/F290LP 2.87–5.25microns R~1000; four dithers NRSIRS2RAPID",
+    "reduction": "Pipeline1.20.1 CRDSjwst1464.pmap; archive DOI10.17909/nj36-mt02",
+    "measurements": "Section3.2 reports trailing4.02/4.14/4.20/4.27/4.67/4.90micron features>3sigma; trailing5.17weaker>2sigma. Leading4.27>3sigma and4.02>2sigma. Do not assign Titania5.17confidence or Ariel richer features to Oberon.",
+    "limits": "Disk-integrated features are measurements; laboratory lattice/grain/layer/roughness/chemical-origin interpretations are models. No local chemistry/fractions/Voyager pixel mapping/ocean/plume/biology detection; nondetection not absence. No isotope values adopted. Final journal/supplement/product association/calibration remain open.",
+    "authors": [
+      "Richard J. Cartwright",
+      "Sasha Cryan",
+      "Rosario Brunetto",
+      "Apolline Leclef",
+      "Eric Quirico",
+      "Bryan J. Holler",
+      "William M. Grundy",
+      "Tom A. Nordheim",
+      "Ujjwal Raut",
+      "Matthew M. Hedman",
+      "Riley A. DeColibus",
+      "Chloe B. Beddingfield",
+      "Marc Neveu",
+      "Christopher R. Glein",
+      "Sara Faggi",
+      "Geronimo L. Villanueva",
+      "Noemi Pinilla-Alonso",
+      "Stephanie M. Menten"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 14095,
+      "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+      "path": "data/research-sources/oberon-PIA00034-original.jpg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "bytes": 232107,
+      "sha256": "3396df9692021c9f754dd57fa90b0cca60a8d32959f7d17e4dfbf9d8607944c8",
+      "path": "data/research-sources/oberon-PIA00034-original.tif"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Oberon/Uranus%20-%20Oberon.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 51214,
+      "sha256": "ed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460",
+      "path": "data/research-sources/oberon-nasa3d-source.jpg"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 266644,
+      "sha256": "109d728e6b6754aa19ca7d3c2fdc7636d5db671c62ea05645802f5f0cb8b589b",
+      "path": "data/research-sources/oberon-PIA00034-caption.html"
+    },
+    {
+      "url": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 250593,
+      "sha256": "f8a4f96eee596933ce6bbbe888f37cd3057d6e5e8d66b6d2154464ea9a1b09a8",
+      "path": "data/research-sources/oberon-nasa3d-caption.html"
+    },
+    {
+      "url": "https://science.nasa.gov/uranus/moons/oberon/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 257420,
+      "sha256": "902afc54dcc63ec10eb965b8512aab77e56cdd32ff995cb5015443807024ad42",
+      "path": "data/research-sources/oberon-nasa-overview.html"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 320652,
+      "sha256": "dde6afcafef05ae970211674f779be224c20108e7b463d988ac172ca01495e17",
+      "path": "data/research-sources/oberon-nasa-media-terms.html"
+    }
+  ],
+  "downloadFailure": "First parallel download attempt encountered transient network timeout; retry obtained sources with actual hashes. Failed response not assigned a content hash.",
+  "catalogue": "Existing radius761.4km mass3.076e21kg semimajor583511km period13.463237days preserved; decimal precision not uncertainty.",
+  "next": "Independent local/Uranus observer using skyGeometry and explicit attitude/ring/oblateness limits; originals/masters/recorded256 previews/additive65th; remainingbacklogACTIVE.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15912904,
+    "headroomBytes": 87096,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "8060e1c327f9097d53312152f2421ca337ab24e338906de6758a823c6deb2ffd",
+      "raw": "2cbe004d9eefa4dea6fd422eef6708a86b74b3b9f4002109f8bb1e54287558e7",
+      "magic": "FIDBRT01",
+      "images": 225,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15912904,
+      "compressedBytes": 784576,
+      "applicationSha256": "f20a68652b79cec0be15636a060467bda18120346656b0e53b324ea55a53841f",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All64 dossiers registry byte-identical; 368 tracked bespoke/map/model/shape files byte-identical; all new source hashes verified.",
+    "limits": "Chrome verified; other engines open. Interbuild readable snapshot difference not audited; no asset/compression savings attribution. No65th/new embedding."
+  }
+}

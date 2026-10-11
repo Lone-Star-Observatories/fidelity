@@ -36,6 +36,7 @@ import { settings } from '../../settings.js';
 import { pickPoint, onClicks } from '../pick.js';
 import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
 import { METERS } from '../cameraMath.js';
+import { makeSnapshot } from '../snapshot.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -395,6 +396,8 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     }
   }
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize }),
     recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },

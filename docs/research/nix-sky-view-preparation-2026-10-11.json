@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-11",
+  "body": "Nix",
+  "status": "Research-only independent observer original; no dossier or new embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Scientific-educational independent hypothetical sky view from Nix, wide16:9 approximately1672x941. Generate from scratch without input maps/photos. Invent grey granular small-moon foreground, scattered angular blocks, shallow depressions and low broken ridge; no known New Horizons site. Nearly black sky assumes transparency, not atmospheric absence. Above horizon show two SMALL separately positioned disks: independently invented Pluto muted grey/tan appearance, diameter about41pixels (2.7954730474779614degrees), and independently invented Charon neutral grey appearance about20pixels (1.3429757480285875degrees), for nominal90degree horizontal FOV and1672pixel width. Do not enlarge them into looming worlds. Shared skyGeometry uses Pluto1188.3km at48715.42469025532km and Charon606km at51709.105365709016km; these are hypothetical right-angle system-barycentric geometry with assumed25km observer height, not dated ephemerides or registered surface site. Place Pluto toward left of upper sky and Charon toward right with clear separation artistically; positions, phases, axis/camera attitude, light and exposure assumed, not calibrated. Do not reuse or recolour Moon/Mars/Pluto/Charon/other observed-body maps; independently design subtle nonrecognizable disk markings, no heart/Sputnik pattern. Nix rotates rapidly, no permanent Pluto-facing site. Grey/pale local materials and all chemistry fractions invented, spectral models do not map this scene. Omit Sun, stars, rings and visible atmosphere; omission artistic not absence. No people spacecraft habitats landing/survivability plume liquid ocean biology interior cutaway. Clear legible footer 'IMAGINED SKY FROM NIX'; smaller footer 'Invented terrain and disk appearances \u00b7 Assumed geometry'.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-090c3865-6562-4da8-8578-ae0d2a31bcdf.png",
+  "originalPath": "data/research-sources/nix-generated-skyImage-original.png",
+  "geometryRecord": "docs/research/nix-observer-geometry-preparation-2026-10-11.json",
+  "inspection": "Viewed original: labelled IMAGINED SKY FROM NIX; invented terrain and two separately generated disk appearances. Both disks visibly oversized versus requested angular geometry; no calibrated diameter claim. No image/map input, plume/liquid/biology/craft/landing.",
+  "limitations": [
+    "Terrain/material fractions/chemistry/colour/disk patterns/phase/light/exposure invented, no analog skin or dated New Horizons site.",
+    "Black sky assumes transparency, not measured atmospheric absence; ring/atmosphere omissions artistic, not absence.",
+    "Rapid retrograde rotation, variable barycentric distances and visibility; no permanent Pluto-facing site.",
+    "Mean spherical target radii and approximate25km observer height; full shape/attitude/ephemeris registration open.",
+    "Generated disks oversized; threshold spans are phase/exposure sensitive and not calibrated full diameters.",
+    "Original retained with full prompt; all68 dossiers unchanged, substantial lossless headroom required before further embedding."
+  ],
+  "original": {
+    "path": "data/research-sources/nix-generated-skyImage-original.png",
+    "bytes": 2298953,
+    "sha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+    "width": 1672,
+    "height": 941
+  },
+  "rasterAudit": {
+    "pluto": {
+      "row": 155,
+      "thresholdSpans": {
+        "5": 112,
+        "10": 108,
+        "20": 107
+      },
+      "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+    },
+    "charon": {
+      "row": 200,
+      "thresholdSpans": {
+        "5": 59,
+        "10": 58,
+        "20": 58
+      },
+      "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+    }
+  },
+  "preservation": {
+    "trackedInputsByteIdentical": 389,
+    "dossiers": 68
+  },
+  "verification": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991695,
+    "headroomBytes": 8305,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+      "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+  }
+}

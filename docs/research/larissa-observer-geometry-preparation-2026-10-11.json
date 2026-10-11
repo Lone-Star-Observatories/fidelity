@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-11",
+  "body": "Larissa",
+  "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/larissa-jpl-physical-2026-10-11.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/larissa-jpl-elements-2026-10-11.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "parameters": {
+    "larissaMeanRadiusKm": 96,
+    "radiusUncertaintyKm": 7,
+    "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+    "semimajorAxisKm": 73500,
+    "eccentricity": 0.001,
+    "orbitalPeriodDays": 0.554989,
+    "elementEpoch": "2000-01-01.5 TDB",
+    "elementFrame": "Laplace plane",
+    "ephemeris": "NEP097",
+    "neptuneMeanRadiusKm": 24622,
+    "neptuneRadiusSource": "src/data/sol.js"
+  },
+  "assumptions": {
+    "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+    "distanceKm": 73404,
+    "horizontalFovDeg": 90,
+    "rasterWidthPixels": 1672,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+  },
+  "geometry": {
+    "angularDiameterDeg": 39.197535820184456,
+    "targetWidthPixels1672": 595.3319057973337
+  },
+  "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(73500-96)/149597870.7. No independently calculated raster diameter or photometry.",
+  "limitations": [
+    "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+    "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+    "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+    "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+    "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+    "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+    "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding."
+  ],
+  "validation": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15993273,
+    "headroomBytes": 6727,
+    "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+    "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome complete readableJSON/application/CSS and HTML-parser equality;237 images,20 bands,517 details,32 model entries decode without page errors. Other engines open. No new model-load or route claim.",
+    "preservation": "404 tracked asset inputs byte-identical; registry unchanged;68 dossiers;queue566",
+    "attribution": "HTML and decoded snapshot identical to previous verified batch; no compression change or savings claim."
+  }
+}

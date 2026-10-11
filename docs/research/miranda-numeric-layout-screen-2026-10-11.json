@@ -1,0 +1,59 @@
+{
+  "snapshotSha256": "22ca2cb8adf678a9fed9eb6070b5b087c1121aabb02b7b3f58e4543984165c30",
+  "containerBytes": 19520986,
+  "trials": [
+    {
+      "mode": "baseline",
+      "gzipLevel9Bytes": 13464998,
+      "exactContainerAndJsonRoundtrip": true
+    },
+    {
+      "mode": "row-major",
+      "gzipLevel9Bytes": 13596315,
+      "exactContainerAndJsonRoundtrip": true
+    },
+    {
+      "mode": "separate-parity",
+      "gzipLevel9Bytes": 13503475,
+      "exactContainerAndJsonRoundtrip": true
+    },
+    {
+      "mode": "reverse-columns",
+      "gzipLevel9Bytes": 13466898,
+      "exactContainerAndJsonRoundtrip": true
+    },
+    {
+      "mode": "column-difference",
+      "gzipLevel9Bytes": 13611571,
+      "exactContainerAndJsonRoundtrip": true
+    }
+  ],
+  "date": "2026-10-11",
+  "status": "Research-only screening; no production format or asset change",
+  "method": "Reorder the existing FIDNUM02 numeric nibbles within each width group, or encode reversible modulo15 character-code differences down each column; reverse the transform, compare every container byte, and restore complete original JSON text. These operate on exact character codes, not numeric values. Standard zlib gzip level9 is screening, not production Zopfli64.",
+  "decision": "All four reversible layouts increase compressed size; none adopted. Miranda dossier61 integration remains pending lossless headroom recovery.",
+  "preservation": "All60 dossiers, original PNGs, masters, native science, maps, models and shapes remain unchanged. No new embedding. Legacy formats and validating decoders retained.",
+  "limitations": [
+    "No production saving claimed from these screening sizes.",
+    "No source numeric value conversion, rounding or field pruning.",
+    "Miranda prepared preview/native raw bytes are not an exact HTML increment.",
+    "Other browser engines remain independently untested."
+  ],
+  "verification": {
+    "tests": "454 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975343,
+    "headroomBytes": 24657,
+    "trackedRegistryBespokeMapModelInputsByteIdentical": 336,
+    "registryDossiers": 60,
+    "queueTasks": 566,
+    "sourceInputsChanged": false,
+    "productionCodecChanged": false,
+    "completeBrowserReadableSnapshotSha256": "22ca2cb8adf678a9fed9eb6070b5b087c1121aabb02b7b3f58e4543984165c30",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact complete readable JSON/application/CSS and HTML-parser packed bytes; 213 images,20 bands,517 details,32 models; all native context hashes, prior59 deepEqual, actual normal/offline Phoebe3cards, six routes, unsupported-gzip message,11 offline worker rows pass.",
+    "interbuildAttribution": "Prior bb5b40c snapshot differs from current22ca2cb8; differences not independently audited. No asset or compression saving attributed to net HTML change. Source inputs and production codecs byte-identical."
+  }
+}

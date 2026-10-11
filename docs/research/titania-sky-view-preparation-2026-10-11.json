@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-11",
+  "body": "Titania",
+  "mode": "Built-in imagegen new independent illustration",
+  "status": "Prepared; additive integration pending",
+  "prompt": "Use case: illustration-story. Asset type: hypothetical observer card, wide16:9. Independently invent a near-ground view from Titania toward Uranus. Black airless sky above an invented grey cratered ice-rich-looking regolith plain with a few angular blocks and modest distant fault scarps. Uranus: small pale cyan spherical disk in upper sky at image centre, diameter only 5.83343 percent of total image width (about98px if1672wide), fully detached from horizon. This requested schematic size follows skyGeometry mean radius25362km at436298minus788.9km distance, angular diameter6.67705degrees at nominal90degree horizontal FOV. Sparse subtle independently invented Uranian bands; artistic quarter-phase shading. Do not enlarge for drama. Camera and axis orientation assumed; oblateness not modeled. Omit rings as an artistic exposure choice, not a physical invisibility claim. No Sun or stars, foreground atmosphere, haze/clouds, exposed liquid/ocean, plumes, eruptions, life, people or craft. No observed body map or analogous Moon/Mars terrain. Terrain, chemistry, fractions, Uranus pattern/colour/phase/exposure/lighting imagined, not a dated Voyager site or ephemeris reconstruction. Text verbatim large top-left \"TITANIA · IMAGINED SKY\"; bottom-left \"Assumed attitude · artistic colour and exposure\". Sober scientific illustrative realism; grey terrain under restrained low-angle artistic lighting.",
+  "original": {
+    "path": "data/research-sources/titania-generated-skyImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-698ee5bc-9bb0-463e-92fd-fa3da08bdbc4.png",
+    "bytes": 2411199,
+    "sha256": "4e10d2e15620712fa7e7c84f34f8e9aff8578ed8721cc9e4e307484409d10a60",
+    "width": 1672,
+    "height": 941
+  },
+  "master": {
+    "path": "data/research-sources/titania-generated-skyImage-master.jpg",
+    "bytes": 285922,
+    "sha256": "08feca237111a2a0e9ed9130f27093dcc632c97d8ac4478b972a65daf8872d69",
+    "width": 1536,
+    "height": 864,
+    "quality": 85
+  },
+  "preview": {
+    "path": "data/research-sources/titania-generated-skyImage-preview256.jpg",
+    "bytes": 9137,
+    "sha256": "7e5c0969b9b083c62e0d6ddd304db7bfa1eba1aac9dd96574d4c56536f30e481",
+    "width": 256,
+    "height": 144,
+    "quality": 80
+  },
+  "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+  "geometry": {
+    "radiusKm": 25362,
+    "centreDistanceKm": 435509.1,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 6.677050671958738,
+    "targetPixelsAt1672": 97.53493771548295,
+    "rasterRow": 185,
+    "runs": [
+      {
+        "threshold": 5,
+        "width": 116
+      },
+      {
+        "threshold": 10,
+        "width": 112
+      },
+      {
+        "threshold": 20,
+        "width": 110
+      }
+    ],
+    "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+  }
+}

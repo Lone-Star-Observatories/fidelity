@@ -194,6 +194,9 @@ export const FEEDS = {
   // the Sun at radio wavelengths (#28, server/solarmodel.js): today's measured Siberian Radioheliograph map at 3.0 GHz,
   // and MODELLED · PREDICTED discs below 3 GHz (quiet Sun + HMI-placed active regions, total from NOAA F10.7/RSTN)
   'srh-3000': srhFeed('Siberian Radioheliograph (ISTP SB RAS, Badary) 3.0 GHz (10 cm) CLEAN full-disc map, brightness temperature'),
+  // #72: the 6–12 and 12–24 GHz arrays' daily maps (each publishes one frequency; nothing above 13 GHz as a map)
+  'srh-6000': srhFeed('Siberian Radioheliograph (ISTP SB RAS, Badary) 6.0 GHz (5 cm) CLEAN full-disc map, brightness temperature', 6000),
+  'srh-12960': srhFeed('Siberian Radioheliograph (ISTP SB RAS, Badary) 12.96 GHz (2.3 cm) CLEAN full-disc map, brightness temperature', 12960, { lo: 8e3, hi: 1e5 }),
   'sunmodel-408': sunModelFeed(0.408, '408 MHz', { magnetogram: () => feed('sdo-hmimag', { preview: true }) }),
   'sunmodel-1400': sunModelFeed(1.4, '1.4 GHz', { magnetogram: () => feed('sdo-hmimag', { preview: true }) }),
   'sunmodel-2400': sunModelFeed(2.4, '2.4 GHz', { magnetogram: () => feed('sdo-hmimag', { preview: true }) }),

@@ -1,0 +1,46 @@
+{
+  "snapshotSha256": "eb1cc385fa576e699581bb7b48f837bfdd5bc6088f17e7f8805f88b86c9afe06",
+  "binaryBytes": 19778047,
+  "results": [
+    {
+      "quality": 11,
+      "innerBytes": 13122824,
+      "outerGzipBytes": 13126039,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "quality": 10,
+      "innerBytes": 13195017,
+      "outerGzipBytes": 13197848,
+      "nativeAndBundledJsExact": true
+    },
+    {
+      "quality": 9,
+      "innerBytes": 13530702,
+      "outerGzipBytes": 13533106,
+      "nativeAndBundledJsExact": true
+    }
+  ],
+  "date": "2026-10-11",
+  "status": "Research-only rejected lower quality settings; no production change",
+  "method": "Frozen complete FIDNUM02 exact binary; Brotli FONT context enabled quality11/10/9, standard outer gzip9. Native binary inverse and bundled JavaScript fullJSON inverse all pass.",
+  "conclusion": "Quality10 outer gzip is71809bytes larger; quality9 is407067 larger, before any wrapper/decoder changes. Neither adopted. Do not repeat these settings.",
+  "preservation": "All68 dossiers and404 tracked asset inputs byte-identical; originals, masters, native science and provenance preserved. No69th or embedding.",
+  "validation": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15986961,
+    "headroomBytes": 13039,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "eb1cc385fa576e699581bb7b48f837bfdd5bc6088f17e7f8805f88b86c9afe06",
+      "raw": "08f7113cc696c63b9e17bd3f08d105b82a94e623c5cd629a453db3c6da5ee237",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome complete readableJSON and HTMLparser equality;237 image decodes20bands517details32model entries/no errors. Other engines open. Identical previous JSON/HTML, no savings claim. All production codecs/legacy decoders unchanged."
+  }
+}

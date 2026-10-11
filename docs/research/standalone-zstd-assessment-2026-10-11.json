@@ -1,0 +1,42 @@
+{
+  "snapshotSha256": "ac3240c5af6637962f384603678c910d963cd9ff2e29ee504787c2c1bf222e51",
+  "binaryBytes": 19778018,
+  "baselineBrotliWrappedOuterGzipBytes": 13131147,
+  "results": [
+    {
+      "level": 19,
+      "zstdBytes": 13305951,
+      "outerGzipBytes": 13304538,
+      "exactBinaryAndFullJsonInverse": true
+    },
+    {
+      "level": 22,
+      "zstdBytes": 13304010,
+      "outerGzipBytes": 13302781,
+      "exactBinaryAndFullJsonInverse": true
+    }
+  ],
+  "scope": "Native research screen. Zstd sizes exclude versioned wrapper, browser decoder and notices; no production or browser candidate adopted.",
+  "decision": "Rejected: levels19/22 are173391/171634 outer gzip bytes larger than the current wrapped Brotli baseline even before a versioned wrapper/browser decoder/notices. Do not repeat these levels.",
+  "preservation": {
+    "dossiers": 68,
+    "trackedAssetsByteIdentical": 404,
+    "registryByteIdentical": true,
+    "queue": 566
+  },
+  "limitations": [
+    "Native Node24.5.0 inverse only; no JavaScript browser decoder assessed.",
+    "Complete original FIDNUM02 characters, fields and binary tail retained without rounding, pruning or asset transformation.",
+    "Research only; production codecs unchanged, no new dossier or embedding."
+  ],
+  "validation": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15993010,
+    "headroomBytes": 6990,
+    "browser": "Chrome exact complete readable JSON and HTML-parser transport;237 images20 bands decode,517 detail32 model entries,no errors. Other engines open.",
+    "snapshotSha256": "ac3240c5af6637962f384603678c910d963cd9ff2e29ee504787c2c1bf222e51",
+    "attribution": "Same JSON and HTML byte count as prior verified batch; no production change or savings claim."
+  }
+}

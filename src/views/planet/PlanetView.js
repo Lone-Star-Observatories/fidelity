@@ -17,6 +17,7 @@ import { dirToLatLon } from '../system/surface.js';
 import { siteDots, siteDir } from '../system/sites.js';
 import { PLANETS } from '../../data/sol.js';
 import { SOL_ATMOSPHERES, SOL_INTERIORS, INTERIOR_SOURCES, BANDS, MOLECULE_NAMES, EXO_ATMOSPHERES, MR_CURVES, density } from '../../data/planets.js';
+import { makeSnapshot } from '../snapshot.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const HIGHLIGHT = '#c97a00';
@@ -401,6 +402,8 @@ export function createPlanetView(container, { onSurface } = {}) {
   }
 
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => renderer.render(scene, camera), restore: sizeHero }),
     show() { container.hidden = false; if (!running) { running = true; requestAnimationFrame(frame); } },
     camera: rig,
     hide() { container.hidden = true; running = false; },

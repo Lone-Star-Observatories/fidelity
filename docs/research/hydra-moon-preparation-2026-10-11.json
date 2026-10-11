@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-11",
+  "body": "Hydra",
+  "catalogueId": "sol-hydra",
+  "status": "Research-only native spectral graphic preparation; no dossier, embedding, map or shape adopted.",
+  "sourceRecords": [
+    {
+      "path": "data/research-sources/hydra-PIA20581-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20581/PIA20581.jpg",
+      "bytes": 169514,
+      "sha256": "6e40cb48fd69678a314f01dc0dbdbe525a24abd5e5d007de3c55668f472b225a",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 2400,
+      "height": 985,
+      "mode": "RGB",
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hydra-PIA20581-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20581/PIA20581.tif",
+      "bytes": 1556120,
+      "sha256": "e9ffd4fa09122a42380e16b3f93aaf1864a8fe51824114332056ba178514d900",
+      "status": 200,
+      "contentType": "image/tiff",
+      "width": 2400,
+      "height": 985,
+      "mode": "RGB",
+      "format": "TIFF"
+    },
+    {
+      "path": "data/research-sources/hydra-PIA20581-caption.html",
+      "url": "https://science.nasa.gov/photojournal/icy-hydra/",
+      "bytes": 269002,
+      "sha256": "c2d9ed0b75cf1e251f6140c3cbf818e406913fdc8cb8fd2eeab7f3c1202a4f0e",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/hydra-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320653,
+      "sha256": "da20015d6b0828a7b8c10efb42dcebdbdd73de967c4ebda548de3c68c7393e2c",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    }
+  ],
+  "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+  "terms": "Active NASA images/media terms; not asserted CC BY. No blanket licence for primary papers.",
+  "observationDate": "2015-07-14 for LEISA spectrum; exact image-inset association/epoch remains open.",
+  "imageAdditionDate": "2016-05-06",
+  "limitations": [
+    "PIA20581 is an annotated spectral comparison graphic, not a resolved visible-colour surface map.",
+    "Caption describes Ralph/LEISA infrared spectra while instrument metadata lists MVIC; conflict retained pending product crosswalk.",
+    "Crystalline water absorption features are spectral evidence; grain-size/phase, relative contamination, impact refreshing and debris-disk formation are interpretations, not local fractions or directly observed history.",
+    "Charon comparison must remain labelled Charon and never assigned to Hydra; plotted lines, text and inset boundaries are not geography.",
+    "Published range/feature wavelengths are source statements, not new raster computations. No calibrated visible colour, complete geography, ocean/plume/biology claim.",
+    "No exhaustive newest-observation claim; exact archive products/calibration/frame/rotation/shape audit remains open."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedEarlierInputs": 389,
+    "newEmbedding": false
+  },
+  "visualInspection": [
+    "Original JPEG inspected using a resized display; no native pixel calibration analysis. Large right globe is explicitly Charon, not Hydra.",
+    "Left curves are labelled Charon, Hydra and Pure ice: relative reflectance comparison, not measured local ice fractions.",
+    "Small blurry Hydra inset, blue outline/triangle, size labels and plot colours are layout/annotations, not terrain, visible colour or a physical plume. Inset product/epoch remains open."
+  ],
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15990906,
+    "headroomBytes": 9094,
+    "browser": "Chrome exact complete readableJSON and HTML-parser transport; 237 images, 20 bands, 517 details, 32 model entries, no errors. Other engines open.",
+    "completeSnapshotSha256": "f43d8c02108c205c8bc7273e895fec8dc18f5eb04f7b8f39cd2d46f8f7f1893b",
+    "rawTransportSha256": "acf17593226b80b2744e24dce50ada8b487031dcf63fbb8860c368b25ed914f2",
+    "queue": 566,
+    "attribution": "Interbuild differences from previous verified snapshot not audited; no asset or compression savings attribution. Production codecs unchanged."
+  }
+}

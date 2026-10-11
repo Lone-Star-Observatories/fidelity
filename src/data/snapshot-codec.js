@@ -18,7 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
-  if (packed?.encoding === 'gzip-raw-radix125-wide-v1') return unpackDenseSnapshotBytes(packed);
+  if (['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding)) return unpackDenseSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-wide-v1') return unpackRawSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-v1') return unpackApplicationBytes(packed);
   // Existing base64 snapshots remain readable.
@@ -50,7 +50,7 @@ export function unpackSnapshotBytes(packed) {
 export async function decodeSnapshot(packed) {
   const bytes = unpackSnapshotBytes(packed);
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer())));
+  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer()), packed?.decodeBrotli));
 }
 
 const binaryMagic = new TextEncoder().encode('FIDBIN01');
@@ -86,10 +86,15 @@ export function encodeBinarySnapshot(text) {
   return output;
 }
 const numericMagic = new TextEncoder().encode('FIDNUM01');
+// Version 2 packs the same exact column-major characters into nibbles; 15 is
+// reserved for odd-length padding, never a numeric digit. No values are parsed.
+const numericNibbleMagic = new TextEncoder().encode('FIDNUM02');
+const numericAlphabet = '0123456789.-+eE';
 const numericLexemes = /"(?:[^"\\]|\\.)*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
 // Transpose decimal lexemes by length, without converting or rounding numbers.
 // Only the JSON header changes layout; every binary asset remains unchanged.
-export function encodeNumericSnapshot(text) {
+export function encodeNumericSnapshot(text, version = 1) {
+  if (![1, 2].includes(version)) throw Error('Invalid numeric snapshot version.');
   const binary = encodeBinarySnapshot(text), view = new DataView(binary.buffer);
   const headerLength = view.getUint32(8, true);
   const header = new TextDecoder('utf-8', { fatal: true }).decode(binary.subarray(12, 12 + headerLength));
@@ -102,20 +107,31 @@ export function encodeNumericSnapshot(text) {
   }));
   const tail = binary.subarray(12 + headerLength);
   const total = 20 + skeleton.length + order.length + tail.length
-    + [...groups].reduce((sum, [length, values]) => sum + 5 + length * values.length, 0);
+    + [...groups].reduce((sum, [length, values]) => sum + 5 + (version === 2 ? Math.ceil(length * values.length / 2) : length * values.length), 0);
   if (total > 0xffffffff) throw Error('Numeric snapshot too large.');
   const output = new Uint8Array(total), outView = new DataView(output.buffer); let at = 0;
   const put = bytes => { output.set(bytes, at); at += bytes.length; };
   const length = n => { outView.setUint32(at, n, true); at += 4; };
-  put(numericMagic); length(skeleton.length); length(order.length); length(groups.size);
+  put(version === 2 ? numericNibbleMagic : numericMagic); length(skeleton.length); length(order.length); length(groups.size);
   put(skeleton); put(order);
   for (const [width, values] of [...groups].sort((a, b) => a[0] - b[0])) {
     output[at++] = width; length(values.length);
-    for (let digit = 0; digit < width; digit++) for (const value of values) output[at++] = value.charCodeAt(digit);
+    let position = 0;
+    for (let digit = 0; digit < width; digit++) for (const value of values) {
+      if (version === 1) output[at++] = value.charCodeAt(digit);
+      else {
+        const code = numericAlphabet.indexOf(value[digit]);
+        if (code < 0) throw Error('Invalid numeric digit.');
+        if (position % 2 === 0) output[at] = code | 0xf0;
+        else { output[at] = (output[at] & 15) | (code << 4); at++; }
+        position++;
+      }
+    }
+    if (version === 2 && position % 2) at++;
   }
   put(tail); return output;
 }
-function restoreNumericSnapshot(bytes) {
+function restoreNumericSnapshot(bytes, nibble = false) {
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
   const length = () => { if (at + 4 > bytes.length) throw Error('Truncated numeric snapshot.'); const n = view.getUint32(at, true); at += 4; return n; };
   const take = n => { if (n > bytes.length - at) throw Error('Truncated numeric snapshot.'); const b = bytes.subarray(at, at + n); at += n; return b; };
@@ -126,7 +142,18 @@ function restoreNumericSnapshot(bytes) {
   for (let i = 0; i < groupCount; i++) {
     const width = take(1)[0], size = length();
     if (!width || !size || groups.has(width) || size > count - totalCount) throw Error('Invalid numeric group.');
-    groups.set(width, { size, data: take(width * size), used: 0 }); totalCount += size;
+    let data = take(nibble ? Math.ceil(width * size / 2) : width * size);
+    if (nibble) {
+      const unpacked = new Uint8Array(width * size);
+      for (let digit = 0; digit < unpacked.length; digit++) {
+        const code = (data[digit >> 1] >> ((digit % 2) * 4)) & 15;
+        if (code >= numericAlphabet.length) throw Error('Invalid numeric nibble.');
+        unpacked[digit] = numericAlphabet.charCodeAt(code);
+      }
+      if (unpacked.length % 2 && (data[data.length - 1] >> 4) !== 15) throw Error('Invalid numeric padding.');
+      data = unpacked;
+    }
+    groups.set(width, { size, data, used: 0 }); totalCount += size;
   }
   if (totalCount !== count) throw Error('Invalid numeric token count.');
   let index = 0;
@@ -149,7 +176,40 @@ function restoreNumericSnapshot(bytes) {
   const restored = restoreSnapshotText(binary); JSON.parse(restored); return restored;
 }
 
-export function restoreSnapshotText(bytes) {
+const brotliMagic = new TextEncoder().encode('FIDBRT01');
+function snapshotCrc32(bytes) {
+  let crc = 0xffffffff;
+  for (const byte of bytes) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit++) crc = (crc >>> 1) ^ ((crc & 1) ? 0xedb88320 : 0);
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+// An optional lossless inner stage; the outer envelope remains standard gzip.
+// The decoder is supplied only by the standalone HTML module, not normal builds.
+export function wrapBrotliSnapshot(original, compressed) {
+  if (!original.length || original.length > 536870912 || !compressed.length) throw Error('Invalid Brotli snapshot size.');
+  const bytes = new Uint8Array(20 + compressed.length), view = new DataView(bytes.buffer);
+  bytes.set(brotliMagic); view.setUint32(8, original.length, true);
+  view.setUint32(12, compressed.length, true); view.setUint32(16, snapshotCrc32(original), true);
+  bytes.set(compressed, 20); return bytes;
+}
+function unwrapBrotliBytes(bytes, decodeBrotli) {
+    if (bytes.length < 20 || typeof decodeBrotli !== 'function') throw Error('Invalid Brotli snapshot decoder or header.');
+    const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    const size = view.getUint32(8, true), payload = view.getUint32(12, true);
+    if (!size || size > 536870912 || !payload || payload !== bytes.length - 20) throw Error('Invalid Brotli snapshot lengths.');
+    const restored = decodeBrotli(bytes.subarray(20), size);
+    if (!(restored instanceof Uint8Array) || restored.length !== size || snapshotCrc32(restored) !== view.getUint32(16, true)) throw Error('Invalid Brotli snapshot checksum or output.');
+    if (brotliMagic.every((value, index) => restored[index] === value)) throw Error('Nested Brotli snapshot.');
+    return restored;
+}
+export function restoreSnapshotText(bytes, decodeBrotli) {
+  if (brotliMagic.every((value, index) => bytes[index] === value)) {
+    const restored = unwrapBrotliBytes(bytes, decodeBrotli);
+    return restoreSnapshotText(restored);
+  }
+  if (numericNibbleMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes, true);
   if (numericMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes);
   const decoder = new TextDecoder('utf-8', { fatal: true });
   if (!binaryMagic.every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
@@ -259,35 +319,40 @@ export function unpackApplicationBytes(packed) {
 // so no payload can form an end tag. Tabs/newlines are payload bytes, not layout.
 const denseAlphabet = Array.from({length:128}, (_, code) => code).filter(code => ![0,13,60].includes(code)).map(code => String.fromCharCode(code)).join('');
 const denseDigits = new Map([...denseAlphabet].map((character,index) => [character,index]));
-export function encodeDenseSnapshotBytes(bytes) {
+// v2 uses 1832-bit blocks:229bytes in263digits; v1/default stays byte-compatible.
+export function encodeDenseSnapshotBytes(bytes, version = 1) {
+  if (![1, 2].includes(version)) throw Error('Invalid dense transport version.');
+  const blockBytes = version === 2 ? 229 : 47, blockDigits = version === 2 ? 263 : 54;
   const chunks = [];
-  for (let offset = 0; offset < bytes.length; offset += 47) {
+  for (let offset = 0; offset < bytes.length; offset += blockBytes) {
     let value = 0n;
-    for (let index = 0; index < 47; index++) value = (value << 8n) + BigInt(bytes[offset + index] ?? 0);
-    const block = Array(54);
-    for (let index = 53; index >= 0; index--) {
+    for (let index = 0; index < blockBytes; index++) value = (value << 8n) + BigInt(bytes[offset + index] ?? 0);
+    const block = Array(blockDigits);
+    for (let index = blockDigits - 1; index >= 0; index--) {
       block[index] = denseAlphabet[Number(value % 125n)];
       value /= 125n;
     }
     chunks.push(block.join(''));
   }
-  return { encoding: 'gzip-raw-radix125-wide-v1', byteLength: bytes.length, data: chunks.join('') };
+  return { encoding: `gzip-raw-radix125-wide-v${version}`, byteLength: bytes.length, data: chunks.join('') };
 }
 export function unpackDenseSnapshotBytes(packed) {
-  if (packed?.encoding !== 'gzip-raw-radix125-wide-v1' || !Number.isSafeInteger(packed.byteLength)
+  const blockBytes = packed?.encoding === 'gzip-raw-radix125-wide-v2' ? 229 : 47;
+  const blockDigits = blockBytes === 229 ? 263 : 54;
+  if (!['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding) || !Number.isSafeInteger(packed.byteLength)
       || packed.byteLength < 0 || typeof packed.data !== 'string'
-      || packed.data.length !== Math.ceil(packed.byteLength / 47) * 54) throw Error('Invalid packed snapshot.');
+      || packed.data.length !== Math.ceil(packed.byteLength / blockBytes) * blockDigits) throw Error('Invalid packed snapshot.');
   const bytes = new Uint8Array(packed.byteLength);
-  for (let offset = 0; offset < packed.data.length; offset += 54) {
+  for (let offset = 0; offset < packed.data.length; offset += blockDigits) {
     let value = 0n;
-    for (let index = 0; index < 54; index++) {
+    for (let index = 0; index < blockDigits; index++) {
       const digit = denseDigits.get(packed.data[offset + index]);
       if (digit === undefined) throw Error('Invalid snapshot digit.');
       value = value * 125n + BigInt(digit);
     }
-    if (value >= (1n << 376n)) throw Error('Invalid snapshot block.');
-    const byteOffset = offset / 54 * 47;
-    for (let index = 46; index >= 0; index--) {
+    if (value >= (1n << BigInt(blockBytes * 8))) throw Error('Invalid snapshot block.');
+    const byteOffset = offset / blockDigits * blockBytes;
+    for (let index = blockBytes - 1; index >= 0; index--) {
       const byte = Number(value & 255n);
       if (byteOffset + index < bytes.length) bytes[byteOffset + index] = byte;
       else if (byte !== 0) throw Error('Invalid snapshot padding.');
@@ -298,7 +363,8 @@ export function unpackDenseSnapshotBytes(packed) {
 }
 
 // FIDAPP01 transposes JavaScript numeric token spellings; plain modules remain supported.
-export function restoreApplicationText(bytes) {
+export function restoreApplicationText(bytes, decodeBrotli) {
+  if (brotliMagic.every((value, index) => bytes[index] === value)) return restoreApplicationText(unwrapBrotliBytes(bytes, decodeBrotli));
   const decoder = new TextDecoder('utf-8', { fatal: true });
   if (![70, 73, 68, 65, 80, 80, 48, 49].every((value, index) => bytes[index] === value)) return decoder.decode(bytes);
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;

@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-11",
+  "body": "Oberon",
+  "mode": "Built-in imagegen new independent illustration",
+  "status": "Prepared; additive integration pending",
+  "prompt": "Use case: illustration-story. Hypothetical scientific explorer observer card, wide16:9. Independently invent a near-ground view from Oberon toward Uranus. Grey old cratered regolith with scattered angular blocks and a low distant rim under black airless sky. A small pale cyan spherical Uranus disk detached from horizon in upper central sky; requested diameter only4.356254percent of image width (about73px if1672wide), not enlarged for drama. Schematic size follows skyGeometry mean radius25362km at583511minus761.4km, angular diameter4.988745degrees nominal90degree horizontal FOV. Subtle independently invented Uranian bands and quarter-phase artistic shading. Camera and axis attitude assumed, oblateness omitted. Rings omitted as an artistic exposure choice, not invisibility. No Sun/stars, foreground atmosphere/haze/clouds, liquid/ocean/plumes/eruption/life/people/craft. No analog body map, Moon/Callisto/Mars terrain, or dated Voyager/globe site. Terrain chemistry/fractions, Uranus pattern/colour/phase/exposure/light are invented and uncalibrated. Text verbatim large top-left \"OBERON · IMAGINED SKY\"; bottom-left \"Assumed attitude · artistic colour and exposure\". Sober illustrative photographic realism with restrained grey terrain.",
+  "original": {
+    "path": "data/research-sources/oberon-generated-skyImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e34deed3-08b5-411b-b98d-b00e878bf7e3.png",
+    "bytes": 2662458,
+    "sha256": "cd884d83fac0a627e1966fef244188a816176cbd318de32037e2d1916e6af32d",
+    "width": 1672,
+    "height": 941
+  },
+  "master": {
+    "path": "data/research-sources/oberon-generated-skyImage-master.jpg",
+    "bytes": 267327,
+    "sha256": "f7a987daaaeacbb21bf1434efb43bda1c54e1694fa0c95b578829b830bb09c21",
+    "width": 1536,
+    "height": 864,
+    "quality": 85
+  },
+  "preview": {
+    "path": "data/research-sources/oberon-generated-skyImage-preview256.jpg",
+    "bytes": 8935,
+    "sha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
+    "width": 256,
+    "height": 144,
+    "quality": 80
+  },
+  "limitations": "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+  "geometry": {
+    "radiusKm": 25362,
+    "centreDistanceKm": 582749.6,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 4.988745362528712,
+    "targetPixelsAt1672": 72.83656832564338,
+    "rasterRow": 210,
+    "runs": [
+      {
+        "threshold": 5,
+        "width": 89
+      },
+      {
+        "threshold": 10,
+        "width": 71
+      },
+      {
+        "threshold": 20,
+        "width": 48
+      }
+    ],
+    "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+  }
+}

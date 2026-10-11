@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-11",
+  "status": "Lossless FIDNUM02 numeric nibble packing; original numeric spelling/text and binary asset bytes restored exactly.",
+  "sameInputScreening": {
+    "snapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+    "compressor": "Node zlib level9 screening, not production Zopfli saving claim",
+    "rows": [
+      {
+        "version": 1,
+        "containerBytes": 21274258,
+        "zlib9GzipBytes": 13542843,
+        "exactRoundTrip": true
+      },
+      {
+        "version": 2,
+        "containerBytes": 19494574,
+        "zlib9GzipBytes": 13438613,
+        "exactRoundTrip": true
+      }
+    ]
+  },
+  "format": "Same FIDNUM01 lengths, skeleton, numeric order/group counts and unchanged FIDBIN01 tail. Column-major numeric characters use 4-bit alphabet0123456789.-+eE, code15 reserved for strict odd-length high-nibble padding. Decoder rejects reserved digit15, invalid padding and retains all prior bounds/count/reference/lexeme/asset checks.",
+  "compatibility": "Default encoder version1 remains FIDNUM01; full builder selects version2. FIDAPP01, FIDBIN01/plainJSON, dense125v2/v1, raw120wide/v1, radix85/base64, CSS gzip and Blob import/revoke/unsupported message preserved.",
+  "limitations": "No numeric conversion/rounding/pruning or native/map/model/shape changes. Other browser engines remain untested. No60th Phoebe dossier or new embedding in this batch.",
+  "interbuildDifferencePaths": [],
+  "verification": {
+    "tests": "454pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "previousHtmlBytes": 15997135,
+    "htmlBytes": 15943257,
+    "netHtmlSavingBytes": 53878,
+    "headroomBytes": 56743,
+    "completeSnapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+    "applicationSha256": "b37c5c005be354b90fa56e7e2ed298cfb574df280891acb52509c52eb2ae2ca9",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact full readableJSON/application/CSS/HTMLparser;210images20bands517details32models; all native contexts, normal/offline Iapetus ownmap3cards, six routes, unsupportedgzip and11worker rows pass. Other engines open.",
+    "preservation": "All59 dossier registry entries unchanged; all69trackedmap/model/shape files exact; every original/native input preserved. No60th/newembedding.",
+    "attribution": "Complete snapshot and CSS byte-identical to prior build; full net saving53878 includes new decoder/application/loader overhead. zlib screening saving104230 is not a production Zopfli saving claim."
+  }
+}

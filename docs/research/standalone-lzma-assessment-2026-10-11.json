@@ -1,0 +1,43 @@
+{
+  "snapshotSha256": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+  "binaryBytes": 19779379,
+  "baselineOuterGzipBytes": 13129990,
+  "results": [
+    {
+      "preset": 6,
+      "xzBytes": 13213788,
+      "outerGzipBytes": 13213881,
+      "exactBinaryInverse": true,
+      "restoredBinarySha256": "c7f12d425596f1547ebccd8d6c7903d47dd7667f510e67f11b359067c3a257ea"
+    },
+    {
+      "preset": 2147483657,
+      "xzBytes": 13212640,
+      "outerGzipBytes": 13212862,
+      "exactBinaryInverse": true,
+      "restoredBinarySha256": "c7f12d425596f1547ebccd8d6c7903d47dd7667f510e67f11b359067c3a257ea"
+    }
+  ],
+  "status": "Research-only algorithm screen; no runtime decoder, production adoption, candidate full HTML or browser claim.",
+  "limitations": [
+    "XZ size excludes a prospective versioned wrapper and JavaScript decoder/notices. Existing Brotli baseline includes FIDBRT01 wrapper; this is a screen, not net HTML savings.",
+    "Complete original FIDNUM02 bytes preserved; no numeric conversion, rounding, field pruning or native asset transformation.",
+    "Python inverse verifies bytes; browser compatibility and decoder overhead unassessed."
+  ],
+  "decision": "Rejected: both tested XZ/LZMA2 settings larger than current Brotli envelope even before prospective decoder/wrapper overhead. Do not repeat these settings.",
+  "preservation": {
+    "dossiers": 68,
+    "trackedInputsByteIdentical": 389,
+    "queue": 566
+  },
+  "validation": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15991695,
+    "headroomBytes": 8305,
+    "browser": "Chrome exact complete readable JSON and HTML-parser snapshot payload; 237 images,20 bands,517 details,32 model entries,no errors. Other engines open.",
+    "snapshotSha256": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+    "attribution": "Same complete JSON and HTML byte count as prior verified batch; no production change or savings claim."
+  }
+}

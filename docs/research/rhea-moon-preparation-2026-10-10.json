@@ -1,0 +1,176 @@
+{
+  "status": "research-only preparation; no 56th dossier or new embedded assets",
+  "body": "Rhea",
+  "date": "2026-10-10",
+  "catalogue": {
+    "radiusKm": 763.8,
+    "massKg": 2.3065e+21,
+    "semimajorAxisKm": 527200,
+    "source": "src/data/moons.js",
+    "limitations": "Representative catalogue values; not a dated observer solution.",
+    "captionAlternative": "PIA21354 caption quotes 1527 km across, while the existing catalogue keeps radius763.8 km. Rounded representations retained separately; no silent catalogue edit."
+  },
+  "sources": [
+    {
+      "kind": "caption",
+      "url": "https://science.nasa.gov/photojournal/above-rhea/",
+      "path": "data/research-sources/rhea-above-caption.html",
+      "bytes": 268145,
+      "sha256": "3a881e0f5673b45468efee36437531138d074f87f71d08e050d77f39ab124b0b",
+      "contentType": "text/html; charset=UTF-8",
+      "status": 200
+    },
+    {
+      "kind": "image",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=1020&w=1020",
+      "path": "data/research-sources/rhea-PIA21354-display1020.jpg",
+      "bytes": 51772,
+      "sha256": "ed4d394a92c650a302a3533dffaaaa9aeb17c5ca7a6285b38c32e9bc7d70632e",
+      "contentType": "image/jpeg",
+      "status": 200,
+      "width": 1020,
+      "height": 1020
+    },
+    {
+      "kind": "map",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Rhea/Saturn%20-%20Rhea.jpg",
+      "path": "data/research-sources/rhea-nasa3d-source.jpg",
+      "bytes": 458149,
+      "sha256": "487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac",
+      "contentType": "image/jpeg",
+      "status": 200,
+      "width": 1440,
+      "height": 720
+    },
+    {
+      "kind": "original",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg",
+      "path": "data/research-sources/rhea-PIA21354-original.jpg",
+      "bytes": 49912,
+      "sha256": "63e7f46e3dbd73bc6f250b394b76d6a029fc4a8a4085445d436a38131e317f38",
+      "contentType": "image/jpeg",
+      "status": 200,
+      "width": 1020,
+      "height": 1020
+    },
+    {
+      "kind": "overview",
+      "url": "https://science.nasa.gov/saturn/moons/rhea/",
+      "path": "data/research-sources/rhea-overview.html",
+      "bytes": 268567,
+      "sha256": "f9d4581a7b4195ee98ee81f10e5029185d875bcea4607fd27ccdf0255a40208b",
+      "contentType": "text/html; charset=UTF-8",
+      "status": 200
+    },
+    {
+      "kind": "exosphere",
+      "url": "https://www.jpl.nasa.gov/news/thin-air-cassini-finds-ethereal-atmosphere-at-rhea/",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "nativeImage": {
+    "product": "PIA21354 Above Rhea",
+    "source": "https://science.nasa.gov/photojournal/above-rhea/",
+    "observed": "2017-05-02",
+    "released": "2017-11-20",
+    "credit": "NASA/JPL-Caltech/Space Science Institute",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "instrument": "Cassini Imaging Science Subsystem narrow-angle camera, visible light",
+    "inspection": "Original and NASA-served 1020 rendition inspected: monochrome cratered northern hemisphere with dark unilluminated portion. No calibrated visible colour or registered globe association established.",
+    "captionMeasurements": "About 370000 km spacecraft range and 2 km/pixel are caption estimates, not new raster calculations.",
+    "processing": "Original served JPEG bytes retained unchanged; distinct dynamic rendition is publisher re-encoding, not byte/pixel identity. Neither embedded.",
+    "newestScope": "NASA calls this Cassini final Rhea observation; no exhaustive newest observation across all instruments claimed."
+  },
+  "nativeSurface": {
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Rhea/Saturn%20-%20Rhea.jpg",
+    "path": "data/textures/rhea.jpg",
+    "bytes": 458149,
+    "sha256": "487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac",
+    "width": 1440,
+    "height": 720,
+    "sourceByteEqual": true,
+    "limitations": "Underlying product association, coverage, coordinate frame, input epochs and photometry open. Exact bytes do not establish calibrated geography/colour."
+  },
+  "science": {
+    "measured": "NASA overview reports Cassini detection of tenuous oxygen/carbon-dioxide exosphere in 2010; do not label Rhea strictly without gas.",
+    "modelled": "Sputtering/radiolysis and bulk ice/rock or canyon evolution interpretations do not measure local chemistry fractions or observer-visible haze/clouds.",
+    "rings": {
+      "reference": "https://arxiv.org/abs/1008.1764",
+      "doi": "10.1029/2010GL043663",
+      "authors": [
+        "Matthew S. Tiscareno",
+        "Joseph A. Burns",
+        "Jeffrey N. Cuzzi",
+        "Matthew M. Hedman"
+      ],
+      "submitted": "2010-08-10",
+      "assessment": "Primary abstract reports no imaging evidence for orbiting material and rejects the earlier ring explanation for charged-particle absorptions. Do not depict a confirmed Rhea ring.",
+      "accessScope": "Abstract read; full paper/figures not downloaded or audited, no source hash or CC licence asserted."
+    },
+    "unknown": "Local chemical fractions, material colour, surface registration, full primary exosphere parameters and recent full-paper audit remain open."
+  },
+  "budget": {
+    "lastVerifiedHtmlBytes": 15967760,
+    "headroomBytes": 32240,
+    "originalJpegBytes": 49912,
+    "interpretation": "Original raw JPEG alone exceeds prior headroom before illustration/text overhead; exact build cost and further lossless recovery or credited publisher rendition assessment needed before embedding."
+  },
+  "next": "Recover headroom and audit primary science; prepare independent labelled hypothetical local/Saturn views using skyGeometry, then additive dossier.",
+  "verification": {
+    "registryDossiers": 55,
+    "all55Unchanged": true,
+    "testsPassed": 429,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "base": "99951df",
+    "htmlBytes": 15967760,
+    "headroomBytes": 32240,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "b376b378237646ffce2209ef26b0a9d3e11efb1132a7bb62ca8f453f3a589018",
+      "raw": "8d11c18938e50bd413843b67f8d0bcbd0886e379632da47c81a6be4b415e28b2",
+      "magic": "FIDNUM01",
+      "images": 198,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15967760,
+      "compressedBytes": 700195,
+      "applicationSha256": "41f013a82d0db33d281a37bbd1e21324c323c2420e5988d17a9ece82d6ecef0c",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactCssAndHtmlParser": true,
+    "postMerge": {
+      "base": "a0116c3",
+      "testsPassed": 433,
+      "testsSkipped": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15968450,
+      "headroomBytes": 31550,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "b376b378237646ffce2209ef26b0a9d3e11efb1132a7bb62ca8f453f3a589018",
+        "raw": "8d11c18938e50bd413843b67f8d0bcbd0886e379632da47c81a6be4b415e28b2",
+        "magic": "FIDNUM01",
+        "images": 198,
+        "details": 517,
+        "models": 32
+      },
+      "application": {
+        "htmlBytes": 15968450,
+        "compressedBytes": 700764,
+        "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+        "htmlParserPreservesEveryPackedByte": true
+      },
+      "exactCssAndHtmlParser": true,
+      "offlineRoutes": 6,
+      "unsupportedBrowserMessage": "verified",
+      "offlineEventWorkerRows": 11,
+      "browserScope": "Chrome; other engines remain untested",
+      "all55DossiersUnchanged": true
+    }
+  }
+}

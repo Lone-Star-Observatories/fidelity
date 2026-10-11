@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-10",
+  "change": "Lossless gzip-raw-radix125-wide-v2 application and full-snapshot transport",
+  "block": {
+    "bytes": 229,
+    "digits": 263,
+    "bits": 1832,
+    "alphabet": "ASCII excluding NUL,CR,less-than; inert raw-script text"
+  },
+  "preservation": [
+    "Compressed bytes unchanged by transport; no field pruning, rounding, image recompression or model changes.",
+    "Default encodeDenseSnapshotBytes version1 retains47byte54digit format; explicitversion2 only fullbuilder snapshot/application.",
+    "Legacydense125v1/raw120wide/v1/radix85/base64/FIDAPP01/FIDNUM01/FIDBIN01/CSS/Blob import-revoke/unsupported-gzip paths retained.",
+    "All56 dossiers deeply equal; originalPNGs/masters/native/map/model/shape inputs unchanged; no57th Titan embedding."
+  ],
+  "validation": [
+    "Strict1832-bit overflow, encoding, length, digit and zero-padding checks.",
+    "Random bytes,229byte boundaries, invalidversion, overflow, partialblock padding and gzip/Unicode restoration tests.",
+    "Chrome rawHTML parser preserves snapshot/application packed payloads exactly; complete readableJSON/application/CSS equality."
+  ],
+  "samePayloadComparison": [
+    {
+      "id": "snapshot",
+      "gzipBytes": 13197804,
+      "v1TransportBytes": 15163470,
+      "v2TransportBytes": 15157479,
+      "saved": 5991
+    },
+    {
+      "id": "application",
+      "gzipBytes": 713587,
+      "v1TransportBytes": 819882,
+      "v2TransportBytes": 819771,
+      "saved": 111
+    }
+  ],
+  "samePayloadTransportBytesSaved": 6102,
+  "comparisonLimit": "Savings compare identical compressed payloads only; excludes loader changes and inter-build source-data differences. No claim all difference versus prior16005209 derives from transport.",
+  "verification": {
+    "testsPass": 453,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998450,
+    "headroom": 1550,
+    "queueTasks": 566,
+    "registryCount": 56,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "54777fa315750ed5e94545c8972b15d078c16641680b25f376b41cae67b500c6",
+      "raw": "e0298dad4c5fd1c9811a80d491f453037e94e52651e253f2423422b427f2b02f",
+      "magic": "FIDNUM01",
+      "images": 201,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15998450,
+      "compressedBytes": 713587,
+      "applicationSha256": "fb802b2bcbce47fcdfc02a7a1d7713a930240297f976f8055f0ffb591a12d23a",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "offlineRoutes": 6,
+    "unsupportedBrowserMessage": "verified",
+    "workerRows": 11,
+    "nativeContextSourceHashes": "verified from complete snapshot",
+    "normalOfflineRhea": "ownmap3cards pass",
+    "otherBrowserEngines": "open"
+  },
+  "next": "More lossless headroom before Titan native/individual views; primaryDISRcalibration and haze/Saturnvisibility audit remain open. Backlog ACTIVE."
+}

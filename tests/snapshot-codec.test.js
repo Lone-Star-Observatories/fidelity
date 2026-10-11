@@ -95,6 +95,22 @@ test('numeric snapshot rejects truncation, invalid ordering, digit corruption an
   const trailing=new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
 });
 
+test('nibble numeric snapshot preserves original spellings and rejects digit/padding corruption', async () => {
+  const text = '{ "quoted": "# α 12", "values": [-0, 1.2300, 2e+03, -1E-12, 12345678901234567890123], "asset": "data:image/png;base64,AAEC" }';
+  const bytes = encodeNumericSnapshot(text, 2);
+  assert.equal(new TextDecoder().decode(bytes.subarray(0,8)), 'FIDNUM02');
+  assert.equal(restoreSnapshotText(bytes), text);
+  assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync(bytes), 2)), JSON.parse(text));
+  assert.equal(restoreSnapshotText(encodeNumericSnapshot('{"label":"# 123"}', 2)), '{"label":"# 123"}');
+  const valid = encodeNumericSnapshot('{"n":5}', 2);
+  const offset = 20 + new DataView(valid.buffer).getUint32(8,true) + 1 + 5;
+  const digit = valid.slice(); digit[offset] |= 15; assert.throws(()=>restoreSnapshotText(digit), /nibble/);
+  const padding = valid.slice(); padding[offset] &= 15; assert.throws(()=>restoreSnapshotText(padding), /padding/);
+  for (const size of [8,19,valid.length-1]) assert.throws(()=>restoreSnapshotText(valid.slice(0,size)));
+  const trailing = new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
+  assert.throws(()=>encodeNumericSnapshot(text,3), /version/);
+});
+
 
 test('dense raw transport preserves all bytes, partial blocks and rejects invalid envelopes', async () => {
   for (const bytes of [randomBytes(4097), ...Array.from({length:95}, (_, length) => new Uint8Array(length).fill(255))]) {
@@ -107,4 +123,20 @@ test('dense raw transport preserves all bytes, partial blocks and rejects invali
   const snapshot = {label: 'α # \"', number: -1e-12, bytes:'data:image/png;base64,AAEC//8='};
   assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync(JSON.stringify(snapshot)))), snapshot);
   assert.throws(() => unpackSnapshotBytes({encoding:'gzip-raw-radix125-wide-v1', byteLength:47, data:'\x7f'.repeat(54)}));
+});
+
+
+test('dense v2 preserves block boundaries and rejects overflow and nonzero padding', async () => {
+  for (const size of [0,1,228,229,230,458,459,4097]) {
+    const bytes=randomBytes(size), packed=encodeDenseSnapshotBytes(bytes,2);
+    assert.equal(packed.encoding,'gzip-raw-radix125-wide-v2');
+    assert.deepEqual(unpackSnapshotBytes(packed),new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data,/[\0\r<]/);
+    assert.throws(()=>unpackSnapshotBytes({...packed,data:packed.data+'a'}));
+  }
+  const full=encodeDenseSnapshotBytes(new Uint8Array(229).fill(255),2);
+  assert.throws(()=>unpackSnapshotBytes({...full,byteLength:1}));
+  assert.throws(()=>unpackSnapshotBytes({...full,data:'\x7f'.repeat(263)}));
+  assert.throws(()=>encodeDenseSnapshotBytes(new Uint8Array(),3));
+  assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync('{"label":"α","n":-1e-12}'),2)),{label:'α',n:-1e-12});
 });

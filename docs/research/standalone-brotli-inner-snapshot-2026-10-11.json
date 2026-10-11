@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-11",
+  "change": "Lossless FIDBRT01 Brotli inner snapshot stage inside standardgzip9/dense125v2 envelope. Complete original FIDNUM02 container bytes restored with bounded lengths/output CRC32 before legacy exact JSON/asset restoration.",
+  "preservation": "Every original JSON field/spelling, native/dataURI/GLB/shape byte retained. Generated readableJSON/legacygzip8radix85 snapshot remain; FIDNUM02/FIDNUM01/FIDBIN01/plainJSON/raw120wide/v1/dense125v2/v1/radix85/base64 and applicationFIDAPP01gzip32unlimited/CSS5/Blob import-revoke/unsupportedgzip preserved. No62nd dossier or new asset embedding.",
+  "decoder": {
+    "package": "brotli",
+    "version": "2.1.0",
+    "scope": "Only html-snapshot standalone module imports decoder; normal build contains no new decoder. Current Chrome lacks native Brotli DecompressionStream; bundled JavaScript decoder works offline. Outer standardgzip DecompressionStream still required.",
+    "sources": [
+      "https://github.com/foliojs/brotli.js",
+      "https://www.npmjs.com/package/brotli/v/2.1.0",
+      "https://www.apache.org/licenses/LICENSE-2.0.txt"
+    ],
+    "licences": "Package MIT declaration; decoder original Copyright2013GoogleInc/Apache2.0 and base64-jsMIT Copyright2014JamesonLittle retained. Fullnotices in docs/licenses/standalone-brotli.txt and embedded inert HTML text.",
+    "noticeSha256": "f57284a6d0bd2d1eb758979b081974a8c80920726b27149306599c2bcaeb96c4"
+  },
+  "sameInputTrial": {
+    "snapshotSha256": "dcd33dee51240ecc778bf835992a5d9cd7573df45a3d1c7d8bcfd0a4ba413fc1",
+    "containerBytes": 19541155,
+    "originalGzip128UnlimitedBytes": 13193470,
+    "brotliQuality11Bytes": 12905695,
+    "newWrappedGzip9Bytes": 12908942,
+    "gzipBytesSaved": 284528,
+    "oldDense125TransportBytes": 15152482,
+    "newDense125TransportBytes": 14825573,
+    "transportSavedBeforeDecoderNotices": 326909,
+    "nativeAndJavaScriptDecoderExactRoundtrips": true
+  },
+  "rejectedTrials": [
+    {
+      "method": "Wholecontainer byte reversal in independent envelope; no production adoption",
+      "zlib9Baseline": 13484700,
+      "zlib9Reverse": 13466889,
+      "sameInputProductionGzip128UnlimitedBaseline": 13193470,
+      "sameInputProductionGzip128UnlimitedReverse": 13194111,
+      "decision": "Production payload641bytes larger despite optimistic screening; rejected."
+    },
+    {
+      "method": "Application sorted exact quoted-lexeme dictionary",
+      "zlib9Baseline": 759106,
+      "trialGzipBytes": [
+        821059,
+        819189,
+        810726
+      ],
+      "decision": "Larger even before decoder; rejected. Exact skeleton inverses only, no full candidate."
+    },
+    {
+      "method": "Additional emitted-module Terser pass",
+      "zlib9Baseline": 759106,
+      "trialGzipBytes": [
+        758176,
+        757995
+      ],
+      "decision": "Negligible; no production application minifier change."
+    }
+  ],
+  "verification": {
+    "tests": "456pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15753526,
+    "headroomBytes": 246474,
+    "completeBrowserReadableSnapshotSha256": "a179463f3724c527a979503438e040f8d72ecdfea159382b4c5c38004cb17d14",
+    "applicationSha256": "22ad290e092e4b657132ec017a7d2d2545a839c911fa2cce23090d535e630c93",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "rawSnapshotHtmlParserSha256": "3f4c25052f243473a8fa0a56498e2cee24349b7351a0819c74752dcd0bd90c2f",
+    "browser": "Chrome exact full readableJSON/application/CSS/HTMLparser;216images20bands517details32models decode and nativecontext hashes pass. Actual normal/offline Miranda ownmap3cards, sixroutes/unsupportedgzip/11worker rows pass;32normal models load. Otherengines independently open.",
+    "all61DeepEqual": true,
+    "trackedRegistryBespokeMapModelShapeInputsExact": 354,
+    "queueTasks": 566,
+    "snapshotDifferencePathsFromFrozenBaseline": [
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/src"
+    ],
+    "attribution": "Only listed15SDOsrc/time/disk fields differ from frozen baseline. NetHTML245750byte reduction includes decoder/notices plus feed differences; not solely attributed to inner compression. Same-input transport saving separately measured."
+  },
+  "openWork": [
+    "AdditiveAriel62 from prepared ownmap/native/independent views with complete science/provenance/uncalibrated observer limits.",
+    "RemainingUranianmoons/SolarSystem/craft/shape/calibration/ranking; automationACTIVE."
+  ]
+}

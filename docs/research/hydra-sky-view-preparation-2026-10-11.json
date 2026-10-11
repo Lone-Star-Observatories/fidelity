@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-11",
+  "body": "Hydra",
+  "status": "Research-only independent observer original prepared; no new dossier or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Use case: scientific-educational. Create one independent hypothetical sky view from Hydra, Pluto's rapidly rotating small irregular moon. Wide 16:9 about 1672x941. Foreground independently invented grey regolith, angular blocks, shallow depressions and irregular low horizon, lower half. Black empty sky, assumed transparency not measured atmospheric absence. Two SMALL separated disks above horizon: Pluto about 31 pixels diameter at this canvas size, Charon about 15 pixels; do not enlarge for drama. Pluto muted grey beige subtly mottled, Charon grey; their patterns, colours, phase and exposure independently invented, no copying observed maps. These are undated illustrative barycentric distances at 90 degree HFOV, not a registered site or permanent Pluto-facing hemisphere. Small bright crescent or partly lit disks with restrained exposure, no stars, Sun, rings, foreground atmosphere, haze, plume, liquids, ocean, biology, people, spacecraft, structures or survivable landing. Do not copy/recolour Moon/Mars/Pluto/Charon/Nix/asteroid terrain or any actual photograph. No reference images. Legible unobtrusive footer exactly 'IMAGINED \u00b7 SKY FROM HYDRA'; smaller line 'Terrain, disk appearance and lighting are assumed'. Sober photorealistic scientific illustration, terrain chemistry and fractions unmeasured.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-078581f7-9d3e-4294-9947-d455c122c1a2.png",
+  "original": {
+    "path": "data/research-sources/hydra-generated-skyImage-original.png",
+    "bytes": 1828889,
+    "sha256": "89de53c73c68d1c7ae09babd8772025bedacf3daacd6d672ddcb9089e6602980",
+    "width": 1672,
+    "height": 941,
+    "mime": "image/png"
+  },
+  "inspection": "Viewed generated original: legible IMAGINED SKY FROM HYDRA footer and assumptions line; independently invented grey regolith/blocks/depressions under empty black sky, two separated partly lit disks. No reference images or observed body maps supplied.",
+  "geometryRecord": "docs/research/hydra-observer-geometry-preparation-2026-10-11.json",
+  "rasterAudit": {
+    "method": "Bounded row counts of pixels whose maximum RGB channel exceeds thresholds; illuminated chords, not calibrated full disk diameters",
+    "thresholds": [
+      5,
+      10,
+      20
+    ],
+    "pluto": {
+      "row": 235,
+      "xBounds": [
+        890,
+        990
+      ],
+      "widthsPixels": [
+        38,
+        36,
+        36
+      ],
+      "skyGeometryTargetPixels": 30.663670324400595
+    },
+    "charon": {
+      "row": 276,
+      "xBounds": [
+        1160,
+        1230
+      ],
+      "widthsPixels": [
+        24,
+        19,
+        19
+      ],
+      "skyGeometryTargetPixels": 15.104098222868833
+    },
+    "interpretation": "Both measured bright chords exceed nominal full-disk targets; phase/exposure-sensitive illustration remains oversized and uncalibrated."
+  },
+  "limitations": [
+    "Terrain, blocks, grains, relief, pale patches, chemistry, fractions, disk patterns, visible colour, phase, lighting and exposure invented; no analog skins.",
+    "Not a dated New Horizons/LORRI/globe site, surface composition map, shape registration or measured atmosphere transmission. Black sky is assumed transparency, not measured atmospheric absence.",
+    "Rapid nonsynchronous rotation: no permanent Pluto-facing site. Undated circular/coplanar barycentric model and outward 32.5km semiaxis observer normal are assumptions; actual attitude/site/phase/visibility remain open.",
+    "FOV and scene registration remain artistic; no calibrated visible colour, photometry, chemistry, plume, liquid, ocean, biology or survivable landing depiction.",
+    "Ring omission is artistic, not evidence of absence. Small future previews require readable card labels.",
+    "All68 dossiers and originals/native/master/map/model/shape/provenance inputs preserved. Masters/previews and additive dossier await preparation and substantial conforming lossless headroom."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "registryByteIdentical": true,
+    "trackedInputsByteIdentical": 404,
+    "newEmbedding": false
+  },
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996955,
+    "headroomBytes": 3045,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+      "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact current readableJSON and HTML-parser snapshot restoration,237 images20 bands decode,517 detail32 model entries,no errors; identical previous9035486 JSON and HTML bytes. Other engines open; no new native-hash/model-load/route claim. Production codecs unchanged; no savings attribution."
+  }
+}

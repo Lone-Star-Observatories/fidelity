@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-11",
+  "results": [
+    {
+      "kind": "snapshot",
+      "baselineGzipBytes": 13127234,
+      "wrappedBytes": 13124030,
+      "restoredSha256": "b84516da1280eb817ac3c952674c17b21ec86da1461555726dd4f1e0647b79ba",
+      "rows": [
+        {
+          "name": "stored",
+          "gzipBytes": 13126048,
+          "difference": -1186,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "fast",
+          "gzipBytes": 13127318,
+          "difference": 84,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "default9",
+          "gzipBytes": 13127234,
+          "difference": 0,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "huffman9",
+          "gzipBytes": 13127969,
+          "difference": 735,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "rle9",
+          "gzipBytes": 13127967,
+          "difference": 733,
+          "exactEnvelopeAndText": true
+        }
+      ]
+    },
+    {
+      "kind": "application",
+      "baselineGzipBytes": 683438,
+      "wrappedBytes": 683431,
+      "restoredSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+      "rows": [
+        {
+          "name": "stored",
+          "gzipBytes": 683549,
+          "difference": 111,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "fast",
+          "gzipBytes": 683444,
+          "difference": 6,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "default9",
+          "gzipBytes": 683438,
+          "difference": 0,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "huffman9",
+          "gzipBytes": 683443,
+          "difference": 5,
+          "exactEnvelopeAndText": true
+        },
+        {
+          "name": "rle9",
+          "gzipBytes": 683442,
+          "difference": 4,
+          "exactEnvelopeAndText": true
+        }
+      ]
+    }
+  ],
+  "adopted": false,
+  "conclusion": "Stored snapshot gzip saves1186 bytes, insufficient for prepared Charon batch; other snapshot strategies larger, all application alternatives larger. No production change. Do not repeat these outer gzip strategy screens.",
+  "scope": "Frozen verified HTML; exact FIDBRT01 envelopes and complete JSON/application text restored. No field pruning, rounding, asset replacement or net HTML savings claim."
+}

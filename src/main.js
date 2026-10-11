@@ -22,9 +22,13 @@ import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
 import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
+import { shownScale, scaleDetail } from './data/bandarchive.js';
+import { DETAIL_LEVELS, DETAIL_MAX, DETAIL_FLAGS, flagsForLevel, levelOfFlags } from './data/detail.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
-import { onBookmark } from './views/cameraControls.js';
+import { onBookmark, onPostcard } from './views/cameraControls.js';
+import { createPostcard } from './panels/postcard.js';
+import { liveInfo } from './views/system/materials.js';
 import { encodeCamera, decodeCamera } from './views/cameraMath.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
@@ -232,7 +236,8 @@ function applyPendingCam(rig) {
   pendingCam = null;
   rig.apply(c);
 }
-onBookmark((state) => {
+/** A URL that reopens this view: route, camera state (from a rig's state()), mode and epoch. */
+function viewLink(state) {
   const q = new URLSearchParams(location.search);
   for (const k of ['cam', 'surface', 'look', 'hold', 't']) q.delete(k);
   q.set('t', dateFromJd(clock.jd).toISOString());
@@ -242,11 +247,102 @@ onBookmark((state) => {
     if (sp) q.set('surface', `${sp.lat.toFixed(5)},${sp.lon.toFixed(5)}`);
   }
   q.set('cam', encodeCamera(state));
-  const url = `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ',').replace(/%3A/g, ':')}${location.hash}`;
+  return `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ',').replace(/%3A/g, ':')}${location.hash}`;
+}
+onBookmark((state) => {
+  const url = viewLink(state);
   try { history.replaceState(null, '', url); } catch { /* sandboxed frame */ }
   const done = () => toast('VIEW LINK COPIED · CAMERA, MODE AND EPOCH'), fail = () => toast('VIEW LINK IS IN THE ADDRESS BAR');
   try { navigator.clipboard.writeText(url).then(done, fail); } catch { fail(); }
 });
+
+// ---- postcards (#40) ------------------------------------------------------------------------
+const SYSTEM_LEVELS = ['system', 'events', 'future', 'timeline', 'satellite'];
+const viewOf = (lvl) => (SYSTEM_LEVELS.includes(lvl) ? system : lvl === 'star' ? starView : ['planet', 'moon', 'object'].includes(lvl) ? planetView
+  : lvl === 'galaxy' ? galaxy : lvl === 'quadrant' ? quadrant : lvl === 'universe' ? universe : lvl === 'navigation' ? nav : lvl === 'comms' ? comms : null);
+const latLonText = (lat, lon) => `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+/** What the active view shows, for the postcard's stamps: place, provenance tiers, image credits, scene facts. */
+function describePostcard() {
+  const v = viewOf(route.level);
+  if (!v?.snapshot) return null;
+  const title = $('view-title').textContent || 'USS FIDELITY';
+  const tiers = { measured: [], reported: [], computed: [], modelled: [], imagined: [] };
+  const imgCredits = [], bodies = [];
+  const titleCase = (t) => t.toLowerCase().replace(/(^|[\s(/-])(\p{L})/gu, (_, a, c) => a + c.toUpperCase());
+  let place = title, subject = titleCase(title.split(' · ').slice(1).join(' · ') || title), lighting = null;
+  if (v === system && system.model) {
+    const m = system.model, surf = system.onSurface, focus = route.body && m.bodies.find((x) => x.id === route.body);
+    const where = m.isSol ? 'the Solar System' : `the ${m.name} system`;
+    subject = focus ? `${m.isSol && ['moon', 'sun'].includes(focus.id) ? 'The ' : ''}${focus.name} in ${where}` : where.charAt(0).toUpperCase() + where.slice(1);
+    tiers.measured.push('STARS'); tiers.computed.push('POSITIONS');
+    const shot = system.framed?.(3) ?? [];
+    const phases = shot.filter((f) => f.lit != null && f.px >= 6).slice(0, 6)
+      .map((f) => `${f.name} ${Math.round(f.lit * 100)}% lit${f.from ? `, lit from the ${f.from}` : ''}`);
+    if (phases.length) lighting = `${phases.join('; ')} (as rendered; keep every terminator where it is)`;
+    for (const f of shot) {
+      bodies.push(f.name);
+      if (f.live) { tiers.measured.push('LIVE IMAGERY'); if (f.live.credit) imgCredits.push(f.live.credit); }
+      else if (f.imagined) tiers.imagined.push(`${f.name.toUpperCase()}'S SURFACE`);
+      else { tiers.measured.push('SURFACE MAPS'); if (credits[f.map]) imgCredits.push(credits[f.map]); }
+    }
+    if (surf) {
+      const b = m.bodies.find((x) => x.id === surf.id), sp = system.surfaceSpot();
+      const name = b ? (m.isSol && ['moon', 'sun'].includes(b.id) ? `the ${b.name}` : b.name) : surf.id;
+      let lon = sp ? sp.lon + ((b?.texLon0 ?? -180) + 180) : null;
+      if (lon > 180) lon -= 360;
+      place = `STANDING ON ${name.toUpperCase()}${sp ? ` · ${latLonText(sp.lat, lon)}` : ''}`;
+      subject = `From the surface of ${name}${sp ? `, ${latLonText(sp.lat, lon)}` : ''}`;
+      tiers.imagined.push('SURFACE');
+      lighting = `${lighting ? `${lighting}. ` : ''}Standing on the ground: the Sun's position and every phase come from the ship's clock`;
+      if (settings.get('deepsky')) imgCredits.push('Deep-sky images: DSS2 (STScI/AURA) and others, credited per object in the app');
+    } else if (settings.get('scale') !== 'true') tiers.imagined.push('BODY SIZES (ENLARGED)');
+    const pf = system.postcardFacts ?? {};
+    if (pf.paleo) tiers.modelled.push('PAST EARTH');
+    if (pf.scenario?.length) tiers.modelled.push('SCENARIO');
+    if (settings.get('band') && settings.get('band') !== 'full') tiers.measured.push(`${String(settings.get('band')).toUpperCase()} BAND`);
+  } else if (v === galaxy || v === quadrant) {
+    tiers.measured.push('STARS'); tiers.modelled.push('MILKY WAY MODEL');
+    if (settings.get('galaxyArt')) { tiers.imagined.push("ARTIST'S FACE-ON MILKY WAY"); imgCredits.push('NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748'); }
+  } else if (v === universe) {
+    tiers.measured.push('GALAXY POSITIONS'); tiers.measured.push('GALAXY IMAGES');
+    imgCredits.push('Digitized Sky Survey 2 (POSS-II / UK Schmidt; STScI/AURA) and 2MASS (UMass/IPAC-Caltech, NASA/NSF), via CDS hips2fits');
+  } else if (v === nav) {
+    tiers.measured.push('STARS'); tiers.computed.push('ORBITS');
+  } else if (v === comms) {
+    tiers.measured.push('EARTH MAP'); tiers.reported.push('STATION POSITIONS');
+    if (credits.earth) imgCredits.push(credits.earth);
+    imgCredits.push(...comms.postcardCredits);
+    subject = comms.mode === 'rf' ? 'Radio receivers around the world' : 'Live stations and cameras around the world';
+    place = comms.mode === 'rf' ? 'COMMS · RF RECEIVERS ON EARTH' : 'COMMS · SUBSPACE STATIONS ON EARTH';
+  } else if (v === starView) {
+    const b = system.model?.bodies.find((x) => x.id === route.body);
+    tiers.measured.push('STAR DATA');
+    if (system.model?.isSol && (!b || b.id === system.model.starId)) { // the Sun: a solar map, or SDO's live disc
+      tiers.measured.push('SOLAR DISC');
+      const live = settings.get('liveSkins') && liveInfo.get('sdo-hmi');
+      if (live?.credit) imgCredits.push(live.credit); else if (credits.sun) imgCredits.push(credits.sun);
+    } else tiers.imagined.push('STAR SURFACE');
+  } else if (v === planetView) {
+    const b = system.model?.bodies.find((x) => x.id === route.body);
+    if (b) bodies.push(b.name);
+    if (b?.skin?.map && credits[b.skin.map] && !b.surfacePending) { tiers.measured.push('SURFACE MAP'); imgCredits.push(credits[b.skin.map]); }
+    else tiers.imagined.push('SURFACE');
+  }
+  if (!clock.isNow) tiers.computed.push('SKY AT THE SHIP\'S DATE');
+  const date = clock.inCalendar ? dateFromJd(clock.jd) : null;
+  const rig = v.camera;
+  let link = null;
+  try { const st = rig?.state?.(); if (st) link = viewLink(st); } catch { /* no camera state */ }
+  return {
+    title, place, subject, snapshot: v.snapshot, tiers, credits: imgCredits, years: clock.years, date,
+    shipDate: date ? `${shipDate(date)} · ${date.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `DEEP TIME · ${formatOffset(clock.years)}`,
+    realDate: new Date().toISOString().slice(0, 16).replace('T', ' '),
+    link,
+    facts: { view: title.toLowerCase(), subject, bodies, date: date ? date.toISOString().slice(0, 10) : formatOffset(clock.years), lighting },
+  };
+}
+const postcard = createPostcard({ h, pill: (...a) => pill(...a), toast, settings, describe: describePostcard, standalone: STANDALONE }); // pill is defined further down
+onPostcard(() => postcard.open());
 
 // ---- toast & warp -----------------------------------------------------------------------
 let toastTimer;
@@ -356,7 +452,22 @@ function updateBandRow() {
   if (!bandRow) return;
   const look = system.bandLookOf(bandRow.id);
   if (look) bandRow.dd.textContent = `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}`;
+  if (bandRow.scale) showBandScale(bandRow.scale, look);
   spectrum?.refreshReadout();
+}
+// an archive map's physical scale on the band bar and a SCALE row (#72), once its scale and levels are known
+function showBandScale(el, look) {
+  const sc = look?.mode === 'real' ? look.scale : null, s = sc && look.levels ? shownScale(sc, look.levels) : null;
+  el.dt.hidden = el.dd.hidden = el.badge.hidden = !s;
+  if (el.lo) { // the bar's ends (standalone, or until the scale arrives: FAINT … BRIGHT as before)
+    el.lo.textContent = s ? s.loText : 'FAINT';
+    el.hi.textContent = s ? s.hiText : el.hiDefault;
+    el.lo.parentElement?.classList.toggle('scaled', !!s);
+  }
+  if (!s) return;
+  el.dd.textContent = `${s.text} · FALSE COLOUR`;
+  const b = badge(sc.tier ?? 'computed', scaleDetail(sc, s));
+  el.badge.replaceWith(b); el.badge = b;
 }
 onBandRes(updateBandRow);
 // panels that describe the band (#28): Galaxy, Universe and Star views re-render when it changes
@@ -383,7 +494,7 @@ function screenContext() {
   const d = dateFromJd(clock.jd);
   lines.push(`SHIP'S CLOCK: ${clock.inCalendar ? `${d.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `${formatOffset(clock.years)} from now (deep time)`}, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}${clock.clamped ? ` (stopped at this view's limit: ${clock.clamped})` : ''}`);
   lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
-  const on = ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
+  const on = ['labels', 'orbits', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
   const cb = currentBand();
   if (!cb.full) {
@@ -478,6 +589,29 @@ const flag = (key, label) => {
   return b;
 };
 
+// DETAIL slider: the System View's layers step by step, from the bare system (star, planets, moons,
+// orbits) at the left to every layer at the right; it writes the layer flags, and reads them back
+const detailCtl = (() => {
+  const input = h('input', { type: 'range', className: 'detail-slider', min: '0', max: String(DETAIL_MAX), step: '1',
+    title: `DETAIL: drag right to add map elements (${DETAIL_LEVELS.map((l) => l.label.replace(/^\+ /, '')).join(' → ')})` });
+  const read = h('div', { className: 'detail-read' });
+  let writing = false;
+  input.addEventListener('input', () => {
+    writing = true;
+    for (const [k, v] of Object.entries(flagsForLevel(Number(input.value)))) if (settings.get(k) !== v) settings.set(k, v);
+    writing = false; sync();
+  });
+  const sync = () => {
+    if (writing) return;
+    const n = levelOfFlags(settings.get);
+    input.value = String(n);
+    read.textContent = DETAIL_LEVELS[n].label;
+    input.style.setProperty('--fill', `${(n / DETAIL_MAX) * 100}%`);
+  };
+  settings.onChange((k) => { if (DETAIL_FLAGS.includes(k)) sync(); }); sync();
+  return h('div', { className: 'ctl-group detail-ctl' }, h('div', { className: 'ctl-label', textContent: 'DETAIL' }), h('div', { className: 'detail-box' }, input, read));
+})();
+
 // ---- step the clock by n units, or run at n units per second -------------------------------
 const stepIn = h('input', { type: 'number', className: 'ctl-num', step: 'any', title: 'How many units (decimals and negatives allowed)', value: String(settings.get('stepN') ?? 1) });
 const stepUnit = h('select', { className: 'ctl-select', title: 'Step unit' }, STEP_UNITS.map((u) => h('option', { value: u.id, textContent: u.label })));
@@ -516,7 +650,8 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), spectrum.button),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  detailCtl,
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('dwarfs', 'DWARFS'), flag('smallBodies', 'SMALL BODIES'), flag('spacecraft', 'CRAFT'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -664,7 +799,7 @@ const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, t
 const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // COMMS (#69): SubSpace and RF reception
-const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
+const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPostcard: () => postcard.open(), onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
 function renderCommsPanel() { resetLive(); panel.replaceChildren(...comms.panel(h, row), renderLegend()); }
 $('comms-tab').addEventListener('click', () => go({ level: 'comms', system: 'sol' }));
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
@@ -910,6 +1045,10 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
         const res = look.res ? ` · ${resText(look.res)}` : '';
         const detail = look.res && look.res !== 'full' ? `${look.detail}\n${look.res.startsWith('failed') ? `The full-resolution image could not be loaded; the low-resolution preview is shown (still ${look.tier === 'modelled' ? 'MODELLED' : 'MEASURED'}).` : look.res === 'baked' ? 'The offline preview carries this small copy, baked when the file was built; the local backend serves the full resolution.' : `A low-resolution preview of the ${look.tier === 'modelled' ? 'modelled map (MODELLED · PREDICTED)' : 'real map (MEASURED)'} is shown while the full resolution loads.`}` : look.detail;
         bandRow = { id: b.id, dd: row(dl, 'IN THIS BAND', `${look.label}${res}`, look.tier, detail) };
+        if (look.mode === 'real' && look.source?.archive?.scale) { // #72: filled by showBandScale when the scale and levels arrive
+          const sdd = row(dl, 'SCALE', '', 'computed');
+          bandRow.scale = { dt: sdd.previousSibling, dd: sdd, badge: sdd.nextSibling };
+        }
         for (const s of look.sources ?? []) row(dl, `${s.predicted ? 'MODELLED MAP' : 'REAL MAP'} · ${s.drawn ? 'DRAWN' : 'LISTED'}`, `${s.credit.split(/[,(:]/)[0].trim().toUpperCase()} · ${Math.round(s.weight * 100)}%`, s.predicted ? 'modelled' : 'measured', `${s.credit}${s.note ? `\n${s.note}` : ''}${s.drawn ? '' : '\nOverlaps the curve but is not drawn: one map per globe (the best-covered).'}`);
         if (look.notObserved?.length) row(dl, 'NOT OBSERVED', look.notObserved.map((r) => fmtRange(...r)).join(', '), 'computed', 'Parts of the curve with no real image of this body and no spectral signature to predict from.');
         else if (look.uncovered?.length && look.mode === 'curve') row(dl, 'NO REAL IMAGE', look.uncovered.map((r) => fmtRange(...r)).join(', '), 'modelled', 'Predicted there (MODELLED · PREDICTED).');
@@ -918,10 +1057,12 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       if (skies.layers.length) for (const L of skies.layers) row(dl, 'SKY', `${L.skyCredit.split(/[,(]/)[0].trim().toUpperCase()}${skies.layers.length > 1 ? ` · ${Math.round(L.weight * 100)}%` : ''}`, 'measured', L.skyCredit);
       else row(dl, 'SKY', 'CATALOGUE STARS, RE-WEIGHTED', 'computed', cb.custom ? 'No all-sky survey overlaps the curve: catalogue stars brightened or dimmed by their blackbody through T(λ) relative to V (Vega system).' : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
       const d = cb.custom ? cb.prep.desc : null;
+      const keyLo = h('span', { textContent: 'FAINT' }), keyHi = h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' });
       extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.custom ? microns(cb.pass.label).toUpperCase() : `${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}`}` }), dl,
         look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail } ) : null,
         d?.composite ? h('div', { className: 'sp-key' }, ...d.thirds.map((t, i) => h('span', { className: `k${i}`, textContent: fmtRange(...t) })))
-          : h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+          : h('div', { className: `band-key band-${cb.band.palette}` }, keyLo, keyHi));
+      if (bandRow?.scale) { Object.assign(bandRow.scale, { lo: keyLo, hi: keyHi, hiDefault: keyHi.textContent }); showBandScale(bandRow.scale, look); }
     }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));

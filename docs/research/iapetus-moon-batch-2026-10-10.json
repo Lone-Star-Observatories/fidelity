@@ -1,0 +1,376 @@
+{
+  "generated": "2026-10-10",
+  "status": "Verified additive dossier59; scientific calibration and broader backlog remain open.",
+  "bodies": [
+    {
+      "id": "iapetus",
+      "name": "Iapetus",
+      "aliases": [
+        "Iapetus"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-10",
+      "previewWidth": 256,
+      "nativeSurface": "Own NASA3D globe retained unchanged and source-byte equal (SHA256 9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405). Product associations, coverage, frame, input epochs, photometry and local scene registration remain open. Blurred regions and mosaic transitions do not establish smooth terrain or local material fractions.",
+      "measured": [
+        "Catalogue radius734.5km and representative orbital semimajor axis3561700km; publisher1471km diameter retained separately, without silent replacement.",
+        "Cassini PIA21347 observed2017-05-30, released2017-09-18, combines338nm ultraviolet/568nm green/930nm infrared in enhanced false colour. Native source is not calibrated visible RGB or a registered globe.",
+        "Spencer/Denk main paper reports2007-09-10 CIRS resolved-location blackbody fits129K/113K; these are not global or current observer temperatures."
+      ],
+      "modelled": [
+        "External dust deposition with temperature-dependent water-ice migration is an explanation of the dichotomy, not measured present-day local sublimation or composition. Thermal albedos0.04/0.39 and deposition/mixing/gardening assumptions are model values, not local fractions.",
+        "Saturn angular diameter1.87398420677degrees and27.34565245 target pixels at1672px under nominal90degree HFOV, from skyGeometry. Spherical radius58232km at3561700minus734.5km; no dated site/ephemeris registration."
+      ],
+      "unknown": [
+        "Exact globe product/frame/coverage/epoch/photometry audit and local science-image registration.",
+        "Full companion imaging paper, supplements and equatorial-ridge alternatives audit. No unique ridge origin asserted.",
+        "Generated Saturn globe appears oversized; precise globe-only audit remains open. Row240 spans49px at thresholds5/10/20 include rings and are NOT adopted as diameters.",
+        "Material chemistry/fractions, dated illumination and calibrated visible colour/scene exposure remain unknown."
+      ],
+      "assumed": [
+        "IMAGINED independent local and sky views: craters, blocks, dark regolith, pale patches, material chemistry/fractions, colour and lighting invented. No analog body map or observed site reconstruction.",
+        "Saturn bands, rings, phase and camera orientation are artistic. Inclined orbit allows variable ring opening; image opening is assumed without angle calibration. Off-frame Sun9.58AU helper is angular only;95K Saturn helper is not visible photometry.",
+        "No atmosphere, plume, liquid, exposed ocean, biology or survivable landing implied. Small preview annotations have limited readability; readable card labels carry limitations."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+          "title": "Cassini PIA21347 Farewell to Iapetus",
+          "publicationDate": "2017-09-18"
+        },
+        {
+          "url": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+          "title": "Cassini PIA21332 Puzzled Iapetus",
+          "publicationDate": "2017-06-12"
+        },
+        {
+          "url": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+          "title": "Spencer and Denk: Iapetus thermal segregation; retained compilation, main pages1–4 assessed",
+          "publicationDate": "2010-01-22"
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA image/media terms"
+        }
+      ],
+      "contextImages": [
+        {
+          "url": "/bespoke/iapetus-cassini-native.jpg",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21347/PIA21347.jpg",
+          "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+          "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+          "credit": "NASA/JPL-Caltech/Space Science Institute",
+          "terms": "NASA image/media guidelines; not asserted CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "tier": "measured",
+          "observationDate": "2017-05-30",
+          "publicationDate": "2017-09-18",
+          "bytes": 8326,
+          "sha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+          "width": 629,
+          "height": 598,
+          "description": "Actual Cassini UV/green/infrared enhanced false-colour composite. Small distant body; not local terrain, calibrated visible colour or registered globe. Caption range/scale/orientation are publisher estimates, not newly derived raster measurements.",
+          "processing": "Unchanged full publisher JPEG; no local resizing or reencoding. Original TIFF and separate older visible-monochrome PIA21332 retained as research inputs."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 9.58,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 0.05562675517362789,
+        "centreDiscWidthFraction": 0.00048543505312076185,
+        "irradianceEarth": 0.010896047349863365,
+        "approximateSrgb": [
+          1,
+          0.9501748635948273,
+          0.9034305975663324
+        ],
+        "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+      },
+      "saturnGeometry": {
+        "angularDiameterDeg": 1.8739842067705352,
+        "centreDiscWidthFraction": 0.016355055294701642,
+        "irradianceEarth": 9.0736877390816e-7,
+        "approximateSrgb": [
+          1,
+          0.2663545845364998,
+          0
+        ],
+        "horizontalFovDeg": 90,
+        "limits": "Spherical mean-radius angular guide only. 95 K helper colour/irradiance not adopted as visible photometry. Inclined orbit gives variable ring opening; camera, ring/phase orientation, FOV, colour, exposure and lighting assumed without dated ephemeris registration.",
+        "radiusKm": 58232,
+        "observerDistanceKm": 3560965.5,
+        "targetPixels": 27.345652452741145
+      },
+      "surfaceLabel": "IMAGINED LOCAL IAPETUS TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM IAPETUS — ASSUMED RING ORIENTATION",
+      "surfaceImage": {
+        "url": "/bespoke/iapetus-surface-image.jpg",
+        "previewUrl": "/bespoke/iapetus-surface-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-10",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "iapetus-generated-surfaceImage-original.png",
+        "sourceSha256": "09c2d0c06f97fc9d16aadc431d311e5b811dd0ef13f72c77c746d15721638e97",
+        "sha256": "36d669f587ecd70838303ea30708ad1c96f6ce4717e2183769d1c55f86f4d7b7",
+        "previewSha256": "51a961004a651b9e46c92c7caf1f51feedaa41a97fb9fc0d0a2bafc21c03cf3a",
+        "bytes": 342150,
+        "previewBytes": 11337,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      },
+      "skyImage": {
+        "url": "/bespoke/iapetus-sky-image.jpg",
+        "previewUrl": "/bespoke/iapetus-sky-image-preview.jpg",
+        "tier": "imagined",
+        "generated": "2026-10-10",
+        "observationDate": null,
+        "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+        "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+        "sourceFile": "iapetus-generated-skyImage-original.png",
+        "sourceSha256": "3cab827f76887809cee11626163c4484acf1a57b03c58e5094d4f4a1789269f3",
+        "sha256": "3f4c5b67aed61938df711b486b6dd9ab607f18f5b4a67f404a06d9bf8c418e06",
+        "previewSha256": "a4687a14e0816f32519c46702e94ebb87868e5e96a61a7e1630ea6bf2b56fbde",
+        "bytes": 193478,
+        "previewBytes": 6834,
+        "width": 1536,
+        "height": 864,
+        "previewWidth": 256,
+        "previewHeight": 144,
+        "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+      }
+    }
+  ],
+  "preparation": {
+    "date": "2026-10-10",
+    "status": "Research preparation only; all58 dossiers unchanged. No59th dossier or new embedded Iapetus imagery.",
+    "sourceRecords": "iapetus-moon-source-records-2026-10-10.json",
+    "nativeAssessment": [
+      {
+        "product": "PIA21347 Farewell to Iapetus",
+        "observed": "2017-05-30",
+        "released": "2017-09-18",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "source": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "inspected": true,
+        "limitations": "False-colour ultraviolet338nm/green568nm/infrared930nm enhanced composite, not calibrated visible colour, local terrain resolution or a registered globe. Publisher last Cassini observation-set statement retained; no exhaustive current newest-observation claim. Original629x598 JPEG and TIFF retained unchanged; large black frame is not surface geography. North rotated12degrees left, approximate2.5million km range and15km/pixel are caption statements, not new raster calculations."
+      },
+      {
+        "product": "PIA21332 Puzzled Iapetus",
+        "observed": "2017-03-11",
+        "released": "2017-06-12",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "source": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+        "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "inspected": true,
+        "limitations": "Visible-light NAC monochrome with small body in black frame. Not calibrated RGB colour or a global registered map. North rotated20degrees right, approximate2.6million km range and15km/pixel are publisher statements, not independently derived scale."
+      }
+    ],
+    "nativeMapAudit": {
+      "path": "data/textures/iapetus.jpg",
+      "bytes": 384551,
+      "sha256": "9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405",
+      "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Iapetus/Saturn%20-%20Iapetus.jpg",
+      "matchesFetchedSourceBytes": true,
+      "inspected": true,
+      "limitations": "Own NASA3D globe retained unchanged. Different resolutions, blurred regions, mosaicking and brightness transitions do not establish measured smooth terrain, material fractions or calibrated visible photometry. Exact Cassini product associations, input epochs, frame, coverage and local scene registration remain open."
+    },
+    "scienceAssessment": {
+      "scope": "NASA captions plus accessible Spencer/Denk main Science paper (pages1–4 of retained31-page compilation); full supplements and companion paper not independently audited.",
+      "modelled": "External dust deposition combined with temperature-dependent water-ice migration is the publisher-supported explanation for global dark/bright dichotomy, not directly measured local chemical fractions, present-day sublimation rates or observer-site conditions.",
+      "catalogueAlternative": "Publisher1471km diameter and existing734.5km catalogue radius retained separately; no silent radius replacement.",
+      "open": [
+        "Full thermal-migration supplement, companion imaging paper and equatorial-ridge alternatives audit.",
+        "Independent local/observer views with skyGeometry; Iapetus orbital inclination and camera attitude must not blindly inherit nearly edge-on Saturn ring assumptions from inner moons.",
+        "Recover lossless standalone headroom before additive integration.",
+        "Globe frame/coverage/input epochs and photometry."
+      ],
+      "primary": {
+        "authors": [
+          "John R. Spencer",
+          "Tilmann Denk"
+        ],
+        "doi": "10.1126/science.1177132",
+        "online": "2009-12-10",
+        "issue": "2010-01-22",
+        "paperPages": "Science327432–435",
+        "source": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+        "measured": "Cassini CIRS FP3 blackbody-fit brightness temperatures129K dark and113K bright terrain at specific resolved locations during2007-09-10 flyby; not global or current observer-site temperatures.",
+        "modelled": "Thermal-model albedos.04/.39, simplified external deposition and global thermal ice migration; deposition/mixing parameters and lunar gardening analogy are assumptions, not measured local rates or fractions. Figure3 source mosaic explicitly not photometrically accurate.",
+        "limitations": "Lunar gardening analogy must never supply Iapetus terrain. No licence asserted as CC and no paper figures or derivatives embedded. Full supplement, companion paper, equatorial-ridge alternatives and current calibration remain open."
+      }
+    },
+    "preservation": {
+      "dossiers": 58,
+      "trackedMapModelShapeFiles": 69,
+      "allEqualHEAD": true
+    },
+    "verification": {
+      "tests": "453pass1skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15997661,
+      "headroomBytes": 2339,
+      "browser": "Chrome; other engines not independently tested",
+      "completeBrowserDecodedSnapshotSha256": "d8fd68eaf23c564dd59190e54d54d732e889e1e36927433f2d5447f8fb4172d7",
+      "applicationSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+      "checks": "Exact readable JSON/application/CSS and HTML-parser payloads;207images20bands517details32models; all native hashes and prior57deepEqual; normal/offline Hyperion3cards;6routes unsupportedgzip11workerrows.",
+      "interbuildDifferencePaths": [
+        "/bandImages//api/feed/sdo-94?size=preview/time",
+        "/bandImages//api/feed/sdo-94?size=preview/disk",
+        "/bandImages//api/feed/sdo-94?size=preview/src",
+        "/bandImages//api/feed/sdo-1600?size=preview/time",
+        "/bandImages//api/feed/sdo-1600?size=preview/disk",
+        "/bandImages//api/feed/sdo-1600?size=preview/src",
+        "/bandImages//api/feed/sdo-304?size=preview/time",
+        "/bandImages//api/feed/sdo-304?size=preview/disk",
+        "/bandImages//api/feed/sdo-304?size=preview/src",
+        "/bandImages//api/feed/sdo-193?size=preview/time",
+        "/bandImages//api/feed/sdo-193?size=preview/disk",
+        "/bandImages//api/feed/sdo-193?size=preview/src",
+        "/bandImages//api/feed/sdo-171?size=preview/time",
+        "/bandImages//api/feed/sdo-171?size=preview/disk",
+        "/bandImages//api/feed/sdo-171?size=preview/src"
+      ],
+      "attribution": "No sole asset savings attribution; research-only inputs not embedded."
+    }
+  },
+  "prompts": {
+    "local": {
+      "date": "2026-10-10",
+      "status": "Research-only local view preparation; all58 dossiers retained. No59th or new embedding.",
+      "generator": "Built-in image_gen; scientific-educational; no image references",
+      "prompt": "Use case: scientific-educational\nAsset type: Fidelity Iapetus hypothetical local terrain card, standalone wide landscape illustration.\nPrimary request: Generate an independent research-guided IMAGINED local view from Iapetus. This is an invented unregistered site, not a reconstruction of a Cassini photograph, NASA globe, Moon, Mars, Callisto or another body's map.\nScene/backdrop: Airless Saturnian moon, low rolling heavily cratered horizon beneath black sky. Foreground invented uneven granular charcoal-brown regolith, scattered angular blocks and a few pale patches on protected slopes. Depict a plausible dark-terrain study, not measured chemistry, material fractions, frost depth or active sublimation.\nStyle/medium: Restrained realistic scientific concept illustration, wide 16:9 landscape, camera close to terrain with foreground texture and middle-distance craters. No giant equatorial mountain ridge is implied at this unknown site.\nLighting/mood: Low directional sunlight from outside frame, long shadows, muted dark brown/grey and dull pale material. Exposure and visible colour are artistic.\nText (verbatim): Large readable upper-left label \"IMAGINED — IAPETUS\". Lower-left label \"HYPOTHETICAL LOCAL TERRAIN\".\nConstraints: No reference images, no observed analog skin. No Saturn, rings, Sun disk, stars or other astronomical disk in this local study; no angular/raster size claim needed. No atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, spacecraft, astronaut or survivable landing. Never imply dated site, calibrated colour, observed local composition, registered globe or measured thermal migration. Only the two requested labels, no numerical scales.",
+      "original": {
+        "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ac71063a-bf81-4280-88a6-89cd1e7fd5be.png",
+        "path": "data/research-sources/iapetus-generated-surfaceImage-original.png",
+        "bytes": 2748293,
+        "sha256": "09c2d0c06f97fc9d16aadc431d311e5b811dd0ef13f72c77c746d15721638e97",
+        "width": 1672,
+        "height": 941
+      },
+      "inspected": true,
+      "limitations": "Independent IMAGINED cratered dark-terrain study. Terrain, blocks, pale patches, chemistry/fractions, colour, light and exposure are invented, not measured at a Cassini or globe-registered site. No observed analog map used. No atmosphere, plume, liquid, exposed ocean, biology or survivable landing. No Saturn/rings/Sun/stars disk; no angular/raster size calculation needed. Labels readable in original; compact preview readability still requires assessment.",
+      "preservation": {
+        "dossiers": 58,
+        "trackedMapModelShapeFiles": 69,
+        "allEqualHEAD": true
+      },
+      "next": "Saturn observer using skyGeometry and Iapetus inclined orbit/camera attitude limits; recover lossless standalone headroom before additive integration.",
+      "verification": {
+        "tests": "453pass1skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15997661,
+        "headroomBytes": 2339,
+        "completeSnapshotSha256": "d8fd68eaf23c564dd59190e54d54d732e889e1e36927433f2d5447f8fb4172d7",
+        "exactSameReadableSnapshotAsBefore": true,
+        "browser": "Chrome; other engines open",
+        "checks": "Exact full JSON, application, CSS and HTML-parser payloads;207images20bands517details32models;native hashes and normal/offline Hyperion3cards;6routes unsupportedgzip11workerrows.",
+        "queue": 566
+      }
+    },
+    "sky": {
+      "date": "2026-10-10",
+      "status": "Research-only independent observer preparation; no59th dossier/new embedding.",
+      "generator": "Built-in image_gen; no references",
+      "prompt": "Use case: scientific-educational\nAsset type: Fidelity hypothetical sky from Iapetus, wide 16:9 illustration.\nGenerate an independent IMAGINED observer scene from an unregistered Iapetus site. No reference image or observed body map reuse. Low narrow foreground of invented dark granular cratered terrain and angular blocks under black airless sky.\nSaturn is a SMALL pale muted globe near upper middle, approximately27pixels globe diameter in1672px wide image, nominal90degree horizontal FOV. skyGeometry spherical Saturn58232km at3561700minus734.5km gives1.87398420677degrees and widthfraction.016355055295. Rings may extend beyond globe, but are not part of that diameter.\nShow a modest open ring ellipse as an EXPLICITLY ASSUMED orbital/camera phase illustration: Iapetus inclined orbit means ring opening varies, so do not inherit an always edge-on ring view. No date, site, ephemeris or calibrated opening angle claimed. Globe bands, ring brightness, orientation, phase and illumination are schematic invented features, no Jupiter/Saturn photograph template. Blackbody95K helper is angular only and must not dictate visible orange globe.\nSmall planet must remain small and retain wide empty sky; no giant dramatic Saturn. No visible Sun or stars, atmosphere, haze, clouds, plume, liquid, ocean, biology, craft or astronaut. No survivable landing or permanent registered Saturn-facing site claim.\nLarge exact label upper left \"IMAGINED — SKY FROM IAPETUS\". Lower left \"ASSUMED CAMERA AND RING ORIENTATION\". Invented terrain, chemistry/fractions, colour, exposure and light are artistic.",
+      "original": {
+        "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-eb30e15b-e935-416f-b983-6d4c363845f8.png",
+        "path": "data/research-sources/iapetus-generated-skyImage-original.png",
+        "bytes": 1630656,
+        "sha256": "3cab827f76887809cee11626163c4484acf1a57b03c58e5094d4f4a1789269f3",
+        "width": 1672,
+        "height": 941
+      },
+      "inspected": true,
+      "geometry": {
+        "radiusKm": 58232,
+        "representativeDistanceKm": 3560965.5,
+        "angularDiameterDeg": 1.8739842067705352,
+        "centreDiscWidthFraction": 0.016355055294701642,
+        "irradianceEarth": 9.0736877390816e-7,
+        "approximateSrgb": [
+          1,
+          0.2663545845364998,
+          0
+        ],
+        "horizontalFovDeg": 90,
+        "limits": "Spherical semimajor representative;95K colour/irradiance not used for visible appearance. Inclined orbit means variable ring opening; depicted phase/camera/ring orientation assumed, no dated site/ephemeris or calibrated opening angle.",
+        "targetGlobePixels": 27.345652452741145
+      },
+      "rasterAssessment": {
+        "row": 240,
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "brightChordWidths": [
+          49,
+          49,
+          49
+        ],
+        "limits": "Row240 thresholds measure49px spans contaminated by ring pixels; not adopted as a globe diameter. Visual globe appears oversized relative27.345652px target. Rings excluded from geometric target; precise globe-only raster calibration remains open."
+      },
+      "limitations": "Invented terrain/blocks/chemistry fractions/Saturn bands/rings/phase/light/colour/exposure. No analog body map, registered Cassini/globe site, atmosphere, haze, plume, liquid, ocean, biology, craft or survivable landing. No permanent Saturn-facing site claim. Small preview label readability pending.",
+      "next": "Masters/recorded previews and lossless headroom essential before additive integration.",
+      "verification": {
+        "tests": "453pass1skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15997398,
+        "headroom": 2602,
+        "completeBrowserSnapshotSha256": "00fee24d72c45cef5d99a7d357d738636b381c134ffad975c1d80e39ab2c5544",
+        "exactApplicationSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+        "checks": "Chrome complete JSON/app/CSS/HTMLparser equality207images20bands517details32models allnativehashes normalofflineHyperion3cards6routesunsupported11worker; other engines open.",
+        "interbuildDifferencePaths": [
+          "/bandImages//api/feed/sdo-171?size=preview/src",
+          "/bandImages//api/feed/sdo-171?size=preview/disk",
+          "/bandImages//api/feed/sdo-171?size=preview/time",
+          "/bandImages//api/feed/sdo-193?size=preview/src",
+          "/bandImages//api/feed/sdo-193?size=preview/disk",
+          "/bandImages//api/feed/sdo-193?size=preview/time",
+          "/bandImages//api/feed/sdo-1600?size=preview/src",
+          "/bandImages//api/feed/sdo-1600?size=preview/disk",
+          "/bandImages//api/feed/sdo-1600?size=preview/time",
+          "/bandImages//api/feed/sdo-94?size=preview/src",
+          "/bandImages//api/feed/sdo-94?size=preview/disk",
+          "/bandImages//api/feed/sdo-94?size=preview/time",
+          "/bandImages//api/feed/sdo-304?size=preview/src",
+          "/bandImages//api/feed/sdo-304?size=preview/disk",
+          "/bandImages//api/feed/sdo-304?size=preview/time"
+        ],
+        "attribution": "No asset savings attribution; research-only original not embedded."
+      },
+      "preservation": {
+        "dossiers": 58,
+        "trackedMapModelShapeFiles": 69,
+        "allEqualHEAD": true
+      }
+    }
+  },
+  "verification": {
+    "tests": "453 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "initial32IterationTrialBytes": 16005025,
+    "htmlBytes": 15996609,
+    "headroomBytes": 3391,
+    "snapshotCompression": "Standard gzip64 iterations/unlimited blocks; application32/unlimited, CSS5 unchanged. Exact text restored; all legacy decoders preserved. Higher build compression cost.",
+    "completeSnapshotSha256": "9e5c1302237ca8e0dbcd5a831f58b74e3f2fdd7dc8eedf4cef5e382e23979bc4",
+    "applicationSha256": "f21a0ec47b5a0bcfe0075f51ec01abdf272878cbaa5fb7f95bb225b5523c76b1",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact full readableJSON/application/CSS/HTMLparser;210 images20 bands517 details32 models native hashes; actual normal/offline Iapetus own-map3cards; six routes, unsupportedgzip and11 worker rows pass. Other engines open.",
+    "preservation": "All58 earlier dossiers deepEqual; all69 tracked maps/models/shapes byte-identical to HEAD; original PNGs/full prompts/master and native science inputs retained.",
+    "attribution": "Initial32 iteration build exceeded gate; final64 iteration build fits. Interbuild feed differences not independently audited; net size difference is not solely attributed to compression or assets."
+  }
+}

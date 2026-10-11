@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-11",
+  "body": "Nereid",
+  "status": "Research-only independent original prepared; no67th dossier or new embedding",
+  "prompt": "Create a wholly independent research-guided hypothetical local view of Nereid, Neptune's small eccentric-orbit unlocked moon. Wide 16:9 cinematic scientific illustration, nominal eye-level remote robotic camera across an invented low rolling cold regolith landscape, scattered angular blocks, subdued gray granular ground with modest pale frost-like patches and shallow impact depressions. No specific observed site, no recognizable terrain copied from Moon, Mars, Pluto, Triton, Phoebe, Hyperion or any real body; do not use analog imagery. Recent disk-integrated Webb spectra support crystalline water ice but do NOT determine local coverage, exact chemistry, particle sizes or visible colour: all ground textures, frost-looking patches, material fractions, gray colour and lighting here must be understood as invented. No exposed ocean, liquid, plume, geyser, volcano, biology, humans, lander, structures or survivable landing implication. A nearly black background sky is a hypothetical no-visible-atmosphere assumption, not a measurement of absence; no haze or clouds. NO Neptune, Sun, rings, stars or other astronomical disks anywhere, so no angular/raster calculation is implied. Restrained low oblique illumination and deep shadows, artistic exposure without dated ephemeris/photometric calibration. Add a clean readable footer with exact text 'IMAGINED LOCAL NEREID TERRAIN' and smaller 'Invented terrain, colour and materials — not an observed site'. Make the labeling unmistakable and professional, preserving a natural landscape above the footer.",
+  "original": {
+    "path": "data/research-sources/nereid-generated-surfaceImage-original.png",
+    "bytes": 2892176,
+    "sha256": "1389e85b5fae54d84277096da5026ae122aa8dee24c86b77375990b40c68e3cd",
+    "width": 1672,
+    "height": 941,
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9360123b-e809-433b-8ee0-5b2c3fdd8458.png"
+  },
+  "inspection": "IMAGINED label and invented local blocks/depressions/frost-like patches; no astronomical disk or angular/raster claim.",
+  "limits": "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+  "sources": [
+    "docs/research/nereid-moon-preparation-2026-10-11.json"
+  ],
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15974183,
+    "completeSnapshotSha256": "3ab787302e4d31da523217bfd8ab036c5f3f7eb82ba1d11a6b924b6a91223cd5",
+    "readableSnapshotUnchangedFromBaseline": true,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "3ab787302e4d31da523217bfd8ab036c5f3f7eb82ba1d11a6b924b6a91223cd5",
+      "raw": "062901f912237d603fcd210e96eb5abbe55b5dcbec8d5a9a30382fc1c49e6395",
+      "magic": "FIDBRT01",
+      "images": 231,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15974183,
+      "compressedBytes": 788461,
+      "applicationSha256": "25db2a73a8464d326324133777d3ae62c7845255ace5c125e2d4b4f9e9c6b242",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "preservation": "All66dossiers379trackedregistry/bespoke/map/model/shape inputs unchanged; originals/default copies/native science preserved. No67th/newembedding; other browser engines open. Codecs unchanged.",
+    "headroomBytes": 25817
+  }
+}

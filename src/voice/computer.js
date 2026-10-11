@@ -47,7 +47,7 @@ export function parseCommand(text, names) {
   if (m) { const n = find(m[1]); return n ? { action: 'go', target: n } : null; }
   m = t.match(/^(show|hide|turn on|turn off) (?:the )?(.+)$/);
   if (m) {
-    const LAYERS = { labels: 'labels', orbits: 'orbits', belts: 'belts', asteroids: 'belts', satellites: 'satellites', zones: 'zones', 'van allen': 'zones', axes: 'axes', fields: 'fields', field: 'fields' };
+    const LAYERS = { labels: 'labels', orbits: 'orbits', belts: 'belts', asteroids: 'belts', satellites: 'satellites', zones: 'zones', 'van allen': 'zones', axes: 'axes', fields: 'fields', field: 'fields', 'dwarf': 'dwarfs', comets: 'smallBodies', 'small bodies': 'smallBodies', spacecraft: 'spacecraft', probes: 'spacecraft' };
     const key = Object.keys(LAYERS).sort((a, b) => b.length - a.length).find((k) => m[2].includes(k)); // 'van allen' before 'belts'
     return key ? { action: 'layer', layer: LAYERS[key], on: m[1] === 'show' || m[1] === 'turn on' } : null;
   }
@@ -64,7 +64,7 @@ export function parseCommand(text, names) {
 
 const TOOLS = [
   { type: 'function', name: 'go_to', description: 'Fly the ship to a body (planet, moon, star, spacecraft, satellite) or star system by name.', parameters: { type: 'object', properties: { name: { type: 'string', description: 'e.g. Europa, Jupiter, Proxima Centauri, ISS, Voyager 1' } }, required: ['name'] } },
-  { type: 'function', name: 'set_layer', description: 'Show or hide a display layer.', parameters: { type: 'object', properties: { layer: { type: 'string', enum: ['labels', 'orbits', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins'] }, on: { type: 'boolean' } }, required: ['layer', 'on'] } },
+  { type: 'function', name: 'set_layer', description: 'Show or hide a display layer.', parameters: { type: 'object', properties: { layer: { type: 'string', enum: ['labels', 'orbits', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins'] }, on: { type: 'boolean' } }, required: ['layer', 'on'] } },
   { type: 'function', name: 'comms', description: "The COMMS viewscreen and receiver: put the hailed station's video on screen (or take it off for audio only), close the channel, scan the receiver for clear signals, or tune/open a channel on a frequency (e.g. '7.074 MHz', '9600 kHz').", parameters: { type: 'object', properties: { command: { type: 'string', enum: ['on_screen', 'off_screen', 'close_channel', 'scan', 'tune'] }, frequency: { type: 'string' } }, required: ['command'] } },
   { type: 'function', name: 'set_time', description: "Set the ship's clock to a date/time (ISO 8601, UTC), or 'now'.", parameters: { type: 'object', properties: { iso: { type: 'string' } }, required: ['iso'] } },
 ];

@@ -67,6 +67,7 @@ import { PLANETSHINE, planetshineFraction, planetshineDisplay, angleBetween, lit
 import { FOV_PRESETS, presetFov, horizontalFov, glareStrength } from '../../astro/apparent.js';
 import { transferArc, transferPosition } from '../../astro/transfer.js';
 import { stateAt, precessionToJ2000, temeToEcliptic } from '../../astro/sgp4.js';
+import { hiddenByDetail } from '../../data/detail.js';
 import { heliocentricAt, localAt, localDaySamples, trajectory, ephemerisEnd } from '../../data/spacecraft-ephem.js';
 
 const NAIF = { earth: 399, moon: 301, mars: 499, jupiter: 599, saturn: 699 };
@@ -74,6 +75,8 @@ const isoDate = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slic
 import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } from './zones.js';
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
+import { makeSnapshot } from '../snapshot.js';
+import { SKINS } from '../../data/skins.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -350,7 +353,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
   /** An SDO frame on the Sun's disc, preview first (#62). */
   function showSunFeed(n, u, feed, look) {
-    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); });
+    // #72: a map that fails to load (today's SRH) gives way to its fallback (archival Nobeyama), labelled as such
+    const fb = look.fallback, onFail = fb ? () => { n.bandLook = fb; if (u.uBandMix) u.uBandMix.value = fb.mix; showSunFeed(n, u, fb.feed, fb); } : null;
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); }, onFail);
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;
@@ -1280,8 +1285,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const pick = (e) => {
     const r = renderer.domElement.getBoundingClientRect();
     ray.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
-    return ray.intersectObjects(pickables, false)[0];
+    return ray.intersectObjects(pickables, false).find((hit) => shown(hit.object)); // nothing hidden (DETAIL slider, far moons) is clickable
   };
+  const shown = (o) => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
   let clickTimer = null;
   // an orbit line selects its body (#23): ray against the visible orbits, tolerance in screen terms
   const pickOrbit = (e) => {
@@ -2062,17 +2068,18 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
         n.mesh.rotation.y = n.body.rotationHours ? ((jd * 24) / n.body.rotationHours) * Math.PI * 2 % (Math.PI * 2) : 0;
       }
       const fb = nodes[focusId].body;
+      const culled = id !== focusId && hiddenByDetail(n.body, settings.get); // DETAIL slider: a focused body always shows
       const local = n.body.kind === 'moon' || (n.body.kind === 'spacecraft' && n.body.parent);
       const near = !local || fb.id === n.body.parent || fb.parent === n.body.parent || fb.id === n.body.id;
       const minorFar = n.body.orbit?.type === 'elements' && overviewAU != null && overviewAU < 6 && n.body.belt !== 'MAIN BELT';
-      n.label.visible = !siteView && ((showLabels && near && !minorFar) || id === focusId); // hovering over a site: only its own labels
-      n.group.visible = !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
+      n.label.visible = !culled && !siteView && ((showLabels && near && !minorFar) || id === focusId); // hovering over a site: only its own labels
+      n.group.visible = !culled && !n.body._missing && (n.body.kind !== 'moon' || near || overviewAU == null || camera.position.length() < 3);
       n.label.element.classList.toggle('focused', id === focusId);
       n.sites?.update({ on: settings.get('sites'), focused: id === focusId && !surface, surface: surface?.id === id, hidden: hiddenSiteKinds(), camera, size: siteViewSize, spin: n.mesh.rotation.y });
       if (n.features) { n.features.group.rotation.y = n.mesh.rotation.y; n.features.update({ on: settings.get('features'), focused: id === focusId, surface: surface?.id === id, camera, size: siteViewSize, blocked: n.sites?.placed }); }
       if (n.body.orbit) {
         updateOrbit(n, jd);
-        n.orbit.visible = (showOrbits || id === focusId) && !surface;
+        n.orbit.visible = (showOrbits || id === focusId) && !surface && !culled;
         n.orbit.material.opacity = id === focusId ? 0.9 : n.body.orbit.type === 'elements' ? 0.32 : n.body.kind === 'spacecraft' ? 0.22 : 0.45;
         fat.sync(n.orbit, id === focusId ? 3 : 1.6);
         if (n.endMark) n.endMark.visible = n.orbit.visible && !surface;
@@ -2217,7 +2224,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   function scenarioLabel(text) {
     const el = document.createElement('button');
     el.className = 'body-label scenario-label';
-    el.textContent = `${text} ✕`;
+    const x = document.createElement('span');
+    x.textContent = ' ✕'; x.dataset.snapshot = 'skip'; // postcards (#40) leave the close mark out
+    el.append(text, x);
     el.title = 'A modelled scenario (#53). Click to remove it.';
     el.addEventListener('pointerdown', (e) => e.stopPropagation());
     el.addEventListener('click', (e) => { e.stopPropagation(); setScenario(null); });
@@ -2259,6 +2268,42 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   return {
+    /** #40: what a postcard must declare: the paleo-Earth banner and any scenario labels showing. */
+    get postcardFacts() { return { paleo: paleo?.banner ?? null, scenario: scenario ? scenario.labels.map((l) => l.element.firstChild?.textContent ?? '') : [] }; },
+    /** #40: bodies drawn at least `minPx` screen pixels across radius: [{ id, name, px, lit (0–1), from (lit side on screen), map, live, imagined }], biggest first. */
+    framed(minPx = 3) {
+      const H = renderer.domElement.clientHeight || 800, f = (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
+      const out = [], wp = new THREE.Vector3(), ndc = new THREE.Vector3();
+      for (const [id, n] of Object.entries(nodes)) {
+        if (!n.mesh || !n.group.visible || n.body.marker) continue; // regions and Lagrange points are markers, not bodies
+        n.mesh.getWorldPosition(wp);
+        n.mesh.geometry?.computeBoundingSphere?.();
+        const sc = n.mesh.getWorldScale(new THREE.Vector3());
+        const r = (n.mesh.geometry?.boundingSphere?.radius ?? 1) * Math.max(sc.x, sc.y, sc.z), d = wp.distanceTo(camera.position);
+        const standing = surface?.id === id;
+        ndc.copy(wp).project(camera);
+        const ahead = wp.clone().sub(camera.position).dot(camera.getWorldDirection(new THREE.Vector3())) > 0;
+        const px = d > r ? (r / Math.sqrt(d * d - r * r)) * f : Infinity;
+        const near = px > 2 * H; // filling the view: its centre may sit off-screen
+        if (!standing && !(near || (ahead && Math.abs(ndc.x) < 1 + px / H && Math.abs(ndc.y) < 1 + px / H))) continue;
+        if (!standing && px < minPx) continue;
+        // phase as seen from the camera: the lit fraction of the disc, and which side the light comes from on screen
+        let lit = null, from = null;
+        const sunNode = nodes[model.starId];
+        if (sunNode && id !== model.starId && !standing) {
+          const sp = sunNode.group.getWorldPosition(new THREE.Vector3());
+          const toSun = sp.clone().sub(wp).normalize(), toCam = camera.position.clone().sub(wp).normalize();
+          lit = (1 + toSun.dot(toCam)) / 2;
+          const a = wp.clone().project(camera), b = wp.clone().add(toSun.multiplyScalar(r)).project(camera);
+          const dx = b.x - a.x, dy = b.y - a.y;
+          if (Math.hypot(dx, dy) > 1e-6) from = `${dy > Math.abs(dx) * 0.5 ? 'upper ' : dy < -Math.abs(dx) * 0.5 ? 'lower ' : ''}${Math.abs(dx) > Math.abs(dy) * 0.5 ? (dx > 0 ? 'right' : 'left') : ''}`.trim();
+        }
+        out.push({ id, name: n.body.name, px, lit, from, map: n.body.skin?.map ?? null, live: liveState[id] ?? null, imagined: !!(n.body.surfacePending || !n.body.skin?.map || SKINS[n.body.skin?.map]?.tier === 'imagined') });
+      }
+      return out.sort((a, b) => b.px - a.px);
+    },
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
     /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
     setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */

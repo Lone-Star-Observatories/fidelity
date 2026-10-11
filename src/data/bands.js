@@ -64,7 +64,7 @@ export const BANDS = [
     { id: 'uv-lya', label: 'Lyman-α 121.6 nm', filter: topHat(120.5, 122.5) },
   ] },
   { id: 'xray', label: 'X-RAY', short: 'X', palette: 'xray', passes: [
-    { id: 'x-soft', label: 'Soft 0.1–2.4 keV (ROSAT)', filter: kev(0.1, 2.4), sky: 'CDS/P/RASS', skyCredit: 'ROSAT All-Sky Survey (MPE; CDS HiPS)' },
+    { id: 'x-soft', label: 'Soft 0.1–2.4 keV (ROSAT)', filter: kev(0.1, 2.4), sky: 'ov-gso/P/RASS', skyCredit: 'ROSAT All-Sky Survey 0.1–2.4 keV count rate (MPE; HEALPix map by D. Paradis, IRAP/CADE; CDS HiPS)' },
     { id: 'x-hard', label: 'Hard 14–195 keV (Swift BAT)', filter: kev(14, 195), sky: 'JAXA/P/SWIFT/BAT/Image', skyCredit: 'Swift BAT all-sky (NASA; JAXA DARTS HiPS)' },
     { id: 'x-94', label: 'EUV 94 Å (Sun, 6 MK)', filter: topHat(9.3, 9.5) },
     { id: 'x-131', label: 'EUV 131 Å', filter: topHat(13, 13.2) }, { id: 'x-171', label: 'EUV 171 Å', filter: topHat(17, 17.2) },
@@ -107,7 +107,13 @@ const NORH_CREDIT = (g) => `Nobeyama Radioheliograph ${g} GHz, operated by NAOJ/
 const SUN_MODEL = (feed, lo, hi, label) => ({ feed, predicted: true, range: [ghzNm(hi), ghzNm(lo)],
   credit: `MODELLED · PREDICTED solar ${label} disc (not an observation): quiet-Sun brightness temperature from Zirin, Baumert & Hurford 1991, limb from Shibasaki et al. 2011, active regions placed from the SDO HMI magnetogram, total flux from the day's NOAA SWPC F10.7 / RSTN measurement`,
   note: `MODELLED · PREDICTED ${label} DISC` });
-const SRH_3 = [ghzNm(3.01), ghzNm(2.99)];
+// Siberian Radioheliograph (#28, #72; server/solarmodel.js): each array publishes daily CLEAN maps at one frequency,
+// 3.0 GHz (SRH0306), 6.0 GHz (SRH0612) and 12.96 GHz (SRH1224); nothing above 13 GHz is published as a map
+const SRH_3 = [ghzNm(3.01), ghzNm(2.99)], SRH_6 = [ghzNm(6.01), ghzNm(5.99)], SRH_13 = [ghzNm(12.97), ghzNm(12.95)];
+const SRH = (feed, range, label) => ({ feed, range,
+  credit: `Siberian Radioheliograph (ISTP SB RAS, Badary) ${label} CLEAN full-disc map, brightness temperature: the map nearest Badary's noon, today or the last two days`,
+  note: `SRH ${label}: the latest daily measured map` });
+const NORH_17 = { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17) };
 export const BODY_BAND = {
   sun: {
     'uv-1600': AIA(1600), 'uv-1700': AIA(1700),
@@ -115,17 +121,21 @@ export const BODY_BAND = {
     'x-soft': AIA(94, { note: 'EUV 94 Å (6 MK corona): the hottest SDO channel, nearest to soft X-rays' }),
     'uv-fuv': AIA(1600, { note: 'AIA 1600 Å: the nearest solar UV channel' }),
     'uv-lya': AIA(1600, { note: 'AIA 1600 Å: the nearest SDO channel to Lyman-α, the Sun\'s brightest UV line' }),
-    // microwave (#28): archival Nobeyama Radioheliograph maps (server/solarradio.js); range = the map's wavelength span (nm)
-    'mw-ku': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
-    'mw-23': { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014' },
+    // microwave (#28, #72): today's SRH 12.96 GHz map for Ku (the nearest solar map to 13.8 GHz; `fallback`: Nobeyama
+    // 17 GHz when SRH is unavailable or not baked into the standalone); archival Nobeyama Radioheliograph maps
+    // (server/solarradio.js) above, where SRH does not reach; range = the map's wavelength span (nm)
+    'mw-ku': { ...SRH('srh-12960', SRH_13, '12.96 GHz (2.3 cm)'), note: 'SRH 12.96 GHz (2.3 cm): the latest daily measured map, the nearest solar map to 13.8 GHz',
+      fallback: { ...NORH_17, note: 'Nobeyama 17 GHz (1.76 cm), the nearest archival solar map · 2014 (the SRH map is unavailable)' } },
+    'mw-23': { ...NORH_17, note: 'Nobeyama 17 GHz (1.76 cm), the nearest solar map · archival, 2014 (SRH maps stop at 13 GHz)' },
     'mw-33': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm) · archival, 2014' },
     'mw-41': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
     'mw-61': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
     'mw-94': { feed: 'norh-34', range: NORH34, archival: true, credit: NORH_CREDIT(34), note: 'Nobeyama 34 GHz (8.8 mm), the nearest solar map · archival, 2014' },
     microwave: { feed: 'norh-17', range: NORH17, archival: true, credit: NORH_CREDIT(17), note: 'Nobeyama 17 GHz (1.76 cm) · archival, 2014' },
-    // radio (#28): today's measured Siberian Radioheliograph map at 3.0 GHz (keyed by its own id, so only a curve
-    // overlapping 3 GHz shows it), and the modelled discs at the radio bandpasses below 3 GHz
-    'srh-3000': { feed: 'srh-3000', range: SRH_3, credit: 'Siberian Radioheliograph (ISTP SB RAS, Badary) 3.0 GHz (10 cm) CLEAN map, brightness temperature, the latest of the day', note: 'SRH 3.0 GHz (10 cm): today\'s measured map' },
+    // radio (#28): today's measured Siberian Radioheliograph maps at 3.0 and 6.0 GHz (keyed by their own ids, so only a
+    // curve overlapping them shows them), and the modelled discs at the radio bandpasses below 3 GHz
+    'srh-3000': SRH('srh-3000', SRH_3, '3.0 GHz (10 cm)'),
+    'srh-6000': SRH('srh-6000', SRH_6, '6.0 GHz (5 cm)'),
     'radio-408': SUN_MODEL('sunmodel-408', 0.38, 0.44, '408 MHz'),
     'radio-hi': SUN_MODEL('sunmodel-1400', 1.36, 1.44, '1.4 GHz'),
     'radio-nvss': SUN_MODEL('sunmodel-1400', 1.36, 1.44, '1.4 GHz'),

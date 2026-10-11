@@ -1,0 +1,41 @@
+[
+  {
+    "url": "https://science.nasa.gov/resource/true-colors-of-charon/",
+    "finalUrl": "https://science.nasa.gov/resource/true-colors-of-charon/",
+    "path": "data/research-sources/charon-natural-caption.html",
+    "bytes": 255398,
+    "sha256": "9eab6cec25f75c4db85c0f95b8fd365b34d8d7f7945448ed349ac08a58b7f572",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://www.nature.com/articles/s41467-024-51826-4",
+    "finalUrl": "https://www.nature.com/articles/s41467-024-51826-4?error=cookies_not_supported&code=15cf899d-6d2e-4d60-b2e0-8a9f6a4c8533",
+    "path": "data/research-sources/charon-Protopapa2024.html",
+    "bytes": 586241,
+    "sha256": "b7b49eb715cbf2b6b9c7bb392356ddae30cdeaf2b6d80b808f525a7275462d0a",
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "path": "data/research-sources/charon-nasa-media-terms.html",
+    "bytes": 320652,
+    "sha256": "88b2daeebb299f0f02b395574e0c584415227be4fe83cd79ca14301df3b520ea",
+    "contentType": "text/html; charset=UTF-8"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR.png",
+    "path": "data/research-sources/charon-natural-original.png",
+    "bytes": 2824308,
+    "sha256": "f5ce8ae591692c023db38e08012e484ef912b22c2d7967a1f9e818473b2f4610",
+    "contentType": "image/png",
+    "status": 200
+  },
+  {
+    "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Pluto%20-%20Charon/Pluto%20-%20Charon.jpg",
+    "path": "data/research-sources/charon-own-map-source.jpg",
+    "bytes": 265536,
+    "sha256": "c1fb3c19d448c82b9cc29c769d0875250cb2731cab0bb7c8d67243cd2272570b",
+    "status": 200
+  }
+]

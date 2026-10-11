@@ -26,6 +26,7 @@ import { badge } from '../../data/provenance.js';
 import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/composition.js';
 import { bodyVisualFor } from '../../data/bespoke.js';
 import { stellarResearchCards } from './research.js';
+import { makeSnapshot } from '../snapshot.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const OBSERVED = '#c97a00'; // validated against the black surface with the blackbody blue
@@ -160,14 +161,16 @@ export function createStarView(container) {
       return;
     }
     u.uBandTint.value.setRGB(...look.tint); setGlow(look.tint);
-    if (look.feed) {
-      loadLive(look.feed, 6 * 3600000).then((l) => {
-        if (bandLook !== look || star !== mesh) return;
-        if (!l) { look.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; look.tier = 'computed'; drawBandCard(); return; }
-        u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; u.uBandMix.value = look.mix ?? 1; if (l.disk) u.uDiskR.value = l.disk;
-        feedCredit(look, l); bandFeedTime = l.time; drawBandCard();
-      });
-    } else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
+    const showFeed = (lk) => loadLive(lk.feed, 6 * 3600000).then((l) => {
+      if (bandLook !== lk || star !== mesh) return;
+      // #72: a map that fails to load (today's SRH) gives way to its fallback (archival Nobeyama), labelled as such
+      if (!l && lk.fallback) { bandLook = lk.fallback; drawBandCard(); showFeed(lk.fallback); return; }
+      if (!l) { lk.label = 'REAL IMAGE UNAVAILABLE · NEEDS THE LOCAL BACKEND'; lk.tier = 'computed'; drawBandCard(); return; }
+      u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; u.uBandMix.value = lk.mix ?? 1; if (l.disk) u.uDiskR.value = l.disk;
+      feedCredit(lk, l); bandFeedTime = l.time; drawBandCard();
+    });
+    if (look.feed) showFeed(look);
+    else if (current.isSun) u.uHasDisk.value = 0; // the band look replaces the live visible disc
     drawBandCard();
   }
   function drawBandCard() {
@@ -370,6 +373,8 @@ export function createStarView(container) {
   }
 
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => renderer.render(scene, camera), restore: sizeHero }),
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
     camera: rig,
     hide() { container.hidden = true; running = false; },

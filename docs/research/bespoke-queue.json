@@ -233,7 +233,7 @@
       "scope": "Solar System catalogue",
       "nativeImagery": "No verified resolved globe texture adopted. Catalogue surfacePending retained; historical Voyager-only PDS shape unchanged. Native Juno detection and Galileo stereo supplied as context.",
       "research": "initial dossier delivered; refinement open",
-      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
       "sky": "hypothetical image delivered; photometric calibration remains approximate",
       "visualId": "amalthea"
     },
@@ -296,10 +296,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte equal SHA487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac; frame/coverage/input epochs/photometry open. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "rhea"
     },
     {
       "id": "sol-titan",
@@ -308,10 +309,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte equal SHAa213516e3ccbe46bfbdb576963859c82c75799612ccab775ec3cf24b451feca0; frame/coverage/input epochs/photometry remain open. No generated globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "titan"
     },
     {
       "id": "sol-hyperion",
@@ -320,10 +322,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No resolved globe adopted; surfacePending true retained. Existing PDS shape/preview unchanged. Frame, uncertainty and chaotic attitude audit open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "hyperion"
     },
     {
       "id": "sol-iapetus",
@@ -332,10 +335,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged and source-byte equal (SHA256 9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405). Product associations, coverage, frame, input epochs, photometry and local scene registration remain open. Blurred regions and mosaic transitions do not establish smooth terrain or local material fractions.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "iapetus"
     },
     {
       "id": "sol-phoebe",
@@ -344,10 +348,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No own resolved globe or shape adopted; surfacePending remains true. Identified2023 SPC bundle and older Gaskell V2 are distinct products; direct XML/document403 and actual geometry/quality/frame audit remain open. No analog globe skin.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "phoebe"
     },
     {
       "id": "sol-miranda",
@@ -356,10 +361,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged, source-byte-equal SHA844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81. Southern-only coverage; black north and blurred gaps are not observed dark/smooth terrain. Product association, frame, coverage mask, epochs, photometry and shape registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "miranda"
     },
     {
       "id": "sol-ariel",
@@ -368,10 +374,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged/source-byte-equal SHAfc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee. Partial southern coverage with black unobserved northern region and visible coverage edges/low-detail areas. Black/blurred areas do not establish dark/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. Own-body map unchanged; no analog or replacement adopted.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "ariel"
     },
     {
       "id": "sol-umbriel",
@@ -380,10 +387,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "OwnNASA3D globe retained unchanged/source-byte-equal SHAf1378bc2880bb0d4ddad50815083987aab38c9aae630cbd65465c6773495e511. FullUSGS/Tammy Becker & JPL/Caltech credit;2025-05-30 publisher metadata not observation. Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "umbriel"
     },
     {
       "id": "sol-titania",
@@ -392,10 +400,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte-equal SHA087425752c8f5090965f5a4fac7d50a4c450563edd50b807bbc1d45ebeedd312; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "titania"
     },
     {
       "id": "sol-oberon",
@@ -404,10 +413,11 @@
       "parent": "uranus",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte-equal SHAed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open. Current Oberon NASA3D page labels JPEG as Oberon but actual href points to uranus---ariel/Uranus%20-%20Ariel.jpg and alt says Ariel. Page listed248.37KB is not adopted as Oberon source size. The explicitly Oberon GitHub file51214bytes matches existing map. No Ariel image downloaded or assigned to Oberon. TIFF href names Oberon but not downloaded/verified.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "oberon"
     },
     {
       "id": "sol-triton",
@@ -416,10 +426,11 @@
       "parent": "neptune",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte-equal SHA6a5015beaf860426d9505f054565c9ad28ba3822054d5b750c74b4d8e61eb4f3; USGS/Tammy Becker & JPL/Caltech.2025-05-30 metadata not observation. Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "triton"
     },
     {
       "id": "sol-proteus",
@@ -428,10 +439,11 @@
       "parent": "neptune",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No resolved globe adopted; surfacePending remains true. Existing Voyager-derived Stooke PDS shape unchanged, with frame, attitude, uncertainty and registration open.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "proteus"
     },
     {
       "id": "sol-nereid",
@@ -440,10 +452,11 @@
       "parent": "neptune",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "nereid"
     },
     {
       "id": "sol-charon",
@@ -8509,7 +8522,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 11,
+      "initialDossiers": 24,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

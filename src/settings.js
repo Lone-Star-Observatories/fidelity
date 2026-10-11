@@ -8,6 +8,9 @@ const defaults = {
   orbits: true,
   starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
   belts: true,      // System View: asteroid and Kuiper-belt populations
+  dwarfs: true,     // System View: dwarf planets (DETAIL slider)
+  smallBodies: true, // System View: the catalogued asteroids and comets (DETAIL slider)
+  spacecraft: true, // System View: interplanetary craft and the tracked Earth-orbit craft drawn as bodies (DETAIL slider)
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
   satellites: true, // System View: every active Earth satellite
   missions: true,
@@ -37,6 +40,7 @@ const defaults = {
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
   cameraModes: {},  // camera mode per view (#39): { system: 'orbit' | 'look' | 'fly', galaxy: …, … }
   zoomToCursor: false, // ORBIT: the wheel zooms towards the pointer (#39)
+  postcard: {},     // postcards (#40): { size, labels, frame, link, quality, mastodon, stylizeOk } (stays in this browser)
 };
 
 let state = { ...defaults };

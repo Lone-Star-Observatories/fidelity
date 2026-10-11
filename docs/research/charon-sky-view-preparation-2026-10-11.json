@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-11",
+  "body": "Charon",
+  "status": "Research-only observer/master preparation; no69th dossier or new embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Create an independent scientific educational hypothetical observer illustration from Charon, landscape 16:9. Generate from scratch, no photograph or map input, never reuse or recolour Moon/Mars/Pluto/other observed terrain. Low grey granular foreground with angular blocks, shallow depressions and fractured low ridges; all relief, materials, chemistry, colour, lighting and exposure invented, no registered New Horizons site. Nearly black sky assumed transparent, not atmospheric-absence measurement. Above the horizon put one small spherical Pluto, independently imagined muted grey/tan irregular markings, no familiar heart/Sputnik or observed map pattern. Shared skyGeometry gives Pluto radius1188.3km and assumed sub-Pluto observer distance19600-606=18994km: angular diameter7.173746118614256degrees, nominal90degree horizontal FOV, projected disc width104.80874376188328pixels on1672pixel canvas, about6.2685percent image width. Aim for this small diameter, not a huge looming globe. Phase and camera/axis attitude artistic, assumed facing hemisphere; mutual locking does not make Pluto visible from every Charon site. No dated registration or calibrated visible colour/photometry. Omit Sun, stars, rings and visible haze; ring omission artistic not proof of absence, Pluto atmosphere not visibly calibrated. Text clearly legible: \"IMAGINED SKY FROM CHARON\" and footer \"Invented terrain and Pluto appearance \u00b7 Assumed facing hemisphere\". No humans, spacecraft, habitats, landing/survivability, plume, liquid, ocean, biology or interior cutaway.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bb2f81bb-cd21-4e87-a20f-e73e36b9d7f8.png",
+  "original": {
+    "path": "data/research-sources/charon-generated-skyImage-original.png",
+    "bytes": 2976004,
+    "sha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+    "width": 1672,
+    "height": 941
+  },
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "plutoRadiusKm": 1188.3,
+    "source": "src/data/sol.js",
+    "separationKm": 19600,
+    "charonRadiusKm": 606,
+    "observerDistanceKm": 18994,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 7.173746118614256,
+    "targetPixels1672": 104.80874376188328,
+    "temperatureK": 40,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs not adopted"
+  },
+  "inspection": "Viewed original: legible IMAGINED labels, grey invented terrain and small independently generated Pluto appearance. No map input, plume, liquid, biology, spacecraft or landing scene.",
+  "limitations": [
+    "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+    "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+    "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+    "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+    "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+    "Disk-integrated spectral features and model mixtures do not map local materials. All68 dossiers, originals, native maps/models/shapes preserved. Headroom recovery and additive69 pending."
+  ],
+  "rasterAudit": {
+    "row": 200,
+    "thresholds": {
+      "5": 85,
+      "10": 84,
+      "20": 84
+    }
+  },
+  "verification": {
+    "tests": "458pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15994062,
+    "headroomBytes": 5938,
+    "snapshotSha256": "f61846b5751a4651564a852a802908cc08f601a09445e3c32bc752151d06d91b",
+    "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+    "browser": "Chrome exact readableJSON/application/CSS and HTMLparser payloads;237images20bands517details32models decode. Other engines open.",
+    "preservation": "389tracked earlier inputs byte-identical to HEAD; no new embedding. Both previews inspected; tiny footer requires card labels.",
+    "attribution": "Interbuild snapshot differences unaudited; no compression or asset savings claim. Production codecs unchanged."
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-10",
+  "body": "Titan",
+  "status": "research-only; no57th dossier or new embedded asset",
+  "product": "PIA07232 First Color View of Titan Surface",
+  "observationDate": "2005-01-14",
+  "publicationDates": {
+    "NASA": "2005-01-15",
+    "ESA": "2005-01-14",
+    "NASA_download_metadata": "2023-09-04 migration metadata, not observation"
+  },
+  "sourcePages": [
+    "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+    "https://www.esa.int/ESA_Multimedia/Images/2005/01/First_colour_view_of_Titan_s_surface"
+  ],
+  "credit": "NASA/JPL/ESA/University of Arizona",
+  "ESAcredit": "ESA/NASA/JPL/University of Arizona",
+  "terms": [
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "scope": "NASA media terms; retain full joint credit, not asserted CC BY"
+    },
+    {
+      "url": "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website",
+      "scope": "ESA Standard Licence educational/editorial/informational; third-party caveats; not CC BY"
+    }
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/titan-huygens-PIA07232-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/p/i/a/0/PIA07232_1-1.jpg",
+      "bytes": 18436,
+      "sha256": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+      "mime": "image/jpeg"
+    },
+    {
+      "path": "data/research-sources/titan-huygens-PIA07232-display.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/p/i/a/0/PIA07232_1-1.jpg?crop=faces%2Cfocalpoint&fit=clip&h=693&w=546",
+      "bytes": 16993,
+      "sha256": "08f32d800801d555fd722796b3eba05c712e8c0ae53bdf59fdf4395ad3087911",
+      "mime": "image/jpeg"
+    },
+    {
+      "path": "data/research-sources/titan-huygens-nasa-caption.html",
+      "url": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+      "bytes": 253770,
+      "sha256": "6841c299b8098fb0d890f6be9010c61a36eaa5b870b3e0ab8a5a0ae6141afcac",
+      "mime": "text/html; charset=UTF-8"
+    }
+  ],
+  "imageDimensions": [
+    546,
+    693
+  ],
+  "inspection": "Original publisher JPEG inspected: orange/brown local pebble field, soft horizon and white surrounding border. Display JPEG is separately reencoded despite identical dimensions; no pixel equality claimed.",
+  "processing": "Publisher processed colour by adding reflection spectra data. Exact spectral transfer, exposure, calibration and original instrument product association remain open. No independent calibrated visible-colour claim.",
+  "limits": [
+    "Actual local landing-site scene, not a global surface map or an interchangeable Titan skin.",
+    "ESA approximate 15cm/4cm objects and85cm distance are publisher estimates, not new raster measurements.",
+    "Water/hydrocarbon ice mixture and possible fluvial erosion are caption interpretations, not measured local abundance fractions.",
+    "No present rainfall, liquid ocean, biology or survivable landing claim.",
+    "Saturn visibility through Titan haze remains unverified; angular skyGeometry alone cannot establish transmission."
+  ],
+  "preservation": "All56 dossiers, originalPNG/master/native/map/model/shape inputs unchanged. No source replacement.",
+  "verification": {
+    "runtimeInputsChanged": false,
+    "lastVerifiedTests": 452,
+    "lastVerifiedTestsSkipped": 1,
+    "lastVerifiedProductionBuild": "pass on9382686",
+    "lastFullBuild": "failed hard16000000 gate at16004831; no new successful full artifact/browser claim",
+    "testsPass": 452,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "queueTasks": 566,
+    "all56DeepEqual": true,
+    "currentFullBuild": {
+      "status": "failed hard16000000 gate",
+      "bytes": 16005209,
+      "overage": 5209,
+      "successfulArtifact": false,
+      "browserVerification": false,
+      "interbuildSizeDifferenceCause": "not audited; no attribution claimed"
+    }
+  },
+  "next": [
+    "Recover lossless headroom before embedding",
+    "Audit primary DISR surface calibration and source association",
+    "Add native local view before independent hypothetical illustrations"
+  ],
+  "applicationGzipTrial": {
+    "sameBuiltModule": true,
+    "rows": [
+      {
+        "iterations": 32,
+        "gzipBytes": 713568,
+        "transportBytes": 819882,
+        "exact": true
+      },
+      {
+        "iterations": 64,
+        "gzipBytes": 713626,
+        "transportBytes": 819936,
+        "exact": true
+      },
+      {
+        "iterations": 128,
+        "gzipBytes": 713306,
+        "transportBytes": 819558,
+        "exact": true
+      }
+    ],
+    "decision": "Not adopted:64iterations grows54transportbytes;128saves324transportbytes, insufficient for4831overage. All restorations exact, production32 unchanged."
+  }
+}

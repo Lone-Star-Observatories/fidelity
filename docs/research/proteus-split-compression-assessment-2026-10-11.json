@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only rejected split compression screen; production unchanged, no68th/newembedding",
+  "method": "Split exact FIDNUM02 numeric header and unchanged binary asset tail; independently Brotli11 encode selected segments inside a temporary 28-byte measurement envelope and outer standard gzip9. Native and bundled JS decompression restore original complete binary container and original JSON spelling. No numeric conversion, rounding, pruning, image or native transformation.",
+  "snapshotSha256": "520dc1d549e3e543e151a59679bb4327b52b6f60e4d72ab9a15ce4850435fe31",
+  "binaryBytes": 19750183,
+  "headerBytes": 5760569,
+  "assetTailBytes": 13989614,
+  "baselineOuterGzipBytes": 13103986,
+  "results": [
+    {
+      "headerBrotli": true,
+      "assetTailBrotli": false,
+      "outerGzipBytes": 13484807,
+      "differenceFromBaseline": 380821,
+      "exactNativeAndBundledJsRoundtrip": true
+    },
+    {
+      "headerBrotli": true,
+      "assetTailBrotli": true,
+      "outerGzipBytes": 13106369,
+      "differenceFromBaseline": 2383,
+      "exactNativeAndBundledJsRoundtrip": true
+    },
+    {
+      "headerBrotli": false,
+      "assetTailBrotli": true,
+      "outerGzipBytes": 13304229,
+      "differenceFromBaseline": 200243,
+      "exactNativeAndBundledJsRoundtrip": true
+    }
+  ],
+  "conclusion": "All three segment choices are larger than the same-input production baseline. No saving claim; no production wrapper adopted. Do not repeat these header/asset-tail split trials.",
+  "verification": {
+    "tests": "456 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15992330,
+    "headroomBytes": 7670,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "520dc1d549e3e543e151a59679bb4327b52b6f60e4d72ab9a15ce4850435fe31",
+      "raw": "a4ba617b7ffd8ca03166ff51da85fb399ca701959999e2de872880eabeec4e77",
+      "magic": "FIDBRT01",
+      "images": 234,
+      "details": 517,
+      "models": 32
+    },
+    "preservation": "384 tracked inputs byte-identical; all67 dossiers remain unchanged; original PNG/master/native/provenance preserved",
+    "otherBrowserEngines": "Open"
+  },
+  "next": "Substantial conforming lossless headroom remains required before additive Proteus68 using prepared native/independent views/shape and full scientific provenance; remaining backlog ACTIVE."
+}

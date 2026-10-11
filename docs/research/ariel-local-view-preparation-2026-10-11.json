@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-11",
+  "body": "Ariel",
+  "status": "Research-only independent local-view preparation. No 62nd dossier or new embedding.",
+  "generator": "Built-in image_gen; scientific-educational",
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Ariel hypothetical local terrain card, independent original illustration, landscape 16:9.\nPrimary request: a carefully restrained imagined camera view near the airless icy surface of Uranus's moon Ariel. Research shows cratered terrain cut by fault scarps and valleys, but this scene is invented and not a Voyager site reconstruction.\nScene: foreground angular pale gray ice-like blocks and fine gray regolith; irregular cratered ridges, a modest fractured scarp and broad valley in the middle distance; black sky. Low directional sunlight with subdued exposure, no visible Sun or astronomical disks, no stars. Neutral gray appearance is artistic, not calibrated visible colour.\nStyle: detailed realistic scientific concept illustration. Independently design all geometry from scratch. Do not use, copy, recolour or reference any observed Moon, Mars, Pluto or other body's map, nor Ariel's existing globe or Voyager image.\nText verbatim: large clear footer 'IMAGINED LOCAL ARIEL TERRAIN' and smaller second line 'Terrain, materials, colour and lighting assumed'.\nConstraints: all local blocks, fractures, grains, relief, mixture fractions and chemistry are invented. Do not depict mapped CO/CO2 deposits, identifiable carbonates/clathrates, active geysers, vapour, atmosphere, clouds, haze, rain, liquid, exposed ocean, biology, landers, people or survivable landing. No planetary disk or angular/raster size claim. No exact dated site registration.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-030dba54-0c83-4c40-abf3-07215806ae08.png",
+  "retainedPath": "data/research-sources/ariel-generated-surfaceImage-original.png",
+  "inspected": true,
+  "inspection": "Readable IMAGINED label; independently invented angular blocks, fine regolith, broad valley/fault scarp and cratered ridges. Black sky without visible astronomical disks. No visible atmosphere, plume, liquid, exposed ocean, biology or lander.",
+  "limitations": "All terrain relief, blocks/grains, local material chemistry/fractions, grey colour, illumination/exposure are invented. No analog observed-body map, dated Voyager site or calibrated local chemistry. Disk-integrated CO/CO2 measurements and hypothetical carbonate/clathrate/interior processes from Cartwright papers do not map this invented scene. No angular or raster size computation is claimed because no astronomical disk is depicted.",
+  "sources": "ariel-moon-preparation-2026-10-11.json and ariel-source-records-2026-10-11.json retain full native/paper credits, terms, dates, hashes and unresolved limitations.",
+  "next": "Uranus observer using skyGeometry and assumed attitude, original-preserving masters/previews, substantial conforming lossless headroom before additive integration.",
+  "original": {
+    "bytes": 2950951,
+    "sha256": "66ab35e6749db05a2f0aa416d155a5928e0b7f520c299dcf33a45d5a9e54a387",
+    "width": 1672,
+    "height": 941,
+    "defaultCopyByteEqual": true
+  },
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998750,
+    "headroomBytes": 1250,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "ac55c603fc83c0ebb03ae4d38759e72774ecf66b27fbfbd237b440765ccddd1f",
+      "raw": "ae5d1e6ee663beaad810ceb33fd5418a5026bb297765547fffe08ac8d15d1858",
+      "magic": "FIDNUM02",
+      "images": 216,
+      "details": 517,
+      "models": 32
+    },
+    "application": "{\"htmlBytes\":15998750,\"compressedBytes\":718744,\"applicationSha256\":\"223586c055834e0554b791adfa25d40f76d889b30a7e8fa2a5105337f86d4384\",\"htmlParserPreservesEveryPackedByte\":true}",
+    "stylesheet": "{\n  cssBytes: 54935,\n  cssSha256: '960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772',\n  rawSha256: '456c98b515807cfb8a99452b7bd6c5a28a59fd78ac689d2c0c14a6b0ad3c2159',\n  exactRestoredStyle: true,\n  htmlParserPreservedPackedText: true,\n  background: 'rgb(0, 0, 0)',\n  buttons: 393,\n  pageErrors: []\n}",
+    "normalOfflineMiranda": "normal Miranda3images and native context verified\noffline Miranda3images and native context verified",
+    "preservation": "All61 dossiers deepEqual;354trackedregistry/bespoke/map/model/shape inputs exact to HEAD. All originals/native/provenance preserved. Complete snapshot equals prior ac55c603 baseline; app/CSS unchanged. No62nd dossier/new embedding.",
+    "limits": "Chrome verified; other browser engines remain open. No headroom gain claimed. Both prepared views remain imagined and uncalibrated."
+  }
+}

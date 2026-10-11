@@ -1,0 +1,108 @@
+{
+  "body": "Larissa",
+  "date": "2026-10-11",
+  "status": "research-only; no new dossier or embedding",
+  "primary": {
+    "authors": [
+      "M. Ryleigh Davis",
+      "Matthew Belyakov",
+      "Ian Wong",
+      "Zachariah Milby",
+      "Michael E. Brown"
+    ],
+    "url": "https://arxiv.org/abs/2607.27481",
+    "doi": "10.1126/sciadv.aeb1437",
+    "publicationDate": "2026-07-29",
+    "path": "data/research-sources/proteus-Davis2026-author.pdf",
+    "bytes": 740854,
+    "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+    "assessmentScope": "Targeted Larissa results, discussion, methods, Figure S1 caption and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+    "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+  },
+  "observations": {
+    "program": 4645,
+    "instrument": "JWST NIRSpec IFU PRISM / clear",
+    "wavelengthMicron": [
+      0.6,
+      5.3
+    ],
+    "resolution": "R about 30\u2013300",
+    "integrationSeconds": 5514.6,
+    "exposures": [
+      {
+        "date": "2024-12-13",
+        "startUTC": "16:15:24",
+        "endUTC": "16:30:58",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 55,
+        "subLatitudeSouthDegrees": 21
+      },
+      {
+        "date": "2024-12-13",
+        "startUTC": "16:33:53",
+        "endUTC": "16:49:26",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 63,
+        "subLatitudeSouthDegrees": 21
+      },
+      {
+        "date": "2024-12-13",
+        "startUTC": "16:52:07",
+        "endUTC": "17:07:41",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 72,
+        "subLatitudeSouthDegrees": 21
+      },
+      {
+        "date": "2024-12-20",
+        "startUTC": "01:22:28",
+        "endUTC": "01:38:02",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 236,
+        "subLatitudeSouthDegrees": 21
+      },
+      {
+        "date": "2024-12-20",
+        "startUTC": "01:40:43",
+        "endUTC": "01:56:16",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 244,
+        "subLatitudeSouthDegrees": 21
+      },
+      {
+        "date": "2024-12-20",
+        "startUTC": "01:58:57",
+        "endUTC": "02:14:31",
+        "seconds": 919.1,
+        "subLongitudeWestDegrees": 252,
+        "subLatitudeSouthDegrees": 21
+      }
+    ],
+    "pipeline": "1.18.0 / jwst_1364.pmap",
+    "archive": "https://doi.org/10.17909/1cqh-hy49",
+    "code": "https://doi.org/10.22002/vwdse-4d488"
+  },
+  "measurementsAndInterpretations": [
+    "Larissa shows deep broad 3-micron OH absorption and a sharp 2.72-micron feature after continuum removal and division by Proteus spectrum; Mg-bearing serpentine-like phyllosilicate identification is a laboratory spectral interpretation, not a mapped local fraction.",
+    "No clear water-ice or CO2 signature reported for Larissa; nondetection does not prove absolute absence. Proteus weak CO2 and weaker/absent 2.72 feature remain separate.",
+    "Ceres, Bennu and chondrite spectral comparisons are not Larissa image skins or identical chemistry claims.",
+    "Prolonged aqueous alteration, differentiated parent interiors, destruction during Triton capture versus tidal disruption and reaccretion are origin interpretations; no directly observed history, present ocean, plume or biology.",
+    "Unresolved spectra cannot register Voyager pixels or independently calibrate visible colour, terrain, observer lighting or local materials.",
+    "Neptune scattered light and extraction choices particularly affect below 1.7 and above 4.5 microns; solar analog program1128 and background reduction are spectral calibration methods, not scene photometry.",
+    "Figure S1 infrared wavelength slices and calculated ring overlays are not resolved visible Larissa geography. Product extraction, final licence and Voyager crosswalk remain open."
+  ],
+  "preservation": "All68 earlier dossiers, originals, masters, native science, maps, models and shapes preserved; production codecs unchanged.",
+  "validation": {
+    "scope": "Combined88dae3a including upstream918878b postcard changes",
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15993273,
+    "headroomBytes": 6727,
+    "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+    "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+    "browser": "Chrome complete readableJSON/application/CSS and HTML-parser exact;237 images,20 bands,517 details,32 model entries, six routes and unsupportedgzip message pass. No new model-load claim; other engines open.",
+    "preservation": "404 tracked asset inputs exact HEAD; no registry changes",
+    "attribution": "No compression change or savings claim; earlier pre-rebase validation retained separately."
+  }
+}

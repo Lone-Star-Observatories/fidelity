@@ -87,8 +87,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
 | `GET /api/voice/status` · `WS /api/voice` | "Computer" voice (#21): whether a key is configured; a same-origin WebSocket relay to the OpenAI Realtime API that adds the key (`server/voice.js`, hand-written RFC 6455) |
-| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000` (today's Siberian Radioheliograph 3 GHz FITS → PNG) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
-| `GET /api/band-archive?id=…` · `GET /api/band-disc?id=…` | Spectrum filter archive imagery (#28, `server/bandarchive.js`, allowlisted from the `archive`/`disc` entries of `src/data/bandarchive.js`, archive hosts only): a global equirectangular PNG built from NASA Trek WMTS tiles (mosaicked), a PDS 8-bit raster or a PDS ASCII table of binned values (`server/png.js` decodes and encodes PNG without dependencies); a whole-disc JPEG as published by ESA/Webb or ESA/Hubble. `&size=preview`: 512×256 (zoom 0 / resampled) or the publisher's thumbnail. Cached a year through the band upstream queue |
+| `GET /api/hips?id=…` · `GET /api/gibs-band?layers=…` | Spectrum filter (#28): a whitelisted all-sky or planetary HiPS survey as a 2048×1024 equirectangular PNG (hips2fits; transparent where there is no data), and yesterday's GIBS mosaic of a whitelisted layer set (`server/bandimages.js`). `&size=preview` (#62): a small copy fetched at that size (256×128 sky, 512×256 body map) and cached the same way; every upstream band fetch goes through one queue (3 at a time, previews first). `x-band-size` gives the size. GIBS's latest day for layer sets marked `latest` (SMAP). The Sun's microwave maps are feeds `srh-12960` (the latest daily Siberian Radioheliograph 12.96 GHz FITS → PNG, #72) and `norh-17`/`norh-34` (`server/solarradio.js`, archival Nobeyama FITS → PNG); its radio maps `srh-3000`/`srh-6000` (SRH 3 and 6 GHz) and the MODELLED · PREDICTED discs `sunmodel-408`/`-1400`/`-2400` (`server/solarmodel.js`; inputs NOAA SWPC F10.7 and RSTN, cached 3 h, and the SDO HMI magnetogram) |
+| `GET /api/band-archive?id=…` · `GET /api/band-disc?id=…` | Spectrum filter archive imagery (#28, `server/bandarchive.js`, allowlisted from the `archive`/`disc` entries of `src/data/bandarchive.js`, archive hosts only): a global equirectangular PNG built from NASA Trek WMTS tiles (mosaicked), a PDS 8-bit raster or a PDS ASCII table of binned values (`server/png.js` decodes and encodes PNG without dependencies); a whole-disc JPEG as published by ESA/Webb, ESA/Hubble, Chandra (`chandra.harvard.edu`) or NOIRLab (`storage.noirlab.edu`) (#72). `&size=preview`: 512×256 (zoom 0 / resampled) or the publisher's thumbnail (an entry without `preview` serves the image itself). Cached a year through the band upstream queue. `&meta=1` (#72): the map's physical scale as JSON `{ id, kind, scale: { min, max, unit, what, tier, source, stretch, … } | null }` (grey 0 → min, 255 → max, linear): for a table, the 1st–99th percentile stretch its image is drawn with (image cache keys carry the stretch version), computed from the same cached table and cached beside the image; for the XRS raster and Diviner, the documented scaling in `scale` (`src/data/bandarchive.js`); null for Titan's VIMS mosaics |
 | `GET /api/satellites` | Active satellites: compact OMM rows `[norad, name, category, epoch ms, n, e, i, Ω, ω, M, B*, ṅ, n̈, intl id]` |
 | `GET /api/satellites/:norad` | SATCAT record (owner, launch, type, radar size) with its UCS record as `UCS` (purpose, operator, mass, lifetime, links; `server/ucs.js`) |
 | `GET /api/observing/jwst/schedule` | JWST now / next / previous visits parsed from STScI's weekly schedule reports (`server/observing.js`) |
@@ -225,7 +225,8 @@ shader. System, Star and Planet views all use it; it refreshes every 15 minutes.
 
 ## Band disc images (#28)
 
-Where a body has no global map in a band but a whole-disc image exists (JWST, Hubble), the
+Where a body has no global map in a band but a whole-disc image exists (JWST, Hubble; #72: Chandra X-rays of Jupiter,
+Gemini 4.7 µm Jupiter and 3.8 µm Io), the
 `BODY_BAND` entry is a `disc` (`src/data/bandarchive.js`: image size, disc centre, equatorial and
 polar radii in pixels, north position angle, all measured on the image, plus the observation date).
 The planet shader's `bandSample` then projects the image orthographically onto the hemisphere facing
@@ -683,7 +684,7 @@ Myr) whenever they change; the panels only show the epoch and point to the TIME 
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 
@@ -699,7 +700,13 @@ signature, or NOT OBSERVED. The planet shader draws all of these in per-band fal
 band (Vega system); the System View sky becomes the band's survey (a shader maps RA/Dec onto the
 sphere) or re-weighted catalogue stars. `src/data/bandstate.js` shares the band with the
 Navigation, Galaxy, Quadrant and Planet views. Panels show a SPECTRUM section with the source,
-its badge and a false-colour key.
+its badge and a false-colour key. For an archive element/abundance map or Diviner (#72) the key's ends
+carry physical values: `bandtextures.js` fetches `/api/band-archive?id=…&meta=1` (`archiveScale`, backend
+only) into `look.scale` and keeps the auto-levels in `look.levels`; `shownScale` (`src/data/bandarchive.js`)
+turns them into the values at the bar's black and white points (the texture is sRGB, the levels are in
+linear light), shown on the bar ("≤ 0.15 ppm Th … ≥ 7.4 ppm Th"), in a SCALE row (COMPUTED for
+abundances, MEASURED for Diviner; source and stretch in the badge) and in the SPECTRUM overlay's readout.
+Not in the standalone (these maps are backend-only there) nor for custom curves.
 In the Navigation View (`src/views/navigation/starlook.js`, `bandStarLook` in bandstate.js) a star's
 point size is its luminosity in the band: absolute magnitude minus the band-minus-V Δmag, the same
 shift the System View applies to its sky stars, with a 6 px floor so the M dwarfs that make up most
@@ -741,15 +748,21 @@ Views consume the band only through `currentBand()`/`onBand()` and decide by wav
 - **The Sun, in the Star and System views alike**: `src/views/system/starband.js` (`sunBandLook`, used by
   `starBandLook` and by `SystemView.applyStarBand`) gives the photosphere's look: one bandpass takes the
   `BODY_BAND.sun` map keyed by its id (the old rule, reproduced exactly); a custom curve takes every map
-  whose `range` overlaps it (SDO, NoRH, SRH, the modelled radio discs), weighted like any body
+  whose `range` overlaps it (SDO, NoRH, SRH 3/6/12.96 GHz, the modelled radio discs), weighted like any body
   (`sunCurveLook`): the best-covered map is drawn on the Earth-facing disc and blended over the predicted
   tint (signatures, photosphere) by its share (`mix` → the star shader's `uBandMix`). Otherwise its
   measured signatures, or the blackbody through the filter. A SPECTRUM BAND card and the chart's shaded
   bandpass (or an off-chart pointer) follow the band.
-- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`).
+- **Sun microwaves**: `server/solarradio.js` decodes NoRH FITS to PNG (feeds `norh-17`, `norh-34`). The
+  13.8 GHz (Ku) pass shows the latest daily SRH 12.96 GHz map (feed `srh-12960`, #72); its `BODY_BAND` entry
+  carries a `fallback` (Nobeyama 17 GHz, labelled archival): `sunBandLook` returns it when the map cannot be
+  shown (the standalone has no baked SRH 12.96 GHz copy) and as `look.fallback`, which the Star View
+  (`showFeed`) and System View (`showSunFeed` → `progressiveFeed(…, onFail)`) switch to when the feed fails.
+  SRH publishes maps only at 3.0, 6.0 and 12.96 GHz, so 23–94 GHz keep Nobeyama, labelled archival 2014.
 - **Sun radio** (`server/solarmodel.js`): feed `srh-3000` is today's Siberian Radioheliograph 3.0 GHz
   CLEAN map (MEASURED; the map nearest Badary's noon that passes a sanity check, smoothed to the beam,
-  256×256). Below 3 GHz no imager is fetchable, so feeds `sunmodel-408`, `sunmodel-1400`, `sunmodel-2400`
+  256×256); `srh-6000` and `srh-12960` (#72) the same from the SRH0612 and SRH1224 arrays (`srhFeed(credit,
+  MHz, scale)`, the beam ∝ 1/f, 12.96 GHz on its own log scale). Below 3 GHz no imager is fetchable, so feeds `sunmodel-408`, `sunmodel-1400`, `sunmodel-2400`
   are MODELLED · PREDICTED discs: Zirin et al. (1991) quiet-Sun Tb saturating to the 10⁶ K corona, limb
   brightening at dm and a larger disc at m wavelengths, active regions placed from the SDO HMI
   magnetogram (feed `sdo-hmimag`, decoded by a dependency-free PNG reader), the total set by the day's
@@ -921,3 +934,21 @@ bisect (upper limb and parallax for the Sun and Moon). Stars use their catalogue
 `tests/observe.test.js` checks all 48 Sol bodies against a JPL Horizons observer table and
 Auckland rise/set times (`tests/fixtures/horizons-observer-2026-10-10.json`). The standalone preview
 keeps FROM EARTH (computed in the browser) but not imagery or spectra (backend only).
+
+## Postcards (#40)
+
+Every 3D view exposes `snapshot(w, h, { labels, base })` built by `src/views/snapshot.js`. In one synchronous task it
+sets the renderer to the postcard size (above 1080 px on the short side, a higher pixel ratio rather than a bigger
+layout, with `uPixel` point-size uniforms scaled to match), draws, copies the WebGL buffer to a 2D canvas, rasterises
+the CSS2D label layer (backgrounds, borders and text from computed styles; `data-snapshot="skip"` leaves an element
+out), then restores the screen size. `base: false` gives the label layer alone (TECHNICAL style overlays it).
+`src/panels/postcard.js` is the dialog and the frame compositor; `postcard-core.js` holds the DOM-free parts
+(sizes, frame layout, provenance line, caption, share links, stylize prompts and cost). `main.js` `describePostcard()`
+says what is in frame: the System View's `framed()` lists bodies (not markers) at least 3 px across with their skin map,
+live feed, whether the surface is IMAGINED, and the rendered phase (lit fraction and lit side, for the stylize prompt);
+COMMS repaints its 2D map (`signalsmap.js` `snapshot()`) and credits the layers shown; `postcardFacts` adds the paleo-Earth banner and scenarios; settings add ENHANCED
+sizes, the surface view and NASA's Milky Way artwork. The provenance line and credits are stamped with or without the
+frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/stylize.js`): JSON only and same-origin
+(so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
+under `data/stylize/` by a hash of image, prompt, size, quality and model.
+

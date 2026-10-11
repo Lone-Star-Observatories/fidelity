@@ -102,6 +102,61 @@ export function createSignalsMap(opts = {}) {
   }).catch(() => {}); // the grid alone (e.g. the standalone preview, which doesn't bundle the outlines)
   const countryPath = (c) => (c.path ??= (() => { const p = new Path2D(); for (const poly of c.polys) for (const r of poly) ringPath(p, r); return p; })());
 
+  /**
+   * Paint the map on `g` (in CSS px; `dpr` is the canvas's device-pixel ratio) over a w × h area at
+   * `s` px per degree, centred on the view. `k` scales markers and lines (a postcard is bigger).
+   */
+  function paint(g, w, h, s, { dpr = 1, k = 1, highlight = true } = {}) {
+    const xy = (lat, lon) => [w / 2 + (lon - view.cx) * s, h / 2 - (lat - view.cy) * s];
+    const bg = g.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
+    bg.addColorStop(0, '#0a1430'); bg.addColorStop(1, '#03060f');
+    g.fillStyle = bg; g.fillRect(0, 0, w, h);
+    const [x0, y0] = xy(90, -180), [x1, y1] = xy(-90, 180);
+    // graticule: 10° fine, 30° bold
+    for (const [step, a] of [[10, 0.07], [30, 0.16]]) {
+      g.strokeStyle = `rgba(110,150,255,${a})`; g.lineWidth = k; g.beginPath();
+      for (let lon = -180; lon <= 180; lon += step) { const [x] = xy(0, lon); g.moveTo(x, y0); g.lineTo(x, y1); }
+      for (let lat = -90; lat <= 90; lat += step) { const [, y] = xy(lat, 0); g.moveTo(x0, y); g.lineTo(x1, y); }
+      g.stroke();
+    }
+    if (paths) {
+      g.save();
+      g.setTransform(dpr * s, 0, 0, -dpr * s, dpr * (w / 2 - view.cx * s), dpr * (h / 2 + view.cy * s));
+      const hp = highlight && hoverCountry && countryPath(hoverCountry);
+      for (const shift of [-360, 0, 360]) { // outlines are unwrapped across the antimeridian (worldmap.js)
+        g.save(); g.translate(shift, 0);
+        g.fillStyle = 'rgba(40,80,190,0.30)'; g.fill(paths.land, 'evenodd');
+        if (hp) { g.fillStyle = 'rgba(120,170,255,0.28)'; g.fill(hp, 'evenodd'); }
+        g.lineJoin = 'round';
+        g.strokeStyle = 'rgba(120,160,255,0.45)'; g.lineWidth = (0.8 * k) / s; g.stroke(paths.borders);
+        g.shadowColor = '#4f8cff'; g.shadowBlur = 6 * dpr * k;
+        g.strokeStyle = '#8fb8ff'; g.lineWidth = (1.3 * k) / s; g.stroke(paths.coast);
+        if (hp) { g.strokeStyle = '#d6e6ff'; g.lineWidth = (1.6 * k) / s; g.stroke(hp); }
+        g.restore();
+      }
+      g.restore();
+    }
+    const r = Math.min(4.5, 1.8 + view.z * 0.25) * k;
+    for (const [id, l] of layers) {
+      if (!l.on || !l.markers) continue;
+      g.fillStyle = COLOURS[id] ?? '#fff';
+      g.globalAlpha = id === 'video' ? 1 : 0.85;
+      for (const m of l.markers) {
+        const [x, y] = xy(m[0], m[1]);
+        if (x < -5 * k || y < -5 * k || x > w + 5 * k || y > h + 5 * k) continue;
+        g.beginPath(); g.arc(x, y, id === 'video' ? r + 1.5 * k : r, 0, 2 * Math.PI); g.fill();
+      }
+    }
+    g.globalAlpha = 1;
+    if (highlight && hover) { // the marker under the cursor: a ring and crosshair ticks
+      const [x, y] = xy(hover.m[0], hover.m[1]);
+      g.strokeStyle = COLOURS[hover.id] ?? '#fff'; g.lineWidth = 2;
+      g.beginPath(); g.arc(x, y, r + 6, 0, 2 * Math.PI); g.stroke();
+      g.beginPath();
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { g.moveTo(x + dx * (r + 9), y + dy * (r + 9)); g.lineTo(x + dx * (r + 15), y + dy * (r + 15)); }
+      g.stroke();
+    }
+  }
   function draw() {
     const dpr = window.devicePixelRatio || 1;
     W = canvas.clientWidth; H = opts.fill ? canvas.clientHeight : Math.round(W / 2);
@@ -111,56 +166,18 @@ export function createSignalsMap(opts = {}) {
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     const g = canvas.getContext('2d');
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const bg = g.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.7);
-    bg.addColorStop(0, '#0a1430'); bg.addColorStop(1, '#03060f');
-    g.fillStyle = bg; g.fillRect(0, 0, W, H);
-    const k = scale();
-    const [x0, y0] = toXY(90, -180), [x1, y1] = toXY(-90, 180);
-    // graticule: 10° fine, 30° bold
-    for (const [step, a] of [[10, 0.07], [30, 0.16]]) {
-      g.strokeStyle = `rgba(110,150,255,${a})`; g.lineWidth = 1; g.beginPath();
-      for (let lon = -180; lon <= 180; lon += step) { const [x] = toXY(0, lon); g.moveTo(x, y0); g.lineTo(x, y1); }
-      for (let lat = -90; lat <= 90; lat += step) { const [, y] = toXY(lat, 0); g.moveTo(x0, y); g.lineTo(x1, y); }
-      g.stroke();
-    }
-    if (paths) {
-      g.save();
-      g.setTransform(dpr * k, 0, 0, -dpr * k, dpr * (W / 2 - view.cx * k), dpr * (H / 2 + view.cy * k));
-      const hp = hoverCountry && countryPath(hoverCountry);
-      for (const shift of [-360, 0, 360]) { // outlines are unwrapped across the antimeridian (worldmap.js)
-        g.save(); g.translate(shift, 0);
-        g.fillStyle = 'rgba(40,80,190,0.30)'; g.fill(paths.land, 'evenodd');
-        if (hp) { g.fillStyle = 'rgba(120,170,255,0.28)'; g.fill(hp, 'evenodd'); }
-        g.lineJoin = 'round';
-        g.strokeStyle = 'rgba(120,160,255,0.45)'; g.lineWidth = 0.8 / k; g.stroke(paths.borders);
-        g.shadowColor = '#4f8cff'; g.shadowBlur = 6 * dpr;
-        g.strokeStyle = '#8fb8ff'; g.lineWidth = 1.3 / k; g.stroke(paths.coast);
-        if (hp) { g.strokeStyle = '#d6e6ff'; g.lineWidth = 1.6 / k; g.stroke(hp); }
-        g.restore();
-      }
-      g.restore();
-    }
-    const r = Math.min(4.5, 1.8 + view.z * 0.25);
-    for (const [id, l] of layers) {
-      if (!l.on || !l.markers) continue;
-      g.fillStyle = COLOURS[id] ?? '#fff';
-      g.globalAlpha = id === 'video' ? 1 : 0.85;
-      for (const m of l.markers) {
-        const [x, y] = toXY(m[0], m[1]);
-        if (x < -5 || y < -5 || x > W + 5 || y > H + 5) continue;
-        g.beginPath(); g.arc(x, y, id === 'video' ? r + 1.5 : r, 0, 2 * Math.PI); g.fill();
-      }
-    }
-    g.globalAlpha = 1;
-    if (hover) { // the marker under the cursor: a ring and crosshair ticks
-      const [x, y] = toXY(hover.m[0], hover.m[1]);
-      g.strokeStyle = COLOURS[hover.id] ?? '#fff'; g.lineWidth = 2;
-      g.beginPath(); g.arc(x, y, r + 6, 0, 2 * Math.PI); g.stroke();
-      g.beginPath();
-      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { g.moveTo(x + dx * (r + 9), y + dy * (r + 9)); g.lineTo(x + dx * (r + 15), y + dy * (r + 15)); }
-      g.stroke();
-    }
+    paint(g, W, H, scale(), { dpr });
   }
+  /** #40: the map as shown, repainted at w × h for a postcard (covering the card, markers scaled to match). */
+  function snapshot(w, h) {
+    const c = Object.assign(document.createElement('canvas'), { width: w, height: h });
+    const s = Math.max(w / 360, h / 180) * view.z; // the screen's rule (cover the frame) at the card's size
+    paint(c.getContext('2d'), w, h, s, { k: s / (scale() || s), highlight: false });
+    return c;
+  }
+  /** #40: the credits of what the map shows (the outlines and each layer that is on). */
+  const shownCredits = () => [...(paths ? ['MAP: Natural Earth 1:50m coastlines and borders (public domain)'] : []),
+    ...[...layers.values()].filter((l) => l.on && l.state === 'ready').map((l) => `${l.label}: ${l.credit}`)];
 
   function hits(px, py, max = 14) {
     const out = [];
@@ -289,5 +306,6 @@ export function createSignalsMap(opts = {}) {
     /** Fly the map to a point. */
     focus(lat, lon, z = 4) { view.cx = lon; view.cy = lat; view.z = z; clampView(); draw(); },
     redraw: () => draw(),
+    snapshot, shownCredits,
   };
 }

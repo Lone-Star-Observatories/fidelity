@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; all 57 dossiers unchanged. No 58th dossier or embedded Hyperion imagery.",
+  "sourceRecords": "hyperion-moon-source-records-2026-10-10.json",
+  "nativeAssessment": [
+    {
+      "product": "PIA17193 Farewell to Hyperion",
+      "observed": "2015-05-31",
+      "released": "2015-06-02",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "source": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "Unchanged publisher JPEG and TIFF retained. Cassini NAC 862 nm near-infrared monochrome; not calibrated visible colour or a registered globe. Caption north rotated 37 degrees right, approximate 60000 km range, 20 degree phase and 1180 feet (360 metres) per pixel are publisher statements, not newly computed angular/raster measurements. Mission final close approach does not establish the newest distant observation or an exhaustive imagery search."
+    },
+    {
+      "product": "PIA17194 Spongy Surface",
+      "observed": "2015-05-31",
+      "released": "2015-06-02",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "source": "https://science.nasa.gov/photojournal/spongy-surface/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "Unchanged publisher JPEG and TIFF retained. Visible-light NAC monochrome view with strong shadowing, not independently calibrated visible colour or global map. North rotated 34 degrees left, approximate 38000 km range and 46 degree phase are caption statements. Photojournal caption gives 755 feet (230 metres) per pixel; separate NASA resource/spongy-surface page gives 145 feet (230 metres) per pixel. Conflicting feet wording retained; no independent scale solution or raster calculation adopted."
+    }
+  ],
+  "shapeAudit": {
+    "source": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.tab",
+    "sourceLabel": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.xml",
+    "existingManifestSourceSha256": "cf90156a297d3078375583a99c2367bfe265bc5175710772e173544a25c37002",
+    "directAccess": "Source, label and document requests returned HTTP 403. No new source hash, label verification or document content claimed.",
+    "existingManifestFrame": "Model centre of figure to about 200 m; +Z north as observed on 2005 day 268; prime meridian set by a crater; converted (x,y,z) to (x,z,-y). These are retained existing provenance statements, not independently reverified this batch.",
+    "limitations": "Existing model and compact preview preserved byte-for-byte. Hyperion chaotic spin has no predicted present-day attitude here. A future hypothetical Saturn observer scene must not imply a permanently Saturn-facing registered site. No resolved global texture, modern frame uncertainty or local chemical fractions established."
+  },
+  "preservedModels": [
+    {
+      "path": "public/shapes/hyperion.glb",
+      "bytes": 580540,
+      "sha256": "4adc2081ff0f4602984ebfaa65219c0359d430dc0954556701018d0aa8ddb97c"
+    },
+    {
+      "path": "public/shapes/hyperion-preview.glb",
+      "bytes": 72360,
+      "sha256": "c9aca26777a026adb2864c07e464059c5f90129392b9060a4bdf44e518a22b59"
+    }
+  ],
+  "open": [
+    "Primary shape label/document audit when accessible.",
+    "Independent local and observer views, masters and additive dossier integration.",
+    "Native publisher compact rendition assessment and exact standalone budget before integration.",
+    "Current body-frame attitude, visible colour, photometry and scene registration remain uncalibrated."
+  ],
+  "verification": {
+    "tests": {
+      "passed": 453,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "htmlBytes": 15957422,
+    "headroomBytes": 42578,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "24c73dbed0ca07c3a13155a4df98e8d60f4b08ecec53c766c8974cb30f988b66",
+      "raw": "19bd1e55d8f4cce28b81cdd2d9c2e01e704b51946d19a182c9cbbd52155d0b6f",
+      "magic": "FIDNUM01",
+      "images": 204,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15957422,
+      "compressedBytes": 715909,
+      "applicationSha256": "f51dc5f64b1ecf0d48f274325255b78f29bc5b16369bd079a92f00922b2e8245",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "preservation": "All existing 57 dossiers unchanged; 69 tracked map/model/shape files equal HEAD bytes. Original generated images, masters and native source inputs preserved; no new runtime assets. Native context source hashes and normal/offline Titan own-map three-card routes verified.",
+    "routes": "Six offline routes, unsupported gzip message and 11 event worker rows passed.",
+    "interbuildDifferences": [
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/crew/cache",
+      "/crew/time"
+    ],
+    "interbuildAssessment": "Only five SDO src/time/disk triplets and crew cache/time changed; current browser complete JSON equals current readable snapshot bytes. Net HTML size difference is not research asset savings.",
+    "otherBrowserEngines": "Not independently verified",
+    "registryDossiers": 57,
+    "queueEntries": 566
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-11",
+  "body": "Hydra",
+  "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+  "sources": [
+    "src/data/sol.js Pluto radius/mass",
+    "src/data/moons.js Charon radius/mass and 19600km separation",
+    "docs/research/hydra-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric 64738km and 65x45x25km ellipsoid"
+  ],
+  "assumptions": {
+    "circularCoplanarSystem": true,
+    "hydraBarycentricRadiusKm": 64738,
+    "plutoCharonSeparationKm": 19600,
+    "hydraObserverHeightKm": 32.5,
+    "heightUse": "Assumed maximum fitted ellipsoid semiaxis, not measured site height, registered shape or uncertainty",
+    "observerPositionKm": [
+      64770.5,
+      0
+    ],
+    "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+    "plutoPositionKm": [
+      0,
+      2126.8199233716477
+    ],
+    "charonPositionKm": [
+      0,
+      -17473.180076628352
+    ],
+    "horizontalFovDeg": 90,
+    "temperatureK": 40,
+    "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+  },
+  "barycentricOffsetsKm": {
+    "pluto": 2126.8199233716477,
+    "charon": 17473.180076628352
+  },
+  "geometry": {
+    "pluto": {
+      "radiusKm": 1188.3,
+      "representativeDistancesKm": {
+        "alignedNear": 62643.680076628356,
+        "rightAngle": 64805.40898132231,
+        "alignedFar": 66897.31992337164
+      },
+      "computed": {
+        "alignedNear": {
+          "distanceKm": 62643.680076628356,
+          "angularDiameterDeg": 2.173839676138044,
+          "targetWidthPixels1672": 31.72219697502986
+        },
+        "rightAngle": {
+          "distanceKm": 64805.40898132231,
+          "angularDiameterDeg": 2.1013181377790677,
+          "targetWidthPixels1672": 30.663670324400595
+        },
+        "alignedFar": {
+          "distanceKm": 66897.31992337164,
+          "angularDiameterDeg": 2.035601898178089,
+          "targetWidthPixels1672": 29.704495271951117
+        }
+      }
+    },
+    "charon": {
+      "radiusKm": 606,
+      "representativeDistancesKm": {
+        "alignedNear": 47297.319923371644,
+        "rightAngle": 67085.98730167338,
+        "alignedFar": 82243.68007662836
+      },
+      "computed": {
+        "alignedNear": {
+          "distanceKm": 47297.319923371644,
+          "angularDiameterDeg": 1.4682520064623794,
+          "targetWidthPixels1672": 21.42436778430977
+        },
+        "rightAngle": {
+          "distanceKm": 67085.98730167338,
+          "angularDiameterDeg": 1.0351406008452846,
+          "targetWidthPixels1672": 15.104098222868833
+        },
+        "alignedFar": {
+          "distanceKm": 82243.68007662836,
+          "angularDiameterDeg": 0.8443580477999043,
+          "targetWidthPixels1672": 12.320211177887252
+        }
+      }
+    }
+  },
+  "limitations": [
+    "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+    "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+    "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+    "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+    "Pluto and Charon disks require independently invented appearance in a future hypothetical illustration; no other body map may become Hydra terrain.",
+    "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+    "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedInputsByteIdentical": 404,
+    "registryByteIdentical": true,
+    "newEmbedding": false
+  },
+  "verification": {
+    "tests": "458 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15996955,
+    "headroomBytes": 3045,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+      "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+      "magic": "FIDBRT01",
+      "images": 237,
+      "details": 517,
+      "models": 32
+    },
+    "limits": "Chrome exact complete readableJSON and HTML-parser snapshot payload; 237 images and 20 band images decode, 517 detail and 32 model entries; no page errors. Other engines open. Interbuild differences from prior ab6c9bb snapshot unaudited; no savings attribution or new model-load/native-hash/route claim. Production codecs unchanged."
+  }
+}

@@ -7659,6 +7659,2280 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "rhea": {
+    "id": "rhea",
+    "name": "Rhea",
+    "aliases": [
+      "Rhea"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHA487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac; frame/coverage/input epochs/photometry open. No generated globe.",
+    "measured": [
+      "Representative catalogue radius763.8km, mass2.3065e21kg, semimajor axis527200km; not dated scene registration.",
+      "Cassini NAC visible-light PIA21354 observed2017-05-02/released2017-11-20, monochrome northern hemisphere. Caption370000km/2km per pixel estimates are publisher values, not new raster calculations; rounded1527km caption diameter preserved separately.",
+      "NASA overview reports tenuous O2/CO2 exosphere detected2010; no strict gasless claim or visible haze/cloud inference."
+    ],
+    "modelled": [
+      "Bulk ice/rock and sputtering/radiolysis interpretations do not establish local chemical fractions.",
+      "Tiscareno/Burns/Cuzzi/Hedman2010 imaging-search abstract rejects earlier ring explanation; no confirmed Rhea ring. Abstract-only assessment, full paper audit open; no CC licence assertion."
+    ],
+    "unknown": [
+      "Globe input epochs/frame/coverage/photometry, local material fractions, registered site/orientation/phase, calibrated visible colour and further recent primary/product audit. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Independent invented terrain/material chemistry/fractions/lighting/exposure, without analog-map reuse or dated site registration.",
+      "Rhea's detected tenuous O2/CO2 exosphere does not establish visible haze/clouds; no strictly gasless claim.",
+      "No active plume/exposed ocean/biology/survivable landing or confirmed Rhea ring.",
+      "No celestial disk in frame; no angular/raster computation performed.",
+      "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+      "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+      "No confirmed Rhea ring; only schematic Saturn rings.",
+      "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame.",
+      "skyGeometry Saturn58232km radius at527200minus763.8km nominal90HFOV12.70159454degrees186.091095targetpx1672. Row200 thresholds5/10/20 upper-globe chords76/68/56 substantially undersized, not full calibrated diameter; rings excluded95K angular-only Sun off-frame. Small preview footer labels limited; readable card labels required."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/above-rhea/",
+        "title": "Cassini PIA21354 Above Rhea",
+        "publicationDate": "2017-11-20"
+      },
+      {
+        "url": "https://science.nasa.gov/saturn/moons/rhea/",
+        "title": "Rhea overview and tenuous exosphere"
+      },
+      {
+        "url": "https://arxiv.org/abs/1008.1764",
+        "title": "Tiscareno et al2010 no imaging evidence of rings: abstract-only"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Rhea",
+        "title": "Own NASA3D Rhea globe; registration audit open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/rhea-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21354/PIA21354.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+        "sourcePage": "https://science.nasa.gov/photojournal/above-rhea/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/above-rhea/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media usage guidelines; full credit retained.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2017-05-02",
+        "publicationDate": "2017-11-20",
+        "bytes": 6768,
+        "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+        "width": 320,
+        "height": 320,
+        "description": "Cassini NAC PIA21354 northern Rhea in visible monochrome, not calibrated colour/registered geography. Unchanged NASA320 display rendition: publisher resizing/re-encoding is not full pixel preservation;640 and both1020 originals retained.",
+        "processing": "Unchanged NASA-served JPEG; no local native reencoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL RHEA TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM RHEA",
+    "surfaceImage": {
+      "url": "/bespoke/rhea-surface-image.jpg",
+      "previewUrl": "/bespoke/rhea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-surfaceImage-original.png",
+      "sourceSha256": "eb8d87eb80d273f42db4b752761ec30ba8e05239c90e6493e93eae94d4ba6621",
+      "sha256": "e92856a60c8d4ca6ccf012739e67f50ce4cf8c9d1458f6bafb39f54b9447c730",
+      "previewSha256": "868ca0df0c077d964b2f932253c22af2d7a2869263c4d76188b56d7db6f2eac6",
+      "bytes": 392520,
+      "previewBytes": 11342,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/rhea-sky-image.jpg",
+      "previewUrl": "/bespoke/rhea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "rhea-generated-skyImage-original.png",
+      "sourceSha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+      "sha256": "26feedfd553dff92bc28d5f1f92280c8c5dde0bc410b35fcf5937c89de0f1424",
+      "previewSha256": "99c9d9a76437839cf143d6da2d1a51d245565b6912c4d22970362a6eb2a9007e",
+      "bytes": 205187,
+      "previewBytes": 6791,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "titan": {
+    "id": "titan",
+    "name": "Titan",
+    "aliases": [
+      "Titan"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte equal SHAa213516e3ccbe46bfbdb576963859c82c75799612ccab775ec3cf24b451feca0; frame/coverage/input epochs/photometry remain open. No generated globe.",
+    "measured": [
+      "Representative catalogue radius2574.7km, mass1.3452e23kg, semimajor axis1221900km and meanTempC−179 retained; not dated scene registration.",
+      "Huygens actual local landing-site observation2005-01-14, NASA publication2005-01-15 and ESA page2005-01-14.2023 asset migration is not a new observation.",
+      "Webb2023-07-11/Keck2023-07-14 six-panel infrared composite released2025-05-14 retained separately with NASA/ESA/CSA/STScI/Keck Observatory CC BY4 credits; not independently calibrated visible colour, resolved surface or registered globe."
+    ],
+    "modelled": [
+      "Schröder/Keller2008 DISR spectral calibration depends on lamp reconstruction, phase/opposition effect and heterogeneity. Water-ice identity at the landing site is inconclusive; alternatives do not establish local material fractions.",
+      "DISR methane4.5±0.5% absorption-model inference is atmospheric and coefficient-dependent, not terrain composition or an everywhere-current abundance. Liquid surface layer unsupported in that footprint; shallow wet soil not excluded.",
+      "Nixon2025 methyl-radical spectroscopy and rising infrared clouds do not establish local chemical fractions, biology or directly observed rain. Primary abstract only; full paper audit remains open."
+    ],
+    "unknown": [
+      "Exact PIA07232 DISR product/exposure/spectral-transfer association, independent visible-colour calibration and site/global-map registration remain open.",
+      "Haze optical depth and Saturn visibility/transmission for specific site, date and wavelength remain open; no assertion Saturn is always invisible.",
+      "Own globe input epochs, frame, coverage, photometry and local material fractions remain unverified. No exhaustive newest-observation claim."
+    ],
+    "assumed": [
+      "Material chemistry and fractions, stone sizes, terrain, haze optical depth/transmission, colour, exposure and lighting are assumed artistic values, not independent measurements.",
+      "No observed body map/photograph used as reference; no Moon/Mars/Pluto analog skin.",
+      "Not a global map or dated/registered Huygens site. Original native Huygens JPEG remains preferred actual local observation, preserved separately.",
+      "No active precipitation, liquid surface, plume, ocean, biology or survivable landing implied.",
+      "No angular/raster size computation: no astronomical disk in scene. Saturn visibility/transmission remains open.",
+      "Strong haze obscuration is an explicit illustrative assumption, not a solved Saturn visibility/transmission model. No inference that Saturn is always invisible from every Titan site or wavelength.",
+      "No astronomical disk and no angular/raster size computation. skyGeometry does not establish atmospheric transmission.",
+      "Terrain, material chemistry/fractions, haze opacity/layering, colour, exposure and lighting invented; no dated Huygens site, calibrated local colour or global map.",
+      "No other observed body photograph or map used as reference; no analog skin.",
+      "No rain, liquid surface, plume, ocean, biology or survivable landing implied.",
+      "Both views are independent IMAGINED illustrations. Original PNGs/full prompts retained; generated masters/recorded256 previews resampled, offline WebP80. Small annotations poorly readable; card labels carry limitations.",
+      "Sun helper at9.58AU/HFOV90 is a representative off-frame angular guide only; temperature5772K is not a calibrated Titan illumination/exposure model. No Sun/Saturn disk in scene, so no in-image angular/raster size claim."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "title": "Huygens actual local surface publisher image PIA07232",
+        "publicationDate": "2005-01-15"
+      },
+      {
+        "url": "https://www.esa.int/ESA_Multimedia/Images/2005/01/First_colour_view_of_Titan_s_surface",
+        "title": "ESA Huygens colour-view caption",
+        "publicationDate": "2005-01-14"
+      },
+      {
+        "url": "https://arxiv.org/abs/1702.00653",
+        "title": "S.E. Schröder/H.U. Keller2008 DISR reflectance calibration; PDF CC BY-NC-ND4; no figure embedded"
+      },
+      {
+        "url": "https://esawebb.org/images/weic2511b/",
+        "title": "Webb/Keck infrared cloud composite; research original retained",
+        "publicationDate": "2025-05-14"
+      },
+      {
+        "url": "https://arxiv.org/abs/2505.10655",
+        "title": "Nixon et al2025 Titan spectroscopy; abstract-only assessment, explicitly linked CC BY4"
+      },
+      {
+        "url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn%20-%20Titan",
+        "title": "Own NASA3D Titan globe; frame/coverage/photometry open"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/titan-huygens-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/p/i/a/0/PIA07232_1-1.jpg",
+        "sourcePage": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "sourceUrl": "https://science.nasa.gov/resource/first-color-view-of-titans-surface/",
+        "credit": "NASA/JPL/ESA/University of Arizona",
+        "terms": "NASA image/media guidelines and ESA Standard Licence educational/editorial/informational use with third-party caveats; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "termsLinks": [
+          "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "https://www.esa.int/ESA_Multimedia/Terms_and_conditions_of_use_of_images_and_videos_available_on_the_esa_website"
+        ],
+        "tier": "measured",
+        "observationDate": "2005-01-14",
+        "publicationDate": "2005-01-15",
+        "ESApublicationDate": "2005-01-14",
+        "bytes": 18436,
+        "sha256": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+        "width": 546,
+        "height": 693,
+        "description": "Actual Huygens local landing-site scene2005-01-14, publisher reflection-spectrum colour. Unchanged full546x693 publisher JPEG; original source bytes retained exactly. Distinct publisher display/320 renditions also preserved separately. Not a global map, independently calibrated visible colour or measured local water-ice fractions; exact DISR product association remains open.",
+        "processing": "Unchanged full publisher JPEG; no local resizing/reencoding or pixel modification."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL TITAN TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM TITAN",
+    "surfaceImage": {
+      "url": "/bespoke/titan-surface-image.jpg",
+      "previewUrl": "/bespoke/titan-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titan-generated-surfaceImage-original.png",
+      "sourceSha256": "8ec28379bb936e5f58553e818635b5a6aff7a4021670846806c4e8d14b3303a2",
+      "sha256": "74804a8c91efb13f114ac7e098c5de00b3d16f6434c3ac73f674c9d8d4abd7f6",
+      "previewSha256": "99c78f46ecf62c0e1292dde8b594a9919331fcafaf192a71c3070a19c7d4dc71",
+      "bytes": 254774,
+      "previewBytes": 7850,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/titan-sky-image.jpg",
+      "previewUrl": "/bespoke/titan-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titan-generated-skyImage-original.png",
+      "sourceSha256": "c4444bcdd9d506f827995d0a8782fe7502a72a54e6184429cd51e6774ec72d98",
+      "sha256": "b78e0069eeb1fff496ebd79d69530b8e93dc50e5138071008d154cd38abd7d84",
+      "previewSha256": "e7e48abc84892c347e5967e91421509ded66fb12dfc5b907a85f25d7a14afd99",
+      "bytes": 78140,
+      "previewBytes": 3636,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "hyperion": {
+    "id": "hyperion",
+    "name": "Hyperion",
+    "aliases": [
+      "Hyperion"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe adopted; surfacePending true retained. Existing PDS shape/preview unchanged. Frame, uncertainty and chaotic attitude audit open.",
+    "measured": [
+      "Representative catalogue radius135km, mass5.62e18kg and semimajor axis1481500km retained; not dated camera geometry.",
+      "Cassini PIA17193/PIA17194 observed2015-05-31 released2015-06-02; full original JPEG/TIFF source bytes retained separately."
+    ],
+    "modelled": [
+      "Existing model frame/centre-of-figure and 2018 archive provenance retained, not independently reverified this batch. Direct PDS source/label/document requests returned403."
+    ],
+    "unknown": [
+      "Current chaotic body attitude, physical terrain registration and shape uncertainty remain open.",
+      "Native monochrome views do not establish calibrated visible colour or a global map; no measured local chemistry/fractions.",
+      "PIA17194 Photojournal755feet230m/pixel versus separate resource145feet230m caption conflict retained without an independent raster scale solution."
+    ],
+    "assumed": [
+      "All terrain, blocks, depressions, porosity appearance, material chemistry/fractions, colour, phase, rings, illumination and exposure invented. No analog body map or observed image used as reference.",
+      "No registered Cassini/PDS site or dated present-day attitude; chaotic spin does not define a permanently Saturn-facing location.",
+      "No local atmosphere, cloud, haze, plume, liquid, exposed ocean, biology or survivable landing implied.",
+      "Generated Saturn globe is substantially undersized relative to skyGeometry guide; row185 bright-region thresholds exclude rings and are not a calibrated full diameter.",
+      "Original PNGs and full prompts retained;1536JPEG85 masters and recorded256 previews with offlineWebP80. Small annotations have limited readability; card labels required.",
+      "Off-frame Sun helper9.58AU is angular only, not a calibrated illumination model."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "title": "Cassini PIA17193 near-infrared native image",
+        "publicationDate": "2015-06-02"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/spongy-surface/",
+        "title": "Cassini PIA17194 visible monochrome view",
+        "publicationDate": "2015-06-02"
+      },
+      {
+        "url": "https://science.nasa.gov/resource/spongy-surface/",
+        "title": "Separate caption with inconsistent feet scale"
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/certified/saturn_satellite_shape_models_V1_0/data/hyperion_30k_plt.xml",
+        "title": "PDS Hyperion shape label; direct access403"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/hyperion-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia17/pia17193/PIA17193.jpg?w=320&fit=clip",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-hyperion/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2015-05-31",
+        "publicationDate": "2015-06-02",
+        "bytes": 15942,
+        "sha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+        "width": 320,
+        "height": 320,
+        "description": "Cassini NAC862nm near-infrared monochrome publisher image. Unchanged NASA-served320 display JPEG; publisher resizing/reencoding disclosed, not full original pixel preservation. Full1024JPEG83186 and TIFF originals retained. Not calibrated visible colour, local material chemistry or registered globe.",
+        "processing": "Unchanged publisher display rendition; no local transformation."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 4.505719665298651,
+      "centreDiscWidthFraction": 0.03934009765362271,
+      "irradianceEarth": 0.000005243185255436207,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical mean-radius skyGeometry angular guide only. 95 K RGB/irradiance helper not adopted for Saturn visible colour. Hypothetical camera direction, rings/phase/FOV/exposure/light and chaotic attitude uncalibrated.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 1481365,
+      "targetPixels": 65.77664327685717
+    },
+    "surfaceLabel": "HYPOTHETICAL LOCAL HYPERION TERRAIN",
+    "skyLabel": "HYPOTHETICAL SKY FROM HYPERION",
+    "surfaceImage": {
+      "url": "/bespoke/hyperion-surface-image.jpg",
+      "previewUrl": "/bespoke/hyperion-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hyperion-generated-surfaceImage-original.png",
+      "sourceSha256": "9671a409f183b4eaac93a0746b88e24ffe5de35b43594dd54eeb1662e0642e60",
+      "sha256": "504f341c026c163de79c7eda843aa7ec01fed86b468588adaed5157f3096142a",
+      "previewSha256": "fd7e14744d25f7a05f81b5bceb939d80d7b2a804cd0a27f97b9c6c411b0f7970",
+      "bytes": 458097,
+      "previewBytes": 13870,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hyperion-sky-image.jpg",
+      "previewUrl": "/bespoke/hyperion-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hyperion-generated-skyImage-original.png",
+      "sourceSha256": "416cc40f85b591a711930083ff81b847d6462f5e51fc1890a59923047bc8295a",
+      "sha256": "d974022eb8b34137e140679cb3b9816f81b2e3e45a9525c3b4dd9f03c7e02a9d",
+      "previewSha256": "b9b02ece5e3b07a1cb401342cb4ccc9b9856a0ce65ae691c586dc9f4634f3683",
+      "bytes": 187432,
+      "previewBytes": 6432,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "iapetus": {
+    "id": "iapetus",
+    "name": "Iapetus",
+    "aliases": [
+      "Iapetus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe retained unchanged and source-byte equal (SHA256 9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405). Product associations, coverage, frame, input epochs, photometry and local scene registration remain open. Blurred regions and mosaic transitions do not establish smooth terrain or local material fractions.",
+    "measured": [
+      "Catalogue radius734.5km and representative orbital semimajor axis3561700km; publisher1471km diameter retained separately, without silent replacement.",
+      "Cassini PIA21347 observed2017-05-30, released2017-09-18, combines338nm ultraviolet/568nm green/930nm infrared in enhanced false colour. Native source is not calibrated visible RGB or a registered globe.",
+      "Spencer/Denk main paper reports2007-09-10 CIRS resolved-location blackbody fits129K/113K; these are not global or current observer temperatures."
+    ],
+    "modelled": [
+      "External dust deposition with temperature-dependent water-ice migration is an explanation of the dichotomy, not measured present-day local sublimation or composition. Thermal albedos0.04/0.39 and deposition/mixing/gardening assumptions are model values, not local fractions.",
+      "Saturn angular diameter1.87398420677degrees and27.34565245 target pixels at1672px under nominal90degree HFOV, from skyGeometry. Spherical radius58232km at3561700minus734.5km; no dated site/ephemeris registration."
+    ],
+    "unknown": [
+      "Exact globe product/frame/coverage/epoch/photometry audit and local science-image registration.",
+      "Full companion imaging paper, supplements and equatorial-ridge alternatives audit. No unique ridge origin asserted.",
+      "Generated Saturn globe appears oversized; precise globe-only audit remains open. Row240 spans49px at thresholds5/10/20 include rings and are NOT adopted as diameters.",
+      "Material chemistry/fractions, dated illumination and calibrated visible colour/scene exposure remain unknown."
+    ],
+    "assumed": [
+      "IMAGINED independent local and sky views: craters, blocks, dark regolith, pale patches, material chemistry/fractions, colour and lighting invented. No analog body map or observed site reconstruction.",
+      "Saturn bands, rings, phase and camera orientation are artistic. Inclined orbit allows variable ring opening; image opening is assumed without angle calibration. Off-frame Sun9.58AU helper is angular only;95K Saturn helper is not visible photometry.",
+      "No atmosphere, plume, liquid, exposed ocean, biology or survivable landing implied. Small preview annotations have limited readability; readable card labels carry limitations."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "title": "Cassini PIA21347 Farewell to Iapetus",
+        "publicationDate": "2017-09-18"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+        "title": "Cassini PIA21332 Puzzled Iapetus",
+        "publicationDate": "2017-06-12"
+      },
+      {
+        "url": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+        "title": "Spencer and Denk: Iapetus thermal segregation; retained compilation, main pages1–4 assessed",
+        "publicationDate": "2010-01-22"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA image/media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/iapetus-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21347/PIA21347.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2017-05-30",
+        "publicationDate": "2017-09-18",
+        "bytes": 8326,
+        "sha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+        "width": 629,
+        "height": 598,
+        "description": "Actual Cassini UV/green/infrared enhanced false-colour composite. Small distant body; not local terrain, calibrated visible colour or registered globe. Caption range/scale/orientation are publisher estimates, not newly derived raster measurements.",
+        "processing": "Unchanged full publisher JPEG; no local resizing or reencoding. Original TIFF and separate older visible-monochrome PIA21332 retained as research inputs."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 1.8739842067705352,
+      "centreDiscWidthFraction": 0.016355055294701642,
+      "irradianceEarth": 9.0736877390816e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical mean-radius angular guide only. 95 K helper colour/irradiance not adopted as visible photometry. Inclined orbit gives variable ring opening; camera, ring/phase orientation, FOV, colour, exposure and lighting assumed without dated ephemeris registration.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 3560965.5,
+      "targetPixels": 27.345652452741145
+    },
+    "surfaceLabel": "IMAGINED LOCAL IAPETUS TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM IAPETUS — ASSUMED RING ORIENTATION",
+    "surfaceImage": {
+      "url": "/bespoke/iapetus-surface-image.jpg",
+      "previewUrl": "/bespoke/iapetus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iapetus-generated-surfaceImage-original.png",
+      "sourceSha256": "09c2d0c06f97fc9d16aadc431d311e5b811dd0ef13f72c77c746d15721638e97",
+      "sha256": "36d669f587ecd70838303ea30708ad1c96f6ce4717e2183769d1c55f86f4d7b7",
+      "previewSha256": "51a961004a651b9e46c92c7caf1f51feedaa41a97fb9fc0d0a2bafc21c03cf3a",
+      "bytes": 342150,
+      "previewBytes": 11337,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/iapetus-sky-image.jpg",
+      "previewUrl": "/bespoke/iapetus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iapetus-generated-skyImage-original.png",
+      "sourceSha256": "3cab827f76887809cee11626163c4484acf1a57b03c58e5094d4f4a1789269f3",
+      "sha256": "3f4c5b67aed61938df711b486b6dd9ab607f18f5b4a67f404a06d9bf8c418e06",
+      "previewSha256": "a4687a14e0816f32519c46702e94ebb87868e5e96a61a7e1630ea6bf2b56fbde",
+      "bytes": 193478,
+      "previewBytes": 6834,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "phoebe": {
+    "id": "phoebe",
+    "name": "Phoebe",
+    "aliases": [
+      "Phoebe"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No own resolved globe or shape adopted; surfacePending remains true. Identified2023 SPC bundle and older Gaskell V2 are distinct products; direct XML/document403 and actual geometry/quality/frame audit remain open. No analog globe skin.",
+    "measured": [
+      "Catalogue radius106.5km, representative orbital semimajor axis12929400km and unlocked9.27hour rotation; retrograde orbit. Publisher219km longest/204km shortest dimensions retained separately, without replacing catalogue mean radius.",
+      "Cassini PIA18411 observed2004-06-11; anniversary release2014-06-11 is not a new observation. Monochrome approach/departure images were publisher rescaled, sharpened and contrast enhanced.",
+      "Caption80/65m per pixel and80/83degree phase are publisher estimates, not newly derived raster scale or dated local registration."
+    ],
+    "modelled": [
+      "skyGeometry Saturn spherical58232km at12929400minus106.5km, nominal90degree HFOV:0.516108496207degrees,7.53056549654 target globe pixels at1672.",
+      "Fraser/Brown2018 primary abstract reanalysis40 VIMS images with geometry correction supports water-band variation in sampled coverage; basin exposure/origin interpretations are hypotheses, not local fractions or measured invented terrain."
+    ],
+    "unknown": [
+      "Full spectroscopy paper/figure and final publication-date audit; linked arXiv nonexclusive distribution is not CC BY. No figure embedded.",
+      "Actual2023 shape geometry/uncertainty/frame, older-shape association and resolved globe coverage/epochs/photometry remain open.",
+      "Material chemistry/fractions, calibrated visible colour, lighting/exposure and local registration unknown.",
+      "Saturn row16113pixel brightness spans include rings and are not globe diameters; precise globe separation and raster calibration remain open."
+    ],
+    "assumed": [
+      "IMAGINED independent local and sky illustrations invent craters, stones, regolith, pale patches, chemistry/fractions, colours and lighting. No analog body map or registered Cassini/PDS site.",
+      "Unlocked retrograde orbit means no permanent Saturn-facing site; camera attitude, Saturn bands/rings, variable opening and phase assumed.95K helper RGB/irradiance not adopted as visible photometry. Sun9.58AU off frame.",
+      "No atmosphere, haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. Tiny Saturn/small annotations have limited preview readability; readable card labels carry limitations."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "title": "Cassini PIA18411 Arrival and Departure at Phoebe",
+        "publicationDate": "2014-06-11"
+      },
+      {
+        "url": "https://arxiv.org/abs/1803.04979",
+        "title": "Fraser and Brown2018 primary abstract only",
+        "publicationDate": "2018-03-13"
+      },
+      {
+        "url": "https://sbn.psi.edu/pds/resource/weirichphoebeshape.html",
+        "title": "2023 Phoebe SPC bundle; actual geometry audit open"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA image/media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/phoebe-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+        "sourcePage": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA media guidelines, not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2004-06-11",
+        "publicationDate": "2014-06-11",
+        "bytes": 11336,
+        "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+        "width": 320,
+        "height": 213,
+        "description": "Actual Cassini processed monochrome approach/departure comparison; not calibrated visible colour or registered local/globe geography.2004 observation/2014 anniversary release distinct.",
+        "processing": "Unchanged NASA-served compact JPEG; publisher resizing/reencoding NOT full original pixel preservation. Full5182x3455 original1192296byteJPEG retained unchanged with source hash."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 0.5161084962070008,
+      "centreDiscWidthFraction": 0.004503926732379489,
+      "irradianceEarth": 6.882873268598307e-8,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical angular guide only;95K colour/irradiance not visible photometry. Unlocked retrograde Phoebe: camera attitude/ring opening/phase assumed, no permanent Saturn-facing site or dated ephemeris registration. Row161 spans13px at thresholds5/10/20 include rings, not globe diameter; precise globe separation/calibration open.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 12929293.5,
+      "targetPixels": 7.530565496538506
+    },
+    "surfaceLabel": "IMAGINED LOCAL PHOEBE TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM PHOEBE — ASSUMED ATTITUDE",
+    "surfaceImage": {
+      "url": "/bespoke/phoebe-surface-image.jpg",
+      "previewUrl": "/bespoke/phoebe-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "phoebe-generated-surfaceImage-original.png",
+      "sourceSha256": "37a92d2ff04b124e097de7e00b61a5c173c9de59c8ef5c4055f63db359454e62",
+      "sha256": "9d09c6953eec268450a285cd6e1dfdf696b52ab4320fedc2de4b261cd34f4330",
+      "previewSha256": "c7a344daef00ff72a17139e8d5bcbaa4fa93a8346020feb144c82f088fa56f57",
+      "bytes": 375611,
+      "previewBytes": 10315,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/phoebe-sky-image.jpg",
+      "previewUrl": "/bespoke/phoebe-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "phoebe-generated-skyImage-original.png",
+      "sourceSha256": "f3896436c08b03ed39947ee7c05a6bb40c9088222e4549e32e89b4ddb960fb4d",
+      "sha256": "ab9806aabf8ddac2e5ebfb0134e4a1349458280c4a7eda7ed61315eb68e910c9",
+      "previewSha256": "86ba5f166367f129e5736c4a6ee47151d17490bd73cd445e874834f33c247ea1",
+      "bytes": 214069,
+      "previewBytes": 6233,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "miranda": {
+    "id": "miranda",
+    "name": "Miranda",
+    "aliases": [
+      "Miranda"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe retained unchanged, source-byte-equal SHA844b2deb88b8dbc93142bf5b85036ce7dd45db131e6251b4e6a95e179ae44c81. Southern-only coverage; black north and blurred gaps are not observed dark/smooth terrain. Product association, frame, coverage mask, epochs, photometry and shape registration remain open.",
+    "measured": [
+      "Catalogue mean radius235.8km, representative semimajor axis129846km and orbital period1.413479days retained. Current JPL mean radius235.8±.7km is separate from shape axes; existing catalogue mass6.4e19kg not silently reconciled to current JPL GM4.3±.2km3/s2.",
+      "Voyager2 PIA18185 observed1986-01-24, image addition1986-01-25. PIA00043 same observation, addition1996-08-01. Later web updates are not new observations.",
+      "Clear-filter monochrome and mosaic seams/missing pieces do not establish calibrated visible colour or complete geography. Caption resolution/scarp estimates are source estimates, not newly computed raster scale."
+    ],
+    "modelled": [
+      "skyGeometry spherical Uranus mean radius25362km at129846−235.8km, nominal90degree HFOV:22.568788325degrees,333.625002target pixels at1672.",
+      "El Moutamid/Ćuk2026-09-25 primary abstract: conditional resonance/tidal-heating simulations and QU~600 may approach formation requirements; not directly measured present heat, ocean or plumbing."
+    ],
+    "unknown": [
+      "Full2026 paper/supplement and quantitative model audit remain open. Nonexclusive arXiv distribution is not CC BY; no figure embedded.",
+      "Own globe product/frame/coverage/epochs/photometry and shape registration remain open. Northern gaps must not be interpreted as terrain.",
+      "Local chemistry/material fractions, calibrated colour/exposure and dated site registration unknown.",
+      "Uranus row250threshold5/10/20 spans386/383/382px are oversized phase/exposure-sensitive runs, not calibrated complete diameter; precise limb audit remains open."
+    ],
+    "assumed": [
+      "Independent IMAGINED illustrations invent regolith, ridges/fault scarp, angular blocks, slopes, grain sizes, chemistry/fractions, colour, phase, illumination and exposure. No analog body map or registered Voyager/globe site.",
+      "Hypothetical Uranus-facing camera/axis orientation; inclined orbit and planetary oblateness remain limitations. Uranus bands/cloud appearance and phase artistic. Ring omission is artistic exposure, not proof of invisibility.60K angular helper RGB/irradiance not adopted as visible photometry; Sun19.2AU off frame.",
+      "No foreground atmosphere, haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. Small footers need readable card labels."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+        "title": "Voyager2 PIA18185 Miranda Icy Face",
+        "publicationDate": "1986-01-25"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/miranda-high-resolution-mosaic/",
+        "title": "Voyager2 PIA00043 high-resolution mosaic",
+        "publicationDate": "1996-08-01"
+      },
+      {
+        "url": "https://arxiv.org/abs/2609.31580",
+        "title": "El Moutamid and Ćuk2026 primary abstract only",
+        "publicationDate": "2026-09-25"
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/planets/phys_par.html",
+        "title": "JPL planetary physical parameters: mean Uranus radius"
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par.html",
+        "title": "JPL satellite physical parameters"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA image/media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/miranda-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18185/PIA18185.jpg?crop=faces%2Cfocalpoint&fit=clip&h=96&w=96",
+        "sourcePage": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/mirandas-icy-face/",
+        "credit": "NASA/JPL-Caltech",
+        "terms": "NASA media guidelines, not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1986-01-25",
+        "bytes": 2790,
+        "sha256": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+        "width": 95,
+        "height": 96,
+        "description": "Actual Voyager2 clear-filter monochrome Miranda image; no calibrated visible colour, registered local view or full northern coverage.",
+        "processing": "Unchanged NASA-served95x96 thumbnail JPEG; publisher resizing/reencoding NOT full pixel preservation.159x160 and318x320 renditions and full571x57460745bytePIA18185 plus2500x2200PIA00043 originals retained unchanged with complete source hashes. Small native preview has limited detail; original sources remain linked."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL MIRANDA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM MIRANDA — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "uranusMeanRadiusKm": 25362,
+      "mirandaRadiusKm": 235.8,
+      "representativeCentreDistanceKm": 129846,
+      "observerDistanceKm": 129610.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 22.568788325000032,
+      "targetGlobeWidthPxAt1672": 333.62500218991465,
+      "temperatureHelperK": 60,
+      "limits": "Spherical mean-radius/semimajor-axis approximation, not dated ephemeris.60K angular helper only, not visible photometry. Raster spans386/383/382px oversized not calibrated diameter; camera/axis/ring opening/phase assumed, orbit inclination/oblateness open."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/miranda-surface-image.jpg",
+      "previewUrl": "/bespoke/miranda-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "miranda-generated-surfaceImage-original.png",
+      "sourceSha256": "94efe92559a3cbe2e2147854ce3fa3a9324387bf32cbf57b0cb0e6da4e89aa0a",
+      "sha256": "60cc60386d806e2bf12474bcda3ff9eb0121f68d225a3e4ac6a62ad9efa7ff43",
+      "previewSha256": "4fa29836c161839c8c0534d924f5bff0e1c00eb268eff0ea705b78e38a214d78",
+      "bytes": 385669,
+      "previewBytes": 10804,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/miranda-sky-image.jpg",
+      "previewUrl": "/bespoke/miranda-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "miranda-generated-skyImage-original.png",
+      "sourceSha256": "e6abdfd22d23cebfaddcd6b73f64400bf8850d8eaf9de73e52743bdedf3c18ae",
+      "sha256": "09a99bbfb929106778410e24aba814a8453c7e0e801214fde9852943c28e3423",
+      "previewSha256": "db6d5035892ec206367dfb5ecbb04e00ea931d8f5ecc6412556d3eff4b96d89d",
+      "bytes": 234105,
+      "previewBytes": 8198,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "ariel": {
+    "id": "ariel",
+    "name": "Ariel",
+    "aliases": [
+      "Ariel"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe retained unchanged/source-byte-equal SHAfc0f8a59b5c29e44e4a3409e452f0427f5b53b8c9b41c89dc35d28babaae5cee. Partial southern coverage with black unobserved northern region and visible coverage edges/low-detail areas. Black/blurred areas do not establish dark/smooth terrain. Exact product association, frame, input epochs, coverage mask, photometry and shape registration remain open. Own-body map unchanged; no analog or replacement adopted.",
+    "measured": [
+      "Existing catalogue radius578.9km, mass1.251e21kg, representative semimajor axis190929km and period2.520379days preserved; no inferred uncertainty or silent update.",
+      "PIA00041 observed1986-01-24; image addition1996-01-29. Voyager2 NAC green/blue/violet-filter composite of southern hemisphere. Colour-channel fringes visible near edges; not independently calibrated visible colour or registered globe geography. Caption170000km range/about3km resolution and1200km diameter are historical publisher estimates, not new raster/angular calculations or replacements for catalogue radius578.9km. Later2025page update is not new observation. No exhaustive newest-observation claim.",
+      "PIA01534 observed1986-01-24; image addition1999-05-08. Four clear-filter NAC frames assembled as a monochrome mosaic. Gaps/seams/black background are not terrain; not independently calibrated visible colour or seamless globe. Caption130000km/about2.4km resolution and5–10km craters are source estimates, not new raster calculations. Faulting/deposition/fluid-flow alternatives remain interpretations, not current active cryovolcanism.",
+      "CO2 spectral peaks/bands and4.67micronCO ice band are detected with hemispheric differences. The4.02micron feature may include carbonate minerals; identification remains tentative. No compelling G395M evidence for NH-bearing species, hydrocarbons orH2O2 is not an exhaustive absence claim: strongwater absorption may obscureNH-bearing species."
+    ],
+    "modelled": [
+      "More-than-about10mm CO2 deposits derive from optical penetration/mean-path and laboratory/Hapke–Mie comparisons, not direct local thickness/geographic mapping. Mixture grain diameters/fractions, temperatures, possible carbonates/clathrates, replenishment/seasonal migration, radiolysis versus interior origins, ocean chemistry/pH and isotope/escape histories are models or hypotheses. Section5 explicitly leaves physical state and conduit associations difficult to determine from disk-integrated spectra and calls for resolved orbital spectroscopy. No direct ocean, plume, exposed liquid, biology or quantified local chemistry claim; no observed-body analog terrain reuse.",
+      "CO/CO2 spectral features are measured. Laboratory crystallineCO2 lattice oscillations can explain many4.8–5.25micron features previously assigned other species. Carbonate4.02micron and clathrate4.40micron assignments remain favoured interpretations rather than direct local chemistry;4.59micronOCN-minus has a CO2-laboratory shoulder alternative. Roughness/grain-boundary/layered laboratory fits do not establish local material fractions or a visible surface map. Dual native/radiolytic origins are proposed, not directly observed conduits/ocean/plumes or biology. H2O2 nondetection is not proof of absence. Orbital spatially resolved observations are still needed to associate chemistry with geological terrain. No observed-body analog terrain adopted.",
+      "skyGeometry spherical mean Uranus radius25362km at190929−578.9km; nominal90degreeHFOV 15.313569592943965degrees /224.7792445600696targetpixels at1672."
+    ],
+    "unknown": [
+      "Exact native globe product association/frame/epochs/coverage/photometry/shape registration remain open; black north/gaps are not terrain.",
+      "Recent fullpaper finaljournal/supplement/exactMAST correspondence and independent calibration remain open.2023spectra re-reduced in2026 are not new visible terrain.",
+      "Local chemical fractions, terrain, calibrated visible colour/exposure and dated Voyager/local registration unknown."
+    ],
+    "assumed": [
+      "Independent grey regolith/blocks/cratered ridges/valley/scarp and Uranus band patterns, colour/phase/exposure/light invented; no observed-body analog map reused. No atmosphere/plume/liquid/exposed ocean/biology/survivable landing or dated site.",
+      "Assumed camera/planet-axis attitude, semimajor-axis sphere ignoring oblateness. Uranus rings omitted for artistic exposure, not observational invisibility. Generated row230 spans346/340/337px at thresholds5/10/20, oversized against224.779target, phase/exposure-sensitive and not calibrated full diameter.60K helper angular only, not visible photometry; Sun19.2AUoffframe.256pixel annotations limited; readable card labels required."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "title": "NASA Voyager2 PIA00041 southern colour composite",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/ariels-densely-pitted-surface/",
+        "title": "NASA Voyager2 PIA01534 clear-filter mosaic",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1999-05-08"
+      },
+      {
+        "url": "https://mmhedman.github.io/papers_published/Cartwright_Ariel_ApJL_2024.pdf",
+        "title": "JWST Reveals CO Ice, Concentrated CO2 Deposits, and Evidence for Carbonates Potentially Sourced from Ariel’s Interior",
+        "authors": [
+          "Richard J. Cartwright",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Stephen C. Tegler",
+          "Marc Neveu",
+          "Ujjwal Raut",
+          "Christopher R. Glein",
+          "Tom A. Nordheim",
+          "Joshua P. Emery",
+          "Julie C. Castillo-Rogez",
+          "Eric Quirico",
+          "Silvia Protopapa",
+          "Chloe B. Beddingfield",
+          "Matthew M. Hedman",
+          "Katherine de Kleer",
+          "Riley A. DeColibus",
+          "Anastasia N. Morgan",
+          "Ryan Wochner",
+          "Kevin P. Hand",
+          "Geronimo L. Villanueva",
+          "Sara Faggi",
+          "Noemi Pinilla-Alonso",
+          "David E. Trilling",
+          "Michael M. Mueller"
+        ],
+        "publicationDate": "2024-07-24",
+        "observationDate": "2023-09-06/2023-09-07",
+        "doi": "10.3847/2041-8213/ad566a",
+        "terms": "Explicit CC BY4.0 original-content notice on PDFpage1, retaining authors/title/journal/DOI attribution. No figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "submittedDate": "2026-07-06",
+        "revisionDate": "2026-07-08",
+        "terms": "Specific record links CC BY4.0; draftJuly9 is not observation or final publication date. FullPDF retained; no figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Uranus%20-%20Ariel/Uranus%20-%20Ariel.jpg",
+        "title": "OwnNASA3D Ariel map source; frame/coverage/epochs/photometry open"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/ariel-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00041/PIA00041.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/ariel-highest-resolution-color-picture/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "bytes": 45924,
+        "sha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c",
+        "width": 845,
+        "height": 650,
+        "description": "Actual Voyager2 green/blue/violet southern Ariel composite; colour fringes and incomplete coverage, not calibrated visible colour or registered local scene.",
+        "processing": "Unchanged full845x650 publisher JPEG, no Fidelity resize/re-encoding.320x246 and160x123 publisher renditions and fullPIA01534 originals retained separately/source hashes. Green/blue/violet composite has colour-channel fringes; not independently calibrated visible colour or registered globe/local geography."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL ARIEL TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM ARIEL — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "uranusMeanRadiusKm": 25362,
+      "arielRadiusKm": 578.9,
+      "representativeCentreDistanceKm": 190929,
+      "observerDistanceKm": 190350.1,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 15.313569592943965,
+      "targetGlobeWidthPxAt1672": 224.7792445600696,
+      "temperatureHelperK": 60,
+      "limits": "Sphere/representative orbit, not dated ephemeris. Generated346/340/337px rows oversized and uncalibrated; camera/axis/phase assumed, inclination/oblateness/rings open."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/ariel-surface-image.jpg",
+      "previewUrl": "/bespoke/ariel-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "ariel-generated-surfaceImage-original.png",
+      "sourceSha256": "66ab35e6749db05a2f0aa416d155a5928e0b7f520c299dcf33a45d5a9e54a387",
+      "sha256": "07e4f57f4a76a32a6061bec568b06cc7b616478dce11b645d47ff8d0f22e9013",
+      "previewSha256": "c455f7aa4805fef209ac48fdeef1b4986e108d72c45b729f75ababddb39f8258",
+      "bytes": 339946,
+      "previewBytes": 10402,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/ariel-sky-image.jpg",
+      "previewUrl": "/bespoke/ariel-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "ariel-generated-skyImage-original.png",
+      "sourceSha256": "717549da2f0b06d772d5828fd4d2d96efc36bebc674d596e21f8db165d2b27ac",
+      "sha256": "cbc7ce63d85dba46440a3678462fb31ded6a3a3a5b56a3e1049a992aed68e08c",
+      "previewSha256": "0df6b782cd68f18b698b5e8edb35c52f4479fbbc457114c52edfbaec6d0077fe",
+      "bytes": 251235,
+      "previewBytes": 8426,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "umbriel": {
+    "id": "umbriel",
+    "name": "Umbriel",
+    "aliases": [
+      "Umbriel"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "OwnNASA3D globe retained unchanged/source-byte-equal SHAf1378bc2880bb0d4ddad50815083987aab38c9aae630cbd65465c6773495e511. FullUSGS/Tammy Becker & JPL/Caltech credit;2025-05-30 publisher metadata not observation. Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+    "measured": [
+      "Existing Umbriel584.7km,1.275e21kg,265986km/4.144177day model inputs preserved; catalogue precision is not measurement uncertainty.",
+      "Voyager2 narrow-angle camera, clear filter observed1986-01-24/imageaddition1996-01-31. Background spots are data noise, not stars. Bright annulus nature unknown; frost/cold trapping and impact or interior-origin deposits are hypotheses. Historical caption approximate1200km diameter/16percent reflectivity/10km resolution/557000km range/110km crater/140km annulus are caption values, not new skyGeometry raster computations or updated physical measurements. No Moon terrain analogy used.",
+      "Section3.2 reports prominent trailing CO2/CO-related bands including4.27/4.67micron; leading4.27micron strong, leading4.02/4.67micron weaker>2sigma. Trailing4.41/4.47/4.59micron lower-confidence probable features, not secure detections. This distinguishes Umbriel from Ariel; no body swap.",
+      "Umbriel-specific NIRSpecIFU1786 trailing2023-09-08T15:15:18UTC/leading2023-09-06T21:10:19UTC,8461.6seconds each (Table1). Disk-integrated spectra are not resolved visible terrain."
+    ],
+    "modelled": [
+      "Axisymmetric iSALE2D vertical90degree impact into idealized water-ice layers over liquid ocean,200m simulation resolution. Complex Wunda morphology can require past thin≤50km and/or warm≥240K ice or different structural/compositional properties. These temperatures/thicknesses concern simulated past ice-shell scenarios, not ambient terrain or measured current shell.",
+      "Complex morphology itself is uncertain at Voyager resolution. Melt production, ocean uplifting, impact-induced cryovolcanism, salt/CO2 chemistry and deposit origins remain hypothetical; no directly detected ocean, plume, eruption, current heat, local material fraction or biology. Porosity, thermal-gradient choice, phase/melt-pressure thresholds and relaxation alter interpretations. Ceres comparison is a modelling analogy only, never a skin/geography source. Supplement/Dataverse outputs/revised licence audit open.",
+      "Laboratory crystallineCO2 lattice modes, layered/grain/roughness alternatives, carbonate/clathrate/OCN assignments and native/radiolytic origins are interpretations. Umbriel laboratory matches less compelling than Ariel for several features. No local chemistry/fractions or mapped Voyager pixels, ocean/conduit/plume/biology detection; nondetection not absence.",
+      "skyGeometry spherical meanUranus25362km at265986minus584.7km, nominal90HFOV10.967213386130908deg /160.512478535targetpxat1672."
+    ],
+    "unknown": [
+      "Black northern coverage gaps and irregular mosaic edges are not terrain. Blurred imagery does not establish smooth ground. Source frame/longitude convention/coverage mask/epochs/photometry/shape registration remain open.",
+      "Final2026journal/supplement/exactproduct/independentcalibration open. Brown2026PNAS isotope correction association remains an unverified lead; no body-specific isotope values adopted.",
+      "Bright annulus composition/origin unknown; local material fractions and dated local registration unknown. Saved coauthor-hosted PDF says2026AmericanGeophysicalUnionAllRightsReserved. Current publisher page states copyright line changed2026-06-11; revised terms remain unverified. No CC licence assertion or paper figure embedded."
+    ],
+    "assumed": [
+      "Every local terrain feature, grain/block dimension, material chemistry/fraction, grey colour, lighting and exposure is invented. No analog observed-body skin or Wunda/Voyager location registration. Wunda impact simulations are conditional past-interior hypotheses, not measurements of this scene or current activity. No angular/raster size computation is claimed because no astronomical disk appears.",
+      "Globe oversized; threshold-sensitive row chords are not calibrated full diameter. Local terrain, chemistry/fractions, Uranus colour/bands/phase, illumination/exposure and camera/axis attitude invented. Spherical mean-radius geometry omits oblateness; no dated ephemeris or site registration. Rings omitted as artistic exposure choice, not invisibility claim. No analog observed-body map or foreground atmosphere/plume/liquid/ocean/biology/landing. Generated row240threshold5/10/20 widths239/236/235 oversized vs160.51248target, not calibrated full diameter.60K helper angular only, Sun19.2AUoffframe. Small preview annotations require readable card labels."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "title": "NASA Voyager2 PIA00040 Umbriel closest approach",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-31",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/uranus-umbriel/",
+        "title": "OwnNASA3D Umbriel globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://static1.squarespace.com/static/5669bdc61c1210f372a5014b/t/6988dd8e112b025c8471fa31/1770577294270/JGR%2BPlanets%2B-%2B2026%2B-%2BDenton%2B-%2BAssessing%2Bthe%2BPlausibility%2Bof%2BPast%2BCryovolcanism%2Bon%2BUmbriel%2BUsing%2Bthe%2BWunda%2BImpact%2BCrater.pdf",
+        "title": "Assessing the Plausibility of Past Cryovolcanism on Umbriel Using the Wunda Impact Crater",
+        "authors": [
+          "C. A. Denton",
+          "J. E. C. Scully",
+          "J. C. Castillo-Rogez",
+          "M. M. Sori",
+          "C. M. Elder",
+          "E. J. Leonard",
+          "R. Cartwright",
+          "T. A. Nordheim",
+          "C. Beddingfield"
+        ],
+        "doi": "10.1029/2025JE009282",
+        "publicationDate": "2026-02-08",
+        "terms": "Saved coauthor-hosted PDF says2026AmericanGeophysicalUnionAllRightsReserved. Current publisher page states copyright line changed2026-06-11; revised terms remain unverified. No CC licence assertion or paper figure embedded.",
+        "termsUrl": "https://onlinelibrary.wiley.com/terms-and-conditions",
+        "sha256": "573bbe19df8bab024d1faf34ec6571b8f70bfd1872dd86feeac7af3befe1836f"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Tracing the source of carbon oxides on the large moons of Uranus",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "submittedDate": "2026-07-06",
+        "revisionDate": "2026-07-08",
+        "terms": "Specific arXiv record explicitly links CC BY4.0; not inferred from generic distribution. Full18authors/title/arXivversion retained. No figure embedded or transformed.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "observationDate": "2023-09-06/2023-09-08",
+        "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/umbriel-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00040/PIA00040.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/umbriel-at-closest-approach/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media usage guidance; not asserted CC BY",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-31",
+        "bytes": 7480,
+        "sha256": "9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf",
+        "width": 400,
+        "height": 400,
+        "description": "Actual Voyager2 clear-filter monochrome Umbriel; background specks are noise, annulus nature unknown, not calibrated colour or registered terrain.",
+        "processing": "Unchanged full publisher JPEG; monochrome, not calibrated visible colour or registered local terrain. No Fidelity resize/re-encoding; full publisher TIFF retained separately. Background spots are data noise, not stars. Bright annulus nature unknown; frost/cold trapping and impact or interior-origin deposits are hypotheses. Historical caption approximate1200km diameter/16percent reflectivity/10km resolution/557000km range/110km crater/140km annulus are caption values, not new skyGeometry raster computations or updated physical measurements. No Moon terrain analogy used."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL UMBRIEL TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM UMBRIEL — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "method": "src/astro/appearance.js skyGeometry",
+      "uranusMeanRadiusKm": 25362,
+      "umbrielRepresentativeOrbitalDistanceKm": 265986,
+      "umbrielRadiusKm": 584.7,
+      "observerDistanceKm": 265401.3,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 10.967213386130908,
+      "centreDiscWidthFraction": 0.09600028620517442,
+      "temperatureK": 60,
+      "temperaturePurpose": "Only angular helper input; irradiance and blackbody colour outputs are not adopted as physical Uranus photometry.",
+      "sun": "Off frame; no rendered Sun size claim.",
+      "targetWidthPixels": 160.51247853505163
+    },
+    "surfaceImage": {
+      "url": "/bespoke/umbriel-surface-image.jpg",
+      "previewUrl": "/bespoke/umbriel-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "umbriel-generated-surfaceImage-original.png",
+      "sourceSha256": "2d657b2f938cca03c5df683209cececc6bc91a3d7d3f0e46f22b6ca8c2accc4e",
+      "sha256": "dfeeb0fcbeac68e048d4e6770831e2e5e73195409fd3a5be06efefc3e61a171c",
+      "previewSha256": "5001e0bc16906cc6f5218f3cab0ecde4349c3369970a78b17c09e7b1912d2fca",
+      "bytes": 330991,
+      "previewBytes": 10414,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/umbriel-sky-image.jpg",
+      "previewUrl": "/bespoke/umbriel-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "umbriel-generated-skyImage-original.png",
+      "sourceSha256": "1b361200dc11d837eb93cff655cf5ad8de69f575e019a6e8a8932aa2c35f5b0e",
+      "sha256": "6708bea21371f4d43ec12dc52deceb67091643da5570a046a5e8ef823a106ae4",
+      "previewSha256": "41bbb76d230b965ce14562f056d1df2519c6ceeeca74e984529358fd02abd53a",
+      "bytes": 224698,
+      "previewBytes": 7311,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "titania": {
+    "id": "titania",
+    "name": "Titania",
+    "aliases": [
+      "Titania"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHA087425752c8f5090965f5a4fac7d50a4c450563edd50b807bbc1d45ebeedd312; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open.",
+    "measured": [
+      "Existing catalogue radius788.9km mass3.4e21kg semimajor436298km/period8.705869days preserved; decimal precision is not uncertainty.",
+      "Voyager2 narrow-angle camera clear filter; two-image composite observed1986-01-24/imageaddition1996-01-29. Monochrome does not establish calibrated visible colour or registered local terrain. Historical caption range369000km/resolution13km/diameterover1600km/valley and crater dimensions are source estimates, not new raster computations or updated measurements. Bright sunward valley wall partly lighting; possible young frost is a hypothesis, not measured local chemistry or detected present activity. Publisher highest-resolution title does not establish an exhaustive newest-observation claim.",
+      "Trailing4.02/4.14/4.20/4.27/4.67/4.90 and5.17micron features reported>3sigma. Leading4.27 and4.02>3sigma, weak4.67>2sigma. Do not assign Ariel richer feature set or Umbriel exposure dates to Titania.",
+      "Titania-specific NIRSpecIFU1786 trailing2023-09-23T20:13:15UTC/leading2023-09-10T01:03:46UTC2567.6s each. Spectra are not resolved visible terrain."
+    ],
+    "modelled": [
+      "Spectral features versus laboratory lattice/grain/layer/roughness and chemical-origin interpretations remain distinct. No mapped local chemistry, Voyager pixel association, ocean/plume detection or biology. Nondetection is not absence. Complementary Tegler2026 isotopic study remains unaudited; no isotope numbers adopted.",
+      "skyGeometry mean spherical Uranus25362km at436298minus788.9km nominal90HFOV6.677050671958738deg97.53493771548295targetpxat1672."
+    ],
+    "unknown": [
+      "Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open.",
+      "Full retained29page joint paper Table1, section2 and section3.2 assessed for Titania; published2026 draft/revision are distinct from2023 observation dates. Final journal record/supplement/exact product association/calibration remain open.",
+      "Local material fractions and dated registration unknown; possible valley-wall frost not detected present activity."
+    ],
+    "assumed": [
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame. Row185 threshold5/10/20 widths116/112/110 oversized versus97.53494target, not calibrated full diameter. Invented Uranus bands/colour/phase/exposure."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "title": "NASA Voyager2 Titania PIA00039",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/uranus-titania/",
+        "title": "NASA3D Titania own globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Cartwright2026 carbon oxides on Uranian moons, Titania-specific assessment",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "terms": "Specific record links CC BY4.0; no paper figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+        "observationDate": "2023-09-10/2023-09-23"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/titania-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00039/PIA00039.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media guidance; not asserted CC BY",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "bytes": 33782,
+        "sha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+        "width": 640,
+        "height": 760,
+        "description": "Actual Voyager2 Titania clear-filter two-image monochrome composite; not calibrated visible colour or registered local terrain.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. Full TIFF retained separately. Monochrome does not establish calibrated visible colour or registered local terrain. Historical caption range369000km/resolution13km/diameterover1600km/valley and crater dimensions are source estimates, not new raster computations or updated measurements. Bright sunward valley wall partly lighting; possible young frost is a hypothesis, not measured local chemistry or detected present activity. Publisher highest-resolution title does not establish an exhaustive newest-observation claim."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL TITANIA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM TITANIA — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "radiusKm": 25362,
+      "centreDistanceKm": 435509.1,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 6.677050671958738,
+      "targetPixelsAt1672": 97.53493771548295,
+      "rasterRow": 185,
+      "runs": [
+        {
+          "threshold": 5,
+          "width": 116
+        },
+        {
+          "threshold": 10,
+          "width": 112
+        },
+        {
+          "threshold": 20,
+          "width": 110
+        }
+      ],
+      "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/titania-surface-image.jpg",
+      "previewUrl": "/bespoke/titania-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titania-generated-surfaceImage-original.png",
+      "sourceSha256": "b45a0fa4cead33151555ee22a130b40a0ac949aac564a9721bdb0a0d779a6ed9",
+      "sha256": "fd59e904e07e8bf5636eac02d0aab4aa085f207ea7b2d3d6c6cf1ec68493c6be",
+      "previewSha256": "aefa78cba7e70fbd38b8025d1c96ccfb681fcdf180de892d9e637cb7a08ae593",
+      "bytes": 379776,
+      "previewBytes": 11894,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/titania-sky-image.jpg",
+      "previewUrl": "/bespoke/titania-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titania-generated-skyImage-original.png",
+      "sourceSha256": "4e10d2e15620712fa7e7c84f34f8e9aff8578ed8721cc9e4e307484409d10a60",
+      "sha256": "08feca237111a2a0e9ed9130f27093dcc632c97d8ac4478b972a65daf8872d69",
+      "previewSha256": "7e5c0969b9b083c62e0d6ddd304db7bfa1eba1aac9dd96574d4c56536f30e481",
+      "bytes": 285922,
+      "previewBytes": 9137,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "oberon": {
+    "id": "oberon",
+    "name": "Oberon",
+    "aliases": [
+      "Oberon"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHAed29842e1b1fb96ee9626a62d4ee7bbf53756997ef33b1edda2dbead43383460; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open. Current Oberon NASA3D page labels JPEG as Oberon but actual href points to uranus---ariel/Uranus%20-%20Ariel.jpg and alt says Ariel. Page listed248.37KB is not adopted as Oberon source size. The explicitly Oberon GitHub file51214bytes matches existing map. No Ariel image downloaded or assigned to Oberon. TIFF href names Oberon but not downloaded/verified.",
+    "measured": [
+      "Existing catalogue radius761.4km mass3.076e21kg semimajor583511km/period13.463237days preserved; decimal precision is not uncertainty.",
+      "Voyager2 narrow-angle camera violet/clear/green filter colour reconstruction observed1986-01-24/imageaddition1996-01-29. Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim.",
+      "Section3.2 reports trailing4.02/4.14/4.20/4.27/4.67/4.90micron features>3sigma; trailing5.17weaker>2sigma. Leading4.27>3sigma and4.02>2sigma. Do not assign Titania5.17confidence or Ariel richer features to Oberon.",
+      "Oberon-specific NIRSpecIFU1786 trailing2023-09-03T08:37:01UTC/leading2023-09-11T00:10:40UTC3152.2s each. Spectra are not resolved visible terrain."
+    ],
+    "modelled": [
+      "Disk-integrated features are measurements; laboratory lattice/grain/layer/roughness/chemical-origin interpretations are models. No local chemistry/fractions/Voyager pixel mapping/ocean/plume/biology detection; nondetection not absence. No isotope values adopted. Final journal/supplement/product association/calibration remain open.",
+      "skyGeometry mean spherical Uranus25362km at583511minus761.4km nominal90HFOV4.988745362528712deg72.83656832564338targetpxat1672."
+    ],
+    "unknown": [
+      "Black northern gaps/coverage boundary are not terrain. Blur does not establish smooth ground. Exact input exposure epochs, frame/longitude convention, coverage mask, photometry and shape registration open.",
+      "Full retained29page joint paper Table1, section2 and section3.2 assessed specifically for Oberon.2026revision/draft not observation; exact products/calibration/final publication/supplement OPEN.",
+      "Local material fractions and dated registration unknown; possible erupted carbon-rich material is hypothesis, not detected present activity."
+    ],
+    "assumed": [
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame. Row210 threshold5/10/20 widths89/71/48 phase/exposure sensitive versus72.83657target, not calibrated full diameter. Invented Uranus bands/colour/phase/exposure."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+        "title": "NASA Voyager2 Oberon PIA00034",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/uranus-oberon/",
+        "title": "NASA3D Oberon own globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Cartwright2026 carbon oxides on Uranian moons, Oberon-specific assessment",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "terms": "Specific record links CC BY4.0; no paper figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+        "observationDate": "2023-09-03/2023-09-11"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/oberon-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00034/PIA00034.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/oberon-at-voyager-closest-approach/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media guidance; not asserted CC BY",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "bytes": 14095,
+        "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+        "width": 500,
+        "height": 500,
+        "description": "Actual Voyager2 Oberon violet/clear/green reconstructed colour composite; not calibrated visible colour or registered local terrain.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. Full TIFF retained separately. Publisher reconstructed colour is not independently calibrated visible colour or registered terrain. Source range660000km,12km feature resolution and6km mountain estimates are historical caption values, not new raster calculations. Possible erupted carbon-rich icy material on crater floor is a hypothesis, not measured local fractions or detected current eruption. Bright-ray Callisto analogy must never supply an Oberon skin. No exhaustive newest-photo claim."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL OBERON TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM OBERON — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "radiusKm": 25362,
+      "centreDistanceKm": 582749.6,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 4.988745362528712,
+      "targetPixelsAt1672": 72.83656832564338,
+      "rasterRow": 210,
+      "runs": [
+        {
+          "threshold": 5,
+          "width": 89
+        },
+        {
+          "threshold": 10,
+          "width": 71
+        },
+        {
+          "threshold": 20,
+          "width": 48
+        }
+      ],
+      "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/oberon-surface-image.jpg",
+      "previewUrl": "/bespoke/oberon-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "oberon-generated-surfaceImage-original.png",
+      "sourceSha256": "ecdd9b62bdac8c1bb42d4c1bc25f636d278fccd73ec33d825792e1001f54bcc6",
+      "sha256": "fc2003554f4008ae57f8533a6ba8c567c5d46d784366a3e9cbb0b66bba99a25c",
+      "previewSha256": "25b0b497c2d0dda3c2494d21c12e14ba529b7403168cb662e039b3a251e74b3a",
+      "bytes": 369859,
+      "previewBytes": 11888,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/oberon-sky-image.jpg",
+      "previewUrl": "/bespoke/oberon-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "oberon-generated-skyImage-original.png",
+      "sourceSha256": "cd884d83fac0a627e1966fef244188a816176cbd318de32037e2d1916e6af32d",
+      "sha256": "f7a987daaaeacbb21bf1434efb43bda1c54e1694fa0c95b578829b830bb09c21",
+      "previewSha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
+      "bytes": 267327,
+      "previewBytes": 8935,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "triton": {
+    "id": "triton",
+    "name": "Triton",
+    "aliases": [
+      "Triton"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHA6a5015beaf860426d9505f054565c9ad28ba3822054d5b750c74b4d8e61eb4f3; USGS/Tammy Becker & JPL/Caltech.2025-05-30 metadata not observation. Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+    "measured": [
+      "Voyager2 NAC; monochrome publisher product, exact filter/product association remains open. Observed1989-08-24/imageaddition2000-01-16. Historical caption range530000km/resolution10km and age interpretation are source estimates, not new raster calculations. Venus/Mars fretted-terrain analogy must not supply Triton skin. Mono not independently calibrated visible colour or registered local geography. No exhaustive newest-photo claim.",
+      "Four occultation light curves fitted2398points: reference-radius1400km pressure1.211±.039microbar(1sigma). This is fitted from light curves, not a surface sensor.",
+      "Real tenuous nitrogen atmosphere; catalogue radius1353.4km/separation354800km preserved, decimal precision not uncertainty."
+    ],
+    "modelled": [
+      "Adopted spherical transparent pureN2 atmosphere, CH4~1e-4 negligible for fit, fixed MO22 thermal profile. Surface pressure14.54±.47microbar extrapolated using ratio12.01, not direct surface measurement. Near-surface positive5K/km gradient/about50K at10km are model profile, not local terrain temperature. Older1990s pressure surge method-dependent and debatable;2017–2022 no significant change within errors. Northern condensation/ice-albedo feedback/equatorial frosts interpretations not mapped local fractions/rates.",
+      "skyGeometry mean spherical Neptune24622km at354800minus1353.4km nominal90HFOV7.9892136658463535deg116.75947815585727targetpxat1672."
+    ],
+    "unknown": [
+      "Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+      "Full8page arxiv manuscript retained, abstract/Table1/methods/pressure-evolution assessed; publisher final paper/supplement/products remain open.",
+      "Tenuous nitrogen atmosphere is real, do not label Triton strictly airless. No present plume detection or calibrated haze/transmission claim from this occultation; no ocean/biology/local chemistry/Voyager pixel registration. Voyager1989 plume observations must be dated separately, not presumed active now. Yuan2024 separate2022occultation abstract14.07+0.21-0.13microbar is separate analysis, fullpaper audit open; not averaged.",
+      "Local material fractions and dated scene registration unknown."
+    ],
+    "assumed": [
+      "IMAGINED terrain, blocks, frost-like texture, chemistry/fractions, colour/light/exposure, no analog or dated Voyager/globe site. Real tenuous nitrogen atmosphere retained; almost-black sky and no conspicuous haze are artistic transparency assumptions, not calibrated transmission or strict airless claim. No active plume, liquid/ocean, biology or survivable landing implication. No astronomical disk in frame; no angular/raster computation claimed.",
+      "No analog map or registered Voyager/globe site. Terrain, frost-like texture, chemistry/fractions, Neptune bands and colour invented. No active plume, exposed ocean/liquid, biology or survivable landing implication.",
+      "Threshold chords are phase/exposure-sensitive, not calibrated full diameter. Mean spherical approximation omits oblateness. Camera/axis attitude, colour, invented bands, phase, lighting and exposure assumed; no dated ephemeris. 60K angular helper only, not photometry. Real tenuous N2 atmosphere; nearly black sky is assumed transparency, not airless or calibrated transmission. Rings omitted artistically, not proof of invisibility. Row230 thresholds5/10/20 spans350/184/173 versus116.759target: oversized/background/phase/exposure sensitive, not calibrated full diameter. Compact annotations limited; card labels required.",
+      "Sun30.07AU representative off-frame angular-helper separation only; not calibrated illumination, colour or dated ephemeris. Retrograde/inclined orbit and camera orientation do not establish an always-visible Neptune scene."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "title": "NASA Voyager2 Triton PIA02234",
+        "observationDate": "1989-08-24",
+        "publicationDate": "2000-01-16",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/neptune-triton/",
+        "title": "NASA3D own Triton globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/2402.02476",
+        "title": "Sicardy2024 Triton occultation atmosphere manuscript",
+        "authors": [
+          "Sicardy, B.",
+          "Tej, A.",
+          "Gomes-Junior, A. R.",
+          "Romanov, F. D.",
+          "Bertrand, T.",
+          "Ashok, N. M.",
+          "Lellouch, E.",
+          "Morgado, B. E.",
+          "Assafin, M.",
+          "Desmars, J.",
+          "Camargo, J. I. B.",
+          "Kilic, Y.",
+          "Ortiz, J. L.",
+          "Vieira-Martins, R.",
+          "Braga-Ribas, F.",
+          "Ninan, J. P.",
+          "Bhatt, B. C.",
+          "Kumar, S. Pramod",
+          "Swain, V.",
+          "Sharma, S.",
+          "Saha, A.",
+          "Ojha, D. K.",
+          "Pawar, G.",
+          "Deshmukh, S.",
+          "Deshpande, A.",
+          "Ganesh, S.",
+          "Jain, J. K.",
+          "Mathew, S. K.",
+          "Kumar, H.",
+          "Bhalerao, V.",
+          "Anupama, G. C.",
+          "Barway, S.",
+          "Brandeker, A.",
+          "Floren, H. G.",
+          "Olofsson, G.",
+          "Bruno, G.",
+          "Mao, Y. M.",
+          "Ye, R. H.",
+          "Zou, Q. Y.",
+          "Sun, Y. K.",
+          "Shen, Y. Y.",
+          "Zhao, J. Y.",
+          "Grishin, D. N.",
+          "Romanova, L. V.",
+          "Marchis, F.",
+          "Fukui, K.",
+          "Kukita, R.",
+          "Benedetti-Rossi, G.",
+          "Santos-Sanz, P.",
+          "Dhyani, N.",
+          "Gokhale, A.",
+          "Kate, A."
+        ],
+        "terms": "Specific arxiv record explicitly links CC BY4.0. PDF ESO2024 notice retained. No paper figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "53cf47cd44a9c558c409a9ad7e34e0743b776450abd0d23cab1f772d3567ed9b",
+        "observationDate": "2022-10-06"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/triton-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "bytes": 5991,
+        "sha256": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+        "path": "data/research-sources/triton-PIA02234-display-320.jpg",
+        "width": 320,
+        "height": 320,
+        "credit": "NASA/JPL",
+        "sourcePage": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance; not asserted CC BY",
+        "observationDate": "1989-08-24",
+        "imageAdditionDate": "2000-01-16",
+        "instrument": "Voyager2 NAC; monochrome publisher product, exact filter/product association remains open.",
+        "limits": "Historical caption range530000km/resolution10km and age interpretation are source estimates, not new raster calculations. Venus/Mars fretted-terrain analogy must not supply Triton skin. Mono not independently calibrated visible colour or registered local geography. No exhaustive newest-photo claim.",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02234/PIA02234.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "sourceUrl": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "tier": "measured",
+        "terms": "NASA media guidance; not asserted CC BY",
+        "publicationDate": "2000-01-16",
+        "description": "Actual Voyager2 Triton monochrome topography; not calibrated visible colour or registered local terrain.",
+        "processing": "Unchanged NASA-served publisher resized/re-encoded320 rendition; not full original pixel preservation. Larger fullJPEG/TIFF retained unchanged. Monochrome half-lit Voyager disk; no calibrated visible colour or dated local scene registration."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL TRITON TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM TRITON — ASSUMED ATTITUDE",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "meanNeptuneRadiusKm": 24622,
+      "representativeCentreDistanceKm": 354800,
+      "tritonRadiusKm": 1353.4,
+      "observerDistanceKm": 353446.6,
+      "nominalHorizontalFovDeg": 90,
+      "angularDiameterDeg": 7.9892136658463535,
+      "targetDiskWidthAt1672": 116.75947815585727,
+      "thresholdRuns": [
+        {
+          "threshold": 5,
+          "row": 230,
+          "width": 350
+        },
+        {
+          "threshold": 10,
+          "row": 230,
+          "width": 184
+        },
+        {
+          "threshold": 20,
+          "row": 230,
+          "width": 173
+        }
+      ],
+      "limitations": "Threshold chords are phase/exposure-sensitive, not calibrated full diameter. Mean spherical approximation omits oblateness. Camera/axis attitude, colour, invented bands, phase, lighting and exposure assumed; no dated ephemeris. 60K angular helper only, not photometry. Real tenuous N2 atmosphere; nearly black sky is assumed transparency, not airless or calibrated transmission. Rings omitted artistically, not proof of invisibility."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/triton-surface-image.jpg",
+      "previewUrl": "/bespoke/triton-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "triton-generated-surfaceImage-original.png",
+      "sourceSha256": "9703203f38cb9748589f1e63935d22fa224beb8250219fc2bb4e184cb03b7252",
+      "sha256": "f0532c357ce0f6c1499366f676c067923bb22d3428c92e93d84c7b52ef45099b",
+      "previewSha256": "cbd3f32c293698899c0104dc2515e777f3dec2ffa0ef65b837bfc7ccb231edc6",
+      "bytes": 294652,
+      "previewBytes": 9559,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/triton-sky-image.jpg",
+      "previewUrl": "/bespoke/triton-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "triton-generated-skyImage-original.png",
+      "sourceSha256": "f389b1c5790ffea81e471c9388addacd600f2dcb9048e27f535d272e8ad7e613",
+      "sha256": "2355d15261e9fbde23209e4e573883b212e995d22a33cc5f3382e583af294709",
+      "previewSha256": "d2a64423b360f24a38601c14dd5bb068170f1d969b2a2552b95748c5dafd2c99",
+      "bytes": 238544,
+      "previewBytes": 6889,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "nereid": {
+    "id": "nereid",
+    "name": "Nereid",
+    "aliases": [
+      "Nereid"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture.",
+    "measured": [
+      "Voyager2; precise camera/filter/PDS association remains open; observed1989-08-24/imageaddition1996-01-29. Tiny monochrome disk on black background; unresolved terrain. No map adopted, no analog skin, no calibrated visible colour or geography.",
+      "Disk-integrated spectral absorptions support crystalline water ice; spectral slopes and band depths differ from sampled Kuiper-belt objects. This is not a local chemistry map or resolved visible terrain.",
+      "4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date."
+    ],
+    "modelled": [
+      "Unidentified dark material and regular-satellite origin remain interpretations. N-body simulations provide plausible evolution after Triton capture, not a directly observed history or posterior probability of origin. Supplement shows ejected/destroyed Triton and other outcomes. Unsampled Nereid-like KBOs are not ruled out. No local fractions, current ocean/plume/biology, calibrated visible colour, D/H or isotope values adopted.",
+      "skyGeometry representative near-pericentre Neptune2.0553925951321026deg29.993352422815754targetpx at1672, nominal90HFOV; semimajor-axis7.466523474993202px and apoapse4.26406314941274px are assumed orbital scenarios, not dated geometry."
+    ],
+    "unknown": [
+      "No independent resolved native globe or registered shape established. Do not assign Triton, Phoebe, Hyperion or another body texture.",
+      "Local material fractions, atmosphere, camera/filter/PDS association, rotation/orbit cross-reference and dated scene registration remain unverified. Recent disk-integrated spectra do not map Voyager pixels."
+    ],
+    "assumed": [
+      "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+      "Invented terrain, chemistry fractions, grey colour, illumination and exposure; no analog skin or registered Voyager site, atmosphere/plume/liquid/ocean/biology/landing implication. Nearlyblacksky/no visible haze assumed, not measured atmosphere absence or calibrated transmission. No resolved globe/shape adopted; native unresolved image and disk-integrated spectra do not map this scene.",
+      "Threshold chords are phase/exposure/background sensitive, oversized, not a calibrated full diameter. Eccentric unlocked orbit: assumed distance/attitude/phase, no dated ephemeris or permanently Neptune-facing site. Mean spherical radius omits oblateness; ring omission artistic, not invisibility. 60K helper used only for angular geometry, not photometry/colour. No Sun disk.",
+      "Row181 thresholds5/10/20 spans151/43/41 versus29.993352target: oversized/background-sensitive, not calibrated full diameter. Compact footers/tiny Neptune require card labels. Black sky assumes no conspicuous haze, not measured absence of atmosphere or calibrated transmission. Sun30.07AU off-frame angular helper only."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/nereid/",
+        "title": "NASA Voyager2 Nereid PIA00054",
+        "observationDate": "1989-08-24",
+        "publicationDate": "1996-01-29",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://authors.library.caltech.edu/records/3d4cc-g7952",
+        "title": "Nereid as a regular satellite of Neptune",
+        "authors": [
+          "Matthew Belyakov",
+          "M. Ryleigh Davis",
+          "Ian Wong",
+          "Konstantin Batygin",
+          "Michael E. Brown"
+        ],
+        "doi": "10.1126/sciadv.aeb1429",
+        "publicationDate": "2026-05-20",
+        "issueDate": "2026-05-22",
+        "terms": "Published PDF and Caltech record explicitly CC BY4.0, authors/AAAS notice retained; no figure embedded. Arxiv author version permission/nonexclusive status must be assessed separately.",
+        "sha256": "51a9d8cc3d63d44839c7875c07dd8b8d57b11b57f521d61b1345160a3e85ece4",
+        "observations": {
+          "date": "2024-11-23",
+          "startUTC": "03:28:53",
+          "endUTC": "05:24:45",
+          "program": 4645,
+          "instrument": "JWST NIRSpec IFU PRISM",
+          "wavelengthMicrons": [
+            0.6,
+            5.3
+          ],
+          "nominalResolvingPower": [
+            30,
+            300
+          ],
+          "dithers": 4,
+          "exposurePerDitherSeconds": 160.5,
+          "archive": "https://doi.org/10.17909/2bj1-h545",
+          "analysisArchive": "https://doi.org/10.22002/gf82m-rzz66"
+        }
+      },
+      {
+        "url": "https://doi.org/10.17909/2bj1-h545",
+        "title": "JWST NIRSpec program4645 observations"
+      },
+      {
+        "url": "https://doi.org/10.22002/gf82m-rzz66",
+        "title": "Nereid analysis data"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "product": "PIA00054",
+        "credit": "NASA/JPL",
+        "sourcePage": "https://science.nasa.gov/photojournal/nereid/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance, not asserted CC BY",
+        "observationDate": "1989-08-24",
+        "imageAdditionDate": "1996-01-29",
+        "instrument": "Voyager2; precise camera/filter/PDS association remains open",
+        "inspection": "Tiny monochrome disk on black background; unresolved terrain. No map adopted, no analog skin, no calibrated visible colour or geography.",
+        "captionLimits": "4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date.",
+        "url": "/bespoke/nereid-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "bytes": 1099,
+        "sha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+        "path": "data/research-sources/nereid-PIA00054-original.jpg",
+        "width": 200,
+        "height": 200,
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nereid/",
+        "tier": "measured",
+        "terms": "NASA media guidance, not asserted CC BY",
+        "publicationDate": "1996-01-29",
+        "description": "Actual Voyager2 tiny unresolved Nereid disk; not resolved terrain, calibrated visible colour or registered geography.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. TIFF retained. 4.7millionkm distance and43km/pixel are caption estimates, not a new angular/raster calculation. Historical caption170km across/12percent reflectance conflicts with current catalogue radius170km and primary2026 radius175km/albedo.24; alternatives retained, no silent physical-parameter change. 2025page update is not observation date."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL NEREID TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM NEREID — ASSUMED NEAR-PERICENTRE",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "neptuneMeanRadiusKm": 24622,
+      "nereidCatalogueRadiusKm": 170,
+      "assumedNearPericentre": {
+        "centreDistanceKm": 1372961.1,
+        "observerDistanceKm": 1372791.1,
+        "angularDiameterDeg": 2.0553925951321026,
+        "targetPixelsAt1672": 29.993352422815754
+      },
+      "semimajorAxisScenario": {
+        "centreDistanceKm": 5513900,
+        "observerDistanceKm": 5513730,
+        "angularDiameterDeg": 0.5117194247417983,
+        "targetPixelsAt1672": 7.466523474993202
+      },
+      "apoapseScenario": {
+        "centreDistanceKm": 9654838.899999999,
+        "observerDistanceKm": 9654668.899999999,
+        "angularDiameterDeg": 0.292239584183711,
+        "targetPixelsAt1672": 4.26406314941274
+      },
+      "nominalHorizontalFovDeg": 90,
+      "thresholdRuns": [
+        {
+          "row": 181,
+          "threshold": 5,
+          "width": 151
+        },
+        {
+          "row": 181,
+          "threshold": 10,
+          "width": 43
+        },
+        {
+          "row": 181,
+          "threshold": 20,
+          "width": 41
+        }
+      ],
+      "limits": "Threshold chords are phase/exposure/background sensitive, oversized, not a calibrated full diameter. Eccentric unlocked orbit: assumed distance/attitude/phase, no dated ephemeris or permanently Neptune-facing site. Mean spherical radius omits oblateness; ring omission artistic, not invisibility. 60K helper used only for angular geometry, not photometry/colour. No Sun disk."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/nereid-surface-image.jpg",
+      "previewUrl": "/bespoke/nereid-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nereid-generated-surfaceImage-original.png",
+      "sourceSha256": "1389e85b5fae54d84277096da5026ae122aa8dee24c86b77375990b40c68e3cd",
+      "sha256": "4b9fa61ddca064950ce00a342d188a4a0434b0ac94dfe546bd164a33989403c6",
+      "previewSha256": "d34455d8a960f79bfa7bcc2c83e8cc0f850038d535547a014c1757bf274190ae",
+      "bytes": 336538,
+      "previewBytes": 10526,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/nereid-sky-image.jpg",
+      "previewUrl": "/bespoke/nereid-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nereid-generated-skyImage-original.png",
+      "sourceSha256": "46f13c6b88b73026e5b5f7aeba352bfe78c38929420766275af80a2cf3228811",
+      "sha256": "d98d0f511ce8f4c578520d8e8cddfb78c89921f22e6d9afb563554fcd1a0ef53",
+      "previewSha256": "f1327d06119e298eade4e97e8b5d149f67f655d320160045123fab51ebf4827c",
+      "bytes": 307207,
+      "previewBytes": 8166,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "proteus": {
+    "id": "proteus",
+    "name": "Proteus",
+    "aliases": [
+      "Proteus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe adopted; surfacePending remains true. Existing Voyager-derived Stooke PDS shape unchanged, with frame, attitude, uncertainty and registration open.",
+    "measured": [
+      "Monochrome irregular body with coarse relief and strong illumination/processing. Not calibrated visible colour or registered local geography. No globe adopted. Overview range870000km/resolution8km per pixel/reflectance6percent are source estimates, not new raster calculations or mapped local fractions.",
+      "146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change.",
+      "Proteus weak4.27micron CO2 absorption marginally stronger trailing; deep3micron OH absorption and no clear water-ice bands. Nondetection is not proof of absolute absence. Proteus either lacks or has much weaker2.72micron feature than Larissa/Galatea/rings; do not assign their stronger magnesium-phyllosilicate signature to Proteus.",
+      "Direct PDS label verifies Voyager2 ISS narrow-angle derived Proteus/Stooke1994 DOI10.1007/BF00572198; source fetched byte-identical to recorded sourceSha256. Planetocentric west-positive5degree radial grid in km; decimal places explicitly not uncertainty. Label creation2016-09-30/publication2025 are model/archive metadata, not image observation. Historical geometry/frame/attitude and current uncertainty remain open; full/preview GLB unchanged."
+    ],
+    "modelled": [
+      "Hydrated carrier unidentified. Tentative3.07micron ammonia-bearing interpretation, but Proteus strength argues against ammoniated phyllosilicate carrier. Aqueous alteration, impact dehydration, primordial-satellite destruction/reaccretion and tidally shredded KBO alternatives are models, not current liquid water, directly observed history, local fractions, plumes/ocean/biology. Ceres/meteorite analogies do not authorize skins.",
+      "skyGeometry representative Neptune angular diameter24.214852427388628degrees;358.67241861796003targetpixels at1672wide and nominal90degree horizontalFOV. This constrains angular geometry only."
+    ],
+    "unknown": [
+      "Exact Voyager camera/filter/PDS product crosswalk remains open. Native JPEG/TIFF unchanged, no Fidelity transformation. NASA overview870000km/8km per pixel is a different depicted view, not PIA00062 range/resolution.",
+      "Scattered Neptune light/custom reduction, sensitivity outside1.7–4.5microns, unresolved disk spectra not visible terrain or Voyager pixel chemistry. Final record/licence, raw products, calibration and dynamical history audit open.",
+      "Local material fractions, atmosphere, irregular-body site height, spin/orbit attitude, dated scene registration and resolved globe remain unverified."
+    ],
+    "assumed": [
+      "Invented relief, blocks, grain sizes, chemistry fractions, colour, lighting and exposure. No analog skin, dated Voyager/Pharos/shape-registered site, observed geography, plume, liquid, ocean, biology or survivable landing. Almostblacksky is assumed transparency, not measured atmosphere absence. No astronomical disk and no angular/raster computation. Proteus-specific unresolved spectra do not determine local material fractions; hydrated carrier unknown and no clear waterice bands is not proof of absence. Existing PDS shape remains unchanged; no resolved globe adopted.",
+      "Invented terrain, chemistry fractions, grain sizes, grey colour and Neptune bands/colour/phase/light/exposure. No analog map, dated Voyager/Pharos/PDS-registered site, foreground atmosphere/plume/liquid/ocean/biology/landing. Almostblacksky assumed transparency, not measured atmosphere absence. Mean spherical Neptune omits oblateness; Proteus irregular shape/site height, attitude and spin/orbit registration remain uncertain. Rings omitted artistically, not an invisibility claim.60K angular helper only: irradiance/blackbody outputs not adopted for colour or photometry. Sun30.07AU offframe. No observed body's map or new globe adopted.",
+      "Threshold-sensitive upper globe chords, not independently calibrated full diameter; no calibrated photometry/colour/scene registration.",
+      "Small preview annotations require readable card labels. No clear water-ice bands does not prove absence. No analog skin or dated Voyager/Pharos/PDS site."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "title": "NASA Voyager 2 Proteus PIA00062",
+        "credit": "NASA/JPL",
+        "observationDate": "1989-08-25",
+        "publicationDate": "1996-01-29",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/2607.27481",
+        "title": "Neptune’s Inner Moons and Rings Are Exposed Icy Body Interiors",
+        "authors": [
+          "M. Ryleigh Davis",
+          "Matthew Belyakov",
+          "Ian Wong",
+          "Zachariah Milby",
+          "Michael E. Brown"
+        ],
+        "doi": "10.1126/sciadv.aeb1437",
+        "publicationDate": "2026-07-29",
+        "terms": "Arxiv record links CC BY4.0, but also states AAAS author version personal use/not redistribution. Conflicting permission statements preserved; no redistribution/figure embedded. Final publisher licence and version crosswalk remain open.",
+        "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+        "observations": {
+          "instrument": "JWST NIRSpec IFU PRISM clear filter",
+          "program": 4645,
+          "dates": [
+            "2024-12-13",
+            "2024-12-16"
+          ],
+          "utcRanges": [
+            "17:40:01–18:08:43",
+            "13:02:12–13:30:54"
+          ],
+          "exposures": "Four291.8s observations per date; total2334.4s as paper",
+          "pipeline": "1.18.0",
+          "calibration": "jwst1364.pmap",
+          "archive": "https://doi.org/10.17909/1cqh-hy49",
+          "code": "https://data.caltech.edu/records/vwdse-4d488"
+        }
+      },
+      {
+        "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.tab",
+        "title": "NASA PDS Proteus Stooke shape",
+        "credit": "Philip J. Stooke / NASA PDS Small Bodies Node",
+        "sourceLabel": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.xml",
+        "sha256": "d079c8eac52d84224d5cb413526ff9415ab33afd48965e7e025544832ddd1868"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "product": "PIA00062",
+        "credit": "NASA/JPL",
+        "observationDate": "1989-08-25",
+        "publicationDate": "1996-01-29",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance, not asserted CC BY",
+        "inspection": "Monochrome irregular body with coarse relief and strong illumination/processing. Not calibrated visible colour or registered local geography. No globe adopted. Overview range870000km/resolution8km per pixel/reflectance6percent are source estimates, not new raster calculations or mapped local fractions.",
+        "limits": "Exact Voyager camera/filter/PDS product crosswalk remains open. Native JPEG/TIFF unchanged, no Fidelity transformation. NASA overview870000km/8km per pixel is a different depicted view, not PIA00062 range/resolution.",
+        "sourcePage": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "width": 600,
+        "height": 800,
+        "caption": "146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change.",
+        "url": "/bespoke/proteus-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/proteus-PIA00062-original.jpg",
+        "bytes": 12596,
+        "sha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/1989n1-surface-detail/",
+        "tier": "measured",
+        "terms": "NASA media guidance, not asserted CC BY",
+        "description": "Actual Voyager 2 Proteus surface-detail image; monochrome, not calibrated visible colour or registered local geography.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize or re-encoding. TIFF retained. 146000km range/2.7km per line pair/average radius about200km/albedo6percent/spectrally grey are historical caption estimates, not new raster calculations or independently calibrated visible colour. Graininess attributed to short exposure avoiding smear, not terrain. Catalogue210km radius preserved alongside caption200km; no silent change."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL PROTEUS TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM PROTEUS",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "neptuneMeanRadiusKm": 24622,
+      "proteusCatalogueRadiusKm": 210,
+      "representativeCentreDistanceKm": 117600,
+      "observerDistanceKm": 117390,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 24.214852427388628,
+      "targetPixelsAt1672": 358.67241861796003,
+      "raster": {
+        "row": 250,
+        "runs": [
+          {
+            "threshold": 5,
+            "start": 952,
+            "end": 1324,
+            "span": 373
+          },
+          {
+            "threshold": 10,
+            "start": 967,
+            "end": 1324,
+            "span": 358
+          },
+          {
+            "threshold": 20,
+            "start": 974,
+            "end": 1323,
+            "span": 350
+          }
+        ],
+        "limits": "Threshold-sensitive upper globe chords, not independently calibrated full diameter; no calibrated photometry/colour/scene registration."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/proteus-surface-image.jpg",
+      "previewUrl": "/bespoke/proteus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "proteus-generated-surfaceImage-original.png",
+      "sourceSha256": "a91f296d307dd239c01e2c0b2f03a26e900e582824e79d7739f719c94e9a05c3",
+      "sha256": "354961e10025367289e2d0ed697e9f5dc990e97887832e6c3af417988877253f",
+      "previewSha256": "6100a30b75b6e30a0b1e30cf575a2ac1f6a0c14b02d6985c5c79baac17b83ce0",
+      "bytes": 359740,
+      "previewBytes": 11204,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/proteus-sky-image.jpg",
+      "previewUrl": "/bespoke/proteus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "proteus-generated-skyImage-original.png",
+      "sourceSha256": "1d68d7084218a1dcf888eec02ae9d051db5696b22623412a762a2844157335cd",
+      "sha256": "c3a41e42b20b36e9d3a5bfd3356300a1a88092c195c08b70a0ab1582ab39a8bb",
+      "previewSha256": "d8e59723fea2d74aa62f303fff99db20a6f0f9f59d10abd5148260f82f0fe0bf",
+      "bytes": 271601,
+      "previewBytes": 7459,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
