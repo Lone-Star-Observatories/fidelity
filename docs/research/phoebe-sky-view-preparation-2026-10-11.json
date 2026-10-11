@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no60th dossier or new embedding.",
+  "body": "Phoebe",
+  "generator": "Built-in OpenAI image generation; independent prompt without referenced images.",
+  "prompt": "Create one independent scientific-educational IMAGINED SKY FROM PHOEBE illustration, landscape 16:9, nominal 90 degree horizontal field of view. Dark charcoal-grey independently invented cratered regolith and modest scattered angular stones occupy bottom third; black airless sky above. No copied/recoloured observed Moon/Mars/Pluto or other body map. Tiny Saturn high in sky: spherical globe angular diameter 0.5161085 degrees, approximately 7.53 pixels wide for 1672 pixel output at this FOV. Saturn must be a very small distant speck with only a hint of rings, not a large planet; ring extent/opening artistic and uncalibrated. Do not enlarge it for drama. Phoebe rotates independently and is retrograde; this is an assumed momentary camera attitude, not a permanent Saturn-facing site or dated ephemeris. Ring opening and phase assumed. Restrained hypothetical daylight exposure on dark foreground; terrain, pale patches, chemistry/fractions, Saturn colour/bands, rings, lighting, exposure all invented. No Sun, stars, atmospheric haze/clouds, active plumes, liquid, ocean, biology, people, spacecraft or survivable landing implication. No registered Cassini or PDS site. Clear upper-left text 'IMAGINED — SKY FROM PHOEBE'; bottom-left 'HYPOTHETICAL ATTITUDE · UNCALIBRATED'. Keep Saturn very tiny.",
+  "originalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cabfaf02-192f-4112-bfae-850335795224.png",
+  "researchCopy": "data/research-sources/phoebe-generated-skyImage-original.png",
+  "inspected": true,
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "saturnRadiusKm": 58232,
+    "representativeCentreDistanceKm": 12929400,
+    "phoebeRadiusKm": 106.5,
+    "observerDistanceKm": 12929293.5,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 0.5161084962070008,
+    "targetGlobeWidthPxAt1672": 7.530565496538506,
+    "temperatureHelperK": 95,
+    "limits": "95K used for angular helper only; blackbody RGB/irradiance not Saturn visible photometry. Representative spherical geometry, not dated ephemeris. Sun off frame."
+  },
+  "limitations": "Invented terrain, blocks, craters, pale patches, chemistry/fractions, Saturn colour/bands, rings, phase, lighting and exposure. No analog map or registered Cassini/PDS site. Unlocked retrograde Phoebe has no permanently Saturn-facing site; camera attitude and variable ring opening assumed. Tiny Saturn appears approximately plausible but globe/ring separation and precise raster calibration remain open; do not adopt a ring-contaminated width as globe diameter. No atmosphere/cloud/plume/liquid/exposed ocean/biology/survivable landing. Original local and observer PNGs retained; own resolved globe/shape not adopted. Full integration needs more headroom.",
+  "width": 1672,
+  "height": 941,
+  "bytes": 1835862,
+  "sha256": "f3896436c08b03ed39947ee7c05a6bb40c9088222e4549e32e89b4ddb960fb4d",
+  "rasterAudit": {
+    "row": 161,
+    "thresholds": [
+      5,
+      10,
+      20
+    ],
+    "runs": [
+      [
+        1157,
+        1169
+      ],
+      [
+        1157,
+        1169
+      ],
+      [
+        1157,
+        1169
+      ]
+    ],
+    "widthsPx": [
+      13,
+      13,
+      13
+    ],
+    "limits": "These full brightness runs include rings, phase/exposure and diagonal edges; not adopted as spherical globe diameter. skyGeometry globe target7.5305655px. Precise globe separation/calibration open."
+  },
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15997135,
+    "headroomBytes": 2865,
+    "completeSnapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+    "applicationSha256": "f21a0ec47b5a0bcfe0075f51ec01abdf272878cbaa5fb7f95bb225b5523c76b1",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact complete current readableJSON/application/CSS/HTMLparser;210images20bands517details32models decode. Other engines open.",
+    "preservation": "All59 dossier registry entries unchanged from HEAD;69 tracked map/model/shape files exact. Original local/sky PNGs/full prompts retained; no60th/newembedding.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "attribution": "Compared with saved7e4a baseline, differences only SDO171/94/193 src/time/disk triplets; no asset/compression saving attribution."
+  }
+}

@@ -1,5 +1,13 @@
 # Fidelity visual assets
 
+## Phoebe observer/master preparation (2026-10-11, #3)
+
+An independent built-in IMAGINED Phoebe observer original PNG and full prompt are retained in docs/research/phoebe-sky-view-preparation-2026-10-11.json. skyGeometry uses spherical58232km Saturn at12929400−106.5km and nominal90degree HFOV:0.5161084962degrees,7.5305655 target globe pixels at1672. Row161 brightness spans13pixels at thresholds5/10/20 include rings and are not adopted as globe diameter; precise globe separation/calibration remains open.95K helper RGB/irradiance is not Saturn visible photometry. Phoebe rotates independently in a retrograde orbit; camera attitude, ring opening and phase are assumed, without a permanent Saturn-facing site or dated ephemeris registration.
+
+Terrain, pale patches, chemistry/fractions, colour, rings, lighting and exposure are invented; no analog map, registered Cassini/PDS site, atmosphere, plume, liquid, ocean, biology or survivable landing is implied. Both original PNGs and full prompts remain unchanged. Recorded1536JPEG85 masters and256JPEG80 previews are retained in docs/research/phoebe-master-preview-preparation-2026-10-11.json; tiny Saturn/annotations have limited preview readability and require readable card labels. All59 dossiers and prior native/map/model/shape inputs are unchanged; no60th dossier or new embedding. Further lossless headroom and exact additive budget remain pending.
+
+Validation:453tests pass/1skip; production/full builds pass at15,997,135bytes with2,865headroom. Chrome complete readableJSON SHA793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363, exact application/CSS/HTMLparser and210images/20bands/517details/32models pass. Compared with saved7e4a baseline only SDO171/94/193 src/time/disk triplets differ; no asset/compression savings attribution. Other browser engines remain open.
+
 ## Phoebe local/compact-native preparation (2026-10-11, #3)
 
 An independent built-in IMAGINED local illustration is retained as its original PNG with full prompt/hash in docs/research/phoebe-local-view-preparation-2026-10-11.json. Invented craters, blocks, regolith, pale patches, chemistry/fractions, colour, light and exposure are not a registered Cassini/PDS site. No analog map, atmosphere, plume, liquid, ocean, biology or survivable landing is implied. No astronomical disk appears, so no angular/raster-size claim is made.

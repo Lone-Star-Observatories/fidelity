@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; all original PNGs/full prompts preserved; no60th dossier or embedding.",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "source": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+      "path": "data/research-sources/phoebe-surfaceImage-master1536.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 375611,
+      "sha256": "9d09c6953eec268450a285cd6e1dfdf696b52ab4320fedc2de4b261cd34f4330"
+    },
+    {
+      "role": "surfaceImage",
+      "source": "data/research-sources/phoebe-generated-surfaceImage-original.png",
+      "path": "data/research-sources/phoebe-surfaceImage-preview256.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 10315,
+      "sha256": "c7a344daef00ff72a17139e8d5bcbaa4fa93a8346020feb144c82f088fa56f57"
+    },
+    {
+      "role": "skyImage",
+      "source": "data/research-sources/phoebe-generated-skyImage-original.png",
+      "path": "data/research-sources/phoebe-skyImage-master1536.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 214069,
+      "sha256": "ab9806aabf8ddac2e5ebfb0134e4a1349458280c4a7eda7ed61315eb68e910c9"
+    },
+    {
+      "role": "skyImage",
+      "source": "data/research-sources/phoebe-generated-skyImage-original.png",
+      "path": "data/research-sources/phoebe-skyImage-preview256.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 6233,
+      "sha256": "86ba5f166367f129e5736c4a6ee47151d17490bd73cd445e874834f33c247ea1"
+    }
+  ],
+  "limitations": "Small preview annotations and tiny Saturn have limited readability; readable card labels required. Saturn raster calibration, variable ring opening/phase and unlocked retrograde camera attitude remain open. No map/shape adopted. Exact additive HTML budget pending.",
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15997135,
+    "headroomBytes": 2865,
+    "completeSnapshotSha256": "793a5747fdd80196f9cc3b36b84d4537f2590f1711423846227cfb91a2acd363",
+    "applicationSha256": "f21a0ec47b5a0bcfe0075f51ec01abdf272878cbaa5fb7f95bb225b5523c76b1",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact complete current readableJSON/application/CSS/HTMLparser;210images20bands517details32models decode. Other engines open.",
+    "preservation": "All59 dossier registry entries unchanged from HEAD;69 tracked map/model/shape files exact. Original local/sky PNGs/full prompts retained; no60th/newembedding.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "attribution": "Compared with saved7e4a baseline, differences only SDO171/94/193 src/time/disk triplets; no asset/compression saving attribution."
+  }
+}
