@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-10",
+  "status": "Research preparation only; all58 dossiers unchanged. No59th dossier or new embedded Iapetus imagery.",
+  "sourceRecords": "iapetus-moon-source-records-2026-10-10.json",
+  "nativeAssessment": [
+    {
+      "product": "PIA21347 Farewell to Iapetus",
+      "observed": "2017-05-30",
+      "released": "2017-09-18",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "source": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "False-colour ultraviolet338nm/green568nm/infrared930nm enhanced composite, not calibrated visible colour, local terrain resolution or a registered globe. Publisher last Cassini observation-set statement retained; no exhaustive current newest-observation claim. Original629x598 JPEG and TIFF retained unchanged; large black frame is not surface geography. North rotated12degrees left, approximate2.5million km range and15km/pixel are caption statements, not new raster calculations."
+    },
+    {
+      "product": "PIA21332 Puzzled Iapetus",
+      "observed": "2017-03-11",
+      "released": "2017-06-12",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "source": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "inspected": true,
+      "limitations": "Visible-light NAC monochrome with small body in black frame. Not calibrated RGB colour or a global registered map. North rotated20degrees right, approximate2.6million km range and15km/pixel are publisher statements, not independently derived scale."
+    }
+  ],
+  "nativeMapAudit": {
+    "path": "data/textures/iapetus.jpg",
+    "bytes": 384551,
+    "sha256": "9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405",
+    "source": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Iapetus/Saturn%20-%20Iapetus.jpg",
+    "matchesFetchedSourceBytes": true,
+    "inspected": true,
+    "limitations": "Own NASA3D globe retained unchanged. Different resolutions, blurred regions, mosaicking and brightness transitions do not establish measured smooth terrain, material fractions or calibrated visible photometry. Exact Cassini product associations, input epochs, frame, coverage and local scene registration remain open."
+  },
+  "scienceAssessment": {
+    "scope": "NASA captions plus accessible Spencer/Denk main Science paper (pages1\u20134 of retained31-page compilation); full supplements and companion paper not independently audited.",
+    "modelled": "External dust deposition combined with temperature-dependent water-ice migration is the publisher-supported explanation for global dark/bright dichotomy, not directly measured local chemical fractions, present-day sublimation rates or observer-site conditions.",
+    "catalogueAlternative": "Publisher1471km diameter and existing734.5km catalogue radius retained separately; no silent radius replacement.",
+    "open": [
+      "Full thermal-migration supplement, companion imaging paper and equatorial-ridge alternatives audit.",
+      "Independent local/observer views with skyGeometry; Iapetus orbital inclination and camera attitude must not blindly inherit nearly edge-on Saturn ring assumptions from inner moons.",
+      "Recover lossless standalone headroom before additive integration.",
+      "Globe frame/coverage/input epochs and photometry."
+    ],
+    "primary": {
+      "authors": [
+        "John R. Spencer",
+        "Tilmann Denk"
+      ],
+      "doi": "10.1126/science.1177132",
+      "online": "2009-12-10",
+      "issue": "2010-01-22",
+      "paperPages": "Science327432\u2013435",
+      "source": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+      "measured": "Cassini CIRS FP3 blackbody-fit brightness temperatures129K dark and113K bright terrain at specific resolved locations during2007-09-10 flyby; not global or current observer-site temperatures.",
+      "modelled": "Thermal-model albedos.04/.39, simplified external deposition and global thermal ice migration; deposition/mixing parameters and lunar gardening analogy are assumptions, not measured local rates or fractions. Figure3 source mosaic explicitly not photometrically accurate.",
+      "limitations": "Lunar gardening analogy must never supply Iapetus terrain. No licence asserted as CC and no paper figures or derivatives embedded. Full supplement, companion paper, equatorial-ridge alternatives and current calibration remain open."
+    }
+  },
+  "preservation": {
+    "dossiers": 58,
+    "trackedMapModelShapeFiles": 69,
+    "allEqualHEAD": true
+  },
+  "verification": {
+    "tests": "453pass1skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15997661,
+    "headroomBytes": 2339,
+    "browser": "Chrome; other engines not independently tested",
+    "completeBrowserDecodedSnapshotSha256": "d8fd68eaf23c564dd59190e54d54d732e889e1e36927433f2d5447f8fb4172d7",
+    "applicationSha256": "4448c7097d9a7d4e2ec839c2dc548337a4f33e03db4f105b1c78dad5b278cba4",
+    "checks": "Exact readable JSON/application/CSS and HTML-parser payloads;207images20bands517details32models; all native hashes and prior57deepEqual; normal/offline Hyperion3cards;6routes unsupportedgzip11workerrows.",
+    "interbuildDifferencePaths": [
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/src"
+    ],
+    "attribution": "No sole asset savings attribution; research-only inputs not embedded."
+  }
+}

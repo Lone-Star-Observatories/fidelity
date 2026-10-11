@@ -1,0 +1,84 @@
+{
+  "retrieved": "2026-10-11",
+  "records": [
+    {
+      "url": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+      "path": "data/research-sources/iapetus-PIA21347-caption.html",
+      "bytes": 267040,
+      "sha256": "dcc6273441c82c352ef613e71ae2153d1c54f33c37c663599462685a4c771173",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21347/PIA21347.jpg",
+      "path": "data/research-sources/iapetus-PIA21347-original.jpg",
+      "bytes": 8326,
+      "sha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+      "contentType": "image/jpeg",
+      "width": 629,
+      "height": 598,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21347/PIA21347.tif",
+      "path": "data/research-sources/iapetus-PIA21347-original.tif",
+      "bytes": 200978,
+      "sha256": "d85e034fc5b3e2de1c02812a0b4c69e59f4cf767f0f3cc080c53d8dd9d055eee",
+      "contentType": "image/tiff",
+      "width": 629,
+      "height": 598,
+      "format": "tiff"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+      "path": "data/research-sources/iapetus-PIA21332-caption.html",
+      "bytes": 268363,
+      "sha256": "0510fcb0a7e9507eaa8c7554fe1146cee420bb1d8d2de92426ad95d65dc0f4ad",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21332/PIA21332.jpg",
+      "path": "data/research-sources/iapetus-PIA21332-original.jpg",
+      "bytes": 13764,
+      "sha256": "d8a38f361cda13fce06dd6e0ad447f22f3005ab1361b44cede16c854652d7ed0",
+      "contentType": "image/jpeg",
+      "width": 1016,
+      "height": 1016,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21332/PIA21332.tif",
+      "path": "data/research-sources/iapetus-PIA21332-original.tif",
+      "bytes": 71960,
+      "sha256": "1b5256384ad9c2e71f03790c2838bddb4684758fdb5c430e9a7f8ad88e53677f",
+      "contentType": "image/tiff",
+      "width": 1016,
+      "height": 1016,
+      "format": "tiff"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Iapetus/Saturn%20-%20Iapetus.jpg",
+      "path": "data/research-sources/iapetus-nasa3d-source.jpg",
+      "bytes": 384551,
+      "sha256": "9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405",
+      "contentType": "image/jpeg",
+      "width": 1440,
+      "height": 720,
+      "format": "jpeg"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/iapetus-nasa-media-terms.html",
+      "bytes": 320650,
+      "sha256": "40563771f2111ce1a0c846fecabdbbf086ea6c0b3e5377742120d7964ebfbfe6",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+      "path": "data/research-sources/iapetus-spencer-denk-science-2010-with-som.pdf",
+      "bytes": 6519376,
+      "sha256": "6427b5380fd8b3f73340cac9b59b6894b10ea3a1f1718943a653d08160b4ad63",
+      "contentType": "application/pdf",
+      "limitations": "31-page compilation includes both 2010 Science papers and supplements. Spencer/Denk main paper read; other paper and full supplements not independently audited. No CC licence asserted; no figures embedded."
+    }
+  ]
+}
