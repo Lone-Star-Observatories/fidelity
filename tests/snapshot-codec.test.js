@@ -95,6 +95,22 @@ test('numeric snapshot rejects truncation, invalid ordering, digit corruption an
   const trailing=new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
 });
 
+test('nibble numeric snapshot preserves original spellings and rejects digit/padding corruption', async () => {
+  const text = '{ "quoted": "# α 12", "values": [-0, 1.2300, 2e+03, -1E-12, 12345678901234567890123], "asset": "data:image/png;base64,AAEC" }';
+  const bytes = encodeNumericSnapshot(text, 2);
+  assert.equal(new TextDecoder().decode(bytes.subarray(0,8)), 'FIDNUM02');
+  assert.equal(restoreSnapshotText(bytes), text);
+  assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync(bytes), 2)), JSON.parse(text));
+  assert.equal(restoreSnapshotText(encodeNumericSnapshot('{"label":"# 123"}', 2)), '{"label":"# 123"}');
+  const valid = encodeNumericSnapshot('{"n":5}', 2);
+  const offset = 20 + new DataView(valid.buffer).getUint32(8,true) + 1 + 5;
+  const digit = valid.slice(); digit[offset] |= 15; assert.throws(()=>restoreSnapshotText(digit), /nibble/);
+  const padding = valid.slice(); padding[offset] &= 15; assert.throws(()=>restoreSnapshotText(padding), /padding/);
+  for (const size of [8,19,valid.length-1]) assert.throws(()=>restoreSnapshotText(valid.slice(0,size)));
+  const trailing = new Uint8Array(valid.length+1); trailing.set(valid); assert.throws(()=>restoreSnapshotText(trailing));
+  assert.throws(()=>encodeNumericSnapshot(text,3), /version/);
+});
+
 
 test('dense raw transport preserves all bytes, partial blocks and rejects invalid envelopes', async () => {
   for (const bytes of [randomBytes(4097), ...Array.from({length:95}, (_, length) => new Uint8Array(length).fill(255))]) {

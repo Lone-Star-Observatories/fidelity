@@ -199,7 +199,7 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 const dist = path.join(root, 'dist-standalone');
 const viteHtml = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 async function assemble(snapshotJson) {
-  const binarySnapshot = encodeNumericSnapshot(snapshotJson);
+  const binarySnapshot = encodeNumericSnapshot(snapshotJson, 2);
   const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 64, blocksplittingmax: 0 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
   const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed, 2);

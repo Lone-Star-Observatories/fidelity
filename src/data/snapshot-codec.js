@@ -86,10 +86,15 @@ export function encodeBinarySnapshot(text) {
   return output;
 }
 const numericMagic = new TextEncoder().encode('FIDNUM01');
+// Version 2 packs the same exact column-major characters into nibbles; 15 is
+// reserved for odd-length padding, never a numeric digit. No values are parsed.
+const numericNibbleMagic = new TextEncoder().encode('FIDNUM02');
+const numericAlphabet = '0123456789.-+eE';
 const numericLexemes = /"(?:[^"\\]|\\.)*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
 // Transpose decimal lexemes by length, without converting or rounding numbers.
 // Only the JSON header changes layout; every binary asset remains unchanged.
-export function encodeNumericSnapshot(text) {
+export function encodeNumericSnapshot(text, version = 1) {
+  if (![1, 2].includes(version)) throw Error('Invalid numeric snapshot version.');
   const binary = encodeBinarySnapshot(text), view = new DataView(binary.buffer);
   const headerLength = view.getUint32(8, true);
   const header = new TextDecoder('utf-8', { fatal: true }).decode(binary.subarray(12, 12 + headerLength));
@@ -102,20 +107,31 @@ export function encodeNumericSnapshot(text) {
   }));
   const tail = binary.subarray(12 + headerLength);
   const total = 20 + skeleton.length + order.length + tail.length
-    + [...groups].reduce((sum, [length, values]) => sum + 5 + length * values.length, 0);
+    + [...groups].reduce((sum, [length, values]) => sum + 5 + (version === 2 ? Math.ceil(length * values.length / 2) : length * values.length), 0);
   if (total > 0xffffffff) throw Error('Numeric snapshot too large.');
   const output = new Uint8Array(total), outView = new DataView(output.buffer); let at = 0;
   const put = bytes => { output.set(bytes, at); at += bytes.length; };
   const length = n => { outView.setUint32(at, n, true); at += 4; };
-  put(numericMagic); length(skeleton.length); length(order.length); length(groups.size);
+  put(version === 2 ? numericNibbleMagic : numericMagic); length(skeleton.length); length(order.length); length(groups.size);
   put(skeleton); put(order);
   for (const [width, values] of [...groups].sort((a, b) => a[0] - b[0])) {
     output[at++] = width; length(values.length);
-    for (let digit = 0; digit < width; digit++) for (const value of values) output[at++] = value.charCodeAt(digit);
+    let position = 0;
+    for (let digit = 0; digit < width; digit++) for (const value of values) {
+      if (version === 1) output[at++] = value.charCodeAt(digit);
+      else {
+        const code = numericAlphabet.indexOf(value[digit]);
+        if (code < 0) throw Error('Invalid numeric digit.');
+        if (position % 2 === 0) output[at] = code | 0xf0;
+        else { output[at] = (output[at] & 15) | (code << 4); at++; }
+        position++;
+      }
+    }
+    if (version === 2 && position % 2) at++;
   }
   put(tail); return output;
 }
-function restoreNumericSnapshot(bytes) {
+function restoreNumericSnapshot(bytes, nibble = false) {
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
   const length = () => { if (at + 4 > bytes.length) throw Error('Truncated numeric snapshot.'); const n = view.getUint32(at, true); at += 4; return n; };
   const take = n => { if (n > bytes.length - at) throw Error('Truncated numeric snapshot.'); const b = bytes.subarray(at, at + n); at += n; return b; };
@@ -126,7 +142,18 @@ function restoreNumericSnapshot(bytes) {
   for (let i = 0; i < groupCount; i++) {
     const width = take(1)[0], size = length();
     if (!width || !size || groups.has(width) || size > count - totalCount) throw Error('Invalid numeric group.');
-    groups.set(width, { size, data: take(width * size), used: 0 }); totalCount += size;
+    let data = take(nibble ? Math.ceil(width * size / 2) : width * size);
+    if (nibble) {
+      const unpacked = new Uint8Array(width * size);
+      for (let digit = 0; digit < unpacked.length; digit++) {
+        const code = (data[digit >> 1] >> ((digit % 2) * 4)) & 15;
+        if (code >= numericAlphabet.length) throw Error('Invalid numeric nibble.');
+        unpacked[digit] = numericAlphabet.charCodeAt(code);
+      }
+      if (unpacked.length % 2 && (data[data.length - 1] >> 4) !== 15) throw Error('Invalid numeric padding.');
+      data = unpacked;
+    }
+    groups.set(width, { size, data, used: 0 }); totalCount += size;
   }
   if (totalCount !== count) throw Error('Invalid numeric token count.');
   let index = 0;
@@ -150,6 +177,7 @@ function restoreNumericSnapshot(bytes) {
 }
 
 export function restoreSnapshotText(bytes) {
+  if (numericNibbleMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes, true);
   if (numericMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes);
   const decoder = new TextDecoder('utf-8', { fatal: true });
   if (!binaryMagic.every((value, index) => bytes[index] === value)) return decoder.decode(bytes);

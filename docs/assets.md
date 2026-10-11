@@ -1,5 +1,11 @@
 # Fidelity visual assets
 
+## Lossless numeric nibble snapshot (2026-10-11, #3)
+
+The full builder uses FIDNUM02: the existing column-major numeric characters are packed into4-bit codes, retaining every original decimal spelling, whitespace, string and binary asset byte. Code15 is reserved for validated odd-length padding. No numerical values are converted or rounded. FIDNUM01 remains the default encoder and legacy decoder; all prior binary/plainJSON, application, transport, CSS, Blob and unsupported-browser paths remain preserved. Bounds, digit, padding, count, reference, spelling and trailing-byte validation are tested. Full records: docs/research/standalone-numeric-nibbles-2026-10-11.json.
+
+454tests pass/1skip; production/full builds pass. Complete snapshot793a5747 and CSS remain byte-identical; full HTML15,943,257bytes saves53,878 net bytes including decoder/application overhead, providing56,743headroom. Chrome exact completeJSON/application/CSS/HTMLparser,210images/20bands/517details/32models, native contexts, six routes, unsupportedgzip,11worker rows and normal/offline Iapetus ownmap3cards pass. Other engines remain open. All59 dossiers and69trackedmap/model/shape files preserved; no60th/new Phoebe embedding yet. Phoebe additive integration is next, subject to its exact full build budget.
+
 ## Phoebe observer/master preparation (2026-10-11, #3)
 
 An independent built-in IMAGINED Phoebe observer original PNG and full prompt are retained in docs/research/phoebe-sky-view-preparation-2026-10-11.json. skyGeometry uses spherical58232km Saturn at12929400−106.5km and nominal90degree HFOV:0.5161084962degrees,7.5305655 target globe pixels at1672. Row161 brightness spans13pixels at thresholds5/10/20 include rings and are not adopted as globe diameter; precise globe separation/calibration remains open.95K helper RGB/irradiance is not Saturn visible photometry. Phoebe rotates independently in a retrograde orbit; camera attitude, ring opening and phase are assumed, without a permanent Saturn-facing site or dated ephemeris registration.
