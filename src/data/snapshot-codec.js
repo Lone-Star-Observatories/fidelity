@@ -18,7 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
-  if (packed?.encoding === 'gzip-raw-radix125-wide-v1') return unpackDenseSnapshotBytes(packed);
+  if (['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding)) return unpackDenseSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-wide-v1') return unpackRawSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-v1') return unpackApplicationBytes(packed);
   // Existing base64 snapshots remain readable.
@@ -259,35 +259,40 @@ export function unpackApplicationBytes(packed) {
 // so no payload can form an end tag. Tabs/newlines are payload bytes, not layout.
 const denseAlphabet = Array.from({length:128}, (_, code) => code).filter(code => ![0,13,60].includes(code)).map(code => String.fromCharCode(code)).join('');
 const denseDigits = new Map([...denseAlphabet].map((character,index) => [character,index]));
-export function encodeDenseSnapshotBytes(bytes) {
+// v2 uses 1832-bit blocks:229bytes in263digits; v1/default stays byte-compatible.
+export function encodeDenseSnapshotBytes(bytes, version = 1) {
+  if (![1, 2].includes(version)) throw Error('Invalid dense transport version.');
+  const blockBytes = version === 2 ? 229 : 47, blockDigits = version === 2 ? 263 : 54;
   const chunks = [];
-  for (let offset = 0; offset < bytes.length; offset += 47) {
+  for (let offset = 0; offset < bytes.length; offset += blockBytes) {
     let value = 0n;
-    for (let index = 0; index < 47; index++) value = (value << 8n) + BigInt(bytes[offset + index] ?? 0);
-    const block = Array(54);
-    for (let index = 53; index >= 0; index--) {
+    for (let index = 0; index < blockBytes; index++) value = (value << 8n) + BigInt(bytes[offset + index] ?? 0);
+    const block = Array(blockDigits);
+    for (let index = blockDigits - 1; index >= 0; index--) {
       block[index] = denseAlphabet[Number(value % 125n)];
       value /= 125n;
     }
     chunks.push(block.join(''));
   }
-  return { encoding: 'gzip-raw-radix125-wide-v1', byteLength: bytes.length, data: chunks.join('') };
+  return { encoding: `gzip-raw-radix125-wide-v${version}`, byteLength: bytes.length, data: chunks.join('') };
 }
 export function unpackDenseSnapshotBytes(packed) {
-  if (packed?.encoding !== 'gzip-raw-radix125-wide-v1' || !Number.isSafeInteger(packed.byteLength)
+  const blockBytes = packed?.encoding === 'gzip-raw-radix125-wide-v2' ? 229 : 47;
+  const blockDigits = blockBytes === 229 ? 263 : 54;
+  if (!['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding) || !Number.isSafeInteger(packed.byteLength)
       || packed.byteLength < 0 || typeof packed.data !== 'string'
-      || packed.data.length !== Math.ceil(packed.byteLength / 47) * 54) throw Error('Invalid packed snapshot.');
+      || packed.data.length !== Math.ceil(packed.byteLength / blockBytes) * blockDigits) throw Error('Invalid packed snapshot.');
   const bytes = new Uint8Array(packed.byteLength);
-  for (let offset = 0; offset < packed.data.length; offset += 54) {
+  for (let offset = 0; offset < packed.data.length; offset += blockDigits) {
     let value = 0n;
-    for (let index = 0; index < 54; index++) {
+    for (let index = 0; index < blockDigits; index++) {
       const digit = denseDigits.get(packed.data[offset + index]);
       if (digit === undefined) throw Error('Invalid snapshot digit.');
       value = value * 125n + BigInt(digit);
     }
-    if (value >= (1n << 376n)) throw Error('Invalid snapshot block.');
-    const byteOffset = offset / 54 * 47;
-    for (let index = 46; index >= 0; index--) {
+    if (value >= (1n << BigInt(blockBytes * 8))) throw Error('Invalid snapshot block.');
+    const byteOffset = offset / blockDigits * blockBytes;
+    for (let index = blockBytes - 1; index >= 0; index--) {
       const byte = Number(value & 255n);
       if (byteOffset + index < bytes.length) bytes[byteOffset + index] = byte;
       else if (byte !== 0) throw Error('Invalid snapshot padding.');

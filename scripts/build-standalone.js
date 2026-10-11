@@ -202,7 +202,7 @@ async function assemble(snapshotJson) {
   const binarySnapshot = encodeNumericSnapshot(snapshotJson);
   const htmlCompressed = await gzipAsync(binarySnapshot, { numiterations: 64 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed)) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
-  const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed);
+  const snapshotRaw = encodeDenseSnapshotBytes(htmlCompressed, 2);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
   const html = viteHtml.replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
   const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
@@ -225,10 +225,10 @@ async function assemble(snapshotJson) {
   if (gunzipSync(cssCompressed).toString('utf8') !== css) throw new Error('Stylesheet compression round-trip failed.');
   const cssPacked = encodeApplicationBytes(cssCompressed);
   if (!Buffer.from(unpackApplicationBytes(cssPacked)).equals(cssCompressed)) throw new Error('Stylesheet transport round-trip failed.');
-  const appPacked = encodeDenseSnapshotBytes(appCompressed);
+  const appPacked = encodeDenseSnapshotBytes(appCompressed, 2);
   if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
   const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
-  const bootstrapSource = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const cssStream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${cssPacked.byteLength},data:document.getElementById("fidelity-stylesheet-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const style = document.createElement('style');\n style.textContent = await new Response(cssStream).text();\n document.head.append(style);\n const stream = new Blob([unpackSnapshotBytes({encoding:"gzip-raw-radix125-wide-v1",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = restoreApplicationText(new Uint8Array(await new Response(stream).arrayBuffer()));\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
+  const bootstrapSource = `${codecSource}\nif (typeof DecompressionStream !== 'function') {\n document.body.textContent = 'This offline preview needs a browser with gzip decompression support. Please open it in a current browser.';\n} else {\n const cssStream = new Blob([unpackApplicationBytes({encoding:"gzip-raw-radix120-v1",byteLength:${cssPacked.byteLength},data:document.getElementById("fidelity-stylesheet-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const style = document.createElement('style');\n style.textContent = await new Response(cssStream).text();\n document.head.append(style);\n const stream = new Blob([unpackSnapshotBytes({encoding:"gzip-raw-radix125-wide-v2",byteLength:${appPacked.byteLength},data:document.getElementById("fidelity-application-data").textContent})]).stream().pipeThrough(new DecompressionStream('gzip'));\n const code = restoreApplicationText(new Uint8Array(await new Response(stream).arrayBuffer()));\n const url = URL.createObjectURL(new Blob([code], {type:'text/javascript'}));\n try { await import(url); } finally { URL.revokeObjectURL(url); }\n}\n`;
   // Minify only the loader; packed data and restored application bytes stay exact.
   const { code: bootstrap } = await minify(bootstrapSource, { module: true, compress: { passes: 2 }, mangle: true, format: { inline_script: true } });
   if (!bootstrap) throw new Error('Offline loader minification failed.');

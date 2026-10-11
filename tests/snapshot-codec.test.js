@@ -108,3 +108,19 @@ test('dense raw transport preserves all bytes, partial blocks and rejects invali
   assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync(JSON.stringify(snapshot)))), snapshot);
   assert.throws(() => unpackSnapshotBytes({encoding:'gzip-raw-radix125-wide-v1', byteLength:47, data:'\x7f'.repeat(54)}));
 });
+
+
+test('dense v2 preserves block boundaries and rejects overflow and nonzero padding', async () => {
+  for (const size of [0,1,228,229,230,458,459,4097]) {
+    const bytes=randomBytes(size), packed=encodeDenseSnapshotBytes(bytes,2);
+    assert.equal(packed.encoding,'gzip-raw-radix125-wide-v2');
+    assert.deepEqual(unpackSnapshotBytes(packed),new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data,/[\0\r<]/);
+    assert.throws(()=>unpackSnapshotBytes({...packed,data:packed.data+'a'}));
+  }
+  const full=encodeDenseSnapshotBytes(new Uint8Array(229).fill(255),2);
+  assert.throws(()=>unpackSnapshotBytes({...full,byteLength:1}));
+  assert.throws(()=>unpackSnapshotBytes({...full,data:'\x7f'.repeat(263)}));
+  assert.throws(()=>encodeDenseSnapshotBytes(new Uint8Array(),3));
+  assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync('{"label":"α","n":-1e-12}'),2)),{label:'α',n:-1e-12});
+});
