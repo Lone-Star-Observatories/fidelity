@@ -350,7 +350,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
   /** An SDO frame on the Sun's disc, preview first (#62). */
   function showSunFeed(n, u, feed, look) {
-    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); });
+    // #72: a map that fails to load (today's SRH) gives way to its fallback (archival Nobeyama), labelled as such
+    const fb = look.fallback, onFail = fb ? () => { n.bandLook = fb; if (u.uBandMix) u.uBandMix.value = fb.mix; showSunFeed(n, u, fb.feed, fb); } : null;
+    progressiveFeed(feed, look, () => n.bandLook === look, (l) => { u.uDisk.value = l.texture; u.uHasDisk.value = 1; u.uBandDisk.value = 1; if (l.disk) u.uDiskR.value = l.disk; feedCredit(look, l); }, onFail);
   }
   function applyStarBand(n, p) {
     const u = n.mesh?.material?.uniforms;

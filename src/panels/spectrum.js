@@ -9,6 +9,7 @@ import { BANDS } from '../data/bands.js';
 import { AXIS, BAND_RANGES, compose, describeCurve, normCurve, parseRange, fmtRange, fmtRangeAll, fmtWave, support, passInfo,
   presetFull, presetEye, presetBand, presetPass, curveLabel, canonical } from '../data/curve.js';
 import { badge } from '../data/provenance.js';
+import { shownScale, scaleDetail } from '../data/bandarchive.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const svg = (tag, attrs = {}, ...kids) => { const e = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); for (const c of kids) if (c != null) e.append(c); return e; };
@@ -220,6 +221,8 @@ export function createSpectrumControl({ h, pill, getCurve, setCurve, context = (
     if (look) {
       const bl = h('dl');
       bl.append(h('dt', { textContent: ctx.body.name.toUpperCase() }), h('dd', { textContent: `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}` }), badge(look.tier, look.detail));
+      const sc = look.mode === 'real' && look.scale && look.levels ? shownScale(look.scale, look.levels) : null; // #72
+      if (sc) bl.append(h('dt', { textContent: 'SCALE' }), h('dd', { textContent: `${sc.text} · FALSE COLOUR` }), badge(look.scale.tier ?? 'computed', scaleDetail(look.scale, sc)));
       for (const s of look.sources ?? []) bl.append(h('dt', { textContent: `${s.predicted ? 'MODELLED' : 'REAL'} · ${s.drawn ? 'DRAWN' : 'LISTED'}` }), h('dd', { textContent: `${s.credit} · ${pct(s.weight)}` }), badge(s.predicted ? 'modelled' : 'measured', s.note ?? s.credit));
       if (look.notObserved?.length) bl.append(h('dt', { textContent: 'NOT OBSERVED' }), h('dd', { textContent: look.notObserved.map((r) => fmtRange(...r)).join(', ') }), badge('computed', 'Parts of the curve with no real image and nothing to predict from.'));
       else if (look.uncovered?.length) bl.append(h('dt', { textContent: 'NO REAL IMAGE' }), h('dd', { textContent: look.uncovered.map((r) => fmtRange(...r)).join(', ') }), badge('modelled', 'Predicted there (MODELLED · PREDICTED).'));

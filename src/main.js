@@ -22,6 +22,7 @@ import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
 import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
+import { shownScale, scaleDetail } from './data/bandarchive.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
 import { onBookmark } from './views/cameraControls.js';
@@ -346,7 +347,22 @@ function updateBandRow() {
   if (!bandRow) return;
   const look = system.bandLookOf(bandRow.id);
   if (look) bandRow.dd.textContent = `${look.label}${look.res ? ` · ${resText(look.res)}` : ''}`;
+  if (bandRow.scale) showBandScale(bandRow.scale, look);
   spectrum?.refreshReadout();
+}
+// an archive map's physical scale on the band bar and a SCALE row (#72), once its scale and levels are known
+function showBandScale(el, look) {
+  const sc = look?.mode === 'real' ? look.scale : null, s = sc && look.levels ? shownScale(sc, look.levels) : null;
+  el.dt.hidden = el.dd.hidden = el.badge.hidden = !s;
+  if (el.lo) { // the bar's ends (standalone, or until the scale arrives: FAINT … BRIGHT as before)
+    el.lo.textContent = s ? s.loText : 'FAINT';
+    el.hi.textContent = s ? s.hiText : el.hiDefault;
+    el.lo.parentElement?.classList.toggle('scaled', !!s);
+  }
+  if (!s) return;
+  el.dd.textContent = `${s.text} · FALSE COLOUR`;
+  const b = badge(sc.tier ?? 'computed', scaleDetail(sc, s));
+  el.badge.replaceWith(b); el.badge = b;
 }
 onBandRes(updateBandRow);
 // panels that describe the band (#28): Galaxy, Universe and Star views re-render when it changes
@@ -900,6 +916,10 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
         const res = look.res ? ` · ${resText(look.res)}` : '';
         const detail = look.res && look.res !== 'full' ? `${look.detail}\n${look.res.startsWith('failed') ? `The full-resolution image could not be loaded; the low-resolution preview is shown (still ${look.tier === 'modelled' ? 'MODELLED' : 'MEASURED'}).` : look.res === 'baked' ? 'The offline preview carries this small copy, baked when the file was built; the local backend serves the full resolution.' : `A low-resolution preview of the ${look.tier === 'modelled' ? 'modelled map (MODELLED · PREDICTED)' : 'real map (MEASURED)'} is shown while the full resolution loads.`}` : look.detail;
         bandRow = { id: b.id, dd: row(dl, 'IN THIS BAND', `${look.label}${res}`, look.tier, detail) };
+        if (look.mode === 'real' && look.source?.archive?.scale) { // #72: filled by showBandScale when the scale and levels arrive
+          const sdd = row(dl, 'SCALE', '', 'computed');
+          bandRow.scale = { dt: sdd.previousSibling, dd: sdd, badge: sdd.nextSibling };
+        }
         for (const s of look.sources ?? []) row(dl, `${s.predicted ? 'MODELLED MAP' : 'REAL MAP'} · ${s.drawn ? 'DRAWN' : 'LISTED'}`, `${s.credit.split(/[,(:]/)[0].trim().toUpperCase()} · ${Math.round(s.weight * 100)}%`, s.predicted ? 'modelled' : 'measured', `${s.credit}${s.note ? `\n${s.note}` : ''}${s.drawn ? '' : '\nOverlaps the curve but is not drawn: one map per globe (the best-covered).'}`);
         if (look.notObserved?.length) row(dl, 'NOT OBSERVED', look.notObserved.map((r) => fmtRange(...r)).join(', '), 'computed', 'Parts of the curve with no real image of this body and no spectral signature to predict from.');
         else if (look.uncovered?.length && look.mode === 'curve') row(dl, 'NO REAL IMAGE', look.uncovered.map((r) => fmtRange(...r)).join(', '), 'modelled', 'Predicted there (MODELLED · PREDICTED).');
@@ -908,10 +928,12 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       if (skies.layers.length) for (const L of skies.layers) row(dl, 'SKY', `${L.skyCredit.split(/[,(]/)[0].trim().toUpperCase()}${skies.layers.length > 1 ? ` · ${Math.round(L.weight * 100)}%` : ''}`, 'measured', L.skyCredit);
       else row(dl, 'SKY', 'CATALOGUE STARS, RE-WEIGHTED', 'computed', cb.custom ? 'No all-sky survey overlaps the curve: catalogue stars brightened or dimmed by their blackbody through T(λ) relative to V (Vega system).' : 'No all-sky survey in this bandpass: catalogue stars brightened or dimmed by their blackbody in the band (Vega system).');
       const d = cb.custom ? cb.prep.desc : null;
+      const keyLo = h('span', { textContent: 'FAINT' }), keyHi = h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' });
       extra.unshift(h('h3', { textContent: `SPECTRUM · ${cb.custom ? microns(cb.pass.label).toUpperCase() : `${cb.band.label}${cb.pass ? ` · ${microns(cb.pass.label).toUpperCase()}` : ''}`}` }), dl,
         look?.mode === 'glow' ? h('p', { className: 'note explain', textContent: look.detail } ) : null,
         d?.composite ? h('div', { className: 'sp-key' }, ...d.thirds.map((t, i) => h('span', { className: `k${i}`, textContent: fmtRange(...t) })))
-          : h('div', { className: `band-key band-${cb.band.palette}` }, h('span', { textContent: 'FAINT' }), h('span', { textContent: (cb.band.dominant ?? cb.band.id) === 'visible' ? 'BRIGHT · MONOCHROME' : 'BRIGHT · FALSE COLOUR' })));
+          : h('div', { className: `band-key band-${cb.band.palette}` }, keyLo, keyHi));
+      if (bandRow?.scale) { Object.assign(bandRow.scale, { lo: keyLo, hi: keyHi, hiDefault: keyHi.textContent }); showBandScale(bandRow.scale, look); }
     }
   }
   if (m.isSol && ['sun', 'earth', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id)) extra.push(...skyPanel.section(b.id));
