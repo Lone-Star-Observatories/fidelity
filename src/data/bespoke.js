@@ -1,5 +1,5 @@
 // Individual researched hypotheses; actual maps retain priority.
-export const BODY_VISUALS = {
+export const BODY_VISUALS ={
   "ceres": {
     "id": "ceres",
     "name": "Ceres",
@@ -9279,6 +9279,233 @@ export const BODY_VISUALS = {
       "previewSha256": "1b8b056bf4d5054893c299814320e5160123e2b959ff2a16eab4444ca33f6f25",
       "bytes": 267327,
       "previewBytes": 8935,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "triton": {
+    "id": "triton",
+    "name": "Triton",
+    "aliases": [
+      "Triton"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHA6a5015beaf860426d9505f054565c9ad28ba3822054d5b750c74b4d8e61eb4f3; USGS/Tammy Becker & JPL/Caltech.2025-05-30 metadata not observation. Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+    "measured": [
+      "Voyager2 NAC; monochrome publisher product, exact filter/product association remains open. Observed1989-08-24/imageaddition2000-01-16. Historical caption range530000km/resolution10km and age interpretation are source estimates, not new raster calculations. Venus/Mars fretted-terrain analogy must not supply Triton skin. Mono not independently calibrated visible colour or registered local geography. No exhaustive newest-photo claim.",
+      "Four occultation light curves fitted2398points: reference-radius1400km pressure1.211±.039microbar(1sigma). This is fitted from light curves, not a surface sensor.",
+      "Real tenuous nitrogen atmosphere; catalogue radius1353.4km/separation354800km preserved, decimal precision not uncertainty."
+    ],
+    "modelled": [
+      "Adopted spherical transparent pureN2 atmosphere, CH4~1e-4 negligible for fit, fixed MO22 thermal profile. Surface pressure14.54±.47microbar extrapolated using ratio12.01, not direct surface measurement. Near-surface positive5K/km gradient/about50K at10km are model profile, not local terrain temperature. Older1990s pressure surge method-dependent and debatable;2017–2022 no significant change within errors. Northern condensation/ice-albedo feedback/equatorial frosts interpretations not mapped local fractions/rates.",
+      "skyGeometry mean spherical Neptune24622km at354800minus1353.4km nominal90HFOV7.9892136658463535deg116.75947815585727targetpxat1672."
+    ],
+    "unknown": [
+      "Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+      "Full8page arxiv manuscript retained, abstract/Table1/methods/pressure-evolution assessed; publisher final paper/supplement/products remain open.",
+      "Tenuous nitrogen atmosphere is real, do not label Triton strictly airless. No present plume detection or calibrated haze/transmission claim from this occultation; no ocean/biology/local chemistry/Voyager pixel registration. Voyager1989 plume observations must be dated separately, not presumed active now. Yuan2024 separate2022occultation abstract14.07+0.21-0.13microbar is separate analysis, fullpaper audit open; not averaged.",
+      "Local material fractions and dated scene registration unknown."
+    ],
+    "assumed": [
+      "IMAGINED terrain, blocks, frost-like texture, chemistry/fractions, colour/light/exposure, no analog or dated Voyager/globe site. Real tenuous nitrogen atmosphere retained; almost-black sky and no conspicuous haze are artistic transparency assumptions, not calibrated transmission or strict airless claim. No active plume, liquid/ocean, biology or survivable landing implication. No astronomical disk in frame; no angular/raster computation claimed.",
+      "No analog map or registered Voyager/globe site. Terrain, frost-like texture, chemistry/fractions, Neptune bands and colour invented. No active plume, exposed ocean/liquid, biology or survivable landing implication.",
+      "Threshold chords are phase/exposure-sensitive, not calibrated full diameter. Mean spherical approximation omits oblateness. Camera/axis attitude, colour, invented bands, phase, lighting and exposure assumed; no dated ephemeris. 60K angular helper only, not photometry. Real tenuous N2 atmosphere; nearly black sky is assumed transparency, not airless or calibrated transmission. Rings omitted artistically, not proof of invisibility. Row230 thresholds5/10/20 spans350/184/173 versus116.759target: oversized/background/phase/exposure sensitive, not calibrated full diameter. Compact annotations limited; card labels required.",
+      "Sun30.07AU representative off-frame angular-helper separation only; not calibrated illumination, colour or dated ephemeris. Retrograde/inclined orbit and camera orientation do not establish an always-visible Neptune scene."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "title": "NASA Voyager2 Triton PIA02234",
+        "observationDate": "1989-08-24",
+        "publicationDate": "2000-01-16",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/neptune-triton/",
+        "title": "NASA3D own Triton globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/2402.02476",
+        "title": "Sicardy2024 Triton occultation atmosphere manuscript",
+        "authors": [
+          "Sicardy, B.",
+          "Tej, A.",
+          "Gomes-Junior, A. R.",
+          "Romanov, F. D.",
+          "Bertrand, T.",
+          "Ashok, N. M.",
+          "Lellouch, E.",
+          "Morgado, B. E.",
+          "Assafin, M.",
+          "Desmars, J.",
+          "Camargo, J. I. B.",
+          "Kilic, Y.",
+          "Ortiz, J. L.",
+          "Vieira-Martins, R.",
+          "Braga-Ribas, F.",
+          "Ninan, J. P.",
+          "Bhatt, B. C.",
+          "Kumar, S. Pramod",
+          "Swain, V.",
+          "Sharma, S.",
+          "Saha, A.",
+          "Ojha, D. K.",
+          "Pawar, G.",
+          "Deshmukh, S.",
+          "Deshpande, A.",
+          "Ganesh, S.",
+          "Jain, J. K.",
+          "Mathew, S. K.",
+          "Kumar, H.",
+          "Bhalerao, V.",
+          "Anupama, G. C.",
+          "Barway, S.",
+          "Brandeker, A.",
+          "Floren, H. G.",
+          "Olofsson, G.",
+          "Bruno, G.",
+          "Mao, Y. M.",
+          "Ye, R. H.",
+          "Zou, Q. Y.",
+          "Sun, Y. K.",
+          "Shen, Y. Y.",
+          "Zhao, J. Y.",
+          "Grishin, D. N.",
+          "Romanova, L. V.",
+          "Marchis, F.",
+          "Fukui, K.",
+          "Kukita, R.",
+          "Benedetti-Rossi, G.",
+          "Santos-Sanz, P.",
+          "Dhyani, N.",
+          "Gokhale, A.",
+          "Kate, A."
+        ],
+        "terms": "Specific arxiv record explicitly links CC BY4.0. PDF ESO2024 notice retained. No paper figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "53cf47cd44a9c558c409a9ad7e34e0743b776450abd0d23cab1f772d3567ed9b",
+        "observationDate": "2022-10-06"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/triton-voyager-native.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "bytes": 5991,
+        "sha256": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+        "path": "data/research-sources/triton-PIA02234-display-320.jpg",
+        "width": 320,
+        "height": 320,
+        "credit": "NASA/JPL",
+        "sourcePage": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "licence": "NASA media guidance; not asserted CC BY",
+        "observationDate": "1989-08-24",
+        "imageAdditionDate": "2000-01-16",
+        "instrument": "Voyager2 NAC; monochrome publisher product, exact filter/product association remains open.",
+        "limits": "Historical caption range530000km/resolution10km and age interpretation are source estimates, not new raster calculations. Venus/Mars fretted-terrain analogy must not supply Triton skin. Mono not independently calibrated visible colour or registered local geography. No exhaustive newest-photo claim.",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02234/PIA02234.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "sourceUrl": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+        "tier": "measured",
+        "terms": "NASA media guidance; not asserted CC BY",
+        "publicationDate": "2000-01-16",
+        "description": "Actual Voyager2 Triton monochrome topography; not calibrated visible colour or registered local terrain.",
+        "processing": "Unchanged NASA-served publisher resized/re-encoded320 rendition; not full original pixel preservation. Larger fullJPEG/TIFF retained unchanged. Monochrome half-lit Voyager disk; no calibrated visible colour or dated local scene registration."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL TRITON TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM TRITON — ASSUMED ATTITUDE",
+    "neptuneGeometry": {
+      "method": "skyGeometry",
+      "meanNeptuneRadiusKm": 24622,
+      "representativeCentreDistanceKm": 354800,
+      "tritonRadiusKm": 1353.4,
+      "observerDistanceKm": 353446.6,
+      "nominalHorizontalFovDeg": 90,
+      "angularDiameterDeg": 7.9892136658463535,
+      "targetDiskWidthAt1672": 116.75947815585727,
+      "thresholdRuns": [
+        {
+          "threshold": 5,
+          "row": 230,
+          "width": 350
+        },
+        {
+          "threshold": 10,
+          "row": 230,
+          "width": 184
+        },
+        {
+          "threshold": 20,
+          "row": 230,
+          "width": 173
+        }
+      ],
+      "limitations": "Threshold chords are phase/exposure-sensitive, not calibrated full diameter. Mean spherical approximation omits oblateness. Camera/axis attitude, colour, invented bands, phase, lighting and exposure assumed; no dated ephemeris. 60K angular helper only, not photometry. Real tenuous N2 atmosphere; nearly black sky is assumed transparency, not airless or calibrated transmission. Rings omitted artistically, not proof of invisibility."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/triton-surface-image.jpg",
+      "previewUrl": "/bespoke/triton-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "triton-generated-surfaceImage-original.png",
+      "sourceSha256": "9703203f38cb9748589f1e63935d22fa224beb8250219fc2bb4e184cb03b7252",
+      "sha256": "f0532c357ce0f6c1499366f676c067923bb22d3428c92e93d84c7b52ef45099b",
+      "previewSha256": "cbd3f32c293698899c0104dc2515e777f3dec2ffa0ef65b837bfc7ccb231edc6",
+      "bytes": 294652,
+      "previewBytes": 9559,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/triton-sky-image.jpg",
+      "previewUrl": "/bespoke/triton-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "triton-generated-skyImage-original.png",
+      "sourceSha256": "f389b1c5790ffea81e471c9388addacd600f2dcb9048e27f535d272e8ad7e613",
+      "sha256": "2355d15261e9fbde23209e4e573883b212e995d22a33cc5f3382e583af294709",
+      "previewSha256": "d2a64423b360f24a38601c14dd5bb068170f1d969b2a2552b95748c5dafd2c99",
+      "bytes": 238544,
+      "previewBytes": 6889,
       "width": 1536,
       "height": 864,
       "previewWidth": 256,

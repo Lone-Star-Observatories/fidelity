@@ -1,0 +1,20 @@
+{
+  "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02234/PIA02234.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+  "status": 200,
+  "contentType": "image/jpeg",
+  "path": "data/research-sources/triton-PIA02234-display-320.jpg",
+  "bytes": 5991,
+  "sha256": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+  "width": 320,
+  "height": 320,
+  "date": "2026-10-11",
+  "body": "Triton",
+  "credit": "NASA/JPL",
+  "sourcePage": "https://science.nasa.gov/photojournal/tritons-surface-topography/",
+  "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "terms": "NASA media guidance, not CC BY",
+  "observationDate": "1989-08-24",
+  "imageAdditionDate": "2000-01-16",
+  "processing": "Unchanged NASA-served publisher resized/re-encoded320 rendition; not full original pixel preservation. Larger fullJPEG/TIFF retained unchanged.",
+  "inspection": "Monochrome half-lit Voyager disk; no calibrated visible colour or dated local scene registration."
+}

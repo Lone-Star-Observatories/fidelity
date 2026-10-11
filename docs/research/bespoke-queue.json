@@ -426,10 +426,11 @@
       "parent": "neptune",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe unchanged/source-byte-equal SHA6a5015beaf860426d9505f054565c9ad28ba3822054d5b750c74b4d8e61eb4f3; USGS/Tammy Becker & JPL/Caltech.2025-05-30 metadata not observation. Limited Voyager coverage; black missing coverage/outer boundary is not terrain. Colour transfer/photometry, exposure epochs, longitude frame, coverage mask and shape registration open. Own Triton map unchanged, no analog skin.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "triton"
     },
     {
       "id": "sol-proteus",
@@ -8519,7 +8520,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 21,
+      "initialDossiers": 22,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
