@@ -31,6 +31,7 @@ import { jwstSchedule, recentImages, preview } from './observing.js';
 import { eventsFeed } from './events.js';
 import { crew, crewImage } from './crew.js';
 import { voiceStatus, handleVoiceUpgrade } from './voice.js';
+import { stylize, stylizeStatus, allowedPost, MAX_BODY } from './stylize.js';
 import { hipsImage, gibsBand } from './bandimages.js';
 import { archiveImage, archiveMeta, discImage } from './bandarchive.js';
 import { surveyList, surveyCutout, nasaImages, nasaImage } from './imagery.js';
@@ -60,6 +61,7 @@ const send = (res, status, body, type = 'application/json', req = null) => {
 const routes = {
   'GET /api/health': async () => ({ ok: true, name: 'USS Fidelity', catalogDirs: config.catalogDirs.length }),
   'GET /api/voice/status': async () => voiceStatus(),
+  'GET /api/stylize/status': async () => stylizeStatus(), // postcards (#40)
   'GET /api/hips': async (q) => binary(await hipsImage(q.get('id') || '', q.get('size') || '')),
   'GET /api/gibs-band': async (q) => binary(await gibsBand(q.get('layers') || '', q.get('size') || '')),
   'GET /api/band-archive': async (q) => (q.get('meta') ? archiveMeta(q.get('id') || '') : binary(await archiveImage(q.get('id') || '', q.get('size') || ''))), // &meta=1: its scale as JSON (#72)
@@ -158,6 +160,15 @@ async function serveStatic(req, res, pathname) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://local');
   const key = `${req.method} ${url.pathname}`;
+  if (key === 'POST /api/stylize') { // postcards (#40): an opt-in image edit through the key held here
+    if (!allowedPost(req, req.headers.host)) return send(res, 403, { error: 'JSON from this app only' });
+    try {
+      const chunks = []; let n = 0;
+      for await (const c of req) { n += c.length; if (n > MAX_BODY) return send(res, 413, { error: 'too large' }); chunks.push(c); }
+      send(res, 200, await stylize(JSON.parse(Buffer.concat(chunks).toString('utf8'))));
+    } catch (err) { send(res, err.status || (err instanceof SyntaxError ? 400 : 502), { error: String(err.message || err) }); }
+    return;
+  }
   if (key === 'GET /api/comms/stream') { // a live audio stream: piped, not buffered (#69)
     try { await streamStation(url.searchParams.get('u') || '', res); } catch (err) { if (!res.headersSent) send(res, err.status || 502, { error: String(err.message || err) }); else res.end(); }
     return;

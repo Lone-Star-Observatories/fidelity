@@ -26,7 +26,9 @@ import { shownScale, scaleDetail } from './data/bandarchive.js';
 import { DETAIL_LEVELS, DETAIL_MAX, DETAIL_FLAGS, flagsForLevel, levelOfFlags } from './data/detail.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
-import { onBookmark } from './views/cameraControls.js';
+import { onBookmark, onPostcard } from './views/cameraControls.js';
+import { createPostcard } from './panels/postcard.js';
+import { liveInfo } from './views/system/materials.js';
 import { encodeCamera, decodeCamera } from './views/cameraMath.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
@@ -224,7 +226,8 @@ function applyPendingCam(rig) {
   pendingCam = null;
   rig.apply(c);
 }
-onBookmark((state) => {
+/** A URL that reopens this view: route, camera state (from a rig's state()), mode and epoch. */
+function viewLink(state) {
   const q = new URLSearchParams(location.search);
   for (const k of ['cam', 'surface', 'look', 'hold', 't']) q.delete(k);
   q.set('t', dateFromJd(clock.jd).toISOString());
@@ -234,11 +237,92 @@ onBookmark((state) => {
     if (sp) q.set('surface', `${sp.lat.toFixed(5)},${sp.lon.toFixed(5)}`);
   }
   q.set('cam', encodeCamera(state));
-  const url = `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ',').replace(/%3A/g, ':')}${location.hash}`;
+  return `${location.origin}${location.pathname}?${q.toString().replace(/%2C/g, ',').replace(/%3A/g, ':')}${location.hash}`;
+}
+onBookmark((state) => {
+  const url = viewLink(state);
   try { history.replaceState(null, '', url); } catch { /* sandboxed frame */ }
   const done = () => toast('VIEW LINK COPIED · CAMERA, MODE AND EPOCH'), fail = () => toast('VIEW LINK IS IN THE ADDRESS BAR');
   try { navigator.clipboard.writeText(url).then(done, fail); } catch { fail(); }
 });
+
+// ---- postcards (#40) ------------------------------------------------------------------------
+const SYSTEM_LEVELS = ['system', 'events', 'future', 'timeline', 'satellite'];
+const viewOf = (lvl) => (SYSTEM_LEVELS.includes(lvl) ? system : lvl === 'star' ? starView : ['planet', 'moon', 'object'].includes(lvl) ? planetView
+  : lvl === 'galaxy' ? galaxy : lvl === 'quadrant' ? quadrant : lvl === 'universe' ? universe : lvl === 'navigation' ? nav : null);
+const latLonText = (lat, lon) => `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+/** What the active view shows, for the postcard's stamps: place, provenance tiers, image credits, scene facts. */
+function describePostcard() {
+  const v = viewOf(route.level);
+  if (!v?.snapshot) return null;
+  const title = $('view-title').textContent || 'USS FIDELITY';
+  const tiers = { measured: [], reported: [], computed: [], modelled: [], imagined: [] };
+  const imgCredits = [], bodies = [];
+  const titleCase = (t) => t.toLowerCase().replace(/(^|[\s(/-])(\p{L})/gu, (_, a, c) => a + c.toUpperCase());
+  let place = title, subject = titleCase(title.split(' · ').slice(1).join(' · ') || title), lighting = null;
+  if (v === system && system.model) {
+    const m = system.model, surf = system.onSurface, focus = route.body && m.bodies.find((x) => x.id === route.body);
+    const where = m.isSol ? 'the Solar System' : `the ${m.name} system`;
+    subject = focus ? `${m.isSol && ['moon', 'sun'].includes(focus.id) ? 'The ' : ''}${focus.name} in ${where}` : where.charAt(0).toUpperCase() + where.slice(1);
+    tiers.measured.push('STARS'); tiers.computed.push('POSITIONS');
+    for (const f of system.framed?.(3) ?? []) {
+      bodies.push(f.name);
+      if (f.live) { tiers.measured.push('LIVE IMAGERY'); if (f.live.credit) imgCredits.push(f.live.credit); }
+      else if (f.imagined) tiers.imagined.push(`${f.name.toUpperCase()}'S SURFACE`);
+      else { tiers.measured.push('SURFACE MAPS'); if (credits[f.map]) imgCredits.push(credits[f.map]); }
+    }
+    if (surf) {
+      const b = m.bodies.find((x) => x.id === surf.id), sp = system.surfaceSpot();
+      const name = b ? (m.isSol && ['moon', 'sun'].includes(b.id) ? `the ${b.name}` : b.name) : surf.id;
+      let lon = sp ? sp.lon + ((b?.texLon0 ?? -180) + 180) : null;
+      if (lon > 180) lon -= 360;
+      place = `STANDING ON ${name.toUpperCase()}${sp ? ` · ${latLonText(sp.lat, lon)}` : ''}`;
+      subject = `From the surface of ${name}${sp ? `, ${latLonText(sp.lat, lon)}` : ''}`;
+      tiers.imagined.push('SURFACE');
+      lighting = 'as rendered: the Sun\'s position and every phase come from the ship\'s clock';
+      if (settings.get('deepsky')) imgCredits.push('Deep-sky images: DSS2 (STScI/AURA) and others, credited per object in the app');
+    } else if (settings.get('scale') !== 'true') tiers.imagined.push('BODY SIZES (ENLARGED)');
+    const pf = system.postcardFacts ?? {};
+    if (pf.paleo) tiers.modelled.push('PAST EARTH');
+    if (pf.scenario?.length) tiers.modelled.push('SCENARIO');
+    if (settings.get('band') && settings.get('band') !== 'full') tiers.measured.push(`${String(settings.get('band')).toUpperCase()} BAND`);
+  } else if (v === galaxy || v === quadrant) {
+    tiers.measured.push('STARS'); tiers.modelled.push('MILKY WAY MODEL');
+    if (settings.get('galaxyArt')) { tiers.imagined.push("ARTIST'S FACE-ON MILKY WAY"); imgCredits.push('NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748'); }
+  } else if (v === universe) {
+    tiers.measured.push('GALAXY POSITIONS'); tiers.measured.push('GALAXY IMAGES');
+    imgCredits.push('Digitized Sky Survey 2 (POSS-II / UK Schmidt; STScI/AURA) and 2MASS (UMass/IPAC-Caltech, NASA/NSF), via CDS hips2fits');
+  } else if (v === nav) {
+    tiers.measured.push('STARS'); tiers.computed.push('ORBITS');
+  } else if (v === starView) {
+    const b = system.model?.bodies.find((x) => x.id === route.body);
+    tiers.measured.push('STAR DATA');
+    if (system.model?.isSol && (!b || b.id === system.model.starId)) { // the Sun: a solar map, or SDO's live disc
+      tiers.measured.push('SOLAR DISC');
+      const live = settings.get('liveSkins') && liveInfo.get('sdo-hmi');
+      if (live?.credit) imgCredits.push(live.credit); else if (credits.sun) imgCredits.push(credits.sun);
+    } else tiers.imagined.push('STAR SURFACE');
+  } else if (v === planetView) {
+    const b = system.model?.bodies.find((x) => x.id === route.body);
+    if (b) bodies.push(b.name);
+    if (b?.skin?.map && credits[b.skin.map] && !b.surfacePending) { tiers.measured.push('SURFACE MAP'); imgCredits.push(credits[b.skin.map]); }
+    else tiers.imagined.push('SURFACE');
+  }
+  if (!clock.isNow) tiers.computed.push('SKY AT THE SHIP\'S DATE');
+  const date = clock.inCalendar ? dateFromJd(clock.jd) : null;
+  const rig = v.camera;
+  let link = null;
+  try { const st = rig?.state?.(); if (st) link = viewLink(st); } catch { /* no camera state */ }
+  return {
+    title, place, subject, snapshot: v.snapshot, tiers, credits: imgCredits, years: clock.years, date,
+    shipDate: date ? `${shipDate(date)} · ${date.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `DEEP TIME · ${formatOffset(clock.years)}`,
+    realDate: new Date().toISOString().slice(0, 16).replace('T', ' '),
+    link,
+    facts: { view: title.toLowerCase(), subject, bodies, date: date ? date.toISOString().slice(0, 10) : formatOffset(clock.years), lighting },
+  };
+}
+const postcard = createPostcard({ h, pill: (...a) => pill(...a), toast, settings, describe: describePostcard, standalone: STANDALONE }); // pill is defined further down
+onPostcard(() => postcard.open());
 
 // ---- toast & warp -----------------------------------------------------------------------
 let toastTimer;

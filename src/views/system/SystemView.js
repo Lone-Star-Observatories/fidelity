@@ -75,6 +75,8 @@ const isoDate = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slic
 import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } from './zones.js';
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
+import { makeSnapshot } from '../snapshot.js';
+import { SKINS } from '../../data/skins.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -2222,7 +2224,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   function scenarioLabel(text) {
     const el = document.createElement('button');
     el.className = 'body-label scenario-label';
-    el.textContent = `${text} ✕`;
+    const x = document.createElement('span');
+    x.textContent = ' ✕'; x.dataset.snapshot = 'skip'; // postcards (#40) leave the close mark out
+    el.append(text, x);
     el.title = 'A modelled scenario (#53). Click to remove it.';
     el.addEventListener('pointerdown', (e) => e.stopPropagation());
     el.addEventListener('click', (e) => { e.stopPropagation(); setScenario(null); });
@@ -2264,6 +2268,31 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   return {
+    /** #40: what a postcard must declare: the paleo-Earth banner and any scenario labels showing. */
+    get postcardFacts() { return { paleo: paleo?.banner ?? null, scenario: scenario ? scenario.labels.map((l) => l.element.firstChild?.textContent ?? '') : [] }; },
+    /** #40: bodies drawn at least `minPx` screen pixels across radius: [{ id, name, px, map, live, imagined }], biggest first. */
+    framed(minPx = 3) {
+      const H = renderer.domElement.clientHeight || 800, f = (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
+      const out = [], wp = new THREE.Vector3(), ndc = new THREE.Vector3();
+      for (const [id, n] of Object.entries(nodes)) {
+        if (!n.mesh || !n.group.visible) continue;
+        n.mesh.getWorldPosition(wp);
+        n.mesh.geometry?.computeBoundingSphere?.();
+        const sc = n.mesh.getWorldScale(new THREE.Vector3());
+        const r = (n.mesh.geometry?.boundingSphere?.radius ?? 1) * Math.max(sc.x, sc.y, sc.z), d = wp.distanceTo(camera.position);
+        const standing = surface?.id === id;
+        ndc.copy(wp).project(camera);
+        const ahead = wp.clone().sub(camera.position).dot(camera.getWorldDirection(new THREE.Vector3())) > 0;
+        const px = d > r ? (r / Math.sqrt(d * d - r * r)) * f : Infinity;
+        const near = px > 2 * H; // filling the view: its centre may sit off-screen
+        if (!standing && !(near || (ahead && Math.abs(ndc.x) < 1 + px / H && Math.abs(ndc.y) < 1 + px / H))) continue;
+        if (!standing && px < minPx) continue;
+        out.push({ id, name: n.body.name, px, map: n.body.skin?.map ?? null, live: liveState[id] ?? null, imagined: !!(n.body.surfacePending || !n.body.skin?.map || SKINS[n.body.skin?.map]?.tier === 'imagined') });
+      }
+      return out.sort((a, b) => b.px - a.px);
+    },
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
     /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
     setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */

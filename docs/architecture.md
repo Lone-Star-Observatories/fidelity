@@ -914,3 +914,20 @@ bisect (upper limb and parallax for the Sun and Moon). Stars use their catalogue
 `tests/observe.test.js` checks all 48 Sol bodies against a JPL Horizons observer table and
 Auckland rise/set times (`tests/fixtures/horizons-observer-2026-10-10.json`). The standalone preview
 keeps FROM EARTH (computed in the browser) but not imagery or spectra (backend only).
+
+## Postcards (#40)
+
+Every 3D view exposes `snapshot(w, h, { labels, base })` built by `src/views/snapshot.js`. In one synchronous task it
+sets the renderer to the postcard size (above 1080 px on the short side, a higher pixel ratio rather than a bigger
+layout, with `uPixel` point-size uniforms scaled to match), draws, copies the WebGL buffer to a 2D canvas, rasterises
+the CSS2D label layer (backgrounds, borders and text from computed styles; `data-snapshot="skip"` leaves an element
+out), then restores the screen size. `base: false` gives the label layer alone (TECHNICAL style overlays it).
+`src/panels/postcard.js` is the dialog and the frame compositor; `postcard-core.js` holds the DOM-free parts
+(sizes, frame layout, provenance line, caption, share links, stylize prompts and cost). `main.js` `describePostcard()`
+says what is in frame: the System View's `framed()` lists bodies at least 3 px across with their skin map, live feed
+and whether the surface is IMAGINED; `postcardFacts` adds the paleo-Earth banner and scenarios; settings add ENHANCED
+sizes, the surface view and NASA's Milky Way artwork. The provenance line and credits are stamped with or without the
+frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/stylize.js`): JSON only and same-origin
+(so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
+under `data/stylize/` by a hash of image, prompt, size, quality and model.
+

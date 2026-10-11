@@ -17,6 +17,7 @@ import { createArrivals } from './arrivals.js';
 import { badgeLines, brightLimit } from './drift.js';
 import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
 import { METERS } from '../cameraMath.js';
+import { makeSnapshot } from '../snapshot.js';
 
 const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
@@ -719,6 +720,8 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     drawBandKey();
   }
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize }),
     recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },

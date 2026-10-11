@@ -19,6 +19,7 @@ import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraCon
 import { METERS } from '../cameraMath.js';
 import { radecVec } from '../../astro/skyplane.js';
 import { fetchClusterMembers, nebulaImageUrl } from '../../data/catalog.js';
+import { makeSnapshot } from '../snapshot.js';
 
 const DEG = Math.PI / 180;
 export const NEBULA_COLORS = { HII: 0xff6680, PN: 0x55ddbb, SNR: 0xcc99ff, dark: 0xb09a80, reflection: 0x7799ff };
@@ -348,6 +349,8 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     c.needsUpdate = true;
   }
   return {
+    /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize }),
     recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
