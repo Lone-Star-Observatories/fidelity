@@ -8925,6 +8925,186 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "titania": {
+    "id": "titania",
+    "name": "Titania",
+    "aliases": [
+      "Titania"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe unchanged/source-byte-equal SHA087425752c8f5090965f5a4fac7d50a4c450563edd50b807bbc1d45ebeedd312; USGS/Tammy Becker & JPL/Caltech credit.2025-05-30metadata not observation. Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open.",
+    "measured": [
+      "Existing catalogue radius788.9km mass3.4e21kg semimajor436298km/period8.705869days preserved; decimal precision is not uncertainty.",
+      "Voyager2 narrow-angle camera clear filter; two-image composite observed1986-01-24/imageaddition1996-01-29. Monochrome does not establish calibrated visible colour or registered local terrain. Historical caption range369000km/resolution13km/diameterover1600km/valley and crater dimensions are source estimates, not new raster computations or updated measurements. Bright sunward valley wall partly lighting; possible young frost is a hypothesis, not measured local chemistry or detected present activity. Publisher highest-resolution title does not establish an exhaustive newest-observation claim.",
+      "Trailing4.02/4.14/4.20/4.27/4.67/4.90 and5.17micron features reported>3sigma. Leading4.27 and4.02>3sigma, weak4.67>2sigma. Do not assign Ariel richer feature set or Umbriel exposure dates to Titania.",
+      "Titania-specific NIRSpecIFU1786 trailing2023-09-23T20:13:15UTC/leading2023-09-10T01:03:46UTC2567.6s each. Spectra are not resolved visible terrain."
+    ],
+    "modelled": [
+      "Spectral features versus laboratory lattice/grain/layer/roughness and chemical-origin interpretations remain distinct. No mapped local chemistry, Voyager pixel association, ocean/plume detection or biology. Nondetection is not absence. Complementary Tegler2026 isotopic study remains unaudited; no isotope numbers adopted.",
+      "skyGeometry mean spherical Uranus25362km at436298minus788.9km nominal90HFOV6.677050671958738deg97.53493771548295targetpxat1672."
+    ],
+    "unknown": [
+      "Substantial black northern coverage and gaps are not terrain. Blur does not establish smooth ground. Exact input exposures, frame/longitude convention, coverage mask, photometry and shape registration remain open.",
+      "Full retained29page joint paper Table1, section2 and section3.2 assessed for Titania; published2026 draft/revision are distinct from2023 observation dates. Final journal record/supplement/exact product association/calibration remain open.",
+      "Local material fractions and dated registration unknown; possible valley-wall frost not detected present activity."
+    ],
+    "assumed": [
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Independent IMAGINED terrain, chemistry/fractions/colour/light, no analog map or dated Voyager site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Small preview annotations limited; readable card labels required.",
+      "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame. Row185 threshold5/10/20 widths116/112/110 oversized versus97.53494target, not calibrated full diameter. Invented Uranus bands/colour/phase/exposure."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "title": "NASA Voyager2 Titania PIA00039",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/3d-resources/uranus-titania/",
+        "title": "NASA3D Titania own globe",
+        "credit": "USGS/Tammy Becker & JPL/Caltech",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/pdf/2607.05600v2",
+        "title": "Cartwright2026 carbon oxides on Uranian moons, Titania-specific assessment",
+        "authors": [
+          "Richard J. Cartwright",
+          "Sasha Cryan",
+          "Rosario Brunetto",
+          "Apolline Leclef",
+          "Eric Quirico",
+          "Bryan J. Holler",
+          "William M. Grundy",
+          "Tom A. Nordheim",
+          "Ujjwal Raut",
+          "Matthew M. Hedman",
+          "Riley A. DeColibus",
+          "Chloe B. Beddingfield",
+          "Marc Neveu",
+          "Christopher R. Glein",
+          "Sara Faggi",
+          "Geronimo L. Villanueva",
+          "Noemi Pinilla-Alonso",
+          "Stephanie M. Menten"
+        ],
+        "terms": "Specific record links CC BY4.0; no paper figure embedded.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sha256": "11af7d5d4e89f1074a44c41b3b9835d1ab89e8a5e0976cfa7231c0a0f6316ee1",
+        "observationDate": "2023-09-10/2023-09-23"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/titania-voyager-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00039/PIA00039.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/titania-highest-resolution-voyager-picture/",
+        "credit": "NASA/JPL",
+        "terms": "NASA media guidance; not asserted CC BY",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "1986-01-24",
+        "publicationDate": "1996-01-29",
+        "bytes": 33782,
+        "sha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+        "width": 640,
+        "height": 760,
+        "description": "Actual Voyager2 Titania clear-filter two-image monochrome composite; not calibrated visible colour or registered local terrain.",
+        "processing": "Full unchanged publisher JPEG; no Fidelity resize/re-encoding. Full TIFF retained separately. Monochrome does not establish calibrated visible colour or registered local terrain. Historical caption range369000km/resolution13km/diameterover1600km/valley and crater dimensions are source estimates, not new raster computations or updated measurements. Bright sunward valley wall partly lighting; possible young frost is a hypothesis, not measured local chemistry or detected present activity. Publisher highest-resolution title does not establish an exhaustive newest-observation claim."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 19.2,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.02775543223147933,
+      "centreDiscWidthFraction": 0.0002422118436133154,
+      "irradianceEarth": 0.002712673611111111,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL TITANIA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM TITANIA — ASSUMED ATTITUDE",
+    "uranusGeometry": {
+      "radiusKm": 25362,
+      "centreDistanceKm": 435509.1,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 6.677050671958738,
+      "targetPixelsAt1672": 97.53493771548295,
+      "rasterRow": 185,
+      "runs": [
+        {
+          "threshold": 5,
+          "width": 116
+        },
+        {
+          "threshold": 10,
+          "width": 112
+        },
+        {
+          "threshold": 20,
+          "width": 110
+        }
+      ],
+      "limits": "Threshold-sensitive chords, not calibrated full diameter. Mean spherical Uranus; assumed axis/camera attitude/phase, oblateness omitted, rings omitted as artistic exposure not invisibility.60K helper angular only; blackbody colour/irradiance not adopted. Sun19.2AU off-frame."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/titania-surface-image.jpg",
+      "previewUrl": "/bespoke/titania-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titania-generated-surfaceImage-original.png",
+      "sourceSha256": "b45a0fa4cead33151555ee22a130b40a0ac949aac564a9721bdb0a0d779a6ed9",
+      "sha256": "fd59e904e07e8bf5636eac02d0aab4aa085f207ea7b2d3d6c6cf1ec68493c6be",
+      "previewSha256": "aefa78cba7e70fbd38b8025d1c96ccfb681fcdf180de892d9e637cb7a08ae593",
+      "bytes": 379776,
+      "previewBytes": 11894,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/titania-sky-image.jpg",
+      "previewUrl": "/bespoke/titania-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "titania-generated-skyImage-original.png",
+      "sourceSha256": "4e10d2e15620712fa7e7c84f34f8e9aff8578ed8721cc9e4e307484409d10a60",
+      "sha256": "08feca237111a2a0e9ed9130f27093dcc632c97d8ac4478b972a65daf8872d69",
+      "previewSha256": "7e5c0969b9b083c62e0d6ddd304db7bfa1eba1aac9dd96574d4c56536f30e481",
+      "bytes": 285922,
+      "previewBytes": 9137,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
