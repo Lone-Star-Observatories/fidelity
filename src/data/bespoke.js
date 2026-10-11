@@ -8086,6 +8086,151 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "iapetus": {
+    "id": "iapetus",
+    "name": "Iapetus",
+    "aliases": [
+      "Iapetus"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-10",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D globe retained unchanged and source-byte equal (SHA256 9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405). Product associations, coverage, frame, input epochs, photometry and local scene registration remain open. Blurred regions and mosaic transitions do not establish smooth terrain or local material fractions.",
+    "measured": [
+      "Catalogue radius734.5km and representative orbital semimajor axis3561700km; publisher1471km diameter retained separately, without silent replacement.",
+      "Cassini PIA21347 observed2017-05-30, released2017-09-18, combines338nm ultraviolet/568nm green/930nm infrared in enhanced false colour. Native source is not calibrated visible RGB or a registered globe.",
+      "Spencer/Denk main paper reports2007-09-10 CIRS resolved-location blackbody fits129K/113K; these are not global or current observer temperatures."
+    ],
+    "modelled": [
+      "External dust deposition with temperature-dependent water-ice migration is an explanation of the dichotomy, not measured present-day local sublimation or composition. Thermal albedos0.04/0.39 and deposition/mixing/gardening assumptions are model values, not local fractions.",
+      "Saturn angular diameter1.87398420677degrees and27.34565245 target pixels at1672px under nominal90degree HFOV, from skyGeometry. Spherical radius58232km at3561700minus734.5km; no dated site/ephemeris registration."
+    ],
+    "unknown": [
+      "Exact globe product/frame/coverage/epoch/photometry audit and local science-image registration.",
+      "Full companion imaging paper, supplements and equatorial-ridge alternatives audit. No unique ridge origin asserted.",
+      "Generated Saturn globe appears oversized; precise globe-only audit remains open. Row240 spans49px at thresholds5/10/20 include rings and are NOT adopted as diameters.",
+      "Material chemistry/fractions, dated illumination and calibrated visible colour/scene exposure remain unknown."
+    ],
+    "assumed": [
+      "IMAGINED independent local and sky views: craters, blocks, dark regolith, pale patches, material chemistry/fractions, colour and lighting invented. No analog body map or observed site reconstruction.",
+      "Saturn bands, rings, phase and camera orientation are artistic. Inclined orbit allows variable ring opening; image opening is assumed without angle calibration. Off-frame Sun9.58AU helper is angular only;95K Saturn helper is not visible photometry.",
+      "No atmosphere, plume, liquid, exposed ocean, biology or survivable landing implied. Small preview annotations have limited readability; readable card labels carry limitations."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "title": "Cassini PIA21347 Farewell to Iapetus",
+        "publicationDate": "2017-09-18"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/puzzled-iapetus/",
+        "title": "Cassini PIA21332 Puzzled Iapetus",
+        "publicationDate": "2017-06-12"
+      },
+      {
+        "url": "https://ciclops.org/media/sp/2010/6286_14825_0.pdf",
+        "title": "Spencer and Denk: Iapetus thermal segregation; retained compilation, main pages1–4 assessed",
+        "publicationDate": "2010-01-22"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA image/media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/iapetus-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia21/pia21347/PIA21347.jpg",
+        "sourcePage": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/farewell-to-iapetus/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA image/media guidelines; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2017-05-30",
+        "publicationDate": "2017-09-18",
+        "bytes": 8326,
+        "sha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+        "width": 629,
+        "height": 598,
+        "description": "Actual Cassini UV/green/infrared enhanced false-colour composite. Small distant body; not local terrain, calibrated visible colour or registered globe. Caption range/scale/orientation are publisher estimates, not newly derived raster measurements.",
+        "processing": "Unchanged full publisher JPEG; no local resizing or reencoding. Original TIFF and separate older visible-monochrome PIA21332 retained as research inputs."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 1.8739842067705352,
+      "centreDiscWidthFraction": 0.016355055294701642,
+      "irradianceEarth": 9.0736877390816e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical mean-radius angular guide only. 95 K helper colour/irradiance not adopted as visible photometry. Inclined orbit gives variable ring opening; camera, ring/phase orientation, FOV, colour, exposure and lighting assumed without dated ephemeris registration.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 3560965.5,
+      "targetPixels": 27.345652452741145
+    },
+    "surfaceLabel": "IMAGINED LOCAL IAPETUS TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM IAPETUS — ASSUMED RING ORIENTATION",
+    "surfaceImage": {
+      "url": "/bespoke/iapetus-surface-image.jpg",
+      "previewUrl": "/bespoke/iapetus-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iapetus-generated-surfaceImage-original.png",
+      "sourceSha256": "09c2d0c06f97fc9d16aadc431d311e5b811dd0ef13f72c77c746d15721638e97",
+      "sha256": "36d669f587ecd70838303ea30708ad1c96f6ce4717e2183769d1c55f86f4d7b7",
+      "previewSha256": "51a961004a651b9e46c92c7caf1f51feedaa41a97fb9fc0d0a2bafc21c03cf3a",
+      "bytes": 342150,
+      "previewBytes": 11337,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/iapetus-sky-image.jpg",
+      "previewUrl": "/bespoke/iapetus-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-10",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iapetus-generated-skyImage-original.png",
+      "sourceSha256": "3cab827f76887809cee11626163c4484acf1a57b03c58e5094d4f4a1789269f3",
+      "sha256": "3f4c5b67aed61938df711b486b6dd9ab607f18f5b4a67f404a06d9bf8c418e06",
+      "previewSha256": "a4687a14e0816f32519c46702e94ebb87868e5e96a61a7e1630ea6bf2b56fbde",
+      "bytes": 193478,
+      "previewBytes": 6834,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

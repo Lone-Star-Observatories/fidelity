@@ -335,10 +335,11 @@
       "parent": "saturn",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own NASA3D globe retained unchanged and source-byte equal (SHA256 9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405). Product associations, coverage, frame, input epochs, photometry and local scene registration remain open. Blurred regions and mosaic transitions do not establish smooth terrain or local material fractions.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "iapetus"
     },
     {
       "id": "sol-phoebe",
@@ -8512,7 +8513,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 14,
+      "initialDossiers": 15,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
