@@ -1,5 +1,11 @@
 # Fidelity visual assets
 
+## Lossless snapshot compression blocks (2026-10-10, #3)
+
+The full builder now uses16 Zopfli iterations with `blocksplittingmax:0` for the complete binary snapshot, replacing128 iterations with the default15-block limit. Same-input standard-gzip output shrinks from13,189,667 to13,137,116 bytes; dense125v2 transport saves60,227 bytes. The complete readable JSON, application, CSS and all native/image/model/map/shape bytes remain unchanged. No fields are dropped or rounded and no images are converted. Application32/CSS5 settings, all legacy decoders, Blob import/revoke and the unsupported-gzip message remain intact. Details and exact round trips are recorded in `docs/research/standalone-block-splitting-2026-10-10.json`.
+
+453 tests pass and1 skips; production/full builds pass. FullHTML15,928,755 bytes leaves71,245 bytes, saving60,227 against the same complete snapshot/application/CSS. Chrome restores the unchanged readable snapshot SHA256 `4fec0dbe2050e2c752057ec87f8a15dfec9a61f2645dab2fdcd8e6cb7ee7a2ef`, application and CSS exactly through the HTML parser;201 images and20 bands decode, with517 detailed entries and32 models. All56 dossiers remain deeply equal and native context hashes, normal/offline Rhea3-card views, six offline routes, unsupported-gzip message and11 worker event rows pass. Other browser engines remain unverified. Titan's prepared native/local/sky assets still await an additive integration trial; no57th dossier is claimed.
+
 ## Titan sky and compact illustration preparation (2026-10-10, #3)
 
 Titan now has a separately prepared independent IMAGINED sky study, with a narrow invented foreground and amber haze. No Saturn, rings, Sun disk or stars appear. Strong obscuration is an illustrative assumption, not a calibrated atmospheric-transmission calculation or a claim that Saturn is invisible at every site and wavelength. Haze layering, optical depth, terrain, chemistry, colour, exposure and illumination remain invented. No astronomical disk requires angular/raster sizing; `skyGeometry` alone cannot establish visibility through haze. The full prompt, untouched PNG and hash are recorded in `docs/research/titan-sky-view-preparation-2026-10-10.json`.
