@@ -1,0 +1,70 @@
+[
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "bytes": 1099,
+    "sha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+    "path": "data/research-sources/nereid-PIA00054-original.jpg",
+    "width": 200,
+    "height": 200
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00054/PIA00054.tif",
+    "status": 200,
+    "contentType": "image/tiff",
+    "bytes": 1249,
+    "sha256": "c2ec381cdc521587228619620030dfceaca566af950d1481cb02f19f91bcb7a3",
+    "path": "data/research-sources/nereid-PIA00054-original.tif",
+    "width": 200,
+    "height": 200
+  },
+  {
+    "url": "https://science.nasa.gov/photojournal/nereid/",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 264240,
+    "sha256": "a7c2137f00ee3d9bee09559131e3bd83b96716765bf3485a6ac84dfdbd9f7842",
+    "path": "data/research-sources/nereid-caption.html"
+  },
+  {
+    "url": "https://science.nasa.gov/neptune/moons/nereid/",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 259551,
+    "sha256": "812905a7177421b889b4435e0e641c85d649ee47436f81598d21d60227086a98",
+    "path": "data/research-sources/nereid-overview.html"
+  },
+  {
+    "url": "https://authors.library.caltech.edu/records/3d4cc-g7952",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 109457,
+    "sha256": "60e34ba94b800d58093437793fb342904295a116693a9510fd753f9130a00e9b",
+    "path": "data/research-sources/nereid-Belyakov2026-record.html"
+  },
+  {
+    "url": "https://authors.library.caltech.edu/records/3d4cc-g7952/files/sciadv.aeb1429.pdf?download=1&fresh=20261011",
+    "status": 200,
+    "contentType": "application/octet-stream",
+    "bytes": 8779281,
+    "sha256": "51a9d8cc3d63d44839c7875c07dd8b8d57b11b57f521d61b1345160a3e85ece4",
+    "path": "data/research-sources/nereid-Belyakov2026-published.pdf"
+  },
+  {
+    "url": "https://authors.library.caltech.edu/records/3d4cc-g7952/files/sciadv.aeb1429_sm.pdf?download=1&fresh=20261011",
+    "status": 200,
+    "contentType": "application/octet-stream",
+    "bytes": 767402,
+    "sha256": "15696655a18c2f852f7970bf9b86915b22695a92ca8edab650b7c3ab0909ee8c",
+    "path": "data/research-sources/nereid-Belyakov2026-supplement.pdf"
+  },
+  {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 320653,
+    "sha256": "40f759ff6485f3854e23ddc8b4733db1d3855a23b367906d5491f789a40e67c1",
+    "path": "data/research-sources/nereid-nasa-media-terms.html"
+  }
+]
