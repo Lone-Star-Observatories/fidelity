@@ -1,0 +1,79 @@
+[
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.jpg",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "path": "data/research-sources/proteus-PIA00062-original.jpg",
+    "bytes": 12596,
+    "sha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6"
+  },
+  {
+    "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia00/pia00062/PIA00062.tif",
+    "status": 200,
+    "contentType": "image/tiff",
+    "path": "data/research-sources/proteus-PIA00062-original.tif",
+    "bytes": 70545,
+    "sha256": "d281c0bb52e079d2d55ba96c63067ebb3df5c9db785a575d0c28b4fb919af340"
+  },
+  {
+    "url": "https://science.nasa.gov/neptune/moons/proteus/",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "path": "data/research-sources/proteus-overview.html",
+    "bytes": 259783,
+    "sha256": "0431d30aeb39c09f7d4505b4b1e3ffddfd11644ea4a865ab358571e53710e749"
+  },
+  {
+    "url": "https://arxiv.org/abs/2607.27481",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "path": "data/research-sources/proteus-arxiv-record.html",
+    "bytes": 44042,
+    "sha256": "ea278633b7891b18dfc2d5d6fe162deef47466a5d0fd0656b7a2d409951252d8"
+  },
+  {
+    "url": "https://arxiv.org/pdf/2607.27481",
+    "status": 200,
+    "contentType": "application/pdf",
+    "path": "data/research-sources/proteus-Davis2026-author.pdf",
+    "bytes": 740854,
+    "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c"
+  },
+  {
+    "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.tab",
+    "status": 200,
+    "contentType": null,
+    "path": "data/research-sources/proteus-stooke-source.tab",
+    "bytes": 70226,
+    "sha256": "d079c8eac52d84224d5cb413526ff9415ab33afd48965e7e025544832ddd1868"
+  },
+  {
+    "url": "https://sbnarchive.psi.edu/pds4/non_mission/small_bodies.stooke.shape-models/data/n8proteus.xml",
+    "status": 200,
+    "contentType": "text/xml",
+    "path": "data/research-sources/proteus-stooke-label.xml",
+    "bytes": 6278,
+    "sha256": "2db42d2c7238b54cbde71e813f189c72b8cb1b1b91a82db184b9d6948a89b886"
+  },
+  {
+    "url": "https://photojournal.jpl.nasa.gov/catalog/PIA00062",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "path": "data/research-sources/proteus-caption.html",
+    "bytes": 264577,
+    "sha256": "ebc0fb5fb285622674207bae936bc95282857544ad2256c2bf1ba5c084245b0f"
+  },
+  {
+    "url": "https://science.nasa.gov/photojournal/neptunes-moon-proteus/",
+    "error": "HTTP Error 404: Not Found",
+    "sha256": null
+  },
+  {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "path": "data/research-sources/proteus-nasa-media-terms.html",
+    "bytes": 320652,
+    "sha256": "fadf47a3fcee64e386414ab9df9cd89e8ddffa91586ba29bed2b6b1bc2c004a2"
+  }
+]
