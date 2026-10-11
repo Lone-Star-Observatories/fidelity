@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-11",
+  "status": "Research-only; no61st dossier or new embedding.",
+  "body": "Miranda",
+  "generator": "Built-in image_gen independent new generation without referenced images",
+  "prompt": "Create one independent scientific educational IMAGINED SKY FROM MIRANDA illustration, landscape16:9 nominal90degree horizontal field of view. Independently invented pale gray granular regolith, scattered angular blocks and low fault ridges occupy bottom third, sharp airless horizon and black sky. Uranus high above horizon: spherical mean-radius approximation25362km at129846minus235.8km observer distance gives angular diameter22.568788325degrees via skyGeometry, target333.625pixel globe width at1672pixel output. A restrained pale cyan globe approximately one fifth of picture width; no exaggerated deep blue, dramatic stripes or storms. Independently invented smooth haze/cloud appearance on Uranus, colour, phase and lighting artistic not calibrated. Do NOT reuse actual Uranus, Moon, Mars, Pluto or any observed-body map, image or recoloured skin. No visible rings: omission is an artistic exposure choice not proof rings invisible; ring opening/camera and planetary-axis orientation not dated or calibrated. Hypothetical Uranus-facing attitude without named site, ephemeris or registered Voyager geography; Miranda orbit is inclined relative Uranus equator, do not assume Saturn-like rings. No Sun, stars, foreground atmosphere/haze/cloud, plume, liquid, ocean, biology, people, spacecraft or survivable landing. Terrain slopes/blocks/regolith material fractions and chemistry, phase, light and exposure all invented. Clear upper-left title exactly 'IMAGINED — SKY FROM MIRANDA'. Bottom-left footer exactly 'Hypothetical attitude · uncalibrated colour and terrain'. Single landscape scene.",
+  "originalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e321359a-e04d-4434-9c8b-a29d12b4067b.png",
+  "researchCopy": "data/research-sources/miranda-generated-skyImage-original.png",
+  "inspected": true,
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "uranusMeanRadiusKm": 25362,
+    "mirandaRadiusKm": 235.8,
+    "representativeCentreDistanceKm": 129846,
+    "observerDistanceKm": 129610.2,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 22.568788325000032,
+    "targetGlobeWidthPxAt1672": 333.62500218991465,
+    "temperatureHelperK": 60,
+    "limits": "Spherical mean-radius and semimajor-axis approximation; not dated ephemeris.60K angular helper only; blackbody RGB/irradiance not visible Uranus photometry."
+  },
+  "rasterAudit": {
+    "row": 250,
+    "widths": [
+      {
+        "threshold": 5,
+        "start": 785,
+        "end": 1170,
+        "width": 386
+      },
+      {
+        "threshold": 10,
+        "start": 787,
+        "end": 1169,
+        "width": 383
+      },
+      {
+        "threshold": 20,
+        "start": 787,
+        "end": 1168,
+        "width": 382
+      }
+    ],
+    "limits": "Brightness runs across assumed globe near horizontal centre; phase/exposure/threshold sensitive, not calibrated complete diameter. Globe appears oversized versus333.625pixel target; precise limb/registration audit open."
+  },
+  "outputs": [
+    {
+      "role": "surfaceImage",
+      "input": "data/research-sources/miranda-generated-surfaceImage-original.png",
+      "bytes": 3282922,
+      "sha256": "94efe92559a3cbe2e2147854ce3fa3a9324387bf32cbf57b0cb0e6da4e89aa0a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/miranda-surfaceImage-master.jpg",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 385669,
+      "sha256": "60cc60386d806e2bf12474bcda3ff9eb0121f68d225a3e4ac6a62ad9efa7ff43"
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/miranda-surfaceImage-preview.jpg",
+      "width": 256,
+      "quality": 80,
+      "bytes": 10804,
+      "sha256": "4fa29836c161839c8c0534d924f5bff0e1c00eb268eff0ea705b78e38a214d78"
+    },
+    {
+      "role": "skyImage",
+      "input": "data/research-sources/miranda-generated-skyImage-original.png",
+      "bytes": 2081385,
+      "sha256": "e6abdfd22d23cebfaddcd6b73f64400bf8850d8eaf9de73e52743bdedf3c18ae",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/miranda-skyImage-master.jpg",
+      "width": 1536,
+      "quality": 85,
+      "bytes": 234105,
+      "sha256": "09a99bbfb929106778410e24aba814a8453c7e0e801214fde9852943c28e3423"
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/miranda-skyImage-preview.jpg",
+      "width": 256,
+      "quality": 80,
+      "bytes": 8198,
+      "sha256": "db6d5035892ec206367dfb5ecbb04e00ea931d8f5ecc6412556d3eff4b96d89d"
+    }
+  ],
+  "parameterSources": [
+    "https://ssd.jpl.nasa.gov/planets/phys_par.html",
+    "https://ssd.jpl.nasa.gov/sats/phys_par/",
+    "https://ssd.jpl.nasa.gov/sats/elem/"
+  ],
+  "limitations": "Independent IMAGINED foreground regolith, ridges, fault scarps, blocks, chemistry/fractions, Uranus clouds/bands, colour, phase, lighting and exposure. No analog map or dated Voyager/globe-registered site. Mean spherical radius ignores oblateness. Camera/planetary-axis/ring orientation assumed, not calibrated/date-registered; inclined orbit means no fixed equatorial ring opening. Rings omitted by artistic exposure choice, not measured invisibility. No foreground atmosphere/haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. No Sun/stars.60K helper angular only, not photometric rendering. Uranus globe oversized and raster threshold sensitive.",
+  "masterPreviewAssessment": "Both original PNGs and full prompts preserved.1536JPEG85 masters and recorded256JPEG80 previews retained separately research-only. Previews inspected; small footer/annotations have limited readability and require readable card labels. No current dossier/master/preview replaced.",
+  "rawBudget": {
+    "generatedPreviewsBytes": 19002,
+    "compactNativeBytes": 25272,
+    "totalBeforeMetadataAndTransport": 44274,
+    "limitations": "Exceeds previous24920HTMLheadroom as raw bytes; exact additive HTML cost requires build and lossless headroom recovery."
+  },
+  "preservation": "All60 dossiers336 tracked registry/bespoke/map/model inputs byte-identical; globe and native science unchanged.",
+  "open": [
+    "More lossless headroom before additive Miranda dossier/native embedding.",
+    "Precise globe limb, photometry and registered camera/phase audit.",
+    "Full primary interior/heating papers and own-map frame/coverage audit."
+  ],
+  "verification": {
+    "tests": "454 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15975606,
+    "headroomBytes": 24394,
+    "completeSnapshotSha256": "bb5b40c69af4c68f93f18c9130a0302e63333d78dd712a2f36e7c7f6f6b9edc9",
+    "applicationSha256": "8e0784db25fe51675b8997345067f7f66fbbd0c71344c00a70e863102307d6d6",
+    "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+    "browser": "Chrome exact current whole readableJSON/application/CSS/HTMLparser213images20bands517details32models. Native contexts and normal/offlinePhoebe3cards,six routes,unsupportedgzip,11worker rows pass. Other engines open.",
+    "preservation": "All60 dossiers336trackedregistry/bespoke/map/model inputs exact; original PNGs/full prompts/native science unchanged. No61st/newembedding.",
+    "snapshotDifferenceSummary": {
+      "/bandImages": 15
+    },
+    "attribution": "Recursive interbuild differences grouped explicitly; feed origin not independently audited, no asset/compression savings claim."
+  }
+}
