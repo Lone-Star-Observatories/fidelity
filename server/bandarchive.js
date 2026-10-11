@@ -5,7 +5,13 @@
 //     there is no data) built from an archive product named in src/data/bandarchive.js:
 //       trek  NASA Solar System Treks WMTS tiles mosaicked (zoom 0 = 512×256 is the preview);
 //       img8  a PDS 8-bit simple-cylindrical raster (0 = no data);
-//       bins  a PDS ASCII table of binned values, drawn grey (min → black, max → white).
+//       bins  a PDS ASCII table of binned values, drawn grey (1st percentile → black, 99th → white,
+//             clipped beyond: a robust stretch, so a few extreme bins do not flatten the rest).
+//   GET /api/band-archive?id=…&meta=1  (#72)
+//     the map's physical scale as JSON: { id, kind, scale: { min, max, unit, what, … } | null }, grey
+//     0 → min, 255 → max, linear. Tables: the stretch the image was drawn with (computed from the table,
+//     cached beside the image); the XRS raster and Diviner: the product's documented scaling
+//     (`scale` in src/data/bandarchive.js).
 //   GET /api/band-disc?id=webb-jupiter-2022[&size=preview]
 //     a whole-disc image (JPEG/PNG as published; the preview is the publisher's own small rendition).
 // Only ids in BODY_BAND can be asked for, and only from the archive hosts below (not an open proxy).
@@ -56,28 +62,50 @@ export function img8ToRgba(buf, width, height) {
   return { width, height, data };
 }
 
-/**
- * A PDS ASCII table of binned values as a grey equirectangular map (W×H, longitude −180…180).
- * cols: [latLo, latHi, lonLo, lonHi, value] (boxes) or [lat, lon, value] with `cell` degrees (a grid of
- * centres, interpolated bilinearly). Values ≥ 9999 are no data. Returns { width, height, data, min, max }.
- */
-export function binsToRgba(text, { cols, cell }, W, H) {
+/** Parse a PDS ASCII table of binned values: rows of the `cols` fields (the value last), malformed lines skipped. */
+export function parseBins(text, cols) {
   const rows = [];
   for (const line of text.split(/\r?\n/)) {
     const f = line.trim().split(/\s+/).map(Number);
     if (f.length <= Math.max(...cols) || f.some((x, i) => cols.includes(i) && !Number.isFinite(x))) continue;
     rows.push(cols.map((i) => f[i]));
   }
-  const vals = rows.map((r) => r[r.length - 1]).filter((v) => v < 9999);
-  if (!vals.length) throw new Error('no values in table');
-  const min = Math.min(...vals), max = Math.max(...vals), span = max - min || 1;
+  return rows;
+}
+const isValue = (v) => v < 9999; // 9999.999 is the tables' NOT_APPLICABLE_CONSTANT: no data
+/** The p-quantile (0…1) of sorted numbers, linearly interpolated. */
+export function quantile(sorted, p) {
+  const x = (sorted.length - 1) * p, i = Math.floor(x), f = x - i;
+  return i + 1 < sorted.length ? sorted[i] * (1 - f) + sorted[i + 1] * f : sorted[i];
+}
+/** The grey stretch of a table (#72): its bins' 1st → 99th percentile (grey 0 → 255), and their full range. */
+export const STRETCH = { lo: 0.01, hi: 0.99, version: 'p1-p99' };
+export function binsStretch(vals) {
+  const v = vals.filter(isValue).sort((a, b) => a - b);
+  if (!v.length) throw new Error('no values in table');
+  let min = quantile(v, STRETCH.lo), max = quantile(v, STRETCH.hi);
+  if (!(max > min)) { min = v[0]; max = v[v.length - 1]; } // nearly flat: the full range
+  return { min, max, dataMin: v[0], dataMax: v[v.length - 1], n: v.length };
+}
+
+/**
+ * A PDS ASCII table of binned values as a grey equirectangular map (W×H, longitude −180…180).
+ * cols: [latLo, latHi, lonLo, lonHi, value] (boxes) or [lat, lon, value] with `cell` degrees (a grid of
+ * centres, interpolated bilinearly). Values ≥ 9999 are no data. Grey is linear from the 1st percentile
+ * of the values (black) to the 99th (white), clipped beyond (binsStretch). Returns { width, height, data,
+ * min, max, dataMin, dataMax, n }: min and max are the values at grey 0 and 255, in the table's units.
+ */
+export function binsToRgba(text, { cols, cell }, W, H) {
+  const rows = parseBins(text, cols);
+  const st = binsStretch(rows.map((r) => r[r.length - 1]));
+  const { min, max } = st, span = max - min || 1;
   const grid = new Float32Array(W * H).fill(NaN);
   const wrap = (lon) => ((((lon + 180) % 360) + 360) % 360) - 180;
   if (cell) {
     const nx = Math.round(360 / cell), ny = Math.round(180 / cell), g = new Float32Array(nx * ny).fill(NaN);
     for (const [lat, lon, v] of rows) {
       const i = Math.floor((wrap(lon) + 180) / cell), j = Math.floor((90 - lat) / cell);
-      if (i >= 0 && i < nx && j >= 0 && j < ny && v < 9999) g[j * nx + i] = v;
+      if (i >= 0 && i < nx && j >= 0 && j < ny && isValue(v)) g[j * nx + i] = v;
     }
     for (let y = 0; y < H; y++) {
       const gy = ((y + 0.5) / H) * ny - 0.5, j0 = Math.max(0, Math.floor(gy)), j1 = Math.min(ny - 1, j0 + 1), fy = Math.min(1, Math.max(0, gy - j0));
@@ -91,7 +119,7 @@ export function binsToRgba(text, { cols, cell }, W, H) {
     }
   } else {
     for (const [la0, la1, lo0, lo1, v] of rows) {
-      if (!(v < 9999)) continue;
+      if (!isValue(v)) continue;
       const y0 = Math.max(0, Math.floor(((90 - Math.max(la0, la1)) / 180) * H)), y1 = Math.min(H, Math.ceil(((90 - Math.min(la0, la1)) / 180) * H));
       const span = ((lo1 - lo0) + 360) % 360 || 360, start = wrap(lo0);
       const x0 = Math.floor(((start + 180) / 360) * W), x1 = Math.ceil(((start + span + 180) / 360) * W);
@@ -102,10 +130,10 @@ export function binsToRgba(text, { cols, cell }, W, H) {
   for (let i = 0; i < W * H; i++) {
     const v = grid[i];
     if (Number.isNaN(v)) continue;
-    const g = Math.round(((v - min) / span) * 255);
+    const g = Math.round(Math.min(1, Math.max(0, (v - min) / span)) * 255);
     data.set([g, g, g, 255], i * 4);
   }
-  return { width: W, height: H, data, min, max };
+  return { width: W, height: H, data, ...st };
 }
 
 // a table or raster is downloaded once and shared by the preview and the full map
@@ -128,17 +156,47 @@ async function buildArchive(a, pre) {
   throw new Error(`unknown archive kind ${a.kind}`);
 }
 
+// a table's image is keyed by its stretch, so a cached map never disagrees with its scale (#72)
+const imageKey = (id, a, pre) => `archive|${id}${a.kind === 'bins' ? `|${STRETCH.version}` : ''}${pre ? '|preview' : ''}`;
+
 /** GET /api/band-archive?id=…: an archive product as an equirectangular PNG. */
 export async function archiveImage(id, size = '') {
   const a = ARCHIVE.get(id);
   if (!a) throw notFound('archive map');
   const pre = isPreview(size);
-  const { body, cache } = await cachedImage(`archive|${id}${pre ? '|preview' : ''}`, YEAR, () => queued(async () => {
+  const { body, cache } = await cachedImage(imageKey(id, a, pre), YEAR, () => queued(async () => {
     const out = await buildArchive(a, pre);
     return encodePng(out.img.width, out.img.height, out.img.data);
   }, pre));
   const w = body.readUInt32BE(16), h = body.readUInt32BE(20);
   return { body, type: 'image/png', maxAge: 86400, headers: { 'x-band-cache': cache, 'x-band-kind': `archive-${a.kind}`, 'x-band-size': `${w}x${h}` } };
+}
+
+/**
+ * The physical scale of an archive map (#72): grey 0 → min, 255 → max, linear, in `unit` (of `what`).
+ * The entry's `scale` (src/data/bandarchive.js) gives the unit and, for a raster or a Trek layer, the
+ * documented min/max and where they come from; a table's min/max are the stretch its image was drawn
+ * with (binsStretch), times `factor` (the table's units → the unit shown).
+ */
+export function scaleOf(a, stretch = null) {
+  if (!a.scale) return null;
+  const { factor = 1, ...s } = a.scale;
+  if (a.kind !== 'bins') return { ...s, stretch: 'documented' };
+  const r = (x) => Number((x * factor).toPrecision(6));
+  return { ...s, min: r(stretch.min), max: r(stretch.max), dataMin: r(stretch.dataMin), dataMax: r(stretch.dataMax), bins: stretch.n, stretch: STRETCH.version };
+}
+
+/** GET /api/band-archive?id=…&meta=1: { id, kind, scale } (scale null for a map without one, e.g. Titan's VIMS mosaics). */
+export async function archiveMeta(id) {
+  const a = ARCHIVE.get(id);
+  if (!a) throw notFound('archive map');
+  if (a.kind !== 'bins') return { id, kind: a.kind, scale: scaleOf(a) };
+  // computed from the same downloaded table as the image, cached beside it
+  const { body } = await cachedImage(`archive-meta|${id}|${STRETCH.version}`, YEAR, () => queued(async () => {
+    const rows = parseBins((await raw(a.url)).toString('latin1'), a.cols);
+    return Buffer.from(JSON.stringify(scaleOf(a, binsStretch(rows.map((r) => r[r.length - 1])))));
+  }, true));
+  return { id, kind: a.kind, scale: JSON.parse(body.toString('utf8')) };
 }
 
 const isJpeg = (b) => b?.length > 3 && b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff;
