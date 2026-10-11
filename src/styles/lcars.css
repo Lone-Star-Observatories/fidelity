@@ -769,3 +769,13 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .nav-band-key { left: auto; right: 12px; max-width: min(46%, 460px); border-left-color: var(--blue, #9cf); }
 .paleo-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); z-index: 4; max-width: min(860px, 90%); padding: 4px 14px; border-radius: 14px;
   background: rgba(0, 0, 0, 0.7); border: 2px solid var(--lilac); color: var(--lilac); letter-spacing: 0.08em; font-size: calc(12px * var(--text-scale, 1)); text-align: center; pointer-events: none; }
+
+/* DETAIL slider (System View layers, step by step) */
+.detail-box { display: flex; flex-direction: column; justify-content: center; width: 210px; height: var(--bar-h); padding: 0 8px; background: #000; border: 2px solid var(--violet); border-left: 0; box-sizing: border-box; }
+.detail-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 16px; margin: 0; background: transparent; cursor: ew-resize; }
+.detail-slider::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--gold) var(--fill, 100%), #3a2e3a var(--fill, 100%)); }
+.detail-slider::-moz-range-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--gold) var(--fill, 100%), #3a2e3a var(--fill, 100%)); }
+.detail-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 14px; margin-top: -4px; border-radius: 4px; background: var(--peach); border: 0; }
+.detail-slider::-moz-range-thumb { width: 18px; height: 14px; border-radius: 4px; background: var(--peach); border: 0; }
+.detail-slider:focus-visible { outline: 2px solid var(--ice); outline-offset: 1px; }
+.detail-read { color: var(--peach); font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
