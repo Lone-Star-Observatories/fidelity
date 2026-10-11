@@ -1,0 +1,87 @@
+{
+  "status": "research-only preparation; no56th/new embedding",
+  "body": "Rhea",
+  "date": "2026-10-10",
+  "generator": "OpenAI built-in image generation",
+  "generationId": "exec-138407fb-b5b3-43b8-a178-81c34949b588",
+  "originalPath": "data/research-sources/rhea-generated-skyImage-original.png",
+  "prompt": "Create a newly composed independent scientific concept illustration labelled IMAGINED SKY FROM RHEA, landscape16:9. Hypothetical low observer above Rhea's independently invented pale-gray ice-rich regolith, a few angular blocks and shallow crater rim in lower third; black space above. No observed-body map or analog skin: do not copy/recolour any Moon/Mars/Pluto/Jupiter/Saturn image or texture. Show one small schematic Saturn globe near upper centre, nominal90-degree horizontal FOV: angular guide12.70159454degrees, spherical globe excluding rings about11.13percent of image width (roughly186pixels at1672 width). Keep Saturn small; do not enlarge it for drama. Its cream-gray bands are independently invented, modestly lit with artistic phase, nearly edge-on schematic rings as a narrow line, not measured registration. Rhea has a detected extremely tenuousO2/CO2 exosphere, but do not depict visible haze/clouds/atmospheric glow. No rings around Rhea, only Saturn's rings. Sun out of frame. No craft/people/active plume/exposed ocean/biology/survivable landing. Terrain morphology/material colour/chemistry fractions, band/ring appearance, phase/light/exposure/site orientation are assumptions not measurements. Clear in-image title 'IMAGINED SKY FROM RHEA', small footer 'Invented terrain, Saturn appearance and lighting • not a dated site'. Crisp subdued independent artwork.",
+  "limits": [
+    "Independent invented terrain/material fractions/chemistry/Saturn bands/rings/phase/lighting/exposure; no observed-body map or analog reuse.",
+    "No dated site or orientation registration, visible atmosphere/haze/clouds, active plume/ocean/biology/landing claim; tenuous Rhea exosphere detection preserved.",
+    "No confirmed Rhea ring; only schematic Saturn rings.",
+    "95K helper used for angular guide only, not visible colour/irradiance/exposure calibration. Sun off-frame."
+  ],
+  "originalBytes": 1823737,
+  "originalSha256": "2f40f779bc25f8b21231aadacfc5831fa1b07004f1dbb0cd51b9cc03e6178807",
+  "width": 1672,
+  "height": 941,
+  "inspected": true,
+  "geometry": {
+    "angularDiameterDeg": 12.701594542298535,
+    "centreDiscWidthFraction": 0.11129850150326333,
+    "irradianceEarth": 0.000041517182244665894,
+    "approximateSrgb": [
+      1,
+      0.2663545845364998,
+      0
+    ],
+    "horizontalFovDeg": 90,
+    "limits": "Spherical representative angular guide only. 95K helper is not a visible RGB/irradiance/exposure prediction; Saturn bands/rings/phase/light artistic; no dated site/orientation registration.",
+    "targetPixels1672": 186.09109451345628,
+    "radiusKm": 58232,
+    "distanceKm": 526436.2
+  },
+  "rasterAudit": {
+    "row": 200,
+    "thresholds": [
+      {
+        "threshold": 5,
+        "left": 790,
+        "right": 865,
+        "width": 76
+      },
+      {
+        "threshold": 10,
+        "left": 790,
+        "right": 857,
+        "width": 68
+      },
+      {
+        "threshold": 20,
+        "left": 802,
+        "right": 857,
+        "width": 56
+      }
+    ],
+    "limitations": "Upper globe chords at row200 exclude rings and do not establish full calibrated diameter. The rendered globe is substantially undersized against skyGeometry guide; ring width is not globe diameter."
+  },
+  "inspection": "Readable IMAGINED title/footer, black sky, invented terrain and small schematic Saturn. Small globe remains an uncalibrated artistic result, not a physically registered scene.",
+  "verification": {
+    "all55DossiersDeepEqual": true,
+    "testsPassed": 433,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15968504,
+    "headroomBytes": 31496,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "0487b71a3d75dc4c699af67db637a9aa0c7268850351e2bb11d2de362a7ad590",
+      "raw": "874b0b463cd1e1e112ece8ccfc1bd21aecf16b8fabf5e9850e2765b8a116db26",
+      "magic": "FIDNUM01",
+      "images": 198,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "htmlBytes": 15968504,
+      "compressedBytes": 700764,
+      "applicationSha256": "a310aa65681fe96fa1b860d54607ea315f20c5af6f96c02fa09093703689e056",
+      "htmlParserPreservesEveryPackedByte": true
+    },
+    "exactCssAndHtmlParser": true,
+    "scope": "Chrome; other engines open",
+    "snapshotNote": "Current complete browser JSON equals current readable bytes. SHA differs from earlier b376 build; exact inter-build difference origin not audited. No registry/native/map/model/shape source inputs changed."
+  }
+}
