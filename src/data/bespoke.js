@@ -8231,6 +8231,150 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "phoebe": {
+    "id": "phoebe",
+    "name": "Phoebe",
+    "aliases": [
+      "Phoebe"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-11",
+    "previewWidth": 256,
+    "nativeSurface": "No own resolved globe or shape adopted; surfacePending remains true. Identified2023 SPC bundle and older Gaskell V2 are distinct products; direct XML/document403 and actual geometry/quality/frame audit remain open. No analog globe skin.",
+    "measured": [
+      "Catalogue radius106.5km, representative orbital semimajor axis12929400km and unlocked9.27hour rotation; retrograde orbit. Publisher219km longest/204km shortest dimensions retained separately, without replacing catalogue mean radius.",
+      "Cassini PIA18411 observed2004-06-11; anniversary release2014-06-11 is not a new observation. Monochrome approach/departure images were publisher rescaled, sharpened and contrast enhanced.",
+      "Caption80/65m per pixel and80/83degree phase are publisher estimates, not newly derived raster scale or dated local registration."
+    ],
+    "modelled": [
+      "skyGeometry Saturn spherical58232km at12929400minus106.5km, nominal90degree HFOV:0.516108496207degrees,7.53056549654 target globe pixels at1672.",
+      "Fraser/Brown2018 primary abstract reanalysis40 VIMS images with geometry correction supports water-band variation in sampled coverage; basin exposure/origin interpretations are hypotheses, not local fractions or measured invented terrain."
+    ],
+    "unknown": [
+      "Full spectroscopy paper/figure and final publication-date audit; linked arXiv nonexclusive distribution is not CC BY. No figure embedded.",
+      "Actual2023 shape geometry/uncertainty/frame, older-shape association and resolved globe coverage/epochs/photometry remain open.",
+      "Material chemistry/fractions, calibrated visible colour, lighting/exposure and local registration unknown.",
+      "Saturn row16113pixel brightness spans include rings and are not globe diameters; precise globe separation and raster calibration remain open."
+    ],
+    "assumed": [
+      "IMAGINED independent local and sky illustrations invent craters, stones, regolith, pale patches, chemistry/fractions, colours and lighting. No analog body map or registered Cassini/PDS site.",
+      "Unlocked retrograde orbit means no permanent Saturn-facing site; camera attitude, Saturn bands/rings, variable opening and phase assumed.95K helper RGB/irradiance not adopted as visible photometry. Sun9.58AU off frame.",
+      "No atmosphere, haze/cloud, plume, liquid, exposed ocean, biology or survivable landing. Tiny Saturn/small annotations have limited preview readability; readable card labels carry limitations."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "title": "Cassini PIA18411 Arrival and Departure at Phoebe",
+        "publicationDate": "2014-06-11"
+      },
+      {
+        "url": "https://arxiv.org/abs/1803.04979",
+        "title": "Fraser and Brown2018 primary abstract only",
+        "publicationDate": "2018-03-13"
+      },
+      {
+        "url": "https://sbn.psi.edu/pds/resource/weirichphoebeshape.html",
+        "title": "2023 Phoebe SPC bundle; actual geometry audit open"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA image/media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/phoebe-cassini-native.jpg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia18/pia18411/PIA18411.jpg?crop=faces%2Cfocalpoint&fit=clip&h=320&w=320",
+        "sourcePage": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "sourceUrl": "https://science.nasa.gov/photojournal/arrival-and-departure-at-phoebe/",
+        "credit": "NASA/JPL-Caltech/Space Science Institute",
+        "terms": "NASA media guidelines, not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "tier": "measured",
+        "observationDate": "2004-06-11",
+        "publicationDate": "2014-06-11",
+        "bytes": 11336,
+        "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+        "width": 320,
+        "height": 213,
+        "description": "Actual Cassini processed monochrome approach/departure comparison; not calibrated visible colour or registered local/globe geography.2004 observation/2014 anniversary release distinct.",
+        "processing": "Unchanged NASA-served compact JPEG; publisher resizing/reencoding NOT full original pixel preservation. Full5182x3455 original1192296byteJPEG retained unchanged with source hash."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 9.58,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.05562675517362789,
+      "centreDiscWidthFraction": 0.00048543505312076185,
+      "irradianceEarth": 0.010896047349863365,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "saturnGeometry": {
+      "angularDiameterDeg": 0.5161084962070008,
+      "centreDiscWidthFraction": 0.004503926732379489,
+      "irradianceEarth": 6.882873268598307e-8,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "horizontalFovDeg": 90,
+      "limits": "Spherical angular guide only;95K colour/irradiance not visible photometry. Unlocked retrograde Phoebe: camera attitude/ring opening/phase assumed, no permanent Saturn-facing site or dated ephemeris registration. Row161 spans13px at thresholds5/10/20 include rings, not globe diameter; precise globe separation/calibration open.",
+      "radiusKm": 58232,
+      "observerDistanceKm": 12929293.5,
+      "targetPixels": 7.530565496538506
+    },
+    "surfaceLabel": "IMAGINED LOCAL PHOEBE TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM PHOEBE — ASSUMED ATTITUDE",
+    "surfaceImage": {
+      "url": "/bespoke/phoebe-surface-image.jpg",
+      "previewUrl": "/bespoke/phoebe-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "phoebe-generated-surfaceImage-original.png",
+      "sourceSha256": "37a92d2ff04b124e097de7e00b61a5c173c9de59c8ef5c4055f63db359454e62",
+      "sha256": "9d09c6953eec268450a285cd6e1dfdf696b52ab4320fedc2de4b261cd34f4330",
+      "previewSha256": "c7a344daef00ff72a17139e8d5bcbaa4fa93a8346020feb144c82f088fa56f57",
+      "bytes": 375611,
+      "previewBytes": 10315,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/phoebe-sky-image.jpg",
+      "previewUrl": "/bespoke/phoebe-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "phoebe-generated-skyImage-original.png",
+      "sourceSha256": "f3896436c08b03ed39947ee7c05a6bb40c9088222e4549e32e89b4ddb960fb4d",
+      "sha256": "ab9806aabf8ddac2e5ebfb0134e4a1349458280c4a7eda7ed61315eb68e910c9",
+      "previewSha256": "86ba5f166367f129e5736c4a6ee47151d17490bd73cd445e874834f33c247ea1",
+      "bytes": 214069,
+      "previewBytes": 6233,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

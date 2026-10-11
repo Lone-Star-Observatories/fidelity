@@ -14,7 +14,8 @@ for(const s of stars.rows)entries.set(`star-${key(s.OBJ_NAME)}`,{id:`star-${key(
 for(const entry of entries.values()) {
  const visual=bodyVisualFor(entry);
  entry.research=visual?'initial dossier delivered; refinement open':'queued';
- entry.surface=visual?.surfaceMap?'bespoke hypothetical map delivered':visual?.surfaceImage?'native globe preserved; bespoke terrain detail delivered':'native imagery assessment, then bespoke if missing';
+ const mapPending=MOONS.find(body=>body.id===entry.bodyId)?.surfacePending;
+ entry.surface=visual?.surfaceMap?'bespoke hypothetical map delivered':visual?.surfaceImage?(mapPending?'independent hypothetical terrain delivered; resolved globe remains pending':'native globe preserved; bespoke terrain detail delivered'):'native imagery assessment, then bespoke if missing';
  entry.sky=visual?.skyImage?'hypothetical image delivered; photometric calibration remains approximate':'queued';
  if(visual)entry.visualId=visual.id;
  if(visual?.statusNote)entry.discoveryStatus=visual.statusNote;
