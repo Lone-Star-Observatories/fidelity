@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-12",
+  "body": "Namaka, satellite of Haumea; distinct from Hiʻiaka",
+  "status": "Research-only independent IMAGINED sky view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no reference image",
+  "prompt": "Create one independent research-guided hypothetical observer illustration for Fidelity: SKY FROM NAMAKA, Haumea's small moon. Wide 1672 by 941 landscape, photorealistic but explicitly IMAGINED. Low foreground of independently invented grey regolith, irregular small blocks and shallow depressions, a low horizon beneath a large nearly black sky. Soft weak directional illumination from an off-frame source. No astronomical disk visible: Haumea, Hiʻiaka and the Sun are deliberately outside the frame by assumed camera attitude, NOT claimed physically invisible. No rings visible; omission artistic not absence. Do not draw Haumea as a sphere or use Earth's occultation projected axes to represent its outline from Namaka; the 3D shape/pole/phase/site registration is unresolved. Do not reuse any Moon, Mars, Pluto, asteroid or other observed-body map, texture or skin. Independently invent all relief, material fractions, chemistry, grey colour, light and exposure. No visible atmosphere, clouds, active plume, liquid, exposed ocean, biology, equipment, person or survivable landing implication. Black sky is assumed transparency not atmospheric absence measurement. Namaka's 150±50 km circular limb was assumed for single-chord astrometry, not resolved surface or site normal; orbital fit is not dated observer geometry, spin locking or permanent Haumea-facing location. Make two readable footer lines within the image: 'IMAGINED — SKY FROM NAMAKA' and 'Terrain, colour, lighting and camera attitude are hypothetical'. Keep labels unobtrusive but legible. Scientific illustration only, no claims of dated registered site, calibrated photometry or resolved geography.",
+  "inspection": "Independent grey grains, blocks and shallow depressions below black sky. Both requested footer lines readable. No astronomical disk appears.",
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, light, exposure and camera attitude invented.",
+    "Haumea, Hiʻiaka and Sun outside frame by assumed attitude, not physically invisible or always absent.",
+    "Earth-view occultation projected axes and spherical angular-scale examples are not the actual Haumea outline from Namaka; 3D pole/phase/site registration remains open.",
+    "150±50km circular limb was assumed for single-chord astrometry, not measured shape or local normal; no dated distance, verified locking or permanent facing site.",
+    "Black sky and ring omission are artistic, not measured atmospheric or ring absence.",
+    "No analog skin, dated native site, foreground atmosphere, plume, liquid/ocean, biology or survivable landing.",
+    "No angular/raster computation: no astronomical disk appears."
+  ],
+  "references": [
+    "docs/research/haumea-moons-observer-geometry-preparation-2026-10-12.json",
+    "docs/research/haumea-moons-astrometry-assessment-2026-10-12.json",
+    "docs/research/namaka-local-view-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "path": "data/research-sources/namaka-generated-skyImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-7cf74a47-3942-4e05-8dd3-0dbfa37bd1a6.png",
+    "bytes": 1931049,
+    "sha256": "0e80df0e96e9f78327b532ee878f8d34373dc5f1db03e8e06315487a2403ebf8",
+    "width": 1672,
+    "height": 941
+  },
+  "validation": {
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard 16MB gate:16078748 bytes,78748 over",
+    "preservation": "All561 tracked public files byte-equal HEAD;68 dossiers unchanged, queue regenerated566. No new embedding or codec change.",
+    "browser": "No current passing full artifact or full-application browser claim; other engines open.",
+    "attribution": "Interbuild feed differences unaudited; no size savings attribution."
+  }
+}
