@@ -2395,5 +2395,10 @@
     "preservation": "Every tracked public bespoke/model/shape/texture input except restored Clipper preview is byte-identical to combined upstream HEAD; restored preview exact c8d0833 bytes.",
     "trackedAssetCount": 405,
     "assetDifferencesFromCombinedHead": []
+  },
+  "postValidationRebase": {
+    "upstream": "a3c7865",
+    "status": "Preserved after push rejected for concurrent remote work; combined application not yet revalidated",
+    "next": "Verify tests/build/full after this rebase; do not claim current full artifact passes."
   }
 }
