@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-12",
+  "body": "Hi\u02bbiaka, satellite of Haumea; distinct from Namaka",
+  "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no input/reference image",
+  "prompt": "Create a new independent research-guided hypothetical observer illustration, 1672 x 941 pixels, a wide local view from Hi\u02bbiaka, the unresolved moon of Haumea. Use independently invented neutral grey granular regolith, scattered angular blocks, modest shallow depressions and low ridges, a low distant horizon and a black sky. Quiet scientific visualization, restrained sunlight and plausible shadows, but no claim of measured materials, terrain, colour, illumination or registered site. Do not reproduce or recolour any observed body's map, image or terrain. Do not use Namaka, Haumea, the Moon, Pluto or another body's geography. No astronomical disks, Sun, planets, moons, rings or stars in this camera frame; this is an assumed camera direction, not a claim they are invisible. No atmosphere, haze, clouds, active plume, exposed liquid or ocean, biology, vehicles, people or survivable landing implication. Hi\u02bbiaka's rapid nonsynchronous rotation does not establish a permanently Haumea-facing site. Shape, pole and observer normal are not independently registered. Place two clear readable footer lines on a discreet dark strip: 'IMAGINED \u2014 LOCAL VIEW FROM HI\u02bbIAKA' and 'Terrain, materials, colour and lighting are hypothetical'. Preserve the distinction between an artistic scene and measured science. Render a finished independent illustration, not a collage.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-af4383a9-8b4f-4548-a235-3a3925c4a554.png",
+  "researchCopy": "data/research-sources/hiiaka-generated-surfaceImage-original.png",
+  "inspection": "Independent grey granular terrain, blocks, depressions and low ridges; no astronomical disks. Both IMAGINED footer lines readable.",
+  "limits": [
+    "Terrain, material fractions, chemistry, grey colour, lighting and exposure invented; unresolved native detections do not establish local geography.",
+    "Rapid nonsynchronous preferred double-peaked approximately9.8h rotation, alternative4.9h and integer-cycle aliases retained; no permanent Haumea-facing site.",
+    "Shape/aspect/pole degeneracy does not establish registered local normal or dated site.",
+    "Black sky is artistic transparency, not measured atmospheric absence; bodies outside frame are assumed camera direction, not physical invisibility.",
+    "No analog map, foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "No angular/raster computation needed: no astronomical disk appears.",
+    "Haumea ring, interior, gravity reference radius and Earth-view projected axes are not Hi\u02bbiaka terrain or measured moon shape. Native point crossmatch/product calibration and later rotation refinement remain open."
+  ],
+  "references": [
+    "docs/research/hiiaka-rotation-primary-assessment-2026-10-12.json",
+    "docs/research/haumea-moons-native-preparation-2026-10-12.json",
+    "docs/research/haumea-moons-dynamics-primary-assessment-2026-10-12.json",
+    "docs/research/haumea-moons-astrometry-assessment-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2966125,
+    "sha256": "9576780412bd41edc9d5ed8649ae8b800225d77e3d02394e40d7a6a014ee891a",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "preservationAudit": {
+    "trackedPublicFiles": 561,
+    "changed": []
+  },
+  "validation": {
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16081115bytes/81115over hard16MBgate",
+    "browser": "No current passing full/offline browser claim;other engines open",
+    "preservation": "All561 tracked public files byte-identical to HEAD;all68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
+    "attribution": "Interbuild feed differences unaudited;no savings attribution or production codec change"
+  }
+}
