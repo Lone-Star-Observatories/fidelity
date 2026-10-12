@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-12",
+  "body": "Hiʻiaka",
+  "status": "Research-only masters/previews; no dossier69 or new embedding",
+  "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+  "files": [
+    {
+      "path": "data/research-sources/hiiaka-generated-surfaceImage-original.png",
+      "bytes": 2966125,
+      "sha256": "9576780412bd41edc9d5ed8649ae8b800225d77e3d02394e40d7a6a014ee891a",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/hiiaka-generated-surfaceImage-master.jpg",
+      "bytes": 358015,
+      "sha256": "1497f2fa579d1d4a5d27fa5c4a3a2184938a36a22da5d0cfe015475d5838711b",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hiiaka-generated-surfaceImage-preview.jpg",
+      "bytes": 10258,
+      "sha256": "b979880bdb57bf41cb5624138256fc2bae37e56eb7555d4d3a2411736465ced9",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hiiaka-generated-skyImage-original.png",
+      "bytes": 2453667,
+      "sha256": "9f6441119401b5925b408dd55bfa750e8382c33693e0d21561ab47c9ec2d2841",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/hiiaka-generated-skyImage-master.jpg",
+      "bytes": 296602,
+      "sha256": "aa18d285bf1e20bdf2081d842f6d263d46f3d40238da823b9e1172c6d3e82c17",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hiiaka-generated-skyImage-preview.jpg",
+      "bytes": 9433,
+      "sha256": "c24422d000cf84f2388cde92eaba8b2d5ad0f6dd5c8cfda8280a2a76f3adea5a",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "previewRawBytes": 19691,
+  "limits": [
+    "Invented terrain, chemistry/material fractions, grey colour, light and exposure; no analog skin or dated HST/occultation site, atmosphere, plume, liquid, ocean, biology or survivable landing.",
+    "No astronomical disks: Haumea, Namaka and Sun outside frame by assumed camera attitude, not physical invisibility. No angular or raster diameter adopted.",
+    "Earth-view projected Haumea axes do not establish its outline from Hiʻiaka; physical ellipsoid/pole/phase/observer direction remain open. Rapid nonsynchronous ~9.8h preferred rotation, ~4.9h alternative and integer-cycle aliases do not establish permanent Haumea-facing terrain or a registered local normal.",
+    "Black sky/ring omission do not measure absence. Small preview footers require readable IMAGINED card labels."
+  ],
+  "references": [
+    "docs/research/hiiaka-local-view-preparation-2026-10-12.json",
+    "docs/research/hiiaka-sky-view-preparation-2026-10-12.json",
+    "docs/research/hiiaka-rotation-primary-assessment-2026-10-12.json",
+    "docs/research/haumea-moons-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "validation": {
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16083219bytes83219over hard16MB gate",
+    "preservation": "All561 tracked public files byte-equal to HEAD; all68 dossiers unchanged. Original/default PNGs, full prompts, native science and recorded Clipper preview preserved.",
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "No embedded asset or codec changes; interbuild feed differences unaudited, no savings attribution."
+  },
+  "inspection": "All four masters/previews inspected together. Original/master IMAGINED footer lines retained; tiny preview annotations require readable IMAGINED card labels. Neither scene contains an astronomical disk."
+}
