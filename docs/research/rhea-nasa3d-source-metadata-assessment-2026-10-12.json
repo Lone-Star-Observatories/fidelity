@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-12",
+  "body": "Rhea",
+  "status": "research-only source metadata audit; original texture and delivered dossier unchanged",
+  "sources": [
+    {
+      "path": "data/research-sources/rhea-nasa3d-directory-2026-10-12.json",
+      "url": "https://api.github.com/repos/nasa/NASA-3D-Resources/contents/Images%20and%20Textures/Saturn%20-%20Rhea",
+      "httpStatus": 200,
+      "bytes": 3522,
+      "sha256": "b9aa1d8522494b674facea184f9775f881b7402d9551363b20f4d8fd4e4151e0"
+    },
+    {
+      "path": "data/research-sources/rhea-nasa3d-source-original.tif",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Rhea/Saturn%20-%20Rhea.tif",
+      "httpStatus": 200,
+      "bytes": 3136344,
+      "sha256": "b4b7f1c8337fb4d5a422935c89060581f0add0406965b4cbada8380078412125"
+    }
+  ],
+  "sourceCredit": "NASA NASA-3D-Resources repository; original instrument/product contributor crosswalk remains open",
+  "existingJpeg": {
+    "path": "data/textures/rhea.jpg",
+    "sha256": "487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac"
+  },
+  "metadata": {
+    "dimensions": [
+      1440,
+      720
+    ],
+    "decodedMode": "RGB",
+    "jpeg": {
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "306": "2008:09:03 16:53:10",
+      "274": "1"
+    },
+    "tiff": {
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "306": "2008:09:03 16:53:02",
+      "274": "1"
+    },
+    "geoTiffTagsPresent": [],
+    "decodedRgbPixelsEqual": false,
+    "meanAbsoluteChannelDifference": [
+      0.26809895833333336,
+      0.26809895833333336,
+      0.26809895833333336
+    ]
+  },
+  "limits": [
+    "Software/file timestamps are not verified observation or publication dates and do not prove chronology; inherited metadata or later processing remains possible.",
+    "JPEG and TIFF are not pixel-identical. Shared dimensions and descriptive metadata do not establish a specific USGS or Photojournal product, longitude frame, native epochs, coverage or photometric calibration.",
+    "Absence of GeoTIFF tags is not a verified coordinate frame. No registration, licence, calibrated colour or local chemical-fraction claim.",
+    "TIFF retained unchanged as research input only; no replacement, embedding, catalogue change, generated image or new dossier."
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "newDossier": false
+  },
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "OPENAI_API_KEY unset for missing-key test; no code change",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15982575,
+    "headroomBytes": 17425,
+    "priorDossiersUnchanged": 75,
+    "trackedPublicFilesByteEqual": 596,
+    "queueTasks": 566,
+    "browser": "No fresh browser check; research-only inputs.",
+    "sizeInterpretation": "No compression or interbuild savings attribution."
+  }
+}
