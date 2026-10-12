@@ -1,0 +1,51 @@
+{
+  "snapshotSha256": "a50f4d610dfc3344ba212ba3483301efc164c697e9620be07f0d27973d681deb",
+  "binaryBytes": 19777550,
+  "baselineInnerBytes": 13129431,
+  "baselineOuterGzipScreenBytes": 13132551,
+  "results": [
+    {
+      "minimumCount": 2,
+      "dictionaryEntries": 12891,
+      "binaryBytes": 19258031,
+      "innerBytes": 13152318,
+      "outerGzipScreenBytes": 13155399,
+      "exactNativeAndBundledJsInverse": true
+    },
+    {
+      "minimumCount": 4,
+      "dictionaryEntries": 2070,
+      "binaryBytes": 19308043,
+      "innerBytes": 13127676,
+      "outerGzipScreenBytes": 13130919,
+      "exactNativeAndBundledJsInverse": true
+    },
+    {
+      "minimumCount": 8,
+      "dictionaryEntries": 587,
+      "binaryBytes": 19354274,
+      "innerBytes": 13127537,
+      "outerGzipScreenBytes": 13130729,
+      "exactNativeAndBundledJsInverse": true
+    }
+  ],
+  "note": "Outer gzip screen omits new wrapper/decoder/notices overhead; no production adoption or savings claim.",
+  "date": "2026-10-12",
+  "status": "Research-only screen rejected as insufficient headroom; no production adoption",
+  "method": "Exact repeated quoted UTF-8 strings in FIDNUM02 skeleton replaced with NUL plus16bit dictionary indices; dictionary preserved verbatim and binary numeric/asset tail untouched. Minimum token8bytes; occurrence thresholds2/4/8. Brotli11 FONT then gzip9 screen. Not a production wrapper or browser decoder candidate.",
+  "limitations": [
+    "Best1822 outer gzip screen bytes before new wrapper/decoder overhead is insufficient; minimum2 occurrence candidate larger22848bytes. No standalone savings claim.",
+    "Native Brotli and bundled JavaScript decoder restore candidate; dictionary inverse restores complete original FIDNUM02 and exact fullJSON text. No value conversion, rounding, field pruning or native image/model changes.",
+    "Do not repeat these repeated-string dictionary thresholds. All earlier rejected trials remain rejected."
+  ],
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16024144,
+    "overBudgetBytes": 24144,
+    "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD, recorded Clipper950348byte preview preserved;queue566. Every previous original/master/native/provenance retained.",
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; production codecs unchanged, no69 or embedding."
+  }
+}
