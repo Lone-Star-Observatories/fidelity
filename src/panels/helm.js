@@ -6,6 +6,7 @@
 
 import { honestTrip, burnCoastBurn, fmtDuration, fmtDistance, fmtSpeed, warpToC, autoCruise, C_KM_S, LY_KM, FULL_IMPULSE_C } from '../astro/warp.js';
 import { eqToEcl, frameToScene, LY_PER_PC } from '../astro/frames.js';
+import { clearLog, LOG_CAP } from '../views/ship/shipState.js';
 
 const STRAIGHT = 'Straight line at constant speed, from the ship\'s position now (bodies keep moving).';
 
@@ -107,7 +108,7 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
       h('h3', { textContent: 'WARP TO A STAR' }),
       starBox, starNote, live.starCard,
       h('h3', { textContent: 'SHIP\'S LOG' }),
-      logBox,
+      logBox, clearRow(),
     ];
     const box = live;
     fetchNearby(currentSystem(), 25).then((d) => {
@@ -145,10 +146,16 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
       status,
       h('p', { className: 'note', textContent: 'The ship flies on at chart scale: W/S throttle, A/D and arrows steer, C or SET COURSE for the selection. Warp at the TNG scale is slow for light-years, so the HUD gives the real flight time and a SIM speed-up (a viewing aid) plays it in seconds. Fly within ~1,300 AU of a star (or arrive on a course) to enter its system; beyond the chart\'s range the next chart takes over.' }),
       tripHead, card.dl, live.tripNote,
-      h('h3', { textContent: 'SHIP\'S LOG' }), logBox,
+      h('h3', { textContent: 'SHIP\'S LOG' }), logBox, clearRow(),
     ];
     tick(true);
     return out;
+  }
+  /** CLEAR LOG, and a note that the log is kept in this browser. */
+  function clearRow() {
+    return h('div', {},
+      h('p', { className: 'note', textContent: `The log, distance, clocks and places are kept in this browser across reloads (the last ${LOG_CAP} entries; nothing leaves the machine).` }),
+      h('div', { className: 'body-list' }, pill('CLEAR LOG', () => { clearLog(); toast?.('SHIP\'S LOG CLEARED'); tick(true); }, 'square')));
   }
   function logRows(st) {
     const L = st?.log ?? [];

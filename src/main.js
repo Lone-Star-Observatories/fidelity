@@ -372,6 +372,10 @@ function describePostcard() {
     if (b?.skin?.map && credits[b.skin.map] && !b.surfacePending) { tiers.measured.push('SURFACE MAP'); imgCredits.push(credits[b.skin.map]); }
     else tiers.imagined.push('SURFACE');
   }
+  if ([galaxy, quadrant, nav].includes(v) && v.helm?.active) { // #42: the ship flown out here is drawn over the chart (CHASE / BRIDGE) or marked on it (ORBIT)
+    tiers.imagined.push('THE USS FIDELITY');
+    if (v.helm.state.warp > 0 && v.helm.state.view !== 'orbit') tiers.imagined.push('WARP STREAKS');
+  }
   if (settings.get('starfleet') && [galaxy, quadrant, nav, system].includes(v)) tiers.imagined.push('STAR TREK OVERLAY'); // #25, #41
   if (!clock.isNow) tiers.computed.push('SKY AT THE SHIP\'S DATE');
   const date = clock.inCalendar ? dateFromJd(clock.jd) : null;

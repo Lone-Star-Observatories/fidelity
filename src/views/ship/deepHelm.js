@@ -26,7 +26,7 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 import { createShipModel, SHIP, BRIDGE_EYE } from './shipModel.js';
 import { VIEWS } from './helm.js';
 import { badge } from '../../data/provenance.js';
-import { shipState as S, logEntry as logShip, SIM_SPEEDS, autoSim, simLabel, galToScene, sceneToGal, STAR_STANDOFF_LY } from './shipState.js';
+import { shipState as S, logEntry as logShip, SIM_SPEEDS, autoSim, simLabel, galToScene, sceneToGal, STAR_STANDOFF_LY, pinchZoom } from './shipState.js';
 import { C_KM_S, LY_KM, gamma, regime, throttleToSpeed, speedToThrottle, cToWarp, warpToC, autoCruise, FULL_IMPULSE_C, fmtSpeed, fmtDistance, fmtDuration } from '../../astro/warp.js';
 
 const DEG = Math.PI / 180;
@@ -203,8 +203,15 @@ export function createDeepHelm(ctx) {
     if (course) { course = null; S.course = null; flash('AUTOPILOT OFF · MANUAL CONTROL'); }
     if (kind === 'up' || kind === 'down') allStop = false;
   }
-  dom.addEventListener('pointerdown', (e) => { if (live() && view !== 'orbit') drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 }; });
+  // two fingers pinch: CHASE distance or BRIDGE field of view, as the camera rig's pinch
+  const touches = new Map();
+  dom.addEventListener('pointerdown', (e) => {
+    if (!live() || view === 'orbit') return;
+    touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    drag = touches.size === 1 ? { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 } : null;
+  });
   dom.addEventListener('pointermove', (e) => {
+    if (touches.size >= 2 && touches.has(e.pointerId) && live() && view !== 'orbit') { pinch(e); return; }
     if (!drag || drag.id !== e.pointerId || !live() || view === 'orbit') return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     drag.x = e.clientX; drag.y = e.clientY; drag.moved += Math.abs(dx) + Math.abs(dy);
@@ -213,7 +220,15 @@ export function createDeepHelm(ctx) {
     const k = ((camera.fov * DEG) / (dom.clientHeight || 600)) * 0.9;
     quat.multiply(q1.setFromAxisAngle(v1.set(0, 1, 0), -dx * k)).multiply(q1.setFromAxisAngle(v1.set(1, 0, 0), -dy * k)).normalize();
   });
-  const endDrag = (e) => { if (drag?.id === e.pointerId) drag = null; };
+  function pinch(e) {
+    const p = touches.get(e.pointerId), other = [...touches].find(([id]) => id !== e.pointerId)?.[1];
+    const before = Math.hypot(p.x - other.x, p.y - other.y), after = Math.hypot(e.clientX - other.x, e.clientY - other.y);
+    p.x = e.clientX; p.y = e.clientY;
+    const z = pinchZoom(view, before > 0 ? after / before : 1, { chaseZoom, fov: camera.fov });
+    chaseZoom = z.chaseZoom;
+    if (z.fov !== camera.fov) { camera.fov = z.fov; camera.updateProjectionMatrix(); }
+  }
+  const endDrag = (e) => { touches.delete(e.pointerId); if (drag?.id === e.pointerId) drag = null; };
   dom.addEventListener('pointerup', endDrag);
   dom.addEventListener('pointercancel', endDrag);
   dom.addEventListener('wheel', (e) => {
