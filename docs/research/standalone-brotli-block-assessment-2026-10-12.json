@@ -1,0 +1,56 @@
+{
+  "snapshotSha256": "9d6ff3b8bee0a26bb0ee71996fbee4f0b367797a71bb44c3d52b4e314b3b5448",
+  "binaryBytes": 20060206,
+  "results": [
+    {
+      "lgblock": 0,
+      "innerBytes": 13331478,
+      "outerGzipBytes": 13334653,
+      "nativeAndBundledJsExact": true,
+      "savedOuterGzipBytesBeforeTransportOverhead": 0
+    },
+    {
+      "lgblock": 16,
+      "innerBytes": 13322717,
+      "outerGzipBytes": 13325820,
+      "nativeAndBundledJsExact": true,
+      "savedOuterGzipBytesBeforeTransportOverhead": 8833
+    },
+    {
+      "lgblock": 20,
+      "innerBytes": 13328242,
+      "outerGzipBytes": 13331641,
+      "nativeAndBundledJsExact": true,
+      "savedOuterGzipBytesBeforeTransportOverhead": 3012
+    },
+    {
+      "lgblock": 24,
+      "innerBytes": 13376475,
+      "outerGzipBytes": 13379671,
+      "nativeAndBundledJsExact": true,
+      "savedOuterGzipBytesBeforeTransportOverhead": -45018
+    }
+  ],
+  "date": "2026-10-12",
+  "scope": "Research-only distinct Brotli input-block-size screen; no production codec or asset adoption.",
+  "method": "Complete FIDNUM02 binary unchanged; quality11 FONT, default dictionary window; lgblock0 automatic versus16/20/24. Each compressed stream wrapped FIDBRT01 with outer gzip9.",
+  "decision": "None adopted. Best8833 outergzip bytes saving is insufficient substantial backlog headroom; lgblock24 is larger. Do not repeat these settings.",
+  "limits": [
+    "Savings are frozen-input gzip bytes before UTF8 transport/decoder/wrapper overhead, not full HTML savings.",
+    "Native and bundled JS full-original-JSON inverses pass; no experimental browser test performed.",
+    "Fields, numeric spellings/layout/order, native asset/model/shape bytes, dossiers and provenance unchanged.",
+    "Production snapshot/application Brotli decoders remain independent; all legacy transports and notices retained."
+  ],
+  "validation": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15995168,
+    "headroomBytes": 4832,
+    "unchangedTrackedPublicFiles": 596,
+    "unchangedDossiers": 75,
+    "queue": 566,
+    "freshBrowserVerification": false
+  }
+}
