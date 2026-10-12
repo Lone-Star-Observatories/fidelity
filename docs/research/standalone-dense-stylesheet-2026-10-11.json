@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "scope": "Lossless stylesheet transport and combined 78bf1cb COMMS validation; no new dossier or imagery embedding",
+  "change": "Stylesheet standard gzip5 bytes now use existing gzip-raw-radix125-wide-v2 encoder/validating decoder. CSS text and compression remain exact; all legacy transport decoders remain available. Normal build unchanged. Snapshot/application Brotli wrappers, independent decoders, Blob import/revoke, notices and unsupported gzip message preserved.",
+  "measurement": {
+    "sameCssGzipBytes": 11642,
+    "oldRaw120TransportBytes": 13587,
+    "dense125v2TransportBytes": 13413,
+    "samePayloadTransportSavingBytes": 174,
+    "initialCombinedFullBytes": 16000123,
+    "finalFullBytes": 15999948,
+    "headroomBytes": 52,
+    "attribution": "174 bytes measured on identical compressed CSS payload. Net HTML difference includes bootstrap differences and potentially live-feed interbuild differences, which were not independently audited; no sole net savings attribution."
+  },
+  "validation": {
+    "tests": "469 pass, 1 skip",
+    "production": "pass",
+    "full": "pass",
+    "chromeCompleteReadableJsonSha256": "7346d50643b08710b6a49f368b991b43044f48c03ff3bd7b9f3d748ad1c7817d",
+    "applicationSha256": "124691c6f3ae1aa3b5edb856bd26e015e2068906100f84ab2912dac8a94a77a1",
+    "cssSha256": "45767c7b6900b2979a8c4145a7939de745e1453be7dc435aa9dea8022bc6a30c",
+    "cssBytes": 59910,
+    "browser": "Chrome exact complete readable JSON/application/CSS and HTML-parser payload preservation; 237 images decode, 20 bands, 517 details, 32 model entries; six routes and unsupported gzip message pass, no page errors. Entries are not a fresh all-model load claim. Other engines remain open.",
+    "preservation": "405 tracked public/bespoke/models/shapes/textures files byte-identical to HEAD; registry unchanged and all 68 dossiers retained. Original PNGs, masters, native science and provenance preserved. Queue 566 unchanged."
+  },
+  "limitations": [
+    "Only 52 bytes headroom, insufficient for any prepared dossier batch.",
+    "No 69th dossier or Larissa observer image/master/preview delivered.",
+    "No calibrated scene, imagery or current ranking claim; all prior scientific limitations remain."
+  ],
+  "next": "Substantial conforming lossless headroom before Charon69/prepared Pluto-system dossiers; independent Larissa Neptune observer may advance using recorded skyGeometry assumptions. Avoid all previously rejected compression trials. Backlog remains ACTIVE; no external blocker claimed."
+}
