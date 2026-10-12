@@ -1115,12 +1115,32 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   (9.6 ≈ 1,909 c, 9.9 ≈ 3,053 c, 9.99 ≈ 7,912 c) towards an unattainable warp 10; on this curve Voyager's quoted
   9.975 comes out near 5,400 c (other quoted figures differ; it is all fiction). REAL PHYSICS:
   Newtonian thrust at 1 / 10 / 100 / 1000 g along the nose, proper velocity integrated so speeds stay below c,
-  FULL STOP as a retro-burn; no warp and no gravity. Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
+  no warp, under gravity (below). Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
   and BRIDGE; touch too), Shift faster; X full stop; C set course for the selection; Esc cancels the autopilot.
-  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched.
+  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched, except
+  that REAL PHYSICS follows the clock's rate when it runs faster than real time (below).
+- **Gravity in REAL PHYSICS** (`src/astro/orbit.js`, pure and tested in `tests/orbit.test.js`). Every star,
+  planet, dwarf planet and moon with a known `massKg` (or `massSun`) is a point mass (a uniform sphere inside its
+  radius), GM = G·M with G = 6.6743 × 10⁻¹¹ (CODATA 2018), at the app's own positions for the clock time
+  (`SystemView` hands the helm `positionAt(id, jd)`, `jd()` and `clockRate()`). The ship moves in the frame of the
+  *dominant* body: the smallest Laplace sphere of influence a·(m/M)^0.4 that contains it (`dominantBody`), else
+  the star. In that accelerating frame its acceleration is every body's pull minus the frame body's own
+  acceleration (the tidal form), so the frame is exact; the bodies are interpolated between their positions at the
+  start and end of the frame. Velocity Verlet (`verletStep`), sub-stepped to 1% of the local dynamical time
+  √(r³/GM) and 10% of the time to the nearest surface (≤ 60 s, ≤ 4,000 steps a frame; a 1 s headless frame is
+  fine). When the frame body changes, the velocity gains the old body's velocity minus the new one's (central
+  differences of the ephemeris over ±1 min), so the inertial velocity is continuous. Time: the ship follows the
+  clock's rate when it is faster than real time, up to ×10,000 (the HUD says `×1,000 WITH THE CLOCK`, or CAPPED);
+  when the clock is held, slower or reversed the ship flies in real time and says so. A swept segment–sphere test
+  against every massive body (`segmentHitsSphere`), and a point test against craft, stops the ship at the
+  surface: IMPACT, or LANDED at ≤ 10 m/s relative to the body; a burn (W/S) lifts off. Taking the helm in REAL
+  PHYSICS, or leaving a held standard orbit, starts a free circular orbit with the same velocity; FULL STOP (X)
+  burns to match the dominant body's velocity, after which the ship falls. Clock jumps (scrubbing) are not swept.
 - **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
   STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
-  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA.
+  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA. In REAL
+  PHYSICS: the osculating orbit about the dominant body from the state vector (`stateToElements`: periapsis and
+  apoapsis altitude, eccentricity, period, or ESCAPE with e and v∞; COMPUTED), the time rate, and IMPACT / LANDED.
 - **Autopilot.** SET COURSE (panel, C, voice) turns the ship, picks a cruise (AUTO: impulse if it gets there in
   ~20 s, else the warp factor that does, up to 9.9; or FULL IMPULSE / WARP 2–9.9 from the CRUISE button), cruises,
   and decelerates in proportion to what is left (v = d / 0.9 s + 0.3 km/s, dropping out of warp at full impulse)
@@ -1130,9 +1150,48 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   over. Arrival selects the body (route and panel follow).
 - **Other stars.** WARP TO A STAR (system panel: the 14 nearest catalogued stars) or FLY THERE AT THE HELM (the
   Navigation View's selected star) turns towards the star's real direction (catalogue J2000 positions → scene axes),
-  goes to warp 9.9 for ~3 s and then changes route to that system; `helm.onLoad` (called by `SystemView.load`) drops
-  the ship out of warp at the system's edge, on the side it came from, and sets course for the star. The Quadrant
-  and Galaxy views do not carry the ship (backlog).
+  goes to warp 9.9 for ~3 s and hands the ship to the Navigation View with a course laid in for the star (below);
+  arriving there hands it back down, and `helm.onLoad` (called by `SystemView.load`, or by main.js when the system
+  is already loaded) drops the ship out of warp at the system's edge, on the side it came from, and sets course for
+  the star. A ship flown in by hand keeps its heading and drops to full impulse instead.
+- **Between the stars: one ship across the views.** `src/views/ship/shipState.js` holds the one ship: who flies it
+  (`frame`: `system`, `deep` or nobody), its heliocentric galactic position in light-years (today's catalogue
+  positions; deep time moves the stars, not the ship), its attitude in the galaxy-scale scene axes, speed, flight
+  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, this
+  session only). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
+  System View's ecliptic axes and the galactic ones) is tested in `tests/shipstate.test.js`. Hand-overs, decided by
+  pure functions in `src/views/ship/handover.js` (same tests):
+  - *System → Navigation*: past the system's edge (`systemEdgeAU`: 200 AU or 1.15 × the widest survey framing;
+    ~300 AU at Sol) and heading out, or after WARP TO A STAR's warp-up. The helm's `handUp` reports the position
+    relative to the star, attitude and speed (`deepspace`); main.js converts them (`shipToDeepSpace`: the star's
+    galactic position from `solDirection` × `distLy`) and opens Navigation centred on that star.
+  - *Navigation → System*: within 0.02 ly (~1,300 AU) of a charted star, or arriving on a course for it (stand-off
+    0.01 ly); the star just left only recaptures the ship after it has been 0.03 ly away.
+  - *Navigation → Quadrant*: beyond the chart's sensor radius, heading out. *Quadrant → Navigation*: stopped or
+    arriving with a charted star within 50 ly (Navigation centred on it, 100 ly range), or closing on Sol within
+    50 ly. *Quadrant → Galaxy*: beyond the Quadrant View's radius, heading out. *Galaxy → Quadrant*: within 90% of
+    that radius of Sol, closing or stopped. The Quadrant View is Sol-centred only, so far targets (Sgr A*, the
+    Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
+  `src/views/ship/deepHelm.js` (`createDeepHelm`) flies the ship in the Navigation, Quadrant and Galaxy views with
+  the System View helm's controls and HUD classes (CHASE / BRIDGE / ORBIT, throttle to warp 9.99, REAL PHYSICS
+  without gravity: the Galaxy's pull near the Sun is ~2 × 10⁻¹⁰ m/s²). Each view makes one with its `toScene`
+  (galactic ly → its scene: centred on the chart's star, heliocentric, or galactocentric kly), its course targets
+  (catalogue stars; Sol, landmark clusters and nebulae; Sol, Sgr A* and the satellite galaxies) and its hand-over
+  rule; the view calls `frame()` before rendering and `overlay()` after, and its camera rig is `captured()`.
+  Drawing: the chart is rendered from a camera at the ship's position and the 352 m ship is drawn over it in its
+  own scene, in metres, from a chase or bridge camera with the same orientation (depth cleared between: no
+  light-year depth buffer holds both); in ORBIT the camera circles the ship's position at chart scale and a marker
+  (dot, heading line, label) and a dashed course line show it. Double-click drills are off while flying.
+  Time out here: warp 9.9 ≈ 3,053 c is 12 hours to Alpha Centauri and 9 years to the galactic centre. The HUD gives
+  the real flight time at the chosen warp (FLIGHT ETA) and a SIM speed-up (IMAGINED, a viewing aid: ×1 to 10
+  YEARS/S, comma and full stop, or AUTO: the course's flight in ~25 s, else 1 H/S, 1 WEEK/S or 1 YEAR/S by view)
+  plays it; the log's ship and Earth clocks count flight time, and the app clock is not moved. The autopilot
+  cruises at warp 9.9 (AUTO) or the CRUISE choice and slows in proportion to what is left in watching time.
+  Panels (`helmPanel.deepSection`): helm status, FULL STOP / LEAVE HELM, SET COURSE for the selection (Navigation
+  star, Quadrant object or Sol, Galaxy targets), HONEST TRAVEL for the rest of the course (or to the selection) and
+  the SHIP'S LOG. LEAVE HELM out here parks the ship (nobody flies it) and the view is as before; views are exactly
+  as before whenever nobody is at the helm out there. `window.__fidelityShip` exposes the shared state, the
+  galaxy-scale helms, the clock and the router for browser checks.
 - **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
   at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
 - **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST

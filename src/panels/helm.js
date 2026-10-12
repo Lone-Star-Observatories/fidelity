@@ -126,7 +126,38 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
   function warpTo(s, c) {
     const d = [s.x - c.x, s.y - c.y, s.z - c.z], n = Math.hypot(...d);
     const dir = frameToScene(eqToEcl(d.map((v) => v / n)));
-    helm().warpOut({ id: s.id, name: s.name, distLy: s.distLy }, dir);
+    helm().warpOut({ id: s.id, name: s.name, distLy: s.distLy, x: s.x, y: s.y, z: s.z }, dir);
+  }
+
+  /**
+   * Navigation, Quadrant and Galaxy views while the ship is out between the stars (#42): the helm's status,
+   * FULL STOP / LEAVE HELM, HONEST TRAVEL for the trip (the course, else the selection) and the SHIP'S LOG.
+   * `deep` is the view's deep helm; `target()` → { name, km } or null.
+   */
+  function deepSection(deep, target) {
+    if (!deep?.active) return [];
+    const status = h('p', { className: 'note' }), logBox = h('div', { className: 'host-list helm-log' }), card = honestCard();
+    const tripHead = h('h3', { textContent: 'HONEST TRAVEL' });
+    live = { kind: 'deep', deep, target, status, logBox, card, tripHead, tripNote: h('p', { className: 'note' }) };
+    const out = [
+      h('h3', { textContent: 'HELM · USS FIDELITY · DEEP SPACE' }),
+      h('div', { className: 'body-list' }, pill('FULL STOP', () => deep.fullStop(), 'square'), pill('LEAVE HELM', () => deep.leave())),
+      status,
+      h('p', { className: 'note', textContent: 'The ship flies on at chart scale: W/S throttle, A/D and arrows steer, C or SET COURSE for the selection. Warp at the TNG scale is slow for light-years, so the HUD gives the real flight time and a SIM speed-up (a viewing aid) plays it in seconds. Fly within ~1,300 AU of a star (or arrive on a course) to enter its system; beyond the chart\'s range the next chart takes over.' }),
+      tripHead, card.dl, live.tripNote,
+      h('h3', { textContent: 'SHIP\'S LOG' }), logBox,
+    ];
+    tick(true);
+    return out;
+  }
+  function logRows(st) {
+    const L = st?.log ?? [];
+    const summary = h('div', { className: 'host-row' }, h('span', { textContent: 'DISTANCE TRAVELLED' }), h('span', { className: 'mono', textContent: fmtDistance(st?.travelledKm ?? 0) }));
+    const clocks = h('div', { className: 'host-row' }, h('span', { textContent: 'SHIP TIME · EARTH TIME' }),
+      h('span', { className: 'mono', textContent: st ? `${fmtDuration(st.shipS)} · ${fmtDuration(st.earthS)}` : '—' }));
+    const places = h('div', { className: 'host-row' }, h('span', { textContent: 'PLACES VISITED' }), h('span', { className: 'mono', textContent: String(st?.visited.length ?? 0) }));
+    return [summary, clocks, places, ...L.slice(-14).reverse().map((e) =>
+      h('div', { className: 'host-row event-row' }, h('span', { textContent: e.text }), h('span', { className: 'mono', textContent: `${e.at.toISOString().slice(11, 19)} UTC` })))];
   }
 
   let tT = 0;
@@ -137,6 +168,21 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
     if (!force && now - tT < 900) return;
     tT = now;
     const H = helm(), st = H?.state;
+    if (live.kind === 'deep') {
+      if (!live.logBox.isConnected && !force) { live = null; return; }
+      const ds = live.deep.state, t = live.target?.();
+      live.status.textContent = ds.active
+        ? `AT THE HELM · ${fmtSpeed(ds.kmS)}${ds.course ? ` · COURSE ${ds.course.name.toUpperCase()}` : ''} · ${ds.model === 'physics' ? 'REAL PHYSICS' : 'IMPULSE / WARP'} · ${(Math.hypot(...ds.gal)).toLocaleString('en-US', { maximumFractionDigits: 2 })} LY FROM SOL`
+        : 'The helm is free.';
+      live.tripHead.textContent = t ? `HONEST TRAVEL · TO ${t.name.toUpperCase()}` : 'HONEST TRAVEL · SELECT A TARGET';
+      const warpQ = ds.course?.warp || (typeof ds.cruise === 'number' ? ds.cruise : 9.9);
+      fill(live.card.els, t?.km ?? 0, warpQ);
+      live.tripNote.textContent = ds.course
+        ? `FLIGHT ETA ${ds.course.etaS != null ? fmtDuration(ds.course.etaS) : '—'}${ds.course.warp ? ` AT WARP ${ds.course.warp}` : ''} · WATCHED AT ${Math.round(ds.sim).toLocaleString('en-US')}× (SIM)`
+        : 'Straight lines at constant speed from the ship; real starships would also need to stop at the far end.';
+      live.logBox.replaceChildren(...logRows(st));
+      return;
+    }
     if (live.kind === 'body') {
       if (!live.card.dl.isConnected && !force) { live = null; return; }
       const km = distanceKm(live.id);
@@ -156,14 +202,8 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
       const star = st?.course?.star;
       live.starCard.hidden = !star;
       if (star) fill(live.card.els, star.distLy * LY_KM, 9.9);
-      const L = st?.log ?? [];
-      const summary = h('div', { className: 'host-row' }, h('span', { textContent: 'DISTANCE TRAVELLED' }), h('span', { className: 'mono', textContent: fmtDistance(st?.travelledKm ?? 0) }));
-      const clocks = h('div', { className: 'host-row' }, h('span', { textContent: 'SHIP TIME · EARTH TIME' }),
-        h('span', { className: 'mono', textContent: st ? `${fmtDuration(st.shipS)} · ${fmtDuration(st.earthS)}` : '—' }));
-      const places = h('div', { className: 'host-row' }, h('span', { textContent: 'PLACES VISITED' }), h('span', { className: 'mono', textContent: String(st?.visited.length ?? 0) }));
-      live.logBox.replaceChildren(summary, clocks, places, ...L.slice(-14).reverse().map((e) =>
-        h('div', { className: 'host-row event-row' }, h('span', { textContent: e.text }), h('span', { className: 'mono', textContent: `${e.at.toISOString().slice(11, 19)} UTC` }))));
+      live.logBox.replaceChildren(...logRows(st));
     }
   }
-  return { section, systemSection, tick, refresh: () => tick(true) };
+  return { section, systemSection, deepSection, tick, refresh: () => tick(true) };
 }

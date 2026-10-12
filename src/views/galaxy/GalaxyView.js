@@ -38,6 +38,9 @@ import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraCon
 import { METERS } from '../cameraMath.js';
 import { makeSnapshot } from '../snapshot.js';
 import { trekFor, trekGal } from '../../data/trek.js';
+import { createDeepHelm } from '../ship/deepHelm.js';
+import { STAR_STANDOFF_LY } from '../ship/shipState.js';
+import { galaxyDecision, nearestStar as nearestGal } from '../ship/handover.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -86,7 +89,7 @@ export const bprpToBV = (bprp) => 0.78 * bprp;
 const DEG = Math.PI / 180;
 const lbdToGal = (l, b, d) => [d * Math.cos(b * DEG) * Math.cos(l * DEG), d * Math.cos(b * DEG) * Math.sin(l * DEG), d * Math.sin(b * DEG)];
 
-export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTrek } = {}) {
+export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTrek, onShip, quadrantRadius } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -364,7 +367,7 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTr
   }
   onClicks(labels.domElement, {
     click: (e) => { const p = pickStar(e); if (p) onPickStar?.(p); },
-    dblclick: (e) => { const p = pickStar(e); onDrill?.(p); },
+    dblclick: (e) => { if (ship?.active) return; const p = pickStar(e); onDrill?.(p); },
   });
 
   // ---- camera presets --------------------------------------------------------------------------
@@ -404,6 +407,29 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTr
     ahead: (pos, dir) => aheadPoint(pos, dir, eachLandmark, 4),
     fit: () => { follow = false; want.pos = null; rig.frameSphere(new THREE.Vector3(), 52, 1.02); }, // the disc, ~50 kly in radius
     reset: () => { want.pos = null; follow = false; frameOn([0, 0, 0], 150); },
+    captured: () => !!ship?.active, // HELM (#42): the ship flies the camera
+  });
+
+  // ---- HELM (#42): the USS Fidelity across the Milky Way (src/views/ship/deepHelm.js) ------------------------
+  // Ship positions are heliocentric galactic ly, today's frame (galactic deep time turns the disc, not the ship).
+  // Courses: Sol, Sgr A* and the satellite galaxies (where they are today); far targets stay in this view.
+  const kpcHelio = (p) => [p[0] * 3261.56 + R0_KLY * 1000, p[1] * 3261.56, p[2] * 3261.56 - Z_SUN_KLY * 1000];
+  const SHIP_TARGETS = [
+    { id: 'sol', name: 'Sol', kind: 'star', gal: [0, 0, 0], standoffLy: STAR_STANDOFF_LY },
+    { id: 'sgra', name: 'Sgr A* · galactic centre', kind: 'region', gal: [R0_KLY * 1000, 0, -Z_SUN_KLY * 1000], standoffLy: 300 },
+    ...satellites.map((s) => ({ id: s.id, name: s.name.replace(/\b\w+/g, (w) => w[0] + w.slice(1).toLowerCase()), kind: 'region', gal: kpcHelio(orbitAt(s.orbit, 0)), standoffLy: s.diameterKly * 600 })),
+  ];
+  let shipSel = null;
+  const ship = createDeepHelm({
+    key: 'galaxy', label: 'GALAXY', scene, camera, controls, dom: labels.domElement, container, renderer, rig,
+    toScene: (g) => new THREE.Vector3(...galToScene(g, 0.001)),
+    nearChase: 1e-5, orbitDist: 6, simDefault: 31557600,
+    targets: () => SHIP_TARGETS,
+    selected: () => SHIP_TARGETS.find((t) => t.id === shipSel) ?? null,
+    nearest: (g) => { const n = nearestGal(g, SHIP_TARGETS); return n && { name: n.star.name, d: n.d }; },
+    decide: (st) => galaxyDecision({ pos: st.pos, vel: st.vel, quadrantRadiusLy: quadrantRadius?.() ?? 3000, stopped: st.stopped }),
+    epochNote: () => (epoch !== 0 ? 'GALAXY IN DEEP TIME · THE SHIP FLIES IN TODAY\'S POSITIONS' : null),
+    on: (kind, d) => onShip?.(kind, d),
   });
   function frame() {
     if (!running) return;
@@ -419,8 +445,10 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTr
     fleetGroup.visible = !!settings.get('starfleet');
     const show = settings.get('labels');
     for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
+    ship.frame(performance.now()); // HELM (#42): fly and place the camera (no-op when nobody is at the helm)
     for (const s of satellites) if (s.body.userData.quad) s.body.userData.quad.quaternion.copy(camera.quaternion);
     renderer.render(scene, camera);
+    ship.overlay();
     labels.render(scene, camera);
     const solNow = new THREE.Vector3(...sol).applyAxisAngle(Y, -OMEGA_SUN * epoch);
     tmp.copy(solNow).project(camera);
@@ -448,6 +476,10 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTr
     hide() { container.hidden = true; running = false; },
     setStars, setGaia, setTime, applyLook,
     camera: rig,
+    /** HELM (#42): the ship across the galaxy; course targets (Sol, Sgr A*, the satellite galaxies). */
+    helm: ship,
+    helmTargets: SHIP_TARGETS,
+    helmTarget: (id) => { shipSel = id; return SHIP_TARGETS.find((t) => t.id === id) ?? null; },
     get modelComponents() { return model.components; },
     /** The spectrum filter (#28): { model: { value, detail, dark }, clouds: { lmc|smc: { value, tier, detail } } }. */
     get bandInfo() { return bandInfo; },

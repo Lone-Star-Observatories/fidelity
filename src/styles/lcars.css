@@ -909,3 +909,5 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .site-trek { color: var(--trek); font-style: italic; }
 .host-row.trek-row { border-left-color: var(--trek); }
 .host-row.trek-row > span.mono { color: var(--trek); }
+.nav-label.ship-tag { color: var(--gold); border-color: var(--gold); }
+.helm-on .orient-gauge { display: none; }
