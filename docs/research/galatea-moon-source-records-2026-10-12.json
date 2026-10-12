@@ -1,0 +1,191 @@
+{
+  "records": [
+    {
+      "path": "data/research-sources/galatea-overview.html",
+      "url": "https://science.nasa.gov/neptune/moons/galatea/",
+      "bytes": 259125,
+      "sha256": "10f36408e52b6e4350f76d921787d5eca3d08d855c9271fdc7a7ff2cad308f36"
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-caption.html",
+      "url": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+      "bytes": 265942,
+      "sha256": "d9e5b0c452aee58d035c0daf9de8848b8a15babaf9bc5a5fa2fe7a7533c5b45c"
+    },
+    {
+      "path": "data/research-sources/galatea-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320653,
+      "sha256": "1dea7b4ee84db93e2becf77646abba236e08738e0828fe9d5dabc715e3af3a75"
+    },
+    {
+      "path": "data/research-sources/galatea-voyager-overview-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/galatea_main.jpg",
+      "bytes": 130383,
+      "sha256": "8664ab5363aa464a0abc086593ea6917755cbb4eb37107dab03a8177338d777d",
+      "dimensions": [
+        768,
+        788
+      ]
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg",
+      "bytes": 47523,
+      "sha256": "7f1238aa250dd442b3c927ddf3364de6cf46ce3e000594c481a534038f5c6d22",
+      "dimensions": [
+        373,
+        438
+      ]
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.tif",
+      "bytes": 48144,
+      "sha256": "161a2d7ed90c9fae0a6c7ed851b500493b41848cb37f1f20aab93a191f939de8",
+      "dimensions": [
+        373,
+        438
+      ]
+    },
+    {
+      "authors": [
+        "M. Ryleigh Davis",
+        "Matthew Belyakov",
+        "Ian Wong",
+        "Zachariah Milby",
+        "Michael E. Brown"
+      ],
+      "url": "https://arxiv.org/abs/2607.27481",
+      "doi": "10.1126/sciadv.aeb1437",
+      "publicationDate": "2026-07-29",
+      "path": "data/research-sources/proteus-Davis2026-author.pdf",
+      "bytes": 740854,
+      "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+      "assessmentScope": "Targeted Galatea results, discussion, methods and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+      "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "quality": 85,
+      "path": "data/research-sources/galatea-generated-surfaceImage-master.jpg",
+      "bytes": 269941,
+      "sha256": "454a38f5ad6c67df7bdb583e46cf5fe814587fbd773617c35392139fab20d463",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "quality": 80,
+      "path": "data/research-sources/galatea-generated-surfaceImage-preview.jpg",
+      "bytes": 9447,
+      "sha256": "211ce1b61378e3f1cd1434fe75ba445058ac1fd415ac0b90cd642ff8cf0c61b3",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "quality": 85,
+      "path": "data/research-sources/galatea-generated-skyImage-master.jpg",
+      "bytes": 169988,
+      "sha256": "b25cb9ea62b18654d331aee86cf806d3faf5ce8a6b6cc40f463f1c9bea94df79",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "quality": 80,
+      "path": "data/research-sources/galatea-generated-skyImage-preview.jpg",
+      "bytes": 6418,
+      "sha256": "f8cc835cf12281ac4eeeadc099ed54bfa692f1da01dc79d4ff75e17c55a84d81",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "bytes": 2690465,
+      "sha256": "043f86c2e71e60f351e4497766c198766b7a6d487194830ba25e711bef354c08",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "defaultAndResearchBytesIdentical": true,
+      "path": "data/research-sources/galatea-generated-surfaceImage-original.png"
+    },
+    {
+      "path": "data/research-sources/galatea-generated-skyImage-original.png",
+      "bytes": 1697413,
+      "sha256": "21acb6ef9f21974f0a11939ea9d51f90ce63bf93afb6ed396a557dc0863f195b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-publisher-display-320.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=320&h=376&fit=clip&crop=faces%2Cfocalpoint",
+      "bytes": 34113,
+      "sha256": "1ca2e410ee62c5cea8d56e440ebf678c54cb9da6fff80db9dc23918053584e70",
+      "width": 320,
+      "height": 376,
+      "processing": "Unchanged NASA-served320px display JPEG requested through publisher rendition endpoint; publisher resize/re-encoding, not full pixel preservation. Full373JPEG/TIFF,768overview and373display retained separately."
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-publisher-display-373.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=373&h=438&fit=clip&crop=faces%2Cfocalpoint",
+      "bytes": 49941,
+      "sha256": "049747b4e2f4d096a0d133f637877781a648b2fd202ab55dee29060347303e1e",
+      "width": 373,
+      "height": 438,
+      "processing": "Unchanged NASA-served display JPEG; publisher re-encoding disclosed, not full original pixel preservation. Full JPEG/TIFF and separate overview retained."
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/galatea-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/galatea-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-publisher-display-256.jpg",
+      "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=256&h=301&fit=clip&crop=faces%2Cfocalpoint",
+      "bytes": 19838,
+      "sha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+      "width": 256,
+      "height": 301,
+      "processing": "Unchanged NASA-served256px display JPEG requested through publisher rendition endpoint; publisher resize/re-encoding, not full pixel preservation. Full373JPEG/TIFF,768overview and373/320display renditions retained separately."
+    }
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/galatea-jpl-elements-fresh-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/galatea-jpl-physical-fresh-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12",
+      "status": 200
+    }
+  ],
+  "fullPrompts": {
+    "local": "Create a completely independent research-guided hypothetical local terrain illustration for Galatea, Neptune's small inner moon. Landscape 16:9. This is an IMAGINED illustration, not an observed photograph or a registered Voyager location. Camera just above gently uneven ground: low irregular relief, modest shallow depressions, angular blocks scattered through fine grey granular regolith, varied small pebbles and subtle restrained grey tonal differences. Avoid recognizable features of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body's map; do not reference or reuse another body's geography. Galatea Voyager sources are tiny detections amid glare and do not resolve local terrain. Recent unresolved NIRSpec spectra show OH and a 2.72-micron feature interpreted through laboratory Mg-serpentine comparisons; they do not measure local material fractions, visible grey colour, rock grain sizes, landscape morphology, water ice absence, an ocean, a plume, or biology. Thus all depicted terrain, blocks, grain sizes, relief, chemistry/material fractions, grey colour, lighting and exposure are invented assumptions. Use a subdued low directional light from outside frame. Near-black sky is artistic transparency, not a measurement of atmospheric absence. No Neptune, Sun, stars, rings or other astronomical disk in this local view; no angular or raster-size claim. No haze, clouds, exposed liquid, rain, plume, ocean, vegetation, people, spacecraft, landing equipment or implication of survivable landing. No claim of tidal locking or a permanent Neptune-facing location. Composition: ground fills lower two thirds, low uneven horizon, dark upper third; natural restrained texture without dramatic mountains or enormous sharp craters. Place a clearly legible small pale footer on a dark strip: 'GALATEA — IMAGINED LOCAL VIEW' and a second line 'Terrain, materials, colour and lighting assumed; no observed site registration'. No other text or scale bar.",
+    "sky": "Create an independent scientific-concept illustration, landscape 1672 by 941 pixels, a hypothetical sky view from Galatea. Do not use or reproduce any observed body's map or photograph. Low invented grey granular terrain, scattered angular stones and modest shallow relief occupies the bottom quarter. Black sky above. A fully visible Neptune globe centered approximately x=1030,y=370, diameter approximately725 pixels, muted blue with subtle independently invented bands; no recognizable observed Neptune map. Nominal90 degree horizontal field of view. Recorded skyGeometry spherical Neptune radius24622km at assumed61921km distance gives46.86091490499512 degrees and724.5944995580066 pixels at1672 width; this is an artistic size target, not calibrated registration. Keep globe unobscured by foreground. No rings, Sun, stars, spacecraft, people, local atmosphere, haze, plume, exposed liquid, ocean, biology or landing scene. Ring omission and black sky are assumptions, not measured absence. Galatea mean-radius height79km and mean orbital distance62000km do not establish local normal, current ephemeris, rotation, tidal locking or permanent facing site. Terrain, grey colour, chemistry, material fractions, Neptune bands, axis orientation, phase, lighting and exposure are invented. Unresolved spectral OH and laboratory Mg-serpentine interpretation do not establish local composition. No analog skins of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body; no dated Voyager terrain registration. Add a legible footer: GALATEA — IMAGINED SKY VIEW. Smaller second line: Terrain, colour, phase and lighting assumed; no observed site registration. Restrained realistic rendering with clear conceptual-image labels.\n"
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-69961888-4495-400c-b4f4-917d02aa7c84.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-32137de9-216a-4cf4-b2cc-43647943bb70.png"
+  }
+}

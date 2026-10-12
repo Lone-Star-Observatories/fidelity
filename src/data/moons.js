@@ -124,6 +124,11 @@ export const MOONS = [
     elements: el(73500, 0.001, 247.3, 165.5, 0.2, 312, 0.554989, 1.257, 2.514, [299.8, 43.1]),
     surfacePending: true, discovered: '1981 ground observation · 1989 Voyager identification',
     note: 'Neptune VII, distinct from asteroid 1162 Larissa. Equivalent-volume radius 96 ± 7 km differs from the adopted 97 ± 3 km in the 2019 orbit paper. Very uncertain GM establishes no precise mass or chemistry. Rotation and tidal locking remain unverified; static display orientation is assumed, not evidence of nonsynchronous spin or a permanent Neptune face. NEP097 mean orbit is not a dated observer distance. No resolved globe or registered shape adopted.' },
+  // Galatea spin/locking unverified; disable automatic locking for unregistered orientation.
+  { id: 'galatea', name: 'Galatea', parent: 'neptune', radiusKm: 79, massKg: null, rotationHours: null, locked: false,
+    elements: el(62000, 0, 0, 86.7, 0, 0, 0.428744, 0, 0, [299.8, 43.1]),
+    surfacePending: true, discovered: '1989 · Voyager 2',
+    note: 'Neptune VI, S/1989 N4. Equivalent-volume radius 79 ± 12 km does not establish local shape or normal. GM 0.18990 ± 0.76278 is very uncertain; no precise mass or chemistry adopted. Rotation/locking unverified; static display orientation assumed, not evidence of nonsynchronous spin or permanent Neptune face. Rounded zero mean elements are not exact circularity/coplanarity or dated ephemerides; no resolved globe adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

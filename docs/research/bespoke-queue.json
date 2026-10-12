@@ -537,6 +537,19 @@
       "visualId": "larissa"
     },
     {
+      "id": "sol-galatea",
+      "bodyId": "galatea",
+      "name": "Galatea",
+      "parent": "neptune",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved globe or new shape adopted; surfacePending true. Native annotated detection amid Neptune glare/rings/star streaks is not local terrain.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "galatea"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7047,20 +7060,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-galatea",
-      "name": "Galatea",
-      "parent": "neptune",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1989",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "sol-halimede",
       "name": "Halimede",
       "parent": "neptune",
@@ -8518,7 +8517,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 30,
+      "initialDossiers": 31,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

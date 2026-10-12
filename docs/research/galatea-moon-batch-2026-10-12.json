@@ -1,0 +1,1011 @@
+{
+  "date": "2026-10-12",
+  "body": "Galatea",
+  "dossier": 75,
+  "nativePreparation": {
+    "body": "Galatea (Neptune VI), S/1989 N4 / 1989N4",
+    "status": "research-only; no new dossier or embedding",
+    "retrieved": "2026-10-12",
+    "sources": [
+      {
+        "path": "data/research-sources/galatea-overview.html",
+        "url": "https://science.nasa.gov/neptune/moons/galatea/",
+        "bytes": 259125,
+        "sha256": "10f36408e52b6e4350f76d921787d5eca3d08d855c9271fdc7a7ff2cad308f36"
+      },
+      {
+        "path": "data/research-sources/galatea-PIA02200-caption.html",
+        "url": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+        "bytes": 265942,
+        "sha256": "d9e5b0c452aee58d035c0daf9de8848b8a15babaf9bc5a5fa2fe7a7533c5b45c"
+      },
+      {
+        "path": "data/research-sources/galatea-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320653,
+        "sha256": "1dea7b4ee84db93e2becf77646abba236e08738e0828fe9d5dabc715e3af3a75"
+      },
+      {
+        "path": "data/research-sources/galatea-voyager-overview-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/galatea_main.jpg",
+        "bytes": 130383,
+        "sha256": "8664ab5363aa464a0abc086593ea6917755cbb4eb37107dab03a8177338d777d",
+        "dimensions": [
+          768,
+          788
+        ]
+      },
+      {
+        "path": "data/research-sources/galatea-PIA02200-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg",
+        "bytes": 47523,
+        "sha256": "7f1238aa250dd442b3c927ddf3364de6cf46ce3e000594c481a534038f5c6d22",
+        "dimensions": [
+          373,
+          438
+        ]
+      },
+      {
+        "path": "data/research-sources/galatea-PIA02200-original.tif",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.tif",
+        "bytes": 48144,
+        "sha256": "161a2d7ed90c9fae0a6c7ed851b500493b41848cb37f1f20aab93a191f939de8",
+        "dimensions": [
+          373,
+          438
+        ]
+      }
+    ],
+    "nativeAssessment": {
+      "credit": "NASA/JPL",
+      "terms": "Active NASA images/media terms retained; no CC BY assertion.",
+      "observationDate": null,
+      "imageAdditionDate": "1999-07-25 (PIA02200); distinct from acquisition",
+      "dateLimits": "NASA overview dates discovery to July 1989; acquisition date/UTC is not established by that discovery date. Exact acquisition and raw product crosswalk remain open. Relative caption today/earlier this month is not a verified UTC. Overview asset path 2023/07 is not observation date.",
+      "instrument": "PIA02200 caption and metadata identify Voyager 2 narrow-angle camera and 155-second exposure. Filter remains unverified.",
+      "inspection": "Both JPEGs show annotated 1989N4 detection amid Neptune glare/noise, faint ring arc and two star streaks. No resolved surface geography or calibrated visible colour. No new angular/raster scale calculation. TIFF retained unchanged.",
+      "processing": "Publisher JPEGs and TIFF downloaded unchanged. Overview 768x788 image and PIA02200 373x438 image are distinct renditions; no byte/pixel identity or full original science-pixel preservation claim.",
+      "captionEstimates": "Historical ring lengths and orbital distances are source-caption estimates, not current ephemerides, new raster measurements or uncertainties."
+    },
+    "identityAndMetadataConflicts": [
+      "NASA overview lead says Voyager 1 science team; its Discovery section says Voyager 2. PIA02200 spacecraft metadata/caption also says Voyager 2. Preserve inconsistency; do not adopt Voyager 1 as Galatea observation spacecraft.",
+      "PIA02200 image alt text describes a Galileo Jupiter hotspot, inconsistent with title, image and caption. It must not establish Jupiter provenance or geography for Galatea.",
+      "1989N4 label matches NASA overview initial designation S/1989 N4; ring arc/glare/stars are context, not Galatea terrain."
+    ],
+    "limitations": [
+      "No map/globe/shape adopted or generated; no other body skin assigned.",
+      "Streaked detection is not a measured elongated shape; blur/noise does not establish local relief or material fractions.",
+      "Background blackness does not measure atmospheric absence; visible glare is not a calibrated atmosphere.",
+      "Ring-debris/collision interpretations in historical caption are hypotheses, not detected composition or direct formation history.",
+      "Exact raw product, acquisition UTC, filter, processing lineage, frame, coverage, current rotation/shape, photometry and body-specific 2026 spectroscopy audit remain open.",
+      "No exhaustive newest-observation claim."
+    ],
+    "preservation": {
+      "deliveredDossiers": 68,
+      "trackedAssetsByteEqualToHEAD": 405,
+      "mismatches": [],
+      "statement": "All originals, masters, native science, provenance, registry, map/model/shape bytes and production codecs retained; no 69th dossier."
+    },
+    "validation": {
+      "tests": "483 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard 16,000,000-byte gate",
+      "htmlBytes": 16017306,
+      "overBudgetBytes": 17306,
+      "queue": 566,
+      "deliveredDossiers": 68,
+      "browser": "No new passing full artifact or offline browser claim. Other browser engines remain open.",
+      "interbuildLimit": "Difference from prior 16015991-byte failure not independently audited; no asset or compression savings attribution. Production codecs unchanged."
+    }
+  },
+  "primary": {
+    "body": "Galatea (Neptune VI), not Larissa or Proteus",
+    "date": "2026-10-12",
+    "status": "research-only; no new dossier or embedding",
+    "primary": {
+      "authors": [
+        "M. Ryleigh Davis",
+        "Matthew Belyakov",
+        "Ian Wong",
+        "Zachariah Milby",
+        "Michael E. Brown"
+      ],
+      "url": "https://arxiv.org/abs/2607.27481",
+      "doi": "10.1126/sciadv.aeb1437",
+      "publicationDate": "2026-07-29",
+      "path": "data/research-sources/proteus-Davis2026-author.pdf",
+      "bytes": 740854,
+      "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+      "assessmentScope": "Targeted Galatea results, discussion, methods and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+      "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+    },
+    "observations": {
+      "program": 4645,
+      "instrument": "JWST NIRSpec IFU PRISM / clear",
+      "wavelengthMicron": [
+        0.6,
+        5.3
+      ],
+      "resolution": "R about 30–300",
+      "integrationSeconds": 8169.6,
+      "exposures": [
+        {
+          "date": "2024-12-17",
+          "startUTC": "15:33:55",
+          "endUTC": "15:51:11",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 226,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-17",
+          "startUTC": "15:53:51",
+          "endUTC": "16:11:07",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 238,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-17",
+          "startUTC": "16:13:48",
+          "endUTC": "16:31:03",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 245,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-17",
+          "startUTC": "16:33:44",
+          "endUTC": "16:51:00",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 261,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-19",
+          "startUTC": "08:44:32",
+          "endUTC": "09:01:48",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 226.5,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-19",
+          "startUTC": "09:04:28",
+          "endUTC": "09:21:44",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 238,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-19",
+          "startUTC": "09:24:24",
+          "endUTC": "09:41:40",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 250,
+          "subLatitudeSouthDegrees": 20.9
+        },
+        {
+          "date": "2024-12-19",
+          "startUTC": "09:44:35",
+          "endUTC": "10:01:51",
+          "seconds": 1021.2,
+          "subLongitudeWestDegrees": 261.5,
+          "subLatitudeSouthDegrees": 20.9
+        }
+      ],
+      "pipeline": "1.18.0 / jwst_1364.pmap",
+      "archive": "https://doi.org/10.17909/1cqh-hy49",
+      "code": "https://doi.org/10.22002/vwdse-4d488",
+      "exposureLimits": "Table S1 exposure times are integrations, distinct from elapsed start/end intervals and overheads. Sub-observer coordinates are source-reported mid-observation geometry, not registered local site normals or observer scenes."
+    },
+    "measurementsAndInterpretations": [
+      "Unresolved Galatea reflectance spectra show deep broad 3-micron OH absorption and the additional sharp 2.72-micron feature after rescaling at 3.1 microns and division by Proteus spectrum. Mg-bearing serpentine-like phyllosilicate assignment derives from laboratory spectral comparison, not a resolved material map or local measured fraction.",
+      "No clear water-ice or CO2 signature reported for Galatea; nondetection does not prove absolute absence. Weak 4.27-micron CO2 belongs to Proteus and must not be assigned to Galatea.",
+      "CM2/CI laboratory phyllosilicate volume percentages, laboratory temperatures and alteration durations are analog-material/formation constraints, not measured Galatea terrain fractions or current temperatures. Ceres, Bennu, meteorites and Miranda comparisons must not become Galatea skins or adopted identical chemistry.",
+      "Differentiated parent interiors, primordial satellite destruction during Triton capture versus tidal shredding of a passing KBO, and subsequent reaccretion are origin interpretations, not directly observed history, present-day ocean, plume, heat, biology or a posterior probability.",
+      "Galatea total coadded integration8169.6s is distinct from combined ring spectrum11641.8s, which uses Larissa observations and excludes the final Galatea dither in each set. Ring spectra cannot be relabelled Galatea spectra.",
+      "Reduction uses pipeline1.18.0/jwst_1364.pmap, detector and sky-aligned cubes, background interpolation, PSF extraction and solar analog program1128. These are spectral extraction/calibration choices, not independent visible-colour or observer lighting calibration.",
+      "Paper explicitly reports strong reduction sensitivity from Neptune scattered light below1.7 and above4.5microns, particularly in ring extraction, and omits those ring regions; the nominal instrument range0.6–5.3microns does not establish clean complete spectral coverage.",
+      "Unresolved spectra cannot register the1989N4 Voyager detection, establish local relief/chemistry, calibrate its visible colour or resolve NASA caption/metadata conflicts."
+    ],
+    "limitations": [
+      "Current arxiv record links CC BY4.0 while author-version notice restricts to AAAS personal use, not redistribution. Final publisher licence crosswalk remains open; no figure or paper derivative embedded.",
+      "Raw-product/extraction crosswalk, final licence, current shape/rotation, Voyager acquisition UTC/filter, frame, coverage, photometry and local observer registration remain open.",
+      "No astronomical angular/raster computation or new size/resolution claim made. No map/globe/shape adopted, no generated illustration, no69th dossier."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedPublicAssetsByteEqualToHEAD": 405,
+      "mismatches": [],
+      "statement": "All original generated PNGs, defaults, masters, native science, sources/provenance, maps/models/shapes and recorded Clipper preview retained. Production codecs unchanged."
+    },
+    "validation": {
+      "scope": "Combined a66f004 includes upstream3e6cb96 COMMS hailing-frequency implementation; no hardware transmission performed.",
+      "tests": "505 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16,000,000-byte gate",
+      "htmlBytes": 16021777,
+      "overBudgetBytes": 21777,
+      "queue": 566,
+      "browser": "No new passing full artifact or offline browser claim; other engines remain open.",
+      "attribution": "Interbuild feed/size differences not independently audited; no sole upstream, asset or compression attribution. Production codecs unchanged."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-12",
+    "body": "Galatea",
+    "status": "Research-only independent imagined local illustration; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Create a completely independent research-guided hypothetical local terrain illustration for Galatea, Neptune's small inner moon. Landscape 16:9. This is an IMAGINED illustration, not an observed photograph or a registered Voyager location. Camera just above gently uneven ground: low irregular relief, modest shallow depressions, angular blocks scattered through fine grey granular regolith, varied small pebbles and subtle restrained grey tonal differences. Avoid recognizable features of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body's map; do not reference or reuse another body's geography. Galatea Voyager sources are tiny detections amid glare and do not resolve local terrain. Recent unresolved NIRSpec spectra show OH and a 2.72-micron feature interpreted through laboratory Mg-serpentine comparisons; they do not measure local material fractions, visible grey colour, rock grain sizes, landscape morphology, water ice absence, an ocean, a plume, or biology. Thus all depicted terrain, blocks, grain sizes, relief, chemistry/material fractions, grey colour, lighting and exposure are invented assumptions. Use a subdued low directional light from outside frame. Near-black sky is artistic transparency, not a measurement of atmospheric absence. No Neptune, Sun, stars, rings or other astronomical disk in this local view; no angular or raster-size claim. No haze, clouds, exposed liquid, rain, plume, ocean, vegetation, people, spacecraft, landing equipment or implication of survivable landing. No claim of tidal locking or a permanent Neptune-facing location. Composition: ground fills lower two thirds, low uneven horizon, dark upper third; natural restrained texture without dramatic mountains or enormous sharp craters. Place a clearly legible small pale footer on a dark strip: 'GALATEA — IMAGINED LOCAL VIEW' and a second line 'Terrain, materials, colour and lighting assumed; no observed site registration'. No other text or scale bar.",
+    "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-69961888-4495-400c-b4f4-917d02aa7c84.png",
+    "researchCopy": "data/research-sources/galatea-generated-surfaceImage-original.png",
+    "inspection": "Original displayed and inspected: independently imagined low grey granular relief, shallow depression, angular blocks, restrained directional light and near-black sky. Clearly readable GALATEA — IMAGINED LOCAL VIEW and assumed-terrain footer. No astronomical disk, observed site, plume, liquid, biology or landing equipment.",
+    "references": [
+      "docs/research/galatea-moon-preparation-2026-10-12.json",
+      "docs/research/galatea-primary-spectroscopy-assessment-2026-10-12.json",
+      "docs/research/galatea-observer-geometry-preparation-2026-10-12.json"
+    ],
+    "limitations": [
+      "Terrain, block and grain sizes, shallow relief, chemistry/material fractions, grey colour, lighting and exposure are invented; no observed body's map or analog skin reused.",
+      "Native Voyager detection amid glare/ring/star streaks does not resolve this terrain, local shape or elongated morphology. Caption identity/date/filter/product conflicts remain open.",
+      "Unresolved OH/2.72-micron feature and laboratory Mg-serpentine interpretation do not map local minerals or Voyager pixels; nondetection of ice/CO2 does not prove absence. Proteus weak CO2 and combined ring spectra are not Galatea measurements.",
+      "Black sky is assumed transparency, not measured atmospheric absence. No tidal-locking or permanent Neptune-facing site claim.",
+      "No astronomical disk or angular/raster size claim. Observer illustration, masters and recorded previews remain outstanding; verified skyGeometry record is not registration of this local view.",
+      "All68 dossiers, originals, masters, native science, maps, models, shapes and provenance retained. No69th dossier, new embedding, membership or codec change."
+    ],
+    "validation": {
+      "tests": "505 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16MB gate",
+      "htmlBytes": 16021514,
+      "overBudgetBytes": 21514,
+      "browser": "No new passing full/offline browser claim; other engines remain open.",
+      "preservation": "68 dossiers/registry unchanged;405 tracked public bespoke/model/shape/texture inputs byte-identical to HEAD;recorded Clipper preview preserved;queue566.",
+      "attribution": "Research-only original image not embedded; production codecs unchanged. Interbuild differences unaudited; no size-saving attribution."
+    },
+    "original": {
+      "bytes": 2690465,
+      "sha256": "043f86c2e71e60f351e4497766c198766b7a6d487194830ba25e711bef354c08",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "defaultAndResearchBytesIdentical": true
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-12",
+    "body": "Galatea",
+    "status": "Research-only independent built-in IMAGINED observer; no dossier69 or embedding",
+    "generator": "Built-in image_gen; no referenced images",
+    "prompt": "Create an independent scientific-concept illustration, landscape 1672 by 941 pixels, a hypothetical sky view from Galatea. Do not use or reproduce any observed body's map or photograph. Low invented grey granular terrain, scattered angular stones and modest shallow relief occupies the bottom quarter. Black sky above. A fully visible Neptune globe centered approximately x=1030,y=370, diameter approximately725 pixels, muted blue with subtle independently invented bands; no recognizable observed Neptune map. Nominal90 degree horizontal field of view. Recorded skyGeometry spherical Neptune radius24622km at assumed61921km distance gives46.86091490499512 degrees and724.5944995580066 pixels at1672 width; this is an artistic size target, not calibrated registration. Keep globe unobscured by foreground. No rings, Sun, stars, spacecraft, people, local atmosphere, haze, plume, exposed liquid, ocean, biology or landing scene. Ring omission and black sky are assumptions, not measured absence. Galatea mean-radius height79km and mean orbital distance62000km do not establish local normal, current ephemeris, rotation, tidal locking or permanent facing site. Terrain, grey colour, chemistry, material fractions, Neptune bands, axis orientation, phase, lighting and exposure are invented. Unresolved spectral OH and laboratory Mg-serpentine interpretation do not establish local composition. No analog skins of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body; no dated Voyager terrain registration. Add a legible footer: GALATEA — IMAGINED SKY VIEW. Smaller second line: Terrain, colour, phase and lighting assumed; no observed site registration. Restrained realistic rendering with clear conceptual-image labels.\n",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-32137de9-216a-4cf4-b2cc-43647943bb70.png",
+    "asset": {
+      "path": "data/research-sources/galatea-generated-skyImage-original.png",
+      "bytes": 1697413,
+      "sha256": "21acb6ef9f21974f0a11939ea9d51f90ce63bf93afb6ed396a557dc0863f195b",
+      "width": 1672,
+      "height": 941
+    },
+    "defaultCopyByteIdentical": true,
+    "geometryRecord": "docs/research/galatea-observer-geometry-preparation-2026-10-12.json",
+    "geometry": {
+      "angularDiameterDeg": 46.86091490499512,
+      "targetWidthPixels1672": 724.5944995580066
+    },
+    "inspection": "Full PNG inspected: grey invented foreground, fully visible blue globe, legible IMAGINED footer. Globe appears smaller than requested target; not calibrated.",
+    "limitations": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+      "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+      "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+      "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+      "All terrain, blocks, grains, chemistry fractions, grey colour, Neptune cloud/band patterns, phase, axis, light and exposure invented independently; no analog observed map or dated Voyager/spectroscopy site. No foreground atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky and ring omission assumptions, not measured absence. Small preview footer requires readable card labels."
+    ],
+    "validation": {
+      "tests": "505 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16MB gate",
+      "htmlBytes": 16024144,
+      "overBudgetBytes": 24144,
+      "browser": "No new passing full/offline browser claim; other engines open.",
+      "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper950348byte preview preserved;queue566. All originals/masters/native/provenance retained.",
+      "attribution": "Research-only, no69 or embedding or codec change. Interbuild differences unaudited; no savings attribution."
+    }
+  },
+  "geometryPreparation": {
+    "date": "2026-10-12",
+    "body": "Galatea",
+    "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+    "sources": [
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "path": "data/research-sources/galatea-jpl-physical-2026-10-12.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "path": "data/research-sources/galatea-jpl-elements-2026-10-12.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "parameters": {
+      "galateaMeanRadiusKm": 79,
+      "radiusUncertaintyKm": 12,
+      "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+      "semimajorAxisKm": 62000,
+      "eccentricity": 0,
+      "orbitalPeriodDays": 0.428744,
+      "elementEpoch": "2000-01-01.5 TDB",
+      "elementFrame": "Laplace plane",
+      "ephemeris": "NEP097",
+      "neptuneMeanRadiusKm": 24622,
+      "neptuneRadiusSource": "src/data/sol.js",
+      "ephemerisReference": "M. Brozović (2020), Update of the inner Neptunian satellite orbits — NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution."
+    },
+    "assumptions": {
+      "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+      "distanceKm": 61921,
+      "horizontalFovDeg": 90,
+      "rasterWidthPixels": 1672,
+      "temperatureK": 60,
+      "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+    },
+    "geometry": {
+      "angularDiameterDeg": 46.86091490499512,
+      "targetWidthPixels1672": 724.5944995580066
+    },
+    "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(62000-79)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+    "limitations": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+      "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+      "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+      "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open."
+    ],
+    "validation": {
+      "tests": "505 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16MB gate",
+      "htmlBytes": 16021514,
+      "overBudgetBytes": 21514,
+      "browser": "No new passing full/offline browser claim; other engines remain open.",
+      "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper preview SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved;queue566. Original PNGs/masters/native/provenance retained.",
+      "attribution": "Research-only; no illustration, dossier69, embedding or codec change. Interbuild differences unaudited; no asset/compression savings attribution."
+    }
+  },
+  "masters": {
+    "date": "2026-10-12",
+    "body": "Galatea",
+    "status": "Research-only; no dossier69 or embedding",
+    "assets": [
+      {
+        "kind": "surfaceImage",
+        "role": "master",
+        "quality": 85,
+        "path": "data/research-sources/galatea-generated-surfaceImage-master.jpg",
+        "bytes": 269941,
+        "sha256": "454a38f5ad6c67df7bdb583e46cf5fe814587fbd773617c35392139fab20d463",
+        "width": 1536,
+        "height": 864
+      },
+      {
+        "kind": "surfaceImage",
+        "role": "preview",
+        "quality": 80,
+        "path": "data/research-sources/galatea-generated-surfaceImage-preview.jpg",
+        "bytes": 9447,
+        "sha256": "211ce1b61378e3f1cd1434fe75ba445058ac1fd415ac0b90cd642ff8cf0c61b3",
+        "width": 256,
+        "height": 144
+      },
+      {
+        "kind": "skyImage",
+        "role": "master",
+        "quality": 85,
+        "path": "data/research-sources/galatea-generated-skyImage-master.jpg",
+        "bytes": 169988,
+        "sha256": "b25cb9ea62b18654d331aee86cf806d3faf5ce8a6b6cc40f463f1c9bea94df79",
+        "width": 1536,
+        "height": 864
+      },
+      {
+        "kind": "skyImage",
+        "role": "preview",
+        "quality": 80,
+        "path": "data/research-sources/galatea-generated-skyImage-preview.jpg",
+        "bytes": 6418,
+        "sha256": "f8cc835cf12281ac4eeeadc099ed54bfa692f1da01dc79d4ff75e17c55a84d81",
+        "width": 256,
+        "height": 144
+      }
+    ],
+    "previewRawBytes": 15865,
+    "limitations": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+      "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+      "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+      "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+      "All terrain, blocks, grains, chemistry fractions, grey colour, Neptune cloud/band patterns, phase, axis, light and exposure invented independently; no analog observed map or dated Voyager/spectroscopy site. No foreground atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky and ring omission assumptions, not measured absence. Small preview footer requires readable card labels."
+    ],
+    "inspection": "Both256 JPEG previews inspected: scene identifiable, tiny footer/annotations require readable card labels. Originals retained unchanged.",
+    "validation": {
+      "tests": "505 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16MB gate",
+      "htmlBytes": 16024144,
+      "overBudgetBytes": 24144,
+      "browser": "No new passing full/offline browser claim; other engines open.",
+      "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper950348byte preview preserved;queue566. All originals/masters/native/provenance retained.",
+      "attribution": "Research-only, no69 or embedding or codec change. Interbuild differences unaudited; no savings attribution."
+    }
+  },
+  "publisherRendition": {
+    "path": "data/research-sources/galatea-PIA02200-publisher-display-256.jpg",
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=256&h=301&fit=clip&crop=faces%2Cfocalpoint",
+    "bytes": 19838,
+    "sha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+    "width": 256,
+    "height": 301,
+    "processing": "Unchanged NASA-served256px display JPEG requested through publisher rendition endpoint; publisher resize/re-encoding, not full pixel preservation. Full373JPEG/TIFF,768overview and373/320display renditions retained separately."
+  },
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/galatea-jpl-elements-fresh-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/galatea-jpl-physical-fresh-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "status": 200
+      }
+    ],
+    "priorMoonCount": 32,
+    "physical": "79±12 equivalentvolume; GM.18990±.76278 veryuncertain deriveddensity1.3777±5.5695, massnull.",
+    "rotation": "Unverified explicitnullspin; lockedfalse disablesautomaticlocking only.",
+    "elements": "NEP097 Laplace62000/e0/w0/M86.7/i0/node0/P.428744/Papsis0/Pnode0 pole299.8,43.1 epoch2000Jan1.5TDB; roundedzero not exactabsence."
+  },
+  "bodies": [
+    {
+      "id": "galatea",
+      "name": "Galatea",
+      "aliases": [
+        "Galatea",
+        "Neptune VI",
+        "S/1989 N4"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Native annotated detection amid Neptune glare/rings/star streaks is not local terrain.",
+      "measured": [
+        "PIA02200 Voyager2 narrow-angle155-second exposure, filter/rawproduct/acquisitionUTC unverified. 1989 discovery not observationdate; Photojournal addition1999-07-25 not acquisition.",
+        "NEP097 Laplace mean62000km/P.428744days epoch2000Jan1.5TDB; zero rounded eccentricity/inclination/precession are not exact circularity/coplanarity or absence of perturbations."
+      ],
+      "modelled": [
+        "JPL equivalent-volume79±12km Archinal2018, not irregular local normal/axes; GM.18990±.76278km³/s² extremely uncertain, deriveddensity1.3777±5.5695 not precise chemistry/porosity. massKg null.",
+        "Unresolved Galatea reflectance spectra show deep broad 3-micron OH absorption and the additional sharp 2.72-micron feature after rescaling at 3.1 microns and division by Proteus spectrum. Mg-bearing serpentine-like phyllosilicate assignment derives from laboratory spectral comparison, not a resolved material map or local measured fraction.",
+        "No clear water-ice or CO2 signature reported for Galatea; nondetection does not prove absolute absence. Weak 4.27-micron CO2 belongs to Proteus and must not be assigned to Galatea.",
+        "CM2/CI laboratory phyllosilicate volume percentages, laboratory temperatures and alteration durations are analog-material/formation constraints, not measured Galatea terrain fractions or current temperatures. Ceres, Bennu, meteorites and Miranda comparisons must not become Galatea skins or adopted identical chemistry.",
+        "Differentiated parent interiors, primordial satellite destruction during Triton capture versus tidal shredding of a passing KBO, and subsequent reaccretion are origin interpretations, not directly observed history, present-day ocean, plume, heat, biology or a posterior probability.",
+        "Galatea total coadded integration8169.6s is distinct from combined ring spectrum11641.8s, which uses Larissa observations and excludes the final Galatea dither in each set. Ring spectra cannot be relabelled Galatea spectra.",
+        "Reduction uses pipeline1.18.0/jwst_1364.pmap, detector and sky-aligned cubes, background interpolation, PSF extraction and solar analog program1128. These are spectral extraction/calibration choices, not independent visible-colour or observer lighting calibration.",
+        "Paper explicitly reports strong reduction sensitivity from Neptune scattered light below1.7 and above4.5microns, particularly in ring extraction, and omits those ring regions; the nominal instrument range0.6–5.3microns does not establish clean complete spectral coverage.",
+        "Unresolved spectra cannot register the1989N4 Voyager detection, establish local relief/chemistry, calibrate its visible colour or resolve NASA caption/metadata conflicts."
+      ],
+      "unknown": [
+        "NASA overview lead says Voyager 1 science team; its Discovery section says Voyager 2. PIA02200 spacecraft metadata/caption also says Voyager 2. Preserve inconsistency; do not adopt Voyager 1 as Galatea observation spacecraft.",
+        "PIA02200 image alt text describes a Galileo Jupiter hotspot, inconsistent with title, image and caption. It must not establish Jupiter provenance or geography for Galatea.",
+        "1989N4 label matches NASA overview initial designation S/1989 N4; ring arc/glare/stars are context, not Galatea terrain.",
+        "No map/globe/shape adopted or generated; no other body skin assigned.",
+        "Streaked detection is not a measured elongated shape; blur/noise does not establish local relief or material fractions.",
+        "Background blackness does not measure atmospheric absence; visible glare is not a calibrated atmosphere.",
+        "Ring-debris/collision interpretations in historical caption are hypotheses, not detected composition or direct formation history.",
+        "Exact raw product, acquisition UTC, filter, processing lineage, frame, coverage, current rotation/shape, photometry and body-specific 2026 spectroscopy audit remain open.",
+        "No exhaustive newest-observation claim.",
+        "Current arxiv record links CC BY4.0 while author-version notice restricts to AAAS personal use, not redistribution. Final publisher licence crosswalk remains open; no figure or paper derivative embedded.",
+        "Raw-product/extraction crosswalk, final licence, current shape/rotation, Voyager acquisition UTC/filter, frame, coverage, photometry and local observer registration remain open.",
+        "Rotation/locking unverified; rotationHoursnull and lockedfalse disable automatic spin/registration only, not measured nonsynchronous motion. No permanent Neptune-facing site established."
+      ],
+      "assumed": [
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+        "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+        "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+        "All terrain, blocks, grains, chemistry fractions, grey colour, Neptune cloud/band patterns, phase, axis, light and exposure invented independently; no analog observed map or dated Voyager/spectroscopy site. No foreground atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky and ring omission assumptions, not measured absence. Small preview footer requires readable card labels.",
+        "Terrain, block and grain sizes, shallow relief, chemistry/material fractions, grey colour, lighting and exposure are invented; no observed body's map or analog skin reused.",
+        "Native Voyager detection amid glare/ring/star streaks does not resolve this terrain, local shape or elongated morphology. Caption identity/date/filter/product conflicts remain open.",
+        "Unresolved OH/2.72-micron feature and laboratory Mg-serpentine interpretation do not map local minerals or Voyager pixels; nondetection of ice/CO2 does not prove absence. Proteus weak CO2 and combined ring spectra are not Galatea measurements.",
+        "Black sky is assumed transparency, not measured atmospheric absence. No tidal-locking or permanent Neptune-facing site claim.",
+        "skyGeometry sphericalNeptune24622 at62000minus79km gives46.86091490499512deg724.5944995580066px90HFOV1672; renderedglobe appears smaller, no calibrated rasterdiameter adopted. 60Kangularhelper only; Sun30.07AUoffframe5772K/1Rsun artistic angularhelper notphotometry. Tiny preview footers require readable IMAGINEDcardlabels."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+          "title": "NASA Neptune Partial Rings PIA02200",
+          "credit": "NASA/JPL",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "authors": [
+            "M. Ryleigh Davis",
+            "Matthew Belyakov",
+            "Ian Wong",
+            "Zachariah Milby",
+            "Michael E. Brown"
+          ],
+          "url": "https://arxiv.org/abs/2607.27481",
+          "doi": "10.1126/sciadv.aeb1437",
+          "publicationDate": "2026-07-29",
+          "path": "data/research-sources/proteus-Davis2026-author.pdf",
+          "bytes": 740854,
+          "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+          "assessmentScope": "Targeted Galatea results, discussion, methods and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+          "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+        },
+        {
+          "path": "data/research-sources/galatea-jpl-elements-fresh-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12",
+          "status": 200
+        },
+        {
+          "path": "data/research-sources/galatea-jpl-physical-fresh-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12",
+          "status": 200
+        },
+        {
+          "url": "https://doi.org/10.17909/1cqh-hy49",
+          "title": "JWST archive"
+        },
+        {
+          "url": "https://doi.org/10.22002/vwdse-4d488",
+          "title": "Primary spectral extraction code"
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/galatea-PIA02200-publisher-display-256.jpg",
+          "url": "/bespoke/galatea-voyager-native.jpg",
+          "bytes": 19838,
+          "sha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+          "width": 256,
+          "height": 301,
+          "processing": "Unchanged NASA-served256px display JPEG requested through publisher rendition endpoint; publisher resize/re-encoding, not full pixel preservation. Full373JPEG/TIFF,768overview and373/320display renditions retained separately.",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=256&h=301&fit=clip&crop=faces%2Cfocalpoint",
+          "sourceUrl": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+          "tier": "measured",
+          "credit": "NASA/JPL",
+          "observationDate": null,
+          "publicationDate": "1999-07-25",
+          "observationDateNote": "NASA overview dates discovery to July 1989; acquisition date/UTC is not established by that discovery date. Exact acquisition and raw product crosswalk remain open. Relative caption today/earlier this month is not a verified UTC. Overview asset path 2023/07 is not observation date.",
+          "terms": "ActiveNASAmedia terms/thirdparty caveats, notCCBY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual Voyager2 PIA02200 annotated1989N4 Galatea detection amid Neptune glare/ring/starstreaks; not resolved terrain, shape or calibrated visiblecolour."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 30.07,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL GALATEA TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM GALATEA",
+      "observerGeometry": {
+        "date": "2026-10-12",
+        "body": "Galatea",
+        "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+        "sources": [
+          {
+            "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+            "path": "data/research-sources/galatea-jpl-physical-2026-10-12.html",
+            "bytes": 95641,
+            "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+          },
+          {
+            "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+            "path": "data/research-sources/galatea-jpl-elements-2026-10-12.html",
+            "bytes": 580012,
+            "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+          }
+        ],
+        "parameters": {
+          "galateaMeanRadiusKm": 79,
+          "radiusUncertaintyKm": 12,
+          "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+          "semimajorAxisKm": 62000,
+          "eccentricity": 0,
+          "orbitalPeriodDays": 0.428744,
+          "elementEpoch": "2000-01-01.5 TDB",
+          "elementFrame": "Laplace plane",
+          "ephemeris": "NEP097",
+          "neptuneMeanRadiusKm": 24622,
+          "neptuneRadiusSource": "src/data/sol.js",
+          "ephemerisReference": "M. Brozović (2020), Update of the inner Neptunian satellite orbits — NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution."
+        },
+        "assumptions": {
+          "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+          "distanceKm": 61921,
+          "horizontalFovDeg": 90,
+          "rasterWidthPixels": 1672,
+          "temperatureK": 60,
+          "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+        },
+        "geometry": {
+          "angularDiameterDeg": 46.86091490499512,
+          "targetWidthPixels1672": 724.5944995580066
+        },
+        "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(62000-79)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+        "limitations": [
+          "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+          "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+          "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+          "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+          "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+          "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+          "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+          "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open."
+        ],
+        "validation": {
+          "tests": "505 pass,1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "FAIL hard16MB gate",
+          "htmlBytes": 16021514,
+          "overBudgetBytes": 21514,
+          "browser": "No new passing full/offline browser claim; other engines remain open.",
+          "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper preview SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved;queue566. Original PNGs/masters/native/provenance retained.",
+          "attribution": "Research-only; no illustration, dossier69, embedding or codec change. Interbuild differences unaudited; no asset/compression savings attribution."
+        }
+      },
+      "inputs": {
+        "surfaceImage": "galatea-generated-surfaceImage-original.png",
+        "skyImage": "galatea-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "budgetAssessment": {
+    "unpublished320DisplayBuild": {
+      "htmlBytes": 16005723,
+      "overBudgetBytes": 5723,
+      "fullBuild": "FAIL hard16MBgate"
+    },
+    "resolution": "Switch only new Galatea context to unchanged256 publisher rendition; retain320 and all larger native originals. No previous asset, science, model or codec pruned."
+  },
+  "status": "Delivered individual dossier75; selectable Galatea, unchanged publisher display native and independent IMAGINED views. Nested preparations retain historical status/verification.",
+  "dossierRecord": {
+    "id": "galatea",
+    "name": "Galatea",
+    "aliases": [
+      "Galatea",
+      "Neptune VI",
+      "S/1989 N4"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Native annotated detection amid Neptune glare/rings/star streaks is not local terrain.",
+    "measured": [
+      "PIA02200 Voyager2 narrow-angle155-second exposure, filter/rawproduct/acquisitionUTC unverified. 1989 discovery not observationdate; Photojournal addition1999-07-25 not acquisition.",
+      "NEP097 Laplace mean62000km/P.428744days epoch2000Jan1.5TDB; zero rounded eccentricity/inclination/precession are not exact circularity/coplanarity or absence of perturbations."
+    ],
+    "modelled": [
+      "JPL equivalent-volume79±12km Archinal2018, not irregular local normal/axes; GM.18990±.76278km³/s² extremely uncertain, deriveddensity1.3777±5.5695 not precise chemistry/porosity. massKg null.",
+      "Unresolved Galatea reflectance spectra show deep broad 3-micron OH absorption and the additional sharp 2.72-micron feature after rescaling at 3.1 microns and division by Proteus spectrum. Mg-bearing serpentine-like phyllosilicate assignment derives from laboratory spectral comparison, not a resolved material map or local measured fraction.",
+      "No clear water-ice or CO2 signature reported for Galatea; nondetection does not prove absolute absence. Weak 4.27-micron CO2 belongs to Proteus and must not be assigned to Galatea.",
+      "CM2/CI laboratory phyllosilicate volume percentages, laboratory temperatures and alteration durations are analog-material/formation constraints, not measured Galatea terrain fractions or current temperatures. Ceres, Bennu, meteorites and Miranda comparisons must not become Galatea skins or adopted identical chemistry.",
+      "Differentiated parent interiors, primordial satellite destruction during Triton capture versus tidal shredding of a passing KBO, and subsequent reaccretion are origin interpretations, not directly observed history, present-day ocean, plume, heat, biology or a posterior probability.",
+      "Galatea total coadded integration8169.6s is distinct from combined ring spectrum11641.8s, which uses Larissa observations and excludes the final Galatea dither in each set. Ring spectra cannot be relabelled Galatea spectra.",
+      "Reduction uses pipeline1.18.0/jwst_1364.pmap, detector and sky-aligned cubes, background interpolation, PSF extraction and solar analog program1128. These are spectral extraction/calibration choices, not independent visible-colour or observer lighting calibration.",
+      "Paper explicitly reports strong reduction sensitivity from Neptune scattered light below1.7 and above4.5microns, particularly in ring extraction, and omits those ring regions; the nominal instrument range0.6–5.3microns does not establish clean complete spectral coverage.",
+      "Unresolved spectra cannot register the1989N4 Voyager detection, establish local relief/chemistry, calibrate its visible colour or resolve NASA caption/metadata conflicts."
+    ],
+    "unknown": [
+      "NASA overview lead says Voyager 1 science team; its Discovery section says Voyager 2. PIA02200 spacecraft metadata/caption also says Voyager 2. Preserve inconsistency; do not adopt Voyager 1 as Galatea observation spacecraft.",
+      "PIA02200 image alt text describes a Galileo Jupiter hotspot, inconsistent with title, image and caption. It must not establish Jupiter provenance or geography for Galatea.",
+      "1989N4 label matches NASA overview initial designation S/1989 N4; ring arc/glare/stars are context, not Galatea terrain.",
+      "No map/globe/shape adopted or generated; no other body skin assigned.",
+      "Streaked detection is not a measured elongated shape; blur/noise does not establish local relief or material fractions.",
+      "Background blackness does not measure atmospheric absence; visible glare is not a calibrated atmosphere.",
+      "Ring-debris/collision interpretations in historical caption are hypotheses, not detected composition or direct formation history.",
+      "Exact raw product, acquisition UTC, filter, processing lineage, frame, coverage, current rotation/shape, photometry and body-specific 2026 spectroscopy audit remain open.",
+      "No exhaustive newest-observation claim.",
+      "Current arxiv record links CC BY4.0 while author-version notice restricts to AAAS personal use, not redistribution. Final publisher licence crosswalk remains open; no figure or paper derivative embedded.",
+      "Raw-product/extraction crosswalk, final licence, current shape/rotation, Voyager acquisition UTC/filter, frame, coverage, photometry and local observer registration remain open.",
+      "Rotation/locking unverified; rotationHoursnull and lockedfalse disable automatic spin/registration only, not measured nonsynchronous motion. No permanent Neptune-facing site established."
+    ],
+    "assumed": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+      "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+      "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+      "All terrain, blocks, grains, chemistry fractions, grey colour, Neptune cloud/band patterns, phase, axis, light and exposure invented independently; no analog observed map or dated Voyager/spectroscopy site. No foreground atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky and ring omission assumptions, not measured absence. Small preview footer requires readable card labels.",
+      "Terrain, block and grain sizes, shallow relief, chemistry/material fractions, grey colour, lighting and exposure are invented; no observed body's map or analog skin reused.",
+      "Native Voyager detection amid glare/ring/star streaks does not resolve this terrain, local shape or elongated morphology. Caption identity/date/filter/product conflicts remain open.",
+      "Unresolved OH/2.72-micron feature and laboratory Mg-serpentine interpretation do not map local minerals or Voyager pixels; nondetection of ice/CO2 does not prove absence. Proteus weak CO2 and combined ring spectra are not Galatea measurements.",
+      "Black sky is assumed transparency, not measured atmospheric absence. No tidal-locking or permanent Neptune-facing site claim.",
+      "skyGeometry sphericalNeptune24622 at62000minus79km gives46.86091490499512deg724.5944995580066px90HFOV1672; renderedglobe appears smaller, no calibrated rasterdiameter adopted. 60Kangularhelper only; Sun30.07AUoffframe5772K/1Rsun artistic angularhelper notphotometry. Tiny preview footers require readable IMAGINEDcardlabels."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+        "title": "NASA Neptune Partial Rings PIA02200",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "authors": [
+          "M. Ryleigh Davis",
+          "Matthew Belyakov",
+          "Ian Wong",
+          "Zachariah Milby",
+          "Michael E. Brown"
+        ],
+        "url": "https://arxiv.org/abs/2607.27481",
+        "doi": "10.1126/sciadv.aeb1437",
+        "publicationDate": "2026-07-29",
+        "path": "data/research-sources/proteus-Davis2026-author.pdf",
+        "bytes": 740854,
+        "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+        "assessmentScope": "Targeted Galatea results, discussion, methods and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+        "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+      },
+      {
+        "path": "data/research-sources/galatea-jpl-elements-fresh-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/galatea-jpl-physical-fresh-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "url": "https://doi.org/10.17909/1cqh-hy49",
+        "title": "JWST archive"
+      },
+      {
+        "url": "https://doi.org/10.22002/vwdse-4d488",
+        "title": "Primary spectral extraction code"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/galatea-PIA02200-publisher-display-256.jpg",
+        "url": "/bespoke/galatea-voyager-native.jpg",
+        "bytes": 19838,
+        "sha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+        "width": 256,
+        "height": 301,
+        "processing": "Unchanged NASA-served256px display JPEG requested through publisher rendition endpoint; publisher resize/re-encoding, not full pixel preservation. Full373JPEG/TIFF,768overview and373/320display renditions retained separately. Title/caption/Voyager2metadata conflict with Jupiter/Galileo alttext; overviewVoyager1lead contradictsVoyager2discoverysection. Both conflicts preserved, not adopted as identity.",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg?w=256&h=301&fit=clip&crop=faces%2Cfocalpoint",
+        "sourceUrl": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+        "tier": "measured",
+        "credit": "NASA/JPL",
+        "observationDate": null,
+        "publicationDate": "1999-07-25",
+        "observationDateNote": "NASA overview dates discovery to July 1989; acquisition date/UTC is not established by that discovery date. Exact acquisition and raw product crosswalk remain open. Relative caption today/earlier this month is not a verified UTC. Overview asset path 2023/07 is not observation date.",
+        "terms": "ActiveNASAmedia terms/thirdparty caveats, notCCBY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual Voyager2 PIA02200 annotated1989N4 Galatea detection amid Neptune glare/ring/starstreaks; not resolved terrain, shape or calibrated visiblecolour."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL GALATEA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM GALATEA",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "body": "Galatea",
+      "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/galatea-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/galatea-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+        }
+      ],
+      "parameters": {
+        "galateaMeanRadiusKm": 79,
+        "radiusUncertaintyKm": 12,
+        "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+        "semimajorAxisKm": 62000,
+        "eccentricity": 0,
+        "orbitalPeriodDays": 0.428744,
+        "elementEpoch": "2000-01-01.5 TDB",
+        "elementFrame": "Laplace plane",
+        "ephemeris": "NEP097",
+        "neptuneMeanRadiusKm": 24622,
+        "neptuneRadiusSource": "src/data/sol.js",
+        "ephemerisReference": "M. Brozović (2020), Update of the inner Neptunian satellite orbits — NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution."
+      },
+      "assumptions": {
+        "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+        "distanceKm": 61921,
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+      },
+      "geometry": {
+        "angularDiameterDeg": 46.86091490499512,
+        "targetWidthPixels1672": 724.5944995580066
+      },
+      "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(62000-79)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+      "limitations": [
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+        "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+        "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+        "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open."
+      ],
+      "validation": {
+        "tests": "505 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16021514,
+        "overBudgetBytes": 21514,
+        "browser": "No new passing full/offline browser claim; other engines remain open.",
+        "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper preview SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved;queue566. Original PNGs/masters/native/provenance retained.",
+        "attribution": "Research-only; no illustration, dossier69, embedding or codec change. Interbuild differences unaudited; no asset/compression savings attribution."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/galatea-surface-image.jpg",
+      "previewUrl": "/bespoke/galatea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "galatea-generated-surfaceImage-original.png",
+      "sourceSha256": "043f86c2e71e60f351e4497766c198766b7a6d487194830ba25e711bef354c08",
+      "sha256": "12cbb1b59a13512614902b7d572412e021c20beb4da6c8fa9641d12efd9d6502",
+      "previewSha256": "83be2b9467e698d76ba0499886be98d3047b70801024e21c9cf2c700f0279468",
+      "bytes": 263925,
+      "previewBytes": 8830,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/galatea-sky-image.jpg",
+      "previewUrl": "/bespoke/galatea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "galatea-generated-skyImage-original.png",
+      "sourceSha256": "21acb6ef9f21974f0a11939ea9d51f90ce63bf93afb6ed396a557dc0863f195b",
+      "sha256": "f95af047620d3f149e0257bb166f95b7e0462ae2aa5a90b565891fcd4d1a19a7",
+      "previewSha256": "91a18b6f83da88a8ce3cb626d451d18465edbbe4c29d1c175a8fc6ed7eddc470",
+      "bytes": 167291,
+      "previewBytes": 5962,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "610 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15988743,
+    "headroomBytes": 11257,
+    "completeSnapshotSha256": "0de93a7f291a2c77084325f4fa05eca9cbd79d7273807164eee473f142825fb1",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "ec02492de1c711c0785f2a16d18d219d518ca67b4cfd44deaab26e93d00e263f",
+    "fidelity-application-data": "299958f1cb18b2406f76061f0bb6eddfe9975755636ed83ee479a6501c145c97",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "d505987958184a7ae41102265e4b87dadb3e40c7b5eebbe64729a78a845750e0",
+    "applicationSha256": "b5e96791bbe351c86d7120a379fb2e3029f642dedbb59d11142cbd8d942ba7a4",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "f42940ea53ea27b2df7ae7d8e3c4b92e5bbb6151e4d72b157ac21b3be18b5a1f",
+    "errors": [],
+    "browser": "Chrome complete readableJSON/application/CSS/startup/4HTMLparser packed texts exact,258images20bands517details32entries; normalofflineGalatea3cards/noownmap,sixroutes/unsupportedgzip/11workerrows pass. Other engines open; no fresh all-model-load claim.",
+    "preservation": {
+      "earlierDossiersDeepEqual": 74,
+      "earlierMOONSCatalogueEntriesDeepEqual": 32,
+      "trackedPublicFilesByteEqual": 591,
+      "nativeContextHashes": 64,
+      "sourceAndOriginalHashesChecked": 22,
+      "recordedClipper": "950348bytes SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved"
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/galatea-surface-image.jpg",
+        "after": "string(10471)"
+      },
+      {
+        "path": "/bodyImages//bespoke/galatea-sky-image.jpg",
+        "after": "string(6003)"
+      },
+      {
+        "path": "/bodyImages//bespoke/galatea-voyager-native.jpg",
+        "after": "string(26475)"
+      }
+    ],
+    "queue": {
+      "tasks": 566,
+      "dossiers": 75
+    },
+    "attribution": "Actual saved JSON difference recorded; catalogue changes application, net HTML increment not sole asset/compression attribution. Codecs unchanged."
+  }
+}
