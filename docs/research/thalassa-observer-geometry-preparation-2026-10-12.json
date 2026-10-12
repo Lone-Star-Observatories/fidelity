@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-12",
+  "body": "Thalassa / S/1989 N5 (JPL804)",
+  "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/thalassa-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/thalassa-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12"
+    }
+  ],
+  "parameters": {
+    "jplRadiusKm": 40,
+    "jplRadiusUncertaintyKm": 8,
+    "radiusReference": "Archinal2018 JPLref1 equivalent-volume radius, not local normal",
+    "jplGmKm3s2": 0.02359,
+    "jplGmUncertainty": 0.00522,
+    "gmReference": "NEP097",
+    "jplDerivedDensity_g_cm3": [
+      1.3184,
+      0.8432
+    ],
+    "densityLimit": "JPL derived from GM and radius, not local chemistry/porosity; not adopted as scene material fractions",
+    "paperEffectiveRadiusKm": 41,
+    "paperRadiusUncertaintyKm": 3,
+    "paperGmKm3s2": [
+      0.0236,
+      0.0064
+    ],
+    "paperDerivedDensity_g_cm3": [
+      1.23,
+      0.43
+    ],
+    "semimajorAxisKm": 50100,
+    "orbitalPeriodDays": 0.311078,
+    "roundedEccentricity": 0,
+    "roundedInclinationDeg": 0,
+    "epoch": "2000-01-01.5 TDB",
+    "frame": "Local Laplace plane",
+    "ephemeris": "NEP097",
+    "reference": "Brozovic2020 personal communication to Horizons/NAIF, table reference not new underlying solution audit",
+    "olderPaperAlternative": "2019Table7 2020Jan1TDB a50075 e.00019 free inclination.168 Laplace inclination.468; different epoch/fit",
+    "neptuneMeanRadiusKm": 24622
+  },
+  "assumptions": {
+    "horizontalFovDeg": 90,
+    "rasterWidthPixels": 1672,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs discarded",
+    "site": "Hypothetical Neptune-facing point using radius as height; not registered irregular normal or dated ephemeris"
+  },
+  "geometries": [
+    {
+      "assumedHeightKm": 40,
+      "distanceKm": 50060,
+      "angularDiameterDeg": 58.92446987582741,
+      "targetWidthPixels1672": 944.5178037948427
+    },
+    {
+      "assumedHeightKm": 41,
+      "distanceKm": 50059,
+      "angularDiameterDeg": 58.92576301634089,
+      "targetWidthPixels1672": 944.5426932230414
+    }
+  ],
+  "method": "src/astro/appearance.js skyGeometry: radiusSun24622/695700, distanceAU(50100-height)/149597870.7, horizontalFovDeg90; target centreDiscWidthFraction*1672. 60K angular helper only; colour/irradiance discarded.",
+  "limitations": [
+    "JPL40±8 and paper41±3 radii, GM and derived densities remain explicit alternatives; no silent catalogue replacement or cause for differences established.",
+    "Rounded e0/i0 do not prove a circular or equatorial orbit; mean elements are not dated instantaneous distances. Assumed heights are not local irregular surface normals or statistical uncertainty envelope.",
+    "Orbital period and73:69 Naiad-node resonance do not establish spin/locking or permanent Neptune-facing terrain. Camera axis, site, phase and attitude remain unverified.",
+    "Spherical Neptune omits oblateness; ring opening, atmospheric/spectral transfer, exposure, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings do not establish absence.",
+    "Retain native shared-trio component identities, unresolved geography and open UTC/filter/exposure/product/full-credit/native-publication crosswalk; no other body skin or chemistry assigned.",
+    "No ocean, plume, biology, survivable landing, calibrated photometry or resolved local geography claimed.",
+    "All68 original dossiers/PNGs/defaults/masters/native/provenance/maps/models/shapes and recorded Clipper preview preserved; no69/image/embedding/catalogue/codec change. Substantial conforming lossless headroom required."
+  ],
+  "validation": {
+    "base": "601ec52",
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16066359 bytes,66359 over hard16MB",
+    "queue": 566,
+    "preservation": "All550 tracked public files byte-identical to HEAD,405 protected assets and all68 dossiers untouched; original/master/native/provenance and recorded Clipper preview retained.",
+    "browser": "No passing current full/offline artifact or new browser verification claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings or codec change claimed."
+  }
+}

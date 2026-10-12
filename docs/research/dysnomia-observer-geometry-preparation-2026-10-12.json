@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Dysnomia, satellite of Eris",
+  "status": "Research-only; no illustration/dossier69/embedding/catalogue/codec/map/shape change",
+  "sources": [
+    {
+      "path": "docs/research/dysnomia-primary-orbit-assessment-2026-10-12.json",
+      "bytes": 5005,
+      "sha256": "b70af53ef75153953068530eba5444168d6281899bb37e63cd2cdd0fb2f1bf5e"
+    },
+    {
+      "path": "docs/research/dysnomia-thermal-primary-assessment-2026-10-12.json",
+      "bytes": 4186,
+      "sha256": "205d17dedb7a9f0d4b36987184a87c88cace2c19f0bc4c0917a01d5451cc4c2f"
+    },
+    {
+      "path": "docs/research/dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+      "bytes": 6041,
+      "sha256": "0a927a4aa6ff2c8db162a63815baa782a79f7bb7ad5f313f8dad1f3923a697e9"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Holler2020-v1.pdf",
+      "bytes": 800465,
+      "sha256": "df454e2357a1dc90b79a2e91fa29dddb65f5cf2321a9407463227de537c562ea"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+      "bytes": 545021,
+      "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4"
+    }
+  ],
+  "parameters": {
+    "adoptedPrimaryRadiusKm": 1163,
+    "primaryRadiusUncertaintyKm": 6,
+    "nominalSemimajorAxisKm": 37273,
+    "semimajorAxisUncertaintyKm": 64,
+    "nominalEccentricity": 0.0062,
+    "eccentricityUncertainty": 0.001,
+    "orbitalPeriodDays": 15.785899,
+    "orbitalPeriodUncertaintyDays": 5e-05,
+    "sourceCrosswalk": "Holler2020 nominal orbital scale with Brown/Butler2018 and2023 thermal diameter alternatives; not a joint fit. Combined Holler Keplerian fit rejected6.3sigma; cause not resolved. No current dated ephemeris or catalogue update."
+  },
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "temperatureHelperK": 40,
+    "alternatives": [
+      {
+        "label": "Revised2023 thermal diameter615(+60,-50)km",
+        "assumedSphericalMoonHeightKm": 307.5,
+        "assumedPrimaryCentreDistanceKm": 36965.5,
+        "angularDiameterDeg": 3.6058481287569446,
+        "centreDiscWidthPixels": 52.630131003276304
+      },
+      {
+        "label": "Historical2018 thermal diameter700\u00b1115km",
+        "assumedSphericalMoonHeightKm": 350,
+        "assumedPrimaryCentreDistanceKm": 36923,
+        "angularDiameterDeg": 3.609999991651356,
+        "centreDiscWidthPixels": 52.69077073066742
+      }
+    ],
+    "limits": "Angular outputs only; colour and irradiance discarded. Assumed separation equal to nominal semimajor axis, not a circular-orbit assertion or dated eccentric-orbit distance. Subtracting model spherical height assumes near-side radial camera, not an observed irregular surface normal or registered site. No error propagation or confidence envelope; no generated disk or measured raster diameter adopted."
+  },
+  "scienceLimits": [
+    "Revised615(+60,-50)km and historical700\u00b1115km diameters derive from thermal emissivity/phase/beaming/albedo assumptions, not resolved moon axes or local material maps. Earlier alternatives remain intact.",
+    "Eris1163km radius follows adopted2326\u00b112km occultation diameter. Published2023 visibility-method prose calling1163km a diameter remains a separate unresolved implementation inconsistency; this geometry does not validate that code or silently correct the source.",
+    "Eris spin/orbit agreement is not measured Dysnomia tidal locking. Seven-point moon light curve remains inconclusive; no permanent Eris-facing site or everywhere-visible primary claim. Prograde orbital direction does not determine spin.",
+    "1.5sigma astrometric wobble and one-sigma mass/density upper limits are not precise moon mass, chemistry, porosity or formation-history measurements. Model ice fractions, impact/capture/reaccretion and dissipation are interpretations, not terrain or current activity.",
+    "No other-body map, foreground atmosphere, plume, liquid ocean, biology or survivable-landing scene adopted. Black sky/ring omission is not atmospheric or ring absence evidence. Phase, attitude, exposure, spectral transfer and transmission remain assumptions.",
+    "Original-content2023 CC BY4.0 is distinct from2018/Holler nonexclusive and Bernstein CC BY-NC-SA4. No figure used or blanket NASA/raw-data licence asserted."
+  ],
+  "open": [
+    "Current orbit/ephemeris and rejected-fit cause; moon spin/shape/site-normal registration",
+    "Native Hubble UTC/proposal/filter/coadd/product crosswalk and conflicting acquisition dates",
+    "Primary oblateness, atmospheric/ring transmission, phase and calibrated colour/photometry"
+  ],
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16063203bytes/63203over hard16MBgate",
+    "preservation": "All68 dossiers unchanged;550 tracked public files byte-identical to HEAD; originals/masters/native/provenance and recordedClipper preview preserved",
+    "queue": 566,
+    "browser": "No current passing full/offline browser claim; other engines open",
+    "attribution": "Interbuild differences unaudited; no savings claim; production codecs unchanged"
+  }
+}

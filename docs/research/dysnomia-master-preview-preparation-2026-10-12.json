@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-12",
+  "body": "Dysnomia",
+  "status": "Research-only masters/previews; no dossier69 or embedding/catalogue/codec change",
+  "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+  "files": [
+    {
+      "path": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+      "bytes": 2703596,
+      "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/dysnomia-generated-surfaceImage-master.jpg",
+      "bytes": 340326,
+      "sha256": "8f1922872da52d21e0393ef8aee36a43d1a3d291839aaf4f7e6fd147bbb29ce4",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/dysnomia-generated-surfaceImage-preview.jpg",
+      "bytes": 10921,
+      "sha256": "332051c70449c9aa75ff0995afccf62f9e320df5f64ba25ed7491d9c22b5e40f",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/dysnomia-generated-skyImage-original.png",
+      "bytes": 1878586,
+      "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/dysnomia-generated-skyImage-master.jpg",
+      "bytes": 232467,
+      "sha256": "235456ce76694b83eac1b565c5f648fc0dc742f625d5e1f9718ade1fb9436a62",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/dysnomia-generated-skyImage-preview.jpg",
+      "bytes": 8423,
+      "sha256": "dac73ad008048f0affa57d0e1a1db440c1dddacb23570c7ce0b7cd065f0b9f52",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "previewRawBytes": 19344,
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, Eris disk pattern, phase, lighting and exposure are invented; no analog skin or dated Hubble/ALMA site.",
+    "Black sky and ring omission are artistic assumptions, not measured absence.",
+    "Distinct thermal-model diameters and nominal orbital scale are not a joint fit, dated distance, registered normal, spin-locking or permanent-facing determination, or uncertainty envelope.",
+    "Recorded skyGeometry targets remain 52.630131003276304/52.69077073066742 pixels at1672px and nominal90degreeHFOV; 40K helper is angular only. Generated Eris appears oversized; no calibrated raster diameter adopted.",
+    "Weak mass constraints and thermal diameters do not establish local chemistry, porosity or terrain.",
+    "Holler rejected orbital fit, native date/proposal/product conflicts and published Eris diameter convention remain open.",
+    "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "Small preview annotations and disk require readable IMAGINED card labels before integration."
+  ],
+  "references": [
+    "docs/research/dysnomia-local-view-preparation-2026-10-12.json",
+    "docs/research/dysnomia-sky-view-preparation-2026-10-12.json",
+    "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "inspection": "All four masters/previews inspected. Both master footer lines readable; small preview text/disk require readable IMAGINED card labels. Generated Eris oversized; no calibrated raster diameter adopted.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16058732bytes58732over hard16MB gate",
+    "preservation": "All550 tracked public files byte-equal to HEAD;68 dossiers and405 protected assets unchanged; originals/default PNGs/full prompts/native/provenance and recorded Clipper preview retained.",
+    "queue": 566,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "No production input or codec change; no savings attribution."
+  }
+}

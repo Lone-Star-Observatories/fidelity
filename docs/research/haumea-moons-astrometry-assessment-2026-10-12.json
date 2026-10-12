@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-12",
+  "scope": "Research-only targeted Appendices A-C/Table2 assessment; complete retained16page PDF, no figures or new embedding",
+  "sources": [
+    {
+      "path": "data/research-sources/haumea-dynamics-2026.pdf",
+      "url": "https://arxiv.org/pdf/2609.36037",
+      "bytes": 8080592,
+      "sha256": "b0a0988550ba63180daa0ec65c3ba158173455fda5acb8cb0fe7719721889991"
+    },
+    {
+      "path": "data/research-sources/haumea-dynamics-2026-record.html",
+      "url": "https://arxiv.org/abs/2609.36037",
+      "bytes": 43734,
+      "sha256": "c1437c2646584af8be6a14970099fb58b07f5e5a9c8e0b35b296772de5c1cca6"
+    }
+  ],
+  "authors": [
+    "Benjamin Proudfoot",
+    "Darin Ragozzine",
+    "Will Grundy",
+    "Flavia L. Rommel",
+    "Bryan J. Holler"
+  ],
+  "licence": "Specific arXiv record CC BY-NC-SA4.0, NOT CC BY; no blanket raw HST/publisher image licence. Final publication audit OPEN.",
+  "hst": {
+    "program": 18002,
+    "instrument": "WFC3",
+    "filter": "F350LP",
+    "epochs": [
+      "2026-03-10",
+      "2026-04-05",
+      "2026-04-17"
+    ],
+    "exposuresPerVisit": 22,
+    "namakaSNRPerExposure": "approximately45, reported by authors",
+    "extraction": "Calibrated images, modeled TinyTim PSF fits; historical HST included, Keck excluded;2mas noise floor",
+    "archive": "https://doi.org/10.17909/qwfv-qj17",
+    "rawProductAudit": "OPEN; archive not downloaded or independently reprocessed"
+  },
+  "occultation": {
+    "date": "2025-03-16UT",
+    "facility": "IRTF",
+    "method": "Single chord for both Haumea and Namaka, SORA timing fits projected relative to JPL#125",
+    "namakaDiameterKm": "150±50 assumed from Muller2019, NOT newly measured shape",
+    "ambiguity": "North/south center families averaged; circular Namaka limb assumed",
+    "haumeaShape": "Propagated model, phase32.1±5degrees; apparent axes1006±67/572±15km, position angle103.3±1.6degrees",
+    "noiseFloorMas": 10,
+    "limitation": "Single chord cannot independently fit full shape; size/shape/phase assumptions affect astrometry"
+  },
+  "orbitFit": {
+    "software": "MultiMoon N-body/quadrupole MCMC",
+    "freeParameters": 18,
+    "walkers": 960,
+    "burnInSteps": 6000,
+    "sampleSteps": 10000,
+    "chiSquared": 198,
+    "degreesOfFreedom": 104,
+    "reducedChiSquared": "approximately1.9",
+    "limitations": [
+      "Four HST instruments and varying filters/settings may introduce cross-calibration systematics.",
+      "Haumea nonspherical shape and albedo variations can shift photocenter relative to center of mass; NOT a calibrated publisher-image correction.",
+      "Authors suggest astrometric uncertainty inflation approximately1.38, typical Namaka7mas/Hiʻiaka4mas; this is not an automatic rescaling of Table1 posterior errors.",
+      "Reported precession much larger than few-mas photocenter noise is an author inference, not independently refitted here."
+    ],
+    "hiiakaDensity": "620±100kg/m3 derived using fitted mass and separate2021 occultation volumetric diameter370±20km; NOT local composition/porosity measurement or new native-image axes"
+  },
+  "open": [
+    "2015NASA individual point/filter/UTC/raw product crossmatch remains unresolved;2026 observations do not establish it.",
+    "Raw astrometry, prior choices and cited extraction implementations not independently reprocessed.",
+    "Detailed Appendices D/E interior/ring models and final publication remain separately open.",
+    "No moon geography, local chemistry, spin locking, permanent-facing site, ocean/plume/biology or landing established."
+  ],
+  "preservation": "No registry/map/model/shape/native/codec/catalogue changes; all68dossiers and original provenance retained",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "production": "pass",
+    "full": "FAIL16058732 bytes;58732 over hard16MBgate",
+    "preservation": "550trackedpublicfiles byte-identical to HEAD;68dossiers unchanged;queue566",
+    "browser": "No current passing full/offline browser claim;other engines OPEN",
+    "attribution": "No compression change or savings attribution;interbuild feed differences unaudited"
+  }
+}

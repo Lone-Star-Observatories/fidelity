@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Dysnomia",
+  "status": "Research-only; no69/embedding/catalogue/codec/map/shape change",
+  "title": "Masses and Densities of Dwarf Planet Satellites Measured with ALMA",
+  "authors": [
+    "Michael E. Brown",
+    "Bryan J. Butler"
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+      "url": "https://arxiv.org/pdf/2307.04848v1",
+      "bytes": 540344,
+      "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-record.html",
+      "url": "https://arxiv.org/abs/2307.04848",
+      "bytes": 41968,
+      "sha256": "379184924496c714fec5aad30e176cac81b2209eb04a0822de14d84be0ec1eb9",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+      "url": "https://authors.library.caltech.edu/records/879aw-7wx56/files/Brown_2023_Planet._Sci._J._4_193.pdf?download=1&audit=20261012",
+      "bytes": 545021,
+      "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-published-record.html",
+      "url": "https://authors.library.caltech.edu/records/879aw-7wx56",
+      "bytes": 90931,
+      "sha256": "c2cf95d85c2e9ae04983e0cb8fc861642187d42921644cb4cc3b97ea148d1db7",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "publication": {
+    "arxivSubmitted": "2023-07-10",
+    "v1Draft": "2023-07-12",
+    "received": "2022-06-10",
+    "revised": "2023-06-29",
+    "accepted": "2023-07-05",
+    "published": "2023-10-10",
+    "doi": "10.3847/PSJ/ace52a",
+    "journal": "The Planetary Science Journal 4:193"
+  },
+  "licence": "Published six-page PDF expressly original-content CC BY4.0, attribution to authors/title/journal/DOI required. Specific arXiv record also links CC BY4.0. Earlier 2018 nonexclusive and Bernstein2023 CC BY-NC-SA4 remain distinct; no figure or derivative embedded, no blanket raw-data or NASA-image licence.",
+  "assessed": "Complete11pagev1 and six-page publishedPDF retained; targeted observations/error method, Table1/2, sections3.2/3.3 and discussion. No independent raw reanalysis.",
+  "observations": [
+    "2015-Nov09/Nov13/Dec04 Eris astrometry reuses earlier ALMA observations, distinct from 2016 Orcus/Vanth dates and values. Dysnomia not detected individually in these2015 images. Three-parameter MCMC fits Eris barycentric deviations; ephemeris/centre-of-light offsets degenerate. Formal fitting, systematic fit/image difference and celestial-frame errors combined in quadrature; J0115-0127 retained check, distant J0141-0928 rejected for phase transfer.",
+    "2018-10-11 single ALMA Band6 ~233GHz/C43-6 epoch,78minutes on-source, source-reported beam0.15x0.12arcsec. Two-source visibility fit Eris390\u00b17microJy/Dysnomia45\u00b17microJy, reported6.5sigma satellite detection. Sources spatially separated, not resolved terrain. QSOJ0006-0623 pointing/atmosphere/bandpass/flux and J0141-0202 gains. No new angular/raster computation.",
+    "Acknowledged datasets ADS/JAO.ALMA#2018.1.00929.S, #2015.1.00810.S and #2016.1.00830.S are paper inventory; Orcus/Vanth data not reassigned to Dysnomia. Exact2018UTC/rawproduct/calibration audit open."
+  ],
+  "limits": [
+    "Mass-ratio fit0.0050\u00b10.0035 corresponds only1.5sigma Eris wobble, reducedchi2=1.8. Authors elect an upper limit, not robust precise Dysnomia mass detection. Abstract/discussion1sigma0.0085 versus section3.2 0.0084 retained as printed discrepancy;3sigma0.015. No silent reconciliation or catalogue update.",
+    "Adopted system mass1.65e22kg gives reported1sigma Dysnomia mass<1.4e20kg. Density0.7\u00b10.5g/cm3 with1sigma upper1.2 combines weak mass fit and thermal size assumptions, not directly measured local chemistry, porosity or composition. Not a hard confidence-independent upper bound.",
+    "2018flux added to earlier thermal model gives diameter615(+60,-50)km/albedo0.05\u00b10.01, distinct earlier700\u00b1115/.04(+.02,-.01). Inherited emissivity/phase/beaming assumptions from2018 audit retained. Not resolved axes, visible-colour calibration or moon surface map.",
+    "Published observations prose calls Eris1163km a diameter while earlier adopted occultation diameter2326\u00b112km uses1163km radius. Both manuscript and published prose retained; actual visibility-model radius/diameter implementation not audited, no invented cause or silent correction.",
+    "Eris spin/orbit agreement is distinct from inconclusive Dysnomia spin. Low-mass tidal evolution requires assumed Eris dissipation; high-density tidal alternatives conflict with weak mass constraint, not direct interior/age/origin/locking measurement.",
+    "Ice-rich impact-fragment versus reaccreted-disk origin, darkening materials and simulated near100percent ice are hypotheses; no local ice fraction, isotope abundance, directly observed collision/history/ocean/plume/biology. Other-body comparisons never supply skins or material maps."
+  ],
+  "open": [
+    "Raw ALMA extraction/calibration and model implementation; exact2018UTC/native Hubble coadd/filter/proposal/date crosswalk; independent moon spin/site normal/shape/scene registration/colour/atmosphere; later refinements. Holler2020 rejected Keplerian fit and NASA acquisition-date conflicts preserved."
+  ],
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "byteEqualHEAD": true,
+    "all68DossiersUnchanged": true,
+    "originalsMastersNativeProvenanceAndRecordedClipperPreserved": true
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MBgate16063203bytes/63203over",
+    "browser": "No current passing full/offline browser claim; other engines open",
+    "queue": 566,
+    "dossiers": 68,
+    "attribution": "Interbuild live-feed differences unaudited; no compression or asset savings claim. Production codecs unchanged."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-12",
+  "body": "S/2015 (136472) 1 / Makemake moon / MK 2",
+  "status": "Research-only independent IMAGINED sky view; no dossier69 or embedding",
+  "generator": "Built-in image generation; no reference image",
+  "prompt": "Create an independent hypothetical observer illustration for S/2015 (136472) 1, Makemake's moon MK 2. Wide landscape 1672x941. Entirely independently invented muted grey regolith, scattered angular blocks and shallow low relief along the bottom quarter, nearly black sky. A SMALL schematic Makemake disk above the terrain, about 54 pixels full diameter in this 1672-pixel-wide composition, occupying roughly 3.70 degrees in nominal 90-degree horizontal field of view. Use a restrained partly illuminated pale tan-grey disk with independently invented very subtle mottling, never reuse a Pluto/Moon/Mars or any observed-body map. This size comes from an explicitly hypothetical near-side observer combining a preliminary circular 22250km orbit and historical albedo-dependent 87.5km site-height assumption with primary radius715km, not a joint fitted or dated geometry; alternative125km height gives nearly identical angular size. Appearance, camera attitude, phase, colour, exposure, surface patterns and lighting invented, not calibrated. Unknown moon spin does not establish synchronous locking or a permanent Makemake-facing site. No primary hotspot, ring, plume, atmosphere clouds, Sun, stars, other astronomical objects, liquid, ocean, biology, people, craft or survivable landing implication. Black sky and omitted rings are artistic assumptions, not measured absence. Moon terrain/material fractions/chemistry unknown and entirely invented; unresolved Hubble and system thermal data do not resolve geography. Add two large readable footer lines in a dark band: 'IMAGINED SKY FROM MAKEMAKE’S MOON (MK 2)' and 'Invented terrain, disk appearance and lighting — not a dated view'. No other text. Make the small primary disk visible but do not enlarge it for drama.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-72589ce2-86b1-4ea0-9db2-34e2603ca4f9.png",
+  "researchCopy": "data/research-sources/makemake-moon-generated-skyImage-original.png",
+  "geometryReference": "docs/research/makemake-moon-observer-geometry-preparation-2026-10-12.json",
+  "limits": [
+    "Recorded skyGeometry targets3.697560484690818/3.703829717845123degrees53.969661560036414/54.061231112316555pixels nominal90HFOV1672; combines distinct historical albedo-size and preliminary circular orbit assumptions, not joint fit/date/normal/permanent facing/uncertainty envelope.",
+    "40K helper angular only, not photometry, colour or scene temperature.",
+    "Invented terrain, chemistry/material fractions, primary disk pattern/colour, phase, lighting and exposure; no analog map or dated HST site.",
+    "Black sky and ring omission artistic, not measured absence. Unknown moon spin/locking; assumed observer attitude.",
+    "Unresolved HST and system MIRI do not resolve moon geography; primary hotspot/ring/rotation not moon measurements.",
+    "No foreground atmosphere, plume, rain, liquid/ocean, biology or survivable landing implication."
+  ],
+  "original": {
+    "bytes": 1801151,
+    "sha256": "d6842c37ec41655e477eba4bb1c7f34f8eeea44dc78349d956fdd379a78de12b",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Small partly illuminated independently imagined primary disk over invented grey terrain; both footer lines readable. Disk appears near requested scale but no calibrated raster diameter adopted; phase/exposure transfer remains artistic.",
+  "preservationAudit": {
+    "trackedPublicFiles": 550,
+    "changed": []
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16065833bytes65833over hard16MB gate",
+    "preservation": "All550 tracked public files byte-identical to HEAD; all68 dossiers/originals/masters/native/provenance/recorded Clipper preview preserved; queue566",
+    "browser": "No passing current full/offline browser claim; other engines open",
+    "attribution": "Interbuild differences unaudited; no savings attribution or production codec change"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp",
+  "status": "Research-only native preparation; no dossier69 or embedding",
+  "identity": "Neptune XIV, formerly S/2004 N1; discovery July2013 in archival Hubble2004\u20132009 data, not a Voyager detection.",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/resource/neptunes-moon-hippocamp/",
+      "path": "data/research-sources/hippocamp-caption-2026-10-12.html",
+      "bytes": 261455,
+      "sha256": "dea52b625b0186bd7491c7fd984b42984f52e81eb5fc9b37687c3e2f75e3c8e1"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/h/Hippocamp-1.jpg",
+      "path": "data/research-sources/hippocamp-native.jpg",
+      "bytes": 90822,
+      "sha256": "104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec",
+      "dimensions": [
+        700,
+        466
+      ],
+      "credit": "NASA, ESA, and M. Showalter (SETI Institute)",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "observationDate": "2009 monochrome WFC3 frame; separate Neptune colour inset 2009-08-19",
+      "publicationDate": "2019-02-20",
+      "licence": "NASA media terms; no CC BY assertion for this NASA rendition"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/hippocamp-terms-2026-10-12.html",
+      "bytes": 320696,
+      "sha256": "06826a79d178afd62abc5a88f36ba5ac500fdfa4b3c8b7be2efa22c78dcbaabd"
+    },
+    {
+      "url": "https://esahubble.org/images/heic1904b/",
+      "path": "data/research-sources/hippocamp-esa-caption-2026-10-12.html",
+      "bytes": 44407,
+      "sha256": "61da6db67d884f70abf98adb076dfb4143790fcf86eb88327296aa650547d06d"
+    }
+  ],
+  "limitations": [
+    "Unresolved Hubble detection and multibody collage do not establish local terrain, axes, calibrated visible colour, chemistry or a registered map. Neptune inset and other moons must not be assigned as Hippocamp geography.",
+    "NASA resource caption says no more than12miles across and historical23hour orbit; ESA2019 caption says approximately34km diameter. Preserve diameter discrepancy pending primary parameter audit; orbital period does not verify spin locking.",
+    "Monochrome acquisition is specified only as2009; inset2009-08-19 is separate. Exact UTC, filters, exposure/coaddition, raw products and publisher crosswalk remain open.",
+    "NASA download migration2023-09-09 and page update2024-11-02 are not observation dates. ESA rendition release2019-02-20T19:00 has unspecified timezone.",
+    "ESA rendition terms are independently CC BY4.0 subject to exceptions; no byte/pixel identity or blanket licence transfer to NASA image, papers, code or raw products asserted.",
+    "Proteus-fragment, impact, Triton-capture and reaccretion narratives are origin hypotheses, not directly observed history or local composition.",
+    "Black background and missing haze/rings are not evidence of atmospheric or ring absence. No angular/raster size calculation, generated view, map, shape or catalogue update.",
+    "Primary2019 paper, current orbital/rotation/shape solutions, recent sources and resolved geography/photometry remain open."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "publicFiles": 550,
+    "protectedAssets": 405,
+    "codecs": "unchanged",
+    "queue": 566,
+    "publicFilesVerifiedAgainstHEAD": 550,
+    "changedPublicFiles": []
+  },
+  "inspection": "Displayed700x466 unchanged NASA unannotated frame: broad vertical Neptune mask, glare/residual structure and faint point detections; no labels or colour inset in this rendition. The publisher caption describes a composite family including separate inset/diagram, not all features present in this file. Individual unlabelled points are not independently cross-matched here; do not identify a particular point as Hippocamp without annotated/raw-product audit.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16000000byte gate",
+    "htmlBytes": 16062151,
+    "overBudgetBytes": 62151,
+    "browser": "No current passing full/offline browser claim; other engines open",
+    "attribution": "Interbuild feed differences unaudited; no savings attribution",
+    "queue": 566
+  }
+}

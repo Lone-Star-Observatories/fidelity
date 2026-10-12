@@ -77,7 +77,16 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
   const wfBuf = []; // recent full-span waterfall rows (Float32 dBm) for the scan
   function onFrame(data) {
     const { tag, body } = kiwiTag(new Uint8Array(data));
-    if (tag === 'MSG') { const m = parseKiwiMsg(body); if (m.audio_rate) rx.rate = Number(m.audio_rate) || rx.rate; return; }
+    if (tag === 'MSG') {
+      const m = parseKiwiMsg(body);
+      if (m.audio_rate) rx.rate = Number(m.audio_rate) || rx.rate;
+      // why a public KiwiSDR hands the channel back (often straight after connecting): no free slot,
+      // password-only, or down. Remember it so the close that follows keeps the real reason.
+      if (m.too_busy != null) setState(rx.closeHint = `RECEIVER FULL · NO FREE CHANNEL${m.too_busy && m.too_busy !== true ? ` (${m.too_busy} IN USE)` : ''} · TRY ANOTHER`);
+      else if (m.badp === '1' || m.badp === 1) setState(rx.closeHint = 'RECEIVER NEEDS A PASSWORD · NOT PUBLIC · TRY ANOTHER');
+      else if (m.down != null) setState(rx.closeHint = 'RECEIVER IS DOWN FOR MAINTENANCE · TRY ANOTHER');
+      return;
+    }
     if (tag === 'SND') {
       const s = parseKiwiSnd(body);
       if (!s) return;
@@ -352,7 +361,7 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     const devRange = [receiver.minHz ?? (receiver.local ? 24e6 : 0), receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6)];
     const [minHz, maxHz] = conv ? antennaRange(devRange, conv) : devRange; // the dial works in antenna-side frequencies
     const startHz = receiver.local ? Math.min(Math.max(conv ? 9.6e6 : 98.1e6, minHz), maxHz) : 9.6e6;
-    rx = { ...receiver, conv, convSetting: receiver.local ? converter() : null, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: savedStep() ?? 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20, axis: null, floor: null, fake: !!receiver.fake };
+    rx = { ...receiver, conv, convSetting: receiver.local ? converter() : null, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: savedStep() ?? 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20, axis: null, floor: null, fake: !!receiver.fake, closeHint: null };
     rx.mode = receiver.local ? suggestMode(rx.freqHz) : 'am';
     if (rx.mode === 'wbfm' && !receiver.local) rx.mode = 'nbfm';
     rx.bwHz = bwFor(rx.mode);
@@ -370,10 +379,10 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
       else if (m.type === 'scanning') setState('SCANNING · AUDIO PAUSED');
       else if (m.type === 'scan') { rx.onScan?.(m); rx.onScan = null; }
       else if (m.type === 'error') setState(`RECEIVER: ${m.message}`);
-      else if (m.type === 'closed') setState('RECEIVER CLOSED THE LINK');
+      else if (m.type === 'closed') setState(rx.closeHint ?? `RECEIVER CLOSED THE LINK${m.reason ? ` · ${m.reason}` : m.code && ![1000, 1005, 1006].includes(m.code) ? ` (${m.code})` : ''}`);
     };
     ws.onerror = () => setState('COULD NOT REACH THE RECEIVER');
-    ws.onclose = () => { if (rx) setState('LINK CLOSED'); };
+    ws.onclose = () => { if (rx) setState(rx.closeHint ?? 'LINK CLOSED'); };
   }
   function setState(t) { const s = document.getElementById('cx-state'); if (s) s.textContent = t; }
   function close() {

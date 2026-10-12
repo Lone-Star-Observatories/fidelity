@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Dysnomia",
+  "status": "Research-only; no69/embedding/catalogue/codec/map/shape change",
+  "title": "Medium-sized satellites of large Kuiper belt objects",
+  "authors": [
+    "Michael E. Brown",
+    "Bryan J. Butler"
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/dysnomia-Brown2018-v1.pdf",
+      "url": "https://arxiv.org/pdf/1801.07221v1",
+      "bytes": 1252172,
+      "sha256": "2c04fba1d569803ed213b286f320801563ce3d56de651769eb4dca9512f1756c",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2018-record.html",
+      "url": "https://arxiv.org/abs/1801.07221",
+      "bytes": 42569,
+      "sha256": "63bdfc45a6d1a1dd23761726d786812dce2c2cd3b91b7cc2445f492e53d11602",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "publication": {
+    "arxivSubmitted": "2018-01-22",
+    "version": "v1; submitted to AJ",
+    "finalDOI": "10.3847/1538-3881/aad9f2",
+    "finalPublishedPDFaudit": "open"
+  },
+  "licence": "Specific http://arxiv.org/licenses/nonexclusive-distrib/1.0/ not CC BY; no figure embedded.",
+  "assessed": "Complete6pagePDF retained; observations/Table1/2/3 and Dysnomia section4 plus discussion.",
+  "observations": [
+    "ALMA Band7 TDM four windows335.5\u2013339.5 and347.5\u2013351.5GHz, effective345GHz dual-linear combinedStokesI. System separation at thermal wavelengths is not resolved surface geography.",
+    "Eris-Dysnomia2015-11-09T03:25\u201304:35,11-13T02:50\u201304:00,12-04T01:15\u201302:25 Table1; Orcus-Vanth2016 observations are separate bodies, not Dysnomia epochs.",
+    "CASA observatory initial calibration then AIPS; resolution weighting altered for flux sensitivity. January2015HST astrometry used for predicted stack positions. No obvious individual Dysnomia detection.",
+    "Stack flux.13\u00b1.03mJy16mas from prediction: formal4.2sigma, random-shift experiment.02percent/3.5sigma significance. Paper proceeds assuming satellite identification; no raw-data reanalysis here."
+  ],
+  "model": [
+    "Diameter700\u00b1115km/albedo.04(+.02,-.01) jointly derived thermal estimates, not resolved axes, measured local chemical fractions or visible colour.",
+    "Standard thermal/MCMC free diameter/albedo/beaming; bolometric emissivity.8\u20131, empirical phase-integral relation allowed50percent variation; assumed850micron emissivity.685 for moon and Eris. Pluto thermal comparison is an emissivity caveat, never a skin.",
+    "Adopted Eris occultation circular2326\u00b112km and unresolved Spitzer/Herschel plus ALMA. Unresolved-only moon diameter1sigma upper810/albedo lower.03 supplies little constraint; no independent second-body discovery from excess alone.",
+    "Density.8 through Eris-like values/system mass ratios37\u2013115 are hypothetical bounds, not moon density/porosity/composition measurements. Typical-KBO comparison and impact/capture scenarios do not establish origin or terrain."
+  ],
+  "orbit": [
+    "Historical Table3 semimajor37460\u00b180km, period15.78586\u00b1.00008day, eccentricity<.004 at1sigma followed by circular constraint; inclination61.1\u00b1.3/node139.6\u00b1.2 relativeJ2000ECLIPTIC, epochJD2457054.95.",
+    "Do not compare this inclination directly to Holler J2000EQUATORIAL45.49deg. Preserve later37273\u00b164/e.0062\u00b1.0010 and rejectedKeplerian-fit/systematic alternatives without silently changing catalogue."
+  ],
+  "open": [
+    "Later ALMA mass/thermal refinement, final publisher licence and products",
+    "HST NASA rendition acquisition/proposal/filter/coadd crosswalk",
+    "Moon spin/local normal/registration/colour/atmospheric transfer"
+  ],
+  "preservation": "All68 dossiers, originalPNG/masters/native/provenance, recorded Clipper preview and tracked public files untouched; no angular/raster computation.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16064255bytes/64255over hard16MBgate; no current passing offline/browser claim",
+    "preservation": "550tracked public files byte-identical;68dossiers unchanged",
+    "queue": 566,
+    "attribution": "Interbuild feed differences unaudited; no savings claim"
+  }
+}

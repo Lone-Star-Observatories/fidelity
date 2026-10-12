@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-12",
+  "body": "Thalassa",
+  "status": "Research-only independent imagined observer; no69 or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Generate from scratch an independent hypothetical scientific observer illustration, wide landscape 1672x941, IMAGINED SKY FROM THALASSA (Neptune moon S/1989 N5, not Naiad or Despina). Low invented grey granular terrain with modest angular rocks and low irregular horizon occupying bottom quarter. A huge schematic blue Neptune disk above the horizon, complete disk if possible, about 945 pixels diameter in a nominal 90 degree horizontal field across 1672 pixels; this target comes from recorded skyGeometry mean spherical radius24622km at assumed distance50060km (mean orbit50100 minus assumed40km height), angular diameter58.92446987582741deg. Paper41km height alternative yields58.92576301634089deg944.5426932230414px; these are hypothetical mean-distance alternatives, not dated position, local normal or uncertainty envelope. Treat all Neptune cloud/band patterns, colour, phase, illumination and exposure as invented schematic artwork, never copy Neptune imagery or any observed body's map. Calm subdued grey relief/grains/blocks independently invented, no Moon/Mars/Pluto/Triton or other body's texture, no analog skin. Camera attitude and facing site assumed; no verified synchronous spin, tidal locking or permanent Neptune-facing terrain. Orbital period and 73:69 nodal resonance are not spin measurements. Nearly black sky is an artistic transparency assumption, not atmospheric absence. No stars or Sun; rings omitted artistically, not asserted absent/invisible. No foreground atmosphere/cloud/haze, active plume, exposed liquid/ocean, biology, astronaut/craft/landing or survivable landing implication. No dated Voyager site or shape registration, no local chemistry/porosity inference from derived density. No scale bar or compass. Place two readable footer texts in bottom safe margin: 'IMAGINED SKY FROM THALASSA' and 'Terrain, Neptune patterns, colour and lighting are invented.' Scientific concept illustration, restrained and clearly hypothetical, artistic spectral transfer and scene registration.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-23d8b82d-2e49-4267-a2a4-9e783ad34b74.png",
+  "researchCopy": "data/research-sources/thalassa-generated-skyImage-original.png",
+  "inspection": "Original inspected: independent grey granular foreground, schematic blue Neptune with invented bands/clouds/spot, lower disk occluded by terrain. Both footer texts readable. Rendered disk appears smaller than requested target; no raster diameter adopted or calibrated appearance claimed.",
+  "geometryReference": "docs/research/thalassa-observer-geometry-preparation-2026-10-12.json",
+  "recordedSkyGeometry": {
+    "nominalHorizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "assumedHeight40": {
+      "angularDiameterDeg": 58.92446987582741,
+      "targetPixels": 944.5178037948427
+    },
+    "alternativeHeight41": {
+      "angularDiameterDeg": 58.92576301634089,
+      "targetPixels": 944.5426932230414
+    },
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only, not colour/photometry"
+  },
+  "limitations": [
+    "All terrain, material fractions, chemistry, grey colour, Neptune bands/clouds/spot, colour, phase, lighting and exposure invented independently; no analog skin or other-body map reused.",
+    "Camera/site attitude assumed, not dated Voyager geography, registered irregular normal, spin locking or permanent Neptune-facing terrain. Mean orbit and 73:69 nodal resonance are not spin measurements.",
+    "JPL40\u00b18/paper41\u00b13 radius/GM/derived-density alternatives retained, not local chemistry or porosity. Alternative heights are not an uncertainty envelope.",
+    "Spherical Neptune omits oblateness; transmission, spectral transfer, phase and registration unverified. Black sky and omitted rings/Sun/stars not absence evidence.",
+    "No foreground atmosphere, active plume, liquid, ocean, biology or survivable landing claim. Native UTC/filter/product/full contributor crosswalk remains open.",
+    "Small preview footers require readable IMAGINED card labels before integration. All68 earlier dossiers, originals/masters/native/provenance/maps/models/shapes and recorded Clipper preserved; no catalogue/codec change."
+  ],
+  "original": {
+    "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+    "bytes": 2155066,
+    "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+    "width": 1672,
+    "height": 941,
+    "defaultAndResearchBytesIdentical": true
+  },
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "changed": [],
+    "dossiers": 68,
+    "queue": 566
+  },
+  "validation": {
+    "base": "065003a",
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16058732,
+    "overBudgetBytes": 58732,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Research-only original/masters/previews not embedded; codecs unchanged. Interbuild differences unaudited; no savings attribution."
+  }
+}

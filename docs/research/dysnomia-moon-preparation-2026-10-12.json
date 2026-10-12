@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Dysnomia",
+  "parent": "Eris",
+  "status": "Research-only; no dossier69, embedding, catalogue, map, shape or codec change",
+  "sources": [
+    {
+      "path": "data/research-sources/dysnomia-hubble-caption-2026-10-12.html",
+      "url": "https://science.nasa.gov/asset/hubble/hubble-view-of-eris-and-dysnomia/",
+      "bytes": 301272,
+      "sha256": "fe6372f769c918bca73dbf7484766389aee164d23cd026f5a0e1294f63f50d6e",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-hubble-unannotated-caption-2026-10-12.html",
+      "url": "https://science.nasa.gov/asset/hubble/hubble-view-of-eris-and-dysnomia-unannotated/",
+      "bytes": 299989,
+      "sha256": "6881747ff1a92823a9e8afbbece297badde699c8851c2ac9d58f4a14f9cb9969",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/dysnomia-hubble-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/06/STScI-01EVVJ1K0F4CFYFT2NWCMB3PT5.tif/jcr:content/renditions/600x600.jpg",
+      "bytes": 346819,
+      "sha256": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0",
+      "fetched": "2026-10-12",
+      "dimensions": [
+        600,
+        600
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/dysnomia-hubble-native.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/06/STScI-01EVVJ1K0F4CFYFT2NWCMB3PT5.tif",
+      "bytes": 240648,
+      "sha256": "e5a863f5aec9728f31ab089a797759c246582487cf96375d577496dde1067295",
+      "fetched": "2026-10-12",
+      "dimensions": [
+        600,
+        600
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/dysnomia-terms-2026-10-12.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320696,
+      "sha256": "ed996953b8886fd058019617a461211641b2fca6de94970facdf26164ded2302",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "credit": "NASA, ESA, and M. Brown (California Institute of Technology)",
+  "terms": "Active NASA images/media guidance retained; no CC BY or blanket third-party/raw-product licence asserted.",
+  "observation": "Displayed Hubble ACS/HRC image: 2006-08-30. Caption additionally says 2005-12-03, while exposure metadata says December 9\u201310, 2005: discrepancy preserved, raw product crosswalk open.",
+  "publication": "2007-06-14 release; 2025-08-17 page update is not observation.",
+  "metadata": {
+    "proposals": [
+      "10759",
+      "10860"
+    ],
+    "filters": [
+      "F435W (B)",
+      "F606W (V)"
+    ],
+    "exposure": "Metadata 4.3 hours refers to listed observations; not independently assigned to this rendition."
+  },
+  "inspection": "Unchanged 600x600 publisher JPEG inspected: bright central Eris, faint left Dysnomia detection, red-toned background, glare/diffraction/noise. TIFF retained unchanged. Publisher renditions are distinct products, not asserted pixel-identical.",
+  "limitations": [
+    "Unresolved Dysnomia detection does not establish terrain, axes, local chemistry, calibrated visible colour, atmospheric absence or resolved geography.",
+    "Red display transfer/background noise and host glare are not measured moon colour, terrain or stars.",
+    "Eris is not Dysnomia: no primary or other-body map assigned. Annotated orbit and artist illustrations are separate from native unannotated detection.",
+    "Caption orbit combination with Keck August 20,21,30,31 is not asserted to describe the displayed acquisition. Exact raw UTC, coaddition, exposure/filter association, registration and later native-product audit remain open.",
+    "No new angular or raster size computation; caption quantities are not independently calibrated. No exhaustive newest-imagery claim."
+  ],
+  "validation": {
+    "tests": "539 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate:16064255bytes/64255over; no current passing offline/browser claim",
+    "preservation": "All68 dossiers unchanged;550 tracked public files byte-identical to HEAD including recorded Clipper preview; original/master/native/provenance preserved.",
+    "queue": 566,
+    "attribution": "Interbuild feed differences unaudited; no asset or compression savings attribution. Other browser engines remain open.",
+    "next": "Substantial conforming lossless headroom before prepared additive dossiers; Dysnomia primary/product audit can progress independently. Backlog ACTIVE; no external blocker."
+  }
+}

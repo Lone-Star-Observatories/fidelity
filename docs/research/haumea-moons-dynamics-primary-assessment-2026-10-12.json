@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-12",
+  "scope": "Research-only targeted main text/Table1 assessment, complete16page PDF retained; no figure or dossier embedding",
+  "title": "The Dense, Rocky Core of Haumea Revealed by Satellite Dynamics",
+  "authors": [
+    "Benjamin Proudfoot",
+    "Darin Ragozzine",
+    "Will Grundy",
+    "Flavia L. Rommel",
+    "Bryan J. Holler"
+  ],
+  "recordSubmission": "2026-09-28",
+  "pdfDraft": "2026-09-30",
+  "licence": "Specific arXiv record CC BY-NC-SA4.0, NOT CC BY; no blanket raw HST/publisher image licence. Final publication audit OPEN.",
+  "sources": [
+    {
+      "path": "data/research-sources/haumea-dynamics-2026.pdf",
+      "url": "https://arxiv.org/pdf/2609.36037",
+      "bytes": 8080592,
+      "sha256": "b0a0988550ba63180daa0ec65c3ba158173455fda5acb8cb0fe7719721889991"
+    },
+    {
+      "path": "data/research-sources/haumea-dynamics-2026-record.html",
+      "url": "https://arxiv.org/abs/2609.36037",
+      "bytes": 43734,
+      "sha256": "c1437c2646584af8be6a14970099fb58b07f5e5a9c8e0b35b296772de5c1cca6"
+    }
+  ],
+  "table1": {
+    "posteriorConvention": "Median,16th,84th percentiles; not independent hard bounds",
+    "epoch": "Haumea-centric JD2454615.0,2008-05-28T12:00UT",
+    "fittedAngles": "J2000 ecliptic; derived RA/Dec J2000 equatorial",
+    "haumeaReferenceRadiusKm": 772,
+    "haumeaMassKg": "(3904±7)e18",
+    "haumeaJ2": "0.143(+0.025,-0.024)",
+    "Namaka": {
+      "massKg": "(1.35±0.08)e18",
+      "semimajorAxisKm": "25365±16",
+      "eccentricity": "0.220±0.002",
+      "inclinationDeg": "68.9±0.1"
+    },
+    "Hiiaka": {
+      "massKg": "(16.5±0.5)e18",
+      "semimajorAxisKm": "49186±27",
+      "eccentricity": "0.0604±0.0008",
+      "inclinationDeg": "77.24±0.04"
+    }
+  },
+  "interpretation": [
+    "Three new HST epochs combined with astrometry since2006 fitted with a dynamical model; orbit/mass/J2 constraints are not direct interior imaging.",
+    "Haumea differentiated rocky core/ice mantle conclusion depends on measured dynamical harmonics plus occultation shape/interior models. Detailed core/mantle densities and two-versus-three-layer structure remain unconstrained.",
+    "Fossil-figure preference requires additional data; not a confirmed reconstructed history.",
+    "Haumea interior/shape/reference-radius parameters must not be assigned to either moon.",
+    "Semimajor axes are not dated distances, spin periods, local normals or evidence of permanent Haumea-facing sites. No angular/raster calculation or catalogue update.",
+    "No local chemistry, resolved geography, current ocean/plume/biology or survivable landing established.",
+    "NASA2015 image individual point/product/filter/UTC crossmatch, raw astrometric products, Appendices A–C detailed extraction/calibration and final record remain OPEN."
+  ],
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "production": "pass",
+    "full": "FAIL16059784 bytes;59784 over hard16MBgate",
+    "preservation": "68dossiers and550trackedpublicfiles unchanged;queue566; originals/masters/native/provenance/recordedClipper retained",
+    "browser": "No currentpassingfull/offlinebrowserclaim; otherenginesOPEN",
+    "attribution": "No compression change/savingsclaim; interbuildfeed differences unaudited"
+  }
+}

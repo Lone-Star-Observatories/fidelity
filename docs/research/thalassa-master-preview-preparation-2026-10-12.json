@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-12",
+  "body": "Thalassa",
+  "status": "Research-only original-preserving masters/previews; no69 or embedding",
+  "assets": [
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+        "bytes": 2835977,
+        "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/thalassa-generated-surfaceImage-master.jpg",
+      "bytes": 346404,
+      "sha256": "e391f1fabcc576865fd7e660c84be3ad7d600230fbcca8955ec7a9f5af9a853b",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+        "bytes": 2835977,
+        "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/thalassa-generated-surfaceImage-preview.jpg",
+      "bytes": 11471,
+      "sha256": "a81551574ee2ac392be1e94691516ed76aca1ce934e914cb1773c5363fe33634",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+        "bytes": 2155066,
+        "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/thalassa-generated-skyImage-master.jpg",
+      "bytes": 184563,
+      "sha256": "543e3571f16e84942575f8f93fe3b7a06a68aaa920b3a9edbdc5d83811d5086a",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+        "bytes": 2155066,
+        "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/thalassa-generated-skyImage-preview.jpg",
+      "bytes": 6878,
+      "sha256": "d3148dece8e498b71751d65aa03db5878c2bd62de198d5031f22015bec1d6bb9",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "previewTotalRawBytes": 18349,
+  "limitations": [
+    "All terrain, material fractions, chemistry, grey colour, Neptune bands/clouds/spot, colour, phase, lighting and exposure invented independently; no analog skin or other-body map reused.",
+    "Camera/site attitude assumed, not dated Voyager geography, registered irregular normal, spin locking or permanent Neptune-facing terrain. Mean orbit and 73:69 nodal resonance are not spin measurements.",
+    "JPL40\u00b18/paper41\u00b13 radius/GM/derived-density alternatives retained, not local chemistry or porosity. Alternative heights are not an uncertainty envelope.",
+    "Spherical Neptune omits oblateness; transmission, spectral transfer, phase and registration unverified. Black sky and omitted rings/Sun/stars not absence evidence.",
+    "No foreground atmosphere, active plume, liquid, ocean, biology or survivable landing claim. Native UTC/filter/product/full contributor crosswalk remains open.",
+    "Small preview footers require readable IMAGINED card labels before integration. All68 earlier dossiers, originals/masters/native/provenance/maps/models/shapes and recorded Clipper preserved; no catalogue/codec change."
+  ],
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "changed": [],
+    "dossiers": 68,
+    "queue": 566
+  },
+  "validation": {
+    "base": "065003a",
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16058732,
+    "overBudgetBytes": 58732,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Research-only original/masters/previews not embedded; codecs unchanged. Interbuild differences unaudited; no savings attribution."
+  },
+  "inspection": "Both1536 JPEG85 masters and256 JPEG80 previews displayed and inspected. Original/master footer texts readable; small preview footer texts have limited readability and require readable IMAGINED card labels before integration. Technical resizing/JPEG encoding only; original PNGs/default copies/full prompts preserved."
+}
