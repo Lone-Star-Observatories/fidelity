@@ -50,6 +50,21 @@ test('Kerberos resolves its own dossier without adopting another moon globe or s
   }
 });
 
+test('Styx resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const styx = MOONS.find((m) => m.id === 'styx');
+  assert.equal(styx.parent, 'pluto');
+  assert.equal(bodyVisualFor(styx).id, 'styx');
+  assert.equal(styx.surfacePending, true);
+  assert.equal(styx.skin?.map, undefined);
+  assert.equal(styx.locked, false);
+  assert.notEqual(styx.rotationHours, styx.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(styx, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 41000 && Math.hypot(...position) < 45000);
+  }
+});
+
 // JPL Horizons vectors (DE441 + satellite ephemerides), J2000 ecliptic, 2026-10-10 00:00 TDB.
 const JD = 2461323.5;
 const HORIZONS_KM = {
