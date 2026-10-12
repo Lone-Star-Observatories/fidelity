@@ -65,15 +65,44 @@ export const CLOUD_LAYERS = {
     profile: venusAtmosphere, source: VIRA_SOURCE, refRadiusKm: VENUS_REF_RADIUS_KM,
   },
   earth: {
-    shellKm: 10, topKm: 10, baseKm: 10, assumed: true, tier: 'modelled',
-    standKm: 10.8, descentS: 24,
-    note: 'Cloud height ASSUMED: 10 km for every cloud (the satellite imagery says where clouds are, not how high). Real clouds lie from ~0.5 km (stratus) to ~12 km (cirrus, anvils)',
+    // a volume drawn as stacked slices (the outermost at shellKm): each column of cloud fills the slices between
+    // its base and its top. Tops are MEASURED where NOAA-20 VIIRS gives a cloud-top height (GIBS); otherwise the
+    // whole layer is ASSUMED: base 2 km, tops 10 km. Bases are always modelled (the product has no cloud base).
+    shellKm: 12.5, topKm: 10, baseKm: 2, assumed: true, tier: 'modelled',
+    slicesKm: [1, 2, 3.5, 5, 6.5, 8, 9.5, 11, 12.5],
+    standKm: 10.8, descentS: 30,
+    note: 'Cloud heights ASSUMED where no cloud-top height is measured: a layer from 2 km (base) to 10 km (tops). Real clouds lie from ~0.5 km (stratus) to ~15 km (anvils)',
     profile: earthAtmosphere, source: US76_SOURCE, refRadiusKm: 6371,
   },
 };
 
 /** The layer record for a body, or null. */
 export const cloudLayer = (id) => CLOUD_LAYERS[id] ?? null;
+
+/**
+ * The cloud column over a spot: { topKm, baseKm, standKm, measured }. Venus: its measured deck. Earth: with a
+ * measured cloud-top height `topKm` (VIIRS), the top is that and the base is MODELLED (the top less 45% of its
+ * height, 0.8–4 km thick, never below 0.3 km); without one, the ASSUMED 2–10 km layer.
+ */
+export function cloudColumn(id, topKm = null) {
+  const L = cloudLayer(id);
+  if (!L) return null;
+  if (id !== 'earth' || !(topKm > 0)) return { topKm: L.topKm, baseKm: L.baseKm, standKm: L.standKm, measured: id !== 'earth' };
+  const thick = clamp(0.45 * topKm, 0.8, 4), baseKm = Math.max(0.3, topKm - thick);
+  return { topKm, baseKm: Math.min(baseKm, topKm), standKm: topKm + 0.8, measured: true };
+}
+
+/** Does Earth's slice at `hKm` draw a column from `baseKm` to `topKm`? Those inside it, and always the slice nearest its top. */
+export function sliceDraws(hKm, topKm, baseKm, slices = CLOUD_LAYERS.earth.slicesKm) {
+  if (hKm >= baseKm - 1e-6 && hKm <= topKm + 1e-6) return true;
+  let best = slices[0];
+  for (const s of slices) if (Math.abs(s - topKm) < Math.abs(best - topKm)) best = s;
+  return Math.abs(best - hKm) < 1e-6;
+}
+/** How many slices draw that column (≥ 1). */
+export const slicesInColumn = (topKm, baseKm, slices = CLOUD_LAYERS.earth.slicesKm) => slices.filter((h) => sliceDraws(h, topKm, baseKm, slices)).length;
+/** Opacity of each of `n` stacked slices so that together they show the column's opacity `a`. */
+export const sliceAlpha = (a, n) => 1 - Math.pow(1 - clamp(a, 0, 1), 1 / Math.max(1, n));
 
 /** The atmosphere at `altKm` above the body's reference: { tK, tC, pBar, source } or null. */
 export function atmosphereAt(id, altKm) {
@@ -86,10 +115,11 @@ export function atmosphereAt(id, altKm) {
 /**
  * How much of the view the cloud hides at `altKm` (0 clear … 1 opaque), MODELLED: Venus' deck is a bright
  * murk from its top (70 km) down to ~48 km, thinning through the lower haze to ~30 km and clear below;
- * Earth's thin assumed shell blinds the camera for a few hundred metres either side of it, as far as
- * there is cloud over the spot (`cover`, 0…1, from the imagery).
+ * Earth's cloud fills the column from its base to its top (`col`, from cloudColumn: measured top or the assumed
+ * 2–10 km), as thick as there is cloud over the spot (`cover`, 0…1, from the imagery), thinning over ~0.4 km at
+ * the base and the top.
  */
-export function murk(id, altKm, cover = 1) {
+export function murk(id, altKm, cover = 1, col = null) {
   const L = cloudLayer(id);
   if (!L) return 0;
   if (id === 'venus') {
@@ -97,8 +127,9 @@ export function murk(id, altKm, cover = 1) {
     if (altKm >= L.baseKm) return 0.97 * smooth(L.topKm + 2, L.topKm - 4, altKm);
     return 0.97 * smooth(L.lowerHazeKm, L.baseKm, altKm);
   }
-  const d = Math.abs(altKm - L.shellKm);
-  return 0.9 * clamp(cover, 0, 1) * (1 - smooth(0.05, 0.5, d));
+  const c = col ?? cloudColumn(id);
+  const inside = smooth(c.baseKm - 0.2, c.baseKm + 0.2, altKm) * (1 - smooth(c.topKm - 0.2, c.topKm + 0.2, altKm));
+  return 0.88 * clamp(cover, 0, 1) * inside;
 }
 
 /**
@@ -142,11 +173,12 @@ export function extinctionPerKm(id, altKm) {
 export const visibilityKm = (beta) => (beta > 0 ? 3.912 / beta : Infinity);
 
 /** Which layer is the camera at? 'above' (over the clouds), 'in' (inside them), 'below' (under them, above the ground). */
-export function layerAt(id, altKm) {
+export function layerAt(id, altKm, col = null) {
   const L = cloudLayer(id);
   if (!L) return 'below';
   if (id === 'venus') return altKm > L.topKm ? 'above' : altKm >= L.baseKm ? 'in' : 'below';
-  return altKm > L.shellKm + 0.15 ? 'above' : altKm >= L.shellKm - 0.15 ? 'in' : 'below';
+  const c = col ?? cloudColumn(id);
+  return altKm > c.topKm + 0.15 ? 'above' : altKm >= c.baseKm - 0.15 ? 'in' : 'below';
 }
 
 // ---- DESCEND / ASCEND --------------------------------------------------------------------------

@@ -27,8 +27,22 @@ const ERDDAP = 'https://coastwatch.pfeg.noaa.gov/erddap/griddap/etopo180';
 // value = raw × scale + offset (metres above `ref`); `parts` tile a product split into files.
 const MOLA64 = ['90n000', '90n180', '00n000', '00n180'].map((p) => ({
   url: `${PDS}mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg064/megt${p}gb.img`, W: 11520, H: 5760,
-  latTop: p.startsWith('90') ? 90 : 0, lonWest: Number(p.slice(3)),
+  latTop: p.startsWith('90') ? 90 : 0, latH: 90, lonWest: Number(p.slice(3)), lonSpan: 180,
 }));
+// #80 high-resolution tiers, read by HTTP range request without downloading the 11–22 GB products:
+// SLDEM2015 (LOLA + SELENE TC, Barker et al. 2016) at 512 px/° in 32 tiles of 30° × 45° within ±60°, LOLA's
+// 118 m LDEM (USGS, BigTIFF, half-metre units) towards the poles; the MOLA–HRSC blend (Fergason et al. 2018,
+// USGS, BigTIFF int16 metres above the areoid) at 200 m. Each tile cell takes the first part that covers it.
+const SLDEM = [];
+for (const [lat, tag] of [[60, '30n_60n'], [30, '00n_30n'], [0, '30s_00s'], [-30, '60s_30s']]) {
+  for (let lon = 0; lon < 360; lon += 45) {
+    const l = `${String(lon).padStart(3, '0')}_${String(lon + 45).padStart(3, '0')}`;
+    SLDEM.push({ url: `${PDS}lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/sldem2015/tiles/float_img/sldem2015_512_${tag}_${l}_float.img`,
+      format: 'img', W: 23040, H: 15360, type: 'f32', le: true, scale: 1000, latTop: lat, latH: 30, lonWest: lon, lonSpan: 45 });
+  }
+}
+const LOLA118 = { url: `${USGS}Lunar_LRO_LOLA_Global_LDEM_118m_Mar2014.tif`, format: 'tiff', scale: 0.5, lonWest: -180 };
+const MOLA_HRSC = { url: `${USGS}Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif`, format: 'tiff', scale: 1, lonWest: -180 };
 export const DEM_SOURCES = {
   earth: {
     name: 'ETOPO1 Ice Surface', instrument: 'NOAA NCEI global relief (SRTM30, GEBCO, IBCAO and more)', ref: 'mean sea level',
@@ -41,6 +55,7 @@ export const DEM_SOURCES = {
     global: { url: `${PDS}lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/cylindrical/img/ldem_16.img`, format: 'img', W: 5760, H: 2880, type: 'i16', le: true, scale: 0.5, lonWest: 0 },
     hi: { url: `${PDS}lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/cylindrical/img/ldem_64.img`, format: 'img', W: 23040, H: 11520, type: 'i16', le: true, scale: 0.5, lonWest: 0 },
     ppd: 64, refRadiusKm: 1737.4,
+    tiers: [{ minLevel: 5, name: 'SLDEM2015 512 px/° (±60°) and LOLA 118 m', parts: [...SLDEM, LOLA118] }], tilePpd: 512,
   },
   mars: {
     name: 'MGS MOLA MEGDR', instrument: 'Mars Orbiter Laser Altimeter (Mars Global Surveyor)', ref: 'MOLA areoid',
@@ -48,6 +63,7 @@ export const DEM_SOURCES = {
     global: { url: `${PDS}mgs/mgs-m-mola-5-megdr-l3-v1/mgsl_300x/meg016/megt90n000eb.img`, format: 'img', W: 5760, H: 2880, type: 'i16', le: false, scale: 1, lonWest: 0 },
     hi: { format: 'img', type: 'i16', le: false, scale: 1, ppd: 64, parts: MOLA64 },
     ppd: 64, refRadiusKm: 3396.0,
+    tiers: [{ minLevel: 5, name: 'MOLA–HRSC blend 200 m', parts: [MOLA_HRSC] }], tilePpd: 296.4,
   },
   mercury: {
     name: 'MESSENGER USGS global DEM v2', instrument: 'MESSENGER MDIS stereo (USGS Astrogeology)', ref: '2439.4 km sphere',
@@ -83,19 +99,30 @@ export const DEM_SOURCES = {
     name: 'New Horizons global DEM', instrument: 'New Horizons LORRI/MVIC stereo (Schenk et al. 2018)', ref: '606 km sphere',
     credit: 'NASA/JHUAPL/SwRI New Horizons; global DEM 300 m (Schenk et al. 2018), via USGS Astrogeology', licence: 'NASA, public domain (PDS)',
     global: { url: `${USGS}Charon_NewHorizons_Global_DEM_300m_Jul2017_16bit.tif`, format: 'tiff', scale: 1, lonWest: -180 },
-    ppd: 35.3, refRadiusKm: 606.0, partial: 'The encounter hemisphere only.',
+    ppd: 35.3, refRadiusKm: 606.0, partial: 'The encounter hemisphere only; its noisy rim (stereo near the limb and terminator) is masked.',
+    maskEdges: { band: 100, k: 0.35, erode: 2 }, // scripts/build-dem.mjs; tiles inherit the mask (src/data/dem.js heightAt)
   },
   enceladus: {
     name: 'Cassini ISS shape model (Bland 2019)', instrument: 'Cassini ISS stereo/limb shape model', ref: '251.5 km sphere',
     credit: 'NASA/JPL/SSI Cassini ISS; Enceladus shape model (Bland et al. 2019), USGS Astrogeology', licence: 'NASA/USGS, public domain (PDS)',
-    global: { url: `${USGS}Enceladus/enceladus_cassini_iss_shapemodel_bland_2019/enceladus_2019pm_radius.tif`, format: 'tiff', scale: 1, lonWest: 0 }, // radius − 251.5 km, metres
+    global: { url: `${USGS}Enceladus/enceladus_cassini_iss_shapemodel_bland_2019/enceladus_2019pm_radius.tif`, format: 'tiff', scale: 1, lonWest: -180 }, // radius − 251.5 km, metres. Its GeoTIFF tie point is −180° (read as 0° before; the triaxial bulges at 0° and 180° hid the half turn)
     ppd: 2, refRadiusKm: 251.5, width: 720, partial: 'Near-global at 2 px/° (2.2 km); gaps where Cassini had no stereo.',
+  },
+  // Titan (#80 follow-up): Corlies et al. 2017 (GRL 44, 11754), released CC0 on Cornell eCommons (doi:10.7298/m4dv-gv95).
+  // Measured topography (altimetry, SARtopo, stereo) covers ~16% of the 4 px/° grid; the rest of the drawn surface
+  // is the paper's radial-basis-function interpolation (MODELLED). Read-outs say NO DATA off the measured cells.
+  titan: {
+    name: 'Cassini topography (Corlies et al. 2017)', instrument: 'Cassini RADAR altimetry, SARtopo and stereo; RBF-interpolated global map', ref: '2575 km sphere',
+    credit: 'NASA/JPL-Caltech/ASI Cassini RADAR; global topography by P. Corlies, A. Hayes et al. (2017), Cornell eCommons (CC0)', licence: 'CC0 1.0',
+    global: { url: 'https://ecommons.cornell.edu/server/api/core/bitstreams/9da08126-0616-4415-9271-233ef4f9e447/content', rawName: 'titan_topo_4PPD.cub', format: 'cube', lonWest: -180 },
+    drawn: { url: 'https://ecommons.cornell.edu/server/api/core/bitstreams/bebcb917-2790-4fed-ae3c-c47491d3c5c1/content', rawName: 'titan_topo_4PPD_interp.cub', format: 'cube', lonWest: -180, width: 720 },
+    ppd: 4, refRadiusKm: 2575.0, noTiles: true, shading: 'none', // the globe shows Titan's haze, which hides the ground: relief in read-outs and the surface view
+    partial: 'Measured heights cover ~16% of the grid (Cassini altimetry, SARtopo and stereo tracks); the rest of the drawn surface is the published radial-basis-function interpolation (MODELLED, ±~150 m or worse far from tracks).',
   },
 };
 
 /** Bodies with no global DEM, and why (the panel says so). */
 export const NO_DEM = {
-  titan: 'Cassini radar and altimetry cover strips only (~9% of the surface at high resolution); interpolated global maps exist but are not open as a grid here.',
   ganymede: 'No global stereo DEM: Galileo and Voyager stereo cover small areas; JUICE will map it from 2034.',
   europa: 'No global DEM: Galileo stereo of small areas only; Europa Clipper will map it from 2030.',
   callisto: 'No global DEM: limb profiles and local Galileo stereo only.',
@@ -130,21 +157,22 @@ export async function fileRange(file) {
 export async function openRaster(spec, read) {
   if (spec.format === 'img') return openImg(spec, read);
   if (spec.format === 'tiff') return openTiff(spec, read);
+  if (spec.format === 'cube') return openCube(spec, read);
   throw new Error(`no reader for ${spec.format}`);
 }
 
 function decodeRow(buf, n, type, le, scale, offset, nodata) {
-  const out = new Float64Array(n), size = type === 'f32' ? 4 : 2;
+  const out = new Float64Array(n), size = type === 'f32' ? 4 : type === 'u8' ? 1 : 2;
   for (let i = 0; i < n; i++) {
     const p = i * size;
-    const v = type === 'f32' ? (le ? buf.readFloatLE(p) : buf.readFloatBE(p)) : type === 'u16' ? (le ? buf.readUInt16LE(p) : buf.readUInt16BE(p)) : (le ? buf.readInt16LE(p) : buf.readInt16BE(p));
+    const v = type === 'f32' ? (le ? buf.readFloatLE(p) : buf.readFloatBE(p)) : type === 'u8' ? buf[p] : type === 'u16' ? (le ? buf.readUInt16LE(p) : buf.readUInt16BE(p)) : (le ? buf.readInt16LE(p) : buf.readInt16BE(p));
     out[i] = (nodata != null && v === nodata) || !Number.isFinite(v) || v < -1e30 ? NaN : v * scale + (offset ?? 0);
   }
   return out;
 }
 
 function openImg(spec, read) {
-  const size = spec.type === 'f32' ? 4 : 2;
+  const size = spec.type === 'f32' ? 4 : spec.type === 'u8' ? 1 : 2;
   return {
     W: spec.W, H: spec.H, lonWest: spec.lonWest ?? 0,
     async row(y, x0 = 0, x1 = spec.W - 1) {
@@ -154,46 +182,86 @@ function openImg(spec, read) {
   };
 }
 
-/** Uncompressed, strip-organised GeoTIFF (USGS mosaics): int16, uint16 or float32, one sample. */
+/**
+ * Uncompressed, strip-organised GeoTIFF or BigTIFF (USGS mosaics and the multi-GB blends: MOLA–HRSC, LOLA 118 m,
+ * Magellan 75/225 m SAR): uint8, int16, uint16 or float32, one sample. Only the header, the tag table and the
+ * strip offsets are read up front; rows are range-read on demand.
+ */
 export async function openTiff(spec, read) {
   const head = await read(0, 15);
   const le = head.toString('latin1', 0, 2) === 'II';
   const u16 = (b, o) => (le ? b.readUInt16LE(o) : b.readUInt16BE(o));
   const u32 = (b, o) => (le ? b.readUInt32LE(o) : b.readUInt32BE(o));
-  if (u16(head, 2) !== 42) throw new Error('not a classic TIFF');
-  const ifd = u32(head, 4);
-  const n = u16(await read(ifd, ifd + 1), 0);
-  const e = await read(ifd + 2, ifd + 2 + n * 12 - 1);
+  const u64 = (b, o) => Number(le ? b.readBigUInt64LE(o) : b.readBigUInt64BE(o));
+  const version = u16(head, 2), big = version === 43;
+  if (version !== 42 && !big) throw new Error('not a TIFF');
+  const ifd = big ? u64(head, 8) : u32(head, 4);
+  const n = big ? u64(await read(ifd, ifd + 7), 0) : u16(await read(ifd, ifd + 1), 0);
+  const esz = big ? 20 : 12, inl = big ? 8 : 4, first = ifd + (big ? 8 : 2);
+  const e = await read(first, first + n * esz - 1);
   const tags = {};
   for (let k = 0; k < n; k++) {
-    const o = k * 12, type = u16(e, o + 2), count = u32(e, o + 4), size = { 1: 1, 2: 1, 3: 2, 4: 4, 12: 8 }[type] ?? 4;
-    tags[u16(e, o)] = { type, count, inline: count * size <= 4, raw: e.subarray(o + 8, o + 12), offset: u32(e, o + 8) };
+    const o = k * esz, type = u16(e, o + 2), count = big ? u64(e, o + 4) : u32(e, o + 4), size = { 1: 1, 2: 1, 3: 2, 4: 4, 12: 8, 16: 8 }[type] ?? 4;
+    const vo = o + (big ? 12 : 8);
+    tags[u16(e, o)] = { type, count, size, inline: count * size <= inl, raw: e.subarray(vo, vo + inl), offset: big ? u64(e, vo) : u32(e, vo) };
   }
-  const scalar = (t) => (t.type === 3 ? u16(t.raw, 0) : u32(t.raw, 0));
+  const val = (b, o, t) => (t.type === 3 ? u16(b, o) : t.type === 16 ? u64(b, o) : u32(b, o));
+  const scalar = (t) => val(t.raw, 0, t);
   const W = scalar(tags[256]), H = scalar(tags[257]), bits = scalar(tags[258]), fmt = tags[339] ? scalar(tags[339]) : 1;
   if ((tags[259] && scalar(tags[259]) !== 1) || (tags[277] && scalar(tags[277]) !== 1)) throw new Error('compressed or multi-sample TIFF');
   if (tags[322]) throw new Error('tiled TIFF');
-  const type = bits === 32 && fmt === 3 ? 'f32' : bits === 16 ? (fmt === 2 ? 'i16' : 'u16') : null;
+  const type = bits === 32 && fmt === 3 ? 'f32' : bits === 16 ? (fmt === 2 ? 'i16' : 'u16') : bits === 8 ? 'u8' : null;
   if (!type) throw new Error(`unsupported TIFF samples (${bits} bits, format ${fmt})`);
   const rps = tags[278] ? scalar(tags[278]) : H;
   const so = tags[273];
   let strips;
-  if (so.inline) strips = [scalar(so)];
+  if (so.inline) strips = Array.from({ length: so.count }, (_, i) => val(so.raw, i * so.size, so));
   else {
-    const size = so.type === 3 ? 2 : 4, b = await read(so.offset, so.offset + so.count * size - 1);
-    strips = Array.from({ length: so.count }, (_, i) => (size === 2 ? u16(b, i * 2) : u32(b, i * 4)));
+    const b = await read(so.offset, so.offset + so.count * so.size - 1);
+    strips = Array.from({ length: so.count }, (_, i) => val(b, i * so.size, so));
   }
   let nodata = null;
   if (tags[42113]) {
     const t = tags[42113], s = (t.inline ? t.raw.subarray(0, t.count) : await read(t.offset, t.offset + t.count - 1)).toString('latin1').replace(/\0/g, '').trim();
     if (s && Number.isFinite(Number(s))) nodata = Number(s);
   }
+  if (spec.nodata !== undefined) nodata = spec.nodata;
   const size = bits / 8;
   return {
-    W, H, lonWest: spec.lonWest ?? 0, nodata, type,
+    W, H, lonWest: spec.lonWest ?? 0, nodata, type, big,
     async row(y, x0 = 0, x1 = W - 1) {
       const o = strips[Math.floor(y / rps)] + ((y % rps) * W + x0) * size;
       return decodeRow(await read(o, o + (x1 - x0 + 1) * size - 1), x1 - x0 + 1, type, le, spec.scale ?? 1, spec.offset, type === 'f32' && nodata != null && nodata < -1e30 ? null : nodata);
+    },
+  };
+}
+
+/**
+ * ISIS3 cube (Titan's Cassini topography, Corlies et al. 2017): a text label, then 32-bit LSB reals in tiles
+ * (Format = Tile) or rows (BandSequential); one band. Returns the same raster interface as openTiff.
+ */
+export async function openCube(spec, read) {
+  const label = (await read(0, 65535)).toString('latin1');
+  const num = (k) => Number(label.match(new RegExp(`\\b${k}\\s*=\\s*([-0-9.eE+]+)`))?.[1]);
+  const W = num('Samples'), H = num('Lines'), start = num('StartByte') - 1;
+  const tiled = /Format\s*=\s*Tile/.test(label), tw = tiled ? num('TileSamples') : W, th = tiled ? num('TileLines') : 1;
+  if (!/Type\s*=\s*Real/.test(label) || !/ByteOrder\s*=\s*Lsb/.test(label)) throw new Error('only LSB Real cubes');
+  const base = num('Base') || 0, mult = Number.isFinite(num('Multiplier')) ? num('Multiplier') : 1;
+  const across = Math.ceil(W / tw);
+  return {
+    W, H, lonWest: spec.lonWest ?? -180,
+    async row(y, x0 = 0, x1 = W - 1) {
+      const out = new Float64Array(x1 - x0 + 1), ty = Math.floor(y / th), yy = y % th;
+      for (let tx = Math.floor(x0 / tw); tx <= Math.floor(x1 / tw); tx++) {
+        const a = Math.max(x0, tx * tw), b = Math.min(x1, tx * tw + tw - 1);
+        const o = start + ((ty * across + tx) * tw * th + yy * tw + (a - tx * tw)) * 4;
+        const buf = await read(o, o + (b - a + 1) * 4 - 1);
+        for (let x = a; x <= b; x++) {
+          const v = buf.readFloatLE((x - a) * 4); // ISIS special pixels are huge negative reals
+          out[x - x0] = !Number.isFinite(v) || Math.abs(v) > 1e30 ? NaN : (v * mult + base) * (spec.scale ?? 1) + (spec.offset ?? 0);
+        }
+      }
+      return out;
     },
   };
 }
@@ -272,34 +340,59 @@ const openRemote = (spec) => {
   return opened.get(key);
 };
 
-/** Point-sample the cells of a tile from a source (nearest source pixel per cell, one ranged read per row). */
+/** The raster spec serving tile level `z` of a body: its finest tier at or below z, else `hi`, else `global`. */
+export function sourceFor(src, z) {
+  const tier = (src.tiers ?? []).filter((t) => z >= t.minLevel).sort((a, b) => b.minLevel - a.minLevel)[0];
+  return tier ? { parts: tier.parts } : src.hi ?? src.global;
+}
+
+/**
+ * Where a part of a source covers: latTop/latH (default the whole globe, 90° … −90°), lonWest/lonSpan (default
+ * 360°). → the pixel { x, y } of a raster `W` × `H` holding lat/lon, or null outside the part.
+ */
+export function partPixel(part, W, H, lat, lon) {
+  const latTop = part.latTop ?? 90, latH = part.latH ?? 180, lonSpan = part.lonSpan ?? 360;
+  const fy = ((latTop - lat) / latH) * H;
+  if (fy < 0 || fy >= H) return null;
+  const dl = ((((lon - (part.lonWest ?? 0)) % 360) + 360) % 360);
+  if (dl >= lonSpan) return null;
+  return { x: Math.min(W - 1, Math.floor((dl / lonSpan) * W)), y: Math.floor(fy) };
+}
+
+/**
+ * Point-sample the cells of a tile from a source (nearest source pixel per cell, one ranged read per row). A
+ * source split into parts (MOLA's four 64 px/° files, SLDEM2015's 32 tiles + LOLA 118 m) fills each cell from the
+ * first part, in order, that covers it with data; parts that miss the tile are never opened.
+ */
 async function sampleSource(spec, b) {
   const parts = spec.parts ? spec.parts.map((p) => ({ ...spec, ...p, parts: undefined })) : [spec];
-  const out = new Float32Array(TILE * TILE).fill(NaN), cell = b.deg / TILE;
+  const out = new Float32Array(TILE * TILE).fill(NaN), rank = new Uint8Array(TILE * TILE).fill(255), cell = b.deg / TILE;
   const jobs = [];
-  for (const part of parts) {
+  const latS = b.north - b.deg;
+  for (let k = 0; k < parts.length; k++) {
+    const part = parts[k];
+    const top = part.latTop ?? 90, bottom = top - (part.latH ?? 180), span = part.lonSpan ?? 360;
+    if (top <= latS || bottom >= b.north) continue;
+    if (span < 360) {
+      const dl = ((((b.west - (part.lonWest ?? 0)) % 360) + 360) % 360);
+      if (dl >= span && dl + b.deg <= 360) continue; // the tile lies wholly outside this part's longitudes
+    }
     const r = await openRemote(part);
-    // a whole-globe raster spans 180° × 360°; MOLA's 64 px/° parts are 90° × 180° each
-    const latTop = part.latTop ?? 90, latH = spec.parts ? 90 : 180, lonSpan = spec.parts ? 180 : 360;
+    const pp = { ...part, lonWest: part.lonWest ?? r.lonWest };
     for (let j = 0; j < TILE; j++) {
       const lat = b.north - (j + 0.5) * cell;
-      const fy = ((latTop - lat) / latH) * r.H;
-      if (fy < 0 || fy >= r.H) continue;
-      const y = Math.floor(fy);
       const cols = [];
+      let y = -1;
       for (let i = 0; i < TILE; i++) {
-        const lon = b.west + (i + 0.5) * cell;
-        const dl = ((((lon - r.lonWest) % 360) + 360) % 360);
-        if (dl >= lonSpan) continue;
-        cols.push([i, Math.min(r.W - 1, Math.floor((dl / lonSpan) * r.W))]);
+        const px = partPixel(pp, r.W, r.H, lat, b.west + (i + 0.5) * cell);
+        if (!px) continue;
+        y = px.y; cols.push([i, px.x]);
       }
       if (!cols.length) continue;
       const xs = cols.map((c) => c[1]), x0 = Math.min(...xs), x1 = Math.max(...xs);
-      if (x1 - x0 > r.W / 2) { // the tile straddles the raster's seam: two reads
-        jobs.push(async () => { const row = await r.row(y); for (const [i, x] of cols) out[j * TILE + i] = row[x]; });
-      } else {
-        jobs.push(async () => { const row = await r.row(y, x0, x1); for (const [i, x] of cols) out[j * TILE + i] = row[x - x0]; });
-      }
+      const put = (row, off) => { for (const [i, x] of cols) { const v = row[x - off], c = j * TILE + i; if (v === v && k < rank[c]) { out[c] = v; rank[c] = k; } } };
+      if (x1 - x0 > r.W / 2) jobs.push(async () => put(await r.row(y), 0)); // the tile straddles the raster's seam
+      else jobs.push(async () => put(await r.row(y, x0, x1), x0));
     }
   }
   let next = 0;
@@ -327,16 +420,16 @@ const inflight = new Map();
 /** The PNG for tile (body, z, x, y), from the disk cache or built from the source. */
 export async function demTile(body, z, x, y) {
   const src = DEM_SOURCES[body];
-  if (!src) throw Object.assign(new Error(`no elevation model for ${body}`), { status: 404 });
+  if (!src || src.noTiles) throw Object.assign(new Error(`no elevation tiles for ${body}`), { status: 404 });
   z = Number(z); x = Number(x); y = Number(y);
-  const zmax = maxLevel(src.ppd);
+  const zmax = maxLevel(src.tilePpd ?? src.ppd);
   if (!(z >= 0 && z <= zmax && x >= 0 && x < 4 * 2 ** z && y >= 0 && y < 2 * 2 ** z)) throw Object.assign(new Error(`tile out of range (levels 0–${zmax})`), { status: 400 });
   const file = path.join(tileDir(), body, `${z}-${x}-${y}.png`);
   try { return { body: await fs.readFile(file), type: 'image/png', maxAge: 31536000 }; } catch { /* build it */ }
   if (!inflight.has(file)) {
     inflight.set(file, (async () => {
       const b = tileBounds(z, x, y);
-      const heights = src.format === 'erddap' ? await etopoTile(b) : await sampleSource(src.hi ?? src.global, b);
+      const heights = src.format === 'erddap' ? await etopoTile(b) : await sampleSource(sourceFor(src, z), b);
       const q = quantize(heights);
       const png = png16(TILE, TILE, filter16(q.data, TILE, TILE), { min: String(q.min), max: String(q.max), body, z: String(z), x: String(x), y: String(y) });
       await fs.mkdir(path.dirname(file), { recursive: true });
@@ -351,6 +444,7 @@ export async function demTile(body, z, x, y) {
 /** What each body's tiles offer (for the client's level choice and credits). */
 export function demInfo() {
   const out = {};
-  for (const [id, s] of Object.entries(DEM_SOURCES)) out[id] = { name: s.name, credit: s.credit, ref: s.ref, ppd: s.ppd, maxLevel: maxLevel(s.ppd), tile: TILE, partial: s.partial ?? null };
+  for (const [id, s] of Object.entries(DEM_SOURCES)) out[id] = { name: s.name, credit: s.credit, ref: s.ref, ppd: s.ppd, tilePpd: s.tilePpd ?? s.ppd, maxLevel: maxLevel(s.tilePpd ?? s.ppd), tile: TILE, partial: s.partial ?? null,
+    tiers: (s.tiers ?? []).map((t) => ({ minLevel: t.minLevel, name: t.name })) };
   return { bodies: out, none: NO_DEM };
 }

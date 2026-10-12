@@ -44,7 +44,8 @@ import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive, BAND_UNIFORMS } from './materials.js';
 import { cloudLayer, createDescent, startDescent, stepDescent, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
-import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout } from './clouds.js';
+import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout, addCloudSlices, cloudDetail, cloudSides, loadEarthClouds, cloudTopAt, icePriorTexture } from './clouds.js';
+import { cloudColumn } from '../../astro/atmosphere.js';
 import { badge } from '../../data/provenance.js';
 import { createRelief } from './relief.js';
 import { fmtElevation, reliefK } from '../../astro/dem.js';
@@ -493,7 +494,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
         cm.userData.host = mat.userData.host;
         cm.userData.body = body.id;
         clouds = new THREE.Mesh(new THREE.SphereGeometry(layer ? 1 + layer.shellKm / body.radiusKm : 1.012, 96, 48), cm);
-        clouds.userData = { layer, opaque, staticTex: null };
+        clouds.userData = { layer, opaque, staticTex: null, radiusKm: body.radiusKm };
+        if (layer?.slicesKm && !opaque) addCloudSlices(clouds, layer, body.radiusKm); // #83: Earth's cloud volume, stacked slices
         if (opaque) {
           for (const k of BAND_UNIFORMS) cm.uniforms[k] = mat.uniforms[k];
           loadTexture(body.skin.map).then((t) => { if (t) cm.uniforms.uMap.value = t; });
@@ -1511,8 +1513,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       [`${p} · ${Math.round(r.tC)} °C (${Math.round(r.tK)} K) · ${venus ? 'VIRA: PIONEER VENUS + VENERA' : 'US STANDARD ATMOSPHERE 1976'}`, 'measured',
         venus ? `${r.source}: a reference profile built from the probes' measurements, interpolated by altitude (log pressure); not a reading for this spot today.` : `${r.source}: the reference mid-latitude profile built from balloon and rocket measurements; today's air here differs with the weather.`],
       venus ? [`CLOUD DECK ${L.baseKm}–${L.topKm} KM, HAZE TO ${L.hazeTopKm} KM · SUPER-ROTATING WESTWARD IN ~${L.superRotationDays} DAYS (THE GROUND: 243 DAYS)`, 'measured', L.note]
-        : [`CLOUDS DRAWN AT ${L.shellKm} KM: AN ASSUMED HEIGHT`, 'modelled', L.note],
-      !venus ? [live ? `CLOUDS: TODAY'S SATELLITE MOSAIC (${(liveState.earth?.feed ?? 'GIBS').toUpperCase()}, NASA GIBS), PICKED OUT BY WHITENESS` : 'CLOUDS: BLUE MARBLE 2004 (MODIS), DRIFTED', 'measured', 'Where the clouds are is measured; snow and ice can read as cloud.'] : null,
+        : s.colMeasured && s.cloudTop != null ? [`CLOUD TOP HERE ${s.cloudTop.toFixed(2)} KM (NOAA-20 VIIRS, ${n.clouds.userData.measured}) · BASE ~${r.col.baseKm.toFixed(1)} KM`, 'measured', 'Cloud-top height from the VIIRS cloud product via NASA GIBS (50 m bins). The cloud base is MODELLED: the top less 45% of its height, 0.8–4 km thick; the product has no base.']
+          : s.colMeasured ? ['NO CLOUD TOP RETRIEVED OVER THIS SPOT: CLEAR SKY THAT DAY', 'measured', 'The VIIRS cloud mask found no cloud here; bright ground (snow, ice) is not drawn as cloud.']
+            : [`CLOUDS DRAWN FROM ${L.baseKm} TO ${L.topKm} KM: ASSUMED HEIGHTS`, 'modelled', L.note],
+      !venus ? [n.clouds?.userData?.measured ? `CLOUDS: NOAA-20 VIIRS TRUE COLOUR AND CLOUD-TOP HEIGHT, ${n.clouds.userData.measured} (NASA GIBS)` : live ? `CLOUDS: TODAY'S SATELLITE MOSAIC (${(liveState.earth?.feed ?? 'GIBS').toUpperCase()}, NASA GIBS), PICKED OUT BY WHITENESS` : 'CLOUDS: BLUE MARBLE 2004 (MODIS), DRIFTED', 'measured',
+        n.clouds?.userData?.measured ? 'Where cloud is: the VIIRS cloud-top product (pixels with a retrieval); how dense: whiteness in the same overpasses\' true colour. Snow and ice have no cloud top, so they are not drawn as cloud.' : live ? 'Where the clouds are is measured (whiteness); persistent ice sheets and high snow are held back by a MODELLED prior (latitude, ice-sheet outlines, height above 4–5 km); elsewhere snow can still read as cloud.' : 'Where the clouds are is measured (2004); snow and ice can read as cloud.'] : null,
       venus ? ['GROUND: MAGELLAN RADAR ON MAGELLAN ALTIMETRY, COLOURED AFTER VENERA 13/14', 'modelled', 'Radar brightness (roughness) is not colour: rock colours from the Venera 13/14 lander images; heights and radar brightness MEASURED (Magellan, USGS Astrogeology).'] : null,
       venus && look && !look.sunVisible ? [`LIGHT ~${Math.max(1, Math.round(r.light * 100))}% OF THE SUNLIGHT ABOVE THE CLOUDS · ORANGE, NO SUN DISC${look.where === 'below' ? ` · VISIBILITY ~${Math.round(visibilityKm(look.fogK))} KM` : ''} · EXPOSURE ADAPTED`, 'modelled', 'Venera 11–14 and Pioneer Venus measured ~2–3% of the sunlight at the ground, reddened; visibility from Rayleigh scattering in the dense CO₂.'] : null,
     ].filter(Boolean);
@@ -1809,7 +1814,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       // above the layers' reference: Earth's sea level (the sea surface is drawn flat), Venus' 6,052 km VIRA sphere (the DEM's is 6,051 km)
       const hD = s.ground && Number.isFinite(s.ground.hDraw ?? s.ground.h) ? (s.ground.hDraw ?? s.ground.h) / 1000 : 0;
       groundRefKm = s.id === 'earth' ? Math.max(0, hD) : hD + ((s.ground?.meta?.refRadiusKm ?? R) - layer.refRadiusKm);
-      const top = Math.max(0.5, layer.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
+      // the cloud column over the spot (#83): Earth's measured cloud top where VIIRS has one, else the assumed layer
+      const ec = n.clouds?.userData?.measured ? n.clouds.userData.ec : null, llc = dirToLatLon(s.local.toArray());
+      s.cloudTop = ec ? cloudTopAt(ec, (llc.lon + 180) / 360, (llc.lat + 90) / 180) : null;
+      s.col = cloudColumn(s.id, s.cloudTop);
+      s.colMeasured = !!ec;
+      const top = Math.max(0.5, s.col.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
       if (Math.abs(top - s.descent.top) > 1e-6) s.descent = { ...s.descent, top, ...(s.descent.phase === 'top' ? { altKm: top, fromKm: top, toKm: top } : {}) };
       s.descent = stepDescent(s.descent, performance.now() / 1000);
     }
@@ -1864,10 +1874,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const c = n.clouds, cu = c?.material?.uniforms;
       let cover = 1;
       if (s.id === 'earth' && cu && llNow) cover = cloudCoverAt(cu.uMap.value, (llNow.lon + 180) / 360 + (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI), (llNow.lat + 90) / 180, cu.uAlphaFromLuma.value);
+      if (s.colMeasured && s.cloudTop == null) cover = 0; // no cloud top retrieved over the spot: clear (snow is not cloud)
       const d0 = daylight(sun.alt) * (s.eclipse?.light ?? 1);
-      look = layerLook(s.id, altRef, { day: d0, cover });
+      look = layerLook(s.id, altRef, { day: d0, cover, col: s.col });
       s.cover = cover;
-      layerR = layerReadout(s.id, altRef, aboveKm);
+      layerR = layerReadout(s.id, altRef, aboveKm, s.col);
       day = d0;
       const gu = n.mesh.material.uniforms;
       if (gu.uSkyAmb) {
@@ -2441,7 +2452,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const n = nodes[id];
       if (!relief.has(id) || !n.group.visible) continue;
       const camLocal = n.mesh.worldToLocal(reliefCam.copy(camera.position));
-      relief.update(n, { camLocal, focused: id === focusId, surface: surface?.id === id && surface.sphere ? { dir: reliefDir.copy(surface.local).normalize() } : null });
+      relief.update(n, { camLocal, focused: id === focusId, surface: surface?.id === id && surface.sphere ? { dir: reliefDir.copy(surface.local).normalize() } : null, fov: camera.fov });
     }
     const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
@@ -2503,12 +2514,29 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const c = n.clouds, cu = c.material.uniforms, gu = n.mesh?.material?.uniforms, L = c.userData.layer;
     const liveTex = !c.userData.opaque && liveState[n.body.id] && gu?.uHasLive?.value > 0.5 ? gu.uLive.value : null;
     c.userData.live = !!liveTex;
+    // #83: Earth's measured clouds: NOAA-20's cloud-top heights and true colour of the same day (when live skins are on)
+    const slices = !!c.userData.slices;
+    if (slices && settings.get('liveSkins') && !c.userData.ecAsked) { c.userData.ecAsked = true; loadEarthClouds().then((ec) => { c.userData.ec = ec; }); }
+    const ec = slices && settings.get('liveSkins') ? c.userData.ec : null;
+    c.userData.measured = ec ? ec.date : null;
     if (c.userData.opaque) c.rotation.y = n.mesh.rotation.y + superRotation(L, jd);
-    else if (liveTex) { c.rotation.y = n.mesh.rotation.y; if (cu.uMap.value !== liveTex) cu.uMap.value = liveTex; cu.uAlphaFromLuma.value = 2; }
-    else {
+    else if (ec) {
+      c.rotation.y = n.mesh.rotation.y;
+      if (cu.uMap.value !== ec.colour) cu.uMap.value = ec.colour;
+      cu.uAlphaFromLuma.value = 2; cu.uCth.value = ec.heights; cu.uCthOn.value = 1; cu.uSnowOn.value = 0;
+    } else if (liveTex) {
+      c.rotation.y = n.mesh.rotation.y; if (cu.uMap.value !== liveTex) cu.uMap.value = liveTex; cu.uAlphaFromLuma.value = 2;
+      if (cu.uCthOn) { cu.uCthOn.value = 0; const ice = icePriorTexture(); cu.uSnowMask.value = ice; cu.uSnowOn.value = ice ? 1 : 0; } // MODELLED: persistent ice is not cloud
+    } else {
       c.rotation.y = (now / 1000) * 0.004; // a static 2004 snapshot, drifted gently so it reads as weather
       if (c.userData.staticTex && cu.uMap.value !== c.userData.staticTex) cu.uMap.value = c.userData.staticTex;
       cu.uAlphaFromLuma.value = 1;
+      if (cu.uCthOn) { cu.uCthOn.value = 0; cu.uSnowOn.value = 0; }
+    }
+    if (!c.userData.opaque) { // #83 (speckles): draw only the faces the camera can see, never a shell's far side
+      const camLocalD = n.mesh.worldToLocal(cloudSun.copy(camera.position)).length();
+      if (slices) cloudDetail(c, camLocalD < 1.15); // fine geometry close up: a coarse sphere's facets sag kilometres below the slice heights
+      cloudSides(c, camLocalD);
     }
     const standing = surface?.id === n.body.id ? surface : null;
     c.visible = n.cloudBandOK !== false && !n.paleoOn && !(standing?.layerLook?.hideShell);
@@ -2519,7 +2547,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       gu.uCloudMode.value = on ? cu.uAlphaFromLuma.value : 0;
       if (on) {
         gu.uCloudTex.value = cu.uMap.value;
-        gu.uCloudH.value = L.shellKm / n.body.radiusKm;
+        gu.uCloudH.value = (slices ? (L.topKm + L.baseKm) / 2 : L.shellKm) / n.body.radiusKm; // the volume's middle
+        if (gu.uCloudGateOn) { gu.uCloudGateOn.value = ec ? 1 : 0; gu.uCloudGate.value = ec ? ec.heights : null; }
         gu.uCloudU.value = (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI);
         const star = nodes[n.mesh.material.userData.host] ?? nodes[model.starId];
         if (star) gu.uSunL.value.copy(n.mesh.worldToLocal(star.group.getWorldPosition(cloudSun))).normalize();

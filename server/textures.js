@@ -54,7 +54,9 @@ export const TEXTURES = {
   ganymede: [n3d('Jupiter - Ganymede', 'Galileo and Voyager')],
   callisto: [n3d('Jupiter - Callisto', 'Galileo and Voyager')],
   mimas: [n3d('Saturn - Mimas', 'Cassini')],
-  enceladus: [n3d('Saturn - Enceladus', 'Cassini')],
+  // #80 follow-up: the USGS mosaic, registered with the shape model by its GeoTIFF tie points (both −180…180° E). The
+  // NASA 3D Resources map it replaces matched neither the DEM nor this mosaic and left large areas blank.
+  enceladus: [usgs('Enceladus_Cassini_ISS_Global_Mosaic_100m_HPF.tif', 'Cassini ISS global mosaic 100 m (high-pass filtered; Bland et al. 2018)', 4096)],
   tethys: [n3d('Saturn - Tethys', 'Cassini')],
   dione: [n3d('Saturn - Dione', 'Cassini')],
   rhea: [n3d('Saturn - Rhea', 'Cassini')],
@@ -66,7 +68,10 @@ export const TEXTURES = {
   titania: [n3d('Uranus - Titania', 'Voyager 2 (southern hemisphere only)')],
   oberon: [n3d('Uranus - Oberon', 'Voyager 2 (southern hemisphere only)')],
   triton: [n3d('Neptune - Triton', 'Voyager 2')],
-  charon: [n3d('Pluto - Charon', 'New Horizons')],
+  // #80 follow-up: New Horizons' own mosaic on the DEM's grid (same tie points; hillshade correlation peaks at 0°).
+  // The NASA 3D Resources "Charon" map shows none of Charon's features (no Mordor Macula, no Serenity Chasma): an
+  // illustration, not a mosaic. Black where New Horizons saw nothing (the southern hemisphere was in polar night).
+  charon: [usgs('Charon_NewHorizons_Global_Mosaic_300m_Jul2017_8bit.tif', 'New Horizons LORRI/MVIC global mosaic 300 m (Jul 2017); the unseen south is black', 4096)],
   ceres: [usgs('Ceres_Dawn_FC_DLR_global_20ppd_Oct2015.tif', 'Dawn Framing Camera global mosaic (DLR, 2015)')],
   vesta: [usgs('Vesta_Dawn_FC_HAMO_Mosaic_Global_74ppd.tif', 'Dawn Framing Camera HAMO global mosaic')],
   milkyWay: [src(`${NASA}PIA10748/PIA10748~orig.jpg`, "NASA/JPL-Caltech/R. Hurt (SSC/Caltech), PIA10748: artist's concept from Spitzer data")],
