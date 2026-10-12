@@ -163,7 +163,9 @@ export function targetFor(b, bodies) {
   }
   if (b.kind === 'moon' && b.parent && ELEMENTS[b.parent]) {
     const p = bodies.find((x) => x.id === b.parent);
-    return { ...targetFor(p, bodies), viaParent: p.name, name: b.name };
+    const pt = p && targetFor(p, bodies);
+    // the Moon: its parent is the launch site, so there is no interplanetary window to show
+    return pt ? { ...pt, viaParent: p.name, name: b.name } : null;
   }
   return null;
 }

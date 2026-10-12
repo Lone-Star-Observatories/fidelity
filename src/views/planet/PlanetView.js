@@ -186,7 +186,7 @@ export function createPlanetView(container, { onSurface } = {}) {
       globe = shape; pivot.add(globe);
     }).catch((error) => console.warn(`Body shape unavailable: ${b.id}`, error));
     // #37: sites of note as dots, turning with the globe (SITES toggle and filters)
-    sites = settings.get('sites') ? siteDots(b, new Set(settings.get('siteHidden') ?? [])) : null;
+    sites = settings.get('sites') ? siteDots(b, new Set([...(settings.get('siteHidden') ?? []), ...(settings.get('starfleet') ? [] : ['trek'])])) : null;
     if (sites) pivot.add(sites);
     if (b.skin?.clouds) {
       const cm = cloudMaterial(placeholder);

@@ -210,7 +210,7 @@ export function createSurfaceCard(b, m, { system, hooks }) {
   // ---- rendered here ------------------------------------------------------------------------------
   const spots = [];
   const seen = new Set();
-  const siteList = sitesFor(b.id).filter((s) => s.kind !== 'planned' && s.kind !== 'launch');
+  const siteList = sitesFor(b.id).filter((s) => s.kind !== 'planned' && s.kind !== 'launch' && s.kind !== 'trek'); // real sites only (#41)
   const short = (e) => { const s = e.site && siteList.find((x) => x.id === e.site); return s?.short ?? e.short ?? e.mission ?? e.name ?? ''; };
   for (const e of [...archival, ...siteList.filter((s) => s.major), ...siteList]) {
     const label = short(e).toUpperCase();

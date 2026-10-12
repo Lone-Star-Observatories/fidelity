@@ -6,7 +6,7 @@ const defaults = {
   ephemeris: 'horizons', // 'kepler' | 'horizons' (Horizons falls back to Kepler month by month while loading or offline)
   labels: true,
   orbits: true,
-  starfleet: false, // Galaxy View: Star Trek's Alpha/Beta/Gamma/Delta overlay
+  starfleet: true,  // STAR TREK layer (#25, #41): Alpha–Delta quadrants, homeworlds, stations and territories in every view, IMAGINED
   belts: true,      // System View: asteroid and Kuiper-belt populations
   dwarfs: true,     // System View: dwarf planets (DETAIL slider)
   smallBodies: true, // System View: the catalogued asteroids and comets (DETAIL slider)
@@ -22,7 +22,7 @@ const defaults = {
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
   deepsky: true,     // surface view: nebulae, galaxies and star clusters on the sky (#48)
   constellations: false, // surface view: constellation figures and names (#48)
-  siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch)
+  siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch, trek)
   galaxyArt: false,   // Galaxy/Quadrant: overlay NASA's face-on artwork on the 3D model
   galaxyBright: 0.45, // Galaxy/Quadrant: model brightness, 0.1–1.5
   textScale: 1,

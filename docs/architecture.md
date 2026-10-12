@@ -325,7 +325,8 @@ and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
   body nearest the line of sight (within 2° or 1.2 × its apparent radius) or the body you rode with,
   re-expresses the camera relative to it and flies there without a second route flight
   (`quietFocus`). The body flights of the panel and route keep working in LOOK and FLY (orbit-style
-  while they run). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
+  while they run). While the HELM (#42) flies the ship, the rig's `captured()` hook hands it the keys,
+  pointer and camera and the cluster is hidden (P still opens a postcard). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
   RESET back to the zenith.
 
 Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
@@ -554,7 +555,8 @@ sky by the local obscuration, and body panels list the events (`src/panels/skyev
 `src/astro/lambert.js` solves Lambert's problem with Izzo's 2015 algorithm (Householder iterations on the
 non-dimensional time-of-flight equation, multi-revolution low/high paths, prograde or retrograde) and propagates
 two-body orbits with universal variables. `src/astro/transfer.js` builds on the app's ephemeris (Standish elements
-for planets, SBDB elements for small bodies; moons via their parent planet): `transfer()` gives C3, departure and
+for planets, SBDB elements for small bodies; moons via their parent planet, `targetFor()`, which gives none for
+Earth's own Moon since Earth is the launch site): `transfer()` gives C3, departure and
 arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circular orbit, a 1.1 × 100 R ellipse for the
 giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
 local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%
@@ -710,7 +712,7 @@ viewer's three recordings (localStorage). Only after it fires does `src/voice/co
 instructions (`screenContext` in `main.js`: view and route, what the camera is centred on or the surface
 spot, clock and rate, scale, layers, spectral band, missions playing out, an open video/feed window, the
 selected star and the side panel's text; refreshed at each wake and after every tool call) and its tools:
-`go_to`, `set_layer`, `set_time`, `comms`, and the ship's calculators (`src/voice/shipcalc.js`): `body_state`
+`go_to`, `set_layer`, `set_time`, `comms`, the helm's `set_course` and `helm` (#42), and the ship's calculators (`src/voice/shipcalc.js`): `body_state`
 (distances, light time, speed, RA/Dec, constellation, elongation, phase, size and magnitude from Earth, light-time
 corrected, from the System View's own positions: Horizons or Kepler, Kepler for the planets when the ship is at
 another star), `distance` (between bodies or to a nearby star, with straight-line travel time at a speed or a
@@ -1029,6 +1031,117 @@ sizes, the surface view and NASA's Milky Way artwork. The provenance line and cr
 frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/stylize.js`): JSON only and same-origin
 (so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
 under `data/stylize/` by a hash of image, prompt, size, quality and model.
+
+
+## Star Trek layer (#25, #41)
+
+Fiction drawn over the real data, never mixed into it: every piece is badged IMAGINED, drawn in its own LCARS
+overlay colour (`--trek`, `#ff88aa`; labels italic with a dashed edge, where real labels have a solid left border)
+and switched by one shared setting, `starfleet` (default **on**; the STAR TREK LAYER pill in the Navigation,
+Quadrant, Galaxy and System panels).
+
+- **Data.** `src/data/trek.js` holds every place in one shape: `id`, `name`, `kind` (homeworld, colony, station,
+  starbase, yard, territory, feature, route, sector, quadrant), `views`, `placement`, `confidence` (`canon` on
+  screen, `reference` from a licensed book, mostly *Star Trek: Star Charts* 2002, `fan` an approximate spot after
+  Star Charts' maps), `source`, `firstAppearance` (series, episode, year; `featured` when it is a defining rather
+  than first appearance; `null` plus `appearanceNote` when not checked), our own `summary`, `alternatives`
+  (conflicting placements) and a Memory Alpha search link. Placements: a real catalogue star (HYG id, HIP or
+  Gliese number, RA/Dec, parallax distance), heliocentric galactic l/b/distance (with a radius for regions), an
+  arc, a path, a surface site, or an orbit around a Sol body. `trekApprox` marks everything not pinned to a real
+  star as APPROXIMATE. `tests/trek.test.js` checks the data and the canon geometry.
+- **Quadrants.** Star Trek's quadrants are lines through the galactic core; as in Star Charts, the Alpha/Beta line
+  runs through Sol: Alpha on the side of galactic longitude 180–360°, Beta 0–180°, Gamma beyond Alpha and Delta
+  beyond Beta. The Galaxy View draws the cross and the four names (the overlay of #10); the Navigation View draws
+  the Alpha/Beta border through Sol towards the core (dashed line and a faint upright curtain, riding with Sol in deep
+  time) with ALPHA and BETA labels; the Quadrant View draws it at every range and, at 30 kly, the Gamma/Delta line
+  through the core. The IAU galactic quadrants I–IV stay as they were (orange spokes, lilac labels).
+- **Navigation View.** Worlds at real stars (Vulcan at 40 Eridani A, Andoria at ε Indi, Tellar at 61 Cygni A, Wolf
+  359, Alpha Centauri, Altair VI, Vega colony) attach to the catalogue star already on the chart (`trekStarMatch`: by
+  HYG id, then by name) as a pink ring and a label on the star's left; the star's own point, colour and label are
+  untouched. They follow their star through deep time.
+- **Quadrant View.** Far real stars (Rigel, Deneb IV), approximate homeworlds (Qo'noS, Romulus & Remus, Bajor,
+  Cardassia Prime, Ferenginar), DS9, Starbase 375, the Badlands, Briar Patch, Mutara Nebula, Delphic Expanse, the
+  Romulan Neutral Zone (a dashed arc) and the Bajoran wormhole's Alpha end, plus the powers' territories as soft
+  translucent discs in the plane. Territory labels show within ~2,600 ly of the camera, small places within ~650 ly.
+- **Galaxy View.** The Dominion (Gamma) and Borg space (Delta) as soft discs, the Great Barrier round the core and
+  the galactic barrier at the rim as dashed rings, the Bajoran wormhole to its Gamma end and Voyager's route home
+  (~70,000 ly) as dashed paths, all inside `fleetGroup` so they turn with the Sun's frame in deep time.
+- **System View.** `src/views/system/trek.js` hangs the Sol stations (Utopia Planitia Fleet Yards, San Francisco
+  Fleet Yards, Earth Spacedock, Earth Station McKinley, Jupiter Station) off their body: a dashed ring at the
+  station's height, re-mapped each frame through the radial compression (`localMap`) so it clears the enlarged
+  globe, with a marker on the camera's side of the ring (they have no real orbit to follow). Shown around the focused
+  body. Surface places (Starfleet HQ & Academy, Utopia Planitia, Tycho City, New Berlin) join the sites layer as the
+  `trek` site kind (tier `imagined`; hidden with the layer as well as by their SITES filter). In another star
+  system, a world Star Trek puts at one of its stars gets a dashed ring at √L AU (where it would receive Earth's
+  sunlight; an assumption, said so on the card).
+- **Cards.** `src/panels/trek.js` builds each view's STAR TREK section (toggle and list) and the card: summary,
+  first appearance, placement and its source, confidence, APPROXIMATE or AT THE REAL STAR, the real star's own
+  distance (the one MEASURED row, labelled as the star's), conflicts, the Memory Alpha link with its CC BY-NC
+  credit and the trademark notice. WARP TO opens the real star's System View (`go({ level: 'system', system:
+  <HYG id> })`) and pulls back to show the imagined ring. Clicking any pink label opens its card; BACK returns to
+  the view's panel (`renderCurrentPanel` in `main.js`). Postcards add STAR TREK OVERLAY to the IMAGINED stamp
+  while the layer is on.
+- **Licensing.** Star Trek is a trademark of Paramount / CBS Studios. This is a non-commercial fan homage: no
+  franchise artwork, logos or text; summaries are original and Memory Alpha is linked, not copied.
+
+## Helm: flying the USS Fidelity (#42)
+
+TAKE THE HELM (system panel, or TAKE THE HELM HERE / SET COURSE in a body panel; H leaves) turns the System
+View into a cockpit. `src/views/ship/helm.js` (`createHelm`, made by SystemView with its scene, camera,
+OrbitControls, rig and node table) owns the ship's state, input, autopilot, camera, effects and HUD;
+`src/views/ship/shipModel.js` builds the ship; `src/astro/warp.js` holds the pure, tested maths
+(`tests/warp.test.js`); `src/panels/helm.js` the side-panel sections.
+
+- **The ship** is an original design built in code (IMAGINED, credited to this repo, no GLB): a swept arrowhead
+  lifting body (352 m) with a dorsal spine and bridge blister, a ventral keel with an amber deflector ring, and two
+  slim nacelles slung below and outboard of the wingtips; red impulse strips, running lights, a registry decal and
+  lit windows; ~7k triangles. Metres, nose along −Z, +Y dorsal, +X starboard, scaled to AU at the scene origin.
+  `setGlow(k)` brightens and whitens the nacelles and deflector with warp; `setBridge(on)` hides the blister for
+  the first-person camera. Craft materials get the studio environment map like mission models.
+- **Floating origin on the ship.** The ship's position is kept relative to the nearest body (`anchor`, handed over
+  when another is 30% nearer, as FLY does), and every frame SystemView sets `focusPos` to it, so the ship sits at
+  the scene origin and the camera within kilometres of it: precise at a station 1 km away and at 40 AU alike. The
+  scale is TRUE while at the helm (`scaleMix = 1`, so distances, sizes and the autopilot's standoffs are real);
+  `focusId` follows the course target (labels, orbit highlight). The body flights of the panel and route turn into
+  a selection (`system.focus` → `helm.select`); a survey, a site view, LOOK AT or standing on a surface takes the
+  camera back (`disengage({ quiet })`); leaving the helm otherwise orbits the nearest body from where the camera is
+  (`helmHandBack`). Double-click does not land while flying.
+- **Views.** CHASE (a lagging third-person camera, wheel to pull back), BRIDGE (first person, LCARS frame and
+  reticle, wheel zooms the field), ORBIT (OrbitControls around the ship). Keys 1 / 2 / 3 or V.
+- **Flight models.** IMPULSE / WARP: the throttle (W/S or R/F, the slider) runs from FULL STOP through 1 m/s
+  (log scale) to full impulse 0.25 c, then warp 1 → 9.99; the speed eases exponentially (so slow frames stay on
+  time), and no speed between 0.25 c and c is ever flown: the warp field forms or collapses (flash). Warp follows
+  the TNG scale v = w^(10/3) c to warp 9 (≈ 1,516 c), then log-interpolates through the Technical Manual's figures
+  (9.6 ≈ 1,909 c, 9.9 ≈ 3,053 c, 9.99 ≈ 7,912 c) towards an unattainable warp 10; on this curve Voyager's quoted
+  9.975 comes out near 5,400 c (other quoted figures differ; it is all fiction). REAL PHYSICS:
+  Newtonian thrust at 1 / 10 / 100 / 1000 g along the nose, proper velocity integrated so speeds stay below c,
+  FULL STOP as a retro-burn; no warp and no gravity. Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
+  and BRIDGE; touch too), Shift faster; X full stop; C set course for the selection; Esc cancels the autopilot.
+  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched.
+- **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
+  STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
+  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA.
+- **Autopilot.** SET COURSE (panel, C, voice) turns the ship, picks a cruise (AUTO: impulse if it gets there in
+  ~20 s, else the warp factor that does, up to 9.9; or FULL IMPULSE / WARP 2–9.9 from the CRUISE button), cruises,
+  and decelerates in proportion to what is left (v = d / 0.9 s + 0.3 km/s, dropping out of warp at full impulse)
+  to an arrival point between the ship and the body: 3 radii for worlds, 5 for stars, 6 (≥ 40 km) for small
+  bodies, ≥ 0.6 km from craft. It then holds STANDARD ORBIT about the body's spin axis at the real angular rate
+  √(GM/r³) (period shown; the ship keeps its attitude) or STATION-KEEPING (facing the craft). Any manual input takes
+  over. Arrival selects the body (route and panel follow).
+- **Other stars.** WARP TO A STAR (system panel: the 14 nearest catalogued stars) or FLY THERE AT THE HELM (the
+  Navigation View's selected star) turns towards the star's real direction (catalogue J2000 positions → scene axes),
+  goes to warp 9.9 for ~3 s and then changes route to that system; `helm.onLoad` (called by `SystemView.load`) drops
+  the ship out of warp at the system's edge, on the side it came from, and sets course for the star. The Quadrant
+  and Galaxy views do not carry the ship (backlog).
+- **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
+  at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
+- **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST
+  TRAVEL from the ship (or from Earth / the system's star when not flying): distance, light, Voyager-speed chemical,
+  Dawn-class ion, Orion nuclear pulse and Starshot (with ship time) as COMPUTED straight-line times, full impulse
+  and a 1 g burn-coast-brake rocket with Earth and ship time (COMPUTED), and the quoted warp (IMAGINED). The system
+  panel carries the helm status, WARP TO A STAR (with honest travel for the jump) and the SHIP'S LOG (events,
+  distance travelled, ship time vs Earth time, places visited; this session only). Postcards badge the ship and the
+  warp streaks IMAGINED. `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
 
 A POSTCARD button sits in the top bar (`#postcard-tab` in `index.html`, wired in `main.js`) so a
 postcard is always one click away, in any view; the per-view `P` shortcut (3D camera bars and COMMS)
