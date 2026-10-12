@@ -2381,5 +2381,19 @@
     "browser": "No new passing full artifact; no new full browser claim",
     "preservation": "Recorded preview restored byte-for-byte from c8d0833; flat upstream preview retained separately as research input; normal GLB unchanged from c8d0833. Recorded preview has 43 textures, each 128x128. It is an already simplified preview, not exact geometry equivalence to the normal model.",
     "concurrentUpstream": "2f766bd discovered after checks; rebase and combined verification required."
+  },
+  "combinedValidation": {
+    "upstream": "2f766bd",
+    "tests": "476 pass, one skip",
+    "productionBuild": "pass",
+    "fullBuild": "failed 16000000-byte gate",
+    "htmlBytes": 16010205,
+    "overBudgetBytes": 10205,
+    "browser": "No new passing full artifact or full browser claim",
+    "queue": 566,
+    "dossiers": 68,
+    "preservation": "Every tracked public bespoke/model/shape/texture input except restored Clipper preview is byte-identical to combined upstream HEAD; restored preview exact c8d0833 bytes.",
+    "trackedAssetCount": 405,
+    "assetDifferencesFromCombinedHead": []
   }
 }
