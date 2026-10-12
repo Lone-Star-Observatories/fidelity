@@ -22,6 +22,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/events.js    events feed   │
 │                                      │           │ server/search.js    star search   │
 │                                      │           │ server/rf.js        COMMS relays  │
+│                                      │           │ server/tx.js, fm.js hailing (TX)  │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -102,6 +103,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
+| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `WS /api/rf/tx` | COMMS hailing frequency (#69): loopback only (peer, Host and Origin). `{type:'open', freqHz, callsign, attested, region, gainDb, timeoutS, driver, converter, antennas, antennaId}` → `open` / `refused {code, reason}`; then binary Int16 mic PCM at 16 kHz; `{type:'close'}`. Server sends `state` (elapsed, remaining, sending ID) each second and `closed {reason, idSent}` (`server/tx.js`) |
 | `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
 | `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
@@ -384,7 +387,58 @@ Every upstream URL must be on a cached station list (no open proxy). The RF rece
 local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
 rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
 chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
-(on screen, off screen, tune, scan, close channel) and offline phrases. Nothing transmits.
+(on screen, off screen, tune, scan, close channel, open/close hailing) and offline phrases.
+
+**Transmission (hailing frequency).** Only when `/api/rf/devices` lists a transmit-capable SDR does
+the RF finder show TRANSMIT SETUP (`src/views/comms/transmitter.js`): callsign, a licence
+attestation (both in `settings.txSetup`, never sent anywhere but the local backend), ITU region,
+TX gain (0–20 dB, default 0) and timeout (default 3 min, 1–30), and ANTENNAS: the operator's list
+(name, bands 2 m / 70 cm / HF receive only, or none ticked = unknown; directional), prefilled with
+editable defaults (Arrow dual-band Yagi: 2 m + 70 cm, directional; Small arrow and Donut: unknown;
+Small loop and Wire: HF receive only), and the one in use (no default: the operator picks it).
+"Open a hailing frequency 146" (voice, or the button) goes:
+
+```
+txGate (src/data/tx.js)  device ready → no converter in the path unless bypassed → callsign → attestation
+                         → band plan (whole 11 kHz signal inside 2 m / 70 cm for the region: R2 144–148,
+                         420–450; R1 144–146, 430–440; R3 144–148, 430–440) → the device's range (a bladeRF
+                         x40/x115 starts at 300 MHz) → the antenna in use is marked for that band (antennaCheck:
+                         "Unable to comply: the Small loop is set for HF receive only. Select the Arrow … for 146 MHz.")
+browser  getUserMedia → AudioWorklet → resample 16 kHz → Int16 → ws /api/rf/tx (loopback only)
+server   txGate again → createTxSession (server/tx.js): one at a time
+         mic jitter buffer (≤ 500 ms) → server/fm.js: HP 300 Hz + LP 3 kHz (4th order) → pre-emphasis
+         (750 µs, 1 kHz full scale = full deviation) → clip → 3 kHz splatter filter → clip
+         → FM ±2.5 kHz (Carson 2 × (2.5 + 3) = 11 kHz, the ≈10 kHz NFM channel) at 2 Msps
+         → SC16 Q11 → bladeRF-cli -e "set frequency tx F; set samplerate tx 2000000; set bandwidth tx 1500000;
+                       set gain tx G; tx config file=/dev/stdin format=bin …; tx start; tx wait"   (primary)
+           or int8 IQ → hackrf_transfer -t - -f F -s 2000000 -b 1750000 -x G -a 0      (HackRF, amp off)
+```
+
+Safety: the session ends at the timeout, after 15 s without mic frames, on CLOSE (button or "close
+hailing frequency"), when the page disconnects, or when COMMS is left; every end sends the station
+ID (callsign in CW, 20 wpm, 800 Hz tone, 5 ms shaped keying, as FM) before stdin closes and the tool
+exits, and a long transmission IDs every 10 minutes (FCC §97.119). The mic goes off the moment
+closing starts. Opening silences every received channel so nothing heard is retransmitted. A big
+red TRANSMITTING bar (frequency, callsign, time on air, time to timeout, device, antenna, and
+"DIRECTIONAL: POINT AT THE STATION" for a directional antenna, CLOSE) sits in the COMMS header while
+the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is near the bottom on a
+2.0 micro; libbladeRF clamps to the board's range).
+
+**Signal path (frequency converter).** SIGNAL PATH in the RF finder (`settings.rfConverter`,
+`src/data/converter.js`): none / Ham It Up (LO 125.000 MHz, up) / custom LO and direction, plus
+BYPASS (the Ham It Up's switch). Converting, the local SDR console (`receiver.js`) works in
+antenna-side frequencies: tune and sweep requests go to the SDR at antenna ± LO, the dial, readout,
+scan results and the map's range show the true antenna frequency (the local SDR has no waterfall;
+the KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
+backwards it radiates the LO feedthrough, the image and mixing products unfiltered (FCC §97.307)
+and can be damaged, so txGate refuses transmit while one is converting ("TX through the Ham It Up is
+not supported: set it to BYPASS or connect the transmitter directly. HF transmit needs a proper
+transverter and low-pass filter."); transmit stays on the direct 2 m / 70 cm bands with it bypassed. Writes to the tool are paced (backpressure, never > 200 ms ahead of
+real time), silence keeps the carrier when the mic runs dry. `FIDELITY_FAKE_TX=1` (development)
+adds a SIMULATED TX whose IQ goes nowhere, badged IMAGINED. Tests (`tests/tx.test.js`) measure the
+IQ: instantaneous-frequency deviation, 99 % occupied bandwidth, the limiter, CW timing, the
+timeout and the gate, with a fake spawn; the real tools are never run in tests. Not yet tried on
+real hardware.
 
 The map is line art in the LCARS tactical style: today's coastlines and borders from Natural Earth
 1:50m (`public/shapes/world-50m.json`, built by `scripts/build-worldmap.mjs`, decoded by
