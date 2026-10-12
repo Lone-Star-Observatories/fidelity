@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-11",
+  "body": "Larissa",
+  "status": "Research-only masters/recorded256previews; originals and prompts retained; no embedding or dossier69",
+  "assets": [
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "path": "data/research-sources/larissa-generated-surfaceImage-master.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 330885,
+      "sha256": "1a486474424d9f10b0fff6464512162e2eac4fbffdba8f63dec6a20e2c1b401f"
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "path": "data/research-sources/larissa-generated-surfaceImage-preview.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 9694,
+      "sha256": "21e4033af07eb3960b6a229af3c13bfd709ce7abc454dc2b5ad0bd0bbc3fda7d"
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "path": "data/research-sources/larissa-generated-skyImage-master.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 178521,
+      "sha256": "75e3fcd7b26e5a30bac059bbca6173a87a0e1f506b66f0e82a06058d4b8e9da6"
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "path": "data/research-sources/larissa-generated-skyImage-preview.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 6330,
+      "sha256": "0b526a301ff97c2b4f21e022956a3246ac32126f695b41f0c47e861ca4ffc0d7"
+    }
+  ],
+  "previewRawBytes": 16024,
+  "limitations": "Small footer/annotations require readable card labels when integrated. All invented terrain/chemistry/Neptune colour/light and angular/raster/irregular normal/attitude/transmission limits remain in local/sky/geometry records. Existing68 dossiers and native bytes unchanged."
+}
