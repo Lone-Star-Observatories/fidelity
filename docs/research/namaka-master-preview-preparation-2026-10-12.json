@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-12",
+  "body": "Namaka",
+  "status": "Research-only masters/previews; no dossier69 or new embedding",
+  "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+  "files": [
+    {
+      "path": "data/research-sources/namaka-generated-surfaceImage-original.png",
+      "bytes": 2730881,
+      "sha256": "c7de09e8c665551b265e7c94c5e133957c4b87f0c809d48e5fa239198ff828e4",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/namaka-generated-surfaceImage-master.jpg",
+      "bytes": 344108,
+      "sha256": "fb6426bb8d0ecd2bab9c74af15e5bdc6dbaf275abaae5de237c4fce167186289",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/namaka-generated-surfaceImage-preview.jpg",
+      "bytes": 11452,
+      "sha256": "09092212c8ef1a2d39c07677f2f6bd7988900f7fa31796d121123df2f9446707",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/namaka-generated-skyImage-original.png",
+      "bytes": 1931049,
+      "sha256": "0e80df0e96e9f78327b532ee878f8d34373dc5f1db03e8e06315487a2403ebf8",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/namaka-generated-skyImage-master.jpg",
+      "bytes": 222242,
+      "sha256": "0c608c06d7417e1a1d2bedc0d68089604fb98a5f89ca29d0dec5b3279d2927d3",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/namaka-generated-skyImage-preview.jpg",
+      "bytes": 7424,
+      "sha256": "c73d715bce24878db0fb9c3f14aca2055a01f9ef832faed1194d5284a40a461f",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "previewRawBytes": 18876,
+  "limits": [
+    "Invented terrain, chemistry/material fractions, grey colour, light and exposure; no analog skin or dated HST/occultation site, atmosphere, plume, liquid, ocean, biology or survivable landing.",
+    "No astronomical disks in either illustration: Haumea, Hiiaka and Sun outside frame by assumed camera attitude, not physical invisibility. No angular or raster diameter adopted.",
+    "Earth-view projected Haumea axes do not establish its outline from Namaka; physical ellipsoid/pole/phase/observer direction remain open. Namaka150\u00b150km circular limb is an astrometric assumption, not measured shape, registered normal, spin locking or permanent face.",
+    "Black sky/ring omission do not measure absence. Small preview footers require readable IMAGINED card labels."
+  ],
+  "references": [
+    "docs/research/namaka-local-view-preparation-2026-10-12.json",
+    "docs/research/namaka-sky-view-preparation-2026-10-12.json",
+    "docs/research/haumea-moons-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "validation": {
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16084797bytes84797over hard16MB gate",
+    "preservation": "All561 tracked public files byte-equal to HEAD; all68 dossiers unchanged. Original/default PNGs, prompts, native science and recorded Clipper preview preserved.",
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Combined weekly-events update validated; interbuild feed differences unaudited, no savings attribution."
+  },
+  "inspection": "All four masters/previews inspected together. Original/master footer lines retained; tiny preview annotations require readable IMAGINED card labels. Neither scene contains an astronomical disk."
+}
