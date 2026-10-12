@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-12",
+  "body": "Namaka, satellite of Haumea; distinct from Hi\u02bbiaka",
+  "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no input/reference image",
+  "prompt": "Create one independent research-guided hypothetical local observer illustration for Namaka, Haumea's smaller moon, distinct from Hi\u02bbiaka. Wide landscape 1672 by 941 composition. Low viewpoint across independently invented subdued grey grains, scattered angular blocks, shallow depressions and low irregular ridges beneath a nearly black sky. Restrained oblique illumination with readable shadows. Namaka is unresolved in native Hubble imagery; an assumed 150\u00b150 km circular limb in a single-chord occultation does not establish measured shape or local geography. Terrain, grain sizes, material fractions, chemistry, grey colour, lighting and exposure are invented, not observed composition. Generate independently; never reuse or recolour Moon, Mars, Pluto, Haumea, Hi\u02bbiaka or any other body's map. No Haumea, Sun, rings, stars or astronomical disks. No foreground atmosphere, clouds, plume, liquid, ocean, biology, people, spacecraft or suggestion of survivable landing. Black sky is artistic transparency, not measured atmospheric absence. Do not imply measured spin locking, registered local normal or a permanently Haumea-facing site. Large legible bottom annotation band with exactly two lines: 'IMAGINED \u2014 LOCAL VIEW FROM NAMAKA' and 'Terrain, materials, colour and lighting are hypothetical.' No other labels.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e1f9f6a3-ac82-44cb-8a03-8c0c0343f220.png",
+  "researchCopy": "data/research-sources/namaka-generated-surfaceImage-original.png",
+  "inspection": "Independent grey grains, blocks, depressions and ridges, no astronomical disk; both requested footer lines readable.",
+  "limits": [
+    "Terrain, material fractions, chemistry, grey colour, lighting and exposure invented; unresolved Hubble detections do not establish local geography.",
+    "150\u00b150km circular limb assumption from single-chord occultation is not measured shape or registered local normal.",
+    "Black sky is artistic transparency, not measured atmospheric absence.",
+    "No measured spin locking, permanent Haumea-facing site or dated HST/occultation registration.",
+    "No analog map, foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "No angular/raster computation needed: no astronomical disk appears.",
+    "Haumea projected axes, gravity reference radius, ring and interior models are not Namaka terrain or composition. Native point crossmatch/product calibration remain open."
+  ],
+  "references": [
+    "docs/research/haumea-moons-native-preparation-2026-10-12.json",
+    "docs/research/haumea-moons-dynamics-primary-assessment-2026-10-12.json",
+    "docs/research/haumea-moons-astrometry-assessment-2026-10-12.json",
+    "docs/research/haumea-moons-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2730881,
+    "sha256": "c7de09e8c665551b265e7c94c5e133957c4b87f0c809d48e5fa239198ff828e4",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "preservationAudit": {
+    "trackedPublicFiles": 550,
+    "changed": []
+  },
+  "validation": {
+    "tests": "541 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16061291bytes/61291over hard16MBgate",
+    "browser": "No current passing full/offline browser claim;other engines open",
+    "preservation": "All550 tracked public files byte-identical to HEAD;all68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
+    "attribution": "Interbuild differences unaudited;no savings attribution or production codec change"
+  }
+}
