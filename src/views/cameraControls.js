@@ -16,6 +16,7 @@
 //   state() / apply(s)         bookmark the camera (see cameraMath encodeCamera)
 //   onFullscreen(on)           detail views expand their globe
 //   moved()                    after FLY moved the camera (System View re-anchors its origin)
+//   captured() → bool          another controller owns the camera, keys and pointer (the System View's HELM, #42)
 
 import * as THREE from 'three';
 import { settings } from '../settings.js';
@@ -324,7 +325,7 @@ export function createCameraRig(o) {
 
   // ---- free look and free move: pointer, touch, wheel -----------------------------------------
   const pointers = new Map();
-  const free = () => mode !== 'orbit' && !o.override?.() && !(o.busy?.());
+  const free = () => mode !== 'orbit' && !o.override?.() && !(o.busy?.()) && !o.captured?.();
   function look(dx, dy) {
     const k = (camera.fov * Math.PI / 180) / (dom.clientHeight || 600);
     const up = v1.copy(camera.up).normalize();
@@ -380,7 +381,7 @@ export function createCameraRig(o) {
 
   // ---- keyboard -------------------------------------------------------------------------------
   window.addEventListener('keydown', (e) => {
-    if (!active() || e.metaKey || e.ctrlKey || e.altKey || e.target.closest?.('input, select, textarea, [contenteditable]') || document.querySelector('.pc-overlay')) return;
+    if (!active() || (o.captured?.() && e.key !== 'p' && e.key !== 'P') || e.metaKey || e.ctrlKey || e.altKey || e.target.closest?.('input, select, textarea, [contenteditable]') || document.querySelector('.pc-overlay')) return;
     shift = e.shiftKey;
     if (free() && mode === 'fly' && FLY_KEYS[e.code]) { keys.add(FLY_KEYS[e.code]); e.preventDefault(); return; }
     if (e.repeat && !['+', '=', '-', '_'].includes(e.key)) return;
@@ -409,6 +410,7 @@ export function createCameraRig(o) {
   function update(now = performance.now()) {
     const dt = Math.min(0.1, Math.max(0, (now - last) / 1000));
     last = now;
+    if (o.captured?.()) { keys.clear(); flight = null; settle = null; zoomGoal = null; return false; }
     if (now - uiT > 100) { uiT = now; syncReadout(); }
     const ov = !!o.override?.();
     if (ov !== overridden) { overridden = ov; pointers.clear(); keys.clear(); syncUI(); }

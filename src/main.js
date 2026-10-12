@@ -48,6 +48,9 @@ import { createTimeControl } from './panels/timecontrol.js';
 import { collapsibleSections } from './panels/collapse.js';
 import { createEventsPanel } from './panels/events.js';
 import { createTransferPanel } from './panels/transfer.js';
+import { createHelmPanel } from './panels/helm.js';
+import { eqToEcl, frameToScene } from './astro/frames.js';
+import { fmtSpeed, fmtDistance } from './astro/warp.js';
 import { createFuturePanel } from './panels/future.js';
 import { createFutureEventsPanel } from './panels/futureevents.js';
 import { createEarthTimelinePanel } from './panels/earthtimeline.js';
@@ -117,6 +120,7 @@ const system = createSystemView($('system-view'), {
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
   onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
+  onHelm: (kind, data) => onHelmEvent(kind, data), // #42
 });
 const starView = createStarView($('star-view'));
 // Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
@@ -313,6 +317,10 @@ function describePostcard() {
       tiers.imagined.push('SURFACE');
       lighting = `${lighting ? `${lighting}. ` : ''}Standing on the ground: the Sun's position and every phase come from the ship's clock`;
       if (settings.get('deepsky')) imgCredits.push('Deep-sky images: DSS2 (STScI/AURA) and others, credited per object in the app');
+    } else if (system.helm?.active) { // #42: at the helm the scale is TRUE; the ship is fiction
+      tiers.imagined.push('THE USS FIDELITY');
+      const hs = system.helm.state;
+      if (hs.regime === 'warp') tiers.imagined.push('WARP STREAKS');
     } else if (settings.get('scale') !== 'true') tiers.imagined.push('BODY SIZES (ENLARGED)');
     const pf = system.postcardFacts ?? {};
     if (pf.paleo) tiers.modelled.push('PAST EARTH');
@@ -509,6 +517,10 @@ function screenContext() {
     const f = system.model.bodies.find((b) => b.id === system.focusId);
     lines.push(`CAMERA CENTRED ON: ${f?.name ?? system.focusId}${system.onSurface ? ` (standing on the surface of ${system.model.bodies.find((b) => b.id === system.onSurface.id)?.name ?? system.onSurface.id}, looking up)` : ''}`);
   }
+  if (system.helm?.active && route.level === 'system') { // #42
+    const hs = system.helm.state, nb = hs.nearest && system.model?.bodies.find((b) => b.id === hs.nearest.id);
+    lines.push(`AT THE HELM (the viewer is flying the USS Fidelity, a fictional ship; scale TRUE): ${fmtSpeed(hs.kmS)}${hs.warp ? ` (warp ${hs.warp.toFixed(2)}, fiction)` : ''}, ${hs.hold ? (hs.hold.kind === 'orbit' ? 'in standard orbit' : 'station-keeping') : hs.regime}${hs.course ? `, autopilot course for ${hs.course.label}` : ''}${nb ? `, nearest body ${nb.name} ${fmtDistance(hs.nearest.km)} away` : ''}. Flight model: ${hs.model === 'physics' ? 'real physics (Newtonian, no warp)' : 'impulse and warp'}.`);
+  }
   const d = dateFromJd(clock.jd);
   lines.push(`SHIP'S CLOCK: ${clock.inCalendar ? `${d.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `${formatOffset(clock.years)} from now (deep time)`}, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}${clock.clamped ? ` (stopped at this view's limit: ${clock.clamped})` : ''}`);
   lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
@@ -532,9 +544,16 @@ function screenContext() {
 const computer = createComputer({
   context: () => screenContext(),
   names: () => {
-    const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }) }));
-    for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }) });
+    const m = system.model, out = (m?.bodies ?? []).map((b) => ({ name: b.name, go: () => go({ level: 'system', system: m.id, body: b.id }), course: () => helmCourse(b.id) }));
+    for (const st of voiceStars ?? []) if (st.name) out.push({ name: st.name, go: () => go({ level: 'system', system: st.id }), course: () => helmStar(st) });
     return out;
+  },
+  helm: (command) => { // #42: the helm by voice
+    if (!system.helm.active && command !== 'engage') return { ok: false, error: 'Nobody is at the helm.' };
+    if (command === 'engage') { if (route.level !== 'system') go({ level: 'system', system: currentSystem }); setTimeout(() => system.helm.engage({ near: system.focusId }), 0); return { ok: true, said: 'You have the helm.' }; }
+    if (command === 'full_stop') { system.helm.fullStop(); return { ok: true, said: 'All stop.' }; }
+    if (command === 'disengage') { system.helm.disengage(); return { ok: true, said: 'Helm released.' }; }
+    return { ok: false, error: `unknown helm command ${command}` };
   },
   setLayer: (k, on) => settings.set(k, on),
   comms: (c) => (route.level === 'comms' ? comms.voice(c) : { ok: false, error: 'Open COMMS first (top bar).' }), // #69
@@ -811,6 +830,39 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
 const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
+// HELM (#42): SET COURSE and HONEST TRAVEL in body panels; status, SHIP'S LOG and WARP TO A STAR in the system panel
+/** SET COURSE for a body of the current system: from another view, open the System View first. */
+function helmCourse(id) {
+  if (route.level === 'system' && system.model) { system.helm.setCourse(id); return true; }
+  pendingHelm = { course: id };
+  go({ level: 'system', system: currentSystem });
+  return true;
+}
+/** SET COURSE for another star (a catalogue row with x, y, z parsecs): warp out from the current system. */
+function helmStar(st) {
+  const from = (voiceStars ?? []).find((s) => s.id === currentSystem) ?? (currentSystem === 'sol' ? { x: 0, y: 0, z: 0 } : null);
+  if (!from || st.x == null) { go({ level: 'system', system: st.id }); return true; }
+  if (route.level === 'system' && system.model) { if (!system.helm.active) system.helm.engage({ near: system.focusId }); helmWarpTo(st, from); return true; }
+  pendingHelm = { star: st, from };
+  go({ level: 'system', system: currentSystem });
+  return true;
+}
+const helmPanel = createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, currentSystem: () => currentSystem });
+let helmWasActive = false;
+let pendingHelm = null; // { course: body id } or { star, from } to carry out once the System View has loaded
+function onHelmEvent(kind, data) {
+  if (kind === 'flash') warp();
+  else if (kind === 'interstellar') go({ level: 'system', system: data.id }); // the helm re-places the ship when the system loads
+  if (system.helm.active !== helmWasActive) { // engaged or left: the panel's buttons change
+    helmWasActive = system.helm.active;
+    if (route.level === 'system' && system.model) { if (route.body && system.model.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body); else renderSystemPanel(); }
+  } else if (kind === 'change') helmPanel.refresh();
+}
+/** Warp from the System View's helm towards catalogue star `s`, from the system star `c` (both J2000 parsecs). */
+function helmWarpTo(s, c) {
+  const d = [s.x - c.x, s.y - c.y, s.z - c.z], n = Math.hypot(...d);
+  system.helm.warpOut({ id: s.id, name: s.name, distLy: n * LY_PER_PC }, frameToScene(eqToEcl(d.map((v) => v / n))));
+}
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel, system, settings });
@@ -940,6 +992,7 @@ function renderSystemPanelInner() {
         navRadius = [10, 25, 50, 100].find((r) => r > m.distLy * 1.05) ?? 100; // keep Earth on the chart
         go({ level: 'navigation', system: m.id });
       })),
+    ...helmPanel.systemSection(m), // #42
     ...(m.isSol ? [
       h('h3', { textContent: 'KEY · SMALL BODIES' }), colourKey(),
       ...futurePanel.systemSection(m),
@@ -1102,9 +1155,12 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     extra.push(h('h3', { textContent: 'WHAT IS A LAGRANGE POINT' }), h('div', { className: 'explain-figure' }, lagrangeDiagram(b.L, a, c)), h('p', { className: 'note explain', textContent: LAGRANGE_EXPLAINER }));
   }
 
+  const helmSection = !inStarView ? helmPanel.section(b) : []; // #42: SET COURSE and HONEST TRAVEL
+  const atHelm = !!system.helm?.active;
   panel.replaceChildren(
     h('h2', { textContent: b.name.toUpperCase() }),
     h('div', { className: 'kind', textContent: `${sectorName(m)} · ${b.kind.toUpperCase()}` }),
+    ...(atHelm ? helmSection : []),
     ...(b.marker ? extra : []),
     h('h3', { textContent: 'POSITION' }), pos,
     ...groups.flatMap(([g, facts]) => [h('h3', { textContent: g }), factList(facts, b)]),
@@ -1117,6 +1173,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       inStarView ? null : isStar ? pill('STAR VIEW ▸', () => go({ level: 'star', system: m.id, body: b.id })) :
         detailLevel(b) ? pill(`${detailLevel(b).toUpperCase()} VIEW ▸`, () => go({ level: detailLevel(b), system: m.id, body: b.id })) : null,
       b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
+    ...(atHelm ? [] : helmSection),
     ...(m.isSol && !inStarView ? lookAtSection(b, m) : []),
     ...(m.isSol ? sitesPanel.section(b) : []),
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
@@ -1384,7 +1441,8 @@ function renderNavPanel() {
       gaiaOnly ? h('p', { className: 'note', textContent: 'Not in the chart catalogue, so there is no system to warp to or chart to centre on it; it appears only in deep time.' })
         : h('div', { className: 'body-list' },
           pill(sel.id === c.id ? 'ENTER SYSTEM ▸' : 'WARP TO SYSTEM ▸', () => { warp(); go({ level: 'system', system: sel.id }); }),
-          sel.id !== c.id ? pill('NAVIGATE FROM HERE', () => showNavigation(sel.id)) : null),
+          sel.id !== c.id ? pill('NAVIGATE FROM HERE', () => showNavigation(sel.id)) : null,
+          sel.id !== c.id ? pill('FLY THERE AT THE HELM ▸', () => { pendingHelm = { star: sel, from: c }; go({ level: 'system', system: c.id }); }) : null), // #42
     ];
   }
 
@@ -1699,7 +1757,7 @@ function tick() {
     }
   }
 }
-setInterval(() => { tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (['planet', 'moon', 'object'].includes(route.level)) transferPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
+setInterval(() => { tick(); if (route.level === 'system') helmPanel.tick(); if (['star', 'planet', 'moon', 'object'].includes(route.level)) detail?.tick(); if (route.level === 'satellite') satPanel.tick(); if (['planet', 'moon', 'object'].includes(route.level)) transferPanel.tick(); if (route.level === 'navigation') tickMessage(); if (route.level === 'events') eventsPanel.tick(); if (route.level === 'timeline') earthTimeline.tick(); }, 200);
 setInterval(() => eventsBtn.classList.toggle('alert', eventsPanel.soon() > 0), 30000);
 setInterval(() => { if (settings.get('fields') && system.model?.isSol) magneticPanel.refreshWind(); }, 60000); // Earth's magnetopause follows the live solar wind (#38)
 settings.onChange((k, v) => { if (k === 'fields' && v) magneticPanel.refreshWind(); });
@@ -1861,12 +1919,17 @@ onRoute(async (r) => {
         if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
       }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }
-      else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh && !system.quietFocus(body.id)) warp(); system.focus(body.id); }
+      else if (fresh || prev.body !== r.body || prev.level !== 'system') { if (!fresh && !system.quietFocus(body.id) && !system.helm.active) warp(); system.focus(body.id); }
       if (pendingSiteView?.id === body.id) { const pv = pendingSiteView; pendingSiteView = null; system.viewSite(pv.id, pv.lat, pv.lon, pv.span); }
       renderBodyPanel(body.id);
     } else {
-      if (!fresh && (prev.body || prev.level !== 'system')) system.overview(m.survey[0].au, m.survey[0].centre);
+      if (!fresh && (prev.body || prev.level !== 'system') && !system.helm.active) system.overview(m.survey[0].au, m.survey[0].centre);
       renderSystemPanel();
+    }
+    if (pendingHelm) { // #42: a course asked for from another view (voice, Navigation) now that the System View is here
+      const ph = pendingHelm; pendingHelm = null;
+      if (ph.course && m.bodies.some((x) => x.id === ph.course)) system.helm.setCourse(ph.course);
+      else if (ph.star && ph.from) { system.helm.engage({ near: system.focusId }); helmWarpTo(ph.star, ph.from); }
     }
     applyPendingCam(system.camera);
     syncRail();
