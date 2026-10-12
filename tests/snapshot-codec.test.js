@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { gzipSync } from 'node:zlib';
-import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeBinarySnapshot, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
+import { decodeSnapshot, encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeBinarySnapshot, encodeUtf8SnapshotBytes, encodeNumericSnapshot, restoreSnapshotText } from '../src/data/snapshot-codec.js';
 import { randomBytes } from 'node:crypto';
 
 test('offline snapshot preserves catalogue fields, Unicode and embedded asset bytes', async () => {
@@ -139,4 +139,27 @@ test('dense v2 preserves block boundaries and rejects overflow and nonzero paddi
   assert.throws(()=>unpackSnapshotBytes({...full,data:'\x7f'.repeat(263)}));
   assert.throws(()=>encodeDenseSnapshotBytes(new Uint8Array(),3));
   assert.deepEqual(await decodeSnapshot(encodeDenseSnapshotBytes(gzipSync('{"label":"α","n":-1e-12}'),2)),{label:'α',n:-1e-12});
+});
+
+
+test('UTF-8 enumerative transport preserves arbitrary binary and bounded partial blocks', async () => {
+  for (const bytes of [randomBytes(4097), ...[0,1,228,229,230,458].map(n => new Uint8Array(n).fill(255))]) {
+    const packed = encodeUtf8SnapshotBytes(bytes);
+    assert.equal(Buffer.byteLength(packed.data), Math.ceil(bytes.length / 229) * 257);
+    assert.deepEqual(unpackSnapshotBytes(packed), new Uint8Array(bytes));
+    assert.doesNotMatch(packed.data, /[\x00\r<\u0080-\u009f\ud800-\udfff\ufdd0-\ufdef\ufeff\ufffd-\uffff\u2028\u2029]/);
+  }
+  const value = {label:'Hiʻiaka—</script>', native:'data:image/png;base64,AAEC//8=', number:-1.23456789e-10};
+  assert.deepEqual(await decodeSnapshot(encodeUtf8SnapshotBytes(gzipSync(JSON.stringify(value)))), value);
+});
+
+test('UTF-8 enumerative transport rejects invalid digits,lengths,overflow,padding and trailing data', () => {
+  const packed = encodeUtf8SnapshotBytes(new Uint8Array(229));
+  for (const data of ['\x00','\r','<','\u0080','\ud800','\ufeff','\ufffd']) {
+    assert.throws(() => unpackSnapshotBytes({...packed,data:data+packed.data.slice(1)}));
+  }
+  for (const value of [null,{}, {...packed,byteLength:-1}, {...packed,byteLength:536870913},
+    {...packed,data:packed.data.slice(1)}, {...packed,data:packed.data+'a'},
+    {...packed,data:'\x7f'.repeat(257)},
+    {...encodeUtf8SnapshotBytes(new Uint8Array(229).fill(255)),byteLength:1}]) assert.throws(() => unpackSnapshotBytes(value));
 });

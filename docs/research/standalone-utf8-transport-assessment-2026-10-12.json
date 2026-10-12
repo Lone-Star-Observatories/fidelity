@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-12",
+  "status": "Delivered lossless UTF-8 enumerative snapshot transport; full standalone passes16MB gate. No dossier69 or new asset embedding.",
+  "method": "Versioned gzip-raw-utf8-enumerative-v1 transports229 binary bytes in257 UTF-8 bytes by enumerating raw-script strings with a byte-count recurrence. ASCII125, two-byte1888 and three-byte61402 BMP scalar alphabets; counts[n]=125*counts[n-1]+1888*counts[n-2]+61402*counts[n-3], counts[0]=1. NUL/CR/less-than/C1/surrogates/noncharacters/BOM/U+2028/U+2029 excluded. Strict length/digit/block1832bit-overflow/zero-padding/trailing validation. Lazy tables avoid allocating alphabet in normal/legacy transport paths. UTF-8 meta precedes all payloads; no legacy charset or numeric-entity workaround.",
+  "samePayloadTrial": {
+    "compressedBytes": 13129883,
+    "compressedSha256": "0fe652dd43e152497be3c157272fa17f5ea9af6a438f4b48fe0d43332f6072f9",
+    "oldUtf8Bytes": 15079368,
+    "newUtf8Bytes": 14735352,
+    "savedTransportBytes": 344016,
+    "browser": {
+      "characterSet": "UTF-8",
+      "compressedSha256": "0fe652dd43e152497be3c157272fa17f5ea9af6a438f4b48fe0d43332f6072f9",
+      "textSha256": "b5aec6ed59ff84f75c212a6ac756d0a8432496e4b1bf73f66ab4dd5e841b491e"
+    },
+    "httpUtf8": {
+      "characterSet": "UTF-8",
+      "compressedSha256": "0fe652dd43e152497be3c157272fa17f5ea9af6a438f4b48fe0d43332f6072f9",
+      "textSha256": "b5aec6ed59ff84f75c212a6ac756d0a8432496e4b1bf73f66ab4dd5e841b491e"
+    }
+  },
+  "preservation": "Snapshot gzip/Brotli/FIDNUM02 bytes and complete original JSON text unchanged from frozen pre-change payload. All68 prior dossiers deepEqual; every native/dataURI/model/shape byte restored exactly. No image recompression, model simplification, field rounding/pruning or band removal. All561 tracked public files byte-equal to HEAD; recorded950348byte Clipper preview preserved. ReadableJSON/generatedlegacygzip8radix85 and all earlier FIDNUM01/FIDBIN01/FIDAPP01/plainJSON/dense125v2/v1/raw120wide/v1/radix85/base64 paths retained. Application/CSS/startup keep existing transports, independent Brotli decoder instances and Blob import/revoke/noeval/unsupportedgzip/third-party notices.",
+  "scope": "Full HTML snapshot only; explicit encoder selection. Normal/direct standalone module aliases remain as before. New decoder included in restored application; all build/browser exact restoration guards pass.",
+  "validation": {
+    "tests": "604 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15742003,
+    "headroomBytes": 257997,
+    "completeSnapshotSha256": "b46a5200d0c35db244568f1d0cd291f69f934986f1025a828314be9ffbe53844",
+    "frozenReadableAndCompressedSnapshotByteIdentical": true,
+    "nativeReferencesExact": 57,
+    "imagesDecoded": 237,
+    "bandImagesDecoded": 20,
+    "details": 517,
+    "modelEntries": 32,
+    "normalModelsActuallyLoaded": 32,
+    "priorDossiersDeepEqual": 68,
+    "queue": 566,
+    "browser": "Chrome exact fullJSON/application/CSS/startup/HTMLparser raw text; file UTF-8 and HTTP UTF-8 fixture equality; six offline routes, unsupportedgzip message,11worker rows; actual normal/offline Proteus3cards/noownmap. Other engines remain open.",
+    "restoration": {
+      "characterSet": "UTF-8",
+      "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+      "fidelity-startup-data": "054bbd6af18c51569b9cd2fc4ec0d1be8abc12d6f110e9f3cd59e67a1fe236dd",
+      "fidelity-application-data": "b7befdfa73b5af2d3d0708762793aa87995d74ddbaa1481395e57ccc913b9616",
+      "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+      "fidelity-snapshot-data": "b5aec6ed59ff84f75c212a6ac756d0a8432496e4b1bf73f66ab4dd5e841b491e",
+      "applicationSha256": "3d9638f955e4d92c04971d532f3b8faefd048741a70f0a20f96781a915ba5044",
+      "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+      "startupSha256": "a0f8ffa2d25afef345a6fb1b3fb447473b0392e54e71fdffa86e96acacfc5c80",
+      "errors": []
+    }
+  },
+  "attribution": "Same compressed snapshot transport alone saves344016bytes before decoder/meta/application overhead. Final fullHTML15742003bytes versus preceding failed16083219 is an observed build difference, not solely attributed to transport; complete frozen/current snapshot byte equality directly verified. No native/asset savings claim.",
+  "references": [
+    "docs/research/standalone-utf8-transport-assessment-2026-10-12.mjs",
+    "docs/research/standalone-gzip-startup-2026-10-12.json",
+    "docs/research/clipper-preview-preservation-audit-2026-10-12.json"
+  ],
+  "next": "Prepared Charon69 additive ownmap/native/independent views with full science/provenance limits, then other prepared Plutosystem/Neptunian/dwarf-moon dossiers and remaining calibration/ranking/native/model/shape tasks. Backlog ACTIVE."
+}
