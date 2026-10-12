@@ -119,6 +119,11 @@ export const MOONS = [
     elements: el(43200, 0.025, 322.5, 358.1, 0, 0, 20.16, 0, 0, PLUTO_POLE, 'equatorial'),
     surfacePending: true, discovered: '2012 · Hubble Space Telescope',
     note: 'Nonsynchronous 3.24 ± 0.07 day rotation fit, nominal 91-degree obliquity not significant beyond one sigma; no permanent Pluto face. Equivalent-volume radius 5.2 ± 1 km is distinct from the 16 × 9 × 8 km ellipsoid fit and does not establish local normals. Current mean orbit is separate from the historical 42,656 km barycentric observer assumption; dated registration and resolved globe remain open.' },
+  // Larissa rotation/locking is unverified: disable automatic locking for an unregistered display orientation.
+  { id: 'larissa', name: 'Larissa', parent: 'neptune', radiusKm: 96, massKg: null, rotationHours: null, locked: false,
+    elements: el(73500, 0.001, 247.3, 165.5, 0.2, 312, 0.554989, 1.257, 2.514, [299.8, 43.1]),
+    surfacePending: true, discovered: '1981 ground observation · 1989 Voyager identification',
+    note: 'Neptune VII, distinct from asteroid 1162 Larissa. Equivalent-volume radius 96 ± 7 km differs from the adopted 97 ± 3 km in the 2019 orbit paper. Very uncertain GM establishes no precise mass or chemistry. Rotation and tidal locking remain unverified; static display orientation is assumed, not evidence of nonsynchronous spin or a permanent Neptune face. NEP097 mean orbit is not a dated observer distance. No resolved globe or registered shape adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

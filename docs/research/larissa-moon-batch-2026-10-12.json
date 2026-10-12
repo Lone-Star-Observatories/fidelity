@@ -1,0 +1,920 @@
+{
+  "date": "2026-10-12",
+  "body": "Larissa",
+  "dossier": 74,
+  "nativePreparation": {
+    "body": "Larissa (Neptune VII), not asteroid 1162 Larissa",
+    "status": "research-only; no new dossier or embedding",
+    "retrieved": "2026-10-11",
+    "sources": [
+      {
+        "path": "data/research-sources/larissa-voyager-overview-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Larissa_732X520.jpg",
+        "bytes": 47564,
+        "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349"
+      },
+      {
+        "path": "data/research-sources/larissa-overview.html",
+        "url": "https://science.nasa.gov/neptune/moons/larissa/",
+        "bytes": 259491,
+        "sha256": "e691e66307ad540d89e515170c3eb659e0a9dbe0458c924194cdc8a62cececdb"
+      },
+      {
+        "path": "data/research-sources/larissa-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320651,
+        "sha256": "466d5b7039ae819c193fbecea7ebf419468e727b42c457b7d95c2d167fc12fc1"
+      }
+    ],
+    "nativeImage": {
+      "dimensions": [
+        732,
+        520
+      ],
+      "credit": "NASA/JPL",
+      "observationDate": null,
+      "publicationDate": null,
+      "dateLimits": "NASA overview identifies Voyager 2 views and 1989 discovery; exact acquisition UTC, original release date and product crosswalk remain unverified. Asset path 2023/07 is not an observation date.",
+      "terms": "Active NASA images/media terms retained; no CC BY assertion.",
+      "inspection": "Two coarse monochrome moon views on black background. Blur and sampling are not local terrain or calibrated visible colour. Black background does not measure atmospheric absence.",
+      "processing": "Downloaded publisher JPEG unchanged; source rendition history and original science pixels remain unverified."
+    },
+    "limitations": [
+      "No globe/map/shape adopted or generated.",
+      "No angular/raster computation made; no new resolution or size claim.",
+      "Overview discovery narrative distinguishes initial 1981 ground observation from official July 1989 Voyager discovery; no silent catalogue change.",
+      "PIA00063 is a Neptune cloud image and must not be assigned to Larissa.",
+      "Exact camera/filter/phase, product identifiers, geometry, frame, coverage, photometry and current shape/rotation assessment remain open.",
+      "Body-specific 2026 spectra must be assessed separately from Proteus and Galatea; no other body chemistry or map assigned."
+    ],
+    "preservation": "All 68 dossiers and existing imagery, maps, models, shapes, native science, masters, originals and provenance retained. Production codecs unchanged.",
+    "validation": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993010,
+      "headroomBytes": 6990,
+      "queue": 566,
+      "deliveredDossiers": 68,
+      "trackedAssetBytesPreserved": 404,
+      "browser": "Chrome exact complete readable JSON and HTML parser payload; 237 images, 20 bands, 517 details, 32 model entries. No new model-load or route verification claim; other engines open.",
+      "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+      "interbuildLimit": "Difference from earlier eb1cc385 snapshot not independently audited; no compression or asset savings attribution.",
+      "scope": "Checks completed before rebasing concurrent upstream 918878b postcard changes; combined application not revalidated in this research batch."
+    }
+  },
+  "primary": {
+    "body": "Larissa",
+    "date": "2026-10-11",
+    "status": "research-only; no new dossier or embedding",
+    "primary": {
+      "authors": [
+        "M. Ryleigh Davis",
+        "Matthew Belyakov",
+        "Ian Wong",
+        "Zachariah Milby",
+        "Michael E. Brown"
+      ],
+      "url": "https://arxiv.org/abs/2607.27481",
+      "doi": "10.1126/sciadv.aeb1437",
+      "publicationDate": "2026-07-29",
+      "path": "data/research-sources/proteus-Davis2026-author.pdf",
+      "bytes": 740854,
+      "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+      "assessmentScope": "Targeted Larissa results, discussion, methods, Figure S1 caption and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+      "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+    },
+    "observations": {
+      "program": 4645,
+      "instrument": "JWST NIRSpec IFU PRISM / clear",
+      "wavelengthMicron": [
+        0.6,
+        5.3
+      ],
+      "resolution": "R about 30–300",
+      "integrationSeconds": 5514.6,
+      "exposures": [
+        {
+          "date": "2024-12-13",
+          "startUTC": "16:15:24",
+          "endUTC": "16:30:58",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 55,
+          "subLatitudeSouthDegrees": 21
+        },
+        {
+          "date": "2024-12-13",
+          "startUTC": "16:33:53",
+          "endUTC": "16:49:26",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 63,
+          "subLatitudeSouthDegrees": 21
+        },
+        {
+          "date": "2024-12-13",
+          "startUTC": "16:52:07",
+          "endUTC": "17:07:41",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 72,
+          "subLatitudeSouthDegrees": 21
+        },
+        {
+          "date": "2024-12-20",
+          "startUTC": "01:22:28",
+          "endUTC": "01:38:02",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 236,
+          "subLatitudeSouthDegrees": 21
+        },
+        {
+          "date": "2024-12-20",
+          "startUTC": "01:40:43",
+          "endUTC": "01:56:16",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 244,
+          "subLatitudeSouthDegrees": 21
+        },
+        {
+          "date": "2024-12-20",
+          "startUTC": "01:58:57",
+          "endUTC": "02:14:31",
+          "seconds": 919.1,
+          "subLongitudeWestDegrees": 252,
+          "subLatitudeSouthDegrees": 21
+        }
+      ],
+      "pipeline": "1.18.0 / jwst_1364.pmap",
+      "archive": "https://doi.org/10.17909/1cqh-hy49",
+      "code": "https://doi.org/10.22002/vwdse-4d488"
+    },
+    "measurementsAndInterpretations": [
+      "Larissa shows deep broad 3-micron OH absorption and a sharp 2.72-micron feature after continuum removal and division by Proteus spectrum; Mg-bearing serpentine-like phyllosilicate identification is a laboratory spectral interpretation, not a mapped local fraction.",
+      "No clear water-ice or CO2 signature reported for Larissa; nondetection does not prove absolute absence. Proteus weak CO2 and weaker/absent 2.72 feature remain separate.",
+      "Ceres, Bennu and chondrite spectral comparisons are not Larissa image skins or identical chemistry claims.",
+      "Prolonged aqueous alteration, differentiated parent interiors, destruction during Triton capture versus tidal disruption and reaccretion are origin interpretations; no directly observed history, present ocean, plume or biology.",
+      "Unresolved spectra cannot register Voyager pixels or independently calibrate visible colour, terrain, observer lighting or local materials.",
+      "Neptune scattered light and extraction choices particularly affect below 1.7 and above 4.5 microns; solar analog program1128 and background reduction are spectral calibration methods, not scene photometry.",
+      "Figure S1 infrared wavelength slices and calculated ring overlays are not resolved visible Larissa geography. Product extraction, final licence and Voyager crosswalk remain open."
+    ],
+    "preservation": "All68 earlier dossiers, originals, masters, native science, maps, models and shapes preserved; production codecs unchanged.",
+    "validation": {
+      "scope": "Combined88dae3a including upstream918878b postcard changes",
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993273,
+      "headroomBytes": 6727,
+      "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+      "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+      "browser": "Chrome complete readableJSON/application/CSS and HTML-parser exact;237 images,20 bands,517 details,32 model entries, six routes and unsupportedgzip message pass. No new model-load claim; other engines open.",
+      "preservation": "404 tracked asset inputs exact HEAD; no registry changes",
+      "attribution": "No compression change or savings claim; earlier pre-rebase validation retained separately."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Larissa",
+    "status": "Research-only independent local illustration; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Create a single independent research-guided hypothetical local observer illustration for Larissa, Neptune's small irregular moon. Wide landscape 1672x941. A low oblique view over invented dark neutral grey regolith, scattered angular stones, modest shallow depressions and uneven low ridges under restrained directional light. Grey is artistic, not measured visible colour; grain sizes, relief, material fractions and chemistry are wholly imagined. No existing body map, photograph, skin or named feature may be copied or recoloured: do not use Moon, Mars, Pluto, Proteus, Ceres or Bennu terrain. Do not portray a dated Voyager location or a mapped spectroscopy site. Larissa's unresolved near-infrared OH/2.72 micron spectral laboratory interpretation does not establish local mineral fractions or actual terrain. Keep the horizon low with black sky, whose transparency is an assumption rather than evidence of absent atmosphere. No Neptune, Sun, other astronomical disk, rings or stars: this is the local terrain card only, with no angular-size claim. No atmosphere haze, clouds, plume, liquid, exposed ocean, biology, craft, astronauts, footprints, landing or survivability suggestion. No measured shape registration or permanent Neptune-facing site implied. Crisp restrained scientific illustration, no dramatic canyon wall or glow. Add a clearly legible small bottom footer exactly 'IMAGINED — LARISSA LOCAL VIEW'. Do not add scientific scales or coordinate labels.",
+    "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ccdc79e1-5253-4c30-b46b-1486878b0d29.png",
+    "researchCopy": "data/research-sources/larissa-generated-surfaceImage-original.png",
+    "inspection": "Original displayed and inspected: grey regolith, stones, shallow relief, black sky; readable IMAGINED — LARISSA LOCAL VIEW footer; no astronomical disk.",
+    "limitations": [
+      "Independently invented relief, blocks, grain sizes, chemistry fractions, grey colour, light and exposure; no observed-body map or analog skin reused.",
+      "No dated Voyager location, registered shape normal, spectroscopy site, atmosphere absence, plume, liquid, ocean, biology or survivable landing established.",
+      "Unresolved OH/2.72-micron spectral laboratory interpretation is not a local material map. Black sky transparency is assumed.",
+      "No astronomical disk or angular/raster diameter claim. Observer view, masters and recorded previews remain outstanding.",
+      "All68 dossiers and every prior original/master/native/map/model/shape/provenance input preserved. No production codec or membership change."
+    ],
+    "validation": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15989328,
+      "headroomBytes": 10672,
+      "completeSnapshotSha256": "47733c72f6b1c5adc8e6297b691a0b3c577a7b744b869a441b9ae18ecf68b70b",
+      "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+      "browser": "Chrome exact complete readableJSON/application/CSS/HTML-parser;237 images,20bands,517details,32model entries decode with no errors;other engines open. No new route/nativehash/model-load claim.",
+      "preservation": "404 tracked asset inputs and registry unchanged;68 dossiers;queue566",
+      "attribution": "Interbuild snapshot differences not audited;no savings attribution;production codecs unchanged."
+    },
+    "original": {
+      "bytes": 2804363,
+      "sha256": "2aea963e0f1c0358cca3ba0bc4818061671b892bf5cdd443741f17618d214c06",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "defaultAndResearchBytesIdentical": true
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Larissa",
+    "status": "Research-only independent hypothetical observer illustration; no dossier69 or embedding",
+    "generator": "Built-in image_gen; no referenced images or analog skins",
+    "prompt": "Create a new independent research-guided IMAGINED observer illustration from Larissa, small irregular moon of Neptune. Wide 16:9 scientific illustration, approximately 1672x941 pixels. Invent a sparse grey foreground of regolith grains and angular rocks with shallow depressions and low ridges across lower third. Almost black sky is an artistic transparency assumption, not a measured atmospheric absence. Above horizon a large spherical schematic Neptune, pale desaturated blue with very subtle independently invented bands, positioned upper center. Nominal perspective: horizontal FOV90degrees, Neptune mean radius24622km, assumed observer-to-center distance73404km, using JPL mean orbit73500 and assumed96km local height. skyGeometry yields39.197535820184456degrees angular diameter and595.3319057973337pixels across a1672wide image. Aim for Neptune globe width about595pixels (about35.6percent canvas width); do not claim photometric calibration or dated registration. Use an assumed moderately gibbous phase and invented subtle lighting/exposure, do not borrow any observed Neptune map or another body's texture. No references, no analog skins, no dated Voyager site or shape normal. Rings omitted for artistic exposure, not an absence claim. No Sun, stars, foreground atmosphere/haze/clouds, plume, liquid, ocean, biology, spacecraft, astronaut or suggestion of a survivable landing. Surface relief, materials, chemistry fractions, planetary patterns/colour, phase and illumination are invented; disk-integrated OH spectroscopy cannot map local chemistry. No claim of tidal locking or permanent Neptune-facing site: camera attitude and this site/phase are hypothetical. Include a clean readable bottom footer exactly 'IMAGINED — SKY FROM LARISSA'. Add smaller line 'Hypothetical geometry; terrain, colour and lighting invented'. Produce an illustration, not a resolved global map or scientific observation.",
+    "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-229a4f01-0347-4656-8352-54f92fcc60fd.png",
+    "researchPath": "data/research-sources/larissa-generated-skyImage-original.png",
+    "geometryRecord": "docs/research/larissa-observer-geometry-preparation-2026-10-11.json",
+    "limitations": [
+      "All terrain, chemistry fractions, Neptune bands/clouds/colour, phase, illumination and exposure independently invented; no dated Voyager/spectroscopy site or observed map used.",
+      "Black sky is assumed transparency, not measured atmospheric absence. Rings omitted artistically, not absence/invisibility.",
+      "Mean orbit and equivalent-volume Larissa radius as height are assumptions; irregular normal, rotation/tidal locking, attitude, phase, oblateness, transmission and scene registration remain open.",
+      "Unresolved spectra/laboratory interpretation do not map local material, visible terrain or Voyager pixels. No plume, liquid, ocean, biology or survivable landing.",
+      "Raster chords are threshold/phase/exposure-sensitive and cannot establish a calibrated full globe diameter.",
+      "Preserve all68 dossiers, original PNGs, masters, native science/provenance, models/maps/shapes and all legacy codecs. Substantial headroom remains essential before embedding."
+    ],
+    "original": {
+      "bytes": 2062262,
+      "sha256": "38581560423b4f4817d771bbc44333b021400c7c968457bc6962f69d695143bc",
+      "width": 1672,
+      "height": 941,
+      "defaultCopyIdentical": true
+    },
+    "inspection": "Viewed generated original: readable IMAGINED footer, independently invented grey regolith/rocks, large schematic blue Neptune and black sky. No observed-map reference; not calibrated visible colour or registered terrain.",
+    "rasterAudit": {
+      "method": "Horizontal row300 pixels with blue channel > red channel ×1.2 and brightness threshold5/10/20; longest run. Threshold-sensitive chord, not calibrated full diameter. All angular target calculations come from prior skyGeometry record.",
+      "row": 300,
+      "thresholdChordsPixels": {
+        "5": 619,
+        "10": 611,
+        "20": 579
+      },
+      "targetWidthPixels1672": 595.3319057973337,
+      "angularDiameterDeg": 39.197535820184456
+    },
+    "validation": {
+      "tests": "474 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "FAIL hard16MB gate,16010205bytes10205over",
+      "browser": "No new successful standalone artifact or full-browser validation claimed. Previous passing artifact validation does not apply to this rebuild.",
+      "preservation": "405 tracked public/bespoke/model/shape/texture files byte-identical to HEAD; registry unchanged,68 dossiers,queue566. Original/default PNGs, native science, masters and provenance preserved.",
+      "attribution": "Rebuilt application/snapshot differences from prior batch have not been independently audited. No sole live-feed/upstream/compression cause or savings attribution. Production codecs unchanged."
+    },
+    "next": "Substantial conforming lossless headroom essential before prepared Charon69/Pluto-system/Larissa embedding; recover then verify full browser before publishing. Backlog ACTIVE; no external blocker claimed."
+  },
+  "geometryPreparation": {
+    "date": "2026-10-11",
+    "body": "Larissa",
+    "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+    "sources": [
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "path": "data/research-sources/larissa-jpl-physical-2026-10-11.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "path": "data/research-sources/larissa-jpl-elements-2026-10-11.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "parameters": {
+      "larissaMeanRadiusKm": 96,
+      "radiusUncertaintyKm": 7,
+      "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+      "semimajorAxisKm": 73500,
+      "eccentricity": 0.001,
+      "orbitalPeriodDays": 0.554989,
+      "elementEpoch": "2000-01-01.5 TDB",
+      "elementFrame": "Laplace plane",
+      "ephemeris": "NEP097",
+      "neptuneMeanRadiusKm": 24622,
+      "neptuneRadiusSource": "src/data/sol.js"
+    },
+    "assumptions": {
+      "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+      "distanceKm": 73404,
+      "horizontalFovDeg": 90,
+      "rasterWidthPixels": 1672,
+      "temperatureK": 60,
+      "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+    },
+    "geometry": {
+      "angularDiameterDeg": 39.197535820184456,
+      "targetWidthPixels1672": 595.3319057973337
+    },
+    "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(73500-96)/149597870.7. No independently calculated raster diameter or photometry.",
+    "limitations": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+      "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+      "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding."
+    ],
+    "validation": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993273,
+      "headroomBytes": 6727,
+      "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+      "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+      "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+      "browser": "Chrome complete readableJSON/application/CSS and HTML-parser equality;237 images,20 bands,517 details,32 model entries decode without page errors. Other engines open. No new model-load or route claim.",
+      "preservation": "404 tracked asset inputs byte-identical; registry unchanged;68 dossiers;queue566",
+      "attribution": "HTML and decoded snapshot identical to previous verified batch; no compression change or savings claim."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Larissa",
+    "status": "Research-only masters/recorded256previews; originals and prompts retained; no embedding or dossier69",
+    "assets": [
+      {
+        "kind": "surfaceImage",
+        "role": "master",
+        "path": "data/research-sources/larissa-generated-surfaceImage-master.jpg",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "bytes": 330885,
+        "sha256": "1a486474424d9f10b0fff6464512162e2eac4fbffdba8f63dec6a20e2c1b401f"
+      },
+      {
+        "kind": "surfaceImage",
+        "role": "preview",
+        "path": "data/research-sources/larissa-generated-surfaceImage-preview.jpg",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "bytes": 9694,
+        "sha256": "21e4033af07eb3960b6a229af3c13bfd709ce7abc454dc2b5ad0bd0bbc3fda7d"
+      },
+      {
+        "kind": "skyImage",
+        "role": "master",
+        "path": "data/research-sources/larissa-generated-skyImage-master.jpg",
+        "width": 1536,
+        "height": 864,
+        "quality": 85,
+        "bytes": 178521,
+        "sha256": "75e3fcd7b26e5a30bac059bbca6173a87a0e1f506b66f0e82a06058d4b8e9da6"
+      },
+      {
+        "kind": "skyImage",
+        "role": "preview",
+        "path": "data/research-sources/larissa-generated-skyImage-preview.jpg",
+        "width": 256,
+        "height": 144,
+        "quality": 80,
+        "bytes": 6330,
+        "sha256": "0b526a301ff97c2b4f21e022956a3246ac32126f695b41f0c47e861ca4ffc0d7"
+      }
+    ],
+    "previewRawBytes": 16024,
+    "limitations": "Small footer/annotations require readable card labels when integrated. All invented terrain/chemistry/Neptune colour/light and angular/raster/irregular normal/attitude/transmission limits remain in local/sky/geometry records. Existing68 dossiers and native bytes unchanged."
+  },
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/larissa-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/larissa-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "status": 200
+      }
+    ],
+    "priorMoonCount": 31,
+    "physical": "96±7km equivalent volume versus2019 adopted97±3; GM.25484±3.12230 very uncertain, massnull.",
+    "rotation": "Unknown; locked:false disables automatic registration only, rotationHours null.",
+    "elements": "NEP097 Laplace mean epoch2000Jan1.5TDB,73500/.001/w247.3/M165.5/i.2/node312/P.554989/Papsis1.257/Pnode2.514 pole299.8,43.1."
+  },
+  "bodies": [
+    {
+      "id": "larissa",
+      "name": "Larissa",
+      "aliases": [
+        "Larissa",
+        "Neptune VII"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Two coarse native Voyager views are not complete registered geography.",
+      "measured": [
+        "Unchanged NASA-served732×520 JPEG, NASA/JPL credit. Two coarse monochrome views: blur/sampling are not rocks or independently calibrated colour. Exact acquisition UTC/filter/camera/product/original publication remains open. Asset2023/07 is not observation.",
+        "JPL NEP097 Laplace-plane mean orbit73500km/.001/P.554989days, epoch2000Jan1.5TDB; not current distance or rotational registration."
+      ],
+      "modelled": [
+        "Equivalent-volume radius96±7km, distinct2019 adopted97±3km; neither establishes local normal or axes. GM.25484±3.12230km³/s² is very uncertain; no precise mass adopted, massKg null. Deriveddensity1.0303±12.626 is not precise chemistry or porosity.",
+        "JWST NIRSpec IFU PRISM/clear program4645 observations2024-12-13 and2024-12-20, six919.1-second exposures total5514.6seconds, .6–5.3micron R~30–300. Pipeline1.18.0/jwst1364.pmap; exact visit times and assumed sub-observer coordinates retained in primary preparation.",
+        "Broad3micron OH and sharp2.72micron feature after continuum removal/division by Proteus spectrum support a Mg-serpentine-like laboratory interpretation, not measured local fractions, terrain or visible colour. Water-ice/CO2 nondetections are not absolute absence; Proteus CO2 is not assigned to Larissa.",
+        "Neptune scattered light/extraction limits below1.7 and above4.5micron, solar-analog1128 and backgrounds remain explicit. Infrared slice/calculated ring overlay is not resolved visible geography; Ceres/Bennu/chondrite comparisons are not skins.",
+        "Aqueous alteration/differentiated parent, Triton capture and tidal disruption/reaccretion are models, not directly observed history, present ocean, plume or biology.",
+        "Specific arXiv record CC BY4 link conflicts with author-version AAAS personal-use/not-redistribution notice; final publisher licence crosswalk open. No paper figure embedded."
+      ],
+      "unknown": [
+        "Rotation/locking/attitude/shape/normal/calibrated visible colour and photometry remain unverified. Catalogue locked:false disables automatic locking for an unregistered static display only, not a measured nonsynchronous rotation. No permanent Neptune-facing site established.",
+        "Exact Voyager source products/raw UTC/filter/phase, coverage/geographic frame, publisher rendition history and original science-pixel identity open. PIA00063 is a Neptune cloud image, not Larissa."
+      ],
+      "assumed": [
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+        "All terrain, chemistry fractions, Neptune bands/clouds/colour, phase, illumination and exposure independently invented; no dated Voyager/spectroscopy site or observed map used.",
+        "Black sky is assumed transparency, not measured atmospheric absence. Rings omitted artistically, not absence/invisibility.",
+        "Mean orbit and equivalent-volume Larissa radius as height are assumptions; irregular normal, rotation/tidal locking, attitude, phase, oblateness, transmission and scene registration remain open.",
+        "Unresolved spectra/laboratory interpretation do not map local material, visible terrain or Voyager pixels. No plume, liquid, ocean, biology or survivable landing.",
+        "Raster chords are threshold/phase/exposure-sensitive and cannot establish a calibrated full globe diameter.",
+        "Independently invented relief, blocks, grain sizes, chemistry fractions, grey colour, light and exposure; no observed-body map or analog skin reused.",
+        "No dated Voyager location, registered shape normal, spectroscopy site, atmosphere absence, plume, liquid, ocean, biology or survivable landing established.",
+        "Unresolved OH/2.72-micron spectral laboratory interpretation is not a local material map. Black sky transparency is assumed.",
+        "Independent imagined terrain, chemistry fractions, grey colour, Neptune patterns/phase/illumination/exposure; no analog map or dated Voyager/spectroscopy site. Black sky/ring omission not absence. No foreground atmosphere, plume, liquid ocean, biology or survivable landing. Tiny previews require readable IMAGINED card labels.",
+        "skyGeometry nominal96km height above irregular body,73500 mean orbit: Neptune24622km at73404km,39.197535820184456degrees/595.3319057973337px at1672 and90HFOV. Row300 threshold5/10/20 chords619/611/579px are phase/exposure-sensitive, not calibrated full diameter. Sun30.07AU assumed off-frame,5772K/1Rsun angular helper only, not scene photometry."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/neptune/moons/larissa/",
+          "title": "NASA Larissa overview",
+          "credit": "NASA/JPL",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "authors": [
+            "M. Ryleigh Davis",
+            "Matthew Belyakov",
+            "Ian Wong",
+            "Zachariah Milby",
+            "Michael E. Brown"
+          ],
+          "url": "https://arxiv.org/abs/2607.27481",
+          "doi": "10.1126/sciadv.aeb1437",
+          "publicationDate": "2026-07-29",
+          "path": "data/research-sources/proteus-Davis2026-author.pdf",
+          "bytes": 740854,
+          "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+          "assessmentScope": "Targeted Larissa results, discussion, methods, Figure S1 caption and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+          "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+        },
+        {
+          "path": "data/research-sources/larissa-jpl-elements-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12",
+          "status": 200
+        },
+        {
+          "path": "data/research-sources/larissa-jpl-physical-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12",
+          "status": 200
+        },
+        {
+          "url": "https://doi.org/10.17909/1cqh-hy49",
+          "title": "Primary JWST archive products"
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/larissa-voyager-overview-original.jpg",
+          "url": "/bespoke/larissa-voyager-native.jpg",
+          "bytes": 47564,
+          "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Larissa_732X520.jpg",
+          "sourceUrl": "https://science.nasa.gov/neptune/moons/larissa/",
+          "tier": "measured",
+          "credit": "NASA/JPL",
+          "observationDate": null,
+          "publicationDate": null,
+          "observationDateNote": "NASA overview identifies Voyager 2 views and 1989 discovery; exact acquisition UTC, original release date and product crosswalk remain unverified. Asset path 2023/07 is not an observation date.",
+          "terms": "Active NASA media terms with third-party caveats; not CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual Voyager 2 Larissa views, coarse monochrome imagery; not calibrated visible colour or local chemistry.",
+          "processing": "Downloaded publisher JPEG unchanged; source rendition history and original science pixels remain unverified. Exact camera/filter/product/frame remains open; black background not atmosphere absence."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 30.07,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL LARISSA TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM LARISSA",
+      "observerGeometry": {
+        "date": "2026-10-11",
+        "body": "Larissa",
+        "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+        "sources": [
+          {
+            "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+            "path": "data/research-sources/larissa-jpl-physical-2026-10-11.html",
+            "bytes": 95641,
+            "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+          },
+          {
+            "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+            "path": "data/research-sources/larissa-jpl-elements-2026-10-11.html",
+            "bytes": 580012,
+            "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+          }
+        ],
+        "parameters": {
+          "larissaMeanRadiusKm": 96,
+          "radiusUncertaintyKm": 7,
+          "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+          "semimajorAxisKm": 73500,
+          "eccentricity": 0.001,
+          "orbitalPeriodDays": 0.554989,
+          "elementEpoch": "2000-01-01.5 TDB",
+          "elementFrame": "Laplace plane",
+          "ephemeris": "NEP097",
+          "neptuneMeanRadiusKm": 24622,
+          "neptuneRadiusSource": "src/data/sol.js"
+        },
+        "assumptions": {
+          "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+          "distanceKm": 73404,
+          "horizontalFovDeg": 90,
+          "rasterWidthPixels": 1672,
+          "temperatureK": 60,
+          "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+        },
+        "geometry": {
+          "angularDiameterDeg": 39.197535820184456,
+          "targetWidthPixels1672": 595.3319057973337
+        },
+        "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(73500-96)/149597870.7. No independently calculated raster diameter or photometry.",
+        "limitations": [
+          "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+          "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+          "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+          "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+          "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+          "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+          "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding."
+        ],
+        "validation": {
+          "tests": "458 pass,1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15993273,
+          "headroomBytes": 6727,
+          "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+          "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+          "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+          "browser": "Chrome complete readableJSON/application/CSS and HTML-parser equality;237 images,20 bands,517 details,32 model entries decode without page errors. Other engines open. No new model-load or route claim.",
+          "preservation": "404 tracked asset inputs byte-identical; registry unchanged;68 dossiers;queue566",
+          "attribution": "HTML and decoded snapshot identical to previous verified batch; no compression change or savings claim."
+        },
+        "rasterAudit": {
+          "method": "Horizontal row300 pixels with blue channel > red channel ×1.2 and brightness threshold5/10/20; longest run. Threshold-sensitive chord, not calibrated full diameter. All angular target calculations come from prior skyGeometry record.",
+          "row": 300,
+          "thresholdChordsPixels": {
+            "5": 619,
+            "10": 611,
+            "20": 579
+          },
+          "targetWidthPixels1672": 595.3319057973337,
+          "angularDiameterDeg": 39.197535820184456
+        }
+      },
+      "inputs": {
+        "surfaceImage": "larissa-generated-surfaceImage-original.png",
+        "skyImage": "larissa-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "status": "Delivered individual dossier74; selectable Larissa Neptune VII, unchanged native and independent IMAGINED views. Nested preparations retain historical validation/status.",
+  "dossierRecord": {
+    "id": "larissa",
+    "name": "Larissa",
+    "aliases": [
+      "Larissa",
+      "Neptune VII"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Two coarse native Voyager views are not complete registered geography.",
+    "measured": [
+      "Unchanged NASA-served732×520 JPEG, NASA/JPL credit. Two coarse monochrome views: blur/sampling are not rocks or independently calibrated colour. Exact acquisition UTC/filter/camera/product/original publication remains open. Asset2023/07 is not observation.",
+      "JPL NEP097 Laplace-plane mean orbit73500km/.001/P.554989days, epoch2000Jan1.5TDB; not current distance or rotational registration."
+    ],
+    "modelled": [
+      "Equivalent-volume radius96±7km, distinct2019 adopted97±3km; neither establishes local normal or axes. GM.25484±3.12230km³/s² is very uncertain; no precise mass adopted, massKg null. Deriveddensity1.0303±12.626 is not precise chemistry or porosity.",
+      "JWST NIRSpec IFU PRISM/clear program4645 observations2024-12-13 and2024-12-20, six919.1-second exposures total5514.6seconds, .6–5.3micron R~30–300. Pipeline1.18.0/jwst1364.pmap; exact visit times and assumed sub-observer coordinates retained in primary preparation.",
+      "Broad3micron OH and sharp2.72micron feature after continuum removal/division by Proteus spectrum support a Mg-serpentine-like laboratory interpretation, not measured local fractions, terrain or visible colour. Water-ice/CO2 nondetections are not absolute absence; Proteus CO2 is not assigned to Larissa.",
+      "Neptune scattered light/extraction limits below1.7 and above4.5micron, solar-analog1128 and backgrounds remain explicit. Infrared slice/calculated ring overlay is not resolved visible geography; Ceres/Bennu/chondrite comparisons are not skins.",
+      "Aqueous alteration/differentiated parent, Triton capture and tidal disruption/reaccretion are models, not directly observed history, present ocean, plume or biology.",
+      "Specific arXiv record CC BY4 link conflicts with author-version AAAS personal-use/not-redistribution notice; final publisher licence crosswalk open. No paper figure embedded."
+    ],
+    "unknown": [
+      "Rotation/locking/attitude/shape/normal/calibrated visible colour and photometry remain unverified. Catalogue locked:false disables automatic locking for an unregistered static display only, not a measured nonsynchronous rotation. No permanent Neptune-facing site established.",
+      "Exact Voyager source products/raw UTC/filter/phase, coverage/geographic frame, publisher rendition history and original science-pixel identity open. PIA00063 is a Neptune cloud image, not Larissa."
+    ],
+    "assumed": [
+      "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+      "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+      "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+      "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+      "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+      "All terrain, chemistry fractions, Neptune bands/clouds/colour, phase, illumination and exposure independently invented; no dated Voyager/spectroscopy site or observed map used.",
+      "Black sky is assumed transparency, not measured atmospheric absence. Rings omitted artistically, not absence/invisibility.",
+      "Mean orbit and equivalent-volume Larissa radius as height are assumptions; irregular normal, rotation/tidal locking, attitude, phase, oblateness, transmission and scene registration remain open.",
+      "Unresolved spectra/laboratory interpretation do not map local material, visible terrain or Voyager pixels. No plume, liquid, ocean, biology or survivable landing.",
+      "Raster chords are threshold/phase/exposure-sensitive and cannot establish a calibrated full globe diameter.",
+      "Independently invented relief, blocks, grain sizes, chemistry fractions, grey colour, light and exposure; no observed-body map or analog skin reused.",
+      "No dated Voyager location, registered shape normal, spectroscopy site, atmosphere absence, plume, liquid, ocean, biology or survivable landing established.",
+      "Unresolved OH/2.72-micron spectral laboratory interpretation is not a local material map. Black sky transparency is assumed.",
+      "Independent imagined terrain, chemistry fractions, grey colour, Neptune patterns/phase/illumination/exposure; no analog map or dated Voyager/spectroscopy site. Black sky/ring omission not absence. No foreground atmosphere, plume, liquid ocean, biology or survivable landing. Tiny previews require readable IMAGINED card labels.",
+      "skyGeometry nominal96km height above irregular body,73500 mean orbit: Neptune24622km at73404km,39.197535820184456degrees/595.3319057973337px at1672 and90HFOV. Row300 threshold5/10/20 chords619/611/579px are phase/exposure-sensitive, not calibrated full diameter. Sun30.07AU assumed off-frame,5772K/1Rsun angular helper only, not scene photometry."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/neptune/moons/larissa/",
+        "title": "NASA Larissa overview",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "authors": [
+          "M. Ryleigh Davis",
+          "Matthew Belyakov",
+          "Ian Wong",
+          "Zachariah Milby",
+          "Michael E. Brown"
+        ],
+        "url": "https://arxiv.org/abs/2607.27481",
+        "doi": "10.1126/sciadv.aeb1437",
+        "publicationDate": "2026-07-29",
+        "path": "data/research-sources/proteus-Davis2026-author.pdf",
+        "bytes": 740854,
+        "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+        "assessmentScope": "Targeted Larissa results, discussion, methods, Figure S1 caption and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+        "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+      },
+      {
+        "path": "data/research-sources/larissa-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/larissa-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "status": 200
+      },
+      {
+        "url": "https://doi.org/10.17909/1cqh-hy49",
+        "title": "Primary JWST archive products"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/larissa-voyager-overview-original.jpg",
+        "url": "/bespoke/larissa-voyager-native.jpg",
+        "bytes": 47564,
+        "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Larissa_732X520.jpg",
+        "sourceUrl": "https://science.nasa.gov/neptune/moons/larissa/",
+        "tier": "measured",
+        "credit": "NASA/JPL",
+        "observationDate": null,
+        "publicationDate": null,
+        "observationDateNote": "NASA overview identifies Voyager 2 views and 1989 discovery; exact acquisition UTC, original release date and product crosswalk remain unverified. Asset path 2023/07 is not an observation date.",
+        "terms": "Active NASA media terms with third-party caveats; not CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual Voyager 2 Larissa views, coarse monochrome imagery; not calibrated visible colour or local chemistry.",
+        "processing": "Downloaded publisher JPEG unchanged; source rendition history and original science pixels remain unverified. Exact camera/filter/product/frame remains open; black background not atmosphere absence."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL LARISSA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM LARISSA",
+    "observerGeometry": {
+      "date": "2026-10-11",
+      "body": "Larissa",
+      "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/larissa-jpl-physical-2026-10-11.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/larissa-jpl-elements-2026-10-11.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+        }
+      ],
+      "parameters": {
+        "larissaMeanRadiusKm": 96,
+        "radiusUncertaintyKm": 7,
+        "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+        "semimajorAxisKm": 73500,
+        "eccentricity": 0.001,
+        "orbitalPeriodDays": 0.554989,
+        "elementEpoch": "2000-01-01.5 TDB",
+        "elementFrame": "Laplace plane",
+        "ephemeris": "NEP097",
+        "neptuneMeanRadiusKm": 24622,
+        "neptuneRadiusSource": "src/data/sol.js"
+      },
+      "assumptions": {
+        "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+        "distanceKm": 73404,
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+      },
+      "geometry": {
+        "angularDiameterDeg": 39.197535820184456,
+        "targetWidthPixels1672": 595.3319057973337
+      },
+      "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(73500-96)/149597870.7. No independently calculated raster diameter or photometry.",
+      "limitations": [
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Larissa unresolved spectra and laboratory phyllosilicate interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established.",
+        "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+        "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding."
+      ],
+      "validation": {
+        "tests": "458 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15993273,
+        "headroomBytes": 6727,
+        "completeSnapshotSha256": "2416288e7d251fef4df407bd782c1b8e7253c264cb01192392806f83d5ed6462",
+        "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+        "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+        "browser": "Chrome complete readableJSON/application/CSS and HTML-parser equality;237 images,20 bands,517 details,32 model entries decode without page errors. Other engines open. No new model-load or route claim.",
+        "preservation": "404 tracked asset inputs byte-identical; registry unchanged;68 dossiers;queue566",
+        "attribution": "HTML and decoded snapshot identical to previous verified batch; no compression change or savings claim."
+      },
+      "rasterAudit": {
+        "method": "Horizontal row300 pixels with blue channel > red channel ×1.2 and brightness threshold5/10/20; longest run. Threshold-sensitive chord, not calibrated full diameter. All angular target calculations come from prior skyGeometry record.",
+        "row": 300,
+        "thresholdChordsPixels": {
+          "5": 619,
+          "10": 611,
+          "20": 579
+        },
+        "targetWidthPixels1672": 595.3319057973337,
+        "angularDiameterDeg": 39.197535820184456
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/larissa-surface-image.jpg",
+      "previewUrl": "/bespoke/larissa-surface-image-preview.jpg",
+      "tier": "imagined",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "larissa-generated-surfaceImage-original.png",
+      "sourceSha256": "2aea963e0f1c0358cca3ba0bc4818061671b892bf5cdd443741f17618d214c06",
+      "sha256": "82e725aa774a92ad197064d376b75ce6eff8a257294d455b238b414eb5784c0b",
+      "previewSha256": "3b4c5a91ea2d6696f6e360f05f47c233084a9b7986411609f05cfc42fdc1f237",
+      "bytes": 331682,
+      "previewBytes": 9680,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/larissa-sky-image.jpg",
+      "previewUrl": "/bespoke/larissa-sky-image-preview.jpg",
+      "tier": "imagined",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "larissa-generated-skyImage-original.png",
+      "sourceSha256": "38581560423b4f4817d771bbc44333b021400c7c968457bc6962f69d695143bc",
+      "sha256": "66cf0a5801eba01944f2c6178fba6f3ac40352d86c6c5e4581b23076ff99fef6",
+      "previewSha256": "bcbde4e571590bd733f34a77ce04cb6fe0a98eda7e7ef1f60455171aec5bbd27",
+      "bytes": 178550,
+      "previewBytes": 6281,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "609 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15943194,
+    "headroomBytes": 56806,
+    "completeSnapshotSha256": "c6b12258e8139a7a437d91baf5b879001736ba40924dfe5e68a365147fce1e1a",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "d8839292b1b7715a6c1be5e5eb465bdf6bd9f4e51ce6098c2d6eac4c7b0b313a",
+    "fidelity-application-data": "671860689c21ff6d6350b4541aac204560f42312483dc62eda2fe029172a19b7",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "36c1d6e9d6d74e2889ce3fcab3bf5adeb855ecfde5fa8155769fbec6e0d2e1ec",
+    "applicationSha256": "1d63ba1491783135a52b39e46764608b1b08ae2641e20d866406f59b6f5d6ab2",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "b08c49672e14ff0c7fd28b45bc5e6a8c555391f8663f37f9c9eb83d2b9bac0bc",
+    "errors": [],
+    "browser": "Chrome complete readableJSON/application/CSS/startup/4HTMLparser packed texts exact,255images20bands517details32entries; actualnormalofflineLarissa3cards/noownmap,sixroutes/unsupportedgzip/11workerrows pass. Other engines open; no fresh all-model-load claim.",
+    "preservation": {
+      "earlierDossiersDeepEqual": 73,
+      "earlierMOONSCatalogueEntriesDeepEqual": 31,
+      "trackedPublicFilesByteEqual": 586,
+      "nativeContextHashes": 63,
+      "sourceAndOriginalHashesChecked": 16,
+      "recordedClipper": "950348bytes SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved"
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/larissa-surface-image.jpg",
+        "after": "string(11275)"
+      },
+      {
+        "path": "/bodyImages//bespoke/larissa-sky-image.jpg",
+        "after": "string(6619)"
+      },
+      {
+        "path": "/bodyImages//bespoke/larissa-voyager-native.jpg",
+        "after": "string(63443)"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-1400?size=preview/src",
+        "before": "string(1659)",
+        "after": "string(1663)"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-1400?size=preview/time",
+        "before": "2026-10-12T12:38:45Z",
+        "after": "2026-10-12T14:53:45Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-1400?size=preview/credit",
+        "before": "string(400)",
+        "after": "string(400)"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-408?size=preview/src",
+        "before": "string(1599)",
+        "after": "string(1559)"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-408?size=preview/time",
+        "before": "2026-10-12T12:38:45Z",
+        "after": "2026-10-12T14:53:45Z"
+      },
+      {
+        "path": "/bandImages//api/feed/sunmodel-408?size=preview/credit",
+        "before": "string(400)",
+        "after": "string(405)"
+      }
+    ],
+    "queue": {
+      "tasks": 566,
+      "dossiers": 74
+    },
+    "attribution": "Actual saved JSON difference recorded; catalogue and unknown-rotation handling change application, net HTML increment not sole asset/compression attribution. Codecs unchanged."
+  }
+}
