@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp / Neptune XIV / S/2004 N1",
+  "status": "Research-only independent IMAGINED observer; no dossier69 or embedding/catalogue/codec change",
+  "generator": "Built-in image generation; no reference image",
+  "prompt": "Create an independent hypothetical observer illustration of Hippocamp (Neptune XIV), wide 16:9. Newly invented subdued grey grains, scattered angular blocks and modest relief in foreground, black sky. No copying/recolouring or adapting imagery of another body. A restrained blue Neptune globe above horizon, fully visible, about 402 pixels wide in a 1672 pixel wide picture (nominal horizontal FOV90 degrees, angular diameter27.0492364326537 degrees from Fidelity skyGeometry using spherical Neptune24622km at105300minus16.2km). Bands/cloud pattern, blue colour, phase, light and exposure are invented; angular request is not calibrated photometry or dated registration. Rings omitted artistically, not proof of absence. Assumed facing camera attitude, not verified locking or permanent facing site. Hippocamp's16.2\u00b11.2km radius is photometric under albedo/phase assumptions, not resolved axes, normal or geography. No other astronomical disks, stars, people, spacecraft, foreground haze, atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky is assumed transparency not measured atmospheric absence. No dated Hubble/Voyager site. Proteus-fragment origin is a model, not depicted measured history. Clearly readable footer in a dark band with two lines: 'IMAGINED SKY FROM HIPPOCAMP' and 'Invented terrain, Neptune appearance and lighting \u2014 not observed geography'. Scientifically restrained naturalistic illustration.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1e2ff649-8f4a-4e5b-a5f4-166a192f04a5.png",
+  "researchCopy": "data/research-sources/hippocamp-generated-skyImage-original.png",
+  "original": {
+    "path": "data/research-sources/hippocamp-generated-skyImage-original.png",
+    "bytes": 1921216,
+    "sha256": "80f302332800908bfc7f1abc7dc1759dc33e36dae02dfed5659ec23b6d6b74b2",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Invented grey blocks/grains/relief and blue Neptune above black sky. Both footer lines readable. Globe visibly larger than requested, uncalibrated.",
+  "geometry": {
+    "reference": "docs/research/hippocamp-observer-geometry-preparation-2026-10-12.json",
+    "helper": "skyGeometry",
+    "neptuneMeanRadiusKm": 24622,
+    "assumedCentreDistanceKm": 105283.8,
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "angularDiameterDeg": 27.0492364326537,
+    "targetWidthPx": 402.1715774423626,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour/irradiance discarded"
+  },
+  "limits": [
+    "All terrain, chemistry/material fractions, Neptune bands/cloud patterns, colour, phase, lighting and exposure invented; no analog skin or dated Hubble/Voyager site.",
+    "Black sky and ring omission are artistic assumptions, not measured atmospheric/ring absence.",
+    "Photometric radius16.2\u00b11.2km under albedo/phase assumptions does not establish axes, local normal, spin locking or permanent Neptune-facing site.",
+    "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "Neptune appears larger than requested; no calibrated raster diameter adopted. Axis/attitude, oblateness, transmission, visible colour and registration remain open."
+  ],
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16065044bytes65044over hard16MB gate",
+    "preservation": "All550 tracked public files byte-equal to HEAD;68 delivered dossiers and405 protected assets unchanged; originals/default PNGs/prompts/masters/native/provenance and recorded Clipper preview retained.",
+    "queue": 566,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution."
+  }
+}

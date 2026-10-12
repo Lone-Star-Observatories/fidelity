@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp / Neptune XIV / S/2004 N1",
+  "status": "Research-only independent IMAGINED observer; no dossier69 or embedding/catalogue/codec change",
+  "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+  "files": [
+    {
+      "path": "data/research-sources/hippocamp-generated-surfaceImage-original.png",
+      "bytes": 2972977,
+      "sha256": "023c62871f4dc5896363a6d70359bb927e4048fffa049dde59c27f84a6512285",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/hippocamp-generated-surfaceImage-master.jpg",
+      "bytes": 354048,
+      "sha256": "05c56b4a7641eea3fba9ea6dadca7583d3d8818a6329479e446835bde4b1aff1",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hippocamp-generated-surfaceImage-preview.jpg",
+      "bytes": 10663,
+      "sha256": "327b92f74786c2af7251d64701552ec691106da89701d48c50c20d1f2b24a5d7",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hippocamp-generated-skyImage-original.png",
+      "bytes": 1921216,
+      "sha256": "80f302332800908bfc7f1abc7dc1759dc33e36dae02dfed5659ec23b6d6b74b2",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/hippocamp-generated-skyImage-master.jpg",
+      "bytes": 219892,
+      "sha256": "56cf9720c1f52bae4dadbad9de6bf65a40472feba954ebd1241aba4900dca216",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/hippocamp-generated-skyImage-preview.jpg",
+      "bytes": 7984,
+      "sha256": "4428e3ed2583bb4b586476abd0f50bfd115ec3bf2e698649855fda01144075fc",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "previewRawBytes": 18647,
+  "limits": [
+    "All terrain, chemistry/material fractions, Neptune bands/cloud patterns, colour, phase, lighting and exposure invented; no analog skin or dated Hubble/Voyager site.",
+    "Black sky and ring omission are artistic assumptions, not measured atmospheric/ring absence.",
+    "Photometric radius16.2\u00b11.2km under albedo/phase assumptions does not establish axes, local normal, spin locking or permanent Neptune-facing site.",
+    "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "Neptune appears larger than requested; no calibrated raster diameter adopted. Axis/attitude, oblateness, transmission, visible colour and registration remain open.",
+    "Small preview footers require readable IMAGINED card labels before integration."
+  ],
+  "references": [
+    "docs/research/hippocamp-local-view-preparation-2026-10-12.json",
+    "docs/research/hippocamp-sky-view-preparation-2026-10-12.json"
+  ],
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16065044bytes65044over hard16MB gate",
+    "preservation": "All550 tracked public files byte-equal to HEAD;68 delivered dossiers and405 protected assets unchanged; originals/default PNGs/prompts/masters/native/provenance and recorded Clipper preview retained.",
+    "queue": 566,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution."
+  },
+  "inspection": "All four masters/previews inspected. Original/master footers readable; small preview annotations require readable IMAGINED card labels."
+}
