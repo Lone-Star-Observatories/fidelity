@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-11",
+  "body": "Larissa",
+  "status": "Research-only independent local illustration; no new dossier or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Create a single independent research-guided hypothetical local observer illustration for Larissa, Neptune's small irregular moon. Wide landscape 1672x941. A low oblique view over invented dark neutral grey regolith, scattered angular stones, modest shallow depressions and uneven low ridges under restrained directional light. Grey is artistic, not measured visible colour; grain sizes, relief, material fractions and chemistry are wholly imagined. No existing body map, photograph, skin or named feature may be copied or recoloured: do not use Moon, Mars, Pluto, Proteus, Ceres or Bennu terrain. Do not portray a dated Voyager location or a mapped spectroscopy site. Larissa's unresolved near-infrared OH/2.72 micron spectral laboratory interpretation does not establish local mineral fractions or actual terrain. Keep the horizon low with black sky, whose transparency is an assumption rather than evidence of absent atmosphere. No Neptune, Sun, other astronomical disk, rings or stars: this is the local terrain card only, with no angular-size claim. No atmosphere haze, clouds, plume, liquid, exposed ocean, biology, craft, astronauts, footprints, landing or survivability suggestion. No measured shape registration or permanent Neptune-facing site implied. Crisp restrained scientific illustration, no dramatic canyon wall or glow. Add a clearly legible small bottom footer exactly 'IMAGINED \u2014 LARISSA LOCAL VIEW'. Do not add scientific scales or coordinate labels.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ccdc79e1-5253-4c30-b46b-1486878b0d29.png",
+  "researchCopy": "data/research-sources/larissa-generated-surfaceImage-original.png",
+  "inspection": "Original displayed and inspected: grey regolith, stones, shallow relief, black sky; readable IMAGINED \u2014 LARISSA LOCAL VIEW footer; no astronomical disk.",
+  "limitations": [
+    "Independently invented relief, blocks, grain sizes, chemistry fractions, grey colour, light and exposure; no observed-body map or analog skin reused.",
+    "No dated Voyager location, registered shape normal, spectroscopy site, atmosphere absence, plume, liquid, ocean, biology or survivable landing established.",
+    "Unresolved OH/2.72-micron spectral laboratory interpretation is not a local material map. Black sky transparency is assumed.",
+    "No astronomical disk or angular/raster diameter claim. Observer view, masters and recorded previews remain outstanding.",
+    "All68 dossiers and every prior original/master/native/map/model/shape/provenance input preserved. No production codec or membership change."
+  ],
+  "validation": {
+    "tests": "458 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989328,
+    "headroomBytes": 10672,
+    "completeSnapshotSha256": "47733c72f6b1c5adc8e6297b691a0b3c577a7b744b869a441b9ae18ecf68b70b",
+    "applicationSha256": "17584a8818b44a105eb387fa8505b84dfd97bfb7c4124c7d3c97312ca7ca1ad7",
+    "browser": "Chrome exact complete readableJSON/application/CSS/HTML-parser;237 images,20bands,517details,32model entries decode with no errors;other engines open. No new route/nativehash/model-load claim.",
+    "preservation": "404 tracked asset inputs and registry unchanged;68 dossiers;queue566",
+    "attribution": "Interbuild snapshot differences not audited;no savings attribution;production codecs unchanged."
+  },
+  "original": {
+    "bytes": 2804363,
+    "sha256": "2aea963e0f1c0358cca3ba0bc4818061671b892bf5cdd443741f17618d214c06",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "defaultAndResearchBytesIdentical": true
+  }
+}
