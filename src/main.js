@@ -81,10 +81,16 @@ const h = (tag, props = {}, ...kids) => {
 const STANDALONE = import.meta.env.MODE === 'standalone';
 
 const clock = createClock();
+// a view link's deep-time epoch, its Quadrant/Universe radius and its selection (#39), applied when the route first shows
+let pendingYears = null, routedSel = false;
+const linkQ = new URLSearchParams(location.search);
+let pendingRadius = Number(linkQ.get('r')) > 0 ? Number(linkQ.get('r')) : null, pendingSel = linkQ.get('sel');
 // ?t=2027-08-02T10:06:38Z sets the ship's clock (shareable moments; ?hold to freeze it there)
 {
-  const q = new URLSearchParams(location.search), t = Date.parse(q.get('t') ?? '');
-  if (Number.isFinite(t)) { clock.set(jdFromDate(new Date(t))); if (q.has('hold')) clock.toggleHold(); }
+  const q = new URLSearchParams(location.search), t = Date.parse(q.get('t') ?? ''), y = Number(q.get('y'));
+  if (Number.isFinite(t)) clock.set(jdFromDate(new Date(t)));
+  if ((Number.isFinite(t) || q.has('y')) && q.has('hold')) clock.toggleHold();
+  if (q.has('y') && Number.isFinite(y)) pendingYears = y; // deep time (#39): applied once the view's own range is in force
 }
 let route = { level: 'system', system: 'sol', body: null };
 // Main views open behind a loading curtain until ~30% of their imagery and data has arrived
@@ -236,11 +242,23 @@ function applyPendingCam(rig) {
   pendingCam = null;
   rig.apply(c);
 }
-/** A URL that reopens this view: route, camera state (from a rig's state()), mode and epoch. */
+/** A Galaxy View star pick as text for a link: kind:id:gx,gy,gz (ly). */
+const galaxySelText = (p) => `${p.kind ?? 'hyg'}:${p.id ?? ''}:${(p.gal ?? []).map((v) => Number(v.toPrecision(7))).join(',')}`;
+function galaxySelFrom(text) {
+  const [kind, id, g] = String(text).split(':'), gal = (g ?? '').split(',').map(Number);
+  return gal.length === 3 && gal.every(Number.isFinite) ? { kind, id: id || null, gal, distLy: Math.hypot(...gal) } : null;
+}
+/** A URL that reopens this view: route, camera state (from a rig's state()), mode, epoch (deep time too), radius and selection. */
 function viewLink(state) {
   const q = new URLSearchParams(location.search);
-  for (const k of ['cam', 'surface', 'look', 'hold', 't']) q.delete(k);
-  q.set('t', dateFromJd(clock.jd).toISOString());
+  for (const k of ['cam', 'surface', 'look', 'hold', 't', 'y', 'r', 'sel']) q.delete(k);
+  if (clock.inCalendar) q.set('t', dateFromJd(clock.jd).toISOString());
+  else q.set('y', String(Number(clock.years.toPrecision(10)))); // beyond JavaScript's dates: years from now
+  const lvl = route.level;
+  if (lvl === 'quadrant' || lvl === 'universe') q.set('r', String(Number((lvl === 'quadrant' ? quadrant : universe).radius.toPrecision(6))));
+  const sel = lvl === 'quadrant' ? quadrantSel : lvl === 'universe' ? universeSel : lvl === 'navigation' ? navSelected
+    : lvl === 'galaxy' && starCardView === 'galaxy' && starCard.current ? galaxySelText(starCard.current) : null;
+  if (sel) q.set('sel', sel);
   if (clock.rate.days === 0) q.set('hold', '1');
   if (state.mode === 'surface') {
     const sp = system.surfaceSpot();
@@ -1578,6 +1596,7 @@ async function showNavigation(center) {
     nav.load(d);
     applyPendingCam(nav.camera);
     navSelected = null;
+    if (pendingSel) { const id = pendingSel; pendingSel = null; if (d.stars.some((x) => x.id === id) || nav.findStar?.(id)) { navSelected = id; nav.select(id); } } // a link's selected star (#39)
     msgSent = null;
     if (pendingMessage && d.center.id !== 'sol') {
       pendingMessage = false;
@@ -1719,6 +1738,12 @@ onRoute(async (r) => {
   if (!routedOnce || viewKey(prev) !== viewKey(r)) curtain.begin(CURTAIN_LABEL[SHARES_SYSTEM.includes(r.level) ? 'system' : r.level] ?? 'VIEW');
   routedOnce = true;
   applyTimeLimit(); // the new view's valid time range (#34)
+  if (pendingYears != null) { clock.setYears(pendingYears); pendingYears = null; } // a link's deep-time epoch, now that the range allows it
+  if (pendingSel && !routedSel) { routedSel = true; // a link's selection, for the view it was made in
+    if (r.level === 'quadrant') quadrantSel = pendingSel; else if (r.level === 'universe') universeSel = pendingSel;
+    else if (r.level === 'galaxy') { const p = galaxySelFrom(pendingSel); if (p) setTimeout(() => pickStarIn('galaxy', p), 0); }
+    if (r.level !== 'navigation') pendingSel = null;
+  }
   setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
@@ -1733,6 +1758,7 @@ onRoute(async (r) => {
     if (r.level === 'quadrant') {
       $('view-title').textContent = 'QUADRANT VIEW · AROUND SECTOR 001';
       quadrant.show();
+      if (pendingRadius) { quadrant.setRadius(pendingRadius); pendingRadius = null; }
       if (quadrantSel) quadrant.select(quadrantSel);
       applyPendingCam(quadrant.camera);
       renderQuadrantPanel();
@@ -1744,6 +1770,7 @@ onRoute(async (r) => {
     } else {
       $('view-title').textContent = 'UNIVERSE VIEW · THE NEARBY UNIVERSE';
       universe.show();
+      if (pendingRadius) { universe.setRadius(pendingRadius); pendingRadius = null; }
       applyPendingCam(universe.camera);
       if (universeSel) universe.select(universeSel);
       renderUniversePanel();

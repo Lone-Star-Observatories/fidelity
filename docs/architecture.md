@@ -313,6 +313,9 @@ and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
   route's hash, copies it, and `main.js` applies it once the route's view has framed itself
   (`applyPendingCam`). Positions are in the view's frame and unit; the System View's are AU
   relative to the routed body. The surface view writes `&surface=lat,lon&cam=s,az,alt,fov`.
+  Beyond JavaScript's dates the epoch is `?y=<years from now>` (applied after the view's time range is in force, so
+  Navigation's ±50 Myr and the Galaxy's ±2 Gyr survive); Quadrant/Universe add `&r=<radius>` and every view with a
+  selection adds `&sel=` (Quadrant/Universe object id, Navigation star id, Galaxy star pick as `kind:id:gx,gy,gz`).
 - **System View.** The floating origin stays on the focus in ORBIT and LOOK. In FLY it rides on the
   nearest body (`anchorId`, handed over with hysteresis when another body is 30% nearer), so the camera
   co-moves with it and stays precise; you cannot fly below a surface. Returning to ORBIT picks the
