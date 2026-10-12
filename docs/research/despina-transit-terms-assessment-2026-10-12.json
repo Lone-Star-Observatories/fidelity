@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina / S/1989 N3",
+  "scope": "Research only; publisher processing terms and timing lead. No new image download, embedding, dossier76, catalogue or codec change.",
+  "sources": [
+    {
+      "path": "data/research-sources/despina-planetary-transit-caption-2026-10-12.html",
+      "url": "https://www.planetary.org/space-images/despina-eclipses-and-transits-neptune",
+      "bytes": 86157,
+      "sha256": "cfc174e9722405a66c1cc72a11f018769866ad376f293a6f08e0e0c6d53a6026",
+      "retrieved": "2026-10-12",
+      "role": "HTML caption/terms response, not image or raw-science hash"
+    },
+    {
+      "path": "data/research-sources/despina-transit-licence-2026-10-12.html",
+      "url": "https://creativecommons.org/licenses/by-nc-nd/3.0/",
+      "bytes": 36716,
+      "sha256": "aac8671431fbfbc6438b5a296e23fa71a2283194997968982541454786732fb8",
+      "retrieved": "2026-10-12",
+      "role": "HTML caption/terms response, not image or raw-science hash"
+    }
+  ],
+  "credit": "NASA / JPL / Ted Stryk, Roane State CC",
+  "terms": {
+    "publisherListedLicence": "Creative Commons Attribution-NonCommercial-NoDerivs3.0 Unported",
+    "licenceUrl": "https://creativecommons.org/licenses/by-nc-nd/3.0/",
+    "scope": "Specific publisher processed composite; not a blanket NASA/JPL/raw-PDS licence and not CC BY. Noncommercial/no-derivatives limits retained; no image adopted for application distribution. Publisher offers contact with Ted Stryk for other permissions; nobody contacted."
+  },
+  "caption": {
+    "date": "1989-08-24",
+    "timeRange": "20:00\u201320:27, time standard not explicitly identified in this caption",
+    "frames": 4,
+    "spacingMinutes": 9,
+    "filtersInCaptionOrder": [
+      "blue",
+      "orange",
+      "violet",
+      "green"
+    ],
+    "fullSizeFormatClaim": "16-bit PNG per publisher; no bytes fetched so bit depth/image dimensions/hash not independently verified.",
+    "purpose": "Frames originally captured to study Neptune cloud colours; composite depicts Despina and shadow against Neptune, not Despina geography.",
+    "processing": "NASA APOD separately says Despina artificially brightened; existing APOD record preserved."
+  },
+  "limitations": [
+    "Timing/filter claims are publisher metadata leads, not independently verified PDS spacecraft-clock/UTC/product associations. Do not transfer them to the separate732x520 Voyager trio image.",
+    "No local terrain, chemistry, shape axes, calibrated visible colour, exposure or atmosphere absence established. Neptune cloud imagery never used as a Despina map.",
+    "No new angular/raster computation, most-recent-image claim or new dated scene.",
+    "Original publication/update timeline and exact raw-frame product identifiers remain open."
+  ],
+  "preservation": "All75 delivered dossiers, native science bytes, original/default PNGs, masters, provenance, maps/models/shapes and recorded Clipper retained. Production inputs unchanged; queue566.",
+  "validation": {
+    "tests": "610 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15982061,
+    "headroomBytes": 17939,
+    "browser": "No fresh full/offline browser claim; production codecs and all tracked public inputs unchanged.",
+    "queue": 566
+  },
+  "next": "Substantial conforming lossless headroom before prepared additive Despina76; raw-product/source audits can progress independently. Backlog ACTIVE, no external blocker."
+}
