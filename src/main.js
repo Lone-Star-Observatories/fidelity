@@ -374,6 +374,10 @@ function describePostcard() {
   }
   const corona = (v === system || v === starView) ? v.postcardCorona : null; // #79: the 3D corona, when it is in frame
   if (corona) { tiers.modelled.push(...corona.modelled); tiers.imagined.push(...corona.imagined); if (corona.credit) imgCredits.push(corona.credit); }
+  if ([galaxy, quadrant, nav].includes(v) && v.helm?.active) { // #42: the ship flown out here is drawn over the chart (CHASE / BRIDGE) or marked on it (ORBIT)
+    tiers.imagined.push('THE USS FIDELITY');
+    if (v.helm.state.warp > 0 && v.helm.state.view !== 'orbit') tiers.imagined.push('WARP STREAKS');
+  }
   if (settings.get('starfleet') && [galaxy, quadrant, nav, system].includes(v)) tiers.imagined.push('STAR TREK OVERLAY'); // #25, #41
   if (!clock.isNow) tiers.computed.push('SKY AT THE SHIP\'S DATE');
   const date = clock.inCalendar ? dateFromJd(clock.jd) : null;

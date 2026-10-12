@@ -1396,8 +1396,9 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   a selection (`system.focus` → `helm.select`); a survey, a site view, LOOK AT or standing on a surface takes the
   camera back (`disengage({ quiet })`); leaving the helm otherwise orbits the nearest body from where the camera is
   (`helmHandBack`). Double-click does not land while flying.
-- **Views.** CHASE (a lagging third-person camera, wheel to pull back), BRIDGE (first person, LCARS frame and
-  reticle, wheel zooms the field), ORBIT (OrbitControls around the ship). Keys 1 / 2 / 3 or V.
+- **Views.** CHASE (a lagging third-person camera, wheel or a two-finger pinch to pull back), BRIDGE (first person,
+  LCARS frame and reticle, wheel or pinch zooms the field), ORBIT (OrbitControls around the ship, its own pinch).
+  Keys 1 / 2 / 3 or V. The pinch maths is `shipState.js pinchZoom` (tested), shared with the galaxy-scale helm.
 - **Flight models.** IMPULSE / WARP: the throttle (W/S or R/F, the slider) runs from FULL STOP through 1 m/s
   (log scale) to full impulse 0.25 c, then warp 1 → 9.99; the speed eases exponentially (so slow frames stay on
   time), and no speed between 0.25 c and c is ever flown: the warp field forms or collapses (flash). Warp follows
@@ -1425,7 +1426,27 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   against every massive body (`segmentHitsSphere`), and a point test against craft, stops the ship at the
   surface: IMPACT, or LANDED at ≤ 10 m/s relative to the body; a burn (W/S) lifts off. Taking the helm in REAL
   PHYSICS, or leaving a held standard orbit, starts a free circular orbit with the same velocity; FULL STOP (X)
-  burns to match the dominant body's velocity, after which the ship falls. Clock jumps (scrubbing) are not swept.
+  burns to match the dominant body's velocity, after which the ship falls. **Clock jumps** (scrubbing, a typed
+  date, a step of the clock: a change of the JD larger than the running clock can explain since the last frame) do
+  not tunnel: the ship is carried along its two-body orbit about the frame body over the jump (universal-variable
+  Kepler propagation, `keplerPropagate`) and the interval is swept (`sweepJump`): exactly against the frame body (a
+  periapsis below its surface inside the interval, the crossing found by bisection) and, at ≤ 1/64 orbit per sample
+  with the ephemeris positions, against its moons (about a moon, also its planet and sibling moons; about the star,
+  the bodies orbiting it). A hit stops the ship there (IMPACT or LANDED, on the body as it is now). A jump of more
+  than ~32 orbits (sample cap 512–8,192 by the number of bodies) is checked against the frame body only, and the HUD
+  and log say which (`CLOCK JUMP +10 DAYS · CARRIED ALONG ITS ORBIT ABOUT EARTH (TWO-BODY) · SWEPT FOR COLLISIONS`).
+  Other bodies' pulls over the jump are not integrated (stated). Tested in `tests/jump.test.js`.
+- **AUTOLAND** (REAL PHYSICS; button or L; `src/astro/landing.js`, tested in `tests/landing.test.js` with Moon, Mars
+  and Earth descents): a powered descent to a soft landing on the dominant body, the suicide-burn way. It kills the
+  speed across the ground first (with what is left after holding the descent), lets the ship fall, and tracks the
+  stopping curve √(2 k (a − g) h) (k = 0.6) with a feed-forward of its deceleration, then a linear flare (h / 6 s)
+  to ~1.5 m/s at the ground (LANDED is ≤ 10 m/s); the descent is also capped so the speed across the ground can be
+  killed before the height runs out. Thrust never points at the ground, never exceeds the THRUST setting, and is
+  re-computed every sub-step (≤ 0.2 s). If the setting cannot beat 1.25 × the local gravity it is raised to the lowest
+  that can (Earth and Venus: 10 g) and the flash says so; stars and giant planets (> 20,000 km) are refused (no
+  solid surface). The ship keeps level (belly to the ground, nose along its motion); the assist points the thrust
+  (IMAGINED: the real ship only thrusts along its nose). Any manual input takes over. Browser-checked from a standard
+  orbit: LANDED at 1.5 m/s on the Moon, Mars and Venus (through its deck, thrust raised to 10 g).
 - **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
   STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
   dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA. In REAL
@@ -1447,8 +1468,8 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
 - **Between the stars: one ship across the views.** `src/views/ship/shipState.js` holds the one ship: who flies it
   (`frame`: `system`, `deep` or nobody), its heliocentric galactic position in light-years (today's catalogue
   positions; deep time moves the stars, not the ship), its attitude in the galaxy-scale scene axes, speed, flight
-  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, this
-  session only). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
+  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, kept in
+  localStorage across reloads). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
   System View's ecliptic axes and the galactic ones) is tested in `tests/shipstate.test.js`. Hand-overs, decided by
   pure functions in `src/views/ship/handover.js` (same tests):
   - *System → Navigation*: past the system's edge (`systemEdgeAU`: 200 AU or 1.15 × the widest survey framing;
@@ -1464,7 +1485,10 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
     Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
   `src/views/ship/deepHelm.js` (`createDeepHelm`) flies the ship in the Navigation, Quadrant and Galaxy views with
   the System View helm's controls and HUD classes (CHASE / BRIDGE / ORBIT, throttle to warp 9.99, REAL PHYSICS
-  without gravity: the Galaxy's pull near the Sun is ~2 × 10⁻¹⁰ m/s²). Each view makes one with its `toScene`
+  with the Milky Way's tide: the ship's acceleration relative to the Sun in the Bovy 2015 model, `galpot.js
+  tidalAccel`, MODELLED and tested; ~10⁻¹¹ m/s² a thousand light-years out, against the Galaxy's whole pull at the
+  Sun of ~2 × 10⁻¹⁰ m/s², and shown on the HUD. It changes a 1,000-year crossing by well under 1 km/s; the stars'
+  own pulls are smaller still and left out). Each view makes one with its `toScene`
   (galactic ly → its scene: centred on the chart's star, heliocentric, or galactocentric kly), its course targets
   (catalogue stars; Sol, landmark clusters and nebulae; Sol, Sgr A* and the satellite galaxies) and its hand-over
   rule; the view calls `frame()` before rendering and `overlay()` after, and its camera rig is `captured()`.
@@ -1482,6 +1506,34 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   the SHIP'S LOG. LEAVE HELM out here parks the ship (nobody flies it) and the view is as before; views are exactly
   as before whenever nobody is at the helm out there. `window.__fidelityShip` exposes the shared state, the
   galaxy-scale helms, the clock and the router for browser checks.
+- **The sky at relativistic speed** (COMPUTED; SKY · RELATIVISTIC / AT REST toggles it, on by default): from
+  0.001 c up to (not into) warp, SystemView's star shader moves each catalogue star to its aberrated direction,
+  cos θ′ = (cos θ + β)/(1 + β cos θ) (exact; β = 0.5 puts a star at 90° at 60°), and scales its colour (bluer ahead,
+  redder behind) and size with the Doppler factor D = 1/(γ(1 − β cos θ′)) (approximate: a channel tilt and D²
+  brightness, clamped). The HUD row gives β, where 90° appears and D ahead and behind. The Milky Way glow, planets
+  and moons are not shifted; the galaxy-scale helm does not apply it (its stars are 3D chart points, not a sky).
+  Maths in `warp.js` (`aberrateCos`, `dopplerFactor`; `tests/warp.test.js`).
+- **Under Venus' clouds** (#83): when the ship is below the top of Venus' deck (layerAt ≠ above, from its distance to
+  the centre over the VIRA reference radius) SystemView applies the surface view's look for that height
+  (`clouds.js helmLayerLook` → `layerLook`): the ground's dim orange light and fog, the murk veil, the sky colour, no
+  stars, no Sun, no other bodies, labels or orbit lines, the cloud shell hidden from below, and the ship lit by the
+  same orange diffuse light (the star light tinted and dimmed, its studio reflections dimmed). Climbing out, or leaving
+  the helm, puts it all back. Earth's thin shell leaves the sky in view, so nothing changes there.
+- **Slow GPUs** (#42: engaging froze a headless SwiftShader page for up to ~30 s). Profiling showed no single slow
+  step on the CPU (engage ≈ 20 ms, the first frame ≈ 150 ms of JavaScript): every frame was 1.5–3.5 s of software
+  rasterisation, ~2 s of it Earth's 74k-vertex relief sphere and its cloud shell at the helm's standoff, and the
+  back-to-back frames starved input and the page's other tasks. Now: (1) `src/views/governor.js` (tested) lowers the
+  System View's render scale (pixel ratio, ×0.7 a step down to 0.5, point sizes kept) while frames are slower than
+  120 ms and raises it again after fast ones, and after a frame over 250 ms leaves the page an idle gap (a quarter of
+  it, ≤ 400 ms) before the next; on a normal GPU it never acts. (2) Globes use shared, cached spheres in three tiers
+  (`relief.js globeTier`: 96×48, 192×96 inside 4 radii, 384×192 inside 1.6, with hysteresis) instead of building a
+  new 74k-vertex sphere on every approach; the helm's standoff (3 radii) gets the middle one. (3) The ship is built and
+  its shaders compiled (`renderer.compileAsync`) 2.5 s after a system loads. Measured in headless SwiftShader at
+  1280×800 on a loaded 4-core machine: synchronous GPU time of a helm frame at Earth 3.4–3.8 s → ~1.5 s (Earth's
+  globe ~1.3 s → 0.3 s, clouds ~0.8 s → 0.3 s); after a TAKE THE HELM click (2 s after load) the page answers again
+  within ~3.5–4 s, then in < 0.2 s (before: ~22 s, one wait of 14 s), with ~1 s frames once the scale has settled
+  (before: 2–3.5 s). The remaining ~1 s a frame is the System View's own cost in software rendering (~150 draw
+  calls), not the helm's.
 - **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
   at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
 - **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST
@@ -1489,8 +1541,13 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   Dawn-class ion, Orion nuclear pulse and Starshot (with ship time) as COMPUTED straight-line times, full impulse
   and a 1 g burn-coast-brake rocket with Earth and ship time (COMPUTED), and the quoted warp (IMAGINED). The system
   panel carries the helm status, WARP TO A STAR (with honest travel for the jump) and the SHIP'S LOG (events,
-  distance travelled, ship time vs Earth time, places visited; this session only). Postcards badge the ship and the
-  warp streaks IMAGINED. `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
+  distance travelled, ship time vs Earth time, places visited; kept across reloads, CLEAR LOG). Postcards badge the ship and the
+  warp streaks IMAGINED, in the System View and (since the overlay is drawn in the snapshot too) in the Navigation,
+  Quadrant and Galaxy views while the helm flies there (`THE USS FIDELITY` and, at warp in CHASE / BRIDGE, `WARP
+  STREAKS` in the provenance line). The SHIP'S LOG, the distance, the clocks and the places are kept in this browser
+  across reloads (`shipState.js`: localStorage key `fidelity.shipsLog.v1`, every read and write in try/catch, the last
+  200 entries, saved on each entry, on page hide and every 15 s while flying); CLEAR LOG in both panels empties it.
+  `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
 
 A POSTCARD button sits in the top bar (`#postcard-tab` in `index.html`, wired in `main.js`) so a
 postcard is always one click away, in any view; the per-view `P` shortcut (3D camera bars and COMMS)

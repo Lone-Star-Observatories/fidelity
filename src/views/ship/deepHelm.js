@@ -26,7 +26,8 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 import { createShipModel, SHIP, BRIDGE_EYE } from './shipModel.js';
 import { VIEWS } from './helm.js';
 import { badge } from '../../data/provenance.js';
-import { shipState as S, logEntry as logShip, SIM_SPEEDS, autoSim, simLabel, galToScene, sceneToGal, STAR_STANDOFF_LY } from './shipState.js';
+import { shipState as S, logEntry as logShip, SIM_SPEEDS, autoSim, simLabel, galToScene, sceneToGal, STAR_STANDOFF_LY, pinchZoom } from './shipState.js';
+import { tidalAccel } from '../../astro/galpot.js';
 import { C_KM_S, LY_KM, gamma, regime, throttleToSpeed, speedToThrottle, cToWarp, warpToC, autoCruise, FULL_IMPULSE_C, fmtSpeed, fmtDistance, fmtDuration } from '../../astro/warp.js';
 
 const DEG = Math.PI / 180;
@@ -203,8 +204,15 @@ export function createDeepHelm(ctx) {
     if (course) { course = null; S.course = null; flash('AUTOPILOT OFF · MANUAL CONTROL'); }
     if (kind === 'up' || kind === 'down') allStop = false;
   }
-  dom.addEventListener('pointerdown', (e) => { if (live() && view !== 'orbit') drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 }; });
+  // two fingers pinch: CHASE distance or BRIDGE field of view, as the camera rig's pinch
+  const touches = new Map();
+  dom.addEventListener('pointerdown', (e) => {
+    if (!live() || view === 'orbit') return;
+    touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    drag = touches.size === 1 ? { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 } : null;
+  });
   dom.addEventListener('pointermove', (e) => {
+    if (touches.size >= 2 && touches.has(e.pointerId) && live() && view !== 'orbit') { pinch(e); return; }
     if (!drag || drag.id !== e.pointerId || !live() || view === 'orbit') return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     drag.x = e.clientX; drag.y = e.clientY; drag.moved += Math.abs(dx) + Math.abs(dy);
@@ -213,7 +221,15 @@ export function createDeepHelm(ctx) {
     const k = ((camera.fov * DEG) / (dom.clientHeight || 600)) * 0.9;
     quat.multiply(q1.setFromAxisAngle(v1.set(0, 1, 0), -dx * k)).multiply(q1.setFromAxisAngle(v1.set(1, 0, 0), -dy * k)).normalize();
   });
-  const endDrag = (e) => { if (drag?.id === e.pointerId) drag = null; };
+  function pinch(e) {
+    const p = touches.get(e.pointerId), other = [...touches].find(([id]) => id !== e.pointerId)?.[1];
+    const before = Math.hypot(p.x - other.x, p.y - other.y), after = Math.hypot(e.clientX - other.x, e.clientY - other.y);
+    p.x = e.clientX; p.y = e.clientY;
+    const z = pinchZoom(view, before > 0 ? after / before : 1, { chaseZoom, fov: camera.fov });
+    chaseZoom = z.chaseZoom;
+    if (z.fov !== camera.fov) { camera.fov = z.fov; camera.updateProjectionMatrix(); }
+  }
+  const endDrag = (e) => { touches.delete(e.pointerId); if (drag?.id === e.pointerId) drag = null; };
   dom.addEventListener('pointerup', endDrag);
   dom.addEventListener('pointercancel', endDrag);
   dom.addEventListener('wheel', (e) => {
@@ -329,7 +345,8 @@ export function createDeepHelm(ctx) {
     let movedKm = 0;
     if (course) movedKm = autopilot(dt, simDt, N);
     else if (model === 'physics') {
-      // Newtonian thrust along the nose; no gravity out here (the Galaxy's pull near the Sun is ~2 × 10⁻¹⁰ m/s²)
+      // Newtonian thrust along the nose, and the Milky Way's tide (its pull relative to the Sun, galpot.js: ~10⁻¹¹ m/s²
+      // a thousand light-years out; the stars' own pulls are smaller still and left out)
       const a = thrustG * 9.80665e-3;
       const u = v1.copy(vel).multiplyScalar(gamma(Math.min(0.999999, vel.length() / C_KM_S)));
       if (keys.has('up')) u.addScaledVector(fwd(quat, v2), a * simDt);
@@ -337,6 +354,8 @@ export function createDeepHelm(ctx) {
       if (allStop) { const s = u.length(); if (s <= a * simDt) { u.set(0, 0, 0); allStop = false; } else u.addScaledVector(u.clone().normalize(), -a * simDt); }
       const un = u.length() / C_KM_S;
       vel.copy(u).multiplyScalar(1 / Math.sqrt(1 + un * un));
+      tide = galToScene(tidalAccel(gal));
+      vel.x += tide[0] * simDt; vel.y += tide[1] * simDt; vel.z += tide[2] * simDt;
       const sp = vel.length();
       if (sp > 0) advance(v3.copy(vel).normalize(), sp * simDt);
       movedKm = sp * simDt;
@@ -359,6 +378,7 @@ export function createDeepHelm(ctx) {
     if (!handing && now - t0 > 1500 && now - decideT > 200) { decideT = now; decide(); }
     return true;
   }
+  let tide = [0, 0, 0]; // km/s², scene axes: the Galaxy's tide in REAL PHYSICS
   const currentKmS = () => (model === 'physics' && !course ? vel.length() : speed);
   /** Direction of motion in the galactic frame (zero when stopped). */
   function motionGal() {
@@ -492,7 +512,7 @@ export function createDeepHelm(ctx) {
   const btn = (text, tip, fn, cls = '') => { const b = el('button', `cam-btn ${cls}`.trim(), text); b.title = tip; b.addEventListener('click', (e) => { e.stopPropagation(); fn(); b.blur(); }); return b; };
   const viewBtns = VIEWS.map(([v, label, tip]) => { const b = btn(label, tip, () => setView(v), 'cam-mode'); b.dataset.view = v; return b; });
   const modelBtns = [btn('IMPULSE / WARP', 'The throttle sets the speed, from 1 m/s to warp 9.99 (warp is fiction)', () => setModel('impulse'), 'cam-mode'),
-    btn('REAL PHYSICS', 'Newtonian thrust at a fixed acceleration, relativistic velocities, no warp. Between the stars there is no gravity to speak of.', () => setModel('physics'), 'cam-mode')];
+    btn('REAL PHYSICS', 'Newtonian thrust at a fixed acceleration, relativistic velocities, no warp, and the Milky Way\'s tide (its pull relative to the Sun in the gala/Bovy 2015 mass model, MODELLED; ~10⁻¹¹ m/s² near the Sun). The pulls of individual stars are smaller still and left out.', () => setModel('physics'), 'cam-mode')];
   modelBtns[0].dataset.model = 'impulse'; modelBtns[1].dataset.model = 'physics';
   const thrustBtn = btn('THRUST 1 G', 'REAL PHYSICS acceleration', () => { thrustG = THRUSTS[(THRUSTS.indexOf(thrustG) + 1) % THRUSTS.length]; syncHud(true); });
   const slider = Object.assign(el('input', 'cam-slider helm-throttle'), { type: 'range', min: 0, max: 1000, step: 1, title: 'Throttle (W / S): full stop → 1 m/s → full impulse (0.25 c) → warp 1 → warp 9.99' });
@@ -544,7 +564,7 @@ export function createDeepHelm(ctx) {
     put(simRow.firstChild, 'sim', `SIM ${simLabel(N)}${simSel === 'auto' ? ' (AUTO)' : ''} · 1 S HERE = ${N === 1 ? '1 S' : fmtDuration(N)} OF FLIGHT `);
     let a = '';
     if (course) a = `AUTOPILOT · ${course.name.toUpperCase()} · ${course.phase === 'turn' ? 'COMING ABOUT' : `${fmtDistance((course.distLy ?? 0) * LY_KM)} · FLIGHT ETA ${course.etaS != null ? fmtDuration(course.etaS) : '—'}${course.cruise.warp ? ` AT WARP ${course.cruise.warp}` : ''} · WATCH ${course.etaS != null ? fmtDuration(course.etaS / N) : '—'}`}`;
-    else if (model === 'physics') a = `REAL PHYSICS · THRUST ${thrustG} G · NO GRAVITY BETWEEN THE STARS · X RETRO-BURN`;
+    else if (model === 'physics') a = `REAL PHYSICS · THRUST ${thrustG} G · GALACTIC TIDE ${(Math.hypot(...tide) * 1000).toExponential(1)} M/S² (MODELLED; STARS' PULLS LEFT OUT) · X RETRO-BURN`;
     put(auto, 'auto', a);
     auto.hidden = !a;
     const en = ctx.epochNote?.() ?? '';
@@ -574,7 +594,7 @@ export function createDeepHelm(ctx) {
     pointAt(dir) { quat.copy(facing(new THREE.Vector3(...dir).normalize(), shipUp(v2).clone())); },
     get state() {
       const v = currentKmS();
-      return { active, gal: gal.slice(), kmS: v, warp: regime(v) === 'warp' ? cToWarp(v / C_KM_S) : 0, model, view, sim: simNow(), simSel, cruise: cruiseSel,
+      return { chaseZoom, fov: camera.fov, active, gal: gal.slice(), kmS: v, warp: regime(v) === 'warp' ? cToWarp(v / C_KM_S) : 0, model, view, sim: simNow(), simSel, cruise: cruiseSel,
         course: course ? { id: course.id, name: course.name, kind: course.kind, distLy: course.distLy ?? null, etaS: course.etaS ?? null, warp: course.cruise.warp, kmS: course.cruise.kmS } : null };
     },
     shipObject: shipRoot,
