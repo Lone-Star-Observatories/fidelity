@@ -1410,6 +1410,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const zenithTag = (() => { const el = document.createElement('div'); el.className = 'nav-label compass zenith'; el.textContent = '+ ZENITH'; const o = new CSS2DObject(el); o.visible = false; scene.add(o); return o; })();
 
   function enterSurface(id, { object, local, normal }) {
+    if (helm?.active) helm.disengage({ quiet: true }); // standing on a surface takes the camera from the helm (#42)
     siteView = null;
     const n = nodes[id];
     if (!n) return;
@@ -1971,6 +1972,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     nodes: () => nodes, model: () => model, focusId: () => focusId,
     trueRadius: (b) => trueRadius(b), isStar, flyable,
     inspect: (o) => inspectCraft(o),
+    prepare(id) { if (nodes[id]) { void upgradeCraft(nodes[id]); void upgradeShape(nodes[id]); } }, // the craft's model or the body's shape, as a focus would load
     exitOthers() { if (surface) exitSurface(false); endSiteView(); flight = null; },
     on(kind, data) {
       if (kind === 'disengage') { if (!data.quiet) helmHandBack(data); }
@@ -2436,6 +2438,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     /** VIEW FROM ABOVE: hover over a surface site, framing `spanKm` around it (#37). */
     viewSite(id, lat, lon, spanKm = 30) {
       if (!nodes[id]) return false;
+      if (helm.active) { helm.disengage({ quiet: true }); flyTo(id); }
       if (focusId !== id || surface) flyTo(id);
       siteView = { id, lat, lon, spanKm, ready: false };
       return true;

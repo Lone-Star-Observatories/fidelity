@@ -35,7 +35,7 @@ const THRUSTS = [1, 10, 100, 1000]; // REAL PHYSICS accelerations, g
 /** Arrival distance (km) for a body: a few radii for worlds and stars, a couple of kilometres from a craft. */
 export function standoffKm(b) {
   if (!b) return 1000;
-  if (b.kind === 'spacecraft' || b.kind === 'satellite') return Math.max(1.5, b.radiusKm * 40);
+  if (b.kind === 'spacecraft' || b.kind === 'satellite') return Math.max(0.6, b.radiusKm * 30);
   if (b.starLike || b.kind === 'star') return b.radiusKm * 5;
   if (b.radiusKm < 50) return Math.max(b.radiusKm * 6, 40); // small asteroids and comets
   return b.radiusKm * 3;
@@ -177,23 +177,26 @@ export function createHelm(ctx) {
     if (typeof cruiseSel === 'number') return { kmS: warpToC(cruiseSel) * C_KM_S, warp: cruiseSel };
     return autoCruise(distKm);
   }
+  /** Where an autopilot order starts the helm: the focused body, but Earth rather than the Sun in Sol's overview. */
+  const startNear = () => { const f = ctx.focusId?.(); return f === ctx.model()?.starId ? null : f; };
   /** SET COURSE for body `id` in this system (engages the helm if needed). */
   function setCourse(id, { quiet = false } = {}) {
     if (!nodes()[id]) return false;
-    if (!active) engage({ near: ctx.focusId?.() });
+    if (!active) engage({ near: startNear() });
     if (id === hold?.id && !course) { flash(`HOLDING AT ${bodyOf(id).name.toUpperCase()}`); return true; }
     model = 'impulse';
     hold = null; allStop = false;
     const dist = distanceKm(id);
     course = { id, phase: 'turn', cruise: cruiseFor(dist), label: bodyOf(id).name.toUpperCase(), startKm: dist };
     selected = id;
+    ctx.prepare?.(id);
     if (!quiet) flash(`COURSE LAID IN · ${course.label}`);
     logEntry(`COURSE SET · ${course.label} · ${fmtDistance(dist)}`);
     return true;
   }
   /** Go to warp towards another star (direction in scene axes); main.js loads the system when the ship has gone. */
   function warpOut(star, dir) {
-    if (!active) engage({ near: ctx.focusId?.() });
+    if (!active) engage({ near: startNear() });
     model = 'impulse'; hold = null; allStop = false;
     course = { star, dir: dir ? new THREE.Vector3(...dir).normalize() : fwd(quat, new THREE.Vector3()), phase: 'turn', label: star.name.toUpperCase() };
     flash(`COURSE LAID IN · ${course.label} · ${star.distLy.toFixed(2)} LY`);
@@ -678,7 +681,7 @@ export function createHelm(ctx) {
     get active() { return active; },
     update, engage, disengage, onLoad, setCourse, warpOut, fullStop, setThrottle, setView, setModel,
     setCruise(c) { if (CRUISES.some(([x]) => x === c)) { cruiseSel = c; syncHud(true); } },
-    select(id) { selected = id; ctx.on?.('change'); },
+    select(id) { selected = id; ctx.prepare?.(id); ctx.on?.('change'); },
     get selected() { return selected; },
     get anchor() { return anchor; },
     distanceKm,

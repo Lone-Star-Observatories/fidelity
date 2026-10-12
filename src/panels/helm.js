@@ -68,14 +68,14 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
   /** Body panel: SET COURSE and HONEST TRAVEL for body `b`. */
   function section(b) {
     if (b.marker) return [];
-    const at = helm()?.active, st = helm()?.state;
-    const here = st?.hold?.id === b.id;
+    const at = helm()?.active;
     const card = honestCard();
-    live = { kind: 'body', id: b.id, card, note: h('p', { className: 'note' }) };
+    const coursePill = pill('SET COURSE ▸', () => { helm().setCourse(b.id); });
+    live = { kind: 'body', id: b.id, card, note: h('p', { className: 'note' }), coursePill };
     const out = [
       h('h3', { textContent: at ? 'HELM' : 'FLY THERE' }),
       h('div', { className: 'body-list' },
-        pill(here ? `HOLDING AT ${b.name.toUpperCase()}` : `SET COURSE · ${b.name.toUpperCase()} ▸`, () => { helm().setCourse(b.id); }, here ? 'on' : ''),
+        coursePill,
         at ? pill('FULL STOP', () => helm().fullStop(), 'square') : pill('TAKE THE HELM HERE', () => helm().engage({ near: b.id })),
         at ? pill('LEAVE HELM', () => helm().disengage()) : null),
       h('h3', { textContent: `HONEST TRAVEL · ${originLabel()}` }),
@@ -100,7 +100,7 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
     const out = [
       h('h3', { textContent: 'HELM · USS FIDELITY' }),
       h('div', { className: 'body-list' },
-        at ? pill('LEAVE HELM', () => helm().disengage()) : pill('TAKE THE HELM ▸', () => helm().engage({ near: system.focusId })),
+        at ? pill('LEAVE HELM', () => helm().disengage()) : pill('TAKE THE HELM ▸', () => helm().engage()), // Sol starts at Earth, other systems at their star
         at ? pill('FULL STOP', () => helm().fullStop(), 'square') : null),
       status,
       h('p', { className: 'note', textContent: 'Fly the ship yourself (W/S throttle, A/D and arrows to steer, Q/E roll, X full stop) or pick a body and SET COURSE: the autopilot drops out a few radii away and holds orbit. The scale is TRUE at the helm. The ship and warp are IMAGINED; distances, speeds and relativity are COMPUTED.' }),
@@ -141,6 +141,10 @@ export function createHelmPanel({ h, pill, row, system, go, toast, fetchNearby, 
       if (!live.card.dl.isConnected && !force) { live = null; return; }
       const km = distanceKm(live.id);
       fill(live.card.els, km, quoteWarp(km ?? 0));
+      const here = st?.active && st.hold?.id === live.id && !st.course;
+      const label = here ? (st.hold.kind === 'orbit' ? 'IN STANDARD ORBIT' : 'HOLDING STATION HERE') : st?.course?.id === live.id ? 'ON COURSE ▸' : 'SET COURSE ▸';
+      if (live.coursePill.textContent !== label) live.coursePill.textContent = label;
+      live.coursePill.classList.toggle('on', here || st?.course?.id === live.id);
       live.note.textContent = st?.active && st.course?.id === live.id
         ? `AUTOPILOT ENGAGED · ${st.course.phase === 'turn' ? 'COMING ABOUT' : `${fmtDistance(st.course.distKm ?? km)} TO GO · ETA ${st.course.etaS != null ? fmtDuration(st.course.etaS) : '—'}`}`
         : 'Real missions do not fly straight: they follow transfer orbits and must brake at the end (see LAUNCH WINDOWS). These times compare how fast each kind of propulsion is.';

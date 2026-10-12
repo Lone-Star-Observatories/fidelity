@@ -842,7 +842,7 @@ function helmCourse(id) {
 function helmStar(st) {
   const from = (voiceStars ?? []).find((s) => s.id === currentSystem) ?? (currentSystem === 'sol' ? { x: 0, y: 0, z: 0 } : null);
   if (!from || st.x == null) { go({ level: 'system', system: st.id }); return true; }
-  if (route.level === 'system' && system.model) { if (!system.helm.active) system.helm.engage({ near: system.focusId }); helmWarpTo(st, from); return true; }
+  if (route.level === 'system' && system.model) { if (!system.helm.active) system.helm.engage(); helmWarpTo(st, from); return true; }
   pendingHelm = { star: st, from };
   go({ level: 'system', system: currentSystem });
   return true;
@@ -1929,7 +1929,7 @@ onRoute(async (r) => {
     if (pendingHelm) { // #42: a course asked for from another view (voice, Navigation) now that the System View is here
       const ph = pendingHelm; pendingHelm = null;
       if (ph.course && m.bodies.some((x) => x.id === ph.course)) system.helm.setCourse(ph.course);
-      else if (ph.star && ph.from) { system.helm.engage({ near: system.focusId }); helmWarpTo(ph.star, ph.from); }
+      else if (ph.star && ph.from) { if (!system.helm.active) system.helm.engage(); helmWarpTo(ph.star, ph.from); }
     }
     applyPendingCam(system.camera);
     syncRail();
