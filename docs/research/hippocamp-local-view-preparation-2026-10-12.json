@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp / Neptune XIV / S/2004 N1",
+  "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no input/reference image",
+  "prompt": "Create one independent research-guided hypothetical local observer illustration for Fidelity of Hippocamp, Neptune XIV / S/2004 N1. Wide landscape 16:9. Entirely newly invented grey small-moon terrain, not a copy, recolour, projection or adaptation of any observed Moon, Mars, Pluto or other body's imagery. Camera just above an imagined irregular slope: modest scattered angular blocks, fine grains, shallow depressions and subdued relief, grey tones under low directional light, almost black sky. No astronomical discs, Sun, Neptune, rings or stars in this local view. No spacecraft, people, vegetation, biology, liquid, ocean, plume, atmospheric haze or survivable landing implication. Observations only show unresolved Hippocamp detections; its 16.2\u00b11.2km effective radius is photometric under assumed albedo and phase slope, not resolved geography, axes or local normal. Do not present terrain, material chemistry or fractions as observed. Do not depict a dated Hubble/Voyager site or verified spin locking/permanent Neptune-facing location. Black sky is artistic transparency, not measured absence of atmosphere. Terrain, grains, blocks, chemistry, grey colour, lighting and exposure all invented; Proteus-fragment origin is a model, not a depicted measured history. Clearly readable small footer in one unobtrusive dark band with two lines exactly: 'IMAGINED LOCAL VIEW \u2014 HIPPOCAMP' and 'Invented terrain, materials, colour and lighting \u2014 not observed geography'. No other text. Scientifically restrained, naturalistic texture, no dramatic mountains or dramatic glow.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ec197536-c0a8-45e6-ac44-2ff06db58c95.png",
+  "researchCopy": "data/research-sources/hippocamp-generated-surfaceImage-original.png",
+  "inspection": "Grey blocks, grains, shallow depressions and modest relief under invented light; black sky with no astronomical disk. Both requested footer lines readable. No analog map or dated Hubble/Voyager site.",
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, lighting and exposure invented.",
+    "Unresolved native detections and photometric16.2\u00b11.2km radius do not establish geography, axes or local normal.",
+    "Black sky assumes transparency, not measured atmospheric absence.",
+    "No spin locking or permanent Neptune-facing site verified; Proteus-fragment origin remains a model.",
+    "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "No angular/raster computation required: no astronomical disk appears."
+  ],
+  "references": [
+    "docs/research/hippocamp-moon-preparation-2026-10-12.json",
+    "docs/research/hippocamp-primary-orbit-size-assessment-2026-10-12.json",
+    "docs/research/hippocamp-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2972977,
+    "sha256": "023c62871f4dc5896363a6d70359bb927e4048fffa049dde59c27f84a6512285",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16064255bytes64255over hard16MB gate",
+    "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/405 protected assets/originals/masters/native/provenance/recorded Clipper preview preserved; queue566",
+    "browser": "No passing current full/offline browser claim; other engines open",
+    "attribution": "Interbuild differences unaudited; no savings attribution or codec change"
+  }
+}
