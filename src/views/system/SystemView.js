@@ -2422,10 +2422,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
     root.position.copy(focusPos).negate();
     if (zones) updateZones(jd);
+    if (zones && helmLayer && !helmLayer.look.bodiesVisible) for (const o of [zones.geo.object, ...zones.va.map((z) => z.object), zones.helio.group, zones.oort, ...zones.hill.map((h) => h.shape.object)]) o.visible = false;
     updateExtras(jd);
-    if (belts) { belts.update(jd); belts.points.visible = settings.get('belts'); }
+    const deckHides = !!helmLayer && !helmLayer.look.bodiesVisible; // under Venus' deck at the helm: no sky (#83)
+    if (belts) { belts.update(jd); belts.points.visible = settings.get('belts') && !deckHides; }
     if (sats && nodes.earth) {
-      sats.points.visible = settings.get('satellites');
+      sats.points.visible = settings.get('satellites') && !deckHides;
       sats.points.position.copy(nodes.earth.pos);
       sats.update(jd, trueRadius(nodes.earth.body), enhancedRadius(nodes.earth.body, model.scale), scaleMix, clock.rate.days ?? 0);
     }

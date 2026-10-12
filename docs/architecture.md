@@ -1458,9 +1458,10 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   new 74k-vertex sphere on every approach; the helm's standoff (3 radii) gets the middle one. (3) The ship is built and
   its shaders compiled (`renderer.compileAsync`) 2.5 s after a system loads. Measured in headless SwiftShader at
   1280×800 on a loaded 4-core machine: synchronous GPU time of a helm frame at Earth 3.4–3.8 s → ~1.5 s (Earth's
-  globe ~1.3 s → 0.3 s, clouds ~0.8 s → 0.3 s); after a TAKE THE HELM click the page answered again in ~8 s instead
-  of ~22 s (the longest wait 5.6 s instead of 14 s). The remaining ~1.5 s a frame is the System View's own cost in
-  software rendering (~150 draw calls), not the helm's.
+  globe ~1.3 s → 0.3 s, clouds ~0.8 s → 0.3 s); after a TAKE THE HELM click (2 s after load) the page answers again
+  within ~3.5–4 s, then in < 0.2 s (before: ~22 s, one wait of 14 s), with ~1 s frames once the scale has settled
+  (before: 2–3.5 s). The remaining ~1 s a frame is the System View's own cost in software rendering (~150 draw
+  calls), not the helm's.
 - **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
   at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
 - **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST
