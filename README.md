@@ -4,8 +4,9 @@ An LCARS-style ship's console for exploring real NASA and astronomical data, fro
 orbit out to nearby galaxies. It runs locally. Data is loaded on demand and stored on
 your machine.
 
-**Status:** System, Star, Planet, Navigation and Galaxy views are online. Every
-other view shows an OFFLINE screen that links to its ticket. See [`docs/backlog.md`](docs/backlog.md).
+**Status:** every view is online: Universe, Galaxy, Quadrant, Navigation, System (with the Star, Planet,
+Moon, Object and Satellite detail views), the surface view, Events, Future, Earth Timeline and COMMS. Open work
+is tracked as GitHub issues and mirrored in [`docs/backlog.md`](docs/backlog.md).
 
 ## Run it
 
@@ -49,75 +50,79 @@ ship recognises and which view will use each one.
 
 ## What you can do today
 
-- Fly between the Sun, the eight planets and Pluto, all at their real positions for the
-  ship's clock, wearing real spacecraft imagery. Earth has clouds and city lights, and its
-  day/night line falls where it really is. Positions come from Keplerian elements offline, or from **JPL Horizons**
-  (fetched on demand and cached on disk).
-- Run time forwards or backwards (1 hour/s up to 1 year/s), or jump to any date.
-- Switch between **ENHANCED** sizes (labelled with how much each body is enlarged) and
-  **TRUE** scale.
-- Read light-time and distances. Every value carries a provenance badge:
-  MEASURED · COMPUTED · MODELLED · IMAGINED · REPORTED (published schedules and sites).
-- The **Sector 001** beacon is always in the top bar; an edge arrow points back to Sol.
-- **Events:** this week's launches (SpaceX, NASA, ESA, other agencies, private companies), dockings,
-  spacewalks, splashdowns, flybys, eclipses, meteor showers and aurora watches, with webcasts and live
-  space channels. GO TO EVENT replays a launch (ascent, booster landing, deployment), a re-entry or a
-  docking in 3D on modelled paths.
-- **Navigation:** look outward 10–100 light-years from any star. The chart is in the
-  galactic frame with quadrants I–IV, and planet hosts are ringed. Select a star and
-  **warp** to it.
-- **Binary and multiple stars:** Sirius A and B on their measured 50-year orbit (Sirius B
-  as a white dwarf smaller than Earth), α Centauri A and B with Proxima circling the pair.
-  Orbits come from the USNO Sixth Orbit Catalog. The nearest brown dwarfs are there too:
-  Luhman 16 A and B on their 26.6-year orbit, and WISE 0855−0714, the coldest known (285 K).
-- **Star View:** any star's real spectrum type (observed template against its blackbody,
-  with Hα, Na D, Ca II and other lines marked) and what it is made of.
-- **Moons and small bodies:** 26 moons on orbits checked against JPL Horizons, Ceres, Vesta,
-  the dwarf planets, Sedna and Halley's comet, with spacecraft maps where they exist; Moon
-  View and Object View for their make-up.
-- **Points of interest:** the asteroid belt, Trojans and Kuiper belt from 61,000 real orbits,
-  the geostationary ring, Van Allen belts tilted with Earth's magnetic pole, Lagrange points
-  (with what is parked there), Hill spheres, the heliosphere and the Oort cloud.
-- **Satellites:** all ~16,700 active satellites from CelesTrak, moving by SGP4; fly to any of
-  them, read its computed telemetry, and open its live feed where one exists (GOES and
-  Himawari full-disk Earth, SDO's Sun, yesterday's Earth from Terra/Aqua/VIIRS, ISS video and
-  crew, solar wind and X-rays).
-- **Deep-space fleet:** Voyagers, New Horizons, Parker, JWST, Juno, the Mars orbiters and
-  more from JPL Horizons, with their trajectories, and NASA DSN Now showing which dish is
-  talking to each right now and how fast.
-- **Navigation lists:** nearest systems, stars (by class), planets (rocky, temperate, giants…)
-  and deep-sky objects, with drill-down from a system to its stars and planets.
-- **Star motion and deep time:** arrows showing where every star is heading (relative to us or
-  around the galaxy), a clock running up to a million years a second, and the closest future
-  passes (α Centauri, Ross 248, Gliese 710).
-- **Light-time messages:** send a light pulse from any star to Earth (or from Earth to any star)
-  and watch it cross the chart at 1 ly per 10 s, with the year it arrives and the year a reply
-  comes back; long trips are counted in human lifetimes.
-- **Live skins:** Earth wears yesterday's satellite mosaic with its real clouds, the Sun
-  today's SDO image with today's sunspots (toggle LIVE).
-- **Quadrant View:** 7,000 Gaia star clusters (coloured by age) and landmark nebulae around
-  Sector 001, over the Milky Way's arms.
-- **Universe View:** every known galaxy within 36 million ly and 38,000 galaxy groups out to
-  2.5 billion ly, with a distance filter.
-- **Galaxy View:** the NASA/JPL-Caltech Milky Way artwork laid in the galactic plane and
-  calibrated so Sol sits 26.7 kly from Sgr A*, with the brightest catalogue stars at their
-  true positions, 55k Gaia stars beyond them, the IAU quadrants and an optional Starfleet
-  Alpha–Delta overlay. Galactic time runs from 1 kyr/s to 50 Myr/s: the disc shears, the
-  arms turn at their pattern speed, and the Magellanic Clouds (real Spitzer images) and the
-  Sagittarius dwarf follow their orbits.
-- **Planet View:** any planet's air by volume, where those gases absorb light, its interior
-  to scale, and where it sits among rocky, watery and gassy worlds. Exoplanets show measured
-  JWST results where they exist and "not yet measured" everywhere else.
-- **Other star systems:** Proxima Centauri, TRAPPIST-1, τ Ceti and hundreds more, built
-  from the NASA Exoplanet Archive. Transiting planets sit where their transit timings put
-  them. Every unknown is badged as such. The sky is the real one as seen from that star.
+Every value or picture carries a provenance badge: MEASURED · COMPUTED · MODELLED · IMAGINED · PLANNED ·
+REPORTED. Fiction (the Star Trek layer, the ship, warp) is always IMAGINED and never mixed into measured data.
+
+**The Solar System (System View)**
+- Fly between the Sun, the planets, 27 moons, the dwarf planets, asteroids and comets, all at their real positions
+  for the ship's clock (Keplerian elements offline, **JPL Horizons** on demand), wearing real spacecraft maps.
+  Earth has clouds, city lights and a true day/night line; LIVE skins put today's SDO Sun and yesterday's Earth on.
+- **ENHANCED** sizes (labelled with the enlargement) or **TRUE** scale; a DETAIL slider adds layers step by step:
+  belts from 61,000 real orbits, spacecraft, Lagrange points and Hill spheres, the heliosphere, Earth satellites,
+  surface names and sites, spin axes and magnetic fields (MAG FIELDS: dipoles, magnetopauses, bow shocks).
+- **Satellites:** all ~16,700 active ones from CelesTrak by SGP4, with telemetry, mission detail and live feeds
+  (ISS video, GOES/Himawari Earth, SDO's Sun, Hubble/JWST "observing now" and their newest images).
+- **Deep-space fleet:** Voyagers, New Horizons, Parker, JWST, Juno, the Mars orbiters and more from Horizons, with
+  NASA DSN Now showing which dish is talking to each.
+- **Surface:** double-click a body to stand on it (sky, daylight, the Sun and Moon at true size, the Milky Way, real
+  eclipses with the corona). **Sites of note:** 88 landings, rovers with their real traverses (Perseverance,
+  Ingenuity, Curiosity, Apollo, Lunokhod…), crash sites, launch sites and 25 observatories with live webcams;
+  thousands of IAU named features (Olympus Mons, Jezero, Tycho…). **LOOK AT** any body from a surface or from orbit
+  with its true angular size, phase and light-time.
+- **Launch windows:** porkchop plots and the next windows from Earth to every planet and small body (Izzo Lambert
+  solver, checked against Perseverance), drawn as transfer arcs. **Future missions** appear as PLANNED ghosts.
+- **Eclipses, transits and alignments** found by search and shown with real shadows.
+
+**Beyond the Sun**
+- **Star View** and **Planet / Moon / Object views:** real spectra and composition, atmospheres, interiors, FROM
+  EARTH (where to look tonight, with an eyepiece drawing), FROM THE SURFACE (real landed imagery), crew cards for
+  everyone in space now.
+- **Other star systems:** Proxima, TRAPPIST-1, τ Ceti and hundreds more from the NASA Exoplanet Archive; binaries on
+  measured orbits (Sirius A/B, α Centauri with Proxima, Luhman 16); the real sky as seen from that star.
+- **Navigation:** 10–100 ly around any star in the galactic frame, with motion arrows, deep-time arrivals (stars
+  integrated through a Milky Way model, ±50 Myr), lists and drill-down, and light-time messages to and from Earth.
+- **Quadrant:** 7,000 Gaia star clusters and 29 landmark nebulae (real Hubble/Webb/ESO images, some in 3D).
+- **Galaxy:** a 3D Milky Way model and the NASA/JPL-Caltech artwork calibrated to Sol at 26.7 kly, Gaia stars,
+  satellite galaxies on their orbits and galactic time to ±2 Gyr.
+- **Universe:** every known galaxy within 36 million ly (17 with real images) and 38,000 groups to 2.5 billion ly.
+
+**Time, light and the spectrum**
+- One clock for every view: real time up to ±1 Gyr/s, a TIMELINE scrubber, STEP and NOW; each view clamps to the
+  range its model is valid for and says why.
+- **SPECTRUM:** filter every view through any band or a custom transmission curve from gamma rays to radio; real
+  maps where they exist (SDO, Helioviewer, survey HiPS), honest predictions elsewhere, NOT OBSERVED where nothing
+  emits.
+
+**Events, the future and Earth's past**
+- **EVENTS:** this week's launches, dockings, spacewalks, landings, eclipses, meteor showers and aurora watches,
+  with webcasts; GO TO EVENT replays launches and re-entries in 3D; VISIBLE FROM MY LOCATION.
+- **FUTURE:** supernova scenarios (Betelgeuse, Eta Carinae…), passing stars (Gliese 710), Apophis 2029, the live
+  impact-risk lists, pole stars and the constellations in 100,000 years.
+- **TIMELINE:** Earth's climate cycles, ice ages, sea level and coastlines through time (vegetation by epoch, the
+  Green Sahara), plate motions and impacts.
+
+**The ship**
+- **Fly the USS Fidelity:** TAKE THE HELM in any system (an original ship design, IMAGINED): chase and bridge
+  cameras, manoeuvring thrusters to full impulse and warp (TNG scale), SET COURSE autopilot into standard orbit,
+  warp to nearby stars, a REAL PHYSICS mode, and an honest-travel panel (light, Voyager, ion, Orion, Starshot,
+  relativistic ship time).
+- **Star Trek layer** (on by default, one toggle): the Alpha–Delta quadrants, Vulcan at 40 Eridani A and other worlds
+  at their real stars, territories, starbases, Utopia Planitia and Voyager's route home, each with its canon source.
+- **COMMS:** an LCARS line-art map of Earth's live radio stations, traffic and observatory cameras and public SDR
+  receivers; HAIL one onto the main viewer. Optional local radio hardware for reception (and, licensed, transmission).
+- **Computer:** a local wake word and the OpenAI Realtime voice (key kept in the backend) that answers about what's
+  on screen, runs the ship's calculators and can fly, set course and change layers.
+- **POSTCARDS** from any view, framed and credited; a top-bar SEARCH across bodies, spacecraft, stars and events;
+  LINK bookmarks with camera and time.
 
 ## Docs
 
 - [`docs/concept.md`](docs/concept.md): the vision, the scale ladder and the decisions so far
 - [`docs/data-sources.md`](docs/data-sources.md): which data feeds which view
 - [`docs/architecture.md`](docs/architecture.md): how the app is built, and how to add a view
+- [`docs/assets.md`](docs/assets.md): the 3D models, maps and imagery, with their sources and processing
 - [`docs/backlog.md`](docs/backlog.md): planned work
 
-MIT licensed (see `LICENSE`). LCARS is a fan homage to the Star Trek: The Next Generation console design. This is a
-non-commercial project and is not affiliated with Paramount.
+MIT licensed (see `LICENSE`). LCARS is a fan homage to the Star Trek: The Next Generation console design, and the
+Star Trek layer is a fan homage with original text and no franchise artwork. Star Trek is a trademark of Paramount /
+CBS Studios; this is a non-commercial project and is not affiliated with them.
