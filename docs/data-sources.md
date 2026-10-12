@@ -10,6 +10,7 @@
 | System | [JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Ephemeris-grade heliocentric vectors (DE441) | live (through the backend; Horizons has no CORS) | ✅ |
 | System | [NASA Planetary Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/) | Radius, mass, gravity, day/year lengths, temperature | bundled | ✅ |
 | System | IAU WGCCRE 2015 | Spin-axis (pole) directions | bundled | ✅ |
+| System, Planet, surface view | Measured DEMs (#80): ETOPO1, LRO LOLA, MGS MOLA, MESSENGER/USGS, Magellan, Dawn/DLR, New Horizons, Cassini ISS ([Elevation models](#elevation-models-80)) | Relief shading, displacement, close-up terrain, the surface view's ground and horizon, elevation read-outs | bundled 0.25° grids (`public/dem`) + live full-resolution tiles (`/api/dem-tile`, cached) | ✅ |
 | System | IAU WGCCRE 2015 rotation models; GMST for Earth | Real rotation phase: Earth's day/night falls where it really is | bundled | ✅ |
 | System | Surface imagery (below) | Realistic skins for every body | live, cached in `data/textures/` | ✅ #6 |
 | System | JPL DE kernels (`de440.bsp`) | Offline ephemeris-grade positions | local | ⏳ |

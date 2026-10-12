@@ -2392,19 +2392,16 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       controls.target.set(0, 0, 0); framedRadius = displayRadius(n.body);
       return true;
     },
-    /** Camera over planetocentric lat/lon of the focused body at `dist` display radii, tilted `tiltDeg` towards north; → the Sun's altitude there (deg). */
-    overSite(lat, lon, dist = 1.6, tiltDeg = 0) {
+    /** Camera over planetocentric lat/lon of the focused body at `dist` display radii; → the Sun's altitude there (deg). */
+    overSite(lat, lon, dist = 1.6) {
       const n = nodes[focusId], sun = nodes[model.starId];
       if (!n || !sun) return null;
       root.updateMatrixWorld(true);
       const g = n.sites?.group ?? n.mesh, w = n.mesh.getWorldPosition(new THREE.Vector3());
       const up = new THREE.Vector3(...siteDir(n.body, lat, lon)).applyMatrix4(g.matrixWorld).sub(w).normalize();
-      const north = new THREE.Vector3(...siteDir(n.body, Math.min(89.9, lat + 1), lon)).applyMatrix4(g.matrixWorld).sub(w).normalize().sub(up).normalize();
-      const dir = up.clone().multiplyScalar(Math.cos(tiltDeg * DEG)).addScaledVector(north, -Math.sin(tiltDeg * DEG)).normalize();
       flight = null; overviewAU = null;
-      camera.position.copy(dir.multiplyScalar(displayRadius(n.body) * dist)).add(up.clone().multiplyScalar(displayRadius(n.body) * Math.sin(tiltDeg * DEG) * 0));
-      controls.target.copy(up.clone().multiplyScalar(displayRadius(n.body) * (tiltDeg ? 0.98 : 0)));
-      framedRadius = displayRadius(n.body);
+      camera.position.copy(up).multiplyScalar(displayRadius(n.body) * dist);
+      controls.target.set(0, 0, 0); framedRadius = displayRadius(n.body);
       return 90 - up.angleTo(sun.pos.clone().sub(n.pos)) / DEG;
     },
     /** Sun–body–camera angle (deg) for the focused body. */
