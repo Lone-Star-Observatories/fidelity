@@ -501,7 +501,8 @@ sky by the local obscuration, and body panels list the events (`src/panels/skyev
 `src/astro/lambert.js` solves Lambert's problem with Izzo's 2015 algorithm (Householder iterations on the
 non-dimensional time-of-flight equation, multi-revolution low/high paths, prograde or retrograde) and propagates
 two-body orbits with universal variables. `src/astro/transfer.js` builds on the app's ephemeris (Standish elements
-for planets, SBDB elements for small bodies; moons via their parent planet): `transfer()` gives C3, departure and
+for planets, SBDB elements for small bodies; moons via their parent planet, `targetFor()`, which gives none for
+Earth's own Moon since Earth is the launch site): `transfer()` gives C3, departure and
 arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circular orbit, a 1.1 × 100 R ellipse for the
 giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
 local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%

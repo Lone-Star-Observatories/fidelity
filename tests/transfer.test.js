@@ -91,3 +91,14 @@ test('launch windows: a search goes stale when the clock leaves what it covered'
   assert.equal(windowsStale({ fromJd: 1000, ws: [] }, 1020), false);
   assert.equal(windowsStale({ fromJd: 1000, ws: [] }, 1100), true);
 });
+
+test('targetFor: moons go through their planet; the Moon (Earth is the launch site) has no window', async () => {
+  const { targetFor } = await import('../src/astro/transfer.js');
+  const { solSystem } = await import('../src/data/systems.js');
+  const bodies = solSystem().bodies, by = (id) => bodies.find((b) => b.id === id);
+  assert.equal(targetFor(by('moon'), bodies), null);
+  assert.equal(targetFor(by('earth'), bodies), null);
+  const europa = targetFor(by('europa'), bodies);
+  assert.equal(europa.viaParent, 'Jupiter');
+  assert.ok(Number.isFinite(europa.aAu) && typeof europa.pos === 'function');
+});
