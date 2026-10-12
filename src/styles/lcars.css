@@ -673,7 +673,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .helm-sub { color: var(--peach); font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.06em; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .helm-sub .badge { transform: scale(0.85); transform-origin: left center; }
 .helm-auto { color: var(--ice); font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.06em; border-top: 1px solid rgba(153, 204, 255, 0.35); padding-top: 3px; margin-top: 2px; }
-.helm-controls { position: absolute; left: 12px; bottom: 12px; width: min(460px, calc(100% - 24px)); pointer-events: auto; background: rgba(0, 0, 0, 0.6);
+.helm-controls { position: absolute; left: 12px; bottom: calc(12px + var(--dock-h, 0px)); width: min(460px, calc(100% - 24px)); pointer-events: auto; background: rgba(0, 0, 0, 0.6);
   border-left: 4px solid var(--apricot); padding: 5px 6px; display: grid; gap: 4px; }
 .helm-controls .cam-row { flex-wrap: wrap; }
 .helm-throttle { accent-color: var(--gold); }
@@ -694,7 +694,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .hf-reticle::after { top: -14px; bottom: -14px; left: 50%; width: 2px; transform: translateX(-50%); }
 .hf-caption { position: absolute; right: 120px; top: 10px; color: #000; background: var(--orange); padding: 0 10px; border-radius: 0 10px 10px 0; font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.12em; }
 .helm-hud.bridge .helm-readouts { left: 40px; top: 72px; }
-.helm-hud.bridge .helm-controls { left: 40px; bottom: 30px; }
+.helm-hud.bridge .helm-controls { left: 40px; bottom: calc(30px + var(--dock-h, 0px)); }
 @media (max-width: 700px) { .helm-readouts { width: calc(100% - 24px); } .helm-speed { font-size: calc(22px * var(--text-scale, 1)); } }
 /* full-screen viewport: the side panel and rail go, the 3D view takes their room (Esc restores) */
 .lcars.cam-full { grid-template-columns: 0 minmax(0, 1fr) 0; }
