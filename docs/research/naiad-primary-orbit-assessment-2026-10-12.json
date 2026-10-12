@@ -1,0 +1,125 @@
+{
+  "body": "Naiad / S/1989 N6",
+  "date": "2026-10-12",
+  "scope": "Research only; no illustration, dossier, map, shape, catalogue, codec or embedded source change.",
+  "primary": {
+    "title": "Orbits and resonances of the regular moons of Neptune",
+    "authors": [
+      "Marina Brozović",
+      "Mark R. Showalter",
+      "Robert A. Jacobson",
+      "Robert S. French",
+      "Jack J. Lissauer",
+      "Imke de Pater"
+    ],
+    "doi": "10.1016/j.icarus.2019.113462",
+    "version": "arXiv:1910.13612v3",
+    "submitted": "2019-10-30",
+    "revised": "2019-11-15",
+    "status": "Record reports accepted in Icarus 2019-10-01; final publisher article not downloaded in this audit.",
+    "pages": 40,
+    "assessed": "Sections 2–5; Tables 5–7; Figure 4 caption. Full PDF retained; no figure embedded.",
+    "terms": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "licence": "Specific record links arXiv nonexclusive distribution; not CC BY."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/naiad-Brozovic2019-v3.pdf",
+      "url": "https://arxiv.org/pdf/1910.13612v3",
+      "bytes": 2775857,
+      "sha256": "251439258854a3555e6cd881657d62e9480c3931172145aec329035abebc2745",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    },
+    {
+      "path": "data/research-sources/naiad-Brozovic2019-record.html",
+      "url": "https://arxiv.org/abs/1910.13612v3",
+      "bytes": 44797,
+      "sha256": "3448938a1bfbf7a91b182358a6b3a4f4bfb0c9900c40a4ddf20fd1b0c5b4af5e",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    }
+  ],
+  "fit": {
+    "observations": "1981–2016 system astrometry; Voyager 2 and HST are key Naiad data. Tentative Marchis Naiad measurements excluded because residuals large.",
+    "model": "nep090 integrated ICRF Neptune-system-barycentric orbits, weighted least squares; Neptune J2/J4, Triton, planets and Sun perturbations; fixed pole, DE435, NEP081; fitted Voyager systematic camera bias.",
+    "Naiad_GM_km3_s2": [
+      0.008,
+      0.0043
+    ],
+    "GM_limit": "Formal post-fit 1 sigma; borderline sensitivity; no Naiad/Thalassa mass priors. Removing Voyager increases errors >60%. Other inner-moon masses constrained by priors, not equivalent measurements.",
+    "Naiad_radius_km": [
+      33,
+      3
+    ],
+    "radius_source": "Table 5 adopts Karkoschka 2003 Voyager imaging radius; not new pixel measurement or silent catalogue replacement.",
+    "density_g_cm3": [
+      0.8,
+      0.48
+    ],
+    "density_limit": "Derived using adopted image size and fitted GM; propagated radius/mass errors, not direct sensor, local chemistry or porosity measurement.",
+    "Table7_Naiad": {
+      "epoch": "2020-01-01 TDB",
+      "reference": "Local Laplace plane; not equator or scene camera plane.",
+      "a_km": 48228,
+      "e": 0.00014,
+      "free_inclination_deg": 4.728,
+      "Laplace_to_invariable_inclination_deg": 0.467,
+      "mean_longitude_rate_deg_day": 1222.858,
+      "rounded_longitudinal_period_days": 0.29
+    },
+    "mean_element_limit": "900-year integration summarized by precessing ellipse; authors deliberately assign no element errors because fit-to-integration errors are not observational uncertainty. Digits do not establish current distance or exact scene registration.",
+    "resonance": {
+      "angle": "73 lambda_Thalassa - 69 lambda_Naiad - 4 Omega_Naiad",
+      "type": "Fourth-order inclination resonance involving Naiad node; not spin resonance.",
+      "nominal_centre_deg": 180,
+      "nominal_average_amplitude_deg": 66,
+      "nominal_period_years": 1.9,
+      "mass_sensitivity": "Changing Thalassa GM to 0.03 km3/s2 (+1 sigma) gives about46deg/1.7yr; not universal fixed constants.",
+      "conjunction": "Simplified integrated geometry south,south,north,north offsets; historical lower-order captures and Triton-related origins remain interpretations."
+    }
+  },
+  "scene_limits": [
+    "No determination of spin, tidal locking, surface normal, permanent Neptune-facing site or dated observer attitude.",
+    "No new skyGeometry or angular/raster calculation in this research-only audit.",
+    "Native blur does not establish measured axes, resolved terrain, visible photometry, local chemistry or atmosphere absence.",
+    "No other moon parameters, maps, images or chemical measurements assigned to Naiad.",
+    "No ocean, plume, biology, survivable landing or directly observed origin claimed."
+  ],
+  "recent_followup": {
+    "url": "https://arxiv.org/abs/2609.21714",
+    "title": "Some challenges for the long-term survival of Naiad, Neptune’s innermost moon",
+    "authors": [
+      "Harrison Agrusa",
+      "Matija Ćuk",
+      "David Nesvorný",
+      "David Minton"
+    ],
+    "submitted": "2026-09-18",
+    "status": "Submitted to A&A; abstract/record only assessed, full paper remains open.",
+    "record_terms": "https://creativecommons.org/licenses/by/4.0/",
+    "limit": "Record-specific CC BY4 distinct from 2019 nonexclusive. Density/strength, bombardment and collisional survival conclusions conditional on models and poorly constrained impactor/disruption inputs; no strength, age, monolithic structure or present-day collision rate adopted as measured values."
+  },
+  "open": [
+    "Recent 2026 full survival paper and April resonance-lock models; final publisher records.",
+    "Original Voyager raw product/UTC/filter/exposure/full credit crosswalk.",
+    "Spin, shape/frame, native/map coverage and photometry; current ephemeris/site geometry.",
+    "Conforming lossless standalone headroom before prepared Charon69 and other additive dossiers."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "tracked_public_assets": 405,
+    "new_embedding": false,
+    "codec_changes": false
+  },
+  "validation": {
+    "tests": "505 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL: 16017967 bytes, 17967 over hard 16MB gate",
+    "upstream": "1df3bb7 POSTCARD top-bar access preserved and combined checks completed.",
+    "queue": 566,
+    "preservation": "All 405 tracked public bespoke/model/shape/texture files compared byte-for-byte with HEAD: equal. Registry untouched; all68 dossiers preserved. Original/native/default/master/provenance retained.",
+    "browser": "No current passing full artifact; no new full/offline browser claim. Other engines remain open.",
+    "attribution": "Interbuild feed differences unaudited; no savings attribution or production codec change."
+  }
+}
