@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-12",
+  "body": "Galatea",
+  "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/galatea-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/galatea-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "parameters": {
+    "galateaMeanRadiusKm": 79,
+    "radiusUncertaintyKm": 12,
+    "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+    "semimajorAxisKm": 62000,
+    "eccentricity": 0,
+    "orbitalPeriodDays": 0.428744,
+    "elementEpoch": "2000-01-01.5 TDB",
+    "elementFrame": "Laplace plane",
+    "ephemeris": "NEP097",
+    "neptuneMeanRadiusKm": 24622,
+    "neptuneRadiusSource": "src/data/sol.js",
+    "ephemerisReference": "M. Brozovi\u0107 (2020), Update of the inner Neptunian satellite orbits \u2014 NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution."
+  },
+  "assumptions": {
+    "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+    "distanceKm": 61921,
+    "horizontalFovDeg": 90,
+    "rasterWidthPixels": 1672,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+  },
+  "geometry": {
+    "angularDiameterDeg": 46.86091490499512,
+    "targetWidthPixels1672": 724.5944995580066
+  },
+  "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(62000-79)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+  "limitations": [
+    "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+    "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+    "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+    "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+    "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+    "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+    "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+    "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open."
+  ],
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16021514,
+    "overBudgetBytes": 21514,
+    "browser": "No new passing full/offline browser claim; other engines remain open.",
+    "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper preview SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved;queue566. Original PNGs/masters/native/provenance retained.",
+    "attribution": "Research-only; no illustration, dossier69, embedding or codec change. Interbuild differences unaudited; no asset/compression savings attribution."
+  }
+}

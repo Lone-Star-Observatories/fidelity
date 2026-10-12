@@ -37,7 +37,7 @@ import { pickPoint, onClicks } from '../pick.js';
 import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
 import { METERS } from '../cameraMath.js';
 import { makeSnapshot } from '../snapshot.js';
-import { APP_STORE } from '../../appstore.js';
+import { trekFor, trekGal } from '../../data/trek.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -86,7 +86,7 @@ export const bprpToBV = (bprp) => 0.78 * bprp;
 const DEG = Math.PI / 180;
 const lbdToGal = (l, b, d) => [d * Math.cos(b * DEG) * Math.cos(l * DEG), d * Math.cos(b * DEG) * Math.sin(l * DEG), d * Math.sin(b * DEG)];
 
-export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {}) {
+export function createGalaxyView(container, { onFrame, onPickStar, onDrill, onTrek } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -223,14 +223,58 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
     const o = tag(`QUADRANT ${q}`, 'quadrant', p);
     quadGroup.add(o);
   });
-  // Starfleet's quadrants: centred on the galactic core, split along the core–Sol line (IMAGINED)
+  // Starfleet's quadrants: centred on the galactic core, split along the core–Sol line (IMAGINED; the
+  // STAR TREK layer, #25). Alpha is on the side of galactic longitude 180–360° (scene +z), as in Star Charts.
   {
     const R = 60;
     line(fleetGroup, [-R, 0, 0], [R, 0, 0], 0xcc6666, 0.7, true);
     line(fleetGroup, [0, 0, -R], [0, 0, R], 0xcc6666, 0.7, true);
     // seen from galactic north with Sol at the bottom: Alpha bottom-left, Beta bottom-right
     const fleet = [['ALPHA', -30, 30], ['BETA', -30, -30], ['GAMMA', 30, 30], ['DELTA', 30, -30]];
-    for (const [n, x, z] of fleet) fleetGroup.add(tag(`${n} QUADRANT`, 'fleet', [x, 0, z]));
+    for (const [n, x, z] of fleet) {
+      const o = tag(`${n} QUADRANT`, 'fleet clickable', [x, 0, z]);
+      o.element.addEventListener('pointerdown', (e) => e.stopPropagation());
+      o.element.addEventListener('click', (e) => { e.stopPropagation(); onTrek?.('quadrants'); });
+      fleetGroup.add(o);
+    }
+  }
+  // #41: galaxy-scale Star Trek places (Dominion, Borg space, the barriers, Voyager's route, the Bajoran wormhole)
+  {
+    const C = 0xff88aa, at = (l, b, d) => galToScene(trekGal({ l, b, distLy: d }), 0.001);
+    const dashedPath = (pts, opacity, dash) => {
+      const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts.map((p) => new THREE.Vector3(...p))), new THREE.LineDashedMaterial({ color: C, transparent: true, opacity, dashSize: dash, gapSize: dash * 0.7 }));
+      l.computeLineDistances();
+      fleetGroup.add(l);
+    };
+    const button = (t, text, pos) => {
+      const o = tag(text, 'trek world', pos);
+      o.element.addEventListener('pointerdown', (e) => e.stopPropagation());
+      o.element.addEventListener('click', (e) => { e.stopPropagation(); onTrek?.(t.id); });
+      fleetGroup.add(o);
+    };
+    const discFrag = `uniform float uOpacity; varying vec2 vUv; void main() { float r = length(vUv - 0.5) * 2.0;
+      float a = smoothstep(1.0, 0.5, r) * uOpacity; if (a < 0.004) discard; gl_FragColor = vec4(1.0, 0.53, 0.67, a); }`;
+    for (const t of trekFor('galaxy')) {
+      const p = t.placement;
+      if (p.type === 'path') {
+        const pts = p.points.map(([l, b, d]) => at(l, b, d));
+        dashedPath(pts, 0.95, t.kind === 'route' ? 1.6 : 1.1);
+        const end = t.kind === 'route' ? pts[0] : pts.at(-1); // Voyager's start in the Delta Quadrant; the wormhole's Gamma end
+        button(t, t.kind === 'route' ? `◇ ${t.name.toUpperCase()} ≈` : `◇ ${t.name.toUpperCase()} · GAMMA END ≈`, end);
+      } else if (p.type === 'gal' && p.radiusLy) {
+        const c = at(p.l, p.b, p.distLy), r = p.radiusLy / 1000;
+        if (t.kind === 'territory') {
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(r * 2, r * 2), new THREE.ShaderMaterial({ uniforms: { uOpacity: { value: 0.16 } }, vertexShader: IMG_VERT, fragmentShader: discFrag, transparent: true, depthWrite: false, side: THREE.DoubleSide }));
+          m.rotation.x = -Math.PI / 2;
+          m.position.set(...c);
+          fleetGroup.add(m);
+          button(t, `${t.name.toUpperCase()} ≈`, c);
+        } else { // a barrier: a dashed ring round the core
+          dashedPath(Array.from({ length: 181 }, (_, i) => { const a = (i / 180) * Math.PI * 2; return [c[0] + Math.cos(a) * r, c[1], c[2] + Math.sin(a) * r]; }), 0.6, r * 0.06);
+          button(t, `◇ ${t.name.toUpperCase()}`, r < 10 ? [c[0] - r, c[1], c[2] + r * 3] : [c[0] + r * 0.72, c[1], c[2] - r * 0.72]); // the small one clear of Sgr A*'s label
+        }
+      }
+    }
   }
 
   // ---- stars: HYG within 1.5 kly, Gaia DR3 beyond ---------------------------------------------
@@ -372,7 +416,7 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
       }
       controls.update();
     }
-    fleetGroup.visible = !APP_STORE && !!settings.get('starfleet'); // never in the App Store build (#51)
+    fleetGroup.visible = !!settings.get('starfleet');
     const show = settings.get('labels');
     for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
     for (const s of satellites) if (s.body.userData.quad) s.body.userData.quad.quaternion.copy(camera.quaternion);

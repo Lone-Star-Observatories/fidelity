@@ -18,12 +18,13 @@ import { badgeLines, brightLimit } from './drift.js';
 import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
 import { METERS } from '../cameraMath.js';
 import { makeSnapshot } from '../snapshot.js';
+import { trekStarMatch } from '../../data/trek.js';
 
 const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
-export function createNavigationView(container, { onSelect, onFrame, onDrill, onArrivals }) {
+export function createNavigationView(container, { onSelect, onFrame, onDrill, onArrivals, onTrek }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -97,7 +98,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
   }
   // The chart (rings, spokes) rides with the centre star through deep time; drop lines only
   // make sense at the present epoch.
-  let chartGroup = null, dropGroup = null;
+  let chartGroup = null, dropGroup = null, trekGroup = null, trekBorder = null;
 
   // Galactic-plane chart: distance rings, quadrant spokes (IAU quadrants I–IV by longitude).
   function drawChart(radiusLy) {
@@ -121,9 +122,63 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     });
   }
 
+  // ---- the Star Trek layer (#25, #41), IMAGINED -------------------------------------------------------
+  // The Alpha/Beta border (the line from the galactic core through Sol, as in Star Trek: Star Charts and
+  // the Galaxy View) and the canon or reference-book worlds at real stars: a pink ring and a label on the
+  // left of the catalogue star, which itself is never changed. One setting (`starfleet`) shows it all.
+  let trekMarks = [], trekGeo = null;
+  const TREK_COLOR = 0xff88aa;
+  function trekLabel(text, cls, pos, onClick, parent) {
+    const o = label(text, `trek ${cls}`, pos, onClick, parent);
+    o.center.set(1.12, 0.5); // real labels sit right of their star, Star Trek ones left
+    return o;
+  }
+  function drawTrek(d) {
+    trekGroup = new THREE.Group();
+    trekBorder = new THREE.Group();
+    trekGroup.add(trekBorder);
+    world.add(trekGroup);
+    const R = d.radiusLy, gc = new THREE.Vector3(...frameToScene([1, 0, 0])), side = (l) => new THREE.Vector3(...frameToScene([Math.cos(l * Math.PI / 180), Math.sin(l * Math.PI / 180), 0]));
+    const border = new THREE.Line(new THREE.BufferGeometry().setFromPoints([gc.clone().multiplyScalar(-R), gc.clone().multiplyScalar(R)]),
+      new THREE.LineDashedMaterial({ color: TREK_COLOR, transparent: true, opacity: 0.7, dashSize: R / 40, gapSize: R / 60 }));
+    border.computeLineDistances();
+    // a faint upright curtain: the border is a plane (through the galactic poles), not just a line
+    const curtain = new THREE.Mesh(new THREE.PlaneGeometry(2 * R, 0.14 * R), new THREE.MeshBasicMaterial({ color: TREK_COLOR, transparent: true, opacity: 0.025, side: THREE.DoubleSide, depthWrite: false }));
+    trekBorder.add(border, curtain);
+    for (const [text, l] of [['ALPHA QUADRANT · STAR TREK', 270], ['BETA QUADRANT · STAR TREK', 90]]) {
+      trekLabel(text, 'quad', side(l).multiplyScalar(R * 0.55), () => onTrek?.('quadrants'), trekBorder).center.set(0.5, 0.5);
+    }
+    trekLabel('ALPHA | BETA BORDER → CORE', 'border', gc.clone().multiplyScalar(R * 0.62).add(new THREE.Vector3(0, R * 0.03, 0)), () => onTrek?.('quadrants'), trekBorder);
+    // worlds at real stars
+    for (const p of placed) {
+      for (const t of trekStarMatch(p.star)) trekMarks.push({ p, t, o: trekLabel(`◇ ${t.name.toUpperCase()}`, 'world', p.pos, () => onTrek?.(t.id), trekGroup) });
+    }
+    const uniq = [...new Set(trekMarks.map((m) => m.p))];
+    const tg = new THREE.BufferGeometry();
+    tg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(uniq.flatMap((p) => [p.pos.x, p.pos.y, p.pos.z])), 3));
+    tg.setAttribute('size', new THREE.BufferAttribute(new Float32Array(uniq.map((p) => p.size0 + 18)), 1));
+    tg.setAttribute('color', new THREE.BufferAttribute(new Float32Array(uniq.flatMap(() => [1, 0.53, 0.67])), 3));
+    trekGroup.add(new THREE.Points(tg, pointMat(true)));
+    trekGeo = { geo: tg, stars: uniq };
+    moveTrek();
+  }
+  /** Keep the overlay on its stars (and the border on Sol) through deep time. */
+  function moveTrek() {
+    if (!trekGroup) return;
+    const sol = placed.find((p) => p.star.id === 'sol');
+    if (sol) trekBorder.position.copy(posAt(sol));
+    trekBorder.visible = !!sol && !sol.hidden;
+    for (const m of trekMarks) m.o.position.copy(posAt(m.p));
+    if (trekGeo) {
+      const a = trekGeo.geo.attributes.position, sz = trekGeo.geo.attributes.size;
+      trekGeo.stars.forEach((p, i) => { const v = posAt(p); a.setXYZ(i, v.x, v.y, v.z); sz.setX(i, p.hidden ? 0 : p.size0 + 18); });
+      a.needsUpdate = true; sz.needsUpdate = true;
+    }
+  }
+
   /** Show stars around `d.center` (from /api/nearby). */
   function load(d) {
-    msg = null; arrows = null; sunArrow = null; sunTag = null; proxLines = null; epoch = 0;
+    msg = null; arrows = null; sunArrow = null; sunTag = null; proxLines = null; epoch = 0; trekMarks = []; trekGeo = null;
     // arrow length follows the range (10 kyr up to 25 ly, 100 kyr beyond) until one is picked
     if (!motion.pickedWindow) motion = { ...motion, window: d.radiusLy <= 25 ? 1e4 : 1e5 };
     clearWorld();
@@ -165,6 +220,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     world.add(new THREE.Points(hg, pointMat(true)));
     hostGeo = hg; hostIdxs = hostIdx;
     drawBandKey();
+    drawTrek(d);
 
     // Labels: the current system, Sol, the nearest planet hosts and the brightest named
     // stars. Everything else is labelled on selection, so the chart stays readable.
@@ -479,6 +535,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
       tempLabel.visible = !!sp && !sp.hidden;
       if (sp) tempLabel.position.copy(posAt(sp));
     }
+    moveTrek();
     if (hostGeo) {
       const ha = hostGeo.attributes.position, hs = hostGeo.attributes.size;
       hostIdxs.forEach((i, k) => { ha.setXYZ(k, attr.getX(i), attr.getY(i), attr.getZ(i)); hs.setX(k, placed[i].hidden ? 0 : placed[i].size0 + 11); });
@@ -678,6 +735,10 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     stepMessage(performance.now());
     const show = settings.get('labels');
     for (const p of placed) if (p.label) p.label.visible = !p.hidden && !!(show || p.star.id === 'sol' || p.star.id === data.center.id || p.star.id === selectedId);
+    const trekOn = !!settings.get('starfleet');
+    if (trekGroup) trekGroup.visible = trekOn;
+    for (const m of trekMarks) m.o.visible = trekOn && !m.p.hidden; // CSS2DRenderer hides only on === false
+    for (const o of trekBorder?.children ?? []) if (o.isCSS2DObject) o.visible = trekOn && trekBorder.visible;
     renderer.render(scene, camera);
     labels.render(scene, camera);
     drawGauge();
@@ -744,5 +805,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     },
     get data() { return data; },
     get selectedId() { return selectedId; },
+    /** The Star Trek worlds attached to stars on the chart (#25, #41). */
+    get trekShown() { return trekMarks.map((m) => ({ id: m.t.id, starId: m.p.star.id })); },
   };
 }

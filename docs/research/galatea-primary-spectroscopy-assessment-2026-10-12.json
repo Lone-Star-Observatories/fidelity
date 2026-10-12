@@ -1,0 +1,134 @@
+{
+  "body": "Galatea (Neptune VI), not Larissa or Proteus",
+  "date": "2026-10-12",
+  "status": "research-only; no new dossier or embedding",
+  "primary": {
+    "authors": [
+      "M. Ryleigh Davis",
+      "Matthew Belyakov",
+      "Ian Wong",
+      "Zachariah Milby",
+      "Michael E. Brown"
+    ],
+    "url": "https://arxiv.org/abs/2607.27481",
+    "doi": "10.1126/sciadv.aeb1437",
+    "publicationDate": "2026-07-29",
+    "path": "data/research-sources/proteus-Davis2026-author.pdf",
+    "bytes": 740854,
+    "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+    "assessmentScope": "Targeted Galatea results, discussion, methods and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+    "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+  },
+  "observations": {
+    "program": 4645,
+    "instrument": "JWST NIRSpec IFU PRISM / clear",
+    "wavelengthMicron": [
+      0.6,
+      5.3
+    ],
+    "resolution": "R about 30\u2013300",
+    "integrationSeconds": 8169.6,
+    "exposures": [
+      {
+        "date": "2024-12-17",
+        "startUTC": "15:33:55",
+        "endUTC": "15:51:11",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 226,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-17",
+        "startUTC": "15:53:51",
+        "endUTC": "16:11:07",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 238,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-17",
+        "startUTC": "16:13:48",
+        "endUTC": "16:31:03",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 245,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-17",
+        "startUTC": "16:33:44",
+        "endUTC": "16:51:00",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 261,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-19",
+        "startUTC": "08:44:32",
+        "endUTC": "09:01:48",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 226.5,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-19",
+        "startUTC": "09:04:28",
+        "endUTC": "09:21:44",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 238,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-19",
+        "startUTC": "09:24:24",
+        "endUTC": "09:41:40",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 250,
+        "subLatitudeSouthDegrees": 20.9
+      },
+      {
+        "date": "2024-12-19",
+        "startUTC": "09:44:35",
+        "endUTC": "10:01:51",
+        "seconds": 1021.2,
+        "subLongitudeWestDegrees": 261.5,
+        "subLatitudeSouthDegrees": 20.9
+      }
+    ],
+    "pipeline": "1.18.0 / jwst_1364.pmap",
+    "archive": "https://doi.org/10.17909/1cqh-hy49",
+    "code": "https://doi.org/10.22002/vwdse-4d488",
+    "exposureLimits": "Table S1 exposure times are integrations, distinct from elapsed start/end intervals and overheads. Sub-observer coordinates are source-reported mid-observation geometry, not registered local site normals or observer scenes."
+  },
+  "measurementsAndInterpretations": [
+    "Unresolved Galatea reflectance spectra show deep broad 3-micron OH absorption and the additional sharp 2.72-micron feature after rescaling at 3.1 microns and division by Proteus spectrum. Mg-bearing serpentine-like phyllosilicate assignment derives from laboratory spectral comparison, not a resolved material map or local measured fraction.",
+    "No clear water-ice or CO2 signature reported for Galatea; nondetection does not prove absolute absence. Weak 4.27-micron CO2 belongs to Proteus and must not be assigned to Galatea.",
+    "CM2/CI laboratory phyllosilicate volume percentages, laboratory temperatures and alteration durations are analog-material/formation constraints, not measured Galatea terrain fractions or current temperatures. Ceres, Bennu, meteorites and Miranda comparisons must not become Galatea skins or adopted identical chemistry.",
+    "Differentiated parent interiors, primordial satellite destruction during Triton capture versus tidal shredding of a passing KBO, and subsequent reaccretion are origin interpretations, not directly observed history, present-day ocean, plume, heat, biology or a posterior probability.",
+    "Galatea total coadded integration8169.6s is distinct from combined ring spectrum11641.8s, which uses Larissa observations and excludes the final Galatea dither in each set. Ring spectra cannot be relabelled Galatea spectra.",
+    "Reduction uses pipeline1.18.0/jwst_1364.pmap, detector and sky-aligned cubes, background interpolation, PSF extraction and solar analog program1128. These are spectral extraction/calibration choices, not independent visible-colour or observer lighting calibration.",
+    "Paper explicitly reports strong reduction sensitivity from Neptune scattered light below1.7 and above4.5microns, particularly in ring extraction, and omits those ring regions; the nominal instrument range0.6\u20135.3microns does not establish clean complete spectral coverage.",
+    "Unresolved spectra cannot register the1989N4 Voyager detection, establish local relief/chemistry, calibrate its visible colour or resolve NASA caption/metadata conflicts."
+  ],
+  "limitations": [
+    "Current arxiv record links CC BY4.0 while author-version notice restricts to AAAS personal use, not redistribution. Final publisher licence crosswalk remains open; no figure or paper derivative embedded.",
+    "Raw-product/extraction crosswalk, final licence, current shape/rotation, Voyager acquisition UTC/filter, frame, coverage, photometry and local observer registration remain open.",
+    "No astronomical angular/raster computation or new size/resolution claim made. No map/globe/shape adopted, no generated illustration, no69th dossier."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedPublicAssetsByteEqualToHEAD": 405,
+    "mismatches": [],
+    "statement": "All original generated PNGs, defaults, masters, native science, sources/provenance, maps/models/shapes and recorded Clipper preview retained. Production codecs unchanged."
+  },
+  "validation": {
+    "scope": "Combined a66f004 includes upstream3e6cb96 COMMS hailing-frequency implementation; no hardware transmission performed.",
+    "tests": "505 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16,000,000-byte gate",
+    "htmlBytes": 16021777,
+    "overBudgetBytes": 21777,
+    "queue": 566,
+    "browser": "No new passing full artifact or offline browser claim; other engines remain open.",
+    "attribution": "Interbuild feed/size differences not independently audited; no sole upstream, asset or compression attribution. Production codecs unchanged."
+  }
+}

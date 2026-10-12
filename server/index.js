@@ -5,6 +5,7 @@
 import { starSearch } from './search.js';
 import { streamStation, stationNowPlaying, cameraMedia, rfDevices, localScan, handleKiwiUpgrade, handleLocalUpgrade } from './rf.js';
 import { impactRisk } from './risk.js';
+import { handleTxUpgrade } from './tx.js';
 import { co2 } from './co2.js';
 import { paleoCoastlines } from './paleomap.js';
 import http from 'node:http';
@@ -202,6 +203,7 @@ server.on('upgrade', (req, socket) => {
   if (p === '/api/voice') handleVoiceUpgrade(req, socket);
   else if (p === '/api/rf/kiwi') handleKiwiUpgrade(req, socket); // COMMS receivers (#69)
   else if (p === '/api/rf/local') handleLocalUpgrade(req, socket);
+  else if (p === '/api/rf/tx') handleTxUpgrade(req, socket); // hailing frequency: licensed amateur FM transmit, loopback only (#69)
   else socket.destroy();
 });
 

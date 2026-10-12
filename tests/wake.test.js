@@ -51,6 +51,19 @@ test('offline navigation commands parse', () => {
   assert.equal(parseCommand('what is the weather', names), null);
 });
 
+test('helm commands parse (#42)', () => {
+  const names = [{ name: 'Mars' }, { name: 'Europa' }, { name: 'Proxima Centauri' }];
+  const c = parseCommand('Computer, set course for Mars', names);
+  assert.equal(c.action, 'course');
+  assert.equal(c.target.name, 'Mars');
+  assert.equal(parseCommand('lay in a course to Europa and engage', names).target.name, 'Europa');
+  assert.equal(parseCommand('go to Mars', names).action, 'go'); // plain navigation still moves the camera
+  assert.deepEqual(parseCommand('full stop', names), { action: 'helm', command: 'full_stop' });
+  assert.deepEqual(parseCommand('all stop', names), { action: 'helm', command: 'full_stop' });
+  assert.deepEqual(parseCommand('take the helm', names), { action: 'helm', command: 'engage' });
+  assert.deepEqual(parseCommand('leave the helm', names), { action: 'helm', command: 'disengage' });
+});
+
 test('PCM16 base64 round-trips audio', () => {
   const x = Float32Array.from({ length: 1000 }, (_, i) => Math.sin(i / 10) * 0.8);
   const y = base64Pcm16(pcm16Base64(x));

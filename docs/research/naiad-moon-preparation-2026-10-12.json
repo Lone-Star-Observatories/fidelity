@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-12",
+  "body": "Naiad",
+  "identity": "Neptune satellite S/1989 N6; not Despina1989N3 or Thalassa1989N5.",
+  "status": "Research-only; no69 or embedding, catalogue/map/model/shape/codec changes.",
+  "sources": [
+    {
+      "path": "data/research-sources/naiad-overview-2026-10-12.html",
+      "url": "https://science.nasa.gov/neptune/moons/naiad/",
+      "bytes": 259107,
+      "sha256": "d60bdb3d967e302e7d13eef84763e0e02d1e96f68f05c00515d62246f907db47"
+    },
+    {
+      "path": "data/research-sources/naiad-overview-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Naiad-732X520.jpg",
+      "bytes": 36171,
+      "sha256": "1a3a29979f587ef4c6f1167478c51bfca7683a60e15fdcff1da778bbfcc07c60"
+    },
+    {
+      "path": "data/research-sources/naiad-nasa-terms-2026-10-12.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320653,
+      "sha256": "aaaae836e079d9556e756278109a47478edd3809354ef2b545bdccc3606f8863"
+    },
+    {
+      "path": "data/research-sources/despina-trio-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+      "bytes": 169897,
+      "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425"
+    }
+  ],
+  "nativeAssessment": {
+    "overview": "Unchanged732x520 publisher JPEG inspected: blurred elongated monochrome object against black background. Native coarse sampling/blur does not establish resolved terrain, precise physical axes/shape, calibrated visible colour, local chemistry or registered globe. Current overview gives NASA credit only; full original instrument/team/product credit and acquisition UTC/filter/exposure/release crosswalk remain open before embedding.",
+    "systemView": "Previously retained unchanged Voyager trio inspected again: Naiad1989N6 marked separately from1989N3Despina and1989N5Thalassa. FullNASA/JPL credit and1989/5.9millionkm historical source-caption estimates retained in Despina native preparation. Detection/noise/orbital streaks are not local geography or measured elongated physical shape. No other-body map assigned.",
+    "dates": "NASA overview discovery September1989 is discovery metadata, not acquisition UTC. Page published2017-11-21 and modified2024-11-03,2023 asset path are not observation dates. Exact native observation/publication/product association open; no exhaustive newest claim.",
+    "terms": "Active NASA media terms with third-party exceptions retained; not asserted CC BY. No new embedding or blanket credit/licence asserted.",
+    "science": "Overview seven hours six minutes is rounded source prose, not new orbital fit. Decay/future disruption and origin from Triton-disturbed original satellites, lack of later internal modification are hypotheses, not directly observed history/current geological measurements. No native local composition/fractions adopted.",
+    "limits": "Black background does not establish atmospheric absence. No angular/raster computation, measured surface geography, calibrated colour/photometry, ocean/plume/biology or landing claim."
+  },
+  "preservation": {
+    "dossiers": 68,
+    "trackedPublicAssetsCompared": 405,
+    "allComparedBytesEqualHEAD": true,
+    "originalsMastersNativeProvenance": "Preserved, including recorded Clipper preview."
+  },
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16022566bytes22566over hard16MB gate",
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "queue": 566,
+    "attribution": "Research-only, no69/newembedding or production-codec change; interbuild differences unaudited, no savings attribution."
+  }
+}

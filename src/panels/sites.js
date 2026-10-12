@@ -8,7 +8,7 @@ import { sitesFor, SITE_KINDS } from '../data/sites.js';
 const fmtLat = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'N' : 'S'}`;
 const fmtLon = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'E' : 'W'}`;
 
-export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back }) {
+export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back, trek }) {
   const hidden = () => new Set(settings.get('siteHidden') ?? []);
   const toggleKind = (k) => {
     const s = hidden();
@@ -18,7 +18,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
 
   /** SITES section for a body's panel, or [] when it has none. */
   function section(body) {
-    const list = sitesFor(body.id);
+    const list = sitesFor(body.id).filter((s) => s.kind !== 'trek' || settings.get('starfleet')); // Star Trek sites follow their layer (#41)
     if (!list.length) return [];
     const kinds = [...new Set(list.map((s) => s.kind))];
     const listEl = h('div', { className: 'host-list' });
@@ -45,6 +45,7 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
 
   /** The card for one site, in the side panel. */
   function show(s, body) {
+    if (s.kind === 'trek' && trek) return trek(s); // a Star Trek place gets its own card (#41)
     resetLive();
     const k = SITE_KINDS[s.kind];
     const facts = h('dl');

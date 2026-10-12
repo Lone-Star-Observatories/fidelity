@@ -13,9 +13,12 @@ export const SITE_KINDS = {
   observatory: { label: 'OBSERVATORY', color: 0xcc99ff, hint: 'A telescope site, with live views where the operator publishes them.' },
   launch: { label: 'LAUNCH SITE', color: 0xff9966, hint: 'Where rockets leave Earth.' },
   feature: { label: 'NAMED FEATURE', color: 0xffffff, hint: 'A surface feature with an IAU-approved name (USGS Gazetteer of Planetary Nomenclature).' },
+  // #41: Star Trek's places on Earth, the Moon and Mars, IMAGINED, shown with the STAR TREK layer (src/data/trek.js)
+  trek: { label: 'STAR TREK · IMAGINED', color: 0xff88aa, hint: 'Fiction: a Star Trek place, not a real site. Shown with the STAR TREK layer.' },
 };
 
 import { OBSERVATORIES } from './observatories.js';
+import { TREK } from './trek.js';
 
 const site = (body, id, name, lat, lon, kind, extra = {}) => ({ id, body, name, lat, lon, kind, tier: kind === 'planned' ? 'planned' : 'measured', ...extra });
 
@@ -141,7 +144,13 @@ const SMALL = [
   site("ryugu", "mascot-mp4", "MASCOT final rest (MP4)", -22.294, -42.839, "lander", {"short": "MASCOT · FINAL", "mission": "Hayabusa2 / MASCOT", "agency": "DLR / CNES / JAXA", "major": true, "date": "2018-10-04", "approx": "RYUGU BODY-FIXED FRAME (SCHOLTEN ET AL. 2019)", "note": "After bouncing and hopping (it flipped itself with an internal swing arm), MASCOT worked here for 17 hours on battery power.", "source": "Scholten et al. (2019) A&A 632, L5, sec. 2.3 and Table 3", "url": "https://elib.dlr.de/131281/1/aa36760-19.pdf"}),
 ];
 
-export const SITES = [...EARTH, ...MOON, ...MARS, ...VENUS, ...TITAN, ...SMALL];
+// Star Trek's surface places (#41): tier 'imagined', never mixed with the real sites above
+const TREK_SITES = TREK.filter((t) => t.placement.type === 'surface').map((t) => ({
+  id: `trek-${t.id}`, trekId: t.id, body: t.placement.body, name: t.name, lat: t.placement.lat, lon: t.placement.lon, kind: 'trek', tier: 'imagined',
+  short: t.name.toUpperCase(), major: true, source: t.source, note: t.summary,
+}));
+
+export const SITES = [...EARTH, ...MOON, ...MARS, ...VENUS, ...TITAN, ...SMALL, ...TREK_SITES];
 
 const byBody = new Map();
 for (const s of SITES) (byBody.get(s.body) ?? byBody.set(s.body, []).get(s.body)).push(s);

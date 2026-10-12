@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina; Neptune system context only",
+  "status": "Research only; no dossier69/embedding/map/shape/catalogue/codec changes.",
+  "sources": [
+    {
+      "path": "data/research-sources/despina-hubble-opo1330a-response-2026-10-12.html",
+      "url": "https://esahubble.org/images/opo1330a/",
+      "bytes": 43966,
+      "sha256": "b516b477bfa4cc15ace65f0e25d8a687a757db16953ee18cd9cb269cd52aa4f3"
+    },
+    {
+      "path": "data/research-sources/despina-hubble-opo1330a-large.jpg",
+      "url": "https://cdn.esahubble.org/archives/images/large/opo1330a.jpg",
+      "bytes": 651404,
+      "sha256": "e3341f28afadd895d71cd4be56bf2809fdc6622b824b0764ed630e35067b1bde",
+      "dimensions": [
+        3000,
+        2400
+      ],
+      "inspection": "Displayed unchanged publisher image; annotated collage with separate moons/ring arcs and colour Neptune inset."
+    },
+    {
+      "path": "data/research-sources/despina-hubble-terms-2026-10-12.html",
+      "url": "https://esahubble.org/copyright/",
+      "bytes": 43653,
+      "sha256": "dd94d765d8e75984e3bb84466a305ab6cf7c1709c6430efbba618cccc6eb7701"
+    }
+  ],
+  "credit": "NASA, ESA, and M. Showalter (SETI Institute)",
+  "terms": {
+    "source": "https://esahubble.org/copyright/",
+    "licence": "ESA/Hubble images/web text CC BY4.0 with complete visible unaltered credit and active links, no endorsement; logos/music/scientific papers/code excluded.",
+    "scope": "Applies to downloaded ESA/Hubble rendition; not a blanket relicensing of NASA overview, APOD Ted Stryk processing, scientific papers or raw MAST products."
+  },
+  "dates": {
+    "publication": "2013-07-16T15:18 publisher release, timezone unspecified",
+    "blackWhiteMoonsRings": "2009 WFC3 visible per publisher caption; exact date/exposure/products remain open.",
+    "colourNeptuneInset": "2009-08-19 per publisher caption, separate image.",
+    "discoverySearch": "Over150 Hubble archival images2004–2009, discoveryJuly2013; not all constituent collage exposure dates."
+  },
+  "crosswalk": {
+    "assessment": "NASA overview and ESA rendition display matching system/moon labels and central inset, but NASA768x512 has compass/scale/filter/program annotations absent in downloaded3000x2400 collage. Pixel/byte equality not claimed; original annotated HST variant/product crosswalk remains open.",
+    "priorCredit": "NASA overview NASA/JPL label retained as catalogue discrepancy; ESA original rendition full credit verified, no destructive replacement."
+  },
+  "limitations": [
+    "Despina unresolved detection is not terrain, elongated shape, calibrated visible colour or local chemistry. Central Neptune and Galatea/Larissa/Thalassa/S2004N1 never assigned as Despina geography.",
+    "S/2004N1 is now Hippocamp; discovery/designation relates to that separate moon, not new Despina discovery.",
+    "Glare/background/noise/black regions and artistic colour inset do not establish atmosphere absence, calibrated exposure or surface maps.",
+    "No angular/raster size computation or exhaustive newest-imagery claim; exact raw MAST products, processing, frame and scene registration remain open.",
+    "Direct urllib403 first attempt, successful curl200 HTML and unchanged JPEG retained. Failed attempt not assigned image/source hash."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedPublicAssets": 405,
+    "allBytesEqualHEAD": true,
+    "queue": 566,
+    "originalsMastersNativeProvenance": "Preserved, including recorded Clipper preview."
+  },
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "production": "pass",
+    "full": "FAIL16020988bytes20988over hard16MBgate",
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "interbuildDifferences": "Unaudited; no savings attribution.",
+    "backlog": "ACTIVE; substantial conforming lossless headroom required before prepared dossiers; no external blocker claimed."
+  }
+}

@@ -22,6 +22,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/events.js    events feed   │
 │                                      │           │ server/search.js    star search   │
 │                                      │           │ server/rf.js        COMMS relays  │
+│                                      │           │ server/tx.js, fm.js hailing (TX)  │
 │                                      │           │ server/surfaceimages.js landed    │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
@@ -102,6 +103,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
+| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `WS /api/rf/tx` | COMMS hailing frequency (#69): loopback only (peer, Host and Origin). `{type:'open', freqHz, callsign, attested, region, gainDb, timeoutS, driver, converter, antennas, antennaId}` → `open` / `refused {code, reason}`; then binary Int16 mic PCM at 16 kHz; `{type:'close'}`. Server sends `state` (elapsed, remaining, sending ID) each second and `closed {reason, idSent}` (`server/tx.js`) |
 | `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
 | `GET /api/cluster-members?name=` | One catalogued cluster's brightest ≤ 2,500 Gaia DR3 members `[ra, dec, plx, ePlx, G, BP−RP, prob, gaiaId, inTidal]` with its distance, r50, tidal radius and A_V (VizieR, cached 90 days; unknown names 404) |
@@ -136,8 +139,9 @@ snapshot does not grow); the chart badge says so when that runs short.
 ## Mac App Store build (#51)
 
 `VITE_FIDELITY_APP_STORE=1 npm run build:standalone` is the standalone above in its App Store
-flavour (`src/appstore.js` exports `APP_STORE`): it leaves out franchise-branded extras, the Starfleet
-quadrant overlay and the STAR TREK postcard style, which App Review treats as third-party trademarks.
+flavour (`src/appstore.js` exports `APP_STORE`): it leaves out franchise-branded extras, the Star Trek
+layer (#25, #41: `settings.get('starfleet')` is always false and the panels' STAR TREK sections are empty)
+and the STAR TREK postcard style, which App Review treats as third-party trademarks.
 The macOS shell lives in [allengeer/fidelity-osx](https://github.com/allengeer/fidelity-osx): a sandboxed
 SwiftUI app whose WKWebView loads this file from `fidelity://app/index.html` through a URL scheme handler,
 with no local server or port. `/api/*` on that scheme goes to a Swift router, which will take over
@@ -333,7 +337,8 @@ and tested in `src/views/cameraMath.js` (`tests/camera.test.js`).
   body nearest the line of sight (within 2° or 1.2 × its apparent radius) or the body you rode with,
   re-expresses the camera relative to it and flies there without a second route flight
   (`quietFocus`). The body flights of the panel and route keep working in LOOK and FLY (orbit-style
-  while they run). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
+  while they run). While the HELM (#42) flies the ship, the rig's `captured()` hook hands it the keys,
+  pointer and camera and the cluster is hidden (P still opens a postcard). In the surface view the cluster drives `surface.fov` and its buttons: FIT 70°,
   RESET back to the zenith.
 
 Apparent size (#47, `src/astro/apparent.js`): the scale snaps to TRUE on landing (`scaleMix = 1`), so
@@ -395,7 +400,58 @@ Every upstream URL must be on a cached station list (no open proxy). The RF rece
 local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
 rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
 chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
-(on screen, off screen, tune, scan, close channel) and offline phrases. Nothing transmits.
+(on screen, off screen, tune, scan, close channel, open/close hailing) and offline phrases.
+
+**Transmission (hailing frequency).** Only when `/api/rf/devices` lists a transmit-capable SDR does
+the RF finder show TRANSMIT SETUP (`src/views/comms/transmitter.js`): callsign, a licence
+attestation (both in `settings.txSetup`, never sent anywhere but the local backend), ITU region,
+TX gain (0–20 dB, default 0) and timeout (default 3 min, 1–30), and ANTENNAS: the operator's list
+(name, bands 2 m / 70 cm / HF receive only, or none ticked = unknown; directional), prefilled with
+editable defaults (Arrow dual-band Yagi: 2 m + 70 cm, directional; Small arrow and Donut: unknown;
+Small loop and Wire: HF receive only), and the one in use (no default: the operator picks it).
+"Open a hailing frequency 146" (voice, or the button) goes:
+
+```
+txGate (src/data/tx.js)  device ready → no converter in the path unless bypassed → callsign → attestation
+                         → band plan (whole 11 kHz signal inside 2 m / 70 cm for the region: R2 144–148,
+                         420–450; R1 144–146, 430–440; R3 144–148, 430–440) → the device's range (a bladeRF
+                         x40/x115 starts at 300 MHz) → the antenna in use is marked for that band (antennaCheck:
+                         "Unable to comply: the Small loop is set for HF receive only. Select the Arrow … for 146 MHz.")
+browser  getUserMedia → AudioWorklet → resample 16 kHz → Int16 → ws /api/rf/tx (loopback only)
+server   txGate again → createTxSession (server/tx.js): one at a time
+         mic jitter buffer (≤ 500 ms) → server/fm.js: HP 300 Hz + LP 3 kHz (4th order) → pre-emphasis
+         (750 µs, 1 kHz full scale = full deviation) → clip → 3 kHz splatter filter → clip
+         → FM ±2.5 kHz (Carson 2 × (2.5 + 3) = 11 kHz, the ≈10 kHz NFM channel) at 2 Msps
+         → SC16 Q11 → bladeRF-cli -e "set frequency tx F; set samplerate tx 2000000; set bandwidth tx 1500000;
+                       set gain tx G; tx config file=/dev/stdin format=bin …; tx start; tx wait"   (primary)
+           or int8 IQ → hackrf_transfer -t - -f F -s 2000000 -b 1750000 -x G -a 0      (HackRF, amp off)
+```
+
+Safety: the session ends at the timeout, after 15 s without mic frames, on CLOSE (button or "close
+hailing frequency"), when the page disconnects, or when COMMS is left; every end sends the station
+ID (callsign in CW, 20 wpm, 800 Hz tone, 5 ms shaped keying, as FM) before stdin closes and the tool
+exits, and a long transmission IDs every 10 minutes (FCC §97.119). The mic goes off the moment
+closing starts. Opening silences every received channel so nothing heard is retransmitted. A big
+red TRANSMITTING bar (frequency, callsign, time on air, time to timeout, device, antenna, and
+"DIRECTIONAL: POINT AT THE STATION" for a directional antenna, CLOSE) sits in the COMMS header while
+the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is near the bottom on a
+2.0 micro; libbladeRF clamps to the board's range).
+
+**Signal path (frequency converter).** SIGNAL PATH in the RF finder (`settings.rfConverter`,
+`src/data/converter.js`): none / Ham It Up (LO 125.000 MHz, up) / custom LO and direction, plus
+BYPASS (the Ham It Up's switch). Converting, the local SDR console (`receiver.js`) works in
+antenna-side frequencies: tune and sweep requests go to the SDR at antenna ± LO, the dial, readout,
+scan results and the map's range show the true antenna frequency (the local SDR has no waterfall;
+the KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
+backwards it radiates the LO feedthrough, the image and mixing products unfiltered (FCC §97.307)
+and can be damaged, so txGate refuses transmit while one is converting ("TX through the Ham It Up is
+not supported: set it to BYPASS or connect the transmitter directly. HF transmit needs a proper
+transverter and low-pass filter."); transmit stays on the direct 2 m / 70 cm bands with it bypassed. Writes to the tool are paced (backpressure, never > 200 ms ahead of
+real time), silence keeps the carrier when the mic runs dry. `FIDELITY_FAKE_TX=1` (development)
+adds a SIMULATED TX whose IQ goes nowhere, badged IMAGINED. Tests (`tests/tx.test.js`) measure the
+IQ: instantaneous-frequency deviation, 99 % occupied bandwidth, the limiter, CW timing, the
+timeout and the gate, with a fake spawn; the real tools are never run in tests. Not yet tried on
+real hardware.
 
 The map is line art in the LCARS tactical style: today's coastlines and borders from Natural Earth
 1:50m (`public/shapes/world-50m.json`, built by `scripts/build-worldmap.mjs`, decoded by
@@ -511,7 +567,8 @@ sky by the local obscuration, and body panels list the events (`src/panels/skyev
 `src/astro/lambert.js` solves Lambert's problem with Izzo's 2015 algorithm (Householder iterations on the
 non-dimensional time-of-flight equation, multi-revolution low/high paths, prograde or retrograde) and propagates
 two-body orbits with universal variables. `src/astro/transfer.js` builds on the app's ephemeris (Standish elements
-for planets, SBDB elements for small bodies; moons via their parent planet): `transfer()` gives C3, departure and
+for planets, SBDB elements for small bodies; moons via their parent planet, `targetFor()`, which gives none for
+Earth's own Moon since Earth is the launch site): `transfer()` gives C3, departure and
 arrival v∞ and a Δv budget (200 km LEO injection; capture into a 1.1 R circular orbit, a 1.1 × 100 R ellipse for the
 giants, or a speed match for small bodies); `porkchop()`/`porkchopByArrival()` grid them; `launchWindows()` finds the
 local minima of least C3 along the departure axis (shallow dips between windows filtered) and the span within 30%
@@ -667,7 +724,7 @@ viewer's three recordings (localStorage). Only after it fires does `src/voice/co
 instructions (`screenContext` in `main.js`: view and route, what the camera is centred on or the surface
 spot, clock and rate, scale, layers, spectral band, missions playing out, an open video/feed window, the
 selected star and the side panel's text; refreshed at each wake and after every tool call) and its tools:
-`go_to`, `set_layer`, `set_time`, `comms`, and the ship's calculators (`src/voice/shipcalc.js`): `body_state`
+`go_to`, `set_layer`, `set_time`, `comms`, the helm's `set_course` and `helm` (#42), and the ship's calculators (`src/voice/shipcalc.js`): `body_state`
 (distances, light time, speed, RA/Dec, constellation, elongation, phase, size and magnitude from Earth, light-time
 corrected, from the System View's own positions: Horizons or Kepler, Kepler for the planets when the ship is at
 another star), `distance` (between bodies or to a nearby star, with straight-line travel time at a speed or a
@@ -986,4 +1043,120 @@ sizes, the surface view and NASA's Milky Way artwork. The provenance line and cr
 frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/stylize.js`): JSON only and same-origin
 (so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
 under `data/stylize/` by a hash of image, prompt, size, quality and model.
+
+
+## Star Trek layer (#25, #41)
+
+Fiction drawn over the real data, never mixed into it: every piece is badged IMAGINED, drawn in its own LCARS
+overlay colour (`--trek`, `#ff88aa`; labels italic with a dashed edge, where real labels have a solid left border)
+and switched by one shared setting, `starfleet` (default **on**; the STAR TREK LAYER pill in the Navigation,
+Quadrant, Galaxy and System panels).
+
+- **Data.** `src/data/trek.js` holds every place in one shape: `id`, `name`, `kind` (homeworld, colony, station,
+  starbase, yard, territory, feature, route, sector, quadrant), `views`, `placement`, `confidence` (`canon` on
+  screen, `reference` from a licensed book, mostly *Star Trek: Star Charts* 2002, `fan` an approximate spot after
+  Star Charts' maps), `source`, `firstAppearance` (series, episode, year; `featured` when it is a defining rather
+  than first appearance; `null` plus `appearanceNote` when not checked), our own `summary`, `alternatives`
+  (conflicting placements) and a Memory Alpha search link. Placements: a real catalogue star (HYG id, HIP or
+  Gliese number, RA/Dec, parallax distance), heliocentric galactic l/b/distance (with a radius for regions), an
+  arc, a path, a surface site, or an orbit around a Sol body. `trekApprox` marks everything not pinned to a real
+  star as APPROXIMATE. `tests/trek.test.js` checks the data and the canon geometry.
+- **Quadrants.** Star Trek's quadrants are lines through the galactic core; as in Star Charts, the Alpha/Beta line
+  runs through Sol: Alpha on the side of galactic longitude 180–360°, Beta 0–180°, Gamma beyond Alpha and Delta
+  beyond Beta. The Galaxy View draws the cross and the four names (the overlay of #10); the Navigation View draws
+  the Alpha/Beta border through Sol towards the core (dashed line and a faint upright curtain, riding with Sol in deep
+  time) with ALPHA and BETA labels; the Quadrant View draws it at every range and, at 30 kly, the Gamma/Delta line
+  through the core. The IAU galactic quadrants I–IV stay as they were (orange spokes, lilac labels).
+- **Navigation View.** Worlds at real stars (Vulcan at 40 Eridani A, Andoria at ε Indi, Tellar at 61 Cygni A, Wolf
+  359, Alpha Centauri, Altair VI, Vega colony) attach to the catalogue star already on the chart (`trekStarMatch`: by
+  HYG id, then by name) as a pink ring and a label on the star's left; the star's own point, colour and label are
+  untouched. They follow their star through deep time.
+- **Quadrant View.** Far real stars (Rigel, Deneb IV), approximate homeworlds (Qo'noS, Romulus & Remus, Bajor,
+  Cardassia Prime, Ferenginar), DS9, Starbase 375, the Badlands, Briar Patch, Mutara Nebula, Delphic Expanse, the
+  Romulan Neutral Zone (a dashed arc) and the Bajoran wormhole's Alpha end, plus the powers' territories as soft
+  translucent discs in the plane. Territory labels show within ~2,600 ly of the camera, small places within ~650 ly.
+- **Galaxy View.** The Dominion (Gamma) and Borg space (Delta) as soft discs, the Great Barrier round the core and
+  the galactic barrier at the rim as dashed rings, the Bajoran wormhole to its Gamma end and Voyager's route home
+  (~70,000 ly) as dashed paths, all inside `fleetGroup` so they turn with the Sun's frame in deep time.
+- **System View.** `src/views/system/trek.js` hangs the Sol stations (Utopia Planitia Fleet Yards, San Francisco
+  Fleet Yards, Earth Spacedock, Earth Station McKinley, Jupiter Station) off their body: a dashed ring at the
+  station's height, re-mapped each frame through the radial compression (`localMap`) so it clears the enlarged
+  globe, with a marker on the camera's side of the ring (they have no real orbit to follow). Shown around the focused
+  body. Surface places (Starfleet HQ & Academy, Utopia Planitia, Tycho City, New Berlin) join the sites layer as the
+  `trek` site kind (tier `imagined`; hidden with the layer as well as by their SITES filter). In another star
+  system, a world Star Trek puts at one of its stars gets a dashed ring at √L AU (where it would receive Earth's
+  sunlight; an assumption, said so on the card).
+- **Cards.** `src/panels/trek.js` builds each view's STAR TREK section (toggle and list) and the card: summary,
+  first appearance, placement and its source, confidence, APPROXIMATE or AT THE REAL STAR, the real star's own
+  distance (the one MEASURED row, labelled as the star's), conflicts, the Memory Alpha link with its CC BY-NC
+  credit and the trademark notice. WARP TO opens the real star's System View (`go({ level: 'system', system:
+  <HYG id> })`) and pulls back to show the imagined ring. Clicking any pink label opens its card; BACK returns to
+  the view's panel (`renderCurrentPanel` in `main.js`). Postcards add STAR TREK OVERLAY to the IMAGINED stamp
+  while the layer is on.
+- **Licensing.** Star Trek is a trademark of Paramount / CBS Studios. This is a non-commercial fan homage: no
+  franchise artwork, logos or text; summaries are original and Memory Alpha is linked, not copied.
+
+## Helm: flying the USS Fidelity (#42)
+
+TAKE THE HELM (system panel, or TAKE THE HELM HERE / SET COURSE in a body panel; H leaves) turns the System
+View into a cockpit. `src/views/ship/helm.js` (`createHelm`, made by SystemView with its scene, camera,
+OrbitControls, rig and node table) owns the ship's state, input, autopilot, camera, effects and HUD;
+`src/views/ship/shipModel.js` builds the ship; `src/astro/warp.js` holds the pure, tested maths
+(`tests/warp.test.js`); `src/panels/helm.js` the side-panel sections.
+
+- **The ship** is an original design built in code (IMAGINED, credited to this repo, no GLB): a swept arrowhead
+  lifting body (352 m) with a dorsal spine and bridge blister, a ventral keel with an amber deflector ring, and two
+  slim nacelles slung below and outboard of the wingtips; red impulse strips, running lights, a registry decal and
+  lit windows; ~7k triangles. Metres, nose along −Z, +Y dorsal, +X starboard, scaled to AU at the scene origin.
+  `setGlow(k)` brightens and whitens the nacelles and deflector with warp; `setBridge(on)` hides the blister for
+  the first-person camera. Craft materials get the studio environment map like mission models.
+- **Floating origin on the ship.** The ship's position is kept relative to the nearest body (`anchor`, handed over
+  when another is 30% nearer, as FLY does), and every frame SystemView sets `focusPos` to it, so the ship sits at
+  the scene origin and the camera within kilometres of it: precise at a station 1 km away and at 40 AU alike. The
+  scale is TRUE while at the helm (`scaleMix = 1`, so distances, sizes and the autopilot's standoffs are real);
+  `focusId` follows the course target (labels, orbit highlight). The body flights of the panel and route turn into
+  a selection (`system.focus` → `helm.select`); a survey, a site view, LOOK AT or standing on a surface takes the
+  camera back (`disengage({ quiet })`); leaving the helm otherwise orbits the nearest body from where the camera is
+  (`helmHandBack`). Double-click does not land while flying.
+- **Views.** CHASE (a lagging third-person camera, wheel to pull back), BRIDGE (first person, LCARS frame and
+  reticle, wheel zooms the field), ORBIT (OrbitControls around the ship). Keys 1 / 2 / 3 or V.
+- **Flight models.** IMPULSE / WARP: the throttle (W/S or R/F, the slider) runs from FULL STOP through 1 m/s
+  (log scale) to full impulse 0.25 c, then warp 1 → 9.99; the speed eases exponentially (so slow frames stay on
+  time), and no speed between 0.25 c and c is ever flown: the warp field forms or collapses (flash). Warp follows
+  the TNG scale v = w^(10/3) c to warp 9 (≈ 1,516 c), then log-interpolates through the Technical Manual's figures
+  (9.6 ≈ 1,909 c, 9.9 ≈ 3,053 c, 9.99 ≈ 7,912 c) towards an unattainable warp 10; on this curve Voyager's quoted
+  9.975 comes out near 5,400 c (other quoted figures differ; it is all fiction). REAL PHYSICS:
+  Newtonian thrust at 1 / 10 / 100 / 1000 g along the nose, proper velocity integrated so speeds stay below c,
+  FULL STOP as a retro-burn; no warp and no gravity. Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
+  and BRIDGE; touch too), Shift faster; X full stop; C set course for the selection; Esc cancels the autopilot.
+  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched.
+- **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
+  STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
+  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA.
+- **Autopilot.** SET COURSE (panel, C, voice) turns the ship, picks a cruise (AUTO: impulse if it gets there in
+  ~20 s, else the warp factor that does, up to 9.9; or FULL IMPULSE / WARP 2–9.9 from the CRUISE button), cruises,
+  and decelerates in proportion to what is left (v = d / 0.9 s + 0.3 km/s, dropping out of warp at full impulse)
+  to an arrival point between the ship and the body: 3 radii for worlds, 5 for stars, 6 (≥ 40 km) for small
+  bodies, ≥ 0.6 km from craft. It then holds STANDARD ORBIT about the body's spin axis at the real angular rate
+  √(GM/r³) (period shown; the ship keeps its attitude) or STATION-KEEPING (facing the craft). Any manual input takes
+  over. Arrival selects the body (route and panel follow).
+- **Other stars.** WARP TO A STAR (system panel: the 14 nearest catalogued stars) or FLY THERE AT THE HELM (the
+  Navigation View's selected star) turns towards the star's real direction (catalogue J2000 positions → scene axes),
+  goes to warp 9.9 for ~3 s and then changes route to that system; `helm.onLoad` (called by `SystemView.load`) drops
+  the ship out of warp at the system's edge, on the side it came from, and sets course for the star. The Quadrant
+  and Galaxy views do not carry the ship (backlog).
+- **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
+  at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
+- **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST
+  TRAVEL from the ship (or from Earth / the system's star when not flying): distance, light, Voyager-speed chemical,
+  Dawn-class ion, Orion nuclear pulse and Starshot (with ship time) as COMPUTED straight-line times, full impulse
+  and a 1 g burn-coast-brake rocket with Earth and ship time (COMPUTED), and the quoted warp (IMAGINED). The system
+  panel carries the helm status, WARP TO A STAR (with honest travel for the jump) and the SHIP'S LOG (events,
+  distance travelled, ship time vs Earth time, places visited; this session only). Postcards badge the ship and the
+  warp streaks IMAGINED. `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
+
+A POSTCARD button sits in the top bar (`#postcard-tab` in `index.html`, wired in `main.js`) so a
+postcard is always one click away, in any view; the per-view `P` shortcut (3D camera bars and COMMS)
+still works. When the current view has no `snapshot` (a map or a list), `open()` says so and does
+nothing.
 
