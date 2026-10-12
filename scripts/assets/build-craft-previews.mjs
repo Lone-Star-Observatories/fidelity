@@ -29,8 +29,22 @@ for (const [id, asset] of Object.entries(assets)) {
   const doc = await io.read(new URL(`public${asset.url}`, root).pathname);
   for (const extension of doc.getRoot().listExtensionsUsed()) if (extension.extensionName === 'KHR_draco_mesh_compression') extension.dispose();
   const count = () => doc.getRoot().listMeshes().flatMap(m => m.listPrimitives()).filter(p => p.getMode() === 4).reduce((n,p) => n + (p.getIndices() ?? p.getAttribute('POSITION')).getCount()/3,0);
+  // previewFlat: texture seams stop the simplifier (Europa Clipper stayed at 33k of 44k triangles, 950 kB), so each
+  // material keeps its texture's mean colour (linear light) and the UVs go; the stored flag keeps rebuilds repeatable
+  if (asset.previewFlat) for (const m of doc.getRoot().listMaterials()) {
+    const t = m.getBaseColorTexture();
+    if (t) {
+      const { data } = await sharp(Buffer.from(t.getImage())).resize(1, 1, { fit: 'fill' }).raw().toBuffer({ resolveWithObject: true });
+      const lin = (v) => { const c = v / 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }, f = m.getBaseColorFactor();
+      m.setBaseColorFactor([f[0] * lin(data[0]), f[1] * lin(data[1]), f[2] * lin(data[2]), f[3]]);
+    }
+    m.setBaseColorTexture(null); m.setNormalTexture(null); m.setMetallicRoughnessTexture(null); m.setOcclusionTexture(null); m.setEmissiveTexture(null);
+  }
   if (count() > 4000) {
-    for (const mesh of doc.getRoot().listMeshes()) for (const p of mesh.listPrimitives()) { p.setAttribute('NORMAL',null); p.setAttribute('TANGENT',null); }
+    for (const mesh of doc.getRoot().listMeshes()) for (const p of mesh.listPrimitives()) {
+      p.setAttribute('NORMAL',null); p.setAttribute('TANGENT',null);
+      if (asset.previewFlat) for (const s of p.listSemantics()) if (s.startsWith('TEXCOORD')) p.setAttribute(s,null);
+    }
     await doc.transform(weld(), simplify({simplifier:MeshoptSimplifier,ratio:4000/count(),error:0.025}),normals(),prune());
   }
   await doc.transform(textureCompress({encoder:sharp,resize:[textureSize,textureSize],quality:55}),meshopt({encoder:MeshoptEncoder}));
@@ -39,7 +53,7 @@ for (const [id, asset] of Object.entries(assets)) {
   asset.previewBytes = bytes.length;
   asset.previewSha256 = createHash('sha256').update(bytes).digest('hex');
   asset.previewTextureSize = textureSize;
-  asset.previewProcessing = `Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to ${textureSize} pixels; Meshopt compression. Author axes and existing registration limits retained.`;
+  asset.previewProcessing = `Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; ${asset.previewFlat ? 'textures replaced by each material\'s mean colour (flat preview)' : `textures limited to ${textureSize} pixels`}; Meshopt compression. Author axes and existing registration limits retained.`;
   await fs.writeFile(new URL(`public${asset.previewUrl}`,root),bytes);
   console.log(id,bytes.length);
 }
