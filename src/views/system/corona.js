@@ -9,21 +9,22 @@
 // uEarthDir/uNorth), so EUV loops sit on the active regions the SDO image shows.
 //
 // Layers and their honesty (shown in the Sun's CORONA panel, coronaLayers):
-//   streamer belt and streamers   MODELLED from MEASURED position angles (LASCO), placed in the plane of the sky
+//   streamer belt and streamers   MODELLED from MEASURED position angles (LASCO), placed on a belt sheet along each
+//                                 line of sight (src/data/corona.js placeStreamer), so they hold from any side
 //   active-region loops, holes    MODELLED shapes at MEASURED places (AIA 193 Å), or illustrative (IMAGINED)
 //   fall-off                      MODELLED (Baumbach, hydrostatic, radio radius)
 //   wisps, plumes, slow outflow   IMAGINED (value noise in direction; drifts outward slowly)
 //   brightness                    to scale in EUV and radio; exaggerated (IMAGINED) in white light and IR
 //
 // Cost: the march takes 20–56 steps (more when the Sun is large on screen), only over the sphere's pixels, and at half
-// resolution (createCoronaPass); the DETAIL slider's "+ 3D CORONA" step (setting `corona`) turns it off, leaving the
-// old glare sprite.
+// resolution (createCoronaPass), lowered further on slow machines (createQualityGovernor: frame time → resolution and
+// steps); the DETAIL slider's "+ 3D CORONA" step (setting `corona`) turns it off, leaving the old glare sprite.
 
 import * as THREE from 'three';
 import { effectiveNm } from '../../astro/bands.js';
 import { coronaLook, coronaLayers, structureFromFeed, modelledStructure, resolveStructure, radioAbsorption, losIntegral, euvEmissivity, EMISSIVITY } from '../../data/corona.js';
 
-const MAX_STR = 8, MAX_REG = 8, MAX_HOLE = 6;
+const MAX_STR = 8, MAX_REG = 8, MAX_HOLE = 6, MAX_OCC = 8;
 /** The render layer the corona lives on: the main render skips it, createCoronaPass draws it. */
 export const CORONA_LAYER = 5;
 const STANDALONE = import.meta.env?.MODE === 'standalone';
@@ -56,6 +57,21 @@ export const structureAt = (jd) => structureFromFeed(feedData, jd) ?? modelledSt
 /** Rows for the Sun's CORONA panel section. */
 export const coronaSummary = (band, pass, jd, opts = {}) => coronaLayers(lookFor(band, pass), structureAt(jd), { jd, ...opts });
 
+/**
+ * What a postcard (#40) must say about a drawn corona: { modelled: [...], imagined: [...], credit } for the provenance
+ * line, or null when it is not drawn. The volume and fall-off are MODELLED; the fine wisps are IMAGINED, and so is the
+ * brightness where it is exaggerated (white light, IR) and illustrative active regions (no measured structure).
+ */
+export function coronaPostcard(corona) {
+  if (!corona?.mesh.visible || !corona.look || corona.look.kind === 'none') return null;
+  const s = corona.structure, imagined = ['CORONA WISPS'];
+  if ((corona.look.exaggeration ?? 1) > 3) imagined.push('CORONA BRIGHTNESS (EXAGGERATED)');
+  if (s?.source !== 'measured') imagined.push('CORONA ACTIVE REGIONS (ILLUSTRATIVE)');
+  const src = s?.source === 'measured' ? [s.sources?.coronagraph, s.sources?.euv].filter(Boolean) : [];
+  return { modelled: ['3D CORONA'], imagined,
+    credit: src.length ? `Corona structure measured on ${src.map((x) => x.instrument).join(' and ')} (${[...new Set(src.map((x) => x.credit))].join('; ')})` : null };
+}
+
 // ---- the shader ---------------------------------------------------------------------------------------------
 const VERT = /* glsl */`
   #include <common>
@@ -79,12 +95,14 @@ const FRAG = /* glsl */`
   uniform float uBeltA; // its weight: lower when measured streamers are drawn as well
   uniform vec2 uPolar; // polar-hole edge (sin latitude), depth
   uniform vec4 uStr[${MAX_STR}]; uniform float uStrA[${MAX_STR}]; uniform int uNStr;
+  uniform vec4 uStrT[${MAX_STR}]; // each streamer's direction along the belt sheet (xyz) and half-length there (rad)
   uniform vec4 uReg[${MAX_REG}]; uniform float uRegA[${MAX_REG}]; uniform int uNReg;
   uniform vec4 uHole[${MAX_HOLE}]; uniform float uHoleA[${MAX_HOLE}]; uniform int uNHole;
   uniform vec3 uEcl; uniform vec3 uCol; uniform float uGain; uniform float uLoops; uniform float uDustIn;
   uniform float uGamma; uniform float uLog; // display: log stretch, brightness uLog maps to ~0.1 and 1 to ~1 (a radial-filter look; 0 = linear)
   uniform vec3 uKc; uniform vec3 uKp; // Baumbach emissivity terms: F, K1, K2 (coefficient, power)
-  uniform vec4 uOcc; // a body in front of the Sun (centre, radius; R☉, the Sun's frame), w = 0: none
+  uniform float uPix; // the pass's pixel size (rad)
+  uniform vec4 uOcc[${MAX_OCC}]; uniform int uNOcc; // bodies in front of the Sun: centre minus camera (xyz) and radius (w), R☉ in the Sun's frame
 
   float hash(vec3 p) { p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
   float vnoise(vec3 x) {
@@ -108,10 +126,11 @@ const FRAG = /* glsl */`
     float helm = exp(-(r - 1.0) / 0.9), w = mix(0.06, 0.32, helm);
     float x = dot(d, uBelt.xyz) - uBelt.w;
     float s = uBeltA * exp(-x * x / (w * w)) * (0.3 + 0.9 * vnoise(d * 2.2 + 3.1));
-    for (int i = 0; i < ${MAX_STR}; i++) {
+    for (int i = 0; i < ${MAX_STR}; i++) { // each a fold of the belt sheet: narrow across it, stretched along it
       if (i >= uNStr) break;
-      vec3 q = d - uStr[i].xyz; float wi = uStr[i].w * mix(0.8, 2.2, helm);
-      s += 2.2 * uStrA[i] * exp(-dot(q, q) / (wi * wi));
+      vec3 q = d - uStr[i].xyz; float wi = uStr[i].w * mix(0.8, 2.2, helm), li = max(uStrT[i].w, wi);
+      float al = dot(q, uStrT[i].xyz); vec3 qa = q - uStrT[i].xyz * al;
+      s += 2.2 * uStrA[i] * sqrt(wi / li) * exp(-dot(qa, qa) / (wi * wi) - al * al / (li * li));
     }
     return s * uS.x;
   }
@@ -171,9 +190,12 @@ const FRAG = /* glsl */`
     float t0 = max(0.0, -b - h), t1 = -b + h;
     float h1 = b * b - (dot(ro, ro) - 1.0); bool hit = false;
     if (h1 > 0.0) { float th = -b - sqrt(h1); if (th > 0.0) { t1 = min(t1, th); hit = true; } }
-    if (uOcc.w > 0.0) { // the Moon in an eclipse, a planet in transit: the line of sight ends on it
-      vec3 oc = ro - uOcc.xyz; float bo = dot(oc, rd), ho = bo * bo - (dot(oc, oc) - uOcc.w * uOcc.w);
-      if (ho > 0.0) { float to = -bo - sqrt(ho); if (to > 0.0 && to < t1) { t1 = to; hit = false; if (t1 <= t0) discard; } }
+    float cover = 1.0; // anti-aliased limbs: lines of sight grazing a body lose their corona over ~1.5 pass pixels
+    for (int i = 0; i < ${MAX_OCC}; i++) { // the Moon in an eclipse, planets in transit or in front: the line of sight ends on them
+      if (i >= uNOcc) break;
+      vec3 oc = -uOcc[i].xyz; float rr2 = uOcc[i].w * uOcc[i].w, bo = dot(oc, rd), dm = length(cross(oc, rd)), ho = rr2 - dm * dm; // dm: miss distance, without cancellation
+      if (ho > 0.0) { float to = -bo - sqrt(ho); if (to > 0.0 && to < t1) { t1 = to; hit = false; } }
+      else if (-bo > 0.0 && -bo < t1) cover *= smoothstep(0.0, 1.5 * uPix, (dm - uOcc[i].w) / -bo);
     }
     if (t1 <= t0) discard;
     // samples crowd towards the closest approach to the Sun, where the emissivity peaks
@@ -208,7 +230,7 @@ const FRAG = /* glsl */`
     }
     // over the disc only a share (the disc image already holds it), fading in across the limb so it has no hard edge
     if (hit) L *= mix(uP.z, 1.0, smoothstep(0.97, 1.0, length(ro - rd * b)));
-    float I = L * uGain;
+    float I = L * uGain * cover;
     float v = uLog > 0.0 ? log(1.0 + I / uLog) / log(1.0 + 1.0 / uLog) : 1.0 - exp(-I);
     v = pow(min(v, 1.0), uGamma); // darker between the streamers
     vec3 col = uCol * v;
@@ -229,11 +251,11 @@ export function createCorona() {
     uCam: { value: new THREE.Vector3(0, 0, 10) }, uR: { value: 6 }, uTime: { value: 0 }, uSteps: { value: 32 }, uOpacity: { value: 1 },
     uW: { value: new THREE.Vector4() }, uP: { value: new THREE.Vector4(0.1, 0, 0, 0) }, uS: { value: new THREE.Vector4(1, 1, 1, 1) },
     uBelt: { value: new THREE.Vector4(0, 1, 0, 0) }, uBeltA: { value: 0.7 }, uPolar: { value: new THREE.Vector2(0.85, 0.5) },
-    uStr: { value: vec4s(MAX_STR) }, uStrA: { value: new Array(MAX_STR).fill(0) }, uNStr: { value: 0 },
+    uStr: { value: vec4s(MAX_STR) }, uStrA: { value: new Array(MAX_STR).fill(0) }, uNStr: { value: 0 }, uStrT: { value: vec4s(MAX_STR) },
     uReg: { value: vec4s(MAX_REG) }, uRegA: { value: new Array(MAX_REG).fill(0) }, uNReg: { value: 0 },
     uHole: { value: vec4s(MAX_HOLE) }, uHoleA: { value: new Array(MAX_HOLE).fill(0) }, uNHole: { value: 0 },
     uEcl: { value: new THREE.Vector3(0, 1, 0) }, uCol: { value: new THREE.Color(1, 1, 1) }, uGain: { value: 1 }, uLog: { value: 0.003 }, uGamma: { value: 1 }, uLoops: { value: 0 }, uDustIn: { value: 0 },
-    uKc: { value: v3(EMISSIVITY.map((e) => e[0])) }, uKp: { value: v3(EMISSIVITY.map((e) => e[1])) }, uOcc: { value: new THREE.Vector4() },
+    uKc: { value: v3(EMISSIVITY.map((e) => e[0])) }, uKp: { value: v3(EMISSIVITY.map((e) => e[1])) }, uOcc: { value: vec4s(MAX_OCC) }, uNOcc: { value: 0 }, uPix: { value: 0.001 },
   };
   const material = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms: u, transparent: true, depthWrite: false,
     blending: THREE.AdditiveBlending, side: THREE.FrontSide });
@@ -275,6 +297,7 @@ export function createCorona() {
       return k;
     };
     u.uNStr.value = fill(u.uStr.value, r.streamers, u.uStrA.value, MAX_STR, (t) => t.width);
+    r.streamers.slice(0, MAX_STR).forEach((t, i) => u.uStrT.value[i].set(...(t.along ?? [1, 0, 0]), t.length ?? t.width));
     u.uNReg.value = fill(u.uReg.value, r.regions, u.uRegA.value, MAX_REG, (t) => t.size);
     u.uNHole.value = fill(u.uHole.value, r.holes, u.uHoleA.value, MAX_HOLE, (t) => t.size);
   }
@@ -288,9 +311,10 @@ export function createCorona() {
     /**
      * Per frame. camLocal: the camera in the Sun mesh's frame (R☉); earthLocal: unit direction to Earth in that frame (the
      * disc images face it); eclLocal: ecliptic north; jd: the clock; pxRadius: the Sun's radius on screen (px);
-     * occluder: { centre (Vector3, the Sun's frame), radius (R☉) } of a body in front of the Sun, or null.
+     * occluders: bodies in front of the Sun, [{ rel (Vector3: centre minus camera, R☉ in the Sun's frame, worked out in
+     * double precision so the Moon's limb is sharp in an eclipse), radius (R☉) }], largest first (up to 8 are used).
      */
-    update({ on = true, camLocal, earthLocal, eclLocal = null, jd, now = performance.now(), pxRadius = 100, opacity = 1, occluder = null }) {
+    update({ on = true, camLocal, earthLocal, eclLocal = null, jd, now = performance.now(), pxRadius = 100, opacity = 1, occluders = [] }) {
       const show = on && look && look.kind !== 'none' && pxRadius > 1.5 && opacity > 0.01;
       mesh.visible = !!show;
       if (!show) return;
@@ -303,7 +327,9 @@ export function createCorona() {
       u.uTime.value = (now / 1000) % 100000;
       u.uSteps.value = Math.round(Math.max(20, Math.min(56, 18 + pxRadius * 0.12)));
       u.uOpacity.value = opacity;
-      if (occluder) u.uOcc.value.set(occluder.centre.x, occluder.centre.y, occluder.centre.z, occluder.radius); else u.uOcc.value.w = 0;
+      const nOcc = Math.min(MAX_OCC, occluders.length);
+      for (let i = 0; i < nOcc; i++) { const o = occluders[i]; u.uOcc.value[i].set(o.rel.x, o.rel.y, o.rel.z, o.radius); }
+      u.uNOcc.value = nOcc;
       // from outside, the near side; from inside, the far side (the pass has no depth buffer, so nothing else hides it)
       const side = camLocal.length() < u.uR.value * 1.0001 ? THREE.BackSide : THREE.FrontSide;
       if (material.side !== side) { material.side = side; material.needsUpdate = true; }
@@ -311,38 +337,82 @@ export function createCorona() {
   };
 }
 
+// Adaptive quality: [resolution scale (× the pass's own), march steps (×)], best first. The pass watches the frame
+// interval while the corona is drawn and steps down when frames are slow, back up when there is time to spare.
+export const CORONA_QUALITY = [[1, 1], [1, 0.75], [0.75, 0.6], [0.5, 0.5], [0.4, 0.4]];
+/**
+ * The adaptive quality controller, free of WebGL so it can be tested: tick(dtMs) with each frame interval while the
+ * corona is drawn; `level` indexes CORONA_QUALITY. Steps down after ~1 s averaging slower than `slowMs` (default 28 ms,
+ * ~35 fps), up after ~4 s faster than `fastMs` (19 ms); a level that proved too slow right after stepping up is not
+ * tried again. Each interval counts at most 100 ms (one long frame, such as after a postcard render, cannot decide);
+ * intervals over 5 s (a hidden tab) are ignored.
+ */
+export function createQualityGovernor({ slowMs = 28, fastMs = 19, levels = CORONA_QUALITY.length } = {}) {
+  let level = 0, floor = 0, avg = 16.7, frames = 0, sinceUp = Infinity, upTo = -1;
+  return {
+    get level() { return level; },
+    get avg() { return avg; },
+    tick(dt) {
+      if (!(dt > 0) || dt > 5000) return level;
+      avg += (Math.min(dt, 100) - avg) * 0.08; frames++; sinceUp++; // clamped, so one long frame cannot decide
+      if (frames >= 30 && avg > slowMs && level < levels - 1) {
+        if (sinceUp < 120 && level === upTo) floor = Math.max(floor, level + 1); // stepped up into it and it was too slow: stay below
+        level++; frames = 0; avg = (slowMs + fastMs) / 2;
+      } else if (frames >= 240 && avg < fastMs && level > floor) { level--; frames = 0; sinceUp = 0; upTo = level; }
+      return level;
+    },
+  };
+}
+
 /**
  * Draws the corona at a fraction of the screen resolution and adds it over the frame: the ray march per pixel is the
  * costly part, and the corona is soft, so half resolution (a quarter of the pixels) looks the same. Call after the
- * main render. Bodies in front of it are not depth-tested; the Sun and one occluder (update's `occluder`) are
- * handled in the shader.
+ * main render. Bodies in front of it are not depth-tested here; the shader ends each line of sight on the Sun and on
+ * the bodies passed to update's `occluders`. Slow frames lower the resolution and step count (createQualityGovernor);
+ * render(…, { full: true }) (postcards) always draws at the best level. `edgeFade` (a fraction of the canvas) fades
+ * the corona to nothing towards the canvas edges, for views whose canvas is a box on the page (the Star View).
  */
-export function createCoronaPass(renderer, { scale = 0.5 } = {}) {
+export function createCoronaPass(renderer, { scale = 0.5, edgeFade = 0 } = {}) {
   const rt = new THREE.WebGLRenderTarget(2, 2, { depthBuffer: false, type: THREE.HalfFloatType });
   const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
-    uniforms: { tMap: { value: rt.texture } }, transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending,
+    uniforms: { tMap: { value: rt.texture }, uEdge: { value: edgeFade } }, transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending,
     vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
-    fragmentShader: `varying vec2 vUv; uniform sampler2D tMap;
-      void main() { vec3 c = texture2D(tMap, vUv).rgb; float a = max(c.r, max(c.g, c.b)); if (a < 0.003) discard;
+    fragmentShader: `varying vec2 vUv; uniform sampler2D tMap; uniform float uEdge;
+      void main() { vec3 c = texture2D(tMap, vUv).rgb;
+        if (uEdge > 0.0) { vec2 e = min(vUv, 1.0 - vUv); c *= smoothstep(0.0, uEdge, e.x) * smoothstep(0.0, uEdge, e.y); }
+        float a = max(c.r, max(c.g, c.b)); if (a < 0.003) discard;
         gl_FragColor = vec4(c / a, min(a, 1.0));
         #include <colorspace_fragment>
       }` }));
   quad.frustumCulled = false;
   const quadScene = new THREE.Scene().add(quad), quadCam = new THREE.Camera(), size = new THREE.Vector2(), cc = new THREE.Color();
+  const governor = createQualityGovernor();
+  let last = 0;
   return {
-    /** `corona`: the createCorona() object (skipped when hidden). */
-    render(scene, camera, corona) {
-      if (!corona?.mesh.visible) return;
+    governor,
+    /** `corona`: the createCorona() object (skipped when hidden). `full`: best quality, not timed (postcards). */
+    render(scene, camera, corona, { full = false } = {}) {
+      if (!corona?.mesh.visible) { last = 0; return; }
+      if (!full) {
+        const now = performance.now();
+        if (last) governor.tick(now - last);
+        last = now;
+      }
+      const [qs, qk] = CORONA_QUALITY[full ? 0 : governor.level];
+      renderer.domElement.dataset.coronaQuality = full ? 0 : governor.level;
       renderer.getDrawingBufferSize(size);
-      const w = Math.max(1, Math.floor(size.x * scale)), h = Math.max(1, Math.floor(size.y * scale));
+      const w = Math.max(1, Math.floor(size.x * scale * qs)), h = Math.max(1, Math.floor(size.y * scale * qs));
       if (rt.width !== w || rt.height !== h) rt.setSize(w, h);
+      const su = corona.mesh.material.uniforms.uSteps, steps = su.value;
+      corona.mesh.material.uniforms.uPix.value = ((camera.fov ?? 50) * Math.PI) / 180 / h;
+      su.value = Math.max(12, Math.round(steps * qk));
       const mask = camera.layers.mask, bg = scene.background, auto = renderer.autoClear, ca = renderer.getClearAlpha();
       renderer.getClearColor(cc);
       camera.layers.set(CORONA_LAYER); scene.background = null;
       renderer.setRenderTarget(rt); renderer.setClearColor(0x000000, 0); renderer.autoClear = true;
       renderer.render(scene, camera);
       renderer.setRenderTarget(null); renderer.setClearColor(cc, ca);
-      camera.layers.mask = mask; scene.background = bg;
+      camera.layers.mask = mask; scene.background = bg; su.value = steps;
       renderer.autoClear = false; renderer.render(quadScene, quadCam); renderer.autoClear = auto;
     },
     dispose() { rt.dispose(); quad.geometry.dispose(); quad.material.dispose(); },

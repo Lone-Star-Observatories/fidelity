@@ -84,7 +84,7 @@ import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
 import { makeSnapshot } from '../snapshot.js';
 import { SKINS } from '../../data/skins.js';
-import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from './corona.js';
+import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius, coronaPostcard } from './corona.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -1729,25 +1729,36 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
   }
   const coronaPass = createCoronaPass(renderer);
-  const drawCorona = () => { const c = model?.isSol ? nodes[model.starId]?.corona : null; if (c) coronaPass.render(scene, camera, c); };
+  const drawCorona = (o) => { const c = model?.isSol ? nodes[model.starId]?.corona : null; if (c) coronaPass.render(scene, camera, c, o); };
   let coronaTotality = 0; // 0…1: the 3D corona's opacity in totality, seen from a surface (#79)
   const cz = { cam: new THREE.Vector3(), e: new THREE.Vector3(), ecl: new THREE.Vector3(), q: new THREE.Quaternion(), w: new THREE.Vector3(), d: new THREE.Vector3(), p: new THREE.Vector3(), o: new THREE.Vector3() };
-  /** The body in front of the Sun's corona that looks biggest from the camera (the Moon in an eclipse), in the Sun's frame. */
-  function coronaOccluder(sunN, sunDist, px) {
-    if (px < 2) return null;
+  /**
+   * Every body in front of the Sun's corona (within its footprint on screen and nearer than its far edge), largest-looking
+   * first: the Moon in an eclipse, Mercury or Venus in transit, any planet or moon seen against the corona from space.
+   * Centres are given relative to the camera in the Sun's frame (R☉), worked out here in double precision.
+   */
+  const occPool = [];
+  function coronaOccluders(sunN, sunDist, px, camLocal) {
+    if (px < 2) return [];
     const S = sunN.mesh.getWorldPosition(cz.w), R = displayRadius(sunN.body), d = cz.d.copy(S).sub(camera.position).normalize();
-    const reach = Math.atan((R * (sunN.corona.look?.extent ?? 6)) / sunDist);
-    let best = null, bestAng = 0;
+    const ext = R * (sunN.corona.look?.extent ?? 6), reach = Math.atan(ext / sunDist);
+    const radPerPx = ((camera.fov * Math.PI) / 180) / (renderer.domElement.clientHeight || innerHeight);
+    const found = [];
     for (const id in nodes) {
       const o = nodes[id];
       if (o === sunN || o.body.marker || !o.group.visible || !o.mesh || isStar(o.body)) continue;
       const P = o.group.getWorldPosition(cz.p), dist = P.distanceTo(camera.position);
-      if (!(dist < sunDist) || dist < 1e-12) continue;
-      const r = displayRadius(o.body), ang = Math.atan(r / dist), sep = Math.acos(Math.max(-1, Math.min(1, cz.o.copy(P).sub(camera.position).normalize().dot(d))));
-      if (sep < reach + ang && ang > bestAng) { bestAng = ang; best = { P: P.clone(), r }; }
+      if (!(dist < sunDist + ext) || dist < 1e-12) continue;
+      const r = displayRadius(o.body), ang = Math.atan(r / dist);
+      if (ang < radPerPx * 0.35 && dist > r * 1.01) continue; // well under a pixel of the (half-resolution) pass
+      const sep = Math.acos(Math.max(-1, Math.min(1, cz.o.copy(P).sub(camera.position).normalize().dot(d))));
+      if (sep < reach + ang) found.push({ P: P.clone(), r, ang });
     }
-    if (!best) return null;
-    return { centre: sunN.mesh.worldToLocal(best.P), radius: best.r / R };
+    found.sort((a, b) => b.ang - a.ang);
+    return found.slice(0, 8).map((f, i) => {
+      const rel = (occPool[i] ??= new THREE.Vector3());
+      return { rel: rel.copy(sunN.mesh.worldToLocal(f.P)).sub(camLocal), radius: f.r / R };
+    });
   }
   /** The 3D corona (#79): camera, Earth and ecliptic north in the Sun's own frame; its glare sprite dims as the corona takes over. */
   function updateSunCorona(jd, now) {
@@ -1760,7 +1771,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const px = sunPixelRadius(camera, displayRadius(n.body), dist, renderer.domElement.clientHeight || innerHeight);
     // from a surface the corona shows only in totality (it is a millionth of the daylit sky's brightness)
     const opacity = surface ? coronaTotality : 1;
-    c.update({ occluder: coronaOccluder(n, dist, px), on: settings.get('corona') !== false && n.group.visible, camLocal: n.mesh.worldToLocal(cz.cam.copy(camera.position)), earthLocal,
+    const camLocal = n.mesh.worldToLocal(cz.cam.copy(camera.position));
+    c.update({ occluders: coronaOccluders(n, dist, px, camLocal), on: settings.get('corona') !== false && n.group.visible, camLocal, earthLocal,
       eclLocal: cz.ecl.set(0, 1, 0).applyQuaternion(q), jd, now, pxRadius: px, opacity });
     coronaTotality = 0;
     const glare = n.mesh.children.find((ch) => ch.isSprite);
@@ -2613,6 +2625,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const viewApi = {
     /** #40: what a postcard must declare: the paleo-Earth banner and any scenario labels showing. */
     get postcardFacts() { return { paleo: paleo?.banner ?? null, scenario: scenario ? scenario.labels.map((l) => l.element.firstChild?.textContent ?? '') : [] }; },
+    /** #40, #79: the 3D corona's provenance for a postcard when it is drawn and the Sun is in frame (coronaPostcard), else null. */
+    get postcardCorona() {
+      const c = model?.isSol ? nodes[model.starId]?.corona : null;
+      return c?.mesh.visible && viewApi.framed(1).some((f) => f.id === model.starId) ? coronaPostcard(c) : null;
+    },
     /** #40: bodies drawn at least `minPx` screen pixels across radius: [{ id, name, px, lit (0–1), from (lit side on screen), map, live, imagined }], biggest first. */
     framed(minPx = 3) {
       const H = renderer.domElement.clientHeight || 800, f = (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
@@ -2646,7 +2663,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return out.sort((a, b) => b.px - a.px);
     },
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); drawCorona(); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); drawCorona({ full: true }); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
     /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
     setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */

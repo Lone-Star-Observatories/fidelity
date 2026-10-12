@@ -141,6 +141,14 @@ predicted skins and re-weighted stars. Deep-time arrivals (#29) come only from t
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
 
+**Size gate.** The file must stay under 16,000,000 bytes (the Claude artifact limit; the builder refuses to write a
+larger one). Dossier and context images are shown on cards at most ~420 px high, so the builder caps any non-IMAGINED
+image larger than 1,600 px on its long side at 1,600 px (`capSize`: the same picture, smaller; JPEG stays JPEG at q90,
+PNG stays lossless PNG; the normal app serves the originals) and logs each one. On 2026-10-12 that touched three images
+(Phobos HiRISE 3374×3298, Io 2256×1158, Luyten NACO 1707×1707: 935,250 → 505,285 raw bytes) and took the build from
+16,088,479 bytes (over the gate) to 15,626,914; nothing else was dropped. The 3D corona (#79) needs no data in the
+preview: it uses the solar-cycle model (no feed offline).
+
 ## Mac App Store build (#51)
 
 `VITE_FIDELITY_APP_STORE=1 npm run build:standalone` is the standalone above in its App Store
@@ -1103,7 +1111,13 @@ layered, wispy cloud from any side (orbit round the Sun, look from a pole), not 
   at 5.5–9 R☉ when C2 is more than 3 days old, as on 2026-10-12, when C2's latest frame was 13 days old), each ring
   divided by its median, gives the streamers (PA, width, contrast) and a belt through the limb streamers nearest the
   equator; the AIA 193 Å preview, cut into cells normalised by their ring (limb brightening cancels), gives active
-  regions (bright) and coronal holes (dark). Streamers are placed in the plane of the sky. When the feed is missing
+  regions (bright) and coronal holes (dark). **Streamers in 3D** (`placeStreamer`): helmet streamers are folds of the
+  streamer belt round the heliospheric current sheet, so each measured streamer is put where its line of sight (every
+  direction seen at its PA from Earth) crosses the fitted belt sheet, at the crossing nearest the plane of the sky, and
+  stretched along the belt (half-length 0.3 rad + its width); together they make a warped sheet round the Sun that
+  looks right from any side in the System View and still projects onto LASCO's position angles from Earth (tested). A
+  streamer whose line of sight meets the belt no nearer than 60° to the sky plane (a pseudostreamer, a face-on belt)
+  stays in the sky plane. This is a model, not tomography: one coronagraph view cannot tell front from back. When the feed is missing
   (standalone, offline) or more than 14 days from the clock, `modelledStructure` builds a solar-cycle corona: belt
   tilt 10°→70° with activity (`cycleActivity`: cycle 25 minimum 2019.96, maximum late 2024), polar holes at minimum,
   active regions by number and Spörer latitude at illustrative longitudes that turn with the Sun.
@@ -1111,14 +1125,35 @@ layered, wispy cloud from any side (orbit round the Sun, look from a pole), not 
 - **Panel.** The Sun's CORONA section (`coronaLayers`) lists each layer with its badge: streamers, loops and holes
   MODELLED (from MEASURED positions; illustrative positions IMAGINED), fall-off MODELLED, brightness IMAGINED where
   exaggerated, wisps IMAGINED. The disc imagery keeps its own MEASURED badge in the SPECTRUM section.
+- **Occlusion.** The pass has no depth buffer; instead the System View hands the shader every body in front of the
+  Sun (`coronaOccluders`: within the corona's footprint on screen, nearer than its far edge, with a radius of at least ~⅓
+  screen pixel; up to 8, largest first), as spheres whose centres are taken relative to the camera in double
+  precision. Each line of sight ends on the Sun or on the first of them it meets (the Moon in an eclipse, Mercury or
+  Venus in transit or against the corona, any moon or planet seen from space), and lines grazing a limb lose their
+  corona over ~1.5 pass pixels, so limbs are anti-aliased at half resolution. Rings and non-spherical shape models
+  occlude as their bounding sphere.
 - **Cost.** 20–56 march steps (more when the Sun is large on screen) over the sphere's pixels only, drawn at half
-  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). That pass has no
-  depth test against the scene: the Sun and the single body that looks largest in front of it (the Moon in an
-  eclipse, a transiting planet) end the line of sight in the shader; other bodies are drawn under the corona. The
-  DETAIL slider's second step, `+ 3D CORONA` (setting `corona`, toggle CORONA), turns it off, leaving the old glare.
+  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). **Adaptive
+  quality** (`createQualityGovernor`, `CORONA_QUALITY`): while the corona is drawn the pass averages the frame
+  interval (each counted at most 100 ms; gaps over 5 s, a hidden tab, ignored); after ~1 s slower than 28 ms
+  (~35 fps) it steps down a level (resolution ×1 → ×0.4 of the half-resolution target, steps ×1 → ×0.4, at least
+  12), after ~4 s faster than 19 ms it steps back up, and a level that was too slow straight after stepping up is not
+  tried again. The current level is on the canvas as `data-corona-quality` (0 = best) for browser checks.
+  Postcards always render at the best level. Checked only on SwiftShader (≈2 s a frame headless, so it falls to the
+  cheapest level); no real-GPU frame time has been measured. The DETAIL slider's second step, `+ 3D CORONA` (setting
+  `corona`, toggle CORONA), turns it off, leaving the old glare.
+- **Star View.** The hero canvas is a box on the page, so the pass fades the corona to nothing over the outer 16% of
+  the canvas (`edgeFade`); the thermal-IR dust haze (12 R☉) no longer shows the canvas outline.
 - **Eclipses.** From a surface the corona shows only in totality. On 2017-08-21 the real photograph stays
   (MEASURED); for other eclipses the 3D model on the solar axis replaces the representative 2017 photograph (HUD:
   CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)); with the corona off, the photograph.
+  Checked in a browser at 2024-04-08 18:17 UTC from 25.3°N 104.1°W and 2026-08-12 17:46 UTC from 65.2°N 25.2°W (model,
+  cut cleanly by the Moon's limb) and 2017-08-21 18:26 UTC from 36.97°N 87.67°W (the photograph, 3D corona hidden).
+- **Postcards.** The views' snapshot draw calls the pass with `{ full: true }`, so a postcard carries the corona at the
+  best quality level whatever the screen was using, and when the corona is drawn and the Sun is in frame
+  (`postcardCorona`, `coronaPostcard`) the provenance line adds 3D CORONA (MODELLED) and CORONA WISPS, CORONA
+  BRIGHTNESS (EXAGGERATED) where it is, and CORONA ACTIVE REGIONS (ILLUSTRATIVE) without measured structure (IMAGINED),
+  crediting LASCO/AIA when the structure is measured.
 
 ## Milky Way model
 
@@ -1212,7 +1247,7 @@ Standalone image sharing: bespoke map cards now resolve snapshot.textures by ass
 
 The GJ 887 additions use the existing additive dossier/texture registry, full-name aliases and cloud-card labels. No changes to catalogue fields, mission models or live/native imagery routes. Each standalone globe map is embedded once and reused by the dossier card; observer images remain separate. Registry now 15 dossiers.
 
-The standalone builder transcodes local generated map previews and IMAGINED dossier images to quality-80 WebP at existing dimensions. Scientific context images follow the original embedding path. Registry/normal-build JPEG files and all model/shape GLBs are unchanged; source credits still resolve to the original assets. Combined standalone size is 15.85 MB.
+The standalone builder transcodes local generated map previews and IMAGINED dossier images to quality-80 WebP at existing dimensions. Scientific context images follow the original embedding path, except that any larger than 1,600 px on the long side is capped at 1,600 px (see "Standalone preview", size gate). Registry/normal-build JPEG files and all model/shape GLBs are unchanged; source credits still resolve to the original assets. Combined standalone size is 15.85 MB.
 
 Craft preview rebuilding accepts selected model IDs and `--texture-size=128`; omitted overrides use recorded per-model sizes (otherwise 256). Curiosity/Europa Clipper use 128-pixel preview textures with unchanged mesh/material counts; normal source models remain intact. Ross 128 b and Gl 725 A b use additive full-name dossier matching and disclose approximate raster geometry.
 

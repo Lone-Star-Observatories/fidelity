@@ -27,7 +27,7 @@ import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/c
 import { bodyVisualFor } from '../../data/bespoke.js';
 import { stellarResearchCards } from './research.js';
 import { makeSnapshot } from '../snapshot.js';
-import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from '../system/corona.js';
+import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius, coronaPostcard } from '../system/corona.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const OBSERVED = '#c97a00'; // validated against the black surface with the blackbody blue
@@ -81,7 +81,7 @@ export function createStarView(container, { jd = () => Date.now() / 86400000 + 2
   const coronaFrame = new THREE.Group();
   coronaFrame.rotation.x = 0.25;
   scene.add(coronaFrame);
-  const coronaPass = createCoronaPass(renderer);
+  const coronaPass = createCoronaPass(renderer, { edgeFade: 0.16 }); // the hero canvas is a box on the page: fade the corona out before its edges
   const cz = { cam: new THREE.Vector3(), e: new THREE.Vector3(), up: new THREE.Vector3(), q: new THREE.Quaternion() };
 
   const hero = el('div', { className: 'sv-hero' });
@@ -392,8 +392,10 @@ export function createStarView(container, { jd = () => Date.now() / 86400000 + 2
   }
 
   return {
+    /** #40, #79: the 3D corona's provenance for a postcard (coronaPostcard), or null when it is not drawn. */
+    get postcardCorona() { return coronaPostcard(corona); },
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => { renderer.render(scene, camera); coronaPass.render(scene, camera, corona); }, restore: sizeHero }),
+    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => { renderer.render(scene, camera); coronaPass.render(scene, camera, corona, { full: true }); }, restore: sizeHero }),
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
     camera: rig,
     hide() { container.hidden = true; running = false; },
