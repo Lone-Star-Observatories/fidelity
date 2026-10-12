@@ -59,11 +59,14 @@ export const TIMELINE = [
   },
   {
     id: 'green-sahara', group: 'climate', title: 'THE GREEN SAHARA', tier: 'modelled',
-    when: 'LAST: 14,500–5,500 YEARS AGO · NEXT: ~10,000 YEARS AHEAD', window: [-14500, -5500], years: -9000,
+    when: 'LAST: 14,800–5,500 YEARS AGO · NEXT: ~10,000 YEARS AHEAD', window: [-14800, -5500], years: -9000,
     summary: 'When perihelion falls in the northern summer, the African monsoon strengthens and reaches far north: the Sahara turned to grassland, lakes and wetlands. Precession brings that orbit back on a ~21,000-year cycle; the app computes the next perihelion at the June solstice from Laskar\'s orbit (below).',
-    facts: [['AFRICAN HUMID PERIOD', '14.5–5.5 KA', 'measured', 'Marine dust record (deMenocal et al. 2000)'],
+    facts: [['AFRICAN HUMID PERIOD', '14.8–5.5 KA', 'measured', 'Marine dust record (deMenocal et al. 2000)'],
       ['MEGA-LAKE CHAD', '~360,000 KM²', 'measured', 'Palaeoshorelines (Drake & Bristow 2006)']],
     source: 'deMenocal et al. 2000, Quaternary Science Reviews 19, 347', url: 'https://doi.org/10.1016/S0277-3791(99)00081-5', widget: 'perihelion',
+    // the globe: the 6 ka map from pollen and lake records (Hoelzmann et al. 1998), and the climate model's 9 ka biomes
+    // (Beyer et al. 2020), which like most models leave the Sahara too dry
+    globe: [{ label: '6,000 YEARS AGO: THE RECORDS', years: -6000 }, { label: '9,000 YEARS AGO: THE MODEL', years: -9000 }],
   },
   // ---- ice ages --------------------------------------------------------------------------------
   {
@@ -156,11 +159,12 @@ export const TIMELINE = [
   {
     id: 'gibraltar', group: 'geology', title: 'THE MEDITERRANEAN CLOSING', tier: 'modelled',
     when: 'MESSINIAN CRISIS 5.96–5.33 MA · CLOSURE IN TENS OF MILLIONS OF YEARS', window: [-5.96e6, -5.33e6], years: -5.6e6,
-    summary: 'Africa converges on Europe a few millimetres a year. Six million years ago the Strait of Gibraltar closed and the Mediterranean largely dried out, leaving salt kilometres thick, until the Atlantic broke back in at the Zanclean flood. The sea is slowly closing for good.',
+    summary: 'Africa converges on Europe a few millimetres a year. Six million years ago the Atlantic gateways closed and the Mediterranean evaporated down by a kilometre or more, leaving salt kilometres thick and brine in its deepest basins, until the Atlantic broke back in at the Zanclean flood. The sea is slowly closing for good.',
     facts: [['AFRICA–EURASIA AT GIBRALTAR', '~4–6 MM/YR', 'measured', 'MORVEL / GPS'],
-      ['MESSINIAN SALINITY CRISIS', '5.96–5.33 MA', 'measured', 'Krijgsman et al. 1999']],
+      ['MESSINIAN SALINITY CRISIS', '5.96–5.33 MA', 'measured', 'Krijgsman et al. 1999'],
+      ['PEAK DRAWDOWN', '~0.85 KM WEST · 1.7–2.1 KM EAST', 'modelled', 'From chlorine isotopes in the halite (Aloisi et al. 2024, Nat. Commun. 15, doi:10.1038/s41467-024-53781-6). Other studies argue for a few hundred metres; estimates differ widely.']],
     source: 'Krijgsman et al. 1999, Nature 400, 652', url: 'https://doi.org/10.1038/23231',
-    globe: [{ label: 'THE DRY MEDITERRANEAN', messinian: true }],
+    globe: [{ label: 'THE DRAWN-DOWN MEDITERRANEAN', messinian: true }],
   },
   {
     id: 'hawaii', group: 'geology', title: 'HAWAIʻI: A NEW ISLAND RISES, THE OLD ONES SINK', tier: 'modelled',

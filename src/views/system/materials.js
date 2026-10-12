@@ -50,7 +50,13 @@ const PLANET_FRAG = /* glsl */`
   // reconstructed land mask (GPlates coastlines) in place of today's continents.
   uniform float uPaleo; uniform sampler2D uElev; uniform float uSea; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform float uIceMix; uniform float uIceOn;
   uniform sampler2D uLand; uniform float uLandOn;
-  uniform float uDryOn; // the Messinian: today's Mediterranean floor (uElev alpha) shown dry
+  // The Messinian (#54): uElev alpha marks the Mediterranean (0 outside; west 1–127, east 128–255, each depth
+  // 0–4,500 m); uMedLevel = how far each basin's surface fell (m). Deeper floor keeps a brine lake; the rest is exposed.
+  uniform float uMedOn; uniform vec2 uMedLevel;
+  // Vegetation by epoch (#54): BIOME4 class maps (value = class + 1, 720×360) blended between two slices through
+  // a 32×1 palette; and the 6 ka North Africa proxy map (RGB colour, A land fraction) weighted by uAfrW.
+  uniform sampler2D uBiomeA; uniform sampler2D uBiomeB; uniform sampler2D uBiomePal; uniform float uBiomeMix; uniform float uBiomeOn;
+  uniform sampler2D uAfr; uniform float uAfrW;
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
   // they are right whatever the display scale: the fraction of the Sun's disc an occluder
@@ -110,6 +116,15 @@ const PLANET_FRAG = /* glsl */`
     float a3 = 0.5 * sqrt(max(0.0, (-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2)));
     return clamp((a1 + a2 - a3) / (3.14159265 * r1 * r1), 0.0, 1.0);
   }
+  /** A biome map's colour at uv: the class colours of the four nearest 0.5° cells, blended bilinearly (codes never blend). */
+  vec4 biomeColour(sampler2D map, vec2 uv) {
+    vec2 size = vec2(720.0, 360.0), f = uv * size - 0.5, i0 = floor(f), w = f - i0;
+    vec4 c00 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(0.5, 0.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
+    vec4 c10 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(1.5, 0.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
+    vec4 c01 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(0.5, 1.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
+    vec4 c11 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(1.5, 1.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
+    return mix(mix(c00, c10, w.x), mix(c01, c11, w.x), w.y);
+  }
   void main() {
     #include <logdepthbuf_fragment>
     vec3 N = normalize(vNormalW);
@@ -140,8 +155,21 @@ const PLANET_FRAG = /* glsl */`
         vec3 el = texture2D(uElev, vUv).rgb;
         float e = el.r * 800.0 - 400.0, spill = el.g * 800.0 - 400.0;
         if (el.b > 0.5) { if (e > uSea) base = shelfCol; }      // today's sea floor, exposed when the sea falls
-        if (uDryOn > 0.5 && texture2D(uElev, vUv).a > 0.5) base = mix(vec3(0.62, 0.6, 0.55), vec3(0.36, 0.3, 0.24), smoothstep(-200.0, -3000.0, e)); // salt flats to deep dry basin
+        float medA = uMedOn > 0.5 ? texture2D(uElev, (floor(vUv * vec2(1440.0, 720.0)) + 0.5) / vec2(1440.0, 720.0)).a * 255.0 : 0.0; // nearest texel: the classes must not blend
+        if (medA > 0.5) {
+          bool east = medA > 127.5;
+          float depth = east ? (medA - 128.0) / 127.0 * 4500.0 : (medA - 1.0) / 126.0 * 4500.0, level = east ? uMedLevel.y : uMedLevel.x;
+          if (depth > level) base = vec3(0.035, 0.1, 0.095);     // residual hypersaline brine in the deep basin
+          else base = mix(vec3(0.38, 0.31, 0.24), vec3(0.82, 0.8, 0.74), smoothstep(0.35, 0.95, depth / level)); // exposed floor: margins to salt pans near the brine
+        }
         else if (spill < uSea) base = seaCol;                   // land the rising sea reaches
+        bool wet = medA > 0.5 || (el.b > 0.5 ? e <= uSea : spill < uSea);
+        if (uBiomeOn > 0.0 && !wet) {
+          vec4 bc = mix(biomeColour(uBiomeA, vUv), biomeColour(uBiomeB, vUv), uBiomeMix);
+          float lum = dot(base, vec3(0.3, 0.59, 0.11));          // keep today's relief shading under the colour
+          base = mix(base, bc.rgb * (0.8 + 0.5 * smoothstep(0.04, 0.45, lum)), bc.a * 0.85 * uBiomeOn);
+        }
+        if (uAfrW > 0.0 && !wet) { vec4 af = texture2D(uAfr, vUv); base = mix(base, af.rgb, af.a * uAfrW * 0.9); }
       }
       if (uIceOn > 0.5) base = mix(base, iceCol, mix(texture2D(uIceA, vUv).r, texture2D(uIceB, vUv).r, uIceMix));
     }
@@ -275,7 +303,7 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 
       uBandTexPrev: { value: null }, uBandFade: { value: 1 },
       uDiscOn: { value: 0 }, uDiscC: { value: new THREE.Vector2(0.5, 0.5) }, uDiscR: { value: new THREE.Vector2(1, 1) }, uDiscWH: { value: new THREE.Vector2(2, 2) },
       uDiscPA: { value: 0 }, uDiscE: { value: new THREE.Vector3(0, 0, 1) }, uDiscN: { value: new THREE.Vector3(0, 1, 0) },
-      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 }, uDryOn: { value: 0 },
+      uPaleo: { value: 0 }, uElev: { value: null }, uSea: { value: 0 }, uIceA: { value: null }, uIceB: { value: null }, uIceMix: { value: 0 }, uIceOn: { value: 0 }, uLand: { value: null }, uLandOn: { value: 0 }, uMedOn: { value: 0 }, uMedLevel: { value: new THREE.Vector2(0, 0) }, uBiomeA: { value: null }, uBiomeB: { value: null }, uBiomePal: { value: null }, uBiomeMix: { value: 0 }, uBiomeOn: { value: 0 }, uAfr: { value: null }, uAfrW: { value: 0 },
     },
   });
 }

@@ -3,8 +3,9 @@
 // → public/paleo/earth-elev.png  (1440×720, 0.25°, equirectangular, north up, longitude −180 at the left)
 //     R: elevation (m), G: the sea level at which this point floods from the open ocean (priority flood,
 //     so basins below sea level such as the Caspian or Death Valley only flood once the sea reaches them),
-//     B: 255 where it is open ocean today, A: 255 in the Mediterranean basin (the open ocean east of the Gibraltar
-//     sill, for the Messinian view). R and G encode −400…+400 m as 0…255 (clamped).
+//     B: 255 where it is open ocean today, A: the Mediterranean basin (the open ocean east of the Gibraltar sill, for the Messinian view):
+//     0 outside it, 1…127 in the western basin and 128…255 in the eastern (either side of the Sicily Channel sill),
+//     each scaling depth 0…4,500 m. R and G encode −400…+400 m as 0…255 (clamped).
 //     From ETOPO1 Ice Surface (Amante & Eakins 2009) via NOAA CoastWatch ERDDAP (dataset etopo180).
 // → public/paleo/ice-<years>.png (1440×720, 255 = ice) for 0, 2,500 … 30,000 years ago: ice-sheet margins
 //     from PaleoMIST 1.0 (Gowan et al. 2021; data Gowan 2019, doi:10.1594/PANGAEA.905800, CC BY 4.0),
@@ -124,11 +125,27 @@ const { ocean, spill } = flood(e);
 // the Mediterranean: open ocean reachable from the Ionian Sea without passing west of the Gibraltar sill (5.6° W)
 const med = new Uint8Array(W * H), pix = (la, lo) => Math.floor((90 - la) / 0.25) * W + Math.floor((lo + 180) / 0.25);
 for (const st = [pix(35, 18)]; st.length;) { const p = st.pop(); if (med[p] || !ocean[p]) continue; const lo = -180 + ((p % W) + 0.5) * 0.25, la = 90 - (Math.floor(p / W) + 0.5) * 0.25; if (lo < -5.6 || la > 47 || la < 29) continue; med[p] = 1; st.push(...nbrs(p)); }
+// West vs East: the basins either side of the Sicily Channel sill (~430 m deep), which a drawdown of more than
+// ~0.5 km cut apart (Aloisi et al. 2024). Seed each deep basin below the sill, then give every other Mediterranean
+// cell (shelves, the Adriatic, the Aegean) to whichever deep basin reaches it first.
+const SILL = -430, side = new Uint8Array(W * H); // 1 west, 2 east
+const deep = (seed, label) => { for (const st = [seed]; st.length;) { const p = st.pop(); if (side[p] || !med[p] || e[p] > SILL) continue; side[p] = label; st.push(...nbrs(p)); } };
+deep(pix(39, 5), 1);
+if (side[pix(35, 18)]) throw new Error('the western deep basin reached the Ionian: the sill is not resolved at this grid');
+deep(pix(35, 18), 2);
+for (let q = [...side.keys()].filter((p) => side[p]); q.length;) {
+  const next = [];
+  for (const p of q) for (const n of nbrs(p)) if (med[n] && !side[n]) { side[n] = side[p]; next.push(n); }
+  q = next;
+}
+/** Alpha for the Messinian view: 0 outside the Mediterranean; west 1…127 and east 128…255 for depth 0…4,500 m. */
+const medAlpha = (inMed, s, el) => { if (!inMed) return 0; const f = Math.min(1, Math.max(0, -el / 4500)); return s === 1 ? 1 + Math.round(126 * f) : 128 + Math.round(127 * f); };
 const rgba = Buffer.alloc(W * H * 4);
-for (let p = 0; p < W * H; p++) { rgba[p * 4] = enc(e[p]); rgba[p * 4 + 1] = enc(spill[p]); rgba[p * 4 + 2] = ocean[p] ? 255 : 0; rgba[p * 4 + 3] = med[p] ? 255 : 0; }
+for (let p = 0; p < W * H; p++) { rgba[p * 4] = enc(e[p]); rgba[p * 4 + 1] = enc(spill[p]); rgba[p * 4 + 2] = ocean[p] ? 255 : 0; rgba[p * 4 + 3] = medAlpha(med[p], side[p], e[p]); }
 await fs.writeFile(new URL('earth-elev.png', OUT), png(W, H, 4, rgba));
 console.log('earth-elev.png', (await fs.stat(new URL('earth-elev.png', OUT))).size, 'bytes');
 
+if (process.argv.includes('--elev-only')) process.exit(0); // the ice slices take a 3.7 GB archive's worth of range reads
 const zip = await zipEntries();
 for (let t = 0; t <= 30000; t += 2500) {
   const ice = Buffer.alloc(W * H);
