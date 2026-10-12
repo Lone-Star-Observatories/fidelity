@@ -195,7 +195,7 @@
    "licence": "USGS/NASA, public domain",
    "source": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Venus_Magellan_Topography_Global_4641m_v02.tif",
    "partial": "Magellan altimetry has gaps (about 8% of the surface, mostly orbit-to-orbit strips): no data there.",
-   "shading": "none",
+   "shading": "all",
    "built": "2026-10-12"
   },
   "vesta": {

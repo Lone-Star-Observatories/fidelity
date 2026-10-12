@@ -27,8 +27,11 @@ test('Venus profile: pressure falls monotonically, log-interpolated between tabl
   for (let h = 0; h <= 100; h += 0.5) { const p = venusAtmosphere(h).pBar; assert.ok(p < prev, `p(${h})`); prev = p; }
   // geometric mean between rows (log-linear)
   close(venusAtmosphere(52.5).pBar, Math.sqrt(1.066 * 0.5314), 1e-9);
-  // clamped outside 0–100 km
-  assert.equal(venusAtmosphere(-3).pBar, venusAtmosphere(0).pBar);
+  // the lowlands below the 6,052 km sphere: higher pressure, extrapolated to −3 km, then clamped
+  assert.ok(venusAtmosphere(-1).pBar > 92.1 && venusAtmosphere(-1).pBar < 100);
+  assert.ok(venusAtmosphere(-1).tK > 735.3);
+  assert.equal(venusAtmosphere(-5).pBar, venusAtmosphere(-3).pBar);
+  assert.equal(venusAtmosphere(120).pBar, venusAtmosphere(100).pBar);
 });
 
 test('US Standard Atmosphere 1976: 1013.25 hPa and 288.15 K at sea level', () => {
@@ -99,8 +102,12 @@ test('descent altitude eases in log altitude from the tops to 2 m above the grou
   close(descentAltitude(top, GROUND_EYE_KM, 1), GROUND_EYE_KM, 1e-12);
   let prev = Infinity;
   for (let f = 0; f <= 1.0001; f += 0.05) { const a = descentAltitude(top, GROUND_EYE_KM, f); assert.ok(a <= prev + 1e-12); prev = a; }
-  // halfway in time is the geometric middle (~0.6 km): the clouds pass early, the last kilometre takes as long
-  close(descentAltitude(top, GROUND_EYE_KM, 0.5), Math.sqrt((top + 0.002) * 0.004) - 0.002, 1e-9);
+  // halfway in time is the geometric middle of (altitude + 5 km): ~14 km, below the clouds
+  close(descentAltitude(top, GROUND_EYE_KM, 0.5), Math.sqrt((top + 5) * (GROUND_EYE_KM + 5)) - 5, 1e-9);
+  // the deck and the haze (70 → 30 km) take a fair share of the time (not a blink)
+  const tAt = (h) => { let f = 0; while (descentAltitude(top, GROUND_EYE_KM, f) > h) f += 0.001; return f; };
+  assert.ok(tAt(30) > 0.2, `haze passed at ${tAt(30)}`);
+  assert.ok(1 - tAt(1) > 0.05, 'the last kilometre is not rushed');
 });
 
 test('DESCEND / ASCEND state machine', () => {

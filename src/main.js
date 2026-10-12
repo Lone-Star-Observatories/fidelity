@@ -135,14 +135,16 @@ const starView = createStarView($('star-view'), { jd: () => clock.jd });
 // Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
 let pendingSurface = null;
 let pendingSiteView = null; // VIEW FROM ABOVE a site once its body is framed (#37)
-// ?surface=25.7,32.65 stands on the routed body there (e.g. #/system/sol/earth) once it is framed; &look=sun turns to the Sun
+// ?surface=25.7,32.65 stands on the routed body there (e.g. #/system/sol/earth) once it is framed; &look=sun turns to the Sun;
+// &layer=clouds starts on the cloud tops of Venus or Earth (#83; the default is the ground)
 {
   const sf = new URLSearchParams(location.search).get('surface')?.split(',').map(Number);
   const id = location.hash.split('/').filter(Boolean)[3];
-  if (sf?.length === 2 && sf.every(Number.isFinite) && id) pendingSurface = { id, lat: sf[0], lon: sf[1], lookSun: new URLSearchParams(location.search).get('look') === 'sun' };
+  const q = new URLSearchParams(location.search);
+  if (sf?.length === 2 && sf.every(Number.isFinite) && id) pendingSurface = { id, lat: sf[0], lon: sf[1], lookSun: q.get('look') === 'sun', layer: q.get('layer') === 'clouds' ? 'clouds' : 'ground' };
 }
 const planetView = createPlanetView($('planet-view'), {
-  onSurface: (id, lat, lon) => { pendingSurface = { id, lat, lon }; go({ level: 'system', system: currentSystem, body: id }); },
+  onSurface: (id, lat, lon, { layer = 'ground' } = {}) => { pendingSurface = { id, lat, lon, layer }; go({ level: 'system', system: currentSystem, body: id }); },
 });
 // FROM THE SURFACE (#36): stand at a picture's site, or render the view there (opts.render captures it)
 const surfaceHooks = {
@@ -2059,7 +2061,7 @@ onRoute(async (r) => {
     if (body) {
       if (pendingSurface?.id === body.id) {
         const ps = pendingSurface; pendingSurface = null;
-        system[ps.site ? 'surfaceAtSite' : 'surfaceAt'](ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight });
+        system[ps.site ? 'surfaceAtSite' : 'surfaceAt'](ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight, layer: ps.layer });
         if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
       }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }

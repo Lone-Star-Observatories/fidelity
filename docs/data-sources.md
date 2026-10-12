@@ -227,6 +227,24 @@ Mars and ~28 km on Earth): Olympus Mons 21.1 km (MOLA's peak 21.2 km; its highes
 Antoniadi −8.6 km, Everest's cell 5.84 km and Challenger Deep's −9.84 km. Everest's 8.85 km and the
 Deep's −10.9 km need finer cells: ETOPO1's own 1′ grid (the close-up tiles) holds 8.27 km and −10.9 km.
 
+## Clouds and ground (#83)
+
+Venus and Earth carry a cloud layer at its height above the #80 ground; the surface view can descend through it.
+
+| What | Source | Use | Tier |
+|---|---|---|---|
+| Venus' ground imagery | Magellan SAR C3-MIDR global mosaic, 2025 m/px (`Venus_Magellan_C3-MDIR_Global_Mosaic_2025m.tif`, 18,775 × 9,388, 8-bit, equirectangular, −180…180° E, planetocentric), USGS Astrogeology on the `asc-pds-services` bucket | `server/textures.js` key `venusRadar`: sampled by HTTP range requests to a 4096 × 2048 PNG (~9 km/px, 5.6 MB) on first use and cached in `data/textures/`; Magellan's data gaps (black strips) fill with the mean ground in the shader | MEASURED (radar backscatter) |
+| Venus' ground colour | Venera 13 and 14 lander panoramas (1982; colour-calibrated by Pieters et al. 1986, Science 234, 1379: dark basaltic rock, reddened by the light that reaches the ground) | radar brightness mapped onto a dark-basalt to pale-rock ramp, lit by the orange overcast | MODELLED (radar is not colour) |
+| Venus' clouds | Solar System Scope cloud-top map (CC BY 4.0, from NASA imagery), on a shell at 70 km; deck 48–70 km, haze to ~90 km and down to ~30 km (Pioneer Venus LCPS: Knollenberg & Hunten 1980, JGR 85, 8039); super-rotation ~4 days (cloud tracking, Venus Express VMC/VIRTIS) | the globe's cloud tops, the descent's murk | MEASURED (imagery and heights) |
+| Venus' atmosphere | VIRA, the Venus International Reference Atmosphere (Seiff et al. 1985, Adv. Space Res. 5(11), 3), 0–30° latitude, from the Pioneer Venus probes and Venera landers: 92.1 bar and 735 K at the 6,052 km reference, 1.07 bar at 50 km | `src/astro/atmosphere.js` (table every 5 km, log-pressure interpolation, extrapolated 3 km below the reference for the lowlands) | MEASURED (a reference profile) |
+| Light under Venus' clouds | Venera 11–14 and Pioneer Venus solar-flux measurements (~2–3% of the incident sunlight at the ground, reddened; Moroz et al. 1985; Tomasko et al. 1980) | light fraction by altitude, orange sky, no Sun disc, Rayleigh visibility in the dense CO₂ (~4 km at the ground) | MODELLED |
+| Earth's clouds | NASA GIBS true-colour mosaic (the live skin, #17; NOAA-20/Suomi NPP VIIRS), clouds picked out by whiteness (snow and ice can read as cloud); without live imagery the Blue Marble 2004 MODIS cloud layer | a shell at 10 km that casts shadows on the ground | MEASURED (where); height ASSUMED |
+| Earth's atmosphere | U.S. Standard Atmosphere 1976 (NOAA/NASA/USAF, NOAA-S/T 76-1562): 1013.25 hPa and 288.15 K at sea level, 226.99 hPa at 11 km | `src/astro/atmosphere.js`, computed from its defining layers (geopotential, lapse rates) | MEASURED (a reference profile) |
+
+Tests (`tests/atmosphere.test.js`): Venus' surface ~92 bar / ~737 K and ~1 bar near 50 km; US 1976 at 0, 5, 10, 11, 20 and 32 km
+against the published table; the layer heights, murk, light and visibility, and the descent state machine. `tests/clouds.test.js`: Venus' super-rotation
+(a westward turn in 4 days), the whiteness cloud mask, the look from each layer and the read-outs.
+
 ## How other systems are built
 
 `src/data/systems.js` turns a star and its archive rows into a System View model, tagging each value:

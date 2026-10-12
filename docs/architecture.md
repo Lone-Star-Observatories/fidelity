@@ -284,6 +284,8 @@ satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitu
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
 On a body with an elevation model the camera stands on the DEM's ground and the horizon is a
 terrain patch from the measured heights (mountains, crater rims; see Elevation and relief, #80).
+On Venus and Earth a double-click stands on the cloud tops, and DESCEND / ASCEND fly through the cloud layer to the
+ground and back (see Clouds and ground, #83).
 
 ## Camera controls (#39)
 
@@ -509,8 +511,8 @@ elevation read-out with its source.
   do not sparkle) and tilts the normal by the slopes before lighting. Band modes, eclipses and
   planetshine use the tilted normal too. The normal map is computed on the fly from the one height
   file rather than shipped as a second image, so every exaggeration is exact (`slopeNormal` in
-  `src/astro/dem.js` is the same maths, tested). Venus' globe shows its cloud tops, so its globe relief
-  is off (read-outs and the surface view only).
+  `src/astro/dem.js` is the same maths, tested). Venus' relief is on its ground, under the opaque cloud deck
+  (#83): hidden from orbit, seen from the helm and the surface view.
 - **Close up** (`src/views/system/relief.js`): within 4 radii the globe swaps to a 384 × 192 sphere;
   within ~0.25 radii of the ground (FROM ABOVE, FLY) and in the surface view a terrain patch is built
   around the point below the camera: a polar grid of 96 rings × 192 spokes, rings packed towards
@@ -531,6 +533,43 @@ elevation read-out with its source.
 - **Standalone**: no DEMs (16 MB budget); globes stay smooth and the panel says so.
 - **Browser checks**: `window.__fidelityRelief` (`terminatorView(phase, dist)`, `overSite(lat, lon,
   dist)`, `elevationAt`, `phaseNow`, `view` = the System View API).
+
+## Clouds and ground: Venus and Earth (#83)
+
+Venus and Earth have two layers: a cloud shell at its height and the #80 ground beneath it, which the surface view
+descends to and the helm lands on.
+
+- **Model** (`src/astro/atmosphere.js`, pure, `tests/atmosphere.test.js`): the VIRA profile for Venus and the US
+  Standard Atmosphere 1976 for Earth (pressure, temperature by altitude), `CLOUD_LAYERS` (Venus deck 48–70 km, haze to
+  90 km, measured, super-rotation 4 days; Earth's shell at 10 km, ASSUMED: the imagery has no height), the murk, light
+  fraction, Sun visibility and Rayleigh extinction by altitude (MODELLED), and the DESCEND / ASCEND state machine
+  (`createDescent`, `startDescent`, `stepDescent`: altitude above the ground eased in log(altitude + 5 km), 40 s for
+  Venus, 24 s for Earth, reversible mid-way; it takes the time as an argument).
+- **Shells** (`SystemView.addBody`, `src/views/system/clouds.js`): a body with `skin.ground` (Venus: `venusRadar`,
+  `groundRadar`) draws its globe with that map, coloured in the planet shader after Venera 13/14 (`uRadar`), and its
+  own map (`skin.map`, the cloud tops) on an opaque `cloudMaterial({ opaque: true })` shell at 1 + 70 km / R that
+  shares the globe's spectrum-filter uniforms (`BAND_UNIFORMS`): the band looks are unchanged, and in radio bands the
+  deck hides so the ground (Magellan's emissivity map) shows. `updateCloudShell` turns Venus' deck westward
+  (`superRotation(layer, jd)`), registers Earth's shell to today's GIBS image (alpha from whiteness,
+  `uAlphaFromLuma = 2`; the ground drops the image's clouds, `uLiveSplit`) or drifts the 2004 snapshot, hides the
+  shell in deep time (`paleoOn`), outside its bands and under Venus' deck, and feeds the ground shader the shadow
+  lookup (`cloudShadow()`: the shell seen from each ground point towards the Sun, `uCloudTex/uCloudH/uCloudU/uSunL`).
+  Venus' DEM is now shaded on the globe (`shading: 'all'`): the deck hides it from orbit, the helm sees it below.
+- **Surface view**: double-click (System View, or the Planet View globe) enters with `layer: 'clouds'`: on Venus and
+  Earth the camera starts on the cloud tops (`standKm`: 70.5 km, 10.8 km); `surfaceAt` (sites, events, postcards,
+  `?surface=`) keeps the ground unless `layer: 'clouds'` (`&layer=clouds`). The HUD's DESCEND / ASCEND run the state
+  machine; `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
+  `layerLook` sets the sky, star fade, Sun and body visibility (none under Venus' deck), the ground's light (`uSunColor`
+  scaled and tinted, `uSkyAmb` diffuse orange from the zenith `uSkyUp`), aerial perspective (`uFogK`, `uFogCol`) and
+  the murk veil (`createMurkVeil`: a clip-space quad drawn last, so postcards keep it). Earth's murk follows the cloud
+  cover over the spot (`cloudCoverAt` reads the cloud map on a small canvas). The read-outs (`layerHud`): altitude
+  above the ground and the reference, pressure and temperature with the profile's name, the layer, the cloud source,
+  Venus' ground and light, each with its badge. Leaving resets the ground's light (`resetLayerLight`).
+- **Helm** (`helm.js`): REAL PHYSICS sweeps against the drawn ground under the ship (the DEM, within 1.5 radii) rather
+  than the sphere; a touch-down sets the ship level on the ground (60 m up) and re-seats it as finer tiles load;
+  IMPULSE / WARP clearance already used the ground; no cloud is a surface.
+- **Browser checks**: `view.descend('down' | 'up')`, `view.surfaceLayer` (phase, altitude, layer, murk, cloud cover,
+  Sun, light, read-out) and `window.__fidelityRelief.nodes` (globe and shell).
 
 ## Surface sites (#37)
 

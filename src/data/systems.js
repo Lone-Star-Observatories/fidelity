@@ -43,9 +43,10 @@ function solFacts(b) {
     PHYSICAL: phys,
     RENDERING: [b.id === 'pluto'
       ? fact('SURFACE', 'NEW HORIZONS MOSAIC', 'measured', 'Global colour mosaic from the 2015 flyby. The black southern band was in polar night and has never been imaged.')
-      : b.id === 'venus' ? fact('SURFACE', 'CLOUD TOPS', 'measured', 'What you would see: Venus\'s surface is hidden under permanent cloud.')
+      : b.id === 'venus' ? fact('SURFACE', 'CLOUD TOPS · RADAR GROUND BELOW', 'measured', 'What you would see: Venus\'s surface is hidden under permanent cloud (the deck drawn at 70 km). Beneath it: the Magellan radar mosaic on the Magellan DEM, coloured after the Venera 13/14 lander images (the colour is MODELLED). Double-click to stand on the cloud tops, then DESCEND.')
       : b.id === 'sun' ? fact('SURFACE', 'PHOTOSPHERE', 'measured', 'Solar imagery with limb darkening applied.')
-      : fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery.')],
+      : fact('SURFACE', 'SPACECRAFT MOSAIC', 'measured', 'Global map assembled from spacecraft imagery.'),
+      ...(b.id === 'earth' ? [fact('CLOUDS', 'SHELL AT 10 KM · ASSUMED HEIGHT', 'modelled', 'Where the clouds are is measured (today\'s satellite mosaic, NASA GIBS, or the 2004 Blue Marble clouds); how high is not: every cloud is drawn at 10 km. Real clouds lie from ~0.5 km (stratus) to ~12 km (cirrus).')] : [])],
   };
 }
 

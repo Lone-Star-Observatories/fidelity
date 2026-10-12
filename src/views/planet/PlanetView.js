@@ -112,7 +112,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     const hit = ray.intersectObject(globe, false)[0];
     if (!hit) return;
     const { lat, lon } = dirToLatLon(globe.worldToLocal(hit.point.clone()).toArray());
-    onSurface?.(current.id, lat, lon);
+    onSurface?.(current.id, lat, lon, { layer: 'clouds' }); // #83: Venus and Earth: on top of the clouds
   });
   // #36: FROM THE SURFACE markers (a picture was taken here; click to stand there)
   let marks = null;

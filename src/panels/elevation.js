@@ -48,7 +48,7 @@ export function createElevationPanel({ h, pill, row, settings, isStandalone }) {
     }));
     const notes = [
       `RELIEF · ${reliefLabel(cur)}. Lighting follows the terrain at every distance (a normal map derived from the heights); close up the ground itself rises and falls${cur === 'off' ? '' : ', and the surface view stands on it'}.`,
-      b.id === 'venus' ? 'Venus\' clouds hide its ground: the globe shows the cloud tops, so the relief appears only in the surface view and in the height read-outs.' : null,
+      b.id === 'venus' ? 'Venus\' clouds hide its ground: the globe shows the cloud deck at 70 km, and the relief is on the ground beneath it (Magellan radar, coloured after the Venera landers: MODELLED). Double-click to stand on the cloud tops, then DESCEND to the ground.' : null,
       b.id === 'earth' ? 'The ocean surface is drawn flat; read-outs give the sea floor (bathymetry).' : null,
       meta.partial ? `Partial: ${meta.partial} Where there is no data the globe stays a smooth sphere.` : null,
     ].filter(Boolean);

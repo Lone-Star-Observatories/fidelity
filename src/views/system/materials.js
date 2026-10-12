@@ -102,13 +102,38 @@ const PLANET_FRAG = /* glsl */`
   // Earth), the body's north uDiscN at position angle uDiscPA in the image; disc centre uDiscC (uv),
   // radii uDiscR and image size uDiscWH in pixels. Its alpha is 0 on the far side (the predicted skin).
   uniform float uDiscOn; uniform vec2 uDiscC; uniform vec2 uDiscR; uniform vec2 uDiscWH; uniform float uDiscPA; uniform vec3 uDiscE; uniform vec3 uDiscN;
+  // Clouds and ground (#83): uRadar colours a radar backscatter map after the Venera 13/14 lander images (MODELLED:
+  // radar is not colour); uSkyAmb is the diffuse light of an overcast sky (under Venus' clouds the Sun's disc is never
+  // seen; uSkyUp the local zenith, world axes); uFogCol / uFogK the aerial perspective (extinction per world unit); uLiveSplit keeps today's imagery's
+  // clouds off the ground when they are drawn on their own shell. uAlphaFromLuma: 1 alpha from brightness (a cloud
+  // map), 2 alpha from whiteness (clouds picked out of a true-colour mosaic).
+  uniform float uRadar; uniform vec3 uSkyAmb; uniform vec3 uSkyUp; uniform vec3 uFogCol; uniform float uFogK; uniform float uLiveSplit;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
+  float whiteness(vec3 c) {
+    float lo = min(c.r, min(c.g, c.b)), hi = max(c.r, max(c.g, c.b));
+    return smoothstep(0.2, 0.55, lo) * (1.0 - smoothstep(0.12, 0.3, hi - lo));
+  }
   #ifdef DEM
   // Relief (#80): heights (m, half float, mipmapped) → a normal map on the fly. uDemK = exaggeration / radius (m),
   // uDemTexel the step (1 / size), uDemU0 the colour map's longitude offset; uDemClip discards the globe under a
   // close-up terrain patch (xyz = its centre direction in the mesh frame, w = cos of its angular radius).
   uniform sampler2D uDem; uniform float uDemOn; uniform float uDemK; uniform float uDemU0; uniform vec2 uDemTexel; uniform vec4 uDemClip;
   varying vec3 vEastW; varying vec3 vNorthW; varying vec3 vDirL;
+  // Cloud shadows on the ground (#83): the cloud shell (height uCloudH body radii, its map uCloudTex turned uCloudU
+  // in u against the ground) seen from this point towards the Sun (uSunL, the ground mesh's frame). Mode as uAlphaFromLuma.
+  uniform sampler2D uCloudTex; uniform float uCloudMode; uniform float uCloudH; uniform float uCloudU; uniform vec3 uSunL;
+  float cloudShadow() {
+    float lat = (vUv.y - 0.5) * 3.14159265, ph = vUv.x * 6.2831853;
+    vec3 d = vec3(-cos(ph) * cos(lat), sin(lat), sin(ph) * cos(lat)); // this point (the uv works on the globe and the terrain patch)
+    vec3 s = normalize(uSunL);
+    float b = dot(d, s), rc = 1.0 + uCloudH;
+    if (b < -0.2) return 0.0;
+    float t = -b + sqrt(max(b * b - 1.0 + rc * rc, 0.0));
+    vec3 q = normalize(d + s * t);
+    float u = atan(q.z, -q.x) / 6.2831853 + uCloudU;
+    vec4 c = texture2D(uCloudTex, vec2(fract(u), asin(clamp(q.y, -1.0, 1.0)) / 3.14159265 + 0.5));
+    return uCloudMode > 1.5 ? whiteness(c.rgb) : clamp(dot(c.rgb, vec3(0.333)) * 1.3, 0.0, 1.0);
+  }
   vec3 demNormal(vec3 N) {
     vec2 uv = vec2(vUv.x + uDemU0, vUv.y);
     // step: one texel, or the screen footprint when the globe is small (with the matching mip level)
@@ -190,11 +215,21 @@ const PLANET_FRAG = /* glsl */`
         umbraK = smoothstep(0.9, 1.0, f);
       }
     }
+    #ifdef DEM
+    if (uCloudMode > 0.5) lightK *= 1.0 - 0.7 * cloudShadow();
+    #endif
     vec4 tex = texture2D(uMap, vUv);
     vec3 base = tex.rgb * uTint;
+    if (uRadar > 0.5) { // radar brightness → Venera 13/14 rock colours: dark basalt, rough (radar-bright) ground a little paler
+      float g = dot(tex.rgb, vec3(0.333));
+      float t = mix(0.45, pow(clamp(g * 3.0, 0.0, 1.0), 0.8), smoothstep(0.004, 0.02, g)); // Magellan's gaps (black): the mean ground
+      base = mix(vec3(0.1, 0.075, 0.05), vec3(0.46, 0.36, 0.26), t);
+    }
     if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
       vec3 lv = texture2D(uLive, vUv).rgb;
-      base = mix(base, lv, smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b))));
+      float w = smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b)));
+      if (uLiveSplit > 0.5) w *= 1.0 - whiteness(lv); // its clouds are on their own shell
+      base = mix(base, lv, w);
     }
     if (uPaleo > 0.5) {
       vec3 seaCol = vec3(0.012, 0.035, 0.09), shelfCol = vec3(0.31, 0.29, 0.2), iceCol = vec3(0.86, 0.9, 0.95);
@@ -281,13 +316,15 @@ const PLANET_FRAG = /* glsl */`
       return;
     }
     // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
-    vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK));
+    vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK) + uSkyAmb * (0.4 + 0.6 * max(dot(N, uSkyUp), 0.0)));
     if (uPsCol.r + uPsCol.g + uPsCol.b > 0.0) col += base * uPsCol * max(dot(N, normalize(uPsPos - vPosW)), 0.0) * (1.0 - smoothstep(-0.05, 0.2, ndl * lightK));
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
       col += texture2D(uNight, vUv).rgb * night * 1.4;
     }
-    float a = uAlphaFromLuma > 0.5 ? clamp(dot(tex.rgb, vec3(0.333)) * 1.3, 0.0, 1.0) : 1.0;
+    float a = uAlphaFromLuma > 1.5 ? whiteness(tex.rgb) : uAlphaFromLuma > 0.5 ? clamp(dot(tex.rgb, vec3(0.333)) * 1.3, 0.0, 1.0) : 1.0;
+    if (!gl_FrontFacing) col *= 0.5; // a cloud shell seen from below: its shaded underside
+    if (uFogK > 0.0) col = mix(col, uFogCol, 1.0 - exp(-length(cameraPosition - vPosW) * uFogK));
     gl_FragColor = vec4(col, a);
     #include <colorspace_fragment>
   }`;
@@ -340,7 +377,9 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035,
     vertexShader: dem ? DEM_VERT : VERT, fragmentShader: PLANET_FRAG,
     defines: dem ? { DEM: 1 } : {},
     uniforms: {
-      ...(dem ? { uDem: { value: null }, uDemOn: { value: 0 }, uDemDisp: { value: 0 }, uDemK: { value: 0 }, uDemU0: { value: 0 }, uDemTexel: { value: new THREE.Vector2(1 / 1440, 1 / 720) }, uDemClip: { value: new THREE.Vector4(0, 1, 0, 2) } } : {}),
+      ...(dem ? { uDem: { value: null }, uDemOn: { value: 0 }, uDemDisp: { value: 0 }, uDemK: { value: 0 }, uDemU0: { value: 0 }, uDemTexel: { value: new THREE.Vector2(1 / 1440, 1 / 720) }, uDemClip: { value: new THREE.Vector4(0, 1, 0, 2) },
+        uCloudTex: { value: null }, uCloudMode: { value: 0 }, uCloudH: { value: 0 }, uCloudU: { value: 0 }, uSunL: { value: new THREE.Vector3(0, 1, 0) } } : {}),
+      uRadar: { value: 0 }, uSkyAmb: { value: new THREE.Color(0, 0, 0) }, uSkyUp: { value: new THREE.Vector3(0, 1, 0) }, uFogCol: { value: new THREE.Color(0, 0, 0) }, uFogK: { value: 0 }, uLiveSplit: { value: 0 },
       uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 }, uLive: { value: null }, uHasLive: { value: 0 },
       uTint: { value: new THREE.Color(...tint) }, uSunPos: { value: new THREE.Vector3() },
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },
@@ -358,13 +397,19 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035,
   });
 }
 
-export function cloudMaterial(placeholder) {
-  const m = planetMaterial(placeholder, { ambient: 0.0 });
-  m.uniforms.uAlphaFromLuma.value = 1;
-  m.transparent = true;
-  m.depthWrite = false;
+/** A cloud shell: alpha from the map's brightness; `opaque` for a deck that hides the ground entirely (Venus, #83). */
+export function cloudMaterial(placeholder, { opaque = false } = {}) {
+  const m = planetMaterial(placeholder, { ambient: opaque ? 0.035 : 0.0 });
+  m.uniforms.uAlphaFromLuma.value = opaque ? 0 : 1;
+  m.transparent = !opaque;
+  m.depthWrite = opaque;
+  m.side = THREE.DoubleSide; // seen from below on the way down (#83)
   return m;
 }
+
+/** The uniforms of the spectrum-filter look (#28): a cloud deck that shares them shows the planet's band look. */
+export const BAND_UNIFORMS = ['uBandMode', 'uBandTex', 'uBandLevels', 'uBandGain', 'uPalette', 'uThermal', 'uBandUm', 'uGlow', 'uPoleW', 'uBandLit',
+  'uMix', 'uMixPal', 'uMixHue', 'uGlowGain', 'uBandTexPrev', 'uBandFade', 'uDiscOn', 'uDiscC', 'uDiscR', 'uDiscWH', 'uDiscPA', 'uDiscE', 'uDiscN'];
 
 export function starMaterial(placeholder, color, recolour) {
   return new THREE.ShaderMaterial({

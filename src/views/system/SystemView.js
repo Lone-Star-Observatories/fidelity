@@ -42,7 +42,10 @@ import { createCameraRig, reducedMotion } from '../cameraControls.js';
 import { createHelm } from '../ship/helm.js';
 import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
-import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
+import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive, BAND_UNIFORMS } from './materials.js';
+import { cloudLayer, createDescent, startDescent, stepDescent, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
+import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout } from './clouds.js';
+import { badge } from '../../data/provenance.js';
 import { createRelief } from './relief.js';
 import { fmtElevation, reliefK } from '../../astro/dem.js';
 import { BANDS, bandById, passById } from '../../data/bands.js';
@@ -353,7 +356,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const dom = curve ? band.dominant : band.id;
     for (const id in nodes) {
       const n = nodes[id], u = n.mesh?.material?.uniforms;
-      if (n.clouds) n.clouds.visible = full || dom === 'visible';
+      // a cloud shell shows where it is mostly visible light; Venus' deck in every band but radio, which sees the ground (#83)
+      if (n.clouds) n.cloudBandOK = n.clouds.userData.opaque ? dom !== 'radio' : full || dom === 'visible';
       if (n.ring && curve && band.id === 'custom') n.ring.visible = full || dom === 'visible' || dom === 'ir'; // a custom curve: visible/IR rings
       else if (n.ring) { // #61: rings by their own measured look in the band (reflected ice, cold microwave, O Kα X-rays)
         const r = ringBandLook(n.body, band, p), t = full ? [1, 1, 1] : r.palette ? PAL_RGB[r.palette] : [1, 1, 1], k = full ? 1 : Math.min(1.6, Math.max(0.12, r.gain));
@@ -362,7 +366,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       if (isStar(n.body)) { applyStarBand(n, p); continue; }
       if (!u?.uBandMode) continue;
       n.bandLook = applyBandToMaterial(u, n.body, band, p);
-      if (n.clouds?.material?.uniforms?.uBandMode) n.clouds.material.uniforms.uBandMode.value = 0;
+      if (n.clouds?.material?.uniforms?.uBandMode && !n.clouds.userData.opaque) n.clouds.material.uniforms.uBandMode.value = 0;
     }
     applySkyBand();
   }
@@ -474,17 +478,29 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const mat = planetMaterial(placeholder, { tint: body.skin?.tint, dem: !!model.isSol }); // #80: relief from the body's DEM, if it has one
       mat.userData.host = body.orbit?.host ?? model.starId;
       mat.userData.body = body.id;
-      applySkin(mat, body.skin);
+      // #83: a world whose globe shows its clouds (Venus) draws its ground under them, on its own map
+      const groundMap = model.isSol ? body.skin?.ground : null;
+      applySkin(mat, groundMap ? { ...body.skin, map: groundMap } : body.skin);
+      if (groundMap && body.skin.groundRadar) mat.uniforms.uRadar.value = 1;
       if (body.skin?.live) liveTargets.push({ id: body.id, material: mat, skin: body.skin });
       mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 48), mat);
       lit.push(mat);
-      if (body.skin?.clouds) {
-        const cm = cloudMaterial(placeholder);
+      if (body.skin?.clouds || groundMap) {
+        // #83: the shell at the layer's height (Venus 70 km, measured; Earth 10 km, assumed); an opaque deck
+        // (Venus) carries the globe's own map and shares its spectrum-filter look
+        const layer = model.isSol ? cloudLayer(body.id) : null, opaque = !!groundMap;
+        const cm = cloudMaterial(placeholder, { opaque });
         cm.userData.host = mat.userData.host;
         cm.userData.body = body.id;
-        clouds = new THREE.Mesh(new THREE.SphereGeometry(1.012, 96, 48), cm);
-        cm.uniforms.uMap.value = new THREE.Texture(); // invisible until the cloud map arrives
-        loadTexture(body.skin.clouds).then((t) => { if (t) cm.uniforms.uMap.value = t; });
+        clouds = new THREE.Mesh(new THREE.SphereGeometry(layer ? 1 + layer.shellKm / body.radiusKm : 1.012, 96, 48), cm);
+        clouds.userData = { layer, opaque, staticTex: null };
+        if (opaque) {
+          for (const k of BAND_UNIFORMS) cm.uniforms[k] = mat.uniforms[k];
+          loadTexture(body.skin.map).then((t) => { if (t) cm.uniforms.uMap.value = t; });
+        } else {
+          cm.uniforms.uMap.value = new THREE.Texture(); // invisible until the cloud map arrives
+          loadTexture(body.skin.clouds).then((t) => { if (t) { clouds.userData.staticTex = t; if (!clouds.userData.live) cm.uniforms.uMap.value = t; } });
+        }
         lit.push(cm);
         tilt.add(clouds);
       }
@@ -1392,7 +1408,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (!n || n.body.marker || n.body.kind === 'satellite' || n.body.kind === 'spacecraft') { flashHud('NO SURFACE HERE'); return; }
     const local = hit.object.worldToLocal(hit.point.clone());
     const normal = hit.face ? hit.face.normal.clone() : local.clone().normalize();
-    enterSurface(id, { object: hit.object, local, normal });
+    enterSurface(id, { object: hit.object, local, normal, layer: 'clouds' }); // #83: on Venus and Earth, on top of the clouds
   });
 
   // ---- surface view: stand where you double-clicked and look up ---------------------------
@@ -1439,7 +1455,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const hudLookBtns = document.createElement('div');
   hudLookBtns.className = 'surface-look-btns';
   hudLookBtns.append(hudTrack, hudFit, hudLt); // field presets (NAKED EYE … TELESCOPE) are in the #47 row
-  hud.append(hudText, hudSub, hudLook, hudBack, hudSun, hudPlanet, hudLookBtns, hudFov);
+  // #83: Venus and Earth: a cloud layer above the ground: DESCEND through it, ASCEND back to the tops
+  const hudLayer = document.createElement('div');
+  hudLayer.className = 'surface-layer';
+  const hudDescend = Object.assign(document.createElement('button'), { className: 'pill', textContent: '▼ DESCEND TO THE GROUND', hidden: true, title: 'Down through the clouds to the real ground, 2 m above it' });
+  hudDescend.addEventListener('click', () => descend('down'));
+  const hudAscend = Object.assign(document.createElement('button'), { className: 'pill', textContent: '▲ ASCEND TO THE CLOUD TOPS', hidden: true });
+  hudAscend.addEventListener('click', () => descend('up'));
+  hud.append(hudText, hudSub, hudLayer, hudLook, hudBack, hudDescend, hudAscend, hudSun, hudPlanet, hudLookBtns, hudFov);
   container.appendChild(hud);
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
@@ -1459,14 +1482,52 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   });
   const zenithTag = (() => { const el = document.createElement('div'); el.className = 'nav-label compass zenith'; el.textContent = '+ ZENITH'; const o = new CSS2DObject(el); o.visible = false; scene.add(o); return o; })();
 
-  function enterSurface(id, { object, local, normal }) {
+  /** #83: start descending ('down') or ascending ('up') through the cloud layer; false where there is none. */
+  function descend(dir) {
+    if (!surface?.descent) return false;
+    surface.descent = startDescent(surface.descent, dir, performance.now() / 1000, cloudLayer(surface.id).descentS);
+    return true;
+  }
+  let murkVeil = null;
+  /** Undo the under-cloud light and fog on a body's ground (shared by its globe and terrain patch). */
+  function resetLayerLight(id) {
+    murkVeil?.hide();
+    const u = nodes[id]?.mesh?.material?.uniforms;
+    if (!u?.uSkyAmb) return;
+    u.uSunColor.value.setRGB(1.3, 1.3, 1.3); u.uSkyAmb.value.setRGB(0, 0, 0); u.uFogK.value = 0;
+  }
+  let layerHudAt = 0;
+  /** The layer read-outs, each with its provenance badge (rebuilt a few times a second). */
+  function layerHud(s, r, aboveKm, look) {
+    hudLayer.hidden = !r;
+    if (!r || performance.now() - layerHudAt < 200) return;
+    layerHudAt = performance.now();
+    const venus = s.id === 'venus', L = r.layer, n = nodes[s.id];
+    const km = (x) => (x >= 10 ? `${x.toFixed(1)} KM` : x >= 1 ? `${x.toFixed(2)} KM` : `${Math.round(x * 1000).toLocaleString('en-US')} M`);
+    const p = venus ? `${r.pBar >= 10 ? r.pBar.toFixed(1) : r.pBar >= 0.1 ? r.pBar.toFixed(2) : r.pBar.toPrecision(2)} BAR` : `${Math.round(r.pBar * 1000).toLocaleString('en-US')} HPA`;
+    const live = n?.clouds?.userData?.live;
+    const rows = [
+      [`ALTITUDE ${km(aboveKm)} ABOVE THE GROUND · ${km(Math.abs(r.altKm))} ${r.altKm < 0 ? 'BELOW' : 'ABOVE'} ${venus ? 'THE 6,052 KM SPHERE (VIRA)' : 'SEA LEVEL'}`, 'computed', 'From the camera height over the DEM ground and the measured ground height.'],
+      [`${p} · ${Math.round(r.tC)} °C (${Math.round(r.tK)} K) · ${venus ? 'VIRA: PIONEER VENUS + VENERA' : 'US STANDARD ATMOSPHERE 1976'}`, 'measured',
+        venus ? `${r.source}: a reference profile built from the probes' measurements, interpolated by altitude (log pressure); not a reading for this spot today.` : `${r.source}: the reference mid-latitude profile built from balloon and rocket measurements; today's air here differs with the weather.`],
+      venus ? [`CLOUD DECK ${L.baseKm}–${L.topKm} KM, HAZE TO ${L.hazeTopKm} KM · SUPER-ROTATING WESTWARD IN ~${L.superRotationDays} DAYS (THE GROUND: 243 DAYS)`, 'measured', L.note]
+        : [`CLOUDS DRAWN AT ${L.shellKm} KM: AN ASSUMED HEIGHT`, 'modelled', L.note],
+      !venus ? [live ? `CLOUDS: TODAY'S SATELLITE MOSAIC (${(liveState.earth?.feed ?? 'GIBS').toUpperCase()}, NASA GIBS), PICKED OUT BY WHITENESS` : 'CLOUDS: BLUE MARBLE 2004 (MODIS), DRIFTED', 'measured', 'Where the clouds are is measured; snow and ice can read as cloud.'] : null,
+      venus ? ['GROUND: MAGELLAN RADAR ON MAGELLAN ALTIMETRY, COLOURED AFTER VENERA 13/14', 'modelled', 'Radar brightness (roughness) is not colour: rock colours from the Venera 13/14 lander images; heights and radar brightness MEASURED (Magellan, USGS Astrogeology).'] : null,
+      venus && look && !look.sunVisible ? [`LIGHT ~${Math.max(1, Math.round(r.light * 100))}% OF THE SUNLIGHT ABOVE THE CLOUDS · ORANGE, NO SUN DISC${look.where === 'below' ? ` · VISIBILITY ~${Math.round(visibilityKm(look.fogK))} KM` : ''} · EXPOSURE ADAPTED`, 'modelled', 'Venera 11–14 and Pioneer Venus measured ~2–3% of the sunlight at the ground, reddened; visibility from Rayleigh scattering in the dense CO₂.'] : null,
+    ].filter(Boolean);
+    hudLayer.replaceChildren(...rows.map(([t, tier, d]) => { const el = document.createElement('div'); el.append(document.createTextNode(`${t} `), badge(tier, d)); return el; }));
+  }
+  function enterSurface(id, { object, local, normal, layer = 'ground' }) {
     if (helm?.active) helm.disengage({ quiet: true }); // standing on a surface takes the camera from the helm (#42)
     siteView = null;
     const n = nodes[id];
     if (!n) return;
     const sphere = object === n.mesh;
+    if (surface) resetLayerLight(surface.id);
     surface = { id, object, local, normal: sphere ? local.clone().normalize() : normal.normalize(), az: 0, alt: 90, fov: 70,
-      prevScale: settings.get('scale'), sphere, frame: null, enlarge: 1, preset: null, sizes: null };
+      prevScale: settings.get('scale'), sphere, frame: null, enlarge: 1, preset: null, sizes: null,
+      descent: sphere && model.isSol && cloudLayer(id) ? createDescent(id, { at: layer === 'clouds' ? 'top' : 'ground' }) : null, layerLook: null };
     scaleMix = 1; // TRUE scale at once: an easing disc would be the wrong size for its first seconds
     flight = null;
     focusId = id;
@@ -1485,6 +1546,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     hudLook.textContent = '';
     for (const c of [...compass, zenithTag, parentTag]) c.visible = false;
     planetArrow.hidden = true;
+    resetLayerLight(s.id);
     skyMat.uniforms.uFade.value = 1;
     scene.background = null;
     skyGlare?.hide();
@@ -1544,6 +1606,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       else show = true; // stars and planets
       // daylight: only the Sun, the planet overhead (from a moon) and our own moon
       if (show && s.day > 0.5 && !isStar(b) && !(b.kind === 'moon' && b.parent === s.id) && id !== here.parent) show = false;
+      if (s.layerLook && !s.layerLook.bodiesVisible) show = false; // under Venus' deck: no Sun, no sky (#83)
       if (s.look?.target === id) show = true; // LOOK AT: the target is always drawn (even a spacecraft or a far moon)
       n.group.visible = show;
       n.label.visible = show;
@@ -1727,7 +1790,19 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     // 2 m above the surface, in the object's own units (spheres are unit radius); on the DEM's ground where there is one (#80)
     const ground = s.sphere ? (relief.patchGround(s.id) ?? relief.groundAtDir(s.id, sv.e.copy(s.local).normalize().toArray(), { surface: true })) : 1;
     s.ground = s.sphere ? relief.elevationAtDir(s.id, sv.e.copy(s.local).normalize().toArray(), 99, false) : null;
-    const lift = s.sphere ? ground + 0.002 / R : 1;
+    // #83: on Venus and Earth the camera may be anywhere from the cloud tops down to 2 m above the ground
+    const layer = s.descent ? cloudLayer(s.id) : null;
+    let groundRefKm = 0; // the ground's height above the layers' reference
+    if (layer) {
+      // above the layers' reference: Earth's sea level (the sea surface is drawn flat), Venus' 6,052 km VIRA sphere (the DEM's is 6,051 km)
+      const hD = s.ground && Number.isFinite(s.ground.hDraw ?? s.ground.h) ? (s.ground.hDraw ?? s.ground.h) / 1000 : 0;
+      groundRefKm = s.id === 'earth' ? Math.max(0, hD) : hD + ((s.ground?.meta?.refRadiusKm ?? R) - layer.refRadiusKm);
+      const top = Math.max(0.5, layer.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
+      if (Math.abs(top - s.descent.top) > 1e-6) s.descent = { ...s.descent, top, ...(s.descent.phase === 'top' ? { altKm: top, fromKm: top, toKm: top } : {}) };
+      s.descent = stepDescent(s.descent, performance.now() / 1000);
+    }
+    const aboveKm = s.descent?.altKm ?? GROUND_EYE_KM;
+    const lift = s.sphere ? ground + aboveKm / R : 1;
     const p = s.object.localToWorld(sv.a.copy(s.local).multiplyScalar(s.sphere ? lift / s.local.length() : 1));
     if (!s.sphere) p.add(sv.b.copy(s.normal).transformDirection(s.object.matrixWorld).multiplyScalar(0.002 / AU_KM));
     const up = s.sphere ? sv.b.copy(p).sub(centre).normalize() : sv.b.copy(s.normal).transformDirection(s.object.matrixWorld);
@@ -1764,13 +1839,36 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       s.fov = Math.max(70, Math.min(110, (Math.max(0, pick.alt) + 6) / 0.8));
       s.az = pick.az; s.alt = 0.3 * s.fov; s.lookBest = false;
     }
-    hudSun.hidden = sun.alt < -1;
     const air = DAY_SKY[s.id];
     let day = air ? (air.always ? Math.max(0.15, daylight(sun.alt)) : daylight(sun.alt)) : 0;
     // a solar eclipse dims the day by the share of the Sun the Moon hides; totality brings out the stars (#30)
     const llNow = s.sphere ? dirToLatLon(s.local.toArray()) : null;
     s.eclipse = s.id === 'earth' && llNow && model.isSol ? eclipseDaylight(jd, llNow.lat, llNow.lon, surfacePoint) : null;
     if (s.eclipse) day *= s.eclipse.light;
+    // #83: the layer we are in: sky, light, fog and murk from the cloud tops to the ground
+    let look = null, layerR = null;
+    if (layer) {
+      const altRef = groundRefKm + aboveKm;
+      const c = n.clouds, cu = c?.material?.uniforms;
+      let cover = 1;
+      if (s.id === 'earth' && cu && llNow) cover = cloudCoverAt(cu.uMap.value, (llNow.lon + 180) / 360 + (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI), (llNow.lat + 90) / 180, cu.uAlphaFromLuma.value);
+      const d0 = daylight(sun.alt) * (s.eclipse?.light ?? 1);
+      look = layerLook(s.id, altRef, { day: d0, cover });
+      s.cover = cover;
+      layerR = layerReadout(s.id, altRef, aboveKm);
+      day = d0;
+      const gu = n.mesh.material.uniforms;
+      if (gu.uSkyAmb) {
+        gu.uSunColor.value.setRGB(1.3 * look.sunScale * look.sunTint[0], 1.3 * look.sunScale * look.sunTint[1], 1.3 * look.sunScale * look.sunTint[2]);
+        gu.uSkyAmb.value.setRGB(...look.skyAmb);
+        gu.uSkyUp.value.set(...f.up);
+        gu.uFogK.value = look.fogK * AU_KM;
+        gu.uFogCol.value.setRGB(...look.fogRgb);
+      }
+      murkVeil ??= createMurkVeil(scene);
+      murkVeil.set(look.murk, look.murkRgb);
+    }
+    s.layerLook = look;
     updateCorona(p, s.eclipse);
     // the Sun's glare (#47): the orbit-view sprite goes; a glare fixed in the observer's field, as
     // bright as the sunlight that reaches the ground, takes over outside the exact disc
@@ -1782,7 +1880,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     skyGlare ??= createSkyGlare(scene);
     const hasAir = !!DAY_SKY[s.id] && !DAY_SKY[s.id].always;
     skyGlare.update({ sunPos, eye: p, camera, sunRadiusDeg: (sunDeg / 2) * s.enlarge, fovDeg: s.fov,
-      strength: glareStrength(sunDistKm / AU_KM, sun.alt, { obscuration: s.eclipse?.obscuration ?? 0, k: hasAir ? 0.2 : 0 }) * 0.9 });
+      strength: look && !look.sunVisible ? 0 : glareStrength(sunDistKm / AU_KM, sun.alt, { obscuration: s.eclipse?.obscuration ?? 0, k: hasAir ? 0.2 : 0 }) * 0.9 });
     // apparent sizes of the Sun and the other big discs in this sky, true and as rendered
     const discs = [{ id: model.starId, label: 'SUN', pos: sunPos, deg: sunDeg }];
     const other = s.id === 'earth' ? 'moon' : n.body.kind === 'moon' ? n.body.parent : null;
@@ -1799,18 +1897,30 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
     s.sizes = discs;
     updateParentFinder(s, n, p, f, sunPos, discs[1]);
-    if (air && day > 0) {
+    hudSun.hidden = sun.alt < -1 || (look && !look.sunVisible);
+    if (look) { // #83: the sky from inside the layer
+      const k = look.sky;
+      scene.background = k[0] + k[1] + k[2] > 0.002 ? (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(k[0], k[1], k[2], THREE.LinearSRGBColorSpace) : null;
+      skyMat.uniforms.uFade.value = look.starFade ?? Math.max(0, 1 - day * 1.6);
+      s.day = look.sunVisible ? day : 1;
+    } else if (air && day > 0) {
       const k = air.always ? Math.min(1, day) * 0.7 : day * 0.9;
       scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(air.rgb[0] * k, air.rgb[1] * k, air.rgb[2] * k, THREE.LinearSRGBColorSpace);
     } else scene.background = null;
-    skyMat.uniforms.uFade.value = air?.hidesStars ? Math.max(0, 1 - day * 1.6) : 1;
-    s.day = air?.hidesStars ? day : 0;
+    if (!look) {
+      skyMat.uniforms.uFade.value = air?.hidesStars ? Math.max(0, 1 - day * 1.6) : 1;
+      s.day = air?.hidesStars ? day : 0;
+    }
     // read-out
     const ll = s.sphere ? dirToLatLon(s.local.toArray()) : null;
     const where = ll ? `${Math.abs(ll.lat).toFixed(2)}°${ll.lat >= 0 ? 'N' : 'S'} ${Math.abs(ll.lon).toFixed(2)}°${ll.lon >= 0 ? 'E' : 'W'}` : 'ON ITS SURFACE';
     const giant = (n.body.radiusKm ?? 0) > 20000;
-    const text = `${giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON'} ${n.body.name.toUpperCase()} · ${where}`;
-    const look = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
+    const lead = look ? (look.where === 'above' ? 'ABOVE THE CLOUDS OF' : look.where === 'in' ? 'IN THE CLOUDS OF' : s.descent.phase === 'ground' ? 'STANDING ON' : 'UNDER THE CLOUDS OF') : giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON';
+    const text = `${lead} ${n.body.name.toUpperCase()} · ${where}${s.descent?.phase === 'down' ? ' · DESCENDING' : s.descent?.phase === 'up' ? ' · ASCENDING' : ''}`;
+    layerHud(s, layerR, aboveKm, look);
+    hudDescend.hidden = !s.descent || s.descent.phase === 'ground' || s.descent.phase === 'down';
+    hudAscend.hidden = !s.descent || s.descent.phase === 'top' || s.descent.phase === 'up';
+    const lookTxt = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
     const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : corona.shown === 'modelled' ? ' · CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
     const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ` · TOTAL ECLIPSE: TOTALITY${coronaTxt}` : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN${coronaTxt}`) : '';
     const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
@@ -1822,7 +1932,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     hudBig.textContent = s.enlarge === 1 ? 'TRUE SIZE' : `ENLARGED ×${s.enlarge}`;
     hudBig.classList.toggle('on', s.enlarge !== 1);
     const g = s.ground && Number.isFinite(s.ground.h) ? ` · GROUND ${fmtElevation(s.ground.h)} (${s.ground.meta.ref.toUpperCase()} · ${s.ground.meta.name.toUpperCase()} · MEASURED${relief.k > 1 ? ` · TERRAIN DRAWN ×${relief.k}, EXAGGERATED` : relief.k === 0 ? ' · RELIEF OFF' : ''})` : '';
-    const sub = `${look} · ${sunTxt}${g}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    const airNote = look && s.id === 'venus' ? (look.sunVisible ? 'Above the deck: the Sun shines on a sea of sulphuric-acid cloud.' : air.note) : air?.note;
+    const sub = `${lookTxt} · ${sunTxt}${g}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${airNote ? ` · ${airNote}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
     hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
@@ -2296,13 +2407,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       radioBelts ??= createRadioBelts({ radial: (body, r) => localMap(body, magTmp.set((r * body.radiusKm) / AU_KM, 0, 0)).length() / displayRadius(body) });
       radioBelts.update(nodes, `${scaleMix.toFixed(3)}|${model.scale}`, PAL_RGB[paletteIndex(band.palette)]);
     } else radioBelts?.update({}, '', [0, 0, 0]);
-    for (const id in nodes) {
-      const c = nodes[id].clouds;
-      if (c) {
-        c.rotation.y = (now / 1000) * 0.004; // clouds: a static 2004 snapshot, drifted gently so they read as weather
-        c.visible = !liveState[id]; // today's imagery already has today's clouds
-      }
-    }
+    for (const id in nodes) if (nodes[id].clouds) updateCloudShell(nodes[id], jd, now);
     if (liveState.sun && nodes.sun && nodes.earth) { // the live solar disk faces Earth, solar north up
       const u = nodes.sun.mesh.material.uniforms;
       u.uEarthDir.value.copy(nodes.earth.pos).sub(nodes.sun.pos).normalize();
@@ -2370,9 +2475,44 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     paleo.update(typeof clock.years === 'number' ? clock.years : (jd - jdFromDate(new Date())) / 365.25);
     const t = paleo.banner;
     // today's clouds do not belong on another epoch's Earth
-    if (earth.clouds) { if (t && earth.clouds.visible) { earth.clouds.visible = false; earth.paleoHidClouds = true; } else if (!t && earth.paleoHidClouds) { earth.clouds.visible = true; earth.paleoHidClouds = false; } }
+    earth.paleoOn = !!t; // updateCloudShell hides the shell (#83)
     paleoBanner.hidden = !t;
     if (t && paleoBanner.textContent !== t) paleoBanner.textContent = t;
+  }
+
+  // ---- clouds and ground (#83) --------------------------------------------------------------------
+  const cloudSun = new THREE.Vector3();
+  /**
+   * Each frame for a body with a cloud shell: its rotation against the ground (Venus super-rotates; today's
+   * imagery is registered; the 2004 snapshot drifts), its map (today's GIBS clouds by whiteness, else the static
+   * map), visibility (band, deep time, standing under Venus' deck) and the shadows it casts on the ground.
+   */
+  function updateCloudShell(n, jd, now) {
+    const c = n.clouds, cu = c.material.uniforms, gu = n.mesh?.material?.uniforms, L = c.userData.layer;
+    const liveTex = !c.userData.opaque && liveState[n.body.id] && gu?.uHasLive?.value > 0.5 ? gu.uLive.value : null;
+    c.userData.live = !!liveTex;
+    if (c.userData.opaque) c.rotation.y = n.mesh.rotation.y + superRotation(L, jd);
+    else if (liveTex) { c.rotation.y = n.mesh.rotation.y; if (cu.uMap.value !== liveTex) cu.uMap.value = liveTex; cu.uAlphaFromLuma.value = 2; }
+    else {
+      c.rotation.y = (now / 1000) * 0.004; // a static 2004 snapshot, drifted gently so it reads as weather
+      if (c.userData.staticTex && cu.uMap.value !== c.userData.staticTex) cu.uMap.value = c.userData.staticTex;
+      cu.uAlphaFromLuma.value = 1;
+    }
+    const standing = surface?.id === n.body.id ? surface : null;
+    c.visible = n.cloudBandOK !== false && !n.paleoOn && !(standing?.layerLook?.hideShell);
+    if (!gu) return;
+    if (gu.uLiveSplit) gu.uLiveSplit.value = liveTex && c.visible ? 1 : 0; // the clouds are on the shell, not the ground
+    if (gu.uCloudMode) { // shadows on the ground: Earth's shell (Venus' light is diffuse under its deck)
+      const on = L && !c.userData.opaque && c.visible && band.id === 'full' && cu.uMap.value?.image;
+      gu.uCloudMode.value = on ? cu.uAlphaFromLuma.value : 0;
+      if (on) {
+        gu.uCloudTex.value = cu.uMap.value;
+        gu.uCloudH.value = L.shellKm / n.body.radiusKm;
+        gu.uCloudU.value = (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI);
+        const star = nodes[n.mesh.material.userData.host] ?? nodes[model.starId];
+        if (star) gu.uSunL.value.copy(n.mesh.worldToLocal(star.group.getWorldPosition(cloudSun))).normalize();
+      }
+    }
   }
 
   // ---- scenarios (#53): opt-in "what if" visuals, always labelled MODELLED -------------------------
@@ -2436,6 +2576,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // placed `phaseDeg` from the sunward direction of the focused body at `dist` display radii (terminator views)
   if (typeof window !== 'undefined') window.__fidelityRelief = {
     relief,
+    get nodes() { return nodes; }, // #83: body nodes (globe, cloud shell) for browser checks
     elevationAt: (id, lat, lon) => (nodes[id] && relief.has(id) ? relief.elevationAtDir(id, siteDir(nodes[id].body, lat, lon), 99, false) : null),
     terminatorView(phaseDeg = 80, dist = 2.6) {
       const n = nodes[focusId], sun = nodes[model.starId];
@@ -2614,11 +2755,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     get lookInfo() { return surface?.look ? { ...surface.look.info, obs: surface.look.obs, target: surface.look.target, orbit: surface.look.orbit } : null; },
     /** Stand at a site given in planetographic east longitude (sites, search): converted to the map's longitude. */
     surfaceAtSite(id, lat, lon, opts) { const b = nodes[id]?.body; return this.surfaceAt(id, lat, lon - ((b?.texLon0 ?? -180) + 180), opts); },
-    surfaceAt(id, lat, lon, { lookSun = false, look = null, daylight = null } = {}) {
+    surfaceAt(id, lat, lon, { lookSun = false, look = null, daylight = null, layer = 'ground' } = {}) {
       const n = nodes[id];
       if (!n || isStar(n.body)) return false;
       const local = new THREE.Vector3(...latLonToDir(lat, lon));
-      enterSurface(id, { object: n.mesh, local, normal: local.clone() });
+      enterSurface(id, { object: n.mesh, local, normal: local.clone(), layer }); // #83: sites, renders and events stand on the ground; layer 'clouds' on the tops
       surface.lookSun = lookSun;
       surface.lookBest = look === 'best';
       surface.daylight = daylight;
@@ -2663,6 +2804,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return { ...n.cometState, deltaAU: dEarth, mag: dEarth ? cometMagnitude(n.body.comet, dEarth, n.cometState.rAU) : null };
     },
     get onSurface() { return surface ? { id: surface.id } : null; },
+    /** #83: DESCEND ('down') / ASCEND ('up') through the cloud layer in the surface view; false where there is none. */
+    descend,
+    /** #83: the layer state in the surface view: { phase, altKm (above the ground), where, murk, sunVisible, readout } or null. */
+    get surfaceLayer() {
+      if (!surface?.descent) return null;
+      const L = surface.layerLook;
+      return { phase: surface.descent.phase, altKm: surface.descent.altKm, where: L?.where ?? null, murk: L?.murk ?? null, cover: surface.cover ?? null, sunVisible: L?.sunVisible ?? null, light: L?.light ?? null, readout: hudLayer.textContent };
+    },
     overview(au, centre, localKm) {
       if (localKm && nodes[centre]) au = 2.4 * localMap(nodes[centre].body, new THREE.Vector3(localKm / AU_KM, 0, 0)).length();
       flyTo(centre && nodes[centre] ? centre : model.starId, { overview: au });

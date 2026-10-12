@@ -59,7 +59,7 @@ export const DEM_SOURCES = {
     name: 'Magellan global topography', instrument: 'Magellan radar altimeter (GTDR), USGS Astrogeology mosaic', ref: '6051.0 km sphere',
     credit: 'NASA/JPL Magellan altimetry (Ford & Pettengill 1992); USGS Astrogeology global topography 4641 m v2', licence: 'USGS/NASA, public domain',
     global: { url: `${USGS}Venus_Magellan_Topography_Global_4641m_v02.tif`, format: 'tiff', scale: 1, lonWest: -180 },
-    ppd: 22.76, refRadiusKm: 6051.0, partial: 'Magellan altimetry has gaps (about 8% of the surface, mostly orbit-to-orbit strips): no data there.', shading: 'none', // the globe shows the cloud tops: relief only in the surface view and read-outs
+    ppd: 22.76, refRadiusKm: 6051.0, partial: 'Magellan altimetry has gaps (about 8% of the surface, mostly orbit-to-orbit strips): no data there.', shading: 'all', // #83: the ground under the opaque cloud deck (70 km) carries the relief; the clouds hide it from orbit
   },
   ceres: {
     name: 'Dawn HAMO DTM (DLR)', instrument: 'Dawn Framing Camera stereo, HAMO (DLR)', ref: '470 km sphere',

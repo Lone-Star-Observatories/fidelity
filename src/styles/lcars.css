@@ -634,6 +634,8 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 
 /* LOOK AT (#43) readout under the surface HUD */
 .surface-look { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; margin-top: 4px; }
+.surface-layer { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.04em; line-height: 1.5; margin-top: 4px; }
+.surface-layer .badge { margin-left: 4px; }
 .surface-look:empty, .surface-look:empty ~ .surface-look-btns { display: none; }
 .surface-look-btns { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
 

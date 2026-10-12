@@ -21,7 +21,7 @@ export const PLANETS = [
     palette: ['#8c8580', '#a59d95', '#6f6964'], horizons: '199', skin: { map: 'mercury' }, iau: [329.5988, 6.1385108] },
   { id: 'venus', name: 'Venus', kind: 'planet', radiusKm: 6051.8, massKg: 4.867e24, gravity: 8.9,
     rotationHours: -5832.5, periodDays: 224.7, meanTempC: 464, pole: [272.76, 67.16],
-    palette: ['#e8d3a2', '#d9bf85', '#f1e2bd'], banded: true, horizons: '299', skin: { map: 'venus' }, iau: [160.2, -1.4813688] },
+    palette: ['#e8d3a2', '#d9bf85', '#f1e2bd'], banded: true, horizons: '299', skin: { map: 'venus', ground: 'venusRadar', groundRadar: true }, iau: [160.2, -1.4813688] },
   { id: 'earth', name: 'Earth', kind: 'planet', radiusKm: 6371.0, massKg: 5.972e24, gravity: 9.8,
     rotationHours: 23.9345, periodDays: 365.256, meanTempC: 15, pole: [0, 90],
     palette: ['#1f4fa0', '#2f7d4a', '#e9eef2'], earthlike: true, horizons: '399', skin: { map: 'earth', night: 'earthNight', clouds: 'earthClouds', live: 'gibs-noaa20' }, iau: 'gmst' },

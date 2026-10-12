@@ -58,7 +58,7 @@ for (const id of ['sol', 'hyg-70666']) {
 }
 // surfaces, embedded as data URIs (smaller variants where the full map is large)
 const textures = {}, textureCredits = {};
-const SKIP_IN_PREVIEW = new Set(['venusSurface']); // not used by any view yet
+const SKIP_IN_PREVIEW = new Set(['venusSurface', 'venusRadar']); // venusSurface: not used by any view yet; venusRadar (#83): 4096 px, fetched by the backend (the preview keeps Venus' cloud tops)
 // Every upstream surface is a preview, not a full-resolution texture. Keep ring alpha.
 // WebP at quality 82 (#28): the same 512×256 preview from the same source as the former JPEG q82, about 20% smaller,
 // which pays for the baked band images below.

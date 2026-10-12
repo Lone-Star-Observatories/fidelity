@@ -507,7 +507,7 @@ export function createHelm(ctx) {
   // When the frame body changes the velocity gains the old body's velocity minus the new one's (central
   // differences of the ephemeris), so the inertial velocity is continuous. A swept test against every
   // body stops the ship at a surface: IMPACT, or LANDED at ≤ 10 m/s.
-  const RATE_CAP = 10000, MAX_SUB = 4000, LAND_KMS = 0.01;
+  const RATE_CAP = 10000, MAX_SUB = 4000, LAND_KMS = 0.01, REST_KM = 0.06; // resting: the ship's centre 60 m over the ground
   let rate = { k: 1, note: 'REAL TIME' };
   let landed = null; // { id, kind: 'impact' | 'landed', kmS }
   let elements = null; // the orbit about the dominant body, for the HUD
@@ -559,7 +559,14 @@ export function createHelm(ctx) {
   }
   function touchDown(id, at, relKmS) {
     const b = bodyOf(id);
-    local.copy(at).sub(posOf(id)).setLength(ctx.trueRadius(b) * 1.0005);
+    // on the drawn ground (the DEM where there is one, #80; under Venus' and Earth's clouds, #83), level, keel and
+    // nacelles clear of it: the ship rests on the ground, the bridge above it
+    const off = new THREE.Vector3().copy(at).sub(posOf(id)), upD = off.clone().normalize();
+    const nose = fwd(quat, new THREE.Vector3());
+    nose.addScaledVector(upD, -nose.dot(upD));
+    if (nose.lengthSq() < 1e-12) nose.set(1, 0, 0).addScaledVector(upD, -upD.x);
+    quat.copy(facing(nose.normalize(), upD)); camQ.copy(quat);
+    local.copy(off).setLength(groundAU(id, off) + REST_KM / AU_KM);
     anchor = id; vel.set(0, 0, 0); allStop = false; prevRel.clear();
     const kind = relKmS <= LAND_KMS ? 'landed' : 'impact';
     landed = { id, kind, kmS: relKmS };
@@ -572,7 +579,10 @@ export function createHelm(ctx) {
     rate = timeRate();
     simDt = dt * rate.k;
     const burning = keys.has('up') || keys.has('down');
-    if (landed && !burning) { elements = null; return 0; } // resting on the surface until a burn lifts off
+    if (landed && !burning) { // resting on the surface until a burn lifts off; re-seated as finer terrain tiles arrive (#83)
+      if (anchor === landed.id && local.lengthSq() > 0) local.setLength(groundAU(anchor, v1.copy(local)) + REST_KM / AU_KM);
+      elements = null; return 0;
+    }
     landed = null;
     const ns = nodes();
     const dom = dominantNow();
@@ -610,7 +620,13 @@ export function createHelm(ctx) {
       rate = { k: simDt / Math.max(dt, 1e-9), note: `×${Math.round(simDt / Math.max(dt, 1e-9)).toLocaleString('en-US')} · CAPPED BY THE STEP SIZE` };
     }
     const hs = steps > 0 ? simDt / steps : 0;
-    const bodies = list.map((x) => ({ pos: [0, 0, 0], gm: x.gm, radius: x.R }));
+    // the surface the swept test stops at: the drawn ground below the ship (DEM terrain, #80) for bodies close by;
+    // clouds are not a surface (#83): the ship passes through them
+    const shipW = shipWorld(new THREE.Vector3());
+    const bodies = list.map((x) => {
+      const off = v2.copy(shipW).sub(ns[x.id].pos), near = off.length() < (x.R / AU_KM) * 1.5;
+      return { pos: [0, 0, 0], gm: x.gm, radius: near ? groundAU(x.id, off) * AU_KM : x.R };
+    });
     const others = bodies.filter((_, i) => list[i].id !== anchor);
     let tPlaced = -1;
     const place = (t) => {

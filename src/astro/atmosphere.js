@@ -21,9 +21,12 @@ export const VENUS_VIRA = [
 export const VENUS_REF_RADIUS_KM = 6052;
 export const VIRA_SOURCE = 'VIRA (Seiff et al. 1985), from the Pioneer Venus probes and Venera landers';
 
-/** Venus at `altKm` above the 6,052 km sphere: { tK, pBar } (log-pressure and temperature interpolated; clamped to 0–100 km). */
+/**
+ * Venus at `altKm` above the 6,052 km sphere: { tK, pBar } (log-pressure and temperature interpolated; the lowlands
+ * below the sphere, to −3 km, extrapolated along the lowest row's gradient; clamped above 100 km).
+ */
 export function venusAtmosphere(altKm) {
-  const z = clamp(altKm, 0, 100), T = VENUS_VIRA;
+  const z = clamp(altKm, -3, 100), T = VENUS_VIRA;
   let i = 0;
   while (i < T.length - 2 && T[i + 1][0] < z) i++;
   const [z0, t0, p0] = T[i], [z1, t1, p1] = T[i + 1], f = (z - z0) / (z1 - z0);
@@ -57,13 +60,13 @@ export const CLOUD_LAYERS = {
   venus: {
     shellKm: 70, topKm: 70, baseKm: 48, hazeTopKm: 90, lowerHazeKm: 30, assumed: false, tier: 'measured',
     superRotationDays: 4, // the cloud tops circle the planet westward in ~4 days; the ground turns once in 243 days (retrograde)
-    standKm: 70.5, descentS: 32,
+    standKm: 70.5, descentS: 40,
     note: 'Main sulphuric-acid cloud deck 48–70 km, haze above to ~90 km and below to ~30 km (Pioneer Venus LCPS: Knollenberg & Hunten 1980; Venera)',
     profile: venusAtmosphere, source: VIRA_SOURCE, refRadiusKm: VENUS_REF_RADIUS_KM,
   },
   earth: {
     shellKm: 10, topKm: 10, baseKm: 10, assumed: true, tier: 'modelled',
-    standKm: 10.8, descentS: 18,
+    standKm: 10.8, descentS: 24,
     note: 'Cloud height ASSUMED: 10 km for every cloud (the satellite imagery says where clouds are, not how high). Real clouds lie from ~0.5 km (stratus) to ~12 km (cirrus, anvils)',
     profile: earthAtmosphere, source: US76_SOURCE, refRadiusKm: 6371,
   },
@@ -147,13 +150,13 @@ export function layerAt(id, altKm) {
 }
 
 // ---- DESCEND / ASCEND --------------------------------------------------------------------------
-// Altitude above the ground (km). The flight eases in log(altitude + 2 m), so it slows near the ground:
-// the cloud deck takes about as long as the last kilometre.
+// Altitude above the ground (km). The flight eases in log(altitude + 5 km), so it slows towards the ground.
 export const GROUND_EYE_KM = 0.002; // the surface camera stands 2 m above the DEM's ground
+const DESCENT_EASE_KM = 5; // log(altitude + 5 km): the cloud deck and the haze get ~30% of the flight, the last kilometre ~8%
 
 /** Altitude (km) a fraction `f` (0…1) of the way from `fromKm` to `toKm`, eased (smoothstep) in log altitude. */
 export function descentAltitude(fromKm, toKm, f) {
-  const t = smooth(0, 1, f), e = GROUND_EYE_KM;
+  const t = smooth(0, 1, f), e = DESCENT_EASE_KM;
   const a = Math.log(Math.max(fromKm, 0) + e), b = Math.log(Math.max(toKm, 0) + e);
   return Math.max(0, Math.exp(a + (b - a) * t) - e);
 }
@@ -172,7 +175,7 @@ export function createDescent(id, { at = 'top' } = {}) {
 export function startDescent(st, dir, now, fullS = 30) {
   const toKm = dir === 'down' ? st.ground : st.top;
   if (Math.abs(st.altKm - toKm) < 1e-6) return { ...st, phase: dir === 'down' ? 'ground' : 'top' };
-  const span = Math.abs(Math.log(st.altKm + GROUND_EYE_KM) - Math.log(toKm + GROUND_EYE_KM)) / Math.abs(Math.log(st.top + GROUND_EYE_KM) - Math.log(st.ground + GROUND_EYE_KM));
+  const e = DESCENT_EASE_KM, span = Math.abs(Math.log(st.altKm + e) - Math.log(toKm + e)) / Math.abs(Math.log(st.top + e) - Math.log(st.ground + e));
   return { ...st, phase: dir, fromKm: st.altKm, toKm, t0: now, dur: Math.max(2, fullS * span) };
 }
 /** Advance to time `now` (s). */
