@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina",
+  "identity": "Neptune satellite S/1989 N3; distinct Thalassa1989N5 and Naiad1989N6.",
+  "status": "Research only; no dossier69, embedding, catalogue, map, shape or codec change.",
+  "sources": [
+    {
+      "path": "data/research-sources/despina-overview-2026-10-12.html",
+      "url": "https://science.nasa.gov/neptune/moons/despina/",
+      "bytes": 258713,
+      "sha256": "03ea5c06f92200d8810322b5b7501189dc3753bbdd2f73bd9ad7e29f220eb85b"
+    },
+    {
+      "path": "data/research-sources/despina-thalassa-overview-2026-10-12.html",
+      "url": "https://science.nasa.gov/neptune/moons/thalassa/",
+      "bytes": 259388,
+      "sha256": "e5f91cc003e29a3084987805309c039864ff44ff579bb0c5bef6c4574878498c"
+    },
+    {
+      "path": "data/research-sources/despina-overview-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/despina_main.jpg",
+      "bytes": 83978,
+      "sha256": "a3b431e1367f53d898f55d9c043d099f35e7ebbcbdf030d5b4153f9620c3b15b",
+      "dimensions": [
+        768,
+        512
+      ],
+      "inspection": "Displayed unchanged local publisher JPEG; no transformation."
+    },
+    {
+      "path": "data/research-sources/despina-trio-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+      "bytes": 169897,
+      "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "dimensions": [
+        732,
+        520
+      ],
+      "inspection": "Displayed unchanged local publisher JPEG; no transformation."
+    },
+    {
+      "path": "data/research-sources/despina-nasa-terms-2026-10-12.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320631,
+      "sha256": "50b11d32e77c3ac7e9ddcaa0c904ef19561306a8266d5575a43ad14b07cc5b0a"
+    },
+    {
+      "path": "data/research-sources/despina-apod-2009-2026-10-12.html",
+      "requestedUrl": "https://apod.nasa.gov/apod/ap090903.html",
+      "url": "https://science.nasa.gov/image-article/apod-2009-september-3-despina-moon-of-neptune/",
+      "bytes": 268917,
+      "sha256": "de7294929d2a2d55cf62682d63c487d9fe406d027d6c22e1db0861aa807959f7",
+      "role": "Verified redirected APOD caption HTML, not an image hash."
+    }
+  ],
+  "nativeAssessment": {
+    "overview": "768x512 annotated HST WFC3/UVIS11656 system view. Despina marked separately from Galatea, Larissa, Thalassa and S/2004N1. F606W/F475W/F775W labels; central coloured Neptune is not Despina geography. Current overview caption describes Hubble system picture, but displayed NASA/JPL credit requires original HST product/credit crosswalk audit before embedding.",
+    "voyager": "732x520 multibody detection view: label1989N3 Despina,1989N5 Thalassa,1989N6 Naiad. NASA/JPL caption says Voyager2,1989,5.9millionkm and orbital-motion faint streaks. These are source estimates, not new raster computations. Exact UTC/filter/exposure/raw product/release and frame remain open. Tiny detections/noise/streaks are not resolved local terrain, elongated physical shape or calibrated visible colour.",
+    "dates": "Discovery July1989 is not an acquisition UTC.2023 asset path and2024 overview update are not observation dates. No exhaustive newest-imagery claim.",
+    "terms": "Active NASA media terms with third-party exceptions, not asserted CC BY. Full NASA/JPL credit for Voyager trio; HST original credit open.",
+    "apodLead": "Verified redirected NASA APOD2009-09-03 caption: four archival frames observed1989-08-24 separated by nine minutes; Despina artificially brightened. NASA/JPL processed-image copyright Ted Stryk. Neptune cloud-top transit/shadow is not Despina surface geography/calibrated colour. No image downloaded/embedded or blanket NASA/CC licence assigned; third-party processing permission/terms and original exact UTC/product remain open.",
+    "limits": "Black background is not measured atmospheric absence. No other body map assigned; no local chemistry, terrain, photometric/geographic calibration or angular/raster calculation claimed."
+  },
+  "preservation": {
+    "dossiers": 68,
+    "trackedPublicAssetsCompared": 405,
+    "allComparedBytesEqualHEAD": true,
+    "recordedClipperPreviewPreserved": true,
+    "originalsMastersNativeProvenance": "Retained unchanged."
+  },
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL:16022040bytes22040over hard16000000gate",
+    "browser": "No new passing full/offline browser claim; other engines remain open.",
+    "queue": 566,
+    "interbuildDifferences": "Unaudited; no asset/compression savings attribution.",
+    "backlog": "ACTIVE; conforming lossless headroom remains required before prepared additive dossiers. No external blocker claimed."
+  }
+}
