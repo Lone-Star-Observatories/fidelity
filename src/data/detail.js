@@ -6,6 +6,7 @@
 /** Steps, left to right: each switches on its `flags` (and every step before it). */
 export const DETAIL_LEVELS = [
   { id: 'core', label: 'STAR · PLANETS · MOONS', flags: [] },
+  { id: 'corona', label: '+ 3D CORONA', flags: ['corona'] }, // #79: the ray-marched corona costs GPU time when the Sun is large
   { id: 'dwarfs', label: '+ DWARF PLANETS', flags: ['dwarfs'] },
   { id: 'small', label: '+ ASTEROIDS & COMETS', flags: ['smallBodies'] },
   { id: 'belts', label: '+ BELTS', flags: ['belts'] },

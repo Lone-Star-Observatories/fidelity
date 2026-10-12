@@ -12,6 +12,7 @@ const defaults = {
   smallBodies: true, // System View: the catalogued asteroids and comets (DETAIL slider)
   spacecraft: true, // System View: interplanetary craft and the tracked Earth-orbit craft drawn as bodies (DETAIL slider)
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
+  corona: true,     // System View: the Sun's ray-marched 3D corona (#79; DETAIL slider step, off = the plain glare)
   satellites: true, // System View: every active Earth satellite
   missions: true,
   voiceInterrupt: false, // Computer: false = replies always finish (STOP button / Esc still stop them); true = a confident wake word interrupts   // System View: launches, landings, dockings and spacewalks from the events feed (#32)

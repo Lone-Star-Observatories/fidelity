@@ -79,6 +79,7 @@ import { curveFromLegacy, normCurve, canonical, describeCurve, fmtRange } from '
 import { createSpectrumControl, resText } from './panels/spectrum.js';
 import { bandLoads, configureBandLoads } from './data/bandload.js';
 import { onBandRes, prefetchPreviews } from './views/system/bandtextures.js';
+import { coronaSummary, onCoronaFeed } from './views/system/corona.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -128,7 +129,7 @@ const system = createSystemView($('system-view'), {
   onFrame: (f) => { if (route.level === 'system' || route.level === 'satellite') lastFrame = f; },
   onHelm: (kind, data) => onHelmEvent(kind, data), // #42
 });
-const starView = createStarView($('star-view'));
+const starView = createStarView($('star-view'), { jd: () => clock.jd });
 // Double-click a planet's globe: stand at that spot in the System View, looking up (#19, #23).
 let pendingSurface = null;
 let pendingSiteView = null; // VIEW FROM ABOVE a site once its body is framed (#37)
@@ -510,6 +511,7 @@ function showBandScale(el, look) {
   el.badge.replaceWith(b); el.badge = b;
 }
 onBandRes(updateBandRow);
+onCoronaFeed(() => { if (route?.body === 'sun' && (route.level === 'system' || route.level === 'star') && system.model?.isSol) renderBodyPanel('sun', { inStarView: route.level === 'star' }); }); // #79: today's structure arrived
 // panels that describe the band (#28): Galaxy, Universe and Star views re-render when it changes
 onBand(() => queueMicrotask(() => {
   if (route?.level === 'galaxy') renderGalaxyPanel();
@@ -543,7 +545,7 @@ function screenContext() {
   const d = dateFromJd(clock.jd);
   lines.push(`SHIP'S CLOCK: ${clock.inCalendar ? `${d.toISOString().slice(0, 16).replace('T', ' ')} UTC` : `${formatOffset(clock.years)} from now (deep time)`}, running at ${clock.rate.label}${clock.isNow ? ' (live, now)' : ''}${clock.clamped ? ` (stopped at this view's limit: ${clock.clamped})` : ''}`);
   lines.push(`SCALE: ${settings.get('scale') === 'true' ? 'TRUE (real sizes)' : 'ENHANCED (bodies enlarged)'} · EPHEMERIS: ${settings.get('ephemeris') === 'horizons' ? 'JPL Horizons' : 'Keplerian elements'}`);
-  const on = ['labels', 'orbits', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
+  const on = ['labels', 'orbits', 'corona', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins', 'missions'].filter((k) => settings.get(k));
   lines.push(`LAYERS ON: ${on.join(', ') || 'none'}`);
   const cb = currentBand();
   if (!cb.full) {
@@ -720,7 +722,7 @@ controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row'
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'EPHEMERIS' }),
     toggle('ephemeris', 'kepler', 'horizons', 'KEPLER', 'JPL HORIZONS')),
   detailCtl,
-  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('dwarfs', 'DWARFS'), flag('smallBodies', 'SMALL BODIES'), flag('spacecraft', 'CRAFT'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
+  h('div', { className: 'ctl-group' }, (voiceBtn = pill('COMPUTER', () => openVoice(), 'square')), flag('labels', 'LABELS'), flag('orbits', 'ORBITS'), flag('corona', 'CORONA'), flag('dwarfs', 'DWARFS'), flag('smallBodies', 'SMALL BODIES'), flag('spacecraft', 'CRAFT'), flag('belts', 'BELTS'), flag('satellites', 'SATS'), flag('zones', 'ZONES'), flag('axes', 'AXES'), flag('fields', 'MAG FIELDS'), flag('features', 'NAMES'), flag('sites', 'SITES'), flag('deepsky', 'DEEP SKY'), flag('constellations', 'CONST'), flag('liveSkins', 'LIVE'), flag('missions', 'MISSIONS')),
   h('div', { className: 'bar-fill' }))));
 // The standalone preview has no backend: Horizons there is the months bundled in its snapshot
 // (this month and next), Keplerian elements outside them.
@@ -1222,6 +1224,13 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
     row(dl, 'CURRENT SHEET TILT', `${SOLAR.tiltDeg}°`, 'modelled', 'The wavy boundary between outward and inward field. Its tilt follows the solar cycle (~10° at minimum, ~70° near maximum); 45° is a stand-in for the 2026 declining phase.');
     row(dl, 'NORTH POLARITY', 'INWARD (−)', 'modelled', 'Since the cycle-25 polar-field reversal (2024). Blue lines point in, orange out.');
     extra.push(h('h3', { textContent: 'MAGNETIC FIELD' }), dl, h('p', { className: 'note', textContent: 'Toggle FIELDS to draw the Parker-spiral field lines and the current sheet, turning with the Sun.' }));
+  }
+  if (m.isSol && b.id === 'sun') { // #79: the 3D corona, layer by layer, each with its badge
+    const cb = currentBand(), dl = h('dl');
+    for (const r of coronaSummary(cb.band, cb.pass, clock.jd)) row(dl, r.label, r.value, r.tier, r.detail);
+    extra.push(h('h3', { textContent: 'CORONA' }), dl, h('p', { className: 'note', textContent: settings.get('corona') === false
+      ? 'The 3D corona is off (CORONA toggle, or the DETAIL slider at the far left): only the glare is drawn.'
+      : 'Drawn as a 3D volume around the Sun, oriented by its rotation axis, so it can be seen from any side. Real images are MEASURED, structure inferred from them MODELLED, artistic wisps IMAGINED; the look follows the SPECTRUM band.' }));
   }
   {
     // the spectrum filter (#28, #66): how this body is drawn in the band or curve, and the sky behind it
