@@ -8,6 +8,7 @@ import { config } from './config.js';
 import { WEBCAMS } from './webcams.js';
 import { norhFeed } from './solarradio.js';
 import { srhFeed, sunModelFeed } from './solarmodel.js';
+import { coronaFeed } from './corona.js';
 
 const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const MIN = 60000;
@@ -202,6 +203,8 @@ export const FEEDS = {
   'sunmodel-2400': sunModelFeed(2.4, '2.4 GHz', { magnetogram: () => feed('sdo-hmimag', { preview: true }) }),
   'lasco-c2': helioviewer(4, 'SOHO,LASCO,C2,white-light', 'ESA/NASA SOHO LASCO C2 coronagraph (outer corona to 6 solar radii; the white circle marks the hidden Sun), via Helioviewer', 11.9),
   'lasco-c3': helioviewer(5, 'SOHO,LASCO,C3,white-light', 'ESA/NASA SOHO LASCO C3 coronagraph (corona and solar wind to 30 solar radii; stars and planets pass behind), via Helioviewer', 56),
+  // #79: where today's streamers, active regions and coronal holes are, measured on the images above (numbers only)
+  corona: coronaFeed({ c2: () => feed('lasco-c2'), c3: () => feed('lasco-c3'), euv: () => feed('sdo-193', { preview: true }) }),
   // Ground-based: NSO GONG H-alpha network, six observatories around the world, one image a minute.
   'gong-halpha': {
     type: 'image', ttl: 10 * MIN, credit: 'NSO / AURA / NSF GONG H-alpha network: a ground-based telescope on Earth (chromosphere: filaments, plage, flares)',

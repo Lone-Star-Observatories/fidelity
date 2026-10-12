@@ -24,6 +24,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/rf.js        COMMS relays  │
 │                                      │           │ server/tx.js, fm.js hailing (TX)  │
 │                                      │           │ server/surfaceimages.js landed    │
+│                                      │           │ server/corona.js    corona shape  │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -764,7 +765,7 @@ Myr) whenever they change; the panels only show the epoch and point to the TIME 
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (3D CORONA, #79; DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 
@@ -901,6 +902,50 @@ tracked by `src/data/bandload.js`: a new generation per change; while anything i
 pill pulses and, with VOICE STATUS on (default: on while the Computer listens), the browser's own
 speech synthesis says "Processing" every 3 s (skipped while the Computer is replying), "Complete" at
 the end if it spoke, "Unable to complete" once on the first failure. No API key or network is needed.
+
+## Corona (#79)
+
+The Sun in the System and Star views has a 3D corona: a volume ray-marched per pixel, so it reads as a
+layered, wispy cloud from any side (orbit round the Sun, look from a pole), not a flat glow.
+
+- **Frame and alignment.** The corona is a bounding sphere (`src/views/system/corona.js`, `createCorona`) parented
+  to the photosphere mesh (System View: inside the tilt group, so +y is the IAU solar pole; Star View: a non-spinning
+  frame tilted like the star). Each frame the view passes the camera, the direction to Earth and ecliptic north in
+  that frame. Structure measured on disc images is placed with the same projection the disc images use
+  (`imageToDir` mirrors the star shader's `uEarthDir`/`uNorth` mapping), so EUV loops sit on the active regions the
+  SDO image shows and holes on its dark patches.
+- **Physics per band** (`src/data/corona.js`, `coronaLook`, decided by effective wavelength so a custom curve works):
+  white light and near IR take the Baumbach (1937) K + F brightness law, each term r^-k turned into the emissivity
+  r^-(k+1)/(√π Γ(k/2)/Γ((k+1)/2)) so the march reproduces Baumbach along every line of sight (tested);
+  EUV/soft X-rays (0.1–40 nm) are optically thin n² with the hydrostatic scale height H = kT/(μ m_p g☉) at the AIA
+  channel's temperature, plus loop arcades over active regions, drawn in Helioviewer's AIA colours; the thermal IR
+  is the dust F corona (flattened to the ecliptic, thinning inside a few R☉); radio is an optically thick free–free
+  corona (Baumbach–Allen n_e², absorption set so τ = 1 at the radio radius 1 + 0.12 f_GHz^-0.8, as in
+  `server/solarmodel.js`); microwaves a thin rim with gyro-resonance blobs over active regions; Lyman-α a scattered
+  corona; above ~10 keV nothing (quiet-corona emission is not observed there; the panel says so).
+- **Honest brightness.** Each look carries the corona-to-disc ratio (white light 1.1×10⁻⁷ at 1.5 R☉) and the
+  exaggeration needed to show it; EUV and radio are drawn to scale. The display is a log stretch (a radial-filter
+  look), so relative brightness inside the corona is kept.
+- **Structure** (`server/corona.js`, feed `corona`, hourly): the PA profile of the SOHO LASCO C2 image (2.5–4 R☉; C3
+  at 5.5–9 R☉ when C2 is more than 3 days old, as on 2026-10-12, when C2's latest frame was 13 days old), each ring
+  divided by its median, gives the streamers (PA, width, contrast) and a belt through the limb streamers nearest the
+  equator; the AIA 193 Å preview, cut into cells normalised by their ring (limb brightening cancels), gives active
+  regions (bright) and coronal holes (dark). Streamers are placed in the plane of the sky. When the feed is missing
+  (standalone, offline) or more than 14 days from the clock, `modelledStructure` builds a solar-cycle corona: belt
+  tilt 10°→70° with activity (`cycleActivity`: cycle 25 minimum 2019.96, maximum late 2024), polar holes at minimum,
+  active regions by number and Spörer latitude at illustrative longitudes that turn with the Sun.
+- **Wisps.** Radial striations are value noise in direction only, with puffs drifting outwards slowly (IMAGINED).
+- **Panel.** The Sun's CORONA section (`coronaLayers`) lists each layer with its badge: streamers, loops and holes
+  MODELLED (from MEASURED positions; illustrative positions IMAGINED), fall-off MODELLED, brightness IMAGINED where
+  exaggerated, wisps IMAGINED. The disc imagery keeps its own MEASURED badge in the SPECTRUM section.
+- **Cost.** 20–56 march steps (more when the Sun is large on screen) over the sphere's pixels only, drawn at half
+  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). That pass has no
+  depth test against the scene: the Sun and the single body that looks largest in front of it (the Moon in an
+  eclipse, a transiting planet) end the line of sight in the shader; other bodies are drawn under the corona. The
+  DETAIL slider's second step, `+ 3D CORONA` (setting `corona`, toggle CORONA), turns it off, leaving the old glare.
+- **Eclipses.** From a surface the corona shows only in totality. On 2017-08-21 the real photograph stays
+  (MEASURED); for other eclipses the 3D model on the solar axis replaces the representative 2017 photograph (HUD:
+  CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)); with the corona off, the photograph.
 
 ## Milky Way model
 

@@ -79,6 +79,7 @@ import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
 import { makeSnapshot } from '../snapshot.js';
 import { SKINS } from '../../data/skins.js';
+import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from './corona.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -373,8 +374,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (!u?.uBandTint) return;
     // the additive glare follows the disc's brightness in the band
     const glare = n.mesh.children?.find((c) => c.isSprite);
-    const setGlare = () => { if (glare) { const t = u.uBandTint.value; glare.material.opacity = 0.85 * Math.min(1, Math.max(t.r, t.g, t.b)); glare.material.color.set(band.id === 'full' ? n.body.color ?? 0xffffff : 0xffffff).multiply(band.id === 'full' ? new THREE.Color(1, 1, 1) : t.clone().multiplyScalar(1 / Math.max(1e-3, Math.max(t.r, t.g, t.b)))); } };
+    const setGlare = () => { if (glare) { const t = u.uBandTint.value; glare.material.opacity = glare.userData.base = 0.85 * Math.min(1, Math.max(t.r, t.g, t.b)); glare.material.color.set(band.id === 'full' ? n.body.color ?? 0xffffff : 0xffffff).multiply(band.id === 'full' ? new THREE.Color(1, 1, 1) : t.clone().multiplyScalar(1 / Math.max(1e-3, Math.max(t.r, t.g, t.b)))); } };
     queueMicrotask(setGlare);
+    n.corona?.setBand(band, p); // #79: the 3D corona's look follows the band too
     u.uBandDisk.value = 0;
     if (band.id === 'full') { u.uBandTint.value.setRGB(1, 1, 1); n.bandLook = null; restoreStarDisk(n); return; }
     const sol = model.isSol && n.body.id === model.starId;
@@ -447,7 +449,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const pole = body.pole ? poleVector(body.pole) : new THREE.Vector3(...model.planeNormal);
     tilt.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pole);
     group.add(tilt);
-    let mesh, clouds = null, ringMesh = null;
+    let mesh, clouds = null, ringMesh = null, corona3d = null;
     if (body.marker) return addMarker(body);
     if (body.kind === 'satellite' || body.kind === 'spacecraft') return addSatelliteNode(body);
     const placeholder = planetTexture(isStar(body) ? { id: body.id, banded: body.banded, palette: ['#d9a35a', '#f2c879', '#b97a3a'] } : body);
@@ -457,7 +459,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       if (body.skin?.live) liveTargets.push({ id: body.id, material: mesh.material, skin: body.skin });
       const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), color: body.color, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0.85 }));
       glow.scale.setScalar(6);
+      glow.userData.base = 0.85;
       mesh.add(glow);
+      if (model.isSol && body.id === model.starId) { // #79: the 3D corona, in the Sun's own frame (y = its rotation axis)
+        corona3d = createCorona();
+        corona3d.setBand(band, pass ?? band.passes[0] ?? null);
+        mesh.add(corona3d.mesh);
+        loadCoronaFeed();
+      }
     } else {
       const mat = planetMaterial(placeholder, { tint: body.skin?.tint });
       mat.userData.host = body.orbit?.host ?? model.starId;
@@ -516,7 +525,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       ? createFeatureLayer(body, { onFeature: (f) => onFeature?.(f), load: fetchFeatures }) : null;
     if (features) tilt.add(features.group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
-    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites, features };
+    nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites, features, corona: corona3d };
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -1620,6 +1629,49 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       b.visible = k > 0.01;
     });
     c.shown = e.eclipse && Math.abs(e.eclipse.greatest - (Date.parse(`${CORONA.date}T18:26:00Z`) / 86400000 + 2440587.5)) < 1 ? 'measured' : 'representative';
+    // #79: other eclipses show the 3D corona model (aligned to the solar axis) in place of the 2017 photograph,
+    // unless the DETAIL slider has the 3D corona off
+    if (c.shown === 'representative' && sunN.corona && settings.get('corona') !== false) {
+      coronaTotality = c.plane.material.opacity; c.plane.visible = false; c.shown = 'modelled';
+    }
+  }
+  const coronaPass = createCoronaPass(renderer);
+  const drawCorona = () => { const c = model?.isSol ? nodes[model.starId]?.corona : null; if (c) coronaPass.render(scene, camera, c); };
+  let coronaTotality = 0; // 0…1: the 3D corona's opacity in totality, seen from a surface (#79)
+  const cz = { cam: new THREE.Vector3(), e: new THREE.Vector3(), ecl: new THREE.Vector3(), q: new THREE.Quaternion(), w: new THREE.Vector3(), d: new THREE.Vector3(), p: new THREE.Vector3(), o: new THREE.Vector3() };
+  /** The body in front of the Sun's corona that looks biggest from the camera (the Moon in an eclipse), in the Sun's frame. */
+  function coronaOccluder(sunN, sunDist, px) {
+    if (px < 2) return null;
+    const S = sunN.mesh.getWorldPosition(cz.w), R = displayRadius(sunN.body), d = cz.d.copy(S).sub(camera.position).normalize();
+    const reach = Math.atan((R * (sunN.corona.look?.extent ?? 6)) / sunDist);
+    let best = null, bestAng = 0;
+    for (const id in nodes) {
+      const o = nodes[id];
+      if (o === sunN || o.body.marker || !o.group.visible || !o.mesh || isStar(o.body)) continue;
+      const P = o.group.getWorldPosition(cz.p), dist = P.distanceTo(camera.position);
+      if (!(dist < sunDist) || dist < 1e-12) continue;
+      const r = displayRadius(o.body), ang = Math.atan(r / dist), sep = Math.acos(Math.max(-1, Math.min(1, cz.o.copy(P).sub(camera.position).normalize().dot(d))));
+      if (sep < reach + ang && ang > bestAng) { bestAng = ang; best = { P: P.clone(), r }; }
+    }
+    if (!best) return null;
+    return { centre: sunN.mesh.worldToLocal(best.P), radius: best.r / R };
+  }
+  /** The 3D corona (#79): camera, Earth and ecliptic north in the Sun's own frame; its glare sprite dims as the corona takes over. */
+  function updateSunCorona(jd, now) {
+    const n = model?.isSol ? nodes[model.starId] : null, c = n?.corona;
+    if (!c) return;
+    n.mesh.updateWorldMatrix(true, false);
+    const q = n.mesh.getWorldQuaternion(cz.q).invert();
+    const earthLocal = nodes.earth ? cz.e.copy(nodes.earth.pos).sub(n.pos).normalize().applyQuaternion(q) : cz.e.set(0, 0, 1).applyQuaternion(q);
+    const dist = camera.position.distanceTo(n.mesh.getWorldPosition(cz.w));
+    const px = sunPixelRadius(camera, displayRadius(n.body), dist, renderer.domElement.clientHeight || innerHeight);
+    // from a surface the corona shows only in totality (it is a millionth of the daylit sky's brightness)
+    const opacity = surface ? coronaTotality : 1;
+    c.update({ occluder: coronaOccluder(n, dist, px), on: settings.get('corona') !== false && n.group.visible, camLocal: n.mesh.worldToLocal(cz.cam.copy(camera.position)), earthLocal,
+      eclLocal: cz.ecl.set(0, 1, 0).applyQuaternion(q), jd, now, pxRadius: px, opacity });
+    coronaTotality = 0;
+    const glare = n.mesh.children.find((ch) => ch.isSprite);
+    if (glare && !surface && glare.userData.base != null) glare.material.opacity = glare.userData.base * (c.mesh.visible ? 1 - 0.95 * THREE.MathUtils.smoothstep(px, 6, 60) : 1);
   }
 
   /** Place the camera on the surface for this frame (after positions and orientations are set). */
@@ -1727,7 +1779,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const giant = (n.body.radiusKm ?? 0) > 20000;
     const text = `${giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON'} ${n.body.name.toUpperCase()} · ${where}`;
     const look = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;
-    const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
+    const coronaTxt = corona?.shown ? (corona.shown === 'measured' ? ' · CORONA: THIS ECLIPSE (NASA/CARLA THOMAS, MEASURED)' : corona.shown === 'modelled' ? ' · CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)' : ` · CORONA: REPRESENTATIVE (${CORONA.date}, NASA/CARLA THOMAS)`) : '';
     const ecl = s.eclipse && s.eclipse.obscuration > 0 && sun.alt > -1 ? (s.eclipse.total ? ` · TOTAL ECLIPSE: TOTALITY${coronaTxt}` : ` · ECLIPSE: ${Math.round(s.eclipse.obscuration * 100)}% OF THE SUN HIDDEN${coronaTxt}`) : '';
     const sunTxt = `SUN ${sun.alt >= 0 ? `${sun.alt.toFixed(1)}° UP` : `${(-sun.alt).toFixed(1)}° BELOW THE HORIZON`} · AZ ${Math.round(sun.az)}°${ecl}`;
     const dp = (x) => (x >= 1 ? x.toFixed(1) : x >= 0.1 ? x.toFixed(2) : x >= 0.01 ? x.toFixed(3) : `${(x * 3600).toFixed(1)}″`).replace(/(\d)$/, '$1°');
@@ -2231,7 +2283,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       if (orbiting) controls.update();
     }
 
+    updateSunCorona(jd, now);
     renderer.render(scene, camera);
+    drawCorona();
     labels.render(scene, camera);
 
     // Sector-001 edge beacon: Sol's star in Sector 001, otherwise the direction to Sol.
@@ -2363,7 +2417,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return out.sort((a, b) => b.px - a.px);
     },
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); drawCorona(); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
     /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
     setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */

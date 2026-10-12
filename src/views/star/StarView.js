@@ -27,6 +27,7 @@ import { starComposition, STELLAR_LINES, planck, wienPeakNm } from '../../data/c
 import { bodyVisualFor } from '../../data/bespoke.js';
 import { stellarResearchCards } from './research.js';
 import { makeSnapshot } from '../snapshot.js';
+import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from '../system/corona.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const OBSERVED = '#c97a00'; // validated against the black surface with the blackbody blue
@@ -66,7 +67,7 @@ function wavelengthRGB(nm) {
   return `rgb(${[r, g, b].map((c) => Math.round(255 * Math.max(0, c * f) ** 0.8)).join(',')})`;
 }
 
-export function createStarView(container) {
+export function createStarView(container, { jd = () => Date.now() / 86400000 + 2440587.5 } = {}) {
   // ---- hero: the star itself ----------------------------------------------------------
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -75,6 +76,13 @@ export function createStarView(container) {
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
   camera.position.set(0, 0, 5.2);
   let star = null, glow = null, running = false;
+  // #79: the Sun's 3D corona, in a frame tilted like the star but not spinning, so its loops stay on the Earth-facing disc image
+  let corona = null;
+  const coronaFrame = new THREE.Group();
+  coronaFrame.rotation.x = 0.25;
+  scene.add(coronaFrame);
+  const coronaPass = createCoronaPass(renderer);
+  const cz = { cam: new THREE.Vector3(), e: new THREE.Vector3(), up: new THREE.Vector3(), q: new THREE.Quaternion() };
 
   const hero = el('div', { className: 'sv-hero' });
   hero.append(renderer.domElement);
@@ -120,7 +128,15 @@ export function createStarView(container) {
       if (u.uHasDisk.value) { u.uEarthDir.value.set(0, 0, 1); u.uNorth.value.set(0, 1, 0); } // Earth is where the default camera stands: orbit round to see the far side
     }
     if (rig.update(now)) controls.update();
+    if (corona) {
+      coronaFrame.updateWorldMatrix(true, false);
+      const q = coronaFrame.getWorldQuaternion(cz.q).invert(), px = sunPixelRadius(camera, 1, camera.position.length(), renderer.domElement.height / renderer.getPixelRatio());
+      corona.update({ on: settings.get('corona') !== false, camLocal: coronaFrame.worldToLocal(cz.cam.copy(camera.position)), earthLocal: cz.e.set(0, 0, 1).applyQuaternion(q),
+        eclLocal: cz.up.set(0, 1, 0).applyQuaternion(q), jd: jd(), now, pxRadius: px });
+      if (glow?.userData.base != null) glow.material.opacity = glow.userData.base * (corona.mesh.visible ? 0.45 : 1);
+    }
     renderer.render(scene, camera);
+    coronaPass.render(scene, camera, corona);
   }
 
   function setStar(body, isSun) {
@@ -137,6 +153,8 @@ export function createStarView(container) {
     star.add(glow);
     star.rotation.x = 0.25;
     scene.add(star);
+    if (corona) { coronaFrame.remove(corona.mesh); corona.mesh.geometry.dispose(); corona.mesh.material.dispose(); corona = null; }
+    if (isSun) { corona = createCorona(); coronaFrame.add(corona.mesh); loadCoronaFeed(); }
     applyBand();
   }
 
@@ -147,10 +165,11 @@ export function createStarView(container) {
     const { band, pass } = currentBand(), u = star.material.uniforms, mesh = star, glowNow = glow;
     const look = starBandLook({ teff: current.body.teffK ?? 5772, isSun: current.isSun, hasFeed: (id) => !STANDALONE || !!bakedFeed(id) }, band, pass);
     bandLook = look; bandFeedTime = null;
+    corona?.setBand(band, pass);
     u.uBandDisk.value = 0;
     const setGlow = (t) => {
       const m = Math.max(...t);
-      glowNow.material.opacity = 0.75 * Math.min(1, m);
+      glowNow.material.opacity = glowNow.userData.base = 0.75 * Math.min(1, m);
       glowNow.material.color.set(current.body.color ?? 0xffffff);
       if (look) glowNow.material.color.setRGB(...t.map((c) => c / Math.max(1e-3, m)));
     };
@@ -374,7 +393,7 @@ export function createStarView(container) {
 
   return {
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => renderer.render(scene, camera), restore: sizeHero }),
+    snapshot: makeSnapshot({ renderer, scene, camera, draw: () => { renderer.render(scene, camera); coronaPass.render(scene, camera, corona); }, restore: sizeHero }),
     show() { container.hidden = false; sizeHero(); if (!running) { running = true; requestAnimationFrame(frame); } },
     camera: rig,
     hide() { container.hidden = true; running = false; },
