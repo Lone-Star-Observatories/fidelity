@@ -45,6 +45,9 @@ export function createCommsAudio() {
     status,
     /** Start audio (must follow a user gesture the first time). */
     resume() { ensure(); return ctx.resume(); },
+    /** Pause all COMMS output (the header's ❚❚): the context stops; streams keep arriving. */
+    suspend() { return ctx ? ctx.suspend() : Promise.resolve(); },
+    get running() { return !!ctx && ctx.state === 'running'; },
     /** Set the voice band: low-pass just above the passband to cut hiss. */
     setBand(widthHz) { ensure(); status.lowpassHz = Math.max(1500, Math.min(10000, widthHz)); chain.lp.frequency.setTargetAtTime(status.lowpassHz, ctx.currentTime, 0.05); },
     setVolume(v) { ensure(); chain.vol.gain.value = v; },

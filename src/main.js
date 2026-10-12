@@ -704,7 +704,11 @@ const timeCtl = createTimeControl({ h, pill, clock, settings, go, dateIn,
 // The clock ticks here, whatever view is showing (the System View also ticks it in its own frame).
 const tcLoop = (now) => { clock.tick(now); syncDeepTime(); timeCtl.frame(); requestAnimationFrame(tcLoop); };
 requestAnimationFrame(tcLoop);
-controls.append(scrollRow(timeCtl.el), scrollRow(h('div', { className: 'bar-row' },
+// the clock and GO TO, and the time buttons, at the foot of the rail; RATE / TIMELINE over the bottom of the views that use time
+$('rail-clock').append(timeCtl.readout);
+$('rail-time').append(timeCtl.right);
+$('time-dock').append(timeCtl.mid);
+controls.append(scrollRow(h('div', { className: 'bar-row' },
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SCALE' }),
     toggle('scale', 'enhanced', 'true', 'ENHANCED', 'TRUE')),
   h('div', { className: 'ctl-group' }, h('div', { className: 'ctl-label', textContent: 'SPECTRUM' }), spectrum.button),
@@ -912,7 +916,17 @@ const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, t
 const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
 const eventsPanel = createEventsPanel({ h, pill, row, badge, go, clock, system, toast, panel, live, resetLive, $ });
 // COMMS (#69): SubSpace and RF reception
-const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPostcard: () => postcard.open(), onPanel: () => { if (route.level === 'comms') renderCommsPanel(); } });
+const comms = createCommsView($('comms-view'), { badge, pill, settings, toast, onPostcard: () => postcard.open(), onPanel: () => { if (route.level === 'comms') renderCommsPanel(); }, onAudio: (a) => syncCommsAudio(a) });
+// the header's COMMS audio button: whatever channel or receiver is open keeps playing in every view; ▶ / ❚❚ here
+function syncCommsAudio(a = comms.audio) {
+  const b = $('comms-audio');
+  b.hidden = !a;
+  if (!a) return;
+  b.textContent = `${a.paused ? '▶' : '❚❚'} ${a.name.toUpperCase().slice(0, 18)}`;
+  b.title = `${a.paused ? 'Play' : 'Pause'} the COMMS ${a.kind} (${a.name}). Open COMMS to change or close it.`;
+  b.classList.toggle('paused', a.paused);
+}
+$('comms-audio').addEventListener('click', () => comms.toggleAudio());
 function renderCommsPanel() { resetLive(); panel.replaceChildren(...comms.panel(h, row), renderLegend()); }
 $('comms-tab').addEventListener('click', () => go({ level: 'comms', system: 'sol' }));
 // SEARCH (#63): the top-bar box; kinds that need the shell's state route through these actions
@@ -1846,6 +1860,8 @@ onRoute(async (r) => {
     else if (r.level === 'galaxy') { const p = galaxySelFrom(pendingSel); if (p) setTimeout(() => pickStarIn('galaxy', p), 0); }
     if (r.level !== 'navigation') pendingSel = null;
   }
+  if (r.level !== 'comms') { comms.hide(); $('comms-tab').classList.remove('on'); } // every other view, Galaxy to Universe too; its audio keeps playing
+  $('viewport').classList.toggle('has-dock', r.level !== 'comms'); // RATE / TIMELINE sits over every view that runs on the clock
   setDetail(null, () => {}); // the open detail view's cards stop ticking while the next view loads
   if (!(prev && prev.level === r.level && (r.level === 'galaxy' || r.level === 'quadrant'))) starCardView = null;
   lastFrame = null;
@@ -1887,7 +1903,6 @@ onRoute(async (r) => {
   if (r.level !== 'events') eventsPanel.leave();
   if (r.level !== 'future' && r.level !== 'system') futureEvents.leave();
   if (r.level !== 'timeline' && r.level !== 'system' && r.level !== 'planet') earthTimeline.leave(); // the epoch stays while you look at Earth // a scenario stays while you look at it in the System View
-  if (r.level !== 'comms') { comms.hide(); $('comms-tab').classList.remove('on'); }
   if (r.level === 'comms') { // COMMS (#69): SubSpace and RF reception, Sector 001
     system.hide(); nav.hide(); starView.hide(); planetView.hide(); galaxy.hide();
     $('offline').hidden = true;

@@ -30,7 +30,7 @@ const el = (tag, props = {}, ...kids) => {
 };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export function createCommsView(container, { badge, pill, settings, onPanel, toast, onPostcard }) {
+export function createCommsView(container, { badge, pill, settings, onPanel, toast, onPostcard, onAudio }) {
   const audio = createCommsAudio();
   const rxConsole = createReceiver({ audio, pill, badge, onPanel: () => onPanel?.(), converter: () => settings.get('rfConverter') });
   const webSdr = createWebSdr({ pill, badge, onPanel: () => onPanel?.() });
@@ -102,6 +102,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     const token = ++hailToken;
     audio.resume();
     station = { layerId, m, layer, media: stationMedia(layerId, m), name: m[2], onScreen: false, nowPlaying: null };
+    paused = false; setTimeout(audioChanged, 0);
     if (station.media.place != null) loadPlace().then(() => { if (station?.choices && !station.stream) station.stream = station.choices.find((x) => x.url === station.media.stream) ?? null; onPanel?.(); });
     onPanel?.();
     setScreen(banner(isRadio(layerId) ? 'OPENING CHANNEL' : 'OPENING FEED', station.name.toUpperCase(), 'cx-hailing'));
@@ -159,8 +160,21 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     const tick = () => fetch(`/api/comms/nowplaying?u=${encodeURIComponent(u)}`).then((r) => r.json()).then((d) => { if (station?.media.stream === u && d.title !== station.nowPlaying?.title) { station.nowPlaying = d; onPanel?.(); } }).catch(() => {});
     setTimeout(tick, 2500); npTimer = setInterval(tick, 10000);
   }
+  // ---- background audio: COMMS keeps playing in other views; the header's ▶/❚❚ pauses it ---------
+  let paused = false;
+  const audioNow = () => {
+    const name = station?.name ?? (rxConsole.active ? rxConsole.info?.name : null) ?? (webSdr.active ? webSdr.info?.name : null);
+    return name ? { name, paused, kind: station ? 'channel' : 'receiver' } : null;
+  };
+  const audioChanged = () => onAudio?.(audioNow());
+  async function setPaused(p) {
+    paused = !!p;
+    if (paused) { radioEl.pause(); await audio.suspend(); }
+    else { await audio.resume(); if (radioEl.getAttribute('src')) radioEl.play().catch(() => {}); }
+    audioChanged();
+  }
   function closeChannel(render = true) {
-    hailToken++;
+    hailToken++; paused = false; setTimeout(audioChanged, 0);
     clearInterval(refresh); clearInterval(npTimer); cancelAnimationFrame(vizRaf);
     radioEl.pause(); radioEl.removeAttribute('src'); radioEl.load();
     rxConsole.close();
@@ -268,6 +282,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   function selectReceiver(layerId, m, layer) {
     if (layerId === 'station') { const mine = localList.find((x, i) => devices.rx[i].driver === settings.get('rfLocalDevice')) ?? localList[0]; if (mine) return selectReceiver('localsdr', mine, null); return; } // MY STATION opens my SDR
     closeChannel(false);
+    paused = false; setTimeout(audioChanged, 300); // the console reports active once it opens
     closeMapPop();
     const local = layerId === 'localsdr';
     receiver = { layerId, m, layer, name: m[2], url: m[3], local };
@@ -391,7 +406,12 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   return {
     show() { container.hidden = false; // P opens a postcard here too (#40); the 3D views' camera bars handle it elsewhere
       if (!keyHooked && onPostcard) { keyHooked = true; window.addEventListener('keydown', (e) => { if (!container.hidden && (e.key === 'p' || e.key === 'P') && !e.metaKey && !e.ctrlKey && !e.altKey && !e.target.closest?.('input, select, textarea, [contenteditable]') && !document.querySelector('.pc-overlay')) { e.preventDefault(); onPostcard(); } }); } if (!started) { started = true; setMode('subspace'); loadDevices(); } else (mode === 'subspace' ? subMap : rfMap).redraw(); },
-    hide() { container.hidden = true; closeChannel(false); tx.close('left COMMS'); }, // never transmit with the indicator out of sight
+    // leaving COMMS keeps a channel or receiver playing (the header's ▶/❚❚ controls it); a transmission never outlives the view
+    hide() { if (container.hidden) return; container.hidden = true; tx.close('left COMMS'); audioChanged(); },
+    /** The header's COMMS audio button: what is playing, and pause/play. */
+    get audio() { return audioNow(); },
+    toggleAudio() { if (audioNow()) setPaused(!paused); },
+    closeAudio() { closeChannel(!container.hidden); },
     panel, voice, context,
     get mode() { return mode; },
     /** #40: postcards of the active map (the 2D map repainted at the postcard's size; no labels layer). */
