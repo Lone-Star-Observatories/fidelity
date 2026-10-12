@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-12",
+  "body": "Dione",
+  "status": "research-only colour-map reference assessment; no map replacement or new embedding",
+  "source": {
+    "url": "https://science.nasa.gov/photojournal/color-maps-of-dione-2014/",
+    "path": "data/research-sources/dione-PIA18434-caption-2026-10-12.html",
+    "httpStatus": 200,
+    "bytes": 272286,
+    "sha256": "1046ba4e6f2eb83e6fa1e063eccab8c1b779afcfe8cb1cde5abb048f3a7c2195",
+    "product": "PIA18434",
+    "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media guidance and third-party caveats; no CC BY assertion"
+  },
+  "dates": {
+    "imageAddition": "2014-11-04",
+    "observation": "First ten years of Cassini Saturn operations; exact image-by-image epochs unverified",
+    "pageUpdate": "2025-09-23; not observation date"
+  },
+  "publisherProcessing": {
+    "processor": "Paul Schenk, Lunar and Planetary Institute",
+    "roles": [
+      "image selection",
+      "radiometric calibration",
+      "geographic registration",
+      "photometric correction",
+      "mosaic selection and assembly"
+    ],
+    "originalPlanningAndTargeting": [
+      "Tilman Denk, Frei Universitat Berlin",
+      "Paul Helfenstein, Cornell University Ithaca New York"
+    ],
+    "resolution": "Publisher estimate 250 metres per pixel; not a new raster calculation",
+    "colour": "Enhanced spectral transfer extending into ultraviolet and infrared, broader than human vision. Not calibrated visible RGB appearance."
+  },
+  "interpretation": "Hemisphere differences are displayed; radiation/magnetospheric alteration and E-ring deposition explanations are publisher interpretations, not local measured chemical fractions or a newly calibrated rendering.",
+  "associationLimits": [
+    "The colour reference is distinct from the one-band USGS 154 m mosaic audited in the preceding batch. Do not transfer its processing claims between products.",
+    "Existing NASA3D texture byte identity to its own NASA repository source remains verified, but association with PIA18434 or a specific figure remains open.",
+    "No PIA18434 JPEG/TIFF/figure downloaded in this batch; no image hash, pixel comparison or map registration claimed.",
+    "Precise input filters, individual acquisition epochs, missing coverage, longitude origin and photometric transfer to the existing texture remain open."
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "trackedPublicFiles": 596,
+    "existingMapSha256": "c55d228900524557b6aff323f4b9391fc9816433e213a24ccf348c9b4291f89e",
+    "newDossier": false
+  },
+  "next": [
+    "Investigate NASA3D source history and specific figure association without assuming product identity",
+    "Recover substantial conforming lossless headroom before prepared additive dossiers",
+    "Continue independent native/science/calibration audits"
+  ],
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Initial voice missing-key assertion saw inherited OPENAI_API_KEY fallback and failed/hung; rerun with env -u OPENAI_API_KEY passed all tests. No secrets logged, no product or test code changed.",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15987715,
+    "headroomBytes": 12285,
+    "publicFilesByteEqual": 596,
+    "registryUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim; research-only change.",
+    "sizeAttribution": "Interbuild feed difference unaudited, no research/compression savings attribution."
+  }
+}
