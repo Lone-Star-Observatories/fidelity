@@ -3,8 +3,8 @@
 // View; a Hohmann/synodic explainer; and, for Mars, a check against Perseverance's real path.
 // Everything is COMPUTED from the app's ephemeris (Standish/SBDB elements) and Izzo's Lambert solver.
 
-import { planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv, upcoming, windowsStale } from '../astro/transfer.js';
-import { smallBodyPosition } from '../astro/smallbodies.js';
+import { planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv, upcoming, windowsStale, targetFor } from '../astro/transfer.js';
+export { targetFor }; // moved to astro/transfer.js (the Computer uses it too)
 import { ELEMENTS } from '../astro/kepler.js';
 import { porkchopSvg } from './porkchop.js';
 import { trajectory } from '../data/spacecraft-ephem.js';
@@ -33,23 +33,6 @@ export function hohmannDiagram(aAu, name) {
   return s;
 }
 
-/**
- * The target for a body in the Sol model: planets by Standish elements, small bodies by their
- * SBDB elements, moons through their parent planet (the transfer ends at the parent's sphere of
- * influence; reaching the moon's orbit costs extra and is not included).
- */
-export function targetFor(b, bodies) {
-  if (ELEMENTS[b.id] && b.id !== 'earth') return { id: b.id, name: b.name, pos: planetPos(b.id), spec: { planet: b.id }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: ELEMENTS[b.id][0][0], periodDays: periodDays(b.id) };
-  if (b.orbit?.type === 'elements' && b.orbit.el) {
-    const el = b.orbit.el;
-    return { id: b.id, name: b.name, pos: (jd) => smallBodyPosition(el, jd), spec: { el }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: el.a, periodDays: 365.25636 * el.a ** 1.5, small: true };
-  }
-  if (b.kind === 'moon' && b.parent && ELEMENTS[b.parent]) {
-    const p = bodies.find((x) => x.id === b.parent);
-    return { ...targetFor(p, bodies), viaParent: p.name, name: b.name };
-  }
-  return null;
-}
 
 export function createTransferPanel({ h, pill, row, system, clock, toast, $, badge }) {
   const cache = new Map(); // body id → { fromJd, ws }: the windows searched from that date

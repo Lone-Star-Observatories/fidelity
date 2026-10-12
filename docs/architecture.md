@@ -655,8 +655,18 @@ viewer's three recordings (localStorage). Only after it fires does `src/voice/co
 24 kHz PCM16 through `ws://…/api/voice` to the Realtime API, with a description of the screen as
 instructions (`screenContext` in `main.js`: view and route, what the camera is centred on or the surface
 spot, clock and rate, scale, layers, spectral band, missions playing out, an open video/feed window, the
-selected star and the side panel's text; refreshed at each wake and after every tool call) and three tools
-(`go_to`, `set_layer`, `set_time`). Replies finish: while one plays, heard sound is not even matched
+selected star and the side panel's text; refreshed at each wake and after every tool call) and its tools:
+`go_to`, `set_layer`, `set_time`, `comms`, and the ship's calculators (`src/voice/shipcalc.js`): `body_state`
+(distances, light time, speed, RA/Dec, constellation, elongation, phase, size and magnitude from Earth, light-time
+corrected, from the System View's own positions: Horizons or Kepler, Kepler for the planets when the ship is at
+another star), `distance` (between bodies or to a nearby star, with straight-line travel time at a speed or a
+fraction of c), `orbit` (osculating elements about the parent from the ephemeris state), `transfer` (Hohmann
+reference, synodic period and the next launch windows from the #45 Lambert search), `sky_events` (the next
+eclipses, transits, oppositions, conjunctions and elongations from the #30 searches) and `calculate` (a
+safe arithmetic parser with SI constants; nothing else is evaluated). Each result carries its epoch, method
+and tier; tests check body_state against JPL Horizons. The persona is the ship's computer, never an assistant
+or AI: it runs a calculator for any number, and answers "Unable to comply." / "Insufficient data." with the
+reason instead of claiming it cannot calculate. Replies finish: while one plays, heard sound is not even matched
 against the wake word, and the server VAD may not cancel it (`interrupt_response: false`); STOP or Esc
 ends it, and the INTERRUPT toggle lets a confident wake word (within 0.7 × the trained threshold) barge in. Replies play
 and are transcribed in the COMPUTER panel. Without a key

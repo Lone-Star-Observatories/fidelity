@@ -5,6 +5,7 @@
 
 import { lambert, propagate } from './lambert.js';
 import { heliocentric, ELEMENTS } from './kepler.js';
+import { smallBodyPosition } from './smallbodies.js';
 
 export const MU_SUN = 1.32712440018e11; // km³/s²
 export const MU_EARTH = 398600.4418;
@@ -147,4 +148,22 @@ export function windowsStale(e, jd) {
   if (jd < e.fromJd - 1) return true;
   if (!e.ws.length) return Math.abs(jd - e.fromJd) > 30;
   return upcoming(e, jd).length < Math.min(2, e.ws.length);
+}
+
+/**
+ * The target for a body in the Sol model: planets by Standish elements, small bodies by their
+ * SBDB elements, moons through their parent planet (the transfer ends at the parent's sphere of
+ * influence; reaching the moon's orbit costs extra and is not included).
+ */
+export function targetFor(b, bodies) {
+  if (ELEMENTS[b.id] && b.id !== 'earth') return { id: b.id, name: b.name, pos: planetPos(b.id), spec: { planet: b.id }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: ELEMENTS[b.id][0][0], periodDays: periodDays(b.id) };
+  if (b.orbit?.type === 'elements' && b.orbit.el) {
+    const el = b.orbit.el;
+    return { id: b.id, name: b.name, pos: (jd) => smallBodyPosition(el, jd), spec: { el }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: el.a, periodDays: 365.25636 * el.a ** 1.5, small: true };
+  }
+  if (b.kind === 'moon' && b.parent && ELEMENTS[b.parent]) {
+    const p = bodies.find((x) => x.id === b.parent);
+    return { ...targetFor(p, bodies), viaParent: p.name, name: b.name };
+  }
+  return null;
 }
