@@ -106,7 +106,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
-| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `rx` lists receive devices with `streaming`/`waterfall` when their IQ tool is installed (`FIDELITY_FAKE_SDR=1` adds a SIMULATED SDR, `FIDELITY_BLADERF_XB200=1` extends the bladeRF to 60 kHz); `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `WS /api/rf/local` | COMMS local SDR (#69): loopback only (peer, Host and Origin). `{type:'tune', freqHz (SDR side), mode, bwHz, agc, gain, driver, converter}` → `tuned {centreHz, freqHz, rateHz, audioRate, tool, fake}`; `{type:'scan', fromHz, toHz}` → `scan {signals}` (SDR side); `stop`. Binary: Kiwi-style `SND` audio and `LWF` waterfall rows (`src/data/sdr.js`) from one IQ stream (`server/sdr.js`, `server/sdrdsp.js`) |
+| `GET /api/rf/websdr/frame?u=` | COMMS (#69): may a listed WebSDR page be framed? `{ url, finalUrl, status, embeddable, reason, checked }` from its X-Frame-Options / CSP frame-ancestors (HEAD, else a GET read to the headers), cached 7 days; unlisted URLs 403 |
 | `WS /api/rf/tx` | COMMS hailing frequency (#69): loopback only (peer, Host and Origin). `{type:'open', freqHz, callsign, attested, region, gainDb, timeoutS, driver, converter, antennas, antennaId}` → `open` / `refused {code, reason}`; then binary Int16 mic PCM at 16 kHz; `{type:'close'}`. Server sends `state` (elapsed, remaining, sending ID) each second and `closed {reason, idSent}` (`server/tx.js`) |
 | `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
@@ -138,6 +140,18 @@ budgeted set of baked previews (`snapshot.bandImages`, see "Spectrum filter") an
 predicted skins and re-weighted stars. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
+
+## Mac App Store build (#51)
+
+`VITE_FIDELITY_APP_STORE=1 npm run build:standalone` is the standalone above in its App Store
+flavour (`src/appstore.js` exports `APP_STORE`): it leaves out franchise-branded extras, the Star Trek
+layer (#25, #41: `settings.get('starfleet')` is always false and the panels' STAR TREK sections are empty)
+and the STAR TREK postcard style, which App Review treats as third-party trademarks.
+The macOS shell lives in [allengeer/fidelity-osx](https://github.com/allengeer/fidelity-osx): a sandboxed
+SwiftUI app whose WKWebView loads this file from `fidelity://app/index.html` through a URL scheme handler,
+with no local server or port. `/api/*` on that scheme goes to a Swift router, which will take over
+`server/*.js` route by route with the same paths and JSON. Until a route is ported it answers 404, and the
+standalone build never calls it.
 
 ## Adding a view
 
@@ -384,17 +398,59 @@ Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached ro
 
 `#/comms` (top-bar COMMS, shown in Sector 001) opens `src/views/comms/CommsView.js` in the viewport:
 two `createSignalsMap` instances (SUBSPACE layers; RF receivers) with a HAIL / SELECT button per hit,
-a viewscreen and the finder (`comms.panel()` in the right panel). Hailing runs HAILING → SIGNAL
+a viewscreen and the finder (`comms.panel()` in the right panel). Opening a station runs OPENING CHANNEL (radio) or OPENING FEED (cameras, video) → SIGNAL
 RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station carries; the
 `alwaysOnScreen` setting skips the question). Audio goes `<audio src=/api/comms/stream>` →
 `src/views/comms/audio.js` (jitter buffer for receiver PCM, high-pass, low-pass, automatic notch,
 compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast "ICY 200", fetch
 otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
-the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
+the KiwiSDR relay (`ws /api/rf/kiwi`), the local SDR (`ws /api/rf/local`) and the WebSDR framing check.
 Every upstream URL must be on a cached station list (no open proxy). The RF receiver console (`src/views/comms/receiver.js`) opens for KiwiSDR (`ws /api/rf/kiwi`) and the
-local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
-rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
-chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
+local SDR (`ws /api/rf/local`): it tunes, shows a spectrum trace over a scrolling waterfall with a frequency axis
+(click either to tune), plays received audio through the chain, and scans for clear signals. A WebSDR
+opens in the main viewer (`src/views/comms/websdr.js`, below).
+
+**Local SDR: one IQ stream, waterfall and audio.** An SDR is opened by one program at a time, so the
+backend (`server/sdr.js`) runs a single raw-IQ process per device and does everything else in plain JS
+(`server/sdrdsp.js`):
+
+```
+bladeRF   sh -c 'bladeRF-cli -e "$1" 3>&1 1>&2 | cat' sh "set frequency rx F; set samplerate rx 1000000;
+          set bandwidth rx 1000000; set agc rx on | set gain rx G; rx config file=/dev/fd/3 format=bin n=0 …;
+          rx start; rx wait"                     (SC16 Q11; fd 3 is a real pipe: Node gives children socket
+                                                   pairs, which /dev/fd/N and /dev/stdin cannot reopen on Linux)
+RTL-SDR   rtl_fm -f F -M raw -s 240000 [-g G] -l 0 -     (the existing rtl_fm path, raw IQ instead of audio)
+HackRF…   rx_fm -d driver=… -f F -M raw -s 240000 …      (rx_tools / SoapySDR; also a bladeRF without bladeRF-cli)
+   │ int16 IQ → ±1
+   ├─ spectrum: Hann, 1024-point radix-2 FFT, power averaged over ≤ 16 frames, ~10 rows/s, DC in the middle
+   │            → "LWF" row: seq, SDR centre, rate, one byte per bin (dBFS + 200)
+   └─ demod: NCO to the listening offset → decimating FIRs to ~50 kHz (WFM: ~250 kHz) → mode filter →
+             AM (envelope) / USB / LSB / CW (500 Hz BFO) / NBFM / WFM (75 µs de-emphasis) → AGC fast / slow
+             (Kiwi decay presets) / off → Int16 at ~25 kHz → "SND" frames (S-meter = channel dBFS)
+```
+
+Listening anywhere inside the span (± rate/2 less a guard) moves only the NCO; leaving it restarts the
+process at the new centre (a lilac line marks the retune on the waterfall). The scan pauses the stream,
+sweeps ±2 MHz around the dial (rtl_power on an RTL-SDR; otherwise stepped captures, 75 % of each span
+kept and stitched) and resumes. The browser maps everything through the converter: the dial and tune
+requests use antenna ± LO; each row's axis (`rowAxis` in `src/data/sdr.js`) is the SDR's span shifted
+back to the antenna, so through the Ham It Up a 7.074 MHz signal (SDR 132.074 MHz) is drawn, clicked and
+scanned at 7.074 MHz. Colours follow the noise floor (dBFS, uncalibrated, badged MEASURED; IMAGINED for
+the simulated SDR). `FIDELITY_FAKE_SDR=1` adds a SIMULATED SDR whose spawn emits synthetic IQ (a few HF,
+FM-broadcast and 2 m signals plus noise, through a simulated Ham It Up whose switch follows SIGNAL PATH);
+the tests use the same fake spawn. Not yet tried on real hardware: bladeRF-cli's `n=0` streaming, the
+XB-200 commands and the rtl_fm/rx_fm raw scaling are from their documentation.
+
+**WebSDR in the main viewer.** WebSDR (PA3FWM) has no open audio API and its audio protocol is not
+relayed. The operator's own page opens in a sandboxed iframe (scripts, same origin, forms, popups; no
+top navigation), scaled to the viewer, tuned with the parameter the page itself reads:
+`?tune=<kHz><mode>` (`websdrTuneUrl` in `src/data/websdr.js`: 7074usb, 3630lsb, 198am, 145500fm,
+10136.5cw; NBFM and WFM map to `fm`). Our dial, steps, band pills (from the list entry), mode pills and
+the Computer's `tune` (with an optional mode word: "tune to 7074 usb") rebuild the URL and the page
+reloads, debounced. First `GET /api/rf/websdr/frame` checks the page's X-Frame-Options and CSP
+frame-ancestors (`framingVerdict`); a page that refuses framing, or one the backend cannot reach, gets
+the old link-out with a note saying why. The viewer carries the operator's credit (REPORTED). Its audio
+plays from their page (click it once: browser autoplay rules), not through the COMMS chain. Voice: the `comms` tool
 (on screen, off screen, tune, scan, close channel, open/close hailing) and offline phrases.
 
 **Transmission (hailing frequency).** Only when `/api/rf/devices` lists a transmit-capable SDR does
@@ -432,12 +488,29 @@ red TRANSMITTING bar (frequency, callsign, time on air, time to timeout, device,
 the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is near the bottom on a
 2.0 micro; libbladeRF clamps to the board's range).
 
+**Receiver console tuning.** The mouse wheel on the receiver screen tunes by the step (one notch = one step; trackpad
+deltas accumulate; up = higher). Over the shaded passband block on the spectrum or waterfall, or with Shift, the wheel
+widens or narrows the bandwidth instead. Steps: 100 Hz–1 MHz including 12.5 and 25 kHz channel steps, plus a custom value;
+remembered per viewer (localStorage). Bandwidth per mode (`BW` in `receiver.js`): presets, a slider over the mode's
+range (AM 1–16 kHz, SSB 0.5–4 kHz, CW 50 Hz–2 kHz, NBFM 4–25 kHz, WFM 50–250 kHz; a KiwiSDR stops at 11 kHz) and a
+value box, remembered per mode. The local demodulator's filters follow the bandwidth (`server/sdrdsp.js`: the second
+decimation keeps the whole passband; WFM's first stage keeps half its bandwidth).
+
+**COMMS in the background.** Leaving COMMS for any other view (Galaxy, Quadrant and Universe included) hides it but keeps an open channel or receiver playing; the header button beside COMMS shows what is playing and pauses or plays it (`comms.toggleAudio`: the COMMS audio context suspends and the radio element pauses). A transmission still closes on leaving COMMS.
+
+**My station and my SDR.** The RF finder opens with MY STATION (`src/data/station.js`): the operator's location
+from the browser, a click on the map (`signalsMap.pickPoint`, Esc cancels) or typed as a Maidenhead grid square or
+coordinates, stored in the `observer` setting that FROM EARTH also uses and drawn on the map as MY STATION with its
+locator. MY SDR lists the detected local receivers (`/api/rf/devices`, `?fresh=1` for RESCAN past the 30 s cache);
+OPEN MY SDR, or a click on MY STATION, opens its console. With none detected it says why from the tool probe
+(`sdrDiagnosis`: bladeRF-cli or rtl-sdr missing, tool present but no board, another program holding the radio).
+
 **Signal path (frequency converter).** SIGNAL PATH in the RF finder (`settings.rfConverter`,
 `src/data/converter.js`): none / Ham It Up (LO 125.000 MHz, up) / custom LO and direction, plus
 BYPASS (the Ham It Up's switch). Converting, the local SDR console (`receiver.js`) works in
 antenna-side frequencies: tune and sweep requests go to the SDR at antenna ± LO, the dial, readout,
-scan results and the map's range show the true antenna frequency (the local SDR has no waterfall;
-the KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
+waterfall axis, click-to-tune, scan results and the map's range show the true antenna frequency (the
+KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
 backwards it radiates the LO feedthrough, the image and mixing products unfiltered (FCC §97.307)
 and can be damaged, so txGate refuses transmit while one is converting ("TX through the Ham It Up is
 not supported: set it to BYPASS or connect the transmitter directly. HF transmit needs a proper
@@ -455,8 +528,11 @@ unwrapped across the antimeridian and drawn at ±360° as well) over a navy grat
 `Path2D`s under a lon/lat transform so zoom and pan stay smooth. With `fill: true` (COMMS) it covers
 its frame edge to edge inside LCARS bars. Pointing at a marker rings it and shows a card (name,
 detail, list, position, how many more are under the cursor); pointing at land highlights the
-country and names it in the readout. The main viewer sits beside the map when the COMMS view is at
-least 1,000 px wide (a container query), otherwise above it, smaller.
+country and names it in the readout. In COMMS the map opens in a popup (`.cx-map-pop`) over the
+view — it auto-opens when you switch modes and closes once you hail a station or select a receiver;
+CHANGE STATION / CHANGE RECEIVER in the header reopens it. This leaves the main viewer (the waterfall
+and spectrum, or video) full width below the header, with the receiver controls and a separate
+TRANSMIT box (`.cx-tx-box`) in the finder.
 
 ## Space telescopes
 
@@ -862,7 +938,7 @@ Myr) whenever they change; the panels only show the epoch and point to the TIME 
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The bottom bar has two rows. On top is the time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`): the clock readout with a GO TO date field; a middle panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for); HOLD, ⇄ REV (the same rate the other way), NOW and the n-unit STEP/RUN controls. Below, on the elbow's arm, are the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (3D CORONA, #79; DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`) sits in three places: the clock readout with a GO TO date field in the left rail's lowest orange block; HOLD, ⇄ REV, NOW and the n-unit STEP/RUN controls in the purple block above the bottom elbow (both pinned while the rail's view buttons scroll); and, as a frameless strip over the bottom of every view that runs on the clock (all but COMMS; `#time-dock`, the viewport's `--dock-h` lifts the camera cluster, gauges, toasts and panels above it, and detail views pad their foot by it), a panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for). The bottom bar holds the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (3D CORONA, #79; DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 

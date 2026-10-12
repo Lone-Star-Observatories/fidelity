@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "S/2015 (136472) 1",
+  "nickname": "MK 2",
+  "parent": "Makemake (136472)",
+  "status": "research-only; no 69th dossier, new embedding, catalogue, map, shape or codec change",
+  "sources": [
+    {
+      "path": "data/research-sources/makemake-moon-caption-2026-10-12.html",
+      "url": "https://science.nasa.gov/asset/hubble/makemake-and-its-moon-non-annotated/",
+      "bytes": 300826,
+      "sha256": "90bdfa1f6db79b86908a5385b3350cffd0f1137b36fe0016d0cacb37ca88376e",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-native.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif/jcr:content/renditions/600x600.jpg",
+      "bytes": 33558,
+      "sha256": "7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616",
+      "fetched": "2026-10-12",
+      "dimensions": [
+        600,
+        600
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-native.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif",
+      "bytes": 157110,
+      "sha256": "062ac9ef3ef221c7b52aa13ed4b757b21c32f0ffabb7551c91b7762859af7d9b",
+      "fetched": "2026-10-12",
+      "dimensions": [
+        600,
+        600
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-terms-2026-10-12.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320697,
+      "sha256": "63fa53d0c1f67e032a79d04c52b78a3fe42a8921cf69c6db519b8ff502909355",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "credit": "NASA, ESA, and A. Parker and M. Buie (Southwest Research Institute)",
+  "terms": "Active NASA images/media guidelines with third-party caveats; no CC BY assertion. Publisher JPEG rendition and TIFF retained unchanged.",
+  "publisherMetadata": {
+    "instrument": "HST WFC3",
+    "filter": "F350LP",
+    "program": 13668,
+    "exposureDates": "April 27/29, 2015",
+    "totalExposureSeconds": 4350,
+    "release": "2016-04-26",
+    "pageUpdated": "2025-08-17; not observation",
+    "scienceTeam": "A. Parker and M. Buie (Southwest Research Institute), W. Grundy (Lowell Observatory), K. Noll (NASA Goddard Space Flight Center)"
+  },
+  "inspection": "Non-annotated monochrome publisher scene: small faint point above bright Makemake with diffraction/glare and background noise. JPEG inspected; TIFF decoded successfully. Artist concepts are separate products and have not been adopted as native science.",
+  "limitations": [
+    "Unresolved detection does not establish resolved terrain, axes, chemistry, calibrated visible colour or geography. Makemake glare/diffraction are not moon morphology. Black background is not an atmosphere-absence measurement.",
+    "Publisher 100-mile moon diameter is a caption estimate, not a new raster calculation or measured local material fraction; independent size/albedo assumptions require primary audit.",
+    "The metadata lists April 27/29 and a combined exposure time; exact image exposure association, UTCs, coaddition, processing and raw product crosswalk remain open.",
+    "No map belonging to Makemake or another observed body is assigned to its moon. Rotation, orbit, shape, composition, local normal and dated observer geometry remain open.",
+    "No claim of exhaustive newest imagery, solid-ground survivability, ocean, plume or biology. No angular/raster calculation performed."
+  ],
+  "preservation": {
+    "trackedPublicFilesByteEqualToHEAD": 550,
+    "deliveredDossiers": 68,
+    "queue": 566,
+    "originalsMastersNativeProvenance": "retained",
+    "recordedClipperPreview": "preserved"
+  },
+  "validation": {
+    "tests": "539 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard 16,000,000-byte gate",
+    "htmlBytes": 16064781,
+    "overBudgetBytes": 64781,
+    "browser": "No new passing current standalone/offline browser claim; other engines remain open.",
+    "attribution": "Interbuild feed differences unaudited; no compression savings or asset-size attribution.",
+    "queue": 566
+  }
+}

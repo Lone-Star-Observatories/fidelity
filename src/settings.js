@@ -1,4 +1,5 @@
 // Per-viewer preferences, remembered in localStorage when available.
+import { APP_STORE } from './appstore.js';
 const KEY = 'fidelity.settings.v1';
 
 const defaults = {
@@ -53,8 +54,10 @@ try { state = { ...defaults, ...JSON.parse(localStorage.getItem(KEY) || '{}') };
 const listeners = new Set();
 
 export const settings = {
-  get: (k) => state[k],
+  // The App Store build (#51) has no Star Trek layer: it is always off and cannot be switched on.
+  get: (k) => (APP_STORE && k === 'starfleet' ? false : state[k]),
   set(k, v) {
+    if (APP_STORE && k === 'starfleet') return;
     state = { ...state, [k]: v };
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* ignore */ }
     for (const fn of listeners) fn(k, v);

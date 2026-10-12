@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-12",
+  "body": "Naiad",
+  "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/naiad-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/naiad-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "parameters": {
+    "jplRadiusKm": 29,
+    "jplRadiusUncertaintyKm": 6,
+    "radiusReference": "Archinal et al.2018, JPL reference1; equivalent-volume radius, not local normal",
+    "jplGmKm3s2": 0.00853,
+    "jplGmUncertainty": 0.0048,
+    "gmReference": "NEP097; distinct from Brozovic2019 .0080 \u00b1 .0043",
+    "paperEffectiveRadiusKm": 33,
+    "paperRadiusUncertaintyKm": 3,
+    "paperShapeSemiaxesKm": [
+      48,
+      30,
+      26
+    ],
+    "semimajorAxisKm": 48200,
+    "orbitalPeriodDays": 0.29398,
+    "roundedEccentricity": 0,
+    "inclinationDeg": 4.7,
+    "epoch": "2000-01-01.5 TDB",
+    "frame": "Local Laplace plane",
+    "ephemeris": "NEP097",
+    "reference": "Brozovic2020 inner Neptunian satellite update, personal communication to Horizons/NAIF; table reference, not newly audited solution",
+    "olderPaperAlternative": "Brozovic2019 Table7: a48228km, e.00014, free inclination4.728deg, epoch2020Jan1TDB; not interchangeable epoch/fit",
+    "neptuneMeanRadiusKm": 24622
+  },
+  "assumptions": {
+    "horizontalFovDeg": 90,
+    "rasterWidthPixels": 1672,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs discarded",
+    "site": "Hypothetical Neptune-facing point using radius as height; not registered irregular normal or dated ephemeris"
+  },
+  "geometries": [
+    {
+      "assumedHeightKm": 29,
+      "distanceKm": 48171,
+      "angularDiameterDeg": 61.479243086447404,
+      "targetWidthPixels1672": 994.32545158135
+    },
+    {
+      "assumedHeightKm": 33,
+      "distanceKm": 48167,
+      "angularDiameterDeg": 61.48490237297103,
+      "targetWidthPixels1672": 994.4372324085991
+    }
+  ],
+  "method": "All angular and target raster widths computed with src/astro/appearance.js skyGeometry. radiusSun=24622/695700; distanceAU=(48200-height)/149597870.7.",
+  "limitations": [
+    "29\u00b16 JPL radius and33\u00b13 paper radius are retained alternatives, not silently reconciled or catalogue replacements. No original ingestion or measurement-difference cause established.",
+    "JPL GM differs from older paper; no new mass/density fit or local chemistry/porosity adopted.",
+    "Rounded e0.000 is not proof of perfect circularity; mean elements are not current instantaneous distances. Geometry alternatives are assumed heights, not a statistical uncertainty envelope.",
+    "48/30/26km semiaxes are inherited image-model estimates; equivalent radius does not establish local normal, terrain height or attitude.",
+    "Synchronous spin in Agrusa2026 is assumed; resonance in Brozovic2019 is orbital, not measured spin locking or permanent Neptune-facing terrain. Inclined orbit, phase and camera attitude remain open.",
+    "Spherical Neptune omits oblateness. Ring opening, atmospheric transfer, exposure, spectral transfer, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings must not imply absence.",
+    "Native Voyager unresolved geography, incomplete credit and acquisition/product crosswalk remain open. No other-moon clay spectrum assigned to Naiad. Cohesion/age/erosion/regolith survival models are not measured properties.",
+    "No ocean, plume, biology, survivable landing, resolved geography or calibrated photometry established.",
+    "All68 dossiers and original PNGs, masters, native science, provenance, recorded Clipper preview, maps/models/shapes preserved. Substantial conforming lossless headroom remains required."
+  ],
+  "validation": {
+    "base": "67da5d7, before concurrent c204fff App Store changes",
+    "tests": "523 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16058469,
+    "overBudgetBytes": 58469,
+    "preservation": "All550 tracked public files byte-identical to HEAD, including405 protected imagery/model/texture/shape assets; registry68 unchanged, queue566. Original PNGs/masters/native/provenance and recorded Clipper preview retained.",
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution.",
+    "concurrency": "Concurrent c204fff will be rebased after these checks; combined application requires subsequent verification."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "snapshotSha256": "512fc0a1fb89026c743c21d48252049ea7ef9e1c3240b4a03bfaf31d66b1a0db",
+  "binaryBytes": 19778133,
+  "baselineOuterGzipScreenBytes": 13129008,
+  "results": [
+    {
+      "resetEachWidthGroup": true,
+      "outerGzipScreenBytes": 13143792,
+      "differenceFromBaseline": 14784,
+      "exactNativeBundledJsContainerAndJsonInverse": true
+    },
+    {
+      "resetEachWidthGroup": false,
+      "outerGzipScreenBytes": 13145263,
+      "differenceFromBaseline": 16255,
+      "exactNativeBundledJsContainerAndJsonInverse": true
+    }
+  ],
+  "note": "Research-only adaptive move-to-front relabeling. Numeric order/layout/spelling and binary assets unchanged after exact inverse. Excludes wrapper/decoder overhead; no production change.",
+  "date": "2026-10-12",
+  "status": "Rejected research-only adaptive move-to-front numeric nibble recoding; no production adoption",
+  "assessment": "Width-group reset and continuous-state variants are14784/16255bytes larger before wrapper/decoder overhead. Both exact native/bundledJS/container/fullJSON inverses pass. No value conversion, rounding, pruning, numeric layout/order or binary asset change. Distinct from static codebook relabeling; do not repeat these variants.",
+  "preservation": "All68 dossiers and550 tracked public files unchanged, including405 protected assets and recorded Clipper preview. Original/default PNGs, masters, native science and provenance preserved. No69/new embedding/catalogue/codec/map/model/shape change.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16061888bytes61888over hard16MB gate",
+    "queue": 566,
+    "browser": "No current passing full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution."
+  }
+}

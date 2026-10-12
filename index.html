@@ -19,6 +19,7 @@
       <div class="bar-fill"></div>
       <div class="search" id="search"></div>
       <button class="comms-tab" id="comms-tab" title="COMMS: SubSpace and RF reception (Sector 001)">COMMS</button>
+      <button class="comms-tab comms-audio" id="comms-audio" hidden title="COMMS audio: pause or play the open channel"></button>
       <button class="comms-tab postcard-tab" id="postcard-tab" title="Postcard: save or share what is on screen (P)">POSTCARD</button>
       <button class="beacon" id="beacon" title="Return to Sector 001 (Sol)">
         <span class="beacon-dot"></span><span class="beacon-text">SECTOR 001</span><span class="beacon-sub" id="beacon-sub">HOME</span>
@@ -30,10 +31,15 @@
 
     <!-- left rail -->
     <nav class="rail" aria-label="Views">
-      <div class="rail-group" id="rail-levels"></div>
-      <div class="rail-spacer"></div>
-      <div class="rail-group" id="rail-subviews"></div>
-      <div class="rail-fill"></div>
+      <div class="rail-scroll">
+        <div class="rail-group" id="rail-levels"></div>
+        <div class="rail-spacer"></div>
+        <div class="rail-group" id="rail-subviews"></div>
+        <div class="rail-fill"></div>
+      </div>
+      <!-- the ship's clock and GO TO, then HOLD / REV / NOW and the steps (#34), pinned at the foot of the rail -->
+      <div class="rail-clock" id="rail-clock"></div>
+      <div class="rail-time" id="rail-time"></div>
     </nav>
 
     <!-- main viewport -->
@@ -51,6 +57,7 @@
       <div class="offline" id="offline" hidden></div>
       <div class="edge-beacon" id="edge-beacon" hidden><span class="arrow">▲</span><span>SOL · SECTOR 001</span></div>
       <div class="warp" id="warp"></div>
+      <div class="time-dock" id="time-dock"></div>
       <div class="toast" id="toast" hidden></div>
     </main>
 

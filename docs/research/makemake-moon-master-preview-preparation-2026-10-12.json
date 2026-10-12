@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-12",
+  "body": "S/2015 (136472) 1 / Makemake moon / MK 2",
+  "status": "Research-only masters/previews; no dossier69 or embedding/catalogue/codec change",
+  "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+  "files": [
+    {
+      "path": "data/research-sources/makemake-moon-generated-surfaceImage-original.png",
+      "bytes": 2502948,
+      "sha256": "2a044e0f8b64248dec9c2ef639ef1616770bdba7d918c05274be6bd24f74ef61",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-generated-surfaceImage-master.jpg",
+      "bytes": 312663,
+      "sha256": "6948e6766e9ea7a019b74d52c74120bf50b937dcd9ebeec2631979ce4093107d",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-generated-surfaceImage-preview.jpg",
+      "bytes": 11058,
+      "sha256": "52878f75f486840b9e9b444040d5092724e16c66835d3bb600400b3070ebfc53",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-generated-skyImage-original.png",
+      "bytes": 1801151,
+      "sha256": "d6842c37ec41655e477eba4bb1c7f34f8eeea44dc78349d956fdd379a78de12b",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "PNG"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-generated-skyImage-master.jpg",
+      "bytes": 163226,
+      "sha256": "4fd23b24a67fc9b7fc9d28d9c94f11d279bd67b1e3759f4f90ebd89394f445e4",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-generated-skyImage-preview.jpg",
+      "bytes": 6488,
+      "sha256": "ac957bfd50a0450ac604a0bfc02b239fc8aaaba76fd549da05e569424ccd8802",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "JPEG"
+    }
+  ],
+  "previewRawBytes": 17546,
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, primary disk pattern, phase, lighting and exposure are invented; no analog skin or dated HST site.",
+    "Black sky and ring omission are artistic assumptions, not measured absence.",
+    "Distinct historical albedo-dependent moon sizes and preliminary circular orbit are not a joint fit, dated distance, registered normal, spin-locking or permanent-facing determination, or uncertainty envelope.",
+    "Recorded skyGeometry targets remain 53.969661560036414/54.061231112316555 pixels at1672px and nominal90degreeHFOV; 40K helper is angular only. No calibrated raster diameter adopted.",
+    "Primary Makemake hotspot, ring and rotation models are not moon measurements.",
+    "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "Small preview annotations and disk require readable IMAGINED card labels before integration."
+  ],
+  "references": [
+    "docs/research/makemake-moon-local-view-preparation-2026-10-12.json",
+    "docs/research/makemake-moon-sky-view-preparation-2026-10-12.json",
+    "docs/research/makemake-moon-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "inspection": "All four masters/previews inspected. Master footers readable; small preview text/disk require readable IMAGINED card labels. No calibrated raster diameter adopted.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16062940bytes62940over hard16MB gate",
+    "preservation": "All550 tracked public files byte-equal to HEAD;68 dossiers and405 protected assets unchanged; originals/default PNGs/full prompts/native/provenance and recorded Clipper preview retained.",
+    "queue": 566,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution."
+  }
+}

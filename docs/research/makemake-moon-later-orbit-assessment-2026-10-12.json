@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "S/2015 (136472) 1 (MK 2), satellite of Makemake",
+  "status": "research-only; no dossier69, embedding, catalogue, map, geometry or codec change",
+  "sources": [
+    {
+      "path": "data/research-sources/makemake-moon-Bamberger2026-v3.pdf",
+      "url": "https://arxiv.org/pdf/2509.05880v3",
+      "bytes": 461858,
+      "sha256": "9576244118fa8cd9882ddc17a0c8622e503be383294e4705180d12f833a525e2",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-orbit-record-2026-10-12.html",
+      "url": "https://arxiv.org/abs/2509.05880",
+      "bytes": 40142,
+      "sha256": "fec3129f50a279b5883efb1c4adcdc79cbdc5bac63920481382d41935ca14d3e",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "paper": {
+    "title": "A preliminary orbit for the satellite of dwarf planet (136472) Makemake",
+    "authors": [
+      "Daniel Bamberger"
+    ],
+    "arxiv": "2509.05880v3",
+    "submittedUTC": "2025-09-07T00:47:42Z",
+    "revisedUTC": "2026-02-28T07:23:45Z",
+    "pdfDraftHeading": "2026-03-03",
+    "pages": 4,
+    "licenseURL": "http://creativecommons.org/licenses/by-sa/4.0/",
+    "terms": "Specific arXiv record CC BY-SA4.0; distinct from Parker2016 nonexclusive terms and NASA publisher imagery terms. No figure embedded or blanket raw-data licence assertion.",
+    "assessment": "Complete four-page PDF retained; all main text, Table1 and captions read. Preliminary author analysis, not a verified final journal solution."
+  },
+  "observations": {
+    "programs": [
+      13668,
+      15207,
+      15500
+    ],
+    "instrument": "HST WFC3",
+    "datesUTC": [
+      "2015-04-27T13:46",
+      "2015-04-29T18:17",
+      "2018-03-01T00:50",
+      "2018-03-04T16:12",
+      "2018-03-07T18:53",
+      "2018-03-11T11:53",
+      "2018-03-14T12:59",
+      "2018-03-18T04:22",
+      "2018-03-21T23:11",
+      "2018-05-21T03:35",
+      "2019-01-24T14:03",
+      "2019-02-02T06:11",
+      "2019-02-11T07:53"
+    ],
+    "processing": "Author describes twelve40second median-subtracted stacked exposures per set; longer70/180second exposures excluded, photometry beyond scope. Twelve detections among13 dates; April29,2015 too close to primary. Keep distinct Parker2016 six725second discovery photometry/exposure account; raw product crosswalk and grouping not independently verified.",
+    "astrometry": "Paper uses known0.04arcsec pixel scale, telescope orientation and Earth distance with assumed0.7pixel precision on both axes. Reported source method only; no independent angular/raster calculation or skyGeometry computation."
+  },
+  "fittedCircularOrbit": {
+    "periodDays": 18.023,
+    "periodUncertaintyDays": 0.017,
+    "semimajorAxisKm": 22250,
+    "semimajorAxisUncertaintyKm": 780,
+    "inclinationToLineOfSightDeg": 83.7,
+    "inclinationUncertaintyDeg": 1.0,
+    "orientation": "Prograde versus retrograde ambiguous; not moon spin, permanent-face or precise current ephemeris."
+  },
+  "conditionalDerivations": {
+    "systemMassKg": 2.69e+21,
+    "systemMassUncertaintyKg": 2e+20,
+    "primaryDensityGcm3": 1.76,
+    "primaryDensityUncertaintyGcm3": 0.17,
+    "assumptions": "Assumed primary radius715\u00b115km and all system mass concentrated in primary. Density is primary/system-model inference, not moon density, chemistry, porosity or measured mass partition.",
+    "comparison": "Parker2018 conference density2.1g/cm3; author re-fit of then-available data2.1\u00b10.4 retained as distinct alternative, not silent replacement.",
+    "mutualEvents": "Nominal circular orbit suggests approximately7\u00b12years before/afterJanuary2018, later window2023\u20132027; maximum about140minutes twice per orbit conditional predictions. No verified ongoing/imminent event, dated event ephemeris or calibrated observer scene claim."
+  },
+  "limitations": [
+    "Discovery-era broad circular/density ranges remain historical; later preliminary circular fit refines research context without changing catalogue inputs.",
+    "Moon size, albedo, shape, photometry and thermal properties not measured by this orbit-only analysis. Do not assign primary radius/density to moon.",
+    "Raw exposure IDs/filter/exposure grouping, final publication, eccentric alternatives, orientation, later astrometry and actual mutual-event detections remain open.",
+    "NASA native JPEG/coaddition/camera and independent colour calibration remain unresolved; archival2015\u20132019 observations are not new2026 native images.",
+    "No geography, analog skin, local material fractions, atmosphere-absence, ocean/plume/biology or landing claim."
+  ],
+  "preservation": {
+    "deliveredDossiers": 68,
+    "queue": 566,
+    "originalsMastersNativeProvenanceClipper": "unchanged",
+    "trackedPublicByteEqualToHEAD": 550
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16064781,
+    "overBudgetBytes": 64781,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "No asset or compression savings claim; interbuild differences unaudited."
+  }
+}

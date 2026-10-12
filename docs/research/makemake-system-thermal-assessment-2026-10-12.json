@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Makemake system; MK2 thermal contribution separated from primary and ring hypotheses",
+  "status": "research-only; no new dossier, embedding, catalogue, map, shape or codec changes",
+  "sources": [
+    {
+      "path": "data/research-sources/makemake-Kiss2024.pdf",
+      "url": "https://arxiv.org/pdf/2410.22544v1",
+      "bytes": 2669648,
+      "sha256": "eaf3e1ec25e8711f260b91da64c22e76f91ea3427a24a6f242ba372be0b8a337",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/makemake-Kiss2024-record-2026-10-12.html",
+      "url": "https://arxiv.org/abs/2410.22544",
+      "bytes": 45180,
+      "sha256": "ab93403d567960b4c5ec35ca11a2f256a2ee06b59d966c7cde0624900a9e4ed7",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "paper": {
+    "title": "Prominent mid-infrared excess of the dwarf planet (136472) Makemake discovered by JWST/MIRI indicates ongoing activity",
+    "authors": [
+      "Csaba Kiss",
+      "Thomas G. Müller",
+      "Anikó Farkas-Takács",
+      "Attila Moór",
+      "Silvia Protopapa",
+      "Alex H. Parker",
+      "Pablo Santos-Sanz",
+      "Jose Luis Ortiz",
+      "Bryan J. Holler",
+      "Ian Wong",
+      "John Stansberry",
+      "Estela Fernández-Valenzuela",
+      "Christopher R. Glein",
+      "Emmanuel Lellouch",
+      "Esa Vilenius",
+      "Csilla E. Kalup",
+      "Zsolt Regály",
+      "Róbert Szakáts",
+      "Gábor Marton",
+      "András Pál",
+      "Gyula M. Szabó"
+    ],
+    "arxiv": "2410.22544v1",
+    "submittedUTC": "2024-10-29T21:21:24Z",
+    "draftHeading": "2024-10-31; received/revised/accepted template dates distinct from observations",
+    "pages": 20,
+    "assessment": "Complete20page author PDF retained; sections2–5 and appendicesB/C/D targeted text and captions assessed. Not a claim to have audited final publisher PDF, all appendices or raw products.",
+    "licenseURL": "http://creativecommons.org/licenses/by/4.0/",
+    "terms": "Specific arXiv record CC BY4.0, distinct from Parker2016 nonexclusive distribution and NASA image terms. No figure embedded or blanket data/publisher licence assertion."
+  },
+  "observations": {
+    "instrument": "JWST MIRI",
+    "program": 1254,
+    "principalInvestigator": "Alex H. Parker",
+    "epoch": "January2023; Table2 source JD midpoints retained, not independently converted to exact UTC",
+    "archiveDOI": "10.17909/0ebf-dp91",
+    "pipeline": "1.15.1, jwst_1256.pmap; author reprocessing uncal→cal without distortion correction",
+    "table2": [
+      {
+        "id": "V01254001001P0000000003101",
+        "JD": 2459975.0067,
+        "filter": "F1800W",
+        "fluxMilliJy": 0.169,
+        "uncertaintyMilliJy": 0.008
+      },
+      {
+        "id": "V01254002001P0000000003101",
+        "JD": 2459975.0146,
+        "filter": "F1800W",
+        "fluxMilliJy": 0.167,
+        "uncertaintyMilliJy": 0.008
+      },
+      {
+        "id": "V01254001001P0000000003103",
+        "JD": 2459975.0242,
+        "filter": "F2550W",
+        "fluxMilliJy": 0.361,
+        "uncertaintyMilliJy": 0.023
+      },
+      {
+        "id": "V01254002001P0000000003103",
+        "JD": 2459975.0323,
+        "filter": "F2550W",
+        "fluxMilliJy": 0.352,
+        "uncertaintyMilliJy": 0.022
+      }
+    ],
+    "targetAcquisition": "F560W LRS acquisition V01254001001P0000000002101 JD2459975.07637 0.058±0.003mJy; separate reflected-light constraint.",
+    "association": "System thermal fluxes are not resolved moon photometry, local surface temperatures, visible images or independent calibration of Hubble JPEG."
+  },
+  "moonModels": {
+    "absoluteMagnitude": "Adopted H_V7.85 from system0.049±0.020 and prior7.8mag contrast; colour transfer/model assumptions distinct from direct F350LP photometry.",
+    "albedoDiameterAlternatives": "Assumed pV0.5/0.1/0.05/0.02 imply diameters51/113/160/253km; not measured axes or silent catalogue updates.",
+    "NEATM": "Model pV0.01/0.02/0.04/0.08 with eta0.6; extreme older pV0.017 eta0.34 still underestimates18micron flux by about an order of magnitude. Historical2016 dark-moon excess hypothesis remains documented but is not unique/currently sufficient within tested models.",
+    "hypotheticalGiantMoon": "Additional1200km/pV0.04/eta0.6 body can match18micron but overpredicts longer wavelengths and lacks observational support. Not a detected second satellite."
+  },
+  "primaryAndRingHypotheses": {
+    "hotspot": "Additional blackbody147±5K with projected equivalent radius10.0±0.5km; projection/pole alternatives up to about1percent primary surface. Not resolved hotspot geography, measured moon temperature, local composition or confirmed cryovolcanic eruption/ocean/plume.",
+    "power": "Model8.3e9W projected case versus1.5e11W assumed3.5degree polar-region case; conditional geometry, not direct internal heat sensor.",
+    "ring": "Undetected carbonaceous100–200nm or graphite200–500nm grain scenarios can reproduce mid-IR spectra within tested assumptions; lifetime/replenishment models not actual ring detection or measured dust chemistry.",
+    "analogs": "Enceladus/Pluto/Triton comparisons and Eris/Charon/Quaoar terrain-albedo models do not authorize another body map or assign their geography/chemistry to Makemake or MK2.",
+    "rotation": "Primary11.4h default,22.8h alternative remains; not MK2 spin. Constant partial thermal light curve does not prove a ring."
+  },
+  "open": [
+    "Final publisher record/PDF, later thermal or NIRSpec results and raw MAST/extraction/calibration crosswalk need separate audit.",
+    "Moon size/albedo/spin, independently resolved thermal emission and exact Hubble JPEG association remain open.",
+    "Hotspot versus ring or combined explanation not uniquely established; no ocean/plume/biology or survivable landing claim.",
+    "No independent angular/raster computation performed; no skyGeometry calculation or calibrated observer scene claim."
+  ],
+  "preservation": {
+    "deliveredDossiers": 68,
+    "queue": 566,
+    "originalsMastersNativeProvenanceClipper": "unchanged",
+    "trackedPublicByteEqualToHEAD": 550
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16065307,
+    "overBudgetBytes": 65307,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no asset or compression savings claim."
+  }
+}

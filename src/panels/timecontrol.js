@@ -1,4 +1,6 @@
-// The time control (#34): the bottom bar's top row, the one control for every view's time. A
+// The time control (#34): the one control for every view's time, in three places: the clock and GO TO at the
+// bottom of the left rail, HOLD / REV / NOW and the steps in the rail's purple corner, and RATE / TIMELINE as a
+// frameless strip over the bottom of the views that use time. A
 // readout of the ship's clock (a calendar date, or an offset such as "+1.2 MYR" beyond JavaScript's
 // dates) with a date field and the active view's range (and, when time stopped there, why), a
 // middle panel that swaps between the RATE slider (one logarithmic scale from −1 Gyr/s through
@@ -176,11 +178,14 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
   const holdBtn = pill('❚❚ HOLD', () => clock.toggleHold(), 'square tc-hold');
   const revBtn = pill('⇄ REV', () => clock.reverse(rateLabel), 'square tc-rev');
   revBtn.title = 'Run at the same speed the other way';
+  // in the rail's purple corner (narrow): HOLD; REV and NOW; ◀| n |▶; unit and RUN
+  const [back, nIn, unitSel, fwd, run] = stepControls;
+  const stepTitle = 'Step the clock by n units ([ and ] keys), or RUN at n units per second';
   const right = h('div', { className: 'tc-right' },
-    h('div', { className: 'tc-row' }, holdBtn, revBtn, pill('NOW', () => clock.now(), 'square tc-now')),
-    h('div', { className: 'tc-row', title: 'Step the clock by n units ([ and ] keys), or RUN at n units per second' }, ...stepControls));
-
-  const row = h('div', { className: 'bar-row time-row' }, h('div', { className: 'ctl-label tc-label', textContent: 'TIME' }), readout, mid, right);
+    h('div', { className: 'tc-row' }, holdBtn),
+    h('div', { className: 'tc-row' }, revBtn, pill('NOW', () => clock.now(), 'square tc-now')),
+    h('div', { className: 'tc-row', title: stepTitle }, back, nIn, fwd),
+    h('div', { className: 'tc-row', title: stepTitle }, unitSel, run));
 
   // ---- keep everything in step with the clock and settings ----------------------------------
   const syncPanel = () => {
@@ -212,7 +217,8 @@ export function createTimeControl({ h, pill, clock, settings, go, dateIn, stepCo
   syncPanel(); syncRate();
 
   return {
-    el: row,
+    /** The clock and GO TO (the rail's orange block), RATE/TIMELINE (over the bottom of the views that use time), the buttons (the rail's purple corner). */
+    readout, mid, right,
     /** Per frame: the readout and, when shown, the timeline. */
     frame() {
       clockOut.textContent = clockReadout(clock.deepJd, jdFromDate(new Date()));

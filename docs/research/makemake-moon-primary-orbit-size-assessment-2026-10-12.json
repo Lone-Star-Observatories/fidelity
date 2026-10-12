@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "S/2015 (136472) 1 (MK 2), satellite of Makemake",
+  "status": "research-only; no new dossier, embedding, catalogue, geometry, map or codec changes",
+  "sources": [
+    {
+      "path": "data/research-sources/makemake-moon-Parker2016-v1.pdf",
+      "url": "https://arxiv.org/pdf/1604.07461v1",
+      "bytes": 1193583,
+      "sha256": "996e7c455d83530a57a4fc79c0ae01cfe86e07dc9f621fa6ed3e83ebdc474e1e",
+      "fetched": "2026-10-12"
+    },
+    {
+      "path": "data/research-sources/makemake-moon-primary-record-2026-10-12.html",
+      "url": "https://arxiv.org/abs/1604.07461v1",
+      "bytes": 44475,
+      "sha256": "207dded5e1bb074b0d63f94450410a1db986dd54db3f26fd06b804f66d27f5d9",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "paper": {
+    "title": "Discovery of a Makemakean Moon",
+    "authors": [
+      "Alex H. Parker",
+      "Marc W. Buie",
+      "Will M. Grundy",
+      "Keith S. Noll"
+    ],
+    "arxiv": "1604.07461v1",
+    "submittedUTC": "2016-04-25T22:16:45Z",
+    "pdfDraftHeading": "2016-04-27; distinct from submission and observations",
+    "relatedJournalDOI": "10.3847/2041-8205/825/1/L9",
+    "pages": 6,
+    "assessment": "Complete six-page author manuscript retained; sections 2, 2.1, 2.2, 3.2, 3.3 and Table1 assessed; figure captions read, no figure embedded. Final publisher record and later orbit/thermal updates not audited.",
+    "licenseURL": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+    "terms": "Specific record nonexclusive distribution; not CC BY, no blanket image/data/paper licence assertion."
+  },
+  "observations": {
+    "program": 13668,
+    "instrument": "HST WFC3 UVIS",
+    "filter": "F350LP",
+    "visit1UTC": [
+      "2015-04-27T13:46:36",
+      "2015-04-27T16:03:58"
+    ],
+    "visit2UTC": [
+      "2015-04-29T18:17:46",
+      "2015-04-29T20:35:03"
+    ],
+    "longExposuresPerVisit": 6,
+    "longExposureSeconds": 725,
+    "shortBracketingExposureSeconds": 12,
+    "visit1LongStartUTC": [
+      "2015-04-27T13:49:04",
+      "2015-04-27T14:03:50",
+      "2015-04-27T14:18:36",
+      "2015-04-27T15:19:38",
+      "2015-04-27T15:34:24",
+      "2015-04-27T15:49:10"
+    ],
+    "association": "Publisher 4350 seconds equals six 725-second exposures for one visit; the April27/29 metadata covers two visits, not proof the native JPEG combines both. Moon detected in all six visit1 long exposures, not recovered in visit2; exact publisher JPEG/raw-product crosswalk remains open.",
+    "processing": "Median co-registered visit2 subtraction for five visit1 photometry frames; sixth excluded for nearby cosmic ray. Saturated primary in long frames; four short exposures stacked for primary brightness. Detection/nondetection and glare mask constrain visibility, not absence of a moon."
+  },
+  "measured": {
+    "F350LPDeltaMagnitude": {
+      "value": 7.8,
+      "uncertainty": 0.04
+    },
+    "primaryF350LPABMagnitude": 17.39,
+    "satelliteF350LPABMagnitudes": [
+      25.21,
+      25.06,
+      25.19,
+      25.27,
+      25.12
+    ],
+    "table1JDmid": [
+      2457140.07994,
+      2457140.10045,
+      2457140.14283,
+      2457140.15309,
+      2457140.16334
+    ],
+    "reportedSeparationArcsec": 0.57,
+    "notes": "Reported paper measurements/estimates retained, no independent angular/raster calculation; not a calibration of the publisher JPEG or local chemistry/colour."
+  },
+  "assumptionsAndModels": {
+    "Vband": "F350LP delta adopted for V without moon colour information; H_V7.89\u00b10.04 inferred using primary H_V0.091\u00b10.015. Not measured moon visible colour.",
+    "orbit": "Preliminary prograde circular pass/fail models with assumed primary density1.4\u20133.2g/cm3 permit a21100\u2013300000km and period12.4\u2013660days; retrograde mirrors also acceptable. Discovery data alone do not constrain primary density or measure system mass. These historical conditional ranges are not current ephemerides, uncertainty posteriors, spin periods or permanent-facing-site evidence.",
+    "size": "Nominal geometric albedo0.04 implies diameter175km; albedo0.02 implies about250km. No resolved axes, measured local albedo or silent catalogue size update. NASA100-mile caption estimate remains distinct.",
+    "thermal": "Dark-moon hypothesis reallocates some system thermal excess from primary to moon. NEATM alternatives use albedo0.04/eta0.25,0.02/eta0.4,or0.04/eta0.4 with H brighter by0.5mag; models produce60\u201380percent of measured24micron system flux, not a unique complete solution. Not observed local dark patches, chemistry, fractions, calibrated visible colour or terrain.",
+    "origin": "Capture, giant impact and atmospheric-interaction explanations are hypotheses, not directly measured history. Primary pole/flattening/thermal-inertia discussion is conditional and must not be assigned as moon measurements."
+  },
+  "open": [
+    "Current orbital solution, rotation, shape and later JWST thermal results require separate primary audit.",
+    "Exact native JPEG exposure IDs, UTC/coaddition/stretch, raw archive association and independent colour/photometric calibration.",
+    "No observed-body analog skin, mapped geography, atmosphere-absence inference, ocean/plume/biology or survivable landing claim.",
+    "No skyGeometry calculation performed; reported source angular measurements are not new raster calculations."
+  ],
+  "preservation": {
+    "deliveredDossiers": 68,
+    "trackedPublicByteEqualToHEAD": 550,
+    "queue": 566,
+    "originalsMastersNativeProvenanceClipper": "unchanged"
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16064781,
+    "overBudgetBytes": 64781,
+    "browser": "No passing current full/offline browser claim; other engines remain open.",
+    "attribution": "Interbuild feed differences unaudited; no savings attribution."
+  }
+}

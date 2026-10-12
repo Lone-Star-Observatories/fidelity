@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-12",
+  "body": "Dysnomia, satellite of Eris",
+  "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no input/reference image",
+  "prompt": "Create one independent research-guided hypothetical local observer illustration for Dysnomia, Eris's moon. Wide landscape 1672 by 941 composition. Low viewpoint across independently invented subdued grey regolith, shallow irregular depressions, scattered angular blocks and low broken ridges under a nearly black sky. Restrained oblique illumination with readable dark detail. Unknown terrain, grain sizes, material fractions, chemistry, surface colour, lighting and exposure are invented; not an observed or registered location. Dysnomia is unresolved in Hubble imagery and ALMA detections; thermal diameter/albedo models and weak astrometric mass constraints do not establish local composition, porosity or resolved geography. Generate terrain independently; never reuse or recolour Moon, Mars, Pluto, Charon, Eris or any other body's map. No primary Eris, Sun, rings, stars or astronomical disks. No atmosphere clouds, plume, rain, liquid, ocean, biology, people, spacecraft or suggestion of survivable landing. Black sky is artistic transparency, not measured atmospheric absence. Do not imply synchronous rotation, a registered local normal or a permanently Eris-facing site. Large legible bottom annotation band with exactly two lines: 'IMAGINED — LOCAL VIEW FROM DYSNOMIA' and 'Terrain, materials, colour and lighting are hypothetical.' No other labels.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2d94138e-af94-4896-8579-d3983f5118f1.png",
+  "researchCopy": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+  "inspection": "Independent grey blocks, grains, shallow depressions and low ridges; no astronomical disk. Both requested footer lines clearly readable.",
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, lighting and exposure invented; unresolved Hubble/ALMA detections do not establish local geography.",
+    "Black sky is artistic transparency, not measured atmospheric absence.",
+    "615(+60,-50)km and historical700±115km thermal diameters/albedos are model dependent, not axes or local material maps. Weak mass constraints and derived density limits do not establish porosity or ice fraction.",
+    "No measured moon spin locking, local normal, permanently Eris-facing or dated registered site. Eris spin/orbit agreement is distinct from inconclusive Dysnomia light curve.",
+    "No analog map, foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+    "No angular/raster computation required: no astronomical disk appears.",
+    "All prior native acquisition/proposal/date conflicts, rejected orbital fit and published1163diameter/radius implementation inconsistency remain open."
+  ],
+  "references": [
+    "docs/research/dysnomia-moon-preparation-2026-10-12.json",
+    "docs/research/dysnomia-primary-orbit-assessment-2026-10-12.json",
+    "docs/research/dysnomia-rotation-primary-assessment-2026-10-12.json",
+    "docs/research/dysnomia-thermal-primary-assessment-2026-10-12.json",
+    "docs/research/dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+    "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2703596,
+    "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "validation": {
+  "tests": "539 pass,1 skip",
+  "productionBuild": "pass",
+  "fullBuild": "FAIL16066359bytes/66359over hard16MBgate",
+  "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
+  "browser": "No current passing full/offline browser claim;other engines open",
+  "attribution": "Interbuild differences unaudited;no savings attribution or production codec change"
+},
+  "preservationAudit": {
+    "trackedPublicFiles": 550,
+    "changed": []
+  }
+}

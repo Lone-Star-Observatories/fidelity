@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp",
+  "status": "Research-only primary assessment; no69 or embedding",
+  "sources": [
+    {
+      "url": "https://esahubble.org/static/archives/releases/science_papers/heic1904/heic1904a.pdf",
+      "path": "data/research-sources/hippocamp-Showalter2019.pdf",
+      "bytes": 1471098,
+      "sha256": "48defa12136e9747d54b2c39b13a4747d37fb247cd3618ceab5c3807a238607e"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30787452/",
+      "path": "data/research-sources/hippocamp-pubmed-2019-2026-10-12.html",
+      "bytes": 5590,
+      "sha256": "e01f55c50658250dcb76f5d691c6055cb83c85b659b43a711ab9bb8dd02269e3",
+      "role": "Direct response is an access/interstitial page, not independently retained publication metadata; hash records response only. Final DOI/date/title verified through primary web-indexed Nature/PubMed record, exact fetched record remains open."
+    }
+  ],
+  "authors": [
+    "Mark R. Showalter",
+    "Imke de Pater",
+    "Jack J. Lissauer",
+    "Robert S. French"
+  ],
+  "publication": {
+    "doi": "10.1038/s41586-019-0909-9",
+    "finalTitle": "The seventh inner moon of Neptune",
+    "date": "2019-02-20",
+    "journal": "Nature566,350\u2013353",
+    "retainedVersion": "27page author/reviewer manuscript headed Discovery of Neptune\u2019s Inner Moon Hippocamp with the Hubble Space Telescope; editorial name-approval footnote confirms manuscript context, not final pagination.",
+    "terms": "No verified CC licence for this manuscript; ESA image CC BY terms do not establish paper licence. No figure or paper derivative embedded. Paper data-availability public-domain claim concerns source data, not blanket manuscript/software terms."
+  },
+  "assessment": {
+    "read": "Targeted main text, methods pp6\u201313, Table1p16, figure captions, extended data and supplemental inventory retained; complete27pages saved.",
+    "size": "Table1 photometry-derived spherical radius16.2\u00b11.2km assuming geometric albedo.09\u00b1.01 and phase slope.24mag/degree. Disk-integrated reflectivity59.0\u00b15.6km\u00b2 adjusted to1degree. Rounded prose16\u00b11. Neither resolved axes nor local composition; shape and phase function unconstrained. NASA\u226412mile versus ESA\u224834km diameter captions remain distinct; original ingestion/history of discrepancy unverified.",
+    "orbit": "Table1 HST2004\u20132016 fit local Laplace plane epoch2009-01-01T00:00:00UTC: mean motion378.906239\u00b1.000031deg/day, derived semimajor105283.56km, eccentricity.00019\u00b1.00038, inclination.082\u00b1.056degree; Laplace tilt.3078degree. Semimajor derived with fixed Neptune gravity, not independently measured current distance. e consistent with zero does not establish perfectly circular orbit; no spin locking/permanent facing/normal inferred.",
+    "method": "ACS/HRC and WFC3 calibratedFLT products GO10398/11656/14217. Median glare subtraction, cosmic/hot pixel masks, unsharp median subtraction, orbital-motion distortion and coaddition enable detection; cosmetic fills excluded from analysis. Hippocamp required entireHSTorbit coadds. GaussianPSF for distorted faint targets, error floor.1pixel. Processing structure is not geography.",
+    "calibration": "PHOTFLAM/filter-throughput/solar spectrum and PSF aperture corrections used for disk-integrated photometry. Does not independently calibrate retained NASAJPEG visible colour, diameter or scene exposure. Neptune25225km reference radius in gravity model differs from catalogue mean24622; no catalogue update.",
+    "dates": "Fig1 earliest detection2004-12-09 GO10398visit04;2005-05-12visit08;2009-08-19 GO11656visit01orbit1;2016-09-02 GO14217visit03orbit1. Supplemental video2016-08-31visit01orbit2 separate. These dates do not establish exact acquisition/processing crosswalk for NASA700x466JPEG.",
+    "origin": "Proteus-fragment impact, tidal migration and repeated breakup/reaccretion preferred hypotheses under uncertain tidal quality/migration assumptions; not directly observed history, local chemistry, ocean/plume/biology or imminent disruption.",
+    "scope": "Search injection limits and incomplete coverage apply to this2004\u20132016 dataset, not exhaustive current inventory. Original second-order resonance search differs from later Brozovic73:69 node/13:11 near-resonance; not spin locking."
+  },
+  "open": [
+    "ExactNASAJPEG raw/coadd point identification and product/UTC/filter/exposure crosswalk",
+    "Supplementary XLS tables and intermediate/software archive access, final-paper/supplement version and licence audit",
+    "Recent orbital/rotation/shape alternatives, mass and current distances",
+    "Resolved geography, local chemistry, scene photometry and physical registration"
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "publicFiles": 550,
+    "changedPublicFiles": [],
+    "protectedAssets": 405,
+    "queue": 566,
+    "codecs": "unchanged",
+    "originalsMastersNativeProvenance": "preserved"
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MBgate",
+    "htmlBytes": 16065570,
+    "overBudgetBytes": 65570,
+    "browser": "No current passing full/offline claim; other engines open",
+    "attribution": "Interbuild differences unaudited; no savings attribution"
+  }
+}

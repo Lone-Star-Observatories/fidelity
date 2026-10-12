@@ -187,9 +187,11 @@ test('command lines: hackrf_transfer from stdin, low gain, amp off; bladeRF-cli;
   assert.deepEqual(txCommand('hackrf', { freqHz: 146.52e6, gainDb: 0 }), { cmd: 'hackrf_transfer', format: 'int8', args: ['-t', '-', '-f', '146520000', '-s', '2000000', '-b', '1750000', '-x', '0', '-a', '0'] });
   assert.deepEqual(txCommand('hackrf', { freqHz: 146e6, gainDb: 47 }).args.slice(-4), ['-x', '20', '-a', '0']);
   const b = txCommand('bladerf', { freqHz: 446e6, gainDb: 99 });
-  assert.equal(b.cmd, 'bladeRF-cli');
+  assert.equal(b.tool, 'bladeRF-cli');
   assert.equal(b.format, 'sc16q11');
-  assert.match(b.args[1], /set frequency tx 446000000; set samplerate tx 2000000; .*set gain tx 20; tx config file=\/dev\/stdin format=bin .*; tx start; tx wait/);
+  // through sh so bladeRF-cli's /dev/stdin is a real pipe (a Node child's stdin is a socket pair: ENXIO on Linux)
+  assert.deepEqual([b.cmd, ...b.args.slice(0, 3)], ['sh', '-c', 'cat | bladeRF-cli -e "$1"', 'sh']);
+  assert.match(b.args[3], /set frequency tx 446000000; set samplerate tx 2000000; .*set gain tx 20; tx config file=\/dev\/stdin format=bin .*; tx start; tx wait/);
   assert.ok(txCommand('rtl', { freqHz: 146e6 }).error);
 });
 
@@ -370,7 +372,8 @@ test('ws /api/rf/tx refuses without a device, a callsign, the attestation or an 
 });
 
 test('ws /api/rf/tx: a simulated device opens, takes mic audio, closes with the ID (#69)', async () => {
-  const t0 = Date.now(), fast = { now: () => t0 + (Date.now() - t0) * 40, setTimeout: (f, ms) => setTimeout(f, ms / 40), clearTimeout: (h) => clearTimeout(h) };
+  // 10× time: the 15 s no-audio auto-close is still 1.5 s of real time, so a busy test run can't trip it before CLOSE
+  const t0 = Date.now(), fast = { now: () => t0 + (Date.now() - t0) * 10, setTimeout: (f, ms) => setTimeout(f, ms / 10), clearTimeout: (h) => clearTimeout(h) };
   await withTxServer({ devices: async () => txDevices({ fake: true }), clock: fast }, async (url) => {
     const c = wsClient(url);
     await c.open;
@@ -388,6 +391,7 @@ test('ws /api/rf/tx: a simulated device opens, takes mic audio, closes with the 
     c.ws.send(pcm16(tone(1000, 0.8, 3200)));
     const st = await c.next((m) => m.type === 'state' && m.bytes > 0);
     assert.equal(st.state, 'tx');
+    c.ws.send(pcm16(tone(1000, 0.8, 3200))); // the mic is still live when the operator closes
     c.ws.send(JSON.stringify({ type: 'close' }));
     const closed = await c.next((m) => m.type === 'closed');
     assert.equal(closed.reason, 'operator');
@@ -410,7 +414,7 @@ test('bladeRF is the primary transmitter; the x40/x115 cannot reach 2 m without 
   assert.equal(txGate({ ...ok, devices: x40, freqHz: 446e6 }).ok, true);
   // the bladeRF command: SC16 Q11 from stdin at 2 Msps, gain capped
   const b = txCommand('bladerf', { freqHz: 146.52e6, gainDb: 0 });
-  assert.match(b.args[1], /^set frequency tx 146520000; set samplerate tx 2000000; set bandwidth tx 1500000; set gain tx 0; tx config file=\/dev\/stdin format=bin/);
+  assert.match(b.args[3], /^set frequency tx 146520000; set samplerate tx 2000000; set bandwidth tx 1500000; set gain tx 0; tx config file=\/dev\/stdin format=bin/);
 });
 
 test('Ham It Up: receive tunes antenna + 125 MHz, shows the antenna side; bypass passes straight through (#69)', () => {

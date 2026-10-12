@@ -205,7 +205,7 @@ export function createSignalsMap(opts = {}) {
       return el('div', { className: 'cm-entry sm-hit' },
         el('div', { className: 'cm-head' }, el('span', { className: 'sm-dot', style: `background:${COLOURS[id]}` }), el('span', { className: 'cm-name', textContent: name }),
           badge('reported', `${l.credit}${l.fetched ? `\nList fetched ${l.fetched}` : ''}`)),
-        el('div', { className: 'cm-val mono', textContent: `${detail} · ${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}` }),
+        el('div', { className: 'cm-val mono', textContent: `${detail ? `${detail} · ` : ''}${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}` }),
         el('div', { className: 'cm-meta' },
           el('span', { className: 'cm-status', textContent: id === 'kiwisdr' ? (extra === 1 ? 'FREE SLOT NOW' : extra === 0 ? 'FULL NOW' : '') : id === 'video' ? 'OPERATOR PAGE' : 'LISTED LIVE' }),
           el('span', { textContent: l.label }), l.fetched ? el('span', { className: 'mono', textContent: `LIST ${ago(l.fetched)}` }) : null,
@@ -225,7 +225,7 @@ export function createSignalsMap(opts = {}) {
     }
     const [x, y] = local(e);
     const h = hits(x, y, 1e6);
-    canvas.style.cursor = h.length ? 'pointer' : 'grab';
+    canvas.style.cursor = placing ? 'crosshair' : h.length ? 'pointer' : 'grab';
     const [lat, lon] = toLL(x, y);
     const c = !h.length && world ? countryAt(world, lat, lon) : null;
     readout.textContent = `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}${c ? ` · ${c.name.toUpperCase()}` : ''}`;
@@ -248,11 +248,16 @@ export function createSignalsMap(opts = {}) {
     tip.style.left = `${Math.max(8, Math.min(fw - tw - 8, x + 16))}px`;
     tip.style.top = `${y - th - 12 < 8 ? y + 18 : y - th - 12}px`;
   }
+  // PLACE ON MAP (COMMS · MY STATION): the next click (not a drag) gives its point instead of opening markers; Esc cancels
+  let placing = null;
+  const endPlacing = () => { placing = null; frame.classList.remove('sm-placing'); };
+  window.addEventListener('keydown', (e) => { if (placing && e.key === 'Escape') { placing.cancel?.(); endPlacing(); } });
   canvas.addEventListener('pointerup', (e) => {
     const wasDrag = drag?.moved;
     drag = null;
     if (wasDrag) return;
     const [x, y] = local(e);
+    if (placing) { const cb = placing.done; endPlacing(); cb(...toLL(x, y)); return; }
     const all = hits(x, y, 1e6);
     showInfo(all.slice(0, 14), all.length);
   });
@@ -303,6 +308,9 @@ export function createSignalsMap(opts = {}) {
     node, tick() {}, dispose() { dead = true; ro.disconnect(); },
     /** Replace a bundled layer's markers (e.g. the local SDR once detected). */
     setExtra(id, markers) { const l = layers.get(id); if (l) { l.markers = markers; l.count = markers.length; drawPills(); draw(); } },
+    /** The next click on the map calls done(lat, lon) instead of opening markers (Esc: cancel()). */
+    pickPoint(done, cancel) { placing = { done, cancel }; frame.classList.add('sm-placing'); },
+    get placing() { return !!placing; },
     /** Fly the map to a point. */
     focus(lat, lon, z = 4) { view.cx = lon; view.cy = lat; view.z = z; clampView(); draw(); },
     redraw: () => draw(),

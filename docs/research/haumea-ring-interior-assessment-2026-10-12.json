@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-12",
+  "scope": "Research-only targeted Appendices D/E; retained complete16page PDF, no figures or model replacement",
+  "authors": [
+    "Benjamin Proudfoot",
+    "Darin Ragozzine",
+    "Will Grundy",
+    "Flavia L. Rommel",
+    "Bryan J. Holler"
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/haumea-dynamics-2026.pdf",
+      "url": "https://arxiv.org/pdf/2609.36037",
+      "bytes": 8080592,
+      "sha256": "b0a0988550ba63180daa0ec65c3ba158173455fda5acb8cb0fe7719721889991"
+    },
+    {
+      "path": "data/research-sources/haumea-dynamics-2026-record.html",
+      "url": "https://arxiv.org/abs/2609.36037",
+      "bytes": 43734,
+      "sha256": "c1437c2646584af8be6a14970099fb58b07f5e5a9c8e0b35b296772de5c1cca6"
+    }
+  ],
+  "licence": "Specific arXiv record CC BY-NC-SA4.0, NOT CC BY; no blanket raw HST/publisher image licence. Final publication audit OPEN.",
+  "ringContribution": {
+    "inputs": "Ortiz2017 ring radius2287km,width70km; assumed surface density500–1000kg/m2 borrowed from Saturn A ring",
+    "reportedJ2Contribution": "less than approximately1e-6",
+    "limitations": "Surface density is an analogy/assumption, not a Haumea ring measurement. No Saturn texture/chemistry or calibrated ring rendering adopted. Ring physical registration remains OPEN."
+  },
+  "unseenSatellites": {
+    "reportedSearchLimit": "Burkhart2016 cited diameter>60km within10000km; underlying completeness not independently audited here",
+    "illustrativeCase": "Diameter60km,a10000km,density1000kg/m3 produces reportedJ2.0024",
+    "limitations": "Illustrative mass/density assumptions, NOT discovery, measured moon composition, exhaustive absence or current orbital inventory. Authors conclude ring/unseen contributions negligible under these assumptions."
+  },
+  "interiorModels": {
+    "method": "Modified kyushu/Hachisu two-layer hydrostatic-equilibrium Fortran code with Python parameter scan; author benchmarks reported, not independently reproduced",
+    "grid": "41x14=574 combinations a920–1260km,b828–854km",
+    "assumptions": "Crust density921kg/m3, nominal Haumea mass and rotation; axes are model inputs, not new independent measurements or moon axes",
+    "fossilTest": "3.7hour historical rotation assumption with more sparsely sampled same axis grid",
+    "limitations": [
+      "Frozen-in figure is a tested hypothesis, NOT reconstructed observed history or present moon rotation.",
+      "Detailed core/mantle densities, layering, porosity and historical cooling remain model dependent.",
+      "No code execution, new shape mesh, ring registration, photometric calibration, moon chemistry or geography supplied.",
+      "Haumea reference radius772km must not be assigned to Namaka or Hiʻiaka."
+    ]
+  },
+  "open": [
+    "Final publication and cited ring/search/occultation model audits",
+    "Raw HST products and2015 NASA individual point/filter/UTC crossmatch",
+    "Interior code inputs/results reproducibility and physical ring/shape registration"
+  ],
+  "preservation": "All68dossiers/originals/masters/native/provenance/recordedClipper remain; no69embedding/catalogue/codec/map/model/shape change",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "production": "pass",
+    "full": "FAIL16058732bytes;58732over hard16MBgate",
+    "preservation": "All550trackedpublicfiles byte-identical to HEAD;68dossiers unchanged;queue566",
+    "browser": "No current passing full/offline browser claim;other engines OPEN",
+    "attribution": "No compression change/savings attribution;interbuild feed differences unaudited"
+  }
+}

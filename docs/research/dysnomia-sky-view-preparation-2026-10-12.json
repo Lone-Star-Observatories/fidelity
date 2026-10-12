@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-12",
+  "body": "Dysnomia, satellite of Eris",
+  "status": "Research-only independent IMAGINED observer; no dossier69/embedding/master-preview/catalogue/codec change",
+  "generator": "Built-in image generation; no reference image",
+  "prompt": "Create one independent hypothetical observer illustration from Dysnomia, Eris's moon. Wide 1672 by 941 landscape. Low viewpoint across independently invented subdued grey regolith, scattered angular blocks and low irregular depressions. Almost black sky. One small pale Eris disk near the horizontal centre above the horizon, approximately 53 pixels full diameter in this 1672-pixel-wide image: nominal 90 degree horizontal camera field, skyGeometry diameter 3.6058481287569446 degrees from assumed Eris radius1163km at36965.5km. This is an artistic target, not calibrated imagery. Keep the disk small, with only subtle independently invented pale grey variation and an assumed softly illuminated phase. Do not use any observed Eris, Pluto, Charon, Moon, Mars or other body's geography or map; no analog skins. Terrain, chemistry, material fractions, colour, Eris pattern, phase, light and exposure are hypothetical. No dated Hubble/ALMA site or resolved moon terrain. No verified moon spin locking or permanent Eris-facing location; the camera attitude and spherical surface height are assumed. No Sun, stars, rings, foreground atmosphere/clouds, plume, rain, liquid, ocean, biology, people or craft; no suggestion of survivable landing. Black sky and ring omission are artistic choices, not absence measurements. Large legible bottom band with exactly two lines: 'IMAGINED \u2014 SKY FROM DYSNOMIA' and 'Terrain, Eris appearance and lighting are hypothetical.' No other text.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2d8b71c1-0b33-42ec-9422-41a87ff8fc2e.png",
+  "researchCopy": "data/research-sources/dysnomia-generated-skyImage-original.png",
+  "original": {
+    "bytes": 1878586,
+    "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Both requested footer lines readable. Independent grey terrain and small pale Eris disk. Disk appears oversized against requested target; no calibrated raster diameter adopted.",
+  "geometryReference": "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json",
+  "geometry": {
+    "helper": "skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "primaryRadiusKm": 1163,
+    "assumedCentreDistanceKm": 36965.5,
+    "angularDiameterDeg": 3.6058481287569446,
+    "targetPixels": 52.630131003276304,
+    "historicalAlternativeDeg": 3.609999991651356,
+    "historicalAlternativePixels": 52.69077073066742,
+    "temperatureHelperK": 40
+  },
+  "limits": [
+    "Nominal37273km semimajor scale minus307.5km thermal-model spherical height; alternate350km preserved. Not dated separation, registered normal, joint fit or uncertainty envelope.",
+    "Terrain, chemistry/material fractions, Eris patterns, grey/pale colour, phase, lighting, exposure and transmission invented. No analog map or registered Hubble/ALMA location.",
+    "Eris spin/orbit agreement is not verified moon locking; no permanent Eris-facing or everywhere-visible site.",
+    "Black sky and ring omission not measured absence. No foreground atmosphere, plume, liquid/ocean, biology or survivable landing.",
+    "Angular helper only; colour/irradiance discarded. Generated disk oversized and uncalibrated; precise raster calibration open.",
+    "All native UTC/proposal/date conflicts, rejected Keplerian fit and published1163diameter implementation inconsistency remain open; weak mass/thermal sizes do not measure local chemistry or porosity."
+  ],
+  "preservationAudit": {
+    "trackedPublicFiles": 550,
+    "changed": []
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16058732bytes/58732over hard16MBgate",
+    "preservation": "All68 dossiers550trackedpublicfiles byte-identical; originals/masters/native/provenance/recordedClipper preserved;queue566",
+    "browser": "No current passing full/offline browser claim;other engines open",
+    "attribution": "Interbuild differences unaudited;no savings attribution;production codecs unchanged"
+  }
+}

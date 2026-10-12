@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-12",
+  "body": "Naiad",
+  "status": "Research-only independent imagined local illustration; no dossier69 or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Use case: scientific-educational\nAsset type: independent hypothetical local observer illustration for Fidelity Naiad research preparation, landscape 16:9.\nPrimary request: Create a restrained realistic scientific concept illustration from close above Naiad's hypothetical local regolith, not a photograph or a measured map. Naiad is Neptune's distinct inner moon S/1989 N6, not Despina or Thalassa. Voyager imagery is unresolved for local geography; no resolved terrain, measured local chemistry, porosity or colour is available. Independently invent subdued neutral grey irregular shallow relief, scattered angular blocks, grains and modest depressions, with low oblique artistic light and a nearly black sky. Composition: foreground rough grains and a few rocks, distant uneven low relief, horizon in upper third. No astronomical disks: Neptune, Sun, rings and stars remain off frame, so this image makes no angular/raster claim. Black sky is assumed rendering transparency, not measured atmospheric absence.\nText (verbatim): Put a clear, readable understated footer in the bottom safe margin: \"IMAGINED LOCAL VIEW \u2014 NAIAD\" and below it \"Terrain, materials, colour and lighting are invented\".\nConstraints: Generate from scratch without references. Do not reuse, recolour, imitate or assign observed Moon, Mars, Pluto, another moon or planetary surface geography. No dated Voyager site, no fitted ellipsoid/local normal or permanent Neptune-facing claim, no verified synchronous rotation. Radius alternatives29\u00b16km JPL versus33\u00b13km papers do not resolve local relief. Cohesion, monolithic structure, Gyr age and regolith thickness are conditional models, not measured features: do not depict a verified interior or a disruption event. No chemistry percentages, clay/ice claim, spectroscopic local material map or simulated impact labels. No visible atmosphere, clouds, haze, active plume, liquid, exposed ocean, biology, astronaut, craft, landing apparatus or survivable landing implication. No map overlay, scale bar, compass, scientific measurement annotation or photometric calibration. All grey colour, texture and illumination are artistic. Avoid dramatic giant fissures or exaggerated catastrophic rubble. Keep the two footer lines legible.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-8f513cdd-d97c-44a6-926f-b65a11e05b38.png",
+  "researchCopy": "data/research-sources/naiad-generated-surfaceImage-original.png",
+  "inspection": "Original displayed and inspected: independent subdued grey granular relief, shallow depressions, angular blocks, nearly black sky; both IMAGINED LOCAL VIEW \u2014 NAIAD and invented-material footer lines legible. No astronomical disks, plume, liquid, biology or landing equipment.",
+  "references": [
+    "docs/research/naiad-moon-preparation-2026-10-12.json",
+    "docs/research/naiad-primary-orbit-assessment-2026-10-12.json",
+    "docs/research/naiad-survival-primary-assessment-2026-10-12.json",
+    "docs/research/naiad-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "limitations": [
+    "Terrain, relief, grain/block sizes, material fractions, chemistry, grey colour, lighting and exposure independently invented; no observed body map or analog skin reused.",
+    "Native detection does not resolve local geography, calibrated visible colour or chemistry. Full credits, raw acquisition/product crosswalk remain open; discovery and page dates are not new observation dates.",
+    "Black sky is rendering assumption, not measured atmospheric absence. No dated Voyager site, registered normal, synchronous-spin or permanent Neptune-facing claim.",
+    "Radius29\u00b16 versus paper33\u00b13 and inherited48/30/26 ellipsoid alternatives preserved, not local height/normal or catalogue update. Cohesion, monolithic structure, age, regolith thickness and erosion survival are conditional models, not depicted measured properties.",
+    "No other-moon Mg clays or ice nondetection assigned to Naiad; no local spectral material map, active plume, liquid, ocean, biology or survivable landing.",
+    "No astronomical disk or angular/raster claim. Independent Neptune observer, masters/previews and additive dossier integration remain outstanding.",
+    "All68 earlier dossiers, original PNGs, masters, native science, provenance, maps/models/shapes and recorded Clipper preview preserved. No69/embedding/catalogue/codec change."
+  ],
+  "original": {
+    "bytes": 2775112,
+    "sha256": "c4996de50f7b76fa310d108c01f615311a99c74c964d7f7a819ceaaed4625957",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "defaultAndResearchBytesIdentical": true
+  },
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "changed": [],
+    "dossiers": 68,
+    "queue": 566,
+    "recordedClipperPreserved": true
+  },
+  "validation": {
+    "base": "67f4409, including c204fff App Store and b075830 local SDR/WebSDR",
+    "tests": "536 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16063466,
+    "overBudgetBytes": 63466,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Research-only original not embedded. Production codecs unchanged; interbuild differences unaudited, no savings attribution."
+  }
+}

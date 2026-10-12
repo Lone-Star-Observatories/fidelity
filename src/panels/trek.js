@@ -4,6 +4,7 @@
 // Memory Alpha link, and WARP TO the real star where there is one. Everything is badged IMAGINED; the only
 // MEASURED value on a card is the real star's own distance, labelled as the star's.
 
+import { APP_STORE } from '../appstore.js';
 import { TREK, TREK_BY_ID, TREK_KINDS, TREK_CONFIDENCE, TREK_SERIES, TREK_LICENCE, trekFor, trekAtStar, trekWhere, trekApprox } from '../data/trek.js';
 
 const appearance = (f) => [f.series === 'FILM' ? null : TREK_SERIES[f.series], f.episode ? `"${f.episode.toUpperCase()}"` : null, f.year].filter(Boolean).join(' · ');
@@ -30,6 +31,7 @@ export function createTrekPanel({ h, pill, row, badge, settings, panel, resetLiv
    * (Sol: its stations and sites; another system: the worlds Star Trek puts at its stars).
    */
   function section(view, { model = null, after = null, starIds = null } = {}) {
+    if (APP_STORE) return []; // no Star Trek layer in the App Store build (#51)
     let entries = view === 'system'
       ? (model?.isSol ? TREK.filter((t) => ['orbit', 'surface'].includes(t.placement.type)) : (model?.bodies ?? []).flatMap((b) => trekAtStar(b.id)))
       : trekFor(view);
@@ -52,6 +54,7 @@ export function createTrekPanel({ h, pill, row, badge, settings, panel, resetLiv
 
   /** Stations and sites of one Sol body, for its panel. */
   function bodySection(body, after) {
+    if (APP_STORE) return [];
     const entries = TREK.filter((t) => t.placement.body === body.id);
     if (!entries.length) return [];
     return [h('h3', {}, 'STAR TREK ', badge('imagined', 'Fiction: Star Trek\'s places at this body.')), h('div', { className: 'body-list' }, toggle(after)),
