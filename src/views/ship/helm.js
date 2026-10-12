@@ -937,8 +937,18 @@ export function createHelm(ctx) {
     hud.classList.toggle('bridge', view === 'bridge');
   }
 
+  /** Build the ship and compile its materials off the critical path (three's compileAsync where the GPU allows). */
+  function prewarm(renderer) {
+    if (active || prewarmed) return;
+    prewarmed = true;
+    build();
+    shipRoot.visible = true; // compile() walks visible objects only
+    try { renderer?.compileAsync?.(shipRoot, camera, scene)?.catch?.(() => {}); } catch { /* compiled on first draw instead */ }
+    shipRoot.visible = active;
+  }
+  let prewarmed = false;
   const api = {
-    get active() { return active; },
+    get active() { return active; }, prewarm,
     update, engage, disengage, onLoad, arriveFrom, get pendingArrival() { return pendingArrival; }, setCourse, warpOut, fullStop, setThrottle, setView, setModel,
     setCruise(c) { if (CRUISES.some(([x]) => x === c)) { cruiseSel = c; syncHud(true); } },
     select(id) { selected = id; ctx.prepare?.(id); ctx.on?.('change'); },

@@ -11,7 +11,18 @@ import { loadDem, demNow, heightAt, tileMaxLevel, onTileLoaded } from '../../dat
 import { demUOffset, heightToRadius, reliefK } from '../../astro/dem.js';
 import { dirToLatLon } from './surface.js';
 
-const SEG_FAR = [96, 48], SEG_NEAR = [384, 192];
+// globe tessellation by camera distance (body radii): far, mid (the helm's standoff), near (mountains on the limb);
+// shared, cached geometries (#42: rebuilding a 74k-vertex sphere for every approach stalled a slow GPU)
+const SEGS = [[96, 48], [192, 96], [384, 192]];
+const TIER_IN = [Infinity, 4, 1.6]; // enter tier i below this distance
+const sphereCache = new Map();
+const sphereGeo = (tier) => { if (!sphereCache.has(tier)) sphereCache.set(tier, new THREE.SphereGeometry(1, ...SEGS[tier])); return sphereCache.get(tier); };
+/** The globe's tessellation tier at camera distance `dist` (radii), with 10% hysteresis around the current tier `cur`. */
+export function globeTier(dist, cur = 0) {
+  let t = 0;
+  for (let i = 1; i < TIER_IN.length; i++) if (dist < TIER_IN[i] * (i <= cur ? 1.1 : 1)) t = i;
+  return t;
+}
 const RINGS = 96, SPOKES = 192;
 
 /** Planetocentric lat / east lon of a mesh-frame direction, honouring the colour map's offset (texLon0). */
@@ -179,12 +190,15 @@ export function createRelief({ settings }) {
     if (st.k !== k()) apply(st);
     const dist = camLocal.length();
     // denser sphere when close, so displacement shows mountains on the limb
-    const near = dist < 4 && node.mesh.isMesh && node.mesh.geometry?.type === 'SphereGeometry';
-    if (near !== st.near && node.mesh.geometry?.type === 'SphereGeometry') {
-      st.near = near;
-      const [a, b] = near ? SEG_NEAR : SEG_FAR;
-      node.mesh.geometry.dispose();
-      node.mesh.geometry = new THREE.SphereGeometry(1, a, b);
+    if (node.mesh.isMesh && node.mesh.geometry?.type === 'SphereGeometry') {
+      const tier = globeTier(dist, st.tier ?? 0);
+      if (tier !== (st.tier ?? 0) || (tier > 0 && node.mesh.geometry !== sphereGeo(tier))) {
+        const old = node.mesh.geometry;
+        node.mesh.geometry = sphereGeo(tier);
+        if (![...sphereCache.values()].includes(old)) old.dispose();
+        st.tier = tier;
+      }
+      st.near = tier === 2;
     }
     // terrain patch: standing on the body, or within ~0.25 radii of the ground with relief on
     const alt = dist - 1;

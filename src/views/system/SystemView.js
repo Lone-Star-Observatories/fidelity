@@ -83,6 +83,7 @@ import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } fr
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
 import { makeSnapshot } from '../snapshot.js';
+import { createGovernor } from '../governor.js';
 import { SKINS } from '../../data/skins.js';
 import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from './corona.js';
 
@@ -824,6 +825,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     framedRadius = null;
     placedJd = null;
     helm?.onLoad(); // after an interstellar jump the ship drops out of warp at the edge of the new system
+    // #42: build the ship and compile its shaders in the background, so TAKE THE HELM does not stall on them
+    setTimeout(() => { if (helm && !helm.active) helm.prewarm(renderer); }, 2500);
   }
 
   const isStar = (b) => b.starLike || b.kind === 'star';
@@ -2263,9 +2266,24 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     siteView.last.copy(svP);
   }
 
+  // a slow GPU (a software renderer, an old chip): lower the render scale and leave the page idle gaps (governor.js)
+  const governor = createGovernor({ min: 0.5 });
+  let lastFrameAt = null, idleTimer = null;
+  function applyRenderScale(k) {
+    const pr0 = renderer.getPixelRatio(), pr1 = Math.min(devicePixelRatio, 2) * k;
+    if (Math.abs(pr1 - pr0) < 1e-6) return;
+    const seen = new Set(); // shared uniform objects are scaled once
+    scene.traverse((x) => { for (const m of [x.material].flat()) { const u = m?.uniforms?.uPixel; if (u && typeof u.value === 'number' && !seen.has(u)) { seen.add(u); u.value *= pr1 / pr0; } } });
+    renderer.setPixelRatio(pr1);
+    resize();
+  }
   function frame(now) {
     if (!running) return;
-    requestAnimationFrame(frame);
+    const gv = governor.update(lastFrameAt == null ? 0 : now - lastFrameAt);
+    lastFrameAt = now;
+    if (gv.changed) applyRenderScale(gv.scale);
+    if (gv.idleMs) idleTimer = setTimeout(() => { idleTimer = null; if (running) requestAnimationFrame(frame); }, gv.idleMs);
+    else requestAnimationFrame(frame);
     clock.tick(now);
     if (!model) return;
     const jd = clock.jd;
@@ -2669,7 +2687,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     bandSky: () => (band.id === 'full' ? null : skyNow.layers[0] ?? null),
     /** Every survey blended into the sky: [{ sky, skyCredit, weight, look: { res } }] and the measured fraction. */
     bandSkies: () => (band.id === 'full' ? { layers: [], measured: 0 } : skyNow),
-    show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
+    show() { container.hidden = false; resize(); if (!running) { running = true; lastFrameAt = null; if (idleTimer == null) requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load,
     setSky, decorativeSky,
