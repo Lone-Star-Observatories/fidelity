@@ -40,6 +40,8 @@ const defaults = {
   panelWidth: null, // right panel width in px, set by dragging its left edge (null = automatic)
   cameraModes: {},  // camera mode per view (#39): { system: 'orbit' | 'look' | 'fly', galaxy: …, … }
   zoomToCursor: false, // ORBIT: the wheel zooms towards the pointer (#39)
+  rfConverter: { kind: 'none', loHz: 125e6, direction: 'up', bypass: false }, // COMMS (#69): a frequency converter between antenna and local SDR (Ham It Up: LO 125 MHz, up)
+  txSetup: { callsign: '', attested: false, region: 2, gainDb: 0, timeoutS: 180 }, // COMMS transmit (#69): the operator's callsign and licence attestation; stays in this browser, sent only to the local backend
   postcard: {},     // postcards (#40): { size, labels, frame, link, quality, mastodon, stylizeOk } (stays in this browser)
 };
 

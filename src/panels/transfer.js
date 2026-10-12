@@ -3,7 +3,8 @@
 // View; a Hohmann/synodic explainer; and, for Mars, a check against Perseverance's real path.
 // Everything is COMPUTED from the app's ephemeris (Standish/SBDB elements) and Izzo's Lambert solver.
 
-import { targetFor, planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv, upcoming, windowsStale } from '../astro/transfer.js';
+import { planetPos, launchWindows, porkchopByArrival, transfer, hohmann, synodicDays, periodDays, tofRange, injectionDv, upcoming, windowsStale, targetFor } from '../astro/transfer.js';
+export { targetFor }; // moved to astro/transfer.js (the Computer uses it too)
 import { ELEMENTS } from '../astro/kepler.js';
 import { porkchopSvg } from './porkchop.js';
 import { trajectory } from '../data/spacecraft-ephem.js';
@@ -32,7 +33,6 @@ export function hohmannDiagram(aAu, name) {
   return s;
 }
 
-export { targetFor } from '../astro/transfer.js'; // moved there so it is testable without the DOM
 
 export function createTransferPanel({ h, pill, row, system, clock, toast, $, badge }) {
   const cache = new Map(); // body id → { fromJd, ws }: the windows searched from that date

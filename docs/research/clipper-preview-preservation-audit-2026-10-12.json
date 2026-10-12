@@ -1,0 +1,2404 @@
+{
+  "preserved": {
+    "path": "data/research-sources/europa-clipper-preserved-preview-2026-10-12.glb",
+    "bytes": 950348,
+    "sha256": "47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1",
+    "accessors": [
+      {
+        "type": "VEC2",
+        "count": 4218,
+        "componentType": 5126,
+        "sha256": "b08ffbc6414d70b62e291b7087b5b0378bdb5bfcc9e9c6c64274a8fe764eedca"
+      },
+      {
+        "type": "VEC2",
+        "count": 30399,
+        "componentType": 5126,
+        "sha256": "b9180df94c1c0f8aa9c122286120915b57d2c4fec441f2475c8ea19be6abcb07"
+      },
+      {
+        "type": "VEC2",
+        "count": 63,
+        "componentType": 5126,
+        "sha256": "d3bdd7a5e441141eee3fea404834a5526efda2688d45af668508e51e3f2d238a"
+      },
+      {
+        "type": "VEC2",
+        "count": 7743,
+        "componentType": 5126,
+        "sha256": "8b2089810ae91de4ace3ae4c705116b465faecb4d0a6fa75d9fbb5fa14908644"
+      },
+      {
+        "type": "VEC3",
+        "count": 8403,
+        "componentType": 5120,
+        "sha256": "53ab2479df846c8486b9da66ab3236abddbd508148e218e31aa0aebe0d3dd616"
+      },
+      {
+        "type": "VEC3",
+        "count": 942,
+        "componentType": 5120,
+        "sha256": "181156fd476c7e470adea77647e02a26d91a0bfb6a4751fdcd226e54cd9bbf59"
+      },
+      {
+        "type": "VEC3",
+        "count": 1320,
+        "componentType": 5120,
+        "sha256": "d11aff409b3d047feed0185058711e4f867c6374eea963df78c9c4a5fb71662e"
+      },
+      {
+        "type": "VEC3",
+        "count": 2118,
+        "componentType": 5120,
+        "sha256": "db60524f4a241f2e1f912563c4843123a9505e066c1635c19be1823a9ba270c1"
+      },
+      {
+        "type": "VEC3",
+        "count": 7113,
+        "componentType": 5120,
+        "sha256": "7acccc43e3dbdd6935c9c66cb5381ab69d74cec8986f115d14588e328e02686b"
+      },
+      {
+        "type": "VEC3",
+        "count": 2979,
+        "componentType": 5120,
+        "sha256": "978d5dee4932bbf781effc3ea1dfef8a02acb9f429056ce3609cbdc996c9719e"
+      },
+      {
+        "type": "VEC3",
+        "count": 6783,
+        "componentType": 5120,
+        "sha256": "d15c62f8728fd7cb711f2d06c8a6ca050540c5d81ab50696ac19cef1a4d12c19"
+      },
+      {
+        "type": "VEC3",
+        "count": 4470,
+        "componentType": 5120,
+        "sha256": "ba0e6610ff11b1dfbfa1d53e5d0a552d0420430b2d183f9fc64627f21ae31ede"
+      },
+      {
+        "type": "VEC3",
+        "count": 2088,
+        "componentType": 5120,
+        "sha256": "99f71a803f8d013609c7bb2551034bca303aece67a8ab6ca2872f2b9eed66b99"
+      },
+      {
+        "type": "VEC3",
+        "count": 9237,
+        "componentType": 5120,
+        "sha256": "be0635b0f73d3af0b66ff71d2e71730b769d4a9d893423e02e50512aea802f3e"
+      },
+      {
+        "type": "VEC3",
+        "count": 4218,
+        "componentType": 5120,
+        "sha256": "1ed2b98fb9ab9914ca3b5346c4b5dc0b60d38ca3c777e887459e00d2fbc0f32c"
+      },
+      {
+        "type": "VEC3",
+        "count": 8454,
+        "componentType": 5120,
+        "sha256": "7873df1f3cf3f1351a9d9a6e83222df7340f64bab6e758adcbcb555f89f754ae"
+      },
+      {
+        "type": "VEC3",
+        "count": 3411,
+        "componentType": 5120,
+        "sha256": "409dc9623a4492e7c30664d66a3e101bbba7b6dddac791d13f863120a592bac2"
+      },
+      {
+        "type": "VEC3",
+        "count": 30399,
+        "componentType": 5120,
+        "sha256": "a93a6c33402cf7740fd8278944f32bba6dcf0af5cce04eefb87273eb440ce6c2"
+      },
+      {
+        "type": "VEC3",
+        "count": 63,
+        "componentType": 5120,
+        "sha256": "5bac48b2590bf7c833e7720764cfbf0a2a20f243a0d3fcf3e5dba61ea6f63f3e"
+      },
+      {
+        "type": "VEC3",
+        "count": 7743,
+        "componentType": 5120,
+        "sha256": "6ebf2dcdf414a7afc1ccda6b7807d3dc180c3651dcae33b876f3bcd60e963a3b"
+      },
+      {
+        "type": "VEC3",
+        "count": 8403,
+        "componentType": 5122,
+        "sha256": "4bc33425d349d52e2562207c7e5c4674b71c1b401bdfa94f5e09ddbffa417d16"
+      },
+      {
+        "type": "VEC2",
+        "count": 8403,
+        "componentType": 5123,
+        "sha256": "d3cad61488fad73404e245476471161dea0f398e02bddab85a6264b3b6354dd5"
+      },
+      {
+        "type": "VEC3",
+        "count": 942,
+        "componentType": 5122,
+        "sha256": "54deb327c5426cf6399afa490cc308337f9b3465aeb5aa5c1fbeb5fc1f9de18b"
+      },
+      {
+        "type": "VEC2",
+        "count": 942,
+        "componentType": 5123,
+        "sha256": "1b15156ae93f5f823cb2adad4c7514195cc82eb8e28c68972ad860a989a0ec92"
+      },
+      {
+        "type": "VEC3",
+        "count": 1320,
+        "componentType": 5122,
+        "sha256": "0e1e39e2153033b5d4aaac5bae5ced78985e53c5e7656b36cd1a607178cdf842"
+      },
+      {
+        "type": "VEC2",
+        "count": 1320,
+        "componentType": 5123,
+        "sha256": "23fd4be2ef1929d19d06d94365ba33bd6557f016112e4a3e96274933c5e444a9"
+      },
+      {
+        "type": "VEC3",
+        "count": 2118,
+        "componentType": 5122,
+        "sha256": "9efdf653b31cad8d17cf9695db9b4ecb9098f9484034a8d3eb34ec77af42a3ba"
+      },
+      {
+        "type": "VEC2",
+        "count": 2118,
+        "componentType": 5123,
+        "sha256": "bcee4763d39ac530e677be20dc1be6f88b5986b776d73169fe87efc9667fe05f"
+      },
+      {
+        "type": "VEC3",
+        "count": 7113,
+        "componentType": 5122,
+        "sha256": "60f102b6b32ce49182509e608bcbff1997ec35ffb03d2180e3aa9d613fd4eaad"
+      },
+      {
+        "type": "VEC2",
+        "count": 7113,
+        "componentType": 5123,
+        "sha256": "47c9acd64539b0f5461418ae15a616887c3cb8c31cc196f0c0dc60172c513623"
+      },
+      {
+        "type": "VEC3",
+        "count": 2979,
+        "componentType": 5122,
+        "sha256": "ff440149f1472fa36fd024af63d8e9b23b6036b35efafb018db7d01231e4b832"
+      },
+      {
+        "type": "VEC2",
+        "count": 2979,
+        "componentType": 5123,
+        "sha256": "76ff7be8cf87adc8865c039abf7715ef59ae039d35ee4afc80abe4687368aa7b"
+      },
+      {
+        "type": "VEC3",
+        "count": 6783,
+        "componentType": 5122,
+        "sha256": "f1d1a317594909e5d71508a311f53a54057274be808fce36324b6655c36899bb"
+      },
+      {
+        "type": "VEC2",
+        "count": 6783,
+        "componentType": 5123,
+        "sha256": "c0fe26e0513d3d40829e7756070d94a06834156e5881601b833517a11e4d6269"
+      },
+      {
+        "type": "VEC3",
+        "count": 4470,
+        "componentType": 5122,
+        "sha256": "524e383b9f643ab28eb548d717ae16599913831e222e7f0805dfb07e4c1f5cb9"
+      },
+      {
+        "type": "VEC2",
+        "count": 4470,
+        "componentType": 5123,
+        "sha256": "2d0c47bb6cab72217771f6899489cd551c559b08d1dda288a73d96afb5607069"
+      },
+      {
+        "type": "VEC3",
+        "count": 2088,
+        "componentType": 5122,
+        "sha256": "95be1e25370c5f213887c341a44ae151c298615cf47be724980a9688738125a7"
+      },
+      {
+        "type": "VEC2",
+        "count": 2088,
+        "componentType": 5123,
+        "sha256": "d09ebe1b342f32486ff4efa4999c8b34a959b61a71a7ea87dae30844b9a66535"
+      },
+      {
+        "type": "VEC3",
+        "count": 9237,
+        "componentType": 5122,
+        "sha256": "0de7ecb4d3bd6107a524eaa1533b5daea5c5b111461f25c22bc4c81cb14c8490"
+      },
+      {
+        "type": "VEC2",
+        "count": 9237,
+        "componentType": 5123,
+        "sha256": "8d43a5249b1ba67b31d94f8d2ec894807047233f6c2a47a4be18b57c3a867a03"
+      },
+      {
+        "type": "VEC3",
+        "count": 4218,
+        "componentType": 5122,
+        "sha256": "74ee192efbb1fe9f664f6225febaea25bf7f955d32423a9a76b82cb3681419fe"
+      },
+      {
+        "type": "VEC3",
+        "count": 8454,
+        "componentType": 5122,
+        "sha256": "a4a06f0253cac122d80cb16d4c3463661f1aa6c96624b93b2a10e5e3d14e1789"
+      },
+      {
+        "type": "VEC2",
+        "count": 8454,
+        "componentType": 5123,
+        "sha256": "9e617afde50e04a344c5cd2a52d5d1c7fb8093583620c0a474422f001b14a350"
+      },
+      {
+        "type": "VEC2",
+        "count": 3411,
+        "componentType": 5123,
+        "sha256": "21a6eb726df822332ef6685b88aa082f7957da555e54d9234e899d7362b3c80f"
+      },
+      {
+        "type": "VEC3",
+        "count": 3411,
+        "componentType": 5122,
+        "sha256": "daf883542b2177a43ebc794e5b1641aa7cae821675de390d26368dbf13b4ad81"
+      },
+      {
+        "type": "VEC3",
+        "count": 30399,
+        "componentType": 5122,
+        "sha256": "3b7285579111664e355e07efba2baf4aae121b60719526dc9a08057cc9ba2002"
+      },
+      {
+        "type": "VEC3",
+        "count": 63,
+        "componentType": 5122,
+        "sha256": "a3f7dd1526153016f27cb3742abc04c1913085ef0eee51d66c312a5c676e7916"
+      },
+      {
+        "type": "VEC3",
+        "count": 7743,
+        "componentType": 5122,
+        "sha256": "dd6462f81efe329198bea59c64f5bb75f6a0326dee736793913005fa48152530"
+      }
+    ],
+    "nodes": [
+      {
+        "name": "telecom",
+        "translation": [
+          -0.1065411925343902,
+          -0.2800574498625809,
+          2.1092489055680614
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.1689888040202367,
+          2.1689887297789174,
+          2.1689887297789174
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hard",
+        "translation": [
+          -0.014538192424069507,
+          -0.7793531584819254,
+          2.028947503700467
+        ],
+        "rotation": [
+          0.7071068286895688,
+          0,
+          0,
+          0.7071067336835231
+        ],
+        "scale": [
+          1.7449121282793398,
+          1.744912362723754,
+          1.744912362723754
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hideable",
+        "translation": [
+          -0.09864069280998547,
+          -3.7290892017453863,
+          0.767513658998937
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          5.23684172552246,
+          5.2368415462730145,
+          5.2368415462730145
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_soft",
+        "translation": [
+          0.0004377746484180989,
+          -0.18651163231298004,
+          1.695336918804032
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.026320934941575,
+          2.026320865583568,
+          2.026320865583568
+        ],
+        "children": []
+      },
+      {
+        "name": "bus_exposed",
+        "translation": [
+          0,
+          -0.1811726639781202,
+          2.105985117530369
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.1722495536979474,
+          2.1722494793450164,
+          2.1722494793450164
+        ],
+        "children": []
+      },
+      {
+        "name": "e_themis",
+        "translation": [
+          -0.1753918441669975,
+          1.3085979009355584,
+          3.760438195476981
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.16641234979601904,
+          0.16641234409996733,
+          0.16641234409996733
+        ],
+        "children": []
+      },
+      {
+        "name": "eis",
+        "translation": [
+          -0.3847085103830281,
+          1.5564038279567882,
+          3.459241651575407
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.6190652327448447,
+          0.6190652115551457,
+          0.6190652115551457
+        ],
+        "children": []
+      },
+      {
+        "name": "europa_uvs",
+        "translation": [
+          -0.776283475690704,
+          1.193293463391729,
+          3.718596904276027
+        ],
+        "rotation": [
+          0.7071068286895766,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.18138015341654068,
+          0.18138014720816292,
+          0.18138014720816292
+        ],
+        "children": []
+      },
+      {
+        "name": "magnetometer",
+        "translation": [
+          0.1606659948676974,
+          -4.7991267703315925,
+          -1.2985492308045083
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          4.2115495694082306,
+          4.211549425253039,
+          4.211549425253039
+        ],
+        "children": []
+      },
+      {
+        "name": "maspex",
+        "translation": [
+          -0.8612973592885425,
+          -0.35284421368846314,
+          3.8339392349487382
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5204156229035344,
+          0.5204156050904677,
+          0.5204156050904677
+        ],
+        "children": []
+      },
+      {
+        "name": "mise",
+        "translation": [
+          0.39149703104428113,
+          0.9427510356649897,
+          3.3728476845240283
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5113542060996394,
+          0.5113541885967317,
+          0.5113541885967317
+        ],
+        "children": []
+      },
+      {
+        "name": "pims",
+        "translation": [
+          0.422382497883234,
+          -0.2117382296423565,
+          1.9764109925377134
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.080139418837291,
+          2.080139347637156,
+          2.080139347637156
+        ],
+        "children": []
+      },
+      {
+        "name": "reason",
+        "translation": [
+          -0.0003271484301876626,
+          2.1196216924456355,
+          1.7381249333284687
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          8.959920047492341,
+          8.95991974080736,
+          8.95991974080736
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells_chassis",
+        "translation": [
+          0,
+          -0.014850395815683802,
+          1.771111347990063
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          15.250199854443963,
+          15.25019933245189,
+          15.25019933245189
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells",
+        "translation": [
+          4.051802256308538,
+          -0.01498321618911138,
+          1.7635766412083096
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.032759133006017,
+          2.03275906342764,
+          2.03275906342764
+        ],
+        "children": []
+      },
+      {
+        "name": "suda",
+        "translation": [
+          -0.7371450450164438,
+          0.3248204054931595,
+          3.791862774654504
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.27993789047141604,
+          0.2799378808895508,
+          0.2799378808895508
+        ],
+        "children": []
+      }
+    ],
+    "textures": [
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "c3c5d88a8d7dc101644e00da019c68168f2a7a7e847c2ba73d5f586d2e097792"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "9c204cf8d797ea0a3e062775f872bc20afd0bf00795ecc86141b1dd567eaf690"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "4c5871a978f55813606eef3af93a38a0b352da963c85cf9243a9fb7b06ccf249"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "a00deb4c92243d63b68dc91d0fd1266ff719d8d1c7ef06d480512a9db2f7699f"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "30fe589aa550ff4d99828e2c5a4c89c2c529cd093134be356f549f79ec1f1cc5"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "204f2563871363066fcad0ffcf33116c34d2a96abdb833d7c7b1f228940598a3"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "10fcf30532a15a0f3f762fd2e1d93fef44dfa1e8014bc681f3cf98455c11eafd"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "1ccd0d625a157976066cec76aa1701beeba628978b9c13d8c61bcc17140e8905"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "8cde0b776f17138a073c45cf5e0cef412cbda6321c7c6f577dc203c2a798781d"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "04ee8924f0bdd027948f471b7cb8c6fb272027a459e0872fa944dc5a32925236"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "5ff3e374a7ef92c2d67723d5d6085afbf927b487f0f7057f47fa116c341163b5"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "3a1ef660c86539b3bbf41fd8bafe5f49ec37912fdb2b6b3fd38e0c11d2067c81"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "ea25a39b555b3d7e601bfbd921b47d65f28c64304205af25dd087856f5fbcb06"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "21499e46825f19c750ae23d676f39b808a3b5de9d7cd87b4052dd96d968da531"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "f6039cdbe66957b4e64ae5dddc1fc64c098798a6f9fd4a7db0e01da553d75386"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "a3419cb1bd69279a80c74adbb98a117909b7a97d2cb13f776ae9e9eeb7775ef0"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "4e92fcc6fb9c95bc96ad7a5ff1626df55fb46316a3c0a790c64300b8425dde7b"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "e6c6d3d28057b741a2e42a0353d3ab395af257f6d95a1bdf0cf6943a7c89c322"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "3b91b48f46e4ff4b30c5c0c34800af2a52583a2b49e4e80e4e74d9b5b967ddec"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "0b5d042389972143cf763c846ce44560133aa664a232106224229b28c831d0e5"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "6296d93c5a44deaefbe19106f4bc6161f7739f72b1cd221eeceea60970fd4530"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "18de83fa6bc151f8c376262c0de641cf2a5d70fe8304764f3a4d0db5a98575e0"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "46e79c8b72a03bd4474fa81fd4e0885e8c307bf3707ed2332e983bd8b5bdbab2"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "aa74a92620e62568cfdd549ced534baa0500f436cb0c3ae5ea12d85acce8af6e"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "b5b86eb7cfb6f5f58bfe95542505685b2eee41a672ea12e66de216105d7d1477"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "8517a1bb9df61c195fc972e899a0301f4e456b320881fae75df78b4a21203cd4"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "388f8cc627ad7c8427165b98767f9be4d8a0bf946f08d79defb9bcd8df733b9d"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "068ba0d3286fb00726491da3d289b558b569d406103b791f704825197ac075a4"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "9a9eca9d02cc6671d49fd2c4d76574413390105e7c88761124e207b172c7113b"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "4dff5a93f87e37979336a257d3f25c097c97d3b3a78e6a5547dfd0641e3e3c8c"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "4f84ee40de97970299f54b59bf7e4e9741f6dd259795c3f626511d18d976d67f"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "47e70a0f44b47d5670070b23df8006d7c1516c458943e44d7c000c1c2c40c9d0"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "bf6abd94a1bba105f4194990acff4d31a8359c027af7fde729c936ee5482093e"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "1e22393b303002b5a4f5fdf8e66f9457b2ddbce2127da09f91d151b42b979b3a"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "aa0e966c443dc445233c77cb1abbc2b98d657e1718ad336ec34053c3407a496e"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "2e1a4eee3a75ed5f188cadff3479872adc320c1ed15a8ad8043988245cc8b2be"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "bd7508f2e9a6ee4bf3a56b54537cb9936ab392c2170a9ac7a8ee253b450dbb9f"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "2250ea05cf588d766b9d7add9af8248b4fa94178b974ffd657861cda5f883a49"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "bcf4001eeba7d3d5f9992a1d105c8b44a0bd1cbcf0f628bcaf6a3fe36960852b"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "6adcb63c3bcd5cdd11e2be7fc1148e07b2379fc4cdcb57545e22eeaec809aa85"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "b81a6238183d5689969e0b64364cb9036e4c22962d8009fd95a4aeb8a51ae4a2"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "66c1ccf552f2aeff60fdb7aa441154b14c29501b398d9d70adab0352151575a6"
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "sha256": "b5897cba593ce28c6e2b65148b34b92b38af056618cf7eb4d4c761cfa8ac5096"
+      }
+    ],
+    "triangles": 33247
+  },
+  "flat": {
+    "path": "data/research-sources/europa-clipper-flat-preview-2026-10-12.glb",
+    "bytes": 108960,
+    "sha256": "1356a649df5d88acce870aec1e5186d984465b4bcc3eeaf7c4393063d71583c3",
+    "accessors": [
+      {
+        "type": "VEC3",
+        "count": 756,
+        "componentType": 5120,
+        "sha256": "9207dc7c8deb3abf0af642df3d9e7ef51b13b2e8085c0e69fd5fd74a490dc662"
+      },
+      {
+        "type": "VEC3",
+        "count": 222,
+        "componentType": 5120,
+        "sha256": "71bf10d31b43bd6253cffdb4e588eb85ffd5fabb68e42a25526f387fa721ae59"
+      },
+      {
+        "type": "VEC3",
+        "count": 534,
+        "componentType": 5120,
+        "sha256": "f4bff51d71d8f964a0cfd7e9b5e6dae92a1cf31e3d515894f147c3bfaa8567f3"
+      },
+      {
+        "type": "VEC3",
+        "count": 624,
+        "componentType": 5120,
+        "sha256": "36bea7600cf214aeb1c262fc62d7b1e229f16fe1eed5faa9d97d277853fbb094"
+      },
+      {
+        "type": "VEC3",
+        "count": 792,
+        "componentType": 5120,
+        "sha256": "c15b133a464fb73bae5f81399b8f13a0ede6e0f343a4ba596f37839df388e150"
+      },
+      {
+        "type": "VEC3",
+        "count": 1236,
+        "componentType": 5120,
+        "sha256": "09eefe7390b534531dd693a30b36670ac2d98a2f341739a3725c4d5e9145d6a4"
+      },
+      {
+        "type": "VEC3",
+        "count": 1080,
+        "componentType": 5120,
+        "sha256": "4984c96aceef66c76e92733afe5625dae8ce2f2a7223d9af0276be3793fcb538"
+      },
+      {
+        "type": "VEC3",
+        "count": 1335,
+        "componentType": 5120,
+        "sha256": "a6679aed0214684ae5f28c13c094f593c3e4cf1c22d1a75ccbe1f3f76454393c"
+      },
+      {
+        "type": "VEC3",
+        "count": 474,
+        "componentType": 5120,
+        "sha256": "cf49acc70acebba5f4f97f9c6c38db07e7d4a2d3a34341b894c455c3556f2f67"
+      },
+      {
+        "type": "VEC3",
+        "count": 1083,
+        "componentType": 5120,
+        "sha256": "bf464694c470fe5073732b23bff191495e465ad4e6206379dddcc94b9c91d1fd"
+      },
+      {
+        "type": "VEC3",
+        "count": 966,
+        "componentType": 5120,
+        "sha256": "dcd32923353ee0a3770b59ef954d524acda9c1c377183432fc6f42325f80fa78"
+      },
+      {
+        "type": "VEC3",
+        "count": 801,
+        "componentType": 5120,
+        "sha256": "4b708a46483b5c9ee0f0b775a1c7ecabd44b5e4ce411c5d613753f018084347a"
+      },
+      {
+        "type": "VEC3",
+        "count": 390,
+        "componentType": 5120,
+        "sha256": "5ed40574f4dd56210747b1770ec00e1a12456b78df6699cc50a7323fdfb74e3f"
+      },
+      {
+        "type": "VEC3",
+        "count": 3618,
+        "componentType": 5120,
+        "sha256": "075b7d125b98eed53c48cf0f54ad6c684d9b84ee8976c4917c5c7dcec11c94e9"
+      },
+      {
+        "type": "VEC3",
+        "count": 63,
+        "componentType": 5120,
+        "sha256": "5bac48b2590bf7c833e7720764cfbf0a2a20f243a0d3fcf3e5dba61ea6f63f3e"
+      },
+      {
+        "type": "VEC3",
+        "count": 975,
+        "componentType": 5120,
+        "sha256": "12341b219ebb6adc99758d05fd06e89934f58a71871c71dfe07f5c3c64bce28a"
+      },
+      {
+        "type": "VEC3",
+        "count": 756,
+        "componentType": 5122,
+        "sha256": "ffcc58411484178544821b7d964c15485cfd923e7477fc4773ab08ad34d280b4"
+      },
+      {
+        "type": "VEC3",
+        "count": 222,
+        "componentType": 5122,
+        "sha256": "25e9bea2db509ccd87e92a7272e8c563cef52ec96fcb03a7f60c409f41f5b900"
+      },
+      {
+        "type": "VEC3",
+        "count": 534,
+        "componentType": 5122,
+        "sha256": "7f81d64d7bc86efcd33fd061a9d9bc73c182a78241e8a7aa014da6e42c1e153e"
+      },
+      {
+        "type": "VEC3",
+        "count": 624,
+        "componentType": 5122,
+        "sha256": "4bbee6203f78dd531c3caac8d987086e275f805589b2ee13a0d94157a176740d"
+      },
+      {
+        "type": "VEC3",
+        "count": 792,
+        "componentType": 5122,
+        "sha256": "5ed07c8912a4cc0b3f7b848cfb9d5b9f6fea9986823d8c7e0ddd11faeb98804f"
+      },
+      {
+        "type": "VEC3",
+        "count": 1236,
+        "componentType": 5122,
+        "sha256": "c6e200b3d0060f3cde5ea03ebfa7555ed74efe8d1cc37eb667b5dc552aff2a38"
+      },
+      {
+        "type": "VEC3",
+        "count": 1080,
+        "componentType": 5122,
+        "sha256": "8d06b3c6a9ada01c43d46213c1863ef5d5f1ee4a89f7f81dceefe8643699917f"
+      },
+      {
+        "type": "VEC3",
+        "count": 1335,
+        "componentType": 5122,
+        "sha256": "a1db5b007ba0b5e2b8434a371d94a4a96398412c510e5478717f15170ab5f140"
+      },
+      {
+        "type": "VEC3",
+        "count": 474,
+        "componentType": 5122,
+        "sha256": "fe7aff28ddc99c8b9247f88484572310b986d2447226a6ee74aea161c9ad430c"
+      },
+      {
+        "type": "VEC3",
+        "count": 1083,
+        "componentType": 5122,
+        "sha256": "16b8af96af6b5c67648ebd1bbf890866cf10c8515cd25eae8d4b88e999eb9d8b"
+      },
+      {
+        "type": "VEC3",
+        "count": 966,
+        "componentType": 5122,
+        "sha256": "6525449cdccbe90d894797feaf0bcca2983bd6aa0ca5da9d7b37b8068b270b19"
+      },
+      {
+        "type": "VEC3",
+        "count": 801,
+        "componentType": 5122,
+        "sha256": "b406fcda2db17dc271aba8ad22070ad44da8b8ec436fad9865cd01bff033e343"
+      },
+      {
+        "type": "VEC3",
+        "count": 390,
+        "componentType": 5122,
+        "sha256": "916d0d1aa40cc45e5e2ffefd97e6ea2b3b95c57a8701352e32e5730cbcf2695c"
+      },
+      {
+        "type": "VEC3",
+        "count": 3618,
+        "componentType": 5122,
+        "sha256": "f022a0f40e670e95af936b5994f7099c6e821267e539dd3810946012ca961659"
+      },
+      {
+        "type": "VEC3",
+        "count": 63,
+        "componentType": 5122,
+        "sha256": "a3f7dd1526153016f27cb3742abc04c1913085ef0eee51d66c312a5c676e7916"
+      },
+      {
+        "type": "VEC3",
+        "count": 975,
+        "componentType": 5122,
+        "sha256": "cad8dc5ee33c0c9b22c305c27bf773d82c12f51b794db29005377296da62ec55"
+      }
+    ],
+    "nodes": [
+      {
+        "name": "telecom",
+        "translation": [
+          -0.1065411925343902,
+          -0.2800574493823162,
+          2.1056744132004948
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.1638256482014686,
+          2.163825574136877,
+          2.163825574136877
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hard",
+        "translation": [
+          -0.014538192424069507,
+          -0.9728582880322282,
+          2.260695754923723
+        ],
+        "rotation": [
+          0.7071068286895689,
+          0,
+          0,
+          0.7071067336835231
+        ],
+        "scale": [
+          1.513163882194393,
+          1.5131640855013755,
+          1.5131640855013755
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hideable",
+        "translation": [
+          -0.12230858835392311,
+          -3.7290892010148475,
+          0.762076439938465
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          5.23684172552246,
+          5.2368415462730145,
+          5.2368415462730145
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_soft",
+        "translation": [
+          0.0004377746484180989,
+          -0.1865116323628754,
+          1.6957082778923824
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.0259495758405133,
+          2.0259495064952175,
+          2.0259495064952175
+        ],
+        "children": []
+      },
+      {
+        "name": "bus_exposed",
+        "translation": [
+          -0.0028185758366125364,
+          -0.15164474485670554,
+          2.234028990835355
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.0232676880484233,
+          2.0232676187949243,
+          2.0232676187949243
+        ],
+        "children": []
+      },
+      {
+        "name": "e_themis",
+        "translation": [
+          -0.1753918441669975,
+          1.308597901452789,
+          3.756588573698125
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.15476191092666672,
+          0.15476190562939254,
+          0.15476190562939254
+        ],
+        "children": []
+      },
+      {
+        "name": "eis",
+        "translation": [
+          -0.38852488591372847,
+          1.5350547986190968,
+          3.449077242938469
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5847934247612286,
+          0.5847934047446035,
+          0.5847934047446035
+        ],
+        "children": []
+      },
+      {
+        "name": "europa_uvs",
+        "translation": [
+          -0.776283475690704,
+          1.1945998306393217,
+          3.713858557760971
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.17664180656377546,
+          0.17664180051758435,
+          0.17664180051758435
+        ],
+        "children": []
+      },
+      {
+        "name": "magnetometer",
+        "translation": [
+          0.151411819355829,
+          -4.888326735586741,
+          -1.3075463575623392
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          4.122349599891054,
+          4.122349458789047,
+          4.122349458789047
+        ],
+        "children": []
+      },
+      {
+        "name": "maspex",
+        "translation": [
+          -0.8441017715879964,
+          -0.3536477467983831,
+          3.8413960128033486
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5253010982876148,
+          0.5253010803073255,
+          0.5253010803073255
+        ],
+        "children": []
+      },
+      {
+        "name": "mise",
+        "translation": [
+          0.39149703104428113,
+          0.941752267504081,
+          3.3656378197354053
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5041443411984268,
+          0.5041443239423021,
+          0.5041443239423021
+        ],
+        "children": []
+      },
+      {
+        "name": "pims",
+        "translation": [
+          0.422382497883234,
+          -0.2117382296423565,
+          1.9764109925377134
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.080139418837291,
+          2.080139347637156,
+          2.080139347637156
+        ],
+        "children": []
+      },
+      {
+        "name": "reason",
+        "translation": [
+          -0.0003271484301876626,
+          2.1349438748161464,
+          1.737988130187567
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          8.96539225566255,
+          8.965391948790264,
+          8.965391948790264
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells_chassis",
+        "translation": [
+          0,
+          -0.014850395815683802,
+          1.771111347990063
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          15.250199854443963,
+          15.25019933245189,
+          15.25019933245189
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells",
+        "translation": [
+          4.051802256308538,
+          -0.01498321618911138,
+          1.7635766412083096
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.032759133006017,
+          2.03275906342764,
+          2.03275906342764
+        ],
+        "children": []
+      },
+      {
+        "name": "suda",
+        "translation": [
+          -0.7693874107697666,
+          0.32155687042053166,
+          3.7880524682717236
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.27612758439669904,
+          0.276127574945255,
+          0.276127574945255
+        ],
+        "children": []
+      }
+    ],
+    "textures": [],
+    "triangles": 4983
+  },
+  "normal": {
+    "path": "public/models/europa-clipper.glb",
+    "bytes": 1423840,
+    "sha256": "7261e817e375a53edd215a5d7d26ac023bb8ef6f548ac8287fc0c2601020b220",
+    "accessors": [
+      {
+        "type": "VEC2",
+        "count": 5349,
+        "componentType": 5126,
+        "sha256": "48a72205b2bc60e4609cb59d62e1bd2f5ac588ea9607a1086c5690bf87c2891f"
+      },
+      {
+        "type": "VEC2",
+        "count": 4362,
+        "componentType": 5126,
+        "sha256": "fd25150e991ec07d94acbf01b9dc66532212b211485e5741c46ed9bfaaf3159e"
+      },
+      {
+        "type": "VEC2",
+        "count": 40470,
+        "componentType": 5126,
+        "sha256": "f0f6c2c70b293b857850eb7985201af7170a25ab704e41d3b4824bbeb31e8b9f"
+      },
+      {
+        "type": "VEC2",
+        "count": 705,
+        "componentType": 5126,
+        "sha256": "95586092380c82e610c95592bbf2ae529697b53d44d136e382e5de2f3e41e64a"
+      },
+      {
+        "type": "VEC2",
+        "count": 8601,
+        "componentType": 5126,
+        "sha256": "ae5f2fb0670b135b29e80bf9c450eaf177574771b3ed0fa3288e7d501bd4e78f"
+      },
+      {
+        "type": "VEC3",
+        "count": 8589,
+        "componentType": 5120,
+        "sha256": "0af8bc50dc2786d66750af7cb49bf6dc8fb2d5ca3bbf3ff7738a32041c44c920"
+      },
+      {
+        "type": "VEC3",
+        "count": 2517,
+        "componentType": 5120,
+        "sha256": "0c4a12153e0462dc49663cad93c83e0ac4fe5aa1b20b80f0a97d538e1177d67a"
+      },
+      {
+        "type": "VEC3",
+        "count": 5934,
+        "componentType": 5120,
+        "sha256": "d7372801aa6d00ecb3d57bbac46e8e45381625ed7b510a3d55317201458b9365"
+      },
+      {
+        "type": "VEC3",
+        "count": 4674,
+        "componentType": 5120,
+        "sha256": "257819dfd79cf1f3bbe8252a15874cf5f87542e4ea7742389975a309536de90c"
+      },
+      {
+        "type": "VEC3",
+        "count": 8817,
+        "componentType": 5120,
+        "sha256": "b02faf281e326dc9fceff7c9c052aaa5bab0cb496fb94dc48c7f1805a1e6b27d"
+      },
+      {
+        "type": "VEC3",
+        "count": 3600,
+        "componentType": 5120,
+        "sha256": "6d67afb00296378713c8b5b9528e8ba0e14d3d59dcb7f3093f491e83545da76c"
+      },
+      {
+        "type": "VEC3",
+        "count": 7416,
+        "componentType": 5120,
+        "sha256": "450c5446ff1c875a7db8dd3954511e77fedb029833f0378d6e9db68e23239b8e"
+      },
+      {
+        "type": "VEC3",
+        "count": 5367,
+        "componentType": 5120,
+        "sha256": "60afefe140b4b5a3ff991a49b35177dae98602b04ac92d73987d960478a602b9"
+      },
+      {
+        "type": "VEC3",
+        "count": 5406,
+        "componentType": 5120,
+        "sha256": "e1a87bb0270135ff2b02f5781cbf6f427e7da3a6fe17bf580f559a031379010a"
+      },
+      {
+        "type": "VEC3",
+        "count": 12027,
+        "componentType": 5120,
+        "sha256": "e4e7863d31161a358cb6502498b10b689ebcd2b8ecd13ddbbfd1af1b6bac94cf"
+      },
+      {
+        "type": "VEC3",
+        "count": 5349,
+        "componentType": 5120,
+        "sha256": "bf95389545a0208697c09912293badcda618f8a9357e1042698787a1f490072e"
+      },
+      {
+        "type": "VEC3",
+        "count": 8910,
+        "componentType": 5120,
+        "sha256": "cc6e192705919faf493a5761b23a72e51dca54f826a84d97fb9dc2886917a6ed"
+      },
+      {
+        "type": "VEC3",
+        "count": 4362,
+        "componentType": 5120,
+        "sha256": "4f5f83212fad34addf9f0fdcb12685b098adfafa095f9d7d3f6761a6d5bd89df"
+      },
+      {
+        "type": "VEC3",
+        "count": 40470,
+        "componentType": 5120,
+        "sha256": "a594706ca9958d99bb0178f36baf607868b40c1792731e05fbad04060b704d7b"
+      },
+      {
+        "type": "VEC3",
+        "count": 705,
+        "componentType": 5120,
+        "sha256": "1fb8bbfdfd6f32f7ff1919c2c7e9e12414271348513d85e53c2e11d6a9ffaf18"
+      },
+      {
+        "type": "VEC3",
+        "count": 8601,
+        "componentType": 5120,
+        "sha256": "d28cd382a5a2b5603370d775ef52c84a7cbddc270c21c2b93be75f12d0887e79"
+      },
+      {
+        "type": "VEC3",
+        "count": 8589,
+        "componentType": 5122,
+        "sha256": "6b4e3729e2f91a13bef0ea057f7c6c1708a224d010c200bb8e5c92e489fc073e"
+      },
+      {
+        "type": "VEC2",
+        "count": 8589,
+        "componentType": 5123,
+        "sha256": "6460fe65d9de7672460a379ce2cecb50551ddb20f43419e0a9892976d773e502"
+      },
+      {
+        "type": "VEC3",
+        "count": 2517,
+        "componentType": 5122,
+        "sha256": "75093895b88d9c70d3e199dacaf80c0a642ac909ad2459c91989758cedc5e8bc"
+      },
+      {
+        "type": "VEC2",
+        "count": 2517,
+        "componentType": 5123,
+        "sha256": "722910a197690c82dc2953c8421e08c216f298505968e57e7abf3d594bb9c2bc"
+      },
+      {
+        "type": "VEC3",
+        "count": 5934,
+        "componentType": 5122,
+        "sha256": "18a10b4e052721dabcb989f0e667fc486cfee0f468c349b6c20d5397464acfb3"
+      },
+      {
+        "type": "VEC2",
+        "count": 5934,
+        "componentType": 5123,
+        "sha256": "0a47d3f00ded074d1c42c0be182ccb093f56674b8f529f3633c13fecaa53b86e"
+      },
+      {
+        "type": "VEC3",
+        "count": 4674,
+        "componentType": 5122,
+        "sha256": "eec837f2bda65f48294ca319fd0b9108bd3df6b4b010cb5661c16ad8a1154ac1"
+      },
+      {
+        "type": "VEC2",
+        "count": 4674,
+        "componentType": 5123,
+        "sha256": "3416064f9c476fbb7e04aa90a29703dc124efc5711c3df4bf33ee912d1f696eb"
+      },
+      {
+        "type": "VEC3",
+        "count": 8817,
+        "componentType": 5122,
+        "sha256": "02cdbcbc4c8278278c10a76c2dabe79130257c0207bc847d53ec02b584dbfd1e"
+      },
+      {
+        "type": "VEC2",
+        "count": 8817,
+        "componentType": 5123,
+        "sha256": "989d3aa5c50d9b775e44370295a94a6ea3b88dc76d46b7d4ca54fcdb46b73d18"
+      },
+      {
+        "type": "VEC3",
+        "count": 3600,
+        "componentType": 5122,
+        "sha256": "d7f5cb701ed82c5933d915a5e8cc62ea34fd6006c979db640a62d057fcbeb524"
+      },
+      {
+        "type": "VEC2",
+        "count": 3600,
+        "componentType": 5123,
+        "sha256": "a6423d7b71e95d55c3b3a408be6388003a6ec544f3ae9219bbe70493fa88860c"
+      },
+      {
+        "type": "VEC3",
+        "count": 7416,
+        "componentType": 5122,
+        "sha256": "aa36e7832f97ec408f8dbc661d2246d28b8dcd238f63af4f86cac06d0296876f"
+      },
+      {
+        "type": "VEC2",
+        "count": 7416,
+        "componentType": 5123,
+        "sha256": "405ce3c35f27b19be34eec46624e935b54c4c7df434c6bb3dfb3ba085c6bee4c"
+      },
+      {
+        "type": "VEC3",
+        "count": 5367,
+        "componentType": 5122,
+        "sha256": "643284a80bda230acb879ee9418203b74fe28deb076e22c51b38a2e7e3741c3b"
+      },
+      {
+        "type": "VEC2",
+        "count": 5367,
+        "componentType": 5123,
+        "sha256": "f9fd27e2bdfead3315b952bde8c0bf8306b807831738d471ed963cc0839f536c"
+      },
+      {
+        "type": "VEC3",
+        "count": 5406,
+        "componentType": 5122,
+        "sha256": "a3525a2461be4b238b4f01f75af4a786866f188542e8321e38155fa6765bfcf3"
+      },
+      {
+        "type": "VEC2",
+        "count": 5406,
+        "componentType": 5123,
+        "sha256": "0f7b5a6a86746aaa48dd3f448301f2166dd7fd56b9308580fe0e6f2254d5848e"
+      },
+      {
+        "type": "VEC3",
+        "count": 12027,
+        "componentType": 5122,
+        "sha256": "03512f737dd9d7778b4516fee66d0473d97bf8f6767d2456bd040dab7d7eccdc"
+      },
+      {
+        "type": "VEC2",
+        "count": 12027,
+        "componentType": 5123,
+        "sha256": "d81abfd09f65b5940ce6e977afc27d42734da3702749e70e80ea1c14b16f5591"
+      },
+      {
+        "type": "VEC3",
+        "count": 5349,
+        "componentType": 5122,
+        "sha256": "baea1bae9a3c6f5a1fa734d82b372e806709d6e1e6fd188c5a4c0abd1f0cf992"
+      },
+      {
+        "type": "VEC3",
+        "count": 8910,
+        "componentType": 5122,
+        "sha256": "f682163d29470a2bf5dd1d7443db617c6bd0ea592f965861f2cb85765a7014ef"
+      },
+      {
+        "type": "VEC2",
+        "count": 8910,
+        "componentType": 5123,
+        "sha256": "66b4db758426f9f830f99995e852219efd20fa70372008837a3aa8e661558d03"
+      },
+      {
+        "type": "VEC3",
+        "count": 4362,
+        "componentType": 5122,
+        "sha256": "da8ea5e1855fd343662c208035d9e0d7c8c0369cdef43bac158bf0d0aa27f4bc"
+      },
+      {
+        "type": "VEC3",
+        "count": 40470,
+        "componentType": 5122,
+        "sha256": "a8dcf28b18ab7477a2761f182f167f360bc3564dc1c0e21e1f3f39cfb9718abf"
+      },
+      {
+        "type": "VEC3",
+        "count": 705,
+        "componentType": 5122,
+        "sha256": "f06484b11b7d9f83f32411c32a283d3601faa0d020ad0b4509eaf07cdf9752d6"
+      },
+      {
+        "type": "VEC3",
+        "count": 8601,
+        "componentType": 5122,
+        "sha256": "be9ff4a396995fc835ea70dad694ea8feec511cc43acc01b4d6ae746c7d84d19"
+      }
+    ],
+    "nodes": [
+      {
+        "name": "telecom",
+        "translation": [
+          -0.1065411925343902,
+          -0.2800574498625809,
+          2.1092489055680614
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.1689888040202367,
+          2.168988729778917,
+          2.168988729778917
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hard",
+        "translation": [
+          -0.014538192424069507,
+          -0.7588849762765951,
+          2.014081143983755
+        ],
+        "rotation": [
+          0.7071068286895688,
+          0,
+          0,
+          0.7071067336835231
+        ],
+        "scale": [
+          1.76494939673805,
+          1.7649496338746489,
+          1.7649496338746489
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_hideable",
+        "translation": [
+          -0.10599693061418236,
+          -3.732287562632668,
+          0.7432060910047449
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          5.240040089785154,
+          5.2400399104262325,
+          5.2400399104262325
+        ],
+        "children": []
+      },
+      {
+        "name": "blanket_soft",
+        "translation": [
+          0.0004377746484180989,
+          -0.18514998208951686,
+          1.6936039099080136
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.0280539440798613,
+          2.028053874662536,
+          2.028053874662536
+        ],
+        "children": []
+      },
+      {
+        "name": "bus_exposed",
+        "translation": [
+          0,
+          -0.1800989172503812,
+          2.0792757570895297
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.1989589151972764,
+          2.198958839930123,
+          2.198958839930123
+        ],
+        "children": []
+      },
+      {
+        "name": "e_themis",
+        "translation": [
+          -0.1753918441669975,
+          1.3085979009355584,
+          3.760438195476981
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.16641234979601904,
+          0.1664123440999673,
+          0.1664123440999673
+        ],
+        "children": []
+      },
+      {
+        "name": "eis",
+        "translation": [
+          -0.3847085103830281,
+          1.5564038279567882,
+          3.459241651575407
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.6190652327448447,
+          0.6190652115551457,
+          0.6190652115551457
+        ],
+        "children": []
+      },
+      {
+        "name": "europa_uvs",
+        "translation": [
+          -0.776283475690704,
+          1.189518285304142,
+          3.7185969037687987
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.18138015341654068,
+          0.18138014720816287,
+          0.18138014720816287
+        ],
+        "children": []
+      },
+      {
+        "name": "magnetometer",
+        "translation": [
+          0.1606659948676974,
+          -4.799126771540434,
+          -1.2895521160314833
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          4.2115495694082306,
+          4.211549425253039,
+          4.211549425253039
+        ],
+        "children": []
+      },
+      {
+        "name": "maspex",
+        "translation": [
+          -0.8612973592885425,
+          -0.35284421451760867,
+          3.840110361538453
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.526586749704478,
+          0.5265867316801826,
+          0.5265867316801826
+        ],
+        "children": []
+      },
+      {
+        "name": "mise",
+        "translation": [
+          0.39149703104428113,
+          0.9427510356649897,
+          3.3728476845240283
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.5113542060996394,
+          0.5113541885967317,
+          0.5113541885967317
+        ],
+        "children": []
+      },
+      {
+        "name": "pims",
+        "translation": [
+          0.422382497883234,
+          -0.2117382296423565,
+          1.9764109925377134
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          2.080139418837291,
+          2.080139347637156,
+          2.080139347637156
+        ],
+        "children": []
+      },
+      {
+        "name": "reason",
+        "translation": [
+          -0.0003271484301876626,
+          2.1349444338556003,
+          -2.4228052096132178
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          8.96539225566255,
+          8.965391948790264,
+          8.965391948790264
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells_chassis",
+        "translation": [
+          0,
+          -0.014850395815683802,
+          1.771111347990063
+        ],
+        "rotation": [
+          0.7071068286895767,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          15.250199854443963,
+          15.25019933245189,
+          15.25019933245189
+        ],
+        "children": []
+      },
+      {
+        "name": "solar_cells",
+        "translation": [
+          0,
+          -0.01498321618911138,
+          1.7635766412083096
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          15.234999659471214,
+          15.23499913799942,
+          15.23499913799942
+        ],
+        "children": []
+      },
+      {
+        "name": "suda",
+        "translation": [
+          -0.7371450450164438,
+          0.3248204054931595,
+          3.791862774654504
+        ],
+        "rotation": [
+          0.7071068286895769,
+          0,
+          0,
+          0.7071067336835151
+        ],
+        "scale": [
+          0.27993789047141604,
+          0.2799378808895508,
+          0.2799378808895508
+        ],
+        "children": []
+      }
+    ],
+    "textures": [
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "c029662f74a43e4fc6329e9e0800eb9223564ad5351bf4a693dec1341c341107"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "8bedd7dc3df8513d70614e2e2f8c7d549f5fad5bca5bafdb1733e42b69973296"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "267bb77949baa5ac7d3c7e544d5dd7f52d664e5917ffc6b7d1faa731e0728a3b"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "8f6d0f4f465e533f2d67fa94fdcd7a697961308e6ce39f70278d543f9a139dad"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "578ee566d0d80d219baffdc08806b1ad2eaa6136d0e2557ab65bbd389843c01c"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "1efb2c7752ba36a885d15faa31917b698ab7cf8bc8d90f620bbd63ccbef1bb8a"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "a72c4e161c1fb178ff4c5868c847a2ed2776b40b025e28e45ab7f61429d2dcff"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "0f8ec3d931ec3be352943ea66a6c0e6dd92c1ce9fd5f0f2d3792b10b7e551a78"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "3906e6f66f79d4641196b79dec7266e183d3f106dd22fe30a633b435c8122a8d"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "d0fab6b41bc5e94605254ed3d640a5c2c436bd7a97473112e30252d8d1abf16c"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "ec28aa4d05c9f75ce2c8d3cdd2870488f39c2933186defa95cdfde1b1b4c7705"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "6a122fa636f40fa8e02f2f4267f91172597b941bb1bf7d7207248549e1ba0a5e"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "6e552ba30eb73f0c5c9c738dfb6c640c1365fe38aa4dc7629489dc8a805b9dcd"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "e1e062501130d7e5adcff6519dc8430bfbe9de25d8d619e1f0c97756eacf86b5"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "1147aacdee3193dfc968d563e404ff8c5e9356e7a76f9b5efc1071c9aeb344cc"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "c0b42b23e6dc292e50eefac222a8a2cd29f0995147036afdfae558a2e437fcab"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "3ce2a9a0ee53d0f3874dc7f7cc4ac063d6495e909371f2445eaa7a527eb6c39d"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "10881f3739a29e8f2ec94ab0d43419620bea626e205a73b75a1a543ca59e56cd"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "0dfd427730b83cbe7e3f4f2244271167365aa76394647150388024b055b5c001"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "e6faad572687e745a3b38f14c52c4e770b378dedc001bfa4b0c81309052a26ec"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "f6482bb0c9f6f2149fc8cfb9f632cdd29a11ddf1da81edb98adf3aaaeb86d813"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "b47f97d09e7a3ce515ee259b74aa82e89e138fcf98648f1b5530b8363c8e9c28"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "4219d50a19b65d210799b3f4360f6bb208db7bcf13d583a436b22c61644fcb0b"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "786658db8b5d838b89d82db9ee5d5a0826d443341a1b10efbebe90abf42b6946"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "ef972099c024bfcc808af491a0f04c1e7b5c81eb6f7192cb8901692a2c8ec239"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "bd586a1a12bb6676534d0c8e0baeff84fcf2c459d2cf365c878c0acae9b8c7dc"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "a156cd477408b3fd87c72a199f8ff0a2e803a0360858e6c95e07e8f6b1e0782f"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "b623c1326efc6b4cb6b73684dbaffdfc94f540fca3fb3ca2d45dfba488213ac5"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "2294308dbf5581e426136efaab8cb1a7003d5a185c4cd3ba0ab6dadce7ed2ee2"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "77d57ce6cfd8f69c323af5a94396866aaaaed557dfa4720278e1c38ea14c1775"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "ba92a40b9590a404b48fd42fb3536e2a8110c36a6ef854a5850cab9759f12b9e"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "d5123e0ef54bf4b76d56d62f2f037e6f72726fcbf449e390450ed2ec3a1ffd6d"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "8fbcb4448596a9a95b9bb823e2df7fbb9deea78606adc5ba208586796673a312"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "af44fdbe68f7d220919042ca8124f9434dbb4581077054e0d7727c7ddf04dc78"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "5a5c5218fe263df372769ac902b5697261614e302a6a5967a50922cc15468d30"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "9cfdb1dc21b63ebbfa42074b19c6c9b6c6f97c28a8df018dce23af717d61bd9e"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "3d6ea90bce3b67e78286213ef7d5f3ac986b40de5044aaae7f6186331e85c6da"
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "sha256": "9b2c920bbe33902ad0e706f8a6b156bb986ee3c537c4b5a48ebed5dbde0e23d9"
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "sha256": "b2ad8d06f729ff998a9eebc244097c5e9fc74692e4eea9bc32dfe95165ccf694"
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "sha256": "080bb108fbfa3fb20adcf4f152c8f556edfb6c3aff519256c557d38190f9c49f"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "47d26a2b6930737177506312466a2f54c65c31cbb33ac23401077b1e66d1c4fd"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "03cbd44c99a1bd4a6540e4e2cc4a76be3c95676eb809411e26a7a3a3bd8604ca"
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "sha256": "0c4423e0a3b5aa35775dc2d3de187031f2791b414e9489e5de87a4fa1a3b3c96"
+      }
+    ],
+    "triangles": 44248
+  },
+  "findings": {
+    "previewGeometryEqual": false,
+    "previewNodeHierarchyEqual": false,
+    "flatTextureCount": 0,
+    "preservedTextureCount": 43,
+    "comparison": "Preservation concerns the recorded preview, not equivalence of preview to the higher resolution normal model."
+  },
+  "validation": {
+    "base": "06403b1",
+    "tests": "474 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "failed hard 16000000-byte gate",
+    "fullHtmlBytes": 16008364,
+    "overBudgetBytes": 8364,
+    "browser": "No new passing full artifact; no new full browser claim",
+    "preservation": "Recorded preview restored byte-for-byte from c8d0833; flat upstream preview retained separately as research input; normal GLB unchanged from c8d0833. Recorded preview has 43 textures, each 128x128. It is an already simplified preview, not exact geometry equivalence to the normal model.",
+    "concurrentUpstream": "2f766bd discovered after checks; rebase and combined verification required."
+  },
+  "combinedValidation": {
+    "upstream": "2f766bd",
+    "tests": "476 pass, one skip",
+    "productionBuild": "pass",
+    "fullBuild": "failed 16000000-byte gate",
+    "htmlBytes": 16010205,
+    "overBudgetBytes": 10205,
+    "browser": "No new passing full artifact or full browser claim",
+    "queue": 566,
+    "dossiers": 68,
+    "preservation": "Every tracked public bespoke/model/shape/texture input except restored Clipper preview is byte-identical to combined upstream HEAD; restored preview exact c8d0833 bytes.",
+    "trackedAssetCount": 405,
+    "assetDifferencesFromCombinedHead": []
+  },
+  "postValidationRebase": {
+    "upstream": "a3c7865",
+    "status": "Preserved after push rejected for concurrent remote work; combined application not yet revalidated",
+    "next": "Verify tests/build/full after this rebase; do not claim current full artifact passes."
+  }
+}

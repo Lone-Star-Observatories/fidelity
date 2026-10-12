@@ -3,7 +3,7 @@
 import { createClock, STEP_UNITS, yearsLimit, calendarLimit } from './astro/clock.js';
 import { formatOffset } from './astro/timerate.js';
 import { shipDate, dateFromJd, jdFromDate, isoDay } from './astro/time.js';
-import { VALID_RANGE } from './astro/kepler.js';
+import { VALID_RANGE, heliocentric } from './astro/kepler.js';
 import { LY_PER_PC } from './astro/frames.js';
 import { createSystemView } from './views/system/SystemView.js';
 import { createNavigationView } from './views/navigation/NavigationView.js';
@@ -18,11 +18,12 @@ import { createQuadrantView, NEBULA_COLORS, ageTeff } from './views/quadrant/Qua
 import { createUniverseView, typeName, MLY_PER_MPC, MOTION } from './views/universe/UniverseView.js';
 import { NEBULA_KIND } from './data/deepsky.js';
 import { blackbodyRGB, rgbToHex } from './astro/frames.js';
-import { LIGHT_SECONDS_PER_AU, AU_KM } from './data/sol.js';
+import { LIGHT_SECONDS_PER_AU, AU_KM, SUN, PLANETS } from './data/sol.js';
 import { solSystem, buildStarSystem } from './data/systems.js';
 import { fetchNearby, fetchStar, fetchSky, fetchTextureCredits, fetchSpectrum, fetchGalaxyStars, fetchSmallBodies, fetchClusters, fetchGalaxies, fetchPlanets, fetchGaiaBright, fetchStarLookup, fetchStarSearch } from './data/catalog.js';
 import { badge, TIERS } from './data/provenance.js';
 import { shownScale, scaleDetail } from './data/bandarchive.js';
+import { createShipCalc } from './voice/shipcalc.js';
 import { DETAIL_LEVELS, DETAIL_MAX, DETAIL_FLAGS, flagsForLevel, levelOfFlags } from './data/detail.js';
 import { settings } from './settings.js';
 import { onRoute, go } from './router.js';
@@ -376,6 +377,7 @@ function describePostcard() {
 }
 const postcard = createPostcard({ h, pill: (...a) => pill(...a), toast, settings, describe: describePostcard, standalone: STANDALONE }); // pill is defined further down
 onPostcard(() => postcard.open());
+$('postcard-tab').addEventListener('click', () => postcard.open()); // #40: always in the top bar (P still works per view)
 
 // ---- toast & warp -----------------------------------------------------------------------
 let toastTimer;
@@ -548,6 +550,17 @@ function screenContext() {
   lines.push('', 'SIDE PANEL (badges in brackets give each value\'s provenance):', (panelEl.innerText || '').replace(/\n{2,}/g, '\n').slice(0, 6000));
   return lines.join('\n');
 }
+const shipCalc = createShipCalc({
+  // in Sol: the System View's own positions (scene x, y, z = ecliptic x, z, −y); at another star: the planets by Kepler
+  bodies: () => (system.model?.isSol ? system.model.bodies : [SUN, ...PLANETS]),
+  posAU: (id, jd) => {
+    if (!system.model?.isSol) return id === 'sun' ? [0, 0, 0] : heliocentric(id, jd);
+    const p = system.positionOf(id, jd); return [p[0], -p[2], p[1]];
+  },
+  jd: () => clock.jd,
+  stars: () => voiceStars ?? [],
+  source: () => (!system.model?.isSol ? 'Kepler elements (the ship is outside Sol)' : settings.get('ephemeris') === 'horizons' ? 'JPL Horizons (Kepler where not loaded)' : 'Kepler elements'),
+});
 const computer = createComputer({
   context: () => screenContext(),
   names: () => {
@@ -563,6 +576,8 @@ const computer = createComputer({
     return { ok: false, error: `unknown helm command ${command}` };
   },
   setLayer: (k, on) => settings.set(k, on),
+  // the ship's calculators: Sol positions from the System View (Horizons or Kepler), the ship's clock, nearby stars
+  calc: (name, args) => shipCalc.run(name, args),
   comms: (c) => (route.level === 'comms' ? comms.voice(c) : { ok: false, error: 'Open COMMS first (top bar).' }), // #69
   setTime: (iso) => { if (/^now$/i.test(iso)) { clock.now(); return true; } const t = Date.parse(iso); if (!Number.isFinite(t)) return false; clock.set(jdFromDate(new Date(t))); return true; },
   canInterrupt: () => !!settings.get('voiceInterrupt'),

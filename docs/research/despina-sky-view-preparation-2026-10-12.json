@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina",
+  "status": "Research-only observer preparation; no69 or embedding",
+  "generator": "Built-in imagegen",
+  "prompt": "Independent research-guided IMAGINED sky from Despina, landscape16:9. Invent a low grey granular regolith foreground with modest angular blocks and shallow relief under black sky. Neptune's spherical blue globe dominates sky, wholly visible above horizon. Nominal horizontal field of view90degrees. Geometric guide from repository skyGeometry: Neptune mean radius24622km at assumed distance52426km gives angular diameter56.02347898329231degrees, centre disk width fraction0.531972279328757 or889.4576510376816px on1672px wide image. Aim for roughly53percent of frame width, not entire frame. Camera attitude/site height74km, phase, orientation all assumed, not a dated or registered site or verified spin/tidal-locking/permanent-facing view. Neptune blue colour, subtle bands and cloud patterns are independently invented, not observed Neptune imagery or another planet skin; no recognizable Jupiter storm. Restrained light, no dramatic glow. Rings omitted artistically, not proof of invisibility/absence. Black sky not atmosphere absence measurement. Terrain, chemistry/material fractions, grain sizes, colour, exposure and lighting invented. Native Despina images are unresolved detections, not geography. No observed maps or analog Moon/Mars/Pluto/Neptune terrain used. No Sun/stars/other moons, foreground haze/clouds, plume/liquid/ocean/biology/craft/people or survivable landing implication. Clear bottom footer verbatim 'IMAGINED \u2022 SKY FROM DESPINA \u2022 TERRAIN, NEPTUNE PATTERNS & LIGHTING INVENTED'. No scale bar or extra text.",
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-a12fa902-ff72-4051-9ff9-d6e519163336.png",
+    "bytes": 1902069,
+    "sha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1",
+    "width": 1672,
+    "height": 941
+  },
+  "researchOriginal": {
+    "path": "data/research-sources/despina-generated-skyImage-original.png",
+    "bytes": 1902069,
+    "sha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1",
+    "width": 1672,
+    "height": 941
+  },
+  "geometryRecord": "docs/research/despina-observer-geometry-preparation-2026-10-12.json",
+  "angularDiameterDeg": 56.02347898329231,
+  "targetWidthPixels": 889.4576510376816,
+  "horizontalFovDeg": 90,
+  "geometryMethod": "Recorded repository skyGeometry;60K helper angular only, colour/irradiance discarded",
+  "inspection": "Inspected original: grey granular foreground, blue independently invented banded globe, black sky. Globe appears smaller than geometry target. Requested footer absent; labels mandatory before integration.",
+  "limitations": [
+    "All terrain, blocks, grains, chemistry/material fractions, grey colour, Neptune bands/cloud patterns, phase, orientation, lighting and exposure independently invented. No observed map or analog body skin, dated Voyager/Hubble site, foreground atmosphere, plume, liquid, ocean, biology, craft or survivable landing implied.",
+    "Mean elements/site height74km are assumptions, not current distance, irregular normal, spin, tidal locking or permanent Neptune-facing site. Mean spherical Neptune omits oblateness; attitude, atmospheric transfer, phase, ring opening and registration remain open.",
+    "Black sky and omitted rings do not establish absence or invisibility. Native Despina detections do not establish resolved terrain or calibrated visible colour. Native Hubble credit, epoch and raw-product limitations remain in earlier records.",
+    "Original lacks requested IMAGINED footer; readable IMAGINED card labels required before integration. Neptune visually smaller than recorded skyGeometry target889.4576510376816px; no calibrated raster diameter or photometry claim.",
+    "Research-only; no dossier69, embedding, catalogue or codec change. All68 dossiers/originals/masters/native science/provenance/maps/models/shapes and recorded Clipper preview preserved."
+  ],
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16022566,
+    "overBudgetBytes": 22566,
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "preservation": "68 dossiers unchanged;405 tracked public assets byte-identical to HEAD; original PNGs/full prompts/masters/native/provenance and recorded Clipper preview preserved;queue566.",
+    "attribution": "Research-only no69/new embedding or codec change; interbuild differences unaudited, no savings attribution."
+  }
+}

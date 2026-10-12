@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina",
+  "status": "Research-only; no69 or embedding",
+  "assets": [
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/despina-generated-surfaceImage-original.png",
+        "bytes": 2559084,
+        "sha256": "549afa735c148da4f60cab2c5436b6b906775bd59e69b8073ccd7b195cfb7f03",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/despina-generated-surfaceImage-master.jpg",
+      "bytes": 303779,
+      "sha256": "d59d3c1e59e14af4c098c73320012ff2df6d139c04106760f69ac1c5f62e2dd8",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/despina-generated-surfaceImage-original.png",
+        "bytes": 2559084,
+        "sha256": "549afa735c148da4f60cab2c5436b6b906775bd59e69b8073ccd7b195cfb7f03",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/despina-generated-surfaceImage-preview.jpg",
+      "bytes": 9329,
+      "sha256": "70485ae4b1f0400092c5deb8631542c8224ec04b1ad0073e1065cb5e955c2cc1",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/despina-generated-skyImage-original.png",
+        "bytes": 1902069,
+        "sha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/despina-generated-skyImage-master.jpg",
+      "bytes": 203247,
+      "sha256": "f0ee75fa520f09eb1fba20d2b2f702c67fe154add3522c52f223dfcb9b43bb19",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/despina-generated-skyImage-original.png",
+        "bytes": 1902069,
+        "sha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/despina-generated-skyImage-preview.jpg",
+      "bytes": 6809,
+      "sha256": "fb81032694d49c6759b1ce97cfabe49e9d292e0f5973d628fea18a25b27cdf21",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "previewRawBytes": 16138,
+  "limitations": [
+    "All terrain, blocks, grains, chemistry/material fractions, grey colour, Neptune bands/cloud patterns, phase, orientation, lighting and exposure independently invented. No observed map or analog body skin, dated Voyager/Hubble site, foreground atmosphere, plume, liquid, ocean, biology, craft or survivable landing implied.",
+    "Mean elements/site height74km are assumptions, not current distance, irregular normal, spin, tidal locking or permanent Neptune-facing site. Mean spherical Neptune omits oblateness; attitude, atmospheric transfer, phase, ring opening and registration remain open.",
+    "Black sky and omitted rings do not establish absence or invisibility. Native Despina detections do not establish resolved terrain or calibrated visible colour. Native Hubble credit, epoch and raw-product limitations remain in earlier records.",
+    "Original lacks requested IMAGINED footer; readable IMAGINED card labels required before integration. Neptune visually smaller than recorded skyGeometry target889.4576510376816px; no calibrated raster diameter or photometry claim.",
+    "Research-only; no dossier69, embedding, catalogue or codec change. All68 dossiers/originals/masters/native science/provenance/maps/models/shapes and recorded Clipper preview preserved."
+  ],
+  "inspection": "Both256 JPEG previews inspected: local footer very small, sky footer absent; readable IMAGINED card labels required before integration. Neptune smaller than geometry target; uncalibrated. Both originals retained unchanged.",
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16022566,
+    "overBudgetBytes": 22566,
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "preservation": "68 dossiers unchanged;405 tracked public assets byte-identical to HEAD; original PNGs/full prompts/masters/native/provenance and recorded Clipper preview preserved;queue566.",
+    "attribution": "Research-only no69/new embedding or codec change; interbuild differences unaudited, no savings attribution."
+  }
+}

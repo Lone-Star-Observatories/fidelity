@@ -1,4 +1,4 @@
-// COMMS (#69): reception only. The backend
+// COMMS (#69): reception. The backend
 //   - relays internet radio streams the station map lists (/api/comms/stream), stripping SHOUTcast/
 //     Icecast metadata and keeping the current title (/api/comms/nowplaying);
 //   - fetches traffic-camera stills and clips the map lists (/api/comms/media);
@@ -7,7 +7,7 @@
 //   - streams a local RTL-SDR through rtl_fm (ws /api/rf/local) and sweeps it with rtl_power
 //     (/api/rf/local/scan).
 // Every upstream address must come from the cached station lists: this is not an open proxy.
-// Nothing here transmits.
+// Nothing here transmits: transmission (a licensed operator, amateur bands only) is server/tx.js.
 
 import net from 'node:net';
 import tls from 'node:tls';
@@ -157,27 +157,48 @@ export function rxScanCmd(driver, { fromHz, toHz, step }, tools) {
 }
 
 let deviceCache = null;
-/** SDR hardware and tools on this machine. Transmit-capable devices are reported, not used. */
+/**
+ * SDR hardware and tools on this machine. `tx` lists transmit-capable devices (HackRF, bladeRF;
+ * an RTL-SDR only receives), `ready` when their transmit tool is installed; server/tx.js uses them
+ * only for a licensed operator's hailing frequency. FIDELITY_FAKE_TX=1 (development only) adds a
+ * simulated transmitter that radiates nothing.
+ */
 export async function rfDevices() {
   if (deviceCache && Date.now() - deviceCache.at < 30000) return deviceCache.value;
-  const [rtl, hack, blade, soapy, rtlFm, rtlPower, rxFm, rxPower] = await Promise.all([
+  const [rtl, hack, blade, soapy, rtlFm, rtlPower, rxFm, rxPower, hackTx] = await Promise.all([
     probe('rtl_test', ['-t']), probe('hackrf_info', []), probe('bladeRF-cli', ['-p']), probe('SoapySDRUtil', ['--find']),
-    probe('rtl_fm', ['-h'], 2000), probe('rtl_power', ['-h'], 2000), probe('rx_fm', ['-h'], 2000), probe('rx_power', ['-h'], 2000)]);
+    probe('rtl_fm', ['-h'], 2000), probe('rtl_power', ['-h'], 2000), probe('rx_fm', ['-h'], 2000), probe('rx_power', ['-h'], 2000), probe('hackrf_transfer', ['-h'], 2000)]);
   const rtlN = Number(rtl.out.match(/Found (\d+) device/)?.[1] ?? 0);
   const hackN = (hack.out.match(/Serial number/gi) ?? []).length;
   // bladeRF-cli -p lists a "Serial" line per connected board; SoapySDRUtil --find also names a bladerf driver
   const bladeN = (blade.out.match(/Serial\s*#?:/gi) ?? []).length || (/driver\s*=\s*bladerf/i.test(soapy.out) ? 1 : 0);
-  const tools = { rtl_test: rtl.ok, rtl_fm: rtlFm.ok, rtl_power: rtlPower.ok, rx_fm: rxFm.ok, rx_power: rxPower.ok, hackrf_info: hack.ok, bladeRF_cli: blade.ok, SoapySDRUtil: soapy.ok };
+  // bladeRF-cli -p names the board ("Nuand bladeRF 2.0" for the 2.0 micro); a bladeRF x40/x115 tunes 300 MHz–3.8 GHz
+  const bladeModel = /bladeRF\s*2\.0/i.test(blade.out) ? '2.0' : /Description:.*bladeRF/i.test(blade.out) ? '1' : null;
+  const tools = { rtl_test: rtl.ok, rtl_fm: rtlFm.ok, rtl_power: rtlPower.ok, rx_fm: rxFm.ok, rx_power: rxPower.ok, hackrf_info: hack.ok, hackrf_transfer: hackTx.ok, bladeRF_cli: blade.ok, SoapySDRUtil: soapy.ok };
   const rxDev = (driver, kind, n) => ({ kind, driver, label: `${kind.toUpperCase()}${n > 1 ? ` × ${n}` : ''}`, rangeHz: deviceRange(driver),
     streaming: rxStreamCmd(driver, { freqHz: deviceRange(driver)[0], mode: 'nbfm' }, tools).cmd != null, scanning: rxScanCmd(driver, { fromHz: deviceRange(driver)[0], toHz: deviceRange(driver)[0] + 1e6, step: 1e4 }, tools).cmd != null });
   const value = {
     rx: [...(rtlN ? [rxDev('rtl', 'rtl-sdr', rtlN)] : []), ...(bladeN ? [rxDev('bladerf', 'bladeRF', bladeN)] : []), ...(hackN ? [rxDev('hackrf', 'hackrf', hackN)] : [])],
-    tx: [...(hackN ? [{ kind: 'hackrf', label: `HackRF × ${hackN}` }] : []), ...(bladeN ? [{ kind: 'bladeRF', label: `bladeRF${bladeN > 1 ? ` × ${bladeN}` : ''}` }] : [])].map((d) => ({ ...d, note: 'Transmit-capable. Transmission is not enabled in this version.' })),
+    tx: txDevices({ hackN, bladeN, bladeModel, tools, fake: process.env.FIDELITY_FAKE_TX === '1' }),
     tools,
     soapy: soapy.ok ? soapy.out.split('\n').filter((l) => /driver|label/i.test(l)).slice(0, 12) : [],
   };
   deviceCache = { at: Date.now(), value };
   return value;
+}
+
+/** Transmit-capable devices from the probe counts (pure). The bladeRF is the primary transmitter (listed first). */
+export function txDevices({ hackN = 0, bladeN = 0, bladeModel = null, tools = {}, fake = false }) {
+  const bladeLabel = bladeModel === '2.0' ? 'bladeRF 2.0 micro' : bladeModel === '1' ? 'bladeRF x40/x115' : 'bladeRF';
+  return [
+    ...(bladeN ? [{ kind: 'bladeRF', driver: 'bladerf', model: bladeModel, label: `${bladeLabel}${bladeN > 1 ? ` × ${bladeN}` : ''}`, tool: 'bladeRF-cli', ready: !!tools.bladeRF_cli,
+      rangeHz: bladeModel === '1' ? [300e6, 3.8e9] : deviceRange('bladerf'),
+      note: tools.bladeRF_cli ? 'Transmits through bladeRF-cli (SC16 Q11 IQ from stdin, 2 Msps, lowest TX gain by default).' : 'bladeRF-cli is not installed (install libbladeRF / bladeRF-cli) — cannot transmit.' }] : []),
+    ...(hackN ? [{ kind: 'hackrf', driver: 'hackrf', label: `HackRF${hackN > 1 ? ` × ${hackN}` : ''}`, tool: 'hackrf_transfer', ready: !!tools.hackrf_transfer, rangeHz: deviceRange('hackrf'),
+      note: tools.hackrf_transfer ? 'Transmits through hackrf_transfer (int8 IQ on stdin), RF amp off.' : 'hackrf_transfer is not installed (install the hackrf tools) — cannot transmit.' }] : []),
+    ...(fake ? [{ kind: 'simulated', driver: 'fake', label: 'SIMULATED TX', tool: null, ready: true, fake: true, rangeHz: [1e6, 6e9],
+      note: 'FIDELITY_FAKE_TX=1: a development stand-in. The modulator runs; the IQ goes nowhere and nothing radiates.' }] : []),
+  ];
 }
 
 /** Sweep a local RTL-SDR with rtl_power and list clear signals. from/to Hz, span ≤ 40 MHz. */
@@ -198,15 +219,15 @@ export async function localScan(fromHz, toHz, driver = 'rtl') {
 
 // ---- websockets ----------------------------------------------------------------------------------
 
-/** Accept a browser WebSocket: { send(text|Buffer), onMessage(fn), onClose(fn), close() }. */
-function acceptSocket(req, socket) {
+/** Accept a browser WebSocket: { send(text|Buffer), onMessage(fn), onBinary(fn), onClose(fn), close() }. */
+export function acceptSocket(req, socket) {
   const refuse = (code, msg) => { socket.end(`HTTP/1.1 ${code} ${msg}\r\ncontent-type: text/plain\r\n\r\n${msg}`); return null; };
   if (!allowedOrigin(req.headers.origin, req.headers.host)) return refuse(403, 'Forbidden origin');
   const key = req.headers['sec-websocket-key'];
   if (!key || req.headers.upgrade?.toLowerCase() !== 'websocket') return refuse(400, 'Bad Request');
   socket.write(['HTTP/1.1 101 Switching Protocols', 'Upgrade: websocket', 'Connection: Upgrade', `Sec-WebSocket-Accept: ${acceptKey(key)}`, '', ''].join('\r\n'));
   socket.setNoDelay(true);
-  let rest = Buffer.alloc(0), onMsg = () => {}, onClose = () => {}, closed = false;
+  let rest = Buffer.alloc(0), onMsg = () => {}, onBin = () => {}, onClose = () => {}, closed = false;
   const close = () => {
     if (closed) return;
     closed = true;
@@ -220,6 +241,7 @@ function acceptSocket(req, socket) {
       if (f.opcode === 8) return close();
       if (f.opcode === 9) { socket.write(encodeFrame(f.payload, 10)); continue; }
       if (f.opcode === 1) onMsg(f.payload.toString());
+      else if (f.opcode === 2) onBin(f.payload);
     }
   });
   socket.on('close', close);
@@ -227,6 +249,7 @@ function acceptSocket(req, socket) {
   return {
     send: (x) => { if (!closed && !socket.destroyed) socket.write(typeof x === 'string' ? encodeFrame(x) : encodeFrame(x, 2)); },
     onMessage: (fn) => { onMsg = fn; },
+    onBinary: (fn) => { onBin = fn; },
     onClose: (fn) => { onClose = fn; },
     close,
   };

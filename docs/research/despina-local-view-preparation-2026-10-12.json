@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina",
+  "status": "Research-only independent imagined local illustration; no new dossier or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Create an independent research-guided IMAGINED local observer illustration for Despina, Neptune's small irregular moon. Wide 16:9 landscape. Low camera above a wholly invented grey granular regolith foreground, small angular grey blocks, shallow depressions and uneven low relief toward a low horizon. Restrained grey tones, weak directional illumination, deep shadows; black sky is an artistic assumption, not an atmospheric absence measurement. No astronomical disks, Neptune, Sun, rings, stars, spacecraft, people, vegetation, liquids, exposed ocean, active plume, fog or biology. No survivable landing implication. Despina is unresolved in available native detections; do not suggest mapped or measured local geology, material fractions or chemistry. Do not reproduce or recolour any observed Moon, Mars, Pluto or other body's terrain or map. Invent this terrain independently with no reference image. No dated Voyager/Hubble site, registered coordinates, tidal locking or permanent Neptune-facing site implied. Composition should be sober scientific hypothetical observer artwork, not dramatic fantasy. Add a clearly readable bottom footer verbatim: 'IMAGINED \u2022 DESPINA LOCAL VIEW \u2022 TERRAIN, COLOUR & LIGHTING INVENTED'. No other text.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5e197ef9-4828-47f3-bc94-a53afedf251f.png",
+  "researchCopy": "data/research-sources/despina-generated-surfaceImage-original.png",
+  "inspection": "Original displayed and inspected: independent grey granular low relief, shallow depressions, angular blocks, black sky and clearly legible IMAGINED DESPINA footer. No astronomical disk, liquid, plume, biology or landing equipment.",
+  "references": [
+    "docs/research/despina-moon-preparation-2026-10-12.json",
+    "docs/research/despina-hubble-credit-assessment-2026-10-12.json",
+    "docs/research/despina-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "limitations": [
+    "All terrain, relief, grain and block sizes, chemistry/material fractions, grey colour, lighting and exposure invented; no observed body map reused.",
+    "Native Hubble/Voyager detections do not resolve local geography, physical elongation or calibrated visible colour. All native credit, acquisition and product-crosswalk uncertainties retained.",
+    "Black sky assumed, not atmospheric absence measurement. No dated registered site, spin, tidal locking or permanent Neptune-facing claim.",
+    "No astronomical disk or angular/raster size claim. Observer illustration, masters and previews remain outstanding.",
+    "All68 dossiers and original/master/native/provenance/map/model/shape assets preserved. No69th dossier, embedding, catalogue or codec change."
+  ],
+  "original": {
+    "bytes": 2559084,
+    "sha256": "549afa735c148da4f60cab2c5436b6b906775bd59e69b8073ccd7b195cfb7f03",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "defaultAndResearchBytesIdentical": true
+  },
+  "preservation": "405 tracked public assets byte-identical to HEAD; registry unchanged; all68 dossiers preserved; recorded Clipper preview retained; queue566.",
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16022566,
+    "overBudgetBytes": 22566,
+    "browser": "No new passing full/offline browser claim; other engines remain open.",
+    "attribution": "Research-only original not embedded. Production codecs unchanged; interbuild differences unaudited, no savings attribution."
+  }
+}

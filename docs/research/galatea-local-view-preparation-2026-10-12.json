@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "body": "Galatea",
+  "status": "Research-only independent imagined local illustration; no new dossier or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Create a completely independent research-guided hypothetical local terrain illustration for Galatea, Neptune's small inner moon. Landscape 16:9. This is an IMAGINED illustration, not an observed photograph or a registered Voyager location. Camera just above gently uneven ground: low irregular relief, modest shallow depressions, angular blocks scattered through fine grey granular regolith, varied small pebbles and subtle restrained grey tonal differences. Avoid recognizable features of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body's map; do not reference or reuse another body's geography. Galatea Voyager sources are tiny detections amid glare and do not resolve local terrain. Recent unresolved NIRSpec spectra show OH and a 2.72-micron feature interpreted through laboratory Mg-serpentine comparisons; they do not measure local material fractions, visible grey colour, rock grain sizes, landscape morphology, water ice absence, an ocean, a plume, or biology. Thus all depicted terrain, blocks, grain sizes, relief, chemistry/material fractions, grey colour, lighting and exposure are invented assumptions. Use a subdued low directional light from outside frame. Near-black sky is artistic transparency, not a measurement of atmospheric absence. No Neptune, Sun, stars, rings or other astronomical disk in this local view; no angular or raster-size claim. No haze, clouds, exposed liquid, rain, plume, ocean, vegetation, people, spacecraft, landing equipment or implication of survivable landing. No claim of tidal locking or a permanent Neptune-facing location. Composition: ground fills lower two thirds, low uneven horizon, dark upper third; natural restrained texture without dramatic mountains or enormous sharp craters. Place a clearly legible small pale footer on a dark strip: 'GALATEA \u2014 IMAGINED LOCAL VIEW' and a second line 'Terrain, materials, colour and lighting assumed; no observed site registration'. No other text or scale bar.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-69961888-4495-400c-b4f4-917d02aa7c84.png",
+  "researchCopy": "data/research-sources/galatea-generated-surfaceImage-original.png",
+  "inspection": "Original displayed and inspected: independently imagined low grey granular relief, shallow depression, angular blocks, restrained directional light and near-black sky. Clearly readable GALATEA \u2014 IMAGINED LOCAL VIEW and assumed-terrain footer. No astronomical disk, observed site, plume, liquid, biology or landing equipment.",
+  "references": [
+    "docs/research/galatea-moon-preparation-2026-10-12.json",
+    "docs/research/galatea-primary-spectroscopy-assessment-2026-10-12.json",
+    "docs/research/galatea-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "limitations": [
+    "Terrain, block and grain sizes, shallow relief, chemistry/material fractions, grey colour, lighting and exposure are invented; no observed body's map or analog skin reused.",
+    "Native Voyager detection amid glare/ring/star streaks does not resolve this terrain, local shape or elongated morphology. Caption identity/date/filter/product conflicts remain open.",
+    "Unresolved OH/2.72-micron feature and laboratory Mg-serpentine interpretation do not map local minerals or Voyager pixels; nondetection of ice/CO2 does not prove absence. Proteus weak CO2 and combined ring spectra are not Galatea measurements.",
+    "Black sky is assumed transparency, not measured atmospheric absence. No tidal-locking or permanent Neptune-facing site claim.",
+    "No astronomical disk or angular/raster size claim. Observer illustration, masters and recorded previews remain outstanding; verified skyGeometry record is not registration of this local view.",
+    "All68 dossiers, originals, masters, native science, maps, models, shapes and provenance retained. No69th dossier, new embedding, membership or codec change."
+  ],
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16021514,
+    "overBudgetBytes": 21514,
+    "browser": "No new passing full/offline browser claim; other engines remain open.",
+    "preservation": "68 dossiers/registry unchanged;405 tracked public bespoke/model/shape/texture inputs byte-identical to HEAD;recorded Clipper preview preserved;queue566.",
+    "attribution": "Research-only original image not embedded; production codecs unchanged. Interbuild differences unaudited; no size-saving attribution."
+  },
+  "original": {
+    "bytes": 2690465,
+    "sha256": "043f86c2e71e60f351e4497766c198766b7a6d487194830ba25e711bef354c08",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "defaultAndResearchBytesIdentical": true
+  }
+}

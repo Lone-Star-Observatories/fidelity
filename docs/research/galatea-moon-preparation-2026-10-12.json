@@ -1,0 +1,96 @@
+{
+  "body": "Galatea (Neptune VI), S/1989 N4 / 1989N4",
+  "status": "research-only; no new dossier or embedding",
+  "retrieved": "2026-10-12",
+  "sources": [
+    {
+      "path": "data/research-sources/galatea-overview.html",
+      "url": "https://science.nasa.gov/neptune/moons/galatea/",
+      "bytes": 259125,
+      "sha256": "10f36408e52b6e4350f76d921787d5eca3d08d855c9271fdc7a7ff2cad308f36"
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-caption.html",
+      "url": "https://science.nasa.gov/photojournal/neptune-partial-rings/",
+      "bytes": 265942,
+      "sha256": "d9e5b0c452aee58d035c0daf9de8848b8a15babaf9bc5a5fa2fe7a7533c5b45c"
+    },
+    {
+      "path": "data/research-sources/galatea-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320653,
+      "sha256": "1dea7b4ee84db93e2becf77646abba236e08738e0828fe9d5dabc715e3af3a75"
+    },
+    {
+      "path": "data/research-sources/galatea-voyager-overview-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/galatea_main.jpg",
+      "bytes": 130383,
+      "sha256": "8664ab5363aa464a0abc086593ea6917755cbb4eb37107dab03a8177338d777d",
+      "dimensions": [
+        768,
+        788
+      ]
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.jpg",
+      "bytes": 47523,
+      "sha256": "7f1238aa250dd442b3c927ddf3364de6cf46ce3e000594c481a534038f5c6d22",
+      "dimensions": [
+        373,
+        438
+      ]
+    },
+    {
+      "path": "data/research-sources/galatea-PIA02200-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02200/PIA02200.tif",
+      "bytes": 48144,
+      "sha256": "161a2d7ed90c9fae0a6c7ed851b500493b41848cb37f1f20aab93a191f939de8",
+      "dimensions": [
+        373,
+        438
+      ]
+    }
+  ],
+  "nativeAssessment": {
+    "credit": "NASA/JPL",
+    "terms": "Active NASA images/media terms retained; no CC BY assertion.",
+    "observationDate": null,
+    "imageAdditionDate": "1999-07-25 (PIA02200); distinct from acquisition",
+    "dateLimits": "NASA overview dates discovery to July 1989; acquisition date/UTC is not established by that discovery date. Exact acquisition and raw product crosswalk remain open. Relative caption today/earlier this month is not a verified UTC. Overview asset path 2023/07 is not observation date.",
+    "instrument": "PIA02200 caption and metadata identify Voyager 2 narrow-angle camera and 155-second exposure. Filter remains unverified.",
+    "inspection": "Both JPEGs show annotated 1989N4 detection amid Neptune glare/noise, faint ring arc and two star streaks. No resolved surface geography or calibrated visible colour. No new angular/raster scale calculation. TIFF retained unchanged.",
+    "processing": "Publisher JPEGs and TIFF downloaded unchanged. Overview 768x788 image and PIA02200 373x438 image are distinct renditions; no byte/pixel identity or full original science-pixel preservation claim.",
+    "captionEstimates": "Historical ring lengths and orbital distances are source-caption estimates, not current ephemerides, new raster measurements or uncertainties."
+  },
+  "identityAndMetadataConflicts": [
+    "NASA overview lead says Voyager 1 science team; its Discovery section says Voyager 2. PIA02200 spacecraft metadata/caption also says Voyager 2. Preserve inconsistency; do not adopt Voyager 1 as Galatea observation spacecraft.",
+    "PIA02200 image alt text describes a Galileo Jupiter hotspot, inconsistent with title, image and caption. It must not establish Jupiter provenance or geography for Galatea.",
+    "1989N4 label matches NASA overview initial designation S/1989 N4; ring arc/glare/stars are context, not Galatea terrain."
+  ],
+  "limitations": [
+    "No map/globe/shape adopted or generated; no other body skin assigned.",
+    "Streaked detection is not a measured elongated shape; blur/noise does not establish local relief or material fractions.",
+    "Background blackness does not measure atmospheric absence; visible glare is not a calibrated atmosphere.",
+    "Ring-debris/collision interpretations in historical caption are hypotheses, not detected composition or direct formation history.",
+    "Exact raw product, acquisition UTC, filter, processing lineage, frame, coverage, current rotation/shape, photometry and body-specific 2026 spectroscopy audit remain open.",
+    "No exhaustive newest-observation claim."
+  ],
+  "preservation": {
+    "deliveredDossiers": 68,
+    "trackedAssetsByteEqualToHEAD": 405,
+    "mismatches": [],
+    "statement": "All originals, masters, native science, provenance, registry, map/model/shape bytes and production codecs retained; no 69th dossier."
+  },
+  "validation": {
+    "tests": "483 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard 16,000,000-byte gate",
+    "htmlBytes": 16017306,
+    "overBudgetBytes": 17306,
+    "queue": 566,
+    "deliveredDossiers": 68,
+    "browser": "No new passing full artifact or offline browser claim. Other browser engines remain open.",
+    "interbuildLimit": "Difference from prior 16015991-byte failure not independently audited; no asset or compression savings attribution. Production codecs unchanged."
+  }
+}
