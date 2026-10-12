@@ -796,6 +796,29 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .cx-rx-steps .pill, .cx-rx .pill { font-size: calc(11px * var(--text-scale, 1)); }
 .cx-rx .pill.on { background: var(--orange); }
 .cx-rx-vol { flex: 1; accent-color: var(--orange); }
+/* COMMS transmit (#69): the big red TRANSMITTING indicator and TRANSMIT SETUP */
+.cx-tx-live { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; padding: 10px 18px; border-radius: 22px 8px 8px 22px;
+  background: #3a0000; border: 3px solid var(--red); box-shadow: 0 0 18px rgba(255, 68, 51, 0.55); }
+.cx-tx-live[hidden] { display: none; }
+.cx-tx-dot { color: var(--red); font-size: calc(34px * var(--text-scale, 1)); line-height: 1; animation: cx-pulse 1s ease-in-out infinite; }
+.cx-tx-text { display: grid; gap: 4px; flex: 1; min-width: 220px; }
+.cx-tx-big { color: #fff; background: var(--red); justify-self: start; padding: 2px 14px; border-radius: 6px; font-size: calc(30px * var(--text-scale, 1)); letter-spacing: 0.22em; font-weight: bold; }
+.cx-tx-freq { color: #ffd0c8; font-size: calc(18px * var(--text-scale, 1)); letter-spacing: 0.08em; }
+.cx-tx-sub { color: #ffb0a4; font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.1em; }
+.cx-tx-live .pill { --c: var(--red); color: #000; min-width: 200px; }
+.cx-tx-live.closing .cx-tx-big { background: var(--orange); color: #000; }
+.cx-tx-text .badge { justify-self: start; }
+.cx-tx-lab { color: var(--peach); min-width: 92px; font-size: calc(11px * var(--text-scale, 1)); }
+.cx-tx-call { text-align: left; text-transform: uppercase; }
+.cx-tx-num { flex: 0 0 64px; min-width: 64px; }
+.cx-tx-select { flex: 1; min-width: 0; background: #000; color: var(--orange); border: 2px solid var(--lilac); border-radius: 12px; padding: 4px 8px; font-size: calc(12px * var(--text-scale, 1)); }
+.cx-tx-att { align-items: flex-start; line-height: 1.35; }
+.pill.cx-tx-open { --c: var(--red); }
+.cx-tx-dir { color: #000; background: var(--peach); justify-self: start; padding: 1px 10px; border-radius: 6px; font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.12em; }
+.cx-tx-antrow { border-left: 4px solid var(--lilac); padding: 4px 0 4px 8px; display: grid; gap: 4px; }
+.cx-tx-antrow.sel { border-left-color: var(--orange); background: rgba(255, 153, 0, 0.08); }
+.cx-tx-bands { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.cx-tx-unknown { color: var(--red); font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.08em; }
 /* loading curtain between main views (viewcurtain.js) */
 .view-curtain { position: absolute; inset: 0; z-index: 4; background: #000; display: grid; place-content: center; justify-items: center; gap: 14px; }
 .view-curtain[hidden] { display: none; }

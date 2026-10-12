@@ -6,8 +6,11 @@
 //     scans the receiver's whole 0–30 MHz view for clear signals to jump to.
 //   Local RTL-SDR (ws /api/rf/local): audio only (no waterfall); scanning uses the backend sweep.
 //   The audio runs through the shared COMMS chain (jitter buffer, hiss filter, auto-notch).
+//   A frequency converter in the local SDR's path (Ham It Up, src/data/converter.js): the console
+//   works in antenna-side frequencies; only the tune and sweep requests use the SDR's frequency.
 
 import { kiwiTag, parseKiwiMsg, parseKiwiSnd, parseKiwiWf, MODES, passband, findSignals, formatFrequency, bandName, suggestMode } from '../../data/rf.js';
+import { toDeviceHz, toAntennaHz, antennaRange, converting, converterLabel } from '../../data/converter.js';
 
 const el = (tag, props = {}, ...kids) => {
   const e = Object.assign(document.createElement(tag), props);
@@ -24,7 +27,7 @@ function heat(db, min, max) {
 }
 
 /** A receiver console bound to the COMMS audio chain. mount() opens the link; it renders into `screen` (waterfall) and `console` (controls). */
-export function createReceiver({ audio, pill, badge, onPanel }) {
+export function createReceiver({ audio, pill, badge, onPanel, converter = () => null }) {
   let rx = null, ws = null, wf = null, wfCtx = null, pollRaf = 0;
   const KIWI_SPAN = 30e6; // a Kiwi's full view, used for the waterfall and scan
 
@@ -92,7 +95,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   function updateReadout() {
     const f = document.getElementById('cx-freq'), s = document.getElementById('cx-sub');
     if (f) f.textContent = formatFrequency(rx.freqHz);
-    if (s) s.textContent = `${rx.name.toUpperCase()} · ${rx.mode.toUpperCase()} · ${rx.bwHz >= 1000 ? `${(rx.bwHz / 1000).toFixed(1)} kHz` : `${rx.bwHz} Hz`}${rx.rssi != null ? ` · ${rx.rssi.toFixed(0)} dBm` : ''}${bandName(rx.freqHz) ? ` · ${bandName(rx.freqHz)}` : ''}`;
+    if (s) s.textContent = `${rx.name.toUpperCase()}${rx.conv ? ` · VIA ${converterLabel(rx.conv)} (SDR ${formatFrequency(toDeviceHz(rx.freqHz, rx.conv))})` : ''} · ${rx.mode.toUpperCase()} · ${rx.bwHz >= 1000 ? `${(rx.bwHz / 1000).toFixed(1)} kHz` : `${rx.bwHz} Hz`}${rx.rssi != null ? ` · ${rx.rssi.toFixed(0)} dBm` : ''}${bandName(rx.freqHz) ? ` · ${bandName(rx.freqHz)}` : ''}`;
   }
 
   /** The control panel (goes in the right finder). */
@@ -132,7 +135,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
       agcRow,
       el('div', { className: 'cx-rx-row' }, el('span', { className: 'mono', textContent: 'VOLUME' }), vol),
       el('h3', { textContent: 'SCAN' }), scanBtn, results,
-      el('p', { className: 'note', textContent: rx.local ? 'Local SDR: the backend sweeps the band with rtl_power. Reception only — nothing is transmitted.' : 'KiwiSDR: the receiver scans its own 0–30 MHz view. Public receivers have listener slots and time limits; be a good guest. Reception only.' }),
+      el('p', { className: 'note', textContent: rx.local ? `Local SDR: the backend sweeps the band with rtl_power.${rx.conv ? ` Through the ${converterLabel(rx.conv)}: every frequency shown is the true (antenna-side) one; the SDR tunes ${toDeviceHz(0, rx.conv) > 0 ? '+' : ''}${(toDeviceHz(0, rx.conv) / 1e6).toFixed(3)} MHz from it.` : ''} Reception only.` : 'KiwiSDR: the receiver scans its own 0–30 MHz view. Public receivers have listener slots and time limits; be a good guest. Reception only.' }),
       badge('reported', rx.local ? 'Your own SDR hardware.' : rx.layer?.credit ?? ''));
     return box;
   }
@@ -159,7 +162,7 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   function retune() {
     if (ws?.readyState !== 1) return;
     rx.playing = true;
-    const msg = rx.local ? { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, gain: null, driver: rx.driver } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
+    const msg = rx.local ? { type: 'tune', freqHz: toDeviceHz(rx.freqHz, rx.conv), mode: rx.mode, gain: null, driver: rx.driver } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
     ws.send(JSON.stringify(msg));
   }
 
@@ -170,8 +173,9 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
     let signals = [];
     if (rx.local) {
       try {
-        const j = await fetch(`/api/rf/local/scan?from=${Math.max(rx.minHz, rx.freqHz - 2e6)}&to=${Math.min(rx.maxHz, rx.freqHz + 2e6)}&driver=${rx.driver}`).then((r) => r.json());
-        signals = j.signals ?? [];
+        const from = toDeviceHz(Math.max(rx.minHz, rx.freqHz - 2e6), rx.conv), to = toDeviceHz(Math.min(rx.maxHz, rx.freqHz + 2e6), rx.conv);
+        const j = await fetch(`/api/rf/local/scan?from=${Math.min(from, to)}&to=${Math.max(from, to)}&driver=${rx.driver}`).then((r) => r.json());
+        signals = (j.signals ?? []).map((s) => ({ ...s, freqHz: toAntennaHz(s.freqHz, rx.conv) })); // back to the antenna side
       } catch { results.replaceChildren(el('p', { className: 'warn', textContent: 'Sweep failed (is the dongle busy?).' })); return; }
     } else {
       if (!wfBuf.length) { results.replaceChildren(el('p', { className: 'note', textContent: 'No waterfall yet — give it a moment.' })); return; }
@@ -191,9 +195,11 @@ export function createReceiver({ audio, pill, badge, onPanel }) {
   // ---- lifecycle ----------------------------------------------------------------------------------
   function open(receiver, setScreen) {
     close();
-    const minHz = receiver.minHz ?? (receiver.local ? 24e6 : 0), maxHz = receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6);
-    const startHz = receiver.local ? Math.min(Math.max(98.1e6, minHz), maxHz) : 9.6e6;
-    rx = { ...receiver, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20 };
+    const conv = receiver.local && converting(converter()) ? converter() : null;
+    const devRange = [receiver.minHz ?? (receiver.local ? 24e6 : 0), receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6)];
+    const [minHz, maxHz] = conv ? antennaRange(devRange, conv) : devRange; // the dial works in antenna-side frequencies
+    const startHz = receiver.local ? Math.min(Math.max(conv ? 9.6e6 : 98.1e6, minHz), maxHz) : 9.6e6;
+    rx = { ...receiver, conv, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20 };
     rx.mode = receiver.local ? suggestMode(rx.freqHz) : 'am';
     if (rx.mode === 'wbfm') rx.mode = 'nbfm';
     rx.bwHz = (MODE_BW[rx.mode] ?? [6000])[1] ?? 6000;
