@@ -1,6 +1,8 @@
 // Postcards (#40): the parts that need no DOM (sizes, frame layout, provenance and caption text,
 // share links, stylize prompts and cost) so they can be tested in Node.
 
+import { APP_STORE } from '../appstore.js';
+
 export const SIZES = [
   { id: 'square', label: 'SQUARE', w: 1080, h: 1080 },
   { id: 'story', label: 'STORY', w: 1080, h: 1920 },
@@ -83,13 +85,15 @@ export function shareLinks(text, url, { mastodon } = {}) {
 
 // ---- AI stylize (opt-in, through the local backend) ---------------------------------------------
 const KEEP = 'Keep the composition, the positions and the relative sizes of every body exactly. Day/night lines, phases and the direction of the light must not move. Do not add, remove or rename any object; add no text, logos or watermarks.';
-export const STYLES = [
+const ALL_STYLES = [
   { id: 'photoreal', label: 'PHOTOREALISTIC', direction: 'Make this photorealistic, as if taken by a real camera: natural exposure, lens and sensor character, realistic noise.' },
   { id: 'trek', label: 'STAR TREK THEME', direction: 'Present it as if seen from a starship bridge viewscreen or console in a 24th-century look. Original design only: no franchise logos, ship designs, insignia or characters.' },
   { id: 'oil', label: 'OIL PAINTING', direction: 'Repaint it as a classical oil painting on canvas: visible brushwork and painterly light, keeping the scene\'s colours.' },
   { id: 'illustration', label: 'ILLUSTRATION', direction: 'Redraw it as a clean editorial space-art illustration in the manner of mid-century mission art: bold shapes, a limited palette.' },
   { id: 'technical', label: 'TECHNICAL', direction: 'Redraw it as a technical plate: blueprint or fine line-drawing style on a dark ground. Draw no text, numbers or labels at all: the app overlays its own.', ownLabels: true },
 ];
+// The App Store build leaves out the franchise-named style (#51).
+export const STYLES = APP_STORE ? ALL_STYLES.filter((s) => s.id !== 'trek') : ALL_STYLES;
 
 /** The prompt for `style` from the scene's facts { view, subject, bodies[], date, lighting }. */
 export function stylePrompt(styleId, f) {

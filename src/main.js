@@ -77,6 +77,7 @@ import { curveFromLegacy, normCurve, canonical, describeCurve, fmtRange } from '
 import { createSpectrumControl, resText } from './panels/spectrum.js';
 import { bandLoads, configureBandLoads } from './data/bandload.js';
 import { onBandRes, prefetchPreviews } from './views/system/bandtextures.js';
+import { APP_STORE } from './appstore.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -1298,7 +1299,7 @@ function renderGalaxyPanel() {
     h('p', { className: 'note', textContent: 'Stars circle the centre on a flat rotation curve, so the inner disc laps the outer and the neighbourhood smears into an arc. The spiral arms are a pattern that turns at its own speed; the Sun sits close to corotation, so it keeps pace with them. The satellite galaxies follow their orbits (±2 billion years).' }),
     h('h3', { textContent: 'QUADRANTS' }),
     h('div', { className: 'body-list' }, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
-    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. Dashed red lines: Star Trek\'s Alpha–Delta quadrants, centred on the galactic core, with the Alpha/Beta border through Sol (IMAGINED).' }),
+    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun.' + (APP_STORE ? '' : ' Dashed red lines: Star Trek\'s Alpha–Delta quadrants, centred on the galactic core, with the Alpha/Beta border through Sol (IMAGINED).') }),
     ...trekPanel.section('galaxy', { after: renderGalaxyPanel }),
     h('h3', { textContent: 'FACTS' }),
     factList([

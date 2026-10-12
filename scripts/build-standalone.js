@@ -250,6 +250,8 @@ async function assemble(snapshotJson) {
 let { out } = await assemble(snapshotJson);
 let previewBytes = Buffer.byteLength(out);
 // Keep every baked scientific band preview; packing must satisfy the gate without dropping inputs.
-if (previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
+// The 16 MB gate is the Claude artifact limit; the Mac app (#51) bundles the file, so its flavour has none.
+const APP_STORE = process.env.VITE_FIDELITY_APP_STORE === '1';
+if (!APP_STORE && previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
 await fs.writeFile(path.join(dist, 'fidelity.html'), out);
-console.log(`wrote dist-standalone/fidelity.html (${(previewBytes / 1e6).toFixed(2)} MB, ${previewBytes} bytes, ${16_000_000 - previewBytes} bytes under the gate; ${snapshotJson.includes('"bandImages":{}') ? 'no' : Object.keys(bands.bandImages).length} band images)`);
+console.log(`wrote dist-standalone/fidelity.html (${(previewBytes / 1e6).toFixed(2)} MB, ${previewBytes} bytes, ${APP_STORE ? 'App Store flavour, no artifact gate' : `${16_000_000 - previewBytes} bytes under the gate`}; ${snapshotJson.includes('"bandImages":{}') ? 'no' : Object.keys(bands.bandImages).length} band images)`);
