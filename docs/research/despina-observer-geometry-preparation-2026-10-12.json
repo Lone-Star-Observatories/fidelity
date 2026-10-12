@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina",
+  "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/despina-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/despina-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "parameters": {
+    "radiusUncertaintyKm": 10,
+    "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+    "semimajorAxisKm": 52500,
+    "eccentricity": 0,
+    "orbitalPeriodDays": 0.334656,
+    "elementEpoch": "2000-01-01.5 TDB",
+    "elementFrame": "Laplace plane",
+    "ephemeris": "NEP097",
+    "neptuneMeanRadiusKm": 24622,
+    "neptuneRadiusSource": "src/data/sol.js",
+    "ephemerisReference": "M. Brozovi\u0107 (2020), Update of the inner Neptunian satellite orbits \u2014 NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution.",
+    "despinaMeanRadiusKm": 74
+  },
+  "assumptions": {
+    "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+    "distanceKm": 52426,
+    "horizontalFovDeg": 90,
+    "rasterWidthPixels": 1672,
+    "temperatureK": 60,
+    "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+  },
+  "geometry": {
+    "angularDiameterDeg": 56.02347898329231,
+    "targetWidthPixels1672": 889.4576510376816
+  },
+  "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(52500-74)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+  "limitations": [
+    "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+    "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+    "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+    "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+    "Despina Hubble and Voyager detections do not resolve local terrain, chemistry or calibrated visible colour. Full ESA/Hubble NASA, ESA, M. Showalter (SETI Institute) credit and CC BY4 rendition terms are distinct from NASA overview annotations and Ted Stryk processed APOD rights; all prior credit, epoch and product-crosswalk limitations remain open.",
+    "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+    "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+    "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Voyager orbital streaks do not measure physical elongation. No spin, tidal-locking or permanent-facing-site claim adopted."
+  ],
+  "validation": {
+    "preservation": "68 dossiers unchanged; 405 tracked public assets byte-identical to HEAD. Recorded Clipper preview preserved. Queue566; originals, masters, native images and provenance retained.",
+    "attribution": "Research-only; no new dossier, illustration, embedding, catalogue or codec changes. Interbuild differences unaudited; no savings attribution.",
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16022566,
+    "overBudgetBytes": 22566,
+    "browser": "No new passing full/offline browser claim; other engines remain open."
+  }
+}
