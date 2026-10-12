@@ -42,9 +42,11 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
 
   // ---- layout --------------------------------------------------------------------------------
   const modeBtns = {};
+  let chooseBtn;
   const head = el('div', { className: 'cx-head' },
     el('h2', { textContent: 'COMMS · SECTOR 001' }),
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
+    (chooseBtn = pill('CHANGE STATION', () => openMapPop())),
     el('span', { className: 'cx-dev mono' }),
     tx.indicator);
   const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
@@ -54,10 +56,21 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   const screen = el('div', { className: 'cx-screen' });
   const screenFrame = el('div', { className: 'cx-screen-frame' }, screen, el('div', { className: 'cx-screen-label mono', textContent: 'MAIN VIEWER' }));
   const consoleBox = el('div', { className: 'cx-console' });
+  // The main viewer (waterfall + spectrum) is full width; the map lives in a popup you open to pick a
+  // new station or receiver (CHANGE STATION / CHANGE RECEIVER in the header, or the map auto-opens on
+  // entering a mode and closes once you pick).
   const mapBox = el('div', { className: 'cx-map' });
-  // the map fills the view; the main viewer sits beside it when there is room, above it when not (CSS)
+  const mapPopTitle = el('span', { className: 'mono cx-map-pop-title', textContent: 'CHOOSE A STATION' });
+  const mapPop = el('div', { className: 'cx-map-pop', hidden: true },
+    el('div', { className: 'cx-map-pop-inner' },
+      el('div', { className: 'cx-map-pop-head' }, mapPopTitle, pill('CLOSE', () => closeMapPop(), 'square')),
+      mapBox));
+  mapPop.addEventListener('click', (e) => { if (e.target === mapPop) closeMapPop(); }); // click the backdrop to close
   container.replaceChildren(el('div', { className: 'cx-wrap' }, head,
-    el('div', { className: 'cx-body' }, mapBox, el('div', { className: 'cx-side' }, screenFrame, consoleBox))));
+    el('div', { className: 'cx-body' }, el('div', { className: 'cx-side' }, screenFrame, consoleBox)),
+    mapPop));
+  function openMapPop() { mapPop.hidden = false; const mp = mode === 'subspace' ? subMap : rfMap; requestAnimationFrame(() => mp.redraw()); }
+  function closeMapPop() { mapPop.hidden = true; }
 
   // ---- viewscreen ---------------------------------------------------------------------------------
   const setScreen = (...kids) => screen.replaceChildren(...kids);
@@ -84,6 +97,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   // ---- SUBSPACE: hailing ------------------------------------------------------------------------
   async function hail(layerId, m, layer) {
     closeChannel(false);
+    closeMapPop();
     const token = ++hailToken;
     audio.resume();
     station = { layerId, m, layer, media: stationMedia(layerId, m), name: m[2], onScreen: false, nowPlaying: null };
@@ -253,6 +267,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   function selectReceiver(layerId, m, layer) {
     if (layerId === 'station') { const mine = localList.find((x, i) => devices.rx[i].driver === settings.get('rfLocalDevice')) ?? localList[0]; if (mine) return selectReceiver('localsdr', mine, null); return; } // MY STATION opens my SDR
     closeChannel(false);
+    closeMapPop();
     const local = layerId === 'localsdr';
     receiver = { layerId, m, layer, name: m[2], url: m[3], local };
     if (layerId === 'kiwisdr' || local) {
@@ -287,7 +302,9 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     receiver = null;
     for (const [id, b] of Object.entries(modeBtns)) b.classList.toggle('on', id === m);
     mapBox.replaceChildren((m === 'subspace' ? subMap : rfMap).node);
-    requestAnimationFrame(() => (m === 'subspace' ? subMap : rfMap).redraw());
+    chooseBtn.textContent = m === 'subspace' ? 'CHANGE STATION' : 'CHANGE RECEIVER';
+    mapPopTitle.textContent = m === 'subspace' ? 'CHOOSE A STATION' : 'CHOOSE A RECEIVER';
+    openMapPop(); // show the map so they can pick; picking (hail/select) closes it
     consoleBox.replaceChildren(el('p', { className: 'note', textContent: m === 'subspace'
       ? 'SubSpace: signals carried at light speed over the internet. Hail a station on the map: its video can go on screen; otherwise its audio plays and its details are in the finder.'
       : `RF: radio receivers. WebSDR receivers (your list, HF to 10 GHz: the operator's page opens in the main viewer), public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in, with a live waterfall) are on the map. ${tx.devices?.length ? 'A transmit-capable SDR is connected: TRANSMIT SETUP is in the finder (licensed amateur operators only).' : 'Reception only: no transmit-capable SDR is connected.'}` }));
@@ -341,7 +358,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map, or open MY SDR below.' }));
     if (mode === 'rf' && !receiver?.consoleBox) out.push(...stationPanel());
     if (mode === 'rf' && devices && (devices.rx.length || devices.tx.length)) out.push(...signalPathPanel());
-    if (mode === 'rf') out.push(...tx.panel());
+    if (mode === 'rf') { const tp = tx.panel(); if (tp.length) out.push(h('div', { className: 'cx-tx-box' }, ...tp)); } // TRANSMIT lives in its own box, apart from the receiver controls
     if (mode === 'rf' && devices) out.push(h('h3', { textContent: 'HARDWARE' }), h('p', { className: 'note', textContent: head.querySelector('.cx-dev').textContent }));
     return out;
   }
