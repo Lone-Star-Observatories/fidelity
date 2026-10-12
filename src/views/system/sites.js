@@ -21,11 +21,22 @@ export function siteDots(body, hidden = new Set()) {
   if (!list.length) return null;
   const group = new THREE.Group();
   const byKind = {};
-  for (const s of list) (byKind[s.kind] ??= []).push(...siteDir(body, s.lat, s.lon).map((c) => c * DOT_R));
-  for (const [kind, pos] of Object.entries(byKind)) {
-    group.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)),
-      new THREE.PointsMaterial({ size: 6, sizeAttenuation: false, color: SITE_KINDS[kind].color })));
-  }
+  for (const s of list) (byKind[s.kind] ??= []).push(s);
+  const place = (s, radiusAt) => siteDir(body, s.lat, s.lon).map((c) => c * (DOT_R + (radiusAt ? radiusAt(s.lat, s.lon) - 1 : 0)));
+  const points = Object.entries(byKind).map(([kind, sites]) => {
+    const p = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(sites.flatMap((s) => place(s)), 3)),
+      new THREE.PointsMaterial({ size: 6, sizeAttenuation: false, color: SITE_KINDS[kind].color }));
+    group.add(p);
+    return [p, sites];
+  });
+  // #80: on a globe with relief, lift the dots onto the terrain
+  group.userData.setRelief = (radiusAt) => {
+    for (const [p, sites] of points) {
+      const a = p.geometry.attributes.position;
+      sites.forEach((s, i) => a.setXYZ(i, ...place(s, radiusAt)));
+      a.needsUpdate = true;
+    }
+  };
   return group;
 }
 
@@ -34,11 +45,14 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
   if (!list.length) return null;
   const group = new THREE.Group();
   group.name = 'sites';
+  // #80: on a globe with relief, dots and paths sit on the terrain (radiusAt: drawn radius at lat/lon, in body radii)
+  let radiusAt = null;
+  const place = (lat, lon, r) => siteDir(body, lat, lon).map((c) => c * (r + (radiusAt ? radiusAt(lat, lon) - 1 : 0)));
   const byKind = {};
   for (const s of list) (byKind[s.kind] ??= []).push(s);
   const dots = {};
   for (const [kind, sites] of Object.entries(byKind)) {
-    const pos = sites.flatMap((s) => siteDir(body, s.lat, s.lon).map((c) => c * DOT_R));
+    const pos = sites.flatMap((s) => place(s.lat, s.lon, DOT_R));
     const geo = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     dots[kind] = new THREE.Points(geo, new THREE.PointsMaterial({ size: 7, sizeAttenuation: false, color: SITE_KINDS[kind].color }));
     group.add(dots[kind]);
@@ -51,7 +65,7 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
     el.addEventListener('pointerdown', (e) => e.stopPropagation());
     el.addEventListener('click', (e) => { e.stopPropagation(); onSite(s); });
     const obj = new CSS2DObject(el);
-    obj.position.set(...siteDir(body, s.lat, s.lon).map((c) => c * DOT_R));
+    obj.position.set(...place(s.lat, s.lon, DOT_R));
     obj.center.set(-0.08, 0.5);
     obj.visible = false;
     obj.userData.site = s;
@@ -76,13 +90,20 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
         const mat = new THREE.LineBasicMaterial({ color: s.traverseColor ?? SITE_KINDS.rover.color, transparent: true, opacity: 0.95 });
         const line = new THREE.Group();
         line.userData.kind = s.kind;
+        line.userData.segs = segs;
         for (const seg of segs) {
-          const pos = seg.flatMap(([lon, lat]) => siteDir(body, lat, lon).map((c) => c * PATH_R));
-          line.add(new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)), mat));
+          const pos = seg.flatMap(([lon, lat]) => place(lat, lon, PATH_R));
+          const l = new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)), mat);
+          l.userData.seg = seg;
+          line.add(l);
         }
         // a live rover's position now: a brighter dot at the end of its path
-        if (t.points) line.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(siteDir(body, last[1], last[0]).map((c) => c * PATH_R), 3)),
-          new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff })));
+        if (t.points) {
+          const now = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(place(last[1], last[0], PATH_R), 3)),
+            new THREE.PointsMaterial({ size: 9, sizeAttenuation: false, color: 0xffffff }));
+          now.userData.seg = [last];
+          line.add(now);
+        }
         group.add(line);
         paths.push(line);
         // a live rover gets its NASA model at the end of its path, hugely enlarged so it can be found
@@ -90,7 +111,8 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
           if (!m) return;
           const sizeKm = Math.max(0.4, spanKm * 0.07), up = new THREE.Vector3(...siteDir(body, last[1], last[0]));
           const holder = new THREE.Group();
-          holder.position.copy(up).multiplyScalar(PATH_R + sizeKm / R * 0.6);
+          holder.position.copy(up).multiplyScalar(PATH_R + (radiusAt ? radiusAt(last[1], last[0]) - 1 : 0) + sizeKm / R * 0.6);
+          holder.userData.at = [last, sizeKm / R * 0.6];
           holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), up);
           holder.scale.setScalar(sizeKm / R);
           holder.add(m);
@@ -140,6 +162,29 @@ export function createSiteLayer(body, { onSite, loadTraverse, loadModel }) {
   function dispose() {
     group.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); if (o.isCSS2DObject) o.element.remove(); });
   }
-  const layer = { group, update, dispose, sites: list, placed: [] };
+  /** #80: re-seat dots, labels, paths and rover models on the terrain (null: the plain sphere). */
+  function setRelief(fn) {
+    radiusAt = fn;
+    for (const [kind, sites] of Object.entries(byKind)) {
+      const a = dots[kind].geometry.attributes.position;
+      sites.forEach((s, i) => a.setXYZ(i, ...place(s.lat, s.lon, DOT_R)));
+      a.needsUpdate = true;
+      dots[kind].geometry.computeBoundingSphere();
+    }
+    for (const l of labels) l.position.set(...place(l.userData.site.lat, l.userData.site.lon, DOT_R));
+    for (const line of paths) for (const o of line.children) {
+      if (o.userData.seg) {
+        const a = o.geometry.attributes.position;
+        o.userData.seg.forEach(([lon, lat], i) => a.setXYZ(i, ...place(lat, lon, PATH_R)));
+        a.needsUpdate = true;
+        o.geometry.computeBoundingSphere();
+      } else if (o.userData.at) {
+        const [[lon, lat], lift] = o.userData.at;
+        o.position.set(...place(lat, lon, PATH_R + lift));
+      }
+    }
+  }
+
+  const layer = { group, update, dispose, setRelief, sites: list, placed: [] };
   return layer;
 }

@@ -60,6 +60,7 @@ import { createFuturePanel } from './panels/future.js';
 import { createFutureEventsPanel } from './panels/futureevents.js';
 import { createEarthTimelinePanel } from './panels/earthtimeline.js';
 import { createMagneticPanel } from './panels/magnetic.js';
+import { createElevationPanel } from './panels/elevation.js';
 import { createSearch } from './panels/search.js';
 import { createCommsView } from './views/comms/CommsView.js';
 import { createViewCurtain } from './views/viewcurtain.js';
@@ -123,6 +124,7 @@ const system = createSystemView($('system-view'), {
     short: f.name.toUpperCase(), note: `${f.type}${f.diameterKm ? `, ${f.diameterKm.toLocaleString()} km across` : ''}. Its name is approved by the International Astronomical Union.` }, b); },
   onSite: (site) => { if (site.kind === 'trek') return trekPanel.show(site.trekId); const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
   onTrek: (id) => trekPanel.show(id), // the Star Trek layer (#41)
+  onElevation: (e) => elevationPanel.cursor(e), // #80: the height under the pointer
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
   onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
@@ -870,6 +872,7 @@ const trekPanel = createTrekPanel({ h, pill, row, badge, settings, panel, resetL
     setTimeout(frame, 900);
   } });
 const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend,
+  elevation: (b, lat, lon) => system.elevationAt?.(b.id, lat, lon), // #80
   viewFeed: (f, name) => satPanel.viewFeed(f, name),
   trek: (s) => trekPanel.show(s.trekId),
   back: (b) => renderBodyPanel(b.id),
@@ -880,8 +883,8 @@ const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, rese
     else { pendingSiteView = { id: b.id, lat: s.lat, lon: s.lon, span }; go({ level: 'system', system: 'sol', body: b.id }); }
   },
   stand: (b, s) => {
-    if (route.level === 'system' && system.focusId === b.id) system.surfaceAt(b.id, s.lat, s.lon);
-    else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: b.id }); }
+    if (route.level === 'system' && system.focusId === b.id) system.surfaceAtSite(b.id, s.lat, s.lon);
+    else { pendingSurface = { id: b.id, lat: s.lat, lon: s.lon, site: true }; go({ level: 'system', system: 'sol', body: b.id }); }
   } });
 const transferPanel = createTransferPanel({ h, pill, row, system, clock, toast, $, badge });
 // HELM (#42): SET COURSE and HONEST TRAVEL in body panels; status, SHIP'S LOG and WARP TO A STAR in the system panel
@@ -982,6 +985,7 @@ function onShipEvent(from, kind, d) {
   else if (d.to === 'galaxy') { logShip('BEYOND THE QUADRANT · GALACTIC CHART'); go({ level: 'galaxy' }); }
 }
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
+const elevationPanel = createElevationPanel({ h, pill, row, settings, isStandalone: STANDALONE }); // #80
 const futurePanel = createFuturePanel({ h, pill, row, badge, system, clock, toast, go, $ });
 const futureEvents = createFutureEventsPanel({ h, pill, row, badge, go, clock, toast, panel, system, settings });
 const earthTimeline = createEarthTimelinePanel({ h, pill, row, badge, go, clock, toast, panel, system });
@@ -998,8 +1002,8 @@ createSearch({ h, badge, $, go, clock, actions: {
   site: (id) => {
     const s = SITES.find((x) => x.id === id);
     if (!s) return;
-    if (route.level === 'system' && currentSystem === 'sol' && system.focusId === s.body) system.surfaceAt(s.body, s.lat, s.lon);
-    else { pendingSurface = { id: s.body, lat: s.lat, lon: s.lon }; go({ level: 'system', system: 'sol', body: s.body }); }
+    if (route.level === 'system' && currentSystem === 'sol' && system.focusId === s.body) system.surfaceAtSite(s.body, s.lat, s.lon);
+    else { pendingSurface = { id: s.body, lat: s.lat, lon: s.lon, site: true }; go({ level: 'system', system: 'sol', body: s.body }); }
   },
   quadrant: (id) => { quadrantSel = id; if (route.level === 'quadrant') { quadrant.select(id); renderQuadrantPanel(); } else go({ level: 'quadrant' }); },
   universe: (id) => { universeSel = id; if (route.level === 'universe') { universe.select(id); renderUniversePanel(); } else go({ level: 'universe' }); },
@@ -1267,6 +1271,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
   if (m.isSol && b.id !== 'earth' && b.id !== 'sun' && !b.marker && b.kind !== 'spacecraft' && b.kind !== 'satellite') extra.push(...transferPanel.section(b, m.bodies)); // #45
   if (m.isSol) extra.push(...futurePanel.section(b, m)); // #44
   if (m.isSol && b.id === 'earth') extra.push(h('h3', { textContent: 'EARTH THROUGH TIME' }), h('div', { className: 'body-list' }, pill('EARTH TIMELINE ▸', () => go({ level: 'timeline', system: 'sol' })))); // #54
+  if (m.isSol) extra.push(...elevationPanel.section(b, () => { if (route?.body === b.id || system.focusId === b.id) renderBodyPanel(b.id); })); // #80
   if (m.isSol) extra.push(...magneticPanel.section(b.id)); // #38
   if (m.isSol && b.kind === 'moon' && PLANETSHINE[b.parent]) { // #49
     const ps = PLANETSHINE[b.parent], st = system.planetshineOf(b.id), dl = h('dl');
@@ -2054,7 +2059,7 @@ onRoute(async (r) => {
     if (body) {
       if (pendingSurface?.id === body.id) {
         const ps = pendingSurface; pendingSurface = null;
-        system.surfaceAt(ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight });
+        system[ps.site ? 'surfaceAtSite' : 'surfaceAt'](ps.id, ps.lat, ps.lon, { lookSun: ps.lookSun, look: ps.look, daylight: ps.daylight });
         if (ps.render) captureWhenReady(system, { id: ps.id, ...ps.render }, { toast, clock });
       }
       else if (system.onSurface?.id === body.id) { /* standing on it already */ }

@@ -39,6 +39,30 @@ const VERT = /* glsl */`
     #include <logdepthbuf_vertex>
   }`;
 
+// Globes with an elevation model (#80): the same, plus the local east/north directions for the
+// fragment's normal map and, close up, real displacement of the vertices by the DEM's heights.
+const DEM_VERT = /* glsl */`
+  #include <common>
+  #include <logdepthbuf_pars_vertex>
+  uniform sampler2D uDem; uniform float uDemDisp; uniform float uDemK; uniform float uDemU0;
+  varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW; varying vec3 vEastW; varying vec3 vNorthW; varying vec3 vDirL;
+  void main() {
+    vUv = uv;
+    vec3 p = position;
+    vDirL = normalize(position);
+    if (uDemDisp > 0.5) p *= 1.0 + textureLod(uDem, vec2(uv.x + uDemU0, uv.y), 0.0).r * uDemK;
+    vNormalW = normalize(mat3(modelMatrix) * normal);
+    // three.js spheres: east (increasing u) is (z, 0, −x) in the mesh frame; north = up × east
+    vec3 eL = vec3(position.z, 0.0, -position.x);
+    eL = dot(eL, eL) < 1e-12 ? vec3(1.0, 0.0, 0.0) : normalize(eL);
+    vEastW = normalize(mat3(modelMatrix) * eL);
+    vNorthW = normalize(cross(vNormalW, vEastW));
+    vec4 wp = modelMatrix * vec4(p, 1.0);
+    vPosW = wp.xyz;
+    gl_Position = projectionMatrix * viewMatrix * wp;
+    #include <logdepthbuf_vertex>
+  }`;
+
 // Lambert lighting from the star, a soft terminator, optional night-side emission.
 const PLANET_FRAG = /* glsl */`
   #include <common>
@@ -79,6 +103,26 @@ const PLANET_FRAG = /* glsl */`
   // radii uDiscR and image size uDiscWH in pixels. Its alpha is 0 on the far side (the predicted skin).
   uniform float uDiscOn; uniform vec2 uDiscC; uniform vec2 uDiscR; uniform vec2 uDiscWH; uniform float uDiscPA; uniform vec3 uDiscE; uniform vec3 uDiscN;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
+  #ifdef DEM
+  // Relief (#80): heights (m, half float, mipmapped) → a normal map on the fly. uDemK = exaggeration / radius (m),
+  // uDemTexel the step (1 / size), uDemU0 the colour map's longitude offset; uDemClip discards the globe under a
+  // close-up terrain patch (xyz = its centre direction in the mesh frame, w = cos of its angular radius).
+  uniform sampler2D uDem; uniform float uDemOn; uniform float uDemK; uniform float uDemU0; uniform vec2 uDemTexel; uniform vec4 uDemClip;
+  varying vec3 vEastW; varying vec3 vNorthW; varying vec3 vDirL;
+  vec3 demNormal(vec3 N) {
+    vec2 uv = vec2(vUv.x + uDemU0, vUv.y);
+    // step: one texel, or the screen footprint when the globe is small (with the matching mip level)
+    vec2 fw = max(fwidth(uv), uDemTexel);
+    vec2 d = vec2(min(fw.x, 0.02), min(fw.y, 0.02));
+    float lod = log2(max(fw.x / uDemTexel.x, 1.0));
+    float hE = textureLod(uDem, uv + vec2(d.x, 0.0), lod).r, hW = textureLod(uDem, uv - vec2(d.x, 0.0), lod).r;
+    float hN = textureLod(uDem, uv + vec2(0.0, d.y), lod).r, hS = textureLod(uDem, uv - vec2(0.0, d.y), lod).r;
+    float lat = (vUv.y - 0.5) * 3.14159265;
+    float sE = (hE - hW) * uDemK / (2.0 * d.x * 6.2831853 * max(cos(lat), 0.02));
+    float sN = (hN - hS) * uDemK / (2.0 * d.y * 3.14159265);
+    return normalize(N - sE * vEastW - sN * vNorthW);
+  }
+  #endif
   vec3 pal(float t, float p) {
     t = clamp(t, 0.0, 1.0);
     vec3 a = vec3(0.0), b, c, d = vec3(1.0);
@@ -128,6 +172,10 @@ const PLANET_FRAG = /* glsl */`
   void main() {
     #include <logdepthbuf_fragment>
     vec3 N = normalize(vNormalW);
+    #ifdef DEM
+    if (uDemClip.w < 1.0 && dot(normalize(vDirL), uDemClip.xyz) > uDemClip.w) discard; // the terrain patch is drawn here
+    if (uDemOn > 0.5) N = demNormal(N);
+    #endif
     float ndl = dot(N, normalize(uSunPos - vPosW));
     float lightK = 1.0; float umbraK = 0.0;
     if (uOccOn > 0.5) {
@@ -287,10 +335,12 @@ const STAR_FRAG = /* glsl */`
 
 const linear = (hexOrArray) => new THREE.Color(hexOrArray).convertSRGBToLinear();
 
-export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035 } = {}) {
+export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035, dem = false } = {}) {
   return new THREE.ShaderMaterial({
-    vertexShader: VERT, fragmentShader: PLANET_FRAG,
+    vertexShader: dem ? DEM_VERT : VERT, fragmentShader: PLANET_FRAG,
+    defines: dem ? { DEM: 1 } : {},
     uniforms: {
+      ...(dem ? { uDem: { value: null }, uDemOn: { value: 0 }, uDemDisp: { value: 0 }, uDemK: { value: 0 }, uDemU0: { value: 0 }, uDemTexel: { value: new THREE.Vector2(1 / 1440, 1 / 720) }, uDemClip: { value: new THREE.Vector4(0, 1, 0, 2) } } : {}),
       uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 }, uLive: { value: null }, uHasLive: { value: 0 },
       uTint: { value: new THREE.Color(...tint) }, uSunPos: { value: new THREE.Vector3() },
       uSunColor: { value: new THREE.Color(1.3, 1.3, 1.3) }, uAmbient: { value: ambient }, uAlphaFromLuma: { value: 0 },

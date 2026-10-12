@@ -14,6 +14,8 @@ export function createFeatureLayer(body, { onFeature, load }) {
   const group = new THREE.Group();
   group.name = 'features';
   let items = null, requested = false;
+  let radiusAt = null; // #80: labels sit on the terrain when the globe has relief
+  const place = (lat, lon) => siteDir(body, lat, lon).map((c) => c * (R_LABEL + (radiusAt ? radiusAt(lat, lon) - 1 : 0)));
 
   function build(data) {
     items = (data?.features ?? []).map(([name, lat, lon, d, type, gid]) => {
@@ -25,7 +27,7 @@ export function createFeatureLayer(body, { onFeature, load }) {
       const f = { id: `iau-${gid ?? name}`, body: body.id, name, lat, lon, diameterKm: d, type, gazetteerId: gid, source: data.source };
       el.addEventListener('click', (e) => { e.stopPropagation(); onFeature(f); });
       const obj = new CSS2DObject(el);
-      obj.position.set(...siteDir(body, lat, lon).map((c) => c * R_LABEL));
+      obj.position.set(...place(lat, lon));
       obj.center.set(0.5, 0.5);
       obj.visible = false;
       group.add(obj);
@@ -65,5 +67,6 @@ export function createFeatureLayer(body, { onFeature, load }) {
   }
 
   function dispose() { group.traverse((o) => { if (o.isCSS2DObject) o.element.remove(); }); }
-  return { group, update, dispose };
+  function setRelief(fn) { radiusAt = fn; for (const it of items ?? []) it.obj.position.set(...place(it.f.lat, it.f.lon)); }
+  return { group, update, dispose, setRelief };
 }

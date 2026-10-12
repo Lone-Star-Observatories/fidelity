@@ -114,7 +114,7 @@ for (const m of MOONS) if (MOON_FIT[m.id]) m.elements.fit = MOON_FIT[m.id];
 
 export const SMALL_BODIES = [
   sb('ceres', 'Ceres', 'dwarf planet', 469.7, 9.384e20, [2461200.5, 2.765552595034094, 0.07969229514816586, 10.58802780183462, 80.24862682043221, 73.29421453021587, 274.4193463761342],
-    { skin: { map: 'ceres' }, pole: [291.418, 66.764], iau: [170.65, 952.1532], rotationHours: 9.07417, belt: 'MAIN BELT', discovered: '1801 · Giuseppe Piazzi', meanTempC: -105,
+    { skin: { map: 'ceres' }, texLon0: 0, pole: [291.418, 66.764], // the USGS Dawn mosaic runs 0–360° E (its label; registered against the Dawn DTM, #80) iau: [170.65, 952.1532], rotationHours: 9.07417, belt: 'MAIN BELT', discovered: '1801 · Giuseppe Piazzi', meanTempC: -105,
       note: 'The largest body in the asteroid belt; Dawn orbited it 2015–18 and found bright salt deposits from a briny interior.' }),
   sb('vesta', 'Vesta', 'asteroid', 261.4, 2.59e20, [2461200.5, 2.361365965127599, 0.09020374382834395, 7.143925545058711, 103.701293265032, 151.4686478221564, 81.19015607686903],
     { skin: { map: 'vesta' }, pole: [309.031, 42.235], iau: [285.39, 1617.3329428], rotationHours: 5.342, belt: 'MAIN BELT', discovered: '1807 · Heinrich Olbers',

@@ -8,7 +8,9 @@ import { sitesFor, SITE_KINDS } from '../data/sites.js';
 const fmtLat = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'N' : 'S'}`;
 const fmtLon = (x) => `${Math.abs(x).toFixed(4)}° ${x >= 0 ? 'E' : 'W'}`;
 
-export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back, trek }) {
+import { fmtElevation } from '../astro/dem.js';
+
+export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, viewFeed, stand, above, globe, back, trek, elevation }) {
   const hidden = () => new Set(settings.get('siteHidden') ?? []);
   const toggleKind = (k) => {
     const s = hidden();
@@ -59,6 +61,10 @@ export function createSitesPanel({ h, pill, row, badge, settings, panel, resetLi
     row(where, 'LATITUDE', fmtLat(s.lat), s.tier === 'planned' ? 'planned' : 'measured', `Planetocentric. Source: ${s.source}`);
     row(where, 'LONGITUDE', fmtLon(s.lon), s.tier === 'planned' ? 'planned' : 'measured', `East-positive. Source: ${s.source}`);
     if (s.elevM != null) row(where, 'ELEVATION', `${s.elevM.toLocaleString()} M`, 'measured');
+    else { // #80: from the body's elevation model
+      const e = elevation?.(body, s.lat, s.lon);
+      if (e && Number.isFinite(e.h)) row(where, 'ELEVATION', `${fmtElevation(e.h)} · ${e.meta.name.toUpperCase()}`, 'measured', `Above the ${e.meta.ref}, interpolated from ${e.res === 'global' ? `the ${(360 / e.meta.width).toFixed(2)}° grid (cells ${e.meta.cellKm} km: a crater floor or a peak narrower than that reads too shallow)` : `a ${e.cellKm.toFixed(2)} km tile`}. ${e.meta.credit}.`);
+    }
     if (s.approx) row(where, 'PRECISION', s.approx, 'modelled', 'The point drawn stands for a region or an uncertain position.');
     const t = s.traverseInfo;
     const drive = t ? h('dl') : null;

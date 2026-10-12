@@ -10,6 +10,7 @@
 | System | [JPL Horizons API](https://ssd-api.jpl.nasa.gov/doc/horizons.html) | Ephemeris-grade heliocentric vectors (DE441) | live (through the backend; Horizons has no CORS) | ✅ |
 | System | [NASA Planetary Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/) | Radius, mass, gravity, day/year lengths, temperature | bundled | ✅ |
 | System | IAU WGCCRE 2015 | Spin-axis (pole) directions | bundled | ✅ |
+| System, Planet, surface view | Measured DEMs (#80): ETOPO1, LRO LOLA, MGS MOLA, MESSENGER/USGS, Magellan, Dawn/DLR, New Horizons, Cassini ISS ([Elevation models](#elevation-models-80)) | Relief shading, displacement, close-up terrain, the surface view's ground and horizon, elevation read-outs | bundled 0.25° grids (`public/dem`) + live full-resolution tiles (`/api/dem-tile`, cached) | ✅ |
 | System | IAU WGCCRE 2015 rotation models; GMST for Earth | Real rotation phase: Earth's day/night falls where it really is | bundled | ✅ |
 | System | Surface imagery (below) | Realistic skins for every body | live, cached in `data/textures/` | ✅ #6 |
 | System | JPL DE kernels (`de440.bsp`) | Offline ephemeris-grade positions | local | ⏳ |
@@ -186,6 +187,45 @@ kept only if it really is a JPEG or PNG. Node's `fetch` is tried first, then the
 | Sun, Mercury, Venus (cloud tops), Mars, Saturn with rings, Uranus, Neptune | [Solar System Scope](https://www.solarsystemscope.com/textures/) (CC BY 4.0), built from NASA mission imagery | MEASURED |
 | Other stars | The Sun's granulation recoloured to the star's blackbody colour, with limb darkening | IMAGINED surface, COMPUTED colour |
 | Exoplanets | *Analog skins*: a real Solar System surface recoloured for the planet's class (e.g. hot Jupiter → darkened Jupiter). The panel names the analog. | IMAGINED |
+
+## Elevation models (#80)
+
+Relief, close-up terrain, the surface view's horizon and every elevation read-out come from these
+measured DEMs (all MEASURED; public domain). `node scripts/build-dem.mjs` downloads each once to
+`data/dem-raw/` (not committed) and writes the bundled 0.25° grids to `public/dem/` with
+`index.json`; `/api/dem-tile` reads the same products at full resolution by HTTP range request and
+caches tiles in `data/cache/dem/` (`server/dem.js` holds the table below as code).
+
+| Body | Product (source) | Native resolution | Zero (reference) | Bundled grid | Range in the grid | Licence |
+|---|---|---|---|---|---|---|
+| Earth | ETOPO1 Ice Surface (Amante & Eakins 2009), NOAA NCEI, via the NOAA CoastWatch ERDDAP `etopo180` dataset (4′ stride for the grid, 1′ for tiles) | 1′ (1.85 km) | mean sea level | 1440 × 720, 1.6 MB | −9,844 … +6,177 m (ETOPO1 itself: −10,898 … +8,271 m) | US Government work, public domain |
+| Moon | LRO LOLA LDEM_16 (grid) and LDEM_64 (tiles), PDS Geosciences Node | 64 px/° (474 m) | 1737.4 km sphere | 1440 × 720, 1.7 MB | −8,614 … +10,429 m | NASA, public domain |
+| Mars | MGS MOLA MEGDR `megt90n000eb` (16 px/°) and the four 64 px/° `meg064` files, PDS Geosciences Node | 64 px/° (926 m) | MOLA areoid | 1440 × 720, 1.5 MB | −8,039 … +21,125 m | NASA, public domain |
+| Mercury | MESSENGER USGS global DEM 665 m v2 (Becker et al. 2016), USGS Astrogeology | 64 px/° (665 m) | 2439.4 km sphere | 1440 × 720, 1.7 MB | −5,355 … +4,261 m | USGS/NASA, public domain |
+| Venus | Magellan global topography 4641 m v2 (GTDR altimetry, Ford & Pettengill 1992), USGS Astrogeology | 22.8 px/° (4.6 km) | 6051.0 km sphere | 1440 × 720, 1.5 MB | −2,597 … +11,053 m; ~8% gaps | USGS/NASA, public domain |
+| Ceres | Dawn FC HAMO DTM, DLR (Preusker et al. 2016), 60 px/°, USGS Astrogeology | 60 px/° (137 m) | 470 km sphere (Ceres is oblate: the poles read −20 km) | 1440 × 720, 1.5 MB | −27,879 … +16,981 m | NASA/DLR (PDS), public domain |
+| Vesta | Dawn FC HAMO DTM, DLR (Preusker et al. 2014), 48 px/° (radii; heights = radius − 255 km) | 48 px/° (93 m) | 255 km sphere (Vesta's shape spans −43 … +38 km) | 1440 × 720, 1.4 MB | −43,034 … +37,904 m | NASA/DLR (PDS), public domain |
+| Pluto | New Horizons global DEM 300 m (Schenk et al. 2018), USGS Astrogeology | 69 px/° (300 m) | 1188.3 km sphere | 1440 × 720, 0.8 MB | −4,001 … +5,826 m; 47% covered (encounter hemisphere) | NASA (PDS), public domain |
+| Charon | New Horizons global DEM 300 m (Schenk et al. 2018), USGS Astrogeology | 35 px/° (300 m) | 606 km sphere | 1440 × 720, 0.7 MB | −13,974 … +6,801 m; 46% covered (limb-region values are noisy in the source) | NASA (PDS), public domain |
+| Enceladus | Cassini ISS shape model (Bland et al. 2019), `enceladus_2019pm_radius` (radius − 251.5 km), USGS Astrogeology | 2 px/° (2.2 km) | 251.5 km sphere | 720 × 360, 0.4 MB | −3,927 … +5,324 m (the triaxial shape); 93% covered | NASA/USGS (PDS), public domain |
+
+Not bundled: Titan (Cassini radar/altimetry strips, ~9% at high resolution, no open global grid),
+Ganymede, Europa, Callisto and Io (local stereo only): smooth spheres, panel says why. Phobos,
+Hyperion, Amalthea, Proteus, Halley and Haumea keep their shape models (`src/data/shapes.js`).
+Optional higher-resolution blends (MOLA–HRSC 200 m, SLDEM2015, LOLA 118 m) exist at USGS but are
+11–22 GB each; the tile route uses the products above.
+
+Registration was checked by correlating each colour map with the DEM's hillshade over all
+longitude shifts: Moon, Mars, Mercury, Earth and Vesta align at the default `texLon0` (−180°), Pluto at
+its 0°; Ceres' USGS Dawn mosaic runs 0–360° E (its label), so its `texLon0` became 0° (the map had
+been drawn half a turn off). Charon's and Enceladus' colour maps (NASA 3D Resources) could not be
+registered this way; their relief follows the DEMs' own longitudes.
+
+Spot checks in `tests/dem.test.js` against the bundled grids (a 0.25° cell averages a ~15 km box on
+Mars and ~28 km on Earth): Olympus Mons 21.1 km (MOLA's peak 21.2 km; its highest 16 px/° cell is at
+17.34° N 226.97° E), Hellas −8.0 km, Maxwell Montes 11.05 km, the Moon's Selenean summit 10.4 km and
+Antoniadi −8.6 km, Everest's cell 5.84 km and Challenger Deep's −9.84 km. Everest's 8.85 km and the
+Deep's −10.9 km need finer cells: ETOPO1's own 1′ grid (the close-up tiles) holds 8.27 km and −10.9 km.
 
 ## How other systems are built
 
