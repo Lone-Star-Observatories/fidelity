@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-12",
+  "body": "Thalassa",
+  "status": "Research-only independent imagined local illustration; no dossier69 or embedding",
+  "generator": "Built-in image_gen",
+  "prompt": "Create an independent research-guided hypothetical local view of Neptune's small moon Thalassa (1989 N5), landscape wide 1672 by 941. IMAGINED illustration, not a reconstruction of any observed site. Low camera looking across invented grey granular regolith, modest angular blocks, shallow depressions and low irregular relief toward a low horizon under a nearly black sky. Restrained monochrome-grey material colour and directional light are artistic assumptions. Do not copy or recolour imagery or terrain from any other astronomical body; no Moon, Mars, Pluto, Triton or other body's map. Thalassa's unresolved Voyager detections do not establish local geography or composition. Its equivalent volume radius has alternatives 40\u00b18 km and adopted 41\u00b13 km; neither establishes a local surface normal. Density is derived, not measured chemistry or porosity. Orbital period and Naiad\u2013Thalassa 73:69 nodal resonance do not verify spin locking or a permanently Neptune-facing site. Invent all terrain, grains, blocks, material fractions, chemistry, lighting and exposure. No astronomical disks: no Neptune, Sun, stars or rings. No atmosphere, clouds, haze, rain, plume, exposed liquid, ocean, biology, vehicles, astronauts or suggestion of survivable landing. Black sky is an assumed presentation, not measured atmospheric absence. No dated Voyager site, shape registration or angular/raster diameter claim. Include two clearly readable footer lines integrated at bottom with sufficient contrast: 'IMAGINED LOCAL VIEW \u2014 THALASSA' and 'Terrain, material colour and lighting are invented.' Scientific visualization with honest hypothetical appearance, no additional labels.",
+  "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-551fb5e4-729d-4a1a-ba18-68cdd145a6f2.png",
+  "researchCopy": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+  "inspection": "Inspected original: independent grey granular relief, angular blocks, shallow depressions and nearly black sky. Both footer texts readable, arranged across one footer band rather than two stacked lines. No astronomical disks.",
+  "references": [
+    "docs/research/thalassa-moon-preparation-2026-10-12.json",
+    "docs/research/thalassa-primary-orbit-assessment-2026-10-12.json",
+    "docs/research/thalassa-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "limitations": [
+    "All terrain, block/grain sizes, relief, chemistry, material fractions, colour, lighting and exposure invented independently; no observed body map reused.",
+    "Thalassa N5 distinct from Naiad N6 and Despina N3. Unresolved Voyager detections do not resolve geography or calibrated visible colour. Native UTC, filters, product and full contributor crosswalk remain open.",
+    "JPL radius40\u00b18/GM.02359\u00b1.00522/derived density1.3184\u00b1.8432 versus paper41\u00b13/.0236\u00b1.0064/1.23\u00b1.43 preserved as alternatives, not local chemistry, porosity or registered normal.",
+    "Mean orbital period and 73:69 nodal resonance do not verify spin locking or permanent Neptune-facing terrain. No dated site or shape registration.",
+    "Black sky is assumed presentation, not measured atmospheric absence. No plume, liquid, ocean, biology or survivable landing claim.",
+    "No astronomical disks or angular/raster calculation. Observer, masters, previews and additive integration remain outstanding.",
+    "All68 prior dossiers, originals, masters, native science, provenance, maps/models/shapes and recorded Clipper preview preserved; no catalogue or codec change."
+  ],
+  "original": {
+    "bytes": 2835977,
+    "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "defaultAndResearchBytesIdentical": true
+  },
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "changed": [],
+    "dossiers": 68,
+    "queue": 566,
+    "recordedClipperPreserved": true
+  },
+  "validation": {
+    "base": "86fbcbc",
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16058732,
+    "overBudgetBytes": 58732,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Research-only original not embedded; production codecs unchanged. Interbuild differences unaudited; no savings attribution."
+  }
+}
