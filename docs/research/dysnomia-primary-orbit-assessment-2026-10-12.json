@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "body": "Dysnomia",
+  "status": "Research-only; no dossier69, illustration, embedding, catalogue, map, shape or codec change",
+  "title": "The Eris/Dysnomia system I: The orbit of Dysnomia",
+  "authors": [
+    "Bryan J. Holler",
+    "William M. Grundy",
+    "Marc W. Buie",
+    "Keith S. Noll"
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/dysnomia-Holler2020-v1.pdf",
+      "url": "https://arxiv.org/pdf/2009.13733v1",
+      "bytes": 800465,
+      "sha256": "df454e2357a1dc90b79a2e91fa29dddb65f5cf2321a9407463227de537c562ea",
+      "fetched": "2026-10-12",
+      "pages": 21
+    },
+    {
+      "path": "data/research-sources/dysnomia-Holler2020-record.html",
+      "url": "https://arxiv.org/abs/2009.13733",
+      "bytes": 44360,
+      "sha256": "941278f3625862b68e7948092739bccec80c2692c8298deca9b0d95503d04a3e",
+      "fetched": "2026-10-12"
+    }
+  ],
+  "publication": {
+    "arxivSubmitted": "2020-09-29",
+    "recordStatus": "Accepted by Icarus",
+    "relatedDOI": "10.1016/j.icarus.2020.114130",
+    "finalPublisherAudit": "open"
+  },
+  "licence": {
+    "record": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+    "assessment": "Specific nonexclusive distribution, not CC BY; no paper figure embedded."
+  },
+  "assessed": [
+    "Full21pagePDF retained; targeted observations/reduction, Table2, discussion3.4 and orbit-pole limitations."
+  ],
+  "orbit": {
+    "epochJD": 2453979.0,
+    "periodDays": "15.785899 \u00b1 0.000050",
+    "semimajorAxisKm": "37273 \u00b1 64",
+    "eccentricity": "0.0062 \u00b1 0.0010; reported6.2sigma within fit",
+    "inclinationJ2000EquatorialDegrees": "45.49 \u00b1 0.15",
+    "GMSystemKm3S2": "1099 \u00b1 6",
+    "systemMassKg": "(1.6466 \u00b1 0.0085) \u00d710^22",
+    "orbitPoleRAdegrees": "36.17 \u00b1 0.26",
+    "orbitPoleDecDegrees": "44.51 \u00b1 0.15",
+    "orbitPrograde": "Astrometry breaks orbit-pole degeneracy; not a spin measurement.",
+    "heliocentricOrbitObliquityDegrees": "78.29 \u00b1 0.65; not relative to unknown Eris equator.",
+    "mutualEvents": "2239 model prediction in this work; not a current verified event."
+  },
+  "modelDistinctions": [
+    "System density2.43\u00b1.05g/cm3 derives from fitted system mass, adopted Eris1163\u00b16km occultation radius and Dysnomia350\u00b157.5km thermal radius attributed to Brown/Butler2018. Not separate moon density, local composition or measured axes.",
+    "Equal-density and0.8g/cm3 satellite examples yield about3% or less1% system mass; these are alternative assumptions, not a measured moon mass fraction.",
+    "Tidal circularization5\u201317Myr depends on radius, densities and assumedQ100; not independently measured age or dissipation.",
+    "Combined Keplerian fit excluded6.3sigma; nonzero eccentricity could reflect real dynamics, center-of-light/albedo offsets or unidentified systematics. Extra satellite, Iapetus-like contrast and colour-correction effects are hypotheses, not detections or terrain maps. Never assign Iapetus geography to Dysnomia.",
+    "Spin, permanent Eris-facing site, Eris equator alignment, local normals, current distance and colour/atmospheric transfer are not established by the orbit fit. Later rotation/thermal/native-product audits remain open."
+  ],
+  "observations": [
+    "Program15171 WFC3/UVIS F606W seven visits2018-01-01 through2018-02-03; each four348s plus585s. Jan3tracking failure removed two348s and585s; replacementFeb3visit. Not all exposures usable.",
+    "Pipelinecalwf3v3.4.1 flt products lackedCTE/postflash/cosmic-ray correction; TinyTim7.5 assumedG5Vcolour for PSF, simultaneouscentroids with2.26maserrorfloor. Reduction assumptions not nativeJPEG calibration.",
+    "Paper text names10545/2005-12-03 and10860/2006-08-03 while current NASA caption/metadata names10759/10860 and2006-08-30 plusDecember3vs9\u201310 conflict. Preserve all accounts; rawMAST/product crosswalk unresolved; do not silently correct dates or assume same displayed image."
+  ],
+  "limitations": [
+    "Unresolved astrometry does not establish terrain, local chemistry, calibrated visible colour, atmosphere absence, ocean/plume/biology or survivable landing.",
+    "No angular/raster computation or independent source-pixel scale calibration performed. No catalogue parameter update or latest-complete-ranking claim."
+  ],
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16064255bytes/64255over hard16MB; no current passing full/offline browser claim",
+    "preservation": "All68 dossiers unchanged;550 tracked public files byteequal including recorded Clipper preview. Originals/masters/native/provenance retained.",
+    "queue": 566,
+    "attribution": "Interbuild feed differences unaudited; no savings attribution. Other engines open.",
+    "next": "Substantial conforming lossless headroom before prepared dossiers; later Dysnomia rotation/thermal/product audit can progress independently. ACTIVE; no external blocker."
+  }
+}
