@@ -41,6 +41,7 @@
     "fullBuild": "FAIL16061291bytes/61291over hard16MBgate",
     "browser": "No current passing full/offline browser claim;other engines open",
     "preservation": "All550 tracked public files byte-identical to HEAD;all68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
-    "attribution": "Interbuild differences unaudited;no savings attribution or production codec change"
+    "attribution": "Interbuild differences unaudited;no savings attribution or production codec change",
+    "postValidationRebase": "Concurrentcb489c1 PR81 preserved after checks;latest combined application not yet revalidated. Checks apply6ef4bbb baseline."
   }
 }
