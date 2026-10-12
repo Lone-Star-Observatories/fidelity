@@ -9,6 +9,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/binaries.js  ORB6 orbits   │
 │                                      │           │ server/textures.js  imagery       │
 │                                      │           │ server/tiff.js      USGS mosaics  │
+│                                      │           │ server/dem.js       DEM tiles     │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/imagery.js   surveys, NASA │
@@ -84,6 +85,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/co2` | NOAA GML Mauna Loa monthly CO₂ (the Keeling curve, #54): `rows` of [decimal year, ppm, de-seasonalized ppm] (`server/co2.js`, cached a day) |
 | `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
+| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mars, Moon, Mercury, Earth z ≤ 4). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF strips; ETOPO1 through ERDDAP), cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit and finest level (`server/dem.js`) |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
@@ -279,6 +281,8 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+On a body with an elevation model the camera stands on the DEM's ground and the horizon is a
+terrain patch from the measured heights (mountains, crater rims; see Elevation and relief, #80).
 
 ## Camera controls (#39)
 
@@ -472,6 +476,60 @@ lat/lon in `localStorage` (a per-viewer convenience; renders can always be redon
 distance from the radius, gravity, sky model, the star's and parent's computed apparent sizes) are listed under the
 IMAGINED badge. Each image's site is a camera marker on the Planet View globe (`setSurfaceMarks`); clicking one
 stands there. No AI image service: it would need hosting and would be invention presented as a picture.
+
+## Elevation and relief (#80)
+
+Each body with a measured global DEM has real topography: relief shading at every distance,
+true (or labelled, exaggerated) heights close up, terrain on the surface view's horizon and an
+elevation read-out with its source.
+
+- **Data.** `scripts/build-dem.mjs` fetches each DEM once (raw files in `data/dem-raw/`, never
+  committed), box-averages it onto the app's grid and writes `public/dem/<body>.png` (1440 × 720,
+  0.25°; Enceladus 720 × 360, its native 0.5°) plus `public/dem/index.json` (min/max metres,
+  reference surface, resolution, coverage, credit, licence, source URL). One convention for every
+  body (`src/astro/dem.js`): equirectangular, pixel-is-area, row 0 at 90° N, column 0 at 180° W,
+  east-positive planetocentric longitude; 16-bit grey, 0 = no data, 1…65535 = min…max. A body
+  whose colour map starts elsewhere (`texLon0`: Pluto and Ceres at 0°) samples the DEM at
+  `u + (texLon0 + 180)/360`, the same offset `siteDir` uses. Sources, resolutions and licences:
+  [data-sources.md](data-sources.md#elevation-models-80). Bundled: Earth (ETOPO1), Moon (LOLA),
+  Mars (MOLA), Mercury (MESSENGER/USGS), Venus (Magellan), Ceres and Vesta (Dawn/DLR), Pluto and
+  Charon (New Horizons, encounter hemispheres), Enceladus (Cassini ISS shape model): 13 MB in all.
+  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Titan, Ganymede, Europa,
+  Callisto and Io have no open global grid: smooth spheres, and the panel says why.
+- **Decoding** (`src/data/dem.js`): the PNG is inflated with `DecompressionStream` and unfiltered
+  in JS (an `<img>` would round it to 8 bits), dequantised to metres (NaN = no data) for read-outs,
+  and uploaded as a half-float `R16F` texture with a box-filtered mip chain (rows flipped so v = 1 is
+  north like the sphere's UVs). No data → the reference surface; Earth's sea floor is flattened to sea
+  level on the GPU (the ocean surface carries no relief) while read-outs give the bathymetry.
+- **Shading and displacement** (`materials.js`, `DEM` define): the vertex shader displaces the
+  sphere by `1 + k·h/R` (k = exaggeration, R = body radius) and passes the local east/north
+  directions; the fragment shader derives the normal map from four height taps (central
+  differences; step = one texel or the pixel footprint with the matching mip level, so distant globes
+  do not sparkle) and tilts the normal by the slopes before lighting. Band modes, eclipses and
+  planetshine use the tilted normal too. The normal map is computed on the fly from the one height
+  file rather than shipped as a second image, so every exaggeration is exact (`slopeNormal` in
+  `src/astro/dem.js` is the same maths, tested). Venus' globe shows its cloud tops, so its globe relief
+  is off (read-outs and the surface view only).
+- **Close up** (`src/views/system/relief.js`): within 4 radii the globe swaps to a 384 × 192 sphere;
+  within ~0.25 radii of the ground (FROM ABOVE, FLY) and in the surface view a terrain patch is built
+  around the point below the camera: a polar grid of 96 rings × 192 spokes, rings packed towards
+  the centre (≈ 40 m apart in Earth's surface view), heights from the finest tiles loaded
+  (`/api/dem-tile`, the level chosen per ring so cells match the spacing; the bundled grid until they
+  arrive, then rebuilt), positions relative to the patch centre for float precision, lit by its own
+  geometry with the globe's shared uniforms. The globe is discarded under it (`uDemClip`). The
+  standing patch reaches ~350 km, enough for mountains and crater rims on the horizon.
+- **RELIEF** (body panel, ELEVATION section): OFF · TRUE · ×2 · ×5 · ×10 · ×20 (`settings.relief`,
+  default TRUE). Exaggerations are labelled in the panel and the surface HUD.
+- **Read-outs**: the height under the pointer (panel row AT CURSOR and a tag by the cursor),
+  each site's height in its card, and the ground under the surface view in its HUD, all MEASURED
+  with the model named. The surface camera stands 2 m above the DEM's ground, not the sphere.
+- **Following the terrain**: site dots, labels, rover traverses and models (`sites.js`) and named
+  features (`features.js`) are re-seated on the drawn ground when the DEM loads or the exaggeration
+  changes; Planet View globes get the same relief and lifted dots. The helm (`helm.js`) keeps its
+  0.2 %-of-radius clearance above the terrain and reports altitude above it.
+- **Standalone**: no DEMs (16 MB budget); globes stay smooth and the panel says so.
+- **Browser checks**: `window.__fidelityRelief` (`terminatorView(phase, dist)`, `overSite(lat, lon,
+  dist)`, `elevationAt`, `phaseNow`, `view` = the System View API).
 
 ## Surface sites (#37)
 

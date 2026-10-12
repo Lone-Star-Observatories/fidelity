@@ -398,7 +398,7 @@ export function createHelm(ctx) {
     const ns = nodes();
     if (!ns[anchor]) { anchor = ctx.model().starId; local.set(0, 0, 0); }
     const c = shipWorld(v3);
-    let best = anchor, bestD = c.distanceTo(ns[anchor].pos) - radiusAU(anchor);
+    let best = anchor, bestD = c.distanceTo(ns[anchor].pos) - groundAU(anchor, local); // altitude above the terrain where there is a DEM (#80)
     const anchorD = bestD;
     for (const id in ns) {
       const n = ns[id];
@@ -413,9 +413,10 @@ export function createHelm(ctx) {
     nearest = { id: best === anchor ? anchor : best, km: Math.max(0, Math.min(bestD, anchorD)) * AU_KM };
   }
   let nearest = null;
-  /** Don't fly into the ground: keep 0.2% of a radius (13 km at Earth) above the anchor's surface. */
+  /** Don't fly into the ground: keep 0.2% of a radius (13 km at Earth) above the anchor's surface: the terrain where it has a DEM (#80). */
+  const groundAU = (id, off) => (off.lengthSq() > 0 ? ctx.groundRadius?.(id, off) : null) ?? radiusAU(id);
   function collide() {
-    const r = radiusAU(anchor) * 1.002;
+    const r = groundAU(anchor, local) * 1.002;
     const d = local.length();
     if (d < r && d > 0) {
       local.setLength(r);

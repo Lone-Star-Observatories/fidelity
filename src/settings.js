@@ -20,6 +20,7 @@ const defaults = {
   fields: false,     // System View: MAG FIELDS: the Sun's field (Parker spiral, current sheet) and planetary magnetospheres (#38)
   features: true,    // System View: IAU names of craters, mountains, valleys… on rocky and icy worlds
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
+  relief: 'true',    // #80: terrain from each body's DEM: 'off' | 'true' | 'x2' | 'x5' | 'x10' | 'x20' (exaggeration, labelled)
   deepsky: true,     // surface view: nebulae, galaxies and star clusters on the sky (#48)
   constellations: false, // surface view: constellation figures and names (#48)
   siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch, trek)

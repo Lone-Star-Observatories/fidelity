@@ -43,6 +43,8 @@ import { createHelm } from '../ship/helm.js';
 import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
+import { createRelief } from './relief.js';
+import { fmtElevation, reliefK } from '../../astro/dem.js';
 import { BANDS, bandById, passById } from '../../data/bands.js';
 import { starBandDelta, paletteIndex, ringBandLook } from './bandskin.js';
 import { bandTexture, hipsUrl, applyBandToMaterial, progressiveFeed, feedCredit, FULL_DELAY_MS } from './bandtextures.js';
@@ -110,7 +112,8 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky, onTrek, onHelm }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky, onTrek, onHelm, onElevation }) {
+  const relief = createRelief({ settings }); // #80: DEM relief, displacement and close-up terrain
   let hiddenKinds = null, hiddenTrek = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
   // the Star Trek sites (#41) follow the STAR TREK layer as well as their filter
@@ -459,7 +462,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       glow.scale.setScalar(6);
       mesh.add(glow);
     } else {
-      const mat = planetMaterial(placeholder, { tint: body.skin?.tint });
+      const mat = planetMaterial(placeholder, { tint: body.skin?.tint, dem: !!model.isSol }); // #80: relief from the body's DEM, if it has one
       mat.userData.host = body.orbit?.host ?? model.starId;
       mat.userData.body = body.id;
       applySkin(mat, body.skin);
@@ -517,6 +520,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (features) tilt.add(features.group);
     const color = body.kind === 'moon' ? 0x8899aa : body.orbit?.type === 'elements' ? (body.kind === 'comet' ? 0x66ccff : 0xaa9977) : orbitColor(body, i);
     nodes[body.id] = { body, group, tilt, mesh, clouds, ring: ringMesh, label, pos: new THREE.Vector3(), orbit: null, orbitJd: null, color, axis, comet, sites, features };
+    if (model.isSol && !isStar(body)) relief.attach(nodes[body.id]);
   }
 
   // Regions and Lagrange points: a label (and a pip for points), no globe.
@@ -1342,6 +1346,32 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       if (star) onPickStar?.(star);
     }, 260);
   });
+  // #80: the height under the pointer (panel read-out and a tag by the cursor), from the body's DEM
+  const elevTag = Object.assign(document.createElement('div'), { className: 'elev-tag' });
+  elevTag.hidden = true;
+  container.appendChild(elevTag);
+  let elevAt = 0, elevLast = null;
+  labels.domElement.addEventListener('pointermove', (e) => {
+    if (performance.now() - elevAt < 70) return;
+    elevAt = performance.now();
+    const hit = !surface && !e.buttons ? pick(e) : null;
+    const id = hit?.object?.userData?.id, n = id && nodes[id];
+    let out = null;
+    if (n && hit.object === n.mesh && relief.has(id)) {
+      const d = hit.object.worldToLocal(hit.point.clone()).normalize();
+      const r = relief.elevationAtDir(id, d.toArray(), 99, false);
+      if (r) out = { id, ...r };
+    }
+    if (out || elevLast) onElevation?.(out);
+    elevLast = out;
+    if (out && Number.isFinite(out.h)) {
+      const rect = container.getBoundingClientRect();
+      elevTag.textContent = `${fmtElevation(out.h)} · ${out.meta.name.split(' ').slice(0, 3).join(' ').toUpperCase()}`;
+      elevTag.style.left = `${e.clientX - rect.left + 14}px`; elevTag.style.top = `${e.clientY - rect.top + 12}px`;
+      elevTag.hidden = false;
+    } else elevTag.hidden = true;
+  });
+  labels.domElement.addEventListener('pointerleave', () => { elevTag.hidden = true; if (elevLast) onElevation?.(null); elevLast = null; });
   labels.domElement.addEventListener('dblclick', (e) => {
     if (surface) { zoomOnDisc(e); return; }
     if (helm?.active) return; // at the helm a double-click is two steering clicks, not a landing
@@ -1642,8 +1672,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
     const centre = n.group.getWorldPosition(sv.c);
     const R = n.body.radiusKm || 1;
-    // 2 m above the surface, in the object's own units (spheres are unit radius)
-    const lift = s.sphere ? 1 + 0.002 / R : 1;
+    // 2 m above the surface, in the object's own units (spheres are unit radius); on the DEM's ground where there is one (#80)
+    const ground = s.sphere ? (relief.patchGround(s.id) ?? relief.groundAtDir(s.id, sv.e.copy(s.local).normalize().toArray(), { surface: true })) : 1;
+    s.ground = s.sphere ? relief.elevationAtDir(s.id, sv.e.copy(s.local).normalize().toArray(), 99, false) : null;
+    const lift = s.sphere ? ground + 0.002 / R : 1;
     const p = s.object.localToWorld(sv.a.copy(s.local).multiplyScalar(s.sphere ? lift / s.local.length() : 1));
     if (!s.sphere) p.add(sv.b.copy(s.normal).transformDirection(s.object.matrixWorld).multiplyScalar(0.002 / AU_KM));
     const up = s.sphere ? sv.b.copy(p).sub(centre).normalize() : sv.b.copy(s.normal).transformDirection(s.object.matrixWorld);
@@ -1737,7 +1769,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     presetBtns.forEach((b, i) => b.classList.toggle('on', s.preset === FOV_PRESETS[i].id));
     hudBig.textContent = s.enlarge === 1 ? 'TRUE SIZE' : `ENLARGED ×${s.enlarge}`;
     hudBig.classList.toggle('on', s.enlarge !== 1);
-    const sub = `${look} · ${sunTxt}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
+    const g = s.ground && Number.isFinite(s.ground.h) ? ` · GROUND ${fmtElevation(s.ground.h)} (${s.ground.meta.ref.toUpperCase()} · ${s.ground.meta.name.toUpperCase()} · MEASURED${relief.k > 1 ? ` · TERRAIN DRAWN ×${relief.k}, EXAGGERATED` : relief.k === 0 ? ' · RELIEF OFF' : ''})` : '';
+    const sub = `${look} · ${sunTxt}${g}${s.parentNote ? ` · ${s.parentNote}` : ''} · ${sizes} · ${fovTxt}${air ? ` · ${air.note}` : ''}${giant ? ' · No solid surface: a giant planet is gas all the way down.' : ''} · DRAG TO LOOK · WHEEL TO ZOOM · ESC TO RETURN`;
     if (hudText.textContent !== text) hudText.textContent = text;
     if (hudSub.textContent !== sub) hudSub.textContent = sub;
     hudSub.title = `Apparent diameters from this spot (COMPUTED from the ephemeris and radii): ${discs.map((d) => `${d.label} ${(d.deg * 60).toFixed(2)}′, drawn ${(d.renderedDeg * 60).toFixed(2)}′`).join('; ')}.`;
@@ -1982,6 +2015,13 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     scene, camera, controls, dom: labels.domElement, container, rig,
     nodes: () => nodes, model: () => model, focusId: () => focusId,
     trueRadius: (b) => trueRadius(b), isStar, flyable,
+    // #80: the drawn ground under the ship (AU from the body's centre), from the DEM where there is one
+    groundRadius(id, offset) {
+      const n = nodes[id];
+      if (!n || !relief.has(id) || !n.mesh) return null;
+      const d = offset.clone().applyQuaternion(n.mesh.getWorldQuaternion(new THREE.Quaternion()).invert()).normalize();
+      return trueRadius(n.body) * relief.groundAtDir(id, d.toArray());
+    },
     inspect: (o) => inspectCraft(o),
     prepare(id) { if (nodes[id]) { void upgradeCraft(nodes[id]); void upgradeShape(nodes[id]); } }, // the craft's model or the body's shape, as a focus would load
     exitOthers() { if (surface) exitSurface(false); endSiteView(); flight = null; },
@@ -2005,6 +2045,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   // ---- frame loop -------------------------------------------------------------------------
+  const reliefCam = new THREE.Vector3(), reliefDir = new THREE.Vector3();
   const tmp = new THREE.Vector3();
   const tmp2 = new THREE.Vector3();
   const tmp6 = new THREE.Vector3(), tmp7 = new THREE.Vector3(), tmp8 = new THREE.Vector3(), tmp9 = new THREE.Vector3();
@@ -2223,6 +2264,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     if (surface && !skyClustersAsked) { skyClustersAsked = true; fetchClusters().then((d) => skyLayers.setClusters(d)).catch(() => {}); }
     skyLayers.update({ on: !!surface && band.id === 'full', fade: skyMat.uniforms.uFade.value, camera,
       flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
+    // #80: denser globes and terrain patches near the camera (standing on a body: around the spot)
+    root.updateMatrixWorld(true);
+    for (const id in nodes) {
+      const n = nodes[id];
+      if (!relief.has(id) || !n.group.visible) continue;
+      const camLocal = n.mesh.worldToLocal(reliefCam.copy(camera.position));
+      relief.update(n, { camLocal, focused: id === focusId, surface: surface?.id === id && surface.sphere ? { dir: reliefDir.copy(surface.local).normalize() } : null });
+    }
     const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
     else if (helm.active) { /* the helm drives the camera (and OrbitControls in its ORBIT view) */ }
@@ -2327,7 +2376,47 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
   }
 
-  return {
+  // #80: for browser checks and the console (like window.__fidelityCameras): relief state, and a camera
+  // placed `phaseDeg` from the sunward direction of the focused body at `dist` display radii (terminator views)
+  if (typeof window !== 'undefined') window.__fidelityRelief = {
+    relief,
+    elevationAt: (id, lat, lon) => (nodes[id] && relief.has(id) ? relief.elevationAtDir(id, siteDir(nodes[id].body, lat, lon), 99, false) : null),
+    terminatorView(phaseDeg = 80, dist = 2.6) {
+      const n = nodes[focusId], sun = nodes[model.starId];
+      if (!n || !sun) return false;
+      const toSun = sun.pos.clone().sub(n.pos).normalize(), pole = new THREE.Vector3(0, 1, 0).applyQuaternion(n.tilt.quaternion);
+      const side = pole.clone().cross(toSun).normalize();
+      const dir = toSun.clone().multiplyScalar(Math.cos(phaseDeg * DEG)).addScaledVector(side, Math.sin(phaseDeg * DEG)).normalize();
+      flight = null; overviewAU = null;
+      camera.position.copy(dir.multiplyScalar(displayRadius(n.body) * dist));
+      controls.target.set(0, 0, 0); framedRadius = displayRadius(n.body);
+      return true;
+    },
+    /** Camera over planetocentric lat/lon of the focused body at `dist` display radii, tilted `tiltDeg` towards north; → the Sun's altitude there (deg). */
+    overSite(lat, lon, dist = 1.6, tiltDeg = 0) {
+      const n = nodes[focusId], sun = nodes[model.starId];
+      if (!n || !sun) return null;
+      root.updateMatrixWorld(true);
+      const g = n.sites?.group ?? n.mesh, w = n.mesh.getWorldPosition(new THREE.Vector3());
+      const up = new THREE.Vector3(...siteDir(n.body, lat, lon)).applyMatrix4(g.matrixWorld).sub(w).normalize();
+      const north = new THREE.Vector3(...siteDir(n.body, Math.min(89.9, lat + 1), lon)).applyMatrix4(g.matrixWorld).sub(w).normalize().sub(up).normalize();
+      const dir = up.clone().multiplyScalar(Math.cos(tiltDeg * DEG)).addScaledVector(north, -Math.sin(tiltDeg * DEG)).normalize();
+      flight = null; overviewAU = null;
+      camera.position.copy(dir.multiplyScalar(displayRadius(n.body) * dist)).add(up.clone().multiplyScalar(displayRadius(n.body) * Math.sin(tiltDeg * DEG) * 0));
+      controls.target.copy(up.clone().multiplyScalar(displayRadius(n.body) * (tiltDeg ? 0.98 : 0)));
+      framedRadius = displayRadius(n.body);
+      return 90 - up.angleTo(sun.pos.clone().sub(n.pos)) / DEG;
+    },
+    /** Sun–body–camera angle (deg) for the focused body. */
+    phaseNow() {
+      const n = nodes[focusId], sun = nodes[model.starId];
+      if (!n || !sun) return null;
+      const w = n.mesh.getWorldPosition(new THREE.Vector3()), u = n.mesh.material.uniforms?.uSunPos?.value;
+      return { geometric: sun.pos.clone().sub(n.pos).angleTo(camera.position.clone().sub(n.pos).add(focusPos)) / DEG, shader: u ? u.clone().sub(w).angleTo(camera.position.clone().sub(w)) / DEG : null };
+    },
+  };
+
+  const viewApi = {
     /** #40: what a postcard must declare: the paleo-Earth banner and any scenario labels showing. */
     get postcardFacts() { return { paleo: paleo?.banner ?? null, scenario: scenario ? scenario.labels.map((l) => l.element.firstChild?.textContent ?? '') : [] }; },
     /** #40: bodies drawn at least `minPx` screen pixels across radius: [{ id, name, px, lit (0–1), from (lit side on screen), map, live, imagined }], biggest first. */
@@ -2446,6 +2535,14 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     camera: rig,
     /** True while the return to ORBIT (#39) is already flying to `id` (no warp, no second flight). */
     quietFocus: (id) => quietFocus === id && focusId === id,
+    /** #80: height (m) at planetocentric lat / east lon on body `id` from its DEM: { h, meta, res, cellKm } or null. */
+    elevationAt(id, lat, lon) {
+      const n = nodes[id];
+      if (!n || !relief.has(id)) return null;
+      return relief.elevationAtDir(id, siteDir(n.body, lat, lon), 99, false);
+    },
+    /** #80: the ground under the surface view, or null. */
+    get groundHere() { return surface?.ground ?? null; },
     /** Where we stand (texture lat/lon, as surfaceAt takes them), or null. */
     surfaceSpot: () => (surface?.sphere ? dirToLatLon(surface.local.toArray()) : null),
     /** Stand on body `id` at latitude/longitude (deg) and look up. */
@@ -2531,4 +2628,6 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     /** { time, credit, feed } if body `id` wears a live skin right now. */
     liveSkinOf: (id) => liveState[id] ?? null,
   };
+  if (typeof window !== 'undefined') window.__fidelityRelief.view = viewApi;
+  return viewApi;
 }
