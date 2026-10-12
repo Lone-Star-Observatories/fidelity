@@ -20,6 +20,7 @@ import { METERS } from '../cameraMath.js';
 import { radecVec } from '../../astro/skyplane.js';
 import { fetchClusterMembers, nebulaImageUrl } from '../../data/catalog.js';
 import { makeSnapshot } from '../snapshot.js';
+import { trekFor, trekGal } from '../../data/trek.js';
 
 const DEG = Math.PI / 180;
 export const NEBULA_COLORS = { HII: 0xff6680, PN: 0x55ddbb, SNR: 0xcc99ff, dark: 0xb09a80, reflection: 0x7799ff };
@@ -27,6 +28,7 @@ const lbd = (l, b, d) => frameToScene([d * Math.cos(b * DEG) * Math.cos(l * DEG)
 const radec = (ra, dec, d) => frameToScene(eqToGal([d * Math.cos(dec * DEG) * Math.cos(ra * DEG), d * Math.cos(dec * DEG) * Math.sin(ra * DEG), d * Math.sin(dec * DEG)]));
 export { ageTeff };
 
+const IMG_VERT = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
 const POINTS_VERT = `
   attribute float size; attribute vec3 color; varying vec3 vColor; varying float vFar; uniform float uPixel; uniform float uRadius;
   void main() { vColor = color; vFar = length(position) > uRadius ? 1.0 : 0.0;
@@ -36,7 +38,7 @@ const POINTS_FRAG = `
   void main() { if (vFar > 0.5) discard; float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 
-export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill, onDetail } = {}) {
+export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill, onDetail, onTrek } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -102,8 +104,8 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   }
   function drawChart(R) {
     for (const o of [...chart.children]) { chart.remove(o); o.geometry.dispose(); o.material.dispose(); }
-    for (const t of tags.filter((x) => x.kind === 'chart')) { scene.remove(t.obj); t.obj.element.remove(); }
-    tags.splice(0, tags.length, ...tags.filter((x) => x.kind !== 'chart'));
+    for (const t of tags.filter((x) => x.kind === 'chart' || x.kind === 'trekchart')) { scene.remove(t.obj); t.obj.element.remove(); }
+    tags.splice(0, tags.length, ...tags.filter((x) => x.kind !== 'chart' && x.kind !== 'trekchart'));
     for (const r of [R / 3, R]) {
       const pts = [];
       for (let i = 0; i <= 160; i++) { const a = (i / 160) * Math.PI * 2; pts.push(new THREE.Vector3(Math.cos(a) * r, 0, Math.sin(a) * r)); }
@@ -116,6 +118,86 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       tag(text, 'spoke', v.clone().multiplyScalar(R * 1.1));
     }
     ['I', 'II', 'III', 'IV'].forEach((q, i) => tag(`QUADRANT ${q}`, 'quadrant', new THREE.Vector3(...lbd(45 + i * 90, 0, R * 0.7))));
+    drawTrekChart(R);
+  }
+
+  // ---- the Star Trek layer (#25, #41), IMAGINED -------------------------------------------------------------
+  // Star Trek's Alpha/Beta border runs from the galactic core through Sol (as in Star Charts and the Galaxy
+  // View); at 30 kly the Gamma/Delta border through the core comes into range too. Territories are soft
+  // discs, places are pink labels (homeworlds and features appear as you zoom in); all clickable for a card.
+  const TREK_COLOR = 0xff88aa;
+  const trekChart = new THREE.Group(), trekGroup = new THREE.Group();
+  scene.add(trekChart, trekGroup);
+  const dashed = (pts, opacity = 0.7, dash = 20) => {
+    const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineDashedMaterial({ color: TREK_COLOR, transparent: true, opacity, dashSize: dash, gapSize: dash * 0.7, depthWrite: false }));
+    l.computeLineDistances();
+    return l;
+  };
+  function trekTag(text, cls, pos, extra) {
+    const o = tag(text, `trek ${cls}`, pos, extra);
+    o.center.set(1.08, 0.5); // left of the point: real labels sit to the right
+    return o;
+  }
+  function drawTrekChart(R) {
+    for (const o of [...trekChart.children]) { trekChart.remove(o); o.geometry.dispose(); o.material.dispose(); }
+    const gc = new THREE.Vector3(...lbd(0, 0, 1)), rot = new THREE.Vector3(...lbd(90, 0, 1));
+    trekChart.add(dashed([gc.clone().multiplyScalar(-R), gc.clone().multiplyScalar(Math.min(R, R0_KLY * 1000))], 0.65, R / 50));
+    const q = (text, v) => trekTag(text, 'quad', v, { kind: 'trekchart', onClick: () => onTrek?.('quadrants') }).center.set(0.5, 0.5);
+    q('ALPHA QUADRANT · STAR TREK', rot.clone().multiplyScalar(-R * 0.5));
+    q('BETA QUADRANT · STAR TREK', rot.clone().multiplyScalar(R * 0.5));
+    if (R > R0_KLY * 1000) { // the core: Gamma beyond Alpha, Delta beyond Beta
+      const core = gc.clone().multiplyScalar(R0_KLY * 1000), half = Math.sqrt(R * R - (R0_KLY * 1000) ** 2);
+      trekChart.add(dashed([core.clone().addScaledVector(rot, -half), core.clone().addScaledVector(rot, half)], 0.65, R / 50));
+      q('GAMMA QUADRANT', core.clone().addScaledVector(gc, R * 0.04).addScaledVector(rot, -half * 0.45));
+      q('DELTA QUADRANT', core.clone().addScaledVector(gc, R * 0.04).addScaledVector(rot, half * 0.45));
+    }
+  }
+  // a soft disc in the galactic plane for a territory or a region
+  const DISC_FRAG = `uniform vec3 uColor; uniform float uOpacity; varying vec2 vUv;
+    void main() { float r = length(vUv - 0.5) * 2.0; float a = smoothstep(1.0, 0.55, r) * uOpacity + smoothstep(0.9, 0.97, r) * smoothstep(1.0, 0.97, r) * uOpacity * 1.6;
+      if (a < 0.004) discard; gl_FragColor = vec4(uColor, a); }`;
+  function softDisc(pos, radius, opacity) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), new THREE.ShaderMaterial({
+      uniforms: { uColor: { value: new THREE.Color(TREK_COLOR) }, uOpacity: { value: opacity } }, vertexShader: IMG_VERT, fragmentShader: DISC_FRAG,
+      transparent: true, depthWrite: false, side: THREE.DoubleSide }));
+    m.rotation.x = -Math.PI / 2;
+    m.position.copy(pos);
+    m.renderOrder = -1;
+    return m;
+  }
+  const trekPlaces = []; // { t, pos, dist }
+  for (const t of trekFor('quadrant')) {
+    const p = t.placement;
+    if (p.type === 'star' || p.type === 'gal') {
+      const pos = new THREE.Vector3(...(p.type === 'star' ? radec(p.raDeg, p.decDeg, p.distLy) : frameToScene(trekGal(p))));
+      const territory = t.kind === 'territory';
+      if (p.radiusLy) trekGroup.add(softDisc(pos, p.radiusLy, territory ? 0.13 : 0.22));
+      const o = trekTag(`${territory ? '' : '◇ '}${t.name.toUpperCase()}${t.confidence === 'fan' && !territory ? ' ≈' : ''}`, territory ? 'territory' : 'world', territory ? pos.clone().add(new THREE.Vector3(0, 0, p.radiusLy * 0.75)) : pos,
+        { kind: 'trek', onClick: () => onTrek?.(t.id) });
+      if (territory) o.center.set(0.5, 0.5);
+      trekPlaces.push({ t, pos, o, dist: pos.length(), lod: p.type === 'star' ? Infinity : territory ? 2600 : 650 });
+      if (p.type !== 'star' && !p.radiusLy) { // a pip for a point place
+        const g = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([pos.x, pos.y, pos.z], 3));
+        trekGroup.add(new THREE.Points(g, new THREE.PointsMaterial({ size: 6, sizeAttenuation: false, color: TREK_COLOR })));
+      } else if (p.type === 'star') { // a pink ring round the real star (never a change to the star itself)
+        const g = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([pos.x, pos.y, pos.z], 3));
+        trekGroup.add(new THREE.Points(g, new THREE.ShaderMaterial({ uniforms: { uPixel: uniforms.uPixel }, transparent: true, depthWrite: false,
+          vertexShader: 'uniform float uPixel; void main() { gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); gl_PointSize = 22.0 * uPixel; }',
+          fragmentShader: 'void main() { float d = length(gl_PointCoord - 0.5); float a = smoothstep(0.5, 0.45, d) * smoothstep(0.36, 0.41, d); if (a < 0.02) discard; gl_FragColor = vec4(1.0, 0.53, 0.67, a); }' })));
+      }
+    } else if (p.type === 'arc') {
+      const pts = [];
+      for (let l = p.l[0]; l <= p.l[1]; l += 1) pts.push(new THREE.Vector3(...lbd(l, 0, p.distLy)));
+      trekGroup.add(dashed(pts, 0.85, 4));
+      const mid = new THREE.Vector3(...lbd((p.l[0] + p.l[1]) / 2, 0, p.distLy));
+      trekPlaces.push({ t, pos: mid, o: trekTag(`${t.name.toUpperCase()} ≈`, 'world', mid, { kind: 'trek', onClick: () => onTrek?.(t.id) }), dist: mid.length(), lod: 900 });
+    } else if (p.type === 'path') { // the Bajoran wormhole: its Alpha end here, a dashed pointer towards the Gamma end
+      const a = new THREE.Vector3(...frameToScene(trekGal({ l: p.points[0][0], b: p.points[0][1], distLy: p.points[0][2] })));
+      const b = new THREE.Vector3(...frameToScene(trekGal({ l: p.points.at(-1)[0], b: p.points.at(-1)[1], distLy: p.points.at(-1)[2] })));
+      trekGroup.add(dashed([a, a.clone().add(b.clone().sub(a).setLength(400))], 0.6, 8));
+      const end = a.clone().add(b.clone().sub(a).setLength(400));
+      trekPlaces.push({ t, pos: end, o: trekTag(`${t.name.toUpperCase()} → GAMMA QUADRANT`, 'world', end, { kind: 'trek', onClick: () => onTrek?.(t.id) }), dist: end.length(), lod: 900 });
+    }
   }
 
   // ---- content ----------------------------------------------------------------------------------
@@ -194,7 +276,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   const starTags = [];
   const nebulaStarPick = (m) => ({ kind: 'gaia', eq: radecVec(m.ra, m.dec), distLy: m.distLy, name: m.name });
   addNebulae();
-  tag('SOL · SECTOR 001', 'sol', new THREE.Vector3(), { always: true });
+  tag('SOL · SECTOR 001', 'sol', new THREE.Vector3(), { kind: 'sol', always: true }); // not 'chart': drawChart clears those
 
   let radius = 3000;
   function setRadius(R) {
@@ -333,7 +415,14 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     const now = performance.now();
     if (now - lastLazy > 400) { lastLazy = now; lazyUpdate(); }
     const show = settings.get('labels');
-    for (const t of tags) t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02) || (selected && t.obj.position.equals(selected.pos)));
+    const trekOn = !!settings.get('starfleet');
+    trekGroup.visible = trekOn; trekChart.visible = trekOn;
+    for (const t of tags) {
+      if (t.kind === 'trekchart') { t.obj.visible = trekOn; continue; }
+      if (t.kind === 'trek') continue;
+      t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02) || (selected && t.obj.position.equals(selected.pos)));
+    }
+    for (const p of trekPlaces) p.o.visible = trekOn && p.dist <= radius * 1.02 && camera.position.distanceTo(p.pos) < p.lod; // strict boolean for CSS2DRenderer
     ds.tick(camera, renderer.domElement.clientHeight || 800);
     renderer.render(scene, camera);
     labels.render(scene, camera);

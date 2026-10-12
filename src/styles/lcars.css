@@ -14,6 +14,7 @@
   --red: #ff4433;
   --text: #ffcc99;
   --dim: #7d6a5a;
+  --trek: #ff88aa;  /* the Star Trek layer (#25, #41): its own overlay colour, IMAGINED */
   --rail-w: 128px;
   --bar-h: 34px;
   --gap: 6px;
@@ -836,3 +837,19 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .pc-save { position: fixed; inset: 16px; z-index: 910; background: #000; border: 2px solid var(--orange); border-radius: 18px; padding: 12px; display: flex; flex-direction: column; gap: 8px; align-items: center; overflow: auto; }
 .pc-save img { max-width: 100%; max-height: 80vh; object-fit: contain; }
 @media (max-width: 760px) { .pc-body { grid-template-columns: minmax(0, 1fr); } .pc-overlay { padding: 8px; } }
+
+/* The Star Trek layer (#25, #41): fiction drawn over the real chart, in its own colour, italic and with a
+   dashed edge, so it never reads as a real label (those use a solid left border). */
+.nav-label.trek, .trek-label {
+  font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.08em; white-space: nowrap; padding: 0 5px; color: var(--trek);
+  background: rgba(20, 0, 10, 0.55); border: 0; border-right: 2px dashed var(--trek); pointer-events: auto; cursor: pointer; font-style: italic;
+}
+.nav-label.trek:hover, .trek-label:hover { color: #000; background: var(--trek); }
+.nav-label.trek.quad { font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.2em; background: none; border: 0; opacity: 0.85; font-style: normal; }
+.nav-label.trek.border { background: none; border: 0; opacity: 0.8; }
+.nav-label.trek.territory { font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.16em; background: none; border: 0; opacity: 0.8; font-style: normal; }
+.nav-label.fleet.clickable { pointer-events: auto; cursor: pointer; }
+.nav-label.fleet.clickable:hover { color: #000; background: var(--rose); }
+.site-trek { color: var(--trek); font-style: italic; }
+.host-row.trek-row { border-left-color: var(--trek); }
+.host-row.trek-row > span.mono { color: var(--trek); }

@@ -33,6 +33,8 @@ import { encodeCamera, decodeCamera } from './views/cameraMath.js';
 import { ROADMAP } from './roadmap.js';
 import { createSatellitePanel } from './panels/satellite.js';
 import { createSitesPanel } from './panels/sites.js';
+import { createTrekPanel } from './panels/trek.js';
+import { trekOrbitAU } from './data/trek.js';
 import { createNavList } from './panels/navlist.js';
 import { LAGRANGE_EXPLAINER, lagrangeDiagram } from './panels/explainers.js';
 import { createStarCard } from './panels/starcard.js';
@@ -112,7 +114,8 @@ const system = createSystemView($('system-view'), {
   onSelect: (id) => go({ level: 'system', system: currentSystem, body: id }),
   onFeature: (f) => { const b = system.model?.bodies.find((x) => x.id === f.body); if (b) sitesPanel.show({ ...f, kind: 'feature', tier: 'measured', url: f.gazetteerId ? `https://planetarynames.wr.usgs.gov/Feature/${f.gazetteerId}` : null,
     short: f.name.toUpperCase(), note: `${f.type}${f.diameterKm ? `, ${f.diameterKm.toLocaleString()} km across` : ''}. Its name is approved by the International Astronomical Union.` }, b); },
-  onSite: (site) => { const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
+  onSite: (site) => { if (site.kind === 'trek') return trekPanel.show(site.trekId); const b = system.model?.bodies.find((x) => x.id === site.body); if (b) sitesPanel.show(site, b); },
+  onTrek: (id) => trekPanel.show(id), // the Star Trek layer (#41)
   onPickStar: (p) => pickStarIn('system', p),
   onDrillStar: (id) => go({ level: 'star', system: currentSystem, body: id }),
   onDeepSky: (o) => deepSkyCard(o), // #48: a deep-sky object clicked on the surface view's sky
@@ -140,6 +143,7 @@ const galaxy = createGalaxyView($('galaxy-view'), {
   onFrame: (f) => { if (route.level === 'galaxy') lastFrame = f; },
   onPickStar: (p) => pickStarIn('galaxy', p),
   onDrill: (p) => (p?.id ? go({ level: 'navigation', system: p.id }) : go({ level: 'quadrant' })), // drill down (#23)
+  onTrek: (id) => trekPanel.show(id), // the Star Trek layer (#25, #41)
 });
 let galaxyStarsLoaded = false;
 const quadrant = createQuadrantView($('quadrant-view'), {
@@ -147,6 +151,7 @@ const quadrant = createQuadrantView($('quadrant-view'), {
   onPickStar: (p) => pickStarIn('quadrant', p),
   onDrill: (p) => go({ level: 'navigation', system: p?.id ?? 'sol' }),
   onDetail: () => { if (route.level === 'quadrant') renderQuadrantPanel(); }, // a nebula image or member list arrived (#24)
+  onTrek: (id) => trekPanel.show(id),
 });
 const universe = createUniverseView($('universe-view'), { onSelect: (id) => { universeSel = id; universe.select(id); renderUniversePanel(); }, onDrill: () => go({ level: 'galaxy' }) });
 let quadrantSel = null, universeSel = null, quadrantLoaded = false, universeLoaded = false;
@@ -155,6 +160,7 @@ const nav = createNavigationView($('navigation-view'), {
   onDrill: (id) => go({ level: 'system', system: id }),
   onFrame: (f) => { if (route.level === 'navigation') lastFrame = f; },
   onArrivals: (st) => { if (route.level === 'navigation' && !st?.loading) renderNavPanel(); }, // deep-time arrivals loaded (#29)
+  onTrek: (id) => trekPanel.show(id),
 });
 
 // ---- rail ----------------------------------------------------------------------------
@@ -346,6 +352,7 @@ function describePostcard() {
     if (b?.skin?.map && credits[b.skin.map] && !b.surfacePending) { tiers.measured.push('SURFACE MAP'); imgCredits.push(credits[b.skin.map]); }
     else tiers.imagined.push('SURFACE');
   }
+  if (settings.get('starfleet') && [galaxy, quadrant, nav, system].includes(v)) tiers.imagined.push('STAR TREK OVERLAY'); // #25, #41
   if (!clock.isNow) tiers.computed.push('SKY AT THE SHIP\'S DATE');
   const date = clock.inCalendar ? dateFromJd(clock.jd) : null;
   const rig = v.camera;
@@ -797,8 +804,28 @@ const navList = createNavList({ h, pill, fmt, fetchPlanets, fetchClusters,
 const skyPanel = createSkyEventsPanel({ h, row, pill, go, clock, system });
 const earthHz = earthFromHorizons();
 const satPanel = createSatellitePanel({ h, pill, row, factList, badge, renderLegend, go, system, clock, toast, panel, live, resetLive, $ });
+// The Star Trek layer (#25, #41): one card for every fictional place, and BACK to whichever panel was open
+function renderCurrentPanel() {
+  const l = route.level;
+  if (l === 'navigation') renderNavPanel();
+  else if (l === 'quadrant') renderQuadrantPanel();
+  else if (l === 'galaxy') renderGalaxyPanel();
+  else if (l === 'system' && system.model) { if (route.body && system.model.bodies.some((b) => b.id === route.body)) renderBodyPanel(route.body); else renderSystemPanel(); }
+}
+const trekPanel = createTrekPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend, go, warp: () => warp(), back: () => renderCurrentPanel(),
+  // WARP TO the real star, then pull back far enough to see the imagined orbit ring
+  warpTo: (starId) => {
+    go({ level: 'system', system: starId });
+    const t0 = Date.now(), frame = () => {
+      const b = system.model?.id && system.model.bodies.find((x) => x.id === starId);
+      if (b && route.level === 'system' && !route.body) system.overview(trekOrbitAU(b.lum) * 3.2, starId);
+      else if (Date.now() - t0 < 20000 && route.level === 'system') setTimeout(frame, 400);
+    };
+    setTimeout(frame, 900);
+  } });
 const sitesPanel = createSitesPanel({ h, pill, row, badge, settings, panel, resetLive, renderLegend,
   viewFeed: (f, name) => satPanel.viewFeed(f, name),
+  trek: (s) => trekPanel.show(s.trekId),
   back: (b) => renderBodyPanel(b.id),
   globe: () => system.endSiteView(),
   above: (b, s) => {
@@ -966,6 +993,7 @@ function renderSystemPanelInner() {
       ] : []),
       ...m.notes.map((n) => h('p', { className: 'note', textContent: n })),
     ]),
+    ...trekPanel.section('system', { model: m, after: renderSystemPanel }),
     (live.sky = h('p', { className: 'note' })),
     renderLegend(),
   );
@@ -1119,6 +1147,7 @@ function renderBodyPanelInner(id, { inStarView = false } = {}) { // inStarView: 
       b.parent ? pill(`◀ ${b.parent.toUpperCase()}`, () => go({ level: 'system', system: m.id, body: b.parent })) : null),
     ...(m.isSol && !inStarView ? lookAtSection(b, m) : []),
     ...(m.isSol ? sitesPanel.section(b) : []),
+    ...(m.isSol && !inStarView ? trekPanel.bodySection(b, () => renderBodyPanel(b.id)) : []),
     ...(moonsOf(m, b.id).length ? [h('h3', { textContent: 'MOONS' }),
       h('div', { className: 'body-list' }, moonsOf(m, b.id).map((x) => pill(x.name.toUpperCase(), () => go({ level: 'system', system: m.id, body: x.id }))))] : []),
     b.note ? h('p', { className: 'note', textContent: b.note }) : null,
@@ -1175,10 +1204,6 @@ function galEpochText() {
 }
 function renderGalaxyPanel() {
   resetLive();
-  const fleet = pill(settings.get('starfleet') ? 'STARFLEET OVERLAY: ON' : 'STARFLEET OVERLAY: OFF', () => {
-    settings.set('starfleet', !settings.get('starfleet'));
-    renderGalaxyPanel();
-  }, settings.get('starfleet') ? 'on' : '');
   live.galEpoch = h('p', { className: 'warn mono', textContent: galEpochText() });
   const gaia = galaxy.gaiaCount;
   panel.replaceChildren(
@@ -1200,8 +1225,9 @@ function renderGalaxyPanel() {
     h('p', { className: 'note', textContent: 'Galactic time is the ship\'s clock: run it from the TIME row below (MYR/S or GYR/S; ⇄ REV runs it backwards, NOW returns). The galaxy shows ±2 billion years, and the clock stops there.' }),
     h('p', { className: 'note', textContent: 'Stars circle the centre on a flat rotation curve, so the inner disc laps the outer and the neighbourhood smears into an arc. The spiral arms are a pattern that turns at its own speed; the Sun sits close to corotation, so it keeps pace with them. The satellite galaxies follow their orbits (±2 billion years).' }),
     h('h3', { textContent: 'QUADRANTS' }),
-    h('div', { className: 'body-list' }, fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
-    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. The Starfleet overlay draws Star Trek\'s Alpha–Delta quadrants, centred on the galactic core.' }),
+    h('div', { className: 'body-list' }, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
+    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. Dashed red lines: Star Trek\'s Alpha–Delta quadrants, centred on the galactic core, with the Alpha/Beta border through Sol (IMAGINED).' }),
+    ...trekPanel.section('galaxy', { after: renderGalaxyPanel }),
     h('h3', { textContent: 'FACTS' }),
     factList([
       { label: 'SOL → CENTRE', value: `${R0_KLY.toFixed(1)} KLY`, tier: 'measured', detail: 'R₀ = 8.178 kpc from stars orbiting Sgr A* (GRAVITY Collaboration 2019).' },
@@ -1265,6 +1291,7 @@ function renderQuadrantPanel() {
     h('p', { className: 'note', textContent: `${fmt(c.clusters, 0)} STAR CLUSTERS · ${c.nebulae} LANDMARK NEBULAE WITHIN ${fmt(R, 0)} LY` }),
     ...selBlock,
     h('h3', { textContent: 'LANDMARKS · NEAREST FIRST' }), objectList(quadrant.objects, R, quadrantSel, (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); }),
+    ...trekPanel.section('quadrant', { after: renderQuadrantPanel }),
     h('h3', { textContent: 'KEY' }),
     h('div', { className: 'colour-key' },
       ...ages.map(([a, l]) => keyRow(hex(rgbToHex(blackbodyRGB(ageTeff(a)))), `CLUSTER · ${l}`, a < 7 ? 'HOT BLUE STARS STILL SHINING' : a > 9 ? 'ONLY COOL RED STARS LEFT' : '')),
@@ -1395,6 +1422,7 @@ function renderNavPanel() {
     h('p', { className: 'note', textContent: `${inRange.length} STARS · ${hosts.length} WITH KNOWN PLANETS WITHIN ${d.radiusLy} LY` }),
     ...selBlock,
     ...navList.render(d, (s) => distLy(s, c), navSelected),
+    ...trekPanel.section('navigation', { after: renderNavPanel, starIds: new Set(d.stars.map((s) => s.id)) }),
     ...motionSection(d),
     ...transmissionSection(d, sel),
     h('h3', { textContent: 'CHART' }),

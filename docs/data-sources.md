@@ -144,6 +144,7 @@
 | Planetshine (#49) | NASA planetary fact sheet geometric albedos (Earth 0.367, Mars 0.170, Jupiter 0.538, Saturn 0.499, Uranus 0.488, Neptune 0.442), Pluto 0.52 (Buratti et al. 2017); Lambert phase law; validated against BBSO earthshine (Qiu et al. 2003; Pallé et al. 2003); earthlight colour (Arnold et al. 2002; Sterzik et al. 2012) | Night-side light on moons (COMPUTED fraction, MODELLED display exposure), parent planet's size and phase from a moon | bundled | ✅ #49 |
 | Surface sky (#48) | [Gaia DR3 colour flux map](https://doi.org/10.5270/esa-qa4lep3) (ESA/Gaia/DPAC, CC BY-SA 3.0 IGO; HiPS ESAVO/P/GAIA/DR3-RGB via CDS hips2fits); nebula images from #24 (`src/data/nebula3d.js`); galaxy cutouts from DSS2 colour and 2MASS colour via hips2fits (`src/data/galaxy-images.js`); Hunt & Reffert 2023 clusters; constellation figures from [d3-celestial](https://github.com/ofrohn/d3-celestial) (Olaf Frohn, BSD 3-Clause) | Milky Way band, deep-sky images at true size and orientation, cluster rings, constellation lines and names | local backend (cached) + bundled | ✅ #48 |
 | Universe galaxy images (#50) | DSS2 colour and 2MASS colour cutouts via CDS hips2fits; D25, axis ratios and PA from RC3 / HyperLEDA; kinematic PA and inclination from Corbelli et al. 2010 and Chemin et al. 2009 (M31), Corbelli & Salucci 2000 (M33), de Blok et al. 2008 THINGS (M81, M101), Lundgren et al. 2004 (M83), Koribalski et al. 1995 (NGC 253), Colombo et al. 2014 (M51), Ott et al. 2001 (NGC 4945); isophotes for the rest (Buta & McCall 2003; Hurt et al. 1996 for Maffei) | Galaxy images (MEASURED), orientation (MEASURED/MODELLED), disc and ellipsoid shapes (MODELLED) | local backend (cached) | ✅ #50 |
+| Navigation, Quadrant, Galaxy, System | Star Trek layer: canon episodes and films, *Star Trek: Star Charts* (Mandel 2002), fan estimates (see "IMAGINED sources" below) | Alpha–Delta quadrants, homeworlds at real stars, stations, territories, features, Voyager's route (all IMAGINED, one toggle) | bundled (`src/data/trek.js`) | ✅ #25 #41 |
 
 ## Multiple stars
 
@@ -319,3 +320,65 @@ Akatsuki UVI/IR2/LIR (single calibrated frames on DARTS, no maps), Chang'e MRM (
 plotted browse figures), Chandra X-ray and VLA/ALMA radio Jupiter images (not yet licence-checked and
 measured). The THEMIS night-time HiPS renders but there is one map per pass.
 Solar radioheliograph imagery (Nobeyama) and Earth microwave maps belong to the #28 work.
+
+## IMAGINED sources: the Star Trek layer (#25, #41)
+
+Everything below is fiction, badged IMAGINED and drawn only as an overlay (`src/data/trek.js`; see "Star Trek layer"
+in `docs/architecture.md`). Real star positions and distances come from the HYG v4.4 catalogue the views already load
+(HYG id, HIP or Gliese number, RA/Dec and parallax distance are recorded with each entry and checked in
+`tests/trek.test.js`). Confidence: **canon** = stated or shown on screen; **reference book** = a licensed reference,
+mostly *Star Trek: Star Charts* (Geoffrey Mandel, Pocket Books, 2002); **fan estimate** = no on-screen or licensed
+position, an approximate spot after the layout of Star Charts' maps, drawn with ≈ and flagged APPROXIMATE on its card.
+Summaries are our own words; each card links to [Memory Alpha](https://memory-alpha.fandom.com/) (CC BY-NC) instead of
+copying it. Star Trek is a trademark of Paramount / CBS Studios; this is a non-commercial fan homage with no franchise
+artwork or logos. Sector numbers other than Sector 001 are not drawn: none is tied to a real star.
+
+| Place | Placed at | Confidence | Source |
+|---|---|---|---|
+| Alpha, Beta, Gamma and Delta Quadrants | TWO LINES THROUGH THE GALACTIC CORE · ALPHA / BETA THROUGH SOL | reference book | Canon: the galaxy is split into four quadrants by two perpendicular lines through the galactic core. Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) runs the Alpha/Beta line through Sol, so the Federation straddles it, Alpha on the side of galactic longitude 180–360°, Beta on 0–180°, Gamma and Delta beyond the core. |
+| Vulcan | 40 ERIDANI A (KEID) · HIP 19849 | reference book | Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the 40 Eridani A identification was first argued by Gene Roddenberry, Sallie Baliunas, Robert Donahue and George Nichols in a letter to Sky & Telescope (1991) |
+| Andoria | EPSILON INDI · HIP 108870 | reference book | Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002): Andoria in the Epsilon Indi system. No star is named on screen. |
+| Tellar Prime | 61 CYGNI A · HIP 104214 | reference book | Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002): Tellar in the 61 Cygni system. No star is named on screen. |
+| Battle of Wolf 359 | WOLF 359 · GL 406 | canon | Named on screen: the Federation fleet met a Borg cube at Wolf 359, a real red dwarf 7.8 ly from Sol. |
+| Alpha Centauri · Cochrane | ALPHA CENTAURI A (RIGIL KENTAURUS) · HIP 71683 | canon | On screen, Zefram Cochrane, inventor of the warp drive, is introduced as "of Alpha Centauri". |
+| Altair VI | ALTAIR · HIP 97649 | canon | Named on screen: the Enterprise is ordered to Altair VI for a presidential inauguration. |
+| Vega colony | VEGA · HIP 91262 | canon | Named on screen as the destination for the Enterprise's injured crew in the original pilot. |
+| Sector 001 | SOL | canon | Named on screen as Earth's sector designation. Other sector numbers are not tied to real stars, so no grid is drawn. |
+| Rigel worlds | RIGEL · HIP 24436 | canon | Named on screen many times (Rigel II, IV, VII, XII …). |
+| Deneb IV · Farpoint | DENEB · HIP 102098 | canon | Named on screen: Farpoint Station on Deneb IV. |
+| Qo'noS | l 62° b 4° · ~110 LY FROM SOL | fan estimate | Beta Quadrant, beyond Federation space, as in the maps of Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the distance is a fan estimate. |
+| Romulus & Remus | l 18° b -3° · ~175 LY FROM SOL | fan estimate | Beta Quadrant, behind the Neutral Zone, as in the maps of Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the distance is a fan estimate. |
+| Romulan Neutral Zone | l 348–48° · ~130 LY FROM SOL | fan estimate | Canon border between Federation and Romulan space; its position is drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| Bajor | l 300° b 2° · ~52 LY FROM SOL | fan estimate | Alpha Quadrant, near the Cardassian border, as in the maps of Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the distance is a fan estimate. Its star is called B'hava'el in reference works. |
+| Deep Space 9 | l 301° b 2° · ~52.2 LY FROM SOL | fan estimate | In the Bajoran system beside the wormhole (canon); placed with Bajor (approximate). |
+| Bajoran wormhole | 2 WAYPOINTS · TO ~70,000 LY FROM SOL | fan estimate | Canon: a stable wormhole from the Bajoran system to the Idran system in the Gamma Quadrant, commonly given as about 70,000 ly. The Gamma end is drawn at that distance on the Gamma side (approximate). |
+| Cardassia Prime | l 308° b -2° · ~68 LY FROM SOL | fan estimate | Alpha Quadrant, beyond Bajor, as in the maps of Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the distance is a fan estimate. |
+| Ferenginar | l 335° b 3° · ~140 LY FROM SOL | fan estimate | Alpha Quadrant, as in the maps of Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002); the distance is a fan estimate. |
+| The Badlands | l 293° b 0° · ~60 LY FROM SOL · RADIUS ~6 LY | fan estimate | Canon: a region of plasma storms near the Cardassian border; the position is a fan estimate. |
+| The Briar Patch | l 75° b 6° · ~260 LY FROM SOL · RADIUS ~12 LY | fan estimate | Canon: a hazardous nebula region on the edge of Federation space; no position is given, so this spot is a rough fan estimate. |
+| Mutara Nebula | l 210° b -5° · ~70 LY FROM SOL · RADIUS ~4 LY | fan estimate | Canon: a nebula in Federation space near the Regula I laboratory; the position is a fan estimate. |
+| Delphic Expanse | l 25° b 10° · ~80 LY FROM SOL · RADIUS ~25 LY | fan estimate | Canon: a region surrounded by thick clouds and gravitational anomalies, home of the Xindi; the position is a fan estimate. |
+| Starbase 375 | l 296° b 3° · ~44 LY FROM SOL | fan estimate | Canon: a Federation starbase in the Dominion War; the position is a fan estimate near Bajor. |
+| United Federation of Planets | l 0° b 0° · ~0 LY FROM SOL · RADIUS ~95 LY | fan estimate | Straddles the Alpha and Beta Quadrants around Sol (canon); extent drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| Klingon Empire | l 65° b 0° · ~150 LY FROM SOL · RADIUS ~70 LY | fan estimate | Beta Quadrant (canon); extent drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| Romulan Star Empire | l 18° b 0° · ~200 LY FROM SOL · RADIUS ~65 LY | fan estimate | Beta Quadrant (canon); extent drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| Cardassian Union | l 312° b 0° · ~85 LY FROM SOL · RADIUS ~35 LY | fan estimate | Alpha Quadrant (canon); extent drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| Ferengi Alliance | l 336° b 0° · ~145 LY FROM SOL · RADIUS ~25 LY | fan estimate | Alpha Quadrant (canon); extent drawn after Star Trek: Star Charts (Geoffrey Mandel, Pocket Books, 2002) (approximate). |
+| The Dominion | l 322° b 0° · ~66,000 LY FROM SOL · RADIUS ~6,000 LY | fan estimate | Gamma Quadrant, around the far end of the Bajoran wormhole (canon); extent a fan estimate. |
+| Borg space | l 37° b 0° · ~52,000 LY FROM SOL · RADIUS ~10,000 LY | fan estimate | Delta Quadrant (canon); extent a fan estimate. The Enterprise-D first met them after Q flung it about 7,000 ly. |
+| Voyager's route home | 7 WAYPOINTS · TO ~70,000 LY FROM SOL | fan estimate | Canon: stranded about 70,000 ly from Earth in the Delta Quadrant ("Caretaker"), home seven years later ("Endgame", 2001). The route's shape is a fan sketch. |
+| The Great Barrier | l 0° b 0° · ~26,670 LY FROM SOL · RADIUS ~1,500 LY | canon | Canon: an energy barrier around the centre of the galaxy, with the planet Sha Ka Ree inside. Its size is a fan estimate. |
+| The galactic barrier | l 0° b 0° · ~26,670 LY FROM SOL · RADIUS ~52,000 LY | canon | Canon: an energy field at the rim of the galaxy. Its radius here is a fan estimate at the edge of the modelled disc. |
+| Utopia Planitia Fleet Yards | MARS ORBIT · 17,032 KM UP | canon | Canon: Starfleet's main shipyards at Mars, named on the Enterprise-D dedication plaque and shown in orbit. Drawn at areostationary height (fan estimate). |
+| Utopia Planitia (Mars colony & yards) | MARS SURFACE · 46.7°N 117.5°E | canon | Canon: the yards and settlements take their name from Utopia Planitia, a real plain on Mars. Drawn at the centre of the IAU feature (USGS Gazetteer). |
+| San Francisco Fleet Yards | EARTH ORBIT · 500 KM UP | canon | Canon: orbital construction yards above San Francisco. Height a fan estimate. |
+| Earth Spacedock | EARTH ORBIT · 1,500 KM UP | canon | Canon: a huge mushroom-shaped station in Earth orbit. Height a fan estimate. |
+| Earth Station McKinley | EARTH ORBIT · 3,000 KM UP | canon | Canon: an orbital repair station above Earth. Height a fan estimate. |
+| Jupiter Station | JUPITER ORBIT · 2,500,000 KM UP | canon | Canon: a research station at Jupiter. Drawn outside Callisto's orbit (fan estimate). |
+| Starfleet Headquarters & Academy | EARTH SURFACE · 37.8°N 122.5°W | canon | Canon: San Francisco, by the Golden Gate. The exact point (the Presidio) is a fan estimate. |
+| Tycho City | MOON SURFACE · 43.3°S 11.2°W | canon | Canon: a city on the Moon named after Tycho crater; drawn at the real crater's centre (USGS Gazetteer). |
+| New Berlin | MOON SURFACE · 28.0°N 15.0°W | fan estimate | Canon: a lunar city. No location is given; drawn in Mare Imbrium as a fan estimate. |
+
+Where a world sits at a real star, the System View of that star draws its imagined orbit at √L AU (the distance with
+Earth's sunlight): an assumption of this app, not a placement from any source. Sol stations are drawn at the heights
+listed (fan estimates), with their markers on the camera's side of the ring.

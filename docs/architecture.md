@@ -966,3 +966,54 @@ frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/st
 (so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
 under `data/stylize/` by a hash of image, prompt, size, quality and model.
 
+
+## Star Trek layer (#25, #41)
+
+Fiction drawn over the real data, never mixed into it: every piece is badged IMAGINED, drawn in its own LCARS
+overlay colour (`--trek`, `#ff88aa`; labels italic with a dashed edge, where real labels have a solid left border)
+and switched by one shared setting, `starfleet` (default **on**; the STAR TREK LAYER pill in the Navigation,
+Quadrant, Galaxy and System panels).
+
+- **Data.** `src/data/trek.js` holds every place in one shape: `id`, `name`, `kind` (homeworld, colony, station,
+  starbase, yard, territory, feature, route, sector, quadrant), `views`, `placement`, `confidence` (`canon` on
+  screen, `reference` from a licensed book, mostly *Star Trek: Star Charts* 2002, `fan` an approximate spot after
+  Star Charts' maps), `source`, `firstAppearance` (series, episode, year; `featured` when it is a defining rather
+  than first appearance; `null` plus `appearanceNote` when not checked), our own `summary`, `alternatives`
+  (conflicting placements) and a Memory Alpha search link. Placements: a real catalogue star (HYG id, HIP or
+  Gliese number, RA/Dec, parallax distance), heliocentric galactic l/b/distance (with a radius for regions), an
+  arc, a path, a surface site, or an orbit around a Sol body. `trekApprox` marks everything not pinned to a real
+  star as APPROXIMATE. `tests/trek.test.js` checks the data and the canon geometry.
+- **Quadrants.** Star Trek's quadrants are lines through the galactic core; as in Star Charts, the Alpha/Beta line
+  runs through Sol: Alpha on the side of galactic longitude 180–360°, Beta 0–180°, Gamma beyond Alpha and Delta
+  beyond Beta. The Galaxy View draws the cross and the four names (the overlay of #10); the Navigation View draws
+  the Alpha/Beta border through Sol towards the core (dashed line and a faint upright curtain, riding with Sol in deep
+  time) with ALPHA and BETA labels; the Quadrant View draws it at every range and, at 30 kly, the Gamma/Delta line
+  through the core. The IAU galactic quadrants I–IV stay as they were (orange spokes, lilac labels).
+- **Navigation View.** Worlds at real stars (Vulcan at 40 Eridani A, Andoria at ε Indi, Tellar at 61 Cygni A, Wolf
+  359, Alpha Centauri, Altair VI, Vega colony) attach to the catalogue star already on the chart (`trekStarMatch`: by
+  HYG id, then by name) as a pink ring and a label on the star's left; the star's own point, colour and label are
+  untouched. They follow their star through deep time.
+- **Quadrant View.** Far real stars (Rigel, Deneb IV), approximate homeworlds (Qo'noS, Romulus & Remus, Bajor,
+  Cardassia Prime, Ferenginar), DS9, Starbase 375, the Badlands, Briar Patch, Mutara Nebula, Delphic Expanse, the
+  Romulan Neutral Zone (a dashed arc) and the Bajoran wormhole's Alpha end, plus the powers' territories as soft
+  translucent discs in the plane. Territory labels show within ~2,600 ly of the camera, small places within ~650 ly.
+- **Galaxy View.** The Dominion (Gamma) and Borg space (Delta) as soft discs, the Great Barrier round the core and
+  the galactic barrier at the rim as dashed rings, the Bajoran wormhole to its Gamma end and Voyager's route home
+  (~70,000 ly) as dashed paths, all inside `fleetGroup` so they turn with the Sun's frame in deep time.
+- **System View.** `src/views/system/trek.js` hangs the Sol stations (Utopia Planitia Fleet Yards, San Francisco
+  Fleet Yards, Earth Spacedock, Earth Station McKinley, Jupiter Station) off their body: a dashed ring at the
+  station's height, re-mapped each frame through the radial compression (`localMap`) so it clears the enlarged
+  globe, with a marker on the camera's side of the ring (they have no real orbit to follow). Shown around the focused
+  body. Surface places (Starfleet HQ & Academy, Utopia Planitia, Tycho City, New Berlin) join the sites layer as the
+  `trek` site kind (tier `imagined`; hidden with the layer as well as by their SITES filter). In another star
+  system, a world Star Trek puts at one of its stars gets a dashed ring at √L AU (where it would receive Earth's
+  sunlight; an assumption, said so on the card).
+- **Cards.** `src/panels/trek.js` builds each view's STAR TREK section (toggle and list) and the card: summary,
+  first appearance, placement and its source, confidence, APPROXIMATE or AT THE REAL STAR, the real star's own
+  distance (the one MEASURED row, labelled as the star's), conflicts, the Memory Alpha link with its CC BY-NC
+  credit and the trademark notice. WARP TO opens the real star's System View (`go({ level: 'system', system:
+  <HYG id> })`) and pulls back to show the imagined ring. Clicking any pink label opens its card; BACK returns to
+  the view's panel (`renderCurrentPanel` in `main.js`). Postcards add STAR TREK OVERLAY to the IMAGINED stamp
+  while the layer is on.
+- **Licensing.** Star Trek is a trademark of Paramount / CBS Studios. This is a non-commercial fan homage: no
+  franchise artwork, logos or text; summaries are original and Memory Alpha is linked, not copied.

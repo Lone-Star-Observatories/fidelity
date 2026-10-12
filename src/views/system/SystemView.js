@@ -34,6 +34,7 @@ import { settings } from '../../settings.js';
 import { planetTexture, glowTexture, ringTexture } from './textures.js';
 import { pickPoint } from '../pick.js';
 import { createSiteLayer, siteDir } from './sites.js';
+import { createTrekSystemLayer } from './trek.js';
 import { fetchTraverse, fetchFeatures, fetchClusters } from '../../data/catalog.js';
 import { createFeatureLayer } from './features.js';
 import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, NAKED_EYE_FOV, C_KM_S } from '../../astro/lookat.js';
@@ -108,10 +109,15 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky }) {
-  let hiddenKinds = null, hiddenSet = new Set();
+export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky, onTrek }) {
+  let hiddenKinds = null, hiddenTrek = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
-  const hiddenSiteKinds = () => { const a = settings.get('siteHidden'); if (a !== hiddenKinds) { hiddenKinds = a; hiddenSet = new Set(a ?? []); } return hiddenSet; };
+  // the Star Trek sites (#41) follow the STAR TREK layer as well as their filter
+  const hiddenSiteKinds = () => {
+    const a = settings.get('siteHidden'), t = !settings.get('starfleet');
+    if (a !== hiddenKinds || t !== hiddenTrek) { hiddenKinds = a; hiddenTrek = t; hiddenSet = new Set([...(a ?? []), ...(t ? ['trek'] : [])]); }
+    return hiddenSet;
+  };
   const renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
   const fat = createFatLines(); // thick orbit lines (#27)
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -134,6 +140,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   // Everything orbiting lives in `root`, which is shifted so the focus is at origin.
   const root = new THREE.Group();
   scene.add(root);
+  // the Star Trek layer (#41): stations around Sol's bodies, imagined orbits at real stars
+  const trek = createTrekSystemLayer({ onTrek: (id) => onTrek?.(id) });
+  root.add(trek.group);
+  const trekTmp = new THREE.Vector3();
   scene.add(new THREE.AmbientLight(0xffffff, 0.06)); // rendering aid: keep night sides faintly visible
   const starLight = new THREE.PointLight(0xfff4e0, 2.4, 0, 0);
   root.add(starLight);
@@ -767,6 +777,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     model = m;
     tree = m.binary ? hierarchy(m.binary.orbits, m.binary.mass) : null;
     m.bodies.forEach(addBody);
+    trek.load(m);
     if (m.isSol) { buildZones(); buildSolarExtras(); }
     refreshLive();
     if (band.id !== 'full') applyBand();
@@ -2089,6 +2100,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
         if (n.endMark) n.endMark.visible = n.orbit.visible && !surface;
       }
     }
+
+    trek.update({ on: settings.get('starfleet'), nodes, focusId, planeNormal: model.planeNormal, hideAll: !!surface || !!siteView, camera,
+      mapRadius: (b, au) => localMap(b, trekTmp.set(au, 0, 0)).length() });
 
     // LOOK AT, apparent: draw the target where it was when the light now arriving left it
     if (surface?.look?.apparent && nodes[surface.look.target] && nodes[surface.look.obs]) {
