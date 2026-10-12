@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-12",
+  "body": "Hiiaka",
+  "status": "Research-only targeted full primary assessment; no dossier69, image, embedding, catalogue or codec change",
+  "sources": [
+    {
+      "path": "data/research-sources/hiiaka-rotation-2016.pdf",
+      "url": "https://arxiv.org/pdf/1610.04305v1",
+      "bytes": 1543237,
+      "sha256": "5f580b87efb508ef1ba5b35b2a31795f2b0a34cd30c804b37f9bc65060123061"
+    },
+    {
+      "path": "data/research-sources/hiiaka-rotation-2016-record.html",
+      "url": "https://arxiv.org/abs/1610.04305",
+      "bytes": 45187,
+      "sha256": "dd82199de55ea4508d99c1aef2baa1d073dcea7fb65871e53f584b8a32c8b353"
+    }
+  ],
+  "authors": [
+    "Danielle M. Hastings",
+    "Darin Ragozzine",
+    "Daniel C. Fabrycky",
+    "Luke D. Burkhart",
+    "Cesar Fuentes",
+    "Jean-Luc Margot",
+    "Michael E. Brown",
+    "Matthew Holman"
+  ],
+  "paper": {
+    "arxiv": "1610.04305v1",
+    "submission": "2016-10-14",
+    "pages": 21,
+    "finalRecord": "Astronomical Journal152:195,2016December; final published PDF not downloaded in this batch",
+    "licence": "Specific arXiv nonexclusive distribution link, not CC BY. No figure embedded."
+  },
+  "assessment": [
+    "Targeted sections2\u20133 and conclusions: relative HST/Magellan photometry and phase dispersion minimization support rapid rotation, preferred approximately9.8hour double-peaked light curve; 4.9hour single-peaked albedo interpretation remains an alternative.",
+    "Illustrative smooth phase-folding trial9.79736hours is not an uncertainty-bounded precise period; lowest reducedchi-square9.71141hours and forest of integer-cycle aliases retained. Approximately49.5day orbit is not the spin period; no permanent Haumea-facing site assumed.",
+    "Brightness variation19\u00b11percent plus possible approximately1percent systematic is a relative photometry result, not JPEG calibration, a local albedo map or chemistry/material fractions. Shape inference depends on projected cross section, aspect and albedo alternatives; not a registered physical ellipsoid or surface normal.",
+    "2009 aperture included both Hiiaka and Namaka; contamination assumptions do not make this a Namaka rotation measurement. Observation account/table date grouping and publisher native2015 product crosswalk remain separately open.",
+    "Spin-axis obliquity/precession, despinning and initial semimajor-axis histories are models; rapid spin does not uniquely distinguish formation scenarios, establish measured tidal dissipation, present orientation or dated observer visibility.",
+    "Haumea rotation, ring, interior axes and chemistry are not Hiiaka measurements. No other-body skin, local chemistry, atmosphere absence, ocean, plume, biology or survivable landing established.",
+    "Equator-on b/a approximately0.81 is conditional; b/a,c/a and pole aspect are degenerate. Comparisons to other Solar System shapes are model analogies, never assigned terrain skins."
+  ],
+  "open": [
+    "Final published record/PDF comparison and later rotation refinements",
+    "Raw HST/Magellan reduction/product/photometric calibration audit",
+    "2015 native point identity and full contributor/raw product crosswalk",
+    "Current pole, spin phase, physical axes, local normal and 3D observer registration"
+  ],
+  "preservation": "All561 tracked public files byte-equal to HEAD;68 dossiers unchanged; original/default PNGs, masters, native science/provenance and recorded Clipper preview preserved.",
+  "validation": {
+    "queue": 566,
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16083482bytes83482over hard16MB gate",
+    "attribution": "No production asset/catalogue/codec changes. Interbuild feed differences unaudited; no savings attribution."
+  },
+  "observations": {
+    "HST": "2009-02-04 WFPC2 program11971;2010-06-28 WFC3 program12243",
+    "Magellan": "Overview/Table1 June1,2009 versus methods UTJune2,2009; preserve date convention discrepancy pending raw logs, not native2015 crosswalk.",
+    "photometry": "Relative datasets normalized by their individual maximum flux, light-travel time corrected; not absolute colour/reflectance or scene photometry."
+  }
+}
