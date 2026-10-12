@@ -39,6 +39,7 @@ import { fetchTraverse, fetchFeatures, fetchClusters } from '../../data/catalog.
 import { createFeatureLayer } from './features.js';
 import { angularDiameterDeg, phase as lookPhase, describeSize, fmtLightTime, fitFov, magnification, NAKED_EYE_FOV, C_KM_S } from '../../astro/lookat.js';
 import { createCameraRig, reducedMotion } from '../cameraControls.js';
+import { createHelm } from '../ship/helm.js';
 import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive } from './materials.js';
@@ -109,7 +110,7 @@ export const compressRadii = (x) => (x <= 1 ? x : 1 + 1.6 * Math.log(x));
 
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky, onTrek }) {
+export function createSystemView(container, { clock, onSelect, onSite, onFeature, onFrame, onPickStar, onDrillStar, onDeepSky, onTrek, onHelm }) {
   let hiddenKinds = null, hiddenTrek = null, hiddenSet = new Set();
   const siteViewSize = { w: 1, h: 1 };
   // the Star Trek sites (#41) follow the STAR TREK layer as well as their filter
@@ -793,6 +794,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     camera.position.set(0, 0.45, 0.9).setLength(overviewAU);
     framedRadius = null;
     placedJd = null;
+    helm?.onLoad(); // after an interstellar jump the ship drops out of warp at the edge of the new system
   }
 
   const isStar = (b) => b.starLike || b.kind === 'star';
@@ -1249,6 +1251,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
 
   // ---- focus & camera flight ---------------------------------------------------------
   let focusId = 'sun';
+  let helm = null; // HELM (#42), created with the camera rig below
   let flight = null; // { from: Vector3 (scene), t0, dur, d0 }
   // VIEW FROM ABOVE (#37): the camera hovers over a surface site, orbiting it rather than the body's centre
   let siteView = null; // { id, lat, lon, spanKm, ready, last: Vector3, r }
@@ -1278,6 +1281,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
 
   function flyTo(id, { overview = null, distance = null, dir = null } = {}) {
     if (!nodes[id]) return;
+    if (helm?.active) helm.disengage({ quiet: true }); // a survey, a site or LOOK AT takes the camera from the helm
     if (surface) exitSurface(false);
     endSiteView();
     if (overview == null && nodes[id].body.marker) overview = markerView(nodes[id].body);
@@ -1340,6 +1344,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   });
   labels.domElement.addEventListener('dblclick', (e) => {
     if (surface) { zoomOnDisc(e); return; }
+    if (helm?.active) return; // at the helm a double-click is two steering clicks, not a landing
     clearTimeout(clickTimer);
     const hit = pick(e);
     if (!hit) return;
@@ -1416,6 +1421,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const zenithTag = (() => { const el = document.createElement('div'); el.className = 'nav-label compass zenith'; el.textContent = '+ ZENITH'; const o = new CSS2DObject(el); o.visible = false; scene.add(o); return o; })();
 
   function enterSurface(id, { object, local, normal }) {
+    if (helm?.active) helm.disengage({ quiet: true }); // standing on a surface takes the camera from the helm (#42)
     siteView = null;
     const n = nodes[id];
     if (!n) return;
@@ -1917,6 +1923,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     minFov: 0.05, maxFov: 100,
     nearest: () => nearestSurf,
     busy: () => !!flight || !!siteView, // FROM ABOVE (#37) drives the camera itself
+    captured: () => !!helm?.active, // HELM (#42) flies the camera with the ship
     override: () => (surface ? {
       fov: surface.fov, minFov: surface.look ? 0.02 : 2, maxFov: 110, // LOOK AT (#43) zooms to telescope fields
       setFov: (v) => { surface.fov = v; },
@@ -1969,6 +1976,33 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       framedRadius = null;
     },
   });
+
+  // ---- HELM (#42): fly the USS Fidelity; the floating origin rides on the ship ---------------------
+  helm = createHelm({
+    scene, camera, controls, dom: labels.domElement, container, rig,
+    nodes: () => nodes, model: () => model, focusId: () => focusId,
+    trueRadius: (b) => trueRadius(b), isStar, flyable,
+    inspect: (o) => inspectCraft(o),
+    prepare(id) { if (nodes[id]) { void upgradeCraft(nodes[id]); void upgradeShape(nodes[id]); } }, // the craft's model or the body's shape, as a focus would load
+    exitOthers() { if (surface) exitSurface(false); endSiteView(); flight = null; },
+    on(kind, data) {
+      if (kind === 'disengage') { if (!data.quiet) helmHandBack(data); }
+      else if (kind === 'select') { quietFocus = data; setTimeout(() => { if (quietFocus === data) quietFocus = null; }, 2000); onSelect?.(data); }
+      onHelm?.(kind, data);
+    },
+  });
+  /** Leaving the helm: orbit the nearest body from where the camera is, easing out to its framing distance. */
+  function helmHandBack({ id, camWorld }) {
+    if (!model) return;
+    if (!nodes[id]) id = model.starId;
+    focusId = id; anchorId = id; overviewAU = null; framedRadius = null;
+    focusPos.copy(nodes[id].pos);
+    camera.position.copy(camWorld).sub(focusPos);
+    controls.target.set(0, 0, 0);
+    flight = { from: focusPos.clone(), t0: performance.now(), dur: reducedMotion() ? 1 : 1400, d0: Math.max(camera.position.length(), 1e-15), d1: null };
+    quietFocus = id; setTimeout(() => { if (quietFocus === id) quietFocus = null; }, 2000);
+    onSelect?.(id);
+  }
 
   // ---- frame loop -------------------------------------------------------------------------
   const tmp = new THREE.Vector3();
@@ -2031,9 +2065,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const jd = clock.jd;
     updatePaleoEarth(jd);
 
-    const targetMix = settings.get('scale') === 'true' || surface ? 1 : 0;
+    const targetMix = settings.get('scale') === 'true' || surface || helm.active ? 1 : 0;
     scaleMix += (targetMix - scaleMix) * 0.08;
-    if (surface) scaleMix = 1;
+    if (surface || helm.active) scaleMix = 1; // TRUE scale at the helm: real distances, real sizes
     if (Math.abs(targetMix - scaleMix) < 1e-3) scaleMix = targetMix;
     const showLabels = settings.get('labels'), showOrbits = settings.get('orbits');
 
@@ -2113,8 +2147,15 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
     // Camera flight: slide the floating origin from the old focus to the new one
     // while easing the camera's distance (log-space, so 30 AU → 1e-4 AU feels smooth).
+    const helmOrigin = helm.update(now); // the ship's position (AU, root coordinates) while at the helm
+    if (helmOrigin) {
+      focusPos.copy(helmOrigin);
+      const sel = helm.selected;
+      focusId = sel && nodes[sel] ? sel : nodes[helm.anchor] ? helm.anchor : focusId; // labels and orbit highlight follow the course target
+    }
     const target = nodes[focusId].pos;
-    if (flight) {
+    if (helmOrigin) { /* the helm placed the camera relative to the ship */ }
+    else if (flight) {
       const t = Math.min(1, (now - flight.t0) / flight.dur), k = ease(t);
       focusPos.lerpVectors(flight.from, target, k);
       const d1 = flight.d1 ?? overviewAU ?? viewDistance(focusId); // live, so a scale switch mid-flight still lands well
@@ -2184,6 +2225,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       flags: { deepsky: settings.get('deepsky') !== false, constellations: !!settings.get('constellations'), labels: settings.get('labels') } });
     const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
+    else if (helm.active) { /* the helm drives the camera (and OrbitControls in its ORBIT view) */ }
     else {
       controls.minDistance = siteView ? displayRadius(nodes[focusId].body) * 2e-5 : viewEnvelope(nodes[focusId].body) * 1.3;
       if (orbiting) controls.update();
@@ -2397,7 +2439,9 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return belts.counts;
     },
     get model() { return model; },
-    focus(id, opts) { if (quietFocus === id && focusId === id) { quietFocus = null; return; } flyTo(id, opts); },
+    focus(id, opts) { if (helm.active) { helm.select(id); return; } if (quietFocus === id && focusId === id) { quietFocus = null; return; } flyTo(id, opts); },
+    /** HELM (#42): engage, set course, read-outs (see views/ship/helm.js). */
+    helm,
     /** The camera controls (#39): mode, zoom, fit, reset, bookmark state. */
     camera: rig,
     /** True while the return to ORBIT (#39) is already flying to `id` (no warp, no second flight). */
@@ -2408,6 +2452,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     /** VIEW FROM ABOVE: hover over a surface site, framing `spanKm` around it (#37). */
     viewSite(id, lat, lon, spanKm = 30) {
       if (!nodes[id]) return false;
+      if (helm.active) { helm.disengage({ quiet: true }); flyTo(id); }
       if (focusId !== id || surface) flyTo(id);
       siteView = { id, lat, lon, spanKm, ready: false };
       return true;
