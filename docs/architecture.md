@@ -1030,3 +1030,8 @@ frame. AI STYLIZE posts the unlabelled render to `POST /api/stylize` (`server/st
 (so a cross-site form cannot spend the key), forwarded to OpenAI's image-edit endpoint with the backend's key, cached
 under `data/stylize/` by a hash of image, prompt, size, quality and model.
 
+A POSTCARD button sits in the top bar (`#postcard-tab` in `index.html`, wired in `main.js`) so a
+postcard is always one click away, in any view; the per-view `P` shortcut (3D camera bars and COMMS)
+still works. When the current view has no `snapshot` (a map or a list), `open()` says so and does
+nothing.
+

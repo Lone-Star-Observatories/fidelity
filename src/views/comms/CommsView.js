@@ -42,7 +42,6 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     el('h2', { textContent: 'COMMS · SECTOR 001' }),
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
     el('span', { className: 'cx-dev mono' }),
-    onPostcard ? pill('POSTCARD', () => onPostcard()) : null,
     tx.indicator);
   const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
   const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
