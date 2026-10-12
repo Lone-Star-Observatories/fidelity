@@ -1,0 +1,173 @@
+{
+  "native": [
+    {
+      "path": "data/research-sources/nix-PIA20287-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.jpg",
+      "bytes": 26108,
+      "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 1042,
+      "height": 1024,
+      "mode": "L",
+      "format": "JPEG"
+    },
+    {
+      "path": "data/research-sources/nix-PIA20287-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.tif",
+      "bytes": 475974,
+      "sha256": "f3878175f14f69acf48a88d8bb9295c8f515bfd274272dce2c67676a4bcf28ff",
+      "status": 200,
+      "contentType": "image/tiff",
+      "width": 1042,
+      "height": 1024,
+      "mode": "L",
+      "format": "TIFF"
+    },
+    {
+      "path": "data/research-sources/nix-PIA20287-caption.html",
+      "url": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+      "bytes": 267143,
+      "sha256": "40baefa2064e4d5df7bceb5a1cee39b895e3ec8737a88feb13c1a655a1f42bae",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/nix-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320632,
+      "sha256": "ea8510fb50b4895635c7ba5a804fdba9788d7cd33dfe09d2a4a170ee8e2a99a6",
+      "status": 200
+    }
+  ],
+  "primary": [
+    {
+      "path": "data/research-sources/nix-Weaver2016.pdf",
+      "url": "https://arxiv.org/pdf/1604.05366",
+      "bytes": 4953591,
+      "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+      "pages": 48
+    },
+    {
+      "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+      "url": "https://arxiv.org/abs/1604.05366",
+      "bytes": 50077,
+      "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/nix-Weaver2016-license.html",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "status": 200
+    }
+  ],
+  "composition": [
+    {
+      "path": "data/research-sources/nix-Cook2017-LPSC2478.pdf",
+      "url": "https://www.hou.usra.edu/meetings/lpsc2017/pdf/2478.pdf",
+      "bytes": 986715,
+      "sha256": "0348027cd0d9fe794603645896e75a8633fa6ab8769ab772db2e28c97e2df8c3",
+      "pages": 2
+    },
+    {
+      "path": "data/research-sources/nix-Holler2025-LPI7028.pdf",
+      "url": "https://www.hou.usra.edu/meetings/plutosystem2025/pdf/7028.pdf",
+      "bytes": 1928794,
+      "sha256": "a62efc11f17e3406c50df76f9cbe4c102610514486006b82cd778f0a33b534dd",
+      "pages": 2
+    },
+    {
+      "path": "data/research-sources/nix-pds-composition-profile.html",
+      "url": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=NH-P%2FPSA-LEISA%2FMVIC-5-COMP-V1.0",
+      "bytes": 39525,
+      "sha256": "ea24769ac310a345024ad899b3bb01135ee308992a1b60bdd9907ca5c856b030",
+      "status": 200
+    }
+  ],
+  "generated": [
+    {
+      "role": "surfaceImage",
+      "kind": "original",
+      "path": "data/research-sources/nix-generated-surfaceImage-original.png",
+      "bytes": 3171203,
+      "sha256": "b30fc8783020d84d88ac9903240c04298963c2d2ec324adec266205147aaeb73",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "master",
+      "path": "data/research-sources/nix-generated-surfaceImage-master.jpg",
+      "bytes": 360919,
+      "sha256": "e8779081192f65dd1061f8f9a7dbb0a35be3548dda7cf36f9a979fc3df541542",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "surfaceImage",
+      "kind": "preview",
+      "path": "data/research-sources/nix-generated-surfaceImage-preview.jpg",
+      "bytes": 9604,
+      "sha256": "ec44127f31d1ef960c01e740664b770517426f161eeaa044940fb20aefeea03a",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "role": "skyImage",
+      "kind": "original",
+      "path": "data/research-sources/nix-generated-skyImage-original.png",
+      "bytes": 2298953,
+      "sha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "role": "skyImage",
+      "kind": "master",
+      "path": "data/research-sources/nix-generated-skyImage-master.jpg",
+      "bytes": 261117,
+      "sha256": "d87dc7cb0f2e1624ec017a2b5592a71468a982bbdfdcb6a789934907caf167d2",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "role": "skyImage",
+      "kind": "preview",
+      "path": "data/research-sources/nix-generated-skyImage-preview.jpg",
+      "bytes": 7728,
+      "sha256": "f88a05691d4bb9c2f2089869042c614e56bdb96e238d4f6125c452a1a5d5fd74",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "fullPrompts": {
+    "local": "Create one independent scientific-educational hypothetical local landscape on Nix, Pluto's small irregular moon. Wide 16:9 photorealistic illustration, approximately 1672 by 941. This is invented terrain, NOT a reconstruction of a New Horizons image or any mapped site. Independently design grey fine-grained regolith, scattered angular blocks of varied sizes, shallow depressions and a low broken ridge on a gently uneven horizon. Subtle pale patches may suggest ice-like material artistically, but do not show diagnostic crystals, mapped chemistry, measured material fractions, or ammonia as confirmed. Low oblique illumination and exposure are artistic assumptions. Almost black sky is an assumed transparent view, not evidence of absent atmosphere. No Sun, planets, stars, astronomical disks, haze, plumes, liquids, oceans, biology, people, spacecraft, structures or implication of a survivable landing. Do not use or recolour any Moon, Mars, Pluto, Charon, asteroid or other observed body's surface map; no reference images are supplied. No identified Nix crater or permanent Pluto-facing site. Clearly readable unobtrusive footer: 'IMAGINED · LOCAL NIX'. A smaller line: 'Terrain, materials and lighting are assumed'. Maintain natural scientific illustration style and sober grey palette.",
+    "sky": "Scientific-educational independent hypothetical sky view from Nix, wide16:9 approximately1672x941. Generate from scratch without input maps/photos. Invent grey granular small-moon foreground, scattered angular blocks, shallow depressions and low broken ridge; no known New Horizons site. Nearly black sky assumes transparency, not atmospheric absence. Above horizon show two SMALL separately positioned disks: independently invented Pluto muted grey/tan appearance, diameter about41pixels (2.7954730474779614degrees), and independently invented Charon neutral grey appearance about20pixels (1.3429757480285875degrees), for nominal90degree horizontal FOV and1672pixel width. Do not enlarge them into looming worlds. Shared skyGeometry uses Pluto1188.3km at48715.42469025532km and Charon606km at51709.105365709016km; these are hypothetical right-angle system-barycentric geometry with assumed25km observer height, not dated ephemerides or registered surface site. Place Pluto toward left of upper sky and Charon toward right with clear separation artistically; positions, phases, axis/camera attitude, light and exposure assumed, not calibrated. Do not reuse or recolour Moon/Mars/Pluto/Charon/other observed-body maps; independently design subtle nonrecognizable disk markings, no heart/Sputnik pattern. Nix rotates rapidly, no permanent Pluto-facing site. Grey/pale local materials and all chemistry fractions invented, spectral models do not map this scene. Omit Sun, stars, rings and visible atmosphere; omission artistic not absence. No people spacecraft habitats landing/survivability plume liquid ocean biology interior cutaway. Clear legible footer 'IMAGINED SKY FROM NIX'; smaller footer 'Invented terrain and disk appearances · Assumed geometry'."
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9403d91e-d34a-42fe-900c-fb0661d38b0e.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-090c3865-6562-4da8-8578-ae0d2a31bcdf.png"
+  },
+  "catalogueSources": [
+    {
+      "path": "data/research-sources/nix-jpl-elements-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/nix-jpl-physical-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200,
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    }
+  ]
+}

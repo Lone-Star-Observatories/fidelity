@@ -99,6 +99,11 @@ export const MOONS = [
   { id: 'charon', name: 'Charon', parent: 'pluto', radiusKm: 606, massKg: 1.586e21,
     elements: el(19600, 0.0, 0.0, 304.1, 0.0, 0.0, 6.387222, 0, 0, PLUTO_POLE, 'equatorial'),
     skin: { map: 'charon' }, discovered: '1978 · James Christy', note: 'So large relative to Pluto that the pair orbit a point in space between them.' },
+  // JPL PLU060 mean elements; approximate catalogue orbit, not a dated observer registration.
+  { id: 'nix', name: 'Nix', parent: 'pluto', radiusKm: 18, massKg: null, rotationHours: 43.896, locked: false,
+    elements: el(49300, 0.015, 31.4, 338.2, 0.0, 0.0, 24.85, 0, 0, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2005 · Hubble Space Telescope',
+    note: 'Fast nonsynchronous rotation: the 2016 fit is 1.829 ± 0.009 days. JPL gives an equivalent-volume radius of 18 ± 1 km; this is not a spherical shape or local surface normal. The PLU060 mean orbit differs from the historical 48,694 km barycentric observer assumption; neither is a dated scene registration. No resolved globe is adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

@@ -3,6 +3,22 @@ import assert from 'node:assert/strict';
 import { moonOffsetKm, moonGeocentric } from '../src/astro/moons.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
 import { smallBodyPosition } from '../src/astro/smallbodies.js';
+import { bodyVisualFor } from '../src/data/bespoke.js';
+
+test('Nix is selectable with its own dossier and a nonsynchronous pending globe', () => {
+  const nix = MOONS.find((m) => m.id === 'nix');
+  assert.equal(nix.parent, 'pluto');
+  assert.equal(bodyVisualFor(nix).id, 'nix');
+  assert.equal(nix.surfacePending, true);
+  assert.equal(nix.skin?.map, undefined);
+  assert.equal(nix.locked, false);
+  assert.notEqual(nix.rotationHours, nix.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(nix, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 48000 && Math.hypot(...position) < 51000);
+  }
+});
 
 // JPL Horizons vectors (DE441 + satellite ephemerides), J2000 ecliptic, 2026-10-10 00:00 TDB.
 const JD = 2461323.5;
