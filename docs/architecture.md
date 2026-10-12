@@ -508,6 +508,14 @@ Searches are throttled to one every 1.5 s while the clock runs. Picking a window
 arrival markers, a ghost craft riding it while the clock is inside the flight) and opens the porkchop
 (`src/panels/porkchop.js`: departure × arrival grid shaded by C3 on a one-hue ramp, marching-squares contours,
 optimum ringed, hover readout, click to fly a cell). Mars offers a check against Perseverance's Horizons cruise.
+GRAVITY ASSISTS (`src/astro/flyby.js`, run in `flyby.worker.js`): patched conics, a Lambert leg between each pair of
+planets and a powered flyby at each (`flybyJoin`: the periapsis giving the turn, a periapsis burn for any change of
+speed, and a penalty when the turn exceeds the lowest safe pass). `sequencesFor` picks sequences by the target's
+distance; `searchSequence` grids departure × leg times, keeps routes arriving within the best direct transfer's flight
+time (Δv alone would always pick the slowest path) and refines the best by coordinate descent. The route is drawn
+through `setTransfer({ track, marks })`. Checked on flown dates: New Horizons C3 158.6 (157.75 flown), Jupiter pass
+33 RJ (32), Pluto v∞ 13.79 km/s (13.78); Mariner 10's Venus pass 5,738 km (5,768); the search re-finds New Horizons'
+January 2006 window.
 
 ## Future missions (#44)
 

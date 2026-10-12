@@ -8,6 +8,8 @@ import { smallBodyPosition } from '../astro/smallbodies.js';
 import { ELEMENTS } from '../astro/kepler.js';
 import { porkchopSvg } from './porkchop.js';
 import { trajectory } from '../data/spacecraft-ephem.js';
+import { sequencesFor, routePath, FLYBY } from '../astro/flyby.js';
+import FlybyWorker from '../astro/flyby.worker.js?worker&inline';
 
 const iso = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
 const jdOf = (s) => Date.parse(s) / 86400000 + 2440587.5;
@@ -37,10 +39,10 @@ export function hohmannDiagram(aAu, name) {
  * influence; reaching the moon's orbit costs extra and is not included).
  */
 export function targetFor(b, bodies) {
-  if (ELEMENTS[b.id] && b.id !== 'earth') return { id: b.id, name: b.name, pos: planetPos(b.id), massKg: b.massKg, radiusKm: b.radiusKm, aAu: ELEMENTS[b.id][0][0], periodDays: periodDays(b.id) };
+  if (ELEMENTS[b.id] && b.id !== 'earth') return { id: b.id, name: b.name, pos: planetPos(b.id), spec: { planet: b.id }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: ELEMENTS[b.id][0][0], periodDays: periodDays(b.id) };
   if (b.orbit?.type === 'elements' && b.orbit.el) {
     const el = b.orbit.el;
-    return { id: b.id, name: b.name, pos: (jd) => smallBodyPosition(el, jd), massKg: b.massKg, radiusKm: b.radiusKm, aAu: el.a, periodDays: 365.25636 * el.a ** 1.5, small: true };
+    return { id: b.id, name: b.name, pos: (jd) => smallBodyPosition(el, jd), spec: { el }, massKg: b.massKg, radiusKm: b.radiusKm, aAu: el.a, periodDays: 365.25636 * el.a ** 1.5, small: true };
   }
   if (b.kind === 'moon' && b.parent && ELEMENTS[b.parent]) {
     const p = bodies.find((x) => x.id === b.parent);
@@ -118,6 +120,63 @@ export function createTransferPanel({ h, pill, row, system, clock, toast, $, bad
       h('div', { className: 'fv-credit', textContent: 'Shaded by C3 (darker = cheaper), contours every few km²/s², the optimum ringed. Hover for the budget; click a cell to fly that transfer.' }));
   }
 
+  // ---- gravity assists (#45): on demand, in a worker; compared with the best direct transfer ----
+  const assistCache = new Map(); // body id → { fromJd, maxDays, rows: [{ via, routes }] }
+  let worker = null, job = 0;
+  const viaName = (via) => via.map((id) => FLYBY[id].name.toUpperCase()).join(' → ');
+  function showRoute(r, t) {
+    const marks = r.flybys.map((f) => ({ p: routePath({ legs: [r.legs.find((L) => Math.abs(L.fromJd - f.jd) < 1e-6)] }, 1)[0].slice(1), text: `${f.name.toUpperCase()} ${iso(f.jd)} · ${Math.round(f.altKm).toLocaleString('en-US')} KM` }));
+    const track = routePath(r).map(([jd, ...p]) => [jd + 69.184 / 86400, ...p]); // tracks are TDB like Horizons rows
+    system.setTransfer({ track, label: `VIA ${viaName(r.via)}`, depText: `DEPART EARTH ${iso(r.depJd)}`, arrText: `ARRIVE ${t.name.toUpperCase()} ${iso(r.arrJd)}`, marks });
+    shown = { body: t.id, route: r };
+    clock.set(r.depJd);
+    system.overview(Math.max(2.4, Math.max(t.aAu ?? 1.5, ...r.via.map((id) => ELEMENTS[id][0][0])) * 2.6), 'sun');
+    toast(`DEPART ${iso(r.depJd)} · ${r.flybys.map((f) => `${f.name.toUpperCase()} ${iso(f.jd)}`).join(' · ')} · ARRIVE ${iso(r.arrJd)} · RUN THE CLOCK TO FLY IT`);
+  }
+  function routeBudget(r, t, direct) {
+    const dl = h('dl');
+    row(dl, 'DEPART', `${iso(r.depJd)} · C3 ${r.c3.toFixed(1)} KM²/S² · ΔV ${r.dvDepart.toFixed(2)} KM/S FROM LEO`, 'computed', 'Lambert legs (Izzo 2015) on the app\'s ephemeris; patched conics.');
+    for (const f of r.flybys) row(dl, `${f.name.toUpperCase()} FLYBY`, `${iso(f.jd)} · ${Math.round(f.altKm).toLocaleString('en-US')} KM UP · V∞ ${f.vinfIn.toFixed(2)} → ${f.vinfOut.toFixed(2)} KM/S · TURN ${f.turnDeg.toFixed(1)}°${f.dv > 0.005 ? ` · BURN ${f.dv.toFixed(2)} KM/S` : ' · UNPOWERED'}`, 'computed',
+      f.ok ? 'The hyperbola joining the two legs: the periapsis that gives the turn, and a burn at periapsis for any change of speed (a powered flyby).' : `The legs need more turn than a pass at the lowest safe height gives (${f.maxTurnDeg.toFixed(1)}° max); the shortfall is charged as a burn.`);
+    row(dl, 'ARRIVE', `${iso(r.arrJd)} · ${days(r.tofDays)} IN FLIGHT · V∞ ${r.vinfArr.toFixed(2)} KM/S`, 'computed', `${r.arriveKind}: ${r.dvArrive.toFixed(2)} km/s.`);
+    row(dl, 'ΔV TOTAL', `${r.dvTotal.toFixed(2)} KM/S${direct ? ` · DIRECT ${direct.dvTotal.toFixed(2)} (${r.dvTotal < direct.dvTotal ? `SAVES ${(direct.dvTotal - r.dvTotal).toFixed(2)}` : `COSTS ${(r.dvTotal - direct.dvTotal).toFixed(2)} MORE`})` : ''}`, 'computed', 'Launch from LEO + flyby burns + arrival, impulsive; no deep-space manoeuvres, margins or navigation errors.');
+    return dl;
+  }
+  function assistSection(t, key) {
+    const seqs = sequencesFor(t.aAu ?? 1, t.id);
+    if (!seqs.length || !t.spec) return null;
+    const box = h('div', { className: 'host-list' }), sel = h('div');
+    const directBest = () => { const ws = cache.get(key)?.ws ?? []; return ws.length ? ws.reduce((a, w) => (w.best.dvTotal < a.dvTotal ? w.best : a), ws[0].best) : null; };
+    const fill = (e) => {
+      const direct = directBest();
+      box.replaceChildren(...e.rows.flatMap(({ via, routes }) => (routes.length ? routes.slice(0, 2).map((r) => h('button', { className: 'host-row event-row', title: 'Click to draw this route and set the clock to its departure.', onclick: () => { showRoute(r, t); sel.replaceChildren(routeBudget(r, t, direct), h('div', { className: 'body-list' }, pill('CLEAR', () => { system.setTransfer(null); sel.replaceChildren(); }))); } },
+        h('span', { textContent: `VIA ${viaName(via)} · ${iso(r.depJd)} → ${iso(r.arrJd)}` }),
+        h('span', { className: 'mono', textContent: `${days(r.tofDays)} · C3 ${r.c3.toFixed(1)} · ΔV ${r.dvTotal.toFixed(1)} KM/S${direct ? (r.dvTotal < direct.dvTotal ? ` · SAVES ${(direct.dvTotal - r.dvTotal).toFixed(1)}` : ` · +${(r.dvTotal - direct.dvTotal).toFixed(1)} VS DIRECT`) : ''}` })))
+        : [h('p', { className: 'note', textContent: `VIA ${viaName(via)}: NO ROUTE WITHIN THE FLIGHT TIME IN THESE YEARS.` })])),
+        h('p', { className: 'note', textContent: `SEARCHED FROM ${iso(e.fromJd)} · ARRIVING WITHIN ${days(e.maxDays)} (THE BEST DIRECT TRANSFER'S FLIGHT TIME) · ΔV INCLUDES ARRIVAL` }));
+    };
+    const run = () => {
+      const direct = directBest();
+      const maxDays = direct ? Math.max(direct.tofDays, 180) : (t.aAu > 6 ? 12 : 4) * 365.25;
+      const years = t.aAu > 6 ? 14 : t.aAu > 3 ? 10 : 7, fromJd = Math.floor(clock.jd);
+      const e = { fromJd, maxDays, rows: [] };
+      worker ??= new FlybyWorker();
+      const id = ++job;
+      box.replaceChildren(h('p', { className: 'note', textContent: `SEARCHING ${seqs.map(viaName).join(' · ')}… (A FEW SECONDS EACH)` }));
+      worker.onmessage = (m) => {
+        if (m.data.id !== job) return;
+        if (m.data.done) { assistCache.set(key, e); if (box.isConnected) fill(e); return; }
+        e.rows.push({ via: m.data.via, routes: m.data.routes });
+        if (box.isConnected) fill({ ...e, rows: [...e.rows, ...seqs.slice(e.rows.length).map((via) => ({ via, routes: [], pending: true }))] });
+      };
+      worker.postMessage({ id, target: t.spec, massKg: t.massKg, radiusKm: t.radiusKm, aAu: t.aAu, sequences: seqs, fromJd, years, maxDays });
+    };
+    const cached = assistCache.get(key);
+    if (cached && Math.abs(cached.fromJd - clock.jd) < 30) fill(cached);
+    else box.replaceChildren(h('p', { className: 'note', textContent: `Routes that borrow speed from ${[...new Set(seqs.flat())].map((id) => FLYBY[id].name).join(', ')} on the way. The search runs on demand (a few seconds per sequence).` }));
+    return h('div', {}, h('h3', { textContent: 'GRAVITY ASSISTS' }), box, h('div', { className: 'body-list' }, pill('SEARCH ROUTES ▸', run)), sel);
+  }
+
   /** Body panel section for body `b` (Sol only), or [] when no transfer applies. */
   function section(b, bodies) {
     const t = targetFor(b, bodies);
@@ -147,7 +206,7 @@ export function createTransferPanel({ h, pill, row, system, clock, toast, $, bad
     const facts = h('dl');
     row(facts, 'HOHMANN', `${days(hm.tofDays)} · ΔV ${injectionDv(hm.dv1).toFixed(2)} KM/S FROM LEO`, 'computed', 'Idealised circular, coplanar orbits at the mean distance: the textbook minimum.');
     row(facts, 'WINDOWS RECUR', `EVERY ${days(syn)}`, 'computed', 'The synodic period: how often Earth and the target return to the same relative positions.');
-    const extra = [];
+    const extra = [assistSection(t, b.id)].filter(Boolean);
     if (b.id === 'mars') extra.push(h('div', { className: 'body-list' }, pill('CHECK: PERSEVERANCE 2020 ▸', () => checkPerseverance(t, sel))));
     return [h('h3', { textContent: `LAUNCH WINDOWS · EARTH → ${t.name.toUpperCase()}${t.viaParent ? ` (VIA ${t.viaParent.toUpperCase()})` : ''}` }), facts, box, sel, ...extra,
       h('h3', { textContent: 'WHY WINDOWS REPEAT' }), h('div', { className: 'explain-figure' }, hohmannDiagram(Math.max(0.3, Math.min(t.aAu, 40)), t.viaParent ?? t.name)), h('p', { className: 'note explain', textContent: TRANSFER_EXPLAINER })];

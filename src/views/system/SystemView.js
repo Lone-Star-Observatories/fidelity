@@ -1189,8 +1189,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const iso = (jd) => new Date((jd - 2440587.5) * 86400000).toISOString().slice(0, 10);
     const dep = dot(0x99ccff, 8), arr = dot(0xff9966, 8), craft = dot(colour, 9);
     dep.position.copy(arcPts[0]); arr.position.copy(arcPts.at(-1));
-    const depTag = tag(x ? `DEPART EARTH ${iso(span.from)}` : `TRACK FROM ${iso(span.from)}`, 'site'), arrTag = tag(x ? `ARRIVE ${iso(span.to)}` : `TO ${iso(span.to)}`, 'site'), craftTag = tag('', spec.ghost ? 'ghost' : 'transfer');
+    const depTag = tag(spec.depText ?? (x ? `DEPART EARTH ${iso(span.from)}` : `TRACK FROM ${iso(span.from)}`), 'site'), arrTag = tag(spec.arrText ?? (x ? `ARRIVE ${iso(span.to)}` : `TO ${iso(span.to)}`), 'site'), craftTag = tag('', spec.ghost ? 'ghost' : 'transfer');
     depTag.position.copy(arcPts[0]); arrTag.position.copy(arcPts.at(-1));
+    for (const m of spec.marks ?? []) { // e.g. gravity-assist flybys (#45): a dot and a tag where the route meets the planet
+      const p = toV(m.p), d = dot(0xffcc66, 8); d.position.copy(p);
+      tag(m.text, 'site').position.copy(p);
+    }
     for (const o of objs) root.add(o);
     transferViz = { x, spec, span, objs, craft, craftTag };
   }
