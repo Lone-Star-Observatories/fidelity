@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-12",
+  "body": "Rhea",
+  "status": "research-only historical map convention audit; no replacement or embedding",
+  "references": [
+    {
+      "product": "PIA08343",
+      "publication": "2006-12-29 image addition; not acquisition",
+      "projection": "Equidistant",
+      "publisherScale": "700 metres/pixel",
+      "projectionRadiusKm": 764,
+      "inputs": "Cassini and Voyager flybys; exact pixel epochs open",
+      "predecessor": "December 2005 PIA07780"
+    },
+    {
+      "product": "PIA14928",
+      "publication": "2012-08-16 resource publication; not acquisition",
+      "projection": "Equidistant",
+      "publisherScale": "417 metres/pixel in full-size version",
+      "projectionRadiusKm": 764.1,
+      "inputs": "Includes Cassini 2012-03-10 flyby and six Voyager images filling northern gaps; not every pixel dated",
+      "predecessor": "January 2011 PIA12821"
+    }
+  ],
+  "limits": [
+    "Publisher projection radii and scales are product conventions, not new physical-radius measurements or raster computations.",
+    "No caption establishes the existing NASA3D JPEG/TIFF product or pixel association.",
+    "West-positive USGS reference remains separate; no longitude convention transferred without identity.",
+    "Exact input epochs, filters, coverage, frame, photometric transfer and contributor/product crosswalk remain open.",
+    "No referenced image fetched, no image hash invented, no catalogue, map, model, codec or dossier change."
+  ],
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/map-of-rhea-december-2006/",
+      "path": "data/research-sources/rhea-historical-2006-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 268493,
+      "sha256": "bf9cafce5c419f9656c5c1525cda62c9f05919ea848f599a78873afc447f33cb",
+      "product": "PIA08343",
+      "credit": "NASA/JPL/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance with third-party caveats; no CC BY assertion"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/map-of-rhea-march-2012/",
+      "path": "data/research-sources/rhea-historical-2012-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 254039,
+      "sha256": "175b5eb787b1d5252db1e27855d7fdb7f190890c9d50516081a3cb6fec906550",
+      "product": "PIA14928",
+      "credit": "NASA/JPL-Caltech/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance with third-party caveats; no CC BY assertion"
+    }
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "trackedPublicFiles": 596,
+    "existingMapSha256": "487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac",
+    "newDossier": false
+  },
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "OPENAI_API_KEY unset for missing-key assertions",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15988743,
+    "headroomBytes": 11257,
+    "publicFilesByteEqual": 596,
+    "registryUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim; research-only change",
+    "sizeAttribution": "Interbuild feed differences unaudited; no compression saving attribution",
+    "remoteFetch": "SSH fetch matched 7e4a775"
+  }
+}
