@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-12",
+  "status": "Delivered lossless gzip startup envelope; partial headroom recovery, current full standalone still fails16MBgate; no69/newembedding",
+  "method": "Complete minified startup module, including its independent Brotli decoder and existing stylesheet/application restoration, is standardgzip9/dense125v2 inside an inert script. A small gzip-only first module restores/imports it through a temporary Blob and revokes the URL. Startup and application snapshot Brotli instances remain separate. No eval, source token conversion, value rounding, field pruning, image transformation or model change. Build guards exact original startup bytes and compressed transport. All legacy codecs, unsupported gzip message and third-party notices retained.",
+  "fixture": {
+    "sourceBytes": 97815,
+    "packedHtmlBytes": 76554,
+    "savingBeforeOtherBuildChanges": 21294,
+    "snapshotSha256": "a1d100d98faab38848fff0e71c6450326938cceab1ad0e817dbe17e6bb0837cb",
+    "startupSha256": "d4a96853fd45605176d9187a3fd702fa494708a7f5371e227a2304e3dbd68136",
+    "htmlParserPackedTextExact": true,
+    "completeJsonInverse": true,
+    "unsupportedMessage": true,
+    "errors": []
+  },
+  "fixtureLimits": "Complete current readableJSON decoded in Chrome via the restored startup decoder; exact Unicode fixture text and parser-packed hash verified. This is a targeted fixture, not successful complete-application/full-offline validation. Fixture saving excludes other application/feed/build changes and is not net fullHTML attribution.",
+  "verification": {
+    "baseline": "57ebc1f includingcb489c1 PR81",
+    "tests": "602 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16077959bytes/77959over hard16MBgate",
+    "browser": "Chrome startup fixture passes; no current passing full/offline artifact claim;other engines open",
+    "preservation": "All561 tracked public files byte-identical to HEAD;all68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
+    "attribution": "Prior full size comes from different upstream/application/feed inputs;net interbuild size difference not attributed to startup compression."
+  },
+  "sources": [
+    {
+      "path": "scripts/pack-standalone-bootstrap.js",
+      "bytes": 2009,
+      "sha256": "8399d1566558b661b07cf433fb66a32eff55367fffbf33b4a337e5270d641146"
+    },
+    {
+      "path": "tests/standalone-startup.test.js",
+      "bytes": 947,
+      "sha256": "1ea2ebd3de325550ea6cf3bec6186bbc8f7125baf4356d159f281bfcbdf38e70"
+    },
+    {
+      "path": "docs/research/standalone-startup-fixture-2026-10-12.mjs",
+      "bytes": 4205,
+      "sha256": "bf0675ebe6517361ee33331107f428e14c85f74d12caf61b8a94e661b32f12c1"
+    }
+  ],
+  "next": "Further substantial conforming lossless headroom before prepared Charon69/Plutosystem/Neptunian dossiers;preserve every earlier limitation. BacklogACTIVE;no external blocker."
+}
