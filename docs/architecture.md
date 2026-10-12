@@ -481,6 +481,13 @@ red TRANSMITTING bar (frequency, callsign, time on air, time to timeout, device,
 the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is near the bottom on a
 2.0 micro; libbladeRF clamps to the board's range).
 
+**My station and my SDR.** The RF finder opens with MY STATION (`src/data/station.js`): the operator's location
+from the browser, a click on the map (`signalsMap.pickPoint`, Esc cancels) or typed as a Maidenhead grid square or
+coordinates, stored in the `observer` setting that FROM EARTH also uses and drawn on the map as MY STATION with its
+locator. MY SDR lists the detected local receivers (`/api/rf/devices`, `?fresh=1` for RESCAN past the 30 s cache);
+OPEN MY SDR, or a click on MY STATION, opens its console. With none detected it says why from the tool probe
+(`sdrDiagnosis`: bladeRF-cli or rtl-sdr missing, tool present but no board, another program holding the radio).
+
 **Signal path (frequency converter).** SIGNAL PATH in the RF finder (`settings.rfConverter`,
 `src/data/converter.js`): none / Ham It Up (LO 125.000 MHz, up) / custom LO and direction, plus
 BYPASS (the Ham It Up's switch). Converting, the local SDR console (`receiver.js`) works in

@@ -920,3 +920,7 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .host-row.trek-row { border-left-color: var(--trek); }
 .host-row.trek-row > span.mono { color: var(--trek); }
 .cx-banner a.pill { color: #000; text-decoration: none; padding: 4px 16px; }
+
+/* COMMS · MY STATION: placing the station on the map */
+.sm-frame.sm-placing { outline: 2px dashed var(--gold); outline-offset: -2px; }
+.sm-frame.sm-placing canvas { cursor: crosshair; }

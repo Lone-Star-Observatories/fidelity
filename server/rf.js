@@ -179,8 +179,8 @@ let deviceCache = null;
  * only for a licensed operator's hailing frequency. FIDELITY_FAKE_TX=1 (development only) adds a
  * simulated transmitter that radiates nothing.
  */
-export async function rfDevices() {
-  if (deviceCache && Date.now() - deviceCache.at < 30000) return deviceCache.value;
+export async function rfDevices({ fresh = false } = {}) {
+  if (!fresh && deviceCache && Date.now() - deviceCache.at < 30000) return deviceCache.value;
   const [rtl, hack, blade, soapy, rtlFm, rtlPower, rxFm, rxPower, hackTx] = await Promise.all([
     probe('rtl_test', ['-t']), probe('hackrf_info', []), probe('bladeRF-cli', ['-p']), probe('SoapySDRUtil', ['--find']),
     probe('rtl_fm', ['-h'], 2000), probe('rtl_power', ['-h'], 2000), probe('rx_fm', ['-h'], 2000), probe('rx_power', ['-h'], 2000), probe('hackrf_transfer', ['-h'], 2000)]);

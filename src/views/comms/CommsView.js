@@ -19,6 +19,7 @@ import { stationMedia, parseFrequency } from '../../data/rf.js';
 import { createReceiver } from './receiver.js';
 import { createWebSdr } from './websdr.js';
 import { createTransmitter } from './transmitter.js';
+import { parseLocation, station as stationAt, toGrid, sdrDiagnosis } from '../../data/station.js';
 import { normalizeConverter, converting, converterLabel, antennaRange, HAM_IT_UP_LO } from '../../data/converter.js';
 
 const STANDALONE = import.meta.env?.MODE === 'standalone';
@@ -48,7 +49,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     tx.indicator);
   const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
   const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
-    extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (bladeRF-cli, rtl-sdr or rx_tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
+    extra: [{ id: 'station', label: 'MY STATION', colour: '#ffcc66', kind: 'station', markers: [], credit: 'Your station location (MY STATION in the RF finder; shared with FROM EARTH).', licence: 'Yours' },
+      { id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (bladeRF-cli, rtl-sdr or rx_tools), at your station location.', licence: 'Your hardware' }] });
   const screen = el('div', { className: 'cx-screen' });
   const screenFrame = el('div', { className: 'cx-screen-frame' }, screen, el('div', { className: 'cx-screen-label mono', textContent: 'MAIN VIEWER' }));
   const consoleBox = el('div', { className: 'cx-console' });
@@ -155,20 +157,62 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   }
 
   // ---- RF: receivers ------------------------------------------------------------------------------
-  async function loadDevices() {
+  async function loadDevices(fresh = false) {
     if (STANDALONE) return;
-    try { devices = await fetch('/api/rf/devices').then((r) => r.json()); } catch { devices = null; }
+    try { devices = await fetch(`/api/rf/devices${fresh ? '?fresh=1' : ''}`).then((r) => r.json()); } catch { devices = null; }
     tx.setDevices(devices ? devices.tx ?? [] : null);
     localMarkers();
     syncDev();
   }
   /** The local SDR on the map, its range seen from the antenna (through a converter when one is active). */
+  let localList = []; // the local SDR markers, one per detected receiver (MY SDR opens them)
   function localMarkers() {
     const obs = settings.get('observer'), conv = settings.get('rfConverter');
-    if (devices?.rx?.length) rfMap.setExtra('localsdr', devices.rx.map((dev, i) => { const [lo, hi] = antennaRange(dev.rangeHz, conv); return [(obs?.lat ?? 51.4779) + i * 0.12, obs?.lon ?? 0,
-      `LOCAL SDR · ${dev.label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '',
-      `${lo < 1e6 ? (lo / 1e3).toFixed(0) + ' kHz' : (lo / 1e6).toFixed(0) + ' MHz'}–${(hi / 1e6).toFixed(0)} MHz · ${dev.fake ? 'SIMULATED (FIDELITY_FAKE_SDR)' : 'THIS MACHINE'}${converting(conv) ? ` · VIA ${converterLabel(conv)}` : ''}`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0], fake: !!dev.fake }]; }));
+    rfMap.setExtra('station', obs ? [[obs.lat, obs.lon, `MY STATION · ${obs.grid ?? toGrid(obs.lat, obs.lon)}`, '', obs.label ?? '', 1, { station: true }]] : []);
+    localList = (devices?.rx ?? []).map((dev, i) => { const [lo, hi] = antennaRange(dev.rangeHz, conv); return [(obs?.lat ?? 51.4779) + i * 0.12, obs?.lon ?? 0,
+      `LOCAL SDR · ${dev.label}${obs ? '' : ' (set MY STATION in RF)'}`, '',
+      `${lo < 1e6 ? (lo / 1e3).toFixed(0) + ' kHz' : (lo / 1e6).toFixed(0) + ' MHz'}–${(hi / 1e6).toFixed(0)} MHz · ${dev.fake ? 'SIMULATED (FIDELITY_FAKE_SDR)' : 'THIS MACHINE'}${converting(conv) ? ` · VIA ${converterLabel(conv)}` : ''}`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0], fake: !!dev.fake }]; });
+    rfMap.setExtra('localsdr', localList);
   }
+  const unsubStation = settings.onChange((k) => { if (k === 'observer') { localMarkers(); if (mode === 'rf') onPanel?.(); } });
+
+  // ---- MY STATION and MY SDR (RF finder): where the operator is, and which local radio to use ---------
+  function setStation(st) { settings.set('observer', st); rfMap.focus(st.lat, st.lon, 6); }
+  function stationPanel() {
+    const obs = settings.get('observer');
+    const out = [el('h3', { textContent: 'MY STATION' })];
+    out.push(el('p', { className: 'note', textContent: obs
+      ? `${obs.label ?? ''} · GRID ${obs.grid ?? toGrid(obs.lat, obs.lon)}. Your local SDR sits here on the map; FROM EARTH uses it too.`
+      : 'Not set. Your local SDR appears on the map at your station, and FROM EARTH uses it for rise and set times.' }));
+    const input = el('input', { className: 'cx-rx-input mono', placeholder: 'GRID (EM12kx) OR LAT, LON', title: 'A Maidenhead grid square, "32.78, -96.80" or "32.78N 96.80W"' });
+    const msg = el('span', { className: 'mono cx-tx-lab' });
+    const apply = () => { const st = parseLocation(input.value); if (!st) { msg.textContent = 'UNREADABLE: TRY EM12kx OR 32.78, -96.80'; return; } setStation(st); };
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') apply(); });
+    out.push(el('div', { className: 'cx-rx-row' }, input, pill('SET', apply)), msg,
+      el('div', { className: 'body-list' },
+        pill('USE MY LOCATION', () => {
+          if (!navigator.geolocation) { toast?.('LOCATION NOT AVAILABLE IN THIS BROWSER'); return; }
+          navigator.geolocation.getCurrentPosition((p) => setStation(stationAt(p.coords.latitude, p.coords.longitude, 'MY LOCATION')), () => toast?.('LOCATION PERMISSION DENIED: PLACE ON MAP OR TYPE A GRID'), { timeout: 15000 });
+        }),
+        pill(rfMap.placing ? 'CLICK THE MAP… (ESC)' : 'PLACE ON MAP', () => { rfMap.pickPoint((lat, lon) => setStation(stationAt(lat, lon)), () => onPanel?.()); toast?.('CLICK YOUR STATION ON THE MAP'); onPanel?.(); }),
+        obs ? pill('SHOW ON MAP', () => rfMap.focus(obs.lat, obs.lon, 6)) : null));
+    // MY SDR: the detected local receivers; OPEN starts its console (waterfall, dial, audio)
+    out.push(el('h3', { textContent: 'MY SDR' }));
+    if (STANDALONE) { out.push(el('p', { className: 'note', textContent: 'A local SDR needs the local backend (npm start on the machine it is plugged into).' })); return out; }
+    if (!devices) { out.push(el('p', { className: 'note', textContent: 'CHECKING HARDWARE…' })); return out; }
+    if (localList.length) {
+      const pick = el('select', { className: 'cx-tx-select mono' }, localList.map((m, i) => el('option', { value: String(i), textContent: devices.rx[i].label.toUpperCase(), selected: devices.rx[i].driver === settings.get('rfLocalDevice') })));
+      pick.addEventListener('change', () => settings.set('rfLocalDevice', devices.rx[Number(pick.value)].driver));
+      const chosen = () => localList[Number(pick.value)] ?? localList[0];
+      out.push(el('div', { className: 'cx-rx-row' }, el('span', { className: 'mono cx-tx-lab', textContent: 'RADIO' }), pick),
+        el('div', { className: 'body-list' }, pill('OPEN MY SDR', () => { settings.set('rfLocalDevice', devices.rx[Number(pick.value)].driver); selectReceiver('localsdr', chosen(), null); }), pill('RESCAN', () => rescan())));
+    } else {
+      out.push(el('p', { className: 'note', textContent: 'No local receiver detected.' }), ...sdrDiagnosis(devices).map((t) => el('p', { className: 'note', textContent: t })),
+        el('div', { className: 'body-list' }, pill('RESCAN', () => rescan())));
+    }
+    return out;
+  }
+  async function rescan() { devices = null; onPanel?.(); await loadDevices(true); onPanel?.(); }
 
   // ---- SIGNAL PATH: a frequency converter between the antenna and the local SDR (Ham It Up) ---------
   function signalPathPanel() {
@@ -207,6 +251,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
 
   /** RF: a receiver picked on the map. KiwiSDR and the local SDR open a listening console; a WebSDR opens its operator's page in the viewer. */
   function selectReceiver(layerId, m, layer) {
+    if (layerId === 'station') { const mine = localList.find((x, i) => devices.rx[i].driver === settings.get('rfLocalDevice')) ?? localList[0]; if (mine) return selectReceiver('localsdr', mine, null); return; } // MY STATION opens my SDR
     closeChannel(false);
     const local = layerId === 'localsdr';
     receiver = { layerId, m, layer, name: m[2], url: m[3], local };
@@ -293,7 +338,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
         h('span', { textContent: `${b.l < 1 ? (b.l * 1000).toFixed(0) + ' kHz' : b.l.toFixed(3) + ' MHz'} – ${b.h < 1 ? (b.h * 1000).toFixed(0) + ' kHz' : b.h.toFixed(3) + ' MHz'}` }), h('span', { className: 'mono', textContent: (b.a || '').toUpperCase() })))));
       out.push(h('p', { className: 'note', textContent: 'OPEN RECEIVER listens on the operator\'s own page.' }),
         h('div', { className: 'body-list' }, href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'OPEN RECEIVER ↗' }) : null));
-    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map.' }));
+    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map, or open MY SDR below.' }));
+    if (mode === 'rf' && !receiver?.consoleBox) out.push(...stationPanel());
     if (mode === 'rf' && devices && (devices.rx.length || devices.tx.length)) out.push(...signalPathPanel());
     if (mode === 'rf') out.push(...tx.panel());
     if (mode === 'rf' && devices) out.push(h('h3', { textContent: 'HARDWARE' }), h('p', { className: 'note', textContent: head.querySelector('.cx-dev').textContent }));

@@ -83,7 +83,7 @@ const routes = {
   'GET /api/signals/stations/place': async (q) => stationPlace(q.get('i')), // a place's streams from your station list (#69)
   'GET /api/comms/nowplaying': async (q) => stationNowPlaying(q.get('u') || ''), // COMMS (#69)
   'GET /api/comms/media': async (q) => cameraMedia(q.get('u') || ''),
-  'GET /api/rf/devices': async () => rfDevices(),
+  'GET /api/rf/devices': async (q) => rfDevices({ fresh: q.get('fresh') === '1' }), // fresh: RESCAN skips the 30 s cache
   'GET /api/rf/websdr/frame': async (q) => websdrFrame(q.get('u')),
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
