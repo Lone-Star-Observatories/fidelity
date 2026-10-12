@@ -104,6 +104,11 @@ export const MOONS = [
     elements: el(49300, 0.015, 31.4, 338.2, 0.0, 0.0, 24.85, 0, 0, PLUTO_POLE, 'equatorial'),
     surfacePending: true, discovered: '2005 · Hubble Space Telescope',
     note: 'Fast nonsynchronous rotation: the 2016 fit is 1.829 ± 0.009 days. JPL gives an equivalent-volume radius of 18 ± 1 km; this is not a spherical shape or local surface normal. The PLU060 mean orbit differs from the historical 48,694 km barycentric observer assumption; neither is a dated scene registration. No resolved globe is adopted.' },
+  // PLU060 mean orbit is separate from the historical barycentric observer assumptions.
+  { id: 'hydra', name: 'Hydra', parent: 'pluto', radiusKm: 18.5, massKg: null, rotationHours: 10.308, locked: false,
+    elements: el(65200, 0.009, 139.3, 335.0, 0.3, 114.3, 38.20, 0, 14, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2005 · Hubble Space Telescope',
+    note: 'Rapid nonsynchronous rotation: the 2016 fit is 0.4295 ± 0.0008 days; nominal retrograde orientation is not significant beyond one sigma. JPL equivalent-volume radius 18.5 ± 1 km is not an irregular shape or local normal. The PLU060 mean orbit is separate from the historical 64,738 km barycentric observer model; no dated scene registration or permanent Pluto-facing site. No resolved globe adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

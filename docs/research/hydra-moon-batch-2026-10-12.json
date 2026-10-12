@@ -1,0 +1,1517 @@
+{
+  "date": "2026-10-12",
+  "generated": "2026-10-11",
+  "body": "Hydra",
+  "dossier": 71,
+  "nativePreparation": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "status": "Research-only LORRI preparation; no new dossier, embedding, map or shape.",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/hydra-PIA19711-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.jpg",
+        "bytes": 17311,
+        "sha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1050,
+        "height": 704,
+        "format": "JPEG",
+        "mode": "L"
+      },
+      {
+        "path": "data/research-sources/hydra-PIA19711-original.tif",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.tif",
+        "bytes": 740226,
+        "sha256": "e8368f06769a9264fc2d621806e28918c9b10dacc286bd745e3dc31eb340cb17",
+        "status": 200,
+        "contentType": "image/tiff",
+        "width": 1050,
+        "height": 704,
+        "format": "TIFF",
+        "mode": "L"
+      },
+      {
+        "path": "data/research-sources/hydra-PIA19711-caption.html",
+        "url": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+        "bytes": 267797,
+        "sha256": "b0019f2266ca213d441eb200d90946a3e2b62e2da7164993d1e0dd1242b5f084",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
+    ],
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/; active NASA terms, not asserted CC BY. Prior downloaded terms hash retained in hydra-moon-preparation-2026-10-11.json.",
+    "imageAdditionDate": "2015-07-15",
+    "observationDate": "Exact acquisition UTC/date not given by this caption; encounter-era image, product crosswalk open.",
+    "limitations": [
+      "LORRI monochrome brightness variation does not establish calibrated visible colour, local composition or complete geography.",
+      "Caption 43 by 33 km, 3 km/pixel, approximately 400000 miles range and approximately 10 km dark structure are historical source estimates, not new raster calculations or current global shape axes.",
+      "Water-ice interpretation in this early caption is a hypothesis; later spectral evidence remains separately recorded and not a pixel chemistry map.",
+      "Page update2025-09-23 is not an observation date. No exhaustive newest-image claim. Exact product, processing, phase, rotation and shape registration remain open."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "newEmbedding": false,
+      "trackedEarlierInputs": 389
+    },
+    "visualInspection": [
+      "Unchanged JPEG inspected: coarse block-like monochrome sampling against a black background; blocks are image sampling, not rocks, cracks or terrain cells.",
+      "No Charon or other body is included in this image; no map or texture adopted. Background does not measure atmospheric absence."
+    ],
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991432,
+      "headroomBytes": 8568,
+      "queue": 566,
+      "completeSnapshotSha256": "13ef9cbc468017d0028f3d41a9745dff3b7c97850500be9998107fa341e833d2",
+      "rawTransportSha256": "1b3d1fa16b3f81bf0e727472f905a7eed5b1ea60ba5b0961059bd045de6d92b0",
+      "browser": "Chrome exact complete readableJSON and HTML-parser transport; 237 images, 20 bands, 517 details, 32 model entries, no errors. Other engines open.",
+      "attribution": "Interbuild differences unaudited; no asset or compression savings attribution. Production codecs unchanged."
+    }
+  },
+  "spectralPreparation": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "catalogueId": "sol-hydra",
+    "status": "Research-only native spectral graphic preparation; no dossier, embedding, map or shape adopted.",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/hydra-PIA20581-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20581/PIA20581.jpg",
+        "bytes": 169514,
+        "sha256": "6e40cb48fd69678a314f01dc0dbdbe525a24abd5e5d007de3c55668f472b225a",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 2400,
+        "height": 985,
+        "mode": "RGB",
+        "format": "JPEG"
+      },
+      {
+        "path": "data/research-sources/hydra-PIA20581-original.tif",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20581/PIA20581.tif",
+        "bytes": 1556120,
+        "sha256": "e9ffd4fa09122a42380e16b3f93aaf1864a8fe51824114332056ba178514d900",
+        "status": 200,
+        "contentType": "image/tiff",
+        "width": 2400,
+        "height": 985,
+        "mode": "RGB",
+        "format": "TIFF"
+      },
+      {
+        "path": "data/research-sources/hydra-PIA20581-caption.html",
+        "url": "https://science.nasa.gov/photojournal/icy-hydra/",
+        "bytes": 269002,
+        "sha256": "c2d9ed0b75cf1e251f6140c3cbf818e406913fdc8cb8fd2eeab7f3c1202a4f0e",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      },
+      {
+        "path": "data/research-sources/hydra-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320653,
+        "sha256": "da20015d6b0828a7b8c10efb42dcebdbdd73de967c4ebda548de3c68c7393e2c",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
+    ],
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "terms": "Active NASA images/media terms; not asserted CC BY. No blanket licence for primary papers.",
+    "observationDate": "2015-07-14 for LEISA spectrum; exact image-inset association/epoch remains open.",
+    "imageAdditionDate": "2016-05-06",
+    "limitations": [
+      "PIA20581 is an annotated spectral comparison graphic, not a resolved visible-colour surface map.",
+      "Caption describes Ralph/LEISA infrared spectra while instrument metadata lists MVIC; conflict retained pending product crosswalk.",
+      "Crystalline water absorption features are spectral evidence; grain-size/phase, relative contamination, impact refreshing and debris-disk formation are interpretations, not local fractions or directly observed history.",
+      "Charon comparison must remain labelled Charon and never assigned to Hydra; plotted lines, text and inset boundaries are not geography.",
+      "Published range/feature wavelengths are source statements, not new raster computations. No calibrated visible colour, complete geography, ocean/plume/biology claim.",
+      "No exhaustive newest-observation claim; exact archive products/calibration/frame/rotation/shape audit remains open."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedEarlierInputs": 389,
+      "newEmbedding": false
+    },
+    "visualInspection": [
+      "Original JPEG inspected using a resized display; no native pixel calibration analysis. Large right globe is explicitly Charon, not Hydra.",
+      "Left curves are labelled Charon, Hydra and Pure ice: relative reflectance comparison, not measured local ice fractions.",
+      "Small blurry Hydra inset, blue outline/triangle, size labels and plot colours are layout/annotations, not terrain, visible colour or a physical plume. Inset product/epoch remains open."
+    ],
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15990906,
+      "headroomBytes": 9094,
+      "browser": "Chrome exact complete readableJSON and HTML-parser transport; 237 images, 20 bands, 517 details, 32 model entries, no errors. Other engines open.",
+      "completeSnapshotSha256": "f43d8c02108c205c8bc7273e895fec8dc18f5eb04f7b8f39cd2d46f8f7f1893b",
+      "rawTransportSha256": "acf17593226b80b2744e24dce50ada8b487031dcf63fbb8860c368b25ed914f2",
+      "queue": 566,
+      "attribution": "Interbuild differences from previous verified snapshot not audited; no asset or compression savings attribution. Production codecs unchanged."
+    }
+  },
+  "primary": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "catalogueId": "sol-hydra",
+    "status": "Research-only primary assessment; no new dossier, embedding, map or shape.",
+    "title": "The Small Satellites of Pluto as Observed by New Horizons",
+    "doi": "10.1126/science.aae0030",
+    "arxiv": "1604.05366v1",
+    "submissionUTC": "2016-04-18T22:42:50Z",
+    "authors": [
+      "Weaver, H. A.",
+      "Buie, M. W.",
+      "Buratti, B. J.",
+      "Grundy, W. M.",
+      "Lauer, T. R.",
+      "Olkin, C. B.",
+      "Parker, A. H.",
+      "Porter, S. B.",
+      "Showalter, M. R.",
+      "Spencer, J. R.",
+      "Stern, S. A.",
+      "Verbiscer, A. J.",
+      "McKinnon, W. B.",
+      "Moore, J. M.",
+      "Robbins, S. J.",
+      "Schenk, P.",
+      "Singer, K. N.",
+      "Barnouin, O. S.",
+      "Cheng, A. F.",
+      "Ernst, C. M.",
+      "Lisse, C. M.",
+      "Jennings, D. E.",
+      "Lunsford, A. W.",
+      "Reuter, D. C.",
+      "Hamilton, D. P.",
+      "Kaufmann, D. E.",
+      "Ennico, K.",
+      "Young, L. A.",
+      "Beyer, R. A.",
+      "Binzel, R. P.",
+      "Bray, V. J.",
+      "Chaikin, A. L.",
+      "Cook, J. C.",
+      "Cruikshank, D. P.",
+      "Ore, C. M. Dalle",
+      "Earle, A. M.",
+      "Gladstone, G. R.",
+      "Howett, C. J. A.",
+      "Linscott, I. R.",
+      "Nimmo, F.",
+      "Parker, J. Wm.",
+      "Philippe, S.",
+      "Protopapa, S.",
+      "Reitsema, H. J.",
+      "Schmitt, B.",
+      "Stryk, T.",
+      "Summers, M. E.",
+      "Tsang, C. C. C.",
+      "Throop, H. H. B.",
+      "White, O. L.",
+      "Zangari, A. M."
+    ],
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/nix-Weaver2016.pdf",
+        "url": "https://arxiv.org/pdf/1604.05366",
+        "bytes": 4953591,
+        "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+        "pages": 48
+      },
+      {
+        "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+        "url": "https://arxiv.org/abs/1604.05366",
+        "bytes": 50077,
+        "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/nix-Weaver2016-license.html",
+        "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+        "bytes": 1415,
+        "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+        "status": 200
+      }
+    ],
+    "scope": "Targeted Hydra main-text physical properties, albedo, surface features and Tables 1/2 assessed in the retained complete 48-page author PDF. Later compositional work, final publisher record and native-product crosswalk remain open.",
+    "terms": {
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "assessment": "Specific record links arXiv nonexclusive distribution; not CC BY. No paper figure or derivative embedded."
+    },
+    "fittedParameters": {
+      "diameterAxesKm": [
+        65,
+        45,
+        25
+      ],
+      "axisUncertaintyKm": 10,
+      "axisUncertaintyMeaning": "Table 2 one-sigma ellipsoid fit for each axis; not registered detailed geometry or site height.",
+      "rotationPeriodDays": 0.4295,
+      "rotationUncertaintyDays": 0.0008,
+      "poleRaDecDegrees": [
+        257,
+        -24
+      ],
+      "poleUncertaintyDegrees": 10,
+      "obliquityDegrees": 110,
+      "orbitalPeriodDays": 38.20177,
+      "orbitalUncertaintyDays": 0.00003,
+      "orbitalSemimajorAxisKm": 64738,
+      "orbitalReference": "System barycenter, not fixed Hydra-to-Pluto distance.",
+      "geometricAlbedo": 0.83,
+      "albedoUncertainty": 0.08
+    },
+    "limitations": [
+      "Rapid nonsynchronous rotation gives no permanent Pluto-facing site. Nominal Hydra retrograde orientation is not significant beyond one sigma; only Nix is significantly retrograde in this paper. Current chaotic rotation is deferred to future study, not established here.",
+      "Table 1 sampling and phase are source estimates, not new raster calculations. PIA19711 exact acquisition UTC and sequence crosswalk remain open; similarity to the approach sampling does not verify association.",
+      "Figure 1 Hydra composite uses two deconvolved H_LORRI_BEST images and pixels two times smaller than native sampling. No paper figure is embedded.",
+      "Geometric albedo depends on assumed phase law and unresolved relative photometry. Unobserved opposition surge remains unaccounted for. November 2015 LORRI calibration reduced sensitivity by about 20 percent and raised inferred albedos; this is not a correction for publisher JPEGs or observer scenes.",
+      "Hydra asymmetry permits merger or impact-divot interpretations. Mass/volume uncertainty leaves density consistent with zero within errors; no precise density or local porosity adopted.",
+      "Three crater-like features and minimum counts depend on image resolution, phase and identification. At least roughly four-billion-year age is a population-model inference, not direct dating.",
+      "Nearly solar colour and slightly bluer Hydra than Nix do not establish calibrated visible scene colour. Water ice in this paper is inferred before arrival of LEISA spectra, not spectroscopic measurement. Later LEISA bands are assessed separately.",
+      "Formation in a collision debris disk, regolith transfer, ice abundance and crater origins are interpretations, not local fractions or directly observed history. No other body skin, ocean, plume or biology is adopted.",
+      "Final publisher record, later rotation, shape frame/uncertainties, native image registration and calibrated photometry remain open."
+    ],
+    "resolvedObservations": [
+      {
+        "sequence": "H_LORRI_APPR_1D2",
+        "startUTC": "2015-07-13T23:16:23Z",
+        "images": 2,
+        "captionScaleKmPerPixel": 3.18,
+        "phaseDegrees": 21.5
+      },
+      {
+        "sequence": "H_COLOR_1",
+        "startUTC": "2015-07-14T04:54:09Z",
+        "images": 1,
+        "captionScaleKmPerPixel": 7.17,
+        "phaseDegrees": 26.7
+      },
+      {
+        "sequence": "H_COLOR_BEST",
+        "startUTC": "2015-07-14T07:37:00Z",
+        "images": 1,
+        "captionScaleKmPerPixel": 4.59,
+        "phaseDegrees": 33.5
+      },
+      {
+        "sequence": "H_LORRI_BEST",
+        "startUTC": "2015-07-14T07:40:28Z",
+        "images": 8,
+        "captionScaleKmPerPixel": 1.14,
+        "phaseDegrees": 33.9
+      }
+    ],
+    "preservation": "Research only; all 68 dossiers and prior original PNGs, masters, native images, maps, models, shapes and provenance retained. No new embedding or catalogue changes.",
+    "verification": {
+      "queue": 566,
+      "dossiers": 68,
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15988802,
+      "headroomBytes": 11198,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "ab6c9bb0593dc5be39a0124b7e3a2d3ee493fe8c77285e6f8ce1e0a6b51c1781",
+        "raw": "6477b620ec060ef10a9f1c77867d967bb46574d72f46e9d7b4edfd944d466988",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readable JSON and HTML-parser payload; 237 images and 20 band images decode without page errors, 517 detail fields and 32 model entries. Other engines open. Interbuild feed differences unaudited; no savings attribution. Production codecs unchanged.",
+      "preservation": "Git changes limited to this research record and docs/assets.md; queue unchanged, no registry/asset/model/map/shape changes."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "status": "Research-only independent local original prepared; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational. Create one independent hypothetical local landscape on Hydra, Pluto's small irregular moon, wide 16:9 approximately 1672 by 941. Photorealistic scientific illustration of independently invented pale grey fine-grained regolith with scattered angular blocks, shallow irregular depressions and a low uneven broken horizon. Subtle brighter ice-like patches are artistic suggestions, not measured composition, crystalline grains, chemical fractions or observed local deposits. Low oblique illumination, grey colour and exposure are assumptions. Almost black empty sky is assumed transparency, not measured absence of an atmosphere. This is NOT a reconstruction of a New Horizons photograph, LORRI pixel blocks, any observed crater, or a mapped site. No permanent Pluto-facing location: Hydra rotates rapidly. No Sun, planets, stars, astronomical disks, haze, plumes, liquids, oceans, biology, people, spacecraft, structures or survivable landing. Do not use, recolour or copy any Moon, Mars, Pluto, Charon, Nix, asteroid or other observed body's surface map. No reference images. Legible unobtrusive footer exactly 'IMAGINED · LOCAL HYDRA'; smaller line 'Terrain, materials and lighting are assumed'. Sober natural grey palette, independently composed terrain.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-732789fe-eb1a-48cb-8bae-e598e19dfe65.png",
+    "originalPath": "data/research-sources/hydra-generated-surfaceImage-original.png",
+    "inspection": "Viewed generated original: readable IMAGINED LOCAL HYDRA footer and assumptions line. Independently invented grey regolith, angular blocks, shallow depressions and uneven broken horizon; no astronomical disk, plume, liquid, biology or landing depiction. No reference image or observed map input.",
+    "limitations": [
+      "Terrain, relief, grain sizes, pale patches, chemistry, fractions, colour, illumination and exposure invented.",
+      "Not a dated New Horizons site, LORRI sampling reconstruction, observed globe map or analog body skin.",
+      "Disk-integrated LEISA spectra and model mixtures do not map these local materials.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk and no angular/raster-size claim.",
+      "Hydra rotates rapidly; no permanent Pluto-facing site. Its barycentric orbital semimajor axis is not a fixed Pluto distance; variable observer geometry remains pending.",
+      "All 68 earlier dossiers and originals/native/master/provenance inputs preserved. No new embedding; observer, masters/previews and additive dossier await further preparation and substantial conforming lossless headroom."
+    ],
+    "original": {
+      "path": "data/research-sources/hydra-generated-surfaceImage-original.png",
+      "bytes": 3056704,
+      "sha256": "d1eb7d16ae37d58d813e15475a503b30a25020f11fb2f88bbfeab394775f34ea",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    "preservation": {
+      "trackedInputsByteIdentical": 404,
+      "dossiers": 68,
+      "newEmbedding": false,
+      "registryByteIdentical": true
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15988802,
+      "headroomBytes": 11198,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "ab6c9bb0593dc5be39a0124b7e3a2d3ee493fe8c77285e6f8ce1e0a6b51c1781",
+        "raw": "6477b620ec060ef10a9f1c77867d967bb46574d72f46e9d7b4edfd944d466988",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readable JSON and HTML-parser transport;237 images20 bands517 details32 model entries decode without page errors. Snapshot and HTML byte-identical to prior verified be0d1fa build. Other engines open. Production codecs unchanged; no savings claim."
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "status": "Research-only independent observer original prepared; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational. Create one independent hypothetical sky view from Hydra, Pluto's rapidly rotating small irregular moon. Wide 16:9 about 1672x941. Foreground independently invented grey regolith, angular blocks, shallow depressions and irregular low horizon, lower half. Black empty sky, assumed transparency not measured atmospheric absence. Two SMALL separated disks above horizon: Pluto about 31 pixels diameter at this canvas size, Charon about 15 pixels; do not enlarge for drama. Pluto muted grey beige subtly mottled, Charon grey; their patterns, colours, phase and exposure independently invented, no copying observed maps. These are undated illustrative barycentric distances at 90 degree HFOV, not a registered site or permanent Pluto-facing hemisphere. Small bright crescent or partly lit disks with restrained exposure, no stars, Sun, rings, foreground atmosphere, haze, plume, liquids, ocean, biology, people, spacecraft, structures or survivable landing. Do not copy/recolour Moon/Mars/Pluto/Charon/Nix/asteroid terrain or any actual photograph. No reference images. Legible unobtrusive footer exactly 'IMAGINED · SKY FROM HYDRA'; smaller line 'Terrain, disk appearance and lighting are assumed'. Sober photorealistic scientific illustration, terrain chemistry and fractions unmeasured.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-078581f7-9d3e-4294-9947-d455c122c1a2.png",
+    "original": {
+      "path": "data/research-sources/hydra-generated-skyImage-original.png",
+      "bytes": 1828889,
+      "sha256": "89de53c73c68d1c7ae09babd8772025bedacf3daacd6d672ddcb9089e6602980",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    "inspection": "Viewed generated original: legible IMAGINED SKY FROM HYDRA footer and assumptions line; independently invented grey regolith/blocks/depressions under empty black sky, two separated partly lit disks. No reference images or observed body maps supplied.",
+    "geometryRecord": "docs/research/hydra-observer-geometry-preparation-2026-10-11.json",
+    "rasterAudit": {
+      "method": "Bounded row counts of pixels whose maximum RGB channel exceeds thresholds; illuminated chords, not calibrated full disk diameters",
+      "thresholds": [
+        5,
+        10,
+        20
+      ],
+      "pluto": {
+        "row": 235,
+        "xBounds": [
+          890,
+          990
+        ],
+        "widthsPixels": [
+          38,
+          36,
+          36
+        ],
+        "skyGeometryTargetPixels": 30.663670324400595
+      },
+      "charon": {
+        "row": 276,
+        "xBounds": [
+          1160,
+          1230
+        ],
+        "widthsPixels": [
+          24,
+          19,
+          19
+        ],
+        "skyGeometryTargetPixels": 15.104098222868833
+      },
+      "interpretation": "Both measured bright chords exceed nominal full-disk targets; phase/exposure-sensitive illustration remains oversized and uncalibrated."
+    },
+    "limitations": [
+      "Terrain, blocks, grains, relief, pale patches, chemistry, fractions, disk patterns, visible colour, phase, lighting and exposure invented; no analog skins.",
+      "Not a dated New Horizons/LORRI/globe site, surface composition map, shape registration or measured atmosphere transmission. Black sky is assumed transparency, not measured atmospheric absence.",
+      "Rapid nonsynchronous rotation: no permanent Pluto-facing site. Undated circular/coplanar barycentric model and outward 32.5km semiaxis observer normal are assumptions; actual attitude/site/phase/visibility remain open.",
+      "FOV and scene registration remain artistic; no calibrated visible colour, photometry, chemistry, plume, liquid, ocean, biology or survivable landing depiction.",
+      "Ring omission is artistic, not evidence of absence. Small future previews require readable card labels.",
+      "All68 dossiers and originals/native/master/map/model/shape/provenance inputs preserved. Masters/previews and additive dossier await preparation and substantial conforming lossless headroom."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "registryByteIdentical": true,
+      "trackedInputsByteIdentical": 404,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15996955,
+      "headroomBytes": 3045,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+        "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact current readableJSON and HTML-parser snapshot restoration,237 images20 bands decode,517 detail32 model entries,no errors; identical previous9035486 JSON and HTML bytes. Other engines open; no new native-hash/model-load/route claim. Production codecs unchanged; no savings attribution."
+    }
+  },
+  "geometryPreparation": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+    "sources": [
+      "src/data/sol.js Pluto radius/mass",
+      "src/data/moons.js Charon radius/mass and 19600km separation",
+      "docs/research/hydra-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric 64738km and 65x45x25km ellipsoid"
+    ],
+    "assumptions": {
+      "circularCoplanarSystem": true,
+      "hydraBarycentricRadiusKm": 64738,
+      "plutoCharonSeparationKm": 19600,
+      "hydraObserverHeightKm": 32.5,
+      "heightUse": "Assumed maximum fitted ellipsoid semiaxis, not measured site height, registered shape or uncertainty",
+      "observerPositionKm": [
+        64770.5,
+        0
+      ],
+      "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+      "plutoPositionKm": [
+        0,
+        2126.8199233716477
+      ],
+      "charonPositionKm": [
+        0,
+        -17473.180076628352
+      ],
+      "horizontalFovDeg": 90,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+    },
+    "barycentricOffsetsKm": {
+      "pluto": 2126.8199233716477,
+      "charon": 17473.180076628352
+    },
+    "geometry": {
+      "pluto": {
+        "radiusKm": 1188.3,
+        "representativeDistancesKm": {
+          "alignedNear": 62643.680076628356,
+          "rightAngle": 64805.40898132231,
+          "alignedFar": 66897.31992337164
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 62643.680076628356,
+            "angularDiameterDeg": 2.173839676138044,
+            "targetWidthPixels1672": 31.72219697502986
+          },
+          "rightAngle": {
+            "distanceKm": 64805.40898132231,
+            "angularDiameterDeg": 2.1013181377790677,
+            "targetWidthPixels1672": 30.663670324400595
+          },
+          "alignedFar": {
+            "distanceKm": 66897.31992337164,
+            "angularDiameterDeg": 2.035601898178089,
+            "targetWidthPixels1672": 29.704495271951117
+          }
+        }
+      },
+      "charon": {
+        "radiusKm": 606,
+        "representativeDistancesKm": {
+          "alignedNear": 47297.319923371644,
+          "rightAngle": 67085.98730167338,
+          "alignedFar": 82243.68007662836
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 47297.319923371644,
+            "angularDiameterDeg": 1.4682520064623794,
+            "targetWidthPixels1672": 21.42436778430977
+          },
+          "rightAngle": {
+            "distanceKm": 67085.98730167338,
+            "angularDiameterDeg": 1.0351406008452846,
+            "targetWidthPixels1672": 15.104098222868833
+          },
+          "alignedFar": {
+            "distanceKm": 82243.68007662836,
+            "angularDiameterDeg": 0.8443580477999043,
+            "targetWidthPixels1672": 12.320211177887252
+          }
+        }
+      }
+    },
+    "limitations": [
+      "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+      "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+      "Pluto and Charon disks require independently invented appearance in a future hypothetical illustration; no other body map may become Hydra terrain.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15996955,
+      "headroomBytes": 3045,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+        "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readableJSON and HTML-parser snapshot payload; 237 images and 20 band images decode, 517 detail and 32 model entries; no page errors. Other engines open. Interbuild differences from prior ab6c9bb snapshot unaudited; no savings attribution or new model-load/native-hash/route claim. Production codecs unchanged."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Hydra",
+    "status": "Research-only original-preserving masters/previews; no new dossier or embedding",
+    "method": "Pillow Lanczos resize from unchanged independent built-in originals, JPEG85 masters/JPEG80 previews; generated illustrations only, no native scientific transformation",
+    "assets": {
+      "surfaceImage": {
+        "master": {
+          "path": "data/research-sources/hydra-generated-surfaceImage-master.jpg",
+          "bytes": 350132,
+          "sha256": "e177fac011656bd65d71a19846180852b787b5dac0f99c2cb1592b739a66991f",
+          "width": 1536,
+          "height": 864,
+          "quality": 85,
+          "mime": "image/jpeg"
+        },
+        "preview": {
+          "path": "data/research-sources/hydra-generated-surfaceImage-preview.jpg",
+          "bytes": 10661,
+          "sha256": "e7d087437383fb5b98da800d2b56787e383b2ed7b259be0049407beccd199733",
+          "width": 256,
+          "height": 144,
+          "quality": 80,
+          "mime": "image/jpeg"
+        }
+      },
+      "skyImage": {
+        "master": {
+          "path": "data/research-sources/hydra-generated-skyImage-master.jpg",
+          "bytes": 201608,
+          "sha256": "8887a84232fefcb1fabc167c84fda91142e7ca69dd98e2b837c83d5417c481af",
+          "width": 1536,
+          "height": 864,
+          "quality": 85,
+          "mime": "image/jpeg"
+        },
+        "preview": {
+          "path": "data/research-sources/hydra-generated-skyImage-preview.jpg",
+          "bytes": 6553,
+          "sha256": "efd393dd1474f5dead30b4fefe055a53bb26a12ccb513101b9555cc7247dd200",
+          "width": 256,
+          "height": 144,
+          "quality": 80,
+          "mime": "image/jpeg"
+        }
+      }
+    },
+    "rawPreviewBytes": 17214,
+    "limitations": [
+      "Both original PNGs, default copies and full prompts preserved; all native scientific inputs unchanged.",
+      "Small footers/disks have limited readability; future card labels required.",
+      "Observer disks oversized and uncalibrated; consistent undated barycentric geometry, rapid nonsynchronous rotation, no permanent Pluto-facing site and all recorded material/phase/colour/transmission assumptions remain.",
+      "Substantial lossless headroom required before further embedding; exact additive cost requires a full build."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "registryByteIdentical": true,
+      "trackedInputsByteIdentical": 404,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15996955,
+      "headroomBytes": 3045,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+        "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact current readableJSON and HTML-parser snapshot restoration,237 images20 bands decode,517 detail32 model entries,no errors; identical previous9035486 JSON and HTML bytes. Other engines open; no new native-hash/model-load/route claim. Production codecs unchanged; no savings attribution."
+    },
+    "inspection": "Viewed both1536 masters and sky256 preview: original compositions retained, master footers legible; compact footer/disks too small for reliable reading, card labels required."
+  },
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/hydra-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/hydra-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "reason": "Hydra in research inventory but absent selectableMOONS; additive catalogue entry enables route.",
+    "elements": "JPL PLU060 mean65200/.009/w139.3/M335.0/i.3/node114.3/P38.20/nodal14yr equatorial epoch2000Jan1.5TDB BrozovicJacobson2024AJ167:256. Not dated distance. Older2016 barycentric64738 observer model preserved separately.",
+    "physical": "Equivalent-volume radius18.5±1km Stern2018; GM.0020±.0003/deriveddensity1.21±.19 not chemistry or measured shape. massKg null.",
+    "rotation": "Nominal10.308h from Weaver.4295±.0008d; lockedfalse. Nominalretrograde not significant beyond1sigma, currentchaosdeferred.",
+    "preservation": "Earlier28MOONS untouched; no observer recomputation/native transformation/map/shape or other-body assignment."
+  },
+  "bodies": [
+    {
+      "id": "hydra",
+      "name": "Hydra",
+      "aliases": [
+        "Hydra"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Native coarse LORRI sampling does not establish detailed local terrain or registered complete geography.",
+      "measured": [
+        "Unchanged JPEG inspected: coarse block-like monochrome sampling against a black background; blocks are image sampling, not rocks, cracks or terrain cells.",
+        "No Charon or other body is included in this image; no map or texture adopted. Background does not measure atmospheric absence.",
+        "Retained LEISA spectral graphic PIA20581 shows crystalline-water absorption evidence; large labelled Charon globe is not Hydra. The LEISA spectrum observation2015-07-14 does not establish the LORRI publisher image date.",
+        "Weaver2016 ellipsoid65x45x25±10km fit, rotation.4295±.0008d, pole257/-24±10deg, obliquity110deg nominal retrograde not significant beyond one sigma. No permanent Pluto-facing site.",
+        "Current JPL radius18.5±1km equivalent-volume reference Stern2018 and PLU060 mean orbit65200km/.009/38.20days, equatorial epoch2000-01-01.5TDB. Not a detailed shape/local normal or dated position."
+      ],
+      "modelled": [
+        "Albedo.83±.08 depends on phase law/calibration and unobserved opposition surge; no correction applied to native JPEG or illustration. JPL GM.0020±.0003 km^3/s^2 and derived density1.21±.19g/cm^3 are not local chemistry; massKg remains null.",
+        "Crystalline ice spectral evidence differs from grain-size, phase, relative contamination, impact refreshing and collision-debris/merger interpretations; not local fractions or directly dated history. Population-model crater age not direct dating.",
+        "Single consistent circular-coplanar right-angle barycentric observer at64738+32.5km gives Pluto2.1013181377790677deg30.663670324400595px/Charon1.0351406008452846deg15.104098222868833px90HFOV1672; angular helper only, not dated joint fit."
+      ],
+      "unknown": [
+        "Exact PIA19711 acquisition UTC/date, raw product/filter/processing and registered shape/site/phase remain open. Image addition2015-07-15 is not observation date; page2025 is not observation date.",
+        "PIA20581 LEISA caption versus MVIC metadata conflict, image inset epoch/product crosswalk and calibrated spectra/local geography remain open. No Charon map assigned to Hydra.",
+        "Current rotation/chaos, pole/normal, calibrated visible colour/photometry/atmosphere transfer, local chemistry and final later composition/primary product audit remain open."
+      ],
+      "assumed": [
+        "Table 1 sampling and phase are source estimates, not new raster calculations. PIA19711 exact acquisition UTC and sequence crosswalk remain open; similarity to the approach sampling does not verify association.",
+        "Figure 1 Hydra composite uses two deconvolved H_LORRI_BEST images and pixels two times smaller than native sampling. No paper figure is embedded.",
+        "Geometric albedo depends on assumed phase law and unresolved relative photometry. Unobserved opposition surge remains unaccounted for. November 2015 LORRI calibration reduced sensitivity by about 20 percent and raised inferred albedos; this is not a correction for publisher JPEGs or observer scenes.",
+        "Hydra asymmetry permits merger or impact-divot interpretations. Mass/volume uncertainty leaves density consistent with zero within errors; no precise density or local porosity adopted.",
+        "Three crater-like features and minimum counts depend on image resolution, phase and identification. At least roughly four-billion-year age is a population-model inference, not direct dating.",
+        "Nearly solar colour and slightly bluer Hydra than Nix do not establish calibrated visible scene colour. Water ice in this paper is inferred before arrival of LEISA spectra, not spectroscopic measurement. Later LEISA bands are assessed separately.",
+        "Formation in a collision debris disk, regolith transfer, ice abundance and crater origins are interpretations, not local fractions or directly observed history. No other body skin, ocean, plume or biology is adopted.",
+        "Final publisher record, later rotation, shape frame/uncertainties, native image registration and calibrated photometry remain open.",
+        "Terrain, blocks, grains, relief, pale patches, chemistry, fractions, disk patterns, visible colour, phase, lighting and exposure invented; no analog skins.",
+        "Not a dated New Horizons/LORRI/globe site, surface composition map, shape registration or measured atmosphere transmission. Black sky is assumed transparency, not measured atmospheric absence.",
+        "Rapid nonsynchronous rotation: no permanent Pluto-facing site. Undated circular/coplanar barycentric model and outward 32.5km semiaxis observer normal are assumptions; actual attitude/site/phase/visibility remain open.",
+        "FOV and scene registration remain artistic; no calibrated visible colour, photometry, chemistry, plume, liquid, ocean, biology or survivable landing depiction.",
+        "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+        "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "Independently invented terrain/grains/blocks/pale patches/chemistry fractions/grey colour/PlutoCharonpatterns/phase/light/exposure; no analog map, dated NH/LORRI site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black sky and omitted rings do not establish absence. Small previews require readable IMAGINED card labels. Representative Sun39.48AU off-frame angular helper, not scene photometry."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+          "title": "NASA Hydra emerges from the shadows PIA19711",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": null,
+          "publicationDate": "2015-07-15",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://science.nasa.gov/photojournal/icy-hydra/",
+          "title": "NASA Icy Hydra PIA20581 spectral comparison, research only",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": "2015-07-14 for LEISA spectrum; exact image-inset association/epoch remains open.",
+          "publicationDate": "2016-05-06",
+          "processing": "Large right globe is Charon, not Hydra; LEISA caption/MVIC metadata conflict, curves and annotations are not geography."
+        },
+        {
+          "url": "https://arxiv.org/abs/1604.05366",
+          "title": "The Small Satellites of Pluto as Observed by New Horizons",
+          "authors": [
+            "Weaver, H. A.",
+            "Buie, M. W.",
+            "Buratti, B. J.",
+            "Grundy, W. M.",
+            "Lauer, T. R.",
+            "Olkin, C. B.",
+            "Parker, A. H.",
+            "Porter, S. B.",
+            "Showalter, M. R.",
+            "Spencer, J. R.",
+            "Stern, S. A.",
+            "Verbiscer, A. J.",
+            "McKinnon, W. B.",
+            "Moore, J. M.",
+            "Robbins, S. J.",
+            "Schenk, P.",
+            "Singer, K. N.",
+            "Barnouin, O. S.",
+            "Cheng, A. F.",
+            "Ernst, C. M.",
+            "Lisse, C. M.",
+            "Jennings, D. E.",
+            "Lunsford, A. W.",
+            "Reuter, D. C.",
+            "Hamilton, D. P.",
+            "Kaufmann, D. E.",
+            "Ennico, K.",
+            "Young, L. A.",
+            "Beyer, R. A.",
+            "Binzel, R. P.",
+            "Bray, V. J.",
+            "Chaikin, A. L.",
+            "Cook, J. C.",
+            "Cruikshank, D. P.",
+            "Ore, C. M. Dalle",
+            "Earle, A. M.",
+            "Gladstone, G. R.",
+            "Howett, C. J. A.",
+            "Linscott, I. R.",
+            "Nimmo, F.",
+            "Parker, J. Wm.",
+            "Philippe, S.",
+            "Protopapa, S.",
+            "Reitsema, H. J.",
+            "Schmitt, B.",
+            "Stryk, T.",
+            "Summers, M. E.",
+            "Tsang, C. C. C.",
+            "Throop, H. H. B.",
+            "White, O. L.",
+            "Zangari, A. M."
+          ],
+          "doi": "10.1126/science.aae0030",
+          "sourceRecords": [
+            {
+              "path": "data/research-sources/nix-Weaver2016.pdf",
+              "url": "https://arxiv.org/pdf/1604.05366",
+              "bytes": 4953591,
+              "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+              "pages": 48
+            },
+            {
+              "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+              "url": "https://arxiv.org/abs/1604.05366",
+              "bytes": 50077,
+              "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+              "status": 200
+            },
+            {
+              "path": "data/research-sources/nix-Weaver2016-license.html",
+              "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+              "bytes": 1415,
+              "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+              "status": 200
+            }
+          ],
+          "terms": "Specific record links arXiv nonexclusive distribution; not CC BY. No paper figure or derivative embedded."
+        },
+        {
+          "path": "data/research-sources/hydra-jpl-elements-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "status": 200,
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html",
+          "title": "JPL satellite mean elements",
+          "qualification": "Mean elements/derived size are distinct from historical2016 observer model and not dated registration."
+        },
+        {
+          "path": "data/research-sources/hydra-jpl-physical-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "status": 200,
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html",
+          "title": "JPL satellite physical parameters",
+          "qualification": "Mean elements/derived size are distinct from historical2016 observer model and not dated registration."
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/hydra-PIA19711-original.jpg",
+          "url": "/bespoke/hydra-new-horizons-native.jpg",
+          "bytes": 17311,
+          "sha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "width": 1050,
+          "height": 704,
+          "format": "JPEG",
+          "mode": "L",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.jpg",
+          "sourceUrl": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+          "tier": "measured",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": null,
+          "observationDateNote": "Exact acquisition UTC/date not given by this caption; encounter-era image, product crosswalk open.",
+          "publicationDate": "2015-07-15",
+          "terms": "Active NASA media terms and third-party caveats, not CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual New Horizons LORRI Hydra image; coarse monochrome sampling, not calibrated visible colour or registered local chemistry.",
+          "processing": "Full unchanged1050x704publisherJPEG, no Fidelity resize/re-encoding. TIFF retained. Pixel blocks are sampling, not rocks/cracks. Caption43x33km/3kmperpixel/range/darkstructure are historical estimates, not current global axes or new raster scale. Exact acquisition date/product open."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 39.48,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL HYDRA TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM HYDRA",
+      "observerGeometry": {
+        "date": "2026-10-11",
+        "body": "Hydra",
+        "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+        "sources": [
+          "src/data/sol.js Pluto radius/mass",
+          "src/data/moons.js Charon radius/mass and 19600km separation",
+          "docs/research/hydra-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric 64738km and 65x45x25km ellipsoid"
+        ],
+        "assumptions": {
+          "circularCoplanarSystem": true,
+          "hydraBarycentricRadiusKm": 64738,
+          "plutoCharonSeparationKm": 19600,
+          "hydraObserverHeightKm": 32.5,
+          "heightUse": "Assumed maximum fitted ellipsoid semiaxis, not measured site height, registered shape or uncertainty",
+          "observerPositionKm": [
+            64770.5,
+            0
+          ],
+          "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+          "plutoPositionKm": [
+            0,
+            2126.8199233716477
+          ],
+          "charonPositionKm": [
+            0,
+            -17473.180076628352
+          ],
+          "horizontalFovDeg": 90,
+          "temperatureK": 40,
+          "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+        },
+        "barycentricOffsetsKm": {
+          "pluto": 2126.8199233716477,
+          "charon": 17473.180076628352
+        },
+        "geometry": {
+          "pluto": {
+            "radiusKm": 1188.3,
+            "representativeDistancesKm": {
+              "alignedNear": 62643.680076628356,
+              "rightAngle": 64805.40898132231,
+              "alignedFar": 66897.31992337164
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 62643.680076628356,
+                "angularDiameterDeg": 2.173839676138044,
+                "targetWidthPixels1672": 31.72219697502986
+              },
+              "rightAngle": {
+                "distanceKm": 64805.40898132231,
+                "angularDiameterDeg": 2.1013181377790677,
+                "targetWidthPixels1672": 30.663670324400595
+              },
+              "alignedFar": {
+                "distanceKm": 66897.31992337164,
+                "angularDiameterDeg": 2.035601898178089,
+                "targetWidthPixels1672": 29.704495271951117
+              }
+            }
+          },
+          "charon": {
+            "radiusKm": 606,
+            "representativeDistancesKm": {
+              "alignedNear": 47297.319923371644,
+              "rightAngle": 67085.98730167338,
+              "alignedFar": 82243.68007662836
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 47297.319923371644,
+                "angularDiameterDeg": 1.4682520064623794,
+                "targetWidthPixels1672": 21.42436778430977
+              },
+              "rightAngle": {
+                "distanceKm": 67085.98730167338,
+                "angularDiameterDeg": 1.0351406008452846,
+                "targetWidthPixels1672": 15.104098222868833
+              },
+              "alignedFar": {
+                "distanceKm": 82243.68007662836,
+                "angularDiameterDeg": 0.8443580477999043,
+                "targetWidthPixels1672": 12.320211177887252
+              }
+            }
+          }
+        },
+        "limitations": [
+          "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+          "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+          "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+          "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+          "Pluto and Charon disks require independently invented appearance in a future hypothetical illustration; no other body map may become Hydra terrain.",
+          "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+          "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+        ],
+        "preservation": {
+          "dossiers": 68,
+          "trackedInputsByteIdentical": 404,
+          "registryByteIdentical": true,
+          "newEmbedding": false
+        },
+        "verification": {
+          "tests": "458 pass, 1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15996955,
+          "headroomBytes": 3045,
+          "browser": {
+            "bandImages": 20,
+            "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+            "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+            "magic": "FIDBRT01",
+            "images": 237,
+            "details": 517,
+            "models": 32
+          },
+          "limits": "Chrome exact complete readableJSON and HTML-parser snapshot payload; 237 images and 20 band images decode, 517 detail and 32 model entries; no page errors. Other engines open. Interbuild differences from prior ab6c9bb snapshot unaudited; no savings attribution or new model-load/native-hash/route claim. Production codecs unchanged."
+        },
+        "rasterAudit": {
+          "method": "Bounded row counts of pixels whose maximum RGB channel exceeds thresholds; illuminated chords, not calibrated full disk diameters",
+          "thresholds": [
+            5,
+            10,
+            20
+          ],
+          "pluto": {
+            "row": 235,
+            "xBounds": [
+              890,
+              990
+            ],
+            "widthsPixels": [
+              38,
+              36,
+              36
+            ],
+            "skyGeometryTargetPixels": 30.663670324400595
+          },
+          "charon": {
+            "row": 276,
+            "xBounds": [
+              1160,
+              1230
+            ],
+            "widthsPixels": [
+              24,
+              19,
+              19
+            ],
+            "skyGeometryTargetPixels": 15.104098222868833
+          },
+          "interpretation": "Both measured bright chords exceed nominal full-disk targets; phase/exposure-sensitive illustration remains oversized and uncalibrated."
+        }
+      },
+      "inputs": {
+        "surfaceImage": "hydra-generated-surfaceImage-original.png",
+        "skyImage": "hydra-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "status": "Delivered individual dossier71; selectable Hydra route, full unchanged LORRI JPEG and two independent IMAGINED views. Nested preparations retain their historical statuses.",
+  "dossierRecord": {
+    "id": "hydra",
+    "name": "Hydra",
+    "aliases": [
+      "Hydra"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Native coarse LORRI sampling does not establish detailed local terrain or registered complete geography.",
+    "measured": [
+      "Unchanged JPEG inspected: coarse block-like monochrome sampling against a black background; blocks are image sampling, not rocks, cracks or terrain cells.",
+      "No Charon or other body is included in this image; no map or texture adopted. Background does not measure atmospheric absence.",
+      "Retained LEISA spectral graphic PIA20581 shows crystalline-water absorption evidence; large labelled Charon globe is not Hydra. The LEISA spectrum observation2015-07-14 does not establish the LORRI publisher image date.",
+      "Weaver2016 ellipsoid65x45x25±10km fit, rotation.4295±.0008d, pole257/-24±10deg, obliquity110deg nominal retrograde not significant beyond one sigma. No permanent Pluto-facing site.",
+      "Current JPL radius18.5±1km equivalent-volume reference Stern2018 and PLU060 mean orbit65200km/.009/38.20days, equatorial epoch2000-01-01.5TDB. Not a detailed shape/local normal or dated position."
+    ],
+    "modelled": [
+      "Albedo.83±.08 depends on phase law/calibration and unobserved opposition surge; no correction applied to native JPEG or illustration. JPL GM.0020±.0003 km^3/s^2 and derived density1.21±.19g/cm^3 are not local chemistry; massKg remains null.",
+      "Crystalline ice spectral evidence differs from grain-size, phase, relative contamination, impact refreshing and collision-debris/merger interpretations; not local fractions or directly dated history. Population-model crater age not direct dating.",
+      "Single consistent circular-coplanar right-angle barycentric observer at64738+32.5km gives Pluto2.1013181377790677deg30.663670324400595px/Charon1.0351406008452846deg15.104098222868833px90HFOV1672; angular helper only, not dated joint fit."
+    ],
+    "unknown": [
+      "Exact PIA19711 acquisition UTC/date, raw product/filter/processing and registered shape/site/phase remain open. Image addition2015-07-15 is not observation date; page2025 is not observation date.",
+      "PIA20581 LEISA caption versus MVIC metadata conflict, image inset epoch/product crosswalk and calibrated spectra/local geography remain open. No Charon map assigned to Hydra.",
+      "Current rotation/chaos, pole/normal, calibrated visible colour/photometry/atmosphere transfer, local chemistry and final later composition/primary product audit remain open."
+    ],
+    "assumed": [
+      "Table 1 sampling and phase are source estimates, not new raster calculations. PIA19711 exact acquisition UTC and sequence crosswalk remain open; similarity to the approach sampling does not verify association.",
+      "Figure 1 Hydra composite uses two deconvolved H_LORRI_BEST images and pixels two times smaller than native sampling. No paper figure is embedded.",
+      "Geometric albedo depends on assumed phase law and unresolved relative photometry. Unobserved opposition surge remains unaccounted for. November 2015 LORRI calibration reduced sensitivity by about 20 percent and raised inferred albedos; this is not a correction for publisher JPEGs or observer scenes.",
+      "Hydra asymmetry permits merger or impact-divot interpretations. Mass/volume uncertainty leaves density consistent with zero within errors; no precise density or local porosity adopted.",
+      "Three crater-like features and minimum counts depend on image resolution, phase and identification. At least roughly four-billion-year age is a population-model inference, not direct dating.",
+      "Nearly solar colour and slightly bluer Hydra than Nix do not establish calibrated visible scene colour. Water ice in this paper is inferred before arrival of LEISA spectra, not spectroscopic measurement. Later LEISA bands are assessed separately.",
+      "Formation in a collision debris disk, regolith transfer, ice abundance and crater origins are interpretations, not local fractions or directly observed history. No other body skin, ocean, plume or biology is adopted.",
+      "Final publisher record, later rotation, shape frame/uncertainties, native image registration and calibrated photometry remain open.",
+      "Terrain, blocks, grains, relief, pale patches, chemistry, fractions, disk patterns, visible colour, phase, lighting and exposure invented; no analog skins.",
+      "Not a dated New Horizons/LORRI/globe site, surface composition map, shape registration or measured atmosphere transmission. Black sky is assumed transparency, not measured atmospheric absence.",
+      "Rapid nonsynchronous rotation: no permanent Pluto-facing site. Undated circular/coplanar barycentric model and outward 32.5km semiaxis observer normal are assumptions; actual attitude/site/phase/visibility remain open.",
+      "FOV and scene registration remain artistic; no calibrated visible colour, photometry, chemistry, plume, liquid, ocean, biology or survivable landing depiction.",
+      "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+      "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "Independently invented terrain/grains/blocks/pale patches/chemistry fractions/grey colour/PlutoCharonpatterns/phase/light/exposure; no analog map, dated NH/LORRI site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black sky and omitted rings do not establish absence. Small previews require readable IMAGINED card labels. Representative Sun39.48AU off-frame angular helper, not scene photometry."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+        "title": "NASA Hydra emerges from the shadows PIA19711",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": null,
+        "publicationDate": "2015-07-15",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/icy-hydra/",
+        "title": "NASA Icy Hydra PIA20581 spectral comparison, research only",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": "2015-07-14 for LEISA spectrum; exact image-inset association/epoch remains open.",
+        "publicationDate": "2016-05-06",
+        "processing": "Large right globe is Charon, not Hydra; LEISA caption/MVIC metadata conflict, curves and annotations are not geography."
+      },
+      {
+        "url": "https://arxiv.org/abs/1604.05366",
+        "title": "The Small Satellites of Pluto as Observed by New Horizons",
+        "authors": [
+          "Weaver, H. A.",
+          "Buie, M. W.",
+          "Buratti, B. J.",
+          "Grundy, W. M.",
+          "Lauer, T. R.",
+          "Olkin, C. B.",
+          "Parker, A. H.",
+          "Porter, S. B.",
+          "Showalter, M. R.",
+          "Spencer, J. R.",
+          "Stern, S. A.",
+          "Verbiscer, A. J.",
+          "McKinnon, W. B.",
+          "Moore, J. M.",
+          "Robbins, S. J.",
+          "Schenk, P.",
+          "Singer, K. N.",
+          "Barnouin, O. S.",
+          "Cheng, A. F.",
+          "Ernst, C. M.",
+          "Lisse, C. M.",
+          "Jennings, D. E.",
+          "Lunsford, A. W.",
+          "Reuter, D. C.",
+          "Hamilton, D. P.",
+          "Kaufmann, D. E.",
+          "Ennico, K.",
+          "Young, L. A.",
+          "Beyer, R. A.",
+          "Binzel, R. P.",
+          "Bray, V. J.",
+          "Chaikin, A. L.",
+          "Cook, J. C.",
+          "Cruikshank, D. P.",
+          "Ore, C. M. Dalle",
+          "Earle, A. M.",
+          "Gladstone, G. R.",
+          "Howett, C. J. A.",
+          "Linscott, I. R.",
+          "Nimmo, F.",
+          "Parker, J. Wm.",
+          "Philippe, S.",
+          "Protopapa, S.",
+          "Reitsema, H. J.",
+          "Schmitt, B.",
+          "Stryk, T.",
+          "Summers, M. E.",
+          "Tsang, C. C. C.",
+          "Throop, H. H. B.",
+          "White, O. L.",
+          "Zangari, A. M."
+        ],
+        "doi": "10.1126/science.aae0030",
+        "sourceRecords": [
+          {
+            "path": "data/research-sources/nix-Weaver2016.pdf",
+            "url": "https://arxiv.org/pdf/1604.05366",
+            "bytes": 4953591,
+            "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+            "pages": 48
+          },
+          {
+            "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+            "url": "https://arxiv.org/abs/1604.05366",
+            "bytes": 50077,
+            "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/nix-Weaver2016-license.html",
+            "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+            "bytes": 1415,
+            "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+            "status": 200
+          }
+        ],
+        "terms": "Specific record links arXiv nonexclusive distribution; not CC BY. No paper figure or derivative embedded."
+      },
+      {
+        "path": "data/research-sources/hydra-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html",
+        "title": "JPL satellite mean elements",
+        "qualification": "Mean elements/derived size are distinct from historical2016 observer model and not dated registration."
+      },
+      {
+        "path": "data/research-sources/hydra-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html",
+        "title": "JPL satellite physical parameters",
+        "qualification": "Mean elements/derived size are distinct from historical2016 observer model and not dated registration."
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/hydra-PIA19711-original.jpg",
+        "url": "/bespoke/hydra-new-horizons-native.jpg",
+        "bytes": 17311,
+        "sha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1050,
+        "height": 704,
+        "format": "JPEG",
+        "mode": "L",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19711/PIA19711.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/hydra-emerges-from-the-shadows/",
+        "tier": "measured",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": null,
+        "observationDateNote": "Exact acquisition UTC/date not given by this caption; encounter-era image, product crosswalk open.",
+        "publicationDate": "2015-07-15",
+        "terms": "Active NASA media terms and third-party caveats, not CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual New Horizons LORRI Hydra image; coarse monochrome sampling, not calibrated visible colour or registered local chemistry.",
+        "processing": "Full unchanged1050x704publisherJPEG, no Fidelity resize/re-encoding. TIFF retained. Pixel blocks are sampling, not rocks/cracks. Caption43x33km/3kmperpixel/range/darkstructure are historical estimates, not current global axes or new raster scale. Exact acquisition date/product open."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL HYDRA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM HYDRA",
+    "observerGeometry": {
+      "date": "2026-10-11",
+      "body": "Hydra",
+      "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+      "sources": [
+        "src/data/sol.js Pluto radius/mass",
+        "src/data/moons.js Charon radius/mass and 19600km separation",
+        "docs/research/hydra-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric 64738km and 65x45x25km ellipsoid"
+      ],
+      "assumptions": {
+        "circularCoplanarSystem": true,
+        "hydraBarycentricRadiusKm": 64738,
+        "plutoCharonSeparationKm": 19600,
+        "hydraObserverHeightKm": 32.5,
+        "heightUse": "Assumed maximum fitted ellipsoid semiaxis, not measured site height, registered shape or uncertainty",
+        "observerPositionKm": [
+          64770.5,
+          0
+        ],
+        "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+        "plutoPositionKm": [
+          0,
+          2126.8199233716477
+        ],
+        "charonPositionKm": [
+          0,
+          -17473.180076628352
+        ],
+        "horizontalFovDeg": 90,
+        "temperatureK": 40,
+        "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+      },
+      "barycentricOffsetsKm": {
+        "pluto": 2126.8199233716477,
+        "charon": 17473.180076628352
+      },
+      "geometry": {
+        "pluto": {
+          "radiusKm": 1188.3,
+          "representativeDistancesKm": {
+            "alignedNear": 62643.680076628356,
+            "rightAngle": 64805.40898132231,
+            "alignedFar": 66897.31992337164
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 62643.680076628356,
+              "angularDiameterDeg": 2.173839676138044,
+              "targetWidthPixels1672": 31.72219697502986
+            },
+            "rightAngle": {
+              "distanceKm": 64805.40898132231,
+              "angularDiameterDeg": 2.1013181377790677,
+              "targetWidthPixels1672": 30.663670324400595
+            },
+            "alignedFar": {
+              "distanceKm": 66897.31992337164,
+              "angularDiameterDeg": 2.035601898178089,
+              "targetWidthPixels1672": 29.704495271951117
+            }
+          }
+        },
+        "charon": {
+          "radiusKm": 606,
+          "representativeDistancesKm": {
+            "alignedNear": 47297.319923371644,
+            "rightAngle": 67085.98730167338,
+            "alignedFar": 82243.68007662836
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 47297.319923371644,
+              "angularDiameterDeg": 1.4682520064623794,
+              "targetWidthPixels1672": 21.42436778430977
+            },
+            "rightAngle": {
+              "distanceKm": 67085.98730167338,
+              "angularDiameterDeg": 1.0351406008452846,
+              "targetWidthPixels1672": 15.104098222868833
+            },
+            "alignedFar": {
+              "distanceKm": 82243.68007662836,
+              "angularDiameterDeg": 0.8443580477999043,
+              "targetWidthPixels1672": 12.320211177887252
+            }
+          }
+        }
+      },
+      "limitations": [
+        "64738km is barycentric semimajor axis, not fixed distance to Pluto. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "Observer radius uses a single outward radial normal; irregular shape, spin axis, actual site normal and mutual visibility remain unregistered. Unlike the earlier Nix distance-minus-height approximation, this calculation uses one consistent vector position.",
+        "Hydra rotates rapidly and nonsynchronously; no permanent Pluto-facing site. Nominal retrograde obliquity is not significant beyond one sigma in Weaver2016, and current chaotic rotation was deferred.",
+        "Pluto and Charon disks require independently invented appearance in a future hypothetical illustration; no other body map may become Hydra terrain.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+      ],
+      "preservation": {
+        "dossiers": 68,
+        "trackedInputsByteIdentical": 404,
+        "registryByteIdentical": true,
+        "newEmbedding": false
+      },
+      "verification": {
+        "tests": "458 pass, 1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15996955,
+        "headroomBytes": 3045,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "092aa7ecbe887a07fc73cf2e963e622b17d983d6f4cd6e6711ee859c89aa7c80",
+          "raw": "83d2f97dd8956582b91a0d020d44fc7f1b2c0454baa690bc94ed1f58b5dad7f0",
+          "magic": "FIDBRT01",
+          "images": 237,
+          "details": 517,
+          "models": 32
+        },
+        "limits": "Chrome exact complete readableJSON and HTML-parser snapshot payload; 237 images and 20 band images decode, 517 detail and 32 model entries; no page errors. Other engines open. Interbuild differences from prior ab6c9bb snapshot unaudited; no savings attribution or new model-load/native-hash/route claim. Production codecs unchanged."
+      },
+      "rasterAudit": {
+        "method": "Bounded row counts of pixels whose maximum RGB channel exceeds thresholds; illuminated chords, not calibrated full disk diameters",
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "pluto": {
+          "row": 235,
+          "xBounds": [
+            890,
+            990
+          ],
+          "widthsPixels": [
+            38,
+            36,
+            36
+          ],
+          "skyGeometryTargetPixels": 30.663670324400595
+        },
+        "charon": {
+          "row": 276,
+          "xBounds": [
+            1160,
+            1230
+          ],
+          "widthsPixels": [
+            24,
+            19,
+            19
+          ],
+          "skyGeometryTargetPixels": 15.104098222868833
+        },
+        "interpretation": "Both measured bright chords exceed nominal full-disk targets; phase/exposure-sensitive illustration remains oversized and uncalibrated."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/hydra-surface-image.jpg",
+      "previewUrl": "/bespoke/hydra-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hydra-generated-surfaceImage-original.png",
+      "sourceSha256": "d1eb7d16ae37d58d813e15475a503b30a25020f11fb2f88bbfeab394775f34ea",
+      "sha256": "a44c6a8bba22eeaf79202318a0985b50e6e05f2b2754f3a831bd18da6d995f2f",
+      "previewSha256": "04922d86180abc2d6e0b5cb6aea199e71ed897323b52fadf0213104371aa750c",
+      "bytes": 350058,
+      "previewBytes": 10399,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hydra-sky-image.jpg",
+      "previewUrl": "/bespoke/hydra-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hydra-generated-skyImage-original.png",
+      "sourceSha256": "89de53c73c68d1c7ae09babd8772025bedacf3daacd6d672ddcb9089e6602980",
+      "sha256": "b05eb2cda1ded6baddbadf6c9641eba5d8e8bfb5c4bf2c361387ff6e006b689a",
+      "previewSha256": "9ec7d538cceae577a3c673cace1cdf6561019f76f00afe9b2841e477aa768113",
+      "bytes": 201537,
+      "previewBytes": 6432,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "606 pass,1 skip; Hydra own-dossier/pending-globe/nonsynchronous-spin/finite-orbit regression",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15845569,
+    "headroomBytes": 154431,
+    "completeSnapshotSha256": "2dfa90d0e1a82ea325cd6fe6733517adf890297e5e740d03bb1a8aaf1ab4cda4",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "d724deb92fda41a2c16ac819d13a13390c1ec7528c3307aebd055d6ad0182798",
+    "fidelity-application-data": "a49517885c9ca5978bfdd12a3a7aacef53a86d521dcc63f0ebe188a7c2b24ae7",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "a48e1a5a509b8d088d6b9957d57ffad83d82dc61856063ecadd611b184ef2b61",
+    "applicationSha256": "bae9d9ea46eceb6971858ae739924660ef7ef54d0d3257941ddc470b0eb9072f",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "fc68c0f33e66430e0af8c3cd210fba14c765803c0276d7d91f09074e71d5f0a8",
+    "errors": [],
+    "browser": "Chrome exact complete readableJSON/application/CSS/startup/4HTMLparser packed texts,246images20bands517details32modelentries decode; actual normal/offline Hydra3cards/noownmap;sixroutes/unsupportedgzip/11worker rows pass. Other engines open; no fresh all-model-load claim.",
+    "preservation": {
+      "earlierDossiersDeepEqual": 70,
+      "earlierMOONSCatalogueEntriesDeepEqual": 28,
+      "trackedPublicFilesByteEqual": 571,
+      "nativeContextHashes": 60,
+      "sourceAndOriginalHashesChecked": 20,
+      "recordedClipper": "950348bytes SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved"
+    },
+    "queue": {
+      "tasks": 566,
+      "dossiers": 71
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/hydra-surface-image.jpg",
+        "after": "string(12591)"
+      },
+      {
+        "path": "/bodyImages//bespoke/hydra-sky-image.jpg",
+        "after": "string(6899)"
+      },
+      {
+        "path": "/bodyImages//bespoke/hydra-new-horizons-native.jpg",
+        "after": "string(23107)"
+      }
+    ],
+    "attribution": "Saved Nix70-to-finalJSON diff ONLY three Hydra bodyImages. Catalogue changes application source; net HTML difference not solely asset/compression attribution. No codec/compression settings changed."
+  }
+}

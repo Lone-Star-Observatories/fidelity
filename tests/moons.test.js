@@ -20,6 +20,21 @@ test('Nix is selectable with its own dossier and a nonsynchronous pending globe'
   }
 });
 
+test('Hydra resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const hydra = MOONS.find((m) => m.id === 'hydra');
+  assert.equal(hydra.parent, 'pluto');
+  assert.equal(bodyVisualFor(hydra).id, 'hydra');
+  assert.equal(hydra.surfacePending, true);
+  assert.equal(hydra.skin?.map, undefined);
+  assert.equal(hydra.locked, false);
+  assert.notEqual(hydra.rotationHours, hydra.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(hydra, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 64000 && Math.hypot(...position) < 67000);
+  }
+});
+
 // JPL Horizons vectors (DE441 + satellite ephemerides), J2000 ecliptic, 2026-10-10 00:00 TDB.
 const JD = 2461323.5;
 const HORIZONS_KM = {
