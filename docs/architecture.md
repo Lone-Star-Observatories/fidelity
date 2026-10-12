@@ -511,8 +511,11 @@ unwrapped across the antimeridian and drawn at ±360° as well) over a navy grat
 `Path2D`s under a lon/lat transform so zoom and pan stay smooth. With `fill: true` (COMMS) it covers
 its frame edge to edge inside LCARS bars. Pointing at a marker rings it and shows a card (name,
 detail, list, position, how many more are under the cursor); pointing at land highlights the
-country and names it in the readout. The main viewer sits beside the map when the COMMS view is at
-least 1,000 px wide (a container query), otherwise above it, smaller.
+country and names it in the readout. In COMMS the map opens in a popup (`.cx-map-pop`) over the
+view — it auto-opens when you switch modes and closes once you hail a station or select a receiver;
+CHANGE STATION / CHANGE RECEIVER in the header reopens it. This leaves the main viewer (the waterfall
+and spectrum, or video) full width below the header, with the receiver controls and a separate
+TRANSMIT box (`.cx-tx-box`) in the finder.
 
 ## Space telescopes
 

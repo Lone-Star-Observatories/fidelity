@@ -303,7 +303,7 @@ export async function handleKiwiUpgrade(req, socket) {
       if (tag === 'MSG' || tag === 'SND' || tag === 'W/F') client.send(b);
     };
     w.onerror = () => tell({ type: 'error', message: `Could not reach the receiver (${kind})` });
-    w.onclose = () => { tell({ type: 'closed', kind }); };
+    w.onclose = (ev) => { tell({ type: 'closed', kind, code: ev?.code, reason: ev?.reason || '' }); };
     ups[kind] = w;
   };
   let pendingTune = null;
