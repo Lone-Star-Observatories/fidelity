@@ -37,6 +37,7 @@ import { pickPoint, onClicks } from '../pick.js';
 import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraControls.js';
 import { METERS } from '../cameraMath.js';
 import { makeSnapshot } from '../snapshot.js';
+import { APP_STORE } from '../../appstore.js';
 
 
 // Stars: galactocentric positions (kly) turned about the pole by −Ω(R)·t on the GPU.
@@ -371,7 +372,7 @@ export function createGalaxyView(container, { onFrame, onPickStar, onDrill } = {
       }
       controls.update();
     }
-    fleetGroup.visible = !!settings.get('starfleet');
+    fleetGroup.visible = !APP_STORE && !!settings.get('starfleet'); // never in the App Store build (#51)
     const show = settings.get('labels');
     for (const t of tags) if (t.o.parent !== fleetGroup && t.o.parent !== quadGroup) t.o.visible = !!(show || t.always);
     for (const s of satellites) if (s.body.userData.quad) s.body.userData.quad.quaternion.copy(camera.quaternion);

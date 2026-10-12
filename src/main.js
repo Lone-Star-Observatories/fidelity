@@ -72,6 +72,7 @@ import { curveFromLegacy, normCurve, canonical, describeCurve, fmtRange } from '
 import { createSpectrumControl, resText } from './panels/spectrum.js';
 import { bandLoads, configureBandLoads } from './data/bandload.js';
 import { onBandRes, prefetchPreviews } from './views/system/bandtextures.js';
+import { APP_STORE } from './appstore.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => {
@@ -1214,8 +1215,8 @@ function renderGalaxyPanel() {
     h('p', { className: 'note', textContent: 'Galactic time is the ship\'s clock: run it from the TIME row below (MYR/S or GYR/S; ⇄ REV runs it backwards, NOW returns). The galaxy shows ±2 billion years, and the clock stops there.' }),
     h('p', { className: 'note', textContent: 'Stars circle the centre on a flat rotation curve, so the inner disc laps the outer and the neighbourhood smears into an arc. The spiral arms are a pattern that turns at its own speed; the Sun sits close to corotation, so it keeps pace with them. The satellite galaxies follow their orbits (±2 billion years).' }),
     h('h3', { textContent: 'QUADRANTS' }),
-    h('div', { className: 'body-list' }, fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
-    h('p', { className: 'note', textContent: 'Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun. The Starfleet overlay draws Star Trek\'s Alpha–Delta quadrants, centred on the galactic core.' }),
+    h('div', { className: 'body-list' }, APP_STORE ? null : fleet, pill('NAVIGATION ▸', () => go({ level: 'navigation', system: currentSystem }))),
+    h('p', { className: 'note', textContent: `Orange spokes: the real IAU galactic quadrants I–IV, measured by galactic longitude from the Sun.${APP_STORE ? '' : ' The Starfleet overlay draws Star Trek\'s Alpha–Delta quadrants, centred on the galactic core.'}` }),
     h('h3', { textContent: 'FACTS' }),
     factList([
       { label: 'SOL → CENTRE', value: `${R0_KLY.toFixed(1)} KLY`, tier: 'measured', detail: 'R₀ = 8.178 kpc from stars orbiting Sgr A* (GRAVITY Collaboration 2019).' },

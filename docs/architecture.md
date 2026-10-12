@@ -133,6 +133,17 @@ predicted skins and re-weighted stars. Deep-time arrivals (#29) come only from t
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
 
+## Mac App Store build (#51)
+
+`VITE_FIDELITY_APP_STORE=1 npm run build:standalone` is the standalone above in its App Store
+flavour (`src/appstore.js` exports `APP_STORE`): it leaves out franchise-branded extras, the Starfleet
+quadrant overlay and the STAR TREK postcard style, which App Review treats as third-party trademarks.
+The macOS shell lives in [allengeer/fidelity-osx](https://github.com/allengeer/fidelity-osx): a sandboxed
+SwiftUI app whose WKWebView loads this file from `fidelity://app/index.html` through a URL scheme handler,
+with no local server or port. `/api/*` on that scheme goes to a Swift router, which will take over
+`server/*.js` route by route with the same paths and JSON. Until a route is ported it answers 404, and the
+standalone build never calls it.
+
 ## Adding a view
 
 1. Create `src/views/<level>/<Name>View.js` exporting `create…View(container, deps)` with
