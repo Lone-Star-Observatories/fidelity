@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-12",
+  "body": "Thalassa",
+  "status": "Research-only native preparation; no69 or embedding",
+  "identity": {
+    "designation": "S/1989 N5",
+    "distinctFrom": [
+      "Naiad S/1989 N6",
+      "Despina S/1989 N3"
+    ],
+    "discovery": "NASA overview: August1989 in Voyager2 images; discovery month does not provide exact acquisition UTC."
+  },
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/neptune/moons/thalassa/",
+      "path": "data/research-sources/thalassa-overview-2026-10-12.html",
+      "bytes": 259388,
+      "sha256": "e5f91cc003e29a3084987805309c039864ff44ff579bb0c5bef6c4574878498c",
+      "role": "Direct publisher overview/caption; downloaded unchanged and read"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+      "path": "data/research-sources/thalassa-trio-native.jpg",
+      "bytes": 169897,
+      "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "dimensions": [
+        732,
+        520
+      ],
+      "format": "JPEG",
+      "role": "Unchanged shared Voyager2 publisher frame; displayed and inspected",
+      "credit": "NASA/JPL",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "observationDate": "1989 only from caption; exact day/UTC open",
+      "nativeReleaseDate": null,
+      "pixelOrByteEquality": "Byte-identical to retained despina-trio-native.jpg; same multibody frame, not three independent body images."
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/thalassa-nasa-terms-2026-10-12.html",
+      "bytes": 320654,
+      "sha256": "5da06c9fc994c8237220c62c18550ef8292880d9dadb0323636fb4ba79fde3d5",
+      "role": "Active NASA media terms retained; no CC BY assertion and third-party exceptions remain applicable"
+    }
+  ],
+  "inspection": "Blurred monochrome detection frame with circled1989 N5, N6 and N3 labels; large bright Neptune limb/glare is not Thalassa geography. Background texture, orbital streaks and annotation circles are not terrain, stars, measured axes or atmospheric absence. No resolved body map or shape adopted.",
+  "captionAssessment": {
+    "rangeKm": 5900000,
+    "rangeRole": "Historical caption estimate only; no new angular/raster calculation.",
+    "streaks": "Caption attributes faint streaks to high orbital speed; not elongated physical shape.",
+    "shape": "Overview describes Thalassa as roughly disk-shaped. This is qualitative source prose, not an independent fit from the detection frame; primary component-aware shape/rotation audit open.",
+    "history": "Formation from earlier moons disrupted after Triton capture, orbital decay and future disruption/ring are hypotheses/projections in overview, not directly observed history, a dated new orbit fit or imminent event."
+  },
+  "publicationMetadata": {
+    "pageUpdated": "2024-11-03",
+    "schemaPublished": "2017-11-21T03:05:43-05:00",
+    "alternateInlinePublished": "2017-11-21T11:05:43Z",
+    "schemaModified": "2024-11-03T04:53:36-05:00",
+    "alternateInlineModified": "2024-11-03T09:53:36Z",
+    "limitation": "Published timestamps differ by3hours after timezone conversion; no provenance cause adopted. Page metadata and2023asset path are not observation/native release dates."
+  },
+  "references": [
+    "docs/research/despina-moon-preparation-2026-10-12.json",
+    "docs/research/naiad-moon-preparation-2026-10-12.json",
+    "docs/research/naiad-primary-orbit-assessment-2026-10-12.json",
+    "docs/research/naiad-survival-primary-assessment-2026-10-12.json"
+  ],
+  "limitations": [
+    "Full publisher credit NASA/JPL retained. Exact native acquisition UTC, filter, exposure, raw product/caption crosswalk, image release date and broader contributor credit remain open before integration.",
+    "Unresolved monochrome detection does not establish local terrain, calibrated visible colour, chemistry or registered geography. Neptune, Naiad and Despina geography must never be assigned to Thalassa.",
+    "No local material fractions, atmospheric-absence measurement, ocean, plume, biology or survivable landing. Black background is not evidence of absence.",
+    "No newest-observation/exhaustive imagery claim, independently fitted axes, registered local normal, verified synchronous rotation or permanent Neptune-facing site.",
+    "Existing68 dossiers, originals/masters/native science/provenance, all405 protected assets and550 tracked public files/recorded Clipper preview unchanged. No69, new embedding, generated image, own map/shape, catalogue or codec change."
+  ],
+  "next": "Substantial conforming lossless headroom before prepared dossiers; independent Thalassa primary orbital/shape/rotation assessment and observer geometry can advance using skyGeometry. Preserve body-specific Naiad/Larissa/Galatea/Proteus scientific distinctions.",
+  "validation": {
+    "tests": "536 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MBgate",
+    "htmlBytes": 16063729,
+    "overBudgetBytes": 63729,
+    "baseline": "557e5e7",
+    "preservation": "All68 dossiers unchanged; all550 tracked public files byte-identical including405 protected assets and recorded Clipper preview; source hashes verified; queue566.",
+    "browser": "No passing rebuilt full/offline browser claim; other engines OPEN.",
+    "attribution": "Interbuild differences unaudited; no savings attribution."
+  }
+}
