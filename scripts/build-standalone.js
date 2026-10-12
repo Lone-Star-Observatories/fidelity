@@ -262,7 +262,8 @@ async function assemble(snapshotJson) {
   if (!decoderCode || !bootstrap || bootstrap === compactBootstrap) throw new Error('Offline loader minification failed.');
   const startup = await packStandaloneBootstrap(bootstrap, codecSource);
   const notices = (await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')).replaceAll('<', '&lt;');
-  const out = `<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
+  // the charset first: opened straight from disk (no host page around it) the browser would otherwise guess wrong
+  const out = `<meta charset="utf-8">\n<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
   return { out, html };
 }
 let { out } = await assemble(snapshotJson);
