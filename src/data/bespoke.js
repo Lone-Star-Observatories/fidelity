@@ -9933,6 +9933,225 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "charon": {
+    "id": "charon",
+    "name": "Charon",
+    "aliases": [
+      "Charon"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+    "measured": [
+      "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+      "JWST disk-integrated NIRSpec IFU1191 spectra detect CO2 and H2O2 features, not local material fractions or New Horizons pixel chemistry. Four visits2022-09-24,2023-04-18,2023-04-19 and2023-04-21; exact two204.244/277.189/554.378second exposures total2071.622seconds rounds2072; older rounded sum2071 is rounding, not a data conflict."
+    ],
+    "modelled": [
+      "Crystalline/stratified ice, excavation reservoirs and radiolysis are interpretations, not direct ocean, plume or biology detections. Supplement areal80/18/2ice mixtures are models, not local chemical fractions.",
+      "skyGeometry nominal Pluto angular diameter7.173746118614256degrees and104.80874376188328pixels at1672wide/90degree horizontalFOV; angular geometry only."
+    ],
+    "unknown": [
+      "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+      "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+      "Correct Charon camera/range/raw product, MAST extraction/calibration, local fractions, atmosphere transfer, dated site/shape/pole/scene registration remain open. Supplement visit103 Pluto contamination5percent average/47percent2.8–3/38percent4.19–5.3micron is extraction-specific, not a universal image correction. SourceData Charon_b header TARGETPLUTO must not be assigned to Charon. LEISA Hapke maps and diluted NH3 candidate do not register this natural-colour image."
+    ],
+    "assumed": [
+      "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+      "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+      "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+      "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+      "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+      "Terrain, blocks, grain sizes, chemistry, colour, light and exposure invented.",
+      "Not a registered New Horizons site or observed globe map; no analog body skin.",
+      "Disk-integrated spectra and best-fit mixture fractions do not map these local materials.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk, so no angular/raster-size claim.",
+      "Own Charon globe and all68 earlier dossiers preserved; observer/master/preview/additive69 and substantial headroom remain pending.",
+      "Original generated PNGs/full prompts retained. Small preview footers require readable IMAGINED card labels. No observed-body analog skin, registered site, atmosphere/plume/liquid/ocean/biology or survivable landing."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "title": "NASA New Horizons natural-colour approximation of Charon",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2018-07-23",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41467-024-51826-4",
+        "title": "Detection of carbon dioxide and hydrogen peroxide on the stratified surface of Charon with JWST",
+        "doi": "10.1038/s41467-024-51826-4",
+        "publicationDate": "2024-10-01",
+        "authors": [
+          "Protopapa, Silvia",
+          "Raut, Ujjwal",
+          "Wong, Ian",
+          "Stansberry, John",
+          "Villanueva, Geronimo L.",
+          "Cook, Jason",
+          "Holler, Bryan",
+          "Grundy, William M.",
+          "Brunetto, Rosario",
+          "Cartwright, Richard J.",
+          "Mamo, Bereket",
+          "Emery, Joshua P.",
+          "Parker, Alex H.",
+          "Guilbert-Lepoutre, Aurelie",
+          "Pinilla-Alonso, Noemi",
+          "Milam, Stefanie N.",
+          "Hammel, Heidi B."
+        ],
+        "assessment": "Accessible full publisher HTML targeted results/methods/licence assessed; exact observing dates/supplement/product crosswalk still open. No paper figure embedded.",
+        "terms": "Current publisher HTML explicitly CC BY-NC-ND4.0 with third-party exceptions, not CC BY.",
+        "termsUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+        "observations": {
+          "program": 1191,
+          "instrument": "JWST NIRSpecIFU",
+          "settings": [
+            "G140H",
+            "G235H",
+            "G395H"
+          ],
+          "wavelengthMicrons": [
+            1,
+            5.2
+          ],
+          "resolvingPower": 2700,
+          "visits": 4,
+          "exposuresSecondsPerSetting": [
+            408,
+            554,
+            1109
+          ],
+          "reportedTotalPerObservationSeconds": 2072,
+          "limits": "Reported summed total2072 differs from rounded setting values2071; preserved, no silent correction. Exact observation dates remain pending supplement audit."
+        },
+        "measurements": "Disk-integrated near-infrared features support CO2 and H2O2; not a local fraction or visible terrain map.",
+        "interpretations": "Crystalline CO2 and stratification, impact excavation/internal reservoir and irradiation/radiolysis origins depend on laboratory/spectral models. Not direct plumbing, a current ocean/plume, local chemistry fractions or biology. Native New Horizons pixels are not automatically mapped to JWST absorptions.",
+        "sha256": "b7b49eb715cbf2b6b9c7bb392356ddae30cdeaf2b6d80b808f525a7275462d0a"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms and credited third-party caveats"
+      }
+    ],
+    "contextImages": [
+      {
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+        "sourcePage": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2018-07-23",
+        "migrationDate": "2023-09-09",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA media guidance and credited third-party caveats; not asserted CC BY",
+        "inspection": "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+        "captionConflict": "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+        "url": "/bespoke/charon-new-horizons-native.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "path": "data/research-sources/charon-natural-display320.jpg",
+        "bytes": 10097,
+        "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+        "width": 320,
+        "height": 320,
+        "format": "JPEG",
+        "contentType": "image/jpeg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "sourceUrl": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "tier": "measured",
+        "description": "Actual New Horizons Charon publisher natural-colour approximation; not independently calibrated photometry or registered globe.",
+        "processing": "Unchanged NASA-served320px JPEG; publisher resize/re-encoding, not full pixel preservation. Original2000px PNG and160px rendition retained. No Fidelity resize or re-encoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL CHARON TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM CHARON",
+    "plutoGeometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "plutoRadiusKm": 1188.3,
+      "source": "src/data/sol.js",
+      "separationKm": 19600,
+      "charonRadiusKm": 606,
+      "observerDistanceKm": 18994,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 7.173746118614256,
+      "targetPixels1672": 104.80874376188328,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; colour and irradiance outputs not adopted",
+      "rasterAudit": {
+        "row": 200,
+        "thresholds": {
+          "5": 85,
+          "10": 84,
+          "20": 84
+        }
+      },
+      "limits": [
+        "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+        "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+        "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+        "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+        "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+        "Disk-integrated spectral features and model mixtures do not map local materials. All68 dossiers, originals, native maps/models/shapes preserved. Headroom recovery and additive69 pending."
+      ]
+    },
+    "surfaceImage": {
+      "url": "/bespoke/charon-surface-image.jpg",
+      "previewUrl": "/bespoke/charon-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "charon-generated-surfaceImage-original.png",
+      "sourceSha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+      "sha256": "4f754fd707360646630d9534aeeca80c24109deee728b41924ab6ef86dbcdbbd",
+      "previewSha256": "0f1f619e08c6e98d240c57cc10e91fe9f7b3fc242e279504d7df20bb3f9ae8fd",
+      "bytes": 401340,
+      "previewBytes": 11423,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/charon-sky-image.jpg",
+      "previewUrl": "/bespoke/charon-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "charon-generated-skyImage-original.png",
+      "sourceSha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+      "sha256": "366c3b032f23900eee9f324fca06f6302cad04ac36b1e08dd34fb44167ccb466",
+      "previewSha256": "a00f83b277b01e281af24df0b0686cf277f2083815fcb50e60f6fb63138f1c05",
+      "bytes": 314031,
+      "previewBytes": 9323,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

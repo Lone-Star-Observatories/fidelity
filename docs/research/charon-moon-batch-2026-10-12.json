@@ -1,0 +1,2337 @@
+{
+  "date": "2026-10-12",
+  "generated": "2026-10-11",
+  "body": "Charon",
+  "dossier": 69,
+  "native": {
+    "date": "2026-10-11",
+    "body": "Charon",
+    "status": "Research-only compact publisher renditions; no69th dossier or new embedding",
+    "source": "https://science.nasa.gov/resource/true-colors-of-charon/",
+    "observationDate": "2015-07-14",
+    "publicationDate": "2018-07-23",
+    "migrationDate": "2023-09-09",
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licence": "NASA media terms with credited third-party caveats; not asserted CC BY",
+    "records": [
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "path": "data/research-sources/charon-natural-display320.jpg",
+        "bytes": 10097,
+        "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+        "width": 320,
+        "height": 320,
+        "format": "JPEG",
+        "contentType": "image/jpeg"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=160&h=160&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=160&h=160&fit=clip&crop=faces%2Cfocalpoint",
+        "path": "data/research-sources/charon-natural-display160.jpg",
+        "bytes": 3068,
+        "sha256": "073fbcb55fdaddf4fc4c8053646f800b6c2b8ec55ab02f5205258d4e5b166a38",
+        "width": 160,
+        "height": 160,
+        "format": "JPEG",
+        "contentType": "image/jpeg"
+      }
+    ],
+    "inspection": "Viewed320px and160px publisher JPEGs: Charon globe with muted polar region, grey terrain and fractures. No Pluto heart/Sputnik terrain assigned.160px detail limited.",
+    "limitations": [
+      "NASA-served display JPEGs unchanged locally; publisher resizing/re-encoding disclosed, not full-pixel preservation of retained2000px PNG.",
+      "Publisher natural-colour approximation is not independent visible photometric calibration or registered geography.",
+      "NASA Charon caption repeats the Pluto page MVIC/range35445km and Sputnik wording; direct primary product/camera/range association remains open. No correction silently adopted.",
+      "Observation2015-07-14, publication2018-07-23 and2023migration metadata remain distinct; not a new2018 or2023 observation.",
+      "All68 dossiers/native/maps/models/shapes/originals/masters/provenance preserved. No69th or new embedding; substantial lossless headroom remains necessary."
+    ],
+    "associationAudit": {
+      "comparisonSource": "https://science.nasa.gov/resource/true-colors-of-pluto/",
+      "finding": "Current official pages repeat the same range/single-MVIC/Pluto-Sputnik paragraph. This corroborates a caption association inconsistency, not the correct Charon range or detector-product crosswalk.",
+      "scope": "Web-search excerpts checked; comparison page not downloaded, no fabricated page hash. Original NASA Charon caption hash already retained."
+    },
+    "verification": {
+      "tests": "458pass1skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991695,
+      "headroomBytes": 8305,
+      "completeSnapshotSha256": "fe0ffd54ca64171610148a67a70a6495ea17b98a64090ed8c28c45ae06801738",
+      "browser": "Chrome exact readableJSON/application/CSS and HTML-parser payloads;237images20bands517details32models decode. Other engines open.",
+      "preservation": "389tracked earlier inputs byte-identical; all68 dossiers unchanged; new source JPEGs verified unchanged.",
+      "attribution": "Interbuild snapshot differences unaudited; no asset/compression savings claim. Production codecs unchanged."
+    }
+  },
+  "map": {
+    "path": "data/textures/charon.jpg",
+    "bytes": 265536,
+    "sha256": "c1fb3c19d448c82b9cc29c769d0875250cb2731cab0bb7c8d67243cd2272570b",
+    "sourceByteEqual": true,
+    "limits": "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+    "inspection": "Own720x360mosaic inspected: stitched relief/colour and distorted polar regions. No exact coverage, native product registration or photometric calibration inferred from it."
+  },
+  "primary": {
+    "title": "Detection of carbon dioxide and hydrogen peroxide on the stratified surface of Charon with JWST",
+    "doi": "10.1038/s41467-024-51826-4",
+    "publicationDate": "2024-10-01",
+    "authors": [
+      "Protopapa, Silvia",
+      "Raut, Ujjwal",
+      "Wong, Ian",
+      "Stansberry, John",
+      "Villanueva, Geronimo L.",
+      "Cook, Jason",
+      "Holler, Bryan",
+      "Grundy, William M.",
+      "Brunetto, Rosario",
+      "Cartwright, Richard J.",
+      "Mamo, Bereket",
+      "Emery, Joshua P.",
+      "Parker, Alex H.",
+      "Guilbert-Lepoutre, Aurelie",
+      "Pinilla-Alonso, Noemi",
+      "Milam, Stefanie N.",
+      "Hammel, Heidi B."
+    ],
+    "assessment": "Accessible full publisher HTML targeted results/methods/licence assessed; exact observing dates/supplement/product crosswalk still open. No paper figure embedded.",
+    "terms": "Current publisher HTML explicitly CC BY-NC-ND4.0 with third-party exceptions, not CC BY.",
+    "termsUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "observations": {
+      "program": 1191,
+      "instrument": "JWST NIRSpecIFU",
+      "settings": [
+        "G140H",
+        "G235H",
+        "G395H"
+      ],
+      "wavelengthMicrons": [
+        1,
+        5.2
+      ],
+      "resolvingPower": 2700,
+      "visits": 4,
+      "exposuresSecondsPerSetting": [
+        408,
+        554,
+        1109
+      ],
+      "reportedTotalPerObservationSeconds": 2072,
+      "limits": "Reported summed total2072 differs from rounded setting values2071; preserved, no silent correction. Exact observation dates remain pending supplement audit."
+    },
+    "measurements": "Disk-integrated near-infrared features support CO2 and H2O2; not a local fraction or visible terrain map.",
+    "interpretations": "Crystalline CO2 and stratification, impact excavation/internal reservoir and irradiation/radiolysis origins depend on laboratory/spectral models. Not direct plumbing, a current ocean/plume, local chemistry fractions or biology. Native New Horizons pixels are not automatically mapped to JWST absorptions."
+  },
+  "supplement": {
+    "date": "2026-10-11",
+    "body": "Charon",
+    "status": "Research-only; no69th dossier or new embedding; all68 preserved",
+    "source": {
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM1_ESM.pdf",
+      "finalUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM1_ESM.pdf",
+      "path": "data/research-sources/charon-Protopapa2024-supplement.pdf",
+      "bytes": 6252290,
+      "sha256": "be80c7704ff71350737193a848663c46be9d8b2d5ef36f936c3d2c4303cbdb89",
+      "contentType": "application/pdf",
+      "pdfMagic": true
+    },
+    "pages": 8,
+    "publicationDate": "2024-10-01",
+    "doi": "10.1038/s41467-024-51826-4",
+    "terms": "Current publisher article licence CC BY-NC-ND4.0, not CC BY. Supplement retained for research; no figure or derivative embedded; third-party exceptions remain applicable.",
+    "assessment": "All eight pages extracted; Supplementary Table1 and Figure1–5 captions assessed. Raw MAST product and calibration reproduction remain open.",
+    "observations": [
+      {
+        "filename": "jw01191004001_03101_00001",
+        "dateUTC": "2022-09-24",
+        "startUTC": "17:35:06.553",
+        "observation": "004",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191004001_03101_00002",
+        "dateUTC": "2022-09-24",
+        "startUTC": "17:41:49.112",
+        "observation": "004",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191004001_03103_00001",
+        "dateUTC": "2022-09-24",
+        "startUTC": "17:50:48.902",
+        "observation": "004",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191004001_03103_00002",
+        "dateUTC": "2022-09-24",
+        "startUTC": "17:58:41.734",
+        "observation": "004",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191004001_03105_00001",
+        "dateUTC": "2022-09-24",
+        "startUTC": "18:08:48.432",
+        "observation": "004",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191004001_03105_00002",
+        "dateUTC": "2022-09-24",
+        "startUTC": "18:21:18.447",
+        "observation": "004",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191005001_03101_00001",
+        "dateUTC": "2023-04-18",
+        "startUTC": "01:29:16.432",
+        "observation": "005",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191005001_03101_00002",
+        "dateUTC": "2023-04-18",
+        "startUTC": "01:35:51.119",
+        "observation": "005",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191005001_03103_00001",
+        "dateUTC": "2023-04-18",
+        "startUTC": "01:45:04.734",
+        "observation": "005",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191005001_03103_00002",
+        "dateUTC": "2023-04-18",
+        "startUTC": "01:53:06.205",
+        "observation": "005",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191005001_03105_00001",
+        "dateUTC": "2023-04-18",
+        "startUTC": "02:03:04.343",
+        "observation": "005",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191005001_03105_00002",
+        "dateUTC": "2023-04-18",
+        "startUTC": "02:15:42.999",
+        "observation": "005",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191103001_03101_00001",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:00:42.847",
+        "observation": "103",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191103001_03101_00002",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:07:23.103",
+        "observation": "103",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191103001_03103_00001",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:16:31.149",
+        "observation": "103",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191103001_03103_00002",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:24:24.365",
+        "observation": "103",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191103001_03105_00001",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:34:30.759",
+        "observation": "103",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191103001_03105_00002",
+        "dateUTC": "2023-04-21",
+        "startUTC": "07:47:01.158",
+        "observation": "103",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191106001_03101_00001",
+        "dateUTC": "2023-04-19",
+        "startUTC": "04:59:16.507",
+        "observation": "106",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191106001_03101_00002",
+        "dateUTC": "2023-04-19",
+        "startUTC": "05:05:51.195",
+        "observation": "106",
+        "grating": "G140H",
+        "filter": "F100LP",
+        "effectiveExposureSeconds": 204.244
+      },
+      {
+        "filename": "jw01191106001_03103_00001",
+        "dateUTC": "2023-04-19",
+        "startUTC": "05:15:04.809",
+        "observation": "106",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191106001_03103_00002",
+        "dateUTC": "2023-04-19",
+        "startUTC": "05:23:06.281",
+        "observation": "106",
+        "grating": "G235H",
+        "filter": "F170LP",
+        "effectiveExposureSeconds": 277.189
+      },
+      {
+        "filename": "jw01191106001_03105_00001",
+        "dateUTC": "2023-04-19",
+        "startUTC": "05:33:04.419",
+        "observation": "106",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      },
+      {
+        "filename": "jw01191106001_03105_00002",
+        "dateUTC": "2023-04-19",
+        "startUTC": "05:45:43.074",
+        "observation": "106",
+        "grating": "G395H",
+        "filter": "F290LP",
+        "effectiveExposureSeconds": 554.378
+      }
+    ],
+    "effectiveExposurePerVisitSeconds": 2071.622,
+    "roundedExposureConflict": "Exact table two exposures each 204.244/277.189/554.378 seconds sum2071.622; main article reported2072 is consistent rounding. Prior rounded settings408/554/1109 sum2071 retained as rounded values, not a data discrepancy.",
+    "spectralLimits": [
+      "Supplementary Figure3 80% crystalline H2O/18% amorphous H2O/2% crystalline CO2 is an areal mixture best-fit model to the grand-average spectrum, not measured local terrain fractions.",
+      "Supplementary Figure1 LEISA pixel-by-pixel Hapke-derived crystalline H2O fraction and 2.21micron band-depth maps are distinct model products, not calibration or chemistry registration for the natural-colour PNG. NH3 diluted in water is a spectral candidate, not uniquely established local material.",
+      "Supplementary Figure4 observation103 Pluto flux contamination averages5%, rising to47% at2.8–3micron and38% at4.19–5.3micron. These are extraction-specific values, not a universal correction for other visits or visible images.",
+      "Supplementary Figure5 compares synthetic and measured solar spectra; CALSPEC model disagreement beyond4.3micron is relevant to spectral transfer, not visible scene photometry."
+    ],
+    "open": [
+      "NASA natural-colour caption Charon versus Pluto/Sputnik wording and camera/range crosswalk",
+      "MAST data products and independent calibration/extraction reproduction",
+      "Native map frame/coverage/epochs/photometry/shape registration",
+      "Source Data zip audit; no claimed download/hash",
+      "Standalone headroom before additive69 and independent views"
+    ],
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15989591,
+      "headroomBytes": 10409,
+      "preservation": "All68 earlier dossiers and389 tracked registry/bespoke/model/shape inputs byte-identical; supplement SHA verified.",
+      "browser": "Chrome complete readableJSON e813273c0fb6267a69350fd9ef833d2ef1104e6c5f9b2147eba8b80298e69e99 exact; original app c943a85a and CSS960361a exact; HTML parser packed payloads,237images20bands517details32models/native hashes and actual normal/offline Proteus3cards/no own map pass. Other engines remain open.",
+      "interbuildDiff": [
+        "/bandImages//api/feed/sdo-171?size=preview/time",
+        "/bandImages//api/feed/sdo-171?size=preview/disk",
+        "/bandImages//api/feed/sdo-171?size=preview/src",
+        "/bandImages//api/feed/sdo-304?size=preview/time",
+        "/bandImages//api/feed/sdo-304?size=preview/disk",
+        "/bandImages//api/feed/sdo-304?size=preview/src",
+        "/bandImages//api/feed/sdo-1600?size=preview/time",
+        "/bandImages//api/feed/sdo-1600?size=preview/disk",
+        "/bandImages//api/feed/sdo-1600?size=preview/src",
+        "/bandImages//api/feed/sdo-193?size=preview/time",
+        "/bandImages//api/feed/sdo-193?size=preview/disk",
+        "/bandImages//api/feed/sdo-193?size=preview/src",
+        "/bandImages//api/feed/sdo-94?size=preview/time",
+        "/bandImages//api/feed/sdo-94?size=preview/disk",
+        "/bandImages//api/feed/sdo-94?size=preview/src"
+      ],
+      "attribution": "Only15 SDO src/time/disk fields differ from prior verified snapshot; no research or compression size attribution. Production codecs unchanged."
+    }
+  },
+  "sourceData": {
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-51826-4/MediaObjects/41467_2024_51826_MOESM3_ESM.zip",
+    "path": "data/research-sources/charon-Protopapa2024-source-data.zip",
+    "bytes": 2676988,
+    "sha256": "cd22ee944e9db5e7047bfdca130975fcebf2966cd43ce2bcda477bb9dbe93d8e",
+    "members": [
+      {
+        "name": "Source Data/",
+        "bytes": 0
+      },
+      {
+        "name": "__MACOSX/._Source Data",
+        "bytes": 220
+      },
+      {
+        "name": "Source Data/.DS_Store",
+        "bytes": 8196
+      },
+      {
+        "name": "__MACOSX/Source Data/._.DS_Store",
+        "bytes": 120
+      },
+      {
+        "name": "Source Data/supplementary_fig4/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/supplementary_fig3/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/supplementary_fig5/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/fig1/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/supplementary_fig1/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/fig2/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/fig3/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/fig4/",
+        "bytes": 0
+      },
+      {
+        "name": "Source Data/supplementary_fig4/.DS_Store",
+        "bytes": 6148
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig4/._.DS_Store",
+        "bytes": 120
+      },
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_a.txt",
+        "bytes": 465531
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig4/._sp_supplementary_fig4_Charon_a.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_c.txt",
+        "bytes": 463663
+      },
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_b.txt",
+        "bytes": 465925
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig4/._sp_supplementary_fig4_Charon_b.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon.txt",
+        "bytes": 10434
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig3/._sp_supplementary_fig3_Charon.txt",
+        "bytes": 276
+      },
+      {
+        "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon_model.txt",
+        "bytes": 6958
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig3/._sp_supplementary_fig3_Charon_model.txt",
+        "bytes": 276
+      },
+      {
+        "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_PSG.txt",
+        "bytes": 4721648
+      },
+      {
+        "name": "Source Data/supplementary_fig5/.DS_Store",
+        "bytes": 6148
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig5/._.DS_Store",
+        "bytes": 120
+      },
+      {
+        "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_CALSPEC.txt",
+        "bytes": 955809
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_g_Charon_JWST.txt",
+        "bytes": 222768
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_g_Charon_JWST.txt",
+        "bytes": 276
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_004.txt",
+        "bytes": 222959
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_004.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_005.txt",
+        "bytes": 220505
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_005.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_103.txt",
+        "bytes": 222196
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_103.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_106.txt",
+        "bytes": 220703
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_f_Charon_106.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_g_Charon_NH.txt",
+        "bytes": 5446
+      },
+      {
+        "name": "__MACOSX/Source Data/fig1/._sp_fig1_g_Charon_NH.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_amorphous_NH3_40K.txt",
+        "bytes": 17945
+      },
+      {
+        "name": "Source Data/supplementary_fig1/.DS_Store",
+        "bytes": 6148
+      },
+      {
+        "name": "__MACOSX/Source Data/supplementary_fig1/._.DS_Store",
+        "bytes": 120
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_crystalline_NH3_100K.txt",
+        "bytes": 17781
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_2.txt",
+        "bytes": 4013
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_1.txt",
+        "bytes": 3944
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_NH4Cl.txt",
+        "bytes": 17739
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_model.txt",
+        "bytes": 19875
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_H2O:NH3_50K.txt",
+        "bytes": 17807
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_amorphous_CO2_8K.txt",
+        "bytes": 3986
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Europa_model.txt",
+        "bytes": 1951
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K.txt",
+        "bytes": 4344
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Charon_model.txt",
+        "bytes": 9132
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Europa.txt",
+        "bytes": 13159
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_65K.txt",
+        "bytes": 1073
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Charon_model.txt",
+        "bytes": 9220
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Europa_model.txt",
+        "bytes": 8644
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K.txt",
+        "bytes": 1068
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K.txt",
+        "bytes": 1026
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Europa_model.txt",
+        "bytes": 1480
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Charon.txt",
+        "bytes": 2256
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K.txt",
+        "bytes": 4302
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Europa.txt",
+        "bytes": 2200
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K_irradiated.txt",
+        "bytes": 4409
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Charon_model.txt",
+        "bytes": 1516
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_amorphous_CO2_8K.txt",
+        "bytes": 19808
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_70K.txt",
+        "bytes": 15059
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_114K.txt",
+        "bytes": 1074
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K_irradiated.txt",
+        "bytes": 1094
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Europa_model.txt",
+        "bytes": 8665
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_114K.txt",
+        "bytes": 4368
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Europa.txt",
+        "bytes": 31087
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K_irradiated.txt",
+        "bytes": 1133
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Charon.txt",
+        "bytes": 13812
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Europa.txt",
+        "bytes": 12946
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Charon_model.txt",
+        "bytes": 9222
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_70K.txt",
+        "bytes": 78347
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_65K.txt",
+        "bytes": 4367
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K_irradiated.txt",
+        "bytes": 4370
+      },
+      {
+        "name": "Source Data/fig3/sp_fig3_Charon_model.txt",
+        "bytes": 92465
+      },
+      {
+        "name": "__MACOSX/Source Data/fig3/._sp_fig3_Charon_model.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_Charon.txt",
+        "bytes": 14642
+      },
+      {
+        "name": "__MACOSX/Source Data/fig4/._sp_fig4_b_Charon.txt",
+        "bytes": 176
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_Europa.txt",
+        "bytes": 14752
+      },
+      {
+        "name": "Source Data/fig4/.DS_Store",
+        "bytes": 6148
+      },
+      {
+        "name": "__MACOSX/Source Data/fig4/._.DS_Store",
+        "bytes": 120
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_low_irradiation_fluence.txt",
+        "bytes": 8177
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_low_irradiation_fluence.txt",
+        "bytes": 8186
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2O_ice_irradiated.txt",
+        "bytes": 6794
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_high_irradiation_fluence.txt",
+        "bytes": 8186
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_c_Charon.txt",
+        "bytes": 21912
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_c_Europa.txt",
+        "bytes": 21858
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_high_irradiation_fluence.txt",
+        "bytes": 8177
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_Europa.txt",
+        "bytes": 22069
+      }
+    ],
+    "textProducts": [
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_a.txt",
+        "bytes": 465531,
+        "sha256": "4cdd8399144af283187f3adec8254f9c6a0f8b3546048f99683e683dac48f2f8",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Supplementary Figure 4 data behind the figure",
+          "#Comment: The JWST spectrum of Charon corresponding to observation \\#103 prior correction for Pluto's flux contamination",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Flux density (MJy)",
+          "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+        ],
+        "dataRows": 8161
+      },
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_c.txt",
+        "bytes": 463663,
+        "sha256": "a6a2c292e8509b3778b7dcd084bdec50c484fe4543db946fbe9992a4b9992c9f",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Supplementary Figure 4 data behind the figure",
+          "#Comment: The JWST spectrum of Charon corresponding to observation \\#103 after correction for Pluto's flux contamination",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Flux density (MJy)",
+          "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+        ],
+        "dataRows": 8128
+      },
+      {
+        "name": "Source Data/supplementary_fig4/sp_supplementary_fig4_Charon_b.txt",
+        "bytes": 465925,
+        "sha256": "b166d5388c016cfd74edae5b162498dca5f472815320010650b427ee470dde19",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Pluto",
+          "#Telescope: JWST",
+          "#Table: Supplementary Figure 4 data behind the figure",
+          "#Comment: The JWST spectrum of Pluto’s flux contamination",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Flux density (MJy)",
+          "#Column 2: Error (1-sigma error on the flux density) (MJy)"
+        ],
+        "dataRows": 8169
+      },
+      {
+        "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon.txt",
+        "bytes": 10434,
+        "sha256": "2f997a86ae46d9abfe96a05a2e9b7a516d25ae11fdb3001a2b5d69dc3e6f3574",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Supplementary Figure 3 panel a data behind the figure",
+          "#Comment: The grand-average spectrum of Charon obtained by averaging four JWST/NIRSpec IFU observations.",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 373
+      },
+      {
+        "name": "Source Data/supplementary_fig3/sp_supplementary_fig3_Charon_model.txt",
+        "bytes": 6958,
+        "sha256": "b5d94d9a99b60d0ac0f7f477410445712f4db2da1b1fef6b3ee542c58e391586",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Table: Supplementary Figure 3 panel a data behind the figure",
+          "#Comment: Spectral model of Charon's spectrum.",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F"
+        ],
+        "dataRows": 373
+      },
+      {
+        "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_PSG.txt",
+        "bytes": 4721648,
+        "sha256": "c043240bcdaa456bcd451d1e5fdc9b7064f02cd3cce5e151b543358a987eb7c9",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Sun",
+          "#Table: Supplementary Figure 5 data behind the figure",
+          "#Comment: Solar flux density at 1 au",
+          "#Comment: Spectrum sourced from the Planetary Spectrum Generator (PSG)",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Flux density (MJy)"
+        ],
+        "dataRows": 124247
+      },
+      {
+        "name": "Source Data/supplementary_fig5/sp_supplementary_fig5_solar_spectrum_CALSPEC.txt",
+        "bytes": 955809,
+        "sha256": "ccf882f1ab6844db4907045778b4ef7eb8f6491d2294a6d9ecd75e47c05a6951",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Sun",
+          "#Table: Supplementary Figure 5 data behind the figure",
+          "#Comment: Solar flux density at 1 au",
+          "#Comment: Spectrum sourced from the CALSPEC database sun_mod_001.fits",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Flux density (MJy)"
+        ],
+        "dataRows": 25146
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_g_Charon_JWST.txt",
+        "bytes": 222768,
+        "sha256": "7f76f1d656ffd6dc2e61f7379a4118c28be5d0aecbd574da61550d7484b18148",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Figure 1 panel g data behind the figure -- The grand-average spectrum of Charon obtained by averaging four JWST/NIRSpec IFU observations.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 8235
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_004.txt",
+        "bytes": 222959,
+        "sha256": "7878443c24d01b5d377524c246cfddc220b404630ca5f73043d3f2aa4b4996c2",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Observation#: 004",
+          "#Telescope: JWST",
+          "#Table: Figure 1 panel f data behind the figure",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 8235
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_005.txt",
+        "bytes": 220505,
+        "sha256": "7ea88ef1333add895b99ed656061f2fc497fbc445099b808e14c056c5ec25007",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Observation#: 005",
+          "#Telescope: JWST",
+          "#Table: Figure 1 panel f data behind the figure",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 8134
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_103.txt",
+        "bytes": 222196,
+        "sha256": "fd0fad129adabb51fa3c1ab2014ea3a837f37c38f73284a497fda5076ba74869",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Observation#: 103",
+          "#Telescope: JWST",
+          "#Table: Figure 1 panel f data behind the figure",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 8221
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_f_Charon_106.txt",
+        "bytes": 220703,
+        "sha256": "1d08c04ab164a2a64ce67610b100464929e66841560945e800f0838ac6c19314",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Observation#: 106",
+          "#Telescope: JWST",
+          "#Table: Figure 1 panel f data behind the figure",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 8165
+      },
+      {
+        "name": "Source Data/fig1/sp_fig1_g_Charon_NH.txt",
+        "bytes": 5446,
+        "sha256": "e2e7155db6d649714599df6af005847741d3faada4763ea2881e881f5f44999f",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: New Horizons",
+          "#Table: Figure 1 panel g data behind the figure -- Comparison data from New Horizons",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F",
+          "#Column 2: Error (1-sigma error on the I/F)"
+        ],
+        "dataRows": 191
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_amorphous_NH3_40K.txt",
+        "bytes": 17945,
+        "sha256": "a45cac0d8c2d066cb56d217d172433dbe9cfdbbca17dc57d7bbb0a39c5e0e324",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Supplementary Figure 1 panel b data behind the figure",
+          "#Comment: Spectrum of NH3 amorphous 40 K",
+          "#Comment: Refer to Roser, J. E., Ricca, A., Cartwright, R. J., Dalle Ore, C. & Cruikshank, D. P. Planet. Sci. J. 2, 240 (2021).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: k"
+        ],
+        "dataRows": 970
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_crystalline_NH3_100K.txt",
+        "bytes": 17781,
+        "sha256": "03654acaa1b76f4cd5bdee574b677d6620613e8bf280735881e40d0e1b827ba2",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Supplementary Figure 1 panel b data behind the figure",
+          "#Comment: Spectrum of NH3 crystalline 100K",
+          "#Comment: Refer to Hudson, R. L., Gerakines, P. A. & Yarnall, Y. Y. Astrophys. J. 925, 156 (2022).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: k"
+        ],
+        "dataRows": 970
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_2.txt",
+        "bytes": 4013,
+        "sha256": "78cbd007ee965e62e583460f2e3425e01c5abc2999ee4c8cc0242eea02a33f8d",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: New Horizons",
+          "#Table: Supplementary Figure 1 panel a data behind the figure",
+          "#Comment: New Horizons/LEISA spectrum of Charon from regions that showcase the most pronounced 2.21-micron absorption band",
+          "#Comment: See figure caption for more details.",
+          "#Comment: Refer to Protopapa, S. et al. in The pluto system after new horizons (eds Stern, S. A., Moore, J. M., Grundy, W. M., Young, L. A. & Binzel, R. P.) Surface Composition of Charon 433–456 (2021).",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Relative Reflectance"
+        ],
+        "dataRows": 192
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_NH_1.txt",
+        "bytes": 3944,
+        "sha256": "2d531916fcc9d3ec29439f49972c9357b2aee7f11b9697236205c29ede4217f9",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: New Horizons",
+          "#Table: Supplementary Figure 1 panel a data behind the figure",
+          "#Comment: New Horizons/LEISA disk-averaged spectrum of Charon",
+          "#Comment: See figure caption for more details.",
+          "#Comment: Refer to Protopapa, S. et al. in The pluto system after new horizons (eds Stern, S. A., Moore, J. M., Grundy, W. M., Young, L. A. & Binzel, R. P.) Surface Composition of Charon 433–456 (2021).",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Relative Reflectance"
+        ],
+        "dataRows": 191
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_NH4Cl.txt",
+        "bytes": 17739,
+        "sha256": "e6a4cb6bbc042797f33c5666c6b244c5933f91800c6253aaaa9ffa776b5d8c98",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Supplementary Figure 1 panel b data behind the figure",
+          "#Comment: Spectrum of NH4Cl",
+          "#Comment: Refer to de Sanctis, M. C. et al. Nature 536, 54–57 (2016).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: k"
+        ],
+        "dataRows": 970
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_a_Charon_model.txt",
+        "bytes": 19875,
+        "sha256": "fff567b420042b047a697826f8170377b938f948a9e753946216d8eb5b3ed8d1",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Supplementary Figure 1 panel a data behind the figure",
+          "#Comment: Model of the 2.0-micron band of Charon",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F"
+        ],
+        "dataRows": 1094
+      },
+      {
+        "name": "Source Data/supplementary_fig1/sp_supplementary_fig1_b_H2O:NH3_50K.txt",
+        "bytes": 17807,
+        "sha256": "129b914ab3b38081e7d25cff8871b7ba7d652e68308ba285c931584eee5bad8c",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Supplementary Figure 1 panel b data behind the figure",
+          "#Comment: Spectrum of NH3 diluted in H2O (10% NH3) 50K",
+          "#Comment: Refer to Zheng, W., Jewitt, D. & Kaiser, R. I. Astrophys. J. Suppl. Ser. 181, 53–61 (2009).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: Absorbance"
+        ],
+        "dataRows": 970
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_amorphous_CO2_8K.txt",
+        "bytes": 3986,
+        "sha256": "c0cbd7f4f78c135e00ae1af3f866f115cc5552e41eea5ad26c8ce698caa0c792",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of amorphous CO2 at 8K",
+          "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 205
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Europa_model.txt",
+        "bytes": 1951,
+        "sha256": "e154c55f29026b93095114fe82dc0917a9c0b31647220d8313db7ea40813e6d7",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel a data behind the figure",
+          "#Comment: Model of the local continuum around the CO2 band of Europa",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Normalized Reflectance"
+        ],
+        "dataRows": 97
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K.txt",
+        "bytes": 4344,
+        "sha256": "259795af23fc5e436654752a83ae14eb909eadac924235e7bc942350a078c9c0",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 25K",
+          "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Charon_model.txt",
+        "bytes": 9132,
+        "sha256": "8139483bc382f00446736ed5b0814a1b029aa2aad284b755a60ba7a5670d07f1",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel a data behind the figure",
+          "#Comment: Model of the local continuum around the CO2 band of Charon",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: I/F"
+        ],
+        "dataRows": 497
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Europa.txt",
+        "bytes": 13159,
+        "sha256": "c66918d2427e7a381b68f5d46df9ea9d3224592bd2e905572e06d5ac289f4984",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel b data behind the figure",
+          "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+          "#Comment: The Europa spectrum is normalized to Charon’s I/F level at 4.28–4.29 μm",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Normalized Reflectance",
+          "#Column 2: Error (1-sigma error on the normalized reflectance)"
+        ],
+        "dataRows": 470
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_65K.txt",
+        "bytes": 1073,
+        "sha256": "a5d59837c7660f5fae491f0a4f91d1ce200fbe42f593b0c747d9754f628e1d1c",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of CO₂:H₂O:CH₃OH (1:0.8:0.9) at 65K",
+          "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240–253 (1999).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 42
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Charon_model.txt",
+        "bytes": 9220,
+        "sha256": "1460ec441b4667ef93d2ea5f1812cae116dcdea73a494382b193597fc4cf9743",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Model of the continuum divided Charon's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 502
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Europa_model.txt",
+        "bytes": 8644,
+        "sha256": "3ee980d0bbfe883a29e2b11200fd7846b10ad228ac2fbe33eb475692c0a0e6ca",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Model of the continuum divided Europa's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 470
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K.txt",
+        "bytes": 1068,
+        "sha256": "9638ceb296c30f12ed850d4a2cdc79130fa1f83b615d4004d91af6dd5fd7a7d9",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 25K",
+          "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 43
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K.txt",
+        "bytes": 1026,
+        "sha256": "479bf1412fe2deef53aadea9eca930061b3d91a000eff553732bccee6031f470",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 43
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Europa_model.txt",
+        "bytes": 1480,
+        "sha256": "e32761c2d2dc71d4915d5d3bc52650c4ce2bf358a55afdfe2e0ee45f7dfa87d0",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Model of the continuum divided Europa's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 72
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Charon.txt",
+        "bytes": 2256,
+        "sha256": "44db66f8d4a1199e686fc7c1b12a2e6e24a281f037ad4fe5a3b7ac5201e253a3",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Continuum divided Charon's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)",
+          "#"
+        ],
+        "dataRows": 74
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K.txt",
+        "bytes": 4302,
+        "sha256": "e240e699e8f598f16dae74cf1081a158767c84747c07a226051d3471d71235e3",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Europa.txt",
+        "bytes": 2200,
+        "sha256": "f23bb5d7f38346fe9f65ff9c89e3b1910adee4d7891094482323f297999255ca",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Continuum divided Europa's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)"
+        ],
+        "dataRows": 72
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_25K_irradiated.txt",
+        "bytes": 4409,
+        "sha256": "f9123164f9174b0b3f39a87cc4556c544b2b2efcc8c2165afeba0889ec7ced37",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 25K irradiated with 100 keV H⁺ (fluence of 8.04 X 10^15 H⁺/cm²)",
+          "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_Charon_model.txt",
+        "bytes": 1516,
+        "sha256": "370019e66370778d0a58ff393c1eaaa448bb1959a50e4042aee0ec89f0a3ec29",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Model of the continuum divided Charon's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 74
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_amorphous_CO2_8K.txt",
+        "bytes": 19808,
+        "sha256": "53a557544d7448e42dd8be3d92d657c94bcbbe4da3683fe5b9161b13b88bc2de",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of amorphous CO2 at 8K",
+          "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 1084
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_70K.txt",
+        "bytes": 15059,
+        "sha256": "1cd96baefb91ff17469723c652d45833ccce6315ee8d19c643fd6f1f69ab0709",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 70K",
+          "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 820
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_CO2_complex_Ehrenfreund_114K.txt",
+        "bytes": 1074,
+        "sha256": "207df98545f894fea1e53daccd550a7a05fe9cab798054a17d36ba9594b45c51",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of CO₂:H₂O:CH₃OH (1:0.8:0.9) at 114K",
+          "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240–253 (1999).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 42
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_H2OCO2_70K_irradiated.txt",
+        "bytes": 1094,
+        "sha256": "ed4bf12b19b7a186dc7802dd37d564fdd4bf66dd86bd8aaa27cb0de3f32e4981",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 KeV electrons (fluence: 9.30 × 10^17 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 43
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Europa_model.txt",
+        "bytes": 8665,
+        "sha256": "902280837aab005ba2c7662e0e9bce8216e67b8a26c5ab88cbdaf8e24ce4d42c",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel b data behind the figure",
+          "#Comment: Model of the local continuum around the CO2 band of Europa",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Normalized Reflectance"
+        ],
+        "dataRows": 470
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_114K.txt",
+        "bytes": 4368,
+        "sha256": "622c92bd1d706967ff88a3149337f0bdb067ffe1a2caf14f399008b21ec661d2",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of CO₂:H₂O:CH₃OH (1:0.8:0.9) at 114K",
+          "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240–253 (1999).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_a_Europa.txt",
+        "bytes": 31087,
+        "sha256": "f16c2b5c968ed11f7fe0e1ee944a676e2d2c45e56e901358ebe858d17a4a6d4f",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel a data behind the figure",
+          "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+          "#Comment: The Europa spectrum is normalized to Charon’s I/F level at 2.52–2.54 μm",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Normalized Reflectance",
+          "#Column 2: Error (1-sigma error on the normalized reflectance)"
+        ],
+        "dataRows": 1134
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_c_crystalline_CO2_25K_irradiated.txt",
+        "bytes": 1133,
+        "sha256": "e693b33dafde1d243844db1f963fd52118017b21e6b6550a17fc6c71ec49e3ba",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel c data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 25K irradiated with 100 keV H⁺ (fluence of 8.04 X 10^15 H⁺/cm²)",
+          "#Comment: Refer to Raut, U. & Baragiola, R. A. Astrophys. J. 772, 53 (2013).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 43
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Charon.txt",
+        "bytes": 13812,
+        "sha256": "d211ff05cfa60f05b8300f9cd008acf720f364682f31ffc9d25dd427d387c178",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Continuum divided Charon's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)",
+          "#"
+        ],
+        "dataRows": 502
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_Europa.txt",
+        "bytes": 12946,
+        "sha256": "8a53424e92d5e5b3f8b9ba205f86e3ac3da5a757d25225dc515b8abd735013c9",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Continuum divided Europa's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)"
+        ],
+        "dataRows": 470
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_b_Charon_model.txt",
+        "bytes": 9222,
+        "sha256": "ceff50d46c1d5f24dfe4ab3f19226f9c342e12a227faf148c8c21089d95ed46b",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel b data behind the figure",
+          "#Comment: Model of the local continuum around the CO2 band of Charon",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: I/F"
+        ],
+        "dataRows": 502
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_crystalline_CO2_70K.txt",
+        "bytes": 78347,
+        "sha256": "14f538941ce831dca3333de1ff39fcb9dddcec7170d8b34e3f298ee51de44b7f",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of crystalline CO2 at 70K",
+          "#Comment: Refer to Gerakines, P. A. & Hudson, R. L. Astrophys. J. 901, 52 (2020).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 4336
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_CO2_complex_Ehrenfreund_65K.txt",
+        "bytes": 4367,
+        "sha256": "d2aefd402fd4819e91360fd3188466efd203dba4b803d5620bc5a31ea8ea77c3",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of CO₂:H₂O:CH₃OH (1:0.8:0.9) at 65K",
+          "#Comment: Refer to Ehrenfreund, P. et al. Astron. Astrophys. 350, 240–253 (1999).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig2/sp_fig2_d_H2OCO2_70K_irradiated.txt",
+        "bytes": 4370,
+        "sha256": "a50302346eb72fd63ed4c9ed6262d5d403d8f32a90e9ae674ba06ff607d15256",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 2 panel d data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 KeV electrons (fluence: 9.30 × 10^17 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 225
+      },
+      {
+        "name": "Source Data/fig3/sp_fig3_Charon_model.txt",
+        "bytes": 92465,
+        "sha256": "88013120e52d220a155c993100e3a2e706e65b6625de66c5ac2f9dff6291617f",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 3 data behind the figure",
+          "#Comment: Spectral model of the grand-average spectrum of Charon, observed with the JWST/NIRSpec.",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (micron)",
+          "#Column 1: I/F model ",
+          "#Column 2: I/F model r_unit1 component",
+          "#Column 3: I/F model r_unit2 Hapke component",
+          "#Column 4: I/F model r_unit2 Fresnel component"
+        ],
+        "dataRows": 2046
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_Charon.txt",
+        "bytes": 14642,
+        "sha256": "dfdd7dff62721bc1d88267621ca302a48ddcf644cf352681d24510422abbef9c",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Figure 4 panel b data behind the figure",
+          "#Comment: Continuum divided Charon's spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#"
+        ],
+        "dataRows": 802
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_Europa.txt",
+        "bytes": 14752,
+        "sha256": "c5af1cf662cb920ad73373b1f9f15a38854c620242624005ff06e3f318a1cdaf",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 4 panel b data behind the figure",
+          "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+          "#Comment: Conitnuum divided Europa spectrum",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 800
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_low_irradiation_fluence.txt",
+        "bytes": 8177,
+        "sha256": "74b03fc4b45b713d3837e3d3948bd0d7b78971b9da016e94982ebf702b612d91",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 4 panel a data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.00 × 10^15 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Relative Reflectance"
+        ],
+        "dataRows": 436
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_low_irradiation_fluence.txt",
+        "bytes": 8186,
+        "sha256": "7b1e1cae82f005d7a9fd8a0ad78b6a99b8ae97e0dfdef646e968751ab6252f05",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 4 panel b data behind the figure",
+          "#Comment: Continuum divided spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.00 × 10^15 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 436
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2O_ice_irradiated.txt",
+        "bytes": 6794,
+        "sha256": "02322972b116d19cabae044f1a5624980f70ec4efc3e0af6befe0a1312e56f60",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 4 panel b data behind the figure",
+          "#Comment: Spectrum of H₂O ice at 80K, irradiated with 100 keV protons (fluence: 2.7 × 10^15 ions/cm²)",
+          "#Comment: Refer to Loeffler, M. J. et al. Icarus 180, 265–273 (2006).",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 358
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_b_H2OCO2_70K_high_irradiation_fluence.txt",
+        "bytes": 8186,
+        "sha256": "dd31821ec44e274b80e5f59d880ca0479e2d5afaf4d11397ebda2f792d9d1bdc",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 4 panel b data behind the figure",
+          "#Comment: Continuum divided spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.30 × 10^17 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance"
+        ],
+        "dataRows": 436
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_c_Charon.txt",
+        "bytes": 21912,
+        "sha256": "defb28d90d6074ceb2df498797a5c0cae04bd85419a2413411f823deffd63953",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Charon",
+          "#Telescope: JWST",
+          "#Table: Figure 4 panel c data behind the figure",
+          "#Comment: The Charon spectrum continuum divided",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)"
+        ],
+        "dataRows": 802
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_c_Europa.txt",
+        "bytes": 21858,
+        "sha256": "6b6b7d77de21e59c2f6ed18eb858a8a0e9dc9397f3203a16ae7eff27f75ca50d",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 4 panel c data behind the figure",
+          "#Comment: The Europa spectrum continuum divided",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Reflectance",
+          "#Column 2: Error (1-sigma error on the reflectance)"
+        ],
+        "dataRows": 800
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_H2OCO2_70K_high_irradiation_fluence.txt",
+        "bytes": 8177,
+        "sha256": "a879ecdd9d70e432387a3f8bcb7df2a07282c7177a116ee32fd0830daad9a638",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Table: Figure 4 panel a data behind the figure",
+          "#Comment: Spectrum of H₂O:CO₂ (1:0.02) at 70K, irradiated with 5 keV electrons (fluence: 9.30 × 10^17 e⁻/cm²)",
+          "#Comment: Refer to this paper",
+          "#Comment: See figure caption for more details.",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Relative Reflectance"
+        ],
+        "dataRows": 436
+      },
+      {
+        "name": "Source Data/fig4/sp_fig4_a_Europa.txt",
+        "bytes": 22069,
+        "sha256": "2c64d846be84accf7895904f38229b38135fab16b95da1f6fdb743e738f88c51",
+        "header": [
+          "#Author: Silvia Protopapa",
+          "#Target: Europa",
+          "#Telescope: JWST",
+          "#Table: Figure 4 panel a data behind the figure",
+          "#Comment: Refer to Villanueva, G. L. et al. 'Endogenous CO2 ice mixture on the surface of Europa and no detection of plume activity.' Science (2023).",
+          "#Comment: The Europa spectrum is normalized to Charon’s I/F level at 2.52–2.54 μm",
+          "#Column 0: Wavelength (μm)",
+          "#Column 1: Normalized Reflectance",
+          "#Column 2: Error (1-sigma error on the normalized reflectance)"
+        ],
+        "dataRows": 800
+      }
+    ],
+    "date": "2026-10-11",
+    "scope": "Research only; archive retained unchanged, headers and row counts inspected. No figure or numerical data newly embedded.",
+    "assessment": [
+      "Four individual Charon visit spectra 004/005/103/106 and grand-average are labelled separately from New Horizons comparison spectra and spectral models.",
+      "Supplementary Figure 4 filenames all contain Charon, but file b header explicitly targets Pluto contamination. Do not assign that spectrum to Charon; a is visit103 before correction and c is after correction.",
+      "Archive includes Europa comparison and laboratory compounds. These are not Charon local measurements or body skins.",
+      "Disk-integrated spectra and model I/F are not a natural-colour image, calibrated scene photometry, a geography map or direct local fractions.",
+      "Source-data files do not establish correct camera/range/product association for the inconsistent NASA natural-colour caption. MAST raw/calibrated product and extraction audit remain open."
+    ],
+    "terms": "Current parent publisher article CC BY-NC-ND 4.0, not CC BY; third-party exceptions and laboratory source references retained. No automatic relicensing of every archive member and no derivative/figure embedding.",
+    "validation": {
+      "zipCrc": "All members verified",
+      "dossiers": 68,
+      "productionInputs": "unchanged",
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15989591,
+      "headroomBytes": 10409,
+      "completeSnapshotSha256": "c2317d3c8bc423fc1721c4bf82dcf3550d6e307d73e93ae941eaf0175a9cb5eb",
+      "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+      "browser": "Chrome exact readable JSON/application/CSS/HTML-parser payloads;237 images20 bands517 details32 models decode; other engines open.",
+      "preservation": "All68 dossiers and389 tracked earlier inputs byte-equal.",
+      "attribution": "Interbuild snapshot changes unaudited; no net savings attribution. Production codecs unchanged."
+    },
+    "references": [
+      "https://www.nature.com/articles/s41467-024-51826-4",
+      "https://www.nature.com/articles/s41467-024-51826-4#Sec22",
+      "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+    ],
+    "credit": "Silvia Protopapa, Ujjwal Raut, Ian Wong, John Stansberry, Geronimo L. Villanueva, Jason Cook, Bryan Holler, William M. Grundy, Rosario Brunetto, Richard J. Cartwright, Bereket Mamo, Joshua P. Emery, Alex H. Parker, Aurelie Guilbert-Lepoutre, Noemi Pinilla-Alonso, Stefanie N. Milam, Heidi B. Hammel; laboratory/comparison sources identified in each retained header.",
+    "publicationDate": "2024-10-01",
+    "observationDates": "JWST visits0042022-09-24,0052023-04-18,1062023-04-19,1032023-04-21 per previously assessed publisher supplement; laboratory/comparison dates not newly independently audited."
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Charon",
+    "status": "Research-only independent local original prepared; no69th dossier or new embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational\nAsset type: independent hypothetical local observer illustration for Fidelity's Charon dossier, preparation only.\nPrimary request: A wide realistic scientific illustration of independently invented local terrain on Pluto's moon Charon. Generate from scratch without any input photograph or map. Never reuse or recolour Moon, Mars, Pluto or another observed body's terrain.\nScene: low viewpoint over cold neutral grey granular terrain with scattered angular blocks, shallow worn depressions, fractured low ridges and a distant broken crater rim. A few muted pale patches may be present but their chemistry is unknown and invented. Modest hard directional illumination with artistic exposure and grey colour. Do not depict a known New Horizons site, named canyon or crater, red polar cap, or registered globe location. Measured disk-integrated water, CO2 and peroxide spectral features and modelled mixture fractions do not identify these local materials.\nComposition: landscape16:9, detailed foreground, restrained distant horizon, nearly black sky. Omit Pluto, Sun, stars and all astronomical disks; no angular-size depiction is made.\nText verbatim: \"IMAGINED LOCAL CHARON TERRAIN\" and small footer \"Invented relief and materials · No observed site registration\". Legible restrained typography.\nConstraints: no people, spacecraft, habitat, landing or survivability implication. No atmosphere clouds or conspicuous haze, plume, liquid, ocean, biology, glowing lava or interior cutaway. Black sky is assumed transparency, not a measurement of atmospheric absence. Terrain, blocks, grain sizes, chemistry, colour, light and exposure are invented. Not a photograph or calibrated map.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f8905418-189f-435d-92a4-fb0418098845.png",
+    "originalPath": "data/research-sources/charon-generated-surfaceImage-original.png",
+    "inspection": "Viewed original: label and footer legible, independently invented grey blocks/depressions/ridges and black sky. No astronomical disk, plume, liquid, biology, spacecraft or landing depiction. No observed map input.",
+    "limitations": [
+      "Terrain, blocks, grain sizes, chemistry, colour, light and exposure invented.",
+      "Not a registered New Horizons site or observed globe map; no analog body skin.",
+      "Disk-integrated spectra and best-fit mixture fractions do not map these local materials.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk, so no angular/raster-size claim.",
+      "Own Charon globe and all68 earlier dossiers preserved; observer/master/preview/additive69 and substantial headroom remain pending."
+    ],
+    "original": {
+      "path": "data/research-sources/charon-generated-surfaceImage-original.png",
+      "bytes": 3290476,
+      "sha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15989591,
+      "headroomBytes": 10409,
+      "preservation": "All68 dossiers and389 tracked registry/bespoke/model/shape inputs byte-identical. Complete snapshot SHA e813273c0fb6267a69350fd9ef833d2ef1104e6c5f9b2147eba8b80298e69e99 byte-identical to prior supplement build.",
+      "browser": "Chrome exact complete readableJSON/app c943a85a/CSS960361a/HTMLparser;237images20bands517details32models native hashes and actual normal/offlineProteus3cards/noownmap pass; other engines open.",
+      "production": "All codecs, full science/native fields, legacy decoders, Blob paths and notices unchanged. No embedding or size-saving claim."
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Charon",
+    "status": "Research-only observer/master preparation; no69th dossier or new embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Create an independent scientific educational hypothetical observer illustration from Charon, landscape 16:9. Generate from scratch, no photograph or map input, never reuse or recolour Moon/Mars/Pluto/other observed terrain. Low grey granular foreground with angular blocks, shallow depressions and fractured low ridges; all relief, materials, chemistry, colour, lighting and exposure invented, no registered New Horizons site. Nearly black sky assumed transparent, not atmospheric-absence measurement. Above the horizon put one small spherical Pluto, independently imagined muted grey/tan irregular markings, no familiar heart/Sputnik or observed map pattern. Shared skyGeometry gives Pluto radius1188.3km and assumed sub-Pluto observer distance19600-606=18994km: angular diameter7.173746118614256degrees, nominal90degree horizontal FOV, projected disc width104.80874376188328pixels on1672pixel canvas, about6.2685percent image width. Aim for this small diameter, not a huge looming globe. Phase and camera/axis attitude artistic, assumed facing hemisphere; mutual locking does not make Pluto visible from every Charon site. No dated registration or calibrated visible colour/photometry. Omit Sun, stars, rings and visible haze; ring omission artistic not proof of absence, Pluto atmosphere not visibly calibrated. Text clearly legible: \"IMAGINED SKY FROM CHARON\" and footer \"Invented terrain and Pluto appearance · Assumed facing hemisphere\". No humans, spacecraft, habitats, landing/survivability, plume, liquid, ocean, biology or interior cutaway.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bb2f81bb-cd21-4e87-a20f-e73e36b9d7f8.png",
+    "original": {
+      "path": "data/research-sources/charon-generated-skyImage-original.png",
+      "bytes": 2976004,
+      "sha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+      "width": 1672,
+      "height": 941
+    },
+    "geometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "plutoRadiusKm": 1188.3,
+      "source": "src/data/sol.js",
+      "separationKm": 19600,
+      "charonRadiusKm": 606,
+      "observerDistanceKm": 18994,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 7.173746118614256,
+      "targetPixels1672": 104.80874376188328,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; colour and irradiance outputs not adopted"
+    },
+    "inspection": "Viewed original: legible IMAGINED labels, grey invented terrain and small independently generated Pluto appearance. No map input, plume, liquid, biology, spacecraft or landing scene.",
+    "limitations": [
+      "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+      "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+      "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+      "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+      "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+      "Disk-integrated spectral features and model mixtures do not map local materials. All68 dossiers, originals, native maps/models/shapes preserved. Headroom recovery and additive69 pending."
+    ],
+    "rasterAudit": {
+      "row": 200,
+      "thresholds": {
+        "5": 85,
+        "10": 84,
+        "20": 84
+      }
+    },
+    "verification": {
+      "tests": "458pass1skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15994062,
+      "headroomBytes": 5938,
+      "snapshotSha256": "f61846b5751a4651564a852a802908cc08f601a09445e3c32bc752151d06d91b",
+      "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+      "browser": "Chrome exact readableJSON/application/CSS and HTMLparser payloads;237images20bands517details32models decode. Other engines open.",
+      "preservation": "389tracked earlier inputs byte-identical to HEAD; no new embedding. Both previews inspected; tiny footer requires card labels.",
+      "attribution": "Interbuild snapshot differences unaudited; no compression or asset savings claim. Production codecs unchanged."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Charon",
+    "status": "Research-only retained masters/previews; no new embedding",
+    "masterFormat": "1536px JPEG quality85",
+    "previewFormat": "256px JPEG quality80; eventual offline generated WebP quality80",
+    "assets": [
+      {
+        "role": "surfaceImage",
+        "original": {
+          "path": "data/research-sources/charon-generated-surfaceImage-original.png",
+          "bytes": 3290476,
+          "sha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/charon-generated-surfaceImage-master.jpg",
+          "bytes": 393714,
+          "sha256": "776c5ff9ae162bf90d3654e4aef26a66981edbeed06b51f54d3158da4370c07a",
+          "width": 1536,
+          "height": 864
+        },
+        "preview": {
+          "path": "data/research-sources/charon-generated-surfaceImage-preview.jpg",
+          "bytes": 11270,
+          "sha256": "222bd6a5c0478314538569033fe455ff4c560584199a226f0e44bf0d08440db1",
+          "width": 256,
+          "height": 144
+        }
+      },
+      {
+        "role": "skyImage",
+        "original": {
+          "path": "data/research-sources/charon-generated-skyImage-original.png",
+          "bytes": 2976004,
+          "sha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/charon-generated-skyImage-master.jpg",
+          "bytes": 308031,
+          "sha256": "ae4c02df69c261339cc8013b252f5f70497df6aae0ab60ada1a4da42bc295cb2",
+          "width": 1536,
+          "height": 864
+        },
+        "preview": {
+          "path": "data/research-sources/charon-generated-skyImage-preview.jpg",
+          "bytes": 9246,
+          "sha256": "c85fa2dad2544a0c3521e809ad04f50b0c736b87aaa8fc1642a6c522f52a01d5",
+          "width": 256,
+          "height": 144
+        }
+      }
+    ],
+    "limitations": [
+      "Small footers require readable card labels. All originals/default copies/full prompts retained. Native imagery unchanged; no observed map reused."
+    ]
+  },
+  "bodies": [
+    {
+      "id": "charon",
+      "name": "Charon",
+      "aliases": [
+        "Charon"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+      "measured": [
+        "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+        "JWST disk-integrated NIRSpec IFU1191 spectra detect CO2 and H2O2 features, not local material fractions or New Horizons pixel chemistry. Four visits2022-09-24,2023-04-18,2023-04-19 and2023-04-21; exact two204.244/277.189/554.378second exposures total2071.622seconds rounds2072; older rounded sum2071 is rounding, not a data conflict."
+      ],
+      "modelled": [
+        "Crystalline/stratified ice, excavation reservoirs and radiolysis are interpretations, not direct ocean, plume or biology detections. Supplement areal80/18/2ice mixtures are models, not local chemical fractions.",
+        "skyGeometry nominal Pluto angular diameter7.173746118614256degrees and104.80874376188328pixels at1672wide/90degree horizontalFOV; angular geometry only."
+      ],
+      "unknown": [
+        "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+        "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+        "Correct Charon camera/range/raw product, MAST extraction/calibration, local fractions, atmosphere transfer, dated site/shape/pole/scene registration remain open. Supplement visit103 Pluto contamination5percent average/47percent2.8–3/38percent4.19–5.3micron is extraction-specific, not a universal image correction. SourceData Charon_b header TARGETPLUTO must not be assigned to Charon. LEISA Hapke maps and diluted NH3 candidate do not register this natural-colour image."
+      ],
+      "assumed": [
+        "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+        "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+        "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+        "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+        "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+        "Terrain, blocks, grain sizes, chemistry, colour, light and exposure invented.",
+        "Not a registered New Horizons site or observed globe map; no analog body skin.",
+        "Disk-integrated spectra and best-fit mixture fractions do not map these local materials.",
+        "Black sky is assumed transparency, not measured atmospheric absence.",
+        "No astronomical disk, so no angular/raster-size claim.",
+        "Own Charon globe and all68 earlier dossiers preserved; observer/master/preview/additive69 and substantial headroom remain pending.",
+        "Original generated PNGs/full prompts retained. Small preview footers require readable IMAGINED card labels. No observed-body analog skin, registered site, atmosphere/plume/liquid/ocean/biology or survivable landing."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/resource/true-colors-of-charon/",
+          "title": "NASA New Horizons natural-colour approximation of Charon",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+          "observationDate": "2015-07-14",
+          "publicationDate": "2018-07-23",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://www.nature.com/articles/s41467-024-51826-4",
+          "title": "Detection of carbon dioxide and hydrogen peroxide on the stratified surface of Charon with JWST",
+          "doi": "10.1038/s41467-024-51826-4",
+          "publicationDate": "2024-10-01",
+          "authors": [
+            "Protopapa, Silvia",
+            "Raut, Ujjwal",
+            "Wong, Ian",
+            "Stansberry, John",
+            "Villanueva, Geronimo L.",
+            "Cook, Jason",
+            "Holler, Bryan",
+            "Grundy, William M.",
+            "Brunetto, Rosario",
+            "Cartwright, Richard J.",
+            "Mamo, Bereket",
+            "Emery, Joshua P.",
+            "Parker, Alex H.",
+            "Guilbert-Lepoutre, Aurelie",
+            "Pinilla-Alonso, Noemi",
+            "Milam, Stefanie N.",
+            "Hammel, Heidi B."
+          ],
+          "assessment": "Accessible full publisher HTML targeted results/methods/licence assessed; exact observing dates/supplement/product crosswalk still open. No paper figure embedded.",
+          "terms": "Current publisher HTML explicitly CC BY-NC-ND4.0 with third-party exceptions, not CC BY.",
+          "termsUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "observations": {
+            "program": 1191,
+            "instrument": "JWST NIRSpecIFU",
+            "settings": [
+              "G140H",
+              "G235H",
+              "G395H"
+            ],
+            "wavelengthMicrons": [
+              1,
+              5.2
+            ],
+            "resolvingPower": 2700,
+            "visits": 4,
+            "exposuresSecondsPerSetting": [
+              408,
+              554,
+              1109
+            ],
+            "reportedTotalPerObservationSeconds": 2072,
+            "limits": "Reported summed total2072 differs from rounded setting values2071; preserved, no silent correction. Exact observation dates remain pending supplement audit."
+          },
+          "measurements": "Disk-integrated near-infrared features support CO2 and H2O2; not a local fraction or visible terrain map.",
+          "interpretations": "Crystalline CO2 and stratification, impact excavation/internal reservoir and irradiation/radiolysis origins depend on laboratory/spectral models. Not direct plumbing, a current ocean/plume, local chemistry fractions or biology. Native New Horizons pixels are not automatically mapped to JWST absorptions.",
+          "sha256": "b7b49eb715cbf2b6b9c7bb392356ddae30cdeaf2b6d80b808f525a7275462d0a"
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA media terms and credited third-party caveats"
+        }
+      ],
+      "contextImages": [
+        {
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+          "sourcePage": "https://science.nasa.gov/resource/true-colors-of-charon/",
+          "observationDate": "2015-07-14",
+          "publicationDate": "2018-07-23",
+          "migrationDate": "2023-09-09",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "terms": "NASA media guidance and credited third-party caveats; not asserted CC BY",
+          "inspection": "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+          "captionConflict": "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+          "url": "/bespoke/charon-new-horizons-native.jpg",
+          "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+          "path": "data/research-sources/charon-natural-display320.jpg",
+          "bytes": 10097,
+          "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+          "width": 320,
+          "height": 320,
+          "format": "JPEG",
+          "contentType": "image/jpeg",
+          "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+          "sourceUrl": "https://science.nasa.gov/resource/true-colors-of-charon/",
+          "tier": "measured",
+          "description": "Actual New Horizons Charon publisher natural-colour approximation; not independently calibrated photometry or registered globe.",
+          "processing": "Unchanged NASA-served320px JPEG; publisher resize/re-encoding, not full pixel preservation. Original2000px PNG and160px rendition retained. No Fidelity resize or re-encoding."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 39.48,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL CHARON TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM CHARON",
+      "plutoGeometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "plutoRadiusKm": 1188.3,
+        "source": "src/data/sol.js",
+        "separationKm": 19600,
+        "charonRadiusKm": 606,
+        "observerDistanceKm": 18994,
+        "horizontalFovDeg": 90,
+        "angularDiameterDeg": 7.173746118614256,
+        "targetPixels1672": 104.80874376188328,
+        "temperatureK": 40,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs not adopted",
+        "rasterAudit": {
+          "row": 200,
+          "thresholds": {
+            "5": 85,
+            "10": 84,
+            "20": 84
+          }
+        },
+        "limits": [
+          "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+          "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+          "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+          "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+          "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+          "Disk-integrated spectral features and model mixtures do not map local materials. All68 dossiers, originals, native maps/models/shapes preserved. Headroom recovery and additive69 pending."
+        ]
+      },
+      "inputs": {
+        "surfaceImage": "charon-generated-surfaceImage-original.png",
+        "skyImage": "charon-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "dossierRecord": {
+    "id": "charon",
+    "name": "Charon",
+    "aliases": [
+      "Charon"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+    "measured": [
+      "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+      "JWST disk-integrated NIRSpec IFU1191 spectra detect CO2 and H2O2 features, not local material fractions or New Horizons pixel chemistry. Four visits2022-09-24,2023-04-18,2023-04-19 and2023-04-21; exact two204.244/277.189/554.378second exposures total2071.622seconds rounds2072; older rounded sum2071 is rounding, not a data conflict."
+    ],
+    "modelled": [
+      "Crystalline/stratified ice, excavation reservoirs and radiolysis are interpretations, not direct ocean, plume or biology detections. Supplement areal80/18/2ice mixtures are models, not local chemical fractions.",
+      "skyGeometry nominal Pluto angular diameter7.173746118614256degrees and104.80874376188328pixels at1672wide/90degree horizontalFOV; angular geometry only."
+    ],
+    "unknown": [
+      "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+      "Own NASA3D New Horizons mosaic unchanged; frame/input epochs/coverage/photometry and shape registration remain open. No new globe or analog skin.",
+      "Correct Charon camera/range/raw product, MAST extraction/calibration, local fractions, atmosphere transfer, dated site/shape/pole/scene registration remain open. Supplement visit103 Pluto contamination5percent average/47percent2.8–3/38percent4.19–5.3micron is extraction-specific, not a universal image correction. SourceData Charon_b header TARGETPLUTO must not be assigned to Charon. LEISA Hapke maps and diluted NH3 candidate do not register this natural-colour image."
+    ],
+    "assumed": [
+      "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+      "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+      "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+      "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+      "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+      "Terrain, blocks, grain sizes, chemistry, colour, light and exposure invented.",
+      "Not a registered New Horizons site or observed globe map; no analog body skin.",
+      "Disk-integrated spectra and best-fit mixture fractions do not map these local materials.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk, so no angular/raster-size claim.",
+      "Own Charon globe and all68 earlier dossiers preserved; observer/master/preview/additive69 and substantial headroom remain pending.",
+      "Original generated PNGs/full prompts retained. Small preview footers require readable IMAGINED card labels. No observed-body analog skin, registered site, atmosphere/plume/liquid/ocean/biology or survivable landing."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "title": "NASA New Horizons natural-colour approximation of Charon",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2018-07-23",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41467-024-51826-4",
+        "title": "Detection of carbon dioxide and hydrogen peroxide on the stratified surface of Charon with JWST",
+        "doi": "10.1038/s41467-024-51826-4",
+        "publicationDate": "2024-10-01",
+        "authors": [
+          "Protopapa, Silvia",
+          "Raut, Ujjwal",
+          "Wong, Ian",
+          "Stansberry, John",
+          "Villanueva, Geronimo L.",
+          "Cook, Jason",
+          "Holler, Bryan",
+          "Grundy, William M.",
+          "Brunetto, Rosario",
+          "Cartwright, Richard J.",
+          "Mamo, Bereket",
+          "Emery, Joshua P.",
+          "Parker, Alex H.",
+          "Guilbert-Lepoutre, Aurelie",
+          "Pinilla-Alonso, Noemi",
+          "Milam, Stefanie N.",
+          "Hammel, Heidi B."
+        ],
+        "assessment": "Accessible full publisher HTML targeted results/methods/licence assessed; exact observing dates/supplement/product crosswalk still open. No paper figure embedded.",
+        "terms": "Current publisher HTML explicitly CC BY-NC-ND4.0 with third-party exceptions, not CC BY.",
+        "termsUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+        "observations": {
+          "program": 1191,
+          "instrument": "JWST NIRSpecIFU",
+          "settings": [
+            "G140H",
+            "G235H",
+            "G395H"
+          ],
+          "wavelengthMicrons": [
+            1,
+            5.2
+          ],
+          "resolvingPower": 2700,
+          "visits": 4,
+          "exposuresSecondsPerSetting": [
+            408,
+            554,
+            1109
+          ],
+          "reportedTotalPerObservationSeconds": 2072,
+          "limits": "Reported summed total2072 differs from rounded setting values2071; preserved, no silent correction. Exact observation dates remain pending supplement audit."
+        },
+        "measurements": "Disk-integrated near-infrared features support CO2 and H2O2; not a local fraction or visible terrain map.",
+        "interpretations": "Crystalline CO2 and stratification, impact excavation/internal reservoir and irradiation/radiolysis origins depend on laboratory/spectral models. Not direct plumbing, a current ocean/plume, local chemistry fractions or biology. Native New Horizons pixels are not automatically mapped to JWST absorptions.",
+        "sha256": "b7b49eb715cbf2b6b9c7bb392356ddae30cdeaf2b6d80b808f525a7275462d0a"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms and credited third-party caveats"
+      }
+    ],
+    "contextImages": [
+      {
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute/Alex Parker",
+        "sourcePage": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2018-07-23",
+        "migrationDate": "2023-09-09",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA media guidance and credited third-party caveats; not asserted CC BY",
+        "inspection": "Original2000squarePNG inspected unchanged; grey/red pole, cratered terrain and prominent troughs. Publisher natural-colour reconstruction approximates human-eye colours; does not independently establish radiometric calibration or a registered global map. No Fidelity re-encoding.",
+        "captionConflict": "Page single-MVIC-scan/range35445km prose includes Pluto/Sputnik Planitia wording under Charon; association/range/instrument crosswalk remains open. Do not assign Pluto features or its colour to Charon.",
+        "url": "/bespoke/charon-new-horizons-native.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "path": "data/research-sources/charon-natural-display320.jpg",
+        "bytes": 10097,
+        "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+        "width": 320,
+        "height": 320,
+        "format": "JPEG",
+        "contentType": "image/jpeg",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+        "sourceUrl": "https://science.nasa.gov/resource/true-colors-of-charon/",
+        "tier": "measured",
+        "description": "Actual New Horizons Charon publisher natural-colour approximation; not independently calibrated photometry or registered globe.",
+        "processing": "Unchanged NASA-served320px JPEG; publisher resize/re-encoding, not full pixel preservation. Original2000px PNG and160px rendition retained. No Fidelity resize or re-encoding."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL CHARON TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM CHARON",
+    "plutoGeometry": {
+      "helper": "src/astro/appearance.js skyGeometry",
+      "plutoRadiusKm": 1188.3,
+      "source": "src/data/sol.js",
+      "separationKm": 19600,
+      "charonRadiusKm": 606,
+      "observerDistanceKm": 18994,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 7.173746118614256,
+      "targetPixels1672": 104.80874376188328,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; colour and irradiance outputs not adopted",
+      "rasterAudit": {
+        "row": 200,
+        "thresholds": {
+          "5": 85,
+          "10": 84,
+          "20": 84
+        }
+      },
+      "limits": [
+        "Generated Pluto appears undersized; row200 threshold chords are exposure/phase-sensitive, not calibrated full diameter.",
+        "Terrain, chemistry, fractions, Pluto pattern/colour, phase, lighting, exposure and camera/axis attitude invented. No analog skin or dated site registration.",
+        "Assumed facing hemisphere; mutual tidal locking does not make Pluto visible from every Charon site.",
+        "Black sky assumes transparency, not measured atmospheric absence. Pluto atmosphere transfer uncalibrated; rings omitted artistically, not proof of absence.",
+        "Mean spherical radii; local elevation, shape and dated attitude/ephemeris registration open.",
+        "Disk-integrated spectral features and model mixtures do not map local materials. All68 dossiers, originals, native maps/models/shapes preserved. Headroom recovery and additive69 pending."
+      ]
+    },
+    "surfaceImage": {
+      "url": "/bespoke/charon-surface-image.jpg",
+      "previewUrl": "/bespoke/charon-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "charon-generated-surfaceImage-original.png",
+      "sourceSha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+      "sha256": "4f754fd707360646630d9534aeeca80c24109deee728b41924ab6ef86dbcdbbd",
+      "previewSha256": "0f1f619e08c6e98d240c57cc10e91fe9f7b3fc242e279504d7df20bb3f9ae8fd",
+      "bytes": 401340,
+      "previewBytes": 11423,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/charon-sky-image.jpg",
+      "previewUrl": "/bespoke/charon-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "charon-generated-skyImage-original.png",
+      "sourceSha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+      "sha256": "366c3b032f23900eee9f324fca06f6302cad04ac36b1e08dd34fb44167ccb466",
+      "previewSha256": "a00f83b277b01e281af24df0b0686cf277f2083815fcb50e60f6fb63138f1c05",
+      "bytes": 314031,
+      "previewBytes": 9323,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "sunHelperLimit": "Sun39.48AU is a representative assumed angular helper only, off-frame; no dated orbit, exposure, spectrum transfer or calibrated scene photometry.",
+  "verification": {
+    "tests": "604 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15775981,
+    "headroomBytes": 224019,
+    "priorDossiersDeepEqual": 68,
+    "protectedPublicFilesByteEqual": 561,
+    "nativeHashesVerified": 58,
+    "browser": {
+      "bandImages": 20,
+      "snapshot": "034783fd793347ff8e4e47e5664cd40bd0351ac39d39c55be51efabce8377699",
+      "raw": "7118593cef170fc77b4a8358c3ac565e17b99b1713e8196de815e357d53cb87b",
+      "magic": "FIDBRT01",
+      "images": 240,
+      "details": 517,
+      "models": 32
+    },
+    "application": {
+      "characterSet": "UTF-8",
+      "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+      "fidelity-startup-data": "19470034b77c0a8231a806dd23a552d6e04c1b6753e87e403de1d988ab5ee11d",
+      "fidelity-application-data": "e42c04fc150c09fd4655ad1c8fe1768df2d46eba12439eaa554c09eda41584a9",
+      "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+      "fidelity-snapshot-data": "7118593cef170fc77b4a8358c3ac565e17b99b1713e8196de815e357d53cb87b",
+      "applicationSha256": "e9d58b68b6b21b303c57731db3025ae086a520bad5e64fe10c6fc08088ff4a4b",
+      "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+      "startupSha256": "595d03b201f71067feef787d907a18f551a3de08aa5866236fc46942a4b81e91",
+      "errors": []
+    },
+    "normalOffline": "Actual Charon own-map3cards pass, readable IMAGINED labels; unchanged own map source SHA verified",
+    "routes": "six routes, unsupportedgzip message and11offline worker rows pass",
+    "otherEngines": "open",
+    "interbuildDifferences": [
+      "/bodyImages//bespoke/charon-surface-image.jpg",
+      "/bodyImages//bespoke/charon-sky-image.jpg",
+      "/bodyImages//bespoke/charon-new-horizons-native.jpg"
+    ],
+    "attribution": "Net HTML increment is not solely attributed to assets when feeds differ; production codecs unchanged."
+  }
+}
