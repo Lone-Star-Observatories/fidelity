@@ -1,0 +1,15 @@
+{
+  "snapshotSha256": "a1d100d98faab38848fff0e71c6450326938cceab1ad0e817dbe17e6bb0837cb",
+  "binaryBytes": 19778276,
+  "accessorComponentLanes": 0,
+  "floatWords": 0,
+  "baselineOuterGzipScreenBytes": 13125131,
+  "candidateOuterGzipScreenBytes": 13125131,
+  "exactNativeAndBundledJsInverse": true,
+  "note": "Research-only adjacent float32 bit-pattern XOR per declared accessor component. No floating-point conversion. Distinct from byteplane shuffle. Excludes reversible wrapper/accessor parser runtime overhead; not adopted.",
+  "date": "2026-10-12",
+  "status": "Rejected eligibility screen; no production change",
+  "explanation": "No eligible float32 accessor components in embedded buffer 0. Representative Hubble float accessors reference buffer 1 through EXT_meshopt_compression; those virtual decoded offsets are not raw embedded float bytes. The screen deliberately excludes nonembedded buffers rather than transforming compressed bytes as floats. Thus candidate equals baseline; this is not evidence against XOR applied to independently decoded geometry. Decoding/reencoding meshopt would require a separate exact source-byte restoration scheme and is not adopted.",
+  "validation": "Native and bundled JavaScript Brotli inverses restore the exact unchanged container and complete original JSON. No current full-build or full-application browser claim. Latest recorded full build remains over the hard 16MB gate.",
+  "preservation": "No dossier, original PNG, master, native image, map, model, shape, source record, production codec or preview changed. Recorded Clipper preview retained."
+}
