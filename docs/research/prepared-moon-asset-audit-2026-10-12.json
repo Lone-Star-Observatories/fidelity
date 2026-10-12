@@ -1,0 +1,316 @@
+{
+  "date": "2026-10-12",
+  "scope": "Prepared but undelivered moon assets; provenance hash verification and complete-preparation index, no new dossier or embedding.",
+  "bodies": [
+    {
+      "body": "despina",
+      "masterPreviewManifest": "docs/research/despina-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/despina-generated-surfaceImage-master.jpg",
+          "bytes": 303779,
+          "sha256": "d59d3c1e59e14af4c098c73320012ff2df6d139c04106760f69ac1c5f62e2dd8"
+        },
+        {
+          "path": "data/research-sources/despina-generated-surfaceImage-original.png",
+          "bytes": 2559084,
+          "sha256": "549afa735c148da4f60cab2c5436b6b906775bd59e69b8073ccd7b195cfb7f03"
+        },
+        {
+          "path": "data/research-sources/despina-generated-surfaceImage-preview.jpg",
+          "bytes": 9329,
+          "sha256": "70485ae4b1f0400092c5deb8631542c8224ec04b1ad0073e1065cb5e955c2cc1"
+        },
+        {
+          "path": "data/research-sources/despina-generated-skyImage-master.jpg",
+          "bytes": 203247,
+          "sha256": "f0ee75fa520f09eb1fba20d2b2f702c67fe154add3522c52f223dfcb9b43bb19"
+        },
+        {
+          "path": "data/research-sources/despina-generated-skyImage-original.png",
+          "bytes": 1902069,
+          "sha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1"
+        },
+        {
+          "path": "data/research-sources/despina-generated-skyImage-preview.jpg",
+          "bytes": 6809,
+          "sha256": "fb81032694d49c6759b1ce97cfabe49e9d292e0f5973d628fea18a25b27cdf21"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "naiad",
+      "masterPreviewManifest": "docs/research/naiad-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/naiad-generated-surfaceImage-master.jpg",
+          "bytes": 284764,
+          "sha256": "d67c76029b68caace0c64121ccea4b98e21f82bc0422fea62dc0b77a28ef46d9"
+        },
+        {
+          "path": "data/research-sources/naiad-generated-surfaceImage-original.png",
+          "bytes": 2775112,
+          "sha256": "c4996de50f7b76fa310d108c01f615311a99c74c964d7f7a819ceaaed4625957"
+        },
+        {
+          "path": "data/research-sources/naiad-generated-surfaceImage-preview.jpg",
+          "bytes": 10568,
+          "sha256": "976ca3adc0438575ba3189f2d51b906d69c3f993f124846b07e595160e339689"
+        },
+        {
+          "path": "data/research-sources/naiad-generated-skyImage-master.jpg",
+          "bytes": 182601,
+          "sha256": "b2844c25e76f8b35b89b56f6fa667640a20322cd55c1b425d3df549b2f1c31cd"
+        },
+        {
+          "path": "data/research-sources/naiad-generated-skyImage-original.png",
+          "bytes": 2028181,
+          "sha256": "0a955ab67afe16a4fb2d00ac7c51c50a6380bec89a6ea5cc567ebcc47bd5966e"
+        },
+        {
+          "path": "data/research-sources/naiad-generated-skyImage-preview.jpg",
+          "bytes": 6924,
+          "sha256": "ebcadf820597b4375d74ceaf62bddeb175c5b48117b467a15c4ce307bc25d341"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "thalassa",
+      "masterPreviewManifest": "docs/research/thalassa-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/thalassa-generated-surfaceImage-master.jpg",
+          "bytes": 346404,
+          "sha256": "e391f1fabcc576865fd7e660c84be3ad7d600230fbcca8955ec7a9f5af9a853b"
+        },
+        {
+          "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+          "bytes": 2835977,
+          "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad"
+        },
+        {
+          "path": "data/research-sources/thalassa-generated-surfaceImage-preview.jpg",
+          "bytes": 11471,
+          "sha256": "a81551574ee2ac392be1e94691516ed76aca1ce934e914cb1773c5363fe33634"
+        },
+        {
+          "path": "data/research-sources/thalassa-generated-skyImage-master.jpg",
+          "bytes": 184563,
+          "sha256": "543e3571f16e84942575f8f93fe3b7a06a68aaa920b3a9edbdc5d83811d5086a"
+        },
+        {
+          "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+          "bytes": 2155066,
+          "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b"
+        },
+        {
+          "path": "data/research-sources/thalassa-generated-skyImage-preview.jpg",
+          "bytes": 6878,
+          "sha256": "d3148dece8e498b71751d65aa03db5878c2bd62de198d5031f22015bec1d6bb9"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "hippocamp",
+      "masterPreviewManifest": "docs/research/hippocamp-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/hippocamp-generated-surfaceImage-original.png",
+          "bytes": 2972977,
+          "sha256": "023c62871f4dc5896363a6d70359bb927e4048fffa049dde59c27f84a6512285"
+        },
+        {
+          "path": "data/research-sources/hippocamp-generated-surfaceImage-master.jpg",
+          "bytes": 354048,
+          "sha256": "05c56b4a7641eea3fba9ea6dadca7583d3d8818a6329479e446835bde4b1aff1"
+        },
+        {
+          "path": "data/research-sources/hippocamp-generated-surfaceImage-preview.jpg",
+          "bytes": 10663,
+          "sha256": "327b92f74786c2af7251d64701552ec691106da89701d48c50c20d1f2b24a5d7"
+        },
+        {
+          "path": "data/research-sources/hippocamp-generated-skyImage-original.png",
+          "bytes": 1921216,
+          "sha256": "80f302332800908bfc7f1abc7dc1759dc33e36dae02dfed5659ec23b6d6b74b2"
+        },
+        {
+          "path": "data/research-sources/hippocamp-generated-skyImage-master.jpg",
+          "bytes": 219892,
+          "sha256": "56cf9720c1f52bae4dadbad9de6bf65a40472feba954ebd1241aba4900dca216"
+        },
+        {
+          "path": "data/research-sources/hippocamp-generated-skyImage-preview.jpg",
+          "bytes": 7984,
+          "sha256": "4428e3ed2583bb4b586476abd0f50bfd115ec3bf2e698649855fda01144075fc"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "makemake-moon",
+      "masterPreviewManifest": "docs/research/makemake-moon-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/makemake-moon-generated-surfaceImage-original.png",
+          "bytes": 2502948,
+          "sha256": "2a044e0f8b64248dec9c2ef639ef1616770bdba7d918c05274be6bd24f74ef61"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-generated-surfaceImage-master.jpg",
+          "bytes": 312663,
+          "sha256": "6948e6766e9ea7a019b74d52c74120bf50b937dcd9ebeec2631979ce4093107d"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-generated-surfaceImage-preview.jpg",
+          "bytes": 11058,
+          "sha256": "52878f75f486840b9e9b444040d5092724e16c66835d3bb600400b3070ebfc53"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-generated-skyImage-original.png",
+          "bytes": 1801151,
+          "sha256": "d6842c37ec41655e477eba4bb1c7f34f8eeea44dc78349d956fdd379a78de12b"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-generated-skyImage-master.jpg",
+          "bytes": 163226,
+          "sha256": "4fd23b24a67fc9b7fc9d28d9c94f11d279bd67b1e3759f4f90ebd89394f445e4"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-generated-skyImage-preview.jpg",
+          "bytes": 6488,
+          "sha256": "ac957bfd50a0450ac604a0bfc02b239fc8aaaba76fd549da05e569424ccd8802"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "dysnomia",
+      "masterPreviewManifest": "docs/research/dysnomia-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+          "bytes": 2703596,
+          "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-master.jpg",
+          "bytes": 340326,
+          "sha256": "8f1922872da52d21e0393ef8aee36a43d1a3d291839aaf4f7e6fd147bbb29ce4"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-preview.jpg",
+          "bytes": 10921,
+          "sha256": "332051c70449c9aa75ff0995afccf62f9e320df5f64ba25ed7491d9c22b5e40f"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-original.png",
+          "bytes": 1878586,
+          "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-master.jpg",
+          "bytes": 232467,
+          "sha256": "235456ce76694b83eac1b565c5f648fc0dc742f625d5e1f9718ade1fb9436a62"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-preview.jpg",
+          "bytes": 8423,
+          "sha256": "dac73ad008048f0affa57d0e1a1db440c1dddacb23570c7ce0b7cd065f0b9f52"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "namaka",
+      "masterPreviewManifest": "docs/research/namaka-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/namaka-generated-surfaceImage-original.png",
+          "bytes": 2730881,
+          "sha256": "c7de09e8c665551b265e7c94c5e133957c4b87f0c809d48e5fa239198ff828e4"
+        },
+        {
+          "path": "data/research-sources/namaka-generated-surfaceImage-master.jpg",
+          "bytes": 344108,
+          "sha256": "fb6426bb8d0ecd2bab9c74af15e5bdc6dbaf275abaae5de237c4fce167186289"
+        },
+        {
+          "path": "data/research-sources/namaka-generated-surfaceImage-preview.jpg",
+          "bytes": 11452,
+          "sha256": "09092212c8ef1a2d39c07677f2f6bd7988900f7fa31796d121123df2f9446707"
+        },
+        {
+          "path": "data/research-sources/namaka-generated-skyImage-original.png",
+          "bytes": 1931049,
+          "sha256": "0e80df0e96e9f78327b532ee878f8d34373dc5f1db03e8e06315487a2403ebf8"
+        },
+        {
+          "path": "data/research-sources/namaka-generated-skyImage-master.jpg",
+          "bytes": 222242,
+          "sha256": "0c608c06d7417e1a1d2bedc0d68089604fb98a5f89ca29d0dec5b3279d2927d3"
+        },
+        {
+          "path": "data/research-sources/namaka-generated-skyImage-preview.jpg",
+          "bytes": 7424,
+          "sha256": "c73d715bce24878db0fb9c3f14aca2055a01f9ef832faed1194d5284a40a461f"
+        }
+      ],
+      "alreadyPrepared": true
+    },
+    {
+      "body": "hiiaka",
+      "masterPreviewManifest": "docs/research/hiiaka-master-preview-preparation-2026-10-12.json",
+      "verifiedImages": [
+        {
+          "path": "data/research-sources/hiiaka-generated-surfaceImage-original.png",
+          "bytes": 2966125,
+          "sha256": "9576780412bd41edc9d5ed8649ae8b800225d77e3d02394e40d7a6a014ee891a"
+        },
+        {
+          "path": "data/research-sources/hiiaka-generated-surfaceImage-master.jpg",
+          "bytes": 358015,
+          "sha256": "1497f2fa579d1d4a5d27fa5c4a3a2184938a36a22da5d0cfe015475d5838711b"
+        },
+        {
+          "path": "data/research-sources/hiiaka-generated-surfaceImage-preview.jpg",
+          "bytes": 10258,
+          "sha256": "b979880bdb57bf41cb5624138256fc2bae37e56eb7555d4d3a2411736465ced9"
+        },
+        {
+          "path": "data/research-sources/hiiaka-generated-skyImage-original.png",
+          "bytes": 2453667,
+          "sha256": "9f6441119401b5925b408dd55bfa750e8382c33693e0d21561ab47c9ec2d2841"
+        },
+        {
+          "path": "data/research-sources/hiiaka-generated-skyImage-master.jpg",
+          "bytes": 296602,
+          "sha256": "aa18d285bf1e20bdf2081d842f6d263d46f3d40238da823b9e1172c6d3e82c17"
+        },
+        {
+          "path": "data/research-sources/hiiaka-generated-skyImage-preview.jpg",
+          "bytes": 9433,
+          "sha256": "c24422d000cf84f2388cde92eaba8b2d5ad0f6dd5c8cfda8280a2a76f3adea5a"
+        }
+      ],
+      "alreadyPrepared": true
+    }
+  ],
+  "limits": "All original/full-prompt/native science limitations remain in linked records. Prepared images are not delivered dossiers, calibrated terrain or registered observer scenes. Small previews require readable IMAGINED card labels. Headroom recovery remains essential before embedding.",
+  "validation": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15995168,
+    "headroomBytes": 4832,
+    "unchangedTrackedPublicFiles": 596,
+    "unchangedDossiers": 75,
+    "queue": 566,
+    "freshBrowserVerification": false,
+    "attribution": "Interbuild feed differences unaudited; no compression savings claim."
+  }
+}

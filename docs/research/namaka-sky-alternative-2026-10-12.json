@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "body": "Namaka",
+  "status": "Research-only independent alternative; existing original restored byte-for-byte, no replacement/adoption/embedding/dossier76.",
+  "generator": "Built-in imagegen, no reference image",
+  "prompt": "Create an independent research-guided hypothetical scientific observer illustration, wide1672x941, sky view from Namaka, Haumea's smaller moon distinct from Hi\u02bbiaka. Low grey granular foreground with independently invented angular stones, shallow depressions and low ridges under a broad black sky. Restrained oblique illumination. No astronomical disks: Haumea, Hi\u02bbiaka, Sun, rings and stars are outside the assumed camera frame, not claimed physically invisible. Do not portray Earth's projected Haumea occultation ellipse as the outline seen from Namaka: physical ellipsoid, pole, phase and observer direction remain unregistered here. No reuse or recolouring of any observed body's map or terrain; no Hi\u02bbiaka, Haumea, Moon, Pluto or other body's geography. Invented terrain, materials, chemistry, grey colour, lighting and exposure, no measured composition. Namaka's unresolved imagery and assumed150\u00b150km circular occultation limb do not establish local shape, surface normal, spin synchronization or permanently Haumea-facing terrain. Nominal eccentric orbit is not a dated local scene. No foreground atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, people, vehicles or survivable landing implication. Black sky is assumed transparency, not measured atmospheric absence. Finished restrained independent visualization, not collage. Put two large readable footer lines on a discreet dark annotation strip: 'IMAGINED \u2014 SKY FROM NAMAKA' and 'Terrain, colour, lighting and camera attitude are hypothetical'.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-33e44205-f9f1-4185-96de-b11c14088ec5.png",
+  "researchCopy": "data/research-sources/namaka-generated-skyImage-alternative-2026-10-12.png",
+  "inspection": "Both IMAGINED and hypothesis labels readable across a single footer band. Independent grey grains, blocks, depressions and black sky; no astronomical disk.",
+  "limits": [
+    "Invented terrain, chemistry/material fractions, colour, light, exposure and camera attitude; no analog map or dated native site.",
+    "Assumed circular occultation limb does not establish a local normal, spin locking or permanent facing terrain.",
+    "Haumea, Hi\u02bbiaka, Sun and rings outside assumed frame; black sky/omission do not measure absence.",
+    "No projected Earth-view ellipse adopted as moon-view limb; physical axes/pole/phase and observer registration remain open.",
+    "No atmosphere, plume, exposed liquid/ocean, biology or survivable landing."
+  ],
+  "references": [
+    "docs/research/namaka-sky-view-preparation-2026-10-12.json",
+    "docs/research/haumea-moons-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2945701,
+    "sha256": "686c7e9ac082b06562cd3ed626db25fb515fb54b25cf64689b41c18e41a150bd",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "validation": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15995168,
+    "headroomBytes": 4832,
+    "unchangedTrackedPublicFiles": 596,
+    "unchangedDossiers": 75,
+    "queue": 566,
+    "freshBrowserVerification": false,
+    "attribution": "Interbuild feed differences unaudited; no compression savings claim."
+  }
+}
