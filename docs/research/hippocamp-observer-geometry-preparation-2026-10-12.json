@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12",
+  "body": "Hippocamp / S/2004 N1 / Neptune XIV (JPL814)",
+  "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+  "sources": [
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/hippocamp-jpl-physical-2026-10-12.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/hippocamp-jpl-elements-2026-10-12.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12"
+    }
+  ],
+  "parameters": {
+    "jplPhysicalTable": "No Hippocamp row in this retrieved physical-parameter table; no JPL radius or GM invented.",
+    "jplMeanElements": {
+      "ephemeris": "NEP097",
+      "reference": "M. Brozovic (2020), personal communication to Horizons/NAIF",
+      "frame": "Local Laplace",
+      "epoch": "2000-01-01.5 TDB",
+      "semimajorAxisKm": 105300,
+      "eccentricity": 0.001,
+      "inclinationDeg": 0.3,
+      "periodDays": 0.95039
+    },
+    "paper2019": {
+      "radiusKm": 16.2,
+      "radiusUncertaintyKm": 1.2,
+      "radiusLimit": "Photometry-derived effective spherical radius assuming albedo0.09\u00b10.01 and phase slope0.24mag/degree, not resolved axes/local normal.",
+      "semimajorAxisKm": 105283.56,
+      "epoch": "2009-01-01T00:00:00 UTC",
+      "meanMotionDegPerDay": 378.906239,
+      "eccentricity": 0.00019,
+      "inclinationDeg": 0.082
+    },
+    "comparison": "Distinct fitted/mean parameters and epochs retained; no silent catalogue update or cause claim. NASA\u226412miles versus ESA34km diameter caption conflict retained."
+  },
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "neptuneSphericalMeanRadiusKm": 24622,
+    "assumedHeightKm": 16.2,
+    "assumedCentreDistanceKm": 105283.8,
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "angularDiameterDeg": 27.0492364326537,
+    "centreDiscWidthPixels": 402.1715774423626,
+    "temperatureHelperK": 60,
+    "limits": "Angular helper only; colour and irradiance outputs discarded. Mean semimajor-axis distance minus photometric effective height is hypothetical, not dated distance, irregular normal, verified spin/tidal locking or permanent Neptune-facing site. No rendered image or measured raster adopted; not an uncertainty envelope."
+  },
+  "open": [
+    "Native NASA image individual point/UTC/filter/exposure/coadd/product crosswalk and contributor terms",
+    "Current mass, resolved shape, rotation and physical registration",
+    "Camera attitude, phase, Neptune oblateness, atmospheric transmission, ring visibility and colour/photometric calibration"
+  ],
+  "preservedLimits": "Unresolved native sources do not establish geography or local chemistry. Black sky/ring omission cannot establish absence. Proteus-fragment migration/reaccretion is a model, not directly observed history. No ocean/plume/biology/landing claim. Paper licence unverified; ESA image CC BY4 does not license paper/raw products.",
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16064255bytes64255over hard16MB gate",
+    "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/405 protected assets and recorded Clipper preview preserved; queue566.",
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild differences unaudited; no savings attribution or codec change."
+  }
+}
