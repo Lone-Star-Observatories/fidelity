@@ -554,11 +554,10 @@ export const MODELS = {
     "sourcePage": "https://science.nasa.gov/missions/europa-clipper/europa-clipper-resources/europa-clipper-downloadable-3d-model/",
     "maxTextureSize": 512,
     "sourceSha256": "a3f5e4533b31bf4bb25f4332f6879055dfd744f3ff9add23bfa9bdfbefd4f7fe",
-    "previewFlat": true,
     "previewUrl": "/models/europa-clipper-preview.glb",
-    "previewBytes": 108960,
-    "previewSha256": "1356a649df5d88acce870aec1e5186d984465b4bcc3eeaf7c4393063d71583c3",
-    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures replaced by each material's mean colour (flat preview); Meshopt compression. Author axes and existing registration limits retained.",
+    "previewBytes": 950348,
+    "previewSha256": "47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1",
+    "previewProcessing": "Mission geometry simplified toward 4,000 triangles with 2.5% error ceiling; textures limited to 128 pixels; Meshopt compression. Author axes and existing registration limits retained.",
     "previewTextureSize": 128
   },
   "perseverance": {
