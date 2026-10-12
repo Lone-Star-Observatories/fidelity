@@ -21,6 +21,9 @@ import { radecVec } from '../../astro/skyplane.js';
 import { fetchClusterMembers, nebulaImageUrl } from '../../data/catalog.js';
 import { makeSnapshot } from '../snapshot.js';
 import { trekFor, trekGal } from '../../data/trek.js';
+import { createDeepHelm } from '../ship/deepHelm.js';
+import { sceneToGal, STAR_STANDOFF_LY } from '../ship/shipState.js';
+import { quadrantDecision, nearestStar as nearestGal } from '../ship/handover.js';
 
 const DEG = Math.PI / 180;
 export const NEBULA_COLORS = { HII: 0xff6680, PN: 0x55ddbb, SNR: 0xcc99ff, dark: 0xb09a80, reflection: 0x7799ff };
@@ -38,7 +41,7 @@ const POINTS_FRAG = `
   void main() { if (vFar > 0.5) discard; float d = length(gl_PointCoord - 0.5);
     float a = smoothstep(0.5, 0.05, d); if (a < 0.02) discard; gl_FragColor = vec4(vColor, a); }`;
 
-export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill, onDetail, onTrek } = {}) {
+export function createQuadrantView(container, { onSelect, onFrame, onPickStar, onDrill, onDetail, onTrek, onShip } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -319,7 +322,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   const tmpPick = new THREE.Vector3();
   onClicks(labels.domElement, {
     click: (e) => { const p = pickAny(e); if (p?.star) onPickStar?.(p.star); else if (p?.select) onSelect?.(p.select); },
-    dblclick: (e) => { const p = pickAny(e); onDrill?.(p?.star?.kind === 'hyg' ? p.star : null); },
+    dblclick: (e) => { if (ship?.active) return; const p = pickAny(e); onDrill?.(p?.star?.kind === 'hyg' ? p.star : null); },
   });
 
   let selected = null;
@@ -389,6 +392,27 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       else rig.frameSphere(new THREE.Vector3(), radius, 1.02);
     },
     reset: () => { zoomGoal = null; zoomDir = null; rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(radius * 0.35, radius * 1.0, radius * 1.4) }); },
+    captured: () => !!ship?.active, // HELM (#42): the ship flies the camera
+  });
+
+  // ---- HELM (#42): the USS Fidelity across the neighbourhood (src/views/ship/deepHelm.js) ------------------
+  // The scene is heliocentric galactic ly already. Courses: Sol and the landmark clusters and nebulae.
+  const SOL_TARGET = { id: 'sol', name: 'Sol', kind: 'star', gal: [0, 0, 0], standoffLy: STAR_STANDOFF_LY };
+  const objectTarget = (o) => o && { id: o.id, name: o.name, kind: 'object', gal: sceneToGal(o.pos.toArray()), standoffLy: Math.max(2, sizeOf(o) * 1.5) };
+  let starIdx = null; // charted stars with an id, for the hand-down to Navigation
+  const chartStars = () => {
+    if (starIdx?.rows !== starRows) starIdx = { rows: starRows, list: starRows.filter((r) => r[5] != null).map((r) => ({ id: r[5], gal: [r[0], r[1], r[2]] })) };
+    return starIdx.list;
+  };
+  const ship = createDeepHelm({
+    key: 'quadrant', label: 'QUADRANT', scene, camera, controls, dom: labels.domElement, container, renderer, rig,
+    toScene: (g) => new THREE.Vector3(...frameToScene(g)),
+    nearChase: 1e-4, orbitDist: 80, simDefault: 604800,
+    targets: () => [SOL_TARGET, ...objects.map(objectTarget)],
+    selected: () => objectTarget(selected),
+    nearest: (g) => { const n = nearestGal(g, [SOL_TARGET, ...objects.filter((o) => o.distLy <= radius * 1.02).map(objectTarget)]); return n && { name: n.star.name, d: n.d }; },
+    decide: (st) => quadrantDecision({ pos: st.pos, vel: st.vel, radiusLy: radius, stars: chartStars(), stopped: st.stopped, arrived: st.arrived }),
+    on: (kind, d) => onShip?.(kind, d),
   });
   function frame() {
     if (!running) return;
@@ -411,7 +435,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     }
     const camDist = rig.mode === 'orbit' ? camera.position.distanceTo(controls.target) : rig.nearest(); // FLY: the nearest object
     const near = Math.max(0.002, Math.min(1, camDist * 0.01));
-    if (Math.abs(near - camera.near) > camera.near * 0.2) { camera.near = near; camera.updateProjectionMatrix(); }
+    if (!ship.active && Math.abs(near - camera.near) > camera.near * 0.2) { camera.near = near; camera.updateProjectionMatrix(); } // at the helm the ship sets it
     const now = performance.now();
     if (now - lastLazy > 400) { lastLazy = now; lazyUpdate(); }
     const show = settings.get('labels');
@@ -423,8 +447,10 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02) || (selected && t.obj.position.equals(selected.pos)));
     }
     for (const p of trekPlaces) p.o.visible = trekOn && p.dist <= radius * 1.02 && camera.position.distanceTo(p.pos) < p.lod; // strict boolean for CSS2DRenderer
+    ship.frame(now); // HELM (#42): fly and place the camera (no-op when nobody is at the helm)
     ds.tick(camera, renderer.domElement.clientHeight || 800);
     renderer.render(scene, camera);
+    ship.overlay();
     labels.render(scene, camera);
     onFrame?.({});
   }
@@ -445,6 +471,9 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     hide() { container.hidden = true; running = false; },
     setStars, setClusters, setRadius, select, applyLook,
     camera: rig,
+    /** HELM (#42): the ship across the neighbourhood, and a course target ('sol' or an object id). */
+    helm: ship,
+    helmTarget: (id) => (id === 'sol' ? SOL_TARGET : objectTarget(objectById(id))),
     get radius() { return radius; },
     get objects() { return objects; },
     /** Any selectable object, including clusters without a landmark label. */

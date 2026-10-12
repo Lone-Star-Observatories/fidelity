@@ -1982,6 +1982,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     scene, camera, controls, dom: labels.domElement, container, rig,
     nodes: () => nodes, model: () => model, focusId: () => focusId,
     trueRadius: (b) => trueRadius(b), isStar, flyable,
+    // REAL PHYSICS (#42): ephemeris positions at any time (body velocities by finite difference) and the clock's rate
+    positionAt: (id, jd, out) => scenePosition(id, jd, out), jd: () => clock.jd, clockRate: () => clock.rate?.days ?? 0,
     inspect: (o) => inspectCraft(o),
     prepare(id) { if (nodes[id]) { void upgradeCraft(nodes[id]); void upgradeShape(nodes[id]); } }, // the craft's model or the body's shape, as a focus would load
     exitOthers() { if (surface) exitSurface(false); endSiteView(); flight = null; },
