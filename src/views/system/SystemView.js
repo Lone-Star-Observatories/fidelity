@@ -44,7 +44,7 @@ import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive, BAND_UNIFORMS } from './materials.js';
 import { cloudLayer, createDescent, startDescent, stepDescent, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
-import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout } from './clouds.js';
+import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout, helmLayerLook } from './clouds.js';
 import { badge } from '../../data/provenance.js';
 import { createRelief } from './relief.js';
 import { fmtElevation, reliefK } from '../../astro/dem.js';
@@ -180,10 +180,25 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const SKY_R = 2e5;
   const skyMat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
-    uniforms: { uPixel: { value: renderer.getPixelRatio() }, uFade: { value: 1 } },
-    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel;
-      void main() { vColor = color; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
-        gl_PointSize = size * uPixel; }`,
+    // #42: at relativistic impulse the helm sets uAbBeta (β) and uAbDir (unit velocity, scene axes): each star is
+    // moved to its aberrated direction and its colour and size follow the Doppler factor (warp.js aberrateCos /
+    // dopplerFactor; positions exact, colour and brightness an approximation). β = 0 leaves the sky as it is.
+    uniforms: { uPixel: { value: renderer.getPixelRatio() }, uFade: { value: 1 }, uAbBeta: { value: 0 }, uAbDir: { value: new THREE.Vector3(0, 0, -1) } },
+    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel; uniform float uAbBeta; uniform vec3 uAbDir;
+      void main() {
+        vec3 p = position; vColor = color; float s = size;
+        if (uAbBeta > 0.0) {
+          float r = length(p); vec3 d = p / r; float c = dot(d, uAbDir);
+          float cp = (c + uAbBeta) / (1.0 + uAbBeta * c);
+          vec3 perp = d - c * uAbDir; float pl = length(perp);
+          if (pl > 1e-6) p = (uAbDir * cp + perp / pl * sqrt(max(0.0, 1.0 - cp * cp))) * r;
+          float D = sqrt(1.0 - uAbBeta * uAbBeta) / (1.0 - uAbBeta * cp);
+          float k = clamp(log2(D), -3.0, 3.0);
+          vColor = color * vec3(pow(0.62, k), 1.0, pow(1.6, k)) * clamp(D * D, 0.08, 6.0);
+          s = size * clamp(sqrt(D), 0.4, 2.2);
+        }
+        vec4 mv = modelViewMatrix * vec4(p, 1.0); gl_Position = projectionMatrix * mv;
+        gl_PointSize = s * uPixel; }`,
     fragmentShader: `varying vec3 vColor; uniform float uFade; void main() { float d = length(gl_PointCoord - 0.5);
         float a = smoothstep(0.5, 0.0, d) * uFade; if (a < 0.01) discard; gl_FragColor = vec4(vColor, a); }`,
   });
@@ -2377,6 +2392,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const sel = helm.selected;
       focusId = sel && nodes[sel] ? sel : nodes[helm.anchor] ? helm.anchor : focusId; // labels and orbit highlight follow the course target
     }
+    helmCloudLight(helmOrigin); // #83: under Venus' deck at the helm, the surface view's overcast
+    const ab = helmOrigin ? helm.aberration() : null; // #42: relativistic aberration and Doppler on the sky (or none)
+    skyMat.uniforms.uAbBeta.value = ab ? ab.beta : 0;
+    if (ab) skyMat.uniforms.uAbDir.value.fromArray(ab.dir);
     const target = nodes[focusId].pos;
     if (helmOrigin) { /* the helm placed the camera relative to the ship */ }
     else if (flight) {
@@ -2499,6 +2518,59 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   // ---- clouds and ground (#83) --------------------------------------------------------------------
+  /**
+   * The helm under Venus' deck (#42, #83): the same dim orange overcast as standing there (clouds.js layerLook):
+   * the ground's light and fog, the murk veil, the sky colour, no Sun, no other bodies, labels or orbit lines, and
+   * the ship lit by the diffuse light. Undone when the ship climbs out or the helm is left.
+   */
+  let helmLayer = null;
+  const hlOff = new THREE.Vector3(), hlSun = new THREE.Vector3();
+  function helmCloudLight(origin) {
+    const prev = helmLayer;
+    helmLayer = null;
+    const id = origin && !surface ? helm.anchor : null, n = id ? nodes[id] : null, L = n && model.isSol ? cloudLayer(id) : null;
+    if (L && nodes[model.starId]) {
+      hlOff.copy(origin).sub(n.pos);
+      const altKm = hlOff.length() * AU_KM - (L.refRadiusKm ?? n.body.radiusKm);
+      hlSun.copy(nodes[model.starId].pos).sub(origin).normalize();
+      const sunAlt = (Math.asin(Math.max(-1, Math.min(1, hlOff.clone().normalize().dot(hlSun)))) * 180) / Math.PI;
+      const look = helmLayerLook(id, altKm, sunAlt);
+      if (look) helmLayer = { id, look, altKm };
+    }
+    const ship = helm.shipObject;
+    if (prev && prev.id !== helmLayer?.id) { // climbed out (or left the helm): put the light back
+      resetLayerLight(prev.id);
+      scene.background = null; skyMat.uniforms.uFade.value = 1;
+      starLight.color.setHex(model.bodies.find((b) => b.id === model.starId)?.color ?? 0xfff4e0); starLight.intensity = 2.4;
+      ship.traverse((o) => { if (o.material?.isMeshStandardMaterial && o.material.envMap) o.material.envMapIntensity = 0.8; });
+    }
+    if (!helmLayer) return;
+    const look = helmLayer.look, gu = n.mesh.material.uniforms;
+    if (gu.uSkyAmb) {
+      gu.uSunColor.value.setRGB(1.3 * look.sunScale * look.sunTint[0], 1.3 * look.sunScale * look.sunTint[1], 1.3 * look.sunScale * look.sunTint[2]);
+      gu.uSkyAmb.value.setRGB(...look.skyAmb);
+      gu.uSkyUp.value.copy(hlOff).normalize();
+      gu.uFogK.value = look.fogK * AU_KM;
+      gu.uFogCol.value.setRGB(...look.fogRgb);
+    }
+    murkVeil ??= createMurkVeil(scene);
+    murkVeil.set(look.murk, look.murkRgb);
+    const k = look.sky;
+    scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(k[0], k[1], k[2], THREE.LinearSRGBColorSpace);
+    skyMat.uniforms.uFade.value = look.starFade ?? 0;
+    // the ship in the same diffuse orange light
+    starLight.color.setRGB(...look.sunTint); starLight.intensity = 2.4 * look.sunScale;
+    const env = 0.8 * Math.max(0.08, Math.pow(look.light, 0.25));
+    ship.traverse((o) => { if (o.material?.isMeshStandardMaterial && o.material.envMap) o.material.envMapIntensity = env; });
+    if (!look.bodiesVisible) for (const k2 in nodes) {
+      if (k2 === id) continue;
+      const m = nodes[k2];
+      m.group.visible = false; m.label.visible = false;
+      if (m.orbit) { m.orbit.visible = false; fat.sync(m.orbit, 1); } // and its thick twin (#27)
+      if (m.endMark) m.endMark.visible = false;
+    }
+    if (nodes[id].orbit) { nodes[id].orbit.visible = false; fat.sync(nodes[id].orbit, 1); }
+  }
   const cloudSun = new THREE.Vector3();
   /**
    * Each frame for a body with a cloud shell: its rotation against the ground (Venus super-rotates; today's
@@ -2516,7 +2588,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       if (c.userData.staticTex && cu.uMap.value !== c.userData.staticTex) cu.uMap.value = c.userData.staticTex;
       cu.uAlphaFromLuma.value = 1;
     }
-    const standing = surface?.id === n.body.id ? surface : null;
+    const standing = surface?.id === n.body.id ? surface : helmLayer?.id === n.body.id ? { layerLook: helmLayer.look } : null;
     c.visible = n.cloudBandOK !== false && !n.paleoOn && !(standing?.layerLook?.hideShell);
     if (!gu) return;
     if (gu.uLiveSplit) gu.uLiveSplit.value = liveTex && c.visible ? 1 : 0; // the clouds are on the shell, not the ground

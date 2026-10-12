@@ -97,3 +97,22 @@ test('formatting', () => {
   assert.equal(fmtSpeed(7.66), '7.66 KM/S');
   assert.equal(fmtSpeed(1516 * C_KM_S), '1,516 c');
 });
+
+import { aberrateCos, dopplerFactor } from '../src/astro/warp.js';
+test('relativistic aberration: at β = 0.5 a star 90° off the nose appears at 60°; the poles stay put', () => {
+  const deg = (c) => (Math.acos(c) * 180) / Math.PI;
+  assert.ok(Math.abs(deg(aberrateCos(0, 0.5)) - 60) < 1e-9);
+  assert.equal(aberrateCos(1, 0.9), 1);
+  assert.equal(aberrateCos(-1, 0.9), -1);
+  assert.equal(aberrateCos(0.3, 0), 0.3, 'at rest nothing moves');
+  // stars crowd forward: half the sky (θ < 90°) shrinks into a cone of half-angle acos(β)
+  assert.ok(Math.abs(deg(aberrateCos(0, 0.9)) - deg(0.9)) < 1e-9);
+});
+test('Doppler factor: √((1+β)/(1−β)) ahead, its inverse behind, 1/γ across (transverse redshift)', () => {
+  const b = 0.5;
+  assert.ok(Math.abs(dopplerFactor(1, b) - Math.sqrt(3)) < 1e-12);
+  assert.ok(Math.abs(dopplerFactor(-1, b) - 1 / Math.sqrt(3)) < 1e-12);
+  assert.ok(Math.abs(dopplerFactor(0, b) - Math.sqrt(1 - b * b)) < 1e-12);
+  // in the rest frame the star at 90° has D = γ: the same light seen at its aberrated angle (60° at β = 0.5)
+  assert.ok(Math.abs(dopplerFactor(aberrateCos(0, b), b) - 1 / Math.sqrt(1 - b * b)) < 1e-12);
+});

@@ -9,7 +9,7 @@
 
 import * as THREE from 'three';
 import { cloudLayer, murk, lightFraction, sunVisible, extinctionPerKm, layerAt, atmosphereAt } from '../../astro/atmosphere.js';
-import { DAY_SKY } from './surface.js';
+import { DAY_SKY, daylight } from './surface.js';
 
 const J2000 = 2451545.0;
 
@@ -95,6 +95,18 @@ export function layerLook(id, altKm, { day = 1, cover = 1 } = {}) {
     sunScale: 1, sunTint: [1, 1, 1], skyAmb: [0, 0, 0], fogK: beta, fogRgb: air.map((x) => x * day * 0.9),
     murk: m, murkRgb: EARTH_MURK.map((x) => x * Math.max(0.05, day)), hideShell: false,
   };
+}
+
+/**
+ * The helm under an opaque deck (#42, #83): the surface view's look for a ship `altKm` above the body's reference
+ * radius with the Sun `sunAltDeg` above its local horizon, or null where the deck is not overhead (above it, or a
+ * body whose clouds do not hide the sky). Same light, sky, murk and fog as standing there.
+ */
+export function helmLayerLook(id, altKm, sunAltDeg) {
+  const L = cloudLayer(id);
+  if (!L || layerAt(id, altKm) === 'above') return null;
+  const look = layerLook(id, altKm, { day: daylight(sunAltDeg), cover: 1 });
+  return look && !look.sunVisible ? look : null; // Earth's thin shell leaves the Sun and the sky in view
 }
 
 /** A full-screen veil (clip-space quad) for the murk inside a cloud deck. */

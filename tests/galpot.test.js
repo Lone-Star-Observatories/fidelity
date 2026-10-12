@@ -94,3 +94,15 @@ test('Gliese 710 from HYG (Hipparcos proper motion, older RV): later and wider',
   // Hipparcos' (1.7, 2.1) mas/yr proper motion is ~6× Gaia's: the pass comes out ~0.3 pc
   assert.ok(dMinLy / LY_PER_PC > 0.1 && dMinLy / LY_PER_PC < 0.6, `d = ${dMinLy / LY_PER_PC} pc`);
 });
+
+import { tidalAccel, sunAccel } from '../src/astro/galpot.js';
+test('the Galaxy\'s tide on the ship (#42): nil at the Sun, ~10⁻¹¹ m/s² a thousand light-years out, stretching towards the centre and squeezing towards the disc', () => {
+  assert.ok(Math.abs(sunAccel() * 1000 - 2.1e-10) < 0.3e-10, `the whole pull at the Sun ${sunAccel() * 1000} m/s² (V²/R ≈ 2.1e-10)`);
+  assert.deepEqual(tidalAccel([0, 0, 0]).map((x) => Math.abs(x) < 1e-30), [true, true, true]);
+  const inward = tidalAccel([1000, 0, 0]); // 1,000 ly towards the Galactic centre
+  assert.ok(inward[0] > 0 && inward[0] * 1000 < 1e-10 && inward[0] * 1000 > 1e-12, `${inward[0] * 1000} m/s² along +x`);
+  const up = tidalAccel([0, 0, 1000]); // 1,000 ly above the disc: pulled back towards it
+  assert.ok(up[2] < 0 && Math.abs(up[2]) > Math.abs(up[0]));
+  // over a 1,000-year crossing the tide changes the velocity by well under a kilometre per second
+  assert.ok(Math.hypot(...inward) * 1000 * 365.25 * 86400 < 1);
+});

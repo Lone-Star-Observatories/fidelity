@@ -47,6 +47,19 @@ export function cToWarp(c) {
 /** Lorentz factor γ for speed β = v / c (< 1). */
 export const gamma = (beta) => (beta >= 1 ? Infinity : 1 / Math.sqrt(1 - beta * beta));
 
+// ---- what the crew sees at relativistic speed (#42): aberration and Doppler (special relativity) ----------
+/**
+ * Relativistic aberration: a star at angle θ from the direction of motion in the rest frame (cos θ) appears
+ * at θ′ from the ship moving at β: cos θ′ = (cos θ + β) / (1 + β cos θ). Stars crowd forward (β = 0.5: 90° → 60°).
+ */
+export const aberrateCos = (cosTheta, beta) => (cosTheta + beta) / (1 + beta * cosTheta);
+/**
+ * The Doppler factor D = ν_seen / ν_emitted for light arriving from angle θ′ off the nose, as the ship sees it:
+ * D = 1 / (γ (1 − β cos θ′)). Ahead D = √((1 + β)/(1 − β)) (bluer, brighter), behind its inverse.
+ * A blackbody of temperature T looks like one of D·T; its brightness scales as D⁴ (bolometric).
+ */
+export const dopplerFactor = (cosThetaShip, beta) => Math.sqrt(1 - beta * beta) / (1 - beta * cosThetaShip);
+
 /** A trip of `distKm` at a constant `vKmS`: { earthS, shipS, gamma } (ship = proper time, sublight only). */
 export function tripAtSpeed(distKm, vKmS) {
   const earthS = distKm / vKmS, beta = vKmS / C_KM_S;
