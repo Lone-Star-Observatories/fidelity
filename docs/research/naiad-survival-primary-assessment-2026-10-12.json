@@ -1,0 +1,89 @@
+{
+  "body": "Naiad / S/1989 N6",
+  "date": "2026-10-12",
+  "scope": "Research-only full recent primary assessment; no illustration/dossier69/embedding/catalogue/codec or asset modification.",
+  "primary": {
+    "title": "Some challenges for the long-term survival of Naiad, Neptune’s innermost moon",
+    "authors": [
+      "Harrison Agrusa",
+      "Matija Ćuk",
+      "David Nesvorný",
+      "David Minton"
+    ],
+    "record": "https://arxiv.org/abs/2609.21714v1",
+    "doi": "10.48550/arXiv.2609.21714",
+    "submitted": "2026-09-18",
+    "PDF_manuscript_date": "2026-09-21",
+    "status": "Submitted to A&A; accepted field blank, not asserted final publication.",
+    "pages": 8,
+    "assessed": "Full sections1–6, Tables1–3, figure captions and limitations; no figure embedded.",
+    "licence": "Specific arXiv record links CC BY4.0 https://creativecommons.org/licenses/by/4.0/; PDF carries ©ESO2026 manuscript heading, retained. Not blanket licence for cited papers/code/images or final publisher record."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/naiad-Agrusa2026-v1.pdf",
+      "url": "https://arxiv.org/pdf/2609.21714v1",
+      "bytes": 1606864,
+      "sha256": "f1e2be33b4a269ba3af3eafae91c95da56b141f4fe09e6fb946814b2e19342b5",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    },
+    {
+      "path": "data/research-sources/naiad-Agrusa2026-record.html",
+      "url": "https://arxiv.org/abs/2609.21714v1",
+      "bytes": 44701,
+      "sha256": "4119833453aa2c776a0ebf8b808b45638e06201af8cf4a9cade82eb268598088",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    }
+  ],
+  "inherited_inputs": {
+    "semiaxes_km": [
+      "48±4",
+      "30±8",
+      "26±4"
+    ],
+    "source": "Section2 adopts Karkoschka2003 image ellipsoid; effective33km; no new image-derived axes or local normal.",
+    "GM_km3_s2": "0.008±0.0043 from Brozović2020; density0.8±0.48derived, not composition/porosity.",
+    "spin": "Tidal-locking assumed for centrifugal term in sub-Neptune ellipsoid model; not independent spin observation or dated facing site.",
+    "Table3": "Simulation mean Neptune radius24764km, Naiad33, Thalassa41, Despina75; do not silently replace catalogue or JPL equivalents.",
+    "age": "OrderGyr dynamical age conditional on initially low inclination, convergent tidal migration and uncertain Neptune k2/Q, masses and history. Not direct age measurement.",
+    "history_alternatives": "Recent convergent-migration resonance inclination interpretation differs from earlier lower-order-capture explanation; preserve both histories. Despina/Thalassa resonance-lock speculation not direct Neptune-mode detection."
+  },
+  "models": {
+    "tidal": "MacCullagh ellipsoid gravity plus tides and assumed synchronous rotation; Drucker-Prager with assumed35deg friction. Nominal ≥10kPa cohesion, densityaround1.3g/cm3/less elongation alternatives; conditional strength requirements, not measured cohesion or verified imminent disruption.",
+    "heliocentric": "Calibrated population impact model extrapolated through uncertain Trojan/Charon/Arrokoth small-object SFD and crater-projectile scaling; Table1 probability relative to Jupiter. Naiad >10km impact rate1.2e-11/yr is model, not observed impacts. Disruption threshold unknown; asteroid/KBO analogues not Naiad chemistry or skins.",
+    "sesquinary": "REBOUND/TRACE/ReboundX, Neptune/Naiad/Thalassa/Despina and test particles only; J2/J4, initial NAIF SPICE states; other moons and solar tides neglected. Nominal million orbital periods about800yr. Initial10m projectile20km/s, strength1–10MPa.",
+    "ejecta": "Fixed10m particles with target density; random hemisphere launch; no particle-particle interactions/collision search. HH11 crater scaling uses DART/Dimorphos simulation parameters as modelling proxy, not Naiad measured material. Mass/momentum adjusted, angular momentum not perfectly conserved.1MPa run haltedaround200yr due growth.",
+    "interpretation": "SeveralMPa protection/possible monolithic fragment are conditional interpretations; not detected interior. Grinding/PR removal/deepfine-regolith alternative scenarios need more sophisticated modelling. No ring/torus detection or regolith thickness adopted."
+  },
+  "association_caution": "Sections2/5 group Proteus/Larissa/Galatea phyllosilicate signatures broadly. Preserve independently assessed Davis2026 body-specific results: strong2.72Mg-clay interpretation for Larissa/Galatea, absent/weaker Proteus2.72 and unknown OH carrier; do not assign their Mg-clays or ice nondetections to Naiad. No Naiad direct spectrum/local fractions measured here. Nondetection does not establish absence.",
+  "limits": [
+    "No new angular/raster calculation; future observer must use skyGeometry.",
+    "No map/shape/native pixel registration, calibrated colour/photometry, local chemistry, measured atmosphere absence, ocean/plume/biology or survivable landing.",
+    "No other observed body map assigned; all analogues are modelling context only.",
+    "Preserve historical native credit/UTC/filter/exposure/product-release and shape/spin/frame uncertainty."
+  ],
+  "open": [
+    "Final publication/revised version, model reproducibility and exact initial SPICE-kernel crosswalk.",
+    "April2026 resonance-lock primary full audit and older Karkoschka original shape audit.",
+    "Native complete credits/raw product association and observer geometry/site attitude.",
+    "Substantial conforming lossless standalone headroom before prepared additive dossiers."
+  ],
+  "preservation": {
+    "dossiers": 68,
+    "trackedPublicAssetsCompared": 405,
+    "allBytesEqualHEAD": true,
+    "queue": 566,
+    "originalsMastersNativeProvenance": "Preserved, including recorded Clipper preview."
+  },
+  "validation": {
+    "combinedBase": "0975aa0 including bd516a9 PR77 Trek/warp/helm and1df3bb7 POSTCARD access",
+    "tests": "523 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16060047 bytes, 60047 over hard16MB gate",
+    "browser": "No passing current full artifact/offline browser claim. Other engines remain open.",
+    "queue": 566,
+    "attribution": "Research only; no new embedding/codecs/assets. Interbuild feed differences unaudited; no savings attribution."
+  }
+}
