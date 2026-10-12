@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina / Neptune V / S/1989 N3",
+  "scope": "Research-only size-reference audit; no dossier76, image, shape, catalogue or codec change.",
+  "primary": {
+    "title": "Sizes, shapes, and albedos of the inner satellites of Neptune",
+    "author": "Erich Karkoschka",
+    "doi": "10.1016/S0019-1035(03)00002-2",
+    "publication": "Icarus 162(2), 400\u2013407, April 2003",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0019103503000022",
+    "access": "Publisher search index exposes abstract; direct web open and local HTTP request return403. Full paper not obtained or assessed.",
+    "licence": "No CC licence verified; no paper figure embedded."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/despina-karkoschka-publisher-response-2026-10-12.html",
+      "bytes": 832806,
+      "sha256": "a6376156567333dca61095ed51d2c1e260b1d862bb95a17228ad2ff0a9860310",
+      "httpStatus": 403,
+      "kind": "Actual inaccessible publisher HTML response; hash is NOT a paper or accessible abstract hash."
+    }
+  ],
+  "assessment": {
+    "evidence": "Publisher-indexed abstract, inspected2026-10-12; search result is not a retained full-paper source.",
+    "despinaSemiaxesKm": [
+      90,
+      74,
+      64
+    ],
+    "interpretation": "Triaxial ellipsoid fit semiaxes, not three diameters. No conversion to a registered shape, surface normal or observed local terrain adopted.",
+    "dataset": "Abstract describes87 resolved Voyager images across five innermost moons; this does not identify the retained NASA trio JPEG or provide its acquisition/product crosswalk.",
+    "radiusAlternatives": "Retain Brozovic2019 adopted75\u00b13km and JPL74\u00b110km equivalent-volume radius as distinct source values; no new radius/uncertainty inferred from abstract.",
+    "photometry": "Abstract discusses revised sizes with historical Voyager photometry. This does not calibrate current publisher JPEG colour or establish local chemistry."
+  },
+  "open": [
+    "Full paper, ellipsoid uncertainties and limb/PSF fitting methods",
+    "Body-specific raw frames, dates, camera/filter and image-to-model association",
+    "Pole, attitude, rotation, physical registration and local normal",
+    "Visible-colour transfer, coverage and photometric calibration",
+    "Final licence and later shape refinements"
+  ],
+  "preservation": "All75 dossiers, original PNGs/default copies, masters, native science, provenance, map/model/shape bytes and recorded Clipper preview preserved. Queue566. Production codec unchanged.",
+  "validation": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15984374,
+    "headroomBytes": 15626,
+    "unchangedTrackedPublicFiles": 596,
+    "freshBrowserVerification": false,
+    "interbuildFeedDifferences": "Not audited; no compression savings attributed to this research."
+  }
+}
