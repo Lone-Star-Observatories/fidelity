@@ -321,3 +321,22 @@ test('voice: "tune to 7074 usb" carries the mode to the receiver or the WebSDR (
   assert.deepEqual(websdrStart([{ l: 0.5, h: 1.6 }]), { freqHz: 1.05e6, mode: 'am' });
   assert.deepEqual(websdrStart([{ l: 144, h: 146 }]), { freqHz: 145e6, mode: 'nbfm' });
 });
+
+test('the mouse wheel tunes in whole steps: up raises the frequency, trackpad flicks accumulate', async () => {
+  const { wheelSteps } = await import('../src/views/comms/receiver.js');
+  const acc = { v: 0 };
+  assert.equal(wheelSteps({ deltaY: -100, deltaMode: 0 }, acc), 1, 'one mouse notch up: one step up');
+  assert.equal(wheelSteps({ deltaY: 300, deltaMode: 0 }, acc), -3);
+  assert.equal(wheelSteps({ deltaY: -3, deltaMode: 1 }, acc), 1); // Firefox lines: 3 lines = one notch
+  const pad = { v: 0 }; // trackpad: 40 px flicks add up to a notch on the third
+  assert.deepEqual([wheelSteps({ deltaY: 40, deltaMode: 0 }, pad), wheelSteps({ deltaY: 40, deltaMode: 0 }, pad), wheelSteps({ deltaY: 40, deltaMode: 0 }, pad)], [0, 0, -1]);
+});
+
+test('bandwidth: each mode clamps and snaps to its range; a KiwiSDR stops at 11 kHz', async () => {
+  const { clampBw, BW } = await import('../src/views/comms/receiver.js');
+  assert.equal(clampBw('usb', 2430), 2400); // 100 Hz increments
+  assert.equal(clampBw('usb', 9000), 4000); assert.equal(clampBw('cw', 10), 50);
+  assert.equal(clampBw('nbfm', 20000), 20000); assert.equal(clampBw('nbfm', 20000, false), 11000, 'KiwiSDR');
+  assert.equal(clampBw('wbfm', 130000), 130000); assert.equal(clampBw('wbfm', 999999), 250000);
+  for (const [m, b] of Object.entries(BW)) { assert.ok(b.presets.every((v) => v >= b.min && v <= b.max), m); assert.equal(clampBw(m, b.def), b.def, m); }
+});

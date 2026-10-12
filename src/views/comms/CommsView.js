@@ -2,7 +2,7 @@
 //
 //   SUBSPACE: signals carried at light speed over the internet: radio stations, traffic cameras,
 //     webcams and live video on the Earth map. The viewscreen stays dark until a station is hailed:
-//     HAILING → SIGNAL RECEIVED → "ON SCREEN?" when it has video (yes / no, or "on screen" to the
+//     OPENING CHANNEL (radio) or OPENING FEED (cameras, video) → SIGNAL RECEIVED → "ON SCREEN?" when it has video (yes / no, or "on screen" to the
 //     computer; ALWAYS ON SCREEN skips the question). Without video, or declined, the audio plays and
 //     the finder (right panel) shows the station, its links and what is playing.
 //   RF: radio reception. Public KiwiSDR receivers (0–30 MHz) and a local SDR (bladeRF, RTL-SDR, …)
@@ -47,7 +47,8 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     el('div', { className: 'body-list cx-modes' }, ...[['subspace', 'SUBSPACE RECEPTION'], ['rf', 'RF RECEPTION']].map(([id, label]) => (modeBtns[id] = pill(label, () => setMode(id))))),
     el('span', { className: 'cx-dev mono' }),
     tx.indicator);
-  const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
+  const isRadio = (id) => id === 'radio' || id === 'stations'; // a broadcast: you open a channel to it; cameras and video are feeds
+  const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: (id) => (isRadio(id) ? 'OPEN CHANNEL' : 'OPEN FEED') });
   const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
     extra: [{ id: 'station', label: 'MY STATION', colour: '#ffcc66', kind: 'station', markers: [], credit: 'Your station location (MY STATION in the RF finder; shared with FROM EARTH).', licence: 'Yours' },
       { id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (bladeRF-cli, rtl-sdr or rx_tools), at your station location.', licence: 'Your hardware' }] });
@@ -62,7 +63,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
   // ---- viewscreen ---------------------------------------------------------------------------------
   const setScreen = (...kids) => screen.replaceChildren(...kids);
   const banner = (big, small, cls = '') => el('div', { className: `cx-banner ${cls}` }, el('div', { className: 'cx-big', textContent: big }), small ? el('div', { className: 'cx-small mono', textContent: small }) : null);
-  function idle() { setScreen(el('div', { className: 'cx-idle mono', textContent: mode === 'subspace' ? 'NO SIGNAL · HAIL A STATION ON THE MAP' : 'NO RECEIVER · TUNE IN TO ONE ON THE MAP' })); }
+  function idle() { setScreen(el('div', { className: 'cx-idle mono', textContent: mode === 'subspace' ? 'NO SIGNAL · OPEN A CHANNEL ON THE MAP' : 'NO RECEIVER · TUNE IN TO ONE ON THE MAP' })); }
   // audio-only: a spectrum bar display
   let vizRaf = 0;
   function visualiser(label) {
@@ -89,7 +90,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     station = { layerId, m, layer, media: stationMedia(layerId, m), name: m[2], onScreen: false, nowPlaying: null };
     if (station.media.place != null) loadPlace().then(() => { if (station?.choices && !station.stream) station.stream = station.choices.find((x) => x.url === station.media.stream) ?? null; onPanel?.(); });
     onPanel?.();
-    setScreen(banner('HAILING', station.name.toUpperCase(), 'cx-hailing'));
+    setScreen(banner(isRadio(layerId) ? 'OPENING CHANNEL' : 'OPENING FEED', station.name.toUpperCase(), 'cx-hailing'));
     await sleep(1300); if (token !== hailToken) return;
     setScreen(banner('SIGNAL RECEIVED', `${layer.label} · ${station.name.toUpperCase()}`, 'cx-received'));
     await sleep(900); if (token !== hailToken) return;
@@ -289,7 +290,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     mapBox.replaceChildren((m === 'subspace' ? subMap : rfMap).node);
     requestAnimationFrame(() => (m === 'subspace' ? subMap : rfMap).redraw());
     consoleBox.replaceChildren(el('p', { className: 'note', textContent: m === 'subspace'
-      ? 'SubSpace: signals carried at light speed over the internet. Hail a station on the map: its video can go on screen; otherwise its audio plays and its details are in the finder.'
+      ? 'SubSpace: signals carried at light speed over the internet. Open a channel to a station on the map: its video can go on screen; otherwise its audio plays and its details are in the finder.'
       : `RF: radio receivers. WebSDR receivers (your list, HF to 10 GHz: the operator's page opens in the main viewer), public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in, with a live waterfall) are on the map. ${tx.devices?.length ? 'A transmit-capable SDR is connected: TRANSMIT SETUP is in the finder (licensed amateur operators only).' : 'Reception only: no transmit-capable SDR is connected.'}` }));
     if (m === 'rf' && !devices) loadDevices().then(() => onPanel?.());
     idle();
@@ -338,7 +339,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
         h('span', { textContent: `${b.l < 1 ? (b.l * 1000).toFixed(0) + ' kHz' : b.l.toFixed(3) + ' MHz'} – ${b.h < 1 ? (b.h * 1000).toFixed(0) + ' kHz' : b.h.toFixed(3) + ' MHz'}` }), h('span', { className: 'mono', textContent: (b.a || '').toUpperCase() })))));
       out.push(h('p', { className: 'note', textContent: 'OPEN RECEIVER listens on the operator\'s own page.' }),
         h('div', { className: 'body-list' }, href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'OPEN RECEIVER ↗' }) : null));
-    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map, or open MY SDR below.' }));
+    } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Open a channel on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map, or open MY SDR below.' }));
     if (mode === 'rf' && !receiver?.consoleBox) out.push(...stationPanel());
     if (mode === 'rf' && devices && (devices.rx.length || devices.tx.length)) out.push(...signalPathPanel());
     if (mode === 'rf') out.push(...tx.panel());

@@ -924,3 +924,9 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 /* COMMS · MY STATION: placing the station on the map */
 .sm-frame.sm-placing { outline: 2px dashed var(--gold); outline-offset: -2px; }
 .sm-frame.sm-placing canvas { cursor: crosshair; }
+
+/* receiver bandwidth: presets, a slider over the mode's range and a value box */
+.cx-rx-bwbox { display: flex; flex-direction: column; gap: 6px; }
+.cx-rx-bw { flex: 1; min-width: 80px; accent-color: var(--gold); }
+.cx-rx-bwin { width: 76px; flex: none; }
+.cx-rx-steps .cx-rx-stepin { grid-column: 1 / -1; width: auto; text-align: right; }

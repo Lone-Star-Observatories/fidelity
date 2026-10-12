@@ -169,8 +169,8 @@ export function createDemodulator({ rateHz, offsetHz = 0, mode = 'am', bwHz, agc
   const { d0, midRate, d1, audioRate } = demodRates(rateHz, mode);
   const nco = createNco(-offsetHz, rateHz);
   const wide = mode === 'wbfm';
-  // stage 0: the device rate down to the intermediate rate; keep ±100 kHz (WFM) or ±10 kHz clean
-  const pass0 = wide ? 100e3 : 10e3, stop0 = midRate - pass0;
+  // stage 0: the device rate down to the intermediate rate; keep half the WFM bandwidth (50–250 kHz wide) or ±13 kHz clean
+  const pass0 = wide ? Math.min(115e3, Math.max(25e3, (bwHz ?? 200e3) / 2)) : 13e3, stop0 = midRate - pass0;
   const taps0 = d0 > 1 ? Math.min(255, Math.max(15, Math.ceil((5.5 * rateHz) / Math.max(1, stop0 - pass0)) | 1)) : 0;
   const fir0 = d0 > 1 ? createFir(lowpassTaps((pass0 + stop0) / 2 < midRate / 2 ? (pass0 + stop0) / 2 : midRate * 0.45, rateHz, taps0), d0) : null;
   const out = { mode, offsetHz, audioRate, midRate };
@@ -200,9 +200,10 @@ export function createDemodulator({ rateHz, offsetHz = 0, mode = 'am', bwHz, agc
     return out;
   }
   // narrow modes: to ~25 kHz complex, then the mode's passband
-  const fir1 = createFir(lowpassTaps(6.5e3, midRate, 31), d1);
   const bfo = mode === 'cw' ? 500 : 0; // a CW carrier on the dial is heard at 500 Hz
   const { low, high } = passband(mode === 'nbfm' ? 'nbfm' : mode, bwHz);
+  // keep the whole passband through the second decimation (wide AM / NBFM up to ~±12 kHz at the ~25 kHz audio rate)
+  const fir1 = createFir(lowpassTaps(Math.min(audioRate * 0.47, Math.max(6.5e3, Math.max(Math.abs(low), Math.abs(high)) + 500)), midRate, 31), d1);
   const centre = (low + high) / 2, half = Math.min((high - low) / 2, audioRate * 0.48);
   const down = createNco(bfo - centre, audioRate), up = createNco(centre, audioRate);
   const chan = createFir(lowpassTaps(half, audioRate, 63), 1);

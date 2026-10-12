@@ -205,7 +205,7 @@ export function createSignalsMap(opts = {}) {
       return el('div', { className: 'cm-entry sm-hit' },
         el('div', { className: 'cm-head' }, el('span', { className: 'sm-dot', style: `background:${COLOURS[id]}` }), el('span', { className: 'cm-name', textContent: name }),
           badge('reported', `${l.credit}${l.fetched ? `\nList fetched ${l.fetched}` : ''}`)),
-        el('div', { className: 'cm-val mono', textContent: `${detail} · ${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}` }),
+        el('div', { className: 'cm-val mono', textContent: `${detail ? `${detail} · ` : ''}${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'} ${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}` }),
         el('div', { className: 'cm-meta' },
           el('span', { className: 'cm-status', textContent: id === 'kiwisdr' ? (extra === 1 ? 'FREE SLOT NOW' : extra === 0 ? 'FULL NOW' : '') : id === 'video' ? 'OPERATOR PAGE' : 'LISTED LIVE' }),
           el('span', { textContent: l.label }), l.fetched ? el('span', { className: 'mono', textContent: `LIST ${ago(l.fetched)}` }) : null,

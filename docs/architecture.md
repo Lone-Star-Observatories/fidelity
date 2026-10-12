@@ -391,7 +391,7 @@ Cutouts are served by `/api/nebula-image/<key>` (the same allowlisted, cached ro
 
 `#/comms` (top-bar COMMS, shown in Sector 001) opens `src/views/comms/CommsView.js` in the viewport:
 two `createSignalsMap` instances (SUBSPACE layers; RF receivers) with a HAIL / SELECT button per hit,
-a viewscreen and the finder (`comms.panel()` in the right panel). Hailing runs HAILING → SIGNAL
+a viewscreen and the finder (`comms.panel()` in the right panel). Opening a station runs OPENING CHANNEL (radio) or OPENING FEED (cameras, video) → SIGNAL
 RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station carries; the
 `alwaysOnScreen` setting skips the question). Audio goes `<audio src=/api/comms/stream>` →
 `src/views/comms/audio.js` (jitter buffer for receiver PCM, high-pass, low-pass, automatic notch,
@@ -480,6 +480,14 @@ red TRANSMITTING bar (frequency, callsign, time on air, time to timeout, device,
 "DIRECTIONAL: POINT AT THE STATION" for a directional antenna, CLOSE) sits in the COMMS header while
 the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is near the bottom on a
 2.0 micro; libbladeRF clamps to the board's range).
+
+**Receiver console tuning.** The mouse wheel on the receiver screen tunes by the step (one notch = one step; trackpad
+deltas accumulate; up = higher). Over the shaded passband block on the spectrum or waterfall, or with Shift, the wheel
+widens or narrows the bandwidth instead. Steps: 100 Hz–1 MHz including 12.5 and 25 kHz channel steps, plus a custom value;
+remembered per viewer (localStorage). Bandwidth per mode (`BW` in `receiver.js`): presets, a slider over the mode's
+range (AM 1–16 kHz, SSB 0.5–4 kHz, CW 50 Hz–2 kHz, NBFM 4–25 kHz, WFM 50–250 kHz; a KiwiSDR stops at 11 kHz) and a
+value box, remembered per mode. The local demodulator's filters follow the bandwidth (`server/sdrdsp.js`: the second
+decimation keeps the whole passband; WFM's first stage keeps half its bandwidth).
 
 **My station and my SDR.** The RF finder opens with MY STATION (`src/data/station.js`): the operator's location
 from the browser, a click on the map (`signalsMap.pickPoint`, Esc cancels) or typed as a Maidenhead grid square or

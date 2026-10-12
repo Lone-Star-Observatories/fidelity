@@ -22,10 +22,40 @@ const el = (tag, props = {}, ...kids) => {
   for (const k of kids.flat()) if (k != null && k !== false) e.append(k);
   return e;
 };
-const MODE_BW = { am: [4000, 6000, 9800], usb: [1800, 2400, 2800], lsb: [1800, 2400, 2800], cw: [200, 500], nbfm: [8000, 12000], wbfm: [180000] };
+// bandwidth per mode: the range the demodulator accepts, the wheel's increment, presets, and the default
+export const BW = {
+  am: { min: 1000, max: 16000, inc: 500, presets: [3000, 4000, 6000, 8000, 10000, 12000], def: 6000 },
+  usb: { min: 500, max: 4000, inc: 100, presets: [1800, 2100, 2400, 2700, 3000, 3600], def: 2400 },
+  lsb: { min: 500, max: 4000, inc: 100, presets: [1800, 2100, 2400, 2700, 3000, 3600], def: 2400 },
+  cw: { min: 50, max: 2000, inc: 50, presets: [100, 200, 300, 500, 1000], def: 500 },
+  nbfm: { min: 4000, max: 25000, inc: 500, presets: [6000, 8000, 10000, 12500, 16000, 20000], def: 12500 },
+  wbfm: { min: 50000, max: 250000, inc: 10000, presets: [100000, 150000, 180000, 200000, 250000], def: 180000 },
+};
+const KIWI_MAX_BW = 11000; // a KiwiSDR's audio channel is 12 kHz wide
+/** Clamp and snap a bandwidth for a mode (a KiwiSDR stops at 11 kHz). */
+export function clampBw(mode, hz, local = true) {
+  const b = BW[mode] ?? BW.am, max = local ? b.max : Math.min(b.max, KIWI_MAX_BW);
+  return Math.max(b.min, Math.min(max, Math.round(hz / b.inc) * b.inc));
+}
+const BW_KEY = 'fidelity.rxBw'; // each mode's last bandwidth, per viewer
+const savedBw = () => { try { return JSON.parse(localStorage.getItem(BW_KEY) || '{}') ?? {}; } catch { return {}; } };
+const saveBw = (mode, hz) => { try { localStorage.setItem(BW_KEY, JSON.stringify({ ...savedBw(), [mode]: hz })); } catch { /* private mode */ } };
+const bwLabel = (bw) => (bw >= 1000 ? `${+(bw / 1000).toFixed(bw % 1000 ? 2 : 0)} kHz` : `${bw} Hz`);
 // the local SDR also demodulates wideband FM (broadcast); a KiwiSDR stops at 30 MHz
 const LOCAL_MODES = { ...MODES, wbfm: { label: 'WFM', low: -90000, high: 90000 } };
-const STEPS = [[100, '100 Hz'], [1000, '1 kHz'], [5000, '5 kHz'], [9000, '9 kHz'], [100000, '100 kHz'], [1000000, '1 MHz']];
+const STEPS = [[100, '100 Hz'], [1000, '1 kHz'], [5000, '5 kHz'], [9000, '9 kHz'], [12500, '12.5 kHz'], [25000, '25 kHz'], [100000, '100 kHz'], [1000000, '1 MHz']];
+// the tuning step (buttons, custom value, mouse wheel) is remembered per viewer
+const STEP_KEY = 'fidelity.rxStep';
+const savedStep = () => { try { const v = Number(localStorage.getItem(STEP_KEY)); return v >= 1 && v <= 1e8 ? v : null; } catch { return null; } };
+const saveStep = (v) => { try { localStorage.setItem(STEP_KEY, String(v)); } catch { /* private mode */ } };
+/** Mouse wheel → whole steps (up = higher frequency); trackpads' small deltas accumulate to a notch. */
+export function wheelSteps(e, acc) {
+  const px = e.deltaMode === 1 ? e.deltaY * 34 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY; // a mouse notch is ~100 px (3 lines)
+  acc.v += px;
+  const n = Math.trunc(acc.v / 100);
+  if (n) acc.v -= n * 100;
+  return n ? -n : 0;
+}
 // KiwiSDR waterfall colour ramp (cold → hot), dBm clamped to [min, max]
 const RAMP = [[0, 0, 40], [0, 40, 120], [0, 120, 160], [40, 180, 120], [200, 200, 40], [255, 120, 20], [255, 40, 40]];
 function heat(db, min, max) {
@@ -105,6 +135,11 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     wfCtx.fillRect(cx, 0, 1, 2);
     drawSpectrum(db, sp);
   }
+  /** The tuned passband's x range on a canvas W wide over span sp (the "tune block"). */
+  function passbandX(sp, W) {
+    const pb = passband(rx.mode === 'wbfm' ? 'nbfm' : rx.mode, rx.bwHz);
+    return [((rx.freqHz + pb.low - sp.startHz) / sp.spanHz) * W, ((rx.freqHz + pb.high - sp.startHz) / sp.spanHz) * W];
+  }
   /** The spectrum trace over the waterfall: smoothed over rows, with the tuned passband shaded. */
   function drawSpectrum(db, sp) {
     if (!spec || !specCtx) return;
@@ -115,8 +150,10 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     g.fillStyle = '#04070c'; g.fillRect(0, 0, W, H);
     g.strokeStyle = 'rgba(80,110,160,0.35)'; g.lineWidth = 1;
     for (let v = Math.ceil(lo / 20) * 20; v < hi; v += 20) { g.beginPath(); g.moveTo(0, y(v) + 0.5); g.lineTo(W, y(v) + 0.5); g.stroke(); }
-    const pb = passband(rx.mode === 'wbfm' ? 'nbfm' : rx.mode, rx.mode === 'wbfm' ? 180000 : rx.bwHz), x0 = ((rx.freqHz + pb.low - sp.startHz) / sp.spanHz) * W, x1 = ((rx.freqHz + pb.high - sp.startHz) / sp.spanHz) * W;
+    const [x0, x1] = passbandX(sp, W);
     g.fillStyle = 'rgba(255,153,0,0.18)'; g.fillRect(x0, 0, Math.max(1, x1 - x0), H);
+    g.strokeStyle = 'rgba(255,153,0,0.55)'; g.lineWidth = 1; g.strokeRect(x0 + 0.5, 0.5, Math.max(1, x1 - x0) - 1, H - 1);
+    g.fillStyle = '#ffb347'; g.font = '16px monospace'; g.fillText(bwLabel(rx.bwHz), Math.min(W - 90, x1 + 4), 36);
     g.beginPath();
     for (let x = 0; x < W; x++) { const v = rx.specAvg[Math.floor((x / W) * n)]; if (x) g.lineTo(x, y(v)); else g.moveTo(x, y(v)); }
     g.strokeStyle = '#ffcc66'; g.lineWidth = 1.5; g.stroke();
@@ -149,11 +186,12 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     const trace = el('canvas', { className: 'cx-spec', width: 1024, height: 150 });
     axisEl = el('div', { className: 'cx-wf-axis mono' });
     legendEl = el('div', { className: 'cx-wf-legend mono' });
-    setScreen(el('div', { className: 'cx-rx-screen' },
+    const screenEl = el('div', { className: 'cx-rx-screen' },
       el('div', { className: 'cx-rx-read' },
         el('div', { className: 'cx-rx-freq mono', id: 'cx-freq' }, formatFrequency(rx.freqHz)),
         el('div', { className: 'cx-rx-sub mono', id: 'cx-sub' }, `${rx.name.toUpperCase()} · ${rx.mode.toUpperCase()}`)),
-      trace, canvas, axisEl, legendEl));
+      trace, canvas, axisEl, legendEl);
+    setScreen(screenEl);
     wf = canvas; wfCtx = canvas.getContext('2d');
     spec = trace; specCtx = trace.getContext('2d');
     wfCtx.fillStyle = '#04070c'; wfCtx.fillRect(0, 0, canvas.width, canvas.height);
@@ -166,6 +204,22 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
       setFreq(rx.local ? Math.round(hz / 100) * 100 : Math.round(hz));
     };
     for (const c of [canvas, trace]) { c.style.cursor = 'crosshair'; c.addEventListener('click', tuneFromX); }
+    // the mouse wheel anywhere on the receiver screen (frequency, spectrum, waterfall) tunes by the step (up = higher)
+    const acc = { v: 0 };
+    const accBw = { v: 0 };
+    const overBlock = (e) => {
+      if (e.shiftKey) return true;
+      const c = [canvas, trace].find((x) => x.contains(e.target)), sp = span();
+      if (!c || !sp) return false;
+      const b = c.getBoundingClientRect(), [x0, x1] = passbandX(sp, b.width), x = e.clientX - b.left;
+      return x >= Math.min(x0, (x0 + x1) / 2 - 8) && x <= Math.max(x1, (x0 + x1) / 2 + 8); // at least 16 px to aim at
+    };
+    screenEl.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (overBlock(e)) { const n = wheelSteps(e, accBw); if (n) setBw(rx.bwHz + n * (BW[rx.mode] ?? BW.am).inc); return; }
+      const n = wheelSteps(e, acc); if (n) step(n);
+    }, { passive: false });
+    screenEl.title = 'Mouse wheel: tune by the step · over the shaded passband (or with Shift): widen or narrow the bandwidth · click: tune there';
     updateReadout();
   }
   function updateReadout() {
@@ -183,15 +237,17 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
         i.addEventListener('change', () => { const hz = Math.round(Number(i.value) * 1000); if (Number.isFinite(hz) && hz > 0) setFreq(hz); }); box._freq = i; return i; })(),
       el('span', { className: 'mono cx-rx-unit', textContent: 'kHz' }),
       pill('+', () => step(1), 'square'));
+    const custom = el('input', { className: 'cx-rx-input mono cx-rx-stepin', value: STEPS.some(([v]) => v === rx.step) ? '' : String(rx.step / 1000), placeholder: 'CUSTOM kHz', inputMode: 'decimal', title: 'Your own step in kHz (e.g. 6.25, 8.33, 50)' });
     const stepRow = el('div', { className: 'body-list cx-rx-steps' }, STEPS.map(([v, label]) => {
-      const b = pill(label, () => { rx.step = v; mark(stepRow, b); }); if (v === rx.step) b.classList.add('on'); return b;
-    }));
+      const b = pill(label, () => { rx.step = v; saveStep(v); custom.value = ''; mark(stepRow, b); }); if (v === rx.step) b.classList.add('on'); return b;
+    }), custom);
+    custom.addEventListener('change', () => { const v = Math.round(Number(custom.value) * 1000); if (v >= 1 && v <= 1e8) { rx.step = v; saveStep(v); mark(stepRow, null); } });
     const modes = rx.local ? LOCAL_MODES : MODES;
     const modeRow = el('div', { className: 'body-list' }, Object.keys(modes).map((mode) => {
       const b = pill(modes[mode].label, () => setMode(mode)); if (mode === rx.mode) b.classList.add('on'); b.dataset.mode = mode; return b;
     }));
     box._modeRow = modeRow;
-    const bwRow = el('div', { className: 'body-list', id: 'cx-bw' });
+    const bwRow = el('div', { className: 'cx-rx-bwbox', id: 'cx-bw' });
     box._bwRow = bwRow; renderBw(bwRow);
     const agcRow = el('div', { className: 'body-list' }, ['fast', 'slow', 'off'].map((a) => {
       const b = pill(`AGC ${a.toUpperCase()}`, () => { rx.agc = a; mark(agcRow, b); retune(); }); if (a === rx.agc) b.classList.add('on'); return b;
@@ -216,10 +272,27 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
       badge('reported', rx.local ? 'Your own SDR hardware.' : rx.layer?.credit ?? ''));
     return box;
   }
+  /** The bandwidth controls: presets, a slider over the mode's whole range and a value box (all follow the wheel). */
   function renderBw(row) {
-    const list = MODE_BW[rx.mode] ?? [passband(rx.mode).high - passband(rx.mode).low];
-    row.replaceChildren(...list.map((bw) => { const b = pill(bw >= 1000 ? `${(bw / 1000).toFixed(1)} kHz` : `${bw} Hz`, () => { rx.bwHz = bw; mark(row, b); retune(); audio.setBand(bw + 1000); }); if (bw === rx.bwHz) b.classList.add('on'); return b; }));
+    const b = BW[rx.mode] ?? BW.am, max = rx.local ? b.max : Math.min(b.max, KIWI_MAX_BW);
+    const presets = b.presets.filter((v) => v <= max);
+    const pills = presets.map((bw) => { const p = pill(bwLabel(bw), () => setBw(bw)); p.dataset.bw = String(bw); return p; });
+    const slider = el('input', { type: 'range', className: 'cx-rx-bw', min: String(b.min), max: String(max), step: String(b.inc), value: String(rx.bwHz), title: 'Bandwidth' });
+    slider.addEventListener('input', () => setBw(Number(slider.value)));
+    const val = el('input', { className: 'cx-rx-input mono cx-rx-bwin', value: String(rx.bwHz / 1000), inputMode: 'decimal', title: `Bandwidth in kHz (${bwLabel(b.min)}–${bwLabel(max)})` });
+    val.addEventListener('change', () => { const v = Number(val.value) * 1000; if (Number.isFinite(v) && v > 0) setBw(v); });
+    row.replaceChildren(el('div', { className: 'body-list' }, pills), el('div', { className: 'cx-rx-row' }, el('span', { className: 'mono', textContent: bwLabel(b.min) }), slider, el('span', { className: 'mono', textContent: bwLabel(max) }), val, el('span', { className: 'mono cx-rx-unit', textContent: 'kHz' })));
+    row._sync = () => { slider.value = String(rx.bwHz); if (document.activeElement !== val) val.value = String(rx.bwHz / 1000); for (const p of pills) p.classList.toggle('on', Number(p.dataset.bw) === rx.bwHz); };
+    row._sync();
   }
+  function setBw(hz) {
+    const bw = clampBw(rx.mode, hz, rx.local);
+    if (bw === rx.bwHz) return;
+    rx.bwHz = bw; saveBw(rx.mode, bw);
+    box?._bwRow?._sync?.();
+    audio.setBand(Math.min(bw, 24000) + 1000); updateReadout(); retune();
+  }
+  const bwFor = (mode) => clampBw(mode, savedBw()[mode] ?? (BW[mode] ?? BW.am).def, rx.local);
   const mark = (row, on) => { for (const b of row.querySelectorAll('.pill')) b.classList.toggle('on', b === on); };
 
   // ---- tuning -------------------------------------------------------------------------------------
@@ -231,10 +304,10 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
   }
   const step = (dir) => setFreq(rx.freqHz + dir * rx.step);
   function setMode(mode) {
-    rx.mode = mode; rx.bwHz = (MODE_BW[mode] ?? [6000])[1] ?? (MODE_BW[mode] ?? [6000])[0];
+    rx.mode = mode; rx.bwHz = bwFor(mode);
     if (box?._modeRow) for (const b of box._modeRow.querySelectorAll('.pill')) b.classList.toggle('on', b.dataset.mode === mode);
     if (box?._bwRow) renderBw(box._bwRow);
-    audio.setBand(rx.bwHz + 1000); updateReadout(); retune();
+    audio.setBand(Math.min(rx.bwHz, 24000) + 1000); updateReadout(); retune();
   }
   function retune() {
     if (ws?.readyState !== 1) return;
@@ -279,11 +352,11 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     const devRange = [receiver.minHz ?? (receiver.local ? 24e6 : 0), receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6)];
     const [minHz, maxHz] = conv ? antennaRange(devRange, conv) : devRange; // the dial works in antenna-side frequencies
     const startHz = receiver.local ? Math.min(Math.max(conv ? 9.6e6 : 98.1e6, minHz), maxHz) : 9.6e6;
-    rx = { ...receiver, conv, convSetting: receiver.local ? converter() : null, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20, axis: null, floor: null, fake: !!receiver.fake };
+    rx = { ...receiver, conv, convSetting: receiver.local ? converter() : null, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: savedStep() ?? 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20, axis: null, floor: null, fake: !!receiver.fake };
     rx.mode = receiver.local ? suggestMode(rx.freqHz) : 'am';
     if (rx.mode === 'wbfm' && !receiver.local) rx.mode = 'nbfm';
-    rx.bwHz = (MODE_BW[rx.mode] ?? [6000])[1] ?? 6000;
-    audio.resume(); audio.setBand(rx.bwHz + 1000); audio.setVolume(rx.volume);
+    rx.bwHz = bwFor(rx.mode);
+    audio.resume(); audio.setBand(Math.min(rx.bwHz, 24000) + 1000); audio.setVolume(rx.volume);
     renderScreen(setScreen);
     onPanel?.();
     try { ws = new WebSocket(wsUrl(receiver)); } catch { setState('COULD NOT OPEN THE LINK'); return; }

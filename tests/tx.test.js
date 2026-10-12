@@ -372,7 +372,8 @@ test('ws /api/rf/tx refuses without a device, a callsign, the attestation or an 
 });
 
 test('ws /api/rf/tx: a simulated device opens, takes mic audio, closes with the ID (#69)', async () => {
-  const t0 = Date.now(), fast = { now: () => t0 + (Date.now() - t0) * 40, setTimeout: (f, ms) => setTimeout(f, ms / 40), clearTimeout: (h) => clearTimeout(h) };
+  // 10× time: the 15 s no-audio auto-close is still 1.5 s of real time, so a busy test run can't trip it before CLOSE
+  const t0 = Date.now(), fast = { now: () => t0 + (Date.now() - t0) * 10, setTimeout: (f, ms) => setTimeout(f, ms / 10), clearTimeout: (h) => clearTimeout(h) };
   await withTxServer({ devices: async () => txDevices({ fake: true }), clock: fast }, async (url) => {
     const c = wsClient(url);
     await c.open;
@@ -390,6 +391,7 @@ test('ws /api/rf/tx: a simulated device opens, takes mic audio, closes with the 
     c.ws.send(pcm16(tone(1000, 0.8, 3200)));
     const st = await c.next((m) => m.type === 'state' && m.bytes > 0);
     assert.equal(st.state, 'tx');
+    c.ws.send(pcm16(tone(1000, 0.8, 3200))); // the mic is still live when the operator closes
     c.ws.send(JSON.stringify({ type: 'close' }));
     const closed = await c.next((m) => m.type === 'closed');
     assert.equal(closed.reason, 'operator');
