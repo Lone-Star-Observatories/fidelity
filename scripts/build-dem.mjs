@@ -18,7 +18,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { DEM_SOURCES, openRaster, fileRange, rasterToGrid, etopoFromNc, png16 } from '../server/dem.js';
-import { quantize, filter16, quantStep } from '../src/astro/dem.js';
+import { quantize, filter16, quantStep, maskNoisyEdges } from '../src/astro/dem.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -65,14 +65,14 @@ async function build(id, src) {
     const file = await download(sourceUrl, path.join(rawDir, `etopo180_s${stride}.nc`));
     heights = etopoToGrid(etopoFromNc(await fsp.readFile(file)), W, H);
   } else {
-    const g = src.global;
-    sourceUrl = g.url;
-    const file = await download(g.url, path.join(rawDir, path.basename(new URL(g.url).pathname)));
-    const read = await fileRange(file);
-    const r = await openRaster(g, read);
-    heights = await rasterToGrid(r, W, H, (f) => process.stdout.write(`\r  ${Math.round(f * 100)}%`));
-    process.stdout.write('\r');
-    await read.close();
+    sourceUrl = src.global.url;
+    heights = await gridOf(src.global, W, H);
+  }
+  let masked = 0;
+  if (src.maskEdges) { // the noisy rim of a partial stereo DEM (Charon) becomes no data; the drawn fill feathers it
+    const m = maskNoisyEdges({ width: W, height: H, heights }, src.maskEdges);
+    heights = m.heights; masked = m.dropped;
+    console.log(`  masked ${masked} noisy rim cells`);
   }
   let valid = 0;
   for (const h of heights) if (h === h) valid++;
@@ -80,14 +80,36 @@ async function build(id, src) {
   const png = png16(W, H, filter16(q.data, W, H), { min: String(q.min), max: String(q.max), body: id });
   await fsp.mkdir(outDir, { recursive: true });
   await fsp.writeFile(path.join(outDir, `${id}.png`), png);
+  let drawn = null;
+  if (src.drawn) { // a published interpolation drawn where nothing was measured (Titan): its own file
+    const dW = src.drawn.width ?? W, dH = dW / 2; // a smooth interpolation needs fewer cells than the measurements
+    const dq = quantize(await gridOf(src.drawn, dW, dH));
+    const dpng = png16(dW, dH, filter16(dq.data, dW, dH), { min: String(dq.min), max: String(dq.max), body: id });
+    await fsp.writeFile(path.join(outDir, `${id}-drawn.png`), dpng);
+    drawn = { drawnFile: `${id}-drawn.png`, drawnMin: dq.min, drawnMax: dq.max, drawnBytes: dpng.length, drawnSource: src.drawn.url };
+    console.log(`  drawn surface ${dq.min} … ${dq.max} m, ${(dpng.length / 1e6).toFixed(2)} MB`);
+  }
   const cellKm = (2 * Math.PI * src.refRadiusKm) / W;
   console.log(`  ${q.min} … ${q.max} m, ${(100 * valid / heights.length).toFixed(1)}% covered, ${(png.length / 1e6).toFixed(2)} MB`);
   return {
     file: `${id}.png`, width: W, height: H, min: q.min, max: q.max, quantStepM: Number(quantStep(q.min, q.max).toFixed(3)),
     cellKm: Number(cellKm.toFixed(2)), coverage: Number((valid / heights.length).toFixed(4)), bytes: png.length,
     name: src.name, instrument: src.instrument, ref: src.ref, refRadiusKm: src.refRadiusKm, sourcePpd: src.ppd,
+    tilePpd: src.noTiles ? 0 : src.tilePpd ?? src.ppd, tiers: (src.tiers ?? []).map((t) => ({ minLevel: t.minLevel, name: t.name })),
+    ...(masked ? { maskedRimCells: masked } : {}), ...(drawn ?? {}),
     credit: src.credit, licence: src.licence, source: sourceUrl, partial: src.partial ?? null, shading: src.shading ?? 'all',
   };
+}
+
+/** A raster product (downloaded once to data/dem-raw) box-averaged onto the W × H canonical grid. */
+async function gridOf(g, W, H) {
+  const file = await download(g.url, path.join(rawDir, g.rawName ?? path.basename(new URL(g.url).pathname)));
+  const read = await fileRange(file);
+  const r = await openRaster(g, read);
+  const heights = await rasterToGrid(r, W, H, (f) => process.stdout.write(`\r  ${Math.round(f * 100)}%`));
+  process.stdout.write('\r');
+  await read.close();
+  return heights;
 }
 
 const indexFile = path.join(outDir, 'index.json');

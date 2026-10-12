@@ -41,6 +41,8 @@ import { satnogs, marsRaw, rawImage, marsWeather } from './comms.js';
 import { signalLayers, signalLayer, stationPlace } from './signals.js';
 import { surfaceImages, surfaceImage } from './surfaceimages.js';
 import { demTile, demInfo } from './dem.js';
+import { sarTile } from './sartiles.js';
+import { earthClouds } from './earthclouds.js';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css',
@@ -135,6 +137,8 @@ const paramRoutes = [
   [/^GET \/api\/comms\/mars-weather\/(m20|msl)$/, (m) => marsWeather(m[1])],
   [/^GET \/api\/signals\/([a-z]{1,16})$/, (m) => signalLayer(m[1])],
   [/^GET \/api\/dem-tile\/([a-z]{1,16})\/(\d{1,2})\/(\d{1,4})\/(\d{1,4})$/, async (m) => binary(await demTile(m[1], m[2], m[3], m[4]))], // #80: 256² height tiles
+  [/^GET \/api\/earth-clouds\/(heights|colour)$/, async (m, q) => binary(await earthClouds(m[1], q))], // #83: measured cloud tops
+  [/^GET \/api\/sar-tile\/([a-z]{1,16})\/(\d{1,2})\/(\d{1,4})\/(\d{1,4})$/, async (m) => binary(await sarTile(m[1], m[2], m[3], m[4]))], // #83: Venus radar close-ups
   [/^GET \/api\/feed\/([a-z0-9-]{1,32})$/, async (m, q) => {
     const f = await feed(m[1], { preview: q?.get('size') === 'preview' }); // #62: 256×256 solar frames
     if (f.type === 'application/json') return { id: m[1], time: f.time, fetched: f.fetched, credit: f.credit, cache: f.cache, data: f.body };

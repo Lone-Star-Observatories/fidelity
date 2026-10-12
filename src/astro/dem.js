@@ -262,6 +262,92 @@ export function fillGaps({ width: W, height: H, heights }, { coarse = 360, passe
   return out;
 }
 
+/**
+ * Distance (cells, 4-connected, longitude wrapping) from every valid cell to the nearest no-data cell; Infinity
+ * when the grid has no gaps. No-data cells get 0.
+ */
+export function gapDistance({ width: W, height: H, heights }) {
+  const d = new Float32Array(W * H).fill(Infinity), q = new Int32Array(W * H);
+  let head = 0, tail = 0;
+  for (let i = 0; i < d.length; i++) if (!Number.isFinite(heights[i])) { d[i] = 0; q[tail++] = i; }
+  while (head < tail) {
+    const i = q[head++], x = i % W, y = (i - x) / W, n = d[i] + 1;
+    const nb = [y * W + (x + 1) % W, y * W + (x + W - 1) % W, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1];
+    for (const j of nb) if (j >= 0 && d[j] > n) { d[j] = n; q[tail++] = j; }
+  }
+  return d;
+}
+
+/**
+ * Local isotropic texture of a DEM: the smaller of the absolute second differences along x and y (metres),
+ * averaged over a (2r+1)² window of valid cells. Real terrain has texture both ways; the poor stereo near a
+ * partial DEM's limb shows up as along-track streaks (texture one way only) or interpolated smooth bands (neither).
+ */
+export function isoTexture({ width: W, height: H, heights: h }, r = 3) {
+  const at = (x, y) => h[Math.max(0, Math.min(H - 1, y)) * W + ((x % W) + W) % W];
+  const tx = new Float32Array(W * H).fill(NaN), ty = new Float32Array(W * H).fill(NaN);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const c = h[y * W + x];
+    if (!Number.isFinite(c)) continue;
+    const cl = Math.max(Math.cos((90 - ((y + 0.5) / H) * 180) * DEG), 0.05); // per unit distance: cells shrink in x towards the poles
+    tx[y * W + x] = Math.abs(at(x + 1, y) + at(x - 1, y) - 2 * c) / (cl * cl);
+    ty[y * W + x] = Math.abs(at(x, y + 1) + at(x, y - 1) - 2 * c);
+  }
+  const out = new Float32Array(W * H).fill(NaN);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (!Number.isFinite(h[y * W + x])) continue;
+    let sx = 0, nx = 0, sy = 0, ny = 0;
+    for (let dy = -r; dy <= r; dy++) {
+      const yy = y + dy;
+      if (yy < 0 || yy >= H) continue;
+      for (let dx = -r; dx <= r; dx++) {
+        const j = yy * W + ((x + dx) % W + W) % W, a = tx[j], b = ty[j];
+        if (a === a) { sx += a; nx++; }
+        if (b === b) { sy += b; ny++; }
+      }
+    }
+    out[y * W + x] = Math.min(nx ? sx / nx : 0, ny ? sy / ny : 0); // texture both ways, or the weaker of the two
+  }
+  return out;
+}
+
+/**
+ * Mask the noisy rim of a partial DEM (Charon's encounter hemisphere: the stereo near the limb and terminator is
+ * poor). Starting from the cells next to a gap, grow the mask inwards through cells whose isotropic texture
+ * (isoTexture) is below `k` × the interior's median, at most `band` cells from the original edge; then erode the
+ * rim by `erode` cells. Returns new heights (NaN = masked) and how many cells were dropped. The drawn surface
+ * (fillGaps) feathers back to the reference over the masked rim.
+ */
+export function maskNoisyEdges(dem, { band = 100, k = 0.35, erode = 2, r = 3, poles = false } = {}) {
+  const { width: W, height: H, heights } = dem;
+  const h = Float32Array.from(heights), d = gapDistance(dem), tex = isoTexture(dem, r);
+  const interior = [];
+  for (let i = 0; i < d.length; i += 5) if (d[i] > band && Number.isFinite(tex[i])) interior.push(tex[i]);
+  interior.sort((a, b) => a - b);
+  const thr = k * (interior.length ? interior[interior.length >> 1] : 0);
+  let dropped = 0;
+  const seen = new Uint8Array(W * H), q = new Int32Array(W * H);
+  let head = 0, tail = 0;
+  for (let i = 0; i < d.length; i++) {
+    const polar = poles && (i < W || i >= (H - 1) * W) && Number.isFinite(h[i]); // `poles`: grow from the polar rows too (limb-on stereo there)
+    if (d[i] === 1 || polar) { q[tail++] = i; seen[i] = 1; }
+  }
+  while (head < tail) {
+    const i = q[head++];
+    if (!(tex[i] < thr) || d[i] > band) continue;
+    h[i] = NaN; dropped++;
+    const x = i % W, y = (i - x) / W;
+    for (const j of [y * W + (x + 1) % W, y * W + (x + W - 1) % W, y > 0 ? i - W : -1, y < H - 1 ? i + W : -1]) {
+      if (j >= 0 && !seen[j] && Number.isFinite(h[j])) { seen[j] = 1; q[tail++] = j; }
+    }
+  }
+  if (erode > 0) {
+    const d2 = gapDistance({ width: W, height: H, heights: h });
+    for (let i = 0; i < h.length; i++) if (d2[i] > 0 && d2[i] <= erode) { h[i] = NaN; dropped++; }
+  }
+  return { heights: h, dropped, threshold: thr };
+}
+
 /** Elevation for the panel: "+21,229 M" / "−8,180 M", or km above 10 km when asked. */
 export function fmtElevation(hM, { km = false } = {}) {
   if (!Number.isFinite(hM)) return 'NO DATA';

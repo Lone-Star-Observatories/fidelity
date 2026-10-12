@@ -10,6 +10,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/textures.js  imagery       │
 │                                      │           │ server/tiff.js      USGS mosaics  │
 │                                      │           │ server/dem.js       DEM tiles     │
+│                                      │           │ server/sartiles.js  Venus radar   │
+│                                      │           │ server/earthclouds.js cloud tops  │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/imagery.js   surveys, NASA │
@@ -86,7 +88,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/co2` | NOAA GML Mauna Loa monthly CO₂ (the Keeling curve, #54): `rows` of [decimal year, ppm, de-seasonalized ppm] (`server/co2.js`, cached a day) |
 | `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
-| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mars, Moon, Mercury, Earth z ≤ 4). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF strips; ETOPO1 through ERDDAP), cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit and finest level (`server/dem.js`) |
+| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mercury, Earth z ≤ 4; Moon z ≤ 7 and Mars z ≤ 6 through their high-resolution tiers from level 5: SLDEM2015 512 px/° + LOLA 118 m, the MOLA–HRSC 200 m blend; none for Titan). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF/BigTIFF strips, ISIS cubes for the build; ETOPO1 through ERDDAP), a source split into parts filling each cell from the first part that covers it, cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit, tiers and finest level (`server/dem.js`) |
+| `GET /api/sar-tile/venus/<z>/<x>/<y>` | Venus' radar ground close up (#83): 256×256 8-bit greyscale PNG of Magellan SAR backscatter in the dem-tile addressing, levels 3–8 (C3-MIDR 2025 m for 3–4, the left-look global mosaics at 225 m for 5–7 and 75 m for 8; 13 and 117 GB BigTIFFs read row by row, a few pixels averaged per cell), cached in `data/cache/sar/` (`server/sartiles.js`) |
+| `GET /api/earth-clouds/heights` · `GET /api/earth-clouds/colour?date=` | Earth's measured clouds (#83): NOAA-20 VIIRS Cloud Top Height (day) from NASA GIBS turned back into metres with GIBS's colour map, as a 2048×1024 8-bit PNG (0 = no cloud retrieved, v → (v − 1)·50 + 25 m), for the newest day GIBS has published (header `x-cloud-date`; it lags 1–3 days), and that day's NOAA-20 true-colour mosaic; cached per day in `data/cache/earthclouds/` (`server/earthclouds.js`) |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
@@ -296,8 +300,8 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
-On a body with an elevation model the camera stands on the DEM's ground and the horizon is a
-terrain patch from the measured heights (mountains, crater rims; see Elevation and relief, #80).
+On a body with an elevation model the camera stands on the DEM's ground and the land to the horizon is
+the tiled level-of-detail globe from the measured heights (mountains, crater rims; see Elevation and relief, #80).
 On Venus and Earth a double-click stands on the cloud tops, and DESCEND / ASCEND fly through the cloud layer to the
 ground and back (see Clouds and ground, #83).
 
@@ -572,9 +576,16 @@ elevation read-out with its source.
   `u + (texLon0 + 180)/360`, the same offset `siteDir` uses. Sources, resolutions and licences:
   [data-sources.md](data-sources.md#elevation-models-80). Bundled: Earth (ETOPO1), Moon (LOLA),
   Mars (MOLA), Mercury (MESSENGER/USGS), Venus (Magellan), Ceres and Vesta (Dawn/DLR), Pluto and
-  Charon (New Horizons, encounter hemispheres), Enceladus (Cassini ISS shape model): 13 MB in all.
-  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Titan, Ganymede, Europa,
+  Charon (New Horizons, encounter hemispheres; Charon's noisy rim masked), Enceladus (Cassini ISS shape model,
+  read from its −180° tie point) and Titan (Cassini, Corlies et al. 2017: the measured cells, plus
+  `titan-drawn.png`, the published interpolation drawn where nothing was measured): 13.5 MB in all.
+  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Ganymede, Europa,
   Callisto and Io have no open global grid: smooth spheres, and the panel says why.
+- **Rim masks and drawn surfaces**: `maskNoisyEdges` (`src/astro/dem.js`, run by the build for Charon) grows a
+  mask inwards from the gaps through cells with little isotropic texture (`isoTexture`: along-track streaks and
+  interpolated smooth bands), so only measured-looking terrain is kept; tiles inherit the bundled grid's mask
+  (`heightAt` gives no data where the grid has none). A body with `drawnFile` (Titan) draws that grid over its
+  gaps instead of the smooth fill; read-outs there still say NO DATA.
 - **Decoding** (`src/data/dem.js`): the PNG is inflated with `DecompressionStream` and unfiltered
   in JS (an `<img>` would round it to 8 bits), dequantised to metres (NaN = no data) for read-outs,
   and uploaded as a half-float `R16F` texture with a box-filtered mip chain (rows flipped so v = 1 is
@@ -589,14 +600,24 @@ elevation read-out with its source.
   file rather than shipped as a second image, so every exaggeration is exact (`slopeNormal` in
   `src/astro/dem.js` is the same maths, tested). Venus' relief is on its ground, under the opaque cloud deck
   (#83): hidden from orbit, seen from the helm and the surface view.
-- **Close up** (`src/views/system/relief.js`): within 4 radii the globe swaps to a 384 × 192 sphere;
-  within ~0.25 radii of the ground (FROM ABOVE, FLY) and in the surface view a terrain patch is built
-  around the point below the camera: a polar grid of 96 rings × 192 spokes, rings packed towards
-  the centre (≈ 40 m apart in Earth's surface view), heights from the finest tiles loaded
-  (`/api/dem-tile`, the level chosen per ring so cells match the spacing; the bundled grid until they
-  arrive, then rebuilt), positions relative to the patch centre for float precision, lit by its own
-  geometry with the globe's shared uniforms. The globe is discarded under it (`uDemClip`). The
-  standing patch reaches ~350 km, enough for mountains and crater rims on the horizon.
+- **Close up: a tiled level-of-detail globe** (`src/views/system/relief.js`, pure parts in `src/astro/lod.js`):
+  within 4 radii the globe swaps to a 384 × 192 sphere; within 3 radii of a focused body with relief on (Venus: only
+  under its cloud deck) and in the surface view the sphere is discarded (`uDemClip`) and the globe is drawn as a
+  quadtree of chunks in the `/api/dem-tile` addressing (level z: 4·2^z × 2·2^z chunks of 90°/2^z). Selection
+  (`selectChunks`) starts from the eight level-0 chunks, culls those beyond the horizon plus a pad for the
+  tallest relief (`reliefPad`), and splits the chunk that looks biggest (its size over its distance from the
+  camera, above `tau` ≈ 0.32 scaled by the field of view) until ~380 leaves; the finest level is where cells
+  reach ~20 m standing (13 on Earth) or a couple of levels past the finest tile in flight. Each chunk is a 32 × 32
+  cell mesh with skirts (hiding the cracks against coarser neighbours), its heights from tile level z − 3 (the
+  same spacing; coarser tiles, then the bundled grid, until it arrives, then rebuilt), normals from a one-cell
+  apron (seamless shading across chunks), positions relative to its centre for float precision, lit by its own
+  geometry with the globe's shared uniforms. A leaf not yet built is covered by its nearest built ancestor
+  (`chunksToShow`; level 0 is built at once, so there are no holes); builds run within ~8 ms a frame, the chunk
+  that looks biggest first. Memory is bounded: ~420 chunks (least recently shown dropped, ancestors kept) and 192
+  tiles (`src/data/dem.js`, LRU, six requests at a time, newest first, stale ones dropped). The surface camera
+  stands 2 m above the drawn triangles of the finest chunk under it (`gridSurface`). On Venus chunks from level 3
+  carry Magellan SAR detail (`/api/sar-tile`, `uDetail` in the planet shader, ≤ 96 textures, LRU). Checks:
+  `__fidelityRelief.relief.lodStats(id)` (chunks held and shown by level, tiles, detail textures, selection).
 - **RELIEF** (body panel, ELEVATION section): OFF · TRUE · ×2 · ×5 · ×10 · ×20 (`settings.relief`,
   default TRUE). Exaggerations are labelled in the panel and the surface HUD.
 - **Read-outs**: the height under the pointer (panel row AT CURSOR and a tag by the cursor),
@@ -606,6 +627,7 @@ elevation read-out with its source.
   features (`features.js`) are re-seated on the drawn ground when the DEM loads or the exaggeration
   changes; Planet View globes get the same relief and lifted dots. The helm (`helm.js`) keeps its
   0.2 %-of-radius clearance above the terrain and reports altitude above it.
+- **Titan**: its globe shows the haze (`shading: 'none'`), so the relief is in the read-outs and the surface view only.
 - **Standalone**: no DEMs (16 MB budget); globes stay smooth and the panel says so.
 - **Browser checks**: `window.__fidelityRelief` (`terminatorView(phase, dist)`, `overSite(lat, lon,
   dist)`, `elevationAt`, `phaseNow`, `view` = the System View API).
@@ -617,10 +639,25 @@ descends to and the helm lands on.
 
 - **Model** (`src/astro/atmosphere.js`, pure, `tests/atmosphere.test.js`): the VIRA profile for Venus and the US
   Standard Atmosphere 1976 for Earth (pressure, temperature by altitude), `CLOUD_LAYERS` (Venus deck 48–70 km, haze to
-  90 km, measured, super-rotation 4 days; Earth's shell at 10 km, ASSUMED: the imagery has no height), the murk, light
+  90 km, measured, super-rotation 4 days; Earth a volume drawn as nine slices, 1–12.5 km), `cloudColumn` (Earth: a
+  MEASURED top from the VIIRS cloud-top height with a MODELLED base, top − 45% of its height, 0.8–4 km thick; without
+  the product the ASSUMED 2–10 km layer), `sliceDraws` / `sliceAlpha` (which slices a column fills, and the share of
+  its opacity each gets), the murk (Earth: through the column from base to top), light
   fraction, Sun visibility and Rayleigh extinction by altitude (MODELLED), and the DESCEND / ASCEND state machine
   (`createDescent`, `startDescent`, `stepDescent`: altitude above the ground eased in log(altitude + 5 km), 40 s for
-  Venus, 24 s for Earth, reversible mid-way; it takes the time as an argument).
+  Venus, 30 s for Earth (through the assumed layer ~15 s in cloud), reversible mid-way; it takes the time as an argument).
+- **Earth's clouds** (`clouds.js`, `materials.js` `sliceAlpha()`): `addCloudSlices` hangs eight lower slices under
+  the outer shell (shared uniforms, own `uSliceKm`); a fragment draws if its column reaches that slice (decided first
+  in the shader, so hidden slices cost little). With live skins on, `loadEarthClouds` fetches `/api/earth-clouds`:
+  the cloud-top codes (`uCth`, nearest-sampled) and the true colour of the same NOAA-20 day (the shell's map, so
+  where, how white and how high come from the same overpasses; the ground keeps the newer live skin). The cloud
+  mask: no cloud-top retrieval → no cloud (snow and ice have none), else whiteness; without the product a MODELLED
+  prior (`icePriorMask`: Antarctica and Greenland's ice sheets, ground above 4–5 km) holds ice back (`uSnowMask`).
+  The ground's cloud shadows use the same gate (`uCloudGate`) from the volume's middle height. Close to the planet
+  the shells swap to 512 × 256 spheres (`cloudDetail`: a 96 × 48 sphere's facets sag 3.4 km at Earth), and every
+  shell draws only the faces the camera can see (`cloudSides`/`shellSide`): before, the far side's inner faces
+  showed through any gap in the ground (the speckles seen looking down from the tops) and, with the logarithmic
+  depth buffer, cost a full shader pass behind the planet.
 - **Shells** (`SystemView.addBody`, `src/views/system/clouds.js`): a body with `skin.ground` (Venus: `venusRadar`,
   `groundRadar`) draws its globe with that map, coloured in the planet shader after Venera 13/14 (`uRadar`), and its
   own map (`skin.map`, the cloud tops) on an opaque `cloudMaterial({ opaque: true })` shell at 1 + 70 km / R that
@@ -632,7 +669,7 @@ descends to and the helm lands on.
   lookup (`cloudShadow()`: the shell seen from each ground point towards the Sun, `uCloudTex/uCloudH/uCloudU/uSunL`).
   Venus' DEM is now shaded on the globe (`shading: 'all'`): the deck hides it from orbit, the helm sees it below.
 - **Surface view**: double-click (System View, or the Planet View globe) enters with `layer: 'clouds'`: on Venus and
-  Earth the camera starts on the cloud tops (`standKm`: 70.5 km, 10.8 km); `surfaceAt` (sites, events, postcards,
+  Earth the camera starts on the cloud tops (`standKm`: 70.5 km; on Earth 0.8 km over the measured top over the spot, else 10.8 km); `surfaceAt` (sites, events, postcards,
   `?surface=`) keeps the ground unless `layer: 'clouds'` (`&layer=clouds`). The HUD's DESCEND / ASCEND run the state
   machine; `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
   `layerLook` sets the sky, star fade, Sun and body visibility (none under Venus' deck), the ground's light (`uSunColor`

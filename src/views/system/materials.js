@@ -108,6 +108,15 @@ const PLANET_FRAG = /* glsl */`
   // clouds off the ground when they are drawn on their own shell. uAlphaFromLuma: 1 alpha from brightness (a cloud
   // map), 2 alpha from whiteness (clouds picked out of a true-colour mosaic).
   uniform float uRadar; uniform vec3 uSkyAmb; uniform vec3 uSkyUp; uniform vec3 uFogCol; uniform float uFogK; uniform float uLiveSplit;
+  // Detail imagery on a close-up terrain chunk (#83: Magellan SAR tiles on Venus): uDetail covers the map's uv rectangle
+  // uDetailRect (u0, v0 south edge, du, dv) and replaces uMap inside it.
+  uniform sampler2D uDetail; uniform float uDetailOn; uniform vec4 uDetailRect;
+  // Earth's cloud volume (#83, clouds.js): this slice's height uSliceKm among uSlices; a column draws in the slices
+  // from its base to its top (measured top from uCth's 8-bit code, base modelled; else the assumed uAssumed = top,
+  // base km), at least the slice nearest its top. uCth also gates the whiteness mask (no retrieval, no cloud);
+  // without it the MODELLED ice prior uSnowMask does.
+  uniform float uSliceOn; uniform float uSliceKm; uniform float uSlices[9]; uniform sampler2D uCth; uniform float uCthOn; uniform vec2 uAssumed;
+  uniform sampler2D uSnowMask; uniform float uSnowOn;
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   float whiteness(vec3 c) {
     float lo = min(c.r, min(c.g, c.b)), hi = max(c.r, max(c.g, c.b));
@@ -122,6 +131,7 @@ const PLANET_FRAG = /* glsl */`
   // Cloud shadows on the ground (#83): the cloud shell (height uCloudH body radii, its map uCloudTex turned uCloudU
   // in u against the ground) seen from this point towards the Sun (uSunL, the ground mesh's frame). Mode as uAlphaFromLuma.
   uniform sampler2D uCloudTex; uniform float uCloudMode; uniform float uCloudH; uniform float uCloudU; uniform vec3 uSunL;
+  uniform sampler2D uCloudGate; uniform float uCloudGateOn;
   float cloudShadow() {
     float lat = (vUv.y - 0.5) * 3.14159265, ph = vUv.x * 6.2831853;
     vec3 d = vec3(-cos(ph) * cos(lat), sin(lat), sin(ph) * cos(lat)); // this point (the uv works on the globe and the terrain patch)
@@ -131,7 +141,9 @@ const PLANET_FRAG = /* glsl */`
     float t = -b + sqrt(max(b * b - 1.0 + rc * rc, 0.0));
     vec3 q = normalize(d + s * t);
     float u = atan(q.z, -q.x) / 6.2831853 + uCloudU;
-    vec4 c = texture2D(uCloudTex, vec2(fract(u), asin(clamp(q.y, -1.0, 1.0)) / 3.14159265 + 0.5));
+    vec2 cuv = vec2(fract(u), asin(clamp(q.y, -1.0, 1.0)) / 3.14159265 + 0.5);
+    if (uCloudGateOn > 0.5 && texture2D(uCloudGate, cuv).r < 0.5 / 255.0) return 0.0; // no measured cloud top: no cloud (#83)
+    vec4 c = texture2D(uCloudTex, cuv);
     return uCloudMode > 1.5 ? whiteness(c.rgb) : clamp(dot(c.rgb, vec3(0.333)) * 1.3, 0.0, 1.0);
   }
   vec3 demNormal(vec3 N) {
@@ -194,8 +206,32 @@ const PLANET_FRAG = /* glsl */`
     vec4 c11 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(1.5, 1.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
     return mix(mix(c00, c10, w.x), mix(c01, c11, w.x), w.y);
   }
+  // the opacity of this cloud slice's fragment, or −1 when the column does not reach it (decided first, it is cheap)
+  float sliceAlpha() {
+    vec4 t = texture2D(uMap, vUv);
+    float a = uAlphaFromLuma > 1.5 ? whiteness(t.rgb) : clamp(dot(t.rgb, vec3(0.333)) * 1.3, 0.0, 1.0);
+    float top = uAssumed.x, bot = uAssumed.y;
+    if (uCthOn > 0.5) {
+      float code = floor(texture2D(uCth, vUv).r * 255.0 + 0.5);
+      if (code < 0.5) return -1.0; // no cloud-top retrieval: clear sky (snow and ice included)
+      top = ((code - 1.0) * 50.0 + 25.0) / 1000.0;
+      bot = max(0.3, top - clamp(0.45 * top, 0.8, 4.0));
+    } else if (uSnowOn > 0.5) a *= 1.0 - texture2D(uSnowMask, vUv).r;
+    float nearest = uSlices[0], n = 0.0;
+    for (int i = 0; i < 9; i++) {
+      if (abs(uSlices[i] - top) < abs(nearest - top)) nearest = uSlices[i];
+      if (uSlices[i] >= bot - 0.001 && uSlices[i] <= top + 0.001) n += 1.0;
+    }
+    bool nearestIn = nearest >= bot - 0.001 && nearest <= top + 0.001;
+    if (!((uSliceKm >= bot - 0.001 && uSliceKm <= top + 0.001) || abs(uSliceKm - nearest) < 0.001)) return -1.0;
+    if (!nearestIn) n += 1.0;
+    a = 1.0 - pow(1.0 - clamp(a, 0.0, 0.999), 1.0 / max(n, 1.0));
+    return a < 0.004 ? -1.0 : a;
+  }
   void main() {
     #include <logdepthbuf_fragment>
+    float sliceA = 1.0;
+    if (uSliceOn > 0.5) { sliceA = sliceAlpha(); if (sliceA < 0.0) discard; }
     vec3 N = normalize(vNormalW);
     #ifdef DEM
     if (uDemClip.w < 1.0 && dot(normalize(vDirL), uDemClip.xyz) > uDemClip.w) discard; // the terrain patch is drawn here
@@ -219,6 +255,10 @@ const PLANET_FRAG = /* glsl */`
     if (uCloudMode > 0.5) lightK *= 1.0 - 0.7 * cloudShadow();
     #endif
     vec4 tex = texture2D(uMap, vUv);
+    if (uDetailOn > 0.5) {
+      vec2 dd = (vUv - uDetailRect.xy) / uDetailRect.zw;
+      if (dd.x >= 0.0 && dd.y >= 0.0 && dd.x <= 1.0 && dd.y <= 1.0) tex = texture2D(uDetail, dd);
+    }
     vec3 base = tex.rgb * uTint;
     if (uRadar > 0.5) { // radar brightness → Venera 13/14 rock colours: dark basalt, rough (radar-bright) ground a little paler
       float g = dot(tex.rgb, vec3(0.333));
@@ -323,6 +363,7 @@ const PLANET_FRAG = /* glsl */`
       col += texture2D(uNight, vUv).rgb * night * 1.4;
     }
     float a = uAlphaFromLuma > 1.5 ? whiteness(tex.rgb) : uAlphaFromLuma > 0.5 ? clamp(dot(tex.rgb, vec3(0.333)) * 1.3, 0.0, 1.0) : 1.0;
+    if (uSliceOn > 0.5) a = sliceA;
     if (!gl_FrontFacing) col *= 0.5; // a cloud shell seen from below: its shaded underside
     if (uFogK > 0.0) col = mix(col, uFogCol, 1.0 - exp(-length(cameraPosition - vPosW) * uFogK));
     gl_FragColor = vec4(col, a);
@@ -378,7 +419,11 @@ export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035,
     defines: dem ? { DEM: 1 } : {},
     uniforms: {
       ...(dem ? { uDem: { value: null }, uDemOn: { value: 0 }, uDemDisp: { value: 0 }, uDemK: { value: 0 }, uDemU0: { value: 0 }, uDemTexel: { value: new THREE.Vector2(1 / 1440, 1 / 720) }, uDemClip: { value: new THREE.Vector4(0, 1, 0, 2) },
-        uCloudTex: { value: null }, uCloudMode: { value: 0 }, uCloudH: { value: 0 }, uCloudU: { value: 0 }, uSunL: { value: new THREE.Vector3(0, 1, 0) } } : {}),
+        uCloudTex: { value: null }, uCloudMode: { value: 0 }, uCloudH: { value: 0 }, uCloudU: { value: 0 }, uSunL: { value: new THREE.Vector3(0, 1, 0) },
+        uCloudGate: { value: null }, uCloudGateOn: { value: 0 } } : {}),
+      uDetail: { value: null }, uDetailOn: { value: 0 }, uDetailRect: { value: new THREE.Vector4(0, 0, 1, 1) },
+      uSliceOn: { value: 0 }, uSliceKm: { value: 0 }, uSlices: { value: [1, 2, 3.5, 5, 6.5, 8, 9.5, 11, 12.5] }, uCth: { value: null }, uCthOn: { value: 0 }, uAssumed: { value: new THREE.Vector2(10, 2) },
+      uSnowMask: { value: null }, uSnowOn: { value: 0 },
       uRadar: { value: 0 }, uSkyAmb: { value: new THREE.Color(0, 0, 0) }, uSkyUp: { value: new THREE.Vector3(0, 1, 0) }, uFogCol: { value: new THREE.Color(0, 0, 0) }, uFogK: { value: 0 }, uLiveSplit: { value: 0 },
       uMap: { value: placeholder }, uNight: { value: null }, uHasNight: { value: 0 }, uLive: { value: null }, uHasLive: { value: 0 },
       uTint: { value: new THREE.Color(...tint) }, uSunPos: { value: new THREE.Vector3() },

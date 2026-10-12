@@ -23,7 +23,6 @@ export const demMeta = (id) => indexNow?.bodies?.[id] ?? null;
 
 // Bodies with no global DEM, and why (mirrors server/dem.js NO_DEM for the panel without a round trip).
 export const NO_DEM = {
-  titan: 'Cassini radar and altimetry cover strips only (~9% at high resolution); no open global grid.',
   ganymede: 'No global stereo DEM: Galileo and Voyager stereo of small areas; JUICE maps it from 2034.',
   europa: 'No global DEM: Galileo stereo of small areas only; Europa Clipper maps it from 2030.',
   callisto: 'No global DEM: limb profiles and local Galileo stereo only.',
@@ -45,8 +44,14 @@ export function loadDem(id) {
       if (!r.ok) return null;
       const png = await decodePng16(new Uint8Array(await r.arrayBuffer()), inflate);
       const dem = { width: png.width, height: png.height, heights: dequantize(png.data, meta.min, meta.max) };
-      // what is drawn over gaps: a smooth fill back to the reference surface (read-outs still say NO DATA)
-      const drawn = { ...dem, heights: meta.coverage < 0.9999 ? fillGaps(dem) : dem.heights };
+      // what is drawn over gaps: a published interpolation where there is one (Titan), else a smooth fill back to the
+      // reference surface (read-outs still say NO DATA)
+      let drawn = null;
+      if (meta.drawnFile) {
+        const rd = await fetch(`/dem/${meta.drawnFile}`);
+        if (rd.ok) { const p = await decodePng16(new Uint8Array(await rd.arrayBuffer()), inflate); drawn = { width: p.width, height: p.height, heights: dequantize(p.data, meta.drawnMin, meta.drawnMax) }; }
+      }
+      drawn ??= { ...dem, heights: meta.coverage < 0.9999 ? fillGaps(dem) : dem.heights };
       const out = { id, meta, dem, drawn, texture: heightTexture(drawn, meta) };
       loaded.set(id, out);
       return out;
@@ -106,24 +111,67 @@ const tileListeners = new Set();
 /** Call `fn(id, tile)` whenever a tile arrives (terrain patches rebuild with the finer heights). */
 export const onTileLoaded = (fn) => (tileListeners.add(fn), () => tileListeners.delete(fn));
 
-/** Finest tile level for a body (server/dem.js maxLevel: tile px/° no finer than the source's). */
-export const tileMaxLevel = (meta) => (meta?.sourcePpd ? Math.max(0, Math.floor(Math.log2((meta.sourcePpd * 90) / TILE))) : 0);
+/**
+ * Finest tile level for a body (server/dem.js maxLevel: tile px/° no finer than the source's; `tilePpd` when a
+ * finer tier serves the close-ups, e.g. SLDEM2015 for the Moon); −1 when the body has no tiles (Titan).
+ */
+export const tileMaxLevel = (meta) => {
+  const ppd = meta?.tilePpd ?? meta?.sourcePpd;
+  if (meta?.tilePpd === 0 || !ppd) return -1;
+  return Math.max(0, Math.floor(Math.log2((ppd * 90) / TILE)));
+};
+/** Coarsest tile level worth loading: the first whose cells are finer than the bundled grid's (coarser ones add nothing). */
+export const tileMinLevel = (meta) => {
+  const gridPpd = (meta?.width ?? 1440) / 360;
+  let z = 0;
+  while ((TILE * 2 ** z) / 90 <= gridPpd * 1.001) z++;
+  return z;
+};
 
-/** Load tile (z, x, y) of a body; resolves to the tile or null. */
+// Tiles are bounded: least recently used ones are dropped beyond MAX_TILES (each holds 256² float heights, 256 KB).
+const MAX_TILES = 192;
+let useTick = 0;
+/** Advance the use clock (once a frame): a tile sampled this frame moves to the young end of the LRU once. */
+export const tileTick = () => { useTick++; };
+function touch(key, v) { tiles.delete(key); tiles.set(key, v); }
+function evict() {
+  if (tiles.size <= MAX_TILES) return;
+  for (const [k, v] of tiles) {
+    if (tiles.size <= MAX_TILES) break;
+    if (!(v instanceof Promise)) tiles.delete(k);
+  }
+}
+let inFlight = 0;
+const MAX_IN_FLIGHT = 6, waiting = [];
+const pump = () => { while (inFlight < MAX_IN_FLIGHT && waiting.length) { inFlight++; waiting.pop()(true); } }; // newest first: what the camera wants now
+const STALE = Symbol('stale');
+
+/** Load tile (z, x, y) of a body; resolves to the tile or null. At most six requests at a time, newest first. */
 export function loadTile(id, z, x, y) {
   const key = `${id}/${z}/${x}/${y}`;
   const t = tiles.get(key);
-  if (t !== undefined) return t instanceof Promise ? t : Promise.resolve(t);
+  if (t !== undefined) { touch(key, t); return t instanceof Promise ? t : Promise.resolve(t); }
   if (!tilesOk) return Promise.resolve(null);
-  const p = fetch(`/api/dem-tile/${key}`).then(async (r) => {
-    if (!r.ok) { if (r.status === 404 && r.headers.get('content-type')?.includes('text/html')) tilesOk = false; return null; }
-    const png = await decodePng16(new Uint8Array(await r.arrayBuffer()), inflate);
-    const min = Number(png.text.min), max = Number(png.text.max), deg = 90 / 2 ** z;
-    return { heights: dequantize(png.data, min, max), deg, west: -180 + x * deg, north: 90 - y * deg, z };
-  }).catch(() => null).then((v) => { tiles.set(key, v); if (v) for (const fn of tileListeners) fn(id, v); return v; });
+  const p = new Promise((go) => { waiting.push(go); pump(); }).then((ok) => {
+    if (!ok) return STALE;
+    return fetch(`/api/dem-tile/${key}`).then(async (r) => {
+      if (!r.ok) { if (r.status === 404 && r.headers.get('content-type')?.includes('text/html')) tilesOk = false; return null; }
+      const png = await decodePng16(new Uint8Array(await r.arrayBuffer()), inflate);
+      const min = Number(png.text.min), max = Number(png.text.max), deg = 90 / 2 ** z;
+      return { heights: dequantize(png.data, min, max), deg, west: -180 + x * deg, north: 90 - y * deg, z };
+    }).catch(() => null).finally(() => { inFlight = Math.max(0, inFlight - 1); pump(); });
+  }).then((v) => {
+    if (v === STALE) { tiles.delete(key); return null; } // dropped from the queue: asked for again if still wanted
+    tiles.set(key, v); evict();
+    if (v) for (const fn of tileListeners) fn(id, v);
+    return v;
+  });
   tiles.set(key, p);
+  if (waiting.length > 48) waiting.splice(0, waiting.length - 48).forEach((go) => go(false)); // the oldest requests are stale: the camera has moved on
   return p;
 }
+/** How many tiles are held (for the browser checks of the memory bound). */
+export const tileCount = () => tiles.size;
 
 /** Tile indices holding lat/lon at level z. */
 export function tileAt(z, lat, lon) {
@@ -150,16 +198,26 @@ function sampleTile(t, lat, lon) {
 export function heightAt(id, lat, lon, z = -1, { request = true } = {}) {
   const g = demNow(id);
   if (!g) return null;
-  for (let level = Math.min(z, tileMaxLevel(g.meta)); level >= 0; level--) {
-    const { x, y } = tileAt(level, lat, lon), t = tiles.get(`${id}/${level}/${x}/${y}`);
-    if (t === undefined && request && level === Math.min(z, tileMaxLevel(g.meta))) loadTile(id, level, x, y);
+  const zmax = tileMaxLevel(g.meta), zmin = tileMinLevel(g.meta);
+  // the bundled grid's mask holds for the tiles too (Charon's masked rim, gaps): no data there is no data
+  const masked = g.meta.coverage < 0.9999 && !Number.isFinite(sampleDemNearest(g.dem, lat, lon));
+  for (let level = Math.min(z, zmax); level >= zmin && !masked; level--) {
+    const { x, y } = tileAt(level, lat, lon), key = `${id}/${level}/${x}/${y}`, t = tiles.get(key);
+    if (t === undefined && request && level === Math.min(z, zmax)) loadTile(id, level, x, y);
     if (t && !(t instanceof Promise)) {
+      if (t.used !== useTick) { t.used = useTick; touch(key, t); } // recently used tiles survive eviction
       const h = sampleTile(t, lat, lon);
       if (Number.isFinite(h)) return { h, hDraw: h, res: `tile ${level}`, cellKm: (2 * Math.PI * g.meta.refRadiusKm * t.deg) / 360 / TILE };
     }
   }
   const h = sampleDem(g.dem, lat, lon);
   return { h, hDraw: Number.isFinite(h) ? h : sampleDem(g.drawn, lat, lon), res: 'global', cellKm: g.meta.cellKm };
+}
+
+/** The grid cell holding lat/lon (no interpolation): NaN where the bundled grid has no data. */
+function sampleDemNearest({ width: W, height: H, heights }, lat, lon) {
+  const x = Math.min(W - 1, Math.floor(((((lon + 180) % 360) + 360) % 360) / 360 * W)), y = Math.min(H - 1, Math.max(0, Math.floor(((90 - lat) / 180) * H)));
+  return heights[y * W + x];
 }
 
 export { NODATA };
