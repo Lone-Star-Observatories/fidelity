@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "status": "Research-only projected-scale examples; no registered observer view, new dossier, embedding, catalogue or codec change.",
+  "sources": [
+    {
+      "path": "docs/research/haumea-moons-dynamics-primary-assessment-2026-10-12.json",
+      "bytes": 3262,
+      "sha256": "e08710fbd1e69e95336871893cc0d8f5ab2bc49066f8b5ada9b900935008492b"
+    },
+    {
+      "path": "docs/research/haumea-moons-astrometry-assessment-2026-10-12.json",
+      "bytes": 4128,
+      "sha256": "072d119fd2351f6abc318a46d2b372a6a848a2e09b7aa119e9fd6b6ac8846306"
+    },
+    {
+      "path": "data/research-sources/haumea-dynamics-2026.pdf",
+      "bytes": 8080592,
+      "sha256": "b0a0988550ba63180daa0ec65c3ba158173455fda5acb8cb0fe7719721889991"
+    }
+  ],
+  "moons": [
+    {
+      "body": "Namaka",
+      "semimajorAxisKm": 25365,
+      "eccentricity": 0.22,
+      "assumedHeightKm": 75,
+      "heightBasis": "150±50km circular limb assumed for the 2025 single-chord position; not a resolved shape measurement.",
+      "assumedCentreDistanceKm": 25290,
+      "projectedScaleExamples": [
+        {
+          "radiusKm": 1006,
+          "angularDiameterDeg": 4.559491171756043,
+          "centreWidthPixels": 66.56244958580771
+        },
+        {
+          "radiusKm": 572,
+          "angularDiameterDeg": 2.5920111310965708,
+          "centreWidthPixels": 37.82636285352517
+        }
+      ]
+    },
+    {
+      "body": "Hiʻiaka",
+      "semimajorAxisKm": 49186,
+      "eccentricity": 0.0604,
+      "assumedHeightKm": 185,
+      "heightBasis": "Separate 2021 occultation diameter370±20km cited by the 2026 paper; original occultation reduction not independently audited here.",
+      "assumedCentreDistanceKm": 49001,
+      "projectedScaleExamples": [
+        {
+          "radiusKm": 1006,
+          "angularDiameterDeg": 2.352752149130362,
+          "centreWidthPixels": 34.333719535323425
+        },
+        {
+          "radiusKm": 572,
+          "angularDiameterDeg": 1.3376841382749634,
+          "centreWidthPixels": 19.518972412205304
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "temperatureHelperK": 40,
+    "limits": "Angular outputs only; colour and irradiance discarded. Each projected semiaxis is passed separately as a spherical scale surrogate, not an exact finite-distance triaxial limb calculation. The 1006±67/572±15km projected axes belong to the 2025-03-16 Earth view, not the directions from either moon. These examples MUST NOT be adopted as actual moon-view axes, a simultaneous ellipse, a registered Haumea disk, or a confidence envelope."
+  },
+  "scienceLimits": [
+    "Haumea is a rotating triaxial body. A full moon-view limb requires physical principal axes, rotation phase, body pole, observer direction and surface-normal registration. The gravity reference radius772km is not substituted for those physical axes. Existing smooth ellipsoid and all native/model bytes remain unchanged.",
+    "Nominal semimajor axes at JD2454615.0 are scales, not current distances. Namaka eccentricity.220 and Hiʻiaka.0604 preclude treating these as dated separations. No orbital uncertainty propagation or current ephemeris is claimed.",
+    "Subtracting an assumed spherical moon height is illustrative only; neither size assumption establishes local normal, spin synchronization, permanent Haumea-facing terrain or everywhere-visible primary.",
+    "Haumea model interior densities, ring surface density analogies and fossil rotation are not moon chemistry, texture, spin or observed history. No analog skin, atmosphere, plume, ocean, biology or landing scene adopted.",
+    "The 2026 primary record CC BY-NC-SA4.0 is distinct from NASA image/raw-data terms. No figure used. Native 2015 point identity/product/filter/UTC crossmatch remains open."
+  ],
+  "open": [
+    "Physical ellipsoid/pole/phase crosswalk for each moon-view limb",
+    "Dated eccentric orbital geometry and spin/site-normal registration",
+    "Original 2021 Hiʻiaka occultation reduction and Namaka limb alternatives",
+    "Ring opening/registration, phase, spectral transfer, photometry and transmission"
+  ]
+}
