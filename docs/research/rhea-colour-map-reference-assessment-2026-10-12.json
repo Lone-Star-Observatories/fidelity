@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-12",
+  "body": "Rhea",
+  "status": "research-only colour-map reference assessment; no map replacement or new embedding",
+  "dates": {
+    "imageAddition": "2014-11-04 Photojournal",
+    "resourcePublication": "2014-12-01 separate resource page; not an acquisition date",
+    "observation": "First ten years of Cassini Saturn operations; exact image-by-image epochs unverified"
+  },
+  "publisherProcessing": {
+    "processor": "Paul Schenk, Lunar and Planetary Institute",
+    "roles": [
+      "image selection",
+      "radiometric calibration",
+      "geographic registration",
+      "photometric correction",
+      "mosaic selection and assembly"
+    ],
+    "originalPlanningAndTargeting": [
+      "Tilman Denk, Frei Universitat Berlin",
+      "Paul Helfenstein, Cornell University Ithaca New York"
+    ],
+    "resolution": "Publisher estimate 400 metres per pixel; not a new raster calculation",
+    "colour": "Enhanced spectral transfer extending into ultraviolet and infrared, broader than human vision. Not calibrated visible RGB appearance."
+  },
+  "interpretation": "Hemisphere differences are displayed; radiation/magnetospheric alteration and E-ring deposition explanations are publisher interpretations, not local measured chemical fractions or a newly calibrated rendering.",
+  "associationLimits": [
+    "PIA18438 is distinct from the west-positive one-band USGS 417 m reference and the unchanged NASA3D texture; processing claims are not transferred between products.",
+    "NASA3D JPEG/TIFF metadata and dimension similarity do not establish PIA18438 product or pixel identity.",
+    "No PIA18438 image downloaded or embedded; no image hash, pixel comparison or frame registration claimed.",
+    "Exact filters, individual acquisition epochs, coverage, longitude origin, photometric transfer and product-specific terms remain open."
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "trackedPublicFiles": 596,
+    "existingMapSha256": "487f642639a3a4b2e8e21c2aaf9dc5cd010e5e4a91d2e6b6ff61aff97bc157ac",
+    "newDossier": false
+  },
+  "next": [
+    "Investigate NASA3D source history and specific figure association without assuming product identity",
+    "Recover substantial conforming lossless headroom before prepared additive dossiers",
+    "Continue independent native/science/calibration audits"
+  ],
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/color-maps-of-rhea-2014/",
+      "path": "data/research-sources/rhea-colour-caption-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 271875,
+      "sha256": "f075e64a9c8de2cec6a788bb388d4a107cd8de19119748edcca6e292f5fa2736",
+      "product": "PIA18438",
+      "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance and third-party caveats; no CC BY assertion"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/color-map-of-rhea-2014/",
+      "path": "data/research-sources/rhea-colour-resource-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 249243,
+      "sha256": "fcb1f82e41f9e4944c2f89169f3cb6bebb53db4a6e62b8c175e253c32600acae",
+      "product": "PIA18438",
+      "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance and third-party caveats; no CC BY assertion"
+    }
+  ],
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "env -u OPENAI_API_KEY; inherited key excluded for missing-key assertions",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15987972,
+    "headroomBytes": 12028,
+    "publicFilesByteEqual": 596,
+    "registryUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim; research-only change.",
+    "sizeAttribution": "Interbuild feed difference unaudited; no research or compression savings attribution."
+  }
+}
