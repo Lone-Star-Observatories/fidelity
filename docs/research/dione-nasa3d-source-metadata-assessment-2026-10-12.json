@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-12",
+  "body": "Dione",
+  "status": "research-only source metadata audit; no image transformation or replacement",
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/nasa/NASA-3D-Resources/contents/Images%20and%20Textures/Saturn%20-%20Dione",
+      "path": "data/research-sources/dione-nasa3d-directory-2026-10-12.json",
+      "bytes": 3554,
+      "sha256": "019c76c05ab596e2a1304344ad6eb35d27ede9375cbb2b2d2485847f548b85bd"
+    },
+    {
+      "url": "https://api.github.com/repos/nasa/NASA-3D-Resources/commits?path=Images%20and%20Textures%2FSaturn%20-%20Dione%2FSaturn%20-%20Dione.jpg&per_page=100",
+      "path": "data/research-sources/dione-nasa3d-history-2026-10-12.json",
+      "bytes": 4137,
+      "sha256": "ce8361545fcf1c4971d9d87b70713bf841f4abf869a500c1bb5a47b2280807de"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Dione/Saturn%20-%20Dione.tif",
+      "path": "data/research-sources/dione-nasa3d-source-original.tif",
+      "bytes": 3137272,
+      "sha256": "7b04dd46bf74e4da76a4f37610f44ca0feca2d527c547ed10a9d0826cb629a36"
+    }
+  ],
+  "repository": {
+    "jpegGitBlob": "a632a9f1227277630d4e133a2b38c34822db7480",
+    "tiffGitBlob": "14b2a9752ae25914936ac34563dd6981e85eb4ff",
+    "returnedJpegPathHistory": [
+      {
+        "commit": "11ebb4ee043715aefbba6aeec8a61746fad67fa7",
+        "authorDate": "2025-06-03T16:00:30Z",
+        "message": "I renamed the textures and added preview images."
+      }
+    ],
+    "limit": "Path-specific history begins at rename; not an exhaustive history of prior paths or science acquisition."
+  },
+  "metadata": {
+    "dimensions": [
+      1440,
+      720
+    ],
+    "storage": "RGB, visually monochrome mosaic",
+    "description": "converted PNM file",
+    "software": "Adobe Photoshop CS3 Macintosh",
+    "jpegTimestamp": "2008:09:03 15:45:37",
+    "tiffTimestamp": "2008:09:03 15:45:27",
+    "orientationTag": 1,
+    "geoTiffTags33550_33922_34735": "absent",
+    "dateLimit": "File/software timestamps are not independently verified observation, publication or processing chronology. They do not establish a PIA identity or exclude later metadata inheritance."
+  },
+  "pixelComparison": {
+    "decodedRgbEqual": false,
+    "meanAbsoluteDifferencePerChannel": [
+      0.3494868827160494,
+      0.3494868827160494,
+      0.3494868827160494
+    ],
+    "limit": "Pixel comparison only, no geographic/raster-size inference. Similarity supports further source investigation, not proven conversion lineage or full-pixel preservation."
+  },
+  "inspection": "Existing JPEG shows sharply varying detail, seams and light/blurred polar areas; these are not measured smooth terrain, uniform resolution or calibrated visible colour. Research TIFF decoded successfully; no new science frame assignment.",
+  "creditsAndTerms": {
+    "source": "NASA NASA-3D-Resources repository",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limit": "Preserve existing NASA source credits/terms; no new CC BY assertion or transfer of PIA18434 Schenk processing claims."
+  },
+  "open": [
+    "Specific older map/PIA association",
+    "Original camera/filter/observation epochs",
+    "Longitude direction/origin, planetocentric frame, surface registration and coverage",
+    "Photometric calibration and precise source lineage"
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "newDossier": false,
+    "existingJpegSha256": "c55d228900524557b6aff323f4b9391fc9816433e213a24ccf348c9b4291f89e",
+    "nativeTiff": "Retained unchanged as separate research input; not embedded or used to replace any prior source."
+  },
+  "verification": {
+    "tests": {
+      "passed": 610,
+      "skipped": 1,
+      "environment": "OPENAI_API_KEY unset for missing-key voice test; no code change"
+    },
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "htmlBytes": 15987715,
+    "headroomBytes": 12285,
+    "preservedPublicFiles": 596,
+    "registry": "byte-identical to prior commit; all 75 dossiers retained",
+    "queueTasks": 566,
+    "browser": "No fresh browser verification claimed for research-only changes",
+    "comparison": "No compression savings claim; production codecs unchanged",
+    "remoteBase": "82a317f; SSH fetch matched HEAD"
+  }
+}
