@@ -1,0 +1,22 @@
+{
+  "snapshotSha256": "2be9e28f4bd4cd36701be9e5277346b24ee160e1679ac8cb478dc3129d8a27d4",
+  "binaryBytes": 19778167,
+  "numericGroupCount": 24,
+  "numericPackedBytes": 1779140,
+  "baselineOuterGzipScreenBytes": 13125225,
+  "bitplaneOuterGzipScreenBytes": 13300086,
+  "exactNativeAndBundledJsInverse": true,
+  "note": "Research-only four bit planes of existing numeric nibbles, including existing odd padding. Exact numeric character code, token layout, spelling and binary asset tail preserved. Excludes production wrapper/decoder overhead; no adoption.",
+  "date": "2026-10-12",
+  "status": "Rejected research-only numeric bit-plane screen; no production change",
+  "differenceBytes": 174861,
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16058732bytes58732over hard16MB gate",
+    "preservation": "All68 dossiers and550 tracked public files unchanged; originals, masters, native science, provenance and recorded Clipper preview preserved. No69/new embedding; queue566.",
+    "browser": "No passing current full/offline browser claim; other engines open.",
+    "attribution": "Interbuild feed differences unaudited; no savings attribution."
+  },
+  "next": "Do not repeat numeric bit-plane trial. Substantial conforming lossless headroom remains necessary before prepared additive dossiers; independent native/science work can continue. Backlog ACTIVE, no external blocker."
+}
