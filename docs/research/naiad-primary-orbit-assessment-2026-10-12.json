@@ -120,6 +120,7 @@
     "queue": 566,
     "preservation": "All 405 tracked public bespoke/model/shape/texture files compared byte-for-byte with HEAD: equal. Registry untouched; all68 dossiers preserved. Original/native/default/master/provenance retained.",
     "browser": "No current passing full artifact; no new full/offline browser claim. Other engines remain open.",
-    "attribution": "Interbuild feed differences unaudited; no savings attribution or production codec change."
+    "attribution": "Interbuild feed differences unaudited; no savings attribution or production codec change.",
+    "postValidationRebase": "Concurrent bd516a9 merged PR77 Trek/warp/helm changes fetched and preserved after checks. Reported tests/build/size apply1df3bb7; latest combined application not yet validated. Revalidate combined before current full artifact claim."
   }
 }
