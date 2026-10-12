@@ -60,8 +60,8 @@ export function parseCommand(text, names) {
   if (/^(off screen|no|audio only)\b/.test(t)) return { action: 'comms', command: 'off_screen' };
   if (/^close (?:the )?channel\b/.test(t)) return { action: 'comms', command: 'close_channel' };
   if (/^scan\b/.test(t)) return { action: 'comms', command: 'scan' };
-  m = t.match(/^(?:tune|open (?:a )?channel)(?: to| on)? ([\d.]+ ?(?:k|m)?(?:hz|egahertz|ilohertz)?)$/);
-  if (m) return { action: 'comms', command: 'tune', frequency: m[1].replace(/egahertz/, 'hz').replace(/ilohertz/, 'hz') };
+  m = t.match(/^(?:tune|open (?:a )?channel)(?: to| on)? ([\d.]+ ?(?:k|m)?(?:hz|egahertz|ilohertz)?)(?: (usb|lsb|am|fm|cw))?$/);
+  if (m) return { action: 'comms', command: 'tune', frequency: `${m[1].replace(/egahertz/, 'hz').replace(/ilohertz/, 'hz').trim()}${m[2] ? ` ${m[2]}` : ''}` };
   if (/^(stop|cancel|never mind|silence)\b/.test(t)) return { action: 'stop' };
   return null;
 }
@@ -69,7 +69,7 @@ export function parseCommand(text, names) {
 const TOOLS = [
   { type: 'function', name: 'go_to', description: 'Fly the ship to a body (planet, moon, star, spacecraft, satellite) or star system by name.', parameters: { type: 'object', properties: { name: { type: 'string', description: 'e.g. Europa, Jupiter, Proxima Centauri, ISS, Voyager 1' } }, required: ['name'] } },
   { type: 'function', name: 'set_layer', description: 'Show or hide a display layer.', parameters: { type: 'object', properties: { layer: { type: 'string', enum: ['labels', 'orbits', 'dwarfs', 'smallBodies', 'spacecraft', 'belts', 'satellites', 'zones', 'axes', 'fields', 'liveSkins'] }, on: { type: 'boolean' } }, required: ['layer', 'on'] } },
-  { type: 'function', name: 'comms', description: "The COMMS viewscreen and receiver: put the hailed station's video on screen (or take it off for audio only), close the channel, scan the receiver for clear signals, or tune/open a channel on a frequency (e.g. '7.074 MHz', '9600 kHz'). Only when the viewer asks: open_hailing transmits their microphone (amateur FM, needs their callsign in TRANSMIT SETUP and a transmit-capable SDR) on a frequency in MHz ('146', '146.52'); close_hailing stops it.", parameters: { type: 'object', properties: { command: { type: 'string', enum: ['on_screen', 'off_screen', 'close_channel', 'scan', 'tune', 'open_hailing', 'close_hailing'] }, frequency: { type: 'string' } }, required: ['command'] } },
+  { type: 'function', name: 'comms', description: "The COMMS viewscreen and receiver: put the hailed station's video on screen (or take it off for audio only), close the channel, scan the receiver for clear signals, or tune/open a channel on a frequency (e.g. '7.074 MHz', '9600 kHz', optionally followed by a mode: '7074 usb', '9600 kHz am'; works for the local SDR, a KiwiSDR and a WebSDR on the main viewer). Only when the viewer asks: open_hailing transmits their microphone (amateur FM, needs their callsign in TRANSMIT SETUP and a transmit-capable SDR) on a frequency in MHz ('146', '146.52'); close_hailing stops it.", parameters: { type: 'object', properties: { command: { type: 'string', enum: ['on_screen', 'off_screen', 'close_channel', 'scan', 'tune', 'open_hailing', 'close_hailing'] }, frequency: { type: 'string' } }, required: ['command'] } },
   { type: 'function', name: 'set_time', description: "Set the ship's clock to a date/time (ISO 8601, UTC), or 'now'.", parameters: { type: 'object', properties: { iso: { type: 'string' } }, required: ['iso'] } },
   ...CALC_TOOLS, // the ship's calculators (shipcalc.js)
 ];

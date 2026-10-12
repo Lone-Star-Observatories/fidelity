@@ -19,8 +19,7 @@ import { EventEmitter } from 'node:events';
 import { Writable } from 'node:stream';
 import { TX, txGate, txClock, cwAudio, clampGain, clampTimeoutS, normalizeCallsign, regionOf } from '../src/data/tx.js';
 import { createFmModulator, pcm16ToFloat } from './fm.js';
-import { rfDevices, acceptSocket } from './rf.js';
-import { allowedOrigin } from './voice.js';
+import { rfDevices, acceptSocket, loopbackRequest } from './rf.js';
 
 const BLOCK = 320;                       // audio samples per modulated block (20 ms)
 const LEAD = Math.round(TX.audioRate * 0.2); // never run more than 200 ms ahead of real time
@@ -31,7 +30,9 @@ export const SILENCE_MS = 15000;         // no microphone frames this long → c
 export function txCommand(driver, { freqHz, gainDb = TX.defaultGainDb }) {
   const f = String(Math.round(freqHz)), g = clampGain(gainDb);
   if (driver === 'hackrf') return { cmd: 'hackrf_transfer', format: 'int8', args: ['-t', '-', '-f', f, '-s', String(TX.iqRate), '-b', '1750000', '-x', String(g), '-a', '0'] };
-  if (driver === 'bladerf') return { cmd: 'bladeRF-cli', format: 'sc16q11', args: ['-e', [
+  // bladeRF-cli opens its sample file by name. Node hands a child a socket pair for stdin, which
+  // /dev/stdin cannot reopen on Linux (ENXIO), so `sh` puts a real pipe (cat) in front of it.
+  if (driver === 'bladerf') return { cmd: 'sh', tool: 'bladeRF-cli', group: true, format: 'sc16q11', args: ['-c', 'cat | bladeRF-cli -e "$1"', 'sh', [
     `set frequency tx ${f}`, `set samplerate tx ${TX.iqRate}`, 'set bandwidth tx 1500000', `set gain tx ${g}`,
     'tx config file=/dev/stdin format=bin samples=8192 buffers=32 xfers=16 repeat=1 delay=0', 'tx start', 'tx wait'].join('; ')] };
   if (driver === 'fake') return { cmd: null, args: [], format: 'int8', fake: true };
@@ -60,7 +61,9 @@ export function createTxSession({ driver, freqHz, callsign, gainDb = TX.defaultG
   if (cmd.error) throw Object.assign(new Error(cmd.error), { status: 400 });
   const call = normalizeCallsign(callsign), timeoutMs = clampTimeoutS(timeoutS) * 1000, rate = TX.audioRate;
   const mod = modulator({ format: cmd.format });
-  const proc = cmd.fake ? fakeTransmitter() : spawn(cmd.cmd, cmd.args, { stdio: ['pipe', 'ignore', 'pipe'] });
+  const proc = cmd.fake ? fakeTransmitter() : spawn(cmd.cmd, cmd.args, { stdio: ['pipe', 'ignore', 'pipe'], detached: !!cmd.group });
+  /** Signal the tool (the whole process group for the `sh` pipeline). */
+  const signal = (sig) => { try { if (cmd.group && proc.pid) process.kill(-proc.pid, sig); else proc.kill(sig); } catch { try { proc.kill(sig); } catch { /* gone */ } } };
   const startedAt = clock.now();
   let state = 'tx', reason = null, lastIdAt = startedAt, lastAudioAt = startedAt, produced = 0, ended = false, waitingDrain = false;
   let mic = [], micLen = 0, id = null, idPos = 0, ids = 0, idsAtClose = 0, timer = null, killTimer = null, lastState = 0, stderr = '', exitCode;
@@ -105,7 +108,7 @@ export function createTxSession({ driver, freqHz, callsign, gainDb = TX.defaultG
     if (now - lastState >= 1000) emitState();
     if (!ended && !timer) timer = clock.setTimeout(pump, 20);
   }
-  function armKill() { killTimer = clock.setTimeout(() => { try { proc.kill('SIGTERM'); } catch { /* gone */ } }, 5000); }
+  function armKill() { killTimer = clock.setTimeout(() => signal('SIGTERM'), 5000); }
   function beginClose(why) {
     if (state !== 'tx') return;
     state = 'closing'; reason = why; mic = []; micLen = 0;
@@ -121,10 +124,10 @@ export function createTxSession({ driver, freqHz, callsign, gainDb = TX.defaultG
     const early = state === 'tx';
     state = 'closed';
     if (early) reason = 'device';
-    onEvent({ type: 'closed', ...info(), idSent: !early && ids > idsAtClose, exitCode: code, error: early ? (stderr.trim().split('\n').pop() || `${cmd.cmd} stopped`) : null });
+    onEvent({ type: 'closed', ...info(), idSent: !early && ids > idsAtClose, exitCode: code, error: early ? (stderr.trim().split('\n').pop() || `${cmd.tool ?? cmd.cmd} stopped`) : null });
   }
   proc.on('close', (code) => finish(code));
-  proc.on('error', (e) => { stderr += `${cmd.cmd}: ${e.code === 'ENOENT' ? 'not installed' : e.message}\n`; finish(-1); });
+  proc.on('error', (e) => { stderr += `${cmd.tool ?? cmd.cmd}: ${e.code === 'ENOENT' ? 'not installed' : e.message}\n`; finish(-1); });
   proc.stderr?.on('data', (d) => { stderr = (stderr + d).slice(-2000); });
   proc.stdin.on('error', () => { /* the tool exited; 'close' reports it */ });
   emitState();
@@ -140,23 +143,13 @@ export function createTxSession({ driver, freqHz, callsign, gainDb = TX.defaultG
     },
     close(why = 'operator') { beginClose(why); },
     /** Stop at once (no ID): only when the backend itself is going away. */
-    kill() { try { proc.kill('SIGKILL'); } catch { /* gone */ } },
+    kill() { signal('SIGKILL'); },
     info,
     pump,
   };
 }
 
-/** Is this request from this machine to this machine? (peer address, Host, Origin.) */
-export function loopbackRequest(req) {
-  const peer = req.socket?.remoteAddress ?? '';
-  if (!['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(peer)) return false;
-  const hostname = (h) => { try { return new URL(`http://${h}`).hostname; } catch { return null; } };
-  const loop = (n) => n === '127.0.0.1' || n === 'localhost' || n === '[::1]';
-  if (!loop(hostname(req.headers.host ?? ''))) return false;
-  const o = req.headers.origin;
-  if (o) { let u; try { u = new URL(o); } catch { return false; } if (!loop(u.hostname) || !allowedOrigin(o, req.headers.host)) return false; }
-  return true;
-}
+export { loopbackRequest }; // shared with the local SDR route (server/rf.js)
 
 let active = null; // one transmission per backend
 

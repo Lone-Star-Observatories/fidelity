@@ -187,9 +187,11 @@ test('command lines: hackrf_transfer from stdin, low gain, amp off; bladeRF-cli;
   assert.deepEqual(txCommand('hackrf', { freqHz: 146.52e6, gainDb: 0 }), { cmd: 'hackrf_transfer', format: 'int8', args: ['-t', '-', '-f', '146520000', '-s', '2000000', '-b', '1750000', '-x', '0', '-a', '0'] });
   assert.deepEqual(txCommand('hackrf', { freqHz: 146e6, gainDb: 47 }).args.slice(-4), ['-x', '20', '-a', '0']);
   const b = txCommand('bladerf', { freqHz: 446e6, gainDb: 99 });
-  assert.equal(b.cmd, 'bladeRF-cli');
+  assert.equal(b.tool, 'bladeRF-cli');
   assert.equal(b.format, 'sc16q11');
-  assert.match(b.args[1], /set frequency tx 446000000; set samplerate tx 2000000; .*set gain tx 20; tx config file=\/dev\/stdin format=bin .*; tx start; tx wait/);
+  // through sh so bladeRF-cli's /dev/stdin is a real pipe (a Node child's stdin is a socket pair: ENXIO on Linux)
+  assert.deepEqual([b.cmd, ...b.args.slice(0, 3)], ['sh', '-c', 'cat | bladeRF-cli -e "$1"', 'sh']);
+  assert.match(b.args[3], /set frequency tx 446000000; set samplerate tx 2000000; .*set gain tx 20; tx config file=\/dev\/stdin format=bin .*; tx start; tx wait/);
   assert.ok(txCommand('rtl', { freqHz: 146e6 }).error);
 });
 
@@ -410,7 +412,7 @@ test('bladeRF is the primary transmitter; the x40/x115 cannot reach 2 m without 
   assert.equal(txGate({ ...ok, devices: x40, freqHz: 446e6 }).ok, true);
   // the bladeRF command: SC16 Q11 from stdin at 2 Msps, gain capped
   const b = txCommand('bladerf', { freqHz: 146.52e6, gainDb: 0 });
-  assert.match(b.args[1], /^set frequency tx 146520000; set samplerate tx 2000000; set bandwidth tx 1500000; set gain tx 0; tx config file=\/dev\/stdin format=bin/);
+  assert.match(b.args[3], /^set frequency tx 146520000; set samplerate tx 2000000; set bandwidth tx 1500000; set gain tx 0; tx config file=\/dev\/stdin format=bin/);
 });
 
 test('Ham It Up: receive tunes antenna + 125 MHz, shows the antenna side; bypass passes straight through (#69)', () => {
