@@ -816,11 +816,21 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .paleo-banner { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); z-index: 4; max-width: min(860px, 90%); padding: 4px 14px; border-radius: 14px;
   background: rgba(0, 0, 0, 0.7); border: 2px solid var(--lilac); color: var(--lilac); letter-spacing: 0.08em; font-size: calc(12px * var(--text-scale, 1)); text-align: center; pointer-events: none; }
 /* COMMS RF receiver console (#69) */
-.cx-rx-screen { width: 100%; height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 6px; padding: 10px; }
+.cx-rx-screen { width: 100%; height: 100%; display: grid; grid-template-rows: auto minmax(0, 0.42fr) minmax(0, 1fr) auto auto; gap: 4px; padding: 10px; box-sizing: border-box; }
 .cx-rx-read { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .cx-rx-freq { color: var(--orange); font-size: calc(30px * var(--text-scale, 1)); letter-spacing: 0.08em; }
 .cx-rx-sub { color: var(--peach); font-size: calc(12px * var(--text-scale, 1)); }
-.cx-wf { width: 100%; height: 100%; min-height: 160px; background: #04070c; border-radius: 6px; image-rendering: pixelated; }
+.cx-wf { width: 100%; height: 100%; min-height: 0; background: #04070c; border-radius: 6px; image-rendering: pixelated; }
+.cx-spec { width: 100%; height: 100%; min-height: 0; background: #04070c; border-radius: 6px 6px 0 0; }
+.cx-wf-axis { position: relative; height: 14px; color: var(--peach); font-size: calc(10px * var(--text-scale, 1)); }
+.cx-wf-tick { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.cx-wf-tick::before { content: ''; position: absolute; left: 50%; top: -4px; height: 4px; border-left: 1px solid var(--peach); }
+.cx-wf-unit { position: absolute; right: 0; top: 0; color: var(--dim); }
+.cx-wf-legend .badge { margin-left: 6px; }
+/* a WebSDR operator's own page in the main viewer (#69), scaled to fit */
+.cx-websdr-wrap { position: absolute; inset: 0; overflow: hidden; background: #000; }
+.cx-websdr { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+.cx-overlay .badge { margin-left: 6px; }
 .cx-wf-legend { color: var(--dim); font-size: calc(11px * var(--text-scale, 1)); letter-spacing: 0.1em; text-align: center; }
 .cx-rx { display: grid; gap: 6px; }
 .cx-rx-state { color: var(--ice); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.06em; }
@@ -909,3 +919,4 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .site-trek { color: var(--trek); font-style: italic; }
 .host-row.trek-row { border-left-color: var(--trek); }
 .host-row.trek-row > span.mono { color: var(--trek); }
+.cx-banner a.pill { color: #000; text-decoration: none; padding: 4px 16px; }

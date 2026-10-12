@@ -3,7 +3,7 @@
 // Zero runtime dependencies — Node 20+ only.
 
 import { starSearch } from './search.js';
-import { streamStation, stationNowPlaying, cameraMedia, rfDevices, localScan, handleKiwiUpgrade, handleLocalUpgrade } from './rf.js';
+import { streamStation, stationNowPlaying, cameraMedia, rfDevices, websdrFrame, handleKiwiUpgrade, handleLocalUpgrade } from './rf.js';
 import { impactRisk } from './risk.js';
 import { handleTxUpgrade } from './tx.js';
 import { co2 } from './co2.js';
@@ -84,7 +84,7 @@ const routes = {
   'GET /api/comms/nowplaying': async (q) => stationNowPlaying(q.get('u') || ''), // COMMS (#69)
   'GET /api/comms/media': async (q) => cameraMedia(q.get('u') || ''),
   'GET /api/rf/devices': async () => rfDevices(),
-  'GET /api/rf/local/scan': async (q) => localScan(q.get('from'), q.get('to'), q.get('driver') || 'rtl'),
+  'GET /api/rf/websdr/frame': async (q) => websdrFrame(q.get('u')),
   'GET /api/galaxies': async () => galaxies(),
   'GET /api/catalogs': async () => scanCatalogs(),
   'GET /api/cache': async () => cacheStats(),

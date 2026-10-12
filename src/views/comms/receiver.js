@@ -4,20 +4,27 @@
 //   KiwiSDR (ws /api/rf/kiwi): the backend relays the receiver's audio (SND) and waterfall (W/F).
 //     The console tunes (frequency, demodulator, bandwidth, AGC), shows a scrolling waterfall, and
 //     scans the receiver's whole 0–30 MHz view for clear signals to jump to.
-//   Local RTL-SDR (ws /api/rf/local): audio only (no waterfall); scanning uses the backend sweep.
+//   Local SDR (ws /api/rf/local, loopback only): one IQ stream from the device (bladeRF, RTL-SDR, ...)
+//     feeds both the waterfall rows ("LWF", src/data/sdr.js) and the audio, demodulated in the
+//     backend. A spectrum trace sits over the waterfall; click either to tune. Tuning inside the
+//     span moves only the backend's NCO; the scan pauses the stream and sweeps +-2 MHz.
 //   The audio runs through the shared COMMS chain (jitter buffer, hiss filter, auto-notch).
 //   A frequency converter in the local SDR's path (Ham It Up, src/data/converter.js): the console
-//   works in antenna-side frequencies; only the tune and sweep requests use the SDR's frequency.
+//   works in antenna-side frequencies (dial, waterfall axis, click-to-tune, scan results); only the
+//   tune and sweep requests use the SDR's frequency (antenna + LO).
 
 import { kiwiTag, parseKiwiMsg, parseKiwiSnd, parseKiwiWf, MODES, passband, findSignals, formatFrequency, bandName, suggestMode } from '../../data/rf.js';
 import { toDeviceHz, toAntennaHz, antennaRange, converting, converterLabel } from '../../data/converter.js';
+import { parseWfRow, rowAxis, axisTicks } from '../../data/sdr.js';
 
 const el = (tag, props = {}, ...kids) => {
   const e = Object.assign(document.createElement(tag), props);
   for (const k of kids.flat()) if (k != null && k !== false) e.append(k);
   return e;
 };
-const MODE_BW = { am: [4000, 6000, 9800], usb: [1800, 2400, 2800], lsb: [1800, 2400, 2800], cw: [200, 500], nbfm: [8000, 12000] };
+const MODE_BW = { am: [4000, 6000, 9800], usb: [1800, 2400, 2800], lsb: [1800, 2400, 2800], cw: [200, 500], nbfm: [8000, 12000], wbfm: [180000] };
+// the local SDR also demodulates wideband FM (broadcast); a KiwiSDR stops at 30 MHz
+const LOCAL_MODES = { ...MODES, wbfm: { label: 'WFM', low: -90000, high: 90000 } };
 const STEPS = [[100, '100 Hz'], [1000, '1 kHz'], [5000, '5 kHz'], [9000, '9 kHz'], [100000, '100 kHz'], [1000000, '1 MHz']];
 // KiwiSDR waterfall colour ramp (cold → hot), dBm clamped to [min, max]
 const RAMP = [[0, 0, 40], [0, 40, 120], [0, 120, 160], [40, 180, 120], [200, 200, 40], [255, 120, 20], [255, 40, 40]];
@@ -28,7 +35,7 @@ function heat(db, min, max) {
 
 /** A receiver console bound to the COMMS audio chain. mount() opens the link; it renders into `screen` (waterfall) and `console` (controls). */
 export function createReceiver({ audio, pill, badge, onPanel, converter = () => null }) {
-  let rx = null, ws = null, wf = null, wfCtx = null, pollRaf = 0;
+  let rx = null, ws = null, wf = null, wfCtx = null, spec = null, specCtx = null, axisEl = null, legendEl = null, pollRaf = 0;
   const KIWI_SPAN = 30e6; // a Kiwi's full view, used for the waterfall and scan
 
   function wsUrl(receiver) {
@@ -54,12 +61,37 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
       drawWaterfallRow(w.db);
       wfBuf.push(w.db);
       if (wfBuf.length > 24) wfBuf.shift();
+      return;
     }
+    if (tag === 'LWF' && rx.local) { // the local SDR's own spectrum (SDR-side centre; the axis maps it to the antenna)
+      const row = parseWfRow(body);
+      if (!row) return;
+      const axis = rowAxis(row, rx.conv);
+      if (rx.fake !== row.fake) { rx.fake = row.fake; renderLegend(); }
+      if (!rx.axis || rx.axis.startHz !== axis.startHz || rx.axis.spanHz !== axis.spanHz) { if (rx.axis) markRetune(); rx.axis = axis; renderAxis(); renderLegend(); }
+      autoRange(row.db);
+      drawWaterfallRow(row.db);
+    }
+  }
+  /** The visible span: { startHz, spanHz } antenna side, from the left edge of the first bin. */
+  const span = () => (rx.local ? (rx.axis ? { startHz: rx.axis.startHz - rx.axis.binHz / 2, spanHz: rx.axis.spanHz } : null) : { startHz: 0, spanHz: KIWI_SPAN });
+  /** Colour range follows the noise floor (local SDR: dBFS, not calibrated dBm). */
+  function autoRange(db) {
+    const s = Float32Array.from(db).sort(), floor = s[Math.floor(s.length * 0.2)];
+    rx.floor = rx.floor == null ? floor : rx.floor + (floor - rx.floor) * 0.1;
+    rx.wfMin = rx.floor - 8; rx.wfMax = rx.floor + 62;
+  }
+  function markRetune() { // the device moved: a line across the waterfall where the old span ends
+    if (!wfCtx) return;
+    wfCtx.drawImage(wf, 0, 0, wf.width, wf.height - 1, 0, 1, wf.width, wf.height - 1);
+    wfCtx.fillStyle = 'rgba(204,153,255,0.7)'; wfCtx.fillRect(0, 0, wf.width, 1);
+    rx.specAvg = null;
   }
 
   function drawWaterfallRow(db) {
     if (!wf || !wfCtx) return;
-    const W = wf.width, H = wf.height;
+    const W = wf.width, H = wf.height, sp = span();
+    if (!sp) return;
     wfCtx.drawImage(wf, 0, 0, W, H - 1, 0, 1, W, H - 1); // scroll down one line
     const row = wfCtx.createImageData(W, 1), n = db.length;
     for (let x = 0; x < W; x++) {
@@ -68,34 +100,78 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     }
     wfCtx.putImageData(row, 0, 0);
     // tuning cursor
-    const cx = Math.round((rx.freqHz / KIWI_SPAN) * W);
+    const cx = Math.round(((rx.freqHz - sp.startHz) / sp.spanHz) * W);
     wfCtx.fillStyle = 'rgba(255,255,255,0.6)';
     wfCtx.fillRect(cx, 0, 1, 2);
+    drawSpectrum(db, sp);
+  }
+  /** The spectrum trace over the waterfall: smoothed over rows, with the tuned passband shaded. */
+  function drawSpectrum(db, sp) {
+    if (!spec || !specCtx) return;
+    const W = spec.width, H = spec.height, n = db.length, g = specCtx;
+    if (!rx.specAvg || rx.specAvg.length !== n) rx.specAvg = Float32Array.from(db);
+    else for (let i = 0; i < n; i++) rx.specAvg[i] += (db[i] - rx.specAvg[i]) * 0.35;
+    const lo = rx.wfMin - 4, hi = rx.wfMax + 6, y = (v) => H - ((v - lo) / (hi - lo)) * H;
+    g.fillStyle = '#04070c'; g.fillRect(0, 0, W, H);
+    g.strokeStyle = 'rgba(80,110,160,0.35)'; g.lineWidth = 1;
+    for (let v = Math.ceil(lo / 20) * 20; v < hi; v += 20) { g.beginPath(); g.moveTo(0, y(v) + 0.5); g.lineTo(W, y(v) + 0.5); g.stroke(); }
+    const pb = passband(rx.mode === 'wbfm' ? 'nbfm' : rx.mode, rx.mode === 'wbfm' ? 180000 : rx.bwHz), x0 = ((rx.freqHz + pb.low - sp.startHz) / sp.spanHz) * W, x1 = ((rx.freqHz + pb.high - sp.startHz) / sp.spanHz) * W;
+    g.fillStyle = 'rgba(255,153,0,0.18)'; g.fillRect(x0, 0, Math.max(1, x1 - x0), H);
+    g.beginPath();
+    for (let x = 0; x < W; x++) { const v = rx.specAvg[Math.floor((x / W) * n)]; if (x) g.lineTo(x, y(v)); else g.moveTo(x, y(v)); }
+    g.strokeStyle = '#ffcc66'; g.lineWidth = 1.5; g.stroke();
+    g.lineTo(W, H); g.lineTo(0, H); g.closePath(); g.fillStyle = 'rgba(255,204,102,0.12)'; g.fill();
+    const cx = ((rx.freqHz - sp.startHz) / sp.spanHz) * W;
+    g.fillStyle = 'rgba(255,255,255,0.8)'; g.fillRect(Math.round(cx), 0, 1, H);
+    g.fillStyle = '#99a'; g.font = '18px monospace';
+    g.fillText(`${Math.round(hi)} ${rx.local ? 'dBFS' : 'dBm'}`, 6, 18); g.fillText(`${Math.round(lo)}`, 6, H - 6);
+  }
+  /** Frequency labels under the waterfall (antenna side). */
+  function renderAxis() {
+    if (!axisEl) return;
+    const sp = span();
+    if (!sp) { axisEl.replaceChildren(); return; }
+    axisEl.replaceChildren(...axisTicks(sp.startHz, sp.spanHz, rx.local ? 5 : 6).map((t) => el('span', { className: 'cx-wf-tick', textContent: t.label, style: `left:${(((t.hz - sp.startHz) / sp.spanHz) * 100).toFixed(2)}%` })));
+    axisEl.append(el('span', { className: 'cx-wf-unit', textContent: sp.startHz + sp.spanHz >= 1e6 ? 'MHz' : 'kHz' }));
+  }
+  function renderLegend() {
+    if (!legendEl) return;
+    if (!rx.local) { legendEl.replaceChildren(el('span', { textContent: '0–30 MHz · CLICK THE WATERFALL TO TUNE' })); return; }
+    const sp = rx.axis ? `SPAN ${(rx.axis.spanHz / 1e3).toFixed(0)} kHz · ` : '';
+    const conv = rx.conv ? `AXIS: ANTENNA (SDR − ${(toDeviceHz(0, rx.conv) / 1e6).toFixed(3)} MHz) · ` : 'AXIS: SDR = ANTENNA · ';
+    legendEl.replaceChildren(el('span', { textContent: `${rx.fake ? 'SIMULATED SDR · ' : 'LOCAL SDR · '}${sp}${conv}CLICK TO TUNE ` }),
+      rx.fake ? badge('imagined', 'FIDELITY_FAKE_SDR=1: a development stand-in. Synthetic IQ (a few tones and noise); nothing is received.') : badge('measured', "Your SDR's IQ stream: a 1024-point FFT averaged over up to 16 frames per row, in dBFS (uncalibrated)."));
   }
 
   // ---- the viewscreen (waterfall) and the control console -----------------------------------------
   function renderScreen(setScreen) {
     const canvas = el('canvas', { className: 'cx-wf', width: 1024, height: 240 });
-    const legend = el('div', { className: 'cx-wf-legend mono' });
+    const trace = el('canvas', { className: 'cx-spec', width: 1024, height: 150 });
+    axisEl = el('div', { className: 'cx-wf-axis mono' });
+    legendEl = el('div', { className: 'cx-wf-legend mono' });
     setScreen(el('div', { className: 'cx-rx-screen' },
       el('div', { className: 'cx-rx-read' },
         el('div', { className: 'cx-rx-freq mono', id: 'cx-freq' }, formatFrequency(rx.freqHz)),
         el('div', { className: 'cx-rx-sub mono', id: 'cx-sub' }, `${rx.name.toUpperCase()} · ${rx.mode.toUpperCase()}`)),
-      canvas, legend));
+      trace, canvas, axisEl, legendEl));
     wf = canvas; wfCtx = canvas.getContext('2d');
+    spec = trace; specCtx = trace.getContext('2d');
     wfCtx.fillStyle = '#04070c'; wfCtx.fillRect(0, 0, canvas.width, canvas.height);
-    legend.textContent = rx.local ? 'LOCAL SDR · AUDIO ONLY (NO WATERFALL)' : '0–30 MHz · DRAG THE WATERFALL TO TUNE';
-    if (!rx.local) {
-      const tuneFromX = (e) => { const b = canvas.getBoundingClientRect(); setFreq(Math.round(((e.clientX - b.left) / b.width) * KIWI_SPAN)); };
-      canvas.style.cursor = 'crosshair';
-      canvas.addEventListener('click', tuneFromX);
-    }
+    specCtx.fillStyle = '#04070c'; specCtx.fillRect(0, 0, trace.width, trace.height);
+    renderLegend(); renderAxis();
+    // click the waterfall or the spectrum to tune (the antenna-side frequency under the pointer)
+    const tuneFromX = (e) => {
+      const sp = span(); if (!sp) return;
+      const b = e.currentTarget.getBoundingClientRect(), hz = sp.startHz + ((e.clientX - b.left) / b.width) * sp.spanHz;
+      setFreq(rx.local ? Math.round(hz / 100) * 100 : Math.round(hz));
+    };
+    for (const c of [canvas, trace]) { c.style.cursor = 'crosshair'; c.addEventListener('click', tuneFromX); }
     updateReadout();
   }
   function updateReadout() {
     const f = document.getElementById('cx-freq'), s = document.getElementById('cx-sub');
     if (f) f.textContent = formatFrequency(rx.freqHz);
-    if (s) s.textContent = `${rx.name.toUpperCase()}${rx.conv ? ` · VIA ${converterLabel(rx.conv)} (SDR ${formatFrequency(toDeviceHz(rx.freqHz, rx.conv))})` : ''} · ${rx.mode.toUpperCase()} · ${rx.bwHz >= 1000 ? `${(rx.bwHz / 1000).toFixed(1)} kHz` : `${rx.bwHz} Hz`}${rx.rssi != null ? ` · ${rx.rssi.toFixed(0)} dBm` : ''}${bandName(rx.freqHz) ? ` · ${bandName(rx.freqHz)}` : ''}`;
+    if (s) s.textContent = `${rx.name.toUpperCase()}${rx.conv ? ` · VIA ${converterLabel(rx.conv)} (SDR ${formatFrequency(toDeviceHz(rx.freqHz, rx.conv))})` : ''} · ${(rx.local ? LOCAL_MODES : MODES)[rx.mode]?.label ?? rx.mode.toUpperCase()} · ${rx.bwHz >= 1000 ? `${(rx.bwHz / 1000).toFixed(1)} kHz` : `${rx.bwHz} Hz`}${rx.rssi != null ? ` · ${rx.rssi.toFixed(0)} ${rx.local ? 'dBFS' : 'dBm'}` : ''}${bandName(rx.freqHz) ? ` · ${bandName(rx.freqHz)}` : ''}`;
   }
 
   /** The control panel (goes in the right finder). */
@@ -110,8 +186,9 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     const stepRow = el('div', { className: 'body-list cx-rx-steps' }, STEPS.map(([v, label]) => {
       const b = pill(label, () => { rx.step = v; mark(stepRow, b); }); if (v === rx.step) b.classList.add('on'); return b;
     }));
-    const modeRow = el('div', { className: 'body-list' }, Object.keys(MODES).map((mode) => {
-      const b = pill(MODES[mode].label, () => setMode(mode)); if (mode === rx.mode) b.classList.add('on'); b.dataset.mode = mode; return b;
+    const modes = rx.local ? LOCAL_MODES : MODES;
+    const modeRow = el('div', { className: 'body-list' }, Object.keys(modes).map((mode) => {
+      const b = pill(modes[mode].label, () => setMode(mode)); if (mode === rx.mode) b.classList.add('on'); b.dataset.mode = mode; return b;
     }));
     box._modeRow = modeRow;
     const bwRow = el('div', { className: 'body-list', id: 'cx-bw' });
@@ -135,7 +212,7 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
       agcRow,
       el('div', { className: 'cx-rx-row' }, el('span', { className: 'mono', textContent: 'VOLUME' }), vol),
       el('h3', { textContent: 'SCAN' }), scanBtn, results,
-      el('p', { className: 'note', textContent: rx.local ? `Local SDR: the backend sweeps the band with rtl_power.${rx.conv ? ` Through the ${converterLabel(rx.conv)}: every frequency shown is the true (antenna-side) one; the SDR tunes ${toDeviceHz(0, rx.conv) > 0 ? '+' : ''}${(toDeviceHz(0, rx.conv) / 1e6).toFixed(3)} MHz from it.` : ''} Reception only.` : 'KiwiSDR: the receiver scans its own 0–30 MHz view. Public receivers have listener slots and time limits; be a good guest. Reception only.' }),
+      el('p', { className: 'note', textContent: rx.local ? `Local SDR: one IQ stream feeds the waterfall and the audio; the scan pauses it and sweeps ±2 MHz (rtl_power on an RTL-SDR, stepped captures otherwise).${rx.conv ? ` Through the ${converterLabel(rx.conv)}: every frequency shown is the true (antenna-side) one; the SDR tunes ${toDeviceHz(0, rx.conv) > 0 ? '+' : ''}${(toDeviceHz(0, rx.conv) / 1e6).toFixed(3)} MHz from it.` : ''} Reception only.` : 'KiwiSDR: the receiver scans its own 0–30 MHz view. Public receivers have listener slots and time limits; be a good guest. Reception only.' }),
       badge('reported', rx.local ? 'Your own SDR hardware.' : rx.layer?.credit ?? ''));
     return box;
   }
@@ -162,7 +239,7 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
   function retune() {
     if (ws?.readyState !== 1) return;
     rx.playing = true;
-    const msg = rx.local ? { type: 'tune', freqHz: toDeviceHz(rx.freqHz, rx.conv), mode: rx.mode, gain: null, driver: rx.driver } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
+    const msg = rx.local ? { type: 'tune', freqHz: toDeviceHz(rx.freqHz, rx.conv), mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc, gain: null, driver: rx.driver, converter: rx.convSetting } : { type: 'tune', freqHz: rx.freqHz, mode: rx.mode, bwHz: rx.bwHz, agc: rx.agc };
     ws.send(JSON.stringify(msg));
   }
 
@@ -172,11 +249,14 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     results.replaceChildren(el('p', { className: 'note', textContent: 'SCANNING…' }));
     let signals = [];
     if (rx.local) {
-      try {
-        const from = toDeviceHz(Math.max(rx.minHz, rx.freqHz - 2e6), rx.conv), to = toDeviceHz(Math.min(rx.maxHz, rx.freqHz + 2e6), rx.conv);
-        const j = await fetch(`/api/rf/local/scan?from=${Math.min(from, to)}&to=${Math.max(from, to)}&driver=${rx.driver}`).then((r) => r.json());
-        signals = (j.signals ?? []).map((s) => ({ ...s, freqHz: toAntennaHz(s.freqHz, rx.conv) })); // back to the antenna side
-      } catch { results.replaceChildren(el('p', { className: 'warn', textContent: 'Sweep failed (is the dongle busy?).' })); return; }
+      if (ws?.readyState !== 1) { results.replaceChildren(el('p', { className: 'warn', textContent: 'The link to the SDR is not open.' })); return; }
+      const from = toDeviceHz(Math.max(rx.minHz, rx.freqHz - 2e6), rx.conv), to = toDeviceHz(Math.min(rx.maxHz, rx.freqHz + 2e6), rx.conv);
+      const reply = new Promise((resolve) => { rx.onScan = resolve; setTimeout(() => resolve(null), 60000); });
+      ws.send(JSON.stringify({ type: 'scan', fromHz: Math.min(from, to), toHz: Math.max(from, to) }));
+      const j = await reply;
+      if (!rx || !box?._results) return;
+      if (!j) { results.replaceChildren(el('p', { className: 'warn', textContent: 'Sweep failed (is the device busy?).' })); return; }
+      signals = (j.signals ?? []).map((s) => ({ ...s, freqHz: toAntennaHz(s.freqHz, rx.conv) })); // back to the antenna side
     } else {
       if (!wfBuf.length) { results.replaceChildren(el('p', { className: 'note', textContent: 'No waterfall yet — give it a moment.' })); return; }
       const n = wfBuf[0].length, avg = new Float32Array(n); // average the recent full-span rows
@@ -185,7 +265,7 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     }
     if (!signals.length) { results.replaceChildren(el('p', { className: 'note', textContent: 'No clear signals stood out.' })); return; }
     results.replaceChildren(...signals.slice(0, 20).map((s) => {
-      const b = el('button', { className: 'host-row', onclick: () => { setMode(suggestMode(s.freqHz) === 'wbfm' ? 'nbfm' : suggestMode(s.freqHz)); setFreq(s.freqHz); } },
+      const b = el('button', { className: 'host-row', onclick: () => { const m = suggestMode(s.freqHz); setMode(m === 'wbfm' && !rx.local ? 'nbfm' : m); setFreq(s.freqHz); } },
         el('span', { textContent: formatFrequency(s.freqHz) }),
         el('span', { className: 'mono', textContent: `${s.snr.toFixed(0)} dB${bandName(s.freqHz) ? ` · ${bandName(s.freqHz)}` : ''}` }));
       return b;
@@ -199,9 +279,9 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     const devRange = [receiver.minHz ?? (receiver.local ? 24e6 : 0), receiver.maxHz ?? (receiver.local ? 1766e6 : 30e6)];
     const [minHz, maxHz] = conv ? antennaRange(devRange, conv) : devRange; // the dial works in antenna-side frequencies
     const startHz = receiver.local ? Math.min(Math.max(conv ? 9.6e6 : 98.1e6, minHz), maxHz) : 9.6e6;
-    rx = { ...receiver, conv, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20 };
+    rx = { ...receiver, conv, convSetting: receiver.local ? converter() : null, driver: receiver.driver ?? 'rtl', minHz, maxHz, freqHz: startHz, mode: 'am', bwHz: 6000, agc: 'fast', gain: 50, volume: 0.9, rate: 12000, step: 5000, rssi: null, playing: false, wfMin: -110, wfMax: -20, axis: null, floor: null, fake: !!receiver.fake };
     rx.mode = receiver.local ? suggestMode(rx.freqHz) : 'am';
-    if (rx.mode === 'wbfm') rx.mode = 'nbfm';
+    if (rx.mode === 'wbfm' && !receiver.local) rx.mode = 'nbfm';
     rx.bwHz = (MODE_BW[rx.mode] ?? [6000])[1] ?? 6000;
     audio.resume(); audio.setBand(rx.bwHz + 1000); audio.setVolume(rx.volume);
     renderScreen(setScreen);
@@ -211,7 +291,11 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     ws.onmessage = (e) => {
       if (typeof e.data !== 'string') return onFrame(e.data);
       let m; try { m = JSON.parse(e.data); } catch { return; }
-      if (m.type === 'open') { if (m.rate) rx.rate = m.rate; setState('LINK OPEN · RECEIVING'); retune(); }
+      if (m.type === 'open') { if (m.rate) rx.rate = m.rate; setState('LINK OPEN · RECEIVING'); retune(); } // KiwiSDR upstream open
+      else if (m.type === 'ready') retune(); // local SDR link up: start the device
+      else if (m.type === 'tuned') { rx.rate = m.audioRate || rx.rate; if (rx.fake !== !!m.fake) { rx.fake = !!m.fake; renderLegend(); } setState(`LINK OPEN · RECEIVING${m.fake ? ' · SIMULATED' : ''} · ${(m.tool ?? '').toUpperCase()} ${(m.rateHz / 1e3).toFixed(0)} kS/s`); }
+      else if (m.type === 'scanning') setState('SCANNING · AUDIO PAUSED');
+      else if (m.type === 'scan') { rx.onScan?.(m); rx.onScan = null; }
       else if (m.type === 'error') setState(`RECEIVER: ${m.message}`);
       else if (m.type === 'closed') setState('RECEIVER CLOSED THE LINK');
     };
@@ -222,7 +306,8 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
   function close() {
     if (ws) { try { ws.close(); } catch { /* gone */ } ws = null; }
     cancelAnimationFrame(pollRaf);
-    wfBuf.length = 0; rx = null; box = null; wf = null; wfCtx = null;
+    rx?.onScan?.(null);
+    wfBuf.length = 0; rx = null; box = null; wf = null; wfCtx = null; spec = null; specCtx = null; axisEl = null; legendEl = null;
   }
 
   return {
@@ -233,6 +318,8 @@ export function createReceiver({ audio, pill, badge, onPanel, converter = () => 
     tune(hz) { if (rx && Number.isFinite(hz)) { setFreq(hz); return true; } return false; },
     scan() { if (rx) { scan(); return true; } return false; },
     get active() { return !!rx; },
+    /** Voice: change the demodulator ('am', 'usb', 'lsb', 'cw', 'nbfm'; 'wbfm' on the local SDR). */
+    mode(m) { if (rx && (rx.local ? LOCAL_MODES : MODES)[m]) { setMode(m); return true; } return false; },
     get info() { return rx ? { freqHz: rx.freqHz, mode: rx.mode, name: rx.name } : null; },
   };
 }

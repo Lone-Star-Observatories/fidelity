@@ -5,9 +5,10 @@
 //     HAILING → SIGNAL RECEIVED → "ON SCREEN?" when it has video (yes / no, or "on screen" to the
 //     computer; ALWAYS ON SCREEN skips the question). Without video, or declined, the audio plays and
 //     the finder (right panel) shows the station, its links and what is playing.
-//   RF: radio reception. Public KiwiSDR receivers (0–30 MHz) and a local SDR (RTL-SDR, 24–1766 MHz)
+//   RF: radio reception. Public KiwiSDR receivers (0–30 MHz) and a local SDR (bladeRF, RTL-SDR, …)
 //     at the observer's location are on the map; the receiver console (dial, waterfall, scan) opens
-//     in the finder.
+//     in the finder. A WebSDR opens the operator's own page in the main viewer, tuned from our dial,
+//     band and mode controls (websdr.js), or links out when the page refuses framing.
 //   TRANSMIT (transmitter.js): only when the backend reports a transmit-capable SDR (HackRF, bladeRF).
 //     A licensed operator's hailing frequency: amateur 2 m / 70 cm narrowband FM from the microphone,
 //     with the big red TRANSMITTING indicator, a timeout and the CW station ID.
@@ -16,6 +17,7 @@ import { createSignalsMap } from '../../panels/signalsmap.js';
 import { createCommsAudio } from './audio.js';
 import { stationMedia, parseFrequency } from '../../data/rf.js';
 import { createReceiver } from './receiver.js';
+import { createWebSdr } from './websdr.js';
 import { createTransmitter } from './transmitter.js';
 import { normalizeConverter, converting, converterLabel, antennaRange, HAM_IT_UP_LO } from '../../data/converter.js';
 
@@ -30,6 +32,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export function createCommsView(container, { badge, pill, settings, onPanel, toast, onPostcard }) {
   const audio = createCommsAudio();
   const rxConsole = createReceiver({ audio, pill, badge, onPanel: () => onPanel?.(), converter: () => settings.get('rfConverter') });
+  const webSdr = createWebSdr({ pill, badge, onPanel: () => onPanel?.() });
   // the transmitter: opening it silences every received channel, so nothing heard is retransmitted
   const tx = createTransmitter({ settings, pill, badge, toast, onChange: () => onPanel?.(), beforeOpen: () => { closeChannel(false); receiver = null; idle(); onPanel?.(); } });
   let keyHooked = false;
@@ -45,7 +48,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     tx.indicator);
   const subMap = createSignalsMap({ only: ['stations', 'radio', 'traffic', 'trafficcams', 'worldcams', 'video'], title: 'SUBSPACE · STATIONS ON EARTH', fill: true, onPick: (id, m, l) => hail(id, m, l), pickLabel: () => 'HAIL' });
   const rfMap = createSignalsMap({ only: ['websdr', 'kiwisdr'], title: 'RF · RECEIVERS', fill: true, onPick: (id, m, l) => selectReceiver(id, m, l), pickLabel: () => 'SELECT',
-    extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (rtl-sdr tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
+    extra: [{ id: 'localsdr', label: 'LOCAL SDR', colour: '#66ff99', kind: 'sdr', markers: [], credit: 'This machine (bladeRF-cli, rtl-sdr or rx_tools), at the observer location set in FROM EARTH.', licence: 'Your hardware' }] });
   const screen = el('div', { className: 'cx-screen' });
   const screenFrame = el('div', { className: 'cx-screen-frame' }, screen, el('div', { className: 'cx-screen-label mono', textContent: 'MAIN VIEWER' }));
   const consoleBox = el('div', { className: 'cx-console' });
@@ -144,6 +147,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     clearInterval(refresh); clearInterval(npTimer); cancelAnimationFrame(vizRaf);
     radioEl.pause(); radioEl.removeAttribute('src'); radioEl.load();
     rxConsole.close();
+    webSdr.close();
     audio.flush();
     station = null; prompt = null;
     if (render) { idle(); onPanel?.(); }
@@ -163,7 +167,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     const obs = settings.get('observer'), conv = settings.get('rfConverter');
     if (devices?.rx?.length) rfMap.setExtra('localsdr', devices.rx.map((dev, i) => { const [lo, hi] = antennaRange(dev.rangeHz, conv); return [(obs?.lat ?? 51.4779) + i * 0.12, obs?.lon ?? 0,
       `LOCAL SDR · ${dev.label}${obs ? '' : ' (set your location in FROM EARTH)'}`, '',
-      `${lo < 1e6 ? (lo / 1e3).toFixed(0) + ' kHz' : (lo / 1e6).toFixed(0) + ' MHz'}–${(hi / 1e6).toFixed(0)} MHz · THIS MACHINE${converting(conv) ? ` · VIA ${converterLabel(conv)}` : ''}`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0] }]; }));
+      `${lo < 1e6 ? (lo / 1e3).toFixed(0) + ' kHz' : (lo / 1e6).toFixed(0) + ' MHz'}–${(hi / 1e6).toFixed(0)} MHz · ${dev.fake ? 'SIMULATED (FIDELITY_FAKE_SDR)' : 'THIS MACHINE'}${converting(conv) ? ` · VIA ${converterLabel(conv)}` : ''}`, 1, { driver: dev.driver, maxHz: dev.rangeHz[1], minHz: dev.rangeHz[0], fake: !!dev.fake }]; }));
   }
 
   // ---- SIGNAL PATH: a frequency converter between the antenna and the local SDR (Ham It Up) ---------
@@ -201,14 +205,16 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     d.textContent = [devices.rx.length ? `RX: ${devices.rx.map((x) => x.label).join(', ')}` : 'NO LOCAL RECEIVER', devices.tx.length ? `TX: ${devices.tx.map((x) => `${x.label}${x.ready ? '' : ' (TOOL MISSING)'}`).join(', ')} · TRANSMIT SETUP IN RF` : 'NO TX DEVICE'].join(' · ');
   }
 
-  /** RF: a receiver picked on the map. KiwiSDR and the local SDR open a listening console; WebSDR links out. */
+  /** RF: a receiver picked on the map. KiwiSDR and the local SDR open a listening console; a WebSDR opens its operator's page in the viewer. */
   function selectReceiver(layerId, m, layer) {
     closeChannel(false);
     const local = layerId === 'localsdr';
     receiver = { layerId, m, layer, name: m[2], url: m[3], local };
     if (layerId === 'kiwisdr' || local) {
       const dev = local ? (m[6] ?? {}) : {};
-      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer, driver: dev.driver ?? 'rtl', minHz: dev.minHz, maxHz: dev.maxHz }, (...kids) => setScreen(...kids));
+      receiver.consoleBox = rxConsole.open({ name: m[2], url: m[3], local, layer, driver: dev.driver ?? 'rtl', minHz: dev.minHz, maxHz: dev.maxHz, fake: !!dev.fake }, (...kids) => setScreen(...kids));
+    } else if (layerId === 'websdr' && /^https?:/.test(m[3] ?? '')) {
+      receiver.consoleBox = webSdr.open({ name: m[2], url: m[3], info: m[6] }, (...kids) => setScreen(...kids));
     } else {
       receiver.consoleBox = null;
       setScreen(banner('RECEIVER SELECTED', receiver.name.toUpperCase()), el('div', { className: 'cx-overlay mono', textContent: 'OPENS ON THE OPERATOR\'S OWN PAGE' }));
@@ -239,7 +245,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     requestAnimationFrame(() => (m === 'subspace' ? subMap : rfMap).redraw());
     consoleBox.replaceChildren(el('p', { className: 'note', textContent: m === 'subspace'
       ? 'SubSpace: signals carried at light speed over the internet. Hail a station on the map: its video can go on screen; otherwise its audio plays and its details are in the finder.'
-      : `RF: radio receivers. WebSDR receivers (your list, HF to 10 GHz), public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in) are on the map. ${tx.devices?.length ? 'A transmit-capable SDR is connected: TRANSMIT SETUP is in the finder (licensed amateur operators only).' : 'Reception only: no transmit-capable SDR is connected.'}` }));
+      : `RF: radio receivers. WebSDR receivers (your list, HF to 10 GHz: the operator's page opens in the main viewer), public KiwiSDR receivers (0–30 MHz) and your own SDR (if one is plugged in, with a live waterfall) are on the map. ${tx.devices?.length ? 'A transmit-capable SDR is connected: TRANSMIT SETUP is in the finder (licensed amateur operators only).' : 'Reception only: no transmit-capable SDR is connected.'}` }));
     if (m === 'rf' && !devices) loadDevices().then(() => onPanel?.());
     idle();
     onPanel?.();
@@ -285,7 +291,7 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
       out.push(dl);
       if (info?.bands?.length) out.push(h('h3', { textContent: `BANDS · ${info.bands.length}` }), h('div', { className: 'host-list' }, info.bands.map((b) => h('div', { className: 'host-row' },
         h('span', { textContent: `${b.l < 1 ? (b.l * 1000).toFixed(0) + ' kHz' : b.l.toFixed(3) + ' MHz'} – ${b.h < 1 ? (b.h * 1000).toFixed(0) + ' kHz' : b.h.toFixed(3) + ' MHz'}` }), h('span', { className: 'mono', textContent: (b.a || '').toUpperCase() })))));
-      out.push(h('p', { className: 'note', textContent: 'The receiver console (tuning, waterfall, scan) is still to come; OPEN RECEIVER listens on the operator\'s own page.' }),
+      out.push(h('p', { className: 'note', textContent: 'OPEN RECEIVER listens on the operator\'s own page.' }),
         h('div', { className: 'body-list' }, href && /^https?:/.test(href) ? h('a', { className: 'pill', href, target: '_blank', rel: 'noopener noreferrer', textContent: 'OPEN RECEIVER ↗' }) : null));
     } else out.push(h('p', { className: 'note', textContent: mode === 'subspace' ? 'Hail a station on the map: radio (Radio Browser and your stations-by-city list), traffic cameras, webcams and live observatory video.' : 'Select a receiver on the map.' }));
     if (mode === 'rf' && devices && (devices.rx.length || devices.tx.length)) out.push(...signalPathPanel());
@@ -301,15 +307,21 @@ export function createCommsView(container, { badge, pill, settings, onPanel, toa
     if (c.command === 'close_channel') return closeChannel();
     if (c.command === 'scan') return rxConsole.active && rxConsole.scan() ? { ok: true, said: 'Scanning for signals.' } : { ok: false, error: 'Tune in to a receiver first.' };
     if (c.command === 'tune') {
-      const hz = parseFrequency(c.frequency ?? '', { defaultUnit: 'kHz' });
+      // "7074 usb", "9.6 MHz AM": an optional demodulator word after the frequency
+      const text = String(c.frequency ?? ''), mm = text.match(/\b(usb|lsb|am|cw|nbfm|wfm|wbfm|fm)\b\s*$/i);
+      const hz = parseFrequency(mm ? text.slice(0, mm.index).trim() : text, { defaultUnit: 'kHz' });
       if (!hz) return { ok: false, error: 'I did not catch the frequency.' };
-      return rxConsole.active && rxConsole.tune(hz) ? { ok: true, said: `Tuning to ${(hz / 1e6).toFixed(3)} megahertz.` } : { ok: false, error: 'Tune in to a receiver first.' };
+      const mode = mm ? { fm: 'nbfm', wfm: 'wbfm' }[mm[1].toLowerCase()] ?? mm[1].toLowerCase() : null;
+      const target = rxConsole.active ? rxConsole : webSdr.active ? webSdr : null;
+      if (!target) return { ok: false, error: 'Tune in to a receiver first.' };
+      if (mode) target.mode(mode);
+      return target.tune(hz) ? { ok: true, said: `Tuning to ${(hz / 1e6).toFixed(3)} megahertz${mode ? ` ${mm[1].toUpperCase()}` : ''}.` } : { ok: false, error: 'Tune in to a receiver first.' };
     }
     if (c.command === 'open_hailing') return tx.open(c.frequency ?? '');
     if (c.command === 'close_hailing') return tx.close('operator');
     return { ok: false, error: 'Say on screen, off screen, scan, tune, close channel, open a hailing frequency or close hailing frequency.' };
   }
-  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : rxConsole.active ? `: receiver ${rxConsole.info?.name} open at ${(rxConsole.info?.freqHz / 1e6).toFixed(3)} MHz ${rxConsole.info?.mode}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}${tx.live ? `. TRANSMITTING (hailing frequency open) on ${(tx.live.freqHz / 1e6).toFixed(3)} MHz FM` : ''}.`;
+  const context = () => `COMMS (${mode === 'subspace' ? 'SubSpace reception' : 'RF reception'})${station ? `: channel open to ${station.name}${station.onScreen ? ', on screen' : ''}${station.nowPlaying?.title ? `, now playing ${station.nowPlaying.title}` : ''}` : rxConsole.active ? `: receiver ${rxConsole.info?.name} open at ${(rxConsole.info?.freqHz / 1e6).toFixed(3)} MHz ${rxConsole.info?.mode}` : webSdr.active ? `: WebSDR ${webSdr.info?.name} ${webSdr.info?.embedded ? 'on the main viewer' : '(links out to its page)'} tuned to ${(webSdr.info?.freqHz / 1e6).toFixed(3)} MHz ${webSdr.info?.mode}` : receiver ? `: receiver ${receiver.name} selected` : ', no channel open'}${prompt === 'onscreen' ? '. The viewscreen is asking "On screen?"' : ''}${tx.live ? `. TRANSMITTING (hailing frequency open) on ${(tx.live.freqHz / 1e6).toFixed(3)} MHz FM` : ''}.`;
 
   let started = false;
   return {

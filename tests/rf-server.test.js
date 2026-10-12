@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import net from 'node:net';
-import { rawGet, sndFrame, streamStation, cameraMedia, rxStreamCmd, rxScanCmd, deviceRange } from '../server/rf.js';
+import { rawGet, sndFrame, streamStation, cameraMedia, rxIqCmd, deviceRange } from '../server/rf.js';
+import { rtlPowerCmd } from '../server/sdr.js';
 import { kiwiTag, parseKiwiSnd } from '../src/data/rf.js';
 
 test('rawGet reads a SHOUTcast "ICY 200 OK" answer that fetch would refuse', async () => {
@@ -42,24 +43,27 @@ test('the relays refuse anything not on the station lists (no open proxy)', asyn
 });
 
 test('receive command builders pick the right tool per device, never transmit (#69)', () => {
-  const full = { rtl_fm: true, rtl_power: true, rx_fm: true, rx_power: true };
-  // RTL uses rtl_fm; bladeRF/hackRF use rx_fm with a SoapySDR driver string
-  assert.deepEqual(rxStreamCmd('rtl', { freqHz: 7074000, mode: 'usb' }, full), { cmd: 'rtl_fm', args: ['-f', '7074000', '-M', 'usb', '-s', '12000', '-l', '0', '-'] });
-  const blade = rxStreamCmd('bladerf', { freqHz: 145e6, mode: 'nbfm', gain: 30 }, full);
-  assert.equal(blade.cmd, 'rx_fm');
-  assert.ok(blade.args.includes('driver=bladerf') && blade.args.includes('-g') && blade.args.includes('30'));
-  // no transmit vocabulary anywhere in the built commands
-  assert.ok(!JSON.stringify(blade).match(/\btx\b|transmit|-M wbfm.*tx/i));
-  // missing rx_tools → a helpful error, not a bad command
-  assert.ok(rxStreamCmd('bladerf', { freqHz: 1, mode: 'am' }, { rtl_fm: true }).error.includes('rx_fm'));
-  assert.ok(rxStreamCmd('rtl', { freqHz: 1, mode: 'am' }, {}).error.includes('rtl_fm'));
-  // scans mirror the same tool choice
-  assert.equal(rxScanCmd('rtl', { fromHz: 88e6, toHz: 108e6, step: 1e4 }, full).cmd, 'rtl_power');
-  assert.ok(rxScanCmd('bladerf', { fromHz: 430e6, toHz: 440e6, step: 1e3 }, full).args.includes('driver=bladerf'));
+  const full = { rtl_fm: true, rtl_power: true, rx_fm: true, rx_power: true, bladeRF_cli: true };
+  // RTL: the existing rtl_fm path, raw IQ instead of demodulated audio (one stream feeds waterfall and audio)
+  assert.deepEqual(rxIqCmd('rtl', { centreHz: 7074000 }, full), { cmd: 'rtl_fm', args: ['-f', '7074000', '-M', 'raw', '-s', '240000', '-l', '0', '-'], tool: 'rtl_fm', format: 's16', scale: 640, rateHz: 240000, group: false });
+  // bladeRF: bladeRF-cli; HackRF: rx_fm with a SoapySDR driver string
+  const blade = rxIqCmd('bladerf', { centreHz: 145e6, gain: 30 }, full);
+  assert.equal(blade.tool, 'bladeRF-cli');
+  const hack = rxIqCmd('hackrf', { centreHz: 145e6, gain: 30 }, full);
+  assert.ok(hack.args.includes('driver=hackrf') && hack.args.includes('-g') && hack.args.includes('30') && hack.args.includes('raw'));
+  // no transmit vocabulary anywhere in the built receive commands
+  for (const c of [blade, hack]) assert.ok(!JSON.stringify(c).match(/\btx\b|transmit/i));
+  // missing tools → a helpful error, not a bad command
+  assert.ok(rxIqCmd('bladerf', { centreHz: 1 }, { rtl_fm: true }).error.includes('bladeRF-cli'));
+  assert.equal(rxIqCmd('bladerf', { centreHz: 145e6 }, { rx_fm: true }).tool, 'rx_fm'); // bladeRF through SoapySDR when bladeRF-cli is missing
+  assert.ok(rxIqCmd('rtl', { centreHz: 1 }, {}).error.includes('rtl_fm'));
+  // the RTL sweep stays rtl_power
+  assert.deepEqual(rtlPowerCmd({ fromHz: 88e6, toHz: 108e6, step: 1e4 }), { cmd: 'rtl_power', args: ['-f', '88000000:108000000:10000', '-i', '2', '-1', '-'] });
 });
 
 test('device ranges: bladeRF and HackRF reach well past the RTL ceiling (#69)', () => {
   assert.deepEqual(deviceRange('rtl'), [24e6, 1766e6]);
   assert.deepEqual(deviceRange('bladerf'), [47e6, 6e9]);
   assert.deepEqual(deviceRange('hackrf'), [1e6, 6e9]);
+  assert.deepEqual(deviceRange('bladerf', { xb200: true }), [60e3, 6e9]); // the XB-200 transverter reaches HF directly
 });

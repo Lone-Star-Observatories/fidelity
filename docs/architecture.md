@@ -103,7 +103,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/comms/satnogs/:norad` | COMMS (#35): SatNOGS DB transmitters and the newest good Network observations (waterfall, audio) `{ transmitters: { rows, fetched }, observations: { rows, fetched }, credit }` (`server/comms.js`) |
 | `GET /api/comms/mars-raw/:rover` · `GET /api/comms/raw-image?url=` | Newest Perseverance (`m20`) / Curiosity (`msl`) raw images; one image, only from the rovers' raw-image folders |
 | `GET /api/comms/mars-weather/:rover` | Newest published sol of REMS (`msl`) or MEDA (`m20`) weather |
-| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `GET /api/rf/devices` | COMMS (#69): local SDRs `{ rx, tx, tools }`; `rx` lists receive devices with `streaming`/`waterfall` when their IQ tool is installed (`FIDELITY_FAKE_SDR=1` adds a SIMULATED SDR, `FIDELITY_BLADERF_XB200=1` extends the bladeRF to 60 kHz); `tx` lists transmit-capable devices (bladeRF first: the primary transmitter, its model from `bladeRF-cli -p`; then HackRF; never an RTL-SDR) with `ready` when their transmit tool is installed (`FIDELITY_FAKE_TX=1` adds a simulated one) |
+| `WS /api/rf/local` | COMMS local SDR (#69): loopback only (peer, Host and Origin). `{type:'tune', freqHz (SDR side), mode, bwHz, agc, gain, driver, converter}` → `tuned {centreHz, freqHz, rateHz, audioRate, tool, fake}`; `{type:'scan', fromHz, toHz}` → `scan {signals}` (SDR side); `stop`. Binary: Kiwi-style `SND` audio and `LWF` waterfall rows (`src/data/sdr.js`) from one IQ stream (`server/sdr.js`, `server/sdrdsp.js`) |
+| `GET /api/rf/websdr/frame?u=` | COMMS (#69): may a listed WebSDR page be framed? `{ url, finalUrl, status, embeddable, reason, checked }` from its X-Frame-Options / CSP frame-ancestors (HEAD, else a GET read to the headers), cached 7 days; unlisted URLs 403 |
 | `WS /api/rf/tx` | COMMS hailing frequency (#69): loopback only (peer, Host and Origin). `{type:'open', freqHz, callsign, attested, region, gainDb, timeoutS, driver, converter, antennas, antennaId}` → `open` / `refused {code, reason}`; then binary Int16 mic PCM at 16 kHz; `{type:'close'}`. Server sends `state` (elapsed, remaining, sending ID) each second and `closed {reason, idSent}` (`server/tx.js`) |
 | `GET /api/signals` · `GET /api/signals/:layer` | Live-signals map (#35): the layers with credit, licence and availability; one layer's markers `[lat, lon, name, href, detail, extra]` (`radio`, `kiwisdr`, `traffic`, plus local lists `trafficcams`/`worldcams`) (`server/signals.js`) |
 | `GET /api/clusters` | Star clusters `[name, l, b, distPc, members, logAge, type, r50pc]` (Hunt & Reffert 2023) |
@@ -395,11 +397,53 @@ RECEIVED → ON SCREEN? (`stationMedia` in `src/data/rf.js` says what a station 
 `src/views/comms/audio.js` (jitter buffer for receiver PCM, high-pass, low-pass, automatic notch,
 compressor). Backend `server/rf.js`: the stream relay (raw socket for SHOUTcast "ICY 200", fetch
 otherwise, metadata stripped, titles at `/api/comms/nowplaying`), camera media, `/api/rf/devices`,
-the KiwiSDR relay (`ws /api/rf/kiwi`) and local `rtl_fm` (`ws /api/rf/local`) / `rtl_power` scan.
+the KiwiSDR relay (`ws /api/rf/kiwi`), the local SDR (`ws /api/rf/local`) and the WebSDR framing check.
 Every upstream URL must be on a cached station list (no open proxy). The RF receiver console (`src/views/comms/receiver.js`) opens for KiwiSDR (`ws /api/rf/kiwi`) and the
-local SDR (`ws /api/rf/local`: RTL-SDR via rtl_fm, or any SoapySDR device such as a bladeRF via
-rx_tools' rx_fm, chosen by `rxStreamCmd`): it tunes, shows a scrolling waterfall, plays received audio through the
-chain, and scans for clear signals; WebSDR links to the operator page. Voice: the `comms` tool
+local SDR (`ws /api/rf/local`): it tunes, shows a spectrum trace over a scrolling waterfall with a frequency axis
+(click either to tune), plays received audio through the chain, and scans for clear signals. A WebSDR
+opens in the main viewer (`src/views/comms/websdr.js`, below).
+
+**Local SDR: one IQ stream, waterfall and audio.** An SDR is opened by one program at a time, so the
+backend (`server/sdr.js`) runs a single raw-IQ process per device and does everything else in plain JS
+(`server/sdrdsp.js`):
+
+```
+bladeRF   sh -c 'bladeRF-cli -e "$1" 3>&1 1>&2 | cat' sh "set frequency rx F; set samplerate rx 1000000;
+          set bandwidth rx 1000000; set agc rx on | set gain rx G; rx config file=/dev/fd/3 format=bin n=0 …;
+          rx start; rx wait"                     (SC16 Q11; fd 3 is a real pipe: Node gives children socket
+                                                   pairs, which /dev/fd/N and /dev/stdin cannot reopen on Linux)
+RTL-SDR   rtl_fm -f F -M raw -s 240000 [-g G] -l 0 -     (the existing rtl_fm path, raw IQ instead of audio)
+HackRF…   rx_fm -d driver=… -f F -M raw -s 240000 …      (rx_tools / SoapySDR; also a bladeRF without bladeRF-cli)
+   │ int16 IQ → ±1
+   ├─ spectrum: Hann, 1024-point radix-2 FFT, power averaged over ≤ 16 frames, ~10 rows/s, DC in the middle
+   │            → "LWF" row: seq, SDR centre, rate, one byte per bin (dBFS + 200)
+   └─ demod: NCO to the listening offset → decimating FIRs to ~50 kHz (WFM: ~250 kHz) → mode filter →
+             AM (envelope) / USB / LSB / CW (500 Hz BFO) / NBFM / WFM (75 µs de-emphasis) → AGC fast / slow
+             (Kiwi decay presets) / off → Int16 at ~25 kHz → "SND" frames (S-meter = channel dBFS)
+```
+
+Listening anywhere inside the span (± rate/2 less a guard) moves only the NCO; leaving it restarts the
+process at the new centre (a lilac line marks the retune on the waterfall). The scan pauses the stream,
+sweeps ±2 MHz around the dial (rtl_power on an RTL-SDR; otherwise stepped captures, 75 % of each span
+kept and stitched) and resumes. The browser maps everything through the converter: the dial and tune
+requests use antenna ± LO; each row's axis (`rowAxis` in `src/data/sdr.js`) is the SDR's span shifted
+back to the antenna, so through the Ham It Up a 7.074 MHz signal (SDR 132.074 MHz) is drawn, clicked and
+scanned at 7.074 MHz. Colours follow the noise floor (dBFS, uncalibrated, badged MEASURED; IMAGINED for
+the simulated SDR). `FIDELITY_FAKE_SDR=1` adds a SIMULATED SDR whose spawn emits synthetic IQ (a few HF,
+FM-broadcast and 2 m signals plus noise, through a simulated Ham It Up whose switch follows SIGNAL PATH);
+the tests use the same fake spawn. Not yet tried on real hardware: bladeRF-cli's `n=0` streaming, the
+XB-200 commands and the rtl_fm/rx_fm raw scaling are from their documentation.
+
+**WebSDR in the main viewer.** WebSDR (PA3FWM) has no open audio API and its audio protocol is not
+relayed. The operator's own page opens in a sandboxed iframe (scripts, same origin, forms, popups; no
+top navigation), scaled to the viewer, tuned with the parameter the page itself reads:
+`?tune=<kHz><mode>` (`websdrTuneUrl` in `src/data/websdr.js`: 7074usb, 3630lsb, 198am, 145500fm,
+10136.5cw; NBFM and WFM map to `fm`). Our dial, steps, band pills (from the list entry), mode pills and
+the Computer's `tune` (with an optional mode word: "tune to 7074 usb") rebuild the URL and the page
+reloads, debounced. First `GET /api/rf/websdr/frame` checks the page's X-Frame-Options and CSP
+frame-ancestors (`framingVerdict`); a page that refuses framing, or one the backend cannot reach, gets
+the old link-out with a note saying why. The viewer carries the operator's credit (REPORTED). Its audio
+plays from their page (click it once: browser autoplay rules), not through the COMMS chain. Voice: the `comms` tool
 (on screen, off screen, tune, scan, close channel, open/close hailing) and offline phrases.
 
 **Transmission (hailing frequency).** Only when `/api/rf/devices` lists a transmit-capable SDR does
@@ -441,8 +485,8 @@ the session runs. bladeRF gain is `set gain tx` in the board's own scale (0 is n
 `src/data/converter.js`): none / Ham It Up (LO 125.000 MHz, up) / custom LO and direction, plus
 BYPASS (the Ham It Up's switch). Converting, the local SDR console (`receiver.js`) works in
 antenna-side frequencies: tune and sweep requests go to the SDR at antenna ± LO, the dial, readout,
-scan results and the map's range show the true antenna frequency (the local SDR has no waterfall;
-the KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
+waterfall axis, click-to-tune, scan results and the map's range show the true antenna frequency (the
+KiwiSDR waterfall never goes through it). A receive converter is a passive mixer: driven
 backwards it radiates the LO feedthrough, the image and mixing products unfiltered (FCC §97.307)
 and can be damaged, so txGate refuses transmit while one is converting ("TX through the Ham It Up is
 not supported: set it to BYPASS or connect the transmitter directly. HF transmit needs a proper

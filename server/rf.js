@@ -4,8 +4,9 @@
 //   - fetches traffic-camera stills and clips the map lists (/api/comms/media);
 //   - reports SDR hardware on this machine (/api/rf/devices);
 //   - relays a public KiwiSDR receiver's audio and waterfall to the browser (ws /api/rf/kiwi);
-//   - streams a local RTL-SDR through rtl_fm (ws /api/rf/local) and sweeps it with rtl_power
-//     (/api/rf/local/scan).
+//   - streams a local SDR (ws /api/rf/local, loopback only): one IQ stream per device feeds the
+//     waterfall and the audio (server/sdr.js, server/sdrdsp.js);
+//   - checks whether a listed WebSDR page may be framed in the main viewer (/api/rf/websdr/frame).
 // Every upstream address must come from the cached station lists: this is not an open proxy.
 // Nothing here transmits: transmission (a licensed operator, amateur bands only) is server/tx.js.
 
@@ -14,7 +15,10 @@ import tls from 'node:tls';
 import { spawn } from 'node:child_process';
 import { signalLayer, stationListHas } from './signals.js';
 import { encodeFrame, decodeFrames, acceptKey, allowedOrigin } from './voice.js';
-import { kiwiTag, findSignals, kiwiTuneCommands, KIWI_SND_SETUP, KIWI_WF_SETUP, icySplitter } from '../src/data/rf.js';
+import { createSdrSession, rxIqCmd, deviceRange } from './sdr.js';
+import { cached } from './cache.js';
+import { framingVerdict } from '../src/data/websdr.js';
+import { kiwiTag, kiwiTuneCommands, KIWI_SND_SETUP, KIWI_WF_SETUP, icySplitter } from '../src/data/rf.js';
 
 const UA = 'USS-Fidelity/0.3 (local astronomy explorer)';
 const forbidden = (msg) => Object.assign(new Error(msg), { status: 403 });
@@ -115,6 +119,42 @@ export async function cameraMedia(url) {
   return { binary: true, body: Buffer.from(await r.arrayBuffer()), type: r.headers.get('content-type') ?? 'image/jpeg', maxAge: 30 };
 }
 
+// ---- WebSDR in the main viewer -------------------------------------------------------------------
+
+/** Response headers of a listed WebSDR page: HEAD first (the WebSDR server answers 501), else a GET read to the headers only. */
+async function pageHeaders(url) {
+  const opts = { redirect: 'follow', headers: { 'user-agent': UA } };
+  try {
+    const r = await fetch(url, { ...opts, method: 'HEAD', signal: AbortSignal.timeout(10000) });
+    if (r.ok) return { status: r.status, finalUrl: r.url, headers: Object.fromEntries(r.headers) };
+  } catch { /* try GET */ }
+  const ac = new AbortController(), t = setTimeout(() => ac.abort(), 12000);
+  try {
+    const r = await fetch(url, { ...opts, method: 'GET', signal: ac.signal });
+    const out = { status: r.status, finalUrl: r.url, headers: Object.fromEntries(r.headers) };
+    try { await r.body?.cancel(); } catch { /* fine */ }
+    return out;
+  } finally { clearTimeout(t); ac.abort(); }
+}
+
+/**
+ * GET /api/rf/websdr/frame?u=: may this listed WebSDR page be shown in an iframe? Checks the
+ * operator's X-Frame-Options / CSP frame-ancestors once a week (cached). Listed URLs only.
+ * → { url, finalUrl, status, embeddable, reason, checked, cache }.
+ */
+export async function websdrFrame(url, { list = () => layerUrls('websdr'), fetchHeaders = pageHeaders } = {}) {
+  let ok = false;
+  try { ok = !!url && (await list()).has(url); } catch { /* list unavailable */ }
+  if (!ok) throw forbidden('not a listed WebSDR receiver');
+  const c = await cached('websdr-frame', url, 7 * 864e5, async () => {
+    let h;
+    try { h = await fetchHeaders(url); } catch (e) { throw Object.assign(new Error(`could not reach the receiver (${e.cause?.code ?? e.name ?? 'error'})`), { status: 502 }); }
+    if (h.status >= 400) throw Object.assign(new Error(`the receiver answered HTTP ${h.status}`), { status: 502 });
+    return { url, finalUrl: h.finalUrl || url, status: h.status, ...framingVerdict(h.headers), checked: new Date().toISOString() };
+  });
+  return { ...c.value, cache: c.cache };
+}
+
 // ---- local hardware ------------------------------------------------------------------------------
 
 /** Run a tool briefly: { ok, out } (ok false when it is not installed). */
@@ -130,30 +170,6 @@ function probe(cmd, args, ms = 6000) {
     p.on('error', () => finish(false));
     p.on('close', () => finish(true));
   });
-}
-
-// Receive (never transmit) with the right tool for the device. RTL-SDR uses rtl_fm/rtl_power;
-// any SoapySDR device (bladeRF, HackRF) uses rx_tools' rx_fm/rx_power with a driver string. rx_fm
-// shares rtl_fm's auto-oversampling, so the same narrow sample-rate args work on a bladeRF.
-const DEMOD = { wbfm: ['-M', 'wbfm', '-s', '200000', '-r', '12000'], nbfm: ['-M', 'fm', '-s', '12000'], am: ['-M', 'am', '-s', '12000'], usb: ['-M', 'usb', '-s', '12000'], lsb: ['-M', 'lsb', '-s', '12000'] };
-const SOAPY = { bladerf: 'bladerf', hackrf: 'hackrf', rtl: 'rtlsdr' };
-/** Tunable range (Hz) of a device driver. */
-export function deviceRange(driver) {
-  return { rtl: [24e6, 1766e6], bladerf: [47e6, 6e9], hackrf: [1e6, 6e9] }[driver] ?? [24e6, 1766e6];
-}
-/** Command to stream demodulated audio from a device. Pure: `tools` is { rtl_fm, rx_fm } booleans. Returns { cmd, args } or { error }. */
-export function rxStreamCmd(driver, { freqHz, mode, gain }, tools) {
-  const demod = DEMOD[mode] ?? DEMOD.nbfm, g = gain != null ? ['-g', String(gain)] : [], f = String(Math.round(freqHz));
-  if (driver === 'rtl' && tools.rtl_fm) return { cmd: 'rtl_fm', args: ['-f', f, ...demod, ...g, '-l', '0', '-'] };
-  if (tools.rx_fm) return { cmd: 'rx_fm', args: ['-d', `driver=${SOAPY[driver] ?? driver}`, '-f', f, ...demod, ...g, '-l', '0', '-'] };
-  return { error: driver === 'rtl' ? 'rtl_fm is not installed (install rtl-sdr)' : `receiving from a ${driver} needs rx_fm (rx_tools) built with SoapySDR ${driver} support` };
-}
-/** Command to sweep a band for the scan. Returns { cmd, args } or { error }. */
-export function rxScanCmd(driver, { fromHz, toHz, step }, tools) {
-  const range = ['-f', `${Math.round(fromHz)}:${Math.round(toHz)}:${Math.round(step)}`, '-i', '2', '-1', '-'];
-  if (driver === 'rtl' && tools.rtl_power) return { cmd: 'rtl_power', args: range };
-  if (tools.rx_power) return { cmd: 'rx_power', args: ['-d', `driver=${SOAPY[driver] ?? driver}`, ...range] };
-  return { error: driver === 'rtl' ? 'rtl_power is not installed' : `sweeping a ${driver} needs rx_power (rx_tools) with SoapySDR ${driver} support` };
 }
 
 let deviceCache = null;
@@ -175,16 +191,28 @@ export async function rfDevices() {
   // bladeRF-cli -p names the board ("Nuand bladeRF 2.0" for the 2.0 micro); a bladeRF x40/x115 tunes 300 MHz–3.8 GHz
   const bladeModel = /bladeRF\s*2\.0/i.test(blade.out) ? '2.0' : /Description:.*bladeRF/i.test(blade.out) ? '1' : null;
   const tools = { rtl_test: rtl.ok, rtl_fm: rtlFm.ok, rtl_power: rtlPower.ok, rx_fm: rxFm.ok, rx_power: rxPower.ok, hackrf_info: hack.ok, hackrf_transfer: hackTx.ok, bladeRF_cli: blade.ok, SoapySDRUtil: soapy.ok };
-  const rxDev = (driver, kind, n) => ({ kind, driver, label: `${kind.toUpperCase()}${n > 1 ? ` × ${n}` : ''}`, rangeHz: deviceRange(driver),
-    streaming: rxStreamCmd(driver, { freqHz: deviceRange(driver)[0], mode: 'nbfm' }, tools).cmd != null, scanning: rxScanCmd(driver, { fromHz: deviceRange(driver)[0], toHz: deviceRange(driver)[0] + 1e6, step: 1e4 }, tools).cmd != null });
+  const xb200 = process.env.FIDELITY_BLADERF_XB200 === '1';
   const value = {
-    rx: [...(rtlN ? [rxDev('rtl', 'rtl-sdr', rtlN)] : []), ...(bladeN ? [rxDev('bladerf', 'bladeRF', bladeN)] : []), ...(hackN ? [rxDev('hackrf', 'hackrf', hackN)] : [])],
+    rx: rxDevices({ rtlN, bladeN, hackN, tools, xb200, fake: process.env.FIDELITY_FAKE_SDR === '1' }),
     tx: txDevices({ hackN, bladeN, bladeModel, tools, fake: process.env.FIDELITY_FAKE_TX === '1' }),
     tools,
     soapy: soapy.ok ? soapy.out.split('\n').filter((l) => /driver|label/i.test(l)).slice(0, 12) : [],
   };
   deviceCache = { at: Date.now(), value };
   return value;
+}
+
+/**
+ * Receive devices from the probe counts (pure). Each streams IQ (one process feeds the waterfall and
+ * the audio) when its tool is installed. `fake` adds the SIMULATED SDR (FIDELITY_FAKE_SDR=1, development).
+ */
+export function rxDevices({ rtlN = 0, bladeN = 0, hackN = 0, tools = {}, xb200 = false, fake = false }) {
+  const dev = (driver, kind, n, extra = {}) => {
+    const cmd = rxIqCmd(driver, { centreHz: deviceRange(driver, { xb200 })[0] }, tools);
+    return { kind, driver, label: `${kind.toUpperCase()}${n > 1 ? ` × ${n}` : ''}`, rangeHz: deviceRange(driver, { xb200 }), streaming: !cmd.error, waterfall: !cmd.error, tool: cmd.tool ?? null, note: cmd.error ?? null, ...extra };
+  };
+  return [...(rtlN ? [dev('rtl', 'rtl-sdr', rtlN)] : []), ...(bladeN ? [dev('bladerf', 'bladeRF', bladeN, { xb200 })] : []), ...(hackN ? [dev('hackrf', 'hackrf', hackN)] : []),
+    ...(fake ? [{ ...dev('fake', 'simulated', 1), label: 'SIMULATED SDR', fake: true, note: 'FIDELITY_FAKE_SDR=1: a development stand-in. Synthetic IQ (a few tones and noise); nothing is received.' }] : [])];
 }
 
 /** Transmit-capable devices from the probe counts (pure). The bladeRF is the primary transmitter (listed first). */
@@ -201,23 +229,21 @@ export function txDevices({ hackN = 0, bladeN = 0, bladeModel = null, tools = {}
   ];
 }
 
-/** Sweep a local RTL-SDR with rtl_power and list clear signals. from/to Hz, span ≤ 40 MHz. */
-export async function localScan(fromHz, toHz, driver = 'rtl') {
-  const a = Number(fromHz), b = Number(toHz), [lo, hi] = deviceRange(driver);
-  if (!(a >= lo && b > a && b <= hi && b - a <= 40e6)) throw bad(`need ${(lo / 1e6).toFixed(0)} MHz ≤ from < to ≤ ${(hi / 1e6).toFixed(0)} MHz, span ≤ 40 MHz`);
-  const step = Math.max(1000, Math.round((b - a) / 2048));
-  const cmd = rxScanCmd(driver, { fromHz: a, toHz: b, step }, (await rfDevices()).tools);
-  if (cmd.error) throw Object.assign(new Error(cmd.error), { status: 404 });
-  const { ok, out } = await probe(cmd.cmd, cmd.args, 30000);
-  if (!ok) throw Object.assign(new Error(`${cmd.cmd} failed`), { status: 404 });
-  const rows = out.split('\n').filter((l) => /^\d{4}-\d\d-\d\d,/.test(l)).map((l) => l.split(',').map((x) => x.trim()));
-  rows.sort((x, y) => Number(x[2]) - Number(y[2]));
-  const db = rows.flatMap((r) => r.slice(6).map(Number)).filter(Number.isFinite);
-  if (!db.length) throw Object.assign(new Error('no sweep data (is the dongle busy?)'), { status: 502 });
-  return { fromHz: a, toHz: b, bins: db.length, signals: findSignals(Float32Array.from(db), { startHz: a, spanHz: b - a, snrDb: 10 }) };
-}
+export { sndFrame, rxIqCmd, deviceRange } from './sdr.js';
 
 // ---- websockets ----------------------------------------------------------------------------------
+
+/** Is this request from this machine to this machine? (peer address, Host, Origin.) Local SDR control and transmit only. */
+export function loopbackRequest(req) {
+  const peer = req.socket?.remoteAddress ?? '';
+  if (!['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(peer)) return false;
+  const hostname = (h) => { try { return new URL(`http://${h}`).hostname; } catch { return null; } };
+  const loop = (n) => n === '127.0.0.1' || n === 'localhost' || n === '[::1]';
+  if (!loop(hostname(req.headers.host ?? ''))) return false;
+  const o = req.headers.origin;
+  if (o) { let u; try { u = new URL(o); } catch { return false; } if (!loop(u.hostname) || !allowedOrigin(o, req.headers.host)) return false; }
+  return true;
+}
 
 /** Accept a browser WebSocket: { send(text|Buffer), onMessage(fn), onBinary(fn), onClose(fn), close() }. */
 export function acceptSocket(req, socket) {
@@ -297,41 +323,34 @@ export async function handleKiwiUpgrade(req, socket) {
   client.onClose(() => { clearInterval(keep); for (const w of Object.values(ups)) { try { w.close(); } catch { /* gone */ } } });
 }
 
-/** Wrap 16-bit little-endian PCM (rtl_fm) as a Kiwi-style SND message so the browser has one path. */
-export function sndFrame(le, seq, rssi = -127) {
-  const n = Math.floor(le.length / 2), b = Buffer.alloc(3 + 7 + n * 2);
-  b.write('SND', 0, 'latin1'); b.writeUInt8(0, 3); b.writeUInt32LE(seq >>> 0, 4); b.writeUInt16BE(Math.max(0, Math.round((rssi + 127) * 10)), 8);
-  for (let i = 0; i < n; i++) b.writeInt16BE(le.readInt16LE(i * 2), 10 + i * 2);
-  return b;
-}
-
-/** ws /api/rf/local: tune a local RTL-SDR through rtl_fm (24–1766 MHz). */
-export function handleLocalUpgrade(req, socket) {
+/**
+ * ws /api/rf/local: the local SDR (loopback only). One IQ stream per device feeds the waterfall rows
+ * and the demodulated audio (server/sdr.js). `deps` lets tests swap the tools and spawn.
+ */
+export async function handleLocalUpgrade(req, socket, deps = {}) {
+  if (!loopbackRequest(req)) { socket.end('HTTP/1.1 403 Forbidden\r\ncontent-type: text/plain\r\n\r\nlocal SDR control is for this machine only'); return; }
   const client = acceptSocket(req, socket);
   if (!client) return;
-  let proc = null, seq = 0, carry = Buffer.alloc(0);
-  const stop = () => { if (proc) { try { proc.kill('SIGKILL'); } catch { /* gone */ } proc = null; } };
-  const start = async ({ freqHz, mode, gain, driver = 'rtl' }) => {
-    stop();
-    const [lo, hi] = deviceRange(driver);
-    if (!(freqHz >= lo && freqHz <= hi)) { client.send(JSON.stringify({ type: 'error', message: `${(freqHz / 1e6).toFixed(3)} MHz is outside this device's ${(lo / 1e6).toFixed(0)}–${(hi / 1e6).toFixed(0)} MHz range` })); return; }
-    const cmd = rxStreamCmd(driver, { freqHz, mode, gain }, (await rfDevices()).tools);
-    if (cmd.error) { client.send(JSON.stringify({ type: 'error', message: cmd.error })); return; }
-    try { proc = spawn(cmd.cmd, cmd.args, { stdio: ['ignore', 'pipe', 'pipe'] }); }
-    catch (e) { client.send(JSON.stringify({ type: 'error', message: e.message })); return; }
-    proc.on('error', () => client.send(JSON.stringify({ type: 'error', message: `${cmd.cmd} is not installed` })));
-    proc.stderr.on('data', (d) => { const t = String(d); if (/usb_claim_interface|No supported devices|No devices found|Failed to open/i.test(t)) client.send(JSON.stringify({ type: 'error', message: t.trim().split('\n').pop() })); });
-    proc.stdout.on('data', (d) => {
-      const all = Buffer.concat([carry, d]), n = all.length - (all.length % 1024);
-      for (let o = 0; o < n; o += 1024) client.send(sndFrame(all.subarray(o, o + 1024), seq++));
-      carry = all.subarray(n);
-    });
-    client.send(JSON.stringify({ type: 'open', kind: 'local', freqHz, mode, rate: 12000, driver }));
-  };
-  client.onMessage((text) => {
+  const tools = deps.tools ?? (await rfDevices()).tools;
+  const xb200 = deps.xb200 ?? process.env.FIDELITY_BLADERF_XB200 === '1';
+  const fakeOk = deps.fakeOk ?? process.env.FIDELITY_FAKE_SDR === '1';
+  const session = createSdrSession({ send: (x) => client.send(x), tools, spawn: deps.spawn ?? null, xb200 });
+  const tell = (o) => client.send(JSON.stringify(o));
+  client.onMessage(async (text) => {
     let m; try { m = JSON.parse(text); } catch { return; }
-    if (m.type === 'tune' && Number.isFinite(m.freqHz)) start(m);
-    if (m.type === 'stop') stop();
+    if (m.type === 'tune' && Number.isFinite(m.freqHz)) {
+      const driver = String(m.driver ?? 'rtl');
+      if (driver === 'fake' && !fakeOk) return tell({ type: 'error', message: 'the simulated SDR needs FIDELITY_FAKE_SDR=1' });
+      const [lo, hi] = deviceRange(driver, { xb200 });
+      if (!(m.freqHz >= lo && m.freqHz <= hi)) return tell({ type: 'error', message: `${(m.freqHz / 1e6).toFixed(3)} MHz is outside this device's ${lo < 1e6 ? `${(lo / 1e3).toFixed(0)} kHz` : `${(lo / 1e6).toFixed(0)} MHz`}–${(hi / 1e6).toFixed(0)} MHz range` });
+      session.tune({ ...m, driver });
+    } else if (m.type === 'scan' && Number.isFinite(m.fromHz) && Number.isFinite(m.toHz)) {
+      const a = Math.min(m.fromHz, m.toHz), b = Math.max(m.fromHz, m.toHz);
+      if (!(b - a > 0 && b - a <= 40e6)) return tell({ type: 'error', message: 'scan span must be under 40 MHz' });
+      const signals = await session.scan({ fromHz: a, toHz: b });
+      tell({ type: 'scan', fromHz: a, toHz: b, signals });
+    } else if (m.type === 'stop') session.stop();
   });
-  client.onClose(stop);
+  client.onClose(() => session.stop());
+  tell({ type: 'ready' });
 }
