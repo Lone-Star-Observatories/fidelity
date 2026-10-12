@@ -35,6 +35,21 @@ test('Hydra resolves its own dossier without adopting another moon globe or sync
   }
 });
 
+test('Kerberos resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const kerberos = MOONS.find((m) => m.id === 'kerberos');
+  assert.equal(kerberos.parent, 'pluto');
+  assert.equal(bodyVisualFor(kerberos).id, 'kerberos');
+  assert.equal(kerberos.surfacePending, true);
+  assert.equal(kerberos.skin?.map, undefined);
+  assert.equal(kerberos.locked, false);
+  assert.notEqual(kerberos.rotationHours, kerberos.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(kerberos, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 57000 && Math.hypot(...position) < 60000);
+  }
+});
+
 // JPL Horizons vectors (DE441 + satellite ephemerides), J2000 ecliptic, 2026-10-10 00:00 TDB.
 const JD = 2461323.5;
 const HORIZONS_KM = {

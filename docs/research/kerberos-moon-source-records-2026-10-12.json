@@ -1,0 +1,143 @@
+{
+  "records": [
+    {
+      "path": "data/research-sources/kerberos-PIA20034-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.jpg",
+      "bytes": 29042,
+      "sha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 1320,
+      "height": 1277,
+      "format": "JPEG",
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/kerberos-PIA20034-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.tif",
+      "bytes": 272684,
+      "sha256": "88f326b416524dd8a9d91273697eccab333170a08027f064497931e8b69c3957",
+      "status": 200,
+      "contentType": "image/tiff",
+      "width": 1320,
+      "height": 1277,
+      "format": "TIFF",
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/kerberos-PIA20034-caption.html",
+      "url": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+      "bytes": 267120,
+      "sha256": "4799f520be10115c0c8de33b28085aa6d1fbeb272968d584ba1f15162555eaf2",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/kerberos-PIA20034-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320651,
+      "sha256": "ff59c67d68314043ea4cde291666e9f8acc09792f296e2767e8906214e6473c9",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/kerberos-2015-nasa-release.html",
+      "url": "https://www.nasa.gov/image-article/plutos-tiny-moon-kerberos/",
+      "bytes": 275580,
+      "sha256": "2dff4f7e886b78102129276bd3d475cfe9f67488fb1550daa48194fb01d4fda2",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/nix-Weaver2016.pdf",
+      "url": "https://arxiv.org/pdf/1604.05366",
+      "bytes": 4953591,
+      "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+      "pages": 48
+    },
+    {
+      "path": "data/research-sources/kerberos-generated-surfaceImage-original.png",
+      "bytes": 3097830,
+      "sha256": "8492fc8a0beb5c3b10e0d915c9a6e3b2e91730dbc7fe70bcdbb3666663940f5b",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    {
+      "bytes": 1648257,
+      "sha256": "0f0dc1212d074ae2d1925336229cdf7f215dd7736e5b23082ac3b4e0b4d57304",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "data/research-sources/kerberos-generated-surfaceImage-master.jpg",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "bytes": 352553,
+      "sha256": "e6ea6a7c7304436e8cde3ee18587e65df73d207401328dc83d4ec6aa05c49587"
+    },
+    {
+      "path": "data/research-sources/kerberos-generated-surfaceImage-preview.jpg",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "bytes": 10358,
+      "sha256": "904c234f10a4166ff8e1d0dea1bc5bef13ed0e5dab1c64fc928ac64fa5a10593"
+    },
+    {
+      "path": "data/research-sources/kerberos-generated-skyImage-master.jpg",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "bytes": 188177,
+      "sha256": "758710303325b33f270c5687bdeb7a8d9025e61df97f5fa42b390320a1e2dca2"
+    },
+    {
+      "path": "data/research-sources/kerberos-generated-skyImage-preview.jpg",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "bytes": 6339,
+      "sha256": "0894ae46a366d711d22258d872483901780feccd869a7eb9a515f14cf1a258b7"
+    }
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/kerberos-jpl-elements-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/kerberos-jpl-physical-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200,
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    }
+  ],
+  "fullPrompts": {
+    "local": "Use case: scientific-educational. Create one independent hypothetical local landscape on Kerberos, Pluto's small irregular bilobed moon, wide 16:9 approximately 1672 by 941. Sober photorealistic scientific illustration of independently invented pale grey fine-grained regolith, scattered angular blocks, shallow irregular depressions and a gently uneven low horizon. Do not depict the whole body's bilobed silhouette as a measured local horizon: its fitted ellipsoid is a poor global approximation and site normals are unknown. Brightness, grain sizes, grey colour, material chemistry and fractions, relief, illumination and exposure are artistic assumptions; inferred ice-rich reflectance is not a measured local material map. Low oblique light. Almost black empty sky is assumed transparency, not measured atmospheric absence. No astronomical disks, Sun, Pluto, Charon, other planets or stars, so no angular/raster-size claim. This is NOT a reconstruction of LORRI pixel blocks, a dated New Horizons photograph, observed crater or mapped site. Kerberos rotates nonsynchronously; no permanent Pluto-facing location. No haze, atmosphere in the foreground, plumes, liquids, oceans, biology, people, spacecraft, structures or survivable landing. Never copy, recolour or reuse a Moon, Mars, Pluto, Charon, Nix, Hydra, asteroid or any observed body's map. No reference images. Legible unobtrusive footer exactly 'IMAGINED · LOCAL KERBEROS'; smaller line 'Terrain, materials and lighting are assumed'. Independently composed terrain and subdued natural grey palette.",
+    "sky": "Use case: scientific-educational\nAsset type: Fidelity hypothetical observer illustration, landscape 1672x941.\nPrimary request: Independently imagine a sky view from Kerberos, Pluto's small irregular moon. This is explicitly invented terrain and observer appearance, not a New Horizons photograph or registered scientific reconstruction.\nScene: sparse grey regolith grains and angular blocks with low shallow relief across bottom third, low irregular horizon, otherwise dark sky. Independently invented material appearance, chemistry, fractions and lighting. No copied or recoloured observed Moon/Mars/Pluto/Charon or any body terrain/map.\nSubject: TWO small distant disks above horizon: schematic independently invented Pluto about 34 pixels diameter and Charon about 17 pixels diameter at full 1672 width, plainly small in a nominal 90-degree horizontal field. Pluto neutral cream/grey subdued arbitrary markings; Charon grey subdued arbitrary markings. Both partial illumination with modest contrast, no rings, Sun or stars. Their colours/patterns/phases and positions are artistic, not observed maps.\nGeometry: skyGeometry illustrative undated circular coplanar barycentric Kerberos radius57783km, assumed outward height9.5km from explicitly poor bilobed ellipsoid; one observer at(57792.5,0), Pluto distance57831.621274km and Charon60376.196288km. Nominal target angular diameters2.354745211 and1.150182606 degrees. Do not magnify the disks for drama. No permanent Pluto-facing site: Kerberos rotates nonsynchronously; camera attitude/site normals unregistered.\nStyle: restrained photorealistic educational imagined scene, no sci-fi spacecraft or people. Black sky is assumed transparency, not measured atmospheric absence.\nText verbatim: clear bottom footer \"IMAGINED · SKY FROM KERBEROS\" and smaller \"Terrain, disk patterns, phase and lighting assumed\".\nAvoid: foreground atmosphere, haze clouds, plume, liquid, ocean, biology, vegetation, survivable landing depiction; dated New Horizons geography; precise chemical colours or local material claims. No analog skins, input images or scientific map copying. Ring omission artistic, not absence measurement."
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-566b2406-2879-4095-82e6-1fe5c72a0fbc.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-d2c2732e-bb38-4e03-9ebb-79fdce7a26ed.png"
+  }
+}
