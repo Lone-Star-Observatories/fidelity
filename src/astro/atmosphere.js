@@ -1,0 +1,185 @@
+// Clouds and ground (#83): pure, tested atmosphere models for the two worlds with a cloud layer above a
+// ground you can land on, Venus and Earth.
+//  · Venus: the Venus International Reference Atmosphere (VIRA; Seiff et al. 1985, Adv. Space Res. 5(11), 3),
+//    low-latitude profile below 100 km, built from the Pioneer Venus probes and the Venera landers; the
+//    altitudes are above the 6,052 km reference sphere.
+//  · Earth: the U.S. Standard Atmosphere 1976 (NOAA/NASA/USAF), below 86 km, from its defining layers.
+//  · The cloud layers: Venus' deck at its measured height (Pioneer Venus LCPS nephelometer, Knollenberg &
+//    Hunten 1980), Earth's at an assumed height (the imagery has none).
+//  · Light, murk and visibility in the descent (MODELLED), and the DESCEND / ASCEND state machine.
+
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+
+/** VIRA, 0–30° latitude: [altitude km above 6,052 km, temperature K, pressure bar]. Rounded to the table's figures. */
+export const VENUS_VIRA = [
+  [0, 735.3, 92.1], [5, 696.8, 66.65], [10, 658.2, 47.39], [15, 620.8, 33.04], [20, 580.7, 22.52],
+  [25, 539.2, 14.93], [30, 496.9, 9.851], [35, 453.7, 5.917], [40, 416.8, 3.501], [45, 383.8, 1.979],
+  [50, 350.5, 1.066], [55, 302.3, 0.5314], [60, 262.8, 0.2357], [65, 243.2, 0.09765], [70, 229.8, 0.0369],
+  [75, 215.4, 0.01363], [80, 197.1, 0.004476], [85, 180.6, 0.001339], [90, 169.4, 0.0003734], [100, 175.4, 0.0000266],
+];
+export const VENUS_REF_RADIUS_KM = 6052;
+export const VIRA_SOURCE = 'VIRA (Seiff et al. 1985), from the Pioneer Venus probes and Venera landers';
+
+/** Venus at `altKm` above the 6,052 km sphere: { tK, pBar } (log-pressure and temperature interpolated; clamped to 0–100 km). */
+export function venusAtmosphere(altKm) {
+  const z = clamp(altKm, 0, 100), T = VENUS_VIRA;
+  let i = 0;
+  while (i < T.length - 2 && T[i + 1][0] < z) i++;
+  const [z0, t0, p0] = T[i], [z1, t1, p1] = T[i + 1], f = (z - z0) / (z1 - z0);
+  return { tK: t0 + (t1 - t0) * f, pBar: Math.exp(Math.log(p0) + (Math.log(p1) - Math.log(p0)) * f) };
+}
+
+// U.S. Standard Atmosphere 1976: geopotential layer bases (km'), lapse rates (K/km'), sea-level T and p.
+const US76 = [[0, -6.5], [11, 0], [20, 1], [32, 2.8], [47, 0], [51, -2.8], [71, -2], [84.852, 0]];
+const R0 = 6356.766, GMR = 34.1632; // Earth radius for geopotential (km), g0·M/R* (K/km)
+export const US76_SOURCE = 'U.S. Standard Atmosphere 1976 (NOAA/NASA/USAF)';
+
+/** Earth at geometric altitude `altKm` above mean sea level: { tK, pBar, pHpa } (US Standard Atmosphere 1976, −1 to 86 km). */
+export function earthAtmosphere(altKm) {
+  const z = clamp(altKm, -1, 86), h = (R0 * z) / (R0 + z); // geopotential altitude
+  let T = 288.15, p = 101325;
+  for (let i = 0; i < US76.length - 1; i++) {
+    const [hb, L] = US76[i], top = US76[i + 1][0], dh = Math.min(h, top) - hb;
+    if (dh <= 0 && i > 0) break;
+    if (L === 0) p *= Math.exp((-GMR * dh) / T);
+    else { const T1 = T + L * dh; p *= (T / T1) ** (GMR / L); T = T1; }
+    if (h <= top) break;
+  }
+  return { tK: T, pBar: p / 1e5, pHpa: p / 100 };
+}
+
+/**
+ * The cloud layer and the ground of each world that has both. Heights in km above the ground's reference
+ * (Venus: the 6,051 km DEM sphere, near VIRA's 6,052 km; Earth: mean sea level).
+ */
+export const CLOUD_LAYERS = {
+  venus: {
+    shellKm: 70, topKm: 70, baseKm: 48, hazeTopKm: 90, lowerHazeKm: 30, assumed: false, tier: 'measured',
+    superRotationDays: 4, // the cloud tops circle the planet westward in ~4 days; the ground turns once in 243 days (retrograde)
+    standKm: 70.5, descentS: 32,
+    note: 'Main sulphuric-acid cloud deck 48–70 km, haze above to ~90 km and below to ~30 km (Pioneer Venus LCPS: Knollenberg & Hunten 1980; Venera)',
+    profile: venusAtmosphere, source: VIRA_SOURCE, refRadiusKm: VENUS_REF_RADIUS_KM,
+  },
+  earth: {
+    shellKm: 10, topKm: 10, baseKm: 10, assumed: true, tier: 'modelled',
+    standKm: 10.8, descentS: 18,
+    note: 'Cloud height ASSUMED: 10 km for every cloud (the satellite imagery says where clouds are, not how high). Real clouds lie from ~0.5 km (stratus) to ~12 km (cirrus, anvils)',
+    profile: earthAtmosphere, source: US76_SOURCE, refRadiusKm: 6371,
+  },
+};
+
+/** The layer record for a body, or null. */
+export const cloudLayer = (id) => CLOUD_LAYERS[id] ?? null;
+
+/** The atmosphere at `altKm` above the body's reference: { tK, tC, pBar, source } or null. */
+export function atmosphereAt(id, altKm) {
+  const L = cloudLayer(id);
+  if (!L) return null;
+  const a = L.profile(altKm);
+  return { ...a, tC: a.tK - 273.15, source: L.source };
+}
+
+/**
+ * How much of the view the cloud hides at `altKm` (0 clear … 1 opaque), MODELLED: Venus' deck is a bright
+ * murk from its top (70 km) down to ~48 km, thinning through the lower haze to ~30 km and clear below;
+ * Earth's thin assumed shell blinds the camera for a few hundred metres either side of it, as far as
+ * there is cloud over the spot (`cover`, 0…1, from the imagery).
+ */
+export function murk(id, altKm, cover = 1) {
+  const L = cloudLayer(id);
+  if (!L) return 0;
+  if (id === 'venus') {
+    if (altKm >= L.topKm + 2) return 0;
+    if (altKm >= L.baseKm) return 0.97 * smooth(L.topKm + 2, L.topKm - 4, altKm);
+    return 0.97 * smooth(L.lowerHazeKm, L.baseKm, altKm);
+  }
+  const d = Math.abs(altKm - L.shellKm);
+  return 0.9 * clamp(cover, 0, 1) * (1 - smooth(0.05, 0.5, d));
+}
+
+/**
+ * Sunlight reaching `altKm` as a fraction of the light above the clouds (MODELLED from the Venera 11–14 and
+ * Pioneer Venus flux measurements: ~2–3% at Venus' surface, mostly lost in the deck; Earth's shell drawn as
+ * a typical overcast that passes ~30%).
+ */
+export function lightFraction(id, altKm) {
+  if (id === 'venus') {
+    const pts = [[0, 0.025], [30, 0.045], [48, 0.08], [55, 0.2], [62, 0.45], [70, 1]];
+    if (altKm >= 70) return 1;
+    let i = 0;
+    while (i < pts.length - 2 && pts[i + 1][0] < altKm) i++;
+    const [a0, f0] = pts[i], [a1, f1] = pts[i + 1], f = clamp((altKm - a0) / (a1 - a0), 0, 1);
+    return Math.exp(Math.log(f0) + (Math.log(f1) - Math.log(f0)) * f);
+  }
+  if (id === 'earth') return 1;
+  return 1;
+}
+
+/** Is the Sun's disc visible from `altKm`? Not from inside or below Venus' deck. */
+export const sunVisible = (id, altKm) => !(id === 'venus' && altKm < CLOUD_LAYERS.venus.topKm - 2);
+
+/**
+ * Rayleigh extinction (per km) near `altKm`, MODELLED: Earth's sea-level air scatters ~0.0116 /km at 550 nm;
+ * CO₂ scatters ~2.5× more per molecule, and Venus' surface gas is ~50× denser in molecules, so ~1 /km there:
+ * a few kilometres of visibility, the far landscape fading into the orange murk.
+ */
+export function extinctionPerKm(id, altKm) {
+  if (id === 'venus') {
+    const a = venusAtmosphere(Math.max(0, altKm)), s = venusAtmosphere(0);
+    return 1.0 * (a.pBar / s.pBar) * (s.tK / a.tK);
+  }
+  if (id === 'earth') {
+    const a = earthAtmosphere(Math.max(0, altKm));
+    return 0.0116 * (a.pBar / 1.01325) * (288.15 / a.tK);
+  }
+  return 0;
+}
+/** Koschmieder visibility (km) from an extinction coefficient: 3.912 / β. */
+export const visibilityKm = (beta) => (beta > 0 ? 3.912 / beta : Infinity);
+
+/** Which layer is the camera at? 'above' (over the clouds), 'in' (inside them), 'below' (under them, above the ground). */
+export function layerAt(id, altKm) {
+  const L = cloudLayer(id);
+  if (!L) return 'below';
+  if (id === 'venus') return altKm > L.topKm ? 'above' : altKm >= L.baseKm ? 'in' : 'below';
+  return altKm > L.shellKm + 0.15 ? 'above' : altKm >= L.shellKm - 0.15 ? 'in' : 'below';
+}
+
+// ---- DESCEND / ASCEND --------------------------------------------------------------------------
+// Altitude above the ground (km). The flight eases in log(altitude + 2 m), so it slows near the ground:
+// the cloud deck takes about as long as the last kilometre.
+export const GROUND_EYE_KM = 0.002; // the surface camera stands 2 m above the DEM's ground
+
+/** Altitude (km) a fraction `f` (0…1) of the way from `fromKm` to `toKm`, eased (smoothstep) in log altitude. */
+export function descentAltitude(fromKm, toKm, f) {
+  const t = smooth(0, 1, f), e = GROUND_EYE_KM;
+  const a = Math.log(Math.max(fromKm, 0) + e), b = Math.log(Math.max(toKm, 0) + e);
+  return Math.max(0, Math.exp(a + (b - a) * t) - e);
+}
+
+/**
+ * The descent state: { phase: 'top' | 'down' | 'ground' | 'up', altKm, fromKm, toKm, t0, dur }.
+ * Pure: every step takes the time `now` in seconds.
+ */
+export function createDescent(id, { at = 'top' } = {}) {
+  const L = cloudLayer(id);
+  const top = L?.standKm ?? GROUND_EYE_KM, ground = GROUND_EYE_KM;
+  return at === 'ground' || !L ? { phase: 'ground', altKm: ground, fromKm: ground, toKm: ground, t0: 0, dur: 0, top, ground }
+    : { phase: 'top', altKm: top, fromKm: top, toKm: top, t0: 0, dur: 0, top, ground };
+}
+/** Start descending (or ascending) at time `now` (s) from wherever the camera is; durations scale with the height to cover. */
+export function startDescent(st, dir, now, fullS = 30) {
+  const toKm = dir === 'down' ? st.ground : st.top;
+  if (Math.abs(st.altKm - toKm) < 1e-6) return { ...st, phase: dir === 'down' ? 'ground' : 'top' };
+  const span = Math.abs(Math.log(st.altKm + GROUND_EYE_KM) - Math.log(toKm + GROUND_EYE_KM)) / Math.abs(Math.log(st.top + GROUND_EYE_KM) - Math.log(st.ground + GROUND_EYE_KM));
+  return { ...st, phase: dir, fromKm: st.altKm, toKm, t0: now, dur: Math.max(2, fullS * span) };
+}
+/** Advance to time `now` (s). */
+export function stepDescent(st, now) {
+  if (st.phase !== 'down' && st.phase !== 'up') return st;
+  const f = clamp((now - st.t0) / st.dur, 0, 1);
+  const altKm = descentAltitude(st.fromKm, st.toKm, f);
+  if (f >= 1) return { ...st, altKm: st.toKm, phase: st.phase === 'down' ? 'ground' : 'top' };
+  return { ...st, altKm };
+}
