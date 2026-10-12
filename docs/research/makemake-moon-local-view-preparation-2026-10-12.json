@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-12",
+  "body": "S/2015 (136472) 1 / Makemake moon / MK 2",
+  "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+  "generator": "Built-in image generation; no input/reference image",
+  "prompt": "Create one independent research-guided hypothetical local observer illustration for S/2015 (136472) 1, Makemake's moon nicknamed MK 2. Wide landscape 1672 by 941 composition. A low viewpoint across independently invented subdued grey regolith, shallow irregular depressions, scattered small angular blocks and low broken ridges under a nearly black sky. Restrained oblique illumination with readable dark detail, no dramatic eruption. Unknown terrain, grain sizes, material fractions, chemistry, surface colour, lighting and exposure are invented; this is not an observed or registered location. The moon is only an unresolved Hubble detection; historical size and dark-albedo thermal models do not establish local composition or resolved geography. Do not depict or reuse any Moon, Mars, Pluto, Charon or other body's terrain/map, including recoloured analogues. Generate terrain independently. No planet, Sun, rings, stars, astronomical disks, atmosphere clouds, plume, rain, liquid, ocean, biology, people, spacecraft or suggestion of survivable landing. Black sky is an artistic transparency assumption, not measured atmospheric absence. Do not imply synchronous rotation or a permanently Makemake-facing site. Keep the bottom annotation band large and legible with exactly these two text lines: 'IMAGINED — LOCAL VIEW FROM MAKEMAKE’S MOON (MK 2)' and 'Terrain, materials and lighting are hypothetical.' No other labels.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-06e02bcf-744c-4dee-b057-901015f8bd43.png",
+  "researchCopy": "data/research-sources/makemake-moon-generated-surfaceImage-original.png",
+  "inspection": "Independent grey blocks, grains, shallow depressions and low ridges under invented lighting; nearly black sky without astronomical disks. Both requested footer lines clearly readable.",
+  "limits": [
+    "Terrain, chemistry/material fractions, grey colour, lighting and exposure invented; unresolved Hubble detection does not establish local geography.",
+    "Black sky is artistic transparency, not measured atmospheric absence.",
+    "Historical albedo-dependent size and thermal models do not measure local chemistry or surface temperature; primary Makemake hotspot, ring and rotation models are not moon measurements.",
+    "No verified spin locking, local normal, permanently Makemake-facing or dated registered site.",
+    "No analog map, foreground atmosphere, plume, rain, liquid/ocean, biology or survivable landing implication.",
+    "No angular/raster computation required: no astronomical disk appears."
+  ],
+  "references": [
+    "docs/research/makemake-moon-native-preparation-2026-10-12.json",
+    "docs/research/makemake-moon-primary-orbit-size-assessment-2026-10-12.json",
+    "docs/research/makemake-moon-later-orbit-assessment-2026-10-12.json",
+    "docs/research/makemake-system-thermal-assessment-2026-10-12.json",
+    "docs/research/makemake-moon-observer-geometry-preparation-2026-10-12.json"
+  ],
+  "original": {
+    "bytes": 2502948,
+    "sha256": "2a044e0f8b64248dec9c2ef639ef1616770bdba7d918c05274be6bd24f74ef61",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "preservationAudit": {
+    "trackedPublicFiles": 550,
+    "changed": []
+  },
+  "validation": {
+    "tests": "539 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL16065833bytes65833over hard16MB gate",
+    "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/originals/masters/native/provenance/recorded Clipper preview preserved; queue566",
+    "browser": "No passing current full/offline browser claim; other engines open",
+    "attribution": "Interbuild differences unaudited; no savings attribution or codec change"
+  }
+}
