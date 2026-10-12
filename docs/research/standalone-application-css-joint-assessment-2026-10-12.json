@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-12",
+  "issue": 3,
+  "status": "Research-only; production unchanged",
+  "applicationSha256": "5b257978a7c3fc2617a9727c125138f095321065c72b77fd0ee23fcd7d554363",
+  "cssSha256": "5cce814a3b47adbf3c4c5bbd2e2ab0b149ab8f10af3eee8d21503d1c7bf9f540",
+  "baselineSeparateTransportBytes": 870793,
+  "trials": [
+    {
+      "layout": "css-first",
+      "outerGzipBytes": 756153,
+      "transportBytes": 868426,
+      "transportDeltaBytes": -2367,
+      "exactNativeBundledJsAndSourceInverse": true
+    },
+    {
+      "layout": "app-first",
+      "outerGzipBytes": 756113,
+      "transportBytes": 868426,
+      "transportDeltaBytes": -2367,
+      "exactNativeBundledJsAndSourceInverse": true
+    }
+  ],
+  "limits": "Screening only. Includes four-byte CSS length, excludes new container signature, bounds/CRC decoder and bootstrap changes. Not a full HTML or browser candidate, and does not remove either independent startup/snapshot decoder. No fields, numeric spelling, assets or source bytes pruned or rounded.",
+  "decision": "Not adopted: 2367 transport bytes before new wrapper/decoder overhead is insufficient for the current budget deficit or prepared dossier batches. Do not repeat these two layouts.",
+  "preservation": {
+    "trackedPublicFiles": 550,
+    "changedFiles": [],
+    "newDossierOrEmbedding": false
+  }
+}
