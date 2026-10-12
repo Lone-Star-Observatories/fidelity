@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-12",
+  "body": "Naiad",
+  "status": "Research-only original-preserving masters/previews; no69 or embedding",
+  "assets": [
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/naiad-generated-surfaceImage-original.png",
+        "bytes": 2775112,
+        "sha256": "c4996de50f7b76fa310d108c01f615311a99c74c964d7f7a819ceaaed4625957",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/naiad-generated-surfaceImage-master.jpg",
+      "bytes": 284764,
+      "sha256": "d67c76029b68caace0c64121ccea4b98e21f82bc0422fea62dc0b77a28ef46d9",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/naiad-generated-surfaceImage-original.png",
+        "bytes": 2775112,
+        "sha256": "c4996de50f7b76fa310d108c01f615311a99c74c964d7f7a819ceaaed4625957",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/naiad-generated-surfaceImage-preview.jpg",
+      "bytes": 10568,
+      "sha256": "976ca3adc0438575ba3189f2d51b906d69c3f993f124846b07e595160e339689",
+      "width": 256,
+      "height": 144
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "quality": 85,
+      "source": {
+        "path": "data/research-sources/naiad-generated-skyImage-original.png",
+        "bytes": 2028181,
+        "sha256": "0a955ab67afe16a4fb2d00ac7c51c50a6380bec89a6ea5cc567ebcc47bd5966e",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/naiad-generated-skyImage-master.jpg",
+      "bytes": 182601,
+      "sha256": "b2844c25e76f8b35b89b56f6fa667640a20322cd55c1b425d3df549b2f1c31cd",
+      "width": 1536,
+      "height": 864
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "quality": 80,
+      "source": {
+        "path": "data/research-sources/naiad-generated-skyImage-original.png",
+        "bytes": 2028181,
+        "sha256": "0a955ab67afe16a4fb2d00ac7c51c50a6380bec89a6ea5cc567ebcc47bd5966e",
+        "width": 1672,
+        "height": 941
+      },
+      "path": "data/research-sources/naiad-generated-skyImage-preview.jpg",
+      "bytes": 6924,
+      "sha256": "ebcadf820597b4375d74ceaf62bddeb175c5b48117b467a15c4ce307bc25d341",
+      "width": 256,
+      "height": 144
+    }
+  ],
+  "previewRawBytes": 17492,
+  "limitations": [
+    "Independent terrain, relief, blocks/grains, material fractions, chemistry, grey colour, Neptune bands/cloud patterns, phase, colour, lighting and exposure invented; no observed map or analog skin reused.",
+    "Black sky and ring/star/Sun omission are artistic choices, not measured atmosphere/ring absence or calibrated transmission.",
+    "No dated Voyager site, verified synchronous spin or permanent Neptune-facing location. Axis/camera attitude, irregular shape/local normal, scene registration, phase, Neptune oblateness and atmospheric/spectral transfer remain open.",
+    "JPL radius29\u00b16/GM.00853\u00b1.00480 versus paper33\u00b13/.0080\u00b1.0043 and inherited ellipsoid alternatives preserved without catalogue change. Conditional cohesion, monolithic structure, Gyr age, erosion and regolith models are not measured depicted features.",
+    "No other-moon clay assignments or local spectral material map, foreground atmosphere, plume, liquid, exposed ocean, biology or survivable landing.",
+    "Small preview labels and patterns have limited readability; readable IMAGINED card labels required before integration.",
+    "All68 earlier dossiers, original PNGs, masters, native science/provenance, maps/models/shapes and recorded Clipper preview preserved. No69, new embedding, catalogue or codec change."
+  ],
+  "inspection": "Both1536 JPEG85 masters and256 JPEG80 previews displayed and inspected. Independent relief and cropped invented Neptune retained; original/master footers readable,256preview footers very small. Readable IMAGINED card labels mandatory before integration. Technical resizing/JPEG encoding only; both original PNGs and default copies/full prompts retained unchanged.",
+  "validation": {
+    "tests": "536 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL: hard16,000,000 byte gate",
+    "htmlBytes": 16063729,
+    "overBudgetBytes": 63729,
+    "baseline": "83997a8 including App Store and local SDR/WebSDR upstream",
+    "preservation": "All68 dossiers unchanged; all550 tracked public files byte-identical to HEAD, including405 protected imagery/model/texture/shape assets and recorded Clipper preview. Queue566 unchanged. No69, embedding, catalogue or codec change.",
+    "browser": "No passing rebuilt full/offline artifact or new browser verification claimed. Other engines OPEN.",
+    "attribution": "Interbuild feed differences unaudited; no savings or source attribution."
+  }
+}
