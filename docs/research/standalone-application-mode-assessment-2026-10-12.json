@@ -1,0 +1,44 @@
+{
+  "applicationSha256": "f22b7fcc29bfb2593ec0f618c56f645cb803b98aaa85c39b44c9857237880ef9",
+  "binaryBytes": 2861712,
+  "results": [
+    {
+      "name": "GENERIC",
+      "innerBytes": 697168,
+      "outerGzipBytes": 697230,
+      "transportBytes": 800835,
+      "exactNativeAndBundledJsInverse": true
+    },
+    {
+      "name": "TEXT",
+      "innerBytes": 697168,
+      "outerGzipBytes": 697230,
+      "transportBytes": 800835,
+      "exactNativeAndBundledJsInverse": true
+    },
+    {
+      "name": "FONT",
+      "innerBytes": 697273,
+      "outerGzipBytes": 697308,
+      "transportBytes": 801098,
+      "exactNativeAndBundledJsInverse": true
+    }
+  ],
+  "limitation": "Same application numeric container; no modification of source text, values, assets or geometry. Screening excludes whole HTML and bootstrap. No production saving claim.",
+  "decision": "Rejected: TEXT identical to GENERIC; FONT increases outer gzip by 78 bytes and transport by 263 bytes. Do not repeat these application mode trials.",
+  "validation": {
+    "base": "f712bc7 including a3c7865 Computer calculators/persona",
+    "tests": "483 pass, one skip",
+    "productionBuild": "pass",
+    "fullBuild": "failed hard 16000000-byte gate",
+    "htmlBytes": 16015991,
+    "overBudgetBytes": 15991,
+    "browser": "No new passing full artifact; no new offline browser claim",
+    "queue": 566,
+    "dossiers": 68,
+    "trackedAssets": 405,
+    "changedAssets": [],
+    "registryUnchanged": "No registry mutation",
+    "clipperPreviewSha256": "47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1"
+  }
+}
