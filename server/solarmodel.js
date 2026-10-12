@@ -27,7 +27,7 @@
 //    The PNG uses the same log brightness-temperature scale for every frequency (10⁴–3×10⁶ K), so
 //    408 MHz looks brighter than 2.4 GHz, as it is.
 
-import zlib from 'node:zlib';
+import { decodePng as decodeAnyPng } from './png.js';
 import { parseFits, encodePng } from './solarradio.js';
 
 const UA = { 'user-agent': 'USS-Fidelity/0.3 (local astronomy explorer)' };
@@ -242,47 +242,9 @@ export const sunModelFeed = (fGHz, label, { inputs = radioInputs, magnetogram } 
   },
 });
 
-// ---- PNG decoding (dependency-free): 8-bit grey / RGB / palette / grey+alpha / RGBA, Adam7 or not ----
-const ADAM7 = [[0, 0, 8, 8], [4, 0, 8, 8], [0, 4, 4, 8], [2, 0, 4, 4], [0, 2, 2, 4], [1, 0, 2, 2], [0, 1, 1, 2]];
+// ---- PNG decoding: the shared decoder (server/png.js, Adam7 or not), in this module's { w, h, rgba } shape ----
 /** Decode a PNG to { w, h, rgba: Uint8Array (w×h×4, top row first) }. */
 export function decodePng(buf) {
-  if (!Buffer.from(buf.subarray(0, 8)).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) throw new Error('not a PNG');
-  let off = 8, w = 0, h = 0, depth = 0, type = 0, interlace = 0, plte = null, trns = null;
-  const idat = [];
-  while (off + 8 <= buf.length) {
-    const n = buf.readUInt32BE(off), t = buf.toString('latin1', off + 4, off + 8), d = buf.subarray(off + 8, off + 8 + n);
-    if (t === 'IHDR') { w = d.readUInt32BE(0); h = d.readUInt32BE(4); depth = d[8]; type = d[9]; interlace = d[12]; }
-    else if (t === 'PLTE') plte = d; else if (t === 'tRNS') trns = d; else if (t === 'IDAT') idat.push(d); else if (t === 'IEND') break;
-    off += 12 + n;
-  }
-  if (depth !== 8) throw new Error(`PNG bit depth ${depth} not supported`);
-  const ch = { 0: 1, 2: 3, 3: 1, 4: 2, 6: 4 }[type];
-  if (!ch) throw new Error(`PNG colour type ${type} not supported`);
-  const raw = zlib.inflateSync(Buffer.concat(idat)), rgba = new Uint8Array(w * h * 4);
-  let at = 0;
-  const pass = (x0, y0, dx, dy) => {
-    const pw = Math.ceil((w - x0) / dx), ph = Math.ceil((h - y0) / dy);
-    if (pw <= 0 || ph <= 0) return;
-    const stride = pw * ch;
-    let prev = new Uint8Array(stride);
-    for (let r = 0; r < ph; r++) {
-      const f = raw[at++], line = new Uint8Array(raw.subarray(at, at + stride));
-      at += stride;
-      for (let i = 0; i < stride; i++) {
-        const a = i >= ch ? line[i - ch] : 0, b = prev[i], c = i >= ch ? prev[i - ch] : 0;
-        const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c);
-        const pred = f === 1 ? a : f === 2 ? b : f === 3 ? (a + b) >> 1 : f === 4 ? (pa <= pb && pa <= pc ? a : pb <= pc ? b : c) : 0;
-        line[i] = (line[i] + pred) & 255;
-      }
-      for (let x = 0; x < pw; x++) {
-        const o = ((y0 + r * dy) * w + x0 + x * dx) * 4, s = x * ch;
-        if (type === 0 || type === 4) { rgba[o] = rgba[o + 1] = rgba[o + 2] = line[s]; rgba[o + 3] = type === 4 ? line[s + 1] : 255; }
-        else if (type === 2 || type === 6) { rgba[o] = line[s]; rgba[o + 1] = line[s + 1]; rgba[o + 2] = line[s + 2]; rgba[o + 3] = type === 6 ? line[s + 3] : 255; }
-        else { const k = line[s]; rgba[o] = plte[k * 3]; rgba[o + 1] = plte[k * 3 + 1]; rgba[o + 2] = plte[k * 3 + 2]; rgba[o + 3] = trns && k < trns.length ? trns[k] : 255; }
-      }
-      prev = line;
-    }
-  };
-  if (interlace) for (const p of ADAM7) pass(...p); else pass(0, 0, 1, 1);
-  return { w, h, rgba };
+  const { width, height, data } = decodeAnyPng(Buffer.isBuffer(buf) ? buf : Buffer.from(buf));
+  return { w: width, h: height, rgba: data };
 }
