@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-12",
+  "status": "Research-only larger-block capacity screen; production encoding unchanged, no dossier76 or embedding.",
+  "method": "Same existing safe BMP alphabet and byte-count recurrence; searched block lengths257\u20134096 UTF-8 bytes, then tested513/458 and best3943/3521 blocks using isolated copies of the current codec. Exact entire compressed-payload inverse asserted in Node. No production decoder or wrapper change.",
+  "samePayloadTrial": {
+    "compressedBytes": 13328940,
+    "compressedSha256": "72d2a5003ba945d3657df349b06a2cb7e9fe86c41051f1b9a088443709b2baaf",
+    "baselineTransportBytes": 14958685,
+    "capacitySearch": {
+      "maximumUtf8BlockBytes": 4096,
+      "best": {
+        "utf8": 3943,
+        "binary": 3521
+      }
+    },
+    "trials": [
+      {
+        "utf8": 513,
+        "binary": 458,
+        "transportBytes": 14929839,
+        "savedBeforeDecoderOverhead": 28846,
+        "exactCompressedInverse": true
+      },
+      {
+        "utf8": 3943,
+        "binary": 3521,
+        "transportBytes": 14928198,
+        "savedBeforeDecoderOverhead": 30487,
+        "exactCompressedInverse": true
+      }
+    ]
+  },
+  "decision": "Not adopted: maximum measured30487 transport bytes before decoder/wrapper overhead provides limited capacity for the remaining native/dossier backlog. These settings need not be screened again. No browser validation of these experimental blocks and no complete-HTML saving claimed. Further lossless headroom remains required.",
+  "preservation": "No registry, catalogue, production codec, image, map, model, shape, original PNG, master or provenance input changed.75 delivered dossiers and all tracked public files remain unchanged; recorded Clipper preview preserved. Generated queue remains566 tasks.",
+  "validation": {
+    "tests": "610 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15982061,
+    "headroomBytes": 17939,
+    "browser": "No new full/offline or other-engine claim; existing production codec unchanged.",
+    "interbuildAttribution": "Rebuilt15982061 versus prior15988743 is not attributed to this research-only screen; live/feed differences not audited."
+  },
+  "next": "Substantial conforming lossless headroom before prepared Despina76 and other Neptunian/dwarf-moon dossiers; independent native/science audits may continue. Backlog ACTIVE, no external blocker."
+}
