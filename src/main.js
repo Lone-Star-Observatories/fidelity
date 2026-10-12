@@ -362,6 +362,7 @@ function describePostcard() {
 }
 const postcard = createPostcard({ h, pill: (...a) => pill(...a), toast, settings, describe: describePostcard, standalone: STANDALONE }); // pill is defined further down
 onPostcard(() => postcard.open());
+$('postcard-tab').addEventListener('click', () => postcard.open()); // #40: always in the top bar (P still works per view)
 
 // ---- toast & warp -----------------------------------------------------------------------
 let toastTimer;
