@@ -9,6 +9,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/binaries.js  ORB6 orbits   │
 │                                      │           │ server/textures.js  imagery       │
 │                                      │           │ server/tiff.js      USGS mosaics  │
+│                                      │           │ server/dem.js       DEM tiles     │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/imagery.js   surveys, NASA │
@@ -24,6 +25,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/rf.js        COMMS relays  │
 │                                      │           │ server/tx.js, fm.js hailing (TX)  │
 │                                      │           │ server/surfaceimages.js landed    │
+│                                      │           │ server/corona.js    corona shape  │
 │ views        src/views/<level>/      │           │ server/catalogs.js  RAID scanner  │
 │ models       src/data/systems.js     │           │ server/cache.js     disk cache    │
 │ astro math   src/astro/{kepler,      │           └──────────────┬────────────────────┘
@@ -84,6 +86,7 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/co2` | NOAA GML Mauna Loa monthly CO₂ (the Keeling curve, #54): `rows` of [decimal year, ppm, de-seasonalized ppm] (`server/co2.js`, cached a day) |
 | `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
+| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mars, Moon, Mercury, Earth z ≤ 4). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF strips; ETOPO1 through ERDDAP), cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit and finest level (`server/dem.js`) |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
@@ -293,6 +296,10 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
+On a body with an elevation model the camera stands on the DEM's ground and the horizon is a
+terrain patch from the measured heights (mountains, crater rims; see Elevation and relief, #80).
+On Venus and Earth a double-click stands on the cloud tops, and DESCEND / ASCEND fly through the cloud layer to the
+ground and back (see Clouds and ground, #83).
 
 ## Camera controls (#39)
 
@@ -548,6 +555,97 @@ lat/lon in `localStorage` (a per-viewer convenience; renders can always be redon
 distance from the radius, gravity, sky model, the star's and parent's computed apparent sizes) are listed under the
 IMAGINED badge. Each image's site is a camera marker on the Planet View globe (`setSurfaceMarks`); clicking one
 stands there. No AI image service: it would need hosting and would be invention presented as a picture.
+
+## Elevation and relief (#80)
+
+Each body with a measured global DEM has real topography: relief shading at every distance,
+true (or labelled, exaggerated) heights close up, terrain on the surface view's horizon and an
+elevation read-out with its source.
+
+- **Data.** `scripts/build-dem.mjs` fetches each DEM once (raw files in `data/dem-raw/`, never
+  committed), box-averages it onto the app's grid and writes `public/dem/<body>.png` (1440 × 720,
+  0.25°; Enceladus 720 × 360, its native 0.5°) plus `public/dem/index.json` (min/max metres,
+  reference surface, resolution, coverage, credit, licence, source URL). One convention for every
+  body (`src/astro/dem.js`): equirectangular, pixel-is-area, row 0 at 90° N, column 0 at 180° W,
+  east-positive planetocentric longitude; 16-bit grey, 0 = no data, 1…65535 = min…max. A body
+  whose colour map starts elsewhere (`texLon0`: Pluto and Ceres at 0°) samples the DEM at
+  `u + (texLon0 + 180)/360`, the same offset `siteDir` uses. Sources, resolutions and licences:
+  [data-sources.md](data-sources.md#elevation-models-80). Bundled: Earth (ETOPO1), Moon (LOLA),
+  Mars (MOLA), Mercury (MESSENGER/USGS), Venus (Magellan), Ceres and Vesta (Dawn/DLR), Pluto and
+  Charon (New Horizons, encounter hemispheres), Enceladus (Cassini ISS shape model): 13 MB in all.
+  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Titan, Ganymede, Europa,
+  Callisto and Io have no open global grid: smooth spheres, and the panel says why.
+- **Decoding** (`src/data/dem.js`): the PNG is inflated with `DecompressionStream` and unfiltered
+  in JS (an `<img>` would round it to 8 bits), dequantised to metres (NaN = no data) for read-outs,
+  and uploaded as a half-float `R16F` texture with a box-filtered mip chain (rows flipped so v = 1 is
+  north like the sphere's UVs). No data → the reference surface; Earth's sea floor is flattened to sea
+  level on the GPU (the ocean surface carries no relief) while read-outs give the bathymetry.
+- **Shading and displacement** (`materials.js`, `DEM` define): the vertex shader displaces the
+  sphere by `1 + k·h/R` (k = exaggeration, R = body radius) and passes the local east/north
+  directions; the fragment shader derives the normal map from four height taps (central
+  differences; step = one texel or the pixel footprint with the matching mip level, so distant globes
+  do not sparkle) and tilts the normal by the slopes before lighting. Band modes, eclipses and
+  planetshine use the tilted normal too. The normal map is computed on the fly from the one height
+  file rather than shipped as a second image, so every exaggeration is exact (`slopeNormal` in
+  `src/astro/dem.js` is the same maths, tested). Venus' relief is on its ground, under the opaque cloud deck
+  (#83): hidden from orbit, seen from the helm and the surface view.
+- **Close up** (`src/views/system/relief.js`): within 4 radii the globe swaps to a 384 × 192 sphere;
+  within ~0.25 radii of the ground (FROM ABOVE, FLY) and in the surface view a terrain patch is built
+  around the point below the camera: a polar grid of 96 rings × 192 spokes, rings packed towards
+  the centre (≈ 40 m apart in Earth's surface view), heights from the finest tiles loaded
+  (`/api/dem-tile`, the level chosen per ring so cells match the spacing; the bundled grid until they
+  arrive, then rebuilt), positions relative to the patch centre for float precision, lit by its own
+  geometry with the globe's shared uniforms. The globe is discarded under it (`uDemClip`). The
+  standing patch reaches ~350 km, enough for mountains and crater rims on the horizon.
+- **RELIEF** (body panel, ELEVATION section): OFF · TRUE · ×2 · ×5 · ×10 · ×20 (`settings.relief`,
+  default TRUE). Exaggerations are labelled in the panel and the surface HUD.
+- **Read-outs**: the height under the pointer (panel row AT CURSOR and a tag by the cursor),
+  each site's height in its card, and the ground under the surface view in its HUD, all MEASURED
+  with the model named. The surface camera stands 2 m above the DEM's ground, not the sphere.
+- **Following the terrain**: site dots, labels, rover traverses and models (`sites.js`) and named
+  features (`features.js`) are re-seated on the drawn ground when the DEM loads or the exaggeration
+  changes; Planet View globes get the same relief and lifted dots. The helm (`helm.js`) keeps its
+  0.2 %-of-radius clearance above the terrain and reports altitude above it.
+- **Standalone**: no DEMs (16 MB budget); globes stay smooth and the panel says so.
+- **Browser checks**: `window.__fidelityRelief` (`terminatorView(phase, dist)`, `overSite(lat, lon,
+  dist)`, `elevationAt`, `phaseNow`, `view` = the System View API).
+
+## Clouds and ground: Venus and Earth (#83)
+
+Venus and Earth have two layers: a cloud shell at its height and the #80 ground beneath it, which the surface view
+descends to and the helm lands on.
+
+- **Model** (`src/astro/atmosphere.js`, pure, `tests/atmosphere.test.js`): the VIRA profile for Venus and the US
+  Standard Atmosphere 1976 for Earth (pressure, temperature by altitude), `CLOUD_LAYERS` (Venus deck 48–70 km, haze to
+  90 km, measured, super-rotation 4 days; Earth's shell at 10 km, ASSUMED: the imagery has no height), the murk, light
+  fraction, Sun visibility and Rayleigh extinction by altitude (MODELLED), and the DESCEND / ASCEND state machine
+  (`createDescent`, `startDescent`, `stepDescent`: altitude above the ground eased in log(altitude + 5 km), 40 s for
+  Venus, 24 s for Earth, reversible mid-way; it takes the time as an argument).
+- **Shells** (`SystemView.addBody`, `src/views/system/clouds.js`): a body with `skin.ground` (Venus: `venusRadar`,
+  `groundRadar`) draws its globe with that map, coloured in the planet shader after Venera 13/14 (`uRadar`), and its
+  own map (`skin.map`, the cloud tops) on an opaque `cloudMaterial({ opaque: true })` shell at 1 + 70 km / R that
+  shares the globe's spectrum-filter uniforms (`BAND_UNIFORMS`): the band looks are unchanged, and in radio bands the
+  deck hides so the ground (Magellan's emissivity map) shows. `updateCloudShell` turns Venus' deck westward
+  (`superRotation(layer, jd)`), registers Earth's shell to today's GIBS image (alpha from whiteness,
+  `uAlphaFromLuma = 2`; the ground drops the image's clouds, `uLiveSplit`) or drifts the 2004 snapshot, hides the
+  shell in deep time (`paleoOn`), outside its bands and under Venus' deck, and feeds the ground shader the shadow
+  lookup (`cloudShadow()`: the shell seen from each ground point towards the Sun, `uCloudTex/uCloudH/uCloudU/uSunL`).
+  Venus' DEM is now shaded on the globe (`shading: 'all'`): the deck hides it from orbit, the helm sees it below.
+- **Surface view**: double-click (System View, or the Planet View globe) enters with `layer: 'clouds'`: on Venus and
+  Earth the camera starts on the cloud tops (`standKm`: 70.5 km, 10.8 km); `surfaceAt` (sites, events, postcards,
+  `?surface=`) keeps the ground unless `layer: 'clouds'` (`&layer=clouds`). The HUD's DESCEND / ASCEND run the state
+  machine; `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
+  `layerLook` sets the sky, star fade, Sun and body visibility (none under Venus' deck), the ground's light (`uSunColor`
+  scaled and tinted, `uSkyAmb` diffuse orange from the zenith `uSkyUp`), aerial perspective (`uFogK`, `uFogCol`) and
+  the murk veil (`createMurkVeil`: a clip-space quad drawn last, so postcards keep it). Earth's murk follows the cloud
+  cover over the spot (`cloudCoverAt` reads the cloud map on a small canvas). The read-outs (`layerHud`): altitude
+  above the ground and the reference, pressure and temperature with the profile's name, the layer, the cloud source,
+  Venus' ground and light, each with its badge. Leaving resets the ground's light (`resetLayerLight`).
+- **Helm** (`helm.js`): REAL PHYSICS sweeps against the drawn ground under the ship (the DEM, within 1.5 radii) rather
+  than the sphere; a touch-down sets the ship level on the ground (60 m up) and re-seats it as finer tiles load;
+  IMPULSE / WARP clearance already used the ground; no cloud is a surface.
+- **Browser checks**: `view.descend('down' | 'up')`, `view.surfaceLayer` (phase, altitude, layer, murk, cloud cover,
+  Sun, light, read-out) and `window.__fidelityRelief.nodes` (globe and shell).
 
 ## Surface sites (#37)
 
@@ -840,7 +938,7 @@ Myr) whenever they change; the panels only show the epoch and point to the TIME 
 
 Every `font-size` in `lcars.css` is `calc(Npx * var(--text-scale, 1))`; the A− / A+ control in the top
 bar sets `--text-scale` (80–160%, remembered as `textScale`), so text grows without changing the layout.
-Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`) sits in three places: the clock readout with a GO TO date field in the left rail's lowest orange block; HOLD, ⇄ REV, NOW and the n-unit STEP/RUN controls in the purple block above the bottom elbow (both pinned while the rail's view buttons scroll); and, as a frameless strip over the bottom of every view that runs on the clock (all but COMMS; `#time-dock`, the viewport's `--dock-h` lifts the camera cluster, gauges, toasts and panels above it, and detail views pad their foot by it), a panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for). The bottom bar holds the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
+Right-panel section headings fold their section away on click (`src/panels/collapse.js`, remembered by title); body lists are at most two columns wide. The time control (`src/panels/timecontrol.js`, maths in `src/astro/timerate.js`) sits in three places: the clock readout with a GO TO date field in the left rail's lowest orange block; HOLD, ⇄ REV, NOW and the n-unit STEP/RUN controls in the purple block above the bottom elbow (both pinned while the rail's view buttons scroll); and, as a frameless strip over the bottom of every view that runs on the clock (all but COMMS; `#time-dock`, the viewport's `--dock-h` lifts the camera cluster, gauges, toasts and panels above it, and detail views pad their foot by it), a panel that swaps between RATE (one logarithmic slider from −1 Gyr/s through HOLD and real time to +1 Gyr/s, with detents at each unit) and TIMELINE (a zoomable strip centred on the clock: drag to scrub, wheel or DAY…KYR to zoom, click a marker to go to it; markers are the computed sky events plus the feed's missions, and the shaded band is the window the sky events were computed for). The bottom bar holds the view toggles, led by the DETAIL slider (#75, `src/data/detail.js`): far left is the bare system (star, planets, moons, orbits) and each step to the right switches on one more group of layer flags (3D CORONA, #79; DWARFS, SMALL BODIES for the catalogued asteroids and comets, BELTS, CRAFT with MISSIONS, ZONES, SATS, NAMES with SITES, AXES with MAG FIELDS). It writes the ordinary flags, so the toggles still fine-tune a step, and it reads back the deepest step whose flags are all on. The System View hides a body whose flag is off (`hiddenByDetail`: label, globe and orbit) unless it is the focus, and nothing hidden can be picked. Each row scrolls sideways with the mouse wheel when it overflows. The slider now reaches ±1 Gyr/s and the timeline zooms to MYR and GYR (offset ticks from now beyond a 10,000-year window); the clock stops (HOLD) at the active view's limit, with the reason under the readout (see *One clock, deep time and view limits*).
 
 ## Spectrum filter (#28)
 
@@ -977,6 +1075,50 @@ tracked by `src/data/bandload.js`: a new generation per change; while anything i
 pill pulses and, with VOICE STATUS on (default: on while the Computer listens), the browser's own
 speech synthesis says "Processing" every 3 s (skipped while the Computer is replying), "Complete" at
 the end if it spoke, "Unable to complete" once on the first failure. No API key or network is needed.
+
+## Corona (#79)
+
+The Sun in the System and Star views has a 3D corona: a volume ray-marched per pixel, so it reads as a
+layered, wispy cloud from any side (orbit round the Sun, look from a pole), not a flat glow.
+
+- **Frame and alignment.** The corona is a bounding sphere (`src/views/system/corona.js`, `createCorona`) parented
+  to the photosphere mesh (System View: inside the tilt group, so +y is the IAU solar pole; Star View: a non-spinning
+  frame tilted like the star). Each frame the view passes the camera, the direction to Earth and ecliptic north in
+  that frame. Structure measured on disc images is placed with the same projection the disc images use
+  (`imageToDir` mirrors the star shader's `uEarthDir`/`uNorth` mapping), so EUV loops sit on the active regions the
+  SDO image shows and holes on its dark patches.
+- **Physics per band** (`src/data/corona.js`, `coronaLook`, decided by effective wavelength so a custom curve works):
+  white light and near IR take the Baumbach (1937) K + F brightness law, each term r^-k turned into the emissivity
+  r^-(k+1)/(√π Γ(k/2)/Γ((k+1)/2)) so the march reproduces Baumbach along every line of sight (tested);
+  EUV/soft X-rays (0.1–40 nm) are optically thin n² with the hydrostatic scale height H = kT/(μ m_p g☉) at the AIA
+  channel's temperature, plus loop arcades over active regions, drawn in Helioviewer's AIA colours; the thermal IR
+  is the dust F corona (flattened to the ecliptic, thinning inside a few R☉); radio is an optically thick free–free
+  corona (Baumbach–Allen n_e², absorption set so τ = 1 at the radio radius 1 + 0.12 f_GHz^-0.8, as in
+  `server/solarmodel.js`); microwaves a thin rim with gyro-resonance blobs over active regions; Lyman-α a scattered
+  corona; above ~10 keV nothing (quiet-corona emission is not observed there; the panel says so).
+- **Honest brightness.** Each look carries the corona-to-disc ratio (white light 1.1×10⁻⁷ at 1.5 R☉) and the
+  exaggeration needed to show it; EUV and radio are drawn to scale. The display is a log stretch (a radial-filter
+  look), so relative brightness inside the corona is kept.
+- **Structure** (`server/corona.js`, feed `corona`, hourly): the PA profile of the SOHO LASCO C2 image (2.5–4 R☉; C3
+  at 5.5–9 R☉ when C2 is more than 3 days old, as on 2026-10-12, when C2's latest frame was 13 days old), each ring
+  divided by its median, gives the streamers (PA, width, contrast) and a belt through the limb streamers nearest the
+  equator; the AIA 193 Å preview, cut into cells normalised by their ring (limb brightening cancels), gives active
+  regions (bright) and coronal holes (dark). Streamers are placed in the plane of the sky. When the feed is missing
+  (standalone, offline) or more than 14 days from the clock, `modelledStructure` builds a solar-cycle corona: belt
+  tilt 10°→70° with activity (`cycleActivity`: cycle 25 minimum 2019.96, maximum late 2024), polar holes at minimum,
+  active regions by number and Spörer latitude at illustrative longitudes that turn with the Sun.
+- **Wisps.** Radial striations are value noise in direction only, with puffs drifting outwards slowly (IMAGINED).
+- **Panel.** The Sun's CORONA section (`coronaLayers`) lists each layer with its badge: streamers, loops and holes
+  MODELLED (from MEASURED positions; illustrative positions IMAGINED), fall-off MODELLED, brightness IMAGINED where
+  exaggerated, wisps IMAGINED. The disc imagery keeps its own MEASURED badge in the SPECTRUM section.
+- **Cost.** 20–56 march steps (more when the Sun is large on screen) over the sphere's pixels only, drawn at half
+  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). That pass has no
+  depth test against the scene: the Sun and the single body that looks largest in front of it (the Moon in an
+  eclipse, a transiting planet) end the line of sight in the shader; other bodies are drawn under the corona. The
+  DETAIL slider's second step, `+ 3D CORONA` (setting `corona`, toggle CORONA), turns it off, leaving the old glare.
+- **Eclipses.** From a surface the corona shows only in totality. On 2017-08-21 the real photograph stays
+  (MEASURED); for other eclipses the 3D model on the solar axis replaces the representative 2017 photograph (HUD:
+  CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)); with the corona off, the photograph.
 
 ## Milky Way model
 
@@ -1191,12 +1333,32 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   (9.6 ≈ 1,909 c, 9.9 ≈ 3,053 c, 9.99 ≈ 7,912 c) towards an unattainable warp 10; on this curve Voyager's quoted
   9.975 comes out near 5,400 c (other quoted figures differ; it is all fiction). REAL PHYSICS:
   Newtonian thrust at 1 / 10 / 100 / 1000 g along the nose, proper velocity integrated so speeds stay below c,
-  FULL STOP as a retro-burn; no warp and no gravity. Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
+  no warp, under gravity (below). Steering: A/D and ←/→ yaw, ↑/↓ pitch, Q/E roll, drag (CHASE
   and BRIDGE; touch too), Shift faster; X full stop; C set course for the selection; Esc cancels the autopilot.
-  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched.
+  Ship motion runs on the wall clock (real seconds); the simulation clock and its rate are untouched, except
+  that REAL PHYSICS follows the clock's rate when it runs faster than real time (below).
+- **Gravity in REAL PHYSICS** (`src/astro/orbit.js`, pure and tested in `tests/orbit.test.js`). Every star,
+  planet, dwarf planet and moon with a known `massKg` (or `massSun`) is a point mass (a uniform sphere inside its
+  radius), GM = G·M with G = 6.6743 × 10⁻¹¹ (CODATA 2018), at the app's own positions for the clock time
+  (`SystemView` hands the helm `positionAt(id, jd)`, `jd()` and `clockRate()`). The ship moves in the frame of the
+  *dominant* body: the smallest Laplace sphere of influence a·(m/M)^0.4 that contains it (`dominantBody`), else
+  the star. In that accelerating frame its acceleration is every body's pull minus the frame body's own
+  acceleration (the tidal form), so the frame is exact; the bodies are interpolated between their positions at the
+  start and end of the frame. Velocity Verlet (`verletStep`), sub-stepped to 1% of the local dynamical time
+  √(r³/GM) and 10% of the time to the nearest surface (≤ 60 s, ≤ 4,000 steps a frame; a 1 s headless frame is
+  fine). When the frame body changes, the velocity gains the old body's velocity minus the new one's (central
+  differences of the ephemeris over ±1 min), so the inertial velocity is continuous. Time: the ship follows the
+  clock's rate when it is faster than real time, up to ×10,000 (the HUD says `×1,000 WITH THE CLOCK`, or CAPPED);
+  when the clock is held, slower or reversed the ship flies in real time and says so. A swept segment–sphere test
+  against every massive body (`segmentHitsSphere`), and a point test against craft, stops the ship at the
+  surface: IMPACT, or LANDED at ≤ 10 m/s relative to the body; a burn (W/S) lifts off. Taking the helm in REAL
+  PHYSICS, or leaving a held standard orbit, starts a free circular orbit with the same velocity; FULL STOP (X)
+  burns to match the dominant body's velocity, after which the ship falls. Clock jumps (scrubbing) are not swept.
 - **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
   STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
-  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA.
+  dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA. In REAL
+  PHYSICS: the osculating orbit about the dominant body from the state vector (`stateToElements`: periapsis and
+  apoapsis altitude, eccentricity, period, or ESCAPE with e and v∞; COMPUTED), the time rate, and IMPACT / LANDED.
 - **Autopilot.** SET COURSE (panel, C, voice) turns the ship, picks a cruise (AUTO: impulse if it gets there in
   ~20 s, else the warp factor that does, up to 9.9; or FULL IMPULSE / WARP 2–9.9 from the CRUISE button), cruises,
   and decelerates in proportion to what is left (v = d / 0.9 s + 0.3 km/s, dropping out of warp at full impulse)
@@ -1206,9 +1368,48 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   over. Arrival selects the body (route and panel follow).
 - **Other stars.** WARP TO A STAR (system panel: the 14 nearest catalogued stars) or FLY THERE AT THE HELM (the
   Navigation View's selected star) turns towards the star's real direction (catalogue J2000 positions → scene axes),
-  goes to warp 9.9 for ~3 s and then changes route to that system; `helm.onLoad` (called by `SystemView.load`) drops
-  the ship out of warp at the system's edge, on the side it came from, and sets course for the star. The Quadrant
-  and Galaxy views do not carry the ship (backlog).
+  goes to warp 9.9 for ~3 s and hands the ship to the Navigation View with a course laid in for the star (below);
+  arriving there hands it back down, and `helm.onLoad` (called by `SystemView.load`, or by main.js when the system
+  is already loaded) drops the ship out of warp at the system's edge, on the side it came from, and sets course for
+  the star. A ship flown in by hand keeps its heading and drops to full impulse instead.
+- **Between the stars: one ship across the views.** `src/views/ship/shipState.js` holds the one ship: who flies it
+  (`frame`: `system`, `deep` or nobody), its heliocentric galactic position in light-years (today's catalogue
+  positions; deep time moves the stars, not the ship), its attitude in the galaxy-scale scene axes, speed, flight
+  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, this
+  session only). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
+  System View's ecliptic axes and the galactic ones) is tested in `tests/shipstate.test.js`. Hand-overs, decided by
+  pure functions in `src/views/ship/handover.js` (same tests):
+  - *System → Navigation*: past the system's edge (`systemEdgeAU`: 200 AU or 1.15 × the widest survey framing;
+    ~300 AU at Sol) and heading out, or after WARP TO A STAR's warp-up. The helm's `handUp` reports the position
+    relative to the star, attitude and speed (`deepspace`); main.js converts them (`shipToDeepSpace`: the star's
+    galactic position from `solDirection` × `distLy`) and opens Navigation centred on that star.
+  - *Navigation → System*: within 0.02 ly (~1,300 AU) of a charted star, or arriving on a course for it (stand-off
+    0.01 ly); the star just left only recaptures the ship after it has been 0.03 ly away.
+  - *Navigation → Quadrant*: beyond the chart's sensor radius, heading out. *Quadrant → Navigation*: stopped or
+    arriving with a charted star within 50 ly (Navigation centred on it, 100 ly range), or closing on Sol within
+    50 ly. *Quadrant → Galaxy*: beyond the Quadrant View's radius, heading out. *Galaxy → Quadrant*: within 90% of
+    that radius of Sol, closing or stopped. The Quadrant View is Sol-centred only, so far targets (Sgr A*, the
+    Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
+  `src/views/ship/deepHelm.js` (`createDeepHelm`) flies the ship in the Navigation, Quadrant and Galaxy views with
+  the System View helm's controls and HUD classes (CHASE / BRIDGE / ORBIT, throttle to warp 9.99, REAL PHYSICS
+  without gravity: the Galaxy's pull near the Sun is ~2 × 10⁻¹⁰ m/s²). Each view makes one with its `toScene`
+  (galactic ly → its scene: centred on the chart's star, heliocentric, or galactocentric kly), its course targets
+  (catalogue stars; Sol, landmark clusters and nebulae; Sol, Sgr A* and the satellite galaxies) and its hand-over
+  rule; the view calls `frame()` before rendering and `overlay()` after, and its camera rig is `captured()`.
+  Drawing: the chart is rendered from a camera at the ship's position and the 352 m ship is drawn over it in its
+  own scene, in metres, from a chase or bridge camera with the same orientation (depth cleared between: no
+  light-year depth buffer holds both); in ORBIT the camera circles the ship's position at chart scale and a marker
+  (dot, heading line, label) and a dashed course line show it. Double-click drills are off while flying.
+  Time out here: warp 9.9 ≈ 3,053 c is 12 hours to Alpha Centauri and 9 years to the galactic centre. The HUD gives
+  the real flight time at the chosen warp (FLIGHT ETA) and a SIM speed-up (IMAGINED, a viewing aid: ×1 to 10
+  YEARS/S, comma and full stop, or AUTO: the course's flight in ~25 s, else 1 H/S, 1 WEEK/S or 1 YEAR/S by view)
+  plays it; the log's ship and Earth clocks count flight time, and the app clock is not moved. The autopilot
+  cruises at warp 9.9 (AUTO) or the CRUISE choice and slows in proportion to what is left in watching time.
+  Panels (`helmPanel.deepSection`): helm status, FULL STOP / LEAVE HELM, SET COURSE for the selection (Navigation
+  star, Quadrant object or Sol, Galaxy targets), HONEST TRAVEL for the rest of the course (or to the selection) and
+  the SHIP'S LOG. LEAVE HELM out here parks the ship (nobody flies it) and the view is as before; views are exactly
+  as before whenever nobody is at the helm out there. `window.__fidelityShip` exposes the shared state, the
+  galaxy-scale helms, the clock and the router for browser checks.
 - **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
   at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
 - **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST

@@ -23,12 +23,14 @@ const SSS_CREDIT = 'Solar System Scope (CC BY 4.0), from NASA mission imagery';
 const src = (url, credit) => ({ url, credit });
 const n3d = (name, mission) => src(`${N3D}${encodeURIComponent(name)}/${encodeURIComponent(name)}.jpg`, `NASA 3D Resources: global mosaic from ${mission} imagery`);
 // USGS Astrogeology mosaics are multi-GB-class GeoTIFFs: sampled down to a 2048 px PNG.
-const usgs = (file, credit) => ({ url: `${USGS}${file}`, credit: `USGS Astrogeology, ${credit}`, tiff: true });
+const usgs = (file, credit, outW = 2048) => ({ url: `${USGS}${file}`, credit: `USGS Astrogeology, ${credit}`, tiff: true, outW });
 
 export const TEXTURES = {
   sun: [src(`${SSS}2k_sun.jpg`, `${SSS_CREDIT} (SDO)`)],
   mercury: [src(`${SSS}2k_mercury.jpg`, `${SSS_CREDIT} (MESSENGER)`)],
   venus: [src(`${SSS}2k_venus_atmosphere.jpg`, `${SSS_CREDIT}: the cloud tops you would see`)],
+  // #83: the ground under the clouds: Magellan's SAR backscatter (radar brightness, not colour), 4096 px (~9 km/px)
+  venusRadar: [usgs('Venus_Magellan_C3-MDIR_Global_Mosaic_2025m.tif', 'Magellan SAR C3-MIDR global mosaic, 2025 m/px (radar backscatter)', 4096)],
   venusSurface: [src(`${SSS}2k_venus_surface.jpg`, `${SSS_CREDIT} (Magellan radar)`)],
   earth: [src(`${EO}73000/73909/world.topo.bathy.200412.3x5400x2700.jpg`, 'NASA Earth Observatory, Blue Marble Next Generation (Dec 2004)'),
     src(`${SSS}4k_earth_daymap.jpg`, `${SSS_CREDIT} (Blue Marble)`)],
@@ -116,7 +118,7 @@ export async function texturePath(key) {
   if (!inflight.has(key)) {
     inflight.set(key, (async () => {
       for (const s of sources) {
-        const buf = s.tiff ? await sampleTiff(s.url).catch(() => null) : await download(s.url);
+        const buf = s.tiff ? await sampleTiff(s.url, s.outW).catch(() => null) : await download(s.url);
         if (!buf) continue;
         const file = fileFor(key, s.url);
         await fs.mkdir(path.dirname(file), { recursive: true });

@@ -5,6 +5,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { createCameraRig } from '../cameraControls.js';
 import { planetMaterial, cloudMaterial, applySkin, loadTexture, applyLiveSkin } from '../system/materials.js';
+import { setDemUniforms } from '../system/relief.js';
+import { loadDem } from '../../data/dem.js';
+import { reliefK, heightToRadius, sampleDem } from '../../astro/dem.js';
 import { applyBandToMaterial } from '../system/bandtextures.js';
 import { currentBand, onBand } from '../../data/bandstate.js';
 import { settings } from '../../settings.js';
@@ -51,6 +54,14 @@ export function createPlanetView(container, { onSurface } = {}) {
   pivot.rotation.z = 0.35;
   scene.add(pivot);
   let globe = null, clouds = null, sites = null, mats = [], running = false, globeBody = null;
+  let demOf = null; // #80: { mat, b, d } once the globe's DEM has loaded
+  /** Relief on the globe and the site dots lifted onto it (#80). */
+  function applyRelief() {
+    if (!demOf) return;
+    const k = reliefK(settings.get('relief')), on = setDemUniforms(demOf.mat, demOf.b, demOf.d, k);
+    sites?.userData.setRelief?.(on ? (lat, lon) => heightToRadius(sampleDem(demOf.d.drawn, lat, lon), demOf.b.radiusKm, k) : null);
+  }
+  settings.onChange((k) => { if (k === 'relief') applyRelief(); });
   // the spectrum filter (#28): the globe takes the same band look as in the System View
   function applyBand() {
     if (!globeBody || !mats[0]) return;
@@ -101,7 +112,7 @@ export function createPlanetView(container, { onSurface } = {}) {
     const hit = ray.intersectObject(globe, false)[0];
     if (!hit) return;
     const { lat, lon } = dirToLatLon(globe.worldToLocal(hit.point.clone()).toArray());
-    onSurface?.(current.id, lat, lon);
+    onSurface?.(current.id, lat, lon, { layer: 'clouds' }); // #83: Venus and Earth: on top of the clouds
   });
   // #36: FROM THE SURFACE markers (a picture was taken here; click to stand there)
   let marks = null;
@@ -164,12 +175,14 @@ export function createPlanetView(container, { onSurface } = {}) {
 
   function setGlobe(b) {
     for (const o of [...pivot.children]) { pivot.remove(o); disposeModel(o); }
-    mats = []; clouds = null; marks = null;
+    mats = []; clouds = null; marks = null; demOf = null;
     const placeholder = planetTexture(b.palette ? b : { id: b.id, palette: ['#777', '#888', '#666'] });
-    const mat = planetMaterial(placeholder, { tint: b.skin?.tint, ambient: 0.05 });
+    const mat = planetMaterial(placeholder, { tint: b.skin?.tint, ambient: 0.05, dem: true });
     applySkin(mat, b.skin);
     mats.push(mat);
-    globe = new THREE.Mesh(new THREE.SphereGeometry(1, 128, 64), mat);
+    globe = new THREE.Mesh(new THREE.SphereGeometry(1, 256, 128), mat);
+    // #80: relief from the body's measured DEM (normal map + displacement), the RELIEF setting's exaggeration
+    loadDem(b.id).then((d) => { if (d && globeBody === b && globe?.material === mat) { demOf = { mat, b, d }; applyRelief(); } });
     pivot.add(globe);
     globeBody = b;
     const pendingGlobe = globe;

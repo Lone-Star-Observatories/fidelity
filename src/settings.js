@@ -13,6 +13,7 @@ const defaults = {
   smallBodies: true, // System View: the catalogued asteroids and comets (DETAIL slider)
   spacecraft: true, // System View: interplanetary craft and the tracked Earth-orbit craft drawn as bodies (DETAIL slider)
   liveSkins: true,  // today's Sun (SDO) and Earth (VIIRS) where the backend can fetch them
+  corona: true,     // System View: the Sun's ray-marched 3D corona (#79; DETAIL slider step, off = the plain glare)
   satellites: true, // System View: every active Earth satellite
   missions: true,
   voiceInterrupt: false, // Computer: false = replies always finish (STOP button / Esc still stop them); true = a confident wake word interrupts   // System View: launches, landings, dockings and spacewalks from the events feed (#32)
@@ -21,6 +22,7 @@ const defaults = {
   fields: false,     // System View: MAG FIELDS: the Sun's field (Parker spiral, current sheet) and planetary magnetospheres (#38)
   features: true,    // System View: IAU names of craters, mountains, valleys… on rocky and icy worlds
   sites: true,       // System View: landing, impact and rover sites on globes (#37)
+  relief: 'true',    // #80: terrain from each body's DEM: 'off' | 'true' | 'x2' | 'x5' | 'x10' | 'x20' (exaggeration, labelled)
   deepsky: true,     // surface view: nebulae, galaxies and star clusters on the sky (#48)
   constellations: false, // surface view: constellation figures and names (#48)
   siteHidden: [],    // site kinds filtered out (crewed, lander, rover, impact, planned, observatory, launch, trek)

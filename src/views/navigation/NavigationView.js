@@ -19,12 +19,15 @@ import { createCameraRig, motionK, nearestPoint, aheadPoint } from '../cameraCon
 import { METERS } from '../cameraMath.js';
 import { makeSnapshot } from '../snapshot.js';
 import { trekStarMatch } from '../../data/trek.js';
+import { createDeepHelm } from '../ship/deepHelm.js';
+import { shipState, starGalLy, STAR_STANDOFF_LY } from '../ship/shipState.js';
+import { navDecision, nearestStar as nearestGal } from '../ship/handover.js';
 
 const TRACKS = new Map(); // orbit cache: `${star}|${motion source}` → track
 
 const DESIGNATION = /^(HIP|HD|HYG|Gliese|GJ|Gl|LHS|LP|G \d|Wolf|Ross|Luyten|Lacaille|Struve|BD|CD|LTT|2MASS|TOI|K2-|Kepler|WASP|HAT)/;
 
-export function createNavigationView(container, { onSelect, onFrame, onDrill, onArrivals, onTrek }) {
+export function createNavigationView(container, { onSelect, onFrame, onDrill, onArrivals, onTrek, onShip }) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -609,8 +612,8 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     }
     return best;
   };
-  // double-click drills down: open that star's system (#23)
-  labels.domElement.addEventListener('dblclick', (e) => { const p = nearestStar(e); if (p) onDrill?.(p.star.id); });
+  // double-click drills down: open that star's system (#23); not while the ship is flown here (#42)
+  labels.domElement.addEventListener('dblclick', (e) => { if (ship?.active) return; const p = nearestStar(e); if (p) onDrill?.(p.star.id); });
   labels.domElement.addEventListener('pointerup', (e) => {
     if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5 || !placed.length) return;
     const r = renderer.domElement.getBoundingClientRect();
@@ -717,6 +720,28 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     ahead: (pos, dir) => aheadPoint(pos, dir, eachStar),
     fit: () => { if (data) rig.frameSphere(chartOffset, data.radiusLy, 1.04); },
     reset: () => { if (!data) return; const r = data.radiusLy; rig.flyTo({ target: chartOffset, position: chartOffset.clone().add(new THREE.Vector3(r * 0.8, r * 1.1, r * 1.9)) }); },
+    captured: () => !!ship?.active, // HELM (#42): the ship flies the camera
+  });
+
+  // ---- HELM (#42): the USS Fidelity between the stars (src/views/ship/deepHelm.js) ------------------------
+  // Positions are heliocentric galactic ly in today's frame; the chart is centred on the centre star.
+  let shipStars = null; // [{ id, name, kind, gal, standoffLy }] for this chart, today's positions
+  const centreGal = () => (data ? starGalLy(data.center) : [0, 0, 0]);
+  const chartStars = () => {
+    if (!data) return [];
+    if (shipStars?.data !== data) shipStars = { data, list: data.stars.filter((s) => s.x != null).map((s) => ({ id: s.id, name: s.name, kind: 'star', gal: starGalLy(s), standoffLy: STAR_STANDOFF_LY })) };
+    return shipStars.list;
+  };
+  const ship = createDeepHelm({
+    key: 'navigation', label: 'NAVIGATION', scene, camera, controls, dom: labels.domElement, container, renderer, rig,
+    toScene: (g) => { const c = centreGal(); return new THREE.Vector3(...frameToScene([g[0] - c[0], g[1] - c[1], g[2] - c[2]])); },
+    nearChase: 1e-5, orbitDist: 1.2, simDefault: 3600,
+    targets: chartStars,
+    selected: () => chartStars().find((t) => t.id === selectedId) ?? null,
+    nearest: (g) => { const n = nearestGal(g, chartStars()); return n && { name: n.star.name, d: n.d }; },
+    decide: (st) => data && navDecision({ pos: st.pos, vel: st.vel, centreGal: centreGal(), radiusLy: data.radiusLy, stars: chartStars(), courseId: st.arrivedId ?? st.courseId, arrived: st.arrived, state: shipState }),
+    epochNote: () => (epoch !== 0 ? 'CHART IN DEEP TIME · THE SHIP FLIES IN TODAY\'S POSITIONS' : null),
+    on: (kind, d) => onShip?.(kind, d),
   });
 
   const beaconV = new THREE.Vector3();
@@ -739,7 +764,9 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     if (trekGroup) trekGroup.visible = trekOn;
     for (const m of trekMarks) m.o.visible = trekOn && !m.p.hidden; // CSS2DRenderer hides only on === false
     for (const o of trekBorder?.children ?? []) if (o.isCSS2DObject) o.visible = trekOn && trekBorder.visible;
+    ship.frame(performance.now()); // HELM (#42): fly and place the camera (no-op when nobody is at the helm)
     renderer.render(scene, camera);
+    ship.overlay();
     labels.render(scene, camera);
     drawGauge();
 
@@ -788,6 +815,9 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
     hide() { container.hidden = true; running = false; },
     load, select, sendMessage, clearMessage,
     camera: rig,
+    /** HELM (#42): the ship between the stars, and a course target for a star on the chart. */
+    helm: ship,
+    helmTarget: (id) => chartStars().find((t) => t.id === id) ?? null,
     setMotion(m) { motion = { ...motion, ...m, pickedWindow: motion.pickedWindow || 'window' in m }; setEpoch(epoch); },
     get unmoved() { return unmovedCount(); },
     setEpoch, encounters,
