@@ -1,0 +1,131 @@
+{
+  "records": [
+    {
+      "path": "data/research-sources/styx-lorri-original.jpg",
+      "url": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg",
+      "bytes": 169990,
+      "sha256": "30adbdf59e7718272aadc23d9668fa2db55bf300dbb8612e9b99269843384f65"
+    },
+    {
+      "path": "data/research-sources/styx-lorri-article.html",
+      "url": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+      "bytes": 278545,
+      "sha256": "6fad28ddea71f97fb478b5b74f5051dba88217d75a1ea34778b16810c88d9026"
+    },
+    {
+      "path": "data/research-sources/styx-overview.html",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/moons/styx/",
+      "bytes": 260867,
+      "sha256": "dafb0d710c9ed09aae2ec75f2f614600aa4ae77d734e1cb0fcb25f8be50aefe0"
+    },
+    {
+      "path": "data/research-sources/styx-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320651,
+      "sha256": "8b5c3fa0f3c4c32b54e97ac3f18f989ebdc7eb49f35efbec741954374d9d827f"
+    },
+    {
+      "path": "data/research-sources/nix-Weaver2016.pdf",
+      "url": "https://arxiv.org/pdf/1604.05366",
+      "bytes": 4953591,
+      "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+      "pages": 48,
+      "licence": "Specific arXiv nonexclusive distribution; not asserted CC BY. No figure embedded."
+    },
+    {
+      "path": "data/research-sources/styx-lorri-publisher640.jpg",
+      "url": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg?w=640",
+      "status": 200,
+      "bytes": 18762,
+      "sha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+      "retrieved": "2026-10-12",
+      "contentType": "image/jpeg"
+    },
+    {
+      "path": "data/research-sources/styx-generated-surfaceImage-original.png",
+      "bytes": 3092597,
+      "sha256": "a1501311263abef93455330fe907f6f74a72ed07577f34e3948746f23df5deb8",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "data/research-sources/styx-generated-surfaceImage-master.jpg",
+      "bytes": 354749,
+      "sha256": "501433e497e03660f7f40bfd3f258bf329aad5d6df67619c4c35a641ec9b663f",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/styx-generated-surfaceImage-preview.jpg",
+      "bytes": 10101,
+      "sha256": "dbd426666aeb669e94f8e9dcf2c8612ee1387e1b5849b332514a53c52d782b74",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    },
+    {
+      "path": "data/research-sources/styx-generated-skyImage-original.png",
+      "bytes": 2222118,
+      "sha256": "d1fcc647962db37b4cb2f35777af77e445c176237fb65c407699caa3fe00dde6",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "data/research-sources/styx-generated-skyImage-master.jpg",
+      "bytes": 265231,
+      "sha256": "727cdcac3483f2554032d53111d94e6d0d581b451df361aac0003b7593822c12",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/styx-generated-skyImage-preview.jpg",
+      "bytes": 9114,
+      "sha256": "e1898a044bb8446822c5bd51e2096066108d1d55f8b508eef1ccd4afbd98a2ec",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    }
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/styx-jpl-elements-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/styx-jpl-physical-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200,
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12",
+      "contentType": "text/html"
+    }
+  ],
+  "fullPrompts": {
+    "local": "Use case: scientific-educational\nAsset type: Fidelity research-only independent hypothetical local view of Styx, wide landscape.\nPrimary request: Create a realistic but explicitly imagined view close above the small Pluto-system moon Styx. Independently invent subdued grey granular regolith, scattered irregular blocks, shallow depressions and a low uneven horizon. This is not a reconstruction of a New Horizons site or map. Sparse cold directional light and almost black sky are artistic assumptions. No astronomical disks, stars, Sun, Pluto or Charon in this local view. No atmosphere, haze, liquid, plume, ocean, biology, spacecraft or landing scene. Unknown chemistry and material fractions; pale patches must not suggest measured ice composition. Do not use or imitate any observed Moon, Mars, Pluto or other body map or terrain. Styx rotates nonsynchronously; no permanent Pluto-facing site. Do not depict its fitted ellipsoid as a measured local normal. Composition: landscape approximately 16:9, low foreground rocks with clear distant horizon, no scale bar or scientific measurement annotations. Exact readable footer text: \"IMAGINED — STYX LOCAL VIEW\". Terrain, chemistry, colour, illumination and exposure invented, not calibrated scientific imagery.",
+    "sky": "Create an independent scientific educational hypothetical observer view close above Styx, landscape 16:9 approximately 1672x941. Invent grey granular terrain with sparse irregular blocks and a low uneven horizon, black sky. Small Pluto disk about 47 pixels across in a 1672 pixel wide image, small Charon disk about 22 pixels across, separated in sky above horizon. These are schematic invented disk patterns and colours, never copies of observed Pluto, Charon, Moon or other maps. Nominal horizontal field of view 90 degrees; undated circular coplanar barycentric right-angle binary phase assumption with observer at (42664 km,0), Pluto distance42716.97858km and Charon46103.45885km; angular targets3.18811682 and1.50627494degrees. Do not add huge planets. Styx rotates nonsynchronously, this is an assumed camera attitude with no permanent Pluto-facing site and no registered New Horizons terrain. Unknown chemistry and material fractions. Terrain, disk patterns, colour, phase, illumination and exposure are invented, not calibrated. No atmosphere, haze, stars, Sun, rings, plume, liquid, ocean, biology, spacecraft or landing. Black sky and omission of rings are artistic assumptions, not measured absence. Exact legible footer text: \"IMAGINED — SKY FROM STYX\"."
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2fa3b6f5-192a-4480-b477-e657281e604d.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-c83682c3-1bd4-410c-a4e7-186e9a77d1cf.png"
+  }
+}

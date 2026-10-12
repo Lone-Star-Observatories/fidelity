@@ -99,6 +99,36 @@ export const MOONS = [
   { id: 'charon', name: 'Charon', parent: 'pluto', radiusKm: 606, massKg: 1.586e21,
     elements: el(19600, 0.0, 0.0, 304.1, 0.0, 0.0, 6.387222, 0, 0, PLUTO_POLE, 'equatorial'),
     skin: { map: 'charon' }, discovered: '1978 · James Christy', note: 'So large relative to Pluto that the pair orbit a point in space between them.' },
+  // JPL PLU060 mean elements; approximate catalogue orbit, not a dated observer registration.
+  { id: 'nix', name: 'Nix', parent: 'pluto', radiusKm: 18, massKg: null, rotationHours: 43.896, locked: false,
+    elements: el(49300, 0.015, 31.4, 338.2, 0.0, 0.0, 24.85, 0, 0, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2005 · Hubble Space Telescope',
+    note: 'Fast nonsynchronous rotation: the 2016 fit is 1.829 ± 0.009 days. JPL gives an equivalent-volume radius of 18 ± 1 km; this is not a spherical shape or local surface normal. The PLU060 mean orbit differs from the historical 48,694 km barycentric observer assumption; neither is a dated scene registration. No resolved globe is adopted.' },
+  // PLU060 mean orbit is separate from the historical barycentric observer assumptions.
+  { id: 'hydra', name: 'Hydra', parent: 'pluto', radiusKm: 18.5, massKg: null, rotationHours: 10.308, locked: false,
+    elements: el(65200, 0.009, 139.3, 335.0, 0.3, 114.3, 38.20, 0, 14, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2005 · Hubble Space Telescope',
+    note: 'Rapid nonsynchronous rotation: the 2016 fit is 0.4295 ± 0.0008 days; nominal retrograde orientation is not significant beyond one sigma. JPL equivalent-volume radius 18.5 ± 1 km is not an irregular shape or local normal. The PLU060 mean orbit is separate from the historical 64,738 km barycentric observer model; no dated scene registration or permanent Pluto-facing site. No resolved globe adopted.' },
+  // PLU060 mean orbit is separate from the historical barycentric observer assumptions.
+  { id: 'kerberos', name: 'Kerberos', parent: 'pluto', radiusKm: 6, massKg: null, rotationHours: 127.44, locked: false,
+    elements: el(58300, 0.010, 32.1, 276.1, 0.4, 314.3, 32.17, 0, 9, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2011 · Hubble Space Telescope',
+    note: 'Nonsynchronous rotation: the 2016 fit is 5.31 ± 0.10 days; nominal retrograde orientation is not significant beyond one sigma. Equivalent-volume radius 6 ± 1 km is not the poor bilobed 19 × 10 × 9 km ellipsoid fit or a local normal. PLU060 mean orbit differs from the historical 57,783 km barycentric observer model. No dated scene registration, permanent Pluto-facing site or resolved globe adopted.' },
+  // PLU060 mean elements are distinct from the historical barycentric observer model.
+  { id: 'styx', name: 'Styx', parent: 'pluto', radiusKm: 5.2, massKg: null, rotationHours: 77.76, locked: false,
+    elements: el(43200, 0.025, 322.5, 358.1, 0, 0, 20.16, 0, 0, PLUTO_POLE, 'equatorial'),
+    surfacePending: true, discovered: '2012 · Hubble Space Telescope',
+    note: 'Nonsynchronous 3.24 ± 0.07 day rotation fit, nominal 91-degree obliquity not significant beyond one sigma; no permanent Pluto face. Equivalent-volume radius 5.2 ± 1 km is distinct from the 16 × 9 × 8 km ellipsoid fit and does not establish local normals. Current mean orbit is separate from the historical 42,656 km barycentric observer assumption; dated registration and resolved globe remain open.' },
+  // Larissa rotation/locking is unverified: disable automatic locking for an unregistered display orientation.
+  { id: 'larissa', name: 'Larissa', parent: 'neptune', radiusKm: 96, massKg: null, rotationHours: null, locked: false,
+    elements: el(73500, 0.001, 247.3, 165.5, 0.2, 312, 0.554989, 1.257, 2.514, [299.8, 43.1]),
+    surfacePending: true, discovered: '1981 ground observation · 1989 Voyager identification',
+    note: 'Neptune VII, distinct from asteroid 1162 Larissa. Equivalent-volume radius 96 ± 7 km differs from the adopted 97 ± 3 km in the 2019 orbit paper. Very uncertain GM establishes no precise mass or chemistry. Rotation and tidal locking remain unverified; static display orientation is assumed, not evidence of nonsynchronous spin or a permanent Neptune face. NEP097 mean orbit is not a dated observer distance. No resolved globe or registered shape adopted.' },
+  // Galatea spin/locking unverified; disable automatic locking for unregistered orientation.
+  { id: 'galatea', name: 'Galatea', parent: 'neptune', radiusKm: 79, massKg: null, rotationHours: null, locked: false,
+    elements: el(62000, 0, 0, 86.7, 0, 0, 0.428744, 0, 0, [299.8, 43.1]),
+    surfacePending: true, discovered: '1989 · Voyager 2',
+    note: 'Neptune VI, S/1989 N4. Equivalent-volume radius 79 ± 12 km does not establish local shape or normal. GM 0.18990 ± 0.76278 is very uncertain; no precise mass or chemistry adopted. Rotation/locking unverified; static display orientation assumed, not evidence of nonsynchronous spin or permanent Neptune face. Rounded zero mean elements are not exact circularity/coplanarity or dated ephemerides; no resolved globe adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

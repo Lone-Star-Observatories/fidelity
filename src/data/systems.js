@@ -83,7 +83,7 @@ function moonBody(m) {
   const locked = m.locked !== false && !m.chaotic;
   return {
     id: m.id, name: m.name, kind: 'moon', parent: m.parent, radiusKm: m.radiusKm, massKg: m.massKg, meanTempC: m.meanTempC,
-    rotationHours: m.rotationHours || e.P * 24, locked, note: m.note ?? null, discovered: m.discovered,
+    rotationHours: m.rotationHours === null ? null : m.rotationHours || e.P * 24, locked, note: m.note ?? null, discovered: m.discovered,
     palette: ['#8f8a84', '#a9a39b', '#6f6a65'], skin: m.surfacePending && bodyVisualFor(m)?.surfaceMap ? { map: bodyVisualFor(m).surfaceMap.key } : m.skin, orbit: { type: 'moon', parent: m.parent }, moon: m,
     facts: {
       ORBIT: [
@@ -97,7 +97,7 @@ function moonBody(m) {
           ? 'Truncated ELP-2000/82 series (Meeus): within ~0.01° of JPL DE440.'
           : `JPL SSD mean elements with precession; phase fitted to JPL Horizons 2016–2036 (scatter ${e.fit?.rmsDeg ?? '?'}°).`),
       ],
-      PHYSICAL: [...physicalFacts(m), ...(locked ? [fact('ROTATION', 'TIDALLY LOCKED', 'measured', 'Always shows the same face to its planet, so its day equals its orbit.')] : m.chaotic ? [fact('ROTATION', 'CHAOTIC TUMBLE', 'measured', 'Cassini found its spin changes unpredictably.')] : [fact('DAY', `${fmt(m.rotationHours, 2)} H`, 'measured')])],
+      PHYSICAL: [...physicalFacts(m), ...(m.rotationHours === null ? [fact('ROTATION', 'UNKNOWN', 'imagined', 'No verified spin or locking solution adopted; display orientation is unregistered.')] : locked ? [fact('ROTATION', 'TIDALLY LOCKED', 'measured', 'Always shows the same face to its planet, so its day equals its orbit.')] : m.chaotic ? [fact('ROTATION', 'CHAOTIC TUMBLE', 'measured', 'Cassini found its spin changes unpredictably.')] : [fact('DAY', `${fmt(m.rotationHours, 2)} H`, 'measured')])],
       RENDERING: [...skinFacts(m), ...(m.id === 'moon' ? [fact('LIVE IMAGERY', 'NONE EXISTS', 'measured',
         'No spacecraft images the whole Moon every day, and its surface barely changes. The map is LRO\'s; the phase and lighting are live.')] : [])],
     },

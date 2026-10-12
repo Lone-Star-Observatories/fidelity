@@ -1,0 +1,118 @@
+{
+  "retainedExistingSourceRecords": [
+    {
+      "url": "https://science.nasa.gov/resource/true-colors-of-charon/",
+      "finalUrl": "https://science.nasa.gov/resource/true-colors-of-charon/",
+      "path": "data/research-sources/charon-natural-caption.html",
+      "bytes": 255398,
+      "sha256": "9eab6cec25f75c4db85c0f95b8fd365b34d8d7f7945448ed349ac08a58b7f572",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41467-024-51826-4",
+      "finalUrl": "https://www.nature.com/articles/s41467-024-51826-4?error=cookies_not_supported&code=15cf899d-6d2e-4d60-b2e0-8a9f6a4c8533",
+      "path": "data/research-sources/charon-Protopapa2024.html",
+      "bytes": 586241,
+      "sha256": "b7b49eb715cbf2b6b9c7bb392356ddae30cdeaf2b6d80b808f525a7275462d0a",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/charon-nasa-media-terms.html",
+      "bytes": 320652,
+      "sha256": "88b2daeebb299f0f02b395574e0c584415227be4fe83cd79ca14301df3b520ea",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR.png",
+      "path": "data/research-sources/charon-natural-original.png",
+      "bytes": 2824308,
+      "sha256": "f5ce8ae591692c023db38e08012e484ef912b22c2d7967a1f9e818473b2f4610",
+      "contentType": "image/png",
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Pluto%20-%20Charon/Pluto%20-%20Charon.jpg",
+      "path": "data/research-sources/charon-own-map-source.jpg",
+      "bytes": 265536,
+      "sha256": "c1fb3c19d448c82b9cc29c769d0875250cb2731cab0bb7c8d67243cd2272570b",
+      "status": 200
+    }
+  ],
+  "compactNative": {
+    "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+    "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/2023/09/b/BIG_C_COLOR_2_TRUE_COLOR_A.jpg?w=320&h=320&fit=clip&crop=faces%2Cfocalpoint",
+    "path": "data/research-sources/charon-natural-display320.jpg",
+    "bytes": 10097,
+    "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+    "width": 320,
+    "height": 320,
+    "format": "JPEG",
+    "contentType": "image/jpeg"
+  },
+  "generated": [
+    {
+      "path": "data/research-sources/charon-generated-surfaceImage-original.png",
+      "bytes": 3290476,
+      "sha256": "ccad230f6a5aa3e0d130f2b8325ae3f2c4bc0b3e7f0d5f71eb3da29dcd7fda55",
+      "width": 1672,
+      "height": 941,
+      "role": "surfaceImage",
+      "kind": "original"
+    },
+    {
+      "path": "data/research-sources/charon-generated-surfaceImage-master.jpg",
+      "bytes": 393714,
+      "sha256": "776c5ff9ae162bf90d3654e4aef26a66981edbeed06b51f54d3158da4370c07a",
+      "width": 1536,
+      "height": 864,
+      "role": "surfaceImage",
+      "kind": "master"
+    },
+    {
+      "path": "data/research-sources/charon-generated-surfaceImage-preview.jpg",
+      "bytes": 11270,
+      "sha256": "222bd6a5c0478314538569033fe455ff4c560584199a226f0e44bf0d08440db1",
+      "width": 256,
+      "height": 144,
+      "role": "surfaceImage",
+      "kind": "preview"
+    },
+    {
+      "path": "data/research-sources/charon-generated-skyImage-original.png",
+      "bytes": 2976004,
+      "sha256": "46c74fced758bbd856e2d285d54cef100ad9f92c9731f8394d020e055a91d42d",
+      "width": 1672,
+      "height": 941,
+      "role": "skyImage",
+      "kind": "original"
+    },
+    {
+      "path": "data/research-sources/charon-generated-skyImage-master.jpg",
+      "bytes": 308031,
+      "sha256": "ae4c02df69c261339cc8013b252f5f70497df6aae0ab60ada1a4da42bc295cb2",
+      "width": 1536,
+      "height": 864,
+      "role": "skyImage",
+      "kind": "master"
+    },
+    {
+      "path": "data/research-sources/charon-generated-skyImage-preview.jpg",
+      "bytes": 9246,
+      "sha256": "c85fa2dad2544a0c3521e809ad04f50b0c736b87aaa8fc1642a6c522f52a01d5",
+      "width": 256,
+      "height": 144,
+      "role": "skyImage",
+      "kind": "preview"
+    }
+  ],
+  "fullPrompts": {
+    "local": "Use case: scientific-educational\nAsset type: independent hypothetical local observer illustration for Fidelity's Charon dossier, preparation only.\nPrimary request: A wide realistic scientific illustration of independently invented local terrain on Pluto's moon Charon. Generate from scratch without any input photograph or map. Never reuse or recolour Moon, Mars, Pluto or another observed body's terrain.\nScene: low viewpoint over cold neutral grey granular terrain with scattered angular blocks, shallow worn depressions, fractured low ridges and a distant broken crater rim. A few muted pale patches may be present but their chemistry is unknown and invented. Modest hard directional illumination with artistic exposure and grey colour. Do not depict a known New Horizons site, named canyon or crater, red polar cap, or registered globe location. Measured disk-integrated water, CO2 and peroxide spectral features and modelled mixture fractions do not identify these local materials.\nComposition: landscape16:9, detailed foreground, restrained distant horizon, nearly black sky. Omit Pluto, Sun, stars and all astronomical disks; no angular-size depiction is made.\nText verbatim: \"IMAGINED LOCAL CHARON TERRAIN\" and small footer \"Invented relief and materials · No observed site registration\". Legible restrained typography.\nConstraints: no people, spacecraft, habitat, landing or survivability implication. No atmosphere clouds or conspicuous haze, plume, liquid, ocean, biology, glowing lava or interior cutaway. Black sky is assumed transparency, not a measurement of atmospheric absence. Terrain, blocks, grain sizes, chemistry, colour, light and exposure are invented. Not a photograph or calibrated map.",
+    "sky": "Create an independent scientific educational hypothetical observer illustration from Charon, landscape 16:9. Generate from scratch, no photograph or map input, never reuse or recolour Moon/Mars/Pluto/other observed terrain. Low grey granular foreground with angular blocks, shallow depressions and fractured low ridges; all relief, materials, chemistry, colour, lighting and exposure invented, no registered New Horizons site. Nearly black sky assumed transparent, not atmospheric-absence measurement. Above the horizon put one small spherical Pluto, independently imagined muted grey/tan irregular markings, no familiar heart/Sputnik or observed map pattern. Shared skyGeometry gives Pluto radius1188.3km and assumed sub-Pluto observer distance19600-606=18994km: angular diameter7.173746118614256degrees, nominal90degree horizontal FOV, projected disc width104.80874376188328pixels on1672pixel canvas, about6.2685percent image width. Aim for this small diameter, not a huge looming globe. Phase and camera/axis attitude artistic, assumed facing hemisphere; mutual locking does not make Pluto visible from every Charon site. No dated registration or calibrated visible colour/photometry. Omit Sun, stars, rings and visible haze; ring omission artistic not proof of absence, Pluto atmosphere not visibly calibrated. Text clearly legible: \"IMAGINED SKY FROM CHARON\" and footer \"Invented terrain and Pluto appearance · Assumed facing hemisphere\". No humans, spacecraft, habitats, landing/survivability, plume, liquid, ocean, biology or interior cutaway."
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f8905418-189f-435d-92a4-fb0418098845.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bb2f81bb-cd21-4e87-a20f-e73e36b9d7f8.png"
+  }
+}

@@ -1,0 +1,1432 @@
+{
+  "date": "2026-10-12",
+  "generated": "2026-10-11",
+  "body": "Kerberos",
+  "dossier": 72,
+  "nativePreparation": {
+    "date": "2026-10-11",
+    "body": "Kerberos",
+    "status": "Research only; no new dossier, embedding, globe or shape.",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/kerberos-PIA20034-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.jpg",
+        "bytes": 29042,
+        "sha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1320,
+        "height": 1277,
+        "format": "JPEG",
+        "mode": "L"
+      },
+      {
+        "path": "data/research-sources/kerberos-PIA20034-original.tif",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.tif",
+        "bytes": 272684,
+        "sha256": "88f326b416524dd8a9d91273697eccab333170a08027f064497931e8b69c3957",
+        "status": 200,
+        "contentType": "image/tiff",
+        "width": 1320,
+        "height": 1277,
+        "format": "TIFF",
+        "mode": "L"
+      },
+      {
+        "path": "data/research-sources/kerberos-PIA20034-caption.html",
+        "url": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+        "bytes": 267120,
+        "sha256": "4799f520be10115c0c8de33b28085aa6d1fbeb272968d584ba1f15162555eaf2",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      },
+      {
+        "path": "data/research-sources/kerberos-PIA20034-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320651,
+        "sha256": "ff59c67d68314043ea4cde291666e9f8acc09792f296e2767e8906214e6473c9",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      },
+      {
+        "path": "data/research-sources/kerberos-2015-nasa-release.html",
+        "url": "https://www.nasa.gov/image-article/plutos-tiny-moon-kerberos/",
+        "bytes": 275580,
+        "sha256": "2dff4f7e886b78102129276bd3d475cfe9f67488fb1550daa48194fb01d4fda2",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      }
+    ],
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "terms": "Active NASA images/media terms, not asserted CC BY.",
+    "observationDate": "2015-07-14",
+    "imageAdditionDate": "2015-10-23",
+    "limitations": [
+      "Four LORRI frames combined, deconvolved and oversampled eightfold; processing does not supply eightfold independent spatial information.",
+      "Caption range396100km, approximately seven hours before Pluto closest approach and apparent12x4.5km dimensions are source estimates, not new raster calculations or current fitted global axes.",
+      "Monochrome brightness and two-lobed appearance are not calibrated visible colour, a full terrain map or local composition.",
+      "Exact four product IDs/UTC, PSF/deconvolution, rotational attitude, coverage, current shape solution and spectroscopy remain open.",
+      "Photojournal Pluto/Sun taxonomy is not a physical Kerberos parentage solution. Page update dates are not observation dates; no exhaustive newest-image claim.",
+      "No other body map adopted; no permanent Pluto-facing site assumed.",
+      "NASA release interprets high reflectivity as comparatively clean water ice and two lobes as a possible merger; these interpretations are not local chemical fractions or directly observed formation history. Spectroscopy and current primary shape/rotation audit remain open."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "newEmbedding": false,
+      "trackedEarlierInputs": 404
+    },
+    "publicationDates": {
+      "NASAImageArticle": "2015-10-22",
+      "PhotojournalAddition": "2015-10-23",
+      "distinction": "Separate publication/addition dates; both describe the July2015 acquisition."
+    },
+    "visualInspection": [
+      "Unchanged publisher JPEG viewed: blurred two-lobed monochrome feature with coarse enlarged sample blocks, no independently identified rocks, craters or local terrain. Black background is not an atmospheric-absence measurement.",
+      "TIFF header/dimensions checked; unchanged bytes retained. No derivative, texture or shape adopted."
+    ],
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "queue": 566,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993010,
+      "headroomBytes": 6990,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "ac3240c5af6637962f384603678c910d963cd9ff2e29ee504787c2c1bf222e51",
+        "raw": "c9c094e0d142a25025ff941aa14f0dd1195b2428c786960ddc679d4f55c41bbf",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "browserScope": "Chrome complete current readable JSON and HTML-parser snapshot payload equality;237 images20 bands decode,517 details32 model entries, no page errors. Other engines open.",
+      "attribution": "Interbuild snapshot/feed differences unaudited; no savings attribution. Production codecs unchanged."
+    }
+  },
+  "primary": {
+    "date": "2026-10-11",
+    "title": "The Small Satellites of Pluto as Observed by New Horizons",
+    "doi": "10.1126/science.aae0030",
+    "arxiv": "1604.05366v1",
+    "submissionUTC": "2016-04-18T22:42:50Z",
+    "authors": [
+      "Weaver, H. A.",
+      "Buie, M. W.",
+      "Buratti, B. J.",
+      "Grundy, W. M.",
+      "Lauer, T. R.",
+      "Olkin, C. B.",
+      "Parker, A. H.",
+      "Porter, S. B.",
+      "Showalter, M. R.",
+      "Spencer, J. R.",
+      "Stern, S. A.",
+      "Verbiscer, A. J.",
+      "McKinnon, W. B.",
+      "Moore, J. M.",
+      "Robbins, S. J.",
+      "Schenk, P.",
+      "Singer, K. N.",
+      "Barnouin, O. S.",
+      "Cheng, A. F.",
+      "Ernst, C. M.",
+      "Lisse, C. M.",
+      "Jennings, D. E.",
+      "Lunsford, A. W.",
+      "Reuter, D. C.",
+      "Hamilton, D. P.",
+      "Kaufmann, D. E.",
+      "Ennico, K.",
+      "Young, L. A.",
+      "Beyer, R. A.",
+      "Binzel, R. P.",
+      "Bray, V. J.",
+      "Chaikin, A. L.",
+      "Cook, J. C.",
+      "Cruikshank, D. P.",
+      "Ore, C. M. Dalle",
+      "Earle, A. M.",
+      "Gladstone, G. R.",
+      "Howett, C. J. A.",
+      "Linscott, I. R.",
+      "Nimmo, F.",
+      "Parker, J. Wm.",
+      "Philippe, S.",
+      "Protopapa, S.",
+      "Reitsema, H. J.",
+      "Schmitt, B.",
+      "Stryk, T.",
+      "Summers, M. E.",
+      "Tsang, C. C. C.",
+      "Throop, H. H. B.",
+      "White, O. L.",
+      "Zangari, A. M."
+    ],
+    "body": "Kerberos",
+    "catalogueId": "sol-kerberos",
+    "status": "Research-only targeted primary assessment; no new dossier, embedding, map or shape.",
+    "source": {
+      "path": "data/research-sources/nix-Weaver2016.pdf",
+      "url": "https://arxiv.org/pdf/1604.05366",
+      "bytes": 4953591,
+      "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+      "pages": 48
+    },
+    "licence": "Specific arXiv nonexclusive distribution; not CC BY. No figure embedded.",
+    "assessedPages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      15,
+      16,
+      17,
+      19
+    ],
+    "measurementsAndFits": {
+      "barycentricSemimajorAxisKm": 57783,
+      "fittedEllipsoidDiametersKm": [
+        19,
+        10,
+        9
+      ],
+      "axesUncertaintyKm1sigma": 3,
+      "shapeCaveat": "Dual-lobed shape is not well fit by a single ellipsoid; these are global fits, not a registered mesh or site geometry.",
+      "orbitalPeriodDays": 32.16756,
+      "orbitalPeriodUncertaintyDays": 0.00014,
+      "rotationPeriodDays": 5.31,
+      "rotationPeriodUncertaintyDays": 0.1,
+      "poleRADECdegrees": [
+        222,
+        72
+      ],
+      "poleUncertaintyDegrees1sigma": 10,
+      "obliquityDegrees": 96,
+      "geometricAlbedo": 0.56,
+      "geometricAlbedoUncertainty": 0.05,
+      "peakIoverF": 0.45,
+      "peakIoverFUncertainty": 0.02,
+      "peakIoverFPhaseDegrees": 24.7
+    },
+    "resolvedSequence": {
+      "name": "U_TBD_2",
+      "UTC": "2015-07-14T04:24:17",
+      "images": 4,
+      "sourceSamplingKmPerPixel": 1.97,
+      "phaseDegrees": 24.7,
+      "crosswalk": "Figure1 identifies this four-frame deconvolved composite and eightfold cosmetic resampling; exact PIA20034 raw product IDs and publisher processing-chain equality remain open."
+    },
+    "limitations": [
+      "57783km refers to the system barycenter, not a constant Pluto distance.",
+      "Nonsynchronous5.31day rotation gives no permanent Pluto-facing site. Nominal retrograde direction is not significant above one sigma; only Nix was so in this paper. Current chaotic rotation was deferred.",
+      "Publisher apparent12x4.5km extent is distinct from19x10x9km three-dimensional ellipsoid fit; retain both without silently overwriting catalogue/native caption.",
+      "Albedo is phase-model and calibration dependent; opposition brightening was not observed. November2015 LORRI sensitivity revision changes inferred albedos, not an adopted correction to the publisher JPEG or imagined scene.",
+      "Large mass/volume uncertainties preclude precise density/porosity; merger and debris-disk formation are interpretations, not directly observed history.",
+      "Water ice here was inferred from albedo/environment before LEISA delivery, not measured local composition. Charon/Saturn comparisons are not textures or chemistry assignments.",
+      "Source sampling estimates are transcribed without new raster calculations. Deconvolution/cosmetic resampling does not establish local terrain or calibrated visible colour.",
+      "Current rotation, detailed shape/frame/site registration, raw products, later spectroscopy and calibration remain open."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "queue": 566,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993010,
+      "headroomBytes": 6990,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "ac3240c5af6637962f384603678c910d963cd9ff2e29ee504787c2c1bf222e51",
+        "raw": "c9c094e0d142a25025ff941aa14f0dd1195b2428c786960ddc679d4f55c41bbf",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "scope": "Chrome exact complete readableJSON and HTML-parser snapshot payload;237 images20 bands decode,517 details32 model entries,no page errors. Other engines open. Same JSON/HTML as64e5eb3,no savings claim; production codecs unchanged.",
+      "preservation": "All68 registry entries unchanged;404 tracked imagery/texture/model/shape inputs byte-identical. Original/native/master/provenance files retained."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Kerberos",
+    "status": "Research-only independent local original prepared; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational. Create one independent hypothetical local landscape on Kerberos, Pluto's small irregular bilobed moon, wide 16:9 approximately 1672 by 941. Sober photorealistic scientific illustration of independently invented pale grey fine-grained regolith, scattered angular blocks, shallow irregular depressions and a gently uneven low horizon. Do not depict the whole body's bilobed silhouette as a measured local horizon: its fitted ellipsoid is a poor global approximation and site normals are unknown. Brightness, grain sizes, grey colour, material chemistry and fractions, relief, illumination and exposure are artistic assumptions; inferred ice-rich reflectance is not a measured local material map. Low oblique light. Almost black empty sky is assumed transparency, not measured atmospheric absence. No astronomical disks, Sun, Pluto, Charon, other planets or stars, so no angular/raster-size claim. This is NOT a reconstruction of LORRI pixel blocks, a dated New Horizons photograph, observed crater or mapped site. Kerberos rotates nonsynchronously; no permanent Pluto-facing location. No haze, atmosphere in the foreground, plumes, liquids, oceans, biology, people, spacecraft, structures or survivable landing. Never copy, recolour or reuse a Moon, Mars, Pluto, Charon, Nix, Hydra, asteroid or any observed body's map. No reference images. Legible unobtrusive footer exactly 'IMAGINED · LOCAL KERBEROS'; smaller line 'Terrain, materials and lighting are assumed'. Independently composed terrain and subdued natural grey palette.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-566b2406-2879-4095-82e6-1fe5c72a0fbc.png",
+    "originalPath": "data/research-sources/kerberos-generated-surfaceImage-original.png",
+    "inspection": "Viewed generated original: readable IMAGINED LOCAL KERBEROS footer and assumption line; invented grey regolith, angular blocks, shallow depression and low uneven horizon. No astronomical disk, foreground atmosphere, plume, liquid, biology or landing depiction. No reference images supplied.",
+    "limitations": [
+      "Terrain, relief, grain sizes, chemistry/fractions, grey colour, illumination and exposure invented; not a dated New Horizons site or LORRI pixel-block reconstruction.",
+      "No other observed body's map copied, recoloured or supplied as input.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk or angular/raster-size claim.",
+      "Kerberos rotates nonsynchronously; no permanent Pluto-facing site. Its barycentric semimajor axis is not a fixed Pluto distance.",
+      "Ellipsoid fit is explicitly poor for the dual-lobed body; this illustration does not register a measured local normal, attitude or global shape.",
+      "Ice inferred from phase-dependent reflectance does not establish these local materials; merger/porosity interpretations are models.",
+      "All68 dossiers retained; observer, masters/previews and additive integration remain pending substantial lossless headroom."
+    ],
+    "original": {
+      "path": "data/research-sources/kerberos-generated-surfaceImage-original.png",
+      "bytes": 3097830,
+      "sha256": "8492fc8a0beb5c3b10e0d915c9a6e3b2e91730dbc7fe70bcdbb3666663940f5b",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15992484,
+      "headroomBytes": 7516,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "26da7f357771a3118e0cb453da358f52cd7294ab4b1bcda59880051f8b8b22b3",
+        "raw": "881b21639969e80a5a3fca1b8fd31785c239cbd9f8e70bc66f7677863beea7f0",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "browserLimits": "Chrome exact complete readableJSON and HTML-parser snapshot; image/band decodes and no page errors. Model count is an entry count, not a new geometry loading audit. Other engines open.",
+      "attribution": "Interbuild snapshot difference from ac3240c5 not independently audited; no asset or compression savings attribution. Production codecs unchanged."
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Kerberos",
+    "status": "Research-only independent IMAGINED observer original; no new dossier or embedding",
+    "tool": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational\nAsset type: Fidelity hypothetical observer illustration, landscape 1672x941.\nPrimary request: Independently imagine a sky view from Kerberos, Pluto's small irregular moon. This is explicitly invented terrain and observer appearance, not a New Horizons photograph or registered scientific reconstruction.\nScene: sparse grey regolith grains and angular blocks with low shallow relief across bottom third, low irregular horizon, otherwise dark sky. Independently invented material appearance, chemistry, fractions and lighting. No copied or recoloured observed Moon/Mars/Pluto/Charon or any body terrain/map.\nSubject: TWO small distant disks above horizon: schematic independently invented Pluto about 34 pixels diameter and Charon about 17 pixels diameter at full 1672 width, plainly small in a nominal 90-degree horizontal field. Pluto neutral cream/grey subdued arbitrary markings; Charon grey subdued arbitrary markings. Both partial illumination with modest contrast, no rings, Sun or stars. Their colours/patterns/phases and positions are artistic, not observed maps.\nGeometry: skyGeometry illustrative undated circular coplanar barycentric Kerberos radius57783km, assumed outward height9.5km from explicitly poor bilobed ellipsoid; one observer at(57792.5,0), Pluto distance57831.621274km and Charon60376.196288km. Nominal target angular diameters2.354745211 and1.150182606 degrees. Do not magnify the disks for drama. No permanent Pluto-facing site: Kerberos rotates nonsynchronously; camera attitude/site normals unregistered.\nStyle: restrained photorealistic educational imagined scene, no sci-fi spacecraft or people. Black sky is assumed transparency, not measured atmospheric absence.\nText verbatim: clear bottom footer \"IMAGINED · SKY FROM KERBEROS\" and smaller \"Terrain, disk patterns, phase and lighting assumed\".\nAvoid: foreground atmosphere, haze clouds, plume, liquid, ocean, biology, vegetation, survivable landing depiction; dated New Horizons geography; precise chemical colours or local material claims. No analog skins, input images or scientific map copying. Ring omission artistic, not absence measurement.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-d2c2732e-bb38-4e03-9ebb-79fdce7a26ed.png",
+    "workspaceOriginal": "data/research-sources/kerberos-generated-skyImage-original.png",
+    "geometryRecord": "docs/research/kerberos-observer-geometry-preparation-2026-10-11.json",
+    "inspection": "Viewed built-in original: grey blocks/grains/low horizon, two small partially illuminated disks, black sky, readable IMAGINED SKY FROM KERBEROS footer. Disks appear oversized against nominal skyGeometry targets; threshold-sensitive row chords will be recorded, not adopted as calibrated diameters.",
+    "limits": [
+      "All terrain, chemistry/fractions, grey colour, disk patterns, phases, exposure and lighting invented independently; no observed map supplied, analog skin or dated New Horizons/LORRI site.",
+      "Black sky is assumed transparency, not measured atmosphere absence; no foreground atmosphere, plume, liquid, ocean, biology or survivable landing depiction.",
+      "Nonsynchronous rotation gives no permanent Pluto-facing site. Poor bilobed fit cannot establish local normal/site height; undated circular coplanar observer attitude assumed.",
+      "40K angular helper only, colour/irradiance discarded. Ring omission artistic, not measured absence. No native scientific image changed.",
+      "Small preview labels and disks require readable card labels. Substantial conforming lossless headroom required before additive dossiers."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    },
+    "original": {
+      "bytes": 1648257,
+      "sha256": "0f0dc1212d074ae2d1925336229cdf7f215dd7736e5b23082ac3b4e0b4d57304",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    "rasterRowChords": [
+      {
+        "body": "pluto",
+        "row": 250,
+        "xBounds": [
+          620,
+          780
+        ],
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "widthsPixels": [
+          105,
+          68,
+          65
+        ],
+        "skyGeometryTargetPixels1672": 34.36281248216893,
+        "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+      },
+      {
+        "body": "charon",
+        "row": 295,
+        "xBounds": [
+          970,
+          1050
+        ],
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "widthsPixels": [
+          45,
+          39,
+          39
+        ],
+        "skyGeometryTargetPixels1672": 16.782823430968488,
+        "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+      }
+    ],
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15990906,
+      "headroomBytes": 9094,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+        "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readableJSON and HTML-parser payload; 237 images and 20 bands decode, 517 detail and 32 model entries, no errors. Byte-identical JSON/HTML to afe9fb4. Other engines open; no new route/native-hash/model-load claim. Production codecs unchanged; no savings claim."
+    }
+  },
+  "geometryPreparation": {
+    "date": "2026-10-11",
+    "body": "Kerberos",
+    "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+    "sources": [
+      "src/data/sol.js Pluto radius/mass",
+      "src/data/moons.js Charon radius/mass and 19600km separation",
+      "docs/research/kerberos-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2: barycentric 57783km, explicitly poor bilobed 19x10x9km ellipsoid fit"
+    ],
+    "assumptions": {
+      "circularCoplanarSystem": true,
+      "plutoCharonSeparationKm": 19600,
+      "heightUse": "Assumed maximum fitted semiaxis of an explicitly poor bilobed fit; not measured site height, local normal, registered shape or uncertainty",
+      "observerPositionKm": [
+        57792.5,
+        0
+      ],
+      "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+      "plutoPositionKm": [
+        0,
+        2126.8199233716477
+      ],
+      "charonPositionKm": [
+        0,
+        -17473.180076628352
+      ],
+      "horizontalFovDeg": 90,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+      "kerberosBarycentricRadiusKm": 57783,
+      "kerberosObserverHeightKm": 9.5
+    },
+    "barycentricOffsetsKm": {
+      "pluto": 2126.8199233716477,
+      "charon": 17473.180076628352
+    },
+    "geometry": {
+      "pluto": {
+        "radiusKm": 1188.3,
+        "representativeDistancesKm": {
+          "alignedNear": 55665.680076628356,
+          "rightAngle": 57831.621274493504,
+          "alignedFar": 59919.319923371644
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 55665.680076628356,
+            "angularDiameterDeg": 2.4463815680862893,
+            "targetWidthPixels1672": 35.70046123641225
+          },
+          "rightAngle": {
+            "distanceKm": 57831.621274493504,
+            "angularDiameterDeg": 2.3547452112016045,
+            "targetWidthPixels1672": 34.36281248216893
+          },
+          "alignedFar": {
+            "distanceKm": 59919.319923371644,
+            "angularDiameterDeg": 2.2726906299950134,
+            "targetWidthPixels1672": 33.16506970522227
+          }
+        }
+      },
+      "charon": {
+        "radiusKm": 606,
+        "representativeDistancesKm": {
+          "alignedNear": 40319.319923371644,
+          "rightAngle": 60376.19628827475,
+          "alignedFar": 75265.68007662836
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 40319.319923371644,
+            "angularDiameterDeg": 1.7223777507405102,
+            "targetWidthPixels1672": 25.133024727715515
+          },
+          "rightAngle": {
+            "distanceKm": 60376.19628827475,
+            "angularDiameterDeg": 1.1501826061078493,
+            "targetWidthPixels1672": 16.782823430968488
+          },
+          "alignedFar": {
+            "distanceKm": 75265.68007662836,
+            "angularDiameterDeg": 0.9226414350382006,
+            "targetWidthPixels1672": 13.462508312003195
+          }
+        }
+      }
+    },
+    "limitations": [
+      "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+      "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+      "Future Pluto and Charon appearances must be independently invented; no other body map may become Kerberos terrain.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    },
+    "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=57783+9.5 and binary mass offsets from 19600km separation.",
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15990906,
+      "headroomBytes": 9094,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+        "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome complete readableJSON and HTML-parser payload equality; 237 images and 20 band images decode, 517 detail and 32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Kerberos",
+    "status": "Research-only masters/previews; originals retained, no embedding",
+    "method": "Pillow Lanczos resize; JPEG85 masters, JPEG80 previews; no native scientific source transformed",
+    "records": [
+      {
+        "field": "surfaceImage",
+        "originalSha256": "8492fc8a0beb5c3b10e0d915c9a6e3b2e91730dbc7fe70bcdbb3666663940f5b",
+        "master": {
+          "path": "data/research-sources/kerberos-generated-surfaceImage-master.jpg",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "quality": 85,
+          "bytes": 352553,
+          "sha256": "e6ea6a7c7304436e8cde3ee18587e65df73d207401328dc83d4ec6aa05c49587"
+        },
+        "preview": {
+          "path": "data/research-sources/kerberos-generated-surfaceImage-preview.jpg",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80,
+          "bytes": 10358,
+          "sha256": "904c234f10a4166ff8e1d0dea1bc5bef13ed0e5dab1c64fc928ac64fa5a10593"
+        }
+      },
+      {
+        "field": "skyImage",
+        "originalSha256": "0f0dc1212d074ae2d1925336229cdf7f215dd7736e5b23082ac3b4e0b4d57304",
+        "master": {
+          "path": "data/research-sources/kerberos-generated-skyImage-master.jpg",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "quality": 85,
+          "bytes": 188177,
+          "sha256": "758710303325b33f270c5687bdeb7a8d9025e61df97f5fa42b390320a1e2dca2"
+        },
+        "preview": {
+          "path": "data/research-sources/kerberos-generated-skyImage-preview.jpg",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80,
+          "bytes": 6339,
+          "sha256": "0894ae46a366d711d22258d872483901780feccd869a7eb9a515f14cf1a258b7"
+        }
+      }
+    ],
+    "previewRawBytes": 16697,
+    "limits": [
+      "All terrain, chemistry/fractions, grey colour, disk patterns, phases, exposure and lighting invented independently; no observed map supplied, analog skin or dated New Horizons/LORRI site.",
+      "Black sky is assumed transparency, not measured atmosphere absence; no foreground atmosphere, plume, liquid, ocean, biology or survivable landing depiction.",
+      "Nonsynchronous rotation gives no permanent Pluto-facing site. Poor bilobed fit cannot establish local normal/site height; undated circular coplanar observer attitude assumed.",
+      "40K angular helper only, colour/irradiance discarded. Ring omission artistic, not measured absence. No native scientific image changed.",
+      "Small preview labels and disks require readable card labels. Substantial conforming lossless headroom required before additive dossiers."
+    ],
+    "inspection": "Viewed both masters and both previews. Master labels readable; tiny preview footers lose detail and require readable card labels. Observer disks remain oversized/uncalibrated; no local normal or chemistry established.",
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15990906,
+      "headroomBytes": 9094,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+        "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readableJSON and HTML-parser payload; 237 images and 20 bands decode, 517 detail and 32 model entries, no errors. Byte-identical JSON/HTML to afe9fb4. Other engines open; no new route/native-hash/model-load claim. Production codecs unchanged; no savings claim."
+    },
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    }
+  },
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/kerberos-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/kerberos-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "reason": "Additive selectable MOONS entry; all29 earlier entries preserved.",
+    "physical": "Equivalent-volume radius6±1km distinctpoorbilobed19x10x9±3km fit; GMupper<.0002 and massKg null.",
+    "elements": "PLU060 mean58300/.010/w32.1/M276.1/i.4/node314.3/P32.17/nodal9 equatorial2000Jan1.5TDB distinctolderbary57783 observer, not dated distance."
+  },
+  "bodies": [
+    {
+      "id": "kerberos",
+      "name": "Kerberos",
+      "aliases": [
+        "Kerberos"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Oversampled native LORRI does not establish detailed local terrain or registered complete geography.",
+      "measured": [
+        "Unchanged publisher JPEG viewed: blurred two-lobed monochrome feature with coarse enlarged sample blocks, no independently identified rocks, craters or local terrain. Black background is not an atmospheric-absence measurement.",
+        "TIFF header/dimensions checked; unchanged bytes retained. No derivative, texture or shape adopted.",
+        "Weaver2016 poor bilobed ellipsoid fit 19 × 10 × 9 ± 3 km, rotation 5.31 ± 0.10 days; nominal 96-degree retrograde orientation is not significant beyond one sigma. No permanent Pluto-facing site.",
+        "JPL equivalent-volume radius 6 ± 1 km (Stern2018), PLU060 mean orbit 58300 km/e .010/P32.17 days, equatorial epoch2000Jan1.5TDB (Brozovic/Jacobson2024). Neither is a registered shape/local normal or dated position."
+      ],
+      "modelled": [
+        "Albedo .56 ± .05 and peak I/F .45 ± .02 at24.7 degrees depend on phase law/calibration; opposition surge unobserved. No correction applied to native JPEG.",
+        "JPL GM upper limit < .0002 km^3/s^2 does not establish a precise mass or density; massKg null. Clean ice and merger interpretations are not local measured chemistry or directly dated history.",
+        "Historical57783km barycentric circular coplanar model plus assumed9.5km maximum semiaxis, not normal/site height. Right-angle geometry Pluto2.354745211deg34.362812482px/Charon1.150182606deg16.782823431px90HFOV1672. Angular helper only, not dated joint fit."
+      ],
+      "unknown": [
+        "Exact PIA20034 four raw product IDs/UTC/PSF/deconvolution pipeline, attitude and registered shape/site/coverage remain open. U_TBD_2 sequence2015July14T04:24:17 association is not established.",
+        "12 × 4.5 km apparent publisher extent differs from poor3D19 × 10 × 9 km fit; neither silently updated. Calibrated colour/photometry, local chemistry, spectroscopy and later rotation/chaos remain open."
+      ],
+      "assumed": [
+        "Four LORRI frames combined, deconvolved and oversampled eightfold; processing does not supply eightfold independent spatial information.",
+        "Caption range396100km, approximately seven hours before Pluto closest approach and apparent12x4.5km dimensions are source estimates, not new raster calculations or current fitted global axes.",
+        "Monochrome brightness and two-lobed appearance are not calibrated visible colour, a full terrain map or local composition.",
+        "Exact four product IDs/UTC, PSF/deconvolution, rotational attitude, coverage, current shape solution and spectroscopy remain open.",
+        "Photojournal Pluto/Sun taxonomy is not a physical Kerberos parentage solution. Page update dates are not observation dates; no exhaustive newest-image claim.",
+        "No other body map adopted; no permanent Pluto-facing site assumed.",
+        "NASA release interprets high reflectivity as comparatively clean water ice and two lobes as a possible merger; these interpretations are not local chemical fractions or directly observed formation history. Spectroscopy and current primary shape/rotation audit remain open.",
+        "57783km refers to the system barycenter, not a constant Pluto distance.",
+        "Nonsynchronous5.31day rotation gives no permanent Pluto-facing site. Nominal retrograde direction is not significant above one sigma; only Nix was so in this paper. Current chaotic rotation was deferred.",
+        "Publisher apparent12x4.5km extent is distinct from19x10x9km three-dimensional ellipsoid fit; retain both without silently overwriting catalogue/native caption.",
+        "Albedo is phase-model and calibration dependent; opposition brightening was not observed. November2015 LORRI sensitivity revision changes inferred albedos, not an adopted correction to the publisher JPEG or imagined scene.",
+        "Large mass/volume uncertainties preclude precise density/porosity; merger and debris-disk formation are interpretations, not directly observed history.",
+        "Water ice here was inferred from albedo/environment before LEISA delivery, not measured local composition. Charon/Saturn comparisons are not textures or chemistry assignments.",
+        "Source sampling estimates are transcribed without new raster calculations. Deconvolution/cosmetic resampling does not establish local terrain or calibrated visible colour.",
+        "Current rotation, detailed shape/frame/site registration, raw products, later spectroscopy and calibration remain open.",
+        "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+        "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "All terrain, chemistry/fractions, grey colour, disk patterns, phases, exposure and lighting invented independently; no observed map supplied, analog skin or dated New Horizons/LORRI site.",
+        "Black sky is assumed transparency, not measured atmosphere absence; no foreground atmosphere, plume, liquid, ocean, biology or survivable landing depiction.",
+        "Nonsynchronous rotation gives no permanent Pluto-facing site. Poor bilobed fit cannot establish local normal/site height; undated circular coplanar observer attitude assumed.",
+        "40K angular helper only, colour/irradiance discarded. Ring omission artistic, not measured absence. No native scientific image changed.",
+        "Independently invented terrain/grains/blocks/material fractions/grey colour/PlutoCharonpatterns/phases/light/exposure. No analog map, dated New Horizons site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black sky and ring omission do not establish absence. Tiny previews require readable IMAGINED card labels. Sun39.48AU assumed off-frame angular helper, not photometry."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+          "title": "NASA Kerberos revealed PIA20034",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": "2015-07-14",
+          "publicationDates": {
+            "NASAImageArticle": "2015-10-22",
+            "PhotojournalAddition": "2015-10-23",
+            "distinction": "Separate publication/addition dates; both describe the July2015 acquisition."
+          },
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://arxiv.org/abs/1604.05366",
+          "title": "The Small Satellites of Pluto as Observed by New Horizons",
+          "doi": "10.1126/science.aae0030",
+          "authors": [
+            "Weaver, H. A.",
+            "Buie, M. W.",
+            "Buratti, B. J.",
+            "Grundy, W. M.",
+            "Lauer, T. R.",
+            "Olkin, C. B.",
+            "Parker, A. H.",
+            "Porter, S. B.",
+            "Showalter, M. R.",
+            "Spencer, J. R.",
+            "Stern, S. A.",
+            "Verbiscer, A. J.",
+            "McKinnon, W. B.",
+            "Moore, J. M.",
+            "Robbins, S. J.",
+            "Schenk, P.",
+            "Singer, K. N.",
+            "Barnouin, O. S.",
+            "Cheng, A. F.",
+            "Ernst, C. M.",
+            "Lisse, C. M.",
+            "Jennings, D. E.",
+            "Lunsford, A. W.",
+            "Reuter, D. C.",
+            "Hamilton, D. P.",
+            "Kaufmann, D. E.",
+            "Ennico, K.",
+            "Young, L. A.",
+            "Beyer, R. A.",
+            "Binzel, R. P.",
+            "Bray, V. J.",
+            "Chaikin, A. L.",
+            "Cook, J. C.",
+            "Cruikshank, D. P.",
+            "Ore, C. M. Dalle",
+            "Earle, A. M.",
+            "Gladstone, G. R.",
+            "Howett, C. J. A.",
+            "Linscott, I. R.",
+            "Nimmo, F.",
+            "Parker, J. Wm.",
+            "Philippe, S.",
+            "Protopapa, S.",
+            "Reitsema, H. J.",
+            "Schmitt, B.",
+            "Stryk, T.",
+            "Summers, M. E.",
+            "Tsang, C. C. C.",
+            "Throop, H. H. B.",
+            "White, O. L.",
+            "Zangari, A. M."
+          ],
+          "source": {
+            "path": "data/research-sources/nix-Weaver2016.pdf",
+            "url": "https://arxiv.org/pdf/1604.05366",
+            "bytes": 4953591,
+            "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+            "pages": 48
+          },
+          "licence": "Specific arXiv nonexclusive distribution; not CC BY. No figure embedded."
+        },
+        {
+          "path": "data/research-sources/kerberos-jpl-elements-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "status": 200,
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html"
+        },
+        {
+          "path": "data/research-sources/kerberos-jpl-physical-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "status": 200,
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html"
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/kerberos-PIA20034-original.jpg",
+          "url": "/bespoke/kerberos-new-horizons-native.jpg",
+          "bytes": 29042,
+          "sha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "width": 1320,
+          "height": 1277,
+          "format": "JPEG",
+          "mode": "L",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.jpg",
+          "sourceUrl": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+          "tier": "measured",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": "2015-07-14",
+          "publicationDate": "2015-10-23",
+          "terms": "Active NASA media terms and third-party caveats, not CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual New Horizons LORRI Kerberos; four combined deconvolved images, eightfold cosmetic oversampling, not calibrated visible colour or local chemistry.",
+          "processing": "Full unchanged1320x1277publisherJPEG, no Fidelity resize/re-encoding. TIFF retained. Enlarged samples and blurred bilobe are not rocks/craters or a complete geography. NASA article released2015October22, Photojournal additionOctober23; exact raw product crosswalk open."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 39.48,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL KERBEROS TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM KERBEROS",
+      "observerGeometry": {
+        "date": "2026-10-11",
+        "body": "Kerberos",
+        "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+        "sources": [
+          "src/data/sol.js Pluto radius/mass",
+          "src/data/moons.js Charon radius/mass and 19600km separation",
+          "docs/research/kerberos-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2: barycentric 57783km, explicitly poor bilobed 19x10x9km ellipsoid fit"
+        ],
+        "assumptions": {
+          "circularCoplanarSystem": true,
+          "plutoCharonSeparationKm": 19600,
+          "heightUse": "Assumed maximum fitted semiaxis of an explicitly poor bilobed fit; not measured site height, local normal, registered shape or uncertainty",
+          "observerPositionKm": [
+            57792.5,
+            0
+          ],
+          "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+          "plutoPositionKm": [
+            0,
+            2126.8199233716477
+          ],
+          "charonPositionKm": [
+            0,
+            -17473.180076628352
+          ],
+          "horizontalFovDeg": 90,
+          "temperatureK": 40,
+          "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+          "kerberosBarycentricRadiusKm": 57783,
+          "kerberosObserverHeightKm": 9.5
+        },
+        "barycentricOffsetsKm": {
+          "pluto": 2126.8199233716477,
+          "charon": 17473.180076628352
+        },
+        "geometry": {
+          "pluto": {
+            "radiusKm": 1188.3,
+            "representativeDistancesKm": {
+              "alignedNear": 55665.680076628356,
+              "rightAngle": 57831.621274493504,
+              "alignedFar": 59919.319923371644
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 55665.680076628356,
+                "angularDiameterDeg": 2.4463815680862893,
+                "targetWidthPixels1672": 35.70046123641225
+              },
+              "rightAngle": {
+                "distanceKm": 57831.621274493504,
+                "angularDiameterDeg": 2.3547452112016045,
+                "targetWidthPixels1672": 34.36281248216893
+              },
+              "alignedFar": {
+                "distanceKm": 59919.319923371644,
+                "angularDiameterDeg": 2.2726906299950134,
+                "targetWidthPixels1672": 33.16506970522227
+              }
+            }
+          },
+          "charon": {
+            "radiusKm": 606,
+            "representativeDistancesKm": {
+              "alignedNear": 40319.319923371644,
+              "rightAngle": 60376.19628827475,
+              "alignedFar": 75265.68007662836
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 40319.319923371644,
+                "angularDiameterDeg": 1.7223777507405102,
+                "targetWidthPixels1672": 25.133024727715515
+              },
+              "rightAngle": {
+                "distanceKm": 60376.19628827475,
+                "angularDiameterDeg": 1.1501826061078493,
+                "targetWidthPixels1672": 16.782823430968488
+              },
+              "alignedFar": {
+                "distanceKm": 75265.68007662836,
+                "angularDiameterDeg": 0.9226414350382006,
+                "targetWidthPixels1672": 13.462508312003195
+              }
+            }
+          }
+        },
+        "limitations": [
+          "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+          "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+          "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+          "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+          "Future Pluto and Charon appearances must be independently invented; no other body map may become Kerberos terrain.",
+          "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+          "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+        ],
+        "preservation": {
+          "dossiers": 68,
+          "trackedInputsByteIdentical": 404,
+          "registryByteIdentical": true,
+          "newEmbedding": false
+        },
+        "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=57783+9.5 and binary mass offsets from 19600km separation.",
+        "verification": {
+          "tests": "458 pass, 1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15990906,
+          "headroomBytes": 9094,
+          "browser": {
+            "bandImages": 20,
+            "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+            "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+            "magic": "FIDBRT01",
+            "images": 237,
+            "details": 517,
+            "models": 32
+          },
+          "limits": "Chrome complete readableJSON and HTML-parser payload equality; 237 images and 20 band images decode, 517 detail and 32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+        },
+        "rasterRowChords": [
+          {
+            "body": "pluto",
+            "row": 250,
+            "xBounds": [
+              620,
+              780
+            ],
+            "thresholds": [
+              5,
+              10,
+              20
+            ],
+            "widthsPixels": [
+              105,
+              68,
+              65
+            ],
+            "skyGeometryTargetPixels1672": 34.36281248216893,
+            "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+          },
+          {
+            "body": "charon",
+            "row": 295,
+            "xBounds": [
+              970,
+              1050
+            ],
+            "thresholds": [
+              5,
+              10,
+              20
+            ],
+            "widthsPixels": [
+              45,
+              39,
+              39
+            ],
+            "skyGeometryTargetPixels1672": 16.782823430968488,
+            "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+          }
+        ]
+      },
+      "inputs": {
+        "surfaceImage": "kerberos-generated-surfaceImage-original.png",
+        "skyImage": "kerberos-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "status": "Delivered individual dossier72; selectable Kerberos route, full unchanged native LORRI JPEG and independent IMAGINED views. Nested preparation verification/status remains historical.",
+  "dossierRecord": {
+    "id": "kerberos",
+    "name": "Kerberos",
+    "aliases": [
+      "Kerberos"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Oversampled native LORRI does not establish detailed local terrain or registered complete geography.",
+    "measured": [
+      "Unchanged publisher JPEG viewed: blurred two-lobed monochrome feature with coarse enlarged sample blocks, no independently identified rocks, craters or local terrain. Black background is not an atmospheric-absence measurement.",
+      "TIFF header/dimensions checked; unchanged bytes retained. No derivative, texture or shape adopted.",
+      "Weaver2016 poor bilobed ellipsoid fit 19 × 10 × 9 ± 3 km, rotation 5.31 ± 0.10 days; nominal 96-degree retrograde orientation is not significant beyond one sigma. No permanent Pluto-facing site.",
+      "JPL equivalent-volume radius 6 ± 1 km (Stern2018), PLU060 mean orbit 58300 km/e .010/P32.17 days, equatorial epoch2000Jan1.5TDB (Brozovic/Jacobson2024). Neither is a registered shape/local normal or dated position."
+    ],
+    "modelled": [
+      "Albedo .56 ± .05 and peak I/F .45 ± .02 at24.7 degrees depend on phase law/calibration; opposition surge unobserved. No correction applied to native JPEG.",
+      "JPL GM upper limit < .0002 km^3/s^2 does not establish a precise mass or density; massKg null. Clean ice and merger interpretations are not local measured chemistry or directly dated history.",
+      "Historical57783km barycentric circular coplanar model plus assumed9.5km maximum semiaxis, not normal/site height. Right-angle geometry Pluto2.354745211deg34.362812482px/Charon1.150182606deg16.782823431px90HFOV1672. Angular helper only, not dated joint fit."
+    ],
+    "unknown": [
+      "Exact PIA20034 four raw product IDs/UTC/PSF/deconvolution pipeline, attitude and registered shape/site/coverage remain open. U_TBD_2 sequence2015July14T04:24:17 association is not established.",
+      "12 × 4.5 km apparent publisher extent differs from poor3D19 × 10 × 9 km fit; neither silently updated. Calibrated colour/photometry, local chemistry, spectroscopy and later rotation/chaos remain open."
+    ],
+    "assumed": [
+      "Four LORRI frames combined, deconvolved and oversampled eightfold; processing does not supply eightfold independent spatial information.",
+      "Caption range396100km, approximately seven hours before Pluto closest approach and apparent12x4.5km dimensions are source estimates, not new raster calculations or current fitted global axes.",
+      "Monochrome brightness and two-lobed appearance are not calibrated visible colour, a full terrain map or local composition.",
+      "Exact four product IDs/UTC, PSF/deconvolution, rotational attitude, coverage, current shape solution and spectroscopy remain open.",
+      "Photojournal Pluto/Sun taxonomy is not a physical Kerberos parentage solution. Page update dates are not observation dates; no exhaustive newest-image claim.",
+      "No other body map adopted; no permanent Pluto-facing site assumed.",
+      "NASA release interprets high reflectivity as comparatively clean water ice and two lobes as a possible merger; these interpretations are not local chemical fractions or directly observed formation history. Spectroscopy and current primary shape/rotation audit remain open.",
+      "57783km refers to the system barycenter, not a constant Pluto distance.",
+      "Nonsynchronous5.31day rotation gives no permanent Pluto-facing site. Nominal retrograde direction is not significant above one sigma; only Nix was so in this paper. Current chaotic rotation was deferred.",
+      "Publisher apparent12x4.5km extent is distinct from19x10x9km three-dimensional ellipsoid fit; retain both without silently overwriting catalogue/native caption.",
+      "Albedo is phase-model and calibration dependent; opposition brightening was not observed. November2015 LORRI sensitivity revision changes inferred albedos, not an adopted correction to the publisher JPEG or imagined scene.",
+      "Large mass/volume uncertainties preclude precise density/porosity; merger and debris-disk formation are interpretations, not directly observed history.",
+      "Water ice here was inferred from albedo/environment before LEISA delivery, not measured local composition. Charon/Saturn comparisons are not textures or chemistry assignments.",
+      "Source sampling estimates are transcribed without new raster calculations. Deconvolution/cosmetic resampling does not establish local terrain or calibrated visible colour.",
+      "Current rotation, detailed shape/frame/site registration, raw products, later spectroscopy and calibration remain open.",
+      "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+      "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "All terrain, chemistry/fractions, grey colour, disk patterns, phases, exposure and lighting invented independently; no observed map supplied, analog skin or dated New Horizons/LORRI site.",
+      "Black sky is assumed transparency, not measured atmosphere absence; no foreground atmosphere, plume, liquid, ocean, biology or survivable landing depiction.",
+      "Nonsynchronous rotation gives no permanent Pluto-facing site. Poor bilobed fit cannot establish local normal/site height; undated circular coplanar observer attitude assumed.",
+      "40K angular helper only, colour/irradiance discarded. Ring omission artistic, not measured absence. No native scientific image changed.",
+      "Independently invented terrain/grains/blocks/material fractions/grey colour/PlutoCharonpatterns/phases/light/exposure. No analog map, dated New Horizons site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black sky and ring omission do not establish absence. Tiny previews require readable IMAGINED card labels. Sun39.48AU assumed off-frame angular helper, not photometry."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+        "title": "NASA Kerberos revealed PIA20034",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": "2015-07-14",
+        "publicationDates": {
+          "NASAImageArticle": "2015-10-22",
+          "PhotojournalAddition": "2015-10-23",
+          "distinction": "Separate publication/addition dates; both describe the July2015 acquisition."
+        },
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/1604.05366",
+        "title": "The Small Satellites of Pluto as Observed by New Horizons",
+        "doi": "10.1126/science.aae0030",
+        "authors": [
+          "Weaver, H. A.",
+          "Buie, M. W.",
+          "Buratti, B. J.",
+          "Grundy, W. M.",
+          "Lauer, T. R.",
+          "Olkin, C. B.",
+          "Parker, A. H.",
+          "Porter, S. B.",
+          "Showalter, M. R.",
+          "Spencer, J. R.",
+          "Stern, S. A.",
+          "Verbiscer, A. J.",
+          "McKinnon, W. B.",
+          "Moore, J. M.",
+          "Robbins, S. J.",
+          "Schenk, P.",
+          "Singer, K. N.",
+          "Barnouin, O. S.",
+          "Cheng, A. F.",
+          "Ernst, C. M.",
+          "Lisse, C. M.",
+          "Jennings, D. E.",
+          "Lunsford, A. W.",
+          "Reuter, D. C.",
+          "Hamilton, D. P.",
+          "Kaufmann, D. E.",
+          "Ennico, K.",
+          "Young, L. A.",
+          "Beyer, R. A.",
+          "Binzel, R. P.",
+          "Bray, V. J.",
+          "Chaikin, A. L.",
+          "Cook, J. C.",
+          "Cruikshank, D. P.",
+          "Ore, C. M. Dalle",
+          "Earle, A. M.",
+          "Gladstone, G. R.",
+          "Howett, C. J. A.",
+          "Linscott, I. R.",
+          "Nimmo, F.",
+          "Parker, J. Wm.",
+          "Philippe, S.",
+          "Protopapa, S.",
+          "Reitsema, H. J.",
+          "Schmitt, B.",
+          "Stryk, T.",
+          "Summers, M. E.",
+          "Tsang, C. C. C.",
+          "Throop, H. H. B.",
+          "White, O. L.",
+          "Zangari, A. M."
+        ],
+        "source": {
+          "path": "data/research-sources/nix-Weaver2016.pdf",
+          "url": "https://arxiv.org/pdf/1604.05366",
+          "bytes": 4953591,
+          "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+          "pages": 48
+        },
+        "licence": "Specific arXiv nonexclusive distribution; not CC BY. No figure embedded."
+      },
+      {
+        "path": "data/research-sources/kerberos-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/kerberos-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/kerberos-PIA20034-original.jpg",
+        "url": "/bespoke/kerberos-new-horizons-native.jpg",
+        "bytes": 29042,
+        "sha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1320,
+        "height": 1277,
+        "format": "JPEG",
+        "mode": "L",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20034/PIA20034.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/kerberos-revealed/",
+        "tier": "measured",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2015-10-23",
+        "terms": "Active NASA media terms and third-party caveats, not CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual New Horizons LORRI Kerberos; four combined deconvolved images, eightfold cosmetic oversampling, not calibrated visible colour or local chemistry.",
+        "processing": "Full unchanged1320x1277publisherJPEG, no Fidelity resize/re-encoding. TIFF retained. Enlarged samples and blurred bilobe are not rocks/craters or a complete geography. NASA article released2015October22, Photojournal additionOctober23; exact raw product crosswalk open."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL KERBEROS TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM KERBEROS",
+    "observerGeometry": {
+      "date": "2026-10-11",
+      "body": "Kerberos",
+      "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+      "sources": [
+        "src/data/sol.js Pluto radius/mass",
+        "src/data/moons.js Charon radius/mass and 19600km separation",
+        "docs/research/kerberos-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2: barycentric 57783km, explicitly poor bilobed 19x10x9km ellipsoid fit"
+      ],
+      "assumptions": {
+        "circularCoplanarSystem": true,
+        "plutoCharonSeparationKm": 19600,
+        "heightUse": "Assumed maximum fitted semiaxis of an explicitly poor bilobed fit; not measured site height, local normal, registered shape or uncertainty",
+        "observerPositionKm": [
+          57792.5,
+          0
+        ],
+        "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+        "plutoPositionKm": [
+          0,
+          2126.8199233716477
+        ],
+        "charonPositionKm": [
+          0,
+          -17473.180076628352
+        ],
+        "horizontalFovDeg": 90,
+        "temperatureK": 40,
+        "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+        "kerberosBarycentricRadiusKm": 57783,
+        "kerberosObserverHeightKm": 9.5
+      },
+      "barycentricOffsetsKm": {
+        "pluto": 2126.8199233716477,
+        "charon": 17473.180076628352
+      },
+      "geometry": {
+        "pluto": {
+          "radiusKm": 1188.3,
+          "representativeDistancesKm": {
+            "alignedNear": 55665.680076628356,
+            "rightAngle": 57831.621274493504,
+            "alignedFar": 59919.319923371644
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 55665.680076628356,
+              "angularDiameterDeg": 2.4463815680862893,
+              "targetWidthPixels1672": 35.70046123641225
+            },
+            "rightAngle": {
+              "distanceKm": 57831.621274493504,
+              "angularDiameterDeg": 2.3547452112016045,
+              "targetWidthPixels1672": 34.36281248216893
+            },
+            "alignedFar": {
+              "distanceKm": 59919.319923371644,
+              "angularDiameterDeg": 2.2726906299950134,
+              "targetWidthPixels1672": 33.16506970522227
+            }
+          }
+        },
+        "charon": {
+          "radiusKm": 606,
+          "representativeDistancesKm": {
+            "alignedNear": 40319.319923371644,
+            "rightAngle": 60376.19628827475,
+            "alignedFar": 75265.68007662836
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 40319.319923371644,
+              "angularDiameterDeg": 1.7223777507405102,
+              "targetWidthPixels1672": 25.133024727715515
+            },
+            "rightAngle": {
+              "distanceKm": 60376.19628827475,
+              "angularDiameterDeg": 1.1501826061078493,
+              "targetWidthPixels1672": 16.782823430968488
+            },
+            "alignedFar": {
+              "distanceKm": 75265.68007662836,
+              "angularDiameterDeg": 0.9226414350382006,
+              "targetWidthPixels1672": 13.462508312003195
+            }
+          }
+        }
+      },
+      "limitations": [
+        "57783km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "One consistent outward observer position is assumed. The poor bilobed fit does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+        "Kerberos rotates nonsynchronously (5.31±0.10d); no permanent Pluto-facing site. Nominal 96-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+        "Future Pluto and Charon appearances must be independently invented; no other body map may become Kerberos terrain.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+      ],
+      "preservation": {
+        "dossiers": 68,
+        "trackedInputsByteIdentical": 404,
+        "registryByteIdentical": true,
+        "newEmbedding": false
+      },
+      "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=57783+9.5 and binary mass offsets from 19600km separation.",
+      "verification": {
+        "tests": "458 pass, 1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15990906,
+        "headroomBytes": 9094,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "764ccfbcbb7f7a9785c7a73f9470d075328f0a0481ed3486598493ac0a0e4c10",
+          "raw": "48d1c6a1cd43aef10d7eec0451c330c602244df6afc3956a2ace1efc95adfa6d",
+          "magic": "FIDBRT01",
+          "images": 237,
+          "details": 517,
+          "models": 32
+        },
+        "limits": "Chrome complete readableJSON and HTML-parser payload equality; 237 images and 20 band images decode, 517 detail and 32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+      },
+      "rasterRowChords": [
+        {
+          "body": "pluto",
+          "row": 250,
+          "xBounds": [
+            620,
+            780
+          ],
+          "thresholds": [
+            5,
+            10,
+            20
+          ],
+          "widthsPixels": [
+            105,
+            68,
+            65
+          ],
+          "skyGeometryTargetPixels1672": 34.36281248216893,
+          "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+        },
+        {
+          "body": "charon",
+          "row": 295,
+          "xBounds": [
+            970,
+            1050
+          ],
+          "thresholds": [
+            5,
+            10,
+            20
+          ],
+          "widthsPixels": [
+            45,
+            39,
+            39
+          ],
+          "skyGeometryTargetPixels1672": 16.782823430968488,
+          "limit": "Oversized threshold/phase/exposure-sensitive chords; not calibrated full diameters"
+        }
+      ]
+    },
+    "surfaceImage": {
+      "url": "/bespoke/kerberos-surface-image.jpg",
+      "previewUrl": "/bespoke/kerberos-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "kerberos-generated-surfaceImage-original.png",
+      "sourceSha256": "8492fc8a0beb5c3b10e0d915c9a6e3b2e91730dbc7fe70bcdbb3666663940f5b",
+      "sha256": "74ba9fb17560bf622831b4e96b857aa43a77937e5a40bfc58debdaa81b67493d",
+      "previewSha256": "0822c9b7ad47561f302ad938a3d9682d9b0b4a0c096b3f50a5a53af5025150cc",
+      "bytes": 352508,
+      "previewBytes": 10133,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/kerberos-sky-image.jpg",
+      "previewUrl": "/bespoke/kerberos-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "kerberos-generated-skyImage-original.png",
+      "sourceSha256": "0f0dc1212d074ae2d1925336229cdf7f215dd7736e5b23082ac3b4e0b4d57304",
+      "sha256": "9200a005cec97445e901b2aecf431db30336dccee50a7a410a4da3d338a4c528",
+      "previewSha256": "9f0c9d566dff6c8ac606233e8295768528d58674ac471bee2535c8c8357ecd17",
+      "bytes": 188037,
+      "previewBytes": 6221,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "607 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15872381,
+    "headroomBytes": 127619,
+    "completeSnapshotSha256": "6f7968003ff8367b45902ebcd1f4015a6dcd37279d61c5b11cf7877bbd7c22ad",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "7173c04d428aa9183f5da81f639dd1e4e96d9529ed36da99deb590d2be9cd0a7",
+    "fidelity-application-data": "ad2164bb1608bb0eefe83f84bfba75b8dcdce835a09b3e7dd0a9cb768b9b32cf",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "b07d291eaddf72a3cd7fd8b0474d6056ce4a3398ae30e5ac41844a3d9c8e6697",
+    "applicationSha256": "538c29fe79ec6e2f5e4fbde4e775b98fd0145f466126c3ce690b1f9cbdb276da",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "86db9a95e1e67798b28bc0b9436d2116a2f822154c43c08ec612c3e567c26507",
+    "errors": [],
+    "browser": "Chrome complete readableJSON/application/CSS/startup/4 HTML-parser packed texts exact;249images20bands517details32modelentries decode; normal/offline Kerberos3cards/noownmap,sixroutes,unsupportedgzip,11worker rows. Other engines open; no fresh all-model-load claim.",
+    "preservation": {
+      "earlierDossiersDeepEqual": 71,
+      "earlierMOONSCatalogueEntriesDeepEqual": 29,
+      "trackedPublicFilesByteEqual": 576,
+      "nativeContextHashes": 61,
+      "sourceAndOriginalHashesChecked": 15,
+      "recordedClipper": "950348bytes SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 unchanged"
+    },
+    "queue": {
+      "tasks": 566,
+      "dossiers": 72
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/kerberos-surface-image.jpg",
+        "after": "string(12019)"
+      },
+      {
+        "path": "/bodyImages//bespoke/kerberos-sky-image.jpg",
+        "after": "string(6515)"
+      },
+      {
+        "path": "/bodyImages//bespoke/kerberos-new-horizons-native.jpg",
+        "after": "string(38747)"
+      }
+    ],
+    "attribution": "Catalogue changes application. Actual saved JSON differences recorded separately; net HTML increment not sole asset/compression attribution. Codecs unchanged."
+  }
+}

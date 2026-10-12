@@ -1,0 +1,1367 @@
+{
+  "date": "2026-10-12",
+  "generated": "2026-10-11",
+  "body": "Styx",
+  "dossier": 73,
+  "nativePreparation": {
+    "date": "2026-10-11",
+    "body": "Styx",
+    "status": "Research only; no dossier, embedding, globe or shape adopted.",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/styx-lorri-original.jpg",
+        "url": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg",
+        "bytes": 169990,
+        "sha256": "30adbdf59e7718272aadc23d9668fa2db55bf300dbb8612e9b99269843384f65"
+      },
+      {
+        "path": "data/research-sources/styx-lorri-article.html",
+        "url": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+        "bytes": 278545,
+        "sha256": "6fad28ddea71f97fb478b5b74f5051dba88217d75a1ea34778b16810c88d9026"
+      },
+      {
+        "path": "data/research-sources/styx-overview.html",
+        "url": "https://science.nasa.gov/dwarf-planets/pluto/moons/styx/",
+        "bytes": 260867,
+        "sha256": "dafb0d710c9ed09aae2ec75f2f614600aa4ae77d734e1cb0fcb25f8be50aefe0"
+      },
+      {
+        "path": "data/research-sources/styx-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320651,
+        "sha256": "8b5c3fa0f3c4c32b54e97ac3f18f989ebdc7eb49f35efbec741954374d9d827f"
+      }
+    ],
+    "native": {
+      "width": 1200,
+      "height": 955,
+      "format": "JPEG",
+      "mode": "RGB",
+      "inspected": true,
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA images/media terms; not asserted CC BY.",
+      "publication": "2015-10-09",
+      "downlink": "2015-10-05",
+      "observationConflict": {
+        "articleText": "2015-07-13, approximately 12.5 hours before Pluto closest approach",
+        "articleCaptionAndCurrentOverview": "2015-07-14",
+        "resolution": "Unresolved; preserve both, exact acquisition UTC/raw-product crosswalk open."
+      }
+    },
+    "limitations": [
+      "Blurred monochrome LORRI composite stored as RGB is not calibrated visible colour, resolved local terrain or a registered global map.",
+      "Orbit inset is a schematic context diagram, not native geography; its coloured Pluto/Charon disks must not become body maps.",
+      "Black background/noise is not evidence for atmospheric absence or stars.",
+      "Historical 7 by 5 km apparent extent and 631000 km range are caption estimates, not new raster calculations or current global axes.",
+      "Overview discovery-era 10–24 km size estimate is distinct; no silent catalogue update.",
+      "Brightness/size-based icy-surface inference is not measured local material fractions or spectroscopy.",
+      "No exhaustive newest-imagery claim. Rotation, shape, current attitude, raw product, processing, photometric and spectral association audits remain open.",
+      "No angular/raster computation performed; future observer calculations must use skyGeometry and variable barycentric Pluto/Charon distances."
+    ],
+    "preservation": "All 68 delivered dossiers, original PNGs/default copies, masters, native images, maps/models/shapes and provenance retained; production codecs unchanged.",
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15993273,
+      "headroomBytes": 6727,
+      "preservedTrackedInputs": 404,
+      "queueTasks": 566,
+      "dossiers": 68,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "08a519b060052e0460f1500a7ac900f8052f8382dacbd70537e08560366d58fd",
+        "raw": "d6d17de3c38b3cab0ff9bf31c6a27c1d36e7dea0b28862aff11bf6e8b7a1e484",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact current readable JSON and HTML-parser payload; 237 images and 20 bands decode, 517 detail and 32 model entries, no page errors. Other engines open. Prior-to-current interbuild snapshot differences not audited; no asset/compression savings attribution. No new native-hash, actual-route or model-load claim."
+    }
+  },
+  "primary": {
+    "date": "2026-10-11",
+    "title": "The Small Satellites of Pluto as Observed by New Horizons",
+    "doi": "10.1126/science.aae0030",
+    "arxiv": "1604.05366v1",
+    "submissionUTC": "2016-04-18T22:42:50Z",
+    "authors": [
+      "Weaver, H. A.",
+      "Buie, M. W.",
+      "Buratti, B. J.",
+      "Grundy, W. M.",
+      "Lauer, T. R.",
+      "Olkin, C. B.",
+      "Parker, A. H.",
+      "Porter, S. B.",
+      "Showalter, M. R.",
+      "Spencer, J. R.",
+      "Stern, S. A.",
+      "Verbiscer, A. J.",
+      "McKinnon, W. B.",
+      "Moore, J. M.",
+      "Robbins, S. J.",
+      "Schenk, P.",
+      "Singer, K. N.",
+      "Barnouin, O. S.",
+      "Cheng, A. F.",
+      "Ernst, C. M.",
+      "Lisse, C. M.",
+      "Jennings, D. E.",
+      "Lunsford, A. W.",
+      "Reuter, D. C.",
+      "Hamilton, D. P.",
+      "Kaufmann, D. E.",
+      "Ennico, K.",
+      "Young, L. A.",
+      "Beyer, R. A.",
+      "Binzel, R. P.",
+      "Bray, V. J.",
+      "Chaikin, A. L.",
+      "Cook, J. C.",
+      "Cruikshank, D. P.",
+      "Ore, C. M. Dalle",
+      "Earle, A. M.",
+      "Gladstone, G. R.",
+      "Howett, C. J. A.",
+      "Linscott, I. R.",
+      "Nimmo, F.",
+      "Parker, J. Wm.",
+      "Philippe, S.",
+      "Protopapa, S.",
+      "Reitsema, H. J.",
+      "Schmitt, B.",
+      "Stryk, T.",
+      "Summers, M. E.",
+      "Tsang, C. C. C.",
+      "Throop, H. H. B.",
+      "White, O. L.",
+      "Zangari, A. M."
+    ],
+    "body": "Styx",
+    "status": "Research only; no new dossier, embedding, map or shape.",
+    "source": {
+      "path": "data/research-sources/nix-Weaver2016.pdf",
+      "url": "https://arxiv.org/pdf/1604.05366",
+      "bytes": 4953591,
+      "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+      "pages": 48,
+      "licence": "Specific arXiv nonexclusive distribution; not asserted CC BY. No figure embedded."
+    },
+    "scope": "Targeted main physical-properties/rotation/albedo text, Tables 1/2 and Figure 1 caption in retained full author PDF; later current-state/product calibration audit open.",
+    "properties": {
+      "ellipsoidDiametersKm": [
+        16,
+        9,
+        8
+      ],
+      "axisOneSigmaKm": 3,
+      "meaning": "Joint resolved/unresolved lightcurve ellipsoid fit, not a detailed registered shape or local normal. Historical NASA apparent 7 by 5 km caption remains distinct.",
+      "orbitalPeriodDays": 20.16155,
+      "orbitalPeriodOneSigmaDays": 0.00027,
+      "rotationPeriodDays": 3.24,
+      "rotationOneSigmaDays": 0.07,
+      "rotationPoleRADecDegrees": [
+        196,
+        61
+      ],
+      "poleOneSigmaDegrees": 10,
+      "obliquityDegrees": 91,
+      "geometricAlbedo": 0.65,
+      "geometricAlbedoOneSigma": 0.07
+    },
+    "observation": {
+      "name": "U_TBD_1_02",
+      "midObservationUTC": "2015-07-13T23:44:56Z",
+      "frames": 6,
+      "sourceSamplingKmPerPixel": 3.13,
+      "sourcePhaseDegrees": 17.3,
+      "processing": "Figure 1: deconvolved six-image composite, pixels resampled eight times smaller for cosmetic purposes, not eight times independent resolution.",
+      "crosswalk": "Supports July 13 for this primary observation set, consistent with article prose. Exact association of NASA styx-moon-3.jpg to this processed product remains unverified; July 14 caption conflict is preserved."
+    },
+    "limits": [
+      "Nonsynchronous rotation: no permanent Pluto-facing site. Nominal retrograde at 91 degrees is not significant beyond one sigma; only Nix was securely retrograde in this analysis. Current chaos was deferred, not established.",
+      "Albedo uses phase-law/relative-brightness modelling; zero-phase opposition surge unobserved. November 2015 calibration revision raises derived albedos 20%, not an instruction to correct the publisher JPEG or generated scene.",
+      "Peak Styx I/F 0.40 +/-0.02 at17.3degree phase is instrument-calibration-dependent, not local chemical fractions or visible-scene calibration.",
+      "Ice inference and collisional/agglomeration/porosity origins are interpretations, not local composition or directly dated terrain history. Large mass/volume errors preclude precise densities.",
+      "Native publisher pixels, shape frame, current rotational attitude, raw product/processing crosswalk and later spectroscopy remain open. No other moon map, material or measurement assigned."
+    ],
+    "projectedBoundaryAlternative": {
+      "source": "Supplementary Figure S8 caption",
+      "ellipseKm": [
+        10.4,
+        5.8
+      ],
+      "IFThreshold": 0.1,
+      "meaning": "Projected threshold-dependent ellipse in processed reflectance image, distinct from joint 3D16x9x8km fit and historical7x5km caption; not a new Fidelity raster computation or publisher-JPEG calibration."
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15989065,
+      "headroomBytes": 10935,
+      "preservedTrackedInputs": 404,
+      "dossiers": 68,
+      "queueTasks": 566,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "5f782dc0d5fa36e9fa24c01317e6de0dc802d666bade1d7d6a41fe1db1c87d80",
+        "raw": "2f877ec8f54e4baa0f4fde643939a2514a4b5771a21e2cb304ae939a9260381d",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete current readableJSON and HTML-parser payload;237 images20 bands decode517 details32 model entries;no page errors. Other engines open. Interbuild differences unaudited; no savings attribution. No new actual-route/native-hash/model-load claim. Production codecs unchanged."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Styx",
+    "status": "Research-only independent IMAGINED local illustration; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Use case: scientific-educational\nAsset type: Fidelity research-only independent hypothetical local view of Styx, wide landscape.\nPrimary request: Create a realistic but explicitly imagined view close above the small Pluto-system moon Styx. Independently invent subdued grey granular regolith, scattered irregular blocks, shallow depressions and a low uneven horizon. This is not a reconstruction of a New Horizons site or map. Sparse cold directional light and almost black sky are artistic assumptions. No astronomical disks, stars, Sun, Pluto or Charon in this local view. No atmosphere, haze, liquid, plume, ocean, biology, spacecraft or landing scene. Unknown chemistry and material fractions; pale patches must not suggest measured ice composition. Do not use or imitate any observed Moon, Mars, Pluto or other body map or terrain. Styx rotates nonsynchronously; no permanent Pluto-facing site. Do not depict its fitted ellipsoid as a measured local normal. Composition: landscape approximately 16:9, low foreground rocks with clear distant horizon, no scale bar or scientific measurement annotations. Exact readable footer text: \"IMAGINED — STYX LOCAL VIEW\". Terrain, chemistry, colour, illumination and exposure invented, not calibrated scientific imagery.",
+    "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2fa3b6f5-192a-4480-b477-e657281e604d.png",
+    "researchCopy": "data/research-sources/styx-generated-surfaceImage-original.png",
+    "inspection": "Wide grey rocky terrain with low uneven horizon and black sky; readable IMAGINED — STYX LOCAL VIEW footer. No astronomical disks, spacecraft, haze, plume or liquid visible.",
+    "limitations": [
+      "Terrain, blocks, grains, depressions, chemistry fractions, colour, lighting and exposure independently invented; no observed other-body map used.",
+      "Not a dated New Horizons/LORRI site, registered globe or fitted local normal. Nonsynchronous rotation establishes no permanent Pluto-facing site.",
+      "Black sky is an artistic transparency assumption, not a measured atmospheric absence. Pale patches are not measured composition.",
+      "No astronomical disk or angular/raster claim. No plume, liquid ocean, biology or survivable landing claim.",
+      "Original retained unchanged at default and research paths; masters and previews pending. All68 delivered dossiers and404 tracked asset inputs preserved; no69th or embedding."
+    ],
+    "original": {
+      "bytes": 3092597,
+      "sha256": "a1501311263abef93455330fe907f6f74a72ed07577f34e3948746f23df5deb8",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "defaultAndResearchBytesIdentical": true
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15988276,
+      "headroomBytes": 11724,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "0578b05f4dc8f119bd78e219ffef1b2058edcb8242d28fae963c83759e35a30f",
+        "raw": "47f64ce1e1a84687774efd8adc518bdfad344a6dd90b9f5c5da7434b15ee6be9",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "preservation": "All68 registry dossiers and404 tracked imagery/texture/model/shape inputs byte-identical; original/default PNG retained unchanged.",
+      "limits": "Chrome complete readableJSON/HTML-parser equality;237 images20 bands517 detailed entries32 model entries no page errors. Identical JSON and HTML to e07f43e; no savings claim. Other engines open. Production codecs unchanged."
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Styx",
+    "status": "Research-only independent IMAGINED observer; no dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Create an independent scientific educational hypothetical observer view close above Styx, landscape 16:9 approximately 1672x941. Invent grey granular terrain with sparse irregular blocks and a low uneven horizon, black sky. Small Pluto disk about 47 pixels across in a 1672 pixel wide image, small Charon disk about 22 pixels across, separated in sky above horizon. These are schematic invented disk patterns and colours, never copies of observed Pluto, Charon, Moon or other maps. Nominal horizontal field of view 90 degrees; undated circular coplanar barycentric right-angle binary phase assumption with observer at (42664 km,0), Pluto distance42716.97858km and Charon46103.45885km; angular targets3.18811682 and1.50627494degrees. Do not add huge planets. Styx rotates nonsynchronously, this is an assumed camera attitude with no permanent Pluto-facing site and no registered New Horizons terrain. Unknown chemistry and material fractions. Terrain, disk patterns, colour, phase, illumination and exposure are invented, not calibrated. No atmosphere, haze, stars, Sun, rings, plume, liquid, ocean, biology, spacecraft or landing. Black sky and omission of rings are artistic assumptions, not measured absence. Exact legible footer text: \"IMAGINED — SKY FROM STYX\".",
+    "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-c83682c3-1bd4-410c-a4e7-186e9a77d1cf.png",
+    "original": {
+      "path": "data/research-sources/styx-generated-skyImage-original.png",
+      "bytes": 2222118,
+      "sha256": "d1fcc647962db37b4cb2f35777af77e445c176237fb65c407699caa3fe00dde6",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    "geometryRecord": "docs/research/styx-observer-geometry-preparation-2026-10-11.json",
+    "inspection": "Independent grey granular terrain, black sky, two schematic disks and readable IMAGINED footer. No observed input supplied.",
+    "rasterAudit": {
+      "thresholds": [
+        5,
+        10,
+        20
+      ],
+      "rows": {
+        "Pluto": 200,
+        "Charon": 205
+      },
+      "thresholdChordsPixels": {
+        "Pluto": [
+          125,
+          119,
+          118
+        ],
+        "Charon": [
+          41,
+          40,
+          40
+        ]
+      },
+      "skyGeometryTargetsPixels": {
+        "Pluto": 46.52966711781442,
+        "Charon": 21.979252026799553
+      },
+      "limitation": "Both disks oversized. Threshold row chords are not calibrated full diameters; phase, exposure and registration remain artistic."
+    },
+    "limitations": [
+      "Terrain, chemistry fractions, disk patterns, colour, phase, lighting and exposure invented; no other-body map reused.",
+      "Undated circular coplanar barycentric geometry with assumed camera attitude and8km fitted semiaxis height, not a measured local normal. Nonsynchronous Styx has no permanent Pluto-facing site.",
+      "Black sky and ring omission artistic, not measured absence or calibrated transmission. No plume, liquid ocean, biology or survivable landing.",
+      "Small preview footer/disks require readable card labels. All68 dossiers preserved; no69th or embedding."
+    ],
+    "validation": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15986961,
+      "headroomBytes": 13039,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "eb1cc385fa576e699581bb7b48f837bfdd5bc6088f17e7f8805f88b86c9afe06",
+        "raw": "08f7113cc696c63b9e17bd3f08d105b82a94e623c5cd629a453db3c6da5ee237",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "preservation": "All68 dossiers and404 tracked existing imagery/texture/model/shape inputs byte-identical; all original PNGs/default copies/native science preserved. No69th or embedding.",
+      "limitations": "Chrome exact complete readableJSON and HTMLparser packed snapshot,237 image decodes20 bands517details32 model entries, no errors. Other engines open; no new route/model-load/native-hash claim. Interbuild changes unaudited, no savings attribution; codecs unchanged."
+    }
+  },
+  "geometryPreparation": {
+    "date": "2026-10-11",
+    "body": "Styx",
+    "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+    "sources": [
+      "src/data/sol.js Pluto radius/mass",
+      "src/data/moons.js Charon radius/mass and 19600km separation",
+      "docs/research/styx-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 main orbital context: barycentric 42656km; Table2 joint 16x9x8km ellipsoid fit"
+    ],
+    "assumptions": {
+      "circularCoplanarSystem": true,
+      "plutoCharonSeparationKm": 19600,
+      "heightUse": "Assumed maximum fitted semiaxis; not measured site height, local normal, registered shape or uncertainty",
+      "observerPositionKm": [
+        42664,
+        0
+      ],
+      "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+      "plutoPositionKm": [
+        0,
+        2126.8199233716477
+      ],
+      "charonPositionKm": [
+        0,
+        -17473.180076628352
+      ],
+      "horizontalFovDeg": 90,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+      "styxBarycentricRadiusKm": 42656,
+      "styxObserverHeightKm": 8
+    },
+    "barycentricOffsetsKm": {
+      "pluto": 2126.8199233716477,
+      "charon": 17473.180076628352
+    },
+    "geometry": {
+      "pluto": {
+        "radiusKm": 1188.3,
+        "representativeDistancesKm": {
+          "alignedNear": 40537.180076628356,
+          "rightAngle": 42716.97857979249,
+          "alignedFar": 44790.819923371644
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 40537.180076628356,
+            "angularDiameterDeg": 3.3595987334107242,
+            "targetWidthPixels1672": 49.03379544858643
+          },
+          "rightAngle": {
+            "distanceKm": 42716.97857979249,
+            "angularDiameterDeg": 3.188116819699546,
+            "targetWidthPixels1672": 46.52966711781442
+          },
+          "alignedFar": {
+            "distanceKm": 44790.819923371644,
+            "angularDiameterDeg": 3.0404696418255632,
+            "targetWidthPixels1672": 44.37376187720677
+          }
+        }
+      },
+      "charon": {
+        "radiusKm": 606,
+        "representativeDistancesKm": {
+          "alignedNear": 25190.819923371648,
+          "rightAngle": 46103.45885061426,
+          "alignedFar": 60137.180076628356
+        },
+        "computed": {
+          "alignedNear": {
+            "distanceKm": 25190.819923371648,
+            "angularDiameterDeg": 2.7569243305310884,
+            "targetWidthPixels1672": 40.23391512891414
+          },
+          "rightAngle": {
+            "distanceKm": 46103.45885061426,
+            "angularDiameterDeg": 1.5062749368170987,
+            "targetWidthPixels1672": 21.979252026799553
+          },
+          "alignedFar": {
+            "distanceKm": 60137.180076628356,
+            "angularDiameterDeg": 1.1547541802400105,
+            "targetWidthPixels1672": 16.849533799526107
+          }
+        }
+      }
+    },
+    "limitations": [
+      "42656km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "One consistent outward observer position is assumed. The fitted ellipsoid does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+      "Styx rotates nonsynchronously (3.24±0.07d); no permanent Pluto-facing site. Nominal 91-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+      "Future Pluto and Charon appearances must be independently invented; no other body map may become Styx terrain.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "trackedInputsByteIdentical": 404,
+      "registryByteIdentical": true,
+      "newEmbedding": false
+    },
+    "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=42656+8 and binary mass offsets from 19600km separation.",
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15988276,
+      "headroomBytes": 11724,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "0578b05f4dc8f119bd78e219ffef1b2058edcb8242d28fae963c83759e35a30f",
+        "raw": "47f64ce1e1a84687774efd8adc518bdfad344a6dd90b9f5c5da7434b15ee6be9",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+      "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+      "limits": "Chrome complete readableJSON/application/CSS and HTML-parser payload equality; 237 images and20 band images decode, 517 detail and32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Styx",
+    "status": "Research-only masters/previews; originals retained, no embedding",
+    "method": "Pillow Lanczos technical resize; JPEG85 masters, JPEG80 previews. No native scientific image transformed.",
+    "records": [
+      {
+        "field": "surfaceImage",
+        "original": {
+          "path": "data/research-sources/styx-generated-surfaceImage-original.png",
+          "bytes": 3092597,
+          "sha256": "a1501311263abef93455330fe907f6f74a72ed07577f34e3948746f23df5deb8",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "master": {
+          "path": "data/research-sources/styx-generated-surfaceImage-master.jpg",
+          "bytes": 354749,
+          "sha256": "501433e497e03660f7f40bfd3f258bf329aad5d6df67619c4c35a641ec9b663f",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "quality": 85
+        },
+        "preview": {
+          "path": "data/research-sources/styx-generated-surfaceImage-preview.jpg",
+          "bytes": 10101,
+          "sha256": "dbd426666aeb669e94f8e9dcf2c8612ee1387e1b5849b332514a53c52d782b74",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80
+        }
+      },
+      {
+        "field": "skyImage",
+        "original": {
+          "path": "data/research-sources/styx-generated-skyImage-original.png",
+          "bytes": 2222118,
+          "sha256": "d1fcc647962db37b4cb2f35777af77e445c176237fb65c407699caa3fe00dde6",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "master": {
+          "path": "data/research-sources/styx-generated-skyImage-master.jpg",
+          "bytes": 265231,
+          "sha256": "727cdcac3483f2554032d53111d94e6d0d581b451df361aac0003b7593822c12",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "quality": 85
+        },
+        "preview": {
+          "path": "data/research-sources/styx-generated-skyImage-preview.jpg",
+          "bytes": 9114,
+          "sha256": "e1898a044bb8446822c5bd51e2096066108d1d55f8b508eef1ccd4afbd98a2ec",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80
+        }
+      }
+    ],
+    "previewRawBytes": 19215,
+    "limitations": [
+      "Terrain, chemistry fractions, disk patterns, colour, phase, lighting and exposure invented; no other-body map reused.",
+      "Undated circular coplanar barycentric geometry with assumed camera attitude and8km fitted semiaxis height, not a measured local normal. Nonsynchronous Styx has no permanent Pluto-facing site.",
+      "Black sky and ring omission artistic, not measured absence or calibrated transmission. No plume, liquid ocean, biology or survivable landing.",
+      "Small preview footer/disks require readable card labels. All68 dossiers preserved; no69th or embedding."
+    ],
+    "validation": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15986961,
+      "headroomBytes": 13039,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "eb1cc385fa576e699581bb7b48f837bfdd5bc6088f17e7f8805f88b86c9afe06",
+        "raw": "08f7113cc696c63b9e17bd3f08d105b82a94e623c5cd629a453db3c6da5ee237",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "preservation": "All68 dossiers and404 tracked existing imagery/texture/model/shape inputs byte-identical; all original PNGs/default copies/native science preserved. No69th or embedding.",
+      "limitations": "Chrome exact complete readableJSON and HTMLparser packed snapshot,237 image decodes20 bands517details32 model entries, no errors. Other engines open; no new route/model-load/native-hash claim. Interbuild changes unaudited, no savings attribution; codecs unchanged."
+    }
+  },
+  "publisherRendition": {
+    "path": "data/research-sources/styx-lorri-publisher640.jpg",
+    "url": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg?w=640",
+    "status": 200,
+    "bytes": 18762,
+    "sha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+    "retrieved": "2026-10-12",
+    "contentType": "image/jpeg",
+    "dimensions": [
+      640,
+      509
+    ],
+    "inspection": "Viewed unchanged publisher display JPEG; blurred Styx detection, background noise and full schematic orbit inset retained. Publisher resizing/re-encoding not full-pixel preservation."
+  },
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/styx-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/styx-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "reason": "Additive selectable MOONS entry; all30 earlier entries preserved.",
+    "physical": "Equivalentvolume5.2±1km distinct16x9x8±3fit; GMupper<.0003massnull.",
+    "elements": "PLU060 mean43200/.025/w322.5/M358.1/i0/node0/P20.16equatorial2000Jan1.5TDB; roundedzero not exactcoplanarity; distincthistoricalbary42656observer."
+  },
+  "bodies": [
+    {
+      "id": "styx",
+      "name": "Styx",
+      "aliases": [
+        "Styx"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Blurred native composite and orbit inset are not detailed local terrain or complete registered geography.",
+      "measured": [
+        "NASA native LORRI composite stored as RGB is monochrome scientific imagery, not independently calibrated visible colour. Orbit inset is schematic, not geography.",
+        "Weaver2016 joint16 × 9 × 8 ± 3km ellipsoid fit;3.24 ± .07 day rotation distinct20.16155 ± .00027 day orbit. Nominal91-degree retrograde is not significant beyond one sigma; current chaos deferred.",
+        "JPL equivalent-volume radius5.2 ±1km Stern2018 and PLU060 mean43200km/.025/P20.16days equatorial2000Jan1.5TDB Brozovic/Jacobson2024, not a registered shape or dated distance."
+      ],
+      "modelled": [
+        "Albedo.65±.07 and peakI/F.40±.02 at17.3degrees depend on phase law/instrument calibration; unobserved opposition surge and November2015 calibration revision are not an instruction to correct JPEG/scene.",
+        "JPL GM upper<.0003km^3/s^2 establishes no precise mass/density; massKg null. Ice/merger/collisional/porosity origins interpretations not local fractions or directly dated history.",
+        "Historical42656km barycentric circular-coplanar observer plus8km fitted maximumsemiaxis not measured normal/siteheight; right-angle geometry is undated. Projectedthreshold10.4×5.8kmS8/I/F.1 ellipse distinct3Dfit and7×5kmcaption."
+      ],
+      "unknown": [
+        "NASA article prose2015July13 versus caption/currentoverviewJuly14 acquisition conflict retained; publication2015October9/downlinkOctober5 not observation. Primary U_TBD_1_02 sixframes2015July13T23:44:56 supports one set but exact publisherJPEG association open.",
+        "Exact raw products/processing/PSF, rotational attitude, shape/site/frame, calibrated colour/photometry and later spectroscopy remain open. Historical7×5km apparent extent,631000kmrange and discovery10–24kmsize are source estimates, not new scale/globalaxes."
+      ],
+      "assumed": [
+        "Blurred monochrome LORRI composite stored as RGB is not calibrated visible colour, resolved local terrain or a registered global map.",
+        "Orbit inset is a schematic context diagram, not native geography; its coloured Pluto/Charon disks must not become body maps.",
+        "Black background/noise is not evidence for atmospheric absence or stars.",
+        "Historical 7 by 5 km apparent extent and 631000 km range are caption estimates, not new raster calculations or current global axes.",
+        "Overview discovery-era 10–24 km size estimate is distinct; no silent catalogue update.",
+        "Brightness/size-based icy-surface inference is not measured local material fractions or spectroscopy.",
+        "No exhaustive newest-imagery claim. Rotation, shape, current attitude, raw product, processing, photometric and spectral association audits remain open.",
+        "No angular/raster computation performed; future observer calculations must use skyGeometry and variable barycentric Pluto/Charon distances.",
+        "Nonsynchronous rotation: no permanent Pluto-facing site. Nominal retrograde at 91 degrees is not significant beyond one sigma; only Nix was securely retrograde in this analysis. Current chaos was deferred, not established.",
+        "Albedo uses phase-law/relative-brightness modelling; zero-phase opposition surge unobserved. November 2015 calibration revision raises derived albedos 20%, not an instruction to correct the publisher JPEG or generated scene.",
+        "Peak Styx I/F 0.40 +/-0.02 at17.3degree phase is instrument-calibration-dependent, not local chemical fractions or visible-scene calibration.",
+        "Ice inference and collisional/agglomeration/porosity origins are interpretations, not local composition or directly dated terrain history. Large mass/volume errors preclude precise densities.",
+        "Native publisher pixels, shape frame, current rotational attitude, raw product/processing crosswalk and later spectroscopy remain open. No other moon map, material or measurement assigned.",
+        "42656km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "One consistent outward observer position is assumed. The fitted ellipsoid does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+        "Styx rotates nonsynchronously (3.24±0.07d); no permanent Pluto-facing site. Nominal 91-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "Terrain, chemistry fractions, disk patterns, colour, phase, lighting and exposure invented; no other-body map reused.",
+        "Undated circular coplanar barycentric geometry with assumed camera attitude and8km fitted semiaxis height, not a measured local normal. Nonsynchronous Styx has no permanent Pluto-facing site.",
+        "Black sky and ring omission artistic, not measured absence or calibrated transmission. No plume, liquid ocean, biology or survivable landing.",
+        "Terrain, blocks, grains, depressions, chemistry fractions, colour, lighting and exposure independently invented; no observed other-body map used.",
+        "Not a dated New Horizons/LORRI site, registered globe or fitted local normal. Nonsynchronous rotation establishes no permanent Pluto-facing site.",
+        "Black sky is an artistic transparency assumption, not a measured atmospheric absence. Pale patches are not measured composition.",
+        "No astronomical disk or angular/raster claim. No plume, liquid ocean, biology or survivable landing claim.",
+        "Independent terrain/chemistry/fractions/greycolour/PlutoCharonpatterns/phase/exposure/light imagined, no analog/dateNHsite/foregroundatmosphere/plume/liquidocean/biology/survivablelanding. Black/ringomission assumptions not absence. Nonsynchronous rotation gives no permanent Pluto face; tiny previews need readable IMAGINED labels. Sun39.48AUoff-frame angularhelper only, not calibrated scene photometry."
+      ],
+      "references": [
+        {
+          "url": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+          "title": "NASA New Horizons Picks Up Styx",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "observationConflict": {
+            "articleText": "2015-07-13, approximately 12.5 hours before Pluto closest approach",
+            "articleCaptionAndCurrentOverview": "2015-07-14",
+            "resolution": "Unresolved; preserve both, exact acquisition UTC/raw-product crosswalk open."
+          },
+          "publicationDate": "2015-10-09"
+        },
+        {
+          "url": "https://arxiv.org/abs/1604.05366",
+          "title": "The Small Satellites of Pluto as Observed by New Horizons",
+          "doi": "10.1126/science.aae0030",
+          "authors": [
+            "Weaver, H. A.",
+            "Buie, M. W.",
+            "Buratti, B. J.",
+            "Grundy, W. M.",
+            "Lauer, T. R.",
+            "Olkin, C. B.",
+            "Parker, A. H.",
+            "Porter, S. B.",
+            "Showalter, M. R.",
+            "Spencer, J. R.",
+            "Stern, S. A.",
+            "Verbiscer, A. J.",
+            "McKinnon, W. B.",
+            "Moore, J. M.",
+            "Robbins, S. J.",
+            "Schenk, P.",
+            "Singer, K. N.",
+            "Barnouin, O. S.",
+            "Cheng, A. F.",
+            "Ernst, C. M.",
+            "Lisse, C. M.",
+            "Jennings, D. E.",
+            "Lunsford, A. W.",
+            "Reuter, D. C.",
+            "Hamilton, D. P.",
+            "Kaufmann, D. E.",
+            "Ennico, K.",
+            "Young, L. A.",
+            "Beyer, R. A.",
+            "Binzel, R. P.",
+            "Bray, V. J.",
+            "Chaikin, A. L.",
+            "Cook, J. C.",
+            "Cruikshank, D. P.",
+            "Ore, C. M. Dalle",
+            "Earle, A. M.",
+            "Gladstone, G. R.",
+            "Howett, C. J. A.",
+            "Linscott, I. R.",
+            "Nimmo, F.",
+            "Parker, J. Wm.",
+            "Philippe, S.",
+            "Protopapa, S.",
+            "Reitsema, H. J.",
+            "Schmitt, B.",
+            "Stryk, T.",
+            "Summers, M. E.",
+            "Tsang, C. C. C.",
+            "Throop, H. H. B.",
+            "White, O. L.",
+            "Zangari, A. M."
+          ],
+          "source": {
+            "path": "data/research-sources/nix-Weaver2016.pdf",
+            "url": "https://arxiv.org/pdf/1604.05366",
+            "bytes": 4953591,
+            "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+            "pages": 48,
+            "licence": "Specific arXiv nonexclusive distribution; not asserted CC BY. No figure embedded."
+          }
+        },
+        {
+          "path": "data/research-sources/styx-jpl-elements-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "status": 200,
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html"
+        },
+        {
+          "path": "data/research-sources/styx-jpl-physical-2026-10-12.html",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "status": 200,
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12",
+          "contentType": "text/html"
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/styx-lorri-publisher640.jpg",
+          "url": "/bespoke/styx-new-horizons-native.jpg",
+          "status": 200,
+          "bytes": 18762,
+          "sha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+          "retrieved": "2026-10-12",
+          "contentType": "image/jpeg",
+          "source": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg?w=640",
+          "sourceUrl": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+          "tier": "measured",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": null,
+          "observationDateNote": "July13 article prose versus July14 caption/current overview; exact product association unverified.",
+          "publicationDate": "2015-10-09",
+          "terms": "Active NASA media terms/third-party caveats, not CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual New Horizons LORRI Styx composite with schematic orbit inset; monochrome, not calibrated colour or local chemistry.",
+          "processing": "Unchanged NASA-served640px displayJPEG; publisher resize/re-encoding disclosed, not full-pixel preservation. Full1200x955169990byteJPEG retained separately. Enlarged blurred samples/noise not rocks or stars; coloured inset not geography or body maps. AcquisitionJuly13/14 conflict remains open."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 39.48,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL STYX TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM STYX",
+      "observerGeometry": {
+        "date": "2026-10-11",
+        "body": "Styx",
+        "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+        "sources": [
+          "src/data/sol.js Pluto radius/mass",
+          "src/data/moons.js Charon radius/mass and 19600km separation",
+          "docs/research/styx-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 main orbital context: barycentric 42656km; Table2 joint 16x9x8km ellipsoid fit"
+        ],
+        "assumptions": {
+          "circularCoplanarSystem": true,
+          "plutoCharonSeparationKm": 19600,
+          "heightUse": "Assumed maximum fitted semiaxis; not measured site height, local normal, registered shape or uncertainty",
+          "observerPositionKm": [
+            42664,
+            0
+          ],
+          "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+          "plutoPositionKm": [
+            0,
+            2126.8199233716477
+          ],
+          "charonPositionKm": [
+            0,
+            -17473.180076628352
+          ],
+          "horizontalFovDeg": 90,
+          "temperatureK": 40,
+          "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+          "styxBarycentricRadiusKm": 42656,
+          "styxObserverHeightKm": 8
+        },
+        "barycentricOffsetsKm": {
+          "pluto": 2126.8199233716477,
+          "charon": 17473.180076628352
+        },
+        "geometry": {
+          "pluto": {
+            "radiusKm": 1188.3,
+            "representativeDistancesKm": {
+              "alignedNear": 40537.180076628356,
+              "rightAngle": 42716.97857979249,
+              "alignedFar": 44790.819923371644
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 40537.180076628356,
+                "angularDiameterDeg": 3.3595987334107242,
+                "targetWidthPixels1672": 49.03379544858643
+              },
+              "rightAngle": {
+                "distanceKm": 42716.97857979249,
+                "angularDiameterDeg": 3.188116819699546,
+                "targetWidthPixels1672": 46.52966711781442
+              },
+              "alignedFar": {
+                "distanceKm": 44790.819923371644,
+                "angularDiameterDeg": 3.0404696418255632,
+                "targetWidthPixels1672": 44.37376187720677
+              }
+            }
+          },
+          "charon": {
+            "radiusKm": 606,
+            "representativeDistancesKm": {
+              "alignedNear": 25190.819923371648,
+              "rightAngle": 46103.45885061426,
+              "alignedFar": 60137.180076628356
+            },
+            "computed": {
+              "alignedNear": {
+                "distanceKm": 25190.819923371648,
+                "angularDiameterDeg": 2.7569243305310884,
+                "targetWidthPixels1672": 40.23391512891414
+              },
+              "rightAngle": {
+                "distanceKm": 46103.45885061426,
+                "angularDiameterDeg": 1.5062749368170987,
+                "targetWidthPixels1672": 21.979252026799553
+              },
+              "alignedFar": {
+                "distanceKm": 60137.180076628356,
+                "angularDiameterDeg": 1.1547541802400105,
+                "targetWidthPixels1672": 16.849533799526107
+              }
+            }
+          }
+        },
+        "limitations": [
+          "42656km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+          "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+          "One consistent outward observer position is assumed. The fitted ellipsoid does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+          "Styx rotates nonsynchronously (3.24±0.07d); no permanent Pluto-facing site. Nominal 91-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+          "Future Pluto and Charon appearances must be independently invented; no other body map may become Styx terrain.",
+          "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+          "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+        ],
+        "preservation": {
+          "dossiers": 68,
+          "trackedInputsByteIdentical": 404,
+          "registryByteIdentical": true,
+          "newEmbedding": false
+        },
+        "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=42656+8 and binary mass offsets from 19600km separation.",
+        "verification": {
+          "tests": "458 pass, 1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15988276,
+          "headroomBytes": 11724,
+          "browser": {
+            "bandImages": 20,
+            "snapshot": "0578b05f4dc8f119bd78e219ffef1b2058edcb8242d28fae963c83759e35a30f",
+            "raw": "47f64ce1e1a84687774efd8adc518bdfad344a6dd90b9f5c5da7434b15ee6be9",
+            "magic": "FIDBRT01",
+            "images": 237,
+            "details": 517,
+            "models": 32
+          },
+          "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+          "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+          "limits": "Chrome complete readableJSON/application/CSS and HTML-parser payload equality; 237 images and20 band images decode, 517 detail and32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+        },
+        "rasterAudit": {
+          "thresholds": [
+            5,
+            10,
+            20
+          ],
+          "rows": {
+            "Pluto": 200,
+            "Charon": 205
+          },
+          "thresholdChordsPixels": {
+            "Pluto": [
+              125,
+              119,
+              118
+            ],
+            "Charon": [
+              41,
+              40,
+              40
+            ]
+          },
+          "skyGeometryTargetsPixels": {
+            "Pluto": 46.52966711781442,
+            "Charon": 21.979252026799553
+          },
+          "limitation": "Both disks oversized. Threshold row chords are not calibrated full diameters; phase, exposure and registration remain artistic."
+        }
+      },
+      "inputs": {
+        "surfaceImage": "styx-generated-surfaceImage-original.png",
+        "skyImage": "styx-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "status": "Delivered individual dossier73; selectable Styx, unchanged publisher display native and independent IMAGINED views. Nested preparations retain historical status/verification.",
+  "dossierRecord": {
+    "id": "styx",
+    "name": "Styx",
+    "aliases": [
+      "Styx"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Blurred native composite and orbit inset are not detailed local terrain or complete registered geography.",
+    "measured": [
+      "NASA native LORRI composite stored as RGB is monochrome scientific imagery, not independently calibrated visible colour. Orbit inset is schematic, not geography.",
+      "Weaver2016 joint16 × 9 × 8 ± 3km ellipsoid fit;3.24 ± .07 day rotation distinct20.16155 ± .00027 day orbit. Nominal91-degree retrograde is not significant beyond one sigma; current chaos deferred.",
+      "JPL equivalent-volume radius5.2 ±1km Stern2018 and PLU060 mean43200km/.025/P20.16days equatorial2000Jan1.5TDB Brozovic/Jacobson2024, not a registered shape or dated distance."
+    ],
+    "modelled": [
+      "Albedo.65±.07 and peakI/F.40±.02 at17.3degrees depend on phase law/instrument calibration; unobserved opposition surge and November2015 calibration revision are not an instruction to correct JPEG/scene.",
+      "JPL GM upper<.0003km^3/s^2 establishes no precise mass/density; massKg null. Ice/merger/collisional/porosity origins interpretations not local fractions or directly dated history.",
+      "Historical42656km barycentric circular-coplanar observer plus8km fitted maximumsemiaxis not measured normal/siteheight; right-angle geometry is undated. Projectedthreshold10.4×5.8kmS8/I/F.1 ellipse distinct3Dfit and7×5kmcaption."
+    ],
+    "unknown": [
+      "NASA article prose2015July13 versus caption/currentoverviewJuly14 acquisition conflict retained; publication2015October9/downlinkOctober5 not observation. Primary U_TBD_1_02 sixframes2015July13T23:44:56 supports one set but exact publisherJPEG association open.",
+      "Exact raw products/processing/PSF, rotational attitude, shape/site/frame, calibrated colour/photometry and later spectroscopy remain open. Historical7×5km apparent extent,631000kmrange and discovery10–24kmsize are source estimates, not new scale/globalaxes."
+    ],
+    "assumed": [
+      "Blurred monochrome LORRI composite stored as RGB is not calibrated visible colour, resolved local terrain or a registered global map.",
+      "Orbit inset is a schematic context diagram, not native geography; its coloured Pluto/Charon disks must not become body maps.",
+      "Black background/noise is not evidence for atmospheric absence or stars.",
+      "Historical 7 by 5 km apparent extent and 631000 km range are caption estimates, not new raster calculations or current global axes.",
+      "Overview discovery-era 10–24 km size estimate is distinct; no silent catalogue update.",
+      "Brightness/size-based icy-surface inference is not measured local material fractions or spectroscopy.",
+      "No exhaustive newest-imagery claim. Rotation, shape, current attitude, raw product, processing, photometric and spectral association audits remain open.",
+      "No angular/raster computation performed; future observer calculations must use skyGeometry and variable barycentric Pluto/Charon distances.",
+      "Nonsynchronous rotation: no permanent Pluto-facing site. Nominal retrograde at 91 degrees is not significant beyond one sigma; only Nix was securely retrograde in this analysis. Current chaos was deferred, not established.",
+      "Albedo uses phase-law/relative-brightness modelling; zero-phase opposition surge unobserved. November 2015 calibration revision raises derived albedos 20%, not an instruction to correct the publisher JPEG or generated scene.",
+      "Peak Styx I/F 0.40 +/-0.02 at17.3degree phase is instrument-calibration-dependent, not local chemical fractions or visible-scene calibration.",
+      "Ice inference and collisional/agglomeration/porosity origins are interpretations, not local composition or directly dated terrain history. Large mass/volume errors preclude precise densities.",
+      "Native publisher pixels, shape frame, current rotational attitude, raw product/processing crosswalk and later spectroscopy remain open. No other moon map, material or measurement assigned.",
+      "42656km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+      "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+      "One consistent outward observer position is assumed. The fitted ellipsoid does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+      "Styx rotates nonsynchronously (3.24±0.07d); no permanent Pluto-facing site. Nominal 91-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+      "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+      "Terrain, chemistry fractions, disk patterns, colour, phase, lighting and exposure invented; no other-body map reused.",
+      "Undated circular coplanar barycentric geometry with assumed camera attitude and8km fitted semiaxis height, not a measured local normal. Nonsynchronous Styx has no permanent Pluto-facing site.",
+      "Black sky and ring omission artistic, not measured absence or calibrated transmission. No plume, liquid ocean, biology or survivable landing.",
+      "Terrain, blocks, grains, depressions, chemistry fractions, colour, lighting and exposure independently invented; no observed other-body map used.",
+      "Not a dated New Horizons/LORRI site, registered globe or fitted local normal. Nonsynchronous rotation establishes no permanent Pluto-facing site.",
+      "Black sky is an artistic transparency assumption, not a measured atmospheric absence. Pale patches are not measured composition.",
+      "No astronomical disk or angular/raster claim. No plume, liquid ocean, biology or survivable landing claim.",
+      "Independent terrain/chemistry/fractions/greycolour/PlutoCharonpatterns/phase/exposure/light imagined, no analog/dateNHsite/foregroundatmosphere/plume/liquidocean/biology/survivablelanding. Black/ringomission assumptions not absence. Nonsynchronous rotation gives no permanent Pluto face; tiny previews need readable IMAGINED labels. Sun39.48AUoff-frame angularhelper only, not calibrated scene photometry."
+    ],
+    "references": [
+      {
+        "url": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+        "title": "NASA New Horizons Picks Up Styx",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "observationConflict": {
+          "articleText": "2015-07-13, approximately 12.5 hours before Pluto closest approach",
+          "articleCaptionAndCurrentOverview": "2015-07-14",
+          "resolution": "Unresolved; preserve both, exact acquisition UTC/raw-product crosswalk open."
+        },
+        "publicationDate": "2015-10-09"
+      },
+      {
+        "url": "https://arxiv.org/abs/1604.05366",
+        "title": "The Small Satellites of Pluto as Observed by New Horizons",
+        "doi": "10.1126/science.aae0030",
+        "authors": [
+          "Weaver, H. A.",
+          "Buie, M. W.",
+          "Buratti, B. J.",
+          "Grundy, W. M.",
+          "Lauer, T. R.",
+          "Olkin, C. B.",
+          "Parker, A. H.",
+          "Porter, S. B.",
+          "Showalter, M. R.",
+          "Spencer, J. R.",
+          "Stern, S. A.",
+          "Verbiscer, A. J.",
+          "McKinnon, W. B.",
+          "Moore, J. M.",
+          "Robbins, S. J.",
+          "Schenk, P.",
+          "Singer, K. N.",
+          "Barnouin, O. S.",
+          "Cheng, A. F.",
+          "Ernst, C. M.",
+          "Lisse, C. M.",
+          "Jennings, D. E.",
+          "Lunsford, A. W.",
+          "Reuter, D. C.",
+          "Hamilton, D. P.",
+          "Kaufmann, D. E.",
+          "Ennico, K.",
+          "Young, L. A.",
+          "Beyer, R. A.",
+          "Binzel, R. P.",
+          "Bray, V. J.",
+          "Chaikin, A. L.",
+          "Cook, J. C.",
+          "Cruikshank, D. P.",
+          "Ore, C. M. Dalle",
+          "Earle, A. M.",
+          "Gladstone, G. R.",
+          "Howett, C. J. A.",
+          "Linscott, I. R.",
+          "Nimmo, F.",
+          "Parker, J. Wm.",
+          "Philippe, S.",
+          "Protopapa, S.",
+          "Reitsema, H. J.",
+          "Schmitt, B.",
+          "Stryk, T.",
+          "Summers, M. E.",
+          "Tsang, C. C. C.",
+          "Throop, H. H. B.",
+          "White, O. L.",
+          "Zangari, A. M."
+        ],
+        "source": {
+          "path": "data/research-sources/nix-Weaver2016.pdf",
+          "url": "https://arxiv.org/pdf/1604.05366",
+          "bytes": 4953591,
+          "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+          "pages": 48,
+          "licence": "Specific arXiv nonexclusive distribution; not asserted CC BY. No figure embedded."
+        }
+      },
+      {
+        "path": "data/research-sources/styx-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/styx-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/styx-lorri-publisher640.jpg",
+        "url": "/bespoke/styx-new-horizons-native.jpg",
+        "status": 200,
+        "bytes": 18762,
+        "sha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+        "retrieved": "2026-10-12",
+        "contentType": "image/jpeg",
+        "source": "https://www.nasa.gov/wp-content/uploads/2015/10/styx-moon-3.jpg?w=640",
+        "sourceUrl": "https://www.nasa.gov/missions/new-horizons-picks-up-styx/",
+        "tier": "measured",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": null,
+        "observationDateNote": "July13 article prose versus July14 caption/current overview; exact product association unverified.",
+        "publicationDate": "2015-10-09",
+        "terms": "Active NASA media terms/third-party caveats, not CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual New Horizons LORRI Styx composite with schematic orbit inset; monochrome, not calibrated colour or local chemistry.",
+        "processing": "Unchanged NASA-served640px displayJPEG; publisher resize/re-encoding disclosed, not full-pixel preservation. Full1200x955169990byteJPEG retained separately. Enlarged blurred samples/noise not rocks or stars; coloured inset not geography or body maps. AcquisitionJuly13/14 conflict remains open."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL STYX TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM STYX",
+    "observerGeometry": {
+      "date": "2026-10-11",
+      "body": "Styx",
+      "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+      "sources": [
+        "src/data/sol.js Pluto radius/mass",
+        "src/data/moons.js Charon radius/mass and 19600km separation",
+        "docs/research/styx-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 main orbital context: barycentric 42656km; Table2 joint 16x9x8km ellipsoid fit"
+      ],
+      "assumptions": {
+        "circularCoplanarSystem": true,
+        "plutoCharonSeparationKm": 19600,
+        "heightUse": "Assumed maximum fitted semiaxis; not measured site height, local normal, registered shape or uncertainty",
+        "observerPositionKm": [
+          42664,
+          0
+        ],
+        "phase": "Undated illustrative right-angle barycentric configuration; one consistent radially outward observer position",
+        "plutoPositionKm": [
+          0,
+          2126.8199233716477
+        ],
+        "charonPositionKm": [
+          0,
+          -17473.180076628352
+        ],
+        "horizontalFovDeg": 90,
+        "temperatureK": 40,
+        "temperatureUse": "Angular helper only; irradiance and colour outputs discarded",
+        "styxBarycentricRadiusKm": 42656,
+        "styxObserverHeightKm": 8
+      },
+      "barycentricOffsetsKm": {
+        "pluto": 2126.8199233716477,
+        "charon": 17473.180076628352
+      },
+      "geometry": {
+        "pluto": {
+          "radiusKm": 1188.3,
+          "representativeDistancesKm": {
+            "alignedNear": 40537.180076628356,
+            "rightAngle": 42716.97857979249,
+            "alignedFar": 44790.819923371644
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 40537.180076628356,
+              "angularDiameterDeg": 3.3595987334107242,
+              "targetWidthPixels1672": 49.03379544858643
+            },
+            "rightAngle": {
+              "distanceKm": 42716.97857979249,
+              "angularDiameterDeg": 3.188116819699546,
+              "targetWidthPixels1672": 46.52966711781442
+            },
+            "alignedFar": {
+              "distanceKm": 44790.819923371644,
+              "angularDiameterDeg": 3.0404696418255632,
+              "targetWidthPixels1672": 44.37376187720677
+            }
+          }
+        },
+        "charon": {
+          "radiusKm": 606,
+          "representativeDistancesKm": {
+            "alignedNear": 25190.819923371648,
+            "rightAngle": 46103.45885061426,
+            "alignedFar": 60137.180076628356
+          },
+          "computed": {
+            "alignedNear": {
+              "distanceKm": 25190.819923371648,
+              "angularDiameterDeg": 2.7569243305310884,
+              "targetWidthPixels1672": 40.23391512891414
+            },
+            "rightAngle": {
+              "distanceKm": 46103.45885061426,
+              "angularDiameterDeg": 1.5062749368170987,
+              "targetWidthPixels1672": 21.979252026799553
+            },
+            "alignedFar": {
+              "distanceKm": 60137.180076628356,
+              "angularDiameterDeg": 1.1547541802400105,
+              "targetWidthPixels1672": 16.849533799526107
+            }
+          }
+        }
+      },
+      "limitations": [
+        "42656km is barycentric semimajor axis, not fixed Pluto distance. Circular coplanar configuration is illustrative, not dated ephemeris.",
+        "Aligned near/far cases use opposite binary phases: Pluto and Charon near values cannot occur together. These are illustrative alternatives, not a measured uncertainty envelope.",
+        "One consistent outward observer position is assumed. The fitted ellipsoid does not establish local normal, site height or shape registration; spin axis and mutual visibility remain unregistered.",
+        "Styx rotates nonsynchronously (3.24±0.07d); no permanent Pluto-facing site. Nominal 91-degree retrograde obliquity is not significant beyond one sigma; current chaos was deferred in Weaver2016.",
+        "Future Pluto and Charon appearances must be independently invented; no other body map may become Styx terrain.",
+        "FOV, illumination, phase, exposure, visible colour, atmosphere transfer and scene registration remain artistic. No raster illustration or photometric calibration established.",
+        "All 68 dossiers and originals/native/maps/models/shapes/provenance preserved. Substantial lossless headroom remains necessary before prepared Charon69 or further embedding."
+      ],
+      "preservation": {
+        "dossiers": 68,
+        "trackedInputsByteIdentical": 404,
+        "registryByteIdentical": true,
+        "newEmbedding": false
+      },
+      "method": "skyGeometry from src/astro/appearance.js; radiusSun=radiusKm/695700, distanceAU=distanceKm/149597870.7, horizontalFovDeg=90, targetWidthPixels1672=1672*centreDiscWidthFraction. Distances use observer x=42656+8 and binary mass offsets from 19600km separation.",
+      "verification": {
+        "tests": "458 pass, 1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15988276,
+        "headroomBytes": 11724,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "0578b05f4dc8f119bd78e219ffef1b2058edcb8242d28fae963c83759e35a30f",
+          "raw": "47f64ce1e1a84687774efd8adc518bdfad344a6dd90b9f5c5da7434b15ee6be9",
+          "magic": "FIDBRT01",
+          "images": 237,
+          "details": 517,
+          "models": 32
+        },
+        "applicationSha256": "c943a85a70cab7cb32d7acb6e7925b6b10deebcc1ba5dc1e6886cab8ec73db0c",
+        "cssSha256": "960361a1ea9eeded7d0a05f3b24a28c22de86c0ab44b44d3d4c8ace48038b772",
+        "limits": "Chrome complete readableJSON/application/CSS and HTML-parser payload equality; 237 images and20 band images decode, 517 detail and32 model entries, no page errors. Other engines open. Interbuild differences unaudited; no savings attribution or new native-hash/model-load/route claim. Production codecs unchanged."
+      },
+      "rasterAudit": {
+        "thresholds": [
+          5,
+          10,
+          20
+        ],
+        "rows": {
+          "Pluto": 200,
+          "Charon": 205
+        },
+        "thresholdChordsPixels": {
+          "Pluto": [
+            125,
+            119,
+            118
+          ],
+          "Charon": [
+            41,
+            40,
+            40
+          ]
+        },
+        "skyGeometryTargetsPixels": {
+          "Pluto": 46.52966711781442,
+          "Charon": 21.979252026799553
+        },
+        "limitation": "Both disks oversized. Threshold row chords are not calibrated full diameters; phase, exposure and registration remain artistic."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/styx-surface-image.jpg",
+      "previewUrl": "/bespoke/styx-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "styx-generated-surfaceImage-original.png",
+      "sourceSha256": "a1501311263abef93455330fe907f6f74a72ed07577f34e3948746f23df5deb8",
+      "sha256": "30b4db2e6201a3928c5a0f9add1ab13b1fe9862ab08d1914a6572ed8b6436945",
+      "previewSha256": "1088df7981d07c54cbd1089df5d6d485a7407bf04c84aa0bf92a64be9875c9d5",
+      "bytes": 349763,
+      "previewBytes": 9508,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/styx-sky-image.jpg",
+      "previewUrl": "/bespoke/styx-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "styx-generated-skyImage-original.png",
+      "sourceSha256": "d1fcc647962db37b4cb2f35777af77e445c176237fb65c407699caa3fe00dde6",
+      "sha256": "9ff685ebeedd19e444324f2500b6ec03d9e8f495362b83d762b5c75a91e4ab8d",
+      "previewSha256": "d21f020b86ac1e8a51bb14f4936715366ff40493beea35712956b479ffa99646",
+      "bytes": 258655,
+      "previewBytes": 8571,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "608 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15911260,
+    "headroomBytes": 88740,
+    "completeSnapshotSha256": "5ae140637be5aacc36f73c01c62764ca580fc0c52684fe7f39486d2bb2c46d7b",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "3b8fb14bf37dbf78bf1790a439e9a6cbd0a92139e36872a9d3cd41246f139878",
+    "fidelity-application-data": "6d8084c8dbb11010c34e77f5aac7ba6bc21957fe27d710194fa8bd5caddc3f84",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "c13cdc78ef3f7ffe4b64ef08afb60f91eabbf366d4561d808d2895795a335954",
+    "applicationSha256": "208632c198159d261217a61f3e4d848f490abdb95d99cc83178f96526d4bc7f1",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "380358bbb3c1b9ebf73e7fdb7e393547e2d6ae21e1ca7f0a9c5e01fd4f0b2ef5",
+    "errors": [],
+    "browser": "Chrome complete readableJSON/application/CSS/startup/4HTMLparser packed texts exact,252images20bands517details32entries; actualnormalofflineStyx3cards/noownmap,sixroutes/unsupportedgzip/11workerrows pass. Other engines open; no fresh all-model-load claim.",
+    "preservation": {
+      "earlierDossiersDeepEqual": 72,
+      "earlierMOONSCatalogueEntriesDeepEqual": 30,
+      "trackedPublicFilesByteEqual": 581,
+      "nativeContextHashes": 62,
+      "sourceAndOriginalHashesChecked": 16,
+      "recordedClipper": "950348bytes SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved"
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/styx-surface-image.jpg",
+        "after": "string(11291)"
+      },
+      {
+        "path": "/bodyImages//bespoke/styx-sky-image.jpg",
+        "after": "string(9695)"
+      },
+      {
+        "path": "/bodyImages//bespoke/styx-new-horizons-native.jpg",
+        "after": "string(25039)"
+      }
+    ],
+    "queue": {
+      "tasks": 566,
+      "dossiers": 73
+    },
+    "attribution": "Actual saved JSON difference recorded; catalogue changes application, net HTML increment not sole asset/compression attribution. Codecs unchanged."
+  }
+}

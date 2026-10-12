@@ -1,0 +1,1507 @@
+{
+  "date": "2026-10-12",
+  "generated": "2026-10-11",
+  "body": "Nix",
+  "dossier": 70,
+  "nativePreparation": {
+    "date": "2026-10-11",
+    "status": "Research-only native preparation; no new dossier, asset embedding, globe or shape adopted.",
+    "body": "Nix",
+    "catalogueId": "sol-nix",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/nix-PIA20287-original.jpg",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.jpg",
+        "bytes": 26108,
+        "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1042,
+        "height": 1024,
+        "mode": "L",
+        "format": "JPEG"
+      },
+      {
+        "path": "data/research-sources/nix-PIA20287-original.tif",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.tif",
+        "bytes": 475974,
+        "sha256": "f3878175f14f69acf48a88d8bb9295c8f515bfd274272dce2c67676a4bcf28ff",
+        "status": 200,
+        "contentType": "image/tiff",
+        "width": 1042,
+        "height": 1024,
+        "mode": "L",
+        "format": "TIFF"
+      },
+      {
+        "path": "data/research-sources/nix-PIA20287-caption.html",
+        "url": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+        "bytes": 267143,
+        "sha256": "40baefa2064e4d5df7bceb5a1cee39b895e3ec8737a88feb13c1a655a1f42bae",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8"
+      },
+      {
+        "path": "data/research-sources/nix-nasa-terms.html",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "bytes": 320632,
+        "sha256": "ea8510fb50b4895635c7ba5a804fdba9788d7cd33dfe09d2a4a170ee8e2a99a6",
+        "status": 200
+      }
+    ],
+    "product": "PIA20287",
+    "observationDate": "2015-07-14",
+    "imageAdditionDate": "2015-12-18",
+    "pageUpdateDate": "2025-09-23 (not observation)",
+    "instrument": "New Horizons Ralph MVIC panchromatic",
+    "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "terms": {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "assessment": "NASA educational/informational media guidelines, with third-party exceptions and no endorsement. Not asserted CC BY."
+    },
+    "inspection": "Unchanged 1042x1024 grayscale JPEG inspected: irregular half-lit body, broad craterlike relief with blur and dark unilluminated areas. TIFF retained unchanged. No transform or new raster-scale computation.",
+    "captionEstimates": {
+      "rangeKm": 23000,
+      "illuminatedExtentKm": [
+        19,
+        47
+      ],
+      "qualification": "Publisher approximate caption estimates; illuminated dimensions are not three-dimensional axes, global diameter or independently measured raster scale."
+    },
+    "identity": "Caption title and text identify Nix. Page taxonomy lists target Pluto and satellite of Sun; those parent taxonomy fields are not adopted as Nix physical associations.",
+    "limits": [
+      "Panchromatic grayscale does not establish calibrated visible colour, local chemistry or photometry.",
+      "Blur/noise and dark unilluminated portions are not mapped terrain or measured material fractions.",
+      "This perspective is not a complete registered globe; coverage, frame, attitude and calibrated product association remain open.",
+      "No newest-observation or exhaustive native-source claim.",
+      "Other Pluto moons must not receive this image or Nix geography.",
+      "Primary shape, rotation, compositional and dynamical research remains open before independent observer views.",
+      "Charon dossier 69 remains pending lossless standalone headroom; this research does not solve that budget."
+    ],
+    "preservation": {
+      "registryDossiers": 68,
+      "trackedEarlierInputsByteEqual": 389,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15990906,
+      "headroomBytes": 9094,
+      "queue": 566,
+      "browser": "Chrome exact complete readable JSON and HTML-parser payload; 237 images, 20 bands, 517 details, 32 models; no errors. Other engines remain open.",
+      "completeSnapshotSha256": "d193de8e7caff6254e076bdaf38c736060b6693998cf1bdbe1031412277c4c85",
+      "attribution": "Exact same rebuilt snapshot hash and HTML byte count as ec147b7. Production codecs unchanged; no saving claimed."
+    }
+  },
+  "primary": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "catalogueId": "sol-nix",
+    "status": "Research-only primary assessment; no new dossier, embedding, map or shape.",
+    "title": "The Small Satellites of Pluto as Observed by New Horizons",
+    "doi": "10.1126/science.aae0030",
+    "arxiv": "1604.05366v1",
+    "submissionUTC": "2016-04-18T22:42:50Z",
+    "authors": [
+      "Weaver, H. A.",
+      "Buie, M. W.",
+      "Buratti, B. J.",
+      "Grundy, W. M.",
+      "Lauer, T. R.",
+      "Olkin, C. B.",
+      "Parker, A. H.",
+      "Porter, S. B.",
+      "Showalter, M. R.",
+      "Spencer, J. R.",
+      "Stern, S. A.",
+      "Verbiscer, A. J.",
+      "McKinnon, W. B.",
+      "Moore, J. M.",
+      "Robbins, S. J.",
+      "Schenk, P.",
+      "Singer, K. N.",
+      "Barnouin, O. S.",
+      "Cheng, A. F.",
+      "Ernst, C. M.",
+      "Lisse, C. M.",
+      "Jennings, D. E.",
+      "Lunsford, A. W.",
+      "Reuter, D. C.",
+      "Hamilton, D. P.",
+      "Kaufmann, D. E.",
+      "Ennico, K.",
+      "Young, L. A.",
+      "Beyer, R. A.",
+      "Binzel, R. P.",
+      "Bray, V. J.",
+      "Chaikin, A. L.",
+      "Cook, J. C.",
+      "Cruikshank, D. P.",
+      "Ore, C. M. Dalle",
+      "Earle, A. M.",
+      "Gladstone, G. R.",
+      "Howett, C. J. A.",
+      "Linscott, I. R.",
+      "Nimmo, F.",
+      "Parker, J. Wm.",
+      "Philippe, S.",
+      "Protopapa, S.",
+      "Reitsema, H. J.",
+      "Schmitt, B.",
+      "Stryk, T.",
+      "Summers, M. E.",
+      "Tsang, C. C. C.",
+      "Throop, H. H. B.",
+      "White, O. L.",
+      "Zangari, A. M."
+    ],
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/nix-Weaver2016.pdf",
+        "url": "https://arxiv.org/pdf/1604.05366",
+        "bytes": 4953591,
+        "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+        "pages": 48
+      },
+      {
+        "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+        "url": "https://arxiv.org/abs/1604.05366",
+        "bytes": 50077,
+        "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+        "status": 200
+      },
+      {
+        "path": "data/research-sources/nix-Weaver2016-license.html",
+        "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+        "bytes": 1415,
+        "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+        "status": 200
+      }
+    ],
+    "scope": "Targeted main-text physical properties, albedo, surface features, Tables 1/2 and supplementary rotation/shape/crater methods assessed in complete 48-page author PDF including supplement. Final publisher version and later compositional work remain open.",
+    "terms": {
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "assessment": "Specific record links arXiv nonexclusive distribution; not CC BY. No paper figure or derivative embedded."
+    },
+    "fittedParameters": {
+      "diameterAxesKm": [
+        50,
+        35,
+        33
+      ],
+      "axisUncertaintyKm": 3,
+      "axisUncertaintyMeaning": "Table 2 one-sigma ellipsoid fit, not a registered detailed shape or site-height solution.",
+      "rotationPeriodDays": 1.829,
+      "rotationUncertaintyDays": 0.009,
+      "poleRaDecDegrees": [
+        350,
+        42
+      ],
+      "poleUncertaintyDegrees": 10,
+      "obliquityDegrees": 123,
+      "orbitalPeriodDays": 24.85463,
+      "orbitalUncertaintyDays": 0.00003,
+      "orbitalSemimajorAxisKm": 48694,
+      "orbitalReference": "System barycenter; not a fixed Nix-to-Pluto center distance.",
+      "geometricAlbedo": 0.56,
+      "albedoUncertainty": 0.05
+    },
+    "limitations": [
+      "Rapid nonsynchronous rotation and significantly retrograde Nix pole fit; no permanent Pluto-facing site. Whether chaos governs current rotation was deferred, not established here.",
+      "Ellipsoid and pole fits combine resolved images with May-July 2015 lightcurves and PSF modelling; do not imply calibrated local geography.",
+      "Geometric albedo depends on assumed phase law: 0.61 for 0.04 mag/degree versus 0.51 for 0.02; near-zero-phase opposition surge was unobserved. Table 2 applies a November 2015 LORRI calibration revision of 20%; do not transfer to native publisher JPEG or scene photometry.",
+      "High albedo suggested water ice before LEISA data arrived; this paper alone does not spectroscopically identify local composition or material fractions.",
+      "Mostly neutral MVIC colours and a redder large-crater region are image measurements; impactor material versus excavation are hypotheses, not unique chemistry. No Pluto/Charon/other-moon skin adopted.",
+      "Crater identifications and gravity/porosity scaling support model-dependent old surface ages; not directly dated terrain or local rates.",
+      "Table S2 decimal crater sizes represent researcher averages, not tenth-kilometre accuracy; Table S3 resolution and coverage are published estimates, not new raster calculations.",
+      "Table 1 N_MPAN_CA at 2015-07-14T11:16:35UTC, 0.45km/pixel and 85.9degree phase is a possible panchromatic association for PIA20287, not an exact calibrated product crosswalk; original archive product identity remains open.",
+      "No atmospheric absence, ocean, plume, biology or survivable landing established.",
+      "Charon69 still needs substantial lossless standalone headroom; independent Nix research does not solve budget."
+    ],
+    "preservation": {
+      "dossiers": 68,
+      "newEmbedding": false,
+      "productionCodecsChanged": false,
+      "trackedEarlierInputsByteEqual": 389
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15992747,
+      "headroomBytes": 7253,
+      "queue": 566,
+      "browser": "Chrome exact complete readable JSON and HTML-parser snapshot payload; 237 images, 20 bands, 517 details, 32 models; no page errors. Other engines remain open.",
+      "completeSnapshotSha256": "84dd0f852411f07f69e71b4d72dca822e086a33c7290a775a4a0860c1fd5f015",
+      "rawSnapshotSha256": "5a78a932d4e7be83488322980ffbd19f750a1172f8b2cf7ef144b62f7f9fbb08",
+      "attribution": "Interbuild snapshot differences were not independently audited; production codecs and tracked asset inputs unchanged, no savings attributed."
+    }
+  },
+  "composition": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "catalogueId": "sol-nix",
+    "status": "Research-only composition preparation; no new dossier or embedding.",
+    "sourceRecords": [
+      {
+        "path": "data/research-sources/nix-Cook2017-LPSC2478.pdf",
+        "url": "https://www.hou.usra.edu/meetings/lpsc2017/pdf/2478.pdf",
+        "bytes": 986715,
+        "sha256": "0348027cd0d9fe794603645896e75a8633fa6ab8769ab772db2e28c97e2df8c3",
+        "pages": 2
+      },
+      {
+        "path": "data/research-sources/nix-Holler2025-LPI7028.pdf",
+        "url": "https://www.hou.usra.edu/meetings/plutosystem2025/pdf/7028.pdf",
+        "bytes": 1928794,
+        "sha256": "a62efc11f17e3406c50df76f9cbe4c102610514486006b82cd778f0a33b534dd",
+        "pages": 2
+      },
+      {
+        "path": "data/research-sources/nix-pds-composition-profile.html",
+        "url": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=NH-P%2FPSA-LEISA%2FMVIC-5-COMP-V1.0",
+        "bytes": 39525,
+        "sha256": "ea24769ac310a345024ad899b3bb01135ee308992a1b60bdd9907ca5c856b030",
+        "status": 200
+      }
+    ],
+    "Cook2017": {
+      "type": "Two-page LPSC XLVIII abstract 2478, preliminary conference report, not final 2018 article.",
+      "authors": [
+        "J. C. Cook",
+        "R. P. Binzel",
+        "D. P. Cruikshank",
+        "C. M. Dalle Ore",
+        "A. Earle",
+        "K. Ennico",
+        "W. M. Grundy",
+        "C. Howett",
+        "D. J. Jennings",
+        "A. W. Lunsford",
+        "C. B. Olkin",
+        "A. H. Parker",
+        "S. Philippe",
+        "S. Protopapa",
+        "D. Reuter",
+        "B. Schmitt",
+        "J. A. Stansberry",
+        "S. A. Stern",
+        "A. Verbiscer",
+        "H. A. Weaver",
+        "L. A. Young",
+        "New Horizons Surface Composition Theme Team",
+        "Ralph Instrument Team"
+      ],
+      "observations": "2015-07-14 encounter; two Nix LEISA scans at publisher approximate ranges 60,000/162,000 km. Exact scan time/product crosswalk open.",
+      "measurement": "1.5/2.0 micron water-ice bands; 1.65 micron crystalline signature and additional approximately 2.2 micron feature. Nix approximately 130 detector pixels in closest scan, source estimate not a new raster calculation.",
+      "model": "Hapke intimate mixtures use amorphous/crystalline water-ice grain sizes and tholin components, assume 50 K; fitted mixtures, temperature and grain sizes are not direct local composition/temperature measurements. NH3-water mixture or other ammoniated carrier proposed, not unique chemistry. Ceres comparison does not authorize Ceres terrain reuse.",
+      "limits": "Noise-pattern removal, motion correction and extraction matter; reported little band-depth variation does not establish uniform centimetre-scale terrain or assign spectra to native MVIC pixels. Full Cook2018 DOI10.1016/j.icarus.2018.05.024 remains open; publisher web access returned internal error, no final-paper hash or licence invented."
+    },
+    "Holler2025": {
+      "type": "Two-page conference abstract 7028, LPI contribution3059; not asserted peer-reviewed final paper. Exact publication day remains unknown.",
+      "authors": [
+        "B. J. Holler",
+        "D. Wang",
+        "D. Chittiraibalan",
+        "J. A. Stansberry",
+        "N. Pinilla-Alonso",
+        "E. Lellouch",
+        "T. Bertrand",
+        "R. Brunetto",
+        "R. J. Cartwright",
+        "A. C. de Souza Feliciano",
+        "E. Fernández-Valenzuela",
+        "P. Lavvas",
+        "F. Merlin",
+        "K. T. Murray",
+        "S. Protopapa",
+        "G. Villanueva",
+        "I. Wong"
+      ],
+      "observationDates": [
+        "2022-10-05",
+        "2022-10-08",
+        "2022-10-10"
+      ],
+      "program": 1658,
+      "instrument": "JWST NIRCam",
+      "filters": [
+        "F070W",
+        "F090W",
+        "F115W",
+        "F140M"
+      ],
+      "measurement": "Aperture photometry of unresolved Nix/Hydra in short-wavelength images, nearby-background correction for Pluto/Charon contamination. Only one image per filter/date due to dither issue. Not present in long-wavelength images; Styx/Kerberos undetectable in this observation setup, not absence.",
+      "interpretation": "Comparison to DiSCo-TNO program2418 spectral classes and water-rich Haumea family is closest to water-rich family but discrepant at shorter wavelengths; similarities are not identity or local fractions. Red material and primordial-impact-layer origins are hypotheses, not direct history, chemistry or dated local terrain. No other-body map adopted.",
+      "limits": "These 0.7–1.4 micron measurements do not resolve geography, uniquely identify chemistry or calibrate visible colour/native MVIC/observer scene. MAST exposure/extraction/calibration crosswalk and final publication remain open.",
+      "credit": "NASA/ESA/CSA James Webb Space Telescope; STScI operated by AURA under NASA contract NAS5-03127; programs1658/2418."
+    },
+    "PDS": "Official profile identifies derived composition cubes for separate Pluto/Charon/Nix/Hydra/Kerberos targets. Metadata retained; no product bytes or map adopted, no calibration/geographic registration claim.",
+    "terms": "No explicit CC licence verified for either conference PDF; retained as research inputs. No figure, data cube or derivative embedded. NASA image terms remain separately recorded and are not blanket paper licences.",
+    "preservation": {
+      "dossiers": 68,
+      "newEmbedding": false,
+      "productionCodecsChanged": false,
+      "trackedEarlierInputsByteEqual": 389
+    },
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15992747,
+      "headroomBytes": 7253,
+      "queue": 566,
+      "completeSnapshotSha256": "84dd0f852411f07f69e71b4d72dca822e086a33c7290a775a4a0860c1fd5f015",
+      "rawSnapshotSha256": "5a78a932d4e7be83488322980ffbd19f750a1172f8b2cf7ef144b62f7f9fbb08",
+      "browser": "Chrome exact complete readable JSON and HTML-parser snapshot text; 237 decoded images, 20 bands, 517 details, 32 model entries; no page errors. Other engines remain open.",
+      "attribution": "Complete readable JSON hash and full HTML byte count identical to verified 9dfb70a build; no savings claimed, production codecs unchanged."
+    }
+  },
+  "localPreparation": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "status": "Research-only independent local original prepared; no new dossier or embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Create one independent scientific-educational hypothetical local landscape on Nix, Pluto's small irregular moon. Wide 16:9 photorealistic illustration, approximately 1672 by 941. This is invented terrain, NOT a reconstruction of a New Horizons image or any mapped site. Independently design grey fine-grained regolith, scattered angular blocks of varied sizes, shallow depressions and a low broken ridge on a gently uneven horizon. Subtle pale patches may suggest ice-like material artistically, but do not show diagnostic crystals, mapped chemistry, measured material fractions, or ammonia as confirmed. Low oblique illumination and exposure are artistic assumptions. Almost black sky is an assumed transparent view, not evidence of absent atmosphere. No Sun, planets, stars, astronomical disks, haze, plumes, liquids, oceans, biology, people, spacecraft, structures or implication of a survivable landing. Do not use or recolour any Moon, Mars, Pluto, Charon, asteroid or other observed body's surface map; no reference images are supplied. No identified Nix crater or permanent Pluto-facing site. Clearly readable unobtrusive footer: 'IMAGINED · LOCAL NIX'. A smaller line: 'Terrain, materials and lighting are assumed'. Maintain natural scientific illustration style and sober grey palette.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9403d91e-d34a-42fe-900c-fb0661d38b0e.png",
+    "originalPath": "data/research-sources/nix-generated-surfaceImage-original.png",
+    "inspection": "Viewed generated original: legible IMAGINED LOCAL NIX footer and assumptions line; invented grey blocks, grains, low broken ridge and depressions. No astronomical disk, plume, liquid, biology, spacecraft or landing depiction. No observed map input.",
+    "limitations": [
+      "Terrain, relief, grain sizes, pale patches, chemistry, fractions, colour, lighting and exposure invented.",
+      "Not a dated New Horizons site, observed globe map or analog body skin.",
+      "Disk-integrated LEISA spectra and Hapke model mixtures do not map these local materials; ammoniated carrier remains nonunique.",
+      "Black sky is assumed transparency, not measured atmospheric absence.",
+      "No astronomical disk and no angular/raster-size claim.",
+      "Nix rotation is not permanently Pluto-facing; observer geometry must distinguish system-barycentric semimajor axis from variable Pluto/Charon distances.",
+      "All68 earlier dossiers preserved; observer/master/preview and additive dossier remain pending substantial lossless headroom."
+    ],
+    "original": {
+      "path": "data/research-sources/nix-generated-surfaceImage-original.png",
+      "bytes": 3171203,
+      "sha256": "b30fc8783020d84d88ac9903240c04298963c2d2ec324adec266205147aaeb73",
+      "width": 1672,
+      "height": 941,
+      "mime": "image/png"
+    },
+    "preservation": {
+      "trackedInputsByteIdentical": 389,
+      "dossiers": 68,
+      "newEmbedding": false
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991695,
+      "headroomBytes": 8305,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+        "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limitations": "Chrome exact complete readableJSON and HTML-parser packed payload;237 images20 bands517 details32 model entries. Other engines open. Interbuild differences unaudited; no size-saving attribution. Production codecs unchanged; no new embedding."
+    }
+  },
+  "skyPreparation": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "status": "Research-only independent observer original; no dossier or new embedding",
+    "generator": "Built-in image_gen",
+    "prompt": "Scientific-educational independent hypothetical sky view from Nix, wide16:9 approximately1672x941. Generate from scratch without input maps/photos. Invent grey granular small-moon foreground, scattered angular blocks, shallow depressions and low broken ridge; no known New Horizons site. Nearly black sky assumes transparency, not atmospheric absence. Above horizon show two SMALL separately positioned disks: independently invented Pluto muted grey/tan appearance, diameter about41pixels (2.7954730474779614degrees), and independently invented Charon neutral grey appearance about20pixels (1.3429757480285875degrees), for nominal90degree horizontal FOV and1672pixel width. Do not enlarge them into looming worlds. Shared skyGeometry uses Pluto1188.3km at48715.42469025532km and Charon606km at51709.105365709016km; these are hypothetical right-angle system-barycentric geometry with assumed25km observer height, not dated ephemerides or registered surface site. Place Pluto toward left of upper sky and Charon toward right with clear separation artistically; positions, phases, axis/camera attitude, light and exposure assumed, not calibrated. Do not reuse or recolour Moon/Mars/Pluto/Charon/other observed-body maps; independently design subtle nonrecognizable disk markings, no heart/Sputnik pattern. Nix rotates rapidly, no permanent Pluto-facing site. Grey/pale local materials and all chemistry fractions invented, spectral models do not map this scene. Omit Sun, stars, rings and visible atmosphere; omission artistic not absence. No people spacecraft habitats landing/survivability plume liquid ocean biology interior cutaway. Clear legible footer 'IMAGINED SKY FROM NIX'; smaller footer 'Invented terrain and disk appearances · Assumed geometry'.",
+    "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-090c3865-6562-4da8-8578-ae0d2a31bcdf.png",
+    "originalPath": "data/research-sources/nix-generated-skyImage-original.png",
+    "geometryRecord": "docs/research/nix-observer-geometry-preparation-2026-10-11.json",
+    "inspection": "Viewed original: labelled IMAGINED SKY FROM NIX; invented terrain and two separately generated disk appearances. Both disks visibly oversized versus requested angular geometry; no calibrated diameter claim. No image/map input, plume/liquid/biology/craft/landing.",
+    "limitations": [
+      "Terrain/material fractions/chemistry/colour/disk patterns/phase/light/exposure invented, no analog skin or dated New Horizons site.",
+      "Black sky assumes transparency, not measured atmospheric absence; ring/atmosphere omissions artistic, not absence.",
+      "Rapid retrograde rotation, variable barycentric distances and visibility; no permanent Pluto-facing site.",
+      "Mean spherical target radii and approximate25km observer height; full shape/attitude/ephemeris registration open.",
+      "Generated disks oversized; threshold spans are phase/exposure sensitive and not calibrated full diameters.",
+      "Original retained with full prompt; all68 dossiers unchanged, substantial lossless headroom required before further embedding."
+    ],
+    "original": {
+      "path": "data/research-sources/nix-generated-skyImage-original.png",
+      "bytes": 2298953,
+      "sha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+      "width": 1672,
+      "height": 941
+    },
+    "rasterAudit": {
+      "pluto": {
+        "row": 155,
+        "thresholdSpans": {
+          "5": 112,
+          "10": 108,
+          "20": 107
+        },
+        "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+      },
+      "charon": {
+        "row": 200,
+        "thresholdSpans": {
+          "5": 59,
+          "10": 58,
+          "20": 58
+        },
+        "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+      }
+    },
+    "preservation": {
+      "trackedInputsByteIdentical": 389,
+      "dossiers": 68
+    },
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991695,
+      "headroomBytes": 8305,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+        "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+    }
+  },
+  "geometryPreparation": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+    "sources": [
+      "src/data/sol.js Pluto radius/mass",
+      "src/data/moons.js Charon radius/mass and19600km separation",
+      "docs/research/nix-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric48694km and50x35x33km ellipsoid"
+    ],
+    "assumptions": {
+      "circularCoplanarSystem": true,
+      "nixBarycentricRadiusKm": 48694,
+      "plutoCharonSeparationKm": 19600,
+      "nixObserverHeightKm": 25,
+      "heightUse": "Assumed25km maximum ellipsoid semiaxis, not a registered surface normal or measured site height",
+      "phase": "Illustrative right-angle barycentric configuration; no dated ephemeris",
+      "horizontalFovDeg": 90,
+      "temperatureK": 40,
+      "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+    },
+    "barycentricOffsetsKm": {
+      "pluto": 2126.8199233716477,
+      "charon": 17473.180076628352
+    },
+    "geometry": {
+      "pluto": {
+        "radiusKm": 1188.3,
+        "representativeDistancesKm": {
+          "alignedNear": 46542.180076628356,
+          "rightAngle": 48715.42469025532,
+          "alignedFar": 50795.819923371644
+        },
+        "angularResults": {
+          "alignedNear": {
+            "angularDiameterDeg": 2.9260328529675395,
+            "centreDiscWidthFraction": 0.025540004659400133,
+            "targetPixels1672": 42.702887790517025
+          },
+          "rightAngle": {
+            "angularDiameterDeg": 2.7954730474779614,
+            "centreDiscWidthFraction": 0.02439994491418415,
+            "targetPixels1672": 40.7967078965159
+          },
+          "alignedFar": {
+            "angularDiameterDeg": 2.68096022303844,
+            "centreDiscWidthFraction": 0.023400061102331955,
+            "targetPixels1672": 39.12490216309903
+          }
+        }
+      },
+      "charon": {
+        "radiusKm": 606,
+        "representativeDistancesKm": {
+          "alignedNear": 31195.819923371648,
+          "rightAngle": 51709.105365709016,
+          "alignedFar": 66142.18007662836
+        },
+        "angularResults": {
+          "alignedNear": {
+            "angularDiameterDeg": 2.2261589250467386,
+            "centreDiscWidthFraction": 0.01942934575970378,
+            "targetPixels1672": 32.48586611022472
+          },
+          "rightAngle": {
+            "angularDiameterDeg": 1.3429757480285875,
+            "centreDiscWidthFraction": 0.011720210886991928,
+            "targetPixels1672": 19.596192603050504
+          },
+          "alignedFar": {
+            "angularDiameterDeg": 1.0499118152679519,
+            "centreDiscWidthFraction": 0.009162465401776,
+            "targetPixels1672": 15.319642151769472
+          }
+        }
+      }
+    },
+    "limitations": [
+      "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+      "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+      "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+      "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+      "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+      "All68 dossiers and original/native/map/model/shape bytes preserved. Headroom recovery essential before prepared Charon69 or further embedding."
+    ],
+    "verification": {
+      "tests": "458 pass,1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991695,
+      "headroomBytes": 8305,
+      "browser": {
+        "bandImages": 20,
+        "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+        "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+        "magic": "FIDBRT01",
+        "images": 237,
+        "details": 517,
+        "models": 32
+      },
+      "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+    }
+  },
+  "masters": {
+    "date": "2026-10-11",
+    "body": "Nix",
+    "status": "Research-only retained masters/previews; no new dossier or embedding",
+    "masterFormat": "1536px JPEG quality85",
+    "previewFormat": "256px JPEG quality80; eventual offline generated WebP quality80",
+    "assets": [
+      {
+        "role": "surfaceImage",
+        "original": {
+          "path": "data/research-sources/nix-generated-surfaceImage-original.png",
+          "bytes": 3171203,
+          "sha256": "b30fc8783020d84d88ac9903240c04298963c2d2ec324adec266205147aaeb73",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/nix-generated-surfaceImage-master.jpg",
+          "bytes": 360919,
+          "sha256": "e8779081192f65dd1061f8f9a7dbb0a35be3548dda7cf36f9a979fc3df541542",
+          "width": 1536,
+          "height": 864
+        },
+        "preview": {
+          "path": "data/research-sources/nix-generated-surfaceImage-preview.jpg",
+          "bytes": 9604,
+          "sha256": "ec44127f31d1ef960c01e740664b770517426f161eeaa044940fb20aefeea03a",
+          "width": 256,
+          "height": 144
+        }
+      },
+      {
+        "role": "skyImage",
+        "original": {
+          "path": "data/research-sources/nix-generated-skyImage-original.png",
+          "bytes": 2298953,
+          "sha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+          "width": 1672,
+          "height": 941
+        },
+        "master": {
+          "path": "data/research-sources/nix-generated-skyImage-master.jpg",
+          "bytes": 261117,
+          "sha256": "d87dc7cb0f2e1624ec017a2b5592a71468a982bbdfdcb6a789934907caf167d2",
+          "width": 1536,
+          "height": 864
+        },
+        "preview": {
+          "path": "data/research-sources/nix-generated-skyImage-preview.jpg",
+          "bytes": 7728,
+          "sha256": "f88a05691d4bb9c2f2089869042c614e56bdb96e238d4f6125c452a1a5d5fd74",
+          "width": 256,
+          "height": 144
+        }
+      }
+    ],
+    "limitations": [
+      "Original PNGs and full builtin prompts preserved. Format/size derivatives are lossy, not native scientific data.",
+      "Invented terrain/chemistry/fractions/colour/light and Pluto/Charon appearances; no analog skin or dated site registration.",
+      "Both generated sky disks oversized; previous skyGeometry and threshold audits retained, not calibrated full diameters.",
+      "Tiny preview footers and disk markings require readable card labels; previews do not establish geography or photometry.",
+      "Black sky assumes transparency, not measured absence; rotating Nix has no permanent Pluto-facing site.",
+      "No new embedding. Substantial conforming lossless headroom required before Charon69 or Nix dossier."
+    ],
+    "previewRawBytes": 17332,
+    "preservation": {
+      "trackedInputsByteIdentical": 389,
+      "dossiers": 68
+    },
+    "inspection": "Both 256px previews inspected; small footers and disk markings require card labels.",
+    "verification": {
+      "tests": "458 pass, 1 skip",
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15991695,
+      "headroomBytes": 8305,
+      "completeSnapshotSha256": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+      "browser": "Chrome complete readable JSON and HTML-parser transport equality; 237 images, 20 bands, 517 details, 32 model entries; no errors. Other engines open.",
+      "attribution": "JSON and HTML byte-identical to previous verified batch; no savings claim. Production codecs unchanged.",
+      "queue": 566
+    }
+  },
+  "bodies": [
+    {
+      "id": "nix",
+      "name": "Nix",
+      "aliases": [
+        "Nix"
+      ],
+      "kind": "moon",
+      "researchDate": "2026-10-12",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or new shape adopted. Catalogue surfacePending retained; native half-lit image does not establish complete geography.",
+      "measured": [
+        "Unchanged 1042x1024 grayscale JPEG inspected: irregular half-lit body, broad craterlike relief with blur and dark unilluminated areas. TIFF retained unchanged. No transform or new raster-scale computation.",
+        "{\"rangeKm\":23000,\"illuminatedExtentKm\":[19,47],\"qualification\":\"Publisher approximate caption estimates; illuminated dimensions are not three-dimensional axes, global diameter or independently measured raster scale.\"}",
+        "1.5/2.0 micron water-ice bands; 1.65 micron crystalline signature and additional approximately 2.2 micron feature. Nix approximately 130 detector pixels in closest scan, source estimate not a new raster calculation.",
+        "Aperture photometry of unresolved Nix/Hydra in short-wavelength images, nearby-background correction for Pluto/Charon contamination. Only one image per filter/date due to dither issue. Not present in long-wavelength images; Styx/Kerberos undetectable in this observation setup, not absence.",
+        "Weaver2016 fitted50x35x33±3km ellipsoid, rotation1.829±.009days, pole350/42±10degrees and obliquity123degrees; these fits do not register a local normal. Barycentric48694km is not fixed distance to Pluto."
+      ],
+      "modelled": [
+        "Hapke intimate mixtures use amorphous/crystalline water-ice grain sizes and tholin components, assume 50 K; fitted mixtures, temperature and grain sizes are not direct local composition/temperature measurements. NH3-water mixture or other ammoniated carrier proposed, not unique chemistry. Ceres comparison does not authorize Ceres terrain reuse.",
+        "Comparison to DiSCo-TNO program2418 spectral classes and water-rich Haumea family is closest to water-rich family but discrepant at shorter wavelengths; similarities are not identity or local fractions. Red material and primordial-impact-layer origins are hypotheses, not direct history, chemistry or dated local terrain. No other-body map adopted.",
+        "Weaver geometric albedo.56±.05 depends on phase law/calibration and unobserved opposition surge; no correction applied to publisher JPEG or scene. Crater ages, regolith and impact/excavation origins are models, not directly dated history.",
+        "Circular coplanar right-angle approximate barycentric skyGeometry yields Pluto2.7954730474779614degrees40.7967078965159px/Charon1.3429757480285875degrees19.596192603050504px at1672/90HFOV; angular helper only, not dated distances."
+      ],
+      "unknown": [
+        "Noise-pattern removal, motion correction and extraction matter; reported little band-depth variation does not establish uniform centimetre-scale terrain or assign spectra to native MVIC pixels. Full Cook2018 DOI10.1016/j.icarus.2018.05.024 remains open; publisher web access returned internal error, no final-paper hash or licence invented.",
+        "These 0.7–1.4 micron measurements do not resolve geography, uniquely identify chemistry or calibrate visible colour/native MVIC/observer scene. MAST exposure/extraction/calibration crosswalk and final publication remain open.",
+        "Native camera/product/frame/coverage/photometry crosswalk, later rotation/pole/shape/site registration, local fractions and atmosphere transfer remain open. N_MPAN_CA2015-07-14T11:16:35UTC is a possible association, not exact confirmed native product. Current rotational chaos was deferred in Weaver2016."
+      ],
+      "assumed": [
+        "Rapid nonsynchronous rotation and significantly retrograde Nix pole fit; no permanent Pluto-facing site. Whether chaos governs current rotation was deferred, not established here.",
+        "Ellipsoid and pole fits combine resolved images with May-July 2015 lightcurves and PSF modelling; do not imply calibrated local geography.",
+        "Geometric albedo depends on assumed phase law: 0.61 for 0.04 mag/degree versus 0.51 for 0.02; near-zero-phase opposition surge was unobserved. Table 2 applies a November 2015 LORRI calibration revision of 20%; do not transfer to native publisher JPEG or scene photometry.",
+        "High albedo suggested water ice before LEISA data arrived; this paper alone does not spectroscopically identify local composition or material fractions.",
+        "Mostly neutral MVIC colours and a redder large-crater region are image measurements; impactor material versus excavation are hypotheses, not unique chemistry. No Pluto/Charon/other-moon skin adopted.",
+        "Crater identifications and gravity/porosity scaling support model-dependent old surface ages; not directly dated terrain or local rates.",
+        "Table S2 decimal crater sizes represent researcher averages, not tenth-kilometre accuracy; Table S3 resolution and coverage are published estimates, not new raster calculations.",
+        "Table 1 N_MPAN_CA at 2015-07-14T11:16:35UTC, 0.45km/pixel and 85.9degree phase is a possible panchromatic association for PIA20287, not an exact calibrated product crosswalk; original archive product identity remains open.",
+        "No atmospheric absence, ocean, plume, biology or survivable landing established.",
+        "Terrain/material fractions/chemistry/colour/disk patterns/phase/light/exposure invented, no analog skin or dated New Horizons site.",
+        "Black sky assumes transparency, not measured atmospheric absence; ring/atmosphere omissions artistic, not absence.",
+        "Rapid retrograde rotation, variable barycentric distances and visibility; no permanent Pluto-facing site.",
+        "Mean spherical target radii and approximate25km observer height; full shape/attitude/ephemeris registration open.",
+        "Generated disks oversized; threshold spans are phase/exposure sensitive and not calibrated full diameters.",
+        "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+        "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+        "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+        "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+        "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+        "Independent invented terrain, grains/blocks, chemistry fractions, grey colour, Pluto/Charon patterns/phase/light/exposure; no analog map, dated New Horizons site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Sun39.48AU representative off-frame angular helper, not scene photometry. Small preview annotations require readable IMAGINED card labels."
+      ],
+      "references": [
+        {
+          "url": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+          "title": "NASA New Horizons Nix half illuminated PIA20287",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": "2015-07-14",
+          "publicationDate": "2015-12-18",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "url": "https://arxiv.org/abs/1604.05366",
+          "title": "The Small Satellites of Pluto as Observed by New Horizons",
+          "authors": [
+            "Weaver, H. A.",
+            "Buie, M. W.",
+            "Buratti, B. J.",
+            "Grundy, W. M.",
+            "Lauer, T. R.",
+            "Olkin, C. B.",
+            "Parker, A. H.",
+            "Porter, S. B.",
+            "Showalter, M. R.",
+            "Spencer, J. R.",
+            "Stern, S. A.",
+            "Verbiscer, A. J.",
+            "McKinnon, W. B.",
+            "Moore, J. M.",
+            "Robbins, S. J.",
+            "Schenk, P.",
+            "Singer, K. N.",
+            "Barnouin, O. S.",
+            "Cheng, A. F.",
+            "Ernst, C. M.",
+            "Lisse, C. M.",
+            "Jennings, D. E.",
+            "Lunsford, A. W.",
+            "Reuter, D. C.",
+            "Hamilton, D. P.",
+            "Kaufmann, D. E.",
+            "Ennico, K.",
+            "Young, L. A.",
+            "Beyer, R. A.",
+            "Binzel, R. P.",
+            "Bray, V. J.",
+            "Chaikin, A. L.",
+            "Cook, J. C.",
+            "Cruikshank, D. P.",
+            "Ore, C. M. Dalle",
+            "Earle, A. M.",
+            "Gladstone, G. R.",
+            "Howett, C. J. A.",
+            "Linscott, I. R.",
+            "Nimmo, F.",
+            "Parker, J. Wm.",
+            "Philippe, S.",
+            "Protopapa, S.",
+            "Reitsema, H. J.",
+            "Schmitt, B.",
+            "Stryk, T.",
+            "Summers, M. E.",
+            "Tsang, C. C. C.",
+            "Throop, H. H. B.",
+            "White, O. L.",
+            "Zangari, A. M."
+          ],
+          "doi": "10.1126/science.aae0030",
+          "sourceRecords": [
+            {
+              "path": "data/research-sources/nix-Weaver2016.pdf",
+              "url": "https://arxiv.org/pdf/1604.05366",
+              "bytes": 4953591,
+              "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+              "pages": 48
+            },
+            {
+              "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+              "url": "https://arxiv.org/abs/1604.05366",
+              "bytes": 50077,
+              "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+              "status": 200
+            },
+            {
+              "path": "data/research-sources/nix-Weaver2016-license.html",
+              "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+              "bytes": 1415,
+              "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+              "status": 200
+            }
+          ],
+          "terms": "Specific arxiv nonexclusive distribution, not CC BY. No paper figure embedded."
+        },
+        {
+          "url": "https://www.hou.usra.edu/meetings/lpsc2017/pdf/2478.pdf",
+          "title": "Two-page LPSC XLVIII abstract 2478, preliminary conference report, not final 2018 article.",
+          "authors": [
+            "J. C. Cook",
+            "R. P. Binzel",
+            "D. P. Cruikshank",
+            "C. M. Dalle Ore",
+            "A. Earle",
+            "K. Ennico",
+            "W. M. Grundy",
+            "C. Howett",
+            "D. J. Jennings",
+            "A. W. Lunsford",
+            "C. B. Olkin",
+            "A. H. Parker",
+            "S. Philippe",
+            "S. Protopapa",
+            "D. Reuter",
+            "B. Schmitt",
+            "J. A. Stansberry",
+            "S. A. Stern",
+            "A. Verbiscer",
+            "H. A. Weaver",
+            "L. A. Young",
+            "New Horizons Surface Composition Theme Team",
+            "Ralph Instrument Team"
+          ],
+          "sha256": "0348027cd0d9fe794603645896e75a8633fa6ab8769ab772db2e28c97e2df8c3",
+          "terms": "Conference abstract; no verified CC licence, no figure embedded."
+        },
+        {
+          "url": "https://www.hou.usra.edu/meetings/plutosystem2025/pdf/7028.pdf",
+          "title": "Two-page conference abstract 7028, LPI contribution3059; not asserted peer-reviewed final paper. Exact publication day remains unknown.",
+          "authors": [
+            "B. J. Holler",
+            "D. Wang",
+            "D. Chittiraibalan",
+            "J. A. Stansberry",
+            "N. Pinilla-Alonso",
+            "E. Lellouch",
+            "T. Bertrand",
+            "R. Brunetto",
+            "R. J. Cartwright",
+            "A. C. de Souza Feliciano",
+            "E. Fernández-Valenzuela",
+            "P. Lavvas",
+            "F. Merlin",
+            "K. T. Murray",
+            "S. Protopapa",
+            "G. Villanueva",
+            "I. Wong"
+          ],
+          "sha256": "a62efc11f17e3406c50df76f9cbe4c102610514486006b82cd778f0a33b534dd",
+          "terms": "Conference abstract; no verified CC licence, no figure embedded."
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "title": "NASA media terms"
+        }
+      ],
+      "contextImages": [
+        {
+          "path": "data/research-sources/nix-PIA20287-original.jpg",
+          "url": "/bespoke/nix-new-horizons-native.jpg",
+          "bytes": 26108,
+          "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "width": 1042,
+          "height": 1024,
+          "mode": "L",
+          "format": "JPEG",
+          "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.jpg",
+          "sourceUrl": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+          "tier": "measured",
+          "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+          "observationDate": "2015-07-14",
+          "publicationDate": "2015-12-18",
+          "terms": "NASA educational/informational media guidelines, with third-party exceptions and no endorsement. Not asserted CC BY.",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "description": "Actual New Horizons MVIC Nix half-lit image; grayscale, not calibrated visible colour or complete geography.",
+          "processing": "Full unchanged publisher1042x1024JPEG. No Fidelity resize/re-encoding; TIFF retained. Half-lit blur/black areas are not complete surface chemistry or atmospheric absence. Caption range/illuminated extent are source estimates, not new raster measurements."
+        }
+      ],
+      "skyModel": {
+        "star": "Sun",
+        "radiusSun": 1,
+        "temperatureK": 5772,
+        "distanceAU": 39.48,
+        "horizontalFovDeg": 90
+      },
+      "surfaceLabel": "IMAGINED LOCAL NIX TERRAIN",
+      "skyLabel": "IMAGINED SKY FROM NIX",
+      "observerGeometry": {
+        "date": "2026-10-11",
+        "body": "Nix",
+        "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+        "sources": [
+          "src/data/sol.js Pluto radius/mass",
+          "src/data/moons.js Charon radius/mass and19600km separation",
+          "docs/research/nix-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric48694km and50x35x33km ellipsoid"
+        ],
+        "assumptions": {
+          "circularCoplanarSystem": true,
+          "nixBarycentricRadiusKm": 48694,
+          "plutoCharonSeparationKm": 19600,
+          "nixObserverHeightKm": 25,
+          "heightUse": "Assumed25km maximum ellipsoid semiaxis, not a registered surface normal or measured site height",
+          "phase": "Illustrative right-angle barycentric configuration; no dated ephemeris",
+          "horizontalFovDeg": 90,
+          "temperatureK": 40,
+          "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+        },
+        "barycentricOffsetsKm": {
+          "pluto": 2126.8199233716477,
+          "charon": 17473.180076628352
+        },
+        "geometry": {
+          "pluto": {
+            "radiusKm": 1188.3,
+            "representativeDistancesKm": {
+              "alignedNear": 46542.180076628356,
+              "rightAngle": 48715.42469025532,
+              "alignedFar": 50795.819923371644
+            },
+            "angularResults": {
+              "alignedNear": {
+                "angularDiameterDeg": 2.9260328529675395,
+                "centreDiscWidthFraction": 0.025540004659400133,
+                "targetPixels1672": 42.702887790517025
+              },
+              "rightAngle": {
+                "angularDiameterDeg": 2.7954730474779614,
+                "centreDiscWidthFraction": 0.02439994491418415,
+                "targetPixels1672": 40.7967078965159
+              },
+              "alignedFar": {
+                "angularDiameterDeg": 2.68096022303844,
+                "centreDiscWidthFraction": 0.023400061102331955,
+                "targetPixels1672": 39.12490216309903
+              }
+            }
+          },
+          "charon": {
+            "radiusKm": 606,
+            "representativeDistancesKm": {
+              "alignedNear": 31195.819923371648,
+              "rightAngle": 51709.105365709016,
+              "alignedFar": 66142.18007662836
+            },
+            "angularResults": {
+              "alignedNear": {
+                "angularDiameterDeg": 2.2261589250467386,
+                "centreDiscWidthFraction": 0.01942934575970378,
+                "targetPixels1672": 32.48586611022472
+              },
+              "rightAngle": {
+                "angularDiameterDeg": 1.3429757480285875,
+                "centreDiscWidthFraction": 0.011720210886991928,
+                "targetPixels1672": 19.596192603050504
+              },
+              "alignedFar": {
+                "angularDiameterDeg": 1.0499118152679519,
+                "centreDiscWidthFraction": 0.009162465401776,
+                "targetPixels1672": 15.319642151769472
+              }
+            }
+          }
+        },
+        "limitations": [
+          "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+          "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+          "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+          "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+          "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+          "All68 dossiers and original/native/map/model/shape bytes preserved. Headroom recovery essential before prepared Charon69 or further embedding."
+        ],
+        "verification": {
+          "tests": "458 pass,1 skip",
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "htmlBytes": 15991695,
+          "headroomBytes": 8305,
+          "browser": {
+            "bandImages": 20,
+            "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+            "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+            "magic": "FIDBRT01",
+            "images": 237,
+            "details": 517,
+            "models": 32
+          },
+          "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+        },
+        "rasterAudit": {
+          "pluto": {
+            "row": 155,
+            "thresholdSpans": {
+              "5": 112,
+              "10": 108,
+              "20": 107
+            },
+            "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+          },
+          "charon": {
+            "row": 200,
+            "thresholdSpans": {
+              "5": 59,
+              "10": 58,
+              "20": 58
+            },
+            "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+          }
+        }
+      },
+      "inputs": {
+        "surfaceImage": "nix-generated-surfaceImage-original.png",
+        "skyImage": "nix-generated-skyImage-original.png"
+      }
+    }
+  ],
+  "catalogueIntegration": {
+    "sources": [
+      {
+        "path": "data/research-sources/nix-jpl-elements-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "status": 200,
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      },
+      {
+        "path": "data/research-sources/nix-jpl-physical-2026-10-12.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "status": 200,
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "retrieved": "2026-10-12",
+        "contentType": "text/html"
+      }
+    ],
+    "reason": "Nix existed in the research inventory but was absent from selectable MOONS; additive entry enables the individual route.",
+    "physical": "JPL equivalent-volume radius 18 ± 1 km, radius reference Stern et al. 2018; GM 0.0015 ± 0.0005 km^3/s^2 PLU060 retained as alternative, massKg left null rather than converting it without a full mass audit. Derived density 0.88 ± 0.31 g/cm^3 is not chemistry.",
+    "elements": "PLU060 equatorial epoch 2000-01-01.5 TDB, a49300 km e.015 w31.4 M338.2 i0 node0 P24.85 d. Brozovic/Jacobson2024 AJ167:256 reference. Rounded zero angles are not exact coplanarity. Mean orbit is not a dated position.",
+    "rotation": "Weaver2016 1.829 ± .009 d => nominal43.896 hours; nonsynchronous, locked false. No permanent Pluto-facing site.",
+    "preservation": "Earlier MOONS entries unchanged. Observer geometry continues to use the explicitly hypothetical historical2016 barycentric48694 km; no silent recalculation or joint-fit claim."
+  },
+  "status": "Delivered individual dossier70, selectable Nix route, native full publisher JPEG and independent IMAGINED local/sky views. Nested preparations retain their historical research-only statuses.",
+  "dossierRecord": {
+    "id": "nix",
+    "name": "Nix",
+    "aliases": [
+      "Nix"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-12",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted. Catalogue surfacePending retained; native half-lit image does not establish complete geography.",
+    "measured": [
+      "Unchanged 1042x1024 grayscale JPEG inspected: irregular half-lit body, broad craterlike relief with blur and dark unilluminated areas. TIFF retained unchanged. No transform or new raster-scale computation.",
+      "{\"rangeKm\":23000,\"illuminatedExtentKm\":[19,47],\"qualification\":\"Publisher approximate caption estimates; illuminated dimensions are not three-dimensional axes, global diameter or independently measured raster scale.\"}",
+      "1.5/2.0 micron water-ice bands; 1.65 micron crystalline signature and additional approximately 2.2 micron feature. Nix approximately 130 detector pixels in closest scan, source estimate not a new raster calculation.",
+      "Aperture photometry of unresolved Nix/Hydra in short-wavelength images, nearby-background correction for Pluto/Charon contamination. Only one image per filter/date due to dither issue. Not present in long-wavelength images; Styx/Kerberos undetectable in this observation setup, not absence.",
+      "Weaver2016 fitted50x35x33±3km ellipsoid, rotation1.829±.009days, pole350/42±10degrees and obliquity123degrees; these fits do not register a local normal. Barycentric48694km is not fixed distance to Pluto."
+    ],
+    "modelled": [
+      "Hapke intimate mixtures use amorphous/crystalline water-ice grain sizes and tholin components, assume 50 K; fitted mixtures, temperature and grain sizes are not direct local composition/temperature measurements. NH3-water mixture or other ammoniated carrier proposed, not unique chemistry. Ceres comparison does not authorize Ceres terrain reuse.",
+      "Comparison to DiSCo-TNO program2418 spectral classes and water-rich Haumea family is closest to water-rich family but discrepant at shorter wavelengths; similarities are not identity or local fractions. Red material and primordial-impact-layer origins are hypotheses, not direct history, chemistry or dated local terrain. No other-body map adopted.",
+      "Weaver geometric albedo.56±.05 depends on phase law/calibration and unobserved opposition surge; no correction applied to publisher JPEG or scene. Crater ages, regolith and impact/excavation origins are models, not directly dated history.",
+      "Circular coplanar right-angle approximate barycentric skyGeometry yields Pluto2.7954730474779614degrees40.7967078965159px/Charon1.3429757480285875degrees19.596192603050504px at1672/90HFOV; angular helper only, not dated distances."
+    ],
+    "unknown": [
+      "Noise-pattern removal, motion correction and extraction matter; reported little band-depth variation does not establish uniform centimetre-scale terrain or assign spectra to native MVIC pixels. Full Cook2018 DOI10.1016/j.icarus.2018.05.024 remains open; publisher web access returned internal error, no final-paper hash or licence invented.",
+      "These 0.7–1.4 micron measurements do not resolve geography, uniquely identify chemistry or calibrate visible colour/native MVIC/observer scene. MAST exposure/extraction/calibration crosswalk and final publication remain open.",
+      "Native camera/product/frame/coverage/photometry crosswalk, later rotation/pole/shape/site registration, local fractions and atmosphere transfer remain open. N_MPAN_CA2015-07-14T11:16:35UTC is a possible association, not exact confirmed native product. Current rotational chaos was deferred in Weaver2016."
+    ],
+    "assumed": [
+      "Rapid nonsynchronous rotation and significantly retrograde Nix pole fit; no permanent Pluto-facing site. Whether chaos governs current rotation was deferred, not established here.",
+      "Ellipsoid and pole fits combine resolved images with May-July 2015 lightcurves and PSF modelling; do not imply calibrated local geography.",
+      "Geometric albedo depends on assumed phase law: 0.61 for 0.04 mag/degree versus 0.51 for 0.02; near-zero-phase opposition surge was unobserved. Table 2 applies a November 2015 LORRI calibration revision of 20%; do not transfer to native publisher JPEG or scene photometry.",
+      "High albedo suggested water ice before LEISA data arrived; this paper alone does not spectroscopically identify local composition or material fractions.",
+      "Mostly neutral MVIC colours and a redder large-crater region are image measurements; impactor material versus excavation are hypotheses, not unique chemistry. No Pluto/Charon/other-moon skin adopted.",
+      "Crater identifications and gravity/porosity scaling support model-dependent old surface ages; not directly dated terrain or local rates.",
+      "Table S2 decimal crater sizes represent researcher averages, not tenth-kilometre accuracy; Table S3 resolution and coverage are published estimates, not new raster calculations.",
+      "Table 1 N_MPAN_CA at 2015-07-14T11:16:35UTC, 0.45km/pixel and 85.9degree phase is a possible panchromatic association for PIA20287, not an exact calibrated product crosswalk; original archive product identity remains open.",
+      "No atmospheric absence, ocean, plume, biology or survivable landing established.",
+      "Terrain/material fractions/chemistry/colour/disk patterns/phase/light/exposure invented, no analog skin or dated New Horizons site.",
+      "Black sky assumes transparency, not measured atmospheric absence; ring/atmosphere omissions artistic, not absence.",
+      "Rapid retrograde rotation, variable barycentric distances and visibility; no permanent Pluto-facing site.",
+      "Mean spherical target radii and approximate25km observer height; full shape/attitude/ephemeris registration open.",
+      "Generated disks oversized; threshold spans are phase/exposure sensitive and not calibrated full diameters.",
+      "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+      "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+      "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+      "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+      "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+      "Independent invented terrain, grains/blocks, chemistry fractions, grey colour, Pluto/Charon patterns/phase/light/exposure; no analog map, dated New Horizons site, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Sun39.48AU representative off-frame angular helper, not scene photometry. Small preview annotations require readable IMAGINED card labels."
+    ],
+    "references": [
+      {
+        "url": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+        "title": "NASA New Horizons Nix half illuminated PIA20287",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2015-12-18",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "url": "https://arxiv.org/abs/1604.05366",
+        "title": "The Small Satellites of Pluto as Observed by New Horizons",
+        "authors": [
+          "Weaver, H. A.",
+          "Buie, M. W.",
+          "Buratti, B. J.",
+          "Grundy, W. M.",
+          "Lauer, T. R.",
+          "Olkin, C. B.",
+          "Parker, A. H.",
+          "Porter, S. B.",
+          "Showalter, M. R.",
+          "Spencer, J. R.",
+          "Stern, S. A.",
+          "Verbiscer, A. J.",
+          "McKinnon, W. B.",
+          "Moore, J. M.",
+          "Robbins, S. J.",
+          "Schenk, P.",
+          "Singer, K. N.",
+          "Barnouin, O. S.",
+          "Cheng, A. F.",
+          "Ernst, C. M.",
+          "Lisse, C. M.",
+          "Jennings, D. E.",
+          "Lunsford, A. W.",
+          "Reuter, D. C.",
+          "Hamilton, D. P.",
+          "Kaufmann, D. E.",
+          "Ennico, K.",
+          "Young, L. A.",
+          "Beyer, R. A.",
+          "Binzel, R. P.",
+          "Bray, V. J.",
+          "Chaikin, A. L.",
+          "Cook, J. C.",
+          "Cruikshank, D. P.",
+          "Ore, C. M. Dalle",
+          "Earle, A. M.",
+          "Gladstone, G. R.",
+          "Howett, C. J. A.",
+          "Linscott, I. R.",
+          "Nimmo, F.",
+          "Parker, J. Wm.",
+          "Philippe, S.",
+          "Protopapa, S.",
+          "Reitsema, H. J.",
+          "Schmitt, B.",
+          "Stryk, T.",
+          "Summers, M. E.",
+          "Tsang, C. C. C.",
+          "Throop, H. H. B.",
+          "White, O. L.",
+          "Zangari, A. M."
+        ],
+        "doi": "10.1126/science.aae0030",
+        "sourceRecords": [
+          {
+            "path": "data/research-sources/nix-Weaver2016.pdf",
+            "url": "https://arxiv.org/pdf/1604.05366",
+            "bytes": 4953591,
+            "sha256": "20de1310d006967ad4545df4ab8fb490f1b8f6da4c2e0448c9c963fb45bc74af",
+            "pages": 48
+          },
+          {
+            "path": "data/research-sources/nix-Weaver2016-arxiv.html",
+            "url": "https://arxiv.org/abs/1604.05366",
+            "bytes": 50077,
+            "sha256": "3106a1ac2c3965d8bd57112f2800245a3497b60f69d7ef4cbccffc77193d57cc",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/nix-Weaver2016-license.html",
+            "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+            "bytes": 1415,
+            "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+            "status": 200
+          }
+        ],
+        "terms": "Specific arxiv nonexclusive distribution, not CC BY. No paper figure embedded."
+      },
+      {
+        "url": "https://www.hou.usra.edu/meetings/lpsc2017/pdf/2478.pdf",
+        "title": "Two-page LPSC XLVIII abstract 2478, preliminary conference report, not final 2018 article.",
+        "authors": [
+          "J. C. Cook",
+          "R. P. Binzel",
+          "D. P. Cruikshank",
+          "C. M. Dalle Ore",
+          "A. Earle",
+          "K. Ennico",
+          "W. M. Grundy",
+          "C. Howett",
+          "D. J. Jennings",
+          "A. W. Lunsford",
+          "C. B. Olkin",
+          "A. H. Parker",
+          "S. Philippe",
+          "S. Protopapa",
+          "D. Reuter",
+          "B. Schmitt",
+          "J. A. Stansberry",
+          "S. A. Stern",
+          "A. Verbiscer",
+          "H. A. Weaver",
+          "L. A. Young",
+          "New Horizons Surface Composition Theme Team",
+          "Ralph Instrument Team"
+        ],
+        "sha256": "0348027cd0d9fe794603645896e75a8633fa6ab8769ab772db2e28c97e2df8c3",
+        "terms": "Conference abstract; no verified CC licence, no figure embedded."
+      },
+      {
+        "url": "https://www.hou.usra.edu/meetings/plutosystem2025/pdf/7028.pdf",
+        "title": "Two-page conference abstract 7028, LPI contribution3059; not asserted peer-reviewed final paper. Exact publication day remains unknown.",
+        "authors": [
+          "B. J. Holler",
+          "D. Wang",
+          "D. Chittiraibalan",
+          "J. A. Stansberry",
+          "N. Pinilla-Alonso",
+          "E. Lellouch",
+          "T. Bertrand",
+          "R. Brunetto",
+          "R. J. Cartwright",
+          "A. C. de Souza Feliciano",
+          "E. Fernández-Valenzuela",
+          "P. Lavvas",
+          "F. Merlin",
+          "K. T. Murray",
+          "S. Protopapa",
+          "G. Villanueva",
+          "I. Wong"
+        ],
+        "sha256": "a62efc11f17e3406c50df76f9cbe4c102610514486006b82cd778f0a33b534dd",
+        "terms": "Conference abstract; no verified CC licence, no figure embedded."
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "title": "NASA media terms"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/nix-PIA20287-original.jpg",
+        "url": "/bespoke/nix-new-horizons-native.jpg",
+        "bytes": 26108,
+        "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "width": 1042,
+        "height": 1024,
+        "mode": "L",
+        "format": "JPEG",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia20/pia20287/PIA20287.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/plutos-moon-nix-half-illuminated/",
+        "tier": "measured",
+        "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+        "observationDate": "2015-07-14",
+        "publicationDate": "2015-12-18",
+        "terms": "NASA educational/informational media guidelines, with third-party exceptions and no endorsement. Not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "description": "Actual New Horizons MVIC Nix half-lit image; grayscale, not calibrated visible colour or complete geography.",
+        "processing": "Full unchanged publisher1042x1024JPEG. No Fidelity resize/re-encoding; TIFF retained. Half-lit blur/black areas are not complete surface chemistry or atmospheric absence. Caption range/illuminated extent are source estimates, not new raster measurements."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 39.48,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.01349808244341817,
+      "centreDiscWidthFraction": 0.00011779299121644413,
+      "irradianceEarth": 0.0006415724581669096,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL NIX TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM NIX",
+    "observerGeometry": {
+      "date": "2026-10-11",
+      "body": "Nix",
+      "status": "Research-only hypothetical geometry; no observer illustration or new embedding",
+      "sources": [
+        "src/data/sol.js Pluto radius/mass",
+        "src/data/moons.js Charon radius/mass and19600km separation",
+        "docs/research/nix-primary-rotation-shape-assessment-2026-10-11.json Weaver2016 Table2 barycentric48694km and50x35x33km ellipsoid"
+      ],
+      "assumptions": {
+        "circularCoplanarSystem": true,
+        "nixBarycentricRadiusKm": 48694,
+        "plutoCharonSeparationKm": 19600,
+        "nixObserverHeightKm": 25,
+        "heightUse": "Assumed25km maximum ellipsoid semiaxis, not a registered surface normal or measured site height",
+        "phase": "Illustrative right-angle barycentric configuration; no dated ephemeris",
+        "horizontalFovDeg": 90,
+        "temperatureK": 40,
+        "temperatureUse": "Angular helper only; irradiance and colour outputs discarded"
+      },
+      "barycentricOffsetsKm": {
+        "pluto": 2126.8199233716477,
+        "charon": 17473.180076628352
+      },
+      "geometry": {
+        "pluto": {
+          "radiusKm": 1188.3,
+          "representativeDistancesKm": {
+            "alignedNear": 46542.180076628356,
+            "rightAngle": 48715.42469025532,
+            "alignedFar": 50795.819923371644
+          },
+          "angularResults": {
+            "alignedNear": {
+              "angularDiameterDeg": 2.9260328529675395,
+              "centreDiscWidthFraction": 0.025540004659400133,
+              "targetPixels1672": 42.702887790517025
+            },
+            "rightAngle": {
+              "angularDiameterDeg": 2.7954730474779614,
+              "centreDiscWidthFraction": 0.02439994491418415,
+              "targetPixels1672": 40.7967078965159
+            },
+            "alignedFar": {
+              "angularDiameterDeg": 2.68096022303844,
+              "centreDiscWidthFraction": 0.023400061102331955,
+              "targetPixels1672": 39.12490216309903
+            }
+          }
+        },
+        "charon": {
+          "radiusKm": 606,
+          "representativeDistancesKm": {
+            "alignedNear": 31195.819923371648,
+            "rightAngle": 51709.105365709016,
+            "alignedFar": 66142.18007662836
+          },
+          "angularResults": {
+            "alignedNear": {
+              "angularDiameterDeg": 2.2261589250467386,
+              "centreDiscWidthFraction": 0.01942934575970378,
+              "targetPixels1672": 32.48586611022472
+            },
+            "rightAngle": {
+              "angularDiameterDeg": 1.3429757480285875,
+              "centreDiscWidthFraction": 0.011720210886991928,
+              "targetPixels1672": 19.596192603050504
+            },
+            "alignedFar": {
+              "angularDiameterDeg": 1.0499118152679519,
+              "centreDiscWidthFraction": 0.009162465401776,
+              "targetPixels1672": 15.319642151769472
+            }
+          }
+        }
+      },
+      "limitations": [
+        "Circular coplanar representative geometry is not an orbital uncertainty envelope or current physical distance measurement. Eccentricity/inclination/phase/shape/attitude neglected.",
+        "Right-angle centre distances reduced by25km are approximate observer distances; the two surface-to-target vectors cannot both align with one surface normal.",
+        "Nix rapid retrograde rotation does not establish a permanent Pluto-facing site; both bodies visibility depends on site, attitude and time.",
+        "Pluto and Charon require independently invented appearance; never use either observed map on Nix.",
+        "FOV, phase, lighting, exposure, visible colour, atmosphere transfer and scene registration remain artistic.",
+        "All68 dossiers and original/native/map/model/shape bytes preserved. Headroom recovery essential before prepared Charon69 or further embedding."
+      ],
+      "verification": {
+        "tests": "458 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "pass",
+        "htmlBytes": 15991695,
+        "headroomBytes": 8305,
+        "browser": {
+          "bandImages": 20,
+          "snapshot": "43ce1932bb4585ff0362d36ec9f5fee9066aefa2ca2e16b184d1d5808d0f2601",
+          "raw": "8e84aee268911e64e4eef0004c85ea1d59fc8e4f58e78f9789cef980ab64e4d3",
+          "magic": "FIDBRT01",
+          "images": 237,
+          "details": 517,
+          "models": 32
+        },
+        "limits": "Chrome exact complete readableJSON/HTML-parser snapshot payload; no errors. Other engines open. Same JSON/HTML bytes as ec83acf; no savings claim. Codecs unchanged."
+      },
+      "rasterAudit": {
+        "pluto": {
+          "row": 155,
+          "thresholdSpans": {
+            "5": 112,
+            "10": 108,
+            "20": 107
+          },
+          "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+        },
+        "charon": {
+          "row": 200,
+          "thresholdSpans": {
+            "5": 59,
+            "10": 58,
+            "20": 58
+          },
+          "interpretation": "Oversized phase/exposure-sensitive row chords, not calibrated full diameter"
+        }
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/nix-surface-image.jpg",
+      "previewUrl": "/bespoke/nix-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nix-generated-surfaceImage-original.png",
+      "sourceSha256": "b30fc8783020d84d88ac9903240c04298963c2d2ec324adec266205147aaeb73",
+      "sha256": "7a8bbc9165e4dd4c23c9bccfc5da736714fab7058757dca46e40bde4d689d7a7",
+      "previewSha256": "4290f6e966afc96151ad652f3d81903b5fbf5bb901ff53e1bd6869bcac858583",
+      "bytes": 360893,
+      "previewBytes": 9398,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/nix-sky-image.jpg",
+      "previewUrl": "/bespoke/nix-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-11",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "nix-generated-skyImage-original.png",
+      "sourceSha256": "7ee32c83bcedd41444c301084bf2a05be95520973ce3b93d8294d268f4776234",
+      "sha256": "3f80754ad2dd2e6163484a486ae595951ba01e1d3f612d0c6789d2458daac7b7",
+      "previewSha256": "a6adf531d1f6db8dec8d0f1da98a1d8b3fa9e2f60ec6be40661f9231ee72f19a",
+      "bytes": 261126,
+      "previewBytes": 7560,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "validation": {
+    "tests": "605 pass,1 skip; includes selectable Nix regression with own dossier, pending globe, nonsynchronous spin and finite mean-orbit positions",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15813378,
+    "headroomBytes": 186622,
+    "completeSnapshotSha256": "b8875efd3f1bcfe846f509abce4fecbfd5eabae52e1ba728a1d90391da2a2b5c",
+    "characterSet": "UTF-8",
+    "styles": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "fidelity-startup-data": "d914ab09225dd22d2bad5586770456f82e28811ecfb6f83db3318fb8082ae5d7",
+    "fidelity-application-data": "d947c500438edbf756bcdc96dec376676d149528239ea66024e9557ea5583417",
+    "fidelity-stylesheet-data": "370556388398da715dbef0554809a3e15f3abf8e770c1cf740695b27841035e8",
+    "fidelity-snapshot-data": "193a46ff9f2a43a3a1c9ec23fa7740fcd15bef5cc4a32d1db2bd2f5adf2fd00f",
+    "applicationSha256": "e239037f5036d59dbeb4fbc55f6badefb6949c911a16df7adab13c54ed0cd14c",
+    "stylesheetSha256": "fa1e3ec3a12aa236cd42821f66b9461e09943d545853e97c9166e2853a4e106c",
+    "startupSha256": "190ebdb67e8956bfc160e3a44ce3a6f59cff7d704cc6dfbba8257d5b03417949",
+    "errors": [],
+    "browser": "Chrome exact full readableJSON/application/CSS/startup/4HTMLparser packed text hashes;243images20bands517details32modelentries decode;actual normal/offline Nix3cards/noownmap; sixoffline routes, unsupportedgzip and11worker rows pass. Other engines open. No fresh all-model-load claim.",
+    "preservation": {
+      "priorDossiersDeepEqual": 69,
+      "priorMoonCatalogueEntriesDeepEqual": 27,
+      "trackedPublicFilesByteEqual": 566,
+      "nativeContextHashes": 59,
+      "sourceRecordHashesChecked": 18,
+      "recordedClipper": "950348byte preview SHA47657f5cbeb5868c831e3a1eee78ad7ac19547798d0568f5118b894712d30aa1 preserved, normal model/shape/texture/native bytes unchanged"
+    },
+    "queue": {
+      "tasks": 566,
+      "dossiers": 70
+    },
+    "snapshotDifference": [
+      {
+        "path": "/bodyImages//bespoke/nix-surface-image.jpg",
+        "after": "string(11103)"
+      },
+      {
+        "path": "/bodyImages//bespoke/nix-sky-image.jpg",
+        "after": "string(8551)"
+      },
+      {
+        "path": "/bodyImages//bespoke/nix-new-horizons-native.jpg",
+        "after": "string(34835)"
+      }
+    ],
+    "attribution": "Saved Charon69-to-final full snapshot diff ONLY three Nix bodyImages. Catalogue addition changes application source, not snapshot details. Net HTML increment is not solely attributed to assets; no compression settings changed."
+  }
+}

@@ -18,6 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
+  if (packed?.encoding === 'gzip-raw-utf8-enumerative-v1') return unpackUtf8SnapshotBytes(packed);
   if (['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding)) return unpackDenseSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-wide-v1') return unpackRawSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-v1') return unpackApplicationBytes(packed);
@@ -393,4 +394,45 @@ export function restoreApplicationText(bytes, decodeBrotli) {
   }
   if ([...groups.values()].some(g => g.used !== g.size)) throw Error('Unused application numbers.');
   return result.join('');
+}
+
+// Enumerate raw-script UTF-8 strings by byte length.229 binary bytes fit in257
+// UTF-8 bytes, versus263 ASCII bytes in dense125v2. Only valid BMP scalars;
+// exclude NUL,CR,less-than,C1 controls,surrogates,noncharacters,BOM and U+2028/9.
+// Tables are lazy: normal builds/legacy transports do not allocate the alphabet.
+let utf8TransportCache;
+function utf8TransportTables() {
+ if (utf8TransportCache) return utf8TransportCache;
+const utf8Groups = [[],[],[]];
+for (let c=1;c<128;c++) if(c!==13&&c!==60) utf8Groups[0].push(String.fromCharCode(c));
+for (let c=160;c<2048;c++) utf8Groups[1].push(String.fromCharCode(c));
+for (let c=2048;c<65533;c++) if(!(c>=55296&&c<=57343)&&!(c>=64976&&c<=65007)&&![65279,8232,8233].includes(c)) utf8Groups[2].push(String.fromCharCode(c));
+const utf8Digits=new Map();utf8Groups.forEach((a,g)=>a.forEach((c,i)=>utf8Digits.set(c,[g+1,i])));
+const utf8Counts=[1n];for(let n=1;n<=257;n++)utf8Counts[n]=utf8Groups.reduce((s,a,g)=>s+(n>g?BigInt(a.length)*utf8Counts[n-g-1]:0n),0n);
+
+ return utf8TransportCache={utf8Groups,utf8Digits,utf8Counts};
+}
+export function encodeUtf8SnapshotBytes(bytes){
+ const {utf8Groups,utf8Counts}=utf8TransportTables();
+ const out=[];for(let at=0;at<bytes.length;at+=229){
+ let value=0n;for(let i=0;i<229;i++)value=(value<<8n)+BigInt(bytes[at+i]??0);
+ const chars=[];for(let remaining=257;remaining>0;){
+ let found=false;for(let g=0;g<3&&g<remaining;g++){
+ const unit=utf8Counts[remaining-g-1],range=BigInt(utf8Groups[g].length)*unit;
+ if(value<range){chars.push(utf8Groups[g][Number(value/unit)]);value%=unit;remaining-=g+1;found=true;break;}value-=range;
+ }if(!found)throw Error('UTF8 encoding overflow');
+ }out.push(chars.join(''));
+ }return {encoding:'gzip-raw-utf8-enumerative-v1',byteLength:bytes.length,data:out.join('')};
+}
+export function unpackUtf8SnapshotBytes(packed){
+ const {utf8Groups,utf8Digits,utf8Counts}=utf8TransportTables();
+ if(packed?.encoding!=='gzip-raw-utf8-enumerative-v1'||!Number.isSafeInteger(packed.byteLength)||packed.byteLength<0||packed.byteLength>536870912||typeof packed.data!=='string'||packed.data.length>Math.ceil(packed.byteLength/229)*257)throw Error('Invalid UTF8 snapshot');
+ const bytes=new Uint8Array(packed.byteLength);let pos=0;
+ for(let at=0;at<bytes.length;at+=229){let value=0n;for(let remaining=257;remaining>0;){
+ const digit=utf8Digits.get(packed.data[pos++]);if(!digit||digit[0]>remaining)throw Error('Invalid UTF8 snapshot digit or length');
+ const [width,index]=digit;for(let g=0;g<width-1;g++)value+=BigInt(utf8Groups[g].length)*utf8Counts[remaining-g-1];
+ value+=BigInt(index)*utf8Counts[remaining-width];remaining-=width;
+ }if(value>=1n<<1832n)throw Error('Invalid UTF8 snapshot overflow');
+ for(let i=228;i>=0;i--){const b=Number(value&255n);if(at+i<bytes.length)bytes[at+i]=b;else if(b!==0)throw Error('Invalid UTF8 snapshot padding');value>>=8n;}
+ }if(pos!==packed.data.length)throw Error('Invalid UTF8 snapshot trailing data');return bytes;
 }

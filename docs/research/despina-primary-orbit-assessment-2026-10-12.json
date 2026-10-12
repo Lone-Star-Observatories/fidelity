@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-12",
+  "body": "Despina / Neptune V / S/1989 N3",
+  "scope": "Research only: targeted retained primary-paper audit, no dossier76 or image/catalogue/codec change.",
+  "primary": {
+    "title": "Orbits and resonances of the regular moons of Neptune",
+    "authors": [
+      "Marina Brozovi\u0107",
+      "Mark R. Showalter",
+      "Robert A. Jacobson",
+      "Robert S. French",
+      "Jack J. Lissauer",
+      "Imke de Pater"
+    ],
+    "doi": "10.1016/j.icarus.2019.113462",
+    "version": "arXiv:1910.13612v3",
+    "submitted": "2019-10-30",
+    "revised": "2019-11-15",
+    "status": "Record reports accepted in Icarus 2019-10-01; final publisher article not downloaded in this audit.",
+    "pages": 40,
+    "assessed": "Sections 2\u20135 and Tables 1,2,5\u20137; full40page PDF retained, no figure embedded.",
+    "terms": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "licence": "Specific record links arXiv nonexclusive distribution; not CC BY."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/naiad-Brozovic2019-v3.pdf",
+      "url": "https://arxiv.org/pdf/1910.13612v3",
+      "bytes": 2775857,
+      "sha256": "251439258854a3555e6cd881657d62e9480c3931172145aec329035abebc2745",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    },
+    {
+      "path": "data/research-sources/naiad-Brozovic2019-record.html",
+      "url": "https://arxiv.org/abs/1910.13612v3",
+      "bytes": 44797,
+      "sha256": "3448938a1bfbf7a91b182358a6b3a4f4bfb0c9900c40a4ddf20fd1b0c5b4af5e",
+      "retrieved": "2026-10-12",
+      "unchanged": true
+    }
+  ],
+  "assessment": {
+    "pagesInspected": [
+      9,
+      10,
+      11,
+      13,
+      14,
+      30,
+      32
+    ],
+    "layoutVerification": "Complete rendered Tables5 and7 visually inspected; footnotes preserved in assessment. Text extracted with pdfplumber.",
+    "Table5": {
+      "adoptedRadiusKm": [
+        75,
+        3
+      ],
+      "radiusSource": "Karkoschka2003 Voyager imaging; adopted size, not new axes or fitted normal. Distinct retained JPL74\u00b110 equivalent-volume radius.",
+      "fittedGM_km3_s2": 0.1179,
+      "formalGMUncertainty_km3_s2": 0.2428,
+      "prior": "Ap notation: GM initialized/constrained using1.0\u00b10.2g/cm3 density. Final formal1sigma covariance reported without prior values.",
+      "density": "Paper leaves Despina density blank; do not report prior density as measurement.",
+      "hypotheticalMassRange_1e15kg": [
+        88.36,
+        2651
+      ],
+      "hypotheticalGMRange_km3_s2": [
+        0.0059,
+        0.1769
+      ],
+      "rangeAssumption": "Theoretical0.05\u20131.5g/cm3 density interval, not observed mass limits or chemistry."
+    },
+    "massSensitivity": "Sections3.1/page10\u201311 distinguish unprior-constrained Naiad/Thalassa estimates from other satellites. Authors find no mass sensitivity for other moons; Despina/Proteus formal uncertainties roughly twice their prior values suggest future potential, not established precise mass. No new kilogram mass or local density/porosity/material fractions adopted.",
+    "Table7": {
+      "epoch": "2020-01-01 TDB",
+      "frame": "Individual local Laplace plane",
+      "aKm": 52526,
+      "e": 0.00027,
+      "freeInclinationDeg": 0.039,
+      "LaplaceInclinationDeg": 0.47,
+      "meanLongitudeDeg": 197.617,
+      "meanAnomalyDeg": 237.381,
+      "nodeDeg": 104.507,
+      "periapsisLongitudeDeg": 320.236,
+      "periapsisArgumentDeg": 215.729,
+      "meanLongitudeRateDegDay": 1075.733,
+      "roundedLongitudinalPeriodDays": 0.33,
+      "apsidalPeriodYears": 0.77,
+      "nodalPeriodYears": 0.77,
+      "LaplacePoleRaDecDeg": [
+        299.459,
+        42.935
+      ]
+    },
+    "meanElementMethod": "900-year integrated nep090 orbits summarized with precessing ellipses. Authors deliberately do not assign mean-element uncertainties; ellipse-fit precision is not observational uncertainty. Distinct retained NEP0972000Jan1.5TDB mean52500/e0/.334656day values, no silent update or inconsistency-cause claim.",
+    "observations": "Table1 Despina104 Voyager sample/line pairs in1989, residual62/68km. Orbit astrometry does not identify the retained publisher trio image UTC/filter/product or calibrate its pixels.",
+    "spin": "Orbital period/precession is not spin, tidal locking, static orientation or permanent Neptune-facing site. No angular/raster computation or new image geometry.",
+    "licence": "Specific retained arXiv record nonexclusive distribution, not CC BY; full six authors retained, no paper figure embedded. Final publisher/later-primary audit remains open."
+  },
+  "remaining": [
+    "Current/final primary orbit and spin/shape audit",
+    "Publisher native exactUTC/filter/exposure/rawproduct/rendition crosswalk and active processing terms",
+    "Substantial conforming lossless standalone headroom before additive Despina76"
+  ],
+  "preservation": "All75 delivered dossiers, original/default PNGs, masters, native scientific sources, manifests, maps, models, shapes and recorded Clipper preview retained unchanged; queue566; no catalogue or codec changes.",
+  "validation": {
+    "tests": "610 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15982061,
+    "headroomBytes": 17939,
+    "trackedPublicFilesByteEqualHEAD": 596,
+    "recordedClipperBytes": 950348,
+    "browser": "No fresh full/offline/other-engine claim; production inputs and codecs unchanged.",
+    "queue": 566
+  },
+  "backlog": "ACTIVE; no external blocker claimed."
+}

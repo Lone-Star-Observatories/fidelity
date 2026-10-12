@@ -3,6 +3,67 @@ import assert from 'node:assert/strict';
 import { moonOffsetKm, moonGeocentric } from '../src/astro/moons.js';
 import { MOONS, SMALL_BODIES } from '../src/data/moons.js';
 import { smallBodyPosition } from '../src/astro/smallbodies.js';
+import { bodyVisualFor } from '../src/data/bespoke.js';
+
+test('Nix is selectable with its own dossier and a nonsynchronous pending globe', () => {
+  const nix = MOONS.find((m) => m.id === 'nix');
+  assert.equal(nix.parent, 'pluto');
+  assert.equal(bodyVisualFor(nix).id, 'nix');
+  assert.equal(nix.surfacePending, true);
+  assert.equal(nix.skin?.map, undefined);
+  assert.equal(nix.locked, false);
+  assert.notEqual(nix.rotationHours, nix.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(nix, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 48000 && Math.hypot(...position) < 51000);
+  }
+});
+
+test('Hydra resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const hydra = MOONS.find((m) => m.id === 'hydra');
+  assert.equal(hydra.parent, 'pluto');
+  assert.equal(bodyVisualFor(hydra).id, 'hydra');
+  assert.equal(hydra.surfacePending, true);
+  assert.equal(hydra.skin?.map, undefined);
+  assert.equal(hydra.locked, false);
+  assert.notEqual(hydra.rotationHours, hydra.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(hydra, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 64000 && Math.hypot(...position) < 67000);
+  }
+});
+
+test('Kerberos resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const kerberos = MOONS.find((m) => m.id === 'kerberos');
+  assert.equal(kerberos.parent, 'pluto');
+  assert.equal(bodyVisualFor(kerberos).id, 'kerberos');
+  assert.equal(kerberos.surfacePending, true);
+  assert.equal(kerberos.skin?.map, undefined);
+  assert.equal(kerberos.locked, false);
+  assert.notEqual(kerberos.rotationHours, kerberos.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(kerberos, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 57000 && Math.hypot(...position) < 60000);
+  }
+});
+
+test('Styx resolves its own dossier without adopting another moon globe or synchronous spin', () => {
+  const styx = MOONS.find((m) => m.id === 'styx');
+  assert.equal(styx.parent, 'pluto');
+  assert.equal(bodyVisualFor(styx).id, 'styx');
+  assert.equal(styx.surfacePending, true);
+  assert.equal(styx.skin?.map, undefined);
+  assert.equal(styx.locked, false);
+  assert.notEqual(styx.rotationHours, styx.elements.P * 24);
+  for (const jd of [2451545, 2461323.5]) {
+    const position = moonOffsetKm(styx, jd);
+    assert.ok(position.every(Number.isFinite));
+    assert.ok(Math.hypot(...position) > 41000 && Math.hypot(...position) < 45000);
+  }
+});
 
 // JPL Horizons vectors (DE441 + satellite ephemerides), J2000 ecliptic, 2026-10-10 00:00 TDB.
 const JD = 2461323.5;

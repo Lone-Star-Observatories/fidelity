@@ -1,0 +1,123 @@
+{
+  "records": [
+    {
+      "path": "data/research-sources/larissa-voyager-overview-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Larissa_732X520.jpg",
+      "bytes": 47564,
+      "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349"
+    },
+    {
+      "path": "data/research-sources/larissa-overview.html",
+      "url": "https://science.nasa.gov/neptune/moons/larissa/",
+      "bytes": 259491,
+      "sha256": "e691e66307ad540d89e515170c3eb659e0a9dbe0458c924194cdc8a62cececdb"
+    },
+    {
+      "path": "data/research-sources/larissa-nasa-terms.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 320651,
+      "sha256": "466d5b7039ae819c193fbecea7ebf419468e727b42c457b7d95c2d167fc12fc1"
+    },
+    {
+      "authors": [
+        "M. Ryleigh Davis",
+        "Matthew Belyakov",
+        "Ian Wong",
+        "Zachariah Milby",
+        "Michael E. Brown"
+      ],
+      "url": "https://arxiv.org/abs/2607.27481",
+      "doi": "10.1126/sciadv.aeb1437",
+      "publicationDate": "2026-07-29",
+      "path": "data/research-sources/proteus-Davis2026-author.pdf",
+      "bytes": 740854,
+      "sha256": "1f0616811c7b8914b3d40d1f5d30bd6a9323a24004d3f57e06a4b238a092763c",
+      "assessmentScope": "Targeted Larissa results, discussion, methods, Figure S1 caption and Table S1 in retained complete 26-page author PDF; no figure embedded.",
+      "terms": "Record links CC BY 4.0 but author version explicitly states AAAS personal use, not redistribution. Conflict preserved; final publisher licence crosswalk open."
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "path": "data/research-sources/larissa-generated-surfaceImage-master.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 330885,
+      "sha256": "1a486474424d9f10b0fff6464512162e2eac4fbffdba8f63dec6a20e2c1b401f"
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "path": "data/research-sources/larissa-generated-surfaceImage-preview.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 9694,
+      "sha256": "21e4033af07eb3960b6a229af3c13bfd709ce7abc454dc2b5ad0bd0bbc3fda7d"
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "path": "data/research-sources/larissa-generated-skyImage-master.jpg",
+      "width": 1536,
+      "height": 864,
+      "quality": 85,
+      "bytes": 178521,
+      "sha256": "75e3fcd7b26e5a30bac059bbca6173a87a0e1f506b66f0e82a06058d4b8e9da6"
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "path": "data/research-sources/larissa-generated-skyImage-preview.jpg",
+      "width": 256,
+      "height": 144,
+      "quality": 80,
+      "bytes": 6330,
+      "sha256": "0b526a301ff97c2b4f21e022956a3246ac32126f695b41f0c47e861ca4ffc0d7"
+    },
+    {
+      "bytes": 2804363,
+      "sha256": "2aea963e0f1c0358cca3ba0bc4818061671b892bf5cdd443741f17618d214c06",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "defaultAndResearchBytesIdentical": true,
+      "path": "data/research-sources/larissa-generated-surfaceImage-original.png"
+    },
+    {
+      "bytes": 2062262,
+      "sha256": "38581560423b4f4817d771bbc44333b021400c7c968457bc6962f69d695143bc",
+      "width": 1672,
+      "height": 941,
+      "defaultCopyIdentical": true,
+      "path": "data/research-sources/larissa-generated-skyImage-original.png"
+    }
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/larissa-jpl-elements-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrieved": "2026-10-12",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/larissa-jpl-physical-2026-10-12.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrieved": "2026-10-12",
+      "status": 200
+    }
+  ],
+  "fullPrompts": {
+    "local": "Create a single independent research-guided hypothetical local observer illustration for Larissa, Neptune's small irregular moon. Wide landscape 1672x941. A low oblique view over invented dark neutral grey regolith, scattered angular stones, modest shallow depressions and uneven low ridges under restrained directional light. Grey is artistic, not measured visible colour; grain sizes, relief, material fractions and chemistry are wholly imagined. No existing body map, photograph, skin or named feature may be copied or recoloured: do not use Moon, Mars, Pluto, Proteus, Ceres or Bennu terrain. Do not portray a dated Voyager location or a mapped spectroscopy site. Larissa's unresolved near-infrared OH/2.72 micron spectral laboratory interpretation does not establish local mineral fractions or actual terrain. Keep the horizon low with black sky, whose transparency is an assumption rather than evidence of absent atmosphere. No Neptune, Sun, other astronomical disk, rings or stars: this is the local terrain card only, with no angular-size claim. No atmosphere haze, clouds, plume, liquid, exposed ocean, biology, craft, astronauts, footprints, landing or survivability suggestion. No measured shape registration or permanent Neptune-facing site implied. Crisp restrained scientific illustration, no dramatic canyon wall or glow. Add a clearly legible small bottom footer exactly 'IMAGINED — LARISSA LOCAL VIEW'. Do not add scientific scales or coordinate labels.",
+    "sky": "Create a new independent research-guided IMAGINED observer illustration from Larissa, small irregular moon of Neptune. Wide 16:9 scientific illustration, approximately 1672x941 pixels. Invent a sparse grey foreground of regolith grains and angular rocks with shallow depressions and low ridges across lower third. Almost black sky is an artistic transparency assumption, not a measured atmospheric absence. Above horizon a large spherical schematic Neptune, pale desaturated blue with very subtle independently invented bands, positioned upper center. Nominal perspective: horizontal FOV90degrees, Neptune mean radius24622km, assumed observer-to-center distance73404km, using JPL mean orbit73500 and assumed96km local height. skyGeometry yields39.197535820184456degrees angular diameter and595.3319057973337pixels across a1672wide image. Aim for Neptune globe width about595pixels (about35.6percent canvas width); do not claim photometric calibration or dated registration. Use an assumed moderately gibbous phase and invented subtle lighting/exposure, do not borrow any observed Neptune map or another body's texture. No references, no analog skins, no dated Voyager site or shape normal. Rings omitted for artistic exposure, not an absence claim. No Sun, stars, foreground atmosphere/haze/clouds, plume, liquid, ocean, biology, spacecraft, astronaut or suggestion of a survivable landing. Surface relief, materials, chemistry fractions, planetary patterns/colour, phase and illumination are invented; disk-integrated OH spectroscopy cannot map local chemistry. No claim of tidal locking or permanent Neptune-facing site: camera attitude and this site/phase are hypothetical. Include a clean readable bottom footer exactly 'IMAGINED — SKY FROM LARISSA'. Add smaller line 'Hypothetical geometry; terrain, colour and lighting invented'. Produce an illustration, not a resolved global map or scientific observation."
+  },
+  "defaultOriginals": {
+    "local": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-ccdc79e1-5253-4c30-b46b-1486878b0d29.png",
+    "sky": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-229a4f01-0347-4656-8352-54f92fcc60fd.png"
+  }
+}
