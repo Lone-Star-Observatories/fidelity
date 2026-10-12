@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-12",
+  "body": "Galatea",
+  "status": "Research-only independent built-in IMAGINED observer; no dossier69 or embedding",
+  "generator": "Built-in image_gen; no referenced images",
+  "prompt": "Create an independent scientific-concept illustration, landscape 1672 by 941 pixels, a hypothetical sky view from Galatea. Do not use or reproduce any observed body's map or photograph. Low invented grey granular terrain, scattered angular stones and modest shallow relief occupies the bottom quarter. Black sky above. A fully visible Neptune globe centered approximately x=1030,y=370, diameter approximately725 pixels, muted blue with subtle independently invented bands; no recognizable observed Neptune map. Nominal90 degree horizontal field of view. Recorded skyGeometry spherical Neptune radius24622km at assumed61921km distance gives46.86091490499512 degrees and724.5944995580066 pixels at1672 width; this is an artistic size target, not calibrated registration. Keep globe unobscured by foreground. No rings, Sun, stars, spacecraft, people, local atmosphere, haze, plume, exposed liquid, ocean, biology or landing scene. Ring omission and black sky are assumptions, not measured absence. Galatea mean-radius height79km and mean orbital distance62000km do not establish local normal, current ephemeris, rotation, tidal locking or permanent facing site. Terrain, grey colour, chemistry, material fractions, Neptune bands, axis orientation, phase, lighting and exposure are invented. Unresolved spectral OH and laboratory Mg-serpentine interpretation do not establish local composition. No analog skins of Moon, Mars, Pluto, Ceres, Bennu, Miranda or any observed body; no dated Voyager terrain registration. Add a legible footer: GALATEA \u2014 IMAGINED SKY VIEW. Smaller second line: Terrain, colour, phase and lighting assumed; no observed site registration. Restrained realistic rendering with clear conceptual-image labels.\n",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-32137de9-216a-4cf4-b2cc-43647943bb70.png",
+  "asset": {
+    "path": "data/research-sources/galatea-generated-skyImage-original.png",
+    "bytes": 1697413,
+    "sha256": "21acb6ef9f21974f0a11939ea9d51f90ce63bf93afb6ed396a557dc0863f195b",
+    "width": 1672,
+    "height": 941
+  },
+  "defaultCopyByteIdentical": true,
+  "geometryRecord": "docs/research/galatea-observer-geometry-preparation-2026-10-12.json",
+  "geometry": {
+    "angularDiameterDeg": 46.86091490499512,
+    "targetWidthPixels1672": 724.5944995580066
+  },
+  "inspection": "Full PNG inspected: grey invented foreground, fully visible blue globe, legible IMAGINED footer. Globe appears smaller than requested target; not calibrated.",
+  "limitations": [
+    "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+    "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+    "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+    "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+    "Galatea unresolved spectra and laboratory Mg-serpentine interpretation do not map local chemistry, Voyager pixels or visible terrain; no ocean, plume or biology established. Proteus weak CO2 and combined ring measurements are not Galatea measurements.",
+    "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+    "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+    "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Native Voyager detection/glare/ring/star streaks are not resolved Galatea terrain or a measured elongated shape; native caption conflicts remain open.",
+    "All terrain, blocks, grains, chemistry fractions, grey colour, Neptune cloud/band patterns, phase, axis, light and exposure invented independently; no analog observed map or dated Voyager/spectroscopy site. No foreground atmosphere, plume, liquid, ocean, biology or survivable landing. Black sky and ring omission assumptions, not measured absence. Small preview footer requires readable card labels."
+  ],
+  "validation": {
+    "tests": "505 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard16MB gate",
+    "htmlBytes": 16024144,
+    "overBudgetBytes": 24144,
+    "browser": "No new passing full/offline browser claim; other engines open.",
+    "preservation": "68 dossiers unchanged;405 tracked public bespoke/model/shape/texture files byte-identical to HEAD; recorded Clipper950348byte preview preserved;queue566. All originals/masters/native/provenance retained.",
+    "attribution": "Research-only, no69 or embedding or codec change. Interbuild differences unaudited; no savings attribution."
+  }
+}
