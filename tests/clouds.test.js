@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { superRotation, whiteness, layerLook, layerReadout } from '../src/views/system/clouds.js';
+import { superRotation, whiteness, layerLook, layerReadout, helmLayerLook } from '../src/views/system/clouds.js';
 import { CLOUD_LAYERS } from '../src/astro/atmosphere.js';
 
 const close = (a, b, tol, msg) => assert.ok(Math.abs(a - b) <= tol, `${msg ?? ''} ${a} vs ${b} (±${tol})`);
@@ -46,4 +46,16 @@ test('read-outs carry the profile and its source', () => {
   const e = layerReadout('earth', 0, 0.002);
   close(e.pBar * 1000, 1013.25, 1e-6);
   assert.match(e.source, /1976/);
+});
+
+test('the helm under Venus\' deck gets the surface view\'s overcast; above it, or under Earth\'s clouds, nothing changes', () => {
+  assert.equal(helmLayerLook('venus', 120, 40), null, 'above the haze: open space');
+  const low = helmLayerLook('venus', 20, 40);
+  assert.ok(low && low.sunVisible === false && low.bodiesVisible === false, 'no Sun, no sky under the deck');
+  assert.ok(low.light < 0.1, 'a few percent of the light');
+  assert.ok(low.sunTint[0] > low.sunTint[2], 'orange');
+  const inDeck = helmLayerLook('venus', 60, 40);
+  assert.ok(inDeck && inDeck.murk >= low.murk, 'at least as murky inside the deck as below it');
+  assert.equal(helmLayerLook('earth', 2, 40), null, 'Earth\'s thin shell leaves the Sun in view');
+  assert.equal(helmLayerLook('mars', 2, 40), null);
 });

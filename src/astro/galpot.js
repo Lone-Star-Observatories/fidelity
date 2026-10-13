@@ -61,6 +61,26 @@ export function vcirc(R) {
 const TH = Math.asin(Z_SUN_KPC / R_SUN_KPC), C = Math.cos(TH), S = Math.sin(TH);
 export const toGC = ([x, y, z]) => [C * (x - R_SUN_KPC) + S * z, y, -S * (x - R_SUN_KPC) + C * z];
 
+const KMS2_PER_KPC_MYR2 = 3.0856775814913673e16 / (3.15576e13 ** 2); // 1 kpc/Myr² in km/s²
+/**
+ * The Milky Way's tide on a ship (#42): its acceleration (km/s², heliocentric galactic axes) relative to the Sun at a
+ * heliocentric galactic position in light-years, a(ship) − a(Sun) in this model. The frame of the galaxy-scale views
+ * holds the Sun and today's stars still, so the Sun's own fall about the Galaxy is taken out. ~10⁻¹¹ m/s² a thousand
+ * light-years out; the full ~2 × 10⁻¹⁰ m/s² of the Galaxy's pull only far from the Sun.
+ */
+export function tidalAccel(galLy) {
+  const k = 1 / LY_PER_KPC, g = toGC([galLy[0] * k, galLy[1] * k, galLy[2] * k]), s0 = toGC([0, 0, 0]);
+  const a = accel(...g), a0 = accel(...s0);
+  const d = [a[0] - a0[0], a[1] - a0[1], a[2] - a0[2]];
+  // back from the tilted galactocentric axes to the galactic ones (toGC's rotation, inverted)
+  return [(C * d[0] - S * d[2]) * KMS2_PER_KPC_MYR2, d[1] * KMS2_PER_KPC_MYR2, (S * d[0] + C * d[2]) * KMS2_PER_KPC_MYR2];
+}
+/** The Galaxy's whole pull at the Sun (km/s²): what the tide is measured against. */
+export function sunAccel() {
+  const a = accel(...toGC([0, 0, 0]));
+  return Math.hypot(...a) * KMS2_PER_KPC_MYR2;
+}
+
 /**
  * Integrate an orbit from a heliocentric galactic position (ly) and Sun-relative galactic
  * velocity (km/s). Returns samples of position (ly, heliocentric galactic axes about the Sun's

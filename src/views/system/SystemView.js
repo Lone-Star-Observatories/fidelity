@@ -44,7 +44,8 @@ import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive, BAND_UNIFORMS } from './materials.js';
 import { cloudLayer, createDescent, startDescent, stepDescent, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
-import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout } from './clouds.js';
+import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout, addCloudSlices, cloudDetail, cloudSides, loadEarthClouds, cloudTopAt, icePriorTexture, helmLayerLook } from './clouds.js';
+import { cloudColumn } from '../../astro/atmosphere.js';
 import { badge } from '../../data/provenance.js';
 import { createRelief } from './relief.js';
 import { fmtElevation, reliefK } from '../../astro/dem.js';
@@ -83,8 +84,9 @@ import { geoRing, vanAllen, hillSphere, heliosphere, oortCloud, DIPOLE_POLE } fr
 import { moonOffsetKm } from '../../astro/moons.js';
 import { smallBodyPosition, smallBodyOrbit } from '../../astro/smallbodies.js';
 import { makeSnapshot } from '../snapshot.js';
+import { createGovernor } from '../governor.js';
 import { SKINS } from '../../data/skins.js';
-import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius } from './corona.js';
+import { createCorona, createCoronaPass, loadCoronaFeed, sunPixelRadius, coronaPostcard } from './corona.js';
 
 const DEG = Math.PI / 180;
 const ORBIT_COLORS = { mercury: 0x9999ff, venus: 0xffcc99, earth: 0x99ccff, mars: 0xcc6666,
@@ -179,10 +181,25 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const SKY_R = 2e5;
   const skyMat = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false,
-    uniforms: { uPixel: { value: renderer.getPixelRatio() }, uFade: { value: 1 } },
-    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel;
-      void main() { vColor = color; vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
-        gl_PointSize = size * uPixel; }`,
+    // #42: at relativistic impulse the helm sets uAbBeta (β) and uAbDir (unit velocity, scene axes): each star is
+    // moved to its aberrated direction and its colour and size follow the Doppler factor (warp.js aberrateCos /
+    // dopplerFactor; positions exact, colour and brightness an approximation). β = 0 leaves the sky as it is.
+    uniforms: { uPixel: { value: renderer.getPixelRatio() }, uFade: { value: 1 }, uAbBeta: { value: 0 }, uAbDir: { value: new THREE.Vector3(0, 0, -1) } },
+    vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uPixel; uniform float uAbBeta; uniform vec3 uAbDir;
+      void main() {
+        vec3 p = position; vColor = color; float s = size;
+        if (uAbBeta > 0.0) {
+          float r = length(p); vec3 d = p / r; float c = dot(d, uAbDir);
+          float cp = (c + uAbBeta) / (1.0 + uAbBeta * c);
+          vec3 perp = d - c * uAbDir; float pl = length(perp);
+          if (pl > 1e-6) p = (uAbDir * cp + perp / pl * sqrt(max(0.0, 1.0 - cp * cp))) * r;
+          float D = sqrt(1.0 - uAbBeta * uAbBeta) / (1.0 - uAbBeta * cp);
+          float k = clamp(log2(D), -3.0, 3.0);
+          vColor = color * vec3(pow(0.62, k), 1.0, pow(1.6, k)) * clamp(D * D, 0.08, 6.0);
+          s = size * clamp(sqrt(D), 0.4, 2.2);
+        }
+        vec4 mv = modelViewMatrix * vec4(p, 1.0); gl_Position = projectionMatrix * mv;
+        gl_PointSize = s * uPixel; }`,
     fragmentShader: `varying vec3 vColor; uniform float uFade; void main() { float d = length(gl_PointCoord - 0.5);
         float a = smoothstep(0.5, 0.0, d) * uFade; if (a < 0.01) discard; gl_FragColor = vec4(vColor, a); }`,
   });
@@ -493,7 +510,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
         cm.userData.host = mat.userData.host;
         cm.userData.body = body.id;
         clouds = new THREE.Mesh(new THREE.SphereGeometry(layer ? 1 + layer.shellKm / body.radiusKm : 1.012, 96, 48), cm);
-        clouds.userData = { layer, opaque, staticTex: null };
+        clouds.userData = { layer, opaque, staticTex: null, radiusKm: body.radiusKm };
+        if (layer?.slicesKm && !opaque) addCloudSlices(clouds, layer, body.radiusKm); // #83: Earth's cloud volume, stacked slices
         if (opaque) {
           for (const k of BAND_UNIFORMS) cm.uniforms[k] = mat.uniforms[k];
           loadTexture(body.skin.map).then((t) => { if (t) cm.uniforms.uMap.value = t; });
@@ -824,6 +842,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     framedRadius = null;
     placedJd = null;
     helm?.onLoad(); // after an interstellar jump the ship drops out of warp at the edge of the new system
+    // #42: build the ship and compile its shaders in the background, so TAKE THE HELM does not stall on them
+    setTimeout(() => { if (helm && !helm.active) helm.prewarm(renderer); }, 2500);
   }
 
   const isStar = (b) => b.starLike || b.kind === 'star';
@@ -1511,8 +1531,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       [`${p} · ${Math.round(r.tC)} °C (${Math.round(r.tK)} K) · ${venus ? 'VIRA: PIONEER VENUS + VENERA' : 'US STANDARD ATMOSPHERE 1976'}`, 'measured',
         venus ? `${r.source}: a reference profile built from the probes' measurements, interpolated by altitude (log pressure); not a reading for this spot today.` : `${r.source}: the reference mid-latitude profile built from balloon and rocket measurements; today's air here differs with the weather.`],
       venus ? [`CLOUD DECK ${L.baseKm}–${L.topKm} KM, HAZE TO ${L.hazeTopKm} KM · SUPER-ROTATING WESTWARD IN ~${L.superRotationDays} DAYS (THE GROUND: 243 DAYS)`, 'measured', L.note]
-        : [`CLOUDS DRAWN AT ${L.shellKm} KM: AN ASSUMED HEIGHT`, 'modelled', L.note],
-      !venus ? [live ? `CLOUDS: TODAY'S SATELLITE MOSAIC (${(liveState.earth?.feed ?? 'GIBS').toUpperCase()}, NASA GIBS), PICKED OUT BY WHITENESS` : 'CLOUDS: BLUE MARBLE 2004 (MODIS), DRIFTED', 'measured', 'Where the clouds are is measured; snow and ice can read as cloud.'] : null,
+        : s.colMeasured && s.cloudTop != null ? [`CLOUD TOP HERE ${s.cloudTop.toFixed(2)} KM (NOAA-20 VIIRS, ${n.clouds.userData.measured}) · BASE ~${r.col.baseKm.toFixed(1)} KM`, 'measured', 'Cloud-top height from the VIIRS cloud product via NASA GIBS (50 m bins). The cloud base is MODELLED: the top less 45% of its height, 0.8–4 km thick; the product has no base.']
+          : s.colMeasured ? ['NO CLOUD TOP RETRIEVED OVER THIS SPOT: CLEAR SKY THAT DAY', 'measured', 'The VIIRS cloud mask found no cloud here; bright ground (snow, ice) is not drawn as cloud.']
+            : [`CLOUDS DRAWN FROM ${L.baseKm} TO ${L.topKm} KM: ASSUMED HEIGHTS`, 'modelled', L.note],
+      !venus ? [n.clouds?.userData?.measured ? `CLOUDS: NOAA-20 VIIRS TRUE COLOUR AND CLOUD-TOP HEIGHT, ${n.clouds.userData.measured} (NASA GIBS)` : live ? `CLOUDS: TODAY'S SATELLITE MOSAIC (${(liveState.earth?.feed ?? 'GIBS').toUpperCase()}, NASA GIBS), PICKED OUT BY WHITENESS` : 'CLOUDS: BLUE MARBLE 2004 (MODIS), DRIFTED', 'measured',
+        n.clouds?.userData?.measured ? 'Where cloud is: the VIIRS cloud-top product (pixels with a retrieval); how dense: whiteness in the same overpasses\' true colour. Snow and ice have no cloud top, so they are not drawn as cloud.' : live ? 'Where the clouds are is measured (whiteness); persistent ice sheets and high snow are held back by a MODELLED prior (latitude, ice-sheet outlines, height above 4–5 km); elsewhere snow can still read as cloud.' : 'Where the clouds are is measured (2004); snow and ice can read as cloud.'] : null,
       venus ? ['GROUND: MAGELLAN RADAR ON MAGELLAN ALTIMETRY, COLOURED AFTER VENERA 13/14', 'modelled', 'Radar brightness (roughness) is not colour: rock colours from the Venera 13/14 lander images; heights and radar brightness MEASURED (Magellan, USGS Astrogeology).'] : null,
       venus && look && !look.sunVisible ? [`LIGHT ~${Math.max(1, Math.round(r.light * 100))}% OF THE SUNLIGHT ABOVE THE CLOUDS · ORANGE, NO SUN DISC${look.where === 'below' ? ` · VISIBILITY ~${Math.round(visibilityKm(look.fogK))} KM` : ''} · EXPOSURE ADAPTED`, 'modelled', 'Venera 11–14 and Pioneer Venus measured ~2–3% of the sunlight at the ground, reddened; visibility from Rayleigh scattering in the dense CO₂.'] : null,
     ].filter(Boolean);
@@ -1729,25 +1752,36 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
   }
   const coronaPass = createCoronaPass(renderer);
-  const drawCorona = () => { const c = model?.isSol ? nodes[model.starId]?.corona : null; if (c) coronaPass.render(scene, camera, c); };
+  const drawCorona = (o) => { const c = model?.isSol ? nodes[model.starId]?.corona : null; if (c) coronaPass.render(scene, camera, c, o); };
   let coronaTotality = 0; // 0…1: the 3D corona's opacity in totality, seen from a surface (#79)
   const cz = { cam: new THREE.Vector3(), e: new THREE.Vector3(), ecl: new THREE.Vector3(), q: new THREE.Quaternion(), w: new THREE.Vector3(), d: new THREE.Vector3(), p: new THREE.Vector3(), o: new THREE.Vector3() };
-  /** The body in front of the Sun's corona that looks biggest from the camera (the Moon in an eclipse), in the Sun's frame. */
-  function coronaOccluder(sunN, sunDist, px) {
-    if (px < 2) return null;
+  /**
+   * Every body in front of the Sun's corona (within its footprint on screen and nearer than its far edge), largest-looking
+   * first: the Moon in an eclipse, Mercury or Venus in transit, any planet or moon seen against the corona from space.
+   * Centres are given relative to the camera in the Sun's frame (R☉), worked out here in double precision.
+   */
+  const occPool = [];
+  function coronaOccluders(sunN, sunDist, px, camLocal) {
+    if (px < 2) return [];
     const S = sunN.mesh.getWorldPosition(cz.w), R = displayRadius(sunN.body), d = cz.d.copy(S).sub(camera.position).normalize();
-    const reach = Math.atan((R * (sunN.corona.look?.extent ?? 6)) / sunDist);
-    let best = null, bestAng = 0;
+    const ext = R * (sunN.corona.look?.extent ?? 6), reach = Math.atan(ext / sunDist);
+    const radPerPx = ((camera.fov * Math.PI) / 180) / (renderer.domElement.clientHeight || innerHeight);
+    const found = [];
     for (const id in nodes) {
       const o = nodes[id];
       if (o === sunN || o.body.marker || !o.group.visible || !o.mesh || isStar(o.body)) continue;
       const P = o.group.getWorldPosition(cz.p), dist = P.distanceTo(camera.position);
-      if (!(dist < sunDist) || dist < 1e-12) continue;
-      const r = displayRadius(o.body), ang = Math.atan(r / dist), sep = Math.acos(Math.max(-1, Math.min(1, cz.o.copy(P).sub(camera.position).normalize().dot(d))));
-      if (sep < reach + ang && ang > bestAng) { bestAng = ang; best = { P: P.clone(), r }; }
+      if (!(dist < sunDist + ext) || dist < 1e-12) continue;
+      const r = displayRadius(o.body), ang = Math.atan(r / dist);
+      if (ang < radPerPx * 0.35 && dist > r * 1.01) continue; // well under a pixel of the (half-resolution) pass
+      const sep = Math.acos(Math.max(-1, Math.min(1, cz.o.copy(P).sub(camera.position).normalize().dot(d))));
+      if (sep < reach + ang) found.push({ P: P.clone(), r, ang });
     }
-    if (!best) return null;
-    return { centre: sunN.mesh.worldToLocal(best.P), radius: best.r / R };
+    found.sort((a, b) => b.ang - a.ang);
+    return found.slice(0, 8).map((f, i) => {
+      const rel = (occPool[i] ??= new THREE.Vector3());
+      return { rel: rel.copy(sunN.mesh.worldToLocal(f.P)).sub(camLocal), radius: f.r / R };
+    });
   }
   /** The 3D corona (#79): camera, Earth and ecliptic north in the Sun's own frame; its glare sprite dims as the corona takes over. */
   function updateSunCorona(jd, now) {
@@ -1760,7 +1794,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const px = sunPixelRadius(camera, displayRadius(n.body), dist, renderer.domElement.clientHeight || innerHeight);
     // from a surface the corona shows only in totality (it is a millionth of the daylit sky's brightness)
     const opacity = surface ? coronaTotality : 1;
-    c.update({ occluder: coronaOccluder(n, dist, px), on: settings.get('corona') !== false && n.group.visible, camLocal: n.mesh.worldToLocal(cz.cam.copy(camera.position)), earthLocal,
+    const camLocal = n.mesh.worldToLocal(cz.cam.copy(camera.position));
+    c.update({ occluders: coronaOccluders(n, dist, px, camLocal), on: settings.get('corona') !== false && n.group.visible, camLocal, earthLocal,
       eclLocal: cz.ecl.set(0, 1, 0).applyQuaternion(q), jd, now, pxRadius: px, opacity });
     coronaTotality = 0;
     const glare = n.mesh.children.find((ch) => ch.isSprite);
@@ -1797,7 +1832,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       // above the layers' reference: Earth's sea level (the sea surface is drawn flat), Venus' 6,052 km VIRA sphere (the DEM's is 6,051 km)
       const hD = s.ground && Number.isFinite(s.ground.hDraw ?? s.ground.h) ? (s.ground.hDraw ?? s.ground.h) / 1000 : 0;
       groundRefKm = s.id === 'earth' ? Math.max(0, hD) : hD + ((s.ground?.meta?.refRadiusKm ?? R) - layer.refRadiusKm);
-      const top = Math.max(0.5, layer.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
+      // the cloud column over the spot (#83): Earth's measured cloud top where VIIRS has one, else the assumed layer
+      const ec = n.clouds?.userData?.measured ? n.clouds.userData.ec : null, llc = dirToLatLon(s.local.toArray());
+      s.cloudTop = ec ? cloudTopAt(ec, (llc.lon + 180) / 360, (llc.lat + 90) / 180) : null;
+      s.col = cloudColumn(s.id, s.cloudTop);
+      s.colMeasured = !!ec;
+      const top = Math.max(0.5, s.col.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
       if (Math.abs(top - s.descent.top) > 1e-6) s.descent = { ...s.descent, top, ...(s.descent.phase === 'top' ? { altKm: top, fromKm: top, toKm: top } : {}) };
       s.descent = stepDescent(s.descent, performance.now() / 1000);
     }
@@ -1852,10 +1892,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const c = n.clouds, cu = c?.material?.uniforms;
       let cover = 1;
       if (s.id === 'earth' && cu && llNow) cover = cloudCoverAt(cu.uMap.value, (llNow.lon + 180) / 360 + (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI), (llNow.lat + 90) / 180, cu.uAlphaFromLuma.value);
+      if (s.colMeasured && s.cloudTop == null) cover = 0; // no cloud top retrieved over the spot: clear (snow is not cloud)
       const d0 = daylight(sun.alt) * (s.eclipse?.light ?? 1);
-      look = layerLook(s.id, altRef, { day: d0, cover });
+      look = layerLook(s.id, altRef, { day: d0, cover, col: s.col });
       s.cover = cover;
-      layerR = layerReadout(s.id, altRef, aboveKm);
+      layerR = layerReadout(s.id, altRef, aboveKm, s.col);
       day = d0;
       const gu = n.mesh.material.uniforms;
       if (gu.uSkyAmb) {
@@ -2263,9 +2304,24 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     siteView.last.copy(svP);
   }
 
+  // a slow GPU (a software renderer, an old chip): lower the render scale and leave the page idle gaps (governor.js)
+  const governor = createGovernor({ min: 0.5 });
+  let lastFrameAt = null, idleTimer = null;
+  function applyRenderScale(k) {
+    const pr0 = renderer.getPixelRatio(), pr1 = Math.min(devicePixelRatio, 2) * k;
+    if (Math.abs(pr1 - pr0) < 1e-6) return;
+    const seen = new Set(); // shared uniform objects are scaled once
+    scene.traverse((x) => { for (const m of [x.material].flat()) { const u = m?.uniforms?.uPixel; if (u && typeof u.value === 'number' && !seen.has(u)) { seen.add(u); u.value *= pr1 / pr0; } } });
+    renderer.setPixelRatio(pr1);
+    resize();
+  }
   function frame(now) {
     if (!running) return;
-    requestAnimationFrame(frame);
+    const gv = governor.update(lastFrameAt == null ? 0 : now - lastFrameAt);
+    lastFrameAt = now;
+    if (gv.changed) applyRenderScale(gv.scale);
+    if (gv.idleMs) idleTimer = setTimeout(() => { idleTimer = null; if (running) requestAnimationFrame(frame); }, gv.idleMs);
+    else requestAnimationFrame(frame);
     clock.tick(now);
     if (!model) return;
     const jd = clock.jd;
@@ -2359,6 +2415,10 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const sel = helm.selected;
       focusId = sel && nodes[sel] ? sel : nodes[helm.anchor] ? helm.anchor : focusId; // labels and orbit highlight follow the course target
     }
+    helmCloudLight(helmOrigin); // #83: under Venus' deck at the helm, the surface view's overcast
+    const ab = helmOrigin ? helm.aberration() : null; // #42: relativistic aberration and Doppler on the sky (or none)
+    skyMat.uniforms.uAbBeta.value = ab ? ab.beta : 0;
+    if (ab) skyMat.uniforms.uAbDir.value.fromArray(ab.dir);
     const target = nodes[focusId].pos;
     if (helmOrigin) { /* the helm placed the camera relative to the ship */ }
     else if (flight) {
@@ -2385,10 +2445,12 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     }
     root.position.copy(focusPos).negate();
     if (zones) updateZones(jd);
+    if (zones && helmLayer && !helmLayer.look.bodiesVisible) for (const o of [zones.geo.object, ...zones.va.map((z) => z.object), zones.helio.group, zones.oort, ...zones.hill.map((h) => h.shape.object)]) o.visible = false;
     updateExtras(jd);
-    if (belts) { belts.update(jd); belts.points.visible = settings.get('belts'); }
+    const deckHides = !!helmLayer && !helmLayer.look.bodiesVisible; // under Venus' deck at the helm: no sky (#83)
+    if (belts) { belts.update(jd); belts.points.visible = settings.get('belts') && !deckHides; }
     if (sats && nodes.earth) {
-      sats.points.visible = settings.get('satellites');
+      sats.points.visible = settings.get('satellites') && !deckHides;
       sats.points.position.copy(nodes.earth.pos);
       sats.update(jd, trueRadius(nodes.earth.body), enhancedRadius(nodes.earth.body, model.scale), scaleMix, clock.rate.days ?? 0);
     }
@@ -2429,7 +2491,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       const n = nodes[id];
       if (!relief.has(id) || !n.group.visible) continue;
       const camLocal = n.mesh.worldToLocal(reliefCam.copy(camera.position));
-      relief.update(n, { camLocal, focused: id === focusId, surface: surface?.id === id && surface.sphere ? { dir: reliefDir.copy(surface.local).normalize() } : null });
+      relief.update(n, { camLocal, focused: id === focusId, surface: surface?.id === id && surface.sphere ? { dir: reliefDir.copy(surface.local).normalize() } : null, fov: camera.fov });
     }
     const orbiting = rig.update(now);
     if (surface) { updateSurface(jd); surfaceSky(); }
@@ -2481,6 +2543,59 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   }
 
   // ---- clouds and ground (#83) --------------------------------------------------------------------
+  /**
+   * The helm under Venus' deck (#42, #83): the same dim orange overcast as standing there (clouds.js layerLook):
+   * the ground's light and fog, the murk veil, the sky colour, no Sun, no other bodies, labels or orbit lines, and
+   * the ship lit by the diffuse light. Undone when the ship climbs out or the helm is left.
+   */
+  let helmLayer = null;
+  const hlOff = new THREE.Vector3(), hlSun = new THREE.Vector3();
+  function helmCloudLight(origin) {
+    const prev = helmLayer;
+    helmLayer = null;
+    const id = origin && !surface ? helm.anchor : null, n = id ? nodes[id] : null, L = n && model.isSol ? cloudLayer(id) : null;
+    if (L && nodes[model.starId]) {
+      hlOff.copy(origin).sub(n.pos);
+      const altKm = hlOff.length() * AU_KM - (L.refRadiusKm ?? n.body.radiusKm);
+      hlSun.copy(nodes[model.starId].pos).sub(origin).normalize();
+      const sunAlt = (Math.asin(Math.max(-1, Math.min(1, hlOff.clone().normalize().dot(hlSun)))) * 180) / Math.PI;
+      const look = helmLayerLook(id, altKm, sunAlt);
+      if (look) helmLayer = { id, look, altKm };
+    }
+    const ship = helm.shipObject;
+    if (prev && prev.id !== helmLayer?.id) { // climbed out (or left the helm): put the light back
+      resetLayerLight(prev.id);
+      scene.background = null; skyMat.uniforms.uFade.value = 1;
+      starLight.color.setHex(model.bodies.find((b) => b.id === model.starId)?.color ?? 0xfff4e0); starLight.intensity = 2.4;
+      ship.traverse((o) => { if (o.material?.isMeshStandardMaterial && o.material.envMap) o.material.envMapIntensity = 0.8; });
+    }
+    if (!helmLayer) return;
+    const look = helmLayer.look, gu = n.mesh.material.uniforms;
+    if (gu.uSkyAmb) {
+      gu.uSunColor.value.setRGB(1.3 * look.sunScale * look.sunTint[0], 1.3 * look.sunScale * look.sunTint[1], 1.3 * look.sunScale * look.sunTint[2]);
+      gu.uSkyAmb.value.setRGB(...look.skyAmb);
+      gu.uSkyUp.value.copy(hlOff).normalize();
+      gu.uFogK.value = look.fogK * AU_KM;
+      gu.uFogCol.value.setRGB(...look.fogRgb);
+    }
+    murkVeil ??= createMurkVeil(scene);
+    murkVeil.set(look.murk, look.murkRgb);
+    const k = look.sky;
+    scene.background = (scene.background?.isColor ? scene.background : new THREE.Color()).setRGB(k[0], k[1], k[2], THREE.LinearSRGBColorSpace);
+    skyMat.uniforms.uFade.value = look.starFade ?? 0;
+    // the ship in the same diffuse orange light
+    starLight.color.setRGB(...look.sunTint); starLight.intensity = 2.4 * look.sunScale;
+    const env = 0.8 * Math.max(0.08, Math.pow(look.light, 0.25));
+    ship.traverse((o) => { if (o.material?.isMeshStandardMaterial && o.material.envMap) o.material.envMapIntensity = env; });
+    if (!look.bodiesVisible) for (const k2 in nodes) {
+      if (k2 === id) continue;
+      const m = nodes[k2];
+      m.group.visible = false; m.label.visible = false;
+      if (m.orbit) { m.orbit.visible = false; fat.sync(m.orbit, 1); } // and its thick twin (#27)
+      if (m.endMark) m.endMark.visible = false;
+    }
+    if (nodes[id].orbit) { nodes[id].orbit.visible = false; fat.sync(nodes[id].orbit, 1); }
+  }
   const cloudSun = new THREE.Vector3();
   /**
    * Each frame for a body with a cloud shell: its rotation against the ground (Venus super-rotates; today's
@@ -2491,14 +2606,31 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const c = n.clouds, cu = c.material.uniforms, gu = n.mesh?.material?.uniforms, L = c.userData.layer;
     const liveTex = !c.userData.opaque && liveState[n.body.id] && gu?.uHasLive?.value > 0.5 ? gu.uLive.value : null;
     c.userData.live = !!liveTex;
+    // #83: Earth's measured clouds: NOAA-20's cloud-top heights and true colour of the same day (when live skins are on)
+    const slices = !!c.userData.slices;
+    if (slices && settings.get('liveSkins') && !c.userData.ecAsked) { c.userData.ecAsked = true; loadEarthClouds().then((ec) => { c.userData.ec = ec; }); }
+    const ec = slices && settings.get('liveSkins') ? c.userData.ec : null;
+    c.userData.measured = ec ? ec.date : null;
     if (c.userData.opaque) c.rotation.y = n.mesh.rotation.y + superRotation(L, jd);
-    else if (liveTex) { c.rotation.y = n.mesh.rotation.y; if (cu.uMap.value !== liveTex) cu.uMap.value = liveTex; cu.uAlphaFromLuma.value = 2; }
-    else {
+    else if (ec) {
+      c.rotation.y = n.mesh.rotation.y;
+      if (cu.uMap.value !== ec.colour) cu.uMap.value = ec.colour;
+      cu.uAlphaFromLuma.value = 2; cu.uCth.value = ec.heights; cu.uCthOn.value = 1; cu.uSnowOn.value = 0;
+    } else if (liveTex) {
+      c.rotation.y = n.mesh.rotation.y; if (cu.uMap.value !== liveTex) cu.uMap.value = liveTex; cu.uAlphaFromLuma.value = 2;
+      if (cu.uCthOn) { cu.uCthOn.value = 0; const ice = icePriorTexture(); cu.uSnowMask.value = ice; cu.uSnowOn.value = ice ? 1 : 0; } // MODELLED: persistent ice is not cloud
+    } else {
       c.rotation.y = (now / 1000) * 0.004; // a static 2004 snapshot, drifted gently so it reads as weather
       if (c.userData.staticTex && cu.uMap.value !== c.userData.staticTex) cu.uMap.value = c.userData.staticTex;
       cu.uAlphaFromLuma.value = 1;
+      if (cu.uCthOn) { cu.uCthOn.value = 0; cu.uSnowOn.value = 0; }
     }
-    const standing = surface?.id === n.body.id ? surface : null;
+    if (!c.userData.opaque) { // #83 (speckles): draw only the faces the camera can see, never a shell's far side
+      const camLocalD = n.mesh.worldToLocal(cloudSun.copy(camera.position)).length();
+      if (slices) cloudDetail(c, camLocalD < 1.15); // fine geometry close up: a coarse sphere's facets sag kilometres below the slice heights
+      cloudSides(c, camLocalD);
+    }
+    const standing = surface?.id === n.body.id ? surface : helmLayer?.id === n.body.id ? { layerLook: helmLayer.look } : null;
     c.visible = n.cloudBandOK !== false && !n.paleoOn && !(standing?.layerLook?.hideShell);
     if (!gu) return;
     if (gu.uLiveSplit) gu.uLiveSplit.value = liveTex && c.visible ? 1 : 0; // the clouds are on the shell, not the ground
@@ -2507,7 +2639,8 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       gu.uCloudMode.value = on ? cu.uAlphaFromLuma.value : 0;
       if (on) {
         gu.uCloudTex.value = cu.uMap.value;
-        gu.uCloudH.value = L.shellKm / n.body.radiusKm;
+        gu.uCloudH.value = (slices ? (L.topKm + L.baseKm) / 2 : L.shellKm) / n.body.radiusKm; // the volume's middle
+        if (gu.uCloudGateOn) { gu.uCloudGateOn.value = ec ? 1 : 0; gu.uCloudGate.value = ec ? ec.heights : null; }
         gu.uCloudU.value = (n.mesh.rotation.y - c.rotation.y) / (2 * Math.PI);
         const star = nodes[n.mesh.material.userData.host] ?? nodes[model.starId];
         if (star) gu.uSunL.value.copy(n.mesh.worldToLocal(star.group.getWorldPosition(cloudSun))).normalize();
@@ -2613,6 +2746,11 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const viewApi = {
     /** #40: what a postcard must declare: the paleo-Earth banner and any scenario labels showing. */
     get postcardFacts() { return { paleo: paleo?.banner ?? null, scenario: scenario ? scenario.labels.map((l) => l.element.firstChild?.textContent ?? '') : [] }; },
+    /** #40, #79: the 3D corona's provenance for a postcard when it is drawn and the Sun is in frame (coronaPostcard), else null. */
+    get postcardCorona() {
+      const c = model?.isSol ? nodes[model.starId]?.corona : null;
+      return c?.mesh.visible && viewApi.framed(1).some((f) => f.id === model.starId) ? coronaPostcard(c) : null;
+    },
     /** #40: bodies drawn at least `minPx` screen pixels across radius: [{ id, name, px, lit (0–1), from (lit side on screen), map, live, imagined }], biggest first. */
     framed(minPx = 3) {
       const H = renderer.domElement.clientHeight || 800, f = (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
@@ -2646,7 +2784,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       return out.sort((a, b) => b.px - a.px);
     },
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); drawCorona(); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); drawCorona({ full: true }); labels.render(scene, camera); }, restore: resize, setSize: (w, h) => fat.setSize(w, h) }),
     /** Earth through time (#54): { sea, label } (a sea level, m) or { ma } (GPlates coastlines) or null to follow the clock. */
     setEarthEpoch(s) { paleoScenario = s ?? null; },
     /** Opt-in scenario visuals (#53): { star?, ring? } or null to clear. */
@@ -2669,7 +2807,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     bandSky: () => (band.id === 'full' ? null : skyNow.layers[0] ?? null),
     /** Every survey blended into the sky: [{ sky, skyCredit, weight, look: { res } }] and the measured fraction. */
     bandSkies: () => (band.id === 'full' ? { layers: [], measured: 0 } : skyNow),
-    show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
+    show() { container.hidden = false; resize(); if (!running) { running = true; lastFrameAt = null; if (idleTimer == null) requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },
     load,
     setSky, decorativeSky,

@@ -6,6 +6,7 @@
 //                                today's SOHO LASCO and SDO AIA images (server/corona.js), else a solar-cycle model
 //   imageToDir, paToDir, beltNormal          image and sky coordinates → directions in the Sun's own frame
 //                                (y = rotation axis), the same projection the disc images use (materials.js)
+//   placeStreamer                            a streamer's PA → a 3D place on the streamer belt sheet
 //   coronaLayers(look, structure)            the rows of the Sun's CORONA panel, each with its badge
 //
 // Physics, with sources:
@@ -201,6 +202,37 @@ export function beltNormal(east, west, E, N) {
   return { n: norm(add(mul(N, Math.cos(tau)), mul(right, -Math.sin(tau)))), sinLat0: Math.sin(lat0) };
 }
 
+/** The position angle (degrees from north through east) at which direction d (Sun's frame) is seen from E with pole N. */
+export function dirToPa(d, E, N) {
+  const { up, right } = imageAxes(E, N);
+  return ((Math.atan2(-dot(d, right), dot(d, up)) * 180) / Math.PI + 360) % 360;
+}
+
+/**
+ * A streamer in 3D. A coronagraph sees each streamer projected on the sky at its position angle; helmet streamers are
+ * the bright folds of the streamer belt round the heliospheric current sheet, so the streamer is put where its line of
+ * sight (all directions seen at that PA: d = cos φ·s + sin φ·E, s the PA direction in the plane of the sky) crosses the
+ * belt sheet d·n = sinLat0, at the crossing nearest the plane of the sky, and stretched along the belt (tangent n × d).
+ * Seen from Earth it stays at the measured PA; from any other side the streamers lie along a warped sheet round the Sun.
+ * A streamer whose line of sight meets the belt no closer than `maxOff`° to the sky plane (a pseudostreamer, or a belt
+ * seen face-on) stays in the plane of the sky. Returns { dir, along (unit, along the belt), off (φ, degrees), onBelt }.
+ */
+export function placeStreamer(pa, belt, E, N, { maxOff = 60 } = {}) {
+  const s = paToDir(pa, E, N), a = dot(s, belt.n), b = dot(E, belt.n), R = Math.hypot(a, b), c = belt.sinLat0;
+  let phi = 0, onBelt = false;
+  if (R <= 1e-9) onBelt = Math.abs(c) <= 1e-9; // the whole line of sight lies in the belt (an edge-on belt at the limb): keep the sky plane
+  else if (Math.abs(c) <= R) {
+    const base = Math.atan2(b, a), w = Math.acos(Math.max(-1, Math.min(1, c / R)));
+    const wrap = (x) => Math.atan2(Math.sin(x), Math.cos(x));
+    const best = [wrap(base + w), wrap(base - w)].sort((p, q) => Math.abs(p) - Math.abs(q))[0];
+    if (Math.abs(best) <= (maxOff * Math.PI) / 180) { phi = best; onBelt = true; }
+  }
+  const dir = norm(add(mul(s, Math.cos(phi)), mul(E, Math.sin(phi))));
+  let along = cross(belt.n, dir);
+  if (Math.hypot(...along) < 1e-6) along = cross(E, dir);
+  return { dir, along: norm(along), off: (phi * 180) / Math.PI, onBelt };
+}
+
 // deterministic pseudo-random numbers for the modelled structure (the same every time for one rotation)
 const rnd = (seed) => { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 2 ** 32; }; };
 /** Carrington-like rotation number at jd (27.2753 d synodic, from 1853-11-09). */
@@ -250,7 +282,7 @@ export function modelledStructure(jd) {
 
 /**
  * Resolve a structure into directions in the Sun's frame for observer direction E and pole N (unit vectors in that frame):
- * { belt: { n, sinLat0 }, streamers: [{ dir, width (rad), strength }], regions: [{ dir, size, strength }], holes: [{ dir, size, depth }], polar }.
+ * { belt: { n, sinLat0 }, streamers: [{ dir, along, length (rad, along the belt), onBelt, width (rad), strength }], regions: [{ dir, size, strength }], holes: [{ dir, size, depth }], polar }.
  */
 export function resolveStructure(s, E, N) {
   if (s.source === 'modelled') { // from its own frame (observer +z, north +y) into this one
@@ -263,7 +295,10 @@ export function resolveStructure(s, E, N) {
   const polarHole = (s.holes ?? []).some((h) => Math.abs(h.y) > 0.6);
   return {
     belt,
-    streamers: s.streamers.map((t) => ({ dir: paToDir(t.pa, E, N), width: (t.width * Math.PI) / 180, strength: t.strength })),
+    streamers: s.streamers.map((t) => { // on the belt sheet along their line of sight (placeStreamer), stretched along it
+      const p = placeStreamer(t.pa, belt, E, N), width = (t.width * Math.PI) / 180;
+      return { dir: p.dir, along: p.along, length: p.onBelt ? Math.min(0.9, 0.3 + width) : width, onBelt: p.onBelt, width, strength: t.strength };
+    }),
     regions: s.regions.map((g) => ({ dir: imageToDir(g.x, g.y, E, N), size: g.size, strength: g.strength })),
     holes: s.holes.map((h) => ({ dir: imageToDir(h.x, h.y, E, N), size: h.size, depth: h.depth })),
     polar: { lat: 55 + 30 * a, depth: polarHole ? 0.8 : 0.85 * (1 - a) },
@@ -280,7 +315,7 @@ export function coronaLayers(look, s, { jd = null, eclipse = null } = {}) {
   rows.push({ label: 'IN THIS BAND', value: look.label, tier: 'modelled', detail: look.why });
   const cg = s?.sources?.coronagraph, euv = s?.sources?.euv;
   if (s?.source === 'measured' && cg) rows.push({ label: 'STREAMERS', value: `${s.streamers.length} FROM ${cg.instrument} · ${when(cg.time)}`, tier: 'modelled',
-    detail: `Position angles and widths MEASURED on the ${cg.instrument} white-light image (${cg.credit}); a coronagraph sees them projected on the sky, so they are placed in the plane of the sky (MODELLED), with a belt through the limb streamers nearest the equator.` });
+    detail: `Position angles and widths MEASURED on the ${cg.instrument} white-light image (${cg.credit}). A coronagraph sees them projected on the sky; each is placed where its line of sight crosses a streamer belt fitted through the limb streamers nearest the equator, and stretched along it (MODELLED: a warped current sheet, not tomography), so it stays at its measured angle seen from Earth.` });
   else rows.push({ label: 'STREAMERS', value: `MODELLED BELT · ${jd ? cycleWords(jd) : 'SOLAR CYCLE'}`, tier: 'modelled',
     detail: 'No coronagraph image within 14 days of the clock: a streamer belt tilted as the solar cycle suggests (~10° at minimum, ~70° at maximum), at an illustrative orientation.' });
   if (s?.source === 'measured' && euv) {

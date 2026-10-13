@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   venusAtmosphere, earthAtmosphere, atmosphereAt, CLOUD_LAYERS, murk, lightFraction, sunVisible, extinctionPerKm, visibilityKm,
-  layerAt, descentAltitude, createDescent, startDescent, stepDescent, GROUND_EYE_KM,
+  layerAt, descentAltitude, createDescent, startDescent, stepDescent, GROUND_EYE_KM, cloudColumn, sliceDraws, slicesInColumn, sliceAlpha,
 } from '../src/astro/atmosphere.js';
 
 const close = (a, b, tol, msg) => assert.ok(Math.abs(a - b) <= tol, `${msg ?? ''} ${a} vs ${b} (±${tol})`);
@@ -53,19 +53,22 @@ test('US Standard Atmosphere 1976 reference values (geometric altitude)', () => 
   close(earthAtmosphere(10).pHpa, 265.0, 0.1, '10 km');
 });
 
-test('the layers: Venus deck 48–70 km (measured), Earth shell 10 km (assumed)', () => {
+test('the layers: Venus deck 48–70 km (measured), Earth 2–10 km where not measured (assumed)', () => {
   assert.equal(CLOUD_LAYERS.venus.baseKm, 48);
   assert.equal(CLOUD_LAYERS.venus.topKm, 70);
   assert.equal(CLOUD_LAYERS.venus.assumed, false);
-  assert.equal(CLOUD_LAYERS.earth.shellKm, 10);
+  assert.equal(CLOUD_LAYERS.earth.topKm, 10);
+  assert.equal(CLOUD_LAYERS.earth.baseKm, 2);
   assert.equal(CLOUD_LAYERS.earth.assumed, true);
+  assert.ok(CLOUD_LAYERS.earth.shellKm >= Math.max(...CLOUD_LAYERS.earth.slicesKm), 'the outer shell holds every slice');
   assert.ok(CLOUD_LAYERS.venus.standKm > CLOUD_LAYERS.venus.topKm, 'double-click stands you on top of the clouds');
-  assert.ok(CLOUD_LAYERS.earth.standKm > CLOUD_LAYERS.earth.shellKm);
+  assert.ok(CLOUD_LAYERS.earth.standKm > CLOUD_LAYERS.earth.topKm);
   assert.equal(layerAt('venus', 75), 'above');
   assert.equal(layerAt('venus', 60), 'in');
   assert.equal(layerAt('venus', 10), 'below');
   assert.equal(layerAt('earth', 12), 'above');
-  assert.equal(layerAt('earth', 10), 'in');
+  assert.equal(layerAt('earth', 6), 'in');
+  assert.equal(layerAt('earth', 1), 'below');
   assert.equal(layerAt('earth', 0.002), 'below');
 });
 
@@ -89,11 +92,34 @@ test('descent through Venus: bright tops, murk ~48–70 km, clearing below 30 km
   assert.ok(visibilityKm(extinctionPerKm('earth', 0)) > 200);
 });
 
-test('Earth\'s shell blinds only where there is cloud', () => {
-  assert.ok(murk('earth', 10, 1) > 0.8);
-  assert.equal(murk('earth', 10, 0), 0);
-  assert.equal(murk('earth', CLOUD_LAYERS.earth.standKm, 1), 0, 'the standing point is clear of the shell');
+test('Earth\'s cloud layer blinds only where there is cloud, through its whole depth', () => {
+  for (const h of [2.5, 5, 9.5]) assert.ok(murk('earth', h, 1) > 0.8, `inside the assumed 2–10 km layer at ${h} km`);
+  assert.equal(murk('earth', 6, 0), 0);
+  assert.equal(murk('earth', CLOUD_LAYERS.earth.standKm, 1), 0, 'the standing point is clear of the tops');
   assert.equal(murk('earth', 0.002, 1), 0);
+  // a measured low cloud deck: murk only around it
+  const col = cloudColumn('earth', 1.5);
+  assert.ok(col.measured && col.topKm === 1.5 && col.baseKm >= 0.3 && col.baseKm < 1.5);
+  assert.ok(murk('earth', 1.2, 1, col) > 0.8);
+  assert.equal(murk('earth', 5, 1, col), 0);
+  assert.equal(layerAt('earth', 5, col), 'above');
+});
+
+test('the descent through Earth\'s assumed layer spends several seconds in cloud (not a blink)', () => {
+  let st = createDescent('earth');
+  st = startDescent(st, 'down', 0, CLOUD_LAYERS.earth.descentS);
+  let inCloud = 0;
+  for (let t = 0; t <= st.dur; t += 0.05) { if (murk('earth', stepDescent(st, t).altKm, 1) > 0.5) inCloud += 0.05; }
+  assert.ok(inCloud > 4, `${inCloud.toFixed(1)} s in the murk`);
+});
+
+test('cloud slices: each column fills the slices from its base to its top, at least one, with the column\'s opacity', () => {
+  const S = CLOUD_LAYERS.earth.slicesKm;
+  assert.equal(slicesInColumn(10, 2, S), S.filter((h) => h >= 2 && h <= 10).length);
+  assert.equal(slicesInColumn(0.6, 0.3, S), 1, 'a fog bank still draws the lowest slice');
+  assert.ok(sliceDraws(12.5, 13, 9, S) && !sliceDraws(1, 13, 9, S));
+  const n = 4, a = 0.7;
+  close(1 - (1 - sliceAlpha(a, n)) ** n, a, 1e-12, 'stacked slices add up to the column');
 });
 
 test('descent altitude eases in log altitude from the tops to 2 m above the ground', () => {

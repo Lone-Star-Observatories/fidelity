@@ -24,10 +24,11 @@
 
 import * as THREE from 'three';
 import { createShipModel, SHIP, BRIDGE_EYE } from './shipModel.js';
-import { shipState, logEntry as logShip, systemEdgeAU } from './shipState.js';
+import { shipState, logEntry as logShip, systemEdgeAU, pinchZoom } from './shipState.js';
 import { badge } from '../../data/provenance.js';
-import { gmOf, G_KM, gravAccel, verletStep, stateToElements, segmentHitsSphere, dominantBody } from '../../astro/orbit.js';
-import { C_KM_S, AU_KM, gamma, regime, throttleToSpeed, speedToThrottle, autoCruise, cToWarp, warpToC, FULL_IMPULSE_C, fmtSpeed, fmtDistance, fmtDuration } from '../../astro/warp.js';
+import { autolandAccel, canLand } from '../../astro/landing.js';
+import { gmOf, G_KM, gravAccel, verletStep, stateToElements, segmentHitsSphere, dominantBody, sweepJump } from '../../astro/orbit.js';
+import { aberrateCos, dopplerFactor, C_KM_S, AU_KM, gamma, regime, throttleToSpeed, speedToThrottle, autoCruise, cToWarp, warpToC, FULL_IMPULSE_C, fmtSpeed, fmtDistance, fmtDuration } from '../../astro/warp.js';
 
 const M_PER_AU = AU_KM * 1000;
 const SUN_KG = 1.9885e30;
@@ -146,7 +147,7 @@ export function createHelm(ctx) {
   /** Leave the helm; `quiet` when another camera move (a survey, a site, LOOK AT) takes over at once. */
   function deactivate() {
     active = false;
-    course = null; hold = null; speed = 0; throttle = 0; keys.clear(); drag = null; landed = null;
+    course = null; hold = null; speed = 0; throttle = 0; keys.clear(); drag = null; landed = null; autoland = null;
     shipRoot.visible = false;
     streaks.visible = false;
     hud.hidden = true; frameEl.hidden = true;
@@ -241,7 +242,7 @@ export function createHelm(ctx) {
     if (!active) engage({ near: startNear() });
     if (id === hold?.id && !course) { flash(`HOLDING AT ${bodyOf(id).name.toUpperCase()}`); return true; }
     model = 'impulse';
-    hold = null; allStop = false;
+    hold = null; allStop = false; autoland = null;
     const dist = distanceKm(id);
     course = { id, phase: 'turn', cruise: cruiseFor(dist), label: bodyOf(id).name.toUpperCase(), startKm: dist };
     selected = id;
@@ -319,6 +320,7 @@ export function createHelm(ctx) {
       case 'KeyV': setView(VIEWS[(VIEWS.findIndex(([v]) => v === view) + 1) % VIEWS.length][0]); break;
       case 'KeyH': disengage(); break;
       case 'KeyC': if (selected && nodes()[selected]) setCourse(selected); else return; break;
+      case 'KeyL': toggleAutoland(); break;
       case 'Escape': if (course) { course = null; flash('AUTOPILOT OFF'); } else return; break;
       default: return;
     }
@@ -329,6 +331,7 @@ export function createHelm(ctx) {
   /** Manual input takes over from the autopilot and breaks orbit. */
   function manual(kind) {
     if (course && !course.star) { course = null; flash('AUTOPILOT OFF · MANUAL CONTROL'); }
+    if (autoland && kind) { autoland = null; flash('AUTOLAND OFF · MANUAL CONTROL'); }
     if (hold && (kind === 'up' || kind === 'down' || kind === 'steer' || kind?.startsWith('yaw') || kind?.startsWith('pitch') || kind?.startsWith('roll'))) {
       if (hold.kind === 'orbit' && model === 'impulse' && kind === 'up') { speed = hold.kmS; throttle = speedToThrottle(hold.kmS); } // keep the orbital speed as you leave
       if (model === 'physics') freeOrbit(); // in REAL PHYSICS the orbit carries on under gravity
@@ -337,11 +340,15 @@ export function createHelm(ctx) {
     if (kind === 'up' || kind === 'down') allStop = false;
   }
   // drag steers in CHASE and BRIDGE (OrbitControls own ORBIT)
+  // two fingers pinch: CHASE distance or BRIDGE field of view, as the camera rig's pinch (#42)
+  const touches = new Map();
   dom.addEventListener('pointerdown', (e) => {
     if (!live() || view === 'orbit') return;
-    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 };
+    touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    drag = touches.size === 1 ? { id: e.pointerId, x: e.clientX, y: e.clientY, moved: 0 } : null;
   });
   dom.addEventListener('pointermove', (e) => {
+    if (touches.size >= 2 && touches.has(e.pointerId) && live() && view !== 'orbit') { pinch(e); return; }
     if (!drag || drag.id !== e.pointerId || !live() || view === 'orbit') return;
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
     drag.x = e.clientX; drag.y = e.clientY; drag.moved += Math.abs(dx) + Math.abs(dy);
@@ -350,7 +357,15 @@ export function createHelm(ctx) {
     const k = ((camera.fov * DEG) / (dom.clientHeight || 600)) * 0.9;
     quat.multiply(q1.setFromAxisAngle(v1.set(0, 1, 0), -dx * k)).multiply(q1.setFromAxisAngle(v1.set(1, 0, 0), -dy * k)).normalize();
   });
-  const endDrag = (e) => { if (drag?.id === e.pointerId) drag = null; };
+  function pinch(e) {
+    const p = touches.get(e.pointerId), other = [...touches].find(([id]) => id !== e.pointerId)?.[1];
+    const before = Math.hypot(p.x - other.x, p.y - other.y), after = Math.hypot(e.clientX - other.x, e.clientY - other.y);
+    p.x = e.clientX; p.y = e.clientY;
+    const z = pinchZoom(view, before > 0 ? after / before : 1, { chaseZoom, fov: camera.fov });
+    chaseZoom = z.chaseZoom;
+    if (z.fov !== camera.fov) { camera.fov = z.fov; camera.updateProjectionMatrix(); }
+  }
+  const endDrag = (e) => { touches.delete(e.pointerId); if (drag?.id === e.pointerId) drag = null; };
   dom.addEventListener('pointerup', endDrag);
   dom.addEventListener('pointercancel', endDrag);
   dom.addEventListener('wheel', (e) => {
@@ -361,7 +376,7 @@ export function createHelm(ctx) {
   }, { passive: false });
 
   function fullStop() {
-    course = null;
+    course = null; autoland = null;
     throttle = 0; allStop = true;
     if (model === 'physics' && hold) freeOrbit(); // REAL PHYSICS: X burns to match the body's velocity, then gravity has the ship
     if (!hold) flash(model === 'physics' ? `RETRO-BURN · MATCHING ${bodyOf(anchor)?.name.toUpperCase() ?? 'FRAME'}` : 'FULL STOP');
@@ -391,7 +406,7 @@ export function createHelm(ctx) {
     if (mo === model) return;
     model = mo;
     course = null;
-    landed = null; prevRel.clear(); elements = null;
+    landed = null; prevRel.clear(); elements = null; autoland = null;
     if (mo === 'physics') {
       // from a standard orbit keep the orbital velocity (a real, stable orbit under gravity); else carry the speed along the nose
       if (hold?.kind === 'orbit') vel.copy(hold.axis).cross(hold.offset).setLength(hold.kmS);
@@ -510,6 +525,7 @@ export function createHelm(ctx) {
   const RATE_CAP = 10000, MAX_SUB = 4000, LAND_KMS = 0.01, REST_KM = 0.06; // resting: the ship's centre 60 m over the ground
   let rate = { k: 1, note: 'REAL TIME' };
   let landed = null; // { id, kind: 'impact' | 'landed', kmS }
+  let autoland = null; // AUTOLAND under way: { id, c (the guidance's last read-out) }
   let elements = null; // the orbit about the dominant body, for the HUD
   let simDt = 0; // seconds of flight in the last REAL PHYSICS frame (the wall clock × the time rate)
   let massCache = null; // { model, n, list: [{ id, gm, R (km), parent }] }
@@ -570,10 +586,91 @@ export function createHelm(ctx) {
     anchor = id; vel.set(0, 0, 0); allStop = false; prevRel.clear();
     const kind = relKmS <= LAND_KMS ? 'landed' : 'impact';
     landed = { id, kind, kmS: relKmS };
+    if (autoland) { autoland = null; logEntry(`AUTOLAND ${kind === 'landed' ? 'COMPLETE' : 'FAILED'} · ${fmtSpeed(relKmS)}`); }
     const text = `${kind === 'landed' ? 'LANDED' : 'IMPACT'} · ${b.name.toUpperCase()} · ${fmtSpeed(relKmS)}`;
     flash(text); logEntry(text);
     if (kind === 'landed') visited.add(id);
   }
+  /**
+   * AUTOLAND (REAL PHYSICS): a powered descent to a soft landing on the dominant body, the suicide-burn way
+   * (src/astro/landing.js): kill the speed across the ground, fall, and burn only as hard as needed to stop at the
+   * ground (aiming at ~1.5 m/s; LANDED is ≤ 10 m/s). The assist points the thrust; the ship keeps level. If the
+   * thrust setting cannot beat the local gravity, it is raised to the lowest that can, and the HUD says so.
+   */
+  function toggleAutoland() {
+    if (autoland) { autoland = null; flash('AUTOLAND OFF'); syncHud(true); return false; }
+    if (model !== 'physics') setModel('physics');
+    if (hold) freeOrbit();
+    course = null; allStop = false;
+    const b = bodyOf(anchor), anc = massive().find((x) => x.id === anchor);
+    if (landed) { flash(`ALREADY DOWN ON ${b?.name.toUpperCase() ?? 'THE SURFACE'}`); return false; }
+    if (!b || !anc || ctx.isStar(b) || b.radiusKm > 20000) { /* stars and giant planets: no solid surface */ flash(`AUTOLAND · ${b?.name.toUpperCase() ?? 'THIS BODY'} HAS NO SOLID SURFACE TO LAND ON`); return false; }
+    const R = groundAU(anchor, v1.copy(local)) * AU_KM;
+    let raised = '';
+    if (!canLand(anc.gm, R, thrustG * 9.80665e-3).ok) {
+      const g = THRUSTS.find((x) => canLand(anc.gm, R, x * 9.80665e-3).ok);
+      if (!g) { flash(`AUTOLAND · ${b.name.toUpperCase()}'S GRAVITY IS TOO STRONG FOR THE SHIP`); return false; }
+      thrustG = g; raised = ` · THRUST RAISED TO ${g} G (GRAVITY HERE ${(canLand(anc.gm, R, 0).g / 9.80665e-3).toFixed(2)} G)`;
+    }
+    autoland = { id: anchor, c: null };
+    prevRel.clear();
+    flash(`AUTOLAND · ${b.name.toUpperCase()}${raised}`);
+    logEntry(`AUTOLAND · ${b.name.toUpperCase()} · THRUST ${thrustG} G${raised ? ' (RAISED)' : ''}`);
+    syncHud(true);
+    return true;
+  }
+  /** AUTOLAND keeps the ship level: belly to the ground, nose along its motion across it. */
+  function levelForLanding(dt) {
+    const up = v2.copy(local).normalize();
+    const nose = v3.copy(vel).addScaledVector(up, -vel.dot(up));
+    if (nose.lengthSq() < 1e-12) fwd(quat, nose).addScaledVector(up, -fwd(quat, v1).dot(up));
+    if (nose.lengthSq() < 1e-12) return;
+    turnTo(nose.normalize().clone(), up.clone(), dt, 45);
+  }
+  let lastPhysWall = 0, lastClockRate = 0;
+  /**
+   * A clock jump of dtS seconds (from jd0) in REAL PHYSICS: the ship is carried along its two-body orbit about
+   * the frame body and the interval is swept for collisions with it (exactly) and with its moons, its parent and
+   * its siblings (ephemeris positions, sampled; orbit.js sweepJump). The pulls of other bodies over the jump are
+   * not integrated, and a jump of more than ~32 orbits is not swept past the other bodies: the HUD and log say so.
+   */
+  function clockJump(dtS, jd0) {
+    const list = massive(), anc = list.find((x) => x.id === anchor), A = posOf(anchor);
+    prevRel.clear();
+    if (!anc || !A || !ctx.positionAt || !(Math.abs(dtS) > 0)) return false;
+    const pa = new THREE.Vector3(), pb = new THREE.Vector3();
+    const rel = (id) => (t) => {
+      const jd = jd0 + t / 86400;
+      ctx.positionAt(id, jd, pa); ctx.positionAt(anchor, jd, pb);
+      return [(pa.x - pb.x) * AU_KM, (pa.y - pb.y) * AU_KM, (pa.z - pb.z) * AU_KM];
+    };
+    // what the ship could meet inside the frame body's sphere of influence: its moons; about a moon, also its planet
+    // and sibling moons; about the star, the bodies that orbit it
+    const star = ctx.model().starId, aboutMoon = anc.parent && anc.parent !== star;
+    const near = list.filter((x) => x.id !== anchor && (x.parent === anchor || (aboutMoon && (x.id === anc.parent || x.parent === anc.parent))));
+    const others = near.map((x) => ({ id: x.id, R: x.R, posAt: rel(x.id) }));
+    const res = sweepJump({ r: [local.x * AU_KM, local.y * AU_KM, local.z * AU_KM], v: [vel.x, vel.y, vel.z], gm: anc.gm, R: anc.R, dt: dtS, others, maxSamples: others.length > 12 ? 512 : others.length > 3 ? 2048 : 8192 });
+    const name = bodyOf(anchor)?.name.toUpperCase() ?? 'FRAME';
+    const span = `${dtS < 0 ? '−' : '+'}${fmtDuration(Math.abs(dtS))}`;
+    jumpNote = { at: performance.now(), text: `CLOCK JUMP ${span} · CARRIED ALONG ITS ORBIT ABOUT ${name} (TWO-BODY)${res.swept ? ' · SWEPT FOR COLLISIONS' : ` · TOO LONG TO SWEEP PAST OTHER BODIES (CHECKED AGAINST ${name} ONLY)`}` };
+    logEntry(jumpNote.text);
+    if (res.hit) {
+      const hitId = res.hit.id === 'frame' ? anchor : res.hit.id;
+      const at = new THREE.Vector3(...res.hit.rel).multiplyScalar(1 / AU_KM).add(posOf(hitId)); // on the body as it is now
+      touchDown(hitId, at, res.hit.relKmS);
+      return true;
+    }
+    local.set(...res.r).multiplyScalar(1 / AU_KM);
+    vel.set(...res.v);
+    flash(jumpNote.text);
+    // too long to sweep: if the ship now sits inside a body, it stops at its surface
+    if (!res.swept) {
+      const c = shipWorld(new THREE.Vector3());
+      for (const x of list) if (x.id !== anchor && c.distanceTo(posOf(x.id)) < x.R / AU_KM) { touchDown(x.id, c, 0); break; }
+    }
+    return true;
+  }
+  let jumpNote = null;
   /** One frame of REAL PHYSICS over dt real seconds × the time rate: thrust, gravity, collisions. Returns km moved. */
   function physicsStep(dt) {
     rate = timeRate();
@@ -585,12 +682,25 @@ export function createHelm(ctx) {
     }
     landed = null;
     const ns = nodes();
+    const rateBefore = lastClockRate;
+    { // a jump of the clock (scrubbing, a new date): carry the ship along its orbit over the interval, swept for collisions
+      const jdNow = ctx.jd?.(), wall = performance.now(), rateNow = Math.abs(ctx.clockRate?.() ?? 0);
+      const fresh = lastJd != null && prevAnchor === anchor && wall - lastPhysWall < 2000;
+      // what the running clock can have moved since the last physics frame (at the faster of the old and new rates)
+      const expected = Math.max(rateNow, lastClockRate) * Math.max(dt, (wall - lastPhysWall) / 1000) * 2 + 1e-4;
+      lastPhysWall = wall; lastClockRate = rateNow;
+      if (fresh && jdNow != null && Math.abs(jdNow - lastJd) > expected) {
+        const j0 = lastJd;
+        lastJd = jdNow;
+        if (clockJump((jdNow - j0) * 86400, j0)) { elements = null; return 0; }
+      }
+    }
     const dom = dominantNow();
     if (dom !== anchor) reframe(dom);
     const list = massive(), A = posOf(anchor), n = list.length;
     const jd = ctx.jd?.() ?? 0;
     // a jump of the clock (scrubbing, a new date) moves the bodies at once: don't sweep them through the ship
-    const jumped = prevAnchor !== anchor || lastJd == null || Math.abs(jd - lastJd) > Math.abs((ctx.clockRate?.() ?? 0) * dt) * 3 + 1e-4;
+    const jumped = prevAnchor !== anchor || lastJd == null || Math.abs(jd - lastJd) > Math.max(Math.abs(ctx.clockRate?.() ?? 0), rateBefore) * dt * 3 + 1e-4;
     prevAnchor = anchor; lastJd = jd;
     const cur = new Float64Array(n * 3), prev = new Float64Array(n * 3);
     list.forEach((x, i) => {
@@ -613,7 +723,8 @@ export function createHelm(ctx) {
     const anc = list.find((x) => x.id === anchor);
     const r0 = local.length() * AU_KM, sp = Math.max(vel.length(), 1e-6);
     const tDyn = anc ? Math.sqrt(r0 ** 3 / anc.gm) : Infinity;
-    const h = Math.max(1e-3, Math.min(60, 0.01 * tDyn, (0.1 * Math.max(0.05, nearest?.km ?? r0)) / sp));
+    let h = Math.max(1e-3, Math.min(60, 0.01 * tDyn, (0.1 * Math.max(0.05, nearest?.km ?? r0)) / sp));
+    if (autoland) h = Math.min(h, 0.2); // the guidance is re-computed every sub-step
     let steps = Math.ceil(simDt / h);
     if (steps > MAX_SUB) { // too much flight for one frame: slow the ship's time and say so
       steps = MAX_SUB; simDt = MAX_SUB * h;
@@ -640,14 +751,20 @@ export function createHelm(ctx) {
       place(t);
       gravAccel(p, bodies, g);
       gravAccel(zero, others, g0); // the frame body's own acceleration
-      return [g[0] - g0[0], g[1] - g0[1], g[2] - g0[2]];
+      return [g[0] - g0[0] + thrustA[0], g[1] - g0[1] + thrustA[1], g[2] - g0[2] + thrustA[2]];
     };
     const st = { pos: [local.x * AU_KM, local.y * AU_KM, local.z * AU_KM], vel: [vel.x, vel.y, vel.z] };
     const start = st.pos.slice();
+    let thrustA = [0, 0, 0];
+    const groundKm = autoland ? groundAU(anchor, v1.copy(local)) * AU_KM : 0;
     let t = 0, hit = null;
     for (let s = 0; s < steps && !hit; s++) {
       const p0 = st.pos.slice();
-      verletStep(st, hs, acc, t, s > 0 ? st.acc : null);
+      if (autoland && anc) { // AUTOLAND: the guidance's thrust for this sub-step (km/s²), within the ship's acceleration
+        const c = autolandAccel({ r: st.pos, v: st.vel, gm: anc.gm, ground: groundKm, aMax: thrustG * 9.80665e-3 });
+        thrustA = c.a; autoland.c = c;
+      }
+      verletStep(st, hs, acc, t, s > 0 && !autoland ? st.acc : null);
       t += hs;
       place(t);
       for (let i = 0; i < n; i++) { // swept test against every massive body
@@ -732,6 +849,7 @@ export function createHelm(ctx) {
     } else if (model === 'physics') {
       moved = physicsStep(dt); // thrust, gravity, the dominant body's frame and collisions
       flightS = simDt;
+      if (autoland && !landed) levelForLanding(dt);
     } else {
       const vCmd = allStop ? 0 : throttleToSpeed(throttle).kmS;
       speed = rampTo(speed, vCmd, dt); warpGap(vCmd);
@@ -842,14 +960,20 @@ export function createHelm(ctx) {
   const orbitBadge = badge('computed', 'Osculating orbit about the dominant body from the ship\'s position and velocity relative to it (src/astro/orbit.js: two-body elements; the n-body integration includes every star, planet and moon with a known mass, so the orbit drifts as they pull). Altitudes are above the mean radius.');
   orbitRow.append(el('span', 'helm-wt', ''), orbitBadge);
   orbitRow.hidden = true;
+  // the sky at relativistic speed: aberration and Doppler (COMPUTED; SystemView's star shader applies it)
+  const abRow = el('div', 'helm-sub mono');
+  abRow.append(el('span', 'helm-wt', ''), badge('computed', 'Special relativity: aberration (cos θ′ = (cos θ + β)/(1 + β cos θ)) moves every catalogue star towards the direction of motion, exactly; the Doppler factor D = 1/(γ(1 − β cos θ′)) blues and brightens the stars ahead and reddens and dims those behind (colour and brightness drawn approximately). The Milky Way glow, planets and moons are not shifted. At warp the fiction has no such effect. Toggle with the SKY button.'));
+  abRow.hidden = true;
   const readouts = el('div', 'helm-readouts');
-  readouts.append(title, big, sub, warpRow, relRow, where, orbitRow, auto);
+  readouts.append(title, big, sub, warpRow, relRow, abRow, where, orbitRow, auto);
   const ctl = el('div', 'helm-controls');
   const btn = (text, tip, fn, cls = '') => { const b = el('button', `cam-btn ${cls}`.trim(), text); b.title = tip; b.addEventListener('click', (e) => { e.stopPropagation(); fn(); b.blur(); }); return b; };
   const viewBtns = VIEWS.map(([v, label, tip]) => { const b = btn(label, tip, () => setView(v), 'cam-mode'); b.dataset.view = v; return b; });
+  const skyBtn = btn('SKY · RELATIVISTIC', 'Relativistic aberration and Doppler on the stars at high impulse (COMPUTED): on or off', () => { relSky = !relSky; syncHud(true); }, 'cam-mode');
   const modelBtns = [btn('IMPULSE / WARP', 'Arcade flight: the throttle sets the speed, from 1 m/s to warp 9.99 (warp is fiction)', () => setModel('impulse'), 'cam-mode'),
     btn('REAL PHYSICS', 'Newtonian thrust at a fixed acceleration, relativistic velocities, no warp, under the gravity of the star, planets and moons (n-body, velocity Verlet). The ship follows the clock\'s rate up to ×10,000.', () => setModel('physics'), 'cam-mode')];
   modelBtns[0].dataset.model = 'impulse'; modelBtns[1].dataset.model = 'physics';
+  const autolandBtn = btn('AUTOLAND', 'REAL PHYSICS assist [L]: a powered descent to a soft landing on the body below, the suicide-burn way (kill the speed across the ground, fall, then burn only as hard as needed to stop at the ground). Guidance COMPUTED from the ship\'s state and the body\'s gravity; the ship keeps level. Any manual input takes over.', () => toggleAutoland());
   const thrustBtn = btn('THRUST 1 G', 'REAL PHYSICS acceleration: 1 g is comfortable for a crew; 1000 g only for a probe', () => { thrustG = THRUSTS[(THRUSTS.indexOf(thrustG) + 1) % THRUSTS.length]; syncHud(true); });
   const slider = Object.assign(el('input', 'cam-slider helm-throttle'), { type: 'range', min: 0, max: 1000, step: 1, title: 'Throttle (W / S or R / F): full stop → 1 m/s → full impulse (0.25 c) → warp 1 → warp 9.99' });
   let sliding = false;
@@ -865,11 +989,11 @@ export function createHelm(ctx) {
     syncHud(true);
   });
   const offBtn = btn('LEAVE HELM', 'Hand the camera back and orbit the nearest body [H]', () => disengage());
-  const help = el('div', 'helm-help', 'W/S THROTTLE · A/D ←/→ YAW · ↑/↓ PITCH · Q/E ROLL · DRAG STEER · X FULL STOP · C SET COURSE · 1/2/3 VIEW · H LEAVE · SHIFT FASTER');
+  const help = el('div', 'helm-help', 'W/S THROTTLE · A/D ←/→ YAW · ↑/↓ PITCH · Q/E ROLL · DRAG STEER · X FULL STOP · C SET COURSE · L AUTOLAND · 1/2/3 VIEW · H LEAVE · SHIFT FASTER');
   const row1 = el('div', 'cam-row'), row2 = el('div', 'cam-row'), row3 = el('div', 'cam-row');
-  row1.append(...viewBtns);
+  row1.append(...viewBtns, skyBtn);
   row2.append(stopBtn, slider, throttleOut);
-  row3.append(...modelBtns, thrustBtn, cruiseBtn, offBtn);
+  row3.append(...modelBtns, thrustBtn, autolandBtn, cruiseBtn, offBtn);
   ctl.append(row1, row2, row3, help);
   hud.append(readouts, ctl);
   const flashEl = el('div', 'helm-flash');
@@ -917,15 +1041,26 @@ export function createHelm(ctx) {
     if (course?.star) a = `COURSE ${course.label} · ${course.phase === 'turn' ? 'COMING ABOUT' : 'WARP 9.9 · LEAVING THE SYSTEM'}`;
     else if (course) a = `AUTOPILOT · ${course.label} · ${course.phase === 'turn' ? 'COMING ABOUT' : `${fmtDistance(course.distKm ?? 0)} · ETA ${course.etaS != null ? fmtDuration(course.etaS) : '—'}`}`;
     else if (hold) a = hold.kind === 'orbit' ? `ORBITING ${bodyOf(hold.id)?.name.toUpperCase()} · ${fmtDistance(hold.offset.length() * AU_KM)} FROM CENTRE · PERIOD ${fmtDuration(hold.periodS)}` : `HOLDING ${fmtDistance(hold.offset.length() * AU_KM)} FROM ${bodyOf(hold.id)?.name.toUpperCase()}`;
-    else if (model === 'physics') a = landed ? `${landed.kind === 'landed' ? 'LANDED ON' : 'IMPACT ·'} ${bodyOf(landed.id)?.name.toUpperCase()} · W BURNS TO LIFT OFF` : `REAL PHYSICS · THRUST ${thrustG} G · TIME ${rate.note} · X MATCH ${bodyOf(anchor)?.name.toUpperCase() ?? 'FRAME'}`;
+    else if (model === 'physics' && autoland) {
+      const c = autoland.c;
+      a = `AUTOLAND · ${bodyOf(autoland.id)?.name.toUpperCase()} · ${c ? `${c.phase} · ${fmtDistance(c.h)} UP · DESCENT ${fmtSpeed(c.vDown)} (PLAN ${fmtSpeed(c.vDes)}) · ACROSS ${fmtSpeed(c.vAcross)}` : 'ENGAGING'} · THRUST ${thrustG} G · L OR ANY KEY TAKES OVER`;
+    } else if (model === 'physics') a = landed ? `${landed.kind === 'landed' ? 'LANDED ON' : 'IMPACT ·'} ${bodyOf(landed.id)?.name.toUpperCase()} · W BURNS TO LIFT OFF` : `REAL PHYSICS · THRUST ${thrustG} G · TIME ${rate.note} · X MATCH ${bodyOf(anchor)?.name.toUpperCase() ?? 'FRAME'}`;
+    if (model === 'physics' && jumpNote && performance.now() - jumpNote.at < 8000) a = `${a} · ${jumpNote.text}`;
     put(auto, 'auto', a);
     auto.hidden = !a;
     const orb = model === 'physics' && !hold && !course ? orbitText() : '';
     put(orbitRow.firstChild, 'orbit', orb ? `${orb} ` : '');
     orbitRow.hidden = !orb;
     for (const b of viewBtns) b.classList.toggle('on', b.dataset.view === view);
+    skyBtn.classList.toggle('on', relSky);
+    put(skyBtn, 'skyb', relSky ? 'SKY · RELATIVISTIC' : 'SKY · AT REST');
+    const ab = aberration(), abText = ab ? `SKY AT β ${ab.beta.toFixed(3)} · 90° APPEARS AT ${(Math.acos(aberrateCos(0, ab.beta)) * 180 / Math.PI).toFixed(1)}° · DOPPLER ×${dopplerFactor(1, ab.beta).toFixed(2)} AHEAD, ×${dopplerFactor(-1, ab.beta).toFixed(2)} BEHIND ` : '';
+    put(abRow.firstChild, 'ab', abText);
+    abRow.hidden = !abText;
     for (const b of modelBtns) b.classList.toggle('on', b.dataset.model === model);
     thrustBtn.hidden = model !== 'physics';
+    autolandBtn.hidden = model !== 'physics';
+    autolandBtn.classList.toggle('on', !!autoland);
     put(thrustBtn, 'thrust', `THRUST ${thrustG.toLocaleString('en-US')} G`);
     put(cruiseBtn, 'cruise', `CRUISE · ${CRUISES.find(([c]) => c === cruiseSel)[1]}`);
     cruiseBtn.hidden = model !== 'impulse';
@@ -937,9 +1072,29 @@ export function createHelm(ctx) {
     hud.classList.toggle('bridge', view === 'bridge');
   }
 
+  /** Build the ship and compile its materials off the critical path (three's compileAsync where the GPU allows). */
+  function prewarm(renderer) {
+    if (active || prewarmed) return;
+    prewarmed = true;
+    build();
+    shipRoot.visible = true; // compile() walks visible objects only
+    try { renderer?.compileAsync?.(shipRoot, camera, scene)?.catch?.(() => {}); } catch { /* compiled on first draw instead */ }
+    shipRoot.visible = active;
+  }
+  let prewarmed = false;
+  /** The ship's velocity for the sky shader: { beta, dir (unit, scene axes) } at ≥ 0.001 c below warp with the SKY toggle on, else null. */
+  let relSky = true;
+  function aberration() {
+    if (!active || !relSky || hold) return null;
+    const v = model === 'physics' && !course ? vel : fwd(quat, new THREE.Vector3()).multiplyScalar(speed);
+    const kmS = v.length(), beta = kmS / C_KM_S;
+    if (beta < 0.001 || regime(kmS) === 'warp' || beta >= 1) return null;
+    return { beta, dir: v.clone().normalize().toArray() };
+  }
   const api = {
-    get active() { return active; },
-    update, engage, disengage, onLoad, arriveFrom, get pendingArrival() { return pendingArrival; }, setCourse, warpOut, fullStop, setThrottle, setView, setModel,
+    aberration, setRelativisticSky(on) { relSky = !!on; syncHud(true); }, get relativisticSky() { return relSky; },
+    get active() { return active; }, prewarm,
+    update, engage, disengage, onLoad, toggleAutoland, get autoland() { return autoland ? { id: autoland.id, ...(autoland.c ?? {}) } : null; }, arriveFrom, get pendingArrival() { return pendingArrival; }, setCourse, warpOut, fullStop, setThrottle, setView, setModel,
     setCruise(c) { if (CRUISES.some(([x]) => x === c)) { cruiseSel = c; syncHud(true); } },
     select(id) { selected = id; ctx.prepare?.(id); ctx.on?.('change'); },
     /** Turn the nose to a scene direction at once (browser checks; steering is the keys, drag or autopilot). */
@@ -952,7 +1107,7 @@ export function createHelm(ctx) {
     get state() {
       const v = currentKmS(), beta = v / C_KM_S;
       return {
-        active, kmS: v, beta, regime: hold ? 'hold' : regime(v), warp: regime(v) === 'warp' ? cToWarp(beta) : 0, model, view,
+        chaseZoom, fov: camera.fov, active, kmS: v, beta, regime: hold ? 'hold' : regime(v), warp: regime(v) === 'warp' ? cToWarp(beta) : 0, model, view,
         anchor, nearest, course: course ? { id: course.id ?? null, star: course.star ?? null, label: course.label, phase: course.phase, distKm: course.distKm ?? null, etaS: course.etaS ?? null, cruise: course.cruise ?? null } : null,
         hold: hold ? { id: hold.id, kind: hold.kind, periodS: hold.periodS ?? null, kmS: hold.kmS } : null,
         cruise: cruiseSel, log: log.slice(), travelledKm: S.travelledKm, earthS: S.earthS, shipS: S.shipS, visited: [...visited], landed, rate: rate.note, orbit: elements && { body: elements.id, bound: elements.bound, e: elements.e, periapsisKm: elements.periapsis, apoapsisKm: elements.apoapsis, periodS: elements.periodS, radiusKm: elements.R },

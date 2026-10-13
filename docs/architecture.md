@@ -10,6 +10,8 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 │                                      │           │ server/textures.js  imagery       │
 │                                      │           │ server/tiff.js      USGS mosaics  │
 │                                      │           │ server/dem.js       DEM tiles     │
+│                                      │           │ server/sartiles.js  Venus radar   │
+│                                      │           │ server/earthclouds.js cloud tops  │
 │                                      │           │ server/satellites.js CelesTrak    │
 │                                      │           │ server/feeds.js     live feeds    │
 │                                      │           │ server/imagery.js   surveys, NASA │
@@ -86,7 +88,9 @@ browser (Vite-built SPA, three.js)                 local backend (Node ≥20, no
 | `GET /api/co2` | NOAA GML Mauna Loa monthly CO₂ (the Keeling curve, #54): `rows` of [decimal year, ppm, de-seasonalized ppm] (`server/co2.js`, cached a day) |
 | `GET /api/impact-risk` | Earth impact-risk lists (#53): NASA CNEOS Sentry and ESA NEOCC, each `{ fetched, count, rows }` sorted by cumulative Palermo scale (`server/risk.js`, cached 12 h) |
 | `GET /api/texture/<key>` | A surface image (allowlisted keys only), downloaded once and cached |
-| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mars, Moon, Mercury, Earth z ≤ 4). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF strips; ETOPO1 through ERDDAP), cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit and finest level (`server/dem.js`) |
+| `GET /api/dem-tile/<body>/<z>/<x>/<y>` · `GET /api/dem-info` | Elevation tiles (#80): 256×256 16-bit greyscale PNG of heights (m) over lon −180 + x·s … +s, lat 90 − y·s … −s, s = 90°/2^z, tEXt `min`/`max` for the quantisation; levels up to the source's own resolution (Mercury, Earth z ≤ 4; Moon z ≤ 7 and Mars z ≤ 6 through their high-resolution tiers from level 5: SLDEM2015 512 px/° + LOLA 118 m, the MOLA–HRSC 200 m blend; none for Titan). Read from the raw DEMs by HTTP range requests (PDS IMG, uncompressed GeoTIFF/BigTIFF strips, ISIS cubes for the build; ETOPO1 through ERDDAP), a source split into parts filling each cell from the first part that covers it, cached for good in `data/cache/dem/`; `dem-info` lists each body's source, credit, tiers and finest level (`server/dem.js`) |
+| `GET /api/sar-tile/venus/<z>/<x>/<y>` | Venus' radar ground close up (#83): 256×256 8-bit greyscale PNG of Magellan SAR backscatter in the dem-tile addressing, levels 3–8 (C3-MIDR 2025 m for 3–4, the left-look global mosaics at 225 m for 5–7 and 75 m for 8; 13 and 117 GB BigTIFFs read row by row, a few pixels averaged per cell), cached in `data/cache/sar/` (`server/sartiles.js`) |
+| `GET /api/earth-clouds/heights` · `GET /api/earth-clouds/colour?date=` | Earth's measured clouds (#83): NOAA-20 VIIRS Cloud Top Height (day) from NASA GIBS turned back into metres with GIBS's colour map, as a 2048×1024 8-bit PNG (0 = no cloud retrieved, v → (v − 1)·50 + 25 m), for the newest day GIBS has published (header `x-cloud-date`; it lags 1–3 days), and that day's NOAA-20 true-colour mosaic; cached per day in `data/cache/earthclouds/` (`server/earthclouds.js`) |
 | `GET /api/textures` | Credit line for each texture |
 | `GET /api/spectrum?type=G8V&feh=-0.5` | Closest Pickles template spectrum (300–2500 nm, peak = 1) |
 | `GET /api/smallbodies` | Small-body populations: compact orbit rows `[pop, a, e, i, Ω, ω, M, epochOffset, H]` |
@@ -140,6 +144,14 @@ budgeted set of baked previews (`snapshot.bandImages`, see "Spectrum filter") an
 predicted skins and re-weighted stars. Deep-time arrivals (#29) come only from the snapshot's own 100 ly
 (the 1,000 ly catalogue and the Gaia DR3 radial-velocity slice are backend-only, so the
 snapshot does not grow); the chart badge says so when that runs short.
+
+**Size gate.** The file must stay under 16,000,000 bytes (the Claude artifact limit; the builder refuses to write a
+larger one). Dossier and context images are shown on cards at most ~420 px high, so the builder caps any non-IMAGINED
+image larger than 1,600 px on its long side at 1,600 px (`capSize`: the same picture, smaller; JPEG stays JPEG at q90,
+PNG stays lossless PNG; the normal app serves the originals) and logs each one. On 2026-10-12 that touched three images
+(Phobos HiRISE 3374×3298, Io 2256×1158, Luyten NACO 1707×1707: 935,250 → 505,285 raw bytes) and took the build from
+16,088,479 bytes (over the gate) to 15,626,914; nothing else was dropped. The 3D corona (#79) needs no data in the
+preview: it uses the solar-cycle model (no feed offline).
 
 ## Mac App Store build (#51)
 
@@ -296,8 +308,8 @@ scale switches to TRUE while standing, drag looks around (sky follows the cursor
 wheel zooms; Esc or BACK TO ORBIT restores the previous scale. Chart overlays (belts,
 satellites, spacecraft, orbits, zones, markers) are hidden; daylight (Sun altitude, civil
 twilight) tints the background for Earth, Mars, Venus and Titan and fades the stars.
-On a body with an elevation model the camera stands on the DEM's ground and the horizon is a
-terrain patch from the measured heights (mountains, crater rims; see Elevation and relief, #80).
+On a body with an elevation model the camera stands on the DEM's ground and the land to the horizon is
+the tiled level-of-detail globe from the measured heights (mountains, crater rims; see Elevation and relief, #80).
 On Venus and Earth a double-click stands on the cloud tops, and DESCEND / ASCEND fly through the cloud layer to the
 ground and back (see Clouds and ground, #83).
 
@@ -572,9 +584,16 @@ elevation read-out with its source.
   `u + (texLon0 + 180)/360`, the same offset `siteDir` uses. Sources, resolutions and licences:
   [data-sources.md](data-sources.md#elevation-models-80). Bundled: Earth (ETOPO1), Moon (LOLA),
   Mars (MOLA), Mercury (MESSENGER/USGS), Venus (Magellan), Ceres and Vesta (Dawn/DLR), Pluto and
-  Charon (New Horizons, encounter hemispheres), Enceladus (Cassini ISS shape model): 13 MB in all.
-  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Titan, Ganymede, Europa,
+  Charon (New Horizons, encounter hemispheres; Charon's noisy rim masked), Enceladus (Cassini ISS shape model,
+  read from its −180° tie point) and Titan (Cassini, Corlies et al. 2017: the measured cells, plus
+  `titan-drawn.png`, the published interpolation drawn where nothing was measured): 13.5 MB in all.
+  Phobos, Hyperion and the other shape-model bodies keep their 3D shapes. Ganymede, Europa,
   Callisto and Io have no open global grid: smooth spheres, and the panel says why.
+- **Rim masks and drawn surfaces**: `maskNoisyEdges` (`src/astro/dem.js`, run by the build for Charon) grows a
+  mask inwards from the gaps through cells with little isotropic texture (`isoTexture`: along-track streaks and
+  interpolated smooth bands), so only measured-looking terrain is kept; tiles inherit the bundled grid's mask
+  (`heightAt` gives no data where the grid has none). A body with `drawnFile` (Titan) draws that grid over its
+  gaps instead of the smooth fill; read-outs there still say NO DATA.
 - **Decoding** (`src/data/dem.js`): the PNG is inflated with `DecompressionStream` and unfiltered
   in JS (an `<img>` would round it to 8 bits), dequantised to metres (NaN = no data) for read-outs,
   and uploaded as a half-float `R16F` texture with a box-filtered mip chain (rows flipped so v = 1 is
@@ -589,14 +608,24 @@ elevation read-out with its source.
   file rather than shipped as a second image, so every exaggeration is exact (`slopeNormal` in
   `src/astro/dem.js` is the same maths, tested). Venus' relief is on its ground, under the opaque cloud deck
   (#83): hidden from orbit, seen from the helm and the surface view.
-- **Close up** (`src/views/system/relief.js`): within 4 radii the globe swaps to a 384 × 192 sphere;
-  within ~0.25 radii of the ground (FROM ABOVE, FLY) and in the surface view a terrain patch is built
-  around the point below the camera: a polar grid of 96 rings × 192 spokes, rings packed towards
-  the centre (≈ 40 m apart in Earth's surface view), heights from the finest tiles loaded
-  (`/api/dem-tile`, the level chosen per ring so cells match the spacing; the bundled grid until they
-  arrive, then rebuilt), positions relative to the patch centre for float precision, lit by its own
-  geometry with the globe's shared uniforms. The globe is discarded under it (`uDemClip`). The
-  standing patch reaches ~350 km, enough for mountains and crater rims on the horizon.
+- **Close up: a tiled level-of-detail globe** (`src/views/system/relief.js`, pure parts in `src/astro/lod.js`):
+  within 4 radii the globe swaps to a 384 × 192 sphere; within 3 radii of a focused body with relief on (Venus: only
+  under its cloud deck) and in the surface view the sphere is discarded (`uDemClip`) and the globe is drawn as a
+  quadtree of chunks in the `/api/dem-tile` addressing (level z: 4·2^z × 2·2^z chunks of 90°/2^z). Selection
+  (`selectChunks`) starts from the eight level-0 chunks, culls those beyond the horizon plus a pad for the
+  tallest relief (`reliefPad`), and splits the chunk that looks biggest (its size over its distance from the
+  camera, above `tau` ≈ 0.32 scaled by the field of view) until ~380 leaves; the finest level is where cells
+  reach ~20 m standing (13 on Earth) or a couple of levels past the finest tile in flight. Each chunk is a 32 × 32
+  cell mesh with skirts (hiding the cracks against coarser neighbours), its heights from tile level z − 3 (the
+  same spacing; coarser tiles, then the bundled grid, until it arrives, then rebuilt), normals from a one-cell
+  apron (seamless shading across chunks), positions relative to its centre for float precision, lit by its own
+  geometry with the globe's shared uniforms. A leaf not yet built is covered by its nearest built ancestor
+  (`chunksToShow`; level 0 is built at once, so there are no holes); builds run within ~8 ms a frame, the chunk
+  that looks biggest first. Memory is bounded: ~420 chunks (least recently shown dropped, ancestors kept) and 192
+  tiles (`src/data/dem.js`, LRU, six requests at a time, newest first, stale ones dropped). The surface camera
+  stands 2 m above the drawn triangles of the finest chunk under it (`gridSurface`). On Venus chunks from level 3
+  carry Magellan SAR detail (`/api/sar-tile`, `uDetail` in the planet shader, ≤ 96 textures, LRU). Checks:
+  `__fidelityRelief.relief.lodStats(id)` (chunks held and shown by level, tiles, detail textures, selection).
 - **RELIEF** (body panel, ELEVATION section): OFF · TRUE · ×2 · ×5 · ×10 · ×20 (`settings.relief`,
   default TRUE). Exaggerations are labelled in the panel and the surface HUD.
 - **Read-outs**: the height under the pointer (panel row AT CURSOR and a tag by the cursor),
@@ -606,6 +635,7 @@ elevation read-out with its source.
   features (`features.js`) are re-seated on the drawn ground when the DEM loads or the exaggeration
   changes; Planet View globes get the same relief and lifted dots. The helm (`helm.js`) keeps its
   0.2 %-of-radius clearance above the terrain and reports altitude above it.
+- **Titan**: its globe shows the haze (`shading: 'none'`), so the relief is in the read-outs and the surface view only.
 - **Standalone**: no DEMs (16 MB budget); globes stay smooth and the panel says so.
 - **Browser checks**: `window.__fidelityRelief` (`terminatorView(phase, dist)`, `overSite(lat, lon,
   dist)`, `elevationAt`, `phaseNow`, `view` = the System View API).
@@ -617,10 +647,25 @@ descends to and the helm lands on.
 
 - **Model** (`src/astro/atmosphere.js`, pure, `tests/atmosphere.test.js`): the VIRA profile for Venus and the US
   Standard Atmosphere 1976 for Earth (pressure, temperature by altitude), `CLOUD_LAYERS` (Venus deck 48–70 km, haze to
-  90 km, measured, super-rotation 4 days; Earth's shell at 10 km, ASSUMED: the imagery has no height), the murk, light
+  90 km, measured, super-rotation 4 days; Earth a volume drawn as nine slices, 1–12.5 km), `cloudColumn` (Earth: a
+  MEASURED top from the VIIRS cloud-top height with a MODELLED base, top − 45% of its height, 0.8–4 km thick; without
+  the product the ASSUMED 2–10 km layer), `sliceDraws` / `sliceAlpha` (which slices a column fills, and the share of
+  its opacity each gets), the murk (Earth: through the column from base to top), light
   fraction, Sun visibility and Rayleigh extinction by altitude (MODELLED), and the DESCEND / ASCEND state machine
   (`createDescent`, `startDescent`, `stepDescent`: altitude above the ground eased in log(altitude + 5 km), 40 s for
-  Venus, 24 s for Earth, reversible mid-way; it takes the time as an argument).
+  Venus, 30 s for Earth (through the assumed layer ~15 s in cloud), reversible mid-way; it takes the time as an argument).
+- **Earth's clouds** (`clouds.js`, `materials.js` `sliceAlpha()`): `addCloudSlices` hangs eight lower slices under
+  the outer shell (shared uniforms, own `uSliceKm`); a fragment draws if its column reaches that slice (decided first
+  in the shader, so hidden slices cost little). With live skins on, `loadEarthClouds` fetches `/api/earth-clouds`:
+  the cloud-top codes (`uCth`, nearest-sampled) and the true colour of the same NOAA-20 day (the shell's map, so
+  where, how white and how high come from the same overpasses; the ground keeps the newer live skin). The cloud
+  mask: no cloud-top retrieval → no cloud (snow and ice have none), else whiteness; without the product a MODELLED
+  prior (`icePriorMask`: Antarctica and Greenland's ice sheets, ground above 4–5 km) holds ice back (`uSnowMask`).
+  The ground's cloud shadows use the same gate (`uCloudGate`) from the volume's middle height. Close to the planet
+  the shells swap to 512 × 256 spheres (`cloudDetail`: a 96 × 48 sphere's facets sag 3.4 km at Earth), and every
+  shell draws only the faces the camera can see (`cloudSides`/`shellSide`): before, the far side's inner faces
+  showed through any gap in the ground (the speckles seen looking down from the tops) and, with the logarithmic
+  depth buffer, cost a full shader pass behind the planet.
 - **Shells** (`SystemView.addBody`, `src/views/system/clouds.js`): a body with `skin.ground` (Venus: `venusRadar`,
   `groundRadar`) draws its globe with that map, coloured in the planet shader after Venera 13/14 (`uRadar`), and its
   own map (`skin.map`, the cloud tops) on an opaque `cloudMaterial({ opaque: true })` shell at 1 + 70 km / R that
@@ -632,7 +677,7 @@ descends to and the helm lands on.
   lookup (`cloudShadow()`: the shell seen from each ground point towards the Sun, `uCloudTex/uCloudH/uCloudU/uSunL`).
   Venus' DEM is now shaded on the globe (`shading: 'all'`): the deck hides it from orbit, the helm sees it below.
 - **Surface view**: double-click (System View, or the Planet View globe) enters with `layer: 'clouds'`: on Venus and
-  Earth the camera starts on the cloud tops (`standKm`: 70.5 km, 10.8 km); `surfaceAt` (sites, events, postcards,
+  Earth the camera starts on the cloud tops (`standKm`: 70.5 km; on Earth 0.8 km over the measured top over the spot, else 10.8 km); `surfaceAt` (sites, events, postcards,
   `?surface=`) keeps the ground unless `layer: 'clouds'` (`&layer=clouds`). The HUD's DESCEND / ASCEND run the state
   machine; `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
   `layerLook` sets the sky, star fade, Sun and body visibility (none under Venus' deck), the ground's light (`uSunColor`
@@ -1103,7 +1148,13 @@ layered, wispy cloud from any side (orbit round the Sun, look from a pole), not 
   at 5.5–9 R☉ when C2 is more than 3 days old, as on 2026-10-12, when C2's latest frame was 13 days old), each ring
   divided by its median, gives the streamers (PA, width, contrast) and a belt through the limb streamers nearest the
   equator; the AIA 193 Å preview, cut into cells normalised by their ring (limb brightening cancels), gives active
-  regions (bright) and coronal holes (dark). Streamers are placed in the plane of the sky. When the feed is missing
+  regions (bright) and coronal holes (dark). **Streamers in 3D** (`placeStreamer`): helmet streamers are folds of the
+  streamer belt round the heliospheric current sheet, so each measured streamer is put where its line of sight (every
+  direction seen at its PA from Earth) crosses the fitted belt sheet, at the crossing nearest the plane of the sky, and
+  stretched along the belt (half-length 0.3 rad + its width); together they make a warped sheet round the Sun that
+  looks right from any side in the System View and still projects onto LASCO's position angles from Earth (tested). A
+  streamer whose line of sight meets the belt no nearer than 60° to the sky plane (a pseudostreamer, a face-on belt)
+  stays in the sky plane. This is a model, not tomography: one coronagraph view cannot tell front from back. When the feed is missing
   (standalone, offline) or more than 14 days from the clock, `modelledStructure` builds a solar-cycle corona: belt
   tilt 10°→70° with activity (`cycleActivity`: cycle 25 minimum 2019.96, maximum late 2024), polar holes at minimum,
   active regions by number and Spörer latitude at illustrative longitudes that turn with the Sun.
@@ -1111,14 +1162,35 @@ layered, wispy cloud from any side (orbit round the Sun, look from a pole), not 
 - **Panel.** The Sun's CORONA section (`coronaLayers`) lists each layer with its badge: streamers, loops and holes
   MODELLED (from MEASURED positions; illustrative positions IMAGINED), fall-off MODELLED, brightness IMAGINED where
   exaggerated, wisps IMAGINED. The disc imagery keeps its own MEASURED badge in the SPECTRUM section.
+- **Occlusion.** The pass has no depth buffer; instead the System View hands the shader every body in front of the
+  Sun (`coronaOccluders`: within the corona's footprint on screen, nearer than its far edge, with a radius of at least ~⅓
+  screen pixel; up to 8, largest first), as spheres whose centres are taken relative to the camera in double
+  precision. Each line of sight ends on the Sun or on the first of them it meets (the Moon in an eclipse, Mercury or
+  Venus in transit or against the corona, any moon or planet seen from space), and lines grazing a limb lose their
+  corona over ~1.5 pass pixels, so limbs are anti-aliased at half resolution. Rings and non-spherical shape models
+  occlude as their bounding sphere.
 - **Cost.** 20–56 march steps (more when the Sun is large on screen) over the sphere's pixels only, drawn at half
-  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). That pass has no
-  depth test against the scene: the Sun and the single body that looks largest in front of it (the Moon in an
-  eclipse, a transiting planet) end the line of sight in the shader; other bodies are drawn under the corona. The
-  DETAIL slider's second step, `+ 3D CORONA` (setting `corona`, toggle CORONA), turns it off, leaving the old glare.
+  resolution into a render target on its own layer and added over the frame (`createCoronaPass`). **Adaptive
+  quality** (`createQualityGovernor`, `CORONA_QUALITY`): while the corona is drawn the pass averages the frame
+  interval (each counted at most 100 ms; gaps over 5 s, a hidden tab, ignored); after ~1 s slower than 28 ms
+  (~35 fps) it steps down a level (resolution ×1 → ×0.4 of the half-resolution target, steps ×1 → ×0.4, at least
+  12), after ~4 s faster than 19 ms it steps back up, and a level that was too slow straight after stepping up is not
+  tried again. The current level is on the canvas as `data-corona-quality` (0 = best) for browser checks.
+  Postcards always render at the best level. Checked only on SwiftShader (≈2 s a frame headless, so it falls to the
+  cheapest level); no real-GPU frame time has been measured. The DETAIL slider's second step, `+ 3D CORONA` (setting
+  `corona`, toggle CORONA), turns it off, leaving the old glare.
+- **Star View.** The hero canvas is a box on the page, so the pass fades the corona to nothing over the outer 16% of
+  the canvas (`edgeFade`); the thermal-IR dust haze (12 R☉) no longer shows the canvas outline.
 - **Eclipses.** From a surface the corona shows only in totality. On 2017-08-21 the real photograph stays
   (MEASURED); for other eclipses the 3D model on the solar axis replaces the representative 2017 photograph (HUD:
   CORONA: 3D MODEL ON THE SOLAR AXIS (MODELLED, NOT A PHOTO OF THIS ECLIPSE)); with the corona off, the photograph.
+  Checked in a browser at 2024-04-08 18:17 UTC from 25.3°N 104.1°W and 2026-08-12 17:46 UTC from 65.2°N 25.2°W (model,
+  cut cleanly by the Moon's limb) and 2017-08-21 18:26 UTC from 36.97°N 87.67°W (the photograph, 3D corona hidden).
+- **Postcards.** The views' snapshot draw calls the pass with `{ full: true }`, so a postcard carries the corona at the
+  best quality level whatever the screen was using, and when the corona is drawn and the Sun is in frame
+  (`postcardCorona`, `coronaPostcard`) the provenance line adds 3D CORONA (MODELLED) and CORONA WISPS, CORONA
+  BRIGHTNESS (EXAGGERATED) where it is, and CORONA ACTIVE REGIONS (ILLUSTRATIVE) without measured structure (IMAGINED),
+  crediting LASCO/AIA when the structure is measured.
 
 ## Milky Way model
 
@@ -1212,7 +1284,7 @@ Standalone image sharing: bespoke map cards now resolve snapshot.textures by ass
 
 The GJ 887 additions use the existing additive dossier/texture registry, full-name aliases and cloud-card labels. No changes to catalogue fields, mission models or live/native imagery routes. Each standalone globe map is embedded once and reused by the dossier card; observer images remain separate. Registry now 15 dossiers.
 
-The standalone builder transcodes local generated map previews and IMAGINED dossier images to quality-80 WebP at existing dimensions. Scientific context images follow the original embedding path. Registry/normal-build JPEG files and all model/shape GLBs are unchanged; source credits still resolve to the original assets. Combined standalone size is 15.85 MB.
+The standalone builder transcodes local generated map previews and IMAGINED dossier images to quality-80 WebP at existing dimensions. Scientific context images follow the original embedding path, except that any larger than 1,600 px on the long side is capped at 1,600 px (see "Standalone preview", size gate). Registry/normal-build JPEG files and all model/shape GLBs are unchanged; source credits still resolve to the original assets. Combined standalone size is 15.85 MB.
 
 Craft preview rebuilding accepts selected model IDs and `--texture-size=128`; omitted overrides use recorded per-model sizes (otherwise 256). Curiosity/Europa Clipper use 128-pixel preview textures with unchanged mesh/material counts; normal source models remain intact. Ross 128 b and Gl 725 A b use additive full-name dossier matching and disclose approximate raster geometry.
 
@@ -1324,8 +1396,9 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   a selection (`system.focus` → `helm.select`); a survey, a site view, LOOK AT or standing on a surface takes the
   camera back (`disengage({ quiet })`); leaving the helm otherwise orbits the nearest body from where the camera is
   (`helmHandBack`). Double-click does not land while flying.
-- **Views.** CHASE (a lagging third-person camera, wheel to pull back), BRIDGE (first person, LCARS frame and
-  reticle, wheel zooms the field), ORBIT (OrbitControls around the ship). Keys 1 / 2 / 3 or V.
+- **Views.** CHASE (a lagging third-person camera, wheel or a two-finger pinch to pull back), BRIDGE (first person,
+  LCARS frame and reticle, wheel or pinch zooms the field), ORBIT (OrbitControls around the ship, its own pinch).
+  Keys 1 / 2 / 3 or V. The pinch maths is `shipState.js pinchZoom` (tested), shared with the galaxy-scale helm.
 - **Flight models.** IMPULSE / WARP: the throttle (W/S or R/F, the slider) runs from FULL STOP through 1 m/s
   (log scale) to full impulse 0.25 c, then warp 1 → 9.99; the speed eases exponentially (so slow frames stay on
   time), and no speed between 0.25 c and c is ever flown: the warp field forms or collapses (flash). Warp follows
@@ -1353,7 +1426,27 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   against every massive body (`segmentHitsSphere`), and a point test against craft, stops the ship at the
   surface: IMPACT, or LANDED at ≤ 10 m/s relative to the body; a burn (W/S) lifts off. Taking the helm in REAL
   PHYSICS, or leaving a held standard orbit, starts a free circular orbit with the same velocity; FULL STOP (X)
-  burns to match the dominant body's velocity, after which the ship falls. Clock jumps (scrubbing) are not swept.
+  burns to match the dominant body's velocity, after which the ship falls. **Clock jumps** (scrubbing, a typed
+  date, a step of the clock: a change of the JD larger than the running clock can explain since the last frame) do
+  not tunnel: the ship is carried along its two-body orbit about the frame body over the jump (universal-variable
+  Kepler propagation, `keplerPropagate`) and the interval is swept (`sweepJump`): exactly against the frame body (a
+  periapsis below its surface inside the interval, the crossing found by bisection) and, at ≤ 1/64 orbit per sample
+  with the ephemeris positions, against its moons (about a moon, also its planet and sibling moons; about the star,
+  the bodies orbiting it). A hit stops the ship there (IMPACT or LANDED, on the body as it is now). A jump of more
+  than ~32 orbits (sample cap 512–8,192 by the number of bodies) is checked against the frame body only, and the HUD
+  and log say which (`CLOCK JUMP +10 DAYS · CARRIED ALONG ITS ORBIT ABOUT EARTH (TWO-BODY) · SWEPT FOR COLLISIONS`).
+  Other bodies' pulls over the jump are not integrated (stated). Tested in `tests/jump.test.js`.
+- **AUTOLAND** (REAL PHYSICS; button or L; `src/astro/landing.js`, tested in `tests/landing.test.js` with Moon, Mars
+  and Earth descents): a powered descent to a soft landing on the dominant body, the suicide-burn way. It kills the
+  speed across the ground first (with what is left after holding the descent), lets the ship fall, and tracks the
+  stopping curve √(2 k (a − g) h) (k = 0.6) with a feed-forward of its deceleration, then a linear flare (h / 6 s)
+  to ~1.5 m/s at the ground (LANDED is ≤ 10 m/s); the descent is also capped so the speed across the ground can be
+  killed before the height runs out. Thrust never points at the ground, never exceeds the THRUST setting, and is
+  re-computed every sub-step (≤ 0.2 s). If the setting cannot beat 1.25 × the local gravity it is raised to the lowest
+  that can (Earth and Venus: 10 g) and the flash says so; stars and giant planets (> 20,000 km) are refused (no
+  solid surface). The ship keeps level (belly to the ground, nose along its motion); the assist points the thrust
+  (IMAGINED: the real ship only thrusts along its nose). Any manual input takes over. Browser-checked from a standard
+  orbit: LANDED at 1.5 m/s on the Moon, Mars and Venus (through its deck, thrust raised to 10 g).
 - **Read-outs** (HUD): speed (m/s → km/s → c), regime (MANOEUVRING ≤ 100 km/s, IMPULSE, WARP, STANDARD ORBIT,
   STATION-KEEPING), β, warp factor (IMAGINED), γ and the ship clock's rate (COMPUTED; at warp the fiction has no
   dilation), the nearest body and its altitude, the anchor frame, and the autopilot's distance and ETA. In REAL
@@ -1375,8 +1468,8 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
 - **Between the stars: one ship across the views.** `src/views/ship/shipState.js` holds the one ship: who flies it
   (`frame`: `system`, `deep` or nobody), its heliocentric galactic position in light-years (today's catalogue
   positions; deep time moves the stars, not the ship), its attitude in the galaxy-scale scene axes, speed, flight
-  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, this
-  session only). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
+  model, view, cruise, SIM, course, and the SHIP'S LOG, distance and clocks (shared with the System View helm, kept in
+  localStorage across reloads). The frame maths (ecliptic ⇄ equatorial ⇄ galactic, scene axes, the attitude rotation between the
   System View's ecliptic axes and the galactic ones) is tested in `tests/shipstate.test.js`. Hand-overs, decided by
   pure functions in `src/views/ship/handover.js` (same tests):
   - *System → Navigation*: past the system's edge (`systemEdgeAU`: 200 AU or 1.15 × the widest survey framing;
@@ -1392,7 +1485,10 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
     Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
   `src/views/ship/deepHelm.js` (`createDeepHelm`) flies the ship in the Navigation, Quadrant and Galaxy views with
   the System View helm's controls and HUD classes (CHASE / BRIDGE / ORBIT, throttle to warp 9.99, REAL PHYSICS
-  without gravity: the Galaxy's pull near the Sun is ~2 × 10⁻¹⁰ m/s²). Each view makes one with its `toScene`
+  with the Milky Way's tide: the ship's acceleration relative to the Sun in the Bovy 2015 model, `galpot.js
+  tidalAccel`, MODELLED and tested; ~10⁻¹¹ m/s² a thousand light-years out, against the Galaxy's whole pull at the
+  Sun of ~2 × 10⁻¹⁰ m/s², and shown on the HUD. It changes a 1,000-year crossing by well under 1 km/s; the stars'
+  own pulls are smaller still and left out). Each view makes one with its `toScene`
   (galactic ly → its scene: centred on the chart's star, heliocentric, or galactocentric kly), its course targets
   (catalogue stars; Sol, landmark clusters and nebulae; Sol, Sgr A* and the satellite galaxies) and its hand-over
   rule; the view calls `frame()` before rendering and `overlay()` after, and its camera rig is `captured()`.
@@ -1410,6 +1506,34 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   the SHIP'S LOG. LEAVE HELM out here parks the ship (nobody flies it) and the view is as before; views are exactly
   as before whenever nobody is at the helm out there. `window.__fidelityShip` exposes the shared state, the
   galaxy-scale helms, the clock and the router for browser checks.
+- **The sky at relativistic speed** (COMPUTED; SKY · RELATIVISTIC / AT REST toggles it, on by default): from
+  0.001 c up to (not into) warp, SystemView's star shader moves each catalogue star to its aberrated direction,
+  cos θ′ = (cos θ + β)/(1 + β cos θ) (exact; β = 0.5 puts a star at 90° at 60°), and scales its colour (bluer ahead,
+  redder behind) and size with the Doppler factor D = 1/(γ(1 − β cos θ′)) (approximate: a channel tilt and D²
+  brightness, clamped). The HUD row gives β, where 90° appears and D ahead and behind. The Milky Way glow, planets
+  and moons are not shifted; the galaxy-scale helm does not apply it (its stars are 3D chart points, not a sky).
+  Maths in `warp.js` (`aberrateCos`, `dopplerFactor`; `tests/warp.test.js`).
+- **Under Venus' clouds** (#83): when the ship is below the top of Venus' deck (layerAt ≠ above, from its distance to
+  the centre over the VIRA reference radius) SystemView applies the surface view's look for that height
+  (`clouds.js helmLayerLook` → `layerLook`): the ground's dim orange light and fog, the murk veil, the sky colour, no
+  stars, no Sun, no other bodies, labels or orbit lines, the cloud shell hidden from below, and the ship lit by the
+  same orange diffuse light (the star light tinted and dimmed, its studio reflections dimmed). Climbing out, or leaving
+  the helm, puts it all back. Earth's thin shell leaves the sky in view, so nothing changes there.
+- **Slow GPUs** (#42: engaging froze a headless SwiftShader page for up to ~30 s). Profiling showed no single slow
+  step on the CPU (engage ≈ 20 ms, the first frame ≈ 150 ms of JavaScript): every frame was 1.5–3.5 s of software
+  rasterisation, ~2 s of it Earth's 74k-vertex relief sphere and its cloud shell at the helm's standoff, and the
+  back-to-back frames starved input and the page's other tasks. Now: (1) `src/views/governor.js` (tested) lowers the
+  System View's render scale (pixel ratio, ×0.7 a step down to 0.5, point sizes kept) while frames are slower than
+  120 ms and raises it again after fast ones, and after a frame over 250 ms leaves the page an idle gap (a quarter of
+  it, ≤ 400 ms) before the next; on a normal GPU it never acts. (2) Globes use shared, cached spheres in three tiers
+  (`relief.js globeTier`: 96×48, 192×96 inside 4 radii, 384×192 inside 1.6, with hysteresis) instead of building a
+  new 74k-vertex sphere on every approach; the helm's standoff (3 radii) gets the middle one. (3) The ship is built and
+  its shaders compiled (`renderer.compileAsync`) 2.5 s after a system loads. Measured in headless SwiftShader at
+  1280×800 on a loaded 4-core machine: synchronous GPU time of a helm frame at Earth 3.4–3.8 s → ~1.5 s (Earth's
+  globe ~1.3 s → 0.3 s, clouds ~0.8 s → 0.3 s); after a TAKE THE HELM click (2 s after load) the page answers again
+  within ~3.5–4 s, then in < 0.2 s (before: ~22 s, one wait of 14 s), with ~1 s frames once the scale has settled
+  (before: 2–3.5 s). The remaining ~1 s a frame is the System View's own cost in software rendering (~150 draw
+  calls), not the helm's.
 - **Effects** (IMAGINED): a tunnel of additive streaks that rides with the camera along the line of flight (faint
   at high impulse, long and fast at warp), the shell's `#warp` flash on entering warp, and the nacelle glow.
 - **Side panel.** Body panels carry HELM / FLY THERE (SET COURSE, live ON COURSE / IN STANDARD ORBIT) and HONEST
@@ -1417,8 +1541,13 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
   Dawn-class ion, Orion nuclear pulse and Starshot (with ship time) as COMPUTED straight-line times, full impulse
   and a 1 g burn-coast-brake rocket with Earth and ship time (COMPUTED), and the quoted warp (IMAGINED). The system
   panel carries the helm status, WARP TO A STAR (with honest travel for the jump) and the SHIP'S LOG (events,
-  distance travelled, ship time vs Earth time, places visited; this session only). Postcards badge the ship and the
-  warp streaks IMAGINED. `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
+  distance travelled, ship time vs Earth time, places visited; kept across reloads, CLEAR LOG). Postcards badge the ship and the
+  warp streaks IMAGINED, in the System View and (since the overlay is drawn in the snapshot too) in the Navigation,
+  Quadrant and Galaxy views while the helm flies there (`THE USS FIDELITY` and, at warp in CHASE / BRIDGE, `WARP
+  STREAKS` in the provenance line). The SHIP'S LOG, the distance, the clocks and the places are kept in this browser
+  across reloads (`shipState.js`: localStorage key `fidelity.shipsLog.v1`, every read and write in try/catch, the last
+  200 entries, saved on each entry, on page hide and every 15 s while flying); CLEAR LOG in both panels empties it.
+  `window.__fidelityHelm` exposes the controller for browser checks, like the camera rigs.
 
 A POSTCARD button sits in the top bar (`#postcard-tab` in `index.html`, wired in `main.js`) so a
 postcard is always one click away, in any view; the per-view `P` shortcut (3D camera bars and COMMS)

@@ -111,17 +111,33 @@ for (const asset of Object.values(MODELS)) {
   models[asset.url] = `data:model/gltf-binary;base64,${bytes.toString('base64')}`;
 }
 const bodyImages = {};
+// Cards show these at most ~420 px high, so the preview caps any image larger than 1600 px on its long side at 1600 px
+// (the same picture, smaller: JPEG stays JPEG at q90, PNG stays lossless PNG); the normal app serves the originals.
+const PREVIEW_MAX_PX = 1600;
+const imageResized = [];
+async function capSize(bytes, url) {
+  const meta = await sharp(bytes).metadata();
+  if (Math.max(meta.width, meta.height) <= PREVIEW_MAX_PX) return bytes;
+  const img = sharp(bytes).resize({ width: PREVIEW_MAX_PX, height: PREVIEW_MAX_PX, fit: 'inside' });
+  const out = meta.format === 'png' ? await img.png({ compressionLevel: 9 }).toBuffer() : await img.jpeg({ quality: 90, mozjpeg: true }).toBuffer();
+  if (out.length >= bytes.length) return bytes;
+  imageResized.push({ url, from: `${meta.width}×${meta.height}`, bytes: bytes.length, to: out.length });
+  return out;
+}
 for (const visual of Object.values(BODY_VISUALS)) {
   for (const asset of [visual.surfaceImage, visual.surfaceMap, visual.skyImage, ...(visual.contextImages ?? [])].filter(Boolean)) {
     // Surface maps already live in textures; cards resolve the same embedded copy.
     if (asset.key && textures[asset.key]) continue;
+    if (bodyImages[asset.url]) continue; // shared by two dossiers: embedded once
     let bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
     const imagined = asset.tier === 'imagined';
     if (imagined) bytes = await sharp(bytes).webp({ quality: 80 }).toBuffer();
+    else bytes = await capSize(bytes, asset.url);
     const nativeFormat = bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) ? 'png' : 'jpeg';
     bodyImages[asset.url] = `data:image/${imagined ? 'webp' : nativeFormat};base64,${bytes.toString('base64')}`;
   }
 }
+for (const r of imageResized) console.log(`  preview image ${r.url}: ${r.from} capped at ${PREVIEW_MAX_PX} px, ${r.bytes} → ${r.to} bytes`);
 // the corona photograph shown in totality (#31)
 bodyImages['/references/corona-2017-08-21.jpg'] = `data:image/jpeg;base64,${(await fs.readFile(path.join(root, 'public/references/corona-2017-08-21.jpg'))).toString('base64')}`;
 // stellar spectrum library, thinned to 4 nm steps for the preview
@@ -246,6 +262,7 @@ async function assemble(snapshotJson) {
   if (!decoderCode || !bootstrap || bootstrap === compactBootstrap) throw new Error('Offline loader minification failed.');
   const startup = await packStandaloneBootstrap(bootstrap, codecSource);
   const notices = (await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')).replaceAll('<', '&lt;');
+  // the charset first: opened straight from disk (no host page around it) the browser would otherwise guess wrong
   const out = `<meta charset="utf-8">\n<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
   return { out, html };
 }

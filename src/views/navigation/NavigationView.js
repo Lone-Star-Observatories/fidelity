@@ -809,7 +809,7 @@ export function createNavigationView(container, { onSelect, onFrame, onDrill, on
   }
   return {
     /** #40: re-render at w × h for a postcard (see views/snapshot.js). */
-    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); labels.render(scene, camera); }, restore: resize }),
+    snapshot: makeSnapshot({ renderer, scene, camera, labels, draw: () => { renderer.render(scene, camera); ship.overlay(); labels.render(scene, camera); }, restore: resize }), // the ship at the helm too (#42)
     recolourBand,
     show() { container.hidden = false; resize(); if (!running) { running = true; requestAnimationFrame(frame); } },
     hide() { container.hidden = true; running = false; },

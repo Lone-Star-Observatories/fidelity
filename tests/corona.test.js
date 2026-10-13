@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   gamma, baumbach, kEmissivity, fEmissivity, losIntegral, falloffIndex, scaleHeight, euvEmissivity, radioRadius, radioAbsorption,
-  electronDensity, coronaLook, cycleActivity, imageToDir, paToDir, beltNormal, imageAxes, modelledStructure, resolveStructure,
+  electronDensity, coronaLook, cycleActivity, imageToDir, paToDir, beltNormal, dirToPa, placeStreamer, imageAxes, modelledStructure, resolveStructure,
   structureFromFeed, coronaLayers, AIA_RGB,
 } from '../src/data/corona.js';
 import { paProfile, findStreamers, beltFromStreamers, discPatches, coronaFeed } from '../server/corona.js';
@@ -127,7 +127,66 @@ test('the feed becomes the structure near its date, else the model takes over', 
   assert.equal(structureFromFeed(null, jd), null);
   const r = resolveStructure(s, [0, 0, 1], [0, 1, 0]);
   close(r.regions[0].dir[0], 0.5, 1e-12, 'region at x = 0.5 (west)');
-  close(r.streamers[0].dir[0], -Math.sin(Math.PI / 4), 1e-12, 'PA 45: north-east, image left');
+  close(dirToPa(r.streamers[0].dir, [0, 0, 1], [0, 1, 0]), 45, 1e-9, 'PA 45: north-east, seen from Earth where LASCO saw it');
+  assert.ok(r.streamers[0].dir[0] < 0, 'image left (east)');
+});
+
+// ---- streamers in 3D: on the belt sheet along their line of sight ---------------------------------------------
+const unit = (v) => { const l = Math.hypot(...v); return v.map((x) => x / l); };
+test('streamer belt geometry: each streamer stays at its LASCO PA from Earth and sits on the belt sheet', () => {
+  const N = [0, 1, 0];
+  for (const E of [[0, 0, 1], unit([0.3, 0.12, 1]), unit([-1, -0.1, 0.2])]) {
+    for (const [east, west] of [[-20, 30], [0, 0], [-46.9, null], [10, 60]]) {
+      const belt = beltNormal(east, west, E, N);
+      for (let pa = 0; pa < 360; pa += 7.5) {
+        const p = placeStreamer(pa, belt, E, N);
+        close(Math.hypot(...p.dir), 1, 1e-12);
+        const d = Math.abs(dirToPa(p.dir, E, N) - pa);
+        assert.ok(Math.min(d, 360 - d) < 1e-7, `PA ${pa} seen from Earth (got ${dirToPa(p.dir, E, N)})`);
+        close(Math.hypot(...p.along), 1, 1e-9); close(dot(p.along, p.dir), 0, 1e-9, 'along the sphere');
+        if (p.onBelt) {
+          close(dot(p.dir, belt.n), belt.sinLat0, 1e-9, 'on the belt sheet');
+          close(dot(p.along, belt.n), 0, 1e-9, 'stretched along the belt');
+          assert.ok(Math.abs(p.off) <= 60 + 1e-9);
+        } else close(dot(p.dir, E), 0, 1e-7, 'off the belt: in the plane of the sky');
+      }
+    }
+  }
+});
+
+test('streamer belt geometry: the crossing nearest the sky plane; limb streamers of an edge-on belt stay on the limb', () => {
+  const E = [0, 0, 1], N = [0, 1, 0];
+  const flat = beltNormal(0, 0, E, N); // equatorial belt seen edge-on
+  const limb = placeStreamer(90, flat, E, N);
+  assert.ok(limb.onBelt); close(limb.off, 0, 1e-9, 'an equatorial streamer at the east limb is in the sky plane');
+  close(limb.dir[0], -1, 1e-9, 'east = image left');
+  close(Math.abs(limb.along[2]), 1, 1e-9, 'stretched along the line of sight, so it projects to a narrow ray');
+  assert.equal(placeStreamer(30, flat, E, N).onBelt, false, 'a high-latitude streamer cannot be on an edge-on equatorial belt');
+  // a tilted belt: brute-force the line of sight for the belt crossing nearest the sky plane
+  const belt = beltNormal(-30, 25, unit([0.2, 0.1, 1]), N), E2 = unit([0.2, 0.1, 1]);
+  let placedOff = 0;
+  for (const pa of [20, 70, 110, 250, 300, 340]) {
+    const p = placeStreamer(pa, belt, E2, N), s = paToDir(pa, E2, N);
+    const g = (f) => { const r = (f * Math.PI) / 180; return dot(s.map((x, i) => x * Math.cos(r) + E2[i] * Math.sin(r)), belt.n) - belt.sinLat0; };
+    let best = null;
+    for (let f = -60; f < 60; f += 0.01) { // sign changes of the belt equation along the line of sight
+      const a = g(f), b = g(f + 0.01);
+      if (a === 0 || a * b < 0) { const root = f + (0.01 * a) / (a - b); if (best == null || Math.abs(root) < Math.abs(best)) best = root; }
+    }
+    if (best == null) assert.equal(p.onBelt, false, `PA ${pa}: no crossing within 60°`);
+    else { assert.ok(p.onBelt); close(p.off, best, 0.05, `PA ${pa}: nearest crossing`); placedOff = Math.max(placedOff, Math.abs(p.off)); }
+  }
+  assert.ok(placedOff > 10, 'from the side, streamers spread round the Sun instead of a flat sky-plane fan');
+});
+
+test('resolved streamers carry the belt tangent and length the shader stretches them along', () => {
+  const jd = Date.parse('2026-10-12T12:00:00Z') / 86400000 + 2440587.5, E = [0, 0, 1], N = [0, 1, 0];
+  const r = resolveStructure(structureFromFeed(FEED, jd), E, N);
+  for (const t of r.streamers) {
+    assert.ok(t.length >= t.width && t.length <= 0.9 + 1e-12);
+    close(dot(t.along, t.dir), 0, 1e-9);
+    if (t.onBelt) close(dot(t.dir, r.belt.n), r.belt.sinLat0, 1e-9);
+  }
 });
 
 test('the CORONA panel badges each layer honestly', () => {
