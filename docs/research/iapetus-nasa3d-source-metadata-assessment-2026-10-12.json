@@ -1,0 +1,92 @@
+{
+  "scope": "Research-only NASA3D source metadata assessment; no asset replacement or embedding",
+  "sources": [
+    {
+      "path": "data/research-sources/iapetus-nasa3d-directory-2026-10-12.json",
+      "url": "https://api.github.com/repos/nasa/NASA-3D-Resources/contents/Images%20and%20Textures/Saturn%20-%20Iapetus",
+      "httpStatus": 200,
+      "bytes": 3330,
+      "sha256": "cdc35ea3bd3c08eb02bffc368eb1645522cc781eedcfb4b7d44c52d6b8fd19ec"
+    },
+    {
+      "path": "data/research-sources/iapetus-nasa3d-source-original.tif",
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Iapetus/Saturn%20-%20Iapetus.tif",
+      "httpStatus": 200,
+      "bytes": 3137752,
+      "sha256": "2e5e6a630ead0c0487cad8ddf3bbdbdc1840d53388bb94a92197ad19727a416a"
+    }
+  ],
+  "metadata": {
+    "jpegDimensions": [
+      1440,
+      720
+    ],
+    "tiffDimensions": [
+      1440,
+      720
+    ],
+    "jpegMode": "RGB",
+    "tiffMode": "RGB",
+    "jpegExif": {
+      "256": "1440",
+      "257": "720",
+      "258": "8",
+      "259": "5",
+      "262": "1",
+      "296": "2",
+      "34665": "280",
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "274": "1",
+      "306": "2008:09:03 17:02:18",
+      "277": "1",
+      "282": "72.0",
+      "283": "72.0",
+      "284": "1"
+    },
+    "tiffDescriptiveTags": {
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "306": "2008:09:03 17:02:11",
+      "274": "1"
+    },
+    "geoTiffTagsPresent": [],
+    "decodedRgbPixelsEqual": false,
+    "meanAbsoluteChannelDifference": [
+      0.2525916280864198,
+      0.2525916280864198,
+      0.2525916280864198
+    ]
+  },
+  "limits": [
+    "File/software timestamps are not verified observation or publication dates",
+    "Pixel similarity and dimensions do not establish NASA3D association with Photojournal or USGS products, coordinate frame, coverage or photometry",
+    "Absence of GeoTIFF tags does not establish registration",
+    "No calibrated visible colour, chemistry, licence or new dossier claim",
+    "Shared converted-PNM/Photoshop CS3 metadata and similar monochrome RGB pixels do not prove lineage or chronology",
+    "PIA18436 processing credits and PIA08406 westward shift are not assigned to this texture without product/pixel identity",
+    "TIFF retained unchanged as research input only; no new dossier, catalogue or codec change"
+  ],
+  "date": "2026-10-12",
+  "body": "Iapetus",
+  "sourceCredit": "NASA NASA-3D-Resources repository; original instrument/product contributor crosswalk remains open",
+  "existingJpeg": {
+    "path": "data/textures/iapetus.jpg",
+    "sha256": "9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405"
+  },
+  "verification": {
+    "deliveredDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "sourceHashesVerified": true,
+    "queueEntries": 566,
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Inherited OPENAI_API_KEY unset for missing-key test; no code change",
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15990285,
+    "headroomBytes": 9715,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false
+  }
+}
