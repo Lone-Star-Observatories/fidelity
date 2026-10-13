@@ -218,3 +218,23 @@ export function stepDescent(st, now) {
   if (f >= 1) return { ...st, altKm: st.toKm, phase: st.phase === 'down' ? 'ground' : 'top' };
   return { ...st, altKm };
 }
+
+/**
+ * The descent gauge's reading at time `now` (s): where the camera is on a tape from the ground (0) to the cloud
+ * tops (1), on the flight's own log(altitude + 5 km) scale, with the vertical speed (km/s, negative going down)
+ * and the seconds left. `deck` = { baseKm, topKm } above the ground marks the cloud deck on the tape.
+ */
+export function descentGauge(st, now, deck = null) {
+  if (!st) return null;
+  const lg = (k) => Math.log(Math.max(k, 0) + DESCENT_EASE_KM), g = lg(st.ground), span = lg(st.top) - g || 1;
+  const frac = (k) => clamp((lg(k) - g) / span, 0, 1);
+  const moving = st.phase === 'down' || st.phase === 'up';
+  let vKmS = 0, etaS = 0;
+  if (moving) {
+    const at = (t) => descentAltitude(st.fromKm, st.toKm, clamp((t - st.t0) / st.dur, 0, 1)), dt = 0.05;
+    vKmS = (at(now + dt) - at(now - dt)) / (2 * dt);
+    etaS = Math.max(0, st.t0 + st.dur - now);
+  }
+  return { phase: st.phase, moving, altKm: st.altKm, frac: frac(st.altKm), vKmS, etaS, topKm: st.top,
+    deck: deck ? { base: frac(deck.baseKm), top: frac(deck.topKm) } : null };
+}

@@ -174,6 +174,31 @@ button.nav-label:hover { color: #000; background: var(--peach); }
 .surface-sub { color: var(--peach); font-size: calc(12px * var(--text-scale, 1)); letter-spacing: 0.04em; line-height: 1.35; }
 .elev-tag { position: absolute; z-index: 4; pointer-events: none; color: var(--orange); background: rgba(0,0,0,0.7); padding: 2px 8px; font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; border-left: 3px solid var(--orange); }
 .surface-flash { position: absolute; left: 50%; top: 45%; transform: translateX(-50%); z-index: 4; color: var(--orange); background: rgba(0,0,0,0.65); padding: 6px 14px; letter-spacing: 0.1em; pointer-events: none; }
+/* DESCEND / ASCEND: a large gauge in the view's bottom-right corner while the flight runs (above the RATE strip) */
+.descent-gauge { position: absolute; right: 16px; bottom: 16px; z-index: 5; pointer-events: none; user-select: none; width: min(300px, calc(100% - 32px));
+  background: rgba(0, 0, 0, 0.72); border: 2px solid var(--orange); border-radius: 0 22px 22px 0; border-left-width: 10px; padding: 8px 14px 10px; display: grid; gap: 4px; }
+.viewport.has-dock .descent-gauge { bottom: 104px; }
+.descent-gauge[hidden] { display: none; }
+.descent-gauge.up { border-color: var(--ice); }
+.dg-head { color: var(--orange); font-size: calc(22px * var(--text-scale, 1)); letter-spacing: 0.12em; animation: dg-blink 1s steps(2, start) infinite; }
+.descent-gauge.up .dg-head { color: var(--ice); }
+.descent-gauge.arrived .dg-head { animation: none; color: var(--gold); }
+@keyframes dg-blink { to { opacity: 0.45; } }
+@media (prefers-reduced-motion: reduce) { .dg-head { animation: none; } }
+.dg-body { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: stretch; }
+.dg-tape { position: relative; height: 120px; margin: 10px 0; background: rgba(153, 153, 255, 0.12); border: 1px solid var(--violet); border-radius: 4px; }
+.dg-deck { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(135deg, rgba(255,255,255,0.35) 0 4px, rgba(255,255,255,0.12) 4px 8px); }
+.dg-fill { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(255,153,0,0.55), rgba(255,153,0,0.15)); }
+.descent-gauge.up .dg-fill { background: linear-gradient(to top, rgba(153,204,255,0.55), rgba(153,204,255,0.15)); }
+.dg-mark { position: absolute; left: -8px; right: -8px; height: 4px; margin-bottom: -2px; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.dg-end { position: absolute; left: 50%; transform: translateX(-50%); font-size: calc(9px * var(--text-scale, 1)); letter-spacing: 0.08em; color: var(--lilac); white-space: nowrap; }
+.dg-top { top: -14px; } .dg-gnd { bottom: -14px; }
+.dg-read { display: grid; align-content: center; gap: 2px; min-width: 0; }
+.dg-alt { color: var(--gold); font-size: calc(34px * var(--text-scale, 1)); line-height: 1.05; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.dg-rate { color: var(--peach); font-size: calc(20px * var(--text-scale, 1)); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.dg-lbl { color: var(--lilac); font-size: calc(10px * var(--text-scale, 1)); letter-spacing: 0.06em; }
+.dg-lbl .badge { transform: scale(0.85); transform-origin: left center; margin-left: 2px; }
+.dg-eta { color: var(--orange); font-size: calc(13px * var(--text-scale, 1)); letter-spacing: 0.08em; margin-top: 4px; }
 .nav-label.compass { color: var(--gold); background: none; border: 0; font-size: calc(16px * var(--text-scale, 1)); letter-spacing: 0.1em; pointer-events: none; text-shadow: 0 0 4px #000; }
 .nav-label.compass.zenith { font-size: calc(11px * var(--text-scale, 1)); color: var(--peach); }
 .explain-figure { color: var(--peach); max-width: 320px; }

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   venusAtmosphere, earthAtmosphere, atmosphereAt, CLOUD_LAYERS, murk, lightFraction, sunVisible, extinctionPerKm, visibilityKm,
-  layerAt, descentAltitude, createDescent, startDescent, stepDescent, GROUND_EYE_KM, cloudColumn, sliceDraws, slicesInColumn, sliceAlpha,
+  layerAt, descentAltitude, createDescent, startDescent, stepDescent, descentGauge, GROUND_EYE_KM, cloudColumn, sliceDraws, slicesInColumn, sliceAlpha,
 } from '../src/astro/atmosphere.js';
 
 const close = (a, b, tol, msg) => assert.ok(Math.abs(a - b) <= tol, `${msg ?? ''} ${a} vs ${b} (±${tol})`);
@@ -158,4 +158,24 @@ test('DESCEND / ASCEND state machine', () => {
   // a world without a cloud layer stands on the ground
   assert.equal(createDescent('mars').phase, 'ground');
   assert.equal(createDescent('earth', { at: 'ground' }).phase, 'ground');
+});
+
+test('the descent gauge: full at the cloud tops, empty on the ground, falling (negative speed) all the way down', () => {
+  const top = createDescent('earth');
+  const g0 = descentGauge(top, 0, { baseKm: 2, topKm: 10 });
+  assert.equal(g0.moving, false); close(g0.frac, 1, 1e-9, 'at the tops'); assert.equal(g0.vKmS, 0);
+  assert.ok(g0.deck.base < g0.deck.top && g0.deck.top < 1, 'the deck sits below the standing height');
+  const st = startDescent(top, 'down', 100, 30);
+  let last = 1;
+  for (let t = 100.5; t < 100 + st.dur; t += 0.5) {
+    const g = descentGauge(stepDescent(st, t), t);
+    assert.ok(g.moving && g.vKmS < 0, `falling at ${t}`);
+    assert.ok(g.frac <= last + 1e-9, 'the marker only moves down'); last = g.frac;
+    close(g.etaS, 100 + st.dur - t, 1e-9, 'seconds left');
+  }
+  const end = descentGauge(stepDescent(st, 100 + st.dur + 1), 200);
+  assert.equal(end.phase, 'ground'); close(end.frac, 0, 1e-9, 'on the ground'); assert.equal(end.etaS, 0);
+  const up = startDescent(end.phase === 'ground' ? stepDescent(st, 200) : st, 'up', 300, 30);
+  assert.ok(descentGauge(stepDescent(up, 305), 305).vKmS > 0, 'climbing on the way up');
+  assert.equal(descentGauge(null, 0), null);
 });

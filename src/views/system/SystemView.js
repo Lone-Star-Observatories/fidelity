@@ -43,7 +43,7 @@ import { createHelm } from '../ship/helm.js';
 import { fitDistance, METERS } from '../cameraMath.js';
 import { dirToLatLon, latLonToDir, horizonFrame, lookAt as surfaceLook, altAz, DAY_SKY, daylight } from './surface.js';
 import { planetMaterial, cloudMaterial, starMaterial, applySkin, loadTexture, applyLiveSkin, loadLive, BAND_UNIFORMS } from './materials.js';
-import { cloudLayer, createDescent, startDescent, stepDescent, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
+import { cloudLayer, createDescent, startDescent, stepDescent, descentGauge, GROUND_EYE_KM, visibilityKm } from '../../astro/atmosphere.js';
 import { superRotation, cloudCoverAt, layerLook, createMurkVeil, layerReadout, addCloudSlices, cloudDetail, cloudSides, loadEarthClouds, cloudTopAt, icePriorTexture, helmLayerLook } from './clouds.js';
 import { cloudColumn } from '../../astro/atmosphere.js';
 import { badge } from '../../data/provenance.js';
@@ -1487,6 +1487,44 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
   const flash = Object.assign(document.createElement('div'), { className: 'surface-flash' });
   flash.hidden = true;
   container.appendChild(flash);
+  // a large gauge in the view's bottom-right corner while DESCEND / ASCEND is flying: the camera on a tape from the
+  // ground to the cloud tops (the flight's log scale), the cloud deck on it, altitude, rate and time to arrival
+  const gauge = Object.assign(document.createElement('div'), { className: 'descent-gauge', hidden: true });
+  const gEl = (cls, parent = gauge, text = '') => { const el = Object.assign(document.createElement('div'), { className: cls, textContent: text }); parent.appendChild(el); return el; };
+  const gHead = gEl('dg-head'), gBody = gEl('dg-body'), gTape = gEl('dg-tape', gBody);
+  const gDeck = gEl('dg-deck', gTape), gFill = gEl('dg-fill', gTape), gMark = gEl('dg-mark', gTape);
+  gEl('dg-end dg-top', gTape, 'TOPS'); gEl('dg-end dg-gnd', gTape, 'GROUND');
+  const gRead = gEl('dg-read', gBody), gAlt = gEl('dg-alt', gRead);
+  gEl('dg-lbl', gRead, 'ABOVE THE GROUND ').appendChild(badge('computed', 'The camera height over the measured ground (DEM).'));
+  const gRate = gEl('dg-rate', gRead);
+  gEl('dg-lbl', gRead, 'FLIGHT RATE ').appendChild(badge('imagined', 'How fast the app flies you down or up: time-compressed so the trip takes about half a minute, eased on a log scale (slower near the ground). Not a real lander\'s descent (Venera took ~1 hour).'));
+  const gEta = gEl('dg-eta', gRead);
+  container.appendChild(gauge);
+  let gaugeDone = null; // { phase, at } for a few seconds after arriving
+  const gKm = (x) => (x >= 10 ? `${x.toFixed(1)} KM` : x >= 1 ? `${x.toFixed(2)} KM` : `${Math.round(x * 1000).toLocaleString('en-US')} M`);
+  function updateGauge(s) {
+    const now = performance.now() / 1000;
+    const col = s?.col, ref = s?.groundRefKm ?? 0;
+    const g = s?.descent ? descentGauge(s.descent, now, col ? { baseKm: Math.max(0, col.baseKm - ref), topKm: Math.max(0, col.topKm - ref) } : null) : null;
+    if (g?.moving) gaugeDone = null;
+    else if (g && gauge.dataset.phase && gauge.dataset.phase !== g.phase && (gauge.dataset.phase === 'down' || gauge.dataset.phase === 'up')) gaugeDone = { phase: g.phase, at: now };
+    const show = !!g && (g.moving || (gaugeDone && now - gaugeDone.at < 4));
+    gauge.hidden = !show;
+    if (!g) { gauge.dataset.phase = ''; return; }
+    gauge.dataset.phase = g.phase;
+    if (!show) return;
+    gauge.classList.toggle('up', g.phase === 'up' || g.phase === 'top');
+    gauge.classList.toggle('arrived', !g.moving);
+    gHead.textContent = g.phase === 'down' ? '▼ DESCENDING' : g.phase === 'up' ? '▲ ASCENDING' : g.phase === 'ground' ? '■ TOUCHDOWN' : '■ AT THE CLOUD TOPS';
+    const pct = (f) => `${(f * 100).toFixed(2)}%`;
+    gMark.style.bottom = pct(g.frac); gFill.style.height = pct(g.frac);
+    gDeck.hidden = !g.deck;
+    if (g.deck) { gDeck.style.bottom = pct(g.deck.base); gDeck.style.height = pct(Math.max(0.01, g.deck.top - g.deck.base)); }
+    gAlt.textContent = gKm(g.altKm);
+    const v = Math.abs(g.vKmS);
+    gRate.textContent = !g.moving ? '0 M/S' : `${g.vKmS < 0 ? '▼' : '▲'} ${v >= 1 ? `${v.toFixed(2)} KM/S` : `${Math.round(v * 1000).toLocaleString('en-US')} M/S`}`;
+    gEta.textContent = g.moving ? `${g.phase === 'down' ? 'GROUND' : 'CLOUD TOPS'} IN ${Math.ceil(g.etaS)} S` : g.phase === 'ground' ? '2 M ABOVE THE GROUND' : 'ABOVE THE CLOUD DECK';
+  }
   let flashT = null;
   function flashHud(text) { flash.textContent = text; flash.hidden = false; clearTimeout(flashT); flashT = setTimeout(() => { flash.hidden = true; }, 2200); }
   const compass = ['N', 'E', 'S', 'W'].map((t, i) => {
@@ -1566,6 +1604,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const s = surface;
     surface = null;
     hud.hidden = true;
+    gauge.hidden = true; gauge.dataset.phase = ''; gaugeDone = null;
     hudLook.textContent = '';
     for (const c of [...compass, zenithTag, parentTag]) c.visible = false;
     planetArrow.hidden = true;
@@ -1837,6 +1876,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
       s.cloudTop = ec ? cloudTopAt(ec, (llc.lon + 180) / 360, (llc.lat + 90) / 180) : null;
       s.col = cloudColumn(s.id, s.cloudTop);
       s.colMeasured = !!ec;
+      s.groundRefKm = groundRefKm;
       const top = Math.max(0.5, s.col.standKm - groundRefKm); // the cloud tops are at a height, not a height over the ground
       if (Math.abs(top - s.descent.top) > 1e-6) s.descent = { ...s.descent, top, ...(s.descent.phase === 'top' ? { altKm: top, fromKm: top, toKm: top } : {}) };
       s.descent = stepDescent(s.descent, performance.now() / 1000);
@@ -1959,6 +1999,7 @@ export function createSystemView(container, { clock, onSelect, onSite, onFeature
     const lead = look ? (look.where === 'above' ? 'ABOVE THE CLOUDS OF' : look.where === 'in' ? 'IN THE CLOUDS OF' : s.descent.phase === 'ground' ? 'STANDING ON' : 'UNDER THE CLOUDS OF') : giant ? 'AT THE CLOUD TOPS OF' : 'STANDING ON';
     const text = `${lead} ${n.body.name.toUpperCase()} · ${where}${s.descent?.phase === 'down' ? ' · DESCENDING' : s.descent?.phase === 'up' ? ' · ASCENDING' : ''}`;
     layerHud(s, layerR, aboveKm, look);
+    updateGauge(s);
     hudDescend.hidden = !s.descent || s.descent.phase === 'ground' || s.descent.phase === 'down';
     hudAscend.hidden = !s.descent || s.descent.phase === 'top' || s.descent.phase === 'up';
     const lookTxt = s.alt > 89.5 ? 'LOOKING STRAIGHT UP' : `LOOKING ${Math.round(s.az)}° AZ · ${Math.round(s.alt)}° ALT`;

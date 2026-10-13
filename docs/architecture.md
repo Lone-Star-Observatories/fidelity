@@ -660,7 +660,9 @@ descends to and the helm lands on.
   its opacity each gets), the murk (Earth: through the column from base to top), light
   fraction, Sun visibility and Rayleigh extinction by altitude (MODELLED), and the DESCEND / ASCEND state machine
   (`createDescent`, `startDescent`, `stepDescent`: altitude above the ground eased in log(altitude + 5 km), 40 s for
-  Venus, 30 s for Earth (through the assumed layer ~15 s in cloud), reversible mid-way; it takes the time as an argument).
+  Venus, 30 s for Earth (through the assumed layer ~15 s in cloud), reversible mid-way; it takes the time as an argument),
+  and `descentGauge` (the camera on a 0–1 tape from the ground to the tops on the same log scale, the deck's band,
+  vertical speed and seconds left).
 - **Earth's clouds** (`clouds.js`, `materials.js` `sliceAlpha()`): `addCloudSlices` hangs eight lower slices under
   the outer shell (shared uniforms, own `uSliceKm`); a fragment draws if its column reaches that slice (decided first
   in the shader, so hidden slices cost little). With live skins on, `loadEarthClouds` fetches `/api/earth-clouds`:
@@ -686,7 +688,10 @@ descends to and the helm lands on.
 - **Surface view**: double-click (System View, or the Planet View globe) enters with `layer: 'clouds'`: on Venus and
   Earth the camera starts on the cloud tops (`standKm`: 70.5 km; on Earth 0.8 km over the measured top over the spot, else 10.8 km); `surfaceAt` (sites, events, postcards,
   `?surface=`) keeps the ground unless `layer: 'clouds'` (`&layer=clouds`). The HUD's DESCEND / ASCEND run the state
-  machine; `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
+  machine, and while it flies a large **descent gauge** sits in the view's bottom-right corner (above the RATE strip):
+  ▼ DESCENDING / ▲ ASCENDING, a tape with the cloud deck and a marker, altitude above the ground (COMPUTED), the flight
+  rate (IMAGINED: the app's pacing) and the seconds to the ground or the tops; it shows TOUCHDOWN / AT THE CLOUD TOPS
+  for 4 s on arrival, then hides. `updateSurface` lifts the camera by the altitude above the DEM ground (2 m at the bottom), and
   `layerLook` sets the sky, star fade, Sun and body visibility (none under Venus' deck), the ground's light (`uSunColor`
   scaled and tinted, `uSkyAmb` diffuse orange from the zenith `uSkyUp`), aerial perspective (`uFogK`, `uFogCol`) and
   the murk veil (`createMurkVeil`: a clip-space quad drawn last, so postcards keep it). Earth's murk follows the cloud
