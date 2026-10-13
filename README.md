@@ -4,7 +4,7 @@ An LCARS-style ship's console for exploring real NASA and astronomical data, fro
 orbit out to nearby galaxies. It runs locally. Data is loaded on demand and stored on
 your machine.
 
-**Status:** every view is online: Universe, Galaxy, Quadrant, Navigation, System (with the Star, Planet,
+**Status:** version 1.0 ([release notes](docs/release-notes-v1.md)). Every view is online: Universe, Galaxy, Quadrant, Navigation, System (with the Star, Planet,
 Moon, Object and Satellite detail views), the surface view, Events, Future, Earth Timeline and COMMS. Open work
 is tracked as GitHub issues and mirrored in [`docs/backlog.md`](docs/backlog.md).
 

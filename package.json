@@ -1,6 +1,6 @@
 {
   "name": "fidelity",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "USS Fidelity: an LCARS-style, locally run explorer of real NASA and astronomical data.",
   "type": "module",
