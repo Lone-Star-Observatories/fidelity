@@ -48,7 +48,7 @@ export const ARM_LY = 0.03;
 export const STAR_STANDOFF_LY = 0.01;
 /** Quadrant → Navigation: a charted star within this distance of a stopped or arriving ship. */
 export const NAV_DOWN_LY = 50;
-/** Galaxy → Quadrant: within this fraction of the Quadrant View's radius of Sol (it is Sol-centred only). */
+/** Galaxy → Quadrant: within this fraction of the Quadrant View's radius of Sol (it comes down Sol-centred). */
 export const QUADRANT_DOWN_FRAC = 0.9;
 
 // ---- simulation speed-up (a viewing aid, IMAGINED): flight seconds per real second ---------------------
@@ -89,6 +89,8 @@ export const shipState = {
   departed: null, departedArmed: false,
   /** A hand-down in progress: { star, fromGal (unit, galactic: where the ship comes from), manual, quat, kmS }. */
   arrival: null,
+  /** The star the ship was last at: { id, name, gal (ly) } (a Quadrant chart can centre on it). */
+  star: null,
   // the ship's log: kept across reloads in this browser (localStorage; restoreLog / saveLog below)
   log: [], travelledKm: 0, earthS: 0, shipS: 0, visited: new Set(),
 };

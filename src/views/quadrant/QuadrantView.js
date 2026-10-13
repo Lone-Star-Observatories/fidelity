@@ -33,8 +33,8 @@ export { ageTeff };
 
 const IMG_VERT = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
 const POINTS_VERT = `
-  attribute float size; attribute vec3 color; varying vec3 vColor; varying float vFar; uniform float uPixel; uniform float uRadius;
-  void main() { vColor = color; vFar = length(position) > uRadius ? 1.0 : 0.0;
+  attribute float size; attribute vec3 color; varying vec3 vColor; varying float vFar; uniform float uPixel; uniform float uRadius; uniform vec3 uCentre;
+  void main() { vColor = color; vFar = length(position - uCentre) > uRadius ? 1.0 : 0.0;
     vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv; gl_PointSize = size * uPixel; }`;
 const POINTS_FRAG = `
   varying vec3 vColor; varying float vFar;
@@ -74,7 +74,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   model.setBand(currentBand()); onBand((cb) => model.setBand(cb)); // the spectrum filter (#28)
   applyLook();
 
-  const uniforms = { uPixel: { value: renderer.getPixelRatio() }, uRadius: { value: 3000 } };
+  const uniforms = { uPixel: { value: renderer.getPixelRatio() }, uRadius: { value: 3000 }, uCentre: { value: new THREE.Vector3() } }; // the chart centre (#42): Sol, or the ship's star
   const pointsMat = () => new THREE.ShaderMaterial({ uniforms, vertexShader: POINTS_VERT, fragmentShader: POINTS_FRAG, transparent: true, depthWrite: false });
   function makePoints(rows) { // rows: [x, y, z, size, r, g, b]
     const n = rows.length, pos = new Float32Array(n * 3), size = new Float32Array(n), col = new Float32Array(n * 3);
@@ -102,7 +102,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     o.position.copy(pos);
     o.center.set(-0.12, 0.5);
     scene.add(o);
-    tags.push({ obj: o, kind, dist: pos.length(), always });
+    tags.push({ obj: o, kind, always });
     return o;
   }
   function drawChart(R) {
@@ -120,7 +120,12 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       chart.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), v.clone().multiplyScalar(R * 1.05)]), new THREE.LineBasicMaterial({ color: 0xff9966, transparent: true, opacity: 0.3 })));
       tag(text, 'spoke', v.clone().multiplyScalar(R * 1.1));
     }
-    ['I', 'II', 'III', 'IV'].forEach((q, i) => tag(`QUADRANT ${q}`, 'quadrant', new THREE.Vector3(...lbd(45 + i * 90, 0, R * 0.7))));
+    // the IAU quadrants are measured from the Sun; centred elsewhere (#42) the spokes keep the Sun's axes
+    const offSol = centre.lengthSq() > 0;
+    ['I', 'II', 'III', 'IV'].forEach((q, i) => tag(`QUADRANT ${q}${offSol ? ' (SOL\'S AXES)' : ''}`, 'quadrant', new THREE.Vector3(...lbd(45 + i * 90, 0, R * 0.7))));
+    if (offSol) tag(`◎ ${centreInfo.name.toUpperCase()} · CHART CENTRE`, 'sol', new THREE.Vector3());
+    chart.position.copy(centre);
+    for (const t of tags) if (t.kind === 'chart') t.obj.position.add(centre);
     drawTrekChart(R);
   }
 
@@ -178,7 +183,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       const o = trekTag(`${territory ? '' : '◇ '}${t.name.toUpperCase()}${t.confidence === 'fan' && !territory ? ' ≈' : ''}`, territory ? 'territory' : 'world', territory ? pos.clone().add(new THREE.Vector3(0, 0, p.radiusLy * 0.75)) : pos,
         { kind: 'trek', onClick: () => onTrek?.(t.id) });
       if (territory) o.center.set(0.5, 0.5);
-      trekPlaces.push({ t, pos, o, dist: pos.length(), lod: p.type === 'star' ? Infinity : territory ? 2600 : 650 });
+      trekPlaces.push({ t, pos, o, lod: p.type === 'star' ? Infinity : territory ? 2600 : 650 });
       if (p.type !== 'star' && !p.radiusLy) { // a pip for a point place
         const g = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([pos.x, pos.y, pos.z], 3));
         trekGroup.add(new THREE.Points(g, new THREE.PointsMaterial({ size: 6, sizeAttenuation: false, color: TREK_COLOR })));
@@ -193,13 +198,13 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
       for (let l = p.l[0]; l <= p.l[1]; l += 1) pts.push(new THREE.Vector3(...lbd(l, 0, p.distLy)));
       trekGroup.add(dashed(pts, 0.85, 4));
       const mid = new THREE.Vector3(...lbd((p.l[0] + p.l[1]) / 2, 0, p.distLy));
-      trekPlaces.push({ t, pos: mid, o: trekTag(`${t.name.toUpperCase()} ≈`, 'world', mid, { kind: 'trek', onClick: () => onTrek?.(t.id) }), dist: mid.length(), lod: 900 });
+      trekPlaces.push({ t, pos: mid, o: trekTag(`${t.name.toUpperCase()} ≈`, 'world', mid, { kind: 'trek', onClick: () => onTrek?.(t.id) }), lod: 900 });
     } else if (p.type === 'path') { // the Bajoran wormhole: its Alpha end here, a dashed pointer towards the Gamma end
       const a = new THREE.Vector3(...frameToScene(trekGal({ l: p.points[0][0], b: p.points[0][1], distLy: p.points[0][2] })));
       const b = new THREE.Vector3(...frameToScene(trekGal({ l: p.points.at(-1)[0], b: p.points.at(-1)[1], distLy: p.points.at(-1)[2] })));
       trekGroup.add(dashed([a, a.clone().add(b.clone().sub(a).setLength(400))], 0.6, 8));
       const end = a.clone().add(b.clone().sub(a).setLength(400));
-      trekPlaces.push({ t, pos: end, o: trekTag(`${t.name.toUpperCase()} → GAMMA QUADRANT`, 'world', end, { kind: 'trek', onClick: () => onTrek?.(t.id) }), dist: end.length(), lod: 900 });
+      trekPlaces.push({ t, pos: end, o: trekTag(`${t.name.toUpperCase()} → GAMMA QUADRANT`, 'world', end, { kind: 'trek', onClick: () => onTrek?.(t.id) }), lod: 900 });
     }
   }
 
@@ -282,13 +287,31 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   tag('SOL · SECTOR 001', 'sol', new THREE.Vector3(), { kind: 'sol', always: true }); // not 'chart': drawChart clears those
 
   let radius = 3000;
-  function setRadius(R) {
+  // The chart's centre (#42): Sol, or a star the ship has been at (heliocentric galactic ly). The scene stays
+  // heliocentric (positions are untouched); only the range sphere, the rings and spokes, the lists and the
+  // hand-over radius move. The catalogue stars drawn here are Sol-centred (the brightest within ~1.5 kly of the Sun),
+  // so a far centre shows the edge of that sample; clusters and nebulae are all-sky.
+  const centre = uniforms.uCentre.value;
+  let centreInfo = { id: 'sol', name: 'Sol', gal: [0, 0, 0] };
+  const inR = (pos) => pos.distanceTo(centre) <= radius * 1.02;
+  function setRadius(R, { keepCamera = false } = {}) {
     radius = R;
     uniforms.uRadius.value = R * 1.02;
     drawChart(R);
     controls.maxDistance = R * 6;
-    target.set(0, 0, 0);
-    camera.position.set(R * 0.35, R * 1.0, R * 1.4);
+    if (keepCamera) return;
+    target.copy(centre);
+    camera.position.copy(centre).add(new THREE.Vector3(R * 0.35, R * 1.0, R * 1.4));
+  }
+  /** Centre the chart on `info` = { id, name, gal (heliocentric galactic ly) }, or on Sol (null). */
+  function setCentre(info) {
+    const c = info?.gal && Math.hypot(...info.gal) > 0 ? info : { id: 'sol', name: 'Sol', gal: [0, 0, 0] };
+    const prev = centre.clone();
+    centreInfo = { id: c.id, name: c.name, gal: c.gal.slice() };
+    centre.set(...frameToScene(c.gal));
+    const shift = centre.clone().sub(prev);
+    target.add(shift); controls.target.add(shift); camera.position.add(shift); // keep the view, moved with the centre
+    setRadius(radius, { keepCamera: true });
   }
   const target = new THREE.Vector3();
 
@@ -299,7 +322,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     const hit = pickPoint(pos, pos.length / 3, stars, camera, renderer.domElement.getBoundingClientRect(), e.clientX, e.clientY, 8);
     if (!hit) return null;
     const r = starRows[hit.index];
-    if (Math.hypot(r[0], r[1], r[2]) > radius * 1.02) return null; // filtered out of view by the shader
+    if (!inR(tmpPick.set(...frameToScene([r[0], r[1], r[2]])))) return null; // filtered out of view by the shader
     return { kind: 'hyg', id: r[5] ?? null, gal: [r[0], r[1], r[2]], distLy: Math.hypot(r[0], r[1], r[2]), px: hit.px };
   }
   // clicks also reach cluster member stars and stars inside nebulae (#24), and select nebulae and clusters by their dots
@@ -308,13 +331,13 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     const cands = [];
     const s = pickStar(e);
     if (s) cands.push({ px: s.px, star: s });
-    const m = ds.pick(camera, rect, e.clientX, e.clientY, radius);
+    const m = ds.pick(camera, rect, e.clientX, e.clientY, radius, centre);
     if (m) cands.push({ px: m.px - 1, star: m.pick }); // members win ties: they are what is drawn there
     for (const [pts, ids] of [[nebPts, NEBULAE.map((n) => `neb-${n[0]}`)], [clusterPts, clusterRows.map((r) => `cl-${r[0]}`)]]) {
       if (!pts) continue;
       const a = pts.geometry.attributes.position.array, sz = pts.geometry.attributes.size.array;
       const hit = pickPoint((i) => (sz[i] > 0 ? tmpPick.set(a[i * 3], a[i * 3 + 1], a[i * 3 + 2]) : tmpPick.set(0, 0, 1e9)), a.length / 3, null, camera, rect, e.clientX, e.clientY, 7);
-      if (hit && tmpPick.set(a[hit.index * 3], a[hit.index * 3 + 1], a[hit.index * 3 + 2]).length() <= radius * 1.02) cands.push({ px: hit.px + 2, select: ids[hit.index] });
+      if (hit && tmpPick.set(a[hit.index * 3], a[hit.index * 3 + 1], a[hit.index * 3 + 2]).distanceTo(centre) <= radius * 1.02) cands.push({ px: hit.px + 2, select: ids[hit.index] });
     }
     cands.sort((x, y) => x.px - y.px);
     return cands[0] ?? null;
@@ -350,7 +373,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   // lazy 3D detail (#24): load images and member lists of what is big on screen; hide a marker
   // dot once the real thing is drawn there
   function lazyUpdate() {
-    ds.update(camera, renderer.domElement.clientHeight || 800, radius, selected?.id ?? null, clusterRows, clusterPos);
+    ds.update(camera, renderer.domElement.clientHeight || 800, radius, selected?.id ?? null, clusterRows, clusterPos, centre);
     const nsz = nebPts?.geometry.attributes.size;
     if (nsz) {
       NEBULAE.forEach((n, i) => { const h = ds.nebulae.get(`neb-${n[0]}`); nsz.setX(i, h?.state === 'ready' && h.px > 30 ? 0 : 11); });
@@ -379,7 +402,7 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
   // camera controls (#39): Sol, the clusters and the nebulae are what FLY speeds up near
   const eachObject = (fn) => {
     fn(0, 0, 0, 0);
-    for (const o of objects) if (o.distLy <= radius * 1.02) fn(o.pos.x, o.pos.y, o.pos.z, sizeOf(o) / 3.5);
+    for (const o of objects) if (inR(o.pos)) fn(o.pos.x, o.pos.y, o.pos.z, sizeOf(o) / 3.5);
   };
   const sizeOf = (o) => { const neb = ds.nebulae.get(o.id); return o.r50pc ? o.r50pc * LY_PER_PC * 2 : neb ? neb.objectLy : 1; };
   const rig = createCameraRig({
@@ -389,9 +412,9 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     fit: () => {
       zoomGoal = null; zoomDir = null;
       if (selected) rig.frameSphere(selected.pos, Math.max(0.2, sizeOf(selected)), 1.1);
-      else rig.frameSphere(new THREE.Vector3(), radius, 1.02);
+      else rig.frameSphere(centre.clone(), radius, 1.02);
     },
-    reset: () => { zoomGoal = null; zoomDir = null; rig.flyTo({ target: new THREE.Vector3(), position: new THREE.Vector3(radius * 0.35, radius * 1.0, radius * 1.4) }); },
+    reset: () => { zoomGoal = null; zoomDir = null; rig.flyTo({ target: centre.clone(), position: centre.clone().add(new THREE.Vector3(radius * 0.35, radius * 1.0, radius * 1.4)) }); },
     captured: () => !!ship?.active, // HELM (#42): the ship flies the camera
   });
 
@@ -410,8 +433,8 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     nearChase: 1e-4, orbitDist: 80, simDefault: 604800,
     targets: () => [SOL_TARGET, ...objects.map(objectTarget)],
     selected: () => objectTarget(selected),
-    nearest: (g) => { const n = nearestGal(g, [SOL_TARGET, ...objects.filter((o) => o.distLy <= radius * 1.02).map(objectTarget)]); return n && { name: n.star.name, d: n.d }; },
-    decide: (st) => quadrantDecision({ pos: st.pos, vel: st.vel, radiusLy: radius, stars: chartStars(), stopped: st.stopped, arrived: st.arrived }),
+    nearest: (g) => { const n = nearestGal(g, [SOL_TARGET, ...objects.filter((o) => inR(o.pos)).map(objectTarget)]); return n && { name: n.star.name, d: n.d }; },
+    decide: (st) => quadrantDecision({ pos: st.pos, vel: st.vel, radiusLy: radius, centreGal: centreInfo.gal, stars: chartStars(), stopped: st.stopped, arrived: st.arrived }),
     on: (kind, d) => onShip?.(kind, d),
   });
   function frame() {
@@ -444,9 +467,9 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     for (const t of tags) {
       if (t.kind === 'trekchart') { t.obj.visible = trekOn; continue; }
       if (t.kind === 'trek') continue;
-      t.obj.visible = !!(t.always || t.kind === 'chart' || (show && t.dist <= radius * 1.02) || (selected && t.obj.position.equals(selected.pos)));
+      t.obj.visible = !!(t.always || t.kind === 'chart' || (show && inR(t.obj.position)) || (selected && t.obj.position.equals(selected.pos)));
     }
-    for (const p of trekPlaces) p.o.visible = trekOn && p.dist <= radius * 1.02 && camera.position.distanceTo(p.pos) < p.lod; // strict boolean for CSS2DRenderer
+    for (const p of trekPlaces) p.o.visible = trekOn && inR(p.pos) && camera.position.distanceTo(p.pos) < p.lod; // strict boolean for CSS2DRenderer
     ship.frame(now); // HELM (#42): fly and place the camera (no-op when nobody is at the helm)
     ds.tick(camera, renderer.domElement.clientHeight || 800);
     renderer.render(scene, camera);
@@ -488,8 +511,12 @@ export function createQuadrantView(container, { onSelect, onFrame, onPickStar, o
     },
     /** Counts of what lies within the current radius. */
     counts() {
-      const R = radius / LY_PER_PC;
-      return { clusters: clusterRows.filter((r) => r[3] <= R).length, nebulae: NEBULAE.filter((n) => n[4] <= radius).length };
+      return { clusters: clusterPos.filter((p) => inR(p)).length, nebulae: objects.filter((o) => o.id.startsWith('neb-') && inR(o.pos)).length };
     },
+    /** The chart's centre (#42): { id, name, gal } (Sol unless the ship's star was chosen), and setting it. */
+    get centre() { return { ...centreInfo, gal: centreInfo.gal.slice() }; },
+    setCentre,
+    /** Light-years from the chart's centre to an object (for the landmark list). */
+    distFromCentre: (o) => o.pos.distanceTo(centre),
   };
 }

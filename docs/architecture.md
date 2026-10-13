@@ -1478,11 +1478,20 @@ OrbitControls, rig and node table) owns the ship's state, input, autopilot, came
     galactic position from `solDirection` × `distLy`) and opens Navigation centred on that star.
   - *Navigation → System*: within 0.02 ly (~1,300 AU) of a charted star, or arriving on a course for it (stand-off
     0.01 ly); the star just left only recaptures the ship after it has been 0.03 ly away.
-  - *Navigation → Quadrant*: beyond the chart's sensor radius, heading out. *Quadrant → Navigation*: stopped or
+  - *Navigation → Quadrant*: beyond the chart's sensor radius, heading out; the Quadrant chart then centres on the
+    Navigation chart's centre star (the ship's star, `shipState.star`). *Quadrant → Navigation*: stopped or
     arriving with a charted star within 50 ly (Navigation centred on it, 100 ly range), or closing on Sol within
-    50 ly. *Quadrant → Galaxy*: beyond the Quadrant View's radius, heading out. *Galaxy → Quadrant*: within 90% of
-    that radius of Sol, closing or stopped. The Quadrant View is Sol-centred only, so far targets (Sgr A*, the
-    Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
+    50 ly. *Quadrant → Galaxy*: beyond the Quadrant View's radius of its centre, heading out. *Galaxy →
+    Quadrant*: within 90% of that radius of Sol, closing or stopped (the chart comes down Sol-centred). Far targets
+    (Sgr A*, the Magellanic Clouds, the Sagittarius dwarf) are flown and reached in the Galaxy View.
+  - *The Quadrant View away from Sol.* The chart can centre on the ship's star (`quadrant.setCentre({ id, name,
+    gal })`; CHART CENTRE in its panel: SOL or the ship's star, which is set when the ship leaves or enters a star
+    system). The scene stays heliocentric: only the range sphere (a `uCentre` uniform in the point shader), the
+    rings and spokes, the landmark list and counts (distances from the centre), the lazy 3D detail
+    (`deepsky3d.update/pick` take the centre), picking, the view title and the hand-over radius
+    (`quadrantDecision`'s `centreGal`, tested in `tests/shipstate.test.js`) move. Honest limits: the catalogue stars
+    drawn there are the brightest within ~1.5 kly of the Sun (a far centre shows the edge of that sample), the IAU
+    quadrant spokes keep the Sun's axes (labelled SOL'S AXES), and the centre is not in the view's link.
   `src/views/ship/deepHelm.js` (`createDeepHelm`) flies the ship in the Navigation, Quadrant and Galaxy views with
   the System View helm's controls and HUD classes (CHASE / BRIDGE / ORBIT, throttle to warp 9.99, REAL PHYSICS
   with the Milky Way's tide: the ship's acceleration relative to the Sun in the Bovy 2015 model, `galpot.js

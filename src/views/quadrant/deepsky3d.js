@@ -241,7 +241,8 @@ export function createDeepSky3D({ scene, makePoints, fetchMembers, imageUrl }) {
   }
 
   /** Nearest member star or nebula star to the cursor: a star-card pick (#23) or null. */
-  function pick(camera, rect, x, y, radius) {
+  // `centre` (#42): the chart's centre (scene, ly); the range is measured from it (Sol when omitted)
+  function pick(camera, rect, x, y, radius, centre = null) {
     let best = null;
     const tryIt = (positions, n, fn) => {
       const hit = pickPoint(positions, n, null, camera, rect, x, y, 8);
@@ -251,11 +252,11 @@ export function createDeepSky3D({ scene, makePoints, fetchMembers, imageUrl }) {
       if (s.state !== 'ready' || !s.points.visible) continue;
       tryIt((i) => s.members[i].pos, s.members.length, (i) => {
         const m = s.members[i];
-        return { pick: { kind: 'gaia', eq: radecVec(m.ra, m.dec), distLy: (m.plx > 0 && m.plx / m.ePlx > 5 ? 1000 / m.plx : s.data.distPc) * LY_PER_PC, name: `Gaia DR3 ${m.gaia}`, cluster: s.name } };
+        return { pos: m.pos, pick: { kind: 'gaia', eq: radecVec(m.ra, m.dec), distLy: (m.plx > 0 && m.plx / m.ePlx > 5 ? 1000 / m.plx : s.data.distPc) * LY_PER_PC, name: `Gaia DR3 ${m.gaia}`, cluster: s.name } };
       });
     }
-    if (starPts) tryIt((i) => starMeta[i].pos, starMeta.length, (i) => ({ pick: { kind: 'gaia', eq: radecVec(starMeta[i].ra, starMeta[i].dec), distLy: starMeta[i].distLy, name: starMeta[i].name } }));
-    if (best && best.pick.distLy > radius * 1.02) return null;
+    if (starPts) tryIt((i) => starMeta[i].pos, starMeta.length, (i) => ({ pos: starMeta[i].pos, pick: { kind: 'gaia', eq: radecVec(starMeta[i].ra, starMeta[i].dec), distLy: starMeta[i].distLy, name: starMeta[i].name } }));
+    if (best && (centre ? best.pos.distanceTo(centre) : best.pick.distLy) > radius * 1.02) return null;
     return best;
   }
 
@@ -284,13 +285,15 @@ export function createDeepSky3D({ scene, makePoints, fetchMembers, imageUrl }) {
       }
     },
     /** Lazy loading: images and member lists of what is large on screen (or selected). */
-    update(camera, viewportH, radius, selectedId, clusterRows, clusterPos) {
+    update(camera, viewportH, radius, selectedId, clusterRows, clusterPos, centre = null) {
       const pxPerRad = viewportH / (camera.fov * Math.PI / 180);
+      const inR = (pos, distLy) => (centre ? pos.distanceTo(centre) : distLy) <= radius * 1.02; // from the chart's centre (#42)
       for (const h of nebulae.values()) {
         const d = Math.max(1e-6, camera.position.distanceTo(h.group.position));
         h.px = (h.objectLy / d) * pxPerRad;
-        h.group.visible = h.state === 'ready' && h.distLy <= radius * 1.02;
-        if (h.state === 'idle' && h.distLy <= radius * 1.02 && (h.px > 10 || h.id === selectedId)) h.load();
+        const inside = inR(h.group.position, h.distLy);
+        h.group.visible = h.state === 'ready' && inside;
+        if (h.state === 'idle' && inside && (h.px > 10 || h.id === selectedId)) h.load();
       }
       if (starPts) starPts.visible = true;
       // clusters: members of those looking bigger than ~40 px (at most 3 loading at once, 30 kept)
@@ -298,7 +301,7 @@ export function createDeepSky3D({ scene, makePoints, fetchMembers, imageUrl }) {
         let loading = [...swarms.values()].filter((s) => s.state === 'loading').length;
         const big = [];
         clusterRows.forEach((r, i) => {
-          if (r[3] * LY_PER_PC > radius * 1.02 || !(r[7] > 0)) return;
+          if (!inR(clusterPos[i], r[3] * LY_PER_PC) || !(r[7] > 0)) return;
           const d = Math.max(1e-6, camera.position.distanceTo(clusterPos[i]));
           const px = ((r[7] * LY_PER_PC) / d) * pxPerRad;
           if (px > 40 || `cl-${r[0]}` === selectedId) big.push([px, r]);
@@ -309,7 +312,8 @@ export function createDeepSky3D({ scene, makePoints, fetchMembers, imageUrl }) {
           const keep = new Set(big.slice(0, 20).map(([, r]) => r[0]));
           for (const name of [...swarms.keys()]) if (!keep.has(name) && `cl-${name}` !== selectedId && swarms.size > 30) dropCluster(name);
         }
-        for (const s of swarms.values()) if (s.points) s.points.visible = (s.data.distPc ?? 0) * LY_PER_PC <= radius * 1.02;
+        const posOf = new Map(clusterRows.map((r, i) => [r[0], clusterPos[i]]));
+        for (const s of swarms.values()) if (s.points) s.points.visible = inR(posOf.get(s.name) ?? new THREE.Vector3(), (s.data.distPc ?? 0) * LY_PER_PC);
       }
     },
   };
