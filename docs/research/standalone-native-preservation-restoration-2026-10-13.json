@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-13T10:47:08.161413+00:00",
+  "scope": "Restore unchanged native body-card bytes after upstream 1600px resampling",
+  "baseCommit": "ac1ca7385704d12bec2adf6eca49fd4d8a84a9d7",
+  "change": "Removed capSize resampling for non-imagined body images; shared URL deduplication retained. Generated illustrations still use WebP quality80.",
+  "nativeSnapshotEquality": [
+    {
+      "url": "/bespoke/luyten-naco-2-native.png",
+      "bytes": 95832,
+      "sha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f"
+    },
+    {
+      "url": "/bespoke/phobos-hirise-native.jpg",
+      "bytes": 652671,
+      "sha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549"
+    },
+    {
+      "url": "/bespoke/io-sru-native.jpg",
+      "bytes": 186747,
+      "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72"
+    }
+  ],
+  "preservation": "No public source image, original, master, dossier, map or model modified by this correction. Upstream features retained.",
+  "validation": {
+    "testsPass": 664,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard budget gate",
+    "fullHtmlComputedBytes": 16003704,
+    "overBudgetBytes": 3704,
+    "queueTasks": 566,
+    "deliveredDossiers": 75
+  },
+  "limits": [
+    "No current passing full HTML or offline browser claim.",
+    "No byte attribution to feed differences or compression improvement.",
+    "Additional conforming lossless headroom required before new embedded dossiers."
+  ]
+}
