@@ -1,0 +1,54 @@
+{
+  "scope": "Research-only Tethys atlas reference preparation; no asset adoption",
+  "fetchedAt": "2026-10-13T07:28:27.331633+00:00",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/the-tethys-atlas/",
+      "path": "data/research-sources/tethys-atlas-photojournal-2026-10-13.html",
+      "bytes": 282046,
+      "sha256": "020b6e5047449b79f4dfec536cc06b65f6dd0b170ebeeece21afb0a25684ccb7",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://science.nasa.gov/resource/the-tethys-atlas/",
+      "path": "data/research-sources/tethys-atlas-resource-2026-10-13.html",
+      "bytes": 253269,
+      "sha256": "6341fbd7e579408d94a52fcb8a85726418caa5af2c74d3f32325d52f444ca18d",
+      "httpStatus": 200
+    }
+  ],
+  "limitations": [
+    "No image or PDF downloaded; no image hash or licence asserted",
+    "Atlas projection conventions do not register the current NASA3D texture",
+    "Publication date does not establish input acquisition dates",
+    "No embedded asset, catalogue, codec or dossier change",
+    "PDF links are an inventory only; sheet content, authoritative frame and photometry remain unverified",
+    "No PDF links found by the preparation inventory; this does not establish that publisher sheets are unavailable. Terrain-section links and sheet-level crosswalk remain unaudited."
+  ],
+  "product": "PIA11008",
+  "credit": "NASA/JPL/Space Science Institute",
+  "publicationDate": "2008-08-06",
+  "publisherConventions": {
+    "nominalScale": "1:1,000,000",
+    "projectionRadiusKm": 536.3,
+    "quadrangleSeriesCount": 15,
+    "inputs": "Cassini imaging experiment; precise epochs not established"
+  },
+  "publisherPdfLinkInventory": [],
+  "preservation": {
+    "priorDossiers": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "queueEntries": 566
+  },
+  "validation": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15989257,
+    "headroomBytes": 10743,
+    "freshBrowserVerification": false,
+    "interbuildSavingsAttribution": false,
+    "productionCodecsChanged": false
+  }
+}
