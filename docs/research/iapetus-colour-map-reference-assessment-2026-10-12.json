@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-12",
+  "body": "Iapetus",
+  "product": "PIA18436",
+  "status": "Research-only reference assessment; no replacement or embedding",
+  "publication": {
+    "photojournalAddition": "2014-11-04",
+    "resourcePublication": "2014-12-01",
+    "observations": "First ten years of Cassini Saturn operations; individual epochs open"
+  },
+  "processing": {
+    "colour": "Enhanced ultraviolet/infrared spectral transfer; not calibrated human-visible RGB",
+    "publisherScale": "400 metres/pixel; no new raster calculation",
+    "processor": "Paul Schenk, Lunar and Planetary Institute",
+    "roles": [
+      "image selection",
+      "radiometric calibration",
+      "geographic registration",
+      "photometric correction",
+      "mosaic selection and assembly"
+    ],
+    "planning": [
+      "Tilman Denk, Frei Universitat Berlin",
+      "Paul Helfenstein, Cornell University Ithaca New York"
+    ]
+  },
+  "limits": [
+    "Processing claims refer only to PIA18436, not the existing NASA3D texture.",
+    "Exact product/pixel identity, input epochs, filters, coverage, longitude frame and photometry remain open.",
+    "No image downloaded, no image hash invented, no CC BY assertion; NASA media guidance retains third-party caveats.",
+    "No map/model/catalogue/codec change or new dossier."
+  ],
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/color-maps-of-iapetus-2014/",
+      "path": "data/research-sources/iapetus-colour-photojournal-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 271394,
+      "sha256": "ea3740c97cd32d30e8f07bd9423a15b23aae7be61fd51ef654fabad413cf273b",
+      "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/color-maps-of-iapetus-2014/",
+      "path": "data/research-sources/iapetus-colour-resource-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 248829,
+      "sha256": "d6fe69a242409203f685cfb77756c333c462d749bb7f7099f9cb65f96488c56b",
+      "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+    }
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "trackedPublicFiles": 596,
+    "newDossier": false
+  },
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "OPENAI_API_KEY unset",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15988743,
+    "headroomBytes": 11257,
+    "queue": 566,
+    "browser": "No fresh browser check; research-only change",
+    "sizeAttribution": "No interbuild savings attribution"
+  }
+}
