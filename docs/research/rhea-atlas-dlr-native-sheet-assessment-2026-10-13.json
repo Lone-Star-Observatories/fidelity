@@ -1,0 +1,90 @@
+{
+  "scope": "Research-only Rhea DLR atlas Sr-3 native PDF audit; no embedding or texture reassignment",
+  "fetchedAt": "2026-10-13T15:38:35.256404+00:00",
+  "source": {
+    "url": "https://europlanet.dlr.de/Cassini-Atlases/pdf/RHEA_03_Lambert.pdf",
+    "path": "data/research-sources/rhea-atlas-dlr-sr3-original-2026-10-13.pdf",
+    "bytes": 14033978,
+    "sha256": "7cedaa4b33ba4d39354c432227abcea57450fdabff2a7c060451de853be89383",
+    "pages": 1,
+    "unchangedPublisherBytes": true
+  },
+  "inspection": {
+    "textExtraction": "pdfplumber complete single page",
+    "visualInspection": "Complete page rendered with pdftoppm at 1800px, inspected; map, notes and marginal indexes present"
+  },
+  "sheet": {
+    "title": "Semi-controlled Mosaic of Rhea \u2014 Tirawa",
+    "designation": "Sr 1.5M 43.5/135 SMN, 2010; Sr-3",
+    "nominalScale": "1:1,500,000",
+    "projection": "Lambert Conic Conformal; standard parallels 58 degrees N and 30 degrees N; true scale at those parallels",
+    "adoptedFigure": "sphere",
+    "projectionRadiusKm": 764.1,
+    "coordinates": "planetographic latitude; west longitude",
+    "publicationYear": 2010,
+    "publicationIsObservationDate": false
+  },
+  "processing": {
+    "publisherClaims": [
+      "Radiometric correction",
+      "Geometric correction",
+      "Photogrammetric adjustment using limb-fitting techniques",
+      "Map projection",
+      "Photometric correction using Hapke bidirectional reflectance function",
+      "Mosaic processing"
+    ],
+    "control": "SPICE orbit information used directly; pointing improved by limb fitting; tri-axial models for surface intersections, spherical surface for projection",
+    "longitudeReference": "Crater Tore defines the 340 degree meridian; cited Davies/Katayama and IAU/IAG standard",
+    "independentlyReproduced": false
+  },
+  "credits": {
+    "NASAAtlasCaption": "NASA/JPL/Space Science Institute",
+    "imageProcessing": [
+      "E. Kersten",
+      "A. Hoffmeister",
+      "Th. Roatsch",
+      "F. Scholten",
+      "K.-D. Matz"
+    ],
+    "cartographicProductionDesign": [
+      "E. Kersten",
+      "M. W\u00e4hlisch"
+    ],
+    "acknowledgedDiscussions": [
+      "J. Blue",
+      "R. Kirk (USGS)"
+    ],
+    "editor": "German Aerospace Center (DLR), Institute of Planetary Research, Th. Roatsch",
+    "mission": "NASA/ESA/ASI Cassini-Huygens",
+    "licence": "No explicit redistribution licence independently established for this PDF; no CC assertion or figure embedded"
+  },
+  "reconciliation": {
+    "printedDLRConventionsAgreeWithNASAResourceCaption": true,
+    "NASAResource": "1:1,500,000 and 764.1 km",
+    "conflictingNASAPhotojournal": "1:1,000,000 and 536.3 km",
+    "cause": "OPEN; no claim that all 15 sheets or legacy NASA PDF bytes are identical to this DLR file"
+  },
+  "limitations": [
+    "Projection radius is not a new physical radius measurement or catalogue update",
+    "Source-image identifiers and resolution index printed; exact raw product/filter/UTC crosswalk not independently audited",
+    "Cassini and Voyager identifiers appear in the index; designation/publication year does not date individual observations",
+    "Publisher photometric processing does not establish calibrated visible RGB for the existing NASA3D map",
+    "No NASA3D product/pixel identity, frame, coverage, epoch or photometry transfer",
+    "Coloured locator and resolution panels are annotations, not chemical or visible-colour maps",
+    "Legacy NASA PDF links redirect to HTML; this separate primary DLR PDF is verified independently",
+    "No new dossier, public asset replacement, codec or model change"
+  ],
+  "verification": {
+    "testsPassed": 664,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15984484,
+    "headroomBytes": 15516,
+    "priorDossiersUnchanged": 75,
+    "trackedPublicFilesByteIdentical": 598,
+    "queueEntries": 566,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false
+  }
+}
