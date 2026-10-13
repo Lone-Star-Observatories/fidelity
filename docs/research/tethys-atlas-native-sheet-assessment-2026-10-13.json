@@ -1,0 +1,410 @@
+{
+  "scope": "Research-only Tethys PIA11008 sheet crosswalk and native source assessment; no asset adoption",
+  "assessedAt": "2026-10-13T13:50:55.631626+00:00",
+  "priorReference": "docs/research/tethys-atlas-reference-assessment-2026-10-13.json",
+  "credit": "NASA/JPL/Space Science Institute (publisher atlas caption); detailed sheet contributor crosswalk remains open",
+  "sourceCaption": {
+    "url": "https://science.nasa.gov/photojournal/the-tethys-atlas/",
+    "path": "data/research-sources/tethys-atlas-photojournal-2026-10-13.html",
+    "sha256": "020b6e5047449b79f4dfec536cc06b65f6dd0b170ebeeece21afb0a25684ccb7"
+  },
+  "publisherSheetPairs": [
+    [
+      {
+        "text": "Tethys Region (Ste-1)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Tethys Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Anticleia Quadrangle (Ste-2)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_3.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Anticleia Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_3b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Odysseus Quadrangle (Ste-3)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_4.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Odysseus Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_4b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Alcinous Quadrangle (Ste-4)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_5.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Alcinous Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_5b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Telemachus Quadrangle (Ste-5)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_6.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Telemachus Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_6b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Circe Quadrangle (Ste-6)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_7.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Circe Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_7b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Polycaste Quadrangle (Ste-7)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_8.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Polycaste Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_8b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Theoclymenus Quadrangle (Ste-8)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_9.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Theoclymenus Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_9b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Penelope Quadrangle (Ste-9)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_10.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Penelope Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_10b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Salmoneus Quadrangle (Ste-10)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_11.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Salmoneus Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_11b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Ithaca Chasma Quadrangle (Ste-11)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_12.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Ithaca Chasma Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_12b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Hermione Quadrangle (Ste-12)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_13.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Hermione Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_13b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Melanthius Quadrangle (Ste-13)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_14.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Melanthius Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_14b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Antinous Quadrangle (Ste-14)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_15.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Antinous Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_15b.jpg"
+        ]
+      }
+    ],
+    [
+      {
+        "text": "Naubolos Quadrangle (Ste-15)",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_16.jpg"
+        ]
+      },
+      {
+        "text": "Unlabeled Naubolos Terrain Section",
+        "links": [
+          "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_16b.jpg"
+        ]
+      }
+    ]
+  ],
+  "nativeResearchInputs": [
+    {
+      "retrievedAt": "2026-10-13T09:58:16.871920+00:00",
+      "status": "Research input visually inspected; not embedded",
+      "sourceUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2.jpg",
+      "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2.jpg",
+      "captionSourceSha256": "020b6e5047449b79f4dfec536cc06b65f6dd0b170ebeeece21afb0a25684ccb7",
+      "publisherLabel": "Tethys Region (Ste-1)",
+      "path": "data/research-sources/tethys-atlas-ste1-publisher-2026-10-13.jpg",
+      "bytes": 131862,
+      "sha256": "0ae774b07e26b9592cd8519389081f9a3d3498b7418008d935707e05e0b70ca0",
+      "format": "JPEG",
+      "size": [
+        1280,
+        927
+      ],
+      "mode": "RGB",
+      "credit": "NASA/JPL/Space Science Institute (publisher atlas caption)",
+      "publicationDate": "2008-08-06 (atlas caption; not acquisition date)",
+      "observationDates": null,
+      "limits": [
+        "No modification, embedding or NASA3D association.",
+        "No calibrated colour, exact observation epochs or licence assertion."
+      ],
+      "visualAssessment": {
+        "visibleTitle": "Semi-controlled Mosaic of Tethys",
+        "visibleSheetDesignation": "Ste 1M 90/0 SMN, 2008",
+        "visibleSheetLabel": "Ste-1",
+        "content": "Monochrome polar map with coordinate graticule and Nausicaa label, regional locator, source-image index, resolution key, explanatory text and DLR logo.",
+        "limitations": [
+          "Graticule, crosses, labels, locator and resolution palette are annotations, not terrain or measured material colours.",
+          "Small explanatory text has not been independently transcribed; no detailed frame or processing conventions adopted from it.",
+          "No pixel comparison to NASA3D texture or other atlas sheet performed."
+        ]
+      }
+    },
+    {
+      "retrievedAt": "2026-10-13T10:28:18.067011+00:00",
+      "status": "Research input visually inspected; not embedded",
+      "sourceUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2b.jpg",
+      "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia11/pia11008/figures/PIA11008_full_2b.jpg",
+      "captionSourceSha256": "020b6e5047449b79f4dfec536cc06b65f6dd0b170ebeeece21afb0a25684ccb7",
+      "publisherLabel": "Unlabeled Tethys Terrain Section",
+      "path": "data/research-sources/tethys-atlas-ste1-unlabelled-publisher-2026-10-13.jpg",
+      "bytes": 101075,
+      "sha256": "1503f5232b2ef5bde485a7f4726e5ef93161d9d27b36e4714f8bfc7537d80fc8",
+      "format": "JPEG",
+      "size": [
+        1280,
+        1280
+      ],
+      "mode": "RGB",
+      "credit": "NASA/JPL/Space Science Institute (publisher atlas caption)",
+      "publicationDate": "2008-08-06 (atlas caption; not acquisition date)",
+      "observationDates": null,
+      "limits": [
+        "No modification, embedding or NASA3D association.",
+        "Publisher unlabelled wording does not establish raw science pixels or absence of all annotations.",
+        "No calibrated colour, exact observation epochs or licence assertion."
+      ],
+      "visualAssessment": {
+        "content": "Monochrome circular polar terrain mosaic on black exterior, with blurred central regions and sharper cratered peripheral portions; no visible graticule, nomenclature or legend.",
+        "limits": [
+          "Black exterior is map background, not a photographed atmospheric boundary.",
+          "Blur and unequal sharpness do not establish physically smooth terrain or uniform scientific resolution.",
+          "Visual similarity to labelled sheet does not establish exact pixel identity or registered NASA3D texture lineage.",
+          "No new raster scale or angular measurement."
+        ]
+      }
+    }
+  ],
+  "sheetConventions": {
+    "checkedAt": "2026-10-13T11:43:34.003207+00:00",
+    "status": "Research-only visual sheet-convention assessment; no embedding or texture registration",
+    "sourcePath": "data/research-sources/tethys-atlas-ste1-publisher-2026-10-13.jpg",
+    "sourceSha256": "0ae774b07e26b9592cd8519389081f9a3d3498b7418008d935707e05e0b70ca0",
+    "publisherSheet": "Ste-1; Ste 1M 90/0 SMN, 2008",
+    "visuallyReadableConventions": {
+      "title": "Semi-controlled Mosaic of Tethys",
+      "projection": "Polar Stereographic projection",
+      "scale": "1:1,000,000",
+      "referenceSurface": "Adopted figure: sphere; mean radius 536.3 km",
+      "coordinates": "Grid system: planetographic latitude, west longitude"
+    },
+    "scopeLimits": [
+      "These are conventions printed on this specific atlas sheet, not a new physical-radius measurement or a raster-scale calculation.",
+      "No transfer to the existing NASA3D texture: source-product/pixel identity, geographic registration and photometry remain open.",
+      "The 2008 sheet designation is not an individual input-image acquisition date.",
+      "Small control/processing/reference text and raw input-image identifiers remain independently unaudited; no exact input-date, SPICE association or full contributor crosswalk claimed.",
+      "Coloured locator and resolution-key graphics are annotations, not measured visible-colour terrain.",
+      "Semi-controlled is the publisher title, not a claim that this preparation reprocessed or validated the control solution.",
+      "No production assets, dossiers, catalogue, codec or licence assertions changed."
+    ]
+  },
+  "channelAssessment": {
+    "checkedAt": "2026-10-13T11:25:36.115127+00:00",
+    "status": "Research-only container/channel audit; no embedding or production change",
+    "products": [
+      {
+        "path": "data/research-sources/tethys-atlas-ste1-publisher-2026-10-13.jpg",
+        "bytes": 131862,
+        "sha256": "0ae774b07e26b9592cd8519389081f9a3d3498b7418008d935707e05e0b70ca0",
+        "size": [
+          1280,
+          927
+        ],
+        "mode": "RGB",
+        "channelDifferenceExtrema": {
+          "redGreen": [
+            0,
+            68
+          ],
+          "greenBlue": [
+            0,
+            98
+          ]
+        },
+        "exif": {},
+        "containerInfo": {}
+      },
+      {
+        "path": "data/research-sources/tethys-atlas-ste1-unlabelled-publisher-2026-10-13.jpg",
+        "bytes": 101075,
+        "sha256": "1503f5232b2ef5bde485a7f4726e5ef93161d9d27b36e4714f8bfc7537d80fc8",
+        "size": [
+          1280,
+          1280
+        ],
+        "mode": "RGB",
+        "channelDifferenceExtrema": {
+          "redGreen": [
+            0,
+            0
+          ],
+          "greenBlue": [
+            0,
+            0
+          ]
+        },
+        "exif": {},
+        "containerInfo": {}
+      }
+    ],
+    "limits": [
+      "Equal RGB channel values describe publisher JPEG storage, not calibrated visible colour, filter identity or original detector samples.",
+      "The labelled and unlabelled products have different dimensions and bytes; no pixel registration or NASA3D lineage is inferred.",
+      "Missing EXIF/profile metadata does not establish missing scientific calibration in upstream products.",
+      "Publication 2008-08-06 remains separate from unknown individual observation epochs.",
+      "No angular, raster-scale, physical-radius or geographic-frame calculation; no new licence assertion."
+    ],
+    "findings": [
+      "Unlabelled JPEG has exactly equal decoded RGB channels.",
+      "Labelled sheet has unequal channels; the sheet includes coloured locator and resolution-key graphics, so whole-sheet channel differences do not measure terrain colour."
+    ]
+  },
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "status": "Publisher NASA media guidance and third-party caveats; no blanket CC BY assertion or independently verified sheet-specific licence."
+  },
+  "limitations": [
+    "Thirty links establish fifteen publisher-labelled pairs, not all remote availability or image identity.",
+    "Only the two Ste-1 publisher JPEGs are retained here; no modification, embedding or full-resolution preservation claim.",
+    "Planetographic latitude, west longitude and 536.3 km adopted sphere belong to this specific sheet, not the current NASA3D texture or a new physical-radius measurement.",
+    "2008 atlas publication and designation are not individual input observations.",
+    "Grid, crosses, labels, locator and coloured resolution key are annotations, not measured terrain colours.",
+    "Monochrome unlabelled channels do not establish calibrated photometry; black map exterior is not atmosphere absence.",
+    "Small control/processing/reference text, source-image identifiers and detailed contributor roles remain independently unaudited.",
+    "NASA3D source-product/pixel identity, geographic registration, exact input dates, filters, coverage and photometry remain open.",
+    "No new dossier, catalogue, model, shape, map or production codec change."
+  ],
+  "preservation": {
+    "priorDossiers": 75,
+    "trackedPublicFilesByteIdentical": 598,
+    "queueEntries": 566
+  },
+  "validation": {
+    "status": "verified",
+    "freshBrowserVerification": false,
+    "interbuildSavingsAttribution": false,
+    "testsPassed": 664,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15984998,
+    "headroomBytes": 15002,
+    "sourceHashesVerified": true
+  }
+}
