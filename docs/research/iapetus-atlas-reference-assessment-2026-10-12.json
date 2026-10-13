@@ -1,0 +1,45 @@
+{
+  "url": "https://science.nasa.gov/photojournal/the-iapetus-atlas/",
+  "finalUrl": "https://science.nasa.gov/photojournal/the-iapetus-atlas/",
+  "status": 200,
+  "path": "data/research-sources/iapetus-atlas-caption-2026-10-12.html",
+  "bytes": 266955,
+  "sha256": "5401fa873dc1ccf5470b77019f74989b5cf7671a54063c178a050870be82e897",
+  "fetchedUtc": "2026-10-13T02:15:55.252676+00:00",
+  "statusOfWork": "Completed caption-reference audit only; atlas image and sheet crosswalk not audited.",
+  "captionAssessment": {
+    "product": "PIA11115",
+    "credit": "NASA/JPL/Space Science Institute",
+    "additionDate": "2008-10-17",
+    "publisherConventions": {
+      "quadrangles": 3,
+      "nominalScale": "1:3,000,000",
+      "projectionRadiusKm": 736
+    },
+    "limitations": [
+      "Publisher coverage statement describes atlas sheets, not verified uniform native pixel coverage or resolution.",
+      "Projection radius is a map convention, not a new measured physical radius.",
+      "Saragossa/Roncevaux qualitative colour statement is not independently calibrated visible RGB.",
+      "All three listed region labels currently say Ste-1; sheet identifier crosswalk remains open.",
+      "Exact acquisition epochs, filters, frame and NASA3D texture product/pixel association remain open.",
+      "No linked image downloaded, embedded, replaced or assigned; no image hash or new licence claim."
+    ],
+    "next": "Exact input epochs/filter/frame/photometry, individual sheet identifiers and NASA3D product/pixel association remain open."
+  },
+  "assessmentDate": "2026-10-12",
+  "scope": "Iapetus body-specific native-map provenance reference; no attribution to existing NASA3D texture.",
+  "verification": {
+    "priorDossiersPreserved": 75,
+    "trackedPublicFilesPreserved": 596,
+    "queueEntries": 566,
+    "browser": "No fresh browser claim; production assets and codecs unchanged.",
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Inherited OPENAI_API_KEY unset for missing-key voice test.",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15990285,
+    "headroomBytes": 9715,
+    "sshFetch": "HEAD and FETCH_HEAD matched 2e8bf6ee890e6c7c8fac26ef6098ae118fd096cb."
+  }
+}
