@@ -1,0 +1,155 @@
+{
+  "url": "https://europlanet.dlr.de/Cassini-Atlases/pdf/Mimas_stereo_01.pdf",
+  "path": "data/research-sources/mimas-atlas-dlr-sm1-original-2026-10-13.pdf",
+  "bytes": 10722944,
+  "sha256": "bb8c5d5b3205dcd5c07d8f56797dce4d8fee5493746557fc5f28010bfcc57555",
+  "fetchedUtc": "2026-10-13T22:20:09.399931+00:00",
+  "pages": 1,
+  "textPath": "data/research-sources/mimas-atlas-dlr-sm1-text-2026-10-13.txt",
+  "textSha256": "bfee8b7b157bb9879cb989aae7afcab2bf29f06657eab2580a724e33b759eaec",
+  "visualInspection": {
+    "render": "/tmp/mimas-sm1.png",
+    "fullSheetInspected": true,
+    "title": "Accolon Sm-1",
+    "designation": "Sm 1M 90/0, -90/0 SMN, 2017",
+    "scale": "1:1000000",
+    "projection": "North/south polar stereographic, true at +/-90 degrees",
+    "adoptedSphereKm": 198.2,
+    "grid": "planetographic latitude, west longitude",
+    "meridianReference": "Palomides defines 162 degrees W",
+    "contributors": {
+      "imageProcessing": [
+        "Kersten, E.",
+        "Roatsch, Th.",
+        "Scholten, F.",
+        "Matz, K.-D."
+      ],
+      "cartographicProduction": [
+        "Kersten, E.",
+        "W\u00e4hlisch, M."
+      ],
+      "editor": "German Aerospace Center (DLR), Institute of Planetary Research, Roatsch, Th."
+    },
+    "limits": [
+      "2017 publication is not an input observation date.",
+      "Projection sphere is not a new physical-radius measurement or NASA3D registration.",
+      "SPICE orbit/limb-fit pointing/tri-axial intersections/Hapke correction are printed processing claims not independently reproduced.",
+      "Coloured footprint/resolution keys are annotations, not visible colour or chemistry.",
+      "Raw product/UTC/filter/per-pixel association and redistribution licence remain open; no embedding."
+    ]
+  },
+  "status": "Research-only native atlas audit; no production asset change",
+  "observedPublisherHref": "http://europlanet.dlr.de/Cassini-Atlases/pdf/Mimas_stereo_01.pdf",
+  "publisherPage": {
+    "url": "https://europlanet.dlr.de/Cassini-Atlases/mimas_1.html",
+    "path": "data/research-sources/dlr-mimas-sm1-page-2026-10-13.html",
+    "bytes": 7853,
+    "sha256": "b3fd8a410c861776ab1441d0c0e53ed0c7874c14e1e12548d2865c681819e2d8",
+    "fetchedUtc": "2026-10-13T22:05:16.597757+00:00",
+    "observedPdfHrefs": [
+      "http://europlanet.dlr.de/Cassini-Atlases/pdf/Mimas_stereo_01.pdf"
+    ],
+    "limits": [
+      "Publisher sheet-page inventory only; no PDF downloaded or independently inspected.",
+      "Raw UTC/filter/product/licence and NASA3D association remain open; no embedding or production change."
+    ]
+  },
+  "sourceIndex": {
+    "assessedUtc": "2026-10-13T23:05:12.271815+00:00",
+    "sourcePdfSha256": "bb8c5d5b3205dcd5c07d8f56797dce4d8fee5493746557fc5f28010bfcc57555",
+    "northPrintedIds": [
+      "N1644785949",
+      "N1644781312",
+      "N1644781164",
+      "N1644780986",
+      "N1561689030",
+      "N1596533429",
+      "N1501647313",
+      "N1501647096",
+      "N1644787173",
+      "N1492217357",
+      "N1492222810",
+      "N1717566218",
+      "N1717566458",
+      "N1717567898",
+      "N1831442381",
+      "N1831442736",
+      "N1858235510",
+      "N1858235710",
+      "N1864506351",
+      "N1864506526"
+    ],
+    "southPrintedIds": [
+      "N1644785949",
+      "N1644781481",
+      "N1644784329",
+      "N1561689030",
+      "N1501646674",
+      "N1501647313",
+      "N1501646883",
+      "N1501647096",
+      "N1542758143",
+      "N1644787173",
+      "N1492217357",
+      "N1492222810",
+      "N1831443018",
+      "N1858235080",
+      "N1858235288",
+      "N1858235710",
+      "N1864506162",
+      "N1864506608"
+    ],
+    "uniqueAcrossBoth": [
+      "N1644785949",
+      "N1644781312",
+      "N1644781164",
+      "N1644780986",
+      "N1561689030",
+      "N1596533429",
+      "N1501647313",
+      "N1501647096",
+      "N1644787173",
+      "N1492217357",
+      "N1492222810",
+      "N1717566218",
+      "N1717566458",
+      "N1717567898",
+      "N1831442381",
+      "N1831442736",
+      "N1858235510",
+      "N1858235710",
+      "N1864506351",
+      "N1864506526",
+      "N1644781481",
+      "N1644784329",
+      "N1501646674",
+      "N1501646883",
+      "N1542758143",
+      "N1831443018",
+      "N1858235080",
+      "N1858235288",
+      "N1864506162",
+      "N1864506608"
+    ],
+    "limits": [
+      "Extracted panel inventories, not independently verified raw-product or per-pixel epoch/filter attribution.",
+      "Source identifiers span multiple Cassini sequences; no single observation date inferred from publication or identifier digits.",
+      "SPICE, limb-fitting, tri-axial surface intersections and Hapke photometric correction remain publisher claims, not reproduced NASA3D registration or visible-colour calibration.",
+      "No redistribution licence established; no embedding or source replacement."
+    ],
+    "productionChanges": false
+  },
+  "versionNote": "Printed third version supersedes 2010 release; 2017 denotes publication, not input acquisition dates.",
+  "verification": {
+    "testsPassed": 667,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15986797,
+    "headroomBytes": 13203,
+    "trackedPublicFilesByteEqual": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "browser": "No fresh browser validation; no interbuild savings attribution."
+  }
+}
