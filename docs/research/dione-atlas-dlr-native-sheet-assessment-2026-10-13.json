@@ -1,0 +1,67 @@
+{
+  "fetchedAt": "2026-10-13T16:35:13.410100+00:00",
+  "sourceUrl": "https://europlanet.dlr.de/Cassini-Atlases/pdf/DIONE_01_Stereo.pdf",
+  "publisherPage": "https://europlanet.dlr.de/Cassini-Atlases/dione_1.html",
+  "path": "data/research-sources/dione-atlas-dlr-sd1-original-2026-10-13.pdf",
+  "bytes": 12536690,
+  "sha256": "11bad7f6dc267f8d42b3a00cd84f127901ef6c66b5a68c82519e815dfeafaa66",
+  "pages": 1,
+  "textPath": "data/research-sources/dione-atlas-dlr-sd1-text-2026-10-13.txt",
+  "scope": "Research-only native-sheet assessment preparation; visual and text checks completed. Printed SPICE/limb-fit/Hapke processing is publisher claim, not reproduced calibration. Exact input IDs/UTC/filter audit and licence remain open. No NASA3D product/pixel/frame association or physical-radius update, no embedding or production change.",
+  "visualInspection": {
+    "date": "2026-10-13T16:51:06.744972+00:00",
+    "render": "pdftoppm complete page 1600px, visually inspected",
+    "observed": "Circular north-polar mosaic, marginal notes, source-image footprint index, coloured resolution key and locator; annotations are not chemistry or calibrated visible colour"
+  },
+  "printedConventions": {
+    "designation": "Sd 1M 90/0 SMN, 2011; Phorbas Sd-1",
+    "nominalScale": "1:1,000,000",
+    "projection": "Polar stereographic; true scale at 90 degrees N",
+    "adoptedFigure": "sphere",
+    "projectionRadiusKm": 562.53,
+    "grid": "planetographic latitude, west longitude",
+    "publicationYear": 2011,
+    "predecessor": "2008 series, per general notes",
+    "longitudeReference": "Palinurus crater defines 63 degree meridian, per control notes"
+  },
+  "contributorRoles": {
+    "imageProcessing": [
+      "A. Hoffmeister",
+      "Th. Roatsch",
+      "F. Scholten",
+      "K.-D. Matz"
+    ],
+    "cartographicProductionDesign": [
+      "E. Kersten",
+      "M. W\u00e4hlisch"
+    ],
+    "acknowledgedDiscussions": [
+      "J. Blue",
+      "R. Kirk (USGS)"
+    ],
+    "editor": "DLR Institute of Planetary Research, Th. Roatsch"
+  },
+  "limitations": [
+    "No native PDF redistribution licence established; no CC assertion or figure embedded",
+    "2011 designation dates publication, not input observations; 2008 predecessor distinct",
+    "Projection sphere 562.53 km is not a new physical-radius measurement",
+    "Printed SPICE orbit, limb-fit pointing, tri-axial intersection and Hapke correction not independently reproduced",
+    "No exact source-image UTC/filter/raw-product crosswalk or calibrated visible RGB established",
+    "Planetographic west-longitude sheet conventions not assigned to existing NASA3D globe or east-positive USGS reference without product/pixel association",
+    "Coloured locator, footprints, graticule and resolution panels are annotation, not terrain or chemistry",
+    "No new dossier, image embedding, public asset replacement, catalogue/model/shape or codec change"
+  ],
+  "verification": {
+    "testsPassed": 664,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15986540,
+    "headroomBytes": 13460,
+    "priorDossiersUnchanged": 75,
+    "trackedPublicFilesByteIdentical": 598,
+    "queueEntries": 566,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false
+  }
+}
