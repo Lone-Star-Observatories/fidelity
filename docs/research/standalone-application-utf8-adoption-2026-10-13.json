@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-13T12:32:00.501176+00:00",
+  "scope": "Adopt existing UTF8 enumerative transport for the full standalone application envelope; no source-byte transformation",
+  "baseCommit": "939426da72017b2b98d09731172ab7a321a074f1",
+  "transport": {
+    "compressedBytes": 812011,
+    "compressedSha256": "aac44f23ba9fb0b2296eee833b95ee2c88d846aa5d0a4f06be26d1efcf950ccc",
+    "denseTransportBytes": 932598,
+    "utf8TransportBytes": 911322,
+    "savedTransportBytes": 21276
+  },
+  "browser": {
+    "htmlBytes": 15984227,
+    "appSha256": "7e9f2aff6664f3f328026c751a4e233dba0565ba49ec87582cb69b0864ceafa2",
+    "characterSet": "UTF-8",
+    "snapshotSha256": "92cd256ca2eaf9d6389690d8545b9a65f3074993a66e3666bec260d346518bef",
+    "moduleHashes": [
+      "648e6b5479324a3d59f2107be99b0e078740a99b08044d5c690a48c217aa5128",
+      "7e9f2aff6664f3f328026c751a4e233dba0565ba49ec87582cb69b0864ceafa2"
+    ],
+    "appPackedTextSha256": "08eae767c5a249a65f6311306750182b0a28e9f61c2b69cf5dcca46a319c0a89",
+    "canvasCount": 8,
+    "limits": [
+      "Chrome only; other engines open.",
+      "Canvas startup and exact application/snapshot/HTML-parser restoration only; no fresh all-route, all-model-load or image-decoding claim."
+    ]
+  },
+  "validation": {
+    "testsPass": 664,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15984227,
+    "headroomBytes": 15773,
+    "queueTasks": 566,
+    "deliveredDossiers": 75,
+    "trackedPublicFilesByteIdentical": 598,
+    "bespokeRegistryByteIdentical": true
+  },
+  "preserved": [
+    "Original PNGs, masters, native sources, manifests and provenance; no new dossier or embedding.",
+    "Application compressed envelope, FIDAPP01, independent Brotli decoder instances, stylesheet/startup dense125v2, snapshot UTF8, all legacy decoders, Blob import/revoke and notices.",
+    "Native card resampling remains removed; generated illustrations retain WebP quality80."
+  ],
+  "limits": [
+    "Same-input application transport saving is 21276 bytes before loader/wrapper overhead; interbuild feed changes are not assigned to compression savings.",
+    "Chrome HTML-parser/application/complete-snapshot restoration and canvas startup verified; other engines remain open.",
+    "No fresh all-route, all-image-decoding or all-model-load claim.",
+    "15773-byte headroom is not substantial capacity for the eight prepared additive dossiers; more lossless recovery remains necessary."
+  ]
+}
