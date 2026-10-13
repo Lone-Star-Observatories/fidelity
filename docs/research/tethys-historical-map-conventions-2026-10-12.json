@@ -1,0 +1,47 @@
+{
+  "status": "Research-only historical map convention assessment; no image fetched, replaced or embedded.",
+  "fetchedUtc": "2026-10-13T04:13:10.148322+00:00",
+  "source": {
+    "url": "https://science.nasa.gov/photojournal/map-of-tethys-february-2008/",
+    "path": "data/research-sources/tethys-historical-2008-caption-2026-10-12.html",
+    "httpStatus": 200,
+    "bytes": 268957,
+    "sha256": "69c701c0afd2a05df57c59522dd2bd74c7c6204a16035129e45df2296457c7a7"
+  },
+  "limits": [
+    "No coordinate shift assigned to existing NASA3D texture without product/pixel identity.",
+    "No new angular or raster calculation, catalogue, codec or dossier change."
+  ],
+  "captionAssessment": {
+    "product": "PIA08407",
+    "credit": "NASA/JPL/Space Science Institute",
+    "additionDate": "2008-02-20",
+    "projection": "Publisher equidistant",
+    "projectionRadiusKm": 536.3,
+    "publisherMetresPerPixel": 292.5,
+    "publisherPixelsPerDegree": 32,
+    "longitudeChange": "Publisher 1.5 degrees east relative to PIA08345; not applied to existing NASA3D texture",
+    "inputCoverage": "Cassini flybys plus Voyager gap fill; exact input dates/filters remain open",
+    "limits": [
+      "Projection radius and quoted sampling are publisher conventions, not a new physical radius or raster calculation.",
+      "Addition date is not the acquisition date of every input pixel.",
+      "NASA3D product/pixel identity, registered frame, coverage and photometry remain open.",
+      "No image bytes fetched, new image hash, licence assertion, replacement or embedding."
+    ]
+  },
+  "verification": {
+    "deliveredDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "sourceHashVerified": true,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false,
+    "queueEntries": 566,
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Inherited OPENAI_API_KEY unset for missing-key test; no code change",
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15987458,
+    "headroomBytes": 12542
+  }
+}
