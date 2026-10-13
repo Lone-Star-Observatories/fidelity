@@ -510,6 +510,13 @@ decimation keeps the whole passband; WFM's first stage keeps half its bandwidth)
 
 **COMMS in the background.** Leaving COMMS for any other view (Galaxy, Quadrant and Universe included) hides it but keeps an open channel or receiver playing; the header button beside COMMS shows what is playing and pauses or plays it (`comms.toggleAudio`: the COMMS audio context suspends and the radio element pauses). A transmission still closes on leaving COMMS.
 
+**Planet shader texture units.** The planet shader (`PLANET_FRAG` in `src/views/system/materials.js`) keeps every variant at
+or under 15 textures, because most real GPUs allow 16 per fragment shader (SwiftShader, used by the headless checks, allows 32,
+so going over shows only on real hardware: every Sol body's skin fails to compile). Groups that never meet sit behind defines:
+DEM (relief and cloud shadows), SLICE (Earth's cloud-volume slices: cloud-top height and snow), PALEO (Earth through time; set by
+`paleoearth.js` only while an epoch is shown, when today's imagery and city lights, excluded from that variant, are parked anyway).
+`setVariant` recompiles a material when its variant changes. `tests/planetshader.test.js` counts each variant.
+
 **My station and my SDR.** The RF finder opens with MY STATION (`src/data/station.js`): the operator's location
 from the browser, a click on the map (`signalsMap.pickPoint`, Esc cancels) or typed as a Maidenhead grid square or
 coordinates, stored in the `observer` setting that FROM EARTH also uses and drawn on the map as MY STATION with its

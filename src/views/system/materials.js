@@ -64,23 +64,34 @@ const DEM_VERT = /* glsl */`
   }`;
 
 // Lambert lighting from the star, a soft terminator, optional night-side emission.
+// Texture units: most GPUs allow 16 per fragment shader (SwiftShader 32, so headless tests never notice). The
+// samplers come in groups that are never needed together, each behind a define, so no variant exceeds 15:
+// always uMap, uBandTex, uBandTexPrev, uDetail (4); today's imagery and city lights uLive, uNight (2, not with
+// PALEO); DEM relief and cloud shadows uDem, uCloudTex, uCloudGate (3); SLICE, Earth's cloud-volume slices
+// uCth, uSnowMask (2); PALEO, Earth through time (8, only while another epoch is shown). Test: planetshader.test.js.
 const PLANET_FRAG = /* glsl */`
   #include <common>
   #include <logdepthbuf_pars_fragment>
-  uniform sampler2D uMap; uniform sampler2D uNight; uniform float uHasNight;
-  uniform sampler2D uLive; uniform float uHasLive;
+  uniform sampler2D uMap; uniform float uHasNight; uniform float uHasLive;
+  #ifndef PALEO
+  uniform sampler2D uNight; uniform sampler2D uLive;
+  #endif
   // Earth through time (#54): sea level (m) against ETOPO1 (R elevation, G flood level from the open ocean,
   // B open ocean today; ±400 m in 0–1), PaleoMIST ice-sheet masks blended between two time slices, or a
   // reconstructed land mask (GPlates coastlines) in place of today's continents.
-  uniform float uPaleo; uniform sampler2D uElev; uniform float uSea; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform float uIceMix; uniform float uIceOn;
-  uniform sampler2D uLand; uniform float uLandOn;
+  uniform float uPaleo; uniform float uSea; uniform float uIceMix; uniform float uIceOn; uniform float uLandOn;
+  #ifdef PALEO
+  uniform sampler2D uElev; uniform sampler2D uIceA; uniform sampler2D uIceB; uniform sampler2D uLand;
+  #endif
   // The Messinian (#54): uElev alpha marks the Mediterranean (0 outside; west 1–127, east 128–255, each depth
   // 0–4,500 m); uMedLevel = how far each basin's surface fell (m). Deeper floor keeps a brine lake; the rest is exposed.
   uniform float uMedOn; uniform vec2 uMedLevel;
   // Vegetation by epoch (#54): BIOME4 class maps (value = class + 1, 720×360) blended between two slices through
   // a 32×1 palette; and the 6 ka North Africa proxy map (RGB colour, A land fraction) weighted by uAfrW.
-  uniform sampler2D uBiomeA; uniform sampler2D uBiomeB; uniform sampler2D uBiomePal; uniform float uBiomeMix; uniform float uBiomeOn;
-  uniform sampler2D uAfr; uniform float uAfrW;
+  uniform float uBiomeMix; uniform float uBiomeOn; uniform float uAfrW;
+  #ifdef PALEO
+  uniform sampler2D uBiomeA; uniform sampler2D uBiomeB; uniform sampler2D uBiomePal; uniform sampler2D uAfr;
+  #endif
   uniform vec3 uTint; uniform vec3 uSunPos; uniform vec3 uSunColor; uniform float uAmbient; uniform float uAlphaFromLuma;
   // Eclipse shadows (#30), in TRUE geometry (km, scene axes, relative to this body's centre) so
   // they are right whatever the display scale: the fraction of the Sun's disc an occluder
@@ -115,8 +126,10 @@ const PLANET_FRAG = /* glsl */`
   // from its base to its top (measured top from uCth's 8-bit code, base modelled; else the assumed uAssumed = top,
   // base km), at least the slice nearest its top. uCth also gates the whiteness mask (no retrieval, no cloud);
   // without it the MODELLED ice prior uSnowMask does.
-  uniform float uSliceOn; uniform float uSliceKm; uniform float uSlices[9]; uniform sampler2D uCth; uniform float uCthOn; uniform vec2 uAssumed;
-  uniform sampler2D uSnowMask; uniform float uSnowOn;
+  uniform float uSliceOn; uniform float uSliceKm; uniform float uSlices[9]; uniform float uCthOn; uniform vec2 uAssumed; uniform float uSnowOn;
+  #ifdef SLICE
+  uniform sampler2D uCth; uniform sampler2D uSnowMask;
+  #endif
   varying vec2 vUv; varying vec3 vNormalW; varying vec3 vPosW;
   float whiteness(vec3 c) {
     float lo = min(c.r, min(c.g, c.b)), hi = max(c.r, max(c.g, c.b));
@@ -197,6 +210,7 @@ const PLANET_FRAG = /* glsl */`
     float a3 = 0.5 * sqrt(max(0.0, (-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2)));
     return clamp((a1 + a2 - a3) / (3.14159265 * r1 * r1), 0.0, 1.0);
   }
+  #ifdef PALEO
   /** A biome map's colour at uv: the class colours of the four nearest 0.5° cells, blended bilinearly (codes never blend). */
   vec4 biomeColour(sampler2D map, vec2 uv) {
     vec2 size = vec2(720.0, 360.0), f = uv * size - 0.5, i0 = floor(f), w = f - i0;
@@ -206,6 +220,8 @@ const PLANET_FRAG = /* glsl */`
     vec4 c11 = texture2D(uBiomePal, vec2((texture2D(map, (i0 + vec2(1.5, 1.5)) / size).r * 255.0 + 0.5) / 32.0, 0.5));
     return mix(mix(c00, c10, w.x), mix(c01, c11, w.x), w.y);
   }
+  #endif
+  #ifdef SLICE
   // the opacity of this cloud slice's fragment, or −1 when the column does not reach it (decided first, it is cheap)
   float sliceAlpha() {
     vec4 t = texture2D(uMap, vUv);
@@ -228,10 +244,13 @@ const PLANET_FRAG = /* glsl */`
     a = 1.0 - pow(1.0 - clamp(a, 0.0, 0.999), 1.0 / max(n, 1.0));
     return a < 0.004 ? -1.0 : a;
   }
+  #endif
   void main() {
     #include <logdepthbuf_fragment>
     float sliceA = 1.0;
+    #ifdef SLICE
     if (uSliceOn > 0.5) { sliceA = sliceAlpha(); if (sliceA < 0.0) discard; }
+    #endif
     vec3 N = normalize(vNormalW);
     #ifdef DEM
     if (uDemClip.w < 1.0 && dot(normalize(vDirL), uDemClip.xyz) > uDemClip.w) discard; // the terrain patch is drawn here
@@ -265,12 +284,15 @@ const PLANET_FRAG = /* glsl */`
       float t = mix(0.45, pow(clamp(g * 3.0, 0.0, 1.0), 0.8), smoothstep(0.004, 0.02, g)); // Magellan's gaps (black): the mean ground
       base = mix(vec3(0.1, 0.075, 0.05), vec3(0.46, 0.36, 0.26), t);
     }
+    #ifndef PALEO
     if (uHasLive > 0.5) { // today's imagery where it exists; the base map fills swath gaps and polar night
       vec3 lv = texture2D(uLive, vUv).rgb;
       float w = smoothstep(0.015, 0.06, max(lv.r, max(lv.g, lv.b)));
       if (uLiveSplit > 0.5) w *= 1.0 - whiteness(lv); // its clouds are on their own shell
       base = mix(base, lv, w);
     }
+    #endif
+    #ifdef PALEO
     if (uPaleo > 0.5) {
       vec3 seaCol = vec3(0.012, 0.035, 0.09), shelfCol = vec3(0.31, 0.29, 0.2), iceCol = vec3(0.86, 0.9, 0.95);
       if (uLandOn > 0.5) base = mix(seaCol, vec3(0.34, 0.32, 0.21), step(0.5, texture2D(uLand, vUv).r));
@@ -296,6 +318,7 @@ const PLANET_FRAG = /* glsl */`
       }
       if (uIceOn > 0.5) base = mix(base, iceCol, mix(texture2D(uIceA, vUv).r, texture2D(uIceB, vUv).r, uIceMix));
     }
+    #endif
     if (uBandMode > 0.5) {
       float lit = max(ndl, 0.0) * lightK;
       float dayK = uAmbient + lit * 1.3;
@@ -358,12 +381,16 @@ const PLANET_FRAG = /* glsl */`
     // in an atmosphere's umbra (a lunar eclipse) sunlight bent through Earth's air lights the disc red
     vec3 col = base * (uAmbient + max(ndl, 0.0) * (uSunColor * lightK + uUmbraTint * umbraK) + uSkyAmb * (0.4 + 0.6 * max(dot(N, uSkyUp), 0.0)));
     if (uPsCol.r + uPsCol.g + uPsCol.b > 0.0) col += base * uPsCol * max(dot(N, normalize(uPsPos - vPosW)), 0.0) * (1.0 - smoothstep(-0.05, 0.2, ndl * lightK));
+    #ifndef PALEO
     if (uHasNight > 0.5) {
       float night = 1.0 - smoothstep(-0.12, 0.08, ndl);
       col += texture2D(uNight, vUv).rgb * night * 1.4;
     }
+    #endif
     float a = uAlphaFromLuma > 1.5 ? whiteness(tex.rgb) : uAlphaFromLuma > 0.5 ? clamp(dot(tex.rgb, vec3(0.333)) * 1.3, 0.0, 1.0) : 1.0;
+    #ifdef SLICE
     if (uSliceOn > 0.5) a = sliceA;
+    #endif
     if (!gl_FrontFacing) col *= 0.5; // a cloud shell seen from below: its shaded underside
     if (uFogK > 0.0) col = mix(col, uFogCol, 1.0 - exp(-length(cameraPosition - vPosW) * uFogK));
     gl_FragColor = vec4(col, a);
@@ -412,6 +439,8 @@ const STAR_FRAG = /* glsl */`
   }`;
 
 const linear = (hexOrArray) => new THREE.Color(hexOrArray).convertSRGBToLinear();
+
+export { setVariant } from './variant.js';
 
 export function planetMaterial(placeholder, { tint = [1, 1, 1], ambient = 0.035, dem = false } = {}) {
   return new THREE.ShaderMaterial({

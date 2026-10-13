@@ -6,6 +6,7 @@
 
 import * as THREE from 'three';
 import { BIOME_YEARS, BIOME_COLOURS } from '../../data/paleo-biomes.js';
+import { setVariant } from './variant.js';
 
 const ICE_STEP = 2500, ICE_MAX = 30000, SEA_MAX_KA = 798;
 /** The Messinian drawdown at its peak (m below the Atlantic): Aloisi et al. 2024, Nat. Commun. 15, 10.1038/s41467-024-53781-6. */
@@ -68,7 +69,9 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
   let parked = null;
   const park = () => { if (!parked) { parked = { live: u.uHasLive.value, night: u.uHasNight.value }; } u.uHasLive.value = 0; u.uHasNight.value = 0; };
   const unpark = () => { if (parked) { u.uHasLive.value = parked.live; u.uHasNight.value = parked.night; parked = null; } };
-  const off = () => { u.uPaleo.value = 0; u.uIceOn.value = 0; u.uLandOn.value = 0; u.uMedOn.value = 0; u.uBiomeOn.value = 0; u.uAfrW.value = 0; text = null; unpark(); };
+  // the epoch's eight textures live in the PALEO shader variant (texture units): on while an epoch is shown
+  const variant = () => setVariant(material, 'PALEO', u.uPaleo.value > 0.5);
+  const off = () => { u.uPaleo.value = 0; u.uIceOn.value = 0; u.uLandOn.value = 0; u.uMedOn.value = 0; u.uBiomeOn.value = 0; u.uAfrW.value = 0; text = null; unpark(); variant(); };
   async function landTexture(ma) {
     const j = await fetchCoastlines(ma);
     const c = document.createElement('canvas'); c.width = 2048; c.height = 1024;
@@ -90,7 +93,7 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
       if (scenario?.ma) {
         if (landFor?.ma !== scenario.ma) { landFor = { ma: scenario.ma, t: null }; landFor.t = await landTexture(scenario.ma).catch(() => null); }
         if (!landFor.t) { off(); text = 'PAST COASTLINES NEED THE LOCAL BACKEND'; return; }
-        u.uLand.value = landFor.t; u.uLandOn.value = 1; u.uIceOn.value = 0; u.uPaleo.value = 1; park();
+        u.uLand.value = landFor.t; u.uLandOn.value = 1; u.uIceOn.value = 0; u.uPaleo.value = 1; park(); variant();
         text = `EARTH ${fmt(scenario.ma * 1e6)} AGO · COASTLINES RECONSTRUCTED BY GPLATES (MÜLLER ET AL. 2019) · MODELLED · COLOURS ILLUSTRATIVE`;
         return;
       }
@@ -103,12 +106,12 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
         // the Mediterranean east of the Gibraltar sill (the elevation layer's alpha: west/east of the Sicily sill and
         // depth). The peak drawdown from halite chlorine isotopes: ~0.85 km in the west, 1.7–2.1 km in the east, with
         // brine left in the deep basins (Aloisi et al. 2024). Other studies argue for far less, so the banner says so.
-        u.uSea.value = 0; u.uIceOn.value = 0; u.uMedOn.value = 1; u.uMedLevel.value.set(MESSINIAN.westM, MESSINIAN.eastM); u.uPaleo.value = 1; park();
+        u.uSea.value = 0; u.uIceOn.value = 0; u.uMedOn.value = 1; u.uMedLevel.value.set(MESSINIAN.westM, MESSINIAN.eastM); u.uPaleo.value = 1; park(); variant();
         text = 'THE MESSINIAN SALINITY CRISIS, ~5.6 MILLION YEARS AGO (KRIJGSMAN ET AL. 1999) · AT ITS PEAK THE MEDITERRANEAN FELL ~0.85 KM IN THE WEST AND ~1.9 KM IN THE EAST, LEAVING BRINE IN THE DEEP BASINS (ALOISI ET AL. 2024) · ESTIMATES RANGE FROM A FEW HUNDRED METRES TO OVER 2 KM · DRAWN ON TODAY\'S SEA FLOOR · MODELLED';
         return;
       }
       if (scenario?.sea != null) {
-        u.uSea.value = scenario.sea; u.uIceOn.value = 0; u.uPaleo.value = 1; park();
+        u.uSea.value = scenario.sea; u.uIceOn.value = 0; u.uPaleo.value = 1; park(); variant();
         text = `${scenario.label ?? `SEA LEVEL ${scenario.sea > 0 ? '+' : ''}${scenario.sea} M`} · MODELLED (ETOPO1 FLOODED; ICE NOT REDRAWN)`;
         return;
       }
@@ -116,7 +119,7 @@ export function createPaleoEarth(material, { fetchCoastlines }) {
       if (yearsAgo < 500) { off(); return; } // the recent past and the future: today's Earth
       const sea = seaLevelAt(await loadSea(), yearsAgo / 1000);
       if (sea == null) { off(); return; }
-      u.uSea.value = sea; u.uPaleo.value = 1; park();
+      u.uSea.value = sea; u.uPaleo.value = 1; park(); variant();
       const sl = iceSlices(yearsAgo);
       if (sl) {
         const [A, B] = await Promise.all([tex(`/paleo/ice-${sl.a}.png`), tex(`/paleo/ice-${sl.b}.png`)]);

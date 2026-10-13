@@ -11,6 +11,7 @@ import * as THREE from 'three';
 import { cloudLayer, cloudColumn, murk, lightFraction, sunVisible, extinctionPerKm, layerAt, atmosphereAt } from '../../astro/atmosphere.js';
 import { DAY_SKY, daylight } from './surface.js';
 import { demNow } from '../../data/dem.js';
+import { setVariant } from './variant.js';
 import { sampleDem } from '../../astro/dem.js';
 
 const J2000 = 2451545.0;
@@ -195,6 +196,7 @@ export function icePriorTexture() {
 /** Add the lower slices of Earth's cloud volume as children of the outer shell `shell` (radius 1 + shellKm / R). */
 export function addCloudSlices(shell, layer, radiusKm) {
   const outer = 1 + layer.shellKm / radiusKm, mat = shell.material;
+  setVariant(mat, 'SLICE', true); // the cloud-top height and snow textures (their own shader variant: texture units)
   mat.uniforms.uSliceOn = { value: 1 };
   mat.uniforms.uSliceKm = { value: layer.shellKm };
   const slices = [];
