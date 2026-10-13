@@ -1,0 +1,162 @@
+{
+  "url": "https://europlanet.dlr.de/Cassini-Atlases/pdf/Iapetus_stereo_01.pdf",
+  "path": "data/research-sources/iapetus-atlas-dlr-si1-original-2026-10-13.pdf",
+  "bytes": 4910070,
+  "sha256": "8aef558135544e8d43e1db3fb6ab6af694827def4f8e35e52463271bb68e9895",
+  "fetchedUtc": "2026-10-13T20:05:06.574117+00:00",
+  "pages": 1,
+  "textPath": "data/research-sources/iapetus-atlas-dlr-si1-text-2026-10-13.txt",
+  "textSha256": "76d544e7821b3211f8e9ac68fda9b81cc428c883e55e4e01d022caaec7b59904",
+  "visualInspection": {
+    "render": "/tmp/iapetus-si1.png",
+    "fullSheetInspected": true,
+    "sheet": "Roland Si-1; Si 3M 90/0, -90/0 SMN, 2008",
+    "printedConventions": {
+      "scale": "1:3,000,000",
+      "projection": "North and south polar stereographic, true at +/-90 degrees",
+      "adoptedSphereRadiusKm": 736.0,
+      "grid": "planetographic latitude, west longitude",
+      "publicationYear": 2008
+    },
+    "printedContributors": {
+      "imageProcessing": [
+        "A. Hoffmeister",
+        "Th. Roatsch",
+        "F. Scholten",
+        "K.-D. Matz"
+      ],
+      "cartographicProduction": [
+        "E. Kersten",
+        "M. W\u00e4hlisch"
+      ],
+      "acknowledgements": [
+        "J. Blue (USGS)",
+        "R. Kirk (USGS)"
+      ],
+      "editor": "German Aerospace Center (DLR), Institute of Planetary Research, Th. Roatsch"
+    },
+    "limits": [
+      "Printed publication year is not input observation epoch.",
+      "Projection sphere is not a new measured physical radius.",
+      "Printed 5.0-degree west atlas shift and Almeric 276-degree convention are not corrections assigned to NASA3D texture; exact product/pixel identity remains open.",
+      "SPICE limb-fitting, radiometric and Hapke processing claims are publisher statements, not independently reproduced calibration.",
+      "Coloured footprints and resolution key are annotations, not surface chemistry or visible colour.",
+      "Licence and raw product/UTC/filter crosswalk remain open; no embedding or texture replacement."
+    ]
+  },
+  "controlClaimAudit": {
+    "assessedUtc": "2026-10-13T20:50:05.312546+00:00",
+    "publisherClaims": [
+      "Spacecraft orbit information used directly; pointing improved using limb fitting.",
+      "Newly derived tri-axial ellipsoid models used for surface intersections; spherical reference surface used for map projection.",
+      "Final semi-controlled atlas shifted 5.0 degrees west to align crater Almeric with 276-degree meridian.",
+      "Hapke bidirectional reflectance correction stated in processing sequence."
+    ],
+    "independentStatus": "Not reproduced. No SPICE kernels, pointing solution, raw images, Hapke parameters or exact NASA3D pixel correspondence adopted.",
+    "comparison": "Earlier NASA caption states 4.5-degree shift. Different stated values are retained as version/reference alternatives; cause and exact common predecessor remain unverified.",
+    "limits": [
+      "No measured physical-radius update from projection sphere.",
+      "No calibrated visible colour or uniform per-pixel resolution inferred.",
+      "No global current geography, raw UTC/filter, licence or NASA3D registration claim."
+    ]
+  },
+  "status": "Research-only native atlas audit; no production asset change",
+  "sourceIndex": {
+    "assessedUtc": "2026-10-13T21:05:10.200442+00:00",
+    "sourcePdfSha256": "8aef558135544e8d43e1db3fb6ab6af694827def4f8e35e52463271bb68e9895",
+    "northPrintedIds": [
+      "N1483152827",
+      "N1568159484",
+      "N1568159313",
+      "N1568159140",
+      "N1510255179",
+      "N1568093591",
+      "N1483280710",
+      "N1483224049",
+      "N1516797516",
+      "N1477172052",
+      "N1482859953",
+      "N1476736717",
+      "N1483234267",
+      "N1489599730",
+      "N1510080240",
+      "N1510425871",
+      "N1568091469",
+      "C4389420",
+      "C4391335"
+    ],
+    "southPrintedIds": [
+      "N1483151512",
+      "N1568158499",
+      "N1568158329",
+      "N1568160072",
+      "N1510255179",
+      "N1523307179",
+      "W1568129083",
+      "N1516797516",
+      "N1477172052",
+      "N1482859953",
+      "N1476736717",
+      "N1523343899",
+      "N1568091950",
+      "N1489599730",
+      "N1510080240",
+      "N1510425871"
+    ],
+    "uniqueAcrossBoth": [
+      "N1483152827",
+      "N1568159484",
+      "N1568159313",
+      "N1568159140",
+      "N1510255179",
+      "N1568093591",
+      "N1483280710",
+      "N1483224049",
+      "N1516797516",
+      "N1477172052",
+      "N1482859953",
+      "N1476736717",
+      "N1483234267",
+      "N1489599730",
+      "N1510080240",
+      "N1510425871",
+      "N1568091469",
+      "C4389420",
+      "C4391335",
+      "N1483151512",
+      "N1568158499",
+      "N1568158329",
+      "N1568160072",
+      "N1523307179",
+      "W1568129083",
+      "N1523343899",
+      "N1568091950"
+    ],
+    "limits": [
+      "Panel-specific extracted inventories require original raw-product and footprint verification before per-pixel epoch/filter attribution.",
+      "Voyager IDs occur in northern index; this does not prove uniform Voyager contribution or a single acquisition epoch across either polar mosaic.",
+      "Printed sheet Si-1 and inset Si-2/Si-3 provide a DLR sheet inventory only; NASA caption repeated Ste-1 labels remain a separate unresolved crosswalk.",
+      "Publisher projection, Hapke correction and west shift remain sheet conventions and processing claims, not NASA3D texture registration or calibrated visible colour."
+    ],
+    "productionChanges": false
+  },
+  "publisherPage": {
+    "url": "https://europlanet.dlr.de/Cassini-Atlases/iapetus_1.html",
+    "path": "data/research-sources/dlr-iapetus-si1-page-2026-10-13.html",
+    "sha256": "486cdc532a822e32fc49cb08e56785c4949f655f72c54dd114cbe095cdda5537"
+  },
+  "observedPublisherHref": "http://europlanet.dlr.de/Cassini-Atlases/pdf/Iapetus_stereo_01.pdf",
+  "verification": {
+    "testsPassed": 667,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15989110,
+    "headroomBytes": 10890,
+    "trackedPublicFilesByteEqual": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "upstreamPreserved": "ccf787b GPU texture-limit fix",
+    "browser": "No fresh browser validation; no interbuild savings attribution."
+  }
+}
