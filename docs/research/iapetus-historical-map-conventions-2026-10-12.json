@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-12",
+  "body": "Iapetus",
+  "status": "Research-only historical map convention audit; no image replacement or embedding",
+  "references": [
+    {
+      "product": "PIA08406",
+      "publication": "2008-01-31 image addition; not acquisition",
+      "projection": "Equidistant",
+      "publisherScale": "803 metres/pixel; 16 pixels/degree",
+      "projectionRadiusKm": 736,
+      "inputs": "Cassini flybys, including Saturn-reflected illumination; Voyager fills poles; exact pixel epochs and filters open",
+      "predecessor": "PIA07778",
+      "longitudeRevision": "Publisher states 4.5 degrees westward shift relative to PIA07778 to conform to IAU longitude convention; not transferred to existing NASA3D texture"
+    },
+    {
+      "product": "PIA11116",
+      "title": "Map of Iapetus - May 2008",
+      "publication": "2008-10-17 Photojournal addition and resource publication; title month does not establish acquisition or publication",
+      "projection": "Equidistant (simple cylindrical)",
+      "publisherScale": "803 metres/pixel at equator; 16 pixels/degree",
+      "projectionRadiusKm": 736,
+      "inputs": "Cassini flybys including Saturn-reflected illumination; Voyager fills gaps; exact pixel epochs open",
+      "predecessor": "January 2008 PIA08406"
+    }
+  ],
+  "limits": [
+    "Publisher projection radius, map scale and sampling are product conventions, not new physical-radius measurements or raster calculations.",
+    "No exact existing NASA3D product/pixel association established; no longitude shift applied to the existing texture.",
+    "Exact input epochs, filters, coverage, coordinate frame, photometric transfer, shape registration and contributor/product crosswalk remain open.",
+    "Publication and map-title dates do not date individual input observations.",
+    "No referenced map image downloaded, embedded or replaced; no image hash invented; no CC BY assertion, catalogue, model, codec or dossier change."
+  ],
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/map-of-iapetus-january-2008/",
+      "path": "data/research-sources/iapetus-historical-january-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 268716,
+      "sha256": "99bf964df463811cfc722b20530f8d90be3c05ec203459249d990ef24acd3f56",
+      "credit": "NASA/JPL/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance with third-party caveats; no CC BY assertion"
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/map-of-iapetus-may-2008/",
+      "path": "data/research-sources/iapetus-historical-may-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 267845,
+      "sha256": "15c7fa9979426c4743cb9cbbb1fa0543375f2d7602aab11127f39e35a9ea4709",
+      "credit": "NASA/JPL/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance with third-party caveats; no CC BY assertion"
+    },
+    {
+      "url": "https://science.nasa.gov/resource/map-of-iapetus-may-2008/",
+      "path": "data/research-sources/iapetus-historical-may-resource-2026-10-12.html",
+      "httpStatus": 200,
+      "bytes": 254332,
+      "sha256": "9e63d7af326cf29749c87242ca4c1b114b4241e9beb93294565e64d93665fca4",
+      "credit": "NASA/JPL/Space Science Institute",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "licence": "NASA media guidance with third-party caveats; no CC BY assertion"
+    }
+  ],
+  "preservation": {
+    "deliveredDossiers": 75,
+    "trackedPublicFiles": 596,
+    "existingMapSha256": "9acb66830defdeffcf7938976c737d772600d9bc808e8cf45829690e8d1c7405",
+    "newDossier": false
+  },
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "OPENAI_API_KEY unset for missing-key assertions",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15986687,
+    "headroomBytes": 13313,
+    "publicFilesByteEqual": 596,
+    "registryUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim; research-only change",
+    "sizeAttribution": "Interbuild feed differences unaudited; no compression saving attribution",
+    "remoteFetch": "SSH fetch matched 190f655"
+  }
+}
