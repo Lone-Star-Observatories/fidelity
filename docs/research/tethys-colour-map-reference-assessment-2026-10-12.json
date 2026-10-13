@@ -1,0 +1,54 @@
+{
+  "status": "Completed caption/reference assessment; research-only, no image fetched or embedded.",
+  "fetchedUtc": "2026-10-13T03:13:12.875964+00:00",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/color-maps-of-tethys-2014/",
+      "path": "data/research-sources/tethys-colour-photojournal-2026-10-12.html",
+      "bytes": 272818,
+      "sha256": "7bb72a5a88c4a9f0d9d5ba95330f062f668aed072c59b4f236aebd4606e1ccea",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://science.nasa.gov/resource/color-maps-of-tethys-2014/",
+      "path": "data/research-sources/tethys-colour-resource-2026-10-12.html",
+      "bytes": 250208,
+      "sha256": "3c82fe1608e019d8729e15f311133fb8979add291410d8a99927defe423b937d",
+      "httpStatus": 200
+    }
+  ],
+  "captionAssessment": {
+    "product": "PIA18439",
+    "credit": "NASA/JPL-Caltech/Space Science Institute/Lunar and Planetary Institute",
+    "processing": "Paul Schenk, Lunar and Planetary Institute",
+    "planning": "Tilman Denk (Frei Universitat, Berlin); Paul Helfenstein (Cornell University, Ithaca, New York)",
+    "spectralTransfer": "Enhanced UV/IR beyond human vision; not calibrated visible RGB",
+    "publisherResolutionMetresPerPixel": 250,
+    "observationPeriod": "First ten Cassini years; exact input epochs and filters remain open",
+    "limits": [
+      "Publisher registration/photometric correction describes this product, not an independently verified NASA3D texture association.",
+      "Hemisphere alteration, E-ring deposition and electron bombardment are interpretations, not measured local material fractions.",
+      "No image fetched or embedded, no source-pixel association, new radius/raster calculation or licence assertion."
+    ],
+    "publicationDates": {
+      "photojournal": "2014-11-04",
+      "resource": "2014-12-01",
+      "interpretation": "Publisher addition/resource dates, not individual input observation dates; later page updates also do not date observations."
+    }
+  },
+  "verification": {
+    "deliveredDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "sourceHashesVerified": true,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false,
+    "queueEntries": 566,
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Inherited OPENAI_API_KEY unset for missing-key test; no code change",
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15985916,
+    "headroomBytes": 14084
+  }
+}
