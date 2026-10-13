@@ -1,0 +1,133 @@
+{
+  "status": "Research-only native atlas audit; no production asset change",
+  "sourceUrl": "https://europlanet.dlr.de/Cassini-Atlases/pdf/Enceladus_stereo_15.pdf",
+  "observedPublisherHref": "http://europlanet.dlr.de/Cassini-Atlases/pdf/Enceladus_stereo_15.pdf",
+  "nativePath": "data/research-sources/enceladus-atlas-dlr-se15-original-2026-10-13.pdf",
+  "bytes": 8859312,
+  "sha256": "17202327aac00995f7d631f210b06dc495751bb1dc7030124e76ce50a833b3c5",
+  "pages": 1,
+  "textPath": "data/research-sources/enceladus-atlas-dlr-se15-text-2026-10-13.txt",
+  "textSha256": "919ed77815fbbc762ac6b6fc4685626c758d322ea08848515ba22f088652095b",
+  "limitations": [
+    "Printed sphere is a projection convention, not a new physical radius.",
+    "2018 designation is publication, not individual acquisition dates.",
+    "Source-image identifiers are printed; UTC/filter/product crosswalk remains open.",
+    "No reproduction of control network or photometric/visible-colour calibration.",
+    "Redistribution licence and NASA3D product/pixel/frame association remain open.",
+    "No embedding or delivered asset/catalogue/model/shape/codec changes."
+  ],
+  "visualInspection": {
+    "render": "/tmp/enceladus-se15.png",
+    "scope": "Full sheet inspected; monochrome controlled mosaic, graticule and names, index, coloured footprint and resolution annotation panels."
+  },
+  "printedConventions": {
+    "title": "Damascus Sulcus",
+    "designation": "Se 400K -90/0 CMN, 2018",
+    "scale": "1:400000",
+    "projection": "Polar stereographic, true at 90 degrees S",
+    "adoptedSphereKm": 252.1,
+    "grid": "planetographic latitude, west longitude",
+    "primeMeridianReference": "Salih at 5 degrees west",
+    "publicationYear": 2018
+  },
+  "printedContributors": {
+    "imageProcessingUSGS": [
+      "Becker, T.L.",
+      "Bland, M.T."
+    ],
+    "cartographicProductionDLR": [
+      "Kersten, E.",
+      "W\u00e4hlisch, M."
+    ],
+    "editor": "German Aerospace Center, Institute of Planetary Research, Roatsch, Th."
+  },
+  "processingClaims": "Publisher reports 586 CLR/GRN/IR3/UV3 images, 10362 tie points, 173704 measures, bundle adjustment rms 0.45 pixels and prime-meridian offset shift 0.769 degrees; not independently reproduced or applied to NASA3D texture.",
+  "printedControlClaims": {
+    "globalNetworkImages": 586,
+    "filtersEffectiveWavelengthNm": {
+      "CLR": 651,
+      "GRN": 569,
+      "IR3": 928,
+      "UV3": 343
+    },
+    "selectedInputPixelScaleMetres": [
+      50,
+      500
+    ],
+    "selectedPhaseAngleLessThanDegrees": 120,
+    "tiePoints": 10362,
+    "imageMeasures": 173704,
+    "bundleResidualPixels": 0.45,
+    "reportedRmsGroundUncertaintyMetres": {
+      "latitude": 66,
+      "longitude": 51,
+      "radius": 46
+    },
+    "primeMeridianOffsetShiftDegrees": 0.769,
+    "interpretation": "Publisher global-network processing claims only. These are not this sheet pixel uncertainties, independent calibration, local shape errors or NASA3D registration corrections."
+  },
+  "printedResolutionPanel": {
+    "binsMetresPerPixel": [
+      "400\u2013500",
+      "300\u2013400",
+      "200\u2013300",
+      "150\u2013200",
+      "100\u2013150",
+      "50\u2013100",
+      "<50"
+    ],
+    "angleAnnotationsDegrees": {
+      "phase": 120,
+      "incidence": 87,
+      "emission": 80
+    },
+    "interpretation": "Published annotation, not new raster geometry calculation, measured chemistry or calibrated visible colour."
+  },
+  "printedSourceIndex": [
+    "N1487301386",
+    "N1487301590",
+    "N1500059449",
+    "N1500061132",
+    "N1500061253",
+    "N1500061390",
+    "N1500061512",
+    "N1500062131",
+    "N1500062262",
+    "N1597182896",
+    "N1597183061",
+    "N1597183216",
+    "N1597183387",
+    "N1597183548",
+    "N1604167409",
+    "N1604167805",
+    "N1604167982",
+    "N1604168160",
+    "N1637466149",
+    "N1660433842",
+    "N1660433987",
+    "N1660434140",
+    "N1660434738",
+    "N1671591961",
+    "N1702359885",
+    "N1702360022",
+    "N1711571587",
+    "N1711573744"
+  ],
+  "publisherPage": {
+    "url": "https://europlanet.dlr.de/Cassini-Atlases/enceladus_15.html",
+    "path": "data/research-sources/dlr-enceladus-se15-page-2026-10-13.html",
+    "sha256": "0acea764f416c04e097632d27602312cc5aefd152dac1e750ef18ed73a59f9a6"
+  },
+  "verification": {
+    "testsPassed": 664,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15984741,
+    "headroomBytes": 15259,
+    "trackedPublicFilesByteEqual": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "browser": "No fresh browser validation; no interbuild savings attribution."
+  }
+}
