@@ -1,0 +1,20 @@
+// Research only: reuse the existing UTF-8 codec for the frozen application envelope.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {gunzipSync} from 'node:zlib';
+import {unpackSnapshotBytes,encodeUtf8SnapshotBytes} from '../../src/data/snapshot-codec.js';
+const html=fs.readFileSync('dist-standalone/fidelity.html','utf8');
+const data=html.match(/id="fidelity-application-data"[^>]*>([\s\S]*?)<\/script>/)?.[1];
+assert.ok(data);
+const startup=html.match(/id="fidelity-startup-data"[^>]*data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
+assert.ok(startup);
+const loader=gunzipSync(unpackSnapshotBytes({encoding:startup[1],byteLength:Number(startup[2]),data:startup[3]})).toString('utf8');
+const marker=loader.match(/byteLength:(\d+),data:document.getElementById\("fidelity-application-data"\)/);
+assert.ok(marker);
+const bytes=unpackSnapshotBytes({encoding:'gzip-raw-radix125-wide-v2',byteLength:Number(marker[1]),data});
+assert.ok(bytes);
+const packed=encodeUtf8SnapshotBytes(bytes);
+assert.deepEqual(unpackSnapshotBytes(packed),bytes);
+const hash=b=>createHash('sha256').update(b).digest('hex');
+console.log(JSON.stringify({scope:'Research-only existing application envelope; no production adoption',htmlSha256:hash(html),compressedBytes:bytes.length,compressedSha256:hash(bytes),baselineTransportBytes:Buffer.byteLength(data),utf8TransportBytes:Buffer.byteLength(packed.data),savedBeforeWrapperOverhead:Buffer.byteLength(data)-Buffer.byteLength(packed.data),exactCompressedInverse:true,exactDecompressedEnvelopeInverse:Buffer.from(gunzipSync(unpackSnapshotBytes(packed))).equals(gunzipSync(bytes)),limitations:['No experimental browser or full HTML build saving claim','Startup decoder and CSS transport unchanged','Approximately 21 KB is not substantial backlog capacity; eight prepared dossiers remain unembedded','All source bytes, science fields, native images, models, masters and provenance untouched']},null,2));

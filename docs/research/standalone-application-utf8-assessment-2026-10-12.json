@@ -1,0 +1,30 @@
+{
+  "scope": "Research-only existing application envelope; no production adoption",
+  "htmlSha256": "5e92fc64423807b3e4a079f82e30d7832da3980368312c2fe30d0307acb41112",
+  "compressedBytes": 800085,
+  "compressedSha256": "022b9658ca0ffb567a7b8e73a3eb8c4a36a03a1aadfec6c569f6f614021eb721",
+  "baselineTransportBytes": 918922,
+  "utf8TransportBytes": 897958,
+  "savedBeforeWrapperOverhead": 20964,
+  "exactCompressedInverse": true,
+  "exactDecompressedEnvelopeInverse": true,
+  "limitations": [
+    "No experimental browser or full HTML build saving claim",
+    "Startup decoder and CSS transport unchanged",
+    "Approximately 21 KB is not substantial backlog capacity; eight prepared dossiers remain unembedded",
+    "All source bytes, science fields, native images, models, masters and provenance untouched"
+  ],
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15989514,
+    "headroomBytes": 10486,
+    "priorDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "queueEntries": 566,
+    "freshBrowserClaim": false,
+    "interbuildFeedDifferenceAudited": false
+  }
+}
