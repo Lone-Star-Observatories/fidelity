@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-12",
+  "body": "Tethys",
+  "scope": "Research-only NASA3D source metadata assessment; no replacement or embedding",
+  "fetchedUtc": "2026-10-13T02:43:29.625567+00:00",
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/nasa/NASA-3D-Resources/contents/Images%20and%20Textures/Saturn%20-%20Tethys",
+      "path": "data/research-sources/tethys-nasa3d-directory-2026-10-12.json",
+      "bytes": 3299,
+      "sha256": "e493ac465d6d92889f774bada50a202136fcd0cd5bcb5808c38a9f7fe6d220ff",
+      "status": 200
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/Images%20and%20Textures/Saturn%20-%20Tethys/Saturn%20-%20Tethys.tif",
+      "path": "data/research-sources/tethys-nasa3d-source-original.tif",
+      "bytes": 3138968,
+      "sha256": "fa6c3dd34a35bff073ba1205eaa427039807bb0d6c0f9babe934b9bd9341b2ca",
+      "status": 200
+    }
+  ],
+  "sourceCredit": "NASA NASA-3D-Resources repository; original instrument/product contributor crosswalk remains open",
+  "existingJpeg": {
+    "path": "data/textures/tethys.jpg",
+    "sha256": "84f70e3fe6fa48661df4d973f78a540771e629ebbc68e032539d2e28e1d8eea1"
+  },
+  "metadata": {
+    "jpegDimensions": [
+      1440,
+      720
+    ],
+    "tiffDimensions": [
+      1440,
+      720
+    ],
+    "jpegMode": "RGB",
+    "tiffMode": "RGB",
+    "jpegExif": {
+      "256": "1440",
+      "257": "720",
+      "258": "8",
+      "259": "5",
+      "262": "1",
+      "296": "2",
+      "34665": "280",
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "274": "1",
+      "306": "2008:09:03 16:51:33",
+      "277": "1",
+      "282": "72.0",
+      "283": "72.0",
+      "284": "1"
+    },
+    "tiffDescriptiveTags": {
+      "270": "converted PNM file",
+      "305": "Adobe Photoshop CS3 Macintosh",
+      "306": "2008:09:03 16:51:24",
+      "274": "1"
+    },
+    "geoTiffTagsPresent": [],
+    "decodedRgbPixelsEqual": false,
+    "meanAbsoluteChannelDifference": [
+      0.342109375,
+      0.342109375,
+      0.342109375
+    ]
+  },
+  "limits": [
+    "Software/file timestamps are not verified acquisition/publication dates or processing chronology.",
+    "Metadata similarity is not a Photojournal/USGS product association, registered frame, coverage or photometric calibration.",
+    "No new dossier, native replacement, production codec or catalogue change.",
+    "Shared converted-PNM/Photoshop metadata and similar RGB pixels do not prove lineage or chronology.",
+    "Absence of GeoTIFF tags does not establish registration.",
+    "No calibrated visible colour, chemistry, new licence or newest-observation claim.",
+    "Existing blurred gaps and seams do not establish measured smooth terrain.",
+    "TIFF retained unchanged as research input; all original imagery, masters, models and provenance preserved."
+  ],
+  "verification": {
+    "deliveredDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "sourceHashesVerified": true,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false,
+    "queueEntries": 566,
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "testEnvironment": "Inherited OPENAI_API_KEY unset for missing-key test; no code change",
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15987458,
+    "headroomBytes": 12542
+  }
+}
