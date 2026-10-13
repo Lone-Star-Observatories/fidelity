@@ -1,0 +1,148 @@
+{
+  "scope": "Research-only direct publisher caption preparation; no image fetched or production change",
+  "fetchedAt": "2026-10-13T05:13:14.612566+00:00",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/the-rhea-atlas/",
+      "path": "data/research-sources/rhea-atlas-photojournal-2026-10-13.html",
+      "bytes": 273730,
+      "sha256": "a87db889a72f989a3ceb185d715635d1baa06d843548fbda204cf8aa5b01a5f6",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://science.nasa.gov/resource/the-rhea-atlas/",
+      "path": "data/research-sources/rhea-atlas-resource-2026-10-13.html",
+      "bytes": 253455,
+      "sha256": "16b58927f2f5399d5a4b0ff070fda561fbd2373957213805e6f28af43b2007a7",
+      "httpStatus": 200
+    }
+  ],
+  "captionDisagreement": {
+    "photojournal": {
+      "nominalScale": "1:1,000,000",
+      "projectionRadiusKm": 536.3
+    },
+    "resource": {
+      "nominalScale": "1:1,500,000",
+      "projectionRadiusKm": 764.1
+    }
+  },
+  "publisherLinkedSheets": [
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_2.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Uku Region (Sr-1)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_3.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Tuwale Region (Sr-15)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_4.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Ormazd (Sr-2)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_5.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Tirawa (Sr-3)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_6.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Huracan (Sr-4)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_7.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Aananin (Sr-5)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_8.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Nzame (Sr-6)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_9.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Inktomi (Sr-7)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_10.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Seveki (Sr-8)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_11.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Powehiwehi (Sr-9)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_12.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Xamba (Sr-10)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_13.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Djuli (Sr-11)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_14.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Zicum Sr-12",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_15.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Wende (Sr-13)",
+      "downloaded": false,
+      "sha256": null
+    },
+    {
+      "url": "https://photojournal.jpl.nasa.gov/figures/PIA12806_full_file_16.pdf",
+      "publisherLabel": "Click here for larger version of PIA12806 Izanagi (Sr-14)",
+      "downloaded": false,
+      "sha256": null
+    }
+  ],
+  "directCaptionDisagreementVerified": true,
+  "credit": "NASA/JPL/Space Science Institute",
+  "publication": "2010-12-21; not individual input observation dates",
+  "product": "PIA12806; 15-quadrangle Rhea atlas",
+  "limitations": [
+    "Caption inconsistency retained; original cause and authoritative sheet conventions remain open",
+    "Projection conventions are not new physical radius measurements",
+    "No NASA3D pixel/product association or image hash claimed",
+    "No image download, catalogue update, embedding, codec change or new dossier",
+    "Linked PDF sheets inventoried only; no sheet-level convention or accessibility verification yet",
+    "Cause of divergent publisher prose remains unverified; neither caption convention is silently transferred to the existing NASA3D texture",
+    "No calibrated visible colour, input epoch, filter, frame, coverage or photometric association established"
+  ],
+  "verification": {
+    "testsPassed": 610,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed",
+    "fullHtmlBytes": 15986430,
+    "headroomBytes": 13570,
+    "priorDossiersByteIdentical": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "queueEntries": 566,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false
+  }
+}
