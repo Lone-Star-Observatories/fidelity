@@ -66,6 +66,13 @@ test('hand-overs between the galaxy-scale views', () => {
   assert.deepEqual(quadrantDecision({ pos: [-310, 100, -150], vel: [0, 0, 0], radiusLy: 3000, stars: far, stopped: true }), { to: 'navigation', id: 'pleiad' });
   assert.deepEqual(quadrantDecision({ pos: [40, 0, 0], vel: [-1, 0, 0], radiusLy: 3000, stars: far }), { to: 'navigation', id: 'sol' });
   assert.equal(quadrantDecision({ pos: [30, 0, 0], vel: [1, 0, 0], radiusLy: 3000, stars: far }), null, 'leaving Sol');
+  // a Quadrant chart centred on the ship's star (#42): the range is measured from that star, not from Sol
+  const vega = [3.4, 20.1, 14.9]; // ~25 ly, roughly where Vega is (galactic ly)
+  assert.equal(quadrantDecision({ pos: [3010, 0, 0], vel: [1, 0, 0], radiusLy: 3000, centreGal: [100, 0, 0], stars: far }), null, 'inside 3,000 ly of a centre 100 ly out');
+  assert.deepEqual(quadrantDecision({ pos: [3110, 0, 0], vel: [1, 0, 0], radiusLy: 3000, centreGal: [100, 0, 0], stars: far }), { to: 'galaxy' });
+  assert.deepEqual(quadrantDecision({ pos: [-2950, 0, 0], vel: [-1, 0, 0], radiusLy: 3000, centreGal: [100, 0, 0], stars: far }), { to: 'galaxy' }, 'within 3,000 ly of Sol but beyond it of the centre');
+  assert.equal(quadrantDecision({ pos: [3050, 0, 0], vel: [-1, 0, 0], radiusLy: 3000, centreGal: [4000, 0, 0], stars: far }), null, 'heading back towards the centre');
+  assert.deepEqual(quadrantDecision({ pos: [-3000, 0, 0], vel: [-1, 0, 0], radiusLy: 3000, centreGal: vega, stars: far }), { to: 'galaxy' }, 'beyond it of Vega, heading out');
   // Galaxy: back to the Quadrant near Sol only
   assert.deepEqual(galaxyDecision({ pos: [2000, 0, 0], vel: [-1, 0, 0], quadrantRadiusLy: 3000 }), { to: 'quadrant' });
   assert.equal(galaxyDecision({ pos: [2000, 0, 0], vel: [1, 0, 0], quadrantRadiusLy: 3000 }), null);

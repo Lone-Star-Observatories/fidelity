@@ -7,9 +7,9 @@
 //   Navigation → Quadrant beyond the sensor radius from the centre star, heading out
 //   Quadrant → Navigation stopped or arriving with a charted star within NAV_DOWN_LY (centred on it), or
 //                         closing on Sol within NAV_DOWN_LY
-//   Quadrant → Galaxy     beyond the Quadrant View's radius of Sol, heading out
+//   Quadrant → Galaxy     beyond the Quadrant View's radius of its centre (Sol, or the ship's star), heading out
 //   Galaxy → Quadrant     within QUADRANT_DOWN_FRAC of that radius of Sol, closing or stopped (the Quadrant
-//                         View is Sol-centred, so far targets stay in the Galaxy View)
+//                         View comes down Sol-centred here; far targets stay in the Galaxy View)
 
 import { CAPTURE_LY, ARM_LY, NAV_DOWN_LY, QUADRANT_DOWN_FRAC } from './shipState.js';
 
@@ -46,11 +46,13 @@ export function navDecision({ pos, vel, centreGal, radiusLy, stars, courseId = n
   return null;
 }
 
-/** Quadrant View (Sol-centred, `radiusLy`). Returns { to: 'galaxy' } | { to: 'navigation', id } | null. */
-export function quadrantDecision({ pos, vel, radiusLy, stars, stopped = false, arrived = false }) {
-  const r = len(pos);
-  if (r > radiusLy && outward(pos, [0, 0, 0], vel)) return { to: 'galaxy' };
-  if (r < NAV_DOWN_LY && !outward(pos, [0, 0, 0], vel) && len(vel) > 0) return { to: 'navigation', id: 'sol' };
+/**
+ * Quadrant View (`radiusLy` about `centreGal`: Sol, or the ship's star). Returns { to: 'galaxy' } |
+ * { to: 'navigation', id } | null.
+ */
+export function quadrantDecision({ pos, vel, radiusLy, centreGal = [0, 0, 0], stars, stopped = false, arrived = false }) {
+  if (len(sub(pos, centreGal)) > radiusLy && outward(pos, centreGal, vel)) return { to: 'galaxy' };
+  if (len(pos) < NAV_DOWN_LY && !outward(pos, [0, 0, 0], vel) && len(vel) > 0) return { to: 'navigation', id: 'sol' };
   if (stopped || arrived) {
     const n = nearestStar(pos, stars);
     if (n && n.d < NAV_DOWN_LY) return { to: 'navigation', id: n.star.id };

@@ -949,7 +949,8 @@ function shipToDeepSpace(d) {
   S.gal = c.map((v, k) => v + off[k] / AU_PER_LY);
   S.quat = GAL_FROM_ECL.clone().multiply(new THREE.Quaternion().fromArray(d.quat)).toArray();
   S.vel = new THREE.Vector3(...d.vel).applyQuaternion(GAL_FROM_ECL).toArray();
-  Object.assign(S, { frame: 'deep', kmS: d.kmS, model: d.model, thrustG: d.thrustG, throttle: d.throttle, view: d.view, cruise: d.cruise, course: null, departed: m.id, departedArmed: false, arrival: null });
+  Object.assign(S, { frame: 'deep', kmS: d.kmS, model: d.model, thrustG: d.thrustG, throttle: d.throttle, view: d.view, cruise: d.cruise, course: null, departed: m.id, departedArmed: false, arrival: null,
+    star: { id: m.id, name: m.bodies?.find((b) => b.id === m.starId)?.name ?? m.name, gal: c } }); // the ship's star (#42: a Quadrant chart can centre on it)
   let reach = 0;
   if (d.star?.x != null) {
     const g = starGalLy(d.star);
@@ -989,12 +990,18 @@ function onShipEvent(from, kind, d) {
     const rel = S.gal.map((v, k) => v - g[k]), n = Math.hypot(...rel) || 1;
     system.helm.arriveFrom({ fromDir: galToEclScene(rel.map((v) => v / n)), manual: !(S.lastCourseArrival || S.course?.id === d.id), quat: ECL_FROM_GAL.clone().multiply(new THREE.Quaternion().fromArray(S.quat)).toArray(),
       view: S.view, cruise: S.cruise, thrustG: S.thrustG });
-    Object.assign(S, { frame: 'system', course: null, departed: null, departedArmed: false, lastCourseArrival: false });
+    Object.assign(S, { frame: 'system', course: null, departed: null, departedArmed: false, lastCourseArrival: false, star: { id: d.id, name: star?.name ?? d.id, gal: g } });
     logShip(`ENTERING THE ${(star?.name ?? d.id).toUpperCase()} SYSTEM`);
     if (route.level === 'system' && route.system === d.id && !route.body && system.model?.id === d.id) system.helm.onLoad();
     else go({ level: 'system', system: d.id });
   } else if (d.to === 'navigation') { navRadius = 100; logShip(`LONG-RANGE SENSORS · ${d.id.toUpperCase()}`); go({ level: 'navigation', system: d.id }); }
-  else if (d.to === 'quadrant') { logShip(from === 'galaxy' ? 'NEARING SOL · QUADRANT CHART' : 'BEYOND LONG-RANGE SENSORS · QUADRANT CHART'); go({ level: 'quadrant' }); }
+  else if (d.to === 'quadrant') {
+    // up from Navigation the Quadrant chart centres on the star the ship left (the chart's centre); down from the Galaxy, on Sol
+    const c = from === 'navigation' ? nav.data?.center : null;
+    if (c?.x != null && c.id !== 'sol') { S.star = { id: c.id, name: c.name, gal: starGalLy(c) }; quadrant.setCentre(S.star); } else quadrant.setCentre(null);
+    logShip(from === 'galaxy' ? 'NEARING SOL · QUADRANT CHART' : `BEYOND LONG-RANGE SENSORS · QUADRANT CHART${c?.id && c.id !== 'sol' ? ` CENTRED ON ${c.name.toUpperCase()}` : ''}`);
+    go({ level: 'quadrant' });
+  }
   else if (d.to === 'galaxy') { logShip('BEYOND THE QUADRANT · GALACTIC CHART'); go({ level: 'galaxy' }); }
 }
 const magneticPanel = createMagneticPanel({ h, row, settings, system });
@@ -1454,34 +1461,49 @@ const keyRow = (color, label, sub) => h('div', { className: 'ck-row' }, h('span'
 const lightLeft = (ly) => (ly < 1e4 ? `LIGHT LEFT IN ${Math.round(yearOf(clock.jd) - ly)}` : ly < 1e6 ? `LIGHT LEFT ${fmt(ly / 1000, 0)},000 YEARS AGO` : `LIGHT LEFT ${fmt(ly / 1e6, ly < 1e7 ? 1 : 0)} MILLION YEARS AGO`);
 const lyText = (ly) => (ly < 1e4 ? `${fmt(ly, 0)} LY` : ly < 1e6 ? `${fmt(ly / 1000, 1)} KLY` : `${fmt(ly / 1e6, 1)} MLY`);
 
-function objectList(objs, radiusLy, sel, pick) {
-  const inside = objs.filter((o) => o.distLy <= radiusLy * 1.02).sort((a, b) => a.distLy - b.distLy);
-  return h('div', { className: 'host-list' }, inside.slice(0, 60).map((o) => {
-    const b = h('button', { className: `host-row${o.id === sel ? ' on' : ''}` }, h('span', { textContent: o.name.toUpperCase() }), h('span', { className: 'mono', textContent: lyText(o.distLy) }));
+function objectList(objs, radiusLy, sel, pick, distOf = (o) => o.distLy) { // distOf: from the chart's centre (#42; Sol by default)
+  const inside = objs.map((o) => [o, distOf(o)]).filter(([, d]) => d <= radiusLy * 1.02).sort((a, b) => a[1] - b[1]);
+  return h('div', { className: 'host-list' }, inside.slice(0, 60).map(([o, d]) => {
+    const b = h('button', { className: `host-row${o.id === sel ? ' on' : ''}` }, h('span', { textContent: o.name.toUpperCase() }), h('span', { className: 'mono', textContent: lyText(d) }));
     b.addEventListener('click', () => pick(o.id));
     return b;
   }));
 }
 
+/** The Quadrant chart's centre (#42): Sol, or the star the ship was last at (the Quadrant scene stays heliocentric). */
+function centreSection(qc) {
+  const st = shipState.star;
+  const offer = st && st.id !== 'sol' && Math.hypot(...st.gal) > 0;
+  if (!offer && qc.id === 'sol') return [];
+  return [h('h3', { textContent: 'CHART CENTRE' }),
+    h('div', { className: 'body-list' },
+      pill('SOL', () => { quadrant.setCentre(null); renderQuadrantPanel(); }, qc.id === 'sol' ? 'on' : ''),
+      offer ? pill(`${st.name.toUpperCase()} · THE SHIP'S STAR`, () => { quadrant.setCentre(st); renderQuadrantPanel(); }, qc.id === st.id ? 'on' : '') : null,
+      qc.id !== 'sol' && (!offer || qc.id !== st.id) ? pill(qc.name.toUpperCase(), () => {}, 'on') : null),
+    h('p', { className: 'note', textContent: 'Centred away from Sol, the range, rings and lists are measured from that star; positions stay heliocentric. The catalogue stars drawn here are the brightest within ~1.5 kly of the Sun, so a centre far from Sol shows the edge of that sample. The IAU quadrants are measured from the Sun: the spokes keep its axes.' })];
+}
+function quadrantTitle() { const qc = quadrant.centre; return qc.id === 'sol' ? 'QUADRANT VIEW · AROUND SECTOR 001' : `QUADRANT VIEW · AROUND ${qc.name.toUpperCase()}`; }
 function renderQuadrantPanel() {
   resetLive();
-  const R = quadrant.radius, c = quadrant.counts();
+  const R = quadrant.radius, c = quadrant.counts(), qc = quadrant.centre, offSol = qc.id !== 'sol';
+  if (route.level === 'quadrant') $('view-title').textContent = quadrantTitle();
   const sel = quadrant.object(quadrantSel);
   const selBlock = deepSkyDetail({ h, factList, fmt, lyText, lightLeft, sel, detail: sel && quadrant.detail(sel.id) }); // #24
   const ages = [[6.7, 'UNDER 10 MILLION YEARS'], [8, '100 MILLION YEARS'], [9.2, 'OVER A BILLION YEARS']];
   panel.replaceChildren(
     h('h2', { textContent: 'OUR QUADRANT' }),
-    h('div', { className: 'kind', textContent: 'THE MILKY WAY AROUND SECTOR 001 · GALACTIC PLANE HORIZONTAL' }),
+    h('div', { className: 'kind', textContent: `THE MILKY WAY AROUND ${offSol ? qc.name.toUpperCase() : 'SECTOR 001'} · GALACTIC PLANE HORIZONTAL` }),
     ...starCardFor('quadrant'),
     h('h3', { textContent: 'RANGE' }),
     h('div', { className: 'body-list' }, [1000, 3000, 10000, 30000].map((r) => pill(`${fmt(r / 1000, 0)} KLY`, () => { quadrant.setRadius(r); renderQuadrantPanel(); }, r === R ? 'on' : ''))),
-    h('p', { className: 'note', textContent: `${fmt(c.clusters, 0)} STAR CLUSTERS · ${c.nebulae} LANDMARK NEBULAE WITHIN ${fmt(R, 0)} LY` }),
+    h('p', { className: 'note', textContent: `${fmt(c.clusters, 0)} STAR CLUSTERS · ${c.nebulae} LANDMARK NEBULAE WITHIN ${fmt(R, 0)} LY${offSol ? ` OF ${qc.name.toUpperCase()}` : ''}` }),
+    ...centreSection(qc),
     ...selBlock,
     ...(quadrant.helm.active ? [h('div', { className: 'body-list' }, // #42: the ship is out here
       sel ? pill(quadrant.helm.state.course?.id === sel.id ? 'ON COURSE ▸' : `SET COURSE · ${sel.name.toUpperCase()} ▸`, () => { quadrant.helm.setCourse(quadrant.helmTarget(sel.id)); renderQuadrantPanel(); }) : null,
       pill('SET COURSE · SOL ▸', () => { quadrant.helm.setCourse(quadrant.helmTarget('sol')); renderQuadrantPanel(); }))] : []),
     ...helmPanel.deepSection(quadrant.helm, () => deepTarget(quadrant.helm, sel ? quadrant.helmTarget(sel.id) : null)),
-    h('h3', { textContent: 'LANDMARKS · NEAREST FIRST' }), objectList(quadrant.objects, R, quadrantSel, (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); }),
+    h('h3', { textContent: `LANDMARKS · NEAREST FIRST${offSol ? ` · FROM ${qc.name.toUpperCase()}` : ''}` }), objectList(quadrant.objects, R, quadrantSel, (id) => { quadrantSel = id; quadrant.select(id); renderQuadrantPanel(); }, quadrant.distFromCentre),
     ...trekPanel.section('quadrant', { after: renderQuadrantPanel }),
     h('h3', { textContent: 'KEY' }),
     h('div', { className: 'colour-key' },
@@ -1981,7 +2003,7 @@ onRoute(async (r) => {
     $('offline').hidden = true;
     $('beacon-sub').textContent = currentSystem === 'sol' ? 'HOME' : 'RETURN';
     if (r.level === 'quadrant') {
-      $('view-title').textContent = 'QUADRANT VIEW · AROUND SECTOR 001';
+      $('view-title').textContent = quadrantTitle();
       quadrant.show();
       if (pendingRadius) { quadrant.setRadius(pendingRadius); pendingRadius = null; }
       if (quadrantSel) quadrant.select(quadrantSel);
