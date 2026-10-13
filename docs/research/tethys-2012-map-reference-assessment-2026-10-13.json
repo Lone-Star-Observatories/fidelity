@@ -1,0 +1,57 @@
+{
+  "scope": "Research-only direct NASA map reference preparation",
+  "fetchedAt": "2026-10-13T06:43:15.681006+00:00",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/photojournal/map-of-tethys-june-2012/",
+      "path": "data/research-sources/tethys-2012-photojournal-2026-10-13.html",
+      "bytes": 268324,
+      "sha256": "5e209df9e9fe947585f9132a177695ce4c67ca1a703520075b7af466a91029d9",
+      "httpStatus": 200
+    },
+    {
+      "url": "https://science.nasa.gov/resource/map-of-tethys-june-2012/",
+      "path": "data/research-sources/tethys-2012-resource-2026-10-13.html",
+      "bytes": 253323,
+      "sha256": "444cc18687179037d9b38dd0717bc396156638706411dbfb85f56efa71cd82f8",
+      "httpStatus": 200
+    }
+  ],
+  "product": "PIA14931",
+  "credit": "NASA/JPL-Caltech/Space Science Institute",
+  "publisherConventions": {
+    "projection": "equidistant/simple cylindrical",
+    "projectionRadiusKm": 536.3,
+    "equatorialMetersPerPixel": 293,
+    "pixelsPerDegree": 32
+  },
+  "publication": "2012-11-14; June in title is not verified acquisition date",
+  "predecessor": "PIA12560 February 2010",
+  "limitations": [
+    "Publisher conventions not new physical radius or raster computation",
+    "No map/image download, hash, embedding or replacement",
+    "NASA3D product/pixel association, frame, exact input epochs, filters, coverage and photometry open",
+    "USGS metadata direct access 403; search-indexed west-positive convention not assigned to current texture",
+    "No catalogue/codec change or new dossier"
+  ],
+  "preservation": {
+    "priorDossiers": 75,
+    "trackedPublicFilesByteIdentical": 596,
+    "queueEntries": 566
+  },
+  "tests": {
+    "passed": 610,
+    "skipped": 1,
+    "productionBuild": "passed",
+    "fullBuild": "passed"
+  },
+  "validation": {
+    "fullHtmlBytes": 15987972,
+    "gateBytes": 16000000,
+    "headroomBytes": 12028,
+    "freshBrowserVerification": false,
+    "interbuildSavingsAttribution": false,
+    "productionCodecsChanged": false,
+    "baseCommit": "b5dd66f3487462c63474ef31abdfc7c968b82137"
+  }
+}
