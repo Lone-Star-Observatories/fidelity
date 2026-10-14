@@ -1,0 +1,260 @@
+{
+  "date": "2026-10-14",
+  "status": "Research preparation: isolated token layout rejected as larger; independent Python token inverse verifies all11 original IDAT hashes. No adoption.",
+  "snapshotSha256": "dba9ad345c4284d92eb9301c3716ad95fdaec03261ee362ba4cb58f21f2b57ae",
+  "assets": [
+    {
+      "sourceSha256": "4b0644b2f3ef259fd0bfaedd9dc52f9e7d9738f65f50363e8c4dd19f650d7334",
+      "sourceBytes": 12119,
+      "idatSha256": "7e96d171335c1f3c8c0b47b760eeb2375747facb91dd1354b974c6496f62fd64",
+      "idatBytes": 11140,
+      "tokenScreenPayloadBytes": 40334,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 11140,
+        "tokenPayloadSha256": "184ccf674ae2d031c773687dd7ae92402edf6c83a0d9e2517031fcf91f21aba2",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 10917,
+        "tokenPayloadOuterGzipBytes": 13178,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+      "sourceBytes": 101362,
+      "idatSha256": "2507dff4ffefebe5f67fd13a9d907502ad3b2dc9b236235d0d8a6087fcfba4ec",
+      "idatBytes": 101132,
+      "tokenScreenPayloadBytes": 251984,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 101132,
+        "tokenPayloadSha256": "c5cd1edd58027f6c1949fdbde64c1a1752f91fe8a33edb1e2c6439873dc75fda",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 99494,
+        "tokenPayloadOuterGzipBytes": 110349,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+      "sourceBytes": 94353,
+      "idatSha256": "b11587aaf1fe5f5c9b5af7000db1d5aa51538b1216e9a9d7f82ee9f8cd5b54cf",
+      "idatBytes": 94275,
+      "tokenScreenPayloadBytes": 354613,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 94275,
+        "tokenPayloadSha256": "84f0dd1293ae527ce2e49ca3febeaaf386f9c97934a540a3b77e3a01338cae09",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 81185,
+        "tokenPayloadOuterGzipBytes": 63197,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+      "sourceBytes": 95832,
+      "idatSha256": "b12900d7f3969fa34f56d092812b4900253b80cb45a1f8e14566ef73dc850eb9",
+      "idatBytes": 95754,
+      "tokenScreenPayloadBytes": 352560,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 95754,
+        "tokenPayloadSha256": "b4bc3c32c264a0a2c9ff68a11f6138409c2b9f19117437d50ce9400e990efd38",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 83679,
+        "tokenPayloadOuterGzipBytes": 63744,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "e762dcc090e09a894253d9f4325d0e314e7e953976ce5eb60daa8a30d6db570b",
+      "sourceBytes": 42685,
+      "idatSha256": "cbefcdb6f1aaac04ed5cf41bf636233d5d4eafdde78a099a607522e33d65ee75",
+      "idatBytes": 42472,
+      "tokenScreenPayloadBytes": 118251,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 42472,
+        "tokenPayloadSha256": "914186c40cf0e976fee237a02f4bb8e5aab10518c14f09efb17f9e342f110cfa",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 40242,
+        "tokenPayloadOuterGzipBytes": 41784,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "a2db47771bbab7aa025841cf8229aa7ee073c6df0462639ad489f5cadcf9cfbf",
+      "sourceBytes": 319546,
+      "idatSha256": "12dc573499467865134ab617e9ec182cd647c4b97a418dca9b6bce2feaf9fd0e",
+      "idatBytes": 319468,
+      "tokenScreenPayloadBytes": 746386,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 319468,
+        "tokenPayloadSha256": "8d39d3d05a84daf908fdca7e25156734be3badcefff702601c9c3bff314e574e",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 319058,
+        "tokenPayloadOuterGzipBytes": 335943,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "f656bdf79fc322861298cf2a7072582889473e87dbca70df6d585346c80e942d",
+      "sourceBytes": 29471,
+      "idatSha256": "18d2113726018c0e07c1fb37ec3ed9f361793a0c8c7f5b78f14f25bdce1c4c15",
+      "idatBytes": 29312,
+      "tokenScreenPayloadBytes": 104888,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 29312,
+        "tokenPayloadSha256": "bbe7443f45d39266bfdc9c0c0ecfb5ca540c4bdcbcd5c0b0c4c28455a349f3ad",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 25549,
+        "tokenPayloadOuterGzipBytes": 20738,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+      "sourceBytes": 176033,
+      "idatSha256": "2a7bfad700a87b20a822c228c33d1b5d5198178c8f06c646fd2ff4d35083ab36",
+      "idatBytes": 175862,
+      "tokenScreenPayloadBytes": 527885,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 175862,
+        "tokenPayloadSha256": "abd3c88999e7a33a47c9a25fcc4dcf451e5ea72f43152b108e842f6ce569e20f",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 172944,
+        "tokenPayloadOuterGzipBytes": 185837,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6",
+      "sourceBytes": 92927,
+      "idatSha256": "e442317bc91751543d71352d17e362e8e5f18fcf84b1144f2f16dfadca72f770",
+      "idatBytes": 92642,
+      "tokenScreenPayloadBytes": 259665,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 92642,
+        "tokenPayloadSha256": "626dc08d6f630215e0ef288e2898f94e9d2fe1018d4b3506be40245cb2f3612b",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 92695,
+        "tokenPayloadOuterGzipBytes": 113630,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "4962226afb3d7529b43648eaee0a63cc90bc96ce805a7646e91d98af97717849",
+      "sourceBytes": 442932,
+      "idatSha256": "14f202602c7582a64815fb44b333ad64556493877766563807159fa2696ec1aa",
+      "idatBytes": 442226,
+      "tokenScreenPayloadBytes": 1529789,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 442226,
+        "tokenPayloadSha256": "32d59fd475f651c8dbc3b0c13e97a54dca46089d674a36a8eaabcd8c876054f2",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 442384,
+        "tokenPayloadOuterGzipBytes": 548408,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    },
+    {
+      "sourceSha256": "da674c36f769e0dd330e19fcab6621bb35b261cba6c9f033e0ee5caf059aa4fc",
+      "sourceBytes": 24001,
+      "idatSha256": "3e780c29b07127f3c0f1fcea03a11f8421a37377e07da63feb18c1d5eff7991e",
+      "idatBytes": 23899,
+      "tokenScreenPayloadBytes": 55319,
+      "exactOriginalDeflateBitstreamReconstruction": true,
+      "independentEncodedTokenInverse": {
+        "exactOriginalIdatHash": true,
+        "originalIdatBytes": 23899,
+        "tokenPayloadSha256": "1e049a4f46bc3614cd15dfa8da2147c5c41e93e6d7806c9f031ff3b78b6de9ea",
+        "scope": "All 11 retained PNG streams use fixed/dynamic blocks; stored-block encoded inverse unsupported and not claimed."
+      },
+      "isolatedScreen": {
+        "originalIdatOuterGzipBytes": 23747,
+        "tokenPayloadOuterGzipBytes": 25347,
+        "independentPackedInverse": "Independent Python encoded-token inverse verified exact original IDAT hash. No bundled JavaScript/browser inverse."
+      }
+    }
+  ],
+  "limits": [
+    "Parsing checks compressed stream structure and exact inflated predictor bytes only, not scientific calibration or visible colour.",
+    "Source IDAT/chunks and native bytes remain unchanged. No image unfiltering, editing, resampling or re-encoding.",
+    "Independent Python token-container inverse verifies exact original IDAT hashes for11 fixed/dynamic-block streams. Stored-block inverse unsupported; no JavaScript/browser or full snapshot inverse claim.",
+    "Isolated Brotli quality11 FONT/default dictionary/context then gzip9 screen is130261 bytes larger before source-chunk framing, browser decoder and HTML transport overhead. Rejected, no production adoption; do not repeat this interleaved fixed-width token layout.",
+    "Existing generated PNGs, source manifests, native science, maps, models and75 dossiers remain unchanged. Substantial lossless headroom remains necessary."
+  ],
+  "isolatedScreenTotals": {
+    "baseline": 1391894,
+    "trial": 1522155,
+    "difference": 130261,
+    "scope": "Isolated IDAT vs experimental token payload; excludes full container, original PNG chunk framing, decoder/wrapper and HTML transport overhead. No adoption or net HTML saving claim."
+  },
+  "scope": "Research-only rejected isolated PNG IDAT token screen; not a full-container trial.",
+  "scriptReferences": [
+    {
+      "path": "docs/research/standalone-png-deflate-reconstruction-assessment-2026-10-14.py",
+      "sha256": "ce13e528b95e32660dc13661fcb0f9fcb727db832e56c5eab2cd7db0527fdb1d"
+    },
+    {
+      "path": "docs/research/standalone-png-token-inverse-assessment-2026-10-14.py",
+      "sha256": "abfaca833df68a07e56681a604b1d9883b1c7b8696e6a76c90c4a9e86a3bd947"
+    },
+    {
+      "path": "docs/research/standalone-png-token-layout-screen-assessment-2026-10-14.py",
+      "sha256": "ba78caab345b5f541d8267e989d71cd3b4a05d9b64a17d86a5bb0075f27ef13e"
+    },
+    {
+      "path": "docs/research/standalone-png-token-screen-2026-10-14.mjs",
+      "sha256": "37e66f892d33495f5d35ef4b0098794118061f76596bd9813ce3e59071419514"
+    }
+  ],
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15980127,
+    "headroomBytes": 19873,
+    "unchangedPublicFiles": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser or full snapshot experimental inverse claim; no interbuild savings attribution."
+  }
+}
