@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-14",
+  "status": "Research audit; unchanged original cube/label and diagnostic inspected. No production adoption.",
+  "urlBase": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-sigma-label-original-2026-10-14.xml",
+      "bytes": 7064,
+      "sha256": "d4365ddac73c0237408a96ae979c8329ec20633bcd0741051ec97b14ba532fc9",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_sigma_c.xml"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-sigma-original-2026-10-14.cub",
+      "bytes": 326182,
+      "sha256": "7ea8ea830f546823dbd8fc36d77eddd6aba9856f351293bdd42accda52c3fd34",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_sigma_c.cub"
+    }
+  ],
+  "publisherMetadata": {
+    "author": "Weirich, J.R.",
+    "publicationYear": 2023,
+    "projection": "SimpleCylindrical",
+    "centerLongitude": 180,
+    "latitudeType": "Planetocentric",
+    "longitudeDirection": "PositiveEast",
+    "projectionSphereMeters": 106500,
+    "dimensions": [
+      360,
+      180,
+      1
+    ],
+    "format": "BandSequential IEEE754LSBSingle",
+    "units": "meter",
+    "dataOffsetBytes": 65536,
+    "footerOffsetBytes": 324736,
+    "logicalIdentifier": "urn:nasa:pds:satellite-phoebe.cassini.shape-models-maps:data:phoebe_sigma_c_cub",
+    "version": "1.0",
+    "observationTimesNil": true
+  },
+  "checks": {
+    "finiteValues": 64800,
+    "exact9999Values": 9502,
+    "negativeValues": 0,
+    "labelFileSizeMatches": true,
+    "arrayByteCountMatches": true,
+    "footerByteCountMatches": true,
+    "labelScalingFactor": 1,
+    "labelValueOffset": 0,
+    "greaterThan9999": 0,
+    "lessThan9999": 55298,
+    "attachedHeaderPath": "data/research-sources/phoebe-pds-sigma-attached-header-2026-10-14.txt",
+    "attachedHeaderSHA256": "558e1b5eb60b44ca527856d53e745b7c658916ca9d4b8d10d9f6a76aceee3c96"
+  },
+  "limits": [
+    "9999 is documented NoData; resampling/averaging inflates adjacent sigma and exact-value count does not recover all affected pixels.",
+    "Sigma is internal consistency, not independent physical accuracy.",
+    "Projection sphere/scale are publisher conventions, not new physical radius or skyGeometry/raster calculation.",
+    "PositiveEast cube is not assigned to west-longitude DLR atlas or any application shape/map without pixel/frame identity.",
+    "No visual science image, calibration, observation UTC, quality-mask transfer or licence assertion. Original NETCDF/map processing inputs and independent reproduction remain open.",
+    "Counts above or below9999 are storage-value diagnostics only, not a reliable quality threshold, regional mask, accuracy estimate or reconstructed missing-data neighbourhood. No raster/geographic measurement is computed.",
+    "Publication2023 and attached2022 processing timestamps remain distinct from nil/inapplicable observation times. Diagnostic array display inspected; no raw-input reproduction."
+  ],
+  "history": {
+    "bytes": 1446,
+    "stages": [
+      "GDAL3.5.2 conversion from NETCDF:phoebe_sigmaBetter.nc with Force_360=true; timestamp2022-10-07T19:25:56",
+      "ISIS4.1.1 maplab with smp180.map SAMPLE/LINE0.5 LAT90 LON0; timestamp2022-10-07T12:26:44",
+      "ISIS cubeatt to BandSequential; timestamp2022-10-19T10:38:47"
+    ],
+    "limitations": [
+      "Processing timestamps have no explicit timezone and precede2023 publication; they are not raw observation dates or verified chronological ordering.",
+      "History records describe publisher conversion, not independent reproduction or verification of missing original NETCDF/map inputs.",
+      "Label processing_level Derived and Visible/Grayscale facets do not make sigma calibrated visible-colour imagery."
+    ],
+    "sha256": "df8f51a62378a38087cf1f9fae1a8c11a3124bd7aa157f3853225c34441fd43d"
+  },
+  "diagnosticInspection": {
+    "path": "data/research-sources/phoebe-pds-sigma-diagnostic-2026-10-14.png",
+    "sha256": "f6ba538180f370a5c96b9ad1754f9774bb76df43b3bf2551b80d360cac8fd130",
+    "transfer": "Stored 360x180 array, nearest-neighbour display at 3x; exact9999 magenta. Other values linear gray 0 to non9999 P95 350.9261169433594 m, clipped. No geographic or angular measurement.",
+    "visuallyInspected": true,
+    "observations": "Exact9999 occupies broad edge regions and smaller internal patches. Bright clipped regions border some magenta gaps; patchy grayscale structure is an internal-sigma diagnostic, not terrain/albedo.",
+    "limits": "Display percentile excludes exact9999 only, not all contaminated neighbours. No reliable quality threshold, physical-accuracy statistic, affected-neighbour mask or registered geographic inference."
+  },
+  "credits": {
+    "product": "Weirich, J.R. (2023)",
+    "bundle": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA PDS, DOI10.26033/3k3c-5713",
+    "licence": "Redistribution licence remains unverified; no CC claim or embedded source."
+  },
+  "verification": {
+    "testsPass": 668,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHTMLBytes": 15988094,
+    "headroomBytes": 11906,
+    "unchangedTrackedPublicFiles": 598,
+    "dossiers": 75,
+    "queueTasks": 566,
+    "limits": "No fresh browser check or interbuild savings attribution. All production inputs unchanged."
+  }
+}
