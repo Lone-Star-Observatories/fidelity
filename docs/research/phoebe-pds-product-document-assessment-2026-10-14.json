@@ -1,0 +1,137 @@
+{
+  "checkedUtc": "2026-10-14T02:20:32.909640+00:00",
+  "scope": "Research-only complete PDS bundle/product text audit; no geometry or albedo adopted",
+  "sources": [
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/bundle_description.txt",
+      "path": "data/research-sources/phoebe-pds-bundle_description.txt",
+      "bytes": 4514,
+      "sha256": "daa320b49d24d4f3fd6c8e1a0db5884d0cea8c8dbd0725ed8c1d89e2eec4fa1f",
+      "status": 200
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/productdescription.txt",
+      "path": "data/research-sources/phoebe-pds-productdescription.txt",
+      "bytes": 16534,
+      "sha256": "b8a24258e4a2f97de3158453a01262571a0061ddfa00c3581b8aad4356b0a3a7",
+      "status": 200
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/phoebeimglist.txt",
+      "path": "data/research-sources/phoebe-pds-phoebeimglist.txt",
+      "bytes": 3952,
+      "sha256": "d70688edd7b16c7baa6dbe1809be702ef95d3b69a13c3220d7f690368f859ac0",
+      "status": 200
+    }
+  ],
+  "preliminaryBundleFindings": {
+    "generationDate": "2023-09-29",
+    "releaseDate": "2023-10-16 (publisher landing page)",
+    "highResolutionGsd": "300 m",
+    "lowResolutionGsd": "1.195 km",
+    "coordinateShiftKm": 1.03,
+    "shiftMeaning": "SPC coordinate centre moved to model Centre of Figure; not an adopted application translation",
+    "inputCalibration": "Publisher states non-calibrated ISS NAC/WAC images with geometric-distortion correction; mostly clear filters but other filters used",
+    "uncertainty": "Publisher soft internal consistency guide, not rigorous accuracy; one to two times poorer model/maplet GSD",
+    "polarLimit": "Radius and relative albedo less reliable near poles",
+    "limit": "Complete product description read; assessment PDF and actual geometry/frame audit remain open."
+  },
+  "imageListRecords": 208,
+  "productionChange": "None; all 75 dossiers and source/model/native bytes retained.",
+  "productDescriptionAudit": {
+    "completeTextRead": true,
+    "meanRadiusKm": 106.5,
+    "radiusLimit": "Publisher model mean; not catalogue radius replacement; distinct DLR106.8 projection sphere",
+    "icqVertices": {
+      "Q512": 1579014,
+      "Q128": 99846
+    },
+    "relativeAlbedo": "0–2 mean1 requires photometric modelling for physical albedo, not visible-colour calibration",
+    "units": "ICQ/PLT/OBJ km; resampled radius cube/geotiff metres",
+    "qualityBins": "Publisher360x180 one-degree bins, not independently computed scale",
+    "sigmaLimit": "Internal consistency not vertex error; NoData9999 averaging inflates adjacent digital sigma",
+    "noData": {
+      "mapletResolutionMeters": 9999,
+      "sigmaMeters": 9999,
+      "imageResolutionMetersPerPixel": 999999
+    },
+    "formUkm": {
+      "500mMaplets": 0.27,
+      "allMaplets": 0.255
+    },
+    "imageCountLimit": "Nearly identical viewing conditions/coarse input counts do not establish independent useful constraints"
+  },
+  "assessmentPdfAttempt": {
+    "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/phoebeshapeassessment.pdf",
+    "error": "URLError: No route to host",
+    "sha256": null,
+    "limit": "No PDF bytes acquired or inspected; actual geometry/frame/quality audit remains open."
+  },
+  "assessmentPdfRetry": {
+    "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/phoebeshapeassessment.pdf",
+    "error": "HTTP Error 403: Forbidden",
+    "sha256": null
+  },
+  "sourceCredit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA PDS, DOI10.26033/3k3c-5713. Product description authored John R. Weirich 2023-09-29.",
+  "terms": "No CC licence asserted; raw product/redistribution terms audit remains open.",
+  "atlasIdentifierComparison": {
+    "pdsImageListRecords": 208,
+    "pdsUniqueBaseIdentifiers": 197,
+    "atlasIdentifiers": 42,
+    "overlappingBaseIdentifiers": [
+      "N1465636203",
+      "N1465638175",
+      "N1465640995",
+      "N1465641843",
+      "N1465643815",
+      "N1465644359",
+      "N1465646635",
+      "N1465649455",
+      "N1465652275",
+      "N1465652463",
+      "N1465661954",
+      "N1465664794",
+      "N1465667614",
+      "N1465669778",
+      "N1465669953",
+      "N1465672687",
+      "N1465672842",
+      "N1465672905",
+      "N1465673021",
+      "N1465673138",
+      "N1465673272",
+      "N1465674412",
+      "N1465674502",
+      "N1465674604",
+      "N1465676754",
+      "N1465676854",
+      "N1465676924",
+      "N1465676993",
+      "N1465677211",
+      "N1465677386",
+      "N1465677447",
+      "N1465679337",
+      "N1465679380",
+      "N1465700301",
+      "N1465700359",
+      "N1465703980",
+      "N1465714401",
+      "N1465717221",
+      "N1465726540",
+      "N1465731321"
+    ],
+    "limit": "Matching base camera identifiers alone does not establish exact rendition, UTC, filter, pixel identity or shared registration; suffixes preserved in original list."
+  },
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15987580,
+    "headroomBytes": 12420,
+    "publicFilesByteEqual": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "limit": "No fresh browser/model-load or interbuild savings claim."
+  }
+}
