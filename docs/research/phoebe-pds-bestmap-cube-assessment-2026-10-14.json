@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-14",
+  "status": "Research audit; unchanged original cube/label, complete label and whole diagnostic inspected. No production adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-bestmap-label-original-2026-10-14.xml",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_bestmap_c.xml",
+      "bytes": 7108,
+      "sha256": "91cd4e7be8c9fd1ddf51950c125f3f4e307ad77ae2aa4f0c8198fa4d0b7d1c81"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-bestmap-original-2026-10-14.cub",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_bestmap_c.cub",
+      "bytes": 326427,
+      "sha256": "3abf6f92075031aa15cec23f4e1462ef460e40475a749c0b4a0246402ff09b15"
+    }
+  ],
+  "header": "Object = IsisCube\n  Object = Core\n    StartByte = 65537\n    Format    = BandSequential\n\n    Group = Dimensions\n      Samples = 360\n      Lines   = 180\n      Bands   = 1\n    End_Group\n\n    Group = Pixels\n      Type       = Real\n      ByteOrder  = Lsb\n      Base       = 0.0\n      Multiplier = 1.0\n    End_Group\n  End_Object\n\n  Group = Mapping\n    ProjectionName     = SimpleCylindrical\n    CenterLongitude    = 180.0\n    TargetName         = Phoebe\n    EquatorialRadius   = 106500 <meters>\n    PolarRadius        = 106500 <meters>\n    LatitudeType       = Planetocentric\n    LongitudeDirection = PositiveEast\n    LongitudeDomain    = 360\n    UpperLeftCornerX   = -334579.61760731 <meters>\n    UpperLeftCornerY   = 167289.80880366 <meters>\n    PixelResolution    = 1858.775653374 <meters>\n    Scale              = 1.0 <pixels/degree>\n  End_Group\nEnd_Object\n\nObject = Label\n  Bytes = 65536\nEnd_Object\n\nObject = History\n  Name      = IsisCube\n  StartByte = 324737\n  Bytes     = 1691\nEnd_Object\nEnd\n",
+  "history": "Object = ascii2isis\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2017-03-16\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-13T11:26:16\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Import ascii file as a cube\"\n\n  Group = UserParameters\n    FROM         = global-map_GSD.grid.txt\n    TO           = phoebe_bestmap_c.cub\n    ORDER        = BSQ\n    SAMPLES      = 360\n    LINES        = 180\n    BANDS        = 1\n    SKIP         = 0\n    SETNULLRANGE = NO\n    SETHRSRANGE  = NO\n    SETLRSRANGE  = NO\n  End_Group\nEnd_Object\n\nObject = maplab\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2012-12-06\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-13T11:26:26\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Add Mapping group to the labels of a cube\"\n\n  Group = UserParameters\n    FROM        = phoebe_bestmap_c.cub\n    MAP         = smp180.map\n    SAMPLE      = 0.5\n    LINE        = 0.5\n    COORDINATES = latlon\n    LAT         = 90\n    LON         = 0\n  End_Group\nEnd_Object\n\nObject = cubeatt\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2014-04-07\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-13T11:26:33\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Cube attribute editor\"\n\n  Group = UserParameters\n    FROM       = phoebe_bestmap_c.cub\n    TO         = /Users/JW/PDART20/PDS_PhoebeMathilde/products/Phoebe/phoebe_-\n                 bestmap_c.cub+BandSequential\n    PROPTABLES = true\n  End_Group\nEnd_Object\n",
+  "storageDiagnostics": {
+    "samples": 64800,
+    "finite": 64800,
+    "exact9999": 0,
+    "minimum": 125.0,
+    "maximum": 99999.0,
+    "exact99999": 6714,
+    "non99999Maximum": 1500.0
+  },
+  "limits": [
+    "Publisher best maplet GSD per1degree bin is a sampling diagnostic, not terrain, albedo, visible colour or independent physical accuracy.",
+    "No angular/raster geometry calculation; original cube and label unchanged.",
+    "Special-pixel interpretation, averaging contamination, original inputs, frame and licence audit pending.",
+    "Web tool could not open label; direct publisher download succeeded. No invented failed-response hash.",
+    "No adoption, embedding, dossier, catalogue, map/model or codec change.",
+    "2023Sep13 processing dates have no explicit timezone; not input observation dates. Original global-map_GSD.grid.txt and smp180.map not acquired.",
+    "No automatic marker replacement or repaired coverage mask; exact99999 diagnostic colouring does not resolve the documented9999 inconsistency.",
+    "PositiveEast planetocentric106500m projection sphere and publisher1pixel/degree sampling are not physical-radius updates, new raster calculations or NASA3D registration.",
+    "Label Visible/Grayscale facets do not turn this derived sampling diagnostic into observed terrain or calibrated visible colour.",
+    "Full five-person bundle credit remains separate from one-author product credit. Redistribution terms remain open; no CC licence asserted."
+  ],
+  "diagnostic": {
+    "path": "data/research-sources/phoebe-pds-bestmap-diagnostic-2026-10-14.png",
+    "sha256": "923ebe456fd1c6af4bdd5d26d79975a2f103e3afe4bf74e7d52c86df3b88ac7b",
+    "transfer": "Grayscale0 to non99999 P95 1000.0 clipped; exact99999 magenta; nearest3x diagnostic. Exclusion is diagnostic only, not repaired native mask.",
+    "visualInspection": "Whole diagnostic inspected: discrete grayscale patch boundaries and magenta concentrated at polar bands; patch edges are quality-product structure, not geological terrain boundaries. No native modification."
+  },
+  "markerCrosswalk": {
+    "sourcePath": "data/research-sources/phoebe-pds-productdescription.txt",
+    "sourceSha256": "b8a24258e4a2f97de3158453a01262571a0061ddfa00c3581b8aad4356b0a3a7",
+    "bestMapletDocumentNoData": 9999,
+    "cubeExact9999": 0,
+    "cubeExact99999": 6714,
+    "distinctMaximumImageResolutionDocumentNoData": 999999,
+    "status": "Best-maplet document9999 versus cube99999 discrepancy remains open. Maximum-image-resolution999999 belongs to a different product and must not be assigned here."
+  },
+  "sourceCredit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA PDS, DOI10.26033/3k3c-5713. Product description authored John R. Weirich 2023-09-29.",
+  "labelConventions": {
+    "author": "Weirich, J.R.",
+    "publicationYear": 2023,
+    "target": "Saturn IX (Phoebe)",
+    "observationTimes": "nil/inapplicable",
+    "units": "meter",
+    "storage": "IEEE754LSBSingle, offset65536,180x360, base0/scaling1; footer1691bytes at324736",
+    "specialConstants": "No Special_Constants element in this retained label; document/cube marker discrepancy remains unresolved."
+  },
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15985781,
+    "headroomBytes": 14219,
+    "unchangedTrackedPublicHashes": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "browser": "No fresh browser verification or interbuild savings attribution."
+  }
+}
