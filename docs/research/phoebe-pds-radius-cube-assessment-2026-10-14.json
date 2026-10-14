@@ -1,0 +1,85 @@
+{
+  "status": "Research audit of complete publisher XML, attached header/history, stored array and whole grayscale diagnostic; no production adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-radius-original-2026-10-14.cub",
+      "bytes": 9942047,
+      "sha256": "9d30106e1acd7a85ba374b4f6cd8af0da8cf9569efab5ca95439d9975858817d",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_radius_c.cub"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-radius-label-original-2026-10-14.xml",
+      "bytes": 7137,
+      "sha256": "82159c91ae1218cd0d92c5147f871974f3645085b6f5b3227c5e62e367168ad3",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_radius_c.xml"
+    }
+  ],
+  "publisherLabel": {
+    "author": "Weirich, J.R.",
+    "publicationYear": 2023,
+    "observationTimes": null,
+    "description": "SPC generated topography, radius in meters; derived ISIS equirectangular product",
+    "shape": [
+      1111,
+      2222
+    ],
+    "offset": 65536,
+    "footerOffset": 9940104,
+    "footerLength": 1943
+  },
+  "storedArrayDiagnostic": {
+    "count": 2468642,
+    "finite": 2468642,
+    "percentiles": {
+      "minimum": 93658.359375,
+      "p1": 95783.283046875,
+      "median": 105526.30078125,
+      "p99": 116238.78046874999,
+      "maximum": 121287.4921875
+    },
+    "exact9999": 0,
+    "exact99999": 0,
+    "exact999999": 0
+  },
+  "attachedHeader": "Object = IsisCube\n  Object = Core\n    StartByte = 65537\n    Format    = BandSequential\n\n    Group = Dimensions\n      Samples = 2222\n      Lines   = 1111\n      Bands   = 1\n    End_Group\n\n    Group = Pixels\n      Type       = Real\n      ByteOrder  = Lsb\n      Base       = 0.0\n      Multiplier = 1.0\n    End_Group\n  End_Object\n\n  Group = Mapping\n    ProjectionName     = SimpleCylindrical\n    CenterLongitude    = 180.0\n    TargetName         = Phoebe\n    EquatorialRadius   = 106500 <meters>\n    PolarRadius        = 106500 <meters>\n    LatitudeType       = Planetocentric\n    LongitudeDirection = PositiveEast\n    LongitudeDomain    = 360\n    UpperLeftCornerX   = -334579.61760731 <meters>\n    UpperLeftCornerY   = 167289.80880366 <meters>\n    PixelResolution    = 301.26023555494 <meters>\n    Scale              = 6.17 <pixels/degree>\n  End_Group\nEnd_Object\n\nObject = Label\n  Bytes = 65536\nEnd_Object\n\nObject = History\n  Name      = IsisCube\n  StartByte = 9940105\n  Bytes     = 1943\nEnd_Object\nEnd\n",
+  "attachedFooter": "Object = unknown_program\n  GdalVersion       = 3.5.2\n  ProgramPath       = \"\"\n  ExecutionDateTime = 2022-10-06T19:36:15\n  HostName          = rand.psi.edu\n  UserName          = JW\n  Description       = \"GDAL conversion\"\n\n  Group = UserParameters\n    FROM      = NETCDF:phoebe_radius.nc\n    TO        = phoebe_radius_c.cub\n    Force_360 = true\n  End_Group\nEnd_Object\n\nObject = maplab\n  IsisVersion       = \"4.1.1  | 2020-06-16\"\n  ProgramVersion    = 2012-12-06\n  ProgramPath       = /Users/JW/opt/miniconda3/envs/isis/bin\n  ExecutionDateTime = 2022-10-06T12:39:02\n  HostName          = Unknown\n  UserName          = JW\n  Description       = \"Add Mapping group to the labels of a cube\"\n\n  Group = UserParameters\n    FROM        = phoebe_radius_c.cub\n    MAP         = smp180.map\n    SAMPLE      = 0.5\n    LINE        = 0.5\n    COORDINATES = latlon\n    LAT         = 90\n    LON         = 0\n  End_Group\nEnd_Object\n\nObject = algebra\n  IsisVersion       = \"4.1.1  | 2020-06-16\"\n  ProgramVersion    = 2012-02-23\n  ProgramPath       = /Users/JW/opt/miniconda3/envs/isis/bin\n  ExecutionDateTime = 2022-10-07T10:09:45\n  HostName          = Unknown\n  UserName          = JW\n  Description       = \"Performs algebra on either one or two cubes\"\n\n  Group = UserParameters\n    FROM     = phoebe_radius_tmp.cub\n    TO       = phoebe_radius_c.cub\n    OPERATOR = UNARY\n    A        = 1000\n    C        = 0.0\n  End_Group\nEnd_Object\n\nObject = cubeatt\n  IsisVersion       = \"4.1.1  | 2020-06-16\"\n  ProgramVersion    = 2014-04-07\n  ProgramPath       = /Users/JW/opt/miniconda3/envs/isis/bin\n  ExecutionDateTime = 2022-10-19T10:31:09\n  HostName          = Unknown\n  UserName          = JW\n  Description       = \"Cube attribute editor\"\n\n  Group = UserParameters\n    FROM       = phoebe_radius_c.cub\n    TO         = /Users/JW/PDART20/PDS_PhoebeMathilde/products/Phoebe/phoebe_-\n                 radius_c.cub+BandSequential\n    PROPTABLES = true\n  End_Group\nEnd_Object\n",
+  "diagnostic": {
+    "path": "data/research-sources/phoebe-pds-radius-diagnostic-2026-10-14.png",
+    "transfer": "linear stored minimum to maximum grayscale, rounded nearest; no mask; not calibrated visible colour",
+    "visualInspection": "Whole diagnostic inspected; mixed smooth polar bands and detailed midlatitude model structure. Viewer resized 2222x1111 to 2048x1024. This is a radius-value display, not visible colour, albedo or independently validated local terrain.",
+    "bytes": 301246,
+    "sha256": "2d695d8d54b89c95311eda141bd4e6cc9f7f1bb680cfb66654aedc63f67a59c9"
+  },
+  "limitations": [
+    "Stored radius is modelled SPC output, not independently validated physical radius or accuracy.",
+    "No NASA3D registration, mesh or map adoption, replacement, embedding, licence claim or catalogue change.",
+    "Complete source document crosswalk and quality/special-value assessment remain pending.",
+    "Resampled model radius values do not independently establish shape accuracy, self-intersection freedom, registered geography, colour, albedo or chemistry.",
+    "Finite positive values and absence of exact9999/99999/999999 do not validate special-pixel semantics, global completeness or interpolation accuracy.",
+    "Internal-consistency sigma and poorly constrained polar/model regions retain prior quality limits; no origin shift or repair adopted.",
+    "Redistribution terms remain open; no CC licence or production embedding asserted."
+  ],
+  "date": "2026-10-14",
+  "credit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA Planetary Data System, DOI 10.26033/3k3c-5713. Individual product label: Weirich, J.R.",
+  "publisherDocumentCrosswalk": "Product description identifies radius/albedo cubes as Q512 ICQ resampling through GMT blockmean/sphinterpolate, GDAL conversion and ISIS mapping labels. This states publisher processing lineage, not independently reproduced pixel/mesh association.",
+  "processingHistoryAssessment": "Attached history records GDAL3.5.2 NETCDF:phoebe_radius.nc conversion on 2022-10-06T19:36:15, ISIS maplab on 2022-10-06T12:39:02 using smp180.map, algebra UNARY A=1000 C=0 on 2022-10-07T10:09:45, and cubeatt on 2022-10-19T10:31:09. Timezone and exact intermediate reconstruction remain open; timestamps are processing, not observations. The original NETCDF, temporary cube and mapping file were not acquired.",
+  "projectionAssessment": "Publisher SimpleCylindrical planetocentric PositiveEast center180, 106500-meter projection sphere, 301.26023555494-meter pixel resolution and 6.17pixels/degree are label conventions. No new angular/raster size computation, physical-radius update or NASA3D frame transfer.",
+  "documentSource": {
+    "path": "data/research-sources/phoebe-pds-productdescription.txt",
+    "bytes": 16534,
+    "sha256": "b8a24258e4a2f97de3158453a01262571a0061ddfa00c3581b8aad4356b0a3a7",
+    "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/productdescription.txt"
+  },
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15987066,
+    "headroomBytes": 12934,
+    "publicFilesByteUnchanged": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser verification; interbuild differences are not attributed to savings."
+  }
+}
