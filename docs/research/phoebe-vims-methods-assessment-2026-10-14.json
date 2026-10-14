@@ -1,0 +1,51 @@
+{
+  "status": "Research-only targeted Section2 methods text audit. Complete16-page text and original PDF retained; figures/Table1/final publisher and licence audit remain open.",
+  "url": "https://arxiv.org/pdf/1803.04979v1",
+  "path": "data/research-sources/phoebe-fraser-brown-2018v1-original.pdf",
+  "bytes": 9909096,
+  "sha256": "bbc822921de9d1fca46cb5063709da4f8544f777381a0d48018c17d757181a3e",
+  "pdfSignature": true,
+  "credit": [
+    "Wesley C. Fraser",
+    "Michael E. Brown"
+  ],
+  "record": "https://arxiv.org/abs/1803.04979",
+  "recordSubmissionDate": "2018-03-13",
+  "relatedPublisherDOI": "10.3847/1538-3881/aac213",
+  "limits": [
+    "ArXiv distribution is not automatically CC BY. No paper figure embedded.",
+    "Submission/publication dates are not individual Cassini acquisition times.",
+    "Geometry correction and spectral maps are not calibrated visible colour or observed generated local terrain.",
+    "All production dossiers/native/model/map/shape bytes unchanged.",
+    "Reported analysis-specific fitted offsets are not current PDS mesh or rendered-scene corrections. No local fraction, global abundance, source-pixel identity or new calibration asserted.",
+    "All75 delivered dossiers,598 tracked public files and recorded Europa Clipper preview preserved. No embedding, catalogue, map, shape or codec change."
+  ],
+  "pages": 16,
+  "textPath": "data/research-sources/phoebe-fraser-brown-2018v1-fulltext.txt",
+  "textSha256": "697c86bc4c125c179e8bc3fcffd76120d2e4aa5762cd11554e3d3bd74375173a",
+  "targetedReading": {
+    "pages": [
+      2,
+      3
+    ],
+    "scope": "Section2 methods text only; figures, Table1 and final publisher audit pending.",
+    "processing": "Authors report ISIS RC17 radiometric I/F calibration, custom VIS column/row background subtraction and manual bad-pixel/wavelength rejection. Not independently reproduced.",
+    "geometry": "Medium-resolution Gaskell model with per-pixel geometry and fitted tracking drift;35 first-stage satisfactory cubes plus5 after adjusted Horizons geometry. Reported corrections are analysis-specific, not transferable to current PDS Q128, NASA3D textures or observer scenes.",
+    "spectralMap": "Per-facet median where at least3 observations; VIS/IR overlap normalization and hierarchical high/medium/low-resolution selection. Authors explicitly forgo water-abundance extraction and discuss absorption depths. No local chemistry fractions adopted.",
+    "albedo": "Authors use separate Simonelli1999 Voyager albedo map. This is not verified identity with2023 SPC relative-albedo products.",
+    "limits": "No new angular/raster calculation; publisher thresholds remain text only. No code, kernel, product crosswalk, calibration reproduction or geography adoption."
+  },
+  "date": "2026-10-14",
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15978842,
+    "headroomBytes": 21158,
+    "publicFilesByteUnchanged": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser or interbuild savings claim."
+  }
+}
