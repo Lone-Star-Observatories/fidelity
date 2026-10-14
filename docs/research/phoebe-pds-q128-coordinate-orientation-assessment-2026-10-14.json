@@ -1,0 +1,194 @@
+{
+  "date": "2026-10-14",
+  "status": "Research extension: exact origin-relative facet determinants and coincident-coordinate triangles; no adoption.",
+  "body": "Saturn IX (Phoebe)",
+  "sources": [
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_128_o.obj",
+      "path": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+      "bytes": 17787240,
+      "sha256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9"
+    },
+    {
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_128_o.xml",
+      "path": "data/research-sources/phoebe-pds-128-obj-label-2026-10-14.xml",
+      "bytes": 8362,
+      "sha256": "ba1b4e2b48c1ddf3e4ba0f02d9a8f70f24fb0dfbd1ce29b41329cd3df3da08b7"
+    }
+  ],
+  "credit": {
+    "productAuthors": [
+      "Gaskell, R.",
+      "Weirich, J.R."
+    ],
+    "bundleAuthors": [
+      "Weirich, J.R.",
+      "Gaskell, R.",
+      "Palmer, E.E.",
+      "Domingue, D.L.",
+      "Hare, T.M."
+    ],
+    "bundleDOI": "10.26033/3k3c-5713",
+    "terms": "Specific redistribution licence remains open; no CC licence inferred from NASA/PDS hosting."
+  },
+  "label": {
+    "logicalIdentifier": "urn:nasa:pds:satellite-phoebe.cassini.shape-models-maps:data:phoebe_128_o_obj",
+    "version": "1.0",
+    "publicationYear": 2023,
+    "observationDate": null,
+    "observationDateLimitation": "Label start/stop times nil/inapplicable; publication year is not acquisition time.",
+    "coordinateUnits": "km",
+    "advertisedSamplingKm": 1.195,
+    "samplingLimitation": "Publisher sampling convention, not independently verified physical accuracy.",
+    "vertexRecords": 99846,
+    "facetRecords": 196608,
+    "recordBytes": 60,
+    "recordTerminator": "CRLF",
+    "facetOffsetBytes": 5990760
+  },
+  "verifiedChecks": {
+    "recordCount": 296454,
+    "format": "Exact label file-size/counts/60-byte CRLF record length; finite three-coordinate vertices and in-range one-based three-index facets verified.",
+    "topology": {
+      "edges": 294912,
+      "edgeMultiplicityHistogram": {
+        "2": 294912
+      },
+      "unbalancedDirectedEdges": 0,
+      "repeatedIndexFacets": 0,
+      "unusedVertices": 1540,
+      "eulerCharacteristic": 1542,
+      "limits": "Combinatorial checks only; no self-intersection, outward orientation, geometric accuracy, coordinate registration or scientific validation claim.",
+      "referencedVertices": 98306,
+      "referencedVertexEulerCharacteristic": 2,
+      "unusedVertexInterpretation": "All1540 unreferenced vertices have exact coordinate-text matches to referenced vertices; original seam/format cause remains unverified. Preserve all records. Referenced graph is connected; this is not physical accuracy, manifold vertex-link or self-intersection validation.",
+      "referencedConnectedComponentSizes": [
+        98306
+      ],
+      "unusedVerticesWithExactCoordinateTextMatchToReferencedVertex": 1540,
+      "exactCoordinateTextDuplicateGroups": 1532
+    }
+  },
+  "interpretation": [
+    "The referenced graph is connected and has Euler characteristic 2. Every edge occurs in two facets with balanced directed orientation. These are combinatorial checks, not sufficient geometric or scientific validation.",
+    "All 1540 unreferenced vertex records exactly duplicate coordinate text of referenced records. Preserve the full original; seam/format-generation cause remains unverified.",
+    "The existing PDF coverage, oversampling, unconstrained values, internal-consistency versus accuracy and relative-albedo legend conflict remain explicit.",
+    "The published centre-of-figure translation is not applied to any existing application coordinate frame."
+  ],
+  "open": [
+    "Manifold vertex-link verification, self-intersection and outward orientation.",
+    "Raw product/filter/UTC, SPICE/body-frame registration and quality-mask association.",
+    "Physical accuracy, photometry, local chemistry and redistribution licence.",
+    "No GLB conversion, embedding, catalogue or shape replacement; no new dossier."
+  ],
+  "preservation": {
+    "registryDossiers": 75,
+    "trackedPublicFiles": 598,
+    "queueEntries": 566,
+    "productionChanges": false
+  },
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15994262,
+    "headroomBytes": 5738,
+    "publicFilesByteEqual": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "browser": "No fresh browser claim.",
+    "attribution": "No interbuild savings attribution; production codecs and assets unchanged."
+  },
+  "additionalChecks": {
+    "vertexLinks": {
+      "date": "2026-10-14",
+      "status": "Research preparation only; unchanged source and production.",
+      "sourcePath": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+      "sourceSHA256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9",
+      "referencedVerticesChecked": 98306,
+      "linkCondition": "For each referenced vertex, opposite triangle edges form a connected graph and every link vertex has degree 2.",
+      "failedVertices": [],
+      "vertexValenceHistogram": {
+        "4": 11,
+        "5": 1522,
+        "6": 95244,
+        "7": 1526,
+        "8": 3
+      },
+      "limits": [
+        "Combinatorial cycle-link check only; no geometric self-intersection, zero-area triangle, outward orientation, physical accuracy, frame registration or licence validation.",
+        "No coordinate welding, unused-record removal, GLB conversion, shape/catalogue adoption or embedding. All source records preserved.",
+        "Earlier balanced two-facet-edge, connectedness and Euler checks retained."
+      ]
+    },
+    "exactDegeneracy": {
+      "date": "2026-10-14",
+      "status": "Research preparation only; original records and production unchanged.",
+      "sourcePath": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+      "sourceSHA256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9",
+      "verticesChecked": 99846,
+      "facetsChecked": 196608,
+      "calculation": "Exact Decimal parse of source decimal km coordinates, multiply by10^9 with integral-value assertion, arbitrary-precision integer edge cross products. No source rounding or float conversion.",
+      "exactCollinearFacetRecords": [],
+      "limits": [
+        "Exact stored-coordinate non-collinearity only; no near-degeneracy tolerance, self-intersection test, outward orientation or physical accuracy claim.",
+        "Published decimal precision is not a measured uncertainty. No geographic/camera registration, angular/raster calculation, welding, deletion, GLB conversion, embedding or shape adoption."
+      ]
+    },
+    "indexedDuplicates": {
+      "date": "2026-10-14",
+      "status": "Research preparation only; production and original records unchanged.",
+      "sourcePath": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+      "sourceSHA256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9",
+      "facetsChecked": 196608,
+      "comparison": "Unordered triples of original vertex record indices, preserving records and orientation separately.",
+      "duplicateIndexedTriangleGroups": [],
+      "limits": [
+        "Index-level duplicate check does not compare coordinate-coincident facets using different duplicate vertex records, geometric overlap or intersections.",
+        "No physical accuracy, outward winding, camera/geographic frame, licence, source lineage, angular or raster size claim.",
+        "No welding, deletion, conversion, shape adoption or embedding. Earlier unused-record and exact-collinearity limits preserved."
+      ]
+    }
+  },
+  "originRelativeDeterminants": {
+    "date": "2026-10-14",
+    "status": "Research preparation only; no production change or shape adoption.",
+    "sourcePath": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+    "sourceSha256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9",
+    "method": "Exact Decimal coordinate scaling by 10^9 with integral assertions; arbitrary-precision integer determinants a dot (b cross c) using original ordered triangle indices.",
+    "coordinateScalePerKm": 1000000000,
+    "sixTimesSignedVolumeScaledInteger": "30553792836681447649269635118784643",
+    "originTetrahedronDeterminantSigns": {
+      "positive": 196608,
+      "negative": 0,
+      "zero": 0
+    },
+    "limits": [
+      "Signed algebraic volume and origin-relative facet determinant signs only.",
+      "Does not establish self-intersection freedom, physical volume, outward orientation relative to the physical body, origin location, geometric registration or uncertainty.",
+      "No radius, density, catalogue value, model, frame or asset modification. Original records remain unchanged."
+    ]
+  },
+  "exactCoordinateFacetDuplicates": {
+    "date": "2026-10-14",
+    "status": "Research preparation only; no production change or shape adoption.",
+    "sourcePath": "data/research-sources/phoebe-pds-128-original-2026-10-14.obj",
+    "sourceSha256": "4393bd9343a00b03f407bfa4e841178ca07787e176a6b2ebef820ed410ab87b9",
+    "method": "Canonical unordered triples of exact Decimal coordinate tuples for each original triangle; coordinate equality is exact, without rounding or tolerance.",
+    "facets": 196608,
+    "uniqueExactCoordinateTriples": 196608,
+    "duplicateExactCoordinateFacets": 0,
+    "limits": [
+      "Checks only exactly coincident triangles sharing all three stored positions, including different vertex indices.",
+      "Does not detect partial coplanar overlaps, edge or vertex contacts, non-coplanar intersections, near-coincidence or physical accuracy.",
+      "All source vertex and facet records remain unchanged; no welding, deletion, model conversion, adoption, catalogue update or embedding."
+    ]
+  },
+  "extensionLimits": [
+    "All ordered facets have positive exact origin-relative determinants. This is a stored-coordinate orientation diagnostic, not physical-frame or accuracy validation.",
+    "The algebraic determinant sum is retained as an integer diagnostic; no physical-volume, equivalent-radius, density or uncertainty value is adopted.",
+    "No exact duplicate coordinate triples were found. Partial overlaps, contacts, non-coplanar self-intersections and tolerance-based near-coincidence remain unaudited.",
+    "Original OBJ, all unused records, labels and product/bundle credits are unchanged; no GLB conversion, shape adoption, asset embedding, catalogue or codec change."
+  ]
+}
