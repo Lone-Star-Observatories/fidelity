@@ -1,0 +1,96 @@
+{
+  "status": "Research audit: complete XML and TIFF tags read; exact downloaded GeoTIFF/cube array crosswalk verified. No production adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-radius-geotiff-original-2026-10-14.tif",
+      "bytes": 9881895,
+      "sha256": "d143bad93f2972bc3af1c984dc2bc2696ec7ef13214cd93766ed6ba112bc34ff",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_radius_g.tif"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-radius-geotiff-label-original-2026-10-14.xml",
+      "bytes": 8757,
+      "sha256": "ab05064d548aadef57e71c3434141cddcabac9541e833cf6a401f4481ba4c77d",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_radius_g.xml"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-radius-original-2026-10-14.cub",
+      "bytes": 9942047,
+      "sha256": "9d30106e1acd7a85ba374b4f6cd8af0da8cf9569efab5ca95439d9975858817d",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_radius_c.cub"
+    }
+  ],
+  "mode": "F",
+  "shape": [
+    1111,
+    2222
+  ],
+  "dtype": "float32",
+  "tiffTags": {
+    "256": "2222",
+    "257": "1111",
+    "258": "(32,)",
+    "259": "1",
+    "33922": "(0.0, 0.0, 0.0, -334579.61760731, 167289.80880366, 0.0)",
+    "42113": "-3.40282265508890445e+38",
+    "262": "1",
+    "33550": "(301.26023555494, 301.26023555494, 0.0)",
+    "339": "(3,)",
+    "277": "1",
+    "278": "1",
+    "284": "2",
+    "34735": "(1, 1, 0, 20, 1024, 0, 1, 1, 1025, 0, 1, 1, 1026, 34737, 25, 0, 2048, 0, 1, 32767, 2049, 34737, 87, 25, 2050, 0, 1, 32767, 2054, 0, 1, 9102, 2056, 0, 1, 32767, 2057, 34736, 1, 5, 2058, 34736, 1, 6, 2061, 34736, 1, 7, 3072, 0, 1, 32767, 3074, 0, 1, 32767, 3075, 0, 1, 17, 3076, 0, 1, 9001, 3078, 34736, 1, 2, 3082, 34736, 1, 3, 3083, 34736, 1, 4, 3088, 34736, 1, 1, 3089, 34736, 1, 0)",
+    "34736": "(0.0, 180.0, 0.0, 0.0, 0.0, 106500.0, 106500.0, 0.0)",
+    "34737": "SimpleCylindrical Phoebe|GCS Name = GCS_Phoebe|Datum = D_Phoebe|Ellipsoid = Phoebe|Primem = Reference_Meridian||"
+  },
+  "arrayComparison": {
+    "exactFloat32ByteEquality": true,
+    "unequalSamples": 0,
+    "maxAbsoluteDifference": 0.0,
+    "contiguousSourcePayloadByteEquality": true,
+    "comparedPayloadBytes": 9874568
+  },
+  "limits": [
+    "Exact stored-array agreement would not independently validate frame registration, physical accuracy, original ICQ interpolation, NASA3D identity or visible colour.",
+    "Source bytes unchanged; no map/model replacement, embedding or licence claim.",
+    "Matching raw payloads verify these two downloaded products contain the same ordered float32 bytes; they do not prove ICQ association, absolute accuracy, scientific completeness or NASA3D frame/pixel registration.",
+    "Publisher missing constant is absent from this array; this alone does not validate interpolation or unconstrained regions.",
+    "GeoTIFF source/label bytes remain unchanged and preserved; no catalogue, codec or delivered asset changes.",
+    "User-defined TIFF coordinate keys and publisher XML projection are metadata consistency only; no independent raw-image/kernel registration or interpolation reproduction.",
+    "Wrapped longitude bounds remain unresolved and unchanged; no narrow coverage claim or automatic metadata repair.",
+    "All original/default generated PNGs, masters, native science, models, shape and map assets retained. No new dossier or codec changes."
+  ],
+  "completeLabelRead": true,
+  "labelAssessment": {
+    "target": "Saturn IX (Phoebe)",
+    "nilObservationStartStop": true,
+    "publicationYear": "Not supplied by this GeoTIFF label; separate bundle/cube publication2023 is retained as separate metadata.",
+    "array": "1111lines by2222samples IEEE754LSBSingle meters offset7327",
+    "missingConstant": "-3.40282265508890445e+38",
+    "missingConstantStoredCount": 0,
+    "projection": "Equirectangular latitude origin0 standard parallel0 central meridian180; Planetocentric PositiveEast sphere axes106500meters. Publisher label/tags conventions only.",
+    "bounds": {
+      "west": "1.60299955945761243e-12",
+      "east": "0.129659643441216443",
+      "north": "90",
+      "south": "-90"
+    },
+    "boundsLimit": "Small wrapped east longitude and near-zero west metadata retained verbatim. Cause/wrapping and authoritative coverage interpretation open; not silently repaired or adopted as a narrow coverage claim."
+  },
+  "date": "2026-10-14",
+  "credit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA Planetary Data System, DOI 10.26033/3k3c-5713. Individual product label: Weirich, J.R.",
+  "diagnosticReference": "Same exact ordered samples as the whole inspected radius-cube grayscale diagnostic documented in phoebe-pds-radius-cube-assessment-2026-10-14.json; no second image or colour transfer adopted.",
+  "stripLayout": "1111 uncompressed one-row strips, each8888 bytes; offsets begin7327 and are contiguous. Full exact payload9874568 bytes equals cube array.",
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15990921,
+    "headroomBytes": 9079,
+    "publicFilesByteUnchanged": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim or interbuild savings attribution."
+  }
+}
