@@ -1,0 +1,39 @@
+{
+  "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/document/phoebeshapeassessment.pdf",
+  "acquisition": "curl IPv4 successful after recorded earlier failures",
+  "path": "data/research-sources/phoebe-pds-shape-assessment-original-2026-10-14.pdf",
+  "bytes": 395600,
+  "sha256": "c84bc74796fa2bd29f9b631ffbfe8c5147cd5af3945e71d25c8453e263bf3c02",
+  "pages": 7,
+  "textPath": "data/research-sources/phoebe-pds-shape-assessment-text-2026-10-14.txt",
+  "textSha256": "803e426cc4e4322e2a9f3c776ae5f46a4c97c8223798a692366c03a017a72a0c",
+  "visualInspection": {
+    "page4": "Rendered full page and inspected: best-maplet grayscale legend/metre units and true northern semi-triangular gap versus polar display gaps; no new angular/raster calculation or scientific reproduction.",
+    "pages6and7": "Rendered full pages and inspected: radius uses metre legend; relative-albedo page repeats Radius (meters) axis label despite relative-albedo title and caption. This publisher label inconsistency is preserved, not interpreted as dimensional albedo. Both captions mark equatorward regions reliable and poleward regions suspect, with unconstrained values; no calibrated visible colour or independent accuracy claim.",
+    "pages1to3and5": "Rendered full pages and inspected: title/author/date; image-resolution and image-count legends show poor northern coverage; many coarse views do not establish high-resolution maplets. Sigma page states missing sigma for single-maplet regions and claims likely accuracy one\u2013two maplet GSD from internal consistency. This is a publisher inference, not independently reproduced accuracy. All seven pages have now been visually inspected across preparations."
+  },
+  "productionChange": "none",
+  "limits": "No figure embedding, dossier, asset, model, shape, catalogue or codec change. All original bytes retained.",
+  "date": "2026-10-14",
+  "body": "Phoebe",
+  "status": "Research-only source assessment; no adoption",
+  "author": "John R. Weirich",
+  "documentDate": "2023-09-29",
+  "credit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA Planetary Data System, DOI 10.26033/3k3c-5713",
+  "licence": "Redistribution terms remain open; no CC licence asserted",
+  "findings": [
+    "Imaging sufficient but not ideal for SPC; northern coverage poorest. Publisher approximately15m/pixel best and2800m/pixel worst image-centre sampling are source statements, not new raster computations.",
+    "Nearly90 images in some regions do not establish independent useful high-resolution maplets.",
+    "True gap near270 longitude60 latitude leaves radius unconstrained; polar pixelation can also be a display artifact.",
+    "Q512300m GSD can oversample500m maplets near315 longitude-60 latitude; Q1281.195km GSD still oversamples northern data.",
+    "Sigma measures internal consistency. Missing single-maplet sigma is not zero uncertainty. Publisher inference of one\u2013two maplet GSD accuracy is not independently reproduced.",
+    "Black reliability boundaries in radius and relative-albedo panels mark equatorward reliable and poleward suspect regions; no blanket global accuracy or visible-colour calibration.",
+    "Relative-albedo page title/caption and Radius (meters) legend conflict; preserve publisher label inconsistency without interpreting albedo as dimensional radius."
+  ],
+  "open": [
+    "Actual digital quality-mask, mesh and coordinate-frame audit",
+    "Raw UTC/filter/full-product and per-pixel association",
+    "Independent geometry accuracy and physical photometry",
+    "Redistribution licence"
+  ]
+}
