@@ -1,0 +1,136 @@
+{
+  "status": "research-only; no embedded asset or registration adopted",
+  "body": "Phoebe",
+  "publisherPage": "https://europlanet.dlr.de/Cassini-Atlases/phoebe.html",
+  "sources": [
+    {
+      "path": "data/research-sources/dlr-phoebe-atlas-page-2026-10-13.html",
+      "bytes": 8689,
+      "sha256": "38138aa0ca433d2cdafb1a3e7e8b7ca3f07e047f8d29eb804dd82f078def20fc"
+    },
+    {
+      "path": "data/research-sources/phoebe-atlas-dlr-original-2026-10-13.pdf",
+      "bytes": 4109758,
+      "sha256": "b176c900b2b71bd5ce522e7f9a55ec0d6604b0665e8d2a32dfd28cfc3925a291"
+    },
+    {
+      "path": "data/research-sources/phoebe-atlas-dlr-text-2026-10-13.txt",
+      "bytes": 5127,
+      "sha256": "c348d4b0fb3f168f9f5fa80505e2faf8fcb404132db8dbbc2083d00a60f685ec"
+    }
+  ],
+  "nativeSheet": {
+    "title": "Semi-controlled Mosaic of Phoebe",
+    "designation": "Sp 1M SMN, 2006",
+    "publicationYear": 2006,
+    "observationLimit": "Publisher June 2004 flyby month is not individual-image UTC.",
+    "copyright": "© DLR 2006; redistribution licence unverified",
+    "sourceUrl": "https://europlanet.dlr.de/Cassini-Atlases/pdf/Phoebe.pdf"
+  },
+  "mapConventions": {
+    "equatorialProjection": "Mercator centered at 0 latitude and 0 west longitude",
+    "equatorialLatitudeRange": "57 S to 57 N",
+    "equatorialScale": "1:1,000,000 at equator",
+    "polarProjection": "Stereographic centered at respective poles",
+    "polarLatitudeRange": "55 to 90 degrees in each hemisphere",
+    "polarScale": "1:631,372 at respective pole",
+    "adoptedSphereRadiusKm": 106.8,
+    "latitudeConvention": "planetocentric",
+    "longitudeConvention": "west-positive",
+    "limit": "Publisher projection sphere and scale are not new physical measurements or independent raster calculations."
+  },
+  "printedSourceIdentifiers": [
+    "N1465636203",
+    "N1465638175",
+    "N1465640995",
+    "N1465641843",
+    "N1465643815",
+    "N1465644359",
+    "N1465646635",
+    "N1465649455",
+    "N1465652275",
+    "N1465652463",
+    "N1465661954",
+    "N1465664794",
+    "N1465667614",
+    "N1465669778",
+    "N1465669953",
+    "N1465672687",
+    "N1465672842",
+    "N1465672905",
+    "N1465673021",
+    "N1465673138",
+    "N1465673272",
+    "N1465674412",
+    "N1465674502",
+    "N1465674604",
+    "N1465676693",
+    "N1465676754",
+    "N1465676854",
+    "N1465676924",
+    "N1465676993",
+    "N1465677100",
+    "N1465677211",
+    "N1465677386",
+    "N1465677447",
+    "N1465679337",
+    "N1465679380",
+    "N1465700301",
+    "N1465700359",
+    "N1465703980",
+    "N1465714401",
+    "N1465717221",
+    "N1465726540",
+    "N1465731321"
+  ],
+  "contributors": {
+    "cartographicProductionAndDesign": [
+      "A. Hoffmeister",
+      "J. Bendig",
+      "J. Mehrmann",
+      "N. Vorbeck",
+      "M. Wählisch"
+    ],
+    "acknowledgements": [
+      "R. Kirk (USGS)",
+      "J. Blue (USGS)"
+    ],
+    "editor": "German Aerospace Center (DLR), Institute of Planetary Research, Th. Roatsch"
+  },
+  "processingClaims": [
+    "Radiometric correction",
+    "Geometric correction",
+    "Photogrammetric pointing adjustment using limb-fitting",
+    "Map projection",
+    "Image mosaicking"
+  ],
+  "limits": [
+    "These are printed publisher processing claims, not independently reproduced calibration.",
+    "No SPICE or Hapke claim added from other moons.",
+    "No NASA3D product/pixel identity or frame transfer established.",
+    "Raw UTC/filter/exposure, per-pixel lineage and redistribution licence remain open.",
+    "Printed reference-paper author lists do not assign every author an atlas production role; production credits remain the separately printed roles.",
+    "No calibrated visible colour, uniform observation epoch or complete resolved geography claimed.",
+    "Blank northern coverage, mosaic seams, grids, names and resolution panels do not establish smooth terrain or chemistry.",
+    "No native image, model, shape, map or catalogue replacement; all earlier dossiers and production codecs preserved."
+  ],
+  "verification": {
+    "trackedPublicFilesComparedWithHEAD": 598,
+    "changed": [],
+    "sourceHashesReverified": 3,
+    "scope": "598 earlier tracked public files byte-equal and three source hashes verified; registry unchanged; no fresh browser/model-loading or interbuild savings claim",
+    "fullSheetVisualInspection": "Complete publisher sheet rendered and inspected; complete text extracted and source identifiers checked separately.",
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15987323,
+    "headroomBytes": 12677,
+    "queueTasks": 566,
+    "deliveredDossiers": 75,
+    "concurrentWorkPreserved": [
+      "5be2846 descent gauge",
+      "c701e4a README tour"
+    ]
+  }
+}
