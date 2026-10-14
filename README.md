@@ -4,9 +4,43 @@ An LCARS-style ship's console for exploring real NASA and astronomical data, fro
 orbit out to nearby galaxies. It runs locally. Data is loaded on demand and stored on
 your machine.
 
+![The System View: the Sun, the planets and their moons at their real positions for the ship's clock, with the LCARS console around them](docs/images/system.jpg)
+
 **Status:** version 1.0 ([release notes](docs/release-notes-v1.md)). Every view is online: Universe, Galaxy, Quadrant, Navigation, System (with the Star, Planet,
 Moon, Object and Satellite detail views), the surface view, Events, Future, Earth Timeline and COMMS. Open work
 is tracked as GitHub issues and mirrored in [`docs/backlog.md`](docs/backlog.md).
+
+## A tour
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/helm.jpg" alt="The USS Fidelity in standard orbit over Earth, chase camera, with the helm read-outs"><br><b>Take the helm.</b> The USS Fidelity (an original design, IMAGINED) in standard orbit over today's Earth, with an honest-travel panel comparing real propulsion.</td>
+<td width="50%"><img src="docs/images/venus-descent.jpg" alt="Descending through Venus' clouds, with the descent gauge in the corner"><br><b>Land under the clouds.</b> Descending through Venus' cloud deck to the Magellan radar ground, with VIRA pressure and temperature and the descent gauge.</td>
+</tr>
+<tr>
+<td><img src="docs/images/jupiter.jpg" alt="Jupiter and its moons in the System View"><br><b>Jupiter</b> and the Galilean moons on their orbits, wearing spacecraft maps, with the sky events coming up.</td>
+<td><img src="docs/images/saturn.jpg" alt="Saturn and its rings in the System View"><br><b>Saturn</b>, its rings and moons at the ship's clock (Keplerian elements, or JPL Horizons on demand).</td>
+</tr>
+<tr>
+<td><img src="docs/images/sun.jpg" alt="The Star View of the Sun"><br><b>Star View.</b> The Sun from today's SDO data, its magnetic field and corona, and where to find it in your sky.</td>
+<td><img src="docs/images/navigation.jpg" alt="The Navigation view around Sol"><br><b>Navigation.</b> The stars within 10–100 light years in the galactic frame, with motion arrows and the Star Trek quadrants.</td>
+</tr>
+<tr>
+<td><img src="docs/images/quadrant.jpg" alt="The Quadrant view with Gaia star clusters and nebulae"><br><b>Quadrant.</b> 7,000 Gaia star clusters and landmark nebulae around Sector 001.</td>
+<td><img src="docs/images/galaxy.jpg" alt="The Milky Way in the Galaxy view"><br><b>Galaxy.</b> A 3D Milky Way model calibrated to Sol, with its satellite galaxies.</td>
+</tr>
+<tr>
+<td><img src="docs/images/universe.jpg" alt="The nearby universe"><br><b>Universe.</b> Every known galaxy within 36 million light years, and groups out to 2.5 billion.</td>
+<td><img src="docs/images/earth-timeline.jpg" alt="The Earth Timeline with the paleo Earth"><br><b>Earth Timeline.</b> From the dinosaurs' last day to the end of the universe: ice sheets, sea level and vegetation through time.</td>
+</tr>
+<tr>
+<td><img src="docs/images/comms.jpg" alt="COMMS: the map of live radio stations and cameras"><br><b>COMMS.</b> Live radio stations, cameras and public SDR receivers on an LCARS map; hail one onto the main viewer.</td>
+<td><img src="docs/images/events.jpg" alt="The Events feed"><br><b>Events.</b> This week's launches, dockings, landings, eclipses and meteor showers, with webcasts; launches and re-entries replay in 3D.</td>
+</tr>
+</table>
+
+Screenshots from version 1.0 in Chromium, 14 October 2026 (software rendering, so a real GPU looks sharper). Every
+value and picture in the app carries its provenance badge: MEASURED, COMPUTED, MODELLED or IMAGINED.
 
 ## Run it
 
