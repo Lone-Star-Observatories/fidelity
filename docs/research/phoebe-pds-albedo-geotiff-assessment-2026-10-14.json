@@ -1,0 +1,89 @@
+{
+  "status": "Research audit: complete publisher XML and TIFF tags read; exact original GeoTIFF/cube payload crosswalk verified. No production adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-albedo-geotiff-original-2026-10-14.tif",
+      "bytes": 9881895,
+      "sha256": "7ff2cf3a8b38ed77adbd6046978fdc5507f61053356f87990bab3880db0862db",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_albedo_g.tif"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-albedo-geotiff-label-original-2026-10-14.xml",
+      "bytes": 8769,
+      "sha256": "c0d0b0b5653b40f14c8c873d726dd1dc27c1092cc45d5d04d3354adf836922f9",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_albedo_g.xml"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-albedo-original-2026-10-14.cub",
+      "bytes": 9941545,
+      "sha256": "c5fe7cfccec2250688ad3a95caa2b1efdda5e0132910bef022b5717e8cdf48c3",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_albedo_c.cub"
+    }
+  ],
+  "shape": [
+    1111,
+    2222
+  ],
+  "mode": "F",
+  "dtype": "float32",
+  "tags": {
+    "256": "2222",
+    "257": "1111",
+    "258": "(32,)",
+    "259": "1",
+    "33922": "(0.0, 0.0, 0.0, -334579.61760731, 167289.80880366, 0.0)",
+    "42113": "-3.40282265508890445e+38",
+    "262": "1",
+    "33550": "(301.26023555494, 301.26023555494, 0.0)",
+    "339": "(3,)",
+    "277": "1",
+    "278": "1",
+    "284": "2",
+    "34735": "(1, 1, 0, 20, 1024, 0, 1, 1, 1025, 0, 1, 1, 1026, 34737, 25, 0, 2048, 0, 1, 32767, 2049, 34737, 87, 25, 2050, 0, 1, 32767, 2054, 0, 1, 9102, 2056, 0, 1, 32767, 2057, 34736, 1, 5, 2058, 34736, 1, 6, 2061, 34736, 1, 7, 3072, 0, 1, 32767, 3074, 0, 1, 32767, 3075, 0, 1, 17, 3076, 0, 1, 9001, 3078, 34736, 1, 2, 3082, 34736, 1, 3, 3083, 34736, 1, 4, 3088, 34736, 1, 1, 3089, 34736, 1, 0)",
+    "34736": "(0.0, 180.0, 0.0, 0.0, 0.0, 106500.0, 106500.0, 0.0)",
+    "34737": "SimpleCylindrical Phoebe|GCS Name = GCS_Phoebe|Datum = D_Phoebe|Ellipsoid = Phoebe|Primem = Reference_Meridian||"
+  },
+  "comparison": {
+    "exactOrderedFloat32ByteEquality": true,
+    "unequalSamples": 0,
+    "maxAbsoluteDifference": 0.0,
+    "contiguousSourcePayloadByteEquality": true,
+    "payloadBytes": 9874568
+  },
+  "limits": [
+    "Exact ordered samples do not independently validate photometry, absolute or geometric albedo, ICQ interpolation, physical accuracy, frame, NASA3D identity or completeness.",
+    "Original sources unchanged, no embedding, replacement, model adoption, licence assertion or dossier change.",
+    "Full bundle five-person credits and separate Weirich product metadata retained in prior cube audit; no new publication/observation date inferred from GeoTIFF label.",
+    "Exact source payload equality verifies format crosswalk only, not photometric normalization, useful coverage or source-image/kernel reproduction.",
+    "Wrapped longitude interpretation remains open; no narrow-coverage claim, metadata repair, physical-radius update or NASA3D frame transfer.",
+    "Nil observation times and separate bundle publication/processing dates retained. Redistribution terms and raw image/kernel association remain open.",
+    "Earlier assessment relative-albedo title/caption versus Radius(meters) legend remains unresolved."
+  ],
+  "completeLabelRead": true,
+  "labelAssessment": {
+    "target": "Saturn IX (Phoebe)",
+    "observationTimes": "start/stop nil inapplicable",
+    "array": "1111x2222 float32 little-endian, offset7327, unitless relative albedo",
+    "missingConstant": "-3.40282265508890445e+38",
+    "missingConstantStoredCount": 0,
+    "projection": "Equirectangular planetocentric PositiveEast, central meridian180 origin/standardparallel0, axes106500meters, publisher301.260235554939982m/pixel and6.16999999999993776pixel/deg. No new raster/angular calculation.",
+    "bounds": "west1.60299955945761243e-12/east0.129659643441216443/north90/south-90; wrapped longitude interpretation remains open; no repair or narrow-coverage claim."
+  },
+  "documentCrosswalk": "Product description section GeoTiff blanket meters prose contrasts this albedo label explicitly unitless and cube relative-albedo description. Preserve distinction; do not treat relative albedo as length or calibrated geometric albedo.",
+  "date": "2026-10-14",
+  "credit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA PDS, DOI10.26033/3k3c-5713. Product description authored John R. Weirich 2023-09-29.",
+  "diagnosticReference": "Exact same ordered float32 samples as the whole grayscale diagnostic inspected in phoebe-pds-albedo-cube-assessment-2026-10-14.json. No second colour transfer or image adopted.",
+  "stripLayout": "1111 uncompressed contiguous one-row strips, 8888 bytes each, starting at offset7327; 9874568 source bytes equal cube payload at offset65536.",
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15986552,
+    "headroomBytes": 13448,
+    "publicFilesByteUnchanged": 598,
+    "dossiersUnchanged": 75,
+    "queue": 566,
+    "browser": "No fresh browser claim or interbuild savings attribution."
+  }
+}
