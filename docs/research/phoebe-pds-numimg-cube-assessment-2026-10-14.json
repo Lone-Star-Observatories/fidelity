@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-14",
+  "status": "Research audit; unchanged original cube/complete label and whole diagnostic inspected. No production adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-pds-numimg-label-original-2026-10-14.xml",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_numimg_c.xml",
+      "bytes": 7110,
+      "sha256": "7b5056187db70dd6859872225de6fffd2988c354d3284849b59280a1fb951111"
+    },
+    {
+      "path": "data/research-sources/phoebe-pds-numimg-original-2026-10-14.cub",
+      "url": "https://sbnarchive.psi.edu/pds4/cassini/satellite-phoebe.cassini.shape-models-maps_V1_0/data/phoebe_numimg_c.cub",
+      "bytes": 326413,
+      "sha256": "8f37aad2212be8f6c0c602b0c66003f376c6986eee57e52d8e488d317120699d"
+    }
+  ],
+  "header": "Object = IsisCube\n  Object = Core\n    StartByte = 65537\n    Format    = BandSequential\n\n    Group = Dimensions\n      Samples = 360\n      Lines   = 180\n      Bands   = 1\n    End_Group\n\n    Group = Pixels\n      Type       = Real\n      ByteOrder  = Lsb\n      Base       = 0.0\n      Multiplier = 1.0\n    End_Group\n  End_Object\n\n  Group = Mapping\n    ProjectionName     = SimpleCylindrical\n    CenterLongitude    = 180.0\n    TargetName         = Phoebe\n    EquatorialRadius   = 106500 <meters>\n    PolarRadius        = 106500 <meters>\n    LatitudeType       = Planetocentric\n    LongitudeDirection = PositiveEast\n    LongitudeDomain    = 360\n    UpperLeftCornerX   = -334579.61760731 <meters>\n    UpperLeftCornerY   = 167289.80880366 <meters>\n    PixelResolution    = 1858.775653374 <meters>\n    Scale              = 1.0 <pixels/degree>\n  End_Group\nEnd_Object\n\nObject = Label\n  Bytes = 65536\nEnd_Object\n\nObject = History\n  Name      = IsisCube\n  StartByte = 324737\n  Bytes     = 1677\nEnd_Object\nEnd\n",
+  "history": "Object = ascii2isis\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2017-03-16\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-01T10:10:01\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Import ascii file as a cube\"\n\n  Group = UserParameters\n    FROM         = global-cov.grid.txt\n    TO           = phoebe_numimg.cub\n    ORDER        = BSQ\n    SAMPLES      = 360\n    LINES        = 180\n    BANDS        = 1\n    SKIP         = 0\n    SETNULLRANGE = NO\n    SETHRSRANGE  = NO\n    SETLRSRANGE  = NO\n  End_Group\nEnd_Object\n\nObject = maplab\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2012-12-06\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-12T09:28:00\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Add Mapping group to the labels of a cube\"\n\n  Group = UserParameters\n    FROM        = phoebe_numimg.cub\n    MAP         = smp180.map\n    SAMPLE      = 0.5\n    LINE        = 0.5\n    COORDINATES = latlon\n    LAT         = 90\n    LON         = 0\n  End_Group\nEnd_Object\n\nObject = cubeatt\n  IsisVersion       = \"7.0.0  | 2022-05-23\"\n  ProgramVersion    = 2014-04-07\n  ProgramPath       = /Users/jw/opt/anaconda3/envs/isis/bin\n  ExecutionDateTime = 2023-09-12T09:28:08\n  HostName          = Unknown\n  UserName          = jw\n  Description       = \"Cube attribute editor\"\n\n  Group = UserParameters\n    FROM       = phoebe_numimg.cub\n    TO         = /Users/JW/PDART20/PDS_PhoebeMathilde/products/Phoebe/phoebe_-\n                 numimg_c.cub+BandSequential\n    PROPTABLES = true\n  End_Group\nEnd_Object\n",
+  "storageDiagnostics": {
+    "count": 64800,
+    "finite": 64800,
+    "minimum": 0.0,
+    "maximum": 87.0,
+    "exactZero": 3278,
+    "negative": 0,
+    "nonIntegral": 0,
+    "belowFive": 3486
+  },
+  "limits": [
+    "Stored image counts do not establish independent useful views, sun/spacecraft-vector diversity, stereo constraints or physical accuracy.",
+    "Publisher caution for fewer than five images is not a reconstructed validity mask or calibrated per-pixel reliability threshold. Low-resolution inputs can contribute counts without constraining the solution.",
+    "Float storage and nonintegral values, if any, require resampling/aggregation crosswalk; do not silently round or repair source values.",
+    "Projection and sampling metadata are publisher conventions, not new angular/raster calculations or NASA3D registration.",
+    "Publication/processing dates are not raw observations; product/input/filter/UTC crosswalk and redistribution terms remain open.",
+    "No native alteration, embedding, adoption, dossier, catalogue, map/model or codec change.",
+    "Web label open failed; direct publisher downloads succeeded, no invented failed-response hash.",
+    "All stored values are integral0\u201387; integral representation does not establish independent useful images or reproduce the aggregation.",
+    "3278 zero bins match maxres999999 at every stored index only; neither completeness nor geographic registration is independently validated.",
+    "Visible/Grayscale label facets do not establish native calibrated visible imagery.",
+    "106500m planetocentric PositiveEast projection sphere and sampling are publisher conventions, not new physical-radius or raster geometry calculations.",
+    "2023Sep1/12 processing timestamps have no explicit timezone and are not observations; global-cov.grid.txt and smp180.map not acquired.",
+    "Full five-person bundle credit remains separate from one-author product; redistribution terms remain open, no CC licence asserted."
+  ],
+  "diagnostic": {
+    "path": "data/research-sources/phoebe-pds-numimg-diagnostic-2026-10-14.png",
+    "sha256": "dd343dcfa4749677172b4b99b1822dae1c0c2bb66d7b3708ee3fd8937dee54c3",
+    "transfer": "Fixed0\u201387stored images to grayscale0\u2013255 rounded, nearest3x. Zero remains black, no repaired mask or calibrated quality threshold.",
+    "visualInspection": "Whole fixed-transfer diagnostic inspected: dark upper band, bright lower/left regions and structured contrast elsewhere. Stored count structure is not terrain, albedo, calibrated visible colour or independently validated confidence."
+  },
+  "pointwiseStorageCrosswalk": {
+    "numimgZero": 3278,
+    "maxresExact999999": 3278,
+    "maskDifferences": 0,
+    "limit": "Stored bin-index masks agree only; not independent geographic registration, completeness, useful-view diversity or physical accuracy."
+  },
+  "sourceCredit": "Weirich, J.R.; Gaskell, R.; Palmer, E.E.; Domingue, D.L.; Hare, T.M. (2023), Phoebe SPC Shape Model and Assessment Products Bundle V1.0, NASA PDS, DOI10.26033/3k3c-5713. Product description authored John R. Weirich 2023-09-29.",
+  "labelConventions": {
+    "author": "Weirich, J.R.",
+    "publicationYear": 2023,
+    "target": "Saturn IX (Phoebe)",
+    "observationTimes": "nil/inapplicable",
+    "processingLevel": "Derived",
+    "units": "images",
+    "array": "IEEE754LSBSingle;180lines360samples;offset65536;scale1/base0;footer1677bytes at324736"
+  },
+  "verification": {
+    "testsPassed": 668,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15989379,
+    "headroomBytes": 10621,
+    "unchangedTrackedPublicHashes": 598,
+    "deliveredDossiers": 75,
+    "queueTasks": 566,
+    "browser": "No fresh browser verification or interbuild savings attribution."
+  }
+}
