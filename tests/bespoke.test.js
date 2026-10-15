@@ -215,3 +215,10 @@ test('Despina keeps its native N3 detection distinct from N5/N6 and unknown spin
  assert.match(v.contextImages[0].description,/N5 Thalassa.*N6 Naiad/);assert.match(v.modelled.join(' '),/density prior/);assert.match(v.unknown.join(' '),/CC BY-NC-ND3.0/);
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425');
 });
+
+test('Naiad separates orbital resonance and conditional strength from spin and terrain',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const m=MOONS.find(x=>x.id==='naiad'),v=bodyVisualFor(m);
+ assert.equal(v.id,'naiad');assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(m.surfacePending,true);assert.equal(v.surfaceMap,undefined);assert.equal(m.massKg,null);assert.equal(m.elements.i,4.7);
+ assert.match(v.modelled.join(' '),/not spin locking/);assert.match(v.modelled.join(' '),/conditional strength/);assert.match(v.contextImages[0].description,/Naiad1989N6/);
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425');
+});

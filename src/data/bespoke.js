@@ -12498,6 +12498,276 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "naiad": {
+    "id": "naiad",
+    "name": "Naiad",
+    "aliases": [
+      "Naiad",
+      "Neptune III",
+      "S/1989 N6",
+      "1989 N6"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Shared Voyager multibody context identifies Naiad1989N6, distinct DespinaN3/ThalassaN5; not local terrain.",
+    "measured": [
+      "Voyager2 detection context acquired1989, exactUTC/filter/exposure/rawproduct/originalrelease unverified; discoverySeptember1989 is not acquisitionUTC.",
+      "JPL NEP097 Laplace mean orbit epoch2000Jan1.5TDB:48200km/P.293980day/M89.7/i4.7/node41.4deg, nodalperiod.575yr,pole299.7,42.7. Roundedzero e/w/apsis not exact circularity or absence of perturbations."
+    ],
+    "modelled": [
+      "FreshJPL equivalent-volume29±6km, GM.00853±.00480km³/s², deriveddensity1.2511±1.0478g/cm³; not local normal, precise chemistry or porosity. massKg remains null.",
+      "Brozovic2019v3 adopted33±3km, fittedGM.0080±.0043 and deriveddensity.8±.48 retained separately; borderline mass sensitivity, no Naiad/Thalassa mass priors. Tentative Marchis Naiad data excluded; Voyager removal increases uncertainties >60percent.",
+      "2019 integratedICRF/barycentric least-squares orbits use NeptuneJ2/J4,Triton,planets/Sun,fixedpoleDE435/NEP081,fittedVoyager camera bias; not reproduced here. Table7 900-year meanfit2020Jan1TDB48228km/e.00014/freei4.728/Laplace.467/rate1222.858degday differs from current table; no element errors assigned, not datedscene.",
+      "Fourth-order73lambdaThalassa−69lambdaNaiad−4OmegaNaiad is orbital inclination resonance, not spin locking. Nominalcentre180/amplitude66deg/period1.9yr massdependent; alternateThalassaGM.03 gives46deg/1.7yr. South/south/north/north conjunction offsets not permanentfacing terrain.",
+      "Agrusa2026v1 adopts48±4/30±8/26±4km image semiaxes and synchronous spin for a tidal/centrifugal model; neither is an independent spin/shape observation. Nominal≥10kPa cohesion/friction35deg, densityaround1.3 or lesselongation alternatives are conditional strength requirements, not measuredcohesion/imminentdisruption.",
+      "OrderGyr age relies on initiallylowinclination, convergent tidal migration, uncertainNeptunek2/Q/masses/history. Earlier lower-ordercapture explanation retained; resonance-lock speculation not direct Neptune-mode detection.",
+      "Impact-rate1.2e-11yr for>10kmprojectiles is population-model output; uncertain small-objectSFD/crater scaling/disruption threshold. Asteroid/KBO/DART analogues are modelling proxies, never Naiad skins or measured material.",
+      "REBOUND/TRACE/ReboundX ejectamodel includes Neptune/Naiad/Thalassa/Despina/testparticles,J2/J4,SPICEinitialstates but omits othermoons/solartides/particleinteraction; nominal~800yr,1MPa run halted~200yr. SeveralMPa protection, monolithicfragment, erosion/PRremoval/fine-regolith alternatives are conditional, not detectedinterior/regoliththickness/ring/torus."
+    ],
+    "unknown": [
+      "Spin,locking,irregularnormal,physicalregistration,visiblecolour/photometry,localchemistry and atmosphere remain unverified. lockedfalse only disables automaticlocking, not measurednonsynchronousspin.",
+      "NativeexactUTC/filter/exposure/rawproduct/originalrelease/fullcontributorcrosswalk open;2023assetpath/2017publication/2024pageupdate not observations.",
+      "Naiad-only overviewNASAcredit lacks verifiedfulloriginalinstrument/teamcrosswalk and staysresearchonly; sharedNASA/JPLtrio used explicitly as multibodycontext.",
+      "No direct Naiad spectrum/localfractions here; Larissa/GalateaMg-clay interpretations and ProteusCO2 cannot be assigned to Naiad. No ocean/plume/biology established.",
+      "2019specificarXivnonexclusive NOTCCBY;2026specificrecordCCBY4 with ©ESO manuscriptheading retained, not blanket licence for citedpapers/code/images/finalpublication. No paperfigure embedded.",
+      "Final/revised2026paper,Aprilresonance-lockprimary,modelreproduction,exactSPICEkernelcrosswalk and originalKarkoschkaPSF/shapeaudit remain open."
+    ],
+    "assumed": [
+      "Independent terrain, relief, blocks/grains, material fractions, chemistry, grey colour, Neptune bands/cloud patterns, phase, colour, lighting and exposure invented; no observed map or analog skin reused.",
+      "Black sky and ring/star/Sun omission are artistic choices, not measured atmosphere/ring absence or calibrated transmission.",
+      "No dated Voyager site, verified synchronous spin or permanent Neptune-facing location. Axis/camera attitude, irregular shape/local normal, scene registration, phase, Neptune oblateness and atmospheric/spectral transfer remain open.",
+      "JPL radius29±6/GM.00853±.00480 versus paper33±3/.0080±.0043 and inherited ellipsoid alternatives preserved without catalogue change. Conditional cohesion, monolithic structure, Gyr age, erosion and regolith models are not measured depicted features.",
+      "No other-moon clay assignments or local spectral material map, foreground atmosphere, plume, liquid, exposed ocean, biology or survivable landing.",
+      "Small preview labels and patterns have limited readability; readable IMAGINED card labels required before integration.",
+      "All68 earlier dossiers, original PNGs, masters, native science/provenance, maps/models/shapes and recorded Clipper preview preserved. No69, new embedding, catalogue or codec change.",
+      "29±6 JPL radius and33±3 paper radius are retained alternatives, not silently reconciled or catalogue replacements. No original ingestion or measurement-difference cause established.",
+      "JPL GM differs from older paper; no new mass/density fit or local chemistry/porosity adopted.",
+      "Rounded e0.000 is not proof of perfect circularity; mean elements are not current instantaneous distances. Geometry alternatives are assumed heights, not a statistical uncertainty envelope.",
+      "48/30/26km semiaxes are inherited image-model estimates; equivalent radius does not establish local normal, terrain height or attitude.",
+      "Synchronous spin in Agrusa2026 is assumed; resonance in Brozovic2019 is orbital, not measured spin locking or permanent Neptune-facing terrain. Inclined orbit, phase and camera attitude remain open.",
+      "Spherical Neptune omits oblateness. Ring opening, atmospheric transfer, exposure, spectral transfer, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings must not imply absence.",
+      "Native Voyager unresolved geography, incomplete credit and acquisition/product crosswalk remain open. No other-moon clay spectrum assigned to Naiad. Cohesion/age/erosion/regolith survival models are not measured properties.",
+      "No ocean, plume, biology, survivable landing, resolved geography or calibrated photometry established.",
+      "All68 dossiers and original PNGs, masters, native science, provenance, recorded Clipper preview, maps/models/shapes preserved. Substantial conforming lossless headroom remains required.",
+      "All terrain/blocks/grains/materialfractions/greycolour/Neptunebands/clouds/phase/axis/light/exposure independently invented. No analog/date/Voyagersite/foreatmplumeliquidoceanbiology/survivablelanding; black/ringomission not measuredabsence.",
+      "Prepared renderedNeptune cropped/foregroundoccluded/oversizeduncalibrated; no calibrated rasterdiameter adopted. Tiny footers require readable IMAGINEDcardlabels."
+    ],
+    "references": [
+      {
+        "title": "Naiad moon-preparation source",
+        "url": "https://science.nasa.gov/neptune/moons/naiad/"
+      },
+      {
+        "title": "Naiad moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Naiad-732X520.jpg"
+      },
+      {
+        "title": "Naiad moon-preparation source",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Naiad moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg"
+      },
+      {
+        "title": "Naiad primary-orbit-assessment source",
+        "url": "https://arxiv.org/pdf/1910.13612v3"
+      },
+      {
+        "title": "Naiad primary-orbit-assessment source",
+        "url": "https://arxiv.org/abs/1910.13612v3"
+      },
+      {
+        "title": "Specific primary manuscript distribution terms",
+        "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html"
+      },
+      {
+        "title": "Naiad survival-primary-assessment source",
+        "url": "https://arxiv.org/pdf/2609.21714v1"
+      },
+      {
+        "title": "Naiad survival-primary-assessment source",
+        "url": "https://arxiv.org/abs/2609.21714v1"
+      },
+      {
+        "title": "Naiad observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Naiad observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/despina-trio-native.jpg",
+        "url": "/bespoke/naiad-voyager-native.jpg",
+        "bytes": 169897,
+        "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+        "sourceUrl": "https://science.nasa.gov/neptune/moons/naiad/",
+        "width": 732,
+        "height": 520,
+        "tier": "measured",
+        "credit": "NASA/JPL",
+        "observationDate": "1989",
+        "publicationDate": null,
+        "observationDateNote": "Observationyear only; exactUTC/rawproduct/originalrelease unverified. September1989 discovery distinct.",
+        "terms": "NASAmedia terms/thirdparty exceptions; not assertedCCBY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "processing": "Unchanged fullNASA-served732x520JPEG, noresize/reencoding. Shared multibodycontext, not terrain/axes/calibratedvisiblecolour.",
+        "description": "ActualVoyager2 multibodycontext: Naiad1989N6, distinct Despina1989N3 and Thalassa1989N5. Circles/noise/glare/orbitalstreaks not rocks/shape."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL NAIAD TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM NAIAD",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "body": "Naiad",
+      "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/naiad-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/naiad-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+        }
+      ],
+      "parameters": {
+        "jplRadiusKm": 29,
+        "jplRadiusUncertaintyKm": 6,
+        "radiusReference": "Archinal et al.2018, JPL reference1; equivalent-volume radius, not local normal",
+        "jplGmKm3s2": 0.00853,
+        "jplGmUncertainty": 0.0048,
+        "gmReference": "NEP097; distinct from Brozovic2019 .0080 ± .0043",
+        "paperEffectiveRadiusKm": 33,
+        "paperRadiusUncertaintyKm": 3,
+        "paperShapeSemiaxesKm": [
+          48,
+          30,
+          26
+        ],
+        "semimajorAxisKm": 48200,
+        "orbitalPeriodDays": 0.29398,
+        "roundedEccentricity": 0,
+        "inclinationDeg": 4.7,
+        "epoch": "2000-01-01.5 TDB",
+        "frame": "Local Laplace plane",
+        "ephemeris": "NEP097",
+        "reference": "Brozovic2020 inner Neptunian satellite update, personal communication to Horizons/NAIF; table reference, not newly audited solution",
+        "olderPaperAlternative": "Brozovic2019 Table7: a48228km, e.00014, free inclination4.728deg, epoch2020Jan1TDB; not interchangeable epoch/fit",
+        "neptuneMeanRadiusKm": 24622
+      },
+      "assumptions": {
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded",
+        "site": "Hypothetical Neptune-facing point using radius as height; not registered irregular normal or dated ephemeris"
+      },
+      "geometries": [
+        {
+          "assumedHeightKm": 29,
+          "distanceKm": 48171,
+          "angularDiameterDeg": 61.479243086447404,
+          "targetWidthPixels1672": 994.32545158135
+        },
+        {
+          "assumedHeightKm": 33,
+          "distanceKm": 48167,
+          "angularDiameterDeg": 61.48490237297103,
+          "targetWidthPixels1672": 994.4372324085991
+        }
+      ],
+      "method": "All angular and target raster widths computed with src/astro/appearance.js skyGeometry. radiusSun=24622/695700; distanceAU=(48200-height)/149597870.7.",
+      "limitations": [
+        "29±6 JPL radius and33±3 paper radius are retained alternatives, not silently reconciled or catalogue replacements. No original ingestion or measurement-difference cause established.",
+        "JPL GM differs from older paper; no new mass/density fit or local chemistry/porosity adopted.",
+        "Rounded e0.000 is not proof of perfect circularity; mean elements are not current instantaneous distances. Geometry alternatives are assumed heights, not a statistical uncertainty envelope.",
+        "48/30/26km semiaxes are inherited image-model estimates; equivalent radius does not establish local normal, terrain height or attitude.",
+        "Synchronous spin in Agrusa2026 is assumed; resonance in Brozovic2019 is orbital, not measured spin locking or permanent Neptune-facing terrain. Inclined orbit, phase and camera attitude remain open.",
+        "Spherical Neptune omits oblateness. Ring opening, atmospheric transfer, exposure, spectral transfer, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings must not imply absence.",
+        "Native Voyager unresolved geography, incomplete credit and acquisition/product crosswalk remain open. No other-moon clay spectrum assigned to Naiad. Cohesion/age/erosion/regolith survival models are not measured properties.",
+        "No ocean, plume, biology, survivable landing, resolved geography or calibrated photometry established.",
+        "All68 dossiers and original PNGs, masters, native science, provenance, recorded Clipper preview, maps/models/shapes preserved. Substantial conforming lossless headroom remains required."
+      ],
+      "validation": {
+        "base": "67da5d7, before concurrent c204fff App Store changes",
+        "tests": "523 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16058469,
+        "overBudgetBytes": 58469,
+        "preservation": "All550 tracked public files byte-identical to HEAD, including405 protected imagery/model/texture/shape assets; registry68 unchanged, queue566. Original PNGs/masters/native/provenance and recorded Clipper preview retained.",
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "Interbuild differences unaudited; no savings attribution.",
+        "concurrency": "Concurrent c204fff will be rebased after these checks; combined application requires subsequent verification."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/naiad-surface-image.jpg",
+      "previewUrl": "/bespoke/naiad-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "naiad-generated-surfaceImage-original.png",
+      "sourceSha256": "c4996de50f7b76fa310d108c01f615311a99c74c964d7f7a819ceaaed4625957",
+      "sha256": "44ac97a566d78c158980e0cb7dda3e10de56785eec34b624989f34730e86184b",
+      "previewSha256": "dd23a76cdfdda24dc21637e033fda513b2b73273fc06af2a446b88d2049d138e",
+      "bytes": 284694,
+      "previewBytes": 10312,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/naiad-sky-image.jpg",
+      "previewUrl": "/bespoke/naiad-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "naiad-generated-skyImage-original.png",
+      "sourceSha256": "0a955ab67afe16a4fb2d00ac7c51c50a6380bec89a6ea5cc567ebcc47bd5966e",
+      "sha256": "bbf59b210a7b7f10ddefb02d32b1f5f556139323fa39f97ec0676fc09c104e1c",
+      "previewSha256": "a351f31f1cc1e25ab9e7a4cb6d7c911a42cc63974467a268c09ae77e016bdd4b",
+      "bytes": 182539,
+      "previewBytes": 6785,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
