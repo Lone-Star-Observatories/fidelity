@@ -1,0 +1,925 @@
+{
+  "date": "2026-10-15",
+  "body": "Phoebe",
+  "status": "research-only archive version crosswalk; no production adoption",
+  "credits": {
+    "rawArchive": "NASA/JPL Cassini-Huygens VIMS archive; VIMS instrument team, NASA/Caltech-JPL/University of Arizona",
+    "separateDerivative": "NASA/Caltech-JPL/University of Arizona/Osuna-CNRS-Nantes Université",
+    "separatePaper": [
+      "Wesley C. Fraser",
+      "Michael E. Brown"
+    ]
+  },
+  "findings": [
+    "Direct archive directory lists both v1465680977_2 and _5 detached labels and QUB files. Both unchanged raw downloads are retained with hashes. The volume index selected _5; that index is not an exhaustive directory version inventory.",
+    "Detached labels share PRODUCT_ID 1_1465680977.13981, instrument start/stop times and CORE_ITEMS (48,352,48), but _2 is labelled FINAL and _5 PRELIMINARY. Suffix number alone is not chronological or scientific priority.",
+    "The _2 detached label reports MISSING_PIXELS 0, versus 12288 for _5. Checksums, creation times, clock-stop and housekeeping metadata also differ. These are publisher claims, not an independently decoded missing-sample count.",
+    "Whole raw files differ. The equally sized trailing regions beginning at the one-based QUBE pointer 24065 have 21999 differing bytes in 2884 contiguous runs. This establishes nonidentity beyond the header, without independently assigning differences to core samples or suffix housekeeping.",
+    "Both downloaded QUB files are 1751552 bytes; FILE_RECORDS 3422 times RECORD_BYTES 512 declares 1752064 bytes, 512 more. Cause remains open and no padding, repair or truncation applied.",
+    "Detached DATA_SET_ID CO-E/V/J/S-VIMS-2-QUBE-V1.0 remains distinct from embedded original-header CO-S-VIMS-2-EDR-V1.0. Metadata representation and later attached ISIS labels are not byte identity.",
+    "Archive errata are historical statements, including calibration-review status at DVD creation; they do not establish present-day calibration status or explain this record-count discrepancy."
+  ],
+  "limits": [
+    "Printed Fraser/Brown _2 versus Nantes _5 is now a demonstrated raw-byte version distinction; exact authors’ working files, preprocessing, RC17 fitted analysis and reasons for version differences remain open.",
+    "No scientific superiority, corruption diagnosis, core/suffix decoding, raw-pixel validity, missing-packet explanation, radiometric reproduction, camera timing or SPICE coverage independently established.",
+    "No calibrated visible colour, local chemistry fractions, resolved geography, current frame, native NASA3D registration or physical shape adopted.",
+    "Portal CC BY 4.0 statement is not automatically a licence for raw archive, paper or third-party content; exact redistribution terms remain body/product specific. ArXiv nonexclusive remains distinct from CC BY.",
+    "Historical pending statements in retained preparation evidence are checkpoints superseded only by the explicit findings above.",
+    "All originals, generated PNGs, masters, native maps, science, dossiers, GLB/shape and provenance remain preserved. No new dossier, embedding, catalogue or codec change."
+  ],
+  "sources": [
+    {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_2.qub",
+      "path": "data/research-sources/phoebe-vims-pds-v1465680977_2-original-2026-10-15.qub",
+      "bytes": 1751552,
+      "sha256": "50b58242c8c44291e69d10faafab1aa423f85dfe4717f92cb564757af013f9e9"
+    },
+    {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_2.lbl",
+      "path": "data/research-sources/phoebe-vims-pds-v1465680977_2.lbl-original-2026-10-15.txt",
+      "bytes": 6198,
+      "sha256": "69a9a277d38656c792051086aa9a8e6387154c68f7b8b24d59fe999323acc2bc"
+    },
+    {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_5.qub",
+      "path": "data/research-sources/phoebe-vims-pds-v1465680977_5-original-2026-10-15.qub",
+      "bytes": 1751552,
+      "sha256": "acfae3824a0bd34ecb93eb62c98f9ce51da0c8104a4f281f0ead80c9d80c2eff"
+    },
+    {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_5.lbl",
+      "path": "data/research-sources/phoebe-vims-pds-v1465680977_5.lbl-original-2026-10-15.txt",
+      "bytes": 6208,
+      "sha256": "05d0f1fa33d15b2ef718e8e1ad0634326e5f50ed79b51fee5228494834cace7c"
+    }
+  ],
+  "detachedLabelFields": {
+    "2": {
+      "DATA_SET_ID": "\"CO-E/V/J/S-VIMS-2-QUBE-V1.0\"",
+      "PRODUCT_ID": "\"1_1465680977.13981\"",
+      "PRODUCT_VERSION_TYPE": "\"FINAL\"",
+      "PRODUCT_CREATION_TIME": "2004-164T21:20:37.000",
+      "MISSING_PIXELS": "0",
+      "CHECKSUM": "3351735425",
+      "SPACECRAFT_CLOCK_STOP_COUNT": "\"1/1465681935.033\"",
+      "START_TIME": "2004-163T21:12:13.530",
+      "STOP_TIME": "2004-163T21:27:49.597",
+      "HOUSEKEEPING_CLOCK_COUNT": "1465681923.131",
+      "EARTH_RECEIVED_STOP_TIME": "2004-164T21:24:32.701",
+      "INST_CMPRS_RATIO": "4.229816",
+      "DETECTOR_TEMPERATURE": "(59.478989,58.395336,233.435440)",
+      "INSTRUMENT_TEMPERATURE": "(130.267487,129.860535)"
+    },
+    "5": {
+      "DATA_SET_ID": "\"CO-E/V/J/S-VIMS-2-QUBE-V1.0\"",
+      "PRODUCT_ID": "\"1_1465680977.13981\"",
+      "PRODUCT_VERSION_TYPE": "\"PRELIMINARY\"",
+      "PRODUCT_CREATION_TIME": "2004-164T14:56:44.000",
+      "MISSING_PIXELS": "12288",
+      "CHECKSUM": "2669298104",
+      "SPACECRAFT_CLOCK_STOP_COUNT": "\"1/1465681916.099\"",
+      "START_TIME": "2004-163T21:12:13.530",
+      "STOP_TIME": "2004-163T21:27:49.597",
+      "HOUSEKEEPING_CLOCK_COUNT": "1465681859.132",
+      "EARTH_RECEIVED_STOP_TIME": "2004-164T21:24:28.944",
+      "INST_CMPRS_RATIO": "4.235287",
+      "DETECTOR_TEMPERATURE": "(59.478989,58.030975,233.435440)",
+      "INSTRUMENT_TEMPERATURE": "(130.789932,129.860535)"
+    }
+  },
+  "comparison": {
+    "otherSuffix": "_5",
+    "wholeFileEqual": false,
+    "labelPointedStartByteOneBased": 24065,
+    "trailingRegionBytes2": 1727488,
+    "trailingRegionBytes5": 1727488,
+    "trailingRegionSha2562": "ed85f9286d9a33a5c0fd588c53780cae8b244a7bb728fbda7bd03e5334298d5a",
+    "trailingRegionSha2565": "1dc465c14114e3bc78e8da25a95a2e49c320263c127d3582baffcecd934cdb7e",
+    "trailingRegionByteEqual": false,
+    "sameLengthDifferingBytes": 21999
+  },
+  "evidence": {
+    "phoebe-vims-pds-volume-access-preparation": {
+      "status": "research-only access preparation",
+      "retrievedAt": "2026-10-15T07:05:32.494423+00:00",
+      "source": {
+        "url": "https://pds-imaging.jpl.nasa.gov/volumes/vims.html",
+        "finalUrl": "https://pds-imaging.jpl.nasa.gov/volumes/vims.html",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/phoebe-vims-pds-volume-access-response-2026-10-15.html",
+        "bytes": 86322,
+        "responseSha256": "ec215813c061ede42cd8e616772ae12d81b3330ed6d68322c6b7518be19bf507"
+      },
+      "interpretation": [
+        "Direct urllib HTTP200 successfully retained volume-index HTML after web tool HTTP403. Different access results are preserved; this is not a raw product or label.",
+        "Response hash is not a science-product hash. Linked volume and mirror inventory does not establish a specific raw product path, byte identity or paper _2/portal _5 association."
+      ],
+      "next": "Inspect dated volume coverage and exact product index before raw retrieval; preserve all existing derivatives.",
+      "preservation": "No delivered asset, native byte, dossier, map, model, shape, catalogue, provenance or codec changed.",
+      "linkedVolumeInventory": [
+        "/data/cassini/cassini_orbiter/covims_unks/",
+        "/data/cassini/cassini_orbiter/covims_unks.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0001/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0001/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0001/",
+        "/data/cassini/cassini_orbiter/covims_0001.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0002/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0002/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0002/",
+        "/data/cassini/cassini_orbiter/covims_0002.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0003/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0003/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0003/",
+        "/data/cassini/cassini_orbiter/covims_0003.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0004/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0004/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0004/",
+        "/data/cassini/cassini_orbiter/covims_0004.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0005/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0005/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0005/",
+        "/data/cassini/cassini_orbiter/covims_0005.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0006/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0006/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0006/",
+        "/data/cassini/cassini_orbiter/covims_0006.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0007/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0007/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0007/",
+        "/data/cassini/cassini_orbiter/covims_0007.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0008/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0008/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0008/",
+        "/data/cassini/cassini_orbiter/covims_0008.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0009/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0009/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0009/",
+        "/data/cassini/cassini_orbiter/covims_0009.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0010/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0010/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0010/",
+        "/data/cassini/cassini_orbiter/covims_0010.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0011/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0011/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0011/",
+        "/data/cassini/cassini_orbiter/covims_0011.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0012/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0012/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0012/",
+        "/data/cassini/cassini_orbiter/covims_0012.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0013/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0013/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0013/",
+        "/data/cassini/cassini_orbiter/covims_0013.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0014/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0014/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0014/",
+        "/data/cassini/cassini_orbiter/covims_0014.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0015/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0015/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0015/",
+        "/data/cassini/cassini_orbiter/covims_0015.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0016/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0016/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0016/",
+        "/data/cassini/cassini_orbiter/covims_0016.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0017/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0017/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0017/",
+        "/data/cassini/cassini_orbiter/covims_0017.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0018/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0018/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0018/",
+        "/data/cassini/cassini_orbiter/covims_0018.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0019/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0019/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0019/",
+        "/data/cassini/cassini_orbiter/covims_0019.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0020/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0020/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0020/",
+        "/data/cassini/cassini_orbiter/covims_0020.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0021/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0021/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0021/",
+        "/data/cassini/cassini_orbiter/covims_0021.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0022/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0022/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0022/",
+        "/data/cassini/cassini_orbiter/covims_0022.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0023/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0023/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0023/",
+        "/data/cassini/cassini_orbiter/covims_0023.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0024/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0024/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0024/",
+        "/data/cassini/cassini_orbiter/covims_0024.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0025/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0025/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0025/",
+        "/data/cassini/cassini_orbiter/covims_0025.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0026/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0026/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0026/",
+        "/data/cassini/cassini_orbiter/covims_0026.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0027/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0027/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0027/",
+        "/data/cassini/cassini_orbiter/covims_0027.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0028/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0028/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0028/",
+        "/data/cassini/cassini_orbiter/covims_0028.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0029/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0029/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0029/",
+        "/data/cassini/cassini_orbiter/covims_0029.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0030/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0030/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0030/",
+        "/data/cassini/cassini_orbiter/covims_0030.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0031/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0031/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0031/",
+        "/data/cassini/cassini_orbiter/covims_0031.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0032/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0032/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0032/",
+        "/data/cassini/cassini_orbiter/covims_0032.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0033/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0033/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0033/",
+        "/data/cassini/cassini_orbiter/covims_0033.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0034/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0034/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0034/",
+        "/data/cassini/cassini_orbiter/covims_0034.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0035/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0035/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0035/",
+        "/data/cassini/cassini_orbiter/covims_0035.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0036/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0036/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0036/",
+        "/data/cassini/cassini_orbiter/covims_0036.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0037/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0037/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0037/",
+        "/data/cassini/cassini_orbiter/covims_0037.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0038/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0038/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0038/",
+        "/data/cassini/cassini_orbiter/covims_0038.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0039/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0039/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0039/",
+        "/data/cassini/cassini_orbiter/covims_0039.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0040/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0040/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0040/",
+        "/data/cassini/cassini_orbiter/covims_0040.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0041/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0041/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0041/",
+        "/data/cassini/cassini_orbiter/covims_0041.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0042/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0042/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0042/",
+        "/data/cassini/cassini_orbiter/covims_0042.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0043/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0043/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0043/",
+        "/data/cassini/cassini_orbiter/covims_0043.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0044/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0044/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0044/",
+        "/data/cassini/cassini_orbiter/covims_0044.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0045/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0045/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0045/",
+        "/data/cassini/cassini_orbiter/covims_0045.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0046/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0046/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0046/",
+        "/data/cassini/cassini_orbiter/covims_0046.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0047/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0047/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0047/",
+        "/data/cassini/cassini_orbiter/covims_0047.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0048/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0048/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0048/",
+        "/data/cassini/cassini_orbiter/covims_0048.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0049/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0049/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0049/",
+        "/data/cassini/cassini_orbiter/covims_0049.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0050/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0050/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0050/",
+        "/data/cassini/cassini_orbiter/covims_0050.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0051/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0051/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0051/",
+        "/data/cassini/cassini_orbiter/covims_0051.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0052/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0052/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0052/",
+        "/data/cassini/cassini_orbiter/covims_0052.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0053/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0053/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0053/",
+        "/data/cassini/cassini_orbiter/covims_0053.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0054/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0054/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0054/",
+        "/data/cassini/cassini_orbiter/covims_0054.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0055/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0055/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0055/",
+        "/data/cassini/cassini_orbiter/covims_0055.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0056/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0056/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0056/",
+        "/data/cassini/cassini_orbiter/covims_0056.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0057/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0057/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0057/",
+        "/data/cassini/cassini_orbiter/covims_0057.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0058/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0058/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0058/",
+        "/data/cassini/cassini_orbiter/covims_0058.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0059/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0059/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0059/",
+        "/data/cassini/cassini_orbiter/covims_0059.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0060/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0060/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0060/",
+        "/data/cassini/cassini_orbiter/covims_0060.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0061/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0061/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0061/",
+        "/data/cassini/cassini_orbiter/covims_0061.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0062/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0062/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0062/",
+        "/data/cassini/cassini_orbiter/covims_0062.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0063/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0063/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0063/",
+        "/data/cassini/cassini_orbiter/covims_0063.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0064/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0064/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0064/",
+        "/data/cassini/cassini_orbiter/covims_0064.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0065/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0065/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0065/",
+        "/data/cassini/cassini_orbiter/covims_0065.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0066/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0066/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0066/",
+        "/data/cassini/cassini_orbiter/covims_0066.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0067/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0067/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0067/",
+        "/data/cassini/cassini_orbiter/covims_0067.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0068/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0068/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0068/",
+        "/data/cassini/cassini_orbiter/covims_0068.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0069/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0069/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0069/",
+        "/data/cassini/cassini_orbiter/covims_0069.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0070/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0070/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0070/",
+        "/data/cassini/cassini_orbiter/covims_0070.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0071/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0071/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0071/",
+        "/data/cassini/cassini_orbiter/covims_0071.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0072/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0072/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0072/",
+        "/data/cassini/cassini_orbiter/covims_0072.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0073/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0073/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0073/",
+        "/data/cassini/cassini_orbiter/covims_0073.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0074/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0074/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0074/",
+        "/data/cassini/cassini_orbiter/covims_0074.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0075/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0075/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0075/",
+        "/data/cassini/cassini_orbiter/covims_0075.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0076/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0076/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0076/",
+        "/data/cassini/cassini_orbiter/covims_0076.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0077/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0077/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0077/",
+        "/data/cassini/cassini_orbiter/covims_0077.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0078/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0078/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0078/",
+        "/data/cassini/cassini_orbiter/covims_0078.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0079/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0079/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0079/",
+        "/data/cassini/cassini_orbiter/covims_0079.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0080/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0080/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0080/",
+        "/data/cassini/cassini_orbiter/covims_0080.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0081/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0081/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0081/",
+        "/data/cassini/cassini_orbiter/covims_0081.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0082/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0082/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0082/",
+        "/data/cassini/cassini_orbiter/covims_0082.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0083/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0083/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0083/",
+        "/data/cassini/cassini_orbiter/covims_0083.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0084/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0084/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0084/",
+        "/data/cassini/cassini_orbiter/covims_0084.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0085/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0085/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0085/",
+        "/data/cassini/cassini_orbiter/covims_0085.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0086/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0086/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0086/",
+        "/data/cassini/cassini_orbiter/covims_0086.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0087/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0087/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0087/",
+        "/data/cassini/cassini_orbiter/covims_0087.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0088/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0088/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0088/",
+        "/data/cassini/cassini_orbiter/covims_0088.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0089/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0089/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0089/",
+        "/data/cassini/cassini_orbiter/covims_0089.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0090/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0090/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0090/",
+        "/data/cassini/cassini_orbiter/covims_0090.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0091/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0091/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0091/",
+        "/data/cassini/cassini_orbiter/covims_0091.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0092/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0092/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0092/",
+        "/data/cassini/cassini_orbiter/covims_0092.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0093/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0093/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0093/",
+        "/data/cassini/cassini_orbiter/covims_0093.tar.gz",
+        "/data/cassini/cassini_orbiter/covims_0094/",
+        "https://pdsimage2.wr.usgs.gov/Cassini/VIMS/covims_0094/",
+        "https://pds-rings.seti.org/volumes/COVIMS_0xxx/COVIMS_0094/",
+        "/data/cassini/cassini_orbiter/covims_0094.tar.gz"
+      ]
+    },
+    "phoebe-vims-jpl-volume4-directory-access-preparation": {
+      "purpose": "Read-only access to third Volume 4 link retained from primary VIMS volume index",
+      "url": "https://pds-imaging.jpl.nasa.gov/data/cassini/cassini_orbiter/covims_0004/",
+      "retrievedUtc": "2026-10-15T07:50:14.581385+00:00",
+      "limitations": [
+        "Volume date coverage is not exact Phoebe raw-product identity.",
+        "Paper _2 versus Nantes _5 crosswalk, raw calibration and map registration remain open.",
+        "No production asset, dossier or codec changed."
+      ],
+      "status": 200,
+      "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/",
+      "contentType": "text/html;charset=UTF-8",
+      "bytes": 7821,
+      "sha256": "7109a339cb3fcb79a9051ff2a69821e9f5235ef4ab846baa85619cde66c370c5",
+      "retainedResponse": "data/research-sources/phoebe-vims-jpl-volume4-directory-response-2026-10-15.html",
+      "hrefs": [
+        "?C=N;O=D",
+        "?C=M;O=A",
+        "?C=S;O=A",
+        "?C=D;O=A",
+        "/data/cassini/cassini_orbiter/",
+        "aareadme.txt",
+        "calib/",
+        "catalog/",
+        "data/",
+        "document/",
+        "errata.txt",
+        "extras/",
+        "index/",
+        "label/",
+        "software/",
+        "voldesc.cat",
+        "/feedback.html",
+        "http://www.jpl.nasa.gov/copyrights.cfm",
+        "http://www.jpl.nasa.gov/imagepolicy/",
+        "mailto:Michael.McAuley@jpl.nasa.gov",
+        "mailto:thare@usgs.gov",
+        "mailto:Rafael.Alanis@jpl.nasa.gov"
+      ]
+    },
+    "phoebe-vims-jpl-volume4-index-preparation": {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/",
+      "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/",
+      "retrievedUtc": "2026-10-15T07:50:24.306107+00:00",
+      "bytes": 6008,
+      "sha256": "58c89bd0d208ee881e9c93c9463f17c6bf05a69cc2bb75e73bef3e3a24eff852",
+      "retainedResponse": "data/research-sources/phoebe-vims-jpl-volume4-index-response-2026-10-15.html",
+      "hrefs": [
+        "?C=N;O=D",
+        "?C=M;O=A",
+        "?C=S;O=A",
+        "?C=D;O=A",
+        "/data/cassini/cassini_orbiter/covims_0004/",
+        "cumindex.lbl",
+        "cumindex.tab",
+        "index.lbl",
+        "index.tab",
+        "indxinfo.txt",
+        "/feedback.html",
+        "http://www.jpl.nasa.gov/copyrights.cfm",
+        "http://www.jpl.nasa.gov/imagepolicy/",
+        "mailto:Michael.McAuley@jpl.nasa.gov",
+        "mailto:thare@usgs.gov",
+        "mailto:Rafael.Alanis@jpl.nasa.gov"
+      ],
+      "limitations": [
+        "Directory inventory only; no raw product identity or calibration claim."
+      ]
+    },
+    "phoebe-vims-volume4-index-product-preparation": {
+      "retrievedUtc": "2026-10-15T08:05:14.530406+00:00",
+      "sources": [
+        {
+          "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/index.lbl",
+          "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/index.lbl",
+          "bytes": 27415,
+          "sha256": "a3ae5ae70ef49d7f3164be90910b301767b8e8b03b1e805d7288aa840d046d8b",
+          "path": "data/research-sources/phoebe-vims-volume4-index.lbl-original-2026-10-15.txt"
+        },
+        {
+          "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/index.tab",
+          "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/index/index.tab",
+          "bytes": 5493312,
+          "sha256": "7fb3e2a7d91d8ea1bcf6cce648fb11f23c93e6c8df1c8b37144bc16efc0250eb",
+          "path": "data/research-sources/phoebe-vims-volume4-index.tab-original-2026-10-15.txt",
+          "matchingRows": [
+            "\"v1465680977_5.qub        \",\"/data/2004163T193015_2004164T051726\",\"S01\",2004-06-11T21:12:13.530,2004-06-11T21:27:49.597,\"1465680977.223      \",\"1465681913.240      \",\"PHOEBE                        \",\"IMAGE               \",\"VIMS_000PH_PHOEBE053          \",\"OFF\",\"OFF\",\"OFF\",48,48,   380.000,\"HI-RES  \", 18000.000,\"HI-RES  \",\"1/1465680977_5        \",\"COVIMS_0004\",     -1.E32,     -1.E32, 11302931.9606,\"EQUATORIAL INERTIAL CART COORD  \",  -2.713346,     -1.E32,     -1.E32,     -1.E32,     -1.E32,     -1.E32,     -1.E32,        +1.E32,        +1.E32,     -1.E32,  90.018055,  10.022989,    30.0587,    26.6376, 196.939121,     -1.E32,     -1.E32, 8798179.29731, 6828958.67105, 1927079.50703,    -4.6518336,    -3.3351799,    -1.0138002, 376612396.062,-1190489938.97,-508439697.444,     5.1633127,    -0.7225050,    -0.3571828,-38899.8024558,-11485.1186697, -1956.9031375,    -5.9795547,    -2.1209735,    -0.2956876, -12.845319,  23.003765,  22.494815, 298.402003, 40607.0443624,   0.000000,     +1.E32, -90.000000, 360.000000, 272.161519,     -1.E32,     -1.E32,     -1.E32,     -1.E32",
+            "\"v1465700253_9.qub        \",\"/data/2004163T193015_2004164T051726\",\"S01\",2004-06-12T02:33:29.407,2004-06-12T02:37:27.677,\"1465700253.223      \",\"1465700492.037      \",\"PHOEBE                        \",\"IMAGE               \",\"VIMS_000PH_PHOEBE054          \",\"OFF\",\"OFF\",\"OFF\",24,24,   640.000,\"HI-RES  \", 15000.000,\"HI-RES  \",\"1/1465700253_9        \",\"COVIMS_0004\",     -1.E32,     -1.E32, 11192932.4115,\"EQUATORIAL INERTIAL CART COORD  \",  -2.535199,     -1.E32,     -1.E32,     -1.E32,     -1.E32,     -1.E32,     -1.E32,        +1.E32,        +1.E32,     -1.E32,  92.113955,  39.763779,    14.8740,     2.1073, 198.975996,     -1.E32,     -1.E32, 8710090.10904, 6765800.35197, 1907881.51031,    -4.6562115,    -3.3385085,    -1.0147757, 376710099.603,-1190503628.99,-508446461.868,     5.1585073,    -0.7247131,    -0.3576285,-152071.023361,-51627.7901128, -7553.3326449,    -5.9796155,    -2.1210423,    -0.2957091, -12.841727, 227.078025,  22.079156, 140.038163, 160773.373703,   0.000000,     +1.E32, -90.000000, 360.000000, 337.785929,     -1.E32,     -1.E32,     -1.E32,     -1.E32"
+          ]
+        }
+      ],
+      "limitations": [
+        "Index rows are publisher associations, not raw QUB byte identity, calibrated derivative equivalence, paper-version suffix reconciliation or map registration.",
+        "No production inputs changed."
+      ]
+    },
+    "phoebe-vims-pds-raw-access-preparation": {
+      "retrievedUtc": "2026-10-15T08:05:30.571768+00:00",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_5.qub",
+      "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_5.qub",
+      "bytes": 1751552,
+      "sha256": "acfae3824a0bd34ecb93eb62c98f9ce51da0c8104a4f281f0ead80c9d80c2eff",
+      "path": "data/research-sources/phoebe-vims-pds-v1465680977_5-original-2026-10-15.qub",
+      "association": "Path derived from retained COVIMS_0004 index row, not guessed.",
+      "limitations": [
+        "Raw byte acquisition only; label/payload crosswalk to Nantes derivative and paper _2 versus _5 version relationship remain to audit.",
+        "No calibrated colour, registration, licence transfer or production adoption."
+      ]
+    },
+    "phoebe-vims-volume4-product-directory-preparation": {
+      "retrievedUtc": "2026-10-15T08:50:13.215324+00:00",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/",
+      "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/",
+      "bytes": 48463,
+      "sha256": "c703b4b30117760bbf95076d08c5346e8d65adac1c1382e4d42fcfd7a8756f9b",
+      "retainedResponse": "data/research-sources/phoebe-vims-volume4-product-directory-response-2026-10-15.html",
+      "matchingHrefs": [
+        "v1465680977_2.lbl",
+        "v1465680977_2.lbl",
+        "v1465680977_2.qub",
+        "v1465680977_2.qub",
+        "v1465680977_5.lbl",
+        "v1465680977_5.lbl",
+        "v1465680977_5.qub",
+        "v1465680977_5.qub",
+        "v1465700253_2.lbl",
+        "v1465700253_2.lbl",
+        "v1465700253_2.qub",
+        "v1465700253_2.qub",
+        "v1465700253_9.lbl",
+        "v1465700253_9.lbl",
+        "v1465700253_9.qub",
+        "v1465700253_9.qub"
+      ],
+      "limitations": [
+        "Directory listing only, no suffix-version reconciliation or raw payload completeness claim.",
+        "No production inputs changed."
+      ]
+    },
+    "phoebe-vims-pds-suffix-label-comparison-preparation": {
+      "retrievedUtc": "2026-10-15T08:50:27.091430+00:00",
+      "sources": [
+        {
+          "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_2.lbl",
+          "path": "data/research-sources/phoebe-vims-pds-v1465680977_2.lbl-original-2026-10-15.txt",
+          "bytes": 6198,
+          "sha256": "69a9a277d38656c792051086aa9a8e6387154c68f7b8b24d59fe999323acc2bc",
+          "fields": {
+            "PRODUCT_ID": [
+              "\"1_1465680977.13981\""
+            ],
+            "PRODUCT_VERSION_TYPE": [
+              "\"FINAL\""
+            ],
+            "PRODUCT_CREATION_TIME": [
+              "2004-164T21:20:37.000"
+            ],
+            "START_TIME": [
+              "2004-163T21:12:13.530"
+            ],
+            "STOP_TIME": [
+              "2004-163T21:27:49.597"
+            ],
+            "CORE_ITEMS": [
+              "(48,352,48)"
+            ],
+            "FILE_RECORDS": [
+              "3422"
+            ],
+            "RECORD_BYTES": [
+              "512"
+            ],
+            "LABEL_RECORDS": [],
+            "^QUBE": [
+              "(\"v1465680977_2.qub\", 48)"
+            ]
+          }
+        },
+        {
+          "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_5.lbl",
+          "path": "data/research-sources/phoebe-vims-pds-v1465680977_5.lbl-original-2026-10-15.txt",
+          "bytes": 6208,
+          "sha256": "05d0f1fa33d15b2ef718e8e1ad0634326e5f50ed79b51fee5228494834cace7c",
+          "fields": {
+            "PRODUCT_ID": [
+              "\"1_1465680977.13981\""
+            ],
+            "PRODUCT_VERSION_TYPE": [
+              "\"PRELIMINARY\""
+            ],
+            "PRODUCT_CREATION_TIME": [
+              "2004-164T14:56:44.000"
+            ],
+            "START_TIME": [
+              "2004-163T21:12:13.530"
+            ],
+            "STOP_TIME": [
+              "2004-163T21:27:49.597"
+            ],
+            "CORE_ITEMS": [
+              "(48,352,48)"
+            ],
+            "FILE_RECORDS": [
+              "3422"
+            ],
+            "RECORD_BYTES": [
+              "512"
+            ],
+            "LABEL_RECORDS": [],
+            "^QUBE": [
+              "(\"v1465680977_5.qub\", 48)"
+            ]
+          }
+        }
+      ],
+      "limitations": [
+        "Both suffixes are linked by the current archive directory; filename suffix alone is not processing identity or equivalence.",
+        "Detached label comparison only; _2 QUB bytes and raw payload/version differences remain unaudited.",
+        "No calibration, registration, licence transfer or production adoption."
+      ]
+    },
+    "phoebe-vims-pds-suffix-raw-comparison-preparation": {
+      "retrievedUtc": "2026-10-15T09:05:17.764854+00:00",
+      "source": {
+        "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/data/2004163T193015_2004164T051726/v1465680977_2.qub",
+        "path": "data/research-sources/phoebe-vims-pds-v1465680977_2-original-2026-10-15.qub",
+        "bytes": 1751552,
+        "sha256": "50b58242c8c44291e69d10faafab1aa423f85dfe4717f92cb564757af013f9e9"
+      },
+      "comparison": {
+        "otherSuffix": "_5",
+        "wholeFileEqual": false,
+        "labelPointedStartByteOneBased": 24065,
+        "trailingRegionBytes2": 1727488,
+        "trailingRegionBytes5": 1727488,
+        "trailingRegionSha2562": "ed85f9286d9a33a5c0fd588c53780cae8b244a7bb728fbda7bd03e5334298d5a",
+        "trailingRegionSha2565": "1dc465c14114e3bc78e8da25a95a2e49c320263c127d3582baffcecd934cdb7e",
+        "trailingRegionByteEqual": false,
+        "sameLengthDifferingBytes": 21999
+      },
+      "limitations": [
+        "Trailing region comparison does not independently validate all core/suffix boundaries, physical calibration, processing provenance or scientific validity.",
+        "Detached FINAL _2 and PRELIMINARY _5 metadata remain distinct; exact matching bytes, where found, do not reproduce Fraser/Brown fitted analysis or RC17 calibration.",
+        "Declared record-count discrepancy remains open; no repair or production adoption."
+      ]
+    },
+    "phoebe-vims-pds-raw-label-crosswalk-preparation": {
+      "preparedUtc": "2026-10-15T08:20:31.358650+00:00",
+      "rawSource": {
+        "path": "data/research-sources/phoebe-vims-pds-v1465680977_5-original-2026-10-15.qub",
+        "bytes": 1751552,
+        "sha256": "acfae3824a0bd34ecb93eb62c98f9ce51da0c8104a4f281f0ead80c9d80c2eff"
+      },
+      "labelSlice": {
+        "path": "data/research-sources/phoebe-vims-pds-v1465680977_5-label-preparation-2026-10-15.txt",
+        "startByteOneBased": 1,
+        "bytes": 11264,
+        "sha256": "20fdb523f719cd85760b07e5b2c80a415a4fb716606e93607124b5e9256aecb4"
+      },
+      "nantesAttachedLabel": {
+        "path": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-attached-original-label-preparation-2026-10-15.txt",
+        "bytes": 30316,
+        "sha256": "9b5e0845708c1899cc3751790865161bcde7927c5dcfd42aa17d655a2a8c6045"
+      },
+      "rawLabelFields": {
+        "PRODUCT_ID": [
+          "\"1_1465680977.13981\""
+        ],
+        "DATA_SET_ID": [
+          "\"CO-S-VIMS-2-EDR-V1.0\""
+        ],
+        "START_TIME": [
+          "\"2004-163T21:12:13.530Z\""
+        ],
+        "STOP_TIME": [
+          "\"2004-163T21:27:49.597Z\""
+        ],
+        "SPACECRAFT_CLOCK_START_COUNT": [
+          "\"1465680997.126\""
+        ],
+        "SPACECRAFT_CLOCK_STOP_COUNT": [
+          "\"1465681916.099\""
+        ],
+        "CORE_ITEMS": [
+          "(48,352,48)"
+        ],
+        "CORE_ITEM_TYPE": [
+          "SUN_INTEGER"
+        ],
+        "CORE_ITEM_BYTES": [
+          "2"
+        ],
+        "CORE_NAME": [
+          "RAW_DATA_NUMBER"
+        ],
+        "^QUBE": [
+          "48"
+        ],
+        "RECORD_BYTES": [
+          "512"
+        ],
+        "FILE_RECORDS": [
+          "3422"
+        ],
+        "LABEL_RECORDS": [
+          "22"
+        ]
+      },
+      "nantesAttachedLabelFields": {
+        "PRODUCT_ID": [
+          "1_1465680977.13981",
+          "1_1465680977.13981"
+        ],
+        "DATA_SET_ID": [
+          "CO-S-VIMS-2-EDR-V1.0",
+          "CO-S-VIMS-2-EDR-V1.0"
+        ],
+        "START_TIME": [
+          "2004-163T21:12:13.530Z",
+          "2004-163T21:12:13.530Z"
+        ],
+        "STOP_TIME": [
+          "2004-163T21:27:49.597Z",
+          "2004-163T21:27:49.597Z"
+        ],
+        "SPACECRAFT_CLOCK_START_COUNT": [
+          "1465680997.126",
+          "1465680997.126"
+        ],
+        "SPACECRAFT_CLOCK_STOP_COUNT": [
+          "1465681916.099",
+          "1465681916.099"
+        ],
+        "CORE_ITEMS": [
+          "(48, 352, 48)",
+          "(48, 352, 48)"
+        ],
+        "CORE_ITEM_TYPE": [
+          "SUN_INTEGER",
+          "SUN_INTEGER"
+        ],
+        "CORE_ITEM_BYTES": [
+          "2",
+          "2"
+        ],
+        "CORE_NAME": [
+          "RAW_DATA_NUMBER",
+          "RAW_DATA_NUMBER"
+        ],
+        "^QUBE": [
+          "48",
+          "48"
+        ],
+        "RECORD_BYTES": [
+          "512",
+          "512"
+        ],
+        "FILE_RECORDS": [
+          "3422",
+          "3422"
+        ],
+        "LABEL_RECORDS": [
+          "22",
+          "22"
+        ]
+      },
+      "exactLabelByteEquality": false,
+      "recordLengthCheck": false,
+      "limitations": [
+        "Raw label bytes and attached ISIS metadata are distinct representations; matching selected strings do not prove exact intermediate or full raw-to-calibrated processing identity.",
+        "Raw core is 352-band signed big-endian integer RAW_DATA_NUMBER, not the 256-band calibrated I/F derivative or six-band geometry cube.",
+        "No science pixel decoding, calibration reproduction, visible colour, frame registration or paper _2 versus portal _5 reconciliation performed.",
+        "No production image, dossier, map, model, shape or codec changed.",
+        "Downloaded file is 512 bytes shorter than FILE_RECORDS times RECORD_BYTES. Cause, payload completeness and record convention remain open; no repair or truncation conclusion adopted."
+      ],
+      "recordLengthDiagnostic": {
+        "labelDeclaredBytes": 1752064,
+        "downloadedBytes": 1751552,
+        "downloadMinusDeclaredBytes": -512
+      }
+    },
+    "phoebe-vims-volume4-errata-preparation": {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/errata.txt",
+      "finalUrl": "https://planetarydata.jpl.nasa.gov/img/data/cassini/cassini_orbiter/covims_0004/errata.txt",
+      "retrievedUtc": "2026-10-15T08:35:19.717432+00:00",
+      "bytes": 3659,
+      "sha256": "855888f427323966eb031113c474f671f0f16e2ce5957cfe75c969f2f5207fe0",
+      "path": "data/research-sources/phoebe-vims-volume4-errata-original-2026-10-15.txt",
+      "limitations": [
+        "Publisher errata retained for raw product audit; no automatic repair, calibration reproduction, licence transfer or production adoption."
+      ]
+    },
+    "phoebe-vims-pds-suffix-detached-label-diff-preparation": {
+      "preparedUtc": "2026-10-15T09:20:12.887533+00:00",
+      "diff": {
+        "path": "data/research-sources/phoebe-vims-pds-suffix-detached-label-diff-preparation-2026-10-15.txt",
+        "bytes": 3695,
+        "sha256": "3230de6b0bd7ce6d2d175770135cd952c3da5f8e8cefcb38ef631cddba5cb3f5"
+      },
+      "limitations": [
+        "Exact textual metadata comparison; creation date and FINAL/PRELIMINARY labels do not establish cause, quality priority, raw core equivalence or paper processing identity.",
+        "No production changes or source repair."
+      ]
+    }
+  },
+  "verification": {
+    "publicFilesByteIdentical": 598,
+    "dossiers": 75,
+    "queue": 566,
+    "tests": "668 pass, 1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "FAIL hard 16000000-byte gate: 16010453 bytes, 10453 over",
+    "browser": "No fresh browser verification; no interbuild savings attribution.",
+    "nativeSources": "Four raw source hashes and 21999 differing trailing-region bytes reverified",
+    "freshOfflineBrowserClaim": false,
+    "interbuildSizeAttribution": "Not audited; no research-only asset or compression savings claim"
+  },
+  "differenceRunEvidence": {
+    "path": "data/research-sources/phoebe-vims-pds-suffix-difference-ranges-preparation-2026-10-15.json",
+    "bytes": 145551,
+    "sha256": "d0ce41614f2d773ab38f7b85f5e42cc34054056aa371846e196783d9143ae920",
+    "contiguousRuns": 2884,
+    "differentBytes": 21999
+  }
+}
