@@ -576,6 +576,19 @@
       "visualId": "naiad"
     },
     {
+      "id": "sol-thalassa",
+      "bodyId": "thalassa",
+      "name": "Thalassa",
+      "parent": "neptune",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved globe or shape adopted; pending surface. Shared Voyager context identifies Thalassa N5 separately from Naiad N6 and Despina N3.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "thalassa"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7044,20 +7057,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-thalassa",
-      "name": "Thalassa",
-      "parent": "neptune",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1989",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "sol-halimede",
       "name": "Halimede",
       "parent": "neptune",
@@ -8515,7 +8514,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 33,
+      "initialDossiers": 34,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

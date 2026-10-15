@@ -1,0 +1,878 @@
+{
+  "body": "Thalassa",
+  "date": "2026-10-15",
+  "preparations": {
+    "moon-preparation": {
+      "date": "2026-10-12",
+      "body": "Thalassa",
+      "status": "Research-only native preparation; no69 or embedding",
+      "identity": {
+        "designation": "S/1989 N5",
+        "distinctFrom": [
+          "Naiad S/1989 N6",
+          "Despina S/1989 N3"
+        ],
+        "discovery": "NASA overview: August1989 in Voyager2 images; discovery month does not provide exact acquisition UTC."
+      },
+      "sources": [
+        {
+          "url": "https://science.nasa.gov/neptune/moons/thalassa/",
+          "path": "data/research-sources/thalassa-overview-2026-10-12.html",
+          "bytes": 259388,
+          "sha256": "e5f91cc003e29a3084987805309c039864ff44ff579bb0c5bef6c4574878498c",
+          "role": "Direct publisher overview/caption; downloaded unchanged and read"
+        },
+        {
+          "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+          "path": "data/research-sources/thalassa-trio-native.jpg",
+          "bytes": 169897,
+          "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+          "dimensions": [
+            732,
+            520
+          ],
+          "format": "JPEG",
+          "role": "Unchanged shared Voyager2 publisher frame; displayed and inspected",
+          "credit": "NASA/JPL",
+          "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "observationDate": "1989 only from caption; exact day/UTC open",
+          "nativeReleaseDate": null,
+          "pixelOrByteEquality": "Byte-identical to retained despina-trio-native.jpg; same multibody frame, not three independent body images."
+        },
+        {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "path": "data/research-sources/thalassa-nasa-terms-2026-10-12.html",
+          "bytes": 320654,
+          "sha256": "5da06c9fc994c8237220c62c18550ef8292880d9dadb0323636fb4ba79fde3d5",
+          "role": "Active NASA media terms retained; no CC BY assertion and third-party exceptions remain applicable"
+        }
+      ],
+      "inspection": "Blurred monochrome detection frame with circled1989 N5, N6 and N3 labels; large bright Neptune limb/glare is not Thalassa geography. Background texture, orbital streaks and annotation circles are not terrain, stars, measured axes or atmospheric absence. No resolved body map or shape adopted.",
+      "captionAssessment": {
+        "rangeKm": 5900000,
+        "rangeRole": "Historical caption estimate only; no new angular/raster calculation.",
+        "streaks": "Caption attributes faint streaks to high orbital speed; not elongated physical shape.",
+        "shape": "Overview describes Thalassa as roughly disk-shaped. This is qualitative source prose, not an independent fit from the detection frame; primary component-aware shape/rotation audit open.",
+        "history": "Formation from earlier moons disrupted after Triton capture, orbital decay and future disruption/ring are hypotheses/projections in overview, not directly observed history, a dated new orbit fit or imminent event."
+      },
+      "publicationMetadata": {
+        "pageUpdated": "2024-11-03",
+        "schemaPublished": "2017-11-21T03:05:43-05:00",
+        "alternateInlinePublished": "2017-11-21T11:05:43Z",
+        "schemaModified": "2024-11-03T04:53:36-05:00",
+        "alternateInlineModified": "2024-11-03T09:53:36Z",
+        "limitation": "Published timestamps differ by3hours after timezone conversion; no provenance cause adopted. Page metadata and2023asset path are not observation/native release dates."
+      },
+      "references": [
+        "docs/research/despina-moon-preparation-2026-10-12.json",
+        "docs/research/naiad-moon-preparation-2026-10-12.json",
+        "docs/research/naiad-primary-orbit-assessment-2026-10-12.json",
+        "docs/research/naiad-survival-primary-assessment-2026-10-12.json"
+      ],
+      "limitations": [
+        "Full publisher credit NASA/JPL retained. Exact native acquisition UTC, filter, exposure, raw product/caption crosswalk, image release date and broader contributor credit remain open before integration.",
+        "Unresolved monochrome detection does not establish local terrain, calibrated visible colour, chemistry or registered geography. Neptune, Naiad and Despina geography must never be assigned to Thalassa.",
+        "No local material fractions, atmospheric-absence measurement, ocean, plume, biology or survivable landing. Black background is not evidence of absence.",
+        "No newest-observation/exhaustive imagery claim, independently fitted axes, registered local normal, verified synchronous rotation or permanent Neptune-facing site.",
+        "Existing68 dossiers, originals/masters/native science/provenance, all405 protected assets and550 tracked public files/recorded Clipper preview unchanged. No69, new embedding, generated image, own map/shape, catalogue or codec change."
+      ],
+      "next": "Substantial conforming lossless headroom before prepared dossiers; independent Thalassa primary orbital/shape/rotation assessment and observer geometry can advance using skyGeometry. Preserve body-specific Naiad/Larissa/Galatea/Proteus scientific distinctions.",
+      "validation": {
+        "tests": "536 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MBgate",
+        "htmlBytes": 16063729,
+        "overBudgetBytes": 63729,
+        "baseline": "557e5e7",
+        "preservation": "All68 dossiers unchanged; all550 tracked public files byte-identical including405 protected assets and recorded Clipper preview; source hashes verified; queue566.",
+        "browser": "No passing rebuilt full/offline browser claim; other engines OPEN.",
+        "attribution": "Interbuild differences unaudited; no savings attribution."
+      }
+    },
+    "primary-orbit-assessment": {
+      "body": "Thalassa / S/1989 N5",
+      "date": "2026-10-12",
+      "scope": "Research only; no illustration, dossier, map, shape, catalogue, codec or embedded source change.",
+      "primary": {
+        "title": "Orbits and resonances of the regular moons of Neptune",
+        "authors": [
+          "Marina Brozović",
+          "Mark R. Showalter",
+          "Robert A. Jacobson",
+          "Robert S. French",
+          "Jack J. Lissauer",
+          "Imke de Pater"
+        ],
+        "doi": "10.1016/j.icarus.2019.113462",
+        "version": "arXiv:1910.13612v3",
+        "submitted": "2019-10-30",
+        "revised": "2019-11-15",
+        "status": "Record reports accepted in Icarus 2019-10-01; final publisher article not downloaded in this audit.",
+        "pages": 40,
+        "assessed": "Sections 2–5 and Tables 1,2,5–7; full40page PDF retained, no figure embedded.",
+        "terms": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+        "licence": "Specific record links arXiv nonexclusive distribution; not CC BY."
+      },
+      "sources": [
+        {
+          "path": "data/research-sources/naiad-Brozovic2019-v3.pdf",
+          "url": "https://arxiv.org/pdf/1910.13612v3",
+          "bytes": 2775857,
+          "sha256": "251439258854a3555e6cd881657d62e9480c3931172145aec329035abebc2745",
+          "retrieved": "2026-10-12",
+          "unchanged": true
+        },
+        {
+          "path": "data/research-sources/naiad-Brozovic2019-record.html",
+          "url": "https://arxiv.org/abs/1910.13612v3",
+          "bytes": 44797,
+          "sha256": "3448938a1bfbf7a91b182358a6b3a4f4bfb0c9900c40a4ddf20fd1b0c5b4af5e",
+          "retrieved": "2026-10-12",
+          "unchanged": true
+        }
+      ],
+      "fit": {
+        "observations": "System data span1981–2016; Thalassa Table1 has45 Voyager sample/line pairs in1989, Table2 includes2002 Mauna Kea and HST2004,2005,2009,2016. Not a new native-image product crosswalk.",
+        "model": "nep090 weighted integrated orbital fit, Neptune-system barycentric ICRF, Neptune J2/J4, Triton, Sun and planets; fixed pole, DE435/NEP081 and Voyager camera bias.",
+        "Thalassa_GM_km3_s2": [
+          0.0236,
+          0.0064
+        ],
+        "GM_limit": "Formal post-fit1sigma without mass prior for Thalassa; subtle residual improvement/borderline data sensitivity. Removing Voyager increases Naiad/Thalassa mass errors >60%; halving Voyager weight shifts Thalassa mass ~.03sigma versus Naiad ~.5sigma. Other moon prior-constrained masses are not equivalent measurements.",
+        "Thalassa_radius_km": [
+          41,
+          3
+        ],
+        "radius_source": "Table5 adopts Karkoschka2003 Voyager imaging size; no new fitted axes, pixel measurement or catalogue update.",
+        "density_g_cm3": [
+          1.23,
+          0.43
+        ],
+        "density_limit": "Derived from fitted GM and adopted radius, propagating both errors; not measured local composition, porosity or material fractions. Table5 theoretical .05–1.5g/cm3 prior range is not measured density.",
+        "Table7_Thalassa": {
+          "epoch": "2020-01-01 TDB",
+          "reference": "Individual local Laplace plane, not scene camera/equator",
+          "a_km": 50075,
+          "e": 0.00019,
+          "free_inclination_deg": 0.168,
+          "Laplace_to_invariable_inclination_deg": 0.468,
+          "mean_longitude_rate_deg_day": 1155.759,
+          "rounded_longitudinal_period_days": 0.31
+        },
+        "mean_element_limit": "900-year integration summarized by precessing ellipses. Authors assign no mean-element uncertainties: ellipse-fit errors would not represent observational uncertainty. Not dated current distance, perfect circle, surface normal or spin period.",
+        "resonance": {
+          "angle": "73 lambda_Thalassa - 69 lambda_Naiad - 4 Omega_Naiad",
+          "type": "Fourth-order inclination resonance involving Naiad node; not spin resonance.",
+          "nominal_centre_deg": 180,
+          "nominal_average_amplitude_deg": 66,
+          "nominal_period_years": 1.9,
+          "mass_sensitivity": "Changing Thalassa GM to 0.03 km3/s2 (+1 sigma) gives about46deg/1.7yr; not universal fixed constants.",
+          "conjunction": "Simplified integrated geometry south,south,north,north offsets; historical lower-order captures and Triton-related origins remain interpretations."
+        }
+      },
+      "scene_limits": [
+        "No determination of spin, tidal locking, surface normal, permanent Neptune-facing site or dated observer attitude.",
+        "No new skyGeometry or angular/raster calculation in this research-only audit.",
+        "Native blur does not establish measured axes, resolved terrain, visible photometry, local chemistry or atmosphere absence.",
+        "No other moon parameters, maps, images or chemical measurements assigned to Thalassa.",
+        "No ocean, plume, biology, survivable landing or directly observed origin claimed."
+      ],
+      "open": [
+        "Recent Thalassa/Despina resonance-lock primary models and final publisher crosswalk.",
+        "Voyager native UTC/filter/exposure/product/full-contributor crosswalk; existing native detection does not establish shape axes or geography.",
+        "Independent spin/locking, shape/frame, local normal, calibrated photometry and dated observer geometry.",
+        "Conforming substantial lossless standalone headroom before prepared additive dossiers."
+      ],
+      "preservation": {
+        "dossiers": 68,
+        "tracked_public_assets": 405,
+        "new_embedding": false,
+        "codec_changes": false,
+        "tracked_public_files": 550
+      },
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL:16066359 bytes,66359 over hard16MB gate",
+        "baseline": "c28232b including0f526d9 MY STATION/MY SDR upstream preserved and checked",
+        "queue": 566,
+        "preservation": "All550 tracked public files byte-identical to HEAD; all68 dossiers untouched;405 protected assets and recorded Clipper preview preserved. Original/native/master/provenance retained.",
+        "browser": "No current passing full artifact; no new full/offline browser claim. Other engines remain open.",
+        "attribution": "Interbuild differences unaudited; no compression savings attribution or codec change."
+      }
+    },
+    "observer-geometry-preparation": {
+      "date": "2026-10-12",
+      "body": "Thalassa / S/1989 N5 (JPL804)",
+      "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/thalassa-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/thalassa-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12"
+        }
+      ],
+      "parameters": {
+        "jplRadiusKm": 40,
+        "jplRadiusUncertaintyKm": 8,
+        "radiusReference": "Archinal2018 JPLref1 equivalent-volume radius, not local normal",
+        "jplGmKm3s2": 0.02359,
+        "jplGmUncertainty": 0.00522,
+        "gmReference": "NEP097",
+        "jplDerivedDensity_g_cm3": [
+          1.3184,
+          0.8432
+        ],
+        "densityLimit": "JPL derived from GM and radius, not local chemistry/porosity; not adopted as scene material fractions",
+        "paperEffectiveRadiusKm": 41,
+        "paperRadiusUncertaintyKm": 3,
+        "paperGmKm3s2": [
+          0.0236,
+          0.0064
+        ],
+        "paperDerivedDensity_g_cm3": [
+          1.23,
+          0.43
+        ],
+        "semimajorAxisKm": 50100,
+        "orbitalPeriodDays": 0.311078,
+        "roundedEccentricity": 0,
+        "roundedInclinationDeg": 0,
+        "epoch": "2000-01-01.5 TDB",
+        "frame": "Local Laplace plane",
+        "ephemeris": "NEP097",
+        "reference": "Brozovic2020 personal communication to Horizons/NAIF, table reference not new underlying solution audit",
+        "olderPaperAlternative": "2019Table7 2020Jan1TDB a50075 e.00019 free inclination.168 Laplace inclination.468; different epoch/fit",
+        "neptuneMeanRadiusKm": 24622
+      },
+      "assumptions": {
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded",
+        "site": "Hypothetical Neptune-facing point using radius as height; not registered irregular normal or dated ephemeris"
+      },
+      "geometries": [
+        {
+          "assumedHeightKm": 40,
+          "distanceKm": 50060,
+          "angularDiameterDeg": 58.92446987582741,
+          "targetWidthPixels1672": 944.5178037948427
+        },
+        {
+          "assumedHeightKm": 41,
+          "distanceKm": 50059,
+          "angularDiameterDeg": 58.92576301634089,
+          "targetWidthPixels1672": 944.5426932230414
+        }
+      ],
+      "method": "src/astro/appearance.js skyGeometry: radiusSun24622/695700, distanceAU(50100-height)/149597870.7, horizontalFovDeg90; target centreDiscWidthFraction*1672. 60K angular helper only; colour/irradiance discarded.",
+      "limitations": [
+        "JPL40±8 and paper41±3 radii, GM and derived densities remain explicit alternatives; no silent catalogue replacement or cause for differences established.",
+        "Rounded e0/i0 do not prove a circular or equatorial orbit; mean elements are not dated instantaneous distances. Assumed heights are not local irregular surface normals or statistical uncertainty envelope.",
+        "Orbital period and73:69 Naiad-node resonance do not establish spin/locking or permanent Neptune-facing terrain. Camera axis, site, phase and attitude remain unverified.",
+        "Spherical Neptune omits oblateness; ring opening, atmospheric/spectral transfer, exposure, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings do not establish absence.",
+        "Retain native shared-trio component identities, unresolved geography and open UTC/filter/exposure/product/full-credit/native-publication crosswalk; no other body skin or chemistry assigned.",
+        "No ocean, plume, biology, survivable landing, calibrated photometry or resolved local geography claimed.",
+        "All68 original dossiers/PNGs/defaults/masters/native/provenance/maps/models/shapes and recorded Clipper preview preserved; no69/image/embedding/catalogue/codec change. Substantial conforming lossless headroom required."
+      ],
+      "validation": {
+        "base": "601ec52",
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16066359 bytes,66359 over hard16MB",
+        "queue": 566,
+        "preservation": "All550 tracked public files byte-identical to HEAD,405 protected assets and all68 dossiers untouched; original/master/native/provenance and recorded Clipper preview retained.",
+        "browser": "No passing current full/offline artifact or new browser verification claim; other engines open.",
+        "attribution": "Interbuild differences unaudited; no savings or codec change claimed."
+      }
+    },
+    "local-view-preparation": {
+      "date": "2026-10-12",
+      "body": "Thalassa",
+      "status": "Research-only independent imagined local illustration; no dossier69 or embedding",
+      "generator": "Built-in image_gen",
+      "prompt": "Create an independent research-guided hypothetical local view of Neptune's small moon Thalassa (1989 N5), landscape wide 1672 by 941. IMAGINED illustration, not a reconstruction of any observed site. Low camera looking across invented grey granular regolith, modest angular blocks, shallow depressions and low irregular relief toward a low horizon under a nearly black sky. Restrained monochrome-grey material colour and directional light are artistic assumptions. Do not copy or recolour imagery or terrain from any other astronomical body; no Moon, Mars, Pluto, Triton or other body's map. Thalassa's unresolved Voyager detections do not establish local geography or composition. Its equivalent volume radius has alternatives 40±8 km and adopted 41±3 km; neither establishes a local surface normal. Density is derived, not measured chemistry or porosity. Orbital period and Naiad–Thalassa 73:69 nodal resonance do not verify spin locking or a permanently Neptune-facing site. Invent all terrain, grains, blocks, material fractions, chemistry, lighting and exposure. No astronomical disks: no Neptune, Sun, stars or rings. No atmosphere, clouds, haze, rain, plume, exposed liquid, ocean, biology, vehicles, astronauts or suggestion of survivable landing. Black sky is an assumed presentation, not measured atmospheric absence. No dated Voyager site, shape registration or angular/raster diameter claim. Include two clearly readable footer lines integrated at bottom with sufficient contrast: 'IMAGINED LOCAL VIEW — THALASSA' and 'Terrain, material colour and lighting are invented.' Scientific visualization with honest hypothetical appearance, no additional labels.",
+      "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-551fb5e4-729d-4a1a-ba18-68cdd145a6f2.png",
+      "researchCopy": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+      "inspection": "Inspected original: independent grey granular relief, angular blocks, shallow depressions and nearly black sky. Both footer texts readable, arranged across one footer band rather than two stacked lines. No astronomical disks.",
+      "references": [
+        "docs/research/thalassa-moon-preparation-2026-10-12.json",
+        "docs/research/thalassa-primary-orbit-assessment-2026-10-12.json",
+        "docs/research/thalassa-observer-geometry-preparation-2026-10-12.json"
+      ],
+      "limitations": [
+        "All terrain, block/grain sizes, relief, chemistry, material fractions, colour, lighting and exposure invented independently; no observed body map reused.",
+        "Thalassa N5 distinct from Naiad N6 and Despina N3. Unresolved Voyager detections do not resolve geography or calibrated visible colour. Native UTC, filters, product and full contributor crosswalk remain open.",
+        "JPL radius40±8/GM.02359±.00522/derived density1.3184±.8432 versus paper41±3/.0236±.0064/1.23±.43 preserved as alternatives, not local chemistry, porosity or registered normal.",
+        "Mean orbital period and 73:69 nodal resonance do not verify spin locking or permanent Neptune-facing terrain. No dated site or shape registration.",
+        "Black sky is assumed presentation, not measured atmospheric absence. No plume, liquid, ocean, biology or survivable landing claim.",
+        "No astronomical disks or angular/raster calculation. Observer, masters, previews and additive integration remain outstanding.",
+        "All68 prior dossiers, originals, masters, native science, provenance, maps/models/shapes and recorded Clipper preview preserved; no catalogue or codec change."
+      ],
+      "original": {
+        "bytes": 2835977,
+        "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+        "dimensions": [
+          1672,
+          941
+        ],
+        "defaultAndResearchBytesIdentical": true
+      },
+      "preservation": {
+        "trackedPublicFiles": 550,
+        "changed": [],
+        "dossiers": 68,
+        "queue": 566,
+        "recordedClipperPreserved": true
+      },
+      "validation": {
+        "base": "86fbcbc",
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16058732,
+        "overBudgetBytes": 58732,
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "Research-only original not embedded; production codecs unchanged. Interbuild differences unaudited; no savings attribution."
+      }
+    },
+    "sky-view-preparation": {
+      "date": "2026-10-12",
+      "body": "Thalassa",
+      "status": "Research-only independent imagined observer; no69 or embedding",
+      "generator": "Built-in image_gen",
+      "prompt": "Generate from scratch an independent hypothetical scientific observer illustration, wide landscape 1672x941, IMAGINED SKY FROM THALASSA (Neptune moon S/1989 N5, not Naiad or Despina). Low invented grey granular terrain with modest angular rocks and low irregular horizon occupying bottom quarter. A huge schematic blue Neptune disk above the horizon, complete disk if possible, about 945 pixels diameter in a nominal 90 degree horizontal field across 1672 pixels; this target comes from recorded skyGeometry mean spherical radius24622km at assumed distance50060km (mean orbit50100 minus assumed40km height), angular diameter58.92446987582741deg. Paper41km height alternative yields58.92576301634089deg944.5426932230414px; these are hypothetical mean-distance alternatives, not dated position, local normal or uncertainty envelope. Treat all Neptune cloud/band patterns, colour, phase, illumination and exposure as invented schematic artwork, never copy Neptune imagery or any observed body's map. Calm subdued grey relief/grains/blocks independently invented, no Moon/Mars/Pluto/Triton or other body's texture, no analog skin. Camera attitude and facing site assumed; no verified synchronous spin, tidal locking or permanent Neptune-facing terrain. Orbital period and 73:69 nodal resonance are not spin measurements. Nearly black sky is an artistic transparency assumption, not atmospheric absence. No stars or Sun; rings omitted artistically, not asserted absent/invisible. No foreground atmosphere/cloud/haze, active plume, exposed liquid/ocean, biology, astronaut/craft/landing or survivable landing implication. No dated Voyager site or shape registration, no local chemistry/porosity inference from derived density. No scale bar or compass. Place two readable footer texts in bottom safe margin: 'IMAGINED SKY FROM THALASSA' and 'Terrain, Neptune patterns, colour and lighting are invented.' Scientific concept illustration, restrained and clearly hypothetical, artistic spectral transfer and scene registration.",
+      "originalDefaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-23d8b82d-2e49-4267-a2a4-9e783ad34b74.png",
+      "researchCopy": "data/research-sources/thalassa-generated-skyImage-original.png",
+      "inspection": "Original inspected: independent grey granular foreground, schematic blue Neptune with invented bands/clouds/spot, lower disk occluded by terrain. Both footer texts readable. Rendered disk appears smaller than requested target; no raster diameter adopted or calibrated appearance claimed.",
+      "geometryReference": "docs/research/thalassa-observer-geometry-preparation-2026-10-12.json",
+      "recordedSkyGeometry": {
+        "nominalHorizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "assumedHeight40": {
+          "angularDiameterDeg": 58.92446987582741,
+          "targetPixels": 944.5178037948427
+        },
+        "alternativeHeight41": {
+          "angularDiameterDeg": 58.92576301634089,
+          "targetPixels": 944.5426932230414
+        },
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only, not colour/photometry"
+      },
+      "limitations": [
+        "All terrain, material fractions, chemistry, grey colour, Neptune bands/clouds/spot, colour, phase, lighting and exposure invented independently; no analog skin or other-body map reused.",
+        "Camera/site attitude assumed, not dated Voyager geography, registered irregular normal, spin locking or permanent Neptune-facing terrain. Mean orbit and 73:69 nodal resonance are not spin measurements.",
+        "JPL40±8/paper41±3 radius/GM/derived-density alternatives retained, not local chemistry or porosity. Alternative heights are not an uncertainty envelope.",
+        "Spherical Neptune omits oblateness; transmission, spectral transfer, phase and registration unverified. Black sky and omitted rings/Sun/stars not absence evidence.",
+        "No foreground atmosphere, active plume, liquid, ocean, biology or survivable landing claim. Native UTC/filter/product/full contributor crosswalk remains open.",
+        "Small preview footers require readable IMAGINED card labels before integration. All68 earlier dossiers, originals/masters/native/provenance/maps/models/shapes and recorded Clipper preserved; no catalogue/codec change."
+      ],
+      "original": {
+        "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+        "bytes": 2155066,
+        "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+        "width": 1672,
+        "height": 941,
+        "defaultAndResearchBytesIdentical": true
+      },
+      "preservation": {
+        "trackedPublicFiles": 550,
+        "changed": [],
+        "dossiers": 68,
+        "queue": 566
+      },
+      "validation": {
+        "base": "065003a",
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16058732,
+        "overBudgetBytes": 58732,
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "Research-only original/masters/previews not embedded; codecs unchanged. Interbuild differences unaudited; no savings attribution."
+      }
+    },
+    "master-preview-preparation": {
+      "date": "2026-10-12",
+      "body": "Thalassa",
+      "status": "Research-only original-preserving masters/previews; no69 or embedding",
+      "assets": [
+        {
+          "kind": "surfaceImage",
+          "role": "master",
+          "quality": 85,
+          "source": {
+            "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+            "bytes": 2835977,
+            "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+            "width": 1672,
+            "height": 941
+          },
+          "path": "data/research-sources/thalassa-generated-surfaceImage-master.jpg",
+          "bytes": 346404,
+          "sha256": "e391f1fabcc576865fd7e660c84be3ad7d600230fbcca8955ec7a9f5af9a853b",
+          "width": 1536,
+          "height": 864
+        },
+        {
+          "kind": "surfaceImage",
+          "role": "preview",
+          "quality": 80,
+          "source": {
+            "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+            "bytes": 2835977,
+            "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+            "width": 1672,
+            "height": 941
+          },
+          "path": "data/research-sources/thalassa-generated-surfaceImage-preview.jpg",
+          "bytes": 11471,
+          "sha256": "a81551574ee2ac392be1e94691516ed76aca1ce934e914cb1773c5363fe33634",
+          "width": 256,
+          "height": 144
+        },
+        {
+          "kind": "skyImage",
+          "role": "master",
+          "quality": 85,
+          "source": {
+            "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+            "bytes": 2155066,
+            "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+            "width": 1672,
+            "height": 941
+          },
+          "path": "data/research-sources/thalassa-generated-skyImage-master.jpg",
+          "bytes": 184563,
+          "sha256": "543e3571f16e84942575f8f93fe3b7a06a68aaa920b3a9edbdc5d83811d5086a",
+          "width": 1536,
+          "height": 864
+        },
+        {
+          "kind": "skyImage",
+          "role": "preview",
+          "quality": 80,
+          "source": {
+            "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+            "bytes": 2155066,
+            "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+            "width": 1672,
+            "height": 941
+          },
+          "path": "data/research-sources/thalassa-generated-skyImage-preview.jpg",
+          "bytes": 6878,
+          "sha256": "d3148dece8e498b71751d65aa03db5878c2bd62de198d5031f22015bec1d6bb9",
+          "width": 256,
+          "height": 144
+        }
+      ],
+      "previewTotalRawBytes": 18349,
+      "limitations": [
+        "All terrain, material fractions, chemistry, grey colour, Neptune bands/clouds/spot, colour, phase, lighting and exposure invented independently; no analog skin or other-body map reused.",
+        "Camera/site attitude assumed, not dated Voyager geography, registered irregular normal, spin locking or permanent Neptune-facing terrain. Mean orbit and 73:69 nodal resonance are not spin measurements.",
+        "JPL40±8/paper41±3 radius/GM/derived-density alternatives retained, not local chemistry or porosity. Alternative heights are not an uncertainty envelope.",
+        "Spherical Neptune omits oblateness; transmission, spectral transfer, phase and registration unverified. Black sky and omitted rings/Sun/stars not absence evidence.",
+        "No foreground atmosphere, active plume, liquid, ocean, biology or survivable landing claim. Native UTC/filter/product/full contributor crosswalk remains open.",
+        "Small preview footers require readable IMAGINED card labels before integration. All68 earlier dossiers, originals/masters/native/provenance/maps/models/shapes and recorded Clipper preserved; no catalogue/codec change."
+      ],
+      "preservation": {
+        "trackedPublicFiles": 550,
+        "changed": [],
+        "dossiers": 68,
+        "queue": 566
+      },
+      "validation": {
+        "base": "065003a",
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16058732,
+        "overBudgetBytes": 58732,
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "Research-only original/masters/previews not embedded; codecs unchanged. Interbuild differences unaudited; no savings attribution."
+      },
+      "inspection": "Both1536 JPEG85 masters and256 JPEG80 previews displayed and inspected. Original/master footer texts readable; small preview footer texts have limited readability and require readable IMAGINED card labels before integration. Technical resizing/JPEG encoding only; original PNGs/default copies/full prompts preserved."
+    }
+  },
+  "preflight": {
+    "date": "2026-10-15",
+    "body": "Thalassa",
+    "status": "Read-only integration preflight; no dossier78 or embedding yet",
+    "preparedAssetsVerified": [
+      {
+        "path": "data/research-sources/thalassa-generated-surfaceImage-master.jpg",
+        "bytes": 346404,
+        "sha256": "e391f1fabcc576865fd7e660c84be3ad7d600230fbcca8955ec7a9f5af9a853b"
+      },
+      {
+        "path": "data/research-sources/thalassa-generated-surfaceImage-original.png",
+        "bytes": 2835977,
+        "sha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad"
+      },
+      {
+        "path": "data/research-sources/thalassa-generated-surfaceImage-preview.jpg",
+        "bytes": 11471,
+        "sha256": "a81551574ee2ac392be1e94691516ed76aca1ce934e914cb1773c5363fe33634"
+      },
+      {
+        "path": "data/research-sources/thalassa-generated-skyImage-master.jpg",
+        "bytes": 184563,
+        "sha256": "543e3571f16e84942575f8f93fe3b7a06a68aaa920b3a9edbdc5d83811d5086a"
+      },
+      {
+        "path": "data/research-sources/thalassa-generated-skyImage-original.png",
+        "bytes": 2155066,
+        "sha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b"
+      },
+      {
+        "path": "data/research-sources/thalassa-generated-skyImage-preview.jpg",
+        "bytes": 6878,
+        "sha256": "d3148dece8e498b71751d65aa03db5878c2bd62de198d5031f22015bec1d6bb9"
+      }
+    ],
+    "freshSources": [
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "path": "data/research-sources/thalassa-jpl-physical-fresh-2026-10-15.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "publisherRowText": "Neptune Thalassa 804 0.02359 0.00522 NEP097 40.00 8.00 1 1.3184 0.8432 *"
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "path": "data/research-sources/thalassa-jpl-elements-fresh-2026-10-15.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "publisherRowText": "441 Neptune Thalassa 804 NEP097 Laplace 2000-01-01.5 50100. 0.000 0.0 165.7 0.2 130.6 0.311078 0.000 0.654 299.7 42.7 0.4 24"
+      }
+    ],
+    "nativeVerified": {
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+      "path": "data/research-sources/thalassa-trio-native.jpg",
+      "bytes": 169897,
+      "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "dimensions": [
+        732,
+        520
+      ],
+      "format": "JPEG",
+      "role": "Unchanged shared Voyager2 publisher frame; displayed and inspected",
+      "credit": "NASA/JPL",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "observationDate": "1989 only from caption; exact day/UTC open",
+      "nativeReleaseDate": null,
+      "pixelOrByteEquality": "Byte-identical to retained despina-trio-native.jpg; same multibody frame, not three independent body images."
+    },
+    "limits": [
+      "Publisher mean elements are not dated scene distance or spin locking. Equivalent-volume radius is not an irregular local normal. Derived density is not chemistry.",
+      "All original PNGs, masters, previews and native source bytes preserved. Existing dossiers/catalogue/codec/public assets unchanged. No new browser/build verification claimed."
+    ]
+  },
+  "delivered": {
+    "id": "thalassa",
+    "name": "Thalassa",
+    "aliases": [
+      "Thalassa",
+      "Neptune IV",
+      "S/1989 N5",
+      "1989 N5"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted; pending surface. Shared Voyager context identifies Thalassa N5 separately from Naiad N6 and Despina N3.",
+    "measured": [
+      "Voyager2 multibody detection context acquired1989 only; August1989 discovery is not exact acquisitionUTC. Native filter/exposure/rawproduct/originalrelease and fuller contributor crosswalk unverified."
+    ],
+    "modelled": [
+      "Fresh JPL NEP097 mean Laplace elements epoch2000Jan1.5TDB: a50100km/e.000/w0/M165.7/i.2/node130.6/P.311078day/apsis0/nodal.654yr/pole299.7,42.7. Rounded zeros are not exact circularity or absence of perturbations; mean elements are not dated scene distance. Earlier geometry preparation described i0; fresh direct row reads .2deg and is adopted explicitly, cause of earlier discrepancy unverified.",
+      "JPL equivalent-volume radius40±8km, GM.02359±.00522km³/s², derived density1.3184±.8432g/cm³; not local normal/axes or measured chemistry/porosity. massKg remains null.",
+      "Brozovic2019v3 six authors Marina Brozović, Mark R. Showalter, Robert A. Jacobson, Robert S. French, Jack J. Lissauer, Imke de Pater: fitted GM.0236±.0064 formal1sigma without Thalassa mass prior; adopted41±3km radius and derived1.23±.43density retained separately. Borderline mass sensitivity, Voyager removal increases errors >60percent, not independently reproduced.",
+      "Weighted integrated barycentric ICRF fit uses NeptuneJ2/J4,Triton,Sun/planets,fixedpoleDE435/NEP081 and fitted Voyager camera bias. Forty-five Voyager sample/line pairs plus2002/2004/2005/2009/2016 astrometry do not establish retained native product identity.",
+      "Table7 900-year meanfit epoch2020Jan1TDB a50075/e.00019/freei.168/Laplaceincl.468/rate1155.759degday differs from current table; no element errors supplied, not current distance/spin/registered site.",
+      "Fourth-order73lambdaThalassa−69lambdaNaiad−4OmegaNaiad orbital inclination resonance is not spin locking. Nominal180deg centre/66deg amplitude/1.9yr libration versus alternateGM.03 giving46deg/1.7yr are mass-dependent fits, not permanent Neptune-facing terrain.",
+      "Triton capture, earlier moon disruption, migration, future decay/ring formation are interpretations/projections, not directly observed history or imminent disruption. Qualitative roughly disk-shaped overview prose is not a new image-derived shape fit."
+    ],
+    "unknown": [
+      "Spin/locking, irregular local normal, physical registration, visible colour/photometry, local chemistry and atmosphere unverified. rotationnull/lockedfalse disables automatic locking, not measured nonsynchronous spin.",
+      "Exact nativeUTC/filter/exposure/rawproduct/originalrelease/fullcredit crosswalk open; page2017publication/2024update/2023assetpath are not observation dates. Inline/schema published timestamps differ3hours; cause unverified.",
+      "Specific2019 arXiv nonexclusive distribution is not CC BY. Final publisher paper, current primary resonance-lock alternatives, original Karkoschka shape/PSF/uncertainties and native calibration remain open; no paper figure embedded.",
+      "No direct Thalassa local composition or spectrum adopted. Larissa/Galatea clay interpretation and ProteusCO2 cannot be transferred. No ocean/plume/biology established."
+    ],
+    "assumed": [
+      "All terrain, material fractions, chemistry, grey colour, Neptune bands/clouds/spot, colour, phase, lighting and exposure invented independently; no analog skin or other-body map reused.",
+      "Camera/site attitude assumed, not dated Voyager geography, registered irregular normal, spin locking or permanent Neptune-facing terrain. Mean orbit and 73:69 nodal resonance are not spin measurements.",
+      "JPL40±8/paper41±3 radius/GM/derived-density alternatives retained, not local chemistry or porosity. Alternative heights are not an uncertainty envelope.",
+      "Spherical Neptune omits oblateness; transmission, spectral transfer, phase and registration unverified. Black sky and omitted rings/Sun/stars not absence evidence.",
+      "No foreground atmosphere, active plume, liquid, ocean, biology or survivable landing claim. Native UTC/filter/product/full contributor crosswalk remains open.",
+      "Small preview footers require readable IMAGINED card labels before integration. All68 earlier dossiers, originals/masters/native/provenance/maps/models/shapes and recorded Clipper preserved; no catalogue/codec change.",
+      "JPL40±8 and paper41±3 radii, GM and derived densities remain explicit alternatives; no silent catalogue replacement or cause for differences established.",
+      "Rounded e0/i0 do not prove a circular or equatorial orbit; mean elements are not dated instantaneous distances. Assumed heights are not local irregular surface normals or statistical uncertainty envelope.",
+      "Orbital period and73:69 Naiad-node resonance do not establish spin/locking or permanent Neptune-facing terrain. Camera axis, site, phase and attitude remain unverified.",
+      "Spherical Neptune omits oblateness; ring opening, atmospheric/spectral transfer, exposure, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings do not establish absence.",
+      "Retain native shared-trio component identities, unresolved geography and open UTC/filter/exposure/product/full-credit/native-publication crosswalk; no other body skin or chemistry assigned.",
+      "No ocean, plume, biology, survivable landing, calibrated photometry or resolved local geography claimed.",
+      "All68 original dossiers/PNGs/defaults/masters/native/provenance/maps/models/shapes and recorded Clipper preview preserved; no69/image/embedding/catalogue/codec change. Substantial conforming lossless headroom required.",
+      "All local relief/blocks/grains/material fractions/grey colour and Neptune bands/cloudspot/colour/phase/axis/light/exposure independently invented; no analog/date/Voyager site/foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black sky/ring/Sun/stars omission not absence evidence.",
+      "Rendered Neptune smaller with lower limb occluded, uncalibrated; no raster diameter adopted. Readable IMAGINED card labels required in addition to tiny preview footers."
+    ],
+    "references": [
+      {
+        "title": "Thalassa moon-preparation source",
+        "url": "https://science.nasa.gov/neptune/moons/thalassa/"
+      },
+      {
+        "title": "Thalassa moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg"
+      },
+      {
+        "title": "Thalassa moon-preparation source",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Thalassa primary-orbit-assessment source",
+        "url": "https://arxiv.org/pdf/1910.13612v3"
+      },
+      {
+        "title": "Thalassa primary-orbit-assessment source",
+        "url": "https://arxiv.org/abs/1910.13612v3"
+      },
+      {
+        "title": "Thalassa observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Thalassa observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "Fresh JPL satellite table",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Fresh JPL satellite table",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/thalassa-voyager-native.jpg",
+        "path": "data/research-sources/thalassa-trio-native.jpg",
+        "bytes": 169897,
+        "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+        "dimensions": [
+          732,
+          520
+        ],
+        "format": "JPEG",
+        "role": "Unchanged shared Voyager2 publisher frame; displayed and inspected",
+        "credit": "NASA/JPL",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "observationDate": "1989",
+        "nativeReleaseDate": null,
+        "pixelOrByteEquality": "Byte-identical to retained despina-trio-native.jpg; same multibody frame, not three independent body images.",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+        "sourceUrl": "https://science.nasa.gov/neptune/moons/thalassa/",
+        "width": 732,
+        "height": 520,
+        "tier": "measured",
+        "publicationDate": null,
+        "terms": "NASA media terms and third-party exceptions; not asserted CC BY.",
+        "processing": "Unchanged full NASA-served JPEG, no resizing or reencoding. Shared multibody context, not a resolved surface map.",
+        "description": "Actual Voyager2 multibody context: Thalassa1989N5 distinct Naiad1989N6 and Despina1989N3. Neptune glare, annotation circles, noise and orbital streaks are not terrain, axes, calibrated colour or stars."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL THALASSA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM THALASSA",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "body": "Thalassa / S/1989 N5 (JPL804)",
+      "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/thalassa-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/thalassa-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12"
+        }
+      ],
+      "parameters": {
+        "jplRadiusKm": 40,
+        "jplRadiusUncertaintyKm": 8,
+        "radiusReference": "Archinal2018 JPLref1 equivalent-volume radius, not local normal",
+        "jplGmKm3s2": 0.02359,
+        "jplGmUncertainty": 0.00522,
+        "gmReference": "NEP097",
+        "jplDerivedDensity_g_cm3": [
+          1.3184,
+          0.8432
+        ],
+        "densityLimit": "JPL derived from GM and radius, not local chemistry/porosity; not adopted as scene material fractions",
+        "paperEffectiveRadiusKm": 41,
+        "paperRadiusUncertaintyKm": 3,
+        "paperGmKm3s2": [
+          0.0236,
+          0.0064
+        ],
+        "paperDerivedDensity_g_cm3": [
+          1.23,
+          0.43
+        ],
+        "semimajorAxisKm": 50100,
+        "orbitalPeriodDays": 0.311078,
+        "roundedEccentricity": 0,
+        "roundedInclinationDeg": 0,
+        "epoch": "2000-01-01.5 TDB",
+        "frame": "Local Laplace plane",
+        "ephemeris": "NEP097",
+        "reference": "Brozovic2020 personal communication to Horizons/NAIF, table reference not new underlying solution audit",
+        "olderPaperAlternative": "2019Table7 2020Jan1TDB a50075 e.00019 free inclination.168 Laplace inclination.468; different epoch/fit",
+        "neptuneMeanRadiusKm": 24622
+      },
+      "assumptions": {
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded",
+        "site": "Hypothetical Neptune-facing point using radius as height; not registered irregular normal or dated ephemeris"
+      },
+      "geometries": [
+        {
+          "assumedHeightKm": 40,
+          "distanceKm": 50060,
+          "angularDiameterDeg": 58.92446987582741,
+          "targetWidthPixels1672": 944.5178037948427
+        },
+        {
+          "assumedHeightKm": 41,
+          "distanceKm": 50059,
+          "angularDiameterDeg": 58.92576301634089,
+          "targetWidthPixels1672": 944.5426932230414
+        }
+      ],
+      "method": "src/astro/appearance.js skyGeometry: radiusSun24622/695700, distanceAU(50100-height)/149597870.7, horizontalFovDeg90; target centreDiscWidthFraction*1672. 60K angular helper only; colour/irradiance discarded.",
+      "limitations": [
+        "JPL40±8 and paper41±3 radii, GM and derived densities remain explicit alternatives; no silent catalogue replacement or cause for differences established.",
+        "Rounded e0/i0 do not prove a circular or equatorial orbit; mean elements are not dated instantaneous distances. Assumed heights are not local irregular surface normals or statistical uncertainty envelope.",
+        "Orbital period and73:69 Naiad-node resonance do not establish spin/locking or permanent Neptune-facing terrain. Camera axis, site, phase and attitude remain unverified.",
+        "Spherical Neptune omits oblateness; ring opening, atmospheric/spectral transfer, exposure, visible colour and scene registration remain artistic/unverified. Black sky or omitted rings do not establish absence.",
+        "Retain native shared-trio component identities, unresolved geography and open UTC/filter/exposure/product/full-credit/native-publication crosswalk; no other body skin or chemistry assigned.",
+        "No ocean, plume, biology, survivable landing, calibrated photometry or resolved local geography claimed.",
+        "All68 original dossiers/PNGs/defaults/masters/native/provenance/maps/models/shapes and recorded Clipper preview preserved; no69/image/embedding/catalogue/codec change. Substantial conforming lossless headroom required."
+      ],
+      "validation": {
+        "base": "601ec52",
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16066359 bytes,66359 over hard16MB",
+        "queue": 566,
+        "preservation": "All550 tracked public files byte-identical to HEAD,405 protected assets and all68 dossiers untouched; original/master/native/provenance and recorded Clipper preview retained.",
+        "browser": "No passing current full/offline artifact or new browser verification claim; other engines open.",
+        "attribution": "Interbuild differences unaudited; no savings or codec change claimed."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/thalassa-surface-image.jpg",
+      "previewUrl": "/bespoke/thalassa-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "thalassa-generated-surfaceImage-original.png",
+      "sourceSha256": "ed0719a644d5aca249d22c78fc99a2b6c2cc270fd79599779cfa27437c7140ad",
+      "sha256": "78d19cb73c3343e3058dd4257e5f558bafcb270f64f82f62374d2411ff705d82",
+      "previewSha256": "0e5970422d75612c29efe498817537d21efb64556b3d1e5c998922a5b78ad33d",
+      "bytes": 336836,
+      "previewBytes": 10862,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/thalassa-sky-image.jpg",
+      "previewUrl": "/bespoke/thalassa-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "thalassa-generated-skyImage-original.png",
+      "sourceSha256": "6553d1f86949a7b946a16e4c86bea44c8e99572ed6d97c234d57cac0cf25492b",
+      "sha256": "a3fcafbc41c54d7604f02a5e6b59761165673ab64800d5a04b45c9ace9de8072",
+      "previewSha256": "c009cc3031d5ab9aaebeff5e90f5a7985cce675a7e296353e7c2527f33bfe8e8",
+      "bytes": 182659,
+      "previewBytes": 6444,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "outputs": [
+    {
+      "path": "public/bespoke/thalassa-sky-image-preview.jpg",
+      "bytes": 6444,
+      "sha256": "c009cc3031d5ab9aaebeff5e90f5a7985cce675a7e296353e7c2527f33bfe8e8"
+    },
+    {
+      "path": "public/bespoke/thalassa-sky-image.jpg",
+      "bytes": 182659,
+      "sha256": "a3fcafbc41c54d7604f02a5e6b59761165673ab64800d5a04b45c9ace9de8072"
+    },
+    {
+      "path": "public/bespoke/thalassa-surface-image-preview.jpg",
+      "bytes": 10862,
+      "sha256": "0e5970422d75612c29efe498817537d21efb64556b3d1e5c998922a5b78ad33d"
+    },
+    {
+      "path": "public/bespoke/thalassa-surface-image.jpg",
+      "bytes": 336836,
+      "sha256": "78d19cb73c3343e3058dd4257e5f558bafcb270f64f82f62374d2411ff705d82"
+    },
+    {
+      "path": "public/bespoke/thalassa-voyager-native.jpg",
+      "bytes": 169897,
+      "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425"
+    }
+  ],
+  "derivativeNote": "Importer JPEG derivatives separately hashed. Earlier prepared research JPEGs and all original/default PNGs remain unchanged; no byte-identity or provenance-cause claim between separately encoded derivatives."
+}

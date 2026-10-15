@@ -222,3 +222,10 @@ test('Naiad separates orbital resonance and conditional strength from spin and t
  assert.match(v.modelled.join(' '),/not spin locking/);assert.match(v.modelled.join(' '),/conditional strength/);assert.match(v.contextImages[0].description,/Naiad1989N6/);
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425');
 });
+
+ test('Thalassa preserves N5 identity and orbital resonance without inventing spin or resolved geography',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const m=MOONS.find(x=>x.id==='thalassa'),v=bodyVisualFor(m);
+ assert.equal(v.id,'thalassa');assert.equal(m.rotationHours,null);assert.equal(m.massKg,null);assert.equal(m.locked,false);assert.equal(m.surfacePending,true);assert.equal(v.surfaceMap,undefined);assert.equal(m.elements.i,.2);assert.equal(m.elements.node,130.6);
+ assert.match(v.modelled.join(' '),/not spin locking/);assert.match(v.contextImages[0].description,/Thalassa1989N5 distinct Naiad1989N6/);assert.equal(v.contextImages[0].publicationDate,null);
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425');
+ });

@@ -139,6 +139,9 @@ export const MOONS = [
     elements: el(48200, 0, 0, 89.7, 4.7, 41.4, 0.293980, 0, 0.575, [299.7, 42.7]),
     surfacePending: true, discovered: '1989 · Voyager 2',
     note: 'Neptune III, S/1989 N6; distinct DespinaN3/ThalassaN5. JPL29±6km equivalent radius differs from33±3km paper alternative and does not establish local normal. BorderlineGM and deriveddensity are not precise chemistry/porosity. 73:69 orbital inclination resonance is not spin locking; unknown spin/static orientation, no permanent Neptune face or dated scene. Conditional cohesion, age, monolithic and erosion models are not measured properties. No resolved globe/shape adopted.' },
+  { id: 'thalassa', name: 'Thalassa', parent: 'neptune', radiusKm: 40, massKg: null, rotationHours: null, locked: false,
+    elements: el(50100, 0, 0, 165.7, 0.2, 130.6, 0.311078, 0, 0.654, [299.7, 42.7]),
+    surfacePending: true, discovered: '1989 · Voyager 2', note: 'Equivalent-volume radius, not a local normal. Spin unknown; disabling automatic locking is not evidence of nonsynchronous rotation. Orbital resonance with Naiad is not spin locking; native detection is not a resolved surface map.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,
