@@ -602,6 +602,19 @@
       "visualId": "hippocamp"
     },
     {
+      "id": "sol-s-2015-136472-1",
+      "bodyId": "mk2",
+      "name": "S/2015 (136472) 1",
+      "parent": "makemake",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved globe or shape adopted. Unresolved Hubble moon point distinct from Makemake glare/diffraction; no primary or other-body map assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "mk2"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7201,17 +7214,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-s-2015-136472-1",
-      "name": "S/2015 (136472) 1",
-      "parent": "makemake",
-      "kind": "moon",
-      "scope": "Dwarf-planet satellite; individual source verification queued",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8513,7 +8515,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 35,
+      "initialDossiers": 36,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

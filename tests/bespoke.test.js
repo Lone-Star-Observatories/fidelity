@@ -236,3 +236,9 @@ test('Naiad separates orbital resonance and conditional strength from spin and t
  assert.match(v.modelled.join(' '),/no JPL radius or GM invented/);assert.match(v.contextImages[0].description,/not independently cross-matched/);assert.equal(v.contextImages[0].observationDate,'2009');assert.equal(v.contextImages[0].publicationDate,'2019-02-20');
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec');
  });
+
+test('MK2 labels its provisional orbit, assumed plane and albedo radius without JPL or spin claims',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const {solSystem}=await import('../src/data/systems.js');const m=MOONS.find(x=>x.id==='mk2'),v=bodyVisualFor(m),b=solSystem().bodies.find(x=>x.id==='mk2');
+ assert.equal(v.id,'mk2');assert.equal(m.massKg,null);assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(v.surfaceMap,undefined);assert.equal(b.facts.ORBIT.find(x=>x.label==='ORIENTATION').tier,'imagined');assert.match(b.facts.ORBIT.find(x=>x.label==='ORIENTATION').detail,/line of sight/);assert.equal(b.facts.PHYSICAL.find(x=>x.label==='RADIUS').tier,'modelled');assert.equal(b.facts.PHYSICAL.find(x=>x.label==='ROTATION').value,'UNKNOWN');assert.match(v.modelled.join(' '),/NOT resolvedmoonphotometry/);
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616');
+});

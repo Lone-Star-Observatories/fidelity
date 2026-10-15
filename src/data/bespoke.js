@@ -13276,6 +13276,292 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "mk2": {
+    "id": "mk2",
+    "name": "Makemake moon (MK 2)",
+    "aliases": [
+      "MK2",
+      "MK 2",
+      "Makemake moon",
+      "S/2015 (136472) 1"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Unresolved Hubble moon point distinct from Makemake glare/diffraction; no primary or other-body map assigned.",
+    "measured": [
+      "Parker,Buie,Grundy,Noll2016 HSTWFC3UVIS F350LP program13668: deltaMagnitude7.80±.04; primaryAB17.39. Broadband contrast is not measured visiblecolour/localchemistry.",
+      "Six725second long exposures per visit total4350s each; discovery2015Apr27 detection, Apr29 nondetection. Native metadata bothdates does not prove bothvisits coadded; exact JPEGUTC/raw/coadd crosswalk open. Published2016Apr26/page2025update not observation."
+    ],
+    "modelled": [
+      "F350LP delta adopted for V without moon colour information; H_V7.89±0.04 inferred using primary H_V0.091±0.015. Not measured moon visible colour.",
+      "Preliminary prograde circular pass/fail models with assumed primary density1.4–3.2g/cm3 permit a21100–300000km and period12.4–660days; retrograde mirrors also acceptable. Discovery data alone do not constrain primary density or measure system mass. These historical conditional ranges are not current ephemerides, uncertainty posteriors, spin periods or permanent-facing-site evidence.",
+      "Nominal geometric albedo0.04 implies diameter175km; albedo0.02 implies about250km. No resolved axes, measured local albedo or silent catalogue size update. NASA100-mile caption estimate remains distinct.",
+      "Dark-moon hypothesis reallocates some system thermal excess from primary to moon. NEATM alternatives use albedo0.04/eta0.25,0.02/eta0.4,or0.04/eta0.4 with H brighter by0.5mag; models produce60–80percent of measured24micron system flux, not a unique complete solution. Not observed local dark patches, chemistry, fractions, calibrated visible colour or terrain.",
+      "Capture, giant impact and atmospheric-interaction explanations are hypotheses, not directly measured history. Primary pole/flattening/thermal-inertia discussion is conditional and must not be assigned as moon measurements.",
+      "Daniel Bamberger2509.05880v3 preliminary circular orbit18.023±.017day/22250±780km/inclination83.7±1deg TO LINE OF SIGHT. Prograde/retrograde ambiguous; not catalogue inertial inclination/spin/current ephemeris. Revised2026Feb28/draftMar3 uses archival2015–2019, not new2026imagery.",
+      "Assumed primary715±15km/all system mass concentrated primary gives2.69±.20e21kg/primarydensity1.76±.17, not moon mass/density/chemistry. Earlier primarydensity2.1±.4 alternative retained. Conditional2023–2027mutualevents/~140min are predictions, not verified ongoingevents.",
+      "Bamberger twelve40s median-subtracted stacks per set exclude70/180s, astrometry0.7pixel assumed; distinct discovery six725s account, rawgrouping not independently verified.",
+      "Kiss2024v1 full21authors retained in source record: January2023MIRI1254 system photometry, pipeline1.15.1jwst1256, archive10.17909/0ebf-dp91, NOT resolvedmoonphotometry. Tested darkmoon NEATM underpredicts18micron; hypothetical1200km secondmoon unsupported and longwaveoverprediction, not discovery.",
+      "Primary147±5K projected10km hotspot or undetected carbonaceous/graphite ring hypotheses are not resolved geography/confirmedactivity/moonchemistry. Primary11.4/22.8hour rotation alternatives are not moonspin; constantflux not ringproof. Analogues are modelling comparisons, never skins.",
+      "Display radius87.5km is one historical albedo.04/175kmdiameter hypothesis; .02/250kmdiameter alternative125km retained. Orbitdisplay uses preliminary22250km/18.023day scale but invented eclipticplane/circularity/phase for navigation only, not a registered current orbit. No JPL table row for moon; no JPL radius/GM invented."
+    ],
+    "unknown": [
+      "Current orbital solution, rotation, shape and later JWST thermal results require separate primary audit.",
+      "Exact native JPEG exposure IDs, UTC/coaddition/stretch, raw archive association and independent colour/photometric calibration.",
+      "No observed-body analog skin, mapped geography, atmosphere-absence inference, ocean/plume/biology or survivable landing claim.",
+      "No skyGeometry calculation performed; reported source angular measurements are not new raster calculations.",
+      "Discovery-era broad circular/density ranges remain historical; later preliminary circular fit refines research context without changing catalogue inputs.",
+      "Moon size, albedo, shape, photometry and thermal properties not measured by this orbit-only analysis. Do not assign primary radius/density to moon.",
+      "Raw exposure IDs/filter/exposure grouping, final publication, eccentric alternatives, orientation, later astrometry and actual mutual-event detections remain open.",
+      "NASA native JPEG/coaddition/camera and independent colour calibration remain unresolved; archival2015–2019 observations are not new2026 native images.",
+      "No geography, analog skin, local material fractions, atmosphere-absence, ocean/plume/biology or landing claim.",
+      "Current eccentric orbit/ephemeris, mass partition, moon albedo/resolved size/shape/spin",
+      "Native JPEG exact UTC/raw exposure/coadd/camera/product crosswalk",
+      "Physical registration, phase, primary oblateness, atmospheric transmission, calibrated colour and photometry",
+      "Moon mass,spin,locking,axes,albedo,localchemistry/atmosphere/visiblecolour/photometry unverified. rotationnull/lockedfalse disables automaticlocking, not measurednonsync/permanentface. No ocean/plume/biology.",
+      "Parker2016 specific arXiv nonexclusive NOTCCBY; Bamberger specificCCBYSA4 and Kiss specificCCBY4 distinct, final/rawterms not blanket. No paperfigure embedded. NASAimage activeNASAmedia/thirdpartyterms NOTCCBY."
+    ],
+    "assumed": [
+      "Terrain, chemistry/material fractions, grey colour, primary disk pattern, phase, lighting and exposure are invented; no analog skin or dated HST site.",
+      "Black sky and ring omission are artistic assumptions, not measured absence.",
+      "Distinct historical albedo-dependent moon sizes and preliminary circular orbit are not a joint fit, dated distance, registered normal, spin-locking or permanent-facing determination, or uncertainty envelope.",
+      "Recorded skyGeometry targets remain 53.969661560036414/54.061231112316555 pixels at1672px and nominal90degreeHFOV; 40K helper is angular only. No calibrated raster diameter adopted.",
+      "Primary Makemake hotspot, ring and rotation models are not moon measurements.",
+      "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+      "Small preview annotations and disk require readable IMAGINED card labels before integration.",
+      "Unresolved HST point and system MIRI photometry do not establish resolved moon terrain, local chemistry, visible colour or moon temperature.",
+      "Primary thermal hotspot/ring models and primary rotation alternatives must not be assigned to the moon.",
+      "Prograde/retrograde orbit ambiguity does not determine moon spin; mutual events remain conditional predictions, not verified ongoing events.",
+      "Black sky, absent rings or omitted haze are not absence measurements. Camera phase, exposure, spectral transfer and transmission remain artistic until independently verified.",
+      "Parker record nonexclusive distribution is not CC BY. Bamberger specific record CC BY-SA4 does not establish blanket source/raw-product licence; no figure embedded.",
+      "All localterrain/blocks/grains/materialfractions/greycolour/Makemakediskpatterns/phase/light/exposure independently invented; no analog/date/HSTsite/foregroundatmosphere/plume/liquid/ocean/biology/survivablelanding. Black/ring/Sun/stars omission not absence.",
+      "skyGeometry primary715km at22250minus87.5/125 gives3.697560484690818/3.703829717845123deg53.969661560036414/54.061231112316555px nominal90HFOV1672; distinct albedo-size and preliminaryorbit assumptions, not jointfit/date/normal/locking/permanentface/envelope.40Khelper angularonly colourirradiance discarded. Rendered disk uncalibrated, no rasterdiameter adopted; readable IMAGINEDcardlabels required."
+    ],
+    "references": [
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://science.nasa.gov/asset/hubble/makemake-and-its-moon-non-annotated/"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif/jcr:content/renditions/600x600.jpg"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/pdf/1604.07461v1"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/abs/1604.07461v1"
+      },
+      {
+        "title": "Discovery of a Makemakean Moon specific distribution terms",
+        "url": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/pdf/2509.05880v3"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/abs/2509.05880"
+      },
+      {
+        "title": "A preliminary orbit for the satellite of dwarf planet (136472) Makemake specific distribution terms",
+        "url": "http://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/pdf/2410.22544v1"
+      },
+      {
+        "title": "Makemake moon retained primary source",
+        "url": "https://arxiv.org/abs/2410.22544"
+      },
+      {
+        "title": "Prominent mid-infrared excess of the dwarf planet (136472) Makemake discovered by JWST/MIRI indicates ongoing activity specific distribution terms",
+        "url": "http://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/makemake-moon-native.jpg",
+        "url": "/bespoke/mk2-hubble-native.jpg",
+        "bytes": 33558,
+        "sha256": "7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616",
+        "fetched": "2026-10-12",
+        "dimensions": [
+          600,
+          600
+        ],
+        "mode": "RGB",
+        "source": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2016/04/STScI-01EVVGW2FJQAPP4CWDZMTAQMBJ.tif/jcr:content/renditions/600x600.jpg",
+        "sourceUrl": "https://science.nasa.gov/asset/hubble/makemake-and-its-moon-non-annotated/",
+        "width": 600,
+        "height": 600,
+        "tier": "measured",
+        "credit": "NASA, ESA, and A. Parker and M. Buie (Southwest Research Institute)",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASAmedia terms/thirdparty exceptions, not asserted CC BY.",
+        "observationDate": "2015-04-27 / 2015-04-29 (publisher metadata)",
+        "publicationDate": "2016-04-26",
+        "observationDateNote": "Discovery detectionApr27,nondetectionApr29; exact publisher JPEG raw/coadd/UTC association unresolved.4350s supports one visit, not combinedboth.",
+        "processing": "Unchanged NASA-served600squareJPEG rendition; publisher rendition/reencoding not full TIFF pixel preservation. Separate originalTIFF retained.",
+        "description": "Actual Hubble unresolved moon detection above bright Makemake. Glare/diffraction/noise are not moon terrain, axes or calibratedvisiblecolour; artistconcept separate."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 45.57,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.011694191234557231,
+      "centreDiscWidthFraction": 0.00010205107055470969,
+      "irradianceEarth": 0.0004815506160982659,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL MK 2 TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM MK 2",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "S/2015 (136472) 1 (MK 2), satellite of Makemake",
+      "status": "Research-only observer geometry; no illustration, dossier69, embedding, catalogue, codec, map or shape change",
+      "sources": [
+        {
+          "path": "docs/research/makemake-moon-primary-orbit-size-assessment-2026-10-12.json",
+          "bytes": 5895,
+          "sha256": "e6e0b0495dfe77672e2f82bea0d472b44e0ab4a2f21f4a9085c646cdbebbc3f3"
+        },
+        {
+          "path": "docs/research/makemake-moon-later-orbit-assessment-2026-10-12.json",
+          "bytes": 5142,
+          "sha256": "e099ee81512f043da573a5a3c3b59f9cdea7b6afa8b93d456b942795f09d8679"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-Parker2016-v1.pdf",
+          "bytes": 1193583,
+          "sha256": "996e7c455d83530a57a4fc79c0ae01cfe86e07dc9f621fa6ed3e83ebdc474e1e"
+        },
+        {
+          "path": "data/research-sources/makemake-moon-Bamberger2026-v3.pdf",
+          "bytes": 461858,
+          "sha256": "9576244118fa8cd9882ddc17a0c8622e503be383294e4705180d12f833a525e2"
+        }
+      ],
+      "parameters": {
+        "primaryRadiusKm": 715,
+        "primaryRadiusUncertaintyKm": 15,
+        "preliminaryCircularSemimajorAxisKm": 22250,
+        "semimajorAxisUncertaintyKm": 780,
+        "orbitalPeriodDays": 18.023,
+        "orbitalPeriodUncertaintyDays": 0.017,
+        "moonSizeAlternatives": "Historical assumed geometric albedo0.04/0.02 gives diameters175/250km; spherical heights87.5/125km are model alternatives, not measured axes or normals.",
+        "sourceCrosswalk": "Primary radius and circular orbit from Bamberger2509.05880v3; historical moon size alternatives from Parker1604.07461v1. This combines distinct research assumptions, not a jointly fitted physical solution."
+      },
+      "geometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "horizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "temperatureHelperK": 40,
+        "alternatives": [
+          {
+            "assumedMoonHeightKm": 87.5,
+            "assumedPrimaryCentreDistanceKm": 22162.5,
+            "angularDiameterDeg": 3.697560484690818,
+            "centreDiscWidthPixels": 53.969661560036414
+          },
+          {
+            "assumedMoonHeightKm": 125,
+            "assumedPrimaryCentreDistanceKm": 22125,
+            "angularDiameterDeg": 3.703829717845123,
+            "centreDiscWidthPixels": 54.061231112316555
+          }
+        ],
+        "limits": "Angular outputs only; irradiance and colour discarded. Near-side camera assumed. Preliminary circular separation minus model sphere height is not dated distance, registered site normal, verified rotation/tidal locking or permanent Makemake-facing site. Alternatives are not an uncertainty envelope; orbital/primary radius errors are not propagated here. No rendered disk or measured raster diameter adopted."
+      },
+      "scienceLimits": [
+        "Unresolved HST point and system MIRI photometry do not establish resolved moon terrain, local chemistry, visible colour or moon temperature.",
+        "Primary thermal hotspot/ring models and primary rotation alternatives must not be assigned to the moon.",
+        "Prograde/retrograde orbit ambiguity does not determine moon spin; mutual events remain conditional predictions, not verified ongoing events.",
+        "Black sky, absent rings or omitted haze are not absence measurements. Camera phase, exposure, spectral transfer and transmission remain artistic until independently verified.",
+        "Parker record nonexclusive distribution is not CC BY. Bamberger specific record CC BY-SA4 does not establish blanket source/raw-product licence; no figure embedded."
+      ],
+      "open": [
+        "Current eccentric orbit/ephemeris, mass partition, moon albedo/resolved size/shape/spin",
+        "Native JPEG exact UTC/raw exposure/coadd/camera/product crosswalk",
+        "Physical registration, phase, primary oblateness, atmospheric transmission, calibrated colour and photometry"
+      ],
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16065570,
+        "overBudgetBytes": 65570,
+        "trackedPublicFiles": 550,
+        "allTrackedPublicBytesEqualHEAD": true,
+        "dossiers": 68,
+        "queue": 566,
+        "browser": "No current passing full artifact or new offline browser claim. Other engines remain open.",
+        "attribution": "Interbuild feed differences unaudited; no compression or asset saving claim."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/mk2-surface-image.jpg",
+      "previewUrl": "/bespoke/mk2-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "makemake-moon-generated-surfaceImage-original.png",
+      "sourceSha256": "2a044e0f8b64248dec9c2ef639ef1616770bdba7d918c05274be6bd24f74ef61",
+      "sha256": "74a27e4c436b80f6d6834133ebfe732b6fef00c4865f75b4b13a4c876425d61b",
+      "previewSha256": "9a11d69fe122ea648c0c866474453d5fd74753a2c5f6f61d742b3c25777452e0",
+      "bytes": 312566,
+      "previewBytes": 10827,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/mk2-sky-image.jpg",
+      "previewUrl": "/bespoke/mk2-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "makemake-moon-generated-skyImage-original.png",
+      "sourceSha256": "d6842c37ec41655e477eba4bb1c7f34f8eeea44dc78349d956fdd379a78de12b",
+      "sha256": "88fb0053e31c5d07a6f94831e35855712245139e64480939a1cf8d3293e2b1df",
+      "previewSha256": "9a1239aee7a3022267150fa152eaae1d1fe282de11ac9af56bb41bcd707d1e3e",
+      "bytes": 163644,
+      "previewBytes": 6399,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

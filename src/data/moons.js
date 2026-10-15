@@ -145,6 +145,21 @@ export const MOONS = [
   { id: 'hippocamp', name: 'Hippocamp', parent: 'neptune', radiusKm: 16.2, massKg: null, rotationHours: null, locked: false,
     elements: el(105300, 0.001, 346.4, 286.5, 0.3, 0.5, 0.950390, 8.726, 661.762, [299.8, 43.0]),
     surfacePending: true, discovered: '2013 · Mark Showalter / Hubble archival images', note: 'Photometric effective radius assumes albedo and phase law, not resolved shape/local normal. Spin unknown; disabling automatic locking is not evidence of nonsynchronous rotation. Unlabelled Hubble context points are not independently cross-matched here.' },
+  { id: 'mk2', name: 'S/2015 (136472) 1', parent: 'makemake', radiusKm: 87.5, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(22250, 0, 0, 0, 0, 0, 18.023, 0, 0, null, 'ecliptic'),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'MAKEMAKE', tier: 'measured', detail: 'S/2015 (136472) 1, nicknamed MK 2; unresolved Hubble detection.' },
+      { label: 'ORBIT SCALE', value: '22,250 ± 780 KM', tier: 'modelled', detail: 'Bamberger preliminary circular fit; not dated distance or JPL mean elements.' },
+      { label: 'PERIOD', value: '18.023 ± 0.017 DAYS', tier: 'modelled', detail: 'Preliminary circular orbital period, not moon rotation.' },
+      { label: 'ORIENTATION', value: 'UNREGISTERED', tier: 'imagined', detail: 'Paper inclination83.7±1 degrees is to line of sight, with prograde/retrograde ambiguity. Display ecliptic plane/phase invented; no current ephemeris.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE ORBIT', tier: 'imagined', detail: 'Circularity, plane and phase are assumed for navigation; no observed current position or event timing.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '87.5 KM · HYPOTHESIS', tier: 'modelled', detail: 'Parker2016 assumed albedo.04 gives175km diameter; alternative albedo.02 gives250km/125km radius. Not resolved axes/local normal.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: 'Primary/system dynamical mass is not a measured moon mass.' },
+      { label: 'DISCOVERED', value: '2015 · PARKER / HUBBLE', tier: 'measured', detail: 'DetectionApril27,2015; announcedApril26,2016.' },
+    ],
+    surfacePending: true, discovered: '2015 · Alex Parker / Hubble', note: 'Preliminary circular orbit scale with invented plane/phase for navigation. Radius is an albedo hypothesis; moon spin, mass, shape and current position unverified.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,
