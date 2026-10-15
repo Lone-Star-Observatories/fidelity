@@ -13036,6 +13036,246 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "hippocamp": {
+    "id": "hippocamp",
+    "name": "Hippocamp",
+    "aliases": [
+      "Hippocamp",
+      "Neptune XIV",
+      "S/2004 N1"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Unannotated Hubble multibody context only; individual points not independently cross-matched. No Neptune or other moon geography assigned.",
+    "measured": [
+      "Hubble archival detections2004–2016; discoveryJuly2013 distinct acquisition dates. Retained NASA monochrome context2009only, exactUTC/filter/exposure/coadd/rawproduct unresolved; separate2009Aug19 Neptune colour inset is absent from this file.",
+      "Native publication2019Feb20, page2024update/2023migration not observations. NASA caption ≤12miles versus ESAapproximately34km diameter conflict retained; historical23hour orbit is not spin."
+    ],
+    "modelled": [
+      "Fresh JPL NEP097 mean localLaplace epoch2000Jan1.5TDB a105300km/e.001/w346.4/M286.5/i.3/node.5/P.950390day/apsis8.726yr/nodal661.762yr/pole299.8,43.0. Mean orbit is not dated scene distance or spin locking. No Hippocamp row in fresh physical table; no JPL radius or GM invented.",
+      "Showalter,de Pater,Lissauer,French2019 Table1 photometric effective spherical radius16.2±1.2km assumes geometric albedo.09±.01/phase slope.24magdeg; reflectivity59±5.6km² adjusted to1degree, rounded prose16±1. Not resolved axes, local normal, chemistry or calibrated NASAJPEG diameter. massKg remains null.",
+      "HST2004–2016 orbital fit epoch2009Jan1UTC localLaplace n378.906239±.000031degday, deriveda105283.56km/e.00019±.00038/i.082±.056/Laplacetilt.3078. Semimajor derived with fixed Neptune gravity, not independently measured currentdistance. econsistentzero not exact circle. Distinct current mean elements retained.",
+      "ACS/HRC/WFC3 calibratedFLT GO10398/11656/14217 processing: median glare subtraction, cosmic/hotpixel masks, unsharp subtraction, orbital-motion distortion/full-HSTorbit coadds, GaussianPSF and .1pixel error floor. Cosmetic fills excluded from analysis; processing structure is not geography. Pipeline not reproduced.",
+      "PHOTFLAM/filterthroughput/solar spectrum/PSF aperture corrections calibrate disk-integrated photometry, not retained JPEG visiblecolour/scene exposure. Gravity-model Neptune25225km differs catalogue mean24622km; no radius update.",
+      "Paper Fig1 dates2004Dec9/2005May12/2009Aug19/2016Sep2 and separate2016Aug31 supplemental video do not identify NASAJPEG exact UTC or a particular unlabelled point.",
+      "Proteus-fragment impact/tidal migration/repeated breakup/reaccretion are hypotheses under uncertain dissipation/history, not directly observed origin/localchemistry/ocean/plume/biology/imminent disruption. Injection search limits apply dataset2004–2016, not exhaustive current moon inventory."
+    ],
+    "unknown": [
+      "Spin,locking,resolved shape/irregularnormal,physical registration,local chemistry/atmosphere/visiblecolour/photometry unverified. rotationnull/lockedfalse only disables automatic locking, not measured nonsynchronous spin/permanent Neptune-facing site.",
+      "Exact NASAJPEG individual point crossmatch/rawUTC/filter/exposure/coadd/product/full contributor crosswalk open. Black mask/glare/noise are not terrain, axes, calibrated colour or measured atmospheric absence.",
+      "NASA rendition uses activeNASAmedia terms/thirdparty exceptions NOTassertedCCBY. Separate ESA image CC BY4 does not establish byte/pixel identity or blanket licence for NASA image/manuscript/rawproducts/code.",
+      "Full four-author27page reviewer manuscript retained, DOI10.1038/s41586-019-0909-9 final2019Feb20 Nature566350–353 distinct retained pagination/title. No verified paper CC licence or figure embedded. PubMed interstitial hash records response only, not metadata.",
+      "Final paper/supplementaryXLS/intermediates/software/licences/recentorbitrotationmassshape and nativecrosswalk remain open. Larissa/Galatea clays and ProteusCO2 cannot be transferred to Hippocamp."
+    ],
+    "assumed": [
+      "All terrain, chemistry/material fractions, Neptune bands/cloud patterns, colour, phase, lighting and exposure invented; no analog skin or dated Hubble/Voyager site.",
+      "Black sky and ring omission are artistic assumptions, not measured atmospheric/ring absence.",
+      "Photometric radius16.2±1.2km under albedo/phase assumptions does not establish axes, local normal, spin locking or permanent Neptune-facing site.",
+      "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+      "Neptune appears larger than requested; no calibrated raster diameter adopted. Axis/attitude, oblateness, transmission, visible colour and registration remain open.",
+      "Small preview footers require readable IMAGINED card labels before integration.",
+      "Recorded skyGeometry Neptune24622km at105300minus16.2 photometricheight gives27.0492364326537deg402.1715774423626px nominal90HFOV1672. Helper60K angularonly, colour/irradiance discarded. Not dated distance/registered normal/spinlocking/permanentface/jointfit/uncertainty envelope.",
+      "Prepared Neptune appears oversized and uncalibrated; no raster diameter adopted. All local terrain/blocks/grains/materialfractions/greycolour/Neptunebands/cloudpatterns/phase/axis/light/exposure invented independently, no analog/date/HubbleVoyager site/foregroundatmosphere/plume/liquid/ocean/biology/survivablelanding. Black/ring/Sun/stars omission not absence. Readable IMAGINED card labels accompany tiny preview footers."
+    ],
+    "references": [
+      {
+        "title": "Hippocamp moon-preparation source",
+        "url": "https://science.nasa.gov/resource/neptunes-moon-hippocamp/"
+      },
+      {
+        "title": "Hippocamp moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/h/Hippocamp-1.jpg"
+      },
+      {
+        "title": "Hippocamp moon-preparation source",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Hippocamp moon-preparation source",
+        "url": "https://esahubble.org/images/heic1904b/"
+      },
+      {
+        "title": "Hippocamp primary-orbit-size-assessment source",
+        "url": "https://esahubble.org/static/archives/releases/science_papers/heic1904/heic1904a.pdf"
+      },
+      {
+        "title": "Hippocamp primary-orbit-size-assessment source",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30787452/"
+      },
+      {
+        "title": "Hippocamp observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Hippocamp observer-geometry-preparation source",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "Fresh JPL satellite table",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Fresh JPL satellite table",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/hippocamp-hubble-native.jpg",
+        "path": "data/research-sources/hippocamp-native.jpg",
+        "bytes": 90822,
+        "sha256": "104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec",
+        "dimensions": [
+          700,
+          466
+        ],
+        "credit": "NASA, ESA, and M. Showalter (SETI Institute)",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "observationDate": "2009",
+        "publicationDate": "2019-02-20",
+        "licence": "NASA media terms; no CC BY assertion for this NASA rendition",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/h/Hippocamp-1.jpg",
+        "sourceUrl": "https://science.nasa.gov/resource/neptunes-moon-hippocamp/",
+        "width": 700,
+        "height": 466,
+        "tier": "measured",
+        "observationDateNote": "Year only for monochrome context. Separate2009Aug19 colour inset absent; raw/coadd/UTC crosswalk unverified.",
+        "terms": "NASAmedia terms and thirdparty exceptions, not asserted CC BY.",
+        "processing": "Unchanged full NASA-served700x466JPEG; no resizing/reencoding. Masked/glare-subtracted unannotated multibody context, not resolved surface geography.",
+        "description": "Actual Hubble discovery context: unlabelled point detections beside masked Neptune/glare. Individual Hippocamp point not independently cross-matched; other points, residuals and mask are not Hippocamp terrain/axes/calibratedcolour."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL HIPPOCAMP TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM HIPPOCAMP",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "body": "Hippocamp / S/2004 N1 / Neptune XIV (JPL814)",
+      "status": "Research only; no illustration, dossier69, embedding, catalogue or codec change",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/hippocamp-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+          "retrieved": "2026-10-12"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/hippocamp-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+          "retrieved": "2026-10-12"
+        }
+      ],
+      "parameters": {
+        "jplPhysicalTable": "No Hippocamp row in this retrieved physical-parameter table; no JPL radius or GM invented.",
+        "jplMeanElements": {
+          "ephemeris": "NEP097",
+          "reference": "M. Brozovic (2020), personal communication to Horizons/NAIF",
+          "frame": "Local Laplace",
+          "epoch": "2000-01-01.5 TDB",
+          "semimajorAxisKm": 105300,
+          "eccentricity": 0.001,
+          "inclinationDeg": 0.3,
+          "periodDays": 0.95039
+        },
+        "paper2019": {
+          "radiusKm": 16.2,
+          "radiusUncertaintyKm": 1.2,
+          "radiusLimit": "Photometry-derived effective spherical radius assuming albedo0.09±0.01 and phase slope0.24mag/degree, not resolved axes/local normal.",
+          "semimajorAxisKm": 105283.56,
+          "epoch": "2009-01-01T00:00:00 UTC",
+          "meanMotionDegPerDay": 378.906239,
+          "eccentricity": 0.00019,
+          "inclinationDeg": 0.082
+        },
+        "comparison": "Distinct fitted/mean parameters and epochs retained; no silent catalogue update or cause claim. NASA≤12miles versus ESA34km diameter caption conflict retained."
+      },
+      "geometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "neptuneSphericalMeanRadiusKm": 24622,
+        "assumedHeightKm": 16.2,
+        "assumedCentreDistanceKm": 105283.8,
+        "horizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "angularDiameterDeg": 27.0492364326537,
+        "centreDiscWidthPixels": 402.1715774423626,
+        "temperatureHelperK": 60,
+        "limits": "Angular helper only; colour and irradiance outputs discarded. Mean semimajor-axis distance minus photometric effective height is hypothetical, not dated distance, irregular normal, verified spin/tidal locking or permanent Neptune-facing site. No rendered image or measured raster adopted; not an uncertainty envelope."
+      },
+      "open": [
+        "Native NASA image individual point/UTC/filter/exposure/coadd/product crosswalk and contributor terms",
+        "Current mass, resolved shape, rotation and physical registration",
+        "Camera attitude, phase, Neptune oblateness, atmospheric transmission, ring visibility and colour/photometric calibration"
+      ],
+      "preservedLimits": "Unresolved native sources do not establish geography or local chemistry. Black sky/ring omission cannot establish absence. Proteus-fragment migration/reaccretion is a model, not directly observed history. No ocean/plume/biology/landing claim. Paper licence unverified; ESA image CC BY4 does not license paper/raw products.",
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16064255bytes64255over hard16MB gate",
+        "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/405 protected assets and recorded Clipper preview preserved; queue566.",
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "Interbuild differences unaudited; no savings attribution or codec change."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/hippocamp-surface-image.jpg",
+      "previewUrl": "/bespoke/hippocamp-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hippocamp-generated-surfaceImage-original.png",
+      "sourceSha256": "023c62871f4dc5896363a6d70359bb927e4048fffa049dde59c27f84a6512285",
+      "sha256": "ef5a9d30980109a33fc9684192f47e4cbc9ef2a273d298f367c24abf393a3a7f",
+      "previewSha256": "faa3af7bcf4fa25fbbd8727062998936e980af91ae6563117a185716407aa1cb",
+      "bytes": 347145,
+      "previewBytes": 10036,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hippocamp-sky-image.jpg",
+      "previewUrl": "/bespoke/hippocamp-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hippocamp-generated-skyImage-original.png",
+      "sourceSha256": "80f302332800908bfc7f1abc7dc1759dc33e36dae02dfed5659ec23b6d6b74b2",
+      "sha256": "5f7178e0489d5eb5b2531aefcc4fbf8ae9c35f89e7dc1378302fa7542263f683",
+      "previewSha256": "52172c623a090ed46d9d47f3f67f5d40c0e17c21027e0f2bf99b005a0732e92f",
+      "bytes": 215921,
+      "previewBytes": 7539,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

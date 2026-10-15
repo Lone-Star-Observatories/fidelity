@@ -142,6 +142,9 @@ export const MOONS = [
   { id: 'thalassa', name: 'Thalassa', parent: 'neptune', radiusKm: 40, massKg: null, rotationHours: null, locked: false,
     elements: el(50100, 0, 0, 165.7, 0.2, 130.6, 0.311078, 0, 0.654, [299.7, 42.7]),
     surfacePending: true, discovered: '1989 · Voyager 2', note: 'Equivalent-volume radius, not a local normal. Spin unknown; disabling automatic locking is not evidence of nonsynchronous rotation. Orbital resonance with Naiad is not spin locking; native detection is not a resolved surface map.' },
+  { id: 'hippocamp', name: 'Hippocamp', parent: 'neptune', radiusKm: 16.2, massKg: null, rotationHours: null, locked: false,
+    elements: el(105300, 0.001, 346.4, 286.5, 0.3, 0.5, 0.950390, 8.726, 661.762, [299.8, 43.0]),
+    surfacePending: true, discovered: '2013 · Mark Showalter / Hubble archival images', note: 'Photometric effective radius assumes albedo and phase law, not resolved shape/local normal. Spin unknown; disabling automatic locking is not evidence of nonsynchronous rotation. Unlabelled Hubble context points are not independently cross-matched here.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

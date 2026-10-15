@@ -229,3 +229,10 @@ test('Naiad separates orbital resonance and conditional strength from spin and t
  assert.match(v.modelled.join(' '),/not spin locking/);assert.match(v.contextImages[0].description,/Thalassa1989N5 distinct Naiad1989N6/);assert.equal(v.contextImages[0].publicationDate,null);
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425');
  });
+
+ test('Hippocamp preserves unresolved point identity, photometric size and unknown spin',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const m=MOONS.find(x=>x.id==='hippocamp'),v=bodyVisualFor(m);
+ assert.equal(v.id,'hippocamp');assert.equal(m.massKg,null);assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(m.surfacePending,true);assert.equal(v.surfaceMap,undefined);assert.equal(m.radiusKm,16.2);assert.deepEqual(m.elements.pole,[299.8,43]);
+ assert.match(v.modelled.join(' '),/no JPL radius or GM invented/);assert.match(v.contextImages[0].description,/not independently cross-matched/);assert.equal(v.contextImages[0].observationDate,'2009');assert.equal(v.contextImages[0].publicationDate,'2019-02-20');
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec');
+ });
