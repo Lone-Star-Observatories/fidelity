@@ -1,0 +1,355 @@
+{
+  "date": "2026-10-15",
+  "status": "research-only navigation provenance audit; not adopted for rendering or registration",
+  "body": "Phoebe",
+  "credits": "NASA/Caltech-JPL/University of Arizona/Osuna-CNRS-Nantes Université",
+  "sourcePage": "https://vims.univ-nantes.fr/cube/1465680977_5",
+  "sourceProduct": "https://vims.univ-nantes.fr/cube/N1465680977_5_ir.cub",
+  "terms": {
+    "portalStatement": "CC BY 4.0 statement retained in earlier portal assessment; not a blanket paper, raw archive or third-party licence",
+    "link": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "findings": [
+    "Unchanged 373342-byte navigation cube retained with source hash; six 48 by 48 float32 geometry bands are distinct from the 256-band radiometric cube.",
+    "Inherited OriginalBand 97 and repeated wavelength metadata do not make geometry bands spectral measurements.",
+    "Attached history records phocube CAMERA geometry from a first-band calibrated intermediate on 2018-09-13, separate from June 2004 instrument times. Exact historical intermediate bytes remain unverified.",
+    "All six bands contain 2140 exact NULL4 stored bit patterns and 164 other patterns. Current pinned and tagged v3.5.2 special-pixel constants agree; installed executable/build equivalence remains open. Other patterns are not automatically accepted as physical measurements.",
+    "Tagged phocube source assigns NULL8 after failed camera positioning; this is consistent with unavailable off-body geometry, but does not establish each sample cause or reproduce the output-conversion path."
+  ],
+  "limits": [
+    "No geometry ranges, angular sizes, raster scale, physical validity, limb mask or coverage adopted.",
+    "No raw QUB byte identity, printed paper _2 versus portal _5 equivalence, kernel load/coverage, camera timing, RC17 fitted geometry, geographic registration or radiometric accuracy independently reproduced.",
+    "ShapeModel Null and stored BODY609 radii are processing metadata, not new measured Phoebe axes or a current map frame.",
+    "Earlier preparation pending statements are historical checkpoints; targeted header/history/constants/source reading is complete only to the explicitly described extent.",
+    "No image rendering, native science transformation, model conversion, map adoption, catalogue change, new dossier or codec change."
+  ],
+  "evidence": {
+    "navigation-access": {
+      "status": "research preparation only",
+      "url": "https://vims.univ-nantes.fr/cube/N1465680977_5_ir.cub",
+      "retrievedAt": "2026-10-15T05:05:16.758545+00:00",
+      "finalUrl": "https://vims.univ-nantes.fr/cube/N1465680977_5_ir.cub",
+      "httpStatus": 200,
+      "contentType": "application/octet-stream",
+      "file": "data/research-sources/phoebe-vims-nantes-N1465680977_5_ir-original-2026-10-15.cub",
+      "bytes": 373342,
+      "sha256": "ec8f2c2305eccd272d5e4d198e2d237cbd78dabe300be66611faf4ced39d78f3",
+      "headerPreparationFile": "data/research-sources/phoebe-vims-nantes-N1465680977_5_ir-header-preparation-2026-10-15.txt",
+      "limits": [
+        "No navigation value interpreted or transferred; per-product header inspection pending.",
+        "Source association with paper printed suffix _2 remains unresolved.",
+        "No independent SPICE, raw timing, calibration, limb geometry or map registration reproduction.",
+        "No production asset, dossier, model, catalogue or codec change."
+      ]
+    },
+    "navigation-header": {
+      "status": "research preparation only",
+      "sourceFile": "data/research-sources/phoebe-vims-nantes-N1465680977_5_ir-original-2026-10-15.cub",
+      "sourceSha256": "ec8f2c2305eccd272d5e4d198e2d237cbd78dabe300be66611faf4ced39d78f3",
+      "headerClaims": {
+        "target": "PHOEBE",
+        "samples": 48,
+        "lines": 48,
+        "bands": 6,
+        "format": "Tile",
+        "tileSamples": 48,
+        "tileLines": 48,
+        "pixelType": "Real",
+        "byteOrder": "Lsb",
+        "base": 0,
+        "multiplier": 1,
+        "coreStartByte": 65537,
+        "instrumentStartTime": "2004-163T21:12:13.530",
+        "instrumentStopTime": "2004-163T21:27:49.597",
+        "productId": "1_1465680977.13981"
+      },
+      "storedBandDiagnostics": [
+        {
+          "nameFromHeader": "Phase Angle",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "59773b154fedf8de29eb5ccfe4202f0f489658593ea6011631480de16caf7f3b"
+        },
+        {
+          "nameFromHeader": "Emission Angle",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "22657d7e58fc64776964f95c5d27b9a61f9c6d23abab78e3874a4d421af91ddd"
+        },
+        {
+          "nameFromHeader": "Incidence Angle",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "52c024528a768643a4527f2adbfa86cde344428853d88f545a612ba896a2c486"
+        },
+        {
+          "nameFromHeader": "Latitude",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "c482988eab02ee7e3b7e9b69b5680ccd6786e3610ad101cd00e583b1251d61cc"
+        },
+        {
+          "nameFromHeader": "Longitude",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "0115f497d77a0702eb67bae5155a34f65476b31afe556c92109ba14667c3e5c8"
+        },
+        {
+          "nameFromHeader": "Pixel Resolution",
+          "storedSamples": 2304,
+          "finiteFloat32Count": 2304,
+          "extremeNegativeCountBelowMinus1e30": 2140,
+          "payloadSha256": "28a8a314615d8bbb363ebd8bf9b89b390d4baa56b8905a2cbdae318d09281425"
+        }
+      ],
+      "limits": [
+        "Six named geometry bands, not six spectral wavelengths; inherited BandBin Center/OriginalBand values do not turn these into six spectral measurements.",
+        "Finite IEEE float values can include ISIS special sentinels; extreme-negative counts are diagnostics, not an independently validated validity mask.",
+        "Core layout uses one complete 48x48 tile per band; exact stored bytes hashed, no resampling or conversion adopted.",
+        "No angular/raster geometry computation, independent SPICE or limb/latitude/longitude/resolution calibration claim.",
+        "Paper suffix _2 versus portal _5 unresolved; no NASA3D association, dossier, image embedding or production codec change."
+      ]
+    },
+    "navigation-history": {
+      "status": "research-only preparation; no production change",
+      "date": "2026-10-15",
+      "source": {
+        "path": "data/research-sources/phoebe-vims-nantes-N1465680977_5_ir-original-2026-10-15.cub",
+        "bytes": 373342,
+        "sha256": "ec8f2c2305eccd272d5e4d198e2d237cbd78dabe300be66611faf4ced39d78f3"
+      },
+      "history": {
+        "path": "data/research-sources/phoebe-vims-nantes-N1465680977_5_ir-history-preparation-2026-10-15.txt",
+        "bytes": 3867,
+        "sha256": "2fbc9ddd143bd587e2759576b83803f63ccc91826e14e915e702475e79fb1fbc",
+        "startByteOneBased": 369476
+      },
+      "recordedOperation": {
+        "program": "phocube",
+        "isisVersion": "3.5.2.0 stable | 2018-04-06",
+        "programVersion": "2017-06-09",
+        "executionDateTime": "2018-09-13T02:27:39",
+        "source": "CAMERA",
+        "from": "C1465680977_5_ir_cal.cub+1",
+        "dn": false,
+        "enabledBands": [
+          "phase",
+          "emission",
+          "incidence",
+          "latitude",
+          "longitude",
+          "pixel resolution"
+        ],
+        "localEmission": false,
+        "localIncidence": false,
+        "bodyFixed": false
+      },
+      "interpretation": [
+        "The attached history records camera-derived geometry from the first calibrated input band; inherited spectral BandBin metadata does not make these six geometry bands independent spectral measurements.",
+        "Processing time is not an observation time. The FROM filename records lineage but does not establish original QUB byte identity or equivalence with the paper printed _2 identifier.",
+        "The navigation history does not list the noisefilter/lowpass operations recorded in the separately retained delivered C cube. This does not prove that the historical intermediate named as phocube input is byte-identical to the currently served C cube.",
+        "No geometry values, ISIS special-pixel mask, kernel/load order, surface registration, photometry or physical accuracy independently validated. No new angular or raster calculation."
+      ],
+      "preservation": "All production dossiers, public originals, masters, native science, maps, models, shapes, provenance and codecs unchanged. No embedding or new dossier.",
+      "next": "Audit special-pixel conventions and exact intermediate/raw association before adopting navigation; substantial conforming lossless headroom remains required before prepared additive dossiers."
+    },
+    "navigation-specialpixel": {
+      "status": "research-only preparation; no adoption",
+      "date": "2026-10-15",
+      "sourceCubeSha256": "ec8f2c2305eccd272d5e4d198e2d237cbd78dabe300be66611faf4ced39d78f3",
+      "reference": {
+        "url": "https://raw.githubusercontent.com/DOI-USGS/ISIS3/fd19d727c12e2249eed373ffbb73e6e117ad2f0d/isis/src/core/include/SpecialPixel.h",
+        "path": "data/research-sources/isis-specialpixel-header-response-2026-10-15.h",
+        "bytes": 15273,
+        "sha256": "91207e402da876fbdec8596899d7c687e74d5acdc1815adf922604d52527f2dd",
+        "scope": "Pinned current source definition; historical ISIS 3.5.2 equivalence remains unverified."
+      },
+      "codesHex": {
+        "NULL4": "0xff7ffffb",
+        "LOW_REPR_SAT4": "0xff7ffffc",
+        "LOW_INSTR_SAT4": "0xff7ffffd",
+        "HIGH_INSTR_SAT4": "0xff7ffffe",
+        "HIGH_REPR_SAT4": "0xff7fffff"
+      },
+      "bands": [
+        {
+          "band": "phase",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        },
+        {
+          "band": "emission",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        },
+        {
+          "band": "incidence",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        },
+        {
+          "band": "latitude",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        },
+        {
+          "band": "longitude",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        },
+        {
+          "band": "pixel resolution",
+          "exactBitPatternCounts": {
+            "NULL4": 2140,
+            "LOW_REPR_SAT4": 0,
+            "LOW_INSTR_SAT4": 0,
+            "HIGH_INSTR_SAT4": 0,
+            "HIGH_REPR_SAT4": 0
+          },
+          "otherPatterns": 164
+        }
+      ],
+      "limits": [
+        "Exact stored-bit comparison against pinned source constants, not a reproduced historical camera/geometry solution.",
+        "Other patterns are not automatically accepted as valid physical measurements. No angle/raster-size calculation or geometry statistics adopted.",
+        "Matching special-pixel patterns do not independently validate limb masking, coverage, kernel association, geographic registration, raw product identity, calibration or accuracy.",
+        "Earlier less-than-minus-1e30 screen remains only a diagnostic; no production mask or image changed."
+      ],
+      "preservation": "All dossiers, public originals, masters, native science, maps, models, shapes, provenance and codecs unchanged."
+    },
+    "navigation-historical-specialpixel": {
+      "status": "research-only preparation; no production change",
+      "date": "2026-10-15",
+      "reference": {
+        "url": "https://raw.githubusercontent.com/DOI-USGS/ISIS3/77c10385ee31526b54cc42b82ee30a1ac4ed8c58/isis/src/base/objs/SpecialPixel/SpecialPixel.h",
+        "tag": "v3.5.2",
+        "commit": "77c10385ee31526b54cc42b82ee30a1ac4ed8c58",
+        "path": "data/research-sources/isis-3.5.2-specialpixel-header-original-2026-10-15.h",
+        "bytes": 14313,
+        "sha256": "d6c7b7c1454f9640c05daeaeb08ce89a947f3725f4f5611875e258ce14b04eaf"
+      },
+      "historicalConstants": {
+        "IVALID_MIN4": "0xFF7FFFFA",
+        "INULL4": "0xFF7FFFFB",
+        "ILOW_REPR_SAT4": "0xFF7FFFFC",
+        "ILOW_INSTR_SAT4": "0xFF7FFFFD",
+        "IHIGH_INSTR_SAT4": "0xFF7FFFFE",
+        "IHIGH_REPR_SAT4": "0xFF7FFFFF"
+      },
+      "comparison": {
+        "sameFiveSpecialPixelConstantsAsCurrentPinnedReference": true,
+        "cubeSha256": "ec8f2c2305eccd272d5e4d198e2d237cbd78dabe300be66611faf4ced39d78f3",
+        "exactStoredNULL4PerBand": [
+          2140,
+          2140,
+          2140,
+          2140,
+          2140,
+          2140
+        ]
+      },
+      "limits": [
+        "Tagged historical source constants agree with stored NULL4 patterns; installed processing executable/build identity is not verified by the public tag.",
+        "No physical validity assigned to the other 164 samples per band; no geometry values, angular sizes or calibrated raster scale adopted.",
+        "This does not validate limb masking, completeness, kernel loading, geographic registration, raw QUB identity, RC17 equivalence or physical accuracy."
+      ],
+      "preservation": "All delivered assets, original/master/native bytes, dossiers, maps, models, shapes, catalogue, provenance and codecs unchanged."
+    },
+    "navigation-phocube-source": {
+      "status": "research-only preparation; no production change",
+      "date": "2026-10-15",
+      "source": {
+        "url": "https://raw.githubusercontent.com/DOI-USGS/ISIS3/77c10385ee31526b54cc42b82ee30a1ac4ed8c58/isis/src/base/apps/phocube/phocube.cpp",
+        "tag": "v3.5.2",
+        "commit": "77c10385ee31526b54cc42b82ee30a1ac4ed8c58",
+        "path": "data/research-sources/isis-3.5.2-phocube-source-original-2026-10-15.cpp",
+        "bytes": 15859,
+        "sha256": "537a8f145bbc0891405abff70192f958f25c668b48239747c1e8c43eaaba897d"
+      },
+      "targetedSourceReading": [
+        {
+          "lines": [
+            295,
+            305
+          ],
+          "finding": "Camera path assigns isGood from cam->SetImage(samp,line); only true result enters geometry calculation."
+        },
+        {
+          "lines": [
+            452,
+            457
+          ],
+          "finding": "Failed position path assigns Isis::NULL8 to geometry bands, preserving DN skip condition."
+        }
+      ],
+      "interpretation": [
+        "This source branch is consistent with documented unavailable off-body geometry and the exact NULL4 stored patterns previously counted in the navigation cube. It does not establish the physical cause of every NULL sample.",
+        "No historical executable or camera dependencies run, NULL8-to-float output path independently traced, kernel coverage verified, surface intersections recomputed or mask adopted.",
+        "A matching public release tag is not proof of the publisher installed executable build or exact intermediate input bytes.",
+        "The 164 non-NULL-pattern samples per band remain unvalidated as physical measurements; no angles, raster scale, native-map registration or visible-colour calibration adopted."
+      ],
+      "preservation": "All 75 dossiers, public originals, masters, native science, models, shapes, catalogue, provenance and codecs unchanged."
+    }
+  },
+  "preservation": {
+    "dossiers": 75,
+    "trackedPublicFiles": 598,
+    "newDossier": false,
+    "nativeBytesReplaced": false,
+    "publicHashVerification": "All 598 baseline public file SHA256 values match."
+  },
+  "next": [
+    "Recover substantial conforming lossless standalone headroom before the eight already prepared additive dossiers.",
+    "Resolve raw/intermediate identity and independently reproduce geometry before navigation or map registration adoption."
+  ],
+  "verification": {
+    "tests": {
+      "pass": 668,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15986552,
+    "headroomBytes": 13448,
+    "queue": 566,
+    "dossiers": 75,
+    "browser": "No fresh browser verification",
+    "interbuildSize": "Feed differences not audited; no compression saving attribution"
+  }
+}
