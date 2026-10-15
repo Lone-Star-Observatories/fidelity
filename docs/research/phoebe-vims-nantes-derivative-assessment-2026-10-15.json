@@ -1,0 +1,222 @@
+{
+  "date": "2026-10-15",
+  "scope": "Research-only Phoebe Nantes VIMS derivative and processing-history audit; no production asset adoption",
+  "sources": [
+    {
+      "path": "data/research-sources/phoebe-vims-nantes-calibration-preparation-2026-10-15.json",
+      "sha256": "3143c4578180ef4b5eb0b886eb31031a466a7a553cd8dea9648794cb1b8082a1",
+      "record": {
+        "status": "research preparation only; no production change",
+        "retrievedAt": "2026-10-15T03:52:33.214979+00:00",
+        "source": {
+          "url": "https://vims.univ-nantes.fr/info/isis-calibration",
+          "finalUrl": "https://vims.univ-nantes.fr/info/isis-calibration",
+          "httpStatus": 200,
+          "file": "data/research-sources/phoebe-vims-nantes-calibration-response-2026-10-15.html",
+          "bytes": 25098,
+          "sha256": "765ffeb4b47eb936f04806eda4a36150eb7da4676736012f34d1eb52db672f4d"
+        },
+        "publisherWorkflow": {
+          "softwareExample": "ISIS 3.5.2.0, version date 2018-04-06; historical example, not independently verified latest software",
+          "radiometry": "Generic example uses vimscal RC19 I/F, unlike Fraser/Brown 2018 RC17 analysis; no equivalence or reprocessing claim",
+          "processing": [
+            "vims2isis splits VIS and IR",
+            "spiceinit supplies navigation and kernels",
+            "vimscal units IOF",
+            "For minimum spatial dimension above five, 5x5 noisefilter with standard-deviation thresholds 2.5 replaces outliers with NULL",
+            "3x3 lowpass fills NULL from surrounding valid pixels"
+          ],
+          "navigation": "phocube geometry is provided on moon ground; publisher says limb and off-body geometry unavailable",
+          "exampleTargetCaution": "1490951542_2 is a workflow example, not one of the retained Phoebe source products"
+        },
+        "limits": [
+          "No science cube downloaded or header verified; exact per-cube RC19 version, kernels and filtering remain open.",
+          "Filtered calibrated cube is a processed scientific derivative, not unchanged raw detector values or resolved visible-colour geography.",
+          "Generic navigation is not Fraser/Brown fitted geometry, 2023 SPC product identity or current NASA3D registration.",
+          "Page latest/current wording is historical and not independently established for 2026.",
+          "Prior raw-label TLS failure remains documented; no security bypass or global unavailability claim.",
+          "No angular or raster-size calculation, source image substitution, embedding, catalogue or codec change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-vims-nantes-calibrated-cube-access-preparation-2026-10-15.json",
+      "sha256": "082c9120863979422e0a11558fcb7bd079c4290b64bc1ef415e2a77ac0f1f93b",
+      "record": {
+        "status": "research preparation only",
+        "url": "https://vims.univ-nantes.fr/cube/C1465680977_5_ir.cub",
+        "retrievedAt": "2026-10-15T04:05:15.726324+00:00",
+        "limits": [
+          "Portal identifier suffix differs from printed Fraser/Brown 1465680977_2; association unresolved.",
+          "No image embedding, geography, independent radiometric calibration, registration or original raw-byte identity claim.",
+          "Stored header fields are publisher product metadata, not independently reproduced clock conversion, calibrated photometry or fitted spatial registration.",
+          "Full binary retained unchanged; only ASCII header inspected this turn, no image or spectral sample interpretation.",
+          "Portal RC19 derivative does not establish equivalence to the paper RC17 analysis or resolve identifier suffix differences."
+        ],
+        "finalUrl": "https://vims.univ-nantes.fr/cube/C1465680977_5_ir.cub",
+        "httpStatus": 200,
+        "contentType": "application/octet-stream",
+        "file": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-original-2026-10-15.cub",
+        "bytes": 2677409,
+        "sha256": "abcf54b238f9404a17adfe0e52ee3c16c6d0057bfe0927e8f5e43b4775a562f5",
+        "headerPreparationFile": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-header-preparation-2026-10-15.txt",
+        "storedHeaderClaims": {
+          "target": "PHOEBE",
+          "instrumentStartTime": "2004-163T21:12:13.530",
+          "instrumentStopTime": "2004-163T21:27:49.597",
+          "productId": "1_1465680977.13981",
+          "samples": 48,
+          "lines": 48,
+          "bands": 256,
+          "pixelType": "Real",
+          "byteOrder": "Lsb",
+          "coreStartByte": 65537,
+          "calibrationVersion": "RC19"
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-vims-nantes-attached-metadata-preparation-2026-10-15.json",
+      "sha256": "cefd35fe55a04471d2ef3367f2a9476da0c96e08c05895c4c62dd22e93a219b4",
+      "record": {
+        "status": "research preparation only",
+        "sourceFile": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-original-2026-10-15.cub",
+        "sourceSha256": "abcf54b238f9404a17adfe0e52ee3c16c6d0057bfe0927e8f5e43b4775a562f5",
+        "sections": [
+          {
+            "section": "history",
+            "oneBasedStartByte": 2673477,
+            "bytes": 3933,
+            "file": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-history-preparation-2026-10-15.txt",
+            "sha256": "71c118939b4ed917d13e3d2f3f3a8b81ccc77539a05e12ebb931f0b486095400",
+            "limits": "Attached publisher metadata only; original archive byte identity and processing reproduction unverified."
+          },
+          {
+            "section": "attached-original-label",
+            "oneBasedStartByte": 2643161,
+            "bytes": 30316,
+            "file": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-attached-original-label-preparation-2026-10-15.txt",
+            "sha256": "9b5e0845708c1899cc3751790865161bcde7927c5dcfd42aa17d655a2a8c6045",
+            "limits": "Attached publisher metadata only; original archive byte identity and processing reproduction unverified."
+          }
+        ],
+        "limits": [
+          "Exact byte slices retained, no image or spectral transformation.",
+          "No native map, dossier, model, catalogue or codec change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-vims-nantes-history-interpretation-preparation-2026-10-15.json",
+      "sha256": "acbf0197546c43723fde8c46807c339cd87d33570f012aec6c6bc68f5b4b7c78",
+      "record": {
+        "status": "research preparation only; no production change",
+        "historyFile": "data/research-sources/phoebe-vims-nantes-C1465680977_5_ir-history-preparation-2026-10-15.txt",
+        "historySha256": "71c118939b4ed917d13e3d2f3f3a8b81ccc77539a05e12ebb931f0b486095400",
+        "storedSteps": [
+          {
+            "operation": "vims2isis",
+            "isisVersion": "\"3.5.2.0 stable | 2018-04-06\"",
+            "storedExecutionDateTime": "2018-07-11T12:52:18"
+          },
+          {
+            "operation": "spiceinit",
+            "isisVersion": "\"3.4.13.7091 stable | 2016-08-10\"",
+            "storedExecutionDateTime": "2018-07-11T12:55:45"
+          },
+          {
+            "operation": "vimscal",
+            "isisVersion": "\"3.5.2.0 stable | 2018-04-06\"",
+            "storedExecutionDateTime": "2018-07-11T12:55:56"
+          },
+          {
+            "operation": "noisefilter",
+            "isisVersion": "\"3.5.2.0 stable | 2018-04-06\"",
+            "storedExecutionDateTime": "2018-07-11T12:57:11"
+          },
+          {
+            "operation": "lowpass",
+            "isisVersion": "\"3.5.2.0 stable | 2018-04-06\"",
+            "storedExecutionDateTime": "2018-09-13T02:27:54"
+          }
+        ],
+        "findings": [
+          "Attached vims2isis FROM explicitly names v1465680977_5.qub, supporting the portal derivative filename lineage claim only. The raw QUB bytes are not verified.",
+          "spiceinit records ISIS 3.4.13.7091, whereas the conversion, radiometry and filters record 3.5.2.0. Generic single-version portal prose does not replace this per-product history.",
+          "Stored radiometry uses IOF, 2006Flat, DARK true, IRORIGDARK false; current cube header states RC19.",
+          "Stored noisefilter uses 5x5, standard deviation tolerance 2.5 and NULL replacement; lowpass uses 3x3, FILTER outside, NULL yes.",
+          "Stored lowpass execution is September 13, 2018, distinct from July 11, 2018 earlier processing steps and June 11, 2004 instrument times. Processing timestamps are not observations."
+        ],
+        "limits": [
+          "Publisher history not independently executed or validated.",
+          "Paper printed suffix _2 versus derivative _5 remains unresolved; no substitution or RC17/RC19 equivalence.",
+          "No raw-byte identity, calibrated colour, surface abundance, NASA3D map registration, geography or scene calibration claim.",
+          "Source binary and every original asset remain unchanged; no image embedding or codec change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-vims-nantes-anchor-count-preparation-2026-10-15.json",
+      "sha256": "fcf6c0474ad937951ada7fba9ceb3b91fc1e187200c39abe7dacd83bc829fff4",
+      "record": {
+        "status": "Research-only retained HTML inventory refinement; no network or science-product processing.",
+        "source": {
+          "path": "data/research-sources/phoebe-vims-nantes-phoebe-response-2026-10-15.html",
+          "bytes": 381224,
+          "sha256": "f8ff0953eeab4db0b0fa84e9de2b33526752f2030c3e34195c96968a048ac7b2"
+        },
+        "renderedCubeAnchorCount": 397,
+        "uniqueCubeAnchorCount": 397,
+        "repeatedAnchors": {},
+        "outsideEarlierNumericPattern": [
+          "/cube/1465676743_1_001",
+          "/cube/1465676743_1_002",
+          "/cube/1465676743_1_003",
+          "/cube/1465676743_1_004",
+          "/cube/1465676743_1_005",
+          "/cube/1465676743_1_006",
+          "/cube/1465676743_1_007",
+          "/cube/1465676743_1_008"
+        ],
+        "limits": [
+          "HTML anchor counts are not independent archive completeness or observation counts. No absence or duplication of science observations inferred.",
+          "No delivered asset or production source modified."
+        ]
+      }
+    }
+  ],
+  "credit": "NASA/Caltech-JPL/University of Arizona/Osuna-CNRS-Nantes Université; portal statement, not blanket paper or third-party terms",
+  "sourceUrl": "https://vims.univ-nantes.fr/cube/1465680977_5",
+  "workflowUrl": "https://vims.univ-nantes.fr/info/isis-calibration",
+  "findings": [
+    "Unchanged 2677409-byte C1465680977_5_ir.cub SHA256 abcf54b238f9404a17adfe0e52ee3c16c6d0057bfe0927e8f5e43b4775a562f5 retained locally; header and attached metadata inspected, science pixels not interpreted.",
+    "Stored PHOEBE 48x48x256 Real/Lsb header carries RC19 I/F radiometry and instrument times 2004-163T21:12:13.530 through 21:27:49.597. Stored metadata is not independent timing or radiometric reproduction.",
+    "Per-product history records mixed ISIS versions, July 2018 conversion/navigation/calibration/noise filtering and September 2018 lowpass filling. These are processing dates, not observations.",
+    "History names v1465680977_5.qub; raw QUB byte identity and paper printed suffix 1465680977_2 association remain unresolved. No silent substitution or RC17/RC19 equivalence.",
+    "Full Phoebe portal anchor count is 397; earlier 389 numeric-pattern inventory excluded eight multipart suffix identifiers. This is an extraction restriction, not evidence of an archive count inconsistency."
+  ],
+  "open": [
+    "Raw archive source byte identity and identifier version crosswalk",
+    "Independent calibration, kernel load precedence and fitted geometry reproduction",
+    "Spectral and photometric interpretation, surface registration and NASA3D association",
+    "Portal terms deed and per-product redistribution audit before embedding"
+  ],
+  "preservation": "All delivered dossiers, native imagery, original PNGs, masters, models, maps, shapes and production codecs untouched. No new dossier or image embedded.",
+  "verification": {
+    "tests": {
+      "passed": 668,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "publicFiles": 598,
+    "publicFilesByteIdentical": true,
+    "queueTasks": 566,
+    "deliveredDossiers": 75,
+    "freshBrowserVerification": false,
+    "interbuildSavingsAttribution": false,
+    "fullHtmlBytes": 15990921,
+    "headroomBytes": 9079
+  }
+}
