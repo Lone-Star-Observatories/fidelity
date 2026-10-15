@@ -14,7 +14,7 @@ import { gzipAsync } from '@gfx/zopfli';
 import { minify } from 'terser';
 import { encodeApplicationNumbers } from './application-numbers.js';
 import { packStandaloneBootstrap } from './pack-standalone-bootstrap.js';
-import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeUtf8SnapshotBytes, encodeNumericSnapshot, wrapBrotliSnapshot, restoreSnapshotText, restoreApplicationText } from '../src/data/snapshot-codec.js';
+import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeUtf8SnapshotBytes, encodeUtf16SnapshotBytes, encodeNumericSnapshot, wrapBrotliSnapshot, restoreSnapshotText, restoreApplicationText } from '../src/data/snapshot-codec.js';
 import { nearby, starDetail, sky, galaxyStars, nearbyPlanets, motionsReady, arrivals } from '../server/stars.js';
 import { TEXTURES, PREVIEW, download } from '../server/textures.js';
 import { sampleTiff } from '../server/tiff.js';
@@ -210,7 +210,7 @@ async function assemble(snapshotJson) {
   if (!brotliDecompressSync(innerCompressed).equals(Buffer.from(binarySnapshot))) throw new Error('Native Brotli round-trip failed.');
   const htmlCompressed = gzipSync(wrapBrotliSnapshot(binarySnapshot, innerCompressed), { level: 9 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
-  const snapshotRaw = encodeUtf8SnapshotBytes(htmlCompressed);
+  const snapshotRaw = encodeUtf16SnapshotBytes(htmlCompressed);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
   const html = viteHtml.replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
   const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
@@ -248,14 +248,17 @@ async function assemble(snapshotJson) {
   const startup = await packStandaloneBootstrap(bootstrap, codecSource);
   const notices = (await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')).replaceAll('<', '&lt;');
   // the charset first: opened straight from disk (no host page around it) the browser would otherwise guess wrong
-  const out = `<meta charset="utf-8">\n<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
+  const out = `<meta charset="utf-16le">\n<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
   return { out, html };
 }
 let { out } = await assemble(snapshotJson);
-let previewBytes = Buffer.byteLength(out);
+// BOM selects the document encoding for both local files and HTTP delivery.
+const outputBytes = Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from(out, 'utf16le')]);
+if (outputBytes.subarray(2).toString('utf16le') !== out) throw new Error('UTF16 document round-trip failed.');
+let previewBytes = outputBytes.length;
 // Keep every baked scientific band preview; packing must satisfy the gate without dropping inputs.
 // The 16 MB gate is the Claude artifact limit; the Mac app (#51) bundles the file, so its flavour has none.
 const APP_STORE = process.env.VITE_FIDELITY_APP_STORE === '1';
 if (!APP_STORE && previewBytes > 16_000_000) throw new Error(`Standalone preview exceeds the 16 MB budget (${previewBytes} bytes).`);
-await fs.writeFile(path.join(dist, 'fidelity.html'), out);
+await fs.writeFile(path.join(dist, 'fidelity.html'), outputBytes);
 console.log(`wrote dist-standalone/fidelity.html (${(previewBytes / 1e6).toFixed(2)} MB, ${previewBytes} bytes, ${APP_STORE ? 'App Store flavour, no artifact gate' : `${16_000_000 - previewBytes} bytes under the gate`}; ${snapshotJson.includes('"bandImages":{}') ? 'no' : Object.keys(bands.bandImages).length} band images)`);

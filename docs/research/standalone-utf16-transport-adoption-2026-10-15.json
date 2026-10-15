@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-15",
+  "status": "Adopted lossless standalone snapshot transport; no asset or dossier additions",
+  "encoding": {
+    "document": "UTF-16LE with FF FE BOM",
+    "snapshot": "gzip-raw-utf16le-enumerative-v1",
+    "binaryBlockBytes": 255,
+    "codeUnitsPerBlock": 128,
+    "alphabetSize": 63385,
+    "validation": [
+      "exact code-unit length",
+      "safe integer byte length capped at 512 MiB",
+      "excluded scalar rejection",
+      "2040-bit overflow rejection",
+      "zero-padding validation"
+    ],
+    "lazyTables": true
+  },
+  "preserved": [
+    "Full readable JSON and native/model data URI bytes restored exactly",
+    "FIDNUM02/Brotli FONT/outer gzip unchanged",
+    "Application UTF8 transport and independent Brotli instance",
+    "CSS and startup dense125v2 transports",
+    "Every legacy transport, Blob import/revoke and unsupported-gzip message",
+    "All75 dossiers and598 tracked public files; original generated PNGs/masters/native inputs untouched"
+  ],
+  "verification": {
+    "testsPassed": 670,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15213682,
+    "headroomBytes": 786318,
+    "htmlSha256": "be2a700e94bd190c4d4ed3256e5c5cb0ba7a65fd268147a75a038453b4f10cf3",
+    "sameFinalApplicationUtf8CounterfactualBytes": 15984640,
+    "savingAgainstSameApplicationBytes": 770958,
+    "queueTasks": 566,
+    "browser": {
+      "file": {
+        "charset": "UTF-16LE",
+        "encoding": "gzip-raw-utf16le-enumerative-v1",
+        "readableSha256": "00f08a121202a4e2e4585bae14b1e7ed8826b63ee69bec2e03da649ebfb2d484",
+        "expected": "00f08a121202a4e2e4585bae14b1e7ed8826b63ee69bec2e03da649ebfb2d484",
+        "exact": true,
+        "uniqueImages": 278,
+        "canvases": 8
+      },
+      "http": {
+        "charset": "UTF-16LE",
+        "encoding": "gzip-raw-utf16le-enumerative-v1",
+        "readableSha256": "00f08a121202a4e2e4585bae14b1e7ed8826b63ee69bec2e03da649ebfb2d484",
+        "expected": "00f08a121202a4e2e4585bae14b1e7ed8826b63ee69bec2e03da649ebfb2d484",
+        "exact": true,
+        "uniqueImages": 278,
+        "canvases": 8
+      }
+    },
+    "unsupportedGzipMessage": true,
+    "trackedPublicHashMatches": 598
+  },
+  "limits": [
+    "Counterfactual changes only document and snapshot transport on the same final application; not attribution from changing live-feed builds.",
+    "Chrome file and loopback HTTP checked; other browser engines and conflicting HTTP charset remain untested.",
+    "278 unique embedded image data URIs inventoried; sequential image decode did not finish before virtual-time dump, so no fresh all-image decode claim.",
+    "No fresh all-route, eclipse-worker or all-model load claim.",
+    "UTF16 BOM must remain; re-encoding the file as UTF8 without rebuilding changes its size.",
+    "Scientific raster calibration, registration, ranking and all outstanding backlog limitations remain open."
+  ],
+  "next": "Use recovered capacity for prepared Despina additive dossier, then remaining prepared moons; preserve all earlier science and assets."
+}
