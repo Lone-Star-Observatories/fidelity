@@ -160,6 +160,21 @@ export const MOONS = [
       { label: 'DISCOVERED', value: '2015 · PARKER / HUBBLE', tier: 'measured', detail: 'DetectionApril27,2015; announcedApril26,2016.' },
     ],
     surfacePending: true, discovered: '2015 · Alex Parker / Hubble', note: 'Preliminary circular orbit scale with invented plane/phase for navigation. Radius is an albedo hypothesis; moon spin, mass, shape and current position unverified.' },
+  { id: 'dysnomia', name: 'Dysnomia', parent: 'eris', radiusKm: 307.5, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(37273, 0, 0, 0, 0, 0, 15.785899, 0, 0, null, 'ecliptic'),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'ERIS', tier: 'measured', detail: 'Unresolved Hubble and ALMA satellite detection, not a resolved surface map.' },
+      { label: 'ORBIT SCALE', value: '37,273 ± 64 KM', tier: 'modelled', detail: 'Holler2020 nominal fit; combined Keplerian fit rejected6.3sigma, not current distance or JPL mean elements.' },
+      { label: 'PERIOD', value: '15.785899 ± 0.000050 DAYS', tier: 'modelled', detail: 'Orbital period from fit, not moon spin.' },
+      { label: 'ORIENTATION', value: 'UNREGISTERED', tier: 'imagined', detail: 'Paper45.49±.15degrees is J2000 equatorial; older61.1±.3 is ecliptic. Display ecliptic plane/phase invented, not either solution or current ephemeris.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE ORBIT', tier: 'imagined', detail: 'Display circularity/plane/phase assumed for navigation; rejected fit eccentricity.0062±.0010 retained in dossier, not validated event timing.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '307.5 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half615(+60,-50)km thermal diameter; earlier700±115km diameter retained. Not resolved axes or local normal.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: 'ALMA wobble1.5sigma gives assumption-dependent upper limits, not a precise moon mass; system mass is separate.' },
+      { label: 'DISCOVERED', value: '2005 · BROWN / KECK', tier: 'measured', detail: 'Native Hubble acquisition-date/proposal crosswalk remains unresolved.' },
+    ],
+    surfacePending: true, discovered: '2005 · Michael Brown / Keck', note: 'Thermal-model radius and nominal rejected-fit orbital scale with invented plane/phase for navigation. Moon spin, mass, shape and current position unverified; no permanent Eris-facing site.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

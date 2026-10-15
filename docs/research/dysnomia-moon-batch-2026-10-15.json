@@ -1,0 +1,897 @@
+{
+  "date": "2026-10-15",
+  "body": "Dysnomia",
+  "dossier": 81,
+  "status": "Delivered dossier81; native context and independent local/observer illustrations, pending resolved globe/shape and refinement",
+  "preflight": {
+    "date": "2026-10-15",
+    "status": "Read-only preflight; no dossier81/catalogue/embedding change",
+    "verifiedSourcesAndPreparedAssets": [
+      {
+        "path": "data/research-sources/dysnomia-hubble-caption-2026-10-12.html",
+        "bytes": 301272,
+        "sha256": "fe6372f769c918bca73dbf7484766389aee164d23cd026f5a0e1294f63f50d6e"
+      },
+      {
+        "path": "data/research-sources/dysnomia-hubble-unannotated-caption-2026-10-12.html",
+        "bytes": 299989,
+        "sha256": "6881747ff1a92823a9e8afbbece297badde699c8851c2ac9d58f4a14f9cb9969"
+      },
+      {
+        "path": "data/research-sources/dysnomia-hubble-native.jpg",
+        "bytes": 346819,
+        "sha256": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0"
+      },
+      {
+        "path": "data/research-sources/dysnomia-hubble-native.tif",
+        "bytes": 240648,
+        "sha256": "e5a863f5aec9728f31ab089a797759c246582487cf96375d577496dde1067295"
+      },
+      {
+        "path": "data/research-sources/dysnomia-terms-2026-10-12.html",
+        "bytes": 320696,
+        "sha256": "ed996953b8886fd058019617a461211641b2fca6de94970facdf26164ded2302"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Holler2020-v1.pdf",
+        "bytes": 800465,
+        "sha256": "df454e2357a1dc90b79a2e91fa29dddb65f5cf2321a9407463227de537c562ea"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Holler2020-record.html",
+        "bytes": 44360,
+        "sha256": "941278f3625862b68e7948092739bccec80c2692c8298deca9b0d95503d04a3e"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Bernstein2023-v1.pdf",
+        "bytes": 1677142,
+        "sha256": "d9b0d2369200dfad53393ececd711bd0d477aef4bb103126b758daf34bb73287"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Bernstein2023-record.html",
+        "bytes": 50134,
+        "sha256": "294c357a566be9c80649aac87963e1e34a2b1edcd4327fed96329d213a6395cf"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2018-v1.pdf",
+        "bytes": 1252172,
+        "sha256": "2c04fba1d569803ed213b286f320801563ce3d56de651769eb4dca9512f1756c"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2018-record.html",
+        "bytes": 42569,
+        "sha256": "63bdfc45a6d1a1dd23761726d786812dce2c2cd3b91b7cc2445f492e53d11602"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+        "bytes": 540344,
+        "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2023-record.html",
+        "bytes": 41968,
+        "sha256": "379184924496c714fec5aad30e176cac81b2209eb04a0822de14d84be0ec1eb9"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+        "bytes": 545021,
+        "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4"
+      },
+      {
+        "path": "data/research-sources/dysnomia-Brown2023-published-record.html",
+        "bytes": 90931,
+        "sha256": "c2cf95d85c2e9ae04983e0cb8fc861642187d42921644cb4cc3b97ea148d1db7"
+      },
+      {
+        "path": "docs/research/dysnomia-primary-orbit-assessment-2026-10-12.json",
+        "bytes": 5005,
+        "sha256": "b70af53ef75153953068530eba5444168d6281899bb37e63cd2cdd0fb2f1bf5e"
+      },
+      {
+        "path": "docs/research/dysnomia-thermal-primary-assessment-2026-10-12.json",
+        "bytes": 4186,
+        "sha256": "205d17dedb7a9f0d4b36987184a87c88cace2c19f0bc4c0917a01d5451cc4c2f"
+      },
+      {
+        "path": "docs/research/dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+        "bytes": 6041,
+        "sha256": "0a927a4aa6ff2c8db162a63815baa782a79f7bb7ad5f313f8dad1f3923a697e9"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+        "bytes": 2703596,
+        "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-surfaceImage-master.jpg",
+        "bytes": 340326,
+        "sha256": "8f1922872da52d21e0393ef8aee36a43d1a3d291839aaf4f7e6fd147bbb29ce4"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-surfaceImage-preview.jpg",
+        "bytes": 10921,
+        "sha256": "332051c70449c9aa75ff0995afccf62f9e320df5f64ba25ed7491d9c22b5e40f"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-skyImage-original.png",
+        "bytes": 1878586,
+        "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-skyImage-master.jpg",
+        "bytes": 232467,
+        "sha256": "235456ce76694b83eac1b565c5f648fc0dc742f625d5e1f9718ade1fb9436a62"
+      },
+      {
+        "path": "data/research-sources/dysnomia-generated-skyImage-preview.jpg",
+        "bytes": 8423,
+        "sha256": "dac73ad008048f0affa57d0e1a1db440c1dddacb23570c7ce0b7cd065f0b9f52"
+      }
+    ],
+    "freshSources": [
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "path": "data/research-sources/dysnomia-jpl-physical-fresh-2026-10-15.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+        "matchingRows": []
+      },
+      {
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "path": "data/research-sources/dysnomia-jpl-elements-fresh-2026-10-15.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+        "matchingRows": []
+      }
+    ],
+    "integrationRequirements": [
+      "Use modelled/unknown orbit and physical fact overrides introduced for MK2. Rejected combined Keplerian fit must not become current ephemeris; orbital prograde is not spin locking.",
+      "615(+60,-50)km versus700\u00b1115km thermal diameters retained as models, not resolved axes/local normal or measured chemistry. Weak mass upper limits not precise moon mass.",
+      "Native346819-byte full publisher JPEG retained unchanged. Exact additive HTML budget still requires build; raw bytes alone not encoded increment.",
+      "Preserve NASA date/proposal conflicts, specific manuscript licences and all primary authors; no paperfigure or other-body map transfer."
+    ],
+    "preserved": "All80 delivered dossiers, original/default PNGs/masters/previews/native/maps/models/codec unchanged. No fresh tests/build/browser claim."
+  },
+  "preparations": {
+    "moon-preparation": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia",
+      "parent": "Eris",
+      "status": "Research-only; no dossier69, embedding, catalogue, map, shape or codec change",
+      "sources": [
+        {
+          "path": "data/research-sources/dysnomia-hubble-caption-2026-10-12.html",
+          "url": "https://science.nasa.gov/asset/hubble/hubble-view-of-eris-and-dysnomia/",
+          "bytes": 301272,
+          "sha256": "fe6372f769c918bca73dbf7484766389aee164d23cd026f5a0e1294f63f50d6e",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-hubble-unannotated-caption-2026-10-12.html",
+          "url": "https://science.nasa.gov/asset/hubble/hubble-view-of-eris-and-dysnomia-unannotated/",
+          "bytes": 299989,
+          "sha256": "6881747ff1a92823a9e8afbbece297badde699c8851c2ac9d58f4a14f9cb9969",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-hubble-native.jpg",
+          "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/06/STScI-01EVVJ1K0F4CFYFT2NWCMB3PT5.tif/jcr:content/renditions/600x600.jpg",
+          "bytes": 346819,
+          "sha256": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0",
+          "fetched": "2026-10-12",
+          "dimensions": [
+            600,
+            600
+          ],
+          "mode": "RGB"
+        },
+        {
+          "path": "data/research-sources/dysnomia-hubble-native.tif",
+          "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2007/06/STScI-01EVVJ1K0F4CFYFT2NWCMB3PT5.tif",
+          "bytes": 240648,
+          "sha256": "e5a863f5aec9728f31ab089a797759c246582487cf96375d577496dde1067295",
+          "fetched": "2026-10-12",
+          "dimensions": [
+            600,
+            600
+          ],
+          "mode": "RGB"
+        },
+        {
+          "path": "data/research-sources/dysnomia-terms-2026-10-12.html",
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "bytes": 320696,
+          "sha256": "ed996953b8886fd058019617a461211641b2fca6de94970facdf26164ded2302",
+          "fetched": "2026-10-12"
+        }
+      ],
+      "credit": "NASA, ESA, and M. Brown (California Institute of Technology)",
+      "terms": "Active NASA images/media guidance retained; no CC BY or blanket third-party/raw-product licence asserted.",
+      "observation": "Displayed Hubble ACS/HRC image: 2006-08-30. Caption additionally says 2005-12-03, while exposure metadata says December 9\u201310, 2005: discrepancy preserved, raw product crosswalk open.",
+      "publication": "2007-06-14 release; 2025-08-17 page update is not observation.",
+      "metadata": {
+        "proposals": [
+          "10759",
+          "10860"
+        ],
+        "filters": [
+          "F435W (B)",
+          "F606W (V)"
+        ],
+        "exposure": "Metadata 4.3 hours refers to listed observations; not independently assigned to this rendition."
+      },
+      "inspection": "Unchanged 600x600 publisher JPEG inspected: bright central Eris, faint left Dysnomia detection, red-toned background, glare/diffraction/noise. TIFF retained unchanged. Publisher renditions are distinct products, not asserted pixel-identical.",
+      "limitations": [
+        "Unresolved Dysnomia detection does not establish terrain, axes, local chemistry, calibrated visible colour, atmospheric absence or resolved geography.",
+        "Red display transfer/background noise and host glare are not measured moon colour, terrain or stars.",
+        "Eris is not Dysnomia: no primary or other-body map assigned. Annotated orbit and artist illustrations are separate from native unannotated detection.",
+        "Caption orbit combination with Keck August 20,21,30,31 is not asserted to describe the displayed acquisition. Exact raw UTC, coaddition, exposure/filter association, registration and later native-product audit remain open.",
+        "No new angular or raster size computation; caption quantities are not independently calibrated. No exhaustive newest-imagery claim."
+      ],
+      "validation": {
+        "tests": "539 pass, 1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate:16064255bytes/64255over; no current passing offline/browser claim",
+        "preservation": "All68 dossiers unchanged;550 tracked public files byte-identical to HEAD including recorded Clipper preview; original/master/native/provenance preserved.",
+        "queue": 566,
+        "attribution": "Interbuild feed differences unaudited; no asset or compression savings attribution. Other browser engines remain open.",
+        "next": "Substantial conforming lossless headroom before prepared additive dossiers; Dysnomia primary/product audit can progress independently. Backlog ACTIVE; no external blocker."
+      }
+    },
+    "primary-orbit-assessment": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia",
+      "status": "Research-only; no dossier69, illustration, embedding, catalogue, map, shape or codec change",
+      "title": "The Eris/Dysnomia system I: The orbit of Dysnomia",
+      "authors": [
+        "Bryan J. Holler",
+        "William M. Grundy",
+        "Marc W. Buie",
+        "Keith S. Noll"
+      ],
+      "sources": [
+        {
+          "path": "data/research-sources/dysnomia-Holler2020-v1.pdf",
+          "url": "https://arxiv.org/pdf/2009.13733v1",
+          "bytes": 800465,
+          "sha256": "df454e2357a1dc90b79a2e91fa29dddb65f5cf2321a9407463227de537c562ea",
+          "fetched": "2026-10-12",
+          "pages": 21
+        },
+        {
+          "path": "data/research-sources/dysnomia-Holler2020-record.html",
+          "url": "https://arxiv.org/abs/2009.13733",
+          "bytes": 44360,
+          "sha256": "941278f3625862b68e7948092739bccec80c2692c8298deca9b0d95503d04a3e",
+          "fetched": "2026-10-12"
+        }
+      ],
+      "publication": {
+        "arxivSubmitted": "2020-09-29",
+        "recordStatus": "Accepted by Icarus",
+        "relatedDOI": "10.1016/j.icarus.2020.114130",
+        "finalPublisherAudit": "open"
+      },
+      "licence": {
+        "record": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+        "assessment": "Specific nonexclusive distribution, not CC BY; no paper figure embedded."
+      },
+      "assessed": [
+        "Full21pagePDF retained; targeted observations/reduction, Table2, discussion3.4 and orbit-pole limitations."
+      ],
+      "orbit": {
+        "epochJD": 2453979,
+        "periodDays": "15.785899 \u00b1 0.000050",
+        "semimajorAxisKm": "37273 \u00b1 64",
+        "eccentricity": "0.0062 \u00b1 0.0010; reported6.2sigma within fit",
+        "inclinationJ2000EquatorialDegrees": "45.49 \u00b1 0.15",
+        "GMSystemKm3S2": "1099 \u00b1 6",
+        "systemMassKg": "(1.6466 \u00b1 0.0085) \u00d710^22",
+        "orbitPoleRAdegrees": "36.17 \u00b1 0.26",
+        "orbitPoleDecDegrees": "44.51 \u00b1 0.15",
+        "orbitPrograde": "Astrometry breaks orbit-pole degeneracy; not a spin measurement.",
+        "heliocentricOrbitObliquityDegrees": "78.29 \u00b1 0.65; not relative to unknown Eris equator.",
+        "mutualEvents": "2239 model prediction in this work; not a current verified event."
+      },
+      "modelDistinctions": [
+        "System density2.43\u00b1.05g/cm3 derives from fitted system mass, adopted Eris1163\u00b16km occultation radius and Dysnomia350\u00b157.5km thermal radius attributed to Brown/Butler2018. Not separate moon density, local composition or measured axes.",
+        "Equal-density and0.8g/cm3 satellite examples yield about3% or less1% system mass; these are alternative assumptions, not a measured moon mass fraction.",
+        "Tidal circularization5\u201317Myr depends on radius, densities and assumedQ100; not independently measured age or dissipation.",
+        "Combined Keplerian fit excluded6.3sigma; nonzero eccentricity could reflect real dynamics, center-of-light/albedo offsets or unidentified systematics. Extra satellite, Iapetus-like contrast and colour-correction effects are hypotheses, not detections or terrain maps. Never assign Iapetus geography to Dysnomia.",
+        "Spin, permanent Eris-facing site, Eris equator alignment, local normals, current distance and colour/atmospheric transfer are not established by the orbit fit. Later rotation/thermal/native-product audits remain open."
+      ],
+      "observations": [
+        "Program15171 WFC3/UVIS F606W seven visits2018-01-01 through2018-02-03; each four348s plus585s. Jan3tracking failure removed two348s and585s; replacementFeb3visit. Not all exposures usable.",
+        "Pipelinecalwf3v3.4.1 flt products lackedCTE/postflash/cosmic-ray correction; TinyTim7.5 assumedG5Vcolour for PSF, simultaneouscentroids with2.26maserrorfloor. Reduction assumptions not nativeJPEG calibration.",
+        "Paper text names10545/2005-12-03 and10860/2006-08-03 while current NASA caption/metadata names10759/10860 and2006-08-30 plusDecember3vs9\u201310 conflict. Preserve all accounts; rawMAST/product crosswalk unresolved; do not silently correct dates or assume same displayed image."
+      ],
+      "limitations": [
+        "Unresolved astrometry does not establish terrain, local chemistry, calibrated visible colour, atmosphere absence, ocean/plume/biology or survivable landing.",
+        "No angular/raster computation or independent source-pixel scale calibration performed. No catalogue parameter update or latest-complete-ranking claim."
+      ],
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16064255bytes/64255over hard16MB; no current passing full/offline browser claim",
+        "preservation": "All68 dossiers unchanged;550 tracked public files byteequal including recorded Clipper preview. Originals/masters/native/provenance retained.",
+        "queue": 566,
+        "attribution": "Interbuild feed differences unaudited; no savings attribution. Other engines open.",
+        "next": "Substantial conforming lossless headroom before prepared dossiers; later Dysnomia rotation/thermal/product audit can progress independently. ACTIVE; no external blocker."
+      }
+    },
+    "rotation-primary-assessment": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia",
+      "status": "Research-only; no dossier69 or embedding/catalogue/codec change",
+      "sources": [
+        {
+          "path": "data/research-sources/dysnomia-Bernstein2023-v1.pdf",
+          "url": "https://arxiv.org/pdf/2303.13445v1",
+          "bytes": 1677142,
+          "sha256": "d9b0d2369200dfad53393ececd711bd0d477aef4bb103126b758daf34bb73287",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Bernstein2023-record.html",
+          "url": "https://arxiv.org/abs/2303.13445",
+          "bytes": 50134,
+          "sha256": "294c357a566be9c80649aac87963e1e34a2b1edcd4327fed96329d213a6395cf",
+          "fetched": "2026-10-12"
+        }
+      ],
+      "authors": [
+        "Bernstein, G. M.",
+        "Holler, B. J.",
+        "Navarro-Escamilla, R.",
+        "Bernardinelli, P. H.",
+        "Abbott, T. M. C.",
+        "Aguena, M.",
+        "Allam, S.",
+        "Alves, O.",
+        "Andrade-Oliveira, F.",
+        "Annis, J.",
+        "Bacon, D.",
+        "Brooks, D.",
+        "Burke, D. L.",
+        "Rosell, A. Carnero",
+        "Carretero, J.",
+        "da Costa, L. N.",
+        "Pereira, M. E. S.",
+        "De Vicente, J.",
+        "Desai, S.",
+        "Doel, P.",
+        "Drlica-Wagner, A.",
+        "Everett, S.",
+        "Ferrero, I.",
+        "Frieman, J.",
+        "Garc\u00eda-Bellido, J.",
+        "Gerdes, D. W.",
+        "Gruen, D.",
+        "Gutierrez, G.",
+        "Herner, K.",
+        "Hinton, S. R.",
+        "Hollowood, D. L.",
+        "Honscheid, K.",
+        "James, D. J.",
+        "Kuehn, K.",
+        "Kuropatkin, N.",
+        "Marshall, J. L.",
+        "Mena-Fern\u00e1ndez, J.",
+        "Miquel, R.",
+        "Ogando, R. L. C.",
+        "Pieres, A.",
+        "Malag\u00f3n, A. A. Plazas",
+        "Raveri, M.",
+        "Reil, K.",
+        "Sanchez, E.",
+        "Sevilla-Noarbe, I.",
+        "Smith, M.",
+        "Soares-Santos, M.",
+        "Suchyta, E.",
+        "Swanson, M. E. C.",
+        "Wiseman, P."
+      ],
+      "authorCountNote": "Record contains49 named authors plus DES Collaboration metadata entry.",
+      "publication": "Submitted2023-03-23; PDF draft2023-03-24; final publisher audit open.",
+      "licence": "Specific record http://creativecommons.org/licenses/by-nc-sa/4.0/ CC BY-NC-SA4.0, not CC BY. No figure/derivative embedded; Holler2020 nonexclusive and NASA rendition terms remain separate.",
+      "assessed": "Full22pagePDF retained; targeted Table3/Figure6 caption, discussion4.1\u20134.3, summary and analytic tidal-model appendix.",
+      "findings": [
+        "Eris fitted rotation15.771\u00b1.008days formal uncertainty, consistent within2sigma with Dysnomia orbital15.785899\u00b1.000050. This does not measure moon spin.",
+        "Eris amplitude about.03mag/3percent; Table3 phase slope.054\u00b1.012mag/degree. Gaia-included fundamental fit15.769\u00b1.007days is distinct, not a catalogue overwrite.",
+        "Palomar2015 six-month/HST F606W2018 month/DES2013\u20132018 photometry; Gaia consistency check. DES i/z suspected systematics retained.",
+        "Dysnomia about.3mag variability from only7HST points. Plausible double-peaked synchronous light curve explicitly inconclusive; singleF606W supplies no phase-dependent colour.",
+        "Ellipsoidal shape versus spherical albedo dichotomy alternatives unconstrained; adopted thermal700\u00b1115km diameter not new axes/local chemistry. No occultation confirms moon sphericity.",
+        "Giant-impact/outward versus difficult capture/inward tidal evolution are simplified conditional models, not observed origin, measured dissipation, age, density or exclusion of every capture history.",
+        "Eris albedo/frost/seasonal cycling interpretations and Pluto comparison do not establish geography. Never reuse Pluto skin. Close massive unseen satellite disfavoured by tidal argument, not exhaustive absence measurement."
+      ],
+      "open": [
+        "Moon spin/permanent Eris-facing site, axes/normal, scene registration, visible colour/atmospheric transfer",
+        "Final publication/later thermal/raw-product crosswalk",
+        "Holler orbital rejection/eccentricity/systematic alternatives and NASA2005/2006 date/proposal conflicts preserved"
+      ],
+      "preservation": "All68 dossiers/originals/masters/native/maps/models/shapes/recorded Clipper preview unchanged. No new angular/raster computation.",
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL:16064255bytes;64255over hard16000000gate; no passing current offline/browser claim",
+        "publicPreservation": "550 tracked public files byte-identical to HEAD; all68 dossiers unchanged",
+        "queue": 566,
+        "interbuildAttribution": "Feed differences unaudited; no savings attribution"
+      }
+    },
+    "thermal-primary-assessment": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia",
+      "status": "Research-only; no69/embedding/catalogue/codec/map/shape change",
+      "title": "Medium-sized satellites of large Kuiper belt objects",
+      "authors": [
+        "Michael E. Brown",
+        "Bryan J. Butler"
+      ],
+      "sources": [
+        {
+          "path": "data/research-sources/dysnomia-Brown2018-v1.pdf",
+          "url": "https://arxiv.org/pdf/1801.07221v1",
+          "bytes": 1252172,
+          "sha256": "2c04fba1d569803ed213b286f320801563ce3d56de651769eb4dca9512f1756c",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Brown2018-record.html",
+          "url": "https://arxiv.org/abs/1801.07221",
+          "bytes": 42569,
+          "sha256": "63bdfc45a6d1a1dd23761726d786812dce2c2cd3b91b7cc2445f492e53d11602",
+          "fetched": "2026-10-12"
+        }
+      ],
+      "publication": {
+        "arxivSubmitted": "2018-01-22",
+        "version": "v1; submitted to AJ",
+        "finalDOI": "10.3847/1538-3881/aad9f2",
+        "finalPublishedPDFaudit": "open"
+      },
+      "licence": "Specific http://arxiv.org/licenses/nonexclusive-distrib/1.0/ not CC BY; no figure embedded.",
+      "assessed": "Complete6pagePDF retained; observations/Table1/2/3 and Dysnomia section4 plus discussion.",
+      "observations": [
+        "ALMA Band7 TDM four windows335.5\u2013339.5 and347.5\u2013351.5GHz, effective345GHz dual-linear combinedStokesI. System separation at thermal wavelengths is not resolved surface geography.",
+        "Eris-Dysnomia2015-11-09T03:25\u201304:35,11-13T02:50\u201304:00,12-04T01:15\u201302:25 Table1; Orcus-Vanth2016 observations are separate bodies, not Dysnomia epochs.",
+        "CASA observatory initial calibration then AIPS; resolution weighting altered for flux sensitivity. January2015HST astrometry used for predicted stack positions. No obvious individual Dysnomia detection.",
+        "Stack flux.13\u00b1.03mJy16mas from prediction: formal4.2sigma, random-shift experiment.02percent/3.5sigma significance. Paper proceeds assuming satellite identification; no raw-data reanalysis here."
+      ],
+      "model": [
+        "Diameter700\u00b1115km/albedo.04(+.02,-.01) jointly derived thermal estimates, not resolved axes, measured local chemical fractions or visible colour.",
+        "Standard thermal/MCMC free diameter/albedo/beaming; bolometric emissivity.8\u20131, empirical phase-integral relation allowed50percent variation; assumed850micron emissivity.685 for moon and Eris. Pluto thermal comparison is an emissivity caveat, never a skin.",
+        "Adopted Eris occultation circular2326\u00b112km and unresolved Spitzer/Herschel plus ALMA. Unresolved-only moon diameter1sigma upper810/albedo lower.03 supplies little constraint; no independent second-body discovery from excess alone.",
+        "Density.8 through Eris-like values/system mass ratios37\u2013115 are hypothetical bounds, not moon density/porosity/composition measurements. Typical-KBO comparison and impact/capture scenarios do not establish origin or terrain."
+      ],
+      "orbit": [
+        "Historical Table3 semimajor37460\u00b180km, period15.78586\u00b1.00008day, eccentricity<.004 at1sigma followed by circular constraint; inclination61.1\u00b1.3/node139.6\u00b1.2 relativeJ2000ECLIPTIC, epochJD2457054.95.",
+        "Do not compare this inclination directly to Holler J2000EQUATORIAL45.49deg. Preserve later37273\u00b164/e.0062\u00b1.0010 and rejectedKeplerian-fit/systematic alternatives without silently changing catalogue."
+      ],
+      "open": [
+        "Later ALMA mass/thermal refinement, final publisher licence and products",
+        "HST NASA rendition acquisition/proposal/filter/coadd crosswalk",
+        "Moon spin/local normal/registration/colour/atmospheric transfer"
+      ],
+      "preservation": "All68 dossiers, originalPNG/masters/native/provenance, recorded Clipper preview and tracked public files untouched; no angular/raster computation.",
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16064255bytes/64255over hard16MBgate; no current passing offline/browser claim",
+        "preservation": "550tracked public files byte-identical;68dossiers unchanged",
+        "queue": 566,
+        "attribution": "Interbuild feed differences unaudited; no savings claim"
+      }
+    },
+    "alma-mass-primary-assessment": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia",
+      "status": "Research-only; no69/embedding/catalogue/codec/map/shape change",
+      "title": "Masses and Densities of Dwarf Planet Satellites Measured with ALMA",
+      "authors": [
+        "Michael E. Brown",
+        "Bryan J. Butler"
+      ],
+      "sources": [
+        {
+          "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+          "url": "https://arxiv.org/pdf/2307.04848v1",
+          "bytes": 540344,
+          "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Brown2023-record.html",
+          "url": "https://arxiv.org/abs/2307.04848",
+          "bytes": 41968,
+          "sha256": "379184924496c714fec5aad30e176cac81b2209eb04a0822de14d84be0ec1eb9",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+          "url": "https://authors.library.caltech.edu/records/879aw-7wx56/files/Brown_2023_Planet._Sci._J._4_193.pdf?download=1&audit=20261012",
+          "bytes": 545021,
+          "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4",
+          "fetched": "2026-10-12"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Brown2023-published-record.html",
+          "url": "https://authors.library.caltech.edu/records/879aw-7wx56",
+          "bytes": 90931,
+          "sha256": "c2cf95d85c2e9ae04983e0cb8fc861642187d42921644cb4cc3b97ea148d1db7",
+          "fetched": "2026-10-12"
+        }
+      ],
+      "publication": {
+        "arxivSubmitted": "2023-07-10",
+        "v1Draft": "2023-07-12",
+        "received": "2022-06-10",
+        "revised": "2023-06-29",
+        "accepted": "2023-07-05",
+        "published": "2023-10-10",
+        "doi": "10.3847/PSJ/ace52a",
+        "journal": "The Planetary Science Journal 4:193"
+      },
+      "licence": "Published six-page PDF expressly original-content CC BY4.0, attribution to authors/title/journal/DOI required. Specific arXiv record also links CC BY4.0. Earlier 2018 nonexclusive and Bernstein2023 CC BY-NC-SA4 remain distinct; no figure or derivative embedded, no blanket raw-data or NASA-image licence.",
+      "assessed": "Complete11pagev1 and six-page publishedPDF retained; targeted observations/error method, Table1/2, sections3.2/3.3 and discussion. No independent raw reanalysis.",
+      "observations": [
+        "2015-Nov09/Nov13/Dec04 Eris astrometry reuses earlier ALMA observations, distinct from 2016 Orcus/Vanth dates and values. Dysnomia not detected individually in these2015 images. Three-parameter MCMC fits Eris barycentric deviations; ephemeris/centre-of-light offsets degenerate. Formal fitting, systematic fit/image difference and celestial-frame errors combined in quadrature; J0115-0127 retained check, distant J0141-0928 rejected for phase transfer.",
+        "2018-10-11 single ALMA Band6 ~233GHz/C43-6 epoch,78minutes on-source, source-reported beam0.15x0.12arcsec. Two-source visibility fit Eris390\u00b17microJy/Dysnomia45\u00b17microJy, reported6.5sigma satellite detection. Sources spatially separated, not resolved terrain. QSOJ0006-0623 pointing/atmosphere/bandpass/flux and J0141-0202 gains. No new angular/raster computation.",
+        "Acknowledged datasets ADS/JAO.ALMA#2018.1.00929.S, #2015.1.00810.S and #2016.1.00830.S are paper inventory; Orcus/Vanth data not reassigned to Dysnomia. Exact2018UTC/rawproduct/calibration audit open."
+      ],
+      "limits": [
+        "Mass-ratio fit0.0050\u00b10.0035 corresponds only1.5sigma Eris wobble, reducedchi2=1.8. Authors elect an upper limit, not robust precise Dysnomia mass detection. Abstract/discussion1sigma0.0085 versus section3.2 0.0084 retained as printed discrepancy;3sigma0.015. No silent reconciliation or catalogue update.",
+        "Adopted system mass1.65e22kg gives reported1sigma Dysnomia mass<1.4e20kg. Density0.7\u00b10.5g/cm3 with1sigma upper1.2 combines weak mass fit and thermal size assumptions, not directly measured local chemistry, porosity or composition. Not a hard confidence-independent upper bound.",
+        "2018flux added to earlier thermal model gives diameter615(+60,-50)km/albedo0.05\u00b10.01, distinct earlier700\u00b1115/.04(+.02,-.01). Inherited emissivity/phase/beaming assumptions from2018 audit retained. Not resolved axes, visible-colour calibration or moon surface map.",
+        "Published observations prose calls Eris1163km a diameter while earlier adopted occultation diameter2326\u00b112km uses1163km radius. Both manuscript and published prose retained; actual visibility-model radius/diameter implementation not audited, no invented cause or silent correction.",
+        "Eris spin/orbit agreement is distinct from inconclusive Dysnomia spin. Low-mass tidal evolution requires assumed Eris dissipation; high-density tidal alternatives conflict with weak mass constraint, not direct interior/age/origin/locking measurement.",
+        "Ice-rich impact-fragment versus reaccreted-disk origin, darkening materials and simulated near100percent ice are hypotheses; no local ice fraction, isotope abundance, directly observed collision/history/ocean/plume/biology. Other-body comparisons never supply skins or material maps."
+      ],
+      "open": [
+        "Raw ALMA extraction/calibration and model implementation; exact2018UTC/native Hubble coadd/filter/proposal/date crosswalk; independent moon spin/site normal/shape/scene registration/colour/atmosphere; later refinements. Holler2020 rejected Keplerian fit and NASA acquisition-date conflicts preserved."
+      ],
+      "preservation": {
+        "trackedPublicFiles": 550,
+        "byteEqualHEAD": true,
+        "all68DossiersUnchanged": true,
+        "originalsMastersNativeProvenanceAndRecordedClipperPreserved": true
+      },
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MBgate16063203bytes/63203over",
+        "browser": "No current passing full/offline browser claim; other engines open",
+        "queue": 566,
+        "dossiers": 68,
+        "attribution": "Interbuild live-feed differences unaudited; no compression or asset savings claim. Production codecs unchanged."
+      }
+    },
+    "observer-geometry-preparation": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "body": "Dysnomia, satellite of Eris",
+      "status": "Research-only; no illustration/dossier69/embedding/catalogue/codec/map/shape change",
+      "sources": [
+        {
+          "path": "docs/research/dysnomia-primary-orbit-assessment-2026-10-12.json",
+          "bytes": 5005,
+          "sha256": "b70af53ef75153953068530eba5444168d6281899bb37e63cd2cdd0fb2f1bf5e"
+        },
+        {
+          "path": "docs/research/dysnomia-thermal-primary-assessment-2026-10-12.json",
+          "bytes": 4186,
+          "sha256": "205d17dedb7a9f0d4b36987184a87c88cace2c19f0bc4c0917a01d5451cc4c2f"
+        },
+        {
+          "path": "docs/research/dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+          "bytes": 6041,
+          "sha256": "0a927a4aa6ff2c8db162a63815baa782a79f7bb7ad5f313f8dad1f3923a697e9"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Holler2020-v1.pdf",
+          "bytes": 800465,
+          "sha256": "df454e2357a1dc90b79a2e91fa29dddb65f5cf2321a9407463227de537c562ea"
+        },
+        {
+          "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+          "bytes": 545021,
+          "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4"
+        }
+      ],
+      "parameters": {
+        "adoptedPrimaryRadiusKm": 1163,
+        "primaryRadiusUncertaintyKm": 6,
+        "nominalSemimajorAxisKm": 37273,
+        "semimajorAxisUncertaintyKm": 64,
+        "nominalEccentricity": 0.0062,
+        "eccentricityUncertainty": 0.001,
+        "orbitalPeriodDays": 15.785899,
+        "orbitalPeriodUncertaintyDays": 5e-05,
+        "sourceCrosswalk": "Holler2020 nominal orbital scale with Brown/Butler2018 and2023 thermal diameter alternatives; not a joint fit. Combined Holler Keplerian fit rejected6.3sigma; cause not resolved. No current dated ephemeris or catalogue update."
+      },
+      "geometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "horizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "temperatureHelperK": 40,
+        "alternatives": [
+          {
+            "label": "Revised2023 thermal diameter615(+60,-50)km",
+            "assumedSphericalMoonHeightKm": 307.5,
+            "assumedPrimaryCentreDistanceKm": 36965.5,
+            "angularDiameterDeg": 3.6058481287569446,
+            "centreDiscWidthPixels": 52.630131003276304
+          },
+          {
+            "label": "Historical2018 thermal diameter700\u00b1115km",
+            "assumedSphericalMoonHeightKm": 350,
+            "assumedPrimaryCentreDistanceKm": 36923,
+            "angularDiameterDeg": 3.609999991651356,
+            "centreDiscWidthPixels": 52.69077073066742
+          }
+        ],
+        "limits": "Angular outputs only; colour and irradiance discarded. Assumed separation equal to nominal semimajor axis, not a circular-orbit assertion or dated eccentric-orbit distance. Subtracting model spherical height assumes near-side radial camera, not an observed irregular surface normal or registered site. No error propagation or confidence envelope; no generated disk or measured raster diameter adopted."
+      },
+      "scienceLimits": [
+        "Revised615(+60,-50)km and historical700\u00b1115km diameters derive from thermal emissivity/phase/beaming/albedo assumptions, not resolved moon axes or local material maps. Earlier alternatives remain intact.",
+        "Eris1163km radius follows adopted2326\u00b112km occultation diameter. Published2023 visibility-method prose calling1163km a diameter remains a separate unresolved implementation inconsistency; this geometry does not validate that code or silently correct the source.",
+        "Eris spin/orbit agreement is not measured Dysnomia tidal locking. Seven-point moon light curve remains inconclusive; no permanent Eris-facing site or everywhere-visible primary claim. Prograde orbital direction does not determine spin.",
+        "1.5sigma astrometric wobble and one-sigma mass/density upper limits are not precise moon mass, chemistry, porosity or formation-history measurements. Model ice fractions, impact/capture/reaccretion and dissipation are interpretations, not terrain or current activity.",
+        "No other-body map, foreground atmosphere, plume, liquid ocean, biology or survivable-landing scene adopted. Black sky/ring omission is not atmospheric or ring absence evidence. Phase, attitude, exposure, spectral transfer and transmission remain assumptions.",
+        "Original-content2023 CC BY4.0 is distinct from2018/Holler nonexclusive and Bernstein CC BY-NC-SA4. No figure used or blanket NASA/raw-data licence asserted."
+      ],
+      "open": [
+        "Current orbit/ephemeris and rejected-fit cause; moon spin/shape/site-normal registration",
+        "Native Hubble UTC/proposal/filter/coadd/product crosswalk and conflicting acquisition dates",
+        "Primary oblateness, atmospheric/ring transmission, phase and calibrated colour/photometry"
+      ],
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16063203bytes/63203over hard16MBgate",
+        "preservation": "All68 dossiers unchanged;550 tracked public files byte-identical to HEAD; originals/masters/native/provenance and recordedClipper preview preserved",
+        "queue": 566,
+        "browser": "No current passing full/offline browser claim; other engines open",
+        "attribution": "Interbuild differences unaudited; no savings claim; production codecs unchanged"
+      }
+    },
+    "local-view-preparation": {
+      "date": "2026-10-12",
+      "body": "Dysnomia, satellite of Eris",
+      "status": "Research-only independent IMAGINED local view; no dossier69, embedding, master/preview, catalogue or codec change",
+      "generator": "Built-in image generation; no input/reference image",
+      "prompt": "Create one independent research-guided hypothetical local observer illustration for Dysnomia, Eris's moon. Wide landscape 1672 by 941 composition. Low viewpoint across independently invented subdued grey regolith, shallow irregular depressions, scattered angular blocks and low broken ridges under a nearly black sky. Restrained oblique illumination with readable dark detail. Unknown terrain, grain sizes, material fractions, chemistry, surface colour, lighting and exposure are invented; not an observed or registered location. Dysnomia is unresolved in Hubble imagery and ALMA detections; thermal diameter/albedo models and weak astrometric mass constraints do not establish local composition, porosity or resolved geography. Generate terrain independently; never reuse or recolour Moon, Mars, Pluto, Charon, Eris or any other body's map. No primary Eris, Sun, rings, stars or astronomical disks. No atmosphere clouds, plume, rain, liquid, ocean, biology, people, spacecraft or suggestion of survivable landing. Black sky is artistic transparency, not measured atmospheric absence. Do not imply synchronous rotation, a registered local normal or a permanently Eris-facing site. Large legible bottom annotation band with exactly two lines: 'IMAGINED \u2014 LOCAL VIEW FROM DYSNOMIA' and 'Terrain, materials, colour and lighting are hypothetical.' No other labels.",
+      "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2d94138e-af94-4896-8579-d3983f5118f1.png",
+      "researchCopy": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+      "inspection": "Independent grey blocks, grains, shallow depressions and low ridges; no astronomical disk. Both requested footer lines clearly readable.",
+      "limits": [
+        "Terrain, chemistry/material fractions, grey colour, lighting and exposure invented; unresolved Hubble/ALMA detections do not establish local geography.",
+        "Black sky is artistic transparency, not measured atmospheric absence.",
+        "615(+60,-50)km and historical700\u00b1115km thermal diameters/albedos are model dependent, not axes or local material maps. Weak mass constraints and derived density limits do not establish porosity or ice fraction.",
+        "No measured moon spin locking, local normal, permanently Eris-facing or dated registered site. Eris spin/orbit agreement is distinct from inconclusive Dysnomia light curve.",
+        "No analog map, foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+        "No angular/raster computation required: no astronomical disk appears.",
+        "All prior native acquisition/proposal/date conflicts, rejected orbital fit and published1163diameter/radius implementation inconsistency remain open."
+      ],
+      "references": [
+        "docs/research/dysnomia-moon-preparation-2026-10-12.json",
+        "docs/research/dysnomia-primary-orbit-assessment-2026-10-12.json",
+        "docs/research/dysnomia-rotation-primary-assessment-2026-10-12.json",
+        "docs/research/dysnomia-thermal-primary-assessment-2026-10-12.json",
+        "docs/research/dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+        "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json"
+      ],
+      "original": {
+        "bytes": 2703596,
+        "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6",
+        "dimensions": [
+          1672,
+          941
+        ],
+        "format": "PNG"
+      },
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16066359bytes/66359over hard16MBgate",
+        "preservation": "All550 tracked public files byte-identical to HEAD;68 dossiers/originals/masters/native/provenance/recordedClipper preview preserved;queue566",
+        "browser": "No current passing full/offline browser claim;other engines open",
+        "attribution": "Interbuild differences unaudited;no savings attribution or production codec change"
+      },
+      "preservationAudit": {
+        "trackedPublicFiles": 550,
+        "changed": []
+      }
+    },
+    "sky-view-preparation": {
+      "date": "2026-10-12",
+      "body": "Dysnomia, satellite of Eris",
+      "status": "Research-only independent IMAGINED observer; no dossier69/embedding/master-preview/catalogue/codec change",
+      "generator": "Built-in image generation; no reference image",
+      "prompt": "Create one independent hypothetical observer illustration from Dysnomia, Eris's moon. Wide 1672 by 941 landscape. Low viewpoint across independently invented subdued grey regolith, scattered angular blocks and low irregular depressions. Almost black sky. One small pale Eris disk near the horizontal centre above the horizon, approximately 53 pixels full diameter in this 1672-pixel-wide image: nominal 90 degree horizontal camera field, skyGeometry diameter 3.6058481287569446 degrees from assumed Eris radius1163km at36965.5km. This is an artistic target, not calibrated imagery. Keep the disk small, with only subtle independently invented pale grey variation and an assumed softly illuminated phase. Do not use any observed Eris, Pluto, Charon, Moon, Mars or other body's geography or map; no analog skins. Terrain, chemistry, material fractions, colour, Eris pattern, phase, light and exposure are hypothetical. No dated Hubble/ALMA site or resolved moon terrain. No verified moon spin locking or permanent Eris-facing location; the camera attitude and spherical surface height are assumed. No Sun, stars, rings, foreground atmosphere/clouds, plume, rain, liquid, ocean, biology, people or craft; no suggestion of survivable landing. Black sky and ring omission are artistic choices, not absence measurements. Large legible bottom band with exactly two lines: 'IMAGINED \u2014 SKY FROM DYSNOMIA' and 'Terrain, Eris appearance and lighting are hypothetical.' No other text.",
+      "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2d8b71c1-0b33-42ec-9422-41a87ff8fc2e.png",
+      "researchCopy": "data/research-sources/dysnomia-generated-skyImage-original.png",
+      "original": {
+        "bytes": 1878586,
+        "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad",
+        "dimensions": [
+          1672,
+          941
+        ],
+        "format": "PNG"
+      },
+      "inspection": "Both requested footer lines readable. Independent grey terrain and small pale Eris disk. Disk appears oversized against requested target; no calibrated raster diameter adopted.",
+      "geometryReference": "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json",
+      "geometry": {
+        "helper": "skyGeometry",
+        "horizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "primaryRadiusKm": 1163,
+        "assumedCentreDistanceKm": 36965.5,
+        "angularDiameterDeg": 3.6058481287569446,
+        "targetPixels": 52.630131003276304,
+        "historicalAlternativeDeg": 3.609999991651356,
+        "historicalAlternativePixels": 52.69077073066742,
+        "temperatureHelperK": 40
+      },
+      "limits": [
+        "Nominal37273km semimajor scale minus307.5km thermal-model spherical height; alternate350km preserved. Not dated separation, registered normal, joint fit or uncertainty envelope.",
+        "Terrain, chemistry/material fractions, Eris patterns, grey/pale colour, phase, lighting, exposure and transmission invented. No analog map or registered Hubble/ALMA location.",
+        "Eris spin/orbit agreement is not verified moon locking; no permanent Eris-facing or everywhere-visible site.",
+        "Black sky and ring omission not measured absence. No foreground atmosphere, plume, liquid/ocean, biology or survivable landing.",
+        "Angular helper only; colour/irradiance discarded. Generated disk oversized and uncalibrated; precise raster calibration open.",
+        "All native UTC/proposal/date conflicts, rejected Keplerian fit and published1163diameter implementation inconsistency remain open; weak mass/thermal sizes do not measure local chemistry or porosity."
+      ],
+      "preservationAudit": {
+        "trackedPublicFiles": 550,
+        "changed": []
+      },
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16058732bytes/58732over hard16MBgate",
+        "preservation": "All68 dossiers550trackedpublicfiles byte-identical; originals/masters/native/provenance/recordedClipper preserved;queue566",
+        "browser": "No current passing full/offline browser claim;other engines open",
+        "attribution": "Interbuild differences unaudited;no savings attribution;production codecs unchanged"
+      }
+    },
+    "master-preview-preparation": {
+      "date": "2026-10-12",
+      "body": "Dysnomia",
+      "status": "Research-only masters/previews; no dossier69 or embedding/catalogue/codec change",
+      "method": "Technical resize only; JPEG85 masters1536px and JPEG80 previews256px. Original/default PNGs and full prompts preserved.",
+      "files": [
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-original.png",
+          "bytes": 2703596,
+          "sha256": "d71cee7c7d9ac0823e4b85f30b845fef9d2f5bd2e5d2276a21ac6096dd61aaa6",
+          "dimensions": [
+            1672,
+            941
+          ],
+          "format": "PNG"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-master.jpg",
+          "bytes": 340326,
+          "sha256": "8f1922872da52d21e0393ef8aee36a43d1a3d291839aaf4f7e6fd147bbb29ce4",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "format": "JPEG"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-surfaceImage-preview.jpg",
+          "bytes": 10921,
+          "sha256": "332051c70449c9aa75ff0995afccf62f9e320df5f64ba25ed7491d9c22b5e40f",
+          "dimensions": [
+            256,
+            144
+          ],
+          "format": "JPEG"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-original.png",
+          "bytes": 1878586,
+          "sha256": "3ce1dc886a363277d33897e3a1cc1625a267f1349e57a114cf631d2581c539ad",
+          "dimensions": [
+            1672,
+            941
+          ],
+          "format": "PNG"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-master.jpg",
+          "bytes": 232467,
+          "sha256": "235456ce76694b83eac1b565c5f648fc0dc742f625d5e1f9718ade1fb9436a62",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "format": "JPEG"
+        },
+        {
+          "path": "data/research-sources/dysnomia-generated-skyImage-preview.jpg",
+          "bytes": 8423,
+          "sha256": "dac73ad008048f0affa57d0e1a1db440c1dddacb23570c7ce0b7cd065f0b9f52",
+          "dimensions": [
+            256,
+            144
+          ],
+          "format": "JPEG"
+        }
+      ],
+      "previewRawBytes": 19344,
+      "limits": [
+        "Terrain, chemistry/material fractions, grey colour, Eris disk pattern, phase, lighting and exposure are invented; no analog skin or dated Hubble/ALMA site.",
+        "Black sky and ring omission are artistic assumptions, not measured absence.",
+        "Distinct thermal-model diameters and nominal orbital scale are not a joint fit, dated distance, registered normal, spin-locking or permanent-facing determination, or uncertainty envelope.",
+        "Recorded skyGeometry targets remain 52.630131003276304/52.69077073066742 pixels at1672px and nominal90degreeHFOV; 40K helper is angular only. Generated Eris appears oversized; no calibrated raster diameter adopted.",
+        "Weak mass constraints and thermal diameters do not establish local chemistry, porosity or terrain.",
+        "Holler rejected orbital fit, native date/proposal/product conflicts and published Eris diameter convention remain open.",
+        "No foreground atmosphere, plume, liquid/ocean, biology or survivable landing implication.",
+        "Small preview annotations and disk require readable IMAGINED card labels before integration."
+      ],
+      "references": [
+        "docs/research/dysnomia-local-view-preparation-2026-10-12.json",
+        "docs/research/dysnomia-sky-view-preparation-2026-10-12.json",
+        "docs/research/dysnomia-observer-geometry-preparation-2026-10-12.json"
+      ],
+      "inspection": "All four masters/previews inspected. Both master footer lines readable; small preview text/disk require readable IMAGINED card labels. Generated Eris oversized; no calibrated raster diameter adopted.",
+      "validation": {
+        "tests": "539 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL16058732bytes58732over hard16MB gate",
+        "preservation": "All550 tracked public files byte-equal to HEAD;68 dossiers and405 protected assets unchanged; originals/default PNGs/full prompts/native/provenance and recorded Clipper preview retained.",
+        "queue": 566,
+        "browser": "No passing current full/offline browser claim; other engines open.",
+        "attribution": "No production input or codec change; no savings attribution."
+      }
+    }
+  },
+  "validation": {
+    "priorDossiers": 80,
+    "priorMoons": 38,
+    "priorBespokeFiles": 379,
+    "embeddedExactContextImages": 67,
+    "snapshotSHA256": "2224de46e334d161e2e2ba02daac917bbd145ee0458853e46d408145b7231b69",
+    "htmlBytes": 15929266,
+    "registry": 81,
+    "queue": 566,
+    "tests": "676 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "headroomBytes": 70734,
+    "allPriorPublicFilesByteEqual": 623,
+    "sourceAndOutputHashRecordsVerified": 31,
+    "browser": {
+      "charset": "UTF-16LE",
+      "encoding": "gzip-raw-utf16le-enumerative-v1",
+      "readableSha256": "2224de46e334d161e2e2ba02daac917bbd145ee0458853e46d408145b7231b69",
+      "expected": "2224de46e334d161e2e2ba02daac917bbd145ee0458853e46d408145b7231b69",
+      "exact": true,
+      "uniqueImages": 294,
+      "canvases": 8
+    },
+    "actualRoutes": "Chrome normal/offline Dysnomia three bespoke cards, readable IMAGINED labels, no own resolved map, illustrative orbit/thermal-model radius; offline all3 dataURI sources. Complete browser JSON exactly equals readable JSON.",
+    "limits": "No fresh all-image decode, all-model-load, all-route or worker claim; other engines/conflictingHTTPcharset open. No net asset/compression attribution from interbuild differences.",
+    "preservation": "All80 prior dossiers/38 prior moons deepEqual,623 prior public files byteequal; all prepared originals/default PNGs/prompts/masters/previews/native TIFF and recorded Clipper preserved. UTF16BOM/alllegacy/independentBrotli/Blob/notices unchanged."
+  },
+  "displayAdoption": {
+    "radiusKm": 307.5,
+    "massKg": null,
+    "rotationHours": null,
+    "locked": false,
+    "surfacePending": true,
+    "orbit": "Nominal37273km/15.785899day scale; circularity/eclipticplane/phase imagined for navigation, not adopted current physical ephemeris. RejectedHollerfit and olderdistinctframe solution retained.",
+    "skyModelSunAU": "67.93 rounded catalogue semimajor-scale off-frame assumption, not dateddistance/photometry.",
+    "native": "Full unchanged publisher600squareJPEG346819bytes; publisher rendition/reencoding not fullTIFFpixelpreservation. Bothsourceproducts retained."
+  },
+  "next": "Prepared Namaka/Hi\u02bbiaka additive dossiers, then remaining native-map/craft/shape/calibration/ranking tasks; backlog ACTIVE."
+}
