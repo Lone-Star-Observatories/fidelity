@@ -129,6 +129,11 @@ export const MOONS = [
     elements: el(62000, 0, 0, 86.7, 0, 0, 0.428744, 0, 0, [299.8, 43.1]),
     surfacePending: true, discovered: '1989 · Voyager 2',
     note: 'Neptune VI, S/1989 N4. Equivalent-volume radius 79 ± 12 km does not establish local shape or normal. GM 0.18990 ± 0.76278 is very uncertain; no precise mass or chemistry adopted. Rotation/locking unverified; static display orientation assumed, not evidence of nonsynchronous spin or permanent Neptune face. Rounded zero mean elements are not exact circularity/coplanarity or dated ephemerides; no resolved globe adopted.' },
+  // Despina: body-specific NEP097 mean row; unknown spin/locking.
+  { id: 'despina', name: 'Despina', parent: 'neptune', radiusKm: 74, massKg: null, rotationHours: null, locked: false,
+    elements: el(52500, 0, 0, 125.1, 0, 0, 0.334656, 0, 0, [299.7, 42.7]),
+    surfacePending: true, discovered: '1989 · Voyager 2',
+    note: 'Neptune V, S/1989 N3; distinct Thalassa N5 and Naiad N6. Equivalent-volume radius74±10km differs from2019 adopted75±3km and establishes no local normal. Very uncertainGM/density are not precise mass or chemistry. Unknown spin/locking; static orientation is assumed, not nonsynchronous-spin or permanent-face evidence. Rounded NEP097 mean elements are not exact circularity/coplanarity/current distance. No resolved globe or new shape adopted.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

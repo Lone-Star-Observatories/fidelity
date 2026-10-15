@@ -550,6 +550,19 @@
       "visualId": "galatea"
     },
     {
+      "id": "sol-despina",
+      "bodyId": "despina",
+      "name": "Despina",
+      "parent": "neptune",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved globe or new shape adopted; surfacePending true. Voyager1989N3 detection is not local terrain;1989N5 is Thalassa and1989N6 Naiad.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "despina"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7046,20 +7059,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-despina",
-      "name": "Despina",
-      "parent": "neptune",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1989",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "sol-halimede",
       "name": "Halimede",
       "parent": "neptune",
@@ -8517,7 +8516,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 31,
+      "initialDossiers": 32,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

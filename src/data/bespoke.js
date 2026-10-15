@@ -12245,6 +12245,259 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "despina": {
+    "id": "despina",
+    "name": "Despina",
+    "aliases": [
+      "Despina",
+      "Neptune V",
+      "S/1989 N3",
+      "1989 N3"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or new shape adopted; surfacePending true. Voyager1989N3 detection is not local terrain;1989N5 is Thalassa and1989N6 Naiad.",
+    "measured": [
+      "Voyager2 multibody detection context acquired1989; exact UTC, filter, exposure, raw-product crosswalk and original release remain unverified. July1989 discovery is not acquisition UTC.",
+      "Fresh JPL NEP097 Laplace mean elements epoch2000Jan1.5TDB:52500km/P0.334656d/M125.1deg, rounded e/i/node/w/precession zero; not exact circularity/coplanarity or current instantaneous distance."
+    ],
+    "modelled": [
+      "JPL equivalent-volume radius74±10km, not local shape/normal. Brozovic2019 adopted75±3km retained as separate alternative.",
+      "Fresh JPL GM0.11673±0.25263km³/s² and derived density1.0304±2.2689g/cm³ are extremely uncertain, not precise mass, chemistry or porosity; massKg null.",
+      "Brozovic2019 Table5 GM0.1179±0.2428 uses density prior1±0.2g/cm³; paper density blank/no useful mass sensitivity, prior0.05–1.5 not measured density.",
+      "Brozovic2019 Table7 mean900-year fit at2020Jan1TDB52526km/e.00027/freeinclination.039/meanrate1075.733 distinct from NEP0972000 mean; neither establishes spin, locking or permanent Neptune face.",
+      "Karkoschka2003 indexed abstract90×74×64km semiaxes, not diameters.87Voyager images span five moons; full uncertainties, PSF, attitude and retained-trio association open. No ellipsoid/shape adopted."
+    ],
+    "unknown": [
+      "Spin period, tidal locking, local normal, resolved terrain, chemistry fractions, visible colour, atmosphere, scene registration and independent photometry unverified. Rotation null/locked false disables automatic locking only, not measured nonsynchronous spin.",
+      "Native observationUTC/filter/exposure/raw product/original release and full contributor crosswalk open;2023assetpath/2024pageupdate not observations.",
+      "Hubble NASAoverview NASA/JPL credit conflicts with separately verified ESA/Hubble NASA,ESA,M.Showalter(SETI) rendition; annotated variants not pixel-identical. No Hubble image embedded here.",
+      "Ted Stryk transit composite CC BY-NC-ND3.0, not CC BY or blanket NASA/PDS; four1989Aug24frames20:00–20:27 timestamp standard/product unverified. No transit image embedded.",
+      "Primary full Karkoschka paper inaccessible403 response is not paper hash; no paper figure or CC licence asserted."
+    ],
+    "assumed": [
+      "All terrain, blocks, grains, chemistry/material fractions, grey colour, Neptune bands/cloud patterns, phase, orientation, lighting and exposure independently invented. No observed map or analog body skin, dated Voyager/Hubble site, foreground atmosphere, plume, liquid, ocean, biology, craft or survivable landing implied.",
+      "Mean elements/site height74km are assumptions, not current distance, irregular normal, spin, tidal locking or permanent Neptune-facing site. Mean spherical Neptune omits oblateness; attitude, atmospheric transfer, phase, ring opening and registration remain open.",
+      "Black sky and omitted rings do not establish absence or invisibility. Native Despina detections do not establish resolved terrain or calibrated visible colour. Native Hubble credit, epoch and raw-product limitations remain in earlier records.",
+      "Original lacks requested IMAGINED footer; readable IMAGINED card labels required before integration. Neptune visually smaller than recorded skyGeometry target889.4576510376816px; no calibrated raster diameter or photometry claim.",
+      "Research-only; no dossier69, embedding, catalogue or codec change. All68 dossiers/originals/masters/native science/provenance/maps/models/shapes and recorded Clipper preview preserved.",
+      "All local relief, grains, blocks, colour, chemistry/material fractions, Neptune bands/cloud patterns, phase, axis, light and exposure invented independently. No analog observed map, dated site, foreground atmosphere, plume, liquid/ocean, biology, craft or survivable landing.",
+      "Black sky and omitted rings are artistic assumptions, not measured absence. Tiny/absent footers require readable IMAGINED card labels."
+    ],
+    "references": [
+      {
+        "title": "NASA Despina overview",
+        "url": "https://science.nasa.gov/neptune/moons/despina/"
+      },
+      {
+        "title": "NASA media terms and third-party exceptions",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "JPL mean satellite elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL satellite physical parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Despina moon-preparation source",
+        "url": "https://science.nasa.gov/neptune/moons/thalassa/"
+      },
+      {
+        "title": "Despina moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/despina_main.jpg"
+      },
+      {
+        "title": "Despina moon-preparation source",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg"
+      },
+      {
+        "title": "Despina moon-preparation source",
+        "url": "https://science.nasa.gov/image-article/apod-2009-september-3-despina-moon-of-neptune/"
+      },
+      {
+        "title": "Despina primary-orbit-assessment source",
+        "url": "https://arxiv.org/pdf/1910.13612v3"
+      },
+      {
+        "title": "Despina primary-orbit-assessment source",
+        "url": "https://arxiv.org/abs/1910.13612v3"
+      },
+      {
+        "title": "Despina hubble-credit-assessment source",
+        "url": "https://esahubble.org/images/opo1330a/"
+      },
+      {
+        "title": "Despina hubble-credit-assessment source",
+        "url": "https://cdn.esahubble.org/archives/images/large/opo1330a.jpg"
+      },
+      {
+        "title": "Despina hubble-credit-assessment source",
+        "url": "https://esahubble.org/copyright/"
+      },
+      {
+        "title": "Despina transit-terms-assessment source",
+        "url": "https://www.planetary.org/space-images/despina-eclipses-and-transits-neptune"
+      },
+      {
+        "title": "Despina transit-terms-assessment source",
+        "url": "https://creativecommons.org/licenses/by-nc-nd/3.0/"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/despina-trio-native.jpg",
+        "url": "/bespoke/despina-voyager-native.jpg",
+        "bytes": 169897,
+        "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+        "dimensions": [
+          732,
+          520
+        ],
+        "inspection": "Displayed unchanged local publisher JPEG; no transformation.",
+        "width": 732,
+        "height": 520,
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/07/Neptune_Trio732X520.jpg",
+        "sourceUrl": "https://science.nasa.gov/neptune/moons/despina/",
+        "tier": "measured",
+        "credit": "NASA/JPL",
+        "observationDate": "1989",
+        "publicationDate": null,
+        "observationDateNote": "Year only; exact acquisitionUTC and original publication unverified. DiscoveryJuly1989,2023assetpath and2024pageupdate are distinct.",
+        "terms": "NASA media terms with third-party exceptions; not asserted CC BY.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "processing": "Unchanged full NASA-served732x520 JPEG; no resize/re-encoding. Circle/name annotations, Neptune glare, noise and orbital streaks are not terrain/shape/calibrated visible colour.",
+        "description": "Actual Voyager2 context:1989N3 Despina;1989N5 Thalassa and1989N6 Naiad are separate bodies."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 30.07,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.017722124900503247,
+      "centreDiscWidthFraction": 0.00015465471621474178,
+      "irradianceEarth": 0.0011059440177773865,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL DESPINA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM DESPINA",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "body": "Despina",
+      "status": "Research-only hypothetical observer geometry; no new dossier, illustration or embedding",
+      "sources": [
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "path": "data/research-sources/despina-jpl-physical-2026-10-12.html",
+          "bytes": 95641,
+          "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+        },
+        {
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "path": "data/research-sources/despina-jpl-elements-2026-10-12.html",
+          "bytes": 580012,
+          "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+        }
+      ],
+      "parameters": {
+        "radiusUncertaintyKm": 10,
+        "radiusMeaning": "Equivalent-volume sphere, JPL citing Archinal et al.2018; not local shape height or normal",
+        "semimajorAxisKm": 52500,
+        "eccentricity": 0,
+        "orbitalPeriodDays": 0.334656,
+        "elementEpoch": "2000-01-01.5 TDB",
+        "elementFrame": "Laplace plane",
+        "ephemeris": "NEP097",
+        "neptuneMeanRadiusKm": 24622,
+        "neptuneRadiusSource": "src/data/sol.js",
+        "ephemerisReference": "M. Brozović (2020), Update of the inner Neptunian satellite orbits — NEP097, personal communication to Horizons/NAIF; JPL table reference, not a newly audited orbit solution.",
+        "despinaMeanRadiusKm": 74
+      },
+      "assumptions": {
+        "viewpoint": "Illustrative Neptune-facing site using mean radius as height; not dated ephemeris or registered terrain",
+        "distanceKm": 52426,
+        "horizontalFovDeg": 90,
+        "rasterWidthPixels": 1672,
+        "temperatureK": 60,
+        "temperatureUse": "Angular helper only; colour and irradiance outputs discarded"
+      },
+      "geometry": {
+        "angularDiameterDeg": 56.02347898329231,
+        "targetWidthPixels1672": 889.4576510376816
+      },
+      "method": "skyGeometry in src/astro/appearance.js; radiusSun=24622/695700, distanceAU=(52500-74)/149597870.7. Colour and irradiance outputs discarded; no independently calculated raster diameter or photometry.",
+      "limitations": [
+        "Mean elements are not a current instantaneous Neptune distance. Eccentricity, orbital phase and observer location affect the distance.",
+        "Equivalent-volume radius and its uncertainty do not establish irregular shape, local height, normal, spin orientation, tidal locking or a permanent Neptune-facing site. No rotation claim adopted.",
+        "Mean spherical Neptune radius omits oblateness. Camera attitude, axis orientation, phase, ring opening, atmospheric transfer, exposure, visible colour and scene registration remain assumptions.",
+        "No atmospheric absence inferred from black backgrounds. Ring omission in a future illustration would be artistic, not absence or invisibility.",
+        "Despina Hubble and Voyager detections do not resolve local terrain, chemistry or calibrated visible colour. Full ESA/Hubble NASA, ESA, M. Showalter (SETI Institute) credit and CC BY4 rendition terms are distinct from NASA overview annotations and Ted Stryk processed APOD rights; all prior credit, epoch and product-crosswalk limitations remain open.",
+        "All68 dossiers, original generated PNGs, masters, native scientific images, provenance, maps, models and shapes preserved. No membership or catalogue changes.",
+        "Substantial conforming lossless headroom remains necessary before prepared Charon69 or further embedding.",
+        "Rounded mean-element eccentricity0.000 does not establish a perfectly circular instantaneous orbit. Voyager orbital streaks do not measure physical elongation. No spin, tidal-locking or permanent-facing-site claim adopted."
+      ],
+      "validation": {
+        "preservation": "68 dossiers unchanged; 405 tracked public assets byte-identical to HEAD. Recorded Clipper preview preserved. Queue566; originals, masters, native images and provenance retained.",
+        "attribution": "Research-only; no new dossier, illustration, embedding, catalogue or codec changes. Interbuild differences unaudited; no savings attribution.",
+        "tests": "505 pass,1 skip",
+        "productionBuild": "pass",
+        "fullBuild": "FAIL hard16MB gate",
+        "htmlBytes": 16022566,
+        "overBudgetBytes": 22566,
+        "browser": "No new passing full/offline browser claim; other engines remain open."
+      }
+    },
+    "surfaceImage": {
+      "url": "/bespoke/despina-surface-image.jpg",
+      "previewUrl": "/bespoke/despina-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "despina-generated-surfaceImage-original.png",
+      "sourceSha256": "549afa735c148da4f60cab2c5436b6b906775bd59e69b8073ccd7b195cfb7f03",
+      "sha256": "40ce7a2e29e9844200b4927deba703406872793a4ad6e5f257512c709c2726f7",
+      "previewSha256": "a83b3d4920262a7edb2a46e6deaa523d84c54aeca8ce37aa7a2961d0288cbc6a",
+      "bytes": 303722,
+      "previewBytes": 9118,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/despina-sky-image.jpg",
+      "previewUrl": "/bespoke/despina-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "despina-generated-skyImage-original.png",
+      "sourceSha256": "a652453a38bb0104f793563889cb91135457b2d44cff03a6d402a56f70e64aa1",
+      "sha256": "3db37f2c88cb792eab1a5c6a65f4016b3513ee57328fe330c5d84589dcc6bc29",
+      "previewSha256": "2e722d3bab66bf7493fb9d18b39aadf0fc1c72a66e4fe7c8865c666f02464fb1",
+      "bytes": 203143,
+      "previewBytes": 6674,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
