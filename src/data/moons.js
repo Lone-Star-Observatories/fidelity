@@ -175,6 +175,20 @@ export const MOONS = [
       { label: 'DISCOVERED', value: '2005 · BROWN / KECK', tier: 'measured', detail: 'Native Hubble acquisition-date/proposal crosswalk remains unresolved.' },
     ],
     surfacePending: true, discovered: '2005 · Michael Brown / Keck', note: 'Thermal-model radius and nominal rejected-fit orbital scale with invented plane/phase for navigation. Moon spin, mass, shape and current position unverified; no permanent Eris-facing site.' },
+  { id: 'namaka', name: 'Namaka', parent: 'haumea', radiusKm: 75, massKg: 1.35e18, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(25365, 0.220, 0, 0, 68.9, 0, 18.196404528847548, 0, 0, null, 'ecliptic'),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'HAUMEA', tier: 'measured', detail: 'Namaka distinct from Hiʻiaka; shared Hubble context points not independently cross-matched here.' },
+      { label: 'ORBIT SCALE', value: '25,365 ± 16 KM', tier: 'modelled', detail: 'Proudfoot2026 posterior median, epochJD2454615; not dated distance/current ephemeris.' },
+      { label: 'PERIOD', value: '18.1964 DAYS · KEPLER SCALE', tier: 'computed', detail: 'Two-body derivation from rounded fitted25365km and masses3.904e21+1.35e18kg, not fitted N-body siderealperiod/precession/uncertainty propagation. Parent catalogue mass remains distinct4.006e21kg.' },
+      { label: 'ORIENTATION', value: 'UNREGISTERED', tier: 'imagined', detail: 'Fit e.220±.002/i68.9±.1J2000ecliptic retained; display node/periapsis/phase invented, no dated registration.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE ELLIPSE', tier: 'imagined', detail: 'Static two-body display omits quadrupole/precession and Hiʻiaka interactions; no validated current position or event timing.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '75 KM · LIMB ASSUMPTION', tier: 'modelled', detail: 'Half150±50km circular limb assumed for2025singlechord astrometry, not measured shape/local normal.' },
+      { label: 'MASS', value: '(1.35 ± 0.08) × 10¹⁸ KG', tier: 'modelled', detail: '2026 dynamical posterior16th/84th convention, not direct local density/composition measurement.' },
+    ],
+    surfacePending: true, note: 'Assumed circular-limb radius and fitted dynamical mass/orbit scale; display orientation/phase unregistered, two-body period derived, no current ephemeris or permanent Haumea-facing site. Spin/shape unknown.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

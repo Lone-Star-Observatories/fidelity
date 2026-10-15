@@ -628,6 +628,19 @@
       "visualId": "dysnomia"
     },
     {
+      "id": "sol-namaka",
+      "bodyId": "namaka",
+      "name": "Namaka",
+      "parent": "haumea",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved globe/shape adopted. Shared Haumea-system Hubble context, individual moon points not independently cross-matched; no Haumea/Hiʻiaka/other-body map assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "namaka"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7205,17 +7218,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-namaka",
-      "name": "Namaka",
-      "parent": "haumea",
-      "kind": "moon",
-      "scope": "Dwarf-planet satellite; individual source verification queued",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8517,7 +8519,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 37,
+      "initialDossiers": 38,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
