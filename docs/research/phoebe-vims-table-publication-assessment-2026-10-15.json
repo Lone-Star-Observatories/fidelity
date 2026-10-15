@@ -1,0 +1,622 @@
+{
+  "date": "2026-10-15",
+  "scope": "Research-only Phoebe VIMS Table1 identifiers, fitted geometry and publication/licence crosswalk. No imagery embedding or production calibration.",
+  "authors": [
+    "Wesley C. Fraser",
+    "Michael E. Brown"
+  ],
+  "records": [
+    {
+      "path": "data/research-sources/phoebe-vims-table1-inventory-preparation-2026-10-14.json",
+      "sha256": "7e23b6ae159815c6036ac9c2225db024d2d0d1f6ac01012d75f07c730a16967b",
+      "record": {
+        "status": "Table1 text and full-page visual inventory preparation complete; raw archive cube crosswalk and final publication audit remain pending. No production adoption.",
+        "sourcePDF": "data/research-sources/phoebe-fraser-brown-2018v1-original.pdf",
+        "sourcePDFSha256": "bbc822921de9d1fca46cb5063709da4f8544f777381a0d48018c17d757181a3e",
+        "page": 8,
+        "rows": [
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656494331",
+            "fullExtractedRow": "14656494331 86.7 228.8 \u221219.9 5.8 321.5 \u221212.2 173491.5 237.64 280.53 634.36 509.53 0.011 314.5",
+            "printedIdentifier": "1465649433_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656497461",
+            "fullExtractedRow": "14656497461 85.9 226.2 \u221219.9 5.1 318.9 \u221212.2 171865.4 234.83 275.08 626.96 508.32 0.069 341.6",
+            "printedIdentifier": "1465649746_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656498341",
+            "fullExtractedRow": "14656498341 85.5 224.9 \u221219.9 27.3 317.6 \u221212.2 171052.3 233.51 268.79 575.50 484.98 0.051 319.9",
+            "printedIdentifier": "1465649834_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656499791",
+            "fullExtractedRow": "14656499791 85.1 223.6 \u221219.9 6.5 316.3 \u221212.2 170239.3 251.39 282.30 574.88 499.87 0.222 304.0",
+            "printedIdentifier": "1465649979_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656500701",
+            "fullExtractedRow": "14656500701 84.7 222.3 \u221219.9 4.1 315.0 \u221212.2 169426.2 235.18 265.06 572.01 502.83 0.480 253.4",
+            "printedIdentifier": "1465650070_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656502341",
+            "fullExtractedRow": "14656502341 84.1 220.4 \u221219.9 336.2 313.0 \u221212.2 168206.6 242.61 258.65 569.60 488.44 0.077 263.8",
+            "printedIdentifier": "1465650234_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656504321",
+            "fullExtractedRow": "14656504321 83.5 218.5 \u221219.9 338.7 311.1 \u221212.2 166987.1 294.82 261.62 643.98 457.69 0.062 248.5",
+            "printedIdentifier": "1465650432_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656507451",
+            "fullExtractedRow": "14656507451 82.5 215.2 \u221219.9 11.1 307.9 \u221212.2 164954.5 209.01 252.31 542.13 449.40 0.219 326.9",
+            "printedIdentifier": "1465650745_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656508341",
+            "fullExtractedRow": "14656508341 82.1 214.0 \u221219.9 9.5 306.6 \u221212.2 164141.4 287.31 247.61 629.67 467.70 0.227 291.3",
+            "printedIdentifier": "1465650834_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656510011",
+            "fullExtractedRow": "14656510011 81.7 212.7 \u221219.9 12.5 305.3 \u221212.2 163328.4 289.89 261.22 628.01 463.72 0.305 247.6",
+            "printedIdentifier": "1465651001_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14656518571",
+            "fullExtractedRow": "14656518571 78.6 203.0 \u221219.9 9.0 295.6 \u221212.2 157230.6 264.19 330.12 742.71 602.22 0.132 327.8",
+            "printedIdentifier": "1465651857_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14657002532",
+            "fullExtractedRow": "14657002532 85.6 218.6 24.8 14.6 132.8 \u221212.2 171291.1 338.98 291.06 1133.19 328.53 0.011 5.3",
+            "printedIdentifier": "1465700253_2"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14657007131",
+            "fullExtractedRow": "14657007131 86.9 214.7 24.8 18.4 129.0 \u221212.2 173730.1 345.15 309.59 1175.00 333.68 0.201 248.5",
+            "printedIdentifier": "1465700713_1"
+          },
+          {
+            "group": "LowResolution",
+            "extractedIdentifier": "14657008371",
+            "fullExtractedRow": "14657008371 87.5 212.8 24.8 16.5 127.0 \u221212.2 174949.6 339.89 308.17 1143.69 326.59 0.371 270.6",
+            "printedIdentifier": "1465700837_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656619291",
+            "fullExtractedRow": "14656619291 44.5 95.0 \u221219.8 348.5 186.9 \u221212.2 88941.4 191.21 151.68 462.08 316.27 0.061 316.4",
+            "printedIdentifier": "1465661929_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656621671",
+            "fullExtractedRow": "14656621671 43.7 92.4 \u221219.8 341.9 184.3 \u221212.2 87315.8 175.49 148.95 424.73 299.01 0.135 259.0",
+            "printedIdentifier": "1465662167_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656626311",
+            "fullExtractedRow": "14656626311 42.2 87.9 \u221219.8 350.7 179.8 \u221212.2 84470.9 164.61 145.83 420.46 297.76 0.329 310.4",
+            "printedIdentifier": "1465662631_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656647741",
+            "fullExtractedRow": "14656647741 34.9 65.0 \u221219.8 345.8 156.5 \u221212.2 69841.5 127.83 54.96 351.51 134.01 0.149 152.3",
+            "printedIdentifier": "1465664774_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656650361",
+            "fullExtractedRow": "14656650361 34.1 62.4 \u221219.8 330.2 153.9 \u221212.2 68216.2 139.50 56.56 336.76 135.08 0.085 218.9",
+            "printedIdentifier": "1465665036_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656654401",
+            "fullExtractedRow": "14656654401 32.7 58.0 \u221219.7 341.1 149.4 \u221212.2 65372.0 65.65 78.24 251.50 201.28 0.018 256.3",
+            "printedIdentifier": "1465665440_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656655631",
+            "fullExtractedRow": "14656655631 32.3 56.7 \u221219.7 339.7 148.1 \u221212.2 64559.4 160.35 80.58 352.10 191.66 0.042 283.4",
+            "printedIdentifier": "1465665563_1"
+          },
+          {
+            "group": "MediumResolution",
+            "extractedIdentifier": "14656657711",
+            "fullExtractedRow": "14656657711 31.7 54.8 \u221219.7 0.7 146.1 \u221212.2 63340.5 121.93 147.14 330.74 293.23 0.598 272.1",
+            "printedIdentifier": "1465665771_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656690681",
+            "fullExtractedRow": "14656690681 20.3 19.8 \u221219.6 344.9 109.9 \u221212.2 40597.3 177.34 124.46 456.47 240.97 0.515 88.8",
+            "printedIdentifier": "1465669068_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656697411",
+            "fullExtractedRow": "14656697411 18.1 13.1 \u221219.5 345.2 102.8 \u221212.2 36133.4 29.63 11.56 146.38 71.87 0.085 282.1",
+            "printedIdentifier": "1465669741_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656699441",
+            "fullExtractedRow": "14656699441 17.5 11.3 \u221219.5 335.2 100.8 \u221212.2 34916.4 163.47 29.84 278.77 76.56 0.129 300.0",
+            "printedIdentifier": "1465669944_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656702121",
+            "fullExtractedRow": "14656702121 16.2 7.7 \u221219.4 2.5 97.0 \u221212.2 32482.9 193.01 313.06 160.58 144.58 0.452 277.7",
+            "printedIdentifier": "1465670212_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656706501",
+            "fullExtractedRow": "14656706501 15.0 4.2 \u221219.4 3.5 93.1 \u221212.2 30050.3 171.67 427.40 150.56 267.49 0.111 288.1",
+            "printedIdentifier": "1465670650_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656712851",
+            "fullExtractedRow": "14656712851 13.0 358.4 \u221219.3 351.5 86.6 \u221212.2 25998.9 186.80 42.48 170.88 37.63 0.205 158.6",
+            "printedIdentifier": "1465671285_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656714481",
+            "fullExtractedRow": "14656714481 12.4 356.7 \u221219.2 6.6 84.7 \u221212.2 24784.4 7.54 87.84 \u22122.01 86.74 0.565 252.4",
+            "printedIdentifier": "1465671448_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656718221",
+            "fullExtractedRow": "14656718221 11.2 353.4 \u221219.2 1.8 80.8 \u221212.2 22357.0 160.42 166.51 138.82 93.65 0.423 274.5",
+            "printedIdentifier": "1465671822_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656721611",
+            "fullExtractedRow": "14656721611 10.0 350.3 \u221219.0 350.0 76.9 \u221212.2 19932.6 103.01 100.92 85.80 27.27 0.149 88.2",
+            "printedIdentifier": "1465672161_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656736001",
+            "fullExtractedRow": "14656736001 5.2 341.2 \u221217.9 325.2 61.4 \u221212.2 10305.6 67.79 \u221244.15 74.66 \u221266.69 0.173 310.3",
+            "printedIdentifier": "1465673600_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656774431",
+            "fullExtractedRow": "14656774431 8.1 98.0 25.6 71.2 20.0 \u221212.2 16149.5 69.98 65.53 136.23 124.61 0.166 284.4",
+            "printedIdentifier": "1465677443_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656776701",
+            "fullExtractedRow": "14656776701 8.9 96.2 25.5 52.9 17.4 \u221212.2 17760.2 82.08 79.43 131.94 144.11 0.262 289.3",
+            "printedIdentifier": "1465677670_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656784191",
+            "fullExtractedRow": "14656784191 11.7 89.0 25.4 57.0 8.3 \u221212.2 23414.2 149.44 304.52 192.06 140.61 0.309 165.2",
+            "printedIdentifier": "1465678419_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656789111",
+            "fullExtractedRow": "14656789111 13.1 85.1 25.3 72.8 3.8 \u221212.2 26247.3 134.89 332.74 148.61 152.18 0.245 127.5",
+            "printedIdentifier": "1465678911_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656794131",
+            "fullExtractedRow": "14656794131 14.7 80.5 25.2 84.0 358.6 \u221212.2 29488.1 136.31 289.02 156.90 125.14 0.028 293.0",
+            "printedIdentifier": "1465679413_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656796751",
+            "fullExtractedRow": "14656796751 15.6 78.2 25.2 81.4 356.0 \u221212.2 31109.4 104.41 301.79 134.42 139.35 0.215 260.1",
+            "printedIdentifier": "1465679675_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656799321",
+            "fullExtractedRow": "14656799321 16.4 75.8 25.2 79.7 353.4 \u221212.2 32731.2 \u221213.12 191.41 291.15 241.92 0.305 249.3",
+            "printedIdentifier": "1465679932_1"
+          },
+          {
+            "group": "HighResolution",
+            "extractedIdentifier": "14656809772",
+            "fullExtractedRow": "14656809772 21.0 61.8 25.1 85.3 338.6 \u221212.2 42062.9 228.57 200.53 585.70 235.91 0.375 102.2",
+            "printedIdentifier": "1465680977_2"
+          }
+        ],
+        "counts": {
+          "LowResolution": 14,
+          "MediumResolution": 8,
+          "HighResolution": 18
+        },
+        "limits": [
+          "Printed identifier punctuation verified visually; raw archive naming/version/product identity not inferred from paper alone.",
+          "Table geometry is adjusted/fitted as described in Section2, not unmodified raw SPICE geometry or a registered current observer scene.",
+          "Reported resolution values are publisher text, not newly calculated angular/raster scale.",
+          "No UTC/filter/exposure/raw cube identity, current2023 PDS mesh crosswalk, photometric normalization, native map association or licence claim.",
+          "All production dossiers/assets/models/maps/shapes/codecs unchanged."
+        ],
+        "visualInspection": "Complete page8 original-PDF rendering inspected; table shows underscore before final1/2 suffix. Forty rows and14/8/18 groups agree with retained extraction.",
+        "diagnostic": {
+          "path": "data/research-sources/phoebe-vims-table1-page8-diagnostic-2026-10-14.png",
+          "sha256": "d2ef030e236846bce7f88ce27652aedef3afc3b4c9c818a93d804912c9cfe852",
+          "purpose": "Original page rendering for research inspection, not a native body image or embedded map."
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-vims-iss-identifier-comparison-preparation-2026-10-14.json",
+      "sha256": "c3a0c1a82c02019ee1184b19c9b0b22e7d50180c537b5591dcbc79399f5d9ce4",
+      "record": {
+        "status": "Read-only identifier-string comparison preparation; no raw-product association or production adoption.",
+        "inputs": [
+          {
+            "path": "data/research-sources/phoebe-vims-table1-inventory-preparation-2026-10-14.json",
+            "sha256": "7e23b6ae159815c6036ac9c2225db024d2d0d1f6ac01012d75f07c730a16967b"
+          },
+          {
+            "path": "data/research-sources/phoebe-pds-phoebeimglist.txt",
+            "sha256": "d70688edd7b16c7baa6dbe1809be702ef95d3b69a13c3220d7f690368f859ac0"
+          }
+        ],
+        "vimsPrintedIdentifiers": [
+          "1465649433_1",
+          "1465649746_1",
+          "1465649834_1",
+          "1465649979_1",
+          "1465650070_1",
+          "1465650234_1",
+          "1465650432_1",
+          "1465650745_1",
+          "1465650834_1",
+          "1465651001_1",
+          "1465651857_1",
+          "1465700253_2",
+          "1465700713_1",
+          "1465700837_1",
+          "1465661929_1",
+          "1465662167_1",
+          "1465662631_1",
+          "1465664774_1",
+          "1465665036_1",
+          "1465665440_1",
+          "1465665563_1",
+          "1465665771_1",
+          "1465669068_1",
+          "1465669741_1",
+          "1465669944_1",
+          "1465670212_1",
+          "1465670650_1",
+          "1465671285_1",
+          "1465671448_1",
+          "1465671822_1",
+          "1465672161_1",
+          "1465673600_1",
+          "1465677443_1",
+          "1465677670_1",
+          "1465678419_1",
+          "1465678911_1",
+          "1465679413_1",
+          "1465679675_1",
+          "1465679932_1",
+          "1465680977_2"
+        ],
+        "issInventoryCount": 208,
+        "exactNormalizedStringIntersection": [],
+        "normalization": "ISS leading N/W and .IMG removed only; VIMS printed underscore/version suffix retained.",
+        "limits": [
+          "Different instrument inventories; equal strings would not establish product or pixel identity, and no string match does not establish absence of contemporaneous observations.",
+          "No time conversion, angular/raster calculation, kernel loading, frame registration, science calibration or licence claim.",
+          "All original source bytes and production assets, dossiers, models, maps and codecs unchanged."
+        ],
+        "verification": "Both comparison-input hashes, original PDF hash, forty distinct printed identifiers and group totals reverified 2026-10-14; no raw archive crosswalk inferred."
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-licence-preparation-2026-10-14.json",
+      "sha256": "25daa70f6b8b3b720b547239bf8782d3fc1c1414fb168010b715da4bd8c0f9b4",
+      "record": {
+        "status": "Direct record-linked licence verification preparation only.",
+        "responses": [
+          {
+            "url": "https://arxiv.org/abs/1803.04979",
+            "finalUrl": "https://arxiv.org/abs/1803.04979",
+            "status": 200,
+            "path": "data/research-sources/phoebe-fraser-brown-record-response-2026-10-14.html",
+            "bytes": 45168,
+            "sha256": "7014364bc5d64bdf3a40501aa77710fa300faa469329b6c51689636d03366b20"
+          },
+          {
+            "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+            "finalUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+            "status": 200,
+            "path": "data/research-sources/phoebe-fraser-brown-licence-response-2026-10-14.html",
+            "bytes": 1415,
+            "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+          }
+        ],
+        "finding": "Record view-license links to arXiv nonexclusive-distrib/1.0. This records a grant to arXiv, not CC BY or independently verified downstream figure redistribution permission.",
+        "limits": [
+          "Final publisher licence remains open; no paper figure embedded.",
+          "Observation epochs and raw product rights are separate from paper submission and distribution terms.",
+          "All production assets/dossiers/models/maps/shapes/codecs unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-fraser-brown-final-metadata-preparation-2026-10-15.json",
+      "sha256": "1231fdeb7991ed4327c30f3822d6521b2e0ed21d03b72854bdb329d56324caa2",
+      "record": {
+        "status": "Research-only DOI registration metadata preparation; publisher full text and licence verification remain open. No production change.",
+        "source": {
+          "url": "https://api.crossref.org/works/10.3847/1538-3881/aac213",
+          "finalUrl": "https://api.crossref.org/works/10.3847/1538-3881/aac213",
+          "httpStatus": 200,
+          "path": "data/research-sources/phoebe-fraser-brown-crossref-response-2026-10-15.json",
+          "bytes": 10691,
+          "sha256": "fb4e447da79ab1580e9dd4164c9c62cb53f73fc2882fe07162878532104c70e8"
+        },
+        "metadata": {
+          "DOI": "10.3847/1538-3881/aac213",
+          "title": [
+            "Phoebe: A Surface Dominated by Water"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0001-6680-6558",
+              "authenticated-orcid": false,
+              "given": "Wesley C.",
+              "family": "Fraser",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-8255-0545",
+              "authenticated-orcid": false,
+              "given": "Michael E.",
+              "family": "Brown",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "publisher": "American Astronomical Society",
+          "container-title": [
+            "The Astronomical Journal"
+          ],
+          "volume": "156",
+          "issue": "1",
+          "article-number": null,
+          "published": {
+            "date-parts": [
+              [
+                2018,
+                6,
+                22
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                2018,
+                6,
+                22
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2018,
+                7,
+                1
+              ]
+            ]
+          },
+          "license": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2018,
+                    6,
+                    22
+                  ]
+                ],
+                "date-time": "2018-06-22T00:00:00Z",
+                "timestamp": 1529625600000
+              },
+              "content-version": "vor",
+              "delay-in-days": 0,
+              "URL": "https://iopscience.iop.org/page/copyright"
+            },
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2018,
+                    6,
+                    22
+                  ]
+                ],
+                "date-time": "2018-06-22T00:00:00Z",
+                "timestamp": 1529625600000
+              },
+              "content-version": "tdm",
+              "delay-in-days": 0,
+              "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+            }
+          ],
+          "link": [
+            {
+              "URL": "http://stacks.iop.org/1538-3881/156/i=1/a=23/pdf",
+              "content-type": "application/pdf",
+              "content-version": "vor",
+              "intended-application": "text-mining"
+            },
+            {
+              "URL": "http://stacks.iop.org/1538-3881/156/i=1/a=23?key=crossref.692fd1437659153d9d3f91986d29e5d1",
+              "content-type": "text/html",
+              "content-version": "vor",
+              "intended-application": "text-mining"
+            },
+            {
+              "URL": "https://iopscience.iop.org/article/10.3847/1538-3881/aac213",
+              "content-type": "text/html",
+              "content-version": "vor",
+              "intended-application": "text-mining"
+            },
+            {
+              "URL": "https://iopscience.iop.org/article/10.3847/1538-3881/aac213/pdf",
+              "content-type": "application/pdf",
+              "content-version": "vor",
+              "intended-application": "text-mining"
+            },
+            {
+              "URL": "https://iopscience.iop.org/article/10.3847/1538-3881/aac213/pdf",
+              "content-type": "application/pdf",
+              "content-version": "vor",
+              "intended-application": "syndication"
+            },
+            {
+              "URL": "http://stacks.iop.org/1538-3881/156/i=1/a=23/pdf",
+              "content-type": "application/pdf",
+              "content-version": "vor",
+              "intended-application": "similarity-checking"
+            },
+            {
+              "URL": "http://stacks.iop.org/1538-3881/156/i=1/a=23?key=crossref.692fd1437659153d9d3f91986d29e5d1",
+              "content-type": "text/html",
+              "content-version": "vor",
+              "intended-application": "similarity-checking"
+            },
+            {
+              "URL": "https://iopscience.iop.org/article/10.3847/1538-3881/aac213/pdf",
+              "content-type": "application/pdf",
+              "content-version": "vor",
+              "intended-application": "similarity-checking"
+            }
+          ]
+        },
+        "limits": [
+          "Crossref registration metadata is distinct from publisher full-text verification and observation dates.",
+          "Any registered licence link or content-version must be inspected before claiming downstream image or figure permission.",
+          "DOI resolver web access failed in this turn; no publisher paper hash or full-text claim.",
+          "All existing 75 dossiers, original/native/master/model/map/shape assets and production codecs remain unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/phoebe-publisher-access-preparation-2026-10-15.json",
+      "sha256": "d8943806b3e6ff867235ef80fc633faaf09eaf4cc1a918354694eb5fdb6c17a2",
+      "record": {
+        "status": "Publisher access preparation only; no production adoption.",
+        "responses": [
+          {
+            "kind": "article",
+            "requestedUrl": "https://iopscience.iop.org/article/10.3847/1538-3881/aac213",
+            "httpStatus": 200,
+            "finalUrl": "https://validate.perfdrive.com/fb803c746e9148689b3984a31fccd902/?ssa=1055b860-d9ff-43f0-9a92-6f904cf093bf&ssb=80737219968&ssc=https%3A%2F%2Fiopscience.iop.org%2Farticle%2F10.3847%2F1538-3881%2Faac213&ssi=4ff1c45d-cnvj-47eb-8f95-ade941a4d6e7&ssk=botmanager_support@radware.com&ssm=16724882848530217101695266138003&ssn=17b5f16e37506cd2bc532cdbd688891f984ec91e76fc-7bf9-4f80-9e9cbd&sso=aac527f2-e9c4418ae1041aef2129e22966af3b9a20a1898e89647f75&ssp=84631796721792034727179204406415099&ssq=77856312451969689270724519516912948324800&ssr=MTA3LjIwMC4xMTYuMTgx&sst=Fidelity%20provenance%20audit&ssu=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDBjOTFlNzZmYy03YmY5LTRmODAtOTdmMi1lOWM0NDE4YWUxMDQxLTE3OTIwMjQ1MTkxNjIwLTAwNWRkNzFiZGM0NzZjYTYxNmQxMCIsInJkIjoiaW9wLm9yZyIsInV6bXgiOiI3ZmMwMDAyNDhmMTAwMS0xMmUwLTQ2ZWQtOGMzMy03M2VmYTlhMWIwMDAxLTE3OTIwMjQ1MTkxNjIwLTAwOWViYTViZWQ4ZTdkM2UyNmExMCJ9",
+            "contentType": "text/html; charset=UTF-8",
+            "path": "data/research-sources/phoebe-publisher-article-response-2026-10-15.bin",
+            "bytes": 14375,
+            "sha256": "7c0093c0490f57e6476b2a5600513350af1ece1b416a1886bb9ba499f8630359",
+            "hashMeaning": "Actual fetched response bytes only; not asserted to be paper, copyright terms, or licence text."
+          },
+          {
+            "kind": "copyright",
+            "requestedUrl": "https://iopscience.iop.org/page/copyright",
+            "httpStatus": 200,
+            "finalUrl": "https://validate.perfdrive.com/fb803c746e9148689b3984a31fccd902/?ssa=3c10bc50-56f3-4c98-bc43-85a330fd5d24&ssb=80737219968&ssc=https%3A%2F%2Fiopscience.iop.org%2Fpage%2Fcopyright&ssi=434d1515-cnvj-4d60-8e27-d316af731e85&ssk=botmanager_support@radware.com&ssm=16724882848530217101695266138003&ssn=17b5f16e75f8c027cf820c014a43891f984e8401e65d-a91b-47c9-8e9cbd&sso=aac52b9c-41c27c42aeea1aef21292b12dc2f12cc51d979b389647f75&ssp=84631796721792034727179204406415099&ssq=77856312451969689270724519516912948324800&ssr=MTA3LjIwMC4xMTYuMTgx&sst=Fidelity%20provenance%20audit&ssu=&ssv=&ssw=&ssx=eyJfX3V6bWYiOiI3ZjkwMDA4NDAxZTY1ZC1hOTFiLTQ3YzktOGI5Yy00MWMyN2M0MmFlZWExLTE3OTIwMjQ1MTk4MjEwLTAwNWFlNGMzYWNiY2M2MDEyYzgxMCIsInV6bXgiOiI3ZmMwMDA3ZjViZDQ4YS0zNjYyLTQ3MTktODdkNC05ZTUxNTM4YWMzMTUxLTE3OTIwMjQ1MTk4MjEwLTAwOWExYTYzYjdkYzU5MGQ5ZDcxMCIsInJkIjoiaW9wLm9yZyJ9",
+            "contentType": "text/html; charset=UTF-8",
+            "path": "data/research-sources/phoebe-publisher-copyright-response-2026-10-15.bin",
+            "bytes": 14375,
+            "sha256": "f240dd47414db76df585912e67ddab24c622218241a15aa6db758a6fee1294ca",
+            "hashMeaning": "Actual fetched response bytes only; not asserted to be paper, copyright terms, or licence text."
+          }
+        ],
+        "limits": [
+          "Web tool article retrieval was restricted.",
+          "HTTP response hashes do not verify full article contents or licence terms.",
+          "Crossref generic copyright and text-mining links do not establish CC BY redistribution permission.",
+          "Retained arXiv v1 nonexclusive licence remains distinct from final publisher terms.",
+          "All dossiers, native images, original/master assets, models, maps, shapes and codecs unchanged."
+        ]
+      }
+    }
+  ],
+  "findings": [
+    "Forty distinct printed VIMS identifiers in Table1:14 low,8 medium,18 high resolution. Underscore suffix punctuation was verified visually on original PDF page8.",
+    "Table geometry is adjusted/fitted by the analysis, not unmodified SPICE or a dated registered observer scene.",
+    "Normalized VIMS versus SPC ISS filename strings have zero intersection; this does not establish absence of contemporaneous observations or raw science product identity.",
+    "Exact arXiv record licence is nonexclusive distribution, not CC BY. Crossref records online publication2018-06-22 and print2018-07-01, distinct from observation dates.",
+    "Crossref copyright/text-mining links are not independently verified figure redistribution permission. Direct publisher responses redirected to verification pages; response hashes are not article or licence hashes."
+  ],
+  "remaining": [
+    "Raw VIMS product/channel/version/UTC/filter/exposure association",
+    "Final publisher full text and applicable redistribution terms",
+    "Independent geometry and radiometric reproduction",
+    "Native map pixel/epoch/frame/coverage crosswalk"
+  ],
+  "preservation": "No native, generated original/master/preview, map, model, shape, dossier, catalogue or codec adoption/change.",
+  "verification": {
+    "tests": {
+      "pass": 668,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15984239,
+    "headroomBytes": 15761,
+    "queue": 566,
+    "dossiers": 75,
+    "trackedPublicFilesByteIdentical": 598,
+    "browser": "No fresh browser verification.",
+    "sizeAttribution": "Interbuild live feed differences are unaudited; no compression savings attribution."
+  }
+}
