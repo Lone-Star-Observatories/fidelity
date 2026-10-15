@@ -189,6 +189,21 @@ export const MOONS = [
       { label: 'MASS', value: '(1.35 ± 0.08) × 10¹⁸ KG', tier: 'modelled', detail: '2026 dynamical posterior16th/84th convention, not direct local density/composition measurement.' },
     ],
     surfacePending: true, note: 'Assumed circular-limb radius and fitted dynamical mass/orbit scale; display orientation/phase unregistered, two-body period derived, no current ephemeris or permanent Haumea-facing site. Spin/shape unknown.' },
+  { id: 'hiiaka', name: 'Hiʻiaka', parent: 'haumea', radiusKm: 185, massKg: 16.5e18, rotationHours: 9.8, locked: false, phaseUnknown: true,
+    elements: el(49186, 0.0604, 0, 0, 77.24, 0, 49.040489123680985, 0, 0, null, 'ecliptic'),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'HAUMEA', tier: 'measured', detail: 'Hiʻiaka distinct from Namaka; shared Hubble context points not independently cross-matched.' },
+      { label: 'ORBIT SCALE', value: '49,186 ± 27 KM', tier: 'modelled', detail: 'Proudfoot2026 posterior median, epochJD2454615; not dated distance/current ephemeris.' },
+      { label: 'PERIOD', value: '49.0405 DAYS · KEPLER SCALE', tier: 'computed', detail: 'Two-body derivation from rounded fitted49186km and masses3.904e21+16.5e18kg, not fitted N-body siderealperiod/precession/error propagation. Parent catalogue mass remains distinct4.006e21kg.' },
+      { label: 'ORIENTATION', value: 'UNREGISTERED', tier: 'imagined', detail: 'Fit e.0604±.0008/i77.24±.04J2000ecliptic retained; display node/periapsis/phase invented, no dated registration.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE ELLIPSE', tier: 'imagined', detail: 'Static two-body display omits quadrupole/precession and Namaka interactions; no validated current position or event timing.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '185 KM · OCCULTATION MODEL', tier: 'modelled', detail: 'Half370±20km volumetric diameter cited from2021occultation; original reduction/shape audit open, not registered local normal.' },
+      { label: 'MASS', value: '(16.5 ± 0.5) × 10¹⁸ KG', tier: 'modelled', detail: '2026 dynamical posterior16th/84th convention. Derived620±100kg/m3 not local chemistry/porosity measurement.' },
+    ],
+    rotationFacts: [{ label: 'DAY', value: '~9.8 H · PREFERRED MODEL', tier: 'modelled', detail: 'Double-peaked photometric interpretation;4.9hour single-peaked alternative/integer-cycle aliases retained. Precise period/pole/phase unregistered; no permanent Haumea-facing site.' }],
+    surfacePending: true, note: 'Preferred approximate9.8hour nonsynchronous rotation with4.9hour/alias alternatives. Occultation-model radius and dynamical mass/orbit; orientation/phase unregistered, two-body period derived, no current ephemeris.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,

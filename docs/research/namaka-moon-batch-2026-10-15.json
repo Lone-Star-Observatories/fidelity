@@ -666,7 +666,7 @@
     "htmlBytes": 15950910,
     "registry": 82,
     "queue": 566,
-    "tests": "676 pass,1 skip",
+    "tests": "677 pass,1 skip",
     "productionBuild": "pass",
     "fullBuild": "pass",
     "headroomBytes": 49090,
@@ -683,7 +683,8 @@
     },
     "actualRoutes": "Chrome normal/offline Namaka three bespoke cards, readable IMAGINED labels, no own resolved map, illustrative orbit/limb-assumption radius; offline all3 dataURI sources. Complete browser JSON exactly equals readable JSON.",
     "limits": "No fresh all-image decode, all-model-load, all-route or worker claim; other engines/conflictingHTTPcharset open. No net asset/compression attribution from interbuild differences.",
-    "preservation": "All81 prior dossiers/39 prior moons deepEqual,628 prior public files byteequal; all prepared originals/default PNGs/prompts/masters/previews/shared native JPEG and recorded Clipper preserved. UTF16BOM/alllegacy/independentBrotli/Blob/notices unchanged."
+    "preservation": "All81 prior dossiers/39 prior moons deepEqual,628 prior public files byteequal; all prepared originals/default PNGs/prompts/masters/previews/shared native JPEG and recorded Clipper preserved. UTF16BOM/alllegacy/independentBrotli/Blob/notices unchanged.",
+    "countCorrection": "Corrected inherited676 count on2026-10-15 to actual Namaka testlog677pass1skip, already correctly reported in docs/assets.md. No application/asset change."
   },
   "displayAdoption": {
     "radiusKm": 75,

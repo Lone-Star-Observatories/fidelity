@@ -14161,6 +14161,285 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "hiiaka": {
+    "id": "hiiaka",
+    "name": "Hiʻiaka",
+    "aliases": [
+      "Hiʻiaka",
+      "Hi'iaka",
+      "Hiiaka",
+      "Haumea I"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-15",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe/shape adopted. Shared Haumea-system Hubble context, individual moon points not independently cross-matched; no Haumea/Namaka/other-body map assigned.",
+    "measured": [
+      "NASA captionHubbleWFC3UVIS2015-06-30 centralHaumea with two moon detections, spellingHi’iak retained; individual upper/lower point association not independently adopted. ExactrawUTC/filter/coadd/product/publicationhistory/photometry open. Page2024-07-02 and asset2024/03 not observation.",
+      "Targeted sections2–3 and conclusions: relative HST/Magellan photometry and phase dispersion minimization support rapid rotation, preferred approximately9.8hour double-peaked light curve; 4.9hour single-peaked albedo interpretation remains an alternative.",
+      "Illustrative smooth phase-folding trial9.79736hours is not an uncertainty-bounded precise period; lowest reducedchi-square9.71141hours and forest of integer-cycle aliases retained. Approximately49.5day orbit is not the spin period; no permanent Haumea-facing site assumed.",
+      "Brightness variation19±1percent plus possible approximately1percent systematic is a relative photometry result, not JPEG calibration, a local albedo map or chemistry/material fractions. Shape inference depends on projected cross section, aspect and albedo alternatives; not a registered physical ellipsoid or surface normal.",
+      "2009 aperture included both Hiiaka and Namaka; contamination assumptions do not make this a Namaka rotation measurement. Observation account/table date grouping and publisher native2015 product crosswalk remain separately open.",
+      "Spin-axis obliquity/precession, despinning and initial semimajor-axis histories are models; rapid spin does not uniquely distinguish formation scenarios, establish measured tidal dissipation, present orientation or dated observer visibility.",
+      "Haumea rotation, ring, interior axes and chemistry are not Hiiaka measurements. No other-body skin, local chemistry, atmosphere absence, ocean, plume, biology or survivable landing established.",
+      "Equator-on b/a approximately0.81 is conditional; b/a,c/a and pole aspect are degenerate. Comparisons to other Solar System shapes are model analogies, never assigned terrain skins."
+    ],
+    "modelled": [
+      "Three new HST epochs combined with astrometry since2006 fitted with a dynamical model; orbit/mass/J2 constraints are not direct interior imaging.",
+      "Haumea differentiated rocky core/ice mantle conclusion depends on measured dynamical harmonics plus occultation shape/interior models. Detailed core/mantle densities and two-versus-three-layer structure remain unconstrained.",
+      "Fossil-figure preference requires additional data; not a confirmed reconstructed history.",
+      "Haumea interior/shape/reference-radius parameters must not be assigned to either moon.",
+      "Semimajor axes are not dated distances, spin periods, local normals or evidence of permanent Haumea-facing sites. No angular/raster calculation or catalogue update.",
+      "No local chemistry, resolved geography, current ocean/plume/biology or survivable landing established.",
+      "NASA2015 image individual point/product/filter/UTC crossmatch, raw astrometric products, Appendices A–C detailed extraction/calibration and final record remain OPEN.",
+      "Four HST instruments and varying filters/settings may introduce cross-calibration systematics.",
+      "Haumea nonspherical shape and albedo variations can shift photocenter relative to center of mass; NOT a calibrated publisher-image correction.",
+      "Authors suggest astrometric uncertainty inflation approximately1.38, typical Namaka7mas/Hiʻiaka4mas; this is not an automatic rescaling of Table1 posterior errors.",
+      "Reported precession much larger than few-mas photocenter noise is an author inference, not independently refitted here.",
+      "Hiʻiaka posterior median16th/84th convention: mass(16.5±.5)e18kg,a49186±27km,e.0604±.0008,i77.24±.04degJ2000ecliptic epochJD2454615.0/2008May28T12UT. Distinct Namaka mass(1.35±.08)e18/a25365±16/e.220±.002/i68.9±.1 not Hiʻiaka measurements.",
+      "MultiMoon N-body/quadrupole18parameters960walkers6000burnin10000samples,chi2=198/104dof≈1.9; authors1.38uncertaintyinflation not automaticrescaling of Table1. Posteriorfit mass/orbit not directweighing/localchemistry/porosity/currentephemeris. Hiʻiaka620±100kgm3 derivedusing fittedmass/separate2021occultation370±20km volumetricdiameter, not measuredlocalchemistry/porosity/axes; originaloccultationreduction open.",
+      "Display Kepler period49.040489123680985days derives2*pi*sqrt(49186^3/(G_KM*(3.904e21+16.5e18)))/86400, CODATA2018G_KM=6.6743e-20 from src/astro/orbit.js. Rounded posterior inputs, not fitted N-body siderealperiod/uncertainty propagation/precession or actual currentorbit. Displaye.0604/i77.24 use fitmedians but longitude/node/periapsis/phase invented; no registered orbitalplane/eventtiming. Displayradius185km halves cited370±20km occultationdiameter, originalreduction/shape auditopen; not registeredlocalnormal.",
+      "Preferredapproximate9.8hour double-peaked rotation,4.9hour single-peakedalbedo alternative; smoothfoldtrial9.79736 versuslowestchi9.71141/integercyclealiases not preciseuncertaintyboundedperiod. Display9.8hour unregisteredrotation hypothesis not spinphase/pole/axes/orientation verification; no permanentHaumeaface.",
+      "Haumea fittedmass(3904±7)e18 distinctunchangedparentcatalogue4.006e21kg/J2.143(+.025,-.024)/reference772km and differentiatedrockycore/ice-mantle/fossilfigure interpretations are primary-only models, not Hiʻiaka radius/interior/chemistry/spin/history. Fullphysicalshape/pole/phase/ringregistration open.",
+      "Ring2287/70km assumedSaturnA500–1000kg/m2/reportJ2~1e-6 not measuredHaumeadensity/skin; illustrativeunseen60km/10000km/1000kgm3/J2.0024 not discovery/exhaustiveabsence. Modifiedkyushu574axisgrid/921crust/fossil3.7h not independentlyreproduced or moonproperties."
+    ],
+    "unknown": [
+      "Unresolved/small detections do not establish resolved geography, axes, local chemistry or calibrated visible colour.",
+      "Central Haumea, glare, diffraction, background noise and JPEG sampling must not become moon terrain or stars.",
+      "Black background does not measure atmospheric absence.",
+      "Exact exposure UTC, filters, raw product/coadd, individual point association, publication history and calibrated photometry remain OPEN.",
+      "No new angular/raster computation, analogue skin, generated illustration, map, shape or catalogue change.",
+      "No exhaustive newest-observation claim; prior Haumea ellipsoid/ring/registration limitations preserved.",
+      "2015NASA individual point/filter/UTC/raw product crossmatch remains unresolved;2026 observations do not establish it.",
+      "Raw astrometry, prior choices and cited extraction implementations not independently reprocessed.",
+      "Detailed Appendices D/E interior/ring models and final publication remain separately open.",
+      "No moon geography, local chemistry, spin locking, permanent-facing site, ocean/plume/biology or landing established.",
+      "Physical ellipsoid/pole/phase crosswalk for each moon-view limb",
+      "Dated eccentric orbital geometry and spin/site-normal registration",
+      "Original 2021 Hiʻiaka occultation reduction and Namaka limb alternatives",
+      "Ring opening/registration, phase, spectral transfer, photometry and transmission",
+      "Final published record/PDF comparison and later rotation refinements",
+      "Raw HST/Magellan reduction/product/photometric calibration audit",
+      "2015 native point identity and full contributor/raw product crosswalk",
+      "Current pole, spin phase, physical axes, local normal and 3D observer registration",
+      "Hiʻiaka preciseperiod/aliases/spinphase/pole/shape/localnormal/chemistry/visiblecolour/atmosphere/datedregistration remainopen. Rotation9.8hour is a preferred approximate interpretation, not measuredlocking/permanentHaumeaface.",
+      "Specific2026arXivCCBYNCSA4 NOTCCBY, fullfiveauthors retained; Hastings2016all8authors specificnonexclusive NOTCCBY. Final/rawHST/image terms distinct, nofigureembedded. NASAimage activeNASAmedia/thirdpartyrestrictions notverifiedCCBY."
+    ],
+    "assumed": [
+      "Invented terrain, chemistry/material fractions, grey colour, light and exposure; no analog skin or dated HST/occultation site, atmosphere, plume, liquid, ocean, biology or survivable landing.",
+      "No astronomical disks: Haumea, Namaka and Sun outside frame by assumed camera attitude, not physical invisibility. No angular or raster diameter adopted.",
+      "Earth-view projected Haumea axes do not establish its outline from Hiʻiaka; physical ellipsoid/pole/phase/observer direction remain open. Rapid nonsynchronous ~9.8h preferred rotation, ~4.9h alternative and integer-cycle aliases do not establish permanent Haumea-facing terrain or a registered local normal.",
+      "Black sky/ring omission do not measure absence. Small preview footers require readable IMAGINED card labels.",
+      "Haumea is a rotating triaxial body. A full moon-view limb requires physical principal axes, rotation phase, body pole, observer direction and surface-normal registration. The gravity reference radius772km is not substituted for those physical axes. Existing smooth ellipsoid and all native/model bytes remain unchanged.",
+      "Nominal semimajor axes at JD2454615.0 are scales, not current distances. Namaka eccentricity.220 and Hiʻiaka.0604 preclude treating these as dated separations. No orbital uncertainty propagation or current ephemeris is claimed.",
+      "Subtracting an assumed spherical moon height is illustrative only; neither size assumption establishes local normal, spin synchronization, permanent Haumea-facing terrain or everywhere-visible primary.",
+      "Haumea model interior densities, ring surface density analogies and fossil rotation are not moon chemistry, texture, spin or observed history. No analog skin, atmosphere, plume, ocean, biology or landing scene adopted.",
+      "The 2026 primary record CC BY-NC-SA4.0 is distinct from NASA image/raw-data terms. No figure used. Native 2015 point identity/product/filter/UTC crossmatch remains open.",
+      "No astronomical disk appears in either delivered view; Haumea/Namaka/Sun deliberately off-frame by cameraattitude, not physicallyinvisible/everywhereabsent. Projected1006±67/572±15km Earthview2025Mar16 axes and sphericalskyGeometry examples MUST NOT become actualHiʻiaka-viewellipse/registeredlimb/confidenceenvelope. No new angular/rastercalculation or calibrateddiameter adopted.",
+      "Independentgreyrelief/blocks/grains/depressions/ridges/materialfractions/chemistry/colour/light/exposure invented, noanalogue/date/HSToccultationsite/foregroundatmosphere/plume/liquid/ocean/biology/survivablelanding. Black/ring/stars/Sun omission notabsence; readableIMAGINEDcardlabels accompany tinyfooters.",
+      "Sun43.06AU rounded catalogue semimajor-scale off-frame assumption, not dateddistance/calibratedphotometry; helpertemperature40K angularonly, no Sun disk."
+    ],
+    "references": [
+      {
+        "title": "Haumea moons retained native/primary source",
+        "url": "https://science.nasa.gov/image-detail/haumea-30jun2015-22-28ok2-final-16x9/"
+      },
+      {
+        "title": "Haumea moons retained native/primary source",
+        "url": "https://science.nasa.gov/wp-content/uploads/2024/03/haumea-30jun2015-22-28ok2-final-16x9-1.jpg"
+      },
+      {
+        "title": "Haumea moons retained native/primary source",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "The Dense, Rocky Core of Haumea Revealed by Satellite Dynamics",
+        "url": "https://arxiv.org/pdf/2609.36037"
+      },
+      {
+        "title": "The Dense, Rocky Core of Haumea Revealed by Satellite Dynamics",
+        "url": "https://arxiv.org/abs/2609.36037"
+      },
+      {
+        "title": "Haumea moons retained native/primary source",
+        "url": "https://arxiv.org/pdf/1610.04305v1"
+      },
+      {
+        "title": "Haumea moons retained native/primary source",
+        "url": "https://arxiv.org/abs/1610.04305"
+      },
+      {
+        "title": "Proudfoot,Ragozzine,Grundy,Rommel,Holler2026 specific CC BY-NC-SA4 distribution",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+      },
+      {
+        "title": "HST18002 astrometry archive; raw audit open",
+        "url": "https://doi.org/10.17909/qwfv-qj17"
+      }
+    ],
+    "contextImages": [
+      {
+        "path": "data/research-sources/haumea-moons-hubble-native.jpg",
+        "url": "/bespoke/haumea-moons-hubble-native.jpg",
+        "bytes": 1829,
+        "sha256": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+        "source": "https://science.nasa.gov/wp-content/uploads/2024/03/haumea-30jun2015-22-28ok2-final-16x9-1.jpg",
+        "sourceUrl": "https://science.nasa.gov/image-detail/haumea-30jun2015-22-28ok2-final-16x9/",
+        "width": 231,
+        "height": 130,
+        "tier": "measured",
+        "credit": "NASA, ESA, and D. Ragozzine (Brigham Young University); Image Processing: Gladys Kober (NASA/Catholic University of America)",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "Active NASA image/media guidelines; no verified CC licence asserted. Retain named third-party credits and restrictions.",
+        "observationDate": "2015-06-30",
+        "publicationDate": "2024-07-02 (page date; original publication history open)",
+        "processing": "Unchanged231x130publisherJPEG, tinyservedrendition not originaldetectorpixelpreservation. No local resize/reencoding.",
+        "description": "Actual shared Haumea-system Hubble context. CentralHaumea and two moon detections; individual upper/lower point crossmatch OPEN, not an independently isolated Hiʻiaka image. Glare/noise/JPEGsampling not moonterrain/axes/calibratedcolour/stars."
+      }
+    ],
+    "skyModel": {
+      "star": "Sun",
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 43.06,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.012375854497671888,
+      "centreDiscWidthFraction": 0.00010799970478596225,
+      "irradianceEarth": 0.0005393267347066893,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "surfaceLabel": "IMAGINED LOCAL HIʻIAKA TERRAIN",
+    "skyLabel": "IMAGINED SKY FROM HIʻIAKA",
+    "observerGeometry": {
+      "date": "2026-10-12",
+      "issue": 3,
+      "status": "Research-only projected-scale examples; no registered observer view, new dossier, embedding, catalogue or codec change.",
+      "sources": [
+        {
+          "path": "docs/research/haumea-moons-dynamics-primary-assessment-2026-10-12.json",
+          "bytes": 3262,
+          "sha256": "e08710fbd1e69e95336871893cc0d8f5ab2bc49066f8b5ada9b900935008492b"
+        },
+        {
+          "path": "docs/research/haumea-moons-astrometry-assessment-2026-10-12.json",
+          "bytes": 4128,
+          "sha256": "072d119fd2351f6abc318a46d2b372a6a848a2e09b7aa119e9fd6b6ac8846306"
+        },
+        {
+          "path": "data/research-sources/haumea-dynamics-2026.pdf",
+          "bytes": 8080592,
+          "sha256": "b0a0988550ba63180daa0ec65c3ba158173455fda5acb8cb0fe7719721889991"
+        }
+      ],
+      "moons": [
+        {
+          "body": "Namaka",
+          "semimajorAxisKm": 25365,
+          "eccentricity": 0.22,
+          "assumedHeightKm": 75,
+          "heightBasis": "150±50km circular limb assumed for the 2025 single-chord position; not a resolved shape measurement.",
+          "assumedCentreDistanceKm": 25290,
+          "projectedScaleExamples": [
+            {
+              "radiusKm": 1006,
+              "angularDiameterDeg": 4.559491171756043,
+              "centreWidthPixels": 66.56244958580771
+            },
+            {
+              "radiusKm": 572,
+              "angularDiameterDeg": 2.5920111310965708,
+              "centreWidthPixels": 37.82636285352517
+            }
+          ]
+        },
+        {
+          "body": "Hiʻiaka",
+          "semimajorAxisKm": 49186,
+          "eccentricity": 0.0604,
+          "assumedHeightKm": 185,
+          "heightBasis": "Separate 2021 occultation diameter370±20km cited by the 2026 paper; original occultation reduction not independently audited here.",
+          "assumedCentreDistanceKm": 49001,
+          "projectedScaleExamples": [
+            {
+              "radiusKm": 1006,
+              "angularDiameterDeg": 2.352752149130362,
+              "centreWidthPixels": 34.333719535323425
+            },
+            {
+              "radiusKm": 572,
+              "angularDiameterDeg": 1.3376841382749634,
+              "centreWidthPixels": 19.518972412205304
+            }
+          ]
+        }
+      ],
+      "geometry": {
+        "helper": "src/astro/appearance.js skyGeometry",
+        "horizontalFovDeg": 90,
+        "rasterWidth": 1672,
+        "temperatureHelperK": 40,
+        "limits": "Angular outputs only; colour and irradiance discarded. Each projected semiaxis is passed separately as a spherical scale surrogate, not an exact finite-distance triaxial limb calculation. The 1006±67/572±15km projected axes belong to the 2025-03-16 Earth view, not the directions from either moon. These examples MUST NOT be adopted as actual moon-view axes, a simultaneous ellipse, a registered Haumea disk, or a confidence envelope."
+      },
+      "scienceLimits": [
+        "Haumea is a rotating triaxial body. A full moon-view limb requires physical principal axes, rotation phase, body pole, observer direction and surface-normal registration. The gravity reference radius772km is not substituted for those physical axes. Existing smooth ellipsoid and all native/model bytes remain unchanged.",
+        "Nominal semimajor axes at JD2454615.0 are scales, not current distances. Namaka eccentricity.220 and Hiʻiaka.0604 preclude treating these as dated separations. No orbital uncertainty propagation or current ephemeris is claimed.",
+        "Subtracting an assumed spherical moon height is illustrative only; neither size assumption establishes local normal, spin synchronization, permanent Haumea-facing terrain or everywhere-visible primary.",
+        "Haumea model interior densities, ring surface density analogies and fossil rotation are not moon chemistry, texture, spin or observed history. No analog skin, atmosphere, plume, ocean, biology or landing scene adopted.",
+        "The 2026 primary record CC BY-NC-SA4.0 is distinct from NASA image/raw-data terms. No figure used. Native 2015 point identity/product/filter/UTC crossmatch remains open."
+      ],
+      "open": [
+        "Physical ellipsoid/pole/phase crosswalk for each moon-view limb",
+        "Dated eccentric orbital geometry and spin/site-normal registration",
+        "Original 2021 Hiʻiaka occultation reduction and Namaka limb alternatives",
+        "Ring opening/registration, phase, spectral transfer, photometry and transmission"
+      ]
+    },
+    "surfaceImage": {
+      "url": "/bespoke/hiiaka-surface-image.jpg",
+      "previewUrl": "/bespoke/hiiaka-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hiiaka-generated-surfaceImage-original.png",
+      "sourceSha256": "9576780412bd41edc9d5ed8649ae8b800225d77e3d02394e40d7a6a014ee891a",
+      "sha256": "0706050672c069f234921cf23777f7d8b2c805a0b774252c5be1c2e0474b3b96",
+      "previewSha256": "c1e2866f3257e4d66b89b5e33cb4c055cab522246a399a4065c5f1c00b8729f0",
+      "bytes": 350216,
+      "previewBytes": 9660,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/hiiaka-sky-image.jpg",
+      "previewUrl": "/bespoke/hiiaka-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-12",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "hiiaka-generated-skyImage-original.png",
+      "sourceSha256": "9f6441119401b5925b408dd55bfa750e8382c33693e0d21561ab47c9ec2d2841",
+      "sha256": "6ebc6ca62165ca89b054210ff03c43e703d8565bdca3f6d01efa07daa50781e5",
+      "previewSha256": "02d5d979f65638b783f0c459a4c59227ca6495d28201c38602dd4f32c150d0eb",
+      "bytes": 290641,
+      "previewBytes": 8875,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

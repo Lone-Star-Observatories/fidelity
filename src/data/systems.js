@@ -97,7 +97,7 @@ function moonBody(m) {
           ? 'Truncated ELP-2000/82 series (Meeus): within ~0.01° of JPL DE440.'
           : `JPL SSD mean elements with precession; phase fitted to JPL Horizons 2016–2036 (scatter ${e.fit?.rmsDeg ?? '?'}°).`),
       ],
-      PHYSICAL: [...(m.physicalFacts ?? physicalFacts(m)), ...(m.rotationHours === null ? [fact('ROTATION', 'UNKNOWN', 'imagined', 'No verified spin or locking solution adopted; display orientation is unregistered.')] : locked ? [fact('ROTATION', 'TIDALLY LOCKED', 'measured', 'Always shows the same face to its planet, so its day equals its orbit.')] : m.chaotic ? [fact('ROTATION', 'CHAOTIC TUMBLE', 'measured', 'Cassini found its spin changes unpredictably.')] : [fact('DAY', `${fmt(m.rotationHours, 2)} H`, 'measured')])],
+      PHYSICAL: [...(m.physicalFacts ?? physicalFacts(m)), ...(m.rotationFacts ?? (m.rotationHours === null ? [fact('ROTATION', 'UNKNOWN', 'imagined', 'No verified spin or locking solution adopted; display orientation is unregistered.')] : locked ? [fact('ROTATION', 'TIDALLY LOCKED', 'measured', 'Always shows the same face to its planet, so its day equals its orbit.')] : m.chaotic ? [fact('ROTATION', 'CHAOTIC TUMBLE', 'measured', 'Cassini found its spin changes unpredictably.')] : [fact('DAY', `${fmt(m.rotationHours, 2)} H`, 'measured')]))],
       RENDERING: [...skinFacts(m), ...(m.id === 'moon' ? [fact('LIVE IMAGERY', 'NONE EXISTS', 'measured',
         'No spacecraft images the whole Moon every day, and its surface barely changes. The map is LRO\'s; the phase and lighting are live.')] : [])],
     },
