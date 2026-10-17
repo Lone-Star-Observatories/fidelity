@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-17",
+  "scope": "Targeted SectionsII–III.3/Table1 and Figure1/2 caption audit of full HTML. Results/occultation/posteriors/appendices and independent raw reduction remain open. No figure/image/parameter/codec adoption.",
+  "title": "Size, Shape, and Geometric Albedo of Dwarf Planet Quaoar’s Largest Satellite Weywot",
+  "authors": [
+    "Cameron Collyer",
+    "Estela Fernández-Valenzuela",
+    "Benjamin Proudfoot",
+    "Bryan J. Holler",
+    "Jose Luis Ortiz",
+    "Ishan Sharma"
+  ],
+  "version": "arXiv2610.11988v1 submitted2026-10-08T13:58:16UTC; not observation date",
+  "sources": [
+    {
+      "path": "data/research-sources/weywot-2026-occultation-record.html",
+      "url": "https://arxiv.org/abs/2610.11988",
+      "bytes": 43594,
+      "sha256": "7aff83aac68fb42efe3db7de596766bab7239cbac9e445996ab0852ae6acadfd"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-occultation-full.html",
+      "url": "https://arxiv.org/html/2610.11988v1",
+      "bytes": 350085,
+      "sha256": "dc2ccd1d8007218c1da0aa538b35001ebbd8bf6ca72e7284b594876742cfc88f"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-cc-by-nc-sa4-deed.html",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "bytes": 37146,
+      "sha256": "ca0597fd98c6fb2417993e867b5cbc91ebdc55e24839c38e4674e8c78d817f17"
+    }
+  ],
+  "rights": "Specific record/HTML CC BY-NC-SA4.0, NOT CC BY4.0. Actual deed retained. No paper figure or raw image embedded; raw/third-party product terms remain separate.",
+  "observations": {
+    "range": "2024-05-21 through2025-07-08",
+    "instrument": "HST WFC3 UVIS2",
+    "F350LP": {
+      "program": 17417,
+      "PI": "B. Proudfoot",
+      "orbits": 5,
+      "framesPerOrbit": 8,
+      "exposureSecondsPerFrame": "220–240",
+      "dither": "four-point"
+    },
+    "F606W": {
+      "program": 17827,
+      "PI": "E. Fernandez-Valenzuela",
+      "scheduledOrbits": 7,
+      "usableOrbits": 6,
+      "failed": "seventh orbit guide-star acquisition failed",
+      "framesPerOrbit": 4,
+      "exposureSecondsPerFrame": 352,
+      "dither": "four-point"
+    },
+    "timeConvention": "Table1 MJD is midpoint of exposures in an orbit corrected for light travel time; do not relabel as individual raw acquisition UTC.",
+    "usablePhotometricPoints": 9,
+    "caution": "11 usable imaging orbits are not11 accepted Weywot photometric points. Table blank Weywot cells retained; Figure/Pop-and-Drop orbit2/10 numbering must be mapped to raw dates/products before assignment."
+  },
+  "reduction": [
+    "MAST flat-fielded/CTE-corrected frames and empirical PSFs; F350LP PSF synthesized from F390W/F606W/F814W with primary spectral-slope/solar-spectrum/filter-throughput assumptions. Not independently reproduced.",
+    "Primary residual structure, nonpointlike primary and single-gyro pointing jitter motivated master residual backgrounds; moving background stars trail, masks/residuals are not moon terrain or atmosphere absence.",
+    "Injected Pop-and-Drop PSF tests rejected Weywot positions numbered2/10. Native image association/photometry not calibrated by downloading a paper composite.",
+    "VEGAMAG zero points26.780F350LP/25.995F606W; median orbit flux and resampling uncertainty procedure are reported methods, not a recalibration of app rasters."
+  ],
+  "rotationLimits": [
+    "Synchronous spin and orbit-pole alignment are foundational shape/lightcurve assumptions, supported by correlated photometric and separation extrema, not an independently free-period spin determination.",
+    "Adopted12.427day sidereal period and synodic equivalence must remain conditional until AppendixB audit. No automatic permanent-facing-side or registered scene.",
+    "Tidal times150/200Myr use assumedQ100, rigidity4GPa, minimum density400kgm-3, initial2.5hspin/25degobliquity. These are not measured moon strength/density/history.",
+    "Nine-point double-peaked sinusoid assumes common linear phase behaviour across F350LP/F606W. Small timing offset interpreted as model imperfection, not measured physical phase lag."
+  ],
+  "newerSizeStatus": "Abstract73±5km equivalent radius/axes/albedo results await SectionIV/occultation/frame/posterior audit; do not adopt2025model200km diameter as newest measured size or silently replace alternatives.",
+  "open": [
+    "Full2023occultation chord/ellipse/phase-to-shape and uncertainty audit",
+    "AppendixAraw astrometry, AppendixBsynodic and filterconversion/cornerplots",
+    "Rawproduct/UTC/filter/credit/terms crosswalk and nativeimage assessment",
+    "Independent numerical/photometric reproduction, finalpublication/later-primary audit",
+    "Any second-moon statement requires separate directdiscovery/reference audit; no newbody added"
+  ],
+  "productionChanged": false,
+  "validation": {
+    "baseline": "c25b50a9100850b14933933f1012154d402b600c",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 86,
+    "trackedPublicByteEqual": 651,
+    "sourceHashesChecked": 8,
+    "htmlBytes": 15520644,
+    "headroomBytes": 479356,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "730f3646f72ad34bb37483b4036c2d2219709d7f874e1c7a650fb45679ab6fae",
+    "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+    "testsPassed": 683,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  }
+}
