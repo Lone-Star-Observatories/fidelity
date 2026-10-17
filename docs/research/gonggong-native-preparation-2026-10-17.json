@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-17",
+  "status": "Native research preparation only; no Gonggong dossier or embedding",
+  "body": "Gonggong",
+  "identity": {
+    "jpl": {
+      "orbit_id": "25",
+      "neo": false,
+      "orbit_class": {
+        "code": "TNO",
+        "name": "TransNeptunian Object"
+      },
+      "prefix": null,
+      "fullname": "225088 Gonggong (2007 OR10)",
+      "pha": false,
+      "shortname": "225088 Gonggong",
+      "spkid": "20225088",
+      "kind": "an",
+      "des": "225088"
+    },
+    "application": "gonggong",
+    "satellite": "Xiangliu is a separate body; no primary map may be assigned to it.",
+    "classification": "Application dwarf-planet label preserved; historical publisher ranking and roster prose are not adopted as an exhaustive current IAU classification."
+  },
+  "sources": [
+    {
+      "role": "caption",
+      "url": "https://esahubble.org/images/opo1718b/",
+      "finalUrl": "https://esahubble.org/images/opo1718b/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-caption-2026-10-17.html",
+      "bytes": 46300,
+      "sha256": "30cffb244eeaa447bbf1fa59727fd33a0853e49b9d63b55502488f34708dd1c2",
+      "retrievedAt": "2026-10-17T18:34:46.995Z"
+    },
+    {
+      "role": "nasa-article",
+      "url": "https://science.nasa.gov/missions/hubble/hubble-spots-moon-around-third-largest-dwarf-planet/",
+      "finalUrl": "https://science.nasa.gov/missions/hubble/hubble-spots-moon-around-third-largest-dwarf-planet/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "path": "data/research-sources/gonggong-nasa-article-2026-10-17.html",
+      "bytes": 310390,
+      "sha256": "b3642acc18b715ddbec3113de2989ba074dd5d05a2dd4ce45841b97fddd47e83",
+      "retrievedAt": "2026-10-17T18:34:47.229Z"
+    },
+    {
+      "role": "terms",
+      "url": "https://esahubble.org/copyright/",
+      "finalUrl": "https://esahubble.org/copyright/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-terms-2026-10-17.html",
+      "bytes": 43653,
+      "sha256": "7aa04d3075a87e147734b05d96f67901a2c495f4791ecdc440e2b089245bc87b",
+      "retrievedAt": "2026-10-17T18:34:46.874Z"
+    },
+    {
+      "role": "ccby4",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "finalUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "status": 200,
+      "contentType": "text/html",
+      "path": "data/research-sources/gonggong-ccby4-2026-10-17.html",
+      "bytes": 31950,
+      "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+      "retrievedAt": "2026-10-17T18:34:46.689Z"
+    },
+    {
+      "role": "native",
+      "url": "https://cdn.esahubble.org/archives/images/large/opo1718b.jpg",
+      "finalUrl": "https://cdn.esahubble.org/archives/images/large/opo1718b.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "path": "data/research-sources/gonggong-native-2026-10-17.jpg",
+      "bytes": 320294,
+      "sha256": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a",
+      "retrievedAt": "2026-10-17T18:34:47.506Z"
+    },
+    {
+      "role": "original",
+      "url": "https://esahubble.org/media/archives/images/original/opo1718b.tif",
+      "finalUrl": "https://esahubble.org/media/archives/images/original/opo1718b.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "path": "data/research-sources/gonggong-original-2026-10-17.tif",
+      "bytes": 1433928,
+      "sha256": "4060e22ea7dda4886d88f1c321116bf20db4035ea167a279d7d0cf163ec79903",
+      "retrievedAt": "2026-10-17T18:34:47.092Z"
+    },
+    {
+      "role": "JPL identity and rotation metadata",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=225088&phys-par=1",
+      "status": 200,
+      "path": "data/research-sources/gonggong-sbdb-2026-10-17.json",
+      "bytes": 2589,
+      "sha256": "26dac145d148f16c22b7d44e9dabbbac21aad1fdfa73ac74fd80a25ffc688cc7",
+      "retrievedDate": "2026-10-17"
+    }
+  ],
+  "native": {
+    "id": "opo1718b",
+    "type": "Publisher annotated collage of HST WFC3/UVIS observations",
+    "credit": "NASA, ESA, C. Kiss (Konkoly Observatory), and J. Stansberry (STScI)",
+    "source": "https://esahubble.org/images/opo1718b/",
+    "terms": "https://esahubble.org/copyright/",
+    "licence": "https://creativecommons.org/licenses/by/4.0/",
+    "licenceScope": "ESA/Hubble image rendition under current CC BY 4.0 terms, full visible unaltered credit and active links required; no endorsement. Does not transfer a CC licence to papers/code/logos or every NASA-hosted copy.",
+    "width": 1488,
+    "height": 744,
+    "jpegBytes": 320294,
+    "tiffBytes": 1433928,
+    "observationDates": [
+      "2009-11-06",
+      "2010-09-18"
+    ],
+    "release": "2017-05-19 12:20 (publisher timezone unspecified)",
+    "inspection": {
+      "jpeg": "Whole unchanged publisher JPEG visually inspected.",
+      "tiff": "Original one-frame RGB TIFF retained unchanged; full RGB diagnostic PNG rendered solely for whole-image inspection, not embedded or adopted as native source.",
+      "panelLabels": {
+        "top": "2009-11-06; columns 1/3 F606W and 2/4 F814W",
+        "bottom": "2010-09-18; columns 1/3 F606W and 2/4 F775W"
+      },
+      "interpretation": "Bright central primary and nearby faint satellite detections amid changing background sources/noise. Blue display, blur, sampling and panel dividers are not visible-colour geography, surface blocks, axes or atmosphere evidence.",
+      "diagnostic": {
+        "path": "data/research-sources/gonggong-original-inspection-2026-10-17.png",
+        "bytes": 1216155,
+        "sha256": "2fb326cbce31f7647d2964c9b965fd60b3132f92631561d9aa1b338b764894cc",
+        "purpose": "Full RGB TIFF display conversion for inspection only, not a replacement native asset."
+      }
+    }
+  },
+  "publisherHistory": {
+    "esa": "May 2017 caption uses historical approximately 1520 km primary diameter and 240–400 km satellite estimate. These are not new measurements or current adopted parameters.",
+    "nasa": "Article publication 2017-05-18, update 2025-03-31; neither date is acquisition. Historical slow-rotation account about 45 hours and speculative tidal explanation do not establish current spin locking or satellite orbit.",
+    "currentCatalogue": "Unchanged application radius615km/mass1.75e21kg/rotation22.4h require independent primary-source audit. JPL response supplies synodic22.4h via LCDB Rev2023-October, with incomplete-coverage caution potentially about30percent. Historical45h vs22.4h is retained without a cause claim or silent update; JPL response has no diameter/mass physical-parameter entry."
+  },
+  "open": [
+    "Exact raw HST products, UTCs, exposure/coadd/PSF processing, precise individual satellite point crossmatch and astrometric registration.",
+    "Primary thermal-size/mass/rotation alternatives, 2019 orbit-density paper and newer spectroscopy/native imagery; no exhaustive newest-image claim.",
+    "Calibrated visible colour, resolved globe geography, local chemistry/fractions, complete coverage, physical shape and scene registration.",
+    "Independent observer/local illustrations and full additive dossier; no generated map or analog skin adopted."
+  ],
+  "preservation": {
+    "registryCount": 84,
+    "publicChanges": false,
+    "registryChanges": false,
+    "catalogueChanges": false,
+    "mapModelShapeCodecChanges": false,
+    "originalSourcesMasters": "preserved",
+    "queueTasks": 566,
+    "trackedPublicByteEqual": 642
+  },
+  "validation": {
+    "testsPassed": 679,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "queueTasks": 566,
+    "initialDossiers": 84,
+    "htmlBytes": 15179396,
+    "headroomBytes": 820604,
+    "applicationEncoding": "gzip-raw-utf16le-enumerative-v1",
+    "applicationCompressedBytes": 842079,
+    "applicationSha256": "784e7f3e562dfecd09c1850c0301417886968c2fb88944018d4259c8573035a3",
+    "snapshotSha256": "0ba1f576e91f281c9aff062dc8985e831b0c456292b106277dc19271dd86b91d",
+    "exactCompleteReadableJson": true,
+    "samePayloadOldTransportDocumentBytes": 1663324,
+    "samePayloadNewTransportDocumentBytes": 845568,
+    "samePayloadSavingBeforeWrapper": 817756,
+    "trackedPublicByteEqual": 642,
+    "limitations": [
+      "Node inverse and original HTML text only; browser validation recorded separately.",
+      "Same compressed payload comparison excludes wrapper differences and changing live-feed build contents."
+    ],
+    "browser": "No fresh browser claim for this rebuilt artifact. Earlier frozen cf6ac9a browser audit remains separately scoped.",
+    "interbuildLimit": "Snapshot hash differs from preceding artifact; live-feed build contents not reconciled, so no compression/asset savings attribution."
+  }
+}
