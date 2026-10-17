@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu, distinct satellite of Gonggong",
+  "status": "Research-only independent imagined view; no86th dossier, production embedding or catalogue/codec change",
+  "generator": "Built-in image generation, no reference/input images; sharp only for generated JPEG derivatives",
+  "prompt": "Use case: scientific-educational\nAsset type: independently imagined Fidelity sky observer illustration, landscape16:9 PNG.\nPrimary request: hypothetical sky from Xiangliu, separate moon of dwarf planet225088 Gonggong. No input/reference images and no observed-body or existing primary map reuse. Invent foreground independently.\nScene: low foreground of subdued neutral gray grains, scattered irregular blocks and gentle uneven relief, broad black sky. Exactly one small Gonggong disk high above horizon. Give it a restrained muted brown-gray appearance with no identifiable mapped features; colour, phase, pattern, brightness and light are artistic hypotheses. No halo. Use a modest gibbous phase.\nReference geometry:2021 simplified primary radius600km, nominal orbital semimajor scale24000km, hypothetical moon radial camera height100km gives centre distance23900km. Repository skyGeometry yields angular diameter2.8770778031523854 degrees, target disk width41.98812880443119pixels at1672pixel width and nominal90degree horizontalFOV. Render about42pixels wide at that size, NOT a large looming world. These model inputs are not measured Xiangliu radius, a dated orbit, joint fit, surface normal, visibility or permanent facing direction. Older2019 sizes/orbits remain separate alternatives. Xiangliu spin/pole/shape unknown. The primary's unresolved spectrum is not the moon's composition.\nAll terrain/materials/fractions/chemistry, colour, disk appearance, placement, phase, lighting and exposure invented. No analog terrain including Moon/Mars/Pluto/Charon/Gonggong maps. No Sun, Earth, other planets, stars, moons or rings. No atmosphere/cloud/haze/plume/liquid/exposed ocean/biology/people/spacecraft/survivable-landing suggestion. Black sky and omitted atmosphere/rings are scene assumptions, not evidence of absence.\nText verbatim in a clean dark bottom footer with two clearly legible centered lines, generous margins:\n\"IMAGINED SKY FROM XIANGLIU\"\n\"Terrain, Gonggong appearance, colour and lighting are hypothetical\"\nNo other text, logos or watermark.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-b4bfedce-7bdb-4137-ba74-86051c34ce20.png",
+  "researchCopy": "data/research-sources/xiangliu-generated-skyImage-original.png",
+  "files": [
+    {
+      "path": "data/research-sources/xiangliu-generated-skyImage-original.png",
+      "bytes": 1599067,
+      "sha256": "b467ea5671c40d0691f047bc489959cdba46a646f39b8acb5e780fa24c24b029",
+      "dimensions": [
+        1705,
+        922
+      ],
+      "format": "png"
+    },
+    {
+      "path": "data/research-sources/xiangliu-generated-skyImage-master.jpg",
+      "bytes": 185943,
+      "sha256": "28b4936cdaf1621c35843697d2fa5955ad3fc7b96418a64565ff71e972f70f31",
+      "dimensions": [
+        1536,
+        831
+      ],
+      "format": "jpeg"
+    },
+    {
+      "path": "data/research-sources/xiangliu-generated-skyImage-preview256.jpg",
+      "bytes": 6150,
+      "sha256": "eed7e94bf9d7bde0414a64b1e0e30a33be3709b1788e1d8eafaeb78ede79ce9f",
+      "dimensions": [
+        256,
+        138
+      ],
+      "format": "jpeg"
+    }
+  ],
+  "geometryReference": "docs/research/xiangliu-observer-geometry-preparation-2026-10-17.json",
+  "inspection": "Original inspected: independently invented gray terrain, black sky, one schematic Gonggong disk and two readable footer lines. Rendered disk appears oversized relative to requested42px reference; no generated-raster diameter adopted or calibration claim.",
+  "limits": [
+    "Terrain,materials,chemistry fractions,colour,primary appearance/phase/pattern,placement,lighting and exposure invented. No observed-body map supplied, reused or recoloured.",
+    "Xiangliu size/spin/pole/shape unknown;2019/2021 conditional model alternatives not unified or converted into measured values. No permanent facing direction, registered normal/site or dated sky.",
+    "Primary unresolved spectra are not moon composition. No observed atmosphere/plume/liquid/ocean/biology or survivable landing. Black sky and omitted rings/stars/atmosphere are assumptions,not absence evidence.",
+    "40K helper discarded for photometry; skyGeometry reference only. Original PNG/default copies preserved; tiny preview footers require explicit IMAGINED card labels."
+  ],
+  "references": [
+    "docs/research/xiangliu-tidal-initial-condition-assessment-2026-10-17.json",
+    "docs/research/xiangliu-inventory-primary-assessment-2026-10-17.json",
+    "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json"
+  ],
+  "preservation": "All85 dossiers/647tracked public assets/native/maps/models/shapes/provenance/codecs retained; no new globe or native transformation. Queue567/backlog ACTIVE.",
+  "actualRasterNote": "Generator returned1705x922 rather than nominal1672x941. Preserve exact original; nominal90HFOV remains artistic. No generated disk diameter measured/adopted.",
+  "geometry": {
+    "helper": "skyGeometry",
+    "nominalHorizontalFovDeg": 90,
+    "requestedWidth": 1672,
+    "actualWidth": 1705,
+    "angularDiameterDeg": 2.8770778031523854,
+    "requestedTargetWidthPixels": 41.98812880443119,
+    "actualWidthReferencePixels": 42.816841872939705,
+    "limits": "Both target widths from skyGeometry; rendered disk visibly larger, no raster diameter measured/adopted. Actual90HFOV/phase/light/registration not calibrated."
+  }
+}

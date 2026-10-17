@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu, distinct satellite of Gonggong",
+  "status": "Research-only independent imagined view; no86th dossier, production embedding or catalogue/codec change",
+  "generator": "Built-in image generation, no reference/input images; sharp only for generated JPEG derivatives",
+  "prompt": "Use case: scientific-educational\nAsset type: independently imagined Fidelity local observer illustration, landscape16:9 PNG.\nPrimary request: hypothetical local view on Xiangliu, the separate unresolved moon of dwarf planet225088 Gonggong. No input/reference images. Invent the scene independently, no observed-body map or previous primary image reuse.\nScene: low horizon, broad black sky with NO astronomical disks or stars. Foreground of subdued neutral gray grains, scattered irregular small blocks and gentle uneven cold relief. Photorealistic scientific illustration, restrained exposure and oblique light. All terrain, relief, grain sizes, materials, fractions, chemistry, colour and light are imagined, not measured. No ice-composition claim. Primary Gonggong's unresolved spectrum is not Xiangliu's chemistry. Moon radius and spin unknown; no registered site, normal, dated view, permanent facing direction or tidal locking implied.\nAvoid: borrowed or recoloured Moon/Mars/Pluto/Charon/Gonggong terrain, Sun, planets, moons in sky, rings, atmospheric haze, clouds, plume, liquid, exposed ocean, biology, people, spacecraft, survivable-landing implication. Black sky and absent rings/atmosphere are scene assumptions, not evidence of absence.\nText verbatim in a clean dark footer with two clearly legible centered lines and generous margins:\n\"IMAGINED LOCAL VIEW — XIANGLIU\"\n\"Terrain, materials, colour and lighting are hypothetical\"\nNo other text, logos or watermark.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4b3be514-d14d-4aff-9d50-6ffb125a238e.png",
+  "researchCopy": "data/research-sources/xiangliu-generated-surfaceImage-original.png",
+  "files": [
+    {
+      "path": "data/research-sources/xiangliu-generated-surfaceImage-original.png",
+      "bytes": 2418038,
+      "sha256": "c1ce2b55b511d8d215e4ca952e6ee51094ec5cbe38b21b3061eb764c581ed80d",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "format": "png"
+    },
+    {
+      "path": "data/research-sources/xiangliu-generated-surfaceImage-master.jpg",
+      "bytes": 279335,
+      "sha256": "602f1c5f054efcd798a65e925d56210e31c4dc1baf09908661d301a836d1b5c5",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "format": "jpeg"
+    },
+    {
+      "path": "data/research-sources/xiangliu-generated-surfaceImage-preview256.jpg",
+      "bytes": 8391,
+      "sha256": "c687d7fb65b3cb45414de3e033104e49b7b450169faf872466945b9b966a2285",
+      "dimensions": [
+        256,
+        144
+      ],
+      "format": "jpeg"
+    }
+  ],
+  "geometryReference": "docs/research/xiangliu-observer-geometry-preparation-2026-10-17.json",
+  "inspection": "Original inspected: independently invented gray terrain/blocks/grains, black disk-free sky and two readable footer lines. No measured site or material claim.",
+  "limits": [
+    "Terrain,materials,chemistry fractions,colour,primary appearance/phase/pattern,placement,lighting and exposure invented. No observed-body map supplied, reused or recoloured.",
+    "Xiangliu size/spin/pole/shape unknown;2019/2021 conditional model alternatives not unified or converted into measured values. No permanent facing direction, registered normal/site or dated sky.",
+    "Primary unresolved spectra are not moon composition. No observed atmosphere/plume/liquid/ocean/biology or survivable landing. Black sky and omitted rings/stars/atmosphere are assumptions,not absence evidence.",
+    "40K helper discarded for photometry; skyGeometry reference only. Original PNG/default copies preserved; tiny preview footers require explicit IMAGINED card labels."
+  ],
+  "references": [
+    "docs/research/xiangliu-tidal-initial-condition-assessment-2026-10-17.json",
+    "docs/research/xiangliu-inventory-primary-assessment-2026-10-17.json",
+    "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json"
+  ],
+  "preservation": "All85 dossiers/647tracked public assets/native/maps/models/shapes/provenance/codecs retained; no new globe or native transformation. Queue567/backlog ACTIVE."
+}

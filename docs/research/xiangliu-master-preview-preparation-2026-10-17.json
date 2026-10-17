@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu",
+  "status": "Research-only,no86th dossier or embedding",
+  "files": [
+    {
+      "role": "surfaceImage",
+      "files": [
+        {
+          "path": "data/research-sources/xiangliu-generated-surfaceImage-original.png",
+          "bytes": 2418038,
+          "sha256": "c1ce2b55b511d8d215e4ca952e6ee51094ec5cbe38b21b3061eb764c581ed80d",
+          "dimensions": [
+            1672,
+            941
+          ],
+          "format": "png"
+        },
+        {
+          "path": "data/research-sources/xiangliu-generated-surfaceImage-master.jpg",
+          "bytes": 279335,
+          "sha256": "602f1c5f054efcd798a65e925d56210e31c4dc1baf09908661d301a836d1b5c5",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "format": "jpeg"
+        },
+        {
+          "path": "data/research-sources/xiangliu-generated-surfaceImage-preview256.jpg",
+          "bytes": 8391,
+          "sha256": "c687d7fb65b3cb45414de3e033104e49b7b450169faf872466945b9b966a2285",
+          "dimensions": [
+            256,
+            144
+          ],
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "role": "skyImage",
+      "files": [
+        {
+          "path": "data/research-sources/xiangliu-generated-skyImage-original.png",
+          "bytes": 1599067,
+          "sha256": "b467ea5671c40d0691f047bc489959cdba46a646f39b8acb5e780fa24c24b029",
+          "dimensions": [
+            1705,
+            922
+          ],
+          "format": "png"
+        },
+        {
+          "path": "data/research-sources/xiangliu-generated-skyImage-master.jpg",
+          "bytes": 185943,
+          "sha256": "28b4936cdaf1621c35843697d2fa5955ad3fc7b96418a64565ff71e972f70f31",
+          "dimensions": [
+            1536,
+            831
+          ],
+          "format": "jpeg"
+        },
+        {
+          "path": "data/research-sources/xiangliu-generated-skyImage-preview256.jpg",
+          "bytes": 6150,
+          "sha256": "eed7e94bf9d7bde0414a64b1e0e30a33be3709b1788e1d8eafaeb78ede79ce9f",
+          "dimensions": [
+            256,
+            138
+          ],
+          "format": "jpeg"
+        }
+      ]
+    }
+  ],
+  "recipe": "OriginalPNG independently to1536pxJPEG85 master and256pxJPEG80 preview,without enlargement; no native transformation. All default/originalPNG/fullprompts retained.",
+  "previewRawBytes": 14541,
+  "inspection": "Both originals,1536px masters and256px previews visually inspected. Master footer text readable; tiny preview footers require explicit IMAGINED card labels. Sky original1705x922 differs from requested1672x941 framing; preserved unchanged, no stretch/crop or calibrated disk claim.",
+  "limits": "Tiny preview footers/disk require card labels; no raster diameter adopted. All science/rights/geometry limits retained in local/sky/geometry references.",
+  "reproducer": "data/research-sources/xiangliu-view-preparation-2026-10-17.mjs",
+  "validation": {
+    "baseline": "e23d367",
+    "unchangedQueueEntriesDeepEqual": 566,
+    "xiangliuResearchFieldOnly": true,
+    "queueEntries": 567,
+    "dossiersUnchanged": 85,
+    "trackedPublicByteEqual": 647,
+    "htmlBytes": 15503748,
+    "headroomBytes": 496252,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "8b6533da46adec213d438fe27ca6c3d1fae3ab62e37f7aae00c7301c0feddce5",
+    "applicationSha256": "35f0a99e18731e94799c486f451b80ff1644d3ec1846536b123eca78bba06700",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "originalMasterPreviewHashesChecked": 6,
+    "defaultOriginalCopiesEqual": true,
+    "testsPassed": 681,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservationReproducer": "docs/research/xiangliu-views-preservation-audit-2026-10-17.mjs",
+    "limits": "Node complete restoration only; no fresh browser/all-route/model-load claim. Interbuild feed changes are not compression savings."
+  }
+}

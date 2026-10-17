@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu sky toward separate primary Gonggong",
+  "status": "Research-only hypothetical observer geometry; no86th dossier or production embedding",
+  "sources": [
+    {
+      "path": "src/astro/appearance.js",
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    {
+      "path": "docs/research/xiangliu-tidal-initial-condition-assessment-2026-10-17.json",
+      "bytes": 12480,
+      "sha256": "1f7c450d33d4a9143f693bdcd7a77012894fd95ff738047c0dfdae073e136c45"
+    },
+    {
+      "path": "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+      "bytes": 7986,
+      "sha256": "ce868e5cb9112f174b334ddc51cf4d786ed0f34776c1f02b5b9e5b942f089d6d"
+    },
+    {
+      "path": "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+      "bytes": 7540,
+      "sha256": "4b9b791399563c6e411ebd91963214eba12667317516ae3480e23705a95cc2d5"
+    }
+  ],
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "temperatureHelperK": 40,
+    "cases": [
+      {
+        "cohort": "2021 simplified reference, conditional near100km tidal preference",
+        "primaryRadiusKm": 600,
+        "semimajorAxisKm": 24000,
+        "moonHeightKm": 100,
+        "assumedNearSideCentreDistanceKm": 23900,
+        "angularDiameterDeg": 2.8770778031523854,
+        "targetWidthPixels": 41.98812880443119,
+        "actualGenerated1705WidthReferencePixels": 42.816841872939705
+      },
+      {
+        "cohort": "2019 prograde22.4h aligned-sphere thermal case",
+        "primaryRadiusKm": 619,
+        "semimajorAxisKm": 24021,
+        "moonHeightKm": 18,
+        "assumedNearSideCentreDistanceKm": 24003,
+        "angularDiameterDeg": 2.9554655483988945,
+        "targetWidthPixels": 43.13262180876915,
+        "actualGenerated1705WidthReferencePixels": 43.98392355499486
+      },
+      {
+        "cohort": "2019 prograde22.4h aligned-sphere thermal case",
+        "primaryRadiusKm": 619,
+        "semimajorAxisKm": 24021,
+        "moonHeightKm": 50,
+        "assumedNearSideCentreDistanceKm": 23971,
+        "angularDiameterDeg": 2.959411813273115,
+        "targetWidthPixels": 43.19023994204373,
+        "actualGenerated1705WidthReferencePixels": 44.04267888826828
+      },
+      {
+        "cohort": "2019 retrograde22.4h aligned-sphere thermal case",
+        "primaryRadiusKm": 620.5,
+        "semimajorAxisKm": 24274,
+        "moonHeightKm": 18,
+        "assumedNearSideCentreDistanceKm": 24256,
+        "angularDiameterDeg": 2.931720802176523,
+        "targetWidthPixels": 42.78593462825534,
+        "actualGenerated1705WidthReferencePixels": 43.63039386433933
+      },
+      {
+        "cohort": "2019 retrograde22.4h aligned-sphere thermal case",
+        "primaryRadiusKm": 620.5,
+        "semimajorAxisKm": 24274,
+        "moonHeightKm": 50,
+        "assumedNearSideCentreDistanceKm": 24224,
+        "angularDiameterDeg": 2.935594463850162,
+        "targetWidthPixels": 42.84249210220498,
+        "actualGenerated1705WidthReferencePixels": 43.688067604222184
+      }
+    ],
+    "selectedIllustrationReference": 0
+  },
+  "limits": [
+    "2021 primary600km and nominal24000km orbit are simplified model inputs, not replacement catalogue values. Moon100km is a conditional tidal-model preference, not a measured radius or hard bound.",
+    "2019 prograde/retrograde thermal primary radii and conditional18–50km moon endpoints stay separate cohorts; no joint fit, error propagation, posterior or uncertainty envelope. Historical publisher240–400km moon diameter remains unreconciled.",
+    "Semimajor scale is not current eccentric-orbit distance, circularity or dated ephemeris. Near-side radial camera height is hypothetical, not a registered local normal, site, horizon visibility, phase or permanent Gonggong-facing direction.",
+    "40K is only positive helper input; discard irradiance/blackbody colour, no measured temperature or photometry.",
+    "Xiangliu spin/pole/shape remain unknown. Non-1:1 in2021 is conditional model inference; neither measured synchronous nor nonsynchronous rotation adopted.",
+    "Terrain, materials, chemistry, colour, Gonggong disk appearance, placement, phase, exposure and light remain invented. Primary unresolved spectra do not measure moon composition. No observed-body map reuse.",
+    "No observed atmosphere/plume/liquid/ocean/biology or survivable landing implied. Black sky and omitted rings/stars are scene choices, not absence evidence."
+  ],
+  "open": [
+    "Independent size/spin/shape and normal",
+    "Dated geometry and visibility",
+    "Calibrated photometry and native Hubble raw-product/PSF/coadd crosswalk",
+    "Final/later dynamical and thermal refinement"
+  ],
+  "preservation": "All85 dossiers/647 tracked public files and original/native/master/map/model/shape/provenance/codec inputs retained; backlog ACTIVE."
+}
