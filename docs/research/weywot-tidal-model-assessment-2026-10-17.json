@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-17",
+  "scope": "Targeted full-HTML Section II/Table1 and Section III/IV model-input audit; not numerical reproduction, full appendix or underlying-observation audit. No image/figure, dossier, physical catalogue or codec adoption.",
+  "authors": [
+    "Zsolt Regály",
+    "Viktória Fröhlich",
+    "Csaba Kiss"
+  ],
+  "title": "Limits of Standard Tidal Models at Quaoar: Matching Weywot’s Orbit, Missing the Spin",
+  "source": {
+    "url": "https://arxiv.org/html/2510.12495v2",
+    "path": "data/research-sources/weywot-2025-v2-full.html",
+    "bytes": 303681,
+    "sha256": "893e23f58d2b0d10f25b27616f8da2451d938a56855138927e0e8bf89dff4fc1",
+    "version": "v2 revised2025-10-15, not observation date"
+  },
+  "rights": "Specific versioned record and HTML say CC BY4.0; source/deed hashes retained in weywot-vanth-inventory-assessment-2026-10-17.json. No blanket raw/third-party image licence, no figure embedded.",
+  "table1AdoptedInputs": {
+    "classification": "Parameters used for tidal calculations, not independent measurements of all columns. Underlying referenced papers remain to audit.",
+    "Weywot": {
+      "massKg": 4.19e+18,
+      "volumetricEquivalentDiameterKm": 200,
+      "densityKgM3": 1000,
+      "orbitalScaleKm": 14060,
+      "eccentricity": 0.018,
+      "spinPeriod": "blank / explicitly undetermined in SectionII"
+    },
+    "Quaoar": "PRIMARY mass1.2e21kg/diameter1090km/density1770kgm-3/spin17.7h/flattening.16 are separate from moon parameters. No silent adoption."
+  },
+  "assumptions": [
+    "Homogeneous spheres, orbit-averaged4.5Gyr integration; impact-origin/prograde satellite and initial15h satellite spin assumed. Prograde/retrograde defined relative to primary spin, not inertial inclination alone. Detailed retrograde evolution deferred.",
+    "CPL simplifies equal constant k2/Q for both bodies; ACT assumes primary/satellite rigidity4e10/4e9Pa, equal viscosities and satellite rubble-pile interpretation. Not measured local strength, porosity or chemistry.",
+    "Integration stops at pericentre crossing fluid Roche limit or primary breakup. Not an observed disruption/impact history.",
+    "Primary permanent-shape/precession effects distinguished from dissipative tide; neglecting J2 for broad evolution does not validate a current pointing/frame/registered site."
+  ],
+  "modelResults": [
+    "Near100h synchronization during early evolution and rapid locking times are predictions; current Weywot spin explicitly unknown, no measured permanent face. No mutual locking in these simulations.",
+    "Survey20 logarithmic initial orbital scales1.5–100 primary diameters,10 eccentricities0–.9; primary initial spin5/10/15/20h. Nominal CPL k2/Q~1.5e-4 and ACT viscosity~6e14Pa s fitted to orbital scale, not separately measured material properties.",
+    "Higher-mass tests q.01–.02 CPL and.03–.04 ACT retune k2/Q3.6e-5/viscosity6e16Pa s with initial primary5h. These are conditional tests, not new moon masses or uncertainties.",
+    "Primary warm ice150–180K/interior rock fractions, fossil shape/primordial spin/early lost satellite/secondary impact interpretations cannot establish moon local chemistry, temperature or history."
+  ],
+  "open": [
+    "Underlying occultation/orbit references and size/mass covariance; historicale.14 versusnewer.018 values",
+    "Moon current spin, raw imagery/point crossmatch/UTC/filter/photometry, native provenance",
+    "Final publisher record and later primary science; appendices/code/error-control reproduction",
+    "Observer distance/attitude/frame and skyGeometry before angular/raster calculations or generation"
+  ],
+  "preservation": "All86 dossier/catalogue/codec sources,569 queue entries and651 trackedpublicfiles unchanged; exact source hashes checked.",
+  "validation": {
+    "baseline": "44d36626e052425c056860cb15ec97de314033ae",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 86,
+    "trackedPublicByteEqual": 651,
+    "sourceHashesChecked": 5,
+    "htmlBytes": 15522436,
+    "headroomBytes": 477564,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "f852831e16bba0a2d4550c2aa311181a0feb640a9e04f0e9b7df1426516cb273",
+    "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+    "testsPassed": 683,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  }
+}
