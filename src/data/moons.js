@@ -206,7 +206,11 @@ export const MOONS = [
     surfacePending: true, note: 'Preferred approximate9.8hour nonsynchronous rotation with4.9hour/alias alternatives. Occultation-model radius and dynamical mass/orbit; orientation/phase unregistered, two-body period derived, no current ephemeris.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
-  { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true,
+  { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,
+    physicalFacts: [
+      { label: 'RADIUS', value: '75.5 M · CATALOGUE INPUT', tier: 'imagined', detail: 'Inherited display radius retained; current post-impact physical shape/reference audit open, not a registered local normal.' },
+      { label: 'MASS', value: '4.3 × 10⁹ KG · CATALOGUE INPUT', tier: 'imagined', detail: 'Inherited display mass retained; independent reference/current mass audit open. Equal-density PCK volume split is not an individual mass measurement; no precise density/chemistry adopted.' },
+    ],
     elements: el(1.152, 0.028, 0, 0, 0, 0, 0.473799, 0, 0, [78.22, -70.79], 'equatorial'), surfacePending: true,
     discovered: '2003 · Pravec et al. (light curves)', note: 'DART struck it on 26 Sep 2022, the first test of deflecting an asteroid: its 11 h 55 min orbit shrank by 33 minutes.' },
 ];

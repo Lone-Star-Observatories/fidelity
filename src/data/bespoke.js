@@ -14440,6 +14440,159 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "dimorphos": {
+    "id": "dimorphos",
+    "name": "Dimorphos",
+    "aliases": [
+      "Dimorphos"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-17",
+    "previewWidth": 256,
+    "nativeSurface": "Resolved DRACO local boulder patch, not a global map or current post-impact shape. No generated globe or other-body skin assigned.",
+    "measured": [
+      "DART DRACO observed Dimorphos2022-09-26. NASA describes the complete-transmission local patch two seconds before impact, distinct from the eleven-second whole-moon and one-second partial frames; Hubble collection placement does not make it Hubble imagery.",
+      "NASA/Johns Hopkins APL2022 article and NASA,APL2023 resource credits preserved. Publication2022-09-27/article and2023-07-20/resource,2025update are not acquisition dates. Caption31m patch/12km range not independently reproduced raster scale.",
+      "Unchanged requested NASA128square JPEG is publisher resizing/re-encoding, not full original pixel preservation. Full985PNG/TIFF plus200/300JPEG retained with hashes. Monochrome RGB storage not calibrated visible colour or chemistry.",
+      "Fixed archive crop, eight orientation alternatives and nine resampling/grid comparisons all prefer vertical reflection of the distinctive boulder pattern. This supports content association, not exact publisher production lineage, pixel equality, ecliptic/body-frame registration or scene calibration.",
+      "PDS XML associates calibrated final I/F FITS and browsePNG. Its first I/F plane exactly matches separately archived calibrated payload; stored-value monotonicity is not independent photometric validation. Local_identifier_01 versus filename_02 remains literal."
+    ],
+    "modelled": [
+      "Naidu2024 abstract photometry/radar/DRACO model: along-track change−2.63±.06mm/s; orbital period11.377±.004 to11.3674±.0004h and reduction33.25min±1.5s are orbital, not spin measurements. Precession6.7±.2deg/day and axis ratios1.3/1.6 model-dependent, not adopted mesh.",
+      "Pravec2024 indexed non-principal-axis/average synchronous-versus-antisynchronous alternatives require full method audit. No simple post-impact spin, permanent primary-facing ground or every-site visibility adopted.",
+      "Pre-impact coordinatev004 R.0750±.0013km and axes.0895/.0845/.0575km, shadowed unobserved subprimary region, pole/spin/anchor are historical processing models. They are not current post-impact shape or local normals. v003/v004 impact-coordinate differences are solution alternatives, not physical motion.",
+      "PCK15 sol542 PRE-impact only before2022-09-26T23:14:24.184UTC; volume/equal-density individualGM split not independent weighing. FK007/008 DIMORPHOS_FIXED two-vector post-impact convention points X to primary, not measured spin locking; OBJECT frame remains IAU_DIMORPHOS. Prose Z-reference conflict retained.",
+      "Archive final backplane uses PCK12/FK005 and v004DSK names, not later substituted kernels. Sixteen array byte hashes/bounds retained; geometry sentinel−1E10 agrees XML/header but SIS prints−1E32. No repair, independent intercept/gravity/shape/SPICE/load reproduction or current map registration.",
+      "DRACO procedure622nm pivot assumes Didymos-colour transfer, not narrowband or visibleRGB. Zero dark/earlier bad-pixel maps not physical absence/noiseless data; ground-only flat table versus flight-refinement prose and CALIB representation conflicts preserved. MSB divisor2 versus LSB4, both lookup*4. Pipeline not executed.",
+      "Catalogue radius.0755km/mass4.3e9kg remain unverified display inputs; no precise current mass/radius/chemistry claim. Nominala1.152km/e.028/unknown phase/post-impact orbit is illustrative, not a dated separation or current spin."
+    ],
+    "unknown": [
+      "Current post-impact physical shape, mass/radius reference, spin state/pole/phase, local surface normal and registered observer visibility.",
+      "Exact publisher processing lineage, archived raw-product/UTC/filter/PSF and historical dependency byte/load association; full calibrated-geography/photometry reproduction.",
+      "Surface chemistry/material fractions, calibrated visible colour, complete terrain coverage and dated scene registration.",
+      "Hera recent native/product audit and exhaustive newest imagery remain open. Full Pravec method/Naidu paper and shape-system crosswalk remain open.",
+      "Original sources/masters/native/maps/models/shapes and all previous limitations preserved; no ocean, biology, plume or survivable landing established."
+    ],
+    "assumed": [
+      "Independent invented grey terrain, blocks/grains/gaps/relief, sizes, chemistry/material fractions, primary Didymos surface/outline/phase/attitude, colour/light/exposure; no analog skin or DART impact-site reconstruction.",
+      "Hypothetical near-side radial camera: DidymosR.39km at1.152−.0755=1.0765km; skyGeometry42.48120690381326deg/649.8895828723081targetpx nominal90HFOV1672. Spherical planning not joint fit, dated distance, measured normal, current silhouette or uncertainty envelope. Rendered primary appears smaller; no raster calibration adopted.",
+      "250K angular-helper input arbitrary; colour/irradiance discarded. Black sky/off-frame Sun/stars/rings not measured absence. No atmosphere/plume/liquid/ocean/biology/people/craft or survivable landing. Tiny preview footer requires explicit IMAGINED card labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM DIMORPHOS",
+    "skyLabel": "IMAGINED · SKY FROM DIMORPHOS",
+    "skyModel": {
+      "star": "Didymos · hypothetical spherical angular guide",
+      "radiusSun": 5.60586459680897e-7,
+      "temperatureK": 250,
+      "distanceAU": 7.195958037121983e-9,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 42.48120690381326,
+      "centreDiscWidthFraction": 0.3886899419092752,
+      "irradianceEarth": 0.021358104550890523,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "NASA DART final images",
+        "url": "https://www.nasa.gov/solar-system/darts-final-images-prior-to-impact/",
+        "publicationDate": "2022-09-27"
+      },
+      {
+        "title": "NASA Dimorphos surface resource",
+        "url": "https://science.nasa.gov/asset/hubble/surface-image-of-dimorphos/",
+        "publicationDate": "2023-07-20"
+      },
+      {
+        "title": "NASA media guidance",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Naidu2024 orbital model",
+        "url": "https://doi.org/10.3847/PSJ/ad26e7",
+        "publicationDate": "2024-03-19"
+      },
+      {
+        "title": "Pravec2024 spin alternatives; full method open",
+        "url": "https://doi.org/10.1016/j.icarus.2024.116138"
+      },
+      {
+        "title": "PDS DRACO calibrated archive",
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/"
+      },
+      {
+        "title": "PDS DRACO documents",
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/"
+      },
+      {
+        "title": "NAIF DART kernel archive",
+        "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/dimorphos-draco-native.jpg",
+        "bytes": 8016,
+        "sha256": "a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/releases/2023/07/STScI-01H5Q6WNZ8GPX2B6JMHX4G3RMT.tif?w=128",
+        "sourceUrl": "https://science.nasa.gov/asset/hubble/surface-image-of-dimorphos/",
+        "width": 128,
+        "height": 128,
+        "tier": "measured",
+        "credit": "NASA, APL; NASA/Johns Hopkins APL in2022 approach article",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA media guidance with third-party restrictions; not asserted CC BY or blanket PDS licence.",
+        "observationDate": "2022-09-26",
+        "publicationDate": "2023-07-20 resource;2022-09-27 article;2025update not observation",
+        "processing": "Unchanged requested NASA128JPEG. Publisher resizing/re-encoding not full original pixel preservation; full985PNG/TIFF and200/300JPEG retained.",
+        "description": "Actual DART DRACO monochrome local boulder patch two seconds before impact, not a complete globe, Hubble image, current post-impact terrain or calibrated visible colour. Strong archived browse content association; exact publisher lineage/frame/photometry open."
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/dimorphos-surface-image.jpg",
+      "previewUrl": "/bespoke/dimorphos-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "dimorphos-generated-surfaceImage-original.png",
+      "sourceSha256": "ec1b12ba38f09f173523f5efe416e3aaaa3f63fb5ae9404888bbaa5760832f6e",
+      "sha256": "8af26da7436ada5f17d49673a0a4df7222688186ce49cde870900fd45745ad7d",
+      "previewSha256": "a1e6fd97185e11d94870573e9248aa6d19728efeca02caafcbc1df2e8367a6bb",
+      "bytes": 344381,
+      "previewBytes": 11866,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/dimorphos-sky-image.jpg",
+      "previewUrl": "/bespoke/dimorphos-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "dimorphos-generated-skyImage-original.png",
+      "sourceSha256": "323358b383823c0903bf153b8247b83a93ef244951350042b283d811ac46ddb8",
+      "sha256": "40519b2a31bf657d84e9496b0a5b11e6422afd523801e09e8af58f258862c6e6",
+      "previewSha256": "680f4fb5a1dbd42a2adcdea15b5adcb072cce641c0488cc996a71024ceaa07c3",
+      "bytes": 180486,
+      "previewBytes": 6866,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

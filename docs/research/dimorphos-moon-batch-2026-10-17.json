@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-17",
+  "body": "Dimorphos",
+  "dossier": 84,
+  "status": "Delivered individual initial dossier 84; calibration and registration limits remain open",
+  "preparations": [
+    {
+      "path": "docs/research/dimorphos-native-publisher-assessment-2026-10-16.json",
+      "bytes": 6401,
+      "sha256": "77abc3b0e7de62ef081e8645791f74f833c5b46fc24badfab5b6b41a37def900"
+    },
+    {
+      "path": "docs/research/dimorphos-orbit-spin-publication-assessment-2026-10-16.json",
+      "bytes": 7915,
+      "sha256": "adc69b358b918baa2773e01ed34a7a62a01f83013f51090c92864e1ce31bcff4"
+    },
+    {
+      "path": "docs/research/dimorphos-pds-coordinate-pdf-assessment-2026-10-16.json",
+      "bytes": 4841,
+      "sha256": "35b2edbead3342105afcbec9050815a7a4c3f4413770bd1a26c23b255a3d4bce"
+    },
+    {
+      "path": "docs/research/dimorphos-naif-frame-pck-assessment-2026-10-17.json",
+      "bytes": 12358,
+      "sha256": "18a3be01be65f67561f223418028bd65471627e34c1b06ca620197be45d6d2af"
+    },
+    {
+      "path": "docs/research/dimorphos-draco-backplane-assessment-2026-10-17.json",
+      "bytes": 18565,
+      "sha256": "8100e4044bb470c0614af2c73f5dbf82e348e3f8f86f3949eff1c68072c3c012"
+    },
+    {
+      "path": "docs/research/dimorphos-draco-calibration-procedure-assessment-2026-10-17.json",
+      "bytes": 11523,
+      "sha256": "bed4599721f445e40a638aef49d4cdbd29d28390619bd08eea3ee52cca92b896"
+    },
+    {
+      "path": "docs/research/dimorphos-browse-association-assessment-2026-10-17.json",
+      "bytes": 13442,
+      "sha256": "ba2bb3b7f3717608e3f09b06faa9c9216bc8ae19857cc3e36e5c0b112c6be391"
+    },
+    {
+      "path": "docs/research/dimorphos-local-view-preparation-2026-10-17.json",
+      "bytes": 4792,
+      "sha256": "196ecad15418373359b2eca688092f5c328a52d7c8b68652841a2c634006ef99"
+    },
+    {
+      "path": "docs/research/dimorphos-sky-view-preparation-2026-10-17.json",
+      "bytes": 11494,
+      "sha256": "20eac19c540f68eb5affdd81c1ac37d0e5246afd218b525fe5778e9fe906ea44"
+    }
+  ],
+  "limits": [
+    "Current post-impact physical shape, mass/radius reference, spin state/pole/phase, local surface normal and registered observer visibility.",
+    "Exact publisher processing lineage, archived raw-product/UTC/filter/PSF and historical dependency byte/load association; full calibrated-geography/photometry reproduction.",
+    "Surface chemistry/material fractions, calibrated visible colour, complete terrain coverage and dated scene registration.",
+    "Hera recent native/product audit and exhaustive newest imagery remain open. Full Pravec method/Naidu paper and shape-system crosswalk remain open.",
+    "Original sources/masters/native/maps/models/shapes and all previous limitations preserved; no ocean, biology, plume or survivable landing established."
+  ],
+  "assumed": [
+    "Independent invented grey terrain, blocks/grains/gaps/relief, sizes, chemistry/material fractions, primary Didymos surface/outline/phase/attitude, colour/light/exposure; no analog skin or DART impact-site reconstruction.",
+    "Hypothetical near-side radial camera: DidymosR.39km at1.152−.0755=1.0765km; skyGeometry42.48120690381326deg/649.8895828723081targetpx nominal90HFOV1672. Spherical planning not joint fit, dated distance, measured normal, current silhouette or uncertainty envelope. Rendered primary appears smaller; no raster calibration adopted.",
+    "250K angular-helper input arbitrary; colour/irradiance discarded. Black sky/off-frame Sun/stars/rings not measured absence. No atmosphere/plume/liquid/ocean/biology/people/craft or survivable landing. Tiny preview footer requires explicit IMAGINED card labels."
+  ],
+  "validation": {
+    "testsPassed": 679,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15998176,
+    "headroomBytes": 1824,
+    "unpublished160pxTrial": {
+      "htmlBytes": 16003324,
+      "result": "Failed budget; source retained, only new native card switched to unchanged NASA-served 128px rendition"
+    },
+    "exactCompleteReadableJson": true,
+    "sha256": "a5dc7e1b6e436473707f65aa18528cf09c997c79f8bc014b6413eb494844e35b",
+    "encoding": "gzip-raw-utf16le-enumerative-v1",
+    "cards": [
+      {
+        "url": "/bespoke/dimorphos-draco-native.jpg",
+        "bytes": 8016,
+        "sha256": "a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13",
+        "mime": "image/jpeg"
+      },
+      {
+        "url": "/bespoke/dimorphos-surface-image.jpg",
+        "bytes": 10516,
+        "sha256": "efce784169b64e5b0c5229d7976ea15897423ed8f8784646bb378aa4c2fb2b48",
+        "mime": "image/webp"
+      },
+      {
+        "url": "/bespoke/dimorphos-sky-image.jpg",
+        "bytes": 5510,
+        "sha256": "f113e670569416a172aeaaa02530de7163e863814cf6896105aa80766da89713",
+        "mime": "image/webp"
+      }
+    ],
+    "priorDossiersDeepEqual": 83,
+    "priorPublicByteEqual": 637,
+    "browser": "Node inverse and original HTML raw text only; no fresh browser/HTML-parser claim"
+  }
+}

@@ -260,3 +260,14 @@ test('MK2 labels its provisional orbit, assumed plane and albedo radius without 
  assert.equal(v.id,'hiiaka');assert.match(v.surfaceLabel,/HIʻIAKA/);assert.match(v.skyLabel,/HIʻIAKA/);assert.equal(m.rotationHours,9.8);assert.equal(m.locked,false);assert.equal(v.surfaceMap,undefined);assert.equal(m.radiusKm,185);assert.equal(b.facts.PHYSICAL.find(x=>x.label==='RADIUS').tier,'modelled');assert.equal(b.facts.PHYSICAL.find(x=>x.label==='DAY').tier,'modelled');assert.match(b.facts.PHYSICAL.find(x=>x.label==='DAY').detail,/4.9hour/);assert.equal(b.facts.ORBIT.find(x=>x.label==='PERIOD').tier,'computed');assert.match(v.contextImages[0].description,/crossmatch OPEN/);assert.match(v.modelled.join(' '),/9.71141/);
  assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc');
  });
+
+
+test('Dimorphos keeps native local DRACO separate from invented geography and unknown spin',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const {solSystem}=await import('../src/data/systems.js');
+ const m=MOONS.find(x=>x.id==='dimorphos'),v=bodyVisualFor(m),b=solSystem().bodies.find(x=>x.id==='dimorphos');
+ assert.equal(v.id,'dimorphos');assert.equal(v.surfaceMap,undefined);assert.equal(m.surfacePending,true);assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(b.facts.PHYSICAL.find(x=>x.label==='MASS').tier,'imagined');
+ assert.equal(bodyVisualFor({name:'Didymos'})?.id==='dimorphos',false);assert.match(b.facts.PHYSICAL.find(x=>x.label==='ROTATION').value,/UNKNOWN/);
+ assert.equal(v.contextImages[0].sha256,'a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13');
+ assert.match(v.contextImages[0].processing,/not full original pixel preservation/);assert.match(v.assumed.join(' '),/not joint fit/);assert.match(v.modelled.join(' '),/not independent weighing/);
+ assert.match(v.surfaceLabel,/IMAGINED/);assert.match(v.skyLabel,/IMAGINED/);
+});

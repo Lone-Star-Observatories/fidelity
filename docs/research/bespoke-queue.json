@@ -660,10 +660,11 @@
       "parent": "didymos",
       "kind": "moon",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Resolved DRACO local boulder patch, not a global map or current post-impact shape. No generated globe or other-body skin assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "dimorphos"
     },
     {
       "id": "sol-ceres",
@@ -8521,7 +8522,7 @@
     },
     "moon": {
       "selected": 466,
-      "initialDossiers": 39,
+      "initialDossiers": 40,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
