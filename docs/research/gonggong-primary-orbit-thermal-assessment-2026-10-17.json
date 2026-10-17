@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "body": "225088 Gonggong (2007 OR10)",
+  "status": "research-only; no 85th dossier, embedding, catalogue or codec change",
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/pdf/1903.05439v1",
+      "finalUrl": "https://arxiv.org/pdf/1903.05439v1",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/gonggong-primary-paper-2026-10-17.pdf",
+      "bytes": 1824227,
+      "sha256": "fa0d09e14cbdabd9f076102101492321e161fd9d8d53cc0bdf98545ad89ddf5a",
+      "retrievedAt": "2026-10-17T18:49:28.905Z"
+    },
+    {
+      "role": "record",
+      "url": "https://arxiv.org/abs/1903.05439v1",
+      "finalUrl": "https://arxiv.org/abs/1903.05439v1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-primary-record-2026-10-17.html",
+      "bytes": 45300,
+      "sha256": "24344ea25f70843333616ce6009bc17bfe27aa0a7406cec46988c593048fcc42",
+      "retrievedAt": "2026-10-17T18:49:28.757Z"
+    },
+    {
+      "role": "licence",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "finalUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-primary-licence-2026-10-17.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "retrievedAt": "2026-10-17T18:49:28.727Z"
+    }
+  ],
+  "paper": {
+    "title": "The mass and density of the dwarf planet (225088) 2007 OR10",
+    "authors": [
+      "Csaba Kiss",
+      "Gabor Marton",
+      "Alex H. Parker",
+      "Will Grundy",
+      "Aniko Farkas-Takacs",
+      "John Stansberry",
+      "Andras Pal",
+      "Thomas Muller",
+      "Keith S. Noll",
+      "Megan E. Schwamb",
+      "Amy C. Barr",
+      "Leslie A. Young",
+      "Jozsef Vinko"
+    ],
+    "arxiv": "1903.05439v1",
+    "submitted": "2019-03-13",
+    "pdfPreprintFooter": "2019-03-14",
+    "doi": "10.1016/j.icarus.2019.03.013",
+    "rights": "Specific arXiv record uses nonexclusive distribution, not CC BY. ESA/Hubble image CC BY 4.0 does not license this paper or its figures. No figure embedded. Final publisher version/publication chronology not audited."
+  },
+  "inspection": {
+    "pages": 12,
+    "text": "Complete 12-page extraction retained in data/research-sources/gonggong-primary-paper-2026-10-17.txt",
+    "visual": "Rendered pages 4–7 inspected, including Tables 1–3 and density discussion. Targeted sections 2–6; not a full visual audit of all pages or reproduction of the reduction."
+  },
+  "observations": {
+    "recovery": "HST proposal 15207, PI Alex H. Parker, four October/December 2017 epochs, WFC3 UVIS2-C512C-SUB. Alternating F350LP and F606W/F814W, same-filter comoving coadds, TinyTim/DAOPHOT reduction described by authors, not reproduced.",
+    "table1MjdStartEnd": [
+      [
+        55141.71282,
+        55141.72189
+      ],
+      [
+        55457.66116,
+        55457.66987
+      ],
+      [
+        58029.66532,
+        58029.68957
+      ],
+      [
+        58037.34117,
+        58037.36635
+      ],
+      [
+        58044.22969,
+        58044.25393
+      ],
+      [
+        58092.23763,
+        58092.26689
+      ]
+    ],
+    "limits": "Printed MJD values retained without UTC conversion; time standard/raw products/exposure/coadd/PSF and exact opo1718b collage crosswalk remain open. J2000 relative astrometry is not a surface frame or current ephemeris. Publisher pixel-scale statements are not new raster computations."
+  },
+  "orbit": {
+    "table2EpochJD": 2457000.0,
+    "prograde": {
+      "periodDays": [
+        25.22073,
+        0.000357
+      ],
+      "semimajorAxisKm": [
+        24021,
+        202
+      ],
+      "eccentricity": [
+        0.2908,
+        0.007
+      ],
+      "inclinationDegrees": [
+        83.08,
+        0.86
+      ],
+      "systemMassKg": [
+        1.726e+21,
+        4.3e+19
+      ]
+    },
+    "retrograde": {
+      "periodDays": [
+        25.22385,
+        0.000362
+      ],
+      "semimajorAxisKm": [
+        24274,
+        193
+      ],
+      "eccentricity": [
+        0.2828,
+        0.0063
+      ],
+      "inclinationDegrees": [
+        119.14,
+        0.89
+      ],
+      "systemMassKg": [
+        1.781e+21,
+        4.3e+19
+      ]
+    },
+    "section3MeanSystemMassKg": [
+      1.75e+21,
+      7e+19
+    ],
+    "limits": "Mirror orbit alternatives remain unresolved. Mass is system mass, not independently measured primary-only mass. Orbit period is not primary or satellite spin; no locking, permanent face, normal or dated observer registration established."
+  },
+  "thermal": {
+    "inputs": "Herschel PACS 70/100/160 micron fluxes from Pal et al. 2016; constant emissivity 0.9; thermal-inertia trials 0.1–50 J m^-2 s^-1/2 K^-1; roughness 0.1–0.3 RMS slope. H_V=2.34±0.05 in thermal section.",
+    "rotationTrialsHours": [
+      22.4,
+      44.8
+    ],
+    "geometry": "Equator-on, pole-on, orbit-aligned sphere and ellipsoid trials. Coplanar primary equator/satellite orbit is assumed, not a measured spin pole. All cases have acceptable reduced chi-square <=1.",
+    "table3OrbitAlignedSphere": {
+      "prograde44_8h": {
+        "diameterKm": [
+          1224,
+          55
+        ],
+        "albedo": [
+          0.14,
+          0.01
+        ],
+        "densityGcm3": [
+          1.8,
+          0.16
+        ]
+      },
+      "prograde22_4h": {
+        "diameterKm": [
+          1238,
+          50
+        ],
+        "albedo": [
+          0.14,
+          0.01
+        ],
+        "densityGcm3": [
+          1.74,
+          0.16
+        ]
+      },
+      "retrograde44_8h": {
+        "diameterKm": [
+          1227,
+          56
+        ],
+        "albedo": [
+          0.14,
+          0.01
+        ],
+        "densityGcm3": [
+          1.79,
+          0.16
+        ]
+      },
+      "retrograde22_4h": {
+        "diameterKm": [
+          1241,
+          50
+        ],
+        "albedo": [
+          0.14,
+          0.01
+        ],
+        "densityGcm3": [
+          1.73,
+          0.16
+        ]
+      }
+    },
+    "alternatives": "Table 3 pole-on sphere 1158±32 km, albedo .16±.01, density 2.15±.17 g/cm3; equator-on sphere 1531 km, .09, density .92(+.46,-.14). Ellipsoid cases are model alternatives, not measured axes. Authors prefer approximately spherical 22.4h, variegated albedo and aligned equator, but radiometric data alone do not uniquely select the models.",
+    "limits": "Model diameters/albedos and derived density do not establish local chemistry, porosity fractions, visible colour or geography. Pluto/Charon thermal comparisons are not skins. No regional pattern or spectrum transferred."
+  },
+  "reportedInconsistencies": {
+    "density": "Abstract reports diameter 1230±50 km and density 1.75±0.07 g/cm3; section 6 reports aligned-sphere density 1.74±0.16 and Table 3 1.73–1.80±0.16. Preserve each reported value; uncertainty difference not resolved.",
+    "ranking": "Abstract calls object fifth most massive after Eris, Pluto, Haumea and Makemake; section 3 calls it fourth after Eris, Pluto and Haumea. Cause unresolved; neither adopted as an exhaustive current ranking."
+  },
+  "open": [
+    "Final publisher version and later thermal/rotation/spectroscopic literature",
+    "Section 7 detailed tidal-evolution priors and satellite-size alternatives",
+    "Raw HST time standards/products, PSF and native collage association",
+    "Primary-only mass, unique spin period/pole/shape, photometric and spectral calibration",
+    "Surface and observer frame, visibility, phase, colour and registration"
+  ],
+  "preservation": "All 84 dossiers and 642 tracked public files remain byte-identical; originals, masters, native science, maps, models, shapes and recorded Clipper preserved. No angular/raster computation performed. Queue remains 566; backlog ACTIVE."
+}
