@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-17",
+  "status": "Completed browser validation of frozen cf6ac9a full build; research-only audit",
+  "artifact": {
+    "path": "dist-standalone/fidelity.html",
+    "bytes": 15180420,
+    "sha256": "182776e950b4524b2cf50045126467cc0536a3f7b599e0dbf88460ddff24366e",
+    "headroomBytes": 819580,
+    "readableSnapshotSha256": "a5dc7e1b6e436473707f65aa18528cf09c997c79f8bc014b6413eb494844e35b"
+  },
+  "browser": {
+    "engine": "Codex in-app browser",
+    "delivery": "loopback HTTP explicit charset=utf-16le",
+    "charset": "UTF-16LE",
+    "readableSnapshotSha256": "a5dc7e1b6e436473707f65aa18528cf09c997c79f8bc014b6413eb494844e35b",
+    "exactWholeReadableHashMatches": true,
+    "uniqueEmbeddedImages": 301,
+    "imagesDecoded": 301,
+    "imagesHashed": 301,
+    "canvases": 8,
+    "status": "pass"
+  },
+  "method": [
+    "Served an in-memory copy of the unchanged full HTML with a diagnostic module appended after the original bytes; no diagnostic code entered production output.",
+    "Diagnostic module reads original raw-script snapshot text through the browser HTML parser, applies the production unpackSnapshotBytes/restoreSnapshotText with browser gzip DecompressionStream and a separate bundled Brotli decoder.",
+    "Computed SHA256 of complete restored readable JSON matches the saved standalone/snapshot.json; this covers every detailed field and base64 data URI byte, including native/model/shape payloads.",
+    "Recursively enumerated unique image data URIs, hashed their decoded bytes and awaited Image.decode for each of 301 sources. No image transformation performed.",
+    "Actual application bootstrap runs alongside the diagnostic; visible USS Fidelity controls and eight canvases verify startup."
+  ],
+  "preservation": {
+    "registryCount": 84,
+    "productionChanges": false,
+    "publicChanges": false,
+    "originalsMastersNativeMapsModelsShapes": "unchanged",
+    "legacyTransportAndNotices": "unchanged",
+    "queueTasks": 566
+  },
+  "validationScope": {
+    "frozenBuildCommit": "cf6ac9a",
+    "priorTestsPassed": 679,
+    "priorTestsSkipped": 1,
+    "priorProductionBuild": "pass",
+    "priorFullBuild": "pass",
+    "currentWork": "Browser diagnostic on that completed artifact; no rebuild or fresh test-suite claim needed for documentation-only audit."
+  },
+  "limits": [
+    "Audit instrumented a copy; original application and packed snapshot bytes were unchanged. No standalone file:// or other-engine test this batch.",
+    "Image decoding and byte preservation do not calibrate geography, visible colour, photometry, component identity or scientific accuracy.",
+    "No fresh all-route, eclipse-worker, unsupported-browser or actual GLB model-load claim. Full JSON equality verifies model bytes, not rendering.",
+    "Individual native-hash list was computed in the page; whole-readable SHA256 is the retained cryptographic equality evidence. No new dossier, image or scientific model adopted."
+  ],
+  "reproduction": {
+    "command": "node docs/research/standalone-browser-audit-2026-10-17-server.mjs",
+    "url": "http://127.0.0.1:8938/",
+    "outputElement": "fidelity-byte-audit",
+    "entry": "docs/research/standalone-browser-audit-2026-10-17-entry.mjs"
+  }
+}
