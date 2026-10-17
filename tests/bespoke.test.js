@@ -297,3 +297,8 @@ test('Gonggong physical cards distinguish thermal radius and system mass without
  const {MOONS}=await import('../src/data/moons.js');const {solSystem}=await import('../src/data/systems.js');const m=MOONS.find(x=>x.id==='xiangliu'),b=solSystem().bodies.find(x=>x.id==='xiangliu'),v=bodyVisualFor(m);
  assert.equal(v.id,'xiangliu');assert.notEqual(v,bodyVisualFor({name:'Gonggong'}));assert.equal(v.surfaceMap,undefined);assert.equal(m.surfacePending,true);assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(m.phaseUnknown,true);assert.equal(m.massKg,null);assert.match(b.facts.PHYSICAL.find(x=>x.label==='RADIUS').value,/HYPOTHESIS/);assert.equal(b.facts.PHYSICAL.some(x=>x.label==='SURFACE G'),false);assert.match(v.modelled.join(' '),/retrograde/);assert.match(v.modelled.join(' '),/not measured rotation/);assert.match(v.assumed.join(' '),/oversized/);assert.equal(v.skyImage.height,831);assert.equal(v.skyImage.previewHeight,138);assert.equal(v.contextImages[0].url,bodyVisualFor({name:'Gonggong'}).contextImages[0].url);
  });
+
+ test('minor-planet satellite inventory keeps Weywot and Vanth separate from primary dossiers',async()=>{
+ const queue=JSON.parse(await fs.readFile(new URL('../docs/research/bespoke-queue.json',import.meta.url),'utf8'));
+ for(const [name,parent] of [['Weywot','quaoar'],['Vanth','orcus']]) {const entry=queue.entries.find(x=>x.id===`sol-${name.toLowerCase()}`);assert.equal(entry.parent,parent);assert.equal(entry.kind,'moon');assert.equal(entry.visualId,undefined);assert.equal(entry.bodyId,undefined);assert.equal(bodyVisualFor(entry),null);assert.match(entry.source,/arxiv/);}
+ });

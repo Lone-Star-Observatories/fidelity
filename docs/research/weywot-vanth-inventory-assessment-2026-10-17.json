@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-17",
+  "scope": "Inventory and versioned primary abstract records only; no new dossier, image, physical catalogue parameter, model or codec adoption.",
+  "baseline": "d72d8937e67b97274585437052716692cc8776f3",
+  "sources": [
+    {
+      "path": "data/research-sources/weywot-2025-v2-record.html",
+      "url": "https://arxiv.org/abs/2510.12495v2",
+      "bytes": 44904,
+      "sha256": "795cb1ff65589be697c448c105e396d576d30887954f611a476c500093ddcdd9",
+      "retrievedUtc": "2026-10-17T21:51:05.503274+00:00",
+      "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+    },
+    {
+      "path": "data/research-sources/vanth-2023-v1-record.html",
+      "url": "https://arxiv.org/abs/2307.04848v1",
+      "bytes": 41980,
+      "sha256": "1a25bc65df4c91db711a80d2f796f55257d891eff97cd7cad505a1eea25f7060",
+      "retrievedUtc": "2026-10-17T21:51:05.503730+00:00",
+      "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+    },
+    {
+      "path": "data/research-sources/weywot-vanth-ccby4-deed.html",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "bytes": 31950,
+      "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+      "retrievedUtc": "2026-10-17T21:51:05.503843+00:00",
+      "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+    }
+  ],
+  "weywot": {
+    "parent": "Quaoar",
+    "authors": [
+      "Zsolt Regaly",
+      "Viktoria Frohlich",
+      "Csaba Kiss"
+    ],
+    "title": "Limits of Standard Tidal Models at Quaoar: Matching Weywot’s Orbit, Missing the Spin",
+    "version": "2510.12495v2",
+    "firstSubmitted": "2025-10-14",
+    "revised": "2025-10-15",
+    "publication": "Record says accepted for publication in PASP; final publisher record/date not audited.",
+    "abstractAssessment": [
+      "CPL and Andrade creep-tide orbit-averaged models over 4.5 Gyr test system evolution; not new measured satellite mass or spin.",
+      "Model matches requiring 5–10 times nominal moon mass and tuned initial eccentricity are not adopted as measurements.",
+      "Quaoar 17.7-hour spin and modelled partial differentiation/warm ice refer to the PRIMARY, not Weywot chemistry or local temperature.",
+      "External torque, early satellite loss and impact alternatives are hypotheses, not observed history."
+    ],
+    "open": [
+      "Full v2 paper/tables/initial conditions and historical orbit/occultation references",
+      "Moon-specific radius, mass, rotation, orientation, native product and current ephemeris",
+      "Final publisher licence/metadata crosswalk"
+    ]
+  },
+  "vanth": {
+    "parent": "Orcus",
+    "authors": [
+      "Michael E. Brown",
+      "Bryan J. Butler"
+    ],
+    "title": "Masses and densities of dwarf planet satellites measured with ALMA",
+    "version": "2307.04848v1",
+    "submitted": "2023-07-10",
+    "abstractAssessment": [
+      "ALMA barycentric astrometry over an orbit yields reported Vanth/Orcus mass ratio 0.16 ± 0.02; abstract-level inventory, no catalogue update.",
+      "Intact impactor and likely double synchronous evolution are interpretations; not a measured moon spin or directly observed origin.",
+      "Dysnomia/Eris results in the same paper must not be assigned to Vanth/Orcus.",
+      "Astrometric source separation does not establish resolved geography, visible colour or local composition."
+    ],
+    "existingFullPaperReference": "dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+    "retainedPaper": {
+      "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+      "bytes": 540344,
+      "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222"
+    },
+    "open": [
+      "Body-specific full-paper Vanth methods/tables/thermal and spin audit; earlier retained-paper audit targeted Dysnomia",
+      "Native imagery/product/UTC/filter/credits/calibration crosswalk",
+      "Later orbit/size/rotation and raw ALMA association"
+    ]
+  },
+  "rights": "Both versioned arXiv records explicitly link CC BY 4.0; active deed retained. This is record-specific, not blanket arXiv licensing or permission for every third-party/raw/native image. No paper figure embedded.",
+  "inventory": "Weywot and Vanth were absent from the 567-entry queue and selectable MOONS. Add two source-linked pending tasks with distinct parents, no bodyId/visualId or primary map reuse. Inventory remains non-exhaustive for minor-planet satellites.",
+  "validation": {
+    "baseline": "d72d8937e67b97274585437052716692cc8776f3",
+    "unchangedQueueEntriesDeepEqual": 567,
+    "queueEntries": 569,
+    "dossiersUnchanged": 86,
+    "trackedPublicByteEqual": 651,
+    "sourceHashesChecked": 4,
+    "htmlBytes": 15522692,
+    "headroomBytes": 477308,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "5017211fa90f4fb4f8d4e47cce3545e1050eb345df82a5c918b32fbb37514bd0",
+    "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+    "testsPassed": 683,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  }
+}

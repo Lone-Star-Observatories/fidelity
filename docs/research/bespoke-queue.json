@@ -7235,6 +7235,30 @@
       "sky": "queued"
     },
     {
+      "id": "sol-weywot",
+      "name": "Weywot",
+      "parent": "quaoar",
+      "source": "https://arxiv.org/abs/2510.12495v2",
+      "kind": "moon",
+      "scope": "Satellite of dwarf-planet candidate; individual physical/reference audit open",
+      "nativeImagery": "Unchecked; no primary map assigned. Native product, observation dates, credits, calibration and resolved-geography limits require body-specific audit.",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
+      "id": "sol-vanth",
+      "name": "Vanth",
+      "parent": "orcus",
+      "source": "https://arxiv.org/abs/2307.04848v1",
+      "kind": "moon",
+      "scope": "Satellite of dwarf-planet candidate; individual physical/reference audit open",
+      "nativeImagery": "Unchecked; no primary map assigned. Native product, observation dates, credits, calibration and resolved-geography limits require body-specific audit.",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8535,7 +8559,7 @@
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "moon": {
-      "selected": 467,
+      "selected": 469,
       "initialDossiers": 41,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
