@@ -1,0 +1,215 @@
+{
+  "status": "Research-only complete fifteen-page calibration procedure audit; no production changes",
+  "source": {
+    "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/jhuapl_dart_draco_calibration_pipeline_description_v2.pdf",
+    "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2.pdf",
+    "bytes": 3493404,
+    "sha256": "1795bc0dda79611cb53c9ff60542a8d96d59eadcd6c9ba5e13dbc46a8d48cfe4",
+    "pages": 15
+  },
+  "extraction": {
+    "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2.txt",
+    "sha256": "7bc3caa7e795717c926955accd870683bc76ee7cc0e209fee7be1f3bc5579909",
+    "surrogateHandling": "UTF8 backslashreplace diagnostic only; PDF unchanged"
+  },
+  "limits": [
+    "All15 pages rendered and visually inspected across preparation turns; full original text retained. No calibration execution, input-file/raw-header reproduction or publisher product crosswalk.",
+    "Pipeline description does not independently calibrate publisher imagery or establish raw-product association.",
+    "No licence grant/figure embedding, new dossier, catalogue/map/model/shape/codec change or angular computation."
+  ],
+  "visuallyInspectedPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "renderedPages": [
+    {
+      "page": 1,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-1.png",
+      "sha256": "967b77e339b3c7d93aecd1915d397cd4cd036f42b038cd38f3ce0bda530fc67d"
+    },
+    {
+      "page": 2,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-2.png",
+      "sha256": "b6df5709a6ecc77586a5dd44167dd954711e0c56204b81d78d1957599936bc45"
+    },
+    {
+      "page": 3,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-3.png",
+      "sha256": "962bc1ab5a9a8d62e8a73453614eb8082981e0befd55800731f7de2f5105cc73"
+    },
+    {
+      "page": 4,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-4.png",
+      "sha256": "447d920185b1862e1ff16d52a896ad9f778a1b4a0c9d0742b75d8b2d4c1c1865"
+    },
+    {
+      "page": 5,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-5.png",
+      "sha256": "30599af08bd528290260d8963f570881c8df292ec3ca8ca0ed818c56f7e12a28"
+    },
+    {
+      "page": 6,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-6.png",
+      "sha256": "22b968816f20de52d67621f16fb42383f63cc3260795876f1b6dca7dfa558eeb"
+    },
+    {
+      "page": 7,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-7.png",
+      "sha256": "8f67105196002044796ba4d6f1b01674dcf6a9c7670f8a7de4a01e83f89322b7"
+    },
+    {
+      "page": 8,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-8.png",
+      "sha256": "a7a4975801d9df20ef7d2347528e9bf9b4bdc0b4f36e2e3bd10ed5859c29ea50"
+    },
+    {
+      "page": 9,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-9.png",
+      "sha256": "61e9069aa707a177099913535d7026ce106470bf26e49ec78dbae1b0508c34cb"
+    },
+    {
+      "page": 10,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-10.png",
+      "sha256": "ec8085bed880764b284faf0f00939226412701f94c5e66e8bf1a6b7f051cf4e3"
+    },
+    {
+      "page": 11,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-11.png",
+      "sha256": "1428110841cb82504b7fd5b00a9572a05425ac9b25bee3a24b77fb7b33aa8194"
+    },
+    {
+      "page": 12,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-12.png",
+      "sha256": "69eb062c47033cc0ecc08a3e06124c5dba89308a8772bc8c39131d231a634afa"
+    },
+    {
+      "page": 13,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-13.png",
+      "sha256": "0a103fcc6c963287638cf58c895204a5f7020d30c98228ed77cbcf4c66acc014"
+    },
+    {
+      "page": 14,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-14.png",
+      "sha256": "ddb1063b929c24357e44352b6f583c2569e7daa8a4e0ca513f4f75df436b753f"
+    },
+    {
+      "page": 15,
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2-page-15.png",
+      "sha256": "d5f1340b589b24584bcd44e38f6f1b9c1ea2dc7753d1edc9e08ff9916c157582"
+    }
+  ],
+  "targetedVisualNotes": {
+    "page2": {
+      "preparedApproved": [
+        "Terik Daly",
+        "Carolyn Ernst"
+      ],
+      "reviewed": [
+        "Zachary Fletcher",
+        "Kyle Ryan",
+        "Nancy Chabot",
+        "Carolyn Sawyer",
+        "Syau-Yun Hsieh",
+        "Andy Cheng",
+        "Tony Farnham"
+      ]
+    },
+    "page3": "Version1 July2022 first PDS delivery; version2 June2023 review/minor edits for second delivery and liens. Document history, not image acquisition dates.",
+    "page9": "Pipeline diagram distinguishes raw MOC/SOC, partial processing and calibrated products; includes calibration-table addback, bias/dark/flat, electrons and saturation flags, radiance, selected I/F and special-pixel updates. Not independently executed.",
+    "page14": [
+      "Radiance described at622nm pivot wavelength for an object the colour of Didymos, with one photometric conversion and possible corrections for different-colour objects; not calibrated RGB colour.",
+      "Radiance products retain negative values to represent background noise; _rad_ filename convention.",
+      "Terminal/Final I/F conversion is dimensionless using heliocentric distance and F_SUN622=1.6784 W m^-2 nm^-1 as printed. No independent calibration or calculation performed.",
+      "Negative I/F values replaced by IOVRFLAG=-1E08; _iof_ naming convention. Do not treat special values as terrain."
+    ],
+    "page15": [
+      "BADMASKV=-1E09; pipeline document states no pixels were flagged by the bad-pixel map. No raw-image reproduction or universal detector-quality claim.",
+      "Out-of-window=-1E10, missing=+1E10; original window/missing keywords and calibrated updates remain distinct.",
+      "Listed FITS keyword names do not identify a specific retained publisher PNG/JPEG or establish its processing history."
+    ],
+    "page5": [
+      "SOC scientific calibration is distinct from onboard SMART Nav processing. This document describes procedure, explicitly not calibration activities/results.",
+      "Fletcher2022 DOI10.1117/12.2627873 and a future2023 Ernst publication are references, not verified raw-image processing or publication-status audits."
+    ],
+    "page6": [
+      "DRACO SIS takes precedence in a conflict. Pipeline inputs described as16bit1024square FITS,2x2 binned from2048square; some downlinks512square placed into original frame with PXOUTWIN. Publisher985squarePNG dimensions do not independently identify this raw geometry.",
+      "Onboard table updated2022-06-07; CALSTART selects version. CALIB=TRUE prose differs from numeric4095/on versus0/off in page9 diagram and ON/OFF in page10/SIS. Retained final FITS CALIB=ON does not independently reproduce the pipeline.",
+      "All-zero bad-pixel-map statement is historical pipeline description, not noise-free detector/terrain claim."
+    ],
+    "page7": [
+      "Global-shutter bias frames zero as ofNovember2022; dark-current frames zero because dark signal could not be measured separately from bias, not proof of physically zero dark current.",
+      "Prose describes initial ground flat refined with in-flight star clusters; best-effort radiometry depends on source/target/instrument spectra and shutter/gain.",
+      "622nm pivot wavelength does not establish narrowband acquisition or calibrated visible RGB colour."
+    ],
+    "page8": [
+      "Table1 labels flat-field data source ground-test only while page7 prose explicitly describes in-flight refinement; preserve description/table distinction, no silent source repair or assumed calibration-file identity.",
+      "Table1 credits SMART Nav Carolyn Sawyer; DRACO Syau-Yun Hsieh and Andy Cheng, flat-field row also Tony Farnham. Ground/cruise delivery counts are table metadata, not observation dates.",
+      "Specific calibrated FITS header must retain input filenames/scalar values; these have not been linked to publisher imagery."
+    ],
+    "page1": "DRACO Calibration Pipeline Description Version2 cover; artwork is not scientific terrain and is not extracted/embedded.",
+    "page4": "Contents confirms inputs, prechecks, electrons/radiance/I-F conversion and special-pixel/header updates.",
+    "page10": "CALIB table uses ON/OFF, unlike page6 TRUE and page9 numeric4095/0. Representation differences retained; original final FITS also states ON. Shutter/gain/temperature/truncation/exposure determine inputs; no pipeline execution.",
+    "page11": "BADIMAGE and test-pattern/DARK/BIAS observations have raw-SOC products but no corresponding calibrated image according to document. Correct-looking headers do not guarantee valid detector-reconfiguration pixels.",
+    "page12": [
+      "Rows0\u2013511 detectorA and512\u20131023 detectorB use separate conversions; radiometric tables start row0 but instrument kernel starts row1. Not applied as a pixel shift or calibration repair.",
+      "TESTTEMP matching DETTEMP1 is input-file selection, not observer/local surface temperature."
+    ],
+    "page13": [
+      "Visually rechecked page13: MSB uses x=output4/2; LSB uses x=output4/4. Both multiply the lookup electron value by4. Earlier unpublished preparation incorrectly described identical divisors; corrected before publication. No pipeline execution.",
+      "Saturated raw DN4094 mapped SATPXVAL=+1E09; below4094 but above lookup limit maps OORADLUT=+1E08. Table3 cutoffs apply to processed output4, not raw image values.",
+      "Table3 row-specific shutter/gain cutoffs not assigned to retained publisher PNG/JPEG without original FITS/raw calibration identity.",
+      "Rolling-shutter negative-signal lookup handling differs from global-shutter exact-zero handling described page14; not terrain or detector-noise removal proof."
+    ]
+  },
+  "date": "2026-10-17",
+  "issue": "#3",
+  "credits": {
+    "preparedAndApproved": [
+      "Terik Daly",
+      "Carolyn Ernst"
+    ],
+    "reviewed": [
+      "Zachary Fletcher",
+      "Kyle Ryan",
+      "Nancy Chabot",
+      "Carolyn Sawyer",
+      "Syau-Yun Hsieh",
+      "Andy Cheng",
+      "Tony Farnham"
+    ],
+    "provider": "NASA PDS Small Bodies Node; DART SOC, Johns Hopkins Applied Physics Laboratory",
+    "rights": "No explicit licence grant inferred; no paper figures embedded."
+  },
+  "verification": {
+    "tests": {
+      "passed": 678,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15968116,
+    "hardGateBytes": 16000000,
+    "headroomBytes": 31884,
+    "protectedTrackedPublicFiles": 637,
+    "allProtectedPublicBytesUnchanged": true,
+    "deliveredDossiers": 83,
+    "queueTasks": 566,
+    "freshBrowserVerification": false,
+    "limits": "No fresh browser or interbuild savings claim. No new embedded assets, catalogue, codec, model, map or shape changes."
+  },
+  "preparationCorrection": "The ignored preparation record contained a mistaken identical-MSB/LSB-divisor note. Original source bytes and the historical preparation are preserved; this tracked assessment supersedes that note after text and rendered-page reinspection."
+}
