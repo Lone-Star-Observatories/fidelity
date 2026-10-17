@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-16",
+  "body": "Dimorphos; Didymos kept distinct",
+  "status": "Research-only PDS document identity and model-specific impact-coordinate audit. No physical/frame/asset adoption.",
+  "sources": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/collection_document_draco.csv",
+      "path": "data/research-sources/dimorphos-pds-collection_document_draco.csv",
+      "bytes": 339,
+      "sha256": "a2d56d652c6c9705a6fc18f5b5e72bd750fdc1a03658fee5ae308c162ccea9fc"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/collection_document_draco.xml",
+      "path": "data/research-sources/dimorphos-pds-collection_document_draco.xml",
+      "bytes": 5378,
+      "sha256": "f4634b40ebf36be8836d0e8793ad2223b0e3238d2886733380e85ac9c4682100"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/dimorphos_impact_point_model_v003.xml",
+      "path": "data/research-sources/dimorphos-pds-dimorphos_impact_point_model_v003.xml",
+      "bytes": 2142,
+      "sha256": "ae9ebfb13a3c670a1c1a440d962395fbf475bca5816e271787c7900902151adc"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/dimorphos_impact_point_model_v004.xml",
+      "path": "data/research-sources/dimorphos-pds-dimorphos_impact_point_model_v004.xml",
+      "bytes": 2144,
+      "sha256": "6f674a96e6bf3ce554aba8bfe06041cb5d357c9220314e922fe51ae8ef3c1535"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/dimorphos_impact_point_model_v003.txt",
+      "path": "data/research-sources/dimorphos-pds-dimorphos_impact_point_model_v003.txt",
+      "bytes": 450,
+      "sha256": "b1341aed901f76c13c73e06a34ed7fff6dfffcb136e7228b63c9fae625b4c001"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/dimorphos_impact_point_model_v004.txt",
+      "path": "data/research-sources/dimorphos-pds-dimorphos_impact_point_model_v004.txt",
+      "bytes": 452,
+      "sha256": "70bb1c929cec04390b84343b52ea48e4a2680a7ba9be34a6eda989db04b4640a"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/dart_shapemodel_sis.xml",
+      "path": "data/research-sources/dimorphos-pds-shapemodel-sis.xml",
+      "bytes": 2384,
+      "sha256": "8dc66ab225ed0958da8cbde882c05a10f2220b71eec15e3edf9b55ff0742c06e"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/jhuapl_dart_draco_calibration_pipeline_description_v2.xml",
+      "path": "data/research-sources/dimorphos-pds-draco-calibration-pipeline-v2.xml",
+      "bytes": 2541,
+      "sha256": "b2fb6744357633b96d7cacd7f56a9d71e86b85367806aee8d58a5e438e42577b"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/didymos_coordinate_system_description_v1.xml",
+      "path": "data/research-sources/dimorphos-pds-label-didymos_coordinate_system_description_v1.xml",
+      "bytes": 2579,
+      "sha256": "2874c2a4f57adad19f0f923035c585cd2b24aef0ff42250ab64a53b01b638d7a"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/dimorphos_coordinate_system_description_v2.xml",
+      "path": "data/research-sources/dimorphos-pds-label-dimorphos_coordinate_system_description_v2.xml",
+      "bytes": 2721,
+      "sha256": "86114666d2d83b349a81c198a2777c67c4bdb36c4118b5a8487ec560d6b2b911"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/jhuapl_dart_draco_uncalibrated_calibrated_sis_v3.xml",
+      "path": "data/research-sources/dimorphos-pds-label-jhuapl_dart_draco_uncalibrated_calibrated_sis_v3.xml",
+      "bytes": 3110,
+      "sha256": "f8bcbf35e441ee3ed278af419d2b7e4dde614dd1a198325a2f3088b7781d3379"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/collection_document.csv",
+      "path": "data/research-sources/dimorphos-shape-collection_document.csv",
+      "bytes": 226,
+      "sha256": "e97dc134ca896b3aecb0d35de0cbda0d79b695829433cee2becf823947803d47"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/document/collection_document.xml",
+      "path": "data/research-sources/dimorphos-shape-collection_document.xml",
+      "bytes": 5278,
+      "sha256": "1fc1cc3841053f345e86fc68cad4cb136326ccb4e2fe4d1112e08a4b20c65609"
+    }
+  ],
+  "collectionMembership": {
+    "draco": [
+      "P,urn:nasa:pds:dart:document_draco:jhuapl_dart_draco_calibration_pipeline_description::2.0",
+      "P,urn:nasa:pds:dart:document_draco:jhuapl_dart_draco_uncalibrated_calibrated_sis::3.0",
+      "P,urn:nasa:pds:dart:document_draco:didymos_coordinate_system_description::1.0",
+      "P,urn:nasa:pds:dart:document_draco:dimorphos_coordinate_system_description::2.0"
+    ],
+    "shape": [
+      "P,urn:nasa:pds:dart_shapemodel:document:dimorphos_impact_point_model_v004::1.0",
+      "P,urn:nasa:pds:dart_shapemodel:document:dart_shapemodel_sis::1.0",
+      "P,urn:nasa:pds:dart_shapemodel:document:dimorphos_impact_point_model_v003::1.0"
+    ],
+    "limits": "Primary membership and version identifiers do not establish PDF contents, model geometry, raw image identity or calibrated geography."
+  },
+  "coordinateLabels": {
+    "didymos": {
+      "logicalIdentifier": "urn:nasa:pds:dart:document_draco:didymos_coordinate_system_description",
+      "version": "1.0",
+      "authorsAsLabelled": "Daly, T.; Barnouin, O.; Ernst, C.; Nair, H.; Espiritu, R.; Waller, D.",
+      "publicationDate": "2023-08-08",
+      "referencedFile": "dimorphos_coordinate_system_description_v2.pdf"
+    },
+    "dimorphos": {
+      "logicalIdentifier": "urn:nasa:pds:dart:document_draco:dimorphos_coordinate_system_description",
+      "version": "2.0",
+      "authorsAsLabelled": "Daly, T.; Barnouin, O.; Ernst, C.; Nair, H.; Espiritu, R.; Waller, D.",
+      "publicationDate": "2023-08-08",
+      "referencedFile": "dimorphos_coordinate_system_description_v2.pdf"
+    }
+  },
+  "didymosLabelInconsistency": {
+    "verified": "Logical identifier, title and citation describe Didymos primary; Document description, edition and file_name instead name Dimorphos v2.",
+    "limits": "Cause and intended file association remain open. Separately listed Didymos PDF has not been inspected; no correction, frame substitution or body association inferred."
+  },
+  "impactCoordinates": [
+    {
+      "model": "003",
+      "logicalIdentifier": "urn:nasa:pds:dart_shapemodel:document:dimorphos_impact_point_model_v003",
+      "authorsAsLabelled": "Barnouin, O.; Daly, T.; Ernst, C.; Nair, H.; Espiritu, R.; Waller, D.",
+      "publisherFieldsVerbatim": {
+        "REFERENCE_SHAPE": "dimorphos_g_1960mm_spc_obj_0000n00000_v003.obj",
+        "LATITUDE": "-8.84 +/- 0.45",
+        "EASTLONG": "264.30 +/- 0.47",
+        "IMPACT_PT_X": "-8.306 +/- 0.92",
+        "IMPACT_PT_Y": "-83.174 +/- 0.65",
+        "IMPACT_PT_Z": "-12.995 +/- 0.23"
+      }
+    },
+    {
+      "model": "004",
+      "logicalIdentifier": "urn:nasa:pds:dart_shapemodel:document:dimorphos_impact_point_model_v004",
+      "authorsAsLabelled": "Barnouin, O.; Daly, T.; Ernst, C.; Nair, H.; Espiritu, R.; Waller, C.D.",
+      "publisherFieldsVerbatim": {
+        "REFERENCE_SHAPE": "dimorphos_g_1940mm_spc_obj_0000n00000_v004.obj",
+        "LATITUDE": "-8.96 +/- 0.45",
+        "EASTLONG": "263.13 +/- 0.47",
+        "IMPACT_PT_X": "-9.688 +/- 0.92",
+        "IMPACT_PT_Y": "-80.393 +/- 0.65",
+        "IMPACT_PT_Z": "-12.765 +/- 0.23"
+      }
+    }
+  ],
+  "impactCoordinateLimits": [
+    "Values and +/- terms are publisher image-to-model registration results, not independently validated uncertainties.",
+    "v003 and v004 use different explicitly named reference shapes; no coordinate difference is interpreted as physical displacement.",
+    "No angular/raster computation, model download, catalogue change, map registration or image association.",
+    "2023 publication and 2023-08-08 modification are not acquisition timestamps.",
+    "Latitude/east-longitude degrees and Cartesian meters are the publisher text conventions; no conversion or new angular/raster calculation performed.",
+    "Author spelling Waller, D. in v003 versus Waller, C.D. in v004 is retained without an identity-correction claim."
+  ],
+  "calibrationAndShapeDocumentLabels": {
+    "shapeSIS": {
+      "logicalIdentifier": "urn:nasa:pds:dart_shapemodel:document:dart_shapemodel_sis",
+      "version": "1.0",
+      "authorsAsLabelled": "Barnouin, O.; Daly, T.; Ernst, C.; Espiritu, R.; Waller, D.",
+      "publicationDate": "2023-11-17",
+      "referencedFile": "dart_shapemodel_sis.pdf"
+    },
+    "dracoCalibration": {
+      "logicalIdentifier": "urn:nasa:pds:dart:document_draco:jhuapl_dart_draco_calibration_pipeline_description",
+      "version": "2.0",
+      "authorsAsLabelled": "Daly, T.; Ernst, C.; Hsieh, S-Y.; Cheng, A.; Fletcher, Z.; Ryan, K.",
+      "publicationDate": "2023-06-22",
+      "referencedFile": "jhuapl_dart_draco_calibration_pipeline_description_v2.pdf"
+    },
+    "dracoImageSIS": {
+      "logicalIdentifier": "urn:nasa:pds:dart:document_draco:jhuapl_dart_draco_uncalibrated_calibrated_sis",
+      "version": "3.0",
+      "authorsAsLabelled": "Ernst, C.; Daly, T.; Barnouin, O.; Espiritu, R.",
+      "publicationDate": "2023-08-02",
+      "referencedFile": "jhuapl_dart_draco_uncalibrated_calibrated_sis_v3.pdf"
+    },
+    "limits": [
+      "Full referenced PDFs not inspected; label descriptions are not independent pipeline/shape reproduction.",
+      "DRACO calibration modification 2022-12-16 refers to November2022 status, distinct publication2023-06-22. Shape SIS publication/modification2023-11-17 is not acquisition time.",
+      "No licence grant inferred from PDS hosting, XML schema or publication metadata."
+    ]
+  },
+  "preservation": {
+    "deliveredDossiers": 83,
+    "trackedPublicFiles": 637,
+    "productionChanges": false,
+    "limits": "Original/default PNGs, masters, native bytes, maps/models/shapes, provenance and recorded Clipper remain preserved. No dossier84, embedding, catalogue or codec change. Full PDF/raw-image/frame/spin/calibration and remaining backlog stay open."
+  },
+  "verification": {
+    "tests": {
+      "passed": 678,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "fullStandaloneBuild": "passed",
+    "fullHtmlBytes": 15966836,
+    "headroomBytes": 33164,
+    "freshBrowserVerification": false,
+    "compressionSavingsAttribution": false,
+    "queueTasks": 566,
+    "sourceHashesVerified": 13,
+    "trackedPublicFilesByteEqual": 637
+  }
+}
