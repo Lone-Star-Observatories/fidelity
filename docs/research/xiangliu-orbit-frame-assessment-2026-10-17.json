@@ -1,0 +1,426 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu orbit around Gonggong",
+  "status": "Research-only fullTable2/coordinate-convention audit; no86th dossier, selectable orbit, physical value or production-code change",
+  "sources": [
+    {
+      "path": "data/research-sources/gonggong-primary-paper-2026-10-17.pdf",
+      "bytes": 1824227,
+      "sha256": "fa0d09e14cbdabd9f076102101492321e161fd9d8d53cc0bdf98545ad89ddf5a"
+    },
+    {
+      "path": "data/research-sources/gonggong-primary-page4-2026-10-17.png",
+      "bytes": 221410,
+      "sha256": "8f5ccdfd58e3d20d78c389b62d9a079e06619f4127ba774edf6e63207e12837f"
+    },
+    {
+      "path": "data/research-sources/gonggong-primary-licence-2026-10-17.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-method-v1.pdf",
+      "bytes": 1230119,
+      "sha256": "be5a93df4a43ca990c6e7d05c43b76a188cd9fa74c39aa541a1ca6e278ef0ea1"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-record.html",
+      "bytes": 43072,
+      "sha256": "1bd5fc765786a210e5178f254d819144465040bf17d99ef19d8bae7c757a63c6"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-fulltext.txt",
+      "bytes": 60737,
+      "sha256": "0f9b19d2625edfe3a1f446f841fbac26215759f57dec7f82b9194f8e931cb43f"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-page1-2026-10-17.png",
+      "bytes": 224859,
+      "sha256": "d906adb138a993aeb039e85b0f881df42a6df2a33402bb375efb3f16c32c66ef"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-page2-2026-10-17.png",
+      "bytes": 338690,
+      "sha256": "3b0ab6f9d378136a8443226c8b7fbdd018910b8a33c49d7ca6eeaf6ec897569b"
+    },
+    {
+      "path": "data/research-sources/xiangliu-grundy-2008-page12-2026-10-17.png",
+      "bytes": 259467,
+      "sha256": "71c96e7e153140243cfad16bc66cf4cebe66291bcd90552985546c6c6933bca8"
+    },
+    {
+      "path": "src/astro/moons.js",
+      "bytes": 8531,
+      "sha256": "cc9e0537b001b82d61f79432eb6fea9eafeee853f11a5b9273c056e89802ec66"
+    },
+    {
+      "path": "src/astro/frames.js",
+      "bytes": 4474,
+      "sha256": "365681a1eda294f4fe0d5f3746bc79e44dc62eae4436e4df88565e611431cf09"
+    },
+    {
+      "path": "src/astro/kepler.js",
+      "bytes": 5099,
+      "sha256": "6c3af9dc21307c0437348b969c6cb1b31b49519a7ee6cc6121c427908124e9b3"
+    }
+  ],
+  "methodFetch": [
+    {
+      "role": "methodPaper",
+      "url": "https://arxiv.org/pdf/0804.2495v1",
+      "finalUrl": "https://arxiv.org/pdf/0804.2495v1",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/xiangliu-grundy-2008-method-v1.pdf",
+      "bytes": 1230119,
+      "sha256": "be5a93df4a43ca990c6e7d05c43b76a188cd9fa74c39aa541a1ca6e278ef0ea1",
+      "retrievedAt": "2026-10-17T21:20:00.500Z"
+    },
+    {
+      "role": "methodRecord",
+      "url": "https://arxiv.org/abs/0804.2495v1",
+      "finalUrl": "https://arxiv.org/abs/0804.2495v1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/xiangliu-grundy-2008-record.html",
+      "bytes": 43072,
+      "sha256": "1bd5fc765786a210e5178f254d819144465040bf17d99ef19d8bae7c757a63c6",
+      "retrievedAt": "2026-10-17T21:20:00.595Z"
+    }
+  ],
+  "paper": {
+    "title": "The mass and density of the dwarf planet (225088) 2007 OR10",
+    "url": "https://arxiv.org/abs/1903.05439v1",
+    "authors": [
+      "Csaba Kiss",
+      "Gabor Marton",
+      "Alex H. Parker",
+      "Will Grundy",
+      "Aniko Farkas-Takacs",
+      "John Stansberry",
+      "Andras Pal",
+      "Thomas Muller",
+      "Keith S. Noll",
+      "Megan E. Schwamb",
+      "Amy C. Barr",
+      "Leslie A. Young",
+      "Jozsef Vinko"
+    ],
+    "scope": "Page4 Table2 visually rechecked; section3 and cited2008 method targeted, not new reduction, complete final-paper audit or present astrometric validation.",
+    "rights": "Specific arXiv nonexclusive,not CC BY; no figure embedded."
+  },
+  "method": {
+    "title": "(42355) Typhon-Echidna: Scheduling Observations for Binary Orbit Determination",
+    "url": "https://arxiv.org/abs/0804.2495v1",
+    "doi": "10.1016/j.icarus.2008.04.004",
+    "termsUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "authors": [
+      "W.M. Grundy",
+      "K.S. Noll",
+      "J. Virtanen",
+      "K. Muinonen",
+      "S.D. Kern",
+      "D.C. Stephens",
+      "J.A. Stansberry",
+      "H.F. Levison",
+      "J.R. Spencer"
+    ],
+    "submittedUTC": "2008-04-15T22:07:21Z",
+    "printedReceived": "2007-07-23",
+    "printedAccepted": "2008-04-15",
+    "status": "Printed In press in Icarus2008; final date/rights not audited, not Xiangliu observation dates.",
+    "rights": "Record links nonexclusive-distrib/1.0,not CC BY. Earlier retained arXiv licence response remains supporting terms; no figure adopted.",
+    "scope": "All17pages text retained; pages1,2,12 visually inspected. Page2 names epsilon mean longitude, Omega ascending-node longitude,varpi periapsis longitude; Table3 footnote explicitly J2000 equatorial. Typhon numerical orbit/physical parameters not transferred to Xiangliu."
+  },
+  "table2": {
+    "epochJD": 2457000,
+    "timeStandard": "JD only in printed Table2; UT/TT/TDB not explicitly established here",
+    "prograde": {
+      "P": [
+        25.22073,
+        0.000357
+      ],
+      "a": [
+        24021,
+        202
+      ],
+      "e": [
+        0.2908,
+        0.007
+      ],
+      "i": [
+        83.08,
+        0.86
+      ],
+      "epsilon": [
+        205.57,
+        0.95
+      ],
+      "node": [
+        31.99,
+        1.07
+      ],
+      "varpi": [
+        109.05,
+        1.88
+      ],
+      "systemMassKg": [
+        1.726e+21,
+        43000000000000000000
+      ],
+      "poleRA": [
+        301.99,
+        1.021
+      ],
+      "poleDec": [
+        6.914,
+        0.451
+      ],
+      "poleLambda": [
+        305.972,
+        1.16
+      ],
+      "poleBeta": [
+        26.447,
+        0.55
+      ],
+      "inclinationHeliocentric": [
+        51.828,
+        0.829
+      ]
+    },
+    "retrograde": {
+      "P": [
+        25.22385,
+        0.000362
+      ],
+      "a": [
+        24274,
+        193
+      ],
+      "e": [
+        0.2828,
+        0.0063
+      ],
+      "i": [
+        119.14,
+        0.89
+      ],
+      "epsilon": [
+        294.47,
+        1.38
+      ],
+      "node": [
+        104.09,
+        0.82
+      ],
+      "varpi": [
+        199.15,
+        1.67
+      ],
+      "systemMassKg": [
+        1.781e+21,
+        43000000000000000000
+      ],
+      "poleRA": [
+        14.096,
+        0.679
+      ],
+      "poleDec": [
+        -29.143,
+        0.408
+      ],
+      "poleLambda": [
+        0.098,
+        0.723
+      ],
+      "poleBeta": [
+        -32.101,
+        0.516
+      ],
+      "inclinationHeliocentric": [
+        129.05,
+        0.703
+      ]
+    }
+  },
+  "conventionInference": "Applying the cited method convention to2019 symbols gives w=varpi-Omega and M=epsilon-varpi. Equatorial pole independently recovered from rounded i/Omega agrees with printed RA/Dec and transformed ecliptic longitude/latitude within.02degrees; this supports the convention but is not a raw-data fit or unique mirror solution.",
+  "diagnostic": [
+    {
+      "solution": "prograde",
+      "derivedArgumentPeriapsisDeg": 77.06,
+      "derivedMeanAnomalyDeg": 96.51999999999998,
+      "poleFromRoundedElements": {
+        "equatorial": {
+          "longitude": 301.99,
+          "latitude": 6.920000000000006
+        },
+        "ecliptic": {
+          "longitude": 305.97352526301717,
+          "latitude": 26.452430399468742
+        }
+      },
+      "differenceFromPrintedPoleDegrees": {
+        "ra": 0,
+        "dec": 0.006000000000006445,
+        "lambda": 0.0015252630171858073,
+        "beta": 0.005430399468743019
+      },
+      "diagnosticCandidate": {
+        "a": 24021,
+        "e": 0.2908,
+        "w": 77.06,
+        "M": 96.51999999999998,
+        "i": 83.08,
+        "node": 31.99,
+        "P": 25.22073,
+        "Papsis": 0,
+        "Pnode": 0,
+        "pole": [
+          0,
+          90
+        ],
+        "frame": "equatorial",
+        "epochJd": 2457000
+      },
+      "independentRotationChecks": [
+        {
+          "offsetDays": -25.220730000175536,
+          "jd": 2456974.77927,
+          "differenceKm": 7.499885442698834e-12
+        },
+        {
+          "offsetDays": 0,
+          "jd": 2457000,
+          "differenceKm": 5.224649291029008e-12
+        },
+        {
+          "offsetDays": 6.305182499811053,
+          "jd": 2457006.3051825,
+          "differenceKm": 1.3612070276481757e-11
+        },
+        {
+          "offsetDays": 12.610365000087768,
+          "jd": 2457012.610365,
+          "differenceKm": 5.823607568738997e-12
+        },
+        {
+          "offsetDays": 25.220730000175536,
+          "jd": 2457025.22073,
+          "differenceKm": 3.0342248133114984e-11
+        },
+        {
+          "offsetDays": 3652.5,
+          "jd": 2460652.5,
+          "differenceKm": 5.681036767340569e-09
+        }
+      ],
+      "maxDifferenceKm": 5.681036767340569e-09
+    },
+    {
+      "solution": "retrograde",
+      "derivedArgumentPeriapsisDeg": 95.06,
+      "derivedMeanAnomalyDeg": 95.32000000000005,
+      "poleFromRoundedElements": {
+        "equatorial": {
+          "longitude": 14.089999999999975,
+          "latitude": -29.139999999999986
+        },
+        "ecliptic": {
+          "longitude": 0.09412072697176654,
+          "latitude": -32.09632640969551
+        }
+      },
+      "differenceFromPrintedPoleDegrees": {
+        "ra": -0.006000000000025096,
+        "dec": 0.0030000000000143245,
+        "lambda": -0.0038792730282334598,
+        "beta": 0.004673590304491881
+      },
+      "diagnosticCandidate": {
+        "a": 24274,
+        "e": 0.2828,
+        "w": 95.06,
+        "M": 95.32000000000005,
+        "i": 119.14,
+        "node": 104.09,
+        "P": 25.22385,
+        "Papsis": 0,
+        "Pnode": 0,
+        "pole": [
+          0,
+          90
+        ],
+        "frame": "equatorial",
+        "epochJd": 2457000
+      },
+      "independentRotationChecks": [
+        {
+          "offsetDays": -25.22385000018403,
+          "jd": 2456974.77615,
+          "differenceKm": 7.499885442698834e-12
+        },
+        {
+          "offsetDays": 0,
+          "jd": 2457000,
+          "differenceKm": 2.7102331706830845e-11
+        },
+        {
+          "offsetDays": 6.305962500162423,
+          "jd": 2457006.3059625,
+          "differenceKm": 9.094947017729282e-12
+        },
+        {
+          "offsetDays": 12.611924999859184,
+          "jd": 2457012.611925,
+          "differenceKm": 3.1295077013210636e-11
+        },
+        {
+          "offsetDays": 25.22385000018403,
+          "jd": 2457025.22385,
+          "differenceKm": 3.4175708111535524e-11
+        },
+        {
+          "offsetDays": 3652.5,
+          "jd": 2460652.5,
+          "differenceKm": 3.7901166147914744e-09
+        }
+      ],
+      "maxDifferenceKm": 3.7901166147914744e-09
+    }
+  ],
+  "limits": [
+    "Coordinate-pole agreement is rounding consistency,not measurement uncertainty/accuracy or independent astrometric validation. Pole coordinates are coordinate transforms,not angular/raster body-size calculations.",
+    "Technical candidate pole[0,90] supplies identity J2000equatorial reference basis in existing moonFromElements; it is NOT the physical Gonggong spin pole. No candidate adopted in catalogue.",
+    "Papsis/Pnode zero in the diagnostic disables model precession,not evidence of absent physical precession. No fit,light-time,observer topocentre or covariance propagated.",
+    "Only deterministic two-body conversion checked against independent rotations at six offsets per mirror. No current sky position,event timing,2017 residual reproduction or source JD timescale verified.",
+    "Both mirror solutions remain unresolved in2019 source; later resolution/naming/refinement audit open. Orbital prograde/retrograde is not measured satellite spin/locking/permanent facing direction.",
+    "Model moon radii18\u201350/near100km, historical publisher240\u2013400km diameters and primary600/615/thermal alternatives retained separately. System mass not moon mass or independent primary mass.",
+    "Originals/native/masters/maps/models/shapes/provenance/codecs unchanged; prepared independent views stillIMAGINED and uncalibrated."
+  ],
+  "next": "Choose explicitly illustrative navigation representation retaining both source solutions/unknown spin and model size; verify naming/native source terms and additive importer before dossier86. No external blocker claimed.",
+  "validation": {
+    "baseline": "368c996",
+    "unchangedQueueEntriesDeepEqual": 566,
+    "xiangliuResearchFieldOnly": true,
+    "queueEntries": 567,
+    "dossiersUnchanged": 85,
+    "trackedPublicByteEqual": 647,
+    "htmlBytes": 15503748,
+    "headroomBytes": 496252,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "8b6533da46adec213d438fe27ca6c3d1fae3ab62e37f7aae00c7301c0feddce5",
+    "applicationSha256": "35f0a99e18731e94799c486f451b80ff1644d3ec1846536b123eca78bba06700",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "orbitSourceCodeDiagnosticHashesChecked": 12,
+    "originalMasterPreviewHashesChecked": 6,
+    "defaultOriginalCopiesEqual": true,
+    "testsPassed": 681,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservationReproducer": "docs/research/xiangliu-frame-preservation-audit-2026-10-17.mjs",
+    "limits": "Node complete inverse only,no fresh browser/all-route/model-load claim. Same rebuilt readable/application hashes as previous368c996 verification; no compression change/savings claim."
+  }
+}

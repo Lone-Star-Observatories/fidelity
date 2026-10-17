@@ -24,7 +24,7 @@ for(const entry of entries.values()) {
  if(visual?.contextImages?.some(asset=>asset.tier==='measured'))entry.nativeImagery=visual.nativeSurface;
 }
 const xiangliuEntry=entries.get('sol-xiangliu');
-if(xiangliuEntry && !xiangliuEntry.visualId) xiangliuEntry.research='independent local/sky originals, masters/previews and hypothetical geometry prepared; individual dossier pending (xiangliu-master-preview-preparation-2026-10-17.json)';
+if(xiangliuEntry && !xiangliuEntry.visualId) xiangliuEntry.research='independent views prepared; full mirror-element/frame convention audit saved; individual dossier pending (xiangliu-orbit-frame-assessment-2026-10-17.json)';
 for(const name of ['phobos','deimos']) { const entry=entries.get(`sol-${name}`); if(!entry.visualId) { entry.research='native research preparation saved; individual dossier pending (phobos-deimos-native-preparation-2026-10-10.json)'; entry.nativeImagery='own-body NASA mosaic preserved; HiRISE native context downloaded with hashes, colour/coverage/registration audit pending'; if(name==='deimos') entry.nativeImagery+='; newer2025Hera AFC/TIRI source PNGs retained, terms and embedding audit in deimos-hera-native-assessment-2026-10-10.json'; } }
 const ganymedeEntry=entries.get('sol-ganymede');
 const arielEntry=entries.get('sol-ariel');
