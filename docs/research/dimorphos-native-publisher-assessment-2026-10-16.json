@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-16",
+  "body": "Dimorphos",
+  "status": "Research-only native publisher audit; no dossier84 or asset adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/dimorphos-final-caption-2026-10-16.html",
+      "url": "https://www.nasa.gov/solar-system/darts-final-images-prior-to-impact/",
+      "finalURL": "https://www.nasa.gov/solar-system/darts-final-images-prior-to-impact/",
+      "status": 200,
+      "bytes": 307494,
+      "sha256": "a551308785eedcc00328a3466fc662979e3107de02377637a964b9daa2e83d97"
+    },
+    {
+      "path": "data/research-sources/dimorphos-surface-caption-2026-10-16.html",
+      "url": "https://science.nasa.gov/asset/hubble/surface-image-of-dimorphos/",
+      "finalURL": "https://science.nasa.gov/asset/hubble/surface-image-of-dimorphos/",
+      "status": 200,
+      "bytes": 292067,
+      "sha256": "06fb0c13c455c5b61ae9ab70301c9b3dc72a63dd731d125dd56def05a8ee91ec"
+    },
+    {
+      "path": "data/research-sources/dimorphos-terms-2026-10-16.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "finalURL": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "bytes": 313137,
+      "sha256": "b5b5260bdb771825b98c0a2c111c065dd1d6282633dab85b49243f556911245b"
+    },
+    {
+      "path": "data/research-sources/dimorphos-surface-native.png",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/07/STScI-01H5Q6WNZ8GPX2B6JMHX4G3RMT.tif/jcr:content/renditions/985x985.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 974039,
+      "sha256": "81e28b59570bc6ea70b382e6cff3ad9159dff8fcda12f9237fe02201c843f7d5"
+    },
+    {
+      "path": "data/research-sources/dimorphos-surface-native.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/07/STScI-01H5Q6WNZ8GPX2B6JMHX4G3RMT.tif",
+      "status": 200,
+      "contentType": "image/tiff",
+      "bytes": 1325518,
+      "sha256": "b6206058a863821d96183df5dae2a334ec2aa6a189f0ae0ec3bea5b4d012d990"
+    }
+  ],
+  "credit": "NASA/Johns Hopkins APL (2022article); NASA, APL (2023surface resource)",
+  "terms": "Active NASA media guidance/thirdparty exceptions retained, not assertedCCBY/raw-data blanketlicence.",
+  "observationDate": "2022-09-26; resource identifies two seconds before impact; exactframeUTC/rawPDSproduct crosswalk open.",
+  "publication": "2022-09-27 approacharticle;2023-07-20 re-release surface resource;2025pageupdate not observation.",
+  "identity": "Dimorphos, satellite of Didymos, not Didymos itself; this DRACO resolvedlocalpatch is not a globalglobe/currentpostimpactgeography.",
+  "inspection": "Retained 985x985 RGB PNG visually inspected; PNG and single-frame TIFF have identical decoded RGB bytes. No raw detector pixel identity, calibrated colour, or registered orientation inferred.",
+  "findings": [
+    "2022publisherarticle describes x-axis mirror-flipped detector views and eclipticnorth down. No localflip/rotation or registeredframeadopted; the 2023rendition orientation crosswalk remainsopen.",
+    "Two-second frame is complete transmission of a localpatch, not a full-bodyportrait. Earlier eleven-second frame contains wholemoon; final one-second frame is partialtransmission. Do not conflate them.",
+    "Publisher31m patch/12km range are captionquantities, not newrastercalculation or independentlyreproducedcalibration.",
+    "DART DRACO is spacecraftinstrument; asset placed in Hubble collection does not make it a Hubble surface photograph."
+  ],
+  "limits": [
+    "No calibratedvisiblecolour/localchemicalfractions/globalcoverage/currentpostimpactshape or datedobserverregistration established. No angular/rastercalculation or analogue map.",
+    "ExactsourceframeUTC/PDSproduct/processing/pixelidentity, primaryshape/spin/orbit and recentnative/Hera audits remainopen. No exhaustive newest-imageryclaim.",
+    "OriginalPNG974039/TIFF1325518 exceed previous standalone32908headroom beforewrapper/text; no newembedding or codecchange, actualincrement requiresbuild.",
+    "All83delivered dossiers/637priorpublicfiles/originalsmastersnativeprovenance/recordedClipper remain unchanged. Current test/build results appear in verification; no fresh browser claim."
+  ],
+  "publisherPixelCrosswalk": {
+    "date": "2026-10-16",
+    "body": "Dimorphos",
+    "status": "Research preparation only; unchanged sources; no production mutation",
+    "sources": [
+      {
+        "path": "data/research-sources/dimorphos-surface-native.png",
+        "bytes": 974039,
+        "sha256": "81e28b59570bc6ea70b382e6cff3ad9159dff8fcda12f9237fe02201c843f7d5",
+        "format": "PNG",
+        "mode": "RGB",
+        "size": [
+          985,
+          985
+        ],
+        "decodedSha256": "aaa77921a322b1c69cad8fb255105e694dce16f609dd960bcae1f441682a8804",
+        "frames": 1
+      },
+      {
+        "path": "data/research-sources/dimorphos-surface-native.tif",
+        "bytes": 1325518,
+        "sha256": "b6206058a863821d96183df5dae2a334ec2aa6a189f0ae0ec3bea5b4d012d990",
+        "format": "TIFF",
+        "mode": "RGB",
+        "size": [
+          985,
+          985
+        ],
+        "decodedSha256": "aaa77921a322b1c69cad8fb255105e694dce16f609dd960bcae1f441682a8804",
+        "frames": 1
+      }
+    ],
+    "sameDecodedBytes": true,
+    "limits": [
+      "Equality compares retained publisher files only, not raw DRACO pixels, calibration, orientation, frame time, or geographic registration.",
+      "No conversion, resampling, flip, rotation, replacement, dossier, catalogue, model, codec, or public asset change."
+    ]
+  },
+  "verification": {
+    "sourceHashes": "All five retained source hashes verified; PNG/TIFF decoded RGB equality verified with Pillow.",
+    "tests": {
+      "pass": 678,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15966836,
+    "headroomBytes": 33164,
+    "dossiers": 83,
+    "queue": 566,
+    "trackedPublicFilesByteIdentical": 637,
+    "browser": "No fresh browser verification; no new offline route/image/model/calibration claim.",
+    "sizeAttribution": "Interbuild feed differences unaudited; no compression savings attribution.",
+    "preservation": "Only research documentation changed. All production catalogue/dossier/native/map/model/shape/codec inputs unchanged."
+  }
+}
