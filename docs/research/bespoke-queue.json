@@ -7222,6 +7222,18 @@
       "sky": "queued"
     },
     {
+      "id": "sol-xiangliu",
+      "name": "Xiangliu",
+      "parent": "gonggong",
+      "kind": "moon",
+      "scope": "Satellite of dwarf-planet candidate Gonggong; individual physical/reference audit open",
+      "source": "https://arxiv.org/abs/2108.08553v1",
+      "nativeImagery": "Unresolved Hubble Gonggong/Xiangliu pair retained in primary dossier; no independent globe or calibrated satellite geography. Native raw-product/point crosswalk remains open.",
+      "research": "queued",
+      "surface": "native imagery assessment, then bespoke if missing",
+      "sky": "queued"
+    },
+    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8522,7 +8534,7 @@
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     },
     "moon": {
-      "selected": 466,
+      "selected": 467,
       "initialDossiers": 40,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }

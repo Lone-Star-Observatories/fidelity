@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu, separate satellite of dwarf-planet candidate225088 Gonggong",
+  "status": "Inventory omission corrected; research-only abstract assessment, no86th dossier or selectable catalogue body",
+  "evidence": {
+    "title": "Tidal evolution of the eccentric moon around dwarf planet (225088) Gonggong",
+    "authors": [
+      "Sota Arakawa",
+      "Ryuki Hyodo",
+      "Daigo Shoji",
+      "Hidenori Genda"
+    ],
+    "record": "https://arxiv.org/abs/2108.08553v1",
+    "doi": "https://doi.org/10.3847/1538-3881/ac1f91",
+    "submitted": "2021-08-19",
+    "submittedUTC": "2021-08-19T08:34:08Z",
+    "publicationScope": "ArXiv record says accepted for AJ; final publisher publication date, full paper and figures not audited here. Submission date is not observation date.",
+    "rights": "Specific arXiv record links nonexclusive-distrib/1.0; not asserted CC BY. No paper figure reproduced."
+  },
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2108.08553v1",
+      "finalUrl": "https://arxiv.org/abs/2108.08553v1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/xiangliu-arakawa-record-2026-10-17.html",
+      "bytes": 44428,
+      "sha256": "075a54dbaf97d8a5ef5b04c2a4de48dbbdeb202b1293f2ce364cc44dd03af137",
+      "retrievedAt": "2026-10-17T20:34:51.554Z"
+    },
+    {
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "finalUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/xiangliu-arakawa-license-2026-10-17.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "retrievedAt": "2026-10-17T20:35:38.888Z"
+    }
+  ],
+  "preparations": [
+    {
+      "path": "docs/research/gonggong-native-preparation-2026-10-17.json",
+      "bytes": 8853,
+      "sha256": "1ac3dc58aca20ffd35bbbb7b86723db684a0cb03a7a37bb1dcff7ab4b406be61"
+    },
+    {
+      "path": "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+      "bytes": 7986,
+      "sha256": "ce868e5cb9112f174b334ddc51cf4d786ed0f34776c1f02b5b9e5b942f089d6d"
+    },
+    {
+      "path": "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+      "bytes": 7540,
+      "sha256": "4b9b791399563c6e411ebd91963214eba12667317516ae3480e23705a95cc2d5"
+    },
+    {
+      "path": "docs/research/gonggong-batch-2026-10-17.json",
+      "bytes": 18463,
+      "sha256": "637f1b549c67dd596a2c90153047639470cd465d7911559cf9761c40c0918c2e"
+    }
+  ],
+  "measured": [
+    "Queue generator inventory omitted Xiangliu even though the existing Gonggong dossier explicitly distinguishes the satellite. Primary record identifies Xiangliu around225088 Gonggong; no naming-approval date or exhaustive IAU roster inferred.",
+    "Existing unchanged Hubble collage in Gonggong dossier shows unresolved pair detections2009-11-06/2010-09-18; existing full credits/image-specific ESA/Hubble CC BY4 terms remain separate from this nonexclusive paper record. No new image fetched, assigned or embedded."
+  ],
+  "modelled": [
+    "Abstract assumes giant-impact formation, homogeneous bodies and zero orbital inclination; coupled thermal/orbital evolution uses Andrade viscoelastic rheology and higher-order eccentricity functions. These assumptions do not establish observed origin, local chemistry, interior, spin or physical registration.",
+    "Abstract reports simulation final-eccentricity constraint Xiangliu radius not larger than100km and semilatus-rectum preference close to100km, suggesting similar albedos. These are conditional model inferences, not resolved radius/axes/albedo measurements or a replacement catalogue value.",
+    "Earlier Kiss2019 conditional18–50km/high-albedo tidal preference and historical publisher240–400km diameter remain explicit alternatives. Different assumptions/methods not reconciled by this abstract-only assessment; no unique joint fit, current distance, uncertainty envelope or new geometry calculation."
+  ],
+  "open": [
+    "Full2021 paper/method/parameter-prior/thermal-rheology audit; final publisher/raw-source rights and later literature.",
+    "Independent body-specific size,mass,spin,pole/shape,calibrated photometry and resolved geography.",
+    "Official naming citation/date, Hubble raw product/filter/coadd/PSF and component pixel crosswalk.",
+    "Independent local/observer originals, source-preserving masters/previews, skyGeometry hypotheses and eventual selectable additive catalogue/dossier; no primary texture reused.",
+    "Broader dwarf/candidate and asteroid satellite inventory, including Weywot and Vanth, remains incomplete; no exhaustive roster claim."
+  ],
+  "productionChanges": "Queue generator adds one source-linked Xiangliu inventory task only. No surface/sky generation, numeric catalogue/registry/map/native/model/shape/codec change; all85 dossiers preserved.",
+  "validation": {
+    "testsPassed": 681,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "baseline": "33d974b",
+    "priorQueueEntriesDeepEqual": 566,
+    "queueEntries": 567,
+    "dossiersUnchanged": 85,
+    "trackedPublicByteEqual": 647,
+    "htmlBytes": 15503492,
+    "headroomBytes": 496508,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "c095386251d81d602ade09793668e6528651c6998fc84b2be223aa98f73c7cdc",
+    "applicationSha256": "35f0a99e18731e94799c486f451b80ff1644d3ec1846536b123eca78bba06700",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "reproducer": "docs/research/xiangliu-inventory-preservation-audit-2026-10-17.mjs",
+    "reproducerSha256": "92dfdd2449b29716c6a6795931e721e489856cff3292411bb3b267363ede096f",
+    "limits": "Node exact inverse and baseline byte comparison. No fresh browser, all-route, all-model load, ranking or calibration claim."
+  }
+}
