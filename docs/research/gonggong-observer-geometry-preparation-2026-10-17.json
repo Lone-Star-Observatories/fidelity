@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-17",
+  "body": "Hypothetical sky from Gonggong toward Xiangliu",
+  "status": "Research-only geometry; no sky image,85th dossier,embedding,catalogue or codec change",
+  "sources": [
+    {
+      "path": "src/astro/appearance.js",
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    {
+      "path": "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+      "bytes": 7986,
+      "sha256": "ce868e5cb9112f174b334ddc51cf4d786ed0f34776c1f02b5b9e5b942f089d6d"
+    },
+    {
+      "path": "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+      "bytes": 7540,
+      "sha256": "4b9b791399563c6e411ebd91963214eba12667317516ae3480e23705a95cc2d5"
+    },
+    {
+      "path": "docs/research/gonggong-native-preparation-2026-10-17.json",
+      "bytes": 8853,
+      "sha256": "1ac3dc58aca20ffd35bbbb7b86723db684a0cb03a7a37bb1dcff7ab4b406be61"
+    },
+    {
+      "path": "data/research-sources/gonggong-primary-paper-2026-10-17.pdf",
+      "bytes": 1824227,
+      "sha256": "fa0d09e14cbdabd9f076102101492321e161fd9d8d53cc0bdf98545ad89ddf5a"
+    }
+  ],
+  "inputs": {
+    "orbitEpochJD": 2457000,
+    "nominalSemimajorAxesKm": [
+      24021,
+      24274
+    ],
+    "nominalEccentricities": [
+      0.2908,
+      0.2828
+    ],
+    "heightAssumption": "Spherical radial height equal to half of nominal1238/1241km thermal diameters for corresponding aligned-sphere22.4h cases; neither unique shape nor a registered local surface normal.",
+    "satelliteRadiusAssumption": "18/50km endpoints from conditional2019 tidal-model preference; not measured Xiangliu size or a statistical uncertainty interval. Historical publisher240–400km diameter remains separate, unreconciled and preserved."
+  },
+  "geometry": {
+    "helper": "src/astro/appearance.js skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "temperatureHelperK": 40,
+    "alternatives": [
+      {
+        "label": "prograde orbit /22.4h aligned-sphere thermal case",
+        "semimajorAxisKm": 24021,
+        "heightKm": 619,
+        "conditionalSatelliteRadiusKm": 18,
+        "assumedNearSideDistanceKm": 23402,
+        "angularDiameterDeg": 0.08813982846992646,
+        "centreDiscWidthPixels": 1.2860443082909192
+      },
+      {
+        "label": "prograde orbit /22.4h aligned-sphere thermal case",
+        "semimajorAxisKm": 24021,
+        "heightKm": 619,
+        "conditionalSatelliteRadiusKm": 50,
+        "assumedNearSideDistanceKm": 23402,
+        "angularDiameterDeg": 0.2448330189942566,
+        "centreDiscWidthPixels": 3.5723523978591283
+      },
+      {
+        "label": "retrograde orbit /22.4h aligned-sphere thermal case",
+        "semimajorAxisKm": 24274,
+        "heightKm": 620.5,
+        "conditionalSatelliteRadiusKm": 18,
+        "assumedNearSideDistanceKm": 23653.5,
+        "angularDiameterDeg": 0.08720266605581481,
+        "centreDiscWidthPixels": 1.2723702079740016
+      },
+      {
+        "label": "retrograde orbit /22.4h aligned-sphere thermal case",
+        "semimajorAxisKm": 24274,
+        "heightKm": 620.5,
+        "conditionalSatelliteRadiusKm": 50,
+        "assumedNearSideDistanceKm": 23653.5,
+        "angularDiameterDeg": 0.2422297849492214,
+        "centreDiscWidthPixels": 3.5343685618837126
+      }
+    ],
+    "limits": "Angular outputs only; discard blackbody colour and irradiance. 40K is only a positive helper input, not a thermal determination. Nominal semimajor-axis separation is a display scale, not a circular-orbit assertion or dated eccentric-orbit distance. Near-side radial subtraction is a hypothetical camera, not measured site normal or visibility. No error propagation, posterior interval, simultaneous endpoint solution or calibrated raster fit."
+  },
+  "scienceLimits": [
+    "Prograde/retrograde orbital alternatives unresolved; orbit does not determine Gonggong or Xiangliu spin, pole, permanent facing direction or dated sky.",
+    "Conditional small bright moon depends on albedo/Q/formation-age assumptions; no measured moon mass, shape, visible colour, local chemistry or texture.",
+    "Primary22.4/44.8h and other thermal-size/density alternatives stay explicit; system mass is not independently measured primary-only mass.",
+    "No real-body texture may be reassigned to Xiangliu or Gonggong. Future small moon disk must be an independent explicitly imagined appearance; subpixel/low-pixel width does not establish resolved geography.",
+    "Phase, attitude, brightness, exposure, spectral transfer and scene registration remain artistic. Black sky/ring omission is not atmosphere/ring absence evidence.",
+    "No Sun angular scale, photometry, new terrain map, figure or native scientific image adopted here."
+  ],
+  "open": [
+    "Dated ephemeris and observer visibility/horizon/phase",
+    "Independent moon size,spin,pole/shape and surface-normal registration",
+    "Final/later thermal/dynamical refinement and calibrated photometry",
+    "Native Hubble raw-product/coadd/PSF association"
+  ],
+  "preservation": "All84 dossiers and642 tracked public files unchanged; originals/masters/native/maps/models/shapes/provenance/recorded Clipper and codecs preserved. Queue566; backlog ACTIVE."
+}
