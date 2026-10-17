@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-17",
+  "body": "Dimorphos, satellite of Didymos; distinct from its primary",
+  "status": "Research-only independent IMAGINED local illustration; no dossier84 or embedding",
+  "generator": "Built-in imagegen; scientific-educational; no input/reference image",
+  "prompt": "Use case: scientific-educational. Create one independent research-guided hypothetical local illustration for Dimorphos, the small satellite of asteroid Didymos. Wide landscape composition about 1672 by 941. Low camera overlooking a compact uneven field of independently invented subdued grey angular boulders, coarse grains, shallow gaps and low irregular relief, black sky above, restrained oblique light and readable shadows. This is a generic invented local patch, not DART's impact site, not a reconstruction of any DRACO photograph, not measured post-impact geography. Do not use any reference image or copy/recolour any asteroid, Moon, Mars, Pluto or other body's map. Material fractions, mineral chemistry, grain/block sizes, grey colour, illumination, exposure, camera position and surface normal are invented. Do not depict ejecta plume, impact crater identification, a surviving spacecraft, people, equipment, liquid, ocean, biology, foreground atmosphere or survivable landing. No Didymos, Sun, stars, rings or other astronomical disk in this local view; absence from frame is artistic and is not physical absence. Do not imply a measured spin state, synchronous rotation or permanently Didymos-facing site; post-DART orbital changes do not establish those. Use a large legible bottom annotation band containing exactly two lines: 'IMAGINED — LOCAL VIEW FROM DIMORPHOS' and 'Terrain, materials, colour and lighting are hypothetical.' No other text.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-a6f1495a-4832-486a-9bab-d15e909eee25.png",
+  "researchCopy": "data/research-sources/dimorphos-generated-surfaceImage-original.png",
+  "original": {
+    "bytes": 2690593,
+    "sha256": "ec1b12ba38f09f173523f5efe416e3aaaa3f63fb5ae9404888bbaa5760832f6e",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Complete generated PNG visually inspected: invented grey angular blocks, coarse grains and low relief; both exact footer lines readable; no astronomical disk or impact identification.",
+  "references": [
+    {
+      "path": "docs/research/dimorphos-native-publisher-assessment-2026-10-16.json",
+      "sha256": "77abc3b0e7de62ef081e8645791f74f833c5b46fc24badfab5b6b41a37def900"
+    },
+    {
+      "path": "docs/research/dimorphos-orbit-spin-publication-assessment-2026-10-16.json",
+      "sha256": "adc69b358b918baa2773e01ed34a7a62a01f83013f51090c92864e1ce31bcff4"
+    },
+    {
+      "path": "docs/research/dimorphos-pds-coordinate-pdf-assessment-2026-10-16.json",
+      "sha256": "35b2edbead3342105afcbec9050815a7a4c3f4413770bd1a26c23b255a3d4bce"
+    },
+    {
+      "path": "docs/research/dimorphos-browse-association-assessment-2026-10-17.json",
+      "sha256": "ba2bb3b7f3717608e3f09b06faa9c9216bc8ae19857cc3e36e5c0b112c6be391"
+    }
+  ],
+  "limits": [
+    "Terrain, block/grain sizes, material fractions, chemistry, grey colour, light, exposure, camera position and surface normal are invented. No analogy skin or observed-body map was supplied.",
+    "Not a DART impact-site reconstruction, dated DRACO geography, measured post-impact shape or calibrated visible RGB. Native publisher/archive content association does not register this illustration.",
+    "Post-DART orbital period is not a measured spin state, synchronous rotation, permanent Didymos-facing site or every-site visibility. Pre-impact coordinate/ellipsoid alternatives remain separate.",
+    "Black sky and off-frame Sun/primary/stars/rings are artistic choices, not measured absence. No foreground atmosphere, plume, exposed ocean, biology or survivable landing claim.",
+    "No angular/raster size calculation is needed because no astronomical disk appears.",
+    "Original/default PNG preserved; masters, compact previews, observer view and additive dossier remain pending. No existing asset, catalogue, map, model, shape or production codec changed."
+  ],
+  "preservationAudit": {
+    "trackedPublicFiles": 637,
+    "changed": []
+  },
+  "validation": {
+    "tests": "678 pass,1 skip",
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullHtmlBytes": 15968628,
+    "headroomBytes": 31372,
+    "preservation": "All637 tracked public files byte-identical; registry83/queue566 unchanged. Original/default PNG bytes equal.",
+    "browser": "No fresh browser claim; research-only preparation not embedded.",
+    "attribution": "Interbuild feed differences unaudited; no compression savings attribution."
+  }
+}
