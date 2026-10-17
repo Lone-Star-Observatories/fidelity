@@ -1,0 +1,44 @@
+{
+  "htmlBytes": 15180420,
+  "headroomBytes": 819580,
+  "applicationEncoding": "gzip-raw-utf16le-enumerative-v1",
+  "applicationCompressedBytes": 842079,
+  "applicationSha256": "784e7f3e562dfecd09c1850c0301417886968c2fb88944018d4259c8573035a3",
+  "snapshotSha256": "a5dc7e1b6e436473707f65aa18528cf09c997c79f8bc014b6413eb494844e35b",
+  "exactCompleteReadableJson": true,
+  "samePayloadOldTransportDocumentBytes": 1663324,
+  "samePayloadNewTransportDocumentBytes": 845568,
+  "samePayloadSavingBeforeWrapper": 817756,
+  "trackedPublicByteEqual": 642,
+  "limitations": [
+    "Browser packed-text check uses length and FNV32 fingerprint, not a cryptographic byte-equality proof. Node verifies exact compressed inverse and full application/source round-trip.",
+    "No fresh all-route, all-image, all-model or unsupported-browser test; other engines/file delivery remain untested for this application envelope.",
+    "Same compressed payload comparison excludes wrapper differences. Live-feed builds must not be treated as compression-only comparisons."
+  ],
+  "date": "2026-10-17",
+  "status": "Adopted existing lossless UTF16 transport for application payload",
+  "validation": {
+    "testsPassed": 679,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "browser": {
+      "engine": "Codex in-app browser",
+      "delivery": "loopback HTTP explicit UTF-16LE",
+      "title": "USS Fidelity",
+      "charset": "UTF-16LE",
+      "applicationCodeUnits": 422784,
+      "applicationFnv32": "5c4fd8a8",
+      "originalTextFingerprintMatches": true,
+      "canvases": 8,
+      "uiStartup": true
+    }
+  },
+  "preserved": [
+    "84 dossier registry entries unchanged",
+    "642 tracked public files byte-identical",
+    "Full readable snapshot SHA unchanged from Dimorphos delivery",
+    "All native science/map/model/shape bytes and all legacy decoders",
+    "Independent Brotli instances, CSS/startup transport, Blob import/revoke and notices"
+  ]
+}

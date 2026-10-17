@@ -235,7 +235,8 @@ async function assemble(snapshotJson) {
   if (gunzipSync(cssCompressed).toString('utf8') !== css) throw new Error('Stylesheet compression round-trip failed.');
   const cssPacked = encodeDenseSnapshotBytes(cssCompressed, 2);
   if (!Buffer.from(unpackSnapshotBytes(cssPacked)).equals(cssCompressed)) throw new Error('Stylesheet transport round-trip failed.');
-  const appPacked = encodeUtf8SnapshotBytes(appCompressed);
+  const appPacked = encodeUtf16SnapshotBytes(appCompressed);
+  console.log(`  application transport: ${encodeUtf8SnapshotBytes(appCompressed).data.length * 2} UTF-16 document bytes before, ${appPacked.data.length * 2} after; same compressed payload ${appCompressed.length} bytes`);
   if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
   const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
   const decoderBundle = await bundleBootstrap({ stdin: { contents: "import { decompress } from 'brotli/decompress'; globalThis.__fidelityStandaloneBrotli = decompress;", resolveDir: root }, bundle: true, write: false, platform: 'browser', format: 'iife', target: 'es2022' });
