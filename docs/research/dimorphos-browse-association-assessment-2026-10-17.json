@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-17",
+  "issue": "#3",
+  "scope": "Research-only publisher/archive content association and archive FITS/browse stored-value audit",
+  "sources": [
+    {
+      "path": "data/research-sources/dimorphos-surface-native.png",
+      "bytes": 974039,
+      "sha256": "81e28b59570bc6ea70b382e6cff3ad9159dff8fcda12f9237fe02201c843f7d5",
+      "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/07/STScI-01H5Q6WNZ8GPX2B6JMHX4G3RMT.tif/jcr:content/renditions/985x985.png"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.png",
+      "bytes": 187978,
+      "sha256": "87e60ba8b3dffdc863fe6716a10309d71b721ea92bd20f2a1f409b89be4ea682",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.png"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.fits",
+      "bytes": 4219200,
+      "sha256": "d0f4613cb66cb803ab8cef277b7cc480a498a7c57f1c17aaf6f75fccf71647b7",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.fits"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.xml",
+      "bytes": 18597,
+      "sha256": "97eeacbc72c3bfa4588121a740e3304e5e9327edfce94cac139e4c4cfcf27068",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.xml"
+    }
+  ],
+  "credits": {
+    "publisher": "NASA/Johns Hopkins APL (2022 article); NASA, APL (2023 image resource), as separately published",
+    "archive": "NASA PDS Small Bodies Node; DART SOC, Johns Hopkins Applied Physics Laboratory",
+    "collectionAuthorsAsPublished": "Ernst, C.; Daly, T.; Barnouin, O.; Espiritu, R.; Waller, D.",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "rights": "NASA media terms and third-party caveats retained; no CC BY grant inferred."
+  },
+  "dates": {
+    "observation": "2022-09-26",
+    "articlePublication": "2022-09-27",
+    "resourcePublication": "2023-07-20",
+    "limits": "Later resource updates and archive processing/version dates are not acquisition dates; precise publisher production lineage remains open."
+  },
+  "publisherComparison": {
+    "date": "2026-10-17",
+    "status": "Research-only robustness follow-up; historical first comparison preserved",
+    "sources": [
+      {
+        "path": "data/research-sources/dimorphos-surface-native.png",
+        "bytes": 974039,
+        "sha256": "81e28b59570bc6ea70b382e6cff3ad9159dff8fcda12f9237fe02201c843f7d5",
+        "url": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2023/07/STScI-01H5Q6WNZ8GPX2B6JMHX4G3RMT.tif/jcr:content/renditions/985x985.png"
+      },
+      {
+        "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.png",
+        "bytes": 187978,
+        "sha256": "87e60ba8b3dffdc863fe6716a10309d71b721ea92bd20f2a1f409b89be4ea682"
+      }
+    ],
+    "historicalPreparation": {
+      "path": "data/research-sources/dimorphos-publisher-browse-content-comparison-preparation-2026-10-17.json",
+      "sha256": "216f904662e5e09224d30368d32e5bb4132afada215593584a782f8386a3c3ee"
+    },
+    "runtime": {
+      "pillow": "12.3.0",
+      "numpy": "2.3.5"
+    },
+    "method": "Same fixed archive crop, nine diagnostic grid/resampler combinations, all eight right-angle/reflection candidates. In-memory only; no image files written. Grid counts are image-index diagnostics, not angular or physical terrain-scale computations.",
+    "results": [
+      {
+        "diagnosticGrid": 128,
+        "resampler": "nearest",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9364004477480715
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07067203172810174
+        }
+      },
+      {
+        "diagnosticGrid": 128,
+        "resampler": "bilinear",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.993921525186769
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.10350089327339387
+        }
+      },
+      {
+        "diagnosticGrid": 128,
+        "resampler": "bicubic",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9939002266581536
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.09065127912764642
+        }
+      },
+      {
+        "diagnosticGrid": 256,
+        "resampler": "nearest",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.93773218211091
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07335339517008742
+        }
+      },
+      {
+        "diagnosticGrid": 256,
+        "resampler": "bilinear",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9927153769533961
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.086029052328767
+        }
+      },
+      {
+        "diagnosticGrid": 256,
+        "resampler": "bicubic",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9928342225918262
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07954776694995577
+        }
+      },
+      {
+        "diagnosticGrid": 512,
+        "resampler": "nearest",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9874703821761248
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07468040411527488
+        }
+      },
+      {
+        "diagnosticGrid": 512,
+        "resampler": "bilinear",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9918010850640048
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07635676824455334
+        }
+      },
+      {
+        "diagnosticGrid": 512,
+        "resampler": "bicubic",
+        "best": {
+          "quarterTurnsCounterclockwise": 2,
+          "thenHorizontalReflection": true,
+          "r": 0.9915082117895981
+        },
+        "runnerUp": {
+          "quarterTurnsCounterclockwise": 1,
+          "thenHorizontalReflection": false,
+          "r": 0.07490204820518599
+        }
+      }
+    ],
+    "visualInspection": "Both unchanged complete images inspected. Distinctive central angular boulder and surrounding blocks/shadow pattern correspond with a vertical reflection of the archive browse patch. Neither image depicts the complete body limb.",
+    "interpretation": "All nine best candidates are quarter-turn2 then horizontal reflection, algebraically equivalent to a vertical reflection. Strong content association does not establish exact NASA production history, resampling, photometric stretch or original acquisition-file lineage.",
+    "limits": [
+      "Similarity is a content-association diagnostic, not exact source lineage, pixel equality, calibrated I/F or photometry.",
+      "Crop support is a stored image-index diagnostic, not a physical terrain footprint, angular/raster scale, dated scene registration, body frame or complete limb.",
+      "No image output, native alteration, embedding, catalogue/model/shape/codec change or new dossier. Original publisher and archive files retained unchanged.",
+      "No independently reproduced body-frame/ecliptic orientation or terrain registration. No claim that correlation calibrates image colour or physical pixel scale."
+    ]
+  },
+  "archiveStoredValueComparison": {
+    "date": "2026-10-17",
+    "status": "Research-only calibrated FITS to archive browse stored-value diagnostic; no production changes",
+    "sources": [
+      {
+        "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.fits",
+        "bytes": 4219200,
+        "sha256": "d0f4613cb66cb803ab8cef277b7cc480a498a7c57f1c17aaf6f75fccf71647b7",
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.fits"
+      },
+      {
+        "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.png",
+        "bytes": 187978,
+        "sha256": "87e60ba8b3dffdc863fe6716a10309d71b721ea92bd20f2a1f409b89be4ea682",
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.png"
+      },
+      {
+        "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.xml",
+        "bytes": 18597,
+        "sha256": "97eeacbc72c3bfa4588121a740e3304e5e9327edfce94cac139e4c4cfcf27068",
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.xml"
+      }
+    ],
+    "method": "Read original1024square big-endian float32 I/F array at byte23040. Reverse stored row order for XML bottom-to-top display convention and compare unchanged PNG pixels. Select finite nonnegative samples below1E8 and excluding PXOUTWIN. No physical/angular/raster-scale calculation.",
+    "selectedSampleCount": 262144,
+    "pearsonLinearIntensityCorrelation": 0.9999794285446382,
+    "linearFitDiagnostic": {
+      "slope": 2009.5757851334213,
+      "intercept": -0.4963143844479041,
+      "rmseStored8bitValues": 0.288527637007745
+    },
+    "strictDecreasesInBrowseValuesAfterSortingStoredIoverF": 0,
+    "distinctBrowseValuesInSelection": 222,
+    "xmlAssociation": "XML explicitly names both FITS and browse PNG and describes browse product PNG created from DRACO IoverF calibrated fits file. Product local_identifier retains _01 while file names retain _02.",
+    "limits": [
+      "A scalar relationship or monotonicity is a stored-value diagnostic, not an independently reproduced archive browse algorithm, absolute photometric accuracy or calibrated visible RGB.",
+      "Selection predicate does not independently validate samples or detector quality; excluded flags are not terrain.",
+      "NASA985square content comparison is a separate diagnostic; no exact production lineage, body-frame registration, geography or pixel equality follows.",
+      "No image output, native alteration, new embedding/dossier, model/map/shape/catalogue/codec change or pipeline execution."
+    ]
+  },
+  "reproducer": "docs/research/dimorphos-browse-association-audit-2026-10-17.py",
+  "interpretation": "Strong content association supports the same observed patch. Vertical reflection describes only the tested display-array relation; it is not a body-frame/ecliptic registration or a recommended change to preserved publisher pixels.",
+  "limits": [
+    "Similarity is a content-association diagnostic, not exact source lineage, pixel equality, calibrated I/F or photometry.",
+    "Crop support is a stored image-index diagnostic, not a physical terrain footprint, angular/raster scale, dated scene registration, body frame or complete limb.",
+    "No image output, native alteration, embedding, catalogue/model/shape/codec change or new dossier. Original publisher and archive files retained unchanged.",
+    "No independently reproduced body-frame/ecliptic orientation or terrain registration. No claim that correlation calibrates image colour or physical pixel scale.",
+    "A scalar relationship or monotonicity is a stored-value diagnostic, not an independently reproduced archive browse algorithm, absolute photometric accuracy or calibrated visible RGB.",
+    "Selection predicate does not independently validate samples or detector quality; excluded flags are not terrain.",
+    "NASA985square content comparison is a separate diagnostic; no exact production lineage, body-frame registration, geography or pixel equality follows.",
+    "No image output, native alteration, new embedding/dossier, model/map/shape/catalogue/codec change or pipeline execution."
+  ],
+  "verification": {
+    "passedTests": 678,
+    "skippedTests": 1,
+    "failedTests": 0,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "htmlBytes": 15967348,
+    "headroomBytes": 32652,
+    "hardGateBytes": 16000000,
+    "protectedTrackedPublicFilesByteIdentical": 637,
+    "deliveredDossiersUnchanged": 83,
+    "queueTasks": 566,
+    "freshBrowserVerification": false,
+    "limits": "No fresh browser or interbuild savings claim. Research-only; no production asset/catalogue/codec changes."
+  },
+  "reproducerSha256": "307e1946f44a53a162481361549c57c4ba8d79bc3b7c9d8e35f93ac47bed65cd",
+  "diagnosticOutput": {
+    "path": "/tmp/fidelity-browse-audit.json",
+    "sha256": "1ab9ab07fdbc7ba99ec2dd868d4c60015206c85290265d03b955adf04f33bfad"
+  }
+}
