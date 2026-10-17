@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "body": "225088 Gonggong and its separate satellite Xiangliu",
+  "status": "research-only; no 85th dossier or production input change",
+  "paper": {
+    "title": "The mass and density of the dwarf planet (225088) 2007 OR10",
+    "authors": [
+      "Csaba Kiss",
+      "Gabor Marton",
+      "Alex H. Parker",
+      "Will Grundy",
+      "Aniko Farkas-Takacs",
+      "John Stansberry",
+      "Andras Pal",
+      "Thomas Muller",
+      "Keith S. Noll",
+      "Megan E. Schwamb",
+      "Amy C. Barr",
+      "Leslie A. Young",
+      "Jozsef Vinko"
+    ],
+    "arxiv": "1903.05439v1",
+    "submitted": "2019-03-13",
+    "pdfPreprintFooter": "2019-03-14",
+    "doi": "10.1016/j.icarus.2019.03.013",
+    "rights": "Specific arXiv record uses nonexclusive distribution, not CC BY. ESA/Hubble image CC BY 4.0 does not license this paper or its figures. No figure embedded. Final publisher version/publication chronology not audited."
+  },
+  "sources": [
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/pdf/1903.05439v1",
+      "finalUrl": "https://arxiv.org/pdf/1903.05439v1",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/gonggong-primary-paper-2026-10-17.pdf",
+      "bytes": 1824227,
+      "sha256": "fa0d09e14cbdabd9f076102101492321e161fd9d8d53cc0bdf98545ad89ddf5a",
+      "retrievedAt": "2026-10-17T18:49:28.905Z"
+    },
+    {
+      "role": "record",
+      "url": "https://arxiv.org/abs/1903.05439v1",
+      "finalUrl": "https://arxiv.org/abs/1903.05439v1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-primary-record-2026-10-17.html",
+      "bytes": 45300,
+      "sha256": "24344ea25f70843333616ce6009bc17bfe27aa0a7406cec46988c593048fcc42",
+      "retrievedAt": "2026-10-17T18:49:28.757Z"
+    },
+    {
+      "role": "licence",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "finalUrl": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-primary-licence-2026-10-17.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "retrievedAt": "2026-10-17T18:49:28.727Z"
+    }
+  ],
+  "inspection": {
+    "text": "Complete 12-page extraction retained; targeted sections 7–8 and Figure 3 caption.",
+    "visual": "Complete rendered pages 8, 9 and 10 inspected, including Figure 3 axes, caption and conclusions. Page 7 beginning of section 7 inspected in preceding orbit/thermal audit.",
+    "reproduction": "No Monte Carlo, tidal integration, TinyTim reduction or physical-axis inference reproduced."
+  },
+  "monteCarloAssumptions": {
+    "constrainedInputs": "Authors sample orbit parameters and system mass as normal distributions using fitted values/uncertainties. Primary H_V=2.34±0.01 and satellite H_V=6.93±0.15 also sampled normally; primary thermal section used ±0.05 separately.",
+    "unconstrainedInputs": {
+      "satelliteGeometricAlbedoRange": [
+        0.01,
+        1.0
+      ],
+      "primaryEffectiveDiameterKmRange": [
+        1126,
+        1610
+      ],
+      "tidalDissipationQRange": [
+        10,
+        500
+      ],
+      "assumedFormationAgeGyr": 4.5
+    },
+    "limits": "Satellite radius is derived from assumed albedo and absolute magnitude. Q and formation age are priors, not direct measurements or proof of origin."
+  },
+  "conditionalResults": {
+    "circularization": "Requiring circularization time longer than assumed 4.5 Gyr gives q<4e-4, satellite effective radius 18–50 km, geometric albedo 1.0–0.2 and Q>100 in the authors’ sampled configurations. Not a direct radius/albedo/mass measurement; do not replace historical publisher 240–400 km diameter silently.",
+    "despinning": "Authors obtain satellite despinning time below 1e7 yr for all sampled configurations and infer likely locking. Primary time falls below 4.5 Gyr only for q>2e-2, which conflicts with retaining eccentricity under their circularization assumptions; permitted configurations give primary times above 1e12 yr. Model-inferred locking is not measured satellite rotation/pole or registered permanent-face geography.",
+    "angularMomentum": "Combined spin/orbit normalized angular momentum tends to ~0.4 at small q and remains below 0.8; compatibility with a single-collision criterion is not an observed collision or unique history.",
+    "kozai": "Quadrupole solar-perturbation models permit prograde e0–.65/i39–54 degrees or retrograde e0–.63/i127–141, nominal ~2e6 yr timescale. Conditional initially circular evolution at ~54 degrees and nonzero present eccentricity gives q<=5e-3. These are distinct model constraints, not a measured uncertainty interval or a present ephemeris.",
+    "oblateness": "Homogeneous-density Maclaurin assumptions give flattening .0026–.0118, J2 .0001–.04 and a/ac .35–.49, suggesting present oblateness-dominated dynamics. Reported precession times are 5.4e4–4.2e5 yr prograde and 1.8e4–1.4e5 yr retrograde. Not measured axes, J2, internal composition, spin pole or image registration. Authors flag the remaining noncircular-orbit problem."
+  },
+  "psfAlternative": {
+    "hypothesis": "A nearby tidally locked double primary was considered as an alternative explanation of the light curve.",
+    "publisherNumbers": "Authors quote hypothetical separation 4250 km / 67 mas, TinyTim relative brightness trials 1:2–1:20, and no notable 2017 PSF distortion down to their claimed 1:10 detectability. These are quoted author values, not new angular/raster computations.",
+    "limits": "No new companion discovered; non-detection is limited to tested PSFs, epochs, separations and brightness, not exhaustive absence. No raw image/PSF pipeline reprocessing or transfer to the ESA collage."
+  },
+  "conclusions": {
+    "unresolvedHistory": "Authors explicitly do not identify a unique mechanism producing the orbit. Distant capture followed by Kozai pumping/tidal shrinkage, and spin-orbit resonance alternatives, remain scenarios rather than observed history.",
+    "spinAndSize": "Small bright satellite preference under these assumptions does not independently settle primary 22.4/44.8h alternatives, unique thermal size/density, or equator-orbit alignment. Conclusions use ~45h language; preserve alongside preferred 22.4h thermal cases.",
+    "noAnalogs": "Comparisons to Pluto/Charon/Quaoar/Haumea and their moons are dynamical context, never permission to reuse their surface maps."
+  },
+  "rights": "Specific arXiv nonexclusive distribution is not CC BY. No paper figure embedded or redistributed in production. Full 13-author credit and source/terms hashes retained; ESA/Hubble native-image rights remain separate.",
+  "open": [
+    "Final publisher version and later dynamical/spectroscopic/thermal studies",
+    "Raw HST products/UTC/coadds/PSFs and exact native collage association",
+    "Measured satellite spin/pole/size/albedo/mass and primary-only mass",
+    "Independent physical shape/J2, present ephemeris and surface/observer registration"
+  ],
+  "preservation": "All 84 dossiers, 642 tracked public files, original PNGs, masters, native science, maps, models, shapes, provenance, recorded Clipper and codecs unchanged. No generated imagery, catalogue update, native embedding or new angular/raster calculation. Queue 566; backlog ACTIVE."
+}
