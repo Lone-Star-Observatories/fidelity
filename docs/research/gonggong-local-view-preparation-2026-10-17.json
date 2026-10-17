@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-17",
+  "body": "225088 Gonggong (2007 OR10), distinct from Xiangliu",
+  "status": "Research-only independent imagined local view; no 85th dossier, master/preview, native embedding, catalogue or codec change",
+  "generator": "Built-in image generation, no input/reference image",
+  "prompt": "Use case: photorealistic-imagined-science\nAsset type: Fidelity research preparation, independent local terrain illustration, landscape 16:9.\nPrimary request: A hypothetical robotic observer's low-level view across the uncharted surface of 225088 Gonggong (2007 OR10), separate from its moon Xiangliu. This is an explicitly imagined illustration, not a telescope photograph or a registered landing site.\nScene: A gently rolling cold plain with low irregular relief in the middle distance, scattered small angular blocks and granular patches in the foreground, sparse shallow depressions. Invent all terrain independently from scratch; do not borrow a Moon, Mars, Pluto, Charon, or other observed body's map, photograph, or distinctive formations.\nResearch context: Unresolved JWST spectroscopy supports water ice and ethane spectral bands, possible complexed carbon dioxide and organic material; it does not establish local composition fractions, terrain, grain sizes, layering or calibrated visible colours. Show a restrained muted brown-red and gray palette as an artistic hypothesis only; avoid bright pure-colour chemical deposits or molecule-shaped terrain. No mapped chemistry or visible layers.\nComposition: Wide landscape, horizon above center, detailed but restrained foreground. Black sky, no astronomical disks, no Sun, no moon, no stars, no rings, no spacecraft, no humans. Sky/absence choices are scene assumptions, not evidence of an absent atmosphere. No angular-size claim is needed because no celestial disk is depicted.\nLighting: Modest low-angle directional lighting with readable shadows and deliberately artistic exposure; not a photometric model or dated illumination solution. No atmospheric haze, clouds, plume, liquid, exposed ocean, vegetation or biology; no implication of a survivable landing.\nText (verbatim): Put a clean dark footer band at the bottom with two clear, comfortably readable centered lines:\n\"IMAGINED LOCAL VIEW — GONGGONG\"\n\"Terrain, materials, colour and lighting are hypothetical\"\nDo not add other labels or logos. Preserve readable letters with generous margins. Full-colour opaque PNG.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2034c848-06f4-4d3e-a86b-afbfaf8405f3.png",
+  "researchCopy": "data/research-sources/gonggong-generated-surfaceImage-original.png",
+  "original": {
+    "bytes": 2776509,
+    "sha256": "bed4992e8453ddfa2c1df23189dc50f42973bba504cbc2fe22c108021fe10f20",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Full generated landscape inspected. Independent muted brown-red/gray grains, blocks and low relief under black sky. Both footer lines readable. No celestial disks, stars, foreground atmosphere, spacecraft or people.",
+  "limits": [
+    "Terrain, grain/block scale, relief, colour, materials, chemistry fractions, texture, phase, lighting and exposure are invented. Spectral water/ethane/possible complexed CO2 do not establish a local material map.",
+    "No analog surface map used or supplied. Resemblance to generic rocky/icy terrain is not scientific geography.",
+    "Black sky and omitted atmosphere are artistic assumptions, not measured atmospheric absence; no dated site or normal, spin locking, permanent Xiangliu-facing site or registration claim.",
+    "No active plume, exposed ocean, liquid, biology or survivable landing implication.",
+    "No celestial disk appears; no angular/raster size computation performed.",
+    "Native Hubble collage and JWST unresolved spectral evidence retain separate full credit/terms/source hashes. Original PNG and default generator copy preserved."
+  ],
+  "references": [
+    "docs/research/gonggong-native-preparation-2026-10-17.json",
+    "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+    "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+    "docs/research/gonggong-jwst-spectral-assessment-2026-10-17.json"
+  ],
+  "preservation": "All84 dossiers/642 tracked public files, earlier originals/masters/native science/maps/models/shapes/provenance/recorded Clipper/codecs retained. Queue566; backlog ACTIVE."
+}
