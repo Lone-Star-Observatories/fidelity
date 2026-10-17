@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-16",
+  "body": "Dimorphos",
+  "status": "Research-only publication and model-basis audit; no dossier84, catalogue or asset adoption.",
+  "sources": [
+    {
+      "url": "https://experts.nau.edu/en/publications/orbital-and-physical-characterization-of-asteroid-dimorphos-follo/",
+      "finalUrl": "https://experts.nau.edu/en/publications/orbital-and-physical-characterization-of-asteroid-dimorphos-follo/",
+      "httpStatus": 200,
+      "path": "data/research-sources/dimorphos-naidu-nau-2026-10-16.html",
+      "bytes": 57829,
+      "sha256": "7aad223a1b76e415816648cf8c05ef85a4be9c57657b2bdf0b904645b8d3a77b",
+      "retrievedUtc": "2026-10-17T02:08:02.955872+00:00"
+    },
+    {
+      "url": "https://www.nasa.gov/missions/dart/nasa-study-asteroids-orbit-shape-changed-after-dart-impact/",
+      "finalURL": "https://www.nasa.gov/missions/dart/nasa-study-asteroids-orbit-shape-changed-after-dart-impact/",
+      "status": 200,
+      "path": "data/research-sources/dimorphos-orbit-shape-nasa-2026-10-16.html",
+      "bytes": 306819,
+      "sha256": "f91fa4a2d83ef23ea1b4e20e5e27591d31c11b88fc90875852e901802647c4fc"
+    },
+    {
+      "url": "https://iopscience.iop.org/article/10.3847/PSJ/ad26e7",
+      "finalURL": "https://validate.perfdrive.com/fb803c746e9148689b3984a31fccd902/?ssa=7a87712c-f611-45eb-a66c-c23e1e8a6fe8&ssb=47814212072&ssc=https%3A%2F%2Fiopscience.iop.org%2Farticle%2F10.3847%2FPSJ%2Fad26e7&ssi=cfc95b36-cnvj-48a0-ab6e-7b32beb71d1d&ssk=botmanager_support@radware.com&ssm=79621111490527043100452030536304&ssn=a27c77aecf4b6194217a9b722dbad71fb9efde886adb-4970-49f3-bdf518&sso=e4f5e3fa-a7812176d78714674c9c23a030a36f44e65afdd6662711f0&ssp=22277377671792242483179226475657268&ssq=49806580020893100831000208208716595321785&ssr=MTA3LjIwMC4xMTYuMTgx&sst=Fidelity%20provenance%20research&ssu=&ssv=&ssw=&ssx=eyJyZCI6ImlvcC5vcmciLCJfX3V6bWYiOiI3ZjkwMDBkZTg4NmFkYi00OTcwLTQ5ZjMtYjNmYS1hNzgxMjE3NmQ3ODcxLTE3OTIyMDAyMDg5MjUwLTAwNTM0ZDNkMTNiMjM3MDhiYTMxMCIsInV6bXgiOiI3ZmMwMDA5MmQ0YzRjYi1jMTlhLTRhZjQtYWMxMy0wNjllMWM3NTk0NzkxLTE3OTIyMDAyMDg5MjUwLTAwOWQ5NmJkOWJhYWU1ZTlmNmIxMCJ9",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "path": "data/research-sources/dimorphos-naidu-publisher-2026-10-16.html",
+      "bytes": 14375,
+      "sha256": "9bd1342cb57aa0633e9a90ad944c6e2812cf7eeacacde6cf6e081971102acda1"
+    },
+    {
+      "url": "https://api.crossref.org/works/10.3847/PSJ/ad26e7",
+      "finalURL": "https://api.crossref.org/works/10.3847/PSJ/ad26e7",
+      "status": 200,
+      "contentType": "application/json",
+      "path": "data/research-sources/dimorphos-naidu-crossref-2026-10-16.json",
+      "bytes": 13622,
+      "sha256": "a041e63f5c5e0bd56517db78bf29bab58026443c7c5c91f268a8f51dcc70e89a"
+    },
+    {
+      "url": "https://space.asu.cas.cz/~ppravec/neo.htm",
+      "finalUrl": "https://space.asu.cas.cz/~ppravec/neo.htm",
+      "httpStatus": 200,
+      "path": "data/research-sources/dimorphos-pravec-author-index-2026-10-16.html",
+      "bytes": 68322,
+      "sha256": "c430113821602ad36bd4f7c9ae9485c9ee6bfb89f859748026d58744b54fbff2",
+      "retrievedUtc": "2026-10-17T02:23:03.506853+00:00"
+    }
+  ],
+  "naidu2024": {
+    "doi": "10.3847/PSJ/ad26e7",
+    "title": "Orbital and Physical Characterization of Asteroid Dimorphos Following the DART Impact",
+    "authors": [
+      "Shantanu P. Naidu",
+      "Steven R. Chesley",
+      "Nicholas Moskovitz",
+      "Cristina Thomas",
+      "Alex J. Meyer",
+      "Petr Pravec",
+      "Peter Scheirich",
+      "Davide Farnocchia",
+      "Daniel J. Scheeres",
+      "Marina Brozovic",
+      "Lance A. M. Benner",
+      "Andrew S. Rivkin",
+      "Nancy L. Chabot"
+    ],
+    "access": "Accessible university abstract and Crossref metadata, not full primary paper. Direct publisher HTTP200 is a verification redirect; its retained hash is response HTML, not article/licence bytes.",
+    "dates": {
+      "issue": "2024-03-01",
+      "online": "2024-03-19",
+      "basis": "Crossref distinguishes print and online; university lists March1. Neither dates the input observations."
+    },
+    "abstractAssessment": [
+      "Model combines photometry, radar and DART camera observations.",
+      "Along-track impulse estimate -2.63±0.06 mm/s; initial post-impact period11.377±0.004h, later11.3674±0.0004h, total reduction33.25min±1.5s. These are study-dependent orbital results, not spin or a current ephemeris.",
+      "Apsidal precession6.7±0.2deg/day depends on gravity modelling. Uniform-density triaxial inference gives a/b~1.3,a/c~1.6; this is not a resolved post-impact mesh.",
+      "Oblate-primary radii394±11m equatorial/290±16m polar refer to Didymos, never Dimorphos."
+    ],
+    "terms": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              3,
+              19
+            ]
+          ],
+          "date-time": "2024-03-19T00:00:00Z",
+          "timestamp": 1710806400000
+        },
+        "content-version": "vor",
+        "delay-in-days": 18,
+        "URL": "http://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              3,
+              19
+            ]
+          ],
+          "date-time": "2024-03-19T00:00:00Z",
+          "timestamp": 1710806400000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 18,
+        "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+      }
+    ],
+    "termsLimits": "VOR CC BY4 metadata is distinct from TDM terms; no paper figure, raw DRACO blanket licence or full-paper retrieval asserted."
+  },
+  "pravec2024": {
+    "doi": "10.1016/j.icarus.2024.116138",
+    "authors": [
+      "Petr Pravec",
+      "Alex J. Meyer",
+      "Peter Scheirich",
+      "Daniel J. Scheeres",
+      "Conor J. Benson",
+      "Harrison F. Agrusa"
+    ],
+    "authorIndex": "Direct author page dates journal link May14,2024; separate June20,2023 conference presentation is not the final paper.",
+    "publisherUrl": "https://www.sciencedirect.com/science/article/pii/S0019103524001982",
+    "access": "DirectHTTP403; no retained article bytes/hash or licence claim. Search-indexed publisher discovery suggests excited non-principal-axis and average synchronous/anti-synchronous alternatives; full methods/observations/uncertainties remain unaudited.",
+    "adoption": "No simple spin period, locking or permanent primary-facing hemisphere inferred."
+  },
+  "nativeSeparation": "2022 pre-impact DRACO local patch remains distinct from later inferred orbit/shape. No post-impact global geography, calibrated visible colour or terrain chemistry established.",
+  "open": [
+    "Full primary tables, covariance, epochs, frames and later spin observations.",
+    "Raw DRACO UTC/product/filter/processing/orientation/pixel crosswalk.",
+    "Body-specific mass/radius provenance and observer geometry using skyGeometry before generation.",
+    "Independent recent Hera/native assessment; historical future-mission wording is not current status."
+  ],
+  "preservation": "All83 dossiers,637 tracked public files, originals/masters/native/map/model/shape/provenance and recorded Clipper preserved. No angular/raster calculation or codec change.",
+  "verification": {
+    "sourceHashes": "All five retained response hashes verified.",
+    "trackedPublicBaseline": 637,
+    "tests": {
+      "pass": 678,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "browser": "No fresh browser verification or interbuild savings attribution.",
+    "htmlBytes": 15964532,
+    "headroomBytes": 35468,
+    "trackedPublicFilesByteIdentical": 637,
+    "registryDossiers": 83,
+    "queue": 566,
+    "scope": "Research documents only; all catalogue/dossier/native/map/model/shape/codec inputs unchanged. No fresh browser or interbuild compression-savings claim."
+  }
+}
