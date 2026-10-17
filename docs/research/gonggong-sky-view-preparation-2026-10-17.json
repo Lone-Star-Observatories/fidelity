@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-17",
+  "body": "225088 Gonggong sky toward its separate moon Xiangliu",
+  "status": "Research-only independent imagined sky view; no85th dossier/native embedding/catalogue/codec change",
+  "generator": "Built-in image generation, no input/reference image",
+  "prompt": "Use case: photorealistic-imagined-science. Generate one independent new landscape PNG, 16:9, for Fidelity: hypothetical sky seen from 225088 Gonggong (2007 OR10), distinct from its satellite Xiangliu. No reference/input image and no observed-body map reuse.\nLow foreground of independently invented subdued brown-red and gray grains, scattered angular blocks and gentle cold relief, horizon low enough for a broad nearly black sky. Terrain, material fractions, chemistry, colour, phase, illumination, exposure and sky placement are artistic hypotheses. Unresolved JWST water/ethane and possible complexed CO2 bands do not establish local surface textures or chemistry.\nShow exactly one tiny neutral pale-gray point-like satellite high in the sky, Xiangliu, with NO visible surface detail and no halo. The assumed small-bright-moon tidal-model case uses Xiangliu radius50km, nominal prograde semimajor scale24021km minus hypothetical Gonggong spherical camera height619km. skyGeometry yields angular diameter0.2448330189942566 degrees and width3.5723523978591283 pixels in a1672pixel-wide nominal90degreeHFOV image. Render about3–4pixels wide at that landscape size, NOT a large moon. This is a reference scale, not a dated ephemeris or measured moon size; phase and apparent brightness are invented. No labels/arrows near the point.\nNo Sun, Earth, other planets, other stars, other moons or rings. No foreground atmosphere, cloud, plume, liquid, exposed ocean, biology, people or spacecraft, and no survivable-landing suggestion. Black sky and omitted rings/atmosphere are scene assumptions, not measurements. No permanent facing direction, tidal locking, registered normal or actual observing date implied. Do not borrow/recolour Moon, Mars, Pluto, Charon or any other body's terrain or texture. Generate terrain independently.\nAdd a clean dark bottom footer band with exactly two clearly readable centered lines, generous margins:\n\"IMAGINED SKY FROM GONGGONG\"\n\"Terrain, Xiangliu appearance, colour and lighting are hypothetical\"\nNo other text, logo or watermark.",
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4eb9431a-6e43-41ec-ac71-8e3149d6a56c.png",
+  "researchCopy": "data/research-sources/gonggong-generated-skyImage-original.png",
+  "original": {
+    "bytes": 1772858,
+    "sha256": "a6195032a964fdb3e3d773e2d86a9a57590a4fe9e96bcde06b5e01b549bdb8ca",
+    "dimensions": [
+      1672,
+      941
+    ],
+    "format": "PNG"
+  },
+  "inspection": "Full original and1536 master inspected: brown/gray independently invented terrain, black sky, one small pale point-like satellite and readable two-line IMAGINED footer. Moon core appears small but a calibrated raster diameter is not adopted; no resolved geography claim.",
+  "geometryReference": "docs/research/gonggong-observer-geometry-preparation-2026-10-17.json",
+  "geometry": {
+    "helper": "skyGeometry",
+    "hypotheticalMoonRadiusKm": 50,
+    "nominalProgradeSemimajorAxisKm": 24021,
+    "assumedSphericalHeightKm": 619,
+    "assumedCentreDistanceKm": 23402,
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "angularDiameterDeg": 0.2448330189942566,
+    "targetWidthPixels": 3.5723523978591283,
+    "limits": "Reference only; no generated-raster diameter measured/adopted. Conditional tidal-model radius, thermal model height and nominal orbital scale are not a dated joint fit, actual horizon visibility, measured normal, phase or permanent facing site. Other18km/retrograde and historical publisher-size alternatives remain intact."
+  },
+  "limits": [
+    "Terrain,chemistry fractions,materials,colour,Xiangliu brightness/phase/placement,light and exposure invented; no observed-body texture/map supplied or reused.",
+    "No dated site,spin locking/permanent facing direction,observed atmosphere/plume/liquid/ocean/biology or survivable landing implied.",
+    "Black sky and omitted rings/stars/atmosphere are scene choices,not measured absence.",
+    "JWST unresolved Gonggong spectrum does not measure local chemistry; Xiangliu was too faint to detect in those JWST data.",
+    "Moon is a schematic small point,not an observed resolved appearance; tiny previews cannot preserve meaningful satellite detail."
+  ],
+  "references": [
+    "docs/research/gonggong-native-preparation-2026-10-17.json",
+    "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+    "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+    "docs/research/gonggong-jwst-spectral-assessment-2026-10-17.json"
+  ],
+  "preservation": "Original/default PNG retained; all84 dossiers/642tracked public files unchanged. Earlier originals/masters/native/maps/models/shapes/provenance/recorded Clipper/codecs retained;queue566/backlogACTIVE."
+}

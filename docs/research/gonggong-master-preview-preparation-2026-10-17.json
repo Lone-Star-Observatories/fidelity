@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-17",
+  "body": "225088 Gonggong",
+  "status": "Research-only; original-preserving masters/previews, no85th dossier/native embedding/catalogue/codec change",
+  "generator": "Built-in image generation for each independent original, no reference images; sharp only for JPEG derivatives",
+  "originalPromptsAndProvenance": [
+    "docs/research/gonggong-local-view-preparation-2026-10-17.json",
+    "docs/research/gonggong-sky-view-preparation-2026-10-17.json"
+  ],
+  "files": [
+    {
+      "role": "surfaceImage",
+      "files": [
+        {
+          "path": "data/research-sources/gonggong-generated-surfaceImage-original.png",
+          "bytes": 2776509,
+          "sha256": "bed4992e8453ddfa2c1df23189dc50f42973bba504cbc2fe22c108021fe10f20",
+          "dimensions": [
+            1672,
+            941
+          ],
+          "format": "png"
+        },
+        {
+          "path": "data/research-sources/gonggong-generated-surfaceImage-master.jpg",
+          "bytes": 335791,
+          "sha256": "e8b6165fea11c942d9bc9d6cdd38188e259e719c209406c67aaa62a0d881102f",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "format": "jpeg"
+        },
+        {
+          "path": "data/research-sources/gonggong-generated-surfaceImage-preview256.jpg",
+          "bytes": 10713,
+          "sha256": "d0c3852c78017a27b1ce30d71414c5ede0f1ecc47c19a8c5dbc84562c7646b36",
+          "dimensions": [
+            256,
+            144
+          ],
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "role": "skyImage",
+      "files": [
+        {
+          "path": "data/research-sources/gonggong-generated-skyImage-original.png",
+          "bytes": 1772858,
+          "sha256": "a6195032a964fdb3e3d773e2d86a9a57590a4fe9e96bcde06b5e01b549bdb8ca",
+          "dimensions": [
+            1672,
+            941
+          ],
+          "format": "png"
+        },
+        {
+          "path": "data/research-sources/gonggong-generated-skyImage-master.jpg",
+          "bytes": 209651,
+          "sha256": "7a13aa51a87323da0e43f065bd42443efb8cf120cabb016996b008eb8fd2e8f9",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "format": "jpeg"
+        },
+        {
+          "path": "data/research-sources/gonggong-generated-skyImage-preview256.jpg",
+          "bytes": 6239,
+          "sha256": "f1eadcb07dfb78fa5ed5b3fe77217bcfb7309b3ebfbe0adef31202944125b118",
+          "dimensions": [
+            256,
+            144
+          ],
+          "format": "jpeg"
+        }
+      ]
+    }
+  ],
+  "derivativeRecipe": {
+    "master": "Original PNG ->1536px width without enlargement, JPEG quality85",
+    "preview": "Original PNG ->256px width without enlargement, JPEG quality80",
+    "reproducer": "data/research-sources/gonggong-master-preview-preparation-2026-10-17.mjs",
+    "previewRawBytes": 16952,
+    "limits": "Generated illustrations only; no native scientific image transformed. No new globe. Later offline embedding remains WebP quality80 through established builder; not done here."
+  },
+  "inspection": "Both1536x864masters and256x144previews visually inspected. Original/master footers readable. Tiny preview footers require explicit IMAGINED card labels; satellite tiny and no resolved detail preserved. No raster diameter/calibration adopted.",
+  "limits": [
+    "All original PNG bytes/default generator copies preserved; no analog map assigned.",
+    "Invented terrain/material fractions/colour/chemistry/phase/light/exposure and schematic Xiangliu retained as hypotheses.",
+    "All earlier thermal/orbit/spin/size alternatives and source rights/credits retained.",
+    "Nominal90HFOV/1672 skyGeometry reference is not current ephemeris, measured normal/permanent face or calibrated generated disk.",
+    "Black sky/omitted rings/atmosphere not measured absence; no plume/liquid/ocean/biology/survivable landing."
+  ],
+  "preservation": "84dossiers/642tracked public files unchanged; all earlier originals/masters/native/maps/models/shapes/provenance/recorded Clipper/codecs retained. Queue566; backlogACTIVE."
+}
