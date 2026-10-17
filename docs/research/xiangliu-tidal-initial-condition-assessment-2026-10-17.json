@@ -1,0 +1,316 @@
+{
+  "date": "2026-10-17",
+  "body": "Xiangliu, distinct from Gonggong",
+  "status": "Targeted full-manuscript initial-condition/size/spin audit; research-only, no86th dossier",
+  "paper": {
+    "title": "Tidal evolution of the eccentric moon around dwarf planet (225088) Gonggong",
+    "authors": [
+      "Sota Arakawa",
+      "Ryuki Hyodo",
+      "Daigo Shoji",
+      "Hidenori Genda"
+    ],
+    "recordUrl": "https://arxiv.org/abs/2108.08553v1",
+    "relatedDoi": "https://doi.org/10.3847/1538-3881/ac1f91",
+    "recordSubmission": "2021-08-19T08:34:08Z",
+    "pdfDraftDate": "2021-08-20",
+    "statusDistinction": "Record says accepted for AJ; PDF first page says Submitted to AJ. Final publisher version/date/rights not audited, no observation date inferred.",
+    "rights": "Specific arXiv record nonexclusive distribution, not CC BY; no manuscript figure embedded or redistributable-figure licence asserted.",
+    "source": {
+      "url": "https://arxiv.org/pdf/2108.08553v1",
+      "finalUrl": "https://arxiv.org/pdf/2108.08553v1",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/xiangliu-arakawa-2021v1-paper.pdf",
+      "bytes": 2071108,
+      "sha256": "f73aa5a57448b7498c78be6eb1b4c22260654083c00d1d884453c460bd31f079",
+      "retrievedAt": "2026-10-17T20:49:19.934Z",
+      "signature": "%PDF-"
+    },
+    "text": {
+      "path": "data/research-sources/xiangliu-arakawa-2021v1-fulltext.txt",
+      "bytes": 98172,
+      "sha256": "cf4d5f42da0292b31176dbb521ada62b10eb2395f29bd3ea490b37dd92595ff5"
+    },
+    "pages": 36,
+    "readScope": "All36 pages text extracted/retained; targeted complete pages1,2,3,4,5,8,9,10,11,13,20,21 visually inspected, not all36 visual pages or complete thermal/Appendix-equation/code reproduction.",
+    "visualDiagnostics": [
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page1-2026-10-17.png",
+        "bytes": 288954,
+        "sha256": "eaac4b8a7d2f99d622c3edc6ea3bfabf8ed01065eb6372bb333fb87e89e6b3a3"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page2-2026-10-17.png",
+        "bytes": 373244,
+        "sha256": "8948dbe77cf70cfc5cf38886165154e8c64e78be0a3df741d35a72ccffd61b3d"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page3-2026-10-17.png",
+        "bytes": 273346,
+        "sha256": "13c78cabc91b719b0435b84d3edd51339bccd9e33b197efee4893067e5a1bd13"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page4-2026-10-17.png",
+        "bytes": 265997,
+        "sha256": "1430f9be7afedb63deae1622a62a9e546431629c15e9c4cfe503b8a7c009324a"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page5-2026-10-17.png",
+        "bytes": 213495,
+        "sha256": "fa292b94d9d4305fe798881bee127720e2d21489661469ecf35424274fb404d0"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page8-2026-10-17.png",
+        "bytes": 306965,
+        "sha256": "ba9f7ed3df57bb59a37159d701fe2e1f18bbecea69b4a1c3537cfd7d5a73fa87"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page9-2026-10-17.png",
+        "bytes": 106767,
+        "sha256": "611d45820b16ded66e7af460dba6a8f304b4b3bd5b639684382e7e7c105ad282"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page10-2026-10-17.png",
+        "bytes": 46414,
+        "sha256": "a242213b6a1b530de115968d7df4fe316e99d4d96a47831380cff7910de3fcb8"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page11-2026-10-17.png",
+        "bytes": 270746,
+        "sha256": "f911c669d39d931a94dfd2ad1919b389c2a78aa6f62e051ca5d5f726b859efe1"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page13-2026-10-17.png",
+        "bytes": 286570,
+        "sha256": "d24d4d188c6535309b02d6f4baef4825a6045ffe4e1013ff50489d4279a0c86e"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page20-2026-10-17.png",
+        "bytes": 207463,
+        "sha256": "0a6989c4873b8ec51ab0ab13dbbbe96803c134dfa6076d15afc6fb2fcf86a600"
+      },
+      {
+        "path": "data/research-sources/xiangliu-arakawa-page21-2026-10-17.png",
+        "bytes": 302937,
+        "sha256": "aa37a72cbe59f86c9b22e84b48ebf2699348e3551cd183f9b0ca4ea08f860366"
+      }
+    ]
+  },
+  "earlierSourceRecords": [
+    {
+      "path": "docs/research/xiangliu-inventory-primary-assessment-2026-10-17.json",
+      "bytes": 5976,
+      "sha256": "a183888957c5af9f314a63aa0f28e3598a457ba63b87959b41d5046c4c050dfd"
+    },
+    {
+      "path": "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+      "bytes": 7986,
+      "sha256": "ce868e5cb9112f174b334ddc51cf4d786ed0f34776c1f02b5b9e5b942f089d6d"
+    },
+    {
+      "path": "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+      "bytes": 7540,
+      "sha256": "4b9b791399563c6e411ebd91963214eba12667317516ae3480e23705a95cc2d5"
+    }
+  ],
+  "inheritedObservations": {
+    "table": 1,
+    "page": 3,
+    "nominalSemimajorKm": 24000,
+    "nominalEccentricity": 0.3,
+    "systemMassKg": 1.75e+21,
+    "primaryRadiusKm": 600,
+    "primarySpinAlternativesHours": [
+      22.4,
+      44.8
+    ],
+    "satelliteRadius": "not determined",
+    "satelliteSpin": "not determined",
+    "limits": "Rounded/simplified inputs inherited from earlier publications, not new observations or a replacement catalogue. Both2019 mirror orbital solutions and thermal/pole/shape alternatives remain explicit.600km primary reference is not615km catalogue update."
+  },
+  "initialModel": {
+    "tables": [
+      2,
+      3
+    ],
+    "pages": [
+      4,
+      5,
+      8
+    ],
+    "origin": "Giant-impact intact-fragment assumption; historical impact simulations did not include pre-impact spins.",
+    "structure": "Equal bulk densities, uniform undifferentiated interiors, spherical moment of inertia; no measured ice/rock fractions or local porosity.",
+    "geometry": "Primary equator and moon orbit aligned, prograde spin/orbit; nonzero initial obliquity/inclination and retrograde alternative not fully evolved here. No observed alignment, permanent face or dated registration established.",
+    "initialPeriapsisKm": 2100,
+    "eccentricityGrid": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "satelliteRadiusGridKm": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120
+    ],
+    "primaryTemperatureGridK": [
+      120,
+      140,
+      160,
+      180,
+      200,
+      220,
+      240
+    ],
+    "standardPrimarySpinReferenceHours": 22.4,
+    "standardSatelliteInitialSpinHours": 12,
+    "standardSatelliteTemperature": "equal to initial primary temperature",
+    "standardReferenceViscosityPaS": 100000000000000,
+    "referenceTemperatureK": 273,
+    "shearModulusGPa": 3.33,
+    "andradeExponent": 0.33,
+    "integrationDurationGyr": 4.5,
+    "stopCriteria": "e reaches0.9 or periapsis reaches sum of assumed radii",
+    "nonstandardCases": "44.8h primary reference, initially orbit-synchronous moon, moon initial120K and viscosity1e10Pa s; not measured present temperatures/viscosities/spin.",
+    "modelReproduction": "Not executed; main thermal equations, differentiated structure, ocean/obliquity extensions and Appendices remain open."
+  },
+  "standardRunStatistics": {
+    "table": 5,
+    "page": 10,
+    "columnsSatelliteRadiusKm": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120
+    ],
+    "countsByType": {
+      "A": [
+        0,
+        3,
+        12,
+        18,
+        27,
+        31
+      ],
+      "B": [
+        26,
+        12,
+        9,
+        7,
+        9,
+        2
+      ],
+      "C": [
+        16,
+        18,
+        12,
+        5,
+        0,
+        1
+      ],
+      "Bx": [
+        0,
+        4,
+        6,
+        14,
+        17,
+        16
+      ],
+      "Cx": [
+        0,
+        5,
+        10,
+        5,
+        3,
+        6
+      ],
+      "Z": [
+        14,
+        14,
+        7,
+        7,
+        0,
+        0
+      ]
+    },
+    "totals": {
+      "A": 91,
+      "B": 65,
+      "C": 52,
+      "Bx": 57,
+      "Cx": 29,
+      "Z": 42
+    },
+    "allRuns": 336,
+    "runsPerRadius": 56,
+    "definitions": {
+      "A": "1:1 spin/orbit state",
+      "B": "higher-order spin/orbit resonance",
+      "C": "not in resonance",
+      "Bx": "higher-order resonance with e>0.9 reached before4.5Gyr",
+      "Cx": "non-resonance with e>0.9 reached before4.5Gyr",
+      "Z": "collision under assumed radii"
+    },
+    "moderateFinalEccentricityWindow": [
+      0.2,
+      0.5
+    ],
+    "moderateWindowNumerators": [
+      10,
+      5,
+      4,
+      3,
+      4,
+      0
+    ],
+    "moderateWindowDenominatorEach": 56,
+    "statisticsLimit": "Parameter-grid frequencies, not occurrence probabilities, observational errors, a radius likelihood or Bayesian posterior. Page8 explicitly does not use realistic parameter probability distributions; no inverse probability inferred from zero120km examples."
+  },
+  "inferences": [
+    "Within these assumptions, absence of moderate-e cases at the120km grid setting motivates the reported radius ceiling near100km. It is not a resolved radius, measured hard bound, uncertainty interval or exhaustive exclusion across other priors/rheologies/structures.",
+    "Page13 semilatus relation proportional to moon radius^(6/13) uses neglected secondary-torque and fast-primary approximations. Figure5 summaries use retainedA/B/C cases with mean and twice standard error; these are model-grid error bars, not measured moon-radius confidence bounds. Model preference near100km/similar albedo remains conditional.",
+    "In these runs TypeA usually ends below about.05 eccentricity, so authors infer non-1:1 spin for observed~.3. This is a model inference, not measured rotation or a universal impossibility of eccentric synchronous satellites. Higher-order or non-resonant spin remains possible; no permanent Gonggong-facing site adopted.",
+    "Predicted standard final moon spin spans roughly10–1000h;20km cases roughly10–100h,100/120km cases100–1000h. These are simulations, not a measured spin period, current phase or selected rotation for display.",
+    "Earlier Kiss2019 simple-damping18–50km/high-albedo/likely-despun preference and older publisher240–400km diameter are preserved. Coupled temperature-dependent rheology/higher-order terms and initial-state assumptions differ; no silent radius/albedo/locking replacement or unified posterior.",
+    "Paper explicitly defers differentiated interiors and possible subsurface-ocean effects. Hypothetical internal models do not establish observed ocean, plume, exposed liquid, local chemistry, biology or terrain."
+  ],
+  "open": [
+    "Final publisher version/status/date/rights and later independent size/spin measurements.",
+    "Complete thermal/rheology/Appendix equations, numerical model/code and differentiated/oblique/retrograde extension reproduction.",
+    "Body-specific Hubble raw-product/filter/PSF/coadd crosswalk and calibrated photometry; unresolved pair context is not resolved geography.",
+    "Independent observer skyGeometry using labelled alternatives, normal/phase/visibility assumptions and original-preserving local/sky illustrations before an additive body dossier."
+  ],
+  "production": "Only research status in Xiangliu queue task changes. All85 dossiers/catalogue/native/maps/models/shapes/masters/originals/provenance/codecs retained; no new production asset, model, physical value or86th dossier.",
+  "validation": {
+    "testsPassed": 681,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "baseline": "71bac7a",
+    "unchangedQueueEntriesDeepEqual": 566,
+    "xiangliuResearchFieldOnly": true,
+    "queueEntries": 567,
+    "dossiersUnchanged": 85,
+    "trackedPublicByteEqual": 647,
+    "htmlBytes": 15503236,
+    "headroomBytes": 496764,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "c7a596a77aa0d907cec61c76ef67ff9b259e7bc184f1ecaa8cc52305f36b2865",
+    "applicationSha256": "35f0a99e18731e94799c486f451b80ff1644d3ec1846536b123eca78bba06700",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "sourceAndDiagnosticHashesChecked": 17,
+    "preservationReproducer": "docs/research/xiangliu-tidal-preservation-audit-2026-10-17.mjs",
+    "limits": "Node complete inverse only; no fresh browser/all-route/model-load/calibration claim. Interbuild feed changes not compression savings."
+  }
+}

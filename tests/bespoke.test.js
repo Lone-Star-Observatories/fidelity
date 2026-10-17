@@ -277,7 +277,7 @@ test('Gonggong preserves unresolved native detections and conditional system mod
  assert.equal(v.id,'gonggong');assert.equal(v.surfaceMap,undefined);
  const queue=JSON.parse(await fs.readFile(new URL('../docs/research/bespoke-queue.json',import.meta.url),'utf8'));assert.match(queue.entries.find(x=>x.bodyId==='gonggong').surface,/resolved globe remains pending/);
  assert.equal(bodyVisualFor({name:'Xiangliu'})?.id==='gonggong',false);
- const satellite=queue.entries.find(x=>x.id==='sol-xiangliu');assert.equal(satellite.parent,'gonggong');assert.equal(satellite.visualId,undefined);assert.equal(satellite.research,'queued');assert.equal(bodyVisualFor(satellite),null);
+ const satellite=queue.entries.find(x=>x.id==='sol-xiangliu');assert.equal(satellite.parent,'gonggong');assert.equal(satellite.visualId,undefined);assert.match(satellite.research,/individual dossier pending/);assert.equal(bodyVisualFor(satellite),null);
  assert.equal(bodyVisualFor({name:'2007 OR10'}),v);
  assert.match(v.surfaceLabel,/IMAGINED/);assert.match(v.skyLabel,/IMAGINED/);
  assert.match(v.modelled.join(' '),/SYSTEM mass/);assert.match(v.modelled.join(' '),/not measured radius/);
