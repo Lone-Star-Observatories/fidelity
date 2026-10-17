@@ -1,0 +1,276 @@
+{
+  "date": "2026-10-17",
+  "issue": "#3",
+  "scope": "Research-only PCK15 and FK007/008 source-text and label audit; no SPICE execution or production adoption",
+  "sources": [
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/pck/",
+      "path": "data/research-sources/dimorphos-naif-pck-directory-2026-10-16.html",
+      "bytes": 12876,
+      "sha256": "0900c32b51bb0c616f71e288567fd257497f83a39718e3ab726a0f9a67479e5e"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/pck/didymos_system_15.tpc",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_15.tpc",
+      "bytes": 7968,
+      "sha256": "c36bf56a5f93cb1f4ddc1eb09623a628b82ac225bb08e86c8a34c03cf7355600"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/pck/didymos_system_15.xml",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_15.xml",
+      "bytes": 4330,
+      "sha256": "d9e712c652fa8cc427ab3f7a3e35804dc3234a64a4b76046c33a1347606c85c2"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/fk/",
+      "path": "data/research-sources/dimorphos-naif-fk-directory-2026-10-17.html",
+      "bytes": 14032,
+      "sha256": "8226812c19c7f61b705b5907455598d1cbcedb8062d411f3843650e3f257cd2a",
+      "links": [
+        "dart_009.tf",
+        "dart_010.tf",
+        "didymos_system_002.tf",
+        "didymos_system_007.tf",
+        "didymos_system_008.tf",
+        "licia_005.tf",
+        "licia_006.tf"
+      ]
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/fk/didymos_system_007.tf",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_007.tf",
+      "bytes": 17325,
+      "sha256": "3bd7214663c830018d1db80587976fc03b149b206a585f146146f0f612c30d57",
+      "labelMD5Verified": true
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/fk/didymos_system_007.xml",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_007.xml",
+      "bytes": 4312,
+      "sha256": "e78a509966b879ff014482037db5b4bc58b1fd1f9d52b5367cfc673fc69e7610"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/fk/didymos_system_008.tf",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_008.tf",
+      "bytes": 17876,
+      "sha256": "f46b07ce5215b71b310d7c49d50db88db9acbb29c994b2616994f3298eb797d6",
+      "labelMD5Verified": true
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/pds/pds4/dart/dart_spice/spice_kernels/fk/didymos_system_008.xml",
+      "path": "data/research-sources/dimorphos-naif-didymos_system_008.xml",
+      "bytes": 4312,
+      "sha256": "80929522e99e2b18ac130976ba35b13bdc5f9e1ad5152656d012f1acc246c92c"
+    }
+  ],
+  "credits": {
+    "kernelContacts": [
+      "Hari Nair, JHU/APL",
+      "Olivier Barnouin, JHU/APL",
+      "Alyssa Bailey, NAIF/JPL"
+    ],
+    "versionAuthors": [
+      "Hari Nair, JHU/APL",
+      "Marc Costa Sitja, NAIF/JPL (initial versions)"
+    ],
+    "provider": "NASA NAIF/PDS; DART SOC, JHU/APL",
+    "licence": "No new image/figure licence grant inferred from kernel availability."
+  },
+  "pck": {
+    "version": "15, 2023-09-21, solution542",
+    "activeAssignments": [
+      {
+        "BODY920065803_RADII": "( 0.39167, 0.39167, 0.29195 )"
+      },
+      {
+        "BODY920065803_POLE_RA": "( 69.326861266078069, 0, 0)"
+      },
+      {
+        "BODY920065803_POLE_DEC": "( -72.724550395829496, 0, 0)"
+      },
+      {
+        "BODY920065803_PM": "( 0.0, 3823.008849557522, 0.0 )"
+      },
+      {
+        "BODY920065803_PGR_POSITIVE_LON": "'EAST'"
+      },
+      {
+        "BODY120065803_RADII": "( 0.09078, 0.06932, 0.06131 )"
+      },
+      {
+        "BODY120065803_POLE_RA": "( 69.326861266078069, 0, 0)"
+      },
+      {
+        "BODY120065803_POLE_DEC": "( -72.724550395829496, 0, 0)"
+      },
+      {
+        "BODY120065803_PM": "( 73.070565080143595, 724.724388306834840, 1.0270736140e-06)"
+      },
+      {
+        "BODY120065803_PGR_POSITIVE_LON": "'EAST'"
+      },
+      {
+        "BODY20065803_GM": "34.8961209875640268354E-9"
+      },
+      {
+        "BODY120065803_GM": "0.29804701895163013E-9"
+      },
+      {
+        "BODY920065803_GM": "34.5980739686124E-9"
+      }
+    ],
+    "labelMD5Verified": "681f2f47e76b00b61bc7872a19605da3",
+    "applicability": "Dimorphos orientation parameters are pre-impact only, with stated boundary2022-09-26T23:14:24.184UTC. Postimpact DIMORPHOS_FIXED is described as a dynamic primary-pointing frame, not an observed tidally locked spin solution.",
+    "gmInterpretation": "Individual body GM values split the system GM by relative model volumes under equal-density assumption; not independent individual mass measurements.",
+    "versionLimits": "v15 solution542 is not byte-identical or interchangeable with v14 cited by coordinate PDFs; differing parameters retained without catalogue update.",
+    "units": "RADII km; GM km^3/s^2. Rotation model coefficients retained as printed, not evaluated or converted.",
+    "interpretation": [
+      "Ellipsoid axes and volume-equivalent diameters are model conventions, not independent surface normals or current shape measurements.",
+      "Didymos prime meridian is arbitrary at epoch; separate body identifiers and primary/secondary parameters must not be mixed.",
+      "PCK label coverage2021-11-09 through2050-01-01 does not override explicit pre-impact Dimorphos orientation applicability.",
+      "PCK file creation2023-11-07 is not an observation or version date."
+    ]
+  },
+  "frameKernels": {
+    "versions": {
+      "007": "2023-10-06: solution 542 switch parameters and impact time",
+      "008": "2023-11-16: adds local 50 mm DSK mappings"
+    },
+    "activeDataDiff": [
+      "--- 007 active data",
+      "+++ 008 active data",
+      "@@ -141,6 +141,14 @@",
+      "    ",
+      " ",
+      " ",
+      "+      NAIF_SURFACE_NAME += 'DART_DIMORPHOS_00050MM_SPC_V003'",
+      "+      NAIF_SURFACE_CODE += 200050003",
+      "+      NAIF_SURFACE_BODY += 120065803",
+      "+",
+      "+      NAIF_SURFACE_NAME += 'DART_DIMORPHOS_00050MM_SPC_V004'",
+      "+      NAIF_SURFACE_CODE += 200050004",
+      "+      NAIF_SURFACE_BODY += 120065803",
+      "+",
+      "       NAIF_SURFACE_NAME += 'DART_DIMORPHOS_00250MM_SPC_V003'",
+      "       NAIF_SURFACE_CODE += 200250003",
+      "       NAIF_SURFACE_BODY += 120065803"
+    ],
+    "findings": [
+      "Switch instant as printed: 2022-09-26T23:14:24.184 UTC / 2022-09-26T23:15:33.366361 TDB; conversion not independently reproduced.",
+      "PRE Euler model references PCK15 and solution542. POST two-vector frame X points Dimorphos to Didymos, secondary Z reference is IAU_DIDYMOS with vector (0,0,1).",
+      "One repeated prose paragraph instead says IAU_DIMORPHOS Z; preserve prose/data distinction, do not silently correct source.",
+      "Extreme switch availability dates explicitly arbitrary DE441 coverage, not physical spin validity.",
+      "OBJECT_120065803_FRAME remains IAU_DIMORPHOS in both files; named DIMORPHOS_FIXED switch must not be assumed the default object frame.",
+      "008 adds DART_DIMORPHOS_00050MM_SPC_V003 and V004 surface mappings only in the inspected active-data diff; mapping names do not establish DSK bytes, resolution accuracy, coverage or registration.",
+      "PDS label coverage 2021-11-09 to 2050-01-01 and file creation dates 2023-11-07 / 2023-12-04 are metadata, distinct from frame version dates, input observations and physical validity. Active frame-definition text before body-name mappings is exactly equal between 007 and 008."
+    ],
+    "labelMetadata": {
+      "007": {
+        "logical_identifier": [
+          "urn:nasa:pds:dart.spice:spice_kernels:fk_didymos_system_007.tf"
+        ],
+        "version_id": [
+          "1.0"
+        ],
+        "start_date_time": [
+          "2021-11-09T00:00:00Z"
+        ],
+        "stop_date_time": [
+          "2050-01-01T00:00:00Z"
+        ],
+        "creation_date_time": [
+          "2023-11-07T11:32:57"
+        ],
+        "file_name": [
+          "didymos_system_007.tf"
+        ],
+        "file_size": [
+          "17325"
+        ],
+        "md5_checksum": [
+          "35c2e6ee116d1f8f1261325c395e1f4e"
+        ]
+      },
+      "008": {
+        "logical_identifier": [
+          "urn:nasa:pds:dart.spice:spice_kernels:fk_didymos_system_008.tf"
+        ],
+        "version_id": [
+          "1.0"
+        ],
+        "start_date_time": [
+          "2021-11-09T00:00:00Z"
+        ],
+        "stop_date_time": [
+          "2050-01-01T00:00:00Z"
+        ],
+        "creation_date_time": [
+          "2023-12-04T15:49:00"
+        ],
+        "file_name": [
+          "didymos_system_008.tf"
+        ],
+        "file_size": [
+          "17876"
+        ],
+        "md5_checksum": [
+          "7421fe5646a2c8fade284449bd11b799"
+        ]
+      }
+    },
+    "frameDefinitionActiveDataByteEqualBetween007And008": true,
+    "frameDefinitionActiveDataTextSHA256": "e6c2da184f16a6dc3480bbfa6f3440b9a9a756706b9994d8f97e3bf8bdcca0d9"
+  },
+  "accessNotes": [
+    "Bundled Python TLS issuer validation failed; system curl succeeded with certificate verification enabled.",
+    "Guessed /pub/naif/DART/kernels/pck/ path returned HTTP404; no response/source hash invented."
+  ],
+  "validationMethod": [
+    "SHA256 and exact byte sizes verified for all eight retained source responses.",
+    "PDS MD5 checks match original PCK15, FK007 and FK008 bytes.",
+    "Only active begindata blocks inventoried; prose examples excluded. All13 PCK assignments include scalar GM entries.",
+    "Active frame-definition text preceding body-name mappings exactly matches between FK007 and008; whole active-data diff adds two local50mm DSK surface mappings.",
+    "Complete PCK15 and both frame-kernel source texts read; XML metadata parsed. No SPICE kernel evaluation."
+  ],
+  "limitations": [
+    "No SPICE load/evaluation, SPK/PCK dependency or load-precedence validation.",
+    "Post-impact dynamic pointing convention does not independently measure spin or establish tidal locking/permanent visible face.",
+    "No shape adoption, map registration, current ephemeris, angular calculation, image generation or embedding.",
+    "No new dossier, licence grant or calibrated photometry claim.",
+    "Current directory lists versions08 and15, not14 cited in coordinate PDFs; absence from this listing is not proof of historical unavailability.",
+    "No version substitution, frame/radius/spin adoption, raw product association or calibration claim.",
+    "Original sources retained unchanged; no production modification.",
+    "Secondary-axis prose alternates IAU_DIDYMOS and IAU_DIMORPHOS; active FK data specifies IAU_DIDYMOS. Source wording preserved, no automatic repair.",
+    "Two-vector frame definition alone is not measured post-impact spin, tidal locking, actual topographic registration or permanent-face visibility.",
+    "Surface-ID mappings do not establish DSK payload identity, coverage, model accuracy or photometric calibration.",
+    "Referenced PCK14 and raw DRACO/SPK/DSK dependency/load-precedence crosswalk remain open; no substitution into earlier PDF model conventions.",
+    "No dossier84, new embedded asset, catalogue, native science, original/master, map/model/shape or codec change."
+  ],
+  "preservation": {
+    "registryDossiers": 83,
+    "trackedPublicFiles": 637,
+    "baselineFile": "/tmp/fidelity-naif-kernel-public-before.json",
+    "queueTasks": 566
+  },
+  "verification": {
+    "status": "passed",
+    "testsPassed": 678,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "fullHTMLBytes": 15970676,
+    "headroomBytes": 29324,
+    "sourceHashesVerified": 8,
+    "trackedPublicFilesByteEqual": 637,
+    "registryDossiers": 83,
+    "queueTasks": 566,
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false,
+    "runtimeNote": "npm launcher stalled before output and was terminated; direct Node24 test runner, Vite CLI and standalone builder completed successfully.",
+    "logs": [
+      "/tmp/fidelity-naif-kernel-tests.log",
+      "/tmp/fidelity-naif-kernel-build.log",
+      "/tmp/fidelity-naif-kernel-full.log"
+    ]
+  }
+}
