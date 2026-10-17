@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-16",
+  "body": "Didymos primary and Dimorphos secondary kept distinct",
+  "status": "Research-only targeted PDS PDF audit; no model/coordinate/parameter adoption",
+  "sources": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/didymos_coordinate_system_description_v1.pdf",
+      "path": "data/research-sources/dimorphos-pds-didymos_coordinate_system_description_v1.pdf",
+      "bytes": 535720,
+      "sha256": "7630b118eeab841e7fb16c6ac74fb0ba85e50cdf7d9fa2242103b07737224064",
+      "pages": 8,
+      "textPath": "data/research-sources/dimorphos-pds-didymos_coordinate_system_description_v1.txt",
+      "extraction": "Unpaired surrogate escapes retained literally with backslashreplace; extraction is not source bytes.",
+      "status": "Targeted visual audit; full text extracted, other rendered pages not independently inspected",
+      "visuallyInspectedPages": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/dimorphos_coordinate_system_description_v2.pdf",
+      "path": "data/research-sources/dimorphos-pds-dimorphos_coordinate_system_description_v2.pdf",
+      "bytes": 13968681,
+      "sha256": "30d7709d8589658d8b872b0821ac52cc7838f506e669b11ea609643112bf2afb",
+      "pages": 8,
+      "textPath": "data/research-sources/dimorphos-pds-dimorphos_coordinate_system_description_v2.txt",
+      "extraction": "Unpaired surrogate escapes retained literally with backslashreplace; extraction is not source bytes.",
+      "status": "Targeted visual audit; full text extracted, other rendered pages not independently inspected",
+      "visuallyInspectedPages": [
+        4,
+        8
+      ]
+    }
+  ],
+  "didymosDocument": {
+    "printedConflict": "Cover names Dimorphos; page4 introduction describes Didymos primary and a DRACO/LUKE shape. Page8 prose names Didymos but opening sentence and Table2 heading name Dimorphos; table explicitly names DIDYMOS-MODEL-v003.",
+    "table2AsPrinted": {
+      "alphaDegrees": "66.83 +/- 0.05",
+      "deltaDegrees": "-73.0 +/- 0.3",
+      "W0Degrees": "0.0",
+      "W1DegreesPerDay": "3823.00 +/- 0.17",
+      "W2DegreesPerDaySquared": "0.0",
+      "RKm": "0.365 +/- 0.0085",
+      "aKm": "0.4095 +/- 0.007",
+      "bKm": "0.4005 +/- 0.007",
+      "cKm": "0.03035 +/- 0.007"
+    },
+    "limits": "The printed c value is retained without decimal repair or physical-shape adoption. Mixed body wording and intended corrections remain unresolved. This PDF is not byte-identical to the separately served Dimorphos v2 PDF."
+  },
+  "dimorphosV2Document": {
+    "page4": "Secondary-only introduction; v2 supersedes preliminary v1. Sub-primary direction was shadowed/unobserved at encounter; a visible anchor is assigned a longitude consistent with the primary direction.",
+    "page8": "Table2 explicitly identifies DIMORPHOS-MODEL-v004. ICRF pole/rotation convention uses J2000 JD2451545.0 TDB; acceleration term assumes pre-impact tidal locking, not a measured present-day postimpact spin solution.",
+    "table2AsPrinted": {
+      "alphaDegrees": "66.83 +/- 0.05",
+      "deltaDegrees": "-73.0 +/- 0.3",
+      "W0Degrees": "71.3 +/- 0.2",
+      "W1DegreesPerDay": "724.7237 +/- 0.0002",
+      "W2DegreesPerDaySquared": "1.1e-6 +/- 2.3e-7",
+      "RKm": "0.0750 +/- 0.0013",
+      "aKm": "0.0895 +/- 0.0005",
+      "bKm": "0.0845 +/- 0.0020",
+      "cKm": "0.0575 +/- 0.0005"
+    },
+    "limits": "These are publisher model constants, not calibrated local normals, current ephemerides, a postimpact shape or a permanent observer-facing direction."
+  },
+  "credits": "PDS coordinate labels credit Daly,T.; Barnouin,O.; Ernst,C.; Nair,H.; Espiritu,R.; Waller,D. Technical approval and figure-specific credits on other pages remain outside this targeted visual audit.",
+  "limitations": [
+    "No figure embedded or CC licence inferred from archive hosting.",
+    "Full PDFs retained unchanged; extracted text is diagnostic and has escaped unpaired Unicode surrogates. Numerical table values were checked on rendered page8 rather than trusting extraction.",
+    "No angular/raster calculation, PDF alteration, coordinate conversion, SPICE kernel loading or raw-image/publisher-pixel association.",
+    "No dossier84, generated view, native embedding, catalogue, map, shape, model or codec change. All83 dossiers and original/native/master/provenance/recorded Clipper preserved."
+  ],
+  "verification": {
+    "testsPassed": 678,
+    "testsSkipped": 1,
+    "productionBuild": "passed",
+    "fullStandaloneBuild": "passed",
+    "fullHtmlBytes": 15966580,
+    "headroomBytes": 33420,
+    "trackedPublicFilesByteEqual": 637,
+    "pdfHashesVerified": 2,
+    "queueTasks": 566,
+    "freshBrowserVerification": false,
+    "interbuildSavingsAttribution": false
+  }
+}
