@@ -277,7 +277,7 @@ test('Gonggong preserves unresolved native detections and conditional system mod
  assert.equal(v.id,'gonggong');assert.equal(v.surfaceMap,undefined);
  const queue=JSON.parse(await fs.readFile(new URL('../docs/research/bespoke-queue.json',import.meta.url),'utf8'));assert.match(queue.entries.find(x=>x.bodyId==='gonggong').surface,/resolved globe remains pending/);
  assert.equal(bodyVisualFor({name:'Xiangliu'})?.id==='gonggong',false);
- const satellite=queue.entries.find(x=>x.id==='sol-xiangliu');assert.equal(satellite.parent,'gonggong');assert.equal(satellite.visualId,undefined);assert.match(satellite.research,/individual dossier pending/);assert.equal(bodyVisualFor(satellite),null);
+ const satellite=queue.entries.find(x=>x.id==='sol-xiangliu');assert.equal(satellite.parent,'gonggong');assert.equal(satellite.visualId,'xiangliu');assert.equal(bodyVisualFor(satellite).id,'xiangliu');
  assert.equal(bodyVisualFor({name:'2007 OR10'}),v);
  assert.match(v.surfaceLabel,/IMAGINED/);assert.match(v.skyLabel,/IMAGINED/);
  assert.match(v.modelled.join(' '),/SYSTEM mass/);assert.match(v.modelled.join(' '),/not measured radius/);
@@ -292,3 +292,8 @@ test('Gonggong physical cards distinguish thermal radius and system mass without
  assert.equal(m.radiusKm,615);assert.equal(m.massKg,1.75e21);assert.equal(m.rotationHours,22.4);
  const facts=b.facts.PHYSICAL;assert.equal(facts.find(x=>x.label==='RADIUS').tier,'modelled');assert.equal(facts.find(x=>x.label==='SYSTEM MASS').tier,'modelled');assert.equal(facts.some(x=>x.label==='MASS'),false);assert.equal(facts.some(x=>x.label==='SURFACE G'),false);assert.match(facts.find(x=>x.label==='DAY').detail,/44.8/);
 });
+
+ test('Xiangliu keeps its own dossier, unknown spin and conditional size separate from Gonggong',async()=>{
+ const {MOONS}=await import('../src/data/moons.js');const {solSystem}=await import('../src/data/systems.js');const m=MOONS.find(x=>x.id==='xiangliu'),b=solSystem().bodies.find(x=>x.id==='xiangliu'),v=bodyVisualFor(m);
+ assert.equal(v.id,'xiangliu');assert.notEqual(v,bodyVisualFor({name:'Gonggong'}));assert.equal(v.surfaceMap,undefined);assert.equal(m.surfacePending,true);assert.equal(m.rotationHours,null);assert.equal(m.locked,false);assert.equal(m.phaseUnknown,true);assert.equal(m.massKg,null);assert.match(b.facts.PHYSICAL.find(x=>x.label==='RADIUS').value,/HYPOTHESIS/);assert.equal(b.facts.PHYSICAL.some(x=>x.label==='SURFACE G'),false);assert.match(v.modelled.join(' '),/retrograde/);assert.match(v.modelled.join(' '),/not measured rotation/);assert.match(v.assumed.join(' '),/oversized/);assert.equal(v.skyImage.height,831);assert.equal(v.skyImage.previewHeight,138);assert.equal(v.contextImages[0].url,bodyVisualFor({name:'Gonggong'}).contextImages[0].url);
+ });

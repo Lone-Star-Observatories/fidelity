@@ -204,6 +204,21 @@ export const MOONS = [
     ],
     rotationFacts: [{ label: 'DAY', value: '~9.8 H · PREFERRED MODEL', tier: 'modelled', detail: 'Double-peaked photometric interpretation;4.9hour single-peaked alternative/integer-cycle aliases retained. Precise period/pole/phase unregistered; no permanent Haumea-facing site.' }],
     surfacePending: true, note: 'Preferred approximate9.8hour nonsynchronous rotation with4.9hour/alias alternatives. Occultation-model radius and dynamical mass/orbit; orientation/phase unregistered, two-body period derived, no current ephemeris.' },
+  { id: 'xiangliu', name: 'Xiangliu', parent: 'gonggong', radiusKm: 100, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(24021, 0.2908, 77.06, 96.52, 83.08, 31.99, 25.22073, 0, 0, [0, 90], 'equatorial', 2457000),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'GONGGONG', tier: 'measured', detail: 'Separate unresolved satellite Xiangliu, not the primary map or spectrum.' },
+      { label: 'ORBIT SCALE', value: '24,021 ± 202 KM · ONE MIRROR', tier: 'modelled', detail: 'Kiss2019 prograde fit a/e.2908; retrograde24,274±193km/e.2828 retained. Not current distance or a unique orbit.' },
+      { label: 'PERIOD', value: '25.22073 ± 0.000357 DAYS', tier: 'modelled', detail: 'One mirror orbital period; retrograde25.22385±.000362d. Not moon rotation.' },
+      { label: 'FRAME', value: 'J2000 EQUATORIAL · MODEL', tier: 'modelled', detail: 'Source i83.08/node31.99deg and derived w77.06/M96.52 at JD2457000. Reference pole[0,90] is coordinate basis,not Gonggong spin pole. Source time standard unverified.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'One mirror drawn for navigation; current phase,precession,light-time,covariance and topocentric residuals not validated. No event timing or observer registration.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '100 KM · DISPLAY HYPOTHESIS', tier: 'modelled', detail: 'Arakawa2021 conditional thermal-tidal preference,not measured radius/hard bound. Kiss2019 conditional18–50km and historical publisher240–400km diameter remain separate.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: '1.75±.07e21kg is system mass,not moon mass; no derived gravity/density adopted.' },
+      { label: 'DISCOVERY', value: 'ARCHIVAL HUBBLE · KISS ET AL.', tier: 'measured', detail: '2009/2010 observations,2017 discovery publication; exact raw-product/coadd association open.' },
+    ],
+    surfacePending: true, note: 'Radius is a display hypothesis,spin/shape/mass unknown. One mirror illustrative orbit,not current ephemeris or permanent Gonggong-facing direction. No resolved globe.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,

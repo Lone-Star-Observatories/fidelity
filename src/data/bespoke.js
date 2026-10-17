@@ -14759,6 +14759,153 @@ export const BODY_VISUALS = {
       ]
     ],
     "skyCaption": "Xiangliu: conditional 50km tidal-model radius, hypothetical23402km near-side scale; skyGeometry angular guide0.244833°. 40K is an arbitrary angular-helper input, not measured temperature. Appearance, phase, brightness and rendered point width remain imagined and uncalibrated."
+  },
+  "xiangliu": {
+    "id": "xiangliu",
+    "name": "Xiangliu",
+    "aliases": [
+      "Xiangliu"
+    ],
+    "kind": "moon",
+    "researchDate": "2026-10-17",
+    "previewWidth": 256,
+    "nativeSurface": "Shared actual Hubble Gonggong/Xiangliu pair detections only; no resolved moon globe, local geography or primary map assigned.",
+    "measured": [
+      "Xiangliu is the separate satellite of225088 Gonggong, identified explicitly in Arakawa2021 and Kiss2019 recovery science. Hubble archival detections2009-11-06/2010-09-18 and2017 recovery observations are unresolved, not mapped terrain.",
+      "Unchanged ESA/Hubble opo1718b1488x744 JPEG with full NASA,ESA,C.Kiss(Konkoly Observatory),J.Stansberry(STScI) credit and image-specific CC BY4.0. Release2017-05-19 12:20 timezone unspecified, not observation date. F606W/F814W andF606W/F775W blue display palette/panel lines/background noise are not calibrated visible colour,axes or chemistry.",
+      "Gonggong2022 JWST spectrum did not detect Xiangliu; no primary spectrum or map transferred to the moon."
+    ],
+    "modelled": [
+      "Kiss2019 epochJD2457000 mirror fits: prograde25.22073±.000357d/24021±202km/e.2908±.0070/i83.08±.86deg; retrograde25.22385±.000362d/24274±193km/e.2828±.0063/i119.14±.89deg. Both retained, no unique present orientation/phase or source UT/TT/TDB established. Orbital period is not rotation.",
+      "Mean1.75±.07e21kg is SYSTEM mass,not Xiangliu mass or independent primary-only mass. Catalogue moon mass null; no precise gravity/density/chemistry inferred.",
+      "2019 conditional small-bright moonR18–50km depends on albedo.2–1,Q/4.5Gyr/dissipation priors. Historical publisher240–400km diameter retained. Arakawa2021 near100km/similar-albedo preference and grid ceiling are conditional homogeneous/aligned/prograde Andrade thermal-tidal models,not measured axes/radius/hard bound or unified posterior. DisplayR100km is illustrative.",
+      "2021 initial12h spin,120–240K temperatures/eight eccentricities/six radii,336runs are grid inputs/frequencies,not current spin/temperature/probabilities. Non-1:1 inference and10–1000h simulated final spin are model predictions,not measured rotation or permanent Gonggong-facing site. Differentiated/ocean/oblique/retrograde model extensions open.",
+      "Kiss2019 and Arakawa2021 specific arXiv nonexclusive terms are NOT CC BY; no paper figure embedded. ESA/Hubble image-specific CC BY4 does not license papers/raw data. Final/later source,naming/raw HST time/filter/coadd/PSF/point association and calibration remain open."
+    ],
+    "unknown": [
+      "Independent moon radius,shape,spin,pole,mass,density,local terrain/material fractions,calibrated visible colour,photometry and geography.",
+      "Current ephemeris/phase/normal/horizon visibility,precession/covariance/light-time/topocentric astrometric validation. No observed plume/liquid/ocean/biology or survivable landing."
+    ],
+    "assumed": [
+      "Independent invented gray relief/blocks/grains,materials/chemistry fractions,colour,Gonggong disk pattern/phase/placement,light/exposure. No analog map or dated site. Black sky/omitted rings/stars/atmosphere are scene assumptions,not measured absence.",
+      "Sky reference uses2021 simplified GonggongR600km/nominal24000km scale/conditional moon radial height100km: skyGeometry2.8770778031523854deg target41.98812880443119px at1672width or42.816841872939705px at actual1705width,nominal90HFOV. Not joint fit,dated eccentric distance,normal/phase/permanent face or uncertainty envelope; older2019 cases separate. Rendered disk oversized/uncalibrated,no raster diameter adopted.",
+      "40K helper only positive angular input; irradiance/colour discarded. Original sky1705x922/master1536x831/preview256x138 preserved natural aspect; tiny preview footers require explicit IMAGINED card labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM XIANGLIU",
+    "skyLabel": "IMAGINED · SKY FROM XIANGLIU",
+    "skyCaption": "Hypothetical Gonggong in Xiangliu’s sky; size reference is model-dependent and rendered disk is uncalibrated.",
+    "skyModel": {
+      "star": "Gonggong · conditional spherical angular guide",
+      "radiusSun": 0.0008624407072013799,
+      "temperatureK": 40,
+      "distanceAU": 0.00015976163222221587,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 2.8770778031523854,
+      "centreDiscWidthFraction": 0.025112517227530617,
+      "irradianceEarth": 6.721221251192388e-8,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "Kiss2019 mirror orbits and thermal/tidal alternatives; nonexclusive",
+        "url": "https://arxiv.org/abs/1903.05439v1"
+      },
+      {
+        "title": "Arakawa2021 conditional size/spin model; nonexclusive",
+        "url": "https://arxiv.org/abs/2108.08553v1"
+      },
+      {
+        "title": "ESA/Hubble native pair detections",
+        "url": "https://esahubble.org/images/opo1718b/",
+        "publicationDate": "2017-05-19"
+      },
+      {
+        "title": "ESA/Hubble image terms",
+        "url": "https://esahubble.org/copyright/"
+      },
+      {
+        "title": "Image-specific CC BY4",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/gonggong-hubble-native.jpg",
+        "bytes": 320294,
+        "sha256": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a",
+        "source": "https://cdn.esahubble.org/archives/images/large/opo1718b.jpg",
+        "sourceUrl": "https://esahubble.org/images/opo1718b/",
+        "width": 1488,
+        "height": 744,
+        "tier": "measured",
+        "credit": "NASA, ESA, C. Kiss (Konkoly Observatory), and J. Stansberry (STScI)",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "terms": "ESA/Hubble image-specific CC BY4.0 https://creativecommons.org/licenses/by/4.0/; not blanket paper/code/raw-product licence.",
+        "observationDate": "2009-11-06;2010-09-18",
+        "publicationDate": "2017-05-19 12:20 timezone unspecified",
+        "processing": "Unchanged publisher1488x744 JPEG, no resizing/re-encoding. Original TIFF retained separately; eight annotated panels and blue display palette, not calibrated visible colour.",
+        "description": "Actual shared Gonggong/Xiangliu unresolved Hubble detections; no primary map assigned to moon. Blue palette,annotation,glare/background not terrain,axes,chemistry or calibrated visible colour. Raw-product/PSF/point association OPEN."
+      }
+    ],
+    "heroFacts": [
+      [
+        "RADIUS",
+        "100 KM · DISPLAY HYPOTHESIS"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/xiangliu-surface-image.jpg",
+      "previewUrl": "/bespoke/xiangliu-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; model constraints do not establish measured geography.",
+      "sourceFile": "xiangliu-generated-surfaceImage-original.png",
+      "sourceSha256": "c1ce2b55b511d8d215e4ca952e6ee51094ec5cbe38b21b3061eb764c581ed80d",
+      "sha256": "602f1c5f054efcd798a65e925d56210e31c4dc1baf09908661d301a836d1b5c5",
+      "previewSha256": "c687d7fb65b3cb45414de3e033104e49b7b450169faf872466945b9b966a2285",
+      "bytes": 279335,
+      "previewBytes": 8391,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Original-preserving generated JPEG85 master/JPEG80 preview independently from originalPNG, natural aspect retained; no native science transformed. Terrain/material/colour/light invented and uncalibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/xiangliu-sky-image.jpg",
+      "previewUrl": "/bespoke/xiangliu-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; model constraints do not establish measured geography.",
+      "sourceFile": "xiangliu-generated-skyImage-original.png",
+      "sourceSha256": "b467ea5671c40d0691f047bc489959cdba46a646f39b8acb5e780fa24c24b029",
+      "sha256": "28b4936cdaf1621c35843697d2fa5955ad3fc7b96418a64565ff71e972f70f31",
+      "previewSha256": "eed7e94bf9d7bde0414a64b1e0e30a33be3709b1788e1d8eafaeb78ede79ce9f",
+      "bytes": 185943,
+      "previewBytes": 6150,
+      "width": 1536,
+      "height": 831,
+      "previewWidth": 256,
+      "previewHeight": 138,
+      "processing": "Original-preserving generated JPEG85 master/JPEG80 preview independently from originalPNG, natural aspect retained; no native science transformed. Terrain/material/colour/light invented and uncalibrated."
+    }
   }
 };
 

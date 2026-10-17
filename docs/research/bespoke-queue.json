@@ -654,6 +654,19 @@
       "visualId": "hiiaka"
     },
     {
+      "id": "sol-xiangliu",
+      "bodyId": "xiangliu",
+      "name": "Xiangliu",
+      "parent": "gonggong",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "Shared actual Hubble Gonggong/Xiangliu pair detections only; no resolved moon globe, local geography or primary map assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "xiangliu"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7222,18 +7235,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-xiangliu",
-      "name": "Xiangliu",
-      "parent": "gonggong",
-      "kind": "moon",
-      "scope": "Satellite of dwarf-planet candidate Gonggong; individual physical/reference audit open",
-      "source": "https://arxiv.org/abs/2108.08553v1",
-      "nativeImagery": "Unresolved Hubble Gonggong/Xiangliu pair retained in primary dossier; no independent globe or calibrated satellite geography. Native raw-product/point crosswalk remains open.",
-      "research": "independent views prepared; full mirror-element/frame convention audit saved; individual dossier pending (xiangliu-orbit-frame-assessment-2026-10-17.json)",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8535,7 +8536,7 @@
     },
     "moon": {
       "selected": 467,
-      "initialDossiers": 40,
+      "initialDossiers": 41,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }
