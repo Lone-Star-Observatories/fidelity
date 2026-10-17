@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "body": "225088 Gonggong, distinct from satellite Xiangliu",
+  "status": "research-only; no 85th dossier or production input change",
+  "sources": [
+    {
+      "role": "record",
+      "url": "https://arxiv.org/abs/2309.15230",
+      "finalUrl": "https://arxiv.org/abs/2309.15230",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/gonggong-jwst-record-2026-10-17.html",
+      "bytes": 45900,
+      "sha256": "2fab5cb01d246ac9bf94782e573d096cd261198c9eeb6f97ea788ad1fe3d3919",
+      "retrievedAt": "2026-10-17T19:19:09.363Z"
+    },
+    {
+      "role": "paper",
+      "url": "https://arxiv.org/pdf/2309.15230",
+      "finalUrl": "https://arxiv.org/pdf/2309.15230",
+      "status": 200,
+      "contentType": "application/pdf",
+      "path": "data/research-sources/gonggong-jwst-paper-2026-10-17.pdf",
+      "bytes": 1803059,
+      "sha256": "b5b1913578371e5f2225f89db368e4da787213dccc173aa0c3ffd5d28698a333",
+      "retrievedAt": "2026-10-17T19:19:09.627Z"
+    },
+    {
+      "role": "licence",
+      "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "finalUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "status": 200,
+      "path": "data/research-sources/gonggong-jwst-licence-2026-10-17.html",
+      "bytes": 36788,
+      "sha256": "0389dccad7bdfebd9b7294ccd1582d8197b450295ff5263bafa41763e5f40b27",
+      "retrievedAt": "2026-10-17T19:19:36.077Z"
+    },
+    {
+      "role": "versioned-record",
+      "url": "https://arxiv.org/abs/2309.15230v2",
+      "finalUrl": "https://arxiv.org/abs/2309.15230v2",
+      "status": 200,
+      "path": "data/research-sources/gonggong-jwst-versioned-record-2026-10-17.html",
+      "bytes": 45910,
+      "sha256": "20aeb156203115537d3d2cff4ec028e9d41bdccf76fbf4d8c9519176f24d728a",
+      "retrievedAt": "2026-10-17T19:19:49.329Z"
+    },
+    {
+      "role": "versioned-paper",
+      "url": "https://arxiv.org/pdf/2309.15230v2",
+      "finalUrl": "https://arxiv.org/pdf/2309.15230v2",
+      "status": 200,
+      "path": "data/research-sources/gonggong-jwst-versioned-paper-2026-10-17.pdf",
+      "bytes": 1803059,
+      "sha256": "b5b1913578371e5f2225f89db368e4da787213dccc173aa0c3ffd5d28698a333",
+      "retrievedAt": "2026-10-17T19:19:50.409Z"
+    }
+  ],
+  "paper": {
+    "title": "A Tale of 3 Dwarf Planets: Ices and Organics on Sedna, Gonggong, and Quaoar from JWST Spectroscopy",
+    "authors": [
+      "J.P. Emery",
+      "I. Wong",
+      "R. Brunetto",
+      "J.C. Cook",
+      "N. Pinilla-Alonso",
+      "J.A. Stansberry",
+      "B.J. Holler",
+      "W.M. Grundy",
+      "S. Protopapa",
+      "A.C. Souza-Feliciano",
+      "E. Fernández-Valenzuela",
+      "J.I. Lunine",
+      "D.C. Hines"
+    ],
+    "version": "arXiv2309.15230v2; directly fetched versioned PDF byte-identical to current PDF",
+    "submitted": "2023-09-26",
+    "revised": "2024-02-29",
+    "printedAcceptance": "2024-02-28",
+    "publisherDoi": "10.1016/j.icarus.2024.116017",
+    "rights": "Specific record links CC BY-NC-ND 4.0, not CC BY. Direct deed response retained. Final publisher version/rights not independently audited; no figure embedded.",
+    "pagination": "Record comment says 32 pages; downloaded and version-pinned PDF has 34 pages. Retain both without asserting a cause."
+  },
+  "inspection": {
+    "text": "Full 34-page extraction retained in data/research-sources/gonggong-jwst-paper-2026-10-17.txt",
+    "visual": "Complete rendered pages 1,4,5,6,8,13,14 inspected: authors, Table1 source footnotes, Table2 plus footnotes, Figure1 complete split caption, analysis caveats and complete Gonggong section4.2/Table4 footnotes. Not a full visual audit of all34 pages.",
+    "scope": "Targeted observing/reduction and Gonggong-specific band identification. Later discussion/evolution and every other-body result are not exhaustively assessed."
+  },
+  "observation": {
+    "instrument": "JWST NIRSpec IFU PRISM/Clear",
+    "program": 1191,
+    "observationNumber": 15,
+    "dateUT": "2022-11-04",
+    "startUT": "20:24",
+    "totalIntegrationSeconds": 905,
+    "ditheredExposures": 2,
+    "heliocentricDistanceAu": 89.02,
+    "phaseAngleDegrees": 0.6,
+    "wavelengthMicron": "Section2 .7–5.3; abstract .7–5.2, distinct reported coverage wording",
+    "resolvingPower": "30–300",
+    "limits": "Printed Table2 date/time/total exposure are not new raw-product verification or elapsed visit duration. Infrared spectral extraction is not a calibrated visible map. No angular/raster size computed."
+  },
+  "reduction": {
+    "pipeline": "1.11.1 stages1–2; calibration context jwst_1100.pmap",
+    "authorsMethod": "Off-sky 200-pixel moving-median correlated read-noise removal; local template PSF median over10 slices each direction, background subtraction/normalization, scale plus constant background fit; per-dither 3sigma cleaning with20-pixel moving median, then average.",
+    "gonggongExtraction": "7x7 extraction box, background outside21x21, intervening pixels masked; Figure1 is wavelength-collapsed IFU diagnostic with palette/boxes, not resolved terrain. Satellite too small/faint to detect in these data.",
+    "reflectance": "Divide by matched-aperture SNAP-2 PRISM solar analog program1128. P330E program1538 belongs to medium-grating context, not this Gonggong observation.",
+    "limits": "Publisher pipeline/calibration claims not independently reproduced. Raw exposure IDs/MAST products, contamination budget, wavelength/photometric error reproduction and precise native Hubble crosswalk remain open. No transfer of Quaoar medium-grating observations/chemistry to Gonggong."
+  },
+  "bandAnalysis": {
+    "method": "Local linear continuum and Gaussian fits; averages/std deviations of10000 Monte Carlo fits. Continuum shape/slope, blended bands and non-Gaussian shapes excluded from quoted uncertainties, potentially underestimating true errors.",
+    "quantities": "Band depth percent of local continuum is not local material fraction, abundance, visible colour or resolved terrain. Detailed spectral mixture/particle/layering models explicitly deferred.",
+    "table4Selected": {
+      "crystallineWater": {
+        "centerMicron": [
+          1.674,
+          0.004
+        ],
+        "depthPercent": [
+          4.0,
+          0.7
+        ]
+      },
+      "water": {
+        "centerMicron": [
+          2.023,
+          0.001
+        ],
+        "depthPercent": [
+          27.5,
+          0.4
+        ],
+        "caveat": "Asymmetric band: Gaussian center may not precisely represent true center."
+      },
+      "ethaneCentersMicron": [
+        2.319,
+        2.408,
+        2.463,
+        3.375,
+        3.419,
+        3.488
+      ],
+      "uncertainCarrier": {
+        "centerMicron": [
+          2.594,
+          0.003
+        ],
+        "assignment": "C2H2 or CH4?",
+        "depthPercent": [
+          3.6,
+          0.9
+        ]
+      },
+      "complexedCO2": {
+        "centerMicron": [
+          4.253,
+          0.008
+        ],
+        "fwhmMicron": [
+          0.024,
+          0.033
+        ],
+        "depthPercent": [
+          24.0,
+          11.0
+        ]
+      }
+    },
+    "tableFootnotes": "3.375/3.419/3.488 bands lie within broad deep2.7–3.6micron complex; width/depth depend on local continuum. 3.488 also sits on steep continuum and fit may be unreliable."
+  },
+  "gonggongInterpretations": {
+    "ethane": "Multiple2.25–2.5 and3.35–3.5micron features support C2H6. Differences around3.42/3.49 may involve mixing or another hydrocarbon; propane has overlapping bands. Weaker/missing longer-wave features imply lower relative ethane than Sedna, not a quantified local fraction.",
+    "methane": "Very little direct evidence in this PRISM spectrum; strong expected3.32/3.55/3.85 features not apparent. Weak~2.60 feature and ethane overlaps allow possible small contributions; nondetection is not absolute absence.",
+    "water": "1.5/2.0micron bands,1.65micron crystalline feature and4–5micron curvature support H2O. Missing3.1micron Fresnel peak admits amorphous surface layering, water-depleted top layer or acetylene overprint alternatives; none is a resolved measured layer/geography.",
+    "carbonDioxide": "4.253micron feature may be CO2 complexed with dark material or other ices; not an unambiguous pure-CO2 terrain or local fraction. Ganymede/Callisto/Saturn moon analog comparisons are not skins.",
+    "organics": "Red slope and broad absorption suggest complex organics. Irradiation, replenishment, internal melting/geochemical evolution and atmospheric scenarios are interpretations, not direct plume/ocean/biology/atmospheric measurements or photographed geography."
+  },
+  "identityAndInheritedValues": {
+    "identity": "Intro prints (22508) while correct identity is225088 confirmed separately; retain typo without adopting new designation.",
+    "table1": "Diameter1230km/albedo.14 cite Kiss2019; not a fresh size measurement or resolution of prior thermal/uncertainty alternatives. Published ranking/dwarf terminology not a new exhaustive ranking or IAU roster claim."
+  },
+  "open": [
+    "Final publisher chronology/version and later spectral-model studies",
+    "Full discussion and model assumptions beyond targeted sections",
+    "Exact raw JWST products/UTCs, spectral uncertainties and photometric calibration reproduction",
+    "Unique spin/shape, current atmosphere, spatial composition and observer registration"
+  ],
+  "preservation": "84 dossiers and642 tracked public files unchanged; all originals/masters/native/maps/models/shapes/provenance/recorded Clipper/codecs retained. No new generated image, native embedding, catalogue update or angular/raster calculation. Queue566; backlog ACTIVE."
+}
