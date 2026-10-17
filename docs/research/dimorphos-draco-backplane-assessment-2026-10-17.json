@@ -1,0 +1,478 @@
+{
+  "date": "2026-10-17",
+  "issue": "#3",
+  "scope": "Research-only original DRACO final-image/backplane structural and stored-sample audit; no geometric or photometric adoption",
+  "sources": [
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_01_geo.xml",
+      "bytes": 39996,
+      "sha256": "3085249f3334090f2227c30cf4037be88d82ddef78e4c79edebaf94c1ad27fee",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracoddp-v1.0/dart_0401930049_43695_01_geo.xml"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_01_geo.fits",
+      "bytes": 67132800,
+      "sha256": "d8b2171b610235dced9306b01bcf2c6dbfb9317693457b441cdb36678a9ab629",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracoddp-v1.0/dart_0401930049_43695_01_geo.fits"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dart_0401930049_43695_02_iof.fits",
+      "bytes": 4219200,
+      "sha256": "d0f4613cb66cb803ab8cef277b7cc480a498a7c57f1c17aaf6f75fccf71647b7",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracocal-v3.0/final/2022/269/dart_0401930049_43695_02_iof.fits"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dracoddp-collection.xml",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracoddp-v1.0/collection_data_dracoddp.xml",
+      "bytes": 6409,
+      "sha256": "4da756064224736fdff63a6fcf411ac7f4884acb5658c1b56b2ae42fb34342ce"
+    },
+    {
+      "path": "data/research-sources/dimorphos-dracoddp-overview.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:data_dracoddp-v1.0/overview_data_dracoddp.txt",
+      "bytes": 1034,
+      "sha256": "b68b12eedf662a0c203b4b25a420eb9cdb327c2fb944f11380d4d3e2e6fb3c8e"
+    },
+    {
+      "path": "data/research-sources/dimorphos-pds-draco-sis-v3.pdf",
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-dart:document_draco-v3.0/jhuapl_dart_draco_uncalibrated_calibrated_sis_v3.pdf",
+      "bytes": 3788361,
+      "sha256": "070d3e5622b49eed00434274845838ca3867498670c801439869b1c209a53ba6"
+    }
+  ],
+  "credits": {
+    "collectionAuthorListAsPublished": "Ernst, C.; Daly, T.; Barnouin, O.; Espiritu, R.; Waller, D.",
+    "provider": "NASA PDS Small Bodies Node; DART SOC, Johns Hopkins Applied Physics Laboratory",
+    "publicationYear": "2023; not the observation year",
+    "terms": "Source availability is not asserted to grant CC BY or image/figure redistribution rights. No paper figure or archive raster is newly embedded.",
+    "collectionDOI": "10.26007/QAAN-F992"
+  },
+  "product": {
+    "logicalIdentifier": "urn:nasa:pds:dart:data_dracoddp:dart_0401930049_43695_01_geo",
+    "version": "1.0",
+    "modificationDate": "2023-06-16 as labelled; separate from FITS creation comment 2023-11-02",
+    "target": "(65803) Didymos I (Dimorphos)",
+    "labelStart": "2022-09-26T23:14:22.365Z",
+    "labelStop": "2022-09-26T23:14:22.369986Z",
+    "timeCaution": "SIS describes image TOV as integration midpoint; ACQ_UTC is labelled TOV and equals XML start text. Element name alone must not be interpreted as physical exposure start. Independent clock correlation is open.",
+    "kernelNames": [
+      "naif0012.tls",
+      "pck00010.tpc",
+      "didymos_system_12.tpc",
+      "dart_009.tf",
+      "didymos_system_005.tf",
+      "dart_draco_003.ti",
+      "dart_sclk_0204.tsc",
+      "jup344.bsp",
+      "jup365.bsp",
+      "de430.bsp",
+      "didymos_barycenter_s205_v01.bsp",
+      "didymos_system_s527_v01.bsp",
+      "dart_struct_v03.bsp",
+      "dart_2021_328_2022_091_rec_v01.bsp",
+      "dart_2022_091_2022_231_rec_v01.bsp",
+      "dart_2022_231_2022_269_rec_v03.bsp",
+      "dart_2022_269_2022_269_rec_v03.bsp",
+      "dart_2022_269_2022_269_spc_v03.bsp",
+      "dart_2022_269_2099_001_imp_v02.bsp",
+      "dart_2022_246_2022_269_rec_v02.bc",
+      "dart_2022_269_2022_269_spc_v03.bc",
+      "dimorphos_g_00243mm_spc_0000n00000_v004.bds"
+    ],
+    "selectedHeaderCards": {
+      "SIMPLE": [
+        "SIMPLE  =                    T / Java FITS: Thu Nov 02 14:48:22 EDT 2023        "
+      ],
+      "BITPIX": [
+        "BITPIX  =                  -32 / bits per data value                            "
+      ],
+      "NAXIS": [
+        "NAXIS   =                    3 / number of axes                                 "
+      ],
+      "NAXIS1": [
+        "NAXIS1  =                 1024 / size of the n'th axis                          "
+      ],
+      "NAXIS2": [
+        "NAXIS2  =                 1024 / size of the n'th axis                          "
+      ],
+      "NAXIS3": [
+        "NAXIS3  =                   16 / size of the n'th axis                          "
+      ],
+      "GEOINVAL": [
+        "GEOINVAL= '-999    '           / Value assigned to pxls without valid intercepts"
+      ],
+      "PXOUTWIN": [
+        "PXOUTWIN= '-1E10   '           / Value assigned to pixels outside window2       "
+      ],
+      "MISPXVAL": [
+        "MISPXVAL= '1E10    '           / the value assigned to missing pixels           "
+      ],
+      "GEOFILE": [],
+      "DSKFILE": [],
+      "PCKFILE": [],
+      "FRAME": [],
+      "TARGET": [
+        "TARGET  = '(65803) Didymos I (Dimorphos)' / Primary target object               "
+      ],
+      "ACQ_UTC": [
+        "ACQ_UTC = '2022-09-26T23:14:22.365' / [UTC] Image TOV in UTC from ACQTMSOC      "
+      ],
+      "COR_UTC": [
+        "COR_UTC = '2022-09-26T23:14:22' / Est. UTC (YYYY-MM-DD HH:MM:SS                 "
+      ]
+    },
+    "collectionModificationDate": "2023-11-02; separate from observation and product-labelled 2023-06-16 modification"
+  },
+  "structureChecks": {
+    "arrayCount": 16,
+    "contiguousLabelOffsets": true,
+    "backplaneFileBytes": 67132800,
+    "fitsBlockAligned": true,
+    "firstIoverfPayloadByteEqualCalibratedProduct": true,
+    "firstIoverfPayloadSha256": "1569962a56c80b1c126d419ee0c5da15d4afe2259a55650f4678421d002326f1",
+    "trailingBytesAfterSixteenArrays": 896,
+    "NAXIS": 3,
+    "axes": [
+      1024,
+      1024,
+      16
+    ],
+    "BITPIX": -32,
+    "headerBytes": 23040,
+    "trailingPaddingAllZero": true
+  },
+  "planes": [
+    {
+      "localIdentifier": "ioverf",
+      "offset": 23040,
+      "payloadBytes": 4194304,
+      "sha256": "1569962a56c80b1c126d419ee0c5da15d4afe2259a55650f4678421d002326f1",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "xcoord",
+      "offset": 4217344,
+      "payloadBytes": 4194304,
+      "sha256": "b49f59d59e3943e8d2a8e027a63c07937e2d9f85bdd48faca28d2a35c3e838a8",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "ycoord",
+      "offset": 8411648,
+      "payloadBytes": 4194304,
+      "sha256": "5189e8d74549a82ee39c3ea44ad479a9bd2a50ed69c6dbd2e60994f80184a236",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "zcoord",
+      "offset": 12605952,
+      "payloadBytes": 4194304,
+      "sha256": "d3c879588c5ddc4032005e677af76e7fa306540e54ec1d29b935e8abe5b1acfa",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "latitude",
+      "offset": 16800256,
+      "payloadBytes": 4194304,
+      "sha256": "df1b463350f8fc85ae478b16b261320342e5fd1c1788872b513cfc2230467715",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "longitude",
+      "offset": 20994560,
+      "payloadBytes": 4194304,
+      "sha256": "17a0d409793a0385ebae1a5eff83e93b4b0592099e825f9099d0651674a2c0d7",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "radius",
+      "offset": 25188864,
+      "payloadBytes": 4194304,
+      "sha256": "f23ec48831c3916ff37f192b88257f7980efc20136367108d5173fc1bee5be56",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "incidence",
+      "offset": 29383168,
+      "payloadBytes": 4194304,
+      "sha256": "35f7a364a0d7cb128affa549c810c07a93132594b0db39a2c1594ca1d3b0b01b",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "emission",
+      "offset": 33577472,
+      "payloadBytes": 4194304,
+      "sha256": "56a4e986c79da90ef649ddb3564bac7ea55769322ef2411f3bc8342c5c527631",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "phase",
+      "offset": 37771776,
+      "payloadBytes": 4194304,
+      "sha256": "fc24570384e6b2593bad022cdb754445cd6d887ce9783807294ba503ce428237",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "horizpixscale",
+      "offset": 41966080,
+      "payloadBytes": 4194304,
+      "sha256": "3a548f0b57de2bc2d1dc1f21fdffc31a2c05890055be606ecf4b67efeba589d8",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "vertpixscale",
+      "offset": 46160384,
+      "payloadBytes": 4194304,
+      "sha256": "3a548f0b57de2bc2d1dc1f21fdffc31a2c05890055be606ecf4b67efeba589d8",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "slope",
+      "offset": 50354688,
+      "payloadBytes": 4194304,
+      "sha256": "1e6f4b5e64a9d549abc5165c9531fe7447bf3b670ccbe45cb433773f06436882",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "elevation",
+      "offset": 54548992,
+      "payloadBytes": 4194304,
+      "sha256": "78286b231f2b2f6d09c4dade9045b46fbb8b0d614d01df96c704019288234dfc",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "gravacc",
+      "offset": 58743296,
+      "payloadBytes": 4194304,
+      "sha256": "b7a4854421a96cf62b83f939c9bae2d4b9226d05ec6366e310ac4988d2534273",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    },
+    {
+      "localIdentifier": "gravpot",
+      "offset": 62937600,
+      "payloadBytes": 4194304,
+      "sha256": "5b6874263f0da48f25ab905118d021c15872f9ac447814562747cec57a79b5a5",
+      "finiteStoredValues": 1048576,
+      "exactFloat32SentinelCounts": {
+        "-999.0": 0,
+        "-10000000000.0": 786432,
+        "-1e+32": 0,
+        "10000000000.0": 0,
+        "1000000000.0": 0,
+        "-1000000000.0": 0,
+        "100000000.0": 0,
+        "-100000000.0": 0
+      }
+    }
+  ],
+  "findings": [
+    "The 4194304-byte first I/F plane is byte-identical to the calibrated _02_iof.fits payload, SHA256 1569962a56c80b1c126d419ee0c5da15d4afe2259a55650f4678421d002326f1. This verifies these archived stored samples, not a NASA publisher crop or independent calibration.",
+    "All sixteen labelled arrays occupy contiguous 4194304-byte regions with IEEE754 big-endian float32 samples. File is FITS-block aligned with 896 trailing zero bytes.",
+    "Each of the fifteen geometry planes contains 786432 exact float32 -1E10 values and no exact -999 or float32-rounded -1E32 values. Every stored sample is finite. Counts do not independently establish a validity mask or terrain coverage.",
+    "The XML labels and FITS PXOUTWIN card specify -1E10. The collection overview explicitly says pixels outside original window 2 retain PXOUTWIN/not_applicable values. SIS page78 prose instead lists -1E32 for backplane outside-window values. Preserve this documentary difference without modifying any raster or automatically adopting a mask.",
+    "Label references Dimorphos v004 DSK, PCK12 and FK005. The separately audited later PCK15/FK007/008 are not substitutions for these processing dependencies.",
+    "SIS pages29\u201331 describe body-specific geometry and potential-derived elevation. Historical assumed density/spin and shape-model conventions do not establish present physical measurements or geological elevation."
+  ],
+  "validationMethod": [
+    "Original TLS-verified archive downloads retained unchanged; all listed SHA256 and sizes checked.",
+    "XML array offsets compared to actual FITS byte bounds; all sixteen payloads hashed; first plane compared byte-for-byte with original calibrated product.",
+    "All stored float32 values scanned for finiteness and explicit sentinel diagnostics; comparison constants rounded to float32 without changing input samples.",
+    "Original FITS header cards retained in ignored research preparation; source SIS relevant pages visually inspected in earlier preparation. No SPICE evaluation or calibration pipeline executed.",
+    "SIS PDF page78 newly rendered and visually inspected: printed PXOUTWIN=-1E32, visible editing markup and Version2.0 footer in v3-named PDF retained."
+  ],
+  "limitations": [
+    "Exact first-plane payload equality establishes stored I/F sample correspondence between these two archived products only, not independently reproduced geometry or calibration.",
+    "Label not_applicable_constant -1E10 differs from SIS backplane prose -1E32; retained without repair or blanket masking.",
+    "Label DSK v004 and PCK12/FK005 references are processing provenance, not independently validated frame registration or permission to substitute later kernels.",
+    "No NASA publisher crop, orientation, transfer function or pixel identity established.",
+    "No angular/raster-size computation, resampling, masking, embedding, model conversion or catalogue change.",
+    "No independently reproduced intercepts, pointing, light-time, gravity, slope, elevation, kernel load precedence or physical shape accuracy.",
+    "Publisher985x985 image crop, flip, stretch and raw-product pixel association remain open.",
+    "No angular/raster-size computation, image conversion, masking, resampling, generation, embedding, dossier84, catalogue/map/model/shape or codec change.",
+    "Full existing source/provenance/original/master/native records and all prior limitations remain preserved."
+  ],
+  "preservation": {
+    "registryDossiers": 83,
+    "trackedPublicFiles": 637,
+    "baselineFile": "/tmp/fidelity-draco-backplane-public-before.json",
+    "queueTasks": 566
+  },
+  "verification": {
+    "status": "passed",
+    "testsPassed": 678,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "fullHTMLBytes": 15966068,
+    "headroomBytes": 33932,
+    "trackedPublicFilesByteEqual": 637,
+    "sourceHashesVerified": 6,
+    "registryDossiers": 83,
+    "queueTasks": 566,
+    "reproducer": "docs/research/dimorphos-draco-backplane-audit-2026-10-17.py",
+    "reproducerResult": "Six source hashes, sixteen payload hashes/offsets/fill counts, first-plane equality and padding pass",
+    "freshBrowserClaim": false,
+    "interbuildSavingsClaim": false,
+    "logs": [
+      "/tmp/fidelity-draco-backplane-tests.log",
+      "/tmp/fidelity-draco-backplane-build.log",
+      "/tmp/fidelity-draco-backplane-full.log"
+    ]
+  },
+  "visualInspection": {
+    "page": 78,
+    "renderPath": "data/research-sources/dimorphos-pds-draco-sis-v3-page-78.png",
+    "renderSHA256": "3d797023bfa2ea0484c2ed2eaaa3c8bbc4078f1c405f09f5efc3594acb029561",
+    "sourceUnchanged": true
+  }
+}
