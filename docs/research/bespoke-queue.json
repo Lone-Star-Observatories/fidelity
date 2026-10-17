@@ -1193,10 +1193,11 @@
       "parent": null,
       "kind": "dwarf planet",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Unresolved Hubble primary and satellite detections; no resolved globe, measured local terrain or other-body skin assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "gonggong"
     },
     {
       "id": "sol-quaoar",

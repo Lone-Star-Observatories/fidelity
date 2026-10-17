@@ -121,7 +121,7 @@ function smallBody(b) {
         fact('INCLINATION', `${fmt(e.i, 1)}°${e.i > 90 ? ' · RETROGRADE' : ''}`, 'measured', 'To the ecliptic.'),
         fact('POSITION', 'OSCULATING ORBIT', 'computed', `Two-body orbit from JPL SBDB elements at JD ${e.epochJd}; planetary tugs are ignored, so it drifts slowly away from that date.`),
       ],
-      PHYSICAL: [...physicalFacts(b), fact('DAY', `${fmt(b.rotationHours, 2)} H`, 'measured', 'Rotation period from its light curve (JPL SBDB).')],
+      PHYSICAL: [...(b.physicalFacts ?? physicalFacts(b)), ...(b.rotationFacts ?? [fact('DAY', `${fmt(b.rotationHours, 2)} H`, 'measured', 'Rotation period from its light curve (JPL SBDB).')])],
       RENDERING: skinFacts(b),
     },
   };

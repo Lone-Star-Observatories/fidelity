@@ -271,3 +271,23 @@ test('Dimorphos keeps native local DRACO separate from invented geography and un
  assert.match(v.contextImages[0].processing,/not full original pixel preservation/);assert.match(v.assumed.join(' '),/not joint fit/);assert.match(v.modelled.join(' '),/not independent weighing/);
  assert.match(v.surfaceLabel,/IMAGINED/);assert.match(v.skyLabel,/IMAGINED/);
 });
+
+test('Gonggong preserves unresolved native detections and conditional system models',async()=>{
+ const v=bodyVisualFor({name:'Gonggong'});
+ assert.equal(v.id,'gonggong');assert.equal(v.surfaceMap,undefined);
+ const queue=JSON.parse(await fs.readFile(new URL('../docs/research/bespoke-queue.json',import.meta.url),'utf8'));assert.match(queue.entries.find(x=>x.bodyId==='gonggong').surface,/resolved globe remains pending/);
+ assert.equal(bodyVisualFor({name:'Xiangliu'})?.id==='gonggong',false);
+ assert.equal(bodyVisualFor({name:'2007 OR10'}),v);
+ assert.match(v.surfaceLabel,/IMAGINED/);assert.match(v.skyLabel,/IMAGINED/);
+ assert.match(v.modelled.join(' '),/SYSTEM mass/);assert.match(v.modelled.join(' '),/not measured radius/);
+ assert.match(v.measured.join(' '),/Xiangliu was not detected/);
+ assert.equal(createHash('sha256').update(await fs.readFile(new URL('../public'+v.contextImages[0].url,import.meta.url))).digest('hex'),'7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a');
+ assert.match(v.contextImages[0].processing,/no resizing/);assert.match(v.contextImages[0].credit,/C. Kiss.*J. Stansberry/);
+});
+
+test('Gonggong physical cards distinguish thermal radius and system mass without changing catalogue numbers',async()=>{
+ const {SMALL_BODIES}=await import('../src/data/moons.js');const {solSystem}=await import('../src/data/systems.js');
+ const m=SMALL_BODIES.find(x=>x.id==='gonggong'),b=solSystem().bodies.find(x=>x.id==='gonggong');
+ assert.equal(m.radiusKm,615);assert.equal(m.massKg,1.75e21);assert.equal(m.rotationHours,22.4);
+ const facts=b.facts.PHYSICAL;assert.equal(facts.find(x=>x.label==='RADIUS').tier,'modelled');assert.equal(facts.find(x=>x.label==='SYSTEM MASS').tier,'modelled');assert.equal(facts.some(x=>x.label==='MASS'),false);assert.equal(facts.some(x=>x.label==='SURFACE G'),false);assert.match(facts.find(x=>x.label==='DAY').detail,/44.8/);
+});

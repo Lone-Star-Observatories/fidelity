@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-17",
+  "engine": "Codex in-app Chromium",
+  "route": "#/object/sol/gonggong",
+  "normal": {
+    "cards": 3,
+    "decodedDimensions": [
+      [
+        1536,
+        864
+      ],
+      [
+        1536,
+        864
+      ],
+      [
+        1488,
+        744
+      ]
+    ],
+    "modelLabels": true,
+    "helperInputNotTemperature": true
+  },
+  "unmodifiedFull": {
+    "cards": 3,
+    "decodedDimensions": [
+      [
+        256,
+        144
+      ],
+      [
+        256,
+        144
+      ],
+      [
+        1488,
+        744
+      ]
+    ],
+    "modelLabels": true,
+    "helperInputNotTemperature": true
+  },
+  "diagnosticFixture": {
+    "entry": "docs/research/standalone-browser-audit-2026-10-17-entry.mjs",
+    "server": "docs/research/standalone-browser-audit-2026-10-17-server.mjs",
+    "applicationAndSnapshotProductionBytes": "unchanged; diagnostic module appended in memory",
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "readableSha256": "c095386251d81d602ade09793668e6528651c6998fc84b2be223aa98f73c7cdc",
+    "imagesDecoded": 304,
+    "canvases": 8,
+    "gonggongNativeHashPresent": true
+  },
+  "limits": [
+    "No fresh all-model actual-load, every-route, unsupported-browser, file:// or other-engine claim.",
+    "Browser and Node full JSON equality is not calibrated geography/photometry."
+  ]
+}

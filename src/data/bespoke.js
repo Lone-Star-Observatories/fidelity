@@ -14593,6 +14593,172 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "gonggong": {
+    "id": "gonggong",
+    "name": "Gonggong",
+    "aliases": [
+      "Gonggong",
+      "225088 Gonggong",
+      "2007 OR10"
+    ],
+    "kind": "dwarf planet",
+    "researchDate": "2026-10-17",
+    "previewWidth": 256,
+    "nativeSurface": "Unresolved Hubble primary and satellite detections; no resolved globe, measured local terrain or other-body skin assigned.",
+    "measured": [
+      "Hubble WFC3 observed Gonggong and separate Xiangliu on2009-11-06 and2010-09-18. Unchanged ESA/Hubble opo1718b eight-panel1488x744 JPEG retained; alternate TIFF separately retained. Top panels alternate F606W/F814W; bottom F606W/F775W. Exact raw UTC/coadd/PSF/pixel crosswalk OPEN.",
+      "Full NASA, ESA, C. Kiss (Konkoly Observatory), and J. Stansberry (STScI) credit; image-specific ESA/Hubble CC BY4.0 terms. Release2017-05-19 12:20 timezone unspecified, NASA article2017-05-18/update2025 not observation. Blue palette, panel lines, background sources/noise and unresolved points are not calibrated visible colour, terrain, axes or chemistry.",
+      "Identity225088 Gonggong(2007 OR10),spkid20225088 verified JPL. Historical publisher1520km primary/240–400km satellite diameter and ranking prose remain separate from later model alternatives; no exhaustive current rank or IAU roster claim.",
+      "JWST NIRSpec IFU PRISM/Clear1191/15 observed2022-11-04 start20:24UT905s/two dithers. Primary spectrum only: Xiangliu was not detected. Collapsed IFU palette/extraction boxes are not resolved geography or visible photometry."
+    ],
+    "modelled": [
+      "Kiss2019 mirror orbit alternatives unresolved,epochJD2457000: progradeP25.22073±.000357d/a24021±202km/e.2908±.0070/i83.08±.86deg; retrograde25.22385±.000362d/24274±193km/.2828±.0063/119.14±.89deg. Mean1.75±.07e21kg is SYSTEM mass, not independently measured primary-only mass. Catalogue1.75e21 unchanged display input.",
+      "Thermal diameter/albedo depend on emissivity.9, inertia/roughness, shape and pole. Aligned-sphere22.4/44.8h prograde/retrograde casesD1224–1241km,pV.14±.01,rho1.73–1.80±.16g/cm3; pole1158±32/.16±.01/rho2.15±.17; equator1531/.09/rho.92 alternatives retained. CatalogueR615km/22.4h unchanged; SBDB LCDB synodic rotation has incomplete coverage/potential30percent caution,44.8h alternative not ruled out.",
+      "AbstractD1230±50/rho1.75±.07 versus section6rho1.74±.16/table uncertainties preserved, not reconciled. Orbital inclination is not measured primary spin pole. Preferred albedo-variegated sphere is not a surface map, composition or porosity determination.",
+      "Tidal small bright Xiangliu preferenceR18–50km,pV.2–1,q<4e-4,Q>100 is conditional on4.5Gyr age and circularization/dissipation priors; not measured radius, mass, albedo or uncertainty interval. Model despin<1e7yr is not measured moon locking/permanent face. Solar Kozai/impact/capture/resonance and close-binary nondetection alternatives are hypotheses, not observed history or exhaustive absence.",
+      "Emery2024 NIRSpec pipeline1.11.1/jwst1100,PSF/sky/background/SNAP2 solar transfer and local-continuum Gaussian Monte Carlo not independently reproduced. Quoted band errors omit continuum/blending/non-Gaussian systematics. Water/crystalline1.65micron and multiband ethane evidence are unresolved spectra, not local fractions or visible colour.",
+      "Weak2.594micron acetylene/methane alternatives,possible complexed CO2 at4.253±.008micron depth24±11percent of local continuum,absent strong methane fundamentals not absolute absence. Missing3.1Fresnel peak layering/amorphous/depletion/overprint and irradiation/resupply/interior scenarios not measured layers, observed activity,ocean or biology. Detailed abundance/particle/layering models deferred; Quaoar medium-grating results not Gonggong.",
+      "Kiss2019 arXiv nonexclusive NOT CC BY; Emery2309.15230v2 CC BY-NC-ND4 NOT CC BY, no paper figures embedded. Final/later paper/raw calibration audit remains open; JWST Table1 thermal size inherits earlier work, intro22508 typo not identity225088."
+    ],
+    "unknown": [
+      "Resolved globe/shape,local terrain/material fractions,calibrated visible colour,photometry,complete coverage and physical scene registration.",
+      "Spin/pole,dated observer normal/horizon visibility,phase,Xiangliu independent size/mass/shape and current eccentric-orbit distance.",
+      "Hubble exact raw-product/coadd/PSF association; full final/later spectral/thermal/dynamical refinement and calibrated pipeline reproduction.",
+      "No atmosphere/ring omission establishes absence; no observed plume,liquid,ocean,biology or survivable landing."
+    ],
+    "assumed": [
+      "Independent invented brown/gray relief,blocks/grains,chemistry/material fractions,colour,light/exposure and Xiangliu point appearance/phase/placement; no analog map,dated site or resolved satellite geography.",
+      "Hypothetical near-side radial thermal height619km and prograde semimajor24021km display scale,conditional XiangliuR50km: skyGeometry.2448330189942566deg/3.5723523978591283targetpx nominal90HFOV1672. Not dated distance,measured normal,joint fit,spin locking,permanent face or uncertainty envelope. Rendered point width not calibrated/adopted;18km and retrograde cases retained in geometry record.",
+      "40K positive angular-helper input only; colour/irradiance discarded. Sun/stars off frame and black sky/ring omission are artistic,not absence. Tiny256preview footer needs explicit IMAGINED card labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM GONGGONG",
+    "skyLabel": "IMAGINED · SKY FROM GONGGONG",
+    "skyModel": {
+      "star": "Xiangliu · conditional spherical angular guide",
+      "radiusSun": 0.00007187005893344832,
+      "temperatureK": 40,
+      "distanceAU": 0.00015643270783532618,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.2448330189942566,
+      "centreDiscWidthFraction": 0.00213657440063345,
+      "irradianceEarth": 4.868280031965652e-10,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "ESA/Hubble Gonggong and satellite detections",
+        "url": "https://esahubble.org/images/opo1718b/",
+        "publicationDate": "2017-05-19"
+      },
+      {
+        "title": "ESA/Hubble image terms",
+        "url": "https://esahubble.org/copyright/"
+      },
+      {
+        "title": "Creative Commons Attribution4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "Kiss2019 orbit and thermal alternatives; nonexclusive manuscript",
+        "url": "https://arxiv.org/abs/1903.05439v1"
+      },
+      {
+        "title": "Emery2024 unresolved JWST spectra; CC BY-NC-ND4 manuscript",
+        "url": "https://arxiv.org/abs/2309.15230v2"
+      },
+      {
+        "title": "JPL Gonggong identity and rotation metadata",
+        "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=225088&phys-par=1"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/gonggong-hubble-native.jpg",
+        "bytes": 320294,
+        "sha256": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a",
+        "source": "https://cdn.esahubble.org/archives/images/large/opo1718b.jpg",
+        "sourceUrl": "https://esahubble.org/images/opo1718b/",
+        "width": 1488,
+        "height": 744,
+        "tier": "measured",
+        "credit": "NASA, ESA, C. Kiss (Konkoly Observatory), and J. Stansberry (STScI)",
+        "termsUrl": "https://esahubble.org/copyright/",
+        "terms": "ESA/Hubble image-specific CC BY4.0 https://creativecommons.org/licenses/by/4.0/; not blanket paper/code/raw-product licence.",
+        "observationDate": "2009-11-06;2010-09-18",
+        "publicationDate": "2017-05-19 12:20 timezone unspecified",
+        "processing": "Unchanged publisher1488x744 JPEG, no resizing/re-encoding. Original TIFF retained separately; eight annotated panels and blue display palette, not calibrated visible colour.",
+        "description": "Actual unresolved Hubble Gonggong/Xiangliu detections. Filters F606W/F814W and F606W/F775W; panel lines/background sources/noise not terrain. Historical1520km/240–400km estimates distinct from later thermal/tidal models; raw-product crosswalk OPEN."
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/gonggong-surface-image.jpg",
+      "previewUrl": "/bespoke/gonggong-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "gonggong-generated-surfaceImage-original.png",
+      "sourceSha256": "bed4992e8453ddfa2c1df23189dc50f42973bba504cbc2fe22c108021fe10f20",
+      "sha256": "e8b6165fea11c942d9bc9d6cdd38188e259e719c209406c67aaa62a0d881102f",
+      "previewSha256": "d0c3852c78017a27b1ce30d71414c5ede0f1ecc47c19a8c5dbc84562c7646b36",
+      "bytes": 335791,
+      "previewBytes": 10713,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/gonggong-sky-image.jpg",
+      "previewUrl": "/bespoke/gonggong-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "gonggong-generated-skyImage-original.png",
+      "sourceSha256": "a6195032a964fdb3e3d773e2d86a9a57590a4fe9e96bcde06b5e01b549bdb8ca",
+      "sha256": "7a13aa51a87323da0e43f065bd42443efb8cf120cabb016996b008eb8fd2e8f9",
+      "previewSha256": "f1eadcb07dfb78fa5ed5b3fe77217bcfb7309b3ebfbe0adef31202944125b118",
+      "bytes": 209651,
+      "previewBytes": 6239,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "heroFacts": [
+      [
+        "RADIUS",
+        "~615 KM · THERMAL MODEL"
+      ],
+      [
+        "SYSTEM MASS",
+        "(1.75 ± 0.07) × 10^21 KG · MODEL"
+      ],
+      [
+        "DENSITY",
+        "~1.74 ± 0.16 G/CM³ · MODEL"
+      ],
+      [
+        "TEMPERATURE",
+        "UNKNOWN"
+      ],
+      [
+        "CLASS",
+        "DWARF PLANET CANDIDATE"
+      ]
+    ],
+    "skyCaption": "Xiangliu: conditional 50km tidal-model radius, hypothetical23402km near-side scale; skyGeometry angular guide0.244833°. 40K is an arbitrary angular-helper input, not measured temperature. Appearance, phase, brightness and rendered point width remain imagined and uncalibrated."
   }
 };
 

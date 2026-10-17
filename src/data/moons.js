@@ -315,7 +315,14 @@ export const SMALL_BODIES = [
     { surfacePending: true, rotationHours: 378.9, belt: 'SCATTERED DISC', discovered: '2005 · Brown, Trujillo & Rabinowitz', meanTempC: -243,
       note: 'Almost Pluto\'s size and 27% more massive; its discovery led the IAU to define "dwarf planet" in 2006.' }),
   sb('gonggong', 'Gonggong', 'dwarf planet', 615, 1.75e21, [2461200.5, 66.86666567773766, 0.5042510000302973, 30.89906721170288, 336.8383156185827, 206.6232839773693, 111.664541568459],
-    { surfacePending: true, rotationHours: 22.4, belt: 'SCATTERED DISC', discovered: '2007 · Schwamb, Brown & Rabinowitz' }),
+    { surfacePending: true, rotationHours: 22.4, belt: 'SCATTERED DISC', discovered: '2007 · Schwamb, Brown & Rabinowitz',
+      physicalFacts: [
+        { label: 'RADIUS', value: '~615 KM · THERMAL MODEL', tier: 'modelled', detail: 'Catalogue radius retained. Kiss2019 nominal1230±50km diameter depends on thermal/pole/shape assumptions; aligned-sphere1224–1241km and pole/equator alternatives retained. Not an occultation, resolved shape or local normal.' },
+        { label: 'SYSTEM MASS', value: '(1.75 ± 0.07) × 10^21 KG', tier: 'modelled', detail: 'Gonggong plus Xiangliu orbit-derived system mass, not independently measured primary-only mass. Catalogue numerical input unchanged; mirror orbit alternatives retained.' },
+        { label: 'DENSITY', value: '~1.74 ± 0.16 G/CM³ · MODEL', tier: 'modelled', detail: 'Kiss2019 thermal/orbit interpretation; abstract1.75±.07 uncertainty differs from section6/table. Depends on size,pole,shape and satellite assumptions; not local chemistry, porosity or independent physical accuracy.' },
+        { label: 'DISCOVERED', value: '2007 · SCHWAMB, BROWN & RABINOWITZ', tier: 'measured' }
+      ],
+      rotationFacts: [{ label: 'DAY', value: '~22.4 H · PHOTOMETRIC MODEL', tier: 'modelled', detail: 'LCDB synodic interpretation has incomplete-coverage/potential30percent caution.44.8hour alternative retained; no precise spin pole, phase or permanent Xiangliu-facing site.' }] }),
   sb('quaoar', 'Quaoar', 'dwarf planet', 555, 1.2e21, [2461200.5, 43.15617622670811, 0.03520019261837198, 7.991575800732639, 188.9191248092036, 163.209046106457, 292.8487574842713],
     { surfacePending: true, rotationHours: 17.68, belt: 'KUIPER BELT', discovered: '2002 · Trujillo & Brown', note: 'Has a ring far outside where rings should be able to survive.' }),
   sb('orcus', 'Orcus', 'dwarf planet', 455, 6.3e20, [2461200.5, 39.37686537914865, 0.2205240628250881, 20.55681019612, 268.4053519455824, 73.56848606705262, 189.0972913554275],

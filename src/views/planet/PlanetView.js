@@ -243,7 +243,7 @@ export function createPlanetView(container, { onSurface } = {}) {
       const content = el('div', {}, el('img', { src: url, loading: 'lazy', className: 'bespoke-image', alt: `${b.name}: ${label.toLowerCase()}, hypothetical illustration` }),
         el('p', { className: 'note', textContent: note }), el('p', { className: 'note', textContent: asset.credit }));
       if (asset === visual.skyImage) content.append(el('p', { className: 'note', textContent:
-        `${visual.skyModel.star}: ${visual.skyModel.temperatureK} K; calculated angular diameter ${visual.skyModel.angularDiameterDeg.toFixed(3)}°. Stellar colour and size in this illustration are approximate.` }));
+        visual.skyCaption ?? `${visual.skyModel.star}: ${visual.skyModel.temperatureK} K; calculated angular diameter ${visual.skyModel.angularDiameterDeg.toFixed(3)}°. Stellar colour and size in this illustration are approximate.` }));
       result.push(card(label, 'imagined', 'Research constrains this scenario; foreground, viewpoint and unmeasured properties are hypothetical.', content));
     }
     result.push(card('RESEARCH CONTEXT', 'modelled', 'Sources distinguish measurements, models and artistic assumptions.',
@@ -430,13 +430,13 @@ export function createPlanetView(container, { onSurface } = {}) {
       title.replaceChildren(el('h2', { textContent: b.name.toUpperCase() }), el('div', { className: 'kind', textContent: `${view} · ${systemName.toUpperCase()}` }));
       const mE = isSol ? (b.massKg ? b.massKg / 5.972e24 : null) : b.massEarth;
       const rE = b.radiusKm / 6371;
-      heroFacts.replaceChildren(...[
+      heroFacts.replaceChildren(...(bodyVisualFor(b)?.heroFacts ?? [
         ['RADIUS', `${fmt(b.radiusKm)} KM · ${rE.toFixed(2)} × EARTH`],
         ['MASS', mE ? `${mE.toPrecision(3)} × EARTH${b.massIsMinimum ? ' (MIN)' : ''}` : 'UNKNOWN'],
         ['DENSITY', mE ? `${density(mE * 5.972e24, b.radiusKm).toFixed(2)} G/CM³` : '—'],
         ['TEMPERATURE', isSol ? (b.meanTempC != null ? `${b.meanTempC} °C MEAN` : '—') : b.teq ? `${fmt(b.teq)} K EQUILIBRIUM` : '—'],
         ['CLASS', isSol ? (b.kind === 'moon' ? `MOON OF ${b.parent.toUpperCase()}` : minor ? b.kind.toUpperCase() : b.kind === 'dwarf planet' ? 'DWARF PLANET' : rE > 3 ? 'GIANT PLANET' : 'ROCKY PLANET') : b.planetClass],
-      ].flatMap(([k, v]) => [el('dt', { textContent: k }), el('dd', { textContent: v })]));
+       ]).flatMap(([k, v]) => [el('dt', { textContent: k }), el('dd', { textContent: v })]));
       setGlobe(b);
       current = b;
       // The mass–radius diagram is for planets; moons and small bodies are far off its scale.

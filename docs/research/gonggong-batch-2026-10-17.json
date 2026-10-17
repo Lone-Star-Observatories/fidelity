@@ -1,0 +1,255 @@
+{
+  "date": "2026-10-17",
+  "body": "Gonggong",
+  "dossier": 85,
+  "status": "Delivered individual initial dossier85; calibration, physical registration and final/later science audits remain open",
+  "preparations": [
+    {
+      "path": "docs/research/gonggong-jwst-spectral-assessment-2026-10-17.json",
+      "bytes": 9753,
+      "sha256": "a916c72463a447bd234957046d56ebbcb2ccfdb8ed4c85bc3560b22629354c14"
+    },
+    {
+      "path": "docs/research/gonggong-local-view-preparation-2026-10-17.json",
+      "bytes": 4513,
+      "sha256": "b4b71c54819650d8c31f004a99a0d2c639361cb4e216835c1ccc33bda12d14e3"
+    },
+    {
+      "path": "docs/research/gonggong-master-preview-preparation-2026-10-17.json",
+      "bytes": 4094,
+      "sha256": "da5fbc30b8571138074dc226cd330b6ceeaace251ed22252c65a43b02df7f6d7"
+    },
+    {
+      "path": "docs/research/gonggong-native-preparation-2026-10-17.json",
+      "bytes": 8853,
+      "sha256": "1ac3dc58aca20ffd35bbbb7b86723db684a0cb03a7a37bb1dcff7ab4b406be61"
+    },
+    {
+      "path": "docs/research/gonggong-observer-geometry-preparation-2026-10-17.json",
+      "bytes": 5253,
+      "sha256": "1b1f852d4e79c728134ef738b14994d0bf77b56dc528315a5b3fa259d36ea84d"
+    },
+    {
+      "path": "docs/research/gonggong-primary-orbit-thermal-assessment-2026-10-17.json",
+      "bytes": 7986,
+      "sha256": "ce868e5cb9112f174b334ddc51cf4d786ed0f34776c1f02b5b9e5b942f089d6d"
+    },
+    {
+      "path": "docs/research/gonggong-sky-view-preparation-2026-10-17.json",
+      "bytes": 5079,
+      "sha256": "de28e48d245280bd314702ce82c4090a8d44603e142993673d399a62c2bbfce4"
+    },
+    {
+      "path": "docs/research/gonggong-tidal-evolution-assessment-2026-10-17.json",
+      "bytes": 7540,
+      "sha256": "4b9b791399563c6e411ebd91963214eba12667317516ae3480e23705a95cc2d5"
+    }
+  ],
+  "sourceRecords": "docs/research/gonggong-source-records-2026-10-17.json",
+  "originalMasterPreviewHashesChecked": 6,
+  "measured": [
+    "Hubble WFC3 observed Gonggong and separate Xiangliu on2009-11-06 and2010-09-18. Unchanged ESA/Hubble opo1718b eight-panel1488x744 JPEG retained; alternate TIFF separately retained. Top panels alternate F606W/F814W; bottom F606W/F775W. Exact raw UTC/coadd/PSF/pixel crosswalk OPEN.",
+    "Full NASA, ESA, C. Kiss (Konkoly Observatory), and J. Stansberry (STScI) credit; image-specific ESA/Hubble CC BY4.0 terms. Release2017-05-19 12:20 timezone unspecified, NASA article2017-05-18/update2025 not observation. Blue palette, panel lines, background sources/noise and unresolved points are not calibrated visible colour, terrain, axes or chemistry.",
+    "Identity225088 Gonggong(2007 OR10),spkid20225088 verified JPL. Historical publisher1520km primary/240–400km satellite diameter and ranking prose remain separate from later model alternatives; no exhaustive current rank or IAU roster claim.",
+    "JWST NIRSpec IFU PRISM/Clear1191/15 observed2022-11-04 start20:24UT905s/two dithers. Primary spectrum only: Xiangliu was not detected. Collapsed IFU palette/extraction boxes are not resolved geography or visible photometry."
+  ],
+  "modelled": [
+    "Kiss2019 mirror orbit alternatives unresolved,epochJD2457000: progradeP25.22073±.000357d/a24021±202km/e.2908±.0070/i83.08±.86deg; retrograde25.22385±.000362d/24274±193km/.2828±.0063/119.14±.89deg. Mean1.75±.07e21kg is SYSTEM mass, not independently measured primary-only mass. Catalogue1.75e21 unchanged display input.",
+    "Thermal diameter/albedo depend on emissivity.9, inertia/roughness, shape and pole. Aligned-sphere22.4/44.8h prograde/retrograde casesD1224–1241km,pV.14±.01,rho1.73–1.80±.16g/cm3; pole1158±32/.16±.01/rho2.15±.17; equator1531/.09/rho.92 alternatives retained. CatalogueR615km/22.4h unchanged; SBDB LCDB synodic rotation has incomplete coverage/potential30percent caution,44.8h alternative not ruled out.",
+    "AbstractD1230±50/rho1.75±.07 versus section6rho1.74±.16/table uncertainties preserved, not reconciled. Orbital inclination is not measured primary spin pole. Preferred albedo-variegated sphere is not a surface map, composition or porosity determination.",
+    "Tidal small bright Xiangliu preferenceR18–50km,pV.2–1,q<4e-4,Q>100 is conditional on4.5Gyr age and circularization/dissipation priors; not measured radius, mass, albedo or uncertainty interval. Model despin<1e7yr is not measured moon locking/permanent face. Solar Kozai/impact/capture/resonance and close-binary nondetection alternatives are hypotheses, not observed history or exhaustive absence.",
+    "Emery2024 NIRSpec pipeline1.11.1/jwst1100,PSF/sky/background/SNAP2 solar transfer and local-continuum Gaussian Monte Carlo not independently reproduced. Quoted band errors omit continuum/blending/non-Gaussian systematics. Water/crystalline1.65micron and multiband ethane evidence are unresolved spectra, not local fractions or visible colour.",
+    "Weak2.594micron acetylene/methane alternatives,possible complexed CO2 at4.253±.008micron depth24±11percent of local continuum,absent strong methane fundamentals not absolute absence. Missing3.1Fresnel peak layering/amorphous/depletion/overprint and irradiation/resupply/interior scenarios not measured layers, observed activity,ocean or biology. Detailed abundance/particle/layering models deferred; Quaoar medium-grating results not Gonggong.",
+    "Kiss2019 arXiv nonexclusive NOT CC BY; Emery2309.15230v2 CC BY-NC-ND4 NOT CC BY, no paper figures embedded. Final/later paper/raw calibration audit remains open; JWST Table1 thermal size inherits earlier work, intro22508 typo not identity225088."
+  ],
+  "limits": [
+    "Resolved globe/shape,local terrain/material fractions,calibrated visible colour,photometry,complete coverage and physical scene registration.",
+    "Spin/pole,dated observer normal/horizon visibility,phase,Xiangliu independent size/mass/shape and current eccentric-orbit distance.",
+    "Hubble exact raw-product/coadd/PSF association; full final/later spectral/thermal/dynamical refinement and calibrated pipeline reproduction.",
+    "No atmosphere/ring omission establishes absence; no observed plume,liquid,ocean,biology or survivable landing."
+  ],
+  "assumed": [
+    "Independent invented brown/gray relief,blocks/grains,chemistry/material fractions,colour,light/exposure and Xiangliu point appearance/phase/placement; no analog map,dated site or resolved satellite geography.",
+    "Hypothetical near-side radial thermal height619km and prograde semimajor24021km display scale,conditional XiangliuR50km: skyGeometry.2448330189942566deg/3.5723523978591283targetpx nominal90HFOV1672. Not dated distance,measured normal,joint fit,spin locking,permanent face or uncertainty envelope. Rendered point width not calibrated/adopted;18km and retrograde cases retained in geometry record.",
+    "40K positive angular-helper input only; colour/irradiance discarded. Sun/stars off frame and black sky/ring omission are artistic,not absence. Tiny256preview footer needs explicit IMAGINED card labels."
+  ],
+  "preservation": {
+    "priorDossiersDeepEqual": 84,
+    "priorTrackedPublicByteEqual": 642,
+    "catalogueInputs": "unchanged",
+    "nativeMapsModelsShapesCodecs": "unchanged",
+    "newGlobe": "none"
+  },
+  "validation": {
+    "testsPassed": 681,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "baseline": "6378b97",
+    "priorDossiersDeepEqual": 84,
+    "priorPublicByteEqual": 642,
+    "registry": 85,
+    "htmlBytes": 15503492,
+    "headroomBytes": 496508,
+    "readableSha256": "c095386251d81d602ade09793668e6528651c6998fc84b2be223aa98f73c7cdc",
+    "applicationSha256": "35f0a99e18731e94799c486f451b80ff1644d3ec1846536b123eca78bba06700",
+    "exactCompleteReadableJson": true,
+    "nativeContextImagesExact": 67,
+    "nativeHashes": {
+      "/references/ceres-dawn-occator-pia24021.jpg": "e587a52166be7d07c4ff41281bb168c23bc2e6fc86667ccf670d666bbd9a555a",
+      "/references/eris-hubble.jpg": "2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d",
+      "/references/haumea-hubble.jpg": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+      "/references/makemake-hubble.jpg": "4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014",
+      "/bespoke/epsilon-indi-b-native-2026.jpg": "97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106",
+      "/bespoke/epsilon-indi-b-native-2024.jpg": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+      "/bespoke/proxima-star-native.jpg": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+      "/bespoke/alpha-centauri-native.jpg": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+      "/bespoke/alpha-centauri-webb.jpg": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+      "/bespoke/barnard-star-native.jpg": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+      "/bespoke/wolf-star-native.jpg": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+      "/bespoke/lalande-star-native.jpg": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+      "/bespoke/sirius-binary-native.jpg": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+      "/bespoke/sirius-b-keck-native.png": "2ca59de44b14beea64839071fa9bac884af6f848cc424b54ca518d426ffd99e8",
+      "/bespoke/luyten-naco-1-native.png": "25c574c0322f54478686415f3beca890291ec6ded3beceeabe0542e57f2b84e2",
+      "/bespoke/luyten-naco-2-native.png": "052d39faf6f44b8746a173af14667dea06e03ca8c2422c9c3e7a86e8b48a4e3f",
+      "/bespoke/ross154-chandra-native.png": "e762dcc090e09a894253d9f4325d0e314e7e953976ce5eb60daa8a30d6db570b",
+      "/bespoke/ross248-2mass-native.jpg": "2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c",
+      "/bespoke/epsilon-star-alma-native.png": "a2db47771bbab7aa025841cf8229aa7ee073c6df0462639ad489f5cadcf9cfbf",
+      "/bespoke/gj887-star-fringes-native.jpg": "bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098",
+      "/bespoke/ross128-star-dss-native.jpg": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+      "/bespoke/ez-aquarii-a-correlation-native.png": "f656bdf79fc322861298cf2a7072582889473e87dbca70df6d585346c80e942d",
+      "/bespoke/61-cygni-gaia-native.png": "1c09e4adede1f135b1087b651691b0ade07b8c8f853dfb18c2bd1b9d37e91db6",
+      "/bespoke/procyon-hubble-native.png": "7875491b035348c37e719035ee5de658c4d3a6309ce3f396b175288ba51580d6",
+      "/bespoke/phobos-hirise-native.jpg": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549",
+      "/bespoke/deimos-hera-afc-native.png": "4962226afb3d7529b43648eaee0a63cc90bc96ce805a7646e91d98af97717849",
+      "/bespoke/deimos-hirise-native.jpg": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71",
+      "/bespoke/io-jiram-native.jpg": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+      "/bespoke/io-sru-native.jpg": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+      "/bespoke/europa-sru-native.jpg": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+      "/bespoke/ganymede-jiram-native.jpg": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+      "/bespoke/callisto-ssi-native.jpg": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+      "/bespoke/amalthea-juno-native.jpg": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+      "/bespoke/amalthea-galileo-native.jpg": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+      "/bespoke/mimas-cassini-native.jpg": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+      "/bespoke/enceladus-webb-native.png": "da674c36f769e0dd330e19fcab6621bb35b261cba6c9f033e0ee5caf059aa4fc",
+      "/bespoke/tethys-cassini-native.jpg": "1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca",
+      "/bespoke/dione-cassini-native.jpg": "b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81",
+      "/bespoke/rhea-cassini-native.jpg": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+      "/bespoke/titan-huygens-native.jpg": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+      "/bespoke/hyperion-cassini-native.jpg": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+      "/bespoke/iapetus-cassini-native.jpg": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+      "/bespoke/phoebe-cassini-native.jpg": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+      "/bespoke/miranda-voyager-native.jpg": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+      "/bespoke/ariel-voyager-native.jpg": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c",
+      "/bespoke/umbriel-voyager-native.jpg": "9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf",
+      "/bespoke/titania-voyager-native.jpg": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+      "/bespoke/oberon-voyager-native.jpg": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+      "/bespoke/triton-voyager-native.jpg": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+      "/bespoke/nereid-voyager-native.jpg": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+      "/bespoke/proteus-voyager-native.jpg": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6",
+      "/bespoke/charon-new-horizons-native.jpg": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+      "/bespoke/nix-new-horizons-native.jpg": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+      "/bespoke/hydra-new-horizons-native.jpg": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+      "/bespoke/kerberos-new-horizons-native.jpg": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+      "/bespoke/styx-new-horizons-native.jpg": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+      "/bespoke/larissa-voyager-native.jpg": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349",
+      "/bespoke/galatea-voyager-native.jpg": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+      "/bespoke/despina-voyager-native.jpg": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "/bespoke/naiad-voyager-native.jpg": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "/bespoke/thalassa-voyager-native.jpg": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+      "/bespoke/hippocamp-hubble-native.jpg": "104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec",
+      "/bespoke/mk2-hubble-native.jpg": "7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616",
+      "/bespoke/dysnomia-hubble-native.jpg": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0",
+      "/bespoke/haumea-moons-hubble-native.jpg": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+      "/bespoke/dimorphos-draco-native.jpg": "a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13",
+      "/bespoke/gonggong-hubble-native.jpg": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a"
+    },
+    "preparationAssetHashes": 6,
+    "limits": [
+      "Node complete inverse; browser checks recorded separately.",
+      "Baseline preservation does not establish calibrated geography/photometry or current ranking."
+    ],
+    "snapshotDiff": {
+      "changedSnapshotSections": [
+        "crew",
+        "bodyImages",
+        "bandImages"
+      ],
+      "criticalSectionsDeepEqual": [
+        "models",
+        "shapes",
+        "textures",
+        "textureCredits",
+        "details"
+      ],
+      "priorBodyImageEntriesExact": 194,
+      "addedBodyImages": [
+        "/bespoke/gonggong-surface-image.jpg",
+        "/bespoke/gonggong-sky-image.jpg",
+        "/bespoke/gonggong-hubble-native.jpg"
+      ],
+      "previousSnapshotSha256": "678192e33a936e009a803b6fefb89bdc270f2c5c093b8cf6e98d93d145960f27",
+      "currentSnapshotSha256": "c095386251d81d602ade09793668e6528651c6998fc84b2be223aa98f73c7cdc"
+    },
+    "browser": {
+      "engine": "Codex in-app Chromium",
+      "route": "#/object/sol/gonggong",
+      "normal": {
+        "cards": 3,
+        "decodedDimensions": [
+          [
+            1536,
+            864
+          ],
+          [
+            1536,
+            864
+          ],
+          [
+            1488,
+            744
+          ]
+        ],
+        "modelLabels": true,
+        "helperInputNotTemperature": true
+      },
+      "unmodifiedFull": {
+        "cards": 3,
+        "decodedDimensions": [
+          [
+            256,
+            144
+          ],
+          [
+            256,
+            144
+          ],
+          [
+            1488,
+            744
+          ]
+        ],
+        "modelLabels": true,
+        "helperInputNotTemperature": true
+      },
+      "diagnosticFixture": {
+        "entry": "docs/research/standalone-browser-audit-2026-10-17-entry.mjs",
+        "server": "docs/research/standalone-browser-audit-2026-10-17-server.mjs",
+        "applicationAndSnapshotProductionBytes": "unchanged; diagnostic module appended in memory",
+        "status": "pass",
+        "charset": "UTF-16LE",
+        "readableSha256": "c095386251d81d602ade09793668e6528651c6998fc84b2be223aa98f73c7cdc",
+        "imagesDecoded": 304,
+        "canvases": 8,
+        "gonggongNativeHashPresent": true
+      },
+      "limits": [
+        "No fresh all-model actual-load, every-route, unsupported-browser, file:// or other-engine claim.",
+        "Browser and Node full JSON equality is not calibrated geography/photometry."
+      ]
+    },
+    "nativePreparationSourceHashesChecked": 7
+  },
+  "catalogue": "Existing numeric radius615km,mass1.75e21kg,rotation22.4h/elements unchanged. Added model-labelled physical/rotation facts; smallBody optional overrides mirror existing moon convention. Only Gonggong uses new heroFacts/skyCaption overrides; previous84 dossier objects unchanged. System mass is not precise primary-only mass; remove unqualified primary surface-G/chemistry inference from its physical panel.",
+  "next": "Continue remaining dwarf/candidate and asteroid/native-map/craft/shape/refinement work; initial Gonggong dossier does not complete independent Xiangliu inventory or physical calibration. Backlog ACTIVE."
+}
