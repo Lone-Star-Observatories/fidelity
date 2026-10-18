@@ -232,7 +232,6 @@ export const MOONS = [
     physicalFacts: [
       { label: 'RADIUS', value: '73 ± 5 KM · CONDITIONAL MODEL', tier: 'modelled', detail: 'Collyer2026 volume-equivalent radius; semi-axes82/73/65km with asymmetric uncertainties assume aligned synchronous interpretation. Not local normal or resolved shape.' },
       { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: '2025 posterior is constrained by2.4e18±1.2e18kg prior; no independent precise moon mass,density or chemistry adopted.' },
-      { label: 'ROTATION', value: 'UNKNOWN', tier: 'imagined', detail: 'Synchronous/aligned interpretation is a model assumption,not independent spin/permanent primary-facing site measurement.' },
     ],
     surfacePending: true, note: 'Conditional radius, unknown independent spin/mass. Non-Keplerian source represented by illustrative Keplerian navigation only; no current ephemeris or resolved globe.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).

@@ -1,0 +1,76 @@
+{
+  "nativeCardsExactBytesAndMime": 77,
+  "baseline": "88f0eee",
+  "unchangedQueueEntriesDeepEqual": 569,
+  "queueEntries": 569,
+  "dossiersUnchanged": 87,
+  "trackedPublicByteEqual": 656,
+  "sourceHashesChecked": 19,
+  "generatedFilesChecked": 6,
+  "generatedDefaultOriginalsChecked": 2,
+  "rejectedVariantCopiesChecked": 2,
+  "htmlBytes": 15702148,
+  "headroomBytes": 297852,
+  "exactCompleteReadableJson": true,
+  "readableSha256": "2ad14955c830fb3e4a61df338ca4ee19d5dedc8de497059704b062298e4e6d91",
+  "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+  "applicationChangedForDuplicateRow": true,
+  "freshBrowserClaim": true,
+  "limits": "Live-feed interbuild differences are not compression savings. Fresh IAB Weywot normal/offline cards and animation only; no fresh complete browser JSON inverse,all-image/model/event-worker/other-engine claim.",
+  "date": "2026-10-18",
+  "issue": 3,
+  "change": "Removed only redundant Weywot physicalFacts ROTATION row; shared panel already supplies unknown spin. Underlying null spin,disabled automatic locking and every science limitation unchanged.",
+  "tests": {
+    "pass": 685,
+    "skip": 1,
+    "fail": 0
+  },
+  "productionBuild": "pass",
+  "fullBuild": "pass",
+  "browser": {
+    "engine": "Codex in-app browser",
+    "normalRoute": "http://127.0.0.1:5173/#/moon/sol/weywot",
+    "standaloneRoute": "http://127.0.0.1:4177/fidelity.html#/moon/sol/weywot",
+    "normalCardsDecoded": [
+      [
+        1536,
+        864
+      ],
+      [
+        1536,
+        864
+      ],
+      [
+        481,
+        748
+      ]
+    ],
+    "standaloneFinalCardsDecoded": [
+      [
+        256,
+        144
+      ],
+      [
+        256,
+        144
+      ],
+      [
+        481,
+        748
+      ]
+    ],
+    "standaloneFinalMime": [
+      "image/webp",
+      "image/webp",
+      "image/gif"
+    ],
+    "canvases": 8,
+    "rotationUnknownRows": {
+      "hero": 1,
+      "physicalPanel": 1
+    },
+    "nativeAnimation": "Two distinct native frames visually observed in the running standalone page before duplicate-row rebuild; final rebuilt artifact native card loads with same exact source bytes and image/gif MIME.",
+    "limits": "No new independent geographic or photometric calibration; no fresh complete-browser-JSON byte inverse,all-model/worker/other-engine claim. Node complete inverse and all77 native-card byte equality verified separately."
+  },
+  "next": "Continue Vanth independent native/science/observer preparation and remaining asset,shape,craft,calibration and ranking backlog; automation active."
+}
