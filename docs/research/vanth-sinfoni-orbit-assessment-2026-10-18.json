@@ -1,0 +1,82 @@
+{
+  "status": "Research-only original-source assessment; no catalogue, image, orbit or licence adoption.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/src/1108.5963v1",
+      "path": "data/research-sources/vanth-2011-v1-source.response",
+      "bytes": 346971,
+      "sha256": "1760afb6a1f62c573a8f4d3272efff08d926bb81623c654be31d243bc3a04e34",
+      "contentType": "application/gzip"
+    },
+    {
+      "path": "data/research-sources/vanth-2011-v1-main.tex",
+      "bytes": 81690,
+      "sha256": "27836c24a1e1ffd5ef0d2d93c3f0152c4f74b904ab6e29aa2a47196158d72c18"
+    },
+    {
+      "url": "https://arxiv.org/abs/1108.5963v1",
+      "path": "data/research-sources/vanth-2011-v1-record.response",
+      "bytes": 45384,
+      "sha256": "936b297708d7e2a10e64afe88e7cf13465536069cca77945324920ce736268fd"
+    }
+  ],
+  "authors": [
+    "Benoît Carry",
+    "Daniel Hestroffer",
+    "Francesca E. DeMeo",
+    "Audrey Thirouin",
+    "Jérôme Berthier",
+    "Pedro Lacerda",
+    "Bruno Sicardy",
+    "Alain Doressoundiram",
+    "Christophe Dumas",
+    "David Farrelly",
+    "Thomas G. Müller"
+  ],
+  "targetedFindings": {
+    "observation": "2010-02-23 UT SINFONI H+K 1.45–2.45 micron R~1500; appulse UCAC2 29643541 at 4 arcsec, program 284.C-5044. 150s integrations smear the moving target; elongated PSF is not a measured body shape.",
+    "componentSeparation": "Vanth colours slightly redder with large uncertainties; Orcus crystalline water, 2.2 micron band and methane/ethane/ammonia limits must not be assigned to Vanth.",
+    "historicalDateCorrection": "Authors explicitly report earlier Brown2010 HST dates offset by half a day, confirmed by personal communication; Table astrometry lists corrected JD values. This is a published claim, not independent reprocessing or a blanket correction of all archive timestamps.",
+    "astrometry": "Nine corrected HST rows plus SINFONI JD2455250.73686, east/north offsets .260/.052 arcsec. Time-scale/raw exposure crosswalk remains open.",
+    "orbit": "Statistical Keplerian inversion: a9030±89km, e.007±.003, P9.5406±.0004d, tangent-plane i±21±2deg, node144±63deg. Pole A ECJ2000(321,-2), B(340,+38), both ±3deg; mirror B not excluded. Formal errors omit possible systematic model incompleteness including unknown Orcus J2. Not current ephemeris or independently reproduced fit.",
+    "physicalModels": "System mass641±19 x10^18kg; historical Vanth diameter267 or378±100km conditional albedos, distinct later thermal475±75 and occultation443±10. Not local normal, axes, chemistry or visible-map calibration.",
+    "rotation": "Synchronous rotation, equator alignment and tidal circularization are interpretations; Kozai alternative allows large mutual tilt. No measured moon spin or guaranteed permanent primary-facing scene.",
+    "processing": "SINFONI pipeline2.0.5 bad-pixel/flat/sky/wavelength calibration, 27 February and9 March cubes. Figure caption February23 total4050s separates components; March13 total5400s lower angular resolution hides Vanth in background. Non-detection in March is not disappearance, atmospheric absence or surface change. No figure adopted."
+  },
+  "open": [
+    "Final published-paper and raw product crosswalk; specific v1 record is nonexclusive, not CC BY.",
+    "Full updated orbital epoch/phase convention and later 2018/2023 adjustments",
+    "Raw HST/SINFONI product association and original native image ownership",
+    "No figures embedded; no new angular or raster computation"
+  ],
+  "publication": {
+    "submitted": "2011-08-30T14:12:48Z",
+    "relatedDoi": "10.1051/0004-6361/201117486",
+    "recordLicence": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+    "limits": "Nonexclusive distribution is not CC BY. No figure embedded. Record automated PDF author count says 9 other authors, while original TeX explicitly lists eleven named authors retained here."
+  },
+  "validation": {
+    "testsPassed": 685,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "fe292f8",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15701636,
+    "headroomBytes": 298364,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "93443c8e13814bb95efff26b4409f8f9b87922c551148c0b026ede56e43ee52c",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+  }
+}
