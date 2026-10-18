@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara/JupiterVII/JPL507,not asteroid281Elara",
+  "status": "Research preparation only; no93rd dossier,new embedding,catalogue/map/model/shape/codec adoption.",
+  "generation": {
+    "mode": "Built-in imagegen,new independent image,no references,no CLI/API fallback",
+    "prompt": "Use case: scientific-educational.\nAsset type: Fidelity original independent hypothetical observer illustration, wide16:9, sky from Elara/JupiterVII, not asteroid281Elara.\nGenerate a new image with no reference images and no observed otherbody map/analogskin reuse. Camera near imagined grey granular terrain on Elara, a low broken rocky horizon across lower third, broad plain black sky. A single very small Jupiter disk sits clearly above the horizon near upper-middle right, about 10 pixels across in a 1672pixelwide nominal90degree horizontal field of view. It should be visibly tiny, not a dramatic large gas giant. Its subtle cream/tan banding, phase, orientation and illumination are invented schematic artwork, not a dated observed Jupiter pattern. No moons, stars, Sun disk, rings, spacecraft, people or structures. Do not enlarge Jupiter for dramatic emphasis.\nGeometry guide from skyGeometry already verified: spherical Jupiter69911km at nominal Elara semimajor11710700km minus hypothetical39.95km radial cameraheight gives .6840996182277582degrees and9.98178364946764px at1672width/90HFOV. This is an illustration guide only, not calibrated photometry or current eccentric distance. Elara e=.212, spin/pole/normal/phase unknown. No permanentJupiterface/locking/datedsite. An alternate assumed-albedo43kmheight is not a jointfit or uncertainty envelope.\nAll terrain relief, dust, blocks, chemistry, materialfractions, greycolour, Jupitercloudpattern/colour/phase, lighting/exposure/viewpoint invented. Restrained photorealistic educational concept art, moderate oblique artistic illumination, no glow. No magnetite crystals or inferred mineral patches. Thermal/spectral models do not supply resolved geography or local chemistry. No frost, foreground atmosphere, clouds, plumes, liquids, exposed ocean, biological features or survivable landing implication. Blacksky/ringomission not evidence of atmosphere/ring absence.\nBottom dark footer band with generous margins and exactly these two clear white sans-serif lines:\n\"IMAGINED SKY FROM ELARA\"\n\"TERRAIN, JUPITER PATTERN, COLOUR AND LIGHTING INVENTED\"\nBoth lines fully legible and uncropped; no other text or watermark. One original wide PNG, opaque background.",
+    "promptRecord": {
+      "path": "data/research-sources/elara-sky-prompt-2026-10-18.txt",
+      "bytes": 2222,
+      "sha256": "c97e7b37fe05157d20e5a1e2172eeb94b4285c554f1fbf0a83e5bfcdfdbb5e92"
+    },
+    "defaultOriginal": {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cefa6068-4eff-47be-828d-3c60a8459eb8.png",
+      "bytes": 1638909,
+      "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4"
+    },
+    "researchOriginal": {
+      "path": "data/research-sources/elara-generated-skyImage-original.png",
+      "bytes": 1638909,
+      "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4"
+    },
+    "width": 1706,
+    "height": 922,
+    "format": "PNG",
+    "modePixels": "RGB",
+    "transparentBackground": false,
+    "inspection": "Wholeoriginalvisuallyinspected; both exactfooterlines readable/uncropped. Small schematicJupiter above inventedgreyterrain/plainblacksky. Rendered disk visibly larger than nominalguide,uncalibrated; no measuredrasterdiameter adopted. Not a dated Jovian pattern or Elara geography."
+  },
+  "labels": [
+    "IMAGINED SKY FROM ELARA",
+    "TERRAIN, JUPITER PATTERN, COLOUR AND LIGHTING INVENTED"
+  ],
+  "geometry": {
+    "priorGuideRecord": {
+      "path": "docs/research/elara-observer-geometry-preparation-2026-10-18.json",
+      "bytes": 6513,
+      "sha256": "42b4559c7fb85e5a5b1330442b8dabcfbcadf8c6359e63a30ebe2b6cba226650"
+    },
+    "actualWidthGuide": {
+      "helper": "skyGeometry",
+      "referenceWidth": 1706,
+      "horizontalFovDeg": 90,
+      "primaryRadiusKm": 69911,
+      "primaryCentreDistanceKm": 11710660.05,
+      "angularDiameterDeg": 0.6840996182277582,
+      "centreDiscWidthPixels": 10.18476250358361,
+      "limits": "Angular guide only for actual original width1706; not a measured generateddisk fit or calibrated photometry/colour.165K helpercolour/irradiance discarded; phase/attitude/currenteccentricdistance/normal unknown."
+    },
+    "guideOutput": {
+      "path": "data/research-sources/elara-sky-actual-width-guide-2026-10-18.json",
+      "bytes": 468,
+      "sha256": "5e3cdcf5ac33012292d932b7e311383aaa6b83f7d68a9a212b669634b1efe5d8"
+    },
+    "reproducer": {
+      "path": "docs/research/elara-sky-raster-guide-2026-10-18.mjs",
+      "bytes": 770,
+      "sha256": "b4737b8d5d72cb8ca9ee92e78fa897097b3f0194ecac17b3f3933b4171131ef2"
+    },
+    "limits": "Original1706x922 differs requested1672reference,not forced/cropped. Nominal11710700scale minus39.95thermalheight not datedeccentricdistance/topographicnormal/jointfit/uncertaintyenvelope.43kmalbedodependent alternative retained separately. Unknownspin/pole/attitude/phase; no locking/permanentJupiterface/normal. No localphotometry/visiblecolour/spectraltransfer/exposurecalibration or oblate-limbvalidation."
+  },
+  "mastersAndPreviews": [
+    {
+      "kind": "surface",
+      "original": {
+        "path": "data/research-sources/elara-generated-surfaceImage-original.png",
+        "bytes": 2838503,
+        "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "master": {
+        "path": "data/research-sources/elara-surface-master-preparation.jpg",
+        "bytes": 345116,
+        "sha256": "81cee66f56022e128590c345c02179f6387eb2ebe5a62d5544e23d4b1bf827fb",
+        "width": 1536,
+        "height": 864,
+        "mode": "RGB",
+        "quality": 85,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 1536
+      },
+      "preview": {
+        "path": "data/research-sources/elara-surface-preview-preparation.jpg",
+        "bytes": 10132,
+        "sha256": "7f50e35639831dad9d933096fd36e50a301e227010ab6baf07ca190b75bcd8e9",
+        "width": 256,
+        "height": 144,
+        "mode": "RGB",
+        "quality": 80,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 256
+      }
+    },
+    {
+      "kind": "sky",
+      "original": {
+        "path": "data/research-sources/elara-generated-skyImage-original.png",
+        "bytes": 1638909,
+        "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4",
+        "width": 1706,
+        "height": 922,
+        "mode": "RGB"
+      },
+      "master": {
+        "path": "data/research-sources/elara-sky-master-preparation.jpg",
+        "bytes": 184069,
+        "sha256": "41ea4c8eababd6569d6396317e5ae129533db25c368ac0957d431e45d188c8a2",
+        "width": 1536,
+        "height": 830,
+        "mode": "RGB",
+        "quality": 85,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 1536
+      },
+      "preview": {
+        "path": "data/research-sources/elara-sky-preview-preparation.jpg",
+        "bytes": 6524,
+        "sha256": "547ff883a139da14bde04d3c9667163a1f546f615ad6ef4659dc5a9519b363ae",
+        "width": 256,
+        "height": 138,
+        "mode": "RGB",
+        "quality": 80,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 256
+      }
+    }
+  ],
+  "derivativeRecord": {
+    "path": "data/research-sources/elara-master-preview-preparation-2026-10-18.json",
+    "bytes": 2251,
+    "sha256": "1d2c8971fe2f10b53465cbe073ca805032595e806765c38e4bc04a6b743dbb64"
+  },
+  "derivativeInspection": "All4JPEGsvisuallyinspected. Fullmasterfooters readable;256previews retain fullscene but tinyfooters/disk require explicit IMAGINEDcardlabels. AspectpreservingPillowLANCZOS/JPEG85masters1536bound/JPEG80previews256bound; originalsunchanged,no nativeimage transformed. Not pixel-lossless derivatives or finalstandalonebyteincrement claim.",
+  "previewRawBytesTotal": 16656,
+  "scienceLimits": [
+    "All terrainrelief/blocks/grains/chemistry/materialfractions/greycolour and Jupitercloudpattern/phase/colour/axis/light/exposure invented. No referenceimage or observedotherbody map/analogskin reused.",
+    "Thermaldiameter/assumed-albedo radius, nonuniqueunmixingcoefficients/telluric/missing3micron/valencewording limits retained; no measured localchemistry/porosity/grainsize/roughness.",
+    "No datedsite/currentephemeris/registerednormal/locking/permanentface; spectral/thermal studies do not calibrate2007LORRI geography.",
+    "Blacksky/ring/staromission does not establish atmosphere/ring/starabsence. No foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding claim."
+  ],
+  "sourceRecords": [
+    {
+      "path": "docs/research/elara-local-view-preparation-2026-10-18.json",
+      "bytes": 7513,
+      "sha256": "bf3e3c95a92efe3dbbc5a575dab3297e490349dec8a6b237d3d49023b810ef23"
+    },
+    {
+      "path": "docs/research/elara-spectroscopy-primary-assessment-2026-10-18.json",
+      "bytes": 10474,
+      "sha256": "cc4e747ffa0e2bf474b7f771b190d73cd89e6ce024b46120e11ef012be08c091"
+    }
+  ],
+  "preservation": "All92dossiers/48moons/569queue entries/originalPNGs/defaults/masters/native/maps/models/shapes/provenance/recordedClipper unchanged. BothElaraindependentoriginals/defaultcopiesretained withfullprompts.",
+  "next": "Further substantial conforminglosslesscapacity before additiveElara/nativeintegration; no fullFITSembedding or calibratedrasterclaim. BacklogACTIVE,no globalexternalblocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 71,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "295763c",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15988434,
+    "headroomBytes": 11566,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "fe68b59a4654965e478b8a1cd0f852f83706d563f7080c2b91179fa7168a07ec",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Interbuild live-feed differences unaudited,no savings/freshbrowser claim."
+  }
+}
