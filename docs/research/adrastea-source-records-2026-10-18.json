@@ -1,0 +1,639 @@
+{
+  "date": "2026-10-18",
+  "sources": [
+    {
+      "path": "docs/research/adrastea-native-preparation-2026-10-18.json",
+      "bytes": 9336,
+      "sha256": "028d24fc768b3121b58148a3af9757d4044a5a4818d6fc76ffa63553a6872703",
+      "record": {
+        "date": "2026-10-18",
+        "body": "Adrastea, inner moon of Jupiter, distinct from Metis, Amalthea and Thebe",
+        "status": "Research-only native preparation; no dossier92, embedding, catalogue, map, model, shape or codec adoption.",
+        "sources": [
+          {
+            "path": "data/research-sources/adrastea-overview-2026-10-18.html",
+            "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+            "status": 200,
+            "bytes": 260826,
+            "sha256": "767df52af466a58a5d64d0b82a78558f22ca4efad6247a3d088406b685537159"
+          },
+          {
+            "path": "data/research-sources/adrastea-family-caption-2026-10-18.html",
+            "url": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/",
+            "status": 200,
+            "bytes": 268329,
+            "sha256": "75d90478cf5e1c2879c3016123b3ecf7062cd2c57c1aa84e432eafc07bb1d61b"
+          },
+          {
+            "path": "data/research-sources/adrastea-terms-2026-10-18.html",
+            "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "status": 200,
+            "bytes": 313142,
+            "sha256": "c95904ffcd51655d62a3202f93623d601af5b7383d1bcd7243d2966c5e852594"
+          },
+          {
+            "path": "data/research-sources/metis-ring-caption-2026-10-18.html",
+            "url": "https://science.nasa.gov/photojournal/perseus-and-jupiters-main-dust-ring/",
+            "status": 200,
+            "bytes": 266566,
+            "sha256": "ab60621b44f0fc9d31f9e1b5c08fb79f9f4b4bb24a5e63f2a2a0217e09d3aed8"
+          }
+        ],
+        "nativeImages": [
+          {
+            "path": "data/research-sources/adrastea-pia01076.jpg",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01076/PIA01076.jpg",
+            "bytes": 8331,
+            "sha256": "1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515",
+            "dimensions": [
+              856,
+              270
+            ],
+            "mode": "L",
+            "format": "JPEG",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": true
+          },
+          {
+            "path": "data/research-sources/adrastea-pia01076.tif",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01076/PIA01076.tif",
+            "bytes": 62182,
+            "sha256": "ac9d88ed472236cefa0d7166adc186ad46c95b7cbe1af65b23e8876876a1daed",
+            "dimensions": [
+              856,
+              270
+            ],
+            "mode": "L",
+            "format": "TIFF",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": false
+          },
+          {
+            "path": "data/research-sources/metis-pia25039.jpg",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.jpg",
+            "bytes": 62831,
+            "sha256": "c199d03ae2f74495428601cfb978938cbc26ece277326e1cad90e224dab08331",
+            "dimensions": [
+              547,
+              548
+            ],
+            "mode": "RGB",
+            "format": "JPEG",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": true
+          },
+          {
+            "path": "data/research-sources/metis-pia25039.tif",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.tif",
+            "bytes": 445274,
+            "sha256": "c55fd0415b29e129adc7233aa6076a5922892a9c0c9fd986fb677bee8214d591",
+            "dimensions": [
+              547,
+              548
+            ],
+            "mode": "RGB",
+            "format": "TIFF",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": false
+          }
+        ],
+        "products": [
+          {
+            "id": "PIA01076",
+            "captionUrl": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/",
+            "credit": "NASA/JPL/Cornell University",
+            "instrument": "Galileo Solid-State Imaging",
+            "observationInterval": "1996-11\u20131997-06",
+            "published": "1998-03-26",
+            "identity": "Whole portrait, left to right: Metis, Adrastea, Amalthea, Thebe. Adrastea is the tiny second disk from left. Target metadata lists Amalthea; caption explicitly covers all four moons, so retain the scope distinction. No other moon supplies Adrastea geography.",
+            "publisherStatements": {
+              "adrasteaLongestDimensionKmApprox": 20,
+              "orientation": "North approximately up; correct relative sizes."
+            },
+            "inspection": "Whole856x270 one-channel JPEG inspected. Adrastea is a tiny blurred bright disk; sampled brightness does not establish local rocks, grains, chemistry, calibrated visible colour, a registered complete globe or absence of atmosphere. Other disks and bright patches are separate bodies. No angular/raster computation.",
+            "limits": "Observation interval applies to the composite, not a verified individual Adrastea UTC. Raw product, exact date/filter/exposure, pixel association, PSF, resampling/assembly history, photometry, shape/pole/local-normal registration remain open. Caption longest dimension is historical estimate, not current equivalent-volume radius or independently fitted axes. TIFF decoded but not separately visually inspected; no TIFF/JPEG pixel identity. Historical first-resolved wording is not a current best/latest-image claim."
+          },
+          {
+            "id": "PIA25039",
+            "captionUrl": "https://science.nasa.gov/photojournal/perseus-and-jupiters-main-dust-ring/",
+            "credit": "NASA/JPL-Caltech",
+            "instrument": "Juno Stellar Reference Unit",
+            "observed": "2021-09-02",
+            "published": "2021-12-17",
+            "identity": "Existing retained whole ring context, not a resolved Adrastea disk or surface. Bands associated with Metis/Adrastea orbits are distinct from native body imagery.",
+            "inspection": "Previously inspected unchanged547x548 RGB JPEG with Perseus/Algol annotations, noisy near-monochrome field and bright ring. No new inspection of TIFF, photometric or geographic claim.",
+            "limits": "Orbit association does not measure local shedding rate, grain chemistry or surface material fractions. Exact UTC/raw products/filter/exposure, detector particle versus star crosswalk and radiometric calibration remain open."
+          }
+        ],
+        "overviewAssessment": {
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+          "hero": "Caption explicitly calls hero a schematic cut-away ring geometry illustration, credited NASA/JPL. Not an Adrastea photograph or native surface texture; no hero image downloaded or image hash invented.",
+          "discovery": "July1979 Voyager discovery separate from1996\u20131997 Galileo observations and1998 portrait publication.",
+          "parameters": "Overview8.2\u00b12.0km mean radius,129000km orbit/.298day and rounded seven-hour orbital prose retained as publisher context, not independently verified current JPL parameters or measured spin.",
+          "spin": "Page says rotational period unknown. Orbital period is not adopted as spin, measured locking, current pole/attitude or permanent Jupiterface.",
+          "interpretations": "Ring dust supply and eventual inward decay are publisher interpretations, not direct local material chemistry, measured current shedding, age or imminent breakup/impact date."
+        },
+        "recencyAssessment": {
+          "checked": "Focused primary-site search for Juno Adrastea2026 and NASA/JPL Photojournal; no accessible new resolved Adrastea publisher product established here.",
+          "unverifiedLead": "Secondary indexed result alleges June3,2026 PJ84 flyby at11747km. No retained primary event/image confirmation; not adopted as a measured encounter, image date/range, resolved product or newest/highest-resolution claim.",
+          "open": "Primary Juno raw-product/PDS coverage and recent publication audit remains open. This is not an exhaustive archive inventory."
+        },
+        "terms": {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "policy": "Active NASA educational/informational/factual use, source acknowledgement, no endorsement and third-party copyright caveats. Not CC BY or blanket raw-product rights. Full product-specific credits retained. No outbound contact."
+        },
+        "notClaimed": [
+          "No generated illustration or analog skin",
+          "No adopted physical radius, mass, axes, pole, spin or current ephemeris",
+          "No new embedded native asset or92nd dossier",
+          "No new angular/raster-size calculation, calibrated visible colour, complete geography, local chemical fractions, atmosphere absence, plume/liquid/exposed ocean/biology or survivable landing"
+        ],
+        "next": "Direct JPL physical/orbit and independent primary shape/spin audit; skyGeometry observer guide before independent labelled local/sky originals. Recover conforming lossless headroom before larger additive batches; preserve all existing sources and native bytes.",
+        "validation": {
+          "retainedSourceAndGeneratedHashesChecked": 11,
+          "nativeCardsExactBytesAndMime": 82,
+          "baseline": "63df5e0",
+          "priorDossiersDeepEqual": 91,
+          "dossiers": 91,
+          "priorMoonsDeepEqual": 47,
+          "moons": 47,
+          "trackedPublicByteEqual": 676,
+          "queueEntries": 569,
+          "unchangedOtherQueueEntries": 569,
+          "htmlBytes": 15983748,
+          "headroomBytes": 16252,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "a9dbf4132f14d2736bd74e96f22865dae39e020e64bb60eb433327e3c2c3350e",
+          "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+          "freshBrowserClaim": false,
+          "testsPassed": 689,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "compressionSavingsClaim": false
+        }
+      }
+    },
+    {
+      "path": "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json",
+      "bytes": 6281,
+      "sha256": "488b9fb60cd629153cc6f2a1b44c831f21e9895fe3bf04c5b3d779189632c9e4",
+      "record": {
+        "date": "2026-10-18",
+        "body": "Adrastea, Jupiter inner moon, JPL/NAIF515",
+        "status": "Research preparation only; no92nd dossier, generated image, catalogue, globe, shape, model or codec adoption.",
+        "sources": [
+          {
+            "path": "data/research-sources/adrastea-physical-2026-10-18.html",
+            "bytes": 95641,
+            "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+            "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/adrastea-elements-2026-10-18.html",
+            "bytes": 580012,
+            "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+            "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+            "status": 200
+          }
+        ],
+        "physical": {
+          "source": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "gmKm3S2": 0.00014,
+          "gmSigmaKm3S2": 0.0002,
+          "gmReference": "JUP365",
+          "meanRadiusKm": 8.2,
+          "radiusSigmaKm": 4.0,
+          "radiusReference": "1: Archinal et al.2018 Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:2015, CelestialMechanics130:22",
+          "derivedDensityGcm3": 0.9018,
+          "densitySigmaGcm3": 1.8507,
+          "limits": "GM uncertainty exceeds fitted value. Derived density from GM and equivalent-volume radius is not precise mass, physical composition/porosity or a measured local density. Radius is not axes, sphere/local normal or registered shape. No generic mass adoption."
+        },
+        "overviewAlternative": {
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+          "meanRadiusKm": 8.2,
+          "radiusSigmaKm": 2.0,
+          "limits": "Overview \u00b12.0 versus current direct JPL \u00b14.0 retained; cause/reference lineage not established. Historical caption20km longest dimension is not an equivalent-volume radius or new axes fit. No silent uncertainty or catalogue update."
+        },
+        "meanElements": {
+          "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "ephemeris": "JUP365",
+          "frame": "local Laplace plane",
+          "epochTDB": "2000-01-01.5",
+          "aKm": 129000,
+          "e": 0,
+          "argumentPeriapsisDeg": 0,
+          "meanAnomalyDeg": 214.5,
+          "inclinationDeg": 0,
+          "nodeDeg": 0,
+          "periodDays": 0.29826,
+          "apsidalPrecessionYears": 0,
+          "nodalPrecessionYears": 0,
+          "laplacePoleRaDeg": 268.1,
+          "laplacePoleDecDeg": 64.5,
+          "tiltDeg": 0,
+          "reference": "29; R.A.Jacobson2021 The Orbits of the Regular Jovian Satellites and the Orientation of the Pole of Jupiter, personal communication to Horizons/NAIF",
+          "limits": "Rounded mean approximation, not exactly circular/equatorial/unperturbed or dated current distance/phase/spin/pole. Tabulated zero precession precision/convention not independently established. JUP3651600Jan10\u20132200Jan10 kernel coverage not validation of this propagation, light-time, covariance or frame transformation."
+        },
+        "rotation": {
+          "publisher": "NASA overview explicitly says rotation unknown; rounded seven-hour orbital prose not measured spin.",
+          "limits": "No independent sidereal period, pole, current longitude/local normal or measured locking adopted. No permanent Jupiter visibility at all sites. Primary body-specific rotation/shape audit remains open."
+        },
+        "geometryGuide": {
+          "sources": [
+            {
+              "path": "data/research-sources/adrastea-physical-2026-10-18.html",
+              "bytes": 95641,
+              "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+            },
+            {
+              "path": "data/research-sources/adrastea-elements-2026-10-18.html",
+              "bytes": 580012,
+              "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+            }
+          ],
+          "helper": "skyGeometry",
+          "primaryRadiusKm": 69911,
+          "nominalOrbitScaleKm": 129000,
+          "cameraHeightKm": 8.2,
+          "referenceWidth": 1672,
+          "horizontalFovDeg": 90,
+          "angularDiameterDeg": 65.63708164033733,
+          "centreDiscWidthPixels": 1078.2964000191785,
+          "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+        },
+        "geometryReproducer": {
+          "path": "docs/research/adrastea-observer-geometry-preparation-2026-10-18.mjs",
+          "bytes": 1176,
+          "sha256": "91f3ad7f7370e3956bde3803cf56d04c90ada2e70febc7f9a867e9aa383a6290"
+        },
+        "shape": {
+          "lead": "Thomas et al.1998 The Small Inner Satellites of Jupiter, Icarus135360\u2013371, PIIS0019103598959760; discovery lead only, no downloaded/reviewed fullpaper or digital shape.",
+          "limits": "Native tiny blurred disk and historical longest dimension do not establish three axes/local terrain/current registration. No20x16x14axes, uncertainty, mesh or figure/CC licence adopted."
+        },
+        "notClaimed": [
+          "No new generated view or measured raster diameter",
+          "No current ephemeris, mass, spin, pole, shape or membership change",
+          "No local material fractions, calibrated visible colour, atmosphere absence, plume/liquid/exposed ocean/biology or survivable landing"
+        ],
+        "next": "Independent labelled local/sky original PNGs and full prompts/masters/previews can use this nominal guide while preserving unknown spin/attitude and invented terrain. Primary shape/raw-product audit and conforming lossless headroom recovery continue before larger additive batches.",
+        "validation": {
+          "retainedSourceAndGeneratedHashesChecked": 11,
+          "nativeCardsExactBytesAndMime": 82,
+          "baseline": "63df5e0",
+          "priorDossiersDeepEqual": 91,
+          "dossiers": 91,
+          "priorMoonsDeepEqual": 47,
+          "moons": 47,
+          "trackedPublicByteEqual": 676,
+          "queueEntries": 569,
+          "unchangedOtherQueueEntries": 569,
+          "htmlBytes": 15983748,
+          "headroomBytes": 16252,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "a9dbf4132f14d2736bd74e96f22865dae39e020e64bb60eb433327e3c2c3350e",
+          "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+          "freshBrowserClaim": false,
+          "testsPassed": 689,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "compressionSavingsClaim": false
+        }
+      }
+    },
+    {
+      "path": "docs/research/adrastea-local-view-preparation-2026-10-18.json",
+      "bytes": 4103,
+      "sha256": "ce95451d0a1b062867931867e40bad4a9d86593d1c7d28a015cff39f2b832c66",
+      "record": {
+        "date": "2026-10-18",
+        "body": "Adrastea, Jupiter inner moon / JPL515",
+        "mode": "built-in imagegen, new independent image, no reference images",
+        "original": {
+          "path": "data/research-sources/adrastea-generated-surfaceImage-original.png",
+          "bytes": 2848106,
+          "sha256": "2e75715d43b90b82406c7d54a17250c857811e2d3c33d82886ab142ed4056a1c",
+          "dimensions": [
+            1672,
+            940
+          ]
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f8d22551-ca71-46a9-bb2c-ca54a6034655.png",
+          "bytes": 2848106,
+          "sha256": "2e75715d43b90b82406c7d54a17250c857811e2d3c33d82886ab142ed4056a1c",
+          "dimensions": [
+            1672,
+            940
+          ]
+        },
+        "prompt": "Use case: scientific-educational\nAsset type: Fidelity Adrastea local-view illustration, wide landscape16:9.\nCreate a new independent hypothetical low viewpoint over Adrastea, Jupiter inner moon JPL515. Invent subdued dark grey granular foreground, sparse irregular blocks and low uneven relief, distant curved horizon beneath black sky. All grain/rock sizes, materials, chemistry, fractions, porosity, colour, terrain and lighting are unknown and invented. No astronomical disk: Jupiter and Sun off frame; no angular-size claim. Do not reuse or imitate observed geography, photographs or maps of Moon, Mars, Pluto, Amalthea, Thebe, Metis or any other body. Not a spacecraft photograph, observed map, dated site or reconstructed landing. No atmosphere haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Black sky and omitted stars are composition choices not absence evidence. Restrained photographic-style hypothetical scientific illustration, artistic exposure. Rotation, pole, local normal and current longitude unknown; no permanent Jupiter-facing site implied.\nFull-width dark annotation band at bottom INSIDE frame, two fully legible exact lines:\nADRASTEA \u2014 IMAGINED LOCAL VIEW\nTerrain, materials, colour and lighting invented; no registered surface site\nKeep both lines unobstructed fully inside frame. No other logos, labels or watermarks. New standalone generation without references.\n",
+        "promptFile": {
+          "path": "data/research-sources/adrastea-local-prompt-2026-10-18.txt",
+          "bytes": 1441,
+          "sha256": "0c4a5caacefe0ea7fd09a069520f18da7a515a613871415b40d74cc5b9016d0d"
+        },
+        "preparations": {
+          "master": {
+            "path": "data/research-sources/adrastea-surface-master-preparation.jpg",
+            "bytes": 358119,
+            "sha256": "50ecdd853e93f30f5bb439f7f227ee55d46d14286187dab2af6f0cd5a5958e16",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "quality": 85,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          },
+          "preview": {
+            "path": "data/research-sources/adrastea-surface-preview-preparation.jpg",
+            "bytes": 10390,
+            "sha256": "66b68ea912b64eeffbc051ab2f040010fb5a909391bb73a7ad01464658ce5be2",
+            "dimensions": [
+              256,
+              144
+            ],
+            "quality": 80,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          }
+        },
+        "inspection": "Original and1536JPEG85 master both exact IMAGINED footer lines visually inspected readable.256JPEG80 preview inspected; tiny footer requires explicit IMAGINED card labels. Dark grey invented grains/blocks/low relief, black sky; no astronomical disk or angular claim.",
+        "limits": "Terrain, grain/block sizes, chemistry, fractions, porosity, colour, light and exposure invented. No observed-body analog skin, dated site, local normal, measured pole/current longitude, spin locking or permanent Jupiter face. Black sky and omitted stars/rings not evidence of absence. No atmosphere, plume, liquid, exposed ocean, biology, craft or survivable landing. Small preview requires explicit IMAGINED card labels.",
+        "status": "research preparation only; no92nd dossier, embedding, catalogue, globe, shape or codec adoption",
+        "references": [
+          "docs/research/adrastea-native-preparation-2026-10-18.json",
+          "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json"
+        ]
+      }
+    },
+    {
+      "path": "docs/research/adrastea-sky-view-preparation-2026-10-18.json",
+      "bytes": 5159,
+      "sha256": "97ce955b3c75af0b42bd4c30ea3e24916e490eda72b6383f93fe96b988d16542",
+      "record": {
+        "date": "2026-10-18",
+        "body": "Adrastea, Jupiter inner moon / JPL515",
+        "mode": "built-in imagegen, new independent image, no reference images",
+        "original": {
+          "path": "data/research-sources/adrastea-generated-skyImage-original.png",
+          "bytes": 2041602,
+          "sha256": "87315f2aa5e74fbbc22259a3d9f8fb3e9768cd6a9ac86019b5f3f95815d48850",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f96eb410-9066-430a-a959-6774f2f25c4e.png",
+          "bytes": 2041602,
+          "sha256": "87315f2aa5e74fbbc22259a3d9f8fb3e9768cd6a9ac86019b5f3f95815d48850",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "prompt": "Use case: scientific-educational\nAsset type: Fidelity Adrastea hypothetical Jupiter-facing observer illustration, wide landscape16:9. Create a new independent invented low viewpoint over Adrastea, Jupiter inner moon JPL515. Subdued dark grey uneven granular foreground with sparse irregular blocks below black sky. Huge spherical Jupiter above horizon, cream/tan/brown bands and original invented cloud patterns, no copied map, photograph or identifiable observed storm. Composition: Jupiter centre in upper sky with upper limb allowed outside top frame and lower limb partly occluded by terrain. Hypothetical angular guide computed with skyGeometry: Jupiter radius69911km at129000 minus8.2km observer distance,65.63708164033733degree apparent diameter, nominal90degree horizontal FOV,1078.2964000191785px target in1672px width. This is an illustrative guide, not calibrated raster, dated scene, registered site, local normal, pole, measured spin locking or permanent Jupiter face. Phase, axis, cloud morphology, colour, exposure and illumination artistic. All local terrain, grain/block sizes, materials, chemistry, fractions, porosity unknown and invented. No analog skins or reused geography from Moon,Mars,Pluto,Amalthea,Thebe,Metis or any other body. No Sun disk, atmospheric haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Omitted stars/rings and black sky are composition choices, not evidence of absence. Restrained photographic-style hypothetical illustration.\nFull-width dark annotation band at bottom INSIDE frame, two fully legible exact lines:\nADRASTEA \u2014 IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nKeep both lines unobstructed fully inside frame. No other logos, labels or watermarks. New standalone generation without reference images.\n",
+        "promptFile": {
+          "path": "data/research-sources/adrastea-sky-prompt-2026-10-18.txt",
+          "bytes": 1855,
+          "sha256": "42d59f47e41f0b019c1d8a37d0e2082200cf5b396033a9b8c4d32efaa5835f4d"
+        },
+        "preparations": {
+          "master": {
+            "path": "data/research-sources/adrastea-sky-master-preparation.jpg",
+            "bytes": 207243,
+            "sha256": "1cd5803ece0bc6597aeb4cbcc0421c3f75d35d5bbf6317f8065957943a3cd77b",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "quality": 85,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          },
+          "preview": {
+            "path": "data/research-sources/adrastea-sky-preview-preparation.jpg",
+            "bytes": 7790,
+            "sha256": "ec1056ebdb8bfe08c49a1000bae55a9bb59d9388436e93ff664bd6bbf033b226",
+            "dimensions": [
+              256,
+              144
+            ],
+            "quality": 80,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          }
+        },
+        "inspection": "Original and1536JPEG85 master both exact IMAGINED footer lines visually inspected readable.256JPEG80 preview inspected; tiny footer requires explicit IMAGINED card labels. Invented Jupiter top cropped/lower limb terrain occluded; no measured raster diameter or calibrated scene claim.",
+        "limits": "Terrain, grain/block sizes, chemistry, fractions, porosity, colour, light and exposure invented. No observed-body analog skin, dated site, local normal, measured pole/current longitude, spin locking or permanent Jupiter face. Black sky and omitted stars/rings not evidence of absence. No atmosphere, plume, liquid, exposed ocean, biology, craft or survivable landing. Small preview requires explicit IMAGINED card labels.",
+        "status": "research preparation only; no92nd dossier, embedding, catalogue, globe, shape or codec adoption",
+        "references": [
+          "docs/research/adrastea-native-preparation-2026-10-18.json",
+          "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json"
+        ],
+        "geometryGuide": {
+          "implementation": "docs/research/adrastea-observer-geometry-preparation-2026-10-18.mjs",
+          "angularDiameterDegrees": 65.63708164033733,
+          "targetPixels": 1078.2964000191785,
+          "widthPixels": 1672,
+          "horizontalFovDegrees": 90,
+          "limits": "skyGeometry spherical Jupiter69911km at129000 minus8.2km;165K helper angular only, colour/irradiance discarded. Top cropped and foreground-occluded generated Jupiter uncalibrated; no rendered raster diameter adopted. Mean orbit/height not dated distance, registered normal, joint fit or uncertainty envelope; oblateness/phase/axis/spectral transfer artistic."
+        }
+      }
+    },
+    {
+      "path": "docs/research/adrastea-thomas1998-primary-assessment-2026-10-18.json",
+      "bytes": 7892,
+      "sha256": "39ca364c44cb8fd7030cc05c1172a8b8a5b04b5d5ffa7771bf7ca07c73082288",
+      "record": {
+        "date": "2026-10-18",
+        "body": "Adrastea JPL515; historical four-inner-moon study",
+        "status": "Research assessment only; no92nd dossier, catalogue, rotation, shape, photometry, image or codec adoption.",
+        "paper": {
+          "title": "The Small Inner Satellites of Jupiter",
+          "doi": "10.1006/icar.1998.5976",
+          "journal": "Icarus135(1),360\u2013371",
+          "publication": {
+            "date-parts": [
+              [
+                1998,
+                9
+              ]
+            ]
+          },
+          "authors": [
+            "P.C. Thomas",
+            "J.A. Burns",
+            "L. Rossier",
+            "D. Simonelli",
+            "J. Veverka",
+            "C.R. Chapman",
+            "K. Klaasen",
+            "T.V. Johnson",
+            "M.J.S. Belton"
+          ],
+          "creditLimit": "Nine named Crossref authors; Galileo Solid State Imaging Team association from bibliographic search lead not independently verified in full-paper masthead."
+        },
+        "sources": [
+          {
+            "path": "data/research-sources/adrastea-thomas1998-publisher-2026-10-18.html",
+            "bytes": 832806,
+            "sha256": "cfc758aa70f61ef9cec66ad00b3ee00ffafebfda035e2cdf4f85eb6cc45cddd4",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760",
+            "status": 403,
+            "responseHeaders": {
+              "path": "data/research-sources/adrastea-thomas1998-publisher-2026-10-18.headers",
+              "bytes": 834,
+              "sha256": "ec6e37361d19ff5e2e2032d172e7a31f7cfdec8e30da25c185f9caa97005926f"
+            },
+            "limits": "Response hash, not full paper/PDF/abstract hash."
+          },
+          {
+            "path": "data/research-sources/adrastea-thomas1998-crossref-2026-10-18.json",
+            "bytes": 14834,
+            "sha256": "c3f2b0bc9c53098e1676e1ca1d3ce23a08113b39fc7aebae520d58ae298c739a",
+            "url": "https://api.crossref.org/works/10.1006/icar.1998.5976",
+            "status": 200,
+            "responseHeaders": {
+              "path": "data/research-sources/adrastea-thomas1998-crossref-2026-10-18.headers",
+              "bytes": 509,
+              "sha256": "dc0d6bb332147a035d4c23b483185224afd38f3ab112384938cc21b76b6a1bfa"
+            },
+            "limits": "Metadata/deed response, not full paper or figure licence inspection."
+          },
+          {
+            "path": "data/research-sources/adrastea-thomas1998-api-2026-10-18.txt",
+            "bytes": 180,
+            "sha256": "02f6d1d49ded4e0b0898231f5939ef4ad814352d39372ed5e91b8f5b69bf0d8c",
+            "url": "https://api.elsevier.com/content/article/PII:S0019103598959760?httpAccept=text/plain",
+            "status": 429,
+            "responseHeaders": {
+              "path": "data/research-sources/adrastea-thomas1998-api-2026-10-18.headers",
+              "bytes": 688,
+              "sha256": "a057c7c9390d402d3a2360cc5ecf5c9336509a0cc289f1504f3997d5a3e2142f"
+            },
+            "limits": "Response hash, not full paper/PDF/abstract hash."
+          },
+          {
+            "path": "data/research-sources/adrastea-thomas1998-pdf-attempt-2026-10-18.response",
+            "bytes": 832806,
+            "sha256": "67a1b8252bb709be37519c3059dfb971d029be8b91bcf94cf57ad04c25b86c95",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760/pdf",
+            "status": 403,
+            "responseHeaders": {
+              "path": "data/research-sources/adrastea-thomas1998-pdf-attempt-2026-10-18.headers",
+              "bytes": 834,
+              "sha256": "292b5251cf3dd0d4ddd57f5b58535602d773438ea4c9580315659e65e37504ba"
+            },
+            "limits": "Response hash, not full paper/PDF/abstract hash."
+          },
+          {
+            "path": "data/research-sources/adrastea-thomas1998-deed-2026-10-18.html",
+            "bytes": 36788,
+            "sha256": "0389dccad7bdfebd9b7294ccd1582d8197b450295ff5263bafa41763e5f40b27",
+            "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+            "status": 200,
+            "responseHeaders": {
+              "path": "data/research-sources/adrastea-thomas1998-deed-2026-10-18.headers",
+              "bytes": 261,
+              "sha256": "25c54d01ce53d848b944c5e6f6e59411302ac1da81c7fe1f1641f9143835066d"
+            },
+            "limits": "Metadata/deed response, not full paper or figure licence inspection."
+          }
+        ],
+        "indexedPublisherAbstract": {
+          "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760",
+          "retrieval": "2026-10-18 web search publisher-indexed abstract; direct open403; no full-paper/abstract response hash invented",
+          "claims": "Historical abstract describes synchronous rotation for the four inner moons collectively, with no binary/bifurcated shapes. Its quantitative leading/trailing brightness contrast and clear-filter albedos concern Metis, Amalthea and Thebe; Adrastea is not in that photometric list. Colour-gradient/contamination and impact explanations are interpretations, not measured local materials or a registered visible-colour map.",
+          "limits": "Adrastea-specific rotational evidence, period/pole, image sampling, uncertainty, shape derivation and raw-product associations require full methods/tables. Historical collective synchrony claim retained alongside current NASA overview unknown rotation; no cause/reconciliation or measured spin adopted."
+        },
+        "rights": {
+          "crossrefLicenses": [
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    1998,
+                    9,
+                    1
+                  ]
+                ],
+                "date-time": "1998-09-01T00:00:00Z",
+                "timestamp": 904608000000
+              },
+              "content-version": "tdm",
+              "delay-in-days": 0,
+              "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+            },
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    1998,
+                    9,
+                    1
+                  ]
+                ],
+                "date-time": "1998-09-01T00:00:00Z",
+                "timestamp": 904608000000
+              },
+              "content-version": "tdm",
+              "delay-in-days": 0,
+              "URL": "https://www.elsevier.com/legal/tdmrep-license"
+            },
+            {
+              "start": {
+                "date-parts": [
+                  [
+                    2002,
+                    5,
+                    25
+                  ]
+                ],
+                "date-time": "2002-05-25T00:00:00Z",
+                "timestamp": 1022284800000
+              },
+              "content-version": "vor",
+              "delay-in-days": 1362,
+              "URL": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            }
+          ],
+          "limits": "Crossref VOR CC BY-NC-ND4.0 link from2002May25 differs TDM-only links and indexed1998all-rights-reserved notice. Specific NC/ND record is not CC BY, blanket raw-image rights or independently checked third-party figure permission. No paper figure downloaded/embedded/modified; direct publisher/API/PDF requests inaccessible. Deed retained for link identity, not legal conclusion about uninspected paper contents."
+        },
+        "preservedReferences": [
+          "docs/research/adrastea-native-preparation-2026-10-18.json",
+          "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json",
+          "docs/research/adrastea-local-view-preparation-2026-10-18.json",
+          "docs/research/adrastea-sky-view-preparation-2026-10-18.json"
+        ],
+        "open": "Full paper/body-specific rotational methods, size uncertainty lineage, digital shape, rawUTC/filter/exposure/PSF/frame/photometry and catalogue registration remain open. No new angular/raster calculation. Independent prepared images remain invented/unregistered.",
+        "validation": {
+          "retainedSourceAndGeneratedHashesChecked": 31,
+          "nativeCardsExactBytesAndMime": 82,
+          "baseline": "e9e2b31",
+          "priorDossiersDeepEqual": 91,
+          "dossiers": 91,
+          "priorMoonsDeepEqual": 47,
+          "moons": 47,
+          "trackedPublicByteEqual": 676,
+          "queueEntries": 569,
+          "unchangedOtherQueueEntries": 569,
+          "htmlBytes": 15983236,
+          "headroomBytes": 16764,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "0511a7a2a603961bd99c1ac85428fec427ce7be7d9f0471794e8f4f57adc24aa",
+          "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+          "freshBrowserClaim": false,
+          "testsPassed": 689,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass"
+        }
+      }
+    }
+  ]
+}

@@ -15742,6 +15742,160 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "adrastea": {
+    "id": "adrastea",
+    "name": "Adrastea",
+    "kind": "moon",
+    "aliases": [
+      "Adrastea",
+      "S/1979 J 2"
+    ],
+    "researchDate": "2026-10-18",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved global texture or digital shape adopted. Whole Galileo family montage is native context only; other moons are not Adrastea maps.",
+    "measured": [
+      "Adrastea,S/1979J2,JPL515,JupiterXV,distinct from asteroid239Adrastea. Whole GalileoSSI PIA01076 family montage retained unchanged: left-to-right Metis,Adrastea,Amalthea,Thebe; Adrastea second from left.",
+      "PIA01076 whole856x270 monochromeJPEG8331bytes SHA1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515,NASA/JPL/CornellUniversity. Composite observations November1996–June1997,publication1998March26; not individual AdrasteaUTC. Blur/sampling/black not localgrains/calibratedvisiblecolour/chemistry/atmosphereabsence."
+    ],
+    "modelled": [
+      "JPLJUP365GM.00014±.00020km3/s2 uncertainty exceeds fitted value; radius8.20±4.00km equivalent-volume(ref1Archinal2018),deriveddensity.9018±1.8507g/cm3 not precise mass/chemistry/porosity/axes/localnormal. NASAoverview8.2±2km alternative retained,cause/reference lineage open. Generic mass null.",
+      "JUP365 localLaplace2000Jan1.5TDBmean a129000km,e0,w0,M214.5,i0,node0deg,P.298260day,apsidal0/nodal0yr,pole268.1/64.5deg,tilt0. Roundedzeros not exactcircular/equatorial/unperturbedstate; precision/convention not independently established. Jacobson2021personalcommunication/kernel1600–2200 coverage not independentphase/frame/time/light-time/covariance validation.",
+      "NASAoverview explicitlyunknownrotation; roundedsevenhour orbit not spin. Thomas1998 publisher-indexedabstract collectively calls fourmoons synchronous; body-specific methods/tables not accessible. Both statements retained without measuredspin/locking/pole/currentlongitude adoption. Nullrotation/lockingdisabled not measurednonsynchronousstate or permanentJupiterface.",
+      "Historical20km longestdimension/northapproximatelyup/relative sizes caption estimates not newraster/axes/currentradius. NASAhero schematicringcutaway not nativebodygeography. JunoSRU PIA25039 observed2021Sep2 ringbands associatedwithAdrastea/Metisorbits not resolvedAdrasteasurface; dustsupply/decay models not measuredlocalrates/imminentbreakup/history."
+    ],
+    "unknown": [
+      "RawUTC/filter/exposure/PSF/product-to-pixel association,assemblyhistory,visiblecolour/radiometry,globalgeography/materialfractions/normal/pole/currentlongitude/digitalshape and datedsceneregistration.",
+      "Secondary2026June3PJ84/11747km lead lacks retainedprimary event/image confirmation; no encounter/range/newimage/exhaustivenewest-observation claim. FullThomas1998 body-specificrotation/shape/uncertainty audit open."
+    ],
+    "assumed": [
+      "Independentinventedgreyterrain/grains/blocks/relief/materials/chemistry/fractions/porosity/colour/light/exposure; Jupiterbands/cloudpattern/phase/axis/attitude invented, no actualbodymap or identifiableobservedstorm. Noanalogdatedsite/normal/atmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence.",
+      "skyGeometry spherical69911kmJupiter at129000minus8.2km gives128991.8km,65.63708164033733deg/1078.2964000191785px nominal90HFOV1672width,not currenteccentricdistance/localnormal/pole/permanentface/jointfit/uncertaintyenvelope.165Kangularhelperonly colour/irradiance discarded.",
+      "RenderedJupiter topcropped/terrainoccluded and uncalibrated; no measuredrasterdiameter adopted. Original/defaultPNGs/fullprompts/Pillowpreps/additiveimportermasters/previews retained. Tiny256previewfooters require explicitIMAGINEDcardlabels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM ADRASTEA",
+    "skyLabel": "IMAGINED · SKY FROM ADRASTEA",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "8.20 ± 4.00 KM · VOLUME MODEL"
+      ],
+      [
+        "GM",
+        ".00014 ± .00020 KM³/S² · FIT"
+      ],
+      [
+        "ORBIT",
+        "129,000 KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.000862256925158227,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 65.63708164033733,
+      "centreDiscWidthFraction": 0.6449141148440063,
+      "irradianceEarth": 0.009069934001860966,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "skyCaption": "Hypothetical Jupiter above invented Adrastea terrain;165K is an angular-helper input only. Phase,colour,lighting,exposure and scene registration are uncalibrated.",
+    "contextImages": [
+      {
+        "url": "/bespoke/adrastea-pia01076-native.jpg",
+        "bytes": 8331,
+        "sha256": "1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515",
+        "width": 856,
+        "height": 270,
+        "tier": "measured",
+        "label": "NATIVE · PIA01076 · ADRASTEA SECOND FROM LEFT",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01076/PIA01076.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/",
+        "credit": "NASA/JPL/Cornell University",
+        "observationDate": "1996-11 / 1997-06 · composite interval; individual Adrastea UTC unknown",
+        "publicationDate": "1998-03-26",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA educational/informational/factual use,source acknowledgement,no endorsement,third-party copyright caveats; not CC BY or blanket raw-product permission.",
+        "description": "Wholemonochromefamilymontage:left-to-rightMetis,Adrastea,Amalthea,Thebe. Othermoons not Adrasteageography; blur/sampling/black not rocks/calibratedcolour/localchemistry/completemap/atmosphereabsence. TargetmetadataAmaltheamontagescope.",
+        "processing": "UnchangedwholepublisherJPEG,no localresize/reencoding; TIFF retained decoded not separately visually inspected or asserted pixelidentical. Historical20kmlongestdimension/northapproxup not newraster/axes/currentradius. ExactrawUTC/filter/exposure/PSF/product/assembly/frame/photometry/shape-normal/currentattitude open."
+      }
+    ],
+    "references": [
+      {
+        "title": "NASA GalileoSSI PIA01076 whole family montage",
+        "url": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/"
+      },
+      {
+        "title": "NASA Adrastea overview unknown rotation",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/"
+      },
+      {
+        "title": "NASA media terms and third-party caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "JPL physical parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL mean elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "Thomas et al.1998 primary reference; full body-specific audit open",
+        "url": "https://doi.org/10.1006/icar.1998.5976"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/adrastea-surface-image.jpg",
+      "previewUrl": "/bespoke/adrastea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "adrastea-generated-surfaceImage-original.png",
+      "sourceSha256": "2e75715d43b90b82406c7d54a17250c857811e2d3c33d82886ab142ed4056a1c",
+      "sha256": "58315ec0d1294998e6895ccdc5a5c426db7d7eca4436744490b6a9013649a329",
+      "previewSha256": "cf9124eeaf0e02b8ad61ce314706af531fc726e6c72dff5da859ade7e5e37be8",
+      "bytes": 357877,
+      "previewBytes": 10181,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/adrastea-sky-image.jpg",
+      "previewUrl": "/bespoke/adrastea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "adrastea-generated-skyImage-original.png",
+      "sourceSha256": "87315f2aa5e74fbbc22259a3d9f8fb3e9768cd6a9ac86019b5f3f95815d48850",
+      "sha256": "3c010bb515f3fc9376dd009a1aa77a6ed54faeadd11aa0188629ed8c60e93a3b",
+      "previewSha256": "f7d6ba2086677c89e007a21215e5d3ad3f9ffdacb295428f692a71b1425ec9c7",
+      "bytes": 207500,
+      "previewBytes": 7652,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

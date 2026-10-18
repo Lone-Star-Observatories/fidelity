@@ -282,6 +282,17 @@ export const MOONS = [
       {label:'GM',value:'.00250 ± .00160 KM³/S² · FIT',tier:'modelled',detail:'JUP365; deriveddensity.9002±.7642 not precise mass/chemistry/porosity.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Unknownrotation/likelysynchrony not measuredspin/pole/currentlongitude. Nullrotation/lockingdisabled not measurednonsynchronousstate.'},
     ],surfacePending:true,note:'Nativewholemontage rightMetis separate from leftThebe/centreAmalthea and inventedlocalviews. NASAoverview .295day/fivehoursconflict retained; no permanentJupiterface/currentattitude claim.' },
+  { id: 'adrastea', name: 'Adrastea', parent: 'jupiter', radiusKm: 8.2, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(129000, 0, 0, 214.5, 0, 0, .298260, 0, 0, [268.1, 64.5], 'laplace', 2451545.0),
+    orbitFacts: [
+      {label:'ORBITS',value:'JUPITER · INNER MOON',tier:'measured',detail:'Adrastea,S/1979J2,JPL515,JupiterXV; distinct from asteroid239Adrastea.'},
+      {label:'ORBIT',value:'129,000 KM · .298260 DAYS',tier:'modelled',detail:'JUP365 localLaplace mean elements,2000Jan1.5TDB,not current distance/spin. Roundedzero fields not exactcircular/equatorial/unperturbedstate.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'Currentphase/time/frame/light-time/SPICE reconstruction open.'},
+    ],physicalFacts: [
+      {label:'RADIUS',value:'8.20 ± 4.00 KM · VOLUME MODEL',tier:'modelled',detail:'Equivalent-volume,not axes/localnormal. NASAoverview±2km alternative retained; cause/reference lineage open.'},
+      {label:'GM',value:'.00014 ± .00020 KM³/S² · FIT',tier:'modelled',detail:'JUP365 uncertainty exceedsvalue; deriveddensity.9018±1.8507 not precise mass/chemistry/porosity.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'NASAunknownrotation vs Thomas1998collectivesynchrony retained; body-specific audit open. Nullrotation/lockingdisabled not measurednonsynchronousstate/permanentface.'},
+    ],surfacePending:true,note:'Nativewholefamilymontage Adrastea secondfromleft separate from Metis/Amalthea/Thebe and inventedlocalviews. Unknownspin,pole,normal,currentlongitude; no permanentJupiterface/currentattitude claim.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,
