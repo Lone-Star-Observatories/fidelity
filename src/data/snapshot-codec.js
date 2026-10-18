@@ -18,7 +18,7 @@ export function encodeSnapshotBytes(bytes) {
 }
 
 export function unpackSnapshotBytes(packed) {
-  if (packed?.encoding === 'gzip-raw-utf16le-enumerative-v1') return unpackUtf16SnapshotBytes(packed);
+  if (['gzip-raw-utf16le-enumerative-v1', 'gzip-raw-utf16le-enumerative-v2'].includes(packed?.encoding)) return unpackUtf16SnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-utf8-enumerative-v1') return unpackUtf8SnapshotBytes(packed);
   if (['gzip-raw-radix125-wide-v1', 'gzip-raw-radix125-wide-v2'].includes(packed?.encoding)) return unpackDenseSnapshotBytes(packed);
   if (packed?.encoding === 'gzip-raw-radix120-wide-v1') return unpackRawSnapshotBytes(packed);
@@ -448,5 +448,43 @@ for(let c=32;c<=0xfffd;c++)if(c!==60&&!(c>=0x7f&&c<=0x9f)&&!(c>=0xd800&&c<=0xdff
 const index=new Map(alphabet.map((c,i)=>[c,BigInt(i)])),radix=BigInt(alphabet.length);
 return utf16TransportCache={alphabet,index,radix};
 }
-export function encodeUtf16SnapshotBytes(bytes){const {alphabet,radix}=utf16TransportTables();let blocks=[];for(let offset=0;offset<bytes.length;offset+=255){let n=0n;for(let j=0;j<255;j++)n=(n<<8n)|BigInt(bytes[offset+j]??0);let chars=Array(128);for(let j=127;j>=0;j--){chars[j]=alphabet[Number(n%radix)];n/=radix;}if(n)throw Error('overflow');blocks.push(chars.join(''));}return {encoding:'gzip-raw-utf16le-enumerative-v1',byteLength:bytes.length,data:blocks.join('')};}
-export function unpackUtf16SnapshotBytes(packed){const {index,radix}=utf16TransportTables();if(!Number.isSafeInteger(packed.byteLength)||packed.byteLength<0||packed.byteLength>536870912||typeof packed.data!=='string'||packed.data.length!==Math.ceil(packed.byteLength/255)*128)throw Error('length');const out=new Uint8Array(packed.byteLength);for(let start=0,offset=0;start<packed.data.length;start+=128,offset+=255){let n=0n;for(let j=0;j<128;j++){const digit=index.get(packed.data[start+j]);if(digit===undefined)throw Error('digit');n=n*radix+digit;}if(n>>2040n)throw Error('overflow');for(let j=254;j>=0;j--){let v=Number(n&255n);n>>=8n;if(offset+j<out.length)out[offset+j]=v;else if(v)throw Error('padding');}}return out;}
+// v1 remains byte-compatible; v2 fits331 bytes in166 safe BMP code units.
+export function encodeUtf16SnapshotBytes(bytes, version = 1) {
+  if (![1, 2].includes(version)) throw Error('Invalid UTF16 transport version.');
+  const {alphabet, radix} = utf16TransportTables();
+  const blockBytes = version === 2 ? 331 : 255, blockDigits = version === 2 ? 166 : 128;
+  const blocks = [];
+  for (let offset = 0; offset < bytes.length; offset += blockBytes) {
+    let value = 0n;
+    for (let i = 0; i < blockBytes; i++) value = (value << 8n) | BigInt(bytes[offset + i] ?? 0);
+    const chars = Array(blockDigits);
+    for (let i = blockDigits - 1; i >= 0; i--) { chars[i] = alphabet[Number(value % radix)]; value /= radix; }
+    if (value) throw Error('overflow');
+    blocks.push(chars.join(''));
+  }
+  return {encoding: `gzip-raw-utf16le-enumerative-v${version}`, byteLength: bytes.length, data: blocks.join('')};
+}
+export function unpackUtf16SnapshotBytes(packed) {
+  const {index, radix} = utf16TransportTables();
+  const v2 = packed?.encoding === 'gzip-raw-utf16le-enumerative-v2';
+  if (!v2 && packed?.encoding !== 'gzip-raw-utf16le-enumerative-v1') throw Error('encoding');
+  const blockBytes = v2 ? 331 : 255, blockDigits = v2 ? 166 : 128;
+  if (!Number.isSafeInteger(packed.byteLength) || packed.byteLength < 0 || packed.byteLength > 536870912
+      || typeof packed.data !== 'string' || packed.data.length !== Math.ceil(packed.byteLength / blockBytes) * blockDigits) throw Error('length');
+  const out = new Uint8Array(packed.byteLength);
+  for (let start = 0, offset = 0; start < packed.data.length; start += blockDigits, offset += blockBytes) {
+    let value = 0n;
+    for (let i = 0; i < blockDigits; i++) {
+      const digit = index.get(packed.data[start + i]);
+      if (digit === undefined) throw Error('digit');
+      value = value * radix + digit;
+    }
+    if (value >> BigInt(blockBytes * 8)) throw Error('overflow');
+    for (let i = blockBytes - 1; i >= 0; i--) {
+      const byte = Number(value & 255n); value >>= 8n;
+      if (offset + i < out.length) out[offset + i] = byte;
+      else if (byte) throw Error('padding');
+    }
+  }
+  return out;
+}

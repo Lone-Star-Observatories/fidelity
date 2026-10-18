@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-18",
+  "status": "Adopted lossless UTF16 enumerative v2 for full snapshot and application transport",
+  "baseline": "98217f5",
+  "method": {
+    "encoding": "gzip-raw-utf16le-enumerative-v2",
+    "binaryBytesPerBlock": 331,
+    "safeBmpCodeUnitsPerBlock": 166,
+    "alphabetSize": 63385,
+    "bitsPerBlock": 2648,
+    "capacity": "63385^166 >= 256^331; strict overflow and zero-padding validation",
+    "legacy": "Encoder default remains v1 (255 bytes/128 code units); decoder accepts both versions and all prior formats",
+    "document": "UTF16LE BOM and existing safe alphabet unchanged",
+    "unchanged": "Complete snapshot JSON, native data-URI bytes/MIME, compression/container algorithms, independent Brotli instances, CSS/startup transports, Blob import/revoke and unsupported-gzip notice"
+  },
+  "sameCompressedPayloads": {
+    "snapshotBytes": 14834514,
+    "applicationBytes": 859586,
+    "transportSavingBytes": 13996,
+    "limitation": "Transport payload only; excludes changed decoder/application code and wrapper overhead. Not net interbuild savings attribution."
+  },
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 33,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "98217f5",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15967850,
+    "headroomBytes": 32150,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "cfa6f52d2406a8b9091fd1bf859e3e58b6895a51c7fb8af91c610da2954e7cd9",
+    "applicationSha256": "a5faa0a550c8a52d4b07157dce5e4211d756a1c95cc2ba8bdd3f24199cff65b6",
+    "freshBrowserClaim": false
+  },
+  "tests": {
+    "pass": 691,
+    "skip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  },
+  "browser": {
+    "surface": "ChatGPT in-app Chromium browser, loopback HTTP UTF16LE",
+    "completeJsonSha256": "cfa6f52d2406a8b9091fd1bf859e3e58b6895a51c7fb8af91c610da2954e7cd9",
+    "applicationSha256": "a5faa0a550c8a52d4b07157dce5e4211d756a1c95cc2ba8bdd3f24199cff65b6",
+    "htmlParserSnapshotPackedTextSha256": "7040813042f8ef91d706db41a054b6fa0ccf4ae36b80e6e1b5f6018108ace953",
+    "htmlParserApplicationPackedTextSha256": "f31aae1be3fcb3dcaa8545ff63a3f3c35fc49e246493733f0731a9e68de15042",
+    "allExpectedHashesExact": true,
+    "applicationCanvasElementsAfterStartup": 8,
+    "unsupportedGzipNotice": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+    "limitations": "No fresh all-image/all-route/model/worker test or other-engine/file-protocol claim."
+  },
+  "scope": "No 92nd dossier, new embedding, catalogue or model/map/shape change. Prepared Adrastea views retained. Backlog ACTIVE; no external blocker."
+}

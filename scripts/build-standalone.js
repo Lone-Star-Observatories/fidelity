@@ -211,7 +211,7 @@ async function assemble(snapshotJson) {
   if (!brotliDecompressSync(innerCompressed).equals(Buffer.from(binarySnapshot))) throw new Error('Native Brotli round-trip failed.');
   const htmlCompressed = gzipSync(wrapBrotliSnapshot(binarySnapshot, innerCompressed), { level: 9 });
   if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
-  const snapshotRaw = encodeUtf16SnapshotBytes(htmlCompressed);
+  const snapshotRaw = encodeUtf16SnapshotBytes(htmlCompressed, 2);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
   const html = viteHtml.replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
   const snapshotElement = html.match(/<script id="fidelity-snapshot-data" type="application\/x-fidelity-packed" data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
@@ -236,8 +236,8 @@ async function assemble(snapshotJson) {
   if (gunzipSync(cssCompressed).toString('utf8') !== css) throw new Error('Stylesheet compression round-trip failed.');
   const cssPacked = encodeDenseSnapshotBytes(cssCompressed, 2);
   if (!Buffer.from(unpackSnapshotBytes(cssPacked)).equals(cssCompressed)) throw new Error('Stylesheet transport round-trip failed.');
-  const appPacked = encodeUtf16SnapshotBytes(appCompressed);
-  console.log(`  application transport: ${encodeUtf8SnapshotBytes(appCompressed).data.length * 2} UTF-16 document bytes before, ${appPacked.data.length * 2} after; same compressed payload ${appCompressed.length} bytes`);
+  const appPacked = encodeUtf16SnapshotBytes(appCompressed, 2);
+  console.log(`  application transport: ${encodeUtf16SnapshotBytes(appCompressed).data.length * 2} UTF16-v1 document bytes before, ${appPacked.data.length * 2} after; same compressed payload ${appCompressed.length} bytes`);
   if (!Buffer.from(unpackSnapshotBytes(appPacked)).equals(appCompressed)) throw new Error('Application transport round-trip failed.');
   const codecSource = (await fs.readFile(path.join(root, 'src/data/snapshot-codec.js'), 'utf8')).replaceAll('export ', '');
   const decoderBundle = await bundleBootstrap({ stdin: { contents: "import { decompress } from 'brotli/decompress'; globalThis.__fidelityStandaloneBrotli = decompress;", resolveDir: root }, bundle: true, write: false, platform: 'browser', format: 'iife', target: 'es2022' });
