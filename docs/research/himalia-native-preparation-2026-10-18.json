@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-18",
+  "body": "Himalia, distinct Jupiter irregular satellite",
+  "status": "Research only; no89th dossier, selectable catalogue addition, generated view, map/shape/native embedding or codec change",
+  "sources": [
+    {
+      "path": "data/research-sources/himalia-pia02881-caption-2026-10-18.html",
+      "url": "https://science.nasa.gov/photojournal/himalia-a-small-moon-of-jupiter/",
+      "bytes": 266866,
+      "sha256": "e62cc5f6fda287e9ad707183fe60a4ea2f5a2db0c79f1eb1c31e2b52064c51c7"
+    },
+    {
+      "path": "data/research-sources/himalia-pia02881-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02881/PIA02881.jpg",
+      "bytes": 29742,
+      "sha256": "e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba",
+      "dimensions": [
+        735,
+        540
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/himalia-pia02881-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02881/PIA02881.tif",
+      "bytes": 255842,
+      "sha256": "0b3a528943179f48b266b82d02c20f7adf991a4fa4342f118ae9bd9598cd5e11",
+      "dimensions": [
+        735,
+        540
+      ],
+      "mode": "RGB"
+    },
+    {
+      "path": "data/research-sources/himalia-distant-resource-2026-10-18.html",
+      "url": "https://science.nasa.gov/resource/distant-himalia/",
+      "bytes": 255866,
+      "sha256": "039c82867cefc990f38491e2349d198c7e892b5cf39f036d7116d7d233651ae7"
+    },
+    {
+      "path": "data/research-sources/himalia-nasa-media-terms-2026-10-18.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "bytes": 313141,
+      "sha256": "0d068d68cd54d01fc82ad29c21c373ee5c39af7919f22ec711557e7d9b1331af"
+    },
+    {
+      "path": "data/research-sources/himalia-juice-review-2026-10-18.response",
+      "url": "https://link.springer.com/article/10.1007/s11214-025-01263-6",
+      "bytes": 1678527,
+      "sha256": "21dd3fa5543108d9f831b2cf53fef058a7a5cdb4ff2c0b1aae6d1cdd2837a606"
+    },
+    {
+      "path": "data/research-sources/himalia-denk2026-figure20-caption.html",
+      "url": "https://link.springer.com/article/10.1007/s11214-025-01263-6/figures/20",
+      "bytes": 351514,
+      "sha256": "6f5a2890934eb8f632f1163817004c498c2e4e6a4e39fe345cc3ec031c43e40e"
+    },
+    {
+      "path": "data/research-sources/himalia-denk2026-figure20-publisher-display.jpg",
+      "url": "https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs11214-025-01263-6/MediaObjects/11214_2025_1263_Fig20_HTML.jpg",
+      "bytes": 27558,
+      "sha256": "1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7",
+      "dimensions": [
+        540,
+        762
+      ],
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/himalia-denk2026-figure20-original.jpg",
+      "url": "https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs11214-025-01263-6/MediaObjects/11214_2025_1263_Fig20_HTML.jpg",
+      "bytes": 27558,
+      "sha256": "1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7",
+      "dimensions": [
+        540,
+        762
+      ],
+      "mode": "L"
+    },
+    {
+      "path": "data/research-sources/himalia-denk2026-license.html",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "bytes": 31950,
+      "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01"
+    }
+  ],
+  "nasaProduct": {
+    "id": "PIA02881",
+    "credit": "NASA / JPL / University of Arizona",
+    "observationDate": "2000-12-19",
+    "photojournalAdditionDate": "2001-01-31",
+    "alternateResourceDates": {
+      "heading": "2004-12-16",
+      "embeddedCaption": "2001-01-23"
+    },
+    "publicationDateLimit": "Distinct publisher dates retained; original-release chronology not independently reconciled. Neither later resource date is an observation.",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "terms": "NASA informational/educational use and acknowledgement with third-party/no-endorsement caveats; not asserted CC BY or blanket raw-product permission.",
+    "publisherFacts": "Cassini ISS near-IR,4.4millionkm range,about27km/pixel; caption projected vertical extent~160km,not global axes. Main arrow,10x inset and separate lighting/size grid; north up,illumination from left. Thruster stabilization affected pointing.",
+    "inspection": "Unchanged735x540RGB publisherJPEG visually inspected; tiny sampled disk,noise/streaks/arrow/inset/grid are not terrain,chemistry,visible-colour calibration or global geography. TIFF decoded735x540RGB; no TIFF/JPEG pixel equality asserted."
+  },
+  "review": {
+    "title": "Io and the Minor Jovian Moons – Prospects for JUICE",
+    "doi": "10.1007/s11214-025-01263-6",
+    "journal": "Space Science Reviews222,27",
+    "publicationDate": "2026-03-05",
+    "authors": [
+      "Denk, Tilmann",
+      "Williams, David A.",
+      "Tosi, Federico",
+      "James F. Bell III",
+      "Mottola, Stefano",
+      "de Pater, Imke",
+      "Lainey, Valéry",
+      "Molyneux, Philippa",
+      "Matz, Klaus-Dieter",
+      "Hartogh, Paul",
+      "Lopes, Rosaly M.",
+      "Solomonidou, Anezina",
+      "Thomas, Peter C.",
+      "Huybrighs, Hans Leo F.",
+      "Gurvits, Leonid I.",
+      "Mura, Alessandro",
+      "Retherford, Kurt D.",
+      "Rezac, Ladislav",
+      "Roatsch, Thomas",
+      "Roth, Lorenz",
+      "Haslebacher, Nico",
+      "Tubiana, Cecilia",
+      "Lucchetti, Alice",
+      "Langevin, Yves",
+      "Poulet, François",
+      "Lellouch, Emmanuel",
+      "Tsuchiya, Fuminori",
+      "Vallat, Claire",
+      "Van Hoolst, Tim",
+      "Vorburger, Audrey",
+      "Wurz, Peter",
+      "D’Aversa, Emiliano",
+      "Gladstone, Randy",
+      "Greathouse, Thomas",
+      "Schneider, Nicholas",
+      "Zambon, Francesca",
+      "Altobelli, Nicolas",
+      "Palumbo, Pasquale",
+      "Portyankina, Ganna",
+      "Aharonson, Oded",
+      "Bruzzone, Lorenzo",
+      "Carter, John",
+      "Cecconi, Baptiste",
+      "Cooper, Nick",
+      "Costa Sitjà, Marc",
+      "Escalante López, Alfredo",
+      "Futaana, Yoshifumi",
+      "Mazzotta Epifani, Elena",
+      "Migliorini, Alessandra",
+      "Moore, William B.",
+      "Moreno, Raphael",
+      "Murray, Carl",
+      "Penasa, Luca",
+      "Piccioni, Giuseppe",
+      "Schmidt, Jürgen",
+      "Wahlund, Jan-Erik",
+      "Witasse, Olivier"
+    ],
+    "authorCount": 57,
+    "scope": "Targeted Himalia paragraph/Figure20/rights/metadata audit, not a complete review of this extensive paper.",
+    "license": "CC BY4.0; images included unless an excluding credit line applies. No excluding Figure20 credit line found in inspected figure caption; retain full author/source attribution and licence link if later adopted. This is separate from PIA02881 credit and raw mission rights.",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "figure20": {
+      "observationDates": [
+        "2000-12-18",
+        "2000-12-19"
+      ],
+      "firstImage": {
+        "id": "N1355863292",
+        "utc": "2000-12-18T20:30:01Z"
+      },
+      "lastImage": {
+        "id": "N1355880764",
+        "utc": "2000-12-19T01:21:13Z"
+      },
+      "publisherProcessing": "Calibrated and bicubically enlarged four views/seven filters; original disks~4–6pixels. Calibration not independently reproduced; no local visible photometric/geographic calibration inferred.",
+      "filters": [
+        {
+          "name": "UV3",
+          "exposureSeconds": 5.6
+        },
+        {
+          "name": "BL1",
+          "exposureSeconds": 0.46
+        },
+        {
+          "name": "GRN",
+          "exposureSeconds": 0.12
+        },
+        {
+          "name": "RED",
+          "exposureSeconds": 0.09
+        },
+        {
+          "name": "IR1",
+          "exposureSeconds": 0.1
+        },
+        {
+          "name": "IR2",
+          "exposureSeconds": 0.32
+        },
+        {
+          "name": "IR3",
+          "exposureSeconds": 0.56
+        }
+      ],
+      "inspection": "Full540x762one-channelJPEG inspected:7rows/4columns,filter/time labels and smearedUV3. Both publisher display/full endpoints returned identical27558bytes/SHA; no local resizing/reencoding. Enlargement does not add resolved terrain.",
+      "limits": "Endpoint IDs bound campaign,not a complete28-product list or proven PIA02881 raw-frame crosswalk. New2026publication is not a2026acquisition; no exhaustive newest-image claim."
+    },
+    "authorNameNote": "Citation metadata retained for all authors; James F.Bell III suffix follows printed author list."
+  },
+  "open": [
+    "Independent full raw image/filter/exposure/PSF and PIA02881-to-Figure20 crosswalk.",
+    "Current primary orbit,physical size/rotation alternatives,photometry,shape/frame and recent native products before generating or catalogue adoption.",
+    "No angular/raster size computed here; all quoted scale/disk numbers are publisher statements,not skyGeometry calculations.",
+    "No analogue skin,local chemistry fractions,atmosphere absence,plume/ocean/biology or landing claim."
+  ],
+  "preservation": "All88dossiers/public/native/original/master/map/model/shape/provenance remain unchanged; research files retained separately. Broader backlog ACTIVE.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 10,
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "fc087cd",
+    "priorDossiersDeepEqual": 88,
+    "dossiers": 88,
+    "priorMoonsDeepEqual": 44,
+    "moons": 44,
+    "trackedPublicByteEqual": 660,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15714436,
+    "headroomBytes": 285564,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "659952f161df51287c9fed51c5336359dc1427c796417adc8fca2e3b0531fde7",
+    "applicationSha256": "f988db5064fa62ef11d76d02178be99ccb6498328bc42d28529383c2dcf0b5b6",
+    "freshBrowserClaim": false,
+    "testsPassed": 686,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "applicationUnchanged": true,
+    "limits": "Research-only unchanged complete JSON/application; no fresh browser/image/model/routes/worker claim. Other engines remain open. No new compression savings."
+  }
+}
