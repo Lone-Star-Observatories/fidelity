@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea, inner moon of Jupiter, distinct from Metis, Amalthea and Thebe",
+  "status": "Research-only native preparation; no dossier92, embedding, catalogue, map, model, shape or codec adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/adrastea-overview-2026-10-18.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+      "status": 200,
+      "bytes": 260826,
+      "sha256": "767df52af466a58a5d64d0b82a78558f22ca4efad6247a3d088406b685537159"
+    },
+    {
+      "path": "data/research-sources/adrastea-family-caption-2026-10-18.html",
+      "url": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/",
+      "status": 200,
+      "bytes": 268329,
+      "sha256": "75d90478cf5e1c2879c3016123b3ecf7062cd2c57c1aa84e432eafc07bb1d61b"
+    },
+    {
+      "path": "data/research-sources/adrastea-terms-2026-10-18.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "bytes": 313142,
+      "sha256": "c95904ffcd51655d62a3202f93623d601af5b7383d1bcd7243d2966c5e852594"
+    },
+    {
+      "path": "data/research-sources/metis-ring-caption-2026-10-18.html",
+      "url": "https://science.nasa.gov/photojournal/perseus-and-jupiters-main-dust-ring/",
+      "status": 200,
+      "bytes": 266566,
+      "sha256": "ab60621b44f0fc9d31f9e1b5c08fb79f9f4b4bb24a5e63f2a2a0217e09d3aed8"
+    }
+  ],
+  "nativeImages": [
+    {
+      "path": "data/research-sources/adrastea-pia01076.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01076/PIA01076.jpg",
+      "bytes": 8331,
+      "sha256": "1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515",
+      "dimensions": [
+        856,
+        270
+      ],
+      "mode": "L",
+      "format": "JPEG",
+      "unchangedPublisherBytes": true,
+      "visuallyInspected": true
+    },
+    {
+      "path": "data/research-sources/adrastea-pia01076.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia01/pia01076/PIA01076.tif",
+      "bytes": 62182,
+      "sha256": "ac9d88ed472236cefa0d7166adc186ad46c95b7cbe1af65b23e8876876a1daed",
+      "dimensions": [
+        856,
+        270
+      ],
+      "mode": "L",
+      "format": "TIFF",
+      "unchangedPublisherBytes": true,
+      "visuallyInspected": false
+    },
+    {
+      "path": "data/research-sources/metis-pia25039.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.jpg",
+      "bytes": 62831,
+      "sha256": "c199d03ae2f74495428601cfb978938cbc26ece277326e1cad90e224dab08331",
+      "dimensions": [
+        547,
+        548
+      ],
+      "mode": "RGB",
+      "format": "JPEG",
+      "unchangedPublisherBytes": true,
+      "visuallyInspected": true
+    },
+    {
+      "path": "data/research-sources/metis-pia25039.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.tif",
+      "bytes": 445274,
+      "sha256": "c55fd0415b29e129adc7233aa6076a5922892a9c0c9fd986fb677bee8214d591",
+      "dimensions": [
+        547,
+        548
+      ],
+      "mode": "RGB",
+      "format": "TIFF",
+      "unchangedPublisherBytes": true,
+      "visuallyInspected": false
+    }
+  ],
+  "products": [
+    {
+      "id": "PIA01076",
+      "captionUrl": "https://science.nasa.gov/photojournal/family-portrait-of-the-small-inner-satellites-of-jupiter/",
+      "credit": "NASA/JPL/Cornell University",
+      "instrument": "Galileo Solid-State Imaging",
+      "observationInterval": "1996-11\u20131997-06",
+      "published": "1998-03-26",
+      "identity": "Whole portrait, left to right: Metis, Adrastea, Amalthea, Thebe. Adrastea is the tiny second disk from left. Target metadata lists Amalthea; caption explicitly covers all four moons, so retain the scope distinction. No other moon supplies Adrastea geography.",
+      "publisherStatements": {
+        "adrasteaLongestDimensionKmApprox": 20,
+        "orientation": "North approximately up; correct relative sizes."
+      },
+      "inspection": "Whole856x270 one-channel JPEG inspected. Adrastea is a tiny blurred bright disk; sampled brightness does not establish local rocks, grains, chemistry, calibrated visible colour, a registered complete globe or absence of atmosphere. Other disks and bright patches are separate bodies. No angular/raster computation.",
+      "limits": "Observation interval applies to the composite, not a verified individual Adrastea UTC. Raw product, exact date/filter/exposure, pixel association, PSF, resampling/assembly history, photometry, shape/pole/local-normal registration remain open. Caption longest dimension is historical estimate, not current equivalent-volume radius or independently fitted axes. TIFF decoded but not separately visually inspected; no TIFF/JPEG pixel identity. Historical first-resolved wording is not a current best/latest-image claim."
+    },
+    {
+      "id": "PIA25039",
+      "captionUrl": "https://science.nasa.gov/photojournal/perseus-and-jupiters-main-dust-ring/",
+      "credit": "NASA/JPL-Caltech",
+      "instrument": "Juno Stellar Reference Unit",
+      "observed": "2021-09-02",
+      "published": "2021-12-17",
+      "identity": "Existing retained whole ring context, not a resolved Adrastea disk or surface. Bands associated with Metis/Adrastea orbits are distinct from native body imagery.",
+      "inspection": "Previously inspected unchanged547x548 RGB JPEG with Perseus/Algol annotations, noisy near-monochrome field and bright ring. No new inspection of TIFF, photometric or geographic claim.",
+      "limits": "Orbit association does not measure local shedding rate, grain chemistry or surface material fractions. Exact UTC/raw products/filter/exposure, detector particle versus star crosswalk and radiometric calibration remain open."
+    }
+  ],
+  "overviewAssessment": {
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+    "hero": "Caption explicitly calls hero a schematic cut-away ring geometry illustration, credited NASA/JPL. Not an Adrastea photograph or native surface texture; no hero image downloaded or image hash invented.",
+    "discovery": "July1979 Voyager discovery separate from1996\u20131997 Galileo observations and1998 portrait publication.",
+    "parameters": "Overview8.2\u00b12.0km mean radius,129000km orbit/.298day and rounded seven-hour orbital prose retained as publisher context, not independently verified current JPL parameters or measured spin.",
+    "spin": "Page says rotational period unknown. Orbital period is not adopted as spin, measured locking, current pole/attitude or permanent Jupiterface.",
+    "interpretations": "Ring dust supply and eventual inward decay are publisher interpretations, not direct local material chemistry, measured current shedding, age or imminent breakup/impact date."
+  },
+  "recencyAssessment": {
+    "checked": "Focused primary-site search for Juno Adrastea2026 and NASA/JPL Photojournal; no accessible new resolved Adrastea publisher product established here.",
+    "unverifiedLead": "Secondary indexed result alleges June3,2026 PJ84 flyby at11747km. No retained primary event/image confirmation; not adopted as a measured encounter, image date/range, resolved product or newest/highest-resolution claim.",
+    "open": "Primary Juno raw-product/PDS coverage and recent publication audit remains open. This is not an exhaustive archive inventory."
+  },
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "policy": "Active NASA educational/informational/factual use, source acknowledgement, no endorsement and third-party copyright caveats. Not CC BY or blanket raw-product rights. Full product-specific credits retained. No outbound contact."
+  },
+  "notClaimed": [
+    "No generated illustration or analog skin",
+    "No adopted physical radius, mass, axes, pole, spin or current ephemeris",
+    "No new embedded native asset or92nd dossier",
+    "No new angular/raster-size calculation, calibrated visible colour, complete geography, local chemical fractions, atmosphere absence, plume/liquid/exposed ocean/biology or survivable landing"
+  ],
+  "next": "Direct JPL physical/orbit and independent primary shape/spin audit; skyGeometry observer guide before independent labelled local/sky originals. Recover conforming lossless headroom before larger additive batches; preserve all existing sources and native bytes.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 11,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "63df5e0",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15983748,
+    "headroomBytes": 16252,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "a9dbf4132f14d2736bd74e96f22865dae39e020e64bb60eb433327e3c2c3350e",
+    "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+    "freshBrowserClaim": false,
+    "testsPassed": 689,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "compressionSavingsClaim": false
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea, Jupiter inner moon, JPL/NAIF515",
+  "status": "Research preparation only; no92nd dossier, generated image, catalogue, globe, shape, model or codec adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/adrastea-physical-2026-10-18.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/adrastea-elements-2026-10-18.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200
+    }
+  ],
+  "physical": {
+    "source": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+    "gmKm3S2": 0.00014,
+    "gmSigmaKm3S2": 0.0002,
+    "gmReference": "JUP365",
+    "meanRadiusKm": 8.2,
+    "radiusSigmaKm": 4.0,
+    "radiusReference": "1: Archinal et al.2018 Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:2015, CelestialMechanics130:22",
+    "derivedDensityGcm3": 0.9018,
+    "densitySigmaGcm3": 1.8507,
+    "limits": "GM uncertainty exceeds fitted value. Derived density from GM and equivalent-volume radius is not precise mass, physical composition/porosity or a measured local density. Radius is not axes, sphere/local normal or registered shape. No generic mass adoption."
+  },
+  "overviewAlternative": {
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/adrastea/",
+    "meanRadiusKm": 8.2,
+    "radiusSigmaKm": 2.0,
+    "limits": "Overview \u00b12.0 versus current direct JPL \u00b14.0 retained; cause/reference lineage not established. Historical caption20km longest dimension is not an equivalent-volume radius or new axes fit. No silent uncertainty or catalogue update."
+  },
+  "meanElements": {
+    "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+    "ephemeris": "JUP365",
+    "frame": "local Laplace plane",
+    "epochTDB": "2000-01-01.5",
+    "aKm": 129000,
+    "e": 0,
+    "argumentPeriapsisDeg": 0,
+    "meanAnomalyDeg": 214.5,
+    "inclinationDeg": 0,
+    "nodeDeg": 0,
+    "periodDays": 0.29826,
+    "apsidalPrecessionYears": 0,
+    "nodalPrecessionYears": 0,
+    "laplacePoleRaDeg": 268.1,
+    "laplacePoleDecDeg": 64.5,
+    "tiltDeg": 0,
+    "reference": "29; R.A.Jacobson2021 The Orbits of the Regular Jovian Satellites and the Orientation of the Pole of Jupiter, personal communication to Horizons/NAIF",
+    "limits": "Rounded mean approximation, not exactly circular/equatorial/unperturbed or dated current distance/phase/spin/pole. Tabulated zero precession precision/convention not independently established. JUP3651600Jan10\u20132200Jan10 kernel coverage not validation of this propagation, light-time, covariance or frame transformation."
+  },
+  "rotation": {
+    "publisher": "NASA overview explicitly says rotation unknown; rounded seven-hour orbital prose not measured spin.",
+    "limits": "No independent sidereal period, pole, current longitude/local normal or measured locking adopted. No permanent Jupiter visibility at all sites. Primary body-specific rotation/shape audit remains open."
+  },
+  "geometryGuide": {
+    "sources": [
+      {
+        "path": "data/research-sources/adrastea-physical-2026-10-18.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/adrastea-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 129000,
+    "cameraHeightKm": 8.2,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 65.63708164033733,
+    "centreDiscWidthPixels": 1078.2964000191785,
+    "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "geometryReproducer": {
+    "path": "docs/research/adrastea-observer-geometry-preparation-2026-10-18.mjs",
+    "bytes": 1176,
+    "sha256": "91f3ad7f7370e3956bde3803cf56d04c90ada2e70febc7f9a867e9aa383a6290"
+  },
+  "shape": {
+    "lead": "Thomas et al.1998 The Small Inner Satellites of Jupiter, Icarus135360\u2013371, PIIS0019103598959760; discovery lead only, no downloaded/reviewed fullpaper or digital shape.",
+    "limits": "Native tiny blurred disk and historical longest dimension do not establish three axes/local terrain/current registration. No20x16x14axes, uncertainty, mesh or figure/CC licence adopted."
+  },
+  "notClaimed": [
+    "No new generated view or measured raster diameter",
+    "No current ephemeris, mass, spin, pole, shape or membership change",
+    "No local material fractions, calibrated visible colour, atmosphere absence, plume/liquid/exposed ocean/biology or survivable landing"
+  ],
+  "next": "Independent labelled local/sky original PNGs and full prompts/masters/previews can use this nominal guide while preserving unknown spin/attitude and invented terrain. Primary shape/raw-product audit and conforming lossless headroom recovery continue before larger additive batches.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 11,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "63df5e0",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15983748,
+    "headroomBytes": 16252,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "a9dbf4132f14d2736bd74e96f22865dae39e020e64bb60eb433327e3c2c3350e",
+    "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+    "freshBrowserClaim": false,
+    "testsPassed": 689,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "compressionSavingsClaim": false
+  }
+}
