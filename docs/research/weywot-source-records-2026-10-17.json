@@ -1,0 +1,1012 @@
+{
+  "date": "2026-10-17",
+  "body": "Weywot",
+  "records": [
+    {
+      "path": "docs/research/weywot-2026-photometry-rotation-assessment-2026-10-17.json",
+      "bytes": 5656,
+      "sha256": "a48b10223ae0eec4ccd69c4e645f88397bfe16b9f3232622f2ed3e87ccec5d8f",
+      "record": {
+        "date": "2026-10-17",
+        "scope": "Targeted SectionsII–III.3/Table1 and Figure1/2 caption audit of full HTML. Results/occultation/posteriors/appendices and independent raw reduction remain open. No figure/image/parameter/codec adoption.",
+        "title": "Size, Shape, and Geometric Albedo of Dwarf Planet Quaoar’s Largest Satellite Weywot",
+        "authors": [
+          "Cameron Collyer",
+          "Estela Fernández-Valenzuela",
+          "Benjamin Proudfoot",
+          "Bryan J. Holler",
+          "Jose Luis Ortiz",
+          "Ishan Sharma"
+        ],
+        "version": "arXiv2610.11988v1 submitted2026-10-08T13:58:16UTC; not observation date",
+        "sources": [
+          {
+            "path": "data/research-sources/weywot-2026-occultation-record.html",
+            "url": "https://arxiv.org/abs/2610.11988",
+            "bytes": 43594,
+            "sha256": "7aff83aac68fb42efe3db7de596766bab7239cbac9e445996ab0852ae6acadfd"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-occultation-full.html",
+            "url": "https://arxiv.org/html/2610.11988v1",
+            "bytes": 350085,
+            "sha256": "dc2ccd1d8007218c1da0aa538b35001ebbd8bf6ca72e7284b594876742cfc88f"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-cc-by-nc-sa4-deed.html",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "bytes": 37146,
+            "sha256": "ca0597fd98c6fb2417993e867b5cbc91ebdc55e24839c38e4674e8c78d817f17"
+          }
+        ],
+        "rights": "Specific record/HTML CC BY-NC-SA4.0, NOT CC BY4.0. Actual deed retained. No paper figure or raw image embedded; raw/third-party product terms remain separate.",
+        "observations": {
+          "range": "2024-05-21 through2025-07-08",
+          "instrument": "HST WFC3 UVIS2",
+          "F350LP": {
+            "program": 17417,
+            "PI": "B. Proudfoot",
+            "orbits": 5,
+            "framesPerOrbit": 8,
+            "exposureSecondsPerFrame": "220–240",
+            "dither": "four-point"
+          },
+          "F606W": {
+            "program": 17827,
+            "PI": "E. Fernandez-Valenzuela",
+            "scheduledOrbits": 7,
+            "usableOrbits": 6,
+            "failed": "seventh orbit guide-star acquisition failed",
+            "framesPerOrbit": 4,
+            "exposureSecondsPerFrame": 352,
+            "dither": "four-point"
+          },
+          "timeConvention": "Table1 MJD is midpoint of exposures in an orbit corrected for light travel time; do not relabel as individual raw acquisition UTC.",
+          "usablePhotometricPoints": 9,
+          "caution": "11 usable imaging orbits are not11 accepted Weywot photometric points. Table blank Weywot cells retained; Figure/Pop-and-Drop orbit2/10 numbering must be mapped to raw dates/products before assignment."
+        },
+        "reduction": [
+          "MAST flat-fielded/CTE-corrected frames and empirical PSFs; F350LP PSF synthesized from F390W/F606W/F814W with primary spectral-slope/solar-spectrum/filter-throughput assumptions. Not independently reproduced.",
+          "Primary residual structure, nonpointlike primary and single-gyro pointing jitter motivated master residual backgrounds; moving background stars trail, masks/residuals are not moon terrain or atmosphere absence.",
+          "Injected Pop-and-Drop PSF tests rejected Weywot positions numbered2/10. Native image association/photometry not calibrated by downloading a paper composite.",
+          "VEGAMAG zero points26.780F350LP/25.995F606W; median orbit flux and resampling uncertainty procedure are reported methods, not a recalibration of app rasters."
+        ],
+        "rotationLimits": [
+          "Synchronous spin and orbit-pole alignment are foundational shape/lightcurve assumptions, supported by correlated photometric and separation extrema, not an independently free-period spin determination.",
+          "Adopted12.427day sidereal period and synodic equivalence must remain conditional until AppendixB audit. No automatic permanent-facing-side or registered scene.",
+          "Tidal times150/200Myr use assumedQ100, rigidity4GPa, minimum density400kgm-3, initial2.5hspin/25degobliquity. These are not measured moon strength/density/history.",
+          "Nine-point double-peaked sinusoid assumes common linear phase behaviour across F350LP/F606W. Small timing offset interpreted as model imperfection, not measured physical phase lag."
+        ],
+        "newerSizeStatus": "Abstract73±5km equivalent radius/axes/albedo results await SectionIV/occultation/frame/posterior audit; do not adopt2025model200km diameter as newest measured size or silently replace alternatives.",
+        "open": [
+          "Full2023occultation chord/ellipse/phase-to-shape and uncertainty audit",
+          "AppendixAraw astrometry, AppendixBsynodic and filterconversion/cornerplots",
+          "Rawproduct/UTC/filter/credit/terms crosswalk and nativeimage assessment",
+          "Independent numerical/photometric reproduction, finalpublication/later-primary audit",
+          "Any second-moon statement requires separate directdiscovery/reference audit; no newbody added"
+        ],
+        "productionChanged": false,
+        "validation": {
+          "baseline": "c25b50a9100850b14933933f1012154d402b600c",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 86,
+          "trackedPublicByteEqual": 651,
+          "sourceHashesChecked": 8,
+          "htmlBytes": 15520644,
+          "headroomBytes": 479356,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "730f3646f72ad34bb37483b4036c2d2219709d7f874e1c7a650fb45679ab6fae",
+          "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+          "testsPassed": 683,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass"
+        }
+      }
+    },
+    {
+      "path": "docs/research/weywot-2026-shape-results-assessment-2026-10-17.json",
+      "bytes": 7657,
+      "sha256": "a53cf02d7d2489ab7faf7020759fdcaee59f78aa1e2a1dcd5e593f8269a0c7d9",
+      "record": {
+        "title": "Size, Shape, and Geometric Albedo of Dwarf Planet Quaoar’s Largest Satellite Weywot",
+        "authors": [
+          "Cameron Collyer",
+          "Estela Fernández-Valenzuela",
+          "Benjamin Proudfoot",
+          "Bryan J. Holler",
+          "Jose Luis Ortiz",
+          "Ishan Sharma"
+        ],
+        "version": "arXiv2610.11988v1 submitted2026-10-08T13:58:16UTC; not observation date",
+        "rights": "Specific record/HTML CC BY-NC-SA4.0, NOT CC BY4.0. Actual deed retained. No paper figure or raw image embedded; raw/third-party product terms remain separate.",
+        "date": "2026-10-17",
+        "scope": "Targeted Section IV, Tables 2–3 and figure captions in retained HTML and versioned TeX. No PDF/figure visual inspection, independent fit, physical registration or production parameter adoption.",
+        "sources": [
+          {
+            "path": "data/research-sources/weywot-2026-occultation-record.html",
+            "url": "https://arxiv.org/abs/2610.11988",
+            "bytes": 43594,
+            "sha256": "7aff83aac68fb42efe3db7de596766bab7239cbac9e445996ab0852ae6acadfd"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-occultation-full.html",
+            "url": "https://arxiv.org/html/2610.11988v1",
+            "bytes": 350085,
+            "sha256": "dc2ccd1d8007218c1da0aa538b35001ebbd8bf6ca72e7284b594876742cfc88f"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-cc-by-nc-sa4-deed.html",
+            "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+            "bytes": 37146,
+            "sha256": "ca0597fd98c6fb2417993e867b5cbc91ebdc55e24839c38e4674e8c78d817f17"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-occultation-v1-source.tar",
+            "url": "https://arxiv.org/src/2610.11988v1",
+            "bytes": 4040178,
+            "sha256": "28e2bbd1c9aaae57370d0e659c452a3308ff16e7b0eccbf0edaa17612792f020",
+            "inspection": "TeX read in memory without execution"
+          },
+          {
+            "path": "data/research-sources/weywot-2026-occultation-v1.pdf",
+            "url": "https://arxiv.org/pdf/2610.11988v1",
+            "bytes": 4180768,
+            "sha256": "ddbe7a6ff2044451d7c50da8eeeba622708dbb186fb361bf3ced916fa93c1edc",
+            "inspection": "retained; signature verified only, PDF content/visual audit pending"
+          }
+        ],
+        "shapePosterior": {
+          "classification": "Conditional triaxial ellipsoid fit, not resolved terrain or an adopted digital shape",
+          "semiAxesKm": {
+            "a": {
+              "median": 82,
+              "plus": 5,
+              "minus": 3
+            },
+            "b": {
+              "median": 73,
+              "plus": 5,
+              "minus": 3
+            },
+            "c": {
+              "median": 65,
+              "plus": 8,
+              "minus": 12
+            }
+          },
+          "volumetricRadiusKm": {
+            "median": 73,
+            "plus": 5,
+            "minus": 5
+          },
+          "poleAtJune2023OccultationDegrees": {
+            "rightAscension": 267.6,
+            "declination": 52.2,
+            "reportedUncertainty": 0.2
+          },
+          "limits": "Section IV explicitly identifies a/b/c as semi-axes although Table 3 labels them axes. Medians and 16th/84th percentiles are not independent Gaussian errors. Pole uses assumed spin/orbit alignment and propagated precession; no current fixed orientation, local normal or body-map registration."
+        },
+        "occultationMethod": {
+          "fit": "occult3d/emcee eight free parameters: three semi-axes, two pole coordinates, phase and two ephemeris offsets; lightcurve/pole Gaussian priors. Not independently reproduced.",
+          "excludedChord": "RECON24 omitted as discrepant with a more precise nearby chord. Exclusion retained, not silently restored.",
+          "errorFloor": "LDT timing-only 0.002 second/~50 m endpoint estimate is publisher supplied. Added 5 km in quadrature models possible departures from triaxiality; it is not a measured terrain height or a new raster/angular calculation.",
+          "additionalChordConstraints": [
+            {
+              "date": "2019-08-04",
+              "lengthKm": 168,
+              "uncertaintyKm": 15
+            },
+            {
+              "date": "2022-06-11",
+              "lengthKmApproximate": 135
+            },
+            {
+              "date": "2023-05-26",
+              "lengthKm": 180,
+              "uncertaintyKm": 19
+            }
+          ],
+          "selection": "Station positions and immersion/emersion timings unavailable in the cited preliminary reports. Authors propagated trial shapes using assumed synchronous phase and limb lengths, omitted shadow-path geometry and rejected samples with combined probability below 1%; about 70% removed and June fit chi-square increased 0.6. This is not a direct full fit of those events or independent coverage validation.",
+          "referenceOffsets": "Table 3 f=-58±3 km, g=53(+8,-9) km relative to the specified Proudfoot Weywot and NIMAv20 Quaoar ephemerides; not a correction adopted in Fidelity."
+        },
+        "photometricFitLimits": [
+          "Nine accepted points/four degrees of freedom: preferred symmetric fit reported chi-square per degree of freedom 3.42.",
+          "Asymmetric model leaves two degrees of freedom and is unconstrained/overfit; fine-tuned zero-mean asymmetry prior width .01 produces .77, still described as overfitting.",
+          "Table 2 phase 111.4(+7.6,-6.7) degrees versus Table 3 phase 24±8 degrees requires an explicit convention crosswalk; neither initializes scene orientation.",
+          "F606W and V absolute magnitudes below the Table 2 rule are derived; source calibration and filter transfer require the unresolved Appendix D audit. No calibrated albedo/colour adopted."
+        ],
+        "sourceConsistencyQuestions": [
+          "Versioned TeX as well as HTML prints F606W zeropoint 25.995 in Section II.2.4 and 29.995 in Appendix D. Preserve both; cause/authoritative correction open.",
+          "Appendix D ratio direction and subsequent V-flux conversion require source/PDF/algebra verification. No repaired calibration implemented.",
+          "Appendix B synodic-offset formula and numerical offsets have not been independently reproduced.",
+          "Table 1 light-time-corrected midpoints differ in convention from Appendix A uncorrected geocentric midpoints; neither is silently relabelled individual raw exposure UTC."
+        ],
+        "remaining": [
+          "Full PDF/figure/posterior inspection, original occultation inputs and fit/code reproduction.",
+          "Albedo/flux-transfer reconciliation, raw HST product association and native rendition/terms audit.",
+          "Current orbit/attitude, mass/density alternatives, recent second-satellite inventory and body-specific observer geometry before generation.",
+          "Preserve historical 2025 tidal-model inputs separately; no map, figure, image, catalogue, mesh, codec or new dossier adopted. All other backlog remains active."
+        ],
+        "texMember": {
+          "name": "0letter.tex",
+          "bytes": 72751,
+          "sha256": "47c2bdf04174f08c975525db34e24be69e062b0dd62167c042cc59cd555ba1f6",
+          "scope": "Active Section IV/Table2–3 and targeted zeropoint text; comments are not treated as published findings."
+        },
+        "validation": {
+          "testsPassed": 683,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "baseline": "b4dde5542a16b996b54c625e995ba90d713d5ee4",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 86,
+          "trackedPublicByteEqual": 651,
+          "sourceHashesChecked": 10,
+          "htmlBytes": 15516292,
+          "headroomBytes": 483708,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "7eeb4c191f3f44c1002e9b08317e1b174cdc8464fa4b42ef0e11dea72ebf4874",
+          "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+          "texMemberHashVerified": true
+        }
+      }
+    },
+    {
+      "path": "docs/research/weywot-local-view-preparation-2026-10-17.json",
+      "bytes": 2897,
+      "sha256": "e5b26655bd30c0246b11955db936b635080fcc5d2d255852811aca22b77b4e48",
+      "record": {
+        "date": "2026-10-17",
+        "status": "Research-only built-in generated local view; original preserved and visually inspected, not embedded",
+        "body": "Weywot",
+        "mode": "built-in image_gen",
+        "prompt": "Create a scientific-educational hypothetical local-view illustration for Fidelity, landscape 16:9 about 1672x941. Subject: Weywot, the small unresolved satellite of Quaoar. Entire scene is independently invented, NOT an observed surface map or reconstruction. A low camera looks across modest gray particulate regolith, scattered small irregular blocks and shallow subdued relief toward a low curved horizon. Restrained neutral gray palette, oblique weak sunlight with artistically raised exposure. Black empty sky; no astronomical disks, no rings, no stars needed. Black sky is an artistic assumption, not evidence of atmospheric absence. No reuse or recolouring of any Moon, Mars, Pluto, asteroid or other observed-body skin; invent every terrain pattern independently. No dramatic fractures, active plume, haze, clouds, liquid, exposed ocean, biology, craft, astronaut, vegetation or survivable-landing implication. Weywot's terrain, materials, chemistry, porosity, grain sizes, gray colour, lighting and exposure are unknown and invented here. Conditional ellipsoid fits do not establish local relief or a registered site. Do not imply a dated occultation site, measured normal, permanent Quaoar-facing direction or independently measured synchronous rotation. This is a hypothetical observer illustration, not a globe texture. Across the bottom put a clean dark footer band with two generously legible exact white text lines: 'WEYWOT — IMAGINED LOCAL VIEW' and 'TERRAIN, MATERIALS, COLOUR AND LIGHT ARE INVENTED'. Keep both lines fully visible and unclipped. No other text.",
+        "original": {
+          "path": "data/research-sources/weywot-generated-surfaceImage-original.png",
+          "bytes": 2535048,
+          "sha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2a3e7a4b-0ff8-470a-ae9f-d7218ff80e8a.png",
+        "limits": "Entire terrain/material/chemistry/colour/light/exposure invented. No analog skin or dated site/normal/permanentface/independent spin measurement. No atmosphere/plume/liquid/ocean/biology/survivable landing. No astronomical disk/angular/raster computation. No87th dossier or production change; all86 preserved.",
+        "visualInspection": "Full1672x941 original inspected: both exact footer lines legible/unclipped; independently invented gray particulate relief and blocks, black sky, no astronomical disk/plume/liquid/biology/craft. Appearance is illustrative, not measured local material or shape.",
+        "defaultOriginalSha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b"
+      }
+    },
+    {
+      "path": "docs/research/weywot-master-preview-preparation-2026-10-17.json",
+      "bytes": 3077,
+      "sha256": "10866b038a1800299aa290060b12f234782593b28b9c936ea3b928a20f26a092",
+      "record": {
+        "date": "2026-10-17",
+        "body": "Weywot",
+        "status": "Research-only original-preserving master/preview preparation; no87th dossier or embedding",
+        "files": [
+          {
+            "role": "surfaceImage",
+            "files": [
+              {
+                "path": "data/research-sources/weywot-generated-surfaceImage-original.png",
+                "bytes": 2535048,
+                "sha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b",
+                "dimensions": [
+                  1672,
+                  941
+                ]
+              },
+              {
+                "path": "data/research-sources/weywot-generated-surfaceImage-master.jpg",
+                "bytes": 298078,
+                "sha256": "4132596a2d61e495f26fce0e69537583c20ed6c22cc0321d585fa022d7bb85f2",
+                "dimensions": [
+                  1536,
+                  864
+                ]
+              },
+              {
+                "path": "data/research-sources/weywot-generated-surfaceImage-preview256.jpg",
+                "bytes": 10124,
+                "sha256": "5fee0e58d6a4641ecaf75a980d12632e0603b5c03dcf0326ac68cf4cd21ec237",
+                "dimensions": [
+                  256,
+                  144
+                ]
+              }
+            ]
+          },
+          {
+            "role": "skyImage",
+            "files": [
+              {
+                "path": "data/research-sources/weywot-generated-skyImage-original.png",
+                "bytes": 1655576,
+                "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7",
+                "dimensions": [
+                  1672,
+                  941
+                ]
+              },
+              {
+                "path": "data/research-sources/weywot-generated-skyImage-master.jpg",
+                "bytes": 187656,
+                "sha256": "4feb384f053fd4280aa3d5ab98a48669e628c61ba9fc21acec5744bac8c57cc3",
+                "dimensions": [
+                  1536,
+                  864
+                ]
+              },
+              {
+                "path": "data/research-sources/weywot-generated-skyImage-preview256.jpg",
+                "bytes": 6845,
+                "sha256": "bce3db1a13bb2d9ee0c53d063f028ec29b875ce3e2516763a5fdf80dc3dc8a5a",
+                "dimensions": [
+                  256,
+                  144
+                ]
+              }
+            ]
+          }
+        ],
+        "encoding": "1536x864JPEGquality85 masters and256x144JPEGquality80 previews; Lanczos resize, original PNGs unchanged. Existing project convention; not native science transformations.",
+        "limits": "Original/master footers must remain legible; tiny previews require explicit IMAGINED card labels. Generated terrain/chemistry/materials/colour/primary appearance/light/exposure invented. Sky disk featureless, larger than requested and uncalibrated; no measured raster diameter adopted. Rejected Moon-like sky preserved separately, not a master/preview input. No registered site/normal/datedjointfit/permanentface/spin claim.",
+        "rawPreviewBytes": 16969,
+        "preservation": "All86 dossiers/651 public assets/originals/native/master/model/shape/provenance unchanged; no production adoption; backlog ACTIVE.",
+        "visualInspection": "Both1536JPEG85 masters and256JPEG80 previews visually inspected. Master footer lines remain legible/unclipped. Small previews require explicit IMAGINED card labels; no inferred raster calibration."
+      }
+    },
+    {
+      "path": "docs/research/weywot-native-publisher-assessment-2026-10-17.json",
+      "bytes": 9718,
+      "sha256": "2b39b58ddbd53b8ea03e90ccac2507eaef1d0639e6206feef3dd727d230b2c74",
+      "record": {
+        "date": "2026-10-17",
+        "status": "Formal research-only publisher-native provenance audit; no embedding, dossier, catalogue, map, model or codec adoption",
+        "webReadableCaption": {
+          "credit": "NASA / STScI / Michael Brown",
+          "instrument": "Hubble WFPC2",
+          "observationDates": [
+            "2008-03-20",
+            "2008-03-28"
+          ],
+          "reuse": "NASA generally permits educational/informational factual use with acknowledgement and no endorsement; third-party copyright remains separate. Publisher caption credits NASA/STScI/Michael Brown and links NASA policy; not CC BY or blanket raw/paper licence.",
+          "description": "Two-epoch motion against background stars; unresolved moon detection not terrain or calibrated visible colour"
+        },
+        "open": [
+          "Original science-product publication, precise raw UTC/filter/frame ordering and processing crosswalk;11169_05_06 filename is only a lead, not verified proposal/product identity",
+          "Exact raw UTC/filter/product identifiers and processing/contributor crosswalk",
+          "Recent publisher/native alternatives; do not assign primary-only2002image or2023artwork as observed moon geography"
+        ],
+        "preservation": "All86 delivered dossiers,651 tracked public assets, original native/master/model/shape/provenance and queue569 preserved against f1afa13260faf1ec376147f1c80bca9082e94022; validation recorded after builds. No new dossier87 or angular/raster computation; no newest-observation claim.",
+        "media": {
+          "url": "https://planetary.s3.amazonaws.com/web/assets/pictures/20140429_quaoar_anim_11169_05_06.gif",
+          "path": "data/research-sources/weywot-2008-publisher-animation.gif",
+          "bytes": 164086,
+          "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+          "format": "GIF",
+          "dimensions": [
+            481,
+            748
+          ],
+          "frames": 2,
+          "status": "unchanged original publisher GIF retained; both diagnostic decoded frames visually inspected; not embedded"
+        },
+        "visualInspection": {
+          "scope": "Both full481x748 decoded frames viewed separately at native size; no crop/resample/photometric transfer",
+          "findings": [
+            "Monochrome star field with bright diffraction patterns, faint sources and red horizontal locator marks at different positions.",
+            "Second frame has a large angular black coverage region; this is image coverage/masking, not a physical feature or atmospheric absence.",
+            "Unresolved faint sources cannot establish moon terrain, axes, calibrated visible colour or chemistry. Red markers are annotations, not astronomical light.",
+            "Publisher identifies Quaoar/Weywot pair and two dates; independent exact point-to-object/raw-product crossmatch and frame/date ordering remain open."
+          ],
+          "diagnostics": [
+            {
+              "path": "data/research-sources/weywot-2008-inspection-frame-0.png",
+              "bytes": 174300,
+              "sha256": "640d56fb5e761f337601fabf6daca79c1da844d9aca6e08215492f12a7724de0",
+              "role": "decoded inspection derivative only; original GIF preserved"
+            },
+            {
+              "path": "data/research-sources/weywot-2008-inspection-frame-1.png",
+              "bytes": 153777,
+              "sha256": "0e6ad0ab9766d9a18c3921ea54827c8679460f9568606ce04fc0cda6ec952a5e",
+              "role": "decoded inspection derivative only; original GIF preserved"
+            }
+          ]
+        },
+        "termsSource": {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "path": "data/research-sources/weywot-native-nasa-media-terms-2026-10-17.html",
+          "bytes": 313139,
+          "sha256": "cb7feab5ee2a81709201c494f9335350dbfc578d8f709beb7835b2a294190596",
+          "scope": "actual current NASA terms HTML, separate from publisher legacy http policy link"
+        },
+        "termsAssessment": "NASA generally permits educational/informational factual use with acknowledgement and no endorsement; third-party copyright remains separate. Publisher caption credits NASA/STScI/Michael Brown and links NASA policy; not CC BY or blanket raw/paper licence.",
+        "structuredPublicationMetadata": [
+          {
+            "@type": "WebPage",
+            "copyrightYear": "2014",
+            "creator": {
+              "@id": "#creator"
+            },
+            "dateCreated": "2020-04-03T04:03:22-07:00",
+            "dateModified": "2020-04-15T11:08:49-07:00",
+            "datePublished": "2014-04-29T00:00:00-07:00",
+            "name": "Quaoar and Weywot"
+          }
+        ],
+        "publicationAssessment": "Publisher WebPage metadata datePublished2014-04-29T00:00:00-07:00 distinct dateCreated2020-04-03/dateModified2020-04-15 CMS records and2008-03-20/28 observation captions. These are metadata assertions, not original science-product release/raw acquisition verification.",
+        "candidateScreen": {
+          "NASA2002": {
+            "identity": "Publisher identifies Quaoar, not a verified Weywot detection",
+            "observation": "2002-07-05 ACS/HRC F330W, publisher29min",
+            "release": "2002-10-07",
+            "credit": "NASA and M. Brown (Caltech); principal astronomers M. Brown and C. Trujillo (Caltech)",
+            "limits": "Historical primary1300km diameter caption not adopted; UV source not calibrated visible colour or moon terrain. No point/product crossmatch or moon image assignment."
+          },
+          "ESA2023": {
+            "identity": "Explicit artist impression of Quaoar, ring and Weywot, not native observed geography",
+            "pageDate": "2023-02-01",
+            "credit": "ESA; acknowledgement work performed by ATG under contract for ESA",
+            "termsInventory": "Publisher offers either CC BY-SA3.0IGO or ESA Standard Licence; deeds not fetched in this screening, no blanket CC BY claim",
+            "limits": "Invented brown surfaces, ring particles, size/placement/illumination cannot establish moon chemistry, shape, scene registration or angular scale."
+          }
+        },
+        "sources": [
+          {
+            "url": "https://www.planetary.org/space-images/quaoar-and-weywot",
+            "path": "data/research-sources/weywot-planetary-2008-caption-response.html",
+            "httpStatus": 200,
+            "bytes": 83920,
+            "sha256": "15fd5f1934657f43a6bc944bcbfb01cef6f148292a3a67fd878e6390429aab1d",
+            "hashScope": "successful publisher caption HTML response, not image bytes"
+          },
+          {
+            "url": "https://planetary.s3.amazonaws.com/web/assets/pictures/20140429_quaoar_anim_11169_05_06.gif",
+            "path": "data/research-sources/weywot-2008-publisher-animation.gif",
+            "bytes": 164086,
+            "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+            "format": "GIF",
+            "dimensions": [
+              481,
+              748
+            ],
+            "frames": 2,
+            "status": "unchanged original publisher GIF retained; both diagnostic decoded frames visually inspected; not embedded"
+          },
+          {
+            "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "path": "data/research-sources/weywot-native-nasa-media-terms-2026-10-17.html",
+            "bytes": 313139,
+            "sha256": "cb7feab5ee2a81709201c494f9335350dbfc578d8f709beb7835b2a294190596",
+            "scope": "actual current NASA terms HTML, separate from publisher legacy http policy link"
+          },
+          {
+            "url": "https://science.nasa.gov/asset/hubble/acs-images-of-kbo-quaoar-2/",
+            "finalUrl": "https://science.nasa.gov/asset/hubble/acs-images-of-kbo-quaoar-2/",
+            "path": "data/research-sources/weywot-nasa-2002-primary-image-caption.html",
+            "httpStatus": 200,
+            "bytes": 342299,
+            "sha256": "3b9133df6bb1a3fae72306b77300bcecdd70d80ea7c2665aa19b7b5b9825f165",
+            "kind": "publisher HTML response, not image bytes"
+          },
+          {
+            "url": "https://www.esa.int/ESA_Multimedia/Images/2023/01/Artist_impression_of_Quaoar_and_its_ring",
+            "finalUrl": "https://www.esa.int/ESA_Multimedia/Images/2023/01/Artist_impression_of_Quaoar_and_its_ring",
+            "path": "data/research-sources/weywot-esa-2023-artwork-caption.html",
+            "httpStatus": 200,
+            "bytes": 13896,
+            "sha256": "ff775500e4c35cb10de73d92fd07042d1b14a310c9f1553c3af9c651a25ba8d0",
+            "kind": "publisher HTML response, not image bytes"
+          },
+          {
+            "path": "data/research-sources/weywot-2008-inspection-frame-0.png",
+            "bytes": 174300,
+            "sha256": "640d56fb5e761f337601fabf6daca79c1da844d9aca6e08215492f12a7724de0",
+            "role": "decoded inspection derivative only; original GIF preserved"
+          },
+          {
+            "path": "data/research-sources/weywot-2008-inspection-frame-1.png",
+            "bytes": 153777,
+            "sha256": "0e6ad0ab9766d9a18c3921ea54827c8679460f9568606ce04fc0cda6ec952a5e",
+            "role": "decoded inspection derivative only; original GIF preserved"
+          }
+        ],
+        "next": "Verify raw HST product/filter/UTC/processing crosswalk and assess newer native alternatives, then body-specific observer geometry and independent views; remaining backlog ACTIVE.",
+        "validation": {
+          "testsPassed": 683,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "baseline": "f1afa13260faf1ec376147f1c80bca9082e94022",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 86,
+          "trackedPublicByteEqual": 651,
+          "sourceHashesChecked": 19,
+          "htmlBytes": 15517316,
+          "headroomBytes": 482684,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "8d12174043e63d6912b46d7cc21486fd8786ea23e21c1bb9cba6668c97fc4abb",
+          "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims."
+        }
+      }
+    },
+    {
+      "path": "docs/research/weywot-nonkeplerian-orbit-assessment-2026-10-17.json",
+      "bytes": 6901,
+      "sha256": "f2115bdb9c0f5f0ffcde8295ffdcf451fa668cc5902078c37b1f1a8a58beb210",
+      "record": {
+        "date": "2026-10-17",
+        "issue": 3,
+        "body": "Weywot, satellite of Quaoar; primary quantities remain distinct",
+        "status": "research-only targeted orbit-methods/results audit; no parameter, image, map, mesh, scene, dossier or codec adoption",
+        "title": "Beyond Point Masses. V. Weywot’s Non-Keplerian Orbit",
+        "authors": [
+          "Benjamin Proudfoot",
+          "Will Grundy",
+          "Darin Ragozzine",
+          "Estela Fernández-Valenzuela"
+        ],
+        "sources": [
+          {
+            "path": "data/research-sources/quaoar-2511.07351-v1-record.html",
+            "url": "https://arxiv.org/abs/2511.07351v1",
+            "bytes": 43024,
+            "sha256": "69182180acec60d507b15fd2b77a4e76820ed5f0d1cded6823f6251dd0537aa3"
+          },
+          {
+            "path": "data/research-sources/weywot-2025-nonkeplerian-full.html",
+            "url": "https://arxiv.org/html/2511.07351v1",
+            "bytes": 270919,
+            "sha256": "48a3773e0f55ce3b941119e72e0ed9c708e76733f80c92267fe35c6ac35fd9fb"
+          }
+        ],
+        "rights": "Specific record CC BY-NC-SA4.0; not CC BY4 or blanket native-image permission. No figure embedded.",
+        "observationAndMethods": [
+          "HST re-reduction differs from earlier astrometry by up to 100 mas; author cross-validation favours their pipeline, not independently reproduced.",
+          "Text describes five archival epochs but also six archival detections; retain counting crosswalk open. Two proximity non-detections excluded rather than modelled.",
+          "Six new WFC3 epochs in programs17315/17417 yield five astrometric epochs. Adopted1mas telescope and3mas occultation floors are assumptions, not new app calibration.",
+          "Three early occultations average north/south circular-limb positions; last uses an elliptical fit. These do not independently establish local topography.",
+          "MultiMoon/emcee13-parameter non-Keplerian model includes two constant primary photocentre offsets; primary17.752h spin is not moon spin. Higher harmonics omitted.",
+          "No resolved Quaoar albedo map available in this analysis; Pluto/Charon comparisons do not authorize analog skins."
+        ],
+        "dataset": "https://doi.org/10.17909/ex7s-3w78 linked by paper; not fetched/reprocessed in this preparation.",
+        "tableResults": {
+          "status": "research preparation only; no catalogue, dossier, image, model, codec or physical parameter adopted",
+          "source": {
+            "url": "https://arxiv.org/html/2511.07351v1",
+            "path": "data/research-sources/weywot-2025-nonkeplerian-full.html",
+            "bytes": 270919,
+            "sha256": "48a3773e0f55ce3b941119e72e0ed9c708e76733f80c92267fe35c6ac35fd9fb"
+          },
+          "scope": "Targeted HTML Table 2, Section III.2 and IV; no figures visually inspected, posterior/code/raw astrometry not reproduced",
+          "epochFrame": "Fitted angles J2000 ecliptic, Quaoar-centric JD2454000.0 (2006-09-21 12:00 UT); derived RA/dec J2000 equatorial. Not current registered geometry.",
+          "constrained": {
+            "aKm": [
+              13329,
+              19,
+              19
+            ],
+            "e": [
+              0.0111,
+              0.004,
+              0.0044
+            ],
+            "periodDays": [
+              12.42727,
+              0.00003,
+              0.00003
+            ],
+            "orbitPoleRaDeg": [
+              267.38,
+              0.32,
+              0.33
+            ],
+            "orbitPoleDecDeg": [
+              53,
+              0.32,
+              0.33
+            ],
+            "primaryJ2": [
+              0.018,
+              0.008,
+              0.009
+            ],
+            "chiSquared": 37.2
+          },
+          "unconstrained": {
+            "aKm": [
+              13334,
+              20,
+              20
+            ],
+            "e": [
+              0.0097,
+              0.0024,
+              0.0027
+            ],
+            "periodDays": [
+              12.42718,
+              0.00009,
+              0.00024
+            ],
+            "primaryJ2": [
+              0.379,
+              0.191,
+              0.16
+            ],
+            "chiSquared": 17.3
+          },
+          "uncertaintyConvention": "Arrays median, lower and upper deviations; publisher 16th/84th posterior percentiles, not independently verified accuracy.",
+          "massPrior": "Both fits impose Weywot Gaussian mass prior mean2.4e18kg sigma1.2e18kg based on then-in-preparation165km diameter and500–1500kg/m3 density assumptions. Posterior2.4(-1.1,+1.2)e18 /2.5(-1.2,+1.2)e18 is not independent mass measurement. Preserve later2026 smaller shape and historical tidal alternatives.",
+          "primaryAssumptions": "c-axis545km, spin17.752h; volumetric549km normalizes J2R2. These are primary conventions, not moon dimensions/temperature/chemistry.",
+          "polePrior": "Constrained primary pole Gaussian ecliptic12.6/331.46deg sigma3deg inflated ring-model uncertainty; unconstrained uniform. Ring-to-equator assumption and circular-ring eccentricity/warp biases remain model limits.",
+          "limits": [
+            "Authors prefer constrained physical interpretation despite poorer fit; unconstrained high J2 may absorb time-varying photocentre offsets. Undiscovered moons/massive disk are hypotheses, not discoveries.",
+            "Constant photocentre offsets and model eccentricity correlate; no resolved primary albedo map follows.",
+            "2005–2035 ephemeris is relative to primary centre of light using500 constrained posterior draws, not centre-of-body/current scene; full machine table not fetched.",
+            "No spin locking, permanent face, local chemistry, geographic registration or independent calibration established.",
+            "Full publisher/raw products/posterior/code/figures and licence crosswalk remain open; specific arXiv CC BY-NC-SA4.0 is not CC BY."
+          ]
+        },
+        "open": [
+          "Five archival epochs versus six archival detections counting crosswalk.",
+          "Raw astrometry/occultation and original native-product/filter/UTC association; posterior chains/code and final publisher audit.",
+          "No PDF/figure visual inspection or independent orbit/photocentre/precession reproduction.",
+          "Primary ring-plane and mass priors are model assumptions, not measured moon composition, independent moon mass or spin.",
+          "Preserve historical tidal-model and 2026 conditional shape alternatives; no current distance/normal/permanent-face or calibrated raster claim."
+        ],
+        "validation": {
+          "tests": {
+            "pass": 683,
+            "skip": 1,
+            "fail": 0
+          },
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "preservation": {
+            "baseline": "314f2ac688a0ea44a2a356f5908af44abfc6350d",
+            "unchangedQueueEntriesDeepEqual": 569,
+            "queueEntries": 569,
+            "dossiersUnchanged": 86,
+            "trackedPublicByteEqual": 651,
+            "sourceHashesChecked": 12,
+            "htmlBytes": 15518084,
+            "headroomBytes": 481916,
+            "exactCompleteReadableJson": true,
+            "readableSha256": "8e8620f7352c9f47515a8e1126d53bf5fa2c4794f7a1d6030511663dd76419f7",
+            "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+            "applicationUnchanged": true,
+            "freshBrowserClaim": false,
+            "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims."
+          }
+        }
+      }
+    },
+    {
+      "path": "docs/research/weywot-observer-geometry-preparation-2026-10-17.json",
+      "bytes": 3869,
+      "sha256": "1d1df76d435a9148ec454f5c22cae54a6484543d7a557602c24e81a4ecf11b51",
+      "record": {
+        "date": "2026-10-17",
+        "body": "Weywot sky toward distinct primary Quaoar",
+        "status": "Research preparation only; no dossier87, generation, catalogue, map, model, codec or embedding change",
+        "sources": [
+          {
+            "path": "src/astro/appearance.js",
+            "bytes": 1394,
+            "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+          },
+          {
+            "path": "src/data/moons.js",
+            "bytes": 49730,
+            "sha256": "7624e1ba99227a409679ac39a88832795926bec2bf1a578dc5375dbee6201a97"
+          },
+          {
+            "path": "docs/research/weywot-nonkeplerian-orbit-assessment-2026-10-17.json",
+            "bytes": 6901,
+            "sha256": "f2115bdb9c0f5f0ffcde8295ffdcf451fa668cc5902078c37b1f1a8a58beb210"
+          },
+          {
+            "path": "docs/research/weywot-2026-shape-results-assessment-2026-10-17.json",
+            "bytes": 7657,
+            "sha256": "a53cf02d7d2489ab7faf7020759fdcaee59f78aa1e2a1dcd5e593f8269a0c7d9"
+          }
+        ],
+        "geometry": {
+          "helper": "skyGeometry",
+          "horizontalFovDeg": 90,
+          "rasterWidth": 1672,
+          "helperTemperatureK": 40,
+          "cases": [
+            {
+              "primarySphericalCatalogueReferenceRadiusKm": 555,
+              "nominalConstrainedSemimajorAxisKm": 13329,
+              "hypotheticalRadialCameraHeightKm": 65,
+              "assumedPrimaryCentreDistanceKm": 13264,
+              "angularDiameterDeg": 4.796206868325301,
+              "targetWidthPixels": 70.02212041428093
+            },
+            {
+              "primarySphericalCatalogueReferenceRadiusKm": 555,
+              "nominalConstrainedSemimajorAxisKm": 13329,
+              "hypotheticalRadialCameraHeightKm": 73,
+              "assumedPrimaryCentreDistanceKm": 13256,
+              "angularDiameterDeg": 4.799103073561594,
+              "targetWidthPixels": 70.0644529680909
+            },
+            {
+              "primarySphericalCatalogueReferenceRadiusKm": 555,
+              "nominalConstrainedSemimajorAxisKm": 13329,
+              "hypotheticalRadialCameraHeightKm": 82,
+              "assumedPrimaryCentreDistanceKm": 13247,
+              "angularDiameterDeg": 4.802365489444621,
+              "targetWidthPixels": 70.11213836870722
+            }
+          ],
+          "illustrationReferenceCase": 1
+        },
+        "limits": [
+          "Primary555km is the existing spherical catalogue reference, not an audited projected limb, newer shape measurement or the549km harmonic reference radius. Do not transfer primary spin or ring properties to Weywot.",
+          "13329km is the constrained2025 orbital-fit semimajor scale, not current eccentric-orbit separation or a dated ephemeris. Unconstrained13334km and historical tidal14060km remain separate alternatives, not silently replaced.",
+          "65/73/82km are conditional2026 ellipsoid semi-axis medians;73km also equals the reported volume-radius median but is not an independently measured local height. Radial observer heights are illustrative choices, not surface normals, an uncertainty envelope, joint fit or posterior propagation.",
+          "2026 pole/shape assumes alignment and synchronous lightcurve interpretation; no independently measured permanent primary-facing site, current attitude, phase, horizon visibility or ring orientation follows.",
+          "40K only satisfies the angular helper input. Its colour and irradiance outputs are discarded; no measured temperature, visible colour, exposure or calibrated photometry.",
+          "No observed-body map reuse. Terrain, materials, chemistry, disk patterns, light, colour and phase would remain IMAGINED. No atmospheric absence, plume, liquid, exposed ocean, biology or survivable landing implied.",
+          "Native2008 unresolved publisher GIF does not establish resolved geography or calibrated colour. Raw-product/filter/UTC/date ordering and processing crosswalk remain open."
+        ],
+        "preservation": "All86 delivered dossiers and651 tracked public files remain untouched; source hashes retained. Latest67de0d6 verified tests/builds remain prior checks; no fresh browser/build claim. Remaining backlog ACTIVE."
+      }
+    },
+    {
+      "path": "docs/research/weywot-sky-view-preparation-2026-10-17.json",
+      "bytes": 6795,
+      "sha256": "227c0f90c69430d3124226b2198e6204b9c16341870650557890f961a4d276fc",
+      "record": {
+        "date": "2026-10-17",
+        "body": "Weywot, satellite of distinct primary Quaoar",
+        "status": "Research-only built-in independent IMAGINED sky original preserved and visually inspected; no87th dossier or embedding",
+        "mode": "built-in image_gen",
+        "original": {
+          "path": "data/research-sources/weywot-generated-skyImage-original.png",
+          "bytes": 1655576,
+          "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-736a862d-8de1-47d0-84d2-ab7118d3c16f.png",
+          "bytes": 1655576,
+          "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7"
+        },
+        "prompt": "Scientific-educational hypothetical observer illustration for Fidelity. New independent image, landscape16:9 about1672x941. View from an imagined spot on Weywot toward distinct primary Quaoar. Low foreground gray particulate regolith with a few small independent irregular blocks, low horizon near lower third; black empty sky. Place a small subdued gray spherical Quaoar disk fully above horizon near upper centre. Reference geometry: nominal90degree horizontalFOV, spherical catalogue Quaoar555km radius at assumed13256km observer-centre distance (13329km semimajor scale minus hypothetical73km radial camera height), skyGeometry angular diameter4.799103073561594degrees, ideal70.0644529680909pixels at1672width. Keep Quaoar small, about70pixels across at1672width, not a giant close planet. These inputs are illustrative, not a dated joint fit, physical limb, site normal, measured spin or permanent primary-facing view. Quaoar disk MUST be featureless smooth uniform gray, with only a soft artistic gibbous illumination gradient. Absolutely NO mottling, craters, patches, maria, bright rays, surface markings or geographic texture on the disk. It must look like a plain shaded mathematical sphere, not the Moon or any observed-body skin. No identifiable map from any real body. Terrain, chemistry, grains, colour, disk patterns, phase, lighting and exposure entirely invented. No reuse/recolouring of Moon, Mars, Pluto, asteroid or other observed-body map. No atmosphere,haze,clouds,plumes,liquid,ocean,biology,craft,astronaut or survivable-landing implication. Omit rings and stars; omission is a scene choice, not evidence of absence. Sun off-frame. Restrained oblique light with artistic exposure, no measured photometry claim. Clean dark bottom footer band with two large fully legible unclipped exact white lines: 'WEYWOT — IMAGINED SKY VIEW' and 'TERRAIN, QUAOAR APPEARANCE AND LIGHT ARE INVENTED'. No other text.",
+        "geometrySource": {
+          "path": "data/research-sources/weywot-observer-geometry-preparation-2026-10-17.json",
+          "bytes": 3877,
+          "sha256": "4337bf0cca573c0af8dbf682e91de32cf20c1edbc07941ae1de37eba223ebe08"
+        },
+        "visualInspection": "Full1672x941 original inspected. Both exact footer lines legible/unclipped; primary is a smooth featureless shaded gray disk, no observed-body geography. Invented local particulate terrain/blocks, black sky, no rings/stars/plume/liquid/biology/craft. Disk appears larger than requested; no calibrated raster diameter adopted.",
+        "geometryLimits": "skyGeometry reference4.799103073561594degrees70.0644529680909pixels at1672/90HFOV uses catalogue555km primary and nominal constrained13329km scale minus hypothetical73km radial height. Not current separation, projected physical limb, normal, dated joint fit, independently measured spin/locking/permanent face, propagated posterior or uncertainty envelope. Other65/82km conditional semi-axis cases retained.40K helper only; discard colour/irradiance.",
+        "limits": "Terrain/materials/chemistry/grain sizes/gray colour/phase/lighting/exposure invented. No analog skin or registered site. Black sky/ring omission not absence evidence. No atmosphere/plume/liquid/ocean/biology/survivable landing implied. Native unresolved HST source does not establish local geography/visiblecolour.",
+        "rejectedVariant": {
+          "original": {
+            "path": "data/research-sources/weywot-rejected-moonlike-sky-original.png",
+            "bytes": 1735227,
+            "sha256": "746a698206743041fb6efd376fe920968777b5d62a0e142a5139ccf6f147e7ac"
+          },
+          "defaultOriginal": {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f67259bc-e7e3-4801-82a4-287e652d5775.png",
+            "bytes": 1735227,
+            "sha256": "746a698206743041fb6efd376fe920968777b5d62a0e142a5139ccf6f147e7ac"
+          },
+          "prompt": "Scientific-educational hypothetical observer illustration for Fidelity. New independent image, landscape16:9 about1672x941. View from an imagined spot on Weywot toward distinct primary Quaoar. Low foreground gray particulate regolith with a few small independent irregular blocks, low horizon near lower third; black empty sky. Place a small subdued gray spherical Quaoar disk fully above horizon near upper centre. Reference geometry: nominal90degree horizontalFOV, spherical catalogue Quaoar555km radius at assumed13256km observer-centre distance (13329km semimajor scale minus hypothetical73km radial camera height), skyGeometry angular diameter4.799103073561594degrees, ideal70.0644529680909pixels at1672width. Keep Quaoar small, about70pixels across at1672width, not a giant close planet. These inputs are illustrative, not a dated joint fit, physical limb, site normal, measured spin or permanent primary-facing view. Quaoar disk neutral gray with entirely invented subtle mottling and artistic gibbous phase; no identifiable map from any real body. Terrain, chemistry, grains, colour, disk patterns, phase, lighting and exposure entirely invented. No reuse/recolouring of Moon, Mars, Pluto, asteroid or other observed-body map. No atmosphere,haze,clouds,plumes,liquid,ocean,biology,craft,astronaut or survivable-landing implication. Omit rings and stars; omission is a scene choice, not evidence of absence. Sun off-frame. Restrained oblique light with artistic exposure, no measured photometry claim. Clean dark bottom footer band with two large fully legible unclipped exact white lines: 'WEYWOT — IMAGINED SKY VIEW' and 'TERRAIN, QUAOAR APPEARANCE AND LIGHT ARE INVENTED'. No other text.",
+          "reason": "Rejected Moon-like disk markings; not adopted as Quaoar map or observer asset. Preserved unchanged separately."
+        },
+        "preservation": "All86 delivered dossiers/651 trackedpublic assets and original/master/native/map/model/shape/provenance/codec inputs unchanged. No fresh tests/build/browser claim; latest67de0d6 validation remains prior checks. Both independent Weywot local/sky originals now prepared; master/preview/formal integration pending; backlog ACTIVE."
+      }
+    },
+    {
+      "path": "docs/research/weywot-tidal-model-assessment-2026-10-17.json",
+      "bytes": 4649,
+      "sha256": "816835ff9d578121cfc74fbaa0159a45c258e5554e0f519e2ac22080f2bc0caa",
+      "record": {
+        "date": "2026-10-17",
+        "scope": "Targeted full-HTML Section II/Table1 and Section III/IV model-input audit; not numerical reproduction, full appendix or underlying-observation audit. No image/figure, dossier, physical catalogue or codec adoption.",
+        "authors": [
+          "Zsolt Regály",
+          "Viktória Fröhlich",
+          "Csaba Kiss"
+        ],
+        "title": "Limits of Standard Tidal Models at Quaoar: Matching Weywot’s Orbit, Missing the Spin",
+        "source": {
+          "url": "https://arxiv.org/html/2510.12495v2",
+          "path": "data/research-sources/weywot-2025-v2-full.html",
+          "bytes": 303681,
+          "sha256": "893e23f58d2b0d10f25b27616f8da2451d938a56855138927e0e8bf89dff4fc1",
+          "version": "v2 revised2025-10-15, not observation date"
+        },
+        "rights": "Specific versioned record and HTML say CC BY4.0; source/deed hashes retained in weywot-vanth-inventory-assessment-2026-10-17.json. No blanket raw/third-party image licence, no figure embedded.",
+        "table1AdoptedInputs": {
+          "classification": "Parameters used for tidal calculations, not independent measurements of all columns. Underlying referenced papers remain to audit.",
+          "Weywot": {
+            "massKg": 4190000000000000000,
+            "volumetricEquivalentDiameterKm": 200,
+            "densityKgM3": 1000,
+            "orbitalScaleKm": 14060,
+            "eccentricity": 0.018,
+            "spinPeriod": "blank / explicitly undetermined in SectionII"
+          },
+          "Quaoar": "PRIMARY mass1.2e21kg/diameter1090km/density1770kgm-3/spin17.7h/flattening.16 are separate from moon parameters. No silent adoption."
+        },
+        "assumptions": [
+          "Homogeneous spheres, orbit-averaged4.5Gyr integration; impact-origin/prograde satellite and initial15h satellite spin assumed. Prograde/retrograde defined relative to primary spin, not inertial inclination alone. Detailed retrograde evolution deferred.",
+          "CPL simplifies equal constant k2/Q for both bodies; ACT assumes primary/satellite rigidity4e10/4e9Pa, equal viscosities and satellite rubble-pile interpretation. Not measured local strength, porosity or chemistry.",
+          "Integration stops at pericentre crossing fluid Roche limit or primary breakup. Not an observed disruption/impact history.",
+          "Primary permanent-shape/precession effects distinguished from dissipative tide; neglecting J2 for broad evolution does not validate a current pointing/frame/registered site."
+        ],
+        "modelResults": [
+          "Near100h synchronization during early evolution and rapid locking times are predictions; current Weywot spin explicitly unknown, no measured permanent face. No mutual locking in these simulations.",
+          "Survey20 logarithmic initial orbital scales1.5–100 primary diameters,10 eccentricities0–.9; primary initial spin5/10/15/20h. Nominal CPL k2/Q~1.5e-4 and ACT viscosity~6e14Pa s fitted to orbital scale, not separately measured material properties.",
+          "Higher-mass tests q.01–.02 CPL and.03–.04 ACT retune k2/Q3.6e-5/viscosity6e16Pa s with initial primary5h. These are conditional tests, not new moon masses or uncertainties.",
+          "Primary warm ice150–180K/interior rock fractions, fossil shape/primordial spin/early lost satellite/secondary impact interpretations cannot establish moon local chemistry, temperature or history."
+        ],
+        "open": [
+          "Underlying occultation/orbit references and size/mass covariance; historicale.14 versusnewer.018 values",
+          "Moon current spin, raw imagery/point crossmatch/UTC/filter/photometry, native provenance",
+          "Final publisher record and later primary science; appendices/code/error-control reproduction",
+          "Observer distance/attitude/frame and skyGeometry before angular/raster calculations or generation"
+        ],
+        "preservation": "All86 dossier/catalogue/codec sources,569 queue entries and651 trackedpublicfiles unchanged; exact source hashes checked.",
+        "validation": {
+          "baseline": "44d36626e052425c056860cb15ec97de314033ae",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 86,
+          "trackedPublicByteEqual": 651,
+          "sourceHashesChecked": 5,
+          "htmlBytes": 15522436,
+          "headroomBytes": 477564,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "f852831e16bba0a2d4550c2aa311181a0feb640a9e04f0e9b7df1426516cb273",
+          "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+          "testsPassed": 683,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass"
+        }
+      }
+    },
+    {
+      "path": "docs/research/weywot-vanth-inventory-assessment-2026-10-17.json",
+      "bytes": 5412,
+      "sha256": "3e5629c3b98f19ac2084f7f58265ae4c80413e126e6afe35527ca73588a93b80",
+      "record": {
+        "date": "2026-10-17",
+        "scope": "Inventory and versioned primary abstract records only; no new dossier, image, physical catalogue parameter, model or codec adoption.",
+        "baseline": "d72d8937e67b97274585437052716692cc8776f3",
+        "sources": [
+          {
+            "path": "data/research-sources/weywot-2025-v2-record.html",
+            "url": "https://arxiv.org/abs/2510.12495v2",
+            "bytes": 44904,
+            "sha256": "795cb1ff65589be697c448c105e396d576d30887954f611a476c500093ddcdd9",
+            "retrievedUtc": "2026-10-17T21:51:05.503274+00:00",
+            "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+          },
+          {
+            "path": "data/research-sources/vanth-2023-v1-record.html",
+            "url": "https://arxiv.org/abs/2307.04848v1",
+            "bytes": 41980,
+            "sha256": "1a25bc65df4c91db711a80d2f796f55257d891eff97cd7cad505a1eea25f7060",
+            "retrievedUtc": "2026-10-17T21:51:05.503730+00:00",
+            "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+          },
+          {
+            "path": "data/research-sources/weywot-vanth-ccby4-deed.html",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+            "bytes": 31950,
+            "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+            "retrievedUtc": "2026-10-17T21:51:05.503843+00:00",
+            "response": "Successful curl --fail HTTPS download; HTML record/deed, not a paper or native image"
+          }
+        ],
+        "weywot": {
+          "parent": "Quaoar",
+          "authors": [
+            "Zsolt Regaly",
+            "Viktoria Frohlich",
+            "Csaba Kiss"
+          ],
+          "title": "Limits of Standard Tidal Models at Quaoar: Matching Weywot’s Orbit, Missing the Spin",
+          "version": "2510.12495v2",
+          "firstSubmitted": "2025-10-14",
+          "revised": "2025-10-15",
+          "publication": "Record says accepted for publication in PASP; final publisher record/date not audited.",
+          "abstractAssessment": [
+            "CPL and Andrade creep-tide orbit-averaged models over 4.5 Gyr test system evolution; not new measured satellite mass or spin.",
+            "Model matches requiring 5–10 times nominal moon mass and tuned initial eccentricity are not adopted as measurements.",
+            "Quaoar 17.7-hour spin and modelled partial differentiation/warm ice refer to the PRIMARY, not Weywot chemistry or local temperature.",
+            "External torque, early satellite loss and impact alternatives are hypotheses, not observed history."
+          ],
+          "open": [
+            "Full v2 paper/tables/initial conditions and historical orbit/occultation references",
+            "Moon-specific radius, mass, rotation, orientation, native product and current ephemeris",
+            "Final publisher licence/metadata crosswalk"
+          ]
+        },
+        "vanth": {
+          "parent": "Orcus",
+          "authors": [
+            "Michael E. Brown",
+            "Bryan J. Butler"
+          ],
+          "title": "Masses and densities of dwarf planet satellites measured with ALMA",
+          "version": "2307.04848v1",
+          "submitted": "2023-07-10",
+          "abstractAssessment": [
+            "ALMA barycentric astrometry over an orbit yields reported Vanth/Orcus mass ratio 0.16 ± 0.02; abstract-level inventory, no catalogue update.",
+            "Intact impactor and likely double synchronous evolution are interpretations; not a measured moon spin or directly observed origin.",
+            "Dysnomia/Eris results in the same paper must not be assigned to Vanth/Orcus.",
+            "Astrometric source separation does not establish resolved geography, visible colour or local composition."
+          ],
+          "existingFullPaperReference": "dysnomia-alma-mass-primary-assessment-2026-10-12.json",
+          "retainedPaper": {
+            "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+            "bytes": 540344,
+            "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222"
+          },
+          "open": [
+            "Body-specific full-paper Vanth methods/tables/thermal and spin audit; earlier retained-paper audit targeted Dysnomia",
+            "Native imagery/product/UTC/filter/credits/calibration crosswalk",
+            "Later orbit/size/rotation and raw ALMA association"
+          ]
+        },
+        "rights": "Both versioned arXiv records explicitly link CC BY 4.0; active deed retained. This is record-specific, not blanket arXiv licensing or permission for every third-party/raw/native image. No paper figure embedded.",
+        "inventory": "Weywot and Vanth were absent from the 567-entry queue and selectable MOONS. Add two source-linked pending tasks with distinct parents, no bodyId/visualId or primary map reuse. Inventory remains non-exhaustive for minor-planet satellites.",
+        "validation": {
+          "baseline": "d72d8937e67b97274585437052716692cc8776f3",
+          "unchangedQueueEntriesDeepEqual": 567,
+          "queueEntries": 569,
+          "dossiersUnchanged": 86,
+          "trackedPublicByteEqual": 651,
+          "sourceHashesChecked": 4,
+          "htmlBytes": 15522692,
+          "headroomBytes": 477308,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "5017211fa90f4fb4f8d4e47cce3545e1050eb345df82a5c918b32fbb37514bd0",
+          "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+          "testsPassed": 683,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass"
+        }
+      }
+    }
+  ]
+}

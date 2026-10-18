@@ -14906,6 +14906,153 @@ export const BODY_VISUALS = {
       "previewHeight": 138,
       "processing": "Original-preserving generated JPEG85 master/JPEG80 preview independently from originalPNG, natural aspect retained; no native science transformed. Terrain/material/colour/light invented and uncalibrated."
     }
+  },
+  "weywot": {
+    "kind": "moon",
+    "researchDate": "2026-10-17",
+    "previewWidth": 256,
+    "id": "weywot",
+    "name": "Weywot",
+    "aliases": [
+      "Weywot"
+    ],
+    "nativeSurface": "Unchanged two-frame Hubble WFPC2 publisher animation of unresolved Quaoar/Weywot detections; no resolved moon globe, calibrated colour or primary map assigned.",
+    "measured": [
+      "Weywot is the distinct satellite of Quaoar. Publisher Hubble WFPC2 animation identifies observations2008March20/28; source/date ordering/raw UTC/filter/product association remain open. Full NASA/STScI/Michael Brown credit retained.",
+      "Unchanged481x748 two-frame GIF,164086bytes; red locators,diffraction,unresolved points and black coverage are not terrain,axes,chemistry,calibrated visible colour or atmospheric absence. CMS2014/2020 dates are not verified original science publication. NASA informational-use/acknowledgement/third-party terms are not CC BY or blanket paper/raw permission."
+    ],
+    "modelled": [
+      "Proudfoot/Grundy/Ragozzine/Fernández-Valenzuela2025 Table2 constrained fit: a13329±19km,e.0111(-.0040,+.0044),i13.62(-.33,+.32)deg,w97(-37,+28),node353.3(-.85,+.83),M79(-27,+39),period12.42727±.00003d at Quaoar-centricJD2454000.0 labelled2006Sep21T12UT,J2000ecliptic. These are separate posterior medians of a non-Keplerian model,not a joint sampled state or validated Keplerian ephemeris.",
+      "Unconstrained alternative a13334±20/e.0097(-.0024,+.0027)/i14.83(-.45,+.44)/w298(-47,+56)/node353.07(-1.25,+1.03)/M237(-56,+47)/period12.42718(-.00009,+.00024). Chi-square37.2 constrained versus17.3 unconstrained; authors prefer physically constrained solution despite poorer fit. PrimaryJ2.018 versus.379 and primary17.752h spin/549km harmonic radius are not moon properties.",
+      "Weywot mass posterior2.4(-1.1,+1.2)e18kg is constrained by Gaussian2.4e18±1.2e18 prior,not independent moon mass. Catalogue mass unknown; no precise gravity/density adopted. Raw HST rereduction/photocentre offsets,posterior ephemeris/light-time/current covariance not reproduced.",
+      "Collyer/Fernández-Valenzuela/Proudfoot/Holler/Ortiz/Sharma2026 conditional occultation/lightcurve ellipsoid semi-axes82(+5,-3),73(+5,-3),65(+8,-12)km,NOT diameters; derived volume radius73±5km used as display scale,not a local normal or directly resolved shape. Pole/spin-alignment/synchronous interpretation assumed,not independent measured rotation/permanent primary-facing direction.",
+      "2026 nine accepted lightcurve points from eleven usable orbits; no free independent spin-period measurement. Table2/3 phase conventions and mainF606W25.995 versus Appendix29.995 plus active colour-transfer equation/prose inconsistency remain unresolved. No silent author correction. Q100/rigidity4GPa/density/initialspin tidal times are conditional models,not current material chemistry/history.",
+      "2025 tidal model assumedD200km/rho1000/a14060/e.018 are separate historical hypotheses,not new measurements. Both2025 non-Keplerian and2026 shape record-specific CC BY-NC-SA4 are NOT CC BY; tidal paper CC BY4 is separate. No paper figure embedded."
+    ],
+    "unknown": [
+      "Local terrain,chemistry/material fractions,calibrated colour/photometry,independent mass/density/spin,physical shape/frame/coverage and native raw-product association.",
+      "Current ephemeris/phase/attitude/normal/horizon visibility,non-Keplerian propagation/covariance/light-time/time-standard conversion and primary ring registration. No observed plume,liquid,exposed ocean,biology or survivable landing."
+    ],
+    "assumed": [
+      "Independent gray relief/blocks/grains/materials/chemistry/fractions/porosity/colour/light/exposure are invented. Featureless shaded gray Quaoar disk is independently imagined; no observed-body analog skin or dated site. Black sky/omitted rings/stars/atmosphere do not measure absence.",
+      "skyGeometry reference primary catalogue555km spherical radius and nominal13329km orbital scale minus hypothetical73km radial camera height gives13256km distance,4.799103073561594deg/70.0644529680909px at1672width90HFOV. Separate65/82km heights are conditional semi-axis medians,not normals/jointfit/posterior/envelope/current eccentric distance. Primary555km is not549km harmonic reference.",
+      "Rendered Quaoar appears oversized and remains uncalibrated; no raster diameter adopted.40K helper only positive angular input,colour/irradiance discarded. Original PNGs/full prompts/defaults/Pillow masters and rejected Moon-like first sky preserved separately; rejected variant not adopted. Tiny preview footers require explicit IMAGINED labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM WEYWOT",
+    "skyLabel": "IMAGINED · SKY FROM WEYWOT",
+    "skyCaption": "Hypothetical featureless Quaoar in Weywot’s sky; nominal size guide and rendered disk remain uncalibrated.",
+    "skyModel": {
+      "star": "Quaoar · hypothetical spherical angular guide",
+      "radiusSun": 0.0007977576541612764,
+      "temperatureK": 40,
+      "distanceAU": 0.00008861088689279052,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 4.799103073561594,
+      "centreDiscWidthFraction": 0.04190457713402566,
+      "irradianceEarth": 1.8694009903307123e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "Proudfoot et al.2025 non-Keplerian fit; CC BY-NC-SA4",
+        "url": "https://arxiv.org/abs/2511.07351v1"
+      },
+      {
+        "title": "Collyer et al.2026 conditional shape/lightcurve; CC BY-NC-SA4",
+        "url": "https://arxiv.org/abs/2610.11988v1"
+      },
+      {
+        "title": "Regály et al.2025 tidal-model assumptions; CC BY4",
+        "url": "https://arxiv.org/abs/2510.12495v2"
+      },
+      {
+        "title": "Publisher native animation and credit",
+        "url": "https://www.planetary.org/space-images/quaoar-and-weywot"
+      },
+      {
+        "title": "NASA current media terms and third-party caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    ],
+    "contextImages": [
+      {
+        "url": "/bespoke/weywot-hubble-native.gif",
+        "bytes": 164086,
+        "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+        "source": "https://planetary.s3.amazonaws.com/web/assets/pictures/20140429_quaoar_anim_11169_05_06.gif",
+        "sourceUrl": "https://www.planetary.org/space-images/quaoar-and-weywot",
+        "width": 481,
+        "height": 748,
+        "frames": 2,
+        "tier": "measured",
+        "credit": "NASA / STScI / Michael Brown",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA informational use/acknowledgement/no endorsement; third-party rights not conveyed. Not CC BY or blanket paper/raw-product permission.",
+        "observationDate": "2008-03-20;2008-03-28",
+        "publicationDate": null,
+        "processing": "Unchanged publisher two-frame GIF, no resize/re-encoding or frame removal. CMS2014/2020 dates not verified original science publication.",
+        "description": "Actual unresolved Hubble WFPC2 pair animation. Red locators,diffraction and black coverage are not terrain,axes,chemistry or calibrated visible colour. Raw UTC/filter/product/frame-date association open."
+      }
+    ],
+    "heroFacts": [
+      [
+        "RADIUS",
+        "73 ± 5 KM · CONDITIONAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/weywot-surface-image.jpg",
+      "previewUrl": "/bespoke/weywot-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "weywot-generated-surfaceImage-original.png",
+      "sourceSha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b",
+      "sha256": "d42cb9f2c7b4f102b82f8fc4c08688cd66b48ff0a80db76b7fe7beba25491ace",
+      "previewSha256": "12c73570711fa8ffddddb1e0777043360b5bf1319f49785eaa870b15bb509218",
+      "bytes": 297868,
+      "previewBytes": 9897,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/weywot-sky-image.jpg",
+      "previewUrl": "/bespoke/weywot-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-17",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "weywot-generated-skyImage-original.png",
+      "sourceSha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7",
+      "sha256": "66b6dc280bd3b937ea9b20fe8b084a48de19c3f7539263412cb38cfb24756363",
+      "previewSha256": "91ea62f3ec423438ee7d3ec4e6c567bf14ebf657bf561224f44e4e450c158614",
+      "bytes": 187588,
+      "previewBytes": 6706,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

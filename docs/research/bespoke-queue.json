@@ -667,6 +667,19 @@
       "visualId": "xiangliu"
     },
     {
+      "id": "sol-weywot",
+      "bodyId": "weywot",
+      "name": "Weywot",
+      "parent": "quaoar",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "Unchanged two-frame Hubble WFPC2 publisher animation of unresolved Quaoar/Weywot detections; no resolved moon globe, calibrated colour or primary map assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "weywot"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7235,18 +7248,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-weywot",
-      "name": "Weywot",
-      "parent": "quaoar",
-      "source": "https://arxiv.org/abs/2510.12495v2",
-      "kind": "moon",
-      "scope": "Satellite of dwarf-planet candidate; individual physical/reference audit open",
-      "nativeImagery": "Unchecked; no primary map assigned. Native product, observation dates, credits, calibration and resolved-geography limits require body-specific audit.",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "sol-vanth",
       "name": "Vanth",
       "parent": "orcus",
@@ -8560,7 +8561,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 41,
+      "initialDossiers": 42,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

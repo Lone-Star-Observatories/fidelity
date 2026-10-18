@@ -219,6 +219,22 @@ export const MOONS = [
       { label: 'DISCOVERY', value: 'ARCHIVAL HUBBLE · KISS ET AL.', tier: 'measured', detail: '2009/2010 observations,2017 discovery publication; exact raw-product/coadd association open.' },
     ],
     surfacePending: true, note: 'Radius is a display hypothesis,spin/shape/mass unknown. One mirror illustrative orbit,not current ephemeris or permanent Gonggong-facing direction. No resolved globe.' },
+  // Weywot: constrained Proudfoot et al.2025 initial medians; navigation approximation only.
+  { id: 'weywot', name: 'Weywot', parent: 'quaoar', radiusKm: 73, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(13329, .0111, 97, 79, 13.62, 353.3, 12.42727, 0, 0, [0, 90], 'ecliptic', 2454000),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'QUAOAR', tier: 'measured', detail: 'Distinct unresolved satellite; no primary map assigned.' },
+      { label: 'ORBIT SCALE', value: '13,329 ± 19 KM · CONSTRAINED FIT', tier: 'modelled', detail: 'Proudfoot2025 non-Keplerian Table2 e.0111; unconstrained13334±20/e.0097 remains alternative. Not current distance.' },
+      { label: 'PERIOD', value: '12.42727 ± .00003 DAYS', tier: 'modelled', detail: 'Constrained orbital period, not independently measured moon spin.' },
+      { label: 'FRAME', value: 'J2000 ECLIPTIC · MODEL', tier: 'modelled', detail: 'Quaoar-centric JD2454000 labelled2006Sep21T12UT; i13.62,w97,node353.3,M79deg are separate marginal medians. No verified TDB conversion or joint state.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'Keplerian navigation approximation omits fitted primaryJ2/photocentre terms and precession. Current phase,covariance,light-time and observer registration unvalidated; no event timing.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '73 ± 5 KM · CONDITIONAL MODEL', tier: 'modelled', detail: 'Collyer2026 volume-equivalent radius; semi-axes82/73/65km with asymmetric uncertainties assume aligned synchronous interpretation. Not local normal or resolved shape.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: '2025 posterior is constrained by2.4e18±1.2e18kg prior; no independent precise moon mass,density or chemistry adopted.' },
+      { label: 'ROTATION', value: 'UNKNOWN', tier: 'imagined', detail: 'Synchronous/aligned interpretation is a model assumption,not independent spin/permanent primary-facing site measurement.' },
+    ],
+    surfacePending: true, note: 'Conditional radius, unknown independent spin/mass. Non-Keplerian source represented by illustrative Keplerian navigation only; no current ephemeris or resolved globe.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,
