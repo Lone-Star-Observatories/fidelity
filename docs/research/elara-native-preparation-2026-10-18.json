@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara,JupiterVII,JPL507; distinct asteroid281Elara and other Himalia-group moons",
+  "status": "Research-only direct PDS native preparation. No93rd dossier, embedding, catalogue, globe, shape or codec adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/elara-overview-2026-10-18.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/elara/",
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/elara/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 247326,
+      "sha256": "a9d9756aad08e7f345bf5d6af44a00c265a258f15e4cd8581b2ca88524bdc87f"
+    },
+    {
+      "path": "data/research-sources/elara-pds-directory-2026-10-18.html",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/",
+      "status": 200,
+      "contentType": "text/html;charset=ISO-8859-1",
+      "bytes": 1571,
+      "sha256": "f6febccb404f18a64544a3e24d45abdaec19902ea828094b6dfdb36526b52d24"
+    },
+    {
+      "path": "data/research-sources/elara-terms-2026-10-18.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 313142,
+      "sha256": "5d1c9f06c172fe58ba42c819eda89e595ce1bf249cacd632f65b120f201eb6fa"
+    },
+    {
+      "path": "data/research-sources/elara-lor_0035398319_0x630_sci.lbl",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398319_0x630_sci.lbl",
+      "status": 200,
+      "contentType": null,
+      "bytes": 45760,
+      "sha256": "aecd02d7d32af3c74e26bd9abaf644c272dc9c405a01e236a15effba93ceeb7f"
+    },
+    {
+      "path": "data/research-sources/elara-lor_0035398320_0x630_sci.lbl",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398320_0x630_sci.lbl",
+      "status": 200,
+      "contentType": null,
+      "bytes": 45760,
+      "sha256": "febb10f9a43cbc804d5ffaf21206688d83d99c6b16a391d859b0cb06c14be760"
+    },
+    {
+      "path": "data/research-sources/elara-lor_0035398319_0x630_sci.fit",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398319_0x630_sci.fit",
+      "status": 200,
+      "contentType": "image/fits",
+      "bytes": 10535040,
+      "sha256": "f73e3c86927caa0cec397c4f4f38cc5289a3cf39e65614370c24259cfb73677b"
+    },
+    {
+      "path": "data/research-sources/elara-lor_0035398320_0x630_sci.fit",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398320_0x630_sci.fit",
+      "status": 200,
+      "contentType": "image/fits",
+      "bytes": 10535040,
+      "sha256": "de7f9b3b7937e4d0caaaa7a2128dc6ca74c543c9dd29d63fea02e5a02256d0bb"
+    },
+    {
+      "path": "data/research-sources/elara-pds-aareadme.txt-2026-10-18.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/aareadme.txt",
+      "bytes": 15840,
+      "sha256": "8316a1104c0b5e4cab01d1aaa48e7df7550c3803d816ba63b78f2cb61326664f"
+    },
+    {
+      "path": "data/research-sources/elara-pds-errata.txt-2026-10-18.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/errata.txt",
+      "bytes": 5200,
+      "sha256": "bdc20a935127a29cd4a284de880edb7c3bf86cc767477c0f5110953987ed22fc"
+    },
+    {
+      "path": "data/research-sources/elara-pds-voldesc.cat-2026-10-18.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/voldesc.cat",
+      "bytes": 5600,
+      "sha256": "cc3ba0f355901b48c3235560b87b53f35c33e2cf9e50312a9de737687e494a22"
+    },
+    {
+      "path": "data/research-sources/elara-pds-catalog--2026-10-18.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/catalog/",
+      "bytes": 1650,
+      "sha256": "bd099bd9aeebd98dd90abe84ba8622b513d6db53781b6c4566ebef08dedd3394"
+    },
+    {
+      "path": "data/research-sources/elara-pds-root-2026-10-18.html",
+      "bytes": 2167,
+      "sha256": "da0b892fee11193b8da4185866fa91873d4130f323fe68c13c19c4dd4ac2919f",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/"
+    },
+    {
+      "path": "data/research-sources/elara-pds-dataset.cat",
+      "bytes": 60160,
+      "sha256": "4f5c02eb02855ba1795878deb97a1ace4353a2e8f6c9980b2216275fafeae899",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/catalog/dataset.cat"
+    },
+    {
+      "path": "data/research-sources/elara-fits-inspection-2026-10-18.py",
+      "bytes": 1732,
+      "sha256": "3bd302f84d417385088d20badfc12d24bc748d84445bd5100f945b9e11292e63"
+    },
+    {
+      "path": "data/research-sources/elara-fits-inspection-2026-10-18.json",
+      "bytes": 2263,
+      "sha256": "6d3c3ed092ade4b58fa2cad6bf619c4d93c8ea8a43ebf0d5cfcb6d336a717f68"
+    }
+  ],
+  "nativeProducts": [
+    {
+      "DATA_SET_ID": "\"NH-J-LORRI-3-JUPITER-V3.0\"",
+      "PRODUCT_ID": "\"LOR_0035398319_0X630_SCI\"",
+      "TARGET_NAME": "\"J7 ELARA\"",
+      "PRODUCT_CREATION_TIME": "2016-10-31T00:00:00",
+      "START_TIME": "2007-03-05T11:00:01.330",
+      "STOP_TIME": "2007-03-05T11:00:01.370",
+      "EXPOSURE_DURATION": "0.040 <s>",
+      "TARGET_CENTER_DISTANCE": "5828470.4 <km>",
+      "PHASE_ANGLE": "90.7 <DEGREE>",
+      "NEWHORIZONS:APPROX_TARGET_NAME": "\"ELARA\"",
+      "NEWHORIZONS:APPROX_TARGET_LINE": "446",
+      "NEWHORIZONS:APPROX_TARGET_SAMPLE": "534"
+    },
+    {
+      "DATA_SET_ID": "\"NH-J-LORRI-3-JUPITER-V3.0\"",
+      "PRODUCT_ID": "\"LOR_0035398320_0X630_SCI\"",
+      "TARGET_NAME": "\"J7 ELARA\"",
+      "PRODUCT_CREATION_TIME": "2016-10-31T00:00:00",
+      "START_TIME": "2007-03-05T11:00:02.330",
+      "STOP_TIME": "2007-03-05T11:00:02.370",
+      "EXPOSURE_DURATION": "0.040 <s>",
+      "TARGET_CENTER_DISTANCE": "5828473.6 <km>",
+      "PHASE_ANGLE": "90.7 <DEGREE>",
+      "NEWHORIZONS:APPROX_TARGET_NAME": "\"ELARA\"",
+      "NEWHORIZONS:APPROX_TARGET_LINE": "452",
+      "NEWHORIZONS:APPROX_TARGET_SAMPLE": "531"
+    }
+  ],
+  "dataset": {
+    "id": "NH-J-LORRI-3-JUPITER-V3.0",
+    "citation": "Cheng,A.,NEW HORIZONS Calibrated LORRI JUPITER ENCOUNTER V3.0,NH-J-LORRI-3-JUPITER-V3.0,NASA Planetary Data System,2016.",
+    "producer": "Brian Carcich; Southwest Research Institute",
+    "instrumentLead": "Andrew Cheng,Johns Hopkins University Applied Physics Laboratory (dataset contact)",
+    "missionCredit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "releaseDate": "2016-10-31",
+    "limits": "Version3 release/product creation not observation; dataset says no new observations added forV3."
+  },
+  "inspection": [
+    {
+      "input": "data/research-sources/elara-lor_0035398319_0x630_sci.fit",
+      "inputSha256": "f73e3c86927caa0cec397c4f4f38cc5289a3cf39e65614370c24259cfb73677b",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bitpix": -32,
+      "primaryDataOffsetBytes": 37440,
+      "finiteCount": 1048576,
+      "minimum": -14.6011962890625,
+      "maximum": 266.7694396972656,
+      "display": {
+        "path": "data/research-sources/elara-lor_0035398319_0x630_sci-diagnostic.png",
+        "bytes": 965782,
+        "sha256": "40be8fb484eb3019d39adcac2731a1a1d33010965c645541d25fa411d85018fd",
+        "linearPercentileRange": [
+          1,
+          99.9
+        ],
+        "dnRange": [
+          -2.922791600227356,
+          3.312361449003263
+        ],
+        "orientation": "Flipped rows for label LINE_DISPLAY_DIRECTION UP; sample direction RIGHT. Not independent celestial/pole registration."
+      },
+      "limits": "Whole primary-plane diagnostic only, original FITS/label preserved. Display saturation/stretch not radiometry/visible colour/terrain/PSF/shape or current pointing validation. Calibration error/quality extensions retained uninterpreted."
+    },
+    {
+      "input": "data/research-sources/elara-lor_0035398320_0x630_sci.fit",
+      "inputSha256": "de7f9b3b7937e4d0caaaa7a2128dc6ca74c543c9dd29d63fea02e5a02256d0bb",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bitpix": -32,
+      "primaryDataOffsetBytes": 37440,
+      "finiteCount": 1048576,
+      "minimum": -13.10554313659668,
+      "maximum": 281.3877258300781,
+      "display": {
+        "path": "data/research-sources/elara-lor_0035398320_0x630_sci-diagnostic.png",
+        "bytes": 961551,
+        "sha256": "b2ecda4e6fba9b08d47f624bb8b21f3e13f542c39427c2373a64c38bd186cc89",
+        "linearPercentileRange": [
+          1,
+          99.9
+        ],
+        "dnRange": [
+          -2.8675941824913025,
+          3.739034879207702
+        ],
+        "orientation": "Flipped rows for label LINE_DISPLAY_DIRECTION UP; sample direction RIGHT. Not independent celestial/pole registration."
+      },
+      "limits": "Whole primary-plane diagnostic only, original FITS/label preserved. Display saturation/stretch not radiometry/visible colour/terrain/PSF/shape or current pointing validation. Calibration error/quality extensions retained uninterpreted."
+    }
+  ],
+  "visualInspection": "Both full1024-square primary-plane linear1st\u201399.9thpercentile grayscale diagnostics inspected. Noise/banding and sparse bright spots visible; display saturation does not establish terrain, calibrated colour, PSF-resolved shape or identified star/target pixels. No crop, angular/raster-size fit or geography adoption.",
+  "calibrationLimits": [
+    "Labels describe bias/smear/flat corrections; absolute calibration adds conversion factors without changing pixels. Units remain calibrated DATA NUMBER, not independently extracted radiance/I-F/visible colour. Error-estimate/quality extensions retained but not independently interpreted. Pipeline/reference filenames/flags retained in full labels.",
+    "Target headers identifyJ7ELARA,approximate target positions are best guesses with one-basedUP/RIGHT convention,not independent pixel crossmatch. Dataset cautions rough guide,prefer betterSPICE information. Currentpointing/PSF/photometry/geography/pole/normal/rotation/frame/light-time validation open.",
+    "FITS-header geometry conventions operational and not peer reviewed beyondFITS-standard adherence per product label. PDSlabelJ2000frame/geometry atproductcreation not current reconstructed pointing. Range/phase are publisher metadata,not new angular computation."
+  ],
+  "nasaOverviewAssessment": {
+    "url": "https://science.nasa.gov/jupiter/jupiter-moons/elara/",
+    "summary": "1905Jan5Perrine photographic discovery;43km radius assumes.04albedo. Approx11.7millionkm/~260day orbit not spin or currentephemeris. C/D-type parent/capture/collision/group-origin scenarios are hypotheses,not local chemistry/observed history.",
+    "limits": "HistoricalS/2000J11 lost/collision/ring narrative not adopted as currentmoonstatus or verifiedevent; contemporary reference audit open. No exactspin/pole/localnormal/atmosphere/materialfractions inferred."
+  },
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limits": "Active NASA educational/informational/credit/noendorsement and thirdparty caveats retained; not blanketCCBY or a specificPDS/thirdparty derivative licence. Raw-product redistribution/derivative metadata and completecontributor crosswalk remain open before embedding. Secondaryprocessedthumbnail led to primarydirectory; no secondaryimage downloaded/hash/licence adopted."
+  },
+  "access": "Web connector returned403 forPDSdirectory; direct standardHTTP200 fetcheddirectory/products without access-control bypass. Retained successfulresponse hashes.",
+  "preservation": "Original FITS and labels unchanged researchinputs; diagnostics separate, no native replacement. All92dossiers/originals/masters/maps/models/shapes/provenance/recordedClipper retained.",
+  "next": "Audit body-specific currentphysical/orbit/rotation/primarypapers and rawcalibration/quality/target crossmatch before generating independentviews; recover conforming lossless headroom before larger additivebatch. No globalexternalblocker; backlogACTIVE.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 17,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "6e704d9",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15990758,
+    "headroomBytes": 9242,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "d05bb93c69815be500adc135785a5546485a63baf546ae6588bf8a1e1430bfe3",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "No fresh browser/all-route/image/model/worker claim; interbuild feed differences unaudited, not compression/asset savings."
+  }
+}
