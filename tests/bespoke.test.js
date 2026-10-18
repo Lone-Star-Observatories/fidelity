@@ -300,5 +300,5 @@ test('Gonggong physical cards distinguish thermal radius and system mass without
 
  test('minor-planet satellite inventory keeps Weywot and Vanth separate from primary dossiers',async()=>{
  const queue=JSON.parse(await fs.readFile(new URL('../docs/research/bespoke-queue.json',import.meta.url),'utf8'));
- for(const [name,parent] of [['Weywot','quaoar'],['Vanth','orcus']]) {const entry=queue.entries.find(x=>x.id===`sol-${name.toLowerCase()}`);assert.equal(entry.parent,parent);assert.equal(entry.kind,'moon');if(name==='Weywot'){assert.equal(entry.visualId,'weywot');assert.equal(entry.bodyId,'weywot');assert.equal(bodyVisualFor(entry),BODY_VISUALS.weywot);}else{assert.equal(entry.visualId,undefined);assert.equal(entry.bodyId,undefined);assert.equal(bodyVisualFor(entry),null);assert.match(entry.source,/arxiv/);}}
+ for(const [name,parent] of [['Weywot','quaoar'],['Vanth','orcus']]) {const entry=queue.entries.find(x=>x.id===`sol-${name.toLowerCase()}`);assert.equal(entry.parent,parent);assert.equal(entry.kind,'moon');const id=name.toLowerCase();assert.equal(entry.visualId,id);assert.equal(entry.bodyId,id);assert.equal(bodyVisualFor(entry),BODY_VISUALS[id]);}
  });

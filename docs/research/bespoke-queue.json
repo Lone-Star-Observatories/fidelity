@@ -680,6 +680,19 @@
       "visualId": "weywot"
     },
     {
+      "id": "sol-vanth",
+      "bodyId": "vanth",
+      "name": "Vanth",
+      "parent": "orcus",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "vanth"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -7248,18 +7261,6 @@
       "sky": "queued"
     },
     {
-      "id": "sol-vanth",
-      "name": "Vanth",
-      "parent": "orcus",
-      "source": "https://arxiv.org/abs/2307.04848v1",
-      "kind": "moon",
-      "scope": "Satellite of dwarf-planet candidate; individual physical/reference audit open",
-      "nativeImagery": "Unchecked; no primary map assigned. Native product, observation dates, credits, calibration and resolved-geography limits require body-specific audit.",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
       "id": "exo-proxima-cen-b",
       "name": "Proxima Cen b",
       "parent": "Proxima Cen",
@@ -8561,7 +8562,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 42,
+      "initialDossiers": 43,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

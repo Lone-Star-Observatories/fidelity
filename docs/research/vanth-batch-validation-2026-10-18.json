@@ -1,0 +1,54 @@
+{
+  "retainedSourceAndGeneratedHashesChecked": 35,
+  "nativeCardsExactBytesAndMime": 77,
+  "baseline": "c0d4600",
+  "priorDossiersDeepEqual": 87,
+  "dossiers": 88,
+  "priorMoonsDeepEqual": 43,
+  "moons": 44,
+  "trackedPublicByteEqual": 656,
+  "queueEntries": 569,
+  "unchangedOtherQueueEntries": 568,
+  "htmlBytes": 15714436,
+  "headroomBytes": 285564,
+  "exactCompleteReadableJson": true,
+  "readableSha256": "659952f161df51287c9fed51c5336359dc1427c796417adc8fca2e3b0531fde7",
+  "applicationSha256": "f988db5064fa62ef11d76d02178be99ccb6498328bc42d28529383c2dcf0b5b6",
+  "newGeneratedPublicHashesChecked": 4,
+  "freshBrowserClaim": true,
+  "tests": {
+    "pass": 686,
+    "skip": 1,
+    "fail": 0
+  },
+  "productionBuild": "pass",
+  "fullBuild": "pass",
+  "browser": {
+    "engine": "Chromium in-app browser",
+    "normal": {
+      "route": "#/moon/sol/vanth",
+      "cards": 2,
+      "decodedImageDimensions": [
+        1536,
+        864
+      ],
+      "canvases": 8,
+      "unknownRotation": true,
+      "unqualifiedDensityAbsent": true
+    },
+    "standalone": {
+      "route": "#/moon/sol/vanth",
+      "cards": 2,
+      "decodedImageDimensions": [
+        256,
+        144
+      ],
+      "imageMime": "image/webp",
+      "canvases": 8,
+      "unknownRotation": true,
+      "unqualifiedDensityAbsent": true
+    },
+    "limits": "Actual normal/standalone Vanth route/card checks only; no fresh all-image/all-model/all-route/event-worker/unsupported-browser claim. Other browser engines open."
+  },
+  "limits": "Full Node inverse equals complete readable JSON; net HTML change includes catalogue/application and possibly live-feed changes, not solely asset/compression attribution. Science/calibration/registration and native ownership remain open."
+}

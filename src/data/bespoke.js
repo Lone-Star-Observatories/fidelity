@@ -15053,6 +15053,130 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "vanth": {
+    "id": "vanth",
+    "name": "Vanth",
+    "kind": "moon",
+    "researchDate": "2026-10-18",
+    "previewWidth": 256,
+    "aliases": [
+      "Vanth",
+      "S/2005 (90482) 1"
+    ],
+    "nativeSurface": "Unresolved ALMA detections retained as external research; specific publisher image ownership/credit crosswalk remains open. No native image, resolved globe or Orcus map assigned.",
+    "measured": [
+      "Vanth is the distinct satellite of Orcus. Brown/Ragozzine/Stansberry/Fraser discovery HST F606W eight275s exposures2005Nov13 are separate from an unverified F555W archive lead; raw publisher/product/UTC crosswalk remains open.",
+      "Sickafoose/Bosh/Levine/Zuluaga/Genade/Schindler/Lister/Person occultation2017Mar7: two Vanth events involved different stars, confirmed by Gemini DSSI. IRTF chord434.39±2.36km plus SRO non-detection constrain a circular projected limb432–453km, rounded443±10km. This assumes a circle and does not measure global axes/local normal. ELP9.32sdeadtime yields291.1±124.9km or alternate144.31±65.80km chords.",
+      "Brown/Butler2018 ALMA Band7 four2016 visits Oct11/13/15 and Nov7 resolve pair point sources, not moon terrain. NRAO four-panel false-colour JPEG800x797 retained unchanged research-only; beams/noise/locators are not limbs, calibrated visible colour or geography. Specific image ownership not established by generic NRAO/AUI/NSF CC BY4 policy; no image embedded."
+    ],
+    "modelled": [
+      "Illustrative navigation uses Brown et al.2009v1/2010 Table2 solution1 circular a8980±23km,P9.5393±.0001d,i90.2±.6deg,node50.0±.6,M143.1±.02 atJD2454439.280,J2000ecliptic. Time standard/current phase unverified. Solution2 printed inclination305.8±.6deg retained as unresolved convention/typo, not silently folded. Abstracta8980±20 and system6.32±.01e20 versus body6.32±.05e20 are separate reporting alternatives.",
+      "Carry/Hestroffer/DeMeo/Thirouin/Berthier/Lacerda/Sicardy/Doressoundiram/Dumas/Farrelly/Müller2011 corrected historical HST dates by halfday following author communication; no blanket raw-archive shift adopted. SINFONI2010Feb23UT program284.C-5044 H+K,R1500,4050stotal detects pair; Mar13LGS5400s lower-resolution nondetection is not disappearance. Vanth colour uncertainty large; Orcus ice/methane/ethane/ammonia interpretations are not Vanth chemistry.",
+      "Carry2011 a9030±89,e.007±.003,P9.5406±.0004d and system641±19e18kg are later alternatives. i±21±2/node144±63 are tangent-plane quantities, not J2000ecliptic elements. Ecliptic pole alternatives(321,-2)/(340,+38)±3deg and unknownJ2 systematics retained; no measured spin/locking/permanent Orcus face.",
+      "Brown/Butler2018 thermal NEATM VanthD475±75km,albedo.08±.02 uses850micron emissivity.685,bolometric.8–1,phase-integral50percent and beaming priors; OrcusD910(+50,-40)/albedo.23±.02 separate primary model. Historical267/378±100km albedo models and occultation443±10km circular limb remain alternatives, not resolved shape, chemistry or calibrated colour.",
+      "Brown/Butler2023 four2016ALMA visibility-astrometry visits: ratio.16(-.01,+.02) Table2 versus prose.16±.02, inferredVanth8.7±.8e19kg/density1.5(-.5,+1.0) usingD475±75/system6.32e20. Density is model-derived, not local chemistry/porosity. Tablephaseoffset.2±1.7deg versus prose4.3deg, photocentre1±4mas versus2±3mas retained unresolved; earlier2018 eleven-degree phase adjustment is not current phase. M54.2±1.7 atJD2457699.93569 has unvalidated full-frame/time crosswalk.",
+      "Occultation atmosphere3sigma1–4microbar limits assume600nm,44K,443km,mass1/15Orcus,thin radial constant-scale-height10/50/100km; not atmosphere detection/absolute absence and not silently recomputed with2023mass. Ring LOS tau limits depend on cadence/spatial scales, not exhaustive absence. SpeX06:49 versus MORIS06:46 time-reference/overlap inconsistency remains open.",
+      "ALMA calibration/selfcal/visibilityMCMC, TinyTim astrometry and thermal extraction not independently reproduced. Giant impact/capture/Kozai/tidal/double-synchronous interpretations are models, not directly observed history or moon spin. 2009/2011/2018/occultation specific arXiv nonexclusive distribution is not CC BY;2023 original-content CC BY4 is separate, not blanket third-party/raw permission. No paper figure embedded."
+    ],
+    "unknown": [
+      "Resolved local terrain/material fractions/chemistry, calibrated visible colour/photometry, independent spin, physical shape/frame/coverage, current ephemeris/phase/attitude/normal/horizon visibility and native raw-product/credit/ownership crosswalk.",
+      "Primary catalogue13.19h rotation/6.3e20kg is not Vanth spin or later mass partition. Current orbital covariance,light-time,time-standard conversion,photocentre/J2 effects and registered surface-site geometry remain unvalidated."
+    ],
+    "assumed": [
+      "Independent grey-brown grains/blocks/shallow relief, chemistry/material fractions/porosity, colour/light/exposure are invented. Featureless smooth grey Orcus disk/phase/attitude invented, no observed-body analog skin or dated site. Black sky/omitted rings/stars/atmosphere do not measure absence. No plume,liquid,exposed ocean,biology or survivable landing depicted.",
+      "skyGeometry primary455km spherical radius at historical9030km orbital scale minus hypothetical221.5km camera height gives8808.5km,5.9218225068351655deg/86.48203061062136px at1672width90HFOV. Thermal237.5km height gives5.932608270423252deg/86.63982697468802px. Cross-paper representative guide, not jointfit/date/localnormal/uncertaintyenvelope/locking/permanentface.40K helper angular only; colour/irradiance discarded.",
+      "Generated disk framing remains uncalibrated; no raster diameter adopted. Original/default PNGs/full prompts/Pillow masters/previews and rejected Moon-like first sky preserved separately; rejected variant not adopted. Tiny preview footers require explicit IMAGINED card labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM VANTH",
+    "skyLabel": "IMAGINED · SKY FROM VANTH",
+    "skyCaption": "Hypothetical featureless Orcus above invented Vanth terrain; historical size guide, unregistered and uncalibrated.",
+    "skyModel": {
+      "star": "Orcus · hypothetical spherical angular guide",
+      "radiusSun": 0.0006540175362943798,
+      "temperatureK": 40,
+      "distanceAU": 0.000058881185666501604,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 5.9218225068351655,
+      "centreDiscWidthFraction": 0.051723702518314214,
+      "irradianceEarth": 2.8455116561912034e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "Brown et al.2009v1 historical orbit; nonexclusive",
+        "url": "https://arxiv.org/abs/0910.4784v1"
+      },
+      {
+        "title": "Carry et al.2011 astrometry and frame alternatives; nonexclusive",
+        "url": "https://arxiv.org/abs/1108.5963v1"
+      },
+      {
+        "title": "Brown/Butler2018 thermal assumptions; nonexclusive",
+        "url": "https://arxiv.org/abs/1801.07221v1"
+      },
+      {
+        "title": "Sickafoose et al.2018 occultation manuscript; nonexclusive",
+        "url": "https://arxiv.org/abs/1810.08977v1"
+      },
+      {
+        "title": "Brown/Butler2023 ALMA mass model; original-content CC BY4",
+        "url": "https://doi.org/10.3847/PSJ/ace52a"
+      },
+      {
+        "title": "NRAO actual unresolved ALMA context; specific credit crosswalk open",
+        "url": "https://science.nrao.edu/science/highlights/2018/kuiper-belt-objects-their-moons"
+      },
+      {
+        "title": "NRAO media policy; does not prove this image ownership",
+        "url": "https://public.nrao.edu/media-resources/"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/vanth-surface-image.jpg",
+      "previewUrl": "/bespoke/vanth-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "vanth-generated-surfaceImage-original.png",
+      "sourceSha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de",
+      "sha256": "b01850b806566d88b6a173abbcdc483f681c02637522e8313373b9ac495ea019",
+      "previewSha256": "465c3c4d3d80a80dba74e7b150990caca39129ce9b009176deae129e18d9aa1c",
+      "bytes": 349076,
+      "previewBytes": 10325,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/vanth-sky-image.jpg",
+      "previewUrl": "/bespoke/vanth-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "vanth-generated-skyImage-original.png",
+      "sourceSha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f",
+      "sha256": "28e34b41d1a88838fe53dd7262e7e09bede0737056e5edd8c87904695bcaa330",
+      "previewSha256": "fd31366ef94f67adfe9499c1b40b88f14d6e60bb1b33505836dcb6b97f22ac3b",
+      "bytes": 194407,
+      "previewBytes": 6395,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

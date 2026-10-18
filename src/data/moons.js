@@ -234,6 +234,18 @@ export const MOONS = [
       { label: 'MASS', value: 'UNKNOWN', tier: 'imagined', detail: '2025 posterior is constrained by2.4e18±1.2e18kg prior; no independent precise moon mass,density or chemistry adopted.' },
     ],
     surfacePending: true, note: 'Conditional radius, unknown independent spin/mass. Non-Keplerian source represented by illustrative Keplerian navigation only; no current ephemeris or resolved globe.' },
+  { id: 'vanth', name: 'Vanth', parent: 'orcus', radiusKm: 221.5, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(8980, 0, 0, 143.1, 90.2, 50, 9.5393, 0, 0, [0, 90], 'ecliptic', 2454439.280),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'ORCUS', tier: 'measured', detail: 'Distinct unresolved satellite; no primary map assigned.' },
+      { label: 'ORBIT', value: 'HISTORICAL 8,980 KM · 9.5393 DAYS', tier: 'modelled', detail: 'Brown2009v1/2010 Table2 solution1 circular J2000ecliptic JD2454439.280; i90.2,node50,M143.1. Carry2011 corrected dates and9030±89km/9.5406±.0004d alternative retained in dossier.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'Historical fit, current phase/time standard/photocentre/J2 and light-time not validated. No precise event timing, spin locking or permanent primary-facing site.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '221.5 KM · CIRCULAR-LIMB MODEL', tier: 'modelled', detail: '2017 occultation443±10km projected diameter assumes circle; not global axes/local normal. Separate2018 thermal475±75km diameter retained.' },
+      { label: 'MASS', value: '(8.7 ± .8) × 10¹⁹ KG · MODEL', tier: 'modelled', detail: 'Brown/Butler2023 ALMA astrometric mass partition; density uses independent thermal size assumptions, not measured chemistry/porosity.' },
+    ],
+    surfacePending: true, note: 'Unknown independent spin and resolved globe. Historical navigation only, occultation/thermal size alternatives and native ownership crosswalk remain explicit.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,

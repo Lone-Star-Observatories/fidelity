@@ -1,0 +1,912 @@
+{
+  "date": "2026-10-18",
+  "sources": [
+    {
+      "path": "docs/research/vanth-alma-primary-assessment-2026-10-18.json",
+      "bytes": 8632,
+      "sha256": "e38b683971d11309b951e84788fd80af75a9df550a27ea4cc4ae781e18c52f88",
+      "record": {
+        "date": "2026-10-18",
+        "issue": 3,
+        "body": "Vanth, distinct satellite of Orcus",
+        "status": "Research-only primary methods/Table2 audit; no88th dossier,catalogue,image,map,model,shape or codec adoption",
+        "authors": [
+          "Michael E. Brown",
+          "Bryan J. Butler"
+        ],
+        "title": "Masses and densities of dwarf planet satellites measured with ALMA",
+        "version": "2307.04848v1; submitted2023-07-10, distinct from observation epochs",
+        "sources": [
+          {
+            "path": "data/research-sources/vanth-2023-v1-full.html",
+            "url": "https://arxiv.org/html/2307.04848v1",
+            "bytes": 109379,
+            "sha256": "26cef52497cc7f3f53564bb0d2bbb0e27ac3d5794948fac74945335194ae5d41",
+            "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+          },
+          {
+            "path": "data/research-sources/vanth-2023-v1-record.html",
+            "url": "https://arxiv.org/abs/2307.04848v1",
+            "bytes": 41980,
+            "sha256": "1a25bc65df4c91db711a80d2f796f55257d891eff97cd7cad505a1eea25f7060",
+            "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+          },
+          {
+            "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+            "url": "https://arxiv.org/pdf/2307.04848v1",
+            "bytes": 540344,
+            "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222",
+            "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+          },
+          {
+            "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+            "url": "https://doi.org/10.3847/PSJ/ace52a",
+            "bytes": 545021,
+            "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4",
+            "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+          }
+        ],
+        "rights": "Specific arXiv record CC BY4.0, distinct from nonexclusive arXiv papers. Published original-content notice retained by earlier audit; not blanket permission for raw/native/third-party images. No figure embedded.",
+        "assessed": "Full retained primary HTML targeted observations/error method,II.1,Table2,III discussion and acknowledgements. No raw visibility reduction,posterior reproduction,Table1 per-product/date crosswalk or new PDF visual audit. Plaintext extraction is a search derivative; mathematical HTML/alttext authoritative because naive tag stripping can lose less-than expressions.",
+        "methods": [
+          "Four Orcus/Vanth ALMA visits in Oct/Nov2016, separate from2015 Eris/Dysnomia visits and2018 Dysnomia followup. BB18 contains detailed flux reduction,not independently reproduced here.",
+          "Two point-source fits to interferometric visibilities with Gaussian initial positions; formal fitting,visibility-versus-image systematic and celestial frame terms combined in quadrature. Primary calibratorJ1048-1909; checkJ1022-1037/J0942-0759 averageoffset for Orcus/Vanth. These do not establish calibrated visible colour or local chemistry.",
+          "Oct13 conditions and Nov7 compact antenna configuration yield larger errors; observing-date labels lack independently audited rawUTC/product associations. No error correction or pixel registration transferred to app.",
+          "Six parameters: orbital phase correction,mass ratio,two constant system ephemeris offsets,two optical-versus-thermal primary photocentre offsets. Remaining orbital parameters inherited BB18,not independently constrained by these data.100000post-burn-in emcee samples;15.9/84.1percentile uncertainties. No chain/code reproduced."
+        ],
+        "table2": {
+          "ratioVanthToOrcus": {
+            "median": 0.16,
+            "lowerDeviation": 0.01,
+            "upperDeviation": 0.02,
+            "type": "astrometric-model fit,not local material measurement"
+          },
+          "ephemerisOffsetMas": {
+            "RA": [
+              15,
+              4
+            ],
+            "dec": [
+              3,
+              5
+            ]
+          },
+          "phaseOffsetDeg": [
+            0.2,
+            1.7
+          ],
+          "primaryPhotocentreOffsetsMas": {
+            "x": [
+              1,
+              4
+            ],
+            "y": [
+              1,
+              4
+            ]
+          },
+          "derivedVanthMassKg": [
+            8.7e+19,
+            8e+18
+          ],
+          "derivedVanthDensityGcm3": {
+            "median": 1.5,
+            "lowerDeviation": 0.5,
+            "upperDeviation": 1.0
+          },
+          "updatedMeanAnomalyDeg": [
+            54.2,
+            1.7
+          ],
+          "definedEpochJd": 2457699.93569,
+          "epochLimit": "Time standard not established here; remaining full orbit/frame/covariance crosswalk not audited. Not current phase."
+        },
+        "alternativesAndLimits": [
+          "Prose reports symmetric ratio.16±.02 and13.7±1.3percent system mass; Table2 reports asymmetric.16(-.01,+.02). Preserve both uncertainty presentations.",
+          "Prose optical/thermal primary offset2±3mas in both directions versus Table2x/y1±4mas; cause/convention remains open,not silently reconciled.",
+          "Prose says phase advanced4.3deg versus Table2 fitted phaseoffset.2±1.7deg. Reference/convention crosswalk remains open; no catalogue phase update.",
+          "Authors report10sigma barycentric-motion detection and reducedchi-square.95. This is not independent raw astrometric reproduction or confirmation of resolved terrain.",
+          "Derived densities use system mass6.32e20kg and adopted thermal diametersOrcus910(+50,-40),Vanth475±75km. Separate occultation443±10km assumes spherical shape; no ellipsoid/local normal or unified posterior inferred. Broad Vanth density may change with refinement; no local ice/rock fractions or chemistry assigned.",
+          "Near-pole-on primary inference follows low primary lightcurve/photocentre offset/orbital view,not a measured Vanth spin pole. Giant-impact intact-impactor and likely double-synchronous evolution are model interpretations,not directly observed origin/history or independently measured moon spin/permanent primary-facing site.",
+          "Small satellites of comparable fractional brightness to Pluto small moons would be below cited searches; apparent absence is not an exhaustive companion exclusion. Pluto/Charon comparisons do not authorize analog skins.",
+          "Do not transfer same-paper Dysnomia/Eris mass,diameter,thermal flux,emissivity or density constraints to Vanth/Orcus. No atmosphere/plume/liquid/ocean/biology/landing claim or angular/raster calculation."
+        ],
+        "dataAcknowledgement": "ADS/JAO.ALMA#2018.1.00929.S,#2015.1.00810.S,#2016.1.00830.S are listed collectively; exact visit-to-project/raw-product crosswalk remains open. ALMA partnership ESO(member states),NSF(USA),NINS(Japan),NRC(Canada),MOST/ASIAA(Taiwan),KASI(Korea),Republic of Chile; JAO operated ESO,AUI/NRAO,NAOJ; NRAO NSF facility operated under agreement by Associated Universities,Inc.",
+        "open": [
+          "Body-specific native imagery/caption/terms/filter/rawUTC/credit association.",
+          "BB18 full Vanth thermal assumptions/orbit/frame/epoch and occultation/later rotation primary audits.",
+          "Published-versus-v1 Vanth table/prose conflict crosswalk,raw visibilities/calibrators/posteriors and current ephemeris.",
+          "Independent observer/local illustrations require body-specific source constraints and skyGeometry; none generated."
+        ],
+        "preservation": "All87 dossiers/originals/native/master/map/model/shape/provenance unchanged. Vanth remains queued withoutbodyId/visualId. BacklogACTIVE.",
+        "validation": {
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "c92b9f6",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15702148,
+          "headroomBytes": 297852,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "2ad14955c830fb3e4a61df338ca4ee19d5dedc8de497059704b062298e4e6d91",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim.",
+          "tests": {
+            "pass": 685,
+            "skip": 1,
+            "fail": 0
+          },
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "vanthSourceHashesChecked": 4,
+          "scienceInputsUnchanged": true,
+          "noNewDossierOrEmbedding": true
+        }
+      }
+    },
+    {
+      "path": "docs/research/vanth-historical-source-assessment-2026-10-18.json",
+      "bytes": 6365,
+      "sha256": "cbe65e62d0799503a5e9d218210fe04d8be79c9aca478eb5fa1af57e85bfc013",
+      "record": {
+        "date": "2026-10-18",
+        "status": "research-only original-source assessment; no catalogue or image adoption",
+        "source": {
+          "url": "https://arxiv.org/src/0910.4784v1",
+          "path": "data/research-sources/vanth-2009-v1-original-source",
+          "bytes": 73943,
+          "sha256": "87e3706e2cd96d1221fb4f46ca5968960bef5a26fada986a5e5687f03409ec9c"
+        },
+        "extractedTex": {
+          "path": "data/research-sources/vanth-2009-v1-orcus_submit.tex",
+          "bytes": 43917,
+          "sha256": "59e833c20ecea882a33849499b6870242072fc15e655cb095d9b990e5e046fff"
+        },
+        "findings": [
+          {
+            "claim": "Experimental HTML submitted-to-AJ date is not a verified manuscript submission/publication date.",
+            "evidence": "Original source line5 uses \\slugcomment{submitted to AJ, \\today}; renderer expands dynamic today. Specific August24,2026 heading must not be adopted as science chronology."
+          },
+          {
+            "claim": "Second-solution inclination305.8±.6deg exists in original source Table2; not solely an HTML conversion artifact.",
+            "limit": "Geometric convention or author typo unresolved. Do not silently fold/correct to an inclination or use as navigation solution."
+          },
+          {
+            "claim": "Abstract system mass6.32±.01e20 versus main body6.32±.05e20, and abstracta8980±20 versus Table2a8980±23 exist in source.",
+            "limit": "Preserve version-specific alternatives; not a new joint fit or corrected current ephemeris."
+          },
+          {
+            "claim": "F606W8x275s historical astrometry prose remains separate from unverified F555W HLA lead.",
+            "limit": "No raw exposure product, exact UTC or native image identity established."
+          }
+        ],
+        "rights": "Specific arXiv record perpetual nonexclusive distribution; not CC BY. No figure extracted or embedded.",
+        "preservation": "No catalogue, dossier, image, model, shape, codec or queue changes; no88th dossier.",
+        "authors": [
+          "Michael E. Brown",
+          "Darin Ragozzine",
+          "John Stansberry",
+          "Wesley C. Fraser"
+        ],
+        "sources": [
+          {
+            "url": "https://arxiv.org/src/0910.4784v1",
+            "path": "data/research-sources/vanth-2009-v1-original-source",
+            "bytes": 73943,
+            "sha256": "87e3706e2cd96d1221fb4f46ca5968960bef5a26fada986a5e5687f03409ec9c",
+            "role": "retained source response"
+          },
+          {
+            "url": "https://arxiv.org/src/0910.4784v1",
+            "path": "data/research-sources/vanth-2009-v1-orcus_submit.tex",
+            "bytes": 43917,
+            "sha256": "59e833c20ecea882a33849499b6870242072fc15e655cb095d9b990e5e046fff",
+            "role": "extracted original TeX"
+          },
+          {
+            "url": "https://arxiv.org/html/0910.4784v1",
+            "path": "data/research-sources/vanth-2010-v1-html-preparation.response",
+            "bytes": 123164,
+            "sha256": "1ee8e2c3d8e17294f7bb63856606f5376cee0ffda2dae785fc89844234aa32e9",
+            "role": "retained source response"
+          },
+          {
+            "url": "https://arxiv.org/abs/0910.4784v1",
+            "path": "data/research-sources/vanth-2010-record-preparation.response",
+            "bytes": 45336,
+            "sha256": "8151e56ac972e79aa89a33b056758efa5ddf7c8180b2543e3718ca9f2c7cb583",
+            "role": "retained source response"
+          }
+        ],
+        "historicalMethods": {
+          "astrometry": "ACS/HRC discovery2005-11-13; followup PSF-fitting TinyTim oversampled5x,8 F606W exposures275s per HST orbit as described. Scatter used as measurement errors even when apparent motion exists. WFPC2/NICMOS separate observations. No reprocessing performed.",
+          "orbit": "Circular five-parameter Powell fit reducedchi2.73 vs mirror.75; eccentric trial.002 with reported68percent upper.0036. Circular assumption and historical degeneracy are not exact current circularity or moon spin.1000 noise trials not reproduced. EpochTable2JD2454439.280, J2000ecliptic; no TDB transformation or new ephemeris adopted.",
+          "photometry": "WFPC2 optical and NICMOS infrared PSF photometry separate, with model reddened-solar conversion to JohnsonV/CousinsI and assumed primary phase law. Colour differences and weak/absent deep water-ice proxy are not local fractions or calibrated visible geography.",
+          "interpretation": "Historical capture/Kozai/tides and collision/outward tides remain models; double synchronous state conditional, not independently measured moon rotation or permanent visible primary face."
+        },
+        "nativeLead": {
+          "url": "https://commons.wikimedia.org/wiki/File:Orcus-vanth_hst.jpg",
+          "status": "secondary lead only, no image adopted",
+          "limits": [
+            "Uploader reports cropping and noise-pixel removal; not assumed unchanged native archive bytes.",
+            "Exact linked HLA display request returned404; response196bytes SHA80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880 retained separately, not image hash.",
+            "Generic Commons NASA/Hubble public-domain boilerplate not independently verified image-specific terms.",
+            "F555W filename lead does not establish association with F606W astrometry prose."
+          ]
+        },
+        "open": [
+          "Final published orbit/table corrections and later BB18 orbit convention crosswalk.",
+          "Native product identity, UTC, filter, exposure, processing credit and terms.",
+          "Recent JWST primary product/processor permissions; no exhaustive newest-image claim.",
+          "Resolved map, shape, calibrated colour, local chemistry and moon spin/pole remain unestablished."
+        ],
+        "validation": {
+          "testsPassed": 685,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "95aad37",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15705988,
+          "headroomBytes": 294012,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "5dfab173256f13d756951110d20a88797bd4f688aec733171e9c031f3e5b68d1",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim.",
+          "newHistoricalSourcesHashed": 4
+        }
+      }
+    },
+    {
+      "path": "docs/research/vanth-occultation-assessment-2026-10-18.json",
+      "bytes": 5221,
+      "sha256": "8bda204ecefaa3e65f517e3423580a4a4479c3cb701c9c4410d84e96b1509ec3",
+      "record": {
+        "status": "Targeted original accepted-manuscript PDF assessment; no image/catalogue/shape adoption.",
+        "sources": [
+          {
+            "url": "https://arxiv.org/src/1810.08977v1",
+            "path": "data/research-sources/vanth-occultation-v1-source.response",
+            "bytes": 1227069,
+            "sha256": "d213dae119e8647dbf4aad1fc7b30499b06440881fd7ee647af445042dd775fe",
+            "actualSignature": "PDF"
+          },
+          {
+            "url": "https://arxiv.org/abs/1810.08977v1",
+            "path": "data/research-sources/vanth-occultation-v1-record.response",
+            "bytes": 43447,
+            "sha256": "5e3e80ece0b3f35dc578231cccfafdd71f46cb1acd399c69b2107f10e275372b",
+            "actualSignature": "HTML"
+          }
+        ],
+        "recordFindings": {
+          "title": "A stellar occultation by Vanth, a satellite of (90482) Orcus",
+          "authors": [
+            "A.A. Sickafoose",
+            "A.S. Bosh",
+            "S.E. Levine",
+            "C.A. Zuluaga",
+            "A. Genade",
+            "K. Schindler",
+            "T.A. Lister",
+            "M.J. Person"
+          ],
+          "v1Submitted": "2018-10-21T15:37:06Z",
+          "licence": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+          "licenceLimit": "Nonexclusive is not CC BY; no paper figure embedded.",
+          "abstractOnly": "2017March07 predicted Orcus occultation reconstructed as Vanth occulting two stars; follow-up speckle imaging reveals double star. Two single chords291±125/434.4±2.4km plus nearby non-detection yield443±10km assuming sphere. Not measured global axes or registered shape. Atmospheric1–4microbar3sigma and ring optical-depth limits are conditional search constraints, not proof of absolute absence."
+        },
+        "preservation": "All87 dossiers/catalogue/public/native/master/map/model/shape bytes preserved; no88th, embedding, angular/raster calculation or codec change.",
+        "inspection": {
+          "pages": 37,
+          "text": "Complete37-page extraction retained; targeted methods/results pages12–26 read, pages18/22/24/25/26/29 rendered and visually inspected. Not a claim of full37-page visual review.",
+          "parser": "pypdf reports a wrong-pointing-object warning but opens all37pages. Earlier file utility eight-page hint is not the actual document page count."
+        },
+        "findings": {
+          "diameter": "IRTF434.39±2.36km chord gives lower432km; reconstructed double-star geometry and SRO non-detection constrain maximum453km;442.5±10.2 rounded443±10. Circular projection assumed; authors explicitly cannot fit non-spherical shape. Not global axes/topography/rotation or registered geometry.",
+          "timing": "ELP most-likely291.1±124.9km chord depends on whether first low point reached minimum;9.32sdeadtime causes large immersion uncertainty. Alternate144.31±65.80km case retained. IRTF07:05:20.47–07:05:37.00UT on2017Mar07; instant flux transition assumed.",
+          "doubleStar": "Gemini DSSI separation252±2mas,delta.93mag692nm;316.006deg quadrant selected by occultation agreement,136.006alternative fails. Not established physical binary.",
+          "ephemeris": "JPL28/DE431 historical system offset(-.0022,+.0005)arcsec derives central-IRTF-chord assumption; Vanth offset(-.0445±.010,-.2362±.001) from Brown personal communication. Not current navigation calibration or updated full orbit.",
+          "atmosphere": "Thin radially symmetric constant-scale-height diffraction model, assumed600nm/44K/443kmdiameter/Vanthmass1/15Orcus. Tested10/50/100kmscaleheights;3sigma1–4microbar constituent-dependent, immersion40percent higher. Not measured atmosphere, current temperature, modern mass or proof of absence. LaterALMA mass must not silently revise this historical model.",
+          "rings": "Line-of-sight tau limits IRTF<.11at5.25km/SRO<.30at5.34km; smoothed~10.5/~73.6kmscaleIRTFlimits.07/.03, SRO.21/.08. Sampling/geometry-limited non-detections not exhaustive absence or registration.",
+          "sourceConflict": "Page22 SpeX midtime1167.62±.130seconds from06:49UT conflicts claimed overlap with MORIS1160.47–1177seconds from06:46UT; preserve reference-time inconsistency, do not silently fix.",
+          "componentLimits": "Orcus water/ammonia and speculative resurfacing not Vanth local chemistry. Thermal475±75km/albedo.08±.02 remains distinct. Assumeddensity massratios/volatile retention/origin models not direct spin/history/porosity/plume evidence."
+        },
+        "validation": {
+          "testsPassed": 685,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "88ea05f",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15700100,
+          "headroomBytes": 299900,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "84cf3447d003d7061caf349c7209c673ddbedeeba8ae644a0331d2191c06fd22",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+        }
+      }
+    },
+    {
+      "path": "docs/research/vanth-sinfoni-orbit-assessment-2026-10-18.json",
+      "bytes": 4867,
+      "sha256": "81762030ab77b0f31551f1607216d2d79f5d52704538495115bfe2ee2ad593a5",
+      "record": {
+        "status": "Research-only original-source assessment; no catalogue, image, orbit or licence adoption.",
+        "sources": [
+          {
+            "url": "https://arxiv.org/src/1108.5963v1",
+            "path": "data/research-sources/vanth-2011-v1-source.response",
+            "bytes": 346971,
+            "sha256": "1760afb6a1f62c573a8f4d3272efff08d926bb81623c654be31d243bc3a04e34",
+            "contentType": "application/gzip"
+          },
+          {
+            "path": "data/research-sources/vanth-2011-v1-main.tex",
+            "bytes": 81690,
+            "sha256": "27836c24a1e1ffd5ef0d2d93c3f0152c4f74b904ab6e29aa2a47196158d72c18"
+          },
+          {
+            "url": "https://arxiv.org/abs/1108.5963v1",
+            "path": "data/research-sources/vanth-2011-v1-record.response",
+            "bytes": 45384,
+            "sha256": "936b297708d7e2a10e64afe88e7cf13465536069cca77945324920ce736268fd"
+          }
+        ],
+        "authors": [
+          "Benoît Carry",
+          "Daniel Hestroffer",
+          "Francesca E. DeMeo",
+          "Audrey Thirouin",
+          "Jérôme Berthier",
+          "Pedro Lacerda",
+          "Bruno Sicardy",
+          "Alain Doressoundiram",
+          "Christophe Dumas",
+          "David Farrelly",
+          "Thomas G. Müller"
+        ],
+        "targetedFindings": {
+          "observation": "2010-02-23 UT SINFONI H+K 1.45–2.45 micron R~1500; appulse UCAC2 29643541 at 4 arcsec, program 284.C-5044. 150s integrations smear the moving target; elongated PSF is not a measured body shape.",
+          "componentSeparation": "Vanth colours slightly redder with large uncertainties; Orcus crystalline water, 2.2 micron band and methane/ethane/ammonia limits must not be assigned to Vanth.",
+          "historicalDateCorrection": "Authors explicitly report earlier Brown2010 HST dates offset by half a day, confirmed by personal communication; Table astrometry lists corrected JD values. This is a published claim, not independent reprocessing or a blanket correction of all archive timestamps.",
+          "astrometry": "Nine corrected HST rows plus SINFONI JD2455250.73686, east/north offsets .260/.052 arcsec. Time-scale/raw exposure crosswalk remains open.",
+          "orbit": "Statistical Keplerian inversion: a9030±89km, e.007±.003, P9.5406±.0004d, tangent-plane i±21±2deg, node144±63deg. Pole A ECJ2000(321,-2), B(340,+38), both ±3deg; mirror B not excluded. Formal errors omit possible systematic model incompleteness including unknown Orcus J2. Not current ephemeris or independently reproduced fit.",
+          "physicalModels": "System mass641±19 x10^18kg; historical Vanth diameter267 or378±100km conditional albedos, distinct later thermal475±75 and occultation443±10. Not local normal, axes, chemistry or visible-map calibration.",
+          "rotation": "Synchronous rotation, equator alignment and tidal circularization are interpretations; Kozai alternative allows large mutual tilt. No measured moon spin or guaranteed permanent primary-facing scene.",
+          "processing": "SINFONI pipeline2.0.5 bad-pixel/flat/sky/wavelength calibration, 27 February and9 March cubes. Figure caption February23 total4050s separates components; March13 total5400s lower angular resolution hides Vanth in background. Non-detection in March is not disappearance, atmospheric absence or surface change. No figure adopted."
+        },
+        "open": [
+          "Final published-paper and raw product crosswalk; specific v1 record is nonexclusive, not CC BY.",
+          "Full updated orbital epoch/phase convention and later 2018/2023 adjustments",
+          "Raw HST/SINFONI product association and original native image ownership",
+          "No figures embedded; no new angular or raster computation"
+        ],
+        "publication": {
+          "submitted": "2011-08-30T14:12:48Z",
+          "relatedDoi": "10.1051/0004-6361/201117486",
+          "recordLicence": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+          "limits": "Nonexclusive distribution is not CC BY. No figure embedded. Record automated PDF author count says 9 other authors, while original TeX explicitly lists eleven named authors retained here."
+        },
+        "validation": {
+          "testsPassed": 685,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "fe292f8",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15701636,
+          "headroomBytes": 298364,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "93443c8e13814bb95efff26b4409f8f9b87922c551148c0b026ede56e43ee52c",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+        }
+      }
+    },
+    {
+      "path": "docs/research/vanth-local-view-preparation-2026-10-18.json",
+      "bytes": 3798,
+      "sha256": "1e1580747eae141ae246a81aaddbaf43e2feafd9c7d7656cbc288b55f35996d0",
+      "record": {
+        "date": "2026-10-18",
+        "issue": 3,
+        "body": "Vanth, satellite of Orcus",
+        "status": "Independent built-in local illustration preparation; no88th dossier/embedding/catalogue/map/model/shape/codec change",
+        "generator": "Built-in image_gen; no input/reference images",
+        "sources": [
+          {
+            "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+            "bytes": 2870475,
+            "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+          },
+          {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4696ec51-efc3-4a24-961b-3b6d24d6607a.png",
+            "bytes": 2870475,
+            "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+          },
+          {
+            "path": "data/research-sources/vanth-local-prompt-2026-10-18.txt",
+            "bytes": 10,
+            "sha256": "770c2d18aa4ec3159f46da461ef452972949942ff4f6a9771044485faa146398"
+          }
+        ],
+        "prompt": "undefined",
+        "original": {
+          "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+          "bytes": 2870475,
+          "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4696ec51-efc3-4a24-961b-3b6d24d6607a.png",
+          "bytes": 2870475,
+          "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+        },
+        "dimensions": [
+          1672,
+          941
+        ],
+        "visualInspection": "Full output inspected: grey-brown granular shallow relief, isolated blocks and low ridges under black sky; both exact footer lines readable. No astronomical disk or angular/raster claim. No recognizable other-body map adopted.",
+        "scienceReferences": [
+          "docs/research/vanth-alma-primary-assessment-2026-10-18.json",
+          "docs/research/vanth-historical-source-assessment-2026-10-18.json",
+          "docs/research/vanth-sinfoni-orbit-assessment-2026-10-18.json",
+          "docs/research/vanth-occultation-assessment-2026-10-18.json"
+        ],
+        "limits": [
+          "All terrain/chemistry/material fractions/colour/light/exposure imagined; unresolved observations do not establish geography or local mineral proportions.",
+          "No analog observed-body map. No dated or registered site, physical local normal, measured spin/locking or permanent Orcus face.",
+          "Black sky/ring omission not atmosphere/ring absence. No foreground atmosphere/plume/liquid/exposed ocean/biology/survivable landing.",
+          "No global globe or shape produced; original/default PNG and full prompt retained. Masters/previews/observer view and additive integration pending.",
+          "NRAO ALMA image object has no explicit image credit found; generic institutional terms not asserted as proven image-specific ownership. Native remains separate research input."
+        ],
+        "validation": {
+          "testsPassed": 685,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "392f0ef",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15700100,
+          "headroomBytes": 299900,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "273a9d65375f98fc9b877c37e3a24ca57979e1dd9e92e155bc6782f732bc8fa2",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+        }
+      }
+    },
+    {
+      "path": "docs/research/vanth-sky-master-preparation-2026-10-18.json",
+      "bytes": 14528,
+      "sha256": "1b11af1b767ea7c0b973aad44cad93ae571cd758068d7bd3df3b39c9dd426c7c",
+      "record": {
+        "date": "2026-10-18",
+        "issue": 3,
+        "body": "Vanth, satellite of Orcus",
+        "status": "Independent built-in sky illustration and original-preserving master/preview preparation; no88th or embedding",
+        "sources": [
+          {
+            "path": "data/research-sources/vanth-generated-skyImage-original.png",
+            "bytes": 1700662,
+            "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+          },
+          {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-caeda8c8-ac8f-49ba-b4c7-bf9e7a4e07ad.png",
+            "bytes": 1700662,
+            "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+          },
+          {
+            "path": "data/research-sources/vanth-sky-featureless-prompt-2026-10-18.txt",
+            "bytes": 2304,
+            "sha256": "44ad6cc8e608a167666f02955b73998c0ffb0bbe17f96fcd396e3d3f19b9451a"
+          },
+          {
+            "path": "data/research-sources/vanth-generated-skyImage-rejected-moonlike-original.png",
+            "bytes": 1886752,
+            "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+          },
+          {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-67365573-4f06-431d-9dcf-3af5fd922808.png",
+            "bytes": 1886752,
+            "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+          },
+          {
+            "path": "data/research-sources/vanth-sky-prompt-2026-10-18.txt",
+            "bytes": 2079,
+            "sha256": "e3fa1c8597aca0573e6d75c1a3b7bbda9e58cb9dc2c49e195c3777c5860f5b0d"
+          },
+          {
+            "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+            "bytes": 2870475,
+            "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+          },
+          {
+            "path": "data/research-sources/vanth-generated-surfaceImage-master.jpg",
+            "bytes": 354903,
+            "sha256": "1ca13b5bc374dd22bec7b1cbe3687d95deb57e6563e43c929873acbaf0315e3e",
+            "dimensions": [
+              1535,
+              864
+            ],
+            "quality": 85
+          },
+          {
+            "path": "data/research-sources/vanth-generated-surfaceImage-preview.jpg",
+            "bytes": 10694,
+            "sha256": "b39f950f0c4324b81806a1259594bcbab367eda5f67d63e5bc902d39f077982b",
+            "dimensions": [
+              256,
+              144
+            ],
+            "quality": 80
+          },
+          {
+            "path": "data/research-sources/vanth-generated-skyImage-original.png",
+            "bytes": 1700662,
+            "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+          },
+          {
+            "path": "data/research-sources/vanth-generated-skyImage-master.jpg",
+            "bytes": 198381,
+            "sha256": "511db25b1ce236f1d9ee5aad5d595ac8490193ef9d2a978fa65b9e1e94f1a2df",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "quality": 85
+          },
+          {
+            "path": "data/research-sources/vanth-generated-skyImage-preview.jpg",
+            "bytes": 6804,
+            "sha256": "2c2771d68f099c3dcc1066ddb802da23673acab7511d78cb0a00935ac4609f73",
+            "dimensions": [
+              256,
+              144
+            ],
+            "quality": 80
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: Fidelity hypothetical observer view, independent wide 16:9 illustration. Create an imagined view from an arbitrary local site on Vanth, moon of Orcus: sparse subdued grey-brown granular ground, a few small irregular blocks and shallow low ridges beneath a black sky. No reference image or observed-body map. Put a small pale neutral-grey spherical Orcus high clear above the horizon near the horizontal centre, with an entirely featureless smooth pale-grey disk and a modest gibbous terminator; no recognizable lunar maria, ray craters, Pluto polygons, Charon chasm, or any other body's geology. The disk MUST be a completely smooth featureless educational sphere, with ZERO mottling, zero markings, zero craters, zero maria, zero geological patches, zero photographic surface texture. This is not an observed surface of Orcus. Do not render a miniature Moon. Geometry constraint computed with skyGeometry: assume primary radius455km, historical orbital scale9030km and moon spherical camera height221.5km, primary distance8808.5km. Angular diameter5.9218225068351655degrees; nominal90degree horizontal FOV at1672pixel width gives a complete globe about86.48pixels across (about5.17percent of picture width), exclude terrain occultation of globe. Use this as intended framing, not calibrated photometry or dated registration. Do not enlarge Orcus for drama. Alternative thermal moon height237.5km yields5.932608270423252degrees/86.64pixels, not a joint-fit confidence envelope. Terrain/materials/fractions/chemistry, Orcus smooth colour, phase/attitude, illumination and exposure are all invented. No claim of local measured composition, registered surface normal, synchronous spin, permanent Orcus-facing site or everywhere visibility. Off-frame sunlight, hard restrained shadows; no Sun disk, stars, spacecraft, person, structures, tracks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology or survivable landing implication. Black sky and omitted rings are assumptions, not absence evidence. Independent restrained educational realistic illustration. Add one dark bottom footer band with two large clearly readable exact lines: 'VANTH — IMAGINED SKY VIEW' and 'Terrain and Orcus appearance invented; geometry illustrative, not registered'.",
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-caeda8c8-ac8f-49ba-b4c7-bf9e7a4e07ad.png",
+          "bytes": 1700662,
+          "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+        },
+        "original": {
+          "path": "data/research-sources/vanth-generated-skyImage-original.png",
+          "bytes": 1700662,
+          "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+        },
+        "rejectedVariant": {
+          "original": {
+            "path": "data/research-sources/vanth-generated-skyImage-rejected-moonlike-original.png",
+            "bytes": 1886752,
+            "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+          },
+          "defaultOriginal": {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-67365573-4f06-431d-9dcf-3af5fd922808.png",
+            "bytes": 1886752,
+            "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+          },
+          "prompt": "Use case: scientific-educational. Asset type: Fidelity hypothetical observer view, independent wide 16:9 illustration. Create an imagined view from an arbitrary local site on Vanth, moon of Orcus: sparse subdued grey-brown granular ground, a few small irregular blocks and shallow low ridges beneath a black sky. No reference image or observed-body map. Put a small pale neutral-grey spherical Orcus high clear above the horizon near the horizontal centre, with a simple smooth subdued invented mottling and a modest gibbous terminator; no recognizable lunar maria, ray craters, Pluto polygons, Charon chasm, or any other body's geology. This is not an observed surface of Orcus. Geometry constraint computed with skyGeometry: assume primary radius455km, historical orbital scale9030km and moon spherical camera height221.5km, primary distance8808.5km. Angular diameter5.9218225068351655degrees; nominal90degree horizontal FOV at1672pixel width gives a complete globe about86.48pixels across (about5.17percent of picture width), exclude terrain occultation of globe. Use this as intended framing, not calibrated photometry or dated registration. Do not enlarge Orcus for drama. Alternative thermal moon height237.5km yields5.932608270423252degrees/86.64pixels, not a joint-fit confidence envelope. Terrain/materials/fractions/chemistry, Orcus pattern/colour, phase/attitude, illumination and exposure are all invented. No claim of local measured composition, registered surface normal, synchronous spin, permanent Orcus-facing site or everywhere visibility. Off-frame sunlight, hard restrained shadows; no Sun disk, stars, spacecraft, person, structures, tracks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology or survivable landing implication. Black sky and omitted rings are assumptions, not absence evidence. Independent restrained educational realistic illustration. Add one dark bottom footer band with two large clearly readable exact lines: 'VANTH — IMAGINED SKY VIEW' and 'Terrain and Orcus appearance invented; geometry illustrative, not registered'.",
+          "reason": "Moon-like primary pattern; not adopted. Both original copies preserved."
+        },
+        "files": [
+          {
+            "role": "surfaceImage",
+            "original": {
+              "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+              "bytes": 2870475,
+              "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+            },
+            "files": [
+              {
+                "path": "data/research-sources/vanth-generated-surfaceImage-master.jpg",
+                "bytes": 354903,
+                "sha256": "1ca13b5bc374dd22bec7b1cbe3687d95deb57e6563e43c929873acbaf0315e3e",
+                "dimensions": [
+                  1535,
+                  864
+                ],
+                "quality": 85
+              },
+              {
+                "path": "data/research-sources/vanth-generated-surfaceImage-preview.jpg",
+                "bytes": 10694,
+                "sha256": "b39f950f0c4324b81806a1259594bcbab367eda5f67d63e5bc902d39f077982b",
+                "dimensions": [
+                  256,
+                  144
+                ],
+                "quality": 80
+              }
+            ]
+          },
+          {
+            "role": "skyImage",
+            "original": {
+              "path": "data/research-sources/vanth-generated-skyImage-original.png",
+              "bytes": 1700662,
+              "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+            },
+            "files": [
+              {
+                "path": "data/research-sources/vanth-generated-skyImage-master.jpg",
+                "bytes": 198381,
+                "sha256": "511db25b1ce236f1d9ee5aad5d595ac8490193ef9d2a978fa65b9e1e94f1a2df",
+                "dimensions": [
+                  1536,
+                  864
+                ],
+                "quality": 85
+              },
+              {
+                "path": "data/research-sources/vanth-generated-skyImage-preview.jpg",
+                "bytes": 6804,
+                "sha256": "2c2771d68f099c3dcc1066ddb802da23673acab7511d78cb0a00935ac4609f73",
+                "dimensions": [
+                  256,
+                  144
+                ],
+                "quality": 80
+              }
+            ]
+          }
+        ],
+        "geometry": {
+          "status": "Preparation only; no generated image/catalogue/dossier adoption",
+          "sources": [
+            {
+              "path": "docs/research/vanth-sinfoni-orbit-assessment-2026-10-18.json",
+              "bytes": 4867,
+              "sha256": "81762030ab77b0f31551f1607216d2d79f5d52704538495115bfe2ee2ad593a5"
+            },
+            {
+              "path": "docs/research/vanth-occultation-assessment-2026-10-18.json",
+              "bytes": 5221,
+              "sha256": "8bda204ecefaa3e65f517e3423580a4a4479c3cb701c9c4410d84e96b1509ec3"
+            },
+            {
+              "path": "data/research-sources/vanth-2018-v1-sats_sub.tex",
+              "bytes": 38079,
+              "sha256": "dfd85d803af977a7f563970f71d01ab315789fe03168794ef0609e09f28fe28d"
+            }
+          ],
+          "geometry": {
+            "helper": "skyGeometry in src/astro/appearance.js",
+            "primaryRadiusKm": 455,
+            "primarySource": "BrownButler2018 model910(+50,-40)km diameter",
+            "nominalOrbitalScaleKm": 9030,
+            "orbitalSource": "Carry2011 historical9030±89km fit",
+            "horizontalFovDeg": 90,
+            "rasterWidth": 1672,
+            "alternatives": [
+              {
+                "label": "Occultation443km circular projected-limb assumption",
+                "heightKm": 221.5,
+                "distanceKm": 8808.5,
+                "angularDiameterDeg": 5.9218225068351655,
+                "centreDiscWidthPixels": 86.48203061062136
+              },
+              {
+                "label": "2018thermal475km model diameter",
+                "heightKm": 237.5,
+                "distanceKm": 8792.5,
+                "angularDiameterDeg": 5.932608270423252,
+                "centreDiscWidthPixels": 86.63982697468802
+              }
+            ],
+            "limits": "Cross-paper representative radial near-side camera, not joint fit, current dated distance, physical surface normal, uncertainty envelope, measured spin or permanent primary-facing location. 40K helper temperature only; colour/irradiance outputs discarded. Primary phase/attitude, exposure/spectral transfer, limb oblateness and site registration artistic/unverified. No analog map or local chemistry assigned."
+          }
+        },
+        "visualInspection": "Accepted full output plus both1536JPEG85masters and256JPEG80previews independently inspected. Featureless smooth grey Orcus above horizon; both master footer lines readable, small preview annotations require card labels. No raster diameter adopted, generated framing remains uncalibrated. Initial diagnostic contact sheet clipped footers due to row sizing; actual individual files were inspected and preserve complete footer bands.",
+        "limits": [
+          "Terrain/blocks/grains/materials/chemistry/colour/phase/light/exposure invented, no observed analog map or Orcus geography.",
+          "Historical9030km orbital scale,2018primary455km radius and443/475km moon model heights are cross-paper representative geometry, not joint fit/date/local normal/envelope.",
+          "No measured spin, permanent Orcus-facing site, atmosphere/ring absence, plume/liquid/ocean/biology/survivable landing claim.",
+          "40K angular helper only; colour/irradiance discarded. No native image transformed or embedded.",
+          "Original/default PNG/fullprompts including rejected variant preserved. Small preview footers require explicit IMAGINED card labels."
+        ],
+        "validation": {
+          "testsPassed": 685,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "nativeCardsExactBytesAndMime": 77,
+          "baseline": "f2f64e8",
+          "unchangedQueueEntriesDeepEqual": 569,
+          "queueEntries": 569,
+          "dossiersUnchanged": 87,
+          "trackedPublicByteEqual": 656,
+          "sourceHashesChecked": 19,
+          "generatedFilesChecked": 6,
+          "generatedDefaultOriginalsChecked": 2,
+          "rejectedVariantCopiesChecked": 2,
+          "htmlBytes": 15700100,
+          "headroomBytes": 299900,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "273a9d65375f98fc9b877c37e3a24ca57979e1dd9e92e155bc6782f732bc8fa2",
+          "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+          "applicationUnchanged": true,
+          "freshBrowserClaim": false,
+          "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/vanth-2018-native-terms-preparation-2026-10-18.json",
+      "bytes": 3652,
+      "sha256": "92c6f9091e78edbbd8870a03d97ca363e22a8f42abc06b2df16901bb6f1b1652",
+      "record": {
+        "status": "preparation only; no new embedding",
+        "sources": [
+          {
+            "url": "https://public.nrao.edu/media-use/",
+            "finalUrl": "https://public.nrao.edu/media-resources/",
+            "path": "data/research-sources/vanth-nrao-media-use.response",
+            "bytes": 61891,
+            "sha256": "65fc024684199153201461a1c234f5201717e21bbec857c917b22770eb8025b5",
+            "contentType": "text/html; charset=UTF-8"
+          },
+          {
+            "url": "https://arxiv.org/src/1801.07221v1",
+            "finalUrl": "https://arxiv.org/src/1801.07221v1",
+            "path": "data/research-sources/vanth-2018-v1-source.response",
+            "bytes": 988058,
+            "sha256": "366c68e3793529ece05de2d4c1e7a7b3b49a7f2813afcafb7d059a3a82e3c064",
+            "contentType": "application/gzip"
+          },
+          {
+            "path": "data/research-sources/vanth-2018-v1-sats_sub.tex",
+            "bytes": 38079,
+            "sha256": "dfd85d803af977a7f563970f71d01ab315789fe03168794ef0609e09f28fe28d",
+            "role": "unmodified extracted TeX"
+          },
+          {
+            "url": "https://arxiv.org/abs/1801.07221v1",
+            "finalUrl": "https://arxiv.org/abs/1801.07221v1",
+            "path": "data/research-sources/vanth-2018-v1-record.response",
+            "bytes": 41039,
+            "sha256": "0f88c8b0deb320d42a0317a81a3f8b926c4ec6d4a10e7855ba4d1591a91ae541",
+            "contentType": "text/html; charset=utf-8"
+          }
+        ],
+        "targetedOriginalTexAudit": {
+          "authors": [
+            "Michael E. Brown",
+            "Bryan J. Butler"
+          ],
+          "observationsUTC": [
+            "2016-10-11 11:02–12:16",
+            "2016-10-13 09:54–11:08",
+            "2016-10-15 11:54–12:59",
+            "2016-11-07 09:30–10:40"
+          ],
+          "instrument": "ALMA12m array Band7 TDM dual-linear combinedStokesI, effective345GHz; spectral windows335.5–337.5/337.5–339.5/347.5–349.5/349.5–351.5GHz. CASA pipeline then AIPS, natural weighting sacrifices resolution for sensitivity. Not independently reprocessed.",
+          "nativeAssociation": "NRAO four labels/caption agree with Figure1 and Table1 dates; exact publisher JPEG versus author figure pixel identity and raw visibility IDs not established.",
+          "thermal": "Vanth475±75km/albedo.08±.02 median16/84percentiles from thermal model: bolometricemissivity.8–1,phaseintegral empirical50percent variation,850micronemissivityassumed.685; unresolved Spitzer/Herschel + separated ALMA fluxes, independent component parameters. Not axes/localnormal/chemistry/calibrated visiblecolour.",
+          "rights": "NRAO current media-use redirects media-resources: NRAO-produced images under statedCCBY4 with visible credit and third-party ownership caveat. Image-specific full credit/author figure rights crosswalk remains open; not blanket arXiv/raw licence.",
+          "limits": [
+            "No native integration, newdossier, catalogue or codec adoption.",
+            "No new angular/raster calculation;200mas is publisher caption value.",
+            "Paper final/version and raw image/credit crosswalk pending."
+          ],
+          "phaseReference": "2018paper uses published2010/2011 Vanth elements plus11degree mean-anomaly increase. Not a full updated Vanth orbital table; Table3 belongs to Dysnomia and must not be assigned to Vanth. Distinct2023phaseoffset.2±1.7/prose4.3 remain unharmonized reference conventions.",
+          "fluxCorrection": "Final Table1 fluxes include Earth-atmosphere decorrelation correction inferred from self-calibrated astrometric check source; potentially large for Orcus visits. Point-source visibility fits except Eris disk; no resolved Vanth limb or geography.",
+          "licenceRecord": "2018v1 record explicitly nonexclusive-distrib/1.0, notCCBY; distinct from NRAO media policy and2023paperCCBY4."
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/vanth-nrao-native-preparation-2026-10-18.json",
+      "bytes": 3570,
+      "sha256": "9c1b403e360d0f62cd51dbdef19aefe21d39735c5ad4a2bac5e94776348a32ef",
+      "record": {
+        "date": "2026-10-18",
+        "status": "preparation only; no image embedding",
+        "source": {
+          "url": "https://science.nrao.edu/science/highlights/2018/kuiper-belt-objects-their-moons",
+          "finalUrl": "https://science.nrao.edu/science/highlights/2018/kuiper-belt-objects-their-moons",
+          "path": "data/research-sources/vanth-nrao-2018-native-preparation.html",
+          "bytes": 31750,
+          "sha256": "c1951965ae529cb7f5e6343bee4e97ef1f5e2662671a04bc2ea4c474c572d829",
+          "contentType": "text/html;charset=utf-8"
+        },
+        "imageLinks": [
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon.png",
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon-144x144-precomposed.png",
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon-114x114-precomposed.png",
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon-72x72-precomposed.png",
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon-57x57-precomposed.png",
+          "/++theme++barceloneta-nrao/barceloneta-apple-touch-icon-precomposed.png",
+          "https://science.nrao.edu/@@site-logo/headergraphic_v3.png",
+          "https://science.nrao.edu/science/highlights/images/2018/kuiper_belt.jpg",
+          "https://science.nrao.edu/science/highlights/images/2018/kuiper_belt.jpg/@@images/fc3078b5-b075-41fa-9d6f-897156fa60c9.jpeg",
+          "/++theme++barceloneta-nrao/assets/graphics/logoNRAO.png",
+          "/++theme++barceloneta-nrao/assets/graphics/logoAUI.png",
+          "/++theme++barceloneta-nrao/assets/graphics/swoosh-pale.png"
+        ],
+        "limits": [
+          "ALMA radio panel, predicted-position circles and200mas publisher ticks are not resolved terrain or visible colour.",
+          "Publication2018 is not assumed acquisition date;2016 visit/product crosswalk requires primary verification.",
+          "NRAO institutional attribution and image-specific reuse terms pending.",
+          "Do not use nearby scale-comparison analog skins."
+        ],
+        "native": {
+          "url": "https://science.nrao.edu/science/highlights/images/2018/kuiper_belt.jpg",
+          "path": "data/research-sources/vanth-nrao-2018-alma-original.jpg",
+          "bytes": 326322,
+          "sha256": "ea815309b3b4949d7a6479773d62a890f18637115caffa6cd8d41bb32bebc54b",
+          "contentType": "image/jpeg",
+          "transformation": "none; downloaded unchanged; not embedded"
+        },
+        "visualInspection": {
+          "dimensions": [
+            800,
+            797
+          ],
+          "mode": "RGB",
+          "observed": "Four false-colour panels labelled11Oct,13Oct,15Oct,7Nov; broad primary peak and weaker satellite peak, white location/orbit graphics and tickmarks. Last panel broader/blended.",
+          "limits": "No year printed in panel; associate2016 only after primary publication/product crosscheck. Purple/green/yellow are display transfer, circles not measured limb or surface. No new angular/raster computation."
+        },
+        "objectPage": {
+          "url": "https://science.nrao.edu/science/highlights/images/2018/kuiper_belt.jpg/view",
+          "path": "data/research-sources/vanth-nrao-image-object.response",
+          "bytes": 29854,
+          "sha256": "fb0b31f306c3c96bbaee267ff96fdffefb21d0f107abc8d25d890fe862e32284",
+          "finding": "HTTP200 actual image-object HTML has empty description/alt/title and no explicit image credit found; no image-specific licence proven. Generic NRAO policy applies to NRAO-produced images, not automatically author-paper figure ownership."
+        },
+        "crosswalk": "Primary BrownButler2018 Table1 agrees four labels2016Oct11/13/15/Nov7; year not printed in JPEG, exact author-figure pixel/raw visibility identity open. Source primary ALMA partnership credit should be retained independently of ownership."
+      }
+    }
+  ]
+}
