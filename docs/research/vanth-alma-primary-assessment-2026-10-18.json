@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-18",
+  "issue": 3,
+  "body": "Vanth, distinct satellite of Orcus",
+  "status": "Research-only primary methods/Table2 audit; no88th dossier,catalogue,image,map,model,shape or codec adoption",
+  "authors": [
+    "Michael E. Brown",
+    "Bryan J. Butler"
+  ],
+  "title": "Masses and densities of dwarf planet satellites measured with ALMA",
+  "version": "2307.04848v1; submitted2023-07-10, distinct from observation epochs",
+  "sources": [
+    {
+      "path": "data/research-sources/vanth-2023-v1-full.html",
+      "url": "https://arxiv.org/html/2307.04848v1",
+      "bytes": 109379,
+      "sha256": "26cef52497cc7f3f53564bb0d2bbb0e27ac3d5794948fac74945335194ae5d41",
+      "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+    },
+    {
+      "path": "data/research-sources/vanth-2023-v1-record.html",
+      "url": "https://arxiv.org/abs/2307.04848v1",
+      "bytes": 41980,
+      "sha256": "1a25bc65df4c91db711a80d2f796f55257d891eff97cd7cad505a1eea25f7060",
+      "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-v1.pdf",
+      "url": "https://arxiv.org/pdf/2307.04848v1",
+      "bytes": 540344,
+      "sha256": "595449a04ec2fabaff72f523902aa027a22c741dd8d7a225e40975a139201222",
+      "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+    },
+    {
+      "path": "data/research-sources/dysnomia-Brown2023-published.pdf",
+      "url": "https://doi.org/10.3847/PSJ/ace52a",
+      "bytes": 545021,
+      "sha256": "56b8b51756cb235332fcada4221156426c005246fe12d6201778098960f410a4",
+      "access": "New directHTML HTTP200 for first source; other files retained unchanged from earlier research. PDFs not newly read in this HTML-targeted audit."
+    }
+  ],
+  "rights": "Specific arXiv record CC BY4.0, distinct from nonexclusive arXiv papers. Published original-content notice retained by earlier audit; not blanket permission for raw/native/third-party images. No figure embedded.",
+  "assessed": "Full retained primary HTML targeted observations/error method,II.1,Table2,III discussion and acknowledgements. No raw visibility reduction,posterior reproduction,Table1 per-product/date crosswalk or new PDF visual audit. Plaintext extraction is a search derivative; mathematical HTML/alttext authoritative because naive tag stripping can lose less-than expressions.",
+  "methods": [
+    "Four Orcus/Vanth ALMA visits in Oct/Nov2016, separate from2015 Eris/Dysnomia visits and2018 Dysnomia followup. BB18 contains detailed flux reduction,not independently reproduced here.",
+    "Two point-source fits to interferometric visibilities with Gaussian initial positions; formal fitting,visibility-versus-image systematic and celestial frame terms combined in quadrature. Primary calibratorJ1048-1909; checkJ1022-1037/J0942-0759 averageoffset for Orcus/Vanth. These do not establish calibrated visible colour or local chemistry.",
+    "Oct13 conditions and Nov7 compact antenna configuration yield larger errors; observing-date labels lack independently audited rawUTC/product associations. No error correction or pixel registration transferred to app.",
+    "Six parameters: orbital phase correction,mass ratio,two constant system ephemeris offsets,two optical-versus-thermal primary photocentre offsets. Remaining orbital parameters inherited BB18,not independently constrained by these data.100000post-burn-in emcee samples;15.9/84.1percentile uncertainties. No chain/code reproduced."
+  ],
+  "table2": {
+    "ratioVanthToOrcus": {
+      "median": 0.16,
+      "lowerDeviation": 0.01,
+      "upperDeviation": 0.02,
+      "type": "astrometric-model fit,not local material measurement"
+    },
+    "ephemerisOffsetMas": {
+      "RA": [
+        15,
+        4
+      ],
+      "dec": [
+        3,
+        5
+      ]
+    },
+    "phaseOffsetDeg": [
+      0.2,
+      1.7
+    ],
+    "primaryPhotocentreOffsetsMas": {
+      "x": [
+        1,
+        4
+      ],
+      "y": [
+        1,
+        4
+      ]
+    },
+    "derivedVanthMassKg": [
+      8.7e+19,
+      8e+18
+    ],
+    "derivedVanthDensityGcm3": {
+      "median": 1.5,
+      "lowerDeviation": 0.5,
+      "upperDeviation": 1.0
+    },
+    "updatedMeanAnomalyDeg": [
+      54.2,
+      1.7
+    ],
+    "definedEpochJd": 2457699.93569,
+    "epochLimit": "Time standard not established here; remaining full orbit/frame/covariance crosswalk not audited. Not current phase."
+  },
+  "alternativesAndLimits": [
+    "Prose reports symmetric ratio.16\u00b1.02 and13.7\u00b11.3percent system mass; Table2 reports asymmetric.16(-.01,+.02). Preserve both uncertainty presentations.",
+    "Prose optical/thermal primary offset2\u00b13mas in both directions versus Table2x/y1\u00b14mas; cause/convention remains open,not silently reconciled.",
+    "Prose says phase advanced4.3deg versus Table2 fitted phaseoffset.2\u00b11.7deg. Reference/convention crosswalk remains open; no catalogue phase update.",
+    "Authors report10sigma barycentric-motion detection and reducedchi-square.95. This is not independent raw astrometric reproduction or confirmation of resolved terrain.",
+    "Derived densities use system mass6.32e20kg and adopted thermal diametersOrcus910(+50,-40),Vanth475\u00b175km. Separate occultation443\u00b110km assumes spherical shape; no ellipsoid/local normal or unified posterior inferred. Broad Vanth density may change with refinement; no local ice/rock fractions or chemistry assigned.",
+    "Near-pole-on primary inference follows low primary lightcurve/photocentre offset/orbital view,not a measured Vanth spin pole. Giant-impact intact-impactor and likely double-synchronous evolution are model interpretations,not directly observed origin/history or independently measured moon spin/permanent primary-facing site.",
+    "Small satellites of comparable fractional brightness to Pluto small moons would be below cited searches; apparent absence is not an exhaustive companion exclusion. Pluto/Charon comparisons do not authorize analog skins.",
+    "Do not transfer same-paper Dysnomia/Eris mass,diameter,thermal flux,emissivity or density constraints to Vanth/Orcus. No atmosphere/plume/liquid/ocean/biology/landing claim or angular/raster calculation."
+  ],
+  "dataAcknowledgement": "ADS/JAO.ALMA#2018.1.00929.S,#2015.1.00810.S,#2016.1.00830.S are listed collectively; exact visit-to-project/raw-product crosswalk remains open. ALMA partnership ESO(member states),NSF(USA),NINS(Japan),NRC(Canada),MOST/ASIAA(Taiwan),KASI(Korea),Republic of Chile; JAO operated ESO,AUI/NRAO,NAOJ; NRAO NSF facility operated under agreement by Associated Universities,Inc.",
+  "open": [
+    "Body-specific native imagery/caption/terms/filter/rawUTC/credit association.",
+    "BB18 full Vanth thermal assumptions/orbit/frame/epoch and occultation/later rotation primary audits.",
+    "Published-versus-v1 Vanth table/prose conflict crosswalk,raw visibilities/calibrators/posteriors and current ephemeris.",
+    "Independent observer/local illustrations require body-specific source constraints and skyGeometry; none generated."
+  ],
+  "preservation": "All87 dossiers/originals/native/master/map/model/shape/provenance unchanged. Vanth remains queued withoutbodyId/visualId. BacklogACTIVE.",
+  "validation": {
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "c92b9f6",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15702148,
+    "headroomBytes": 297852,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "2ad14955c830fb3e4a61df338ca4ee19d5dedc8de497059704b062298e4e6d91",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim.",
+    "tests": {
+      "pass": 685,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "vanthSourceHashesChecked": 4,
+    "scienceInputsUnchanged": true,
+    "noNewDossierOrEmbedding": true
+  }
+}
