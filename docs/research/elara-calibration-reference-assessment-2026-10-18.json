@@ -1,0 +1,2662 @@
+{
+  "status": "Research-only calibration reference audit; original source identity and storage checked, calibration pipeline not reproduced.",
+  "body": "Elara / Jupiter VII / NAIF 507",
+  "inputs": [
+    {
+      "path": "data/research-sources/elara-pds4-calibration-context-preparation-2026-10-18.json",
+      "bytes": 1558,
+      "sha256": "cf0b57397c65ae3a54a00a660be98325ed02cab54ecf2f720d172fc9000beed2"
+    },
+    {
+      "path": "data/research-sources/elara-pds4-calibration-dependency-preparation-2026-10-18.json",
+      "bytes": 18315,
+      "sha256": "a3fa7b5a080b99820581a729d20e253d04abc0ac380cd2c12b5e62426eb9b458"
+    },
+    {
+      "path": "data/research-sources/elara-pds4-calibration-membership-preparation-2026-10-18.json",
+      "bytes": 3242,
+      "sha256": "8520b1fb68c9f7f0ece62ac2144d96e65c36b9973121a80402650f90b1bcbb69"
+    },
+    {
+      "path": "data/research-sources/elara-pds4-calibration-label-preparation-2026-10-18.json",
+      "bytes": 41667,
+      "sha256": "776014422210590fd87b82eb25ab2fbcea0068f66483aa9c5e2542f0e15e7051"
+    },
+    {
+      "path": "data/research-sources/elara-calibration-source-checkpoint-preparation-2026-10-18.json",
+      "bytes": 4413,
+      "sha256": "e84034e03aef2cdff5336c31c738503b61afde21e3dba532c2acb57f96f02284"
+    },
+    {
+      "path": "data/research-sources/elara-calibration-storage-recheck-preparation-2026-10-18.py",
+      "bytes": 3991,
+      "sha256": "cc7355388dde04a24bffa9d6d7ef340a63980719173b2faab14e893541ac9048"
+    },
+    {
+      "path": "data/research-sources/elara-calibration-storage-recheck-preparation-2026-10-18.json",
+      "bytes": 3933,
+      "sha256": "d47a633f609a5daa6910ca3b1201297fde3c1bb2619d076d63059f4c4140e89e"
+    },
+    {
+      "path": "data/research-sources/elara-calibration-attribution-chronology-preparation-2026-10-18.json",
+      "bytes": 21323,
+      "sha256": "fdb929fd0f4c18b63c3dddd7a67e4052fbab3694ae4288f158d820edbc577686"
+    },
+    {
+      "path": "data/research-sources/elara-pds-timing-erratum-preparation-2026-10-18.json",
+      "bytes": 3433,
+      "sha256": "8feeba6fc63a55d9eaedf55d5b726c635cf1005d26cd0ce47302ef7028bb0584"
+    }
+  ],
+  "originalReferences": [
+    {
+      "name": "sap_006_combined_100img_1x1",
+      "path": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.fit",
+      "bytes": 8415360,
+      "sha256": "234aa22cf273de5df16af8b3e717435c339f2bf46c9958f3df70f0dd80f5c078",
+      "publisherMD5": "14fedd2477ecc8803c126f656d56fb7c",
+      "publisherMD5Verified": true,
+      "labelPath": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.lblx",
+      "labelSHA256": "c3b23438bfd5ebccb5817166a69dcd5d9e6badbba988d59c7d3c8fd3ec31f04a",
+      "logicalIdentifier": "urn:nasa:pds:nh_lorri:calibration_files:sap_006_combined_100img_1x1",
+      "versionId": "1.0"
+    },
+    {
+      "name": "dead_ground_1x1_synthetic",
+      "path": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.fit",
+      "bytes": 1054080,
+      "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2",
+      "publisherMD5": "d4845568533c80053688c58acf321fdf",
+      "publisherMD5Verified": true,
+      "labelPath": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.lblx",
+      "labelSHA256": "723d303fe0f61f30e511d29f52fed70e512d8d33f2a92bb9499c4c0bb630a115",
+      "logicalIdentifier": "urn:nasa:pds:nh_lorri:calibration_files:dead_ground_1x1_synthetic",
+      "versionId": "1.0"
+    },
+    {
+      "name": "hot_ground_1x1_synthetic",
+      "path": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.fit",
+      "bytes": 1054080,
+      "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2",
+      "publisherMD5": "d4845568533c80053688c58acf321fdf",
+      "publisherMD5Verified": true,
+      "labelPath": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.lblx",
+      "labelSHA256": "f831eea271dfdd90b6d10332b1ff968fdfa347f057c4d14825eff5f720ca4c30",
+      "logicalIdentifier": "urn:nasa:pds:nh_lorri:calibration_files:hot_ground_1x1_synthetic",
+      "versionId": "1.0"
+    },
+    {
+      "name": "cflat_grnd_sfa_20050309_v2",
+      "path": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.fit",
+      "bytes": 8395200,
+      "sha256": "00ea482514a5afa6becd2692f5150bafd440708b6e068f2af0c533bde89070db",
+      "publisherMD5": "f358b4556e6db339ad350985edd7b226",
+      "publisherMD5Verified": true,
+      "labelPath": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.lblx",
+      "labelSHA256": "74bab52882013f067fae81e03cf6a19927e54535891269d67f110edaa11f2022",
+      "logicalIdentifier": "urn:nasa:pds:nh_lorri:calibration_files:cflat_grnd_sfa_20050309_v2",
+      "versionId": "1.0"
+    },
+    {
+      "name": "dsmear_ematrix_1024",
+      "path": "data/research-sources/elara-calibration-dsmear_ematrix_1024.fit",
+      "bytes": 8392320,
+      "sha256": "2381acccf92774fd0ad30158f9834f1cfa33c9d55dadc26ba068ef29528a1807",
+      "publisherMD5": "1062783126066baed04082a38dc7c712",
+      "publisherMD5Verified": true,
+      "labelPath": "data/research-sources/elara-calibration-dsmear_ematrix_1024.lblx",
+      "labelSHA256": "0bcf6735bdc3673cac7de0e6dd5fb4657efa7700ce0f7ed952570d1fbf7cd463",
+      "logicalIdentifier": "urn:nasa:pds:nh_lorri:calibration_files:dsmear_ematrix_1024",
+      "versionId": "1.0"
+    }
+  ],
+  "storageResults": [
+    {
+      "name": "sap_006_combined_100img_1x1",
+      "sha256": "234aa22cf273de5df16af8b3e717435c339f2bf46c9958f3df70f0dd80f5c078",
+      "dataOffset": 25920,
+      "bitpix": -64,
+      "shape": [
+        1024,
+        1024
+      ],
+      "pds4OffsetShapeTypeAndChecksumMatch": true,
+      "pds4DataType": "IEEE754MSBDouble",
+      "finiteSamples": 1048576,
+      "minimum": -1.27,
+      "maximum": 1.505050505050505,
+      "exactZeroSamples": 25272,
+      "trailingBytes": 832
+    },
+    {
+      "name": "dead_ground_1x1_synthetic",
+      "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2",
+      "dataOffset": 2880,
+      "bitpix": 8,
+      "shape": [
+        1024,
+        1024
+      ],
+      "pds4OffsetShapeTypeAndChecksumMatch": true,
+      "pds4DataType": "UnsignedByte",
+      "finiteSamples": 1048576,
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "exactZeroSamples": 1048576,
+      "trailingBytes": 2624
+    },
+    {
+      "name": "hot_ground_1x1_synthetic",
+      "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2",
+      "dataOffset": 2880,
+      "bitpix": 8,
+      "shape": [
+        1024,
+        1024
+      ],
+      "pds4OffsetShapeTypeAndChecksumMatch": true,
+      "pds4DataType": "UnsignedByte",
+      "finiteSamples": 1048576,
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "exactZeroSamples": 1048576,
+      "trailingBytes": 2624
+    },
+    {
+      "name": "cflat_grnd_sfa_20050309_v2",
+      "sha256": "00ea482514a5afa6becd2692f5150bafd440708b6e068f2af0c533bde89070db",
+      "dataOffset": 5760,
+      "bitpix": -64,
+      "shape": [
+        1024,
+        1024
+      ],
+      "pds4OffsetShapeTypeAndChecksumMatch": true,
+      "pds4DataType": "IEEE754MSBDouble",
+      "finiteSamples": 1048576,
+      "minimum": 0.1628021382005622,
+      "maximum": 1.046151156012269,
+      "exactZeroSamples": 0,
+      "trailingBytes": 832
+    },
+    {
+      "name": "dsmear_ematrix_1024",
+      "sha256": "2381acccf92774fd0ad30158f9834f1cfa33c9d55dadc26ba068ef29528a1807",
+      "dataOffset": 2880,
+      "bitpix": -64,
+      "shape": [
+        1024,
+        1024
+      ],
+      "pds4OffsetShapeTypeAndChecksumMatch": true,
+      "pds4DataType": "IEEE754MSBDouble",
+      "finiteSamples": 1048576,
+      "minimum": 0.956,
+      "maximum": 1.044,
+      "exactZeroSamples": 0,
+      "trailingBytes": 832,
+      "storedTriangleCounts": {
+        "diagonal": 1024,
+        "rowLessThanColumn": 523776,
+        "rowGreaterThanColumn": 523776
+      }
+    }
+  ],
+  "findings": [
+    "Both retained PDS4 science labels reference the same five exact calibration LIDVIDs, each occurring once as a primary collection member.",
+    "All five unchanged FITS files match publisher byte counts and MD5; retained SHA256 hashes identify originals and labels. Total original file bytes: 27311040.",
+    "Manual FITS header alignment, PDS4 offsets, ordered dimensions, storage types and checksums agree for all five references. These are storage checks, not calibration reproduction.",
+    "Both synthetic detector masks contain only zeros; this is placeholder content, not evidence that the CCD had no physical defects.",
+    "Bias reference is described as combined in-flight zero-exposure data; flat reference is described as prelaunch integrating-sphere data. Migration editors are separate from unknown original attribution.",
+    "Desmear matrix unit diagonal and constant stored triangles do not validate SOC timing-ratio interpretation or pipeline orientation."
+  ],
+  "limits": [
+    "Downloaded files match publisher size and MD5; checksums identify bytes and do not independently establish calibration accuracy or original processing/load precedence.",
+    "Dead/hot references are synthetic all-zero placeholders, not measured absence of detector defects.",
+    "Bias is an in-flight zero-exposure reference; flatfield is prelaunch integrating-sphere calibration. Their dates are not Elara observation dates.",
+    "Desmear matrix stored values and row/column orientation are storage diagnostics; timing ratios and pipeline implementation remain unvalidated.",
+    "PDS3/PDS4 science-quality semantics conflict remains unresolved. No science masking, subtraction, division, resampling, uncertainty validation, target identification, photometric calibration or registration adoption.",
+    "Earlier PDS3/PDS4 quality-bit definition conflict and timing-erratum applicability remain open. No corrective processing or automatic reference substitution.",
+    "No new angular or raster-scale calculation, science-image transformation, preview, embedding, catalogue, model, shape or runtime change.",
+    "Node inverse verification is separate from browser verification; no fresh browser or compression-savings claim."
+  ],
+  "verification": {
+    "status": "Passed",
+    "prepublicationCorrection": "Preservation audit caught a stale hash for the regenerated research-only storage result after the formal reproducer inherited expanded limitations. Refreshed that diagnostic hash; original calibration and label hashes unchanged.",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 104,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "3d98699",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15993082,
+      "headroomBytes": 6918,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "07f4950fde2a3c61fcb5d3d2c7399304a60a45262a3f5cd1963e70bcd9915125",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "tests": {
+      "pass": 692,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "Passed",
+    "fullBuild": "Passed",
+    "interbuildLimit": "Live feed differences unaudited; no attributed compression savings or fresh browser claim."
+  },
+  "collectionContext": {
+    "sources": [
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/overview.txt",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/overview.txt",
+        "status": 200,
+        "contentType": "text/plain; charset=UTF-8",
+        "path": "data/research-sources/elara-pds4-calibration-overview.txt",
+        "bytes": 1669,
+        "sha256": "a09be8784d8503675154a7aa1b82379cf8a651cbe2574ab42089ec48ddc96433"
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/collection.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/collection.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-pds4-calibration-collection.lblx",
+        "bytes": 6237,
+        "sha256": "beae9f2393db68643d1d373c4d80b2457715a60f815cf2de007d2d748d092972"
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/inventory.csv",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/inventory.csv",
+        "status": 200,
+        "contentType": "text/csv",
+        "path": "data/research-sources/elara-pds4-calibration-inventory.csv",
+        "bytes": 1432,
+        "sha256": "01eea870bc2952c8bdb6de168051cc2870990d866396b65e94e4beb9395dee72"
+      }
+    ],
+    "status": "Research preparation only. No calibration FITS files downloaded, pipeline reproduced or production assets changed."
+  },
+  "membership": {
+    "status": "Quiet research preparation only; exact reference membership crosswalk, not fetched calibration-file identity or reproduced pipeline.",
+    "inventoryMemberCount": 20,
+    "products": [
+      {
+        "productLabel": "data/research-sources/elara-pds4-lor_0035398319_0x630_sci.lblx",
+        "sha256": "66cfd08ce2c1c139e81f1057c4c7504852af1b73738f1e2eb27e7e4ba9443abd",
+        "references": [
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:sap_006_combined_100img_1x1::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:dead_ground_1x1_synthetic::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:hot_ground_1x1_synthetic::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:cflat_grnd_sfa_20050309_v2::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:dsmear_ematrix_1024::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          }
+        ]
+      },
+      {
+        "productLabel": "data/research-sources/elara-pds4-lor_0035398320_0x630_sci.lblx",
+        "sha256": "23cc383c6ce6475ab7da8d95993f9d6a3e730c81fe3805a900da08363b6ca782",
+        "references": [
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:sap_006_combined_100img_1x1::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:dead_ground_1x1_synthetic::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:hot_ground_1x1_synthetic::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:cflat_grnd_sfa_20050309_v2::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          },
+          {
+            "lidvid": "urn:nasa:pds:nh_lorri:calibration_files:dsmear_ematrix_1024::1.0",
+            "exactPrimaryInventoryOccurrences": 1
+          }
+        ]
+      }
+    ],
+    "publisherOverviewFindings": [
+      "Ancillary files are not LORRI observations; they include ground/literature-derived flat fields, masks, bias images and response curves.",
+      "Superseded processing references are archived as distinct products, not earlier versions of a common product; applicability to older processed data remains. Do not substitute a newer file into these products silently.",
+      "Overview says no attribution was provided in PDS3 calibration data and migration editors are credited. No inferred original calibration-file author attribution.",
+      "PDS3 labels were not retained in this migrated collection; publisher points to NSSDCA archival PDS3 copies. This does not negate already-retained PDS3 science-product labels."
+    ],
+    "limits": "No calibration FITS fetched, no pixel correction, missing-data mask, timing correction, licence grant, current calibration or full schema validation established. All delivered assets and production code remain unchanged."
+  },
+  "labelMetadata": {
+    "status": "Quiet preparation: five unchanged publisher XML labels only, no calibration FITS bytes downloaded or pipeline reproduced.",
+    "sources": [
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/cflat_grnd_sfa_20050309_v2.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/cflat_grnd_sfa_20050309_v2.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.lblx",
+        "bytes": 6448,
+        "sha256": "74bab52882013f067fae81e03cf6a19927e54535891269d67f110edaa11f2022",
+        "fields": [
+          {
+            "element": "logical_identifier",
+            "text": "urn:nasa:pds:nh_lorri:calibration_files:cflat_grnd_sfa_20050309_v2",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "title",
+            "text": "New Horizons LORRI 1x1 Ground-based Flat Field",
+            "attributes": {}
+          },
+          {
+            "element": "information_model_version",
+            "text": "1.19.0.0",
+            "attributes": {}
+          },
+          {
+            "element": "product_class",
+            "text": "Product_Ancillary",
+            "attributes": {}
+          },
+          {
+            "element": "editor_list",
+            "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+            "attributes": {}
+          },
+          {
+            "element": "publication_year",
+            "text": "2024",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 ground-based flat for correction of pixel-to-pixel sensitivity    \n                variation; generated from pre-launch ground-based images of an integrating    \n                sphere.",
+            "attributes": {}
+          },
+          {
+            "element": "modification_date",
+            "text": "2024-06-22",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Migrated from the PDS3 product.",
+            "attributes": {}
+          },
+          {
+            "element": "purpose",
+            "text": "Calibration",
+            "attributes": {}
+          },
+          {
+            "element": "processing_level",
+            "text": "Derived",
+            "attributes": {}
+          },
+          {
+            "element": "wavelength_range",
+            "text": "Visible",
+            "attributes": {}
+          },
+          {
+            "element": "discipline_name",
+            "text": "Imaging",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons Kuiper Belt Extended Mission 1",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons_kem1",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Host",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument_host:spacecraft.nh",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument_host",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "Long Range Reconnaissance Imager",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Instrument",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument:nh.lorri",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier_reference",
+            "text": "cflat",
+            "attributes": {}
+          },
+          {
+            "element": "local_reference_type",
+            "text": "imaging_parameters_to_image_object",
+            "attributes": {}
+          },
+          {
+            "element": "processing_venue",
+            "text": "Onboard Hardware",
+            "attributes": {}
+          },
+          {
+            "element": "processing_algorithm",
+            "text": "Summation/Binning",
+            "attributes": {}
+          },
+          {
+            "element": "height_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "width_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "Reference_List",
+            "text": "",
+            "attributes": {}
+          },
+          {
+            "element": "file_name",
+            "text": "cflat_grnd_sfa_20050309_v2.fit",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "data_file",
+            "attributes": {}
+          },
+          {
+            "element": "creation_date_time",
+            "text": "2005-03-09T00:00:00Z",
+            "attributes": {}
+          },
+          {
+            "element": "file_size",
+            "text": "8395200",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "md5_checksum",
+            "text": "f358b4556e6db339ad350985edd7b226",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "0",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "object_length",
+            "text": "5760",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "parsing_standard_id",
+            "text": "FITS 4.0",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "PRIMARY",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "cflat",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "5760",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "axes",
+            "text": "2",
+            "attributes": {}
+          },
+          {
+            "element": "axis_index_order",
+            "text": "Last Index Fastest",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 ground-based flat for correction of pixel-to-pixel sensitivity    \n                variation; generated from pre-launch ground-based images of an integrating    \n                sphere.",
+            "attributes": {}
+          },
+          {
+            "element": "data_type",
+            "text": "IEEE754MSBDouble",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Line",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "1",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Sample",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "2",
+            "attributes": {}
+          }
+        ]
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/dead_ground_1x1_synthetic.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/dead_ground_1x1_synthetic.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.lblx",
+        "bytes": 6257,
+        "sha256": "723d303fe0f61f30e511d29f52fed70e512d8d33f2a92bb9499c4c0bb630a115",
+        "fields": [
+          {
+            "element": "logical_identifier",
+            "text": "urn:nasa:pds:nh_lorri:calibration_files:dead_ground_1x1_synthetic",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "title",
+            "text": "New Horizons LORRI 1x1 Ground-based Dead Pixel Map",
+            "attributes": {}
+          },
+          {
+            "element": "information_model_version",
+            "text": "1.19.0.0",
+            "attributes": {}
+          },
+          {
+            "element": "product_class",
+            "text": "Product_Ancillary",
+            "attributes": {}
+          },
+          {
+            "element": "editor_list",
+            "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+            "attributes": {}
+          },
+          {
+            "element": "publication_year",
+            "text": "2024",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 dead pixel map; synthetic placeholder created with no dead (all   \n                good) pixels.",
+            "attributes": {}
+          },
+          {
+            "element": "modification_date",
+            "text": "2024-06-22",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Migrated from the PDS3 product.",
+            "attributes": {}
+          },
+          {
+            "element": "purpose",
+            "text": "Calibration",
+            "attributes": {}
+          },
+          {
+            "element": "processing_level",
+            "text": "Derived",
+            "attributes": {}
+          },
+          {
+            "element": "wavelength_range",
+            "text": "Visible",
+            "attributes": {}
+          },
+          {
+            "element": "discipline_name",
+            "text": "Imaging",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons Kuiper Belt Extended Mission 1",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons_kem1",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Host",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument_host:spacecraft.nh",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument_host",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "Long Range Reconnaissance Imager",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Instrument",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument:nh.lorri",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier_reference",
+            "text": "dead",
+            "attributes": {}
+          },
+          {
+            "element": "local_reference_type",
+            "text": "imaging_parameters_to_image_object",
+            "attributes": {}
+          },
+          {
+            "element": "processing_venue",
+            "text": "Onboard Hardware",
+            "attributes": {}
+          },
+          {
+            "element": "processing_algorithm",
+            "text": "Summation/Binning",
+            "attributes": {}
+          },
+          {
+            "element": "height_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "width_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "Reference_List",
+            "text": "",
+            "attributes": {}
+          },
+          {
+            "element": "file_name",
+            "text": "dead_ground_1x1_synthetic.fit",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "data_file",
+            "attributes": {}
+          },
+          {
+            "element": "creation_date_time",
+            "text": "2006-02-22Z",
+            "attributes": {}
+          },
+          {
+            "element": "file_size",
+            "text": "1054080",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "md5_checksum",
+            "text": "d4845568533c80053688c58acf321fdf",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "0",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "object_length",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "parsing_standard_id",
+            "text": "FITS 4.0",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "PRIMARY",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "dead",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "axes",
+            "text": "2",
+            "attributes": {}
+          },
+          {
+            "element": "axis_index_order",
+            "text": "Last Index Fastest",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 dead pixel map; synthetic placeholder created with no dead (all   \n                good) pixels.",
+            "attributes": {}
+          },
+          {
+            "element": "data_type",
+            "text": "UnsignedByte",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Line",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "1",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Sample",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "2",
+            "attributes": {}
+          }
+        ]
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/hot_ground_1x1_synthetic.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/hot_ground_1x1_synthetic.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.lblx",
+        "bytes": 6252,
+        "sha256": "f831eea271dfdd90b6d10332b1ff968fdfa347f057c4d14825eff5f720ca4c30",
+        "fields": [
+          {
+            "element": "logical_identifier",
+            "text": "urn:nasa:pds:nh_lorri:calibration_files:hot_ground_1x1_synthetic",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "title",
+            "text": "New Horizons LORRI 1x1 Ground-based Hot Pixel Map",
+            "attributes": {}
+          },
+          {
+            "element": "information_model_version",
+            "text": "1.19.0.0",
+            "attributes": {}
+          },
+          {
+            "element": "product_class",
+            "text": "Product_Ancillary",
+            "attributes": {}
+          },
+          {
+            "element": "editor_list",
+            "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+            "attributes": {}
+          },
+          {
+            "element": "publication_year",
+            "text": "2024",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 hot pixel map; synthetic placeholder created with no hot (all     \n                good) pixels.",
+            "attributes": {}
+          },
+          {
+            "element": "modification_date",
+            "text": "2024-06-22",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Migrated from the PDS3 product.",
+            "attributes": {}
+          },
+          {
+            "element": "purpose",
+            "text": "Calibration",
+            "attributes": {}
+          },
+          {
+            "element": "processing_level",
+            "text": "Derived",
+            "attributes": {}
+          },
+          {
+            "element": "wavelength_range",
+            "text": "Visible",
+            "attributes": {}
+          },
+          {
+            "element": "discipline_name",
+            "text": "Imaging",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons Kuiper Belt Extended Mission 1",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons_kem1",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Host",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument_host:spacecraft.nh",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument_host",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "Long Range Reconnaissance Imager",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Instrument",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument:nh.lorri",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier_reference",
+            "text": "hot",
+            "attributes": {}
+          },
+          {
+            "element": "local_reference_type",
+            "text": "imaging_parameters_to_image_object",
+            "attributes": {}
+          },
+          {
+            "element": "processing_venue",
+            "text": "Onboard Hardware",
+            "attributes": {}
+          },
+          {
+            "element": "processing_algorithm",
+            "text": "Summation/Binning",
+            "attributes": {}
+          },
+          {
+            "element": "height_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "width_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "Reference_List",
+            "text": "",
+            "attributes": {}
+          },
+          {
+            "element": "file_name",
+            "text": "hot_ground_1x1_synthetic.fit",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "data_file",
+            "attributes": {}
+          },
+          {
+            "element": "creation_date_time",
+            "text": "2006-02-22Z",
+            "attributes": {}
+          },
+          {
+            "element": "file_size",
+            "text": "1054080",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "md5_checksum",
+            "text": "d4845568533c80053688c58acf321fdf",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "0",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "object_length",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "parsing_standard_id",
+            "text": "FITS 4.0",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "PRIMARY",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "hot",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "axes",
+            "text": "2",
+            "attributes": {}
+          },
+          {
+            "element": "axis_index_order",
+            "text": "Last Index Fastest",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 hot pixel map; synthetic placeholder created with no hot (all     \n                good) pixels.",
+            "attributes": {}
+          },
+          {
+            "element": "data_type",
+            "text": "UnsignedByte",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Line",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "1",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Sample",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "2",
+            "attributes": {}
+          }
+        ]
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/dsmear_ematrix_1024.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/dsmear_ematrix_1024.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-calibration-dsmear_ematrix_1024.lblx",
+        "bytes": 6334,
+        "sha256": "0bcf6735bdc3673cac7de0e6dd5fb4657efa7700ce0f7ed952570d1fbf7cd463",
+        "fields": [
+          {
+            "element": "logical_identifier",
+            "text": "urn:nasa:pds:nh_lorri:calibration_files:dsmear_ematrix_1024",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "title",
+            "text": "New Horizons LORRI 1x1 Desmear Matrix",
+            "attributes": {}
+          },
+          {
+            "element": "information_model_version",
+            "text": "1.19.0.0",
+            "attributes": {}
+          },
+          {
+            "element": "product_class",
+            "text": "Product_Ancillary",
+            "attributes": {}
+          },
+          {
+            "element": "editor_list",
+            "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+            "attributes": {}
+          },
+          {
+            "element": "publication_year",
+            "text": "2024",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 desmear epsilon(k,j) matrix per algorithm in SOC Instrument ICD:  \n                Tscrub/Tavg (k<j), unity (k=j) and Tstorage/Tavg (k>j)",
+            "attributes": {}
+          },
+          {
+            "element": "modification_date",
+            "text": "2024-06-22",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Migrated from the PDS3 product.",
+            "attributes": {}
+          },
+          {
+            "element": "purpose",
+            "text": "Calibration",
+            "attributes": {}
+          },
+          {
+            "element": "processing_level",
+            "text": "Derived",
+            "attributes": {}
+          },
+          {
+            "element": "wavelength_range",
+            "text": "Visible",
+            "attributes": {}
+          },
+          {
+            "element": "discipline_name",
+            "text": "Imaging",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons Kuiper Belt Extended Mission 1",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons_kem1",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Host",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument_host:spacecraft.nh",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument_host",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "Long Range Reconnaissance Imager",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Instrument",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument:nh.lorri",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier_reference",
+            "text": "dsmear",
+            "attributes": {}
+          },
+          {
+            "element": "local_reference_type",
+            "text": "imaging_parameters_to_image_object",
+            "attributes": {}
+          },
+          {
+            "element": "processing_venue",
+            "text": "Onboard Hardware",
+            "attributes": {}
+          },
+          {
+            "element": "processing_algorithm",
+            "text": "Summation/Binning",
+            "attributes": {}
+          },
+          {
+            "element": "height_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "width_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "Reference_List",
+            "text": "",
+            "attributes": {}
+          },
+          {
+            "element": "file_name",
+            "text": "dsmear_ematrix_1024.fit",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "data_file",
+            "attributes": {}
+          },
+          {
+            "element": "creation_date_time",
+            "text": "2006-09-27Z",
+            "attributes": {}
+          },
+          {
+            "element": "file_size",
+            "text": "8392320",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "md5_checksum",
+            "text": "1062783126066baed04082a38dc7c712",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "0",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "object_length",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "parsing_standard_id",
+            "text": "FITS 4.0",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "PRIMARY",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "dsmear",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "2880",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "axes",
+            "text": "2",
+            "attributes": {}
+          },
+          {
+            "element": "axis_index_order",
+            "text": "Last Index Fastest",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 desmear epsilon(k,j) matrix per algorithm in SOC Instrument ICD:  \n                Tscrub/Tavg (k<j), unity (k=j) and Tstorage/Tavg (k>j)",
+            "attributes": {}
+          },
+          {
+            "element": "data_type",
+            "text": "IEEE754MSBDouble",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Line",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "1",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Sample",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "2",
+            "attributes": {}
+          }
+        ]
+      },
+      {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/sap_006_combined_100img_1x1.lblx",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/calib/sap_006_combined_100img_1x1.lblx",
+        "status": 200,
+        "contentType": "text/xml",
+        "path": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.lblx",
+        "bytes": 6212,
+        "sha256": "c3b23438bfd5ebccb5817166a69dcd5d9e6badbba988d59c7d3c8fd3ec31f04a",
+        "fields": [
+          {
+            "element": "logical_identifier",
+            "text": "urn:nasa:pds:nh_lorri:calibration_files:sap_006_combined_100img_1x1",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "title",
+            "text": "New Horizons LORRI 1x1 Ground-based Debias Image",
+            "attributes": {}
+          },
+          {
+            "element": "information_model_version",
+            "text": "1.19.0.0",
+            "attributes": {}
+          },
+          {
+            "element": "product_class",
+            "text": "Product_Ancillary",
+            "attributes": {}
+          },
+          {
+            "element": "editor_list",
+            "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+            "attributes": {}
+          },
+          {
+            "element": "publication_year",
+            "text": "2024",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 debias image, generated in-flight from zero-exposure images",
+            "attributes": {}
+          },
+          {
+            "element": "modification_date",
+            "text": "2024-06-22",
+            "attributes": {}
+          },
+          {
+            "element": "version_id",
+            "text": "1.0",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Migrated from the PDS3 product.",
+            "attributes": {}
+          },
+          {
+            "element": "purpose",
+            "text": "Calibration",
+            "attributes": {}
+          },
+          {
+            "element": "processing_level",
+            "text": "Derived",
+            "attributes": {}
+          },
+          {
+            "element": "wavelength_range",
+            "text": "Visible",
+            "attributes": {}
+          },
+          {
+            "element": "discipline_name",
+            "text": "Imaging",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons Kuiper Belt Extended Mission 1",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Mission",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:investigation:mission.new_horizons_kem1",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "ancillary_to_investigation",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "New Horizons",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Host",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument_host:spacecraft.nh",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument_host",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "Long Range Reconnaissance Imager",
+            "attributes": {}
+          },
+          {
+            "element": "type",
+            "text": "Instrument",
+            "attributes": {}
+          },
+          {
+            "element": "lid_reference",
+            "text": "urn:nasa:pds:context:instrument:nh.lorri",
+            "attributes": {}
+          },
+          {
+            "element": "reference_type",
+            "text": "is_instrument",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier_reference",
+            "text": "delta_bias",
+            "attributes": {}
+          },
+          {
+            "element": "local_reference_type",
+            "text": "imaging_parameters_to_image_object",
+            "attributes": {}
+          },
+          {
+            "element": "processing_venue",
+            "text": "Onboard Hardware",
+            "attributes": {}
+          },
+          {
+            "element": "processing_algorithm",
+            "text": "Summation/Binning",
+            "attributes": {}
+          },
+          {
+            "element": "height_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "width_pixels",
+            "text": "1",
+            "attributes": {
+              "unit": "pixel"
+            }
+          },
+          {
+            "element": "Reference_List",
+            "text": "",
+            "attributes": {}
+          },
+          {
+            "element": "file_name",
+            "text": "sap_006_combined_100img_1x1.fit",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "data_file",
+            "attributes": {}
+          },
+          {
+            "element": "creation_date_time",
+            "text": "2006-11-21T20:54:10Z",
+            "attributes": {}
+          },
+          {
+            "element": "file_size",
+            "text": "8415360",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "md5_checksum",
+            "text": "14fedd2477ecc8803c126f656d56fb7c",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "0",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "object_length",
+            "text": "25920",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "parsing_standard_id",
+            "text": "FITS 4.0",
+            "attributes": {}
+          },
+          {
+            "element": "name",
+            "text": "PRIMARY",
+            "attributes": {}
+          },
+          {
+            "element": "local_identifier",
+            "text": "delta_bias",
+            "attributes": {}
+          },
+          {
+            "element": "offset",
+            "text": "25920",
+            "attributes": {
+              "unit": "byte"
+            }
+          },
+          {
+            "element": "axes",
+            "text": "2",
+            "attributes": {}
+          },
+          {
+            "element": "axis_index_order",
+            "text": "Last Index Fastest",
+            "attributes": {}
+          },
+          {
+            "element": "description",
+            "text": "Current 1x1 debias image, generated in-flight from zero-exposure images",
+            "attributes": {}
+          },
+          {
+            "element": "data_type",
+            "text": "IEEE754MSBDouble",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Line",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "1",
+            "attributes": {}
+          },
+          {
+            "element": "axis_name",
+            "text": "Sample",
+            "attributes": {}
+          },
+          {
+            "element": "elements",
+            "text": "1024",
+            "attributes": {}
+          },
+          {
+            "element": "sequence_number",
+            "text": "2",
+            "attributes": {}
+          }
+        ]
+      }
+    ],
+    "limits": "Label-declared provenance and layout are not independently verified file identity, photometry or uncertainty. No correction to images, masks, timing, registration, catalogue, models or production codecs."
+  },
+  "attributionChronology": {
+    "status": "Read-only attribution and chronology extraction from retained publisher labels; no production adoption.",
+    "references": [
+      {
+        "name": "sap_006_combined_100img_1x1",
+        "labelPath": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.lblx",
+        "labelSHA256": "c3b23438bfd5ebccb5817166a69dcd5d9e6badbba988d59c7d3c8fd3ec31f04a",
+        "identification": {
+          "element": "Identification_Area",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "logical_identifier",
+              "text": "urn:nasa:pds:nh_lorri:calibration_files:sap_006_combined_100img_1x1",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "version_id",
+              "text": "1.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "title",
+              "text": "New Horizons LORRI 1x1 Ground-based Debias Image",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "information_model_version",
+              "text": "1.19.0.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "product_class",
+              "text": "Product_Ancillary",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "Citation_Information",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "editor_list",
+                  "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "publication_year",
+                  "text": "2024",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "description",
+                  "text": "Current 1x1 debias image, generated in-flight from zero-exposure images",
+                  "attributes": {},
+                  "children": []
+                }
+              ]
+            },
+            {
+              "element": "Modification_History",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "Modification_Detail",
+                  "text": "",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "element": "modification_date",
+                      "text": "2024-06-22",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "version_id",
+                      "text": "1.0",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "description",
+                      "text": "Migrated from the PDS3 product.",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "fileMetadata": {
+          "element": "File",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "file_name",
+              "text": "sap_006_combined_100img_1x1.fit",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "local_identifier",
+              "text": "data_file",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "creation_date_time",
+              "text": "2006-11-21T20:54:10Z",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "file_size",
+              "text": "8415360",
+              "attributes": {
+                "unit": "byte"
+              },
+              "children": []
+            },
+            {
+              "element": "md5_checksum",
+              "text": "14fedd2477ecc8803c126f656d56fb7c",
+              "attributes": {},
+              "children": []
+            }
+          ]
+        }
+      },
+      {
+        "name": "dead_ground_1x1_synthetic",
+        "labelPath": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.lblx",
+        "labelSHA256": "723d303fe0f61f30e511d29f52fed70e512d8d33f2a92bb9499c4c0bb630a115",
+        "identification": {
+          "element": "Identification_Area",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "logical_identifier",
+              "text": "urn:nasa:pds:nh_lorri:calibration_files:dead_ground_1x1_synthetic",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "version_id",
+              "text": "1.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "title",
+              "text": "New Horizons LORRI 1x1 Ground-based Dead Pixel Map",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "information_model_version",
+              "text": "1.19.0.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "product_class",
+              "text": "Product_Ancillary",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "Citation_Information",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "editor_list",
+                  "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "publication_year",
+                  "text": "2024",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "description",
+                  "text": "Current 1x1 dead pixel map; synthetic placeholder created with no dead (all   \n                good) pixels.",
+                  "attributes": {},
+                  "children": []
+                }
+              ]
+            },
+            {
+              "element": "Modification_History",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "Modification_Detail",
+                  "text": "",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "element": "modification_date",
+                      "text": "2024-06-22",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "version_id",
+                      "text": "1.0",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "description",
+                      "text": "Migrated from the PDS3 product.",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "fileMetadata": {
+          "element": "File",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "file_name",
+              "text": "dead_ground_1x1_synthetic.fit",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "local_identifier",
+              "text": "data_file",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "creation_date_time",
+              "text": "2006-02-22Z",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "file_size",
+              "text": "1054080",
+              "attributes": {
+                "unit": "byte"
+              },
+              "children": []
+            },
+            {
+              "element": "md5_checksum",
+              "text": "d4845568533c80053688c58acf321fdf",
+              "attributes": {},
+              "children": []
+            }
+          ]
+        }
+      },
+      {
+        "name": "hot_ground_1x1_synthetic",
+        "labelPath": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.lblx",
+        "labelSHA256": "f831eea271dfdd90b6d10332b1ff968fdfa347f057c4d14825eff5f720ca4c30",
+        "identification": {
+          "element": "Identification_Area",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "logical_identifier",
+              "text": "urn:nasa:pds:nh_lorri:calibration_files:hot_ground_1x1_synthetic",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "version_id",
+              "text": "1.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "title",
+              "text": "New Horizons LORRI 1x1 Ground-based Hot Pixel Map",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "information_model_version",
+              "text": "1.19.0.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "product_class",
+              "text": "Product_Ancillary",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "Citation_Information",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "editor_list",
+                  "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "publication_year",
+                  "text": "2024",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "description",
+                  "text": "Current 1x1 hot pixel map; synthetic placeholder created with no hot (all     \n                good) pixels.",
+                  "attributes": {},
+                  "children": []
+                }
+              ]
+            },
+            {
+              "element": "Modification_History",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "Modification_Detail",
+                  "text": "",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "element": "modification_date",
+                      "text": "2024-06-22",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "version_id",
+                      "text": "1.0",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "description",
+                      "text": "Migrated from the PDS3 product.",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "fileMetadata": {
+          "element": "File",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "file_name",
+              "text": "hot_ground_1x1_synthetic.fit",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "local_identifier",
+              "text": "data_file",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "creation_date_time",
+              "text": "2006-02-22Z",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "file_size",
+              "text": "1054080",
+              "attributes": {
+                "unit": "byte"
+              },
+              "children": []
+            },
+            {
+              "element": "md5_checksum",
+              "text": "d4845568533c80053688c58acf321fdf",
+              "attributes": {},
+              "children": []
+            }
+          ]
+        }
+      },
+      {
+        "name": "cflat_grnd_sfa_20050309_v2",
+        "labelPath": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.lblx",
+        "labelSHA256": "74bab52882013f067fae81e03cf6a19927e54535891269d67f110edaa11f2022",
+        "identification": {
+          "element": "Identification_Area",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "logical_identifier",
+              "text": "urn:nasa:pds:nh_lorri:calibration_files:cflat_grnd_sfa_20050309_v2",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "version_id",
+              "text": "1.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "title",
+              "text": "New Horizons LORRI 1x1 Ground-based Flat Field",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "information_model_version",
+              "text": "1.19.0.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "product_class",
+              "text": "Product_Ancillary",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "Citation_Information",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "editor_list",
+                  "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "publication_year",
+                  "text": "2024",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "description",
+                  "text": "Current 1x1 ground-based flat for correction of pixel-to-pixel sensitivity    \n                variation; generated from pre-launch ground-based images of an integrating    \n                sphere.",
+                  "attributes": {},
+                  "children": []
+                }
+              ]
+            },
+            {
+              "element": "Modification_History",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "Modification_Detail",
+                  "text": "",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "element": "modification_date",
+                      "text": "2024-06-22",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "version_id",
+                      "text": "1.0",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "description",
+                      "text": "Migrated from the PDS3 product.",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "fileMetadata": {
+          "element": "File",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "file_name",
+              "text": "cflat_grnd_sfa_20050309_v2.fit",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "local_identifier",
+              "text": "data_file",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "creation_date_time",
+              "text": "2005-03-09T00:00:00Z",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "file_size",
+              "text": "8395200",
+              "attributes": {
+                "unit": "byte"
+              },
+              "children": []
+            },
+            {
+              "element": "md5_checksum",
+              "text": "f358b4556e6db339ad350985edd7b226",
+              "attributes": {},
+              "children": []
+            }
+          ]
+        }
+      },
+      {
+        "name": "dsmear_ematrix_1024",
+        "labelPath": "data/research-sources/elara-calibration-dsmear_ematrix_1024.lblx",
+        "labelSHA256": "0bcf6735bdc3673cac7de0e6dd5fb4657efa7700ce0f7ed952570d1fbf7cd463",
+        "identification": {
+          "element": "Identification_Area",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "logical_identifier",
+              "text": "urn:nasa:pds:nh_lorri:calibration_files:dsmear_ematrix_1024",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "version_id",
+              "text": "1.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "title",
+              "text": "New Horizons LORRI 1x1 Desmear Matrix",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "information_model_version",
+              "text": "1.19.0.0",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "product_class",
+              "text": "Product_Ancillary",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "Citation_Information",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "editor_list",
+                  "text": "Enke, Brian; Gobat, Caden; Crombie, M. Katherine",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "publication_year",
+                  "text": "2024",
+                  "attributes": {},
+                  "children": []
+                },
+                {
+                  "element": "description",
+                  "text": "Current 1x1 desmear epsilon(k,j) matrix per algorithm in SOC Instrument ICD:  \n                Tscrub/Tavg (k<j), unity (k=j) and Tstorage/Tavg (k>j)",
+                  "attributes": {},
+                  "children": []
+                }
+              ]
+            },
+            {
+              "element": "Modification_History",
+              "text": "",
+              "attributes": {},
+              "children": [
+                {
+                  "element": "Modification_Detail",
+                  "text": "",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "element": "modification_date",
+                      "text": "2024-06-22",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "version_id",
+                      "text": "1.0",
+                      "attributes": {},
+                      "children": []
+                    },
+                    {
+                      "element": "description",
+                      "text": "Migrated from the PDS3 product.",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "fileMetadata": {
+          "element": "File",
+          "text": "",
+          "attributes": {},
+          "children": [
+            {
+              "element": "file_name",
+              "text": "dsmear_ematrix_1024.fit",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "local_identifier",
+              "text": "data_file",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "creation_date_time",
+              "text": "2006-09-27Z",
+              "attributes": {},
+              "children": []
+            },
+            {
+              "element": "file_size",
+              "text": "8392320",
+              "attributes": {
+                "unit": "byte"
+              },
+              "children": []
+            },
+            {
+              "element": "md5_checksum",
+              "text": "1062783126066baed04082a38dc7c712",
+              "attributes": {},
+              "children": []
+            }
+          ]
+        }
+      }
+    ],
+    "limits": [
+      "PDS4 editors identify migration contributions; they do not establish original calibration-file authorship.",
+      "File creation metadata, FITS software/header timestamps and PDS4 publication dates are distinct from the 2007 Elara science observations. Their agreement is not independently verified chronology.",
+      "Collection overview says superseded processing references remain applicable to older products; no newer reference substitution is authorized by this extraction.",
+      "No CC BY grant, original pipeline execution, calibration accuracy, quality-bit interpretation, target identification or registration is established."
+    ],
+    "productionChanges": false
+  },
+  "scopeNote": "Embedded preparation records preserve the state and limitations when acquired. Statements that FITS had not yet been fetched apply to those earlier records; all five originals were subsequently acquired unchanged and checked here.",
+  "credits": {
+    "missionAndInstrument": "NASA / Johns Hopkins University Applied Physics Laboratory / Southwest Research Institute; New Horizons LORRI",
+    "scienceCitation": "Cheng, A.; New Horizons LORRI Jupiter Encounter Partially Processed Data V1.0; editors Hirsch, B. and Carcich, B.; NASA Planetary Data System, 2026.",
+    "calibrationMigrationEditors": [
+      "Enke, Brian",
+      "Gobat, Caden",
+      "Crombie, M. Katherine"
+    ],
+    "attributionLimit": "Migration editors are not inferred original calibration authors. Collection overview reports no original PDS3 calibration attribution.",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "licenceLimit": "No blanket CC BY claim or new permission inferred from PDS hosting."
+  },
+  "reproducer": "docs/research/elara-calibration-storage-audit-2026-10-18.py"
+}
