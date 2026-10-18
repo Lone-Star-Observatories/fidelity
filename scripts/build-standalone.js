@@ -12,6 +12,7 @@ import { gunzipSync, gzipSync, brotliCompressSync, brotliDecompressSync, constan
 import { decompress as decodeBrotli } from 'brotli/decompress';
 import { gzipAsync } from '@gfx/zopfli';
 import { minify } from 'terser';
+import { nativeImageMime } from './standalone-native-image.js';
 import { encodeApplicationNumbers } from './application-numbers.js';
 import { packStandaloneBootstrap } from './pack-standalone-bootstrap.js';
 import { encodeSnapshotBytes, unpackSnapshotBytes, encodeApplicationBytes, unpackApplicationBytes, encodeRawSnapshotBytes, encodeDenseSnapshotBytes, encodeUtf8SnapshotBytes, encodeUtf16SnapshotBytes, encodeNumericSnapshot, wrapBrotliSnapshot, restoreSnapshotText, restoreApplicationText } from '../src/data/snapshot-codec.js';
@@ -119,8 +120,8 @@ for (const visual of Object.values(BODY_VISUALS)) {
     let bytes = await fs.readFile(path.join(root, 'public', asset.previewUrl ?? asset.url));
     const imagined = asset.tier === 'imagined';
     if (imagined) bytes = await sharp(bytes).webp({ quality: 80 }).toBuffer();
-    const nativeFormat = bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) ? 'png' : 'jpeg';
-    bodyImages[asset.url] = `data:image/${imagined ? 'webp' : nativeFormat};base64,${bytes.toString('base64')}`;
+    const mime = imagined ? 'image/webp' : nativeImageMime(bytes);
+    bodyImages[asset.url] = `data:${mime};base64,${bytes.toString('base64')}`;
   }
 }
 // the corona photograph shown in totality (#31)

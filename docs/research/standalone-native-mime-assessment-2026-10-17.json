@@ -1,0 +1,42 @@
+{
+  "nativeCardsExactBytesAndMime": 76,
+  "baseline": "9dfb9db392bcd4492a82613a6228c5c238225ad4",
+  "unchangedQueueEntriesDeepEqual": 569,
+  "queueEntries": 569,
+  "dossiersUnchanged": 86,
+  "trackedPublicByteEqual": 651,
+  "sourceHashesChecked": 19,
+  "generatedFilesChecked": 6,
+  "generatedDefaultOriginalsChecked": 2,
+  "rejectedVariantCopiesChecked": 2,
+  "htmlBytes": 15518596,
+  "headroomBytes": 481404,
+  "exactCompleteReadableJson": true,
+  "readableSha256": "b16321ccc6738fd2e19a781c99c95dadc00770229ee5a63ac63036cde84ef97b",
+  "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+  "applicationUnchanged": true,
+  "freshBrowserClaim": false,
+  "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+  "date": "2026-10-17",
+  "issue": 3,
+  "status": "Build-only native-card MIME fix; no new dossier or image integration",
+  "change": "Signature identification for GIF87a/GIF89a,PNG,JPEG,WebP; unsupported signatures rejected; original native bytes unmodified. Imagined WebP80 unchanged.",
+  "tests": {
+    "pass": 684,
+    "skip": 1,
+    "fail": 0
+  },
+  "productionBuild": "pass",
+  "fullBuild": "pass",
+  "preparedNativeAnimation": {
+    "path": "data/research-sources/weywot-2008-publisher-animation.gif",
+    "bytes": 164086,
+    "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+    "mime": "image/gif",
+    "width": 481,
+    "pageHeight": 748,
+    "frames": 2,
+    "verification": "Sharp animated metadata verifies both frames; no native transformation or embedding."
+  },
+  "next": "Additive Weywot dossier/catalogue with prepared native animation and independent views; preserve all existing science and provenance."
+}
