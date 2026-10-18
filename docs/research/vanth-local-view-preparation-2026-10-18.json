@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-18",
+  "issue": 3,
+  "body": "Vanth, satellite of Orcus",
+  "status": "Independent built-in local illustration preparation; no88th dossier/embedding/catalogue/map/model/shape/codec change",
+  "generator": "Built-in image_gen; no input/reference images",
+  "sources": [
+    {
+      "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+      "bytes": 2870475,
+      "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+    },
+    {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4696ec51-efc3-4a24-961b-3b6d24d6607a.png",
+      "bytes": 2870475,
+      "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+    },
+    {
+      "path": "data/research-sources/vanth-local-prompt-2026-10-18.txt",
+      "bytes": 10,
+      "sha256": "770c2d18aa4ec3159f46da461ef452972949942ff4f6a9771044485faa146398"
+    }
+  ],
+  "prompt": "undefined",
+  "original": {
+    "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+    "bytes": 2870475,
+    "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-4696ec51-efc3-4a24-961b-3b6d24d6607a.png",
+    "bytes": 2870475,
+    "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+  },
+  "dimensions": [
+    1672,
+    941
+  ],
+  "visualInspection": "Full output inspected: grey-brown granular shallow relief, isolated blocks and low ridges under black sky; both exact footer lines readable. No astronomical disk or angular/raster claim. No recognizable other-body map adopted.",
+  "scienceReferences": [
+    "docs/research/vanth-alma-primary-assessment-2026-10-18.json",
+    "docs/research/vanth-historical-source-assessment-2026-10-18.json",
+    "docs/research/vanth-sinfoni-orbit-assessment-2026-10-18.json",
+    "docs/research/vanth-occultation-assessment-2026-10-18.json"
+  ],
+  "limits": [
+    "All terrain/chemistry/material fractions/colour/light/exposure imagined; unresolved observations do not establish geography or local mineral proportions.",
+    "No analog observed-body map. No dated or registered site, physical local normal, measured spin/locking or permanent Orcus face.",
+    "Black sky/ring omission not atmosphere/ring absence. No foreground atmosphere/plume/liquid/exposed ocean/biology/survivable landing.",
+    "No global globe or shape produced; original/default PNG and full prompt retained. Masters/previews/observer view and additive integration pending.",
+    "NRAO ALMA image object has no explicit image credit found; generic institutional terms not asserted as proven image-specific ownership. Native remains separate research input."
+  ],
+  "validation": {
+    "testsPassed": 685,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "392f0ef",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15700100,
+    "headroomBytes": 299900,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "273a9d65375f98fc9b877c37e3a24ca57979e1dd9e92e155bc6782f732bc8fa2",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+  }
+}
