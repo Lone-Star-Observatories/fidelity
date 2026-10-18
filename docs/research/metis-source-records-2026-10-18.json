@@ -1,0 +1,615 @@
+{
+  "date": "2026-10-18",
+  "body": "Metis",
+  "records": [
+    {
+      "record": {
+        "path": "docs/research/metis-native-preparation-2026-10-18.json",
+        "bytes": 10870,
+        "sha256": "331af187d25b203ab874adfdd89d190496117e0749f0fe7ad73f2a709179b0f6"
+      },
+      "content": {
+        "date": "2026-10-18",
+        "body": "Metis, inner moon of Jupiter / S/1979 J 1; distinct from Amalthea, Thebe, Adrastea, asteroid 9 Metis and Solar Orbiter Metis instrument",
+        "status": "research-only native assessment; no dossier91, embedding, catalogue, globe, shape or codec adoption",
+        "sources": [
+          {
+            "path": "data/research-sources/metis-montage-caption-2026-10-18.html",
+            "url": "https://science.nasa.gov/photojournal/jupiter-small-satellite-montage/",
+            "status": 200,
+            "bytes": 268536,
+            "sha256": "3b199b903aaca4ff311343b70ce17a1aa590c3afcf13ccc8b516c2ff922865be"
+          },
+          {
+            "path": "data/research-sources/metis-ring-caption-2026-10-18.html",
+            "url": "https://science.nasa.gov/photojournal/perseus-and-jupiters-main-dust-ring/",
+            "status": 200,
+            "bytes": 266566,
+            "sha256": "ab60621b44f0fc9d31f9e1b5c08fb79f9f4b4bb24a5e63f2a2a0217e09d3aed8"
+          },
+          {
+            "path": "data/research-sources/metis-overview-2026-10-18.html",
+            "url": "https://science.nasa.gov/jupiter/jupiter-moons/metis/",
+            "status": 200,
+            "bytes": 261389,
+            "sha256": "08b8b0944f9db20af1221e6c47b38b7b8549393716ce8a85afbc7f82376f4ca9"
+          },
+          {
+            "path": "data/research-sources/metis-terms-2026-10-18.html",
+            "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+            "status": 200,
+            "bytes": 313142,
+            "sha256": "e67f59569735d43a8c49c73af4c9ceb509e5ffd7d0b35d958d2156049288e942"
+          },
+          {
+            "path": "data/research-sources/thebe-pia02531-caption-2026-10-18.html",
+            "url": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+            "status": 200,
+            "bytes": 268670,
+            "sha256": "bf7d6a7399747b336d2fd3ebb79bc679c952c59a4f7e7685875e5970a97c66f3"
+          }
+        ],
+        "nativeImages": [
+          {
+            "path": "data/research-sources/metis-pia02530.jpg",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02530/PIA02530.jpg",
+            "bytes": 19019,
+            "sha256": "016dbac1434061699acfc424bcd59bf5599b2cba96b0b4553347a890bab3ddfd",
+            "dimensions": [
+              490,
+              1190
+            ],
+            "mode": "L",
+            "format": "JPEG",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": true
+          },
+          {
+            "path": "data/research-sources/metis-pia02530.tif",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02530/PIA02530.tif",
+            "bytes": 138682,
+            "sha256": "76ae364088e7941c14cd126ac3174ba336f27d5e9c18dc2252c18ea26694d9b6",
+            "dimensions": [
+              490,
+              1190
+            ],
+            "mode": "L",
+            "format": "TIFF",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": false
+          },
+          {
+            "path": "data/research-sources/metis-pia25039.jpg",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.jpg",
+            "bytes": 62831,
+            "sha256": "c199d03ae2f74495428601cfb978938cbc26ece277326e1cad90e224dab08331",
+            "dimensions": [
+              547,
+              548
+            ],
+            "mode": "RGB",
+            "format": "JPEG",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": true
+          },
+          {
+            "path": "data/research-sources/metis-pia25039.tif",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25039/PIA25039.tif",
+            "bytes": 445274,
+            "sha256": "c55fd0415b29e129adc7233aa6076a5922892a9c0c9fd986fb677bee8214d591",
+            "dimensions": [
+              547,
+              548
+            ],
+            "mode": "RGB",
+            "format": "TIFF",
+            "unchangedPublisherBytes": true,
+            "visuallyInspected": false
+          },
+          {
+            "path": "data/research-sources/thebe-pia02531-original.jpg",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.jpg",
+            "bytes": 11904,
+            "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+            "dimensions": [
+              748,
+              381
+            ],
+            "mode": "L",
+            "format": "JPEG",
+            "visuallyInspected": true,
+            "unchangedPublisherBytes": true
+          },
+          {
+            "path": "data/research-sources/thebe-pia02531-original.tif",
+            "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.tif",
+            "bytes": 85788,
+            "sha256": "09b901067147c8c84560986f10ebe744a5438d6cfac4c2c280dee658a64ebbf4",
+            "dimensions": [
+              748,
+              381
+            ],
+            "mode": "L",
+            "format": "TIFF",
+            "visuallyInspected": false,
+            "unchangedPublisherBytes": true
+          }
+        ],
+        "products": [
+          {
+            "id": "PIA02530",
+            "instrument": "Galileo Solid-State Imaging",
+            "credit": "NASA/JPL/Cornell University",
+            "published": "2000-04-24",
+            "metisObserved": "1997-11-07",
+            "identity": "Five panels: top two Thebe, middle two Amalthea, bottom Metis. Page Target metadata Amalthea is montage scope, not an exclusive Metis identification. Whole publisher product retained, no other moon assigned to Metis map.",
+            "publisherStatements": {
+              "metisRangeKm": 637000,
+              "orientation": "north approximately up; correct relative sizes"
+            },
+            "inspection": "Whole 490x1190 L JPEG inspected: tiny blurred Metis at bottom, separate larger disks above. Brightness/sampling/noise/black gaps are not local grains, chemistry, calibrated visible colour, complete geography or atmosphere absence.",
+            "limits": "Caption says best during 11th orbit in November1997, not current best/latest. Exact raw UTC/filter/exposure/PSF/photometric and shape/frame crosswalk open. Thebe crater/Amalthea bright spots and Io-exposure explanation do not describe Metis. TIFF decoded but not separately visually inspected; no TIFF/JPEG pixel identity claim."
+          },
+          {
+            "id": "PIA02531",
+            "instrument": "Galileo Solid-State Imaging",
+            "credit": "NASA/JPL/Cornell University",
+            "observed": "2000-01-04",
+            "published": "2000-04-24",
+            "identity": "Whole retained source already used for Thebe: left Thebe, centre Amalthea, right Metis. Right disk alone identifies Metis; no centre/left terrain transfer.",
+            "publisherStatements": {
+              "metisRangeKm": 293000,
+              "metisFeatureResolutionKmApprox": 3,
+              "orientation": "anti-Jupiter sides; north approximately up; sunlight from right"
+            },
+            "inspection": "Existing unchanged748x381 L JPEG reinspected with Metis focus. Small irregular right disk is sampled/blurred; not local regolith, colour, local composition or complete coverage. Amalthea overexposed bright patch and Thebe Zethus not Metis.",
+            "limits": "Publisher highest-resolution wording is historical context not independently established current ranking. Raw UTC/filter/PSF/product identity, shape/normal, global registration and photometry open. TIFF/source provenance preserved; no new resampling."
+          },
+          {
+            "id": "PIA25039",
+            "instrument": "Juno Stellar Reference Unit",
+            "credit": "NASA/JPL-Caltech",
+            "observed": "2021-09-02",
+            "published": "2021-12-17",
+            "identity": "Annotated Jupiter main dust ring and Perseus field, not resolved Metis disk or surface. Thin dust bands associated with Metis/Adrastea orbits are context only.",
+            "inspection": "Whole547x548 RGB JPEG inspected: near-monochrome noisy star field, bright diagonal ring and blue Perseus/Algol labels/lines. Annotation is not spectral colour or moon geography; specks not mapped local rocks.",
+            "limits": "No Metis body texture, current shedding rate, independently reproduced photometry, grain chemistry or registered cloud/surface inference. Exact UTC/rawproduct/filter/exposure and particle-versus-star crosswalk open. TIFF decoded not separately visually inspected; no pixel identity asserted."
+          }
+        ],
+        "overviewConflicts": {
+          "source": "https://science.nasa.gov/jupiter/jupiter-moons/metis/",
+          "orbitalPeriod": "Same page gives0.295Earthdays then fivehours. Retain conflict without adopting either as calibrated current orbit or measured spin; JPL/primary audit pending.",
+          "rotation": "Page explicitly says rotation not known and synchronous state likely; do not turn likelihood into measured spin, locking or permanent-face/local-normal registration.",
+          "evolution": "Ring supply and eventual orbital decay are publisher interpretations, not local measured shedding, immediate breakup, chemistry or date of impact."
+        },
+        "recencyAudit": {
+          "checked": "NASA Photojournal, NASA Metis overview and primary-site search for Juno Metis October2026. Search did not establish an accessible new resolved Metis product.",
+          "unverifiedLead": "Secondary search result alleges PJ88 flyby2026-10-11,1735km. No primary event/image verification retained here; not adopted as observed event, image/date/range or latest/highest-resolution claim.",
+          "scope": "No exhaustive newest-observation or archive-completeness claim. Primary mission status/processing chronology audit remains open."
+        },
+        "terms": {
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "policy": "Active NASA educational/informational/factual use with source acknowledgement, no endorsement and third-party exceptions; not CC BY or blanket raw-product rights. Full product credits retained. No outbound contact."
+        },
+        "notClaimed": [
+          "No new generated imagery or analog skin",
+          "No angular or raster-size computation",
+          "No adopted radius, mass, spin, pole, globe, shape or current ephemeris",
+          "No local fractions, calibrated visible colour, atmosphere absence, plume/liquid/ocean/biology or survivable landing",
+          "No new embedded images or91st dossier"
+        ],
+        "next": "Independent JPL physical/orbit/primary shape-spin audit and skyGeometry hypothetical observer guide before independent original-preserving views/additive dossier91. Recover conforming lossless headroom before larger batches; preserve all existing native bytes.",
+        "validation": {
+          "retainedSourceAndGeneratedHashesChecked": 11,
+          "nativeCardsExactBytesAndMime": 81,
+          "baseline": "b991383",
+          "priorDossiersDeepEqual": 90,
+          "dossiers": 90,
+          "priorMoonsDeepEqual": 46,
+          "moons": 46,
+          "trackedPublicByteEqual": 672,
+          "queueEntries": 569,
+          "unchangedOtherQueueEntries": 569,
+          "htmlBytes": 15967876,
+          "headroomBytes": 32124,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "8b73243d0eae5d3df6a7359b3f3cab0b11e028926ca8091fcbf44c419d10a061",
+          "applicationSha256": "d6fefa6aa42ab15be08c3f15f6a3af558a0072c64db38144f076c0ed80ace60a",
+          "freshBrowserClaim": false,
+          "testsPassed": 688,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "interbuildSnapshotDifferenceAttribution": "unaudited; no compression savings claim"
+        }
+      }
+    },
+    {
+      "record": {
+        "path": "docs/research/metis-orbit-geometry-preparation-2026-10-18.json",
+        "bytes": 8536,
+        "sha256": "289be38253de12a49fd5bc3b0c3783496ec816549d3986074939292a7a84e810"
+      },
+      "content": {
+        "date": "2026-10-18",
+        "body": "Metis, Jupiter moon, JPL/NAIF code516, S/1979 J1; distinct asteroid9Metis and SolarOrbiterMetis instrument",
+        "status": "research preparation only; no dossier91, image, catalogue, globe, shape, model or codec adoption",
+        "sources": [
+          {
+            "path": "data/research-sources/metis-physical-2026-10-18.html",
+            "bytes": 95641,
+            "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+            "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/metis-elements-2026-10-18.html",
+            "bytes": 580012,
+            "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+            "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/metis-stooke-inventory-2026-10-18.html",
+            "bytes": 11855,
+            "sha256": "98eae36bb51c5e7a8935a1f50aa393a2cb7d574faaa5eb568be4ca903dd653e6",
+            "url": "https://sbn.psi.edu/pds/resource/stkshape.html",
+            "status": 200
+          },
+          {
+            "path": "data/research-sources/metis-shape-caption-2026-10-18.html",
+            "bytes": 254152,
+            "sha256": "7a2c79a9a1521dee5aff1ec30c0009c6982371069b23d99dec150cd946c5e6c4",
+            "url": "https://science.nasa.gov/resource/shapes-of-the-small-inner-satellites-of-jupiter/",
+            "status": 200
+          }
+        ],
+        "physical": {
+          "source": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+          "gmKm3S2": 0.0025,
+          "gmSigmaKm3S2": 0.0016,
+          "gmReference": "JUP365",
+          "meanRadiusKm": 21.5,
+          "radiusSigmaKm": 4,
+          "radiusReference": "1: B.A.Archinal,C.H.Acton,M.F.A’Hearn et al.2018 Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:2015, CelestialMechanics130:22",
+          "derivedDensityGcm3": 0.9002,
+          "densitySigmaGcm3": 0.7642,
+          "limits": "Equivalent-volume radius is not local normal, measured three axes or validated shape. Starred density derived from tabulated GM and radius, not direct material density, chemistry/porosity/fractions or precise mass. Large uncertainties retained; no generic mass adoption."
+        },
+        "meanElements": {
+          "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+          "ephemeris": "JUP365",
+          "frame": "local Laplace plane",
+          "epochTDB": "2000-01-01.5",
+          "aKm": 128000,
+          "e": 0,
+          "argumentPeriapsisDeg": 0,
+          "meanAnomalyDeg": 166,
+          "inclinationDeg": 0,
+          "nodeDeg": 0,
+          "periodDays": 0.294779,
+          "apsidalPrecessionYears": 0,
+          "nodalPrecessionYears": 0,
+          "laplacePoleRaDeg": 268.1,
+          "laplacePoleDecDeg": 64.5,
+          "tiltDeg": 0,
+          "reference": "29; R.A.Jacobson2021 The Orbits of the Regular Jovian Satellites and the Orientation of the Pole of Jupiter, personal communication to Horizons/NAIF",
+          "limits": "Rounded mean table, not exact circular/equatorial/unperturbed orbit or current distance, measured spin, pole or local normal. Zero precession fields are retained as tabulated; their precision/convention is not independently established and they are not proof of absent perturbations. Source JUP365 kernel1600Jan10–2200Jan10 coverage not independent reconstruction of phase/light-time/frame/covariance. No dated scene."
+        },
+        "periodRotationConflict": {
+          "overview": "https://science.nasa.gov/jupiter/jupiter-moons/metis/",
+          "retainedNativeAssessment": "docs/research/metis-native-preparation-2026-10-18.json",
+          "comparison": "JPL .294779day model supports approximately .295day wording on overview; separate five-hour sentence is inconsistent. Cause not established, historical prose not silently repaired. Orbital period never promoted to independently measured rotation.",
+          "limits": "Overview explicitly unknown rotation/likely synchronous state. Native caption anti-Jupiter orientation and publisher shape-model geometry are not sidereal spin/pole/current longitude validation; no permanent Jupiter visibility at every site."
+        },
+        "shapeReferences": {
+          "stookeInventory": {
+            "url": "https://sbn.psi.edu/pds/resource/stkshape.html",
+            "finding": "Current publisher list includes Amalthea/Thebe and other named bodies but not Metis. This inventory is not proof no Metis shape exists elsewhere; do not assign Thebe/Amalthea model to Metis.",
+            "citation": "Stooke,P.2025.Stooke small bodies shape modelsV1.0.urn:nasa:pds:small_bodies.stooke.shape-models::1.0.NASA PDS;doi10.26033/yt84-5y91",
+            "limits": "Inventory HTML only, no bundle download or digital shape adoption."
+          },
+          "pia01642": {
+            "url": "https://science.nasa.gov/resource/shapes-of-the-small-inner-satellites-of-jupiter/",
+            "credit": "NASA/JPL/Cornell University",
+            "published": "1998-09-15",
+            "pageUpdated": "2024-10-28",
+            "finding": "Upper row Galileo observations Thebe/Amalthea/Adrastea/Metis versus lower calculated shape-model views. Common display scale and differing original sampling; model lead-side views differ slightly from camera views. Outlines/shadows/stereo cited as modelling inputs.",
+            "limits": "Caption Metis7.5km/pixel and no visible craters are source-specific statements, not new raster measurement, global absence of craters, calibrated visible colour or present-day best resolution. Major collisions are interpretation, not dated impact reconstruction. Exact observationUTC/filter/PSF/rawIDs, model version/mesh, physical axes/normal/pole/registered current attitude, photometry and independent reproduction open. No graphic downloaded/embedded or image hash/figure licence asserted."
+          },
+          "primaryPending": "Thomas et al.1998 The Small Inner Satellites of Jupiter, Icarus135360–371, PIIS0019103598959760 discovered; no downloaded fullpaper,60x40x34axes/uncertainties/rotation/CCclaim or figure adoption."
+        },
+        "geometryGuide": {
+          "sources": [
+            {
+              "path": "data/research-sources/metis-physical-2026-10-18.html",
+              "bytes": 95641,
+              "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+            },
+            {
+              "path": "data/research-sources/metis-elements-2026-10-18.html",
+              "bytes": 580012,
+              "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+            }
+          ],
+          "helper": "skyGeometry",
+          "primaryRadiusKm": 69911,
+          "nominalOrbitScaleKm": 128000,
+          "cameraHeightKm": 21.5,
+          "referenceWidth": 1672,
+          "horizontalFovDeg": 90,
+          "angularDiameterDeg": 66.22318511428516,
+          "centreDiscWidthPixels": 1090.4452059275504,
+          "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+        },
+        "geometryReproducer": {
+          "path": "docs/research/metis-observer-geometry-preparation-2026-10-18.mjs",
+          "bytes": 1171,
+          "sha256": "9793a25236bf3fdc56b818af50a1e5b60b745ba372b30ad4ddb55a6d62af4a7b"
+        },
+        "notClaimed": [
+          "No new generated view or measured raster diameter",
+          "No catalogue/membership/map/model/shape/native-byte change",
+          "No local material fractions, chemistry, calibrated visible colour, atmosphere absence, ocean/plume/biology/survivable landing",
+          "No verified PJ88 event/image or exhaustive newest-observation claim"
+        ],
+        "next": "Independent IMAGINED local/Jupiter-observer original-preserving views using nominal skyGeometry guide and explicit unregistered terrain/attitude limits; primary shape-spin/rawproduct audit continues. Recover conforming lossless headroom before larger additive batches.",
+        "validation": {
+          "retainedSourceAndGeneratedHashesChecked": 5,
+          "nativeCardsExactBytesAndMime": 81,
+          "baseline": "1e3c412",
+          "priorDossiersDeepEqual": 90,
+          "dossiers": 90,
+          "priorMoonsDeepEqual": 46,
+          "moons": 46,
+          "trackedPublicByteEqual": 672,
+          "queueEntries": 569,
+          "unchangedOtherQueueEntries": 569,
+          "htmlBytes": 15966340,
+          "headroomBytes": 33660,
+          "exactCompleteReadableJson": true,
+          "readableSha256": "1ae2f545a6dc8ef9a879333e8a5e40b0345301698abefef45329155bd6d2d637",
+          "applicationSha256": "d6fefa6aa42ab15be08c3f15f6a3af558a0072c64db38144f076c0ed80ace60a",
+          "freshBrowserClaim": false,
+          "testsPassed": 688,
+          "testsSkipped": 1,
+          "productionBuild": "pass",
+          "fullBuild": "pass",
+          "interbuildSnapshotDifferenceAttribution": "unaudited; no compression savings claim"
+        }
+      }
+    },
+    {
+      "record": {
+        "path": "docs/research/metis-local-view-preparation-2026-10-18.json",
+        "bytes": 4132,
+        "sha256": "7a7a541842dac7e7b3185cc8d702e451e9a1f265e8d69cf9c1e794598f9911df"
+      },
+      "content": {
+        "date": "2026-10-18",
+        "body": "Metis, Jupiter inner moon / S1979J1 / JPL516",
+        "mode": "built-in imagegen, new independent image, no reference images",
+        "original": {
+          "path": "data/research-sources/metis-generated-surfaceImage-original.png",
+          "bytes": 2657549,
+          "sha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1201ca75-4bb9-4cd6-b732-1bf0a2d528b6.png",
+          "bytes": 2657549,
+          "sha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "prompt": "Use case: scientific-educational\nAsset type: Fidelity Metis local-view illustration, wide landscape 16:9.\nPrimary request: create a new independent hypothetical low viewpoint over Metis, the small inner moon of Jupiter, S/1979 J1 / JPL516. This is not a spacecraft photograph, observed map, dated site or reconstructed landing. Invent an original subdued dark grey granular foreground with sparse irregular blocks, low uneven relief and a curved distant horizon beneath black sky. All local grain/rock sizes, materials, chemistry, fractions, porosity, colour, relief and light are unknown and invented. No astronomical disk in this local view: Jupiter and Sun outside frame, no angular-diameter claim. Do not reuse or imitate any observed body's terrain, photographs, map or distinctive geography, including Moon, Mars, Pluto, Amalthea or Thebe. No named or dated site. No atmosphere haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Omitted stars and black sky are composition choices, not evidence of absence. Restrained photographic-style hypothetical scientific illustration with artistic exposure.\nFull-width dark annotation band at bottom inside image, two clearly legible exact lines:\nMETIS — IMAGINED LOCAL VIEW\nTerrain, materials, colour and lighting invented; no registered surface site\nKeep both lines fully inside frame, unobstructed, with no other labels/logos/watermarks. New standalone generation without reference images.",
+        "promptFile": {
+          "path": "data/research-sources/metis-local-prompt-2026-10-18.txt",
+          "bytes": 1487,
+          "sha256": "17f4a635fd9b0655a491cc653b8208812e3184b4ba4c475762ffb5c87c1f0cbf"
+        },
+        "preparations": {
+          "master": {
+            "path": "data/research-sources/metis-surface-master-preparation.jpg",
+            "bytes": 322711,
+            "sha256": "6ab38207e13f0a359b59a7a9b8711b3efd374dea873f59da53ccee4afd5c3ea8",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "width": 1536,
+            "quality": 85,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          },
+          "preview": {
+            "path": "data/research-sources/metis-surface-preview-preparation.jpg",
+            "bytes": 9945,
+            "sha256": "f5482ac97a1efba4007099a6ef47999b8cf3954c082c8b7761919469bbf3abdd",
+            "dimensions": [
+              256,
+              144
+            ],
+            "width": 256,
+            "quality": 80,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          }
+        },
+        "inspection": "Original both exact IMAGINED footer lines fully readable; dark grey grains/blocks/low uneven relief, black sky and no astronomical disk. Original and1536master footer lines inspected readable;256preview requires explicit IMAGINED card labels.",
+        "limits": "All terrain/grain and rock sizes/materials/chemistry/fractions/porosity/colour/light/exposure invented; no observed-body analog map, dated site, local normal, measured pole/current longitude or angular/raster-size claim. Black sky/omitted stars not atmosphere absence. No plume,liquid,exposed ocean,biology,craft or survivable landing. Native coarse images separate; small preview annotation requires explicit IMAGINED card labels.",
+        "status": "research preparation only, no91st or embedding/catalogue adoption",
+        "references": [
+          "docs/research/metis-native-preparation-2026-10-18.json",
+          "docs/research/metis-orbit-geometry-preparation-2026-10-18.json"
+        ]
+      }
+    },
+    {
+      "record": {
+        "path": "docs/research/metis-sky-view-preparation-2026-10-18.json",
+        "bytes": 5770,
+        "sha256": "bb769f283257ce1d1024d2c8ca5d2cfc8ecb87aca9023bb3327c1445c657ebf8"
+      },
+      "content": {
+        "date": "2026-10-18",
+        "body": "Metis, Jupiter inner moon / S1979J1 / JPL516",
+        "mode": "built-in imagegen, new independent image, no reference images",
+        "original": {
+          "path": "data/research-sources/metis-generated-skyImage-original.png",
+          "bytes": 2005362,
+          "sha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-77469e01-f392-497f-a2cd-d95df79740ae.png",
+          "bytes": 2005362,
+          "sha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        "prompt": "Use case: scientific-educational\nAsset type: Fidelity Metis hypothetical Jupiter-observer illustration, wide landscape 16:9.\nPrimary request: create a new independent low viewpoint over Metis, Jupiter inner moon S/1979J1/JPL516, looking toward Jupiter in an illustrative unregistered near-side direction. Original invented dark grey grains and sparse blocks on low uneven foreground, black sky. Render a very large partially cropped Jupiter behind the horizon: nominal skyGeometry guide spherical Jupiter radius69911km at128000minus21.5km gives66.22318511428516degrees angular diameter, guide1090.4452059275504pixels at1672wide nominal90degree horizontalFOV. This is a composition guide only, not calibrated photometry or measured raster registration; large disk can be cropped by top frame and partly occluded by terrain. Use simple original subdued cream/brown atmospheric bands, invented cloud pattern and phase, no distinctive observed storm or actual Jupiter map/photo/texture. Planet axis, phase, light, colour and exposure are artistic, not dated. No Sun disk. All Metis terrain/grain/rock sizes/materials/chemistry/fractions/porosity are invented. No observed-body analog skin or recognizable Moon/Mars/Pluto/Amalthea/Thebe geography. Not a dated site, real local normal, known spin/pole or permanent Jupiterface; likely synchrony is not independently measured spin. No atmosphere haze over Metis, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing. Omitted rings/stars are not absence claims. Restrained photographic-style hypothetical scientific illustration.\nFull-width dark annotation band inside bottom edge with two clear exact lines:\nMETIS — IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nKeep both lines fully inside frame, unobstructed, no additional labels/logos/watermarks. Generate independent standalone image with no reference images.",
+        "promptFile": {
+          "path": "data/research-sources/metis-sky-prompt-2026-10-18.txt",
+          "bytes": 1936,
+          "sha256": "dae54d12e19ccf0b9177e7200136119ca994c403553d0fdb29bad6ad2d8a8724"
+        },
+        "preparations": {
+          "master": {
+            "path": "data/research-sources/metis-sky-master-preparation.jpg",
+            "bytes": 200320,
+            "sha256": "468c0eae3f4e3bb3e44fd261b9a9dfc47e8e4d91e32384ae52c12ba90b62c925",
+            "dimensions": [
+              1536,
+              864
+            ],
+            "width": 1536,
+            "quality": 85,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          },
+          "preview": {
+            "path": "data/research-sources/metis-sky-preview-preparation.jpg",
+            "bytes": 8052,
+            "sha256": "9918fb7b90b766b79449077b50447ee4f4442090e23219cb74d0a434f3013ca6",
+            "dimensions": [
+              256,
+              144
+            ],
+            "width": 256,
+            "quality": 80,
+            "encoding": "JPEG",
+            "resampledFromOriginal": true
+          }
+        },
+        "geometryGuide": {
+          "sources": [
+            {
+              "path": "data/research-sources/metis-physical-2026-10-18.html",
+              "bytes": 95641,
+              "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+            },
+            {
+              "path": "data/research-sources/metis-elements-2026-10-18.html",
+              "bytes": 580012,
+              "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+            }
+          ],
+          "helper": "skyGeometry",
+          "primaryRadiusKm": 69911,
+          "nominalOrbitScaleKm": 128000,
+          "cameraHeightKm": 21.5,
+          "referenceWidth": 1672,
+          "horizontalFovDeg": 90,
+          "angularDiameterDeg": 66.22318511428516,
+          "centreDiscWidthPixels": 1090.4452059275504,
+          "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+        },
+        "inspection": "Original two exact footer lines readable. Large top-cropped, terrain-occluded Jupiter with invented bands; qualitatively oversized and uncalibrated, no measured raster diameter adopted. Original and1536master footer lines inspected readable;256preview requires explicit IMAGINED card labels.",
+        "limits": "Invented terrain/grain and rock sizes/materials/chemistry/fractions/porosity/grey colour/Jupiter bands/cloudpattern/phase/axis/light/exposure. No observed-body analog map, dated site, measured normal/pole/current longitude, known spin/locking or permanent Jupiterface. Nominal geometry not current eccentric distance or uncertainty envelope;165Kangularonly colour/irradiance discarded. Black sky/omitted stars/rings not absence. No plume,liquid,exposed ocean,biology,craft or survivable landing. Small preview requires IMAGINED card labels.",
+        "status": "research preparation only, no91st or embedding/catalogue adoption",
+        "references": [
+          "docs/research/metis-native-preparation-2026-10-18.json",
+          "docs/research/metis-orbit-geometry-preparation-2026-10-18.json"
+        ]
+      }
+    }
+  ],
+  "publicGenerated": [
+    {
+      "role": "surfaceImage",
+      "url": "/bespoke/metis-surface-image.jpg",
+      "previewUrl": "/bespoke/metis-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "metis-generated-surfaceImage-original.png",
+      "sourceSha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+      "sha256": "cb55500c20f9471d417f51c8800085e4d25d8ca575f11385b8fc4f04f12c30f8",
+      "previewSha256": "d881dd7b6df025d07e8ae99addc2f45e890a43960073097ac31cee2fd73058a1",
+      "bytes": 322780,
+      "previewBytes": 9729,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    {
+      "role": "skyImage",
+      "url": "/bespoke/metis-sky-image.jpg",
+      "previewUrl": "/bespoke/metis-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "metis-generated-skyImage-original.png",
+      "sourceSha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+      "sha256": "762a6ab0e3a38f5a8ed44003f122ab1baf06095cbc2f392b84f774b927452cb5",
+      "previewSha256": "b71509e27b5147141de7fc42e590e48e164a80612dca666b501ea4688cc666e4",
+      "bytes": 200247,
+      "previewBytes": 7907,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  ],
+  "sharedNative": {
+    "url": "/bespoke/thebe-pia02531-native.jpg",
+    "bytes": 11904,
+    "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+    "width": 748,
+    "height": 381,
+    "tier": "measured",
+    "label": "NATIVE · PIA02531 · METIS RIGHT / THEBE LEFT / AMALTHEA CENTRE",
+    "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.jpg",
+    "sourceUrl": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+    "credit": "NASA/JPL/Cornell University",
+    "observationDate": "2000-01-04",
+    "publicationDate": "2000-04-24",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "terms": "NASA educational/informational/factual use,source acknowledgement,no endorsement,third-party copyright caveats; not CC BY or blanket raw-product permission.",
+    "description": "Whole748x381monochromeGalileomontage:rightMetis,leftThebe,centreAmalthea. Othermoons not Metisgeography; blur/sampling/black/gaps not grains/calibratedvisiblecolour/completecoverage/atmosphereabsence. Amaltheabrightpatchoverexposed,ThebeZethus not Metis.",
+    "processing": "UnchangedwholepublisherJPEG shared context URL alreadyembedded,not a Metisglobe; no localresize/reencoding. Metis observed2000Jan4 range293000km/~3kmfeatures publisherestimates not independently reproduced. TIFF retained no pixelidentity. ExactrawUTC/filter/PSF/product/frame/photometry/shape-normal/currentattitude and currenthighest-resolutionclaim open. TargetmetadataAmaltheascope retained.",
+    "sourceBytes": {
+      "path": "data/research-sources/thebe-pia02531-original.jpg",
+      "bytes": 11904,
+      "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206"
+    }
+  }
+}

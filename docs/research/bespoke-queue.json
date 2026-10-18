@@ -719,6 +719,19 @@
       "visualId": "thebe"
     },
     {
+      "id": "sol-metis",
+      "bodyId": "metis",
+      "name": "Metis",
+      "parent": "jupiter",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved global texture or digital shape adopted. Whole Galileo montage is native context only; leftThebe/centreAmalthea are not Metis maps.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "metis"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -1437,20 +1450,6 @@
     {
       "id": "sol-adrastea",
       "name": "Adrastea",
-      "parent": "jupiter",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1979",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
-      "id": "sol-metis",
-      "name": "Metis",
       "parent": "jupiter",
       "kind": "moon",
       "scope": "IAU-recognized planetary/Pluto satellite",
@@ -8560,7 +8559,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 45,
+      "initialDossiers": 46,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

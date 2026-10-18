@@ -271,6 +271,17 @@ export const MOONS = [
       {label:'GM',value:'.03015 ± .01250 KM³/S² · FIT',tier:'modelled',detail:'JUP365; deriveddensity.9000±.4327 not precise mass/chemistry/porosity.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'NASA captions describe synchronousorientation; independent primaryspin/pole/currentlongitude audit pending. Nullrotation/lockingdisabled not measured nonsynchronousspin.'},
     ],surfacePending:true,note:'NativecoarseThebe images are separate from inventedlocalviews; independentpole/currentlongitude/resolvedglobe unregistered. Captioned synchronousstate does not imply Jupiter visible everywhere.' },
+  { id: 'metis', name: 'Metis', parent: 'jupiter', radiusKm: 21.5, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(128000, 0, 0, 166, 0, 0, .294779, 0, 0, [268.1, 64.5], 'laplace', 2451545.0),
+    orbitFacts: [
+      {label:'ORBITS',value:'JUPITER · INNER MOON',tier:'measured',detail:'Metis,S/1979J1,JPL516; distinct from asteroid9Metis and SolarOrbiterMetis instrument.'},
+      {label:'ORBIT',value:'128,000 KM · .294779 DAYS',tier:'modelled',detail:'JUP365 localLaplace mean elements,2000Jan1.5TDB,not current distance/spin. Roundedzero fields not exactcircular/equatorial/unperturbedstate.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'Currentphase/time/frame/light-time/SPICE reconstruction open.'},
+    ],physicalFacts: [
+      {label:'RADIUS',value:'21.50 ± 4.00 KM · VOLUME MODEL',tier:'modelled',detail:'Equivalent-volume sphere,not axes/local normal/registeredshape.'},
+      {label:'GM',value:'.00250 ± .00160 KM³/S² · FIT',tier:'modelled',detail:'JUP365; deriveddensity.9002±.7642 not precise mass/chemistry/porosity.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Unknownrotation/likelysynchrony not measuredspin/pole/currentlongitude. Nullrotation/lockingdisabled not measurednonsynchronousstate.'},
+    ],surfacePending:true,note:'Nativewholemontage rightMetis separate from leftThebe/centreAmalthea and inventedlocalviews. NASAoverview .295day/fivehoursconflict retained; no permanentJupiterface/currentattitude claim.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,

@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-18",
+  "body": "Metis, Jupiter inner moon / S1979J1 / JPL516",
+  "mode": "built-in imagegen, new independent image, no reference images",
+  "original": {
+    "path": "data/research-sources/metis-generated-surfaceImage-original.png",
+    "bytes": 2657549,
+    "sha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1201ca75-4bb9-4cd6-b732-1bf0a2d528b6.png",
+    "bytes": 2657549,
+    "sha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Metis local-view illustration, wide landscape 16:9.\nPrimary request: create a new independent hypothetical low viewpoint over Metis, the small inner moon of Jupiter, S/1979 J1 / JPL516. This is not a spacecraft photograph, observed map, dated site or reconstructed landing. Invent an original subdued dark grey granular foreground with sparse irregular blocks, low uneven relief and a curved distant horizon beneath black sky. All local grain/rock sizes, materials, chemistry, fractions, porosity, colour, relief and light are unknown and invented. No astronomical disk in this local view: Jupiter and Sun outside frame, no angular-diameter claim. Do not reuse or imitate any observed body's terrain, photographs, map or distinctive geography, including Moon, Mars, Pluto, Amalthea or Thebe. No named or dated site. No atmosphere haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Omitted stars and black sky are composition choices, not evidence of absence. Restrained photographic-style hypothetical scientific illustration with artistic exposure.\nFull-width dark annotation band at bottom inside image, two clearly legible exact lines:\nMETIS \u2014 IMAGINED LOCAL VIEW\nTerrain, materials, colour and lighting invented; no registered surface site\nKeep both lines fully inside frame, unobstructed, with no other labels/logos/watermarks. New standalone generation without reference images.",
+  "promptFile": {
+    "path": "data/research-sources/metis-local-prompt-2026-10-18.txt",
+    "bytes": 1487,
+    "sha256": "17f4a635fd9b0655a491cc653b8208812e3184b4ba4c475762ffb5c87c1f0cbf"
+  },
+  "preparations": {
+    "master": {
+      "path": "data/research-sources/metis-surface-master-preparation.jpg",
+      "bytes": 322711,
+      "sha256": "6ab38207e13f0a359b59a7a9b8711b3efd374dea873f59da53ccee4afd5c3ea8",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "width": 1536,
+      "quality": 85,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    },
+    "preview": {
+      "path": "data/research-sources/metis-surface-preview-preparation.jpg",
+      "bytes": 9945,
+      "sha256": "f5482ac97a1efba4007099a6ef47999b8cf3954c082c8b7761919469bbf3abdd",
+      "dimensions": [
+        256,
+        144
+      ],
+      "width": 256,
+      "quality": 80,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    }
+  },
+  "inspection": "Original both exact IMAGINED footer lines fully readable; dark grey grains/blocks/low uneven relief, black sky and no astronomical disk. Original and1536master footer lines inspected readable;256preview requires explicit IMAGINED card labels.",
+  "limits": "All terrain/grain and rock sizes/materials/chemistry/fractions/porosity/colour/light/exposure invented; no observed-body analog map, dated site, local normal, measured pole/current longitude or angular/raster-size claim. Black sky/omitted stars not atmosphere absence. No plume,liquid,exposed ocean,biology,craft or survivable landing. Native coarse images separate; small preview annotation requires explicit IMAGINED card labels.",
+  "status": "research preparation only, no91st or embedding/catalogue adoption",
+  "references": [
+    "docs/research/metis-native-preparation-2026-10-18.json",
+    "docs/research/metis-orbit-geometry-preparation-2026-10-18.json"
+  ]
+}

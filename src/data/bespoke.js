@@ -15583,6 +15583,165 @@ export const BODY_VISUALS = {
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     },
     "skyCaption": "Hypothetical Jupiter above invented Thebe terrain;165K is an angular-helper input only. Phase,colour,lighting,exposure and scene registration are uncalibrated."
+  },
+  "metis": {
+    "id": "metis",
+    "name": "Metis",
+    "kind": "moon",
+    "aliases": [
+      "Metis",
+      "S/1979 J 1"
+    ],
+    "researchDate": "2026-10-18",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved global texture or digital shape adopted. Whole Galileo montage is native context only; leftThebe/centreAmalthea are not Metis maps.",
+    "measured": [
+      "Metis,S/1979J1,JPL516,distinct inner moon of Jupiter,not asteroid9Metis or SolarOrbiterMetis instrument. GalileoSSI PIA02531 rightmostdisk observed2000Jan4; entiremontage retained unchanged.",
+      "PIA02531 whole748x381 L JPEG11904bytes SHAafe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206,NASA/JPL/CornellUniversity,Apr24,2000publication. LeftThebe/centreAmalthea/rightMetis; TargetmetadataAmaltheascope retained. Blur/sampling/black not localgrains/calibratedvisiblecolour/chemistry/atmosphereabsence."
+    ],
+    "modelled": [
+      "JPLJUP365GM.00250±.00160km3/s2,21.50±4.00km equivalent-volume radius(ref1Archinal2018),deriveddensity.9002±.7642g/cm3 are uncertainmodelquantities,not precise mass/chemistry/porosity/axes/localnormal. Generic mass null avoids unqualifieddensity.",
+      "JUP365 localLaplace2000Jan1.5TDBmean a128000km,e0,w0,M166,i0,node0deg,P.294779day,apsidal0/nodal0yr,pole268.1/64.5deg,tilt0. Roundedzeros not exactcircular/equatorial/unperturbedstate; convention/precision not independently established. Jacobson2021personalcommunication/kernel1600–2200coverage not independentphase/frame/time/light-time/covariance validation.",
+      "NASAoverview .295day versus fivehours conflict retained; cause unknown. Page unknownrotation/likelysynchrony and captionanti-Jupiterorientation not independently measuredspin/pole/currentlongitude. Rotationnull/lockingdisabled marks unregistereddisplay,not measured nonsynchronousspin or permanentJupiterface everywhere.",
+      "Galileo293000kmMetisrange/~3kmfeatures and historicalhighest-resolution wording are publisherstatements,not newraster/shape/currentranking validation. PIA01642 lowerrow shape-model views differ from upperobservations; no crater visible there does not imply globalcraterabsence. Thomas1998fullpaper/60x40x34axes not adopted. Stookeinventory omitsMetis,not evidence noothershapeexists.",
+      "PIA02530 bottomMetis observed1997Nov7; PIA25039JunoSRU observed2021Sep2 ringbands associatedwithMetis/Adrasteaorbits are not resolvedMetissurface. LargerJPEG/TIFF/captions retainedresearchonly; impact/ringsupply/decay interpretations not datedhistory or measuredlocalshedding."
+    ],
+    "unknown": [
+      "RawUTC/filter/exposure/PSF/product-to-pixel association,visiblecolour/radiometry,globalgeography/materialfractions/normal/pole/currentlongitude/digitalshape and datedsceneregistration.",
+      "SecondaryPJ88October2026flyby lead lacks retainedprimaryconfirmation; no event/range/newimage/exhaustivenewest-observation claim."
+    ],
+    "assumed": [
+      "Independentinventedgreyterrain/grains/blocks/relief/materials/chemistry/fractions/porosity/colour/light/exposure; Jupiterbands/cloudpattern/phase/axis/attitude invented, no actualbodymap or identifiableobservedstorm. Noanalogdatedsite/normal/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence.",
+      "skyGeometry spherical69911kmJupiter at128000minus21.5km gives127978.5km,66.22318511428516deg/1090.4452059275504px nominal90HFOV1672width,not currenteccentricdistance/localnormal/pole/permanentface/uncertaintyenvelope.165Kangularhelperonly colour/irradiance discarded.",
+      "RenderedJupiter topcropped/terrainoccluded and qualitativelyoversized; no measuredrasterdiameter adopted. Original/defaultPNGs/fullprompts/Pillowpreps/additiveimportermasters/previews retained. Tiny256previewfooters require explicitIMAGINEDcardlabels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM METIS",
+    "skyLabel": "IMAGINED · SKY FROM METIS",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "21.50 ± 4.00 KM · VOLUME MODEL"
+      ],
+      [
+        "GM",
+        ".00250 ± .00160 KM³/S² · FIT"
+      ],
+      [
+        "ORBIT",
+        "128,000 KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0008554834330272323,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 66.22318511428516,
+      "centreDiscWidthFraction": 0.6521801470858556,
+      "irradianceEarth": 0.009214129290212307,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "skyCaption": "Hypothetical Jupiter above invented Metis terrain;165K is an angular-helper input only. Phase,colour,lighting,exposure and scene registration are uncalibrated.",
+    "contextImages": [
+      {
+        "url": "/bespoke/thebe-pia02531-native.jpg",
+        "bytes": 11904,
+        "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+        "width": 748,
+        "height": 381,
+        "tier": "measured",
+        "label": "NATIVE · PIA02531 · METIS RIGHT / THEBE LEFT / AMALTHEA CENTRE",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+        "credit": "NASA/JPL/Cornell University",
+        "observationDate": "2000-01-04",
+        "publicationDate": "2000-04-24",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA educational/informational/factual use,source acknowledgement,no endorsement,third-party copyright caveats; not CC BY or blanket raw-product permission.",
+        "description": "Whole748x381monochromeGalileomontage:rightMetis,leftThebe,centreAmalthea. Othermoons not Metisgeography; blur/sampling/black/gaps not grains/calibratedvisiblecolour/completecoverage/atmosphereabsence. Amaltheabrightpatchoverexposed,ThebeZethus not Metis.",
+        "processing": "UnchangedwholepublisherJPEG shared context URL alreadyembedded,not a Metisglobe; no localresize/reencoding. Metis observed2000Jan4 range293000km/~3kmfeatures publisherestimates not independently reproduced. TIFF retained no pixelidentity. ExactrawUTC/filter/PSF/product/frame/photometry/shape-normal/currentattitude and currenthighest-resolutionclaim open. TargetmetadataAmaltheascope retained."
+      }
+    ],
+    "references": [
+      {
+        "title": "NASA whole GalileoSSI PIA02531 montage",
+        "url": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/"
+      },
+      {
+        "title": "NASA Metis overview period/spin limits",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/metis/"
+      },
+      {
+        "title": "NASA media terms/third-party caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "JPL physical parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL mean elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "NASA PIA01642 observations versus shape models",
+        "url": "https://science.nasa.gov/resource/shapes-of-the-small-inner-satellites-of-jupiter/"
+      },
+      {
+        "title": "PDS Stooke currentinventory",
+        "url": "https://sbn.psi.edu/pds/resource/stkshape.html"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/metis-surface-image.jpg",
+      "previewUrl": "/bespoke/metis-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "metis-generated-surfaceImage-original.png",
+      "sourceSha256": "80fce43c5264fdb5afe492213620b4541f8f11a604008b8f1b5403f6433198e8",
+      "sha256": "cb55500c20f9471d417f51c8800085e4d25d8ca575f11385b8fc4f04f12c30f8",
+      "previewSha256": "d881dd7b6df025d07e8ae99addc2f45e890a43960073097ac31cee2fd73058a1",
+      "bytes": 322780,
+      "previewBytes": 9729,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/metis-sky-image.jpg",
+      "previewUrl": "/bespoke/metis-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "metis-generated-skyImage-original.png",
+      "sourceSha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+      "sha256": "762a6ab0e3a38f5a8ed44003f122ab1baf06095cbc2f392b84f774b927452cb5",
+      "previewSha256": "b71509e27b5147141de7fc42e590e48e164a80612dca666b501ea4688cc666e4",
+      "bytes": 200247,
+      "previewBytes": 7907,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

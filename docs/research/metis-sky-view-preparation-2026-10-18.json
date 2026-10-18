@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-18",
+  "body": "Metis, Jupiter inner moon / S1979J1 / JPL516",
+  "mode": "built-in imagegen, new independent image, no reference images",
+  "original": {
+    "path": "data/research-sources/metis-generated-skyImage-original.png",
+    "bytes": 2005362,
+    "sha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-77469e01-f392-497f-a2cd-d95df79740ae.png",
+    "bytes": 2005362,
+    "sha256": "eaa80b0453ef5195daf68a83abd114d482f0861e95cd9c83b483f689d0a950f2",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Metis hypothetical Jupiter-observer illustration, wide landscape 16:9.\nPrimary request: create a new independent low viewpoint over Metis, Jupiter inner moon S/1979J1/JPL516, looking toward Jupiter in an illustrative unregistered near-side direction. Original invented dark grey grains and sparse blocks on low uneven foreground, black sky. Render a very large partially cropped Jupiter behind the horizon: nominal skyGeometry guide spherical Jupiter radius69911km at128000minus21.5km gives66.22318511428516degrees angular diameter, guide1090.4452059275504pixels at1672wide nominal90degree horizontalFOV. This is a composition guide only, not calibrated photometry or measured raster registration; large disk can be cropped by top frame and partly occluded by terrain. Use simple original subdued cream/brown atmospheric bands, invented cloud pattern and phase, no distinctive observed storm or actual Jupiter map/photo/texture. Planet axis, phase, light, colour and exposure are artistic, not dated. No Sun disk. All Metis terrain/grain/rock sizes/materials/chemistry/fractions/porosity are invented. No observed-body analog skin or recognizable Moon/Mars/Pluto/Amalthea/Thebe geography. Not a dated site, real local normal, known spin/pole or permanent Jupiterface; likely synchrony is not independently measured spin. No atmosphere haze over Metis, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing. Omitted rings/stars are not absence claims. Restrained photographic-style hypothetical scientific illustration.\nFull-width dark annotation band inside bottom edge with two clear exact lines:\nMETIS \u2014 IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nKeep both lines fully inside frame, unobstructed, no additional labels/logos/watermarks. Generate independent standalone image with no reference images.",
+  "promptFile": {
+    "path": "data/research-sources/metis-sky-prompt-2026-10-18.txt",
+    "bytes": 1936,
+    "sha256": "dae54d12e19ccf0b9177e7200136119ca994c403553d0fdb29bad6ad2d8a8724"
+  },
+  "preparations": {
+    "master": {
+      "path": "data/research-sources/metis-sky-master-preparation.jpg",
+      "bytes": 200320,
+      "sha256": "468c0eae3f4e3bb3e44fd261b9a9dfc47e8e4d91e32384ae52c12ba90b62c925",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "width": 1536,
+      "quality": 85,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    },
+    "preview": {
+      "path": "data/research-sources/metis-sky-preview-preparation.jpg",
+      "bytes": 8052,
+      "sha256": "9918fb7b90b766b79449077b50447ee4f4442090e23219cb74d0a434f3013ca6",
+      "dimensions": [
+        256,
+        144
+      ],
+      "width": 256,
+      "quality": 80,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    }
+  },
+  "geometryGuide": {
+    "sources": [
+      {
+        "path": "data/research-sources/metis-physical-2026-10-18.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/metis-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 128000,
+    "cameraHeightKm": 21.5,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 66.22318511428516,
+    "centreDiscWidthPixels": 1090.4452059275504,
+    "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "inspection": "Original two exact footer lines readable. Large top-cropped, terrain-occluded Jupiter with invented bands; qualitatively oversized and uncalibrated, no measured raster diameter adopted. Original and1536master footer lines inspected readable;256preview requires explicit IMAGINED card labels.",
+  "limits": "Invented terrain/grain and rock sizes/materials/chemistry/fractions/porosity/grey colour/Jupiter bands/cloudpattern/phase/axis/light/exposure. No observed-body analog map, dated site, measured normal/pole/current longitude, known spin/locking or permanent Jupiterface. Nominal geometry not current eccentric distance or uncertainty envelope;165Kangularonly colour/irradiance discarded. Black sky/omitted stars/rings not absence. No plume,liquid,exposed ocean,biology,craft or survivable landing. Small preview requires IMAGINED card labels.",
+  "status": "research preparation only, no91st or embedding/catalogue adoption",
+  "references": [
+    "docs/research/metis-native-preparation-2026-10-18.json",
+    "docs/research/metis-orbit-geometry-preparation-2026-10-18.json"
+  ]
+}
