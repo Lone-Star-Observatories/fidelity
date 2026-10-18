@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-18",
+  "body": "Thebe, Jupiter XIV, NAIF514; distinct from Himalia JupiterVI",
+  "status": "research preparation only, no dossier90 or image/catalogue/map/model/shape/codec adoption",
+  "sources": [
+    {
+      "path": "data/research-sources/thebe-physical-2026-10-18.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/thebe-elements-2026-10-18.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "physical": {
+    "source": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+    "gmKm3S2": 0.03015,
+    "gmSigmaKm3S2": 0.0125,
+    "gmReference": "JUP365",
+    "meanRadiusKm": 49.3,
+    "radiusSigmaKm": 4,
+    "radiusReference": "1: B.A.Archinal,C.H.Acton,M.F.A’Hearn et al.2018 Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:2015, Celestial Mechanics130:22",
+    "derivedDensityGcm3": 0.9,
+    "densitySigmaGcm3": 0.4327,
+    "limits": "Radius is equivalent-volume sphere, not measured local normal, three axes or newly validated shape. Density derived from uncertain GM/radius, not chemistry, porosity or precise mass. No generic mass adoption. Older49.3±2 commonly indexed value is not silently substituted for this directly fetched±4 row."
+  },
+  "meanElements": {
+    "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+    "ephemeris": "JUP365",
+    "frame": "local Laplace plane",
+    "epochTDB": "2000-01-01.5",
+    "aKm": 221900,
+    "e": 0.018,
+    "argumentPeriapsisDeg": 26.6,
+    "meanAnomalyDeg": 182.1,
+    "inclinationDeg": 1.1,
+    "nodeDeg": 340.4,
+    "periodDays": 0.676105,
+    "apsidalPrecessionYears": 0.398,
+    "nodalPrecessionYears": 0.797,
+    "laplacePoleRaDeg": 268.1,
+    "laplacePoleDecDeg": 64.5,
+    "tiltDeg": 0,
+    "reference": "29; R.A.Jacobson2021 The Orbits of the Regular Jovian Satellites and the Orientation of the Pole of Jupiter, personal communication to Horizons/NAIF",
+    "limits": "Mean approximation, not current distance/dated ephemeris, rotational period/pole, local normal or event-grade covariance/light-time/phase reconstruction. Rounded tilt0 does not establish exactly zero physical tilt. JUP365 range1600Jan10–2200Jan10 is source-kernel coverage, not validation of this approximation."
+  },
+  "geometryGuide": {
+    "sources": [
+      {
+        "path": "data/research-sources/thebe-physical-2026-10-18.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/thebe-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 221900,
+    "cameraHeightKm": 49.3,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 36.73688246129246,
+    "centreDiscWidthPixels": 555.1777017164484,
+    "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "geometryReproducer": {
+    "path": "docs/research/thebe-observer-geometry-preparation-2026-10-18.mjs",
+    "bytes": 1171,
+    "sha256": "008ca3c0806f19307ac874dd981ecba12b724618686ce533231098654fc39646"
+  },
+  "releaseChronology": {
+    "photojournalUrl": "https://science.nasa.gov/photojournal/nasas-juno-misson-captures-jupiter-moon-thebe/",
+    "photojournalAddition": "2026-05-05",
+    "jplUrl": "https://www.jpl.nasa.gov/images/pia26751-nasas-juno-misson-captures-jupiter-moon-thebe/",
+    "jplPageDate": "2026-05-04",
+    "observation": "2026-05-01",
+    "evidence": "JPL page text available through web reader; local Python TLS verification failed and system curl returned403. Dates describe publisher pages, not acquisitionUTC. Cause of publication chronology difference unverified. No accessible local JPLcaption HTML hash invented.",
+    "localHttpResponse": {
+      "path": "data/research-sources/thebe-jpl-caption-response-2026-10-18.html",
+      "bytes": 919,
+      "sha256": "41d54e1b37c31736646bf05f5e645a8e8ed766c50e52997f2c9e5480b68aeb80",
+      "status": 403,
+      "meaning": "error response only, not caption/image/paper hash"
+    }
+  },
+  "shapeRotation": {
+    "pendingPrimary": "P.C.Thomas et al.1998 The Small Inner Satellites of Jupiter, Icarus135360–371, publisherPIIS0019103598959760",
+    "pendingArchive": "https://sbn.psi.edu/pds/resource/stkshape.html",
+    "limits": "Search discovery leads only, not downloaded/reviewed fullpaper or adopted digital shape. No116x98x84 axes, uncertainty, pole/current longitude or raw-product association promoted from secondary listings. NASA captions describe synchronous orientation; independent primary body-specific rotation/frame/shape audit still open. Synchronous rotation alone would not make Jupiter visible at every site. No paper figure or CC claim."
+  },
+  "notClaimed": [
+    "No generated view or raster-diameter measurement",
+    "No catalogue/membership change",
+    "No local chemistry/colour/porosity fractions or observed dust-shedding history",
+    "No native image replacement/resampling/embedding",
+    "No exhaustive current ranking or newest-image claim"
+  ],
+  "next": "Audit primary shape/rotation or archive label, prepare independent IMAGINED local/Jupiter-observer original PNG/fullprompt/masters/previews using nominal guide and explicit unregistered limits, then additive dossier if budget passes.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 8,
+    "nativeCardsExactBytesAndMime": 79,
+    "baseline": "bf2b2cf",
+    "priorDossiersDeepEqual": 89,
+    "dossiers": 89,
+    "priorMoonsDeepEqual": 45,
+    "moons": 45,
+    "trackedPublicByteEqual": 666,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15787652,
+    "headroomBytes": 212348,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "520a98605b7fe2909108e4ff5b37bbd1dc8a7e25a3869de7056d674356458184",
+    "applicationSha256": "4a33f873fe24502f09744749d742663b818618c3d7f93a79f9b6b1b64f502827",
+    "freshBrowserClaim": false,
+    "testsPassed": 687,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "interbuildSnapshotDifferenceAttribution": "unaudited; no compression savings claim"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-18",
+  "body": "Thebe Jupiter XIV",
+  "mode": "built-in imagegen, new independent image, no reference images",
+  "original": {
+    "path": "data/research-sources/thebe-generated-surfaceImage-original.png",
+    "bytes": 2970408,
+    "sha256": "a5ec9c23b48e66df53fe9a2734b33d214bc7f6547f3c23e81ba892ba339c5927",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-fadae22a-920f-4483-86b1-6b211c45d8f6.png",
+    "bytes": 2970408,
+    "sha256": "a5ec9c23b48e66df53fe9a2734b33d214bc7f6547f3c23e81ba892ba339c5927",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Thebe local-view illustration, wide landscape 16:9.\nPrimary request: create an independent hypothetical low viewpoint over Thebe, Jupiter XIV. This is not a spacecraft photo, map, dated site or reconstructed landing. Invent an original subdued dark grey-brown granular surface, sparse irregular blocks and shallow pitted relief, gently curved distant horizon under black sky. The existence, scale and material of all local grains, rocks, chemistry, fractions, porosity, colour and lighting are invented: do not depict them as measured. No astronomical disks in this local view; Jupiter and Sun are outside frame. Do not reuse or imitate any observed body's terrain, map, photograph or distinctive geographic feature, including Moon, Mars, Pluto, Amalthea or any other moon. Do not reconstruct Zethus or identify a dated place. No atmosphere haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Black sky and omitted stars do not establish atmosphere or star absence. Photographic-style scientific hypothetical illustration, restrained contrast and legible surfaces, exposure artistic. Full width bottom dark annotation band inside frame, with two clearly legible exact lines:\nTHEBE \u2014 IMAGINED LOCAL VIEW\nTerrain, materials, colour and lighting invented; no registered surface site\nKeep both lines completely inside image, unobstructed, without additional labels, logos or watermarks. Render a new standalone image without reference images.",
+  "promptFile": {
+    "path": "data/research-sources/thebe-local-prompt-2026-10-18.txt",
+    "bytes": 1539,
+    "sha256": "15ec54b7717ebed60d1a97355ecf086fea30ad987a609c788fe674c694ea3737"
+  },
+  "preparations": {
+    "master": {
+      "path": "data/research-sources/thebe-surface-master-preparation.jpg",
+      "bytes": 364353,
+      "sha256": "45ecc2383032dcc946244e09754288ff77fb28e43172f44ab52fa49b5b672d0c",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "width": 1536,
+      "quality": 85,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    },
+    "preview": {
+      "path": "data/research-sources/thebe-surface-preview-preparation.jpg",
+      "bytes": 10170,
+      "sha256": "b609c08581b6560bec31da998496a0d314e56265f11ca80afe96bcf3ec6c8bba",
+      "dimensions": [
+        256,
+        144
+      ],
+      "width": 256,
+      "quality": 80,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    }
+  },
+  "inspection": "Original both exact IMAGINED footer lines fully readable; independent dark grey-brown blocks/grains/shallow pitted relief and black sky. No astronomical disk, no angular/raster size claim.",
+  "limits": "Invented terrain/materials/chemistry/fractions/porosity/colour/light/exposure; no analog observed-body map, dated site, Zethus reconstruction, local normal or measured pole/current longitude. Black sky/omitted stars not atmosphere absence. No plume,liquid,exposed ocean,biology,craft or survivable landing. Native coarse images separate. Small preview annotation requires explicit IMAGINED card labels.",
+  "status": "research preparation only, no90th or embedding/catalogue adoption"
+}
