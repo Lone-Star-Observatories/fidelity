@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea, Jupiter inner moon / JPL515",
+  "mode": "built-in imagegen, new independent image, no reference images",
+  "original": {
+    "path": "data/research-sources/adrastea-generated-skyImage-original.png",
+    "bytes": 2041602,
+    "sha256": "87315f2aa5e74fbbc22259a3d9f8fb3e9768cd6a9ac86019b5f3f95815d48850",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f96eb410-9066-430a-a959-6774f2f25c4e.png",
+    "bytes": 2041602,
+    "sha256": "87315f2aa5e74fbbc22259a3d9f8fb3e9768cd6a9ac86019b5f3f95815d48850",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Adrastea hypothetical Jupiter-facing observer illustration, wide landscape16:9. Create a new independent invented low viewpoint over Adrastea, Jupiter inner moon JPL515. Subdued dark grey uneven granular foreground with sparse irregular blocks below black sky. Huge spherical Jupiter above horizon, cream/tan/brown bands and original invented cloud patterns, no copied map, photograph or identifiable observed storm. Composition: Jupiter centre in upper sky with upper limb allowed outside top frame and lower limb partly occluded by terrain. Hypothetical angular guide computed with skyGeometry: Jupiter radius69911km at129000 minus8.2km observer distance,65.63708164033733degree apparent diameter, nominal90degree horizontal FOV,1078.2964000191785px target in1672px width. This is an illustrative guide, not calibrated raster, dated scene, registered site, local normal, pole, measured spin locking or permanent Jupiter face. Phase, axis, cloud morphology, colour, exposure and illumination artistic. All local terrain, grain/block sizes, materials, chemistry, fractions, porosity unknown and invented. No analog skins or reused geography from Moon,Mars,Pluto,Amalthea,Thebe,Metis or any other body. No Sun disk, atmospheric haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Omitted stars/rings and black sky are composition choices, not evidence of absence. Restrained photographic-style hypothetical illustration.\nFull-width dark annotation band at bottom INSIDE frame, two fully legible exact lines:\nADRASTEA \u2014 IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nKeep both lines unobstructed fully inside frame. No other logos, labels or watermarks. New standalone generation without reference images.\n",
+  "promptFile": {
+    "path": "data/research-sources/adrastea-sky-prompt-2026-10-18.txt",
+    "bytes": 1855,
+    "sha256": "42d59f47e41f0b019c1d8a37d0e2082200cf5b396033a9b8c4d32efaa5835f4d"
+  },
+  "preparations": {
+    "master": {
+      "path": "data/research-sources/adrastea-sky-master-preparation.jpg",
+      "bytes": 207243,
+      "sha256": "1cd5803ece0bc6597aeb4cbcc0421c3f75d35d5bbf6317f8065957943a3cd77b",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    },
+    "preview": {
+      "path": "data/research-sources/adrastea-sky-preview-preparation.jpg",
+      "bytes": 7790,
+      "sha256": "ec1056ebdb8bfe08c49a1000bae55a9bb59d9388436e93ff664bd6bbf033b226",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    }
+  },
+  "inspection": "Original and1536JPEG85 master both exact IMAGINED footer lines visually inspected readable.256JPEG80 preview inspected; tiny footer requires explicit IMAGINED card labels. Invented Jupiter top cropped/lower limb terrain occluded; no measured raster diameter or calibrated scene claim.",
+  "limits": "Terrain, grain/block sizes, chemistry, fractions, porosity, colour, light and exposure invented. No observed-body analog skin, dated site, local normal, measured pole/current longitude, spin locking or permanent Jupiter face. Black sky and omitted stars/rings not evidence of absence. No atmosphere, plume, liquid, exposed ocean, biology, craft or survivable landing. Small preview requires explicit IMAGINED card labels.",
+  "status": "research preparation only; no92nd dossier, embedding, catalogue, globe, shape or codec adoption",
+  "references": [
+    "docs/research/adrastea-native-preparation-2026-10-18.json",
+    "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json"
+  ],
+  "geometryGuide": {
+    "implementation": "docs/research/adrastea-observer-geometry-preparation-2026-10-18.mjs",
+    "angularDiameterDegrees": 65.63708164033733,
+    "targetPixels": 1078.2964000191785,
+    "widthPixels": 1672,
+    "horizontalFovDegrees": 90,
+    "limits": "skyGeometry spherical Jupiter69911km at129000 minus8.2km;165K helper angular only, colour/irradiance discarded. Top cropped and foreground-occluded generated Jupiter uncalibrated; no rendered raster diameter adopted. Mean orbit/height not dated distance, registered normal, joint fit or uncertainty envelope; oblateness/phase/axis/spectral transfer artistic."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea, Jupiter inner moon / JPL515",
+  "mode": "built-in imagegen, new independent image, no reference images",
+  "original": {
+    "path": "data/research-sources/adrastea-generated-surfaceImage-original.png",
+    "bytes": 2848106,
+    "sha256": "2e75715d43b90b82406c7d54a17250c857811e2d3c33d82886ab142ed4056a1c",
+    "dimensions": [
+      1672,
+      940
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f8d22551-ca71-46a9-bb2c-ca54a6034655.png",
+    "bytes": 2848106,
+    "sha256": "2e75715d43b90b82406c7d54a17250c857811e2d3c33d82886ab142ed4056a1c",
+    "dimensions": [
+      1672,
+      940
+    ]
+  },
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity Adrastea local-view illustration, wide landscape16:9.\nCreate a new independent hypothetical low viewpoint over Adrastea, Jupiter inner moon JPL515. Invent subdued dark grey granular foreground, sparse irregular blocks and low uneven relief, distant curved horizon beneath black sky. All grain/rock sizes, materials, chemistry, fractions, porosity, colour, terrain and lighting are unknown and invented. No astronomical disk: Jupiter and Sun off frame; no angular-size claim. Do not reuse or imitate observed geography, photographs or maps of Moon, Mars, Pluto, Amalthea, Thebe, Metis or any other body. Not a spacecraft photograph, observed map, dated site or reconstructed landing. No atmosphere haze, plume, liquid, exposed ocean, biology, craft, astronaut or survivable landing implication. Black sky and omitted stars are composition choices not absence evidence. Restrained photographic-style hypothetical scientific illustration, artistic exposure. Rotation, pole, local normal and current longitude unknown; no permanent Jupiter-facing site implied.\nFull-width dark annotation band at bottom INSIDE frame, two fully legible exact lines:\nADRASTEA \u2014 IMAGINED LOCAL VIEW\nTerrain, materials, colour and lighting invented; no registered surface site\nKeep both lines unobstructed fully inside frame. No other logos, labels or watermarks. New standalone generation without references.\n",
+  "promptFile": {
+    "path": "data/research-sources/adrastea-local-prompt-2026-10-18.txt",
+    "bytes": 1441,
+    "sha256": "0c4a5caacefe0ea7fd09a069520f18da7a515a613871415b40d74cc5b9016d0d"
+  },
+  "preparations": {
+    "master": {
+      "path": "data/research-sources/adrastea-surface-master-preparation.jpg",
+      "bytes": 358119,
+      "sha256": "50ecdd853e93f30f5bb439f7f227ee55d46d14286187dab2af6f0cd5a5958e16",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    },
+    "preview": {
+      "path": "data/research-sources/adrastea-surface-preview-preparation.jpg",
+      "bytes": 10390,
+      "sha256": "66b68ea912b64eeffbc051ab2f040010fb5a909391bb73a7ad01464658ce5be2",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "encoding": "JPEG",
+      "resampledFromOriginal": true
+    }
+  },
+  "inspection": "Original and1536JPEG85 master both exact IMAGINED footer lines visually inspected readable.256JPEG80 preview inspected; tiny footer requires explicit IMAGINED card labels. Dark grey invented grains/blocks/low relief, black sky; no astronomical disk or angular claim.",
+  "limits": "Terrain, grain/block sizes, chemistry, fractions, porosity, colour, light and exposure invented. No observed-body analog skin, dated site, local normal, measured pole/current longitude, spin locking or permanent Jupiter face. Black sky and omitted stars/rings not evidence of absence. No atmosphere, plume, liquid, exposed ocean, biology, craft or survivable landing. Small preview requires explicit IMAGINED card labels.",
+  "status": "research preparation only; no92nd dossier, embedding, catalogue, globe, shape or codec adoption",
+  "references": [
+    "docs/research/adrastea-native-preparation-2026-10-18.json",
+    "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json"
+  ]
+}

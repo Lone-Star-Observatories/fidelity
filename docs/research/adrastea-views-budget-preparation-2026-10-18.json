@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea JPL515",
+  "status": "Research preparation only; no92nd dossier or embedding.",
+  "views": [
+    "adrastea-local-view-preparation-2026-10-18.json",
+    "adrastea-sky-view-preparation-2026-10-18.json"
+  ],
+  "budget": {
+    "preparedJpegPreviewBytes": 18180,
+    "baselineFullHtmlBytes": 15983748,
+    "baselineHeadroomBytes": 16252,
+    "nativeWholePia01076Bytes": 8331,
+    "limits": "Preview raw bytes alone exceed baseline headroom. Not an exact compressed HTML increment; no trial dossier build or savings claim. Further conforming lossless capacity needed before additive native/full-science dossier; preserve originals and every delivered native/model/detail."
+  },
+  "scienceLimits": "JPL GM uncertainty exceeds value; equivalent-volume8.2\u00b14km versus overview\u00b12 retained. Unknown spin/pole/longitude/local normal, no measured locking/permanent Jupiter face. Nominal mean orbit not dated distance or registered attitude. Native family montage unresolved coarse views not local chemistry/visible-colour calibration. All terrain/materials/fractions/porosity/colour/light and Jupiter patterns/phase/axis/exposure invented; no analog observed-body skin. Black/omitted rings or stars not absence. No plume/liquid/ocean/biology/survivable landing.",
+  "next": "Recover conforming lossless headroom before additiveAdrastea92; remaining native/science/shape/calibration/ranking backlog active, no external blocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 21,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "a66e5f3",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15983236,
+    "headroomBytes": 16764,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "0511a7a2a603961bd99c1ac85428fec427ce7be7d9f0471794e8f4f57adc24aa",
+    "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+    "freshBrowserClaim": false,
+    "testsPassed": 689,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "interbuildDifference": "Live feed changes not separately audited; no compression/asset saving attribution. No fresh browser claim."
+  }
+}
