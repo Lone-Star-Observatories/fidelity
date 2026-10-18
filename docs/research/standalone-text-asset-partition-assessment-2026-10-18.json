@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-18",
+  "status": "Rejected two-section independent Brotli metadata/asset-tail partition; no adoption",
+  "input": {
+    "path": "data/research-sources/standalone-text-asset-partition-frozen-2026-10-18.json",
+    "bytes": 27948998,
+    "sha256": "0511a7a2a603961bd99c1ac85428fec427ce7be7d9f0471794e8f4f57adc24aa"
+  },
+  "binaryBytes": 21668518,
+  "binarySha256": "5dc4efa9476b7230614b901972b1de9eccf83fde9ab94725510d033b471135e3",
+  "partitionOffset": 5776046,
+  "sections": [
+    {
+      "bytes": 5776046,
+      "sha256": "48ba38d4dd028be819f3523f10996d200c4889900a6870248a3cbb2db671d5d0",
+      "brotliBytes": 1344429
+    },
+    {
+      "bytes": 15892472,
+      "sha256": "7c2ff88cc4d61f336782b2f2bd43b6f68b961cbbe5c2365b9205db48aec8c3b5",
+      "brotliBytes": 13491630
+    }
+  ],
+  "baseline": {
+    "innerBytes": 14832879,
+    "outerGzipBytes": 14836654
+  },
+  "candidate": {
+    "frameBytes": 14836083,
+    "outerGzipBytes": 14838137
+  },
+  "deltaOuterGzipBytes": 1483,
+  "exactNativeAndBundledJsContainerAndFullJson": true,
+  "limits": "Before new production decoder/wrapper/HTML transport overhead; not complete candidate HTML/browser or measured whole-application saving. All exact input fields/native/model/map/shape bytes retained. Distinct from asset ordering and fixed Brotli input-block settings.",
+  "decision": "1483 outergzip bytes larger before new decoder/wrapper/HTML overhead. Do not repeat this partition/layout/settings. Exact inverses do not establish capacity saving.",
+  "reproducer": {
+    "path": "docs/research/standalone-text-asset-partition-screen-2026-10-18.mjs",
+    "bytes": 3259,
+    "sha256": "769b3e36c7655ef7b98baab9dfcd6fa284883c5ae903ed3d50d12ec6df6ed96e"
+  },
+  "preserved": "All91 dossiers,676 trackedpublicfiles, original/defaultPNGs, masters, native science, maps, models, shapes, provenance and recorded Clipper. No92nd dossier/newembedding/catalogue/codec change.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 33,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "79b6af3",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15981188,
+    "headroomBytes": 18812,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "cfa6f52d2406a8b9091fd1bf859e3e58b6895a51c7fb8af91c610da2954e7cd9",
+    "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+    "freshBrowserClaim": false,
+    "testsPassed": 689,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Production packaging unchanged. Live-feed interbuild differences unaudited; no experiment/fullHTML savings attribution or fresh browser claim."
+  }
+}
