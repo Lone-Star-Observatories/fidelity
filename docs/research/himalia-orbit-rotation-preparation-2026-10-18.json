@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-18",
+  "body": "Himalia, Jupiter VI / NAIF506",
+  "status": "Research/preparation only; no catalogue adoption or89th dossier",
+  "sources": [
+    {
+      "path": "data/research-sources/himalia-jpl-physical-2026-10-18.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+    },
+    {
+      "path": "data/research-sources/himalia-jpl-elements-2026-10-18.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+    },
+    {
+      "path": "data/research-sources/himalia-pilcher2012-record-2026-10-18.html",
+      "bytes": 32542,
+      "sha256": "b21d318f5ef963db7be889d0c98ef32112b6feea578f4a084cdd00308e234da8",
+      "url": "https://elib.dlr.de/77110/"
+    },
+    {
+      "path": "data/research-sources/himalia-pilcher2012-publisher-2026-10-18.response",
+      "bytes": 832806,
+      "sha256": "a0afc324bf8d2ed4346741612b3e5a83caf7db2a3867aba3155a8e9e756c9753",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0019103512001145"
+    }
+  ],
+  "physical": {
+    "source": "JPL SSD current physical table",
+    "radiusKm": 85,
+    "radiusSigmaKm": 10,
+    "radiusMeaning": "Equivalent-volume sphere; not axes, resolved shape or local normal.",
+    "radiusReference": "Reference1: Archinal et al.2018 IAU rotational/cartographic report; underlying measurement provenance not independently audited.",
+    "gmKm3S2": 0.15155,
+    "gmSigmaKm3S2": 0.05763,
+    "gmReference": "JUP344",
+    "densityGcm3": 0.8827,
+    "densitySigmaGcm3": 0.458,
+    "densityMeaning": "Publisher-derived from GM and adopted spherical volume; not precise local composition or porosity. Not same source as later JUP347 mean elements."
+  },
+  "orbit": {
+    "source": "JPL SSD mean elements",
+    "ephemeris": "JUP347",
+    "reference": "R.A.Jacobson2025 Ephemerides of the Jovian irregulars; personal communication to Horizons/NAIF",
+    "frame": "ecliptic",
+    "epoch": "2000-01-01.5",
+    "semimajorAxisKm": 11439000,
+    "eccentricity": 0.16,
+    "argumentPeriapsisDeg": 321.1,
+    "meanAnomalyDeg": 78.3,
+    "inclinationDeg": 28.4,
+    "nodeDeg": 64.2,
+    "periodDays": 249.909,
+    "apsidalPeriodYears": 187.4,
+    "nodalPeriodYears": 297.1,
+    "limits": "Mean elements, not current distance/state or fully reconstructed SPICE propagation. Table frame/node convention and time-scale implementation require audit before precise registration. Ephemeris source coverage1799-12-21–2200-01-11 is not a validation of this approximate mean-element orbit."
+  },
+  "rotation": {
+    "authors": [
+      "Frederick Pilcher",
+      "Stefano Mottola",
+      "Tilmann Denk"
+    ],
+    "title": "Photometric lightcurve and rotation period of Himalia (Jupiter VI)",
+    "publicationYear": 2012,
+    "journal": "Icarus219,741–742",
+    "doi": "10.1016/j.icarus.2012.03.021",
+    "synodicPeriodHours": 7.7819,
+    "sigmaHours": 0.0005,
+    "amplitudeMag": 0.2,
+    "amplitudeSigmaMag": 0.01,
+    "evidence": "DLR author-repository abstract: combined independent CCD datasets from0.35m/1.23m telescopes, replacing historical~9.5h phasing. Full methods/raw lightcurve not available from repository; direct publisher HTTP403 response retained, not a paper hash.",
+    "rights": "DLR record says not open access; no CC licence or paper-figure reuse asserted.",
+    "limits": "Synodic photometric period is not a sidereal pole solution or dated longitude registration. Short spin differs from orbital period; no permanent Jupiterface/locking/terrain calibration adopted."
+  },
+  "geometry": {
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 11439000,
+    "cameraHeightKm": 85,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 0.7003514194513794,
+    "centreDiscWidthPixels": 10.218921563694819,
+    "limits": "JPL mean semimajor axis and equivalent-volume radius as representative hypothetical radial near-side camera only; not current eccentric distance, normal, dated site, spin pole, permanent Jupiterface or uncertainty envelope.165K angular helper only; colour/irradiance discarded; phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "open": [
+    "Independent full primary shape/occultation/thermal and newer rotation/spectrum alternatives; indexed projected-axis leads not adopted without primary audit.",
+    "Current raw frame/filter/photometric/PSF/pole registration and catalogue source crosswalk. No observed-body map, material fractions, atmosphere/plume/ocean/biology/landing inference."
+  ],
+  "preservation": "All88dossiers and previous assets retained; no89th/embedding/map/model/shape/codec change.",
+  "geometryReproducer": {
+    "path": "docs/research/himalia-observer-geometry-preparation-2026-10-18.mjs",
+    "bytes": 1183,
+    "sha256": "6251f616f1e1d63602d0f93606b8217e87679eeb90db69ad7e6082e8232cfb85"
+  }
+}

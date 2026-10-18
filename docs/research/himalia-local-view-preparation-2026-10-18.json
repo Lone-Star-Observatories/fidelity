@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-18",
+  "body": "Himalia",
+  "status": "Independent local-view preparation only; not imported/embedded or89th dossier",
+  "tool": "built-in imagegen; no input/reference image",
+  "prompt": "Use case: scientific-educational illustration. Asset type: Fidelity independent hypothetical local view from Himalia, Jupiter's irregular moon, wide16:9. No input/reference images or observed-body map. Scene: an arbitrary invented patch of subdued dark neutral-grey granular regolith with sparse angular small blocks, shallow irregular depressions and low uneven ridges, under a black sky. Restrained low oblique off-frame sunlight, hard modest shadows, no Sun or Jupiter disk, no stars. Ground geometry, grains, rocks, material chemistry/fractions, porosity, grey colour, lighting and exposure are entirely invented; no resolved local Himalia map exists in the adopted sources. Do not copy recognizable Moon maria/ray craters, Mars dunes/canyons, Pluto polygons, Charon chasms, or another observed body's geography. Native Cassini images resolve only a tiny disk and do not constrain this terrain. JPL85±10km equivalent-volume radius is not a measured spherical surface or local normal.7.7819h synodic photometric period is not a registered spin pole, present phase, dated site, locked moon or permanent Jupiter-facing place. Black sky is an assumption, not proof of absent atmosphere. No atmosphere, haze, clouds, plume, liquid, exposed ocean, biology, person, spacecraft, tracks, infrastructure or survivable-landing implication. No astronomical disk so no angular/raster-size claim. Educational realistic invented scene, not an actual photograph. Add a full-width dark footer band with two large legible exact lines: 'HIMALIA — IMAGINED LOCAL VIEW' and 'Terrain, materials, colour and lighting invented; no resolved surface map'.",
+  "promptFile": {
+    "path": "data/research-sources/himalia-local-prompt-2026-10-18.txt",
+    "bytes": 1637,
+    "sha256": "e9c8ed5b11aed5503841433d7a31f1589b280628b0ef5ed8d90e963f6bf1b081"
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-45c4abfb-1d8a-4b57-9270-8a4487488cca.png",
+    "bytes": 3009090,
+    "sha256": "c356fbd8a8ec9930facac7bfb9a887a5fa73713c2c78d0cfcce50e5f1e84abf0"
+  },
+  "original": {
+    "path": "data/research-sources/himalia-generated-surfaceImage-original.png",
+    "bytes": 3009090,
+    "sha256": "c356fbd8a8ec9930facac7bfb9a887a5fa73713c2c78d0cfcce50e5f1e84abf0"
+  },
+  "dimensions": [
+    1672,
+    941
+  ],
+  "files": [
+    {
+      "path": "data/research-sources/himalia-generated-surfaceImage-master.jpg",
+      "bytes": 383731,
+      "sha256": "649288e9fa0f11789722db2d585d9d1d19c177c2c4be90c60c74e460a0d19f8a",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/himalia-generated-surfaceImage-preview.jpg",
+      "bytes": 12163,
+      "sha256": "4723f8c13bf66fc08f7ad4e1a0d2c4bdb13e2bcf12ce87f26db92c2d94306b1d",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    }
+  ],
+  "sources": [
+    {
+      "path": "docs/research/himalia-native-preparation-2026-10-18.json",
+      "bytes": 10292,
+      "sha256": "05b840cf599fc1e33cbf5945d089422b34fed5664f7f42f2134fa87e5f655c19"
+    },
+    {
+      "path": "docs/research/himalia-orbit-rotation-preparation-2026-10-18.json",
+      "bytes": 5063,
+      "sha256": "41122550d6e513897504a89a800e2fa5fdb081cfd826d961bad4ba2f2b875269"
+    }
+  ],
+  "inspection": "Original1672x941PNG,1536x864JPEG85master and256x144JPEG80preview individually inspected. Both original/master footer lines readable; small preview requires explicit IMAGINED card labels. No astronomical disk or recognizable analog map; no angular/raster claim.",
+  "limits": [
+    "All local materials,chemistry/fractions,porosity,colour,terrain,light and exposure invented. Native tiny disk does not establish this terrain.",
+    "No angular/raster calculation in this local view; no dated site,normal,spin pole,permanent Jupiterface,atmosphere absence,plume/liquid/ocean/biology/survivable landing.",
+    "Original/default PNG/fullprompt preserved; separate JPEG preparations are not replacements. Small256px footer requires explicit IMAGINED card labels."
+  ],
+  "preservation": "All88delivered dossiers/native/maps/models/shapes/master/provenance remain unchanged; sky view/additive integration pending, backlog ACTIVE.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 22,
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "63982be",
+    "priorDossiersDeepEqual": 88,
+    "dossiers": 88,
+    "priorMoonsDeepEqual": 44,
+    "moons": 44,
+    "trackedPublicByteEqual": 660,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15713156,
+    "headroomBytes": 286844,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "92f621e282253ba3c8b55087ad001a4814b9c7813d4cc830e597a5013762dcfa",
+    "applicationSha256": "f988db5064fa62ef11d76d02178be99ccb6498328bc42d28529383c2dcf0b5b6",
+    "freshBrowserClaim": false,
+    "testsPassed": 686,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "applicationUnchanged": true,
+    "limits": "Node complete inverse only, no fresh browser/routes/images/models/worker claim. Readable snapshot differs from earlier build; interbuild attribution unaudited, no compression saving claim. Existing assets/native/dossiers/catalogue/codecs remain byteequal/deepEqual."
+  }
+}
