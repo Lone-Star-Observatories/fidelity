@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara,JupiterVII,JPL507,not asteroid281Elara",
+  "status": "Research-only physical/orbit/spin-reference audit; no93rd dossier,image,embedding,catalogue or codec change.",
+  "sources": [
+    {
+      "path": "data/research-sources/elara-physical-2026-10-18.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+    },
+    {
+      "path": "data/research-sources/elara-elements-2026-10-18.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+    },
+    {
+      "path": "docs/research/elara-orbit-source-extraction-2026-10-18.py",
+      "bytes": 1257,
+      "sha256": "419101ab73b6393880a31ee8cd64a6b4e646320edae859ca8fd076218c2e6033"
+    },
+    {
+      "path": "data/research-sources/elara-orbit-source-extraction-2026-10-18.json",
+      "bytes": 999,
+      "sha256": "ad87c257c86bad53fa65298f08aed7c05e2e08d6008792c0e6003aa7000d992c"
+    },
+    {
+      "path": "data/research-sources/elara-luu1991.pdf",
+      "bytes": 1357751,
+      "sha256": "3420f83203e7819a4ece6507e50da10efdbfb85e7c4f58320259a96dd0d13646",
+      "url": "https://adsabs.harvard.edu/pdf/1991AJ....102.1213L"
+    },
+    {
+      "path": "data/research-sources/elara-luu1991.txt",
+      "bytes": 56250,
+      "sha256": "c91607ed1b348c53fd53219ff0239575111448f47776593f9d15a130505cc79f"
+    },
+    {
+      "path": "data/research-sources/elara-luu1991-page1.png",
+      "bytes": 520699,
+      "sha256": "28a95a2fe20fdaf1b93af30f6cce55ba0ee18b9e7eb8f73e7fab00682a369817"
+    },
+    {
+      "path": "data/research-sources/elara-luu1991-target-04.png",
+      "bytes": 459439,
+      "sha256": "94a91723a9e3d99990eb5b3b31bc01d66cdab082dfe3ed31fc9b993adba9d60b"
+    },
+    {
+      "path": "data/research-sources/elara-luu1991-target-05.png",
+      "bytes": 348118,
+      "sha256": "b4361015a365a4e13a6f24c27d1ade8a466ac7ed2b4fcaad7b9a1cbc003027f8"
+    }
+  ],
+  "physical": {
+    "currentJplElaraRow": null,
+    "tableRowsParsed": 59,
+    "limits": "No Elara physical row in this fetched table; no GM,radius uncertainty,density or measuredmass invented. NASAoverview43km assumes.04albedo,not measuredaxes or independently verified thermaldiameter. Currentbody-specific size/albedo/thermal reference audit remainsopen."
+  },
+  "meanElements": {
+    "sourceRow": [
+      "12",
+      "Jupiter",
+      "Elara",
+      "507",
+      "JUP347",
+      "ecliptic",
+      "2000-01-01.5",
+      "11710700.",
+      "0.212",
+      "129.9",
+      "346.9",
+      "27.8",
+      "112.8",
+      "258.8861",
+      "173.0",
+      "270.9",
+      "",
+      "",
+      "",
+      "47"
+    ],
+    "ephemeris": "JUP347",
+    "frame": "planet-centred ecliptic",
+    "epochTdb": "2000-01-01.5",
+    "aKm": 11710700,
+    "eccentricity": 0.212,
+    "argumentPeriapsisDeg": 129.9,
+    "meanAnomalyDeg": 346.9,
+    "inclinationDeg": 27.8,
+    "ascendingNodeDeg": 112.8,
+    "periodDays": 258.8861,
+    "apsisPrecessionYears": 173.0,
+    "nodePrecessionYears": 270.9,
+    "poleRaDeg": null,
+    "poleDecDeg": null,
+    "tiltDeg": null,
+    "referenceNumber": 47,
+    "reference": "R.A.Jacobson(2025),Ephemerides of the Jovian irregulars\u2014JUP347,personal communication to Horizons/NAIF.",
+    "limits": "Publisher least-squares precessing-ellipse representation of integrated orbit,explicitly not intended for ephemeris computation. Not currentdistance/phase/covariance/SPICE reconstruction or spin/pole/localnormal/locking/permanentJupiterface. Blankpolefields unknown,notzero. No catalogueadoption or angular/raster computation."
+  },
+  "primarySpinReference": {
+    "title": "CCD Photometry and Spectroscopy of the Outer Jovian Satellites",
+    "author": "Jane Luu",
+    "affiliation": "Harvard-Smithsonian Center for Astrophysics",
+    "publication": "Astronomical Journal102(3),1213\u20131225,September1991",
+    "received": "1991-05-06",
+    "bibcode": "1991AJ....102.1213L",
+    "pages": 13,
+    "inspection": "Complete13page text extracted; full pages1,4,5 visually inspected,especiallysection2.1.2/Figure1 on printed1216. Not full-paper visual/reanalysis claim.",
+    "observations": "Elara/J7,MDM1.3m,1987November19\u201320UT,about6hours/night. R-band brightness around16.18\u00b1.03mag with variations around.1mag; phase-dispersion search found no convincing period.",
+    "interpretation": "Nearly spherical shape,pole close to line of sight or >24h period are alternative explanations,not measuredshape/pole/period or lower-boundadoption. Older.51mag comparison/unknownaspect noted,not currentlocalalbedo or calibratedLORRI pixels. J6/J8\u2013J11 spectroscopy not assigned toElara.",
+    "terms": "Printed\u00a91991AmericanAstronomicalSociety; suppliedbyNASAADS. NoCClicence asserted,nofigureembedded.",
+    "limits": "Historicaldataset non-detection is not exhaustivepresent-day spinstatus; latermeasurement/thermal/shape references remainopen. No12hperiod,locking or permanentface adopted."
+  },
+  "inaccessibleLaterReview": {
+    "path": "data/research-sources/elara-irregular-review-response-2026-10-18.html",
+    "bytes": 7440,
+    "sha256": "78faaf2017e60380849620ba3f34c09941f0fddd140d54c3968d6dede5578f08",
+    "url": "https://refubium.fu-berlin.de/bitstream/handle/fub188/51747/11214_2026_Article_1263.pdf?sequence=1",
+    "classification": "HTML bot-verification response,notPDF/paper/licence hash. No challenge solved or bypass attempted."
+  },
+  "access": "BundledPython certificate verification failed forJPL; systemcurl with normalcertificateverification succeeded. No verificationdisabled. Institutionalreview returnedHTML challenge,notPDF; correctedlocalextension retainedresponse,no fabricatedpaperhash.",
+  "preservation": "All92dossiers/originals/masters/native/maps/models/shapes/provenance and recordedClipper unchanged. Elara originalPDSFITS/labels remain researchinputs.",
+  "next": "Verify body-specific thermal/size and laterrotation references,then hypotheticalobservergeometry throughskyGeometry; recoverlosslessheadroombeforelargerbatches. BacklogACTIVE; no globalexternalblocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 27,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "79c0fcf",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15987438,
+    "headroomBytes": 12562,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "0b579bcc51c3fbd8be9719433ec88f16a8d19934c7057e158680cc2ea520387e",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Interbuild live-feed difference unaudited; no savings or fresh browser claim."
+  }
+}
