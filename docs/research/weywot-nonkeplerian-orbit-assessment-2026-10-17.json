@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-17",
+  "issue": 3,
+  "body": "Weywot, satellite of Quaoar; primary quantities remain distinct",
+  "status": "research-only targeted orbit-methods/results audit; no parameter, image, map, mesh, scene, dossier or codec adoption",
+  "title": "Beyond Point Masses. V. Weywot\u2019s Non-Keplerian Orbit",
+  "authors": [
+    "Benjamin Proudfoot",
+    "Will Grundy",
+    "Darin Ragozzine",
+    "Estela Fern\u00e1ndez-Valenzuela"
+  ],
+  "sources": [
+    {
+      "path": "data/research-sources/quaoar-2511.07351-v1-record.html",
+      "url": "https://arxiv.org/abs/2511.07351v1",
+      "bytes": 43024,
+      "sha256": "69182180acec60d507b15fd2b77a4e76820ed5f0d1cded6823f6251dd0537aa3"
+    },
+    {
+      "path": "data/research-sources/weywot-2025-nonkeplerian-full.html",
+      "url": "https://arxiv.org/html/2511.07351v1",
+      "bytes": 270919,
+      "sha256": "48a3773e0f55ce3b941119e72e0ed9c708e76733f80c92267fe35c6ac35fd9fb"
+    }
+  ],
+  "rights": "Specific record CC BY-NC-SA4.0; not CC BY4 or blanket native-image permission. No figure embedded.",
+  "observationAndMethods": [
+    "HST re-reduction differs from earlier astrometry by up to 100 mas; author cross-validation favours their pipeline, not independently reproduced.",
+    "Text describes five archival epochs but also six archival detections; retain counting crosswalk open. Two proximity non-detections excluded rather than modelled.",
+    "Six new WFC3 epochs in programs17315/17417 yield five astrometric epochs. Adopted1mas telescope and3mas occultation floors are assumptions, not new app calibration.",
+    "Three early occultations average north/south circular-limb positions; last uses an elliptical fit. These do not independently establish local topography.",
+    "MultiMoon/emcee13-parameter non-Keplerian model includes two constant primary photocentre offsets; primary17.752h spin is not moon spin. Higher harmonics omitted.",
+    "No resolved Quaoar albedo map available in this analysis; Pluto/Charon comparisons do not authorize analog skins."
+  ],
+  "dataset": "https://doi.org/10.17909/ex7s-3w78 linked by paper; not fetched/reprocessed in this preparation.",
+  "tableResults": {
+    "status": "research preparation only; no catalogue, dossier, image, model, codec or physical parameter adopted",
+    "source": {
+      "url": "https://arxiv.org/html/2511.07351v1",
+      "path": "data/research-sources/weywot-2025-nonkeplerian-full.html",
+      "bytes": 270919,
+      "sha256": "48a3773e0f55ce3b941119e72e0ed9c708e76733f80c92267fe35c6ac35fd9fb"
+    },
+    "scope": "Targeted HTML Table 2, Section III.2 and IV; no figures visually inspected, posterior/code/raw astrometry not reproduced",
+    "epochFrame": "Fitted angles J2000 ecliptic, Quaoar-centric JD2454000.0 (2006-09-21 12:00 UT); derived RA/dec J2000 equatorial. Not current registered geometry.",
+    "constrained": {
+      "aKm": [
+        13329,
+        19,
+        19
+      ],
+      "e": [
+        0.0111,
+        0.004,
+        0.0044
+      ],
+      "periodDays": [
+        12.42727,
+        3e-05,
+        3e-05
+      ],
+      "orbitPoleRaDeg": [
+        267.38,
+        0.32,
+        0.33
+      ],
+      "orbitPoleDecDeg": [
+        53,
+        0.32,
+        0.33
+      ],
+      "primaryJ2": [
+        0.018,
+        0.008,
+        0.009
+      ],
+      "chiSquared": 37.2
+    },
+    "unconstrained": {
+      "aKm": [
+        13334,
+        20,
+        20
+      ],
+      "e": [
+        0.0097,
+        0.0024,
+        0.0027
+      ],
+      "periodDays": [
+        12.42718,
+        9e-05,
+        0.00024
+      ],
+      "primaryJ2": [
+        0.379,
+        0.191,
+        0.16
+      ],
+      "chiSquared": 17.3
+    },
+    "uncertaintyConvention": "Arrays median, lower and upper deviations; publisher 16th/84th posterior percentiles, not independently verified accuracy.",
+    "massPrior": "Both fits impose Weywot Gaussian mass prior mean2.4e18kg sigma1.2e18kg based on then-in-preparation165km diameter and500\u20131500kg/m3 density assumptions. Posterior2.4(-1.1,+1.2)e18 /2.5(-1.2,+1.2)e18 is not independent mass measurement. Preserve later2026 smaller shape and historical tidal alternatives.",
+    "primaryAssumptions": "c-axis545km, spin17.752h; volumetric549km normalizes J2R2. These are primary conventions, not moon dimensions/temperature/chemistry.",
+    "polePrior": "Constrained primary pole Gaussian ecliptic12.6/331.46deg sigma3deg inflated ring-model uncertainty; unconstrained uniform. Ring-to-equator assumption and circular-ring eccentricity/warp biases remain model limits.",
+    "limits": [
+      "Authors prefer constrained physical interpretation despite poorer fit; unconstrained high J2 may absorb time-varying photocentre offsets. Undiscovered moons/massive disk are hypotheses, not discoveries.",
+      "Constant photocentre offsets and model eccentricity correlate; no resolved primary albedo map follows.",
+      "2005\u20132035 ephemeris is relative to primary centre of light using500 constrained posterior draws, not centre-of-body/current scene; full machine table not fetched.",
+      "No spin locking, permanent face, local chemistry, geographic registration or independent calibration established.",
+      "Full publisher/raw products/posterior/code/figures and licence crosswalk remain open; specific arXiv CC BY-NC-SA4.0 is not CC BY."
+    ]
+  },
+  "open": [
+    "Five archival epochs versus six archival detections counting crosswalk.",
+    "Raw astrometry/occultation and original native-product/filter/UTC association; posterior chains/code and final publisher audit.",
+    "No PDF/figure visual inspection or independent orbit/photocentre/precession reproduction.",
+    "Primary ring-plane and mass priors are model assumptions, not measured moon composition, independent moon mass or spin.",
+    "Preserve historical tidal-model and 2026 conditional shape alternatives; no current distance/normal/permanent-face or calibrated raster claim."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 683,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "baseline": "314f2ac688a0ea44a2a356f5908af44abfc6350d",
+      "unchangedQueueEntriesDeepEqual": 569,
+      "queueEntries": 569,
+      "dossiersUnchanged": 86,
+      "trackedPublicByteEqual": 651,
+      "sourceHashesChecked": 12,
+      "htmlBytes": 15518084,
+      "headroomBytes": 481916,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "8e8620f7352c9f47515a8e1126d53bf5fa2c4794f7a1d6030511663dd76419f7",
+      "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+      "applicationUnchanged": true,
+      "freshBrowserClaim": false,
+      "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims."
+    }
+  }
+}
