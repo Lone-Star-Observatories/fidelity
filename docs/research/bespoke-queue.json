@@ -706,6 +706,19 @@
       "visualId": "himalia"
     },
     {
+      "id": "sol-thebe",
+      "bodyId": "thebe",
+      "name": "Thebe",
+      "parent": "jupiter",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "No resolved global texture adopted. Native Thebe context and the other moons in montage remain separate; no analog globe.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "thebe"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -1414,20 +1427,6 @@
       "kind": "moon",
       "scope": "IAU-recognized planetary/Pluto satellite",
       "discoveryYear": "1974",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
-      "id": "sol-thebe",
-      "name": "Thebe",
-      "parent": "jupiter",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1979",
       "discoveryReferences": "IAU WGPSN",
       "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
       "nativeImagery": "unchecked",
@@ -8561,7 +8560,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 44,
+      "initialDossiers": 45,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-18",
+  "dossier": 90,
+  "body": "Thebe Jupiter XIV",
+  "preparations": [
+    {
+      "path": "docs/research/thebe-native-preparation-2026-10-18.json",
+      "bytes": 7205,
+      "sha256": "9ead857909135dbfde74c778b4cbdcd17af969e5c20fedb09912ec223f6f6e0f"
+    },
+    {
+      "path": "docs/research/thebe-orbit-geometry-preparation-2026-10-18.json",
+      "bytes": 6678,
+      "sha256": "64f699d95dff388e6dc368667946023918d0ed524c749cc1623d58d118a49c13"
+    },
+    {
+      "path": "docs/research/thebe-local-view-preparation-2026-10-18.json",
+      "bytes": 3921,
+      "sha256": "bd2b9b9d851cc8cc4ce298d7de980da266f2f70a25201be01ef583fd44f220bb"
+    },
+    {
+      "path": "docs/research/thebe-sky-view-preparation-2026-10-18.json",
+      "bytes": 5022,
+      "sha256": "276c467983ef5129f492356dd68455105b443638d07c2ba1922530b38ee89e78"
+    }
+  ],
+  "visual": {
+    "id": "thebe",
+    "name": "Thebe",
+    "kind": "moon",
+    "aliases": [
+      "Thebe",
+      "Jupiter XIV"
+    ],
+    "researchDate": "2026-10-18",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved global texture adopted. Native Thebe context and the other moons in montage remain separate; no analog globe.",
+    "measured": [
+      "Thebe,Jupiter XIV,NAIF514,distinct inner moon of Jupiter. NativeJunoSRU observed2026May1; GalileoSSI montage leftThebe observed2000Jan4.",
+      "PIA26751 full512squareRGB-storedJPEG155956bytes,NASA/JPL-Caltech,PhotojournalMay5,2026 versusJPLMay4; chronology cause open. Caption5000kmrange/3kmperpixel not independently reproduced. Sampling/noise/field specks not local rocks/chemistry/calibrated visible colour.",
+      "PIA02531 full748x381monoJPEG11904bytes,NASA/JPL/CornellUniversity,Apr24,2000publication; leftThebe/centreAmalthea/rightMetis,TargetmetadataAmalthea scope difference retained. Other moons never Thebe geography; overexposedAmaltheapatch separate. TIFF retained,no pixelidentity claim."
+    ],
+    "modelled": [
+      "JPL JUP365GM.03015±.01250km3/s2,49.30±4.00km equivalent-volume radius(ref1Archinal2018) and deriveddensity.9000±.4327g/cm3 are uncertain model quantities,not precise mass/chemistry/porosity/axes/local normal. Older indexedradius±2 not silently substituted. Generic mass null avoids unqualified density.",
+      "JUP365 localLaplace mean elements epoch2000Jan1.5TDB:a221900km,e.018,w26.6,M182.1,i1.1,node340.4deg,P.676105day,apsidal.398/nodal.797yr,pole268.1/64.5deg,roundedtilt0. Jacobson2021personalcommunication/kernel1600Jan10–2200Jan10 not independent validation of navigation; currentphase/frame/time/light-time/covariance open.",
+      "NASA2000caption describes synchronous orientation/anti-Jupiterside,northapproximatelyup; independent primaryrotation/pole/currentlongitude and digitalshape audit remains open. Rotation null/lockingdisabled marks unregistereddisplay,not measured nonsynchronousspin. Synchronousstate alone would not show Jupiter everywhere.",
+      "Galileo193000kmTheberange/2kmfeatures/~40kmZethus are publisher statements,not new raster/shape calculations. Thomas1998primary and Stooke archive are discoveryleads,not downloaded/reviewed fullpaper or adopted116x98x84axes/digitalshape. No paperfigure/CCclaim. Dustsupply/origins interpretations not measured local shedding/history."
+    ],
+    "unknown": [
+      "Rawproduct/UTC/filter/exposure/PSF and Juno detector/particle-versus-star association,visible colour/radiometric calibration,globalgeography/localmaterialfractions,shape/localnormal/pole/currentlongitude and datedscene registration.",
+      "Native2026range/resolution and Galileo2000scale not independently reproduced; no exhaustive newest-image/highest-resolution claim."
+    ],
+    "assumed": [
+      "Independent invented grey-brown pittedterrain/grains/blocks/materials/chemistry/fractions/porosity,colour/light/exposure. Jupiter bands/phase/axis/attitude invented with no actual map or identifiable observedcloudfeature. Noanalogterrain/Zethus/datedsite,plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings/atmosphere not absence evidence.",
+      "skyGeometry spherical69911kmJupiter at221900minus49.3km gives221850.7km,36.73688246129246deg/555.1777017164484px nominal90HFOV1672width. Not currenteccentricdistance/normal/pole/permanentface/uncertaintyenvelope.165Khelper angularonly colour/irradiance discarded.",
+      "RenderedJupiter qualitatively undersized; no measured rasterdiameter adopted. Original/defaultPNGs/fullprompts/Pillowpreps and additiveimporter masters/previews retained. Tiny256preview footers require explicitIMAGINEDcardlabels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM THEBE",
+    "skyLabel": "IMAGINED · SKY FROM THEBE",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "49.30 ± 4.00 KM · VOLUME MODEL"
+      ],
+      [
+        "GM",
+        ".03015 ± .01250 KM³/S² · FIT"
+      ],
+      [
+        "ORBIT",
+        "221,900 KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0014829803322862405,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 36.73688246129246,
+      "centreDiscWidthFraction": 0.33204407997395236,
+      "irradianceEarth": 0.0030662441056558197,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/bespoke/thebe-pia26751-native.jpg",
+        "bytes": 155956,
+        "sha256": "cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7",
+        "width": 512,
+        "height": 512,
+        "tier": "measured",
+        "label": "NATIVE · PIA26751 · Juno Stellar Reference Unit (SRU)",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia26/pia26751/PIA26751.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/nasas-juno-misson-captures-jupiter-moon-thebe/",
+        "credit": "NASA/JPL-Caltech",
+        "observationDate": "2026-05-01",
+        "publicationDate": "2026-05-05",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA educational/informational/factual use,source acknowledgement,no endorsement,third-party copyright caveats; not CC BY or blanket raw-product permission.",
+        "description": "512x512 RGB-stored near-monochrome JPEG. Small lit disk near right edge; field mottling/specks and sampling/noise are not resolved rocks, stars identified here, local chemistry or calibrated visible colour. No new angular/raster measurement.",
+        "processing": "Unchanged whole publisherJPEG; no local resize/reencoding. Exact raw product/UTC, exposure, spectral response, processing/PSF, field-star versus detector-particle crosswalk, radiometric/visible-colour calibration, orientation and independent global surface registration remain open. Publisher range/resolution not independently reproduced. Gossamer-ring dust-supply language is an interpretation, not measured local shedding rate or immediate surface activity."
+      },
+      {
+        "url": "/bespoke/thebe-pia02531-native.jpg",
+        "bytes": 11904,
+        "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+        "width": 748,
+        "height": 381,
+        "tier": "measured",
+        "label": "NATIVE · PIA02531 · Galileo Solid-State Imaging",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+        "credit": "NASA/JPL/Cornell University",
+        "observationDate": "2000-01-04",
+        "publicationDate": "2000-04-24",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA educational/informational/factual use,source acknowledgement,no endorsement,third-party copyright caveats; not CC BY or blanket raw-product permission.",
+        "description": "748x381 one-channel JPEG. Left irregular cratered Thebe disk visually inspected. Blur, sampling, black background and montage gaps are not local grains, calibrated visible colour, complete geographic coverage or atmosphere absence. Amalthea bright south-polar region is captioned greatly overexposed and is not Thebe geography.",
+        "processing": "Unchanged whole publisherJPEG; no local resize/reencoding. Original raw product/UTC/filter/PSF, projection, shape/local-normal registration, photometric calibration, source montage transformation and independent present-day highest-resolution claim remain open. TIFF decoded by Pillow but not separately visually inspected; no TIFF/JPEG pixel identity asserted. Caption resolution and crater dimensions are source statements, not new raster computations. Tidal-locking/orientation assertions are publisher context pending independent primary rotational/shape audit."
+      }
+    ],
+    "references": [
+      {
+        "title": "NASA JunoSRU PIA26751 caption and credits",
+        "url": "https://science.nasa.gov/photojournal/nasas-juno-misson-captures-jupiter-moon-thebe/"
+      },
+      {
+        "title": "NASA GalileoSSI PIA02531 whole montage and credits",
+        "url": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/"
+      },
+      {
+        "title": "NASA media terms/third-party caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "JPL physical parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL mean elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/thebe-surface-image.jpg",
+      "previewUrl": "/bespoke/thebe-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "thebe-generated-surfaceImage-original.png",
+      "sourceSha256": "a5ec9c23b48e66df53fe9a2734b33d214bc7f6547f3c23e81ba892ba339c5927",
+      "sha256": "e3b74dad83c990af76130ceed748b429110152c2665e859ea02ea4c020910e9a",
+      "previewSha256": "4c5715727f4196eb0b69a3a6886c77435ecc9f496d41a1639b790808ba3b7f5b",
+      "bytes": 364235,
+      "previewBytes": 9984,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/thebe-sky-image.jpg",
+      "previewUrl": "/bespoke/thebe-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "thebe-generated-skyImage-original.png",
+      "sourceSha256": "94a31df99d34ea310248d6333541fb6edb55d374f4c1ab20184054c12c710a4e",
+      "sha256": "d6c941f21b640494ee3c40faf5bcd456b66aaf29da913dcb10448689dfe9915e",
+      "previewSha256": "370038237ea9bf7e54fa209ef6c16515e243b06d184634a7e0b141cb0836e454",
+      "bytes": 202972,
+      "previewBytes": 6601,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyCaption": "Hypothetical Jupiter above invented Thebe terrain;165K is an angular-helper input only. Phase,colour,lighting,exposure and scene registration are uncalibrated."
+  },
+  "validation": {
+    "changedSnapshotPaths": [
+      "/bodyImages//bespoke/thebe-surface-image.jpg",
+      "/bodyImages//bespoke/thebe-sky-image.jpg",
+      "/bodyImages//bespoke/thebe-pia26751-native.jpg",
+      "/bodyImages//bespoke/thebe-pia02531-native.jpg",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk"
+    ],
+    "retainedSourceAndGeneratedHashesChecked": 19,
+    "nativeCardsExactBytesAndMime": 81,
+    "baseline": "185d793",
+    "priorDossiersDeepEqual": 89,
+    "dossiers": 90,
+    "priorMoonsDeepEqual": 45,
+    "moons": 46,
+    "trackedPublicByteEqual": 666,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "htmlBytes": 15967620,
+    "headroomBytes": 32380,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "d45ef0503be685bdf3472cf3e9fe03207c882ee1d3e75db3f9cbe9bba47419a1",
+    "applicationSha256": "d6fefa6aa42ab15be08c3f15f6a3af558a0072c64db38144f076c0ed80ace60a",
+    "newGeneratedPublicHashesChecked": 4,
+    "freshBrowserClaim": false,
+    "testsPassed": 688,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "browser": {
+      "engine": "Chrome via in-app browser",
+      "normalRoute": "#/moon/sol/thebe",
+      "offlineRoute": "#/moon/sol/thebe",
+      "normalDecodedDimensions": [
+        [
+          1536,
+          864
+        ],
+        [
+          1536,
+          864
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          748,
+          381
+        ]
+      ],
+      "offlineDecodedDimensions": [
+        [
+          256,
+          144
+        ],
+        [
+          256,
+          144
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          748,
+          381
+        ]
+      ],
+      "fourLabelledCards": true,
+      "unregisteredAttitudeNullMassNullSpinNoOwnMap": true,
+      "limits": "No fresh all-image/model/route/worker/unsupported-browser check; other engines open."
+    },
+    "snapshotDiff": "Four newThebe bodyImages plus fiveSDO band src/time/disk refreshes; netHTML increment not solely asset/compression attribution."
+  }
+}

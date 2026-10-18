@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-18",
+  "body": "Thebe Jupiter XIV",
+  "mode": "built-in imagegen,new independent no-reference generation",
+  "original": {
+    "path": "data/research-sources/thebe-generated-skyImage-original.png",
+    "bytes": 1773975,
+    "sha256": "94a31df99d34ea310248d6333541fb6edb55d374f4c1ab20184054c12c710a4e"
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-7d51367c-e9bc-4551-b2b5-25dc4fee5756.png",
+    "bytes": 1773975,
+    "sha256": "94a31df99d34ea310248d6333541fb6edb55d374f4c1ab20184054c12c710a4e"
+  },
+  "dimensions": [
+    1672,
+    940
+  ],
+  "prompt": "Use case: scientific-educational\nAsset type: Fidelity hypothetical sky from Thebe, Jupiter XIV, 16:9 landscape.\nCreate a new independent scientific illustration, NOT a photograph, dated site, reconstructed spacecraft view or observed surface map. Low viewpoint over invented dark grey-brown pitted granular terrain with sparse irregular blocks, low horizon and black sky. A large completely visible gibbous Jupiter suspended above the horizon, roughly centred horizontally and well separated from terrain. Use only independently invented smooth cream/tan broad cloud bands, no actual Jupiter texture, Great Red Spot, identifiable observed cloud feature or other-body map. Nominal skyGeometry guide: spherical primary radius69911km, nominal mean orbital scale221900km minus hypothetical49.3km radial camera height gives221850.7km; apparent diameter36.73688246129246deg, target555.1777017164484px at1672wide90degree horizontal FOV, about one third of image width. Keep the entire outer globe visible and foreground unobscured so this intended framing can be assessed. Phase, axis, light, exposure, cloud colour/patterns and viewing attitude are artistic, not a current ephemeris or calibrated colour; no accurate latitude or permanent Jupiter-facing site implied. Foreground chemistry, materials, porosity, grains, relief, colour and illumination invented. No analog terrain copied from Moon/Mars/Pluto/Amalthea or any observed body, no Zethus reconstruction. No atmosphere haze, rings, stars, craft, people, plume, liquid, exposed ocean, biology or survivable landing depiction; omissions are not evidence of absence. Do not imply stellar ground. Bottom full-width dark annotation band within frame, exact legible two lines:\nTHEBE \u2014 IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nNo extra text or logos. Create from description only, no reference images.",
+  "promptFile": {
+    "path": "data/research-sources/thebe-sky-prompt-2026-10-18.txt",
+    "bytes": 1905,
+    "sha256": "84dc695bd0c10d546d2b7a06b9d8e9f92f3b656dce45bdb9a0f66e0076a4425a"
+  },
+  "files": [
+    {
+      "path": "data/research-sources/thebe-sky-master-preparation.jpg",
+      "bytes": 202978,
+      "sha256": "92f15eb80481e6bc6754fd63657dde4e17c75d92dd30300d24d690d798a7516e",
+      "width": 1536,
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/thebe-sky-preview-preparation.jpg",
+      "bytes": 6735,
+      "sha256": "d80a00e2f225401f357b5a29bc45748415d62cdd855e4b147e31c6302a1b0894",
+      "width": 256,
+      "quality": 80
+    }
+  ],
+  "geometry": {
+    "sources": [
+      {
+        "path": "data/research-sources/thebe-physical-2026-10-18.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/thebe-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 221900,
+    "cameraHeightKm": 49.3,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 36.73688246129246,
+    "centreDiscWidthPixels": 555.1777017164484,
+    "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "inspection": "Original both footer lines readable. Invented grey-brown terrain and fully visible gibbous Jupiter with independently invented bands. Rendered disk qualitatively undersized versus nominal guide; no measured raster diameter adopted. Masters/previews separately inspected before publishing.",
+  "limits": "Terrain/material chemistry/fractions/porosity/colour/light/exposure and Jupiter cloud pattern/phase/axis/attitude invented; no observed-body map or actualcloudfeature reused. No dated site/Zethus/registered normal/pole/permanentface, atmosphere/ring absence, plume/liquid/exposed ocean/biology/survivable landing.165K helper angular only,colour/irradiance discarded. Smallpreviewfooters require explicitIMAGINEDcardlabels."
+}

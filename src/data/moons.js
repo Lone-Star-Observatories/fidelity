@@ -259,6 +259,18 @@ export const MOONS = [
       { label: 'SYNODIC PERIOD', value: '7.7819 ± .0005 H', tier: 'modelled', detail: 'Pilcher/Mottola/Denk2012 photometric fit,.20±.01mag; not a sidereal pole/current surface registration. Fullpaper methods unavailable.' },
     ],
     surfacePending: true, note: 'Synodic photometric period differs from orbital period; independent sidereal spin/pole and resolved globe unregistered. Native coarse disks and imagined views are separate.' },
+  { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
+    orbitFacts: [
+      {label:'ORBITS',value:'JUPITER · INNER MOON',tier:'measured',detail:'Thebe,Jupiter XIV,NAIF514; distinct from Himalia/Amalthea/Metis.'},
+      {label:'ORBIT',value:'221,900 KM · .676105 DAYS',tier:'modelled',detail:'JUP365 localLaplace mean elements,2000Jan1.5TDB,not current distance or spin.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'Currentphase/time/frame/light-time/SPICE reconstruction remains open.'},
+    ],
+    physicalFacts: [
+      {label:'RADIUS',value:'49.30 ± 4.00 KM · VOLUME MODEL',tier:'modelled',detail:'Equivalent-volume sphere,not axes/local normal/registeredshape.'},
+      {label:'GM',value:'.03015 ± .01250 KM³/S² · FIT',tier:'modelled',detail:'JUP365; deriveddensity.9000±.4327 not precise mass/chemistry/porosity.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'NASA captions describe synchronousorientation; independent primaryspin/pole/currentlongitude audit pending. Nullrotation/lockingdisabled not measured nonsynchronousspin.'},
+    ],surfacePending:true,note:'NativecoarseThebe images are separate from inventedlocalviews; independentpole/currentlongitude/resolvedglobe unregistered. Captioned synchronousstate does not imply Jupiter visible everywhere.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,
