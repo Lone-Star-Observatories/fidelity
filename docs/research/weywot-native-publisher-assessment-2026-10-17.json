@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-17",
+  "status": "Formal research-only publisher-native provenance audit; no embedding, dossier, catalogue, map, model or codec adoption",
+  "webReadableCaption": {
+    "credit": "NASA / STScI / Michael Brown",
+    "instrument": "Hubble WFPC2",
+    "observationDates": [
+      "2008-03-20",
+      "2008-03-28"
+    ],
+    "reuse": "NASA generally permits educational/informational factual use with acknowledgement and no endorsement; third-party copyright remains separate. Publisher caption credits NASA/STScI/Michael Brown and links NASA policy; not CC BY or blanket raw/paper licence.",
+    "description": "Two-epoch motion against background stars; unresolved moon detection not terrain or calibrated visible colour"
+  },
+  "open": [
+    "Original science-product publication, precise raw UTC/filter/frame ordering and processing crosswalk;11169_05_06 filename is only a lead, not verified proposal/product identity",
+    "Exact raw UTC/filter/product identifiers and processing/contributor crosswalk",
+    "Recent publisher/native alternatives; do not assign primary-only2002image or2023artwork as observed moon geography"
+  ],
+  "preservation": "All86 delivered dossiers,651 tracked public assets, original native/master/model/shape/provenance and queue569 preserved against f1afa13260faf1ec376147f1c80bca9082e94022; validation recorded after builds. No new dossier87 or angular/raster computation; no newest-observation claim.",
+  "media": {
+    "url": "https://planetary.s3.amazonaws.com/web/assets/pictures/20140429_quaoar_anim_11169_05_06.gif",
+    "path": "data/research-sources/weywot-2008-publisher-animation.gif",
+    "bytes": 164086,
+    "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+    "format": "GIF",
+    "dimensions": [
+      481,
+      748
+    ],
+    "frames": 2,
+    "status": "unchanged original publisher GIF retained; both diagnostic decoded frames visually inspected; not embedded"
+  },
+  "visualInspection": {
+    "scope": "Both full481x748 decoded frames viewed separately at native size; no crop/resample/photometric transfer",
+    "findings": [
+      "Monochrome star field with bright diffraction patterns, faint sources and red horizontal locator marks at different positions.",
+      "Second frame has a large angular black coverage region; this is image coverage/masking, not a physical feature or atmospheric absence.",
+      "Unresolved faint sources cannot establish moon terrain, axes, calibrated visible colour or chemistry. Red markers are annotations, not astronomical light.",
+      "Publisher identifies Quaoar/Weywot pair and two dates; independent exact point-to-object/raw-product crossmatch and frame/date ordering remain open."
+    ],
+    "diagnostics": [
+      {
+        "path": "data/research-sources/weywot-2008-inspection-frame-0.png",
+        "bytes": 174300,
+        "sha256": "640d56fb5e761f337601fabf6daca79c1da844d9aca6e08215492f12a7724de0",
+        "role": "decoded inspection derivative only; original GIF preserved"
+      },
+      {
+        "path": "data/research-sources/weywot-2008-inspection-frame-1.png",
+        "bytes": 153777,
+        "sha256": "0e6ad0ab9766d9a18c3921ea54827c8679460f9568606ce04fc0cda6ec952a5e",
+        "role": "decoded inspection derivative only; original GIF preserved"
+      }
+    ]
+  },
+  "termsSource": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "path": "data/research-sources/weywot-native-nasa-media-terms-2026-10-17.html",
+    "bytes": 313139,
+    "sha256": "cb7feab5ee2a81709201c494f9335350dbfc578d8f709beb7835b2a294190596",
+    "scope": "actual current NASA terms HTML, separate from publisher legacy http policy link"
+  },
+  "termsAssessment": "NASA generally permits educational/informational factual use with acknowledgement and no endorsement; third-party copyright remains separate. Publisher caption credits NASA/STScI/Michael Brown and links NASA policy; not CC BY or blanket raw/paper licence.",
+  "structuredPublicationMetadata": [
+    {
+      "@type": "WebPage",
+      "copyrightYear": "2014",
+      "creator": {
+        "@id": "#creator"
+      },
+      "dateCreated": "2020-04-03T04:03:22-07:00",
+      "dateModified": "2020-04-15T11:08:49-07:00",
+      "datePublished": "2014-04-29T00:00:00-07:00",
+      "name": "Quaoar and Weywot"
+    }
+  ],
+  "publicationAssessment": "Publisher WebPage metadata datePublished2014-04-29T00:00:00-07:00 distinct dateCreated2020-04-03/dateModified2020-04-15 CMS records and2008-03-20/28 observation captions. These are metadata assertions, not original science-product release/raw acquisition verification.",
+  "candidateScreen": {
+    "NASA2002": {
+      "identity": "Publisher identifies Quaoar, not a verified Weywot detection",
+      "observation": "2002-07-05 ACS/HRC F330W, publisher29min",
+      "release": "2002-10-07",
+      "credit": "NASA and M. Brown (Caltech); principal astronomers M. Brown and C. Trujillo (Caltech)",
+      "limits": "Historical primary1300km diameter caption not adopted; UV source not calibrated visible colour or moon terrain. No point/product crossmatch or moon image assignment."
+    },
+    "ESA2023": {
+      "identity": "Explicit artist impression of Quaoar, ring and Weywot, not native observed geography",
+      "pageDate": "2023-02-01",
+      "credit": "ESA; acknowledgement work performed by ATG under contract for ESA",
+      "termsInventory": "Publisher offers either CC BY-SA3.0IGO or ESA Standard Licence; deeds not fetched in this screening, no blanket CC BY claim",
+      "limits": "Invented brown surfaces, ring particles, size/placement/illumination cannot establish moon chemistry, shape, scene registration or angular scale."
+    }
+  },
+  "sources": [
+    {
+      "url": "https://www.planetary.org/space-images/quaoar-and-weywot",
+      "path": "data/research-sources/weywot-planetary-2008-caption-response.html",
+      "httpStatus": 200,
+      "bytes": 83920,
+      "sha256": "15fd5f1934657f43a6bc944bcbfb01cef6f148292a3a67fd878e6390429aab1d",
+      "hashScope": "successful publisher caption HTML response, not image bytes"
+    },
+    {
+      "url": "https://planetary.s3.amazonaws.com/web/assets/pictures/20140429_quaoar_anim_11169_05_06.gif",
+      "path": "data/research-sources/weywot-2008-publisher-animation.gif",
+      "bytes": 164086,
+      "sha256": "9069bdf8057538fd8a086c5f5f6c18e05b136b838f4a4d1a963426a2d14b998e",
+      "format": "GIF",
+      "dimensions": [
+        481,
+        748
+      ],
+      "frames": 2,
+      "status": "unchanged original publisher GIF retained; both diagnostic decoded frames visually inspected; not embedded"
+    },
+    {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "path": "data/research-sources/weywot-native-nasa-media-terms-2026-10-17.html",
+      "bytes": 313139,
+      "sha256": "cb7feab5ee2a81709201c494f9335350dbfc578d8f709beb7835b2a294190596",
+      "scope": "actual current NASA terms HTML, separate from publisher legacy http policy link"
+    },
+    {
+      "url": "https://science.nasa.gov/asset/hubble/acs-images-of-kbo-quaoar-2/",
+      "finalUrl": "https://science.nasa.gov/asset/hubble/acs-images-of-kbo-quaoar-2/",
+      "path": "data/research-sources/weywot-nasa-2002-primary-image-caption.html",
+      "httpStatus": 200,
+      "bytes": 342299,
+      "sha256": "3b9133df6bb1a3fae72306b77300bcecdd70d80ea7c2665aa19b7b5b9825f165",
+      "kind": "publisher HTML response, not image bytes"
+    },
+    {
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2023/01/Artist_impression_of_Quaoar_and_its_ring",
+      "finalUrl": "https://www.esa.int/ESA_Multimedia/Images/2023/01/Artist_impression_of_Quaoar_and_its_ring",
+      "path": "data/research-sources/weywot-esa-2023-artwork-caption.html",
+      "httpStatus": 200,
+      "bytes": 13896,
+      "sha256": "ff775500e4c35cb10de73d92fd07042d1b14a310c9f1553c3af9c651a25ba8d0",
+      "kind": "publisher HTML response, not image bytes"
+    },
+    {
+      "path": "data/research-sources/weywot-2008-inspection-frame-0.png",
+      "bytes": 174300,
+      "sha256": "640d56fb5e761f337601fabf6daca79c1da844d9aca6e08215492f12a7724de0",
+      "role": "decoded inspection derivative only; original GIF preserved"
+    },
+    {
+      "path": "data/research-sources/weywot-2008-inspection-frame-1.png",
+      "bytes": 153777,
+      "sha256": "0e6ad0ab9766d9a18c3921ea54827c8679460f9568606ce04fc0cda6ec952a5e",
+      "role": "decoded inspection derivative only; original GIF preserved"
+    }
+  ],
+  "next": "Verify raw HST product/filter/UTC/processing crosswalk and assess newer native alternatives, then body-specific observer geometry and independent views; remaining backlog ACTIVE.",
+  "validation": {
+    "testsPassed": 683,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "baseline": "f1afa13260faf1ec376147f1c80bca9082e94022",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 86,
+    "trackedPublicByteEqual": 651,
+    "sourceHashesChecked": 19,
+    "htmlBytes": 15517316,
+    "headroomBytes": 482684,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "8d12174043e63d6912b46d7cc21486fd8786ea23e21c1bb9cba6668c97fc4abb",
+    "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims."
+  }
+}
