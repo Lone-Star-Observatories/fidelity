@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-18",
+  "body": "Metis, Jupiter moon, JPL/NAIF code516, S/1979 J1; distinct asteroid9Metis and SolarOrbiterMetis instrument",
+  "status": "research preparation only; no dossier91, image, catalogue, globe, shape, model or codec adoption",
+  "sources": [
+    {
+      "path": "data/research-sources/metis-physical-2026-10-18.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/metis-elements-2026-10-18.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/metis-stooke-inventory-2026-10-18.html",
+      "bytes": 11855,
+      "sha256": "98eae36bb51c5e7a8935a1f50aa393a2cb7d574faaa5eb568be4ca903dd653e6",
+      "url": "https://sbn.psi.edu/pds/resource/stkshape.html",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/metis-shape-caption-2026-10-18.html",
+      "bytes": 254152,
+      "sha256": "7a2c79a9a1521dee5aff1ec30c0009c6982371069b23d99dec150cd946c5e6c4",
+      "url": "https://science.nasa.gov/resource/shapes-of-the-small-inner-satellites-of-jupiter/",
+      "status": 200
+    }
+  ],
+  "physical": {
+    "source": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+    "gmKm3S2": 0.0025,
+    "gmSigmaKm3S2": 0.0016,
+    "gmReference": "JUP365",
+    "meanRadiusKm": 21.5,
+    "radiusSigmaKm": 4.0,
+    "radiusReference": "1: B.A.Archinal,C.H.Acton,M.F.A\u2019Hearn et al.2018 Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:2015, CelestialMechanics130:22",
+    "derivedDensityGcm3": 0.9002,
+    "densitySigmaGcm3": 0.7642,
+    "limits": "Equivalent-volume radius is not local normal, measured three axes or validated shape. Starred density derived from tabulated GM and radius, not direct material density, chemistry/porosity/fractions or precise mass. Large uncertainties retained; no generic mass adoption."
+  },
+  "meanElements": {
+    "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+    "ephemeris": "JUP365",
+    "frame": "local Laplace plane",
+    "epochTDB": "2000-01-01.5",
+    "aKm": 128000,
+    "e": 0,
+    "argumentPeriapsisDeg": 0,
+    "meanAnomalyDeg": 166.0,
+    "inclinationDeg": 0,
+    "nodeDeg": 0,
+    "periodDays": 0.294779,
+    "apsidalPrecessionYears": 0,
+    "nodalPrecessionYears": 0,
+    "laplacePoleRaDeg": 268.1,
+    "laplacePoleDecDeg": 64.5,
+    "tiltDeg": 0,
+    "reference": "29; R.A.Jacobson2021 The Orbits of the Regular Jovian Satellites and the Orientation of the Pole of Jupiter, personal communication to Horizons/NAIF",
+    "limits": "Rounded mean table, not exact circular/equatorial/unperturbed orbit or current distance, measured spin, pole or local normal. Zero precession fields are retained as tabulated; their precision/convention is not independently established and they are not proof of absent perturbations. Source JUP365 kernel1600Jan10\u20132200Jan10 coverage not independent reconstruction of phase/light-time/frame/covariance. No dated scene."
+  },
+  "periodRotationConflict": {
+    "overview": "https://science.nasa.gov/jupiter/jupiter-moons/metis/",
+    "retainedNativeAssessment": "docs/research/metis-native-preparation-2026-10-18.json",
+    "comparison": "JPL .294779day model supports approximately .295day wording on overview; separate five-hour sentence is inconsistent. Cause not established, historical prose not silently repaired. Orbital period never promoted to independently measured rotation.",
+    "limits": "Overview explicitly unknown rotation/likely synchronous state. Native caption anti-Jupiter orientation and publisher shape-model geometry are not sidereal spin/pole/current longitude validation; no permanent Jupiter visibility at every site."
+  },
+  "shapeReferences": {
+    "stookeInventory": {
+      "url": "https://sbn.psi.edu/pds/resource/stkshape.html",
+      "finding": "Current publisher list includes Amalthea/Thebe and other named bodies but not Metis. This inventory is not proof no Metis shape exists elsewhere; do not assign Thebe/Amalthea model to Metis.",
+      "citation": "Stooke,P.2025.Stooke small bodies shape modelsV1.0.urn:nasa:pds:small_bodies.stooke.shape-models::1.0.NASA PDS;doi10.26033/yt84-5y91",
+      "limits": "Inventory HTML only, no bundle download or digital shape adoption."
+    },
+    "pia01642": {
+      "url": "https://science.nasa.gov/resource/shapes-of-the-small-inner-satellites-of-jupiter/",
+      "credit": "NASA/JPL/Cornell University",
+      "published": "1998-09-15",
+      "pageUpdated": "2024-10-28",
+      "finding": "Upper row Galileo observations Thebe/Amalthea/Adrastea/Metis versus lower calculated shape-model views. Common display scale and differing original sampling; model lead-side views differ slightly from camera views. Outlines/shadows/stereo cited as modelling inputs.",
+      "limits": "Caption Metis7.5km/pixel and no visible craters are source-specific statements, not new raster measurement, global absence of craters, calibrated visible colour or present-day best resolution. Major collisions are interpretation, not dated impact reconstruction. Exact observationUTC/filter/PSF/rawIDs, model version/mesh, physical axes/normal/pole/registered current attitude, photometry and independent reproduction open. No graphic downloaded/embedded or image hash/figure licence asserted."
+    },
+    "primaryPending": "Thomas et al.1998 The Small Inner Satellites of Jupiter, Icarus135360\u2013371, PIIS0019103598959760 discovered; no downloaded fullpaper,60x40x34axes/uncertainties/rotation/CCclaim or figure adoption."
+  },
+  "geometryGuide": {
+    "sources": [
+      {
+        "path": "data/research-sources/metis-physical-2026-10-18.html",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/metis-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 128000,
+    "cameraHeightKm": 21.5,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "angularDiameterDeg": 66.22318511428516,
+    "centreDiscWidthPixels": 1090.4452059275504,
+    "limits": "Hypothetical radial near-side camera at nominal mean semimajor scale; not current eccentric distance, normal, dated site, pole, permanent Jupiterface or uncertainty envelope.165K angular helper only, colour/irradiance discarded. Phase/attitude/oblateness/exposure/spectral transfer and registration unverified."
+  },
+  "geometryReproducer": {
+    "path": "docs/research/metis-observer-geometry-preparation-2026-10-18.mjs",
+    "bytes": 1171,
+    "sha256": "9793a25236bf3fdc56b818af50a1e5b60b745ba372b30ad4ddb55a6d62af4a7b"
+  },
+  "notClaimed": [
+    "No new generated view or measured raster diameter",
+    "No catalogue/membership/map/model/shape/native-byte change",
+    "No local material fractions, chemistry, calibrated visible colour, atmosphere absence, ocean/plume/biology/survivable landing",
+    "No verified PJ88 event/image or exhaustive newest-observation claim"
+  ],
+  "next": "Independent IMAGINED local/Jupiter-observer original-preserving views using nominal skyGeometry guide and explicit unregistered terrain/attitude limits; primary shape-spin/rawproduct audit continues. Recover conforming lossless headroom before larger additive batches.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 5,
+    "nativeCardsExactBytesAndMime": 81,
+    "baseline": "1e3c412",
+    "priorDossiersDeepEqual": 90,
+    "dossiers": 90,
+    "priorMoonsDeepEqual": 46,
+    "moons": 46,
+    "trackedPublicByteEqual": 672,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15966340,
+    "headroomBytes": 33660,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "1ae2f545a6dc8ef9a879333e8a5e40b0345301698abefef45329155bd6d2d637",
+    "applicationSha256": "d6fefa6aa42ab15be08c3f15f6a3af558a0072c64db38144f076c0ed80ace60a",
+    "freshBrowserClaim": false,
+    "testsPassed": 688,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "interbuildSnapshotDifferenceAttribution": "unaudited; no compression savings claim"
+  }
+}
