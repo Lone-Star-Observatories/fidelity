@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-18",
+  "status": "research-only original-source assessment; no catalogue or image adoption",
+  "source": {
+    "url": "https://arxiv.org/src/0910.4784v1",
+    "path": "data/research-sources/vanth-2009-v1-original-source",
+    "bytes": 73943,
+    "sha256": "87e3706e2cd96d1221fb4f46ca5968960bef5a26fada986a5e5687f03409ec9c"
+  },
+  "extractedTex": {
+    "path": "data/research-sources/vanth-2009-v1-orcus_submit.tex",
+    "bytes": 43917,
+    "sha256": "59e833c20ecea882a33849499b6870242072fc15e655cb095d9b990e5e046fff"
+  },
+  "findings": [
+    {
+      "claim": "Experimental HTML submitted-to-AJ date is not a verified manuscript submission/publication date.",
+      "evidence": "Original source line5 uses \\slugcomment{submitted to AJ, \\today}; renderer expands dynamic today. Specific August24,2026 heading must not be adopted as science chronology."
+    },
+    {
+      "claim": "Second-solution inclination305.8\u00b1.6deg exists in original source Table2; not solely an HTML conversion artifact.",
+      "limit": "Geometric convention or author typo unresolved. Do not silently fold/correct to an inclination or use as navigation solution."
+    },
+    {
+      "claim": "Abstract system mass6.32\u00b1.01e20 versus main body6.32\u00b1.05e20, and abstracta8980\u00b120 versus Table2a8980\u00b123 exist in source.",
+      "limit": "Preserve version-specific alternatives; not a new joint fit or corrected current ephemeris."
+    },
+    {
+      "claim": "F606W8x275s historical astrometry prose remains separate from unverified F555W HLA lead.",
+      "limit": "No raw exposure product, exact UTC or native image identity established."
+    }
+  ],
+  "rights": "Specific arXiv record perpetual nonexclusive distribution; not CC BY. No figure extracted or embedded.",
+  "preservation": "No catalogue, dossier, image, model, shape, codec or queue changes; no88th dossier.",
+  "authors": [
+    "Michael E. Brown",
+    "Darin Ragozzine",
+    "John Stansberry",
+    "Wesley C. Fraser"
+  ],
+  "sources": [
+    {
+      "url": "https://arxiv.org/src/0910.4784v1",
+      "path": "data/research-sources/vanth-2009-v1-original-source",
+      "bytes": 73943,
+      "sha256": "87e3706e2cd96d1221fb4f46ca5968960bef5a26fada986a5e5687f03409ec9c",
+      "role": "retained source response"
+    },
+    {
+      "url": "https://arxiv.org/src/0910.4784v1",
+      "path": "data/research-sources/vanth-2009-v1-orcus_submit.tex",
+      "bytes": 43917,
+      "sha256": "59e833c20ecea882a33849499b6870242072fc15e655cb095d9b990e5e046fff",
+      "role": "extracted original TeX"
+    },
+    {
+      "url": "https://arxiv.org/html/0910.4784v1",
+      "path": "data/research-sources/vanth-2010-v1-html-preparation.response",
+      "bytes": 123164,
+      "sha256": "1ee8e2c3d8e17294f7bb63856606f5376cee0ffda2dae785fc89844234aa32e9",
+      "role": "retained source response"
+    },
+    {
+      "url": "https://arxiv.org/abs/0910.4784v1",
+      "path": "data/research-sources/vanth-2010-record-preparation.response",
+      "bytes": 45336,
+      "sha256": "8151e56ac972e79aa89a33b056758efa5ddf7c8180b2543e3718ca9f2c7cb583",
+      "role": "retained source response"
+    }
+  ],
+  "historicalMethods": {
+    "astrometry": "ACS/HRC discovery2005-11-13; followup PSF-fitting TinyTim oversampled5x,8 F606W exposures275s per HST orbit as described. Scatter used as measurement errors even when apparent motion exists. WFPC2/NICMOS separate observations. No reprocessing performed.",
+    "orbit": "Circular five-parameter Powell fit reducedchi2.73 vs mirror.75; eccentric trial.002 with reported68percent upper.0036. Circular assumption and historical degeneracy are not exact current circularity or moon spin.1000 noise trials not reproduced. EpochTable2JD2454439.280, J2000ecliptic; no TDB transformation or new ephemeris adopted.",
+    "photometry": "WFPC2 optical and NICMOS infrared PSF photometry separate, with model reddened-solar conversion to JohnsonV/CousinsI and assumed primary phase law. Colour differences and weak/absent deep water-ice proxy are not local fractions or calibrated visible geography.",
+    "interpretation": "Historical capture/Kozai/tides and collision/outward tides remain models; double synchronous state conditional, not independently measured moon rotation or permanent visible primary face."
+  },
+  "nativeLead": {
+    "url": "https://commons.wikimedia.org/wiki/File:Orcus-vanth_hst.jpg",
+    "status": "secondary lead only, no image adopted",
+    "limits": [
+      "Uploader reports cropping and noise-pixel removal; not assumed unchanged native archive bytes.",
+      "Exact linked HLA display request returned404; response196bytes SHA80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880 retained separately, not image hash.",
+      "Generic Commons NASA/Hubble public-domain boilerplate not independently verified image-specific terms.",
+      "F555W filename lead does not establish association with F606W astrometry prose."
+    ]
+  },
+  "open": [
+    "Final published orbit/table corrections and later BB18 orbit convention crosswalk.",
+    "Native product identity, UTC, filter, exposure, processing credit and terms.",
+    "Recent JWST primary product/processor permissions; no exhaustive newest-image claim.",
+    "Resolved map, shape, calibrated colour, local chemistry and moon spin/pole remain unestablished."
+  ],
+  "validation": {
+    "testsPassed": 685,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "95aad37",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15705988,
+    "headroomBytes": 294012,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "5dfab173256f13d756951110d20a88797bd4f688aec733171e9c031f3e5b68d1",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim.",
+    "newHistoricalSourcesHashed": 4
+  }
+}
