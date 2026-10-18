@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara/JupiterVII/JPL507; not asteroid281Elara",
+  "status": "Research only; no93rd dossier, new generated view, embedding, catalogue/map/model/shape/codec adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/elara-bhatt2017-v1.pdf",
+      "bytes": 3483913,
+      "sha256": "addf4f8018fb5e85028979e02cf65fba32629ca6c79a3b67334e8b327933bddd",
+      "url": "https://arxiv.org/pdf/1710.06200v1"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v2.pdf",
+      "bytes": 3483909,
+      "sha256": "51a659871841070b84ab9076b09a8b06ef6020befde68023f703d1d451d67130",
+      "url": "https://arxiv.org/pdf/1710.06200v2"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v1.txt",
+      "bytes": 44506,
+      "sha256": "74df9ac80ab09012f959dcb221e219aa31a958c82d7e14e2a4b86629f6c60759"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v2.txt",
+      "bytes": 44497,
+      "sha256": "45f08e4e069797aad988028319815d8829fce15bd1e17ac56f32a34952a50c37"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-record-2026-10-18.html",
+      "bytes": 45782,
+      "sha256": "8a6eeb97c94c1adee9bc9468336e5080cac009340717431d531d31e8edccca1f",
+      "url": "https://arxiv.org/abs/1710.06200"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v1-record-2026-10-18.html",
+      "bytes": 45819,
+      "sha256": "bd18a8b74c714fa645068fa1d3f17ca8ec74f88f8048b4b718f70fb3df81b6df",
+      "url": "https://arxiv.org/abs/1710.06200v1"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-licence-2026-10-18.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+    },
+    {
+      "path": "data/research-sources/elara-spectroscopy2017-publisher-response-2026-10-18.html",
+      "bytes": 769,
+      "sha256": "32ec8adaaccfd35a39237b6cac57b9bb07538cb568a30e8ed8be092d43c7ea94",
+      "url": "https://www.aanda.org/articles/aa/pdf/2017/12/aa30361-16.pdf"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-page-04.png",
+      "bytes": 299686,
+      "sha256": "a393bda5c75a576cb6668c28295c88d08d4bbab14b585d19d474f5338dd9d3c7"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-page-05.png",
+      "bytes": 213746,
+      "sha256": "0e358ff7977c8a5ce1f3f3e38a62474832a2c605cb58d4858127057d655f411c"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-page-07.png",
+      "bytes": 217089,
+      "sha256": "fde0a9f4851bd2490220b58cc18b9231a0f228eecacb5086c31f405aca755fc1"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-page-12.png",
+      "bytes": 266436,
+      "sha256": "7083a7b30729805d4c49f967a20151b443d8bea81fd7bf160df83d14a8f83085"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-page-15.png",
+      "bytes": 305535,
+      "sha256": "3b8479705d2334c8c11ee18314f0fdd975a5537302f159585a845b32e1afd01e"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v2-page-01.png",
+      "bytes": 210242,
+      "sha256": "ec3540e0a8d6211be980743f961bdb666a62197740f7ea30a1c42b35e5f83c97"
+    },
+    {
+      "path": "data/research-sources/elara-bhatt2017-v2-page-12.png",
+      "bytes": 266436,
+      "sha256": "7083a7b30729805d4c49f967a20151b443d8bea81fd7bf160df83d14a8f83085"
+    }
+  ],
+  "reference": {
+    "title": "Composition of Jupiter irregular satellites sheds light on their origin",
+    "authorsV2": [
+      "M. Bhatt",
+      "V. Reddy",
+      "K. Schindler",
+      "E. Cloutis",
+      "A. Bhardwaj",
+      "L. Le Corre",
+      "P. Mann"
+    ],
+    "v1AuthorVariant": "L.L.Corre printed versus L.LeCorre in v2; preserved without changing source bytes.",
+    "affiliations": [
+      "SpacePhysicsLaboratory,VikramSarabhaiSpaceCentre",
+      "LunarandPlanetaryLaboratory,UniversityofArizona",
+      "DeutschesSOFIAInstitut,UniversitaetStuttgart",
+      "SOFIAScienceCenter,NASAAmesResearchCenter",
+      "DepartmentofGeography,UniversityofWinnipeg",
+      "PhysicalResearchLaboratory,Ahmedabad",
+      "PlanetaryScienceInstitute"
+    ],
+    "arxiv": "1710.06200",
+    "doi": "10.1051/0004-6361/201630361",
+    "publicationReference": "Astronomy&Astrophysics608,A67(2017); publisher fullPDF unavailable in this fetch, no full-final-paper comparison claim.",
+    "versions": "Record v1 submitted2017-10-17,v2 revised2017-12-27; each fetchedPDF17pages. Served v1 header September2,2022/ESO2022 and v2 May24,2022/ESO2022 retained. Those header dates not observation/publication dates; cause of dating not established.",
+    "inspection": "Complete text extracted from both originalPDFs. V1 wholepages4,5,7,12,15 and V2wholepages1,12 visually inspected; textdiff only page1dates/authorvariant/arxivversionline. No all-page visual or independently repeated data reduction/model fit claim.",
+    "terms": "Specific arXiv record links nonexclusive-distrib/1.0; fetched deed grants arXiv distribution, notCCBY/public reuse of figures. ESO2022PDFcopyright header retained, no figure embedded or paperlicence inferred.",
+    "access": "DirectpublisherHTTP403HTML retained as response hash, not PDF/paper/licence hash. Standard directarXiv requests successful; no challenge or access-control bypass."
+  },
+  "observations": {
+    "instrument": "NASAIRTF SpeX, low-resolution prism R~150,0.8arcsecslit; instrument nominal0.8\u20135.5micron capability is not actual full spectral coverage.",
+    "table1": [
+      {
+        "date": "2012-12-12",
+        "startUtc": "10:50",
+        "endUtc": "11:36",
+        "vMagPrinted": 16.62,
+        "phaseDeg": 2.26,
+        "airmassRange": [
+          1.06,
+          1.1
+        ],
+        "localStandard": "SAO76633",
+        "solarAnalogue": "SAO93936"
+      },
+      {
+        "date": "2013-12-29",
+        "startUtc": "08:44",
+        "endUtc": "09:20",
+        "vMagPrinted": 14.78,
+        "phaseDeg": 2.05,
+        "airmassRange": [
+          1.08,
+          1.17
+        ],
+        "localStandard": "GSC01896-01098",
+        "solarAnalogue": "SAO93936"
+      }
+    ],
+    "reduction": "Spextool/IDL, localGstars/telluric correction, solar-analogue slope correction, parallactic slit. FirstElara night highcirrus/lowerSNR. Nightly averages and averaged spectrum normalized at1.5micron; unmixing0.8\u20132.4micron at.01micron intervals.",
+    "limits": "Tabledates/times/printedmagnitudes retained, not rawexposure/product/throughput calibration independently verified. Scatter near1.9 and beyond2.4micron from incomplete telluric correction; lower than.8 and3micron not measured in these spectra. No calibratedvisibleRGB, local terrain map or association to2007LORRI pixels."
+  },
+  "spectralModel": {
+    "approach": "Positive,sum-to-one linear spectral-mixture coefficients with3/4laboratoryendmembers,top10modelcombinations; selection/grains/viewinggeometry/temperature/nonlinearity limits. Authors explicitly deny true rock mineral proportions and target spectral contributors, not mineral distribution.",
+    "elaraFigure6": {
+      "MAG101MagnetiteCoefficientPercent": 52,
+      "MIN003MinnesotaiteCoefficientPercent": 41,
+      "ILM101IlmeniteCoefficientPercent": 7,
+      "rSquaredPrinted": 0.97,
+      "classification": "Model spectral mixing coefficients, NOT measured mass/volume/local areal percentages or unique mineral identification."
+    },
+    "interpretation": "Authors favour opaque iron-oxide/phyllosilicate contributors and similarities toHimalia; redderElara slope/alteration alternatives retained. Fourendmembers did not significantly improveElara fit. Endmemberselection and normalized spectra yield nonunique possibilities; no independently reproducedfit, local chemistry, grain sizes, porosity, terraincolour or physicalabundance adoption.",
+    "sourceTension": "Section4.1 ferriciron/littleor noferrous interpretation versus conclusion reducedenvironment/negligibleFe3+ retained as internal wording tension; cause/correct chemical interpretation open, no silent repair or valence measurement.",
+    "waterAndOrigin": "3micron/0.7micron coverage absent, so modelled phyllosilicate/aqueous-alteration and commonparent/capture origins are interpretations, not direct local liquid/ocean/plume/history/biology. Spectral comparison asteroid(52)Europa is not Europa moon; no observed body map transferred."
+  },
+  "credits": "All7authors above. IRTF/NASA SpeX; ISRO postdoctoral support; NASAPlanetaryGeologyandGeophysics NNX14AN05G/NNX14AN35G; UniversityofWinnipegPlanetarySpectrophotometerFacility support CFI/ManitobaResearchInnovationsFund/CSA/NSERC/UniversityofWinnipeg. Acknowledged GuneshwarThangjam,ChristianWoehler/TUDortmund,JuanA.Sanchez and anonymousreviewer; nofigureadopted.",
+  "preservation": "All92dossiers/48moons/569queue entries/originalPNGs/defaults/masters/native/maps/models/shapes/provenance/recordedClipper unchanged. Prior thermaldiameter, assumedalbedo radius, unknownspin/attitude and hypotheticalskyGeometry guide retained.",
+  "open": [
+    "Publishedfinalfulltext/version and laterElara-specific spectroscopy/rotation audit",
+    "RawIRTFproducts/standards/calibration/modelcode/endmemberphysicalconditions and nativeLORRIcrosswalk",
+    "Independent labelled imagined views with invented terrain/materials/colour/phase/lighting explicit",
+    "Further substantial conforming lossless capacity before larger additive integration"
+  ],
+  "next": "Continue independent labelled local/observer preparation and laterprimary/nativeaudit while recovering capacity. BacklogACTIVE,no globalexternalblocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 55,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "30fee01",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15989098,
+    "headroomBytes": 10902,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "f8413652d2e60b9f04cc50c7c6dddee063189ec14b18862907299688062197c1",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Interbuild live-feed differences unaudited; no freshbrowser/compression savings claim."
+  }
+}
