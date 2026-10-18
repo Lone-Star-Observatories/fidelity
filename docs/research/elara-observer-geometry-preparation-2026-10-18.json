@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara/JupiterVII/JPL507,not asteroid281Elara",
+  "status": "Research-only hypothetical observer preparation; no93rd dossier,generated image,embedding,catalogue/map/model/shape/codec adoption.",
+  "geometry": {
+    "sources": [
+      {
+        "path": "docs/research/elara-native-preparation-2026-10-18.json",
+        "bytes": 13236,
+        "sha256": "c15aa520d5278fd6c4b62c843fd6a4fae16fa14827a296d6e117467f2b9949e3"
+      },
+      {
+        "path": "docs/research/elara-orbit-spin-reference-assessment-2026-10-18.json",
+        "bytes": 7058,
+        "sha256": "c2febabcd2b9a13ba2590b52ef414a16b7e98201b3368141eb26bbe298e1b000"
+      },
+      {
+        "path": "docs/research/elara-thermal-primary-assessment-2026-10-18.json",
+        "bytes": 8845,
+        "sha256": "284646065ca9d8e4d5fd166b0e0c04d5222ad37735c98cb7cf053c8c4c48c8ef"
+      },
+      {
+        "path": "data/research-sources/elara-elements-2026-10-18.html",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      },
+      {
+        "path": "data/research-sources/elara-overview-2026-10-18.html",
+        "bytes": 247326,
+        "sha256": "a9d9756aad08e7f345bf5d6af44a00c265a258f15e4cd8581b2ca88524bdc87f"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.pdf",
+        "bytes": 561099,
+        "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+      },
+      {
+        "path": "src/astro/appearance.js",
+        "bytes": 1394,
+        "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+      }
+    ],
+    "helper": "skyGeometry",
+    "primaryRadiusKm": 69911,
+    "nominalOrbitScaleKm": 11710700,
+    "referenceWidth": 1672,
+    "horizontalFovDeg": 90,
+    "variants": [
+      {
+        "label": "Thermal effective diameter79.9km divided by2; hypothetical spherical camera height",
+        "heightKm": 39.95,
+        "primaryCentreDistanceKm": 11710660.05,
+        "angularDiameterDeg": 0.6840996182277582,
+        "centreDiscWidthPixels": 9.98178364946764
+      },
+      {
+        "label": "NASAoverview43km radius assumes.04albedo; alternative hypothetical height",
+        "heightKm": 43,
+        "primaryCentreDistanceKm": 11710657,
+        "angularDiameterDeg": 0.6840997964012475,
+        "centreDiscWidthPixels": 9.981786249281226
+      }
+    ],
+    "limits": "Hypothetical radial near-side camera at retained JUP347 semimajor scale; not current eccentric distance, a dated observer, topographic/local normal, joint physical solution or uncertainty envelope. Elara e=.212 is retained; orbit is not treated as circular physical truth. Heights are distinct thermal/assumed-albedo models, not measured axes.165K angular-helper input only; colour/irradiance discarded. Jupiter spherical mean-radius guide, not oblate limb/phase/photometric/visible-colour/attitude/registered terrain. Unknown spin/pole, no locking or permanentJupiterface. No generated or observed raster diameter fitted."
+  },
+  "reproducer": {
+    "path": "docs/research/elara-observer-geometry-preparation-2026-10-18.mjs",
+    "bytes": 2085,
+    "sha256": "441fb0e71035e88637c05c17e45d63848449c77e5b6fb10e6db6cd4e8985ceea"
+  },
+  "output": {
+    "path": "data/research-sources/elara-observer-geometry-preparation-2026-10-18.json",
+    "bytes": 2682,
+    "sha256": "6c392d10ad30a8a8f9c2a648973547ecff9ef5bbee4a1f974df172ea4837f67c"
+  },
+  "sourceInterpretation": {
+    "orbit": "Retained JPL JUP347 mean semimajor scale11,710,700km/e.212 at2000Jan1.5TDB planet-centred ecliptic. Publisher warns mean elements not for ephemeris computation. No propagation/currentposition/pericentre-apocentre scene or covariance adopted.",
+    "heights": "79.9\u00b11.7km thermal effective DIAMETER from Grav2015 converted to nominal39.95km radial camera height; no uncertainty propagated as a topographic radius. AlternativeNASAoverview43km depends on assumed.04albedo. Distinct inputs,notjointfit or envelope. Heights measured from assumed body centre; not camera elevation above observed terrain.",
+    "primary": "Jupiter69911km spherical mean-radius guide retained from existing catalogue/observerpreparations,not equatorial/polar limb or newmeasurement.165K helperinputonly,colour/irradiance discarded.",
+    "spin": "Luu1991 historical periodnon-detection and Grav2015 lowamplitude lightcurve retained. No12hperiod,pole,locking/permanentJupiterface,normal or presentday exhaustive spin claim.",
+    "native": "Two original2007-03-05LORRI40msFITS/labels remain unchangedresearchinputs; WISE2010MJD55370/55540 datasets do not identify/calibrate those pixels. No observed disk/raster diameter derived.",
+    "material": "WISEthermalalbedo/beaming/taxonomicslope and familyorigins do not measure local rocks/craters/chemistry/fractions/porosity or establish calibrated visible colour."
+  },
+  "futureViewRequirements": [
+    "Independent research-guided original IMAGINEDlocal/observer views; no observed otherbody map/analogskin",
+    "Invented terrain/materialfractions/colour/Jupiterbands/phase/lighting/exposure/attitude labelled; no observedlocalnormal/date claim",
+    "No atmosphere-absence inference from blacksky, no invented plume/liquid/exposed ocean/biology/survivable landing",
+    "Fullprompts/defaultoriginalPNGs/master/preview hashes retained; furtherconforminglosslesscapacity before larger additive batches"
+  ],
+  "preservation": "All92dossiers/48moons/569queue/originalPNGs/defaults/masters/native/maps/models/shapes/provenance/recordedClipper unchanged. BacklogACTIVE,no globalexternalblocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 40,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "abf16f7",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15990094,
+    "headroomBytes": 9906,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "0eabd95a24c4a46a718a0dcc5976544234491740ae66f60d7287ec7634fe94e3",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Complete rebuilt JSON/application hashes unchanged versus prior batch. No fresh browser or compression savings claim."
+  }
+}
