@@ -246,6 +246,19 @@ export const MOONS = [
       { label: 'MASS', value: '(8.7 ± .8) × 10¹⁹ KG · MODEL', tier: 'modelled', detail: 'Brown/Butler2023 ALMA astrometric mass partition; density uses independent thermal size assumptions, not measured chemistry/porosity.' },
     ],
     surfacePending: true, note: 'Unknown independent spin and resolved globe. Historical navigation only, occultation/thermal size alternatives and native ownership crosswalk remain explicit.' },
+  { id: 'himalia', name: 'Himalia', parent: 'jupiter', radiusKm: 85, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(11439000, .160, 321.1, 78.3, 28.4, 64.2, 249.9090, 187.4, 297.1, [0, 90], 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Himalia,Jupiter VI,NAIF506; distinct from the planet and other moons.' },
+      { label: 'ORBIT', value: '11,439,000 KM · 249.9090 DAYS', tier: 'modelled', detail: 'JPL JUP347 ecliptic mean elements,2000Jan1.5; e.160,i28.4,node64.2,w321.1,M78.3deg. Mean scale is not current distance.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'Mean-element navigation,not independently reconstructed SPICE/current phase,time/frame/light-time or event timing. No permanent Jupiter-facing site.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '85 ± 10 KM · VOLUME MODEL', tier: 'modelled', detail: 'JPL equivalent-volume sphere,not axes/local normal. Cassini projected limb/cross-section estimates remain separate.' },
+      { label: 'GM', value: '.15155 ± .05763 KM³/S² · FIT', tier: 'modelled', detail: 'JPL JUP344; deriveddensity.8827±.4580 is not local chemistry/porosity. Generic mass unknown.' },
+      { label: 'SYNODIC PERIOD', value: '7.7819 ± .0005 H', tier: 'modelled', detail: 'Pilcher/Mottola/Denk2012 photometric fit,.20±.01mag; not a sidereal pole/current surface registration. Fullpaper methods unavailable.' },
+    ],
+    surfacePending: true, note: 'Synodic photometric period differs from orbital period; independent sidereal spin/pole and resolved globe unregistered. Native coarse disks and imagined views are separate.' },
   // #37: Dimorphos around Didymos (post-DART orbit: Naidu et al. 2024; Didymos pole as above).
   // The orbital phase is not tracked here, so its position along the orbit is illustrative.
   { id: 'dimorphos', name: 'Dimorphos', parent: 'didymos', radiusKm: 0.0755, massKg: 4.3e9, phaseUnknown: true, rotationHours: null, locked: false,

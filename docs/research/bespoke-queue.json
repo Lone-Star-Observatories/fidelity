@@ -693,6 +693,19 @@
       "visualId": "vanth"
     },
     {
+      "id": "sol-himalia",
+      "bodyId": "himalia",
+      "name": "Himalia",
+      "parent": "jupiter",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "Two unchanged Cassini publisher context products; coarse disk does not establish resolved globe/geography. No Jupiter/other-body map assigned.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "himalia"
+    },
+    {
       "id": "sol-dimorphos",
       "bodyId": "dimorphos",
       "name": "Dimorphos",
@@ -1306,20 +1319,6 @@
       "kind": "comet",
       "scope": "Solar System catalogue",
       "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
-      "id": "sol-himalia",
-      "name": "Himalia",
-      "parent": "jupiter",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1904",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
       "research": "queued",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
@@ -8562,7 +8561,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 43,
+      "initialDossiers": 44,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-18",
+  "body": "Himalia",
+  "tool": "built-in imagegen, independent no-reference generation",
+  "prompt": "Use case: scientific-educational illustration. Asset type: Fidelity independent imagined sky view from Himalia, irregular moon of Jupiter, wide16:9. No input/reference images and no observed-body maps. Invent an arbitrary subdued dark neutral-grey granular ground with sparse small angular blocks, shallow relief and low irregular ridges under a black sky. High above the horizon put a TINY pale cream-grey smooth Jupiter disk near the horizontal centre: no band map, no recognizable observed cloud morphology, no Great Red Spot, no copied Jupiter photograph. Intended spherical angular guide computed using skyGeometry: primary radius69911km, nominal JPL mean orbital scale11439000km minus equivalent-volume moon radius85km gives11438915km camera distance; angular diameter0.7003514194513794degrees, nominal90degree horizontal FOV at1672pixel width gives about10.218921563694819pixels across, just0.61percent of image width. Keep the complete disk tiny and unobscured; do not enlarge it for drama or resolve cloud features. Modest gibbous illumination/attitude invented. This guide is not current eccentric distance, a dated site, a physical surface normal, independent pole registration or an uncertainty envelope.7.7819h synodic photometric rotation is not a sidereal pole or permanent Jupiter-facing place; this arbitrary observer is assumed to face an above-horizon Jupiter.165K angular helper only, colour/irradiance discarded. All terrain/chemistry/material fractions/porosity, colour, disk appearance/phase, lighting/exposure invented. Restrained off-frame sunlight and hard modest shadows, no Sun disk/stars, spacecraft/person/structures/tracks, atmosphere/haze/clouds/plume/liquid/exposed ocean/biology/survivable-landing implication. Black sky and omitted rings are assumptions, not absence evidence. Do not use recognizable Moon/Mars/Pluto/Charon or other-body geology as a skin. Educational realistic illustration, not an actual photograph. Add a full-width dark footer band with two large clearly readable exact lines: 'HIMALIA — IMAGINED SKY VIEW' and 'Terrain and Jupiter appearance invented; geometry illustrative, not registered'.",
+  "promptFile": {
+    "path": "data/research-sources/himalia-sky-prompt-2026-10-18.txt",
+    "bytes": 2151,
+    "sha256": "05cfa60123cc02f50e4e8234eb5833285949573f33413d531ff9431263f45027"
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-91f8fd07-4767-4e95-9348-424caaa47a16.png",
+    "bytes": 2023900,
+    "sha256": "648d1c797148765843d873fdf3d5411d357aaf427d566b7a20a4c2b1548a824f"
+  },
+  "original": {
+    "path": "data/research-sources/himalia-generated-skyImage-original.png",
+    "bytes": 2023900,
+    "sha256": "648d1c797148765843d873fdf3d5411d357aaf427d566b7a20a4c2b1548a824f"
+  },
+  "dimensions": [
+    1672,
+    941
+  ],
+  "files": [
+    {
+      "path": "data/research-sources/himalia-generated-skyImage-master.jpg",
+      "bytes": 254787,
+      "sha256": "f5e01073728a12a6c4fc4cf4c0012edb6a0090e72489a4178693cdee6b42f554",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/himalia-generated-skyImage-preview.jpg",
+      "bytes": 8689,
+      "sha256": "d15e9ecb94c5480e7acad01632051b3b1e600b42b971f974fdbf40cbfdc167ff",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    }
+  ],
+  "geometrySource": {
+    "path": "docs/research/himalia-orbit-rotation-preparation-2026-10-18.json",
+    "bytes": 5063,
+    "sha256": "41122550d6e513897504a89a800e2fa5fdb081cfd826d961bad4ba2f2b875269"
+  },
+  "inspection": "Full output inspected: grey relief/blocks below black sky, small pale gibbous Jupiter above horizon; both footer lines readable. Rendered disk appears oversized relative to intended guide, no calibrated raster diameter adopted. Masters/previews inspected separately before publication.",
+  "limits": "Terrain/material chemistry/fractions,colour,primary appearance/phase/attitude,lighting/exposure invented. No observed-body analog map,dated site,local normal,registered pole,permanent Jupiterface,atmosphere/ring absence,plume/liquid/ocean/biology/survivable landing.165K angular helper only; no photometric calibration."
+}

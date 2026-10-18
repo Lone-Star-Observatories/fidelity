@@ -15177,6 +15177,243 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "himalia": {
+    "id": "himalia",
+    "name": "Himalia",
+    "kind": "moon",
+    "researchDate": "2026-10-18",
+    "previewWidth": 256,
+    "aliases": [
+      "Himalia",
+      "Jupiter VI"
+    ],
+    "nativeSurface": "Two unchanged Cassini publisher context products; coarse disk does not establish resolved globe/geography. No Jupiter/other-body map assigned.",
+    "measured": [
+      "Himalia is the distinct irregular satellite Jupiter VI/NAIF506. Two unchanged Cassini publisher products retained with source hashes,dates,credits and separate terms; neither is a resolved global map or calibrated local visible-colour image.",
+      "PIA02881 full735x540RGB JPEG29742bytes observed2000Dec19,Photojournaladdition2001Jan31,fullNASA/JPL/UniversityofArizona credit and activeNASAterms/third-party caveats,not CC BY. TIFF255842bytes retained. Main arrow,10x inset,wire-grid lighting graphic,noise/streaks are not terrain or measured axes; resourceJan23,2001caption/Dec16,2004heading chronology remains open.",
+      "Denk et al.2026March5 Figure20 full540x762monochromeJPEG27558bytes,full author list and CC BY4 article/third-party clauses retained. Four2000Dec18–19views/seven filters,~4–6pixel native disk,UV3smear and bicubic enlargement; no2026acquisition/newest-image claim. Publisher calibration not independently reproduced or transferred to a surface."
+    ],
+    "modelled": [
+      "JPL physical table:85±10km equivalent-volume spherical radius(reference1Archinal et al.2018),not axes,local normal or resolved shape. JUP344GM.15155±.05763km3/s2 and deriveddensity.8827±.4580g/cm3 are uncertain model quantities,not local chemistry/porosity; generic mass stays unknown. NASA2001~160km projected vertical limb and2026review(150x120)±20km cross-section estimates are distinct projected quantities,not replacements for volume radius.",
+      "JPL JUP347 mean ecliptic elements,epoch2000Jan1.5:a11439000km,e.160,w321.1,M78.3,i28.4,node64.2deg,P249.9090d,apsidal187.4/nodal297.1yr. R.A.Jacobson2025 personal-communication ephemeris reference; source coverage1799Dec21–2200Jan11 is not validation of this approximate navigation. Current phase/time/frame/light-time and SPICE reconstruction remain unverified.",
+      "Frederick Pilcher,Stefano Mottola,Tilmann Denk2012,DOI10.1016/j.icarus.2012.03.021:DLR author abstract reports synodic photometric7.7819±.0005h and.20±.01mag amplitude from independent0.35m/1.23mCCD datasets,correcting historical~9.5h phasing. This is not a sidereal pole or registered current longitude. Generic rotation null avoids promoting a synodic fit to a sidereal surface solution; no permanent Jupiter-facing site.",
+      "2012repository has no fulltext/not open access; directpublisher403 response hash is not a paper hash, no CC/figure claim. Calibration/PSF/raw photometry,shape/occultation/thermal alternatives and newer independent rotation refinements remain open. Capture/family-breakup interpretations are origin models,not observed history or local composition.",
+      "Native2026 exposure rowsUV3/BL1/GRN/RED/IR1/IR2/IR3 are5.6/.460/.120/.090/.100/.320/.560s; endpointN1355863292(Dec18T20:30:01UTC)–N1355880764(Dec19T01:21:13UTC) is campaign boundary,not full28raw-product list. Native2001~27km/pixel/4.4millionkm range and review scales are publisher statements,not new raster calculations."
+    ],
+    "unknown": [
+      "Resolved terrain,local material/chemistry fractions,calibrated visible colour/photometry,independent3Dshape,spin pole/sidereal state,dated surface normal/attitude/site and raw product/PSF/filter crosswalk.",
+      "Current event-grade ephemeris/covariance/light-time,frame/time-standard implementation and native2001-to2026 pixel identity. Unregistered static globe display and generic placeholder do not measure surface appearance."
+    ],
+    "assumed": [
+      "Independent darkgrey relief/grains/blocks/material fractions/chemistry/porosity,colour/light/exposure invented. Tiny smooth pale Jupiter appearance/phase/attitude invented; no observed-body analog map or cloud morphology reused. No dated site,plume/liquid/exposed ocean/biology/survivable landing; black sky and omitted stars/rings/atmosphere are not absence evidence.",
+      "skyGeometry guide:69911km spherical Jupiter radius,nominal11439000km orbital scale minus hypothetical85km radial camera height gives11438915km distance,.7003514194513794deg/10.218921563694819px at1672width90HFOV. Not current eccentric distance,local normal,pole,permanent Jupiterface or uncertainty envelope.165K helper angular only,colour/irradiance discarded.",
+      "Rendered Jupiter appears oversized relative to intended guide; no calibrated raster diameter adopted. Originals/default PNGs/fullprompts/Pillow masters/previews preserved; tiny256px annotations require explicit IMAGINED card labels."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM HIMALIA",
+    "skyLabel": "IMAGINED · SKY FROM HIMALIA",
+    "skyCaption": "Hypothetical small Jupiter above invented Himalia terrain; nominal guide and image framing remain uncalibrated.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "85 ± 10 KM · VOLUME MODEL"
+      ],
+      [
+        "GM",
+        ".15155 ± .05763 KM³/S² · FIT"
+      ],
+      [
+        "SYNODIC PERIOD",
+        "7.7819 ± .0005 H · FIT"
+      ],
+      [
+        "SPIN POLE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.07646442390172337,
+      "horizontalFovDeg": 90,
+      "angularDiameterDeg": 0.7003514194513794,
+      "centreDiscWidthFraction": 0.00611179519359738,
+      "irradianceEarth": 0.000001153343486739122,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/bespoke/himalia-cassini-pia02881-native.jpg",
+        "bytes": 29742,
+        "sha256": "e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba",
+        "width": 735,
+        "height": 540,
+        "tier": "measured",
+        "label": "NATIVE · CASSINI NEAR-IR CONTEXT",
+        "credit": "NASA / JPL / University of Arizona",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "terms": "NASA informational/educational use, acknowledgement, no endorsement and third-party caveats; not CC BY or blanket raw-product permission.",
+        "observationDate": "2000-12-19",
+        "publicationDate": "2001-01-31",
+        "source": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02881/PIA02881.jpg",
+        "sourceUrl": "https://science.nasa.gov/photojournal/himalia-a-small-moon-of-jupiter/",
+        "description": "Actual tiny near-IR Himalia disk, main-frame arrow,10x inset and separate lighting/size grid. Sampling/noise/streaks/grid are not terrain,global axes,chemistry or calibrated visible colour. ResourceJan23,2001caption/Dec16,2004heading differ from Photojournaladdition; release chronology open.",
+        "processing": "Unchanged full735x540RGB publisherJPEG, no local resize/reencoding. OriginalTIFF retained separately. Publisher~27km/pixel,~160km projected vertical extent and4.4millionkm range are caption estimates,not new raster/shape calibration. Thruster stabilization affected pointing."
+      },
+      {
+        "url": "/bespoke/himalia-cassini-denk2026-native.jpg",
+        "bytes": 27558,
+        "sha256": "1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7",
+        "width": 540,
+        "height": 762,
+        "tier": "measured",
+        "label": "NATIVE · CASSINI FILTER VIEWS · 2026 PUBLICATION",
+        "credit": "Denk, Tilmann; Williams, David A.; Tosi, Federico; James F. Bell III; Mottola, Stefano; de Pater, Imke; Lainey, Valéry; Molyneux, Philippa; Matz, Klaus-Dieter; Hartogh, Paul; Lopes, Rosaly M.; Solomonidou, Anezina; Thomas, Peter C.; Huybrighs, Hans Leo F.; Gurvits, Leonid I.; Mura, Alessandro; Retherford, Kurt D.; Rezac, Ladislav; Roatsch, Thomas; Roth, Lorenz; Haslebacher, Nico; Tubiana, Cecilia; Lucchetti, Alice; Langevin, Yves; Poulet, François; Lellouch, Emmanuel; Tsuchiya, Fuminori; Vallat, Claire; Van Hoolst, Tim; Vorburger, Audrey; Wurz, Peter; D’Aversa, Emiliano; Gladstone, Randy; Greathouse, Thomas; Schneider, Nicholas; Zambon, Francesca; Altobelli, Nicolas; Palumbo, Pasquale; Portyankina, Ganna; Aharonson, Oded; Bruzzone, Lorenzo; Carter, John; Cecconi, Baptiste; Cooper, Nick; Costa Sitjà, Marc; Escalante López, Alfredo; Futaana, Yoshifumi; Mazzotta Epifani, Elena; Migliorini, Alessandra; Moore, William B.; Moreno, Raphael; Murray, Carl; Penasa, Luca; Piccioni, Giuseppe; Schmidt, Jürgen; Wahlund, Jan-Erik; Witasse, Olivier · Denk et al.2026, Figure20, Cassini ISS",
+        "authors": [
+          "Denk, Tilmann",
+          "Williams, David A.",
+          "Tosi, Federico",
+          "James F. Bell III",
+          "Mottola, Stefano",
+          "de Pater, Imke",
+          "Lainey, Valéry",
+          "Molyneux, Philippa",
+          "Matz, Klaus-Dieter",
+          "Hartogh, Paul",
+          "Lopes, Rosaly M.",
+          "Solomonidou, Anezina",
+          "Thomas, Peter C.",
+          "Huybrighs, Hans Leo F.",
+          "Gurvits, Leonid I.",
+          "Mura, Alessandro",
+          "Retherford, Kurt D.",
+          "Rezac, Ladislav",
+          "Roatsch, Thomas",
+          "Roth, Lorenz",
+          "Haslebacher, Nico",
+          "Tubiana, Cecilia",
+          "Lucchetti, Alice",
+          "Langevin, Yves",
+          "Poulet, François",
+          "Lellouch, Emmanuel",
+          "Tsuchiya, Fuminori",
+          "Vallat, Claire",
+          "Van Hoolst, Tim",
+          "Vorburger, Audrey",
+          "Wurz, Peter",
+          "D’Aversa, Emiliano",
+          "Gladstone, Randy",
+          "Greathouse, Thomas",
+          "Schneider, Nicholas",
+          "Zambon, Francesca",
+          "Altobelli, Nicolas",
+          "Palumbo, Pasquale",
+          "Portyankina, Ganna",
+          "Aharonson, Oded",
+          "Bruzzone, Lorenzo",
+          "Carter, John",
+          "Cecconi, Baptiste",
+          "Cooper, Nick",
+          "Costa Sitjà, Marc",
+          "Escalante López, Alfredo",
+          "Futaana, Yoshifumi",
+          "Mazzotta Epifani, Elena",
+          "Migliorini, Alessandra",
+          "Moore, William B.",
+          "Moreno, Raphael",
+          "Murray, Carl",
+          "Penasa, Luca",
+          "Piccioni, Giuseppe",
+          "Schmidt, Jürgen",
+          "Wahlund, Jan-Erik",
+          "Witasse, Olivier"
+        ],
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "terms": "Denk et al.2026 article CC BY4 includes images unless a credit exclusion applies; none found in inspectedFigure20 caption. Full authors/source/licence retained, image unchanged. Not blanket raw-mission/third-party permission.",
+        "observationDate": "2000-12-18;2000-12-19",
+        "publicationDate": "2026-03-05",
+        "source": "https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs11214-025-01263-6/MediaObjects/11214_2025_1263_Fig20_HTML.jpg",
+        "sourceUrl": "https://link.springer.com/article/10.1007/s11214-025-01263-6/figures/20",
+        "description": "Four Cassini ISS NAC views/seven filter rows; original disk~4–6pixels. UV3 smear,filter/time text and interpolated disk are not resolved terrain,local chemistry or independently calibrated visible colour. Later2026publication is not a2026observation.",
+        "processing": "Unchanged full540x762one-channel publisherJPEG27558bytes; full/display endpoints byteequal. Publisher-calibrated/bicubic enlargement not independently reproduced. UV3/BL1/GRN/RED/IR1/IR2/IR3 exposures5.6/.460/.120/.090/.100/.320/.560s. EndpointIDsN1355863292 at2000Dec18T20:30:01UTC toN1355880764 atDec19T01:21:13UTC bound campaign,not full28-product list or provenPIA02881 crosswalk."
+      }
+    ],
+    "references": [
+      {
+        "title": "NASA PIA02881 caption and credits",
+        "url": "https://science.nasa.gov/photojournal/himalia-a-small-moon-of-jupiter/"
+      },
+      {
+        "title": "NASA media terms/third-party caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "Denk et al.2026 review and Figure20",
+        "url": "https://doi.org/10.1007/s11214-025-01263-6"
+      },
+      {
+        "title": "CC BY4 licence; article third-party exclusions remain relevant",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "JPL satellite physical parameters",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL satellite mean elements",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "Pilcher/Mottola/Denk2012 author abstract; no fulltext",
+        "url": "https://elib.dlr.de/77110/"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/himalia-surface-image.jpg",
+      "previewUrl": "/bespoke/himalia-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "himalia-generated-surfaceImage-original.png",
+      "sourceSha256": "c356fbd8a8ec9930facac7bfb9a887a5fa73713c2c78d0cfcce50e5f1e84abf0",
+      "sha256": "09f975713e0fe234313489149a6f5110ed9a689beb5394f8398a05a27bbb5398",
+      "previewSha256": "f95c82f556b43d5c1394de44675bf1c033cff5183cfdf2bf059b65d4c8f1605c",
+      "bytes": 376894,
+      "previewBytes": 11520,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/himalia-sky-image.jpg",
+      "previewUrl": "/bespoke/himalia-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "himalia-generated-skyImage-original.png",
+      "sourceSha256": "648d1c797148765843d873fdf3d5411d357aaf427d566b7a20a4c2b1548a824f",
+      "sha256": "f121835dbaa351e1dcee85b68b23dc1ca4395327bb7b5c75b5ff8610ced97d91",
+      "previewSha256": "0e7c3309f01a016d6b9422401adaf3b8be122a4fe6b2284085629defcfc92630",
+      "bytes": 249170,
+      "previewBytes": 8124,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
