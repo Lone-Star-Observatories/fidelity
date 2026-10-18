@@ -1,0 +1,148 @@
+{
+  "title": "Size, Shape, and Geometric Albedo of Dwarf Planet Quaoar’s Largest Satellite Weywot",
+  "authors": [
+    "Cameron Collyer",
+    "Estela Fernández-Valenzuela",
+    "Benjamin Proudfoot",
+    "Bryan J. Holler",
+    "Jose Luis Ortiz",
+    "Ishan Sharma"
+  ],
+  "version": "arXiv2610.11988v1 submitted2026-10-08T13:58:16UTC; not observation date",
+  "rights": "Specific record/HTML CC BY-NC-SA4.0, NOT CC BY4.0. Actual deed retained. No paper figure or raw image embedded; raw/third-party product terms remain separate.",
+  "date": "2026-10-17",
+  "scope": "Targeted Section IV, Tables 2–3 and figure captions in retained HTML and versioned TeX. No PDF/figure visual inspection, independent fit, physical registration or production parameter adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/weywot-2026-occultation-record.html",
+      "url": "https://arxiv.org/abs/2610.11988",
+      "bytes": 43594,
+      "sha256": "7aff83aac68fb42efe3db7de596766bab7239cbac9e445996ab0852ae6acadfd"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-occultation-full.html",
+      "url": "https://arxiv.org/html/2610.11988v1",
+      "bytes": 350085,
+      "sha256": "dc2ccd1d8007218c1da0aa538b35001ebbd8bf6ca72e7284b594876742cfc88f"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-cc-by-nc-sa4-deed.html",
+      "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "bytes": 37146,
+      "sha256": "ca0597fd98c6fb2417993e867b5cbc91ebdc55e24839c38e4674e8c78d817f17"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-occultation-v1-source.tar",
+      "url": "https://arxiv.org/src/2610.11988v1",
+      "bytes": 4040178,
+      "sha256": "28e2bbd1c9aaae57370d0e659c452a3308ff16e7b0eccbf0edaa17612792f020",
+      "inspection": "TeX read in memory without execution"
+    },
+    {
+      "path": "data/research-sources/weywot-2026-occultation-v1.pdf",
+      "url": "https://arxiv.org/pdf/2610.11988v1",
+      "bytes": 4180768,
+      "sha256": "ddbe7a6ff2044451d7c50da8eeeba622708dbb186fb361bf3ced916fa93c1edc",
+      "inspection": "retained; signature verified only, PDF content/visual audit pending"
+    }
+  ],
+  "shapePosterior": {
+    "classification": "Conditional triaxial ellipsoid fit, not resolved terrain or an adopted digital shape",
+    "semiAxesKm": {
+      "a": {
+        "median": 82,
+        "plus": 5,
+        "minus": 3
+      },
+      "b": {
+        "median": 73,
+        "plus": 5,
+        "minus": 3
+      },
+      "c": {
+        "median": 65,
+        "plus": 8,
+        "minus": 12
+      }
+    },
+    "volumetricRadiusKm": {
+      "median": 73,
+      "plus": 5,
+      "minus": 5
+    },
+    "poleAtJune2023OccultationDegrees": {
+      "rightAscension": 267.6,
+      "declination": 52.2,
+      "reportedUncertainty": 0.2
+    },
+    "limits": "Section IV explicitly identifies a/b/c as semi-axes although Table 3 labels them axes. Medians and 16th/84th percentiles are not independent Gaussian errors. Pole uses assumed spin/orbit alignment and propagated precession; no current fixed orientation, local normal or body-map registration."
+  },
+  "occultationMethod": {
+    "fit": "occult3d/emcee eight free parameters: three semi-axes, two pole coordinates, phase and two ephemeris offsets; lightcurve/pole Gaussian priors. Not independently reproduced.",
+    "excludedChord": "RECON24 omitted as discrepant with a more precise nearby chord. Exclusion retained, not silently restored.",
+    "errorFloor": "LDT timing-only 0.002 second/~50 m endpoint estimate is publisher supplied. Added 5 km in quadrature models possible departures from triaxiality; it is not a measured terrain height or a new raster/angular calculation.",
+    "additionalChordConstraints": [
+      {
+        "date": "2019-08-04",
+        "lengthKm": 168,
+        "uncertaintyKm": 15
+      },
+      {
+        "date": "2022-06-11",
+        "lengthKmApproximate": 135
+      },
+      {
+        "date": "2023-05-26",
+        "lengthKm": 180,
+        "uncertaintyKm": 19
+      }
+    ],
+    "selection": "Station positions and immersion/emersion timings unavailable in the cited preliminary reports. Authors propagated trial shapes using assumed synchronous phase and limb lengths, omitted shadow-path geometry and rejected samples with combined probability below 1%; about 70% removed and June fit chi-square increased 0.6. This is not a direct full fit of those events or independent coverage validation.",
+    "referenceOffsets": "Table 3 f=-58±3 km, g=53(+8,-9) km relative to the specified Proudfoot Weywot and NIMAv20 Quaoar ephemerides; not a correction adopted in Fidelity."
+  },
+  "photometricFitLimits": [
+    "Nine accepted points/four degrees of freedom: preferred symmetric fit reported chi-square per degree of freedom 3.42.",
+    "Asymmetric model leaves two degrees of freedom and is unconstrained/overfit; fine-tuned zero-mean asymmetry prior width .01 produces .77, still described as overfitting.",
+    "Table 2 phase 111.4(+7.6,-6.7) degrees versus Table 3 phase 24±8 degrees requires an explicit convention crosswalk; neither initializes scene orientation.",
+    "F606W and V absolute magnitudes below the Table 2 rule are derived; source calibration and filter transfer require the unresolved Appendix D audit. No calibrated albedo/colour adopted."
+  ],
+  "sourceConsistencyQuestions": [
+    "Versioned TeX as well as HTML prints F606W zeropoint 25.995 in Section II.2.4 and 29.995 in Appendix D. Preserve both; cause/authoritative correction open.",
+    "Appendix D ratio direction and subsequent V-flux conversion require source/PDF/algebra verification. No repaired calibration implemented.",
+    "Appendix B synodic-offset formula and numerical offsets have not been independently reproduced.",
+    "Table 1 light-time-corrected midpoints differ in convention from Appendix A uncorrected geocentric midpoints; neither is silently relabelled individual raw exposure UTC."
+  ],
+  "remaining": [
+    "Full PDF/figure/posterior inspection, original occultation inputs and fit/code reproduction.",
+    "Albedo/flux-transfer reconciliation, raw HST product association and native rendition/terms audit.",
+    "Current orbit/attitude, mass/density alternatives, recent second-satellite inventory and body-specific observer geometry before generation.",
+    "Preserve historical 2025 tidal-model inputs separately; no map, figure, image, catalogue, mesh, codec or new dossier adopted. All other backlog remains active."
+  ],
+  "texMember": {
+    "name": "0letter.tex",
+    "bytes": 72751,
+    "sha256": "47c2bdf04174f08c975525db34e24be69e062b0dd62167c042cc59cd555ba1f6",
+    "scope": "Active Section IV/Table2–3 and targeted zeropoint text; comments are not treated as published findings."
+  },
+  "validation": {
+    "testsPassed": 683,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "baseline": "b4dde5542a16b996b54c625e995ba90d713d5ee4",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 86,
+    "trackedPublicByteEqual": 651,
+    "sourceHashesChecked": 10,
+    "htmlBytes": 15516292,
+    "headroomBytes": 483708,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "7eeb4c191f3f44c1002e9b08317e1b174cdc8464fa4b42ef0e11dea72ebf4874",
+    "applicationSha256": "41559977cd55718d6bf49e617fd1006e4abe05eac24f3f6c9add2f3bd0f93d2a",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not inventory or compression savings. Node complete inverse only; no fresh browser/routes/images/model/worker claims.",
+    "texMemberHashVerified": true
+  }
+}
