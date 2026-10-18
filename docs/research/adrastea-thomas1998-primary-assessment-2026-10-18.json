@@ -1,0 +1,185 @@
+{
+  "date": "2026-10-18",
+  "body": "Adrastea JPL515; historical four-inner-moon study",
+  "status": "Research assessment only; no92nd dossier, catalogue, rotation, shape, photometry, image or codec adoption.",
+  "paper": {
+    "title": "The Small Inner Satellites of Jupiter",
+    "doi": "10.1006/icar.1998.5976",
+    "journal": "Icarus135(1),360\u2013371",
+    "publication": {
+      "date-parts": [
+        [
+          1998,
+          9
+        ]
+      ]
+    },
+    "authors": [
+      "P.C. Thomas",
+      "J.A. Burns",
+      "L. Rossier",
+      "D. Simonelli",
+      "J. Veverka",
+      "C.R. Chapman",
+      "K. Klaasen",
+      "T.V. Johnson",
+      "M.J.S. Belton"
+    ],
+    "creditLimit": "Nine named Crossref authors; Galileo Solid State Imaging Team association from bibliographic search lead not independently verified in full-paper masthead."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/adrastea-thomas1998-publisher-2026-10-18.html",
+      "bytes": 832806,
+      "sha256": "cfc758aa70f61ef9cec66ad00b3ee00ffafebfda035e2cdf4f85eb6cc45cddd4",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760",
+      "status": 403,
+      "responseHeaders": {
+        "path": "data/research-sources/adrastea-thomas1998-publisher-2026-10-18.headers",
+        "bytes": 834,
+        "sha256": "ec6e37361d19ff5e2e2032d172e7a31f7cfdec8e30da25c185f9caa97005926f"
+      },
+      "limits": "Response hash, not full paper/PDF/abstract hash."
+    },
+    {
+      "path": "data/research-sources/adrastea-thomas1998-crossref-2026-10-18.json",
+      "bytes": 14834,
+      "sha256": "c3f2b0bc9c53098e1676e1ca1d3ce23a08113b39fc7aebae520d58ae298c739a",
+      "url": "https://api.crossref.org/works/10.1006/icar.1998.5976",
+      "status": 200,
+      "responseHeaders": {
+        "path": "data/research-sources/adrastea-thomas1998-crossref-2026-10-18.headers",
+        "bytes": 509,
+        "sha256": "dc0d6bb332147a035d4c23b483185224afd38f3ab112384938cc21b76b6a1bfa"
+      },
+      "limits": "Metadata/deed response, not full paper or figure licence inspection."
+    },
+    {
+      "path": "data/research-sources/adrastea-thomas1998-api-2026-10-18.txt",
+      "bytes": 180,
+      "sha256": "02f6d1d49ded4e0b0898231f5939ef4ad814352d39372ed5e91b8f5b69bf0d8c",
+      "url": "https://api.elsevier.com/content/article/PII:S0019103598959760?httpAccept=text/plain",
+      "status": 429,
+      "responseHeaders": {
+        "path": "data/research-sources/adrastea-thomas1998-api-2026-10-18.headers",
+        "bytes": 688,
+        "sha256": "a057c7c9390d402d3a2360cc5ecf5c9336509a0cc289f1504f3997d5a3e2142f"
+      },
+      "limits": "Response hash, not full paper/PDF/abstract hash."
+    },
+    {
+      "path": "data/research-sources/adrastea-thomas1998-pdf-attempt-2026-10-18.response",
+      "bytes": 832806,
+      "sha256": "67a1b8252bb709be37519c3059dfb971d029be8b91bcf94cf57ad04c25b86c95",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760/pdf",
+      "status": 403,
+      "responseHeaders": {
+        "path": "data/research-sources/adrastea-thomas1998-pdf-attempt-2026-10-18.headers",
+        "bytes": 834,
+        "sha256": "292b5251cf3dd0d4ddd57f5b58535602d773438ea4c9580315659e65e37504ba"
+      },
+      "limits": "Response hash, not full paper/PDF/abstract hash."
+    },
+    {
+      "path": "data/research-sources/adrastea-thomas1998-deed-2026-10-18.html",
+      "bytes": 36788,
+      "sha256": "0389dccad7bdfebd9b7294ccd1582d8197b450295ff5263bafa41763e5f40b27",
+      "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "status": 200,
+      "responseHeaders": {
+        "path": "data/research-sources/adrastea-thomas1998-deed-2026-10-18.headers",
+        "bytes": 261,
+        "sha256": "25c54d01ce53d848b944c5e6f6e59411302ac1da81c7fe1f1641f9143835066d"
+      },
+      "limits": "Metadata/deed response, not full paper or figure licence inspection."
+    }
+  ],
+  "indexedPublisherAbstract": {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0019103598959760",
+    "retrieval": "2026-10-18 web search publisher-indexed abstract; direct open403; no full-paper/abstract response hash invented",
+    "claims": "Historical abstract describes synchronous rotation for the four inner moons collectively, with no binary/bifurcated shapes. Its quantitative leading/trailing brightness contrast and clear-filter albedos concern Metis, Amalthea and Thebe; Adrastea is not in that photometric list. Colour-gradient/contamination and impact explanations are interpretations, not measured local materials or a registered visible-colour map.",
+    "limits": "Adrastea-specific rotational evidence, period/pole, image sampling, uncertainty, shape derivation and raw-product associations require full methods/tables. Historical collective synchrony claim retained alongside current NASA overview unknown rotation; no cause/reconciliation or measured spin adopted."
+  },
+  "rights": {
+    "crossrefLicenses": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              1998,
+              9,
+              1
+            ]
+          ],
+          "date-time": "1998-09-01T00:00:00Z",
+          "timestamp": 904608000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              1998,
+              9,
+              1
+            ]
+          ],
+          "date-time": "1998-09-01T00:00:00Z",
+          "timestamp": 904608000000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/legal/tdmrep-license"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2002,
+              5,
+              25
+            ]
+          ],
+          "date-time": "2002-05-25T00:00:00Z",
+          "timestamp": 1022284800000
+        },
+        "content-version": "vor",
+        "delay-in-days": 1362,
+        "URL": "http://creativecommons.org/licenses/by-nc-nd/4.0/"
+      }
+    ],
+    "limits": "Crossref VOR CC BY-NC-ND4.0 link from2002May25 differs TDM-only links and indexed1998all-rights-reserved notice. Specific NC/ND record is not CC BY, blanket raw-image rights or independently checked third-party figure permission. No paper figure downloaded/embedded/modified; direct publisher/API/PDF requests inaccessible. Deed retained for link identity, not legal conclusion about uninspected paper contents."
+  },
+  "preservedReferences": [
+    "docs/research/adrastea-native-preparation-2026-10-18.json",
+    "docs/research/adrastea-orbit-geometry-preparation-2026-10-18.json",
+    "docs/research/adrastea-local-view-preparation-2026-10-18.json",
+    "docs/research/adrastea-sky-view-preparation-2026-10-18.json"
+  ],
+  "open": "Full paper/body-specific rotational methods, size uncertainty lineage, digital shape, rawUTC/filter/exposure/PSF/frame/photometry and catalogue registration remain open. No new angular/raster calculation. Independent prepared images remain invented/unregistered.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 31,
+    "nativeCardsExactBytesAndMime": 82,
+    "baseline": "e9e2b31",
+    "priorDossiersDeepEqual": 91,
+    "dossiers": 91,
+    "priorMoonsDeepEqual": 47,
+    "moons": 47,
+    "trackedPublicByteEqual": 676,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15983236,
+    "headroomBytes": 16764,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "0511a7a2a603961bd99c1ac85428fec427ce7be7d9f0471794e8f4f57adc24aa",
+    "applicationSha256": "8729b5b7af47818a6a634558a385cac6b371875394e51886064c6a84ecd43788",
+    "freshBrowserClaim": false,
+    "testsPassed": 689,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  }
+}
