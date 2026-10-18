@@ -1,0 +1,253 @@
+{
+  "date": "2026-10-18",
+  "issue": 3,
+  "body": "Vanth, satellite of Orcus",
+  "status": "Independent built-in sky illustration and original-preserving master/preview preparation; no88th or embedding",
+  "sources": [
+    {
+      "path": "data/research-sources/vanth-generated-skyImage-original.png",
+      "bytes": 1700662,
+      "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+    },
+    {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-caeda8c8-ac8f-49ba-b4c7-bf9e7a4e07ad.png",
+      "bytes": 1700662,
+      "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+    },
+    {
+      "path": "data/research-sources/vanth-sky-featureless-prompt-2026-10-18.txt",
+      "bytes": 2304,
+      "sha256": "44ad6cc8e608a167666f02955b73998c0ffb0bbe17f96fcd396e3d3f19b9451a"
+    },
+    {
+      "path": "data/research-sources/vanth-generated-skyImage-rejected-moonlike-original.png",
+      "bytes": 1886752,
+      "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+    },
+    {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-67365573-4f06-431d-9dcf-3af5fd922808.png",
+      "bytes": 1886752,
+      "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+    },
+    {
+      "path": "data/research-sources/vanth-sky-prompt-2026-10-18.txt",
+      "bytes": 2079,
+      "sha256": "e3fa1c8597aca0573e6d75c1a3b7bbda9e58cb9dc2c49e195c3777c5860f5b0d"
+    },
+    {
+      "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+      "bytes": 2870475,
+      "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+    },
+    {
+      "path": "data/research-sources/vanth-generated-surfaceImage-master.jpg",
+      "bytes": 354903,
+      "sha256": "1ca13b5bc374dd22bec7b1cbe3687d95deb57e6563e43c929873acbaf0315e3e",
+      "dimensions": [
+        1535,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/vanth-generated-surfaceImage-preview.jpg",
+      "bytes": 10694,
+      "sha256": "b39f950f0c4324b81806a1259594bcbab367eda5f67d63e5bc902d39f077982b",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    },
+    {
+      "path": "data/research-sources/vanth-generated-skyImage-original.png",
+      "bytes": 1700662,
+      "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+    },
+    {
+      "path": "data/research-sources/vanth-generated-skyImage-master.jpg",
+      "bytes": 198381,
+      "sha256": "511db25b1ce236f1d9ee5aad5d595ac8490193ef9d2a978fa65b9e1e94f1a2df",
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85
+    },
+    {
+      "path": "data/research-sources/vanth-generated-skyImage-preview.jpg",
+      "bytes": 6804,
+      "sha256": "2c2771d68f099c3dcc1066ddb802da23673acab7511d78cb0a00935ac4609f73",
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80
+    }
+  ],
+  "prompt": "Use case: scientific-educational. Asset type: Fidelity hypothetical observer view, independent wide 16:9 illustration. Create an imagined view from an arbitrary local site on Vanth, moon of Orcus: sparse subdued grey-brown granular ground, a few small irregular blocks and shallow low ridges beneath a black sky. No reference image or observed-body map. Put a small pale neutral-grey spherical Orcus high clear above the horizon near the horizontal centre, with an entirely featureless smooth pale-grey disk and a modest gibbous terminator; no recognizable lunar maria, ray craters, Pluto polygons, Charon chasm, or any other body's geology. The disk MUST be a completely smooth featureless educational sphere, with ZERO mottling, zero markings, zero craters, zero maria, zero geological patches, zero photographic surface texture. This is not an observed surface of Orcus. Do not render a miniature Moon. Geometry constraint computed with skyGeometry: assume primary radius455km, historical orbital scale9030km and moon spherical camera height221.5km, primary distance8808.5km. Angular diameter5.9218225068351655degrees; nominal90degree horizontal FOV at1672pixel width gives a complete globe about86.48pixels across (about5.17percent of picture width), exclude terrain occultation of globe. Use this as intended framing, not calibrated photometry or dated registration. Do not enlarge Orcus for drama. Alternative thermal moon height237.5km yields5.932608270423252degrees/86.64pixels, not a joint-fit confidence envelope. Terrain/materials/fractions/chemistry, Orcus smooth colour, phase/attitude, illumination and exposure are all invented. No claim of local measured composition, registered surface normal, synchronous spin, permanent Orcus-facing site or everywhere visibility. Off-frame sunlight, hard restrained shadows; no Sun disk, stars, spacecraft, person, structures, tracks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology or survivable landing implication. Black sky and omitted rings are assumptions, not absence evidence. Independent restrained educational realistic illustration. Add one dark bottom footer band with two large clearly readable exact lines: 'VANTH — IMAGINED SKY VIEW' and 'Terrain and Orcus appearance invented; geometry illustrative, not registered'.",
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-caeda8c8-ac8f-49ba-b4c7-bf9e7a4e07ad.png",
+    "bytes": 1700662,
+    "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+  },
+  "original": {
+    "path": "data/research-sources/vanth-generated-skyImage-original.png",
+    "bytes": 1700662,
+    "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+  },
+  "rejectedVariant": {
+    "original": {
+      "path": "data/research-sources/vanth-generated-skyImage-rejected-moonlike-original.png",
+      "bytes": 1886752,
+      "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+    },
+    "defaultOriginal": {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-67365573-4f06-431d-9dcf-3af5fd922808.png",
+      "bytes": 1886752,
+      "sha256": "2ee3e97719a691f7484bf60ae88dd4285c94813c093da2b28a4cfc74c0cbec00"
+    },
+    "prompt": "Use case: scientific-educational. Asset type: Fidelity hypothetical observer view, independent wide 16:9 illustration. Create an imagined view from an arbitrary local site on Vanth, moon of Orcus: sparse subdued grey-brown granular ground, a few small irregular blocks and shallow low ridges beneath a black sky. No reference image or observed-body map. Put a small pale neutral-grey spherical Orcus high clear above the horizon near the horizontal centre, with a simple smooth subdued invented mottling and a modest gibbous terminator; no recognizable lunar maria, ray craters, Pluto polygons, Charon chasm, or any other body's geology. This is not an observed surface of Orcus. Geometry constraint computed with skyGeometry: assume primary radius455km, historical orbital scale9030km and moon spherical camera height221.5km, primary distance8808.5km. Angular diameter5.9218225068351655degrees; nominal90degree horizontal FOV at1672pixel width gives a complete globe about86.48pixels across (about5.17percent of picture width), exclude terrain occultation of globe. Use this as intended framing, not calibrated photometry or dated registration. Do not enlarge Orcus for drama. Alternative thermal moon height237.5km yields5.932608270423252degrees/86.64pixels, not a joint-fit confidence envelope. Terrain/materials/fractions/chemistry, Orcus pattern/colour, phase/attitude, illumination and exposure are all invented. No claim of local measured composition, registered surface normal, synchronous spin, permanent Orcus-facing site or everywhere visibility. Off-frame sunlight, hard restrained shadows; no Sun disk, stars, spacecraft, person, structures, tracks, atmosphere, haze, clouds, plume, liquid, exposed ocean, biology or survivable landing implication. Black sky and omitted rings are assumptions, not absence evidence. Independent restrained educational realistic illustration. Add one dark bottom footer band with two large clearly readable exact lines: 'VANTH — IMAGINED SKY VIEW' and 'Terrain and Orcus appearance invented; geometry illustrative, not registered'.",
+    "reason": "Moon-like primary pattern; not adopted. Both original copies preserved."
+  },
+  "files": [
+    {
+      "role": "surfaceImage",
+      "original": {
+        "path": "data/research-sources/vanth-generated-surfaceImage-original.png",
+        "bytes": 2870475,
+        "sha256": "0c9c60ab802e0326106d5dafcf620146625a36d064804f8aac49fda7b28d58de"
+      },
+      "files": [
+        {
+          "path": "data/research-sources/vanth-generated-surfaceImage-master.jpg",
+          "bytes": 354903,
+          "sha256": "1ca13b5bc374dd22bec7b1cbe3687d95deb57e6563e43c929873acbaf0315e3e",
+          "dimensions": [
+            1535,
+            864
+          ],
+          "quality": 85
+        },
+        {
+          "path": "data/research-sources/vanth-generated-surfaceImage-preview.jpg",
+          "bytes": 10694,
+          "sha256": "b39f950f0c4324b81806a1259594bcbab367eda5f67d63e5bc902d39f077982b",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80
+        }
+      ]
+    },
+    {
+      "role": "skyImage",
+      "original": {
+        "path": "data/research-sources/vanth-generated-skyImage-original.png",
+        "bytes": 1700662,
+        "sha256": "4f84c9488ba3dbc43c24e5c1da144ff8d3ea059ef9fd9da9b902084d8874033f"
+      },
+      "files": [
+        {
+          "path": "data/research-sources/vanth-generated-skyImage-master.jpg",
+          "bytes": 198381,
+          "sha256": "511db25b1ce236f1d9ee5aad5d595ac8490193ef9d2a978fa65b9e1e94f1a2df",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "quality": 85
+        },
+        {
+          "path": "data/research-sources/vanth-generated-skyImage-preview.jpg",
+          "bytes": 6804,
+          "sha256": "2c2771d68f099c3dcc1066ddb802da23673acab7511d78cb0a00935ac4609f73",
+          "dimensions": [
+            256,
+            144
+          ],
+          "quality": 80
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "status": "Preparation only; no generated image/catalogue/dossier adoption",
+    "sources": [
+      {
+        "path": "docs/research/vanth-sinfoni-orbit-assessment-2026-10-18.json",
+        "bytes": 4867,
+        "sha256": "81762030ab77b0f31551f1607216d2d79f5d52704538495115bfe2ee2ad593a5"
+      },
+      {
+        "path": "docs/research/vanth-occultation-assessment-2026-10-18.json",
+        "bytes": 5221,
+        "sha256": "8bda204ecefaa3e65f517e3423580a4a4479c3cb701c9c4410d84e96b1509ec3"
+      },
+      {
+        "path": "data/research-sources/vanth-2018-v1-sats_sub.tex",
+        "bytes": 38079,
+        "sha256": "dfd85d803af977a7f563970f71d01ab315789fe03168794ef0609e09f28fe28d"
+      }
+    ],
+    "geometry": {
+      "helper": "skyGeometry in src/astro/appearance.js",
+      "primaryRadiusKm": 455,
+      "primarySource": "BrownButler2018 model910(+50,-40)km diameter",
+      "nominalOrbitalScaleKm": 9030,
+      "orbitalSource": "Carry2011 historical9030±89km fit",
+      "horizontalFovDeg": 90,
+      "rasterWidth": 1672,
+      "alternatives": [
+        {
+          "label": "Occultation443km circular projected-limb assumption",
+          "heightKm": 221.5,
+          "distanceKm": 8808.5,
+          "angularDiameterDeg": 5.9218225068351655,
+          "centreDiscWidthPixels": 86.48203061062136
+        },
+        {
+          "label": "2018thermal475km model diameter",
+          "heightKm": 237.5,
+          "distanceKm": 8792.5,
+          "angularDiameterDeg": 5.932608270423252,
+          "centreDiscWidthPixels": 86.63982697468802
+        }
+      ],
+      "limits": "Cross-paper representative radial near-side camera, not joint fit, current dated distance, physical surface normal, uncertainty envelope, measured spin or permanent primary-facing location. 40K helper temperature only; colour/irradiance outputs discarded. Primary phase/attitude, exposure/spectral transfer, limb oblateness and site registration artistic/unverified. No analog map or local chemistry assigned."
+    }
+  },
+  "visualInspection": "Accepted full output plus both1536JPEG85masters and256JPEG80previews independently inspected. Featureless smooth grey Orcus above horizon; both master footer lines readable, small preview annotations require card labels. No raster diameter adopted, generated framing remains uncalibrated. Initial diagnostic contact sheet clipped footers due to row sizing; actual individual files were inspected and preserve complete footer bands.",
+  "limits": [
+    "Terrain/blocks/grains/materials/chemistry/colour/phase/light/exposure invented, no observed analog map or Orcus geography.",
+    "Historical9030km orbital scale,2018primary455km radius and443/475km moon model heights are cross-paper representative geometry, not joint fit/date/local normal/envelope.",
+    "No measured spin, permanent Orcus-facing site, atmosphere/ring absence, plume/liquid/ocean/biology/survivable landing claim.",
+    "40K angular helper only; colour/irradiance discarded. No native image transformed or embedded.",
+    "Original/default PNG/fullprompts including rejected variant preserved. Small preview footers require explicit IMAGINED card labels."
+  ],
+  "validation": {
+    "testsPassed": 685,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "f2f64e8",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15700100,
+    "headroomBytes": 299900,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "273a9d65375f98fc9b877c37e3a24ca57979e1dd9e92e155bc6782f732bc8fa2",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+  }
+}
