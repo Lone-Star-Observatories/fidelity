@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-17",
+  "body": "Weywot sky toward distinct primary Quaoar",
+  "status": "Research preparation only; no dossier87, generation, catalogue, map, model, codec or embedding change",
+  "sources": [
+    {
+      "path": "src/astro/appearance.js",
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    {
+      "path": "src/data/moons.js",
+      "bytes": 49730,
+      "sha256": "7624e1ba99227a409679ac39a88832795926bec2bf1a578dc5375dbee6201a97"
+    },
+    {
+      "path": "docs/research/weywot-nonkeplerian-orbit-assessment-2026-10-17.json",
+      "bytes": 6901,
+      "sha256": "f2115bdb9c0f5f0ffcde8295ffdcf451fa668cc5902078c37b1f1a8a58beb210"
+    },
+    {
+      "path": "docs/research/weywot-2026-shape-results-assessment-2026-10-17.json",
+      "bytes": 7657,
+      "sha256": "a53cf02d7d2489ab7faf7020759fdcaee59f78aa1e2a1dcd5e593f8269a0c7d9"
+    }
+  ],
+  "geometry": {
+    "helper": "skyGeometry",
+    "horizontalFovDeg": 90,
+    "rasterWidth": 1672,
+    "helperTemperatureK": 40,
+    "cases": [
+      {
+        "primarySphericalCatalogueReferenceRadiusKm": 555,
+        "nominalConstrainedSemimajorAxisKm": 13329,
+        "hypotheticalRadialCameraHeightKm": 65,
+        "assumedPrimaryCentreDistanceKm": 13264,
+        "angularDiameterDeg": 4.796206868325301,
+        "targetWidthPixels": 70.02212041428093
+      },
+      {
+        "primarySphericalCatalogueReferenceRadiusKm": 555,
+        "nominalConstrainedSemimajorAxisKm": 13329,
+        "hypotheticalRadialCameraHeightKm": 73,
+        "assumedPrimaryCentreDistanceKm": 13256,
+        "angularDiameterDeg": 4.799103073561594,
+        "targetWidthPixels": 70.0644529680909
+      },
+      {
+        "primarySphericalCatalogueReferenceRadiusKm": 555,
+        "nominalConstrainedSemimajorAxisKm": 13329,
+        "hypotheticalRadialCameraHeightKm": 82,
+        "assumedPrimaryCentreDistanceKm": 13247,
+        "angularDiameterDeg": 4.802365489444621,
+        "targetWidthPixels": 70.11213836870722
+      }
+    ],
+    "illustrationReferenceCase": 1
+  },
+  "limits": [
+    "Primary555km is the existing spherical catalogue reference, not an audited projected limb, newer shape measurement or the549km harmonic reference radius. Do not transfer primary spin or ring properties to Weywot.",
+    "13329km is the constrained2025 orbital-fit semimajor scale, not current eccentric-orbit separation or a dated ephemeris. Unconstrained13334km and historical tidal14060km remain separate alternatives, not silently replaced.",
+    "65/73/82km are conditional2026 ellipsoid semi-axis medians;73km also equals the reported volume-radius median but is not an independently measured local height. Radial observer heights are illustrative choices, not surface normals, an uncertainty envelope, joint fit or posterior propagation.",
+    "2026 pole/shape assumes alignment and synchronous lightcurve interpretation; no independently measured permanent primary-facing site, current attitude, phase, horizon visibility or ring orientation follows.",
+    "40K only satisfies the angular helper input. Its colour and irradiance outputs are discarded; no measured temperature, visible colour, exposure or calibrated photometry.",
+    "No observed-body map reuse. Terrain, materials, chemistry, disk patterns, light, colour and phase would remain IMAGINED. No atmospheric absence, plume, liquid, exposed ocean, biology or survivable landing implied.",
+    "Native2008 unresolved publisher GIF does not establish resolved geography or calibrated colour. Raw-product/filter/UTC/date ordering and processing crosswalk remain open."
+  ],
+  "preservation": "All86 delivered dossiers and651 tracked public files remain untouched; source hashes retained. Latest67de0d6 verified tests/builds remain prior checks; no fresh browser/build claim. Remaining backlog ACTIVE."
+}

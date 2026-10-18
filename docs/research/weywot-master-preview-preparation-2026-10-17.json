@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-17",
+  "body": "Weywot",
+  "status": "Research-only original-preserving master/preview preparation; no87th dossier or embedding",
+  "files": [
+    {
+      "role": "surfaceImage",
+      "files": [
+        {
+          "path": "data/research-sources/weywot-generated-surfaceImage-original.png",
+          "bytes": 2535048,
+          "sha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "data/research-sources/weywot-generated-surfaceImage-master.jpg",
+          "bytes": 298078,
+          "sha256": "4132596a2d61e495f26fce0e69537583c20ed6c22cc0321d585fa022d7bb85f2",
+          "dimensions": [
+            1536,
+            864
+          ]
+        },
+        {
+          "path": "data/research-sources/weywot-generated-surfaceImage-preview256.jpg",
+          "bytes": 10124,
+          "sha256": "5fee0e58d6a4641ecaf75a980d12632e0603b5c03dcf0326ac68cf4cd21ec237",
+          "dimensions": [
+            256,
+            144
+          ]
+        }
+      ]
+    },
+    {
+      "role": "skyImage",
+      "files": [
+        {
+          "path": "data/research-sources/weywot-generated-skyImage-original.png",
+          "bytes": 1655576,
+          "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7",
+          "dimensions": [
+            1672,
+            941
+          ]
+        },
+        {
+          "path": "data/research-sources/weywot-generated-skyImage-master.jpg",
+          "bytes": 187656,
+          "sha256": "4feb384f053fd4280aa3d5ab98a48669e628c61ba9fc21acec5744bac8c57cc3",
+          "dimensions": [
+            1536,
+            864
+          ]
+        },
+        {
+          "path": "data/research-sources/weywot-generated-skyImage-preview256.jpg",
+          "bytes": 6845,
+          "sha256": "bce3db1a13bb2d9ee0c53d063f028ec29b875ce3e2516763a5fdf80dc3dc8a5a",
+          "dimensions": [
+            256,
+            144
+          ]
+        }
+      ]
+    }
+  ],
+  "encoding": "1536x864JPEGquality85 masters and256x144JPEGquality80 previews; Lanczos resize, original PNGs unchanged. Existing project convention; not native science transformations.",
+  "limits": "Original/master footers must remain legible; tiny previews require explicit IMAGINED card labels. Generated terrain/chemistry/materials/colour/primary appearance/light/exposure invented. Sky disk featureless, larger than requested and uncalibrated; no measured raster diameter adopted. Rejected Moon-like sky preserved separately, not a master/preview input. No registered site/normal/datedjointfit/permanentface/spin claim.",
+  "rawPreviewBytes": 16969,
+  "preservation": "All86 dossiers/651 public assets/originals/native/master/model/shape/provenance unchanged; no production adoption; backlog ACTIVE.",
+  "visualInspection": "Both1536JPEG85 masters and256JPEG80 previews visually inspected. Master footer lines remain legible/unclipped. Small previews require explicit IMAGINED card labels; no inferred raster calibration."
+}

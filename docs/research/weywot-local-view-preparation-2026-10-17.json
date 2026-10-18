@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-17",
+  "status": "Research-only built-in generated local view; original preserved and visually inspected, not embedded",
+  "body": "Weywot",
+  "mode": "built-in image_gen",
+  "prompt": "Create a scientific-educational hypothetical local-view illustration for Fidelity, landscape 16:9 about 1672x941. Subject: Weywot, the small unresolved satellite of Quaoar. Entire scene is independently invented, NOT an observed surface map or reconstruction. A low camera looks across modest gray particulate regolith, scattered small irregular blocks and shallow subdued relief toward a low curved horizon. Restrained neutral gray palette, oblique weak sunlight with artistically raised exposure. Black empty sky; no astronomical disks, no rings, no stars needed. Black sky is an artistic assumption, not evidence of atmospheric absence. No reuse or recolouring of any Moon, Mars, Pluto, asteroid or other observed-body skin; invent every terrain pattern independently. No dramatic fractures, active plume, haze, clouds, liquid, exposed ocean, biology, craft, astronaut, vegetation or survivable-landing implication. Weywot's terrain, materials, chemistry, porosity, grain sizes, gray colour, lighting and exposure are unknown and invented here. Conditional ellipsoid fits do not establish local relief or a registered site. Do not imply a dated occultation site, measured normal, permanent Quaoar-facing direction or independently measured synchronous rotation. This is a hypothetical observer illustration, not a globe texture. Across the bottom put a clean dark footer band with two generously legible exact white text lines: 'WEYWOT \u2014 IMAGINED LOCAL VIEW' and 'TERRAIN, MATERIALS, COLOUR AND LIGHT ARE INVENTED'. Keep both lines fully visible and unclipped. No other text.",
+  "original": {
+    "path": "data/research-sources/weywot-generated-surfaceImage-original.png",
+    "bytes": 2535048,
+    "sha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-2a3e7a4b-0ff8-470a-ae9f-d7218ff80e8a.png",
+  "limits": "Entire terrain/material/chemistry/colour/light/exposure invented. No analog skin or dated site/normal/permanentface/independent spin measurement. No atmosphere/plume/liquid/ocean/biology/survivable landing. No astronomical disk/angular/raster computation. No87th dossier or production change; all86 preserved.",
+  "visualInspection": "Full1672x941 original inspected: both exact footer lines legible/unclipped; independently invented gray particulate relief and blocks, black sky, no astronomical disk/plume/liquid/biology/craft. Appearance is illustrative, not measured local material or shape.",
+  "defaultOriginalSha256": "e508bd7fcc3bc90765585d01df0b137015af967335d2327a8546071811a76b0b"
+}

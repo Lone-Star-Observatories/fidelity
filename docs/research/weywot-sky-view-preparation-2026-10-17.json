@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-17",
+  "body": "Weywot, satellite of distinct primary Quaoar",
+  "status": "Research-only built-in independent IMAGINED sky original preserved and visually inspected; no87th dossier or embedding",
+  "mode": "built-in image_gen",
+  "original": {
+    "path": "data/research-sources/weywot-generated-skyImage-original.png",
+    "bytes": 1655576,
+    "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "defaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-736a862d-8de1-47d0-84d2-ab7118d3c16f.png",
+    "bytes": 1655576,
+    "sha256": "1335338b7492a8746eedf0ed9cd9d4805b9b569047fa513ca25925bf3c7b51d7"
+  },
+  "prompt": "Scientific-educational hypothetical observer illustration for Fidelity. New independent image, landscape16:9 about1672x941. View from an imagined spot on Weywot toward distinct primary Quaoar. Low foreground gray particulate regolith with a few small independent irregular blocks, low horizon near lower third; black empty sky. Place a small subdued gray spherical Quaoar disk fully above horizon near upper centre. Reference geometry: nominal90degree horizontalFOV, spherical catalogue Quaoar555km radius at assumed13256km observer-centre distance (13329km semimajor scale minus hypothetical73km radial camera height), skyGeometry angular diameter4.799103073561594degrees, ideal70.0644529680909pixels at1672width. Keep Quaoar small, about70pixels across at1672width, not a giant close planet. These inputs are illustrative, not a dated joint fit, physical limb, site normal, measured spin or permanent primary-facing view. Quaoar disk MUST be featureless smooth uniform gray, with only a soft artistic gibbous illumination gradient. Absolutely NO mottling, craters, patches, maria, bright rays, surface markings or geographic texture on the disk. It must look like a plain shaded mathematical sphere, not the Moon or any observed-body skin. No identifiable map from any real body. Terrain, chemistry, grains, colour, disk patterns, phase, lighting and exposure entirely invented. No reuse/recolouring of Moon, Mars, Pluto, asteroid or other observed-body map. No atmosphere,haze,clouds,plumes,liquid,ocean,biology,craft,astronaut or survivable-landing implication. Omit rings and stars; omission is a scene choice, not evidence of absence. Sun off-frame. Restrained oblique light with artistic exposure, no measured photometry claim. Clean dark bottom footer band with two large fully legible unclipped exact white lines: 'WEYWOT \u2014 IMAGINED SKY VIEW' and 'TERRAIN, QUAOAR APPEARANCE AND LIGHT ARE INVENTED'. No other text.",
+  "geometrySource": {
+    "path": "data/research-sources/weywot-observer-geometry-preparation-2026-10-17.json",
+    "bytes": 3877,
+    "sha256": "4337bf0cca573c0af8dbf682e91de32cf20c1edbc07941ae1de37eba223ebe08"
+  },
+  "visualInspection": "Full1672x941 original inspected. Both exact footer lines legible/unclipped; primary is a smooth featureless shaded gray disk, no observed-body geography. Invented local particulate terrain/blocks, black sky, no rings/stars/plume/liquid/biology/craft. Disk appears larger than requested; no calibrated raster diameter adopted.",
+  "geometryLimits": "skyGeometry reference4.799103073561594degrees70.0644529680909pixels at1672/90HFOV uses catalogue555km primary and nominal constrained13329km scale minus hypothetical73km radial height. Not current separation, projected physical limb, normal, dated joint fit, independently measured spin/locking/permanent face, propagated posterior or uncertainty envelope. Other65/82km conditional semi-axis cases retained.40K helper only; discard colour/irradiance.",
+  "limits": "Terrain/materials/chemistry/grain sizes/gray colour/phase/lighting/exposure invented. No analog skin or registered site. Black sky/ring omission not absence evidence. No atmosphere/plume/liquid/ocean/biology/survivable landing implied. Native unresolved HST source does not establish local geography/visiblecolour.",
+  "rejectedVariant": {
+    "original": {
+      "path": "data/research-sources/weywot-rejected-moonlike-sky-original.png",
+      "bytes": 1735227,
+      "sha256": "746a698206743041fb6efd376fe920968777b5d62a0e142a5139ccf6f147e7ac"
+    },
+    "defaultOriginal": {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-f67259bc-e7e3-4801-82a4-287e652d5775.png",
+      "bytes": 1735227,
+      "sha256": "746a698206743041fb6efd376fe920968777b5d62a0e142a5139ccf6f147e7ac"
+    },
+    "prompt": "Scientific-educational hypothetical observer illustration for Fidelity. New independent image, landscape16:9 about1672x941. View from an imagined spot on Weywot toward distinct primary Quaoar. Low foreground gray particulate regolith with a few small independent irregular blocks, low horizon near lower third; black empty sky. Place a small subdued gray spherical Quaoar disk fully above horizon near upper centre. Reference geometry: nominal90degree horizontalFOV, spherical catalogue Quaoar555km radius at assumed13256km observer-centre distance (13329km semimajor scale minus hypothetical73km radial camera height), skyGeometry angular diameter4.799103073561594degrees, ideal70.0644529680909pixels at1672width. Keep Quaoar small, about70pixels across at1672width, not a giant close planet. These inputs are illustrative, not a dated joint fit, physical limb, site normal, measured spin or permanent primary-facing view. Quaoar disk neutral gray with entirely invented subtle mottling and artistic gibbous phase; no identifiable map from any real body. Terrain, chemistry, grains, colour, disk patterns, phase, lighting and exposure entirely invented. No reuse/recolouring of Moon, Mars, Pluto, asteroid or other observed-body map. No atmosphere,haze,clouds,plumes,liquid,ocean,biology,craft,astronaut or survivable-landing implication. Omit rings and stars; omission is a scene choice, not evidence of absence. Sun off-frame. Restrained oblique light with artistic exposure, no measured photometry claim. Clean dark bottom footer band with two large fully legible unclipped exact white lines: 'WEYWOT \u2014 IMAGINED SKY VIEW' and 'TERRAIN, QUAOAR APPEARANCE AND LIGHT ARE INVENTED'. No other text.",
+    "reason": "Rejected Moon-like disk markings; not adopted as Quaoar map or observer asset. Preserved unchanged separately."
+  },
+  "preservation": "All86 delivered dossiers/651 trackedpublic assets and original/master/native/map/model/shape/provenance/codec inputs unchanged. No fresh tests/build/browser claim; latest67de0d6 validation remains prior checks. Both independent Weywot local/sky originals now prepared; master/preview/formal integration pending; backlog ACTIVE."
+}
