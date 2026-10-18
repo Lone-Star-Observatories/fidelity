@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-18",
+  "body": "Thebe, distinct inner moon of Jupiter; not Himalia, Amalthea or Metis",
+  "status": "research-only native preparation; no dossier90, embedding, globe, shape, catalogue or codec adoption",
+  "sources": [
+    {
+      "path": "data/research-sources/thebe-pia26751-caption-2026-10-18.html",
+      "url": "https://science.nasa.gov/photojournal/nasas-juno-misson-captures-jupiter-moon-thebe/",
+      "status": 200,
+      "bytes": 262212,
+      "sha256": "4520ed93289ab17df27546c0020466bf315ffef38230782ef229870de6c83fd7"
+    },
+    {
+      "path": "data/research-sources/thebe-pia02531-caption-2026-10-18.html",
+      "url": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+      "status": 200,
+      "bytes": 268670,
+      "sha256": "bf7d6a7399747b336d2fd3ebb79bc679c952c59a4f7e7685875e5970a97c66f3"
+    },
+    {
+      "path": "data/research-sources/thebe-nasa-terms-2026-10-18.html",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "status": 200,
+      "bytes": 313142,
+      "sha256": "d7ea326e16cfbd2b678788ec2de468d9e67ce0afa6ed9b262cf39ed9c90e3522"
+    }
+  ],
+  "nativeImages": [
+    {
+      "path": "data/research-sources/thebe-pia26751-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia26/pia26751/PIA26751.jpg",
+      "bytes": 155956,
+      "sha256": "cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7",
+      "dimensions": [
+        512,
+        512
+      ],
+      "mode": "RGB",
+      "format": "JPEG",
+      "visuallyInspected": true,
+      "unchangedPublisherBytes": true
+    },
+    {
+      "path": "data/research-sources/thebe-pia02531-original.jpg",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.jpg",
+      "bytes": 11904,
+      "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+      "dimensions": [
+        748,
+        381
+      ],
+      "mode": "L",
+      "format": "JPEG",
+      "visuallyInspected": true,
+      "unchangedPublisherBytes": true
+    },
+    {
+      "path": "data/research-sources/thebe-pia02531-original.tif",
+      "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia02/pia02531/PIA02531.tif",
+      "bytes": 85788,
+      "sha256": "09b901067147c8c84560986f10ebe744a5438d6cfac4c2c280dee658a64ebbf4",
+      "dimensions": [
+        748,
+        381
+      ],
+      "mode": "L",
+      "format": "TIFF",
+      "visuallyInspected": false,
+      "unchangedPublisherBytes": true
+    }
+  ],
+  "products": [
+    {
+      "id": "PIA26751",
+      "captionUrl": "https://science.nasa.gov/photojournal/nasas-juno-misson-captures-jupiter-moon-thebe/",
+      "credit": "NASA/JPL-Caltech",
+      "observed": "2026-05-01",
+      "published": "2026-05-05",
+      "instrument": "Juno Stellar Reference Unit (SRU)",
+      "publisherStatements": {
+        "rangeKmApprox": 5000,
+        "resolutionKmPerPixelApprox": 3
+      },
+      "inspection": "512x512 RGB-stored near-monochrome JPEG. Small lit disk near right edge; field mottling/specks and sampling/noise are not resolved rocks, stars identified here, local chemistry or calibrated visible colour. No new angular/raster measurement.",
+      "limits": "Exact raw product/UTC, exposure, spectral response, processing/PSF, field-star versus detector-particle crosswalk, radiometric/visible-colour calibration, orientation and independent global surface registration remain open. Publisher range/resolution not independently reproduced. Gossamer-ring dust-supply language is an interpretation, not measured local shedding rate or immediate surface activity."
+    },
+    {
+      "id": "PIA02531",
+      "captionUrl": "https://science.nasa.gov/photojournal/best-images-yet-of-thebe-amalthea-and-metis/",
+      "credit": "NASA/JPL/Cornell University",
+      "observed": "2000-01-04",
+      "published": "2000-04-24",
+      "instrument": "Galileo Solid-State Imaging",
+      "identity": "Montage left Thebe, centre Amalthea, right Metis; do not assign the centre/right maps or bright patches to Thebe. Page Target metadata lists Amalthea but title/caption explicitly identify all three; retain this metadata scope difference.",
+      "publisherStatements": {
+        "thebeRangeKm": 193000,
+        "thebeFeatureResolutionKmApprox": 2,
+        "zethusCraterDiameterKmApprox": 40,
+        "orientation": "anti-Jupiter sides, north approximately up, sunlight from right"
+      },
+      "inspection": "748x381 one-channel JPEG. Left irregular cratered Thebe disk visually inspected. Blur, sampling, black background and montage gaps are not local grains, calibrated visible colour, complete geographic coverage or atmosphere absence. Amalthea bright south-polar region is captioned greatly overexposed and is not Thebe geography.",
+      "limits": "Original raw product/UTC/filter/PSF, projection, shape/local-normal registration, photometric calibration, source montage transformation and independent present-day highest-resolution claim remain open. TIFF decoded by Pillow but not separately visually inspected; no TIFF/JPEG pixel identity asserted. Caption resolution and crater dimensions are source statements, not new raster computations. Tidal-locking/orientation assertions are publisher context pending independent primary rotational/shape audit."
+    }
+  ],
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "policy": "NASA educational/informational/factual use, source acknowledgement, no endorsement, third-party copyright caveats. Not CC BY and not blanket raw-product or third-party rights. No additional image-specific copyright notice found in inspected captions.",
+    "contact": "none"
+  },
+  "notClaimed": [
+    "No exhaustive newest-observation search",
+    "No resolved globe/geographic map or local material fractions",
+    "No adopted shape, radius, mass, sidereal pole or current surface attitude",
+    "No other-body analog skin, ocean, plume, biology or survivable landing",
+    "No new image generation or angular/raster computation"
+  ],
+  "next": "Body-specific JPL physical/orbit and primary shape/rotation audit, skyGeometry observer guide, then independent labelled original-preserving views and additive dossier if budget permits. Preserve both whole native products and larger source records.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 6,
+    "nativeCardsExactBytesAndMime": 79,
+    "baseline": "2ab3952",
+    "priorDossiersDeepEqual": 89,
+    "dossiers": 89,
+    "priorMoonsDeepEqual": 45,
+    "moons": 45,
+    "trackedPublicByteEqual": 666,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15789188,
+    "headroomBytes": 210812,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "ac4f20761835b3146952cd701353855e2dc84f817cf489fe0ad38f75844a87ff",
+    "applicationSha256": "4a33f873fe24502f09744749d742663b818618c3d7f93a79f9b6b1b64f502827",
+    "freshBrowserClaim": false,
+    "testsPassed": 687,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "newBrowserClaim": false
+  }
+}
