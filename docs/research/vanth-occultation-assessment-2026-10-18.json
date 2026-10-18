@@ -1,0 +1,76 @@
+{
+  "status": "Targeted original accepted-manuscript PDF assessment; no image/catalogue/shape adoption.",
+  "sources": [
+    {
+      "url": "https://arxiv.org/src/1810.08977v1",
+      "path": "data/research-sources/vanth-occultation-v1-source.response",
+      "bytes": 1227069,
+      "sha256": "d213dae119e8647dbf4aad1fc7b30499b06440881fd7ee647af445042dd775fe",
+      "actualSignature": "PDF"
+    },
+    {
+      "url": "https://arxiv.org/abs/1810.08977v1",
+      "path": "data/research-sources/vanth-occultation-v1-record.response",
+      "bytes": 43447,
+      "sha256": "5e3e80ece0b3f35dc578231cccfafdd71f46cb1acd399c69b2107f10e275372b",
+      "actualSignature": "HTML"
+    }
+  ],
+  "recordFindings": {
+    "title": "A stellar occultation by Vanth, a satellite of (90482) Orcus",
+    "authors": [
+      "A.A. Sickafoose",
+      "A.S. Bosh",
+      "S.E. Levine",
+      "C.A. Zuluaga",
+      "A. Genade",
+      "K. Schindler",
+      "T.A. Lister",
+      "M.J. Person"
+    ],
+    "v1Submitted": "2018-10-21T15:37:06Z",
+    "licence": "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+    "licenceLimit": "Nonexclusive is not CC BY; no paper figure embedded.",
+    "abstractOnly": "2017March07 predicted Orcus occultation reconstructed as Vanth occulting two stars; follow-up speckle imaging reveals double star. Two single chords291±125/434.4±2.4km plus nearby non-detection yield443±10km assuming sphere. Not measured global axes or registered shape. Atmospheric1–4microbar3sigma and ring optical-depth limits are conditional search constraints, not proof of absolute absence."
+  },
+  "preservation": "All87 dossiers/catalogue/public/native/master/map/model/shape bytes preserved; no88th, embedding, angular/raster calculation or codec change.",
+  "inspection": {
+    "pages": 37,
+    "text": "Complete37-page extraction retained; targeted methods/results pages12–26 read, pages18/22/24/25/26/29 rendered and visually inspected. Not a claim of full37-page visual review.",
+    "parser": "pypdf reports a wrong-pointing-object warning but opens all37pages. Earlier file utility eight-page hint is not the actual document page count."
+  },
+  "findings": {
+    "diameter": "IRTF434.39±2.36km chord gives lower432km; reconstructed double-star geometry and SRO non-detection constrain maximum453km;442.5±10.2 rounded443±10. Circular projection assumed; authors explicitly cannot fit non-spherical shape. Not global axes/topography/rotation or registered geometry.",
+    "timing": "ELP most-likely291.1±124.9km chord depends on whether first low point reached minimum;9.32sdeadtime causes large immersion uncertainty. Alternate144.31±65.80km case retained. IRTF07:05:20.47–07:05:37.00UT on2017Mar07; instant flux transition assumed.",
+    "doubleStar": "Gemini DSSI separation252±2mas,delta.93mag692nm;316.006deg quadrant selected by occultation agreement,136.006alternative fails. Not established physical binary.",
+    "ephemeris": "JPL28/DE431 historical system offset(-.0022,+.0005)arcsec derives central-IRTF-chord assumption; Vanth offset(-.0445±.010,-.2362±.001) from Brown personal communication. Not current navigation calibration or updated full orbit.",
+    "atmosphere": "Thin radially symmetric constant-scale-height diffraction model, assumed600nm/44K/443kmdiameter/Vanthmass1/15Orcus. Tested10/50/100kmscaleheights;3sigma1–4microbar constituent-dependent, immersion40percent higher. Not measured atmosphere, current temperature, modern mass or proof of absence. LaterALMA mass must not silently revise this historical model.",
+    "rings": "Line-of-sight tau limits IRTF<.11at5.25km/SRO<.30at5.34km; smoothed~10.5/~73.6kmscaleIRTFlimits.07/.03, SRO.21/.08. Sampling/geometry-limited non-detections not exhaustive absence or registration.",
+    "sourceConflict": "Page22 SpeX midtime1167.62±.130seconds from06:49UT conflicts claimed overlap with MORIS1160.47–1177seconds from06:46UT; preserve reference-time inconsistency, do not silently fix.",
+    "componentLimits": "Orcus water/ammonia and speculative resurfacing not Vanth local chemistry. Thermal475±75km/albedo.08±.02 remains distinct. Assumeddensity massratios/volatile retention/origin models not direct spin/history/porosity/plume evidence."
+  },
+  "validation": {
+    "testsPassed": 685,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "nativeCardsExactBytesAndMime": 77,
+    "baseline": "88ea05f",
+    "unchangedQueueEntriesDeepEqual": 569,
+    "queueEntries": 569,
+    "dossiersUnchanged": 87,
+    "trackedPublicByteEqual": 656,
+    "sourceHashesChecked": 19,
+    "generatedFilesChecked": 6,
+    "generatedDefaultOriginalsChecked": 2,
+    "rejectedVariantCopiesChecked": 2,
+    "htmlBytes": 15700100,
+    "headroomBytes": 299900,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "84cf3447d003d7061caf349c7209c673ddbedeeba8ae644a0331d2191c06fd22",
+    "applicationSha256": "36869affa79a73ab6592b6a0688716668ee6274f9a3b924a4339d67999ecc71b",
+    "applicationUnchanged": true,
+    "freshBrowserClaim": false,
+    "limits": "Live-feed interbuild differences are not compression savings. Node complete inverse only; no fresh browser/routes/images/model/event-worker claim."
+  }
+}
