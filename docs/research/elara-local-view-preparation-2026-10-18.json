@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-18",
+  "body": "Elara/JupiterVII/JPL507,not asteroid281Elara",
+  "status": "Research preparation only; no93rd dossier,new embedding,master/preview/catalogue/map/model/shape/codec adoption.",
+  "generation": {
+    "mode": "Built-in image_gen,brand-new independent image,no references,no CLI/API fallback",
+    "prompt": "Use case: scientific-educational.\nAsset type: Fidelity research preparation, single wide 16:9 original local-view illustration for Elara, Jupiter VII, distinct from asteroid 281 Elara.\nPrimary request: Create a new independent imagined near-surface view on Elara. Do not use any reference images or copy another observed body's terrain or map.\nScene: irregular low-relief dark grey granular terrain, a few scattered angular blocks and shallow depressions, a low uneven distant horizon under a plain black sky. Camera close to the ground, broad open middle distance, restrained realistic illustration. No astronomical disks in the sky, no stars, no spacecraft, people or structures.\nScience constraints: Elara is unresolved in retained native imagery. Its thermal effective diameter 79.9 +/- 1.7 km and alternative assumed-albedo radius 43 km do NOT establish local shape or geography. Near-infrared mineral-mixing interpretations are nonunique models, NOT measured local mineral fractions. All depicted grains, blocks, depressions, relief, material, chemistry, colour, lighting, exposure and viewpoint are invented. Do not depict magnetite crystals, labelled mineral zones or measured-composition claims. Unknown spin/pole/normal; no dated location, synchronous face or mapped site. No frost, visible atmosphere, clouds, plumes, liquids, exposed ocean, biological features or survivable landing implication. Black sky is an illustrative assumption, not evidence that atmosphere is absent.\nStyle: scientifically restrained photographic-looking concept illustration, neutral charcoal-grey ground with subtly varied grain sizes, low oblique illumination chosen artistically, no glow or dramatic coloured light. No Moon/Mars/Pluto/other-body analog skin, no recognizable observed crater pattern. Horizon near upper third. Scene itself has no labels except a clean dark footer band across the bottom with two clearly readable white sans-serif lines.\nText (verbatim), large and legible:\n\"IMAGINED LOCAL VIEW FROM ELARA\"\n\"TERRAIN, MATERIALS, COLOUR AND LIGHTING INVENTED\"\nKeep both complete lines inside generous footer margins; no other text or watermark.\nGenerate one original wide PNG with opaque background.",
+    "promptRecord": {
+      "path": "data/research-sources/elara-local-prompt-2026-10-18.txt",
+      "bytes": 2205,
+      "sha256": "0681e24a0366ac6ecc8ce88c7105dab679ededd719da4de3c23dea814afe9d58"
+    },
+    "defaultOriginal": {
+      "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-05330e5f-12af-4d1a-9ef4-f2d0177aca06.png",
+      "bytes": 2838503,
+      "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44"
+    },
+    "researchOriginal": {
+      "path": "data/research-sources/elara-generated-surfaceImage-original.png",
+      "bytes": 2838503,
+      "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44"
+    },
+    "format": "PNG",
+    "width": 1672,
+    "height": 941,
+    "modePixels": "RGB",
+    "transparency": false,
+    "inspection": "Full generated image visually inspected. Both exact footerlines legible and uncropped; greygranular foreground/blocks/shallowdepression/unevenhorizon/plainblacksky. No astronomicaldisk/stars/person/craft/structures/visibleplume/liquid/exposedocean/biology. Terrain/sizes/roughness/chemistry/colour/light/exposure are invented,not independently measured."
+  },
+  "sourceRecords": [
+    {
+      "path": "docs/research/elara-native-preparation-2026-10-18.json",
+      "bytes": 13236,
+      "sha256": "c15aa520d5278fd6c4b62c843fd6a4fae16fa14827a296d6e117467f2b9949e3"
+    },
+    {
+      "path": "docs/research/elara-orbit-spin-reference-assessment-2026-10-18.json",
+      "bytes": 7058,
+      "sha256": "c2febabcd2b9a13ba2590b52ef414a16b7e98201b3368141eb26bbe298e1b000"
+    },
+    {
+      "path": "docs/research/elara-thermal-primary-assessment-2026-10-18.json",
+      "bytes": 8845,
+      "sha256": "284646065ca9d8e4d5fd166b0e0c04d5222ad37735c98cb7cf053c8c4c48c8ef"
+    },
+    {
+      "path": "docs/research/elara-observer-geometry-preparation-2026-10-18.json",
+      "bytes": 6513,
+      "sha256": "42b4559c7fb85e5a5b1330442b8dabcfbcadf8c6359e63a30ebe2b6cba226650"
+    },
+    {
+      "path": "docs/research/elara-spectroscopy-primary-assessment-2026-10-18.json",
+      "bytes": 10474,
+      "sha256": "cc4e747ffa0e2bf474b7f771b190d73cd89e6ce024b46120e11ef012be08c091"
+    }
+  ],
+  "labels": [
+    "IMAGINED LOCAL VIEW FROM ELARA",
+    "TERRAIN, MATERIALS, COLOUR AND LIGHTING INVENTED"
+  ],
+  "scienceLimits": [
+    "No observed otherbody map or reference image reused; no analogskin or datedsite/registeredgeography claim.",
+    "Granular material/blocks/depressions/relief/greycolour/lighting/exposure are arbitraryillustrationchoices,not spectralcoefficients converted to local mineralfractions/porosity/grainsize.",
+    "Grav2015thermal79.9\u00b11.7km effectiveDIAMETER andNASA43kmradius assumes.04albedo remain distinct; no newshape/radius/density/mass adopted.",
+    "Bhatt2017linear spectralmix coefficients are nonunique qualitativecontributors,not true rock proportions; no measured magnetite/minnesotaite/ilmenite patches depicted. Missing3micron/0.7microncoverage, telluric/initialcondition/valencewording limits retained.",
+    "Native2007LORRIframes unresolved; point/PSF/pointing/pixel/photometry/terms crosswalk open; generatedterrain notobservednativegeography.",
+    "Unknownspin/pole/normal/attitude, no locking or permanentJupiterface/currentdatedview.",
+    "Blacksky illustrativeassumption,notatmosphereabsence; no foregroundatmosphere/plume/liquid/ocean/biology/survivablelanding claim.",
+    "No astronomical disk in image; no new angular/raster calculation or photometriccalibration. Prior skyGeometry Jupiterguide remains for a separate hypotheticalobserver asset."
+  ],
+  "preservation": "Defaultoriginal and byte-identical researchcopy retained; allprior92dossiers/48moons/originalPNGs/defaults/masters/native/maps/models/shapes/provenance/recordedClipper unchanged.",
+  "next": "Prepare separate independent labelled Jupiterobserver using retained skyGeometry guide,then original-preservingmasters/previews/additiveintegration after conforminglosslesscapacity recovery. BacklogACTIVE,no globalexternalblocker.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 60,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "94d5fa2",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15989098,
+    "headroomBytes": 10902,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "f8413652d2e60b9f04cc50c7c6dddee063189ec14b18862907299688062197c1",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "limits": "Exact rebuilt JSON/application hashes unchanged versus priorbatch; no freshbrowser/compressionsavings claim."
+  }
+}
