@@ -12,6 +12,8 @@ import { gunzipSync, gzipSync, brotliCompressSync, brotliDecompressSync, constan
 import { decompress as decodeBrotli } from 'brotli/decompress';
 import { gzipAsync } from '@gfx/zopfli';
 import { minify } from 'terser';
+import { packCachedJpegs } from './jpeg-reconstruction-cache.js';
+import { createJpegReconstructor } from '../src/data/jpeg-reconstruction.js';
 import { nativeImageMime } from './standalone-native-image.js';
 import { encodeApplicationNumbers } from './application-numbers.js';
 import { packStandaloneBootstrap } from './pack-standalone-bootstrap.js';
@@ -203,14 +205,18 @@ execFileSync(process.execPath, [path.join(root, 'node_modules/vite/bin/vite.js')
 // 3) inline into one file
 const dist = path.join(root, 'dist-standalone');
 const viteHtml = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
+const reconstructJpeg = await createJpegReconstructor();
 async function assemble(snapshotJson) {
-  const binarySnapshot = encodeNumericSnapshot(snapshotJson, 2);
+  const originalBinary = encodeNumericSnapshot(snapshotJson, 2);
+  const jpegPacked = packCachedJpegs(originalBinary);
+  const binarySnapshot = jpegPacked.bytes;
+  console.log(`  lossless JPEG reconstruction: ${jpegPacked.count} original bitstreams`);
   // FONT tunes Brotli's lossless coding; it does not reinterpret container bytes.
   // Complete native and bundled-decoder round trips remain mandatory below.
   const innerCompressed = brotliCompressSync(binarySnapshot, { params: { [constants.BROTLI_PARAM_QUALITY]: 11, [constants.BROTLI_PARAM_MODE]: constants.BROTLI_MODE_FONT } });
   if (!brotliDecompressSync(innerCompressed).equals(Buffer.from(binarySnapshot))) throw new Error('Native Brotli round-trip failed.');
   const htmlCompressed = gzipSync(wrapBrotliSnapshot(binarySnapshot, innerCompressed), { level: 9 });
-  if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
+  if (restoreSnapshotText(gunzipSync(htmlCompressed), decodeBrotli, reconstructJpeg) !== snapshotJson) throw new Error('Binary snapshot round-trip failed.');
   const snapshotRaw = encodeUtf16SnapshotBytes(htmlCompressed, 2);
   // Insert after Vite's HTML transforms, which are not a raw-byte-preserving transport.
   const html = viteHtml.replace('<body>', () => `<body><script id="fidelity-snapshot-data" type="application/x-fidelity-packed" data-encoding="${snapshotRaw.encoding}" data-byte-length="${snapshotRaw.byteLength}">${snapshotRaw.data}</script>`);
@@ -248,7 +254,7 @@ async function assemble(snapshotJson) {
   const bootstrap = compactBootstrap?.replace('__FIDELITY_DECODER_BOOTSTRAP__()', () => decoderCode);
   if (!decoderCode || !bootstrap || bootstrap === compactBootstrap) throw new Error('Offline loader minification failed.');
   const startup = await packStandaloneBootstrap(bootstrap, codecSource);
-  const notices = (await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')).replaceAll('<', '&lt;');
+  const notices = ((await fs.readFile(path.join(root, 'docs/licenses/standalone-brotli.txt'), 'utf8')) + '\n\n' + (await fs.readFile(path.join(root, 'src/vendor/jpeg-xl/NOTICE.txt'), 'utf8'))).replaceAll('<', '&lt;');
   // the charset first: opened straight from disk (no host page around it) the browser would otherwise guess wrong
   const out = `<meta charset="utf-16le">\n<title>USS Fidelity</title>\n${fonts}\n<script id="fidelity-third-party-notices" type="text/plain">${notices}</script>\n<script id="fidelity-stylesheet-data" type="application/x-fidelity-packed">${cssPacked.data}</script>\n${body}\n<script id="fidelity-application-data" type="application/x-fidelity-packed">${appPacked.data}</script>\n${startup.html}\n`;
   return { out, html };

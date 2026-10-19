@@ -1,0 +1,103 @@
+{
+  "source": "https://github.com/libjxl/libjxl",
+  "libjxlCommit": "794a5dcf0d54f9f0b20d288a12e87afb91d20dfc",
+  "toolchain": {
+    "libjxlCommit": "794a5dcf0d54f9f0b20d288a12e87afb91d20dfc",
+    "submoduleVersions": " ff8d743aaba05b3014f17e5475e576242fa979fc testdata (ff8d743)\n 36533a866ed1ca4b75cf049f4521e4ec5fe24727 third_party/brotli (36533a8)\n 58d77fa8070e8cec2dc1ed015d66b454c8d78850 third_party/googletest (58d77fa)\n 457c891775a7397bdb0376bb1031e6e027af1c48 third_party/highway (457c891)\n 65c63bf549d78253c14b30b3d62cb668bbbe612c third_party/lcms (65c63bf)\n 8ecba3647edb6dd940463fedf38ca33a8e2a73d1 third_party/libjpeg-turbo (8ecba36)\n f135775ad4e5d4408d2e12ffcc71bb36e6b48551 third_party/libpng (f135775)\n e5ab13008bb214deb66d5f3e17ca2f8dbff150bf third_party/sjpeg (e5ab130)\n 42030a771244ba67f86b1c1c76a6493f873c5f91 third_party/skcms (42030a7)\n 51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf third_party/zlib (51b7f2a)\n",
+    "emsdkCommit": "3b3963d86a5c97adaf6eaa845cdfe0b811c2f960",
+    "emscriptenVersion": "3.1.73",
+    "buildType": "MinSizeRel; link -Oz; JPEGXL_ENABLE_WASM_THREADS=OFF; transcodeJPEG and boxes enabled"
+  },
+  "buildRecipe": {
+    "source": "Official libjxl v0.11.1 recursive clone, pinned commit and submodules above. Official emsdk pinned commit above, install and activate 3.1.73 locally; no shell-startup edits.",
+    "configure": [
+      "emcmake",
+      "cmake",
+      "-S",
+      "libjxl",
+      "-B",
+      "wasm-build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=MinSizeRel",
+      "-DBUILD_SHARED_LIBS=OFF",
+      "-DBUILD_TESTING=OFF",
+      "-DJPEGXL_ENABLE_TOOLS=OFF",
+      "-DJPEGXL_ENABLE_JPEGLI=OFF",
+      "-DJPEGXL_ENABLE_DOXYGEN=OFF",
+      "-DJPEGXL_ENABLE_MANPAGES=OFF",
+      "-DJPEGXL_ENABLE_BENCHMARK=OFF",
+      "-DJPEGXL_ENABLE_EXAMPLES=OFF",
+      "-DJPEGXL_ENABLE_JNI=OFF",
+      "-DJPEGXL_ENABLE_SJPEG=OFF",
+      "-DJPEGXL_ENABLE_OPENEXR=OFF",
+      "-DJPEGXL_ENABLE_SKCMS=ON",
+      "-DJPEGXL_ENABLE_TCMALLOC=OFF",
+      "-DJPEGXL_ENABLE_WASM_THREADS=OFF"
+    ],
+    "targetCmake": "add_executable(fidelity_reconstruct ../reconstruct.c)\ntarget_link_libraries(fidelity_reconstruct PRIVATE jxl_dec)\nset_target_properties(fidelity_reconstruct PROPERTIES SUFFIX \".mjs\")\ntarget_link_options(fidelity_reconstruct PRIVATE \"-Oz\" \"--no-entry\" \"-sMODULARIZE=1\" \"-sEXPORT_ES6=1\" \"-sENVIRONMENT=web,node\" \"-sALLOW_MEMORY_GROWTH=1\" \"-sFILESYSTEM=0\" \"-sEXPORTED_FUNCTIONS=['_reconstruct','_malloc','_free']\")\n",
+    "build": [
+      "cmake",
+      "--build",
+      "wasm-build",
+      "--target",
+      "fidelity_reconstruct",
+      "-j4"
+    ],
+    "corrections": "Initial event subscription omitted FULL_IMAGE, then corrected before all60 proof. Initial threaded configure was replaced by explicit WASM_THREADS=OFF. Initial wrapper accepted trailing input; final wrapper requires JxlDecoderReleaseInput==0. No prototype entered production."
+  },
+  "wasmBytes": 838051,
+  "wasmSha256": "9c5d9658655c56e1b4f705f555e2744f4639b225328b88e999fb2ec10686c854",
+  "glueSha256": "33002d14f14b514431874926ae29d835f4e4a3b51a1a617cfe53883410248050",
+  "purpose": "Single-threaded original JPEG bitstream reconstruction only. No image re-encoding.",
+  "assessment": "docs/research/standalone-jxl-reconstruction-assessment-2026-10-19.json",
+  "runtimeLicenceInputs": [
+    {
+      "sourcePath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/system/lib/compiler-rt/LICENSE.TXT",
+      "bytes": 16708,
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d"
+    },
+    {
+      "sourcePath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/system/lib/libc/musl/COPYRIGHT",
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    {
+      "sourcePath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/system/lib/libcxx/LICENSE.TXT",
+      "bytes": 16703,
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b"
+    },
+    {
+      "sourcePath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/system/lib/libcxxabi/LICENSE.TXT",
+      "bytes": 16706,
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c"
+    },
+    {
+      "sourcePath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/system/lib/libunwind/LICENSE.TXT",
+      "bytes": 16706,
+      "sha256": "b5efebcaca80879234098e52d1725e6d9eb8fb96a19fce625d39184b705f7b6d"
+    }
+  ],
+  "vendoredFiles": [
+    {
+      "name": "reconstruct.c",
+      "bytes": 971,
+      "sha256": "8c264c0ec56838a28a543a33650ba187245d61baf4c469a9f1980fc3eaf96b51"
+    },
+    {
+      "name": "decoder.mjs",
+      "bytes": 9401,
+      "sha256": "33002d14f14b514431874926ae29d835f4e4a3b51a1a617cfe53883410248050"
+    },
+    {
+      "name": "decoder-wasm.js",
+      "bytes": 1117510,
+      "sha256": "597543d7fd44e1261d47d2650b7c6ed75133e83c96132a9003b6202bff85923f"
+    },
+    {
+      "name": "NOTICE.txt",
+      "bytes": 93895,
+      "sha256": "1b658b1c0f4d27e7f82f712545c57c3fa66b9ed42f96d0cf52e0b7095e6188ed"
+    }
+  ]
+}

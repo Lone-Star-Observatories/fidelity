@@ -52,7 +52,7 @@ export function unpackSnapshotBytes(packed) {
 export async function decodeSnapshot(packed) {
   const bytes = unpackSnapshotBytes(packed);
   const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer()), packed?.decodeBrotli));
+  return JSON.parse(restoreSnapshotText(new Uint8Array(await new Response(stream).arrayBuffer()), packed?.decodeBrotli, packed?.reconstructJpeg));
 }
 
 const binaryMagic = new TextEncoder().encode('FIDBIN01');
@@ -189,6 +189,67 @@ function snapshotCrc32(bytes) {
 }
 // An optional lossless inner stage; the outer envelope remains standard gzip.
 // The decoder is supplied only by the standalone HTML module, not normal builds.
+// Reversible JPEG bitstream transport. FIDNUM02 remains the exact inner container.
+const jpegSnapshotMagic = new TextEncoder().encode('FIDJXL02');
+export function encodeJpegSnapshot(binary, replacement) {
+  if (!(binary instanceof Uint8Array) || binary.length < 24 || binary.length > 536870912
+      || !numericNibbleMagic.every((x, i) => binary[i] === x) || typeof replacement !== 'function') throw Error('Invalid JPEG snapshot input.');
+  const view = new DataView(binary.buffer, binary.byteOffset, binary.byteLength); let at = 20;
+  const take = n => { if (!Number.isSafeInteger(n) || n < 0 || n > binary.length - at) throw Error('Truncated JPEG snapshot input.'); const b = binary.subarray(at, at + n); at += n; return b; };
+  take(view.getUint32(8, true)); take(view.getUint32(12, true));
+  const groups = view.getUint32(16, true); if (groups > 255) throw Error('Invalid JPEG numeric groups.');
+  for (let i = 0; i < groups; i++) { const width = take(1)[0], n = take(4), size = new DataView(n.buffer, n.byteOffset, 4).getUint32(0, true); if (!width || !size) throw Error('Invalid JPEG numeric group.'); take(Math.ceil(width * size / 2)); }
+  const prefix = binary.subarray(0, at);
+  const number = () => { const b = take(4); return new DataView(b.buffer, b.byteOffset, 4).getUint32(0, true); };
+  const count = number(); if (count > 100000) throw Error('Invalid JPEG asset count.');
+  const uint = n => { const b = new Uint8Array(4); new DataView(b.buffer).setUint32(0, n, true); return b; };
+  const parts = [jpegSnapshotMagic, uint(binary.length), uint(snapshotCrc32(binary)), uint(prefix.length), uint(count), prefix];
+  for (let i = 0; i < count; i++) {
+    const p = take(number()), payload = take(number());
+    const jpeg = new TextDecoder('utf-8', { fatal: true }).decode(p) === 'data:image/jpeg;base64,';
+    const packed = jpeg ? replacement(payload) : undefined;
+    if (packed !== undefined && (!(packed instanceof Uint8Array) || !packed.length || packed.length > 134217728 || payload.length > 134217728)) throw Error('Invalid JPEG replacement.');
+    const stored = packed ?? payload;
+    parts.push(uint(p.length), p, Uint8Array.of(packed ? 1 : 0), uint(payload.length), uint(stored.length), stored);
+  }
+  if (at !== binary.length) throw Error('Trailing JPEG snapshot input.');
+  const size = parts.reduce((n, b) => n + b.length, 0); if (size > 536870912) throw Error('JPEG snapshot too large.');
+  const output = new Uint8Array(size); let offset = 0; for (const b of parts) { output.set(b, offset); offset += b.length; } return output;
+}
+export function restoreJpegSnapshot(bytes, reconstruct) {
+  if (!(bytes instanceof Uint8Array) || bytes.length < 24 || bytes.length > 536870912
+      || !jpegSnapshotMagic.every((x, i) => bytes[i] === x)) throw Error('Invalid JPEG snapshot header.');
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength); let at = 8;
+  const number = () => { if (at + 4 > bytes.length) throw Error('Truncated JPEG snapshot.'); const n = view.getUint32(at, true); at += 4; return n; };
+  const take = n => { if (n > bytes.length - at) throw Error('Truncated JPEG snapshot.'); const b = bytes.subarray(at, at + n); at += n; return b; };
+  const size = number(), crc = number(), prefixSize = number(), count = number();
+  if (size < 24 || size > 536870912 || prefixSize < 20 || prefixSize > size - 4 || count > 100000) throw Error('Invalid JPEG snapshot lengths.');
+  const prefix = take(prefixSize); if (!numericNibbleMagic.every((x, i) => prefix[i] === x)) throw Error('Invalid JPEG inner container.');
+  // Validate all record lengths and the exact total before allocating or invoking WASM.
+  const records = []; let total = prefixSize + 4;
+  for (let i = 0; i < count; i++) {
+    const p = take(number()), type = take(1)[0], originalSize = number(), storedSize = number(), payload = take(storedSize);
+    const name = new TextDecoder('utf-8', { fatal: true }).decode(p);
+    if (!/^data:[^"\s]*;base64,$/.test(name) || type > 1 || (type === 0 && originalSize !== storedSize)
+        || (type === 1 && (name !== 'data:image/jpeg;base64,' || !originalSize || !storedSize
+          || originalSize > 134217728 || storedSize > 134217728 || typeof reconstruct !== 'function'))) throw Error('Invalid JPEG snapshot record.');
+    total += 8 + p.length + originalSize; if (total > size) throw Error('Invalid JPEG restored size.');
+    records.push({ p, type, originalSize, payload });
+  }
+  if (at !== bytes.length || total !== size) throw Error('Invalid JPEG snapshot trailing bytes or size.');
+  const output = new Uint8Array(size), out = new DataView(output.buffer); let offset = 0;
+  const put = b => { output.set(b, offset); offset += b.length; };
+  const length = n => { out.setUint32(offset, n, true); offset += 4; };
+  put(prefix); length(count);
+  for (const r of records) {
+    const payload = r.type ? reconstruct(r.payload, r.originalSize) : r.payload;
+    if (!(payload instanceof Uint8Array) || payload.length !== r.originalSize) throw Error('Invalid JPEG decoder output.');
+    length(r.p.length); put(r.p); length(payload.length); put(payload);
+  }
+  if (snapshotCrc32(output) !== crc) throw Error('Invalid JPEG snapshot checksum.');
+  return output;
+}
+
 export function wrapBrotliSnapshot(original, compressed) {
   if (!original.length || original.length > 536870912 || !compressed.length) throw Error('Invalid Brotli snapshot size.');
   const bytes = new Uint8Array(20 + compressed.length), view = new DataView(bytes.buffer);
@@ -206,10 +267,11 @@ function unwrapBrotliBytes(bytes, decodeBrotli) {
     if (brotliMagic.every((value, index) => restored[index] === value)) throw Error('Nested Brotli snapshot.');
     return restored;
 }
-export function restoreSnapshotText(bytes, decodeBrotli) {
+export function restoreSnapshotText(bytes, decodeBrotli, reconstructJpeg) {
+  if (jpegSnapshotMagic.every((value, index) => bytes[index] === value)) return restoreSnapshotText(restoreJpegSnapshot(bytes, reconstructJpeg));
   if (brotliMagic.every((value, index) => bytes[index] === value)) {
     const restored = unwrapBrotliBytes(bytes, decodeBrotli);
-    return restoreSnapshotText(restored);
+    return restoreSnapshotText(restored, undefined, reconstructJpeg);
   }
   if (numericNibbleMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes, true);
   if (numericMagic.every((value, index) => bytes[index] === value)) return restoreNumericSnapshot(bytes);

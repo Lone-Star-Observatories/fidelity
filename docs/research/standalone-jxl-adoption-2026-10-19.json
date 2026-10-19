@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-19",
+  "status": "ADOPTED: lossless original-JPEG bitstream reconstruction in full standalone only",
+  "issue": "#3",
+  "priorAssessment": "docs/research/standalone-jxl-reconstruction-assessment-2026-10-19.json",
+  "problem": "Full standalone had only7250bytes below the16,000,000-byte gate, preventing prepared additive dossiers. Preserve every scientific field, original native image and model byte.",
+  "format": {
+    "magic": "FIDJXL02",
+    "inner": "Exact original FIDNUM02 bytes; numeric spelling, JSON whitespace, prefixes, asset order and all decoded asset bytes retained.",
+    "header": "8-byte magic; uint32LE original size, original CRC32, untouched numeric-prefix length, asset count; untouched prefix.",
+    "records": "uint32LE prefix length + exact UTF8 prefix; uint8 type; uint32LE original size; uint32LE stored size; stored bytes. Type0 raw, type1 original-JPEG reconstruction JXL.",
+    "validation": [
+      "512MiB frame/output bounds and128MiB reconstructed JPEG bound.",
+      "Exact header/record lengths, counts, UTF8 prefixes, type, total output, truncation and trailing-data checks before WASM allocation.",
+      "JPEG type requires exact image/jpeg dataURI prefix and a supplied decoder.",
+      "WASM requires full expected output size and consumed input; rejects recorded truncated/bad-signature/short-output/trailing-input cases.",
+      "Original-container CRC32 plus existing outer Brotli size/checksum validation; full exact JSON inverse in builder."
+    ],
+    "legacy": "Research FIDJXL01 was never delivered. Every production FIDNUM02/FIDNUM01/FIDBIN01/FIDBRT01/plainJSON, radix85/base64/raw120/dense125/UTF8/UTF16 decoder remains available."
+  },
+  "cache": {
+    "manifest": {
+      "path": "src/data/jpeg-reconstruction-cache/manifest.json",
+      "bytes": 14556,
+      "sha256": "7b09b1d627cf277b182e8fc67fff3f1afe33b2b43bff8dd0ea1cb3e79163448b"
+    },
+    "entries": 60,
+    "originalJpegBytes": 5267909,
+    "jxlBytes": 3928547,
+    "preservation": "Source-hash keyed internal bitstream cache. All60 original SHA256 hashes reproduced by native CLI in preparation and vendored single-threaded WASM tests. No native source/credit/terms/observation/publication/metadata/dimensions/MIME replacement. Uncached JPEGs and other asset formats remain raw.",
+    "generator": "scripts/generate-jpeg-reconstruction-cache.mjs",
+    "normalBuild": "No cjxl/djxl or network decoder download needed."
+  },
+  "decoder": {
+    "manifest": {
+      "path": "src/vendor/jpeg-xl/manifest.json",
+      "bytes": 5337,
+      "sha256": "4bdc54c5211ff5d12843e2f234abd87ef27b8f90a663192d85ac811956f07a4c"
+    },
+    "source": "Pinned official libjxl0.11.1/Emscripten3.1.73; source/submodule/build/hash records retained in manifest and prior assessment.",
+    "wasmSha256": "9c5d9658655c56e1b4f705f555e2744f4639b225328b88e999fb2ec10686c854",
+    "wasmBytes": 838051,
+    "singleThreaded": true,
+    "sharedArrayBufferRequired": false,
+    "evalUsed": false,
+    "integration": "WASM bytes as base64 inside existing independently Brotli/gzip/UTF16-packed application. wasmBinary plus data-URL locateFile avoids relative-URL resolution from the Blob-imported module. Original generated glue unchanged.",
+    "notices": {
+      "path": "src/vendor/jpeg-xl/NOTICE.txt",
+      "bytes": 93895,
+      "sha256": "1b658b1c0f4d27e7f82f712545c57c3fa66b9ed42f96d0cf52e0b7095e6188ed"
+    },
+    "completeNoticesEmbedded": true,
+    "noticeCharacters": 93861,
+    "softwareRightsNotImageRights": true,
+    "buildScript": "scripts/build-jpeg-reconstruction-decoder.sh",
+    "buildScriptVerification": "Executed original pinned configure/build recipe, strict decoder proof and all60 native/Node/browser reconstruction. New rebuild script syntax checked; not separately recloned/rebuilt in this adoption batch."
+  },
+  "unchangedTransport": "Snapshot outer standardgzip9/Brotli11FONT/FIDBRT01 and UTF16v2 retained; app independentBrotli11/gzip9/FIDAPP01/UTF16v2; CSS/startup envelopes and Blob import/revoke/noeval remain. ReadableJSON/generatedlegacyradix85snapshot remain complete.",
+  "validation": {
+    "testsPass": 695,
+    "testsSkip": 1,
+    "productionBuild": "PASS",
+    "fullBuild": "PASS",
+    "queueRegenerated": 569,
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 179,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "d581af5",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15598554,
+      "headroomBytes": 401446,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "2c43c7e0654a10e307d44a3930f6e8e8a5d5a5d71853ea3c12c5da38c787c028",
+      "applicationSha256": "385face8c6564d82f2d7c83e70cf61e89b641f64070077f0e706a534bc30401b",
+      "freshBrowserClaim": false
+    },
+    "newTests": [
+      "All60 pinned cache payload hashes and exact original JPEG hashes.",
+      "Truncated, trailing, short-output and wrong-signature decoder diagnostics.",
+      "Exact JSON numeric spelling and whitespace; raw uncachedJPEG/nativePNG/GLB bytes; native/bundledBrotli and async decodeSnapshot.",
+      "Invalid frame size/count/type/checksum/truncation/trailing bytes and invalid decoder output."
+    ],
+    "browser": {
+      "engine": "In-app Chromium155 on macOS, loopbackHTTP UTF16LE",
+      "fixture": "docs/research/standalone-jxl-browser-audit-2026-10-19.mjs",
+      "observedStatus": "pass",
+      "completeJsonSha256": "2c43c7e0654a10e307d44a3930f6e8e8a5d5a5d71853ea3c12c5da38c787c028",
+      "applicationSha256": "385face8c6564d82f2d7c83e70cf61e89b641f64070077f0e706a534bc30401b",
+      "htmlParserPackedSnapshotSha256": "aef2bb3f4c4143901e8e5511c164f8e74378ed52c070c2b04a35be3fc9138a61",
+      "htmlParserPackedApplicationSha256": "812a61d25562934ca3eece6cb7f449c9011800a32a99e464176379281b04c460",
+      "allFourExact": true,
+      "decodedUniqueImages": 324,
+      "parsedGlbModels": 32,
+      "details": 517,
+      "bands": 20,
+      "startupCanvases": 8,
+      "routes": [
+        "#/moon/sol/phobos",
+        "#/moon/sol/deimos",
+        "#/universe",
+        "#/galaxy",
+        "#/quadrant",
+        "#/navigation/sol",
+        "#/star/hyg-37173/hyg-37173",
+        "#/star/hyg-37173/hyg-118493",
+        "#/events"
+      ],
+      "componentEvidence": "A and B each displayed own two hypothetical views plus original HST context; Phobos three cards/PDS shape and Deimos four cards/own mosaic retained.",
+      "workerView": "39 UI rows explicitly marked Computed:Fidelity ephemeris, including solar/lunar eclipses and lunar occultations, appeared offline. Not a new scientific calibration.",
+      "gzipUnsupportedMessage": "Verified unchanged existing message.",
+      "wasmUnsupportedMessage": "Verified explicit WebAssembly lossless-image compatibility message.",
+      "limits": [
+        "Direct file: navigation was refused by browser URL policy; no workaround attempted. No fresh file-protocol claim.",
+        "Other browser engines and fresh normal-browser/all-craft-route rendering not independently tested.",
+        "GLB scenes parsed with MeshoptDecoder; no new geometry/texture/frame accuracy claim."
+      ]
+    }
+  },
+  "budget": {
+    "hardGateBytes": 16000000,
+    "fullHtmlBytes": 15598554,
+    "headroomBytes": 401446,
+    "previousBuildBytes": 15992750,
+    "differenceAttribution": "Feed inputs varied between builds; no exact same-input net HTML saving claim. Full current headroom is measured and includes all WASM/base64/frame/app/startup/transport and complete software notices. Earlier685438byte isolated estimate remains pre-integration only."
+  },
+  "correctedUnpublishedPrototype": "Initial integrated browser app hit relative WASM newURL resolution from Blob module despite supplying bytes. Added self-contained locateFile; rebuilt and verified full startup, exact parser bytes/JSON/app,324 image decodes,32 model parses and routes. First audit also needed existing MeshoptDecoder for compressed GLBs; corrected before final proof. No failed prototype committed as delivered.",
+  "remaining": "Elara93 remains prepared, not delivered. Next use recovered capacity for the additive dossier with existing originals/prompts/masters/previews and current identity/measurement/provenance checks. All other backlog/science/calibration/ranking limits remain ACTIVE."
+}
