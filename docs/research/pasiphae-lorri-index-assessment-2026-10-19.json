@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-19",
+  "body": "Pasiphae / JupiterVIII / JPL508; distinct from Pasithee, Elara and Himalia",
+  "status": "Research only; no94th dossier/newimage/embedding/catalogue/map/model/shape/codec change.",
+  "sources": [
+    {
+      "path": "data/research-sources/pasiphae-lorri-index-directory-2026-10-19.html",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/",
+      "status": 200,
+      "bytes": 1839,
+      "sha256": "ec60d4224534f4d43334060b4e8f70c569e031652e76fac3885a4383344fef26",
+      "retrievedUtc": "2026-10-19T19:19:41.961338+00:00"
+    },
+    {
+      "path": "data/research-sources/pasiphae-lorri-index-label-2026-10-19.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.lbl",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.lbl",
+      "status": 200,
+      "bytes": 16960,
+      "sha256": "02fe2c6c091959becf3e64517e019762c1e80b0b07c303f7826e62571b7d8c0c",
+      "retrievedUtc": "2026-10-19T19:19:54.663178+00:00"
+    },
+    {
+      "path": "data/research-sources/pasiphae-lorri-index-table-2026-10-19.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.tab",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.tab",
+      "status": 200,
+      "bytes": 447200,
+      "sha256": "12df650432de292f01237563f8b59c2efc3b3be5b4ea5aa5f44b8c510cd0c2d0",
+      "retrievedUtc": "2026-10-19T19:19:54.821076+00:00"
+    },
+    {
+      "path": "data/research-sources/pasiphae-lorri-index-info-2026-10-19.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/indxinfo.txt",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/indxinfo.txt",
+      "status": 200,
+      "bytes": 2880,
+      "sha256": "a228251a57820c95828ce6e4e40c032ade69e395af7021d23b59e15a8ca4ca5f",
+      "retrievedUtc": "2026-10-19T19:19:54.624082+00:00"
+    },
+    {
+      "path": "data/research-sources/pasiphae-lorri-dataset-catalog-2026-10-19.txt",
+      "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/catalog/dataset.cat",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/catalog/dataset.cat",
+      "status": 200,
+      "bytes": 60160,
+      "sha256": "4f5c02eb02855ba1795878deb97a1ace4353a2e8f6c9980b2216275fafeae899",
+      "retrievedUtc": "2026-10-19T19:19:54.730440+00:00"
+    }
+  ],
+  "derivedDiagnostic": {
+    "path": "data/research-sources/pasiphae-lorri-index-crosscheck-2026-10-19.json",
+    "bytes": 2572,
+    "sha256": "94e81817e22569869cc19b3c6e4b03da08c1c1376f74697753b9e6caae75dba4"
+  },
+  "reproducer": "docs/research/pasiphae-lorri-index-assessment-2026-10-19.py",
+  "indexDiagnostic": {
+    "sourceTableSha256": "12df650432de292f01237563f8b59c2efc3b3be5b4ea5aa5f44b8c510cd0c2d0",
+    "sourceTableBytes": 447200,
+    "records": 1118,
+    "bytesPerRecordIncludingCrLf": 400,
+    "columns": [
+      {
+        "NAME": "VOLUME_ID",
+        "START_BYTE": "2",
+        "BYTES": "11"
+      },
+      {
+        "NAME": "PATH_NAME",
+        "START_BYTE": "16",
+        "BYTES": "21"
+      },
+      {
+        "NAME": "FILE_NAME",
+        "START_BYTE": "40",
+        "BYTES": "31"
+      },
+      {
+        "NAME": "DATA_SET_ID",
+        "START_BYTE": "74",
+        "BYTES": "43"
+      },
+      {
+        "NAME": "PRODUCT_ID",
+        "START_BYTE": "120",
+        "BYTES": "27"
+      },
+      {
+        "NAME": "PRODUCT_CREATION_TIME",
+        "START_BYTE": "150",
+        "BYTES": "19"
+      },
+      {
+        "NAME": "REDUCTION_LEVEL",
+        "START_BYTE": "172",
+        "BYTES": "10"
+      },
+      {
+        "NAME": "SPACECRAFT_CLOCK_START_COUNT",
+        "START_BYTE": "185",
+        "BYTES": "18"
+      },
+      {
+        "NAME": "SPACECRAFT_CLOCK_STOP_COUNT",
+        "START_BYTE": "206",
+        "BYTES": "18"
+      },
+      {
+        "NAME": "START_TIME",
+        "START_BYTE": "227",
+        "BYTES": "23"
+      },
+      {
+        "NAME": "STOP_TIME",
+        "START_BYTE": "253",
+        "BYTES": "23"
+      },
+      {
+        "NAME": "TARGET_NAME",
+        "START_BYTE": "279",
+        "BYTES": "21"
+      },
+      {
+        "NAME": "INSTRUMENT_HOST",
+        "START_BYTE": "303",
+        "BYTES": "12"
+      },
+      {
+        "NAME": "INSTRUMENT_ID",
+        "START_BYTE": "318",
+        "BYTES": "6"
+      },
+      {
+        "NAME": "INSTRUMENT_NAME",
+        "START_BYTE": "327",
+        "BYTES": "61"
+      },
+      {
+        "NAME": "TELEMETRY_APPLICATION_ID",
+        "START_BYTE": "391",
+        "BYTES": "7"
+      }
+    ],
+    "fixedByteAndCsvEveryFieldEqual": true,
+    "targetNameCounts": {
+      "JUPITER": 201,
+      "J17 CALLIRRHOE": 24,
+      "J1 IO": 179,
+      "J RINGS": 517,
+      "GANYMEDE": 97,
+      "CALLISTO": 9,
+      "J2 EUROPA": 53,
+      "J7 ELARA": 8,
+      "J6 HIMALIA": 30
+    },
+    "exactPasiphaeAliasRows": {
+      "PASIPHAE": 0,
+      "J8 PASIPHAE": 0
+    },
+    "caseInsensitivePasiphaeSubstringRows": 0,
+    "uniqueProductIds": 1118,
+    "uniqueLabelPaths": 1118,
+    "rowProductCreationCounts": {
+      "2017-02-27": 1118
+    },
+    "aggregateEarliestStart": "2007-01-08T21:42:01.359",
+    "aggregateLatestStop": "2007-06-11T22:20:03.395",
+    "limits": "Bounded index-field result only, not absence of Pasiphae in every image footprint, all LORRI products, other instruments/archives or the sky. No FITS fetched or pixels/PSF/pointing/calibration/target registration inspected. No Pasiphae acquisition or native image licence inferred."
+  },
+  "creditAndCitation": {
+    "author": "Andrew Cheng",
+    "instrumentLeadAffiliation": "Johns Hopkins University Applied Physics Laboratory",
+    "producer": "Brian Carcich",
+    "dataset": "NEW HORIZONS Calibrated LORRI JUPITER ENCOUNTER V3.0",
+    "dataSetId": "NH-J-LORRI-3-JUPITER-V3.0",
+    "volume": "NHJULO_2001",
+    "publisher": "NASA Planetary Data System",
+    "publicationYear": 2016,
+    "reference": "Cheng,A.; NASA Planetary Data System2016, original DATASET.CAT citation",
+    "limits": "These are dataset/catalogue roles, not permission or a complete contributor list for a hypothetical Pasiphae image. No source image downloaded or adopted; no CC BY/blanket raw or derivative licence asserted. NASA media reference https://www.nasa.gov/nasa-brand-center/images-and-media/ is not a new permission claim."
+  },
+  "finding": "The complete retained original 1118-row calibrated-Jupiter index has nine TARGET_NAME strings and zero Pasiphae substring/exact PASIPHAE or J8 PASIPHAE rows. Fixed-label byte slices match CSV for all16fields/every400byteCRLFrecord;1118unique products/labelpaths. EightElara,30Himalia and24Callirrhoe entries are not assigned to Pasiphae.",
+  "targetLimits": "Dataset catalogue warns that target-related labels infer intended target from command/pointing information and can be unreliable. Index non-match does not establish no Pasiphae pixels/pointing footprint, no observations by LORRI/other instruments or no native imagery elsewhere. No FITS, pixel/PSF/frame/kernel/geometric or photometric audit conducted here. Do not substitute another moon map or image.",
+  "chronology": {
+    "indexLabelProductCreation": "2016-10-31T00:00:00",
+    "indexInfoPublication": "2016-10-31",
+    "allRowProductCreation": "2017-02-27",
+    "aggregateObservationCoverage": [
+      "2007-01-08T21:42:01.359",
+      "2007-06-11T22:20:03.395"
+    ],
+    "limits": "Aggregate volume bounds are not Pasiphae observation dates. Row creation and index-label/catalogue publication dates remain distinct without inferred correction/lineage."
+  },
+  "next": "Proceed to retained Pasiphae-specific thermal primary verification/other native sources and independent local/observer preparation with skyGeometry. This bounded negative target index result is not an external blocker or exhaustive native-absence claim. Keep existing93dossiers and all science/provenance bytes.",
+  "reproducerHash": {
+    "path": "docs/research/pasiphae-lorri-index-assessment-2026-10-19.py",
+    "bytes": 2669,
+    "sha256": "41012d80805c64ea2f4798b661dd2990464cc8e8bb52adc5d87ba38d2b509c29"
+  },
+  "validation": {
+    "tests": {
+      "pass": 696,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 189,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "2ee0954",
+      "priorDossiersDeepEqual": 93,
+      "dossiers": 93,
+      "priorMoonsDeepEqual": 49,
+      "moons": 49,
+      "trackedPublicByteEqual": 685,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15617478,
+      "headroomBytes": 382522,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "fbe5ec906360a443ef1623a49ae0987881d77196f64c83a39725b80282ccef3e",
+      "applicationSha256": "8e43e1a02a86be53b7f4dc0bad83763745adb95ac3a697580202657583115b61",
+      "freshBrowserClaim": false
+    },
+    "limits": "No fresh browser claim or interbuild savings attribution. Feed changes unaudited; existing93dossiers and all public/native/model/map/shape inputs unchanged; backlog ACTIVE."
+  }
+}
