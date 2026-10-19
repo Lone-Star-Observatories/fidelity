@@ -1,0 +1,164 @@
+{
+  "scope": "Research-only bounded ICD absolute-calibration, publication and exact retained-header assessment; no production adoption.",
+  "labelMetadataAsStored": {
+    "logical_identifier": [
+      "urn:nasa:pds:nh_documents:mission:soc_inst_icd"
+    ],
+    "version_id": [
+      "2.0",
+      "2.0",
+      "1.1",
+      "1.0"
+    ],
+    "author_list": [
+      "Versteeg, M.; Parker, J.; Steffl, A.; McCabe, G.; Lunsford, A.;\n                Weaver, H.; Taylor, H.; Olkin, C.; Livi, S.; Hill, M.; Brown, L.;\n                Kollman, P.; Linscott, I.; Carcich, B.; James, D.; Elliott, H."
+    ],
+    "editor_list": [
+      "Parker, J."
+    ],
+    "publication_year": [
+      "2026"
+    ],
+    "modification_date": [
+      "2025-07-02",
+      "2024-06-21",
+      "2023-04-06"
+    ]
+  },
+  "visuallyInspectedPdfPages": [
+    1,
+    2,
+    53,
+    54,
+    55,
+    62
+  ],
+  "printedPages": [
+    "cover",
+    "ii",
+    "44",
+    "45",
+    "46",
+    "53"
+  ],
+  "headerInventory": "data/research-sources/elara-icd-photometry-header-preparation-2026-10-19.json",
+  "findings": [
+    "Point-source formula uses PSF-integrated corrected counts in DN/s, while printed Table9-6 caption retains DN/s/pixel. This printed dimensional distinction is preserved without changing source/header units.",
+    "Retained Elara primary headers identify pipeline1.1.3 and ABSCCORR PERFORM but retain DN; keywords alone do not establish absolute radiance/irradiance conversion or independently reproduced pipeline execution.",
+    "Printed page53 sample photometry values agree with the retained Elara card values, while Tables9-5/9-6 have newer Weaver2020 values. Sample identity is not historical pipeline byte identity, justification for updating old science or independent calibration.",
+    "Cover June2025, label modification2025-07-02 and citation publication2026 remain separate dates; header Rev0Chg0 and detailed revision history retained without inventing causes.",
+    "Printed contributors include LORRI Olivier Barnouin, while label author list omits him; preserve separate inventories without silently changing the source."
+  ],
+  "pending": [
+    "Other relevant LORRI methods/quality/histogram sections remain unassessed in this ICD version.",
+    "Exact historical pipeline execution, unknown Elara spectrum, PSF integration, physical registration and calibrated photometry remain open."
+  ],
+  "limits": [
+    "No mask, timing shift, spectral transfer, calibrated colour, angular/raster computation, new embedding or93rd dossier.",
+    "All previous quality-bit/WINDOWH0/histogram/target/PSF/registration limitations remain."
+  ],
+  "date": "2026-10-19",
+  "sources": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.lblx",
+      "status": 200,
+      "contentType": "text/xml",
+      "retrievedUtc": "2026-10-19T15:34:49.627173+00:00",
+      "path": "data/research-sources/elara-soc_inst_icd-lblx-preparation-2026-10-19.lblx",
+      "bytes": 9025,
+      "sha256": "ad6fca223751202813d6d751669416ac8f4448242636e180a94cce024a21dd87",
+      "md5": "e942d3ffc608277d85b87418fd229cf9",
+      "publisherIndexRow": "e942d3ffc608277d85b87418fd229cf9  documents/soc_inst_icd.lblx"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.pdf",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "retrievedUtc": "2026-10-19T15:34:50.495500+00:00",
+      "path": "data/research-sources/elara-soc_inst_icd-pdf-preparation-2026-10-19.pdf",
+      "bytes": 7123804,
+      "sha256": "59dd8a3e3a47f3a1ef092fc818fdc3dda73e9e206ddde1f821ae8b86b7596d83",
+      "md5": "21000196f01a4a3f7c8975f0d94f9e85",
+      "publisherIndexRow": "21000196f01a4a3f7c8975f0d94f9e85  documents/soc_inst_icd.pdf"
+    }
+  ],
+  "fullText": {
+    "path": "data/research-sources/elara-soc-inst-icd-text-preparation-2026-10-19.txt",
+    "bytes": 419755,
+    "sha256": "128eb0198011e6eb8c5c6de30327991f8cfff39cd02126432fa375a11e130bc1"
+  },
+  "documentPageCount": 182,
+  "retainedHeaderInventory": {
+    "scope": "Exact stored FITS-card inventory only. No radiometry, target identification or pipeline reproduction.",
+    "products": [
+      {
+        "path": "data/research-sources/elara-pds4-lor_0035398319_0x630_sci.fit",
+        "bytes": 10535040,
+        "sha256": "f73e3c86927caa0cec397c4f4f38cc5289a3cf39e65614370c24259cfb73677b",
+        "primaryHeaderCards": [
+          "EXPTIME =                 0.04 / Exposure time                                  ",
+          "L2_SWNAM= 'lorri_level2_pipeline' /Level 2 calibration software                 ",
+          "L2_SWVER= '1.1.3   '           /software version tag                            ",
+          "ABSCCORR= 'PERFORM '           / absolute calibration step                      ",
+          "PIVOT   =        6076.20019531 / LORRI pivot wavelength. units=angstroms        ",
+          "RSOLAR  =        266400.000000 / Conv to radiance for solar source              ",
+          "RPLUTO  =        257500.000000 / Conv to radiance for pluto source              ",
+          "RPHOLUS =        324300.000000 / Conv to radiance for 5145 pholus source        ",
+          "RCHARON =        263000.000000 / Conv to radiance for charon source             ",
+          "RJUPITER=        234700.000000 / Conv to radiance for jupiter source            ",
+          "PPLUTO  =    1.03000005170E+16 / Conv to irradiance for pluto source            ",
+          "PSOLAR  =    1.06600003807E+16 / Conv to irradiance for solar source            ",
+          "PPHOLUS =    1.29700002225E+16 / Conv to irradiance for 5145 pholus source      ",
+          "PCHARON =    1.05199994793E+16 / Conv to irradiance for charon source           ",
+          "PJUPITER=    9.38600033786E+15 / Conv to irradiance for jupiter source          ",
+          "PHOTZPT =        18.9400000000 / Zero point for visual magnitude, V             "
+        ]
+      },
+      {
+        "path": "data/research-sources/elara-pds4-lor_0035398320_0x630_sci.fit",
+        "bytes": 10535040,
+        "sha256": "de7f9b3b7937e4d0caaaa7a2128dc6ca74c543c9dd29d63fea02e5a02256d0bb",
+        "primaryHeaderCards": [
+          "EXPTIME =                 0.04 / Exposure time                                  ",
+          "L2_SWNAM= 'lorri_level2_pipeline' /Level 2 calibration software                 ",
+          "L2_SWVER= '1.1.3   '           /software version tag                            ",
+          "ABSCCORR= 'PERFORM '           / absolute calibration step                      ",
+          "PIVOT   =        6076.20019531 / LORRI pivot wavelength. units=angstroms        ",
+          "RSOLAR  =        266400.000000 / Conv to radiance for solar source              ",
+          "RPLUTO  =        257500.000000 / Conv to radiance for pluto source              ",
+          "RPHOLUS =        324300.000000 / Conv to radiance for 5145 pholus source        ",
+          "RCHARON =        263000.000000 / Conv to radiance for charon source             ",
+          "RJUPITER=        234700.000000 / Conv to radiance for jupiter source            ",
+          "PPLUTO  =    1.03000005170E+16 / Conv to irradiance for pluto source            ",
+          "PSOLAR  =    1.06600003807E+16 / Conv to irradiance for solar source            ",
+          "PPHOLUS =    1.29700002225E+16 / Conv to irradiance for 5145 pholus source      ",
+          "PCHARON =    1.05199994793E+16 / Conv to irradiance for charon source           ",
+          "PJUPITER=    9.38600033786E+15 / Conv to irradiance for jupiter source          ",
+          "PHOTZPT =        18.9400000000 / Zero point for visual magnitude, V             "
+        ]
+      }
+    ]
+  },
+  "earlierVisualFindings": [
+    "Corrected DN remains DN; scene spectrum and diffuse versus point-source distribution determine the photometry divisor. No direct calibrated visible RGB or Elara radiance conversion inferred.",
+    "Printed page44 calls following values launch-time, while page45 Table9-5 attributes values to Weaver2020; retain mixed historical wording without inventing revision cause or transferring values to2007 Elara.",
+    "Table9-5 diffuse values and pivot6076 Angstrom are publisher values, not independently reproduced instrument response or unknown-spectrum Elara calibration.",
+    "Flat-field ghost discussion includes scene dependence and out-of-field contribution; claims not independently reproduced or adopted as current masks/PSF."
+  ],
+  "printedRevisionContributorInventory": "Southwest Research Institute  05310-SOCINST-01 \n  Rev 0 Chg 0 \nNew Horizons SOC to Instrument Pipeline ICD  Page ii \nSOUTHWEST RESEARCH INSTITUTE\u00ae \nSpace Science and Engineering Division  \n6220 Culebra Road, San Antonio, Texas 78228-0510 \n(210) 522-2600 \u2022 FAX (210) 647-4325 \n \n \n \nNew Horizons SOC to Instrument Pipeline ICD  \n \n \n \n \nSwRI Project 05310 \n \nDocument No. 05310-SOCINST-01 \n \nContract NASW-02008 \n \n \nPrepared by: Joe Peterson         08 November 2013 \nRevised by: Brian Carcich       August, 2014 \nRevised by: Tiffany Finley        March 2016 \nRevised by: Tiffany Finley                 October 2016 \nRevised by: Brian Carcich             December 2016 \nRevised by: Tiffany Finley, Brian Carcich, PEPSSI team      April 2017 \nRevised by: Tiffany Finley, PEPSSI team          September 2017 \nRevised by: Jillian Redfern, SDC Team          June 2019 \nRevised by: Jillian Redfern, LEISA Team       March 2020 \nRevised by: Joel Parker, ALICE Team, SW AP Team, REX Team    March 2023 \nRevised by: Joel Parker, PEPSSI  Team             July 2023 \nRevised by: Joel Parker, PEPSSI  Team, SDC Team        March 2024 \nRevised by: Joel Parker, LORRI Team            May 2024 \nRevised by: Joel Parker, LORRI Team, SDC Team             May , June 2025 \n \nContributors: \nALICE specifics prepared by: Maarten V ersteeg, Joel Parker, Andrew Steffl \nLEISA specifics prepared by: George McCabe, Allen Lunsford \nLORRI specifics prepared by: Hal Weaver, Howard Taylor, Olivier Barnouin \nMVIC specifics prepared by: Cathy Olkin \nPEPSSI specifics prepared by: Stefano Livi, Matthew Hill, Lawrence Brown,  \nPeter Kollman \nREX specifics prepared by: Ivan Linscott Brian Carcich \nSDC specifics prepared by: David James \nSW AP specifics prepared by: Heather Elliott ",
+  "rights": "No CC grant or document-figure permission inferred; active NASA media terms and third-party caveats remain separate. No figure embedded.",
+  "status": "Elara93 remains prepared but undelivered. All previous calibration alternatives and limitations retained.",
+  "publisherFixity": {
+    "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/SUPPORT/CHECKSUM/current.md5",
+    "retrievedUtc": "2026-10-19T16:05:31.912990+00:00",
+    "path": "data/research-sources/elara-mission-current-checksums-preparation-2026-10-19.md5",
+    "bytes": 2692,
+    "sha256": "bea61753c07306969f27a3f5751af627553f0b1b284a1b4096e17aea1f918422",
+    "icdRows": [
+      "e942d3ffc608277d85b87418fd229cf9  documents/soc_inst_icd.lblx",
+      "21000196f01a4a3f7c8975f0d94f9e85  documents/soc_inst_icd.pdf"
+    ]
+  }
+}
