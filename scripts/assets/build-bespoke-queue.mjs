@@ -7,6 +7,9 @@ const moonInventory=await read('solar-moons'),planets=await read('nearest-exopla
 const entries=new Map(),key=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 for(const b of [SUN,...PLANETS,...MOONS,...SMALL_BODIES])entries.set(`sol-${key(b.name)}`,{id:`sol-${key(b.name)}`,bodyId:b.id,name:b.name,parent:b.parent??null,kind:b.kind??'moon',scope:'Solar System catalogue',nativeImagery:b.surfacePending?'no local native map; research native imagery':'existing texture requires provenance/coverage review'});
 for(const b of moonInventory.rows){const id=`sol-${key(b.name)}`;if(!entries.has(id))entries.set(id,{id,name:b.name,parent:b.parent,kind:'moon',scope:'IAU-recognized planetary/Pluto satellite',discoveryYear:b.discoveryYear,discoveryReferences:b.discoveryReferences,source:moonInventory.source,nativeImagery:'unchecked'});}
+// Retain Elara's recognized-inventory discovery provenance when it becomes selectable.
+const elaraDiscovery=moonInventory.rows.find(body=>body.name==='Elara');
+if(elaraDiscovery)Object.assign(entries.get('sol-elara'),{discoveryYear:elaraDiscovery.discoveryYear,discoveryReferences:elaraDiscovery.discoveryReferences,source:moonInventory.source});
 // Satellites of minor planets are not covered by the planetary satellite table.
 for(const b of [{name:'Dysnomia',parent:'eris'},{name:"Hi'iaka",parent:'haumea'},{name:'Namaka',parent:'haumea'},{name:'S/2015 (136472) 1',parent:'makemake'}])if(!entries.has(`sol-${key(b.name)}`))entries.set(`sol-${key(b.name)}`,{id:`sol-${key(b.name)}`,...b,kind:'moon',scope:'Dwarf-planet satellite; individual source verification queued',nativeImagery:'unchecked'});
 // Gonggong's satellite is outside the planetary/Pluto inventory; keep it separate from its primary dossier.

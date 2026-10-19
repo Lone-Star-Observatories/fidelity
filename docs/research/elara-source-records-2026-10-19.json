@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-19",
+  "dossier": 93,
+  "scope": "All earlier preparation chronology/status/limitations remain historical; this batch adopts only two independent original-preserving hypothetical illustrations and explicit catalogue models. Original native FITS/labels remain linked research inputs; no calibrated display/globalmap/native embedding claimed.",
+  "freshJplSources": [
+    {
+      "path": "data/research-sources/elara-physical-adoption-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "retrievedUtc": "2026-10-19T18:50:47.721722+00:00",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/elara-elements-adoption-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "retrievedUtc": "2026-10-19T18:50:48.122463+00:00",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    }
+  ],
+  "preparations": [
+    {
+      "path": "docs/research/elara-calibration-reference-assessment-2026-10-18.json",
+      "bytes": 85233,
+      "sha256": "36b2abc279af66f1f849f0a7d566480d8bb4fc2dec3037f48302de6b26e7536c"
+    },
+    {
+      "path": "docs/research/elara-document-reference-assessment-2026-10-19.json",
+      "bytes": 21896,
+      "sha256": "9d1d4ea2b8dd8d96c3ae7f904d99167a5cc1d19105d70f24d20f6db78d90526c"
+    },
+    {
+      "path": "docs/research/elara-exposure-offset-report-assessment-2026-10-19.json",
+      "bytes": 5721,
+      "sha256": "e24ce24e5368fa96dcda948c0cb85650582a0cc87d2d5acea9fa989af9212491"
+    },
+    {
+      "path": "docs/research/elara-housekeeping-sequence-assessment-2026-10-19.json",
+      "bytes": 15357,
+      "sha256": "3b3accc8bd9a58360bd695ca41d59925703892b4f54685c379998f10422d6f42"
+    },
+    {
+      "path": "docs/research/elara-icd-method-quality-assessment-2026-10-19.json",
+      "bytes": 14913,
+      "sha256": "d899506f0f95cc246692bbcad1e514cce0727ef0f20baa5e0db7272e6a455190"
+    },
+    {
+      "path": "docs/research/elara-icd-photometry-assessment-2026-10-19.json",
+      "bytes": 11447,
+      "sha256": "946802dcc4ebc2cdc9c845e44cb31781793e86d1ffa18322ed920c14531d5754"
+    },
+    {
+      "path": "docs/research/elara-instrument-document-assessment-2026-10-19.json",
+      "bytes": 44388,
+      "sha256": "446d9508778fee264af9d23402a03c076545507eb8b6e0164220a26123d25154"
+    },
+    {
+      "path": "docs/research/elara-instrument-overview-assessment-2026-10-19.json",
+      "bytes": 8854,
+      "sha256": "d6f1d4f3616766ef23c5951cb4dfb1242fd6931d85b58c34a50d21a307bf0648"
+    },
+    {
+      "path": "docs/research/elara-local-view-preparation-2026-10-18.json",
+      "bytes": 7513,
+      "sha256": "bf3e3c95a92efe3dbbc5a575dab3297e490349dec8a6b237d3d49023b810ef23"
+    },
+    {
+      "path": "docs/research/elara-lorri-ssr-report-assessment-2026-10-19.json",
+      "bytes": 16162,
+      "sha256": "6a2a30210a0ff0e3817fa1371086625815b71e9015b76888c773b7ab5c6e6779"
+    },
+    {
+      "path": "docs/research/elara-lorri-version-comparison-assessment-2026-10-19.json",
+      "bytes": 16391,
+      "sha256": "050be8a1dc7299908ad9bc772308d926c8a7dd57150f5f551b48f6f02a4ebeae"
+    },
+    {
+      "path": "docs/research/elara-native-preparation-2026-10-18.json",
+      "bytes": 13236,
+      "sha256": "c15aa520d5278fd6c4b62c843fd6a4fae16fa14827a296d6e117467f2b9949e3"
+    },
+    {
+      "path": "docs/research/elara-observer-geometry-preparation-2026-10-18.json",
+      "bytes": 6513,
+      "sha256": "42b4559c7fb85e5a5b1330442b8dabcfbcadf8c6359e63a30ebe2b6cba226650"
+    },
+    {
+      "path": "docs/research/elara-orbit-spin-reference-assessment-2026-10-18.json",
+      "bytes": 7058,
+      "sha256": "c2febabcd2b9a13ba2590b52ef414a16b7e98201b3368141eb26bbe298e1b000"
+    },
+    {
+      "path": "docs/research/elara-pds4-migration-assessment-2026-10-18.json",
+      "bytes": 11901,
+      "sha256": "4acf81204ff4a3bd837b6cd26733ba0b2c6893dff85e1f0727705151f6900221"
+    },
+    {
+      "path": "docs/research/elara-pds4-quality-assessment-2026-10-18.json",
+      "bytes": 58854,
+      "sha256": "7ef8c053c20fb825849e6a3a51d26eebf8766b17ac92c28b18a3cb2cd1ae347e"
+    },
+    {
+      "path": "docs/research/elara-publisher-fixity-assessment-2026-10-19.json",
+      "bytes": 18559,
+      "sha256": "f80dd83064f7ec073eb1348a1e1db8b23309c4df93abd3ef92db25eb306fb0b0"
+    },
+    {
+      "path": "docs/research/elara-raw-subframe-assessment-2026-10-18.json",
+      "bytes": 293199,
+      "sha256": "84391b454151c509c22e9453619b2f5193a1434e9e782848ded0f953e4ecfd55"
+    },
+    {
+      "path": "docs/research/elara-sky-master-preview-preparation-2026-10-18.json",
+      "bytes": 10673,
+      "sha256": "e48a7e6fcff20bb38d758be6d0141ec774e97090a68175c3c87569691bc7052c"
+    },
+    {
+      "path": "docs/research/elara-spectroscopy-primary-assessment-2026-10-18.json",
+      "bytes": 10474,
+      "sha256": "cc4e747ffa0e2bf474b7f771b190d73cd89e6ce024b46120e11ef012be08c091"
+    },
+    {
+      "path": "docs/research/elara-storage-comparison-assessment-2026-10-19.json",
+      "bytes": 18740,
+      "sha256": "8671a915e2ff299b464aa3cfee5034555c49268bc39c594eba6aca58a70722e9"
+    },
+    {
+      "path": "docs/research/elara-thermal-primary-assessment-2026-10-18.json",
+      "bytes": 8845,
+      "sha256": "284646065ca9d8e4d5fd166b0e0c04d5222ad37735c98cb7cf053c8c4c48c8ef"
+    }
+  ],
+  "generation": {
+    "local": {
+      "mode": "Built-in image_gen,brand-new independent image,no references,no CLI/API fallback",
+      "prompt": "Use case: scientific-educational.\nAsset type: Fidelity research preparation, single wide 16:9 original local-view illustration for Elara, Jupiter VII, distinct from asteroid 281 Elara.\nPrimary request: Create a new independent imagined near-surface view on Elara. Do not use any reference images or copy another observed body's terrain or map.\nScene: irregular low-relief dark grey granular terrain, a few scattered angular blocks and shallow depressions, a low uneven distant horizon under a plain black sky. Camera close to the ground, broad open middle distance, restrained realistic illustration. No astronomical disks in the sky, no stars, no spacecraft, people or structures.\nScience constraints: Elara is unresolved in retained native imagery. Its thermal effective diameter 79.9 +/- 1.7 km and alternative assumed-albedo radius 43 km do NOT establish local shape or geography. Near-infrared mineral-mixing interpretations are nonunique models, NOT measured local mineral fractions. All depicted grains, blocks, depressions, relief, material, chemistry, colour, lighting, exposure and viewpoint are invented. Do not depict magnetite crystals, labelled mineral zones or measured-composition claims. Unknown spin/pole/normal; no dated location, synchronous face or mapped site. No frost, visible atmosphere, clouds, plumes, liquids, exposed ocean, biological features or survivable landing implication. Black sky is an illustrative assumption, not evidence that atmosphere is absent.\nStyle: scientifically restrained photographic-looking concept illustration, neutral charcoal-grey ground with subtly varied grain sizes, low oblique illumination chosen artistically, no glow or dramatic coloured light. No Moon/Mars/Pluto/other-body analog skin, no recognizable observed crater pattern. Horizon near upper third. Scene itself has no labels except a clean dark footer band across the bottom with two clearly readable white sans-serif lines.\nText (verbatim), large and legible:\n\"IMAGINED LOCAL VIEW FROM ELARA\"\n\"TERRAIN, MATERIALS, COLOUR AND LIGHTING INVENTED\"\nKeep both complete lines inside generous footer margins; no other text or watermark.\nGenerate one original wide PNG with opaque background.",
+      "promptRecord": {
+        "path": "data/research-sources/elara-local-prompt-2026-10-18.txt",
+        "bytes": 2205,
+        "sha256": "0681e24a0366ac6ecc8ce88c7105dab679ededd719da4de3c23dea814afe9d58"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-05330e5f-12af-4d1a-9ef4-f2d0177aca06.png",
+        "bytes": 2838503,
+        "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44"
+      },
+      "researchOriginal": {
+        "path": "data/research-sources/elara-generated-surfaceImage-original.png",
+        "bytes": 2838503,
+        "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44"
+      },
+      "format": "PNG",
+      "width": 1672,
+      "height": 941,
+      "modePixels": "RGB",
+      "transparency": false,
+      "inspection": "Full generated image visually inspected. Both exact footerlines legible and uncropped; greygranular foreground/blocks/shallowdepression/unevenhorizon/plainblacksky. No astronomicaldisk/stars/person/craft/structures/visibleplume/liquid/exposedocean/biology. Terrain/sizes/roughness/chemistry/colour/light/exposure are invented,not independently measured."
+    },
+    "sky": {
+      "mode": "Built-in imagegen,new independent image,no references,no CLI/API fallback",
+      "prompt": "Use case: scientific-educational.\nAsset type: Fidelity original independent hypothetical observer illustration, wide16:9, sky from Elara/JupiterVII, not asteroid281Elara.\nGenerate a new image with no reference images and no observed otherbody map/analogskin reuse. Camera near imagined grey granular terrain on Elara, a low broken rocky horizon across lower third, broad plain black sky. A single very small Jupiter disk sits clearly above the horizon near upper-middle right, about 10 pixels across in a 1672pixelwide nominal90degree horizontal field of view. It should be visibly tiny, not a dramatic large gas giant. Its subtle cream/tan banding, phase, orientation and illumination are invented schematic artwork, not a dated observed Jupiter pattern. No moons, stars, Sun disk, rings, spacecraft, people or structures. Do not enlarge Jupiter for dramatic emphasis.\nGeometry guide from skyGeometry already verified: spherical Jupiter69911km at nominal Elara semimajor11710700km minus hypothetical39.95km radial cameraheight gives .6840996182277582degrees and9.98178364946764px at1672width/90HFOV. This is an illustration guide only, not calibrated photometry or current eccentric distance. Elara e=.212, spin/pole/normal/phase unknown. No permanentJupiterface/locking/datedsite. An alternate assumed-albedo43kmheight is not a jointfit or uncertainty envelope.\nAll terrain relief, dust, blocks, chemistry, materialfractions, greycolour, Jupitercloudpattern/colour/phase, lighting/exposure/viewpoint invented. Restrained photorealistic educational concept art, moderate oblique artistic illumination, no glow. No magnetite crystals or inferred mineral patches. Thermal/spectral models do not supply resolved geography or local chemistry. No frost, foreground atmosphere, clouds, plumes, liquids, exposed ocean, biological features or survivable landing implication. Blacksky/ringomission not evidence of atmosphere/ring absence.\nBottom dark footer band with generous margins and exactly these two clear white sans-serif lines:\n\"IMAGINED SKY FROM ELARA\"\n\"TERRAIN, JUPITER PATTERN, COLOUR AND LIGHTING INVENTED\"\nBoth lines fully legible and uncropped; no other text or watermark. One original wide PNG, opaque background.",
+      "promptRecord": {
+        "path": "data/research-sources/elara-sky-prompt-2026-10-18.txt",
+        "bytes": 2222,
+        "sha256": "c97e7b37fe05157d20e5a1e2172eeb94b4285c554f1fbf0a83e5bfcdfdbb5e92"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cefa6068-4eff-47be-828d-3c60a8459eb8.png",
+        "bytes": 1638909,
+        "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4"
+      },
+      "researchOriginal": {
+        "path": "data/research-sources/elara-generated-skyImage-original.png",
+        "bytes": 1638909,
+        "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4"
+      },
+      "width": 1706,
+      "height": 922,
+      "format": "PNG",
+      "modePixels": "RGB",
+      "transparentBackground": false,
+      "inspection": "Wholeoriginalvisuallyinspected; both exactfooterlines readable/uncropped. Small schematicJupiter above inventedgreyterrain/plainblacksky. Rendered disk visibly larger than nominalguide,uncalibrated; no measuredrasterdiameter adopted. Not a dated Jovian pattern or Elara geography."
+    }
+  },
+  "mastersAndPreviews": [
+    {
+      "kind": "surface",
+      "original": {
+        "path": "data/research-sources/elara-generated-surfaceImage-original.png",
+        "bytes": 2838503,
+        "sha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB"
+      },
+      "master": {
+        "path": "data/research-sources/elara-surface-master-preparation.jpg",
+        "bytes": 345116,
+        "sha256": "81cee66f56022e128590c345c02179f6387eb2ebe5a62d5544e23d4b1bf827fb",
+        "width": 1536,
+        "height": 864,
+        "mode": "RGB",
+        "quality": 85,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 1536
+      },
+      "preview": {
+        "path": "data/research-sources/elara-surface-preview-preparation.jpg",
+        "bytes": 10132,
+        "sha256": "7f50e35639831dad9d933096fd36e50a301e227010ab6baf07ca190b75bcd8e9",
+        "width": 256,
+        "height": 144,
+        "mode": "RGB",
+        "quality": 80,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 256
+      }
+    },
+    {
+      "kind": "sky",
+      "original": {
+        "path": "data/research-sources/elara-generated-skyImage-original.png",
+        "bytes": 1638909,
+        "sha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4",
+        "width": 1706,
+        "height": 922,
+        "mode": "RGB"
+      },
+      "master": {
+        "path": "data/research-sources/elara-sky-master-preparation.jpg",
+        "bytes": 184069,
+        "sha256": "41ea4c8eababd6569d6396317e5ae129533db25c368ac0957d431e45d188c8a2",
+        "width": 1536,
+        "height": 830,
+        "mode": "RGB",
+        "quality": 85,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 1536
+      },
+      "preview": {
+        "path": "data/research-sources/elara-sky-preview-preparation.jpg",
+        "bytes": 6524,
+        "sha256": "547ff883a139da14bde04d3c9667163a1f546f615ad6ef4659dc5a9519b363ae",
+        "width": 256,
+        "height": 138,
+        "mode": "RGB",
+        "quality": 80,
+        "resampling": "PillowLANCZOS,aspectpreserving,no crop",
+        "sizeBound": 256
+      }
+    }
+  ]
+}

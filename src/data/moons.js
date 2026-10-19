@@ -259,6 +259,19 @@ export const MOONS = [
       { label: 'SYNODIC PERIOD', value: '7.7819 ± .0005 H', tier: 'modelled', detail: 'Pilcher/Mottola/Denk2012 photometric fit,.20±.01mag; not a sidereal pole/current surface registration. Fullpaper methods unavailable.' },
     ],
     surfacePending: true, note: 'Synodic photometric period differs from orbital period; independent sidereal spin/pole and resolved globe unregistered. Native coarse disks and imagined views are separate.' },
+  { id: 'elara', name: 'Elara', parent: 'jupiter', radiusKm: 39.95, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(11710700, .212, 129.9, 346.9, 27.8, 112.8, 258.8861, 173, 270.9, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Elara,JupiterVII,JPL507; distinct from asteroid281Elara and other Himalia-group moons.' },
+      { label: 'ORBIT', value: '11,710,700 KM · 258.8861 DAYS', tier: 'modelled', detail: 'JUP347 planet-centred ecliptic mean elements,2000Jan1.5TDB;e.212,w129.9,M346.9,i27.8,node112.8deg. Publisher explicitly not for ephemeris computation; not current distance or spin.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'Currentphase/time/frame/light-time/SPICE reconstruction and covariance open. No permanentJupiterface or registeredsite.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '39.95 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half Grav2015 NEATM effective DIAMETER79.9±1.7km,not measured axes/localnormal. NASA43km assumes.04albedo; alternative retained,not a jointfit or uncertainty envelope.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Elara physical row in retained currentJPLtable; no GM,mass,density,chemistry or porosity inferred from thermalalbedo.' },
+      { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Historical Luu1991/Grav2015 lowamplitude/no period determination is not exhaustivecurrent spinstatus. Nullrotation/lockingdisabled not measurednonsynchronousstate,pole or permanentface.' },
+    ],
+    surfacePending: true, discovered: '1905 · Charles Dillon Perrine', note: 'Two independent IMAGINED local/observer views; no resolved globe or digitalshape. Native2007LORRI FITS/labels retained/linked,not embedded as calibratedterrain. Thermal/spectral fits are not local chemistry,geography or dated registration.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

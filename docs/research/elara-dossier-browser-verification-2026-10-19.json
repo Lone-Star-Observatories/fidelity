@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-19",
+  "engine": "Chromium155 via in-app browser",
+  "delivery": "loopback HTTP; UTF-16LE standalone; direct file/other engines not newly tested",
+  "completeReadableJsonExact": true,
+  "applicationExact": true,
+  "htmlParserPackedSnapshotAndApplicationExact": true,
+  "htmlBytes": 15618806,
+  "expected": {
+    "json": "37426ae04432cd3a394127ed732ae704560e1f774e4928890b161d18ef5df77b",
+    "app": "8e43e1a02a86be53b7f4dc0bad83763745adb95ac3a697580202657583115b61",
+    "packedSnapshot": "8d6bc195f7025a02bb1c703b30723605319061c92c7705712a8d74c7a0346a38",
+    "packedApp": "8382170244631bfa49cfabe25e2d23a27846127734de1182e88793c4e1286d92"
+  },
+  "decodedImages": 326,
+  "parsedGlbScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "startupCanvases": 8,
+  "normalElara": {
+    "route": "#/moon/sol/elara",
+    "ownMap": false,
+    "imaginedCards": 2,
+    "localImage": [
+      1536,
+      864
+    ],
+    "skyImage": [
+      1536,
+      830
+    ],
+    "bothLoaded": true,
+    "nativeFitsLinks": 2
+  },
+  "offlineElara": {
+    "route": "#/moon/sol/elara",
+    "ownMap": false,
+    "imaginedCards": 2,
+    "localImage": [
+      256,
+      144
+    ],
+    "skyImage": [
+      256,
+      138
+    ],
+    "bothLoaded": true,
+    "embeddedWebp": true,
+    "nativeFitsLinks": 2
+  },
+  "unsupportedGzip": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasm": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "No fresh all-route/event-worker/all-craft-route claim; prior verification retained. Native Elara FITS remain original linked research inputs, not embedded/calibrated terrain."
+}

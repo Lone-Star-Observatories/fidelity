@@ -15896,6 +15896,239 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "elara": {
+    "id": "elara",
+    "name": "Elara",
+    "kind": "moon",
+    "aliases": [
+      "Elara",
+      "Jupiter VII",
+      "J7 Elara"
+    ],
+    "researchDate": "2026-10-19",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved global texture or digital shape adopted. Original 2007 LORRI FITS/labels remain unchanged research inputs; unresolved target metadata is not local geography or calibrated visible colour.",
+    "measured": [
+      "Elara,JupiterVII,JPL507 is distinct from asteroid281Elara and other Himalia-group moons. NASA gives CharlesDillonPerrine photographic discovery1905Jan5; its historical43km radius explicitly assumes.04albedo.",
+      "Retained original LORRI products LOR_0035398319_0X630_SCI and LOR_0035398320_0X630_SCI target J7ELARA; label starts2007-03-05T11:00:01.330/11:00:02.330UTC,40ms each. V3release2016-10-31 is not observation; PDS4publication2026/migration metadata are separate. Neither current pointing nor individual target pixels independently crossmatched."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3 NEATM effective DIAMETER79.9±1.7km,eta.79±.03,visiblegeometricalbedo4.6±.7percent; W1albedo6.3±.5/W2 5.2±1.1percent. Display radius39.95km is half the thermal diameter,not measured axes/localnormal; NASAassumed-albedo43km alternative retained. GM/mass/density unknown,not inferred from an assumed composition.",
+      "WISE Table1 roundedMJDUTC55370/55540,fitbandcounts26/24/13/13 at3.4/4.6/12/24micron; not individual exposureUTC or 2007LORRI calibration. H9.45 Table1±.01 vssection4.2±.02mag retained; G=.10±.15 and conservative.15mag Herror are model assumptions. Loweta roughness/thermal-inertia interpretation does not measure local rocks,craters or chemistry.",
+      "JPLJUP347 planet-centred ecliptic2000Jan1.5TDB mean a11710700km,e.212,w129.9,M346.9,i27.8,node112.8deg,P258.8861days,apsidal173/nodal270.9yr. Publisher mean elements explicitly not intended for ephemeris computation. Navigation is illustrative propagation,not reconstructedSPICE/current distance/phase/time/light-time or orbit covariance.",
+      "Luu1991 MDM1987Nov19–20 R-band~6h/night showed~.1mag variation with no convincing period; Grav2015 lowamplitude W3 over>24h also does not determine a period. Shape/aspect/pole/longperiod alternatives are not measured axes,pole or locking. Himalia7.7819h must not be assigned toElara.",
+      "Bhatt,Reddy,Schindler,Cloutis,Bhardwaj,LeCorre,Mann2017 SpeX normalized0.8–2.4micron spectra2012Dec12/2013Dec29. Figure6 spectral-mixture52magnetite/41minnesotaite/7ilmenite coefficients,r².97 are NOT measured mass/volume/local areal fractions or unique mineral identification. Endmember/grain/temperature/nonlinearity/telluric limits and internal ferric/reduced-environment wording tension remain; no calibratedRGB,localchemistry or ocean/biological inference.",
+      "LORRI calibrated DATA NUMBER is not independently calibrated radiance/I-F/visiblecolour. One-basedUP/RIGHT rough target coordinates,WINDOWH=0,engineeringsamples/quality conventions,32vsfirst34 and documented-vs-stored quality discrepancies remain open. Debias/desmear/flat descriptions and filename/flag matches do not prove exact historical execution,PSF,pointing or photometric calibration; no numerical repair or source rescaling adopted."
+    ],
+    "unknown": [
+      "Spin,pole,localnormal,currentlongitude,registered shape/global geography,visiblecolour,atmosphere/material fractions,GM/mass/density and dated observer alignment. Null rotation and locking disabled are not measured nonsynchronous rotation or a permanentJupiterface.",
+      "No live Elara-specific scientific stream verified. Both fullFITS/labels/calibration/error/quality/native bytes remain research inputs,linked below. Independent target/PSF/pixel/frame crossmatch,complete raw-product/derivative contributor/terms audit and calibrated browser-display product remain open; no noisy diagnostic substituted as an observed terrain image. New dossier contains two explicitly IMAGINED views; native imagery integration is not claimed complete.",
+      "Final/later spectral/thermal/rotation refinements and cited raw-method/covariance audit remain open. Grav2015 ©AASallrightsreserved and specificBhatt arXivnonexclusive distribution are notCCBY; no paperfigure embedded. S/2000J11 historical lost/collision narrative and parent/capture/collision scenarios are not adopted as current status or observed history."
+    ],
+    "assumed": [
+      "Independent invented grey terrain,grains,blocks,depressions,relief,materials,chemistry/fractions,porosity,colour,lighting/exposure/viewpoint and Jupiterband/cloudpattern/phase/axis; no other observed body map/analog skin or dated site. No foreground atmosphere,plume,liquid,exposedocean,biology or survivablelanding implication. Blacksky/omittedstars/rings do not establish absence.",
+      "skyGeometry spherical69911kmJupiter at nominal11710700 minus hypothetical39.95km radialheight gives.6840996182277582deg; actual1706pxwide original/nominal90HFOV target10.18476250358361px. Original1672reference target9.98178364946764px retained. Generated disk visibly oversized/uncalibrated; no measured rasterdiameter adopted. Eccentricdistance/normal/attitude unknown; alternative43kmheight is not jointfit or uncertainty envelope.165K angularhelper only,colour/irradiance discarded; Sun5.2044AU assumed off-frame,notphotometry.",
+      "Original/defaultPNGs/fullprompts and exact prepared1536JPEG85masters/aspect-preserving256JPEG80previews retained. Sky original1706x922 differs requested1672x941; preserved uncropped,master1536x830,preview256x138. Tiny preview footers require explicitIMAGINEDcardlabels. No generated globe or shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM ELARA",
+    "skyLabel": "IMAGINED · SKY FROM ELARA",
+    "skyCaption": "Hypothetical spherical Jupiter angular guide0.6841° at nominal mean-orbit scale. Generated disk oversized/uncalibrated; field,phase,colour,pattern,exposure and registration artistic.165K helper input is not visible photometry; its colour/irradiance output is discarded.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "39.95 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "11.71 M KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.07828092736349355,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "angularDiameterDeg": 0.6840996182277582,
+      "centreDiscWidthFraction": 0.005969966297528493,
+      "irradianceEarth": 0.0000011004380158113858,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "references": [
+      {
+        "title": "NASA Elara overview; assumed-albedo radius,not resolved geography",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/elara/"
+      },
+      {
+        "title": "JPL mean elements; JUP347 not for ephemeris computation",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table; no Elara row in retained source",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav etal2015 NEOWISE primary; thermal models,all8authors retained",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "Rounded MJDUTC55370/55540; individual exposures unknown"
+      },
+      {
+        "title": "Bhatt etal2017 SpeX primary; nonexclusive distribution,no figure",
+        "url": "https://arxiv.org/abs/1710.06200",
+        "observationDate": "2012-12-12/2013-12-29"
+      },
+      {
+        "title": "Luu1991 historical spin non-detection",
+        "url": "https://adsabs.harvard.edu/pdf/1991AJ....102.1213L",
+        "observationDate": "1987-11-19/20"
+      },
+      {
+        "title": "Native2007 LORRI first originalFITS; NASA/JHUAPL/SwRI,Cheng; producerCarcich",
+        "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398319_0x630_sci.fit",
+        "observationDate": "2007-03-05T11:00:01.330Z"
+      },
+      {
+        "title": "Native2007 LORRI second originalFITS; NASA/JHUAPL/SwRI,Cheng; producerCarcich",
+        "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398320_0x630_sci.fit",
+        "observationDate": "2007-03-05T11:00:02.330Z"
+      },
+      {
+        "title": "PDS native directory and original labels; no calibrated browser derivative adopted",
+        "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/"
+      },
+      {
+        "title": "NASA media terms,sourcecredit/noendorsement/thirdparty caveats; notCCBY",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    ],
+    "nativeProducts": {
+      "embedded": false,
+      "credit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute; AndrewCheng,LORRI instrument lead; BrianCarcich,SwRI producer. PDS3Cheng2016; PDS4Cheng2026,B.Hirsch/B.Carcich editors. Calibration migration editors BrianEnke,CadenGobat,M.KatherineCrombie are not inferred original calibration authors.",
+      "publicationAndRelease": "PDS3V3release2016-10-31; PDS4publication2026,not observation dates.",
+      "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "terms": "NASA sourcecredit/noendorsement/thirdparty caveats retained; no blanketCCBY or new derivative licence asserted.",
+      "originalFiles": [
+        {
+          "path": "data/research-sources/elara-lor_0035398319_0x630_sci.lbl",
+          "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398319_0x630_sci.lbl",
+          "status": 200,
+          "contentType": null,
+          "bytes": 45760,
+          "sha256": "aecd02d7d32af3c74e26bd9abaf644c272dc9c405a01e236a15effba93ceeb7f"
+        },
+        {
+          "path": "data/research-sources/elara-lor_0035398320_0x630_sci.lbl",
+          "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398320_0x630_sci.lbl",
+          "status": 200,
+          "contentType": null,
+          "bytes": 45760,
+          "sha256": "febb10f9a43cbc804d5ffaf21206688d83d99c6b16a391d859b0cb06c14be760"
+        },
+        {
+          "path": "data/research-sources/elara-lor_0035398319_0x630_sci.fit",
+          "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398319_0x630_sci.fit",
+          "status": 200,
+          "contentType": "image/fits",
+          "bytes": 10535040,
+          "sha256": "f73e3c86927caa0cec397c4f4f38cc5289a3cf39e65614370c24259cfb73677b"
+        },
+        {
+          "path": "data/research-sources/elara-lor_0035398320_0x630_sci.fit",
+          "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/data/20070305_003539/lor_0035398320_0x630_sci.fit",
+          "status": 200,
+          "contentType": "image/fits",
+          "bytes": 10535040,
+          "sha256": "de7f9b3b7937e4d0caaaa7a2128dc6ca74c543c9dd29d63fea02e5a02256d0bb"
+        }
+      ],
+      "headers": [
+        {
+          "DATA_SET_ID": "\"NH-J-LORRI-3-JUPITER-V3.0\"",
+          "PRODUCT_ID": "\"LOR_0035398319_0X630_SCI\"",
+          "TARGET_NAME": "\"J7 ELARA\"",
+          "PRODUCT_CREATION_TIME": "2016-10-31T00:00:00",
+          "START_TIME": "2007-03-05T11:00:01.330",
+          "STOP_TIME": "2007-03-05T11:00:01.370",
+          "EXPOSURE_DURATION": "0.040 <s>",
+          "TARGET_CENTER_DISTANCE": "5828470.4 <km>",
+          "PHASE_ANGLE": "90.7 <DEGREE>",
+          "NEWHORIZONS:APPROX_TARGET_NAME": "\"ELARA\"",
+          "NEWHORIZONS:APPROX_TARGET_LINE": "446",
+          "NEWHORIZONS:APPROX_TARGET_SAMPLE": "534"
+        },
+        {
+          "DATA_SET_ID": "\"NH-J-LORRI-3-JUPITER-V3.0\"",
+          "PRODUCT_ID": "\"LOR_0035398320_0X630_SCI\"",
+          "TARGET_NAME": "\"J7 ELARA\"",
+          "PRODUCT_CREATION_TIME": "2016-10-31T00:00:00",
+          "START_TIME": "2007-03-05T11:00:02.330",
+          "STOP_TIME": "2007-03-05T11:00:02.370",
+          "EXPOSURE_DURATION": "0.040 <s>",
+          "TARGET_CENTER_DISTANCE": "5828473.6 <km>",
+          "PHASE_ANGLE": "90.7 <DEGREE>",
+          "NEWHORIZONS:APPROX_TARGET_NAME": "\"ELARA\"",
+          "NEWHORIZONS:APPROX_TARGET_LINE": "452",
+          "NEWHORIZONS:APPROX_TARGET_SAMPLE": "531"
+        }
+      ]
+    },
+    "surfaceImage": {
+      "url": "/bespoke/elara-surface-image.jpg",
+      "previewUrl": "/bespoke/elara-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain hypotheses,not measured geography.",
+      "sourceFile": "elara-generated-surfaceImage-original.png",
+      "sourceSha256": "6efa6c89052a1fcca504a8fc0da72fa744b710d94a9b3d4847f35fbed41bfe44",
+      "sha256": "81cee66f56022e128590c345c02179f6387eb2ebe5a62d5544e23d4b1bf827fb",
+      "previewSha256": "7f50e35639831dad9d933096fd36e50a301e227010ab6baf07ca190b75bcd8e9",
+      "bytes": 345116,
+      "previewBytes": 10132,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Exact prepared aspect-preserving JPEG85master/JPEG80preview copied without further resampling. Original/default generated PNG and fullprompt retained; terrain/materialappearance and parentpattern are artistic,not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/elara-sky-image.jpg",
+      "previewUrl": "/bespoke/elara-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-18",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain hypotheses,not measured geography.",
+      "sourceFile": "elara-generated-skyImage-original.png",
+      "sourceSha256": "292a17a22f5ff57c51fbac68a36679956f3ac0a6c4c9fc0f006d7b9c03f75ba4",
+      "sha256": "41ea4c8eababd6569d6396317e5ae129533db25c368ac0957d431e45d188c8a2",
+      "previewSha256": "547ff883a139da14bde04d3c9667163a1f546f615ad6ef4659dc5a9519b363ae",
+      "bytes": 184069,
+      "previewBytes": 6524,
+      "width": 1536,
+      "height": 830,
+      "previewWidth": 256,
+      "previewHeight": 138,
+      "processing": "Exact prepared aspect-preserving JPEG85master/JPEG80preview copied without further resampling. Original/default generated PNG and fullprompt retained; terrain/materialappearance and parentpattern are artistic,not radiometrically calibrated."
+    }
   }
 };
 
