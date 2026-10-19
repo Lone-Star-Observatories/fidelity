@@ -1,0 +1,400 @@
+{
+  "date": "2026-10-19",
+  "baseline": "26fd94e",
+  "scope": "Research-only publisher metadata and targeted author-manuscript Figure 9 comparison, no final-paper access or full 31-page visual-review claim.",
+  "sources": [
+    {
+      "url": "https://link.springer.com/article/10.1007/s11214-007-9271-6",
+      "finalUrl": "https://link.springer.com/article/10.1007/s11214-007-9271-6?error=cookies_not_supported&code=064d49e1-ce18-4678-9999-ec3207edcb3a",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "retrievedUtc": "2026-10-19T13:36:46.240099+00:00",
+      "path": "data/research-sources/elara-lorri-final-publisher-response-preparation-2026-10-19.html",
+      "bytes": 290942,
+      "sha256": "603a8d1372be84c800f5927c62b630b9457037414e07a6aa123bd5109f343de4",
+      "scope": "Read-only publisher-response acquisition preparation. Response hash is not a final paper or licence hash. No production changes.",
+      "open": [
+        "Final full-paper Figure 9 units comparison remains open.",
+        "Access, response type and metadata require inspection before a formal assessment. No figure permission inferred."
+      ]
+    },
+    {
+      "url": "https://link.springer.com/content/pdf/10.1007/s11214-007-9271-6.pdf",
+      "finalUrl": "https://link.springer.com/article/10.1007/s11214-007-9271-6?error=cookies_not_supported&code=13dad41b-c02e-407a-a116-0ee00d674329",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "retrievedUtc": "2026-10-19T13:49:18.863110+00:00",
+      "path": "data/research-sources/elara-lorri-final-pdf-response-preparation-2026-10-19.bin",
+      "bytes": 290908,
+      "sha256": "d9d26906d49926bf9326c387740a80caf8e4c9c2e7e43554170d08c10a80d4e3",
+      "startsPdf": false,
+      "scope": "Direct publisher metadata PDF endpoint response only. No final-paper or licence claim unless actual PDF verified; no production change."
+    },
+    {
+      "url": "https://arxiv.org/abs/0709.4278v1",
+      "finalUrl": "https://arxiv.org/abs/0709.4278v1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "retrievedUtc": "2026-10-19T13:49:41.355742+00:00",
+      "path": "data/research-sources/elara-lorri-arxiv-record-preparation-2026-10-19.html",
+      "bytes": 45916,
+      "sha256": "b875f967a7febb4550ca244c8bdd64e5bcac632d315837b7ea802701ecbda2b8",
+      "startsPdf": false
+    },
+    {
+      "url": "https://arxiv.org/pdf/0709.4278v1",
+      "finalUrl": "https://arxiv.org/pdf/0709.4278v1",
+      "status": 200,
+      "contentType": "application/pdf",
+      "retrievedUtc": "2026-10-19T13:49:42.451070+00:00",
+      "path": "data/research-sources/elara-lorri-arxiv-v1-preparation-2026-10-19.pdf",
+      "bytes": 2500710,
+      "sha256": "842347b08283c1779c3ece5837dc3288d532adac19bcfc597a827e09285e79a6",
+      "startsPdf": true
+    },
+    {
+      "url": "http://arxiv.org/licenses/assumed-1991-2003/",
+      "finalUrl": "https://arxiv.org/licenses/assumed-1991-2003/license.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "retrievedUtc": "2026-10-19T14:19:48.508464+00:00",
+      "path": "data/research-sources/elara-lorri-arxiv-licence-response-preparation-2026-10-19.html",
+      "bytes": 1988,
+      "sha256": "dfe5bdbd72f269aaf1cbbb2fcae418267571b6df6fe6c9e139dc73918b37fe13"
+    }
+  ],
+  "authors": [
+    "A. F. Cheng",
+    "H. A. Weaver",
+    "S. J. Conard",
+    "M. F. Morgan",
+    "O. Barnouin-Jha",
+    "J. D. Boldt",
+    "K. A. Cooper",
+    "E. H. Darlington",
+    "M. P. Grey",
+    "J. R. Hayes",
+    "K. E. Kosakowski",
+    "T. Magee",
+    "E. Rossano",
+    "D. Sampath",
+    "C. Schlemm",
+    "H. W. Taylor"
+  ],
+  "publisherMetadata": {
+    "scope": "Quiet read-only HTML inspection preparation; metadata is publisher claims, not the final full paper.",
+    "citationMetadata": [
+      {
+        "name": "citation_pdf_url",
+        "content": "https://link.springer.com/content/pdf/10.1007/s11214-007-9271-6.pdf"
+      },
+      {
+        "name": "citation_fulltext_html_url",
+        "content": "https://link.springer.com/article/10.1007/s11214-007-9271-6"
+      },
+      {
+        "name": "citation_journal_title",
+        "content": "Space Science Reviews"
+      },
+      {
+        "name": "citation_journal_abbrev",
+        "content": "Space Sci Rev"
+      },
+      {
+        "name": "citation_publisher",
+        "content": "Springer Netherlands"
+      },
+      {
+        "name": "citation_issn",
+        "content": "1572-9672"
+      },
+      {
+        "name": "citation_title",
+        "content": "Long-Range Reconnaissance Imager on New Horizons"
+      },
+      {
+        "name": "citation_volume",
+        "content": "140"
+      },
+      {
+        "name": "citation_issue",
+        "content": "1"
+      },
+      {
+        "name": "citation_publication_date",
+        "content": "2008/10"
+      },
+      {
+        "name": "citation_online_date",
+        "content": "2007/11/09"
+      },
+      {
+        "name": "citation_firstpage",
+        "content": "189"
+      },
+      {
+        "name": "citation_lastpage",
+        "content": "215"
+      },
+      {
+        "name": "citation_article_type",
+        "content": "Article"
+      },
+      {
+        "name": "citation_language",
+        "content": "en"
+      },
+      {
+        "name": "citation_doi",
+        "content": "10.1007/s11214-007-9271-6"
+      },
+      {
+        "name": "citation_springer_api_url",
+        "content": "http://api.springer.com/xmldata/jats?q=doi:10.1007/s11214-007-9271-6&api_key="
+      },
+      {
+        "name": "citation_reference",
+        "content": "citation_journal_title=EOS Trans. AGU; citation_author=A.F. Cheng, L.A. Young; citation_volume=83; citation_publication_date=2002; citation_pages=389; citation_id=CR1"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nS. Conard, F. Azad, J. Boldt, A. Cheng, K. Cooper, E. Darlington, M.\u00a0Grey, J.\u00a0Hayes, P.\u00a0Hogue, K.\u00a0Kosakowski, T.\u00a0Magee, M.\u00a0Morgan, E.\u00a0Rossano, D.\u00a0Sampath, C.\u00a0Schlemm, H.\u00a0Weaver, in Astrobiology and Planetary Missions, ed. by G.R. Gladstone. Proc. SPIE 5906, 2005.\n"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nK. Horne, star-www.stand.ac.uk/kdh1/pub0/ada/woe/woe.ps, University of St. Andrews, 2004.\n"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nR.L. McNutt et al., Space Sci. Rev. (2007, this issue)\n"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nF. Morgan, S.J. Conard, H.A. Weaver, O. Barnouin-Jha, A.F. Cheng, H.W.\u00a0Taylor, K.A.\u00a0Cooper, R.H.\u00a0Barkhouser, R.\u00a0Boucarut, E.H.\u00a0Darlington, M.P.\u00a0Grey, I.\u00a0Kuznetsov, T.J.\u00a0Madison, M.A.\u00a0Quijada, D.J.\u00a0Sahnow, J.M.\u00a0Stock, in Astrobiology and Planetary Missions, ed. by G.R.\u00a0Gladstone. Proc. SPIE 5906, 2005.\n"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nD. Reuter et al., Space Sci. Rev. (2007, this issue)\n"
+      },
+      {
+        "name": "citation_reference",
+        "content": "citation_journal_title=Nature; citation_title=Discovery of two new satellites of Pluto; citation_author=H.A. Weaver, S.A. Stern, M. Mutchler, A. Steffl, M. Buie, W. Merline, J. Spencer, E. Young, L. Young; citation_volume=439; citation_publication_date=2006; citation_pages=943-946; citation_doi=10.1038/nature04547; citation_id=CR7"
+      },
+      {
+        "name": "citation_reference",
+        "content": "\nH.A. Weaver et al., Space Sci. Rev. (2007, this issue)\n"
+      },
+      {
+        "name": "citation_author",
+        "content": "Cheng, A. F."
+      },
+      {
+        "name": "citation_author_email",
+        "content": "andrew.cheng@jhuapl.edu"
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Weaver, H. A."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Conard, S. J."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Morgan, M. F."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Barnouin-Jha, O."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Boldt, J. D."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Cooper, K. A."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Darlington, E. H."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Grey, M. P."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Hayes, J. R."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Kosakowski, K. E."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "SSG Precision Optronics, Wilmington, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Magee, T."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Rossano, E."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Sampath, D."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "SSG Precision Optronics, Wilmington, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Schlemm, C."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_author",
+        "content": "Taylor, H. W."
+      },
+      {
+        "name": "citation_author_institution",
+        "content": "The Johns Hopkins University Applied Physics Laboratory, Laurel, USA"
+      },
+      {
+        "name": "citation_cover_date",
+        "content": "2008/10/01"
+      }
+    ],
+    "pdfHrefInventory": [],
+    "subscriptionPreviewPhrasePresent": true,
+    "rightsPermissionPhrasePresent": true,
+    "limits": [
+      "Final PDF not acquired or inspected; Figure 9 comparison remains open.",
+      "Publisher access/copyright links do not establish CC or figure permission.",
+      "No calibration, geometry, image, catalogue or codec adoption."
+    ]
+  },
+  "manuscriptText": {
+    "path": "data/research-sources/elara-lorri-arxiv-v1-text-preparation-2026-10-19.txt",
+    "bytes": 78354,
+    "sha256": "0a5b31a35ef1a5fe1dc40f9a9c8e21d668e52ec8fc6ff3c9df95406c7bb279a1"
+  },
+  "targetedVisualComparison": {
+    "date": "2026-10-19",
+    "scope": "Read-only targeted visual comparison preparation; no final publisher PDF or full arXiv paper inspection claim.",
+    "inspected": [
+      {
+        "path": "data/research-sources/elara-lorri-arxiv-v1-preparation-2026-10-19.pdf",
+        "page": 25,
+        "render": "/tmp/fidelity-elara-arxiv-figure9.png",
+        "figure": 9,
+        "observations": [
+          "Vertical axis explicitly prints responsivity in 10^8 (DN s^-1 pixel^-1)/(W m^-2 sr^-1).",
+          "Curve-only graphic; no bandpass-measurement asterisks shown on this page.",
+          "Surrounding text uses calculated spectral responsivity with typical rather than individually measured flight-CCD quantum efficiency and absolute scaling from laboratory flat-field observations."
+        ],
+        "bytes": 2500710,
+        "sha256": "842347b08283c1779c3ece5837dc3288d532adac19bcfc597a827e09285e79a6"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-original-preparation-2026-10-19.pdf",
+        "page": 27,
+        "render": "/tmp/fidelity-elara-ssr-pdf/page-27.png",
+        "figure": 9,
+        "observations": [
+          "Caption prints (DN/s/pixel)/(W/cm^2/sr), with bandpass-measurement asterisks and further-refinement prose.",
+          "The two retained documents have different Figure 9 presentation and printed area units; do not treat them as identical versions."
+        ],
+        "bytes": 5865364,
+        "sha256": "f874f2b6c536713a1a04349cfb2393781a81fdedc6868f18553dcb8883bd0670"
+      }
+    ],
+    "limits": [
+      "arXiv record v1 is a separately retained author manuscript, not established as the final publisher PDF.",
+      "No unit conversion or response correction applied; curve normalization, final version and Elara-specific calibration remain open.",
+      "No digitization, angular/raster computation, figure embedding, pixel repair, catalogue or codec change.",
+      "Targeted page inspection does not establish full 31-page visual review."
+    ]
+  },
+  "additionalVisualInspection": {
+    "path": "data/research-sources/elara-lorri-arxiv-v1-preparation-2026-10-19.pdf",
+    "page": 26,
+    "render": "/tmp/fidelity-elara-arxiv-response.png",
+    "findings": [
+      "Equation 3 still prints 2.2e11 (DN/s/pixel)/(W/cm^2/sr/nm) at 607.6 nm for an average Pluto spectrum. Figure 9 page25 area-unit presentation and Equation3 spectral-response units describe different quantities; no automatic conversion or correction is inferred.",
+      "Commissioning Table8 dates are 2006, separate from March2007 Elara. Preliminary25 of100 July2006 bias frames remain preliminary, not exact calibration-file identity."
+    ]
+  },
+  "publication": [
+    "Publisher HTML metadata: online2007-11-09; volume140 issue1 pages189\u2013215; publication2008/10, cover2008/10/01. These are not observation dates.",
+    "Publisher PDF endpoint redirects to HTTP200 subscription-preview HTML, not a PDF. Its response hash is not a final-paper hash.",
+    "arXiv0709.4278v1 record submitted2007-09-26,31pages; independently retained2500710-byte PDF differs from archived33-page PDS preprint. Neither is silently promoted to final publisher identity."
+  ],
+  "rights": [
+    "Exact arXiv record links assumed-1991-2003 licence despite2007 submission metadata. Preserve this association without inferring its cause. The linked deed describes assumed nonexclusive arXiv distribution, not CC BY or paper-figure permission.",
+    "Publisher permissions link is not a CC licence. NASA media/third-party caveats and separate NASA/JHUAPL/SwRI dataset credits remain; full16 paper authors and JHUAPL/SSG affiliations are distinct. No figure embedded."
+  ],
+  "open": [
+    "Final publisher Figure9 comparison, calibration normalization and historical pipeline implementation.",
+    "Elara target/PSF identity, quality-definition conflict, WINDOWH0, histogram accumulation scope, physical registration and calibrated photometry.",
+    "Substantial conforming lossless capacity before Elara93 additive integration; prepared original/defaultPNGs and masters remain unchanged."
+  ],
+  "productionChanges": false,
+  "freshBrowserClaim": false
+}
