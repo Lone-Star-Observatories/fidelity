@@ -1,0 +1,1594 @@
+{
+  "date": "2026-10-19",
+  "baseline": "c96eb40",
+  "scope": "Research-only archived instrument documentation and lexical keyword audit; no SPICE loading, geometry evaluation or production adoption.",
+  "acquisitions": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/nh_lorri_ti.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/nh_lorri_ti.lblx",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T08:49:30.635655+00:00",
+      "headers": {
+        "Date": "Mon, 19 Oct 2026 08:49:30 GMT",
+        "Server": "Apache/2.4.62",
+        "Last-Modified": "Wed, 26 Jun 2024 18:59:52 GMT",
+        "ETag": "\"2b42-61bcf9e859a00\"",
+        "Accept-Ranges": "bytes",
+        "Content-Length": "11074",
+        "Connection": "close",
+        "Content-Type": "text/xml"
+      },
+      "bytes": 11074,
+      "sha256": "f88770cd731a0cdc6a23da0ebae1456be898886bc77ba93937eec33e66ee0d3a",
+      "path": "data/research-sources/elara-instrument-nh_lorri_ti.lblx-preparation-2026-10-19.txt",
+      "fields": [
+        {
+          "field": "logical_identifier",
+          "value": "urn:nasa:pds:nh_documents:lorri:nh_lorri_ti"
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "title",
+          "value": "New Horizons LORRI Fields of View SPICE Instrument Kernel"
+        },
+        {
+          "field": "description",
+          "value": "This file is intended as documentation of the Field(s) Of View (FOV(s)) for the detectors and/or slits and/or apertures comprising the New Horizons instrument on the New Horizons (NH) spacecraft."
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "description",
+          "value": "Migrated from PDS3 document and label by PDS-SBN (B. Hirsch)."
+        },
+        {
+          "field": "publication_date",
+          "value": "2020-04-01"
+        },
+        {
+          "field": "description",
+          "value": "This file is intended as documentation of the Field(s) Of View (FOV(s)) for the detectors and/or slits and/or apertures comprising the instrument on the New Horizons (NH) spacecraft that generated the data archived in this data set. This file is a NH Project LORRI SPICE Instrument Kernel (IK), current at the time of delivery of this data set, with an attached PDS label prepended. It is only provided as a convenience to the user to visualize the FOVs of the instrument. This file will not be updated in this PDS data set as part of any SPICE kernel updates, and should therefore not be used as a SPICE kernel in any scientific investigation. Specifically, the references in the IK are not relevant to the graphic visualization of the FOV and will not be provided with this data set or archived elsewhere; therefore the references should be ignored in the context of the intended scope of this file as described above. As a SPICE IK, this file has much more information than just the FOV description (e.g. references to project documentation), but in the context of this PDS data set only the FOV description is relevant. For a more complete understanding of the geometry and timing issues of the New Horizons mission, the user is directed to the SPICE PDS data set for the mission, with a data set ID of NH-J/P/SS-SPICE-6-V1.0. CAVEATS: This file is the NH LORRI SPICE Instrument Kernel (IK), current at the time of delivery of this data set, with an attached PDS label prepended. It is only provided as a convenience to the user to visualize the FOVs of the instrument. This file will not be updated in this PDS data set as part of any SPICE kernel updates, and should therefore not be used as a SPICE kernel in any scientific investigation. Specifically, the references in the IK are not relevant to the graphic visualization of the FOV and will not be provided with this data set; therefore the references should be ignored in the context of this file. If the user wishes to do any data analysis requiring NAIF/SPICE IKs, they should not use this file, but rather get the most recent IK from the NH SPICE data set and use that. - This file is included as a document as a convenience to the user because, in some of its sections, it documents the geometry of the LORRI instrument Field(s) Of View (FOV(s)). Other sections of this IK (e.g. the references) will have limited use in that scope. - The original name of the source of this file was NH_LORRI_V###.TI where ### is a version number. - The format of this file is a SPICE Kernel Pool text file - The Instrument Kernel itself is (or will be) formally archived with the New Horizons SPICE dataset. - See the SPICE documentation for details of that format - http://naif.jpl.nasa.gov/ - Even without understanding that format, the Instrument Kernel, and especially its comments, are human readable. Comments are any line for which one of the following three statements is true: 1) The line is before the first data marker line in the file 2) The line is in a section of lines between a text marker line and a data marker line with no intervening text or data marker lines 3) The line is in a section of lines between the last text marker and the end of the file with no intervening text or data marker lines - a data marker line has the single token '\\begindata' on it with all other characters on the line being whitespace - a text marker line has the single token '\\begintext' on it with all other characters on the line being whitespace - N.B. Because padding and a carriage return have been added to each line of this file, it may or may not be functional as a valid SPICE kernel."
+        },
+        {
+          "field": "file_name",
+          "value": "nh_lorri_v201_ti.txt"
+        }
+      ]
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/nh_lorri_v201_ti.txt",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/nh_lorri_v201_ti.txt",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T08:49:30.915986+00:00",
+      "headers": {
+        "Date": "Mon, 19 Oct 2026 08:49:30 GMT",
+        "Server": "Apache/2.4.62",
+        "Last-Modified": "Wed, 26 Jun 2024 18:59:52 GMT",
+        "ETag": "\"18740-61bcf9e859a00\"",
+        "Accept-Ranges": "bytes",
+        "Content-Length": "100160",
+        "Connection": "close",
+        "Content-Type": "text/plain; charset=UTF-8"
+      },
+      "bytes": 100160,
+      "sha256": "3e11a017b3052c249002c0aaf48ef27671b8317fa4b6fe936b141241eab83133",
+      "path": "data/research-sources/elara-instrument-nh_lorri_v201_ti.txt-preparation-2026-10-19.txt"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_exposure_offset_pds_v3.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_exposure_offset_pds_v3.lblx",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T08:49:31.075723+00:00",
+      "headers": {
+        "Date": "Mon, 19 Oct 2026 08:49:31 GMT",
+        "Server": "Apache/2.4.62",
+        "Last-Modified": "Wed, 26 Jun 2024 18:59:49 GMT",
+        "ETag": "\"1038-61bcf9e57d340\"",
+        "Accept-Ranges": "bytes",
+        "Content-Length": "4152",
+        "Connection": "close",
+        "Content-Type": "text/xml"
+      },
+      "bytes": 4152,
+      "sha256": "ff046984e697930af8dc6b315fadd90ff87c795612d921b797f26fe261c0b0c9",
+      "path": "data/research-sources/elara-instrument-lorri_exposure_offset_pds_v3.lblx-preparation-2026-10-19.txt",
+      "fields": [
+        {
+          "field": "logical_identifier",
+          "value": "urn:nasa:pds:nh_documents:lorri:lorri_exposure_offset_pds_v3"
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "title",
+          "value": "Determination of the True Exposure Time of New Horizons LORRI Images"
+        },
+        {
+          "field": "author_list",
+          "value": "Spencer, J; Weaver, H."
+        },
+        {
+          "field": "description",
+          "value": "This document provides a systematic determination of the true value of the exposure increment relative to the commanded time of New Horizons LORRI images."
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "description",
+          "value": "Migrated from PDS3 document and label by PDS-SBN (B. Hirsch)."
+        },
+        {
+          "field": "publication_date",
+          "value": "2020-02-29"
+        },
+        {
+          "field": "description",
+          "value": "This document provides a systematic determination of the true value of the exposure increment relative to the commanded time of New Horizons LORRI images."
+        },
+        {
+          "field": "file_name",
+          "value": "lorri_exposure_offset_pds_v3.pdf"
+        }
+      ]
+    }
+  ],
+  "fixity": {
+    "scope": "Quiet research preparation only. Three acquisition byte hashes and publisher MD5 rows verified; not document/pipeline/geometry/calibration validation. Archived FOV document explicitly disallows scientific kernel use and directs users to current mission SPICE archive. No kernel loaded, no angular/raster computation, no production adoption.",
+    "results": [
+      {
+        "path": "data/research-sources/elara-instrument-nh_lorri_ti.lblx-preparation-2026-10-19.txt",
+        "md5": "7a8d1ae5f4ce934174040c8b022c536c",
+        "publisherRow": "7a8d1ae5f4ce934174040c8b022c536c  documents/nh_lorri_ti.lblx",
+        "matches": true
+      },
+      {
+        "path": "data/research-sources/elara-instrument-nh_lorri_v201_ti.txt-preparation-2026-10-19.txt",
+        "md5": "fd5eba1003343f5233177397cd19c2b6",
+        "publisherRow": "fd5eba1003343f5233177397cd19c2b6  documents/nh_lorri_v201_ti.txt",
+        "matches": true
+      },
+      {
+        "path": "data/research-sources/elara-instrument-lorri_exposure_offset_pds_v3.lblx-preparation-2026-10-19.txt",
+        "md5": "b2d71775217578f46b3463a69500fe72",
+        "publisherRow": "b2d71775217578f46b3463a69500fe72  documents/lorri_exposure_offset_pds_v3.lblx",
+        "matches": true
+      }
+    ]
+  },
+  "lexicalInventory": {
+    "scope": "Quiet lexical preparation only. Literal data-block text retained; no SPICE loading, numeric evaluation, angular/raster calculation, image correction or production adoption. Archived documentation label expressly disallows scientific kernel use; current mission SPICE archive and actual load history remain unaudited.",
+    "source": "/Users/ageer/fun/fidelity/data/research-sources/elara-instrument-nh_lorri_v201_ti.txt-preparation-2026-10-19.txt",
+    "bytes": 100160,
+    "sha256": "3e11a017b3052c249002c0aaf48ef27671b8317fa4b6fe936b141241eab83133",
+    "transitions": [
+      {
+        "line": 35,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 48,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 505,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 516,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 520,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 540,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 566,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 582,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 829,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 854,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 898,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 923,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 1132,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 1161,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 1166,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 1195,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 1213,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 1225,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 1231,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 1237,
+        "marker": "\\begintext"
+      },
+      {
+        "line": 1246,
+        "marker": "\\begindata"
+      },
+      {
+        "line": 1252,
+        "marker": "\\begintext"
+      }
+    ],
+    "assignmentCount": 119,
+    "assignments": [
+      {
+        "line": 37,
+        "keyword": "TEXT_KERNEL_ID",
+        "operator": "+=",
+        "literalLines": [
+          "'NEWHORIZONS_LORRI V2.0.1 01-MAR-2016 IK'"
+        ]
+      },
+      {
+        "line": 39,
+        "keyword": "NAIF_BODY_NAME",
+        "operator": "+=",
+        "literalLines": [
+          "( 'NH_LORRI' )"
+        ]
+      },
+      {
+        "line": 40,
+        "keyword": "NAIF_BODY_CODE",
+        "operator": "+=",
+        "literalLines": [
+          "( -98300 )"
+        ]
+      },
+      {
+        "line": 42,
+        "keyword": "NAIF_BODY_NAME",
+        "operator": "+=",
+        "literalLines": [
+          "( 'NH_LORRI_1X1' )"
+        ]
+      },
+      {
+        "line": 43,
+        "keyword": "NAIF_BODY_CODE",
+        "operator": "+=",
+        "literalLines": [
+          "( -98301 )"
+        ]
+      },
+      {
+        "line": 45,
+        "keyword": "NAIF_BODY_NAME",
+        "operator": "+=",
+        "literalLines": [
+          "( 'NH_LORRI_4X4' )"
+        ]
+      },
+      {
+        "line": 46,
+        "keyword": "NAIF_BODY_CODE",
+        "operator": "+=",
+        "literalLines": [
+          "( -98302 )"
+        ]
+      },
+      {
+        "line": 507,
+        "keyword": "INS-98300_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI'"
+        ]
+      },
+      {
+        "line": 508,
+        "keyword": "INS-98300_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 509,
+        "keyword": "INS-98300_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 510,
+        "keyword": "INS-98300_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 511,
+        "keyword": "INS-98300_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 512,
+        "keyword": "INS-98300_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 513,
+        "keyword": "INS-98300_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 514,
+        "keyword": "INS-98300_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 522,
+        "keyword": "INS-98301_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI_1X1'"
+        ]
+      },
+      {
+        "line": 523,
+        "keyword": "INS-98301_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 524,
+        "keyword": "INS-98301_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 525,
+        "keyword": "INS-98301_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 526,
+        "keyword": "INS-98301_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 527,
+        "keyword": "INS-98301_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 528,
+        "keyword": "INS-98301_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 529,
+        "keyword": "INS-98301_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 531,
+        "keyword": "INS-98302_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI_4X4'"
+        ]
+      },
+      {
+        "line": 532,
+        "keyword": "INS-98302_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 533,
+        "keyword": "INS-98302_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 534,
+        "keyword": "INS-98302_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 535,
+        "keyword": "INS-98302_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 536,
+        "keyword": "INS-98302_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 537,
+        "keyword": "INS-98302_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 538,
+        "keyword": "INS-98302_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 568,
+        "keyword": "INS-98301_FOCAL_LENGTH",
+        "operator": "=",
+        "literalLines": [
+          "( 2618.4775964615382691 )"
+        ]
+      },
+      {
+        "line": 569,
+        "keyword": "INS-98301_FOCAL_LENGTH_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'mm'",
+          "INS-98301_F/NUMBER            = ( 12.59 )"
+        ]
+      },
+      {
+        "line": 571,
+        "keyword": "INS-98301_IFOV",
+        "operator": "=",
+        "literalLines": [
+          "( 4.963571 )"
+        ]
+      },
+      {
+        "line": 572,
+        "keyword": "INS-98301_APERTURE_DIAMETER",
+        "operator": "=",
+        "literalLines": [
+          "( 208 )"
+        ]
+      },
+      {
+        "line": 573,
+        "keyword": "INS-98301_APERTURE_DIAM_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "( 'mm' )"
+        ]
+      },
+      {
+        "line": 575,
+        "keyword": "INS-98302_FOCAL_LENGTH",
+        "operator": "=",
+        "literalLines": [
+          "( 2618.4775964615382691 )"
+        ]
+      },
+      {
+        "line": 576,
+        "keyword": "INS-98302_FOCAL_LENGTH_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'mm'",
+          "INS-98302_F/NUMBER            = ( 12.59 )"
+        ]
+      },
+      {
+        "line": 578,
+        "keyword": "INS-98302_IFOV",
+        "operator": "=",
+        "literalLines": [
+          "( 19.854284 )"
+        ]
+      },
+      {
+        "line": 579,
+        "keyword": "INS-98302_APERTURE_DIAMETER",
+        "operator": "=",
+        "literalLines": [
+          "( 208  )"
+        ]
+      },
+      {
+        "line": 580,
+        "keyword": "INS-98302_APERTURE_DIAM_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "( 'mm' )"
+        ]
+      },
+      {
+        "line": 831,
+        "keyword": "INS-98301_OOC_FOCAL_LENGTH",
+        "operator": "=",
+        "literalLines": [
+          "2618.4775964615382691"
+        ]
+      },
+      {
+        "line": 832,
+        "keyword": "INS-98301_OOC_FOCAL_LENGTH_SIGMA",
+        "operator": "=",
+        "literalLines": [
+          "0.020"
+        ]
+      },
+      {
+        "line": 834,
+        "keyword": "INS-98301_OOC_KMAT",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "76.9408555820574094,",
+          "0.0,",
+          "0.0,",
+          "76.9408555820574094",
+          ")"
+        ]
+      },
+      {
+        "line": 841,
+        "keyword": "INS-98301_OOC_EM",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "2.7172539725122498E-05,",
+          "-1.9034392552127415E-05,",
+          "-2.8806647687927984E-05",
+          ")"
+        ]
+      },
+      {
+        "line": 846,
+        "keyword": "INS-98301_OOC_EM_SIGMA",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "0.016E-05,",
+          "0.083E-05,",
+          "0.080E-05",
+          ")"
+        ]
+      },
+      {
+        "line": 852,
+        "keyword": "INS-98301_OOC_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 511.5, 511.5 )"
+        ]
+      },
+      {
+        "line": 900,
+        "keyword": "INS-98302_OOC_FOCAL_LENGTH",
+        "operator": "=",
+        "literalLines": [
+          "2618.4775964615382691"
+        ]
+      },
+      {
+        "line": 901,
+        "keyword": "INS-98302_OOC_FOCAL_LENGTH_SIGMA",
+        "operator": "=",
+        "literalLines": [
+          "0.020"
+        ]
+      },
+      {
+        "line": 903,
+        "keyword": "INS-98302_OOC_KMAT",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "19.2352138955143523,",
+          "0.0,",
+          "0.0,",
+          "19.2352138955143523",
+          ")"
+        ]
+      },
+      {
+        "line": 910,
+        "keyword": "INS-98302_OOC_EM",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "2.7172539725122498E-05,",
+          "-1.9034392552127415E-05,",
+          "-2.8806647687927984E-05",
+          ")"
+        ]
+      },
+      {
+        "line": 915,
+        "keyword": "INS-98302_OOC_EM_SIGMA",
+        "operator": "=",
+        "literalLines": [
+          "(",
+          "0.016E-05,",
+          "0.083E-05,",
+          "0.080E-05",
+          ")"
+        ]
+      },
+      {
+        "line": 921,
+        "keyword": "INS-98302_OOC_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 127.5, 127.5 )"
+        ]
+      },
+      {
+        "line": 1134,
+        "keyword": "INS-98301_SIP_A_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1135,
+        "keyword": "INS-98301_SIP_A_3_0",
+        "operator": "=",
+        "literalLines": [
+          "-4.5683524653106E-09"
+        ]
+      },
+      {
+        "line": 1136,
+        "keyword": "INS-98301_SIP_A_2_1",
+        "operator": "=",
+        "literalLines": [
+          "3.6773993329229E-13"
+        ]
+      },
+      {
+        "line": 1137,
+        "keyword": "INS-98301_SIP_A_1_2",
+        "operator": "=",
+        "literalLines": [
+          "-4.5506608174421E-09"
+        ]
+      },
+      {
+        "line": 1138,
+        "keyword": "INS-98301_SIP_A_0_3",
+        "operator": "=",
+        "literalLines": [
+          "-4.8263827227450E-16"
+        ]
+      },
+      {
+        "line": 1139,
+        "keyword": "INS-98301_SIP_A_2_0",
+        "operator": "=",
+        "literalLines": [
+          "3.7132883452972E-07"
+        ]
+      },
+      {
+        "line": 1140,
+        "keyword": "INS-98301_SIP_A_1_1",
+        "operator": "=",
+        "literalLines": [
+          "2.4489911491959E-07"
+        ]
+      },
+      {
+        "line": 1141,
+        "keyword": "INS-98301_SIP_A_0_2",
+        "operator": "=",
+        "literalLines": [
+          "-3.8995992016687E-10"
+        ]
+      },
+      {
+        "line": 1142,
+        "keyword": "INS-98301_SIP_B_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1143,
+        "keyword": "INS-98301_SIP_B_3_0",
+        "operator": "=",
+        "literalLines": [
+          "-4.8263374371619E-16"
+        ]
+      },
+      {
+        "line": 1144,
+        "keyword": "INS-98301_SIP_B_2_1",
+        "operator": "=",
+        "literalLines": [
+          "-4.5505047160943E-09"
+        ]
+      },
+      {
+        "line": 1145,
+        "keyword": "INS-98301_SIP_B_1_2",
+        "operator": "=",
+        "literalLines": [
+          "3.6773991492864E-13"
+        ]
+      },
+      {
+        "line": 1146,
+        "keyword": "INS-98301_SIP_B_0_3",
+        "operator": "=",
+        "literalLines": [
+          "-4.5685088916275E-09"
+        ]
+      },
+      {
+        "line": 1147,
+        "keyword": "INS-98301_SIP_B_2_0",
+        "operator": "=",
+        "literalLines": [
+          "-2.5764535470748E-10"
+        ]
+      },
+      {
+        "line": 1148,
+        "keyword": "INS-98301_SIP_B_1_1",
+        "operator": "=",
+        "literalLines": [
+          "3.7063022991452E-07"
+        ]
+      },
+      {
+        "line": 1149,
+        "keyword": "INS-98301_SIP_B_0_2",
+        "operator": "=",
+        "literalLines": [
+          "2.4536068067188E-07"
+        ]
+      },
+      {
+        "line": 1150,
+        "keyword": "INS-98301_SIP_AP_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1151,
+        "keyword": "INS-98301_SIP_AP_3_0",
+        "operator": "=",
+        "literalLines": [
+          "4.5900372459772E-09"
+        ]
+      },
+      {
+        "line": 1152,
+        "keyword": "INS-98301_SIP_AP_1_2",
+        "operator": "=",
+        "literalLines": [
+          "4.5900372459772E-09"
+        ]
+      },
+      {
+        "line": 1153,
+        "keyword": "INS-98301_SIP_AP_1_1",
+        "operator": "=",
+        "literalLines": [
+          "-2.4738992578302E-07"
+        ]
+      },
+      {
+        "line": 1154,
+        "keyword": "INS-98301_SIP_AP_2_0",
+        "operator": "=",
+        "literalLines": [
+          "-3.7439988768003E-07"
+        ]
+      },
+      {
+        "line": 1155,
+        "keyword": "INS-98301_SIP_BP_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1156,
+        "keyword": "INS-98301_SIP_BP_2_1",
+        "operator": "=",
+        "literalLines": [
+          "4.5900372459772E-09"
+        ]
+      },
+      {
+        "line": 1157,
+        "keyword": "INS-98301_SIP_BP_0_3",
+        "operator": "=",
+        "literalLines": [
+          "4.5900372459772E-09"
+        ]
+      },
+      {
+        "line": 1158,
+        "keyword": "INS-98301_SIP_BP_0_2",
+        "operator": "=",
+        "literalLines": [
+          "-2.4738992578302E-07"
+        ]
+      },
+      {
+        "line": 1159,
+        "keyword": "INS-98301_SIP_BP_1_1",
+        "operator": "=",
+        "literalLines": [
+          "-3.7439988768003E-07"
+        ]
+      },
+      {
+        "line": 1168,
+        "keyword": "INS-98302_SIP_A_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1169,
+        "keyword": "INS-98302_SIP_A_3_0",
+        "operator": "=",
+        "literalLines": [
+          "-7.3093639444970E-08"
+        ]
+      },
+      {
+        "line": 1170,
+        "keyword": "INS-98302_SIP_A_2_1",
+        "operator": "=",
+        "literalLines": [
+          "5.8838389330992E-12"
+        ]
+      },
+      {
+        "line": 1171,
+        "keyword": "INS-98302_SIP_A_1_2",
+        "operator": "=",
+        "literalLines": [
+          "-7.2810573079073E-08"
+        ]
+      },
+      {
+        "line": 1172,
+        "keyword": "INS-98302_SIP_A_0_3",
+        "operator": "=",
+        "literalLines": [
+          "-7.7222124763245E-15"
+        ]
+      },
+      {
+        "line": 1173,
+        "keyword": "INS-98302_SIP_A_2_0",
+        "operator": "=",
+        "literalLines": [
+          "1.4853153381189E-06"
+        ]
+      },
+      {
+        "line": 1174,
+        "keyword": "INS-98302_SIP_A_1_1",
+        "operator": "=",
+        "literalLines": [
+          "9.7959645967839E-07"
+        ]
+      },
+      {
+        "line": 1175,
+        "keyword": "INS-98302_SIP_A_0_2",
+        "operator": "=",
+        "literalLines": [
+          "-1.5598396806578E-09"
+        ]
+      },
+      {
+        "line": 1176,
+        "keyword": "INS-98302_SIP_B_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1177,
+        "keyword": "INS-98302_SIP_B_3_0",
+        "operator": "=",
+        "literalLines": [
+          "-7.7221397202775E-15"
+        ]
+      },
+      {
+        "line": 1178,
+        "keyword": "INS-98302_SIP_B_2_1",
+        "operator": "=",
+        "literalLines": [
+          "-7.2808075457509E-08"
+        ]
+      },
+      {
+        "line": 1179,
+        "keyword": "INS-98302_SIP_B_1_2",
+        "operator": "=",
+        "literalLines": [
+          "5.8838386384176E-12"
+        ]
+      },
+      {
+        "line": 1180,
+        "keyword": "INS-98302_SIP_B_0_3",
+        "operator": "=",
+        "literalLines": [
+          "-7.3096142266041E-08"
+        ]
+      },
+      {
+        "line": 1181,
+        "keyword": "INS-98302_SIP_B_2_0",
+        "operator": "=",
+        "literalLines": [
+          "-1.0305814188049E-09"
+        ]
+      },
+      {
+        "line": 1182,
+        "keyword": "INS-98302_SIP_B_1_1",
+        "operator": "=",
+        "literalLines": [
+          "1.4825209196581E-06"
+        ]
+      },
+      {
+        "line": 1183,
+        "keyword": "INS-98302_SIP_B_0_2",
+        "operator": "=",
+        "literalLines": [
+          "9.8144272268748E-07"
+        ]
+      },
+      {
+        "line": 1184,
+        "keyword": "INS-98302_SIP_AP_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1185,
+        "keyword": "INS-98302_SIP_AP_3_0",
+        "operator": "=",
+        "literalLines": [
+          "7.3440595935636E-08"
+        ]
+      },
+      {
+        "line": 1186,
+        "keyword": "INS-98302_SIP_AP_1_2",
+        "operator": "=",
+        "literalLines": [
+          "7.3440595935636E-08"
+        ]
+      },
+      {
+        "line": 1187,
+        "keyword": "INS-98302_SIP_AP_1_1",
+        "operator": "=",
+        "literalLines": [
+          "-9.8955970313209E-07"
+        ]
+      },
+      {
+        "line": 1188,
+        "keyword": "INS-98302_SIP_AP_2_0",
+        "operator": "=",
+        "literalLines": [
+          "-1.4975995507201E-06"
+        ]
+      },
+      {
+        "line": 1189,
+        "keyword": "INS-98302_SIP_BP_ORDER",
+        "operator": "=",
+        "literalLines": [
+          "3"
+        ]
+      },
+      {
+        "line": 1190,
+        "keyword": "INS-98302_SIP_BP_2_1",
+        "operator": "=",
+        "literalLines": [
+          "7.3440595935636E-08"
+        ]
+      },
+      {
+        "line": 1191,
+        "keyword": "INS-98302_SIP_BP_0_3",
+        "operator": "=",
+        "literalLines": [
+          "7.3440595935636E-08"
+        ]
+      },
+      {
+        "line": 1192,
+        "keyword": "INS-98302_SIP_BP_0_2",
+        "operator": "=",
+        "literalLines": [
+          "-9.8955970313209E-07"
+        ]
+      },
+      {
+        "line": 1193,
+        "keyword": "INS-98302_SIP_BP_1_1",
+        "operator": "=",
+        "literalLines": [
+          "-1.4975995507201E-06"
+        ]
+      },
+      {
+        "line": 1215,
+        "keyword": "INS-98301_PIXEL_SAMPLES",
+        "operator": "=",
+        "literalLines": [
+          "( 1024 )"
+        ]
+      },
+      {
+        "line": 1216,
+        "keyword": "INS-98301_PIXEL_LINES",
+        "operator": "=",
+        "literalLines": [
+          "( 1024 )"
+        ]
+      },
+      {
+        "line": 1217,
+        "keyword": "INS-98301_PIXEL_SIZE",
+        "operator": "=",
+        "literalLines": [
+          "(  12.997  )"
+        ]
+      },
+      {
+        "line": 1218,
+        "keyword": "INS-98301_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 511.5, 511.5 )"
+        ]
+      },
+      {
+        "line": 1220,
+        "keyword": "INS-98302_PIXEL_SAMPLES",
+        "operator": "=",
+        "literalLines": [
+          "( 256 )"
+        ]
+      },
+      {
+        "line": 1221,
+        "keyword": "INS-98302_PIXEL_LINES",
+        "operator": "=",
+        "literalLines": [
+          "( 256 )"
+        ]
+      },
+      {
+        "line": 1222,
+        "keyword": "INS-98302_PIXEL_SIZE",
+        "operator": "=",
+        "literalLines": [
+          "( 51.988 )"
+        ]
+      },
+      {
+        "line": 1223,
+        "keyword": "INS-98302_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 127.5, 127.5 )"
+        ]
+      },
+      {
+        "line": 1233,
+        "keyword": "INS-98300_REFERENCE_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 1234,
+        "keyword": "INS-98301_REFERENCE_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 1235,
+        "keyword": "INS-98302_REFERENCE_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 1248,
+        "keyword": "INS-98300_PLATFORM_ID",
+        "operator": "=",
+        "literalLines": [
+          "( -98000 )"
+        ]
+      },
+      {
+        "line": 1249,
+        "keyword": "INS-98301_PLATFORM_ID",
+        "operator": "=",
+        "literalLines": [
+          "( -98000 )"
+        ]
+      },
+      {
+        "line": 1250,
+        "keyword": "INS-98302_PLATFORM_ID",
+        "operator": "=",
+        "literalLines": [
+          "( -98000 )"
+        ]
+      }
+    ],
+    "selectedCoordinateKeywords": [
+      {
+        "line": 507,
+        "keyword": "INS-98300_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI'"
+        ]
+      },
+      {
+        "line": 508,
+        "keyword": "INS-98300_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 509,
+        "keyword": "INS-98300_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 510,
+        "keyword": "INS-98300_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 511,
+        "keyword": "INS-98300_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 512,
+        "keyword": "INS-98300_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 513,
+        "keyword": "INS-98300_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 514,
+        "keyword": "INS-98300_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 522,
+        "keyword": "INS-98301_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI_1X1'"
+        ]
+      },
+      {
+        "line": 523,
+        "keyword": "INS-98301_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 524,
+        "keyword": "INS-98301_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 525,
+        "keyword": "INS-98301_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 526,
+        "keyword": "INS-98301_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 527,
+        "keyword": "INS-98301_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 528,
+        "keyword": "INS-98301_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 529,
+        "keyword": "INS-98301_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 531,
+        "keyword": "INS-98302_FOV_FRAME",
+        "operator": "=",
+        "literalLines": [
+          "'NH_LORRI_4X4'"
+        ]
+      },
+      {
+        "line": 532,
+        "keyword": "INS-98302_FOV_SHAPE",
+        "operator": "=",
+        "literalLines": [
+          "'RECTANGLE'"
+        ]
+      },
+      {
+        "line": 533,
+        "keyword": "INS-98302_BORESIGHT",
+        "operator": "=",
+        "literalLines": [
+          "( 0.0, 0.0, -1.0 )"
+        ]
+      },
+      {
+        "line": 534,
+        "keyword": "INS-98302_FOV_CLASS_SPEC",
+        "operator": "=",
+        "literalLines": [
+          "'ANGLES'"
+        ]
+      },
+      {
+        "line": 535,
+        "keyword": "INS-98302_FOV_REF_VECTOR",
+        "operator": "=",
+        "literalLines": [
+          "( 1.0, 0.0, 0.0 )"
+        ]
+      },
+      {
+        "line": 536,
+        "keyword": "INS-98302_FOV_REF_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 537,
+        "keyword": "INS-98302_FOV_CROSS_ANGLE",
+        "operator": "=",
+        "literalLines": [
+          "( 0.14560853 )"
+        ]
+      },
+      {
+        "line": 538,
+        "keyword": "INS-98302_FOV_ANGLE_UNITS",
+        "operator": "=",
+        "literalLines": [
+          "'DEGREES'"
+        ]
+      },
+      {
+        "line": 852,
+        "keyword": "INS-98301_OOC_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 511.5, 511.5 )"
+        ]
+      },
+      {
+        "line": 921,
+        "keyword": "INS-98302_OOC_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 127.5, 127.5 )"
+        ]
+      },
+      {
+        "line": 1215,
+        "keyword": "INS-98301_PIXEL_SAMPLES",
+        "operator": "=",
+        "literalLines": [
+          "( 1024 )"
+        ]
+      },
+      {
+        "line": 1216,
+        "keyword": "INS-98301_PIXEL_LINES",
+        "operator": "=",
+        "literalLines": [
+          "( 1024 )"
+        ]
+      },
+      {
+        "line": 1217,
+        "keyword": "INS-98301_PIXEL_SIZE",
+        "operator": "=",
+        "literalLines": [
+          "(  12.997  )"
+        ]
+      },
+      {
+        "line": 1218,
+        "keyword": "INS-98301_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 511.5, 511.5 )"
+        ]
+      },
+      {
+        "line": 1220,
+        "keyword": "INS-98302_PIXEL_SAMPLES",
+        "operator": "=",
+        "literalLines": [
+          "( 256 )"
+        ]
+      },
+      {
+        "line": 1221,
+        "keyword": "INS-98302_PIXEL_LINES",
+        "operator": "=",
+        "literalLines": [
+          "( 256 )"
+        ]
+      },
+      {
+        "line": 1222,
+        "keyword": "INS-98302_PIXEL_SIZE",
+        "operator": "=",
+        "literalLines": [
+          "( 51.988 )"
+        ]
+      },
+      {
+        "line": 1223,
+        "keyword": "INS-98302_CCD_CENTER",
+        "operator": "=",
+        "literalLines": [
+          "( 127.5, 127.5 )"
+        ]
+      }
+    ],
+    "limits": [
+      "Literal keyword inventory does not validate SPICE syntax, dependencies, precedence, frame rotation or dates of use.",
+      "Version 2016-03-01 is later than Elara 2007 observations; no historical pipeline identity inferred.",
+      "File publication/migration, version date and observation date remain separate.",
+      "Optical inversion and zero-based convention require complete frame/pixel crosswalk; no silent flip or offset adopted."
+    ]
+  },
+  "findings": [
+    "The label explicitly restricts this archived text to FOV documentation and warns against use as a scientific SPICE kernel; it directs scientific analysis to the current New Horizons SPICE archive. No kernel was loaded.",
+    "The text identifies NEWHORIZONS_LORRI V2.0.1 01-MAR-2016 IK, later than the 2007 Elara observations. This does not establish which kernel or pipeline was used for acquisition or processing.",
+    "The read-only lexical inventory finds 119 assignment starts across 22 data/text markers, including 34 coordinate-related keywords. It retains continuation literals, not evaluated kernel-pool state, and is not a SPICE syntax validator.",
+    "Printed optical inversion, sky/CCD/IDL display diagrams and zero-reference convention changes are retained. No flip, transpose, pixel offset, attitude or surface registration is adopted.",
+    "The version history reports changes to measured pixel-size scaling, OOC coefficient signs, units, zero-based centers and IFOV. These are publisher history statements, not independently reproduced calibration or authority to modify native images.",
+    "The exposure-offset label identifies Spencer J and Weaver H, Document publication2020-02-29 and citation year2024. The PDF is not acquired or assessed here; neither publication nor migration is an observation date or evidence that timing corrections were applied.",
+    "Three acquired files match retained current publisher MD5 entries and local SHA256/length. Fixity is not historical pipeline, calibration, target/PSF, frame or photometry validation."
+  ],
+  "credits": {
+    "science": "NASA / Johns Hopkins University Applied Physics Laboratory / Southwest Research Institute",
+    "datasetCitation": "Cheng A, 2016; Brian Carcich producer; Andrew Cheng instrument lead/contact, retained from earlier dataset records.",
+    "instrumentTextVersionAndContacts": [
+      "Howard Taylor, JHU/APL",
+      "Lillian Nguyen, JHU/APL",
+      "Brian Carcich, Latchmoor Services LLC"
+    ],
+    "referencedContributors": [
+      "Bill Owen",
+      "Hal Weaver",
+      "David L Shupe and coauthors (SIP reference; complete reference text retained in source)"
+    ],
+    "exposureDocumentAuthors": [
+      "J Spencer",
+      "H Weaver"
+    ],
+    "migration": "B Hirsch, PDS-SBN; separate from original instrument/science authors",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "termsLimit": "Active NASA media and third-party caveats preserved; no blanket CC BY or document-figure permission asserted."
+  },
+  "open": [
+    "Current authoritative SPICE kernels, dependency/frame/clock/attitude load history and exact raw-product crosswalk",
+    "WINDOWH0, quality-bit definition conflict, timing/pipeline history, lowrate histogram accumulation scope",
+    "Physical registration, calibrated visible colour and photometry; no resolved Elara geography",
+    "Exposure-offset PDF and instrument SSR full-document audit",
+    "Conforming lossless standalone capacity before additive Elara93 integration; original views/masters/previews already prepared"
+  ],
+  "preservation": "All 92 dossiers, original/default generated PNGs, masters, native science, maps/models/shapes, source records and recorded Europa Clipper preserved. No new image, resampling, mask/repair, numeric geometry, embedding, catalogue or codec change.",
+  "validation": {
+    "tests": {
+      "passed": 692,
+      "skipped": 1,
+      "failed": 0,
+      "log": "/tmp/fidelity-elara-instrument-tests.log"
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "fullBuildLog": "/tmp/fidelity-elara-instrument-full.log",
+    "preservationAudit": {
+      "retainedSourceAndGeneratedHashesChecked": 156,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "c96eb40",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15992418,
+      "headroomBytes": 7582,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "d04260c838e65387bab546f6b799e5efc46355441e37fdde16196235b5cf3fa4",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "limits": "Complete Node inverse verified; no fresh browser claim. Interbuild feed differences unaudited; no compression savings attribution."
+  }
+}
