@@ -1,0 +1,1352 @@
+{
+  "date": "2026-10-19",
+  "status": "PROMISING ISOLATED ASSESSMENT; NOT PRODUCTION ADOPTED",
+  "scope": "Lossless reconstruction of every original JPEG bitstream in a frozen full standalone snapshot. JPEG XL is an internal reversible transport here, not a replacement scientific rendition or pixel re-encoding. No dossier, public asset, map, model, catalogue or production codec is changed.",
+  "frozenSnapshot": {
+    "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/frozen-snapshot.json",
+    "bytes": 27994567,
+    "sha256": "8a5f5763af72fe2e765f3b5a224599121ccb95f2a43c7cbed4ac7807cd3de6b7"
+  },
+  "primarySources": [
+    {
+      "url": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/README.md",
+      "status": 200,
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/README.txt",
+      "bytes": 6851,
+      "sha256": "8add75da28cda2e10ff1c24542d596725ccd25fa12abc84f10907c5483d47382",
+      "retrievedUtc": "2026-10-19T17:49:52.842597+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/lib/include/jxl/decode.h",
+      "finalUrl": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/lib/include/jxl/decode.h",
+      "status": 200,
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/decode.txt",
+      "bytes": 70762,
+      "sha256": "4aaf05b3ff83b0cbc0a511539286da9187615119c17eeb7fb8ddde910c429a7d",
+      "retrievedUtc": "2026-10-19T17:49:53.028208+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/tools/wasm_demo/README.md",
+      "finalUrl": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/tools/wasm_demo/README.md",
+      "status": 200,
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/wasm_demo.txt",
+      "bytes": 5721,
+      "sha256": "814527a2db500deb2ea372a63f4a16cedd305f51787e6a727ba143761b6660cc",
+      "retrievedUtc": "2026-10-19T17:49:53.246437+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/LICENSE",
+      "finalUrl": "https://raw.githubusercontent.com/libjxl/libjxl/v0.11.1/LICENSE",
+      "status": 200,
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/LICENSE.txt",
+      "bytes": 1508,
+      "sha256": "8405932022a556380c2d8c272eff154a923feb197233f348ce5f7334fb0a5ede",
+      "retrievedUtc": "2026-10-19T17:49:53.432356+00:00"
+    }
+  ],
+  "scientificRights": "Software licences do not grant rights to images. Every existing source, credit, publication/observation distinction, source hash, native MIME and scientific limitation remains applicable. No change to calibrated colour, photometry, geography, chemistry or registration claims.",
+  "toolchain": {
+    "libjxlCommit": "794a5dcf0d54f9f0b20d288a12e87afb91d20dfc",
+    "submoduleVersions": " ff8d743aaba05b3014f17e5475e576242fa979fc testdata (ff8d743)\n 36533a866ed1ca4b75cf049f4521e4ec5fe24727 third_party/brotli (36533a8)\n 58d77fa8070e8cec2dc1ed015d66b454c8d78850 third_party/googletest (58d77fa)\n 457c891775a7397bdb0376bb1031e6e027af1c48 third_party/highway (457c891)\n 65c63bf549d78253c14b30b3d62cb668bbbe612c third_party/lcms (65c63bf)\n 8ecba3647edb6dd940463fedf38ca33a8e2a73d1 third_party/libjpeg-turbo (8ecba36)\n f135775ad4e5d4408d2e12ffcc71bb36e6b48551 third_party/libpng (f135775)\n e5ab13008bb214deb66d5f3e17ca2f8dbff150bf third_party/sjpeg (e5ab130)\n 42030a771244ba67f86b1c1c76a6493f873c5f91 third_party/skcms (42030a7)\n 51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf third_party/zlib (51b7f2a)\n",
+    "emsdkCommit": "3b3963d86a5c97adaf6eaa845cdfe0b811c2f960",
+    "emscriptenVersion": "3.1.73",
+    "buildType": "MinSizeRel; link -Oz; JPEGXL_ENABLE_WASM_THREADS=OFF; transcodeJPEG and boxes enabled"
+  },
+  "nativeCli": {
+    "encoder": "/opt/homebrew/bin/cjxl",
+    "decoder": "/opt/homebrew/bin/djxl",
+    "version": "0.11.1",
+    "encodeArguments": [
+      "input.jpg",
+      "output.jxl",
+      "--lossless_jpeg=1",
+      "-e9"
+    ],
+    "decodeArguments": [
+      "output.jxl",
+      "restored.jpg"
+    ],
+    "all60OriginalByteEqual": true,
+    "originalJpegBytes": 5267909,
+    "reconstructionPayloadBytes": 3928547,
+    "results": [
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec.jpg",
+        "bytes": 90822,
+        "sha256": "104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec.jxl",
+        "jxlBytes": 67646,
+        "jxlSha256": "2774aa5473e383e3e77f053ca1a339e1c526062ad7ca24b67f8dc4672ad2a954",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7.jpg",
+        "bytes": 27558,
+        "sha256": "1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7.jxl",
+        "jxlBytes": 22154,
+        "jxlSha256": "f718edcba54ddf5f23412a960f41c5f182441ec44ba50fad9642727bcdccfaf3",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d.jpg",
+        "bytes": 43806,
+        "sha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d.jxl",
+        "jxlBytes": 18558,
+        "jxlSha256": "6c437606fd05e7e15ba4dadbb4f5ba0cec0561c3f8913293435e8c16bfd5b6bf",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136.jpg",
+        "bytes": 69746,
+        "sha256": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136.jxl",
+        "jxlBytes": 48537,
+        "jxlSha256": "d926f83f0f1dd48c3d586243e9e722fce2aecb94a4af70220e2ddffceb31df41",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633.jpg",
+        "bytes": 14095,
+        "sha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633.jxl",
+        "jxlBytes": 9843,
+        "jxlSha256": "4b2b727954f848a5a48011e8e9584aa56b0c7e47b8ce93c681ce03f10e3f1b65",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515.jpg",
+        "bytes": 8331,
+        "sha256": "1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515.jxl",
+        "jxlBytes": 5830,
+        "jxlSha256": "6ce4c47df8e97c8258874b9ec1fb8a5100b0d2ff76acfe2128125ce98d0d95d6",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca.jpg",
+        "bytes": 24614,
+        "sha256": "1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca.jxl",
+        "jxlBytes": 18050,
+        "jxlSha256": "4700b3e82325f8cd615f8a23089bc503864e5c31b0ebfe5c5ffee292d789b5fd",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f.jpg",
+        "bytes": 122690,
+        "sha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f.jxl",
+        "jxlBytes": 95722,
+        "jxlSha256": "9e7f6dad8084a1649ab8196be16c275ed7c840764c98d98c9ec1d67af6037158",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68.jpg",
+        "bytes": 33774,
+        "sha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68.jxl",
+        "jxlBytes": 26283,
+        "jxlSha256": "dfed3c99c3885e04f4edb57d0310cd81ce35f61ca4f5246f25a20e90b76f9d29",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/228926997f4192c399166669de81b72d0055199ac675e179af6fd61f5e8a18a4.jpg",
+        "bytes": 26004,
+        "sha256": "228926997f4192c399166669de81b72d0055199ac675e179af6fd61f5e8a18a4",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/228926997f4192c399166669de81b72d0055199ac675e179af6fd61f5e8a18a4.jxl",
+        "jxlBytes": 9986,
+        "jxlSha256": "ef821be53fbd3ad878b607c38887e70cd9dd2ab99d637565c1d2876d2480cde8",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0.jpg",
+        "bytes": 346819,
+        "sha256": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0.jxl",
+        "jxlBytes": 181635,
+        "jxlSha256": "d923496a017bdccd5ca21c400046c19106b92f60ad4f0c5ff554e327dfe1e73e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c.jpg",
+        "bytes": 43453,
+        "sha256": "2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c.jxl",
+        "jxlBytes": 36223,
+        "jxlSha256": "8ac790e91334d10a7e41138c3add518e9cebb9b3ba0827da7657a2c6ba5d6196",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11.jpg",
+        "bytes": 67049,
+        "sha256": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11.jxl",
+        "jxlBytes": 52512,
+        "jxlSha256": "71b9ac71bbdc5b6fa8a7cb112abc8093bf26e35e8e12bf703537b9f37868e4bb",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d.jpg",
+        "bytes": 15011,
+        "sha256": "2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d.jxl",
+        "jxlBytes": 12965,
+        "jxlSha256": "af9a59c527ad5c2b00f8669e768e9dac9b85373ac17a057f31bbe9141e3fa880",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62.jpg",
+        "bytes": 176877,
+        "sha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62.jxl",
+        "jxlBytes": 125259,
+        "jxlSha256": "5a08202f94ce5dd9cb918914426780761f12868762d49dfb68386d04dd973057",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6.jpg",
+        "bytes": 134419,
+        "sha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6.jxl",
+        "jxlBytes": 111137,
+        "jxlSha256": "cc3e4c058ffec68e25a9962d03f687901683de4d39fb85e5f826200be6e3648a",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5.jpg",
+        "bytes": 17311,
+        "sha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5.jxl",
+        "jxlBytes": 6104,
+        "jxlSha256": "fdaf1025520aeb77d3d3701b57a087adc12268cf28b69e9a215db4208f91ad6f",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349.jpg",
+        "bytes": 47564,
+        "sha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349.jxl",
+        "jxlBytes": 18411,
+        "jxlSha256": "5361fcfeb983f1029930f9ca7047a95089ad1c054c8ecb31f1963776c5d18979",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014.jpg",
+        "bytes": 14401,
+        "sha256": "4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014.jxl",
+        "jxlBytes": 11186,
+        "jxlSha256": "a7b348a1c740c7885b4577bbbf3f0f84de6722a772f27e8ee7a9e075d1891951",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc.jpg",
+        "bytes": 5991,
+        "sha256": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc.jxl",
+        "jxlBytes": 4638,
+        "jxlSha256": "8373d5af915121e71817b442df3bf05db9f1dc06f9c3f97b878122044b2a7584",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72.jpg",
+        "bytes": 186747,
+        "sha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72.jxl",
+        "jxlBytes": 138523,
+        "jxlSha256": "b7cef6a0a405aac308e6ce82ee2ab31c65ce717e8e4cd9265862ff9c5ea77d1a",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728.jpg",
+        "bytes": 10097,
+        "sha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728.jxl",
+        "jxlBytes": 8548,
+        "jxlSha256": "689a16b46aa9c1a4273d3a1a91d4bec4d74e3c2f41e6d05a46d7510c9a4e0e0c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c.jpg",
+        "bytes": 45924,
+        "sha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c.jxl",
+        "jxlBytes": 36831,
+        "jxlSha256": "841ced4dec487ca1c3ed09624869c4dc34c6a3179d5930fa2831b95b0a35a4c3",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3.jpg",
+        "bytes": 26108,
+        "sha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3.jxl",
+        "jxlBytes": 12222,
+        "jxlSha256": "bbfafac3622c8cf499a22b1060cd0741a917041018623efffce510ec89ce548c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060.jpg",
+        "bytes": 14865,
+        "sha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060.jxl",
+        "jxlBytes": 10606,
+        "jxlSha256": "19e1397e97f4c330c3847c5424d5cbb857559c2a141a5d2d0573d089e8de52a9",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616.jpg",
+        "bytes": 33558,
+        "sha256": "7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616.jxl",
+        "jxlBytes": 21137,
+        "jxlSha256": "8b6a118a51907626cfef8069346b0d418c17a8d01ee98697f1c83847d38cbabd",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425.jpg",
+        "bytes": 169897,
+        "sha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425.jxl",
+        "jxlBytes": 121437,
+        "jxlSha256": "f258c86135946771474e2fb3c21d3096edbf017c56cd7a1d9e37fc9096e6b73e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c.jpg",
+        "bytes": 19838,
+        "sha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c.jxl",
+        "jxlBytes": 16791,
+        "jxlSha256": "630b86b32e99398950d2c7e0776af1f5d99723f1f70157dff1a412a76301927e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71.jpg",
+        "bytes": 49295,
+        "sha256": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71.jxl",
+        "jxlBytes": 37051,
+        "jxlSha256": "ca8b271acfc589d0656eab06379a8d0c8c5a4845b2cd0e1ee1fdd13814c33a09",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a.jpg",
+        "bytes": 320294,
+        "sha256": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a.jxl",
+        "jxlBytes": 222001,
+        "jxlSha256": "edcf093d3b72abc4d41a18fffdc3e2bacf47c47bd4491ac78e06e0020222c331",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b.jpg",
+        "bytes": 2790,
+        "sha256": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b.jxl",
+        "jxlBytes": 2634,
+        "jxlSha256": "8bbd2ed2309a816f455f26308e5148184820a7db5b5cce0789d61dfa375dd64c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b.jpg",
+        "bytes": 29042,
+        "sha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b.jxl",
+        "jxlBytes": 5621,
+        "jxlSha256": "df5a9be64e09f6e6e5ed6250866bbf3f1067b72e0f6149ba2be0aceb5599bca2",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106.jpg",
+        "bytes": 89216,
+        "sha256": "97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106.jxl",
+        "jxlBytes": 74254,
+        "jxlSha256": "5639ff71c9be3cb95142b9f5e668519410f9735ba783a596bb3c371d520e0c4e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf.jpg",
+        "bytes": 7480,
+        "sha256": "9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf.jxl",
+        "jxlBytes": 5651,
+        "jxlSha256": "d8f2a882867bb5d5bceeaa67ff1ede78865d450f95ca646352eb57455541a34c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d.jpg",
+        "bytes": 61533,
+        "sha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d.jxl",
+        "jxlBytes": 49334,
+        "jxlSha256": "4c00f019c4a71ce6f63aa9eabcf80a809bf1603152698e366a6df1933b702d63",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc.jpg",
+        "bytes": 1829,
+        "sha256": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc.jxl",
+        "jxlBytes": 1393,
+        "jxlSha256": "2bd91e0f4b6b7964c9ba51d4559bd7297331ed387a02c23e875909c621a89b6c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13.jpg",
+        "bytes": 8016,
+        "sha256": "a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13.jxl",
+        "jxlBytes": 6947,
+        "jxlSha256": "f66bcad6374cffbc2c065d893bdec9a33ea12eec276a8dcc59d61b1c3a3ef985",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f.jpg",
+        "bytes": 195650,
+        "sha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f.jxl",
+        "jxlBytes": 161368,
+        "jxlSha256": "03e5b01303f4cc524da79b4fb46f14ee0500ef81f9060065d96b2bd204cc7cc8",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446.jpg",
+        "bytes": 633054,
+        "sha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446.jxl",
+        "jxlBytes": 531954,
+        "jxlSha256": "50f1d5d999ab45b639e4dbb0563547ec0cffbd235b8c358bbd58e1421bbcacf7",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206.jpg",
+        "bytes": 11904,
+        "sha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206.jxl",
+        "jxlBytes": 8730,
+        "jxlSha256": "97a6ac7c3e87466aefac084960a59c13764a862d4b0913d03c91dc4e8f3e6a81",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5.jpg",
+        "bytes": 6768,
+        "sha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5.jxl",
+        "jxlBytes": 5328,
+        "jxlSha256": "7c71aac4bca2c060476416f4868de2007a8eeb5db73ffba57f392254111ce66a",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81.jpg",
+        "bytes": 39526,
+        "sha256": "b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81.jxl",
+        "jxlBytes": 32835,
+        "jxlSha256": "e6b11204048ce0a870ff0f5f8d2b6ea13ed642434acc81c032655fd94c10e596",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517.jpg",
+        "bytes": 118764,
+        "sha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517.jxl",
+        "jxlBytes": 96617,
+        "jxlSha256": "7bc0b76a349c3f57889b6b2e1be573baed222eab28c9bb3e8d92d5f281adbcf1",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e.jpg",
+        "bytes": 33782,
+        "sha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e.jxl",
+        "jxlBytes": 25926,
+        "jxlSha256": "8f0f9a4647edd0b5dd3e715a19c055abdc649271af9e8bd5cddb42a4c9267ec9",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b.jpg",
+        "bytes": 107856,
+        "sha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b.jxl",
+        "jxlBytes": 76823,
+        "jxlSha256": "6dd05fe946211dccd039599c0926ddecf6d634c6492bc07eade243e1614e3576",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098.jpg",
+        "bytes": 130498,
+        "sha256": "bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098.jxl",
+        "jxlBytes": 88626,
+        "jxlSha256": "b8ae3ad5f44b2209fc9c15a192fe94c800f1d6d051fa7f2ec38364235bbab6ad",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c.jpg",
+        "bytes": 69456,
+        "sha256": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c.jxl",
+        "jxlBytes": 40695,
+        "jxlSha256": "6c93ab5956b38feb76fe720ea973336f290eee2dd26305967dc28b0c59aee26f",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7.jpg",
+        "bytes": 155956,
+        "sha256": "cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7.jxl",
+        "jxlBytes": 133932,
+        "jxlSha256": "74ad11279d7401d20bfaeafb659c6846986dbc995b4369735367257ce0a41ea0",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549.jpg",
+        "bytes": 652671,
+        "sha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549.jxl",
+        "jxlBytes": 512331,
+        "jxlSha256": "5091a49a76fb4a0bbb458c66b04da4d606b2adf2963725bf3ecee6fa95ddba4e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d.jpg",
+        "bytes": 34475,
+        "sha256": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d.jxl",
+        "jxlBytes": 28500,
+        "jxlSha256": "af74d1baf370c11e4d4c50c7cd8689f6d9a7eb890a3aa6bacad688703ea2830b",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6.jpg",
+        "bytes": 12596,
+        "sha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6.jxl",
+        "jxlBytes": 7086,
+        "jxlSha256": "d05a08e47dd91daaf8782bdc0299de8ea1d132f0d5fbdede364796b9a124e3ff",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d.jpg",
+        "bytes": 15942,
+        "sha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d.jxl",
+        "jxlBytes": 13140,
+        "jxlSha256": "b2d2bce5afa4cf4226db23cfa2477b1c43d2fdb2618e595ef95709a4a702c422",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba.jpg",
+        "bytes": 29742,
+        "sha256": "e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba.jxl",
+        "jxlBytes": 19906,
+        "jxlSha256": "772502df66c73d93a964b2b9c0309e6f081e2f8ed726c678dce001dd78ce26db",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e587a52166be7d07c4ff41281bb168c23bc2e6fc86667ccf670d666bbd9a555a.jpg",
+        "bytes": 266835,
+        "sha256": "e587a52166be7d07c4ff41281bb168c23bc2e6fc86667ccf670d666bbd9a555a",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e587a52166be7d07c4ff41281bb168c23bc2e6fc86667ccf670d666bbd9a555a.jxl",
+        "jxlBytes": 220859,
+        "jxlSha256": "771b3e215da9072a9d00f08e7b77b8ee397c5be5f6e7878e875304bb96e0c4d8",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6.jpg",
+        "bytes": 18436,
+        "sha256": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6.jxl",
+        "jxlBytes": 11976,
+        "jxlSha256": "dd466cb01530f4ba90ac414b395d79ffb03227aa03595386286d07e0b14af326",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062.jpg",
+        "bytes": 11336,
+        "sha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062.jxl",
+        "jxlBytes": 9487,
+        "jxlSha256": "1a3431bb8008a3ce2f6cc940b78ff2d04e733a7cd81aefd17667ee47a5cd4195",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323.jpg",
+        "bytes": 18762,
+        "sha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323.jxl",
+        "jxlBytes": 12233,
+        "jxlSha256": "e422bf81297a352cd3da9d802ae3fdec4a31eb5bf116e2406aa326633aad17a7",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2.jpg",
+        "bytes": 1099,
+        "sha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2.jxl",
+        "jxlBytes": 945,
+        "jxlSha256": "b6edc620829e515cb73d5cd832621d49dd31340718a8afab523d57ae062470f5",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0.jpg",
+        "bytes": 8326,
+        "sha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0.jxl",
+        "jxlBytes": 2671,
+        "jxlSha256": "08b0fe7dadc207915e338da8cf9f5ce32bf10556f5027a63ba8584f04c4a94ba",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780.jpg",
+        "bytes": 287611,
+        "sha256": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+        "encoderReturnCode": 0,
+        "decoderReturnCode": 0,
+        "jxlPath": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/all-jpeg/f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780.jxl",
+        "jxlBytes": 232919,
+        "jxlSha256": "9ab6256b93ed91e7d72fba3ee1550a264764afef27dab21bbc2151c9cd24b2ad",
+        "exactOriginalJpegBytes": true
+      }
+    ]
+  },
+  "wrapper": {
+    "path": "docs/research/standalone-jxl-reconstruct-2026-10-19.c",
+    "bytes": 971,
+    "sha256": "8c264c0ec56838a28a543a33650ba187245d61baf4c469a9f1980fc3eaf96b51"
+  },
+  "decoderFiles": [
+    {
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/wasm-build/fidelity_reconstruct.mjs",
+      "bytes": 9401,
+      "sha256": "33002d14f14b514431874926ae29d835f4e4a3b51a1a617cfe53883410248050"
+    },
+    {
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/wasm-build/fidelity_reconstruct.wasm",
+      "bytes": 838051,
+      "sha256": "9c5d9658655c56e1b4f705f555e2744f4639b225328b88e999fb2ec10686c854"
+    }
+  ],
+  "recipe": {
+    "source": "Official libjxl v0.11.1 recursive clone, pinned commit and submodules above. Official emsdk pinned commit above, install and activate 3.1.73 locally; no shell-startup edits.",
+    "configure": [
+      "emcmake",
+      "cmake",
+      "-S",
+      "libjxl",
+      "-B",
+      "wasm-build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=MinSizeRel",
+      "-DBUILD_SHARED_LIBS=OFF",
+      "-DBUILD_TESTING=OFF",
+      "-DJPEGXL_ENABLE_TOOLS=OFF",
+      "-DJPEGXL_ENABLE_JPEGLI=OFF",
+      "-DJPEGXL_ENABLE_DOXYGEN=OFF",
+      "-DJPEGXL_ENABLE_MANPAGES=OFF",
+      "-DJPEGXL_ENABLE_BENCHMARK=OFF",
+      "-DJPEGXL_ENABLE_EXAMPLES=OFF",
+      "-DJPEGXL_ENABLE_JNI=OFF",
+      "-DJPEGXL_ENABLE_SJPEG=OFF",
+      "-DJPEGXL_ENABLE_OPENEXR=OFF",
+      "-DJPEGXL_ENABLE_SKCMS=ON",
+      "-DJPEGXL_ENABLE_TCMALLOC=OFF",
+      "-DJPEGXL_ENABLE_WASM_THREADS=OFF"
+    ],
+    "targetCmake": "add_executable(fidelity_reconstruct ../reconstruct.c)\ntarget_link_libraries(fidelity_reconstruct PRIVATE jxl_dec)\nset_target_properties(fidelity_reconstruct PROPERTIES SUFFIX \".mjs\")\ntarget_link_options(fidelity_reconstruct PRIVATE \"-Oz\" \"--no-entry\" \"-sMODULARIZE=1\" \"-sEXPORT_ES6=1\" \"-sENVIRONMENT=web,node\" \"-sALLOW_MEMORY_GROWTH=1\" \"-sFILESYSTEM=0\" \"-sEXPORTED_FUNCTIONS=['_reconstruct','_malloc','_free']\")\n",
+    "build": [
+      "cmake",
+      "--build",
+      "wasm-build",
+      "--target",
+      "fidelity_reconstruct",
+      "-j4"
+    ],
+    "corrections": "Initial event subscription omitted FULL_IMAGE, then corrected before all60 proof. Initial threaded configure was replaced by explicit WASM_THREADS=OFF. Initial wrapper accepted trailing input; final wrapper requires JxlDecoderReleaseInput==0. No prototype entered production."
+  },
+  "nodeProof": {
+    "scope": "Isolated Node WebAssembly execution of custom single-threaded, all60JPEGs libjxl JPEG reconstruction wrapper. Not browser/fullJSON/HTML integration.",
+    "wasm": {
+      "bytes": 838051,
+      "sha256": "9c5d9658655c56e1b4f705f555e2744f4639b225328b88e999fb2ec10686c854"
+    },
+    "glue": {
+      "bytes": 9401
+    },
+    "results": [
+      {
+        "inputSha256": "2774aa5473e383e3e77f053ca1a339e1c526062ad7ca24b67f8dc4672ad2a954",
+        "restoredBytes": 90822,
+        "restoredSha256": "104a38a680e824f717c5bcdcb0457fa2e42a6a27e739867ca9f507900162bfec",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "f718edcba54ddf5f23412a960f41c5f182441ec44ba50fad9642727bcdccfaf3",
+        "restoredBytes": 27558,
+        "restoredSha256": "1218c8c0a7f236bd09d65775613aa1bfe734f5505912d40a83db3e58d3771ed7",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "6c437606fd05e7e15ba4dadbb4f5ba0cec0561c3f8913293435e8c16bfd5b6bf",
+        "restoredBytes": 43806,
+        "restoredSha256": "16123079d1ad21cb0b3c566210755f613a0b16e465926cedcd0d538b00863f3d",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "d926f83f0f1dd48c3d586243e9e722fce2aecb94a4af70220e2ddffceb31df41",
+        "restoredBytes": 69746,
+        "restoredSha256": "163774dc420405e6b15e0cbc3fac0b87dc93f405a7e39c4b5d14dcbcfb19a136",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "4b2b727954f848a5a48011e8e9584aa56b0c7e47b8ce93c681ce03f10e3f1b65",
+        "restoredBytes": 14095,
+        "restoredSha256": "1b5284e232b4edfd4a13f92e7fcd0314a03907a9bcc46720f10a06f4cea94633",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "6ce4c47df8e97c8258874b9ec1fb8a5100b0d2ff76acfe2128125ce98d0d95d6",
+        "restoredBytes": 8331,
+        "restoredSha256": "1cdcabfac498e43a78eed71496192c90f2f424316bc8078d5a430134a7c8d515",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "4700b3e82325f8cd615f8a23089bc503864e5c31b0ebfe5c5ffee292d789b5fd",
+        "restoredBytes": 24614,
+        "restoredSha256": "1e046b5d32da92ee49886d247efd7776159b41059f42b75e26af171900a89eca",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "9e7f6dad8084a1649ab8196be16c275ed7c840764c98d98c9ec1d67af6037158",
+        "restoredBytes": 122690,
+        "restoredSha256": "1f3ddd5a2a5ad003960b710a84d1fe45423d6ba24135c784661674dd98c5536f",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "dfed3c99c3885e04f4edb57d0310cd81ce35f61ca4f5246f25a20e90b76f9d29",
+        "restoredBytes": 33774,
+        "restoredSha256": "1f61d1a5a5c3f777916a05368805278e1382e9c6dde6993d3d2ebd07676a2d68",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "ef821be53fbd3ad878b607c38887e70cd9dd2ab99d637565c1d2876d2480cde8",
+        "restoredBytes": 26004,
+        "restoredSha256": "228926997f4192c399166669de81b72d0055199ac675e179af6fd61f5e8a18a4",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "d923496a017bdccd5ca21c400046c19106b92f60ad4f0c5ff554e327dfe1e73e",
+        "restoredBytes": 346819,
+        "restoredSha256": "236fdc506b8a80baee9955a02308a81dacccf5a0014bc21257f137a98fbde2d0",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "8ac790e91334d10a7e41138c3add518e9cebb9b3ba0827da7657a2c6ba5d6196",
+        "restoredBytes": 43453,
+        "restoredSha256": "2512bc552dc1b90eb7e07d27198cbe1ae08dc0611ab4d4b8289bf02dfb4d031c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "71b9ac71bbdc5b6fa8a7cb112abc8093bf26e35e8e12bf703537b9f37868e4bb",
+        "restoredBytes": 67049,
+        "restoredSha256": "284b2cf89a55a6c4f5be4eb61b467f4f3521fc0dd7676cd95f2c9f411bb59c11",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "af9a59c527ad5c2b00f8669e768e9dac9b85373ac17a057f31bbe9141e3fa880",
+        "restoredBytes": 15011,
+        "restoredSha256": "2c00af3b10360f85168d7e299deef170b232ea07074980601205290c5a009c5d",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "5a08202f94ce5dd9cb918914426780761f12868762d49dfb68386d04dd973057",
+        "restoredBytes": 176877,
+        "restoredSha256": "2dd03a9780603d6896826eea6e29f2c74d415831cf3d29bfabee91ce05befe62",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "cc3e4c058ffec68e25a9962d03f687901683de4d39fb85e5f826200be6e3648a",
+        "restoredBytes": 134419,
+        "restoredSha256": "37ea73e715c8ebd7d35cefb8f030cc72a5d3c533e51856f60bea67fe0685dea6",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "fdaf1025520aeb77d3d3701b57a087adc12268cf28b69e9a215db4208f91ad6f",
+        "restoredBytes": 17311,
+        "restoredSha256": "38ff99a909b6ff72b1d012f9602cdaadb93fad932f50daef22dce651d04112b5",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "5361fcfeb983f1029930f9ca7047a95089ad1c054c8ecb31f1963776c5d18979",
+        "restoredBytes": 47564,
+        "restoredSha256": "3e7126c54302c7d4c9d1d22085028424366ece918a8e12b5ff097c9889a22349",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "a7b348a1c740c7885b4577bbbf3f0f84de6722a772f27e8ee7a9e075d1891951",
+        "restoredBytes": 14401,
+        "restoredSha256": "4edf69e2c930e3381233a758bf5a547f8ecef2214d8aa9430c91dd5c5a1fe014",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "8373d5af915121e71817b442df3bf05db9f1dc06f9c3f97b878122044b2a7584",
+        "restoredBytes": 5991,
+        "restoredSha256": "51d058ca348d9418458ca67c1729cdcb91215c1a753c54f060081d9947a09abc",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "b7cef6a0a405aac308e6ce82ee2ab31c65ce717e8e4cd9265862ff9c5ea77d1a",
+        "restoredBytes": 186747,
+        "restoredSha256": "52b5dbe3595aecd0d7bfe68bb2f855b1faea2746454a61613ab735e569095a72",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "689a16b46aa9c1a4273d3a1a91d4bec4d74e3c2f41e6d05a46d7510c9a4e0e0c",
+        "restoredBytes": 10097,
+        "restoredSha256": "5d33de0242c5ab91e37353b0da37822fb9fe8f095d0d9942d71024e8e7a52728",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "841ced4dec487ca1c3ed09624869c4dc34c6a3179d5930fa2831b95b0a35a4c3",
+        "restoredBytes": 45924,
+        "restoredSha256": "604920d42eb976e0b45efaa5093341c7918d502561eb37b8283ce7006aabbb9c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "bbfafac3622c8cf499a22b1060cd0741a917041018623efffce510ec89ce548c",
+        "restoredBytes": 26108,
+        "restoredSha256": "658285cb3fd55a33a6ece0cead5fa2f43e87da4d790e790af9267b403bb36ca3",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "19e1397e97f4c330c3847c5424d5cbb857559c2a141a5d2d0573d089e8de52a9",
+        "restoredBytes": 14865,
+        "restoredSha256": "6fd64988baebfe61906ca8bb0ca58fabb9aec75facd9e3110d71dc7d68fe8060",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "8b6a118a51907626cfef8069346b0d418c17a8d01ee98697f1c83847d38cbabd",
+        "restoredBytes": 33558,
+        "restoredSha256": "7045b682fa3effe001998a273d462c4097ffc7618fe2b1afacda4636902bb616",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "f258c86135946771474e2fb3c21d3096edbf017c56cd7a1d9e37fc9096e6b73e",
+        "restoredBytes": 169897,
+        "restoredSha256": "722e261781ab4d164adbe5a9a9cd81ebdfef891088b321470bd966d8284b6425",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "630b86b32e99398950d2c7e0776af1f5d99723f1f70157dff1a412a76301927e",
+        "restoredBytes": 19838,
+        "restoredSha256": "73ddb508c68215cbb65150eb744348041c1e397d226a27ea482fe528e460e72c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "ca8b271acfc589d0656eab06379a8d0c8c5a4845b2cd0e1ee1fdd13814c33a09",
+        "restoredBytes": 49295,
+        "restoredSha256": "7950457a7d227d84ed8e823cfcacb36080f88485b2cbd547504c0427d691ad71",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "edcf093d3b72abc4d41a18fffdc3e2bacf47c47bd4491ac78e06e0020222c331",
+        "restoredBytes": 320294,
+        "restoredSha256": "7deeac6962e701c6b809960b69e25c18ddc81014964e2dcd4d56a4ffb95b002a",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "8bbd2ed2309a816f455f26308e5148184820a7db5b5cce0789d61dfa375dd64c",
+        "restoredBytes": 2790,
+        "restoredSha256": "90d72d2697d97ea9be13a3f1d957ca8e84b849fcbd087f7b6ecd2e5d469e3d8b",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "df5a9be64e09f6e6e5ed6250866bbf3f1067b72e0f6149ba2be0aceb5599bca2",
+        "restoredBytes": 29042,
+        "restoredSha256": "91ab671c54faa202c0b53c0d39956bcb48342ac060b7229e73c4552ce283208b",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "5639ff71c9be3cb95142b9f5e668519410f9735ba783a596bb3c371d520e0c4e",
+        "restoredBytes": 89216,
+        "restoredSha256": "97a4e6506a85c681bff7767555bb1de7b19afb12cec9d6e7896b93d97cb99106",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "d8f2a882867bb5d5bceeaa67ff1ede78865d450f95ca646352eb57455541a34c",
+        "restoredBytes": 7480,
+        "restoredSha256": "9b8e7b6a2ff899ab55c7553b47bbbdb9d36ea6a9a4c508c41185d1b47a8595bf",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "4c00f019c4a71ce6f63aa9eabcf80a809bf1603152698e366a6df1933b702d63",
+        "restoredBytes": 61533,
+        "restoredSha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "2bd91e0f4b6b7964c9ba51d4559bd7297331ed387a02c23e875909c621a89b6c",
+        "restoredBytes": 1829,
+        "restoredSha256": "a00aa2da6fea9576721907b21395457fff9a2967dd54cb99129cb43d8a736cbc",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "f66bcad6374cffbc2c065d893bdec9a33ea12eec276a8dcc59d61b1c3a3ef985",
+        "restoredBytes": 8016,
+        "restoredSha256": "a2f8b44dfc8a592c5a5856d03ccfec09f4dbbe7f15c06d6ce4a85bc2b49cba13",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "03e5b01303f4cc524da79b4fb46f14ee0500ef81f9060065d96b2bd204cc7cc8",
+        "restoredBytes": 195650,
+        "restoredSha256": "a7d05402986eaceda50c71ee4cdff1d1d2fef11cd19eadac5690d6db45913a3f",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "50f1d5d999ab45b639e4dbb0563547ec0cffbd235b8c358bbd58e1421bbcacf7",
+        "restoredBytes": 633054,
+        "restoredSha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "97a6ac7c3e87466aefac084960a59c13764a862d4b0913d03c91dc4e8f3e6a81",
+        "restoredBytes": 11904,
+        "restoredSha256": "afe0d69a38883cc1ede3f55b38bdd52de8a6eef989a8d05a0acda7abbed59206",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "7c71aac4bca2c060476416f4868de2007a8eeb5db73ffba57f392254111ce66a",
+        "restoredBytes": 6768,
+        "restoredSha256": "b069c32ec66e94575d499a28711bb8dd1e7d9bc05c4824c33f676256170677d5",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "e6b11204048ce0a870ff0f5f8d2b6ea13ed642434acc81c032655fd94c10e596",
+        "restoredBytes": 39526,
+        "restoredSha256": "b095fce60ac09c67dc9525227f6abcc16a93840a32928afb87ed0ff2674a3c81",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "7bc0b76a349c3f57889b6b2e1be573baed222eab28c9bb3e8d92d5f281adbcf1",
+        "restoredBytes": 118764,
+        "restoredSha256": "b2a5e482d427a58d9d12aa240b04f1399dbfa8fa21a3989c9a62f10ac58a5517",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "8f0f9a4647edd0b5dd3e715a19c055abdc649271af9e8bd5cddb42a4c9267ec9",
+        "restoredBytes": 33782,
+        "restoredSha256": "bc53502e49d3ac25bb65ac912148841c1ce573c70e1f471749af6f69e46b750e",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "6dd05fe946211dccd039599c0926ddecf6d634c6492bc07eade243e1614e3576",
+        "restoredBytes": 107856,
+        "restoredSha256": "bcf60e265c67955f35b8dd7b490de2902da5499c110961a78cb0671619e3162b",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "b8ae3ad5f44b2209fc9c15a192fe94c800f1d6d051fa7f2ec38364235bbab6ad",
+        "restoredBytes": 130498,
+        "restoredSha256": "bdeec28cb01cf487ce676d1345b3c732215d405a354b3e9a6e8a69fb0f567098",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "6c93ab5956b38feb76fe720ea973336f290eee2dd26305967dc28b0c59aee26f",
+        "restoredBytes": 69456,
+        "restoredSha256": "c491c3f9136a1bf3288ebe812935a1547941bd37fae8815a3294bb6d1c76688c",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "74ad11279d7401d20bfaeafb659c6846986dbc995b4369735367257ce0a41ea0",
+        "restoredBytes": 155956,
+        "restoredSha256": "cbad103b4785ce1cb1c7c0283792550bb365ec1d95beeba199d1e39a98eaa4d7",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "5091a49a76fb4a0bbb458c66b04da4d606b2adf2963725bf3ecee6fa95ddba4e",
+        "restoredBytes": 652671,
+        "restoredSha256": "d13bc76888c8683172cd4a6f4d722fd85c207130381e2e1dd82629b051e19549",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "af74d1baf370c11e4d4c50c7cd8689f6d9a7eb890a3aa6bacad688703ea2830b",
+        "restoredBytes": 34475,
+        "restoredSha256": "d228f1d179b6bafc7725ee337b805d04df77c6356136f25cab3262c4168e5a7d",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "d05a08e47dd91daaf8782bdc0299de8ea1d132f0d5fbdede364796b9a124e3ff",
+        "restoredBytes": 12596,
+        "restoredSha256": "d6b2bbe60de26b9580f38dbb9a4c9fc50dd0ba2f2ddca71bd1826df6bff6a8a6",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "b2d2bce5afa4cf4226db23cfa2477b1c43d2fdb2618e595ef95709a4a702c422",
+        "restoredBytes": 15942,
+        "restoredSha256": "e06d60d8b6c8040e97442d156c141c996ee7e7fcf185996a4428a1948438237d",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "772502df66c73d93a964b2b9c0309e6f081e2f8ed726c678dce001dd78ce26db",
+        "restoredBytes": 29742,
+        "restoredSha256": "e14e948182be89550aa3e633c964a4c0cdb4c6e1d0bd29afec615dd8b21dd7ba",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "771b3e215da9072a9d00f08e7b77b8ee397c5be5f6e7878e875304bb96e0c4d8",
+        "restoredBytes": 266835,
+        "restoredSha256": "e587a52166be7d07c4ff41281bb168c23bc2e6fc86667ccf670d666bbd9a555a",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "dd466cb01530f4ba90ac414b395d79ffb03227aa03595386286d07e0b14af326",
+        "restoredBytes": 18436,
+        "restoredSha256": "e5be019e4175c1d81d61651ff77e83f070df6fc12cf09df52a11c9fe82282ee6",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "1a3431bb8008a3ce2f6cc940b78ff2d04e733a7cd81aefd17667ee47a5cd4195",
+        "restoredBytes": 11336,
+        "restoredSha256": "ea2d5cebe4b068ca0cbf7f7fb3fc6466deb34ffc5fabefa4f5d7e5f372d5a062",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "e422bf81297a352cd3da9d802ae3fdec4a31eb5bf116e2406aa326633aad17a7",
+        "restoredBytes": 18762,
+        "restoredSha256": "eafa8d060bf7c9a73d10fc33ae926e808e0f9cb3e1ade05fec1aa053e52b9323",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "b6edc620829e515cb73d5cd832621d49dd31340718a8afab523d57ae062470f5",
+        "restoredBytes": 1099,
+        "restoredSha256": "f31bd3c896a63cabc7dab78b5436e5059b797140a6416c53853650c32c92c6e2",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "08b0fe7dadc207915e338da8cf9f5ce32bf10556f5027a63ba8584f04c4a94ba",
+        "restoredBytes": 8326,
+        "restoredSha256": "f66316a392623e2995738f28ddbc2731727a4daec35c34080c456d4c2b1beaf0",
+        "exactOriginalJpegBytes": true
+      },
+      {
+        "inputSha256": "9ab6256b93ed91e7d72fba3ee1550a264764afef27dab21bbc2151c9cd24b2ad",
+        "restoredBytes": 287611,
+        "restoredSha256": "f7a3f67f8dd667a83c1efefe4fdd35f47ba186777cd49552f88f5b81f3fd9780",
+        "exactOriginalJpegBytes": true
+      }
+    ]
+  },
+  "completeContainerScreen": {
+    "scope": "Isolated complete FIDNUM02 JPEG-reconstruction frame. Exact custom single-threaded WASM inverse in Node; no production or browser adoption.",
+    "snapshotSha256": "8a5f5763af72fe2e765f3b5a224599121ccb95f2a43c7cbed4ac7807cd3de6b7",
+    "original": {
+      "bytes": 21707851,
+      "sha256": "50d891006ac8a1aba82cf6f220540a88c1a6109f530794bf521b1923d680c827",
+      "outerGzipBytes": 14858697
+    },
+    "candidate": {
+      "bytes": 20370300,
+      "sha256": "47c2dda91d5da152167e68149c470737eae019d0bd7ac39fdea472a7f62f1447",
+      "outerGzipBytes": 13957988,
+      "jpegAssets": 60,
+      "assetCount": 359,
+      "exactOriginalContainer": true,
+      "exactCompleteJson": true,
+      "nativeAndBundledJsBrotliExact": true
+    },
+    "decoder": {
+      "glueBytes": 9401,
+      "wasmBytes": 838051,
+      "combinedBrotliFontOuterGzipBytes": 215271
+    },
+    "estimatedNetCompressedReductionBeforeTransportAndIntegration": 685438,
+    "limits": [
+      "Research frame parser is not production-hardened.",
+      "No browser/HTML startup or integration savings claim.",
+      "Decoder costs include glue and WASM but exclude integration code and transport overhead.",
+      "All original JPEG bytes reconstructed; no pixel re-encoding."
+    ]
+  },
+  "screenReproducer": {
+    "path": "docs/research/standalone-jxl-reconstruction-screen-2026-10-19.mjs",
+    "bytes": 4928,
+    "sha256": "30e5bc35fa687c4ed9bbd12232aabe52269d74d6dc3307de745478ea0a5a1729"
+  },
+  "frame": "FIDJXL01 + uint32 original size + uint32 untouched FIDNUM02-prefix size + untouched prefix + uint32 asset count. Each asset has uint32 UTF8 prefix length/prefix, one type byte, uint32 original payload length, uint32 stored payload length, payload. Type1 is byte-reconstructable JXL; type0 unchanged. Original asset order, prefix spelling, numeric lexemes, JSON whitespace and all other payloads restore exactly. This research parser still needs strict production bounds/overflow/count/checksum validation.",
+  "malformedDiagnostic": {
+    "scope": "Isolated wrapper malformed-input diagnostic; not a production parser validation.",
+    "cases": [
+      {
+        "case": "truncated-0",
+        "result": -1,
+        "exact": false
+      },
+      {
+        "case": "truncated-1",
+        "result": -101,
+        "exact": false
+      },
+      {
+        "case": "truncated-8",
+        "result": -101,
+        "exact": false
+      },
+      {
+        "case": "truncated-32",
+        "result": -101,
+        "exact": false
+      },
+      {
+        "case": "truncated-512330",
+        "result": -101,
+        "exact": false
+      },
+      {
+        "case": "truncated-256165",
+        "result": -101,
+        "exact": false
+      },
+      {
+        "case": "capacity-one-short",
+        "result": -106,
+        "exact": false
+      },
+      {
+        "case": "trailing-byte",
+        "result": -3,
+        "exact": false
+      },
+      {
+        "case": "bad-signature",
+        "result": -101,
+        "exact": false
+      }
+    ]
+  },
+  "browserProof": {
+    "surface": "Codex in-app browser, Chrome/155.0.0.0 on macOS",
+    "fixture": {
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/browser-fixture.html",
+      "bytes": 2857,
+      "sha256": "6d3c39ec9208f503e4a4dcab7ff1d4d5053fe0f3124a86776b6f893c9e01aa5e"
+    },
+    "url": "http://127.0.0.1:8769/data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/browser-fixture.html?strict=2",
+    "observedVisiblePass": true,
+    "wasmBytes": 838051,
+    "wasmSha256": "9c5d9658655c56e1b4f705f555e2744f4639b225328b88e999fb2ec10686c854",
+    "restoredJpegs": 60,
+    "assetCount": 359,
+    "originalContainerSha256": "50d891006ac8a1aba82cf6f220540a88c1a6109f530794bf521b1923d680c827",
+    "completeJsonBytes": 27994567,
+    "completeJsonSha256": "8a5f5763af72fe2e765f3b5a224599121ccb95f2a43c7cbed4ac7807cd3de6b7",
+    "exactCompleteJson": true,
+    "limitations": "Isolated HTTP fixture only. No offline file, production fullHTML, application startup, all-model/routes/images, other browser engines or integrated capacity claim."
+  },
+  "next": [
+    "Implement and test a strict versioned reversible frame with original-size/checksum and bounded decoding; retain raw JPEG fallback and all legacy formats.",
+    "Provide pinned reproducible decoder build, complete transitive software notices and original-byte cache generation before any binary vendoring.",
+    "Integrate an offline embedded decoder without network dependencies; verify exact fullHTML/browser JSON, all native bytes/MIME, models, routes and unsupported-browser behaviour.",
+    "Measure actual complete same-input HTML with all decoder, frame, bootstrap and transport costs before claiming headroom.",
+    "Use recovered capacity for prepared Elara93 and remaining backlog; no duplicate generation."
+  ],
+  "assessmentLimits": [
+    "The 685438-byte compressed estimate is baseline minus transformed payload minus separately compressed decoder, before integration/transport. It is not measured HTML savings.",
+    "No pixel calibration or native source replacement.",
+    "No production format/codec, generated snapshot or asset adoption."
+  ],
+  "linkedDecoderLibraries": {
+    "command": {
+      "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/link-command.txt",
+      "bytes": 642,
+      "sha256": "8a7608233ff78c21e11e15cf94dfc97742494b458dbda6a97d3a752f96f3b89b"
+    },
+    "staticLibraries": [
+      "libjxl_dec.a",
+      "libhwy.a",
+      "libbrotlidec.a",
+      "libbrotlicommon.a"
+    ],
+    "licenceInputs": [
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/libjxl/LICENSE",
+        "bytes": 1508,
+        "sha256": "8405932022a556380c2d8c272eff154a923feb197233f348ce5f7334fb0a5ede"
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/libjxl/PATENTS",
+        "bytes": 1333,
+        "sha256": "91915f8ae056a68a3c5bdf05d9f6f78bb6903e27a8ca3a8434c9e4ac87300575"
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/libjxl/third_party/highway/LICENSE",
+        "bytes": 11356,
+        "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1"
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/libjxl/third_party/highway/hwy/base.h",
+        "bytes": 101363,
+        "sha256": "fc909799e316141e9c7ab7c4ae51803234c3d31fd313be42608401bba8e416de"
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/libjxl/third_party/brotli/LICENSE",
+        "bytes": 1084,
+        "sha256": "3d180008e36922a4e8daec11c34c7af264fed5962d07924aea928c38e8663c94"
+      },
+      {
+        "path": "data/research-sources/standalone-jxl-reconstruction-preparation-2026-10-19/emsdk/upstream/emscripten/LICENSE",
+        "bytes": 5093,
+        "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86"
+      }
+    ],
+    "noticeIntegration": "Inputs inventoried/read only. Complete distributable notices and compiler-runtime attribution must be embedded with production binary if adopted; no claim of image reuse rights."
+  },
+  "productionValidation": {
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "PASS",
+    "fullBuild": "PASS",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 179,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "8d74793",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15992750,
+      "headroomBytes": 7250,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "0de62ac228f799fa807dd6cca0b0794d6cbf0788d1169dd06efbc906e5a28c29",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "interbuildFeedDifference": "Unaudited. FullHTML size variation is not experimental savings. No fresh production browser claim."
+  }
+}
