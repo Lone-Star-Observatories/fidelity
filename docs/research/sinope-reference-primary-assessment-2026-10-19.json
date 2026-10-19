@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-19",
+  "body": "Sinope / Jupiter IX / JPL509; distinct Pasiphae, Pasithee and Elara",
+  "status": "Verified reference/primary/observer-guide research only; no95th dossier, image generation/embedding or catalogue/codec adoption. All94 earlier dossiers preserved.",
+  "sources": [
+    {
+      "path": "data/research-sources/sinope-nasa-overview-2026-10-19.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/sinope/",
+      "bytes": 247570,
+      "sha256": "d4f33ccff38460a2e88ddcd2c32acb7d7dc723d48c546b529ed4cdbb6d79f1d3",
+      "retrievedUtc": "2026-10-19T19:49:45.875316+00:00",
+      "transport": "curl HTTPS verification enabled; bundled Python trust store failed before fetching"
+    },
+    {
+      "path": "data/research-sources/sinope-jpl-elements-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrievedUtc": "2026-10-19T19:49:45.876428+00:00",
+      "transport": "curl HTTPS verification enabled; bundled Python trust store failed before fetching"
+    },
+    {
+      "path": "data/research-sources/sinope-jpl-physical-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "retrievedUtc": "2026-10-19T19:49:45.879666+00:00",
+      "transport": "curl HTTPS verification enabled; bundled Python trust store failed before fetching"
+    }
+  ],
+  "nasa": {
+    "discovery": "1914-07-21 Seth Barnes Nicholson, Lick36-inch photographic plates",
+    "radiusKm": 19,
+    "radiusAssumption": "albedo0.04; not independent axes/local normal",
+    "historicalMeanDistanceKm": 23900000,
+    "historicalPeriodDays": 759,
+    "limits": [
+      "Group membership uncertain; independent capture/collision/origin and87/99percent original-mass scenarios not measured current body masses or unique history.",
+      "Secular orbital resonance is not spin locking or permanent Jupiter-facing orientation.",
+      "This page does not verify a resolved Sinope image; related content is not assigned as geography. Image/product/credit/terms audit remains open."
+    ]
+  },
+  "jpl": {
+    "solution": "JUP347",
+    "centre": "Jupiter",
+    "frame": "ecliptic",
+    "epoch": "2000-01-01.5 TDB",
+    "aKm": 23679300,
+    "e": 0.262,
+    "wDeg": 354.3,
+    "MDeg": 157.4,
+    "iDeg": 157.3,
+    "nodeDeg": 308.0,
+    "periodDays": 744.5951,
+    "apsidalYears": 57.0,
+    "nodalYears": 93.1,
+    "reference": 47,
+    "physicalRowPresent": false,
+    "limits": [
+      "Mean elements not ephemerides/current distance/phase/SPICE registration.",
+      "Blank pole not zero. No mass/GM/density inferred from absent physical row.",
+      "NASA historical means remain separate; ingestion/version cause not established."
+    ]
+  },
+  "next": [
+    "Complete remaining body-specific native product assessment; then generate own labelled temporary IMAGINED views with full prompts/originals/master hashes using recorded skyGeometry.",
+    "Use additive importer and preserve all prior dossiers, public assets, native bytes/models/maps/shapes and provenance."
+  ],
+  "preservation": "All94 delivered dossiers/native original/model/map/provenance inputs untouched; no production changes or fresh validation claim.",
+  "primary": {
+    "sources": [
+      {
+        "path": "data/research-sources/elara-grav2015-published.pdf",
+        "bytes": 561099,
+        "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.txt",
+        "bytes": 53447,
+        "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+      },
+      {
+        "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+        "bytes": 304821,
+        "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+      }
+    ],
+    "sinopeThermalText": {
+      "effectiveDiameterKm": {
+        "value": 35,
+        "error": 0.6
+      },
+      "halfDiameterRadiusKm": 17.5,
+      "eta": {
+        "value": 0.82,
+        "error": 0.02
+      },
+      "visibleAlbedoPercent": {
+        "value": 4.2,
+        "error": 0.6
+      },
+      "W1AlbedoPercent": {
+        "value": 10.8,
+        "error": 1.2
+      },
+      "W2Albedo": null,
+      "Table3FitCounts": [
+        13,
+        null,
+        14,
+        13
+      ],
+      "Table1Counts": [
+        13,
+        null,
+        14,
+        14
+      ],
+      "roundedMjdUtc": 55371,
+      "Hmag": [
+        11.29,
+        0.01
+      ],
+      "Gassumed": [
+        0.1,
+        0.15
+      ],
+      "section4_4": "~.1mag W3/W4 variation during~27hr, no rotation period evident; Luu1991 historical13.16hr/.2mag reported, not independently verified or adopted spin.",
+      "limits": [
+        "NEATM model not axes, local normal or measured mineral fractions/roughness map.",
+        "Table1 exposure inventory and Table3 fit counts differ W4; do not silently reconcile or invent raw UTC.",
+        "NASA19km assumed.04albedo retained separately, no catalogue update."
+      ]
+    },
+    "sharkeyV2": {
+      "url": "https://arxiv.org/html/2501.16484v2",
+      "versionDate": "2025-09-07",
+      "authors": [
+        "Benjamin N. L. Sharkey",
+        "Andrew S. Rivkin",
+        "Richard J. Cartwright",
+        "Bryan J. Holler",
+        "Joshua P. Emery",
+        "Cristina Thomas"
+      ],
+      "specificLicence": "CC BY4.0, not blanket raw-data licence",
+      "Table1SinopeDate": "2024-01-21",
+      "Table1Geometry": {
+        "phaseDeg": 11.58,
+        "sunAu": 4.94,
+        "observerAu": 4.76
+      },
+      "interpretation": "Unresolved NIRSpec steep spectral slope and shallow3.0/3.4micron bands compared with red Trojans. Authors do not propose specific red-satellite compositions. OH/organic associations are not unique local chemistry, visible colour or geography.",
+      "possible4_9micron": "Low-SNR and thermal-tail/continuum sensitive; if real origin speculative, no CO3/OCS map or chemistry adoption.",
+      "limits": [
+        "No raw cube/pointing/photometric pipeline reproduction; no figure/native image embedded.",
+        "Other bodies/Trojan comparisons are not shared skins.",
+        "Final publisher verification response remains distinct from final paper/licence.",
+        "Acquisition date distinct v1Jan27/v2Sep7,2025 publication/version dates."
+      ]
+    },
+    "visualVerification": {
+      "date": "2026-10-19",
+      "method": "Existing original-preserving page3 and page4 PNGs visually inspected for Sinope rows",
+      "tables": [
+        1,
+        3
+      ],
+      "confirmed": "Table1 W1/W2/W3/W4=13/unreported/14/14; Table3 fit13/unreported/14/13. D35.0\u00b1.6km eta.82\u00b1.02 visible4.2\u00b1.6percent W1 10.8\u00b11.2percent W2unreported. No count repair or new fit.",
+      "images": [
+        {
+          "path": "data/research-sources/elara-grav2015-page-3.png",
+          "sha256": "c4481d7a8ea0c48e984f2518da16d10fff2ffc54682f6aed05ecdf5eb786544d"
+        },
+        {
+          "path": "data/research-sources/elara-grav2015-page-4.png",
+          "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+        }
+      ]
+    },
+    "bibliography": {
+      "title": "NEOWISE: Observations of the Irregular Satellites of Jupiter and Saturn",
+      "authors": [
+        "T. Grav",
+        "J. M. Bauer",
+        "A. K. Mainzer",
+        "J. R. Masiero",
+        "C. R. Nugent",
+        "R. M. Cutri",
+        "S. Sonnett",
+        "E. Kramer"
+      ],
+      "doi": "10.1088/0004-637X/809/1/3",
+      "publication": "Astrophysical Journal809:3,9pages,issue2015-08-10",
+      "received": "2015-05-04",
+      "accepted": "2015-05-27",
+      "publishedPrinted": "2015-08-04"
+    }
+  },
+  "observerGeometry": {
+    "body": "Sinope / JupiterIX",
+    "date": "2026-10-19",
+    "method": "skyGeometry from src/astro/appearance.js",
+    "geometrySourceSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+    "results": [
+      {
+        "heightKm": 17.5,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.15828622686405658,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.3383219961046769,
+        "centreDiscWidthFraction": 0.002952424960507059,
+        "targetWidthPxAt1672": 4.936454533967803
+      },
+      {
+        "heightKm": 19,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.1582862168371759,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.3383220175362595,
+        "centreDiscWidthFraction": 0.0029524251475345296,
+        "targetWidthPxAt1672": 4.936454846677734
+      }
+    ],
+    "limits": [
+      "17.5km half thermal diameter versus NASA19km assumed-albedo alternative, not joint fit/uncertainty envelope/axes/local normal.",
+      "JUP347 semimajor axis is mean scale, not current eccentric-orbit distance or dated ephemeris.",
+      "Spherical69911km Jupiter excludes oblateness; FOV/phase/axis/colour/exposure/registration artistic.",
+      "165K input angular helper only; irradiance/colour outputs discarded, not reflected-light photometry.",
+      "No generated image or raster measurement adopted. No spin/locking/permanent face inferred."
+    ],
+    "status": "Reproducible hypothetical mean-scale angular guide only; no raster or scene adopted."
+  },
+  "rights": {
+    "thermalPaper": "\u00a9AAS all rights reserved; no CC BY asserted and no figure embedded.",
+    "specificArxivV2": "CC BY4.0 for2501.16484v2; not blanket raw-cube/image licence.",
+    "NASA": "https://www.nasa.gov/nasa-brand-center/images-and-media/; full source credit/third-party caveats apply. No native image adopted."
+  },
+  "limits": [
+    "NASA19km assumes.04albedo versus NEATM17.5km half35.0\u00b1.6 diameter; neither axes/localnormal.",
+    "Table1W4 inventory14 versus Table3fit13 retained without repair; roundedMJD55371 not individual exposures.",
+    "Historical13.16hr from citedLuu1991 not independently audited/adopted spin; WISE27hr has no evident period.",
+    "JUP347 ecliptic mean model not ephemeris/current distance; secular resonance not tidal locking.",
+    "Unresolved red spectral slopes/OH/organics and possible4.9micron low-SNR feature do not establish unique composition,local fractions,geography or visiblecolour.",
+    "No body-specific native image/live stream established by bounded reference preparation; native/raw/frame/photometry/terms audit remains open, not global absence/external blocker."
+  ],
+  "validation": {
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 205,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "5a74180",
+      "priorDossiersDeepEqual": 94,
+      "dossiers": 94,
+      "priorMoonsDeepEqual": 50,
+      "moons": 50,
+      "trackedPublicByteEqual": 689,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15633414,
+      "headroomBytes": 366586,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "586ae404e01e906bb51563bb0540cebd94000574a731b6c30b9c1da41846f552",
+      "applicationSha256": "269e84741c8a225aa69aac9b0ff57b30ef00772d45ea97977e03d343cc5eab34",
+      "freshBrowserClaim": false,
+      "historicalPrePasiphaeSnapshotAddedImages": [
+        "/bespoke/pasiphae-sky-image.jpg",
+        "/bespoke/pasiphae-surface-image.jpg"
+      ],
+      "productionAddedImages": []
+    },
+    "testsPassed": 697,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "freshBrowserClaim": false,
+    "limits": "Historical pre-Pasiphae snapshot comparison still includes its2 earlier images; no new production image this research batch. Interbuild band feeds unaudited, no savings attribution."
+  }
+}
