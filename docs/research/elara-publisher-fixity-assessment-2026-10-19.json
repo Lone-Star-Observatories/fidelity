@@ -1,0 +1,371 @@
+{
+  "date": "2026-10-19",
+  "scope": "Research-only separate current PDS publisher checksum crosswalk for retained Elara raw/science products, calibration references and labels.",
+  "sources": [
+    {
+      "collection": "jupiter_raw",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/CHECKSUM/current.md5",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/CHECKSUM/current.md5",
+        "status": 200,
+        "contentType": null,
+        "path": "data/research-sources/elara-raw-current-checksums-preparation-2026-10-19.md5",
+        "bytes": 189352,
+        "sha256": "03a0b83b7156468a3da3905bde5c1a82d3a7448c9524c6579facc29b718a5f5f"
+      },
+      "checks": [
+        {
+          "path": "data/research-sources/elara-pds4-raw-lor_0035398319_0x630_eng.fit",
+          "publisherRow": "daf2056c398a86faac6cb24a42b488d0  data/20070305_003539/lor_0035398319_0x630_eng.fit",
+          "localMd5": "daf2056c398a86faac6cb24a42b488d0",
+          "match": true,
+          "bytes": 2162880,
+          "sha256": "5c708b643ce08cbae9997f71be82bb52c330417728276d13dd60a0c9fdd4890a"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-raw-lor_0035398319_0x630_eng.lblx",
+          "publisherRow": "7b8d054f6df27d7a4c8d21ef924db01d  data/20070305_003539/lor_0035398319_0x630_eng.lblx",
+          "localMd5": "7b8d054f6df27d7a4c8d21ef924db01d",
+          "match": true,
+          "bytes": 41258,
+          "sha256": "55ecfb63ee5f14353ff2c8a1453f72220e23d8c89c70850e8f28114d4abbb9f0"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-raw-lor_0035398320_0x630_eng.fit",
+          "publisherRow": "3f53532dc0d5b5e80e2c68e79c19c005  data/20070305_003539/lor_0035398320_0x630_eng.fit",
+          "localMd5": "3f53532dc0d5b5e80e2c68e79c19c005",
+          "match": true,
+          "bytes": 2162880,
+          "sha256": "781ea7810b6d3d1f5ac19e61185a44209c4ade620edf125a9cba28ec6791aa90"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-raw-lor_0035398320_0x630_eng.lblx",
+          "publisherRow": "5cff6a0b30075dba7ea18551beb020a1  data/20070305_003539/lor_0035398320_0x630_eng.lblx",
+          "localMd5": "5cff6a0b30075dba7ea18551beb020a1",
+          "match": true,
+          "bytes": 41259,
+          "sha256": "457df59d7a0bd68a01de52b4069ff1057b6cb20f730c736be4248e46b5bdc982"
+        }
+      ],
+      "limits": [
+        "Current publisher checksum index agrees with both retained raw FITS and both labels; not proof of original pipeline version, scientific calibration, target identity or registration.",
+        "Raw label File fields still omit their own size/MD5; separate checksum source does not alter that earlier observation.",
+        "No production change, embedding or new dossier."
+      ]
+    },
+    {
+      "collection": "jupiter_cal",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri:jupiter_cal-v1.0/SUPPORT/CHECKSUM/current.md5",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri:jupiter_cal-v1.0/SUPPORT/CHECKSUM/current.md5",
+        "status": 200,
+        "contentType": null,
+        "path": "data/research-sources/elara-cal-current-checksums-preparation-2026-10-19.md5",
+        "bytes": 189183,
+        "sha256": "6aab49dd127aa23219d0988748fbe35dd57f1d45798dc78d1007b9cca01e55b1",
+        "retrievedAt": "2026-10-19T01:36:27.249633+00:00"
+      },
+      "checks": [
+        {
+          "path": "data/research-sources/elara-pds4-lor_0035398319_0x630_sci.fit",
+          "publisherRow": "cb7f58256ff623b7c100fc7ead0bb085  data/20070305_003539/lor_0035398319_0x630_sci.fit",
+          "localMd5": "cb7f58256ff623b7c100fc7ead0bb085",
+          "match": true,
+          "bytes": 10535040,
+          "sha256": "f73e3c86927caa0cec397c4f4f38cc5289a3cf39e65614370c24259cfb73677b"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-lor_0035398319_0x630_sci.lblx",
+          "publisherRow": "70ae4cda49f8c82b322a9f13325b2fcb  data/20070305_003539/lor_0035398319_0x630_sci.lblx",
+          "localMd5": "70ae4cda49f8c82b322a9f13325b2fcb",
+          "match": true,
+          "bytes": 39364,
+          "sha256": "66cfd08ce2c1c139e81f1057c4c7504852af1b73738f1e2eb27e7e4ba9443abd"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-lor_0035398320_0x630_sci.fit",
+          "publisherRow": "97c04412a6880c4230a658bbb659fe9a  data/20070305_003539/lor_0035398320_0x630_sci.fit",
+          "localMd5": "97c04412a6880c4230a658bbb659fe9a",
+          "match": true,
+          "bytes": 10535040,
+          "sha256": "de7f9b3b7937e4d0caaaa7a2128dc6ca74c543c9dd29d63fea02e5a02256d0bb"
+        },
+        {
+          "path": "data/research-sources/elara-pds4-lor_0035398320_0x630_sci.lblx",
+          "publisherRow": "fe258e13749db27b03a6185f42ca29db  data/20070305_003539/lor_0035398320_0x630_sci.lblx",
+          "localMd5": "fe258e13749db27b03a6185f42ca29db",
+          "match": true,
+          "bytes": 39365,
+          "sha256": "23cc383c6ce6475ab7da8d95993f9d6a3e730c81fe3805a900da08363b6ca782"
+        }
+      ],
+      "limits": [
+        "Separate current publisher checksum agreement is fixity evidence, not original processing-version, calibration, target identification or geometric-registration validation.",
+        "Retained originals unchanged; no embedding, science masking, catalogue or codec changes; Elara dossier remains undelivered."
+      ]
+    },
+    {
+      "collection": "calibration_files",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/CHECKSUM/current.md5",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/CHECKSUM/current.md5",
+        "status": 200,
+        "contentType": null,
+        "path": "data/research-sources/elara-calibration-current-checksums-preparation-2026-10-19.md5",
+        "bytes": 2964,
+        "sha256": "7e138fdd31e5ebea959f911c7e0cc63d7addaf27cd9f2ef725ef8bbea184d150",
+        "retrievedAt": "2026-10-19T01:49:28.647966+00:00"
+      },
+      "checks": [
+        {
+          "path": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.fit",
+          "publisherRow": "14fedd2477ecc8803c126f656d56fb7c  calib/sap_006_combined_100img_1x1.fit",
+          "localMd5": "14fedd2477ecc8803c126f656d56fb7c",
+          "match": true,
+          "bytes": 8415360,
+          "sha256": "234aa22cf273de5df16af8b3e717435c339f2bf46c9958f3df70f0dd80f5c078"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-sap_006_combined_100img_1x1.lblx",
+          "publisherRow": "32f41dc5bcd6665bb07e3ea02c93c01b  calib/sap_006_combined_100img_1x1.lblx",
+          "localMd5": "32f41dc5bcd6665bb07e3ea02c93c01b",
+          "match": true,
+          "bytes": 6212,
+          "sha256": "c3b23438bfd5ebccb5817166a69dcd5d9e6badbba988d59c7d3c8fd3ec31f04a"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.fit",
+          "publisherRow": "d4845568533c80053688c58acf321fdf  calib/dead_ground_1x1_synthetic.fit",
+          "localMd5": "d4845568533c80053688c58acf321fdf",
+          "match": true,
+          "bytes": 1054080,
+          "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-dead_ground_1x1_synthetic.lblx",
+          "publisherRow": "9084c59bd943433f3b4ec70ac639933e  calib/dead_ground_1x1_synthetic.lblx",
+          "localMd5": "9084c59bd943433f3b4ec70ac639933e",
+          "match": true,
+          "bytes": 6257,
+          "sha256": "723d303fe0f61f30e511d29f52fed70e512d8d33f2a92bb9499c4c0bb630a115"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.fit",
+          "publisherRow": "d4845568533c80053688c58acf321fdf  calib/hot_ground_1x1_synthetic.fit",
+          "localMd5": "d4845568533c80053688c58acf321fdf",
+          "match": true,
+          "bytes": 1054080,
+          "sha256": "9ca8db3aac08250dc7301fdd3ec6dcb209272768581d0ad4346c25a4cc097db2"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-hot_ground_1x1_synthetic.lblx",
+          "publisherRow": "c04265ad31fd77075e6a106ea68b03b4  calib/hot_ground_1x1_synthetic.lblx",
+          "localMd5": "c04265ad31fd77075e6a106ea68b03b4",
+          "match": true,
+          "bytes": 6252,
+          "sha256": "f831eea271dfdd90b6d10332b1ff968fdfa347f057c4d14825eff5f720ca4c30"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.fit",
+          "publisherRow": "f358b4556e6db339ad350985edd7b226  calib/cflat_grnd_sfa_20050309_v2.fit",
+          "localMd5": "f358b4556e6db339ad350985edd7b226",
+          "match": true,
+          "bytes": 8395200,
+          "sha256": "00ea482514a5afa6becd2692f5150bafd440708b6e068f2af0c533bde89070db"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-cflat_grnd_sfa_20050309_v2.lblx",
+          "publisherRow": "b4f5b2ac3494b0318c8c53a35c2021ec  calib/cflat_grnd_sfa_20050309_v2.lblx",
+          "localMd5": "b4f5b2ac3494b0318c8c53a35c2021ec",
+          "match": true,
+          "bytes": 6448,
+          "sha256": "74bab52882013f067fae81e03cf6a19927e54535891269d67f110edaa11f2022"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-dsmear_ematrix_1024.fit",
+          "publisherRow": "1062783126066baed04082a38dc7c712  calib/dsmear_ematrix_1024.fit",
+          "localMd5": "1062783126066baed04082a38dc7c712",
+          "match": true,
+          "bytes": 8392320,
+          "sha256": "2381acccf92774fd0ad30158f9834f1cfa33c9d55dadc26ba068ef29528a1807"
+        },
+        {
+          "path": "data/research-sources/elara-calibration-dsmear_ematrix_1024.lblx",
+          "publisherRow": "5b6c4b84f04efc8b3f88dde989fad86a  calib/dsmear_ematrix_1024.lblx",
+          "localMd5": "5b6c4b84f04efc8b3f88dde989fad86a",
+          "match": true,
+          "bytes": 6334,
+          "sha256": "0bcf6735bdc3673cac7de0e6dd5fb4657efa7700ce0f7ed952570d1fbf7cd463"
+        }
+      ],
+      "limits": [
+        "Current publisher checksum agreement validates retained-byte fixity only; it does not independently establish original processing version, calibration application or physical accuracy.",
+        "Calibration creation, publication and migration dates remain distinct from Elara observation dates. Full earlier attribution and licence caveats remain; no embedding or new dossier."
+      ]
+    }
+  ],
+  "counts": {
+    "files": 18,
+    "raw": 4,
+    "processed": 4,
+    "calibration": 10
+  },
+  "credits": [
+    "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "Earlier retained science attribution: Cheng, A.; Hirsch, B.; Carcich, B.",
+    "Calibration migration editors Enke, Brian; Gobat, Caden; Crombie, M. Katherine remain distinct from unverified original calibration authorship.",
+    "Subframe document editing/migration: Hirsch, B.; context update: Barnes, T. These are not automatically science-file authors."
+  ],
+  "terms": {
+    "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "limits": "Active NASA media terms and third-party caveats retained from earlier assessments; checksum publication is not a new blanket CC BY licence."
+  },
+  "findings": [
+    "All 18 retained originals match their unique exact current publisher MD5 rows. Local SHA256 and byte lengths are independently recorded for preservation.",
+    "The raw File label fields still omit their own file_size and md5_checksum. This separate current checksum index supplies additional fixity evidence without changing that prior label observation.",
+    "Processed PDS4/PDS3 byte equality and current checksum agreement do not resolve their differing quality-bit descriptions or independently identify the original processing pipeline."
+  ],
+  "open": [
+    "Original pipeline version and timing-erratum application",
+    "Raw packet/window reconstruction, including unexplained WINDOWH0",
+    "Raw/science pixel mapping, calibration execution and physical accuracy",
+    "Target/PSF association, geometry, photometry, scene and map registration"
+  ],
+  "preservation": [
+    "No source replacement, crop, masking, repair, resampling or embedding.",
+    "All 92 dossiers and generated original PNGs, masters, native bytes, maps, models, shapes, source manifests and recorded Clipper remain preserved.",
+    "Elara dossier93 remains undelivered pending conforming capacity/native context work; no new angular/raster calculation."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 692,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 131,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "2c790c3",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15989430,
+      "headroomBytes": 10570,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "18a206f504223feee8c5562ba6c816af2b4db2c9981f32bf37a0ff42e6632f19",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "limits": [
+      "No fresh browser verification.",
+      "Interbuild feed differences unaudited; no compression savings attribution."
+    ]
+  },
+  "linkDiscoveryRecords": [
+    {
+      "path": "data/research-sources/elara-raw-support-directory-preparation-2026-10-19.json",
+      "bytes": 829,
+      "sha256": "b5f31afaae39c69a3e6e99092adfd4d6bbccf236d76d806bbfbfcb7eb8bedf05",
+      "acquisition": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/",
+        "status": 200,
+        "contentType": "text/html;charset=ISO-8859-1",
+        "path": "data/research-sources/elara-raw-support-directory-preparation-2026-10-19.html",
+        "bytes": 1252,
+        "sha256": "fa4bb23303239ff278364ac1c96ceeed971f6dc6e5fe6bbd1b86b2bf97dd9fb7",
+        "observedLinks": [
+          "?C=N;O=D",
+          "?C=M;O=A",
+          "?C=S;O=A",
+          "?C=D;O=A",
+          "/holdings/pds4-nh_lorri-v4.0/jupiter_raw/",
+          "/holdings/pds4-nh_lorri-v4.0/jupiter_raw/",
+          "CHECKSUM/",
+          "CHECKSUM/",
+          "DOWNLOAD/",
+          "DOWNLOAD/",
+          "dataset.shtml",
+          "dataset.shtml"
+        ],
+        "limits": "Directory discovery only; no checksum file acquired or validation claimed."
+      }
+    },
+    {
+      "path": "data/research-sources/elara-raw-checksum-directory-preparation-2026-10-19.json",
+      "bytes": 774,
+      "sha256": "7b7c0b79c6042148fd906689a85162923e62f55318bcf4132c8c6fe9ec9d3ba7",
+      "acquisition": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/CHECKSUM/",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/CHECKSUM/",
+        "status": 200,
+        "contentType": "text/html;charset=ISO-8859-1",
+        "path": "data/research-sources/elara-raw-checksum-directory-preparation-2026-10-19.html",
+        "bytes": 995,
+        "sha256": "136a26a6c4c68f1d75df9330fb48833ccabe044917ee6bd36325a674519d9e5a",
+        "observedLinks": [
+          "?C=N;O=D",
+          "?C=M;O=A",
+          "?C=S;O=A",
+          "?C=D;O=A",
+          "/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/",
+          "/holdings/pds4-nh_lorri-v4.0/jupiter_raw/SUPPORT/",
+          "current.md5",
+          "current.md5"
+        ],
+        "limits": "Directory discovery only; no checksum validation claimed."
+      }
+    },
+    {
+      "path": "data/research-sources/elara-cal-checksum-directory-preparation-2026-10-19.json",
+      "bytes": 513,
+      "sha256": "eddfd15e433ac2e65066305a0c7a699a3f4cd9a75d43d5d35c8802a01e27aac7",
+      "acquisition": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri:jupiter_cal-v1.0/SUPPORT/CHECKSUM/",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri:jupiter_cal-v1.0/SUPPORT/CHECKSUM/",
+        "status": 200,
+        "contentType": "text/html;charset=ISO-8859-1",
+        "path": "data/research-sources/elara-cal-checksum-directory-preparation-2026-10-19.html",
+        "bytes": 995,
+        "sha256": "97488986945ebc954ca9c66b7780877b81586a143cd001abd6a887afef5b6ee5",
+        "retrievedAt": "2026-10-19T01:36:26.909162+00:00"
+      }
+    },
+    {
+      "path": "data/research-sources/elara-calibration-support-directory-preparation-2026-10-19.json",
+      "bytes": 515,
+      "sha256": "2c17f742d0f0429262185675be58191abf89e02d1ee8b7717d85055f7605123a",
+      "acquisition": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/",
+        "status": 200,
+        "contentType": "text/html;charset=ISO-8859-1",
+        "path": "data/research-sources/elara-calibration-support-directory-preparation-2026-10-19.html",
+        "bytes": 1306,
+        "sha256": "165aea45b7539497827645f5f3cf11fa76e33130a56b1f075d77da9d3d40e8e5",
+        "retrievedAt": "2026-10-19T01:49:26.351069+00:00"
+      }
+    },
+    {
+      "path": "data/research-sources/elara-calibration-checksum-directory-preparation-2026-10-19.json",
+      "bytes": 534,
+      "sha256": "c4dd7b161c48d375d9fecaa54c74a07494c303029ff063ccf781035f9f3bf056",
+      "acquisition": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/CHECKSUM/",
+        "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_lorri-v4.0/calibration_files/SUPPORT/CHECKSUM/",
+        "status": 200,
+        "contentType": "text/html;charset=ISO-8859-1",
+        "path": "data/research-sources/elara-calibration-checksum-directory-preparation-2026-10-19.html",
+        "bytes": 1037,
+        "sha256": "a8b8b1d8eaef52fb6740174ea1b337def17cefcb6ebc6c972dcd3c7f52301bd9",
+        "retrievedAt": "2026-10-19T01:49:27.807032+00:00"
+      }
+    }
+  ]
+}
