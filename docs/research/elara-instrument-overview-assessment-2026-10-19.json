@@ -1,0 +1,106 @@
+{
+  "source": {
+    "url": "https://pds-smallbodies.astro.umd.edu/holdings/pds4-nh_documents%3Alorri-v1.0/documents/lorri_inst_overview.pdf",
+    "finalUrl": "https://pds-smallbodies.astro.umd.edu/holdings/pds4-nh_documents%3Alorri-v1.0/documents/lorri_inst_overview.pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "retrievedUtc": "2026-10-19T14:34:27.005505+00:00",
+    "path": "data/research-sources/elara-lorri-instrument-overview-preparation-2026-10-19.pdf",
+    "bytes": 275681,
+    "sha256": "6c18d38f66eab007d2268b5b586afa09a4dd4b7f713232d384b8cda63482882c",
+    "startsPdf": true,
+    "scope": "Read-only acquisition preparation; no calibration or historical pipeline adoption."
+  },
+  "fullTextPath": "data/research-sources/elara-lorri-instrument-overview-preparation-2026-10-19.txt",
+  "visuallyInspectedPages": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "scope": "Research-only complete five-page instrument overview, label and publisher-fixity assessment; no production adoption.",
+  "findings": {
+    "page1": [
+      "PDS4 overview adapted from PDS3 instrument catalogue with light edits; source papers and mission website not a historical processing log.",
+      "Both raw and calibrated pixels are DN. Calibrated values require scene-dependent header/label divisors for radiance, not automatically visible RGB. Optically active1024/256 format excludes ancillary storage columns. Hal Weaver/APL PI attribution distinct authorship."
+    ],
+    "page2": [
+      "Panchromatic with no colour filters; JHUAPL and SSG design/fabrication credits. Scientific objectives are mission objectives, not complete Elara coverage/calibration. In-flight performance through2019 cited to Weaver2020, not independently reproduced."
+    ],
+    "page3": [
+      "Late2016 no-known-dead/hot-pixel prose explains all-zero calibration maps historically; not exhaustive present-day detector condition. Warm pixels handled in flat field per publisher, not independently executed for Elara.",
+      "Optical stray-light design simulation description is not validated current pointing/PSF/scene calibration."
+    ],
+    "page4": [
+      "Table identifies0x630 as side1,1x1,lossless. Retained Elara pair has0x630 in filenames/headers; this is document/metadata agreement, not independent decoder execution or target identification.",
+      "First34 twelve-bit image samples contain51-byte engineering header, not scene brightness; displayed-corner description depends on left-to-right/bottom-to-top convention, not adopted current image registration.",
+      "Additional first40pixels of first8rows warning is explicitly for lossy0x632/635/638/63B, not the table0x630 category. Do not apply expanded masking to Elara merely from this warning.",
+      "Overview says raw has no QUALITY_MAP flags and additional lossy-region flags began with PlutoP2 late2016; this does not reconcile conflicting retained PDS3/PDS4 bit definitions or historical Elara processing."
+    ],
+    "page5": [
+      "Scene-spectrum-dependent divisors and units are in Level2 absolute-calibration header section; references ICD9.3.1.4. Do not adopt Pluto or stellar divisors for unknown Elara spectrum.",
+      "ReferenceLID nh_documents:lorri:lorri_ssr agrees actual archived document, unlike retained raw/calibrated label Ralph-namespace reference. No identifier repair or cause inference.",
+      "Conard correctly spelled in reference versus Conrad in body prose retained as source spelling discrepancy, not a second contributor."
+    ]
+  },
+  "limits": [
+    "No masking, timing correction, radiometric conversion, registered orientation, figure embedding or production change.",
+    "Current document publication/migration and historical calibration dates remain separate from2007 observations; label audit is recorded separately.",
+    "All earlier quality-definition, histogram, WINDOWH0, target/PSF and physical-registration limits remain."
+  ],
+  "fullTextBytes": 10530,
+  "fullTextSha256": "8b7b19bea8fe54c7568c5ad775e675893dfdaf158655384779c420fa3e9b523a",
+  "date": "2026-10-19",
+  "labelAndFixity": {
+    "scope": "Read-only overview label/fixity preparation; no production adoption or PDF/A conformance claim.",
+    "sources": [
+      {
+        "path": "data/research-sources/elara-lorri-instrument-overview-preparation-2026-10-19.pdf",
+        "bytes": 275681,
+        "sha256": "6c18d38f66eab007d2268b5b586afa09a4dd4b7f713232d384b8cda63482882c",
+        "md5": "434fa3bff7320af91fc973156a85e9b0",
+        "publisherIndexRow": "434fa3bff7320af91fc973156a85e9b0  documents/lorri_inst_overview.pdf"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-instrument-overview-label-preparation-2026-10-19.lblx",
+        "bytes": 7043,
+        "sha256": "ad77354d28881f8d5e930e53e3f2a91974c6e4146468e9542e74c8dc6a91f484",
+        "md5": "b682a110abd3ce5dc145913d98ae9bf3",
+        "publisherIndexRow": "b682a110abd3ce5dc145913d98ae9bf3  documents/lorri_inst_overview.lblx"
+      }
+    ],
+    "publisherIndex": {
+      "path": "data/research-sources/elara-lorri-document-checksums-preparation-2026-10-19.md5",
+      "sha256": "49537c64c41c6e2adec36257d7cc1d7c74bad3f0c5b30a0a3894b306c0be3d87"
+    },
+    "logicalIdentifier": "urn:nasa:pds:nh_documents:lorri:lorri_inst_overview",
+    "version": "1.0",
+    "editor": "Barnes IV, T.F.",
+    "publicationYear": "2024",
+    "modificationDate": "2024-05-22",
+    "findings": [
+      "T.F.BarnesIV editor and SBN Tilden Barnes migration role,2024-05-22 creation based on PDS3 instrument catalogue last edited2021-07-18; these are not2007 acquisition dates or exact historical pipeline provenance.",
+      "PDF/A and MicrosoftWord editions are publisher declarations. No DOCX acquisition or independent PDF/A validation.",
+      "Label itself associates lorri:lorri_ssr and conard_spie, distinct from raw/calibrated Ralph-namespace reference. No identifier repaired.",
+      "Label retains an unreleased-looking XML warning comment about verifying the Conard reference; current release context and cause unverified.",
+      "No CC licence granted in inspected label; retain active NASA media/thirdparty caveats separately from paper rights."
+    ],
+    "open": [
+      "Historical pipeline execution, target/PSF, quality-bit conflict, histogram scope, WINDOWH0 and calibrated radiance/registration remain open."
+    ]
+  },
+  "credits": {
+    "editor": "Barnes IV, T.F.",
+    "migration": "SBN: Tilden Barnes",
+    "principalInvestigator": "Hal Weaver, JHUAPL",
+    "instrumentDesignFabrication": [
+      "JHUAPL",
+      "SSG"
+    ],
+    "scienceDataset": "NASA/JHUAPL/SwRI; separate from document editor and cited paper authors"
+  },
+  "rights": "No CC grant or figure permission inferred. Active NASA media terms and third-party caveats remain separate from paper rights.",
+  "status": "Elara93 remains undelivered; all previous dossier, source and calibration limitations preserved.",
+  "creditedReferenceInventoryAsPrinted": "Cheng, A.F., H.A. Weaver, S.J. Conard, M.F. Morgan, O. Barnouin-Jha, J.D. Boldt, K.A. Cooper, \nE.H. Darlington, M.P. Grey, J.R. Hayes, K.E. Kosakowski, T. Magee, E. Rossano, D. Sampath, C. \nSchlemm, and H.W. Taylor, Long-Range Reconnaissance Imager on New Horizons, Space Sci. \nRev., Volume 140, Numbers 1-4, pp. 189-215, 2008.  https://doi.org/10.1007/s11214-007-9271-\n6 (preprint provided in PDS with LID urn:nasa:pds:nh_documents:lorri:lorri_ssr) \nConard, S.J., F. Azad, J.D. Boldt, A. Cheng, K.A. Cooper, E.H. Darlington, M.P. Grey, J.R. Hayes, P. \nHogue, K.E. Kosakowski, T. Magee, M.F. Morgan, E. Rossano, D. Sampath, C. Schlemm, and H.A. \nWeaver, Design and Fabrication of the New Horizons Long-Range Reconnaissance Imager, Proc. \nSPIE 5906, Astrobiology and Planetary Missions, 59061D, 2005. \nhttps://doi.org/10.1117/12.616632 \nFurther Reading \nMorgan, F., S.J. Conard, H.A. Weaver, O. Barnouin-Jha, A.F. Cheng, H.W. Taylor, K.A. Cooper, \nR.H. Barkhouser, R. Boucarut, E.H. Darlington, M.P. Grey, I. Kuznetsov, T.J. Madison, M.A. \nQuijada, D.J. Sahnow, and J.M. Stock, Calibration of the New Horizons Long-Range \nReconnaissance Imager, Proc. SPIE 5906, Astrobiology and Planetary Missions, 59061E, 2005. \nhttps://doi.org/10.1117/12.616880 \nSOC Instrument Interface Control Document (ICD): \nurn:nasa:pds:nh_documents:mission:soc_inst_icd, NASA Planetary Data System. \nWeaver, H.A., A.F. Cheng, F. Morgan, H.W. Taylor, S.J. Conard, J.I. Nunez, D.J. Rodgers, T.R. \nLauer, W.M. Owen, J.R. Spencer, O. Barnouin, A.S. Rivkin, C.B. Olkin, S.A. Stern, L.A. Young, M.B. \nTapley, and M. Vincent, In-flight Performance and Calibration of the LOng Range \nReconnaissance Imager (LORRI) for the New Horizons Mission, Publications of the Astronomical \nSociety of the Pacific, Volume 132, Issue 1009, id.035003, 2020.  https://doi.org/10.1088/1538-\n3873/ab67ec "
+}
