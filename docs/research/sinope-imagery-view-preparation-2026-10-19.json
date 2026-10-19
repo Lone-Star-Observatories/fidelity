@@ -1,0 +1,456 @@
+{
+  "body": "Sinope / Jupiter IX / JPL 509",
+  "date": "2026-10-19",
+  "status": "Research-only preparation; no 95th dossier, selectable entry or new embedded assets",
+  "records": [
+    {
+      "path": "data/research-sources/sinope-ohp-native-terms-preparation-2026-10-19.json",
+      "bytes": 4151,
+      "sha256": "feadd36ef175dbdf6f502b0057c35e5a7702ac5bb96d3f6c62c0a63c91005c50",
+      "record": {
+        "retrievedAt": "2026-10-19T21:06:00.891443+00:00",
+        "status": "Inspected native research source retained unchanged; permission/licence conflict unresolved; no production embedding, no 95th dossier.",
+        "sources": [
+          {
+            "role": "copyright",
+            "url": "https://promenade.imcce.fr/en/pages1/189.html",
+            "status": "200",
+            "exit": 0,
+            "bytes": 21958,
+            "sha256": "54734128b3ed3d22aa70e7403ec79048b281a9e0ea944879c7215e0f2fd9d924",
+            "path": "data/research-sources/sinope-ohp-copyright-2026-10-19.response"
+          },
+          {
+            "role": "commons",
+            "url": "https://commons.wikimedia.org/wiki/File:Sinop%C3%A9.jpg",
+            "status": "200",
+            "exit": 0,
+            "bytes": 93407,
+            "sha256": "aaa5ec27562c803fc9010464e09d213bf7ba61bb8b0b19900dfcab3908b855f1",
+            "path": "data/research-sources/sinope-ohp-commons-2026-10-19.response"
+          },
+          {
+            "role": "primary-image",
+            "url": "https://promenade.imcce.fr/images/jpg2/265.jpg",
+            "status": "404",
+            "exit": 0,
+            "bytes": 236,
+            "path": "data/research-sources/sinope-ohp-primary-image-2026-10-19.response",
+            "responseSha256": "9448f8a1159c9b14e3e1b9d8eab1a6ddf88d26e1f888a34cef430c756e4e6e1e",
+            "imageIdentityVerified": false,
+            "note": "404 body hash, NOT an image hash; modern path not verified as a migration."
+          },
+          {
+            "role": "Commons cited legacy primary URL",
+            "url": "http://bugle.imcce.fr/langues/en/observateur/campagnes_obs/phemu03/Promenade/images/jpg2/265.jpg",
+            "status": "000",
+            "exit": 6,
+            "bytes": 0,
+            "path": "data/research-sources/sinope-ohp-legacy-source-2026-10-19.response",
+            "imageIdentityVerified": false,
+            "note": "Network failure, no response/image body received; no response or image hash asserted."
+          },
+          {
+            "role": "primary-caption",
+            "url": "https://promenade.imcce.fr/en/pages1/130.html",
+            "path": "data/research-sources/sinope-ohp-caption-2026-10-19.html",
+            "bytes": 17316,
+            "sha256": "6b17a755380fb21c613c8b63470ebd99c8404ee6616c6e3af0ab9c04442dfd71"
+          },
+          {
+            "role": "primary-annotated-image",
+            "url": "https://promenade.imcce.fr/en/images/jpga/b69.jpg",
+            "path": "data/research-sources/sinope-ohp-publisher-b69-2026-10-19.jpg",
+            "bytes": 69500,
+            "sha256": "05b08b613fdab98049218f680b6cce172f6efa7f2f934934d17bc7e48c74d3b8"
+          }
+        ],
+        "limits": [
+          "Commons claims CC BY-SA 2.0 France; current primary site instead requires image-author permission. Conflict unresolved; no contact or permission inferred.",
+          "Primary annotated b69 visually verifies 1998-08-14 22:45 UTC and 1.2m telescope; exact raw exposure/filter/product and Commons unannotated pixel crosswalk remain open.",
+          "Current Commons says Jupiter off-frame; historical upload says bright upper-left object may be Jupiter; no identification transferred.",
+          "Primary image response must be checked for actual image bytes; HTTP status alone is not image identity.",
+          "No 95th dossier, catalogue entry, generated image, or production asset change."
+        ],
+        "primaryTermsSummary": "Current primary copyright page requires author permission for image use and prohibits commercial use; no permission requested or inferred. Commons CC BY-SA assertion has not been reconciled with primary historical terms.",
+        "checkedAt": "2026-10-19T21:19:35.661119+00:00",
+        "visualInspection": {
+          "dimensions": [
+            400,
+            408
+          ],
+          "captionCredit": "OHP/IMCCE/CNRS",
+          "printedCredit": "(c) OHP/IMCCE/CNRS",
+          "printedObservation": "August 14, 1998 at 22h45m UTC",
+          "printedInstrument": "1.2m telescope",
+          "printedField": "8 arcmin x 8 arcmin; publisher annotation only, no new angular/raster computation",
+          "target": "Yellow Sinope (J-9) arrow identifies a faint point; stars, noise and annotations do not resolve terrain or calibrated visible colour.",
+          "metadataLimit": "Photoshop 2013:11:19 timestamp is processing metadata, not observation/publication.",
+          "associationLimit": "Annotated primary b69 is distinct from Commons unannotated 265 lead; no pixel/processing identity established."
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/sinope-local-view-preparation-2026-10-19.json",
+      "bytes": 3482,
+      "sha256": "dee4cdc5d82d15c7d2f4c46a0b07032b09c2379c69c43d1fe5f994cfb4680cf5",
+      "record": {
+        "body": "Sinope / Jupiter IX / JPL 509",
+        "preparedAt": "2026-10-19T21:35:02.421557+00:00",
+        "status": "Research preparation only; not imported, no 95th dossier or selectable catalogue entry",
+        "generator": "builtin image_gen",
+        "prompt": "Create one independent scientific-concept illustration, landscape 16:9, hypothetical close local view on Sinope (Jupiter IX), an irregular outer Jovian moon. This is explicitly IMAGINED, not an observed site or a registered map. Generate entirely original terrain; do not reference, copy, recolour, or reuse any Moon, Mars, Pluto, asteroid or other body's observed surface. A low camera sees subdued grey-brown granular regolith, a few angular blocks and uneven distant ridges beneath a black sky. Restrained physically plausible vacuum lighting from an off-frame distant Sun; no atmosphere, clouds, fog, lava, plumes, exposed liquid, ocean, organisms, people, equipment or survivable landing implication. No celestial disk visible. Sinope is unresolved in available observations: its 35.0\u00b10.6 km effective thermal diameter and red unresolved spectral slope do not establish local terrain, chemistry, porosity or visible colour. All depicted relief, grains, rocks, material, chemistry, colour, lighting and exposure are artistic inventions. Do not label minerals or imply measured local composition. No dated scene, geographic coordinates, spin orientation or permanent Jupiter-facing side. Add two clearly legible lines inside a clean dark footer band: 'IMAGINED LOCAL VIEW \u2014 SINOPE' and 'Terrain, materials, colour and lighting are hypothetical'. Elegant documentary presentation, photorealistic rendering but unambiguous hypothetical footer.\n",
+        "original": {
+          "path": "data/research-sources/sinope-generated-surfaceImage-original.png",
+          "bytes": 2395207,
+          "sha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752"
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-281f209e-f8d3-49bf-b239-0746e86682ff.png",
+          "bytes": 2395207,
+          "sha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752"
+        },
+        "promptRecord": {
+          "path": "data/research-sources/sinope-local-view-prompt-2026-10-19.txt",
+          "bytes": 1448,
+          "sha256": "f95523b4d89987d71c0e645b07ce2adcee17ef2f5d6967caa8b09efad6fdada0"
+        },
+        "visualInspection": {
+          "dimensions": [
+            1672,
+            941
+          ],
+          "bothFooterLinesLegible": true,
+          "noCelestialDisk": true,
+          "terrain": "Independent imagined grey-brown granular terrain, angular blocks and ridges; no observed-body reference image used."
+        },
+        "limits": [
+          "Relief, grains, material chemistry, fractions, porosity, colour, illumination and exposure invented, not derived geography or calibrated photometry.",
+          "Black sky is an illustration assumption, not measured atmosphere absence.",
+          "No dated site, mapped spin orientation, permanent Jupiter-facing side, plume, liquid, ocean, biology or survivable landing.",
+          "No angular or raster-size computation needed: no astronomical disk depicted.",
+          "Thermal radius and JWST unresolved spectra do not measure local materials.",
+          "OHP native image retained separately; reuse terms conflict unresolved, no image adoption or permission inference.",
+          "Masters/previews and hypothetical observer view still pending.",
+          "All production assets, dossiers, maps, shapes, models and codecs unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/sinope-sky-view-preparation-2026-10-19.json",
+      "bytes": 4964,
+      "sha256": "e73ee35fbceb086c5eac45e00f9bbcbee295c24c86ab88784bcda8f494b6e049",
+      "record": {
+        "body": "Sinope / Jupiter IX / JPL 509",
+        "preparedAt": "2026-10-19T21:50:05.461903+00:00",
+        "status": "Research preparation only; no import/catalogue/95th dossier",
+        "generator": "builtin image_gen",
+        "prompt": "Create one independent scientific-concept illustration, landscape 16:9, hypothetical sky seen from near the surface of Sinope (Jupiter IX). Entirely original invented low grey-brown uneven terrain with scattered modest angular rocks occupying the lower third, broad black sky above. Jupiter must be a VERY TINY distant softly coloured disk high in the sky, approximately FIVE pixels across in a 1672-pixel-wide image at nominal 90 degree horizontal FOV, not a large horizon planet. Its spherical angular guide is 0.3383219961046769 degrees from skyGeometry using Jupiter radius69911km, centre separation23679300km minus hypothetical17.5km observer height; these are a mean orbit/thermal halfdiameter illustration, not dated geometry, local normal or spin alignment. No close-up bands can be resolved at this size. Do not enlarge Jupiter for drama. No other astronomical disks, no foreground atmosphere, cloud, fog, plume, exposed liquid/ocean, organisms, humans or craft. Sun off-frame. Generate wholly independent terrain and schematic tiny planet colour, do not copy/recolour any observed Moon/Mars/Pluto/asteroid/Jupiter map or use references. All relief, grains, material chemistry/fractions/porosity, colour, planet appearance, phase, axis, illumination, exposure and arrangement are invented and uncalibrated; this is not an observed place or survivable landing. No dated site, measured spin locking or permanent Jupiter-facing side. Footer in dark clean band, two highly legible lines: 'IMAGINED SKY FROM SINOPE' and 'Terrain, Jupiter appearance and lighting are hypothetical'. Documentary photorealistic rendering, clearly labelled speculative illustration.\n",
+        "original": {
+          "path": "data/research-sources/sinope-generated-skyImage-original.png",
+          "bytes": 1644016,
+          "sha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a"
+        },
+        "defaultOriginal": {
+          "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-120f6166-524d-4e61-bce6-9f218edf0702.png",
+          "bytes": 1644016,
+          "sha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a"
+        },
+        "geometry": {
+          "body": "Sinope / JupiterIX",
+          "date": "2026-10-19",
+          "method": "skyGeometry from src/astro/appearance.js",
+          "geometrySourceSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+          "results": [
+            {
+              "heightKm": 17.5,
+              "input": {
+                "radiusSun": 0.10049015380192612,
+                "temperatureK": 165,
+                "distanceAU": 0.15828622686405658,
+                "horizontalFovDeg": 90
+              },
+              "angularDiameterDeg": 0.3383219961046769,
+              "centreDiscWidthFraction": 0.002952424960507059,
+              "targetWidthPxAt1672": 4.936454533967803
+            },
+            {
+              "heightKm": 19,
+              "input": {
+                "radiusSun": 0.10049015380192612,
+                "temperatureK": 165,
+                "distanceAU": 0.1582862168371759,
+                "horizontalFovDeg": 90
+              },
+              "angularDiameterDeg": 0.3383220175362595,
+              "centreDiscWidthFraction": 0.0029524251475345296,
+              "targetWidthPxAt1672": 4.936454846677734
+            }
+          ],
+          "limits": [
+            "17.5km half thermal diameter versus NASA19km assumed-albedo alternative, not joint fit/uncertainty envelope/axes/local normal.",
+            "JUP347 semimajor axis is mean scale, not current eccentric-orbit distance or dated ephemeris.",
+            "Spherical69911km Jupiter excludes oblateness; FOV/phase/axis/colour/exposure/registration artistic.",
+            "165K input angular helper only; irradiance/colour outputs discarded, not reflected-light photometry.",
+            "No generated image or raster measurement adopted. No spin/locking/permanent face inferred."
+          ],
+          "status": "Preparation only; delivered94 dossiers and every production input unchanged."
+        },
+        "visualInspection": {
+          "dimensions": [
+            1666,
+            944
+          ],
+          "bothFooterLinesLegible": true,
+          "Jupiter": "Tiny schematic disk visually larger than nominal five-pixel guide; uncalibrated, no measured raster diameter adopted."
+        },
+        "limits": [
+          "All terrain, local materials/chemistry/fractions/porosity, colour, Jupiter pattern/phase/axis, illumination and exposure invented; no observed-body map/reference reused.",
+          "Mean orbit and thermal halfdiameter are hypothetical guide, not dated distance/local normal/joint fit/uncertainty envelope or permanent Jupiter-facing side.",
+          "165 K helper is angular-only; colour/irradiance discarded, no reflected-light calibration.",
+          "Black sky/ring omission not measured absence; no atmosphere/plume/liquid/ocean/biology/survivable landing.",
+          "Native OHP imagery retained separately; permission conflict unresolved, not embedded."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/sinope-master-preview-preparation-2026-10-19.json",
+      "bytes": 2158,
+      "sha256": "df7f1fa2a387ebeb8143c6b8a4c72befedc8fed1ef7c48e1bed7c613da05655e",
+      "record": {
+        "status": "Prepared only, originals retained; not imported or embedded",
+        "assets": [
+          {
+            "field": "surfaceImage",
+            "original": {
+              "path": "data/research-sources/sinope-generated-surfaceImage-original.png",
+              "bytes": 2395207,
+              "sha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752"
+            },
+            "master": {
+              "path": "data/research-sources/sinope-generated-surfaceImage-master-1536.jpg",
+              "bytes": 284978,
+              "sha256": "d2b7e44635f7d4f7685e7c66f75c94474247362da000c583169db316e4a42894",
+              "dimensions": [
+                1536,
+                864
+              ],
+              "quality": 85
+            },
+            "preview": {
+              "path": "data/research-sources/sinope-generated-surfaceImage-preview-256.jpg",
+              "bytes": 9775,
+              "sha256": "03f1d65e194e59077f09e8507ccd0f97dcb08fc2b43aabf00473bcdabb50904d",
+              "dimensions": [
+                256,
+                144
+              ],
+              "quality": 80
+            }
+          },
+          {
+            "field": "skyImage",
+            "original": {
+              "path": "data/research-sources/sinope-generated-skyImage-original.png",
+              "bytes": 1644016,
+              "sha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a"
+            },
+            "master": {
+              "path": "data/research-sources/sinope-generated-skyImage-master-1536.jpg",
+              "bytes": 193477,
+              "sha256": "a215268f0d31878bc9a0372c01c5873778a951a3f717cdcade26ab39be26cd11",
+              "dimensions": [
+                1536,
+                870
+              ],
+              "quality": 85
+            },
+            "preview": {
+              "path": "data/research-sources/sinope-generated-skyImage-preview-256.jpg",
+              "bytes": 5720,
+              "sha256": "66cf5644f9736ce069c2bccbe56b71268f5f38890dd0bd14e23ac3491268c9b7",
+              "dimensions": [
+                256,
+                145
+              ],
+              "quality": 80
+            }
+          }
+        ],
+        "limits": [
+          "Master/original annotations legible; small previews require explicit IMAGINED card labels.",
+          "JPEG derivatives are generated-illustration previews, not scientific-image transformations.",
+          "All production assets/dossiers/native/model/map/shape/codec inputs unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/sinope-lorri-index-preparation-2026-10-19.json",
+      "bytes": 3056,
+      "sha256": "c383384c4233eae7319fecbae6159b36800db957126757cd8445789f1dfbd9ea",
+      "record": {
+        "sourceTableSha256": "12df650432de292f01237563f8b59c2efc3b3be5b4ea5aa5f44b8c510cd0c2d0",
+        "sourceTableBytes": 447200,
+        "records": 1118,
+        "bytesPerRecordIncludingCrLf": 400,
+        "columns": [
+          {
+            "NAME": "VOLUME_ID",
+            "START_BYTE": "2",
+            "BYTES": "11"
+          },
+          {
+            "NAME": "PATH_NAME",
+            "START_BYTE": "16",
+            "BYTES": "21"
+          },
+          {
+            "NAME": "FILE_NAME",
+            "START_BYTE": "40",
+            "BYTES": "31"
+          },
+          {
+            "NAME": "DATA_SET_ID",
+            "START_BYTE": "74",
+            "BYTES": "43"
+          },
+          {
+            "NAME": "PRODUCT_ID",
+            "START_BYTE": "120",
+            "BYTES": "27"
+          },
+          {
+            "NAME": "PRODUCT_CREATION_TIME",
+            "START_BYTE": "150",
+            "BYTES": "19"
+          },
+          {
+            "NAME": "REDUCTION_LEVEL",
+            "START_BYTE": "172",
+            "BYTES": "10"
+          },
+          {
+            "NAME": "SPACECRAFT_CLOCK_START_COUNT",
+            "START_BYTE": "185",
+            "BYTES": "18"
+          },
+          {
+            "NAME": "SPACECRAFT_CLOCK_STOP_COUNT",
+            "START_BYTE": "206",
+            "BYTES": "18"
+          },
+          {
+            "NAME": "START_TIME",
+            "START_BYTE": "227",
+            "BYTES": "23"
+          },
+          {
+            "NAME": "STOP_TIME",
+            "START_BYTE": "253",
+            "BYTES": "23"
+          },
+          {
+            "NAME": "TARGET_NAME",
+            "START_BYTE": "279",
+            "BYTES": "21"
+          },
+          {
+            "NAME": "INSTRUMENT_HOST",
+            "START_BYTE": "303",
+            "BYTES": "12"
+          },
+          {
+            "NAME": "INSTRUMENT_ID",
+            "START_BYTE": "318",
+            "BYTES": "6"
+          },
+          {
+            "NAME": "INSTRUMENT_NAME",
+            "START_BYTE": "327",
+            "BYTES": "61"
+          },
+          {
+            "NAME": "TELEMETRY_APPLICATION_ID",
+            "START_BYTE": "391",
+            "BYTES": "7"
+          }
+        ],
+        "fixedByteAndCsvEveryFieldEqual": true,
+        "targetNameCounts": {
+          "JUPITER": 201,
+          "J17 CALLIRRHOE": 24,
+          "J1 IO": 179,
+          "J RINGS": 517,
+          "GANYMEDE": 97,
+          "CALLISTO": 9,
+          "J2 EUROPA": 53,
+          "J7 ELARA": 8,
+          "J6 HIMALIA": 30
+        },
+        "uniqueProductIds": 1118,
+        "uniqueLabelPaths": 1118,
+        "rowProductCreationCounts": {
+          "2017-02-27": 1118
+        },
+        "aggregateEarliestStart": "2007-01-08T21:42:01.359",
+        "aggregateLatestStop": "2007-06-11T22:20:03.395",
+        "limits": "Bounded target-field nonmatch only, not absence from all footprints, LORRI versions, spacecraft/ground archives or observations. Other moon images never assigned to Sinope. No FITS/pixels/PSF/pointing/photometry/native licence or acquisition date established.",
+        "body": "Sinope/JupiterIX/JPL509",
+        "exactSinopeAliasRows": {
+          "SINOPE": 0,
+          "J9 SINOPE": 0,
+          "J9SINOPE": 0
+        },
+        "caseInsensitiveSinopeSubstringRows": 0,
+        "status": "Quiet native-source preparation only; no95th dossier, embedding or production input change.",
+        "parser": {
+          "path": "docs/research/pasiphae-lorri-index-assessment-2026-10-19.py",
+          "sha256": "41012d80805c64ea2f4798b661dd2990464cc8e8bb52adc5d87ba38d2b509c29",
+          "note": "Reused unchanged parser validates all1118fixed400byteCRLFrecords/16fields against independent CSV; Sinope predicates applied to parsed target fields separately."
+        }
+      }
+    }
+  ],
+  "limits": [
+    "All existing 94 dossiers and production assets remain unchanged.",
+    "OHP primary annotated image proves a native observation exists; bounded LORRI target-name nonmatch is not global image absence.",
+    "Current primary permission wording and Commons CC BY-SA assertion are unresolved; no image permission inferred, contact sent or native image embedded.",
+    "Generated illustrations are independent invented terrain/appearance, not registered geography or calibrated visible colour.",
+    "Prepared JPEG derivatives apply only to generated illustrations; original/default PNGs and native publisher JPEG retained unchanged.",
+    "Jupiter tiny rendered disk visually oversized relative to skyGeometry guide; no calibrated raster diameter claim.",
+    "Initial dossier/import/catalogue/browser verification still pending; backlog ACTIVE."
+  ],
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 205,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "5a74180",
+    "priorDossiersDeepEqual": 94,
+    "dossiers": 94,
+    "priorMoonsDeepEqual": 50,
+    "moons": 50,
+    "trackedPublicByteEqual": 689,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "historicalPrePasiphaeSnapshotAddedImages": [
+      "/bespoke/pasiphae-sky-image.jpg",
+      "/bespoke/pasiphae-surface-image.jpg"
+    ],
+    "productionAddedImages": [],
+    "htmlBytes": 15635406,
+    "headroomBytes": 364594,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "42f41a8138c28bbbb9e8d39155892e071af730230e1734bc0602c93646b744b0",
+    "applicationSha256": "269e84741c8a225aa69aac9b0ff57b30ef00772d45ea97977e03d343cc5eab34",
+    "freshBrowserClaim": false,
+    "additionalPreparationHashRecordsChecked": 21,
+    "tests": {
+      "pass": 697,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "queueRegeneration": "569 entries unchanged",
+    "interbuildSizeAttribution": "None; live band refresh differences unaudited"
+  }
+}
