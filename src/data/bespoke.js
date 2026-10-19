@@ -16285,6 +16285,171 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "sinope": {
+    "id": "sinope",
+    "name": "Sinope",
+    "kind": "moon",
+    "aliases": [
+      "Sinope",
+      "Jupiter IX",
+      "J9 Sinope"
+    ],
+    "researchDate": "2026-10-19",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Unresolved OHP point image retained research-only with unresolved permission terms; WISE thermal fits and JWST spectra are not local geography or calibrated visible colour.",
+    "measured": [
+      "Sinope / JupiterIX / JPL509, distinct from Pasiphae,Pasithee and Elara. NASA discovery1914July21 by SethBarnesNicholson at Lick36-inch telescope.",
+      "Primary OHP/IMCCE/CNRS annotated publisher image prints1998Aug14 22:45UTC and1.2m telescope. Faint arrowed point,starfield,noise and annotation do not resolve terrain. No native image embedded pending permission/terms reconciliation.",
+      "Sharkey etal2025v2 Table1 Sinope NIRSpec observation2024-01-21,GO4028 IFUprism; version date is not acquisition."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.4 NEATM effective DIAMETER35.0±.6km,eta.82±.02,pV4.2±.6percent,W1albedo10.8±1.2percent,W2unreported. Display radius17.5km halfdiameter is not axes/localnormal. NASA19km assumes.04albedo; alternative retained,not jointfit/envelope.",
+      "WISE Table1 counts13/unreported/14/14 versus Table3fit13/unreported/14/13 retained without repair. RoundedMJDUTC55371 not exposureUTC; H11.29±.01mag,G.10±.15assumed,methods conservativeHerror.15mag. ~.1magvariation over~27hr no evidentperiod; citedLuu1991 historical13.16hr/~.2mag not independently adoptedspin.",
+      "JPLJUP347 planet-centred ecliptic2000Jan1.5TDB mean a23679300km,e.262,w354.3,M157.4,i157.3,node308deg,P744.5951days,apsidal57/nodal93.1yr; blankpole notzero. Means explicitly not ephemerides. NASA23.9Mkm/759days historical alternative preserved,not currentdistance/dateSPICE/lighttime/covariance.",
+      "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 unresolved.7–5.1micron spectra,GO4028,pipeline1.14.0/jwst_1225.pmap,NSClean/PSF/extraction/SNAP2solarprogram1128/thermal-tail subtraction not independently reproduced. RedTrojanlike slope/shallow~3/~3.4micron bands do not identify unique chemistry/localfractions/visibleRGB; authors do not propose specific redsatellite compositions. Possible4.9micron feature lowSNR/continuum/thermal-sensitive,carrier speculative.",
+      "D-type/roughness/thermalinertia/capture/family/collision/progenitor explanations are models,not localmaterial fractions or observedhistory. Orbitalretrograde/secularresonance not spinlocking or permanentJupiterface.",
+      "Bounded1118-row NH-J-LORRI-3-JUPITER-V3.0 index has zero Sinope/J9Sinope target-name matches; not absence in allfootprints/versions/archives. Othermoons not assigned toSinope."
+    ],
+    "unknown": [
+      "Mass,GM,density,spin,pole,axes,localnormal,registered geography,currentlongitude,visiblecolour,chemistry/fractions and dated observer alignment; no Sinope row in retainedJPLphysicaltable. Nullrotation/lockingdisabled not measurednonsynchronousspin or permanentface.",
+      "OHP rawexposure/filter/product/photometry/originalpublication and Commons unannotated265 versus annotatedprimaryb69 pixelcrosswalk open. Current primary author-permission/noncommercial wording conflicts with CommonsCCBYSA2France assertion; no permission inferred/contactsent/nativeembedding. Photoshop2013timestamp not observation.",
+      "Grav2015 ©AASallrightsreserved NOTCCBY; full8authors retained,nofigure. Sharkeyv2 specificarXivCCBY4 not blanketrawarchive/image licence; finalpublisherverificationredirect not paper/licence. RawJWSTcube/frame/photometry/terms audit open."
+    ],
+    "assumed": [
+      "Independent invented terrain,grains,blocks,relief,chemistry/fractions/porosity,grey-browncolour,Jupiterpattern/phase/axis,illumination/exposure/viewpoint. No observedbody reference or analogskin. No foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedrings/stars not measuredabsence.",
+      "skyGeometry spherical69911kmJupiter at23679300 minus hypothetical17.5kmradialheight gives.3383219961046769deg/nominal90HFOV/1672width target4.936454533967803px. NASA19kmheight alternative.3383220175362595deg/4.936454846677734px not jointfit/envelope/localnormal/date; eccentricmeanorbit not currentdistance. Generatedtiny disk visually oversized/uncalibrated,no measuredrasterdiameter adopted.165K helper angularonly,irradiance/colour discarded; Sun5.2044AU assumed off-frame not photometry.",
+      "Original/defaultPNGs/fullprompts retained with1536JPEG85masters/256JPEG80previews/offlineWebP80; tinyfooters requireIMAGINEDcardlabels. No generatedglobe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM SINOPE",
+    "skyLabel": "IMAGINED · SKY FROM SINOPE",
+    "skyCaption": "Hypothetical spherical Jupiter guide0.3383° at mean-orbit scale; generated tiny disk oversized/uncalibrated. FOV,phase,colour,exposure and registration artistic;165K helper angular-only.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "17.5 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "23.68 M KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15828622686405658,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "angularDiameterDeg": 0.3383219961046769,
+      "centreDiscWidthFraction": 0.002952424960507059,
+      "irradianceEarth": 2.6914806105322216e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "references": [
+      {
+        "title": "NASA Sinope historical assumed-albedo overview",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/sinope/"
+      },
+      {
+        "title": "JPL JUP347 mean elements,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table; no Sinope row in retained response",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav etal2015 thermal models; full8authors retained,allrightsreserved",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "RoundedMJDUTC55371; individualUTC unknown"
+      },
+      {
+        "title": "Sharkey etal2025v2 full6authorsCCBY4; unresolvedJWSTspectroscopy",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "publicationDate": "2025-09-07",
+        "observationDate": "2024-01-21"
+      },
+      {
+        "title": "Specific arXiv CC BY4 terms; not blanketrawarchive licence",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "PDS original calibrated-Jupiter index; bounded target-name result only",
+        "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.lbl"
+      },
+      {
+        "title": "NASA media terms; sourcecredit/thirdparty/noendorsement caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      {
+        "title": "OHP annotated Sinope publisher caption,fullOHP/IMCCE/CNRScredit; research-only",
+        "url": "https://promenade.imcce.fr/en/pages1/130.html"
+      },
+      {
+        "title": "Primary author-permission terms; unresolvedagainstCommonsassertion,noimageadoption",
+        "url": "https://promenade.imcce.fr/en/pages1/189.html"
+      }
+    ],
+    "nativeProducts": {
+      "embedded": false,
+      "limits": "OHP annotated native observation retained unchanged research-only; unresolvedpermissionterms/rawfilter/product/photometry. JWSTspectra/WISEthermalmodel not resolvedterrain. BoundedLORRInonmatch not globalabsence. No nativeimage/paperfigure embedded."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/sinope-surface-image.jpg",
+      "previewUrl": "/bespoke/sinope-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "sinope-generated-surfaceImage-original.png",
+      "sourceSha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752",
+      "sha256": "659b828331974f12566db4fac7c8dd1c5f5a60f34759d20ccf3dc476fdf2b91b",
+      "previewSha256": "4975327e34ced5fca0001b576f08bad5e44d0abae42133cd53f2327b0d1c06f3",
+      "bytes": 284824,
+      "previewBytes": 9742,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/sinope-sky-image.jpg",
+      "previewUrl": "/bespoke/sinope-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "sinope-generated-skyImage-original.png",
+      "sourceSha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a",
+      "sha256": "0c2efb9c1f1606bb7e0ae9a42c44a73419c14a7ef842e0067de29c6e5036ef05",
+      "previewSha256": "8f4f8f4e26634c46c54bb08020ec096d8e54a95aeb428be38507a7938fb4f575",
+      "bytes": 192526,
+      "previewBytes": 5698,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

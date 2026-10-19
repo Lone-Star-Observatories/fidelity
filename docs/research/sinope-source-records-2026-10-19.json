@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-19",
+  "dossier": 95,
+  "generation": [
+    {
+      "role": "surfaceImage",
+      "tool": "built-in image_gen",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-281f209e-f8d3-49bf-b239-0746e86682ff.png",
+        "bytes": 2395207,
+        "sha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752"
+      },
+      "original": {
+        "path": "data/research-sources/sinope-generated-surfaceImage-original.png",
+        "bytes": 2395207,
+        "sha256": "9ad815a9b6763559576df00d973123e47a8f617f5983e2a862d30ef5c102d752"
+      },
+      "prompt": "Create one independent scientific-concept illustration, landscape 16:9, hypothetical close local view on Sinope (Jupiter IX), an irregular outer Jovian moon. This is explicitly IMAGINED, not an observed site or a registered map. Generate entirely original terrain; do not reference, copy, recolour, or reuse any Moon, Mars, Pluto, asteroid or other body's observed surface. A low camera sees subdued grey-brown granular regolith, a few angular blocks and uneven distant ridges beneath a black sky. Restrained physically plausible vacuum lighting from an off-frame distant Sun; no atmosphere, clouds, fog, lava, plumes, exposed liquid, ocean, organisms, people, equipment or survivable landing implication. No celestial disk visible. Sinope is unresolved in available observations: its 35.0\u00b10.6 km effective thermal diameter and red unresolved spectral slope do not establish local terrain, chemistry, porosity or visible colour. All depicted relief, grains, rocks, material, chemistry, colour, lighting and exposure are artistic inventions. Do not label minerals or imply measured local composition. No dated scene, geographic coordinates, spin orientation or permanent Jupiter-facing side. Add two clearly legible lines inside a clean dark footer band: 'IMAGINED LOCAL VIEW \u2014 SINOPE' and 'Terrain, materials, colour and lighting are hypothetical'. Elegant documentary presentation, photorealistic rendering but unambiguous hypothetical footer.\n",
+      "master": {
+        "path": "public/bespoke/sinope-surface-image.jpg",
+        "bytes": 284824,
+        "sha256": "659b828331974f12566db4fac7c8dd1c5f5a60f34759d20ccf3dc476fdf2b91b"
+      },
+      "preview": {
+        "path": "public/bespoke/sinope-surface-image-preview.jpg",
+        "bytes": 9742,
+        "sha256": "4975327e34ced5fca0001b576f08bad5e44d0abae42133cd53f2327b0d1c06f3"
+      }
+    },
+    {
+      "role": "skyImage",
+      "tool": "built-in image_gen",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-120f6166-524d-4e61-bce6-9f218edf0702.png",
+        "bytes": 1644016,
+        "sha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a"
+      },
+      "original": {
+        "path": "data/research-sources/sinope-generated-skyImage-original.png",
+        "bytes": 1644016,
+        "sha256": "bf4f52e635f64e5aeac6accbd1c2764df1b58e0bbe0c3345b34057709b91992a"
+      },
+      "prompt": "Create one independent scientific-concept illustration, landscape 16:9, hypothetical sky seen from near the surface of Sinope (Jupiter IX). Entirely original invented low grey-brown uneven terrain with scattered modest angular rocks occupying the lower third, broad black sky above. Jupiter must be a VERY TINY distant softly coloured disk high in the sky, approximately FIVE pixels across in a 1672-pixel-wide image at nominal 90 degree horizontal FOV, not a large horizon planet. Its spherical angular guide is 0.3383219961046769 degrees from skyGeometry using Jupiter radius69911km, centre separation23679300km minus hypothetical17.5km observer height; these are a mean orbit/thermal halfdiameter illustration, not dated geometry, local normal or spin alignment. No close-up bands can be resolved at this size. Do not enlarge Jupiter for drama. No other astronomical disks, no foreground atmosphere, cloud, fog, plume, exposed liquid/ocean, organisms, humans or craft. Sun off-frame. Generate wholly independent terrain and schematic tiny planet colour, do not copy/recolour any observed Moon/Mars/Pluto/asteroid/Jupiter map or use references. All relief, grains, material chemistry/fractions/porosity, colour, planet appearance, phase, axis, illumination, exposure and arrangement are invented and uncalibrated; this is not an observed place or survivable landing. No dated site, measured spin locking or permanent Jupiter-facing side. Footer in dark clean band, two highly legible lines: 'IMAGINED SKY FROM SINOPE' and 'Terrain, Jupiter appearance and lighting are hypothetical'. Documentary photorealistic rendering, clearly labelled speculative illustration.\n",
+      "master": {
+        "path": "public/bespoke/sinope-sky-image.jpg",
+        "bytes": 192526,
+        "sha256": "0c2efb9c1f1606bb7e0ae9a42c44a73419c14a7ef842e0067de29c6e5036ef05"
+      },
+      "preview": {
+        "path": "public/bespoke/sinope-sky-image-preview.jpg",
+        "bytes": 5698,
+        "sha256": "8f4f8f4e26634c46c54bb08020ec096d8e54a95aeb428be38507a7938fb4f575"
+      }
+    }
+  ],
+  "researchRecords": [
+    "docs/research/sinope-reference-primary-assessment-2026-10-19.json",
+    "docs/research/sinope-imagery-view-preparation-2026-10-19.json"
+  ],
+  "notes": [
+    "Both independent builtin originals/default PNGs and full prompts preserved; no referenced observed-body map.",
+    "Importer-generated1536x864JPEG85masters/256x144JPEG80previews preserve earlier prepared derivatives separately.",
+    "No native context image embedded; OHP native unresolved pointimage retained research-only,permissiontermsconflict open."
+  ]
+}

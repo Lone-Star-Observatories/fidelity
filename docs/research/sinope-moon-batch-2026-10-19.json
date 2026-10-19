@@ -1,0 +1,109 @@
+{
+  "body": "Sinope",
+  "dossier": 95,
+  "date": "2026-10-19",
+  "issue": 3,
+  "status": "Delivered initial imagined local and observer views; native-image terms and scientific refinement remain open.",
+  "records": [
+    "sinope-source-records-2026-10-19.json",
+    "sinope-reference-primary-assessment-2026-10-19.json",
+    "sinope-imagery-view-preparation-2026-10-19.json",
+    "sinope-import-manifest-2026-10-19.json",
+    "sinope-dossier-browser-verification-2026-10-19.json"
+  ],
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 223,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "8c3a09e",
+    "priorDossiersDeepEqual": 94,
+    "dossiers": 95,
+    "priorMoonsDeepEqual": 50,
+    "moons": 51,
+    "trackedPublicByteEqual": 689,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/sinope-sky-image.jpg",
+      "/bespoke/sinope-surface-image.jpg"
+    ],
+    "htmlBytes": 15650014,
+    "headroomBytes": 349986,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "abc9c892c4d56c4f6848b4f0d0b418c8a3620496923c4fa4df0703c5cfcd4db6",
+    "applicationSha256": "2748d5b1f45b050b4aec522d28dcfeccbe2128b41e420e91abaf62a07b5b10dd",
+    "freshBrowserClaim": false
+  },
+  "browser": {
+    "status": "pass",
+    "browser": "Chrome via IAB, loopback HTTP",
+    "completeReadableJsonSha256": "abc9c892c4d56c4f6848b4f0d0b418c8a3620496923c4fa4df0703c5cfcd4db6",
+    "applicationSha256": "2748d5b1f45b050b4aec522d28dcfeccbe2128b41e420e91abaf62a07b5b10dd",
+    "htmlParserPackedSnapshotSha256": "819f018e2a89c070d336f2dcbb42564b14dfc426d8b3ddffeda2b3cea2b3b0e7",
+    "htmlParserPackedAppSha256": "8897acaf2585b621dbc68f2c89b8c7962c7be34453e62175ac2e6e0e9e817f9b",
+    "decodedImages": 330,
+    "parsedModelScenes": 32,
+    "details": 517,
+    "bands": 20,
+    "startupCanvases": 8,
+    "normalSinope": {
+      "cards": 2,
+      "decodedDimensions": [
+        1536,
+        864
+      ],
+      "ownGlobe": false
+    },
+    "offlineSinope": {
+      "cards": 2,
+      "decodedDimensions": [
+        256,
+        144
+      ],
+      "mime": "image/webp",
+      "ownGlobe": false
+    },
+    "unsupportedGzipNoticeVerified": true,
+    "unsupportedWasmNoticeVerified": true,
+    "limits": [
+      "Other browser engines remain open.",
+      "Direct-file route not tested; prior URL policy restriction preserved.",
+      "Model scene parsing is not a fresh all-model interactive load claim.",
+      "Earlier event-worker and other route verification remains historical, not freshly repeated."
+    ]
+  },
+  "validation": {
+    "testsPassed": 698,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  },
+  "scienceLimits": [
+    "Jupiter IX / JPL509 distinct Pasiphae, Pasithee and Elara.",
+    "17.5km display radius is half Grav2015 NEATM diameter35.0±.6km, not axes/local normal. NASA19km assumed-albedo alternative retained. Mass,GM,density,spin and pole unknown.",
+    "Table1 W4 count14 versus Table3 fit13 preserved; historical cited13.16hr spin not independently adopted.",
+    "JUP347 ecliptic2000Jan1.5TDB means are not ephemerides; navigation illustrative, not dated SPICE registration.",
+    "Unresolved JWST spectral interpretations are not local chemistry/fractions or calibrated visible geography. Specific arXiv CC BY4 distinct Grav2015 AAS rights; no paper figure embedded.",
+    "OHP annotated1998Aug14 22:45UTC pointimage retained research-only; primary permission/noncommercial terms versus Commons CC BY-SA2France assertion unresolved. No global native-image absence claim or inferred permission.",
+    "Bounded LORRI target-name nonmatch is not absence in all archives or footprints.",
+    "Independent invented terrain/materials/colour/Jupiter pattern, phase, axis, light and exposure; no analog skins, dated site, atmosphere/plume/ocean/biology/landing claim.",
+    "skyGeometry spherical Jupiter guide .3383219961046769deg /4.936454533967803px at1672width90HFOV. Generated tiny disk visually oversized/uncalibrated; no measured raster diameter adopted.165K angularhelper not photometry.",
+    "Original/default PNGs and full prompts preserved. Additive importer1536JPEG85 masters/256JPEG80 previews differ from separately retained preparation derivatives; offlineWebP80. Tiny footers require IMAGINED card labels."
+  ],
+  "savedSnapshotDiff": {
+    "bandImages": [
+      "/api/feed/sdo-1600?size=preview",
+      "/api/feed/sdo-193?size=preview",
+      "/api/feed/sdo-304?size=preview"
+    ],
+    "crew": [
+      "cache",
+      "time"
+    ],
+    "bodyImages": [
+      "/bespoke/sinope-sky-image.jpg",
+      "/bespoke/sinope-surface-image.jpg"
+    ]
+  },
+  "savedSnapshotDiffLimit": "Live feed refresh is not solely Sinope or compression change.",
+  "next": "Continue outstanding moon/native-map/craft/shape/calibration/ranking backlog. Automation ACTIVE; no external blocker claimed."
+}

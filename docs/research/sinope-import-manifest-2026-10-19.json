@@ -1,0 +1,125 @@
+{
+  "generated": "2026-10-19",
+  "bodies": [
+    {
+      "id": "sinope",
+      "name": "Sinope",
+      "kind": "moon",
+      "aliases": [
+        "Sinope",
+        "Jupiter IX",
+        "J9 Sinope"
+      ],
+      "researchDate": "2026-10-19",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or shape adopted. Unresolved OHP point image retained research-only with unresolved permission terms; WISE thermal fits and JWST spectra are not local geography or calibrated visible colour.",
+      "measured": [
+        "Sinope / JupiterIX / JPL509, distinct from Pasiphae,Pasithee and Elara. NASA discovery1914July21 by SethBarnesNicholson at Lick36-inch telescope.",
+        "Primary OHP/IMCCE/CNRS annotated publisher image prints1998Aug14 22:45UTC and1.2m telescope. Faint arrowed point,starfield,noise and annotation do not resolve terrain. No native image embedded pending permission/terms reconciliation.",
+        "Sharkey etal2025v2 Table1 Sinope NIRSpec observation2024-01-21,GO4028 IFUprism; version date is not acquisition."
+      ],
+      "modelled": [
+        "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.4 NEATM effective DIAMETER35.0\u00b1.6km,eta.82\u00b1.02,pV4.2\u00b1.6percent,W1albedo10.8\u00b11.2percent,W2unreported. Display radius17.5km halfdiameter is not axes/localnormal. NASA19km assumes.04albedo; alternative retained,not jointfit/envelope.",
+        "WISE Table1 counts13/unreported/14/14 versus Table3fit13/unreported/14/13 retained without repair. RoundedMJDUTC55371 not exposureUTC; H11.29\u00b1.01mag,G.10\u00b1.15assumed,methods conservativeHerror.15mag. ~.1magvariation over~27hr no evidentperiod; citedLuu1991 historical13.16hr/~.2mag not independently adoptedspin.",
+        "JPLJUP347 planet-centred ecliptic2000Jan1.5TDB mean a23679300km,e.262,w354.3,M157.4,i157.3,node308deg,P744.5951days,apsidal57/nodal93.1yr; blankpole notzero. Means explicitly not ephemerides. NASA23.9Mkm/759days historical alternative preserved,not currentdistance/dateSPICE/lighttime/covariance.",
+        "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 unresolved.7\u20135.1micron spectra,GO4028,pipeline1.14.0/jwst_1225.pmap,NSClean/PSF/extraction/SNAP2solarprogram1128/thermal-tail subtraction not independently reproduced. RedTrojanlike slope/shallow~3/~3.4micron bands do not identify unique chemistry/localfractions/visibleRGB; authors do not propose specific redsatellite compositions. Possible4.9micron feature lowSNR/continuum/thermal-sensitive,carrier speculative.",
+        "D-type/roughness/thermalinertia/capture/family/collision/progenitor explanations are models,not localmaterial fractions or observedhistory. Orbitalretrograde/secularresonance not spinlocking or permanentJupiterface.",
+        "Bounded1118-row NH-J-LORRI-3-JUPITER-V3.0 index has zero Sinope/J9Sinope target-name matches; not absence in allfootprints/versions/archives. Othermoons not assigned toSinope."
+      ],
+      "unknown": [
+        "Mass,GM,density,spin,pole,axes,localnormal,registered geography,currentlongitude,visiblecolour,chemistry/fractions and dated observer alignment; no Sinope row in retainedJPLphysicaltable. Nullrotation/lockingdisabled not measurednonsynchronousspin or permanentface.",
+        "OHP rawexposure/filter/product/photometry/originalpublication and Commons unannotated265 versus annotatedprimaryb69 pixelcrosswalk open. Current primary author-permission/noncommercial wording conflicts with CommonsCCBYSA2France assertion; no permission inferred/contactsent/nativeembedding. Photoshop2013timestamp not observation.",
+        "Grav2015 \u00a9AASallrightsreserved NOTCCBY; full8authors retained,nofigure. Sharkeyv2 specificarXivCCBY4 not blanketrawarchive/image licence; finalpublisherverificationredirect not paper/licence. RawJWSTcube/frame/photometry/terms audit open."
+      ],
+      "assumed": [
+        "Independent invented terrain,grains,blocks,relief,chemistry/fractions/porosity,grey-browncolour,Jupiterpattern/phase/axis,illumination/exposure/viewpoint. No observedbody reference or analogskin. No foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedrings/stars not measuredabsence.",
+        "skyGeometry spherical69911kmJupiter at23679300 minus hypothetical17.5kmradialheight gives.3383219961046769deg/nominal90HFOV/1672width target4.936454533967803px. NASA19kmheight alternative.3383220175362595deg/4.936454846677734px not jointfit/envelope/localnormal/date; eccentricmeanorbit not currentdistance. Generatedtiny disk visually oversized/uncalibrated,no measuredrasterdiameter adopted.165K helper angularonly,irradiance/colour discarded; Sun5.2044AU assumed off-frame not photometry.",
+        "Original/defaultPNGs/fullprompts retained with1536JPEG85masters/256JPEG80previews/offlineWebP80; tinyfooters requireIMAGINEDcardlabels. No generatedglobe/shape."
+      ],
+      "surfaceLabel": "IMAGINED \u00b7 LOCAL VIEW FROM SINOPE",
+      "skyLabel": "IMAGINED \u00b7 SKY FROM SINOPE",
+      "skyCaption": "Hypothetical spherical Jupiter guide0.3383\u00b0 at mean-orbit scale; generated tiny disk oversized/uncalibrated. FOV,phase,colour,exposure and registration artistic;165K helper angular-only.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "17.5 KM \u00b7 THERMAL MODEL"
+        ],
+        [
+          "MASS",
+          "UNKNOWN"
+        ],
+        [
+          "ORBIT",
+          "23.68 M KM \u00b7 MEAN SCALE"
+        ],
+        [
+          "ATTITUDE",
+          "UNREGISTERED"
+        ]
+      ],
+      "skyModel": {
+        "star": "Jupiter \u00b7 hypothetical spherical angular guide",
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.15828622686405658,
+        "horizontalFovDeg": 90,
+        "angularOnly": true
+      },
+      "contextImages": [],
+      "references": [
+        {
+          "title": "NASA Sinope historical assumed-albedo overview",
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/sinope/"
+        },
+        {
+          "title": "JPL JUP347 mean elements,not ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+        },
+        {
+          "title": "JPL physical table; no Sinope row in retained response",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+        },
+        {
+          "title": "Grav etal2015 thermal models; full8authors retained,allrightsreserved",
+          "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+          "publicationDate": "2015-08-04",
+          "observationDate": "RoundedMJDUTC55371; individualUTC unknown"
+        },
+        {
+          "title": "Sharkey etal2025v2 full6authorsCCBY4; unresolvedJWSTspectroscopy",
+          "url": "https://arxiv.org/html/2501.16484v2",
+          "publicationDate": "2025-09-07",
+          "observationDate": "2024-01-21"
+        },
+        {
+          "title": "Specific arXiv CC BY4 terms; not blanketrawarchive licence",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "title": "PDS original calibrated-Jupiter index; bounded target-name result only",
+          "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.lbl"
+        },
+        {
+          "title": "NASA media terms; sourcecredit/thirdparty/noendorsement caveats",
+          "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+        },
+        {
+          "title": "OHP annotated Sinope publisher caption,fullOHP/IMCCE/CNRScredit; research-only",
+          "url": "https://promenade.imcce.fr/en/pages1/130.html"
+        },
+        {
+          "title": "Primary author-permission terms; unresolvedagainstCommonsassertion,noimageadoption",
+          "url": "https://promenade.imcce.fr/en/pages1/189.html"
+        }
+      ],
+      "nativeProducts": {
+        "embedded": false,
+        "limits": "OHP annotated native observation retained unchanged research-only; unresolvedpermissionterms/rawfilter/product/photometry. JWSTspectra/WISEthermalmodel not resolvedterrain. BoundedLORRInonmatch not globalabsence. No nativeimage/paperfigure embedded."
+      },
+      "inputs": {
+        "surfaceImage": "sinope-generated-surfaceImage-original.png",
+        "skyImage": "sinope-generated-skyImage-original.png"
+      }
+    }
+  ]
+}

@@ -285,6 +285,19 @@ export const MOONS = [
       { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Lowamplitude1.2dayWISE interval versus historicallargeramplitude/aspect alternatives not a spinperiod. Nullrotation/lockingdisabled do not measure nonsynchronousspin,pole or permanentface.' },
     ],
     surfacePending: true, discovered: '1908 · Philibert Jacques Melotte', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. JWST spectra/WISEthermalmodel are not local chemistry,geography or dated registration. Native imagery refinement remains open.' },
+  { id: 'sinope', name: 'Sinope', parent: 'jupiter', radiusKm: 17.5, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(23679300, .262, 354.3, 157.4, 157.3, 308.0, 744.5951, 57.0, 93.1, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Sinope,JupiterIX,JPL509; distinct Pasiphae/Pasithee/Elara. Retrograde orbit does not measure spin.' },
+      { label: 'ORBIT', value: '23,679,300 KM · 744.5951 DAYS', tier: 'modelled', detail: 'JUP347 planet-centred ecliptic2000Jan1.5TDB mean elements,e.262/i157.3deg,not ephemerides. NASA historical23.9Mkm/759days retained separately.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'No datedSPICE/frame/phase/lighttime/covariance registration. Secularresonance not spinlocking/permanentJupiterface.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '17.5 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half Grav2015 NEATM effective DIAMETER35.0±.6km,not axes/localnormal. NASA19km assumes.04albedo,distinct alternative not jointfit/envelope.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Sinope physical row in retainedJPLtable; GM,mass,density,chemistry/porosity unknown.' },
+      { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'WISE~27hr no evidentperiod; citedhistorical13.16hr not independentlyadopted. Nullrotation/lockingdisabled not measurednonsynchronousspin,pole or permanentface.' },
+    ],
+    surfacePending: true, discovered: '1914 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. OHP native pointimage retained research-only pending terms reconciliation. Unresolvedthermal/spectral fits not localchemistry/geography/date registration.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [
