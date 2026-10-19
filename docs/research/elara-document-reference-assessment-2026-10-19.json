@@ -1,0 +1,515 @@
+{
+  "date": "2026-10-19",
+  "baseline": "445abb0",
+  "scope": "Research-only exact document identifier, collection membership and publisher fixity audit. No source correction or production adoption.",
+  "crosscheck": {
+    "status": "Retained-file crosscheck only; not exhaustive registry resolution or cause diagnosis.",
+    "documentLidvid": "urn:nasa:pds:nh_documents:lorri:lorri_ssr::1.0",
+    "collections": [
+      {
+        "lidvid": "urn:nasa:pds:nh_documents:lorri::3.0",
+        "rows": 19,
+        "documentMatches": [
+          [
+            "P",
+            "urn:nasa:pds:nh_documents:lorri:lorri_ssr::1.0"
+          ]
+        ],
+        "referencedRalphLidMatches": []
+      },
+      {
+        "lidvid": "urn:nasa:pds:nh_documents:ralph::3.0",
+        "rows": 19,
+        "documentMatches": [],
+        "referencedRalphLidMatches": []
+      }
+    ],
+    "references": [
+      {
+        "path": "/Users/ageer/fun/fidelity/data/research-sources/elara-pds4-raw-lor_0035398319_0x630_eng.lblx",
+        "sha256": "55ecfb63ee5f14353ff2c8a1453f72220e23d8c89c70850e8f28114d4abbb9f0",
+        "reference": "urn:nasa:pds:nh_documents:ralph:lorri_ssr",
+        "matchesRetainedDocument": false
+      },
+      {
+        "path": "/Users/ageer/fun/fidelity/data/research-sources/elara-pds4-lor_0035398319_0x630_sci.lblx",
+        "sha256": "66cfd08ce2c1c139e81f1057c4c7504852af1b73738f1e2eb27e7e4ba9443abd",
+        "reference": "urn:nasa:pds:nh_documents:ralph:lorri_ssr",
+        "matchesRetainedDocument": false
+      },
+      {
+        "path": "/Users/ageer/fun/fidelity/data/research-sources/elara-pds4-raw-lor_0035398320_0x630_eng.lblx",
+        "sha256": "457df59d7a0bd68a01de52b4069ff1057b6cb20f730c736be4248e46b5bdc982",
+        "reference": "urn:nasa:pds:nh_documents:ralph:lorri_ssr",
+        "matchesRetainedDocument": false
+      },
+      {
+        "path": "/Users/ageer/fun/fidelity/data/research-sources/elara-pds4-lor_0035398320_0x630_sci.lblx",
+        "sha256": "23cc383c6ce6475ab7da8d95993f9d6a3e730c81fe3805a900da08363b6ca782",
+        "reference": "urn:nasa:pds:nh_documents:ralph:lorri_ssr",
+        "matchesRetainedDocument": false
+      }
+    ],
+    "productionChanges": false
+  },
+  "acquisitions": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_ssr.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_ssr.lblx",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T05:34:21.701759+00:00",
+      "headers": {
+        "Date": "Mon, 19 Oct 2026 05:34:21 GMT",
+        "Server": "Apache/2.4.62",
+        "Last-Modified": "Wed, 26 Jun 2024 18:59:51 GMT",
+        "ETag": "\"13ea-61bcf9e7657c0\"",
+        "Accept-Ranges": "bytes",
+        "Content-Length": "5098",
+        "Connection": "close",
+        "Content-Type": "text/xml"
+      },
+      "bytes": 5098,
+      "sha256": "564dde49c19bb2af1b3b795d90e34ef4c0777f74a97b974d87b59a4a40f161c8",
+      "path": "data/research-sources/elara-nh-lorri-ssr-label-preparation-2026-10-19.lblx",
+      "labelFields": [
+        {
+          "field": "logical_identifier",
+          "value": "urn:nasa:pds:nh_documents:lorri:lorri_ssr"
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "title",
+          "value": "Draft Preprint of LORRI Space Science Reviews Paper"
+        },
+        {
+          "field": "author_list",
+          "value": "Cheng, A.; Weaver, H.; Conard, S.; Morgan, M.; Barnouin-Jha, O.;\n                Boldt, J.; Cooper, K.; Darlington, E.; Grey, M.; Hayes, J.;\n                Kosakowski, K.; Magee, T.; Rossano, E.; Sampath, D.; Schlemm, C.;\n                Taylor, H."
+        },
+        {
+          "field": "publication_year",
+          "value": "2024"
+        },
+        {
+          "field": "description",
+          "value": "This is a preprint of the LORRI Space Science Reviews paper. It\n                will have minor differences from the published paper. Note that there is\n                an error in the published version of this paper: the units in the ordinate\n                of the plot of absolute monochromatic response, Figure 9, should be\n                (DN/s/pixel)/(W/cm^2/sr)."
+        },
+        {
+          "field": "modification_date",
+          "value": "2024-06-21"
+        },
+        {
+          "field": "version_id",
+          "value": "1.0"
+        },
+        {
+          "field": "description",
+          "value": "Migrated from PDS3 document and label by PDS-SBN (B. Hirsch)."
+        },
+        {
+          "field": "doi",
+          "value": "10.1007/s11214-007-9271-6"
+        },
+        {
+          "field": "description",
+          "value": "Published version of this preprint."
+        },
+        {
+          "field": "publication_date",
+          "value": "2007-08-14"
+        },
+        {
+          "field": "description",
+          "value": "This is a preprint of the LORRI Space Science Reviews paper. It\n            will have minor differences from the published paper. Note that there is\n            an error in the published version of this paper: the units in the ordinate\n            of the plot of absolute monochromatic response, Figure 9, should be\n            (DN/s/pixel)/(W/cm^2/sr)."
+        },
+        {
+          "field": "file_name",
+          "value": "lorri_ssr.pdf"
+        }
+      ],
+      "limits": [
+        "Label only acquired; referenced paper not downloaded or assessed in this preparation.",
+        "Publisher metadata does not establish raw histogram accumulation scope, pixel calibration, product registration or redistribution licence.",
+        "No native image, production asset, dossier, codec or catalogue change."
+      ]
+    },
+    {
+      "status": "Quiet publisher collection inventory preparation only; no production change.",
+      "sources": [
+        {
+          "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/collection.lblx",
+          "path": "data/research-sources/elara-lorri-collection-collection-lblx-preparation-2026-10-19.txt",
+          "bytes": 5812,
+          "sha256": "b5c7916eb61645e567aa533768944e4b890a37ee7792e1d9a22b8d357253e3bd",
+          "httpStatus": 200,
+          "headers": {
+            "Date": "Mon, 19 Oct 2026 06:51:43 GMT",
+            "Server": "Apache/2.4.62",
+            "Last-Modified": "Thu, 18 Jun 2026 17:54:10 GMT",
+            "ETag": "\"16b4-6548adcfc3480\"",
+            "Accept-Ranges": "bytes",
+            "Content-Length": "5812",
+            "Connection": "close",
+            "Content-Type": "text/xml"
+          },
+          "retrievedAt": "2026-10-19T06:51:43.900709+00:00"
+        },
+        {
+          "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/inventory.csv",
+          "path": "data/research-sources/elara-lorri-collection-inventory-csv-preparation-2026-10-19.txt",
+          "bytes": 1059,
+          "sha256": "2fcf461ad317d0753c4d27f7393a66937ddaa11ed5d1ebd701ae4bc3fd701206",
+          "httpStatus": 200,
+          "headers": {
+            "Date": "Mon, 19 Oct 2026 06:51:44 GMT",
+            "Server": "Apache/2.4.62",
+            "Last-Modified": "Thu, 18 Jun 2026 17:29:03 GMT",
+            "ETag": "\"423-6548a832935c0\"",
+            "Accept-Ranges": "bytes",
+            "Content-Length": "1059",
+            "Connection": "close",
+            "Content-Type": "text/csv"
+          },
+          "retrievedAt": "2026-10-19T06:51:44.065926+00:00"
+        }
+      ],
+      "ssrInventoryRows": [
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:lorri:lorri_ssr::1.0"
+        ]
+      ],
+      "limits": [
+        "Collection inventory lists a LIDVID, not PDF byte identity, calibration validation or historical reference resolution.",
+        "The four retained data-label ralph:lorri_ssr references differ from this lorri collection entry; alternate registered identifiers and original cause remain open.",
+        "No source repair, image transformation, embedding, catalogue or codec change."
+      ]
+    },
+    {
+      "status": "Quiet alternate collection inventory preparation; no production change.",
+      "sources": [
+        {
+          "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/ralph/",
+          "path": "data/research-sources/elara-ralph-directory-preparation-2026-10-19.html",
+          "bytes": 1334,
+          "sha256": "0ba88750f8e68068236b15e39506234b0f1b69448f190ad27e1565e298e9c209",
+          "httpStatus": 200,
+          "headers": {
+            "Date": "Mon, 19 Oct 2026 07:19:23 GMT",
+            "Server": "Apache/2.4.62",
+            "Content-Length": "1334",
+            "Connection": "close",
+            "Content-Type": "text/html;charset=ISO-8859-1"
+          },
+          "retrievedAt": "2026-10-19T07:19:23.859157+00:00"
+        },
+        {
+          "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/ralph/inventory.csv",
+          "path": "data/research-sources/elara-ralph-inventory-preparation-2026-10-19.csv",
+          "bytes": 1096,
+          "sha256": "8d83b04e09f67087cf80dfec4ce5de8f4ef174c556c73764318b4fa5f38c2eef",
+          "httpStatus": 200,
+          "headers": {
+            "Date": "Mon, 19 Oct 2026 07:19:23 GMT",
+            "Server": "Apache/2.4.62",
+            "Last-Modified": "Fri, 15 May 2026 13:35:44 GMT",
+            "ETag": "\"448-651db4a26ac00\"",
+            "Accept-Ranges": "bytes",
+            "Content-Length": "1096",
+            "Connection": "close",
+            "Content-Type": "text/csv"
+          },
+          "retrievedAt": "2026-10-19T07:19:24.016716+00:00"
+        }
+      ],
+      "inventoryRows": [
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:flat_field_from_ot2_data::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:howettetal2016_mvic_calib::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:leisa_data::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:leisa_inst_overview::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:leisa_window_pluto::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:mvic_inst_overview::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:nh_ralph_v100_ti::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:ralph_align_writeup::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:ralph_ssr::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_leisa_kem1::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_leisa_kemcruise1::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_leisa_pluto::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_leisa_plutocruise::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_mvic_kem1::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_mvic_kem2::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_mvic_kemcruise1::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_mvic_pluto::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:seq_mvic_plutocruise::1.0"
+        ],
+        [
+          "P",
+          "urn:nasa:pds:nh_documents:ralph:stis_solar::1.0"
+        ]
+      ],
+      "lorriSsrMatches": [],
+      "limits": [
+        "Absence in this retained Ralph collection inventory is not an exhaustive PDS registry search or proof that an alternate identifier never existed.",
+        "The reference mismatch cause and historical resolution remain unknown; no identifier repaired or silently rewritten.",
+        "No PDF, calibration, image, catalogue, codec or dossier change."
+      ]
+    },
+    {
+      "status": "Quiet collection-label and inventory crosscheck only.",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/ralph/collection.lblx",
+        "path": "data/research-sources/elara-ralph-collection-label-preparation-2026-10-19.lblx",
+        "bytes": 6298,
+        "sha256": "8eefb3425e7ca7e99f61a027639d31cbfed2e0f56b97b3dcf0168fe2cfa7c9e3",
+        "headers": {
+          "Date": "Mon, 19 Oct 2026 07:34:24 GMT",
+          "Server": "Apache/2.4.62",
+          "Last-Modified": "Thu, 18 Jun 2026 17:55:02 GMT",
+          "ETag": "\"189a-6548ae015a980\"",
+          "Accept-Ranges": "bytes",
+          "Content-Length": "6298",
+          "Connection": "close",
+          "Content-Type": "text/xml"
+        },
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-19T07:34:24.222394+00:00"
+      },
+      "collectionLid": "urn:nasa:pds:nh_documents:ralph",
+      "version": "3.0",
+      "declaredAndActualRows": 19,
+      "allUnique": true,
+      "allPrimary": true,
+      "lorriSsrInventoryMatches": [],
+      "limits": [
+        "Checks concern only the directly retained current Ralph collection; no exhaustive registry or historical absence claim.",
+        "Data-label Ralph namespace versus LORRI document/collection mismatch remains unrepaired; ingestion cause, historical identifiers, calibration and pipeline use remain open.",
+        "Archive publication and migration dates do not date the observation or original instrument paper. No production asset or code change."
+      ]
+    }
+  ],
+  "publisherFixity": [
+    {
+      "status": "Quiet document-collection publisher fixity preparation only.",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/SUPPORT/CHECKSUM/current.md5",
+        "path": "data/research-sources/elara-lorri-document-checksums-preparation-2026-10-19.md5",
+        "bytes": 2661,
+        "sha256": "49537c64c41c6e2adec36257d7cc1d7c74bad3f0c5b30a0a3894b306c0be3d87",
+        "headers": {
+          "Date": "Mon, 19 Oct 2026 07:49:22 GMT",
+          "Server": "Apache/2.4.62",
+          "Last-Modified": "Wed, 24 Jun 2026 20:25:32 GMT",
+          "ETag": "\"a65-65505ad5cc700\"",
+          "Accept-Ranges": "bytes",
+          "Content-Length": "2661",
+          "Connection": "close"
+        },
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-19T07:49:22.641698+00:00"
+      },
+      "checks": [
+        {
+          "publisherRelativePath": "collection.lblx",
+          "localPath": "data/research-sources/elara-lorri-collection-collection-lblx-preparation-2026-10-19.txt",
+          "bytes": 5812,
+          "sha256": "b5c7916eb61645e567aa533768944e4b890a37ee7792e1d9a22b8d357253e3bd",
+          "publisherMd5": "e52b004a3960388f36a8c88dfca39952",
+          "computedMd5": "e52b004a3960388f36a8c88dfca39952",
+          "matches": true
+        },
+        {
+          "publisherRelativePath": "inventory.csv",
+          "localPath": "data/research-sources/elara-lorri-collection-inventory-csv-preparation-2026-10-19.txt",
+          "bytes": 1059,
+          "sha256": "2fcf461ad317d0753c4d27f7393a66937ddaa11ed5d1ebd701ae4bc3fd701206",
+          "publisherMd5": "1930d4d155378a5f728215490442447b",
+          "computedMd5": "1930d4d155378a5f728215490442447b",
+          "matches": true
+        },
+        {
+          "publisherRelativePath": "documents/lorri_ssr.lblx",
+          "localPath": "data/research-sources/elara-nh-lorri-ssr-label-preparation-2026-10-19.lblx",
+          "bytes": 5098,
+          "sha256": "564dde49c19bb2af1b3b795d90e34ef4c0777f74a97b974d87b59a4a40f161c8",
+          "publisherMd5": "0a6cbe5f7b70f036ad4e304fef82a7f7",
+          "computedMd5": "0a6cbe5f7b70f036ad4e304fef82a7f7",
+          "matches": true
+        }
+      ],
+      "limits": [
+        "Publisher MD5 agreement establishes byte correspondence for these three retained files, not PDF byte identity, reference resolution, pipeline use, scientific calibration or historical provenance completeness.",
+        "No publisher identifier corrected, image transformed, source replaced, production code changed or new dossier embedded."
+      ]
+    },
+    {
+      "status": "Quiet retained Ralph collection fixity preparation only.",
+      "source": {
+        "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/ralph/SUPPORT/CHECKSUM/current.md5",
+        "path": "data/research-sources/elara-ralph-document-checksums-preparation-2026-10-19.md5",
+        "bytes": 2752,
+        "sha256": "581f0d887d518670a3ed64040086a4391a5fa7a226b1f901a82e42d0fc114dfd",
+        "headers": {
+          "Date": "Mon, 19 Oct 2026 08:19:23 GMT",
+          "Server": "Apache/2.4.62",
+          "Last-Modified": "Wed, 24 Jun 2026 20:25:37 GMT",
+          "ETag": "\"ac0-65505ada91240\"",
+          "Accept-Ranges": "bytes",
+          "Content-Length": "2752",
+          "Connection": "close"
+        },
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-19T08:19:23.248513+00:00"
+      },
+      "checks": [
+        {
+          "publisherRelativePath": "collection.lblx",
+          "localPath": "data/research-sources/elara-ralph-collection-label-preparation-2026-10-19.lblx",
+          "bytes": 6298,
+          "sha256": "8eefb3425e7ca7e99f61a027639d31cbfed2e0f56b97b3dcf0168fe2cfa7c9e3",
+          "publisherMd5": "3a52b6f2f69adc91c569e50065ddae00",
+          "matches": true
+        },
+        {
+          "publisherRelativePath": "inventory.csv",
+          "localPath": "data/research-sources/elara-ralph-inventory-preparation-2026-10-19.csv",
+          "bytes": 1096,
+          "sha256": "8d83b04e09f67087cf80dfec4ce5de8f4ef174c556c73764318b4fa5f38c2eef",
+          "publisherMd5": "991966a6b5e9112781bb7e525d28be9f",
+          "matches": true
+        }
+      ],
+      "lorriSsrBasenameRows": [],
+      "limits": [
+        "Fixity and basename inventory concern this current publisher collection only, not exhaustive registry/history or root-cause proof.",
+        "No identifier repair, PDF assessment, pipeline/calibration validation, image change or production adoption."
+      ]
+    }
+  ],
+  "findings": [
+    "All four retained Elara raw/calibrated data labels refer to urn:nasa:pds:nh_documents:ralph:lorri_ssr; the acquired instrument document label identifies urn:nasa:pds:nh_documents:lorri:lorri_ssr::1.0.",
+    "Current LORRI collection3.0 inventory contains that exact document LIDVID once. Both LORRI and Ralph inventories have19 unique primary entries matching their declared record counts; neither lists the referenced Ralph-namespace LORRI SSR identifier.",
+    "Publisher MD5 indexes match the five retained collection labels/inventories and LORRI SSR label checked. This establishes byte correspondence only."
+  ],
+  "limits": [
+    "These two current collection inventories are not an exhaustive registry or historical search. Alternate identifiers, original reference cause and historical resolution remain open.",
+    "Preprint2007-08-14 document date, cited2008 published version,2024 migration and2026 collection publication remain distinct from2007 Elara observations.",
+    "Label warns about minor preprint/published differences and publishedFigure9 ordinate units (DN/s/pixel)/(W/cm^2/sr); PDF itself is not acquired or assessed here and no calibration correction is applied.",
+    "No target-point identification, physical registration, pipeline use, quality-mask repair, timing correction, photometric calibration, licence upgrade or image transformation follows from metadata/fixity agreement."
+  ],
+  "credits": {
+    "science": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute",
+    "datasetCitation": "Cheng, A. (2016)",
+    "producer": "Brian Carcich, Southwest Research Institute",
+    "instrumentLeadContact": "Andrew Cheng, Johns Hopkins University Applied Physics Laboratory",
+    "documentAuthors": [
+      "Cheng, A.",
+      "Weaver, H.",
+      "Conard, S.",
+      "Morgan, M.",
+      "Barnouin-Jha, O.",
+      "Boldt, J.",
+      "Cooper, K.",
+      "Darlington, E.",
+      "Grey, M.",
+      "Hayes, J.",
+      "Kosakowski, K.",
+      "Magee, T.",
+      "Rossano, E.",
+      "Sampath, D.",
+      "Schlemm, C.",
+      "Taylor, H."
+    ],
+    "collectionEditors": "Hirsch, B.; Gobat, C.; Crombie, M. K.; Sharkey, B.",
+    "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "termsLimit": "NASA media and third-party caveats retained; no blanket CC BY or paper-figure licence asserted."
+  },
+  "reproducer": {
+    "path": "docs/research/elara-document-reference-audit-2026-10-19.py",
+    "bytes": 2379,
+    "sha256": "1fc98203f782bf818f9842d43b43668bd53c0ef696d3b68ad920df68860ca149"
+  },
+  "validation": {
+    "tests": {
+      "pass": 692,
+      "skip": 1,
+      "fail": 0,
+      "log": "/tmp/fidelity-elara-document-reference-tests.log"
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 153,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "445abb0",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15992750,
+      "headroomBytes": 7250,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "adac65593ffec0bc5aa4073747747fe6ab97867eee2560b803ccf46bd6ac2e5e",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "limits": "No fresh browser claim. Feed differences between builds were not audited; no compression savings attributed to this research-only batch."
+  }
+}
