@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-19",
+  "baseline": "1864eae",
+  "scope": "Research-only complete archived-preprint inspection; no Elara photometric calibration or production adoption.",
+  "source": {
+    "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_ssr.pdf",
+    "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_ssr.pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "retrievedUtc": "2026-10-19T10:49:28.446569+00:00",
+    "bytes": 5865364,
+    "sha256": "f874f2b6c536713a1a04349cfb2393781a81fdedc6868f18553dcb8883bd0670",
+    "md5": "d8bbb8e5e8efac91ad1edb0b898e7ff6",
+    "startsPdf": true,
+    "path": "data/research-sources/elara-lorri-ssr-original-preparation-2026-10-19.pdf",
+    "pages": 33,
+    "textPath": "data/research-sources/elara-lorri-ssr-fulltext-preparation-2026-10-19.txt",
+    "textSha256": "70a833069abd85fc3cf94f8276b5a9937cd2dd7a79424c98f25bfb6c0467530f"
+  },
+  "authors": [
+    "A. F. Cheng",
+    "H. A. Weaver",
+    "S. J. Conard",
+    "M. F. Morgan",
+    "O. Barnouin-Jha",
+    "J. D. Boldt",
+    "K. A. Cooper",
+    "E. H. Darlington",
+    "M. P. Grey",
+    "J. R. Hayes",
+    "K. E. Kosakowski",
+    "T. Magee",
+    "E. Rossano",
+    "D. Sampath",
+    "C. Schlemm",
+    "H. W. Taylor"
+  ],
+  "creditRoles": "JHUAPL except Kosakowski/Sampath at SSG Precision Optronics. NASA/New Horizons acknowledgments; NASA/JHUAPL/SwRI dataset, Carcich producer, Cheng lead and migration roles remain distinct.",
+  "inspection": {
+    "all33PagesVisuallyInspected": true,
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+    ],
+    "fullTextExtracted": true,
+    "renderDirectory": "/tmp/fidelity-elara-ssr-pdf",
+    "preparations": [
+      {
+        "path": "data/research-sources/elara-lorri-ssr-calibration-setup-visual-preparation-2026-10-19.json",
+        "bytes": 2221,
+        "sha256": "612ec433cff4341b2426d7e4295f594db5661fa8e0fff9a39971d2d446fe456b"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-commissioning-visual-preparation-2026-10-19.json",
+        "bytes": 2408,
+        "sha256": "b5d67484b8745c35c233d67d8cffe64a3188c7d5de04878540afe90ad01b52f2"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-desmear-visual-preparation-2026-10-19.json",
+        "bytes": 2544,
+        "sha256": "0fc879051721fbab9e21b73036606b5e936270502a654d4ab226c9cedb16e797"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-electronics-visual-preparation-2026-10-19.json",
+        "bytes": 2195,
+        "sha256": "9b9f4f311d9b4ea8e7df0863ba6b5eae9afbf4223d06e7973ae42e8bac585ce7"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-engineering-visual-preparation-2026-10-19.json",
+        "bytes": 2646,
+        "sha256": "935b93b87807e029b77c009e7f9a4a69c3db0ab8415f75a0eaa7929efbb260db"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-laboratory-results-visual-preparation-2026-10-19.json",
+        "bytes": 2199,
+        "sha256": "de79ab7371c6d8bcf58a69949d623214e2fae7fc13ffb7937a60c78fd638e705"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-observation-format-visual-preparation-2026-10-19.json",
+        "bytes": 2403,
+        "sha256": "c675818e98566dc779d79e361bc1c3ba190bbab6adfe3ea58cda5257a8f65299"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-partial-visual-preparation-2026-10-19.json",
+        "bytes": 2137,
+        "sha256": "fda1627a72e6bafcb3b5d1ebce851332ebe6ca5e8ac999ed47cb0341677723e8"
+      },
+      {
+        "path": "data/research-sources/elara-lorri-ssr-requirements-visual-preparation-2026-10-19.json",
+        "bytes": 2396,
+        "sha256": "04ff9f6b263c303935eaf645fe4b654b5be50ff605dd9f4a414c3e40a85df57b"
+      }
+    ]
+  },
+  "findings": {
+    "elara-lorri-ssr-calibration-setup-visual-preparation-2026-10-19": {
+      "equation1": "Visually checked numerator subtracts Bias, Dark, Smear and Stray from S; denominator flat-field FF times responsivity R times exposure t. Wavelength/temperature/spatial dependence retained, not an implemented Elara conversion.",
+      "flatField": "Authors report difficulty achieving desired0.5percent at every pixel using ground data and planned in-flight replacement/correction. Not an independently established uncertainty for the retained2007 Elara pixels.",
+      "calibrationScope": "Section3.3.3 describes instrument-level DGEF July2004 before and September2004 after environmental testing; distinct from page19 statement that FPU/CCD subassembly calibration was not repeated. Preserve both scopes, no contradiction diagnosis.",
+      "spectralTransfer": "Solar-like xenon source, AM0 and bandpass filters, integrating sphere/reference photodiode; authors explicitly require spectral-distribution consideration for broadband response. Figure6 normalized Pluto/Jupiter curves are not Elara colour/spectrum or an analog skin.",
+      "table7": "Printed nominal/cold/hot CCD temperatures -80/-93/-75C and different optics/FPU temperatures are test settings, not Elara thermal measurements."
+    },
+    "elara-lorri-ssr-commissioning-visual-preparation-2026-10-19": {
+      "page27": "Figure9 archived-preprint response caption uses (DN/s/pixel)/(W/cm²/sr); document-label warning about final-publication units remains unresolved. No silent unit repair. Equation3 explicitly assumes average Pluto spectrum, pivot607.6nm and2.2e11(DN/s/pixel)/(W/cm²/sr/nm), not Elara spectrum or calibrated visible colour. Bandpass tests suggest shorter-wavelength peak than calculated response; future flight refinement stated.",
+      "page28": "Table8 commissioning dates span February–September2006, not retained March2007 Elara acquisition. Preliminary bias result uses25of100July30zero-exposure frames, median four masked right-hand dark columns, per-coordinate outlier rejection above3standard deviations and averaging. Publisher amplifier oscillation~0.8DN peak-to-trough not independently measured here.",
+      "page29": "Described pipeline subtracts four-dark-column median then delta_bias image. Temperature regression Equation2 explicitly not used in that pipeline, only independent check. Figure10 is linearly stretched -1to+1DN detector bias, not terrain/visible colour. Preliminary25-frame image not identified with retained100-image calibration file. Planned Jupiter2007 flight flats distinct from then-used preflight flats."
+    },
+    "elara-lorri-ssr-desmear-visual-preparation-2026-10-19": {
+      "figure11": "September4,2006 Jupiter MET19683344, six-ms images and five-image coadd are distinct from March2007 Elara pair. Logarithmic/linear stretches, barely resolved Io/Europa and shadows are not Elara terrain or calibrated visible colour. No figure embedded.",
+      "desmear": "Page31 defines i column/j row and epsilon(k,j): Tf1/Tfavg for k<j, one for equality, Tf2/Tfavg for k>j. Figure11 example Tfavg10.5ms, ratios1.044/.956 resemble retained calibration-matrix entries but do not independently establish array transpose/orientation, file lineage, historical timing or Elara pipeline execution. Equations contain visible missing-glyph boxes in original rendering; no silent reconstruction or implementation.",
+      "stellarCalibration": "August29,2006 Messier7 calibration reports V=-2.5log(S)+18.94+CC, S in DN/s and stellar-class colour corrections. Not applied to unresolved Elara unknown spectrum. Publisher1.8pixel PSF includes pointing jitter and4.955microradian/pixel stellar plate scale are historical claims, not new angular/raster calculation or current calibration. Figure12 logarithmic north-up/east-left display not Elara registration.",
+      "closingPages": "Pre-Pluto future-tense summary and NASA/New Horizons team acknowledgments preserved as historical context. Reference inventory is not acquisition/inspection of cited works."
+    },
+    "elara-lorri-ssr-electronics-visual-preparation-2026-10-19": {
+      "page17": "Publisher describes 12-bit CCD digitization; nominal13ms transfer and typical50–200ms exposure are historical instrument prose, not independent timing or current Elara header correction.",
+      "page18": "Section3.2.2 expressly describes a408-bit engineering header replacing the first34 pixels of the first row for redundant engineering/science association. This supports the mechanism behind the earlier exact51-byte/34-sample retained-product relationship, without validating all flight versions, bit semantics or pipeline treatment.",
+      "histogram": "Publisher describes a32-bin histogram calculated from FPU image data currently transmitted and used for future exposure calculations; it does not specify enough accumulation/reset scope to resolve the retained Elara histogram sample-count mismatch.",
+      "page19": "Manual/automatic exposure, test patterns and calibration lamps described as instrument functions, not independently verified Elara operating states. Pre-environment FPU/CCD calibration was not repeated after environmental tests due to time limits according to authors; no independent performance inference."
+    },
+    "elara-lorri-ssr-engineering-visual-preparation-2026-10-19": {
+      "designTrades": "Page12 nominal exposure50–200ms/100ms design, approximate13ms frame transfer and typical25microradian/s spacecraft drift are historical engineering context, not actual Elara timing/PSF. No colour-imaging requirement. No new angular/raster calculation or distortion correction.",
+      "opticalModel": "Page13 Figure4 ray trace, stray-light scans, coating/radiation tolerances and TracePro claims describe publisher design analysis, not independently reproduced current scattered-light correction or exact flight calibration.",
+      "thermalMechanical": "Pages14–15 temperature ranges, spacecraft heat-loss/gradient requirements, thermal model/test claims, material/mount design and historical flight gradient are instrument engineering, not Elara surface temperature or evidence of survivable conditions. No model/shape assets changed.",
+      "alignment": "Page16 shim/point-source tests, nine field locations/seven focus settings, theodolite/CCD-corner alignment and environmental tracking are publisher metrology history. They do not validate current kernel load precedence, exact2007 pointing, pixel registration or Elara calibrated geography."
+    },
+    "elara-lorri-ssr-laboratory-results-visual-preparation-2026-10-19": {
+      "page23": "Publisher1.2DN read-noise mode from100preflight dark exposures; bias regression509.941±.151 plus1.073±.005 times FPU-board Celsius. Historical observed+34±.7C range and gain/linearity claims not applied to retained Elara pixels or converted into current uncertainty.",
+      "psf": "DGEF roughly2pixel FWHM adversely affected by collimator obscuration; separate ambient APL Gaussian fit1.5pixel with >.3 ensquared energy at five positions. These are distinct experimental methods, not a new Elara resolution/raster calculation.",
+      "flatField": "Figure8 provisional logarithmic false-colour display0.95–1.05, dust shadows/vignetting/ghosting/fringing are detector/optics structure, not moon terrain or visible colour. Room-temperature air flat followed CCD nitrogen cleaning.",
+      "page26": "Publisher says laboratory flat field imperfectly represents flight spectral illumination, with future Jupiter/solar-straylight flat-field work. Red out-of-field ghost dependence and typical E2V QE rather than individual flight-CCD QE retained; no exact association of Figure8 or its settings to2007 calibration file inferred."
+    },
+    "elara-lorri-ssr-observation-format-visual-preparation-2026-10-19": {
+      "plannedObservations": "Pages8–9 Table3/4 requirements and planned Pluto-system imaging remain historical plans, not measured current map coverage or Elara resolution. KBO sensitivity prediction and pointing tolerance are not actual Elara exposure/geometry.",
+      "elaraReference": "Page9 text says Elara/Himalia shape and photometric images were obtained; Table5 describes resolved images/phase curves. This is publisher observation-summary evidence, not exact association of retained pair to resolved surface features, independent shape recovery, calibrated geography/colour or a complete phase curve.",
+      "hardware": "Page10 Figure3 block diagram and separate OTA/FPU/ASE/door responsibilities inspected. Boresight co-alignment requirement not measured loaded SPICE orientation. JHUAPL and SSG design roles retained.",
+      "table6": "Page11 visually confirms format0 1024x1028 including4dark columns; format1 256x257 including1dark column, 12bit ADC, embedded first408bits and32bin histogram. These corroborate instrument design/storage context without resolving retained histogram count mismatch or validating every flight format/header interpretation."
+    },
+    "elara-lorri-ssr-partial-visual-preparation-2026-10-19": {
+      "scope": "Research-only partial visual preparation, not a completed instrument/calibration audit."
+    },
+    "elara-lorri-ssr-requirements-visual-preparation-2026-10-19": {
+      "objectives": "Table1 prioritized Pluto/Charon mission objectives and LORRI contributions are requirements, not achieved Elara spectroscopy, atmospheric detection or global geography. Blank LORRI-contribution entries do not assign other instruments capabilities to LORRI.",
+      "characteristics": "Page5 describes monochromatic visible panchromatic imaging, separate multispectral/hyperspectral instruments, historical planned Pluto trajectory and assumed albedos. Prose4.94microradian versus Table2 4.95 retained as publisher rounding/context, not replaced with a new calibration. Nominal50–200ms exposure is not actual40ms Elara exposure.",
+      "hardware": "Figures1/2 telescope assembly/test stand and spacecraft mounting images visually inspected. Silicon carbide thermal design, CCD below-70C design and room-temperature spacecraft interior are distinct engineering conditions, not measured Elara ambient or surface temperatures.",
+      "requirements": "Page7 SNR, MTF, resolution and optical-navigation limiting-magnitude values are design requirements/goals, not independent measurements or new angular/raster calculations. Text continuation onto page8 remains pending."
+    }
+  },
+  "limits": [
+    "Archived preprint distinct from final SSR140189–215 DOI10.1007/s11214-007-9271-6; Figure9 response-unit comparison remains open.",
+    "Requirements/laboratory tests/2006commissioning do not reproduce actual2007Elara pipeline.",
+    "No angular/raster computation, pixel repair, calibration, PSF fitting, timing shift, figure embedding, production change or93rd dossier.",
+    "Target/pointing/PSF, calibration-file lineage, WINDOWH0, quality-definition conflict, histogram scope, registration and photometry remain open.",
+    "Active NASA media/third-party caveats; no blanket CC BY or figure licence inferred."
+  ],
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 167,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "1864eae",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15991090,
+    "headroomBytes": 8910,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "b8140ee514cc69e2516823e7165d558a068c9bf9588474d7c60b5746502c04e7",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservedUpstream": "be9c8b1 Weekly events feed 2026-10-19 (#32)",
+    "interbuildFeedDifferenceAudited": false,
+    "compressionSavingsClaim": false
+  }
+}
