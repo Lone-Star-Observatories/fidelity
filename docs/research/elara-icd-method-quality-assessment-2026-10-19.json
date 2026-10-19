@@ -1,0 +1,142 @@
+{
+  "scope": "Targeted read-only preparation; no science image transformation, historical pipeline reproduction or production adoption.",
+  "source": {
+    "path": "data/research-sources/elara-soc_inst_icd-pdf-preparation-2026-10-19.pdf",
+    "bytes": 7123804,
+    "sha256": "59dd8a3e3a47f3a1ef092fc818fdc3dda73e9e206ddde1f821ae8b86b7596d83"
+  },
+  "visuallyInspectedPdfPages": [
+    51,
+    52
+  ],
+  "printedPages": [
+    42,
+    43
+  ],
+  "extractedText": {
+    "51": "Southwest Research Institute  05310-SOCINST-01 \n  Rev 0 Chg 0 \nNew Horizons SOC to Instrument Pipeline ICD  Page 42 \n   \n42 \nThe readout smear is removed as follows. Let \ud835\udc43!,#\n$%&'  = measured image array in DN where i,j are \nthe column and row indices, respectively. Let the exposure time be written Texp, with the transfer \ntimes for the frame scrub Tf1 and the frame storage Tf2 and with N the number of rows (which is \n1024 for 1\u00d71 images and 256 for 4x4). Let Tfavg be the average of Tf1 and Tf2 to define the \nconstant \n . \nFinally we define the N\u00d7N constant matrix \n  \nwith k, j = 1, \u2026, N , and we calculate the N\u00d7N matrix: \n \nThe desmeared image is then \n \nwith \n . \nIn-flight tests have verified desmear  by this technique using observations of Jupiter obtained at \nexposure times as short as 1 ms. \nThe value for Tfavg is dependent on the desired exposure time and has been determined \nempirically using in-flight data.  The following Table 9-4 provides the appropriate values at \ndifferent exposure times. \nTable 9-4: V alue for Tfavg from Texp \nDesired Exposure Time \n(msec) \nV alue for Tfavg \n(msec) \n1 7.1 \n2 8.75 \n3 9.65 \n6 10.5 \nNominal 10.7 \n",
+    "52": "Southwest Research Institute  05310-SOCINST-01 \n  Rev 0 Chg 0 \nNew Horizons SOC to Instrument Pipeline ICD  Page 43 \n   \n43 \nIt should be noted that when the Level 1 data are saturated, the resulting readout smear \ncorrection will be inaccurate.  The algorithm relies on an accurate accumulation of charge in all \nrows of each column and if the Level 1 data are clipped for lack of dynamic range to capture that \nintegrated signal, the effect of readout smear cannot be completely and properly removed.  \nIn the presence of missing data, calculation of the readout smear is not possible since all rows are \nnot available.  A best effort can be made by estimating the missing pixel values using simple \ninterpolation on a per -column basis. This is only done in an attempt to provide an estimate of the \nreadout smear.  The estimated pixel values are not used in any other way. If the missing data are \nbound by valid pixel data, linear interpolation is used.  If missing data are at the edge of the \ndetector, the nearest pixel value in the row is used. These values are used in place of the \nmeasured values indicated in the formulas above.  After the readout smear is removed, the pixel \nlocations of missing data are set to 0 DN and the appropriate value in the quality flag is set to \nrepresent missing data. \nThis correction algorithm has been implemented in the IDL routine lorri_desmear. \n9.3.1.3 Flat-Fielding \nFlat-fielding refers to the process of removing the pixel-to-pixel sensitivity variations in the \nimage. An exposure obtained by illuminating the LORRI aperture uniformly with light is called a \n\u201cflat-field\u201d image. During ground calibration testing, flat -fields were obtained by using an \n\u201cintegrating sphere\u201d to provide uniform illumination. The light source was a xenon arc lamp with \na spectrum similar to that of the sun. The absolute intensity of the input illumination was \nmeasured using a calibrated photodiode. For the panchromatic case, which is the one most \nrelevant for flat-fielding LORRI images, the light from the xenon lamp was unfiltered. Flat -field \nimages were also obtained by passing the light through bandpass filters centered at five different \nwavelengths spanning the range over which LORRI is sensitive, prior to injection into the \nreference sphere, in order to estimate the sensitivity of the flat -fields to the spectral distribution \nof the source. The spatial patterns in the flat -field images change fairly dramatically with \nwavelength. However, the variation in panchromatic flat -fields caused by differences in the \nspectral distribution of the illumination source should be much less significant. Indeed, \npanchromatic flat-field images produced using a tungsten lamp were virtually indistinguishable \nfrom those produced by the xenon lamp. Flat-fields were obtained at four different telescope \ntemperatures (at standard laboratory room temperature, and at the lowest, nominal, and highest \ntemperatures predicted for in -flight conditions), but no significant temperature variations in the \nflat-field images were detected.  \nThe flat-field reference file used in the LORRI pipeline was produced by averaging 100 flat -field \nimages taken at room temperature using the xenon arc lamp as the light source, debiasing and \ndesmearing the average image as described earlier, and normalizing the intensities in the active \nregion to a median value of 1. If \u201cS\u201d (units are DN) is an image of a target that has already been \ndesmeared and debiased, and if \u201cFF\u201d is the reference flat-field image, then the flat-fielded (i.e., \nphotometrically-corrected) target image (\u201cC\u201d; units are DN) is given by:  \nC = S/FF \nThe flat-fielding correction is implemented in the LORRI pipeline by the routine lorri_flatten. "
+  },
+  "findings": [
+    "The current document defines A=Texp/(Texp-Tfavg/N), separate frame-scrub/storage coefficients and a second-order desmear expression. These equations were visually inspected, not implemented or independently validated.",
+    "Table9-4 gives desired exposure1/2/3/6ms with empirical Tfavg7.1/8.75/9.65/10.5ms, nominal10.7ms. These are publisher configuration values, not an Elara exposure correction, observation timing or verified historical execution.",
+    "The document warns that saturation invalidates column-integrated charge and prevents complete smear removal. Missing samples receive temporary interpolated/nearest-value estimates solely for smear estimation, then missing locations return to0DN with quality flag. No reconstruction or mask repair is authorized.",
+    "Flat-field description averages100 room-temperature xenon-lamp images, debiases/desmears and normalizes active-region median1. C=S/FF remains DN; photometrically-corrected wording does not establish absolute radiometry or calibrated visible colour.",
+    "Five narrowband flat patterns vary with wavelength, while panchromatic xenon/tungsten patterns and four tested temperatures are described as similar. Those source claims do not verify Elara spectrum, scene colour or actual historical reference-file identity.",
+    "IDL routine names lorri_desmear and lorri_flatten are references, not downloaded executable code or verified pipeline provenance."
+  ],
+  "open": [
+    "Actual historical pipeline source/configuration and precise reference-file association.",
+    "Retained engineering first34 quality32 versus PDS3 definitions; WINDOWH0/histogram discrepancy.",
+    "Absolute source-spectrum response, point-source PSF, geometry/visible-colour calibration and native-product registration."
+  ],
+  "preservation": "Original PDF/label/FITS, prepared originals/defaultPNGs/masters and production dossiers/maps/models/shapes remain unchanged.",
+  "date": "2026-10-19",
+  "status": "Research-only bounded method/quality audit; no production adoption",
+  "sources": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.lblx",
+      "status": 200,
+      "contentType": "text/xml",
+      "retrievedUtc": "2026-10-19T15:34:49.627173+00:00",
+      "path": "data/research-sources/elara-soc_inst_icd-lblx-preparation-2026-10-19.lblx",
+      "bytes": 9025,
+      "sha256": "ad6fca223751202813d6d751669416ac8f4448242636e180a94cce024a21dd87",
+      "md5": "e942d3ffc608277d85b87418fd229cf9",
+      "publisherIndexRow": "e942d3ffc608277d85b87418fd229cf9  documents/soc_inst_icd.lblx"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.pdf",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/documents/soc_inst_icd.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "retrievedUtc": "2026-10-19T15:34:50.495500+00:00",
+      "path": "data/research-sources/elara-soc_inst_icd-pdf-preparation-2026-10-19.pdf",
+      "bytes": 7123804,
+      "sha256": "59dd8a3e3a47f3a1ef092fc818fdc3dda73e9e206ddde1f821ae8b86b7596d83",
+      "md5": "21000196f01a4a3f7c8975f0d94f9e85",
+      "publisherIndexRow": "21000196f01a4a3f7c8975f0d94f9e85  documents/soc_inst_icd.pdf"
+    }
+  ],
+  "rights": "No CC grant or document-figure permission inferred; active NASA media terms and third-party caveats remain separate. No figure embedded.",
+  "labelMetadataAsStored": {
+    "logical_identifier": [
+      "urn:nasa:pds:nh_documents:mission:soc_inst_icd"
+    ],
+    "version_id": [
+      "2.0",
+      "2.0",
+      "1.1",
+      "1.0"
+    ],
+    "author_list": [
+      "Versteeg, M.; Parker, J.; Steffl, A.; McCabe, G.; Lunsford, A.;\n                Weaver, H.; Taylor, H.; Olkin, C.; Livi, S.; Hill, M.; Brown, L.;\n                Kollman, P.; Linscott, I.; Carcich, B.; James, D.; Elliott, H."
+    ],
+    "editor_list": [
+      "Parker, J."
+    ],
+    "publication_year": [
+      "2026"
+    ],
+    "modification_date": [
+      "2025-07-02",
+      "2024-06-21",
+      "2023-04-06"
+    ]
+  },
+  "printedRevisionContributorInventory": "Southwest Research Institute  05310-SOCINST-01 \n  Rev 0 Chg 0 \nNew Horizons SOC to Instrument Pipeline ICD  Page ii \nSOUTHWEST RESEARCH INSTITUTE\u00ae \nSpace Science and Engineering Division  \n6220 Culebra Road, San Antonio, Texas 78228-0510 \n(210) 522-2600 \u2022 FAX (210) 647-4325 \n \n \n \nNew Horizons SOC to Instrument Pipeline ICD  \n \n \n \n \nSwRI Project 05310 \n \nDocument No. 05310-SOCINST-01 \n \nContract NASW-02008 \n \n \nPrepared by: Joe Peterson         08 November 2013 \nRevised by: Brian Carcich       August, 2014 \nRevised by: Tiffany Finley        March 2016 \nRevised by: Tiffany Finley                 October 2016 \nRevised by: Brian Carcich             December 2016 \nRevised by: Tiffany Finley, Brian Carcich, PEPSSI team      April 2017 \nRevised by: Tiffany Finley, PEPSSI team          September 2017 \nRevised by: Jillian Redfern, SDC Team          June 2019 \nRevised by: Jillian Redfern, LEISA Team       March 2020 \nRevised by: Joel Parker, ALICE Team, SW AP Team, REX Team    March 2023 \nRevised by: Joel Parker, PEPSSI  Team             July 2023 \nRevised by: Joel Parker, PEPSSI  Team, SDC Team        March 2024 \nRevised by: Joel Parker, LORRI Team            May 2024 \nRevised by: Joel Parker, LORRI Team, SDC Team             May , June 2025 \n \nContributors: \nALICE specifics prepared by: Maarten V ersteeg, Joel Parker, Andrew Steffl \nLEISA specifics prepared by: George McCabe, Allen Lunsford \nLORRI specifics prepared by: Hal Weaver, Howard Taylor, Olivier Barnouin \nMVIC specifics prepared by: Cathy Olkin \nPEPSSI specifics prepared by: Stefano Livi, Matthew Hill, Lawrence Brown,  \nPeter Kollman \nREX specifics prepared by: Ivan Linscott Brian Carcich \nSDC specifics prepared by: David James \nSW AP specifics prepared by: Heather Elliott ",
+  "publisherFixity": {
+    "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/mission/SUPPORT/CHECKSUM/current.md5",
+    "retrievedUtc": "2026-10-19T16:05:31.912990+00:00",
+    "path": "data/research-sources/elara-mission-current-checksums-preparation-2026-10-19.md5",
+    "bytes": 2692,
+    "sha256": "bea61753c07306969f27a3f5751af627553f0b1b284a1b4096e17aea1f918422",
+    "icdRows": [
+      "e942d3ffc608277d85b87418fd229cf9  documents/soc_inst_icd.lblx",
+      "21000196f01a4a3f7c8975f0d94f9e85  documents/soc_inst_icd.pdf"
+    ]
+  },
+  "fullText": {
+    "path": "data/research-sources/elara-soc-inst-icd-text-preparation-2026-10-19.txt",
+    "bytes": 419755,
+    "sha256": "128eb0198011e6eb8c5c6de30327991f8cfff39cd02126432fa375a11e130bc1"
+  },
+  "priorPhotometryAssessment": "docs/research/elara-icd-photometry-assessment-2026-10-19.json",
+  "additionalPreviouslyInspectedPages": [
+    49,
+    50,
+    61
+  ],
+  "qualityAndWindowFindings": [
+    "Table9-10 matches newer PDS4 meanings:1deltabias,2flatfield,4permanentCCD,8hot,16Level1saturation4095,32missingLevel1fill0. It does not explain the older PDS3 meanings or the actual first34 engineering samples assigned32 in retained calibrated Elara products. No bits are relabelled.",
+    "Current methods describe missing/windowed locations initially zero-filled, temporary column-wise interpolated or median substitutes for desmear, then resetting missing lit data to zero. These are described processing estimates, not measured terrain or authorized reconstruction.",
+    "Dark-column configuration530<DN<560 and median neighborhoods up to11rows1x1/3rows4x4 belong to this document version, not independently verified2007 Elara settings.",
+    "PDFpage50 Figure9-2 caption labels Jupiter2007Jan24 exposure2ms and diameter517pixels; publisher annotation only, not a new angular/raster calculation or Elara product identity. No figure embedded.",
+    "Error model omits bias/smear noise terms per source; no independent uncertainty propagation or physical accuracy claim."
+  ],
+  "limits": "Only listed method pages were visually inspected for this bounded audit, not all182pages. Current document configuration is not historical execution. No implementation, recalibration, mask repair, image embedding, figure redistribution, angular/raster computation or product registration.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 179,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "1e3c173",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15993414,
+    "headroomBytes": 6586,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "8a5f5763af72fe2e765f3b5a224599121ccb95f2a43c7cbed4ac7807cd3de6b7",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "interbuildAttribution": "Live-feed differences unaudited; no compression savings or fresh browser claim."
+  }
+}
