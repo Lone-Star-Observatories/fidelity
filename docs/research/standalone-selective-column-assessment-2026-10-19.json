@@ -1,0 +1,53 @@
+{
+  "status": "Rejected research-only selective numeric column differences; production unchanged",
+  "input": {
+    "path": "data/research-sources/standalone-selective-column-frozen-2026-10-19.json",
+    "bytes": 27994504,
+    "sha256": "9033f9d9b1e9c0103429b6087126dfbd677bbce4085a5f53aacb7bb987c7987c"
+  },
+  "container": {
+    "bytes": 21707810,
+    "sha256": "8d9e197ab3b6d96acac0a7442ce82470e8acc4e9117bfa0ca1ad11314f060d41"
+  },
+  "rows": [
+    {
+      "name": "baseline",
+      "innerBytes": 14856680,
+      "outerGzipBytes": 14860575
+    },
+    {
+      "name": "selective-width6-through13-mod14",
+      "innerBytes": 14920076,
+      "outerGzipBytes": 14923911
+    }
+  ],
+  "deltaOuterGzipBytes": 63336,
+  "exactNativeAndBundledJsContainerAndFullJson": true,
+  "limits": "Fixed selective modulo14 differs from earlier all-width modulo15 Miranda column-difference screen. No values parsed/rounded or fields removed. Before candidate signalling, decoder and HTML overhead; no browser/fullHTML savings claim.",
+  "date": "2026-10-19",
+  "reproduction": "node docs/research/standalone-selective-column-screen-2026-10-19.mjs <exact frozen readable JSON>",
+  "decision": "Do not adopt or repeat fixed widths6\u201313 modulo14 column differences: outer gzip grows63336bytes before additional decoder/signalling overhead. Marginal nibble entropy did not predict the full compressor result.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 179,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "34df0f2",
+    "priorDossiersDeepEqual": 92,
+    "dossiers": 92,
+    "priorMoonsDeepEqual": 48,
+    "moons": 48,
+    "trackedPublicByteEqual": 681,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "htmlBytes": 15993414,
+    "headroomBytes": 6586,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "2483555667a45ee1815f184e8ffadebe57e8b28b12db4ec5b82981349d7e6c0b",
+    "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+    "freshBrowserClaim": false,
+    "testsPassed": 692,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "attribution": "Interbuild feed differences unaudited; no compression savings attribution. No new dossier/image, production codec change or fresh browser claim."
+  }
+}
