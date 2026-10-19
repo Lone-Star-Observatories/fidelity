@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-19",
+  "body": "Pasiphae / Jupiter VIII / JPL508, distinct from Pasithee",
+  "status": "Bounded NASA/JPL reference preparation only; no94th dossier, image fetch/embedding, catalogue/map/model/shape/codec adoption. Existing93 preserved.",
+  "sources": [
+    {
+      "path": "data/research-sources/pasiphae-nasa-overview-2026-10-19.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/pasiphae/",
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/pasiphae/",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T19:04:46.213513+00:00",
+      "bytes": 247930,
+      "sha256": "6be30891ae22cc441a9e54e4138d49c72ae77f04d359150dd0b302a3479bf8b2"
+    },
+    {
+      "path": "data/research-sources/pasiphae-jpl-elements-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T19:04:46.979117+00:00",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/pasiphae-jpl-physical-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "status": 200,
+      "retrievedUtc": "2026-10-19T19:04:47.295198+00:00",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    }
+  ],
+  "nasaOverview": {
+    "publisher": "NASA Science",
+    "creditedMetadata": [
+      "Alicia Cermak (Article schema)",
+      "NASA Science Editorial Team (NewsArticle schema/page editor)",
+      "Dana Bolles (responsible NASA official for Science)"
+    ],
+    "pagePublishedUtc": "2017-11-30T05:38:38Z",
+    "pageModifiedUtc": "2024-01-25T06:23:03Z",
+    "limits": "Page dates are not image acquisitions. This page supplies no verified body-specific image: NewsArticle image/thumbnail URLs empty; other schema points to NASA logo. Related-content imagery is not assigned to Pasiphae. No scientific image hash, observed geography, colour, exposure date or image licence invented. This bounded page inspection does not establish absence of native imagery elsewhere.",
+    "discovery": {
+      "date": "1908-01-27",
+      "discoverer": "Philibert Jacques Melotte",
+      "instrument": "Greenwich Observatory30-inch Cassegrain"
+    },
+    "historicalModel": {
+      "radiusKm": 30,
+      "assumedAlbedo": 0.04,
+      "meanDistanceKm": 23600000,
+      "orbitalPeriodDays": 744,
+      "limits": "Assumed-albedo size and historical mean orbit, not axes, local normal, GM/mass/density, current distance or spin."
+    },
+    "interpretations": "Capture/collision and group membership are hypotheses; page notes weaker single-origin confidence. Its conditional87/99percent original-body mass shares are scenario estimates, not measured present moon masses. Retrograde orbit and secular resonance do not establish spin locking or permanent Jupiter-facing terrain."
+  },
+  "currentJplElements": {
+    "source": "https://ssd.jpl.nasa.gov/sats/elem/",
+    "exactParsedRow": [
+      "13",
+      "Jupiter",
+      "Pasiphae",
+      "508",
+      "JUP347",
+      "ecliptic",
+      "2000-01-01.5",
+      "23463200.",
+      "0.412",
+      "172.8",
+      "279.3",
+      "148.3",
+      "315.7",
+      "734.4215",
+      "60.6",
+      "79.2",
+      "",
+      "",
+      "",
+      "47"
+    ],
+    "ephemeris": "JUP347",
+    "bodyId": 508,
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "aKm": 23463200,
+    "e": 0.412,
+    "argumentPeriapsisDeg": 172.8,
+    "meanAnomalyDeg": 279.3,
+    "inclinationDeg": 148.3,
+    "ascendingNodeDeg": 315.7,
+    "periodDays": 734.4215,
+    "apsidalPrecessionYears": 60.6,
+    "nodalPrecessionYears": 79.2,
+    "poleRaDec": null,
+    "reference": "47: R.A.Jacobson2025 personal communication",
+    "limits": "Publisher mean elements explicitly not intended for ephemeris computation. Historical NASA744days/23.6Mkm and this different mean solution retained separately; source/version cause not inferred. Retrograde orbital inclination is not a spin-pole measurement; blank pole is not zero. No current phase, time, frame, covariance, physical registration or navigation adoption."
+  },
+  "currentJplPhysical": {
+    "rowPresent": false,
+    "limits": "No Pasiphae row in retained current physical table. No precise GM,mass,density,shape,spin,material fractions or porosity inferred."
+  },
+  "next": [
+    "Audit body-specific native archive/products, full credits, observation/release dates, terms and resolution before choosing imagery. No live scientific stream established by this page.",
+    "Assess retained Grav2015 primary Table1/Table3 and Pasiphae section with table visual verification; existing Elara source provenance is not a Pasiphae measurement transfer.",
+    "Independent local/observer illustrations require body-specific source/geometry audit and skyGeometry; no generation yet.",
+    "Preserve all93dossiers/native/model/shape/map bytes and complete legacy codecs while continuing all remaining backlog."
+  ],
+  "noNewCalculations": "No angular/raster geometry, new physical fit, recolouring or resampling performed. No external blocker claimed.",
+  "validation": {
+    "tests": {
+      "pass": 696,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 182,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "89b042d",
+      "priorDossiersDeepEqual": 93,
+      "dossiers": 93,
+      "priorMoonsDeepEqual": 49,
+      "moons": 49,
+      "trackedPublicByteEqual": 685,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15617810,
+      "headroomBytes": 382190,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "539ac273e97e8d0286da28ad165b0a9076ae208f5ca4cf7f75076fed3f80da0c",
+      "applicationSha256": "8e43e1a02a86be53b7f4dc0bad83763745adb95ac3a697580202657583115b61",
+      "freshBrowserClaim": false
+    },
+    "limits": "No fresh browser claim. Interbuild feed differences unaudited, no compression/asset savings attribution. No new dossier/image/catalogue/codec/map/model/shape changes; backlog ACTIVE."
+  }
+}
