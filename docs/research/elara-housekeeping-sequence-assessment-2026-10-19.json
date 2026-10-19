@@ -1,0 +1,334 @@
+{
+  "date": "2026-10-19",
+  "scope": "Research-only Elara raw housekeeping/header correspondence and LORRI planned-sequence storage audit. No new dossier or production change.",
+  "sources": [
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/binary_lorri_img_hdr.asc",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/binary_lorri_img_hdr.asc",
+      "status": 200,
+      "contentType": "text/plain; charset=UTF-8",
+      "path": "data/research-sources/elara-nh-binary_lorri_img_hdr.asc",
+      "bytes": 4260,
+      "sha256": "bc5d8fd07413c62e98bd9bb608f7a7eeb38513ddbd821343648ee9f616a241e0",
+      "retrievedAt": "2026-10-19T02:19:46.401946+00:00"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/binary_lorri_img_hdr.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/binary_lorri_img_hdr.lblx",
+      "status": 200,
+      "contentType": "text/xml",
+      "path": "data/research-sources/elara-nh-binary_lorri_img_hdr.lblx",
+      "bytes": 3958,
+      "sha256": "062c0936af108f5ea829425c0a4858af683218a47f4125b2d9fed20a55493ce3",
+      "retrievedAt": "2026-10-19T02:19:46.624610+00:00"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/seq_lorri_jupiter.tab",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/seq_lorri_jupiter.tab",
+      "status": 200,
+      "contentType": null,
+      "path": "data/research-sources/elara-nh-seq_lorri_jupiter.tab",
+      "bytes": 71190,
+      "sha256": "17eea3aa24ffe9532c607f0067950d9314eaef3faa62e564d93471d64017936e",
+      "retrievedAt": "2026-10-19T02:19:46.953663+00:00"
+    },
+    {
+      "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/seq_lorri_jupiter.lblx",
+      "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/seq_lorri_jupiter.lblx",
+      "status": 200,
+      "contentType": "text/xml",
+      "path": "data/research-sources/elara-nh-seq_lorri_jupiter.lblx",
+      "bytes": 8976,
+      "sha256": "6861cb79d267a7ace86fb0b1f19d1c876b3636835e867baa8f967d3a0e858aa2",
+      "retrievedAt": "2026-10-19T02:19:47.181611+00:00"
+    }
+  ],
+  "housekeeping": {
+    "products": [
+      {
+        "path": "data/research-sources/elara-pds4-raw-lor_0035398319_0x630_eng.fit",
+        "sha256": "5c708b643ce08cbae9997f71be82bb52c330417728276d13dd60a0c9fdd4890a",
+        "offset": 2148480,
+        "originalHex": "021c22ae02c7008f02cf007902cb00a8000002bd01ed01f901ec01b201f501da01ec01ef08f3691f6f0c727b00280000008000",
+        "scalarValues": {
+          "MET_HK": 35398318,
+          "LVPS_00": 711,
+          "LVPS_01": 143,
+          "LVPS_02": 719,
+          "LVPS_03": 121,
+          "LVPS_04": 715,
+          "LVPS_05": 168,
+          "LVPS_06": 0,
+          "LVPS_07": 701,
+          "LVPS_08": 493,
+          "LVPS_09": 505,
+          "LVPS_10": 492,
+          "LVPS_11": 434,
+          "LVPS_12": 501,
+          "LVPS_13": 474,
+          "LVPS_14": 492,
+          "LVPS_15": 495,
+          "FPU_0": 2291,
+          "FPU_1": 26911,
+          "FPU_2": 28428,
+          "FPU_3": 29307,
+          "EXPOSURE": 40,
+          "CLMP2": 0,
+          "CLMP1": 0
+        },
+        "msbFirstFlagValues": {
+          "TEMPCVRT": 1,
+          "CLMP2PE": 0,
+          "CLMP1PE": 0,
+          "SOURCE": 0,
+          "FORMAT": 0,
+          "EXPMODE": 0
+        },
+        "imageMET": 35398319,
+        "housekeepingMET": 35398318,
+        "spareBytes": [
+          0,
+          0
+        ]
+      },
+      {
+        "path": "data/research-sources/elara-pds4-raw-lor_0035398320_0x630_eng.fit",
+        "sha256": "781ea7810b6d3d1f5ac19e61185a44209c4ade620edf125a9cba28ec6791aa90",
+        "offset": 2148480,
+        "originalHex": "021c22af02c6009f02ce007902cb00a8000002bd01ed01f901ec01b201f501da01ec01ef08f3691f6f0b727c00280000008000",
+        "scalarValues": {
+          "MET_HK": 35398319,
+          "LVPS_00": 710,
+          "LVPS_01": 159,
+          "LVPS_02": 718,
+          "LVPS_03": 121,
+          "LVPS_04": 715,
+          "LVPS_05": 168,
+          "LVPS_06": 0,
+          "LVPS_07": 701,
+          "LVPS_08": 493,
+          "LVPS_09": 505,
+          "LVPS_10": 492,
+          "LVPS_11": 434,
+          "LVPS_12": 501,
+          "LVPS_13": 474,
+          "LVPS_14": 492,
+          "LVPS_15": 495,
+          "FPU_0": 2291,
+          "FPU_1": 26911,
+          "FPU_2": 28427,
+          "FPU_3": 29308,
+          "EXPOSURE": 40,
+          "CLMP2": 0,
+          "CLMP1": 0
+        },
+        "msbFirstFlagValues": {
+          "TEMPCVRT": 1,
+          "CLMP2PE": 0,
+          "CLMP1PE": 0,
+          "SOURCE": 0,
+          "FORMAT": 0,
+          "EXPMODE": 0
+        },
+        "imageMET": 35398320,
+        "housekeepingMET": 35398319,
+        "spareBytes": [
+          0,
+          0
+        ]
+      }
+    ],
+    "limits": [
+      "Storage/header correspondence for two files only, not flight-software version validation.",
+      "Uncalibrated ADC values, flags and housekeeping time tags remain distinct from physical measurements and image times.",
+      "No UTC conversion, timing repair, temperature conversion, image masking, reconstruction, embedding or production change."
+    ]
+  },
+  "sequenceLayout": {
+    "status": "read-only preparation",
+    "sources": [
+      {
+        "path": "data/research-sources/elara-nh-seq_lorri_jupiter.tab",
+        "bytes": 71190,
+        "sha256": "17eea3aa24ffe9532c607f0067950d9314eaef3faa62e564d93471d64017936e"
+      },
+      {
+        "path": "data/research-sources/elara-nh-seq_lorri_jupiter.lblx",
+        "bytes": 8976,
+        "sha256": "6861cb79d267a7ace86fb0b1f19d1c876b3636835e867baa8f967d3a0e858aa2"
+      }
+    ],
+    "declaredRecords": 210,
+    "declaredRecordBytes": 339,
+    "allFixedWidthFieldsEqualCsvFields": false,
+    "csvInterpretationDifferences": [
+      {
+        "oneBasedRow": 56,
+        "fixedWidth": {
+          "INSTR3": "LOR",
+          "SEQID": "JELO_IOCC01",
+          "DATE": "2007-02-26T04:05:00",
+          "SCLK": "1/0034768617:30606",
+          "DESCR": "IO; Stellar occultation; 3/4/2007  7:40:00 PM.  Could be combined with the \"auroral response to magnetosphere\" observation."
+        },
+        "csvFields": [
+          "LOR",
+          "JELO_IOCC01",
+          "2007-02-26T04:05:00",
+          "1/0034768617:30606",
+          "IO; Stellar occultation; 3/4/2007  7:40:00 PM.  Could be combined with the auroral response to magnetosphere\" observation.                                                                                                       \""
+        ]
+      },
+      {
+        "oneBasedRow": 202,
+        "fixedWidth": {
+          "INSTR3": "LOR",
+          "SEQID": "JELO_GOCC01",
+          "DATE": "2007-03-04T17:15:00",
+          "SCLK": "1/0035334417:30528",
+          "DESCR": "GANYMEDE; Stellar occultation; 3/4/2007  7:40:00 PM.  Could be combined with the \"auroral response to magnetosphere\" observation."
+        },
+        "csvFields": [
+          "LOR",
+          "JELO_GOCC01",
+          "2007-03-04T17:15:00",
+          "1/0035334417:30528",
+          "GANYMEDE; Stellar occultation; 3/4/2007  7:40:00 PM.  Could be combined with the auroral response to magnetosphere\" observation.                                                                                                 \""
+        ]
+      }
+    ],
+    "allRecordsCRLF": true,
+    "elaraPlanningRows": [
+      {
+        "oneBasedRow": 80,
+        "INSTR3": "LOR",
+        "SEQID": "JELO_LPHASE01",
+        "DATE": "2007-02-27T04:00:00",
+        "SCLK": "1/0034854717:30596",
+        "DESCR": "ELARA; Irregular satellites, phase coverage; Placeholder: details not yet worked out"
+      },
+      {
+        "oneBasedRow": 148,
+        "INSTR3": "LOR",
+        "SEQID": "JELO_LPHASE02",
+        "DATE": "2007-03-01T20:30:00",
+        "SCLK": "1/0035086917:30562",
+        "DESCR": "ELARA; Irregular satellites, phase coverage; Placeholder: details not yet worked out"
+      },
+      {
+        "oneBasedRow": 188,
+        "INSTR3": "LOR",
+        "SEQID": "JELO_LPHASE03",
+        "DATE": "2007-03-03T15:00:00",
+        "SCLK": "1/0035239917:30540",
+        "DESCR": "ELARA; Irregular satellites, phase coverage; Placeholder: details not yet worked out"
+      },
+      {
+        "oneBasedRow": 204,
+        "INSTR3": "LOR",
+        "SEQID": "JELO_LPHASE04",
+        "DATE": "2007-03-05T11:00:00",
+        "SCLK": "1/0035398317:30519",
+        "DESCR": "ELARA; Irregular satellites, phase coverage; Placeholder: details not yet worked out"
+      }
+    ],
+    "limits": [
+      "Embedded unescaped quotation marks cause generic CSV interpretation differences; declared fixed-width fields retained unchanged, no source repair.",
+      "Sequence list explicitly unvalidated against actual spacecraft activity; rows do not guarantee observations.",
+      "No independent product/target/pointing identification, UTC conversion, calibration, reconstruction or production change.",
+      "Header text dated 2004 Apr 10 cites Table12 and specification April12,2004; chronology discrepancy retained without inferred software version."
+    ]
+  },
+  "preparationRecords": [
+    {
+      "path": "data/research-sources/elara-nh-lorri-header-sequence-acquisition-preparation-2026-10-19.json",
+      "bytes": 2399,
+      "sha256": "eb5ccc57d2f05c451127fb154a8a6d8d40f87d90dcd22ae8c1e7604c9a8e9b18"
+    },
+    {
+      "path": "data/research-sources/elara-nh-header-sequence-reading-preparation-2026-10-19.json",
+      "bytes": 5271,
+      "sha256": "90f5b7b1bc357d82d0f85dc14ae238a3135f8611dca79e2a0f37accda6a8bd48"
+    },
+    {
+      "path": "data/research-sources/elara-raw-housekeeping-layout-preparation-2026-10-19.json",
+      "bytes": 4266,
+      "sha256": "f61089f28d3bd3e6f2733dab3c71ef1e03c70cc72a4d6f0aff81a87e11ebca08"
+    },
+    {
+      "path": "data/research-sources/elara-raw-housekeeping-header-crosswalk-preparation-2026-10-19.json",
+      "bytes": 7878,
+      "sha256": "e51bfb5786953893ce52254bf114f8f7ed14e441501dc87591bb9054f2dadd35"
+    }
+  ],
+  "reproducers": [
+    {
+      "path": "docs/research/elara-housekeeping-header-audit-2026-10-19.py",
+      "bytes": 2936,
+      "sha256": "1d7232780e9194808735ba090950aa48ff82a43baf10f0d9eab2ef7f10ed6e0a"
+    },
+    {
+      "path": "docs/research/elara-sequence-layout-audit-2026-10-19.py",
+      "bytes": 2257,
+      "sha256": "5d57c9e9af9fe6f514490a26f9cb0225ac94f45df2f42e3f133a36f45792316d"
+    }
+  ],
+  "findings": [
+    "Both original PDS4 raw products declare the 51-byte housekeeping array at byte2148480. Big-endian decoding yields48 scalar values and12 flag values matching corresponding numeric FITS header fields across the two files.",
+    "The document calls its first ULON field MET_IMG. Stored values35398318/35398319 match FITS MET_HK, while image MET is35398319/35398320. This correspondence is not a one-second timing correction or independently established flight-software semantics.",
+    "The byte49 MSB-first interpretation TEMPCVRT,CLMP2PE,CLMP1PE,SOURCE,FORMAT,EXPMODE matches the headers. This two-product correspondence does not establish general bit order, software-version identity or physical operating state.",
+    "LVPS/FPU values are uncalibrated stored integers; voltage/current/temperature descriptions are not conversion functions. EXPOSURE40 matches the header, with document units1ms; no timing-erratum application or effective-exposure recalibration.",
+    "All210 fixed-width records are339 bytes including CRLF, matching label and71190-byte table. Generic CSV parsing differs in rows56 and202 because description text contains unescaped quotations. Declared fixed-width fields and original bytes are retained without repair.",
+    "Four ELARA planning rows80/148/188/204 are present. Row204 JELO_LPHASE04 and row203 LPHASE04 share printed2007-03-05T11:00:00 and1/0035398317:30519; the description says placeholder details not yet worked out. Next distinct start March6 is Himalia, not Elara.",
+    "The sequence label expressly says its intended sequence list was not validated against actual spacecraft activities and presence does not guarantee observations. Duplicate start rows prevent naive per-row positive duration inference. Planning proximity is not independent product/target/pointing identification."
+  ],
+  "attributionAndDates": {
+    "scienceCredit": "NASA/Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute; earlier Cheng,A., PDS3 producer Brian Carcich and contact Andrew Cheng retained in prior product assessments.",
+    "headerDocument": "Taylor,H.; printed2004 Apr10 FITS-tags date cites John R.Hayes specifications7400-9011 April12,2004 and7399-9500 Dec8,2003. Printed chronology retained without inferred software release.",
+    "headerLabel": "urn:nasa:pds:nh_documents:lorri:binary_lorri_img_hdr::1.0; citation year2024, Document publication_date2007-04-21, migration2024-06-21 by PDS-SBN B.Hirsch; distinct dates, not observations.",
+    "sequenceLabel": "urn:nasa:pds:nh_documents:lorri:seq_lorri_jupiter::1.0; migration2025-06-12 by PDS-SBN B.Sharkey, not acquisition date or original table authorship. File creation_date_time2016-04-08 is also separate from2007 planning dates and2025 migration.",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "termsLimit": "NASA media guidance and third-party caveats retained; no blanket CC BY or paper/figure licence inferred."
+  },
+  "open": [
+    "WINDOWH0 reconstruction",
+    "Quality-bit definition conflict",
+    "Original pipeline/software version and timing-erratum applicability",
+    "Raw product target/PSF/pointing identity and scientific calibration",
+    "Geometry/photometric registration and native compact context for undelivered Elara93"
+  ],
+  "preservation": [
+    "All92 delivered dossiers,48MOONS and569queue entries remain unchanged.",
+    "All original/default PNGs, masters, previews, native science, maps, models, shapes, provenance and recordedClipper preserved.",
+    "No image resampling, masking, reconstruction, embedding, catalogue adoption, codec change or angular/raster-size computation."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 692,
+      "skip": 1,
+      "fail": 0,
+      "log": "/tmp/fidelity-elara-housekeeping-tests.log"
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 141,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "2cb3fff",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15990758,
+      "headroomBytes": 9242,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "64e6d4b08e4aefb727ad0de0680266455eb3a65c90e26f2cbef79e12b385e46a",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "limits": "No fresh browser verification. Interbuild feed changes unaudited; no compression savings attribution."
+  }
+}
