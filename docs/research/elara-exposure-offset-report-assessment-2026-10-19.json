@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-19",
+  "baseline": "c616b9c",
+  "scope": "Research-only original exposure-offset report audit. No timing correction, pixel transformation, scientific calibration or production adoption.",
+  "source": {
+    "url": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_exposure_offset_pds_v3.pdf",
+    "finalUrl": "https://pdssbn.astro.umd.edu/holdings/pds4-nh_documents-v5.1/lorri/documents/lorri_exposure_offset_pds_v3.pdf",
+    "status": 200,
+    "retrievedUtc": "2026-10-19T10:04:29.489958+00:00",
+    "headers": {
+      "Date": "Mon, 19 Oct 2026 10:04:29 GMT",
+      "Server": "Apache/2.4.62",
+      "Last-Modified": "Wed, 26 Jun 2024 18:59:50 GMT",
+      "ETag": "\"345c79-61bcf9e671580\"",
+      "Accept-Ranges": "bytes",
+      "Content-Length": "3431545",
+      "Connection": "close",
+      "Content-Type": "application/pdf"
+    },
+    "bytes": 3431545,
+    "sha256": "cfdb73e28cd085b858fb3d0d2972cdec0f6dc9e9fb38f5991be8cdc2fc13d8fe",
+    "path": "data/research-sources/elara-lorri-exposure-offset-pds-v3-original-2026-10-19.pdf",
+    "pages": 7,
+    "textPath": "data/research-sources/elara-lorri-exposure-offset-fulltext-preparation-2026-10-19.txt",
+    "textSha256": "7ed928cfcccbb0536f82fe1b3f6eca7bf77cdaedb160a91d904ad60c5ae645aa",
+    "publisherMd5Row": "27c373f30a648a82da6bec2ef75bb0ac  documents/lorri_exposure_offset_pds_v3.pdf",
+    "publisherMd5Matches": true
+  },
+  "inspection": {
+    "fullTextExtracted": true,
+    "allSevenPagesVisuallyInspected": true,
+    "renderer": "pdftoppm -scale-to 1400 -png",
+    "renderDirectory": "/tmp/fidelity-exposure-pdf",
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "authors": [
+    "John Spencer (Southwest Research Institute)",
+    "Hal Weaver (Johns Hopkins University Applied Physics Laboratory)"
+  ],
+  "dates": {
+    "printedReport": "February 2020",
+    "labelPublication": "2020-02-29",
+    "labelCitationYear": 2024,
+    "migration": "2024-06-21",
+    "notObservationDates": true
+  },
+  "findings": [
+    {
+      "pages": [
+        2,
+        3
+      ],
+      "finding": "Report compares aligned Level2 Io pairs with different short commanded exposures; two residual criteria estimate a constant exposure offset. This method and source imagery are not reprocessed here."
+    },
+    {
+      "pages": [
+        4,
+        5
+      ],
+      "finding": "Reported Io MET pairs34966574/34966577 and35029094/35029097 use4/20ms reported exposures. First pair criteria yield0.59/0.58ms; second0.59ms. Slide4 difference-image label uses4.58/20.58ms despite prose0.59ms for the standard-deviation minimum; distinct criteria are retained. These are not Elara MET35398319/35398320."
+    },
+    {
+      "page": 6,
+      "finding": "Authors adopt+0.6ms and report a pipeline update to exposure-header keywords. Their method is less reliable for much longer exposures; their statement about typical Pluto/Arrokoth flyby exposures is not an independent Elara photometric-error assessment."
+    },
+    {
+      "page": 7,
+      "finding": "Simplified timing explanation distinguishes software-assumed13ms scrub from FPGA12.384ms scrub and11.546ms transfer; reported mechanism gives0.616ms additional exposure. These are publisher values, not independently reproduced flight timing; rounded adopted0.6ms remains distinct."
+    }
+  ],
+  "crosswalkLimit": "Earlier2019 dataset erratum and this2020 report support correction history, but exact retained Elara pipeline execution, header/timing convention and implementation remain unverified. Do not add0.6ms again or shift start/mid/end times without that crosswalk.",
+  "creditsAndTerms": {
+    "science": "NASA / JHUAPL / SwRI; original report authors above, B Hirsch PDS-SBN migration role separate. Earlier Cheng dataset citation and Carcich producer/contact history retained.",
+    "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "terms": "NASA media/third-party caveats retained; no blanket CC BY or report-figure redistribution permission asserted. No figure embedded."
+  },
+  "preservation": "No93rd dossier, new embedding, angular/raster computation, image masking/repair, catalogue, map/model/shape or codec change. All original/default generated PNGs, masters, native science and provenance preserved.",
+  "open": [
+    "Original Elara timing/pipeline implementation and source-product crosswalk",
+    "WINDOWH0, quality-bit definitions, histogram scope, target/PSF, physical registration and calibrated photometry",
+    "Conforming lossless standalone capacity before prepared Elara93 integration"
+  ],
+  "validation": {
+    "reportReproducer": "docs/research/elara-exposure-report-audit-2026-10-19.py",
+    "reportSourceAndFullTextHashes": "pass",
+    "tests": {
+      "passed": 692,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 157,
+      "nativeCardsExactBytesAndMime": 83,
+      "baseline": "c616b9c",
+      "priorDossiersDeepEqual": 92,
+      "dossiers": 92,
+      "priorMoonsDeepEqual": 48,
+      "moons": 48,
+      "trackedPublicByteEqual": 681,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "htmlBytes": 15994410,
+      "headroomBytes": 5590,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "05d9e0a03358afd5ba29e22141c0f84dc479fc50a140740f6c3ee6963581c522",
+      "applicationSha256": "ee3be1bb4f3541514cd994542f397d2ad6e159062e6235506c99ea18ef557787",
+      "freshBrowserClaim": false
+    },
+    "limits": "Complete Node inverse; no fresh browser claim, no interbuild feed audit or savings attribution."
+  }
+}
