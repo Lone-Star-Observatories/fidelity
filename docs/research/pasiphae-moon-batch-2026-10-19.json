@@ -1,0 +1,106 @@
+{
+  "body": "Pasiphae",
+  "dossier": 94,
+  "date": "2026-10-19",
+  "issue": 3,
+  "status": "Delivered initial imagined local and observer views; native imagery refinement remains open.",
+  "records": [
+    "pasiphae-source-records-2026-10-19.json",
+    "pasiphae-primary-assessment-2026-10-19.json",
+    "pasiphae-reference-preparation-2026-10-19.json",
+    "pasiphae-lorri-index-assessment-2026-10-19.json",
+    "pasiphae-import-manifest-2026-10-19.json",
+    "pasiphae-dossier-browser-verification-2026-10-19.json"
+  ],
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 202,
+    "nativeCardsExactBytesAndMime": 83,
+    "baseline": "f47569b",
+    "priorDossiersDeepEqual": 93,
+    "dossiers": 94,
+    "priorMoonsDeepEqual": 49,
+    "moons": 50,
+    "trackedPublicByteEqual": 685,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/pasiphae-sky-image.jpg",
+      "/bespoke/pasiphae-surface-image.jpg"
+    ],
+    "htmlBytes": 15637730,
+    "headroomBytes": 362270,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "f58056c7429374bdc6a0c33654e79dce05ff55c484002c9f0372eec24a89652b",
+    "applicationSha256": "269e84741c8a225aa69aac9b0ff57b30ef00772d45ea97977e03d343cc5eab34",
+    "freshBrowserClaim": false
+  },
+  "browser": {
+    "status": "pass",
+    "browser": "Chrome via IAB, loopback HTTP",
+    "completeReadableJsonSha256": "f58056c7429374bdc6a0c33654e79dce05ff55c484002c9f0372eec24a89652b",
+    "applicationSha256": "269e84741c8a225aa69aac9b0ff57b30ef00772d45ea97977e03d343cc5eab34",
+    "htmlParserPackedSnapshotSha256": "c4e8fa4a69558f487afc57d428ad8bd532cbd6a88be15c4461ead37258f1204f",
+    "htmlParserPackedAppSha256": "4b6cced0e5b391a481bff2f342b3745e05cc14fa9ece62d3279446760c8d5b58",
+    "decodedImages": 328,
+    "parsedModelScenes": 32,
+    "details": 517,
+    "bands": 20,
+    "startupCanvases": 8,
+    "normalPasiphae": {
+      "cards": 2,
+      "decodedDimensions": [
+        1536,
+        864
+      ],
+      "ownGlobe": false
+    },
+    "offlinePasiphae": {
+      "cards": 2,
+      "decodedDimensions": [
+        256,
+        144
+      ],
+      "mime": "image/webp",
+      "ownGlobe": false
+    },
+    "unsupportedGzipNoticeVerified": true,
+    "unsupportedWasmNoticeVerified": true,
+    "limits": [
+      "Other browser engines remain open.",
+      "Direct-file route not tested; prior URL policy restriction preserved.",
+      "Model scene parsing is not a fresh all-model interactive load claim.",
+      "Earlier event-worker and other route verification remains historical, not freshly repeated."
+    ]
+  },
+  "validation": {
+    "testsPassed": 697,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  },
+  "scienceLimits": [
+    "Jupiter VIII distinct Pasithee, Elara and Himalia.",
+    "28.9km radius is half Grav2015 NEATM diameter57.8\u00b1.8km, not axes or local normal; NASA30km assumed-albedo alternative retained. Mass, GM, density, rotation and pole unknown.",
+    "JUP347 means in ecliptic2000Jan1.5TDB are not ephemerides; navigation illustrative, not dated SPICE registration.",
+    "Sharkey2025v2 unresolved JWST spectra not visible colour, geography or unique local minerals/fractions. Specific arXiv CC BY4 distinct Grav2015 AAS all-rights-reserved; no paper figure embedded.",
+    "No native context image or resolved globe adopted; bounded LORRI target-index nonmatch is not global absence or an external blocker.",
+    "Independent generated terrain, chemistry, fractions, Jupiter pattern, phase, axis, colour, light and exposure imagined; no analog skins, dated site or survivable landing.",
+    "skyGeometry target .34143817572528185degrees/4.981922962937031pixels at1672width nominal90HFOV. Generated Jupiter visibly oversized and uncalibrated; no measured raster diameter adopted.",
+    "Original/default PNGs, full prompts,1536JPEG85masters,256JPEG80previews and offlineWebP80 preserved."
+  ],
+  "next": "Continue remaining independent moon/native-map/craft/shape/calibration/ranking backlog. Automation ACTIVE; no external blocker claimed.",
+  "savedSnapshotDiff": {
+    "bodyImages": [
+      "/bespoke/pasiphae-sky-image.jpg",
+      "/bespoke/pasiphae-surface-image.jpg"
+    ],
+    "bandImages": [
+      "/api/feed/sdo-304?size=preview",
+      "/api/feed/sdo-94?size=preview",
+      "/api/feed/sdo-193?size=preview",
+      "/api/feed/sdo-1600?size=preview",
+      "/api/feed/sdo-171?size=preview"
+    ]
+  },
+  "savedSnapshotDiffLimit": "Band-image live-feed refresh is not solely Pasiphae or compression change."
+}

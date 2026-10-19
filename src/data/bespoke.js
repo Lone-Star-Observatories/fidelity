@@ -16129,6 +16129,162 @@ export const BODY_VISUALS = {
       "previewHeight": 138,
       "processing": "Exact prepared aspect-preserving JPEG85master/JPEG80preview copied without further resampling. Original/default generated PNG and fullprompt retained; terrain/materialappearance and parentpattern are artistic,not radiometrically calibrated."
     }
+  },
+  "pasiphae": {
+    "id": "pasiphae",
+    "name": "Pasiphae",
+    "kind": "moon",
+    "aliases": [
+      "Pasiphae",
+      "Jupiter VIII",
+      "J8 Pasiphae"
+    ],
+    "researchDate": "2026-10-19",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or digitalshape adopted. JWST disk-integrated spectra and WISE thermal models are not local geography or calibrated visible colour; native imagery refinement remains open.",
+    "measured": [
+      "Pasiphae,JupiterVIII,JPL508 is distinct from Pasithee,Elara and Himalia. NASA reports1908Jan27 discovery by PhilibertJacquesMelotte at Greenwich30-inch Cassegrain; page publication2017/update2024 are not image acquisition dates.",
+      "Sharkey etal arXiv2501.16484v2 Table1 reports Pasiphae NIRSpec observations2024-01-25; GO4028 IFU/prism,not new2025/2026resolved photography. Specificv2CCBY4 differs from Grav2015AASrights; no paperfigure embedded."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.3 NEATM effective DIAMETER57.8±0.8km,eta.76±.02,visiblealbedo4.4±.6percent,W1albedo6.7±.7percent; W2unreported. Display radius28.9km is half the fitted diameter,not axes/localnormal. NASA30km assumes.04albedo; distinct alternative retained. No GM,mass,density or chemistry inferred.",
+      "WISE Table1 roundedMJDUTC55368/55540; pervisitW1counts14/11, W3/W4counts13/14 firstvisit; Table3fit25/unreported/13/14. H10.21±.01mag listed,G.10±.15 assumed; conservative.15magHerror in methods. Dates/counts not rawexposureUTC, calibratedRGB or new radiusfit. Loweta roughness/thermal-inertia interpretation not measured local rocks.",
+      "Grav2015 reports no significant flux variation over1.2days versus historical possible~1mag amplitude claims,with aspect change an alternative. This is not an independently adopted spin period,pole,shape or locking state; Himalia7.7819h must not be transferred.",
+      "JPLJUP347 planet-centred ecliptic2000Jan1.5TDB mean a23463200km,e.412,w172.8,M279.3,i148.3,node315.7deg,P734.4215days,apsidal60.6/nodal79.2yr; blankpole not zero. Mean elements explicitly not ephemerides. NASA744day/23.6Mkm historical model retained separately; navigation illustrative,not datedSPICE/current distance/phase/frame/lighttime/covariance.",
+      "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 unresolved0.7–5.1micron reflectance: ~3micron absorber uncertain; OH-bearing interpretations and3.4micron organics association are not unique minerals/local fractions. Comparisons with Lysithea/Trojans are not shared maps. Pipeline1.14.0/jwst_1225.pmap,PSF/extraction/solarstandard and thermal-subtraction assumptions not independently reproduced or visiblecolourcalibration.",
+      "Bounded NH-J-LORRI-3-JUPITER-V3.0 index1118rows has zero Pasiphae target-name matches; this does not establish absence in all footprints/archives. EightElara/30Himalia/24Callirrhoe records are not assigned toPasiphae. Nativeproduct/pointing/date/credit/licence crosswalk remains open."
+    ],
+    "unknown": [
+      "GM,mass,density,spin,pole,axes,localnormal,currentlongitude,registered geography,visiblecolour,materialfractions and dated observer alignment. No currentJPLphysical row. Nullrotation and lockingdisabled do not measure nonsynchronous spin or permanentJupiterface.",
+      "No verified Pasiphae-specific live stream or calibrated resolved globe adopted. WISEraw/nativeimage/product crosswalk and recentJWSTraw/frame/photometry/terms refinement remain open; two imagined initialviews do not complete native integration. PDSindex nonmatch is not an external blocker/globalabsence claim.",
+      "Grav2015printedpublicationAug4 versus issueAug10 are not WISEacquisition dates; ©AASallrightsreserved notCCBY. Sharkeyv1Jan27/v2Sep7,2025 retained separately; finalpublisherHTTP200verificationredirect response is not a finalpaper/licence. Minor3.9micron attribution wording in v2 discussion differs from its body-specific description; no Pasiphae mineral assignment inferred. No paperfigure embedded."
+    ],
+    "assumed": [
+      "Independent invented greyterrain,grains,blocks,depressions,relief,chemistry/fractions,porosity,colour,lighting/exposure/viewpoint and Jupiterpattern/phase/axis; no observedbody map or analogskin. No foreground atmosphere,plume,liquid,exposed ocean,biology or survivablelanding implication. Blacksky/omittedstars/rings do not establish absence.",
+      "skyGeometry spherical69911kmJupiter at23463200 minus hypothetical28.9km radialheight gives.34143817572528185deg/nominal90HFOV/1672width target4.981922962937031px. Alternative30kmheight not jointfit or uncertainty envelope. Generated disk visibly oversized/uncalibrated; no measured rasterdiameter adopted. Eccentric orbit means mean scale not current distance.165K helper angularonly,colour/irradiance discarded; Sun5.2044AU assumed off-frame,notphotometry.",
+      "Original/defaultPNGs/fullprompts retained; standard1536JPEG85masters/256JPEG80previews and offlineWebP80. Tiny preview footers require explicitIMAGINEDcardlabels. No generated globe or shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM PASIPHAE",
+    "skyLabel": "IMAGINED · SKY FROM PASIPHAE",
+    "skyCaption": "Hypothetical spherical Jupiter angular guide0.3414° at nominal mean-orbit scale; generated disk oversized/uncalibrated. FOV,phase,colour,pattern,exposure and registration artistic.165K helper input is not visiblephotometry; colour/irradiance discarded.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "28.9 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "23.46 M KM · MEAN SCALE"
+      ],
+      [
+        "ATTITUDE",
+        "UNREGISTERED"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.1568416113826412,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "angularDiameterDeg": 0.34143817572528185,
+      "centreDiscWidthFraction": 0.002979618996971909,
+      "irradianceEarth": 2.7412895963911184e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "references": [
+      {
+        "title": "NASA Pasiphae overview; historical assumed-albedo model",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/pasiphae/"
+      },
+      {
+        "title": "JPL JUP347 mean elements,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table; no Pasiphae row in retained response",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav etal2015 thermal models; full8authors retained,allrightsreserved",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "Rounded MJDUTC55368/55540; individualexposureUTC unknown"
+      },
+      {
+        "title": "Sharkey etal2025v2 full6authorsCCBY4; unresolvedJWSTspectroscopy",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "publicationDate": "2025-09-07",
+        "observationDate": "2024-01-25"
+      },
+      {
+        "title": "Specific arXiv CC BY4 terms; not blanketrawarchive licence",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "PDS original calibrated-Jupiter index; bounded target-name result only",
+        "url": "https://pdssbn.astro.umd.edu/holdings/nh-j-lorri-3-jupiter-v3.0/index/index.lbl"
+      },
+      {
+        "title": "NASA media terms; sourcecredit/thirdparty/noendorsement caveats",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    ],
+    "nativeProducts": {
+      "embedded": false,
+      "limits": "No sourceimage/processedfigure adopted. UnresolvedJWSTspectra/WISEthermalmodel linked; complete rawproduct/date/credit/terms/calibration/frame audit open. BoundedLORRIindex negative targetfield does not establish globalabsence."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/pasiphae-surface-image.jpg",
+      "previewUrl": "/bespoke/pasiphae-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "pasiphae-generated-surfaceImage-original.png",
+      "sourceSha256": "9de6faf62e40507d748f29003266a369799d68ae8893f42920c1f426c73142fc",
+      "sha256": "666ff4d9475286fa7a7ba589821c7a4c21a431033d38f4cc7eed37466d73bf19",
+      "previewSha256": "77769ac609a718bd4e3706daf810114f15cb9a0626090a9d0e9b92091c9014f0",
+      "bytes": 346265,
+      "previewBytes": 11985,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/pasiphae-sky-image.jpg",
+      "previewUrl": "/bespoke/pasiphae-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "pasiphae-generated-skyImage-original.png",
+      "sourceSha256": "c5a3b67029d1f264f185820b85ce7c2801e858bec880530b749a625e13b39daa",
+      "sha256": "60ca70ae993aa803de85ae89bfe87913a7378c0004fd7ab3a63fc09e838725bf",
+      "previewSha256": "852c784d3338f3afa0590c8a91f82503407bd9c3907e15884516f86d904e6b21",
+      "bytes": 263034,
+      "previewBytes": 7645,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

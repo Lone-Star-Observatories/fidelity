@@ -722,6 +722,22 @@
       "visualId": "elara"
     },
     {
+      "id": "sol-pasiphae",
+      "bodyId": "pasiphae",
+      "name": "Pasiphae",
+      "parent": "jupiter",
+      "kind": "moon",
+      "scope": "Solar System catalogue",
+      "nativeImagery": "no local native map; research native imagery",
+      "discoveryYear": "1908",
+      "discoveryReferences": "IAU WGPSN",
+      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "pasiphae"
+    },
+    {
       "id": "sol-thebe",
       "bodyId": "thebe",
       "name": "Thebe",
@@ -1374,20 +1390,6 @@
       "kind": "comet",
       "scope": "Solar System catalogue",
       "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
-    },
-    {
-      "id": "sol-pasiphae",
-      "name": "Pasiphae",
-      "parent": "jupiter",
-      "kind": "moon",
-      "scope": "IAU-recognized planetary/Pluto satellite",
-      "discoveryYear": "1908",
-      "discoveryReferences": "IAU WGPSN",
-      "source": "https://ssd.jpl.nasa.gov/sats/discovery.html",
-      "nativeImagery": "unchecked",
       "research": "queued",
       "surface": "native imagery assessment, then bespoke if missing",
       "sky": "queued"
@@ -8560,7 +8562,7 @@
     },
     "moon": {
       "selected": 469,
-      "initialDossiers": 48,
+      "initialDossiers": 49,
       "limits": "Initial dossier delivery does not establish calibrated raster colour, registered geography or independently confirmed archive membership."
     }
   }

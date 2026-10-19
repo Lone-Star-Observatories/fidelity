@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-19",
+  "dossier": 94,
+  "generation": [
+    {
+      "role": "surfaceImage",
+      "tool": "built-in image_gen",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-7ce11d2c-935c-48e2-a94d-2e488bcc7170.png",
+        "bytes": 2899984,
+        "sha256": "9de6faf62e40507d748f29003266a369799d68ae8893f42920c1f426c73142fc"
+      },
+      "original": {
+        "path": "data/research-sources/pasiphae-generated-surfaceImage-original.png",
+        "bytes": 2899984,
+        "sha256": "9de6faf62e40507d748f29003266a369799d68ae8893f42920c1f426c73142fc",
+        "width": 1672,
+        "height": 941
+      },
+      "prompt": "Use case: scientific-educational\nAsset type: Fidelity Pasiphae independent hypothetical local-view illustration, landscape16:9, requested1672x941.\nCreate a new original invented low viewpoint over Pasiphae, JupiterVIII/JPL508. Subdued grey granular relief, a few irregular angular blocks and shallow depressions in foreground beneath black sky. Restrained photographic-style illustration. All terrain, grains, block sizes, chemistry, fractions, porosity, colour, illumination, exposure and viewpoint are unknown and invented. Thermal-model effective diameter57.8±0.8km and albedo4.4±0.6percent do not establish a local map or measured rock properties. Recent JWST infrared spectra are unresolved, not calibrated visible colour or local mineral geography. No Jupiter or Sun disk in this local view, no angular/raster diameter claim. This is not a dated site, registered normal, measured spin/pole, locked state or permanent Jupiter face. No reused observed-body photograph, map or analog skin from Moon,Mars,Pluto,Elara,Himalia or any other body. No atmosphere,haze,clouds,plume,liquid,exposed ocean,biology,craft,astronaut or survivable landing implication. Black sky and omitted stars/rings do not establish absence.\nAt the bottom INSIDE the image place a full-width dark annotation band with two entirely legible unobstructed exact lines:\nPASIPHAE — IMAGINED LOCAL VIEW\nTerrain, materials and illumination invented; not observed geography\nKeep all text fully inside the frame. No other labels, logos or watermarks. Brand new standalone generation without reference images.\n",
+      "promptFile": {
+        "path": "data/research-sources/pasiphae-generated-surfaceImage-prompt.txt",
+        "bytes": 1579,
+        "sha256": "24579563c8dcc2d8ac1f7b577eafcd128cb3ac246a2466c8c7d025fb75435a4a"
+      },
+      "inspection": "Full original inspected: both footer lines legible, independent invented grey terrain/no analog; sky Jupiter visibly oversized,not calibrated raster."
+    },
+    {
+      "role": "skyImage",
+      "tool": "built-in image_gen",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1922a072-a09f-4614-95c5-441ae5caf937.png",
+        "bytes": 2211825,
+        "sha256": "c5a3b67029d1f264f185820b85ce7c2801e858bec880530b749a625e13b39daa"
+      },
+      "original": {
+        "path": "data/research-sources/pasiphae-generated-skyImage-original.png",
+        "bytes": 2211825,
+        "sha256": "c5a3b67029d1f264f185820b85ce7c2801e858bec880530b749a625e13b39daa",
+        "width": 1672,
+        "height": 941
+      },
+      "prompt": "Use case: scientific-educational\nAsset type: Fidelity Pasiphae independent hypothetical Jupiter-facing observer illustration, wide landscape16:9, requested1672x941.\nNew original invented low viewpoint over Jupiter's irregular moon Pasiphae (JupiterVIII/JPL508). Subdued grey uneven granular terrain with sparse original irregular blocks in the lowest third, under black sky. Tiny Jupiter well above horizon, cream/tan appearance with original invented pattern, no identifiable observed storm or copied texture. Keep Jupiter very small rather than a dramatic giant disk: skyGeometry spherical Jupiter radius69911km at nominal23463200 minus hypothetical28.9km radialheight gives0.34143817572528185degree diameter, nominal90degree horizontal field,4.981922962937031px target at1672width. This is only an illustrative guide, not calibrated raster geometry, dated scene or measured local normal. Eccentric orbit e.412 means the mean semimajor scale is not current distance; spin/pole/locking and a permanent Jupiter-facing site are unknown. Phase,attitude,oblateness,colour,spectral transfer,light,exposure and registration artistic.165K is angular-helper input only; colour/irradiance output discarded, not visible photometry. All local relief,stones,grains,chemistry,fractions,porosity,colour are invented. Thermal diameter57.8±0.8km is not local shape. JWST spectra are unresolved, not a mineral or terrain map. No observed-body image or analog skin from Moon,Mars,Pluto,Elara,Himalia,Jupiter or any other body. No Sun disk,haze,foreground atmosphere,clouds,plume,liquid,exposed ocean,biology,craft,astronaut or survivable landing implication. Black sky and omitted stars/rings are composition choices, not absence evidence.\nBottom full-width dark annotation band INSIDE frame with two entirely legible unobstructed exact lines:\nPASIPHAE — IMAGINED SKY VIEW\nTerrain and Jupiter appearance invented; geometry illustrative, not registered\nKeep both lines fully inside frame. No other labels, logos or watermarks. New standalone generation without reference images.\n",
+      "promptFile": {
+        "path": "data/research-sources/pasiphae-generated-skyImage-prompt.txt",
+        "bytes": 2064,
+        "sha256": "baed1a590029a4092e6cc1ca192c091c853d7d6f2adff9a8f2c6f5d5c1133625"
+      },
+      "inspection": "Full original inspected: both footer lines legible, independent invented grey terrain/no analog; sky Jupiter visibly oversized,not calibrated raster."
+    }
+  ],
+  "sources": [
+    {
+      "path": "docs/research/pasiphae-reference-preparation-2026-10-19.json",
+      "bytes": 6347,
+      "sha256": "3162ecaf5340550bd478eb080ac97032e466be23ac4001fba0578d48650bcbfd"
+    },
+    {
+      "path": "docs/research/pasiphae-lorri-index-assessment-2026-10-19.json",
+      "bytes": 9373,
+      "sha256": "fb266a1c1bbf707f506697ad664fc2760aea706604b03ef1fb2166aa5641a11c"
+    },
+    {
+      "path": "docs/research/pasiphae-primary-assessment-2026-10-19.json",
+      "bytes": 7132,
+      "sha256": "2791ff8c1149e4787d9d3c18bfc705c19ce24163976587d871de884c90f9224f"
+    },
+    {
+      "path": "src/astro/appearance.js",
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    }
+  ],
+  "assets": {
+    "surfaceImage": {
+      "url": "/bespoke/pasiphae-surface-image.jpg",
+      "previewUrl": "/bespoke/pasiphae-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "pasiphae-generated-surfaceImage-original.png",
+      "sourceSha256": "9de6faf62e40507d748f29003266a369799d68ae8893f42920c1f426c73142fc",
+      "sha256": "666ff4d9475286fa7a7ba589821c7a4c21a431033d38f4cc7eed37466d73bf19",
+      "previewSha256": "77769ac609a718bd4e3706daf810114f15cb9a0626090a9d0e9b92091c9014f0",
+      "bytes": 346265,
+      "previewBytes": 11985,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/pasiphae-sky-image.jpg",
+      "previewUrl": "/bespoke/pasiphae-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-19",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "pasiphae-generated-skyImage-original.png",
+      "sourceSha256": "c5a3b67029d1f264f185820b85ce7c2801e858bec880530b749a625e13b39daa",
+      "sha256": "60ca70ae993aa803de85ae89bfe87913a7378c0004fd7ab3a63fc09e838725bf",
+      "previewSha256": "852c784d3338f3afa0590c8a91f82503407bd9c3907e15884516f86d904e6b21",
+      "bytes": 263034,
+      "previewBytes": 7645,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
+  },
+  "geometry": {
+    "helper": "skyGeometry",
+    "sourcePath": "src/astro/appearance.js",
+    "sourceSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+    "parentRadiusKm": 69911,
+    "nominalOrbitKm": 23463200,
+    "nominalHFov": 90,
+    "referenceWidth": 1672,
+    "variants": [
+      {
+        "heightKm": 28.9,
+        "angularDiameterDeg": 0.34143817572528185,
+        "centreDiscWidthPixels": 4.981922962937031
+      },
+      {
+        "heightKm": 30,
+        "angularDiameterDeg": 0.341438191732629,
+        "centreDiscWidthPixels": 4.981923196501548
+      }
+    ],
+    "limits": "Thermal-half-diameter28.9km versus NASA30kmassumed.04albedo,not jointfit/uncertainty envelope. Mean eccentricorbit not dated distance/normal/pole/spinlocking/permanentface.165K angularhelper only,colour/irradiance discarded. Generated disk visibly oversized/uncalibrated; no raster diameter adopted."
+  }
+}

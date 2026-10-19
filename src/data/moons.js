@@ -272,6 +272,19 @@ export const MOONS = [
       { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Historical Luu1991/Grav2015 lowamplitude/no period determination is not exhaustivecurrent spinstatus. Nullrotation/lockingdisabled not measurednonsynchronousstate,pole or permanentface.' },
     ],
     surfacePending: true, discovered: '1905 · Charles Dillon Perrine', note: 'Two independent IMAGINED local/observer views; no resolved globe or digitalshape. Native2007LORRI FITS/labels retained/linked,not embedded as calibratedterrain. Thermal/spectral fits are not local chemistry,geography or dated registration.' },
+  { id: 'pasiphae', name: 'Pasiphae', parent: 'jupiter', radiusKm: 28.9, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(23463200, .412, 172.8, 279.3, 148.3, 315.7, 734.4215, 60.6, 79.2, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Pasiphae,JupiterVIII,JPL508; distinct from Pasithee,Elara and Himalia. Retrograde orbit does not measure spin.' },
+      { label: 'ORBIT', value: '23,463,200 KM · 734.4215 DAYS', tier: 'modelled', detail: 'JUP347 planet-centred ecliptic2000Jan1.5TDB mean elements,e.412,i148.3deg. Publisher explicitly not intended for ephemeris computation; NASA744day/23.6Mkm historical alternative retained.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'No currentSPICE/frame/phase/lighttime/covariance registration. Secular resonance not spinlocking or a permanentJupiterface.' },
+    ],
+    physicalFacts: [
+      { label: 'RADIUS', value: '28.9 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half Grav2015 NEATM effective DIAMETER57.8±.8km,not measured axes/localnormal. NASA30km assumes.04albedo; alternative not jointfit or uncertainty envelope.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Pasiphae row in retainedJPLphysicaltable; no preciseGM,mass,density,chemistry or porosity inferred.' },
+      { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Lowamplitude1.2dayWISE interval versus historicallargeramplitude/aspect alternatives not a spinperiod. Nullrotation/lockingdisabled do not measure nonsynchronousspin,pole or permanentface.' },
+    ],
+    surfacePending: true, discovered: '1908 · Philibert Jacques Melotte', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. JWST spectra/WISEthermalmodel are not local chemistry,geography or dated registration. Native imagery refinement remains open.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

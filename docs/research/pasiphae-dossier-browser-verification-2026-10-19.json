@@ -1,0 +1,38 @@
+{
+  "status": "pass",
+  "browser": "Chrome via IAB, loopback HTTP",
+  "completeReadableJsonSha256": "f58056c7429374bdc6a0c33654e79dce05ff55c484002c9f0372eec24a89652b",
+  "applicationSha256": "269e84741c8a225aa69aac9b0ff57b30ef00772d45ea97977e03d343cc5eab34",
+  "htmlParserPackedSnapshotSha256": "c4e8fa4a69558f487afc57d428ad8bd532cbd6a88be15c4461ead37258f1204f",
+  "htmlParserPackedAppSha256": "4b6cced0e5b391a481bff2f342b3745e05cc14fa9ece62d3279446760c8d5b58",
+  "decodedImages": 328,
+  "parsedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "startupCanvases": 8,
+  "normalPasiphae": {
+    "cards": 2,
+    "decodedDimensions": [
+      1536,
+      864
+    ],
+    "ownGlobe": false
+  },
+  "offlinePasiphae": {
+    "cards": 2,
+    "decodedDimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "ownGlobe": false
+  },
+  "unsupportedGzipNoticeVerified": true,
+  "unsupportedWasmNoticeVerified": true,
+  "limits": [
+    "Other browser engines remain open.",
+    "Direct-file route not tested; prior URL policy restriction preserved.",
+    "Model scene parsing is not a fresh all-model interactive load claim.",
+    "Earlier event-worker and other route verification remains historical, not freshly repeated."
+  ]
+}
