@@ -1,0 +1,274 @@
+{
+  "date": "2026-10-20",
+  "body": "4Vesta / cataloguevesta",
+  "status": "Research-only native-map reference audit; no108th dossier,newillustration,embedding,map/DEM/catalogue/codecpipeline change. All107 delivered dossiers preserved.",
+  "sources": [
+    {
+      "url": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_mosaic_60m",
+      "finalUrl": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_mosaic_60m",
+      "status": 200,
+      "path": "data/research-sources/vesta-mosaic-page-2026-10-20.html",
+      "bytes": 27846,
+      "sha256": "14e0adfe57b0b57608b5925ad4531343eabedaf5e899da361b9b97331e479d32",
+      "retrievedAt": "2026-10-20T22:43:07.122010+00:00",
+      "limits": "Response hash only;challenge/error response is not product metadata or scientific image hash."
+    },
+    {
+      "url": "https://sbn.psi.edu/pds/resource/dawn/dwnvfcmosaics.html",
+      "finalUrl": "https://sbn.psi.edu/pds/resource/dawn/dwnvfcmosaics.html",
+      "status": 200,
+      "path": "data/research-sources/vesta-pds-mosaic-resource-2026-10-20.html",
+      "bytes": 11334,
+      "sha256": "88eeb14a2565d0e5864b286c79dbba0fd54f8c77331c81be25af4bd7b5ff6fc0",
+      "retrievedAt": "2026-10-20T22:43:07.645178+00:00",
+      "limits": "Response hash only;challenge/error response is not product metadata or scientific image hash."
+    },
+    {
+      "url": "https://trek.nasa.gov/tiles/apidoc/trekAPI.html?body=vesta",
+      "finalUrl": "https://trek.nasa.gov/tiles/apidoc/trekAPI.html?body=vesta",
+      "status": 200,
+      "path": "data/research-sources/vesta-trek-api-2026-10-20.html",
+      "bytes": 4312,
+      "sha256": "7ff5aea6018ea8e4184e12c84ad456c05033dc01d3794b8c07eac1026aa1d190",
+      "retrievedAt": "2026-10-20T22:43:07.872408+00:00",
+      "limits": "Response hash only;challenge/error response is not product metadata or scientific image hash."
+    },
+    {
+      "url": "https://astrogeology.usgs.gov/ckan/dataset/ec63e420-a8bd-4a90-9341-a5754b551574/resource/ba6617f3-86e3-44e0-9c2f-0b2ca595758d/download/vesta_dawn_fc_hamo_mosaic_global_74ppd.lbl",
+      "finalUrl": "https://astrogeology.usgs.gov/ckan/dataset/ec63e420-a8bd-4a90-9341-a5754b551574/resource/ba6617f3-86e3-44e0-9c2f-0b2ca595758d/download/vesta_dawn_fc_hamo_mosaic_global_74ppd.lbl",
+      "status": 200,
+      "path": "data/research-sources/vesta-mosaic-isis3-2026-10-20.lbl",
+      "bytes": 1934,
+      "sha256": "d298cc68ec68b1d6c12ea660bc5ac427c2849ac2964a83c53b742cfd09eb8a00",
+      "retrievedAt": "2026-10-20T22:43:41.885199+00:00"
+    },
+    {
+      "url": "https://astrogeology.usgs.gov/ckan/dataset/ec63e420-a8bd-4a90-9341-a5754b551574/resource/171c005c-0f6c-4dcb-bf2e-8b3d14a58e07/download/vesta_dawn_fc_hamo_mosaic_global_74ppd_pds3.lbl",
+      "finalUrl": "https://astrogeology.usgs.gov/ckan/dataset/ec63e420-a8bd-4a90-9341-a5754b551574/resource/171c005c-0f6c-4dcb-bf2e-8b3d14a58e07/download/vesta_dawn_fc_hamo_mosaic_global_74ppd_pds3.lbl",
+      "status": 200,
+      "path": "data/research-sources/vesta-mosaic-pds3-2026-10-20.lbl",
+      "bytes": 2598,
+      "sha256": "549b442ef1325332af3892f021e86c4e7be14dffe0202c8bde697ccbec8d2f2d",
+      "retrievedAt": "2026-10-20T22:43:42.198141+00:00"
+    }
+  ],
+  "existingInputs": [
+    {
+      "path": "data/textures/vesta.png",
+      "bytes": 1448667,
+      "sha256": "176feb188fb351bba86c4a45c47b2de071214fb765dfe0d2c7e809f30e55884d",
+      "metadata": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 2048,
+        "height": 1024,
+        "space": "b-w",
+        "channels": 1,
+        "depth": "uchar",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 8,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 2048,
+          "height": 1024
+        }
+      }
+    },
+    {
+      "path": "public/dem/vesta.png",
+      "bytes": 1355686,
+      "sha256": "48ec68589cf820d60b2bbf05d2472168ba14a11a35a78865be9cb4fa9fc4f13e",
+      "metadata": {
+        "format": "png",
+        "mediaType": "image/png",
+        "width": 1440,
+        "height": 720,
+        "space": "grey16",
+        "channels": 1,
+        "depth": "ushort",
+        "density": 72,
+        "isProgressive": false,
+        "isPalette": false,
+        "bitsPerSample": 16,
+        "hasProfile": false,
+        "hasAlpha": false,
+        "autoOrient": {
+          "width": 1440,
+          "height": 720
+        },
+        "comments": [
+          {
+            "keyword": "min",
+            "text": "-43034"
+          },
+          {
+            "keyword": "max",
+            "text": "37904"
+          },
+          {
+            "keyword": "body",
+            "text": "vesta"
+          }
+        ]
+      }
+    },
+    {
+      "path": "public/dem/index.json",
+      "bytes": 9314,
+      "sha256": "e1c68e273559b9968f63842fba524185607e9a3fbdeb181f9939a6e30462a2c7"
+    },
+    {
+      "path": "public/features/vesta.json",
+      "bytes": 5545,
+      "sha256": "83f131eed48469c605e71da2c1f732bf4c4d87faf1c5dc0fb34e6eb323b590a0"
+    },
+    {
+      "path": "server/textures.js",
+      "bytes": 9704,
+      "sha256": "86e5ee5e594ebf19aad3edcbdb8bcb523ab0667044b4e9fdfef88a05780370d4"
+    },
+    {
+      "path": "server/tiff.js",
+      "bytes": 4639,
+      "sha256": "6b2a73df9d20134e33de765bad704622dbc9e04951267c6371da7c913356bb56"
+    },
+    {
+      "path": "server/dem.js",
+      "bytes": 28400,
+      "sha256": "2c6dee2ba514a45c1c3d49781cf9a68a7f8542bce5fc6fde764c61b46591d6ae"
+    }
+  ],
+  "configuredTexture": {
+    "source": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Vesta_Dawn_FC_HAMO_Mosaic_Global_74ppd.tif",
+    "file": "data/textures/vesta.png",
+    "sourceConfig": "server/textures.js",
+    "processingConfig": "server/tiff.js",
+    "dimensions": [
+      2048,
+      1024
+    ],
+    "limits": "Existing cached PNG visually inspected. Configuration points to this USGS mosaic,not NASA3D texture. Source TIFF not downloaded/reconstructed in this batch; historical source-byte association and exact cached pixel reproduction remain OPEN. No fullTIFF hash invented.",
+    "samplingCodeReview": "sampleTiff reads uncompressed8bit oneband TIFF strips using HTTP ranges,selects centre source row for each output row,averages horizontal source spans and rounds to8bit. Produces PNG;not full source-pixel preservation,photometric calibration or resolved visibleRGB."
+  },
+  "publisherMosaic": {
+    "title": "Vesta Dawn FC HAMO Global Mosaic60m",
+    "authorsCredit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+    "originator": "Dawn Team",
+    "publisher": "USGS Astrogeology Science Center",
+    "producer": "German Aerospace Center(DLR),Institute of Planetary Research",
+    "publicationDate": "2013-12-10",
+    "edition": "20131210",
+    "pds3LabelRevision": "2017-05-01 DavidP.MayerUSGS initialPDS3 label pointingGeoTIFF",
+    "datesLimits": "Publication/productID/labelrevision not individual input observations. Publisher content2011Dec1\u20132012Apr30 and narrative2011Sep\u2013Nov versus2011Dec\u20132012Apr cycles retained; per-pixel date/rawframe crosswalk OPEN.",
+    "contentNarrative": "About2500 clear-filter FC images in21cycles2011Dec\u20132012Apr and6cycles2011lateSep\u2013earlyNov;cycle3 selected518images with minor cycle2gapfill. Not exhaustive exposure inventory independently reproduced.",
+    "projection": {
+      "samples": 26704,
+      "lines": 13352,
+      "bands": 1,
+      "sampleBits": 8,
+      "sampleType": "LSB_UNSIGNED_INTEGER",
+      "mapProjection": "SIMPLE_CYLINDRICAL",
+      "latitude": "PLANETOCENTRIC",
+      "longitude": "EAST-positive,-180to180,centre0",
+      "sphereKm": 255,
+      "publisherScaleMPerPixel": 59.998961,
+      "publisherPixelsPerDegree": 74.1778,
+      "pointerByte": 107456
+    },
+    "geometryLimits": "All dimensions/scales above transcribed publisherlabel,not new angular/raster-size computation.255km is projection sphere,not new physicalradius replacing catalogue261.4km or DEM/shape fit.",
+    "processing": "Orthorectification uses HAMO stereo topography for ray intersections;projection itself onto255km sphere. Publisher says preliminary file shifted150deg EAST soClaudia146E,to matchIAUClaudiaDoublePrime from Dawn-Claudia DLRNov2013. Wrapped nodata line covered with neighboringpixels for artisticpurposes.",
+    "processingLimits": "No additional shift applied to cachedPNG/DEM/features or scene. Coordinate-system/version/rawproduct/pixelidentity alignment must be verified before transfer. Seamfill not observed terrain. Clearfilter oneband brightness not calibrated visibleRGB/localchemistry.",
+    "accuracy": "PublisherBestEffort, horizontal/vertical positionalaccuracyUnknown;not independently established accuracy.",
+    "terms": "Publisher accessconstraintsNone/accessscopePDS/useconstraintsPleaseciteauthors;not a verified blanketCCBY or automaticpublicdomain declaration. Existingcode inheritedpublicdomain prose not independently revalidated.",
+    "sourceUrl": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_mosaic_60m"
+  },
+  "pdsResource": {
+    "url": "https://sbn.psi.edu/pds/resource/dawn/dwnvfcmosaics.html",
+    "dataset": "DAWN-A-FC2-5-MOSAIC-V1.0",
+    "title": "DAWN FC2 DERIVED VESTA GLOBAL MOSAICS V1.0",
+    "year": 2015,
+    "authors": [
+      "T.Roatsch",
+      "E.Kersten",
+      "K.-D.Matz",
+      "F.Preusker",
+      "F.Scholten",
+      "S.Elgner",
+      "S.E.Schroeder",
+      "R.Jaumann",
+      "C.A.Raymond",
+      "C.T.Russell"
+    ],
+    "limits": "Resource citation/browse inventory only;not exact USGS2013 product/pixel identity or rawframe/photometric validation.58GBbrowse/43GBzip not downloaded."
+  },
+  "demAndFeatures": {
+    "inheritedDemMetadata": {
+      "file": "vesta.png",
+      "width": 1440,
+      "height": 720,
+      "min": -43034,
+      "max": 37904,
+      "quantStepM": 1.235,
+      "cellKm": 1.11,
+      "coverage": 1,
+      "bytes": 1355686,
+      "name": "Dawn HAMO DTM (DLR)",
+      "instrument": "Dawn Framing Camera stereo, HAMO (DLR)",
+      "ref": "255 km sphere",
+      "refRadiusKm": 255,
+      "sourcePpd": 48,
+      "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA Dawn; DLR HAMO global DTM 48 px/\u00b0 (Preusker et al. 2014), via USGS Astrogeology",
+      "licence": "NASA/DLR, public domain (PDS)",
+      "source": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Vesta_Dawn_HAMO_DTM_DLR_Global_48ppd.tif",
+      "partial": null,
+      "shading": "all",
+      "built": "2026-10-12"
+    },
+    "inheritedConvention": "Equirectangular, pixel-is-area, row 0 at 90\u00b0 N, column 0 starting at 180\u00b0 W, east-positive planetocentric longitude; 16-bit grey: 0 = no data, 1\u202665535 = min\u2026max metres above `ref`.",
+    "limits": "1440x720quantized16bitDEM,coverage1/minmax/quantStep/cellKm are inherited pipeline metadata,not independently reproduced source accuracy/completeness or new raster-size calculations. Source DTM radius-to-height offset-255000/lonWest-180 in server/dem.js retained. No sourceDTM downloaded,newshapeadopted/framealignment/licencecalibrationclaim.106gazetteerfeature records retained,not independently crossmatched to rawmosaic/DEM or verified current nomenclature."
+  },
+  "access": "Web open USGS403,search index served text;direct HTTP200 actual fullHTML metadata and both publisher-linked labels retained with hashes. Direct PDSresource200/Trek API200 retained;Trek response generic client shell,not independent pixelregistration proof.",
+  "open": [
+    "ExactcachedPNGsource-pixel reproduction and history",
+    "Full sourceTIFF/DTM bytes and producthashes",
+    "RawFCindividualUTC/filter/exposure/controlnetwork/photometric processing",
+    "ClaudiaDoublePrime relation between map/DEM/features/pole/spin orientation",
+    "CalibratedRGB/localcomposition/quantitativeuncertainties",
+    "Primaryshape/gravity/rotation/interior alternatives before newdossier"
+  ],
+  "next": "Audit sourcepixel/frame associations or Vesta primaryscience/nativecontext before independentviews/additive108;recoverconforminglosslessheadroom beforelargerbatches. Continue alloutstandingnative-map/craft/shape/calibration/ranking. BacklogACTIVE.",
+  "validation": {
+    "tests": {
+      "passed": 710,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 449,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "af938fe",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15970062,
+      "headroomBytes": 29938,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "1818108a27724bfcacac88b380d67231377db6b88803117f20f7352b94a3ffcc",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser claim;complete Node decoded snapshot/application exact and identical to preceding Iocaste build.",
+    "inputPreservation": "Seven recorded input hashes verified,all744tracked public files unchanged. Cached Vesta texture/DEM/features preserved.",
+    "geometry": "No new angular/raster-size computation;publisherdimensions/scales and inheritedpipeline metadata transcribed only."
+  }
+}
