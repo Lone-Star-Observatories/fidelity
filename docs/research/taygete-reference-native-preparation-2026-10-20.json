@@ -1,0 +1,400 @@
+{
+  "date": "2026-10-20",
+  "body": "Taygete / Jupiter XX / JPL520 / S2000J9",
+  "status": "Research preparation only;no dossier103,selectable catalogue entry,generated view or embedded image.",
+  "sources": [
+    {
+      "path": "data/research-sources/taygete-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/taygete/",
+      "bytes": 247460,
+      "sha256": "6f358c5eec70aaad524c934dd277452813ac02470546911051ce4e92ac5c62cb",
+      "status": 200,
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/taygete/",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-discovery-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-mpec-K01A29-2026-10-20.html",
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "bytes": 39378,
+      "sha256": "c67595642a26e93cacaa064314758af3ef7ef15ceabc776d425ab0e0afb373c2",
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/taygete-cfht-copyright-2026-10-20.html",
+      "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "bytes": 22963,
+      "sha256": "613c0cfdaf0f0a0d6e216ee27322d0fc9bda3827ab80369a9c09a0f87a2f84b5",
+      "status": 200,
+      "finalUrl": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-commons-lead-2026-10-20.html",
+      "url": "https://commons.wikimedia.org/wiki/File:Taygete-Jewitt-full.gif",
+      "bytes": 81284,
+      "sha256": "21100e872eb6d648f800e86aa5c6b4058843ae385f8bf892445a68a82aef027a",
+      "status": 200,
+      "finalUrl": "https://commons.wikimedia.org/wiki/File:Taygete-Jewitt-full.gif",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "status": 200,
+      "contentType": "image/gif",
+      "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/taygete-commons-animation-2026-10-20.gif",
+      "bytes": 4421581,
+      "sha256": "55d569c808e2f8965a901b0565bdc71ec2bc0d08f2d29274ab07177203aa10cb"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1.pdf",
+      "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "bytes": 412867,
+      "sha256": "4a154cbcf0068984ffcfe4bfa8b80c1f395f68b5792bad7aa0e18f2372dd1a0c"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1-text.txt",
+      "url": null,
+      "bytes": 66983,
+      "sha256": "e882d1733cf24aa332491929d6312640d136dfaf711d968386abcc7a6b90001b"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record.html",
+      "url": "https://arxiv.org/abs/astro-ph/0301016",
+      "bytes": 44195,
+      "sha256": "48ee3001175488c42dd3365ba4ebe2433ace3f38963dbd5b63ad284df42c14c0"
+    },
+    {
+      "path": "data/research-sources/megaclite-arxiv-assumed-licence.html",
+      "url": "https://arxiv.org/licenses/assumed-1991-2003/",
+      "bytes": 1988,
+      "sha256": "dfe5bdbd72f269aaf1cbbb2fcae418267571b6df6fe6c9e139dc73918b37fe13"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-37.png",
+      "url": null,
+      "bytes": 216662,
+      "sha256": "ad13228ab4b31262a50faadf6317c3300dcbc94c5421c8d21da63cc8661ef72a"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-38.png",
+      "url": null,
+      "bytes": 203349,
+      "sha256": "18d5e91d049194ddcea9efafebb92e5d03aa2a9bb9f1270bddd2aa63e6ce7bef"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-captions-35.png",
+      "url": null,
+      "bytes": 156143,
+      "sha256": "00a4111aeda88013f31e0707782a4c0601aab144a59afc8f6d89cb6ef14daf71"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-0-inspection.png",
+      "url": null,
+      "bytes": 1550021,
+      "sha256": "e059df1866779c93bdabfca5fa1002628f3b92cde81048abe1030fc5858b491d"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-1-inspection.png",
+      "url": null,
+      "bytes": 1784399,
+      "sha256": "76fb921dc99e43f79df54e640a51a5ab0174e7a5dbb8a450515ef15c91fbdda8"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-2-inspection.png",
+      "url": null,
+      "bytes": 1656960,
+      "sha256": "5cf404fcefaabcd5b5bdff4f88c19fa2d1378724d44ade61d173a3526b626787"
+    },
+    {
+      "path": "data/research-sources/taygete-author-results-index-2026-10-20.html",
+      "url": "https://faculty.epss.ucla.edu/~jewitt/results.html",
+      "bytes": 4867,
+      "sha256": "68c5a1fe1587877ee6e9a484748fffd3d1e30cf6503a0c62c501babfbc8d9985",
+      "status": 200
+    }
+  ],
+  "identity": {
+    "name": "Taygete",
+    "jplDiscoveryRow": "XX / Taygete / S2000J9 / 2000 / IAUC7555",
+    "jplMeanElementId": 520,
+    "distinctFrom": "Megaclite JupiterXIX/S2000J8 and Taygeta/Taygete stellar aliases;no other-body map or parameters assigned.",
+    "nasaDiscovery": {
+      "date": "2000-11-25",
+      "location": "Mauna Kea Observatory,Hawaii",
+      "credits": [
+        "Scott S. Sheppard",
+        "David C. Jewitt",
+        "Yanga R. Fernandez",
+        "Eugene Magnier"
+      ]
+    },
+    "jplPrintedDiscoveryCredits": [
+      "S.S. Sheppard",
+      "D.C. Jewitt",
+      "Y.R. Fernandez",
+      "G. Magnier"
+    ],
+    "mpec": {
+      "id": "2001-A29",
+      "issued": "2001-01-05 20:35UT",
+      "targetCode": "SK00J090",
+      "firstPrintedObservation": "C2000 11 25.48714 04 26 36.35 +21 23 06.1 22 R 568",
+      "observerListAsPrinted": [
+        "S.S.Sheppard",
+        "D.C.Jewitt",
+        "Y.R.Fernandez",
+        "G.Magnier",
+        "S.Dahm",
+        "A.Evans"
+      ],
+      "measurer": "S.S.Sheppard",
+      "instrument": "2.2m UniversityofHawaii reflector+CCD",
+      "limits": "Six observer roles not substituted for four discovery credits. Covers five moons;do not mix S2000J8/J10 with J9. Printed decimalday record not independently verified raw UTC/filter/exposure/product crossmatch;issue date not acquisition."
+    }
+  },
+  "size": {
+    "nasaApproximateRadiusKm": 2.5,
+    "type": "Approximate publisher size guide,not resolved axes/local normal or thermal measurement;NASA page does not independently document its albedo derivation.",
+    "albedo": "Secondary sources assume.04;original size-method provenance not independently verified here,not adopted as measured albedo.",
+    "primarySizeLead": {
+      "title": "An Abundant Population of Small Irregular Satellites Around Jupiter",
+      "authors": [
+        "Scott S.Sheppard",
+        "David C.Jewitt"
+      ],
+      "citation": "Nature423,261–263,2003",
+      "authorIndex": "https://faculty.epss.ucla.edu/~jewitt/results.html",
+      "pdfAttempt": {
+        "url": "https://www2.ess.ucla.edu/~jewitt/papers/JSATS/SJ2003.pdf",
+        "error": "<urlopen error timed out>",
+        "hash": null
+      },
+      "limits": "Author index verified linked PDF;direct download timed out and webtool502. No paper bytes/hash/table/rights invented,no radius/albedo formula claim."
+    },
+    "unknown": [
+      "Actual albedo,size uncertainty,axes,local normal,mass,GM,density,spin,pole,current longitude,terrain,chemical fractions,calibrated visible colour.",
+      "No Taygete row in retained JPL physical table."
+    ]
+  },
+  "meanOrbit": {
+    "source": "JPL JUP347 row520/reference47Jacobson2025personalcommunication",
+    "frame": "Planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "aKm": 23103400,
+    "e": 0.257,
+    "wDeg": 207.7,
+    "MDeg": 116.5,
+    "iDeg": 164.7,
+    "nodeDeg": 300.8,
+    "periodDays": 717.5917,
+    "apsidalYears": 52.0,
+    "nodalYears": 91.3,
+    "pole": null,
+    "historicalNasaAlternative": "23.3millionkm/about732days",
+    "limits": "Mean elements not dated ephemerides/current distance/covariance. Retrograde orbit not spin/locking/permanent Jupiter face. Historical paper165.2degree inclination separate;not silently combined or an uncertainty envelope."
+  },
+  "photometry": {
+    "paper": "Photometric Survey of the Irregular Satellites,astro-ph/0301016v1,2003-01-02;final journalcitation Icarus166,33–45,DOI10.1016/j.icarus.2003.07.005",
+    "authors": [
+      "Tommy Grav",
+      "Matthew J.Holman",
+      "Brett J.Gladman",
+      "Kaare Aksnes"
+    ],
+    "access": "Shared unchanged43pagev1 PDF/fulltext retained. TaygeteTable1page37/Table2page38 and captionspage35 visually inspected;targetedSection5.3pages19–20 assessed. Not all43pages visual or finalpublisher/rawcalibration audit.",
+    "table1": {
+      "instrument": "Magellan6.5m",
+      "dateUT": "2002-02-09",
+      "heliocentricAU": 5.02,
+      "observerAU": 4.27,
+      "phaseDeg": 7.94,
+      "OPTcolumnDeg": 21.4,
+      "OPTmeaning": "Observer-Primary-Target angle",
+      "limits": "Separate from secondaryCFHT2001Dec11 animation lead;exactUTC/filter/exposure/raw-product crossmatch remains open."
+    },
+    "table2": {
+      "inclinationDeg": 165.2,
+      "absoluteV": 15.63,
+      "absoluteVError": 0.04,
+      "observedV": 22.85,
+      "observedVError": 0.04,
+      "BminusV": 0.56,
+      "BminusVError": 0.08,
+      "VminusR": 0.52,
+      "VminusRError": 0.04,
+      "VminusI": 0.96,
+      "VminusIError": 0.05,
+      "errorConvention": "1sigma,captionpage35"
+    },
+    "limits": [
+      "Relative disk-integrated BVRI/light-red class not calibrated visible RGB,local mineral identity,chemistry/fractions,terrain or axes.",
+      "AbsoluteV normalized unitSun/Earthdistances/zero phase in author model,not direct size/albedo;reduction/phase calibration not independently reproduced.",
+      "Taygete/S2000S1 same printed BV/VI colours do not equate bodies/materials or permit map reuse.",
+      "Carme-family D-type/Hilda/Trojan progenitor/collision and ~30m/s dispersion are interpretations,not observed local chemistry/unique ancestry/history. Carme/Kalyke fields and spectra not transferred to Taygete."
+    ],
+    "licence": {
+      "recordLink": "https://arxiv.org/licenses/assumed-1991-2003/",
+      "scope": "Record-specific assumed pre2004 nonexclusive distribution,not CC BY/figure reuse. No paper figure embedded;finalpublisher rights independently unaudited."
+    }
+  },
+  "neowise": {
+    "paper": "NEOWISE:Observations of the Irregular Satellites of Jupiter and Saturn,ApJ809:3,2015-08-04",
+    "authorsAsPrinted": [
+      "T.Grav",
+      "J.M.Bauer",
+      "A.K.Mainzer",
+      "J.R.Masiero",
+      "C.R.Nugent",
+      "R.M.Cutri",
+      "S.Sonnett",
+      "E.Kramer"
+    ],
+    "finding": "Paper states ephemeris stacks for J19Megaclite,J20Taygete,J24Iocaste yielded no detected signal. No thermal diameter/albedo adopted for Taygete.",
+    "limits": "Do not borrow Themisto scattered-light explanation,Carme thermal values or another moon imagery/materials. This is a nondetection,not physical absence."
+  },
+  "native": {
+    "embedded": false,
+    "sourceType": "Secondary processed animation,not independently retrieved raw CADC science product",
+    "download": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "status": 200,
+      "contentType": "image/gif",
+      "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/taygete-commons-animation-2026-10-20.gif",
+      "bytes": 4421581,
+      "sha256": "55d569c808e2f8965a901b0565bdc71ec2bc0d08f2d29274ab07177203aa10cb"
+    },
+    "decodedMetadata": {
+      "format": "GIF",
+      "width": 1500,
+      "frameHeight": 1200,
+      "frames": 3,
+      "delayMilliseconds": [
+        300,
+        300,
+        300
+      ],
+      "loop": 0,
+      "palette": true,
+      "hasAlpha": true
+    },
+    "inspection": "All three decoded frames visually inspected as research PNGs. Noisy monochrome starfield,glare/processing patterns and unresolved sources,not terrain/axes/local chemistry or calibrated visible colour. Individual Taygete point and raw-product/astrometric crossmatch not independently reproduced. Display300ms/frame not exposure time or observation spacing. Original GIF unchanged;diagnostic frames not production images.",
+    "captionClaimsNotIndependentlyVerified": {
+      "observationDate": "2001-12-11",
+      "instrument": "3.6mCFHT",
+      "credit": "David Jewitt/Canadian Astronomy Data Centre",
+      "rawIds": [
+        "615453p",
+        "615459p",
+        "615465p"
+      ],
+      "spacing": "approximately30minutes",
+      "magnitude": 22.5
+    },
+    "publication": "Commons file upload2020-08-07 04:44 byNrco0e;page edit2025-06-23 not observation or original animation creation date. Processing author/camera/filter/rawUTC/product lineage remain open.",
+    "rights": {
+      "secondaryClaim": "CC BY-SA4.0 on description page;not blanket verified raw-data/processing rights.",
+      "claimLink": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "cfhtPolicy": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "limits": "Linked HawaiianStarlight publicwebsite policy requests prior consultation/information,legiblecopyright and link. Applicability to raw CADC datasets and secondary animation remains open. No contact/permission obtained or implied. Image research-only,not embedded."
+    }
+  },
+  "inaccessible": [
+    {
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/cadcbin/ssos/ssosclf.pl?lang=en&object=Taygete&search=bynameall&epoch1=2000&epoch2=2003&eellipse=&eunits=arcseconds&extres=no&xyres=no",
+      "error": "<urlopen error timed out>",
+      "hash": null
+    }
+  ],
+  "geometry": {
+    "input": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15443667340914902,
+      "horizontalFovDeg": 90
+    },
+    "angularDiameterDeg": 0.3467551778555533,
+    "centreDiscWidthFraction": 0.0030260190121161722,
+    "targetPixels1672": 5.05950378825824,
+    "limits": "Spherical69911km Jupiter at JUP347 mean23103400km minus NASA approximate2.5km radius used only as assumed radial height;not measured axes/local normal or dated distance. Not jointfit/spinlocking/permanentface/uncertainty envelope.165K angular helper only;colour/irradiance discarded. No generated raster yet,Sun5.2044AU off-frame assumption not photometry.",
+    "implementation": {
+      "path": "src/astro/appearance.js",
+      "url": null,
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    }
+  },
+  "next": "Trace primary size/albedo derivation and native raw-product/rights association,or prepare independent labelled IMAGINED local/observer views with explicitly assumed NASA2.5km guide/skyGeometry/fullprompts/originals/masters;then additive dossier103. Preserve102delivered/alloriginals/nativemasters/maps/models/shapes/provenance. BacklogACTIVE;individual access failure not global external blocker.",
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 353,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "c3ac0fd",
+    "priorDossiersDeepEqual": 102,
+    "dossiers": 102,
+    "priorMoonsDeepEqual": 58,
+    "moons": 58,
+    "trackedPublicByteEqual": 722,
+    "queueEntries": 569,
+    "unchangedQueueEntries": 569,
+    "addedImages": [],
+    "htmlBytes": 15835602,
+    "headroomBytes": 164398,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "8d76c541deb2ed2c85dc8123a3f593df0603c377d874f0edc1a5e40e93d8caaa",
+    "applicationSha256": "8c02b1c29832f0cbce7ce1880963b0fe2dfe868a1aac93d3ec976c45ab962527",
+    "freshBrowserClaim": false
+  },
+  "validation": {
+    "newAndSharedSourceRecordsVerified": 21,
+    "tests": {
+      "passed": 705,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "limits": "No fresh browser claim. Exact complete current Node-decoded snapshot/application equality,native-card bytes/MIMEs and all102dossiers/58moons/722trackedpublicfiles preserved. Rebuilt feed differences not audited as compression savings;all production inputs/codecs unchanged. No103rd dossier or new embedded image."
+  }
+}
