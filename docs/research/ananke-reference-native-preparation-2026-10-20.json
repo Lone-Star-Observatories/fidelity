@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-20",
+  "body": "Ananke / Jupiter XII / JPL512",
+  "status": "Initial research/native/observer preparation only; no98th dossier, generated view, new embedding or catalogue adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/ananke-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/ananke/",
+      "bytes": 246894,
+      "sha256": "7cd17bd933c87231d0d922b3469b34c7529e5b322108d7effdfecc859c32d05a"
+    },
+    {
+      "path": "data/research-sources/ananke-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/ananke-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-4.png",
+      "bytes": 535621,
+      "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+    },
+    {
+      "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+      "url": "https://arxiv.org/html/2501.16484v2",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/ananke-2mass-nondetection-2026-10-20.jpg",
+      "url": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/ananke.jpg",
+      "bytes": 93914,
+      "sha256": "899d734870557d4407e975aa6be7e6439c80aa6af5e605f051370e495b2e1e79"
+    },
+    {
+      "path": "data/research-sources/ananke-ohp-caption-2026-10-20.html",
+      "url": "https://promenade.imcce.fr/fr/pages4/4.html",
+      "bytes": 19318,
+      "sha256": "e44f9f818f54554b7eec13a2558fb907cea21d5d7a37d0d998a5ab26f613740b"
+    },
+    {
+      "path": "data/research-sources/ananke-ohp-publisher-262-2026-10-20.jpg",
+      "url": "https://promenade.imcce.fr/fr/images/jpg2/262.jpg",
+      "bytes": 34861,
+      "sha256": "f1247f9d71b607f0aad3be9f7a04bb1bf61f6baef3ba1b07ca23b69df62eff77"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    }
+  ],
+  "identity": {
+    "discovery": "1951-09-28 Seth Barnes Nicholson,100-inch Hooker telescope,MountWilson",
+    "nasaRadiusKm": 14,
+    "nasaRadiusAssumedAlbedo": 0.04,
+    "limits": "Historical family15otherpieces/capture/collision are hypotheses and historical census,not witnessed history/exhaustive current membership. NASA21.3million miles km malformed units retained,not adopted.",
+    "nasaHistoricalOrbit": "About630Earthdays/21.3million miles km malformed units,not silently adopted over directJPLmeans.",
+    "nasaPageUpdated": "2024-01-25 page metadata,not observation"
+  },
+  "meanOrbit": {
+    "source": "Direct downloaded JPL HTML,not search index snippet",
+    "solution": "JUP347",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5 TDB",
+    "aKm": 21029500,
+    "e": 0.238,
+    "wDeg": 78.8,
+    "meanAnomalyDeg": 271.7,
+    "iDeg": 147.6,
+    "nodeDeg": 13.7,
+    "periodDays": 623.1097,
+    "apsidalYears": 80.8,
+    "nodalYears": 115.5,
+    "pole": null,
+    "reference": 47,
+    "limits": "Mean elements not dated ephemeris/currentdistance/phase/spin/locking/permanentface. No Ananke physical table row; no adopted GM/mass/density/spin/pole/axes."
+  },
+  "thermal": {
+    "authors": [
+      "T.Grav",
+      "J.M.Bauer",
+      "A.K.Mainzer",
+      "J.R.Masiero",
+      "C.R.Nugent",
+      "R.M.Cutri",
+      "S.Sonnett",
+      "E.Kramer"
+    ],
+    "publicationDate": "2015-08-04",
+    "issueDate": "2015-08-10",
+    "terms": "AAS all rights reserved,notCCBY; no paperfigure embedded",
+    "table3VisuallyChecked": true,
+    "diameterKm": [
+      29.1,
+      0.6
+    ],
+    "displayHalfKm": 14.55,
+    "beaming": [
+      1.01,
+      0.03
+    ],
+    "visibleAlbedoPercent": [
+      3.8,
+      0.6
+    ],
+    "w3w4Counts": [
+      15,
+      15
+    ],
+    "roundedMjdUtc": 55370,
+    "lightCurvePeakToPeakMagApprox": 0.4,
+    "limits": "NEATM effective diameter/modelalbedo not measured axes/localnormal/chemistry/porosity. Lightcurve amplitude not a measured/adopted spinperiod. NASA14km alternative separate,not jointfit/envelope."
+  },
+  "spectroscopy": {
+    "authors": [
+      "Benjamin N.L.Sharkey",
+      "Andrew S.Rivkin",
+      "Richard J.Cartwright",
+      "Bryan J.Holler",
+      "Joshua P.Emery",
+      "Cristina Thomas"
+    ],
+    "version": "arXiv2501.16484v2,2025-09-07",
+    "terms": "SpecificCCBY4 for this version,not blanketrawproduct; nofigureembedded",
+    "observationDate": "2024-01-31",
+    "program": 4028,
+    "instrument": "JWST NIRSpec IFU prism,0.7–5.1micron,R~100",
+    "table1": {
+      "phaseDeg": 11.19,
+      "sunDistanceAU": 5.11,
+      "observerDistanceAU": 5.08
+    },
+    "findings": "Broad rounded~3micron/~12percentband,center~2.95micron,overprinted2.86micronfeature. Neutral/leastredsample slope;>3.6neutralfeatureless. SectionVIII says no specific direct match,then consistent with C2 phyllosilicate assemblages/Murchison-like structuralOH. Preserve distinction between compatibility and uniqueidentification. Priorgroundshortwave slope~10percentredder possible fainttargetsystematic,not calibratedvisiblecolour. 3.4complexorganics compatibility not measured local abundance.",
+    "limits": "No local mineral/ice/organic fractions,map,geography,aqueousactivity,ocean/plume/biology. Hydrated-chondrite/capturelineage/unseencore interpretations not unique chemistry or observed history. Himalia/Elara ammoniation/complexedCO2 not transferred to Ananke. Pipeline1.14.0/jwst1225/NSCleanPSF/SNAP2solar/thermaltail not independently reproduced; final/raw calibration audit open."
+  },
+  "native": {
+    "twoMass": {
+      "dimensions": [
+        795,
+        542
+      ],
+      "observationDate": "1998-09-24",
+      "night": "980924s",
+      "scan": "055",
+      "coadd": "198",
+      "publisherStatus": "not visible - too faint",
+      "predictedPosition": [
+        "23 29 24.23",
+        "-04 22 26.4"
+      ],
+      "panels": [
+        "j0550198.fits(frame14)",
+        "h0550198.fits(frame15)",
+        "k0550198.fits(frame16)"
+      ],
+      "limits": "Predicted field/non-detection NOT Ananke detection/geography/axes/calibratedcolour. Publisher says Sept21southerntiles missed target,Sept24scanned predictedlocation. 2007archivedate not observation/firstpublication. RawUTC/product/astrometriclimitingflux not independently reproduced. Retain research-only, noembedding."
+    },
+    "ohp": {
+      "dimensions": [
+        419,
+        425
+      ],
+      "printedObservationUtc": "1998-08-15T00:47",
+      "telescopeCm": 120,
+      "publisherField": "5arcmin x5arcmin,not newly calculated pixel scale",
+      "credit": "OHP/IMCCE/CNRS; printed OHP/CNRS/IMCCE",
+      "terms": "Primaryauthorpermission/pedagogical/noncommerciallimits retained; no verifiedopenlicence/permission/contact/embedding.",
+      "limits": "Arrow/point/stars/noise/printedannotation not resolvedterrain/axes/localchem/visiblecolour. ExactrawUTC/product/filter/exposure/pointcrossmatch/firstpublication/individualcreator open."
+    }
+  },
+  "observerGeometry": {
+    "codeSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+    "cases": [
+      {
+        "heightKm": 14.55,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.14057342762700165,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.3809520332110013,
+        "centreDiscWidthFraction": 0.0033244458829607866,
+        "targetPixels1672": 5.5584735163104355
+      },
+      {
+        "heightKm": 14,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.14057343130352457,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.3809520232476389,
+        "centreDiscWidthFraction": 0.0033244457960130863,
+        "targetPixels1672": 5.55847337093388
+      }
+    ],
+    "limits": "Hypothetical spherical69911kmJupiter at directmean21029500km minus thermalhalf14.55/NASA14radialheight; not dateddistance/localnormal/spinlocking/permanentface/jointfit/envelope.165K angularhelper only,irradiance/colour discarded. Nominal90HFOV1672guide,notphotometry/registration. Noimagegenerated."
+  },
+  "next": "Prepare independent local/observer views using recorded hypothetical geometry,fullprompts/originalPNG/master/preview provenance, then additive dossier98 if buildbudget passes. Preserve all97 earlier dossiers/native/model/map/shape/Clipper/codecs.",
+  "sourceRetrievalNote": "Python runtime TLS trust failed before body reception; standard curl trust succeeded, with exact received-source hashes retained. No certificate bypass or error-body science hash.",
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 237,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "4a32f34",
+    "priorDossiersDeepEqual": 97,
+    "dossiers": 97,
+    "priorMoonsDeepEqual": 53,
+    "moons": 53,
+    "trackedPublicByteEqual": 702,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 569,
+    "addedImages": [],
+    "htmlBytes": 15756586,
+    "headroomBytes": 243414,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "a32ba873fe210fd4c3a4481ae01d0de96f0a0635364d0ab989283437b4c2ac12",
+    "applicationSha256": "2ab8af6ef3d56d02ee5634164588f9328308bf385d465a074d44a3a48c56f4ca",
+    "freshBrowserClaim": false,
+    "testsPass": 700,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  }
+}
