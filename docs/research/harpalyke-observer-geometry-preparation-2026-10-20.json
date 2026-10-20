@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-20",
+  "body": "Harpalyke / Jupiter XXII / JPL522 / S2000J5",
+  "status": "Research-only geometry/access preparation;no105th dossier,image generation,embedding,catalogue or codec change.",
+  "sourceRecord": "docs/research/harpalyke-reference-preparation-2026-10-20.json",
+  "reproducerSha256": "7cbacf207585f0bfc1ac4769097d1d022c049d362abcf15dce45402805aabaa7",
+  "inputs": {
+    "sphericalJupiterRadiusKm": 69911,
+    "assumedRadialHeightKm": 2.2,
+    "meanSemimajorAxisKm": 20887500,
+    "distanceKm": 20887497.8,
+    "horizontalFovDeg": 90,
+    "nominalWidthPx": 1672,
+    "helperTemperatureK": 165
+  },
+  "angularDiameterDeg": 0.3835416533646659,
+  "centreDiscWidthFraction": 0.00334704483345065,
+  "targetPixels": 5.596258961529487,
+  "limitations": [
+    "Uses skyGeometry only;helper temperature does not establish photometry,colour or irradiance;those outputs discarded.",
+    "NASA approximate2.2km height guide explicitly assumes albedo0.04;not independently measured albedo,resolved axes or localnormal.",
+    "JUP347 mean orbit not dated distance,ephemerides,jointfit,covariance or uncertainty envelope.",
+    "Spherical Jupiter/fieldofview/phase/attitude/lighting/exposure/registration artistic unless independently verified;oblateness not modelled.",
+    "No measured spin,pole,locking or permanent Jupiter-facing site;observer visibility/localnormal unknown.",
+    "No generated raster diameter measured/adopted;Sun5.2044AU off-frame would be an assumption,not photometry."
+  ],
+  "next": "Independent labelled local/observer views require fullprompts/originals/masterhashes;all104 prior dossiers/native/model/shape/provenance retained. BacklogACTIVE."
+}

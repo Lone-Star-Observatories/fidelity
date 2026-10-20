@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-20",
+  "body": "Harpalyke / Jupiter XXII / JPL522 / S/2000 J5",
+  "status": "Research-only reference and geometry preparation;no dossier105,generated image,catalogue,map,model,codec or embedding change.",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/harpalyke/",
+      "path": "data/research-sources/harpalyke-overview-2026-10-20.html",
+      "bytes": 247543,
+      "sha256": "157af59811296b8be3ceeab186f6e753b865a35b946473e39f13e0f101632ead",
+      "status": 200,
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/harpalyke/"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/harpalyke-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "path": "data/research-sources/harpalyke-discovery-2026-10-20.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/harpalyke-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+    },
+    {
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html",
+      "error": "<urlopen error timed out>"
+    }
+  ],
+  "identity": {
+    "nasaDiscovery": "2000-11-23,Mauna Kea Observatory,Hawaii",
+    "nasaPrintedCredits": [
+      "Scott S. Sheppard",
+      "David C. Jewitt",
+      "Yanga R. Fernandez",
+      "Eugene Magnier"
+    ],
+    "jplPrintedCredits": [
+      "S.S. Sheppard",
+      "D.C. Jewitt",
+      "Y.R. Fernandez",
+      "G. Magnier"
+    ],
+    "note": "XXII/S2000J5 distinct Chaldene XXI/S2000J10. Printed NASA Yanga and JPL G.Magnier retained without silent normalization. Original IAUC7555 not retrieved."
+  },
+  "nasaGuide": {
+    "meanRadiusKm": 2.2,
+    "assumedAlbedo": 0.04,
+    "meanDistanceKm": 21100000,
+    "periodDaysAbout": 623,
+    "limitations": "Radius explicitly assumes albedo0.04;not an independently measured albedo,resolved axes,localnormal,thermal size or uncertainty. Gray comparison to Praxidike/Iocaste is a qualitative guide,not calibrated visible RGB,local chemistry or permission to reuse their maps."
+  },
+  "jplMeanElements": {
+    "row": 522,
+    "solution": "JUP347",
+    "reference": "47,R.A.Jacobson2025 Ephemerides of the Jovian irregulars\u2014JUP347,personal communication to Horizons/NAIF",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5 TDB",
+    "aKm": 20887500,
+    "e": 0.239,
+    "argumentPeriapsisDeg": 104.3,
+    "meanAnomalyDeg": 255.4,
+    "inclinationDeg": 147.8,
+    "nodeDeg": 35.6,
+    "periodDays": 616.7833,
+    "apsidalYears": 81.2,
+    "nodalYears": 116.5,
+    "pole": null,
+    "limitations": "Mean precessing ellipse fit,not ephemerides,current distance,covariance,spin,locking,permanentface or uncertainty envelope. NASA historical summary retained separately;difference cause not inferred.",
+    "retainedExactRow": [
+      "24",
+      "Jupiter",
+      "Harpalyke",
+      "522",
+      "JUP347",
+      "ecliptic",
+      "2000-01-01.5",
+      "20887500.",
+      "0.239",
+      "104.3",
+      "255.4",
+      "147.8",
+      "35.6",
+      "616.7833",
+      "81.2",
+      "116.5",
+      "",
+      "",
+      "",
+      "47"
+    ]
+  },
+  "physicalUnknowns": [
+    "No Harpalyke row in retained JPL physical table",
+    "GM",
+    "mass",
+    "density",
+    "actual albedo",
+    "size uncertainty",
+    "axes",
+    "localnormal",
+    "spin",
+    "pole",
+    "terrain",
+    "local composition",
+    "calibrated visible colour"
+  ],
+  "originInterpretations": "NASA Ananke-family common-origin,capture,collision and probable irregular-shape interpretations are not independently verified observed history,resolved shape,chemistry or current membership census. Retrograde orbit does not establish spin. Do not transfer Chaldene Carme-family claims.",
+  "dates": "NASA publication2017-11-29T21:56:37-05:00/modification2024-01-25T01:23:26-05:00 are page timestamps,not observation. Retrieved2026-10-20.",
+  "discoveryAstrometry": "MPEC2001-A28 is a candidate target-specific primary circular;direct request timed out and web fetch inaccessible. No response bytes/hash or astrometric lines fabricated;original IAUC7555/rawUTC/filter/exposure/product crosswalk remains open. Do not transfer Chaldene MPEC2001-A29 observations.",
+  "nativeAssessment": "NASA overview text does not supply an adopted body-specific resolved map. Secondary search lead Harpalyke-Jewitt-full.gif suggests CFHT DavidJewitt2001Dec10 datasets615272p/615279p/615286p;not independently verified primary raw identity,UTC,filter,exposure,processing or specific rights. No image downloaded/embedded or image hash invented. No exhaustive absence/newest claim.",
+  "nativeLeadUrl": "https://commons.wikimedia.org/wiki/File:Harpalyke-Jewitt-full.gif",
+  "terms": "Retained source HTML provenance;no blanket CC BY/native image licence/figure permission asserted. Secondary licence statements not transferred to raw products. No third-party image embedded or contact made.",
+  "next": "Assess body-specific primary/native colour,size and raw-product provenance;use recorded skyGeometry for independent labelled hypothetical views then additive dossier105,preserving104 prior dossiers and all original/master/native/model/shape records. BacklogACTIVE.",
+  "validation": {
+    "tests": {
+      "passed": 707,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 385,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "4dc6faa",
+      "priorDossiersDeepEqual": 104,
+      "dossiers": 104,
+      "priorMoonsDeepEqual": 60,
+      "moons": 60,
+      "trackedPublicByteEqual": 730,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15866146,
+      "headroomBytes": 133854,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "3bc169989b086bd98ff88a6a381ed9ecdea39abb8464723e4b12a878a0d03c99",
+      "applicationSha256": "88d098d6bb49918b6e6ef3e8d97033c709a9e15a6b8d99952e09a45e8c9637d9",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser claim;complete Node snapshot/application restoration exact. Interbuild live-feed changes are not research or compression savings."
+  }
+}
