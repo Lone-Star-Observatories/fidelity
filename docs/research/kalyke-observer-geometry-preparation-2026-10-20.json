@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "body": "Kalyke / JupiterXXIII / JPL523 / S2000J2",
+  "status": "Research-only geometry;no106th dossier,imagegeneration,embedding,catalogue or codec change.",
+  "sourceRecord": "docs/research/kalyke-reference-native-preparation-2026-10-20.json",
+  "reproducerSha256": "8d3875b23e8b30db84d0301fa53c9462a412570e1ecbe13452a8371d84018c2e",
+  "inputs": {
+    "sphericalJupiterRadiusKm": 69911,
+    "meanSemimajorAxisKm": 23298000,
+    "horizontalFovDeg": 90,
+    "nominalWidthPx": 1672,
+    "helperTemperatureK": 165
+  },
+  "rows": [
+    {
+      "label": "NASA approximate radius guide;size/albedo derivation not independently traced",
+      "assumedHeightKm": 2.6,
+      "distanceKm": 23297997.4,
+      "angularDiameterDeg": 0.34385884624536966,
+      "centreDiscWidthFraction": 0.0030007435211900106,
+      "targetPixels": 5.017243167429697
+    },
+    {
+      "label": "Half2015thermal effective diameter;assumed beaming/optical H,not axes/localnormal",
+      "assumedHeightKm": 3.45,
+      "distanceKm": 23297996.55,
+      "angularDiameterDeg": 0.34385885879069283,
+      "centreDiscWidthFraction": 0.0030007436306695944,
+      "targetPixels": 5.0172433504795615
+    }
+  ],
+  "limitations": [
+    "All angular/raster-size outputs use skyGeometry;helper colour/irradiance discarded,not photometry.",
+    "Separate NASAapproximate/thermalmodel height alternatives are not jointly fitted/resolvedaxes/localnormal or uncertainty envelope.",
+    "JUP347 mean orbit not dated distance/ephemerides/covariance.",
+    "No measured spin,pole,locking or permanent Jupiter-facing site;local visibility unknown.",
+    "SphericalJupiter/phase/axis/colour/lighting/exposure/registration artistic unless independently verified;oblateness not modelled.",
+    "No generated raster diameter measured/adopted;Sun5.2044AUoffframe would be an assumption,not photometry."
+  ],
+  "next": "Independent labelled local/observer views require original/defaultPNGs/fullprompts/masters/hashes;retain all105 prior dossiers/native/model/shape/provenance. BacklogACTIVE."
+}

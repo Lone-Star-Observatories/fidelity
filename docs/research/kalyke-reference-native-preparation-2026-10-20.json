@@ -1,0 +1,428 @@
+{
+  "date": "2026-10-20",
+  "body": "Kalyke / JupiterXXIII / JPL523 / S2000J2",
+  "status": "Research-only reference/native/photometric/thermal preparation;no106th dossier,generated image,embedding,catalogue/map/model/shape/codec change.",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/kalyke/",
+      "path": "data/research-sources/kalyke-overview-2026-10-20.html",
+      "bytes": 247694,
+      "sha256": "2001bd2e58ad4badae5151c7ed86b07e634a05010fc9c86c9c8fa1f313a8cf46",
+      "status": 200,
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/kalyke/"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/kalyke-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "path": "data/research-sources/kalyke-discovery-2026-10-20.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/kalyke-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+    },
+    {
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html",
+      "path": "data/research-sources/kalyke-mpec-K01A28-2026-10-20.html",
+      "bytes": 43300,
+      "sha256": "42c5a09dbbeb19f2e3a7e6011a6b42c0fd8067064eb9eb71a09151184257bb3f",
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/kalyke-native-original-2026-10-20.gif",
+      "bytes": 7512327,
+      "sha256": "440202f91efa21a8653f90a56bcf6dfbc28785594322177e9018ea40ac8187d2",
+      "status": 200,
+      "contentType": "image/gif"
+    },
+    {
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+      "path": "data/research-sources/kalyke-cadc-policy-2026-10-20.html",
+      "bytes": 22954,
+      "sha256": "9c0b4328265cbb85d4aa236a3f16ac7eb44b4467870e2f224a7d45d4c43d38b6",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "path": "data/research-sources/kalyke-ccby4-2026-10-20.html",
+      "bytes": 31950,
+      "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+      "status": 200,
+      "contentType": "text/html"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Kalyke-Jewitt-full.gif",
+      "path": "data/research-sources/kalyke-native-candidate-page-2026-10-20.html",
+      "bytes": 94035,
+      "sha256": "5de150a48635c1ce947f46be0c7aa83d6d38e3b7651acbc2c87f8dc3fd8ee0c4",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1.pdf",
+      "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "bytes": 412867,
+      "sha256": "4a154cbcf0068984ffcfe4bfa8b80c1f395f68b5792bad7aa0e18f2372dd1a0c",
+      "isPdf": true,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "contentType": "application/pdf"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record.html",
+      "url": "https://arxiv.org/abs/astro-ph/0301016",
+      "bytes": 44195,
+      "sha256": "48ee3001175488c42dd3365ba4ebe2433ace3f38963dbd5b63ad284df42c14c0",
+      "isPdf": false,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/abs/astro-ph/0301016",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": null,
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe",
+      "url": "https://authors.library.caltech.edu/records/atxcf-qdt69/files/Grav_2015.pdf?download=1"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-record-2026-10-18.html",
+      "bytes": 107359,
+      "sha256": "84b7c5878ebde8af12782a482577b01afa3eb7d4fe3b171d34bedf2c85564bd4",
+      "url": "https://authors.library.caltech.edu/records/atxcf-qdt69"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1-text.txt",
+      "bytes": 66983,
+      "sha256": "e882d1733cf24aa332491929d6312640d136dfaf711d968386abcc7a6b90001b"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-37.png",
+      "bytes": 216662,
+      "sha256": "ad13228ab4b31262a50faadf6317c3300dcbc94c5421c8d21da63cc8661ef72a"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-38.png",
+      "bytes": 203349,
+      "sha256": "18d5e91d049194ddcea9efafebb92e5d03aa2a9bb9f1270bddd2aa63e6ce7bef"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-3.png",
+      "bytes": 567573,
+      "sha256": "c4481d7a8ea0c48e984f2518da16d10fff2ffc54682f6aed05ecdf5eb786544d"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-4.png",
+      "bytes": 535621,
+      "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+    },
+    {
+      "path": "data/research-sources/kalyke-grav2015-page-7.png",
+      "bytes": 747227,
+      "sha256": "a67837e4552728d3854fb4c369388394164ef7ed70a5164e6319ce0485600895"
+    },
+    {
+      "path": "docs/research/kalyke-native-inspection-2026-10-20.mjs",
+      "bytes": 1202,
+      "sha256": "58a323e0257c3b39f7dece62c1f93f5dd67d0f2ef0f5a96dd31c56bc77275656"
+    }
+  ],
+  "identity": {
+    "nasaDiscovery": "2000-11-23,Mauna Kea,Hawaii",
+    "nasaPrintedCredits": [
+      "Scott S. Sheppard",
+      "David C. Jewitt",
+      "Yanga R. Fernandez",
+      "Eugene Magnier"
+    ],
+    "jplPrintedCredits": [
+      "S.S. Sheppard",
+      "D.C. Jewitt",
+      "Y.R. Fernandez",
+      "G. Magnier"
+    ],
+    "mpecObservers": [
+      "S. S. Sheppard",
+      "D. C. Jewitt",
+      "Y. R. Fernandez",
+      "G. Magnier",
+      "S. Dahm",
+      "A. Evans"
+    ],
+    "mpecMeasurer": "S. S. Sheppard",
+    "mpecInstrument": "2.2-m University of Hawaii reflector + CCD,observatory568",
+    "limits": "Different source credit roles/initials retained,not silently normalized. XXIII/S2000J2 distinct HarpalykeXXII/S2000J5 and asteroid/mapped analogs."
+  },
+  "discoveryAstrometry": {
+    "circular": "MPEC2001-A28 issued2001Jan5 20:20UT,not acquisition",
+    "target": "SK00J020",
+    "firstPrintedRecord": "SK00J020 C2000 11 23.37492 04 25 14.46 +20 20 19.8 568",
+    "limits": "Printed astrometry not independently reprocessed rawUTC/filter/exposure/pixelidentity. OriginalIAUC7555 remains open. Sharedcircular SK00J050 Harpalyke row must not be assigned to Kalyke."
+  },
+  "nasaGuide": {
+    "meanRadiusKm": 2.6,
+    "meanDistanceKm": 23500000,
+    "periodDaysAbout": 742,
+    "limitations": "Approximate size guide,not independently traced albedo derivation/resolved axes/localnormal/uncertainty. Do not transfer Harpalyke albedo0.04. Qualitative redder-than-Carme comparison is not calibrated visible RGB/local chemistry."
+  },
+  "jplMeanElements": {
+    "row": 523,
+    "solution": "JUP347",
+    "reference": "47,R.A.Jacobson2025 personal communication to Horizons/NAIF",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5 TDB",
+    "aKm": 23298000,
+    "e": 0.261,
+    "argumentPeriapsisDeg": 240.5,
+    "meanAnomalyDeg": 224.9,
+    "inclinationDeg": 164.7,
+    "nodeDeg": 37.7,
+    "periodDays": 726.7007,
+    "apsidalYears": 47.5,
+    "nodalYears": 83.1,
+    "pole": null,
+    "limits": "Mean precessing ellipse,not dated ephemerides/currentdistance/spinlocking/permanentface/jointfit/covariance/envelope. NASAolderdistance/period retained separately,not silently reconciled."
+  },
+  "physicalUnknowns": [
+    "No Kalyke row in retained JPL physical table",
+    "GM",
+    "mass",
+    "density",
+    "resolved axes",
+    "localnormal",
+    "spin",
+    "pole",
+    "terrain",
+    "local chemistry",
+    "calibrated visible RGB"
+  ],
+  "originLimits": "Carme-family/D-type/Hilda/Trojan/capture/collision/massshare/probable irregularshape interpretations do not establish unique ancestry,currentfamily census,resolved shape or observedhistory. Retrograde orbit does not establish spin. Other-body comparisons are not skins.",
+  "optical2003": {
+    "authors": [
+      "Tommy Grav",
+      "Matthew J. Holman",
+      "Brett J. Gladman",
+      "Kaare Aksnes"
+    ],
+    "record": "astro-ph/0301016v1,submitted2003Jan2;relatedDOI10.1016/j.icarus.2003.07.005",
+    "inspection": "Retained43pagePDF/fulltext,targetedsection5.3 and wholeTable1/2 pages37/38 visually inspected.",
+    "table1": [
+      "NOT2.56m2002Jan14",
+      "MMT6m2002Mar13"
+    ],
+    "table2": [
+      {
+        "V": [
+          22.31,
+          0.07
+        ],
+        "absoluteV": [
+          15.42,
+          0.07
+        ],
+        "BminusV": null,
+        "VminusR": [
+          0.72,
+          0.09
+        ],
+        "VminusI": [
+          0.96,
+          0.16
+        ]
+      },
+      {
+        "V": [
+          22.86,
+          0.04
+        ],
+        "absoluteV": [
+          15.28,
+          0.04
+        ],
+        "BminusV": [
+          0.94,
+          0.08
+        ],
+        "VminusR": [
+          0.7,
+          0.05
+        ],
+        "VminusI": [
+          0.88,
+          0.06
+        ]
+      }
+    ],
+    "limits": "Whole-object broad-band colours,not local fractions/visible image calibration. Authors call redclassification insecure;possible underestimated I-band fringing and further observations needed. Section5.3 says Jan24 while Table1 says Jan14,cause unresolved;no silent correction or RGB conversion.",
+    "terms": "Record-specific http://arxiv.org/licenses/assumed-1991-2003/ retained;not asserted CC BY. No paper figure embedded."
+  },
+  "thermal2015": {
+    "authors": [
+      "T. Grav",
+      "J. M. Bauer",
+      "A. K. Mainzer",
+      "J. R. Masiero",
+      "C. R. Nugent",
+      "R. M. Cutri",
+      "S. Sonnett",
+      "E. Kramer"
+    ],
+    "doi": "10.1088/0004-637X/809/1/3",
+    "publishedPrinted": "2015-08-04",
+    "issue": "2015-08-10",
+    "observationTable1MjdUtc": 55367,
+    "W3StackedImages": 14,
+    "W3Magnitude": [
+      11.32,
+      0.24
+    ],
+    "detection": "Approximately4sigma stacked W3 source;no individual detection or corresponding W4 source",
+    "assumedBeaming": [
+      0.9,
+      0.2
+    ],
+    "adoptedAbsoluteV": [
+      15.28,
+      0.04
+    ],
+    "effectiveDiameterKm": [
+      6.9,
+      1.3
+    ],
+    "derivedVisibleAlbedoPercent": [
+      2.9,
+      1.4
+    ],
+    "inspection": "Wholepages3/4/7 visually inspected;Table1/2/3/section4.10.",
+    "limits": "Thermal fit with assumed beaming/optical H,not resolved axes,chemistry,terrain or calibrated visible image. Table3 percent heading governs2.9\u00b11.4,section4.10 missingpercent retained as prose omission. Keep NASA2.6kmradius distinct derived3.45\u00b1.65kmeffective sphericalradius;not independent localnormal.2015D-type summary distinct2003 insecure redclassification. RawWISE reprocessing/individualproduct/PSF/calibration crosswalk open.",
+    "terms": "Printed \u00a92015AmericanAstronomicalSociety.Allrightsreserved. Repository access not CC BY;no paperfigure embedded."
+  },
+  "nativeAssessment": {
+    "original": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/kalyke-native-original-2026-10-20.gif",
+      "bytes": 7512327,
+      "sha256": "440202f91efa21a8653f90a56bcf6dfbc28785594322177e9018ea40ac8187d2",
+      "status": 200,
+      "contentType": "image/gif"
+    },
+    "frames": {
+      "metadata": {
+        "width": 2000,
+        "height": 4500,
+        "pageHeight": 1500,
+        "pages": 3,
+        "delay": [
+          300,
+          300,
+          300
+        ],
+        "loop": 0
+      },
+      "frames": [
+        {
+          "path": "data/research-sources/kalyke-native-inspection-frame-0-2026-10-20.png",
+          "bytes": 2968836,
+          "sha256": "669bd5d08ab968a49129939f81e5dc19bc6df82003fd7356620fdf1acbf3baaf"
+        },
+        {
+          "path": "data/research-sources/kalyke-native-inspection-frame-1-2026-10-20.png",
+          "bytes": 2908592,
+          "sha256": "dc4fb7ab2f81f65c0ac558dacd1157369f2469c0027e79df30b94bd44286b516"
+        },
+        {
+          "path": "data/research-sources/kalyke-native-inspection-frame-2-2026-10-20.png",
+          "bytes": 2710744,
+          "sha256": "dde1aefaccbca676d7aa862557599c3e326e1f041f53c1d10909cbe9a103d55e"
+        }
+      ],
+      "limits": "Decoded PNG inspection derivatives only;unchanged original GIF retained. Not primary raw science bytes,calibrated photometry,independently registered astrometry or new angular/raster measurement."
+    },
+    "publisherCaption": "DavidJewitt/CADC CFHT3.6m2001Dec10 threeimages about30minapart,apparentmag22.4,datasets615271p/615278p/615285p;blackspots on brightstars attributed saturation artifacts. Caption statements not independent raw extraction.",
+    "inspection": "All three decoded2000x1500frames visually inspected;unresolved crowdedfield/noise/saturatedsources. No independently verified targetpointcrossmatch/rawUTC/filter/exposure/processing/pixelidentity. No terrain/axes/localchemistry/calibratedvisiblecolour.",
+    "credits": "Filepage DavidJewitt/CanadianAstronomyDataCentre;CFHT instrument. CADC/NRC/CSA facilities acknowledgement retained for potential use. Uploader processing/derivative crosswalk remains open.",
+    "terms": "Specific Commons filepage declares CC BY4.0;direct CADC repository policy also links CC BY4.0. These do not independently prove rawproduct/derivative crosswalk or license paperfigures/otherfiles. Activefile/policy/deedlinks and hashes retained. No native embedding or exhaustive newest/absenceclaim."
+  },
+  "dates": "NASA publication2017Dec4T22:46:39-05:00/mod2024Jan25T01:22:28-05:00 not observation. CFHTcaption2001Dec10 distinct discovery2000/WISEMJD55367/optical2002/paper2003/2015.",
+  "next": "Use skyGeometry for separately labelled approximateNASA/thermal-model height assumptions. Finish raw/native association and compact publisher assessment before additive106 with independent IMAGINEDlocal/observer views. All105 dossiers/originals/native/models/shape retained;backlogACTIVE.",
+  "additionalAccessRecovery": {
+    "body": "Harpalyke / S2000J5 / SK00J050,not Kalyke",
+    "source": "Same now-accessible MPEC2001-A28",
+    "firstPrintedRecord": "SK00J050 C2000 11 23.45236 04 27 30.85 +20 16 45.4 22.5 R 568",
+    "limits": "Recovers primary printed astrometry after earlier historical timeout;supports Nov23 date without independently verifying rawUTC/filter/exposure/pixelidentity. Existing dossier105 and earlier timeout record preserved unchanged."
+  },
+  "validation": {
+    "tests": {
+      "passed": 708,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 409,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "0b44d21",
+      "priorDossiersDeepEqual": 105,
+      "dossiers": 105,
+      "priorMoonsDeepEqual": 61,
+      "moons": 61,
+      "trackedPublicByteEqual": 734,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15881086,
+      "headroomBytes": 118914,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "ce5ad64e759363efc55c40297afdef4105bbb709f74058e71aa17d26d8eed411",
+      "applicationSha256": "206c075d781750200081800e9e5943ebcc81abdfe0771ea8b2824b736b5d1005",
+      "freshBrowserClaim": false
+    },
+    "snapshotChangedPaths": [
+      "/crew/cache",
+      "/crew/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/disk"
+    ],
+    "browser": "No fresh browser claim. Complete Node decoded JSON/application exact;interbuild timestamp/feed changes not research/compression savings."
+  }
+}
