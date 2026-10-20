@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-20",
+  "body": "Themisto / Jupiter XVIII / JPL518 / S1975J1 = S2000J1",
+  "status": "Research/native preparation only,no dossier101,newcatalogueentry/generatedviews/globe/shape/embedding delivered.",
+  "sources": [
+    {
+      "path": "data/research-sources/themisto-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/themisto/",
+      "bytes": 246637,
+      "sha256": "32cf9d84bde4be125cb50afbcac7646381b8fc50ef511b668105477f0a1f1f2d"
+    },
+    {
+      "path": "data/research-sources/themisto-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/themisto-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/themisto-sharkey2025v2-2026-10-20.html",
+      "url": "https://arxiv.org/html/2501.16484v2",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    },
+    {
+      "path": "data/research-sources/themisto-sharkey2025v2-text-2026-10-20.txt",
+      "url": null,
+      "bytes": 96721,
+      "sha256": "7d82ee1c1423b9cffbaa951d59315ad7c046682e293ae57164d45b054104c93b"
+    },
+    {
+      "path": "data/research-sources/themisto-sharkey-publisher-response-2026-10-20.html",
+      "url": "https://doi.org/10.3847/PSJ/ae04dd",
+      "bytes": 316273,
+      "sha256": "08bd08be650284b4792689c7b5928b7c1a319cdb94cb5b287a9b13e7f5af62f1"
+    },
+    {
+      "path": "data/research-sources/themisto-sharkey-published-target-tables-2026-10-20.json",
+      "url": null,
+      "bytes": 3143,
+      "sha256": "3b619290dff12ff143a81814cbd841285e995d1fbfce98b95edbcbfc85b13ce7"
+    },
+    {
+      "path": "data/research-sources/themisto-sharkey-pdf-captcha-response-2026-10-20.html",
+      "url": "https://iopscience.iop.org/article/10.3847/PSJ/ae04dd/pdf",
+      "bytes": 14375,
+      "sha256": "ca4639bbb1d7d14b4232867b038ed334d516b3fc081090f48c2b52681149bb2f"
+    },
+    {
+      "path": "data/research-sources/themisto-cadc-ssos-response-2026-10-20.html",
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/cadcbin/ssos/ssosclf.pl?lang=en&object=Themisto&search=bynameall&epoch1=2000&epoch2=2003&eellipse=&eunits=arcseconds&extres=no&xyres=no",
+      "bytes": 5242,
+      "sha256": "5ff13a80bc16471e62b9ab67b8a92418d5273cefafef8ec71bca2085019269ee"
+    },
+    {
+      "path": "data/research-sources/themisto-cadc-ssos-documentation-2026-10-20.html",
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/ssois/documentation.html",
+      "bytes": 31007,
+      "sha256": "d60ddfb3396fa4460e0b2eee8f288e8d65658806cf95d714c2c0615e8e03aaaa"
+    },
+    {
+      "path": "data/research-sources/themisto-cadc-terms-2026-10-20.html",
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+      "bytes": 22954,
+      "sha256": "9c0b4328265cbb85d4aa236a3f16ac7eb44b4467870e2f224a7d45d4c43d38b6"
+    },
+    {
+      "path": "data/research-sources/themisto-cadc-545046-metadata-2026-10-20.html",
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/caom2ui/view?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FCFHT%3F545046",
+      "bytes": 811,
+      "sha256": "154cd7e3b34eccf6df2906e3a9d3bb6a6beec598bba5e2f0d519a4d8acc9238f"
+    },
+    {
+      "path": "data/research-sources/themisto-cfht-545046p-original.fits.fz",
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/data/pub/CFHT/545046p.fits.fz",
+      "bytes": 86362560,
+      "sha256": "720a32e989e3a0e573c363af31faad990ec67b01a875dc1a34ee5c04ed3b1aae"
+    },
+    {
+      "path": "data/research-sources/themisto-cfht-545046p-header-inventory-2026-10-20.json",
+      "url": null,
+      "bytes": 243833,
+      "sha256": "4eccb2fd92bbcb9656f8cef6694e6e5aec28ebb9b84c46a8e4be2d6dbb2be396"
+    },
+    {
+      "path": "data/research-sources/themisto-sheppard-jupiter-2026-10-20.html",
+      "url": "https://sites.google.com/carnegiescience.edu/sheppard/moons/jupitermoons",
+      "bytes": 185555,
+      "sha256": "74d4686f43477b75dfc9bbc4b2e63668dd64f67f2db865755e32cb5e41ae2f70"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    }
+  ],
+  "identity": {
+    "discovery": "NASA1975-09-30 CharlesThomasKowal/ElizabethRoemer; lost until2000",
+    "rediscoveryCredits": [
+      "Scott S. Sheppard",
+      "David C. Jewitt",
+      "Yanga Roland Fernandez",
+      "Eugene A. Magnier"
+    ],
+    "limits": [
+      "NASArediscoverynarrative namesSubaru8.3m/CFHT3.6mCCDs; independentexactrediscoverycamera/date/IAUCcrosswalk remains open. Do not assign AugustCFHTprecovery as Novemberrediscovery.",
+      "IAUC7525directHTTPS retrieval failed certificatevalidation; no bypass,no responsebody/paperhash/date asserted.",
+      "Commonsmetadata only served as pointer toCADC545046p/545051p. No Commonsimage downloaded/embedded or secondarypixelclaim adopted. PrimaryCADCquery verified these products coverpredictedThemisto position,not independently detectedsourceidentity."
+    ]
+  },
+  "size": {
+    "adoptedGuideRadiusKm": 4,
+    "source": "NASAmeanradius4km;Sharkey2025publishedTable1diameter8km explicitly assumes.04geometricalalbedo,citingSheppardJewitt2003",
+    "type": "Albedo-dependent assumed photometric size,not thermalmeasurement/axes/localnormal",
+    "neowise": "Grav2015 saysThemisto fell nearJupiter duringWISEcoverage andflux drownedinscatteredlight;no diameter/albedo measurement adopted fromNEOWISE.",
+    "unknown": [
+      "Actualalbedo,sizeuncertainty,axes,localnormal,mass,GM,density,spin,pole,longitude,terrain and calibratedvisiblecolour. NoThemisto physicalrow inretainedJPLtable."
+    ]
+  },
+  "meanOrbit": {
+    "source": "JUP347/JPLrow518/reference47Jacobson2025personalcommunication",
+    "epoch": "2000-01-01.5TDB",
+    "frame": "Planet-centred ecliptic",
+    "aKm": 7397000,
+    "e": 0.257,
+    "wDeg": 236.3,
+    "MDeg": 289.1,
+    "iDeg": 44.3,
+    "nodeDeg": 202.7,
+    "periodDays": 129.9681,
+    "apsidalYears": 626.4,
+    "nodalYears": 648.5,
+    "pole": null,
+    "limits": "Mean elements not datedephemerides/currentdistance/covariance. Progradeorbit not measuredspinlocking/permanentface. Isolatedorbit not verifiedHimaliafamilymembership."
+  },
+  "spectroscopy": {
+    "fullAuthors": [
+      "Benjamin N. L. Sharkey",
+      "Andrew S. Rivkin",
+      "Richard J. Cartwright",
+      "Bryan J. Holler",
+      "Joshua P. Emery",
+      "Cristina Thomas"
+    ],
+    "published": "2025-10-24,PSJ6(10)242,DOI10.3847/PSJ/ae04dd",
+    "version": "arXivv2 2025-09-07 retained separately",
+    "access": "Publisher fullHTML successfully retrieved; finalTable1/2 and relevantsections3/7/9 assessed. PDFendpoint servedRadwareCaptchaHTML14375bytes,notPDF; responsehash notpaperPDFhash. Misnamedoriginaldownload .pdf retained unchanged as responseonly; samebytescopiedtoexplicitHTMLname.",
+    "licence": "Publishedoriginalcontent explicitlyCCBY4 withauthors/title/journal/DOI attribution. v2specificCCBY4 distinctrawproducts/CADCterms. No figureembedded.",
+    "observed": "2024-01-31,JWSTNIRSpecIFUprism GO4028,0.7\u20135.1micron,phase11.59deg,Sun4.94AU/observer4.90AU",
+    "bands": {
+      "broad3micron": {
+        "centre": 3.08,
+        "centreError": 0.03,
+        "depthPercent": 1.7,
+        "depthError": 0.2
+      },
+      "b34": {
+        "centre": 3.43,
+        "centreError": 0.02,
+        "depthPercent": 2.3,
+        "depthError": 0.4
+      },
+      "possible49": {
+        "centre": 4.91,
+        "centreError": 0.01,
+        "depthPercent": 5.2,
+        "depthError": 1.2
+      }
+    },
+    "limits": [
+      "SteepredrelativeVNIRslope and3/3.4micronbands resemble redJovianTrojans,not calibratedRGB/localchemistry/materialfractions. Authorsdo not propose specificcompositions forredirregulars.",
+      "OH-bearing/aliphaticorganiccompatibility not uniquecarrier/abundance/biology/currentwater/ice/ocean/activity. Possible4.9feature lowerSNR/thermal-tail/continuumlimits;CO3/OCSspeculation not identifiedspecies.",
+      "Himalia/Elara ammoniation/complexedCO2 notThemisto. Trojancomparisons not maps/skins or provencommonorigin/capturehistory.",
+      "Pipeline1.14.0/jwst_1225/NSClean/PSFextraction/SNAP2reference/background/dither/thermal-tail processing notindependentlyreproduced; nativeJWSTproductcrosswalk/calibration/datedregistration remainopen."
+    ]
+  },
+  "native": {
+    "embedded": false,
+    "original": {
+      "path": "data/research-sources/themisto-cfht-545046p-original.fits.fz",
+      "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/data/pub/CFHT/545046p.fits.fz",
+      "bytes": 86362560,
+      "sha256": "720a32e989e3a0e573c363af31faad990ec67b01a875dc1a34ee5c04ed3b1aae"
+    },
+    "credit": "Matthew Holman / CFHT / Canadian Astronomy Data Centre. This research used the facilities of the Canadian Astronomy Data Centre operated by the National Research Council of Canada with the support of the Canadian Space Agency. SSOScitation:Gwyn,Hill,Kavelaars2012.",
+    "terms": "CADCrepositorypolicy statesdataCCBY4/publicdomain; preserveexactpolicywording andcredit,not blanketuploaderanimation/paperlicence. Noimageembedded.",
+    "queryRows": [
+      {
+        "product": "545046p.fits.fz",
+        "dateTimeAsDisplayed": "2000-08-06 13:31:45",
+        "filter": "R",
+        "exptimeSeconds": 180,
+        "objectRA": 65.096551,
+        "objectDec": 20.951208,
+        "imageTarget": "sat602",
+        "instrument": "CFHT/CFH12K"
+      },
+      {
+        "product": "545051p.fits.fz",
+        "dateTimeAsDisplayed": "2000-08-06 14:08:13",
+        "filter": "R",
+        "exptimeSeconds": 180,
+        "objectRA": 65.100099,
+        "objectDec": 20.952024,
+        "imageTarget": "sat601",
+        "instrument": "CFHT/CFH12K",
+        "downloaded": false
+      }
+    ],
+    "headerInventory": {
+      "hdus": 13,
+      "compressedImageExtensions": 12,
+      "primaryObject": "sat602",
+      "observer": "Matthew Holman",
+      "dateObs": "2000-08-06",
+      "utcObs": "13:30:15.28",
+      "exptimeSeconds": 180,
+      "dateCard": "2000-08-06T13:33:16",
+      "filter": "R",
+      "telescope": "CFHT 3.6m",
+      "instrument": "CFH12K Mosaic",
+      "structure": "PrimaryNAXIS0,12ZIMAGEcompressedBINTABLEextensions,2080x4128logicalpixels each. Exactheader/dataoffsetscan reachesEOF;no pixeldecompression/checksum/calibrationvalidation."
+    },
+    "timingLimits": "SSOS13:31:45 distinctFITSUTC-OBS13:30:15.28andDATE13:33:16. SSOSdocumentation usesexposuremidpointforpredictedpositions; consistentwithroughly90s half180s exposure,not independently verifiedalltimestampsemantics/exactcorrection. Preservefields verbatim.",
+    "limits": [
+      "SSOSreturned5matchingpredictedfootprints,not5verifiedThemisto detections. HeaderOBJECTsat602/privatepointinglabelnotThemistoname; do not interpretasDione/maporresolvedbodyidentity.",
+      "Nativepixelsnot decompressed/visuallyinspected/astrometricallycrossmatched. No resolvedterrain/colour/shape inferred. Secondaryanimationassociation/notRawpixelidentity remainsopen.",
+      "MetadataHTMLresponse811bytes isCAOMshell,notfullmetadatarecord. Secondrawproduct545051pnotdownloaded. FurtherrawWCS/pointcrossmatch/photometry/calibration/rediscoveryproductaudit remainopen."
+    ]
+  },
+  "geometry": {
+    "implementation": {
+      "path": "src/astro/appearance.js",
+      "url": null,
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    "input": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.04944586420507121,
+      "horizontalFovDeg": 90
+    },
+    "angularDiameterDeg": 1.0830517897746512,
+    "centreDiscWidthFraction": 0.00945169128944581,
+    "targetPixels1672": 15.803227835953393,
+    "limits": "Hypothetical4kmradialheight/albedoassumption/meanorbit/sphericalJupiter/nominal90HFOV1672width notjointfit/date/localnormal/spinlocking/permanentface/uncertaintyenvelope.165Khelperangular-only irradiance/colourdiscarded;Sun5.2044AUoffframeassumptionnotphotometry. No generatedraster/calibratedcolour."
+  },
+  "next": "FinishnativeWCS/pointcrossmatch/recentprimaryaudit or proceedindependentlabelledlocal/observerviews/fullprompts/originals/masters thenadditivedossier101 preservingall100. BacklogACTIVE,no globalexternalblocker.",
+  "validation": {
+    "baseline": "b8f67545199a297f39e6817e7faedeb6b5712068",
+    "all100DossiersAnd56MoonsUnchanged": true,
+    "trackedPublicFilesByteEqual": 714,
+    "sourceHashesVerified": 17,
+    "queueEntries": 569,
+    "tests": {
+      "passed": 703,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15805722,
+    "headroomBytes": 194278,
+    "completeReadableJsonSha256": "e939ff9eb7c6cc505aadcfe89fade8e5007992bd65314b4b0b60c476eb6d00ba",
+    "exactApplicationSha256": "18f4e868b2bc087fe89b561eb7d75f5eb8f65634289aef2ab4260a9977c7b125",
+    "completeNodeDecodeEquality": true,
+    "nativeCardsExactBytesAndMime": 84,
+    "freshBrowserClaim": false,
+    "limits": "No new dossier, catalogue entry, embedded image or production codec change. Interbuild feed changes have not been attributed; HTML difference is not a compression saving. Earlier browser checks remain historical."
+  }
+}
