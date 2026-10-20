@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "browser": "Chrome via IAB,loopbackHTTP",
+  "completeReadableJsonSha256": "7f32349ee76e7c898db33985251a6710af092e157a208955aee2e7717bfb2580",
+  "applicationSha256": "7f15fc82884cfc7e405f9778322be53a5343082ae3bde583d03744a2355878b2",
+  "htmlParserPackedSnapshotSha256": "5003619c4ca94676bff56d8d21762f69bbbf7fa886f5de1bcba5b79d518ca6a6",
+  "htmlParserPackedAppSha256": "0150b033b42ef3d7d85495cb8301f8514972a4b62d84a53c601a2014a592d727",
+  "decodedImages": 337,
+  "parsedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "startupCanvases": 8,
+  "normalAnanke": {
+    "cards": 2,
+    "decodedDimensions": [
+      1536,
+      864
+    ],
+    "ownGlobe": false,
+    "nativeContextCards": 0
+  },
+  "offlineAnanke": {
+    "cards": 2,
+    "decodedDimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "ownGlobe": false,
+    "nativeContextCards": 0
+  },
+  "unsupportedGzipNoticeVerified": true,
+  "unsupportedWasmNoticeVerified": true,
+  "limits": [
+    "Other browser engines remain open.",
+    "Direct-file route not tested; earlier URL-policy limit preserved.",
+    "Model scene parsing is not a fresh all-model interactive load claim.",
+    "Earlier multi-route/event-worker coverage remains historical,not rerun for this additive dossier."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "generated": "2026-10-20",
+  "bodies": [
+    {
+      "id": "ananke",
+      "name": "Ananke",
+      "kind": "moon",
+      "aliases": [
+        "Ananke",
+        "Jupiter XII",
+        "J12 Ananke"
+      ],
+      "researchDate": "2026-10-20",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe or shape adopted. OHP point image retained research-only with primary permission limits. Archived2MASS field is an explicit non-detection,not a moon portrait. No native image embedded.",
+      "measured": [
+        "Ananke / Jupiter XII / JPL512,distinct from Carme/Jupiter XI. NASA discovery1951-09-28,Seth Barnes Nicholson,MountWilson100-inch Hooker telescope.",
+        "Archived Nelson/IPAC2MASS table explicitly says Ananke not visible - too faint on southern1998-09-24/night980924s,scan055,coadd198. Predicted RA23 29 24.23/Dec-04 22 26.4 are not detected-source astrometry; Sept21tiles missed target. Retained795x542J/H/K display is a predicted field/non-detection,not positive moon detection/geography.",
+        "OHP/CNRS/IMCCE original prints1998-08-15T00:47UTC,120cm telescope and5arcmin-square publisherfield,not a newly calculated pixel scale. Arrow/point/stars/noise/annotations not resolved terrain or calibrated visiblecolour.",
+        "Sharkey2025v2 Table1: Ananke JWST NIRSpecIFUprism GO4028 observed2024-01-31,phase11.19deg,Sun5.11AU/observer5.08AU; version2025-09-07 is not acquisition."
+      ],
+      "modelled": [
+        "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.7: NEATM effective DIAMETER29.1±.6km,eta1.01±.03,visiblealbedo3.8±.6%,15W3/15W4measurements at roundedMJDUTC55370. Displayhalf14.55km is not axes/localnormal; NASA14km assumes.04albedo,separate alternative,not jointfit/envelope. Approximate.4mag peak-to-peak lightcurve supplies no adopted spin period.",
+        "JPL JUP347 planet-centred ecliptic2000Jan1.5TDB mean a21029500km,e.238,w78.8,M271.7,i147.6,node13.7,P623.1097days,apsidal80.8/nodal115.5years; blankpole unknown. Mean elements are not dated ephemerides,currentdistance or covariance. Retrogradeorbit not measured spin/locking/permanentface.",
+        "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 unresolved.7–5.1micron spectra: neutral/leastredsample slope,broad rounded~3micron/~12percentband centered~2.95micron,overprinted2.86micronfeature. SectionVIII says no specific direct material match while finding consistency with C2 phyllosilicate assemblages/Murchison-like structuralOH. Compatibility is not unique identification or local mineral fractions. Possible3.4complexorganics compatibility not local chemistry/abundance.",
+        "Previousgroundshortwave slope~10percentredder may involve faint-target systematics; not calibratedvisiblecolour. GO4028 pipeline1.14.0/jwst_1225,NSCleanPSF/extraction,SNAP2solar1128/thermal-tail not independently reproduced. Hydrated-chondrite/aqueous-alteration interpretations not observed current water/activity. Himalia/Elara ammoniation/complexedCO2 not assigned to Ananke.",
+        "P-type historical taxonomy,capture/collision/family/commonparent/unseenTrojan-core/earlierlineage hypotheses not measured local chemistry or observed history. NASA15otherfamilymembers is historical census,not exhaustive currentmembership. NASA historical630days/malformed21.3million miles km prose retained as alternatives,not adopted over directJPLmean."
+      ],
+      "unknown": [
+        "Mass,GM,density,spin,pole,axes,localnormal,registeredterrain,currentlongitude,chemicalfractions,visiblecolour and dated observeralignment. No Ananke physical row in retained JPLtable. Nullrotation/lockingdisabled is not measured nonsynchronous spin.",
+        "2MASS exactexposureUTC/rawproducts/limitingflux/displaytransfer/individualcreator/firstpublication remain open; archive2007 not acquisition/publication. Non-detection must not be labelled a positive moon image. OHP exactrawproduct/filter/exposure/independentpointcrossmatch/firstpublication/individualcreator/reusepermission open. Primaryauthorpermission/pedagogical/noncommerciallimits retained; no openlicence/permission/contact/embedding inferred.",
+        "Grav2015 AASallrightsreserved notCCBY; Sharkeyv2 specificCCBY4 not blanketrawproductlicence. Finalpublisher/rawcalibration audit open,no paperfigures embedded."
+      ],
+      "assumed": [
+        "Independent invented grey-charcoal/mutedbrown terrain,grains,blocks,relief,chemistry/fractions/porosity,Jupiterphase/pole/pattern,colour,light/exposure and viewpoint. No observed-body map or analog skin. No dated site,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Blacksky/omittedrings/stars not measured absence.",
+        "skyGeometry spherical69911kmJupiter at mean21029500km minus hypothetical14.55kmradialheight gives.3809520332110013deg/5.5584735163104355targetpx at nominal90HFOV/1672width. NASA14km alternative.3809520232476389deg/5.55847337093388px separate,not jointfit/envelope/localnormal/date/locking/permanentface. Tiny generated Jupiter remains uncalibrated; no measured rasterdiameter adopted.165Khelper angular-only,irradiance/colour discarded; Sun5.2044AU assumedoffframe,notphotometry.",
+        "Original/defaultPNG/fullprompts preserved;1536JPEG85masters/256JPEG80previews/offlineWebP80. Tiny previewfooters require explicitIMAGINEDcardlabels. No generatedglobe/shape."
+      ],
+      "surfaceLabel": "IMAGINED · LOCAL VIEW FROM ANANKE",
+      "skyLabel": "IMAGINED · SKY FROM ANANKE",
+      "skyCaption": "Tiny schematic Jupiter guided by nominal0.381° spherical geometry. Phase,colour,light,exposure,FOV and scene registration artistic; no calibrated raster diameter.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "14.55 KM · THERMAL MODEL"
+        ],
+        [
+          "MASS",
+          "UNKNOWN"
+        ],
+        [
+          "ORBIT",
+          "21.03 M KM · MEAN SCALE"
+        ],
+        [
+          "ROTATION",
+          "UNKNOWN"
+        ]
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.14057342762700165,
+        "horizontalFovDeg": 90,
+        "angularOnly": true,
+        "star": "Jupiter · hypothetical spherical angular guide"
+      },
+      "contextImages": [],
+      "references": [
+        {
+          "title": "NASA Ananke historical overview",
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/ananke/"
+        },
+        {
+          "title": "JPL JUP347 mean elements,not ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+        },
+        {
+          "title": "JPL physical table,no Ananke row in retained response",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+        },
+        {
+          "title": "Grav et al.2015 NEOWISE thermal models,eightauthors,AASrights",
+          "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+          "publicationDate": "2015-08-04",
+          "observationDate": "RoundedMJDUTC55370,individualUTCunknown"
+        },
+        {
+          "title": "Sharkey et al.2025v2 JWST spectroscopy,sixauthors,specificCCBY4",
+          "url": "https://arxiv.org/html/2501.16484v2",
+          "publicationDate": "2025-09-07",
+          "observationDate": "2024-01-31"
+        },
+        {
+          "title": "SpecificCCBY4 terms,not blanketrawproduct",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "title": "Archived Nelson/IPAC2MASS publisher table,Ananke NOT visible",
+          "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html"
+        },
+        {
+          "title": "OHP/CNRS/IMCCE annotatedAnanke point image,research-only",
+          "url": "https://promenade.imcce.fr/fr/pages4/4.html"
+        },
+        {
+          "title": "OHP primaryauthorpermission terms",
+          "url": "https://promenade.imcce.fr/fr/pages1/189.html"
+        }
+      ],
+      "nativeProducts": {
+        "embedded": false,
+        "limits": "RetainedOHPpointimage primaryreusepermission unresolved;2MASSexplicitnon-detection not positivedetection. No nativeglobe/shape or paperfigure adopted."
+      },
+      "inputs": {
+        "surfaceImage": "ananke-generated-surfaceImage-original.png",
+        "skyImage": "ananke-generated-skyImage-original.png"
+      }
+    }
+  ]
+}

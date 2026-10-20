@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-20",
+  "body": "Ananke / JupiterXII / JPL512",
+  "generation": "Built-in imagegen,independent new images,no references/edits/analogskins",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-6dd0cb49-a66f-4a8b-a385-f47584330c02.png",
+        "bytes": 2849622,
+        "sha256": "e4129912527dcb5f5bd7113494c936867b2f5ac297916f59ecbc4f86dd4d65d9"
+      },
+      "original": {
+        "path": "data/research-sources/ananke-generated-surfaceImage-original.png",
+        "bytes": 2849622,
+        "sha256": "e4129912527dcb5f5bd7113494c936867b2f5ac297916f59ecbc4f86dd4d65d9"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/ananke-local-prompt-2026-10-20.txt",
+        "bytes": 1855,
+        "sha256": "b2a9365d6bc9d40b8bcaa72279dc179960e35ce0103128e6d0eb46e7eedcb442"
+      },
+      "fullPrompt": "Use case: photorealistic-natural. Asset type: astronomy explorer hypothetical observer illustration, wide landscape 1672x941. Primary request: an independent invented LOCAL VIEW FROM ANANKE, Jupiter's small irregular moon Ananke (Jupiter XII), not a globe map. Scene: low camera near a dry small-body landscape of understated grey, charcoal and muted brown grains, scattered angular blocks and low uneven relief, sloping irregular horizon, deep black sky. No astronomical disk visible; Jupiter and Sun are outside frame. Style: physically plausible photographic scientific concept illustration, restrained light and fine natural detail, no spectacular canyons. Composition: foreground grains and a few blocks, low ridges receding to horizon at upper third, uncluttered sky. Material appearance, rock shapes, chemistry, porosity, sizes, exact terrain, colour, light direction and exposure are entirely imagined. Research context only: unresolved JWST OH-band compatibility with hydrated minerals does not measure local composition, mineral fractions or visible colours. Do not depict exposed water, ice deposits, mineral veins or chemical labels as discoveries. No reference images, no borrowing or recolouring an observed Moon/Mars/Pluto/asteroid map. No dated landing site, spacecraft, person, equipment, atmosphere, haze, clouds, plume, active volcanism, liquid, ocean, biology or survivable-landing suggestion. Black sky and omitted stars do not assert physical absence. Spin and pole are unknown, no permanent-Jupiter-facing hemisphere or local-normal registration claimed. Add a narrow dark footer inside the bottom edge, crisp readable simple white sans-serif text, exactly two lines: 'IMAGINED · LOCAL VIEW FROM ANANKE' and 'TERRAIN, MATERIALS, COLOUR AND LIGHT ARE HYPOTHETICAL'. Ensure all words fit within safe margins. No other text or logos.\n",
+      "master": {
+        "path": "public/bespoke/ananke-surface-image.jpg",
+        "bytes": 354882,
+        "sha256": "d9203e89be06b6440dccceae0759364ab1b9712b558b3d158b11009e50547af5"
+      },
+      "preview": {
+        "path": "public/bespoke/ananke-surface-image-preview.jpg",
+        "bytes": 10152,
+        "sha256": "aafa0d17a3aa4390c0070bedad61899e5c3dcc683b5aa8ced822960773478068"
+      },
+      "inspection": "Original and imported masters visually inspected; both original footers readable. Tiny previewfooters require explicitIMAGINEDcardlabels. TinyJupiter uncalibrated,no adopted rasterdiameter."
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e43f7780-226c-4fc0-a8b9-150e1e19840d.png",
+        "bytes": 2620788,
+        "sha256": "283086ae4bbcab1cd5eb32a561862bd509a7a45f20cce415c6bd7504642d2838"
+      },
+      "original": {
+        "path": "data/research-sources/ananke-generated-skyImage-original.png",
+        "bytes": 2620788,
+        "sha256": "283086ae4bbcab1cd5eb32a561862bd509a7a45f20cce415c6bd7504642d2838"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/ananke-sky-prompt-2026-10-20.txt",
+        "bytes": 2190,
+        "sha256": "f65a9e0053c063f26068605230b6486ef6b74ff9a28ce831c507406a2159153a"
+      },
+      "fullPrompt": "Use case: photorealistic-natural. Asset type: independent hypothetical astronomy explorer SKY FROM ANANKE observer illustration, wide landscape 1672x941. Primary request: imagined view near the small irregular Jovian moon Ananke (Jupiter XII), looking over a low uneven grey-charcoal muted brown dry granular foreground with scattered angular stones into a nearly black sky. Place a very tiny schematic Jupiter well above the horizon toward the upper right; it should be a small pale unresolved dot with only a hint of warm tone, not a giant sky-filling planet. Research-guided angular-only framing: a spherical 69911km Jupiter at nominal 21029500km minus hypothetical radialheight14.55km has skyGeometry angular diameter0.3809520332110013degrees, about5.5584735163104355pixels at1672width with90degree horizontalFOV. This is an artistic scale guide only, not dated visibility/localnormal or a joint orbit-shape fit. Keep Jupiter tiny without a halo; do not enlarge it to show its bands. The display's intended fictional light/exposure can reveal foreground details and tiny planet together, not calibrated photometry. Sun outside frame, assumed Jupiter heliocentric5.2044AU, not a measurement of this view. Style: photographic scientific concept illustration, restrained, fine texture, simple low-relief landscape distinct from every real body's map. Terrain/grains/blocks/chemistry/fractions/porosity/greycolour/Jupiterphase-axis-pattern/light/exposure invented; no observed-body reference map, no Moon/Mars/Pluto/asteroid skin reuse. JWST unresolved hydrated-mineral compatibility does not measure local composition or visiblecolour. Spin/pole/localnormal unknown, no permanent-Jupiter-facing route, dated site or registered orientation. No foreground atmosphere/haze/clouds, plume, liquid, exposed ocean, mineral deposits, biology, humans or craft; no survivable landing implication. Sparse or absent stars and omitted rings are artistic omissions, not measured absence. Add narrow dark footer at bottom within safe margins, crisp white sans-serif exactly two lines: 'IMAGINED · SKY FROM ANANKE' and 'TERRAIN, PLANET APPEARANCE, COLOUR AND LIGHT ARE HYPOTHETICAL'. No other text/logo.\n",
+      "master": {
+        "path": "public/bespoke/ananke-sky-image.jpg",
+        "bytes": 253646,
+        "sha256": "96f9d876a74fb3fc062686af8bc8c3a510f1e875a5b9d6cccee3f53632103f32"
+      },
+      "preview": {
+        "path": "public/bespoke/ananke-sky-image-preview.jpg",
+        "bytes": 6700,
+        "sha256": "45ff7825ac28ca46799cdaf07ba026ef8970f90ee024fc19cc88fa73122efbe4"
+      },
+      "inspection": "Original and imported masters visually inspected; both original footers readable. Tiny previewfooters require explicitIMAGINEDcardlabels. TinyJupiter uncalibrated,no adopted rasterdiameter."
+    }
+  ],
+  "research": {
+    "date": "2026-10-20",
+    "body": "Ananke / Jupiter XII / JPL512",
+    "status": "Initial research/native/observer preparation only; no98th dossier, generated view, new embedding or catalogue adoption.",
+    "sources": [
+      {
+        "path": "data/research-sources/ananke-nasa-overview-2026-10-20.html",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/ananke/",
+        "bytes": 246894,
+        "sha256": "7cd17bd933c87231d0d922b3469b34c7529e5b322108d7effdfecc859c32d05a"
+      },
+      {
+        "path": "data/research-sources/ananke-jpl-elements-2026-10-20.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      },
+      {
+        "path": "data/research-sources/ananke-jpl-physical-2026-10-20.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.pdf",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "bytes": 561099,
+        "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.txt",
+        "bytes": 53447,
+        "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-page-4.png",
+        "bytes": 535621,
+        "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+      },
+      {
+        "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "bytes": 304821,
+        "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+      },
+      {
+        "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+        "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+        "bytes": 8791,
+        "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+      },
+      {
+        "path": "data/research-sources/ananke-2mass-nondetection-2026-10-20.jpg",
+        "url": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/ananke.jpg",
+        "bytes": 93914,
+        "sha256": "899d734870557d4407e975aa6be7e6439c80aa6af5e605f051370e495b2e1e79"
+      },
+      {
+        "path": "data/research-sources/ananke-ohp-caption-2026-10-20.html",
+        "url": "https://promenade.imcce.fr/fr/pages4/4.html",
+        "bytes": 19318,
+        "sha256": "e44f9f818f54554b7eec13a2558fb907cea21d5d7a37d0d998a5ab26f613740b"
+      },
+      {
+        "path": "data/research-sources/ananke-ohp-publisher-262-2026-10-20.jpg",
+        "url": "https://promenade.imcce.fr/fr/images/jpg2/262.jpg",
+        "bytes": 34861,
+        "sha256": "f1247f9d71b607f0aad3be9f7a04bb1bf61f6baef3ba1b07ca23b69df62eff77"
+      },
+      {
+        "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+        "bytes": 24540,
+        "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+      }
+    ],
+    "identity": {
+      "discovery": "1951-09-28 Seth Barnes Nicholson,100-inch Hooker telescope,MountWilson",
+      "nasaRadiusKm": 14,
+      "nasaRadiusAssumedAlbedo": 0.04,
+      "limits": "Historical family15otherpieces/capture/collision are hypotheses and historical census,not witnessed history/exhaustive current membership. NASA21.3million miles km malformed units retained,not adopted.",
+      "nasaHistoricalOrbit": "About630Earthdays/21.3million miles km malformed units,not silently adopted over directJPLmeans.",
+      "nasaPageUpdated": "2024-01-25 page metadata,not observation"
+    },
+    "meanOrbit": {
+      "source": "Direct downloaded JPL HTML,not search index snippet",
+      "solution": "JUP347",
+      "frame": "planet-centred ecliptic",
+      "epoch": "2000-01-01.5 TDB",
+      "aKm": 21029500,
+      "e": 0.238,
+      "wDeg": 78.8,
+      "meanAnomalyDeg": 271.7,
+      "iDeg": 147.6,
+      "nodeDeg": 13.7,
+      "periodDays": 623.1097,
+      "apsidalYears": 80.8,
+      "nodalYears": 115.5,
+      "pole": null,
+      "reference": 47,
+      "limits": "Mean elements not dated ephemeris/currentdistance/phase/spin/locking/permanentface. No Ananke physical table row; no adopted GM/mass/density/spin/pole/axes."
+    },
+    "thermal": {
+      "authors": [
+        "T.Grav",
+        "J.M.Bauer",
+        "A.K.Mainzer",
+        "J.R.Masiero",
+        "C.R.Nugent",
+        "R.M.Cutri",
+        "S.Sonnett",
+        "E.Kramer"
+      ],
+      "publicationDate": "2015-08-04",
+      "issueDate": "2015-08-10",
+      "terms": "AAS all rights reserved,notCCBY; no paperfigure embedded",
+      "table3VisuallyChecked": true,
+      "diameterKm": [
+        29.1,
+        0.6
+      ],
+      "displayHalfKm": 14.55,
+      "beaming": [
+        1.01,
+        0.03
+      ],
+      "visibleAlbedoPercent": [
+        3.8,
+        0.6
+      ],
+      "w3w4Counts": [
+        15,
+        15
+      ],
+      "roundedMjdUtc": 55370,
+      "lightCurvePeakToPeakMagApprox": 0.4,
+      "limits": "NEATM effective diameter/modelalbedo not measured axes/localnormal/chemistry/porosity. Lightcurve amplitude not a measured/adopted spinperiod. NASA14km alternative separate,not jointfit/envelope."
+    },
+    "spectroscopy": {
+      "authors": [
+        "Benjamin N.L.Sharkey",
+        "Andrew S.Rivkin",
+        "Richard J.Cartwright",
+        "Bryan J.Holler",
+        "Joshua P.Emery",
+        "Cristina Thomas"
+      ],
+      "version": "arXiv2501.16484v2,2025-09-07",
+      "terms": "SpecificCCBY4 for this version,not blanketrawproduct; nofigureembedded",
+      "observationDate": "2024-01-31",
+      "program": 4028,
+      "instrument": "JWST NIRSpec IFU prism,0.7–5.1micron,R~100",
+      "table1": {
+        "phaseDeg": 11.19,
+        "sunDistanceAU": 5.11,
+        "observerDistanceAU": 5.08
+      },
+      "findings": "Broad rounded~3micron/~12percentband,center~2.95micron,overprinted2.86micronfeature. Neutral/leastredsample slope;>3.6neutralfeatureless. SectionVIII says no specific direct match,then consistent with C2 phyllosilicate assemblages/Murchison-like structuralOH. Preserve distinction between compatibility and uniqueidentification. Priorgroundshortwave slope~10percentredder possible fainttargetsystematic,not calibratedvisiblecolour. 3.4complexorganics compatibility not measured local abundance.",
+      "limits": "No local mineral/ice/organic fractions,map,geography,aqueousactivity,ocean/plume/biology. Hydrated-chondrite/capturelineage/unseencore interpretations not unique chemistry or observed history. Himalia/Elara ammoniation/complexedCO2 not transferred to Ananke. Pipeline1.14.0/jwst1225/NSCleanPSF/SNAP2solar/thermaltail not independently reproduced; final/raw calibration audit open."
+    },
+    "native": {
+      "twoMass": {
+        "dimensions": [
+          795,
+          542
+        ],
+        "observationDate": "1998-09-24",
+        "night": "980924s",
+        "scan": "055",
+        "coadd": "198",
+        "publisherStatus": "not visible - too faint",
+        "predictedPosition": [
+          "23 29 24.23",
+          "-04 22 26.4"
+        ],
+        "panels": [
+          "j0550198.fits(frame14)",
+          "h0550198.fits(frame15)",
+          "k0550198.fits(frame16)"
+        ],
+        "limits": "Predicted field/non-detection NOT Ananke detection/geography/axes/calibratedcolour. Publisher says Sept21southerntiles missed target,Sept24scanned predictedlocation. 2007archivedate not observation/firstpublication. RawUTC/product/astrometriclimitingflux not independently reproduced. Retain research-only, noembedding."
+      },
+      "ohp": {
+        "dimensions": [
+          419,
+          425
+        ],
+        "printedObservationUtc": "1998-08-15T00:47",
+        "telescopeCm": 120,
+        "publisherField": "5arcmin x5arcmin,not newly calculated pixel scale",
+        "credit": "OHP/IMCCE/CNRS; printed OHP/CNRS/IMCCE",
+        "terms": "Primaryauthorpermission/pedagogical/noncommerciallimits retained; no verifiedopenlicence/permission/contact/embedding.",
+        "limits": "Arrow/point/stars/noise/printedannotation not resolvedterrain/axes/localchem/visiblecolour. ExactrawUTC/product/filter/exposure/pointcrossmatch/firstpublication/individualcreator open."
+      }
+    },
+    "observerGeometry": {
+      "codeSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+      "cases": [
+        {
+          "heightKm": 14.55,
+          "input": {
+            "radiusSun": 0.10049015380192612,
+            "temperatureK": 165,
+            "distanceAU": 0.14057342762700165,
+            "horizontalFovDeg": 90
+          },
+          "angularDiameterDeg": 0.3809520332110013,
+          "centreDiscWidthFraction": 0.0033244458829607866,
+          "targetPixels1672": 5.5584735163104355
+        },
+        {
+          "heightKm": 14,
+          "input": {
+            "radiusSun": 0.10049015380192612,
+            "temperatureK": 165,
+            "distanceAU": 0.14057343130352457,
+            "horizontalFovDeg": 90
+          },
+          "angularDiameterDeg": 0.3809520232476389,
+          "centreDiscWidthFraction": 0.0033244457960130863,
+          "targetPixels1672": 5.55847337093388
+        }
+      ],
+      "limits": "Hypothetical spherical69911kmJupiter at directmean21029500km minus thermalhalf14.55/NASA14radialheight; not dateddistance/localnormal/spinlocking/permanentface/jointfit/envelope.165K angularhelper only,irradiance/colour discarded. Nominal90HFOV1672guide,notphotometry/registration. Noimagegenerated."
+    },
+    "next": "Prepare independent local/observer views using recorded hypothetical geometry,fullprompts/originalPNG/master/preview provenance, then additive dossier98 if buildbudget passes. Preserve all97 earlier dossiers/native/model/map/shape/Clipper/codecs.",
+    "sourceRetrievalNote": "Python runtime TLS trust failed before body reception; standard curl trust succeeded, with exact received-source hashes retained. No certificate bypass or error-body science hash.",
+    "validation": {
+      "retainedSourceAndGeneratedHashesChecked": 237,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "4a32f34",
+      "priorDossiersDeepEqual": 97,
+      "dossiers": 97,
+      "priorMoonsDeepEqual": 53,
+      "moons": 53,
+      "trackedPublicByteEqual": 702,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15756586,
+      "headroomBytes": 243414,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "a32ba873fe210fd4c3a4481ae01d0de96f0a0635364d0ab989283437b4c2ac12",
+      "applicationSha256": "2ab8af6ef3d56d02ee5634164588f9328308bf385d465a074d44a3a48c56f4ca",
+      "freshBrowserClaim": false,
+      "testsPass": 700,
+      "testsSkip": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass"
+    }
+  },
+  "sourceManifest": {
+    "path": "docs/research/ananke-import-manifest-2026-10-20.json",
+    "bytes": 8381,
+    "sha256": "5ad17a6cc49aa9c3de76ffea6a9a438e7a1bc0f0db4448bbb5fb75581cd69e85"
+  },
+  "limits": "All terrain/materialfractions/porosity/chemistry/colour,Jupiterphase/pattern,light/exposure invented. No datedsite/localnormal/spinlocking/permanentface/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. No nativeimage embedded:2MASSnon-detection/OHPpermissionlimits preserved."
+}

@@ -1,0 +1,13 @@
+{
+  "bodyImages": [
+    "/bespoke/ananke-sky-image.jpg",
+    "/bespoke/ananke-surface-image.jpg"
+  ],
+  "bandImages": [
+    "/api/feed/sdo-193?size=preview",
+    "/api/feed/sdo-94?size=preview",
+    "/api/feed/sdo-1600?size=preview",
+    "/api/feed/sdo-304?size=preview",
+    "/api/feed/sdo-171?size=preview"
+  ]
+}

@@ -322,6 +322,17 @@ export const MOONS = [
       { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Carme physical row in retained JPLtable; GM,mass,density and material fractions unknown.' },
       { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Low-amplitudeWISE lightcurve does not supply an adopted spin period. Nullrotation/lockingdisabled not measured nonsynchronousspin,pole or permanentface.' },
     ], surfacePending: true, discovered: '1938 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views and an unchanged native2MASS point-source display. No resolved globe/shape. Unresolved spectra/thermal fits are not local chemistry or dated geography; OHP imagery remains research-only pending terms reconciliation.' },
+  { id: 'ananke', name: 'Ananke', parent: 'jupiter', radiusKm: 14.55, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(21029500, .238, 78.8, 271.7, 147.6, 13.7, 623.1097, 80.8, 115.5, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Ananke,Jupiter XII,JPL512; distinct CarmeXI. Retrograde orbit does not measure spin.' },
+      { label: 'ORBIT', value: '21,029,500 KM · 623.1097 DAYS', tier: 'modelled', detail: 'JUP347 planet-centred ecliptic2000Jan1.5TDB mean elements,e.238/i147.6deg,not dated ephemerides/current distance.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'No current SPICE/frame/phase/lighttime/covariance registration or permanent Jupiter-facing side.' },
+    ], physicalFacts: [
+      { label: 'RADIUS', value: '14.55 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half Grav2015 NEATM effective DIAMETER29.1±.6km,not axes/localnormal. NASA14km assumes.04albedo,separate alternative,not jointfit/envelope.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Ananke physical row in retained JPLtable; GM,mass,density and material fractions unknown.' },
+      { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Approximate.4mag WISE lightcurve amplitude supplies no adopted spinperiod. Nullrotation/lockingdisabled not measured nonsynchronousspin,pole or permanentface.' },
+    ], surfacePending: true, discovered: '1951 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. OHP nativepoint image remains research-only pending reusepermission; archived2MASS field is explicitly a non-detection. Unresolved spectra/thermal fits are not local chemistry or dated geography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [
