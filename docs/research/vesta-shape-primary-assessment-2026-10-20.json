@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-20",
+  "body": "4 Vesta / catalogue vesta",
+  "status": "Research-only primary conference-abstract audit; no108th dossier,embedding,map/DEM/shape/feature/catalogue/codec change.",
+  "source": {
+    "url": "https://www.hou.usra.edu/meetings/vesta2014/pdf/2027.pdf",
+    "path": "data/research-sources/vesta-preusker-2014-2027.pdf",
+    "bytes": 167481,
+    "sha256": "4384d831c74d3c3f14dfaf0de7516d6793273a3ee159be42af7f1ef6e4d21139"
+  },
+  "citation": {
+    "title": "Global Shape of (4) Vesta from Dawn FC stereo images",
+    "authors": [
+      "F. Preusker",
+      "F. Scholten",
+      "K.-D. Matz",
+      "T. Roatsch",
+      "R. Jaumann",
+      "C. A. Raymond",
+      "C. T. Russell"
+    ],
+    "affiliations": [
+      "German Aerospace Center, Institute of Planetary Research",
+      "Jet Propulsion Laboratory, California Institute of Technology",
+      "UCLA, Institute of Geophysics"
+    ],
+    "venuePrinted": "Vesta in the Light of Dawn: First Exploration of a Protoplanet in the Asteroid Belt (2014)",
+    "identifier": "2027.pdf",
+    "dateLimit": "2014 conference year only; not individual image acquisition or verified publication day. Earlier USGS LPSC-style reference wording is not substituted for the printed venue.",
+    "terms": "No verified CC licence or redistribution/figure permission established. Original retained for research; no paper figure embedded."
+  },
+  "inspection": {
+    "completeText": {
+      "path": "data/research-sources/vesta-preusker-2014-2027.txt",
+      "bytes": 5519,
+      "sha256": "ffc38223ae8c3675cd74162870a47fd452afe7113e0becd90aa44ca0786cb89b"
+    },
+    "pages": 2,
+    "completePagesVisuallyInspected": [
+      1,
+      2
+    ],
+    "renders": [
+      {
+        "path": "data/research-sources/vesta-preusker-2014-2027-page-1.png",
+        "bytes": 514538,
+        "sha256": "c0f231458ec54a4ebeb4c9ff9aa2afa9c6aa10da38fb9d1a085b7dfa296db232"
+      },
+      {
+        "path": "data/research-sources/vesta-preusker-2014-2027-page-2.png",
+        "bytes": 755423,
+        "sha256": "452b1ab5c3fa3fa966cf2f3f2146902e7ff9938f82c647f5f18652fd0af07d88"
+      }
+    ],
+    "scope": "All text, Table1 and full second-page figure/caption/legend inspected. No raw stereo data or pipeline reproduced."
+  },
+  "primaryValues": {
+    "data": "Survey1179 clear-filter images; HAMO about5550; ~95percent coverage. Acquisition campaign extends September2011\u2013July2012; not all-pixel dates.",
+    "network": "~35000 stereo combinations,~83000 control points,~2.5billion object points. Reported control-point improvement55m to8m; mean forward-ray intersection8m; vertical accuracyabout6m. These distinct author accuracy claims are not independently reproduced.",
+    "grid": "48pixels/degree,92.7m/pixel; publisher values, no new raster calculation.",
+    "pole": "RA309.0319+/-0.005deg,DEC42.2229+/-0.005deg. LaterPDSoverviewDEC42.2228 retained separately; cause/version crosswalk open.",
+    "ellipsoid": "Best-fit285.3/277.7/223.8km,longaxis40.6E. LaterPDSoverview285.2 first-axis value retained separately; no silent physical-radius/shape adoption.",
+    "table1": "Illumination difference<10deg,stereo15\u201355deg,incidence0\u201385deg,emission0\u201355deg,phase5\u2013160deg. LaterPDSincidence10\u201390deg is a separate stated selection convention, not harmonized here.",
+    "figure": "Hill-shaded colour-coded heights,Mollweide projection,reference biaxial ellipsoid285x285x229km; legend Elevation[km] -22.28 to19.10. Not calibrated visibleRGB,chemistry,physical radius or heights directly interchangeable with current255kmsphere derivative."
+  },
+  "limits": [
+    "No rawFCUTC/filter/exposure/control-network or exact2013USGSproduct identity proved.",
+    "No current catalogue pole/rotation/physical-radius orcachedDEMheight/frame/validity change.",
+    "No angular/raster-size calculation; printed scales and values only.",
+    "Existing map/DEM/features/originalPNG/master/native/model/shape/provenance bytes preserved; no figure extraction for production."
+  ],
+  "priorReferences": [
+    "docs/research/vesta-native-map-reference-assessment-2026-10-20.json",
+    "docs/research/vesta-texture-source-reproduction-assessment-2026-10-20.json",
+    "docs/research/vesta-dtm-reference-assessment-2026-10-20.json"
+  ],
+  "validation": {
+    "tests": "710 pass, 1 skip (OPENAI_API_KEY unset)",
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browser": "No fresh browser claim.",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 461,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "97d1907",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15973714,
+      "headroomBytes": 26286,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "4f9f64cf439030a76c91165775da320f1803f836e0080f71222ab9ecaa8936a9",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "snapshotChanges": "15leaf changes limited to src/time/disk of five liveSDO band images; saved vesta-shape-snapshot-diff-2026-10-20.json. All other fields exact. Net size change not attributed to research or compression."
+  }
+}

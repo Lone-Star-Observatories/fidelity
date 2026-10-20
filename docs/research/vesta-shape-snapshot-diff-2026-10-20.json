@@ -1,0 +1,117 @@
+[
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+    "before": "2026-10-20T22:30:47Z",
+    "after": "2026-10-20T23:00:47Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+    "before": 0.387253347207557,
+    "after": 0.3872533771611452
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+    "before": {
+      "utf8Bytes": 2247,
+      "sha256": "016b6ea6401cc05c9227de7473b7f399e50e0acd2e4b90ee1e33946ace24cbda",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 2195,
+      "sha256": "77048e682f4f569afff241e8a19a8c48a4848ebbea75d90515c92929854dd2a3",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+    "before": "2026-10-20T22:17:41Z",
+    "after": "2026-10-20T22:47:17Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+    "before": 0.38725338694742284,
+    "after": 0.38725340502401434
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+    "before": {
+      "utf8Bytes": 3783,
+      "sha256": "8cff21b8564f3bf4acc56fd4da7cc1f4e3997e40e2d5794f698259d7b38b8c2f",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3779,
+      "sha256": "027e10cadd77499525f2b96b2ac077e12e7df0b8c5ad0994605b87f028d265d0",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+    "before": "2026-10-20T22:06:38Z",
+    "after": "2026-10-20T22:49:02Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+    "before": 0.3872533668894462,
+    "after": 0.38725337067223403
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+    "before": {
+      "utf8Bytes": 1367,
+      "sha256": "92721a055b58c844007c96a1d7d2f99c0cc6e51c9efb3548c73a9de0d2b0aff8",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 1383,
+      "sha256": "a02ba491978eb435ecb4ad5e50a323eaefbd9e733f91eacae4e9b3065ae8bd3e",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+    "before": "2026-10-20T22:16:09Z",
+    "after": "2026-10-20T22:52:09Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+    "before": 0.38725337553650296,
+    "after": 0.38725337562024537
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+    "before": {
+      "utf8Bytes": 3683,
+      "sha256": "73d1759dda60c9a32c11fce2cb1d4296f59de54790e7a834cc2821bc4a73c5de",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3687,
+      "sha256": "79a0e8e354359b766e6559b857281509d5bcb5a57c9e7997347c358130afcd44",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+    "before": "2026-10-20T22:17:53Z",
+    "after": "2026-10-20T22:47:53Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+    "before": 0.38725340022803745,
+    "after": 0.38725337579129576
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+    "before": {
+      "utf8Bytes": 4191,
+      "sha256": "0c7d6cbc27c3a9723989a2c9a4585a90cc6d1f9191108ed6a560e99e9958639f",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 4211,
+      "sha256": "4a2ca75799e87fe7d96a8d64be4edf40474ced152b017b7f65ed045e047f1fb7",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  }
+]
