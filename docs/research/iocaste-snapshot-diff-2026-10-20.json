@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-20",
+  "baseline": "175a567 prior full snapshot",
+  "changedPaths": [
+    "/bodyImages//bespoke/iocaste-sky-image.jpg",
+    "/bodyImages//bespoke/iocaste-surface-image.jpg",
+    "/bodyImages//references/iocaste-cfht-publisher-120.gif"
+  ],
+  "limits": "Saved JSON differences only; net HTML increment includes catalogue/application fields, not sole asset or compression attribution."
+}

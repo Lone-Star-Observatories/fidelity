@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-20",
+  "browser": "Chrome in-app browser,loopback HTTP UTF16LE",
+  "artifactBytes": 15970062,
+  "exactCompleteJsonApplicationAndHtmlParserPayloads": true,
+  "hashes": {
+    "json": "1818108a27724bfcacac88b380d67231377db6b88803117f20f7352b94a3ffcc",
+    "app": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+    "packedSnapshot": "7a368b341b76245347846d71b0b4324d30d720707d0df45f87b760e383d7120e",
+    "packedApp": "22fdf352b4819c2ad664de31d974a80618a5f7fe90589fbbf580637e99db3e85"
+  },
+  "decodedUniqueImages": 357,
+  "parsedEmbeddedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "canvases": 8,
+  "route": "#/moon/sol/iocaste",
+  "normal": {
+    "cards": 3,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "rotationUnknown": true,
+    "genericPlaceholder": true,
+    "generatedCards": 2,
+    "native": {
+      "dimensions": [
+        120,
+        109
+      ],
+      "mime": "image/gif",
+      "originalFrames": 3,
+      "unchangedPublicBytes": true
+    }
+  },
+  "exactUnmodifiedStandalone": {
+    "cards": 3,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericPlaceholder": true,
+    "generatedCards": 2,
+    "native": {
+      "dimensions": [
+        120,
+        109
+      ],
+      "mime": "image/gif",
+      "originalFrames": 3,
+      "unchangedPublicBytes": true
+    }
+  },
+  "unsupportedGzipNotice": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasmNotice": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "No fresh six-route/eventworker/allinteractive-normal-modelselection/otherengine/directfile claim. Embedded scene parse does not establish all normal models selected."
+}

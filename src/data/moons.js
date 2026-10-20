@@ -421,6 +421,17 @@ export const MOONS = [
       {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No retained JPL physical row;GM,mass,density/localchemistry unknown. Thermalalbedo is modelderived,notlocalfraction.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Spin/pole unknown. Null rotation/locking disabled not measured nonsynchronous spin/permanentface.'},
     ],surfacePending:true,discovered:'2000 · S.S.Sheppard / D.C.Jewitt / Y.R.Fernandez / E.Magnier',note:'Two independent IMAGINED local/observer views and creditedunresolvedCFHTpublisherfield;no resolvedglobe/shape. Rawproduct/pointidentity/calibration open;colour/thermalmodel not localchemistry/geography.' },
+  { id: 'iocaste', name: 'Iocaste', parent: 'jupiter', radiusKm: 2.6, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(21062300, .223, 91.4, 182.0, 148.7, 268.9, 624.5479, 79.2, 116.3, null, 'ecliptic', 2451545.0),
+    orbitFacts:[
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Iocaste,JupiterXXIV,JPL524,S2000J3;distinct KalykeXXIII/S2000J2.'},
+      {label:'ORBIT',value:'21,062,300 KM · 624.5479 DAYS',tier:'modelled',detail:'JUP347 ecliptic2000Jan1.5TDB mean,e.223/i148.7degree,not dated ephemerides/currentdistance/spin. HistoricalNASA21.3Mkm/632days separate.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No current frame/phase/SPICE/lighttime/covariance registration or permanent Jupiter-facing site.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'2.6 KM · ASSUMED ALBEDO 0.04',tier:'modelled',detail:'NASAapproximate radius assumes albedo.04,not measured albedo/axes/localnormal. Grav2015WISEstack nondetection not diameter/albedo measurement.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No retained JPL physical row;GM,mass,density/localchemistry unknown. Broadbandgreycolour not localmaterialmap.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Spin/pole unknown. Null rotation/locking disabled not measured nonsynchronous spin/permanentface.'},
+    ],surfacePending:true,discovered:'2000 · S.S.Sheppard / D.C.Jewitt / Y.R.Fernandez / E.Magnier',note:'Two independent IMAGINED local/observer views and creditedunresolvedCFHTpublisherfield;no resolvedglobe/shape. Rawproduct/pointidentity/calibration open;greycolours not localchemistry/geography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

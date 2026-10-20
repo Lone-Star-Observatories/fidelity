@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-20",
+  "body": "Iocaste / JupiterXXIV / JPL524 / S2000J3",
+  "dossier": 107,
+  "status": "Delivered initial individual dossier; raw native product association, physical registration/photometry/geography and calibration remain open.",
+  "manifest": "docs/research/iocaste-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/iocaste-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/iocaste-reference-native-preparation-2026-10-20.json",
+  "geometryRecord": "docs/research/iocaste-observer-geometry-preparation-2026-10-20.json",
+  "delivery": {
+    "measured": [
+      "Iocaste/JupiterXXIV/JPL524/S2000J3 distinct KalykeXXIII/S2000J2. NASA discovery2000Nov23 MaunaKea Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier;JPL G.Magnier printed separately. MPEC2001-A28 firstSK00J030 Nov23.38600/RA04h25m37.93s/Dec+21d22m43.3s/21.5R/568;all6observers Sheppard,Jewitt,Fernandez,Magnier,Dahm,Evans;Sheppardmeasurer/UH2.2mCCD. Issue2001Jan5 distinct acquisition,not CFHT2001 product association.",
+      "Grav/Holman/Gladman/Aksnes2003v1 Table1/2 whole-object colours Magellan6.5m2002Feb09 V22.52\u00b1.03/H15.27\u00b1.03/B-V.63\u00b1.06/V-R.36\u00b1.04/V-I.62\u00b1.05;historicalinclination149.7degree. Discussionpage19 greyclassification not localchemistry/fractions/calibratedRGB/nativeCFHTcalibration.",
+      "Grav2015 page2 WISE stacks at J24Iocaste ephemerides yielded no signal. Kalyke/Praxidike detections/thermalfits not transferred. Nondetection not absoluteabsence or measured albedo/size;rawstack/limits not independently reproduced."
+    ],
+    "modelled": [
+      "NASA approximate2.6kmradius explicitly assumes albedo.04,not measured albedo/axes/localnormal/uncertainty. OlderNASA21.3Mkm/about632days separate JPLmean alternatives.",
+      "JUP347 row524/reference47 R.A.Jacobson2025 personalcommunication. Planet-centred ecliptic2000Jan1.5TDB mean a21062300/e.223/w91.4/M182.0/i148.7/node268.9/P624.5479days/apsidal79.2/nodal116.3years,poleunknown. Mean precessing ellipse not datedephemerides/currentdistance/covariance/envelope or measured spin. Retrograde orbit not measured spin locking/permanentface.",
+      "Ananke-family/commonorigin/capture/collision/probably irregularshape interpretations not observedhistory/currentcensus/resolvedshape. NASA greycolourguide/2003broadbandindices not chemistry/registeredRGB. Other-body comparison not map/materialfractions."
+    ],
+    "unknown": [
+      "No Iocaste row in retained JPL physicaltable;GM,mass,density,axes,localnormal,spin,pole,terrain,localchemicalfractions/calibratedvisiblecolour unknown. Nullrotation/lockingdisabled not measured nonsynchronousspin.",
+      "CFHTpublishercaption2001Dec10/about30minapart datasets615275p/615282p/615289p/22.4mag and firstframeglare not independently verified rawUTC/filter/exposure/processing/pixelidentity/pointcrossmatch. Currentfilepublicationdate unknown;thumbnailquerytimestamp not acquisition. No exhaustive newest/absenceclaim.",
+      "2003specificassumed1991\u20132003arXivrights and2015AASallrightsreserved notCCBY/nofigureembedded. SpecificCommonsGIFCCBY4/deed distinctpaper/otherproductlicences. CurrentCADCpolicyGETtimeout/nohash;earliersamedayverifiedpolicy retainedseparately. Credits/activefile/deed/policy links retained. No outgoingcontact."
+    ],
+    "assumed": [
+      "No analog/bodymap. Terrain,stones/grains/ridges/hollows,localchemistry/fractions/porosity,greycolour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. Broad-band colours do not calibrate RGB.",
+      "skyGeometryJupiter69911km at21062300minus assumed2.6kmheight gives.38035856400059276deg/5.549814139670607targetpixels1672/90HFOV;meanorbitheightmodel notjointfit/envelope/normal/date/knownvisibility. RenderedJupiter visuallyoversizeduncalibrated,no rasterdiameter adopted.165K helper colourirradiance discarded;Sun5.2044AUoffframe assumed notphotometry.",
+      "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Twolegiblefooterlines originals;smallpreviews requireIMAGINEDcardlabels. No generatedglobe/shape."
+    ],
+    "nativeProducts": {
+      "embedded": true,
+      "original": {
+        "path": "data/research-sources/iocaste-native-original-2026-10-20.gif",
+        "bytes": 3224190,
+        "sha256": "c9381601fe3e188498dcb8771d268e873629118dd5ce16cf0282fa8dfe3ad30e"
+      },
+      "publisherRendition": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Iocaste-Jewitt-full.gif/120px-Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040610",
+        "status": 200,
+        "path": "data/research-sources/iocaste-native-publisher-120-2026-10-20.gif",
+        "bytes": 30795,
+        "sha256": "1bf72079c0dfc63fec7f28ad6ea2db83bd77068333ecc9f7571fd933bd8efa22",
+        "retrievedAt": "2026-10-20T22:28:26.236091+00:00",
+        "sizePolicy": "Publisher MediaWiki Common_thumbnail_sizes120 documented in retained data/research-sources/kalyke-thumbnail-policy-2026-10-20.html; follows actual page960 thumb href,not body-product guessing."
+      },
+      "limits": "Unresolved publisherfield only;rawUTC/product/pointcrossmatch/calibration open. No terrainmap/knownshape."
+    }
+  },
+  "validation": {
+    "tests": {
+      "passed": 710,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 441,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "175a567",
+      "priorDossiersDeepEqual": 106,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 62,
+      "moons": 63,
+      "trackedPublicByteEqual": 739,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 568,
+      "addedImages": [
+        "/bespoke/iocaste-sky-image.jpg",
+        "/bespoke/iocaste-surface-image.jpg",
+        "/references/iocaste-cfht-publisher-120.gif"
+      ],
+      "htmlBytes": 15970062,
+      "headroomBytes": 29938,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "1818108a27724bfcacac88b380d67231377db6b88803117f20f7352b94a3ffcc",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "preparedMastersAndPreviews": "All4 prepared research JPEGs byte-equal imported public masters/previews. Original/defaultPNGs retained unchanged.",
+    "browserRecord": "docs/research/iocaste-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiffRecord": "docs/research/iocaste-snapshot-diff-2026-10-20.json"
+  },
+  "next": "Vesta native/map/shape/primary provenance assessment before next individual dossier; outstanding moons/dwarf/candidate/native-map/craft/shape/calibration/ranking continue ACTIVE. Recover more conforming lossless headroom before larger batches; preserve all107 prior originals/native/model/shape fields and legacy codecs."
+}

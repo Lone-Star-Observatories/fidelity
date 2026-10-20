@@ -18266,6 +18266,200 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "iocaste": {
+    "id": "iocaste",
+    "name": "Iocaste",
+    "kind": "moon",
+    "aliases": [
+      "Iocaste",
+      "Jupiter XXIV",
+      "J24 Iocaste",
+      "S/2000 J3"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe/shape. Own publisher-identified unresolvedCFHTfield retained as nativecontext,not localgeography. Independent IMAGINEDlocal/observer temporary;rawproduct/pointcrossmatch/calibration open.",
+    "measured": [
+      "Iocaste/JupiterXXIV/JPL524/S2000J3 distinct KalykeXXIII/S2000J2. NASA discovery2000Nov23 MaunaKea Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier;JPL G.Magnier printed separately. MPEC2001-A28 firstSK00J030 Nov23.38600/RA04h25m37.93s/Dec+21d22m43.3s/21.5R/568;all6observers Sheppard,Jewitt,Fernandez,Magnier,Dahm,Evans;Sheppardmeasurer/UH2.2mCCD. Issue2001Jan5 distinct acquisition,not CFHT2001 product association.",
+      "Grav/Holman/Gladman/Aksnes2003v1 Table1/2 whole-object colours Magellan6.5m2002Feb09 V22.52±.03/H15.27±.03/B-V.63±.06/V-R.36±.04/V-I.62±.05;historicalinclination149.7degree. Discussionpage19 greyclassification not localchemistry/fractions/calibratedRGB/nativeCFHTcalibration.",
+      "Grav2015 page2 WISE stacks at J24Iocaste ephemerides yielded no signal. Kalyke/Praxidike detections/thermalfits not transferred. Nondetection not absoluteabsence or measured albedo/size;rawstack/limits not independently reproduced."
+    ],
+    "modelled": [
+      "NASA approximate2.6kmradius explicitly assumes albedo.04,not measured albedo/axes/localnormal/uncertainty. OlderNASA21.3Mkm/about632days separate JPLmean alternatives.",
+      "JUP347 row524/reference47 R.A.Jacobson2025 personalcommunication. Planet-centred ecliptic2000Jan1.5TDB mean a21062300/e.223/w91.4/M182.0/i148.7/node268.9/P624.5479days/apsidal79.2/nodal116.3years,poleunknown. Mean precessing ellipse not datedephemerides/currentdistance/covariance/envelope or measured spin. Retrograde orbit not measured spin locking/permanentface.",
+      "Ananke-family/commonorigin/capture/collision/probably irregularshape interpretations not observedhistory/currentcensus/resolvedshape. NASA greycolourguide/2003broadbandindices not chemistry/registeredRGB. Other-body comparison not map/materialfractions."
+    ],
+    "unknown": [
+      "No Iocaste row in retained JPL physicaltable;GM,mass,density,axes,localnormal,spin,pole,terrain,localchemicalfractions/calibratedvisiblecolour unknown. Nullrotation/lockingdisabled not measured nonsynchronousspin.",
+      "CFHTpublishercaption2001Dec10/about30minapart datasets615275p/615282p/615289p/22.4mag and firstframeglare not independently verified rawUTC/filter/exposure/processing/pixelidentity/pointcrossmatch. Currentfilepublicationdate unknown;thumbnailquerytimestamp not acquisition. No exhaustive newest/absenceclaim.",
+      "2003specificassumed1991–2003arXivrights and2015AASallrightsreserved notCCBY/nofigureembedded. SpecificCommonsGIFCCBY4/deed distinctpaper/otherproductlicences. CurrentCADCpolicyGETtimeout/nohash;earliersamedayverifiedpolicy retainedseparately. Credits/activefile/deed/policy links retained. No outgoingcontact."
+    ],
+    "assumed": [
+      "No analog/bodymap. Terrain,stones/grains/ridges/hollows,localchemistry/fractions/porosity,greycolour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. Broad-band colours do not calibrate RGB.",
+      "skyGeometryJupiter69911km at21062300minus assumed2.6kmheight gives.38035856400059276deg/5.549814139670607targetpixels1672/90HFOV;meanorbitheightmodel notjointfit/envelope/normal/date/knownvisibility. RenderedJupiter visuallyoversizeduncalibrated,no rasterdiameter adopted.165K helper colourirradiance discarded;Sun5.2044AUoffframe assumed notphotometry.",
+      "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Twolegiblefooterlines originals;smallpreviews requireIMAGINEDcardlabels. No generatedglobe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM IOCASTE",
+    "skyLabel": "IMAGINED · SKY FROM IOCASTE",
+    "skyCaption": "Tiny hypothetical Jupiter;nominal.380359degree guide,rendered disk oversizeduncalibrated,appearance/phase/axis/light artistic.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "2.6 KM · ASSUMED ALBEDO 0.04"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "21.0623 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.14079276196542817,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 0.38035856400059276,
+      "centreDiscWidthFraction": 0.0033192668299465355,
+      "irradianceEarth": 3.40186325036588e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/iocaste-cfht-publisher-120.gif",
+        "credit": "David Jewitt / Canadian Astronomy Data Centre / Canada-France-Hawaii Telescope",
+        "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Iocaste-Jewitt-full.gif/120px-Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040610",
+        "sourcePage": "https://commons.wikimedia.org/wiki/File:Iocaste-Jewitt-full.gif",
+        "tier": "measured",
+        "label": "NATIVE · UNRESOLVED IOCASTE FIELD",
+        "description": "Publisher-identified CFHT Iocaste animation,caption2001-12-10. Crowded unresolved field,saturation/noise/darkverticalstripes are not terrain/shape/visiblecolour. Firstframe target hidden by star glare percaption,individualpointcrossmatch not independently verified. 120px publisherresampling/reencoding not fullpixelpreservation. RawUTC/filter/exposure/processing/productassociation OPEN. All3frames retained;full1100x1000GIF retained separately.",
+        "observationDate": "2001-12-10",
+        "observationDateLimits": "Publisher caption only;exact rawUTC and individual product crosswalk remain open.",
+        "publicationDate": null,
+        "terms": "Specific publisher file CC BY4.0;credit/link/changes retained. Current direct CADC policy GET timeout/noresponsehash;earlier same-day verified policy retained separately. Not paper/otherproduct licence or rawassociation verification.",
+        "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "archiveTermsUrl": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+        "processing": "Unchanged publisher120x109GIF;publisherresize/reencode not fullpixelpreservation/calibratedphotometry/registeredterrain.",
+        "sha256": "1bf72079c0dfc63fec7f28ad6ea2db83bd77068333ecc9f7571fd933bd8efa22",
+        "sourceSha256": "1bf72079c0dfc63fec7f28ad6ea2db83bd77068333ecc9f7571fd933bd8efa22",
+        "bytes": 30795,
+        "width": 120,
+        "height": 109,
+        "frames": 3,
+        "frameDelayMs": [
+          300,
+          300,
+          300
+        ],
+        "originalSha256": "c9381601fe3e188498dcb8771d268e873629118dd5ce16cf0282fa8dfe3ad30e"
+      }
+    ],
+    "nativeProducts": {
+      "embedded": true,
+      "original": {
+        "path": "data/research-sources/iocaste-native-original-2026-10-20.gif",
+        "bytes": 3224190,
+        "sha256": "c9381601fe3e188498dcb8771d268e873629118dd5ce16cf0282fa8dfe3ad30e"
+      },
+      "publisherRendition": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Iocaste-Jewitt-full.gif/120px-Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040610",
+        "status": 200,
+        "path": "data/research-sources/iocaste-native-publisher-120-2026-10-20.gif",
+        "bytes": 30795,
+        "sha256": "1bf72079c0dfc63fec7f28ad6ea2db83bd77068333ecc9f7571fd933bd8efa22",
+        "retrievedAt": "2026-10-20T22:28:26.236091+00:00",
+        "sizePolicy": "Publisher MediaWiki Common_thumbnail_sizes120 documented in retained data/research-sources/kalyke-thumbnail-policy-2026-10-20.html; follows actual page960 thumb href,not body-product guessing."
+      },
+      "limits": "Unresolved publisherfield only;rawUTC/product/pointcrossmatch/calibration open. No terrainmap/knownshape."
+    },
+    "references": [
+      {
+        "title": "NASA Iocaste albedo-dependent size/discovery/greycolourguide",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/iocaste/"
+      },
+      {
+        "title": "JPL mean JUP347row524 not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL discovery XXIV/S2000J3",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      },
+      {
+        "title": "MPEC2001-A28 SK00J030 astrometry not CFHTpixels",
+        "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+      },
+      {
+        "title": "Grav2003 optical Table1/2,nonCC",
+        "url": "https://arxiv.org/abs/astro-ph/0301016v1"
+      },
+      {
+        "title": "Grav2015 Iocaste WISE nondetection,allrightsreserved",
+        "url": "https://authors.library.caltech.edu/records/atxcf-qdt69"
+      },
+      {
+        "title": "Publisheridentified CFHT Iocaste GIF,CCBY4/processinglimits",
+        "url": "https://commons.wikimedia.org/wiki/File:Iocaste-Jewitt-full.gif"
+      },
+      {
+        "title": "CADCpolicy currenttimeout/earliersamedayretained,notpaperlicence",
+        "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/iocaste-surface-image.jpg",
+      "previewUrl": "/bespoke/iocaste-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iocaste-generated-surfaceImage-original.png",
+      "sourceSha256": "0eb98efddcc56fb9be54535374f6d2349118ce685e1fa0f0d552f0e3c1cea300",
+      "sha256": "61ba0fe415626ab1ce590d6e0ae2cb7882c0a79f5fdfe33a13fcfe36ebbc9e37",
+      "previewSha256": "835c0c3a644b86ce1ebb472acc91d16f264aedceb7e45950b34fe656aae610d9",
+      "bytes": 307348,
+      "previewBytes": 8923,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/iocaste-sky-image.jpg",
+      "previewUrl": "/bespoke/iocaste-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "iocaste-generated-skyImage-original.png",
+      "sourceSha256": "9d79130c2d33c303333a0791d467ff14abeca0153c0affe8c1a46ee8c560c31f",
+      "sha256": "588ba99fac90677d94db23400fadc56723e18dabb3f3061d266eb92bb750aa20",
+      "previewSha256": "ddbe063bcf912a69835833febcf4306fcccd187ebbaa87f4b9feae3dfaa52a65",
+      "bytes": 169570,
+      "previewBytes": 5144,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
