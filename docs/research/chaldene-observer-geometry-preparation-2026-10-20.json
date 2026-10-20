@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-20",
+  "body": "Chaldene / Jupiter XXI / JPL521 / S2000J10",
+  "status": "Research-only geometry/access preparation;no104th dossier,image generation,embedding,catalogue or codec change.",
+  "sourceRecord": "docs/research/chaldene-reference-preparation-2026-10-20.json",
+  "reproducerSha256": "64e5b6041bd6f8de75fe41fd4b62754c2be02fecf54b08ca5c4c620881ad6ffe",
+  "inputs": {
+    "sphericalJupiterRadiusKm": 69911,
+    "assumedRadialHeightKm": 1.9,
+    "meanSemimajorAxisKm": 22926300,
+    "distanceKm": 22926298.1,
+    "horizontalFovDeg": 90,
+    "nominalWidthPx": 1672,
+    "helperTemperatureK": 165
+  },
+  "angularDiameterDeg": 0.34943377530265096,
+  "centreDiscWidthFraction": 0.003049394400209111,
+  "targetPixels": 5.098587437149634,
+  "limitations": [
+    "Uses skyGeometry only;helper temperature does not establish photometry,colour or irradiance;those outputs discarded.",
+    "NASA approximate1.9km height guide is not traced thermal/albedo derivation,resolved axes or localnormal.",
+    "JUP347 mean orbit not dated distance,ephemerides,jointfit,covariance or uncertainty envelope.",
+    "Spherical Jupiter/fieldofview/phase/attitude/lighting/exposure/registration artistic unless independently verified;oblateness not modelled.",
+    "No measured spin,pole,locking or permanent Jupiter-facing site;observer visibility/localnormal unknown.",
+    "No generated raster diameter measured/adopted;Sun5.2044AU off-frame would be an assumption,not photometry."
+  ],
+  "nativeAccess": {
+    "candidateUrl": "https://commons.wikimedia.org/wiki/File:Chaldene-Jewitt-full.gif",
+    "secondarySearchLead": "Three-frame CFHT3.6m DavidJewitt2001Dec10 animation;search metadata only,not independently verified rawproduct/UTC/filter/exposure/credits/rights.",
+    "webFetch": "Cache miss/internal fetch failure",
+    "directDownload": "HTTP403 Forbidden,no image/page bytes retained;no fabricated response/image hash.",
+    "limits": "Do not transfer Taygete2001Dec11 product IDs/rights claim or any other body map. No exhaustive newest-image/absence claim;primary/raw association and specific reuse terms remain open."
+  },
+  "next": "Continue primary/native/size audit or independently generate labelled hypothetical local/observer views with fullprompts/originals/masterhashes;all103 prior dossiers/native/model/shape/provenance retained. BacklogACTIVE.",
+  "validation": {
+    "tests": {
+      "passed": 706,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 367,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "92794f5",
+      "priorDossiersDeepEqual": 103,
+      "dossiers": 103,
+      "priorMoonsDeepEqual": 59,
+      "moons": 59,
+      "trackedPublicByteEqual": 726,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15852866,
+      "headroomBytes": 147134,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "afa0d2a8c05f12deeff38c997cfb0d09a9e494d70e714783dff6faa253e785f3",
+      "applicationSha256": "309f2ef1afdafc3cc70e5e1ee867cebd5ef8900474437a05e0171722b30e3a6e",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser claim;complete Node JSON/application restoration exact and hashes unchanged."
+  }
+}
