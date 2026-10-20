@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-20",
+  "body": "Themisto / Jupiter XVIII / JPL518",
+  "status": "Research preparation only; no dossier101 or image embedding",
+  "generation": "Built-in imagegen, independent new images, no references or analog skins",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-775b7942-ca7e-4fab-a82c-04604ccb3898.png",
+        "bytes": 2588398,
+        "sha256": "9732665b1123b8717220660392bd3e6580606669dfe61728d444e2fc3478947d"
+      },
+      "original": {
+        "path": "data/research-sources/themisto-generated-surfaceImage-original.png",
+        "bytes": 2588398,
+        "sha256": "9732665b1123b8717220660392bd3e6580606669dfe61728d444e2fc3478947d"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/themisto-local-prompt-2026-10-20.txt",
+        "bytes": 1628,
+        "sha256": "1cb98d13f8c7826e3c307feeef51977729dfe006edda9bdcb0d31c67e98db585"
+      },
+      "fullPrompt": "Create one independent scientific-fiction local-view illustration for Fidelity of THEMISTO, Jupiter XVIII, a small irregular moon. Wide landscape 16:9, realistic detailed photographic rendering, no borrowed or recoloured observed-body texture, no reference image. The body is unresolved in retained native data. Entire local terrain is invented: sparse dark neutral grey-brown regolith, scattered small angular blocks, shallow subdued depressions and uneven low ridges on a gently curved tiny-body horizon. Do not depict a recognizable lunar, Martian, asteroid, Pluto or other observed site. Avoid spectacular high cliffs, exposed ice, lava, crystals or coloured mineral veins. Use a low camera near the imagined ground, oblique weak sunlight with artistic exposure revealing texture, black sky assumed for illustration, no atmospheric glow, clouds, plume, water, ocean, biology, astronaut, equipment or landing/survival cues. No Sun, Jupiter, stars, rings or other astronomical disks in this local view, so no angular-size representation. Themisto's 8km diameter is an albedo-dependent assumption, not a resolved shape; do not imply measured scale, spin, permanent face, date or geographic registration. Its red relative near-infrared spectral slope does not determine visible colour or local chemistry, so muted grey-brown here is artistic. Add a clearly legible dark footer band across the bottom with exactly two lines of clean white typography: 'THEMISTO \u2014 IMAGINED LOCAL VIEW' and 'Terrain, colour, chemistry and lighting invented; no mapped site'. Keep text comfortably inside frame and not covering important terrain.",
+      "master": {
+        "path": "data/research-sources/themisto-local-master-1536.jpg",
+        "bytes": 303910,
+        "sha256": "d751291af1c389b7ccf60aba56906788297d00d4f4d43a215d64609f1ef60280"
+      },
+      "preview": {
+        "path": "data/research-sources/themisto-local-preview-256.jpg",
+        "bytes": 10687,
+        "sha256": "f4342c038d2d9173dba5998359956581a381aa3ace4a791b96838b7ffc25e1c6"
+      },
+      "inspection": "Originals,1536px masters and256px previews visually inspected. Both original/master footer lines readable; tiny preview footers require explicit IMAGINED card labels. Jupiter is a tiny rendered disk, not an independently calibrated diameter. No observed map reference used."
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-0135bb5a-7c36-4d78-8f61-18102a7ddc7b.png",
+        "bytes": 1670197,
+        "sha256": "a38f86d5ac60338f692433ae09f94ce5796f82b522728e89599bd80adbc6dc40"
+      },
+      "original": {
+        "path": "data/research-sources/themisto-generated-skyImage-original.png",
+        "bytes": 1670197,
+        "sha256": "a38f86d5ac60338f692433ae09f94ce5796f82b522728e89599bd80adbc6dc40"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/themisto-sky-prompt-2026-10-20.txt",
+        "bytes": 1768,
+        "sha256": "6e22096e80a049569b51ce2a2734f8f19e570f893d5f4b572db59c4b754f9e34"
+      },
+      "fullPrompt": "Create a new independent hypothetical observer illustration for Fidelity: SKY FROM THEMISTO, Jupiter XVIII. Wide landscape 16:9 scientific concept realism. Do not reference, copy, recolour or imitate any observed body's map. Imagined uneven dark grey-brown granular ground with sparse irregular stones and low distant ridges occupies lower half; black sky above. All ground detail, chemistry, material fractions, colour, porosity, illumination and exposure are invented, not mapped or observed. Include one very small Jupiter well above the low horizon: nominal spherical angular-diameter guide 1.0830517897746512 degrees in a 90degree horizontal field at 1672pixel width means about15.803 pixels diameter. It should look a tiny remote off-white disk, with only extremely subtle invented band hints, not a dominant large planet. This guide comes from skyGeometry using spherical69911km Jupiter at mean7397000km separation minus an assumed4km height; not a dated scene, local normal, measured shape, spin locking or permanent Jupiter-facing site. Place it near upper-left middle with generous empty sky. Phase/axis/pattern/exposure artistic and unregistered. Do not include the Sun, additional disks, rings, stars, atmosphere, haze, clouds around the observer, plume, water, exposed ocean, biology, spacecraft or survivable landing cues. Black sky and omitted features are illustrative choices, not measured absence. Small moon8km diameter is albedo-dependent assumption, not shape measurement; nearIR red slope is not visible-colour/local-composition calibration. Include dark footer band inside safe frame with exactly two legible clean white lines: 'THEMISTO \u2014 IMAGINED SKY VIEW' and 'Terrain, Jupiter appearance, colour and lighting hypothetical'. No other text.",
+      "master": {
+        "path": "data/research-sources/themisto-sky-master-1536.jpg",
+        "bytes": 196321,
+        "sha256": "e4aad69d77e77891b70197bbecc6d18a84276ede1174107d82f97ed01c209572"
+      },
+      "preview": {
+        "path": "data/research-sources/themisto-sky-preview-256.jpg",
+        "bytes": 5954,
+        "sha256": "23625e6fb6b7df0e53a705bf40b4ca3291d37fea542cfaaf1427707c1f4fd927"
+      },
+      "inspection": "Originals,1536px masters and256px previews visually inspected. Both original/master footer lines readable; tiny preview footers require explicit IMAGINED card labels. Jupiter is a tiny rendered disk, not an independently calibrated diameter. No observed map reference used."
+    }
+  ],
+  "referenceRecord": "docs/research/themisto-reference-native-preparation-2026-10-20.json",
+  "limits": "All terrain, chemistry, fractions, porosity, visible colour, Jupiter pattern/phase/pole, light/exposure and registration invented. Albedo-dependent assumed8km diameter not resolved axes/local normal. No dated site, measured spin locking/permanent face, foreground atmosphere, plume, liquid, exposed ocean, biology or survivable landing. Black sky/omitted features not measured absence. Jupiter nominal skyGeometry guide1.0830517897746512deg/15.803227835953393px at1672/90HFOV, not a calibrated generated raster diameter. Raw CFHT mosaic remains separate research-only; point crossmatch/open timing not resolved by illustrations.",
+  "next": "Additive importer dossier101 after inspecting masters/previews and preserving all100 dossiers, native/model/map/shape bytes and provenance.",
+  "preservation": {
+    "baseline": "e932972",
+    "trackedPublicFilesByteEqual": 714,
+    "registryAndMoonsUnchanged": true,
+    "queueEntries": 569,
+    "newDossier": false,
+    "newEmbedding": false,
+    "sourceAndGeneratedFilesHashed": 10
+  },
+  "validation": {
+    "tests": {
+      "passed": 703,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15805722,
+    "headroomBytes": 194278,
+    "exactCompleteNodeDecodedReadableJson": true,
+    "readableSha256": "e939ff9eb7c6cc505aadcfe89fade8e5007992bd65314b4b0b60c476eb6d00ba",
+    "applicationSha256": "18f4e868b2bc087fe89b561eb7d75f5eb8f65634289aef2ab4260a9977c7b125",
+    "nativeCardsExactBytesAndMime": 84,
+    "retainedSourceAndGeneratedHashesCheckedByExistingCallirrhoeAudit": 264,
+    "auditBaselineForThose264Hashes": "c7f396e",
+    "freshBrowserClaim": false,
+    "limits": "No application/native/model/map/catalogue/codec inputs changed. Current complete decoded snapshot equality verified in Node; no new browser, route, raster calibration or all-model interactive load claim. Prior application, snapshot and full HTML match the preceding research build exactly; no compression saving claimed."
+  }
+}
