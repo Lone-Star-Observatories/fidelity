@@ -8,7 +8,7 @@ const entries=new Map(),key=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replac
 for(const b of [SUN,...PLANETS,...MOONS,...SMALL_BODIES])entries.set(`sol-${key(b.name)}`,{id:`sol-${key(b.name)}`,bodyId:b.id,name:b.name,parent:b.parent??null,kind:b.kind??'moon',scope:'Solar System catalogue',nativeImagery:b.surfacePending?'no local native map; research native imagery':'existing texture requires provenance/coverage review'});
 for(const b of moonInventory.rows){const id=`sol-${key(b.name)}`;if(!entries.has(id))entries.set(id,{id,name:b.name,parent:b.parent,kind:'moon',scope:'IAU-recognized planetary/Pluto satellite',discoveryYear:b.discoveryYear,discoveryReferences:b.discoveryReferences,source:moonInventory.source,nativeImagery:'unchecked'});}
 // Retain these moons' recognized-inventory discovery provenance as they become selectable.
-for(const name of ['Elara','Pasiphae','Sinope','Lysithea','Carme','Ananke','Leda','Callirrhoe','Themisto','Megaclite','Taygete','Chaldene','Harpalyke']) {
+for(const name of ['Elara','Pasiphae','Sinope','Lysithea','Carme','Ananke','Leda','Callirrhoe','Themisto','Megaclite','Taygete','Chaldene','Harpalyke','Kalyke']) {
  const discovery=moonInventory.rows.find(body=>body.name===name);
  if(discovery)Object.assign(entries.get(`sol-${key(name)}`),{discoveryYear:discovery.discoveryYear,discoveryReferences:discovery.discoveryReferences,source:moonInventory.source});
 }

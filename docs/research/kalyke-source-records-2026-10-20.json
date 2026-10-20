@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-20",
+  "body": "Kalyke / JupiterXXIII / JPL523 / S2000J2",
+  "status": "Two independent generated views with original/defaultPNGs,prompts,masters/previews retained.",
+  "generation": "Built-in imagegen;independent prompts,no references or observed-body map/analog skins.",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9ada5321-fcc9-412e-ae1d-1a8dffcfc70a.png",
+        "bytes": 2751440,
+        "sha256": "422b47b3e3eaa945d9e26a2f73a69a4787ebc9fdfe983640815e266ad311d817"
+      },
+      "original": {
+        "path": "data/research-sources/kalyke-generated-surfaceImage-original.png",
+        "bytes": 2751440,
+        "sha256": "422b47b3e3eaa945d9e26a2f73a69a4787ebc9fdfe983640815e266ad311d817"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/kalyke-local-prompt-2026-10-20.txt",
+        "bytes": 1259,
+        "sha256": "7b88e799a8af547ea6347a7465c4b1bc5c6a3464b6efe11b7b6d899dd952c2f7"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical illustration for Fidelity astronomy explorer,landscape1672x941. Independent new composition,no reference image,no observed-body map or texture,no analog skin. Kalyke/JupiterXXIII/S2000J2 is unresolved:terrain,shape,local chemistry/fractions/porosity,visible colour,spin,pole and localnormal unknown. Disk-integrated broad-band reddish colours and thermal models do not map local terrain or material. Invent a close low-angle scene of restrained dark grey-brown granular relief,small irregular stones,low broken ridges and shallow hollows. Subtle warm brown tone artistic,not calibrated redness or measured chemistry. No recognisable lunar/Martian/Pluto terrain or copied geography. Black sky is an artistic assumption,not absence measurement. No atmospheric haze,cloud,plume,liquid,exposed ocean,biology,spacecraft,astronaut,buildings or survivable landing implication. No astronomical disk,Sun,Jupiter,stars or rings. Lighting/exposure artistic,not photometry. Two clearly legible footer lines in a clean dark band: first exactly \"IMAGINED \u00b7 KALYKE\",second exactly \"INVENTED TERRAIN \u00b7 NOT A DATED SITE\". Keep scene clear of the footer. Scientific concept illustration,not an observed site or photograph claim.",
+      "master": {
+        "path": "data/research-sources/kalyke-local-master-1536.jpg",
+        "bytes": 350331,
+        "sha256": "ac96719821ed390bfe264a44b2430ed577ce2f9e4cb1ecf93c4e7aa3f6c94652"
+      },
+      "preview": {
+        "path": "data/research-sources/kalyke-local-preview-256.jpg",
+        "bytes": 9816,
+        "sha256": "45df4f8676d353a6cbf6ab78d01c35a43b1db6d7e2e20c533f590765a1e33f75"
+      }
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5f396a27-1aab-4fff-a201-b7eeab792f22.png",
+        "bytes": 1659858,
+        "sha256": "728ba48ba22252e007010bc481b68e988b63ebcf74b466ebdd1de93853956d8d"
+      },
+      "original": {
+        "path": "data/research-sources/kalyke-generated-skyImage-original.png",
+        "bytes": 1659858,
+        "sha256": "728ba48ba22252e007010bc481b68e988b63ebcf74b466ebdd1de93853956d8d"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/kalyke-sky-prompt-2026-10-20.txt",
+        "bytes": 1757,
+        "sha256": "eeff389de0bca1cc1708f819750fe51c6e0a5d88b5205f582289ff962b5fadaa"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical observer illustration for Fidelity astronomy explorer,landscape1672x941. Independent new composition,no reference,no observed-body map/texture or analog skin. View from invented Kalyke/JupiterXXIII/S2000J2 local ground toward tiny distant Jupiter. Unknown terrain,chemistry/fractions/porosity,colour,spin,pole,localnormal and actual visibility;not a measured or dated site or permanent Jupiter-facing face. Restrained dark grey-brown granular foreground,low irregular ridges and scattered stones. Warm tone artistic,not photometric calibration of the unresolved reddish broad-band colours. Sky black artistic assumption,not measured absence. Jupiter high clear of the horizon,very small understated off-white disk;do not enlarge into a spectacular big planet. Project skyGeometry spherical69911kmJupiter at mean23298000km minus assumed2.6km radialheight gives.34385884624536966degree diameter/5.017243167429697targetpixels at1672width/nominal90degreeHFOV. Alternative3.45km thermalmodelheight is separate assumption,not localnormal/shape/date/jointfit/envelope. Tiny disk may have barely perceptible artistic tonal variation,no copied Jupiter map or readable resolved geography. Phase,axis,colour,lighting,exposure and registration artistic. Sun5.2044AU assumed off-frame;do not draw Sun. No stars,rings,haze,foregroundatmosphere,cloud,plume,liquid,exposed ocean,biology,craft,astronaut,building or survivablelanding implication. Omissions do not establish absence. Two clearly legible footer lines in clean dark band: first exactly \"IMAGINED \u00b7 SKY FROM KALYKE\";second exactly \"ASSUMED GEOMETRY \u00b7 INVENTED TERRAIN\". Keep scene clear of footer. Restrained scientific concept illustration,not photograph claim.",
+      "master": {
+        "path": "data/research-sources/kalyke-sky-master-1536.jpg",
+        "bytes": 191975,
+        "sha256": "a4759f257ef0f0f6893d89ac3888a212cdb1c300aa040a5a4862090200e44121"
+      },
+      "preview": {
+        "path": "data/research-sources/kalyke-sky-preview-256.jpg",
+        "bytes": 5591,
+        "sha256": "651c9cccbc8a1d1d64f9692e412426ca677ea6591cf767c40c377176ad1f38ef"
+      }
+    }
+  ],
+  "geometryRecord": "docs/research/kalyke-observer-geometry-preparation-2026-10-20.json",
+  "referenceRecord": "docs/research/kalyke-reference-native-preparation-2026-10-20.json",
+  "inspection": "Both original images inspected;two legible footer lines,no overlapping text. Local no astronomical disk;sky visuallyoversized Jupiter remains uncalibrated,no rasterdiameter measured/adopted. Original/master text readable;small preview text requires explicit IMAGINED cardlabels.",
+  "limitations": "All terrain,stones,chemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,lighting/exposure/viewpoint invented. No analogskin,datedsite,knownlocalnormal,spinlocking,permanentface,foregroundatmosphere,plume,liquid,exposedocean,biology or survivablelanding. Blacksky/omissions not absence. NASA2.6kmguide separate thermal6.9\u00b11.3kmdiameter;opticalcolours not localmaterial;JUP347mean not dated distance/jointfit/envelope. No resolved globe/shape;nativecontext has its own credits/source record.",
+  "native": {
+    "publisherRenditions": [
+      {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/320px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+        "error": "HTTP Error 400: Use thumbnail sizes listed on https://w.wiki/GHai"
+      },
+      {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/160px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+        "error": "HTTP Error 400: Use thumbnail sizes listed on https://w.wiki/GHai"
+      },
+      {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/250px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+        "path": "data/research-sources/kalyke-native-publisher-250-2026-10-20.gif",
+        "bytes": 127528,
+        "sha256": "c91699047b34c175442e49d002780ad7ccf60b69c7d5b0963e4d8d5bc38d3a39",
+        "status": 200,
+        "contentType": "image/gif"
+      },
+      {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/120px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+        "path": "data/research-sources/kalyke-native-publisher-120-2026-10-20.gif",
+        "bytes": 33592,
+        "sha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+        "status": 200,
+        "contentType": "image/gif"
+      }
+    ],
+    "thumbnailPolicy": {
+      "url": "https://w.wiki/GHai",
+      "finalUrl": "https://www.mediawiki.org/wiki/Common_thumbnail_sizes",
+      "path": "data/research-sources/kalyke-thumbnail-policy-2026-10-20.html",
+      "bytes": 71599,
+      "sha256": "dfefcd6b30e3ebbf127e2dc376d1b4281d05934ab9b8c81ed9ee623f42cc1580"
+    },
+    "chosen": {
+      "url": "/references/kalyke-cfht-publisher-120.gif",
+      "credit": "David Jewitt / Canadian Astronomy Data Centre / Canada-France-Hawaii Telescope",
+      "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/120px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Kalyke-Jewitt-full.gif",
+      "tier": "measured",
+      "label": "NATIVE \u00b7 UNRESOLVED KALYKE FIELD",
+      "description": "Publisher-identified CFHT Kalyke animation,caption2001-12-10. Crowded unresolved field,noise/saturation and black spots are not terrain/shape/visible colour. 120px publisher resampling/re-encoding is not full-pixel preservation. RawUTC/filter/exposure/processing/individual target-point crossmatch not independently verified. All3frames retained;full2000x1500GIF and250rendition retained separately.",
+      "observationDate": "2001-12-10",
+      "observationDateLimits": "Publisher caption only;exact rawUTC and individual product crosswalk remain open.",
+      "publicationDate": null,
+      "terms": "Specific publisher file CC BY4.0;credit/link/changes retained. CADC repository policy CC BY4.0 verified separately;paper figures/other products not licensed by this assertion.",
+      "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "archiveTermsUrl": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+      "processing": "Unchanged publisher120x90GIF;publisherresize/reencode,not fullpixelpreservation/calibratedphotometry/registeredterrain.",
+      "sha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+      "sourceSha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+      "bytes": 33592,
+      "width": 120,
+      "height": 90,
+      "frames": 3,
+      "frameDelayMs": [
+        300,
+        300,
+        300
+      ],
+      "originalSha256": "440202f91efa21a8653f90a56bcf6dfbc28785594322177e9018ea40ac8187d2"
+    },
+    "publicAsset": {
+      "path": "public/references/kalyke-cfht-publisher-120.gif",
+      "bytes": 33592,
+      "sha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d"
+    },
+    "referenceRecord": "docs/research/kalyke-reference-native-preparation-2026-10-20.json",
+    "metadata": {
+      "width": 120,
+      "height": 90,
+      "pages": 3,
+      "delayMs": [
+        300,
+        300,
+        300
+      ],
+      "loop": 0
+    },
+    "inspection": "All3decoded120x90framesinspected;unchangedGIFpreservesanimation. Publisherresizing/reencoding NOTfullpixelpreservation. Full7.5MBoriginal/250renditionretained. Rawpixel/pointidentity/calibration open. 160/320publisherrequestsHTTP400noresponsebytes/hashinvented;followedpublishedstandard120/250sizes."
+  }
+}

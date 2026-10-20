@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "baseline": "5d7e279 prior full snapshot",
+  "changedPaths": [
+    "/bandImages//api/feed/sunmodel-1400?size=preview/credit",
+    "/bandImages//api/feed/sunmodel-1400?size=preview/src",
+    "/bandImages//api/feed/sunmodel-1400?size=preview/time",
+    "/bandImages//api/feed/sunmodel-408?size=preview/credit",
+    "/bandImages//api/feed/sunmodel-408?size=preview/src",
+    "/bandImages//api/feed/sunmodel-408?size=preview/time",
+    "/bodyImages//bespoke/kalyke-sky-image.jpg",
+    "/bodyImages//bespoke/kalyke-surface-image.jpg",
+    "/bodyImages//references/kalyke-cfht-publisher-120.gif",
+    "/crew/cache"
+  ],
+  "limits": "Saved JSON differences only; net HTML increment includes catalogue/application fields, not sole asset or compression attribution."
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-20",
+  "body": "Kalyke / Jupiter XXIII / JPL523 / S2000J2",
+  "dossier": 106,
+  "status": "Delivered initial individual dossier; raw product association, physical registration, photometry and calibration remain open.",
+  "manifest": "docs/research/kalyke-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/kalyke-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/kalyke-reference-native-preparation-2026-10-20.json",
+  "geometryRecord": "docs/research/kalyke-observer-geometry-preparation-2026-10-20.json",
+  "delivery": {
+    "views": "Two independent built-in original/default PNGs/full prompts retained,1536JPEG85 masters/256JPEG80 previews; offline WebP80. Invented terrain/chemistry/fractions/porosity/colour/Jupiter appearance/phase/axis/light/exposure labelled IMAGINED. No analog map, dated site, known normal, spin locking/permanent face, foreground atmosphere/plume/liquid/ocean/biology/survivable landing. Black/omissions not absence. Rendered Jupiter oversized uncalibrated, no raster diameter adopted.",
+    "native": "Unchanged publisher120x90 three-frame GIF33592 bytes SHA6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d. David Jewitt/CADC/CFHT specific file CC BY4; publisher resizing/reencoding not full-pixel preservation. Full2000x1500 original7512327 bytes and250 rendition retained. Caption2001Dec10/~30min spacing/datasetIDs remain publisher claims; raw UTC/filter/exposure/processing/individual point crossmatch open. Noise/saturation/black spots not terrain/axes/calibrated colour. Publication date unknown. 160/320 endpoint400 documented, no fabricated hashes.",
+    "science": "NASA approximate2.6km radius separate thermal6.9\u00b11.3km effective diameter/2.9\u00b11.4percent derived albedo; W3~4sigma stack14 frames, assumed eta.9\u00b1.2/H15.28\u00b1.04. Not axes/local normal/chemistry/RGB. 2003 insecure red classification/I-band fringing and Jan14/24 discrepancy retained; 2015 D-type summary distinct. Paper licences not CC BY/no figures.",
+    "orbit": "JUP347 ecliptic2000Jan1.5TDB mean23298000/.261/i164.7/P726.7007 separate older NASA23.5M/about742d; retrograde orbit does not measure spin. Unknown rotation/null mass, pending globe/generic placeholder.",
+    "geometry": "skyGeometry69911km Jupiter at23298000 minus separate2.6/3.45km heights gives.34385884624536966/.34385885879069283deg,5.017243167429697/5.0172433504795615px at1672/90HFOV. Not joint fit/date/normal/envelope/visibility/photometry.165K helper angular only, colour/irradiance discarded, Sun5.2044AU assumed off-frame."
+  },
+  "validation": {
+    "tests": {
+      "passed": 709,
+      "skipped": 1,
+      "failed": 0
+    },
+    "initialUnpublishedFailure": "Rotation wording assertion caught ambiguity; explicit retrograde-orbit versus spin statement corrected before passing rerun.",
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 423,
+      "nativeCardsExactBytesAndMime": 85,
+      "baseline": "5d7e279",
+      "priorDossiersDeepEqual": 105,
+      "dossiers": 106,
+      "priorMoonsDeepEqual": 61,
+      "moons": 62,
+      "trackedPublicByteEqual": 734,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 568,
+      "addedImages": [
+        "/bespoke/kalyke-sky-image.jpg",
+        "/bespoke/kalyke-surface-image.jpg",
+        "/references/kalyke-cfht-publisher-120.gif"
+      ],
+      "htmlBytes": 15924246,
+      "headroomBytes": 75754,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "e09924cd842c0440fa338960fa9c9ad18d40b12196788ec2c66bab158fe96693",
+      "applicationSha256": "a1ce59caa7dffabe6237b359f341c53f52b6b4b173bc091e11f3dd30b13fd432",
+      "freshBrowserClaim": false
+    },
+    "browserRecord": "docs/research/kalyke-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiffRecord": "docs/research/kalyke-snapshot-diff-2026-10-20.json"
+  },
+  "next": "Iocaste body-specific native/primary/geometry assessment before generation/additive107; remaining moons/dwarf/candidate/native-map/craft/shape/calibration/ranking continue ACTIVE. Recover conforming lossless headroom before larger batches."
+}

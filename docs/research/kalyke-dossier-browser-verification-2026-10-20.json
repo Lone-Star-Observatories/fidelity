@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-20",
+  "browser": "Chrome in-app browser,loopback HTTP UTF16LE",
+  "artifactBytes": 15924246,
+  "exactCompleteJsonApplicationAndHtmlParserPayloads": true,
+  "hashes": {
+    "json": "e09924cd842c0440fa338960fa9c9ad18d40b12196788ec2c66bab158fe96693",
+    "app": "a1ce59caa7dffabe6237b359f341c53f52b6b4b173bc091e11f3dd30b13fd432",
+    "packedSnapshot": "bc0da5069e0329d92c7b2a29be56379105603322e7b0c923199589a878c76984",
+    "packedApp": "9eb3fd3a5c4b11fbf6de1e11f747098e0ce3b2c188229ae7cffbe99cf7bc39b7"
+  },
+  "decodedUniqueImages": 354,
+  "parsedEmbeddedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "canvases": 8,
+  "route": "#/moon/sol/kalyke",
+  "normal": {
+    "cards": 3,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "rotationUnknown": true,
+    "genericPlaceholder": true,
+    "generatedCards": 2,
+    "native": {
+      "dimensions": [
+        120,
+        90
+      ],
+      "mime": "image/gif",
+      "originalFrames": 3,
+      "unchangedPublicBytes": true
+    }
+  },
+  "exactUnmodifiedStandalone": {
+    "cards": 3,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericPlaceholder": true,
+    "generatedCards": 2,
+    "native": {
+      "dimensions": [
+        120,
+        90
+      ],
+      "mime": "image/gif",
+      "originalFrames": 3,
+      "unchangedPublicBytes": true
+    }
+  },
+  "unsupportedGzipNotice": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasmNotice": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "No fresh six-route/eventworker/allinteractive-normal-modelselection/otherengine/directfile claim. Embedded scene parse does not establish all normal models selected."
+}

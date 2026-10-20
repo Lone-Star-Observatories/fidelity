@@ -1,0 +1,157 @@
+{
+  "generated": "2026-10-20",
+  "bodies": [
+    {
+      "id": "kalyke",
+      "name": "Kalyke",
+      "kind": "moon",
+      "aliases": [
+        "Kalyke",
+        "Jupiter XXIII",
+        "J23 Kalyke",
+        "S/2000 J2"
+      ],
+      "researchDate": "2026-10-20",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe/shape. Own publisher-identified unresolvedCFHTfield retained as nativecontext,not localgeography. Independent IMAGINEDlocal/observer temporary;rawproduct/pointcrossmatch/calibration open.",
+      "measured": [
+        "Kalyke/JupiterXXIII/JPL523/S2000J2 distinct HarpalykeXXII/S2000J5. NASA discovery2000Nov23 MaunaKea prints Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier. JPL G.Magnierinitials retained separately. MPEC2001-A28 firstSK00J020 Nov23.37492/observatory568;all6observers Sheppard,Jewitt,Fernandez,Magnier,Dahm,Evans;Sheppardmeasurer/UH2.2mCCD. Issue2001Jan5 not acquisition;rawUTC/productcrosswalk open.",
+        "Grav/Holman/Gladman/Aksnes2003v1 Table1/2 whole-object colours: NOT2002Jan14 V22.31\u00b1.07/H15.42\u00b1.07/V-R.72\u00b1.09/V-I.96\u00b1.16,B-Vnotreported;MMT2002Mar13 V22.86\u00b1.04/H15.28\u00b1.04/B-V.94\u00b1.08/V-R.70\u00b1.05/V-I.88\u00b1.06. Section5.3Jan24 vsTableJan14 inconsistencyOPEN;possibleIfringing/insecure redclassification/furtherobservations retained,not calibrated RGB/localfractions.",
+        "Grav2015 Table1/2/3/section4.10 W3stack14images MJD55367 W3mag11.32\u00b1.24/~4sigma,not individualdetection or W4source. RawWISE extraction/photometricreproduction open."
+      ],
+      "modelled": [
+        "NASA approximate2.6kmradiusguide/23.5Mkm/about742days separate thermal/elements alternatives;original size/albedo derivation unverified,not axes/localnormal/uncertainty. Do not transfer Harpalykealbedo.04.",
+        "Grav2015 all8authors: assumedbeaming.9\u00b1.2/opticalH15.28\u00b1.04 yieldseffective diameter6.9\u00b11.3km/derivedvisiblealbedo2.9\u00b11.4percent. Halfdiameter3.45\u00b1.65km is sphericaleffective radius,not localnormal. Tablepercentheading vssection4.10 proseomission retained;2015D-type summary separate2003 insecure redclassification,not localchemistry/resolvedterrain.",
+        "JUP347 row523/reference47 R.A.Jacobson2025 personalcommunication. Planet-centred ecliptic2000Jan1.5TDB mean a23298000/e.261/w240.5/M224.9/i164.7/node37.7/P726.7007days/apsidal47.5/nodal83.1years,poleunknown. Mean precessing ellipse not datedephemerides/currentdistance/covariance/envelope or measured spin. Retrograde orbit not measured spin locking/permanentface.",
+        "Carme-family/D-type/Hilda/Trojan/capture/collision/probable irregularshape interpretations not observedhistory,uniqueancestry,currentcensus or resolvedshape. Other-body comparisons not maps/materialfractions."
+      ],
+      "unknown": [
+        "No Kalyke row in retained JPL physicaltable;GM,mass,density,axes,localnormal,spin,pole,terrain,localchemicalfractions/calibratedvisiblecolour unknown. Nullrotation/lockingdisabled not measured nonsynchronousspin.",
+        "CFHTpublishercaption2001Dec10/about30minapart datasets615271p/615278p/615285p and22.4mag not independently verified primaryrawUTC/filter/exposure/processing/pixelidentity/pointcrossmatch. Currentfilepublicationdate unknown;thumbnailquerytimestamp not acquisition. No exhaustive newest/absenceclaim.",
+        "2003recordassumed1991\u20132003arXivrights and2015AASallrightsreserved notCCBY/nofigureembedded. SpecificCommonsGIFCCBY4 andCADCpolicy distinctpaper/otherproductlicences;credits/activefile/deed/policy retained. No outgoingcontact."
+      ],
+      "assumed": [
+        "No analog/bodymap. All terrain,stones/grains/ridges/hollows,localchemistry/fractions/porosity,warmbrowncolour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. Broad-band colours/thermalalbedo do not calibrate RGB.",
+        "skyGeometryJupiter69911km at23298000minus assumed2.6 or3.45km height gives.34385884624536966/.34385885879069283deg and5.017243167429697/5.0172433504795615targetpixels1672/90HFOV;separate models notjointfit/envelope/normal/date. RenderedJupiter visuallyoversizeduncalibrated,no rasterdiameter adopted.165K helper colourirradiance discarded;Sun5.2044AUoffframe assumed notphotometry.",
+        "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Twolegiblefooterlines originals;smallpreviews requireIMAGINEDcardlabels. No generatedglobe/shape."
+      ],
+      "surfaceLabel": "IMAGINED \u00b7 LOCAL VIEW FROM KALYKE",
+      "skyLabel": "IMAGINED \u00b7 SKY FROM KALYKE",
+      "skyCaption": "Tiny hypothetical Jupiter;nominal.343859degree guide,rendered disk uncalibrated,appearance/phase/axis/light artistic.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "2.6 KM \u00b7 GUIDE / THERMAL ALTERNATIVE"
+        ],
+        [
+          "MASS",
+          "UNKNOWN"
+        ],
+        [
+          "ORBIT",
+          "23.298 M KM \u00b7 MEAN SCALE"
+        ],
+        [
+          "ROTATION",
+          "UNKNOWN"
+        ]
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.15573749339468373,
+        "horizontalFovDeg": 90,
+        "angularOnly": true,
+        "star": "Jupiter \u00b7 hypothetical spherical angular guide"
+      },
+      "contextImages": [
+        {
+          "url": "/references/kalyke-cfht-publisher-120.gif",
+          "credit": "David Jewitt / Canadian Astronomy Data Centre / Canada-France-Hawaii Telescope",
+          "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/120px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Kalyke-Jewitt-full.gif",
+          "tier": "measured",
+          "label": "NATIVE \u00b7 UNRESOLVED KALYKE FIELD",
+          "description": "Publisher-identified CFHT Kalyke animation,caption2001-12-10. Crowded unresolved field,noise/saturation and black spots are not terrain/shape/visible colour. 120px publisher resampling/re-encoding is not full-pixel preservation. RawUTC/filter/exposure/processing/individual target-point crossmatch not independently verified. All3frames retained;full2000x1500GIF and250rendition retained separately.",
+          "observationDate": "2001-12-10",
+          "observationDateLimits": "Publisher caption only;exact rawUTC and individual product crosswalk remain open.",
+          "publicationDate": null,
+          "terms": "Specific publisher file CC BY4.0;credit/link/changes retained. CADC repository policy CC BY4.0 verified separately;paper figures/other products not licensed by this assertion.",
+          "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+          "archiveTermsUrl": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+          "processing": "Unchanged publisher120x90GIF;publisherresize/reencode,not fullpixelpreservation/calibratedphotometry/registeredterrain.",
+          "sha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+          "sourceSha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+          "bytes": 33592,
+          "width": 120,
+          "height": 90,
+          "frames": 3,
+          "frameDelayMs": [
+            300,
+            300,
+            300
+          ],
+          "originalSha256": "440202f91efa21a8653f90a56bcf6dfbc28785594322177e9018ea40ac8187d2"
+        }
+      ],
+      "nativeProducts": {
+        "embedded": true,
+        "original": {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "path": "data/research-sources/kalyke-native-original-2026-10-20.gif",
+          "bytes": 7512327,
+          "sha256": "440202f91efa21a8653f90a56bcf6dfbc28785594322177e9018ea40ac8187d2",
+          "status": 200,
+          "contentType": "image/gif"
+        },
+        "publisherRendition": {
+          "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Kalyke-Jewitt-full.gif/120px-Kalyke-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail&_=20200807040607",
+          "path": "data/research-sources/kalyke-native-publisher-120-2026-10-20.gif",
+          "bytes": 33592,
+          "sha256": "6d3b6a3e058bfd6238d31c93ad06f08664d8d78cab142e153351b46a4b1f157d",
+          "status": 200,
+          "contentType": "image/gif"
+        },
+        "limits": "Unresolvedpublisherfield only;rawUTC/product/pointcrossmatch/calibration open. No terrainmap/knownshape."
+      },
+      "references": [
+        {
+          "title": "NASA Kalyke approximate size/discovery/colourguide",
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/kalyke/"
+        },
+        {
+          "title": "JPL mean elements JUP347row523,not ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+        },
+        {
+          "title": "JPL discovery XXIII/S2000J2",
+          "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+        },
+        {
+          "title": "MPEC2001-A28 SK00J020 astrometry,not rawpixels",
+          "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+        },
+        {
+          "title": "Grav etal2003v1 insecure redclassification/Table1/2",
+          "url": "https://arxiv.org/abs/astro-ph/0301016v1"
+        },
+        {
+          "title": "Grav etal2015 thermalmodel/stack,allrightsreserved",
+          "url": "https://authors.library.caltech.edu/records/atxcf-qdt69"
+        },
+        {
+          "title": "Publisheridentified CFHT animation,CCBY4/processinglimits",
+          "url": "https://commons.wikimedia.org/wiki/File:Kalyke-Jewitt-full.gif"
+        },
+        {
+          "title": "CADC archive policy,not paperlicence",
+          "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html"
+        }
+      ],
+      "inputs": {
+        "surfaceImage": "kalyke-generated-surfaceImage-original.png",
+        "skyImage": "kalyke-generated-skyImage-original.png"
+      }
+    }
+  ]
+}
