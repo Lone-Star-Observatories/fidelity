@@ -1,0 +1,194 @@
+{
+  "body": "Callirrhoe / JupiterXVII / JPL517",
+  "dossier": 100,
+  "date": "2026-10-20",
+  "issue": 3,
+  "status": "Delivered additive selectable Callirrhoe with two independent IMAGINED views. Original SPACEWATCH GIFs preserved research-only,no nativeembedding. Calibration/refinement open.",
+  "records": [
+    "callirrhoe-source-records-2026-10-20.json",
+    "callirrhoe-import-manifest-2026-10-20.json",
+    "callirrhoe-reference-native-preparation-2026-10-20.json",
+    "callirrhoe-dossier-browser-verification-2026-10-20.json",
+    "callirrhoe-snapshot-diff-2026-10-20.json"
+  ],
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 264,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "c7f396e",
+    "priorDossiersDeepEqual": 99,
+    "dossiers": 100,
+    "priorMoonsDeepEqual": 55,
+    "moons": 56,
+    "trackedPublicByteEqual": 710,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/callirrhoe-sky-image.jpg",
+      "/bespoke/callirrhoe-surface-image.jpg"
+    ],
+    "htmlBytes": 15807382,
+    "headroomBytes": 192618,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "23026228ffa6fb4e08a3a83d5c8a75a6c425792fc00d2e5af066ff46409a8d92",
+    "applicationSha256": "18f4e868b2bc087fe89b561eb7d75f5eb8f65634289aef2ab4260a9977c7b125",
+    "freshBrowserClaim": false
+  },
+  "browser": {
+    "status": "pass",
+    "browser": "Chrome via IAB,loopbackHTTP",
+    "completeReadableJsonSha256": "23026228ffa6fb4e08a3a83d5c8a75a6c425792fc00d2e5af066ff46409a8d92",
+    "applicationSha256": "18f4e868b2bc087fe89b561eb7d75f5eb8f65634289aef2ab4260a9977c7b125",
+    "htmlParserPackedSnapshotSha256": "b226253251945641a2b8cee15d4bf9ad961494a50cda8357c8476df689e0796f",
+    "htmlParserPackedAppSha256": "642883ffdb92bf77f22a9a2e2805db2977dbca61216025edae7e269f33dcdec8",
+    "decodedImages": 341,
+    "parsedModelScenes": 32,
+    "details": 517,
+    "bands": 20,
+    "startupCanvases": 8,
+    "unsupportedGzipNoticeVerified": true,
+    "unsupportedWasmNoticeVerified": true,
+    "limits": [
+      "Other browser engines remain open.",
+      "Direct-file route not tested; earlier URL-policy limit preserved.",
+      "Model scene parsing is not a fresh all-model interactive load claim.",
+      "Earlier multi-route/event-worker coverage remains historical,not rerun for this additive dossier."
+    ],
+    "normalCallirrhoe": {
+      "cards": 2,
+      "decodedDimensions": [
+        1536,
+        864
+      ],
+      "ownGlobe": false,
+      "nativeContextCards": 0
+    },
+    "offlineCallirrhoe": {
+      "cards": 2,
+      "decodedDimensions": [
+        256,
+        144
+      ],
+      "mime": "image/webp",
+      "ownGlobe": false,
+      "nativeContextCards": 0
+    }
+  },
+  "validation": {
+    "testsPass": 703,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  },
+  "scienceLimits": {
+    "id": "callirrhoe",
+    "name": "Callirrhoe",
+    "kind": "moon",
+    "aliases": [
+      "Callirrhoe",
+      "Jupiter XVII",
+      "J17 Callirrhoe",
+      "S/1999 J1",
+      "1999 UX18"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolvedglobe/shape adopted. Unchanged SPACEWATCH discoveryGIFs retained research-only under unresolvedimage-specificreusepermission; no nativecontextimage embedded.",
+    "measured": [
+      "Callirrhoe / Jupiter XVII / JPL517 / S1999J1,formerly asteroiddesignation1999UX18. NASA discovery1999Oct19,Spacewatch36inchKittPeak; credits JimV.Scotti,TimothyB.Spahr,RobertS.McMillan,JeffreyA.Larsen,JoeMontani,AriannaE.Gleason,TomGehrels.",
+      "SPACEWATCH publisher1999October6.4 threeframeGIF precedes NASA discoverydate. Oct30.4 secondGIF is a staticthreepasscomposite. PDScontext statesOct6–Nov4observations andTimSpahr2000July18Jovianorbitrecognition; these dates/claims remain separate,not silently reconciled.",
+      "SPACEWATCH/UniversityofArizona credits R.S.McMillan/J.A.LarsenOct6,J.A.LarsenOct30; approximate146sexposures,V20.2/20.8,publisher2.2arcmin-square,Northright/Eastbottom not independentlyreproduced calibration/newpixelscale. Movingunresolvedpoints/noise/cosmicrays/passlabels/pointboxes/cursoroverlay not terrain/axes/calibratedvisiblecolour."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.9 NEATM effective DIAMETER9.6±1.3km,eta.85±.17,visiblealbedo5.2±1.6%,10W3/8W4 at roundedMJDUTC55371. Half4.8km displayguide not axes/localnormal; NASA4.3km assumes.04albedo,separatealternative notjointfit/envelope. H13.92±.02mag/G.10±.15assumed. No spin period adopted.",
+      "JUP347 planet-centred ecliptic2000Jan1.5TDB mean a23789400km/e.290/w13.5/M117.9/i144.9/node278.2/P749.7910days/apsidal70.3/nodal92.7years,blankpoleunknown. Mean elements not dated ephemerides/currentdistance/covariance. Retrogradeorbit not measuredspinlocking/permanentface; NASA24.1millionkm/759days historicalalternative retained.",
+      "D-type photometricclassification/Pasiphaefamily/capture/collision/commonparent interpretations not localchemistry/materialfractions/visiblemap or observedhistory. Grav2015 allows separatedynamicalcomplex outsidePasiphae-Ananke; no uniqueorigin asserted. Othermoons spectralchemistry not assigned to Callirrhoe."
+    ],
+    "unknown": [
+      "Mass,GM,density,spin,pole,axes,localnormal,registeredterrain,currentlongitude,chemicalfractions,visiblecolour and datedobserveralignment unknown. No Callirrhoe physicalrow in retainedJPLtable. Nullrotation/lockingdisabled not measurednonsynchronousspin.",
+      "NativeGIF rawproductIDs/exactUTC/filter/exposureperframe/astrometricphotometriccalibration/fullprocessingcreatorcrosswalk/firstpublication/reusepermission open. Publisherdates lack explicit timestandard. Universitycopyrightfooter/policy not image-specificopenlicence/publicdomain; no permission/contact/nativeembedding inferred. No exhaustive newestimage claim.",
+      "Grav2015full8authors/AASallrightsreserved notCCBY,nofigureembedded. Recentbody-specificspectroscopy/final/rawcalibrationaudit open; otherbodies spectra and licences not transferred."
+    ],
+    "assumed": [
+      "Independent invented darkgrey-brown terrain,grains,blocks,ridges,relief,chemistry/fractions/porosity,Jupiterpatterns/phase/pole,colour/light/exposure/viewpoint. No observed-body map or analog skin. No dated site,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Blacksky/omittedstars/rings not measuredabsence.",
+      "skyGeometry spherical69911kmJupiter at mean23789400km minus hypothetical4.8kmradialheight gives.33675601867478744deg/4.913605233348249targetpx at1672width/nominal90HFOV. NASA4.3km alternative.3367560115969072deg/4.913605130074342px separate,not jointfit/envelope/localnormal/date/spinlocking/permanentface. TinygeneratedJupiter uncalibrated,no measuredrasterdiameter adopted.165Khelper angular-only irradiance/colourdiscarded;Sun5.2044AUassumedoffframe notphotometry.",
+      "Original/defaultPNG/fullprompts preserved;1536JPEG85masters/256JPEG80previews/offlineWebP80,tinyfootersrequireexplicitIMAGINEDcardlabels. No generatedglobe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM CALLIRRHOE",
+    "skyLabel": "IMAGINED · SKY FROM CALLIRRHOE",
+    "skyCaption": "Extremely tiny schematic Jupiter guided by nominal0.337° spherical geometry; appearance,phase,axis,light/exposure,FOV and registration artistic,not calibratedrasterdiameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "4.8 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "23.79 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15902228480047478,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide"
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "limits": "SPACEWATCH originalGIFs retained research-only,no verifiedimage-specificreusepermission. Nativeunresolvedpointmotion not resolvedterrain/colour; no nativeglobe/shape/paperfigure adopted."
+    },
+    "references": [
+      {
+        "title": "NASA Callirrhoe historicaloverview/full7persondiscoverycredit",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/callirrhoe/"
+      },
+      {
+        "title": "JPL JUP347 mean elements,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physicaltable,no Callirrhoe row in retainedresponse",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav et al.2015 NEOWISE thermalmodel,eightauthors,AASrights",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "RoundedMJDUTC55371,individualUTCunknown"
+      },
+      {
+        "title": "OriginalSPACEWATCH discoverysequences,research-only",
+        "url": "https://spacewatch.lpl.arizona.edu/news/s1999-j-1",
+        "observationDate": "Publisher1999October6.4/30.4,timestandardnotexplicit"
+      },
+      {
+        "title": "UniversityofArizona copyrightpolicy,not image-specificopenlicence",
+        "url": "https://www.arizona.edu/copyright"
+      },
+      {
+        "title": "PDS Callirrhoe context,not rawimageproductidentity",
+        "url": "https://arcnav.psi.edu/urn%3Anasa%3Apds%3Acontext%3Atarget%3Asatellite.jupiter.callirrhoe"
+      }
+    ],
+    "inputs": {
+      "surfaceImage": "callirrhoe-generated-surfaceImage-original.png",
+      "skyImage": "callirrhoe-generated-skyImage-original.png"
+    }
+  },
+  "buildLimits": [
+    "Saved snapshot diff records two Callirrhoe bodyImages and any live feed refreshes explicitly; net increment not solely asset/compression attribution.",
+    "No codec/model/map/native/shape replacements; all legacydecoders,independentBrotli/JPEG reconstruction/Blobimportrevoke/unsupportednotices/recordedClipper preserved.",
+    "Generated Jupiter appears oversized against nominal angularguide,uncalibrated; no rasterdiameter adopted."
+  ],
+  "next": "Themisto body-specific identity/discovery/native/science audit,then independentviews/additive dossier101 and remaining moons/minorbodies/native-map/craft/shape/calibration/ranking. Read preparedassetindex before generation. BacklogACTIVE,no globalexternalblocker."
+}

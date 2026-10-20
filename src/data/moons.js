@@ -344,6 +344,17 @@ export const MOONS = [
       {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Leda physicalrow in retainedJPLtable; GM,mass,density and chemistryunknown.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verifiedspinperiod/pole adopted. Nullrotation/lockingdisabled not measurednonsynchronousspin or permanentface.'},
     ],surfacePending:true,discovered:'1974 · Charles Thomas Kowal',note:'Two independentIMAGINEDlocal/observerviews,no resolvedglobe/shape. OHPpointimage remains research-only;2MASSfield explicitnon-detection. Thermal/taxonomicmodels not localchemistry or datedgeography.' },
+  { id: 'callirrhoe', name: 'Callirrhoe', parent: 'jupiter', radiusKm: 4.8, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(23789400, .290, 13.5, 117.9, 144.9, 278.2, 749.7910, 70.3, 92.7, null, 'ecliptic', 2451545.0),
+    orbitFacts:[
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Callirrhoe,JupiterXVII,JPL517,S1999J1,formerly1999UX18. Retrogradeorbit not measuredspin.'},
+      {label:'ORBIT',value:'23,789,400 KM · 749.7910 DAYS',tier:'modelled',detail:'JUP347 planet-centred ecliptic2000Jan1.5TDB mean,e.290/i144.9deg,not datedephemerides/currentdistance.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No currentSPICE/frame/phase/lighttime/covariance registration or permanentJupiterface.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'4.8 KM · THERMAL MODEL',tier:'modelled',detail:'Half Grav2015 NEATM effectiveDIAMETER9.6±1.3km,not axes/localnormal. NASA4.3km assumes.04albedo,separatealternative notjointfit/envelope.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Callirrhoe physicalrow in retainedJPLtable;GM,mass,density/chemistryunknown.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verifiedspinperiod/pole adopted. Nullrotation/lockingdisabled not measurednonsynchronousspin/permanentface.'},
+    ],surfacePending:true,discovered:'1999 · Spacewatch / seven credited discoverers',note:'Two independent IMAGINED local/observerviews,no resolvedglobe/shape. OriginalSPACEWATCH discoveryGIFs retained research-only,reusepermissionopen. Thermal/taxonomicmodels not localchemistry/datedgeography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

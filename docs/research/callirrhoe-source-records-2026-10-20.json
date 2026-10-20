@@ -1,0 +1,368 @@
+{
+  "date": "2026-10-20",
+  "body": "Callirrhoe / JupiterXVII / JPL517",
+  "generation": "Built-in imagegen,independent new images,no references/edits/analogskins",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-8706df47-dfa3-482b-ae8b-eb00c9339341.png",
+        "bytes": 2533934,
+        "sha256": "4f2089d54525ad0a9e900db99a389c18120d1b3b4fee00e2ae989f81db855790"
+      },
+      "original": {
+        "path": "data/research-sources/callirrhoe-generated-surfaceImage-original.png",
+        "bytes": 2533934,
+        "sha256": "4f2089d54525ad0a9e900db99a389c18120d1b3b4fee00e2ae989f81db855790"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/callirrhoe-local-prompt-2026-10-20.txt",
+        "bytes": 1110,
+        "sha256": "e26692b5bca825bdb9576e22c24cdcbf84cd3899797e73f808605837f685c62f"
+      },
+      "fullPrompt": "Use case: photorealistic-natural. Asset type: independent hypothetical astronomy explorer LOCAL VIEW FROM CALLIRRHOE, Jupiter's small irregular moon Jupiter XVII, wide1672x941. Original low-camera scientific concept illustration: dry dark grey-brown coarse grains and sparse irregular rough stones on an uneven modest ridge, low horizon, black sky upperthird. All terrain,grains,blocks,chemistry,fractions,porosity,colour,light/exposure invented. D-type photometry and thermal effective diameter9.6km do not establish local materials or resolved geography. No astronomical disk: Jupiter and Sun outside frame. Do not use or imitate any observed Moon,Mars,Pluto,asteroid or other body's map. No dated knownsite/localnormal/spinpole/permanentface. No foregroundatmosphere,haze,plume,liquid,exposedocean,biology,people,craft or survivablelanding implication. Blacksky/omittedstars not measuredabsence. Add narrow dark footer within safe margins with two crisp readable white lines exactly: 'IMAGINED · LOCAL VIEW FROM CALLIRRHOE' and 'TERRAIN, MATERIALS, COLOUR AND LIGHT ARE HYPOTHETICAL'. No other text/logos.\n",
+      "master": {
+        "path": "public/bespoke/callirrhoe-surface-image.jpg",
+        "bytes": 317683,
+        "sha256": "027ae493fa9ff071504480ac0d52dd6bcc99e2da313888e4a72b3853c2dcde42"
+      },
+      "preview": {
+        "path": "public/bespoke/callirrhoe-surface-image-preview.jpg",
+        "bytes": 9491,
+        "sha256": "b2c40079f0444dfba7194dcb04dae826809133897b49cbb35dff5f3e2374d987"
+      },
+      "inspection": "Original and imported masters visually inspected; both original footers readable. Tiny previewfooters require explicitIMAGINEDcardlabels. GeneratedJupiter appears oversized against nominalguide,uncalibrated,no adopted rasterdiameter."
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-6cdb10e3-f9ff-44e9-a097-7a873e3a7ccc.png",
+        "bytes": 1901021,
+        "sha256": "e20e35ee39ce0efb3f23c171e45da6b508f252bcafd797261acadae64e5a1b2c"
+      },
+      "original": {
+        "path": "data/research-sources/callirrhoe-generated-skyImage-original.png",
+        "bytes": 1901021,
+        "sha256": "e20e35ee39ce0efb3f23c171e45da6b508f252bcafd797261acadae64e5a1b2c"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/callirrhoe-sky-prompt-2026-10-20.txt",
+        "bytes": 1325,
+        "sha256": "1034ba736563d03c94e559c8710d4dc6ad6d6944058f95133f4628e1dc038b9d"
+      },
+      "fullPrompt": "Use case: photorealistic-natural. Asset type: independent hypothetical astronomy explorer SKY FROM CALLIRRHOE (Jupiter XVII), wide1672x941. Original low-camera view across subdued dark grey-brown granular slope and scattered jagged stones; black space upperhalf, a very tiny warm creamy Jupiter disk isolated highabove horizon with faint imagined banding. Nominal skyGeometry spherical Jupiter69911km at23789400minus4.8km hypothetical radialheight gives0.33675601867478744degree angular diameter,4.913605233348249pixels at1672width and nominal90degreehorizontalFOV: keep Jupiter extremely tiny, roughly5pixels diameter, not giant planet. This is an artistic guide, not dated alignment/knownlocalnormal/spinpole/locking/permanentface or calibratedphotometry. Sun outside frame5.2044AUassumption. All terrain,chemistry,fractions,porosity,grey-browncolour,Jupiterpatterns/phase/pole,light/exposure invented. No observed-body map or analogskin; no Moon/Mars/Pluto/othermoon textures. No foregroundatmosphere,haze,plume,liquid,exposedocean,biology,people,craft,survivablelanding. Blacksky/omittedstars/rings not measuredabsence. Narrowdarkfooter inside safe margins,two crisp readable white lines exactly: 'IMAGINED · SKY FROM CALLIRRHOE' and 'TERRAIN, JUPITER APPEARANCE, COLOUR AND LIGHT ARE HYPOTHETICAL'. No other text/logo.\n",
+      "master": {
+        "path": "public/bespoke/callirrhoe-sky-image.jpg",
+        "bytes": 225584,
+        "sha256": "3f023a2e7b1ed94eeaab37b076fc6833bd278d4b66a7ff4060e2e2411bd1b854"
+      },
+      "preview": {
+        "path": "public/bespoke/callirrhoe-sky-image-preview.jpg",
+        "bytes": 6845,
+        "sha256": "c676ad2f21bc438d96f33bc4bf69d095040966e3033e2bddf459fbe265cfec18"
+      },
+      "inspection": "Original and imported masters visually inspected; both original footers readable. Tiny previewfooters require explicitIMAGINEDcardlabels. GeneratedJupiter appears oversized against nominalguide,uncalibrated,no adopted rasterdiameter."
+    }
+  ],
+  "research": {
+    "date": "2026-10-20",
+    "body": "Callirrhoe / Jupiter XVII / JPL517 / S/1999 J1, formerly asteroid designation1999 UX18",
+    "status": "Research preparation only. No dossier100, selectable catalogue entry, generated views, globe, shape or native embedding delivered in this batch.",
+    "sources": [
+      {
+        "path": "data/research-sources/callirrhoe-nasa-overview-2026-10-20.html",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/callirrhoe/",
+        "bytes": 248125,
+        "sha256": "1fa706c9e95e51fb97928e8f3243ef4eb9c90f2b683c221a91c15702257c27e3"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-jpl-elements-2026-10-20.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+        "bytes": 580012,
+        "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-jpl-physical-2026-10-20.html",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+        "bytes": 95641,
+        "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-history-2026-10-20.html",
+        "url": "https://spacewatch.lpl.arizona.edu/news-history",
+        "bytes": 154047,
+        "sha256": "e31fbcf1676b85f17f95b1d0c530ff90f7b1e5e0b822e7e967364b96d0861b20"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-caption-2026-10-20.html",
+        "url": "https://spacewatch.lpl.arizona.edu/news/s1999-j-1",
+        "bytes": 48937,
+        "sha256": "f7e8debc08b49c4901ffba8aeb7f3773ed17af22288fe4c2cc3c1e063d6c9285"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-1999-10-06-original.gif",
+        "url": "https://spacewatch.lpl.arizona.edu/sites/spacewatch.lpl.arizona.edu/files/articles/s1999j1an.gif",
+        "bytes": 127891,
+        "sha256": "3437ce825610cfce2ac166a9ea39974ecb2956dfbdebff34ae393c324155f2de"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-1999-10-30-original.gif",
+        "url": "https://spacewatch.lpl.arizona.edu/sites/spacewatch.lpl.arizona.edu/files/articles/s1999j1.gif",
+        "bytes": 63579,
+        "sha256": "1d5a7b7b76b87e11c4a2811b89fbe999eafef5e528f4d68b0755370a350bbead"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-arizona-copyright-2026-10-20.html",
+        "url": "https://www.arizona.edu/copyright",
+        "bytes": 78952,
+        "sha256": "b3de86a92662e3cb417c650a73c6055667a66ec2ae31c0617de67543616460e5"
+      },
+      {
+        "path": "data/research-sources/callirrhoe-pds-context-2026-10-20.html",
+        "url": "https://arcnav.psi.edu/urn%3Anasa%3Apds%3Acontext%3Atarget%3Asatellite.jupiter.callirrhoe",
+        "bytes": 29804,
+        "sha256": "b9ada3bd9e3466beee29ade33e9b90adfe7d75656bbba794d4aa34edb19f1610"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.pdf",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "bytes": 561099,
+        "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-published.txt",
+        "url": null,
+        "bytes": 53447,
+        "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+      },
+      {
+        "path": "data/research-sources/elara-grav2015-page-4.png",
+        "url": null,
+        "bytes": 535621,
+        "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+      }
+    ],
+    "identity": {
+      "nasaDiscovery": "1999-10-19,Spacewatch36-inchKittPeak",
+      "fullDiscoveryCredits": [
+        "Jim V. Scotti",
+        "Timothy B. Spahr",
+        "Robert S. McMillan",
+        "Jeffrey A. Larsen",
+        "Joe Montani",
+        "Arianna E. Gleason",
+        "Tom Gehrels"
+      ],
+      "earlierAcquisition": "Spacewatch publisher1999October6.4 sequence precedes NASA discoverydate; dates denote different claims,not silently reconciled.",
+      "pdsContext": "Context description gives1999Oct6–Nov4images and TimSpahr2000July18Jovian-orbitrecognition. Context is not rawimage product identity."
+    },
+    "thermal": {
+      "authors": [
+        "T. Grav",
+        "J. M. Bauer",
+        "A. K. Mainzer",
+        "J. R. Masiero",
+        "C. R. Nugent",
+        "R. M. Cutri",
+        "S. Sonnett",
+        "E. Kramer"
+      ],
+      "publicationDate": "2015-08-04",
+      "issueDate": "2015-08-10",
+      "method": "NEATM model,Table3 visually checked in retained page4,section4.9 and Table2 extracted text assessed",
+      "effectiveDiameterKm": {
+        "value": 9.6,
+        "error": 1.3
+      },
+      "eta": {
+        "value": 0.85,
+        "error": 0.17
+      },
+      "visibleAlbedoPercent": {
+        "value": 5.2,
+        "error": 1.6
+      },
+      "W3": 10,
+      "W4": 8,
+      "roundedMjdUtc": 55371,
+      "Hmag": {
+        "value": 13.92,
+        "error": 0.02
+      },
+      "G": {
+        "value": 0.1,
+        "error": 0.15,
+        "assumed": true
+      },
+      "limits": [
+        "Half4.8km effective-radius guide is not axes/localnormal/registeredshape. NASA4.3km assumes.04albedo,separate alternative,not jointfit/envelope.",
+        "D-type photometric taxonomy not local chemistry/materialfractions/visiblecolormap. No spin period adopted.",
+        "AASallrightsreserved notCCBY,no paperfigure embedded; final/rawcalibration/currentbody-specificspectroscopy remain open."
+      ]
+    },
+    "meanOrbit": {
+      "source": "JUP347,JPLdirectrow517,reference47Jacobson2025personalcommunication",
+      "referencePlane": "Planet-centred ecliptic",
+      "epoch": "2000-01-01.5TDB",
+      "aKm": 23789400,
+      "e": 0.29,
+      "wDeg": 13.5,
+      "MDeg": 117.9,
+      "iDeg": 144.9,
+      "nodeDeg": 278.2,
+      "periodDays": 749.791,
+      "apsidalYears": 70.3,
+      "nodalYears": 92.7,
+      "pole": null,
+      "limits": [
+        "Mean elements not dated ephemerides/currentdistance/covariance. Retrogradeorbit does not measure spin/locking/permanentface.",
+        "No Callirrhoe row in retainedJPLphysicaltable. Mass/GM/density/spin/pole/axes/localnormal unknown.",
+        "NASA24.1millionkm/759days historicalalternative not silently substituted for currentmeanreference."
+      ]
+    },
+    "native": {
+      "embedded": false,
+      "credits": "SPACEWATCH / UniversityofArizona.1999Oct6.4 observations R.S.McMillan and J.A.Larsen;1999Oct30.4 J.A.Larsen.",
+      "oct6": {
+        "dimensionsPerFrame": [
+          250,
+          250
+        ],
+        "pages": 3,
+        "delayMs": [
+          500,
+          500,
+          250
+        ],
+        "loop": 0,
+        "dateAsPublisher": "1999October6.4",
+        "timeStandard": "Not explicitly stated; do not assert exactUTC",
+        "Vmag": 20.2,
+        "integrationSecondsApprox": 146,
+        "description": "Reversevideo movingpoint nearcentre,up-left inpasses1–3. Skybackgroundnoise/cosmicraysnearobjectpass2; separateasteroidentersbottompass3."
+      },
+      "oct30": {
+        "dimensions": [
+          750,
+          245
+        ],
+        "pages": 1,
+        "dateAsPublisher": "1999October30.4",
+        "timeStandard": "Not explicitly stated",
+        "Vmag": 20.8,
+        "integrationSecondsApprox": 146,
+        "description": "Staticthreepasscomposite,notthreeframeGIFanimation; pointboxes,passlabels,cursoroverlay/backgroundobjects/noise notsurfacefeatures."
+      },
+      "publisherField": "2.2arcminutes square,Northright/Eastbottom; publisher claim,not newrastercalculation.",
+      "inspection": "OriginalGIFs retained unchanged; threeOct6frames andOct30composite decoded to research-onlyPNGs and visuallyinspected. No photometric/astrometric/framecalibration independently reproduced.",
+      "terms": "Publisherfooter©ArizonaBoardofRegents/UniversityofArizona andlinkedcopyrightpolicy retained. No verified image-specificopenlicence/reusepermission; research-only,no embedding/contact/permission inferred. NASAfunding does not make University imagery NASApublicdomain.",
+      "open": [
+        "RawproductIDs/exactUTC/filter/exposureperframe/originalpublicationdate/fullprocessingcreatorcrosswalk/calibration/reusepermission remain open.",
+        "Unresolvedpointmotion not resolvedterrain/shape/localchemistry/calibratedvisiblecolour. Black/displaybackground not atmosphereabsence.",
+        "Webtoolimagecachemiss occurred; directpublisherdownloads succeeded,hashes refer actualretainedGIFs. No exhaustive newest-image claim."
+      ],
+      "diagnostics": [
+        {
+          "path": "data/research-sources/callirrhoe-spacewatch-06-frame-0.png",
+          "bytes": 48474,
+          "sha256": "fa0ffae049e8289b3ac32d313013705583293565ec7a64bf363ac2525884bec2",
+          "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+        },
+        {
+          "path": "data/research-sources/callirrhoe-spacewatch-06-frame-1.png",
+          "bytes": 48528,
+          "sha256": "848f9cb1a379f3edb48c243b8c04c95904e3aca98b37937736372e6d0eb8ec43",
+          "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+        },
+        {
+          "path": "data/research-sources/callirrhoe-spacewatch-06-frame-2.png",
+          "bytes": 48630,
+          "sha256": "8deb86e8732abc11fad0444f7f419614058943813ff088f2640b64a77fb7ec39",
+          "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+        },
+        {
+          "path": "data/research-sources/callirrhoe-spacewatch-30-frame-0.png",
+          "bytes": 79088,
+          "sha256": "2484f368f1f4a6323f193e4a482f302b92fdf57a94b68e4be222a2eaaa8ffe0b",
+          "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+        }
+      ]
+    },
+    "scienceLimits": [
+      "Pasiphaefamily/capture/collision/commonparent interpretations not observedhistory/localchemistry. Grav2015 allows separatedynamicalcomplex; preservealternative rather than assertuniquefamilyorigin.",
+      "Himalia/Elara/Lysithea/Anankespectra not assigned to Callirrhoe. Recentbody-specificspectroscopy/nativeproduct audit remains open."
+    ],
+    "geometry": {
+      "implementation": {
+        "path": "src/astro/appearance.js",
+        "url": null,
+        "bytes": 1394,
+        "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+      },
+      "cases": [
+        {
+          "heightKm": 4.8,
+          "input": {
+            "radiusSun": 0.10049015380192612,
+            "temperatureK": 165,
+            "distanceAU": 0.15902228480047478,
+            "horizontalFovDeg": 90
+          },
+          "angularDiameterDeg": 0.33675601867478744,
+          "centreDiscWidthFraction": 0.002938759110854216,
+          "targetPixels1672": 4.913605233348249
+        },
+        {
+          "heightKm": 4.3,
+          "input": {
+            "radiusSun": 0.10049015380192612,
+            "temperatureK": 165,
+            "distanceAU": 0.15902228814276834,
+            "horizontalFovDeg": 90
+          },
+          "angularDiameterDeg": 0.3367560115969072,
+          "centreDiscWidthFraction": 0.0029387590490875253,
+          "targetPixels1672": 4.913605130074342
+        }
+      ],
+      "limits": "Hypotheticalradialheight/meanorbit/sphericalJupiter/nominal90HFOV1672width,not jointfit/envelope/localnormal/date/locking/permanentface.165Khelperangular-only irradiance/colourdiscarded,Sun5.2044AUassumedoffframe notphotometry. No generatedimage or calibratedrasterdiameter."
+    },
+    "next": "Finish body-specific native/recentprimary/terms audit,then independent labelled local/observer originalPNGs/fullprompts/masterpreviews and additive dossier100,without replacing any earlier body map. Allremainingbacklog ACTIVE,no globalexternalblocker declared.",
+    "validation": {
+      "baseline": "098ccf8",
+      "all99DossiersAnd55MoonsUnchanged": true,
+      "all710TrackedPublicFilesByteEqual": true,
+      "queueEntries": 569,
+      "queueByteEqual": true,
+      "sourceHashesChecked": 12,
+      "nativeCardsExactBytesAndMime": 84,
+      "testsPass": 702,
+      "testsSkip": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "htmlBytes": 15791778,
+      "headroomBytes": 208222,
+      "completeReadableJsonSha256": "c04244d6a9aa977b7772d2b1ac3ffbfaac370998ab753a5e9313d5c7c46a5504",
+      "applicationSha256": "6de288657cbb4323aec9783fb7af1047640afd55419a8c7462685171fde15d6a",
+      "fullNodeDecodedEquality": true,
+      "freshBrowserClaim": false,
+      "limits": "Registry/catalogue/public/native/map/model/shape/codec inputs unchanged. Prior Leda browser verification remains historical; no new browser/model-load claim or compression savings attribution."
+    }
+  },
+  "sourceManifest": {
+    "path": "docs/research/callirrhoe-import-manifest-2026-10-20.json",
+    "bytes": 7153,
+    "sha256": "69b68af40b5b22c514a5f54554e1287da1d8742d808f5a54eb2c002a16ee5c67"
+  },
+  "limits": "All terrain/materialfractions/porosity/chemistry/colour,Jupiterphase/pattern,light/exposure invented. No datedsite/localnormal/spinlocking/permanentface/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. No nativeimage embedded:SPACEWATCHreusepermission/rawproduct/calibrationlimits preserved."
+}
