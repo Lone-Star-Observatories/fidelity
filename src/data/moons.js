@@ -366,6 +366,17 @@ export const MOONS = [
       {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Themisto physical row in retained JPL table;GM,mass,density and chemistry unknown.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verified spin period/pole adopted. Null rotation/locking disabled not measured nonsynchronous spin/permanent face.'},
     ],surfacePending:true,discovered:'1975 · Charles Thomas Kowal / Elizabeth Roemer; rediscovered2000',note:'Two independent IMAGINED local/observer views;no resolved globe/shape. CFHT native mosaic research-only,point identity/timing/WCS open. Unresolved JWST spectra and assumed photometric size not local chemistry/geography.' },
+  { id: 'megaclite', name: 'Megaclite', parent: 'jupiter', radiusKm: 2.7, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(23640100, .421, 309.9, 116.1, 149.9, 292.2, 742.7715, 55.6, 74.1, null, 'ecliptic', 2451545.0),
+    orbitFacts:[
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Megaclite,JupiterXIX,JPL519,S2000J8. JPL mean row Magaclite identity crosswalk,spelling history cause unverified.'},
+      {label:'ORBIT',value:'23,640,100 KM · 742.7715 DAYS',tier:'modelled',detail:'JUP347 planet-centred ecliptic2000Jan1.5TDB mean,e.421/i149.9deg,not dated ephemerides/current distance. Retrograde orbit not measured spin.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No current SPICE/frame/phase/lighttime/covariance registration or permanent Jupiter-facing site.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'2.7 KM · ALBEDO ASSUMPTION',tier:'modelled',detail:'NASA assumes geometric albedo.04,not thermal measurement/axes/local normal. NEOWISE stacks no detected Megaclite signal.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Megaclite physical row in retained JPL table;GM,mass,density and chemistry unknown.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verified spin period/pole adopted. Null rotation/locking disabled not measured nonsynchronous spin/permanent face.'},
+    ],surfacePending:true,discovered:'2000 · S.S.Sheppard / D.C.Jewitt / Y.R.Fernandez / E.A.Magnier',note:'Two independent IMAGINED local/observer views;no resolved globe/shape. Native animation/raw-product identity and rights unverified. Assumed photometric size and unresolved BVRI colours not local chemistry/geography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

@@ -17455,6 +17455,164 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "megaclite": {
+    "id": "megaclite",
+    "name": "Megaclite",
+    "kind": "moon",
+    "aliases": [
+      "Megaclite",
+      "Magaclite",
+      "Jupiter XIX",
+      "J19 Megaclite",
+      "S/2000 J8"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe/shape adopted. Secondary animation lead and CADC raw-product query remain unverified/inaccessible; no native image downloaded or embedded. Independent IMAGINED fallbacks are temporary.",
+    "measured": [
+      "Megaclite / Jupiter XIX / JPL519 / S2000J8. NASA discovery2000-11-25 Mauna Kea,Hawaii credits Scott S. Sheppard,David C. Jewitt,Yanga R. Fernandez,Eugene A. Magnier. JPL discovery/MPEC print G.Magnier separately; documentary Magaclite row519 crosswalk is not a verified history/cause of spelling.",
+      "MPEC2001-A29 issued2001Jan5 20:35UT covers five moons; Megaclite SK00J080 first printed C2000 11 25.48160 04 27 20.96 +20 52 11.8 21.5R568. Observer list S.S.Sheppard,D.C.Jewitt,Y.R.Fernandez,G.Magnier,S.Dahm,A.Evans; measurerS.S.Sheppard,2.2mUniversityofHawaii reflector+CCD. Six observer roles not four discovery credits or verified raw-image UTC/filter/exposure.",
+      "Grav,Tommy;Holman,MatthewJ.;Gladman,BrettJ.;Aksnes,Kaare: Photometric Survey of the Irregular Satellites,2003Jan2 arXivv1,finalcitation Icarus166,33–45 DOI10.1016/j.icarus.2003.07.005. Table1 Magaclite NOT2.56m2002Jan14UT,Sun5.17AU/observer4.21AU/phase2.27deg/Observer-Primary-Target85.2deg. Methods2.51m versus Table2.56m retained,not corrected. Separate from December2001CFHT secondary lead.",
+      "Table2 Magaclite absoluteV15.12±.05/observedV22.07±.05/B−V.94±.09/V−R.41±.07/V−I1.05±.07,1sigma. Historical inclination152.7deg separate from current mean149.9deg. Unresolved relative photometry,not calibrated RGB/local chemistry/fractions/geography."
+    ],
+    "modelled": [
+      "NASA guide radius2.7km assumes geometric albedo.04; not a thermal measurement,axes/local normal or measured size uncertainty. Grav2015 Megaclite stacks yielded no detected signal,no NEOWISE diameter/albedo adopted; Themisto scattered-light explanation is not transferred.",
+      "JUP347 row519 Magaclite/reference47Jacobson2025personalcommunication,planet-centred ecliptic2000Jan1.5TDB mean a23640100km/e.421/w309.9/M116.1/i149.9/node292.2/P742.7715days/apsidal55.6/nodal74.1years,poleunknown. Not dated ephemerides/current distance/covariance. HistoricalNASA23.8millionkm/about753days retained separately,not uncertainty envelope. Retrograde orbit is not measured spin locking/permanent face.",
+      "AbsoluteV normalization assumes unit Sun/Earth distance and zero phase; reduction/phase calibration not independently reproduced. Relative light-red BVRI class not local visible colour/mineral identity or measured albedo. Pasiphae-like orbital colour heterogeneity complicates single-parent origin;capture/collision/resonance/evolution hypotheses not observed local history or certain ancestry."
+    ],
+    "unknown": [
+      "Actual albedo,size uncertainty,axes,local normal,mass,GM,density,spin,pole,current longitude,terrain,chemical fractions and calibrated visible colour unknown. No Megaclite/Magaclite physical row in retained JPL table. Null rotation/locking disabled does not measure nonsynchronous spin.",
+      "Secondary GIF claims CFHT2001Dec9/DavidJewitt/615032p,615039p,615046p/threeframes~30min spacing; not independently verified raw-product/pixel identity,UTC/filter/exposure/creation/processing or rights. CADC query timed out twice;direct secondary403 and IAUC8023 certificate failure recorded without bypass or invented hashes. Native unresolved detections would not resolve terrain/axes/chemistry.",
+      "CFHT HawaiianStarlight website consultation/copyright terms not automatically raw CADC/secondary animation terms;uploaderCCBYSA4 not blanket verified permission. ArXivpre2004 assumed nonexclusive distribution not CC BY or figure reuse. Finalpublisher/rawphotometry/phase/product/frame/calibration/licence audit remains open. No paper figure or native context image embedded;no exhaustive newest-image claim."
+    ],
+    "assumed": [
+      "Independent invented neutral grey-brown grains,stones,ridges,depressions,terrain,chemistry/fractions/porosity,Jupiter pattern/phase/axis,visible colour,lighting/exposure/viewpoint. No observed-body map or analog skin. No dated site,known local normal,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Black sky/omitted stars/rings not measured absence.",
+      "skyGeometry spherical69911km Jupiter at mean23640100km minus assumed2.7km radial height gives.3388827913302414deg/4.944637141936351target pixels at1672width/nominal90HFOV. Not jointfit,dated site,local normal,spin locking/permanent face or uncertainty envelope. Tiny rendered Jupiter uncalibrated,no raster diameter adopted.165Khelper angular-only irradiance/colour discarded;Sun5.2044AU assumed off-frame,not photometry.",
+      "Both independent original/defaultPNGs/fullprompts and earlier1536/256aspect-preserving preparations preserved. Sky original1712x919 outside importer tolerance;separately preserved built-in layout edit1672x941 is not pixel-identical or mere deterministic padding. Original terrain remains invented;no observed map reference. Imported1536JPEG85masters/256JPEG80previews/offlineWebP80 tiny footers require explicit IMAGINED card labels. No generated globe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM MEGACLITE",
+    "skyLabel": "IMAGINED · SKY FROM MEGACLITE",
+    "skyCaption": "Tiny hypothetical Jupiter;nominal.338883degree angular guide,appearance/phase/axis/exposure/registration artistic,not a calibrated raster diameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "2.7 KM · ALBEDO ASSUMPTION"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "23.6401 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15802428998075307,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 0.3388827913302414,
+      "centreDiscWidthFraction": 0.0029573188647944683,
+      "irradianceEarth": 2.7004106596497916e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "credit": "Unverified secondary David Jewitt/CFHT animation lead;no image credit adopted as product identity.",
+      "source": "https://commons.wikimedia.org/wiki/File:Megaclite-Jewitt-full.gif",
+      "terms": "Secondary CC BY-SA claim and CFHT consultation policy distinct;raw CADC/animation applicability unverified.",
+      "limits": "No downloaded native image/hash,verified raw-point/product crosswalk or permission conclusion;not resolved geography/visible colour."
+    },
+    "references": [
+      {
+        "title": "NASA Megaclite assumed radius and four discovery credits",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/megaclite/"
+      },
+      {
+        "title": "JPL JUP347 row519 Magaclite,mean elements not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table,no retained Megaclite row",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "MPEC2001-A29 SK00J080 discovery astrometry,issued2001Jan5 not observation date",
+        "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html"
+      },
+      {
+        "title": "Grav,Holman,Gladman,Aksnes2003 v1 BVRI photometry;nonexclusive notCCBY",
+        "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+        "publicationDate": "2003-01-02",
+        "observationDate": "2002-01-14"
+      },
+      {
+        "title": "Grav et al.2015 no Megaclite stacked signal;no thermal size adopted",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3"
+      },
+      {
+        "title": "ArXiv assumedpre2004 nonexclusive distribution,not figure reuse",
+        "url": "https://arxiv.org/licenses/assumed-1991-2003/"
+      },
+      {
+        "title": "CFHT HawaiianStarlight policy,raw/secondary applicability remains open",
+        "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/megaclite-surface-image.jpg",
+      "previewUrl": "/bespoke/megaclite-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "megaclite-generated-surfaceImage-original.png",
+      "sourceSha256": "5e840a0553c737518acd67b4199fe38c383d6142e03c95da46684c43d17d8d07",
+      "sha256": "bf72321b05805e94190494fde93ba52eaee666bd69dc33b02dd0b0900084cf00",
+      "previewSha256": "1c74093c244e31720fbebca270fbf9f385a112d12c5f97f732ca762672baa449",
+      "bytes": 292925,
+      "previewBytes": 8516,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/megaclite-sky-image.jpg",
+      "previewUrl": "/bespoke/megaclite-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "megaclite-generated-skyImage-layout-v2.png",
+      "sourceSha256": "de27a86b94121821dfd077f04edebda1d33798feddb84b64aef9ef7ff0e9876d",
+      "sha256": "7f84d44c1327961ef422003699ee1b6d5ff59308892ae9ad065e7dc8c89560f9",
+      "previewSha256": "056801fd20d5298c24d15ec6e7b6c4cda2d5b96e3f8eb07781f1e75a79a3d823",
+      "bytes": 165239,
+      "previewBytes": 4756,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

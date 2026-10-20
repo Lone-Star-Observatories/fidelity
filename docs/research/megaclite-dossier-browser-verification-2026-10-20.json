@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-20",
+  "browser": "ChatGPT in-app browser,Chrome engine,loopback HTTP served UTF-16LE standalone",
+  "audit": {
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "encoding": "gzip-raw-utf16le-enumerative-v2",
+    "json": "f83a5932a01be8112192ed92c2fff95b2dc34f7971490c3ba868e21bb8496206",
+    "app": "8c02b1c29832f0cbce7ce1880963b0fe2dfe868a1aac93d3ec976c45ab962527",
+    "packedSnapshot": "bd391a4c09c47c4d45a072eaf16f0c8d30f18f4e5ead6eb23476dd0502eb5e9d",
+    "packedApp": "3cffb271dc8cde32727627a4553df60a00b707ba37d8a42f1572d8c8954d868f",
+    "canvases": 8,
+    "uniqueImages": 345,
+    "decodedImages": 345,
+    "parsedModels": 32,
+    "details": 517,
+    "bands": 20,
+    "exact": true
+  },
+  "route": "#/moon/sol/megaclite",
+  "normal": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "sources": [
+      "/bespoke/megaclite-surface-image.jpg",
+      "/bespoke/megaclite-sky-image.jpg"
+    ],
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "offlineUninstrumented": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "unsupportedGzip": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasm": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "All32 embedded model scenes parsed by GLTFLoader,not fresh interactive normal-model selections. Other engines,direct file navigation and fresh six-route/event-worker regression not independently tested this batch;earlier checks remain historical."
+}

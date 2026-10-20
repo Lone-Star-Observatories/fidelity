@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-20",
+  "body": "Megaclite / Jupiter XIX / JPL519 / S2000J8",
+  "dossier": 102,
+  "status": "Delivered initial individual dossier;calibration,geography,native product/rights and physical ranking audits remain open.",
+  "manifest": "docs/research/megaclite-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/megaclite-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/megaclite-reference-native-preparation-2026-10-20.json",
+  "delivery": {
+    "views": "Two independent built-in IMAGINED local/observer views. Sky uses separately preserved built-in layout edit1672x941,not pixel-identical padding. Prior1712x919PNG/default/master/preview/fullprompt retained unchanged. No observed map/analog skin,generated globe or shape.",
+    "native": "No native image downloaded/embedded;secondary GIF403/CADCtimeouts/IAUCcertificate failure retained with no invented hashes/UTC/product/permissions.",
+    "catalogue": "Additive selectable moon;JUP347 row519 Magaclite crosswalk,mean23640100km/.421/149.9deg/742.7715days planet-centred ecliptic2000Jan1.5TDB not dated ephemerides/spin. All57 earlier MOONS unchanged.",
+    "size": "NASA2.7km radius assumes albedo.04,not thermal measurement/axes/local normal. No NEOWISE stack detection. GM/mass/density/spin/pole unknown.",
+    "photometry": "Grav/Holman/Gladman/Aksnes2003v1 NOT2002Jan14 BVRI photometry unresolved;relative light-red not local visible RGB/minerals/fractions. Assumed pre2004 arXiv nonexclusive notCCBY/nofigure. Finalpublisher/rawcalibration open.",
+    "geometry": "skyGeometry spherical69911km Jupiter at mean23640100minus assumed2.7km gives.3388827913302414deg/4.944637141936351targetpixels at1672nominal90HFOV. Prompt guide only;no calibrated generated raster diameter,date/localnormal/spinlocking/permanentface/envelope.165K angularhelper colourirradiance discarded;Sun5.2044AU assumed off-frame.",
+    "imagined": "All terrain/materialfractions/chemistry/porosity,colour,Jupiterappearance/phase/axis,light/exposure/registration invented. No datedsite,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Black/omissions notabsence. Tiny preview footers require explicit IMAGINED labels."
+  },
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 341,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "8a71543",
+    "priorDossiersDeepEqual": 101,
+    "dossiers": 102,
+    "priorMoonsDeepEqual": 57,
+    "moons": 58,
+    "trackedPublicByteEqual": 718,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/megaclite-sky-image.jpg",
+      "/bespoke/megaclite-surface-image.jpg"
+    ],
+    "htmlBytes": 15836930,
+    "headroomBytes": 163070,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "f83a5932a01be8112192ed92c2fff95b2dc34f7971490c3ba868e21bb8496206",
+    "applicationSha256": "8c02b1c29832f0cbce7ce1880963b0fe2dfe868a1aac93d3ec976c45ab962527",
+    "freshBrowserClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 705,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browserVerification": "docs/research/megaclite-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiff": "docs/research/megaclite-snapshot-diff-2026-10-20.json",
+    "snapshotDiffOnly": "Two new Megaclite bodyImages;prior models/textures/bodyImages unchanged. Application/catalogue metadata changes mean net HTML increment is not solely image payload or compression attribution."
+  },
+  "next": "Taygete body-specific identity/native/primary/geometry assessment before independent views/additive dossier103;continue other moons,dwarf/candidate/native-map/craft/shape/calibration/ranking tasks. Recover conforming lossless headroom before larger batches;all original/native/master/models/science retained. BacklogACTIVE,no global external blocker."
+}

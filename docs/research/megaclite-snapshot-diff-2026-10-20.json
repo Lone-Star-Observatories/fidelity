@@ -1,0 +1,20 @@
+{
+  "baseline": "Saved complete snapshot before Megaclite import",
+  "differences": [
+    {
+      "path": "snapshot.bodyImages./bespoke/megaclite-sky-image.jpg",
+      "added": {
+        "characters": 4831,
+        "sha256": "c6d800cc9c19c57c5012d5aef2c72c8964aaff38a53cb154c18efd6eb06e6689"
+      }
+    },
+    {
+      "path": "snapshot.bodyImages./bespoke/megaclite-surface-image.jpg",
+      "added": {
+        "characters": 9887,
+        "sha256": "4ec1e3a5ed1f2840b510cc9cd5f2c111ee9fda423b6c7c62be418d92c69a5eae"
+      }
+    }
+  ],
+  "limits": "Two added Megaclite illustrations;other fields explicitly listed. Dynamic feed refresh not asset/compression saving attribution."
+}
