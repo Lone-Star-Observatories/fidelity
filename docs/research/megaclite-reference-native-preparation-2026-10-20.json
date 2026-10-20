@@ -1,0 +1,345 @@
+{
+  "date": "2026-10-20",
+  "body": "Megaclite / Jupiter XIX / JPL519 / S2000J8",
+  "status": "Research preparation only; no dossier102, catalogue entry, generated view or native embedding",
+  "sources": [
+    {
+      "path": "data/research-sources/megaclite-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/megaclite/",
+      "bytes": 247826,
+      "sha256": "ad1e9081eb9ef0a0ceb6ff9522135b336ae5e19900758e2de39b4851e9d32632",
+      "status": 200,
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/megaclite/",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/megaclite-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/megaclite-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/megaclite-pds-context-2026-10-20.html",
+      "url": "https://arcnav.psi.edu/urn%3Anasa%3Apds%3Acontext%3Atarget%3Asatellite.jupiter.megaclite",
+      "bytes": 26855,
+      "sha256": "5fa965c8a62b7eb4dd571b157942ff2cb89b5487729d2de3868f91d4ffcd22ea",
+      "status": 200,
+      "finalUrl": "https://arcnav.psi.edu/urn%3Anasa%3Apds%3Acontext%3Atarget%3Asatellite.jupiter.megaclite",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1.pdf",
+      "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "bytes": 412867,
+      "sha256": "4a154cbcf0068984ffcfe4bfa8b80c1f395f68b5792bad7aa0e18f2372dd1a0c",
+      "isPdf": true,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "contentType": "application/pdf"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record.html",
+      "url": "https://arxiv.org/abs/astro-ph/0301016",
+      "bytes": 44195,
+      "sha256": "48ee3001175488c42dd3365ba4ebe2433ace3f38963dbd5b63ad284df42c14c0",
+      "isPdf": false,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/abs/astro-ph/0301016",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/megaclite-mpec-K01A29.html",
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "bytes": 39378,
+      "sha256": "c67595642a26e93cacaa064314758af3ef7ef15ceabc776d425ab0e0afb373c2",
+      "isPdf": false,
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/megaclite-cfht-copyright.html",
+      "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "bytes": 22963,
+      "sha256": "613c0cfdaf0f0a0d6e216ee27322d0fc9bda3827ab80369a9c09a0f87a2f84b5",
+      "isPdf": false,
+      "status": 200,
+      "finalUrl": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/megaclite-arxiv-assumed-licence.html",
+      "url": "https://arxiv.org/licenses/assumed-1991-2003/",
+      "bytes": 1988,
+      "sha256": "dfe5bdbd72f269aaf1cbbb2fcae418267571b6df6fe6c9e139dc73918b37fe13",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/megaclite-jpl-discovery.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "status": 200
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1-text.txt",
+      "url": null,
+      "bytes": 66983,
+      "sha256": "e882d1733cf24aa332491929d6312640d136dfaf711d968386abcc7a6b90001b"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-37.png",
+      "url": null,
+      "bytes": 216662,
+      "sha256": "ad13228ab4b31262a50faadf6317c3300dcbc94c5421c8d21da63cc8661ef72a"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-38.png",
+      "url": null,
+      "bytes": 203349,
+      "sha256": "18d5e91d049194ddcea9efafebb92e5d03aa2a9bb9f1270bddd2aa63e6ce7bef"
+    },
+    {
+      "path": "data/research-sources/megaclite-mpec-K01A29-text.txt",
+      "url": null,
+      "bytes": 25417,
+      "sha256": "53ae92d9b2fa9c0c93fdcc04383f9b774ecd47495526dbf962567c755f3d4532"
+    },
+    {
+      "path": "data/research-sources/megaclite-cfht-copyright-text.txt",
+      "url": null,
+      "bytes": 7986,
+      "sha256": "3c0aab4bd59e2888f1049d729653772bf483e91faf25ab8f1c7b02da2b67dfeb"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record-text.txt",
+      "url": null,
+      "bytes": 4900,
+      "sha256": "c09f21710ddabe5d3bfb6d4c42dc13fdedfebeee9ab42928540a6a4bd6319bfb"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": null,
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-captions-35.png",
+      "url": null,
+      "bytes": 156143,
+      "sha256": "00a4111aeda88013f31e0707782a4c0601aab144a59afc8f6d89cb6ef14daf71"
+    }
+  ],
+  "identity": {
+    "nasaName": "Megaclite",
+    "jplMeanElementRowName": "Magaclite",
+    "jplDiscoveryRow": "XIX / Megaclite / S2000J8 / 2000 / IAUC7555",
+    "limits": "JPL mean table row519 retains Magaclite; JPL discovery table and NASA/PDS use Megaclite. These documentary identifiers support the crosswalk,not an independently verified cause/history of the spelling. IAUC8023 retrieval failed certificate validation; no bypass or asserted correction details.",
+    "nasaDiscovery": {
+      "date": "2000-11-25",
+      "location": "Mauna Kea Observatory,Hawaii",
+      "credits": [
+        "Scott S. Sheppard",
+        "David C. Jewitt",
+        "Yanga R. Fernandez",
+        "Eugene A. Magnier"
+      ]
+    },
+    "mpec": {
+      "id": "2001-A29",
+      "issued": "2001-01-05 20:35 UT",
+      "targetCode": "SK00J080",
+      "firstPrintedObservation": "C2000 11 25.48160 04 27 20.96 +20 52 11.8 21.5 R 568",
+      "instrument": "2.2-m University of Hawaii reflector + CCD",
+      "observerListAsPrinted": [
+        "S. S. Sheppard",
+        "D. C. Jewitt",
+        "Y. R. Fernandez",
+        "G. Magnier",
+        "S. Dahm",
+        "A. Evans"
+      ],
+      "measurer": "S. S. Sheppard",
+      "limits": "Bulletin covers five moons; retain S/2000J8 rows separately. Six-person observer list is not silently substituted for four discovery credits. Printed decimal-day observation is not a verified raw image ID/filter/exposure/UTC crossmatch. Bulletin issue date is not acquisition date."
+    }
+  },
+  "size": {
+    "guideRadiusKm": 2.7,
+    "source": "NASA mean radius assumes geometric albedo0.04",
+    "type": "Albedo-dependent assumed photometric size,not thermal measurement or resolved axes",
+    "neowise": "Grav et al.2015 states stacks using Megaclite ephemerides yielded no detected signal. No NEOWISE diameter/albedo adopted. This is distinct from Themisto scattered-light account.",
+    "unknown": [
+      "Actual albedo,size uncertainty,axes/local normal,mass,GM,density,spin,pole,longitude,terrain and calibrated visible colour. No Megaclite/Magaclite row in retained JPL physical table."
+    ]
+  },
+  "meanOrbit": {
+    "source": "JPL JUP347 row519/reference47Jacobson2025personalcommunication",
+    "rowName": "Magaclite",
+    "frame": "Planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "aKm": 23640100,
+    "e": 0.421,
+    "wDeg": 309.9,
+    "MDeg": 116.1,
+    "iDeg": 149.9,
+    "nodeDeg": 292.2,
+    "periodDays": 742.7715,
+    "apsidalYears": 55.6,
+    "nodalYears": 74.1,
+    "pole": null,
+    "historicalNasaAlternative": "23.8millionkm/about753days",
+    "limits": "Mean elements are not dated ephemerides/current distance/covariance. Retrograde orbit does not determine spin or permanent Jupiter-facing site. Historical NASA values remain separate,not silently updated or combined into an uncertainty envelope."
+  },
+  "photometry": {
+    "paper": "Photometric Survey of the Irregular Satellites,astro-ph/0301016v1,2003-01-02; final journal citation Icarus166,33\u201345,DOI10.1016/j.icarus.2003.07.005",
+    "authors": [
+      "Tommy Grav",
+      "Matthew J. Holman",
+      "Brett J. Gladman",
+      "Kaare Aksnes"
+    ],
+    "access": "Unchanged412867byte43page v1 PDF/full extracted text retained. Table1 page37/Table2 page38 and captions page35 visually inspected; targeted sections4/5 and page19 interpretation assessed. Not all43pages visually reviewed; final publisher/raw photometry audit remains open.",
+    "table1": {
+      "rowName": "Magaclite",
+      "instrument": "NOT2.56m",
+      "dateUT": "2002-01-14",
+      "heliocentricAU": 5.17,
+      "observerAU": 4.21,
+      "phaseDeg": 2.27,
+      "OPTcolumnDeg": 85.2,
+      "limits": "Separate from December2001 CFHT image lead; exact time/filter exposures/raw-product crossmatch open. Methods prose2.51m versus Table2.56m retained,not independently corrected.",
+      "OPTmeaning": "Observer-Primary-Target angle,Table1caption page35"
+    },
+    "table2": {
+      "rowName": "Magaclite",
+      "inclinationDeg": 152.7,
+      "absoluteV": 15.12,
+      "absoluteVError": 0.05,
+      "observedV": 22.07,
+      "observedVError": 0.05,
+      "BminusV": 0.94,
+      "BminusVError": 0.09,
+      "VminusR": 0.41,
+      "VminusRError": 0.07,
+      "VminusI": 1.05,
+      "VminusIError": 0.07,
+      "errorConvention": "1sigma,Table2caption page35"
+    },
+    "limits": [
+      "Relative disk-integrated BVRI colours/grey-light-red grouping are not a calibrated RGB raster,local chemistry/material fractions/terrain or measured physical shape.",
+      "Absolute V normalization assumes unit heliocentric/geocentric distance and zero phase in the authors model,not a direct size or albedo measurement. Reduction/phase calibration not independently reproduced.",
+      "Colour heterogeneity among Pasiphae-like orbits complicates simple single-parent origin; resonance/orbital evolution/capture/collision remain interpretations,not observed history,local composition or certain family ancestry.",
+      "No ocean/plume/biology/atmosphere or local material interpretation adopted. Other moons maps/spectra/thermal parameters not transferred."
+    ],
+    "licence": {
+      "recordLink": "https://arxiv.org/licenses/assumed-1991-2003/",
+      "scope": "Record-specific assumed nonexclusive arXiv distribution for pre2004 submissions; explicitly not CC BY or image/figure reuse permission. No paper figure embedded. Final publisher rights independently unaudited."
+    },
+    "finalPublisherUrl": "https://doi.org/10.1016/j.icarus.2003.07.005",
+    "recordUrl": "https://arxiv.org/abs/astro-ph/0301016"
+  },
+  "native": {
+    "embedded": false,
+    "imageDownloaded": false,
+    "secondaryLead": {
+      "url": "https://commons.wikimedia.org/wiki/File:Megaclite-Jewitt-full.gif",
+      "descriptionOnly": "Metadata points to three CFHT exposures615032p/615039p/615046p,December9,2001,David Jewitt; approximately30minute spacing,3frame1400x1100processedGIF claims not independently verified.",
+      "licenceClaim": "UploaderCCBYSA4 claim separate from linked CFHT consultation/copyright terms. No raw/product/pixel identity,animation processing/creation date or licence conclusion adopted from secondary metadata."
+    },
+    "primaryQuery": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/cadcbin/ssos/ssosclf.pl?lang=en&object=Megaclite&search=bynameall&epoch1=2000&epoch2=2003&eellipse=&eunits=arcseconds&extres=no&xyres=no",
+    "queryAccess": "First urllib attempt35s timed out; second curl60s exit28 with zero response bytes. No query/image hash,downloaded exposure or positive detection claimed.",
+    "terms": {
+      "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "scope": "Hawaiian Starlight page says public website reuse involves prior consultation/information and legible copyright/link; media material available by specific request. Applicability to raw CADC archive/secondary animation remains open; CADC repository policy not automatically substituted. No contact/request/permission or image embedding."
+    },
+    "limits": [
+      "Native unresolved point motion/glare/noise/background sources/annotations would not establish terrain,axes,visible colour or local chemistry.",
+      "Archive point/WCS/timing/filter/exposure/product/creator/licence crosswalk remains open. No exhaustive newest-imagery claim. No observed-body texture or analog map adopted."
+    ]
+  },
+  "accessFailures": [
+    {
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/cadcbin/ssos/ssosclf.pl?lang=en&object=Megaclite&search=bynameall&epoch1=2000&epoch2=2003&eellipse=&eunits=arcseconds&extres=no&xyres=no",
+      "error": "<urlopen error timed out>",
+      "hash": null
+    },
+    {
+      "url": "https://www.cbat.eps.harvard.edu/iauc/08000/08023.html",
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)>",
+      "hash": null
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Megaclite-Jewitt-full.gif",
+      "result": "Direct urllib HTTP403; no downloaded HTML response or image hash."
+    },
+    {
+      "url": "CADC SSOS query above",
+      "result": "Second curl max-time60 exit28,zero response bytes; no body hash."
+    }
+  ],
+  "geometry": {
+    "implementation": {
+      "path": "src/astro/appearance.js",
+      "url": null,
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    "input": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15802428998075307,
+      "horizontalFovDeg": 90
+    },
+    "angularDiameterDeg": 0.3388827913302414,
+    "centreDiscWidthFraction": 0.0029573188647944683,
+    "targetPixels1672": 4.944637141936351,
+    "limits": "Computed with skyGeometry; spherical Jupiter69911km at mean23640100km minus assumed2.7km radial height. Not joint fit,dated distance/local normal/spin locking/permanent face or uncertainty envelope.165K helper angular-only,colour/irradiance discarded;Sun5.2044AU off-frame assumption not photometry. No generated raster yet."
+  },
+  "next": "Continue body-specific native/product/primary audit or prepare independent labelled IMAGINED local/observer views using explicit assumed size/geometry,full prompts/originals/masters,then additive dossier102. Preserve all101 delivered dossiers and original/native/map/model/shape/provenance;backlogACTIVE. Individual access failures do not block independent backlog work.",
+  "preservation": {
+    "baseline": "1f432e7",
+    "all101DossiersAnd57MoonsUnchanged": true,
+    "trackedPublicFilesByteEqual": 718,
+    "queueEntries": 569,
+    "sourceFilesHashVerified": 19,
+    "newDossier": false,
+    "newEmbedding": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 704,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15824314,
+    "headroomBytes": 175686,
+    "completeNodeDecodedReadableJsonEquality": true,
+    "readableSha256": "57b007e8b5cfdf8ac3f77e92e0750a827a8ddcff0019b6df3e0f1f61040ff976",
+    "applicationSha256": "c5dd7e9f12780728aabcc5d828f7b49cd8446ac7fb46504383d323dc5abbbf49",
+    "nativeCardsExactBytesAndMime": 84,
+    "retainedSourceAndGeneratedHashesRecheckedByExistingThemistoAudit": 307,
+    "existingAuditBaseline": "1fb285d",
+    "freshBrowserClaim": false,
+    "limits": "Research-only batch; all101dossiers/57moons/718public files directly compared against1f432e7. No native/model/map/shape/catalogue/codec changes. Current complete decoded JSON equality verified in Node; interbuild feed difference unaudited,not compression savings. Earlier Chrome route/model/worker checks remain historical."
+  }
+}
