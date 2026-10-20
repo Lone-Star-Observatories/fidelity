@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-20",
+  "body": "Taygete / Jupiter XX / JPL520 / S2000J9",
+  "generation": "Built-in imagegen,two independent originals,no observed map references or analog skins",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-8f3bba48-7c5d-40ce-aad8-aada28bc00b5.png",
+        "bytes": 2748924,
+        "sha256": "26a327173e150dcf0248c1f2f969da0463c83850c00adbd8889f0e53d7b14e9b"
+      },
+      "original": {
+        "path": "data/research-sources/taygete-generated-surfaceImage-original.png",
+        "bytes": 2748924,
+        "sha256": "26a327173e150dcf0248c1f2f969da0463c83850c00adbd8889f0e53d7b14e9b"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/taygete-local-prompt-2026-10-20.txt",
+        "bytes": 1280,
+        "sha256": "f0bb47bdf7ac39b5024035e162e9746ac3d36feb173d98f09d97413eab17ea0b"
+      },
+      "fullPrompt": "Create independent hypothetical scientific LOCAL VIEW FROM TAYGETE, Jupiter XX, standard16:9 landscape1672x941. No reference image,no copied/recoloured Moon,Mars,Pluto,asteroid or other observed-body map/analog skin. Small irregular moon with NASA approximate2.5km radius guide,not known axes/local normal;albedo derivation unverified. Modest invented neutral dark grey-brown granular foreground,scattered irregular small pebbles and stones,low uneven ridges and shallow depressions,quiet restrained plausible scene under weak oblique sunlight with artistic exposure;black sky upperthird. BVRI light-red relative classification does not establish local visible colour,mineral identity or chemistry/fractions. All terrain,porosity,materials,colour,light/exposure invented. No recognizable observed crater/site,dramatic cliffs,ice crystals,lava,atmosphere,haze,clouds,plume,liquid,exposed ocean,biology,people,craft,landing/survival cues. No astronomical disk,Sun,Jupiter,stars,rings;omissions not measured absence. No date,registered site,known spin,locking or permanent face. Narrow dark footer safely inside frame with exactly two crisp readable white text lines: 'TAYGETE — IMAGINED LOCAL VIEW' and 'Terrain, materials, colour and lighting hypothetical'. No other text/logos.",
+      "master": {
+        "path": "public/bespoke/taygete-surface-image.jpg",
+        "bytes": 338372,
+        "sha256": "ad470dd3befaf2c934e33c1e67012f51d076f086a948205a3adaa9fbc94826df"
+      },
+      "preview": {
+        "path": "public/bespoke/taygete-surface-image-preview.jpg",
+        "bytes": 8764,
+        "sha256": "29f5e821b3a4041c2ae6ee51618ab094f83b4a24c775a33617e4ff764160f1cf"
+      },
+      "inspection": "Original and imported1536x864master/256x144preview inspected;original/master footer lines readable,tiny previews require explicit IMAGINEDcard labels. No calibrated rendered Jupiter raster diameter adopted."
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-75d43f58-33cc-491c-b7c5-924d53cd0a24.png",
+        "bytes": 1964990,
+        "sha256": "59aee0e04523d006811616b1519b83aa1cd60aac2beec798d793aff477d576a0"
+      },
+      "original": {
+        "path": "data/research-sources/taygete-generated-skyImage-original.png",
+        "bytes": 1964990,
+        "sha256": "59aee0e04523d006811616b1519b83aa1cd60aac2beec798d793aff477d576a0"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/taygete-sky-prompt-2026-10-20.txt",
+        "bytes": 1457,
+        "sha256": "9690e64a3238c8b3a2e12cbb81f4cc386d4783e94c2cfc01bc248bf52a26cb02"
+      },
+      "fullPrompt": "Create independent scientific hypothetical SKY FROM TAYGETE, Jupiter XX, standard16:9 landscape1672x941. No references,copied/recoloured observed-body map or analog skin. Invent subdued neutral dark grey-brown granular foreground with sparse small irregular stones,shallow depressions,low ridges across lowerhalf;blacksky upperhalf. One very tiny featureless off-white Jupiter disk high above horizon,about5pixels across in1672wide image,not a giant prominent planet,no resolvablebands. Nominal skyGeometry guide69911km Jupiter at mean23103400km minus assumed NASAapprox2.5km radialheight gives.3467551778555533degrees/5.05950378825824pixels at1672width/90degreeHFOV. Guide not dated distance,localnormal,knownspin,locking,permanentface,jointfit,uncertainty envelope or calibrated raster. All terrain,chemistry/fractions/porosity,Jupiterappearance/phase/axis,colour,lighting/exposure invented. RelativeBVRI light-red classification not visible-colour/mineral calibration;NASA size derivation/albedo uncertain. No recognizable lunar/Mars/Pluto/asteroid site,dramaticcliffs,exposedice/crystals,lava,foreground atmosphere,haze,clouds,plume,liquid,ocean,biology,people,craft or landing/survival cues. No Sun,other disks,stars,rings;omissions not measuredabsence. Narrow dark footer safely inside frame with exactly two crisp readable white lines: 'TAYGETE — IMAGINED SKY VIEW' and 'Terrain, Jupiter appearance and lighting hypothetical'. No other text/logos.",
+      "master": {
+        "path": "public/bespoke/taygete-sky-image.jpg",
+        "bytes": 221195,
+        "sha256": "69fb4263cd943ffd3d511d8128925efd6d0d2c552d9cc0213f15d9c70a5ae966"
+      },
+      "preview": {
+        "path": "public/bespoke/taygete-sky-image-preview.jpg",
+        "bytes": 5368,
+        "sha256": "4101e43ae38e7457551dc282f9b1b90a4760706acfd0189ce4f0b46516e6f42a"
+      },
+      "inspection": "Original and imported1536x864master/256x144preview inspected;original/master footer lines readable,tiny previews require explicit IMAGINEDcard labels. No calibrated rendered Jupiter raster diameter adopted."
+    }
+  ],
+  "referenceRecord": "docs/research/taygete-reference-native-preparation-2026-10-20.json",
+  "sources": [
+    {
+      "path": "data/research-sources/taygete-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/taygete/",
+      "bytes": 247460,
+      "sha256": "6f358c5eec70aaad524c934dd277452813ac02470546911051ce4e92ac5c62cb",
+      "status": 200,
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/taygete/",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-discovery-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-mpec-K01A29-2026-10-20.html",
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "bytes": 39378,
+      "sha256": "c67595642a26e93cacaa064314758af3ef7ef15ceabc776d425ab0e0afb373c2",
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/taygete-cfht-copyright-2026-10-20.html",
+      "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "bytes": 22963,
+      "sha256": "613c0cfdaf0f0a0d6e216ee27322d0fc9bda3827ab80369a9c09a0f87a2f84b5",
+      "status": 200,
+      "finalUrl": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html",
+      "contentType": "text/html"
+    },
+    {
+      "path": "data/research-sources/taygete-commons-lead-2026-10-20.html",
+      "url": "https://commons.wikimedia.org/wiki/File:Taygete-Jewitt-full.gif",
+      "bytes": 81284,
+      "sha256": "21100e872eb6d648f800e86aa5c6b4058843ae385f8bf892445a68a82aef027a",
+      "status": 200,
+      "finalUrl": "https://commons.wikimedia.org/wiki/File:Taygete-Jewitt-full.gif",
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "status": 200,
+      "contentType": "image/gif",
+      "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/taygete-commons-animation-2026-10-20.gif",
+      "bytes": 4421581,
+      "sha256": "55d569c808e2f8965a901b0565bdc71ec2bc0d08f2d29274ab07177203aa10cb"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1.pdf",
+      "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "bytes": 412867,
+      "sha256": "4a154cbcf0068984ffcfe4bfa8b80c1f395f68b5792bad7aa0e18f2372dd1a0c"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1-text.txt",
+      "url": null,
+      "bytes": 66983,
+      "sha256": "e882d1733cf24aa332491929d6312640d136dfaf711d968386abcc7a6b90001b"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record.html",
+      "url": "https://arxiv.org/abs/astro-ph/0301016",
+      "bytes": 44195,
+      "sha256": "48ee3001175488c42dd3365ba4ebe2433ace3f38963dbd5b63ad284df42c14c0"
+    },
+    {
+      "path": "data/research-sources/megaclite-arxiv-assumed-licence.html",
+      "url": "https://arxiv.org/licenses/assumed-1991-2003/",
+      "bytes": 1988,
+      "sha256": "dfe5bdbd72f269aaf1cbbb2fcae418267571b6df6fe6c9e139dc73918b37fe13"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-37.png",
+      "url": null,
+      "bytes": 216662,
+      "sha256": "ad13228ab4b31262a50faadf6317c3300dcbc94c5421c8d21da63cc8661ef72a"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-38.png",
+      "url": null,
+      "bytes": 203349,
+      "sha256": "18d5e91d049194ddcea9efafebb92e5d03aa2a9bb9f1270bddd2aa63e6ce7bef"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-captions-35.png",
+      "url": null,
+      "bytes": 156143,
+      "sha256": "00a4111aeda88013f31e0707782a4c0601aab144a59afc8f6d89cb6ef14daf71"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-0-inspection.png",
+      "url": null,
+      "bytes": 1550021,
+      "sha256": "e059df1866779c93bdabfca5fa1002628f3b92cde81048abe1030fc5858b491d"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-1-inspection.png",
+      "url": null,
+      "bytes": 1784399,
+      "sha256": "76fb921dc99e43f79df54e640a51a5ab0174e7a5dbb8a450515ef15c91fbdda8"
+    },
+    {
+      "path": "data/research-sources/taygete-animation-frame-2-inspection.png",
+      "url": null,
+      "bytes": 1656960,
+      "sha256": "5cf404fcefaabcd5b5bdff4f88c19fa2d1378724d44ade61d173a3526b626787"
+    },
+    {
+      "path": "data/research-sources/taygete-author-results-index-2026-10-20.html",
+      "url": "https://faculty.epss.ucla.edu/~jewitt/results.html",
+      "bytes": 4867,
+      "sha256": "68c5a1fe1587877ee6e9a484748fffd3d1e30cf6503a0c62c501babfbc8d9985",
+      "status": 200
+    }
+  ],
+  "limits": "All terrain,chemistry/fractions/porosity,colour,Jupiterappearance/phase/axis and light/exposure invented. NASAapprox2.5km guide not measured axes/localnormal/thermal diameter;original size/albedo derivation unverified. Meanorbit not date/spinlocking/permanentface. No datedsite,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Black/omissions notabsence. NominalskyGeometry.3467551778555533deg/5.05950378825824pxat1672/90HFOV not calibrated raster;165Kangularhelper only,Sun5.2044AUoffframe assumed. SecondarynativeGIF remains research-only;rawpoint/product/UTC/filter/processing/rights unverified. Allsourcecredits/terms/observations/publications/limitations retained in reference and manifest;nofigure/nativemap/globe/shape adoption."
+}

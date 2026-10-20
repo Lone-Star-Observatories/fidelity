@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-20",
+  "browser": "ChatGPT in-app browser,Chrome engine,loopback HTTP served UTF-16LE standalone",
+  "audit": {
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "encoding": "gzip-raw-utf16le-enumerative-v2",
+    "json": "afa0d2a8c05f12deeff38c997cfb0d09a9e494d70e714783dff6faa253e785f3",
+    "app": "309f2ef1afdafc3cc70e5e1ee867cebd5ef8900474437a05e0171722b30e3a6e",
+    "packedSnapshot": "e069e174319690c06344222aeb6c7b616476134db42b1ba85e0df27cc9c4983f",
+    "packedApp": "78657407c15728c34411a80b05d1a0cfe19c88675a9c842132f05a9019fc066c",
+    "canvases": 8,
+    "uniqueImages": 347,
+    "decodedImages": 347,
+    "parsedModels": 32,
+    "details": 517,
+    "bands": 20,
+    "exact": true
+  },
+  "route": "#/moon/sol/taygete",
+  "normal": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "sources": [
+      "/bespoke/taygete-surface-image.jpg",
+      "/bespoke/taygete-sky-image.jpg"
+    ],
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "offlineUninstrumented": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "unsupportedGzip": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasm": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "Chrome engine loopback HTTP verified. Other engines/direct file, fresh six-route/worker audit and all interactive normal-model selections not independently repeated;32 embedded scenes parsed,not all normal models selected."
+}

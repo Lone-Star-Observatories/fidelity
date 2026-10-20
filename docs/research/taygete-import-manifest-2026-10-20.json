@@ -1,0 +1,131 @@
+{
+  "generated": "2026-10-20",
+  "bodies": [
+    {
+      "id": "taygete",
+      "name": "Taygete",
+      "kind": "moon",
+      "aliases": [
+        "Taygete",
+        "Jupiter XX",
+        "J20 Taygete",
+        "S/2000 J9"
+      ],
+      "researchDate": "2026-10-20",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe/shape adopted. Secondary CFHT animation retained research-only;raw-point/product/UTC/filter/calibration/processing/rights association unverified. No native context image embedded;independent IMAGINED fallback temporary.",
+      "measured": [
+        "Taygete / Jupiter XX / JPL520 / S2000J9,distinct from Megaclite/JupiterXIX and stellarTaygeta. NASA discovery2000-11-25 MaunaKea,Hawaii credits Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier. JPL discovery credits print G.Magnier separately.",
+        "MPEC2001-A29 issued2001Jan5 20:35UT covers five moons;Taygete SK00J090 firstprinted C2000 11 25.48714 04 26 36.35 +21 23 06.1 22R568. Observer roles S.S.Sheppard,D.C.Jewitt,Y.R.Fernandez,G.Magnier,S.Dahm,A.Evans;measurerS.S.Sheppard,2.2mUniversityofHawaii reflector+CCD. Six observer roles not four discovery credits or independently verified rawUTC/filter/exposure/product.",
+        "Grav,Tommy;Holman,MatthewJ.;Gladman,BrettJ.;Aksnes,Kaare:Photometric Survey of the Irregular Satellites,2003Jan2 arXivv1,finalcitation Icarus166,33–45 DOI10.1016/j.icarus.2003.07.005. Table1 Taygete Magellan6.5m2002Feb9UT,Sun5.02AU/observer4.27AU/phase7.94deg/Observer-Primary-Target21.4deg,separate from secondaryCFHT2001Dec11 animationlead.",
+        "Table2 absoluteV15.63±.04/observedV22.85±.04/B−V.56±.08/V−R.52±.04/V−I.96±.05,1sigma. Historical165.2degree inclination separate current mean164.7degree. Unresolved relative photometry,not calibrated RGB/local chemistry/fractions/geography."
+      ],
+      "modelled": [
+        "NASA approximate2.5km radius used as display guide,not thermal measurement,axes/local normal or measured uncertainty. Original size/albedo derivation not independently verified;secondary.04albedo not measured/adopted as independently traced method. Linked Sheppard/Jewitt2003 primaryPDF timed out,not a paper hash/table/licence claim.",
+        "JUP347 row520/reference47Jacobson2025personalcommunication,planet-centred ecliptic2000Jan1.5TDB mean a23103400km/e.257/w207.7/M116.5/i164.7/node300.8/P717.5917days/apsidal52/nodal91.3years,poleunknown. Not dated ephemerides/currentdistance/covariance. NASA historical23.3millionkm/about732days separate,not uncertainty envelope. Retrograde orbit not measured spin locking/permanent face.",
+        "AbsoluteV unitSun/Earthdistance/zerophase normalization and phase/reduction calibration not independently reproduced. Relative light-red BVRI not local visible colour/mineral identity/abundances. Carme-family D-type/Hilda/Trojan progenitor,collision/~30m/s dispersion/evolution interpretations not observed local chemistry or unique ancestry/history. Same printed Taygete/S2000S1BV/VI colours not same body/materials or map permission.",
+        "Grav2015 NEOWISE:Observations of the Irregular Satellites of Jupiter and Saturn,ApJ809:3,2015Aug4,T.Grav,J.M.Bauer,A.K.Mainzer,J.R.Masiero,C.R.Nugent,R.M.Cutri,S.Sonnett,E.Kramer:stacks for J19Megaclite,J20Taygete,J24Iocaste no detected signal. No Taygete NEOWISE diameter/albedo adopted;Themisto scattered-light explanation/Carme thermal values not transferred."
+      ],
+      "unknown": [
+        "Actual albedo,size uncertainty,axes,localnormal,mass,GM,density,spin,pole,current longitude,terrain,chemical fractions and calibrated visible colour unknown. No Taygete physical row in retained JPL table. Null rotation/locking disabled not measured nonsynchronous spin.",
+        "Unchanged secondary Commons1500x1200 threeframeGIF retained/inspected research-only. Caption CFHT2001Dec11/DavidJewitt/CADC/615453p,615459p,615465p/~30minspacing/magnitude22.5 not independently verified raw-point/product/UTC/filter/exposure/processing association. Display300ms/frame not exposure/cadence.2020Nrco0e upload/2025page edit not acquisition/creation;noise/glare/unresolvedpoints not terrain/axes/calibratedcolour. CADC query timeout no responsehash invented.",
+        "SecondaryCCBYSA4 claim separate linkedCFHTHawaiianStarlight consultation/copyright policy,raw/animation applicability and permission unverified;no contact/permission implied. ArXiv pre2004 assumed nonexclusive distribution not CC BY or figure reuse;finalpublisher/rawphotometry/calibration/frame/rights open. No paper figure or native context image embedded,no exhaustive newest-image claim."
+      ],
+      "assumed": [
+        "Independent invented neutral grey-brown grains,stones,ridges,depressions,terrain,chemistry/fractions/porosity,Jupiterappearance/phase/axis,visiblecolour,lighting/exposure/viewpoint. No observed-body map or analog skin. No dated site,known localnormal,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Blacksky/omitted stars/rings not measured absence.",
+        "skyGeometry spherical69911km Jupiter at mean23103400km minus assumed NASAapprox2.5km radialheight gives.3467551778555533deg/5.05950378825824targetpixels at1672width/nominal90HFOV. Not jointfit,dated site,localnormal,spinlocking/permanentface or uncertainty envelope. Tiny rendered Jupiter uncalibrated,no rasterdiameter adopted.165Khelper angular-only irradiance/colour discarded;Sun5.2044AU assumed off-frame,not photometry.",
+        "Both independent original/defaultPNGs/fullprompts retained;1536JPEG85masters/256JPEG80previews/offlineWebP80 tinyfooters require explicit IMAGINED card labels. No generated globe/shape."
+      ],
+      "surfaceLabel": "IMAGINED · LOCAL VIEW FROM TAYGETE",
+      "skyLabel": "IMAGINED · SKY FROM TAYGETE",
+      "skyCaption": "Tiny hypothetical Jupiter;nominal.346755degree angular guide,appearance/phase/axis/exposure/registration artistic,not calibrated raster diameter.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "2.5 KM · APPROXIMATE GUIDE"
+        ],
+        [
+          "MASS",
+          "UNKNOWN"
+        ],
+        [
+          "ORBIT",
+          "23.1034 M KM · MEAN SCALE"
+        ],
+        [
+          "ROTATION",
+          "UNKNOWN"
+        ]
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.15443667340914902,
+        "horizontalFovDeg": 90,
+        "angularOnly": true,
+        "star": "Jupiter · hypothetical spherical angular guide"
+      },
+      "contextImages": [],
+      "nativeProducts": {
+        "embedded": false,
+        "source": {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "status": 200,
+          "contentType": "image/gif",
+          "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Taygete-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+          "path": "data/research-sources/taygete-commons-animation-2026-10-20.gif",
+          "bytes": 4421581,
+          "sha256": "55d569c808e2f8965a901b0565bdc71ec2bc0d08f2d29274ab07177203aa10cb"
+        },
+        "credit": "Secondary caption David Jewitt/Canadian Astronomy Data Centre;uploaderNrco0e2020,processing authorship/rawproduct not independently verified.",
+        "terms": "SecondaryCCBYSA4 claim and linkedCFHTconsultation/copyright policy distinct;raw/animation applicability unverified,no permission implied.",
+        "limits": "Original GIF retained research-only,not embedded;unresolvedfield/point identity/UTC/filter/calibration rights not independently validated."
+      },
+      "references": [
+        {
+          "title": "NASA Taygete approximate size/discovery;not thermal axes",
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/taygete/"
+        },
+        {
+          "title": "JPL JUP347 mean elements row520,not ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+        },
+        {
+          "title": "JPL physical table,no Taygete row",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+        },
+        {
+          "title": "MPEC2001-A29 SK00J090 discovery astrometry,issue not acquisition",
+          "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html"
+        },
+        {
+          "title": "Grav/Holman/Gladman/Aksnes2003v1 unresolved BVRI photometry,nonexclusive notCCBY",
+          "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+          "publicationDate": "2003-01-02",
+          "observationDate": "2002-02-09"
+        },
+        {
+          "title": "Grav et al.2015 Taygete NEOWISE stack nondetection",
+          "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+          "publicationDate": "2015-08-04"
+        },
+        {
+          "title": "Secondary CFHTanimation,raw product/rights unverified,research-only",
+          "url": "https://commons.wikimedia.org/wiki/File:Taygete-Jewitt-full.gif"
+        },
+        {
+          "title": "CFHT HawaiianStarlight policy,raw/animation applicability open",
+          "url": "https://www.cfht.hawaii.edu/hawaiianstarlight/CFHT_WWW_Copyright.html"
+        },
+        {
+          "title": "ArXiv assumedpre2004 nonexclusive distribution,notfigure permission",
+          "url": "https://arxiv.org/licenses/assumed-1991-2003/"
+        }
+      ],
+      "inputs": {
+        "surfaceImage": "taygete-generated-surfaceImage-original.png",
+        "skyImage": "taygete-generated-skyImage-original.png"
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-20",
+  "body": "Taygete / Jupiter XX / JPL520 / S2000J9",
+  "dossier": 103,
+  "status": "Delivered initial individual dossier;calibration,geography,native product/rights and physical ranking audits remain open.",
+  "manifest": "docs/research/taygete-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/taygete-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/taygete-reference-native-preparation-2026-10-20.json",
+  "delivery": {
+    "views": "Two independent built-in IMAGINED local/observer views;original/default1672x941PNGs/fullprompts/sourcehashes retained,1536JPEG85 masters/256JPEG80 previews. No analog skin/generated globe/shape.",
+    "native": "Secondary Commons CFHT animation retained unchanged and three frames inspected research-only;raw point/product/UTC/filter/calibration/rights association open. Not embedded. Secondary CC BY-SA4 claim separate CFHT consultation/copyright policy;no contact or permission implied.",
+    "catalogue": "Additive Taygete row520 JUP347 mean23103400km/e.257/i164.7/P717.5917days,ecliptic2000Jan1.5TDB not dated ephemerides/spin. All58 earlier MOONS unchanged. NASA approximate2.5km size guide not traced thermal/albedo derivation,axes/localnormal/uncertainty. GM/mass/density/spin/pole unknown.",
+    "photometry": "Grav/Holman/Gladman/Aksnes2003v1 Magellan2002Feb9 unresolved BVRI,absoluteV15.63\u00b1.04/observedV22.85\u00b1.04/BV.56\u00b1.08/VR.52\u00b1.04/VI.96\u00b1.05 not calibrated RGB/local chemistry. NEOWISE stack nondetection not thermal size. Specific assumed pre2004 nonexclusive not CC BY/figure permission;no figure embedded.",
+    "geometry": "skyGeometry spherical69911km Jupiter at mean23103400minus assumed2.5km gives.3467551778555533deg/5.05950378825824targetpixels at1672/nominal90HFOV. No rendered rasterdiameter adopted,datedsite/localnormal/locking/permanentface/envelope.165K angular-only;Sun5.2044AU off-frame assumed,not photometry.",
+    "imagined": "Terrain/chemistry/fractions/porosity/colour/Jupiterappearance/phase/axis/light/exposure invented. No datedsite/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Black/omissions not absence;small footers require IMAGINED card labels."
+  },
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 363,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "587f7f0",
+    "priorDossiersDeepEqual": 102,
+    "dossiers": 103,
+    "priorMoonsDeepEqual": 58,
+    "moons": 59,
+    "trackedPublicByteEqual": 722,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/taygete-sky-image.jpg",
+      "/bespoke/taygete-surface-image.jpg"
+    ],
+    "htmlBytes": 15852866,
+    "headroomBytes": 147134,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "afa0d2a8c05f12deeff38c997cfb0d09a9e494d70e714783dff6faa253e785f3",
+    "applicationSha256": "309f2ef1afdafc3cc70e5e1ee867cebd5ef8900474437a05e0171722b30e3a6e",
+    "freshBrowserClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 706,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browserVerification": "docs/research/taygete-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiff": "docs/research/taygete-snapshot-diff-2026-10-20.json",
+    "snapshotDiffOnly": [
+      "/bandImages//api/feed/sdo-1600?size=preview/disk",
+      "/bandImages//api/feed/sdo-1600?size=preview/src",
+      "/bandImages//api/feed/sdo-1600?size=preview/time",
+      "/bandImages//api/feed/sdo-171?size=preview/disk",
+      "/bandImages//api/feed/sdo-171?size=preview/src",
+      "/bandImages//api/feed/sdo-171?size=preview/time",
+      "/bandImages//api/feed/sdo-193?size=preview/disk",
+      "/bandImages//api/feed/sdo-193?size=preview/src",
+      "/bandImages//api/feed/sdo-193?size=preview/time",
+      "/bandImages//api/feed/sdo-304?size=preview/disk",
+      "/bandImages//api/feed/sdo-304?size=preview/src",
+      "/bandImages//api/feed/sdo-304?size=preview/time",
+      "/bandImages//api/feed/sdo-94?size=preview/disk",
+      "/bandImages//api/feed/sdo-94?size=preview/src",
+      "/bandImages//api/feed/sdo-94?size=preview/time",
+      "/bodyImages//bespoke/taygete-sky-image.jpg",
+      "/bodyImages//bespoke/taygete-surface-image.jpg"
+    ]
+  },
+  "next": "Chaldene body-specific identity/native/primary/geometry assessment before independent views/additive dossier104;all remaining moon/dwarf/native-map/craft/shape/calibration/ranking backlog ACTIVE. Preserve all original/native/master/model bytes and recover conforming lossless headroom before larger batches."
+}
