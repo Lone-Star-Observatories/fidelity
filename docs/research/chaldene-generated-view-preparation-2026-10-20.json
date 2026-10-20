@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-20",
+  "body": "Chaldene / JupiterXXI / JPL521 / S2000J10",
+  "status": "Research-only two independently generated views/masters/previews;no104th dossier or new embedded/public assets.",
+  "generation": "Built-in imagegen;independent prompts,no references or observed-body map/analog skins.",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cc6ad1e0-9199-4663-a235-f7d27fccad3c.png",
+        "bytes": 2940656,
+        "sha256": "c0620ca134850f65a439af41be59ac2bb77e052401cc758d36d6d65802b1e1da"
+      },
+      "original": {
+        "path": "data/research-sources/chaldene-generated-surfaceImage-original.png",
+        "bytes": 2940656,
+        "sha256": "c0620ca134850f65a439af41be59ac2bb77e052401cc758d36d6d65802b1e1da"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/chaldene-local-prompt-2026-10-20.txt",
+        "bytes": 1448,
+        "sha256": "1a0970ca9ee93b40ba0e8d04076449c62edd5f341b47de03555e1b6e2cdaf044"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical illustration for the Fidelity astronomy explorer, landscape1672x941. Independent new composition, no reference images, no map or texture from any observed body, no analogy skin. Chaldene/JupiterXXI/S2000J10 is unresolved: its terrain,shape,local chemistry/fractions/porosity,visible colour,spin,pole and localnormal are unknown. This is an invented close local view,not an observed or dated site,not a measured surface. Restrained grey-brown stony granular relief with shallow depressions,irregular low ridges and scattered small angular stones;no recognisable lunar/Martian/Pluto terrain or repeated copied geography. Airless-looking black sky is an artistic assumption,not measured absence. No atmospheric haze,clouds,plume,liquid,exposed ocean,biology,spacecraft,astronaut,buildings or implication of survivable landing. Lighting and exposure artistic,not calibrated. Two clearly legible footer lines in a clean narrow dark band,not overlapping: first exactly \"IMAGINED \u00b7 CHALDENE\" and second exactly \"INVENTED TERRAIN \u00b7 NOT A DATED SITE\". Retain all scene content clear of this band. Camera close to invented grains and stones toward a low asymmetric rugged horizon. No astronomical disk in the sky,no Sun,Jupiter,stars or rings. Subtle grazing illumination from off-frame. Local surface composition fully invented. High quality restrained scientific concept illustration,not a photograph claim.",
+      "master": {
+        "path": "data/research-sources/chaldene-local-master-1536.jpg",
+        "bytes": 331857,
+        "sha256": "720af987dbe089343558b3e8cca2f7f6a34969cf7b0d4249a117594a34b120ae"
+      },
+      "preview": {
+        "path": "data/research-sources/chaldene-local-preview-256.jpg",
+        "bytes": 11207,
+        "sha256": "306c04d89d67135cf11ad6ddcf7904628c86cb00cfe61bba4789d27ac30f06ae"
+      }
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-001bb4ee-6b06-4274-bf33-332134a9f444.png",
+        "bytes": 1875091,
+        "sha256": "bd0ee04acfe66e5e23a664137ee574d7d845b3d593c0f9f760203a41729f6f05"
+      },
+      "original": {
+        "path": "data/research-sources/chaldene-generated-skyImage-original.png",
+        "bytes": 1875091,
+        "sha256": "bd0ee04acfe66e5e23a664137ee574d7d845b3d593c0f9f760203a41729f6f05"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/chaldene-sky-prompt-2026-10-20.txt",
+        "bytes": 1984,
+        "sha256": "2215048c17f821511fba749b116c7d9d572c6c7a34938f377915096d73c97361"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical illustration for the Fidelity astronomy explorer, landscape1672x941. Independent new composition, no reference images, no map or texture from any observed body, no analogy skin. Chaldene/JupiterXXI/S2000J10 is unresolved: its terrain,shape,local chemistry/fractions/porosity,visible colour,spin,pole and localnormal are unknown. This is an invented close local view,not an observed or dated site,not a measured surface. Restrained grey-brown stony granular relief with shallow depressions,irregular low ridges and scattered small angular stones;no recognisable lunar/Martian/Pluto terrain or repeated copied geography. Airless-looking black sky is an artistic assumption,not measured absence. No atmospheric haze,clouds,plume,liquid,exposed ocean,biology,spacecraft,astronaut,buildings or implication of survivable landing. Lighting and exposure artistic,not calibrated. Two clearly legible footer lines in a clean narrow dark band,not overlapping: first exactly \"IMAGINED \u00b7 CHALDENE\" and second exactly \"INVENTED TERRAIN \u00b7 NOT A DATED SITE\". Retain all scene content clear of this band. A different independent ground-and-sky composition with low invented ridge occupying lower third and black sky above. Include a SINGLE TINY unadorned off-white Jupiter disk high above the horizon,about FIVE pixels wide in the full1672pixel image,not a large dramatic planet. Guide computed with skyGeometry:spherical69911km Jupiter at mean22926300km minus assumed1.9km radialheight,nominal90degree horizontalFOV gives0.34943377530265096degree and5.098587437149634targetpixels. This is only an angular composition guide,not dated geometry,localnormal,known spinlocking or permanent Jupiter-facing site. Jupiter colour,phase,axis,lighting and exposure imagined;do not add resolved bands at this tiny scale. Do not enlarge disk for readability. No other astronomical disks,no Sun,stars or rings. No calibrated photometry claim,not actual observation.",
+      "master": {
+        "path": "data/research-sources/chaldene-sky-master-1536.jpg",
+        "bytes": 219991,
+        "sha256": "851d5bd1959ec1c9016579bdf7f7341d54605a6f84f671d56d54698be5cc6ff4"
+      },
+      "preview": {
+        "path": "data/research-sources/chaldene-sky-preview-256.jpg",
+        "bytes": 6291,
+        "sha256": "60c1242a55581519ce5f494d6304e734307345993d3d3425c51e6be9f37f6108"
+      }
+    }
+  ],
+  "sourceRecords": [
+    "docs/research/chaldene-reference-preparation-2026-10-20.json",
+    "docs/research/chaldene-observer-geometry-preparation-2026-10-20.json"
+  ],
+  "inspection": "Both original PNGs and all four1536x864JPEG85masters/256x144JPEG80previews visually inspected. Both footer texts readable in originals/masters;local places texts across one band rather than requested two lines. Tiny preview footer text requires explicit IMAGINED card labels. Local no astronomical disk;sky one tiny Jupiter,not a calibrated diameter. No edits/otherbody references.",
+  "limits": "All terrain,stones/grains/ridges/depressions,localchemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. NASA1.9kmguide not axes/normal/thermalmeasurement;JUP347mean not currentdistance/jointfit/envelope. skyGeometry .34943377530265096deg/5.098587437149634targetpixels1672/90HFOV nominal only;165K helper notphotometry,Sun5.2044AUoffframe assumption. Native403/nohash/rights and primarysize/calibration limits retained.",
+  "next": "Additive Chaldene104 using prepared views/fullscience provenance and existing importer,verify all103 prior dossiers/native/model/map/shape/legacy bytes and normal/offline route before claiming delivery. BacklogACTIVE.",
+  "validation": {
+    "tests": {
+      "passed": 706,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 377,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "0abd5f1",
+      "priorDossiersDeepEqual": 103,
+      "dossiers": 103,
+      "priorMoonsDeepEqual": 59,
+      "moons": 59,
+      "trackedPublicByteEqual": 726,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15852866,
+      "headroomBytes": 147134,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "afa0d2a8c05f12deeff38c997cfb0d09a9e494d70e714783dff6faa253e785f3",
+      "applicationSha256": "309f2ef1afdafc3cc70e5e1ee867cebd5ef8900474437a05e0171722b30e3a6e",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser/route/modelworker claim. Complete Node JSON/application exact and unchanged."
+  }
+}
