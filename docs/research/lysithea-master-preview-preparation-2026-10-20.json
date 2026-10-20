@@ -1,0 +1,68 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Original-preserving derivative preparation only; no dossier96 or embedding.",
+  "method": "Pillow Lanczos resampling1536JPEGquality85 masters and256JPEGquality80 previews, optimizeTrue. Distinct from later importerSharp derivatives if used.",
+  "assets": [
+    {
+      "kind": "surfaceImage",
+      "role": "master",
+      "path": "data/research-sources/lysithea-generated-surfaceImage-master.jpg",
+      "bytes": 304312,
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "sha256": "b3a57844e00d04fb9aff5b178b6897088333699978b49cdb6884ce14bd1cafa9",
+      "sourceSha256": "c1474e94001701b3e8db4c9673357dae4c92914e44684d3e5cabcdd22595ae4f"
+    },
+    {
+      "kind": "surfaceImage",
+      "role": "preview",
+      "path": "data/research-sources/lysithea-generated-surfaceImage-preview.jpg",
+      "bytes": 10146,
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "sha256": "a11f8fc2014ceb1578670e10b765702e14f655db6e172ab70604d739ed64c0e0",
+      "sourceSha256": "c1474e94001701b3e8db4c9673357dae4c92914e44684d3e5cabcdd22595ae4f"
+    },
+    {
+      "kind": "skyImage",
+      "role": "master",
+      "path": "data/research-sources/lysithea-generated-skyImage-master.jpg",
+      "bytes": 219314,
+      "dimensions": [
+        1536,
+        864
+      ],
+      "quality": 85,
+      "sha256": "bd8e9523ac46f7be675b3797728db377665d01b43b602a3f0219b9c52ab8c92c",
+      "sourceSha256": "35526d15dedebac91e80ebb1729409a083a1d55d855ad483842bda08ce37ac11"
+    },
+    {
+      "kind": "skyImage",
+      "role": "preview",
+      "path": "data/research-sources/lysithea-generated-skyImage-preview.jpg",
+      "bytes": 6926,
+      "dimensions": [
+        256,
+        144
+      ],
+      "quality": 80,
+      "sha256": "5ce6807ea38a6d5463a25c287598352a796e744b8e43f089c7c1f385272312a9",
+      "sourceSha256": "35526d15dedebac91e80ebb1729409a083a1d55d855ad483842bda08ce37ac11"
+    }
+  ],
+  "limits": [
+    "Original/default PNGs and full prompts preserved unchanged.",
+    "Both images IMAGINED; terrain/materials/chemistry fractions/colour/light invented; sky Jupiter phase/pattern/pole unregistered and apparent disk oversized versus skyGeometry guide.",
+    "Small previews need explicit IMAGINED card labels; footer legibility and tiny Jupiter are not guaranteed at thumbnail size.",
+    "No native imagery transformed or replaced; native2MASS/OHP terms and point-source limits remain separate."
+  ],
+  "preservation": "Prior95 dossiers/public/master/native/map/model bytes unchanged, no catalogue/codec change. No fresh tests/build/browser claim.",
+  "visualInspection": "Both1536 masters and256 previews visually inspected; master footer labels readable. Tiny preview annotations require explicit card labels and schematic Jupiter remains uncalibrated."
+}

@@ -1,0 +1,218 @@
+{
+  "body": "Lysithea / Jupiter X / JPL510",
+  "date": "2026-10-20",
+  "status": "Quiet pre-integration source inventory; dossier96 not delivered.",
+  "inputs": [
+    {
+      "path": "data/research-sources/lysithea-2mass-commons-lead-2026-10-20.html",
+      "bytes": 91025,
+      "sha256": "1f136767210fc8708515d595e7d26c94cecfe1f22068d1ef8cd443464beca6ff"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-commons-lead-2026-10-20.txt",
+      "bytes": 16270,
+      "sha256": "05554bf4af9052b6ee5249f2cdaed2a212963bd98c3d40075be5ebf8110451d4"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-credit-preparation-2026-10-20.json",
+      "bytes": 2202,
+      "sha256": "ba6193404790a0124795e8fe5209c980add048ded0911cf68d616f4ec078aa3b"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-ipac-acknowledgement-2026-10-20.html",
+      "bytes": 304,
+      "sha256": "fa6de26cb5dcf84325ad62a4935a2b0b4bf3b7a7271b7320f35688846cfbad58"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-irsa-knowledgebase-2026-10-20.html",
+      "bytes": 2136,
+      "sha256": "652eefd41656fcb8877948589ef2d9b4cbf5fa13fb0756a3610aa2dd1233db14"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-primary-recovery-preparation-2026-10-20.json",
+      "bytes": 2232,
+      "sha256": "f69c62aa8560aa18dbb72439f1a47b6bee70cddd7b237a427d79d08189c700e2"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-publisher-2026-10-20.jpg",
+      "bytes": 91644,
+      "sha256": "93efbafc0ca00e1cb559db44e3cb44220bd47f292cef5671788005aecef756cb"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/lysithea-dia-carnegie-crosscheck-2026-10-20.html",
+      "bytes": 170093,
+      "sha256": "25c4d2a87037ac1441e7d905ba07574d0566f43132c7fc2bd541a3d7b6701576"
+    },
+    {
+      "path": "data/research-sources/lysithea-dia-nasa-crosscheck-2026-10-20.html",
+      "bytes": 259095,
+      "sha256": "a899e6d41e348b2b9a1ba01af8ad6d3a86b0c91ed3f8e577cb51180f0c70a9c8"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-skyImage-master.jpg",
+      "bytes": 219314,
+      "sha256": "bd8e9523ac46f7be675b3797728db377665d01b43b602a3f0219b9c52ab8c92c"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-skyImage-original.png",
+      "bytes": 2385198,
+      "sha256": "35526d15dedebac91e80ebb1729409a083a1d55d855ad483842bda08ce37ac11"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-skyImage-preview.jpg",
+      "bytes": 6926,
+      "sha256": "5ce6807ea38a6d5463a25c287598352a796e744b8e43f089c7c1f385272312a9"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-surfaceImage-master.jpg",
+      "bytes": 304312,
+      "sha256": "b3a57844e00d04fb9aff5b178b6897088333699978b49cdb6884ce14bd1cafa9"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-surfaceImage-original.png",
+      "bytes": 2517923,
+      "sha256": "c1474e94001701b3e8db4c9673357dae4c92914e44684d3e5cabcdd22595ae4f"
+    },
+    {
+      "path": "data/research-sources/lysithea-generated-surfaceImage-preview.jpg",
+      "bytes": 10146,
+      "sha256": "a11f8fc2014ceb1578670e10b765702e14f655db6e172ab70604d739ed64c0e0"
+    },
+    {
+      "path": "data/research-sources/lysithea-ipac-image-policy-2026-10-20.html",
+      "bytes": 32604,
+      "sha256": "3ab9572fa9fbb5a24790c7fbfcaef8aac7a92af8d7ce037d84651d600bb4d741"
+    },
+    {
+      "path": "data/research-sources/lysithea-ipac-terms-preparation-2026-10-20.json",
+      "bytes": 1743,
+      "sha256": "0e754a12fc9deccc6c00eedc42e5426337ba748901f51e52e2d514af27c8a00e"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-elements-2026-10-19.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-physical-2026-10-19.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/lysithea-local-prompt-2026-10-20.txt",
+      "bytes": 1346,
+      "sha256": "bca779e6e8f27b3a307fe5888daa5cda0872ac9ff67f1325e4c6f3e7da226cd5"
+    },
+    {
+      "path": "data/research-sources/lysithea-local-view-preparation-2026-10-20.json",
+      "bytes": 3044,
+      "sha256": "f64f1df705048495aba3a8d81bcbfa795b0e13cc84b9c5a2168342cab332be2b"
+    },
+    {
+      "path": "data/research-sources/lysithea-master-preview-preparation-2026-10-20.json",
+      "bytes": 2883,
+      "sha256": "1aa9debc0e0d16ed2bb84c2fb398a12a203c77e9351eb11b056a910a6fcf2f64"
+    },
+    {
+      "path": "data/research-sources/lysithea-nasa-overview-2026-10-19.html",
+      "bytes": 246774,
+      "sha256": "802e7e78a01bde40f32480fa25e9f80f60c6e187eed6e61798f12f839c201dd3"
+    },
+    {
+      "path": "data/research-sources/lysithea-nasa-overview-text-2026-10-19.txt",
+      "bytes": 54077,
+      "sha256": "60ae2c6c95633c0a898de99705b702ac962f94b19eebcd39705981b40be5ee5f"
+    },
+    {
+      "path": "data/research-sources/lysithea-native-imagery-preparation-2026-10-20.json",
+      "bytes": 3718,
+      "sha256": "9c9fcd3a5c1a73b207524860d7c78c8d2e4664cf3056d179f7c6762593c0c5af"
+    },
+    {
+      "path": "data/research-sources/lysithea-observer-geometry-preparation-2026-10-20.json",
+      "bytes": 2548,
+      "sha256": "1510a6530ba9e5a023fea296352b1d2d018e2a877f020f4db93fdfb0ca350e75"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-caption-2026-10-20.html",
+      "bytes": 19191,
+      "sha256": "d1acaab5a0f12b8049f58d9af1c5e086d1338a7ade4a6f4f56faa4bd18cfe877"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-publisher-260-2026-10-20.jpg",
+      "bytes": 59815,
+      "sha256": "f397512dba52f1971990212645a7276a52c49541b0e4bd1ffaf7d9eea532feea"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.txt",
+      "bytes": 7997,
+      "sha256": "2d670bcd8db24b81c11d3b382a1a781d1e2f68e8d9bcbee75342bf4514f004b5"
+    },
+    {
+      "path": "data/research-sources/lysithea-reference-followup-preparation-2026-10-20.json",
+      "bytes": 8313,
+      "sha256": "1e639bb1a13f37f9169995af5124fbfdba83ce89414dc2b9b4ef51c2013fd72e"
+    },
+    {
+      "path": "data/research-sources/lysithea-reference-preparation-2026-10-19.json",
+      "bytes": 5314,
+      "sha256": "d36341062c6550cbf9a21debdf59652f87bc3136ffefd483fa95516b1c0166cd"
+    },
+    {
+      "path": "data/research-sources/lysithea-sharkey-targeted-text-preparation-2026-10-20.json",
+      "bytes": 20648,
+      "sha256": "e92d7d0c6bf497e500ff39d95a52e0e1b3d580119e8c2b5b035576bf01b9b3b2"
+    },
+    {
+      "path": "data/research-sources/lysithea-sky-prompt-2026-10-20.txt",
+      "bytes": 1463,
+      "sha256": "fd3b1c792e92d33094c591682fe526e87ca077cdd39acab76238e4d1d1d6449b"
+    },
+    {
+      "path": "data/research-sources/lysithea-sky-view-preparation-2026-10-20.json",
+      "bytes": 3397,
+      "sha256": "415a4c10f901644a7913f731cf9653db2c344495f0f8a6bbcdbb6a0a4425c20a"
+    }
+  ],
+  "originalChecks": [
+    {
+      "record": "lysithea-local-view-preparation-2026-10-20.json",
+      "defaultEqualsResearchCopy": true
+    },
+    {
+      "record": "lysithea-sky-view-preparation-2026-10-20.json",
+      "defaultEqualsResearchCopy": true
+    }
+  ],
+  "preparedDerivativeCount": 4,
+  "integrationDecisions": {
+    "generatedGlobe": false,
+    "surfacePending": true,
+    "radiusGuideKm": 21.1,
+    "radiusQualification": "Half42.2\u00b1.7kmNEATM effective diameter, not axes/localnormal; NASA18km assumedalbedo alternative retained.",
+    "massKg": null,
+    "rotationHours": null,
+    "locked": false,
+    "phaseUnknown": true,
+    "lockingQualification": "Disables automatic locking only; does not establish measured nonsynchronous spin.",
+    "nativeCandidate": "Unchanged797x543 archived2MASS publisher JPEG; no croppedCommonsderivative or OHP image adopted.",
+    "nativeStatus": "Primary date/night/scan/coadd and institutionalfunding credit recovered; exact originalpublication/creator/product/photometry and source-specific reuse assessment remain explicit before embedding."
+  },
+  "next": [
+    "Use additive importer with own2IMAGINEDviews and retained prompts/originals/masterhashes. Do not regenerate prepared views.",
+    "Carry full Grav2015/2025v2science, unidentified absorber and internal3.9micron target enumeration conflict; never transfer Elara/Himalia chemistry.",
+    "Add body-specific catalogue means from retainedJUP347, distinguish mean orbit from dated distance; verify prior51moons/95dossiers/publicbytes unchanged.",
+    "Run relevanttests/queue/production/full hardgate/browser exact restoration and ownroute before delivery claim; fetch/rebase/pushSSH useful verifiedbatch referencing#3."
+  ],
+  "preservation": "No tracked registry/catalogue/asset/codec changes; all95 prior dossiers preserved. No fresh build/browser claim."
+}

@@ -1,0 +1,66 @@
+{
+  "body": "Lysithea",
+  "date": "2026-10-20",
+  "status": "Quiet hypothetical angular-guide preparation; no image/dossier/catalogue adoption.",
+  "sources": [
+    {
+      "path": "src/astro/appearance.js",
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-elements-2026-10-19.html",
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/lysithea-nasa-overview-2026-10-19.html",
+      "sha256": "802e7e78a01bde40f32480fa25e9f80f60c6e187eed6e61798f12f839c201dd3"
+    }
+  ],
+  "scenarios": [
+    {
+      "heightKm": 21.1,
+      "input": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.0782035121573425,
+        "horizontalFovDeg": 90
+      },
+      "angularDiameterDeg": 0.6847768300512521,
+      "centreDiscWidthFraction": 0.005975876296391563,
+      "targetWidthAt1672": 9.991665167566694,
+      "discarded": [
+        "irradianceEarth",
+        "approximateSrgb"
+      ]
+    },
+    {
+      "heightKm": 18,
+      "input": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.07820353287956258,
+        "horizontalFovDeg": 90
+      },
+      "angularDiameterDeg": 0.6847766485982593,
+      "centreDiscWidthFraction": 0.005975874712858934,
+      "targetWidthAt1672": 9.991662519900139,
+      "discarded": [
+        "irradianceEarth",
+        "approximateSrgb"
+      ]
+    }
+  ],
+  "limits": [
+    "Spherical Jupiter69911km at mean semimajor-axis11699100km minus hypothetical radial height; not dated distance/local normal/line-of-sight or joint fit.",
+    "21.1km halfNEATMdiameter versus18km NASA assumedalbedo alternative is not axes or uncertainty envelope.",
+    "Unknown spin/pole/attitude; no locking/permanentJupiterface/visibility claim.",
+    "165K helper is angular-only. Jupiter reflected-light colour/irradiance/photometry not inferred from blackbody outputs.",
+    "Nominal90HFOV/1672 raster guide only; future phase/axis/colour/light/exposure/registration remain artistic.",
+    "No independent angular or raster calculation outside skyGeometry."
+  ],
+  "next": "Primary-native source/product/credit/terms assessment, then independent IMAGINED local/observer views. All95 existing dossiers preserved."
+}

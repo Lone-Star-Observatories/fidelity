@@ -1,0 +1,27 @@
+{
+  "body": "Lysithea",
+  "date": "2026-10-20",
+  "status": "Quiet terms/availability preparation; no native adoption/embedding.",
+  "primaryPolicy": {
+    "url": "https://www.ipac.caltech.edu/page/image-use-policy",
+    "path": "data/research-sources/lysithea-ipac-image-policy-2026-10-20.html",
+    "bytes": 32604,
+    "sha256": "3ab9572fa9fbb5a24790c7fbfcaef8aac7a92af8d7ce037d84651d600bb4d741",
+    "assessment": [
+      "General reuse permission subject to source-specific exceptions/credit and noendorsement; not an automatic public-domain determination.",
+      "Caltech disclaims copyright ownership warranties and does not represent other owners. Third-party material may retain commercial restrictions.",
+      "Default credit Courtesy NASA/JPL-Caltech only absent different image caption; exact2MASS caption/fullcredit still requires primary recovery."
+    ]
+  },
+  "legacyPrimaryFetch": {
+    "url": "https://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+    "curlExit": 28,
+    "httpStatus": "000",
+    "result": "Connection timed out after25005ms; no response body or image received.",
+    "sha256": null,
+    "limit": "Not a paper/imagehash or proof permanent unavailability/global absence."
+  },
+  "retainedNative": "OHP260 original remains research-only under primary permission limits; distinct from Commons2MASS lead.",
+  "next": "Recover primary2MASS publisher/archive product and credit via source-linked archive, or document product uncertainty. Independent imagined views can proceed from verified body-specific research/skyGeometry without claiming resolved native geography.",
+  "preservation": "No tracked changes or delivered-asset replacements;95dossiers preserved. No fresh build/browser claim."
+}

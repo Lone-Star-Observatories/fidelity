@@ -1,0 +1,41 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Quiet institutional-credit preparation, no embedding/catalogue/dossier96.",
+  "sources": [
+    {
+      "path": "data/research-sources/lysithea-2mass-ipac-acknowledgement-2026-10-20.html",
+      "httpStatus": 404,
+      "bytes": 304,
+      "sha256": "fa6de26cb5dcf84325ad62a4935a2b0b4bf3b7a7271b7320f35688846cfbad58",
+      "kind": "Error response, not acknowledgement content"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-irsa-knowledgebase-2026-10-20.html",
+      "httpStatus": 200,
+      "bytes": 2136,
+      "sha256": "652eefd41656fcb8877948589ef2d9b4cbf5fa13fb0756a3610aa2dd1233db14",
+      "kind": "Primary IRSA knowledgebase acknowledgement"
+    }
+  ],
+  "primaryUrl": "https://irsa.ipac.caltech.edu/docs/knowledgebase/2mass.html",
+  "institutionalCredit": {
+    "project": "Two Micron All Sky Survey (2MASS)",
+    "jointInstitutions": [
+      "University of Massachusetts",
+      "Infrared Processing and Analysis Center / California Institute of Technology"
+    ],
+    "funders": [
+      "National Aeronautics and Space Administration",
+      "National Science Foundation"
+    ],
+    "canonicalPaper": "Skrutskie et al. (2006), linked by publisher"
+  },
+  "limits": [
+    "IRSA asks for standard acknowledgement when using2MASS data products. Institutional-credit identification is not itself image-specific copyright ownership, public-domain status or blanket licence.",
+    "Archived Nelson publisher JPEG and source table remain preserved. General IPAC policy/source exceptions/noendorsement conditions remain explicit; exact original-publication date and specific creator credit beyond archived staff source remain open.",
+    "Native three-panel point-source image is not resolved terrain/axes/calibrated visible colour; no generated skin or data product adoption.",
+    "404 guessed overview acknowledgement URL is recorded only as error response; successful primary knowledgebase replaces that discovery route, not any original source bytes."
+  ],
+  "preservation": "All95 delivered dossiers and public/master/native/map/model/provenance bytes unchanged; no fresh tests/build/browser claim."
+}

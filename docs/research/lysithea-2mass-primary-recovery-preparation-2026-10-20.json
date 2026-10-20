@@ -1,0 +1,32 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Quiet primary archive recovery; research only, no adoption or dossier96.",
+  "sources": [
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-publisher-2026-10-20.jpg",
+      "bytes": 91644,
+      "sha256": "93efbafc0ca00e1cb559db44e3cb44220bd47f292cef5671788005aecef756cb",
+      "dimensions": [
+        797,
+        543
+      ]
+    }
+  ],
+  "archivePage": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+  "archiveImage": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/lysithea.jpg",
+  "findings": [
+    "Curl recovered archived primary page and its linked original three-panel JPEG after web-tool cache failure; HTTP200 both.",
+    "Publisher table identifies Lysithea visible, night980921s, scan073, coadd103, RA(J2000)23 36 54.55 Dec-03 40 11.5. These are publisher identifiers/coordinates, not independently reproduced astrometry or raw-product retrieval.",
+    "Southern2MASS survey observations1998-09-21 distinct OHP1998-08-21 image. Exact exposureUTC remains open.",
+    "Full original JPEG visually inspected: monochrome display panels titled j0730103.fits(frame9), h0730103.fits(frame10), k0730103.fits(frame11). Point detections/noise/display windows are not resolved moon terrain, axes, calibrated visible colour or chemistry.",
+    "This797x543 three-panel source differs from Commons single-panel rendition; no pixel-equivalence claim or Commons PD assumption.",
+    "Current IPAC reuse policy remains source-exception/credit/noendorsement limited; full2MASS institutional funding credit and raw-product/filter/extraction/display-transfer crosswalk remain open. No automatic public-domain determination or image embedding."
+  ],
+  "preservation": "All95 delivered dossiers/public assets/originals/masters/models/provenance unchanged; no production code or registry changes, no fresh build/browser claim."
+}

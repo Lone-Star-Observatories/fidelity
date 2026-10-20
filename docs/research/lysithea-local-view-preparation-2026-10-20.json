@@ -1,0 +1,28 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Independent built-in imagined local illustration prepared; no dossier96 or embedding.",
+  "original": {
+    "path": "data/research-sources/lysithea-generated-surfaceImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-c1dfe07e-6aac-484f-8c6c-2b0352d09c52.png",
+    "bytes": 2517923,
+    "sha256": "c1474e94001701b3e8db4c9673357dae4c92914e44684d3e5cabcdd22595ae4f",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": {
+    "path": "data/research-sources/lysithea-local-prompt-2026-10-20.txt",
+    "text": "Create one independent research-guided hypothetical local-view illustration for Fidelity: Lysithea (Jupiter X), not Sinope, Elara, or another moon. Wide 16:9 image. A low camera looks across an entirely invented modest-relief grey-brown dusty rocky foreground with sparse angular blocks and shallow irregular depressions, distant low horizon under black sky. Restrained naturalistic scientific concept-art appearance, oblique weak sunlight with exposure lifted artistically. No astronomical disks in this local view. No source imagery, no observed body's map, no analog terrain copying. Lysithea is unresolved in available remote imagery; its thermal effective diameter42.2km is not measured local shape. Near-infrared absorption has unidentified carriers, so do not depict specific minerals, ice exposures, chemistry, ocean, atmosphere, haze, clouds, plume, vegetation, life, people, spacecraft, infrastructure, or a survivable landing. Regolith/blocks/relief/colour/lighting are inventions, not mapped features or measured fractions. No claim to dated site, spin axis, permanent Jupiter-facing direction, or rotation. Render exactly two highly legible footer lines within a narrow dark band: 'IMAGINED LOCAL VIEW \u2014 LYSITHEA' and 'Terrain, materials, colour and lighting are hypothetical'. Make typography clean and readable, no other labels.",
+    "sha256": "bca779e6e8f27b3a307fe5888daa5cda0872ac9ff67f1325e4c6f3e7da226cd5"
+  },
+  "visualInspection": "Full image inspected; both footer lines legible, invented low grey-brown relief and rocks under black sky; no astronomical disk.",
+  "limits": [
+    "No analog map reused. All terrain, blocks, regolith, material/chemistry fractions, colour, light and exposure hypothetical.",
+    "No dated site, local normal, rotation, spin locking or permanent Jupiter-facing claim. No ocean, plume, biology, fore atmosphere or survivable landing depicted.",
+    "No astronomical-disk/angular/raster measurement in this local image. Black sky an artistic assumption, not proof of atmospheric absence.",
+    "Thermal effective diameter and unresolved near-IR carriers do not establish local terrain/chemistry. Native OHP and archived2MASS originals/provenance preserved separately."
+  ],
+  "preservation": "Prior95 dossiers/public files/native/maps/models/masters unchanged; no new registry/catalogue entry, no fresh build/browser claim."
+}

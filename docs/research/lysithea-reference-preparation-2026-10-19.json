@@ -1,0 +1,161 @@
+{
+  "body": "Lysithea / Jupiter X / JPL510",
+  "date": "2026-10-19",
+  "status": "Quiet preparation only; no dossier96, imagery generation, catalogue change, embedding or native absence claim.",
+  "baseline": "c89e70a",
+  "sources": [
+    {
+      "path": "data/research-sources/lysithea-nasa-overview-2026-10-19.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/lysithea/",
+      "bytes": 246774,
+      "sha256": "802e7e78a01bde40f32480fa25e9f80f60c6e187eed6e61798f12f839c201dd3"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-elements-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-physical-2026-10-19.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+      "url": "https://arxiv.org/html/2501.16484v2",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    }
+  ],
+  "extractedRows": {
+    "lysithea-nasa-overview-2026-10-19.html": [],
+    "lysithea-jpl-elements-2026-10-19.html": [
+      [
+        "15",
+        "Jupiter",
+        "Lysithea",
+        "510",
+        "JUP347",
+        "ecliptic",
+        "2000-01-01.5",
+        "11699100.",
+        "0.117",
+        "48.3",
+        "328.5",
+        "27.7",
+        "9.2",
+        "258.5035",
+        "178.9",
+        "290.6",
+        "",
+        "",
+        "",
+        "47"
+      ]
+    ],
+    "lysithea-jpl-physical-2026-10-19.html": [],
+    "pasiphae-sharkey2025-v2.html": [
+      [
+        "JX Lysithea",
+        "Himalia",
+        "42.2 ± 0.7 42.2\\pm 0.7 b b Via [ 46 ] from NEOWISE thermal-IR observations.",
+        "2024-01-25",
+        "11.55",
+        "4.96",
+        "4.82"
+      ],
+      [
+        "",
+        "",
+        "Carme",
+        "Sinope",
+        "Themisto",
+        "Ananke",
+        "Pasiphae",
+        "Lysithea",
+        "Elara",
+        "Himalia"
+      ]
+    ]
+  },
+  "thermalPreparation": {
+    "source": "Grav etal2015 Table1/Table3/section4.5; shared retained primary, no other-body parameters transferred",
+    "diameterKm": [
+      42.2,
+      0.7
+    ],
+    "displayHalfDiameterKm": 21.1,
+    "halfDiameterLimit": "Arithmetic half of effective NEATM diameter, not axes/local normal; not yet adopted.",
+    "eta": [
+      0.93,
+      0.02
+    ],
+    "visibleAlbedoPercent": [
+      3.6,
+      0.6
+    ],
+    "W1AlbedoPercent": [
+      6.9,
+      1.1
+    ],
+    "W2": "unreported",
+    "counts": [
+      "8",
+      "unreported",
+      "15",
+      "15"
+    ],
+    "roundedMjdUtc": 55368,
+    "Hmag": [
+      11.09,
+      0.02
+    ],
+    "Gassumed": [
+      0.1,
+      0.15
+    ],
+    "samplingLimit": "W1 detections only8of15 may select brightest part of <.2mag peak-to-peak lightcurve; W1 albedo possibly biased high. No spin period adopted.",
+    "classificationLimit": "C/P taxonomic association is interpretation, not local material fractions/colour/chemistry.",
+    "visualTableInspection": "Pending body-specific visual check of retained Table1/Table3 images; text extracted only this turn.",
+    "rights": "AAS all rights reserved, not CC BY; no figure copied."
+  },
+  "nasaAlternative": {
+    "radiusKm": 18,
+    "assumedAlbedo": 0.04,
+    "meanDistanceApproxKm": 11700000,
+    "periodApproxDays": 259,
+    "discovery": "1938-07-06 Seth Barnes Nicholson, Mount Wilson100inch Hooker",
+    "limits": [
+      "Historical assumed-albedo overview, not axes or current orbit.",
+      "Lost S/2000J11/possible crash paragraph is historical narrative, not verified present status or observed collision. Reconcile Dia primary rediscovery before repeating."
+    ]
+  },
+  "jwstPreparation": {
+    "source": "Sharkey2025v2 specific CC BY4; full6authors retained in prior record",
+    "limits": [
+      "Body-specific full text/table interpretation pending; no Sinope red-satellite chemistry assigned to Lysithea.",
+      "Unresolved spectral/thermal extraction is not resolved geography or calibrated visible RGB.",
+      "Version date not acquisition; exact row retained above."
+    ]
+  },
+  "next": [
+    "Visually verify Lysithea thermal table rows and body-specific JWST results/observation.",
+    "Assess actual native imagery/products and terms before generating independent imagined scenes.",
+    "Use skyGeometry for any later angular/raster guide; no angular calculation this turn."
+  ],
+  "preservation": "Read-only source acquisition/extraction into ignored research preparation. All95dossiers/native/maps/models/shapes/originals/masters/codec inputs unchanged; no new build/browser claim."
+}

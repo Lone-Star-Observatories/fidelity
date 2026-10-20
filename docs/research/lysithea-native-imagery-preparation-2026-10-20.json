@@ -1,0 +1,69 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Quiet native-image preparation; no96th dossier, no native embedding or production asset change.",
+  "sources": [
+    {
+      "url": "https://promenade.imcce.fr/fr/pages6/68.html",
+      "path": "data/research-sources/lysithea-ohp-caption-2026-10-20.html",
+      "bytes": 19191,
+      "sha256": "d1acaab5a0f12b8049f58d9af1c5e086d1338a7ade4a6f4f56faa4bd18cfe877"
+    },
+    {
+      "url": "https://promenade.imcce.fr/fr/images/jpg2/260.jpg",
+      "path": "data/research-sources/lysithea-ohp-publisher-260-2026-10-20.jpg",
+      "bytes": 59815,
+      "sha256": "f397512dba52f1971990212645a7276a52c49541b0e4bd1ffaf7d9eea532feea"
+    },
+    {
+      "url": "https://promenade.imcce.fr/fr/pages1/189.html",
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Lysithea2.jpg",
+      "path": "data/research-sources/lysithea-2mass-commons-lead-2026-10-20.html",
+      "bytes": 91025,
+      "sha256": "1f136767210fc8708515d595e7d26c94cecfe1f22068d1ef8cd443464beca6ff"
+    }
+  ],
+  "ohp": {
+    "dimensions": [
+      400,
+      400
+    ],
+    "mode": "RGB",
+    "visuallyInspected": true,
+    "printedObservation": "1998-08-21 02:01 UTC",
+    "printedTelescope": "120cm OHP",
+    "printedField": "12arcmin x12arcmin publisher annotation, not independent raster calculation",
+    "credit": "OHP/CNRS/IMCCE printed; caption OHP/IMCCE/CNRS",
+    "identity": "Yellow arrow labelled Lysithée(J-10), not Jupiter surface or another moon.",
+    "limits": [
+      "Unresolved point/starfield/noise/glare and annotations do not establish axes/terrain/visiblecolour/chemistry.",
+      "Jupiter-nearby stray reflection described by publisher; no assignment of broad bright region as Lysithea terrain/atmosphere.",
+      "Caption historical24km mean size/density11 not adopted or interpreted as measured physical parameters.",
+      "Exactrawproduct/filter/exposure/photometry/originalpublication/frame unknown.",
+      "Primary terms require permission for partialcopy/commercial or nonpedagogical use; no licence inferred, author contacted or image embedded."
+    ]
+  },
+  "twoMassLead": {
+    "status": "Commons metadata lead only; no image downloaded or primary pixel/date/product crossmatch.",
+    "claimedDate": "1998-09-21 distinct OHP1998-08-21; not a conflict without asserting same product.",
+    "claimedCredit": "IPAC/Caltech; 2MASS full institutional/funding credit not yet established.",
+    "claimedDimensions": "Current HTML248x254; indexed older257x257 not silently equated.",
+    "sourceChain": [
+      "http://jumk.de/astronomie/moons/lysinthea.shtml",
+      "http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html"
+    ],
+    "primaryPolicyLink": "https://www.ipac.caltech.edu/page/image-use-policy",
+    "limits": [
+      "Commons public-domain assertion not independently established from current primary policy; permission to use is not automatically public-domain copyright status.",
+      "Recover primary source/archive product, observation/transfer and credit before adoption.",
+      "Near-infrared image is not calibrated visible RGB or resolved geography."
+    ]
+  },
+  "preservation": "All95 delivered dossiers, original/defaultPNGs, masters, native/map/model/shape inputs, source manifests, codecs and recordedClipper unchanged. No new build/browser claim.",
+  "next": "Primary2MASS product/terms/credit assessment; retain OHP original research-only. Then angular guide via skyGeometry and independent labelled views if needed."
+}

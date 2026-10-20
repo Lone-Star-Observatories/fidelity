@@ -1,0 +1,38 @@
+{
+  "status": "pass",
+  "browser": "Chrome via IAB, loopback HTTP",
+  "completeReadableJsonSha256": "677cb2381239e8892228487933c9058e3efecd6e47ffd09c18596ce53428b50b",
+  "applicationSha256": "8e511a2f2fb50a3cf77db431ceb9548e34a50a3d8b571d06a2721d164f6f9f22",
+  "htmlParserPackedSnapshotSha256": "d7f83cc2f8fabcb1c2e71dd825ff9ffcf4a9827bbbbb8d58a5a4162414886202",
+  "htmlParserPackedAppSha256": "bcdf5ac54d158169fac2ec63aa982c4bfe860ca967612cc2d9dc43172bf515a6",
+  "decodedImages": 332,
+  "parsedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "startupCanvases": 8,
+  "normalLysithea": {
+    "cards": 2,
+    "decodedDimensions": [
+      1536,
+      864
+    ],
+    "ownGlobe": false
+  },
+  "offlineLysithea": {
+    "cards": 2,
+    "decodedDimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "ownGlobe": false
+  },
+  "unsupportedGzipNoticeVerified": true,
+  "unsupportedWasmNoticeVerified": true,
+  "limits": [
+    "Other browser engines remain open.",
+    "Direct-file route not tested; earlier URL-policy limit preserved.",
+    "Model scene parsing is not a fresh all-model interactive load claim.",
+    "Earlier route/event-worker coverage remains historical, not rerun for this additive dossier."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "body": "Lysithea / Jupiter X",
+  "date": "2026-10-20",
+  "status": "Independent built-in hypothetical observer original prepared; no dossier96/embedding/catalogue change.",
+  "original": {
+    "path": "data/research-sources/lysithea-generated-skyImage-original.png",
+    "defaultPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e28f0930-ad1c-48bb-b583-287e87360b2e.png",
+    "bytes": 2385198,
+    "sha256": "35526d15dedebac91e80ebb1729409a083a1d55d855ad483842bda08ce37ac11",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "prompt": {
+    "path": "data/research-sources/lysithea-sky-prompt-2026-10-20.txt",
+    "text": "Generate one new independent hypothetical observer-view scientific concept illustration for Fidelity, Lysithea (Jupiter X). Wide16:9 landscape. Entirely invented grey-brown dusty rocky low foreground and low distant horizon, ample black sky. Small Jupiter high near centre: use nominal90-degree horizontal field of view with spherical Jupiter angular diameter0.68477683degrees from repository skyGeometry, target about10pixels across at1672pixel canvas width. Thus a very tiny planet, not a dominant globe. Its cream/tan bands, phase, pole angle and brightness must be artistically schematic, no real Jupiter image/texture. No other astronomical disks, no stars necessary. A hypothetical outward observer location with21.1km radial height and11699100km mean orbital scale; not a dated scene, registered site/local normal, measured moon shape, known spin orientation, tidal locking or permanent Jupiter face. Entire landscape and materials invented; near-infrared absorbers unidentified, do not assert minerals/ice fractions. No observed-body map copying or analog skin, no atmosphere/haze/clouds around moon, plume, liquid ocean, biology, humans, craft, structures, or survivable landing. Restrained realistic concept-art texture, weak oblique sunlight, exposure lifted artistically. Two clean legible exact footer lines in dark bottom band: 'IMAGINED SKY FROM LYSITHEA' and 'Terrain, Jupiter pattern, phase, colour and lighting are hypothetical'. No other text.",
+    "sha256": "fd3b1c792e92d33094c591682fe526e87ca077cdd39acab76238e4d1d1d6449b"
+  },
+  "visualInspection": "Full image inspected; both footer lines legible; tiny schematic Jupiter appears oversized relative to recorded guide. No calibrated raster diameter adopted.",
+  "geometryReference": "data/research-sources/lysithea-observer-geometry-preparation-2026-10-20.json",
+  "limits": [
+    "skyGeometry nominal90HFOV1672width guide0.6847768300512521degrees9.991665167566694targetpixels using21.1km hypothetical radial height; not dated distance/local normal/visibility/spin locking/permanent face/joint fit.",
+    "Jupiter bands, phase, pole, colour, lighting/exposure and terrain/material/chemistry fractions invented. No observed-body map or analog skin reused.",
+    "No fore atmosphere, active plume, liquid ocean, biology or survivable landing. Black sky and omitted rings/stars are artistic choices, not absence claims.",
+    "Thermal effective diameter not local shape;165K helper angular-only, not reflected-light photometry. All native2MASS/OHP evidence and terms remain separate."
+  ],
+  "preservation": "Prior95 dossiers/public/native/master/map/model bytes unchanged; both Lysithea independent originals now retained. No fresh build/browser claim."
+}

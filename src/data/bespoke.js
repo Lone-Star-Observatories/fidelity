@@ -16450,6 +16450,181 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "lysithea": {
+    "id": "lysithea",
+    "name": "Lysithea",
+    "kind": "moon",
+    "aliases": [
+      "Lysithea",
+      "Jupiter X",
+      "J10 Lysithea"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Archived2MASS three-panel point-source display and OHP annotated point image retained research-only; neither establishes geography, axes or calibrated visible colour.",
+    "measured": [
+      "Lysithea/JupiterX/JPL510 distinct Sinope/JupiterIX. NASA discovery1938July6 SethBarnesNicholson MountWilson100inchHooker.",
+      "Sharkey2025v2 Table1 NIRSpecIFUprism GO4028 observation2024-01-25; versiondate not acquisition.",
+      "Archived Nelson/IPAC2MASS table identifies visible Lysithea1998-09-21southernnight980921s scan073 coadd103; exactexposureUTC/rawproduct crosswalk open. OHPimage prints1998-08-21 02:01UTC,distinct observation."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table1/Table3/section4.5 NEATM effectiveDIAMETER42.2±.7km eta.93±.02 pV3.6±.6percent W1albedo6.9±1.1percent W2unreported. Displayhalfdiameter21.1km not axes/localnormal; NASA18km assumes.04albedo,notjointfit/envelope.",
+      "WISEcounts8/unreported/15/15; roundedMJDUTC55368 notexposureUTC,H11.09±.02,G.10±.15assumed,methodsconservativeHerror.15mag. W1brightestpartselection of<.2mag lightcurve maybiasalbedohigh; no spinperiodadopted. C/Ptaxonomy notlocalfractions.",
+      "JPLJUP347 planet-centred ecliptic2000Jan1.5TDB mean a11699100km e.117 w48.3 M328.5 i27.7 node9.2 P258.5035days aps178.9/node290.6years; blankpole notzero. Means notdatedephemeris/currentdistance/lighttime/covariance.",
+      "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 pipeline1.14.0/jwst_1225 NSClean/PSF/SNAP2solar1128/NEATMtailunreproduced. Single-minimum3microncarrierunidentified;3.9carbonatepossibilitymissing3.4companionpreventsidentification;2.63featureunclear. S3.SS2.p9includesLysithea near3.9 butS5.p3listsPasiphae: internalenumerationconflict retained. Himalia/Elara ammoniatedphyllosilicates/complexedCO2 notassignedLysithea. MixedTrojanOH/alteredphyllosilicatehypothesishighlyspeculative,notfractions/geography/visiblecolour.",
+      "Familyparentprocessing/coremantlecrust/capturecollisionmodels notresolvedinterior/history. NASAoverviewlostS2000J11/crashnarrativeoutdatedagainstNASA/CarnegieDia2010/2011rediscovery,notobservedcollision."
+    ],
+    "unknown": [
+      "Mass,GM,density,spin,pole,axes,localnormal,registeredterrain,currentlongitude,visiblecolour,chemistryfractions and datedobserveralignment; no Lysithearow in retainedJPLphysicaltable. Nullrotation/lockingdisabled notmeasurednonsynchronousspin.",
+      "Native creator/firstpublication/rawproduct/filter/exposure/astrometry/displaytransfer/photometry crosswalk open. IPACreusepermission sourceexceptions/noendorsement notautomaticPD; OHPpermissionlimits separate. No paperfigures embedded."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM LYSITHEA",
+    "skyLabel": "IMAGINED · SKY FROM LYSITHEA",
+    "skyCaption": "HypotheticalJupiter.6848degreeguide atmean-orbitscale; generateddiskoversizeduncalibrated. Phase,colour,exposure,pole andregistration artistic.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "21.1 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "11.70 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "nativeProducts": {
+      "embedded": false,
+      "limits": "Native2MASS/OHP originals retained research-only; unresolved-source display is not terrain. Terms/product audit retained separately; no globalabsenceclaim."
+    },
+    "assumed": [
+      "Independent built-in imagined local/skyviews: allreliefblocksregolithmaterials/chemistryfractionscolourlight invented,noanalogmaps/no datedsite/foreatmosphere/plume/liquidocean/biology/survivablelanding. Blacksky/ringomission notabsence.",
+      "skyGeometry sphericalJupiter69911km at11699100minus21.1km nominal90HFOV1672 target.6847768300512521degrees9.991665167566694pixels;18kmNASAalternative.6847766485982593degrees9.991662519900139pixels. Notjointfit/envelope/normal/locking/permanentface/datevisibility. Generateddiskvisuallyoversizeduncalibrated,noadoptedrasterdiameter;165Khelperangularonlycolourirradiancediscarded.",
+      "Original/defaultPNGs/fullprompts preserved1536JPEG85masters256JPEG80previews; offlineWebP80 intended. TinyfootersrequireIMAGINEDcardlabels."
+    ],
+    "contextImages": [],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.0782035121573425,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "angularDiameterDeg": 0.6847768300512521,
+      "centreDiscWidthFraction": 0.005975876296391563,
+      "irradianceEarth": 0.0000011026177849662077,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "references": [
+      {
+        "title": "NASA Lysithea historical assumed-albedo overview",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/lysithea/"
+      },
+      {
+        "title": "JPL JUP347 mean elements, not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table; no Lysithea row in retained response",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav et al.2015; full eight authors retained, all rights reserved",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "Rounded MJD UTC55368; individual UTC unknown"
+      },
+      {
+        "title": "Sharkey et al.2025v2; full six authors, specific CC BY4 terms",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "publicationDate": "2025-09-07",
+        "observationDate": "2024-01-25"
+      },
+      {
+        "title": "Specific arXiv CC BY4 terms, not blanket raw-product terms",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "NASA Dia rediscovery crosscheck",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/dia/"
+      },
+      {
+        "title": "Carnegie Dia rediscovery, not an observed collision",
+        "url": "https://carnegiescience.edu/news/long-lost-moon-jupiter-found"
+      },
+      {
+        "title": "OHP/CNRS/IMCCE annotated Lysithea observation; research only",
+        "url": "https://promenade.imcce.fr/fr/pages6/68.html"
+      },
+      {
+        "title": "OHP author-permission terms, no image adoption",
+        "url": "https://promenade.imcce.fr/fr/pages1/189.html"
+      },
+      {
+        "title": "Archived Nelson/IPAC 2MASS three-panel observation; research only",
+        "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html"
+      },
+      {
+        "title": "IPAC image policy; permission is not public-domain status",
+        "url": "https://www.ipac.caltech.edu/page/image-use-policy"
+      },
+      {
+        "title": "2MASS UMass/IPAC-Caltech, NASA/NSF project acknowledgement",
+        "url": "https://irsa.ipac.caltech.edu/docs/knowledgebase/2mass.html"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/lysithea-surface-image.jpg",
+      "previewUrl": "/bespoke/lysithea-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "lysithea-generated-surfaceImage-original.png",
+      "sourceSha256": "c1474e94001701b3e8db4c9673357dae4c92914e44684d3e5cabcdd22595ae4f",
+      "sha256": "fffa1c46878108852197ccc674c2b3cb5c1f84b0654ea721af063f12ab399b68",
+      "previewSha256": "c541ce89da6aed655a96fc211a92715944266b0fafab10b36ec6ce09f59b41fd",
+      "bytes": 304416,
+      "previewBytes": 9936,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/lysithea-sky-image.jpg",
+      "previewUrl": "/bespoke/lysithea-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "lysithea-generated-skyImage-original.png",
+      "sourceSha256": "35526d15dedebac91e80ebb1729409a083a1d55d855ad483842bda08ce37ac11",
+      "sha256": "d7717154ee3553697ca309b8270de1277c5b6c0d1ee841a4cb901f9ef4f3e29b",
+      "previewSha256": "08c1492527821ff45d6a2addde46badfb1572173ae6906c8e3ce0f9e9e6cbb98",
+      "bytes": 218849,
+      "previewBytes": 6797,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
