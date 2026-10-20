@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-20",
+  "body": "Harpalyke / JupiterXXII / JPL522 / S2000J5",
+  "status": "Two independent generated views with original/defaultPNGs,prompts,masters/previews retained.",
+  "generation": "Built-in imagegen;independent prompts,no references or observed-body map/analog skins.",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-191b457b-ebc2-41d6-9b17-1af960aaf546.png",
+        "bytes": 2832539,
+        "sha256": "7d69bb57f8e1508bd8c000dec19050c243ac7b30798292c9c316e86c982ef2cf"
+      },
+      "original": {
+        "path": "data/research-sources/harpalyke-generated-surfaceImage-original.png",
+        "bytes": 2832539,
+        "sha256": "7d69bb57f8e1508bd8c000dec19050c243ac7b30798292c9c316e86c982ef2cf"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 940,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/harpalyke-local-prompt-2026-10-20.txt",
+        "bytes": 1355,
+        "sha256": "eba009b101d28303f3b84494139cfc662be1110a6b476aea8575cf9104ae421a"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical illustration for the Fidelity astronomy explorer, landscape1672x941. Independent new composition, no reference images, no map or texture from any observed body, no analogy skin. Harpalyke/JupiterXXII/S2000J5 is unresolved: terrain,shape,local chemistry/fractions/porosity,visible colour,spin,pole and localnormal are unknown. NASA approximate2.2km radius assumes albedo0.04;this does not measure the local material. Invent a close low-angle scene of subdued charcoal-grey granular ground,uneven low scarps,shallow depressions and scattered irregular stones,with a low asymmetric horizon. Do not copy recognisable lunar/Martian/Pluto geography or another moon. Black sky is an artistic assumption,not measured absence. No atmospheric haze,clouds,plume,liquid,exposed ocean,biology,spacecraft,astronaut,buildings or implication of survivable landing. No astronomical disk,Sun,Jupiter,stars or rings. Off-frame grazing light and exposure artistic,not calibrated. Two clearly legible footer lines in a clean dark band,not overlapping: first exactly \"IMAGINED · HARPALYKE\", second exactly \"INVENTED TERRAIN · NOT A DATED SITE\". Keep all scene content clear of the band. Terrain and material chemistry fully invented,not a mapped site or photograph claim. Restrained high quality scientific concept illustration.",
+      "master": {
+        "path": "data/research-sources/harpalyke-local-master-1536.jpg",
+        "bytes": 348859,
+        "sha256": "e5bcad84d3f81c322d8c05918429d76ac3f7198cde8a22357fabfb3df0c05ed2"
+      },
+      "preview": {
+        "path": "data/research-sources/harpalyke-local-preview-256.jpg",
+        "bytes": 8940,
+        "sha256": "75ef24a900528a23b0fd0b1d94c196bd7f2951e02a995cb23bce09b6dfedd3fc"
+      }
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-1621774e-03eb-416f-ad0b-a156d987b38f.png",
+        "bytes": 2063301,
+        "sha256": "aecf1985ba3a3cc9f7c15a25bd972e7e3ffcb6ed3f0e810a57605bdafbb0b11a"
+      },
+      "original": {
+        "path": "data/research-sources/harpalyke-generated-skyImage-original.png",
+        "bytes": 2063301,
+        "sha256": "aecf1985ba3a3cc9f7c15a25bd972e7e3ffcb6ed3f0e810a57605bdafbb0b11a"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/harpalyke-sky-prompt-2026-10-20.txt",
+        "bytes": 1789,
+        "sha256": "e6b09f94966cb615bf0a991e2af173210bfa472f282fd0c9356a1646bf61850f"
+      },
+      "fullPrompt": "Create one standalone scientific hypothetical observer illustration for Fidelity astronomy explorer,landscape1672x941. Independent new composition,no references,no observed-body map/texture or analogy skin. View from an invented local patch of unresolved Harpalyke/JupiterXXII/S2000J5 toward a distant Jupiter. Unknown terrain,local chemistry/fractions/porosity,colour,spin,pole,localnormal and observer visibility;not a measured or dated site,not a permanent Jupiter-facing face. Restrained charcoal-grey angular granular relief and a few low irregular rocks under a black sky,all invented. Put Jupiter high clear of the horizon as a very small understated off-white disk,not a large spectacular planet. Geometry from project skyGeometry: assumed spherical Jupiter69911km at mean20887500km minus assumed2.2km radial height gives angular diameter0.3835416533646659degrees;nominal90degree horizontal field and1672pixel width gives target disk5.596258961529487pixels. This is a hypothetical mean-orbit composition,not dated ephemerides,localnormal,actual photometry or calibrated raster. Tiny disk may have barely perceptible artistic tonal variation;no readable resolved geography or copied Jupiter map. Phase,axis,visible colour,illumination,exposure and scene registration artistic. Sun5.2044AU assumed off-frame;do not draw Sun. No stars,rings,atmospheric haze,foreground clouds,plume,liquid,exposed ocean,biology,craft,astronaut,buildings or survivable landing implication. Black sky and omissions do not prove absence. Two clearly legible footer lines in a clean narrow dark band: first exactly \"IMAGINED · SKY FROM HARPALYKE\";second exactly \"ASSUMED GEOMETRY · INVENTED TERRAIN\". Keep scene clear of text band. Scientific concept illustration,not photograph or surface measurement.",
+      "master": {
+        "path": "data/research-sources/harpalyke-sky-master-1536.jpg",
+        "bytes": 236034,
+        "sha256": "b397472b7aea7681b005b19ab0063e571b217c9ec89e03a656720600558c68ed"
+      },
+      "preview": {
+        "path": "data/research-sources/harpalyke-sky-preview-256.jpg",
+        "bytes": 7112,
+        "sha256": "9f62d11791c225f85fa2798418d95206a509f33d06b50798d2f470f93235a19b"
+      }
+    }
+  ],
+  "geometryRecord": "docs/research/harpalyke-observer-geometry-preparation-2026-10-20.json",
+  "referenceRecord": "docs/research/harpalyke-reference-preparation-2026-10-20.json",
+  "inspection": "Both original images inspected;two legible footer lines,no overlapping text. Local no astronomical disk;sky tiny Jupiter remains uncalibrated,no rasterdiameter measured/adopted. Original/master text readable;small preview text requires explicit IMAGINED cardlabels.",
+  "limitations": "All terrain,stones,chemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,lighting/exposure/viewpoint invented. No analogskin,datedsite,knownlocalnormal,spinlocking,permanentface,foregroundatmosphere,plume,liquid,exposedocean,biology or survivablelanding. Blacksky/omissions not absence. NASA2.2km assumes albedo0.04;JUP347mean not dated distance/jointfit/envelope. No resolved globe/shape/nativecontext adoption."
+}

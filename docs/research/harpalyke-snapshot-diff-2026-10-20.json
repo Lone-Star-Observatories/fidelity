@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-20",
+  "baseline": "c538674 prior full snapshot",
+  "changedPaths": [
+    "/bodyImages//bespoke/harpalyke-sky-image.jpg",
+    "/bodyImages//bespoke/harpalyke-surface-image.jpg"
+  ],
+  "limits": "Only listed saved JSON field changes;net HTML increment includes catalogue/application fields,not solely illustration or compression attribution."
+}

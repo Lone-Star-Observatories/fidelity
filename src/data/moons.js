@@ -399,6 +399,17 @@ export const MOONS = [
       {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No retained JPL physical row;GM,mass,density,albedo/localchemistry unknown.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Spin/pole unknown. Null rotation/locking disabled not measured nonsynchronous spin/permanentface.'},
     ],surfacePending:true,discovered:'2000 · S.S.Sheppard / D.C.Jewitt / Y.R.Fernandez / E.Magnier',note:'Two independent IMAGINED local/observer views;no resolved globe/shape. Native animation inaccessible/rawproduct/calibration/rights open. Approximate size/family colour not local chemistry/geography.' },
+  { id: 'harpalyke', name: 'Harpalyke', parent: 'jupiter', radiusKm: 2.2, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(20887500, .239, 104.3, 255.4, 147.8, 35.6, 616.7833, 81.2, 116.5, null, 'ecliptic', 2451545.0),
+    orbitFacts:[
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Harpalyke,JupiterXXII,JPL522,S2000J5;distinct ChaldeneXXI/S2000J10.'},
+      {label:'ORBIT',value:'20,887,500 KM · 616.7833 DAYS',tier:'modelled',detail:'JUP347 ecliptic2000Jan1.5TDB mean,e.239/i147.8degree,not dated ephemerides/currentdistance/spin. HistoricalNASA21.1Mkm/623days separate.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No current frame/phase/SPICE/lighttime/covariance registration or permanent Jupiter-facing site.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'2.2 KM · ALBEDO-ASSUMED',tier:'modelled',detail:'NASA approximate radius explicitly assumes albedo0.04;not independently measured albedo/thermal axes/localnormal/uncertainty.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No retained JPL physical row;GM,mass,density,albedo/localchemistry unknown.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'Spin/pole unknown. Null rotation/locking disabled not measured nonsynchronous spin/permanentface.'},
+    ],surfacePending:true,discovered:'2000 · S.S.Sheppard / D.C.Jewitt / Y.R.Fernandez / E.Magnier',note:'Two independent IMAGINED local/observer views;no resolved globe/shape. Native animation secondarylead/rawproduct/calibration/rights open. Approximate size/family colour not local chemistry/geography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

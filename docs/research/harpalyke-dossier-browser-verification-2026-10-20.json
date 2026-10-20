@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-20",
+  "browser": "Chrome in-app browser,loopback HTTP UTF16LE",
+  "artifactBytes": 15881086,
+  "exactCompleteJsonApplicationAndHtmlParserPayloads": true,
+  "hashes": {
+    "json": "097d8e37f948cb6fdc5aecdb341aca88084316124a5f8f266fe3445af7534888",
+    "app": "206c075d781750200081800e9e5943ebcc81abdfe0771ea8b2824b736b5d1005",
+    "packedSnapshot": "8d5cd88e92c7f4a224068ef91b0a9a9066102b03bb86549ad91fd373f34da7dd",
+    "packedApp": "b600f57123c2cbde2b9c3dc9329a015cd55bb58047e60b20125afb170341ba5b"
+  },
+  "decodedUniqueImages": 351,
+  "parsedEmbeddedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "canvases": 8,
+  "route": "#/moon/sol/harpalyke",
+  "normal": {
+    "cards": 2,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "rotationUnknown": true,
+    "genericPlaceholder": true
+  },
+  "exactUnmodifiedStandalone": {
+    "cards": 2,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericPlaceholder": true
+  },
+  "unsupportedGzipNotice": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasmNotice": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "No fresh six-route/eventworker/allinteractive-normal-modelselection/otherengine/directfile claim. Embedded scene parse does not establish all normal models selected."
+}

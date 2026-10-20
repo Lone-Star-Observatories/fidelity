@@ -1,0 +1,102 @@
+{
+  "generated": "2026-10-20",
+  "bodies": [
+    {
+      "id": "harpalyke",
+      "name": "Harpalyke",
+      "kind": "moon",
+      "aliases": [
+        "Harpalyke",
+        "Jupiter XXII",
+        "J22 Harpalyke",
+        "S/2000 J5"
+      ],
+      "researchDate": "2026-10-20",
+      "previewWidth": 256,
+      "nativeSurface": "No resolved globe/shape adopted. Secondary CFHT animation lead lacks independently verified primary raw-product/UTC/filter/calibration/processing/rights crosswalk. Independent IMAGINED fallback temporary;no native context image embedded.",
+      "measured": [
+        "Harpalyke / JupiterXXII / JPL522 / S2000J5,distinct ChaldeneXXI/S2000J10. NASA discovery2000Nov23 MaunaKea,Hawaii prints Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier;JPL S.S.Sheppard,D.C.Jewitt,Y.R.Fernandez,G.Magnier retained separately. Original IAUC7555 not retrieved."
+      ],
+      "modelled": [
+        "NASA approximate2.2km radius explicitly assumes albedo0.04;not independently measured albedo,not thermal measurement/axes/localnormal/uncertainty. Historical21.1Mkm/about623days retained separately.",
+        "JUP347 row522/reference47 R.A.Jacobson2025 Ephemerides of the Jovian irregulars\u2014JUP347,personal communication to Horizons/NAIF. Planet-centred ecliptic2000Jan1.5TDB mean a20887500km/e.239/w104.3/M255.4/i147.8/node35.6/P616.7833days/apsidal81.2/nodal116.5years,poleunknown. Mean precessing ellipse fit,not dated ephemerides/currentdistance/covariance or uncertainty envelope. Retrograde orbit not measured spin locking/permanent face.",
+        "NASA Ananke-family gray comparison/capture/collision/probable irregularshape narrative not independently verified currentfamily census,uniqueancestry/localchemistry/resolved shape or observedhistory. Relative colour not calibrated RGB/materialfractions/geography. No Chaldene Carme-family values transferred."
+      ],
+      "unknown": [
+        "No Harpalyke row in retained JPL physicaltable. Actualalbedo,sizeuncertainty,axes,localnormal,GM,mass,density,spin,pole,terrain,chemicalfractions/calibratedvisiblecolour unknown. Nullrotation/locking disabled not measured nonsynchronousspin.",
+        "MPEC2001-A28 direct timeout/web inaccessible,no response hash/astrometry fabricated. SecondaryCommons Harpalyke-Jewitt-full.gif searchlead CFHT3.6m/DavidJewitt2001Dec10 datasets615272p/615279p/615286p not independently verified primary rawproduct/UTC/filter/exposure/processing/credits/rights. No image downloaded/embedded or inventedhash;no exhaustive newest-image/absence claim.",
+        "Primarysize/albedo derivation,body-specificphotometry/rawcalibration/frame/rights remain open. No blanketCCBY/figurepermission/nativegeography licence asserted,no outgoing permission contact."
+      ],
+      "assumed": [
+        "No analog/bodymap. All terrain,stones/grains/scarps/depressions,localchemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. NASA2.2km assumes albedo0.04,not axes/normal;JUP347mean not currentdistance/jointfit/envelope. skyGeometry .3835416533646659deg/5.596258961529487targetpixels1672/90HFOV nominal only;rendered disk uncalibrated,no rasterdiameter adopted.165K helper notphotometry,Sun5.2044AUoffframe assumption.",
+        "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Two legible footer lines in both originals;small previews require explicit IMAGINED cardlabels. No generated globe/shape."
+      ],
+      "surfaceLabel": "IMAGINED \u00b7 LOCAL VIEW FROM HARPALYKE",
+      "skyLabel": "IMAGINED \u00b7 SKY FROM HARPALYKE",
+      "skyCaption": "Tiny hypothetical Jupiter;nominal.383542degree guide,appearance/phase/axis/exposure artistic,no calibrated rasterdiameter.",
+      "heroFacts": [
+        [
+          "RADIUS",
+          "2.2 KM \u00b7 ALBEDO-ASSUMED"
+        ],
+        [
+          "MASS",
+          "UNKNOWN"
+        ],
+        [
+          "ORBIT",
+          "20.8875 M KM \u00b7 MEAN SCALE"
+        ],
+        [
+          "ROTATION",
+          "UNKNOWN"
+        ]
+      ],
+      "skyModel": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.1396242988102905,
+        "horizontalFovDeg": 90,
+        "angularOnly": true,
+        "star": "Jupiter \u00b7 hypothetical spherical angular guide"
+      },
+      "contextImages": [],
+      "nativeProducts": {
+        "embedded": false,
+        "candidateUrl": "https://commons.wikimedia.org/wiki/File:Harpalyke-Jewitt-full.gif",
+        "access": "Secondary search lead only;MPEC timeout/web inaccessible,no imagehash fabricated",
+        "limits": "Primary rawproduct/UTC/filter/calibration/rights unverified;no map/terrain adopted."
+      },
+      "references": [
+        {
+          "title": "NASA Harpalyke size with assumed albedo,discovery/family guide",
+          "url": "https://science.nasa.gov/jupiter/jupiter-moons/harpalyke/"
+        },
+        {
+          "title": "JPL JUP347 row522 mean,not ephemerides",
+          "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+        },
+        {
+          "title": "JPL discovery XXII/S2000J5",
+          "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+        },
+        {
+          "title": "JPL physical table,no Harpalyke row",
+          "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+        },
+        {
+          "title": "MPEC2001-A28 inaccessible;not verified astrometry",
+          "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+        },
+        {
+          "title": "Secondary image candidate,primaryassociation/rights open",
+          "url": "https://commons.wikimedia.org/wiki/File:Harpalyke-Jewitt-full.gif"
+        }
+      ],
+      "inputs": {
+        "surfaceImage": "harpalyke-generated-surfaceImage-original.png",
+        "skyImage": "harpalyke-generated-skyImage-original.png"
+      }
+    }
+  ]
+}

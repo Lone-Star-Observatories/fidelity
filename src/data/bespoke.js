@@ -17927,6 +17927,148 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "harpalyke": {
+    "id": "harpalyke",
+    "name": "Harpalyke",
+    "kind": "moon",
+    "aliases": [
+      "Harpalyke",
+      "Jupiter XXII",
+      "J22 Harpalyke",
+      "S/2000 J5"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe/shape adopted. Secondary CFHT animation lead lacks independently verified primary raw-product/UTC/filter/calibration/processing/rights crosswalk. Independent IMAGINED fallback temporary;no native context image embedded.",
+    "measured": [
+      "Harpalyke / JupiterXXII / JPL522 / S2000J5,distinct ChaldeneXXI/S2000J10. NASA discovery2000Nov23 MaunaKea,Hawaii prints Scott S.Sheppard,David C.Jewitt,Yanga R.Fernandez,Eugene Magnier;JPL S.S.Sheppard,D.C.Jewitt,Y.R.Fernandez,G.Magnier retained separately. Original IAUC7555 not retrieved."
+    ],
+    "modelled": [
+      "NASA approximate2.2km radius explicitly assumes albedo0.04;not independently measured albedo,not thermal measurement/axes/localnormal/uncertainty. Historical21.1Mkm/about623days retained separately.",
+      "JUP347 row522/reference47 R.A.Jacobson2025 Ephemerides of the Jovian irregulars—JUP347,personal communication to Horizons/NAIF. Planet-centred ecliptic2000Jan1.5TDB mean a20887500km/e.239/w104.3/M255.4/i147.8/node35.6/P616.7833days/apsidal81.2/nodal116.5years,poleunknown. Mean precessing ellipse fit,not dated ephemerides/currentdistance/covariance or uncertainty envelope. Retrograde orbit not measured spin locking/permanent face.",
+      "NASA Ananke-family gray comparison/capture/collision/probable irregularshape narrative not independently verified currentfamily census,uniqueancestry/localchemistry/resolved shape or observedhistory. Relative colour not calibrated RGB/materialfractions/geography. No Chaldene Carme-family values transferred."
+    ],
+    "unknown": [
+      "No Harpalyke row in retained JPL physicaltable. Actualalbedo,sizeuncertainty,axes,localnormal,GM,mass,density,spin,pole,terrain,chemicalfractions/calibratedvisiblecolour unknown. Nullrotation/locking disabled not measured nonsynchronousspin.",
+      "MPEC2001-A28 direct timeout/web inaccessible,no response hash/astrometry fabricated. SecondaryCommons Harpalyke-Jewitt-full.gif searchlead CFHT3.6m/DavidJewitt2001Dec10 datasets615272p/615279p/615286p not independently verified primary rawproduct/UTC/filter/exposure/processing/credits/rights. No image downloaded/embedded or inventedhash;no exhaustive newest-image/absence claim.",
+      "Primarysize/albedo derivation,body-specificphotometry/rawcalibration/frame/rights remain open. No blanketCCBY/figurepermission/nativegeography licence asserted,no outgoing permission contact."
+    ],
+    "assumed": [
+      "No analog/bodymap. All terrain,stones/grains/scarps/depressions,localchemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. NASA2.2km assumes albedo0.04,not axes/normal;JUP347mean not currentdistance/jointfit/envelope. skyGeometry .3835416533646659deg/5.596258961529487targetpixels1672/90HFOV nominal only;rendered disk uncalibrated,no rasterdiameter adopted.165K helper notphotometry,Sun5.2044AUoffframe assumption.",
+      "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Two legible footer lines in both originals;small previews require explicit IMAGINED cardlabels. No generated globe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM HARPALYKE",
+    "skyLabel": "IMAGINED · SKY FROM HARPALYKE",
+    "skyCaption": "Tiny hypothetical Jupiter;nominal.383542degree guide,appearance/phase/axis/exposure artistic,no calibrated rasterdiameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "2.2 KM · ALBEDO-ASSUMED"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "20.8875 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.1396242988102905,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 0.3835416533646659,
+      "centreDiscWidthFraction": 0.00334704483345065,
+      "irradianceEarth": 3.4590393198353417e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "candidateUrl": "https://commons.wikimedia.org/wiki/File:Harpalyke-Jewitt-full.gif",
+      "access": "Secondary search lead only;MPEC timeout/web inaccessible,no imagehash fabricated",
+      "limits": "Primary rawproduct/UTC/filter/calibration/rights unverified;no map/terrain adopted."
+    },
+    "references": [
+      {
+        "title": "NASA Harpalyke size with assumed albedo,discovery/family guide",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/harpalyke/"
+      },
+      {
+        "title": "JPL JUP347 row522 mean,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL discovery XXII/S2000J5",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      },
+      {
+        "title": "JPL physical table,no Harpalyke row",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "MPEC2001-A28 inaccessible;not verified astrometry",
+        "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+      },
+      {
+        "title": "Secondary image candidate,primaryassociation/rights open",
+        "url": "https://commons.wikimedia.org/wiki/File:Harpalyke-Jewitt-full.gif"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/harpalyke-surface-image.jpg",
+      "previewUrl": "/bespoke/harpalyke-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "harpalyke-generated-surfaceImage-original.png",
+      "sourceSha256": "7d69bb57f8e1508bd8c000dec19050c243ac7b30798292c9c316e86c982ef2cf",
+      "sha256": "e5bcad84d3f81c322d8c05918429d76ac3f7198cde8a22357fabfb3df0c05ed2",
+      "previewSha256": "75ef24a900528a23b0fd0b1d94c196bd7f2951e02a995cb23bce09b6dfedd3fc",
+      "bytes": 348859,
+      "previewBytes": 8940,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/harpalyke-sky-image.jpg",
+      "previewUrl": "/bespoke/harpalyke-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "harpalyke-generated-skyImage-original.png",
+      "sourceSha256": "aecf1985ba3a3cc9f7c15a25bd972e7e3ffcb6ed3f0e810a57605bdafbb0b11a",
+      "sha256": "b397472b7aea7681b005b19ab0063e571b217c9ec89e03a656720600558c68ed",
+      "previewSha256": "9f62d11791c225f85fa2798418d95206a509f33d06b50798d2f470f93235a19b",
+      "bytes": 236034,
+      "previewBytes": 7112,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

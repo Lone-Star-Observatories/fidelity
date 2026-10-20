@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-20",
+  "body": "Harpalyke / JupiterXXII / JPL522 / S2000J5",
+  "dossier": 105,
+  "status": "Delivered initial individual dossier;calibration/native product/rights/geography/ranking remain open.",
+  "manifest": "docs/research/harpalyke-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/harpalyke-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/harpalyke-reference-preparation-2026-10-20.json",
+  "geometryRecord": "docs/research/harpalyke-observer-geometry-preparation-2026-10-20.json",
+  "delivery": {
+    "views": "Two independent built-in IMAGINED local/observer originals/defaultPNGs/fullprompts retained,2832539/2063301bytes. Additive importer masters1536JPEG85/previews256JPEG80 exact prepared hashes. No analogskin/generated globe/shape/native context adoption.",
+    "science": "NASA2.2km approximate radius explicitly assumes albedo0.04,not measured albedo/axes/localnormal/thermal size/uncertainty. Gray qualitative guide not calibrated RGB/local chemistry. Ananke-family capture/collision/irregular-shape interpretations not observed history/resolved shape/current census. GM/mass/density/spin/pole/terrain unknown.",
+    "orbit": "JUP347 mean20887500/.239/i147.8/P616.7833 ecliptic2000Jan1.5TDB separately olderNASA21.1Mkm/about623days. Not dated ephemerides,spinlocking/permanentface/jointfit/envelope.",
+    "native": "MPEC2001-A28 timeout/web inaccessible;no responsehash/astrometry fabricated. CFHT animation remains secondary searchlead,not primary raw identity/UTC/filter/exposure/processing/credits/rights verification. No image downloaded/embedded/hash invented,blanketCCBY or exhaustive absence/newest claim.",
+    "geometry": "skyGeometry69911kmJupiter at20887500 minus assumed2.2km gives.3835416533646659degrees/5.596258961529487targetpixels at1672/90HFOV. Tiny rendered Jupiter uncalibrated,no rasterdiameter adopted.165K helper angular-only;colourirradiance discarded,Sun5.2044AUoffframe assumed.",
+    "imagined": "Terrain,chemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,lighting/exposure/viewpoint invented. No datedsite/knownlocalnormal/permanentface,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omissions not absence;small preview text requires IMAGINED cardlabels."
+  },
+  "validation": {
+    "tests": {
+      "passed": 708,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 395,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "c538674",
+      "priorDossiersDeepEqual": 104,
+      "dossiers": 105,
+      "priorMoonsDeepEqual": 60,
+      "moons": 61,
+      "trackedPublicByteEqual": 730,
+      "queueEntries": 569,
+      "unchangedOtherQueueEntries": 568,
+      "addedImages": [
+        "/bespoke/harpalyke-sky-image.jpg",
+        "/bespoke/harpalyke-surface-image.jpg"
+      ],
+      "htmlBytes": 15881086,
+      "headroomBytes": 118914,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "097d8e37f948cb6fdc5aecdb341aca88084316124a5f8f266fe3445af7534888",
+      "applicationSha256": "206c075d781750200081800e9e5943ebcc81abdfe0771ea8b2824b736b5d1005",
+      "freshBrowserClaim": false
+    },
+    "browserRecord": "docs/research/harpalyke-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiffRecord": "docs/research/harpalyke-snapshot-diff-2026-10-20.json"
+  },
+  "next": "Kalyke body-specific identity/native/primary/geometry assessment before independent generation/additive106. Continue remaining moons/dwarf/candidate/native-map/craft/shape/calibration/ranking;recover lossless headroom before larger batches. BacklogACTIVE."
+}
