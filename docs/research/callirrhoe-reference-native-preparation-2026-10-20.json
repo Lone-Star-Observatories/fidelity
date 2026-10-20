@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-20",
+  "body": "Callirrhoe / Jupiter XVII / JPL517 / S/1999 J1, formerly asteroid designation1999 UX18",
+  "status": "Research preparation only. No dossier100, selectable catalogue entry, generated views, globe, shape or native embedding delivered in this batch.",
+  "sources": [
+    {
+      "path": "data/research-sources/callirrhoe-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/callirrhoe/",
+      "bytes": 248125,
+      "sha256": "1fa706c9e95e51fb97928e8f3243ef4eb9c90f2b683c221a91c15702257c27e3"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-spacewatch-history-2026-10-20.html",
+      "url": "https://spacewatch.lpl.arizona.edu/news-history",
+      "bytes": 154047,
+      "sha256": "e31fbcf1676b85f17f95b1d0c530ff90f7b1e5e0b822e7e967364b96d0861b20"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-spacewatch-caption-2026-10-20.html",
+      "url": "https://spacewatch.lpl.arizona.edu/news/s1999-j-1",
+      "bytes": 48937,
+      "sha256": "f7e8debc08b49c4901ffba8aeb7f3773ed17af22288fe4c2cc3c1e063d6c9285"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-spacewatch-1999-10-06-original.gif",
+      "url": "https://spacewatch.lpl.arizona.edu/sites/spacewatch.lpl.arizona.edu/files/articles/s1999j1an.gif",
+      "bytes": 127891,
+      "sha256": "3437ce825610cfce2ac166a9ea39974ecb2956dfbdebff34ae393c324155f2de"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-spacewatch-1999-10-30-original.gif",
+      "url": "https://spacewatch.lpl.arizona.edu/sites/spacewatch.lpl.arizona.edu/files/articles/s1999j1.gif",
+      "bytes": 63579,
+      "sha256": "1d5a7b7b76b87e11c4a2811b89fbe999eafef5e528f4d68b0755370a350bbead"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-arizona-copyright-2026-10-20.html",
+      "url": "https://www.arizona.edu/copyright",
+      "bytes": 78952,
+      "sha256": "b3de86a92662e3cb417c650a73c6055667a66ec2ae31c0617de67543616460e5"
+    },
+    {
+      "path": "data/research-sources/callirrhoe-pds-context-2026-10-20.html",
+      "url": "https://arcnav.psi.edu/urn%3Anasa%3Apds%3Acontext%3Atarget%3Asatellite.jupiter.callirrhoe",
+      "bytes": 29804,
+      "sha256": "b9ada3bd9e3466beee29ade33e9b90adfe7d75656bbba794d4aa34edb19f1610"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "url": null,
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-4.png",
+      "url": null,
+      "bytes": 535621,
+      "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+    }
+  ],
+  "identity": {
+    "nasaDiscovery": "1999-10-19,Spacewatch36-inchKittPeak",
+    "fullDiscoveryCredits": [
+      "Jim V. Scotti",
+      "Timothy B. Spahr",
+      "Robert S. McMillan",
+      "Jeffrey A. Larsen",
+      "Joe Montani",
+      "Arianna E. Gleason",
+      "Tom Gehrels"
+    ],
+    "earlierAcquisition": "Spacewatch publisher1999October6.4 sequence precedes NASA discoverydate; dates denote different claims,not silently reconciled.",
+    "pdsContext": "Context description gives1999Oct6–Nov4images and TimSpahr2000July18Jovian-orbitrecognition. Context is not rawimage product identity."
+  },
+  "thermal": {
+    "authors": [
+      "T. Grav",
+      "J. M. Bauer",
+      "A. K. Mainzer",
+      "J. R. Masiero",
+      "C. R. Nugent",
+      "R. M. Cutri",
+      "S. Sonnett",
+      "E. Kramer"
+    ],
+    "publicationDate": "2015-08-04",
+    "issueDate": "2015-08-10",
+    "method": "NEATM model,Table3 visually checked in retained page4,section4.9 and Table2 extracted text assessed",
+    "effectiveDiameterKm": {
+      "value": 9.6,
+      "error": 1.3
+    },
+    "eta": {
+      "value": 0.85,
+      "error": 0.17
+    },
+    "visibleAlbedoPercent": {
+      "value": 5.2,
+      "error": 1.6
+    },
+    "W3": 10,
+    "W4": 8,
+    "roundedMjdUtc": 55371,
+    "Hmag": {
+      "value": 13.92,
+      "error": 0.02
+    },
+    "G": {
+      "value": 0.1,
+      "error": 0.15,
+      "assumed": true
+    },
+    "limits": [
+      "Half4.8km effective-radius guide is not axes/localnormal/registeredshape. NASA4.3km assumes.04albedo,separate alternative,not jointfit/envelope.",
+      "D-type photometric taxonomy not local chemistry/materialfractions/visiblecolormap. No spin period adopted.",
+      "AASallrightsreserved notCCBY,no paperfigure embedded; final/rawcalibration/currentbody-specificspectroscopy remain open."
+    ]
+  },
+  "meanOrbit": {
+    "source": "JUP347,JPLdirectrow517,reference47Jacobson2025personalcommunication",
+    "referencePlane": "Planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "aKm": 23789400,
+    "e": 0.29,
+    "wDeg": 13.5,
+    "MDeg": 117.9,
+    "iDeg": 144.9,
+    "nodeDeg": 278.2,
+    "periodDays": 749.791,
+    "apsidalYears": 70.3,
+    "nodalYears": 92.7,
+    "pole": null,
+    "limits": [
+      "Mean elements not dated ephemerides/currentdistance/covariance. Retrogradeorbit does not measure spin/locking/permanentface.",
+      "No Callirrhoe row in retainedJPLphysicaltable. Mass/GM/density/spin/pole/axes/localnormal unknown.",
+      "NASA24.1millionkm/759days historicalalternative not silently substituted for currentmeanreference."
+    ]
+  },
+  "native": {
+    "embedded": false,
+    "credits": "SPACEWATCH / UniversityofArizona.1999Oct6.4 observations R.S.McMillan and J.A.Larsen;1999Oct30.4 J.A.Larsen.",
+    "oct6": {
+      "dimensionsPerFrame": [
+        250,
+        250
+      ],
+      "pages": 3,
+      "delayMs": [
+        500,
+        500,
+        250
+      ],
+      "loop": 0,
+      "dateAsPublisher": "1999October6.4",
+      "timeStandard": "Not explicitly stated; do not assert exactUTC",
+      "Vmag": 20.2,
+      "integrationSecondsApprox": 146,
+      "description": "Reversevideo movingpoint nearcentre,up-left inpasses1–3. Skybackgroundnoise/cosmicraysnearobjectpass2; separateasteroidentersbottompass3."
+    },
+    "oct30": {
+      "dimensions": [
+        750,
+        245
+      ],
+      "pages": 1,
+      "dateAsPublisher": "1999October30.4",
+      "timeStandard": "Not explicitly stated",
+      "Vmag": 20.8,
+      "integrationSecondsApprox": 146,
+      "description": "Staticthreepasscomposite,notthreeframeGIFanimation; pointboxes,passlabels,cursoroverlay/backgroundobjects/noise notsurfacefeatures."
+    },
+    "publisherField": "2.2arcminutes square,Northright/Eastbottom; publisher claim,not newrastercalculation.",
+    "inspection": "OriginalGIFs retained unchanged; threeOct6frames andOct30composite decoded to research-onlyPNGs and visuallyinspected. No photometric/astrometric/framecalibration independently reproduced.",
+    "terms": "Publisherfooter©ArizonaBoardofRegents/UniversityofArizona andlinkedcopyrightpolicy retained. No verified image-specificopenlicence/reusepermission; research-only,no embedding/contact/permission inferred. NASAfunding does not make University imagery NASApublicdomain.",
+    "open": [
+      "RawproductIDs/exactUTC/filter/exposureperframe/originalpublicationdate/fullprocessingcreatorcrosswalk/calibration/reusepermission remain open.",
+      "Unresolvedpointmotion not resolvedterrain/shape/localchemistry/calibratedvisiblecolour. Black/displaybackground not atmosphereabsence.",
+      "Webtoolimagecachemiss occurred; directpublisherdownloads succeeded,hashes refer actualretainedGIFs. No exhaustive newest-image claim."
+    ],
+    "diagnostics": [
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-06-frame-0.png",
+        "bytes": 48474,
+        "sha256": "fa0ffae049e8289b3ac32d313013705583293565ec7a64bf363ac2525884bec2",
+        "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-06-frame-1.png",
+        "bytes": 48528,
+        "sha256": "848f9cb1a379f3edb48c243b8c04c95904e3aca98b37937736372e6d0eb8ec43",
+        "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-06-frame-2.png",
+        "bytes": 48630,
+        "sha256": "8deb86e8732abc11fad0444f7f419614058943813ff088f2640b64a77fb7ec39",
+        "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+      },
+      {
+        "path": "data/research-sources/callirrhoe-spacewatch-30-frame-0.png",
+        "bytes": 79088,
+        "sha256": "2484f368f1f4a6323f193e4a482f302b92fdf57a94b68e4be222a2eaaa8ffe0b",
+        "purpose": "Decoded research-only visual inspection; original GIF preserved,no native replacement/embedding."
+      }
+    ]
+  },
+  "scienceLimits": [
+    "Pasiphaefamily/capture/collision/commonparent interpretations not observedhistory/localchemistry. Grav2015 allows separatedynamicalcomplex; preservealternative rather than assertuniquefamilyorigin.",
+    "Himalia/Elara/Lysithea/Anankespectra not assigned to Callirrhoe. Recentbody-specificspectroscopy/nativeproduct audit remains open."
+  ],
+  "geometry": {
+    "implementation": {
+      "path": "src/astro/appearance.js",
+      "url": null,
+      "bytes": 1394,
+      "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+    },
+    "cases": [
+      {
+        "heightKm": 4.8,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.15902228480047478,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.33675601867478744,
+        "centreDiscWidthFraction": 0.002938759110854216,
+        "targetPixels1672": 4.913605233348249
+      },
+      {
+        "heightKm": 4.3,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.15902228814276834,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.3367560115969072,
+        "centreDiscWidthFraction": 0.0029387590490875253,
+        "targetPixels1672": 4.913605130074342
+      }
+    ],
+    "limits": "Hypotheticalradialheight/meanorbit/sphericalJupiter/nominal90HFOV1672width,not jointfit/envelope/localnormal/date/locking/permanentface.165Khelperangular-only irradiance/colourdiscarded,Sun5.2044AUassumedoffframe notphotometry. No generatedimage or calibratedrasterdiameter."
+  },
+  "next": "Finish body-specific native/recentprimary/terms audit,then independent labelled local/observer originalPNGs/fullprompts/masterpreviews and additive dossier100,without replacing any earlier body map. Allremainingbacklog ACTIVE,no globalexternalblocker declared.",
+  "validation": {
+    "baseline": "098ccf8",
+    "all99DossiersAnd55MoonsUnchanged": true,
+    "all710TrackedPublicFilesByteEqual": true,
+    "queueEntries": 569,
+    "queueByteEqual": true,
+    "sourceHashesChecked": 12,
+    "nativeCardsExactBytesAndMime": 84,
+    "testsPass": 702,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "htmlBytes": 15791778,
+    "headroomBytes": 208222,
+    "completeReadableJsonSha256": "c04244d6a9aa977b7772d2b1ac3ffbfaac370998ab753a5e9313d5c7c46a5504",
+    "applicationSha256": "6de288657cbb4323aec9783fb7af1047640afd55419a8c7462685171fde15d6a",
+    "fullNodeDecodedEquality": true,
+    "freshBrowserClaim": false,
+    "limits": "Registry/catalogue/public/native/map/model/shape/codec inputs unchanged. Prior Leda browser verification remains historical; no new browser/model-load claim or compression savings attribution."
+  }
+}
