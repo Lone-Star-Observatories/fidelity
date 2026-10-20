@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-20",
+  "browser": "ChatGPT in-app browser,Chrome engine,loopback HTTP served UTF-16LE standalone",
+  "audit": {
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "encoding": "gzip-raw-utf16le-enumerative-v2",
+    "json": "4c9e00336de6e1602623ea585b53310edd11697ea62e0f45ac538cf91adbf436",
+    "app": "88d098d6bb49918b6e6ef3e8d97033c709a9e15a6b8d99952e09a45e8c9637d9",
+    "packedSnapshot": "ca8a007e529f0d0b67fafa13da89b71f0530fdcbf8d9b2cdb62563eb93481c9c",
+    "packedApp": "bb2ab54ae773e9ae7bca3455f2fb21028e274e730cd1ef64dce49c2432a16ef7",
+    "canvases": 8,
+    "uniqueImages": 349,
+    "decodedImages": 349,
+    "parsedModels": 32,
+    "details": 517,
+    "bands": 20,
+    "exact": true
+  },
+  "route": "#/moon/sol/chaldene",
+  "normal": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      1536,
+      864
+    ],
+    "sources": [
+      "/bespoke/chaldene-surface-image.jpg",
+      "/bespoke/chaldene-sky-image.jpg"
+    ],
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "offlineUninstrumented": {
+    "loaded": true,
+    "images": 2,
+    "dimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "rotationUnknown": true,
+    "genericGlobePlaceholder": true
+  },
+  "unsupportedGzip": "This offline preview needs a browser with gzip decompression support. Please open it in a current browser.",
+  "unsupportedWasm": "This offline preview needs WebAssembly for lossless image reconstruction. Please open it in a current browser.",
+  "limits": "Chrome engine loopback HTTP verified. Other engines/direct file, fresh six-route/worker audit and all interactive normal-model selections not independently repeated;32 embedded scenes parsed,not all normal models selected."
+}

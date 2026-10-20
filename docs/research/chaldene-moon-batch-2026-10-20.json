@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-20",
+  "body": "Chaldene / Jupiter XXI / JPL521 / S2000J10",
+  "dossier": 104,
+  "status": "Delivered initial individual dossier;calibration/native product/rights/geography/ranking work remains open.",
+  "manifest": "docs/research/chaldene-import-manifest-2026-10-20.json",
+  "sourceRecords": "docs/research/chaldene-source-records-2026-10-20.json",
+  "referenceRecord": "docs/research/chaldene-reference-preparation-2026-10-20.json",
+  "geometryRecord": "docs/research/chaldene-observer-geometry-preparation-2026-10-20.json",
+  "delivery": {
+    "views": "Two independent built-in IMAGINED local/observer originals/defaultPNGs/fullprompts preserved;originals2940656/1875091bytes,1536JPEG85masters256JPEG80previews copied via additive importer byteequal prepared derivatives. No analog skin/generated globe/shape.",
+    "science": "NASA approximate1.9km radius not traced thermal/albedo derivation/axes/localnormal/uncertainty. No JPL physical row;GM/mass/density/spin/pole/terrain/chemistry unknown. HistoricalNASA23.1Mkm/724days distinct JUP347 mean22926300/.261/i164.7/P709.3625,ecliptic2000Jan1.5TDB. Not dated ephemerides/spin/locking/permanentface/envelope.",
+    "identity": "NASA discoveryNov23,2000 distinct firstprintedMPECSK00J100Nov26;cause/completeness/originalIAUC/rawUTC/product/filter open. NASAprintedYange/Eugene vs JPLinitials preserved.",
+    "native": "Secondary candidate CFHTanimation inaccessible webcache/direct403,no image/page/hash invented. Searchlead2001Dec10 not rawUTC/product/filter/processing/rights verification. Taygete IDs/date/rights and Carme/Taygete photometric/thermal values not transferred;no exhaustive newest-image/absence claim.",
+    "geometry": "skyGeometry spherical69911km Jupiter at22926300minus assumed1.9km,nominal90HFOV1672 gives.34943377530265096deg/5.098587437149634targetpixels. Tiny rendered disk uncalibrated,no rasterdiameter adopted.165K angular-only colourirradiance discarded;Sun5.2044AUoffframe assumed,notphotometry.",
+    "imagined": "Terrain,chemistry/fractions/porosity/colour/Jupiterphase/axis/appearance/light/exposure/viewpoint invented. No datedsite/knownlocalnormal/foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Black/omissions notabsence;original/masterlabels readable,smallpreview footers need IMAGINEDcardlabels."
+  },
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 381,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "381941c",
+    "priorDossiersDeepEqual": 103,
+    "dossiers": 104,
+    "priorMoonsDeepEqual": 59,
+    "moons": 60,
+    "trackedPublicByteEqual": 726,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/chaldene-sky-image.jpg",
+      "/bespoke/chaldene-surface-image.jpg"
+    ],
+    "htmlBytes": 15868138,
+    "headroomBytes": 131862,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "4c9e00336de6e1602623ea585b53310edd11697ea62e0f45ac538cf91adbf436",
+    "applicationSha256": "88d098d6bb49918b6e6ef3e8d97033c709a9e15a6b8d99952e09a45e8c9637d9",
+    "freshBrowserClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 707,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browserVerification": "docs/research/chaldene-dossier-browser-verification-2026-10-20.json",
+    "snapshotDiff": "docs/research/chaldene-snapshot-diff-2026-10-20.json",
+    "snapshotDiffOnly": "Two new Chaldene bodyImages;all prior models/textures/bodyImages unchanged. Net HTML increment includes application/catalogue metadata,not solely asset/compression attribution.",
+    "unpublishedCorrection": "Wording check caught missing explicit no-analog statement in new dossier assumptions;added before final builds/browser verification. No prior dossier modified."
+  },
+  "next": "Harpalyke105 body-specific identity/native/primary/geometry assessment before generating or importing. Continue all remaining moon/dwarf/candidate/native-map/craft/shape/calibration/ranking tasks;recover conforming lossless headroom before larger batches. BacklogACTIVE,no global external blocker."
+}

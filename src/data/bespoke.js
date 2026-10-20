@@ -17784,6 +17784,149 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "chaldene": {
+    "id": "chaldene",
+    "name": "Chaldene",
+    "kind": "moon",
+    "aliases": [
+      "Chaldene",
+      "Jupiter XXI",
+      "J21 Chaldene",
+      "S/2000 J10"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe/shape adopted. Candidate CFHT animation inaccessible;raw-product/UTC/filter/calibration/processing/rights unverified. Independent IMAGINED fallback temporary;no native context image embedded.",
+    "measured": [
+      "Chaldene / Jupiter XXI / JPL521 / S2000J10,distinct TaygeteXX/S2000J9. NASA discovery2000Nov23 MaunaKea,Hawaii prints Scott S.Sheppard,David C.Jewitt,Yange R.Fernandez,Eugene Magnier;JPL S.S.Sheppard,D.C.Jewitt,Y.R.Fernandez,G.Magnier retained separately,not silently reconciled.",
+      "MPEC2001-A29 issue2001Jan5 20:35UT not acquisition;firstprinted SK00J100 C2000 11 26.35880 04 27 53.03 +20 40 56.6 22.5 R568. NASA Nov23 vs printedNov26 date distinction retained,cause/completeness and originalIAUC7555/rawUTC/filter/exposure/pixel association open."
+    ],
+    "modelled": [
+      "NASA meanradius about1.9km displayguide,not thermal measurement/axes/localnormal/uncertainty;original size/albedo derivation unverified,no measured albedo adopted. HistoricalNASA23.1Mkm/about724days separate current meanorbit.",
+      "JUP347 row521/reference47 R.A.Jacobson2025 Ephemerides of the Jovian irregulars—JUP347,personal communication to Horizons/NAIF. Planet-centred ecliptic2000Jan1.5TDB mean a22926300km/e.261/w231.6/M275.3/i164.7/node134.5/P709.3625days/apsidal47.3/nodal82.7years,poleunknown. Mean precessing ellipse fit,not dated ephemerides/currentdistance/covariance or uncertainty envelope. Retrograde orbit not measured spin locking/permanent face.",
+      "NASA historical Carmefamily light-red/D-type/Hilda/Trojan/capture/collision/99percentmass/16othermoons narrative not independently verified currentfamily census,uniqueancestry/localchemistry or observedhistory. Relative colour not calibrated RGB/materialfractions/geography;no Carme/Taygete thermal or photometric values transferred."
+    ],
+    "unknown": [
+      "No Chaldene row in retained JPL physicaltable. Actualalbedo,sizeuncertainty,axes,localnormal,GM,mass,density,spin,pole,currentlongitude,terrain,chemicalfractions and calibratedvisiblecolour unknown. Nullrotation/locking disabled not measured nonsynchronousspin.",
+      "SecondaryCommons Chaldene-Jewitt-full.gif candidate web cachefailure/directHTTP403,no page/imagebytes/hash retained. Searchlead CFHT3.6m/DavidJewitt2001Dec10 not independently verified rawproduct/UTC/filter/exposure/processing/credits/rights. Taygete2001Dec11IDs/rights not transferred;no exhaustive newest-image/absence claim.",
+      "Primarysize/albedo derivation,body-specificphotometry/rawcalibration/frame/rights remain open. No blanketCCBY/figurepermission/nativegeography licence asserted,no outgoing permission contact."
+    ],
+    "assumed": [
+      "No analog/bodymap. All terrain,stones/grains/ridges/depressions,localchemistry/fractions/porosity,colour,Jupiterappearance/phase/axis,light/exposure/viewpoint invented. No datedsite/knownlocalnormal/spinlocking/permanentface,foregroundatmosphere/plume/liquid/exposedocean/biology/survivablelanding. Blacksky/omittedstars/rings not absence. NASA1.9kmguide not axes/normal/thermalmeasurement;JUP347mean not currentdistance/jointfit/envelope. skyGeometry .34943377530265096deg/5.098587437149634targetpixels1672/90HFOV nominal only;165K helper notphotometry,Sun5.2044AUoffframe assumption. Native403/nohash/rights and primarysize/calibration limits retained.",
+      "Both independent original/defaultPNGs/fullprompts/1536JPEG85masters/256JPEG80previews retained. Tiny preview footers require explicit IMAGINED cardlabels. Local footertexts acrossoneband rather than requestedtwolines;bothreadable. No generated globe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM CHALDENE",
+    "skyLabel": "IMAGINED · SKY FROM CHALDENE",
+    "skyCaption": "Tiny hypothetical Jupiter;nominal.349434degree guide,appearance/phase/axis/exposure artistic,no calibrated rasterdiameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "1.9 KM · APPROXIMATE GUIDE"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "22.9263 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15325283704054754,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 0.34943377530265096,
+      "centreDiscWidthFraction": 0.003049394400209111,
+      "irradianceEarth": 2.8711802835494565e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "candidateUrl": "https://commons.wikimedia.org/wiki/File:Chaldene-Jewitt-full.gif",
+      "access": "Webcachefailure/directHTTP403,no original/imagehash invented",
+      "limits": "Rawproduct/UTC/filter/calibration/rights unverified;no map/terrain adopted."
+    },
+    "references": [
+      {
+        "title": "NASA Chaldene approximate size/discovery,not axes",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/chaldene/"
+      },
+      {
+        "title": "JPL JUP347 mean elements row521,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table,no Chaldene row",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "JPL discovery circumstances XXI/S2000J10",
+        "url": "https://ssd.jpl.nasa.gov/sats/discovery.html"
+      },
+      {
+        "title": "MPEC2001-A29 SK00J100,issue not acquisition",
+        "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html"
+      },
+      {
+        "title": "Secondary candidate animation,inaccessible/rawassociation and rights open",
+        "url": "https://commons.wikimedia.org/wiki/File:Chaldene-Jewitt-full.gif"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/chaldene-surface-image.jpg",
+      "previewUrl": "/bespoke/chaldene-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "chaldene-generated-surfaceImage-original.png",
+      "sourceSha256": "c0620ca134850f65a439af41be59ac2bb77e052401cc758d36d6d65802b1e1da",
+      "sha256": "720af987dbe089343558b3e8cca2f7f6a34969cf7b0d4249a117594a34b120ae",
+      "previewSha256": "306c04d89d67135cf11ad6ddcf7904628c86cb00cfe61bba4789d27ac30f06ae",
+      "bytes": 331857,
+      "previewBytes": 11207,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/chaldene-sky-image.jpg",
+      "previewUrl": "/bespoke/chaldene-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "chaldene-generated-skyImage-original.png",
+      "sourceSha256": "bd0ee04acfe66e5e23a664137ee574d7d845b3d593c0f9f760203a41729f6f05",
+      "sha256": "851d5bd1959ec1c9016579bdf7f7341d54605a6f84f671d56d54698be5cc6ff4",
+      "previewSha256": "60c1242a55581519ce5f494d6304e734307345993d3d3425c51e6be9f37f6108",
+      "bytes": 219991,
+      "previewBytes": 6291,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 
