@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-20",
+  "body": "4 Vesta / catalogue vesta",
+  "status": "Research-only exact DEM source reproduction; no displayed DEM/map/feature/catalogue/shape/codec change,embedding,generated image or108th dossier.",
+  "source": {
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Vesta_Dawn_HAMO_DTM_DLR_Global_48ppd.tif",
+    "path": "data/research-sources/vesta-dtm-source-2026-10-20.tif",
+    "bytes": 597266585,
+    "sha256": "a5d7b2a4101a31900b205ccfd12a4bdb84ad44bc5ac77de78dd89d6237bc5da8"
+  },
+  "http": {
+    "headers": {
+      "path": "data/research-sources/vesta-dtm-source-2026-10-20.headers",
+      "bytes": 444,
+      "sha256": "51bb277b51df22fb33d1b9f372919f678f21b6e77b8792f5178ba51445194ff3"
+    },
+    "status": 200,
+    "contentLength": 597266585,
+    "lastModified": "2022-11-10T13:24:12Z",
+    "lastModifiedLimit": "Server object timestamp, not observation or verified initial publication date.",
+    "etag": "62f43d8313ca55cf007ac76618a069b5-72",
+    "etagLimit": "Multipart validator, not asserted SHA256.",
+    "fullFileDownloaded": true
+  },
+  "credits": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA; Dawn Team; German Aerospace Center (DLR), Institute of Planetary Research; distribution USGS Astrogeology Science Center.",
+  "priorReferences": [
+    "docs/research/vesta-dtm-reference-assessment-2026-10-20.json",
+    "docs/research/vesta-shape-primary-assessment-2026-10-20.json",
+    "docs/research/vesta-texture-source-reproduction-assessment-2026-10-20.json"
+  ],
+  "method": {
+    "reproducer": {
+      "path": "docs/research/vesta-dtm-source-reproduction-2026-10-20.mjs",
+      "bytes": 2670,
+      "sha256": "61550533d758a26d89066bc2f26302d3f8bb5a4ca070b4c0a70b71b38498eacb"
+    },
+    "result": {
+      "path": "data/research-sources/vesta-dtm-reproduction-2026-10-20.json",
+      "bytes": 2520,
+      "sha256": "03b877a42c86b49a9d56977f379991f34cd959e0d6c43e2255b2c89bce0a193a"
+    },
+    "description": "Existing openRaster/rasterToGrid/quantize/filter16/png16; scale1,offset-255000,lonWest-180,Float32 averaged heights,16bit quantization. Writes only research derivative; source and displayed PNG unchanged.",
+    "layout": {
+      "width": 17280,
+      "height": 8640,
+      "type": "f32",
+      "bigTiff": false,
+      "nodata": -3.4028226550889045e+38,
+      "lonWest": -180
+    },
+    "sourceDecoded": {
+      "finite": 149299200,
+      "invalid": 0,
+      "minHeightM": -43054,
+      "maxHeightM": 38010
+    },
+    "output": {
+      "width": 1440,
+      "height": 720,
+      "finite": 1036800,
+      "invalid": 0,
+      "min": -43034,
+      "max": 37904
+    },
+    "comparison": {
+      "pngByteEqual": true,
+      "quantizedSamplesEqual": true,
+      "unequalSamples": 0,
+      "totalSamples": 1036800,
+      "cachedText": {
+        "min": "-43034",
+        "max": "37904",
+        "body": "vesta"
+      }
+    },
+    "retained": [
+      {
+        "path": "data/research-sources/vesta-dtm-reproduction-2026-10-20.png",
+        "bytes": 1355686,
+        "sha256": "48ec68589cf820d60b2bbf05d2472168ba14a11a35a78865be9cb4fa9fc4f13e"
+      },
+      {
+        "path": "public/dem/vesta.png",
+        "bytes": 1355686,
+        "sha256": "48ec68589cf820d60b2bbf05d2472168ba14a11a35a78865be9cb4fa9fc4f13e"
+      },
+      {
+        "path": "server/dem.js",
+        "bytes": 28400,
+        "sha256": "2c6dee2ba514a45c1c3d49781cf9a68a7f8542bce5fc6fde764c61b46591d6ae"
+      },
+      {
+        "path": "src/astro/dem.js",
+        "bytes": 18589,
+        "sha256": "67ad9464eae8257648bfd4c08015e232503dbae3d7b0110f0e37aa70ead41eee"
+      },
+      {
+        "path": "scripts/build-dem.mjs",
+        "bytes": 7306,
+        "sha256": "d10575297fe65ec47a8f0ef9aad74db343e1c713c9e18db9bce41ce57b9c75d5"
+      }
+    ]
+  },
+  "independent": {
+    "reproducer": {
+      "path": "docs/research/vesta-dtm-independent-reproduction-2026-10-20.py",
+      "bytes": 2570,
+      "sha256": "ee8281f2d9c82ce1fb47b96ceba0b3569c1b9322b3f5a324465aedf53754126c"
+    },
+    "result": {
+      "path": "data/research-sources/vesta-dtm-independent-reproduction-2026-10-20.json",
+      "bytes": 636,
+      "sha256": "a0eb1fafe9351f789405e349a4e835db0d112efb5d5d7307d53bd9119297d904"
+    },
+    "check": {
+      "method": "Independent classicTIFF parsing and NumPy144-sample block mean/Float32/half-up quantization, Pillow16bitPNG decode; no production reader or rasterToGrid used.",
+      "sourceBytes": 597266585,
+      "payloadOffset": 69785,
+      "sourceShape": [
+        8640,
+        17280
+      ],
+      "finiteSamples": 149299200,
+      "sourceRadiusMinM": 211946.0,
+      "sourceRadiusMaxM": 293010.0,
+      "outputShape": [
+        720,
+        1440
+      ],
+      "min": -43034,
+      "max": 37904,
+      "unequalSamples": 0,
+      "totalOutputSamples": 1036800,
+      "limit": "Computational identity only, not measured coverage, physical accuracy, frame registration, per-pixel dates or photometry."
+    }
+  },
+  "conclusion": "Current complete configured USGS source and existing averaging/encoding pipeline reproduce the1355686-byte public DEM exactly, including all1036800 quantized samples,PNGmetadata and encoding. Independent TIFF-tag/NumPy/Pillow path matches all samples. This closes current source/pipeline reproduction, not historical download ancestry or physical registration.",
+  "limitations": [
+    "149299200 decoded source samples and1036800 output cells are finite under the existing reader. This is storage/validity accounting, not100percent measured terrain; publisher~95percent coverage,polar interpolation and control-network/accuracy claims remain explicit.",
+    "Full source radius range211946\u2013293010m becomes existing reference-height values via subtract255000; output quantizationmin-43034/max37904 reflects averaging. These computational ranges are not new independent physical-radius/accuracy measurements.",
+    "Reduced1440x720 box averages/16bit quantization do not retain every source sample. All original597266585 source bytes retained separately; no replacement or lossy native edit.",
+    "No transfer of laterPDS64ppd DN-times2/centre30/pole/ellipsoid conventions; no extra150degree shift or new SPICE registration.",
+    "RawFCUTC/filter/exposure,per-pixel dates,interpolation origin/control network,feature/texture/DEM alignment,physical accuracy,photometry and licence remain open.",
+    "No blanketCCBY/publicdomain licence assertion; earlier allsevenPreusker/Scholten/Matz/Roatsch/Jaumann/Raymond/Russell citations retained,without claiming separatePDSedition byte identity.",
+    "No new celestial angular/raster-size computation; existing source-cell aggregation/indexing reproduced only."
+  ],
+  "validation": {
+    "tests": "710 pass,1 skip (OPENAI_API_KEY unset)",
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browser": "No fresh browser claim.",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 468,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "90209e0",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15973714,
+      "headroomBytes": 26286,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "4f9f64cf439030a76c91165775da320f1803f836e0080f71222ab9ecaa8936a9",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "entirePriorSnapshotUnchanged": true
+  }
+}
