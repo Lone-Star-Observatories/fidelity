@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-20",
+  "body": "Chaldene / Jupiter XXI / JPL521 / S/2000 J10",
+  "status": "Research-only initial reference audit;no dossier104,generated image,catalogue/map/model/codec or embedded native change.",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/chaldene/",
+      "path": "data/research-sources/chaldene-overview-2026-10-20.html",
+      "bytes": 247002,
+      "sha256": "b9a2e189397623ea6fdb935de2ab980d0d11fff04ed6a7531de7a815950e327c"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "path": "data/research-sources/chaldene-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "path": "data/research-sources/chaldene-discovery-2026-10-20.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/chaldene-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/taygete-mpec-K01A29-2026-10-20.html",
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "bytes": 39378,
+      "sha256": "c67595642a26e93cacaa064314758af3ef7ef15ceabc776d425ab0e0afb373c2",
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A29.html",
+      "contentType": "text/html; charset=UTF-8"
+    }
+  ],
+  "identity": {
+    "nasaDiscovery": "2000-11-23,Mauna Kea,Hawaii",
+    "nasaPrintedCredits": [
+      "Scott S. Sheppard",
+      "David C. Jewitt",
+      "Yange R. Fernandez",
+      "Eugene Magnier"
+    ],
+    "jplPrintedCredits": [
+      "S.S. Sheppard",
+      "D.C. Jewitt",
+      "Y.R. Fernandez",
+      "G. Magnier"
+    ],
+    "note": "NASA Yange spelling and JPL G.Magnier initials retained as printed,not silently reconciled. XXI/S2000J10 distinct Taygete XX/S2000J9. IAUC7555 cited by JPL;original circular not retrieved in this batch."
+  },
+  "nasaGuide": {
+    "meanRadiusKm": 1.9,
+    "meanDistanceKm": 23100000,
+    "periodDaysAbout": 724,
+    "limitations": "Approximate guide,not resolved axes/localnormal/thermal size/uncertainty. Original size/albedo derivation not independently traced;no measured albedo adopted."
+  },
+  "jplMeanElements": {
+    "row": 521,
+    "solution": "JUP347",
+    "reference": "47,R.A.Jacobson2025 Ephemerides of the Jovian irregulars\u2014JUP347,personal communication to Horizons/NAIF",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5 TDB",
+    "aKm": 22926300,
+    "e": 0.261,
+    "argumentPeriapsisDeg": 231.6,
+    "meanAnomalyDeg": 275.3,
+    "inclinationDeg": 164.7,
+    "nodeDeg": 134.5,
+    "periodDays": 709.3625,
+    "apsidalYears": 47.3,
+    "nodalYears": 82.7,
+    "pole": null,
+    "limitations": "Mean precessing ellipse fit,not ephemerides/current distance/covariance/spin/locking/permanentface or uncertainty envelope. NASA historical summary retained separately;no cause of difference inferred."
+  },
+  "physicalUnknowns": [
+    "No Chaldene row found in retained JPL physical table",
+    "GM",
+    "mass",
+    "density",
+    "actual albedo",
+    "size uncertainty",
+    "axes",
+    "localnormal",
+    "spin",
+    "pole",
+    "terrain",
+    "local composition",
+    "calibrated visible colour"
+  ],
+  "originInterpretations": "NASA Carme-family/D-type/Hilda/Trojan/capture/collision/99percent mass/16othermoons/light-red discussion describes historical family interpretation,not independently verified current membership inventory,unique origin,local chemistry/material fractions or observed history. Retrograde orbit does not establish spin.",
+  "dates": "NASA schema publication2017-11-23T01:19:21-05:00/modification2024-01-25T01:24:05-05:00 are page timestamps,not discovery acquisition/native observation. Retrieved2026-10-20.",
+  "nativeAssessment": "Retained NASA body overview supplies text and site imagery;no body-specific resolved scientific map/product adopted or image downloaded from it. No exhaustive absence/newest-image claim. Independent native/primary photometry,size derivation,rawproduct/UTC/filter/rights and frame audits remain open. No other body map/Carme thermal or Taygete BVRI values transferred.",
+  "terms": "Source HTML retained for provenance;no blanket CC BY/native licence/figure permission asserted. No thirdparty image embedded or outgoing permission request.",
+  "next": "Assess body-specific primary/native sources and observer geometry using skyGeometry before independent labelled illustrations/additive dossier104. All103 dossiers/native/master/model/shape bytes preserved;remaining backlog ACTIVE.",
+  "discoveryAstrometry": {
+    "source": "Shared retained direct MPEC2001-A29 HTML/fulltext,issued2001Jan5 20:35UT,not observation date",
+    "target": "SK00J100 corresponds S/2000J10;not SK00J090 Taygete",
+    "firstPrintedRecord": "SK00J100 C2000 11 26.35880 04 27 53.03 +20 40 56.6 22.5 R 568",
+    "dateLimit": "NASA2000Nov23 discovery distinct first printed SK00J100 row2000Nov26 in this circular;cause/completeness and original IAUC7555 remain open. No silent date correction. Astrometric line not independently verified raw UTC/filter/exposure/pixel identity."
+  },
+  "validation": {
+    "tests": {
+      "passed": 706,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 367,
+      "nativeCardsExactBytesAndMime": 84,
+      "baseline": "51c9613",
+      "priorDossiersDeepEqual": 103,
+      "dossiers": 103,
+      "priorMoonsDeepEqual": 59,
+      "moons": 59,
+      "trackedPublicByteEqual": 726,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15852866,
+      "headroomBytes": 147134,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "afa0d2a8c05f12deeff38c997cfb0d09a9e494d70e714783dff6faa253e785f3",
+      "applicationSha256": "309f2ef1afdafc3cc70e5e1ee867cebd5ef8900474437a05e0171722b30e3a6e",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser claim;complete Node snapshot/application restoration exact and hashes unchanged from verified Taygete batch."
+  }
+}
