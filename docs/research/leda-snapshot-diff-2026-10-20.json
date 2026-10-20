@@ -1,0 +1,22 @@
+{
+  "changedPaths": [
+    "/bandImages//api/feed/sdo-94?size=preview/time",
+    "/bandImages//api/feed/sdo-94?size=preview/disk",
+    "/bandImages//api/feed/sdo-94?size=preview/src",
+    "/bandImages//api/feed/sdo-171?size=preview/time",
+    "/bandImages//api/feed/sdo-171?size=preview/disk",
+    "/bandImages//api/feed/sdo-171?size=preview/src",
+    "/bandImages//api/feed/sdo-304?size=preview/time",
+    "/bandImages//api/feed/sdo-304?size=preview/disk",
+    "/bandImages//api/feed/sdo-304?size=preview/src",
+    "/bandImages//api/feed/sdo-193?size=preview/time",
+    "/bandImages//api/feed/sdo-193?size=preview/disk",
+    "/bandImages//api/feed/sdo-193?size=preview/src",
+    "/bandImages//api/feed/sdo-1600?size=preview/time",
+    "/bandImages//api/feed/sdo-1600?size=preview/disk",
+    "/bandImages//api/feed/sdo-1600?size=preview/src",
+    "/bodyImages//bespoke/leda-sky-image.jpg",
+    "/bodyImages//bespoke/leda-surface-image.jpg"
+  ],
+  "limit": "Net HTML change is not solely asset or compression attribution."
+}

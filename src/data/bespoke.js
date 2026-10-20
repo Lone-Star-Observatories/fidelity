@@ -16977,6 +16977,163 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "leda": {
+    "id": "leda",
+    "name": "Leda",
+    "kind": "moon",
+    "aliases": [
+      "Leda",
+      "Jupiter XIII",
+      "J13 Leda"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolvedglobe/shape adopted. OHP pointimage retained research-only under primaryauthorpermissionlimits. Archived2MASS field is explicitly a non-detection,not a positive moon portrait.",
+    "measured": [
+      "Leda / Jupiter XIII / JPL513,not asteroid38Leda. CharlesThomasKowal discovery1974-09-14 from plates taken1974-09-11through13 with122cmSchmidtMountPalomar; dates not interchangeable.",
+      "ArchivedNelson/IPAC2MASS table: Leda not visible - too faint,1998-09-21/night980921s,scan069,coadd092. PredictedRA23 35 06.24/Dec-04 02 51.5 not measuredtargetastrometry. Retained794x542J/H/Kdisplay j/h/k0690092.fits frames16/17/18 is a predictedfield/non-detection,not positive moon detection or terrain.",
+      "OHP/CNRS/IMCCE410x406original prints1998-08-21T00:34UTC,120cmtelescope and7arcmin-squarepublisherfield,not newly calculatedpixelscale. Arrow/point/stars/noise/annotation not resolvedterrain/axes/calibratedvisiblecolour."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.8 NEATM effective DIAMETER21.5±1.7km,eta1.15±.13,visiblealbedo3.4±.6%,12W3/12W4measurements at roundedMJDUTC55368. Displayhalf10.75km not axes/localnormal; NASA10km assumes.04albedo,separatealternative,not jointfit/envelope. H12.63±.03mag/G.10±.15assumed,methodsconservativeHerror.15mag distinct. No spin period adopted.",
+      "JUP347 planet-centred ecliptic2000Jan1.5TDB mean a11145200km/e.162/w271.3/M232.6/i28.2/node216.9/P240.3264days/apsidal194.9/nodal309.4years,blankpoleunknown. Mean elements not dated ephemerides/currentdistance/covariance. Progradeorbit does not measure spinlocking/permanentface.",
+      "HistoricalC-typephotometricinterpretation/capture/collision/Himaliacommonparentmodels not localchemistry/materialfractions/currentgeography or observedhistory. Leda is absent from8namedtargets in retainedSharkey2025v2GO4028Table1,not globalabsenceofJWSTdata. Himalia/Elara/Lysithea/Anankespectralchemistry is not assigned to Leda.",
+      "NASA smallestHimaliagroup/fourmembers/lostS2000J11possiblecollision-ringstory is historical,not currentexhaustivemembership or observedcollision. NASADia/Carnegiereports2010/2011rediscovery contradict treating lost/crash narrative as currentstatus; no currentringdiscovery inferred."
+    ],
+    "unknown": [
+      "Mass,GM,density,spin,pole,axes,localnormal,registeredterrain,currentlongitude,chemicalfractions,visiblecolour and dated observeralignment. No Leda physical row in retainedJPLtable. Nullrotation/lockingdisabled not measured nonsynchronous spin.",
+      "2MASS exactUTC/rawproducts/limitingflux/astrometry/displaytransfer/creator/firstpublication unknown;2007archive not acquisition/publication. Explicitnon-detection not a positiveportrait. OHP exactrawproduct/filter/exposure/independentpointcrossmatch/individualcreator/firstpublication/reusepermission open. Primaryauthorpermission/pedagogical/noncommerciallimits retained,no openlicence/permission/contact/embedding inferred.",
+      "Grav2015full8authors/AASallrightsreserved notCCBY,nofigureembedded. Leda-specificrecentspectroscopy/final/rawcalibrationauditopen; otherbodies spectra and arXivlicences not transferred."
+    ],
+    "assumed": [
+      "Independent invented charcoalgrey/mutedbrown dryterrain,grains,blocks,shallowdepressions,relief,chemistry/fractions/porosity,Jupiterpattern/phase/pole,colour/light/exposure/viewpoint. No observed-body map or analog skin. No dated site,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Blacksky/omittedstars/rings not measuredabsence.",
+      "skyGeometry spherical69911kmJupiter at mean11145200km minus hypothetical10.75kmradialheight gives.7188090611145959deg/10.488246464779074targetpx at1672width/nominal90HFOV. NASA10km alternative.7188090127427093deg/10.488245758959401px separate,not jointfit/envelope/localnormal/date/spinlocking/permanentface. TinygeneratedJupiter uncalibrated,no measuredrasterdiameter adopted.165Khelper angular-only,irradiance/colourdiscarded; Sun5.2044AU assumedoffframe,notphotometry.",
+      "Original/defaultPNG/fullprompts preserved;1536JPEG85masters/256JPEG80previews/offlineWebP80,tinyfootersrequireexplicitIMAGINEDcardlabels. No generatedglobe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM LEDA",
+    "skyLabel": "IMAGINED · SKY FROM LEDA",
+    "skyCaption": "Tiny schematic Jupiter guided by nominal0.719° spherical geometry; appearance,phase,axis,light/exposure,FOV and registration artistic,not calibratedrasterdiameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "10.75 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "11.15 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.07450098853579472,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 0.7188090611145959,
+      "centreDiscWidthFraction": 0.006272874679891791,
+      "irradianceEarth": 0.000001214936104695538,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "limits": "OHPpointimage primaryreusepermission unresolved;2MASSexplicitnon-detection not positivedetection. No nativeglobe/shape/paperfigure adopted."
+    },
+    "references": [
+      {
+        "title": "NASA Leda historicaloverview",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/leda/"
+      },
+      {
+        "title": "JPL JUP347 mean elements,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physicaltable,no Leda row in retainedresponse",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav et al.2015 NEOWISE thermalmodel,eightauthors,AASrights",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "RoundedMJDUTC55368,individualUTCunknown"
+      },
+      {
+        "title": "Sharkey2025v2 targetlist,not Leda spectroscopy",
+        "url": "https://arxiv.org/html/2501.16484v2"
+      },
+      {
+        "title": "ArchivedNelson/IPAC2MASS table,Leda NOT visible",
+        "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html"
+      },
+      {
+        "title": "OHP/CNRS/IMCCE annotatedLeda pointimage,research-only",
+        "url": "https://promenade.imcce.fr/fr/pages6/62.html"
+      },
+      {
+        "title": "OHP primaryauthorpermission terms",
+        "url": "https://promenade.imcce.fr/fr/pages1/189.html"
+      },
+      {
+        "title": "NASA Dia,distinct from lost-crash historicalnarrative",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/dia/"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/leda-surface-image.jpg",
+      "previewUrl": "/bespoke/leda-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "leda-generated-surfaceImage-original.png",
+      "sourceSha256": "fb9e7f77ae87325a05f8608d94496b282f5f95b929b7f5eba1ef9e2b05724d49",
+      "sha256": "77b0b18ecc0a0902c3329824cd1065cfceeed499016d25fe97d92b907d4aa025",
+      "previewSha256": "9f02154eebfa3d57686edfbccaa2256fd182fa350ac995880018da69d769b0e6",
+      "bytes": 352605,
+      "previewBytes": 10388,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/leda-sky-image.jpg",
+      "previewUrl": "/bespoke/leda-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "leda-generated-skyImage-original.png",
+      "sourceSha256": "f42277cfbd3de3f14785616dc36e78781298f497c4c8a299fd14d4839a5986ae",
+      "sha256": "285b50e3bff3cee8f6297d350283d175262ab6012d8932958c6adecee6fcce89",
+      "previewSha256": "860e48fbb7eb46970803817c4df5d8ada89bb10eba58235910b41ce8ee90a732",
+      "bytes": 230804,
+      "previewBytes": 7052,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

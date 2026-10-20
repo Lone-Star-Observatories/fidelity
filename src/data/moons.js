@@ -333,6 +333,17 @@ export const MOONS = [
       { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Ananke physical row in retained JPLtable; GM,mass,density and material fractions unknown.' },
       { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Approximate.4mag WISE lightcurve amplitude supplies no adopted spinperiod. Nullrotation/lockingdisabled not measured nonsynchronousspin,pole or permanentface.' },
     ], surfacePending: true, discovered: '1951 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. OHP nativepoint image remains research-only pending reusepermission; archived2MASS field is explicitly a non-detection. Unresolved spectra/thermal fits are not local chemistry or dated geography.' },
+  { id: 'leda', name: 'Leda', parent: 'jupiter', radiusKm: 10.75, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(11145200, .162, 271.3, 232.6, 28.2, 216.9, 240.3264, 194.9, 309.4, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Leda,JupiterXIII,JPL513,not asteroid38Leda. Progradeorbit not measuredspin.'},
+      {label:'ORBIT',value:'11,145,200 KM · 240.3264 DAYS',tier:'modelled',detail:'JUP347 planet-centred ecliptic2000Jan1.5TDB mean elements,e.162/i28.2deg,not datedephemerides/currentdistance.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No currentSPICE/frame/phase/lighttime/covariance registration or permanentJupiterface.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'10.75 KM · THERMAL MODEL',tier:'modelled',detail:'Half Grav2015 NEATM effectiveDIAMETER21.5±1.7km,not axes/localnormal. NASA10km assumes.04albedo,separatealternative,not jointfit/envelope.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Leda physicalrow in retainedJPLtable; GM,mass,density and chemistryunknown.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verifiedspinperiod/pole adopted. Nullrotation/lockingdisabled not measurednonsynchronousspin or permanentface.'},
+    ],surfacePending:true,discovered:'1974 · Charles Thomas Kowal',note:'Two independentIMAGINEDlocal/observerviews,no resolvedglobe/shape. OHPpointimage remains research-only;2MASSfield explicitnon-detection. Thermal/taxonomicmodels not localchemistry or datedgeography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

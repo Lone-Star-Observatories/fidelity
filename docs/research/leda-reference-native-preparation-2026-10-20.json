@@ -1,0 +1,236 @@
+{
+  "date": "2026-10-20",
+  "body": "Leda / Jupiter XIII / JPL513,not asteroid38Leda",
+  "status": "Initialresearch before generatedviews/import; no99thdossier at this stage.",
+  "sources": [
+    {
+      "path": "data/research-sources/leda-nasa-overview-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/leda/",
+      "bytes": 247534,
+      "sha256": "9087e5c8162f6aa49d0157c5d7c3591346f6e7e879a60c26c05143dcca98f09c"
+    },
+    {
+      "path": "data/research-sources/leda-jpl-elements-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/leda-jpl-physical-2026-10-20.html",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-4.png",
+      "bytes": 535621,
+      "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/leda-2mass-nondetection-2026-10-20.jpg",
+      "url": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/leda.jpg",
+      "bytes": 61967,
+      "sha256": "aeff2f8f624716b14e4d3d4b37cd2ce122de09b33aabca23320b41eca6d04d3b"
+    },
+    {
+      "path": "data/research-sources/leda-ohp-caption-2026-10-20.html",
+      "url": "https://promenade.imcce.fr/fr/pages6/62.html",
+      "bytes": 19154,
+      "sha256": "338acd19cdf8b6d281d0d7a4e53872b584be64ed3ef45158dd6d33dd5f6c777d"
+    },
+    {
+      "path": "data/research-sources/leda-ohp-publisher-422-2026-10-20.jpg",
+      "url": "https://promenade.imcce.fr/fr/images/jpg4/422.jpg",
+      "bytes": 37710,
+      "sha256": "8fd08bcddf06da2587b2bb303dd52b38cd2af7668870ff4f1f025199d8f9e15d"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "url": "https://promenade.imcce.fr/fr/pages1/189.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    },
+    {
+      "path": "data/research-sources/lysithea-dia-nasa-crosscheck-2026-10-20.html",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/dia/",
+      "bytes": 259095,
+      "sha256": "a899e6d41e348b2b9a1ba01af8ad6d3a86b0c91ed3f8e577cb51180f0c70a9c8"
+    },
+    {
+      "path": "data/research-sources/lysithea-dia-carnegie-crosscheck-2026-10-20.html",
+      "bytes": 170093,
+      "sha256": "25c4d2a87037ac1441e7d905ba07574d0566f43132c7fc2bd541a3d7b6701576"
+    },
+    {
+      "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+      "url": "https://arxiv.org/html/2501.16484v2",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    }
+  ],
+  "identity": {
+    "discovery": "1974-09-14 CharlesThomasKowal,on1974-09-11through13plates,122cmSchmidtMountPalomar; datesnotinterchangeable.",
+    "nasaRadiusKm": 10,
+    "assumedAlbedo": 0.04,
+    "historyLimits": "NASA smallestHimaliagroup/fourmembers/lostS2000J11possiblecollision narrative historical,not current exhaustive membership or observedhistory. NASA/CarnegieDia2010/2011rediscovery contradicts treating lost/crash story as currentstatus."
+  },
+  "meanOrbit": {
+    "solution": "JUP347",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "aKm": 11145200,
+    "e": 0.162,
+    "wDeg": 271.3,
+    "meanAnomalyDeg": 232.6,
+    "iDeg": 28.2,
+    "nodeDeg": 216.9,
+    "periodDays": 240.3264,
+    "apsidalYears": 194.9,
+    "nodalYears": 309.4,
+    "pole": null,
+    "reference": 47,
+    "limits": "Mean elements not dated ephemeris/currentdistance/phase/spin/locking/permanentface. No physicaltableLedarow; no adopted GM,mass,density,spin,pole,axes."
+  },
+  "thermal": {
+    "authors": [
+      "T.Grav",
+      "J.M.Bauer",
+      "A.K.Mainzer",
+      "J.R.Masiero",
+      "C.R.Nugent",
+      "R.M.Cutri",
+      "S.Sonnett",
+      "E.Kramer"
+    ],
+    "publicationDate": "2015-08-04",
+    "issueDate": "2015-08-10",
+    "terms": "AASallrightsreserved,notCCBY,nofigureembedded",
+    "table3VisuallyChecked": true,
+    "diameterKm": [
+      21.5,
+      1.7
+    ],
+    "displayHalfKm": 10.75,
+    "beaming": [
+      1.15,
+      0.13
+    ],
+    "visibleAlbedoPercent": [
+      3.4,
+      0.6
+    ],
+    "w3w4Counts": [
+      12,
+      12
+    ],
+    "roundedMjdUtc": 55368,
+    "Hmag": [
+      12.63,
+      0.03
+    ],
+    "Gassumed": [
+      0.1,
+      0.15
+    ],
+    "limits": "NEATM effective diameter and modelalbedo not measured axes/localnormal/chemistry/porosity. NASA10km assumedalbedo alternative separate,not jointfit/envelope; no spin period adopted. MethodsconservativeHerror.15mag,notTableHerrorreplacement."
+  },
+  "spectroscopyLimits": "Leda is not one of the8namedtargets in retainedSharkey2025v2GO4028Table1; not globalabsenceofJWSTdata. No Himalia/Elara/Lysithea/Anankechemistry transfer to Leda. HistoricalC-type photometric interpretation not localchem/fractions or currentresolvedvisiblecolour. RecentLeda-specificspectrum/finalcalibrationauditopen.",
+  "native": {
+    "twoMass": {
+      "dimensions": [
+        794,
+        542
+      ],
+      "observationDate": "1998-09-21",
+      "night": "980921s",
+      "scan": "069",
+      "coadd": "092",
+      "publisherStatus": "not visible - too faint",
+      "predictedPosition": [
+        "23 35 06.24",
+        "-04 02 51.5"
+      ],
+      "panels": [
+        "j0690092.fits(frame16)",
+        "h0690092.fits(frame17)",
+        "k0690092.fits(frame18)"
+      ],
+      "limits": "Predictedfield/non-detection not positive moon detection/terrain/axes/calibcolour. Archive2007 not observation/firstpublication. ExactrawUTC/product/limitingflux/astrometry/displaytransfer/creator/firstpublicationopen. Research-only,noembedding.",
+      "credit": "Archived Nelson/IPAC display;2MASS,UniversityofMassachusetts andIPAC/CaliforniaInstituteofTechnology,fundedbyNASAandNSF. IPAC policy not public-domain orCCBY.",
+      "termsUrl": "https://www.ipac.caltech.edu/page/image-use-policy",
+      "acknowledgementUrl": "https://irsa.ipac.caltech.edu/docs/knowledgebase/2mass.html"
+    },
+    "ohp": {
+      "dimensions": [
+        410,
+        406
+      ],
+      "printedObservationUtc": "1998-08-21T00:34UTC",
+      "telescopeCm": 120,
+      "publisherField": "7arcmin x7arcmin,not newly calculated pixel scale",
+      "credit": "OHP/CNRS/IMCCE",
+      "terms": "Primaryauthorpermission/pedagogical/noncommerciallimits retained,no verifiedopenlicence/permission/contact/embedding.",
+      "limits": "Arrow/point/stars/noise/annotation not resolvedterrain/axes/localchem/calibvisiblecolour. ExactrawUTC/product/filter/exposure/independentpointcrossmatch/individualcreator/firstpublicationopen."
+    }
+  },
+  "observerGeometry": {
+    "codeSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+    "cases": [
+      {
+        "heightKm": 10.75,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.07450098853579472,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.7188090611145959,
+        "centreDiscWidthFraction": 0.006272874679891791,
+        "targetPixels1672": 10.488246464779074
+      },
+      {
+        "heightKm": 10,
+        "input": {
+          "radiusSun": 0.10049015380192612,
+          "temperatureK": 165,
+          "distanceAU": 0.07450099354923506,
+          "horizontalFovDeg": 90
+        },
+        "angularDiameterDeg": 0.7188090127427093,
+        "centreDiscWidthFraction": 0.0062728742577508375,
+        "targetPixels1672": 10.488245758959401
+      }
+    ],
+    "limits": "Spherical69911kmJupiter at directmean11145200km minus hypotheticalthermalhalf10.75/NASA10radialheight; notdateddistance/localnormal/spinlocking/permanentface/jointfit/envelope.165Kangularhelperonly,irradiance/colourdiscarded,nominal90HFOV1672guide notphotometry/registration."
+  },
+  "spectroscopyAudit": {
+    "authors": [
+      "Benjamin N.L.Sharkey",
+      "Andrew S.Rivkin",
+      "Richard J.Cartwright",
+      "Bryan J.Holler",
+      "Joshua P.Emery",
+      "Cristina Thomas"
+    ],
+    "version": "2025-09-07 v2",
+    "terms": "SpecificCCBY4 for version,not blanketrawproducts; nofigureembedded",
+    "limits": "Leda absentnamedTable1sample,not globalJWSTabsence. NoLedaobservationdate inferred."
+  }
+}
