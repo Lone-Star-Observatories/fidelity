@@ -1,0 +1,125 @@
+{
+  "baseline": "Saved complete snapshot before Themisto import",
+  "differences": [
+    {
+      "path": "snapshot.bodyImages./bespoke/themisto-surface-image.jpg",
+      "added": {
+        "characters": 12599,
+        "sha256": "dd19bfed9274aeec5598349006fed58ebc70179cf49007b9a35f0ba7fa839589"
+      }
+    },
+    {
+      "path": "snapshot.bodyImages./bespoke/themisto-sky-image.jpg",
+      "added": {
+        "characters": 6383,
+        "sha256": "4b855e4406e99bfe52e65ed11daa3104b5ed06157764022ebec889813b82508c"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-193?size=preview.src",
+      "before": {
+        "characters": 3743,
+        "sha256": "1bccf1787be67e67a1b5ab7c95b2e3dadf9158c32afbd0cfc189c10e36c9ffe1"
+      },
+      "after": {
+        "characters": 3743,
+        "sha256": "bccdac64f57c81d325b44bb6884aaa30d38669c72eb4def1816383fc5b55fd4c"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-193?size=preview.time",
+      "before": "2026-10-20T16:59:41Z",
+      "after": "2026-10-20T18:05:05Z"
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-193?size=preview.disk",
+      "before": 0.3872533927341146,
+      "after": 0.38725340585633516
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-171?size=preview.src",
+      "before": {
+        "characters": 3687,
+        "sha256": "52996921dc0cfca57d227ac9b09541b6f691f8f7ce557122ea9df898f1d27f1f"
+      },
+      "after": {
+        "characters": 3691,
+        "sha256": "5478299c4d556f0965cb8348a2164f6eefb9fdfb8bd040876d3aed3bb6095385"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-171?size=preview.time",
+      "before": "2026-10-20T16:59:21Z",
+      "after": "2026-10-20T18:04:45Z"
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-171?size=preview.disk",
+      "before": 0.387253409809066,
+      "after": 0.3872533950340962
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-94?size=preview.src",
+      "before": {
+        "characters": 2239,
+        "sha256": "c964d4afcd8aa82f3324e17172d03f348b7ffae9a6cc3ed2a14bccf605af4fce"
+      },
+      "after": {
+        "characters": 2199,
+        "sha256": "0ec52d5460fe8d6d8cd26f8c4692f2f378568856e11278c8a1bfeb3b47ccc705"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-94?size=preview.time",
+      "before": "2026-10-20T16:59:23Z",
+      "after": "2026-10-20T18:04:11Z"
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-94?size=preview.disk",
+      "before": 0.3872533838068316,
+      "after": 0.3872533785300641
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-1600?size=preview.src",
+      "before": {
+        "characters": 1375,
+        "sha256": "5bcf5fd9f67b788ae784f8398efdbc1ba0869bccf75eff92e4f7558ab82d3dd3"
+      },
+      "after": {
+        "characters": 1351,
+        "sha256": "f78267547d79b78c0dd0d481d2a854f81336fdf0c79e5fab8ff021a0d536f5cb"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-1600?size=preview.time",
+      "before": "2026-10-20T17:01:50Z",
+      "after": "2026-10-20T18:06:38Z"
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-1600?size=preview.disk",
+      "before": 0.38725335856453574,
+      "after": 0.3872533703357869
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-304?size=preview.src",
+      "before": {
+        "characters": 4223,
+        "sha256": "b1cf28c70a5c1738859416f4d7518010b0e8b4d598172df773f770ac0f68c732"
+      },
+      "after": {
+        "characters": 4227,
+        "sha256": "17302e359a580c2240fcf62f06be1630b5cac8424c2c32cfcc6bdee7a01812c6"
+      }
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-304?size=preview.time",
+      "before": "2026-10-20T17:01:41Z",
+      "after": "2026-10-20T18:07:05Z"
+    },
+    {
+      "path": "snapshot.bandImages./api/feed/sdo-304?size=preview.disk",
+      "before": 0.38725341056909196,
+      "after": 0.3872534128428385
+    }
+  ],
+  "limits": "Catalogue/dossier fields are application inputs; this is only complete saved snapshot JSON comparison. Net HTML increment is not solely asset size or compression saving."
+}

@@ -17285,6 +17285,176 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "themisto": {
+    "id": "themisto",
+    "name": "Themisto",
+    "kind": "moon",
+    "aliases": [
+      "Themisto",
+      "Jupiter XVIII",
+      "J18 Themisto",
+      "S/1975 J1",
+      "S/2000 J1"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Original CFHT/CADC mosaic retained research-only; predicted footprint is not independently crossmatched to a Themisto point detection. No native context image embedded.",
+    "measured": [
+      "Themisto / Jupiter XVIII / JPL518 / S1975J1=S2000J1. NASA discovery1975-09-30 by Charles Thomas Kowal and Elizabeth Roemer; lost until2000. Rediscovery credits Scott S. Sheppard,David C. Jewitt,Yanga Roland Fernandez,Eugene A. Magnier. NASA camera narrative and exact rediscovery date/product crosswalk remain open; August CFHT precovery is not silently assigned as rediscovery.",
+      "Sharkey et al. published2025-10-24,PSJ6(10)242,DOI10.3847/PSJ/ae04dd: unresolved JWST NIRSpec IFU prism GO4028 observation2024-01-31,0.7–5.1micron,phase11.59deg,Sun4.94AU/observer4.90AU. Final HTML Table1/2 and relevant sections assessed separately from arXivv2.",
+      "Final Table2 broad3micron centre3.08±.03micron/depth1.7±.2percent;3.4band3.43±.02/depth2.3±.4percent;possible4.9feature4.91±.01/depth5.2±1.2percent. Lower SNR,continuum and thermal-tail limits apply to the latter. These are unresolved spectral estimates,not resolved surface pixels or local fractions."
+    ],
+    "modelled": [
+      "Display radius4km halves the published assumed8km DIAMETER with geometric albedo.04,citing Sheppard/Jewitt2003; NASA mean4km retained. Not a thermal measurement,axes/local normal or measured uncertainty. Grav et al.2015 explicitly could not recover Themisto flux through nearby Jupiter scattered light; no NEOWISE diameter/albedo adopted.",
+      "JUP347 planet-centred ecliptic2000Jan1.5TDB mean a7397000km/e.257/w236.3/M289.1/i44.3/node202.7/P129.9681days/apsidal626.4/nodal648.5years,poleunknown,reference47Jacobson2025personalcommunication. Not dated ephemerides/currentdistance/covariance. Prograde orbit is not measured spin locking/permanent face; isolated orbit does not establish Himalia-family membership.",
+      "Red relative VNIR slope and3/3.4micron compatibility with red Jovian Trojans/OH-bearing/aliphatic materials are not calibrated RGB,unique chemistry,abundances or common-origin proof. Authors do not propose specific red-irregular compositions. PossibleCO3/OCS interpretation is not species identification. Himalia/Elara ammonia/complexedCO2 is not transferred to Themisto; no current water ice,ocean,activity or biology inference.",
+      "Pipeline1.14.0/jwst_1225,NSClean,PSF extraction,SNAP2 solar reference,background/dither/thermal-tail processing not independently reproduced. Laboratory comparisons and capture/origin models not observed local history/materials."
+    ],
+    "unknown": [
+      "Actual albedo,size uncertainty,axes,local normal,mass,GM,density,spin,pole,current longitude,terrain,chemical fractions,calibrated visible colour and dated observer alignment unknown. No Themisto physical row in retained JPL table. Null rotation/locking disabled does not measure nonsynchronous spin.",
+      "Original CFHT545046p FITS86,362,560bytes has13HDUs/12 compressed image extensions; pixels not decompressed,visually inspected,astrometrically crossmatched or calibrated. SSOS lists predicted footprints,not verified detections. OBJECT sat602 is a private pointing label,not Dione/body identity. SSOS13:31:45 versus UTC-OBS13:30:15.28/DATE13:33:16 remains explicit; midpoint documentation does not resolve every timestamp semantics. Second545051p not downloaded; WCS/raw-product/photometry/camera/rediscovery crosswalk open.",
+      "Published original content CC BY4 with six authors/title/journal/DOI attribution; arXivv2-specific terms separate. PDF endpoint returned CAPTCHA HTML,not a paper PDF; no paper-PDF hash or figure embedded. CADC data repository terms and secondary animation terms are separate. No exhaustive newest-image claim or blanket licence transfer."
+    ],
+    "assumed": [
+      "Independent invented dark grey-brown terrain,grains,blocks,ridges,chemistry/fractions/porosity,Jupiter pattern/phase/pole,visible colour,light/exposure/viewpoint. No observed-body map or analog skin. No dated site,known local normal,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Black sky/omitted stars/rings not measured absence.",
+      "skyGeometry spherical69911km Jupiter at mean7397000km minus assumed4km radial height gives1.0830517897746512deg/15.803227835953393target pixels at1672width/nominal90HFOV. Not joint fit,dated site,local normal,spin locking/permanent face or uncertainty envelope. Tiny rendered Jupiter uncalibrated,no raster diameter adopted.165Khelper angular-only irradiance/colour discarded;Sun5.2044AU assumed off-frame,not photometry.",
+      "Original/default PNGs/full prompts preserved;1536JPEG85masters/256JPEG80previews/offlineWebP80,tiny footers require explicit IMAGINED card labels. No generated globe/shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM THEMISTO",
+    "skyLabel": "IMAGINED · SKY FROM THEMISTO",
+    "skyCaption": "Tiny hypothetical Jupiter: nominal1.083degree angular guide; pattern,phase,axis,exposure and registration artistic,not a calibrated raster diameter.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "4 KM · ALBEDO ASSUMPTION"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "7.397 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.04944586420507121,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "angularDiameterDeg": 1.0830517897746512,
+      "centreDiscWidthFraction": 0.00945169128944581,
+      "irradianceEarth": 0.0000027581479939038585,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [],
+    "nativeProducts": {
+      "embedded": false,
+      "credit": "Matthew Holman / CFHT / Canadian Astronomy Data Centre. This research used the facilities of the Canadian Astronomy Data Centre operated by the National Research Council of Canada with the support of the Canadian Space Agency. SSOScitation:Gwyn,Hill,Kavelaars2012.",
+      "terms": "CADCrepositorypolicy statesdataCCBY4/publicdomain; preserveexactpolicywording andcredit,not blanketuploaderanimation/paperlicence. Noimageembedded.",
+      "source": {
+        "path": "data/research-sources/themisto-cfht-545046p-original.fits.fz",
+        "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/data/pub/CFHT/545046p.fits.fz",
+        "bytes": 86362560,
+        "sha256": "720a32e989e3a0e573c363af31faad990ec67b01a875dc1a34ee5c04ed3b1aae"
+      },
+      "limits": "Original CFHT FITS retained research-only; predicted footprint is not independently verified source identity. Compressed pixels/WCS/point crossmatch/timing/photometry remain open. No native geography/visible-colour claim."
+    },
+    "references": [
+      {
+        "title": "NASA Themisto identity and historical discovery/rediscovery credits",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/themisto/"
+      },
+      {
+        "title": "JPL JUP347 mean elements,not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table,no retained Themisto row",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025,PSJ6(10)242,original contentCCBY4",
+        "url": "https://doi.org/10.3847/PSJ/ae04dd",
+        "publicationDate": "2025-10-24",
+        "observationDate": "2024-01-31"
+      },
+      {
+        "title": "Sharkey et al. arXivv2 retained separately",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "publicationDate": "2025-09-07"
+      },
+      {
+        "title": "Grav et al.2015,NEOWISE Jupiter-scattered-light non-recovery",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04"
+      },
+      {
+        "title": "CFHT/CADC original545046p,Matthew Holman;research-only,no verified point crossmatch",
+        "url": "https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/data/pub/CFHT/545046p.fits.fz",
+        "observationDate": "FITS DATE-OBS2000-08-06 UTC-OBS13:30:15.28,not silently SSOS13:31:45"
+      },
+      {
+        "title": "CADC repository policy,credit NRC/CSA;not secondary animation/paper licence",
+        "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html"
+      },
+      {
+        "title": "CADC SSOS predicted-position midpoint methodology,Gwyn/Hill/Kavelaars2012",
+        "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/ssois/documentation.html"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/themisto-surface-image.jpg",
+      "previewUrl": "/bespoke/themisto-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "themisto-generated-surfaceImage-original.png",
+      "sourceSha256": "9732665b1123b8717220660392bd3e6580606669dfe61728d444e2fc3478947d",
+      "sha256": "d751291af1c389b7ccf60aba56906788297d00d4f4d43a215d64609f1ef60280",
+      "previewSha256": "f4342c038d2d9173dba5998359956581a381aa3ace4a791b96838b7ffc25e1c6",
+      "bytes": 303910,
+      "previewBytes": 10687,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/themisto-sky-image.jpg",
+      "previewUrl": "/bespoke/themisto-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "themisto-generated-skyImage-original.png",
+      "sourceSha256": "a38f86d5ac60338f692433ae09f94ce5796f82b522728e89599bd80adbc6dc40",
+      "sha256": "e4aad69d77e77891b70197bbecc6d18a84276ede1174107d82f97ed01c209572",
+      "previewSha256": "23625e6fb6b7df0e53a705bf40b4ca3291d37fea542cfaaf1427707c1f4fd927",
+      "bytes": 196321,
+      "previewBytes": 5954,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

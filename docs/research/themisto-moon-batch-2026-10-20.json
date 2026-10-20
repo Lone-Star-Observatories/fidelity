@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-20",
+  "body": "Themisto / Jupiter XVIII / JPL518 / S1975J1=S2000J1",
+  "status": "Initial additive dossier101;two independent IMAGINED views,no native card/resolved globe/shape",
+  "sourceRecords": "docs/research/themisto-source-records-2026-10-20.json",
+  "importManifest": "docs/research/themisto-import-manifest-2026-10-20.json",
+  "researchRecord": "docs/research/themisto-reference-native-preparation-2026-10-20.json",
+  "browserVerification": "docs/research/themisto-dossier-browser-verification-2026-10-20.json",
+  "snapshotDiff": "docs/research/themisto-snapshot-diff-2026-10-20.json",
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 307,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "1fb285d",
+    "priorDossiersDeepEqual": 100,
+    "dossiers": 101,
+    "priorMoonsDeepEqual": 56,
+    "moons": 57,
+    "trackedPublicByteEqual": 714,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/themisto-sky-image.jpg",
+      "/bespoke/themisto-surface-image.jpg"
+    ],
+    "htmlBytes": 15821990,
+    "headroomBytes": 178010,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "24c9f7e45c3184e7c5fee90375aae21c0258cef078686460c83ef709b81b15e6",
+    "applicationSha256": "c5dd7e9f12780728aabcc5d828f7b49cd8446ac7fb46504383d323dc5abbbf49",
+    "freshBrowserClaim": false
+  },
+  "tests": {
+    "passed": 704,
+    "skipped": 1,
+    "failed": 0
+  },
+  "productionBuild": "pass",
+  "fullBuild": "pass",
+  "limitations": [
+    "Assumed4km guide radius uses8km diameter/albedo.04,not thermal diameter,axes or local normal;size uncertainty/albedo/mass/GM/density/spin/pole unknown.",
+    "Current date/frame/attitude/photometric/raster registration remains open;prograde orbit is not measured spin locking/permanent face.",
+    "JWST final unresolved spectrum,band fits/laboratory interpretation/weak4.9feature are not local chemistry,fractions,calibrated colour,ice/ocean/activity/biology.",
+    "CFHT compressed mosaic retained unchanged research-only;predicted footprint/private sat602 label is not verified point identity or Dione association. Pixel/WCS/calibration/timing/rediscovery crosswalk open.",
+    "All ground/Jupiter pattern/phase/pole/chemistry/colour/lighting invented;no observed analog map or dated site. Nominal skyGeometry1.0830517897746512deg/15.803227835953393target pixels at1672/90HFOV not calibrated raster.",
+    "Saved complete snapshot differences include two new Themisto bodyImages plus15SDO live-feed src/time/disk refresh fields;HTML increment not solely assets/compression.",
+    "All prior100dossiers/56moons/714public bytes preserved;307source/generatedhashes and84nativecards verified. All original PNG/default/master/provenance/native/model/map/shape/recordedClipper preserved;no codec change."
+  ],
+  "next": "Continue outstanding Solar System bodies/native-map/craft/shape/calibration/refinement and distance-reference audit;backlogACTIVE,no globalexternalblocker.",
+  "browserStatus": "pass;completeChromeJSON/application/HTMLparser restoration,343images,32modelscenes,normal/offlineThemisto2cards,gzip/WASMnotices"
+}

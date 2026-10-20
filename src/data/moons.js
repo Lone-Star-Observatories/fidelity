@@ -355,6 +355,17 @@ export const MOONS = [
       {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Callirrhoe physicalrow in retainedJPLtable;GM,mass,density/chemistryunknown.'},
       {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verifiedspinperiod/pole adopted. Nullrotation/lockingdisabled not measurednonsynchronousspin/permanentface.'},
     ],surfacePending:true,discovered:'1999 · Spacewatch / seven credited discoverers',note:'Two independent IMAGINED local/observerviews,no resolvedglobe/shape. OriginalSPACEWATCH discoveryGIFs retained research-only,reusepermissionopen. Thermal/taxonomicmodels not localchemistry/datedgeography.' },
+  { id: 'themisto', name: 'Themisto', parent: 'jupiter', radiusKm: 4, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(7397000, .257, 236.3, 289.1, 44.3, 202.7, 129.9681, 626.4, 648.5, null, 'ecliptic', 2451545.0),
+    orbitFacts:[
+      {label:'ORBITS',value:'JUPITER · IRREGULAR',tier:'measured',detail:'Themisto,JupiterXVIII,JPL518,S1975J1=S2000J1. Prograde orbit not measured spin.'},
+      {label:'ORBIT',value:'7,397,000 KM · 129.9681 DAYS',tier:'modelled',detail:'JUP347 planet-centred ecliptic2000Jan1.5TDB mean,e.257/i44.3deg,not dated ephemerides/current distance.'},
+      {label:'POSITION',value:'ILLUSTRATIVE PROPAGATION',tier:'imagined',detail:'No current SPICE/frame/phase/lighttime/covariance registration or permanent Jupiter-facing site.'},
+    ],physicalFacts:[
+      {label:'RADIUS',value:'4 KM · ALBEDO ASSUMPTION',tier:'modelled',detail:'Half assumed8km diameter with geometric albedo.04,not thermal measurement/axes/local normal. NEOWISE flux lost in Jupiter scattered light.'},
+      {label:'MASS',value:'UNKNOWN',tier:'modelled',detail:'No Themisto physical row in retained JPL table;GM,mass,density and chemistry unknown.'},
+      {label:'ATTITUDE',value:'UNREGISTERED',tier:'imagined',detail:'No verified spin period/pole adopted. Null rotation/locking disabled not measured nonsynchronous spin/permanent face.'},
+    ],surfacePending:true,discovered:'1975 · Charles Thomas Kowal / Elizabeth Roemer; rediscovered2000',note:'Two independent IMAGINED local/observer views;no resolved globe/shape. CFHT native mosaic research-only,point identity/timing/WCS open. Unresolved JWST spectra and assumed photometric size not local chemistry/geography.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [
