@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-20",
+  "body": "Megaclite / Jupiter XIX / JPL519",
+  "status": "Research preparation only; no dossier102 or image embedding",
+  "generation": "Built-in imagegen, independent new images, no references or analog skins",
+  "images": [
+    {
+      "role": "surfaceImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-66fbec21-1b67-4458-b876-35b03d99fbd0.png",
+        "bytes": 2524299,
+        "sha256": "5e840a0553c737518acd67b4199fe38c383d6142e03c95da46684c43d17d8d07"
+      },
+      "original": {
+        "path": "data/research-sources/megaclite-generated-surfaceImage-original.png",
+        "bytes": 2524299,
+        "sha256": "5e840a0553c737518acd67b4199fe38c383d6142e03c95da46684c43d17d8d07"
+      },
+      "metadata": {
+        "width": 1672,
+        "height": 941,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/megaclite-local-prompt-2026-10-20.txt",
+        "bytes": 1342,
+        "sha256": "624b513ba28ccde8c4df28ac76674156f1fc62c7c4f3bfc64bac89b3cfe5f50e"
+      },
+      "fullPrompt": "Use case: scientific-educational. Create an independent hypothetical LOCAL VIEW FROM MEGACLITE, Jupiter XIX, wide16:9 realistic scientific concept illustration. No reference images, observed-body map, analogy skin or copied lunar/Mars/Pluto/asteroid pattern. Unknown irregular small moon: 2.7km radius assumes albedo.04,not measured axes or local normal. Invent a modest uneven foreground of dark neutral grey-brown grains,small irregular loose stones,low subdued ridges and shallow depressions against a black sky. Weak oblique sunlight with artistic exposure,quiet restrained composition,low camera,upperthird blacksky. All terrain,chemistry/fractions,porosity,colour and light invented. BVRI relative light-red classification does not establish local visible colour or minerals. No recognizable observed crater/site,exposed ice,crystals,dramatic cliffs,lava,atmosphere,haze,clouds,plume,liquid,exposed ocean,biology,people,craft or landing/survival cues. No astronomical disks,Sun,Jupiter,stars or rings in this local view;omissions not measured absence. Not a dated site,spin locking/permanent face or registered terrain. Include a narrow dark footer band inside safe margins,with exactly two crisp readable white lines: 'MEGACLITE — IMAGINED LOCAL VIEW' and 'Terrain, materials, colour and lighting hypothetical'. No other text/logos.",
+      "master": {
+        "path": "data/research-sources/megaclite-local-master-1536.jpg",
+        "bytes": 292925,
+        "sha256": "bf72321b05805e94190494fde93ba52eaee666bd69dc33b02dd0b0900084cf00"
+      },
+      "preview": {
+        "path": "data/research-sources/megaclite-local-preview-256.jpg",
+        "bytes": 8516,
+        "sha256": "1c74093c244e31720fbebca270fbf9f385a112d12c5f97f732ca762672baa449"
+      },
+      "inspection": "Original,1536px master and256px preview visually inspected. Both original/master footer lines readable;tiny preview requires explicit IMAGINED card label. No astronomical disk or angular raster claim."
+    },
+    {
+      "role": "skyImage",
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e3c48d6d-5d08-413c-a3be-6b0f48fc7eb3.png",
+        "bytes": 1615653,
+        "sha256": "daa5f406d57b176da1b3508dbd53076a26b12955dbbc2f240ee4c640059bc9a7"
+      },
+      "original": {
+        "path": "data/research-sources/megaclite-generated-skyImage-original.png",
+        "bytes": 1615653,
+        "sha256": "daa5f406d57b176da1b3508dbd53076a26b12955dbbc2f240ee4c640059bc9a7"
+      },
+      "metadata": {
+        "width": 1712,
+        "height": 919,
+        "format": "png"
+      },
+      "prompt": {
+        "path": "data/research-sources/megaclite-sky-prompt-2026-10-20.txt",
+        "bytes": 1386,
+        "sha256": "11b86e1d34376cfbb6711e0eecaafa8fd11ae26788de639e3d8842645fe7f9d7"
+      },
+      "fullPrompt": "Create an independent scientific educational hypothetical SKY FROM MEGACLITE, Jupiter XIX, realistic wide16:9 concept illustration with no reference image or observed-body map/analog skin. Modest dark neutral grey-brown invented grains,small stones and low ridges along lower half, black sky upperhalf. A very tiny featureless off-white Jupiter disk about5pixels across in a1672pixel wide image, high above horizon; no resolvable bands or giant prominent planet. Nominal skyGeometry guide: spherical Jupiter69911km at mean23640100km minus assumed2.7km radialheight gives .3388827913302414degree and4.944637141936351pixels at90degree horizontalFOV/1672width. This is only hypothetical guide,not dated scene,local normal,known spin,locking,permanent face or calibrated raster. All terrain,chemistry,fractions,porosity,Jupiter phase/axis/colour,lighting/exposure invented; relative light-red BVRI classification not local visible colour/minerals. No copied Moon/Mars/Pluto/asteroid map,recognizable observed site,ice crystals,cliffs,lava,foreground atmosphere,haze,cloud,plume,liquid,ocean,biology,people,craft or survivable landing. No stars,rings,Sun; omissions not measured absence. Narrow dark footer band safe inside image with exactly two crisp readable white lines: 'MEGACLITE — IMAGINED SKY VIEW' and 'Terrain, Jupiter appearance and lighting hypothetical'. No other text/logos.",
+      "master": {
+        "path": "data/research-sources/megaclite-sky-master-1536.jpg",
+        "bytes": 175063,
+        "sha256": "deb691aade9c29ceb354de52b5a86c652fc21b8438c17221ea3640bbe50be65f"
+      },
+      "preview": {
+        "path": "data/research-sources/megaclite-sky-preview-256.jpg",
+        "bytes": 4408,
+        "sha256": "2716b2ff9b5a5d0d367b03e193df06acde285412cdc686853eccf6255311d10f"
+      },
+      "inspection": "Original visually inspected: both footer lines readable,tiny off-white disk. Actual1712x919 exceeds importer aspect tolerance. No raster diameter calculated/adopted. Preparation resize preserves aspect; no production embedding. Original,1536px aspect-preserving preparation master and256px preview visually inspected;master footer readable,tiny preview requires explicit IMAGINED card label."
+    }
+  ],
+  "referenceRecord": "docs/research/megaclite-reference-native-preparation-2026-10-20.json",
+  "limits": "All terrain, chemistry, fractions, porosity, visible colour, Jupiter pattern/phase/pole, light/exposure and registration invented. Albedo-dependent assumed2.7km radius not resolved axes/local normal. No dated site, measured spin locking/permanent face, foreground atmosphere, plume, liquid, exposed ocean, biology or survivable landing. Black sky/omitted features not measured absence. Jupiter nominal skyGeometry guide.3388827913302414deg/4.944637141936351px at1672/90HFOV, not a calibrated generated raster diameter. Native secondary lead and CADC query remain inaccessible/unverified; no image hash invented. Relative BVRI photometry not visible-colour or local-chemistry calibration. Actual sky original is1712x919,not1672x941; nominal1672pixel guide was prompt-only,not calibrated raster. Aspect ratio exceeds additive importer tolerance; integration must use an explicitly documented original-preserving layout derivative or a separately preserved conforming alternative. Do not overwrite this original or silently stretch it.",
+  "next": "Resolve sky layout through an explicitly documented original-preserving derivative or separately preserved conforming alternative,inspect outputs,then additive dossier102; no external blocker. Do not regenerate local view or lose either original.",
+  "processing": {
+    "originals": "Both default generated PNGs and byte-identical project copies preserved unchanged.",
+    "preparationMasters": "Aspect-preserving Sharp JPEGquality85 width1536;local1536x864,sky1536x825.",
+    "preparationPreviews": "Aspect-preserving JPEGquality80 width256;local256x144,sky256x137. Small labels require explicit card text.",
+    "production": "No import attempted;no image/registry/catalogue/map/model/shape/codec changes. Sky original1712x919 is outside importer aspect tolerance;these are not production-ready sky dimensions.",
+    "layoutNext": "Preserve all pixels through a documented padding/layout derivative with original/source/master hashes,or retain a separately generated conforming alternative. No silent stretch or original overwrite."
+  },
+  "scienceLimits": [
+    "NASA2.7km radius assumes albedo.04;not measured axes,local normal,size uncertainty or thermal diameter. Grav2015 reports no stacked Megaclite signal;Themisto scattered-light explanation is not transferred.",
+    "Grav/Holman/Gladman/Aksnes2003 unresolved BVRI light-red classification and V/BV/VR/VI values are not local visible-colour/mineral fractions. TableMagaclite NOT2002Jan14 distinct from unverifiedCFHT2001Dec9 imagelead. Assumed pre2004 arXiv nonexclusive terms not CC BY;no paper figure embedded.",
+    "JUP347 mean23640100km/e.421/i149.9/P742.7715days not dated position,spin locking/permanent face. JupiterXIX/JPL519/S2000J8 identity crosswalk retained;Magaclite spelling history cause remains unverified.",
+    "Secondary GIF/CADC timeouts/access failures do not establish rawpointproduct/UTC/filter/permissions. No native image embedded or invented image hash;full source/rights limitations remain in reference record."
+  ],
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 334,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "0d9738f",
+    "priorDossiersDeepEqual": 101,
+    "dossiers": 101,
+    "priorMoonsDeepEqual": 57,
+    "moons": 57,
+    "trackedPublicByteEqual": 718,
+    "queueEntries": 569,
+    "unchangedQueueEntries": 569,
+    "addedImages": [],
+    "htmlBytes": 15824314,
+    "headroomBytes": 175686,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "71641afecd58269db66368bdfcbb032fc19b5f226d3bf644e3666ca2119ed474",
+    "applicationSha256": "c5dd7e9f12780728aabcc5d828f7b49cd8446ac7fb46504383d323dc5abbbf49",
+    "freshBrowserClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 704,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browser": "No fresh browser claim;complete decoded JSON/application equality and all native-card byte/MIME checks performed in Node.",
+    "limits": "Rebuilt readable snapshot SHA differs from previous research build;dynamic feed differences not audited or attributed to assets/compression savings. No new embedding."
+  }
+}
