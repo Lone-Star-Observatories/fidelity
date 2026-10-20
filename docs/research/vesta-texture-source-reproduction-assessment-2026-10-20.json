@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-20",
+  "body": "4 Vesta / catalogue vesta",
+  "status": "Research-only source reproduction; no texture replacement, embedding, generated view, catalogue/DEM/feature/codec change or 108th dossier.",
+  "referenceAssessment": "docs/research/vesta-native-map-reference-assessment-2026-10-20.json",
+  "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA; Dawn Team, German Aerospace Center (DLR) Institute of Planetary Research; USGS Astrogeology distribution.",
+  "citation": "Roatsch, T., Kersten, E., Matz, K.-D., Preusker, F., Scholten, F., Elgner, S., Schroeder, S.E., Jaumann, R., Raymond, C.A., Russell, C.T., DAWN FC2 DERIVED VESTA GLOBAL MOSAICS V1.0, DAWN-A-FC2-5-MOSAIC-V1.0, 2015. Citation does not assert byte identity between separate PDS and USGS editions.",
+  "source": {
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Vesta_Dawn_FC_HAMO_Mosaic_Global_74ppd.tif",
+    "fileBytes": 356659263,
+    "etag": "\"60577be80b31a75570c46c9959343c4f-43\"",
+    "startedAt": "2026-10-20T22:59:31.878Z",
+    "completedAt": "2026-10-20T22:59:42.908Z",
+    "lastModified": "Thu, 10 Nov 2022 13:21:52 GMT",
+    "lastModifiedMeaning": "HTTP object timestamp, not an observation or verified initial publication date.",
+    "fullDownload": false,
+    "fullFileSha256": null
+  },
+  "method": {
+    "code": {
+      "path": "docs/research/vesta-texture-source-reproduction-2026-10-20.mjs",
+      "bytes": 3157,
+      "sha256": "097ab9933f8c5307a63290b1523f10278eab1e16da0da1daf3fb3d353b7e7de9"
+    },
+    "sampler": {
+      "path": "server/tiff.js",
+      "bytes": 4639,
+      "sha256": "6b2a73df9d20134e33de765bad704622dbc9e04951267c6371da7c913356bb56"
+    },
+    "description": "Existing readTiffLayout/greyPng with the same centre-row selection and horizontal integer-span box average, rounding to 8-bit. Strict 206 Content-Range/length and consistent ETag; If-Match after initial response. 12 concurrent workers. Original displayed cache never written.",
+    "sourceDimensions": {
+      "width": 26704,
+      "height": 13352,
+      "rowsPerStrip": 1
+    },
+    "outputDimensions": {
+      "width": 2048,
+      "height": 1024
+    },
+    "rangeRequests": 1028,
+    "rowSamples": 1024,
+    "sampledRowBytes": 27344896,
+    "requestManifest": {
+      "path": "data/research-sources/vesta-reproduction-2026-10-20.json",
+      "bytes": 511539,
+      "sha256": "15170852ae8fcb9bd4b84604940bbc28291f6f46efbca16f4eb70af8b2154179"
+    }
+  },
+  "retained": [
+    {
+      "path": "data/research-sources/vesta-reproduction-2026-10-20.png",
+      "bytes": 1448667,
+      "sha256": "176feb188fb351bba86c4a45c47b2de071214fb765dfe0d2c7e809f30e55884d"
+    },
+    {
+      "path": "data/research-sources/vesta-reproduction-2026-10-20-sampled-rows.bin",
+      "bytes": 27344896,
+      "sha256": "7d195bd5ed721d1f0ef99f3f1737b68f473fbc503a6522f6b3ceab5ce65db79e"
+    },
+    {
+      "path": "data/textures/vesta.png",
+      "bytes": 1448667,
+      "sha256": "176feb188fb351bba86c4a45c47b2de071214fb765dfe0d2c7e809f30e55884d"
+    }
+  ],
+  "comparison": {
+    "pngByteEqual": true,
+    "decodedGreyscalePixelEqual": true,
+    "unequalSamples": 0,
+    "totalSamples": 2097152
+  },
+  "conclusion": "Configured current USGS TIFF sampled with the existing pipeline reproduces the cached Vesta PNG exactly, including PNG encoding and all 2,097,152 decoded greyscale samples. This closes the current configured-source/sampler pixel reproduction question. It does not establish historical download provenance or full-source pixel preservation.",
+  "limitations": [
+    "Only TIFF layout and 1024 selected complete rows downloaded, not the full 356659263-byte source. Per-range and concatenated-row SHA256 values are not a full TIFF hash; multipart ETag is not asserted SHA256.",
+    "Horizontal averaging and vertical point sampling are a reduced-resolution derivative, not full source-pixel preservation. No visible-RGB, photometric or local chemical calibration established.",
+    "2013-12-10 product/publication and 2017-05-01 label revision remain distinct from 2011 acquisition ranges. No per-pixel observation-date claim.",
+    "Publisher clear-filter processing, artistic neighboring-pixel wrap-seam fill, preliminary 150-degree east shift and Claudia 146E convention remain as documented; no additional shift applied.",
+    "255 km projection sphere is not a replacement for catalogue physical radius 261.4 km. No new angular/raster size computation; only image processing sample-index reproduction.",
+    "DEM/feature control, prime-meridian/shape alignment, raw FC UTC/filter/exposure crosswalk, physical accuracy, original PDS edition identity, photometry and licence remain open. No blanket CC BY/public-domain assertion.",
+    "All 107 delivered dossiers and every prior native/model/shape/map/original/master/provenance record preserved. No fresh browser verification claim."
+  ],
+  "validation": {
+    "tests": "710 pass, 1 skip (OPENAI_API_KEY unset)",
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "retainedRowsOfflineRegeneration": "Pass: a separate process regenerated greyPng directly from the retained 1024-row binary and matched the original cached PNG byte-for-byte.",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 453,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "8848d63",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15969730,
+      "headroomBytes": 30270,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "717cc14594c72a215a9ad05cb197331205055c0961d4ce7d7b004ecb0c7a7ea8",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "snapshotDifferences": "15 leaf changes confined to src/time/disk of five refreshed live SDO solar-band images; all other top-level fields and band entries/fields verified exact. See vesta-reproduction-snapshot-diff-2026-10-20.json. Net build-size difference is not attributed to research or compression.",
+    "browser": "No fresh browser claim; Node restores the entire current readable snapshot and application exactly."
+  }
+}
