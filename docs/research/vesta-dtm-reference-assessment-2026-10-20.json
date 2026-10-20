@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-20",
+  "body": "4 Vesta / catalogue vesta",
+  "status": "Research-only DTM reference/version audit. No source TIFF download, DEM/map/feature/catalogue/codec modification, native embedding, generated view or 108th dossier.",
+  "sources": [
+    {
+      "url": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_dtm_93m",
+      "finalUrl": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_dtm_93m",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "path": "data/research-sources/vesta-dtm-usgs-page-preparation-2026-10-20.html",
+      "bytes": 28324,
+      "sha256": "0520e44cae79fa2812802bc0ccf2eead19222837defd3505aa7013b308b4d1bd",
+      "retrievedAt": "2026-10-20T23:12:34.888754+00:00"
+    },
+    {
+      "url": "https://astrogeology.usgs.gov/ckan/dataset/5f8e2dae-368e-4b47-8252-3c4bb2d99af5/resource/05d69016-1d7f-4b7e-8a83-7870c6d6ad35/download/vesta_dawn_hamo_dtm_dlr_global_48ppd.lbl",
+      "finalUrl": "https://astrogeology.usgs.gov/ckan/dataset/5f8e2dae-368e-4b47-8252-3c4bb2d99af5/resource/05d69016-1d7f-4b7e-8a83-7870c6d6ad35/download/vesta_dawn_hamo_dtm_dlr_global_48ppd.lbl",
+      "status": 200,
+      "contentType": "text/plain",
+      "path": "data/research-sources/vesta-dtm-label-preparation-0-2026-10-20.lbl",
+      "bytes": 1903,
+      "sha256": "e98dd90fd2f4a34fe65f7e249e0836b0f1ade44b85948e185a9bf7edc7bdc45d",
+      "retrievedAt": "2026-10-20T23:12:35.384415+00:00"
+    },
+    {
+      "url": "https://astrogeology.usgs.gov/ckan/dataset/5f8e2dae-368e-4b47-8252-3c4bb2d99af5/resource/d17ddfc6-7fd5-4ca8-9690-8535e4a53619/download/vesta_dawn_hamo_dtm_dlr_global_48ppd_pds3.lbl",
+      "finalUrl": "https://astrogeology.usgs.gov/ckan/dataset/5f8e2dae-368e-4b47-8252-3c4bb2d99af5/resource/d17ddfc6-7fd5-4ca8-9690-8535e4a53619/download/vesta_dawn_hamo_dtm_dlr_global_48ppd_pds3.lbl",
+      "status": 200,
+      "contentType": "text/plain",
+      "path": "data/research-sources/vesta-dtm-label-preparation-1-2026-10-20.lbl",
+      "bytes": 2576,
+      "sha256": "44b71523544df94fe083ad056719151b9ced8188ba641a641d8fb247cb34b90d",
+      "retrievedAt": "2026-10-20T23:12:35.823017+00:00"
+    },
+    {
+      "url": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=DAWN-A-FC2-5-VESTADTMSPG-V1.0",
+      "finalUrl": "https://pds.nasa.gov/ds-view/pds/viewProfile.jsp?dsid=DAWN-A-FC2-5-VESTADTMSPG-V1.0",
+      "status": 200,
+      "contentType": "text/html;charset=ISO-8859-1",
+      "path": "data/research-sources/vesta-dtm-pds-record-preparation-2026-10-20.html",
+      "bytes": 19534,
+      "sha256": "81f5643d3dcb8b635cf0f8a1c585eb6cc4ba5287c08f918bd366efd4fde6209c",
+      "retrievedAt": "2026-10-20T23:12:36.017917+00:00"
+    }
+  ],
+  "credits": {
+    "usgs": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA; Dawn Team; producer German Aerospace Center (DLR), Institute of Planetary Research; distribution USGS Astrogeology Science Center.",
+    "pdsCitation": "Preusker, F., F. Scholten, K.-D. Matz, T. Roatsch, R. Jaumann, C.A. Raymond, C.T. Russell, DAWN FC2 DERIVED VESTA DTM SPG V1.0, DAWN-A-FC2-5-VESTADTMSPG-V1.0, NASA Planetary Data System, 2016.",
+    "terms": "USGS page Access Constraints None, Access Scope PDS, Use Constraints Please cite authors. This is not independently verified blanket CC BY or public-domain permission. Existing DEM licence prose remains an inherited claim, not revalidated here."
+  },
+  "usgs2013Product": {
+    "configuredSource": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Vesta_Dawn_HAMO_DTM_DLR_Global_48ppd.tif",
+    "publication": "2013-12-12",
+    "editionAndLabelProductId": "20131210",
+    "labelRevision": "2017-05-01 David P. Mayer (USGS), initial PDS3 label pointing to GeoTIFF; not acquisition.",
+    "dimensions": {
+      "samples": 17280,
+      "lines": 8640,
+      "bands": 1,
+      "sampleBits": 32,
+      "sampleType": "IEEE_REAL"
+    },
+    "projection": {
+      "type": "SIMPLE_CYLINDRICAL",
+      "latitude": "PLANETOCENTRIC",
+      "longitude": "EAST positive, -180 to +180, centre 0",
+      "sphereKm": 255,
+      "publisherMetresPerPixel": 92.720617,
+      "publisherPixelsPerDegree": 48
+    },
+    "heightSemantics": "Publisher describes values as radii in metres. This supports reviewing current scale1/offset-255000 conversion as a radius-to-reference-height operation, but exact source pixel reproduction is not tested in this batch.",
+    "processingClaims": "Publisher says 5439 stereo clear-filter images, approximately 95 percent surface coverage, about 35000 multi-stereo combinations and 83000 control points; mean intersection error +/-8 m. These are publisher processing claims, not independently reproduced physical accuracy.",
+    "epochCaution": "Publisher narrative gives six cycles late September\u2013early November2011 and21cycles December2011\u2013April2012, approximately2500 clear-filter images, while DTM paragraph gives5439. Content range2011-12-01 to2012-04-30 is not every input/pixel acquisition date. Counts and chronology retained without reconciliation.",
+    "frameCaution": "Publisher reports preliminary150degrees east shift, Claudia146E/ClaudiaDoublePrime, DLR2013-11-22 reference, and warns required SPICE was unavailable for processing in ISIS3. No extra shift or new SPICE/frame adoption.",
+    "accuracy": "Best Effort; horizontal Unknown; vertical Accurate to Control Net. Intersection precision is not independently verified absolute accuracy.",
+    "isis3Encoding": "Publisher ISIS3 label: Real, Lsb, Base0, Multiplier1, Core StartByte69786; no archive DN-times2 transfer. Labels are metadata, not a full TIFF inspection."
+  },
+  "pds2016DistinctArchive": {
+    "id": "DAWN-A-FC2-5-VESTADTMSPG-V1.0",
+    "release": "2016-09-01",
+    "declaredCoverage": "2011-09-29 to2012-07-24; HAMO1 September29\u2013November1,2011 and HAMO2 June15\u2013July24,2012; not dates assigned to all pixels.",
+    "grid": "Archive overview64pixels/degree (~70m), cylindrical centre30degreesClaudiaDoublePrime, longitude -150 to+210; separate north/south stereographic products. Not the2013USGS48ppd centre0 product.",
+    "encoding": "PDS overview says archive DN times2 gives height metres; planetary radius adds255000m. This encoding is not transferred to the separate32bit USGS radius TIFF or existing16bit derivative.",
+    "accuracyCoverageClaims": "Overview ~95percent, polar shadow interpolation, forward-ray intersection +/-6m; refined control point accuracy +/-8m. Publisher claims not independently reproduced, not exact all-pixel confidence or physical accuracy.",
+    "pole": "Overview refined RA309.0319+/-0.005deg, DEC42.2228+/-0.005deg versus IAU2013RA309.031+/-0.03,DEC42.235+/-0.03; W0 285.39,W1 1617.3329428deg/day unchanged. Recommended dawn_vesta_SPG20160901.tpc is an archive-version reference, not loaded or applied.",
+    "ellipsoid": "Archive best-fit ellipsoid(285.2,277.7,223.8km), long axis40.6E, is model information; no shape/catalogue adoption or new axis/radius calculation.",
+    "limits": "No PDS IMG, archive label, coordinate document, geometry kernel or full DTM downloaded. Dataset overview is not direct pixel identity, cache ancestry or registration proof."
+  },
+  "existingInputs": [
+    {
+      "path": "public/dem/vesta.png",
+      "bytes": 1355686,
+      "sha256": "48ec68589cf820d60b2bbf05d2472168ba14a11a35a78865be9cb4fa9fc4f13e"
+    },
+    {
+      "path": "public/dem/index.json",
+      "bytes": 9314,
+      "sha256": "e1c68e273559b9968f63842fba524185607e9a3fbdeb181f9939a6e30462a2c7"
+    },
+    {
+      "path": "public/features/vesta.json",
+      "bytes": 5545,
+      "sha256": "83f131eed48469c605e71da2c1f732bf4c4d87faf1c5dc0fb34e6eb323b590a0"
+    },
+    {
+      "path": "data/textures/vesta.png",
+      "bytes": 1448667,
+      "sha256": "176feb188fb351bba86c4a45c47b2de071214fb765dfe0d2c7e809f30e55884d"
+    },
+    {
+      "path": "server/dem.js",
+      "bytes": 28400,
+      "sha256": "2c6dee2ba514a45c1c3d49781cf9a68a7f8542bce5fc6fde764c61b46591d6ae"
+    }
+  ],
+  "existingPipeline": "Current DEM metadata1440x72016bit,min-43034/max37904m,quantStep1.235m,coverage1,255kmreference,source48ppd and built2026-10-12 are inherited processing metadata. coverage1 is not evidence of100percent directly measured terrain; publisher approximate95percent/polar interpolation retained. No recomputation or masking repair.",
+  "open": [
+    "Exact USGS DTM-to-cached16bit DEM sample reproduction and validity/nodata/interpolation treatment.",
+    "Raw FC UTC/filter/exposure/control network and source-pixel identity; historical source chronology/count differences.",
+    "Pole/prime-meridian/texture/DEM/IAU-feature alignment and SPICE load precedence.",
+    "Independent absolute physical accuracy, resolved visible colour/local chemistry, photometry and licence crosswalk."
+  ],
+  "geometry": "Publisher dimensions, scales, pole and ellipsoid values transcribed; no new angular/raster-size computation.",
+  "validation": {
+    "tests": "710 pass, 1 skip (OPENAI_API_KEY unset)",
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "browser": "No fresh browser claim.",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 457,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "da04fc4",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15969730,
+      "headroomBytes": 30270,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "717cc14594c72a215a9ad05cb197331205055c0961d4ce7d7b004ecb0c7a7ea8",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false
+    },
+    "entirePriorSnapshotUnchanged": true,
+    "inputHashes": "All nine newly recorded source/input hashes independently rechecked."
+  }
+}
