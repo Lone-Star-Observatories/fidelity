@@ -16625,6 +16625,197 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "carme": {
+    "id": "carme",
+    "name": "Carme",
+    "kind": "moon",
+    "aliases": [
+      "Carme",
+      "Jupiter XI",
+      "J11 Carme"
+    ],
+    "researchDate": "2026-10-20",
+    "previewWidth": 256,
+    "nativeSurface": "No resolved globe or shape adopted. Unchanged archived2MASS J/H/Ks point-source display retained with full project credit and IPAC permission terms; not resolved geography or calibrated visible colour. OHP original remains research-only pending terms reconciliation.",
+    "measured": [
+      "Carme / Jupiter XI / JPL511, distinct from Lysithea/Jupiter X and Sinope/Jupiter IX. NASA discovery:1938-07-30, Seth Barnes Nicholson, Mount Wilson100-inch Hooker telescope.",
+      "Archived Nelson/IPAC2MASS table identifies Carme as visible on southern night980921s,scan085,coadd103 (1998-09-21). Display titles j0850103.fits(frame11),h0850103.fits(frame12),k0850103.fits(frame13); exact exposure UTC and independent raw-product/point crossmatch remain open.",
+      "OHP/CNRS/IMCCE original prints1998-12-16T18:32UTC,120cm telescope and12arcmin-square publisher field; separate observation,not an independently calculated pixel scale. Native point/glare/noise are not terrain.",
+      "Sharkey2025v2 Table1 identifies Carme NIRSpec IFU prism observation2024-01-25,GO4028; version date is not acquisition."
+    ],
+    "modelled": [
+      "Grav,Bauer,Mainzer,Masiero,Nugent,Cutri,Sonnett,Kramer2015 Table3/section4.6: NEATM effective DIAMETER46.7±.9km,eta.95±.03,visible albedo3.5±.6%,W1 albedo9.7±1.0%,W2 albedo18.5±2.2%. Display halfdiameter23.35km is not axes/localnormal; NASA23km historical alternative is separate,not jointfit/envelope.",
+      "Table1 gives W1/W2/W3/W4 counts16/9/16/16 at roundedMJDUTC55369,plus8/6/unreported/unreported at55540. Their arithmetic totals24/15/16/16 agree with Table3; row dates/counts remain distinct,not exposure UTC. H10.91±.01mag,G.10±.15 assumed,methods conservativeHerror.15mag. Missing W2 trough detections in~.2mag peak-to-peak lightcurve may bias W2albedo high. No spin period adopted.",
+      "JPL JUP347 planet-centred ecliptic2000Jan1.5TDB mean a23139200km,e.261,w6.5,M259.5,i164.6,node115.5,P719.2806days,apsidal50.9/nodal89years; blankpole is notzero. Means are not ephemerides,currentdistance,lighttime or covariance. Orbital retrograde does not measure spin locking or permanent facing.",
+      "Sharkey,Rivkin,Cartwright,Holler,Emery,Thomas2025v2 unresolved.7–5.1micron spectra: steep.7–2.5micron slope,shallow~3.0/~3.4micron bands similar to redTrojan spectra; band depths are not chemical fractions. Authors do not identify unique compositions for these red satellites. Possible4.9micron feature is low-SNR,continuum/thermal-tail sensitive; CO3/OCS origins speculative,not detections of local minerals.",
+      "GO4028 pipeline1.14.0/jwst_1225,NSClean/PSF/extraction,SNAP2solarprogram1128 and thermal-tail removal are not independently reproduced. Spectra and thermal models do not calibrate this native display or generated visible colour. Himalia/Elara ammoniated-phyllosilicate/complexedCO2 conclusions are not assigned to Carme.",
+      "D-type taxonomy,Hilda/Trojan reservoir,capture/collision/family/progenitor explanations are models,not local chemistry or observed history. NASA historical16pieces/99%groupmass and paper19-member census are historical estimates,not an exhaustive current membership or measured collision."
+    ],
+    "unknown": [
+      "Mass,GM,density,spin,pole,axes,localnormal,registered terrain,currentlongitude,visiblecolour,chemical fractions and dated observer alignment. No Carme row in retained JPLphysical table. Nullrotation/lockingdisabled is not measured nonsynchronous spin.",
+      "2MASS exact exposure UTC,raw product association,independent astrometry,display transfer,specific creator beyond archived staff source and first publication remain open. IPAC permission is not public-domain status or a copyright ownership warranty. OHP primary terms versus Commons CC BY-SA2France assertion remain unreconciled; no OHP embedding/contact/permission inferred.",
+      "Grav2015 AAS all-rights-reserved is not CC BY. Sharkeyv2 specific CC BY4 is not blanket raw-product permission; final publisher/raw calibration audit remains open. No paper figures embedded."
+    ],
+    "assumed": [
+      "Independent invented grey-brown terrain,grains,blocks,relief,material chemistry/fractions/porosity,Jupiter pattern/phase/pole,colour,light,exposure and viewpoint. No observed-body map or analog skin. No dated site,foreground atmosphere,plume,liquid,exposed ocean,biology or survivable landing. Black sky/omitted rings and stars are not measured absence.",
+      "skyGeometry sphericalJupiter69911km at mean23139200km minus hypothetical23.35km radialheight gives.3462190030603226deg/5.0516804157386845px at nominal90HFOV/1672width. NASA23km alternative gives.3462189978234458deg/5.051680339326967px. Not a jointfit,envelope,localnormal,locking/permanentface or dated visibility. Generated tiny disk visually oversized/uncalibrated; no raster diameter adopted.165K helper angular-only,colour/irradiance discarded; Sun5.2044AU assumed off-frame,not photometry.",
+      "Original/default PNGs and full prompts retained.1536JPEG85masters/256JPEG80previews/offlineWebP80; tiny preview footers require explicit IMAGINED card labels. No generated globe or shape."
+    ],
+    "surfaceLabel": "IMAGINED · LOCAL VIEW FROM CARME",
+    "skyLabel": "IMAGINED · SKY FROM CARME",
+    "skyCaption": "Hypothetical spherical Jupiter guide0.3462° at mean-orbit scale; generated disk oversized/uncalibrated. FOV,phase,colour,exposure and registration artistic.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "23.35 KM · THERMAL MODEL"
+      ],
+      [
+        "MASS",
+        "UNKNOWN"
+      ],
+      [
+        "ORBIT",
+        "23.14 M KM · MEAN SCALE"
+      ],
+      [
+        "ROTATION",
+        "UNKNOWN"
+      ]
+    ],
+    "skyModel": {
+      "star": "Jupiter · hypothetical spherical angular guide",
+      "radiusSun": 0.10049015380192612,
+      "temperatureK": 165,
+      "distanceAU": 0.15467584225448472,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "angularDiameterDeg": 0.3462190030603226,
+      "centreDiscWidthFraction": 0.003021339961566199,
+      "irradianceEarth": 2.8185940441063037e-7,
+      "approximateSrgb": [
+        1,
+        0.2663545845364998,
+        0
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/carme-2mass-1998.jpg",
+        "tier": "measured",
+        "label": "2MASS · CARME POINT-SOURCE DISPLAY",
+        "credit": "Courtesy NASA/JPL-Caltech · 2MASS, University of Massachusetts and IPAC/California Institute of Technology; funded by NASA and NSF · archived Nelson/IPAC display",
+        "source": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/carme.jpg",
+        "sourcePage": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+        "originalSource": "http://spider.ipac.caltech.edu/staff/nelson/jupmoons/carme.jpg",
+        "observationDate": "1998-09-21",
+        "publicationDate": null,
+        "sourceSha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+        "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+        "bytes": 77497,
+        "width": 796,
+        "height": 543,
+        "terms": "IPAC public-site image-use permission, with credit, source exceptions and no endorsement; not asserted public domain or CC BY. No specific third-party owner is named in the archived source caption. Caltech ownership warranty disclaimer retained.",
+        "termsUrl": "https://www.ipac.caltech.edu/page/image-use-policy",
+        "description": "Unchanged archived publisher JPEG: three monochrome J/H/Ks display panels, night980921s scan085 coadd103. Publisher identifies Carme as visible; independent point/raw-product crossmatch remains open. Stars, noise and GUI windows are not resolved moon terrain or calibrated visible colour. Exact exposure UTC, display transfer and original publication date unknown; 2007 archive date is not observation.",
+        "processing": "Original796x543 publisher JPEG bytes retained unchanged; no crop, resize or re-encoding. Publisher display is not an original FITS cube or calibrated colour map."
+      }
+    ],
+    "references": [
+      {
+        "title": "NASA Carme historical overview",
+        "url": "https://science.nasa.gov/jupiter/jupiter-moons/carme/"
+      },
+      {
+        "title": "JPL JUP347 mean elements, not ephemerides",
+        "url": "https://ssd.jpl.nasa.gov/sats/elem/"
+      },
+      {
+        "title": "JPL physical table: no Carme row in retained response",
+        "url": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+      },
+      {
+        "title": "Grav et al.2015 NEOWISE thermal models; eight authors, all rights reserved",
+        "url": "https://doi.org/10.1088/0004-637X/809/1/3",
+        "publicationDate": "2015-08-04",
+        "observationDate": "Rounded MJD UTC55369/55540; individual UTC unknown"
+      },
+      {
+        "title": "Sharkey et al.2025v2 JWST spectroscopy; six authors, specific CC BY4",
+        "url": "https://arxiv.org/html/2501.16484v2",
+        "publicationDate": "2025-09-07",
+        "observationDate": "2024-01-25"
+      },
+      {
+        "title": "Specific arXiv CC BY4 terms, not blanket raw-product terms",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      {
+        "title": "Archived Nelson/IPAC2MASS publisher table and observations",
+        "url": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html"
+      },
+      {
+        "title": "IPAC image-use permission and source exceptions",
+        "url": "https://www.ipac.caltech.edu/page/image-use-policy"
+      },
+      {
+        "title": "2MASS institutional/funding acknowledgement",
+        "url": "https://irsa.ipac.caltech.edu/docs/knowledgebase/2mass.html"
+      },
+      {
+        "title": "OHP/CNRS/IMCCE annotated Carme image, research only",
+        "url": "https://promenade.imcce.fr/fr/pages2/20.html"
+      },
+      {
+        "title": "OHP author-permission terms, distinct from Commons assertion",
+        "url": "https://promenade.imcce.fr/fr/pages1/189.html"
+      }
+    ],
+    "nativeProducts": {
+      "embedded": true,
+      "limits": "Unchanged archived2MASS publisher point-source display only,under IPAC credit/source-exception policy. Not resolved terrain or calibrated visible colour. OHP original remains research-only with terms conflict. No paper figures."
+    },
+    "surfaceImage": {
+      "url": "/bespoke/carme-surface-image.jpg",
+      "previewUrl": "/bespoke/carme-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "carme-generated-surfaceImage-original.png",
+      "sourceSha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d",
+      "sha256": "e1eb082f9b4af56f8facd11ab6bc4ad7892e3c38dc87d66a6a98fc81af0b4b85",
+      "previewSha256": "9717d2d57194bda5f2b896abd7f61466e5751616a75904ba4c3fbaaacd35e4d0",
+      "bytes": 293700,
+      "previewBytes": 10220,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/carme-sky-image.jpg",
+      "previewUrl": "/bespoke/carme-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-20",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "carme-generated-skyImage-original.png",
+      "sourceSha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231",
+      "sha256": "1b5e9d95da54874642c1488f6682242df915f517203dcd1bcf24e2ed67151199",
+      "previewSha256": "c301ca0c4b6cd1a5ce26772cf3c259384a1834655d2459ded54923e995e52e30",
+      "bytes": 199523,
+      "previewBytes": 5889,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

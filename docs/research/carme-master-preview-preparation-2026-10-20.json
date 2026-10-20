@@ -1,0 +1,75 @@
+{
+  "body": "Carme/JupiterXI",
+  "date": "2026-10-20",
+  "status": "Independent generated views and derivatives prepared; no dossier97/catalogue/public embedding.",
+  "items": [
+    {
+      "role": "surfaceImage",
+      "tool": "built-in image_gen",
+      "original": {
+        "path": "data/research-sources/carme-generated-surfaceImage-original.png",
+        "bytes": 2557830,
+        "sha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-b202ae62-4d97-4cd6-9dc5-ad94796dd654.png",
+        "bytes": 2557830,
+        "sha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d"
+      },
+      "prompt": {
+        "path": "data/research-sources/carme-local-prompt-2026-10-20.txt",
+        "bytes": 1243,
+        "sha256": "667f324c6dc683a3d5ab7f6c7caba0dcbf692b77ab43ad88af65540bc47b6e1e"
+      },
+      "fullPrompt": "Create one entirely original research-guided hypothetical local-view illustration of Carme, Jupiter XI (JPL511), not Lysithea or Sinope. Landscape 16:9 documentary concept art: low camera over invented subdued grey-brown granular dusty terrain with modest uneven relief, a few scattered angular blocks, distant low horizon and black sky. No astronomical disks. Restrained oblique sunlight from off frame, exposure artistic. No reference image or observed-body map; do not copy/recolour Moon, Mars, Pluto, asteroid or other body terrain. Carme is unresolved in retained observations; thermal effective diameter46.7km does not resolve local shape, and red near-IR slopes/shallow bands do not identify material chemistry. All relief, grains, blocks, material fractions, colour and illumination invented. Do not depict specific minerals, ice exposures, liquids, oceans, atmosphere, haze, clouds, plumes, life, people, craft, equipment or a survivable landing. No dated location, local normal, spin axis or permanently Jupiter-facing direction implied. Exactly two highly legible footer lines in narrow dark band: 'IMAGINED LOCAL VIEW — CARME' and 'Terrain, materials, colour and lighting are hypothetical'. Clean readable type; no other labels.\n",
+      "master": {
+        "path": "data/research-sources/carme-generated-surfaceImage-master.jpg",
+        "bytes": 293700,
+        "sha256": "e1eb082f9b4af56f8facd11ab6bc4ad7892e3c38dc87d66a6a98fc81af0b4b85"
+      },
+      "preview": {
+        "path": "data/research-sources/carme-generated-surfaceImage-preview.jpg",
+        "bytes": 10220,
+        "sha256": "9717d2d57194bda5f2b896abd7f61466e5751616a75904ba4c3fbaaacd35e4d0"
+      }
+    },
+    {
+      "role": "skyImage",
+      "tool": "built-in image_gen",
+      "original": {
+        "path": "data/research-sources/carme-generated-skyImage-original.png",
+        "bytes": 1868778,
+        "sha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bd0848c4-9695-4916-9afd-3e894e21a4b2.png",
+        "bytes": 1868778,
+        "sha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231"
+      },
+      "prompt": {
+        "path": "data/research-sources/carme-sky-prompt-2026-10-20.txt",
+        "bytes": 1371,
+        "sha256": "86e65bcb3a09f6b590f7f246a26eee45adbcd989dbb7a9c908f98d9cf9cc4069"
+      },
+      "fullPrompt": "Create an entirely original research-guided hypothetical observer illustration: IMAGINED SKY FROM CARME, Jupiter XI/JPL511, not another moon. Wide 16:9. Invented subdued grey-brown dusty granular foreground and modest uneven rocky horizon in lower third, broad black sky. Jupiter is a VERY TINY remote disk, approximately FIVE pixels diameter in a1672pixel wide image at nominal90degree horizontal FOV. Do not enlarge for drama; no resolved close-up bands at this scale. skyGeometry spherical69911km Jupiter at mean23139200km separation minus hypothetical23.35km radialheight gives0.3462190030603226degree angular guide and5.0516804157386845pixels. This is a meanorbit/thermal halfdiameter scenario, not a dated view, localnormal, spinaxis, locking or permanent Jupiter-facing side. Sun off-frame. All terrain, blocks, grains, material chemistry/fractions, colour, tinyplanet pattern/phase/axis, light, exposure and viewpoint invented and uncalibrated. No reference images or observedbody maps; never copy/recolour Moon/Mars/Pluto/asteroid/Jupiter skins. No other disks, atmosphere,haze,clouds,plumes,liquid,ocean,organisms,humans,craft,equipment or survivablelanding. Clean documentary scientific concept art. Exactly two legible footer lines in narrow dark band: 'IMAGINED SKY FROM CARME' and 'Terrain, Jupiter appearance and lighting are hypothetical'. No other text.\n",
+      "master": {
+        "path": "data/research-sources/carme-generated-skyImage-master.jpg",
+        "bytes": 199523,
+        "sha256": "1b5e9d95da54874642c1488f6682242df915f517203dcd1bcf24e2ed67151199"
+      },
+      "preview": {
+        "path": "data/research-sources/carme-generated-skyImage-preview.jpg",
+        "bytes": 5889,
+        "sha256": "c301ca0c4b6cd1a5ce26772cf3c259384a1834655d2459ded54923e995e52e30"
+      }
+    }
+  ],
+  "inspection": "Both original1672x941PNGs visually inspected. Local two footer lines readable; sky two labels at opposite footer ends readable. Rendered Jupiter visually oversized relative to5.051680px guide; no adopted rasterdiameter/calibration. All four derivatives visually inspected: master footers readable;256px preview text too small, explicit IMAGINEDcardlabels required. No calibrated rasterdiameter adopted.",
+  "limits": [
+    "All terrain/material chemistry/fractions/colour/Jupiter appearance/phase/axis/light/exposure/viewpoint invented; no observed-body map/analog skin.",
+    "No dated site/localnormal/spinlocking/permanentface,foregroundatmosphere,plume,liquid,ocean,biology or survivablelanding. Blacksky/ringomission not measuredabsence.",
+    "skyGeometry sphericalJupiter69911km,mean23139200km-minus23.35hypotheticalheight,nominal90HFOV1672 gives.3462190030603226deg/5.0516804157386845px; NASA23kmalternative not jointfit/envelope/normal/date.165Khelperangularonly colour/irradiance discarded.",
+    "Fullprompts/defaultoriginals/sourcehashes retained.256pxpreviews require IMAGINEDcardlabels;1536JPEG85masters256JPEG80previews distinct from original PNGs.",
+    "No production changes;96 delivered dossiers/originals/native/map/model/shape/provenance unchanged."
+  ]
+}

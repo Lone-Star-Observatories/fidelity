@@ -1,0 +1,22 @@
+[
+  {
+    "id": "S3.F3.2",
+    "text": "Right: Continuum-divided reflectances using a polynomial of order 2-4 fit on either side of major absorption bands. Objects are normalized to have reflectance equal to 1 at 2.5 microns, and displayed with offsets for ease of comparison. Targets are arranged according to spectral characteristics, not orbital groupings. Major band complexes near 3.0 microns differentiate between the different material categories. The steep red slopes of Carme, Sinope, and Themisto (Group 1) are similar to D-type asteroids or “red” type Jovian Trojans. Ananke (Group 2) shows a broad feature at similar wavelengths to Lysithea and Pasiphae but with a very different, rounded shape. Lysithea and Pasiphae (Group 3) show deep features centered on 3.0 microns similar to less-red Jovian Trojans. Himalia and Elara (Group 4) display a clear 2.7 micron feature, detected previously on aqueously altered inner-solar system materials but never identified in the Jovian system."
+  },
+  {
+    "id": "S3.SS2.p1.1",
+    "text": "We find that the irregular satellites can be roughly described by four groups according to their spectral slopes and 3µm\\micron absorption features. These groupings include some that appear only within individual families, and some that appear in multiple families. Band parameters for all features observed on individual satellites are given in Table 2. The first group is represented by Sinope, Carme, and Themisto, which are all red-Trojan-like objects and are all in different orbital families. Ananke comprises the second group, displaying a deeper, rounded 3.0 micron band and relatively neutral spectral slopes. The third group includes Pasiphae, a retrograde satellite, and Lysithea, a prograde satellite, which have 3.0 µm\\micron features centered similarly to Ananke, but with redder spectral slopes and a sharper shape from 2.7-3.3 µm\\micron. Finally, Himalia and Elara, both in the prograde Himalia family, show a unique band complex that includes a previously unobserved sharp 2.7 micron band that transitions into the broad, round feature from 2.8-3.5 microns that was observed by Brown & Rhoden [14]."
+  },
+  {
+    "id": "S3.SS2.p2.1",
+    "text": "Sinope and Carme have similarly steeply increasing spectra from 0.7-2.5 microns, and shallow absorption features near 3.0 and 3.4 µm\\micron, akin to the “red” class of Jupiter Trojans [40, 118]. Notably, Themisto, a small (D<10​k​mD<10\\ km) individual prograde satellite interior to the Himalia family, groups closely with these more weakly bound retrograde satellites. The spectral slopes of Sinope and Carme, when overlapping, are consistent with previous measurements at VNIR wavelengths by Sharkey et al. [98]. Carme has a slightly deeper band at 3.0 microns than Sinope and Themisto (depths of ∼3%\\sim 3\\% vs. ∼2%\\sim 2\\%), but they all have similar 3.4 µm\\micron depths (∼2%\\sim 2\\%)."
+  },
+  {
+    "id": "S3.SS2.p3.1",
+    "text": "We also identify possible absorption features at 4.9 µm\\micron on Carme, Sinope, and Themisto. These features are within lower-SNR spectral regions, which are affected by thermal tail removal that impacts the precision of continuum definitions. If real, this feature is similar to one observed by JWST on the surface of Callisto [23]. Its origin is speculative, but could relate to radiolytic production of C​O3CO_{3} from C​O2CO_{2}, or the C-O symmetric stretching mode (ν1\\nu_{1}) of carbonyl sulfide (OCS). OCS is a common sulfur bearing species observed in interestellar ices in dense molecular clouds [84, 41, 71] and cometary comae [96, 8]."
+  },
+  {
+    "id": "S3.SS2.p9.1",
+    "text": "The 3.0 µm\\micron absorber(s) for Carme, Sinope, Themisto, Pasiphae, and Lysithea are consistent with a variety of OH-bearing species, which we discuss in Sections VII and VIII. The absorption at 3.4 µm\\micron on Pasiphae, Ananke, Themisto, Sinope, and Carme is consistent with complex organics. All three objects in the Himalia family (Himalia, Elara, Lysithea) display a feature near 3.9 µm\\micron whose origins are unclear. Carbonates often present dual features near 3.9 and 3.4 µm\\micron, which may be consistent with Elara but not Himalia nor Lysithea. We leave the causes of the Himalia family’s 3.4 and 3.9 µm\\micron features as open questions in Table 2."
+  }
+]

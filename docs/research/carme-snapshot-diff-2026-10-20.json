@@ -1,0 +1,17 @@
+{
+  "bodyImages": [
+    "/references/carme-2mass-1998.jpg",
+    "/bespoke/carme-surface-image.jpg",
+    "/bespoke/carme-sky-image.jpg"
+  ],
+  "crew": [
+    "cache"
+  ],
+  "bandImages": [
+    "/api/feed/sdo-193?size=preview",
+    "/api/feed/sdo-304?size=preview",
+    "/api/feed/sdo-1600?size=preview",
+    "/api/feed/sdo-94?size=preview",
+    "/api/feed/sdo-171?size=preview"
+  ]
+}

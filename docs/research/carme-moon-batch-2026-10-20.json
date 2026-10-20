@@ -1,0 +1,107 @@
+{
+  "body": "Carme",
+  "dossier": 97,
+  "date": "2026-10-20",
+  "issue": 3,
+  "status": "Delivered initial independent imagined local/observer views and unchanged archived native2MASS display. Scientific/product/calibration refinement remains open.",
+  "records": [
+    "carme-source-records-2026-10-20.json",
+    "carme-import-manifest-2026-10-20.json",
+    "carme-native-integration-assessment-2026-10-20.json",
+    "carme-dossier-browser-verification-2026-10-20.json",
+    "carme-snapshot-diff-2026-10-20.json"
+  ],
+  "preservation": {
+    "retainedSourceAndGeneratedHashesChecked": 231,
+    "nativeCardsExactBytesAndMime": 84,
+    "baseline": "29ba2d1",
+    "priorDossiersDeepEqual": 96,
+    "dossiers": 97,
+    "priorMoonsDeepEqual": 52,
+    "moons": 53,
+    "trackedPublicByteEqual": 697,
+    "queueEntries": 569,
+    "unchangedOtherQueueEntries": 568,
+    "addedImages": [
+      "/bespoke/carme-sky-image.jpg",
+      "/bespoke/carme-surface-image.jpg",
+      "/references/carme-2mass-1998.jpg"
+    ],
+    "htmlBytes": 15756586,
+    "headroomBytes": 243414,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "a32ba873fe210fd4c3a4481ae01d0de96f0a0635364d0ab989283437b4c2ac12",
+    "applicationSha256": "2ab8af6ef3d56d02ee5634164588f9328308bf385d465a074d44a3a48c56f4ca",
+    "freshBrowserClaim": false
+  },
+  "browser": {
+    "status": "pass",
+    "browser": "Chrome via IAB, loopback HTTP",
+    "completeReadableJsonSha256": "a32ba873fe210fd4c3a4481ae01d0de96f0a0635364d0ab989283437b4c2ac12",
+    "applicationSha256": "2ab8af6ef3d56d02ee5634164588f9328308bf385d465a074d44a3a48c56f4ca",
+    "htmlParserPackedSnapshotSha256": "a47d7261ca5748fa364e5e94e600e9873637ae5a95cc0a46287d209edeb20a44",
+    "htmlParserPackedAppSha256": "3d5dc26d6cf77757d1802405123d154e86f09e8718fd02dbe5d0dbfe99f2a2b3",
+    "decodedImages": 335,
+    "parsedModelScenes": 32,
+    "details": 517,
+    "bands": 20,
+    "startupCanvases": 8,
+    "unsupportedGzipNoticeVerified": true,
+    "unsupportedWasmNoticeVerified": true,
+    "limits": [
+      "Other browser engines remain open.",
+      "Direct-file route not tested; earlier URL-policy limit preserved.",
+      "Model scene parsing is not a fresh all-model interactive load claim.",
+      "Earlier route/event-worker coverage remains historical, not rerun for this additive dossier."
+    ],
+    "normalCarme": {
+      "cards": 2,
+      "decodedDimensions": [
+        1536,
+        864
+      ],
+      "ownGlobe": false,
+      "nativeContextCards": 1,
+      "nativeDecodedDimensions": [
+        796,
+        543
+      ],
+      "nativeMime": "image/jpeg"
+    },
+    "offlineCarme": {
+      "cards": 2,
+      "decodedDimensions": [
+        256,
+        144
+      ],
+      "mime": "image/webp",
+      "ownGlobe": false,
+      "nativeContextCards": 1,
+      "nativeDecodedDimensions": [
+        796,
+        543
+      ],
+      "nativeMime": "image/jpeg"
+    }
+  },
+  "validation": {
+    "testsPass": 700,
+    "testsSkip": 1,
+    "productionBuild": "pass",
+    "fullBuild": "pass"
+  },
+  "scienceLimits": [
+    "Carme/JupiterXI/JPL511, distinct from LysitheaX/SinopeIX. Grav2015 NEATM46.7±.9km effective diameter supplies display half23.35km, not axes/localnormal; NASA23km historical alternative retained. Mass/GM/density/spin/pole unknown. Nullrotation/lockingdisabled not measured nonsynchronous spin.",
+    "Grav Table1 two visits16/9/16/16 plus8/6/unreported/unreported reconcile arithmetically to Table3 24/15/16/16; roundedMJD55369/55540 are separate visits, not precise exposureUTC. W2 missing lightcurve trough may bias albedo high. Full8authors/AAS allrightsreserved retained, no figure.",
+    "JUP347 ecliptic2000Jan1.5TDB means not dated ephemerides. skyGeometry69911km sphericalJupiter guide.3462190030603226deg/5.0516804157386845px at90HFOV1672,mean separation minus hypothetical23.35km height; NASA23 alternative separate, not jointfit/envelope/localnormal/date/locking/permanentface. Generated tiny disk oversized/uncalibrated; no raster diameter adopted.165K angular-only, not photometry.",
+    "Sharkey2025v2 GO4028 NIRSpec2024-01-25 unresolved spectra/slopes/shallowbands do not establish unique chemistry/local fractions/geography/visiblecolour. Possible4.9micron feature and CO3/OCS carriers speculative/continuum-sensitive. Himalia/Elara chemistry not Carme. Full6authors/specificCCBY4 retained, not raw-product blanket licence; no paper figures.",
+    "Archived Nelson/IPAC2MASS1998-09-21 southern night980921s scan085 coadd103 JPEG unchanged796x543/77497bytes. Publisher identification not independent raw-product/point astrometry. ExactUTC,display transfer,individual creator/first publication open. Archive2007 not observation/publication. IPAC published reuse policy supports embedding with full courtesy and UMass/IPAC-Caltech/NASA/NSF credit, not public-domain/CCBY or ownership warranty.",
+    "OHP/CNRS/IMCCE1998-12-16T18:32UTC original remains research-only: primary permission limits versus CommonsCCBYSA2France assertion unresolved, no permission/contact/embedding. Native point/glare/noise/GUI not terrain/axes/calibratedvisiblecolour.",
+    "All terrain/chemistry fractions/porosity/Jupiter patterns,phase,colour,light/exposure invented. No analog maps,datedsite,foreground atmosphere,plume,liquid,exposed ocean,biology or survivablelanding. Blacksky/ring omission not measured absence. Original/defaultPNGs/fullprompts/masters/previews preserved."
+  ],
+  "buildLimits": [
+    "Snapshot diff only three new Carme bodyImages plus crew cache refresh and five live-band entries; netHTML change not sole asset/compression attribution.",
+    "All prior public/model/texture/bodyImages preserved exactly; codecs/alllegacy/independentBrotli/JPEG reconstruction/Blobimportrevoke/notices unchanged."
+  ],
+  "next": "Ananke body-specific identity/native/science/views, then remaining queued moons/minor bodies/native-map/craft/shape/calibration/ranking. Read prepared-asset index before generation. Backlog ACTIVE; no external blocker declared."
+}

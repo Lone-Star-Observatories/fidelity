@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-20",
+  "body": "Carme",
+  "assessment": "Adopt the unchanged archived publisher2MASS triple-panel display for educational context,with full project/default policy credit. OHP remains research-only.",
+  "sources": [
+    {
+      "path": "data/research-sources/carme-2mass-wayback-publisher-2026-10-20.jpg",
+      "bytes": 77497,
+      "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/lysithea-ipac-image-policy-2026-10-20.html",
+      "bytes": 32604,
+      "sha256": "3ab9572fa9fbb5a24790c7fbfcaef8aac7a92af8d7ce037d84651d600bb4d741"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-irsa-knowledgebase-2026-10-20.html",
+      "bytes": 2136,
+      "sha256": "652eefd41656fcb8877948589ef2d9b4cbf5fa13fb0756a3610aa2dd1233db14"
+    },
+    {
+      "path": "data/research-sources/carme-jpl-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/carme-jpl-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    }
+  ],
+  "permissionBasis": "Current IPAC public-site policy permits reuse unless otherwise noted,with credit/source exceptions/no endorsement. Archived source is spider.ipac.caltech.edu and names no specific third-party owner in its caption. Apply institutional2MASS acknowledgement plus CourtesyNASA/JPL-Caltech; retain active policy links and no ownership warranty. Not public domain or CC BY.",
+  "nativeAsset": {
+    "url": "/references/carme-2mass-1998.jpg",
+    "tier": "measured",
+    "label": "2MASS · CARME POINT-SOURCE DISPLAY",
+    "credit": "Courtesy NASA/JPL-Caltech · 2MASS, University of Massachusetts and IPAC/California Institute of Technology; funded by NASA and NSF · archived Nelson/IPAC display",
+    "source": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/carme.jpg",
+    "sourcePage": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+    "originalSource": "http://spider.ipac.caltech.edu/staff/nelson/jupmoons/carme.jpg",
+    "observationDate": "1998-09-21",
+    "publicationDate": null,
+    "sourceSha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+    "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+    "bytes": 77497,
+    "width": 796,
+    "height": 543,
+    "terms": "IPAC public-site image-use permission, with credit, source exceptions and no endorsement; not asserted public domain or CC BY. No specific third-party owner is named in the archived source caption. Caltech ownership warranty disclaimer retained.",
+    "termsUrl": "https://www.ipac.caltech.edu/page/image-use-policy",
+    "description": "Unchanged archived publisher JPEG: three monochrome J/H/Ks display panels, night980921s scan085 coadd103. Publisher identifies Carme as visible; independent point/raw-product crossmatch remains open. Stars, noise and GUI windows are not resolved moon terrain or calibrated visible colour. Exact exposure UTC, display transfer and original publication date unknown; 2007 archive date is not observation.",
+    "processing": "Original796x543 publisher JPEG bytes retained unchanged; no crop, resize or re-encoding. Publisher display is not an original FITS cube or calibrated colour map."
+  },
+  "limits": [
+    "No logos,people or source-named restricted third-party artwork are present. No paper figures or OHP image adopted.",
+    "Archived JPEG is original publisher display bytes,not original FITS/raw data. Firstpublication unknown;2007archive date not acquisition.",
+    "Independent point/raw-product/astrometry/filter/displaytransfer/calibration crosswalk remains open; no resolved geography or measured visiblecolour.",
+    "Earlier preparation-only status and deferred product/terms assessments preserved as history; this record states current integration decision.",
+    "Table1 thermal totals16+8W1 and9+6W2 explain24/15Table3 counts; no conflict repair or erased original rows."
+  ]
+}

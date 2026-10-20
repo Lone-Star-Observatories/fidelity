@@ -311,6 +311,17 @@ export const MOONS = [
       { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'WISE brightest-part selection may bias albedo; no spin period adopted. Nullrotation/lockingdisabled not measured nonsynchronousspin,pole or permanentface.' },
     ],
     surfacePending: true, discovered: '1938 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views; no resolved globe or shape. Native2MASS/OHP point images retained research-only; source-specific terms/product refinement remains open. Unresolved spectra/thermal fits are not local geography.' },
+  { id: 'carme', name: 'Carme', parent: 'jupiter', radiusKm: 23.35, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
+    elements: el(23139200, .261, 6.5, 259.5, 164.6, 115.5, 719.2806, 50.9, 89.0, null, 'ecliptic', 2451545.0),
+    orbitFacts: [
+      { label: 'ORBITS', value: 'JUPITER · IRREGULAR', tier: 'measured', detail: 'Carme,Jupiter XI,JPL511; distinct from Lysithea/Sinope. Retrograde orbit does not measure spin.' },
+      { label: 'ORBIT', value: '23,139,200 KM · 719.2806 DAYS', tier: 'modelled', detail: 'JUP347 planet-centred ecliptic2000Jan1.5TDB mean elements,e.261/i164.6deg,not dated ephemerides or current distance.' },
+      { label: 'POSITION', value: 'ILLUSTRATIVE PROPAGATION', tier: 'imagined', detail: 'No current SPICE/frame/phase/lighttime/covariance registration or permanent Jupiter-facing side.' },
+    ], physicalFacts: [
+      { label: 'RADIUS', value: '23.35 KM · THERMAL MODEL', tier: 'modelled', detail: 'Half Grav2015 NEATM effective DIAMETER46.7±.9km,not axes/localnormal. NASA23km historical alternative retained,not jointfit/envelope.' },
+      { label: 'MASS', value: 'UNKNOWN', tier: 'modelled', detail: 'No Carme physical row in retained JPLtable; GM,mass,density and material fractions unknown.' },
+      { label: 'ATTITUDE', value: 'UNREGISTERED', tier: 'imagined', detail: 'Low-amplitudeWISE lightcurve does not supply an adopted spin period. Nullrotation/lockingdisabled not measured nonsynchronousspin,pole or permanentface.' },
+    ], surfacePending: true, discovered: '1938 · Seth Barnes Nicholson', note: 'Two independent IMAGINED local/observer views and an unchanged native2MASS point-source display. No resolved globe/shape. Unresolved spectra/thermal fits are not local chemistry or dated geography; OHP imagery remains research-only pending terms reconciliation.' },
   { id: 'thebe', name: 'Thebe', parent: 'jupiter', radiusKm: 49.3, massKg: null, rotationHours: null, locked: false, phaseUnknown: true,
     elements: el(221900, .018, 26.6, 182.1, 1.1, 340.4, .676105, .398, .797, [268.1, 64.5], 'laplace', 2451545.0),
     orbitFacts: [

@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-20",
+  "dossier": 97,
+  "generation": [
+    {
+      "role": "surfaceImage",
+      "tool": "built-in image_gen",
+      "original": {
+        "path": "data/research-sources/carme-generated-surfaceImage-original.png",
+        "bytes": 2557830,
+        "sha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-b202ae62-4d97-4cd6-9dc5-ad94796dd654.png",
+        "bytes": 2557830,
+        "sha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d"
+      },
+      "prompt": {
+        "path": "data/research-sources/carme-local-prompt-2026-10-20.txt",
+        "bytes": 1243,
+        "sha256": "667f324c6dc683a3d5ab7f6c7caba0dcbf692b77ab43ad88af65540bc47b6e1e"
+      },
+      "fullPrompt": "Create one entirely original research-guided hypothetical local-view illustration of Carme, Jupiter XI (JPL511), not Lysithea or Sinope. Landscape 16:9 documentary concept art: low camera over invented subdued grey-brown granular dusty terrain with modest uneven relief, a few scattered angular blocks, distant low horizon and black sky. No astronomical disks. Restrained oblique sunlight from off frame, exposure artistic. No reference image or observed-body map; do not copy/recolour Moon, Mars, Pluto, asteroid or other body terrain. Carme is unresolved in retained observations; thermal effective diameter46.7km does not resolve local shape, and red near-IR slopes/shallow bands do not identify material chemistry. All relief, grains, blocks, material fractions, colour and illumination invented. Do not depict specific minerals, ice exposures, liquids, oceans, atmosphere, haze, clouds, plumes, life, people, craft, equipment or a survivable landing. No dated location, local normal, spin axis or permanently Jupiter-facing direction implied. Exactly two highly legible footer lines in narrow dark band: 'IMAGINED LOCAL VIEW — CARME' and 'Terrain, materials, colour and lighting are hypothetical'. Clean readable type; no other labels.\n",
+      "master": {
+        "path": "public/bespoke/carme-surface-image.jpg",
+        "bytes": 293700,
+        "sha256": "e1eb082f9b4af56f8facd11ab6bc4ad7892e3c38dc87d66a6a98fc81af0b4b85"
+      },
+      "preview": {
+        "path": "public/bespoke/carme-surface-image-preview.jpg",
+        "bytes": 10220,
+        "sha256": "9717d2d57194bda5f2b896abd7f61466e5751616a75904ba4c3fbaaacd35e4d0"
+      },
+      "preparedMaster": {
+        "path": "data/research-sources/carme-generated-surfaceImage-master.jpg",
+        "bytes": 293700,
+        "sha256": "e1eb082f9b4af56f8facd11ab6bc4ad7892e3c38dc87d66a6a98fc81af0b4b85"
+      },
+      "preparedPreview": {
+        "path": "data/research-sources/carme-generated-surfaceImage-preview.jpg",
+        "bytes": 10220,
+        "sha256": "9717d2d57194bda5f2b896abd7f61466e5751616a75904ba4c3fbaaacd35e4d0"
+      }
+    },
+    {
+      "role": "skyImage",
+      "tool": "built-in image_gen",
+      "original": {
+        "path": "data/research-sources/carme-generated-skyImage-original.png",
+        "bytes": 1868778,
+        "sha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231"
+      },
+      "defaultOriginal": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-bd0848c4-9695-4916-9afd-3e894e21a4b2.png",
+        "bytes": 1868778,
+        "sha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231"
+      },
+      "prompt": {
+        "path": "data/research-sources/carme-sky-prompt-2026-10-20.txt",
+        "bytes": 1371,
+        "sha256": "86e65bcb3a09f6b590f7f246a26eee45adbcd989dbb7a9c908f98d9cf9cc4069"
+      },
+      "fullPrompt": "Create an entirely original research-guided hypothetical observer illustration: IMAGINED SKY FROM CARME, Jupiter XI/JPL511, not another moon. Wide 16:9. Invented subdued grey-brown dusty granular foreground and modest uneven rocky horizon in lower third, broad black sky. Jupiter is a VERY TINY remote disk, approximately FIVE pixels diameter in a1672pixel wide image at nominal90degree horizontal FOV. Do not enlarge for drama; no resolved close-up bands at this scale. skyGeometry spherical69911km Jupiter at mean23139200km separation minus hypothetical23.35km radialheight gives0.3462190030603226degree angular guide and5.0516804157386845pixels. This is a meanorbit/thermal halfdiameter scenario, not a dated view, localnormal, spinaxis, locking or permanent Jupiter-facing side. Sun off-frame. All terrain, blocks, grains, material chemistry/fractions, colour, tinyplanet pattern/phase/axis, light, exposure and viewpoint invented and uncalibrated. No reference images or observedbody maps; never copy/recolour Moon/Mars/Pluto/asteroid/Jupiter skins. No other disks, atmosphere,haze,clouds,plumes,liquid,ocean,organisms,humans,craft,equipment or survivablelanding. Clean documentary scientific concept art. Exactly two legible footer lines in narrow dark band: 'IMAGINED SKY FROM CARME' and 'Terrain, Jupiter appearance and lighting are hypothetical'. No other text.\n",
+      "master": {
+        "path": "public/bespoke/carme-sky-image.jpg",
+        "bytes": 199523,
+        "sha256": "1b5e9d95da54874642c1488f6682242df915f517203dcd1bcf24e2ed67151199"
+      },
+      "preview": {
+        "path": "public/bespoke/carme-sky-image-preview.jpg",
+        "bytes": 5889,
+        "sha256": "c301ca0c4b6cd1a5ce26772cf3c259384a1834655d2459ded54923e995e52e30"
+      },
+      "preparedMaster": {
+        "path": "data/research-sources/carme-generated-skyImage-master.jpg",
+        "bytes": 199523,
+        "sha256": "1b5e9d95da54874642c1488f6682242df915f517203dcd1bcf24e2ed67151199"
+      },
+      "preparedPreview": {
+        "path": "data/research-sources/carme-generated-skyImage-preview.jpg",
+        "bytes": 5889,
+        "sha256": "c301ca0c4b6cd1a5ce26772cf3c259384a1834655d2459ded54923e995e52e30"
+      }
+    }
+  ],
+  "researchRecords": [
+    "docs/research/carme-import-manifest-2026-10-20.json",
+    "docs/research/carme-master-preview-preparation-2026-10-20.json",
+    "docs/research/carme-native-imagery-preparation-2026-10-20.json",
+    "docs/research/carme-native-integration-assessment-2026-10-20.json",
+    "docs/research/carme-observer-geometry-preparation-2026-10-20.json",
+    "docs/research/carme-reference-preparation-2026-10-20.json",
+    "docs/research/carme-sharkey-targeted-text-2026-10-20.json"
+  ],
+  "retainedInputs": [
+    {
+      "path": "data/research-sources/carme-2mass-wayback-publisher-2026-10-20.jpg",
+      "bytes": 77497,
+      "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4"
+    },
+    {
+      "path": "data/research-sources/carme-generated-skyImage-master.jpg",
+      "bytes": 199523,
+      "sha256": "1b5e9d95da54874642c1488f6682242df915f517203dcd1bcf24e2ed67151199"
+    },
+    {
+      "path": "data/research-sources/carme-generated-skyImage-original.png",
+      "bytes": 1868778,
+      "sha256": "07f34f21fb8d7a2293060d773491c964d70ce705980f93537560d9bea9e0a231"
+    },
+    {
+      "path": "data/research-sources/carme-generated-skyImage-preview.jpg",
+      "bytes": 5889,
+      "sha256": "c301ca0c4b6cd1a5ce26772cf3c259384a1834655d2459ded54923e995e52e30"
+    },
+    {
+      "path": "data/research-sources/carme-generated-surfaceImage-master.jpg",
+      "bytes": 293700,
+      "sha256": "e1eb082f9b4af56f8facd11ab6bc4ad7892e3c38dc87d66a6a98fc81af0b4b85"
+    },
+    {
+      "path": "data/research-sources/carme-generated-surfaceImage-original.png",
+      "bytes": 2557830,
+      "sha256": "9bc7767dc6e98c5af7f5f568570ec3ff273e909c19fc98c6ede17bc9951a1c3d"
+    },
+    {
+      "path": "data/research-sources/carme-generated-surfaceImage-preview.jpg",
+      "bytes": 10220,
+      "sha256": "9717d2d57194bda5f2b896abd7f61466e5751616a75904ba4c3fbaaacd35e4d0"
+    },
+    {
+      "path": "data/research-sources/carme-jpl-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/carme-jpl-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/carme-local-prompt-2026-10-20.txt",
+      "bytes": 1243,
+      "sha256": "667f324c6dc683a3d5ab7f6c7caba0dcbf692b77ab43ad88af65540bc47b6e1e"
+    },
+    {
+      "path": "data/research-sources/carme-master-preview-preparation-2026-10-20.json",
+      "bytes": 6589,
+      "sha256": "d51510c73628c21943448a78816a3d15a5d0c58191dc88fb3d2d8fe18755dbdf"
+    },
+    {
+      "path": "data/research-sources/carme-master-preview-preparation-2026-10-20.mjs",
+      "bytes": 2763,
+      "sha256": "d093d24d91e3fab3b1cae3ea4b3131bfd274b4738b1247b96de2399efd1b3edd"
+    },
+    {
+      "path": "data/research-sources/carme-nasa-overview-2026-10-20.html",
+      "bytes": 246301,
+      "sha256": "e83bb02554e4b1a9c769f05583704126ace6e5cf7b6f15ceb7587ba862cab524"
+    },
+    {
+      "path": "data/research-sources/carme-nasa-overview-2026-10-20.txt",
+      "bytes": 53682,
+      "sha256": "e5d30f131deafc1f57844686d65e6a9361165959ad8921dcc65372a43a4ebc9a"
+    },
+    {
+      "path": "data/research-sources/carme-native-imagery-preparation-2026-10-20.json",
+      "bytes": 4032,
+      "sha256": "b1579524fc9c64076aed35095c41c353596b3ab38015c1f7f7492afc95915793"
+    },
+    {
+      "path": "data/research-sources/carme-observer-geometry-preparation-2026-10-20.json",
+      "bytes": 1430,
+      "sha256": "c102b5e6bf64b4f4436cd9678a0008f7d16d719c22e9043f6be2ce95f8df818e"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-body-index-2026-10-20.html",
+      "bytes": 32301,
+      "sha256": "05b32ca5d3812c4003e67c86021aa9ee0a3400a042b68091ec2c9591b4bba7ee"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-caption-2026-10-20.html",
+      "bytes": 19191,
+      "sha256": "bb29c5edcfc48aafc07a997b408ed7844a07bfc5ef51e95c3e53445f2d487d11"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-commons-lead-2026-10-20.html",
+      "bytes": 103344,
+      "sha256": "6f3cb919d3b48551dc276ba659ed6b360abba570c6905ef00b11388d0b1e510a"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-publisher-263-2026-10-20.jpg",
+      "bytes": 51302,
+      "sha256": "13c1a4b53d3daf8998a684ded220bce7c7d6f4ba689ca12058008650b34e9f95"
+    },
+    {
+      "path": "data/research-sources/carme-reference-preparation-2026-10-20.json",
+      "bytes": 4725,
+      "sha256": "2d85d427f2ca071b59771abb1a6d82973aaf4022eb827b29ab0d5c35a68213d2"
+    },
+    {
+      "path": "data/research-sources/carme-sharkey-targeted-text-2026-10-20.json",
+      "bytes": 4370,
+      "sha256": "8c255108b8b3da393093349d4aa9a0ea73130a65e8f0b86241f5c4ba82a1658d"
+    },
+    {
+      "path": "data/research-sources/carme-sky-prompt-2026-10-20.txt",
+      "bytes": 1371,
+      "sha256": "86e65bcb3a09f6b590f7f246a26eee45adbcd989dbb7a9c908f98d9cf9cc4069"
+    }
+  ],
+  "sharedPrimarySources": [
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-3.png",
+      "bytes": 567573,
+      "sha256": "c4481d7a8ea0c48e984f2518da16d10fff2ffc54682f6aed05ecdf5eb786544d"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-page-4.png",
+      "bytes": 535621,
+      "sha256": "6df3f366e3903e980d0e995e30b553f38212345e540457fc7244ec82d1866c04"
+    },
+    {
+      "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/lysithea-ipac-image-policy-2026-10-20.html",
+      "bytes": 32604,
+      "sha256": "3ab9572fa9fbb5a24790c7fbfcaef8aac7a92af8d7ce037d84651d600bb4d741"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-irsa-knowledgebase-2026-10-20.html",
+      "bytes": 2136,
+      "sha256": "652eefd41656fcb8877948589ef2d9b4cbf5fa13fb0756a3610aa2dd1233db14"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    }
+  ],
+  "fullCredits": {
+    "thermal": [
+      "T. Grav",
+      "J. M. Bauer",
+      "A. K. Mainzer",
+      "J. R. Masiero",
+      "C. R. Nugent",
+      "R. M. Cutri",
+      "S. Sonnett",
+      "E. Kramer"
+    ],
+    "spectroscopy": [
+      "Benjamin N. L. Sharkey",
+      "Andrew S. Rivkin",
+      "Richard J. Cartwright",
+      "Bryan J. Holler",
+      "Joshua P. Emery",
+      "Cristina Thomas"
+    ],
+    "ohp": "OHP / CNRS / IMCCE",
+    "twoMass": "Two Micron All Sky Survey, a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by NASA and the National Science Foundation. Archived staff Nelson page; individual display creator/first publication remain open."
+  },
+  "native": {
+    "path": "public/references/carme-2mass-1998.jpg",
+    "bytes": 77497,
+    "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4"
+  },
+  "nativeCredit": "Courtesy NASA/JPL-Caltech · 2MASS, University of Massachusetts and IPAC/California Institute of Technology; funded by NASA and NSF · archived Nelson/IPAC display",
+  "notes": [
+    "Both independent built-in original/default PNGs and full prompts preserved; preparedSharpderivatives exactsamebytesasimporter outputs verified separately. No observed-body map reference/analog skin.",
+    "Unchanged796x543 monochrome2MASS three-panel publisher JPEG under IPAC reusepermission/credit/sourceexceptions/noendorsement. Policy not public-domain/CCBY; allprojectcredit and source links retained. OHP image remains research-only.",
+    "Grav2015 allrightsreserved distinct Sharkey2025v2 specificCCBY4; no figures. Targetedtext/spectral interpretations are not localfractions or calibrated native colour.",
+    "Carme Table1 fullycryogenic16/9/16/16 pluspostcryogenic8/6/unreported/unreported explainsTable3 24/15/16/16; no source row overwritten."
+  ]
+}

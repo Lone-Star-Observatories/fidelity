@@ -1,0 +1,37 @@
+{
+  "body": "Carme / Jupiter XI / JPL511",
+  "date": "2026-10-20",
+  "status": "Observer geometry preparation only; no dated or calibrated scene.",
+  "codeSha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb",
+  "cases": [
+    {
+      "heightKm": 23.35,
+      "input": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.15467584225448472,
+        "horizontalFovDeg": 90
+      },
+      "angularDiameterDeg": 0.3462190030603226,
+      "centreDiscWidthFraction": 0.003021339961566199,
+      "targetPixels1672": 5.0516804157386845
+    },
+    {
+      "heightKm": 23,
+      "input": {
+        "radiusSun": 0.10049015380192612,
+        "temperatureK": 165,
+        "distanceAU": 0.1546758445940902,
+        "horizontalFovDeg": 90
+      },
+      "angularDiameterDeg": 0.3462189978234458,
+      "centreDiscWidthFraction": 0.003021339915865411,
+      "targetPixels1672": 5.051680339326967
+    }
+  ],
+  "limits": [
+    "JUP347 mean23139200km not current distance. Thermal effective diameter46.7±.9 supplies hypothetical23.35height; NASA23km alternative not jointfit/envelope/normal.",
+    "SphericalJupiter69911km,165K helper angular-only; colour/irradiance discarded. Nominal90HFOV1672 guide,not spectral/photometric calibration.",
+    "Spin,pole,localnormal,phase,datedvisibility,oblateness and scene registration open; retrogradeorbit not locking/permanentface."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "browser": "Chrome via IAB, loopback HTTP",
+  "completeReadableJsonSha256": "a32ba873fe210fd4c3a4481ae01d0de96f0a0635364d0ab989283437b4c2ac12",
+  "applicationSha256": "2ab8af6ef3d56d02ee5634164588f9328308bf385d465a074d44a3a48c56f4ca",
+  "htmlParserPackedSnapshotSha256": "a47d7261ca5748fa364e5e94e600e9873637ae5a95cc0a46287d209edeb20a44",
+  "htmlParserPackedAppSha256": "3d5dc26d6cf77757d1802405123d154e86f09e8718fd02dbe5d0dbfe99f2a2b3",
+  "decodedImages": 335,
+  "parsedModelScenes": 32,
+  "details": 517,
+  "bands": 20,
+  "startupCanvases": 8,
+  "unsupportedGzipNoticeVerified": true,
+  "unsupportedWasmNoticeVerified": true,
+  "limits": [
+    "Other browser engines remain open.",
+    "Direct-file route not tested; earlier URL-policy limit preserved.",
+    "Model scene parsing is not a fresh all-model interactive load claim.",
+    "Earlier route/event-worker coverage remains historical, not rerun for this additive dossier."
+  ],
+  "normalCarme": {
+    "cards": 2,
+    "decodedDimensions": [
+      1536,
+      864
+    ],
+    "ownGlobe": false,
+    "nativeContextCards": 1,
+    "nativeDecodedDimensions": [
+      796,
+      543
+    ],
+    "nativeMime": "image/jpeg"
+  },
+  "offlineCarme": {
+    "cards": 2,
+    "decodedDimensions": [
+      256,
+      144
+    ],
+    "mime": "image/webp",
+    "ownGlobe": false,
+    "nativeContextCards": 1,
+    "nativeDecodedDimensions": [
+      796,
+      543
+    ],
+    "nativeMime": "image/jpeg"
+  }
+}

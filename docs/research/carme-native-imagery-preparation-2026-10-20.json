@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-20",
+  "body": "Carme / Jupiter XI",
+  "status": "Quiet native-source preparation only; no dossier97 or image embedding.",
+  "sources": [
+    {
+      "path": "data/research-sources/carme-2mass-wayback-publisher-2026-10-20.jpg",
+      "bytes": 77497,
+      "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-wayback-response-2026-10-20.html",
+      "bytes": 8791,
+      "sha256": "ad8f3c3ec28b5490e8c0a9e3b20b9bab915046c956391a975aae2d3a60f23141"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-body-index-2026-10-20.html",
+      "bytes": 32301,
+      "sha256": "05b32ca5d3812c4003e67c86021aa9ee0a3400a042b68091ec2c9591b4bba7ee"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-caption-2026-10-20.html",
+      "bytes": 19191,
+      "sha256": "bb29c5edcfc48aafc07a997b408ed7844a07bfc5ef51e95c3e53445f2d487d11"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-publisher-263-2026-10-20.jpg",
+      "bytes": 51302,
+      "sha256": "13c1a4b53d3daf8998a684ded220bce7c7d6f4ba689ca12058008650b34e9f95"
+    },
+    {
+      "path": "data/research-sources/carme-ohp-commons-lead-2026-10-20.html",
+      "bytes": 103344,
+      "sha256": "6f3cb919d3b48551dc276ba659ed6b360abba570c6905ef00b11388d0b1e510a"
+    },
+    {
+      "path": "data/research-sources/lysithea-ohp-terms-2026-10-20.html",
+      "bytes": 24540,
+      "sha256": "b8eabcf85ffb4ab667914be7de4b1031d7914978e80f83a98fb158f07d3c8312"
+    },
+    {
+      "path": "data/research-sources/lysithea-ipac-image-policy-2026-10-20.html",
+      "bytes": 32604,
+      "sha256": "3ab9572fa9fbb5a24790c7fbfcaef8aac7a92af8d7ce037d84651d600bb4d741"
+    },
+    {
+      "path": "data/research-sources/lysithea-2mass-irsa-knowledgebase-2026-10-20.html",
+      "bytes": 2136,
+      "sha256": "652eefd41656fcb8877948589ef2d9b4cbf5fa13fb0756a3610aa2dd1233db14"
+    }
+  ],
+  "urls": {
+    "twoMassImage": "https://web.archive.org/web/20070620212531im_/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/carme.jpg",
+    "twoMassPage": "https://web.archive.org/web/20070620212531/http://spider.ipac.caltech.edu/staff/nelson/jupmoons/jupmoons.html",
+    "ohpCaption": "https://promenade.imcce.fr/fr/pages2/20.html",
+    "ohpImage": "https://promenade.imcce.fr/fr/images/jpg2/263.jpg",
+    "ohpTerms": "https://promenade.imcce.fr/fr/pages1/189.html",
+    "ipacTerms": "https://www.ipac.caltech.edu/page/image-use-policy",
+    "twoMassAcknowledgement": "https://irsa.ipac.caltech.edu/docs/knowledgebase/2mass.html"
+  },
+  "inspection": [
+    "Archived original three-panel2MASS JPEG visually inspected. Titles j0850103.fits(frame11),h0850103.fits(frame12),k0850103.fits(frame13). Publisher table Carme visible,980921s,scan085,coadd103,RA23 40 11.41 Dec-03 38 18.4. Southern1998-09-21,exactexposureUTC/rawproduct/filter/displaytransfer/astrometry not independently reproduced.",
+    "OHP400square original annotated JPEG visually inspected: printed Carmé(J-11),1998-12-16T18:32UTC,120cm telescope,12arcmin square publisher field. Full OHP/CNRS/IMCCE credit and matching primary caption263image link retained; field is publisher text,not new raster calculation.",
+    "Glare,point detections,stars,noise,GUI panels and arrows are not terrain,axes,calibrated visiblecolour or chemistry. Different observingdates/instruments not interchangeable. No registeredglobe adopted."
+  ],
+  "terms": [
+    "OHP primary author-permission/noncommercial wording distinct Commons CC BY-SA2France assertion; no permission inferred/contactsent/imageembedded.",
+    "2MASS institutionalcredit UniversityofMassachusetts/IPAC-Caltech,fundedNASA/NSF. GeneralIPACreusepermission/sourceexceptions/noendorsement is not public-domain status or image-specific ownership determination. Individualdisplaycreator/firstpublication/rawcrosswalk remains open."
+  ],
+  "preservation": "96 delivered dossiers and originals/native/model/shape bytes unchanged; no fresh tests/build/browser claim."
+}

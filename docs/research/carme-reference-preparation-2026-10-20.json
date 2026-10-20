@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-20",
+  "body": "Carme / Jupiter XI / JPL511",
+  "status": "Quiet initial source preparation only; no dossier97, generation, catalogue or asset adoption.",
+  "sources": [
+    {
+      "path": "data/research-sources/carme-nasa-overview-2026-10-20.html",
+      "bytes": 246301,
+      "sha256": "e83bb02554e4b1a9c769f05583704126ace6e5cf7b6f15ceb7587ba862cab524"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-elements-2026-10-19.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd"
+    },
+    {
+      "path": "data/research-sources/lysithea-jpl-physical-2026-10-19.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.txt",
+      "bytes": 53447,
+      "sha256": "b85d276e1fd80608e050dac454653e69f91c1ddd29c72ffbaddf13eeed7dabf2"
+    },
+    {
+      "path": "data/research-sources/pasiphae-sharkey2025-v2.html",
+      "bytes": 304821,
+      "sha256": "69d7cedfe9e43b29c02c91283d324385f48bd20085aa91cf66fa6493707f740e"
+    }
+  ],
+  "primaryUrls": [
+    "https://science.nasa.gov/jupiter/jupiter-moons/carme/",
+    "https://ssd.jpl.nasa.gov/sats/elem/",
+    "https://ssd.jpl.nasa.gov/sats/phys_par/",
+    "https://doi.org/10.1088/0004-637X/809/1/3",
+    "https://arxiv.org/html/2501.16484v2"
+  ],
+  "meanElementRows": [
+    [
+      "16",
+      "Jupiter",
+      "Carme",
+      "511",
+      "JUP347",
+      "ecliptic",
+      "2000-01-01.5",
+      "23139200.",
+      "0.261",
+      "6.5",
+      "259.5",
+      "164.6",
+      "115.5",
+      "719.2806",
+      "50.9",
+      "89.0",
+      "",
+      "",
+      "",
+      "47"
+    ]
+  ],
+  "physicalRows": [],
+  "spectroscopyRows": [
+    [
+      "JXI Carme",
+      "Carme",
+      "46.7±0.946.7\\pm 0.9bbVia [46] from NEOWISE thermal-IR observations.",
+      "2024-01-25",
+      "11.92",
+      "4.81",
+      "4.69"
+    ],
+    [
+      "",
+      "",
+      "Carme",
+      "Sinope",
+      "Themisto",
+      "Ananke",
+      "Pasiphae",
+      "Lysithea",
+      "Elara",
+      "Himalia"
+    ]
+  ],
+  "thermalTextRows": [
+    "Sinope, and J11 Carme ) were detected in all four bands. One",
+    "J11 Carme 10.91 ± 0.01(1) 0.10 ± 0.15 55369 4.831 4.738 12.14 16 9 16 16",
+    "J11 Carme 46.7 ± 0.9 0.95 ± 0.03 3.5 ± 0.6 9.7 ± 1.0 18.5 ± 2.2 24 15 16 16",
+    "4.6. J11 Carme",
+    "J11 Carme was also discovered by Nicholson in 1938 at the",
+    "discoveries of J10 Lysithea and J11 Carme, before he"
+  ],
+  "limits": [
+    "JUP347 retained mean elements are not current distance, dated ephemeris, spin or permanent facing. Retrograde orbit does not measure rotation.",
+    "Grav2015 thermal effective diameter46.7±.9km is model-dependent, not measured axes/localnormal. eta.95±.03,visiblealbedo3.5±.6percent,W1 9.7±1.0percent,W2 18.5±2.2percent; section4.6 cautions missing W2 trough detections may bias albedo high. Table1 16/9/16/16 versus Table3 24/15/16/16 counts kept distinct, not silently repaired.",
+    "D-type spectral classification and family/capture/parent-body interpretations are not local chemical fractions or resolved geography. No spin period adopted from low-amplitude variation.",
+    "Grav full8authors/allrightsreserved distinct Sharkey full6authors/specificCCBY4; no figure or native image embedded. Shared paper source bytes unchanged.",
+    "Native imagery, specific creator/terms, exact observations/raw-product/calibration and targeted JWST methods/body paragraphs remain to audit before generation/integration.",
+    "No production changes or fresh tests/build/browser claim;96 delivered dossiers and originals/native/model/shape bytes unchanged."
+  ],
+  "verifiedNasaOverview": {
+    "discovery": "1938-07-30, Seth Barnes Nicholson, Mount Wilson100inchHooker",
+    "historicalMeanRadiusKm": 23,
+    "limits": "Family99percentmass/16pieces/HildaTrojan/collisioncapture explanation is publisher hypothesis and historical census,not measured origin/localfractions/current exhaustive membership."
+  },
+  "nativeDiscoveryLeadsOnly": [
+    {
+      "url": "https://commons.wikimedia.org/wiki/File%3ACarm%C3%A9.jpg",
+      "lead": "OHP1998-12-16T18:32UTC,400square; primarycaption/sourcebytes/permission not yet recovered,Commons assertion not adopted."
+    },
+    {
+      "url": "https://www.ipac.caltech.edu/2mass/gallery/",
+      "lead": "Primary gallery includes SolarSystem/Jupiter moons; no Carme-specific native product verified."
+    }
+  ]
+}
