@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-20",
+  "body": "Iocaste",
+  "referenceRecord": "docs/research/iocaste-reference-native-preparation-2026-10-20.json",
+  "inputs": {
+    "jupiterRadiusKm": 69911,
+    "meanOrbitScaleKm": 21062300,
+    "assumedHeightKm": 2.6,
+    "distanceKm": 21062297.4,
+    "horizontalFovDeg": 90,
+    "illustrationWidthPx": 1672,
+    "angularHelperTemperatureK": 165
+  },
+  "angularDiameterDeg": 0.38035856400059276,
+  "targetDiameterPx": 5.549814139670607,
+  "limits": [
+    "NASA2.6km radius assumes albedo.04,not measured axes/local normal.",
+    "Nominal mean orbit scale minus spherical height not dated distance/ephemeris/covariance/visibility/normal/spin locking/permanent face.",
+    "165K helper angular-only;colour and irradiance discarded,not photometry.",
+    "Spherical Jupiter/phase/axis/colour/lighting/exposure/scene registration artistic;oblateness open.",
+    "No generated raster diameter measured/adopted. Sun5.2044AU off-frame would be assumption,not measured photometry."
+  ],
+  "next": "Independent labelled original/defaultPNG/fullprompt/master/preview preparation before additive107. BacklogACTIVE."
+}

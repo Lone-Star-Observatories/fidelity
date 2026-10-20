@@ -1,0 +1,336 @@
+{
+  "date": "2026-10-20",
+  "body": "Iocaste / Jupiter XXIV / JPL524 / S2000J3",
+  "status": "Research-only preparation; no107th dossier, generated view, catalogue adoption or native embedding. All106 delivered dossiers preserved.",
+  "sources": [
+    {
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/iocaste/",
+      "finalUrl": "https://science.nasa.gov/jupiter/jupiter-moons/iocaste/",
+      "status": 200,
+      "path": "data/research-sources/iocaste-overview-2026-10-20.html",
+      "bytes": 246915,
+      "sha256": "dc49f0cd578163af6b9102170b01cafbabf33fd29f4bcdd2c2b5a78e17a8e751",
+      "retrievedAt": "2026-10-20T22:12:45.069177+00:00"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "status": 200,
+      "path": "data/research-sources/iocaste-elements-2026-10-20.html",
+      "bytes": 580012,
+      "sha256": "1e5e52225cf636b78d0ac602eb5352c5648aa025ba45d61593d824e70779dfdd",
+      "retrievedAt": "2026-10-20T22:12:45.867562+00:00"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/discovery.html",
+      "status": 200,
+      "path": "data/research-sources/iocaste-discovery-2026-10-20.html",
+      "bytes": 116148,
+      "sha256": "4836d801269036704bcc685000d198d92a3eb36dc9622b298b3e7c94d8c0daa5",
+      "retrievedAt": "2026-10-20T22:12:46.227581+00:00"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys/",
+      "error": "HTTP Error 404: Not Found",
+      "sha256": null
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:Iocaste-Jewitt-full.gif",
+      "finalUrl": "https://commons.wikimedia.org/wiki/File:Iocaste-Jewitt-full.gif",
+      "status": 200,
+      "path": "data/research-sources/iocaste-native-page-2026-10-20.html",
+      "bytes": 93974,
+      "sha256": "173fe2cb16c31277b9deb617943fc45e8789467efb00de5fa5f0a220f06626be",
+      "retrievedAt": "2026-10-20T22:12:46.729139+00:00"
+    },
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/iocaste-native-original-2026-10-20.gif",
+      "bytes": 3224190,
+      "sha256": "c9381601fe3e188498dcb8771d268e873629118dd5ce16cf0282fa8dfe3ad30e",
+      "status": 200,
+      "retrievedAt": "2026-10-20T22:13:21.472658+00:00"
+    },
+    {
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "finalUrl": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "path": "data/research-sources/iocaste-physical-2026-10-20.html",
+      "bytes": 95641,
+      "sha256": "0c6323f469e48ac654f7d4dd263ed6c62ad14689218c5451a98da29d625aaf10",
+      "status": 200,
+      "retrievedAt": "2026-10-20T22:13:21.805601+00:00"
+    },
+    {
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+      "error": "<urlopen error timed out>",
+      "sha256": null
+    },
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "finalUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "path": "data/research-sources/iocaste-ccby4-2026-10-20.html",
+      "bytes": 31950,
+      "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+      "status": 200,
+      "retrievedAt": "2026-10-20T22:14:02.021682+00:00"
+    },
+    {
+      "url": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html",
+      "path": "data/research-sources/kalyke-mpec-K01A28-2026-10-20.html",
+      "bytes": 43300,
+      "sha256": "42c5a09dbbeb19f2e3a7e6011a6b42c0fd8067064eb9eb71a09151184257bb3f",
+      "status": 200,
+      "finalUrl": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html"
+    },
+    {
+      "url": "https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/about.html",
+      "path": "data/research-sources/kalyke-cadc-policy-2026-10-20.html",
+      "bytes": 22954,
+      "sha256": "9c0b4328265cbb85d4aa236a3f16ac7eb44b4467870e2f224a7d45d4c43d38b6",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003v1.pdf",
+      "url": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "bytes": 412867,
+      "sha256": "4a154cbcf0068984ffcfe4bfa8b80c1f395f68b5792bad7aa0e18f2372dd1a0c",
+      "isPdf": true,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/pdf/astro-ph/0301016v1",
+      "contentType": "application/pdf"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-record.html",
+      "url": "https://arxiv.org/abs/astro-ph/0301016",
+      "bytes": 44195,
+      "sha256": "48ee3001175488c42dd3365ba4ebe2433ace3f38963dbd5b63ad284df42c14c0",
+      "isPdf": false,
+      "status": 200,
+      "finalUrl": "https://arxiv.org/abs/astro-ph/0301016",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "url": null,
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe"
+    },
+    {
+      "path": "data/research-sources/elara-grav2015-published.pdf",
+      "bytes": 561099,
+      "sha256": "01a8b5bda56aec1201e2d7a8f64440a2e4ee08cf26080f169a8b98f5a55cc2fe",
+      "url": "https://authors.library.caltech.edu/records/atxcf-qdt69/files/Grav_2015.pdf?download=1"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-37.png",
+      "bytes": 216662,
+      "sha256": "ad13228ab4b31262a50faadf6317c3300dcbc94c5421c8d21da63cc8661ef72a",
+      "role": "retained inspection diagnostic; not native original"
+    },
+    {
+      "path": "data/research-sources/megaclite-grav2003-table-38.png",
+      "bytes": 203349,
+      "sha256": "18d5e91d049194ddcea9efafebb92e5d03aa2a9bb9f1270bddd2aa63e6ce7bef",
+      "role": "retained inspection diagnostic; not native original"
+    },
+    {
+      "path": "data/research-sources/iocaste-grav2015-page-2.png",
+      "bytes": 835579,
+      "sha256": "3cd81e2126d23a1d64aad438c01deaca78d80861a8bba1b78b53ddaed9e98646",
+      "role": "retained inspection diagnostic; not native original"
+    },
+    {
+      "path": "data/research-sources/iocaste-native-metadata-2026-10-20.json",
+      "bytes": 471,
+      "sha256": "aead7238d98b1a71c30b80c07aeb77b3baab21b96d06553cb18c50cd3d4db998",
+      "role": "retained inspection diagnostic; not native original"
+    }
+  ],
+  "identity": {
+    "name": "Iocaste",
+    "roman": "XXIV",
+    "jplId": 524,
+    "provisional": "S/2000 J3",
+    "discoveryDate": "2000-11-23",
+    "nasaDiscoverers": [
+      "Scott S. Sheppard",
+      "David C. Jewitt",
+      "Yanga R. Fernandez",
+      "Eugene Magnier"
+    ],
+    "jplPrintedDiscoverers": "S.S. Sheppard,D.C. Jewitt,Y.R. Fernandez,G. Magnier",
+    "reference": "IAUC7555",
+    "site": "Mauna Kea Observatory,Hawaii",
+    "limits": "NASA Eugene and JPL G. Magnier spellings retained separately; not another moon or adopted modern observer-name correction."
+  },
+  "discoveryAstrometry": {
+    "source": "https://www.minorplanetcenter.net/iau/mpec/K01/K01A28.html",
+    "retainedSource": "data/research-sources/kalyke-mpec-K01A28-2026-10-20.html",
+    "issueTime": "2001-01-05T20:20UT",
+    "firstPrintedRecord": "    SK00J030  C2000 11 23.38600 04 25 37.93 +21 22 43.3          21.5 R      568",
+    "observers": [
+      "S.S. Sheppard",
+      "D.C. Jewitt",
+      "Y.R. Fernandez",
+      "G. Magnier",
+      "S. Dahm",
+      "A. Evans"
+    ],
+    "measurer": "S.S. Sheppard",
+    "instrument": "UH2.2-m reflector+CCD",
+    "limits": "Printed astrometry not independently re-reduced; not CFHT2001 animation raw-frame association. Issue timestamp distinct acquisition."
+  },
+  "nasaGuide": {
+    "meanRadiusKm": 2.6,
+    "assumedAlbedo": 0.04,
+    "olderMeanDistanceKm": 21300000,
+    "olderPeriodDays": 632,
+    "colour": "gray,similar Praxidike/Harpalyke; qualitative not calibrated RGB/local chemistry",
+    "group": "Ananke",
+    "limits": "Radius explicitly assumes albedo.04,not measured albedo/resolved axes/local normal or uncertainty. Capture/collision/common-origin/irregular-shape hypotheses not directly observed history. Historical15-other-members prose not current census. Retrograde orbit not measured spin/locking/permanent face."
+  },
+  "jplMeanElements": {
+    "solution": "JUP347",
+    "reference": 47,
+    "referenceDescription": "R.A.Jacobson2025 personal communication",
+    "frame": "planet-centred ecliptic",
+    "epoch": "2000-01-01.5TDB",
+    "epochJd": 2451545.0,
+    "aKm": 21062300,
+    "e": 0.223,
+    "argumentPeriapsisDeg": 91.4,
+    "meanAnomalyDeg": 182.0,
+    "inclinationDeg": 148.7,
+    "nodeDeg": 268.9,
+    "periodDays": 624.5479,
+    "apsidalPeriodYears": 79.2,
+    "nodalPeriodYears": 116.3,
+    "pole": null,
+    "limits": "Mean fitted orbit not dated ephemeris/current distance/covariance/spin/pole/locking/permanent face. Older NASA21.3M/632days retained without silent update or cause inference."
+  },
+  "physicalUnknowns": [
+    "No row found in current JPL satellite physical table; no invented GM/mass/density.",
+    "Spin period/pole/local normal/shape/terrain/local chemical fractions/atmosphere unknown.",
+    "No resolved globe/shape adopted or map transferred from Ananke/Harpalyke/other body."
+  ],
+  "optical2003": {
+    "authors": [
+      "Tommy Grav",
+      "Matthew J. Holman",
+      "Brett J. Gladman",
+      "Kaare Aksnes"
+    ],
+    "record": "astro-ph/0301016v1",
+    "doi": "10.1016/j.icarus.2003.07.005",
+    "submitted": "2003-01-02",
+    "table1VisuallyChecked": "page37 Magellan6.5m2002Feb09 R5.06AU Delta4.31AU phase7.89deg OPT35.0deg",
+    "table2VisuallyChecked": "page38 H15.27\u00b1.03,V22.52\u00b1.03,B-V.63\u00b1.06,V-R.36\u00b1.04,V-I.62\u00b1.05; historical inclination149.7deg",
+    "interpretation": "Discussion page19 groups Iocaste as grey; unresolved broadband colours not local material fractions/visible RGB map or native CFHT calibration.",
+    "rights": "Specific assumed1991\u20132003 arXiv terms,not CC BY; no paper figure embedded.",
+    "termsUrl": "http://arxiv.org/licenses/assumed-1991-2003/"
+  },
+  "thermal2015": {
+    "authors": [
+      "T.Grav",
+      "J.M.Bauer",
+      "A.K.Mainzer",
+      "J.R.Masiero",
+      "C.R.Nugent",
+      "R.M.Cutri",
+      "S.Sonnett",
+      "E.Kramer"
+    ],
+    "doi": "10.1088/0004-637X/809/1/3",
+    "published": "2015-08-04",
+    "issue": "2015-08-10",
+    "page2VisuallyChecked": "Stacks using J24Iocaste ephemerides yielded no signal. Unlike detected Kalyke/Praxidike; no their fitted diameters/albedos transferred.",
+    "limits": "This nondetection is not absolute absence, measured albedo or resolved morphology. Raw WISE extraction/stack/limits not independently reproduced.",
+    "rights": "AAS all rights reserved; repository access not CC BY; no paper figure embedded.",
+    "sourceUrl": "https://authors.library.caltech.edu/records/atxcf-qdt69/files/Grav_2015.pdf?download=1"
+  },
+  "nativeAssessment": {
+    "filePage": "https://commons.wikimedia.org/wiki/File:Iocaste-Jewitt-full.gif",
+    "credit": "David Jewitt / Canadian Astronomy Data Centre / Canada-France-Hawaii Telescope",
+    "original": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "finalUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Iocaste-Jewitt-full.gif?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+      "path": "data/research-sources/iocaste-native-original-2026-10-20.gif",
+      "bytes": 3224190,
+      "sha256": "c9381601fe3e188498dcb8771d268e873629118dd5ce16cf0282fa8dfe3ad30e",
+      "status": 200,
+      "retrievedAt": "2026-10-20T22:13:21.472658+00:00"
+    },
+    "frames": 3,
+    "dimensions": [
+      1100,
+      1000
+    ],
+    "frameDelayMs": [
+      300,
+      300,
+      300
+    ],
+    "loop": 0,
+    "inspection": "All three complete decoded frames visually inspected; crowded grayscale-looking field with saturation,vertical dark stripes and noise. No independent Iocaste point crossmatch performed.",
+    "captionClaims": {
+      "observationDate": "2001-12-10",
+      "instrument": "3.6-m CFHT",
+      "spacing": "approximately30min",
+      "apparentMagnitude": 22.4,
+      "firstFrame": "Iocaste hidden within star glare",
+      "rawDatasets": [
+        "615275p",
+        "615282p",
+        "615289p"
+      ]
+    },
+    "rights": "Specific file page CC BY4 and deed retained. Current direct CADC policy GET timeout/no response hash; earlier same-day successfully fetched CADC policy from Kalyke research retained separately. Not blanket paper/other-file licence or verification of raw processing association.",
+    "termsUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "publicationDate": null,
+    "limits": [
+      "Caption data are publisher claims,not verified raw UTC/filter/exposure/processing/pixel identity/individual moon point.",
+      "Saturation/noise/vertical stripes not geography/axes/calibrated visible colour/local chemistry.",
+      "No compact rendition downloaded or embedded; full original retained unchanged.",
+      "No exhaustive newest-observation or source-absence claim."
+    ]
+  },
+  "dates": {
+    "nasaPublished": "2017-12-01T19:37:57-05:00",
+    "nasaModified": "2024-01-25T01:22:37-05:00",
+    "limits": "Page dates/ingestion timestamps are not observations."
+  },
+  "next": "Use skyGeometry for hypothetical observer angular scale,then compact native publisher assessment and independent labelled original-preserving local/observer views before additive107. BacklogACTIVE.",
+  "validation": {
+    "tests": {
+      "passed": 709,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "preservation": {
+      "retainedSourceAndGeneratedHashesChecked": 432,
+      "nativeCardsExactBytesAndMime": 85,
+      "baseline": "0ff85c7",
+      "priorDossiersDeepEqual": 106,
+      "dossiers": 106,
+      "priorMoonsDeepEqual": 62,
+      "moons": 62,
+      "trackedPublicByteEqual": 739,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15924246,
+      "headroomBytes": 75754,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "e09924cd842c0440fa338960fa9c9ad18d40b12196788ec2c66bab158fe96693",
+      "applicationSha256": "a1ce59caa7dffabe6237b359f341c53f52b6b4b173bc091e11f3dd30b13fd432",
+      "freshBrowserClaim": false
+    },
+    "browser": "No fresh browser claim; Node complete snapshot/application roundtrip verified.",
+    "prepublicationCorrection": "Geometry guard rejected undefined diskFraction; corrected to actual skyGeometry.centreDiscWidthFraction before recording finite output."
+  }
+}
