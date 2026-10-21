@@ -1,0 +1,433 @@
+{
+  "date": "2026-10-21",
+  "issue": "#3",
+  "bodyId": "pallas",
+  "status": "Research-only JPL physical/orbit reference and targeted primary spin-label audit; no production adoption",
+  "jplReference": {
+    "date": "2026-10-21",
+    "status": "Research-only direct JPL SBDB reference preparation; no catalogue adoption",
+    "source": {
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=2&phys-par=true&full-prec=true",
+      "path": "data/research-sources/pallas-jpl-sbdb-response-2026-10-21.json",
+      "bytes": 4895,
+      "sha256": "961af3d5f2b404ea368ab9217fd58a57d6edb71700ca0f72c1278f3ecdfee917",
+      "retrievedAtUtc": "2026-10-21T19:57:57.839406+00:00",
+      "credit": "NASA/JPL Small-Body Database API; individual physical references retained verbatim",
+      "access": "Direct API response acquired; web-tool URL access failed. No terms or raw-paper licence inferred."
+    },
+    "objectAsReturned": {
+      "shortname": "2 Pallas",
+      "kind": "an",
+      "orbit_id": "74",
+      "neo": false,
+      "des": "2",
+      "pha": false,
+      "fullname": "2 Pallas (A802 FA)",
+      "prefix": null,
+      "spkid": "20000002",
+      "orbit_class": {
+        "name": "Main-belt Asteroid",
+        "code": "MBA"
+      }
+    },
+    "physicalParametersAsReturned": [
+      {
+        "value": "4.12",
+        "ref": "MPO980521",
+        "sigma": null,
+        "name": "H",
+        "units": null,
+        "notes": "IRAS observations used: 19",
+        "desc": "absolute magnitude (magnitude at 1 au from Sun and observer)",
+        "title": "absolute magnitude"
+      },
+      {
+        "units": null,
+        "desc": "magnitude slope parameter used in the standard asteroid H/G magnitude law",
+        "notes": "Fit",
+        "title": "magnitude slope",
+        "value": "0.11",
+        "ref": "PDS3 (MPC 17257)",
+        "name": "G",
+        "sigma": null
+      },
+      {
+        "desc": "effective body diameter",
+        "notes": null,
+        "title": "diameter",
+        "units": "km",
+        "name": "diameter",
+        "sigma": "6",
+        "value": "513",
+        "ref": "Marsset et al., Nature Astronomy 4, 569-576 (2020)"
+      },
+      {
+        "name": "extent",
+        "sigma": "12",
+        "ref": "Marsset et al., Nature Astronomy 4, 569-576 (2020)",
+        "value": "568x532x448",
+        "title": "extent",
+        "desc": "tri(or bi)-axial body dimensions",
+        "notes": null,
+        "units": "km"
+      },
+      {
+        "units": "km^3/s^2",
+        "title": "GM",
+        "notes": null,
+        "desc": "standard gravitational parameter: product of the mass (M) and gravitational constant (G)",
+        "ref": "Vernazza et al., A&A 654, A56 (2021)",
+        "value": "13.63",
+        "sigma": "0.18",
+        "name": "GM"
+      },
+      {
+        "name": "density",
+        "sigma": "0.08",
+        "ref": "Marsset et al., Nature Astronomy 4, 569-576 (2020)",
+        "value": "2.89",
+        "title": "bulk density",
+        "notes": null,
+        "desc": "bulk density",
+        "units": "g/cm^3"
+      },
+      {
+        "units": "h",
+        "title": "rotation period",
+        "notes": null,
+        "desc": "body rotation period (synodic)",
+        "ref": "Carry et al., Icarus 205, 460-472 (2010)",
+        "value": "7.8132214",
+        "name": "rot_per",
+        "sigma": "0.000002"
+      },
+      {
+        "ref": "Carry et al., Icarus 205, 460-472 (2010)",
+        "value": "33/-3",
+        "sigma": "5",
+        "name": "pole",
+        "units": null,
+        "title": "pole direction",
+        "desc": "spin-pole direction in R.A./Dec.",
+        "notes": null
+      },
+      {
+        "title": "geometric albedo",
+        "notes": null,
+        "desc": "geometric albedo",
+        "units": null,
+        "sigma": null,
+        "name": "albedo",
+        "ref": "Vernazza et al., A&A 654, A56 (2021)",
+        "value": "0.155"
+      },
+      {
+        "ref": "EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2",
+        "value": "0.635",
+        "name": "BV",
+        "sigma": "0.031",
+        "units": null,
+        "title": "B-V",
+        "notes": "#obs=32; phase (min.=.19, mean=13.73, max.=25.65) deg.",
+        "desc": "color index B-V magnitude difference"
+      },
+      {
+        "name": "UB",
+        "sigma": "0.018",
+        "ref": "EAR-A-5-DDR-UBV-MEAN-VALUES-V1.2",
+        "value": "0.284",
+        "title": "U-B",
+        "notes": "#obs=14; phase (min.=7.23, mean=14.81, max.=25.65) deg.",
+        "desc": "color index U-B magnitude difference",
+        "units": null
+      },
+      {
+        "name": "spec_T",
+        "sigma": null,
+        "ref": "EAR-A-5-DDR-TAXONOMY-V4.0",
+        "value": "B",
+        "title": "Tholen spectral type",
+        "desc": "Tholen spectral taxonomic classification",
+        "notes": "used 7 color indices; used ground-based radiometric albedo",
+        "units": null
+      },
+      {
+        "name": "spec_B",
+        "sigma": null,
+        "value": "B",
+        "ref": "EAR-A-5-DDR-TAXONOMY-V4.0",
+        "notes": "based on a high-resolution spectrum by Xu et al. (1995) or Bus and Binzel (2002)",
+        "desc": "SMASSII spectral taxonomic classification",
+        "title": "SMASSII spectral type",
+        "units": null
+      }
+    ],
+    "orbitAsReturned": {
+      "comment": null,
+      "elements": [
+        {
+          "units": null,
+          "value": ".2307000995648547",
+          "sigma": "5.7536E-9",
+          "title": "eccentricity",
+          "label": "e",
+          "name": "e"
+        },
+        {
+          "label": "a",
+          "name": "a",
+          "title": "semi-major axis",
+          "sigma": "1.7736E-9",
+          "value": "2.769559010737709",
+          "units": "au"
+        },
+        {
+          "name": "q",
+          "label": "q",
+          "title": "perihelion distance",
+          "sigma": "1.5815E-8",
+          "value": "2.130621471209779",
+          "units": "au"
+        },
+        {
+          "value": "34.93279321851542",
+          "units": "deg",
+          "label": "i",
+          "name": "i",
+          "title": "inclination; angle with respect to x-y ecliptic plane",
+          "sigma": "6.9364E-7"
+        },
+        {
+          "name": "om",
+          "label": "node",
+          "title": "longitude of the ascending node",
+          "sigma": "1.2984E-6",
+          "value": "172.8866193357694",
+          "units": "deg"
+        },
+        {
+          "units": "deg",
+          "value": "310.9699161652136",
+          "sigma": "2.4001E-6",
+          "title": "argument of perihelion",
+          "label": "peri",
+          "name": "w"
+        },
+        {
+          "title": "mean anomaly",
+          "sigma": "2.4573E-6",
+          "name": "ma",
+          "label": "M",
+          "units": "deg",
+          "value": "254.2496521742734"
+        },
+        {
+          "name": "tp",
+          "label": "tp",
+          "title": "time of perihelion passage",
+          "sigma": "1.1582E-5",
+          "value": "2461695.031164382680",
+          "units": "TDB"
+        },
+        {
+          "sigma": "1.6172E-6",
+          "title": "sidereal orbital period",
+          "label": "period",
+          "name": "per",
+          "units": "d",
+          "value": "1683.504809564834"
+        },
+        {
+          "name": "n",
+          "label": "n",
+          "title": "mean motion",
+          "sigma": "2.0541E-10",
+          "value": ".2138396029251949",
+          "units": "deg/d"
+        },
+        {
+          "value": "3.408496550265638",
+          "units": "au",
+          "name": "ad",
+          "label": "Q",
+          "sigma": "2.1828E-9",
+          "title": "aphelion distance"
+        }
+      ],
+      "producer": "Otto Matic",
+      "soln_date": "2026-06-05 03:03:25",
+      "pe_used": "DE441",
+      "first_obs": "1804-08-27",
+      "moid_jup": "1.85403",
+      "n_del_obs_used": null,
+      "sb_used": "SB441-N16",
+      "source": "JPL",
+      "cov_epoch": "2457870.5",
+      "orbit_id": "74",
+      "n_dop_obs_used": null,
+      "data_arc": "80828",
+      "model_pars": [],
+      "n_obs_used": 9772,
+      "t_jup": "3.043",
+      "not_valid_after": null,
+      "condition_code": "0",
+      "last_obs": "2025-12-14",
+      "moid": "1.22683",
+      "rms": ".35838",
+      "epoch": "2461200.5",
+      "not_valid_before": null,
+      "equinox": "J2000",
+      "two_body": null
+    },
+    "signature": {
+      "source": "NASA/JPL Small-Body Database (SBDB) API",
+      "version": "1.3"
+    },
+    "findings": [
+      "SPK20000002/designation2 identifies Pallas, not spacecraft Juno or asteroid3Juno.",
+      "JPL diameter513\u00b16km and extent568x532x448\u00b112km cite Marsset2020; those are full dimensions, distinct from manuscript284x266x224\u00b16km semiaxes. No new dimensions calculated or adopted.",
+      "GM13.63\u00b1.18km^3/s^2 and geometric albedo.155 cite Vernazza2021; density2.89\u00b1.08g/cm^3 cites Marsset2020. Source-specific references are not automatically a single new joint fit or local composition.",
+      "Rotation7.8132214\u00b1.000002h is described synodic by API and pole33/-3\u00b15 is described RA/Dec. Source-paper frame/convention and sidereal/synodic reconciliation remain open; do not apply to a registered scene.",
+      "Orbit74 has element epoch2461200.5, covariance epoch2457870.5, solution2026-06-05 and observations1804-08-27 through2025-12-14. These are distinct from retrieval time and current observer geometry.",
+      "API condition-code0,9772 observations and scalar sigmas do not establish complete covariance, independent accuracy or calibrated image registration.",
+      "Disk-integrated BV/UB colours, albedo and B taxonomy do not establish resolved terrain, local chemistry or calibrated visible RGB for the ESO panels."
+    ],
+    "limits": [
+      "No catalogue, map, shape, dossier, codec, embedding or angular/raster computation changed. All108 delivered dossiers and all original/master/native sources retained.",
+      "The previous complete-review follow-up inherited an outdated remaining-visual-pages open-work string; all43 manuscript/all40 supplement pages have already been reviewed. Formal next consolidation should replace that stale open item, preserving historical records.",
+      "Current independent source-paper physical/frame audit and exact ESO exposure/filter/coadd/pixel association remain open. No fresh build/browser/standalone-capacity claim from this preparation."
+    ]
+  },
+  "primarySpinReference": {
+    "date": "2026-10-21",
+    "status": "Research-only targeted primary Table4 verification; no production adoption",
+    "title": "Physical properties of (2) Pallas",
+    "doi": "10.1016/j.icarus.2009.08.007",
+    "url": "https://www.boulder.swri.edu/merline/GPI-proposal-publications/carry.pallas.icarus-2010.pdf",
+    "authorsAsPrinted": [
+      "Beno\u00eet Carry",
+      "Christophe Dumas",
+      "Mikko Kaasalainen",
+      "J\u00e9r\u00f4me Berthier",
+      "William J. Merline",
+      "St\u00e9phane Erard",
+      "Al Conrad",
+      "Jack D. Drummond",
+      "Daniel Hestroffer",
+      "Marcello Fulchignoni",
+      "Thierry Fusco"
+    ],
+    "files": [
+      {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      {
+        "path": "data/research-sources/pallas-carry-2010-author-text-2026-10-21.txt",
+        "bytes": 67829,
+        "sha256": "95a757023bef1bdffc4d2ee9e387fa44c4358f45aa3b44ac5781b51b73dda5e1"
+      },
+      {
+        "path": "data/research-sources/pallas-carry-2010-table4-2026-10-21.png",
+        "bytes": 614449,
+        "sha256": "32b5a26da88bf76c1c08d3e63e7034686d50c438f5de50098920452c70785d57"
+      }
+    ],
+    "scope": "Complete13-page PDF and extracted text retained; only PDFpage7/printed466 visually inspected this preparation. Title/author/publication history extracted from first page, not yet visually verified. No all-page review or simulation/raw reduction claim.",
+    "table4AsPrinted": {
+      "periodLabel": "Sidereal period Ps, determined from51lightcurves",
+      "periodHours": "7.8132214 \u00b10.000002",
+      "eclipticJ2000LongitudeLatitudeDegrees": "(30,-16) \u00b15",
+      "equatorialJ2000RaDecDegrees": "(33,-3) \u00b15",
+      "referenceEpochT0JD": "2433827.77154",
+      "W0AtJ2000Degrees": "38 \u00b12",
+      "rotationRateDegreesPerDay": "1105.8036"
+    },
+    "crosswalk": [
+      "The API pole33/-3 matches this paper equatorialJ2000 solution; ecliptic30/-16 is a different coordinate representation, not a second body or arbitrary pointing correction.",
+      "The API calls the rotation period synodic, while the cited primary Table4 explicitly labels the identical numeric value sidereal. Preserve the metadata-label inconsistency; original ingestion cause unknown. Do not silently relabel the live catalogue or infer an independently measured synodic period.",
+      "Table4 distinguishes reference epoch t0 from rotational phase W0 atJ2000. No scene transformation or angular/raster calculation performed.",
+      "Fig4 left observations versus right shape-model views are not interchangeable native maps. Printed dates and source geometry do not establish association with the2020ESO publisher panels."
+    ],
+    "limitations": [
+      "Author-hosted availability is not CC BY permission; no new figure embedding/licence assertion.",
+      "Historical fit and scalar uncertainties do not establish current orientation, complete geography, calibrated visible colour, chemistry or independently reproduced accuracy.",
+      "No109th dossier, generated image, catalogue/model/map/shape/codec or public asset change. All108 delivered dossiers preserved.",
+      "Formal primary/reference consolidation and fresh build verification remain pending; no fresh standalone/browser/capacity claim."
+    ]
+  },
+  "additionalVisualReview": {
+    "pdfPage": 1,
+    "render": {
+      "path": "data/research-sources/pallas-carry-2010-title-2026-10-21.png",
+      "bytes": 552124,
+      "sha256": "af49c1a4cbd2090cb77f9de68e49c1312cfeb80e3148e9c1cfc4e347dc1a6014"
+    },
+    "findings": [
+      "All11 printed authors verified visually. DOI10.1016/j.icarus.2009.08.007, online2009-08-22 and2010volume205pages460\u2013472 are publication dates, not individual observations.",
+      "First page explicitly prints\u00a92009ElsevierInc.All rights reserved; author-hosted availability is not CC BY. No paper figure embedded.",
+      "Historical abstract K-band maps and model radii275/258/238km are source-specific, not2020ESO-panel registration, calibrated visibleRGB or a new current shape adoption."
+    ]
+  },
+  "interpretation": [
+    "Cited primary Table4 explicitly identifies the numeric7.8132214\u00b1.000002hour period as sidereal; API describes identical value as synodic. This verifies a reference/metadata-label inconsistency, not its original ingestion cause.",
+    "API pole33/-3 matches equatorialJ2000 coordinates in cited Table4; eclipticJ2000 coordinates30/-16 are distinct coordinate representations. No new coordinate transformation or scene registration.",
+    "Orbit element epoch, covariance epoch, solution date, observation span and retrieval time retained separately; no dated observer geometry or scalar-sigma completeness claim."
+  ],
+  "currentOpenWork": [
+    "Current independent physical/source-paper alternatives and complete Carry2010 methods/map/frame audit; only PDFpages1/7 visually inspected here.",
+    "Exact ESO exposure/filter/coadd/pixel association, visible photometry and registered geography remain open.",
+    "Raw-data/model reproduction, source-specific permissions and substantial lossless standalone capacity remain open.",
+    "All43Marsset manuscript/all40publisher-supplement pages have already been visually reviewed; the earlier remaining-visual-pages open item is superseded."
+  ],
+  "preservation": {
+    "baseline": "b53e4c4",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "b73927a9b6e4ec11f607fe79a16a6205f2b8de076835abf4f54d391f749fca05",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15996954,
+      "headroomBytes": 3046,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false
+  },
+  "validation": {
+    "testsPassed": 711,
+    "testsSkipped": 1,
+    "testsFailed": 0,
+    "productionBuild": "passed",
+    "fullBuild": "passed;15,996,954bytes leaves3,046bytes under hard16MBgate",
+    "queue": "Regenerated;569 unchanged",
+    "scope": "Research-only; no browser or all-image/model/route restoration claim. Live-feed interbuild differences unaudited, no capacity-saving attribution. Embedded preparation records remain historical; final scoped review is pages1/7.",
+    "logs": [
+      {
+        "path": "/tmp/fidelity-pallas-spin-tests.log",
+        "bytes": 62908,
+        "sha256": "6ca826b249b43e27910baf13374d8848e1c86757a4e487368568820c5f27d451"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-spin-production.log",
+        "bytes": 1014,
+        "sha256": "91e4b94bcb6d769db06826b93fa07ae3bdcf80ab78841d08cd1ca12ca811c5c5"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-spin-full.log",
+        "bytes": 2836,
+        "sha256": "6a7cfedb07531589da1486bb4485129064e276e00c82c283b89bf8caca8bff95"
+      }
+    ]
+  }
+}
