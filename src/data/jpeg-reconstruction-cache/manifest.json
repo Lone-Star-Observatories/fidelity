@@ -214,6 +214,12 @@
       "jxlBytes": 5651
     },
     {
+      "jpegSha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+      "jpegBytes": 13523,
+      "jxlSha256": "e40256a93e64e7d81fa7b40c74a2397e8547225787818676c4008082b5f8d429",
+      "jxlBytes": 11170
+    },
+    {
       "jpegSha256": "9f18bdf6cfca3f53210d7802d8125059385d3e67a323dc41f040c61ca38a3e1d",
       "jpegBytes": 61533,
       "jxlSha256": "4c00f019c4a71ce6f63aa9eabcf80a809bf1603152698e366a6df1933b702d63",
@@ -368,6 +374,12 @@
       "jpegBytes": 287611,
       "jxlSha256": "9ab6256b93ed91e7d72fba3ee1550a264764afef27dab21bbc2151c9cd24b2ad",
       "jxlBytes": 232919
+    },
+    {
+      "jpegSha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+      "jpegBytes": 77497,
+      "jxlSha256": "3748b22549b2e254baa46a0a5e7a0f819cc8b562ddb9ff06aa2f55510cbe8e5d",
+      "jxlBytes": 63244
     }
   ]
 }

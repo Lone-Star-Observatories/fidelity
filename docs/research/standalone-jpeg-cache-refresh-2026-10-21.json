@@ -1,0 +1,56 @@
+{
+  "snapshotSha256": "eafc7a18a49e588d0c4e2c6387c89230b6f5b41d520919487b437f7223c14b55",
+  "cacheEntries": 60,
+  "uncached": [
+    {
+      "sha256": "fbaa403840b781b02fda037c074af9f64beeb8e270d370015013ed6c4751b3e4",
+      "bytes": 77497,
+      "jxlBytes": 63244,
+      "jxlSha256": "3748b22549b2e254baa46a0a5e7a0f819cc8b562ddb9ff06aa2f55510cbe8e5d",
+      "nativeAndBundledWasmExactInverse": true
+    },
+    {
+      "sha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+      "bytes": 13523,
+      "jxlBytes": 11170,
+      "jxlSha256": "e40256a93e64e7d81fa7b40c74a2397e8547225787818676c4008082b5f8d429",
+      "nativeAndBundledWasmExactInverse": true
+    }
+  ],
+  "limits": "All native/public bytes and checked production inputs preserved. Same existing lossless JPEG reconstruction format/runtime; native CLI and bundled WASM restore both new exact original bitstreams. Raw16606-byte reduction is not net HTML attribution. Live-feed interbuild differences unaudited. No fresh browser/other-engine/all-routes/all-model claim. 16990 headroom insufficient for larger prepared batches; further lossless capacity remains necessary.",
+  "date": "2026-10-21",
+  "status": "ADOPTED two additive lossless JPEG reconstruction cache entries; runtime formats/decoder unchanged",
+  "issue": "#3",
+  "validation": {
+    "baseline": "89f18f3",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "562447f242676301eb99eb435813fc92d7c4fa7bd64da9a675c40d2186afaf68",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15983010,
+      "headroomBytes": 16990,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false,
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuildPass": true,
+    "fullBuilderExactJsonRoundtrip": true
+  },
+  "rawBytesDifference": 16606,
+  "prior60CacheRowsExact": true
+}
