@@ -1,0 +1,313 @@
+{
+  "date": "2026-10-21",
+  "status": "Prepared independent Pallas illustrations only; no109th dossier, native embedding or production adoption",
+  "preparations": [
+    {
+      "path": "data/research-sources/pallas-local-view-preparation-2026-10-21.json",
+      "sha256": "081b8622117d49c5d104d91b722afcc448ca9d0330b2ee6fb97ae820d1c5de5b",
+      "record": {
+        "date": "2026-10-21",
+        "status": "Research-only independently imagined local Pallas illustration; no109th dossier or embedding",
+        "tool": "Built-in image_gen; default PNG output preserved unchanged",
+        "prompt": "Scientific-educational illustration for Fidelity: an independently imagined local regolith view on asteroid 2 Pallas. Wide landscape, approximately 16:9. Camera close to an invented gently rolling cratered surface with subdued charcoal-grey dusty grains and scattered angular blocks; uneven low ridges recede into an airless-looking black sky. Crisp hard directional sunlight from off frame, restrained neutral colour, physically plausible but explicitly hypothetical terrain. This is not a reconstruction of an observed site. All rock arrangements, craters, relief, composition, grain properties, colour, phase, illumination and exposure are invented. Pallas remote near-infrared band evidence and density models do not establish this local material or morphology. Create the scene independently: do not copy, recolour, trace or reuse any image, map, skin or recognizable geography of the Moon, Mars, Ceres, Vesta, Bennu or another observed body. No ice exposures, water, ocean, plume, atmosphere haze, clouds, biology, people, spacecraft, structures, landing markers, cutaway or exposed interior. No Sun or other astronomical disk within frame; no stars needed. Add a clean dark footer band at bottom containing exactly two readable lines: 'IMAGINED LOCAL VIEW \u2014 PALLAS' and 'Terrain, material, colour and lighting are hypothetical'. No other text. Educational rendered realism with careful microtexture, not a photograph or measured topographic map.",
+        "defaultOriginalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-15618217-d523-4e8e-8efd-02dfc488fd6e.png",
+        "projectOriginalPath": "data/research-sources/pallas-generated-surfaceImage-original.png",
+        "scienceReferences": [
+          "docs/research/pallas-native-primary-assessment-2026-10-21.json",
+          "docs/research/pallas-complete-visual-assessment-2026-10-21.json",
+          "docs/research/pallas-carry-complete-visual-assessment-2026-10-21.json",
+          "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json"
+        ],
+        "limits": [
+          "All terrain/craters/blocks/grains/chemistry/fractions/colour/phase/light/exposure invented; not an observed dated site, native map or measured regolith.",
+          "Independent generation with no input images or other-body analog skins. No stellar disk/angular-size claim, atmosphere/plume/ocean/biology/exposed interior or survivable landing implication.",
+          "Black sky is an illustrative assumption, not a measured absence of atmosphere or stars. Remote nearIR/density models not local chemistry.",
+          "Production assets/originals/masters/native/model/map/shape/codecs unchanged. No new dossier or embedded image; capacity headroom remains unresolved."
+        ],
+        "files": [
+          {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-15618217-d523-4e8e-8efd-02dfc488fd6e.png",
+            "bytes": 3259507,
+            "sha256": "16b4790b3826bba5466658e59aa03801c6e38ceb69ae8356e402792f24388d02",
+            "width": 1672,
+            "height": 941,
+            "format": "PNG"
+          },
+          {
+            "path": "data/research-sources/pallas-generated-surfaceImage-original.png",
+            "bytes": 3259507,
+            "sha256": "16b4790b3826bba5466658e59aa03801c6e38ceb69ae8356e402792f24388d02",
+            "width": 1672,
+            "height": 941,
+            "format": "PNG"
+          }
+        ],
+        "visualInspection": "Original1672x941PNG inspected: both footer lines readable, grey invented crater/blocks/regolith, hard directional shadows and black sky. No visible astronomical disk or additional objects. No source-body map supplied or reused."
+      }
+    },
+    {
+      "path": "data/research-sources/pallas-sky-view-preparation-2026-10-21.json",
+      "sha256": "d586fb8177d86056c3b7602dc5718fa941f906787f9896c33df8501ecc3fbd0b",
+      "record": {
+        "date": "2026-10-21",
+        "status": "Research-only independent hypothetical sky illustration; no dossier109 or embedding",
+        "tool": "Built-in image_gen",
+        "prompt": "Use case: scientific-educational. Create an independent hypothetical sky/observer illustration from asteroid 2 Pallas, wide landscape about16:9. View outward over a low irregular horizon of invented charcoal-grey regolith, scattered angular stones and low subdued crater rims, with black sky filling the upper two-thirds. Hard directional sunlight enters from outside the frame. No astronomical disks or stars in frame: the Sun is intentionally offscreen. This is an imagined unregistered orientation, not an observed dated site, measured horizon or normal direction. The separate skyGeometry solar angular assumptions at nominal 2.769559010737709 AU and perihelion/aphelion alternatives are not photometric calibration and should not be rendered as a disk. All terrain, chemistry, grain properties, grey colour, phase, lighting and exposure are hypothetical; remote infrared and density models do not establish local composition. Invent the scene independently without copying, tracing, recolouring or reusing any observed body's map or recognizable Moon/Mars/Ceres/Vesta/Bennu geography. No atmosphere haze, clouds, ice exposure, plume, liquid, ocean, biology, people, spacecraft, landing markers, structures, exposed interior or cutaway. Black sky is an illustrative assumption, not measured absence. Restrained educational rendered realism. At bottom place a clean dark footer with exactly two readable lines: 'IMAGINED SKY VIEW \u2014 PALLAS' and 'Terrain, material, orientation and lighting are hypothetical'. No other text.",
+        "defaultOriginalPath": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9977d139-68da-42b5-b999-329478e86d4d.png",
+        "projectOriginalPath": "data/research-sources/pallas-generated-skyImage-original.png",
+        "geometryReference": "data/research-sources/pallas-observer-geometry-preparation-2026-10-21.json",
+        "scienceReferences": [
+          "docs/research/pallas-complete-visual-assessment-2026-10-21.json",
+          "docs/research/pallas-carry-complete-visual-assessment-2026-10-21.json",
+          "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json"
+        ],
+        "visualInspection": "Original inspected: both footer lines readable; invented grey blocks/regolith/crater relief, hard shadows and black sky. No astronomical disk or additional objects. Sky occupies about half the scene rather than requested upper two thirds; retained as hypothetical composition, no geometry registration claim.",
+        "limits": [
+          "All terrain/material/chemistry/fractions/colour/phase/orientation/light/exposure invented. No input images, analog skins or observed-site reconstruction.",
+          "Sun off frame; no raster/angular-diameter measurement. Separate skyGeometry scalar solar cases are not dated geometry, normal/attitude, uncertainty envelope or photometry.",
+          "Black sky assumption not measured absence; no plume/ocean/biology/landing or exposed interior.",
+          "Default and project PNG preserved unchanged. No master/preview/native/public/map/model/shape/catalogue/codec changes; capacity recovery remains necessary before embedding."
+        ],
+        "files": [
+          {
+            "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9977d139-68da-42b5-b999-329478e86d4d.png",
+            "bytes": 1877743,
+            "sha256": "0bcd0c06ded13fe3049f614941b48498da258378996d15e77cc44cb584fb208a",
+            "width": 1672,
+            "height": 941,
+            "format": "PNG"
+          },
+          {
+            "path": "data/research-sources/pallas-generated-skyImage-original.png",
+            "bytes": 1877743,
+            "sha256": "0bcd0c06ded13fe3049f614941b48498da258378996d15e77cc44cb584fb208a",
+            "width": 1672,
+            "height": 941,
+            "format": "PNG"
+          }
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/pallas-master-preview-preparation-2026-10-21.json",
+      "sha256": "681c856883eaaaff6138429237940110b035e08d45f5edba146fa1d06a7d5317",
+      "record": {
+        "date": "2026-10-21",
+        "body": "2 Pallas",
+        "status": "Research-only original-preserving master and preview preparation; no dossier109 or production changes.",
+        "views": [
+          {
+            "role": "surfaceImage",
+            "preparation": "data/research-sources/pallas-local-view-preparation-2026-10-21.json",
+            "fullPrompt": "Scientific-educational illustration for Fidelity: an independently imagined local regolith view on asteroid 2 Pallas. Wide landscape, approximately 16:9. Camera close to an invented gently rolling cratered surface with subdued charcoal-grey dusty grains and scattered angular blocks; uneven low ridges recede into an airless-looking black sky. Crisp hard directional sunlight from off frame, restrained neutral colour, physically plausible but explicitly hypothetical terrain. This is not a reconstruction of an observed site. All rock arrangements, craters, relief, composition, grain properties, colour, phase, illumination and exposure are invented. Pallas remote near-infrared band evidence and density models do not establish this local material or morphology. Create the scene independently: do not copy, recolour, trace or reuse any image, map, skin or recognizable geography of the Moon, Mars, Ceres, Vesta, Bennu or another observed body. No ice exposures, water, ocean, plume, atmosphere haze, clouds, biology, people, spacecraft, structures, landing markers, cutaway or exposed interior. No Sun or other astronomical disk within frame; no stars needed. Add a clean dark footer band at bottom containing exactly two readable lines: 'IMAGINED LOCAL VIEW \u2014 PALLAS' and 'Terrain, material, colour and lighting are hypothetical'. No other text. Educational rendered realism with careful microtexture, not a photograph or measured topographic map.",
+            "originals": [
+              {
+                "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-15618217-d523-4e8e-8efd-02dfc488fd6e.png",
+                "bytes": 3259507,
+                "sha256": "16b4790b3826bba5466658e59aa03801c6e38ceb69ae8356e402792f24388d02",
+                "width": 1672,
+                "height": 941,
+                "format": "PNG"
+              },
+              {
+                "path": "data/research-sources/pallas-generated-surfaceImage-original.png",
+                "bytes": 3259507,
+                "sha256": "16b4790b3826bba5466658e59aa03801c6e38ceb69ae8356e402792f24388d02",
+                "width": 1672,
+                "height": 941,
+                "format": "PNG"
+              }
+            ],
+            "outputs": [
+              {
+                "role": "master",
+                "path": "data/research-sources/pallas-generated-surfaceImage-master-2026-10-21.jpg",
+                "bytes": 404640,
+                "sha256": "22661552ae710257fd649899741a2cc32fd695d6dc2c04f8ddb25d286bdc3e14",
+                "width": 1536,
+                "height": 864,
+                "format": "JPEG",
+                "quality": 85
+              },
+              {
+                "role": "preview",
+                "path": "data/research-sources/pallas-generated-surfaceImage-preview-2026-10-21.jpg",
+                "bytes": 12341,
+                "sha256": "01637225a6760434c0776b46debacc5a16583e91e147833b55368ac8e3092386",
+                "width": 256,
+                "height": 144,
+                "format": "JPEG",
+                "quality": 80
+              }
+            ]
+          },
+          {
+            "role": "skyImage",
+            "preparation": "data/research-sources/pallas-sky-view-preparation-2026-10-21.json",
+            "fullPrompt": "Use case: scientific-educational. Create an independent hypothetical sky/observer illustration from asteroid 2 Pallas, wide landscape about16:9. View outward over a low irregular horizon of invented charcoal-grey regolith, scattered angular stones and low subdued crater rims, with black sky filling the upper two-thirds. Hard directional sunlight enters from outside the frame. No astronomical disks or stars in frame: the Sun is intentionally offscreen. This is an imagined unregistered orientation, not an observed dated site, measured horizon or normal direction. The separate skyGeometry solar angular assumptions at nominal 2.769559010737709 AU and perihelion/aphelion alternatives are not photometric calibration and should not be rendered as a disk. All terrain, chemistry, grain properties, grey colour, phase, lighting and exposure are hypothetical; remote infrared and density models do not establish local composition. Invent the scene independently without copying, tracing, recolouring or reusing any observed body's map or recognizable Moon/Mars/Ceres/Vesta/Bennu geography. No atmosphere haze, clouds, ice exposure, plume, liquid, ocean, biology, people, spacecraft, landing markers, structures, exposed interior or cutaway. Black sky is an illustrative assumption, not measured absence. Restrained educational rendered realism. At bottom place a clean dark footer with exactly two readable lines: 'IMAGINED SKY VIEW \u2014 PALLAS' and 'Terrain, material, orientation and lighting are hypothetical'. No other text.",
+            "originals": [
+              {
+                "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-9977d139-68da-42b5-b999-329478e86d4d.png",
+                "bytes": 1877743,
+                "sha256": "0bcd0c06ded13fe3049f614941b48498da258378996d15e77cc44cb584fb208a",
+                "width": 1672,
+                "height": 941,
+                "format": "PNG"
+              },
+              {
+                "path": "data/research-sources/pallas-generated-skyImage-original.png",
+                "bytes": 1877743,
+                "sha256": "0bcd0c06ded13fe3049f614941b48498da258378996d15e77cc44cb584fb208a",
+                "width": 1672,
+                "height": 941,
+                "format": "PNG"
+              }
+            ],
+            "outputs": [
+              {
+                "role": "master",
+                "path": "data/research-sources/pallas-generated-skyImage-master-2026-10-21.jpg",
+                "bytes": 221573,
+                "sha256": "2fa9788ccc37c9216a1623480f4d32646d6281f07ef5933a41e8c7d80d421427",
+                "width": 1536,
+                "height": 864,
+                "format": "JPEG",
+                "quality": 85
+              },
+              {
+                "role": "preview",
+                "path": "data/research-sources/pallas-generated-skyImage-preview-2026-10-21.jpg",
+                "bytes": 7263,
+                "sha256": "21a2ae1ff3fde9ed338fd65d81d196efd54b7e43c334bff52954a001327a5870",
+                "width": 256,
+                "height": 144,
+                "format": "JPEG",
+                "quality": 80
+              }
+            ]
+          }
+        ],
+        "limits": [
+          "All terrain/material/chemistry/fractions/colour/orientation/phase/light/exposure invented; no analog skins or observed-site reconstruction.",
+          "Sun off frame; no raster/angular-diameter measurement or photometric calibration. Separate skyGeometry scalar cases are not dated geometry or a normal/attitude solution.",
+          "Black sky illustrative assumption not measured absence; no plume/ocean/biology/landing/exposed interior.",
+          "Small previews require explicit IMAGINED card labels. Native scientific images are untouched; these derivatives are generated illustrations only.",
+          "Capacity recovery remains necessary before embedding; no current full build or browser claim."
+        ],
+        "visualInspection": "Both complete1536 masters and256 previews inspected: invented grey crater/block terrain and black sky, no astronomical disks. Both master footer lines readable; small preview footers too small for reliable reading and require explicit IMAGINED card labels. Sky composition differs from requested sky fraction; no orientation/normal/dated registration or angular calibration claimed.",
+        "previewRawBytes": 19604
+      }
+    },
+    {
+      "path": "data/research-sources/pallas-observer-geometry-preparation-2026-10-21.json",
+      "sha256": "d1d6ce09dec3012ca1f4104931b9f21fbadf0800098fcee9aaba8976495fcc1f",
+      "record": {
+        "date": "2026-10-21",
+        "status": "Research-only hypothetical Pallas solar observer geometry; no generated or embedded illustration",
+        "body": "2 Pallas (A802 FA)",
+        "sourceFiles": [
+          {
+            "path": "data/research-sources/pallas-jpl-sbdb-response-2026-10-21.json",
+            "bytes": 4895,
+            "sha256": "961af3d5f2b404ea368ab9217fd58a57d6edb71700ca0f72c1278f3ecdfee917"
+          },
+          {
+            "path": "src/astro/appearance.js",
+            "bytes": 1394,
+            "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+          }
+        ],
+        "inputs": {
+          "solarRadiusNominalKm": 695700,
+          "temperatureK": 5772,
+          "horizontalFovDeg": 90,
+          "widthPixels": 1672,
+          "orbitEpochAsReturned": "2461200.5",
+          "referenceFrame": "JPL returned J2000 osculating orbit; scalar a/q/ad only used here"
+        },
+        "cases": [
+          {
+            "sourceElement": {
+              "label": "a",
+              "name": "a",
+              "title": "semi-major axis",
+              "sigma": "1.7736E-9",
+              "value": "2.769559010737709",
+              "units": "au"
+            },
+            "assumedDistanceAU": 2.769559010737709,
+            "angularDiameterDeg": 0.1924149447578221,
+            "centreDiscWidthFraction": 0.0016791387361452447,
+            "targetPixelsAt1672": 2.807519966834849
+          },
+          {
+            "sourceElement": {
+              "name": "q",
+              "label": "q",
+              "title": "perihelion distance",
+              "sigma": "1.5815E-8",
+              "value": "2.130621471209779",
+              "units": "au"
+            },
+            "assumedDistanceAU": 2.130621471209779,
+            "angularDiameterDeg": 0.2501170310964366,
+            "centreDiscWidthFraction": 0.0021826863201558962,
+            "targetPixelsAt1672": 3.6494515273006587
+          },
+          {
+            "sourceElement": {
+              "value": "3.408496550265638",
+              "units": "au",
+              "name": "ad",
+              "label": "Q",
+              "sigma": "2.1828E-9",
+              "title": "aphelion distance"
+            },
+            "assumedDistanceAU": 3.408496550265638,
+            "angularDiameterDeg": 0.1563458994633983,
+            "centreDiscWidthFraction": 0.001364376205418859,
+            "targetPixelsAt1672": 2.2812370154603325
+          }
+        ],
+        "limits": [
+          "All angular/raster sizes computed through skyGeometry. Semimajor axis and osculating perihelion/aphelion are separate representative heliocentric scales, not a current ephemeris, surface normal, dated observing site, uncertainty envelope or joint fitted observer scene.",
+          "Sun intended off frame. No image generated, no raster diameter measured. Irradiance/blackbody colour helper outputs discarded: no calibrated photometry, spectral transfer, exposure, adaptation, thermal or local chemistry inference.",
+          "JPL extent/full dimensions and historical Carry radii remain separate. Body shape, altitude, local horizon, slope, attitude, phase and physical registration remain unverified. No catalogue or model change.",
+          "Verified JPL synodic versus primary sidereal metadata discrepancy remains unresolved in cause. No spin relabeling or prime-meridian transform applied.",
+          "A future independent hypothetical local/observer illustration requires IMAGINED labels; no observed-body analog skins, dated terrain claim, exposed interior, atmosphere/plume/ocean/biology or survivable landing implication.",
+          "Current108dossiers/native bytes/originalPNG/masters/maps/models/shapes/provenance/codecs untouched; no109th dossier, new embedding, capacity saving or fresh test/build/browser claim."
+        ]
+      }
+    }
+  ],
+  "validation": {
+    "baseline": "044019e",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "eafc7a18a49e588d0c4e2c6387c89230b6f5b41d520919487b437f7223c14b55",
+    "fullBuild": {
+      "pass": false,
+      "attemptedHtmlBytes": 16003926,
+      "overBudgetBytes": 3926,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuildPass": true,
+    "sourceAndDerivativeHashesVerified": 8,
+    "interbuildVariation": "Live-feed differences unaudited; no compression/research savings attribution. No embedded asset or production input changed."
+  }
+}
