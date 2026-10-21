@@ -1,0 +1,117 @@
+[
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+    "before": {
+      "utf8Bytes": 3831,
+      "sha256": "b1f8980fb9c15da0db30af61ad20cff03ec605c311407873a4518706f455c2db",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3767,
+      "sha256": "60d4f8d46a853fb01d711d398395851a14bc343d5f0d0c9972af17b19dd19133",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+    "before": "2026-10-21T00:44:53Z",
+    "after": "2026-10-21T01:47:41Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+    "before": 0.38725339086394056,
+    "after": 0.3872534276775249
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+    "before": {
+      "utf8Bytes": 1367,
+      "sha256": "54530869e83122dfb0143afc76416647cc9051dff60f929c17212a35cda14a3a",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 1351,
+      "sha256": "2c7bb729d93834c73be8684ce19502f19f04e60c0cbc056c3caf421f7edebed7",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+    "before": "2026-10-21T00:47:02Z",
+    "after": "2026-10-21T01:48:38Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+    "before": 0.3872533493934954,
+    "after": 0.3872533596589373
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+    "before": {
+      "utf8Bytes": 4207,
+      "sha256": "18998a3f44c1d9bee6d07de0c80901692cdaa95d66485063f8e54b44e0ef9053",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 4199,
+      "sha256": "8b68240c59d54d86f445d8320860c974ef5a0b25a735fca9415ba76b3f59116c",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+    "before": "2026-10-21T00:45:29Z",
+    "after": "2026-10-21T01:47:53Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+    "before": 0.38725341361194415,
+    "after": 0.38725339273641557
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+    "before": {
+      "utf8Bytes": 3715,
+      "sha256": "8e6075b1241a059c688dc4c812228298339bb50bfac18b853126e8bddcc30c70",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3671,
+      "sha256": "0920c700adce585f2d1ccf0003a96e591abbfcab01a7fb557f5347a2f71f50d4",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+    "before": "2026-10-21T00:44:57Z",
+    "after": "2026-10-21T01:46:09Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+    "before": 0.38725337813907035,
+    "after": 0.38725340499989863
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+    "before": {
+      "utf8Bytes": 2239,
+      "sha256": "456914ad6e327f0c9579fdc5cd246ac526d042cded656a2ff0d520502784a160",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 2239,
+      "sha256": "03394f0476a73ad8e05ce72fc58c27f5dee8c163574ea9554082b8affff78b8b",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+    "before": "2026-10-21T00:43:59Z",
+    "after": "2026-10-21T01:45:11Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+    "before": 0.3872533572994658,
+    "after": 0.3872533841857707
+  }
+]
