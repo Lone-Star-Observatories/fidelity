@@ -1,0 +1,1307 @@
+{
+  "date": "2026-10-21",
+  "issue": "#3",
+  "bodyId": "pallas",
+  "name": "(2) Pallas",
+  "status": "Research-only native and targeted primary/supplement audit; no 109th dossier, embedding or production input change",
+  "scope": {
+    "primary": "43-page unchanged ORBi manuscript; full extracted text retained, targeted text review and visual pages 1,13,21,22,23,28,29,30,31,32,33,34,35,36. Not an all-page visual review.",
+    "supplement": "Separate unchanged 40-page publisher supplement; full extracted text retained, visual pages 5,6,7,9,16,17,18,22,23,29,30,32,33,34. Remaining pages not claimed visually inspected.",
+    "native": "Unchanged ESO original TIFF and screen JPEG retained; original visually inspected via exact decoded-pixel PNG. No globe/shape or scientific image registration adopted."
+  },
+  "paper": {
+    "title": "The violent collisional history of aqueously evolved (2) Pallas",
+    "doi": "10.1038/s41550-019-1007-5",
+    "publisherUrl": "https://www.nature.com/articles/s41550-019-1007-5",
+    "repositoryUrl": "https://orbi.uliege.be/handle/2268/246670",
+    "manuscriptUrl": "https://orbi.uliege.be/bitstream/2268/246670/1/Pallas_Marsset.pdf",
+    "supplementUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41550-019-1007-5/MediaObjects/41550_2019_1007_MOESM1_ESM.pdf",
+    "authorsAsPrinted": [
+      "Michaël Marsset",
+      "Miroslav Brož",
+      "Pierre Vernazza",
+      "Alexis Drouard",
+      "Julie Castillo-Rogez",
+      "Josef Hanuš",
+      "Matti Viikinkoski",
+      "Nicolas Rambaux",
+      "Benoît Carry",
+      "Laurent Jorda",
+      "Pavel Ševeček",
+      "Mirel Birlan",
+      "Franck Marchis",
+      "Edyta Podlewska-Gaca",
+      "Erik Asphaug",
+      "Przemyslaw Bartczak",
+      "Jérôme Berthier",
+      "Fabrice Cipriani",
+      "François Colas",
+      "Grzegorz Dudziński",
+      "Christophe Dumas",
+      "Josef Ďurech",
+      "Marin Ferrais",
+      "Romain Fétick",
+      "Thierry Fusco",
+      "Emmanuel Jehin",
+      "Mikko Kaasalainen",
+      "Agnieszka Kryszczynska",
+      "Philippe Lamy",
+      "Hervé Le Coroller",
+      "Anna Marciniak",
+      "Tadeusz Michalowski",
+      "Patrick Michel",
+      "Derek C. Richardson",
+      "Toni Santana-Ros",
+      "Paolo Tanga",
+      "Frédéric Vachier",
+      "Arthur Vigan",
+      "Olivier Witasse",
+      "Bin Yang"
+    ],
+    "authorCount": 40,
+    "edition": "ORBi publisher-postprint metadata does not prove identity with final typeset paper. General ORBi noncommercial usage terms are not CC BY or figure redistribution permission. No paper figure embedded."
+  },
+  "native": {
+    "caption": {
+      "url": "https://www.eso.org/public/images/potw2008a/",
+      "path": "data/research-sources/pallas-eso-potw2008a-caption-2026-10-21.html",
+      "bytes": 81623,
+      "sha256": "fd5f40122095cfd00e45a0bf62d2ab525553910b3ee0cf3ceb6d94f901d1c090"
+    },
+    "sources": [
+      {
+        "url": "https://cdn.eso.org/images/original/potw2008a.tif",
+        "finalUrl": "https://cdn.eso.org/images/original/potw2008a.tif",
+        "path": "data/research-sources/pallas-eso-potw2008a-original-2026-10-21.tif",
+        "bytes": 266486,
+        "sha256": "908c3b4f5967c0c35b39957ef9335e661d0f0b2f2eb4020bf42fc7b56dd9406b",
+        "format": "TIFF",
+        "size": [
+          1540,
+          768
+        ],
+        "mode": "RGB"
+      },
+      {
+        "url": "https://cdn.eso.org/images/screen/potw2008a.jpg",
+        "finalUrl": "https://cdn.eso.org/images/screen/potw2008a.jpg",
+        "path": "data/research-sources/pallas-eso-potw2008a-screen-2026-10-21.jpg",
+        "bytes": 42869,
+        "sha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e",
+        "format": "JPEG",
+        "size": [
+          1280,
+          638
+        ],
+        "mode": "RGB"
+      },
+      {
+        "url": "https://www.eso.org/public/outreach/copyright/",
+        "finalUrl": "https://www.eso.org/public/outreach/copyright/",
+        "path": "data/research-sources/pallas-eso-terms-2026-10-21.html",
+        "bytes": 83242,
+        "sha256": "410e0b5576997f201ca5d00a24ba0e89af6e4e7bf7b8a565bdf490dd417af634"
+      }
+    ],
+    "credit": "ESO/M. Marsset et al./MISTRAL algorithm (ONERA/CNRS)",
+    "publication": "2020-02-24 06:00 publisher release; not acquisition time",
+    "terms": {
+      "url": "https://www.eso.org/public/outreach/copyright/",
+      "currentBody": "CCBY4 International with full unaltered visible credit/active online links and exceptions; no blanket paper/raw-data licence inferred.",
+      "metadataConflict": "HTML social metadata still says CCBY3Unported, while current visible body and linked deed say CCBY4. Preserve distinction rather than silently conflating versions.",
+      "deed": "https://creativecommons.org/licenses/by/4.0/",
+      "deedFetched": false
+    }
+  },
+  "currentCorrectionsAndLimits": [
+    "The original ESO asset has two unlabelled disks on black with no vertical divider/border or hemisphere annotations. This corrects the initial screen description. The bright patch is on ESO RIGHT versus paper Figure 1 SOUTHERN LEFT; paper panel order/dates must not be copied to ESO without pixel/product crosswalk.",
+    "Paper Figure 1 dates UT2017-10-28 and UT2019-03-15 have corresponding five-row N_R observation sets in Supplementary Table2, but exact ESO exposure/coadd/product identity remains open. Per-frame exposure is not a combined integration.",
+    "Volume-equivalent diameter513±6km and principal SEMIAXES284×266×224±6km are reconstructed quantities, not new adopted catalogue values or local geometry. ESO512km remains a separate rounded caption value.",
+    "36 printed crater rows include one27km and one37km entry: 35 exceed30km and34 are at least40km. Main text36largerthan30km discrepancy remains explicit, with no automatic repair.",
+    "Supplementary Table4 calls errors3sigma; final average2.04±.03e20kg must not silently become1sigma. Density2.89±.08g/cm3 is a derived bulk model, not local material fractions.",
+    "Better-fit impact rows3/4 give rounded excavated0.016–0.027parent masses. All-simulation ranges, excavation before fallback and ejected mass are distinct. A >=250km transient simulated crater is not an observed rim measurement.",
+    "Thermal figure caption T0<3Ma and manuscript T0<2.5Ma thresholds remain separate. Table7 literal232Al heading is retained, intended species/cause unverified.",
+    "ESO visible terms body links CC BY4 while social metadata says CC BY3Unported. Full unchanged visible credit and active source/terms links retained; no blanket paper/raw licence inferred.",
+    "Earlier preparations are retained unchanged as provenance. Their pending statuses and initial descriptions are historical; the explicit current scope/corrections in this consolidated record govern this audit."
+  ],
+  "sections": [
+    {
+      "preparationRecord": "data/research-sources/pallas-native-original-visual-preparation-2026-10-21.json",
+      "preparationSha256": "d606a31d3e15a66775ccc6dde96115a39f84b926243e639caa135bfe788bc49e",
+      "evidence": {
+        "original": {
+          "path": "data/research-sources/pallas-eso-potw2008a-original-2026-10-21.tif",
+          "bytes": 266486,
+          "sha256": "908c3b4f5967c0c35b39957ef9335e661d0f0b2f2eb4020bf42fc7b56dd9406b"
+        },
+        "inspectionRendering": {
+          "path": "data/research-sources/pallas-eso-original-inspection-2026-10-21.png",
+          "bytes": 239082,
+          "sha256": "25a20711866cd95617c5982cf2b030ff128ed6f8abcb882981bc8cef95099600",
+          "size": [
+            1540,
+            768
+          ],
+          "mode": "RGB",
+          "exactDecodedPixelEquality": true
+        },
+        "visuallyInspected": true,
+        "findings": [
+          "ESO original TIFF is an unlabelled two-disk collage on black, without the paper Figure 1 hemisphere text, vertical border or caption. Broad blurred relief and bright patch are visible; neither apparent small structure nor gray display is independent terrain/colour calibration.",
+          "The prominent bright patch appears on the RIGHT disk of the ESO original. The visually inspected paper Figure 1 places its bright-patch southern hemisphere on the LEFT. Thus paper left/right labels must not be copied directly to ESO panel order.",
+          "The images appear qualitatively related across the two products, but exact pixel identity, scaling, orientation, panel transformation and source exposure association have not been reproduced. Dates 2017-10-28 and 2019-03-15 remain paper-figure dates pending exact ESO crosswalk.",
+          "Inspection PNG is a lossless decoded-pixel rendering for review only; unchanged publisher TIFF remains retained and authoritative for its recorded source hash. No new scientific image or licence is inferred for the paper."
+        ],
+        "limits": [
+          "No angular/raster size calculation, calibrated photometry, chemistry mapping, registered globe, shape adoption, catalogue edit or new dossier.",
+          "Existing ESO credit/terms and CC BY4 body versus CC BY3 social-metadata discrepancy remain preserved in prior native preparation.",
+          "No production test/build/browser claim refreshed; all tracked assets unchanged."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-shape-methods-visual-preparation-2026-10-21.json",
+      "preparationSha256": "3da3a9a7efc2216663d9851243c945d6ed7851b9be9414f2d367156a04030691",
+      "evidence": {
+        "source": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+        "sourceSha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+        "visuallyInspectedRenders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-21.png",
+            "pdfPage": 21,
+            "bytes": 212592,
+            "sha256": "d136f60d7f8973f0ae070c8cba95129de3d236193b4d7f8a3910f00c8dc409db"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-22.png",
+            "pdfPage": 22,
+            "bytes": 225383,
+            "sha256": "11204dad7289b967d66b254ecabb5ee6976558f9cecf45838e65facf9b0875dc"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-23.png",
+            "pdfPage": 23,
+            "bytes": 210780,
+            "sha256": "400b5c48d5675f79a0a783859ab19e867a2c66d79e297b367b9685d217efd1d1"
+          }
+        ],
+        "findings": [
+          "ADAM uses disk-resolved SPHERE and lower-resolution complementary Keck/NIRC2 images plus optical lightcurves, with cited occultations as sanity checks. Low-resolution spherical-harmonic model is refined using SPHERE-only data and then free vertices with regularization. The inversion and claimed subpixel boundary fit are not independently reproduced.",
+          "Best-fit triaxial ellipsoid has volume-equivalent diameter 513±6 km and principal semi-axes (284×266×224)±6 km. These are model dimensions, not three diameters or directly measured local normal/radius.",
+          "Southern flattening/possible basin is explicitly unseen in the nearly pole-on SPHERE images and inferred using shape reconstruction and complementary lightcurves. About 6±1 percent volume and approximately 100000-year reorientation are model interpretations, not exposed geography or observed history.",
+          "Hydrostatic comparisons assume homogeneous or two-layer interiors. Excluding mesh below minus31 degrees gives an alternative 282×262×249 km ellipsoid; hypothetical approximately6.2h past equilibrium spin differs from approximately7.8h current rotation. No unique interior, measured ancient spin or adopted mesh is established.",
+          "Synthetic crater-density uncertainties are described as Poisson stochastic-collision uncertainties; orbital-element alternatives and impact speeds are model inputs/results, not a dated ephemeris or direct impact observation."
+        ],
+        "limits": [
+          "No image, mesh, map, catalogue, physical parameters, scene registration or production input adopted or changed. All earlier dossier/native/model/shape bytes remain untouched.",
+          "Remaining primary/supplement pages, exact processing revisions, raw archive products, source pixel association, reference frame, photometry and licence crosswalk remain open.",
+          "No new angular/raster calculation, fresh tests/build or browser verification claimed."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-supplement-observation-2017-preparation-2026-10-21.json",
+      "preparationSha256": "b369f82be6684db47082a7d22ce1cb6caf333767e3fdd40f16048173098e4394",
+      "evidence": {
+        "sourceRecord": "data/research-sources/pallas-publisher-supplement-download-preparation-2026-10-21.json",
+        "visuallyInspectedPdfPage": 22,
+        "printedPage": 21,
+        "render": {
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page22.png",
+          "bytes": 168604,
+          "sha256": "863bae4674f1b27aef663a596a22ed3f963d0d6714365a425556b5831a492a29"
+        },
+        "table": "Supplementary Table 2 continuation",
+        "selectedObservationRows": {
+          "date": "2017-10-28",
+          "timeStandardAsPrinted": "UT",
+          "times": [
+            "8:28:03",
+            "8:30:14",
+            "8:32:24",
+            "8:34:34",
+            "8:36:43"
+          ],
+          "instrument": "VLT/SPHERE",
+          "filterAsPrinted": "N_R",
+          "exposureSecondsPerListedRow": 121,
+          "airmassesAsPrinted": [
+            1.35,
+            1.37,
+            1.38,
+            1.39,
+            1.4
+          ],
+          "earthDistanceAuAsPrinted": 1.7,
+          "sunDistanceAuAsPrinted": 2.54,
+          "phaseDegreesAsPrinted": 14.4,
+          "angularDiameterArcsecAsPrinted": 0.423,
+          "surveyId": "199.C-0074",
+          "piAsPrinted": "Vernazza"
+        },
+        "limits": [
+          "Five printed rows are not identified raw archive products, a coadd recipe or a uniquely associated ESO/paper image exposure. No combined exposure duration inferred.",
+          "Publisher angular diameter is transcribed, not newly calculated or transferred as Fidelity raster calibration. No skyGeometry calculation performed.",
+          "Paper Figure 1 southern-date agreement does not establish exact ESO panel source/pixel identity or permit copying panel order. The ESO bright-patch panel is on the right, unlike paper Figure 1.",
+          "Only targeted pages of the forty-page supplement have been visually inspected; remaining observation rows, raw products, processing and photometry remain open.",
+          "No catalogue, native, map, model, shape, codec, dossier or production input changed; no fresh tests/build/browser claims."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-supplement-observation-2019-preparation-2026-10-21.json",
+      "preparationSha256": "e218261d59e95c814e12c2d2b4c71910ffe5074c889b585ff2fa6da9a7a1c375",
+      "evidence": {
+        "sourceRecord": "data/research-sources/pallas-publisher-supplement-download-preparation-2026-10-21.json",
+        "visuallyInspectedPdfPage": 23,
+        "printedPage": 22,
+        "render": {
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page23.png",
+          "bytes": 158458,
+          "sha256": "ee05ec3808240a363b728bec5c327b729c0e85e061144be98425e2ef72f54c20"
+        },
+        "table": "Supplementary Table 2 continuation",
+        "selectedObservationRows": {
+          "date": "2019-03-15",
+          "timeStandardAsPrinted": "UT",
+          "times": [
+            "6:55:56",
+            "6:56:49",
+            "6:57:42",
+            "6:58:36",
+            "6:59:27"
+          ],
+          "instrument": "VLT/SPHERE",
+          "filterAsPrinted": "N_R",
+          "exposureSecondsPerListedRow": 45,
+          "surveyId": "199.C-0074",
+          "piAsPrinted": "Vernazza",
+          "airmassAsPrinted": 1.22,
+          "earthDistanceAuAsPrinted": 1.62,
+          "sunDistanceAuAsPrinted": 2.48,
+          "phaseDegreesAsPrinted": 14.4,
+          "angularDiameterArcsecAsPrinted": 0.444
+        },
+        "limits": [
+          "Five printed rows are not identified raw archive products, a coadd recipe, ten-camera-frame verification or a uniquely associated ESO/paper image exposure. No combined exposure duration inferred.",
+          "Publisher angular diameter is transcribed, not newly calculated or transferred as Fidelity raster calibration. No skyGeometry calculation performed.",
+          "Paper Figure 1 northern-date agreement does not establish exact ESO panel source/pixel identity or permit copying panel order.",
+          "Remaining supplement pages and 2017 rows still require targeted/visual audit. No exhaustive source/product/photometry verification.",
+          "No catalogue, native, map, model, shape, codec, dossier or production input changed; no fresh tests/build/browser claims."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-crater-table-preparation-2026-10-21.json",
+      "preparationSha256": "1d65e554e0dbab570d3f99f75f33bf9532918a754a7074f660146aeb32cad9e0",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "table": "Supplementary Table 1",
+        "visuallyInspectedRenders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-16.png",
+            "pdfPage": 16,
+            "printedPage": 15,
+            "bytes": 112938,
+            "sha256": "83e2c65cc1da0e15f4b4513be3c0d26672d976cc19f084f60b393124b7d5eac2"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-17.png",
+            "pdfPage": 17,
+            "printedPage": 16,
+            "bytes": 78171,
+            "sha256": "2cb1dbffa793ab6d979bade83f9a91f049c955d700e749f21d73e41c473f82e3"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-18.png",
+            "pdfPage": 18,
+            "printedPage": 17,
+            "bytes": 32392,
+            "sha256": "76ce61be87510669eaa15f2889a086cd7fa344a41d768372ff16346e9966b334"
+          }
+        ],
+        "rowsAsPrinted": [
+          {
+            "number": 1,
+            "nameAsPrinted": "Hoplon",
+            "diameterKmAsPrinted": 115,
+            "longitudeDegreesAsPrinted": 230,
+            "latitudeDegreesAsPrinted": -58
+          },
+          {
+            "number": 2,
+            "nameAsPrinted": "Doru",
+            "diameterKmAsPrinted": 110,
+            "longitudeDegreesAsPrinted": 76,
+            "latitudeDegreesAsPrinted": -40
+          },
+          {
+            "number": 3,
+            "nameAsPrinted": "Sfendnai",
+            "diameterKmAsPrinted": 110,
+            "longitudeDegreesAsPrinted": 34,
+            "latitudeDegreesAsPrinted": -35
+          },
+          {
+            "number": 4,
+            "nameAsPrinted": "Akontia",
+            "diameterKmAsPrinted": 100,
+            "longitudeDegreesAsPrinted": 130,
+            "latitudeDegreesAsPrinted": -68
+          },
+          {
+            "number": 5,
+            "nameAsPrinted": "Xyston",
+            "diameterKmAsPrinted": 95,
+            "longitudeDegreesAsPrinted": 148,
+            "latitudeDegreesAsPrinted": -43
+          },
+          {
+            "number": 6,
+            "nameAsPrinted": "Toxa",
+            "diameterKmAsPrinted": 78,
+            "longitudeDegreesAsPrinted": 119,
+            "latitudeDegreesAsPrinted": -48
+          },
+          {
+            "number": 7,
+            "nameAsPrinted": "Xiphos",
+            "diameterKmAsPrinted": 60,
+            "longitudeDegreesAsPrinted": 247,
+            "latitudeDegreesAsPrinted": -42
+          },
+          {
+            "number": 8,
+            "nameAsPrinted": "Sarissa",
+            "diameterKmAsPrinted": 54,
+            "longitudeDegreesAsPrinted": 222,
+            "latitudeDegreesAsPrinted": -44
+          },
+          {
+            "number": 9,
+            "nameAsPrinted": "Kopis",
+            "diameterKmAsPrinted": 53,
+            "longitudeDegreesAsPrinted": 297,
+            "latitudeDegreesAsPrinted": -76
+          },
+          {
+            "number": 10,
+            "nameAsPrinted": "Aklys",
+            "diameterKmAsPrinted": 92,
+            "longitudeDegreesAsPrinted": 298,
+            "latitudeDegreesAsPrinted": 38
+          },
+          {
+            "number": 11,
+            "nameAsPrinted": "Spatha",
+            "diameterKmAsPrinted": 68,
+            "longitudeDegreesAsPrinted": 274,
+            "latitudeDegreesAsPrinted": 50
+          },
+          {
+            "number": 12,
+            "nameAsPrinted": "Sica",
+            "diameterKmAsPrinted": 73,
+            "longitudeDegreesAsPrinted": 246,
+            "latitudeDegreesAsPrinted": 54
+          },
+          {
+            "number": 13,
+            "nameAsPrinted": "Pilum",
+            "diameterKmAsPrinted": 82,
+            "longitudeDegreesAsPrinted": 185,
+            "latitudeDegreesAsPrinted": 45
+          },
+          {
+            "number": 14,
+            "nameAsPrinted": "Scutum",
+            "diameterKmAsPrinted": 68,
+            "longitudeDegreesAsPrinted": 350,
+            "latitudeDegreesAsPrinted": 63
+          },
+          {
+            "number": 15,
+            "nameAsPrinted": "Falcata",
+            "diameterKmAsPrinted": 46,
+            "longitudeDegreesAsPrinted": 224,
+            "latitudeDegreesAsPrinted": 47
+          },
+          {
+            "number": 16,
+            "nameAsPrinted": "Makhaira",
+            "diameterKmAsPrinted": 49,
+            "longitudeDegreesAsPrinted": 184,
+            "latitudeDegreesAsPrinted": 60
+          },
+          {
+            "number": 17,
+            "nameAsPrinted": "A",
+            "diameterKmAsPrinted": 78,
+            "longitudeDegreesAsPrinted": 184,
+            "latitudeDegreesAsPrinted": -14
+          },
+          {
+            "number": 18,
+            "nameAsPrinted": "B",
+            "diameterKmAsPrinted": 67,
+            "longitudeDegreesAsPrinted": 194,
+            "latitudeDegreesAsPrinted": -42
+          },
+          {
+            "number": 19,
+            "nameAsPrinted": "C",
+            "diameterKmAsPrinted": 77,
+            "longitudeDegreesAsPrinted": 7,
+            "latitudeDegreesAsPrinted": 2
+          },
+          {
+            "number": 20,
+            "nameAsPrinted": "D",
+            "diameterKmAsPrinted": 61,
+            "longitudeDegreesAsPrinted": 17,
+            "latitudeDegreesAsPrinted": -12
+          },
+          {
+            "number": 21,
+            "nameAsPrinted": "E",
+            "diameterKmAsPrinted": 92,
+            "longitudeDegreesAsPrinted": 4,
+            "latitudeDegreesAsPrinted": -38
+          },
+          {
+            "number": 22,
+            "nameAsPrinted": "F",
+            "diameterKmAsPrinted": 46,
+            "longitudeDegreesAsPrinted": 299,
+            "latitudeDegreesAsPrinted": -25
+          },
+          {
+            "number": 23,
+            "nameAsPrinted": "G",
+            "diameterKmAsPrinted": 27,
+            "longitudeDegreesAsPrinted": 322,
+            "latitudeDegreesAsPrinted": -52
+          },
+          {
+            "number": 24,
+            "nameAsPrinted": "H",
+            "diameterKmAsPrinted": 57,
+            "longitudeDegreesAsPrinted": 15,
+            "latitudeDegreesAsPrinted": -45
+          },
+          {
+            "number": 25,
+            "nameAsPrinted": "J",
+            "diameterKmAsPrinted": 49,
+            "longitudeDegreesAsPrinted": 153,
+            "latitudeDegreesAsPrinted": 26
+          },
+          {
+            "number": 26,
+            "nameAsPrinted": "K",
+            "diameterKmAsPrinted": 56,
+            "longitudeDegreesAsPrinted": 121,
+            "latitudeDegreesAsPrinted": -2
+          },
+          {
+            "number": 27,
+            "nameAsPrinted": "L",
+            "diameterKmAsPrinted": 48,
+            "longitudeDegreesAsPrinted": 23,
+            "latitudeDegreesAsPrinted": 43
+          },
+          {
+            "number": 28,
+            "nameAsPrinted": "M",
+            "diameterKmAsPrinted": 50,
+            "longitudeDegreesAsPrinted": 325,
+            "latitudeDegreesAsPrinted": 50
+          },
+          {
+            "number": 29,
+            "nameAsPrinted": "N",
+            "diameterKmAsPrinted": 37,
+            "longitudeDegreesAsPrinted": 355,
+            "latitudeDegreesAsPrinted": 70
+          },
+          {
+            "number": 30,
+            "nameAsPrinted": "O",
+            "diameterKmAsPrinted": 45,
+            "longitudeDegreesAsPrinted": 199,
+            "latitudeDegreesAsPrinted": 54
+          },
+          {
+            "number": 31,
+            "nameAsPrinted": "P",
+            "diameterKmAsPrinted": 54,
+            "longitudeDegreesAsPrinted": 214,
+            "latitudeDegreesAsPrinted": 64
+          },
+          {
+            "number": 32,
+            "nameAsPrinted": "Q",
+            "diameterKmAsPrinted": 58,
+            "longitudeDegreesAsPrinted": 321,
+            "latitudeDegreesAsPrinted": 27
+          },
+          {
+            "number": 33,
+            "nameAsPrinted": "R",
+            "diameterKmAsPrinted": 64,
+            "longitudeDegreesAsPrinted": 80,
+            "latitudeDegreesAsPrinted": 33
+          },
+          {
+            "number": 34,
+            "nameAsPrinted": "S",
+            "diameterKmAsPrinted": 52,
+            "longitudeDegreesAsPrinted": 86,
+            "latitudeDegreesAsPrinted": 50
+          },
+          {
+            "number": 35,
+            "nameAsPrinted": "U",
+            "diameterKmAsPrinted": 42,
+            "longitudeDegreesAsPrinted": 262,
+            "latitudeDegreesAsPrinted": 70
+          },
+          {
+            "number": 36,
+            "nameAsPrinted": "V",
+            "diameterKmAsPrinted": 72,
+            "longitudeDegreesAsPrinted": 277,
+            "latitudeDegreesAsPrinted": 36
+          }
+        ],
+        "transcriptionChecks": {
+          "rows": 36,
+          "diameterAbove30Km": 35,
+          "diameterAtLeast40Km": 34
+        },
+        "limits": [
+          "These are authors’ interpreted crater diameters and planetocentric coordinates, not independently measured terrain or a calibrated Fidelity map. No new angular/raster calculation performed.",
+          "Table row G is printed 27 km and N is 37 km. The table therefore has 35 entries above 30 km and 34 at least 40 km. Preserve the 36-total versus main-text greater-than-30 wording discrepancy; cause/version or selection crosswalk remains open.",
+          "Sixteen word names versus twenty letter designations follow authors’ multiple-rotation-phase versus single-epoch convention. This does not verify official IAU adoption.",
+          "Coordinates are not transferred to a globe, scene or ESO two-panel image; longitude convention, registration, exact source pixels and uncertainties remain unaudited.",
+          "No dossier, production asset, catalogue, codec, map, shape or model changed; no fresh build/test/browser claim."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-central-peak-figure-preparation-2026-10-21.json",
+      "preparationSha256": "84f21db00f1a3b14b9264e6244bbb6bd1576c0535ac7f5029060fb1e5006393c",
+      "evidence": {
+        "sourceRecord": "data/research-sources/pallas-publisher-supplement-download-preparation-2026-10-21.json",
+        "visuallyInspectedPdfPage": 5,
+        "printedPage": 4,
+        "figure": "Supplementary Figure 1",
+        "render": {
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page5.png",
+          "bytes": 211841,
+          "sha256": "20476b724b27c370decad8864dcc79b9a7af5a21db2d847014ee3e4dc0eb1b3f"
+        },
+        "findings": [
+          "Caption explicitly describes squared luminosity scaling of the southern-hemisphere image to enhance brightness variations. This is processed contrast, not calibrated visible colour or directly measured albedo.",
+          "Hoplon is captioned at planetocentric (230,-58) degrees with approximate115km diameter. The enlargement and three coloured profile segments illustrate authors’ central-peak interpretation; coloured segments/blue borders are annotations, not surface chemistry.",
+          "Plot ordinate is number of counts and abscissa distance(km). This is a brightness profile, not an elevation profile or independently reproduced terrain-height measurement."
+        ],
+        "limits": [
+          "Publisher coordinates, dimensions and plot units are transcribed; no new angular/raster/height computation performed. No skyGeometry calculation.",
+          "Figure identity does not establish exposure UTC/raw product/ESO panel pixel identity, processing transfer, body-fixed longitude convention or current Fidelity map registration.",
+          "No figure/image embedded or altered, no map/model/shape/catalogue/codec/dossier changed, no fresh build/test/browser claim. Remaining source and licence crosswalk remains open."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-equilibrium-figure-preparation-2026-10-21.json",
+      "preparationSha256": "dd228a3abf8f3da5ab713dfd1532adb4389d8f226c2f7463727ccce1dd7cfd77",
+      "evidence": {
+        "sourceRecord": "data/research-sources/pallas-publisher-supplement-download-preparation-2026-10-21.json",
+        "visuallyInspectedRenders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/equilibrium-06.png",
+            "pdfPage": 6,
+            "printedPage": 5,
+            "bytes": 131585,
+            "sha256": "5523ce6efd5cbd9ded928893b6e1451208149bf18ba0f9f973e18c3f842e7162"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/equilibrium-07.png",
+            "pdfPage": 7,
+            "printedPage": 6,
+            "bytes": 130073,
+            "sha256": "56fd90e9ad64d7abc7e9fa47b31ad38c47be5f19c5cc34e0c57a07f46e299f36"
+          }
+        ],
+        "findings": [
+          "Supplementary Figure2 explicitly labels error bars as three-sigma uncertainties. They must not silently become one-sigma errors or be combined with other parameter errors as a joint fit.",
+          "Green cross represents inferred shape dimensions versus density, black circles homogeneous hydrostatic predictions, and bottom green circles assumed heterogeneous models. Plot symbols are model alternatives, not resolved internal layers or measured local chemistry.",
+          "Blue fitted ellipsoid is compared under a hypothetical1.6h spin change; approximate6.2h ancient equilibrium spin and impact explanation remain interpretations, not observed history.",
+          "Supplementary Figure3 is an equator-on ADAM mesh visualization with a blue ellipsoid fitted excluding latitudes below minus31 degrees. Blue dots and mesh facets are model rendering, not surface colour, particles, resolved rocks or a native photograph.",
+          "About6±1 percent basin volume is conditional on this reference ellipsoid and inferred polar shape. No original digital mesh, exact orientation or body-frame registration has been verified."
+        ],
+        "limits": [
+          "No new angular/raster, volume or density computation performed. Publisher values transcribed only.",
+          "No figure embedding, source transformation, catalogue replacement, shape adoption or production input change. No fresh tests/build/browser claim.",
+          "Targeted visual inspection does not establish full primary/supplement audit, fit reproduction, raw-image/pixel association, calibrated colour or redistribution permission."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-mass-table-preparation-2026-10-21.json",
+      "preparationSha256": "d1c47c162368aa729e8092a5d558b1d5e5b7498d882426a0081976549696dd94",
+      "evidence": {
+        "sourceRecord": "data/research-sources/pallas-publisher-supplement-download-preparation-2026-10-21.json",
+        "visuallyInspectedRenders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/mass-table-29.png",
+            "pdfPage": 29,
+            "printedPage": 28,
+            "bytes": 108918,
+            "sha256": "df8bafda03feab3cc312a5b21d28af6f6802a1a02d1da8d87b891747af4008ca"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/mass-table-30.png",
+            "pdfPage": 30,
+            "printedPage": 29,
+            "bytes": 73482,
+            "sha256": "0383df90cdfca8d2d5018ad6151373cabe7aaf163097f66ea8e3a3a29521a26b"
+          }
+        ],
+        "table": "Supplementary Table4",
+        "findings": [
+          "Table inventories28 literature mass estimates, with methods deflection or ephemeris and accepted/rejected flags. Rows1,3,12,13 are marked rejected; the other24 accepted. Selection is the authors’ compilation, not independent validation of28 original measurements.",
+          "Caption explicitly describes three-sigma uncertainties for the estimates. Printed final Average is2.04±0.03 times10^20kg. No silent reassignment of these uncertainties to one-sigma, independent recalculation or new precision claim.",
+          "Rows16–19 share reference36. Multiple listed rows and accepted flags do not establish statistically independent underlying observations or complete covariance treatment.",
+          "Mass selection, averaging/error method, bibliography-to-original-data checks and current catalogue crosswalk remain open. Derived bulk density is not measured local composition, porosity or a surface map."
+        ],
+        "limits": [
+          "No new physical or angular/raster computation, parameter adoption, native embedding, catalogue/model/map/shape/codec/dossier change. No fresh build/test/browser claim.",
+          "Only targeted main/supplement pages visually inspected; full publication/version and raw-product/photometric/permission audits remain open."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-composition-visual-preparation-2026-10-21.json",
+      "preparationSha256": "064108ba0dc8d2930be365ee6840424ce2bc0cdb31a101003cdb0847558dd1ff",
+      "evidence": {
+        "source": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+        "sourceSha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+        "visuallyInspectedRenders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-31.png",
+            "pdfPage": 31,
+            "bytes": 176335,
+            "sha256": "540a2be69ab5b10bf0318672d20f6d21cf11ef323ee472f080a14ff6657af46f"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-32.png",
+            "pdfPage": 32,
+            "bytes": 182796,
+            "sha256": "a56213f7f268856ddc4769d9f416912ab2c9096fc21f36f418b523fd1aed5976"
+          }
+        ],
+        "findings": [
+          "Authors combine shape volume with literature mass to infer2.89±0.08g/cm3 bulk density. Agreement with CM grain density assumes near-zero interior porosity; it is not an independent porosity measurement or local mineral fraction.",
+          "Three-micron hydration similarity coexists with visible/near-infrared spectral differences from CM meteorites, including absent0.7–0.9micron features. Authors explicitly regard a direct CM-parent link as uncertain. Heated-CM parentage and impact-driven partial dehydration are proposed explanations, not uniquely identified composition/history.",
+          "Lower water-to-rock ratio relative to Ceres is an interpretation from density/topography/family survival. Ceres comparison does not supply Pallas geography, texture or calibrated colour.",
+          "Low versus high initial water-to-rock ratios produce distinct thermophysical pathways: undifferentiated evolved surface versus loss of a former icy shell exposing hydrated mantle. Transient ocean, shell removal and mantle exposure are conditional ancient-evolution models, not observed present ocean, active sublimation, exposed liquid or current geology."
+        ],
+        "limits": [
+          "No new density/temperature/chemistry/angular/raster calculation or parameter adoption. No generated map, analog skin, image embedding or production change.",
+          "Targeted pages31–32 are not the complete composition section; page33 onward and cited laboratory/spectral/thermal sources still need audit.",
+          "No fresh tests/build/browser claim; catalogue, dossiers, native bytes, models, maps, shapes and codecs remain untouched."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-composition-thermal-continuation-preparation-2026-10-21.json",
+      "preparationSha256": "579b12cbbe2b519f5a9bbef1dd37331a5926f3c0236ec87f73adbef4a8c3c6d2",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+          "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+          "page": 33
+        },
+        "visualInspection": {
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-33.png",
+          "bytes": 200912,
+          "sha256": "047f29e228b69c8ca842656acc481050a8910f154aa5ebe411172fa288a7c3a2",
+          "completePageInspected": true
+        },
+        "findings": [
+          "Authors favour a low initial water-to-rock scenario; modelled small carbonate/chloride fractions are possible explanations of family albedo and surface variations, not measured local salt abundances or a chemical map.",
+          "Approximately 820 K is a silicate-dehydration threshold in a formation-time-dependent historical interior model, not a measured present surface or interior temperature.",
+          "One-dimensional thermal conduction includes radioisotope decay heating. Supplementary Tables 7 and 8 provide author model inputs; these inputs and model implementation have not been independently reproduced.",
+          "Approximately 2.5 W/m/K for pure serpentine and up to 5 W/m/K for anhydrous olivine/pyroxene are cited material-model properties, not measured local Pallas conductivity."
+        ],
+        "open": [
+          "Page 34 onward thermal-method continuation remains to inspect.",
+          "Current composition, temperature, exact native image/product association, photometry, frame and independent model reproduction remain open."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-thermal-history-visual-preparation-2026-10-21.json",
+      "preparationSha256": "9c893171b8901bbb7ca63461bea4b8410f6b984c219acf87763ab520884db691",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+          "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+          "page": 34
+        },
+        "visualInspection": {
+          "completePageInspected": true,
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-34.png",
+          "bytes": 218954,
+          "sha256": "03a7acd8f088d6d2005efb8001fe480ac6ba7e93fbdc69778ada84367f96ed1d"
+        },
+        "findings": [
+          "Authors explore mantle thermal conductivity 0.5–2.5 W/m/K assuming advanced aqueous alteration; this is a model parameter range, not measured Pallas conductivity.",
+          "Model partial central dehydration occurs for formation less than 2.5 million years after CAIs. The inference of little large-scale silicate differentiation depends explicitly on the proposed CM association and mostly later than 3 million year CM ages. Neither is an independently measured Pallas formation time or resolved interior.",
+          "Early water separation/upward flow and salt enrichment are author historical interpretations; not observed present liquid, plumbing, local salt fractions or surface activity.",
+          "Phaethon as a proposed Pallas-family fragment and sodium variation in Geminid meteors do not establish local Pallas sodium abundance, a confirmed genealogy or transferable terrain."
+        ],
+        "open": [
+          "Thermal numerical implementation, Supplementary Figure 5 and Tables 7–8 not independently reproduced.",
+          "Page 35 continuation and later references remain to inspect."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-thermal-input-tables-visual-preparation-2026-10-21.json",
+      "preparationSha256": "1e2f73beabc548a956faf397573c04325220dfdca30b746cba13858cbbc98fd4",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "visuallyInspected": [
+          {
+            "pdfPage": 33,
+            "printedPage": 32,
+            "completePage": true,
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-table-33.png",
+            "bytes": 158883,
+            "sha256": "08330cf5bff5a03edc2fe0daed59fce4d3f3a8cdc18e2679799a019371be6ff7"
+          },
+          {
+            "pdfPage": 34,
+            "printedPage": 33,
+            "completePage": true,
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-table-34.png",
+            "bytes": 98541,
+            "sha256": "5463d404694b8f626ad00e91e95a71ee3f4000375d8bc668c19976cf9d6bbd1a"
+          }
+        ],
+        "findings": [
+          "Supplementary Table 7 PDF page33/printed32 visibly labels its fourth parent nuclide 232Al. Preserve this printed label; intended species, cause and implementation remain unverified. Do not silently correct it or treat the extracted label as an independently verified isotope input.",
+          "Table 7 contains cited author radioisotope heating inputs, not measured current local Pallas abundances or independently reproduced thermal history.",
+          "Supplementary Table 8 PDF page34/printed33 explicitly lists assumed material properties. Hydrohalite serves as a salt reference; listing water, ice, clathrate, mud and hydrated rock does not demonstrate their present local occurrence or fractions.",
+          "Rock conductivity 0.5–2.5 W/m/K agrees with the explored model range in manuscript page34; these are assumed properties, not measured local conductivity."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-thermal-figure-visual-preparation-2026-10-21.json",
+      "preparationSha256": "c45610891b1b5236230fc83e7dddfe070b478b9d426c3d862e3f9749f3901170",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769",
+          "pdfPage": 9,
+          "printedPage": 8,
+          "figure": 5
+        },
+        "visualInspection": {
+          "completePage": true,
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-figure-09.png",
+          "bytes": 462914,
+          "sha256": "60d785452c7ab7b8a921f181f3be2cbe38167a66219f3bcb285ccf7892f203f7"
+        },
+        "findings": [
+          "Four model temperature-versus-radius/time panels assume formation 3.5, 3.0, 2.5 and 2.0 Ma after CAIs, respectively. Palette and isotherms are simulated temperatures, not observed geography or calibrated visible colour.",
+          "Caption assumes an ice/rock mixture with mean density 2.9 g/cm3; this is a model assumption, not measured local fractions or a resolved interior.",
+          "Caption says partial dehydration for formation earlier than 3.0 Ma; manuscript page34 says earlier than 2.5 Ma. Both thresholds retained separately; cause, numerical implementation and version correspondence remain unverified.",
+          "Homogeneous-interior inference remains conditional on CM meteorite analogy and their cited formation ages; no current local temperature or liquid-water observation is established."
+        ],
+        "open": [
+          "Exact numerical model reproduction and the threshold wording discrepancy remain open."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-phaethon-association-visual-preparation-2026-10-21.json",
+      "preparationSha256": "def785cb4708c493beeac155feb7687fe15772fdbdf38aaf0ca38f7cba2968dd",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+          "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+          "page": 35
+        },
+        "visualInspection": {
+          "completePageInspected": true,
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/phaethon-35.png",
+          "bytes": 224285,
+          "sha256": "2e2c34513043941b0a5bec6218e0fd26503db5c77df931504e203eaed15a63a6"
+        },
+        "findings": [
+          "Authors explicitly describe the Pallas–Phaethon genetic association as debated; similar visible/near-infrared spectra and some compatible albedo estimates do not establish a shared origin.",
+          "The cited 14±4 percent polarimetric-slope albedo is for Phaethon, not a new Pallas albedo measurement or calibration of the ESO image.",
+          "Large grains and surface porosity are possible explanations of Phaethon polarization, not measured local Pallas regolith properties.",
+          "Phaethon lacks the cited Pallas 3-micron band; thermal dehydration versus absent genetic association remain alternatives in this manuscript. No chemical or terrain transfer between bodies is supported.",
+          "DESTINY+ and Webb suggestions are historical manuscript proposals, not independently verified current mission status or completed observations."
+        ],
+        "open": [
+          "Later primary literature and current mission outcomes have not been audited here.",
+          "Exact raw-image/coadd association, frame, photometry, composition and independent model reproduction remain open."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-collisional-methods-visual-preparation-2026-10-21.json",
+      "preparationSha256": "54d0d4f2ddd089881648fe99b861e3202d6ae8c4629989354144828a20b98ba5",
+      "evidence": {
+        "sourceSha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0",
+        "visualInspection": [
+          {
+            "page": 29,
+            "completePage": true,
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/collisional-29.png",
+            "bytes": 183161,
+            "sha256": "c6d8125874df36d45b0259f1a00415407acd97a3b8773d097d2dc8a0129ad07c"
+          },
+          {
+            "page": 30,
+            "completePage": true,
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/collisional-30.png",
+            "bytes": 184910,
+            "sha256": "ac8167cbcb6d1fa0c6ca4f1cd432709cffe98dd32bcc5a6480ee9824553f7d8f"
+          }
+        ],
+        "findings": [
+          "Fragment size distributions assume post-impact density 2.89 g/cm3; expanded lower-density fragments are an alternative shifting inferred sizes, not measured individual fragment densities.",
+          "Manuscript page29 quotes ejected mass 0.015–0.028 parent-mass units while Supplementary Table6 includes values outside this range. Selection scope/version relation remains open; preserve both without repair.",
+          "Monte Carlo scaling uses a cited basalt law at 5 km/s; authors explicitly acknowledge inconsistency with typical Pallas impact speeds. This is not a measured local basalt composition or validated strength law for Fidelity.",
+          "Model uses mass discretization factor1.5, output step10 Ma, nominal4 Ga duration and at least10 runs. Timescales and family-origin probabilities are author model results, not directly dated surface history."
+        ],
+        "open": [
+          "Numerical implementation, selection of impact cases, uncertainty propagation and later literature remain unaudited."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-impact-table-visual-preparation-2026-10-21.json",
+      "preparationSha256": "ac581c949d9bc7bc12546a57e8fdf524938fc5357a7d0f3902d17050754b8ee1",
+      "evidence": {
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769",
+          "pdfPage": 32,
+          "printedPage": 31,
+          "table": 6
+        },
+        "visualInspection": {
+          "completePage": true,
+          "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/impact-table-32.png",
+          "bytes": 86782,
+          "sha256": "602d9836a1e9e7d7e1939bc9747f173b9857e60cd4475bab207bd37a9eee96e6"
+        },
+        "rowsAsPrinted": [
+          [
+            69.7,
+            45,
+            2.6,
+            "0.106",
+            0.0467,
+            0.0581
+          ],
+          [
+            94.8,
+            60,
+            2.2,
+            "0.103*",
+            0.0241,
+            0.028
+          ],
+          [
+            59.8,
+            45,
+            2.8,
+            "0.067",
+            0.027,
+            0.0284
+          ],
+          [
+            51.3,
+            45,
+            3.0,
+            "0.042",
+            0.0156,
+            0.0148
+          ],
+          [
+            69.7,
+            60,
+            2.6,
+            "0.059*",
+            0.0104,
+            0.01
+          ],
+          [
+            128.9,
+            75,
+            1.8,
+            "0.024*",
+            0.0022,
+            0.0013
+          ]
+        ],
+        "columns": [
+          "projectile diameter km",
+          "impact angle degrees",
+          "printed log(dp/Dpb)",
+          "effective strength/scaling law ratio",
+          "excavated mass / parent mass",
+          "ejected mass / parent mass"
+        ],
+        "findings": [
+          "All rows assume 12 km/s impact speed. These are selected SPH scenarios, not observed projectile sizes, dated collisions or measured ejecta inventories.",
+          "The third column visibly reads log(dp/Dpb) with positive values 1.8–3.0. Preserve its printed heading and values; definition/base/scaling or possible typographical issue remains unverified, with no silent reinterpretation.",
+          "Star marks are retained literally; their explanation and numerical implementation have not been verified from this page."
+        ]
+      }
+    },
+    {
+      "preparationRecord": "data/research-sources/pallas-impact-selection-scope-preparation-2026-10-21.json",
+      "preparationSha256": "5d793f804712e71833259472913e4cf34e85ce3aa683c3f8a7a421d4f475c4ea",
+      "evidence": {
+        "date": "2026-10-21",
+        "body": "2 Pallas",
+        "source": "https://orbi.uliege.be/bitstream/2268/246670/1/Pallas_Marsset.pdf",
+        "inspection": {
+          "primaryPdfPage": 28,
+          "printedPage": 28,
+          "scope": "Full page visually inspected after text extraction; publisher supplement Table 6 previously visually inspected separately."
+        },
+        "sourceFiles": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/impact-28.png",
+            "bytes": 226269,
+            "sha256": "90d6fe62fc3a7564b6b2f192310427deb6320db997572f9d65a895858216dca8"
+          },
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          }
+        ],
+        "findings": [
+          {
+            "topic": "Modelled excavated mass",
+            "detail": "Page 28 explicitly selects rows 3 and 4 of Supplementary Table 6 as better matches to the observed family size-frequency distribution. It gives excavated mass 0.016–0.027 parent-body masses, consistent with rounded row values 0.0156 and 0.0270. This selected model range is not the range of all six simulations and is not a direct measured ejecta inventory."
+          },
+          {
+            "topic": "Excavation versus ejection",
+            "detail": "Excavated mass is defined before fallback using particles at r > R + 30 km, allowing target expansion. Table 6 distinguishes excavated and ejected mass. Page 29 range 0.015–0.028 and its precise quantity/selection scope remain separately recorded; page 28 does not automatically resolve every manuscript/table difference."
+          },
+          {
+            "topic": "Transient crater",
+            "detail": "At least 250 km refers to a transient crater in the simulation figure, with possible later relaxation and reaccumulation. It is not an observed rim diameter, a calibrated image measurement, or an adopted surface feature."
+          },
+          {
+            "topic": "Simulation assumptions",
+            "detail": "Fragmentation duration 200 s; artificial viscosity alpha 1.5 and beta 3; N-body opening angle 0.5 rad, hexadecapole gravity, perfect merging, step 10^-6 in G=1 units over 50000 steps. These author methods were not independently reproduced. A computational tree opening angle is not a camera field of view."
+          },
+          {
+            "topic": "Interpretation",
+            "detail": "Authors favour an equatorial family-forming excavation over the inferred south-pole basin. Whole-surface modification versus large-crater outcomes depend on simulated energy; neither establishes directly observed impact history or local chemistry."
+          }
+        ],
+        "limitations": [
+          "No new angular or raster-size computation.",
+          "No figure embedding, new body dossier, generated image, map, mesh, catalogue or codec change.",
+          "Paper licence and publisher/ORBi access terms remain distinct from ESO image terms.",
+          "Exact source-product registration, current physical accuracy and independent simulation reproduction remain open."
+        ]
+      }
+    }
+  ],
+  "verifiedRetainedFiles": [
+    {
+      "path": "data/research-sources/pallas-eso-original-inspection-2026-10-21.png",
+      "bytes": 239082,
+      "sha256": "25a20711866cd95617c5982cf2b030ff128ed6f8abcb882981bc8cef95099600"
+    },
+    {
+      "path": "data/research-sources/pallas-eso-potw2008a-caption-2026-10-21.html",
+      "bytes": 81623,
+      "sha256": "fd5f40122095cfd00e45a0bf62d2ab525553910b3ee0cf3ceb6d94f901d1c090"
+    },
+    {
+      "path": "data/research-sources/pallas-eso-potw2008a-original-2026-10-21.tif",
+      "bytes": 266486,
+      "sha256": "908c3b4f5967c0c35b39957ef9335e661d0f0b2f2eb4020bf42fc7b56dd9406b"
+    },
+    {
+      "path": "data/research-sources/pallas-eso-potw2008a-screen-2026-10-21.jpg",
+      "bytes": 42869,
+      "sha256": "64fbe3174fc1c3698ef02aa3aa20dbc149b3e5f8e298839a8134e60f1875681e"
+    },
+    {
+      "path": "data/research-sources/pallas-eso-terms-2026-10-21.html",
+      "bytes": 83242,
+      "sha256": "410e0b5576997f201ca5d00a24ba0e89af6e4e7bf7b8a565bdf490dd417af634"
+    },
+    {
+      "path": "data/research-sources/pallas-lam-primary-response-2026-10-21.bin",
+      "bytes": 99,
+      "sha256": "2f11e536ba2a82a8c4b4cd54e0d7e08012abd7d061cd3a9b4bda92180beb0e83"
+    },
+    {
+      "path": "data/research-sources/pallas-marsset-orbi-primary-2026-10-21.txt",
+      "bytes": 70419,
+      "sha256": "9ff7b8d69d6e0b7494dbcaaae9e161b5aa98b624fb0bcad71377d5606e924c40"
+    },
+    {
+      "path": "data/research-sources/pallas-nature-publisher-response-2026-10-21.html",
+      "bytes": 536660,
+      "sha256": "706720ac0f375d5a5181504e327645c023342382668f8d7afb903151441955bf"
+    },
+    {
+      "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+      "bytes": 3628905,
+      "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+    },
+    {
+      "path": "data/research-sources/pallas-orbi-record-2026-10-21.bin",
+      "bytes": 67705,
+      "sha256": "b96a1777b92e7a32caab2b3d3d7dd0a424cc7788034808c48c9c08c0437f94de"
+    },
+    {
+      "path": "data/research-sources/pallas-orbi-user-licence-response-2026-10-21.html",
+      "bytes": 16644,
+      "sha256": "d32c511f166bdbc57594722b862856bdaf20c678c44585413d582452b967c207"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/collisional-29.png",
+      "bytes": 183161,
+      "sha256": "c6d8125874df36d45b0259f1a00415407acd97a3b8773d097d2dc8a0129ad07c"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/collisional-30.png",
+      "bytes": 184910,
+      "sha256": "ac8167cbcb6d1fa0c6ca4f1cd432709cffe98dd32bcc5a6480ee9824553f7d8f"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-31.png",
+      "bytes": 176335,
+      "sha256": "540a2be69ab5b10bf0318672d20f6d21cf11ef323ee472f080a14ff6657af46f"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-32.png",
+      "bytes": 182796,
+      "sha256": "a56213f7f268856ddc4769d9f416912ab2c9096fc21f36f418b523fd1aed5976"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/composition-33.png",
+      "bytes": 200912,
+      "sha256": "047f29e228b69c8ca842656acc481050a8910f154aa5ebe411172fa288a7c3a2"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-16.png",
+      "bytes": 112938,
+      "sha256": "83e2c65cc1da0e15f4b4513be3c0d26672d976cc19f084f60b393124b7d5eac2"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-17.png",
+      "bytes": 78171,
+      "sha256": "2cb1dbffa793ab6d979bade83f9a91f049c955d700e749f21d73e41c473f82e3"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/crater-table-18.png",
+      "bytes": 32392,
+      "sha256": "76ce61be87510669eaa15f2889a086cd7fa344a41d768372ff16346e9966b334"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/equilibrium-06.png",
+      "bytes": 131585,
+      "sha256": "5523ce6efd5cbd9ded928893b6e1451208149bf18ba0f9f973e18c3f842e7162"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/equilibrium-07.png",
+      "bytes": 130073,
+      "sha256": "56fd90e9ad64d7abc7e9fa47b31ad38c47be5f19c5cc34e0c57a07f46e299f36"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/impact-28.png",
+      "bytes": 226269,
+      "sha256": "90d6fe62fc3a7564b6b2f192310427deb6320db997572f9d65a895858216dca8"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/impact-table-32.png",
+      "bytes": 86782,
+      "sha256": "602d9836a1e9e7d7e1939bc9747f173b9857e60cd4475bab207bd37a9eee96e6"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/mass-table-29.png",
+      "bytes": 108918,
+      "sha256": "df8bafda03feab3cc312a5b21d28af6f6802a1a02d1da8d87b891747af4008ca"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/mass-table-30.png",
+      "bytes": 73482,
+      "sha256": "0383df90cdfca8d2d5018ad6151373cabe7aaf163097f66ea8e3a3a29521a26b"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/page1.png",
+      "bytes": 259119,
+      "sha256": "10472a3b7ec10b0eba8a8d573af9ce9fe04bc34bd5bd02fad5282cd9f0841ac7"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/page13.png",
+      "bytes": 90678,
+      "sha256": "5ec6382b846f6b2f243ce09d9bc1ac90a797ceb3c36f340ceb58b17a517ea97e"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/page36.png",
+      "bytes": 209782,
+      "sha256": "2fb1f356daeb9df6529d5cb7c5fa8bfeb51e6c281bf1e1e01b64f204bc5cbc03"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/phaethon-35.png",
+      "bytes": 224285,
+      "sha256": "2e2c34513043941b0a5bec6218e0fd26503db5c77df931504e203eaed15a63a6"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-21.png",
+      "bytes": 212592,
+      "sha256": "d136f60d7f8973f0ae070c8cba95129de3d236193b4d7f8a3910f00c8dc409db"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-22.png",
+      "bytes": 225383,
+      "sha256": "11204dad7289b967d66b254ecabb5ee6976558f9cecf45838e65facf9b0875dc"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/shape-methods-23.png",
+      "bytes": 210780,
+      "sha256": "400b5c48d5675f79a0a783859ab19e867a2c66d79e297b367b9685d217efd1d1"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page22.png",
+      "bytes": 168604,
+      "sha256": "863bae4674f1b27aef663a596a22ed3f963d0d6714365a425556b5831a492a29"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page23.png",
+      "bytes": 158458,
+      "sha256": "ee05ec3808240a363b728bec5c327b729c0e85e061144be98425e2ef72f54c20"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page5.png",
+      "bytes": 211841,
+      "sha256": "20476b724b27c370decad8864dcc79b9a7af5a21db2d847014ee3e4dc0eb1b3f"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-34.png",
+      "bytes": 218954,
+      "sha256": "03a7acd8f088d6d2005efb8001fe480ac6ba7e93fbdc69778ada84367f96ed1d"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-figure-09.png",
+      "bytes": 462914,
+      "sha256": "60d785452c7ab7b8a921f181f3be2cbe38167a66219f3bcb285ccf7892f203f7"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-table-33.png",
+      "bytes": 158883,
+      "sha256": "08330cf5bff5a03edc2fe0daed59fce4d3f3a8cdc18e2679799a019371be6ff7"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/thermal-table-34.png",
+      "bytes": 98541,
+      "sha256": "5463d404694b8f626ad00e91e95a71ee3f4000375d8bc668c19976cf9d6bbd1a"
+    },
+    {
+      "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+      "bytes": 3975913,
+      "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+    },
+    {
+      "path": "data/research-sources/pallas-publisher-supplement-text-2026-10-21.txt",
+      "bytes": 37594,
+      "sha256": "7e30eaf79571a8a5b0c36b02a22c03d117ebe94e61ac18f78213f9de700a78b3"
+    }
+  ],
+  "openWork": [
+    "Exact ESO raw exposure/filter/coadd/panel transform and science-pixel crosswalk; no calibrated visible colour, photometry, chemistry map or complete registered geography.",
+    "Remaining primary/supplement visual pages, final-paper licence/version, current independent physical/orbit references and digital shape/frame/coverage audit.",
+    "Independent ADAM/SPH/thermal/calibration reproduction and source code/kernel versions; no inference of present liquid, activity, ocean, biology or measured local fractions.",
+    "Phaethon family association remains debated; Phaethon14±4percent albedo is not Pallas albedo. Historical mission suggestions are not a current-status claim.",
+    "Substantial conforming lossless standalone capacity before further asset embedding; independent local/observer views remain unprepared. No other-body maps or analogue skins."
+  ],
+  "preservation": {
+    "baseline": "02dae10",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "d7f1e94afdabcbe3077dfbcbf8abd44fb076d300772dd1fa5f50346d9b72e2a9",
+    "fullBuild": {
+      "pass": false,
+      "attemptedHtmlBytes": 16002930,
+      "overBudgetBytes": 2930,
+      "gateBytes": 16000000,
+      "outputNotWrittenByFailedBuild": true
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 711,
+      "skipped": 1,
+      "failed": 0,
+      "environment": "OPENAI_API_KEY removed for missing-key voice fallback test"
+    },
+    "productionBuild": "passed",
+    "queue": "Regenerated;569 entries unchanged",
+    "sourceAudit": "40 authors;41 retained source/render/text files and17 preparation-record hashes verified",
+    "fullBuild": "FAILED hard16,000,000-byte gate at16,002,930 bytes; no newly written fullHTML, current browser or complete currentHTML restoration claim",
+    "scope": "Research-only docs changes;108 prior dossiers,63 moons,749 tracked public files,87 native-card bytes/MIME and production inputs exact against02dae10. Rebuilt readable snapshot changed; interbuild live-feed variation unaudited, no compression or research savings attribution.",
+    "logs": [
+      {
+        "path": "/tmp/fidelity-pallas-audit-tests.log",
+        "bytes": 62924,
+        "sha256": "cee5e4e334a35b93c9b36802dcae244e75e521d8f1961d55de5c98dd526972dc"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-audit-production.log",
+        "bytes": 1014,
+        "sha256": "a0e563c9693193f98df364a1897860e7d04443160c1cee76f1fb25558bea1216"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-audit-full.log",
+        "bytes": 23820,
+        "sha256": "fd6495e1d320fd365e1787a17132e88426749c08fa4910d849128d5c50b6e350"
+      }
+    ]
+  }
+}
