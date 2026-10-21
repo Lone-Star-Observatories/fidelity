@@ -1,0 +1,117 @@
+[
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/src",
+    "before": {
+      "utf8Bytes": 3687,
+      "sha256": "79a0e8e354359b766e6559b857281509d5bcb5a57c9e7997347c358130afcd44",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3671,
+      "sha256": "f5b4fe0d2ce5f7a6b739de3c0f8319114edbcf1d7b54e88d7fdcac6ca91c5f60",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/disk",
+    "before": 0.38725337562024537,
+    "after": 0.3872533844572258
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-171?size=preview/time",
+    "before": "2026-10-20T22:52:09Z",
+    "after": "2026-10-20T23:31:45Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/src",
+    "before": {
+      "utf8Bytes": 2195,
+      "sha256": "77048e682f4f569afff241e8a19a8c48a4848ebbea75d90515c92929854dd2a3",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 2251,
+      "sha256": "f6b8cf17898dcf99ae789b10ff15f7039bd13035ca14846413e1be645d235eaa",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/disk",
+    "before": 0.3872533771611452,
+    "after": 0.38725334138104767
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-94?size=preview/time",
+    "before": "2026-10-20T23:00:47Z",
+    "after": "2026-10-20T23:30:47Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/src",
+    "before": {
+      "utf8Bytes": 4211,
+      "sha256": "4a2ca75799e87fe7d96a8d64be4edf40474ced152b017b7f65ed045e047f1fb7",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 4199,
+      "sha256": "b903d953a802bdf0c687e6e22539985af3e0e0060ae1eb15aa25e79ce7b36489",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/disk",
+    "before": 0.38725337579129576,
+    "after": 0.38725339260329145
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-304?size=preview/time",
+    "before": "2026-10-20T22:47:53Z",
+    "after": "2026-10-20T23:33:29Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/src",
+    "before": {
+      "utf8Bytes": 1383,
+      "sha256": "a02ba491978eb435ecb4ad5e50a323eaefbd9e733f91eacae4e9b3065ae8bd3e",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 1335,
+      "sha256": "c964fe19bd39fc9dd241ea62ebe2fc68769b92c4271cf0438088752c9e79cf92",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/disk",
+    "before": 0.38725337067223403,
+    "after": 0.38725338367505713
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-1600?size=preview/time",
+    "before": "2026-10-20T22:49:02Z",
+    "after": "2026-10-20T23:34:14Z"
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/src",
+    "before": {
+      "utf8Bytes": 3779,
+      "sha256": "027e10cadd77499525f2b96b2ac077e12e7df0b8c5ad0994605b87f028d265d0",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    },
+    "after": {
+      "utf8Bytes": 3759,
+      "sha256": "cb4425b9a997844e9973978cda57be49505c9d7feae97b42b37752eebd578761",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/disk",
+    "before": 0.38725340502401434,
+    "after": 0.3872534085634768
+  },
+  {
+    "path": "/bandImages//api/feed/sdo-193?size=preview/time",
+    "before": "2026-10-20T22:47:17Z",
+    "after": "2026-10-20T23:32:17Z"
+  }
+]
