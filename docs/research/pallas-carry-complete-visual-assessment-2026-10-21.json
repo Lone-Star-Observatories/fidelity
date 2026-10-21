@@ -1,0 +1,388 @@
+{
+  "date": "2026-10-21",
+  "issue": "#3",
+  "bodyId": "pallas",
+  "status": "Research-only complete13-page Carry2010 visual review; no production adoption",
+  "primary": {
+    "date": "2026-10-21",
+    "status": "Research-only targeted primary Table4 verification; no production adoption",
+    "title": "Physical properties of (2) Pallas",
+    "doi": "10.1016/j.icarus.2009.08.007",
+    "url": "https://www.boulder.swri.edu/merline/GPI-proposal-publications/carry.pallas.icarus-2010.pdf",
+    "authorsAsPrinted": [
+      "Benoît Carry",
+      "Christophe Dumas",
+      "Mikko Kaasalainen",
+      "Jérôme Berthier",
+      "William J. Merline",
+      "Stéphane Erard",
+      "Al Conrad",
+      "Jack D. Drummond",
+      "Daniel Hestroffer",
+      "Marcello Fulchignoni",
+      "Thierry Fusco"
+    ],
+    "files": [
+      {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      {
+        "path": "data/research-sources/pallas-carry-2010-author-text-2026-10-21.txt",
+        "bytes": 67829,
+        "sha256": "95a757023bef1bdffc4d2ee9e387fa44c4358f45aa3b44ac5781b51b73dda5e1"
+      },
+      {
+        "path": "data/research-sources/pallas-carry-2010-table4-2026-10-21.png",
+        "bytes": 614449,
+        "sha256": "32b5a26da88bf76c1c08d3e63e7034686d50c438f5de50098920452c70785d57"
+      }
+    ],
+    "scope": "Complete13-page PDF and extracted text retained; only PDFpage7/printed466 visually inspected this preparation. Title/author/publication history extracted from first page, not yet visually verified. No all-page review or simulation/raw reduction claim.",
+    "table4AsPrinted": {
+      "periodLabel": "Sidereal period Ps, determined from51lightcurves",
+      "periodHours": "7.8132214 ±0.000002",
+      "eclipticJ2000LongitudeLatitudeDegrees": "(30,-16) ±5",
+      "equatorialJ2000RaDecDegrees": "(33,-3) ±5",
+      "referenceEpochT0JD": "2433827.77154",
+      "W0AtJ2000Degrees": "38 ±2",
+      "rotationRateDegreesPerDay": "1105.8036"
+    },
+    "crosswalk": [
+      "The API pole33/-3 matches this paper equatorialJ2000 solution; ecliptic30/-16 is a different coordinate representation, not a second body or arbitrary pointing correction.",
+      "The API calls the rotation period synodic, while the cited primary Table4 explicitly labels the identical numeric value sidereal. Preserve the metadata-label inconsistency; original ingestion cause unknown. Do not silently relabel the live catalogue or infer an independently measured synodic period.",
+      "Table4 distinguishes reference epoch t0 from rotational phase W0 atJ2000. No scene transformation or angular/raster calculation performed.",
+      "Fig4 left observations versus right shape-model views are not interchangeable native maps. Printed dates and source geometry do not establish association with the2020ESO publisher panels."
+    ],
+    "limitations": [
+      "Author-hosted availability is not CC BY permission; no new figure embedding/licence assertion.",
+      "Historical fit and scalar uncertainties do not establish current orientation, complete geography, calibrated visible colour, chemistry or independently reproduced accuracy.",
+      "No109th dossier, generated image, catalogue/model/map/shape/codec or public asset change. All108 delivered dossiers preserved.",
+      "Formal primary/reference consolidation and fresh build verification remain pending; no fresh standalone/browser/capacity claim."
+    ]
+  },
+  "finalVisualScope": {
+    "pdfPages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "description": "All13pages visually inspected across retained preparations; full text retained. Historical embedded preparation scope statements describe their original limited review, not this final scope. No raw-data reduction, inversion reproduction or current pixel/map association established."
+  },
+  "additionalReviewedPreparations": [
+    {
+      "date": "2026-10-21",
+      "status": "Research-only targeted historical shape/inversion-methods review",
+      "doi": "10.1016/j.icarus.2009.08.007",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "render": {
+        "path": "data/research-sources/pallas-carry-2010-shape-methods-page6-2026-10-21.png",
+        "bytes": 684462,
+        "sha256": "c4c5b2b67e60fd07fe9a8e93284f7de3796a33c52440579b6d1bc98a0009e262"
+      },
+      "reviewedPdfPages": [
+        6
+      ],
+      "printedPage": 465,
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "findings": [
+        "Fig2 repeats identical AO images left/right to compare two lightcurve pole models. These are not two independent detections/observations or binary components. Lightcurve-only models lack absolute dimensions; their depicted size is not a new physical measurement.",
+        "Section4.2.2 fits disk-integrated photometry and AO contours with separate acceptable residuals and a smoothness constraint. Published.019mag/.4pixel fit deviations are not independently reproduced absolute accuracy or per-pixel chemistry.",
+        "Spherical-harmonic coefficients determine model resolution; increasing tessellation density does not add observed topography.",
+        "Section4.3 explicitly uses the sidereal period with ecliptic pole and arbitrary starting-lightcurve epoch2433827.77154JD. No transformation is executed/adopted here, and displayed equation conventions are not silently assigned to the application.",
+        "Historical radius256±3km versus HST272±9km and discussion of PSF/deconvolution/systematics are source comparisons, not a new catalogue replacement or adjudication of every modern alternative.",
+        "Historical DAMIT link/request option is identified as a model route, not verified downloaded digital geometry, version, byte identity or reuse permission. No author contacted."
+      ],
+      "limits": [
+        "Only Carry2010PDFpages1/6/7/11 visually inspected across retained preparations; no all13-page claim.",
+        "No new raster/angular calculation, digital shape/map adoption, figure embedding, licence claim, native exposure crosswalk or independent inversion reproduction.",
+        "All108 delivered dossiers and original/master/native/model/map/shape/provenance preserved; production unchanged, no109th or new embedding. Formal consolidation and build checks pending; no fresh browser/headroom claim."
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "status": "Research-only targeted historical near-infrared map-methods review",
+      "doi": "10.1016/j.icarus.2009.08.007",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "render": {
+        "path": "data/research-sources/pallas-carry-2010-map-methods-page11-2026-10-21.png",
+        "bytes": 705487,
+        "sha256": "1cc81038746b9b6c7fd09b904a3334f2e5eb7cced2b74207f751f29cdb2ffa0e"
+      },
+      "reviewedPdfPages": [
+        11
+      ],
+      "printedPage": 470,
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "findings": [
+        "Sections5.1.2–5.1.5 select an inner disk ROI because limb projection and deconvolution ringing degrade pixels; per-night selection is not independently reproduced.",
+        "The planetocentric system uses0–360degrees right-hand longitude relative to spin, prime meridian along positive-x long axis and positive latitude toward spin. This historical convention is not automatically the2020ESO display or any adopted texture frame.",
+        "Northern and southern data did not overlap. Authors set their relative brightness by assuming equal mean hemispheric albedo, not by a measured cross-hemisphere photometric tie.",
+        "J/H/K composite maps combine27/44/115 individual projections respectively, not necessarily that many independent raw exposures. Publisher reports80percent K versus40percent J/H coverage and approximately60km resolution; these are cited estimates, not new raster calculations.",
+        "Reported within-band±6percent variations, approximately4percent maximal and below2.5percent mean dispersion are internal source-product estimates, not independently verified absolute visible photometry.",
+        "Authors explicitly allow the northern modeled depression to be an inversion artefact because the shape fit omitted albedo information. Possible crater interpretation is not uniquely established geography.",
+        "Weak spectral-region differences can reflect morphology, composition or grain properties. These do not quantify mapped local chemistry. Io/Titan/Ceres/Vesta comparisons are methodological context, never substitute skins."
+      ],
+      "limits": [
+        "Only PDFpages1/7/11 have been visually inspected across this targeted Carry2010 audit; no all13-page claim.",
+        "A mistakenly requested PDFpage9 render is retained separately as pallas-carry-2010-map-methods-2026-10-21.png; it is not this page11 evidence and was not visually reviewed in this preparation.",
+        "All-rights-reserved primary notice retained; no figure/map embedding or blanket CC claim. No raw reduction or digital-product identity/frame reproduction.",
+        "No109th dossier, production asset, catalogue/model/map/shape/codec change. All108 delivered dossiers and source originals preserved; formal consolidation/build verification pending. No current browser or headroom claim."
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "status": "Research-only historical K-band Fig7 visual audit",
+      "doi": "10.1016/j.icarus.2009.08.007",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "render": {
+        "path": "data/research-sources/pallas-carry-2010-maps-page10-2026-10-21.png",
+        "bytes": 669637,
+        "sha256": "3f6f3d6b8d8dcd8168aef951a8f9fb2e0795569d4f1e48d683822b826755f191"
+      },
+      "reviewedPdfPages": [
+        10
+      ],
+      "printedPage": 469,
+      "figure": 7,
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "findings": [
+        "Fig7 separates north/south K-band albedo panels on left from error panels on right, with an equatorial cylindrical albedo map between. Error imagery must not be assigned as terrain/albedo.",
+        "White regions explicitly mark terra incognita from limited ROI and observation orientation, including much of equatorial region. White is not measured ice, smooth terrain, a crater or complete mapped coverage.",
+        "Albedo legend is percent relative to mean, approximately-7to+7; error legend0to4percent. Neither is absolute geometric albedo, visible RGB, elevation or local material fraction.",
+        "The common albedo gray scale across three views does not remove the separate methodological assumption of equal north/south mean brightness from Section5.1.5.",
+        "Caption reports approximately80percent coverage, approximately±6percent albedo variations and4percent maximum error. Southern mapping is coarser due fewer images; these remain publisher estimates, not newly computed raster scales/independent calibration.",
+        "Caption confidence that features have very low artefact probability is an author claim, not independently reproduced validation; Section5.2 still discusses deconvolution and shape/albedo ambiguity."
+      ],
+      "limits": [
+        "Carry2010 visually reviewed pages1/6/7/10/11 only so far; no all-page claim or digital map/pixel identity.",
+        "Paper all-rights-reserved notice/full11authors preserved. No figure extraction for production, embedding, licence claim, map/shape adoption or registration to2020ESO panels.",
+        "No angular/raster calculation; all108 dossiers/original/master/native/model/map/shape/provenance remain unchanged. Formal consolidation and current checks pending, no new passingHTML/browser/headroom claim."
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "status": "Research-only Fig8 J/H relative-albedo and conclusion visual preparation",
+      "doi": "10.1016/j.icarus.2009.08.007",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "render": {
+        "path": "data/research-sources/pallas-carry-2010-colour-page12-2026-10-21.png",
+        "bytes": 716735,
+        "sha256": "c8905e8119e8bacb33bc4d57470c51d1ec1ed555bf9cf6b529c3a832c0b7cc9e"
+      },
+      "reviewedPdfPages": [
+        12
+      ],
+      "printedPage": 471,
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "findings": [
+        "Fig8 top panels are northern J/H relative albedo, bottom panels their error maps. These grayscale panels are not visible-colour images, terrain heights or local chemistry.",
+        "Caption explicitly says southern hemisphere was not imaged in J/H. Northern orthographic maps cannot establish southern J/H geography or complete global spectral coverage.",
+        "Publisher reports 27 J and44 H projections versus115 K, coarser J/H maps, variations within approximately6percent of each map mean and estimated maximum4percent errors. These are reported relative-map estimates, not independently reproduced absolute photometry or new raster computations.",
+        "Conclusion reports historical triaxial ellipsoid RADII275±4,258±3,238±3km and derived3.4±.9g/cm3 using historical adopted mass. These are not full diameters or replacements for current Marsset/JPL alternatives.",
+        "Historical density interpretation of a drier Pallas than Ceres is a model interpretation, not measured local water fractions. Ceres comparison supplies no permissible analog skin.",
+        "Reported70–180km feature diameters and approximately6percent contrast remain author estimates, not newly measured image scale or independently registered current geography.",
+        "Acknowledgments distinguish Franck Marchis flat fields for August2006 and Keck/NIRC2 technical-time support for2007July12; acknowledgments do not independently identify every raw exposure or establish current map lineage."
+      ],
+      "limits": [
+        "Visual Carry2010 scope now PDFpages1,6,7,10,11,12 only; remaining pages not claimed inspected.",
+        "Printed Elsevier all-rights-reserved and full11authors retained; author-hosting is not CC BY or permission to embed a figure.",
+        "No catalogue/model/map/shape/native/codec changes, no109th dossier, no production figure adoption, no new angular/raster computation, no fresh build/browser verification claim."
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "status": "Research-only historical occultation/shape visual preparation",
+      "doi": "10.1016/j.icarus.2009.08.007",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "renders": [
+        {
+          "path": "data/research-sources/pallas-carry-2010-shape-page8-2026-10-21.png",
+          "bytes": 359962,
+          "sha256": "4ae4a3f8d1d250469a01cf779c6c2e234d863702c32588e5b3cb5e2c1ce65365"
+        },
+        {
+          "path": "data/research-sources/pallas-carry-2010-map-methods-2026-10-21.png",
+          "bytes": 619377,
+          "sha256": "7903a3ccddf7110ebc45eec53b5d665e0e876aab3db5533c631bf74ec567235f"
+        }
+      ],
+      "reviewedPdfPages": [
+        8,
+        9
+      ],
+      "printedPages": [
+        467,
+        468
+      ],
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "findings": [
+        "Table5 explicitly reports triaxial RADII and volume-equivalent mean radius, not full diameters: this work275/258/238km, mean256km; Drummond274/252/230 mean251; Schmidt291/278/250 mean272. These historical alternatives are not replacements for current Marsset/JPL values.",
+        "Table5 dimension errors derive from the population standard deviation of per-image scale factors fitted to asteroid contours, not independent proof of surface accuracy or all systematic errors.",
+        "Fig5 compares model outlines with four occultations1978May29/1983May29/1985Oct24/2001Jun9. Diamonds are disappearance/reappearance times, dashed lines chords and solid segments observer-stated timing errors; celestial north up/east left. No chords were newly digitized or converted.",
+        "The1983 southeast facet has approximately20km mismatch reported by authors. Albedo omitted during inversion may mimic a depression; neither the facet nor a crater is independently confirmed local terrain.",
+        "Fig6 gray bars are chord endpoints/errors and black bands model contours with uncertainty; radial plane-of-sky azimuth is counterclockwise from celestial north through east, not a body-fixed longitude map.",
+        "Table6 expressly says residuals are NOT goodness of fit because the model was not adjusted to those values. The1978 KAO-inclusive row7chords/RMS12.9km/6.1sigma differs from six-chord row6.2km/1.3sigma, with figure-centre readjusted; deleting a chord is not an authorized correction to raw observations.",
+        "Historical density3.4±.9g/cm3 adopts Michalak2000 mass and is mass-uncertainty dominated. Drier-than-Ceres interpretation, hydration/interior/porosity alternatives and historical spectral nondetections do not establish present local chemistry, water absence or calibrated geography."
+      ],
+      "limits": [
+        "Carry2010 visual scope nowPDF1/6/7/8/9/10/11/12; not all13pages. Pages2/3/4/5/13 remain unreviewed.",
+        "All11authors and printedElsevier all-rights-reserved retained; authorhosting is not CC BY or figure embedding permission.",
+        "No current scene/longitude registration, new angular/raster calculation, catalogue/model/native/codec change, new dossier or production embedding. No fresh build/browser claims."
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "status": "Research-only observation and restoration visual preparation",
+      "source": {
+        "path": "data/research-sources/pallas-carry-2010-author-2026-10-21.pdf",
+        "bytes": 1309529,
+        "sha256": "57f6095cb5b2a98b5190de5d4a6c369289866c0773a4623b599bc75a5651a817"
+      },
+      "fullAuthorsReference": "docs/research/pallas-jpl-spin-reference-assessment-2026-10-21.json",
+      "reviewedPdfPages": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "renders": [
+        {
+          "path": "data/research-sources/pallas-carry-2010-observations-page2-2026-10-21.png",
+          "bytes": 774890,
+          "sha256": "53ddc97c240469c260c3d7de316943c252fe3637f7826524f587051cee8278e1"
+        },
+        {
+          "path": "data/research-sources/pallas-carry-2010-remaining-2026-10-21-03.png",
+          "bytes": 480036,
+          "sha256": "436c21bfbae4543cd4bef46174cebd5132af8d6e785757d68eecd0c171f1f73b"
+        },
+        {
+          "path": "data/research-sources/pallas-carry-2010-remaining-2026-10-21-04.png",
+          "bytes": 614754,
+          "sha256": "1f1cc3860a549e406bdaf76cd3dea60826c66423ba9c7b1fdb0d60f3f1b41ae7"
+        },
+        {
+          "path": "data/research-sources/pallas-carry-2010-remaining-2026-10-21-05.png",
+          "bytes": 440033,
+          "sha256": "46a9ad1bdc725d503d22e513bb5bf4b87893ac8d48bf60137a9dccc1b6b5a7aa"
+        }
+      ],
+      "findings": [
+        "Near-infrared KeckII/NIRC2 Kp2003/2006/2007 and VLT/NACO J/H/Ks2005 observations are distinct from modern SPHERE visible-colour products. Publisher pixel scales9.942±.050 and13.27±.050mas/pixel are not newly reproduced calibration.",
+        "Table1 lists mid-observation UT without light-time correction although computations use corrections. Fig1 individual-view times differ from table midtimes; neither establishes exact retained ESO2020/raw product identity.",
+        "Table2 wavelengths are Kp2.124/bandwidth.35,J1.265/.25,H1.66/.33,Ks2.18/.35micron; ROI depends on date/filter. No visible RGB transfer or new angular/raster computation.",
+        "Paper reports186images/limb contours. MISTRAL estimates object andPSF; flat-field, neighboring7x7badpixel median and dither-derived sky processing are not independently reproduced.",
+        "Table3 identifies reference-star PSF measurements with separate observation times/filters/airmass/FWHM. These are not Pallas terrain measurements or proof of science-frame simultaneous PSF.",
+        "Fig1 explicitly uses arbitrary brightness/contrast. Bright limb rings are deconvolution artifacts, not physical deposits; perimeters excluded for albedo mapping. Spin-up/right-hand SEP and SSP coordinates are author conventions, not adopted scene registration.",
+        "Authors discard albedo information during shape inversion, median contours per4–5minute series and report3–4degree rotation during series. These limits do not validate small model facets or a calibrated rendered globe.",
+        "Lightcurve-only pole ambiguity was assessed with AO contours; historic frame alternatives and systematic-error discussions retained. Taxonomy/spectral analogs and seasonal arguments do not establish local material fractions or supply analog skins."
+      ],
+      "limits": [
+        "Visual scope nowPDF1–12; PDF13 references/acknowledgments remains unreviewed.",
+        "Full11authors/printedElsevier all-rights-reserved retained; noCCBY or figure reuse assertion.",
+        "No catalogue/map/native/model/shape/codec change or new dossier/embedding. No fresh test/build/browser claim."
+      ]
+    }
+  ],
+  "referencesPage": {
+    "render": {
+      "path": "data/research-sources/pallas-carry-2010-references-page13-2026-10-21.png",
+      "bytes": 782902,
+      "sha256": "ef58eecad17950a5b999891c3a0c00d136369e657ae006ea0c0b4c0ec7bdb723"
+    },
+    "findings": [
+      "PDF13/printed472 concludes acknowledgments and references. NASA/NSF support and Keck cultural acknowledgment do not grant a blanket figure licence.",
+      "References identify Dunham/Herald2008 occultationsV6 PDS, Michalak2000 mass and MISTRAL/KOALA methods. Bibliographic references do not establish downloaded raw products, kernel versions, licence or registered current science pixels."
+    ]
+  },
+  "rights": "Printed ©2009Elsevier all rights reserved. Author-hosting does not establish CC BY or figure reuse permission. No paper figure embedded.",
+  "preservedLimits": [
+    "JPL synodic versus Table4 sidereal period metadata inconsistency remains verified; ingestion cause unknown. Equatorial/ecliptic J2000 poles distinct. No catalogue relabeling or scene rotation adopted.",
+    "Historic dimensions are radii, density model-dependent; current Marsset/JPL alternatives retained.",
+    "Relative near-infrared maps/error panels/arbitrary display contrast/deconvolution ringing/unknown coverage are not calibrated visible colour, terrain elevation or local chemical fractions.",
+    "Raw exposures/filter/PSF/coadds, absolute photometry, digital model version/licence and current ESO/NASA3D product/pixel/frame crosswalk remain open. No angular/raster computation performed.",
+    "All originals/masters/native/model/map/shape/codecs preserved; no109th dossier or new production embedding. Capacity work and broader backlog remain active."
+  ],
+  "validation": {
+    "testsPassed": 711,
+    "testsSkipped": 1,
+    "testsFailed": 0,
+    "productionBuild": "passed",
+    "fullBuild": "passed;15997618bytes,2382bytes headroom under hard16000000gate",
+    "queue": "Regenerated;569entries unchanged",
+    "sourceHashes": "All embedded path/bytes/SHA256 records rechecked before publication",
+    "scope": "Research only. No fresh browser/current completeHTML restoration/all-model/image/route claim. Live-feed interbuild differences unaudited; no research/compression savings attribution.",
+    "logs": [
+      {
+        "path": "/tmp/fidelity-pallas-carry-tests.log",
+        "bytes": 62912,
+        "sha256": "7aeb9b02b7e9ae4cd5cec00fddbc1be93bd99840a5bd460f412eb824c50ed51d"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-carry-production.log",
+        "bytes": 1014,
+        "sha256": "204e9355e9f733cc89d154ec7feb3129c67bbe5a93cd832b72dcec86cba6aa5f"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-carry-full.log",
+        "bytes": 2836,
+        "sha256": "21af5264b51308b8dc424162a7a14c7119039053339f6a30e2dd1260cb791aa1"
+      }
+    ]
+  },
+  "preservation": {
+    "baseline": "4b9ea50",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "97ae22c5bab0f77636884366a735558302afa41caa374528aa73384d1d3e1dd8",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15997618,
+      "headroomBytes": 2382,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false
+  }
+}
