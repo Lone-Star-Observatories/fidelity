@@ -1,0 +1,295 @@
+{
+  "date": "2026-10-21",
+  "status": "Research-only complete visual audit consolidation; all 21 PDF pages inspected across retained assessment chain. No new dossier, embedding, catalogue, map, model or codec change.",
+  "url": "https://www.nature.com/articles/s41550-025-02533-7.pdf",
+  "doi": "10.1038/s41550-025-02533-7",
+  "authors": [
+    "R. S. Park",
+    "A. I. Ermakov",
+    "A. S. Konopliv",
+    "A. T. Vaughan",
+    "N. Rambaux",
+    "B. G. Bills",
+    "J. C. Castillo-Rogez",
+    "R. R. Fu",
+    "S. A. Jacobson",
+    "S. T. Stewart",
+    "M. J. Toplis"
+  ],
+  "pdf": {
+    "path": "data/research-sources/vesta-park-2025-primary-response-2026-10-21.bin",
+    "bytes": 5986421,
+    "sha256": "1d39d33c3af99a230cf4152aa3f5725a81c319f3e09e4e1e8a205d04e08dbe91",
+    "parsedPages": 21,
+    "note": "file utility reported 29 pages; pypdf page-tree reports 21. Do not claim 29 inspected pages."
+  },
+  "fullText": {
+    "path": "data/research-sources/vesta-park-2025-primary-2026-10-21.txt",
+    "bytes": 71488,
+    "sha256": "bb6d08188a1f32c56ac84dde628e6e2dcd67cbf7128cdc79938f949daff25008"
+  },
+  "publicationHistory": {
+    "received": "2023-11-27",
+    "accepted": "2025-03-17",
+    "online": "2025-04-23",
+    "issue": "June 2025, volume9,824\u2013834",
+    "limit": "Publication history is not observation time."
+  },
+  "priorAssessment": "docs/research/vesta-interior-posterior-assessment-2026-10-21.json",
+  "priorVisuallyInspectedPdfPages": [
+    3,
+    4,
+    9,
+    10
+  ],
+  "additionalVisualAudit": [
+    {
+      "visuallyInspectedPdfPages": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "text": {
+        "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/pages5-8.txt",
+        "bytes": 30596,
+        "sha256": "7a8c7347dab562b95ea91bdb6f4198fd9a8fe6cc62616cebba9bd98e40e38a76"
+      },
+      "renders": [
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/page-05.png",
+          "bytes": 558982,
+          "sha256": "84439bef38e40251808d032c39be1dc8a86d8dc20ab5f715eee03d73c7409a4b"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/page-06.png",
+          "bytes": 512477,
+          "sha256": "5a9d2c427a50965819faff7321448c4ed0b02d8f1a3e2444f8274b59b812d5ae"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/page-07.png",
+          "bytes": 466379,
+          "sha256": "5214f5a402a432665ec090c086ee68ddff78e79021336675186049dd0fe585c3"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/page-08.png",
+          "bytes": 377822,
+          "sha256": "6674a6d268f67f1a3be65f83acf4396477c5f8f951e9b175d51266db059411ab"
+        }
+      ],
+      "findings": [
+        {
+          "pages": [
+            5
+          ],
+          "assessment": "Late accretion and second-generation catastrophic-impact origins are competing proposed interpretations, with geochemical/timing and density challenges explicitly discussed. Upper-layer18.5% porosity and mesosiderite-like mechanical mixtures are model interpretations, not local measured composition or a terrain map."
+        },
+        {
+          "pages": [
+            6
+          ],
+          "assessment": "Radio Doppler primarily constrains gravity; ranging constrains heliocentric orbit; framing-camera landmarks constrain surface-relative orbit/rotation. Transfer-phase data were excluded because manoeuvre forces were strong. Instrument accuracy statements are publisher claims, not reproduced uncertainty for current imagery."
+        },
+        {
+          "pages": [
+            6
+          ],
+          "assessment": "FC2SPC model uses about16500images across all phases; Approach/Survey establish prior shape, about75000 overlapping maplets and50m model from6.5m/20m images. Publisher50m model scale is not independently established resolution or identity of existing SPG map/DEM. COM-relative COF(.99,1.05,-.05)\u00b1.1km and best-fit ellipsoid284.62/277.24/226.33km versus spheroid280.89/226.32km are separate coordinate/model conventions, not catalogue-radius replacements."
+        },
+        {
+          "pages": [
+            6,
+            7
+          ],
+          "assessment": "ClaudiaDouble-Prime146degree meridian and non-principal-axis frame are specified. No rotation, shift or pole correction applied to current textures/DEM. No new angular/raster computation."
+        },
+        {
+          "pages": [
+            7
+          ],
+          "assessment": "MONTE fits roughly2\u201310day arcs, local spacecraft/desaturation/stochastic acceleration/camera-pointing/calibration parameters, with global degree26gravity, constant pole, MOI scale, landmarks and heliocentric ephemeris. The paper attributes earlier Doppler/imaging landmark conflict to data calibration corrected during Ceres operations; this is an author account, not independent reproduction or diagnosis of Fidelity assets."
+        },
+        {
+          "pages": [
+            7,
+            8
+          ],
+          "assessment": "Three uniform-density layers, ellipsoidal mantle/core and hydrostatic-core assumptions constrain MCMC. Integrated autocorrelation convergence criterionchains>50tau is reported, not independently reproduced. Effective-density derivation assumes scaled layer shapes and restricts uncompensated topographic contribution; degree2order0 excluded for hydrostatic ellipsoidal-core assumption. None establishes unique physical layering, local chemistry, photometric calibration or map registration."
+        }
+      ]
+    },
+    {
+      "visuallyInspectedPdfPages": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "text": {
+        "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/tables18-21.txt",
+        "bytes": 1767,
+        "sha256": "a323514ec762f6692311b29f009ef33445ada7c84ef76cbe79ae046022942be8"
+      },
+      "renders": [
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/table-page-18.png",
+          "bytes": 150395,
+          "sha256": "df2854813c7263979ab0451eb5148ed4b04a0e0d776afb4c09878793c7eb4bae"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/table-page-19.png",
+          "bytes": 80286,
+          "sha256": "d62ff3422104a2e4ace7ec1dedbd28f2d00e6d6a4ec9426d454cb323b201b85b"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/table-page-20.png",
+          "bytes": 61774,
+          "sha256": "3cc781b3941a0612dd0a4d81f1e512a93d09f4ce22593e3a803f4525d87cf753"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/table-page-21.png",
+          "bytes": 57592,
+          "sha256": "b1fac387204b52a8d6b11f08a76703c32c534d220284f6a235bf5dd32b580f48"
+        }
+      ],
+      "findings": [
+        "Extended Data Table 1 distinguishes estimated parameters from shape-integrated homogeneous comparisons. Its spherical harmonic reference radius 265 km is a normalization convention, not a new catalogue physical radius. Footnote calls its uncertainties formal 1-sigma; this is distinct from main posterior 5\u201395 percentiles.",
+        "Table 1 gives normalized polar moment 0.4208 \u00b1 0.0047 and constant-density shape value 0.4505. Pole/rotation solution and Claudia 146-degree convention have not been applied to Fidelity maps or DEM.",
+        "Extended Data Table 2 title says nutation parameters for normalized polar moment 0.4208, while its explanatory text says parameters are computed by numerical integration for constant-density Vesta at 0.4505 and fitted amplitudes scale inversely with C. Preserve this title/explanation distinction; no independent integration or implementation verification.",
+        "Extended Data Table 3 subset estimates: DSN LAMO only 0.4248 \u00b1 0.0100; DSN all phases 0.4221 \u00b1 0.0063; DSN plus optical LAMO 0.4173 \u00b1 0.0068; DSN plus optical all phases CBE 0.4208 \u00b1 0.0047; constrained gravity 16\u201326 0.4188 \u00b1 0.0047. Author robustness interpretation is not an independently reproduced fit or image calibration.",
+        "Extended Data Table 4 prior bounds: volumetric mantle/core radii each 10\u2013261.465 km, mantle/core densities each 2200\u20139000 kg/m3, palaeo-rotation 4.8\u20135.3 hours. Crust density computed to satisfy mass and constrained 1800\u20133600 kg/m3; density increases with depth, with additional layer thickness constraints. These are model priors, not measured layer radii, local chemistry or historical spin."
+      ]
+    },
+    {
+      "visuallyInspectedPdfPages": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "text": {
+        "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-pages11-17.txt",
+        "bytes": 4866,
+        "sha256": "372ce052635d598068fa3e27ae7945c4f6da52337f1db114a07401df48118857"
+      },
+      "renders": [
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-11.png",
+          "bytes": 32327,
+          "sha256": "44ea13192d574d037fce8ea586ac01f721037a43b8816cc1860742f54ec31075"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-12.png",
+          "bytes": 377420,
+          "sha256": "28b7cf6f77f7b1626c9becf59a14c2474e0fb2996c8c27e45811a192820282f4"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-13.png",
+          "bytes": 128127,
+          "sha256": "74ec15aefadcdb13d02fa4aa408cd3d71fff5b4707ead5d9fd1182d43e515583"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-14.png",
+          "bytes": 112845,
+          "sha256": "8de4cdac4facd109583295023d5a86be4c0db6f7223e768e4f2a4fee8bf19229"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-15.png",
+          "bytes": 94607,
+          "sha256": "24a243622f9d2fe470bf5a4474501e52a114dc81457e8df9d0f09ac2e048cecd"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-16.png",
+          "bytes": 139919,
+          "sha256": "448fa6ee3d37be894c964730f99d91acd4cc2489dad4ad7150287a9190e0322c"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/extended-page-17.png",
+          "bytes": 83161,
+          "sha256": "9f4f5f9d661b3590b2b2f607e4aa260bceb20fdb1293730509f14b087140a054"
+        }
+      ],
+      "findings": [
+        "Page 11 supplies affiliations and correspondence, not additional observations.",
+        "Extended Data Figure 1 shows SPC topography relative to best-fit ellipsoid 284.62,277.24,226.33 km, with author-stated horizontal spatial resolution 100 m and height range -19.9 to 21.6 km. These printed conventions are not independently validated resolution or the existing SPG DEM reference sphere. Colours encode topography, not calibrated visible colour or chemistry.",
+        "Extended Data Figures 2\u20134 distinguish no-MOI constraint, MOI constraint, and MOI plus minimum crustal thickness 80 km. Captions explicitly use 5\u201395 percent quantile intervals; inset density distributions also show 1\u201399,10\u201390,25\u201375 bands. These model posterior choices must not be conflated with formal 1-sigma gravity uncertainties or direct interior geography.",
+        "Extended Data Figure 5 identifies FC2_00031311 as a Dawn Framing Camera HAMO-2 raw picture and overlays a rendered inset for Claudia reference at east longitude 146.000 degrees and latitude -1.662 degrees. This is an explicit paper reference, not a fetched/hashed raw product, an association with Bellicia PIA15384, or registration of Fidelity texture/DEM. No image acquisition timestamp is inferred.",
+        "Extended Data Figure 6 compares estimated gravity-solution landmark positions with prior SPC coordinates in Cartesian X,Y,Z. The authors interpret mean-zero differences as calibration consistency; this diagnostic has not been independently reproduced and does not calibrate Fidelity imagery, prove SPG/SPC byte identity, or authorize map shifts."
+      ]
+    },
+    {
+      "visuallyInspectedPdfPages": [
+        1,
+        2
+      ],
+      "text": {
+        "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/opening-pages1-2.txt",
+        "bytes": 9930,
+        "sha256": "efa275a46ebadfb89dcb3e7177f44f0ede9521d9cfc71ab0cf52cd77c5ef46e7"
+      },
+      "renders": [
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/opening-page-01.png",
+          "bytes": 263725,
+          "sha256": "8079ddde8d4b75799e4233de0ca5dd6d76cc0a32fd2bac06d260bb9f1297b03b"
+        },
+        {
+          "path": "data/research-sources/vesta-park-methods-preparation-2026-10-21/opening-page-02.png",
+          "bytes": 377288,
+          "sha256": "9acd78318ed53d76ab517edbd2d01cc95a6258d75438a1ea9e8749737476f268"
+        }
+      ],
+      "findings": [
+        "Title, eleven named authors, received 2023-11-27, accepted 2025-03-17, published 2025-04-23 and June 2025 issue are visually verified; these are publication history, not image acquisition dates.",
+        "Abstract frames limited density stratification and two possible origin scenarios as inference from updated moment of inertia, gravity and shape. Partial differentiation through late accretion versus impact-remnant/reaccretion are competing interpretations, not observed local chemistry or uniquely established history.",
+        "Figure 1 gravity/shape correlation and effective density spectra use modelling assumptions: shape errorless, topography nearly supported by gravity, and comparison curves with assumed crust thickness 50 km and mantle density 4000 kg/m3. These are not terrain colours, direct local density measurements, independently reproduced calibration or the existing SPG DEM product.",
+        "Page 2 distinguishes year-long Dawn orbital coverage, DSN Doppler Earth-relative line-of-sight speed, and onboard optical Vesta-relative spacecraft positions. A 265 km spherical harmonic normalization radius and Claudia Double-Prime frame are not new physical radius or permission to shift existing maps.",
+        "Authors state degree-26 solution sensitivity approximately degree20 and strong gravity/shape correlation to degree17. This does not independently validate individual native image geography, photometry or spatial resolution. Radau-Darwin hydrostatic assumptions are explicitly unsuitable for irregular, nonhydrostatic rapidly rotating Vesta."
+      ]
+    }
+  ],
+  "interpretationLimits": [
+    "Formal1sigma gravity/rotation table uncertainties are distinct from interior posterior5\u201395percent quantiles and density credible bands.",
+    "SPC calibration claims and landmark residual consistency are author results, not independently reproduced here or transferred to existing SPG DEM/texture.",
+    "265km harmonic reference, best-fit ellipsoid and Claudia Double-Prime conventions remain distinct from catalogue physical radius and map registration.",
+    "No unique interior/formation/chemistry interpretation or directly measured layer geometry is established; historical Russell2012 and all previous alternatives remain preserved.",
+    "Exact derived DSK edition/bytes, raw acquisition UTC/filter/landmark crosswalk, kernel load precedence, MONTE and MCMC reproduction, source photometry and physical registration remain open.",
+    "Table2 title0.4208 and explanatory integration baseline0.4505 are recorded separately; no silent correction or numerical integration adopted.",
+    "Prior printedCCBY4thirdpartyexceptions retained; no figure embedded or blanket raw-data/code licence inferred."
+  ],
+  "preservation": {
+    "baselineCommit": "79f436c",
+    "productionInputsChanged": false,
+    "dossiers": 108,
+    "nativeCards": 87,
+    "trackedPublicFiles": 749,
+    "queueTasks": 569
+  },
+  "validation": {
+    "sourceTextRenderHashes": "All newly consolidated source/text/render byte counts and SHA256 values checked.",
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "PASS",
+    "fullBuild": "PASS",
+    "preservationAudit": {
+      "baseline": "79f436c",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": true,
+      "dossiers": 108,
+      "nativeCardsExactBytesAndMime": 87,
+      "htmlBytes": 15997618,
+      "headroomBytes": 2382,
+      "readableSha256": "05fc95f0dbaad7a316b53e90bee46a4b256223116f1916c3d1780d4950012ae4",
+      "applicationSha256": "2dac96d3c778c445b34f57f05f7d3d0fba1c3ede2b6b5a23aac7803c5e14cfa4",
+      "completeReadableAndApplicationRestorationExact": true,
+      "freshBrowserClaim": false
+    },
+    "snapshotChangeLimit": "Readable snapshot differs from previous build; interbuild live-feed differences not attributed to research or compression. Complete current decoded JSON equals current readable source exactly. No fresh browser claim."
+  }
+}
