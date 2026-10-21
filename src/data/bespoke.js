@@ -18460,6 +18460,159 @@ export const BODY_VISUALS = {
       "previewHeight": 144,
       "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
     }
+  },
+  "vesta": {
+    "id": "vesta",
+    "name": "Vesta",
+    "kind": "asteroid",
+    "aliases": [
+      "Vesta",
+      "4 Vesta",
+      "(4) Vesta"
+    ],
+    "researchDate": "2026-10-21",
+    "previewWidth": 256,
+    "nativeSurface": "Own unchanged USGS Dawn HAMO texture and DLR SPG DEM retained; exact source-reproduction verified, not independent geography/photometry/registration calibration. Two separate IMAGINED illustrations are not native map pixels.",
+    "measured": [
+      "Dawn FC clear-filter PIA15384 observed2011-12-18, published2012-02-20. Publisher Bellicia42N70E/~200km surface range/~18m per pixel and printed2km scale are caption context, not new raster calculation or verified rawUTC/product/frame registration. Low-Sun shadows emphasize relief; black pixels do not measure material darkness, terrain absence or atmosphere absence.",
+      "Existing catalogue radius261.4km, mass2.59e20kg and rotation5.342h retained as catalogue values, not local normal, exact shape or independently rederived parameters. HED association is broad context, not measured local chemistry."
+    ],
+    "modelled": [
+      "Existing historical Russell2012 iron-core/olivine-mantle/basaltic-crust display retained as a model, not a unique interior measurement. Park2025 archival Dawn Doppler/imaging inversion infers polarMOI.4208±.0047 and mean.3734±.0027 normalized at265km, not replacement physical radius.",
+      "Park2025 three constant-density layers/monotonic-density/maximum150km-core priors yield median core45(+87,-32)km using5–95%quantiles, not1sigma dimensions. Thick-crust alternative33(+100,-21)km; alternate ellipsoidal-mantle inversion does not exclude coreless body. Origin/partial differentiation/impact-remnant scenarios are nonunique models, not exposed interior or local material.",
+      "USGS texture 2013 HAMO clear-filter mosaic includes gap-fill and an artistic filled wrap/nodata line; brightness is not calibrated visibleRGB. DLR SPG float-radius DTM subtracts255km reference and downsamples/quantizes; finite interpolated cells do not prove100%observed coverage. Source bytes reproduced, not physical accuracy/pointing/photometry independently calibrated."
+    ],
+    "unknown": [
+      "Exact FC rawUTC/filter/exposure/product/coordinate-version association and registration between context image, existing texture/DEM, current IAU pole and newer SPC/DSK model remain open. Separate east-positive/Claudia conventions and pole alternatives must not be silently transferred.",
+      "Local chemistry/fractions/grain/block scale/BRDF/visible colour and dated observer normal/attitude/lighting remain unknown. Interior gravity/MONTE/MCMC and map accuracy claims not independently reproduced. No exhaustive newest-image or unique formation-history claim.",
+      "Park publisher PDF CC BY4 with third-party exceptions does not license all raw PDS/code. No paper figure embedded. NASA media terms/credits apply to this publisher image with third-party caveats; not CC BY."
+    ],
+    "assumed": [
+      "Independent invented local/sky terrain, craters/blocks/grains/slopes, chemistry/fractions, grey colour, horizon/attitude and light/exposure. No reference image/analog skin or dated Dawn site. No atmosphere/plume/liquid/exposed ocean/biology/exposed core/craft/people/survivable-landing implication; black sky/omitted stars not absence.",
+      "Sun off frame. skyGeometry at assumed representative semimajor-axis distance2.361365965127599AU gives.22567642880633507degrees/3.2928383207408483targetpixels1672/90HFOV. Not dated heliocentric distance/joint fit/local normal. Helper colour/irradiance discarded, no generated raster angular measurement.",
+      "Original/default PNGs, full prompts,1536JPEG85masters and256JPEG80previews preserved. Original/master footer labels readable; small previews require explicit IMAGINED card labels. No generated globe or shape."
+    ],
+    "surfaceLabel": "IMAGINED · VESTA LOCAL VIEW",
+    "skyLabel": "IMAGINED · SKY FROM VESTA",
+    "skyCaption": "Hypothetical unregistered horizon; Sun off frame. Terrain, colour, attitude and lighting invented, not a dated Dawn site.",
+    "heroFacts": [
+      [
+        "RADIUS",
+        "261.4 KM · CATALOGUE"
+      ],
+      [
+        "MASS",
+        "2.59e20 KG · CATALOGUE"
+      ],
+      [
+        "ROTATION",
+        "5.342 HOURS · CATALOGUE"
+      ],
+      [
+        "INTERIOR",
+        "NONUNIQUE MODELS"
+      ]
+    ],
+    "skyModel": {
+      "radiusSun": 1,
+      "temperatureK": 5772,
+      "distanceAU": 2.361365965127599,
+      "horizontalFovDeg": 90,
+      "angularOnly": true,
+      "star": "Sun · representative geometry, off frame",
+      "angularDiameterDeg": 0.22567642880633507,
+      "centreDiscWidthFraction": 0.0019694009095340003,
+      "irradianceEarth": 0.17933844561248263,
+      "approximateSrgb": [
+        1,
+        0.9501748635948273,
+        0.9034305975663324
+      ],
+      "limits": "Semimajor-axis representative geometry; sky image is artistic. Blackbody colour guide omits spectral lines, atmospheric transfer, exposure and adaptation."
+    },
+    "contextImages": [
+      {
+        "url": "/references/vesta-pia15384-publisher-320.jpg",
+        "tier": "measured",
+        "label": "NATIVE · DAWN CLEAR-FILTER VESTA",
+        "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+        "source": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "sourcePage": "https://science.nasa.gov/photojournal/dawn-on-vesta/",
+        "observationDate": "2011-12-18",
+        "publicationDate": "2012-02-20",
+        "description": "Dawn FC clear-filter low-Sun Bellicia view. Shadow, printed scale and pit-chain interpretations are not calibrated material colour/local chemistry or complete geography. Exact rawUTC/product/registration open.",
+        "processing": "Unchanged NASA-served320x320RGB-storedmonochromeJPEG. Publisher resizing/reencoding is not full-pixel preservation; full1024JPEG/TIFF retained. No local native transformation.",
+        "terms": "NASA factual educational/informational media use with full acknowledgement, no endorsement and third-party caveats. Not CC BY or blanket raw/paper licence.",
+        "termsUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "sha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+        "sourceSha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+        "bytes": 13523,
+        "width": 320,
+        "height": 320
+      }
+    ],
+    "references": [
+      {
+        "title": "Dawn on Vesta · source caption and full credits",
+        "url": "https://science.nasa.gov/photojournal/dawn-on-vesta/"
+      },
+      {
+        "title": "USGS Vesta HAMO mosaic · processing/coverage conventions",
+        "url": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_mosaic_60m"
+      },
+      {
+        "title": "USGS Vesta DLR SPG DTM · not newer SPC registration",
+        "url": "https://astrogeology.usgs.gov/search/map/vesta_dawn_fc_hamo_global_dtm_93m"
+      },
+      {
+        "title": "Park et al.2025 · conditional small-core/posterior alternatives",
+        "url": "https://www.nature.com/articles/s41550-025-02533-7"
+      },
+      {
+        "title": "NASA2025 reanalysis of archival Dawn observations",
+        "url": "https://www.nasa.gov/solar-system/asteroids/vesta/nasa-studies-reveal-hidden-secrets-about-interiors-of-moon-vesta/"
+      }
+    ],
+    "surfaceImage": {
+      "url": "/bespoke/vesta-surface-image.jpg",
+      "previewUrl": "/bespoke/vesta-surface-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-21",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "vesta-generated-surfaceImage-original-2026-10-21.png",
+      "sourceSha256": "ade2b2106b46fc9f8dbefbf754395b0757137bb77bc3762ddda208a8f21d49bb",
+      "sha256": "b4010dd7b15c4df6bdc511de3a2f727632d107a39152ba0801788b5e11e99a37",
+      "previewSha256": "74ee14d3da85f499d078afb97f1a91ea9fdea0408e1d818a1b00aebe0d37af49",
+      "bytes": 330844,
+      "previewBytes": 9927,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    },
+    "skyImage": {
+      "url": "/bespoke/vesta-sky-image.jpg",
+      "previewUrl": "/bespoke/vesta-sky-image-preview.jpg",
+      "tier": "imagined",
+      "generated": "2026-10-21",
+      "observationDate": null,
+      "credit": "Fidelity / OpenAI image generation · researched hypothetical illustration",
+      "terms": "Generated for Fidelity; cited measurements constrain the hypothesis, not measured geography.",
+      "sourceFile": "vesta-generated-skyImage-original-2026-10-21.png",
+      "sourceSha256": "05f477ce68518782da2339c7eb85fad0b8ede5ae7af252eba58a1b48119fba69",
+      "sha256": "9ed89b0dc616a52bf04db4e097e064202389747e0fd449fcf38cbc40d03a043c",
+      "previewSha256": "6423a13988f3ce56482c098e4d1108d6202d3e3757de2430bc1f4d38ce2ee0fa",
+      "bytes": 221350,
+      "previewBytes": 7691,
+      "width": 1536,
+      "height": 864,
+      "previewWidth": 256,
+      "previewHeight": 144,
+      "processing": "Resampled JPEG. Original generated PNG retained; terrain, albedo pattern and material appearance are artistic and not radiometrically calibrated."
+    }
   }
 };
 

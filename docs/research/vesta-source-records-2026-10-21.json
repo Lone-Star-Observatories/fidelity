@@ -1,0 +1,542 @@
+{
+  "date": "2026-10-21",
+  "body": "4 Vesta",
+  "generatedPreparation": "docs/research/vesta-generated-view-preparation-2026-10-21.json",
+  "nativeContextPreparation": "docs/research/vesta-native-context-preparation-2026-10-20.json",
+  "nativeMapReference": "docs/research/vesta-native-map-reference-assessment-2026-10-20.json",
+  "textureReproduction": "docs/research/vesta-texture-source-reproduction-assessment-2026-10-20.json",
+  "demReproduction": "docs/research/vesta-dtm-reproduction-assessment-2026-10-20.json",
+  "demReference": "docs/research/vesta-dtm-reference-assessment-2026-10-20.json",
+  "shapePrimary": "docs/research/vesta-shape-primary-assessment-2026-10-20.json",
+  "interiorPosterior": "docs/research/vesta-interior-posterior-assessment-2026-10-21.json",
+  "generated": {
+    "date": "2026-10-21",
+    "body": "4 Vesta",
+    "status": "Research-only independent local/sky views and original-preserving masters/previews; no dossier108 or production embedding.",
+    "local": {
+      "date": "2026-10-21",
+      "body": "4 Vesta",
+      "status": "Research-only independent local-view preparation; no108th dossier,master/preview/embedding or production change.",
+      "generator": "built-in image_gen; no reference image",
+      "fullPrompt": "Create one wide 1672x941 scientific hypothetical observer illustration of the surface of asteroid 4 Vesta. Entirely independent invented terrain, no reference images and no reuse/recolouring of any observed Moon, Mars, Pluto or other body's map. Low camera looking across a modest cratered rocky regolith landscape, scattered angular blocks and granular dust, gently uneven distant crater rims and a black sky occupying upper half. Restrained neutral grey with very subtle warm undertone is artistic unknown visible colour. Hard directional off-frame sunlight, long shadows, no visible Sun or planets or astronomical discs, no stars needed. No spacecraft, people, structures, atmosphere, clouds, plume, liquid, ocean, biology, exposed interior or cutaway; do not imply survivable landing. Do not invent a measured geological site, chemistry, mineral fractions, exact grain size or date registration. Basaltic/HED association is broad scientific context, not locally measured material. Avoid spectacular cliffs or exposed iron. Clean photographic-looking rendering, no diagram. Add two large clearly legible footer lines in a dark unobtrusive bottom band: 'IMAGINED \u2014 VESTA LOCAL VIEW' and 'INVENTED TERRAIN, COLOUR & LIGHTING \u2014 NOT A DATED SITE'. Keep both lines fully inside the frame. This is a labelled hypothesis, not a native Dawn photograph or a calibrated map.",
+      "original": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cfec660e-2ea9-4877-b7ef-7ce7224a6b85.png",
+        "bytes": 2684056,
+        "sha256": "ade2b2106b46fc9f8dbefbf754395b0757137bb77bc3762ddda208a8f21d49bb"
+      },
+      "researchCopy": {
+        "path": "data/research-sources/vesta-generated-surfaceImage-original-2026-10-21.png",
+        "bytes": 2684056,
+        "sha256": "ade2b2106b46fc9f8dbefbf754395b0757137bb77bc3762ddda208a8f21d49bb"
+      },
+      "dimensions": [
+        1672,
+        941
+      ],
+      "visualInspection": "Whole output inspected: both footertexts legible in one bottom band, blacksky, inventedcraters/blocks/regolith, no astronomical disk. Rendered terrain scale, colour and shadows uncalibrated. No named/date-registered Dawnsite.",
+      "limits": [
+        "Terrain, chemistry/fractions, colour, grain/block scale, slope, light/exposure invented; no other-body map or referenceimage reused.",
+        "No visible Sun/disc or angular/raster-size measurement. Blacksky is an artistic assumption, not atmosphere absence measurement.",
+        "Park2025 inferred interior and HED association do not establish local composition, exposedcore or uniquegeology.",
+        "No atmosphere/plume/ocean/biology/people/craft/survivablelanding implication.",
+        "Original defaultPNG preserved unchanged; master/preview and separate observerview remain pending."
+      ]
+    },
+    "localDerivatives": {
+      "date": "2026-10-21",
+      "body": "4 Vesta",
+      "status": "Research-only local-view master/preview preparation; no dossier108, registry, public asset or production codec change.",
+      "original": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-cfec660e-2ea9-4877-b7ef-7ce7224a6b85.png",
+        "bytes": 2684056,
+        "sha256": "ade2b2106b46fc9f8dbefbf754395b0757137bb77bc3762ddda208a8f21d49bb"
+      },
+      "researchCopy": {
+        "path": "data/research-sources/vesta-generated-surfaceImage-original-2026-10-21.png",
+        "bytes": 2684056,
+        "sha256": "ade2b2106b46fc9f8dbefbf754395b0757137bb77bc3762ddda208a8f21d49bb"
+      },
+      "fullPrompt": "Create one wide 1672x941 scientific hypothetical observer illustration of the surface of asteroid 4 Vesta. Entirely independent invented terrain, no reference images and no reuse/recolouring of any observed Moon, Mars, Pluto or other body's map. Low camera looking across a modest cratered rocky regolith landscape, scattered angular blocks and granular dust, gently uneven distant crater rims and a black sky occupying upper half. Restrained neutral grey with very subtle warm undertone is artistic unknown visible colour. Hard directional off-frame sunlight, long shadows, no visible Sun or planets or astronomical discs, no stars needed. No spacecraft, people, structures, atmosphere, clouds, plume, liquid, ocean, biology, exposed interior or cutaway; do not imply survivable landing. Do not invent a measured geological site, chemistry, mineral fractions, exact grain size or date registration. Basaltic/HED association is broad scientific context, not locally measured material. Avoid spectacular cliffs or exposed iron. Clean photographic-looking rendering, no diagram. Add two large clearly legible footer lines in a dark unobtrusive bottom band: 'IMAGINED \u2014 VESTA LOCAL VIEW' and 'INVENTED TERRAIN, COLOUR & LIGHTING \u2014 NOT A DATED SITE'. Keep both lines fully inside the frame. This is a labelled hypothesis, not a native Dawn photograph or a calibrated map.",
+      "outputs": [
+        {
+          "role": "master",
+          "path": "data/research-sources/vesta-generated-surfaceImage-master-2026-10-21.jpg",
+          "bytes": 330844,
+          "sha256": "b4010dd7b15c4df6bdc511de3a2f727632d107a39152ba0801788b5e11e99a37",
+          "width": 1536,
+          "height": 864,
+          "format": "JPEG",
+          "quality": 85
+        },
+        {
+          "role": "preview",
+          "path": "data/research-sources/vesta-generated-surfaceImage-preview-2026-10-21.jpg",
+          "bytes": 9927,
+          "sha256": "74ee14d3da85f499d078afb97f1a91ea9fdea0408e1d818a1b00aebe0d37af49",
+          "width": 256,
+          "height": 144,
+          "format": "JPEG",
+          "quality": 80
+        }
+      ],
+      "limits": [
+        "Terrain, chemistry/fractions, colour, grain/block scale, slope, light/exposure invented; no other-body map or referenceimage reused.",
+        "No visible Sun/disc or angular/raster-size measurement. Blacksky is an artistic assumption, not atmosphere absence measurement.",
+        "Park2025 inferred interior and HED association do not establish local composition, exposedcore or uniquegeology.",
+        "No atmosphere/plume/ocean/biology/people/craft/survivablelanding implication.",
+        "Original defaultPNG preserved unchanged; master/preview and separate observerview remain pending.",
+        "Small preview footer legibility requires explicit IMAGINED card labels. Preview is an illustrative derivative, not a native scientific image. Separate observer view and additive integration remain pending.",
+        "No full standalone size or browser claim follows from this research-only preparation."
+      ],
+      "visualInspection": "Whole master and preview visually inspected: master has two legible footer texts, invented grey cratered rocky terrain and black sky, no astronomical disk. Small preview annotations are too small for reliable reading and require explicit IMAGINED card labels. No calibrated raster/terrain/material claim."
+    },
+    "observer": {
+      "date": "2026-10-21",
+      "body": "4 Vesta",
+      "status": "Research-only independent sky-view preparation; no dossier108, embedding or production change.",
+      "generator": "built-in image_gen; no reference image",
+      "fullPrompt": "Create one independent wide 1672x941 scientific hypothetical observer illustration looking across asteroid 4 Vesta toward a broad black sky, with low rocky horizon only in the bottom third, a shallow foreground crater rim and scattered subdued angular regolith blocks. This is a separate imagined sky-facing scene, no reference images, no reuse or recolouring of any observed body's map. Neutral grey with slight warm undertone is artistic, not measured visible colour or chemistry. Hard off-frame sunlight from behind camera; Sun entirely outside frame, no planets, moons, astronomical discs or star field required. No atmosphere, haze, clouds, plume, liquid, ocean, biology, people, spacecraft, buildings, exposed interior or iron core. Do not imply survivable landing or a dated Dawn site. Terrain, grain/block scale, slopes, chemistry/fractions, colour, attitude, horizon and exposure are invented. HED association and interior models do not establish local composition. Composition should emphasize sky and a restrained distant horizon, not spectacular cliffs. Add two large fully legible footer lines in one dark bottom band: 'IMAGINED \u2014 SKY FROM VESTA' and 'INVENTED TERRAIN, COLOUR & LIGHTING \u2014 NOT A DATED SITE'. Keep both lines fully inside frame. Photographic-looking illustration clearly labelled hypothetical, not native imagery or calibrated geography.\n",
+      "original": {
+        "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-67ec6b04-d8be-4671-aaef-abbfc231323a.png",
+        "bytes": 1873213,
+        "sha256": "05f477ce68518782da2339c7eb85fad0b8ede5ae7af252eba58a1b48119fba69"
+      },
+      "researchCopy": {
+        "path": "data/research-sources/vesta-generated-skyImage-original-2026-10-21.png",
+        "bytes": 1873213,
+        "sha256": "05f477ce68518782da2339c7eb85fad0b8ede5ae7af252eba58a1b48119fba69"
+      },
+      "dimensions": [
+        1672,
+        941
+      ],
+      "outputs": [
+        {
+          "role": "master",
+          "path": "data/research-sources/vesta-generated-skyImage-master-2026-10-21.jpg",
+          "bytes": 221350,
+          "sha256": "9ed89b0dc616a52bf04db4e097e064202389747e0fd449fcf38cbc40d03a043c",
+          "width": 1536,
+          "height": 864,
+          "quality": 85,
+          "format": "JPEG"
+        },
+        {
+          "role": "preview",
+          "path": "data/research-sources/vesta-generated-skyImage-preview-2026-10-21.jpg",
+          "bytes": 7691,
+          "sha256": "6423a13988f3ce56482c098e4d1108d6202d3e3757de2430bc1f4d38ce2ee0fa",
+          "width": 256,
+          "height": 144,
+          "quality": 80,
+          "format": "JPEG"
+        }
+      ],
+      "geometry": {
+        "date": "2026-10-21",
+        "status": "Research preparation only; no illustration, embedding, catalogue/model change or108th dossier.",
+        "body": "4 Vesta",
+        "sources": [
+          {
+            "path": "src/data/moons.js",
+            "sha256": "a3de826a4137b068518ca2890f9078db37e69f8e72294d3c3d29acdb417298fb"
+          },
+          {
+            "path": "src/astro/appearance.js",
+            "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+          }
+        ],
+        "inputs": {
+          "distanceAU": 2.361365965127599,
+          "basis": "Existing JPL-derived osculating semimajor-axis value used as a representative assumed heliocentric distance; not a dated observer distance or joint fit.",
+          "solarRadiusNominalKm": 695700,
+          "temperatureK": 5772,
+          "horizontalFovDeg": 90,
+          "width": 1672
+        },
+        "geometry": {
+          "angularDiameterDeg": 0.22567642880633507,
+          "centreDiscWidthFraction": 0.0019694009095340003,
+          "targetPixels": 3.2928383207408483
+        },
+        "limits": [
+          "Sun intended off frame; no raster diameter of a generated image measured.",
+          "Solar colour, irradiance, exposure, surfaceBRDF, slope, horizon, attitude and scene registration not calibrated. No temperature/chemistry claim from this helper.",
+          "Vesta radius261.4 catalogue is not a local surface normal or shape radius. Existing SPG registration and newer SPC association remain open.",
+          "Existing catalogue note asserts ironcore; Park2025 alternatives require explicit qualification when preparing dossier. Historical Russell2012 layered model must remain distinguished, not silently erased.",
+          "Independent hypothetical terrain must be labelled IMAGINED; no other observed-body skin reuse, exposed interior, atmosphere/plume/ocean/biology or survivable landing implication."
+        ]
+      },
+      "visualInspection": "Whole original, master and preview inspected: original/master footer lines legible; small preview annotations need explicit IMAGINED card labels. Broad black sky and invented grey cratered regolith, no astronomical disk. Horizon higher than requested bottom third remains artistic, not calibrated attitude/geography.",
+      "limits": [
+        "Invented terrain, chemistry/fractions, colour, scale, slopes, lighting/exposure and attitude; no analog map or dated Dawn site.",
+        "Sun remains off frame; no generated angular/raster diameter measurement. Black sky is artistic, not atmosphere-absence measurement.",
+        "No exposed core, atmosphere/plume/ocean/biology/craft/people/survivable landing implication. HED association and inferred interior do not establish local material.",
+        "Small preview text requires explicit IMAGINED card labels. Original and default PNG preserved unchanged.",
+        "Existing native map/DEM and all delivered dossiers/public files unchanged; integration and exact full-build budget remain pending."
+      ]
+    },
+    "geometry": {
+      "date": "2026-10-21",
+      "status": "Research preparation only; no illustration, embedding, catalogue/model change or108th dossier.",
+      "body": "4 Vesta",
+      "sources": [
+        {
+          "path": "src/data/moons.js",
+          "sha256": "a3de826a4137b068518ca2890f9078db37e69f8e72294d3c3d29acdb417298fb"
+        },
+        {
+          "path": "src/astro/appearance.js",
+          "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+        }
+      ],
+      "inputs": {
+        "distanceAU": 2.361365965127599,
+        "basis": "Existing JPL-derived osculating semimajor-axis value used as a representative assumed heliocentric distance; not a dated observer distance or joint fit.",
+        "solarRadiusNominalKm": 695700,
+        "temperatureK": 5772,
+        "horizontalFovDeg": 90,
+        "width": 1672
+      },
+      "geometry": {
+        "angularDiameterDeg": 0.22567642880633507,
+        "centreDiscWidthFraction": 0.0019694009095340003,
+        "targetPixels": 3.2928383207408483
+      },
+      "limits": [
+        "Sun intended off frame; no raster diameter of a generated image measured.",
+        "Solar colour, irradiance, exposure, surfaceBRDF, slope, horizon, attitude and scene registration not calibrated. No temperature/chemistry claim from this helper.",
+        "Vesta radius261.4 catalogue is not a local surface normal or shape radius. Existing SPG registration and newer SPC association remain open.",
+        "Existing catalogue note asserts ironcore; Park2025 alternatives require explicit qualification when preparing dossier. Historical Russell2012 layered model must remain distinguished, not silently erased.",
+        "Independent hypothetical terrain must be labelled IMAGINED; no other observed-body skin reuse, exposed interior, atmosphere/plume/ocean/biology or survivable landing implication."
+      ]
+    },
+    "next": "Assess additive dossier with native publisher rendition and full science/credits; exact build budget required. No regeneration of prepared originals.",
+    "rawPreviewBytes": 17618,
+    "budgetLimit": "17,618 bytes is only the two JPEG80 research previews, not their WebP80 embedded size or incremental full HTML cost. Native images and provenance add bytes; exact additive build remains required.",
+    "validation": {
+      "retainedSourceAndGeneratedHashesChecked": 492,
+      "nativeCardsExactBytesAndMime": 86,
+      "baseline": "ff147b8",
+      "priorDossiersDeepEqual": 107,
+      "dossiers": 107,
+      "priorMoonsDeepEqual": 63,
+      "moons": 63,
+      "trackedPublicByteEqual": 744,
+      "queueEntries": 569,
+      "unchangedQueueEntries": 569,
+      "addedImages": [],
+      "htmlBytes": 15969398,
+      "headroomBytes": 30602,
+      "exactCompleteReadableJson": true,
+      "readableSha256": "e573f9c506a7731ff59904a0a1e9dcbce6ad3ac73721a8c06a929450c9e24e40",
+      "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+      "freshBrowserClaim": false,
+      "testsPassed": 710,
+      "testsSkipped": 1,
+      "productionBuild": "pass",
+      "fullBuild": "pass",
+      "snapshotDiff": "docs/research/vesta-views-snapshot-diff-2026-10-21.json",
+      "snapshotDiffLeaves": 15,
+      "snapshotDiffScope": "src/time/disk in five live SDO bands; all other fields unchanged",
+      "geometry": "Exact skyGeometry outputs and input source hashes reverified; Sun off frame, no generated raster diameter."
+    }
+  },
+  "native": {
+    "date": "2026-10-20",
+    "body": "4 Vesta / catalogue vesta",
+    "status": "Research-only native context preparation. Original publisherJPEGs/TIFFs and320displayrenditions retained;no embedding,108th dossier,generated view,map/DEM/catalogue/shape/codec change.",
+    "sources": [
+      {
+        "url": "https://science.nasa.gov/photojournal/dawn-on-vesta/",
+        "finalUrl": "https://science.nasa.gov/photojournal/dawn-on-vesta/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/vesta-pia15384-caption-2026-10-20.html",
+        "bytes": 268192,
+        "sha256": "cc00941a51072caad17e71310ce5060c8c27a9f58e00cbfcd687b0950087338d",
+        "retrievedAt": "2026-10-20T23:57:51.639131+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15384-publisher-0-2026-10-20.jpg",
+        "bytes": 92458,
+        "sha256": "ae2083567ac1df270a91ea959890fb99a63ae10d87933205f9a6cc165b9c0016",
+        "retrievedAt": "2026-10-20T23:57:52.369088+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.tif",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.tif",
+        "status": 200,
+        "contentType": "image/tiff",
+        "path": "data/research-sources/vesta-pia15384-publisher-1-2026-10-20.tif",
+        "bytes": 1049830,
+        "sha256": "6a4e32aa92ff6f658c55960a6bcd823c9a42cc24c08a91e9da3f1049fc416e22",
+        "retrievedAt": "2026-10-20T23:57:52.861999+00:00"
+      },
+      {
+        "url": "https://science.nasa.gov/photojournal/full-view-of-vesta/",
+        "finalUrl": "https://science.nasa.gov/photojournal/full-view-of-vesta/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/vesta-pia15678-caption-2026-10-20.html",
+        "bytes": 266044,
+        "sha256": "84a1d066385d40c7c1448b67d68386ee5575636026dff45af948490c2248685f",
+        "retrievedAt": "2026-10-20T23:57:53.192342+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15678-publisher-0-2026-10-20.jpg",
+        "bytes": 44461,
+        "sha256": "c538d1e6894d1a1dfadace21709842205c71ce0a778b00e112fa6fa731b3cd2d",
+        "retrievedAt": "2026-10-20T23:57:53.356896+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.tif",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.tif",
+        "status": 200,
+        "contentType": "image/tiff",
+        "path": "data/research-sources/vesta-pia15678-publisher-1-2026-10-20.tif",
+        "bytes": 496940,
+        "sha256": "1a1ecc15af066c7e307b0f71895da5430afd151496f0573c29413cdc0dada493",
+        "retrievedAt": "2026-10-20T23:57:53.565947+00:00"
+      },
+      {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/vesta-nasa-media-terms-2026-10-20.html",
+        "bytes": 315757,
+        "sha256": "fbfdf2e7500d670ccc54ea939ad9591b6a909c31ab90cfa1ba3bafad298e80ae",
+        "retrievedAt": "2026-10-20T23:57:54.249887+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15384-publisher-display320-2026-10-20.jpg",
+        "bytes": 13523,
+        "sha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+        "retrievedAt": "2026-10-20T23:58:46.978200+00:00"
+      },
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15678-publisher-display320-2026-10-20.jpg",
+        "bytes": 12974,
+        "sha256": "4e449206eb096538ef8c471febfb2622dd93c0ab75dff2407c32a2248ed2011d",
+        "retrievedAt": "2026-10-20T23:58:47.188083+00:00"
+      },
+      {
+        "url": "https://www.nasa.gov/solar-system/asteroids/vesta/nasa-studies-reveal-hidden-secrets-about-interiors-of-moon-vesta/",
+        "finalUrl": "https://www.nasa.gov/solar-system/asteroids/vesta/nasa-studies-reveal-hidden-secrets-about-interiors-of-moon-vesta/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/vesta-2025-nasa-interior-release-preparation-2026-10-20.html",
+        "bytes": 307954,
+        "sha256": "dc5f6c52ac3caceaccb642165f7ea70824efd4c6174a530c90d996414a6eedfe",
+        "retrievedAt": "2026-10-20T23:58:48.189519+00:00"
+      }
+    ],
+    "imageMetadata": [
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15384-publisher-0-2026-10-20.jpg",
+        "bytes": 92458,
+        "sha256": "ae2083567ac1df270a91ea959890fb99a63ae10d87933205f9a6cc165b9c0016",
+        "retrievedAt": "2026-10-20T23:57:52.369088+00:00",
+        "metadata": {
+          "format": "jpeg",
+          "width": 1024,
+          "height": 1024,
+          "channels": 1,
+          "space": "b-w",
+          "depth": "uchar"
+        }
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.tif",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15384/PIA15384.tif",
+        "status": 200,
+        "contentType": "image/tiff",
+        "path": "data/research-sources/vesta-pia15384-publisher-1-2026-10-20.tif",
+        "bytes": 1049830,
+        "sha256": "6a4e32aa92ff6f658c55960a6bcd823c9a42cc24c08a91e9da3f1049fc416e22",
+        "retrievedAt": "2026-10-20T23:57:52.861999+00:00",
+        "metadata": {
+          "format": "tiff",
+          "width": 1024,
+          "height": 1024,
+          "channels": 1,
+          "space": "b-w",
+          "depth": "uchar"
+        }
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15678-publisher-0-2026-10-20.jpg",
+        "bytes": 44461,
+        "sha256": "c538d1e6894d1a1dfadace21709842205c71ce0a778b00e112fa6fa731b3cd2d",
+        "retrievedAt": "2026-10-20T23:57:53.356896+00:00",
+        "metadata": {
+          "format": "jpeg",
+          "width": 715,
+          "height": 694,
+          "channels": 1,
+          "space": "b-w",
+          "depth": "uchar"
+        }
+      },
+      {
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.tif",
+        "finalUrl": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia15/pia15678/PIA15678.tif",
+        "status": 200,
+        "contentType": "image/tiff",
+        "path": "data/research-sources/vesta-pia15678-publisher-1-2026-10-20.tif",
+        "bytes": 496940,
+        "sha256": "1a1ecc15af066c7e307b0f71895da5430afd151496f0573c29413cdc0dada493",
+        "retrievedAt": "2026-10-20T23:57:53.565947+00:00",
+        "metadata": {
+          "format": "tiff",
+          "width": 715,
+          "height": 694,
+          "channels": 1,
+          "space": "b-w",
+          "depth": "uchar"
+        }
+      },
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15384/PIA15384.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15384-publisher-display320-2026-10-20.jpg",
+        "bytes": 13523,
+        "sha256": "9cb2373ef40e06488d6daeeae1e06c5366ff2ae2f8f8aa610fbfa594a845ef65",
+        "retrievedAt": "2026-10-20T23:58:46.978200+00:00",
+        "metadata": {
+          "format": "jpeg",
+          "width": 320,
+          "height": 320,
+          "channels": 3,
+          "space": "srgb",
+          "depth": "uchar"
+        }
+      },
+      {
+        "url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "finalUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia15/pia15678/PIA15678.jpg?w=320&fit=clip&crop=faces%2Cfocalpoint",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/vesta-pia15678-publisher-display320-2026-10-20.jpg",
+        "bytes": 12974,
+        "sha256": "4e449206eb096538ef8c471febfb2622dd93c0ab75dff2407c32a2248ed2011d",
+        "retrievedAt": "2026-10-20T23:58:47.188083+00:00",
+        "metadata": {
+          "format": "jpeg",
+          "width": 320,
+          "height": 311,
+          "channels": 3,
+          "space": "srgb",
+          "depth": "uchar"
+        }
+      }
+    ],
+    "credit": "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+    "contributors": "NASA/JPL manages Dawn; UCLA overall science; framing cameras developed under Max Planck Institute for Solar System Research leadership, with DLR Institute of Planetary Research and Institute of Computer and Communication Network Engineering(Braunschweig); funded by Max Planck Society,DLR,NASA/JPL. Full publisher institutional credit retained.",
+    "products": [
+      {
+        "id": "PIA15384",
+        "title": "Dawn on Vesta",
+        "captionUrl": "https://science.nasa.gov/photojournal/dawn-on-vesta/",
+        "observationDate": "2011-12-18",
+        "publicationDate": "2012-02-20",
+        "instrument": "Dawn Framing Camera,clear filter,LAMO",
+        "location": "Publisher centre42.0N,70.0E,Bellicia quadrangle;coordinate-version/rawframe crosswalk not independently verified.",
+        "publisherScale": "200km surface distance/~18m per pixel;transcribed caption estimates,no new angular/raster calculation or calibration.",
+        "inspection": "Original1024square oneband8bit JPEG fully inspected;320squareRGB-storedmonochrome publisher display also inspected. Deep shadows,craterwalls,pit clusters and printed2km scale visible.",
+        "limits": "Low Sun angle emphasizes relief. Black shadow does not measure material darkness,terrain absence or atmosphere absence. Ejecta pit-chain explanation is caption interpretation,not local measured chemical fractions. Clear-filter brightness is not calibrated visibleRGB. RawFCproduct/UTC/exposure/processing/datedsurface registration remain open."
+      },
+      {
+        "id": "PIA15678",
+        "title": "Full View of Vesta",
+        "captionUrl": "https://science.nasa.gov/photojournal/full-view-of-vesta/",
+        "publicationDate": "2012-09-11",
+        "observationDate": null,
+        "observationLimit": "Publisher says mosaic combining views;Dawn Vesta studyJuly2011\u2013September2012 is mission interval,not exact per-input observation dates.",
+        "instrument": "Dawn Framing Camera,mosaic",
+        "inspection": "Original715x694oneband8bitJPEG fully inspected;320x311RGB-storedmonochrome publisher display also inspected. Snowman craters upperleft and southpolar mountain lowerlimb appear in composite view.",
+        "limits": "Mosaic is not a single dated exposure or complete registeredglobalmap. Individual sourceframes/filter/exposure/projection/photometrictransfer/geometry remain open. Brightness and silhouettes are not calibrated visiblecolour/localchemistry. No new physicaldimensions,observerattitude or sourcepixel association to existing USGSmosaic/DEM asserted."
+      }
+    ],
+    "derivatives": "Both320JPEGs are requestedNASA dynamicimage publisher renditions,retained unchanged;publisher resizing/reencoding is disclosed and is not full-pixel preservation. OriginalsJPEGs/TIFFs retained separately. No local native recompression/resampling or public replacement.",
+    "imageTerms": {
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "assessment": "CurrentNASAmedia guidelines permit factual educational/informational use with acknowledgement and no endorsement,subject to third-party exceptions and other stated restrictions. Full institutional credits retained;not CC BY or blanket permission for every third-party/raw/PDS/paper product.",
+      "retainedResponse": {
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "finalUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/vesta-nasa-media-terms-2026-10-20.html",
+        "bytes": 315757,
+        "sha256": "fbfdf2e7500d670ccc54ea939ad9591b6a909c31ab90cfa1ba3bafad298e80ae",
+        "retrievedAt": "2026-10-20T23:57:54.249887+00:00"
+      }
+    },
+    "recencyAssessment": "Historical resolvedDawnproducts selected as native context candidates;no exhaustive newest-image claim. May14,2025NASAinterior release retained separately as preparation:publication about reanalysis of olderDawn data is not new image acquisition. PrimaryPark2025paper/interior alternatives require audit before adopting any model;no small-core/absent-core measurement or current interior-model change claimed.",
+    "limits": [
+      "Native context is Vesta only;no analogskin/bodymapreuse.",
+      "No exactobserved geography/photometry/colour/observer registration inferred beyond inspected caption context.",
+      "Allprior originalPNG/master/native/map/model/shape/provenance files preserved.",
+      "Standalone headroom must be checked before embedding;no claim these researchinputs fit with plannedgeneratedviews."
+    ],
+    "priorReferences": [
+      "docs/research/vesta-native-map-reference-assessment-2026-10-20.json",
+      "docs/research/vesta-dtm-reproduction-assessment-2026-10-20.json"
+    ],
+    "validation": {
+      "tests": "710pass,1skip(OPENAI_API_KEYunset)",
+      "productionBuild": "pass",
+      "fullStandaloneBuild": "pass",
+      "browser": "No fresh browser claim.",
+      "preservation": {
+        "retainedSourceAndGeneratedHashesChecked": 478,
+        "nativeCardsExactBytesAndMime": 86,
+        "baseline": "955f4fb",
+        "priorDossiersDeepEqual": 107,
+        "dossiers": 107,
+        "priorMoonsDeepEqual": 63,
+        "moons": 63,
+        "trackedPublicByteEqual": 744,
+        "queueEntries": 569,
+        "unchangedQueueEntries": 569,
+        "addedImages": [],
+        "htmlBytes": 15974710,
+        "headroomBytes": 25290,
+        "exactCompleteReadableJson": true,
+        "readableSha256": "a21f5224e8be86cdb933d74a299815c5d3982d777d467504c19426f7630a5819",
+        "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+        "freshBrowserClaim": false
+      },
+      "snapshotDifference": "15leaf changes onlysrc/time/disk in five liveSDO bands; vesta-native-snapshot-diff-2026-10-20.json. All other fields exact;no soleasset/compression attribution."
+    }
+  },
+  "scope": "Preserve all originals, native/model/map/shape bytes and prior alternatives. No new source identity, licence, calibration, local chemistry or dated scene inferred."
+}

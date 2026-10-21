@@ -1,0 +1,29 @@
+[
+  {
+    "path": "/bodyImages//bespoke/vesta-sky-image.jpg",
+    "before": null,
+    "after": {
+      "utf8Bytes": 8507,
+      "sha256": "004d993d5171b43136606149032533da3b1cc714438defe760c973a41c23dbae",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bodyImages//bespoke/vesta-surface-image.jpg",
+    "before": null,
+    "after": {
+      "utf8Bytes": 11319,
+      "sha256": "8e85729229815b0261150afca184fe52b77dba530ad69b56cb2f6306217a1757",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  },
+  {
+    "path": "/bodyImages//references/vesta-pia15384-publisher-320.jpg",
+    "before": null,
+    "after": {
+      "utf8Bytes": 18055,
+      "sha256": "0d56d8d0155927ec15c4c674af0655d0281fd1ed7c3dd8017bc302c66fc79691",
+      "description": "Long live-image data URI; full prior/current JSON retained separately."
+    }
+  }
+]

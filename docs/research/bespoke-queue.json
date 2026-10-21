@@ -1017,10 +1017,11 @@
       "parent": null,
       "kind": "asteroid",
       "scope": "Solar System catalogue",
-      "nativeImagery": "existing texture requires provenance/coverage review",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "Own unchanged USGS Dawn HAMO texture and DLR SPG DEM retained; exact source-reproduction verified, not independent geography/photometry/registration calibration. Two separate IMAGINED illustrations are not native map pixels.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "native globe preserved; bespoke terrain detail delivered",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "vesta"
     },
     {
       "id": "sol-pallas",
