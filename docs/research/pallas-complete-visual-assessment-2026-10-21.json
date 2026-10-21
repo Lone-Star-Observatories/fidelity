@@ -1,0 +1,2659 @@
+{
+  "date": "2026-10-21",
+  "issue": "#3",
+  "bodyId": "pallas",
+  "status": "Research-only complete visual-review follow-up; no new dossier or production asset adoption",
+  "previousAssessment": {
+    "path": "docs/research/pallas-native-primary-assessment-2026-10-21.json",
+    "bytes": 67277,
+    "sha256": "28b99635bd862292dc87e87afd5871b60ab9af79633773fdfd0dd938bbb00bdd"
+  },
+  "scope": {
+    "manuscriptPdfPages": 43,
+    "publisherSupplementPdfPages": 40,
+    "review": "All pages visually inspected across retained preparations, completing the earlier targeted review. Full text retained. This describes review coverage, not independent raw-data reduction, simulation reproduction or calibration.",
+    "pageConvention": "Supplement PDF page1 is unnumbered publisher cover; subsequent printed page numbers lag PDF pages by one.",
+    "historicalRecords": "Embedded preparation status/validation wording describes its original preparation time; current batch validation is separate below."
+  },
+  "paper": {
+    "title": "The violent collisional history of aqueously evolved (2) Pallas",
+    "doi": "10.1038/s41550-019-1007-5",
+    "publisherUrl": "https://www.nature.com/articles/s41550-019-1007-5",
+    "repositoryUrl": "https://orbi.uliege.be/handle/2268/246670",
+    "manuscriptUrl": "https://orbi.uliege.be/bitstream/2268/246670/1/Pallas_Marsset.pdf",
+    "supplementUrl": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41550-019-1007-5/MediaObjects/41550_2019_1007_MOESM1_ESM.pdf",
+    "authorsAsPrinted": [
+      "Micha\u00ebl Marsset",
+      "Miroslav Bro\u017e",
+      "Pierre Vernazza",
+      "Alexis Drouard",
+      "Julie Castillo-Rogez",
+      "Josef Hanu\u0161",
+      "Matti Viikinkoski",
+      "Nicolas Rambaux",
+      "Beno\u00eet Carry",
+      "Laurent Jorda",
+      "Pavel \u0160eve\u010dek",
+      "Mirel Birlan",
+      "Franck Marchis",
+      "Edyta Podlewska-Gaca",
+      "Erik Asphaug",
+      "Przemyslaw Bartczak",
+      "J\u00e9r\u00f4me Berthier",
+      "Fabrice Cipriani",
+      "Fran\u00e7ois Colas",
+      "Grzegorz Dudzi\u0144ski",
+      "Christophe Dumas",
+      "Josef \u010eurech",
+      "Marin Ferrais",
+      "Romain F\u00e9tick",
+      "Thierry Fusco",
+      "Emmanuel Jehin",
+      "Mikko Kaasalainen",
+      "Agnieszka Kryszczynska",
+      "Philippe Lamy",
+      "Herv\u00e9 Le Coroller",
+      "Anna Marciniak",
+      "Tadeusz Michalowski",
+      "Patrick Michel",
+      "Derek C. Richardson",
+      "Toni Santana-Ros",
+      "Paolo Tanga",
+      "Fr\u00e9d\u00e9ric Vachier",
+      "Arthur Vigan",
+      "Olivier Witasse",
+      "Bin Yang"
+    ],
+    "authorCount": 40,
+    "edition": "ORBi publisher-postprint metadata does not prove identity with final typeset paper. General ORBi noncommercial usage terms are not CC BY or figure redistribution permission. No paper figure embedded."
+  },
+  "retainedLimits": [
+    "The original ESO asset has two unlabelled disks on black with no vertical divider/border or hemisphere annotations. This corrects the initial screen description. The bright patch is on ESO RIGHT versus paper Figure 1 SOUTHERN LEFT; paper panel order/dates must not be copied to ESO without pixel/product crosswalk.",
+    "Paper Figure 1 dates UT2017-10-28 and UT2019-03-15 have corresponding five-row N_R observation sets in Supplementary Table2, but exact ESO exposure/coadd/product identity remains open. Per-frame exposure is not a combined integration.",
+    "Volume-equivalent diameter513\u00b16km and principal SEMIAXES284\u00d7266\u00d7224\u00b16km are reconstructed quantities, not new adopted catalogue values or local geometry. ESO512km remains a separate rounded caption value.",
+    "36 printed crater rows include one27km and one37km entry: 35 exceed30km and34 are at least40km. Main text36largerthan30km discrepancy remains explicit, with no automatic repair.",
+    "Supplementary Table4 calls errors3sigma; final average2.04\u00b1.03e20kg must not silently become1sigma. Density2.89\u00b1.08g/cm3 is a derived bulk model, not local material fractions.",
+    "Better-fit impact rows3/4 give rounded excavated0.016\u20130.027parent masses. All-simulation ranges, excavation before fallback and ejected mass are distinct. A >=250km transient simulated crater is not an observed rim measurement.",
+    "Thermal figure caption T0<3Ma and manuscript T0<2.5Ma thresholds remain separate. Table7 literal232Al heading is retained, intended species/cause unverified.",
+    "ESO visible terms body links CC BY4 while social metadata says CC BY3Unported. Full unchanged visible credit and active source/terms links retained; no blanket paper/raw licence inferred.",
+    "Earlier preparations are retained unchanged as provenance. Their pending statuses and initial descriptions are historical; the explicit current scope/corrections in this consolidated record govern this audit."
+  ],
+  "newReviewFindings": [
+    "Table2 contains73 rows:18 Keck and55 SPHERE. Nine SPHERE date groups do not equal eleven rotational-phase groups. The printed2006-08-16UT08:41:54 exposure0s is retained literally with cause unresolved, not adopted as a physical zero exposure.",
+    "Table3 has61 historical disk-integrated lightcurve rows,58 V and3 literal C filters. Fractional dates are not converted to assumed UTC and C is not assigned an invented bandpass.",
+    "Supplement Fig9 panel labels include59.8km and128.9km projectiles omitted from the caption list; the inconsistency is preserved without repair. Velocity colours are not temperature, composition or visible surface colour.",
+    "Historical collision inputs, Monte Carlo family ages, synthetic crater populations and assumed thermal histories are model results or inputs, not direct impact dates, present collision forecasts or mapped material fractions.",
+    "Bibliographic contextual bodies and material analogues do not authorize their maps as Pallas skins. INPOP personal communication2018 is a reference, not an acquired public raw dataset.",
+    "The supplement cover describes author-provided unedited material. Forty named authors and source-specific ESO/ORBi/publisher terms remain distinct; no blanket figure/raw-product reuse permission is inferred."
+  ],
+  "sections": [
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-cover-visual-scope-preparation-2026-10-21.json",
+        "bytes": 2835,
+        "sha256": "7c95c6c157b0531c4ef09cd05825bf1fbe75b26166ed15f1df5a68e52c47cb30"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only cover and visual-scope preparation",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "newlyInspectedPdfPages": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "renders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-01.png",
+            "bytes": 222869,
+            "sha256": "1d9d40417b80853c01d30a4d80040ee5f52553da80de6deeea06a72d02ce9d09"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-02.png",
+            "bytes": 207707,
+            "sha256": "99e79b8345960d95a9d63610626550c19b35018ef077adacd723074f4b5c8a6d"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-03.png",
+            "bytes": 186295,
+            "sha256": "b3bc8e4480509973a670309a374370d9e3b8deff5dc6e7dc2cf0131967f3285c"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-04.png",
+            "bytes": 12832,
+            "sha256": "8b4f318bfd187edcfd91b53e1596e52ee276aaea3e6dd157ab88b64cfbcea838"
+          }
+        ],
+        "findings": [
+          "Publisher cover identifies Nature Astronomy supplementary information for DOI10.1038/s41550-019-1007-5 and explicitly describes author-provided unedited format.",
+          "Cover and author title page preserve forty named authors and twenty-one institutional affiliations; full credit remains separately recorded in formal Pallas assessment.",
+          "PDF page1 is an unnumbered publisher cover; PDF pages2/3 print1/2, PDF page4 prints3 and contains only supplementary-material heading. Thus PDF page numbers and printed numbers differ by one after cover.",
+          "No cover licence statement establishes independent figure/raw-product reuse permission; source-specific ESO versus ORBi/publisher distinctions remain."
+        ],
+        "visualScope": {
+          "manuscript": "All43 ORBi manuscript pages visually inspected across retained preparations.",
+          "supplement": "All40 publisher-supplement pages now visually inspected across retained preparations; this does not mean simulations, raw observations or cited papers were independently reproduced."
+        },
+        "limitations": [
+          "Publication packaging and author credit do not identify exact ESO panel/exposure/coadd/filter/UTC/pixel association or calibrated visible colour.",
+          "No109th dossier, generated image, embedding, catalogue/model/map/shape/codec adoption. All108 delivered dossiers and original/master/native science preserved.",
+          "Research preparation only; formal consolidation and current build validation pending. No new passing full artifact, browser restoration, or capacity-saving claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-reference-inventory-preparation-2026-10-21.json",
+        "bytes": 3539,
+        "sha256": "98fe6aecb807b97c3facf66304f3b0a9f3c1c829d90c669ba4ec4b170839380c"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual reference inventory",
+        "body": "(2) Pallas",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "pdfPages": [
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "printedPages": [
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "renders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-35.png",
+            "bytes": 168989,
+            "sha256": "1aa9d7250b7d76492db4a4050c35d449a2ce47c880ef86a558b9e300264cf0ef"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-36.png",
+            "bytes": 201141,
+            "sha256": "9d0a8c38bb894b0ccf90c5c328adbb2de52fde140324c3715861702e53cd4c71"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-37.png",
+            "bytes": 197095,
+            "sha256": "7f982e99a6c4dcecbd7f8188024b416dcbebb48c893f1aa2f9611e4462f636d8"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-38.png",
+            "bytes": 195915,
+            "sha256": "60e99cf7b011a80d35961a4abe6a8dd31ae0da09bc26be6007e7b53554727148"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-39.png",
+            "bytes": 184753,
+            "sha256": "97a3353f73282e5a924af5abd667bcd5e34dc61445ec3aa1e6e5b73444ca7907"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-40.png",
+            "bytes": 41745,
+            "sha256": "c20ad343b81643bed37d7d675ca38b869d0e2bcc12fd1e018d611fa319fa09c8"
+          }
+        ],
+        "referenceScope": [
+          {
+            "numbers": "7\u201319",
+            "scope": "Historical disk-integrated photometry, lightcurves and pole solutions; bibliography crosswalk for Table3, not resolved surface imaging."
+          },
+          {
+            "numbers": "20",
+            "scope": "2017 SPH/N-body breakup methodology; cited method not independently reproduced."
+          },
+          {
+            "numbers": "21\u201344",
+            "scope": "Historical asteroid mass and planetary ephemeris estimates, ranging/deflection and simultaneous gravitational fits. These citations are not statistically independent covariance validation or current ephemerides."
+          },
+          {
+            "numbers": "45",
+            "scope": "Fienga INPOP personal communication (2018), explicitly not an acquired public raw dataset or independently verified paper."
+          },
+          {
+            "numbers": "46\u201351",
+            "scope": "Iapetus geophysics, icy-material rheology, carbonaceous-parent thermal evolution, methane-hydrate conductivity, magma-salt interactions and a hypothetical Titan ocean are cited modelling context. They do not measure those materials or present liquid on Pallas and do not authorize analog body skins."
+          }
+        ],
+        "limitations": [
+          "No cited publication downloaded or independently verified by this inventory; preserve exact bibliography rather than silently correcting apparent citation anomalies.",
+          "Full forty-author Pallas credit and distinct source/terms limits remain in formal assessment; bibliography does not grant paper/raw-image/figure rights.",
+          "All108 dossiers/original/master/native/map/model/shape inputs unchanged; no109, embedding, catalogue or codec change.",
+          "No fresh build/browser verification, compression adoption or capacity-saving claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-lightcurve-inventory-preparation-2026-10-21.json",
+        "bytes": 21532,
+        "sha256": "83c0b184b324e5bdbc6d345ab98b83173e4c26143e211cbd072a744c7c5df1f5"
+      },
+      "historicalPreparationRecord": {
+        "status": "research-only visually checked table inventory",
+        "date": "2026-10-21",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "table": 3,
+        "pdfPages": [
+          25,
+          26,
+          27,
+          28
+        ],
+        "printedPages": [
+          24,
+          25,
+          26,
+          27
+        ],
+        "renders": [
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-25.png",
+            "bytes": 127356,
+            "sha256": "3c6614b6cf64c2a16a6c3541521aa68e07e317d183c37b50c91b707cbd40d8df"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-26.png",
+            "bytes": 116629,
+            "sha256": "8aa40859eee6343f7e43b4a7e78e46416e702b765d87c4aa6beb705d8a5a6362"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-27.png",
+            "bytes": 118328,
+            "sha256": "73ff38a5b3d930e7a2929cdd415d37f8ebb69a9bcd5384dc7fd9c27ad608684b"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-28.png",
+            "bytes": 81016,
+            "sha256": "4931d41a0ac1e3705f9ff30f3b5bb81717cb966cfa43cdd5242c7c1bc5255421"
+          }
+        ],
+        "rowCount": 61,
+        "filterCounts": {
+          "V": 58,
+          "C": 3
+        },
+        "rows": [
+          {
+            "pdfPage": 25,
+            "row": 1,
+            "epoch": "1951-06-30.4",
+            "measurementCount": 31,
+            "earthDistanceAu": "2.66",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "13.0",
+            "filter": "V",
+            "reference": 3,
+            "exactExtractedRow": "1 1951-06-30.4 31 2.66 3.41 13.0 V 3"
+          },
+          {
+            "pdfPage": 25,
+            "row": 2,
+            "epoch": "1956-08-26.3",
+            "measurementCount": 63,
+            "earthDistanceAu": "2.42",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "7.4",
+            "filter": "V",
+            "reference": 4,
+            "exactExtractedRow": "2 1956-08-26.3 63 2.42 3.36 7.4 V 4"
+          },
+          {
+            "pdfPage": 25,
+            "row": 3,
+            "epoch": "1956-08-29.2",
+            "measurementCount": 42,
+            "earthDistanceAu": "2.42",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "7.7",
+            "filter": "V",
+            "reference": 4,
+            "exactExtractedRow": "3 1956-08-29.2 42 2.42 3.36 7.7 V 4"
+          },
+          {
+            "pdfPage": 25,
+            "row": 4,
+            "epoch": "1956-08-31.2",
+            "measurementCount": 32,
+            "earthDistanceAu": "2.43",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "7.9",
+            "filter": "V",
+            "reference": 4,
+            "exactExtractedRow": "4 1956-08-31.2 32 2.43 3.36 7.9 V 4"
+          },
+          {
+            "pdfPage": 25,
+            "row": 5,
+            "epoch": "1963-02-04.6",
+            "measurementCount": 60,
+            "earthDistanceAu": "1.44",
+            "sunDistanceAu": "2.13",
+            "phaseDegrees": "23.3",
+            "filter": "V",
+            "reference": 5,
+            "exactExtractedRow": "5 1963-02-04.6 60 1.44 2.13 23.3 V 5"
+          },
+          {
+            "pdfPage": 25,
+            "row": 6,
+            "epoch": "1963-02-12.6",
+            "measurementCount": 49,
+            "earthDistanceAu": "1.46",
+            "sunDistanceAu": "2.12",
+            "phaseDegrees": "24.1",
+            "filter": "V",
+            "reference": 5,
+            "exactExtractedRow": "6 1963-02-12.6 49 1.46 2.12 24.1 V 5"
+          },
+          {
+            "pdfPage": 25,
+            "row": 7,
+            "epoch": "1963-02-27.6",
+            "measurementCount": 53,
+            "earthDistanceAu": "1.54",
+            "sunDistanceAu": "2.12",
+            "phaseDegrees": "25.7",
+            "filter": "V",
+            "reference": 5,
+            "exactExtractedRow": "7 1963-02-27.6 53 1.54 2.12 25.7 V 5"
+          },
+          {
+            "pdfPage": 25,
+            "row": 8,
+            "epoch": "1963-02-28.5",
+            "measurementCount": 31,
+            "earthDistanceAu": "1.54",
+            "sunDistanceAu": "2.12",
+            "phaseDegrees": "25.8",
+            "filter": "V",
+            "reference": 5,
+            "exactExtractedRow": "8 1963-02-28.5 31 1.54 2.12 25.8 V 5"
+          },
+          {
+            "pdfPage": 25,
+            "row": 9,
+            "epoch": "1965-07-28.7",
+            "measurementCount": 52,
+            "earthDistanceAu": "2.54",
+            "sunDistanceAu": "3.42",
+            "phaseDegrees": "9.8",
+            "filter": "V",
+            "reference": 6,
+            "exactExtractedRow": "9 1965-07-28.7 52 2.54 3.42 9.8 V 6"
+          },
+          {
+            "pdfPage": 25,
+            "row": 10,
+            "epoch": "1965-08-06.9",
+            "measurementCount": 64,
+            "earthDistanceAu": "2.52",
+            "sunDistanceAu": "3.42",
+            "phaseDegrees": "9.3",
+            "filter": "V",
+            "reference": 7,
+            "exactExtractedRow": "10 1965-08-06.9 64 2.52 3.42 9.3 V 7"
+          },
+          {
+            "pdfPage": 25,
+            "row": 11,
+            "epoch": "1965-08-23.7",
+            "measurementCount": 63,
+            "earthDistanceAu": "2.55",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "10.2",
+            "filter": "V",
+            "reference": 6,
+            "exactExtractedRow": "11 1965-08-23.7 63 2.55 3.41 10.2 V 6"
+          },
+          {
+            "pdfPage": 25,
+            "row": 12,
+            "epoch": "1965-08-24.6",
+            "measurementCount": 51,
+            "earthDistanceAu": "2.55",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "10.3",
+            "filter": "V",
+            "reference": 6,
+            "exactExtractedRow": "12 1965-08-24.6 51 2.55 3.41 10.3 V 6"
+          },
+          {
+            "pdfPage": 25,
+            "row": 13,
+            "epoch": "1968-02-11.1",
+            "measurementCount": 20,
+            "earthDistanceAu": "1.37",
+            "sunDistanceAu": "2.21",
+            "phaseDegrees": "17.1",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "13 1968-02-11.1 20 1.37 2.21 17.1 V 8"
+          },
+          {
+            "pdfPage": 25,
+            "row": 14,
+            "epoch": "1968-02-17.1",
+            "measurementCount": 11,
+            "earthDistanceAu": "1.33",
+            "sunDistanceAu": "2.22",
+            "phaseDegrees": "14.3",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "14 1968-02-17.1 11 1.33 2.22 14.3 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 15,
+            "epoch": "1968-03-13.9",
+            "measurementCount": 21,
+            "earthDistanceAu": "1.27",
+            "sunDistanceAu": "2.27",
+            "phaseDegrees": "0.2",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "15 1968-03-13.9 21 1.27 2.27 0.2 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 16,
+            "epoch": "1968-03-30.0",
+            "measurementCount": 57,
+            "earthDistanceAu": "1.34",
+            "sunDistanceAu": "2.30",
+            "phaseDegrees": "9.1",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "16 1968-03-30.0 57 1.34 2.30 9.1 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 17,
+            "epoch": "1968-03-30.9",
+            "measurementCount": 67,
+            "earthDistanceAu": "1.35",
+            "sunDistanceAu": "2.30",
+            "phaseDegrees": "9.6",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "17 1968-03-30.9 67 1.35 2.30 9.6 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 18,
+            "epoch": "1968-04-21.9",
+            "measurementCount": 41,
+            "earthDistanceAu": "1.56",
+            "sunDistanceAu": "2.35",
+            "phaseDegrees": "18.6",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "18 1968-04-21.9 41 1.56 2.35 18.6 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 19,
+            "epoch": "1968-04-22.9",
+            "measurementCount": 52,
+            "earthDistanceAu": "1.57",
+            "sunDistanceAu": "2.35",
+            "phaseDegrees": "18.9",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "19 1968-04-22.9 52 1.57 2.35 18.9 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 20,
+            "epoch": "1969-08-26.9",
+            "measurementCount": 50,
+            "earthDistanceAu": "2.91",
+            "sunDistanceAu": "3.34",
+            "phaseDegrees": "16.9",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "20 1969-08-26.9 50 2.91 3.34 16.9 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 21,
+            "epoch": "1970-07-12.0",
+            "measurementCount": 33,
+            "earthDistanceAu": "2.69",
+            "sunDistanceAu": "3.35",
+            "phaseDegrees": "14.8",
+            "filter": "V",
+            "reference": 9,
+            "exactExtractedRow": "21 1970-07-12.0 33 2.69 3.35 14.8 V 9"
+          },
+          {
+            "pdfPage": 26,
+            "row": 22,
+            "epoch": "1970-07-29.0",
+            "measurementCount": 53,
+            "earthDistanceAu": "2.50",
+            "sunDistanceAu": "3.33",
+            "phaseDegrees": "11.5",
+            "filter": "V",
+            "reference": 9,
+            "exactExtractedRow": "22 1970-07-29.0 53 2.50 3.33 11.5 V 9"
+          },
+          {
+            "pdfPage": 26,
+            "row": 23,
+            "epoch": "1970-08-06.0",
+            "measurementCount": 59,
+            "earthDistanceAu": "2.43",
+            "sunDistanceAu": "3.32",
+            "phaseDegrees": "9.6",
+            "filter": "V",
+            "reference": 9,
+            "exactExtractedRow": "23 1970-08-06.0 59 2.43 3.32 9.6 V 9"
+          },
+          {
+            "pdfPage": 26,
+            "row": 24,
+            "epoch": "1970-08-27.0",
+            "measurementCount": 77,
+            "earthDistanceAu": "2.32",
+            "sunDistanceAu": "3.30",
+            "phaseDegrees": "5.3",
+            "filter": "V",
+            "reference": 9,
+            "exactExtractedRow": "24 1970-08-27.0 77 2.32 3.30 5.3 V 9"
+          },
+          {
+            "pdfPage": 26,
+            "row": 25,
+            "epoch": "1970-10-04.9",
+            "measurementCount": 82,
+            "earthDistanceAu": "2.46",
+            "sunDistanceAu": "3.25",
+            "phaseDegrees": "12.6",
+            "filter": "V",
+            "reference": 9,
+            "exactExtractedRow": "25 1970-10-04.9 82 2.46 3.25 12.6 V 9"
+          },
+          {
+            "pdfPage": 26,
+            "row": 26,
+            "epoch": "1971-11-28.2",
+            "measurementCount": 41,
+            "earthDistanceAu": "1.60",
+            "sunDistanceAu": "2.34",
+            "phaseDegrees": "19.6",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "26 1971-11-28.2 41 1.60 2.34 19.6 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 27,
+            "epoch": "1971-11-29.2",
+            "measurementCount": 91,
+            "earthDistanceAu": "1.60",
+            "sunDistanceAu": "2.33",
+            "phaseDegrees": "19.7",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "27 1971-11-29.2 91 1.60 2.33 19.7 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 28,
+            "epoch": "1971-11-30.2",
+            "measurementCount": 23,
+            "earthDistanceAu": "1.60",
+            "sunDistanceAu": "2.33",
+            "phaseDegrees": "19.7",
+            "filter": "V",
+            "reference": 8,
+            "exactExtractedRow": "28 1971-11-30.2 23 1.60 2.33 19.7 V 8"
+          },
+          {
+            "pdfPage": 26,
+            "row": 29,
+            "epoch": "1973-04-04.1",
+            "measurementCount": 45,
+            "earthDistanceAu": "1.85",
+            "sunDistanceAu": "2.66",
+            "phaseDegrees": "15.1",
+            "filter": "C",
+            "reference": 10,
+            "exactExtractedRow": "29 1973-04-04.1 45 1.85 2.66 15.1 C 10"
+          },
+          {
+            "pdfPage": 26,
+            "row": 30,
+            "epoch": "1973-04-05.0",
+            "measurementCount": 100,
+            "earthDistanceAu": "1.84",
+            "sunDistanceAu": "2.66",
+            "phaseDegrees": "15.0",
+            "filter": "C",
+            "reference": 10,
+            "exactExtractedRow": "30 1973-04-05.0 100 1.84 2.66 15.0 C 10"
+          },
+          {
+            "pdfPage": 26,
+            "row": 31,
+            "epoch": "1973-04-07.1",
+            "measurementCount": 60,
+            "earthDistanceAu": "1.84",
+            "sunDistanceAu": "2.67",
+            "phaseDegrees": "14.7",
+            "filter": "C",
+            "reference": 10,
+            "exactExtractedRow": "31 1973-04-07.1 60 1.84 2.67 14.7 C 10"
+          },
+          {
+            "pdfPage": 26,
+            "row": 32,
+            "epoch": "1973-04-08.1",
+            "measurementCount": 29,
+            "earthDistanceAu": "1.84",
+            "sunDistanceAu": "2.67",
+            "phaseDegrees": "14.6",
+            "filter": "V",
+            "reference": 10,
+            "exactExtractedRow": "32 1973-04-08.1 29 1.84 2.67 14.6 V 10"
+          },
+          {
+            "pdfPage": 27,
+            "row": 33,
+            "epoch": "1973-04-27.0",
+            "measurementCount": 73,
+            "earthDistanceAu": "1.86",
+            "sunDistanceAu": "2.72",
+            "phaseDegrees": "13.5",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "33 1973-04-27.0 73 1.86 2.72 13.5 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 34,
+            "epoch": "1973-05-08.0",
+            "measurementCount": 105,
+            "earthDistanceAu": "1.91",
+            "sunDistanceAu": "2.74",
+            "phaseDegrees": "14.2",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "34 1973-05-08.0 105 1.91 2.74 14.2 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 35,
+            "epoch": "1973-05-13.3",
+            "measurementCount": 56,
+            "earthDistanceAu": "1.94",
+            "sunDistanceAu": "2.76",
+            "phaseDegrees": "14.8",
+            "filter": "V",
+            "reference": 12,
+            "exactExtractedRow": "35 1973-05-13.3 56 1.94 2.76 14.8 V 12"
+          },
+          {
+            "pdfPage": 27,
+            "row": 36,
+            "epoch": "1973-05-14.0",
+            "measurementCount": 106,
+            "earthDistanceAu": "1.94",
+            "sunDistanceAu": "2.76",
+            "phaseDegrees": "14.9",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "36 1973-05-14.0 106 1.94 2.76 14.9 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 37,
+            "epoch": "1973-06-16.3",
+            "measurementCount": 56,
+            "earthDistanceAu": "2.26",
+            "sunDistanceAu": "2.84",
+            "phaseDegrees": "19.0",
+            "filter": "V",
+            "reference": 12,
+            "exactExtractedRow": "37 1973-06-16.3 56 2.26 2.84 19.0 V 12"
+          },
+          {
+            "pdfPage": 27,
+            "row": 38,
+            "epoch": "1974-07-10.9",
+            "measurementCount": 60,
+            "earthDistanceAu": "2.59",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "11.7",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "38 1974-07-10.9 60 2.59 3.41 11.7 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 39,
+            "epoch": "1974-07-13.9",
+            "measurementCount": 73,
+            "earthDistanceAu": "2.58",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "11.5",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "39 1974-07-13.9 73 2.58 3.41 11.5 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 40,
+            "epoch": "1974-07-14.9",
+            "measurementCount": 56,
+            "earthDistanceAu": "2.58",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "11.4",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "40 1974-07-14.9 56 2.58 3.41 11.4 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 41,
+            "epoch": "1974-07-15.9",
+            "measurementCount": 31,
+            "earthDistanceAu": "2.58",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "11.3",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "41 1974-07-15.9 31 2.58 3.41 11.3 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 42,
+            "epoch": "1974-07-18.9",
+            "measurementCount": 30,
+            "earthDistanceAu": "2.57",
+            "sunDistanceAu": "3.41",
+            "phaseDegrees": "11.1",
+            "filter": "V",
+            "reference": 11,
+            "exactExtractedRow": "42 1974-07-18.9 30 2.57 3.41 11.1 V 11"
+          },
+          {
+            "pdfPage": 27,
+            "row": 43,
+            "epoch": "1974-08-20.0",
+            "measurementCount": 49,
+            "earthDistanceAu": "2.64",
+            "sunDistanceAu": "3.42",
+            "phaseDegrees": "12.4",
+            "filter": "V",
+            "reference": 10,
+            "exactExtractedRow": "43 1974-08-20.0 49 2.64 3.42 12.4 V 10"
+          },
+          {
+            "pdfPage": 27,
+            "row": 44,
+            "epoch": "1982-03-21.3",
+            "measurementCount": 34,
+            "earthDistanceAu": "1.48",
+            "sunDistanceAu": "2.42",
+            "phaseDegrees": "9.4",
+            "filter": "V",
+            "reference": 13,
+            "exactExtractedRow": "44 1982-03-21.3 34 1.48 2.42 9.4 V 13"
+          },
+          {
+            "pdfPage": 27,
+            "row": 45,
+            "epoch": "1982-03-21.4",
+            "measurementCount": 93,
+            "earthDistanceAu": "1.48",
+            "sunDistanceAu": "2.42",
+            "phaseDegrees": "9.3",
+            "filter": "V",
+            "reference": 13,
+            "exactExtractedRow": "45 1982-03-21.4 93 1.48 2.42 9.3 V 13"
+          },
+          {
+            "pdfPage": 27,
+            "row": 46,
+            "epoch": "1982-03-22.2",
+            "measurementCount": 37,
+            "earthDistanceAu": "1.48",
+            "sunDistanceAu": "2.43",
+            "phaseDegrees": "9.2",
+            "filter": "V",
+            "reference": 14,
+            "exactExtractedRow": "46 1982-03-22.2 37 1.48 2.43 9.2 V 14"
+          },
+          {
+            "pdfPage": 27,
+            "row": 47,
+            "epoch": "1983-05-12.3",
+            "measurementCount": 5,
+            "earthDistanceAu": "2.82",
+            "sunDistanceAu": "3.29",
+            "phaseDegrees": "16.9",
+            "filter": "V",
+            "reference": 13,
+            "exactExtractedRow": "47 1983-05-12.3 5 2.82 3.29 16.9 V 13"
+          },
+          {
+            "pdfPage": 27,
+            "row": 48,
+            "epoch": "1983-05-12.4",
+            "measurementCount": 10,
+            "earthDistanceAu": "2.82",
+            "sunDistanceAu": "3.29",
+            "phaseDegrees": "16.9",
+            "filter": "V",
+            "reference": 13,
+            "exactExtractedRow": "48 1983-05-12.4 10 2.82 3.29 16.9 V 13"
+          },
+          {
+            "pdfPage": 27,
+            "row": 49,
+            "epoch": "1983-05-12.5",
+            "measurementCount": 5,
+            "earthDistanceAu": "2.82",
+            "sunDistanceAu": "3.29",
+            "phaseDegrees": "16.9",
+            "filter": "V",
+            "reference": 13,
+            "exactExtractedRow": "49 1983-05-12.5 5 2.82 3.29 16.9 V 13"
+          },
+          {
+            "pdfPage": 27,
+            "row": 50,
+            "epoch": "1983-07-17.0",
+            "measurementCount": 86,
+            "earthDistanceAu": "2.57",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "12.5",
+            "filter": "V",
+            "reference": 15,
+            "exactExtractedRow": "50 1983-07-17.0 86 2.57 3.36 12.5 V 15"
+          },
+          {
+            "pdfPage": 28,
+            "row": 51,
+            "epoch": "1983-07-19.0",
+            "measurementCount": 52,
+            "earthDistanceAu": "2.57",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "12.6",
+            "filter": "V",
+            "reference": 15,
+            "exactExtractedRow": "51 1983-07-19.0 52 2.57 3.36 12.6 V 15"
+          },
+          {
+            "pdfPage": 28,
+            "row": 52,
+            "epoch": "1983-07-21.0",
+            "measurementCount": 44,
+            "earthDistanceAu": "2.58",
+            "sunDistanceAu": "3.36",
+            "phaseDegrees": "12.6",
+            "filter": "V",
+            "reference": 15,
+            "exactExtractedRow": "52 1983-07-21.0 44 2.58 3.36 12.6 V 15"
+          },
+          {
+            "pdfPage": 28,
+            "row": 53,
+            "epoch": "1984-07-04.4",
+            "measurementCount": 77,
+            "earthDistanceAu": "2.82",
+            "sunDistanceAu": "3.29",
+            "phaseDegrees": "17.0",
+            "filter": "V",
+            "reference": 16,
+            "exactExtractedRow": "53 1984-07-04.4 77 2.82 3.29 17.0 V 16"
+          },
+          {
+            "pdfPage": 28,
+            "row": 54,
+            "epoch": "1984-09-03.9",
+            "measurementCount": 37,
+            "earthDistanceAu": "2.21",
+            "sunDistanceAu": "3.21",
+            "phaseDegrees": "3.1",
+            "filter": "V",
+            "reference": 17,
+            "exactExtractedRow": "54 1984-09-03.9 37 2.21 3.21 3.1 V 17"
+          },
+          {
+            "pdfPage": 28,
+            "row": 55,
+            "epoch": "1985-11-29.3",
+            "measurementCount": 8,
+            "earthDistanceAu": "1.56",
+            "sunDistanceAu": "2.23",
+            "phaseDegrees": "22.5",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "55 1985-11-29.3 8 1.56 2.23 22.5 V 18"
+          },
+          {
+            "pdfPage": 28,
+            "row": 56,
+            "epoch": "1985-11-30.3",
+            "measurementCount": 9,
+            "earthDistanceAu": "1.56",
+            "sunDistanceAu": "2.23",
+            "phaseDegrees": "22.4",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "56 1985-11-30.3 9 1.56 2.23 22.4 V 18"
+          },
+          {
+            "pdfPage": 28,
+            "row": 57,
+            "epoch": "1985-12-01.2",
+            "measurementCount": 8,
+            "earthDistanceAu": "1.56",
+            "sunDistanceAu": "2.23",
+            "phaseDegrees": "22.4",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "57 1985-12-01.2 8 1.56 2.23 22.4 V 18"
+          },
+          {
+            "pdfPage": 28,
+            "row": 58,
+            "epoch": "1986-01-01.2",
+            "measurementCount": 27,
+            "earthDistanceAu": "1.48",
+            "sunDistanceAu": "2.18",
+            "phaseDegrees": "22.2",
+            "filter": "V",
+            "reference": 19,
+            "exactExtractedRow": "58 1986-01-01.2 27 1.48 2.18 22.2 V 19"
+          },
+          {
+            "pdfPage": 28,
+            "row": 59,
+            "epoch": "1986-01-11.2",
+            "measurementCount": 27,
+            "earthDistanceAu": "1.49",
+            "sunDistanceAu": "2.17",
+            "phaseDegrees": "22.7",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "59 1986-01-11.2 27 1.49 2.17 22.7 V 18"
+          },
+          {
+            "pdfPage": 28,
+            "row": 60,
+            "epoch": "1986-01-12.2",
+            "measurementCount": 38,
+            "earthDistanceAu": "1.49",
+            "sunDistanceAu": "2.17",
+            "phaseDegrees": "22.8",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "60 1986-01-12.2 38 1.49 2.17 22.8 V 18"
+          },
+          {
+            "pdfPage": 28,
+            "row": 61,
+            "epoch": "1986-01-17.2",
+            "measurementCount": 31,
+            "earthDistanceAu": "1.49",
+            "sunDistanceAu": "2.16",
+            "phaseDegrees": "23.1",
+            "filter": "V",
+            "reference": 18,
+            "exactExtractedRow": "61 1986-01-17.2 31 1.49 2.16 23.1 V 18"
+          }
+        ],
+        "limitations": [
+          "Disk-integrated historical lightcurves used for author ADAM modelling, not resolved native surface images or independent per-pixel photometric calibration.",
+          "Fractional-day epochs retained exactly; UTC, exposure durations and individual raw product identities not inferred. Filter C retained literally without assuming a calibrated bandpass.",
+          "Np is the author measurement count per lightcurve, not image count or exposure time. Historical listed ranges are not current ephemerides.",
+          "Reference inventory does not establish cited-source byte identity, full primary-data reprocessing, ADAM reproduction or figure/raw-data licence.",
+          "All108 dossiers/original/master/native/map/model/shape inputs unchanged; no109/catalogue/codec/embedding change or fresh build/browser/capacity claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-collisional-input-table-preparation-2026-10-21.json",
+        "bytes": 2379,
+        "sha256": "2e9cf103da3b910446d3349d49cd8bde9a4ff4f0b5c425e7dc2408048fb76895"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual preparation; no production adoption",
+        "body": "(2) Pallas",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "visualInspection": {
+          "pdfPage": 31,
+          "printedPage": 30,
+          "table": 5,
+          "render": {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-31.png",
+            "bytes": 98588,
+            "sha256": "c4887cc1d184ff25cb0e5317619ffb1a513d41d626cf7bd565a3959723398ccc"
+          }
+        },
+        "columns": {
+          "intrinsicCollisionProbability": "10^-18 km^-2 year^-1",
+          "medianImpactVelocity": "km/s",
+          "targetDiameter": "km",
+          "bulkDensity": "g/cm^3",
+          "projectileDiameterForAtLeast40kmCrater": "km; inferred from pi scaling"
+        },
+        "authorModelInputs": [
+          {
+            "body": "Ceres",
+            "intrinsicCollisionProbability": 3.58,
+            "medianImpactVelocityKmS": 5.07,
+            "targetDiameterKm": 946,
+            "bulkDensityGcm3": 2.16,
+            "projectileDiameterKm": 3.78
+          },
+          {
+            "body": "Pallas",
+            "intrinsicCollisionProbability": 2.17,
+            "medianImpactVelocityKmS": 11.49,
+            "targetDiameterKm": 513,
+            "bulkDensityGcm3": 2.89,
+            "projectileDiameterKm": 2.42
+          },
+          {
+            "body": "Vesta",
+            "intrinsicCollisionProbability": 2.92,
+            "medianImpactVelocityKmS": 5.29,
+            "targetDiameterKm": 525,
+            "bulkDensityGcm3": 3.46,
+            "projectileDiameterKm": 4.27
+          }
+        ],
+        "limitations": [
+          "Historical collisional model inputs, not current ephemerides, impact forecasts, independently reproduced probabilities or measured local material fractions.",
+          "Target diameters and bulk densities are author-adopted simulation quantities; do not overwrite catalogue alternatives or assign another body terrain.",
+          "Projectile diameters are model crater-scaling inferences, not individually observed impactors or new raster calculations.",
+          "Full forty-author credit and source-specific terms retained in formal Pallas assessment; no new paper-figure permission inferred or figure embedded.",
+          "All 108 dossiers and original/master/native/map/model/shape inputs unchanged; no dossier109, catalogue or codec change. No new build/browser or headroom claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-impact-population-figures-preparation-2026-10-21.json",
+        "bytes": 3687,
+        "sha256": "daa74e4d2825964458726df06b2392190aabf44a93985ebc61b73277570debdf"
+      },
+      "historicalPreparationRecord": {
+        "status": "research-only visual preparation; no adoption",
+        "date": "2026-10-21",
+        "body": "(2) Pallas",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "visualInspection": {
+          "pdfPages": [
+            13,
+            14,
+            15
+          ],
+          "printedPages": [
+            12,
+            13,
+            14
+          ],
+          "renders": [
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-13.png",
+              "bytes": 519748,
+              "sha256": "50084bc4941117d919c79057257d67f285cf573a9406cb29ce1bbb7612491c25"
+            },
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-14.png",
+              "bytes": 127062,
+              "sha256": "1eab48ed55a315501edf6897c9f0d32f699de234eb6e03d3ce71a799a296f04a"
+            },
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-15.png",
+              "bytes": 242780,
+              "sha256": "66ab00bea25cc4e876b26c3554b2bca28863fec915f83233046b935676405696"
+            }
+          ]
+        },
+        "findings": [
+          {
+            "figure": 9,
+            "scope": "Six SPH cutaways at simulated t=200 seconds, assumed 12 km/s impact and 513 km target diameter. Logarithmic palette encodes fragment velocity in cm/s, not temperature, chemistry, surface colour or lava. Green lines are model free-fall flight distances; dotted circles initial contact outlines.",
+            "panelInputs": [
+              {
+                "projectileDiameterKm": 69.7,
+                "impactAngleDegrees": 45
+              },
+              {
+                "projectileDiameterKm": 94.8,
+                "impactAngleDegrees": 60
+              },
+              {
+                "projectileDiameterKm": 59.8,
+                "impactAngleDegrees": 45
+              },
+              {
+                "projectileDiameterKm": 51.3,
+                "impactAngleDegrees": 45
+              },
+              {
+                "projectileDiameterKm": 69.7,
+                "impactAngleDegrees": 60
+              },
+              {
+                "projectileDiameterKm": 128.9,
+                "impactAngleDegrees": 75
+              }
+            ],
+            "captionLimitation": "Caption enumerates only projectile sizes 51.3,69.7,94.8 km, while panels additionally print 59.8 and 128.9 km. Preserve omission rather than silently changing caption or panel inputs."
+          },
+          {
+            "figure": 10,
+            "scope": "Post-reaccumulation synthetic cumulative size distributions versus historical observed family. Authors compare observed slope -2.2 with synthetic approximately -5.0 and interpret subsequent collisional/orbital evolution; no direct event date, current complete population or observed local terrain follows."
+          },
+          {
+            "figure": 11,
+            "scope": "Monte Carlo distributions: main belt plus Pallas family at left, synthetic family excluding largest remnant at right; simulated 100 Ma top and 2000 Ma bottom, ten random seeds. Colours distinguish distributions and initial conditions. Around-1-km observational incompleteness is retained, not repaired or treated as physical population cutoff."
+          }
+        ],
+        "limitations": [
+          "Simulations, scaling, reaccumulation and stochastic histories not independently reproduced. No new angular/raster calculation.",
+          "Existing full forty-author and source-specific terms records remain applicable; no paper-figure reuse permission inferred or figure embedded.",
+          "All 108 dossiers, originals, masters, native images, maps, models and shapes preserved; no dossier 109, catalogue or codec change.",
+          "No fresh build/browser validation or capacity claim; previously reported standalone hard-gate failure remains unresolved."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-family-figures-preparation-2026-10-21.json",
+        "bytes": 3116,
+        "sha256": "c6ac5f50b85a05b0befca26aeaa6dbdf53b1c75380269ed82ecd1c853c628317"
+      },
+      "historicalPreparationRecord": {
+        "status": "research-only visual preparation; no production adoption",
+        "date": "2026-10-21",
+        "body": "(2) Pallas",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "visualInspection": {
+          "pdfPages": [
+            10,
+            11,
+            12
+          ],
+          "printedPages": [
+            9,
+            10,
+            11
+          ],
+          "renders": [
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-10.png",
+              "bytes": 302524,
+              "sha256": "8f758626bb824520b7257d6948328e168527dae7b20281051628303b94d8c030"
+            },
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-11.png",
+              "bytes": 203562,
+              "sha256": "96406eb98511c9a484ab600a05c0eb230610ac47ef79b33f0df66fb9eeab87aa"
+            },
+            {
+              "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-12.png",
+              "bytes": 136541,
+              "sha256": "0c20d7fd865d64d7ccd043f27e04774a3261d37f279d71e004c86d31928ec740"
+            }
+          ]
+        },
+        "findings": [
+          {
+            "figure": 6,
+            "scope": "Historical mean-orbital-element family surroundings, selected using osculating a in (2.649,2.95) AU, e in (0.05,0.4), I in (29,38) degrees. Colours encode geometric albedo when known, symbol sizes diameters, green crosses plausible interlopers. The right panel compares pV and pIR. Resonance annotations are dynamical context, not body surface colours or current ephemerides."
+          },
+          {
+            "figure": 7,
+            "scope": "Synthetic family green dots versus observed gray crosses in mean semimajor axis and eccentricity. Top panel explicitly t=5.5 Myr, bottom t=1680.5 Myr; caption rounds best fit to 1.68 Ga. Coloured bins encode individual chi-square contributions, not albedo or geography. Barcelona/Brucato contamination explanations remain author interpretations."
+          },
+          {
+            "figure": 8,
+            "scope": "Orange chi-square, gray number of boxes and dashed synthetic-body count use separate ordinates. Caption reports chi-square/Nbox approximately 1.35 and best-fit chi-square 101; horizontal dotted scatter is not an independently established radiometric age or confidence interval."
+          }
+        ],
+        "limitations": [
+          "N-body integration, historical selection, albedo calibration and family membership were not independently reproduced.",
+          "No current exhaustive family classification, physical chronology, local chemistry, calibrated visible colour or resolved geography established.",
+          "No figure embedded and no new licence permission inferred; source credits and existing publication/terms distinctions remain in the formal Pallas assessment.",
+          "All 108 delivered dossiers and original/master/native/map/model/shape inputs remain unchanged. No dossier 109, catalogue or codec change.",
+          "No fresh production/full build, browser restoration or capacity saving claim. Previously reported standalone budget failure remains unresolved."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-composition-polarimetry-reference-preparation-2026-10-21.json",
+        "bytes": 2860,
+        "sha256": "f45e5d1fc5fec68f9a35bfa065a62bae8a5497dc39927a6a1f6ef67415a1d7d9"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual bibliography preparation",
+        "scope": "PDF pages 41\u201343, references 76\u201399; completes visual review of all 43 manuscript pages, not all 40 supplement pages",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-41.png",
+            "bytes": 208526,
+            "sha256": "f19d47a5c3adeedf90f2a5b565b4bea6e84b908e8e92eac16b316be9ff69d77f"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-42.png",
+            "bytes": 205345,
+            "sha256": "632cf323d3ea1b488ba6c312e319f5f5dc49d48e8c70b0aab062aa2fe15323cb"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-43.png",
+            "bytes": 189670,
+            "sha256": "dceccf338d6f6f0e980cb40db85832d34617e361029fff9a2ec46703e4242764"
+          }
+        ],
+        "findings": [
+          "References 76\u201384 concern aqueous alteration, carbonaceous-chondrite spectra, irradiation, Ceres-family interpretations, CM mineralogy, WISE B types, Iapetus geophysics and Pallas thermal evolution. Reference 77 lacks an author name as printed; this incomplete citation is preserved rather than repaired from an assumed attribution.",
+          "References 85\u201392 concern meteorite conductivity and chemical evolution, convecting mudball models, Daphne interiors, the Pallas family and Phaethon spectroscopy/thermophysical studies. Reference 89 repeats reference 60 and is not a second independent dataset.",
+          "References 93\u201399 concern Phaethon polarization, albedo calibration, three-micron observations and the historical DESTINY+ mission proposal. Phaethon properties are not Pallas measurements, and a historical mission citation does not establish current mission status.",
+          "The bibliography supplies research leads, not reproduced fits, measured local material fractions, present temperatures, unique collision histories or calibration of ESO/native image pixels."
+        ],
+        "limits": [
+          "Bibliography visually inspected only; cited full sources were not newly fetched or independently verified in this preparation.",
+          "No analogy authorizes assigning another observed body map to Pallas. No paper, figure or raw-data licence transfers from citation presence.",
+          "All 43 manuscript pages have now been visually reviewed across retained preparations. Supplement visual review remains partial; the earlier tracked assessment retains its historical validation scope.",
+          "No production, dossier, embedding, catalogue, native image/map, model/shape or codec change. No fresh test/build/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-observation-late-march-preparation-2026-10-21.json",
+        "bytes": 2289,
+        "sha256": "506d36f27f8ec34d291ae83ab4ae6c49d8ad978222d3c59831431331a3e62440"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual observation-table preparation",
+        "scope": "Supplement PDF page 24, printed page 23; Supplementary Table 2 continuation",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page24.png",
+            "bytes": 136066,
+            "sha256": "b9e82c2a2be8472327d7b67dc9d39aa27ff7007424396cbb7eaf3486c3bc679a"
+          }
+        ],
+        "commonPrintedFields": {
+          "instrument": "VLT/SPHERE",
+          "filter": "N_R",
+          "exposureSecondsPerRow": 45,
+          "earthDistanceAu": 1.59,
+          "angularDiameterArcsec": 0.453,
+          "surveyId": "199.C-0074",
+          "pi": "Vernazza",
+          "timeStandard": "UT"
+        },
+        "observationGroups": [
+          {
+            "date": "2019-03-25",
+            "times": [
+              "3:58:30",
+              "3:59:24",
+              "4:00:18",
+              "4:01:11",
+              "4:02:04"
+            ],
+            "airmasses": [
+              1.71,
+              1.7,
+              1.7,
+              1.69,
+              1.69
+            ],
+            "sunDistanceAu": 2.5,
+            "phaseDegrees": 12.0
+          },
+          {
+            "date": "2019-03-28",
+            "times": [
+              "3:35:44",
+              "3:36:41",
+              "3:37:34",
+              "3:38:26",
+              "3:39:19"
+            ],
+            "airmasses": [
+              1.81,
+              1.81,
+              1.8,
+              1.79,
+              1.79
+            ],
+            "sunDistanceAu": 2.51,
+            "phaseDegrees": 11.4
+          }
+        ],
+        "limits": [
+          "Printed row times agree to displayed seconds with two manuscript Figure 2 epoch headers; this does not establish raw product, panel pixel identity, camera-channel count, coaddition recipe or exact ESO publisher-image association.",
+          "Publisher angular diameter and distances are transcribed, not newly calculated or adopted as raster calibration; no skyGeometry computation performed.",
+          "All 43 manuscript pages have retained visual preparations; supplement review remains partial. Full calibration, frame registration and raw archive crosswalk remain open.",
+          "No production, dossier, catalogue, native image/map, model/shape or codec change; no fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-keck-observation-preparation-2026-10-21.json",
+        "bytes": 1872,
+        "sha256": "20bf1a03813db8c015c9924cc1cb46eb1a72bacedbd5938c6eb144f5993531b2"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual observation-table preparation",
+        "scope": "Supplement PDF page 19, printed page 18; opening Supplementary Table 2",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page19.png",
+            "bytes": 231694,
+            "sha256": "8e11a17884a015c5339a03545738d3e1b7214b4a7e3219d15778584b365e6b7c"
+          }
+        ],
+        "findings": [
+          "Caption explicitly describes disk-resolved images used for ADAM shape modelling. Eleven Keck/NIRC2 rows on this page cover 2002-05-08, 2003-10-10/12 and 2006-08-16; this is only the opening page, not the complete observation inventory.",
+          "Filters H, Kp and Ks and survey identifiers C74N2, Engineering and U145N2 are distinct from the later SPHERE N_R observations. Margot and Nelson are named PIs; Engineering rows print a dash rather than a named PI.",
+          "The 2006-08-16 UT08:41:54 Ks row visibly prints exposure 0 seconds, with airmass 1.13. Preserve this literal value; rounding, transcription or other cause is unverified, and no physically zero exposure or correction is inferred.",
+          "Printed angular diameters 0.213, 0.400 and 0.261 arcseconds are publisher table values, not newly calculated Fidelity raster calibration."
+        ],
+        "limits": [
+          "No raw archive product, exposure metadata, PSF, coaddition recipe or ESO image-panel pixel association established. Historical shape-model inputs are not necessarily the displayed native image acquisition.",
+          "No catalogue, dossier, embedding, native image/map, model/shape or codec change; no fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-early-sphere-observation-preparation-2026-10-21.json",
+        "bytes": 2877,
+        "sha256": "0d23a578ef342af963f9e83598055babc868b5d77253aefb7c2301b98dda2732"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual observation-table preparation",
+        "scope": "Supplement PDF page 20, printed page 19; Supplementary Table 2 continuation",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page20.png",
+            "bytes": 200256,
+            "sha256": "ea5c4d6f4f5c8149f8a9d60f5f7c0e40a4776a2c0783e73b97eb893ba6dd9634"
+          }
+        ],
+        "observations": {
+          "keckContinuation": {
+            "2006-08-16": {
+              "timesUT": [
+                "09:17:31",
+                "10:05:32",
+                "10:21:42"
+              ],
+              "filter": "Ks",
+              "exposureSecondsPerRow": 1,
+              "surveyId": "U145N2",
+              "pi": "Nelson"
+            },
+            "2007-07-12": {
+              "timesUT": [
+                "12:56:58",
+                "13:01:32",
+                "13:15:54"
+              ],
+              "filter": "Kp",
+              "exposureSecondsPerRow": 2,
+              "surveyId": "Engineering",
+              "piAsPrinted": "\u2013"
+            },
+            "2007-11-01": {
+              "timesUT": [
+                "06:04:39"
+              ],
+              "filter": "Kp",
+              "exposureSecondsPerRow": 2,
+              "surveyId": "Engineering",
+              "piAsPrinted": "\u2013"
+            }
+          },
+          "sphere": {
+            "2017-10-08": {
+              "timesUT": [
+                "4:56:05",
+                "4:58:16",
+                "5:00:27",
+                "5:02:36",
+                "5:04:46"
+              ],
+              "airmasses": [
+                1.13,
+                1.12,
+                1.12,
+                1.11,
+                1.11
+              ],
+              "earthDistanceAu": 1.77,
+              "sunDistanceAu": 2.59,
+              "phaseDegrees": 15.1,
+              "angularDiameterArcsec": 0.407
+            },
+            "2017-10-11": {
+              "timesUTOnThisPage": [
+                "5:04:27"
+              ],
+              "airmass": 1.08,
+              "earthDistanceAu": 1.75,
+              "sunDistanceAu": 2.59,
+              "phaseDegrees": 14.8,
+              "angularDiameterArcsec": 0.411
+            },
+            "common": {
+              "instrument": "VLT/SPHERE",
+              "filter": "N_R",
+              "exposureSecondsPerRow": 121,
+              "surveyId": "199.C-0074",
+              "pi": "Vernazza"
+            }
+          }
+        },
+        "limits": [
+          "Keck 2007 rows and SPHERE 2017 rows are different observations/instruments; no decade-shift correction or common exposure inferred.",
+          "First SPHERE row times agree to printed seconds with manuscript Figure 2 headers; no raw-product, exact coadd, camera-channel count or ESO panel pixel association established.",
+          "Publisher distances, phase and angular diameter are transcribed, not new skyGeometry computations or raster calibration.",
+          "No production, dossier, catalogue, image/map, model/shape or codec change; no fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-october11-observation-preparation-2026-10-21.json",
+        "bytes": 2033,
+        "sha256": "9e59d3812802a14cc20adf714aca306c4d0e4cff23f610ea7e7eca5c69774d61"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual observation-table preparation",
+        "scope": "Supplement PDF page 21, printed page 20; Supplementary Table 2 continuation",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page21.png",
+            "bytes": 137459,
+            "sha256": "a96a0ed7cc1768dedd9ead7c637316463e0abda3b89f7f579b738576b281da84"
+          }
+        ],
+        "commonPrintedFields": {
+          "date": "2017-10-11",
+          "timeStandard": "UT",
+          "instrument": "VLT/SPHERE",
+          "filter": "N_R",
+          "exposureSecondsPerRow": 121,
+          "earthDistanceAu": 1.75,
+          "sunDistanceAu": 2.59,
+          "phaseDegrees": 14.8,
+          "angularDiameterArcsec": 0.411,
+          "surveyId": "199.C-0074",
+          "pi": "Vernazza"
+        },
+        "timesUT": [
+          "5:06:39",
+          "5:08:49",
+          "5:11:00",
+          "5:13:10",
+          "6:00:47",
+          "6:02:58",
+          "6:05:07",
+          "6:07:17",
+          "6:09:28",
+          "6:51:15",
+          "6:53:27",
+          "6:55:36",
+          "6:57:47"
+        ],
+        "airmasses": [
+          1.08,
+          1.08,
+          1.07,
+          1.07,
+          1.02,
+          1.02,
+          1.01,
+          1.01,
+          1.01,
+          1.01,
+          1.01,
+          1.01,
+          1.01
+        ],
+        "limits": [
+          "This page continues the 5:04:27 row on the preceding page and continues again on the next page. It is not a complete single-epoch frame count or a coaddition recipe.",
+          "6:00:47 and 6:51:15 agree to displayed seconds with manuscript Figure 2 headers; agreement does not establish raw archive identifiers, camera-channel count, exact panel pixel identity or ESO publisher-image association.",
+          "Publisher distances, phase and angular diameter are transcribed, not new skyGeometry computations or raster calibration.",
+          "No production, dossier, catalogue, native image/map, model/shape or codec change; no fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-complete-observation-inventory-preparation-2026-10-21.json",
+        "bytes": 16610,
+        "sha256": "25f50ae4426ce5d772835539d2c08e800c23564d6c4f3255260ded956683ddd4"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only complete Table 2 text inventory; not raw archive verification",
+        "source": {
+          "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+          "bytes": 3975913,
+          "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+        },
+        "scope": "Supplement PDF pages 19\u201324, printed pages 18\u201323",
+        "rowCount": 73,
+        "instrumentRowCounts": {
+          "Keck/NIRC2": 18,
+          "VLT/SPHERE": 55
+        },
+        "dateRowCounts": {
+          "2002-05-08": 1,
+          "2003-10-10": 1,
+          "2003-10-12": 3,
+          "2006-08-16": 9,
+          "2007-07-12": 3,
+          "2007-11-01": 1,
+          "2017-10-08": 5,
+          "2017-10-11": 15,
+          "2017-10-28": 5,
+          "2017-11-03": 5,
+          "2019-03-14": 5,
+          "2019-03-15": 5,
+          "2019-03-24": 5,
+          "2019-03-25": 5,
+          "2019-03-28": 5
+        },
+        "rows": [
+          {
+            "pdfPage": 19,
+            "printedRowText": "2002-05-08 14:58:36 Keck /NIRC2 H 1 1.09 3.38 3.41 17.1 0.213 C74N2 Margot",
+            "date": "2002-05-08",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2003-10-10 11:58:46 Keck /NIRC2 Kp 20 1.28 1.80 2.73 9.4 0.400 Engineering \u2013",
+            "date": "2003-10-10",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2003-10-12 09:12:42 Keck /NIRC2 Kp 2 1.40 1.80 2.73 9.5 0.400 Engineering \u2013",
+            "date": "2003-10-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2003-10-12 11:11:03 Keck /NIRC2 Kp 2 1.25 1.80 2.73 9.5 0.400 Engineering \u2013",
+            "date": "2003-10-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2003-10-12 11:27:02 Keck /NIRC2 Kp 2 1.26 1.80 2.73 9.5 0.400 Engineering \u2013",
+            "date": "2003-10-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 06:48:36 Keck /NIRC2 Ks 1 1.00 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 07:29:28 Keck /NIRC2 Ks 1 1.42 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 07:44:38 Keck /NIRC2 Ks 1 1.03 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 08:11:04 Keck /NIRC2 Ks 1 1.06 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 08:41:54 Keck /NIRC2 Ks 0 1.13 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 19,
+            "printedRowText": "2006-08-16 08:45:03 Keck /NIRC2 Ks 1 1.13 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2006-08-16 09:17:31 Keck /NIRC2 Ks 1 1.23 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2006-08-16 10:05:32 Keck /NIRC2 Ks 1 1.47 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2006-08-16 10:21:42 Keck /NIRC2 Ks 1 1.58 2.76 3.35 15.5 0.261 U145N2 Nelson",
+            "date": "2006-08-16",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2007-07-12 12:56:58 Keck /NIRC2 Kp 2 1.04 2.69 3.31 15.5 0.268 Engineering \u2013",
+            "date": "2007-07-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2007-07-12 13:01:32 Keck /NIRC2 Kp 2 1.04 2.69 3.31 15.5 0.268 Engineering \u2013",
+            "date": "2007-07-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2007-07-12 13:15:54 Keck /NIRC2 Kp 2 1.03 2.69 3.31 15.5 0.268 Engineering \u2013",
+            "date": "2007-07-12",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2007-11-01 06:04:39 Keck /NIRC2 Kp 2 1.12 2.64 3.16 16.9 0.273 Engineering \u2013",
+            "date": "2007-11-01",
+            "instrument": "Keck/NIRC2"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-08 4:56:05 VLT /SPHERE N R 121 1.13 1.77 2.59 15.1 0.407 199.C-0074 Vernazza",
+            "date": "2017-10-08",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-08 4:58:16 VLT /SPHERE N R 121 1.12 1.77 2.59 15.1 0.407 199.C-0074 Vernazza",
+            "date": "2017-10-08",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-08 5:00:27 VLT /SPHERE N R 121 1.12 1.77 2.59 15.1 0.407 199.C-0074 Vernazza",
+            "date": "2017-10-08",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-08 5:02:36 VLT /SPHERE N R 121 1.11 1.77 2.59 15.1 0.407 199.C-0074 Vernazza",
+            "date": "2017-10-08",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-08 5:04:46 VLT /SPHERE N R 121 1.11 1.77 2.59 15.1 0.407 199.C-0074 Vernazza",
+            "date": "2017-10-08",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 20,
+            "printedRowText": "2017-10-11 5:04:27 VLT /SPHERE N R 121 1.08 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 5:06:39 VLT /SPHERE N R 121 1.08 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 5:08:49 VLT /SPHERE N R 121 1.08 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 5:11:00 VLT /SPHERE N R 121 1.07 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 5:13:10 VLT /SPHERE N R 121 1.07 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:00:47 VLT /SPHERE N R 121 1.02 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:02:58 VLT /SPHERE N R 121 1.02 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:05:07 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:07:17 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:09:28 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:51:15 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:53:27 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:55:36 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 21,
+            "printedRowText": "2017-10-11 6:57:47 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-11 6:59:57 VLT /SPHERE N R 121 1.01 1.75 2.59 14.8 0.411 199.C-0074 Vernazza",
+            "date": "2017-10-11",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-28 8:28:03 VLT /SPHERE N R 121 1.35 1.70 2.54 14.4 0.423 199.C-0074 Vernazza",
+            "date": "2017-10-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-28 8:30:14 VLT /SPHERE N R 121 1.37 1.70 2.54 14.4 0.423 199.C-0074 Vernazza",
+            "date": "2017-10-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-28 8:32:24 VLT /SPHERE N R 121 1.38 1.70 2.54 14.4 0.423 199.C-0074 Vernazza",
+            "date": "2017-10-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-28 8:34:34 VLT /SPHERE N R 121 1.39 1.70 2.54 14.4 0.423 199.C-0074 Vernazza",
+            "date": "2017-10-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-10-28 8:36:43 VLT /SPHERE N R 121 1.40 1.70 2.54 14.4 0.423 199.C-0074 Vernazza",
+            "date": "2017-10-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-11-03 3:17:46 VLT /SPHERE N R 121 1.08 1.70 2.53 14.8 0.423 199.C-0074 Vernazza",
+            "date": "2017-11-03",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-11-03 3:19:57 VLT /SPHERE N R 121 1.07 1.70 2.53 14.8 0.423 199.C-0074 Vernazza",
+            "date": "2017-11-03",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-11-03 3:22:08 VLT /SPHERE N R 121 1.07 1.70 2.53 14.8 0.423 199.C-0074 Vernazza",
+            "date": "2017-11-03",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-11-03 3:24:17 VLT /SPHERE N R 121 1.07 1.70 2.53 14.8 0.423 199.C-0074 Vernazza",
+            "date": "2017-11-03",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2017-11-03 3:26:27 VLT /SPHERE N R 121 1.06 1.70 2.53 14.8 0.423 199.C-0074 Vernazza",
+            "date": "2017-11-03",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2019-03-14 5:36:08 VLT /SPHERE N R 45 1.37 1.62 2.47 14.7 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-14",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 22,
+            "printedRowText": "2019-03-14 5:37:02 VLT /SPHERE N R 45 1.37 1.62 2.47 14.7 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-14",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-14 5:37:56 VLT /SPHERE N R 45 1.37 1.62 2.47 14.7 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-14",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-14 5:38:48 VLT /SPHERE N R 45 1.36 1.62 2.47 14.7 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-14",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-14 5:39:41 VLT /SPHERE N R 45 1.36 1.62 2.47 14.7 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-14",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-15 6:55:56 VLT /SPHERE N R 45 1.22 1.62 2.48 14.4 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-15",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-15 6:56:49 VLT /SPHERE N R 45 1.22 1.62 2.48 14.4 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-15",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-15 6:57:42 VLT /SPHERE N R 45 1.22 1.62 2.48 14.4 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-15",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-15 6:58:36 VLT /SPHERE N R 45 1.22 1.62 2.48 14.4 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-15",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-15 6:59:27 VLT /SPHERE N R 45 1.22 1.62 2.48 14.4 0.444 199.C-0074 Vernazza",
+            "date": "2019-03-15",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-24 9:24:22 VLT /SPHERE N R 45 1.72 1.59 2.50 12.1 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-24",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-24 9:25:17 VLT /SPHERE N R 45 1.72 1.59 2.50 12.1 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-24",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-24 9:26:10 VLT /SPHERE N R 45 1.73 1.59 2.50 12.1 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-24",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-24 9:27:02 VLT /SPHERE N R 45 1.74 1.59 2.50 12.1 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-24",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 23,
+            "printedRowText": "2019-03-24 9:27:56 VLT /SPHERE N R 45 1.74 1.59 2.50 12.1 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-24",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-25 3:58:30 VLT /SPHERE N R 45 1.71 1.59 2.50 12.0 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-25",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-25 3:59:24 VLT /SPHERE N R 45 1.70 1.59 2.50 12.0 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-25",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-25 4:00:18 VLT /SPHERE N R 45 1.70 1.59 2.50 12.0 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-25",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-25 4:01:11 VLT /SPHERE N R 45 1.69 1.59 2.50 12.0 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-25",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-25 4:02:04 VLT /SPHERE N R 45 1.69 1.59 2.50 12.0 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-25",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-28 3:35:44 VLT /SPHERE N R 45 1.81 1.59 2.51 11.4 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-28 3:36:41 VLT /SPHERE N R 45 1.81 1.59 2.51 11.4 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-28 3:37:34 VLT /SPHERE N R 45 1.80 1.59 2.51 11.4 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-28 3:38:26 VLT /SPHERE N R 45 1.79 1.59 2.51 11.4 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-28",
+            "instrument": "VLT/SPHERE"
+          },
+          {
+            "pdfPage": 24,
+            "printedRowText": "2019-03-28 3:39:19 VLT /SPHERE N R 45 1.79 1.59 2.51 11.4 0.453 199.C-0074 Vernazza",
+            "date": "2019-03-28",
+            "instrument": "VLT/SPHERE"
+          }
+        ],
+        "limits": [
+          "Exact extracted row strings preserved alongside original PDF; extraction and date grouping are not independent verification of observation metadata.",
+          "SPHERE date groups do not equal rotation-phase groups: 2017-10-11 has multiple sequences, and five listed observations do not verify ten individual detector-channel files.",
+          "The literal zero-second Keck row remains unchanged; cause and raw metadata remain open. No summed exposure, current ephemeris, angular/raster calculation or calibrated geography inferred.",
+          "No association with exact ESO panel pixels or identified raw archive product established.",
+          "No production, dossier, catalogue, image/map, model/shape or codec change; no fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-supplement-mass-figure-preparation-2026-10-21.json",
+        "bytes": 1808,
+        "sha256": "c0f9630470ed590485669362b3461716a4822daf3bebe9e874680b103734b067"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual mass-figure preparation",
+        "scope": "Supplement PDF page 8, printed page 7, Supplementary Figure 4",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+            "bytes": 3975913,
+            "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page08.png",
+            "bytes": 287349,
+            "sha256": "60c221b7c2b0b607bb6824d1a2ef0f083d680f45091a465db49aaf1a544db3ac"
+          }
+        ],
+        "findings": [
+          "The upper panel plots 28 indexed literature mass estimates in kilograms; filled blue ephemeris markers and open deflection markers distinguish estimation methods. Marker colour is graphical annotation, not body reflectance or composition.",
+          "Crosses visibly mark indices 1, 3, 12 and 13, consistent with the four rejected estimates recorded in the earlier Table 4 audit. The figure is not a new independent mass measurement.",
+          "The lower panel shows deviation to average and a side distribution graphic. No new numerical fit, probability distribution, covariance, independence or uncertainty convention is inferred from digitizing this plot. Earlier Table 4 three-sigma convention remains explicit.",
+          "Historical ephemeris-fit estimates are not a current trajectory solution, local density, mineral fraction or native-image calibration."
+        ],
+        "limits": [
+          "Underlying cited mass studies, covariance and rejection procedure were not independently reproduced.",
+          "No figure embedded or new licence asserted. No production, dossier, catalogue, native image/map, model/shape or codec change; no fresh test/build/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-shape-history-maintext-preparation-2026-10-21.json",
+        "bytes": 2060,
+        "sha256": "bc15ab98ed2f90ad12b928ac6f96f745478ba743c47b58cb46bd095b4f08b197"
+      },
+      "historicalPreparationRecord": {
+        "status": "research-only preparation; no production adoption",
+        "date": "2026-10-21",
+        "scope": "Visual inspection of manuscript PDF page 6, lines 65\u201385",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-06.png",
+            "bytes": 258274,
+            "sha256": "b8e6e6a9aff605ba0896ed4d21577b56b155d6078f8ca45696e08b51910e513c"
+          }
+        ],
+        "findings": [
+          "The model volume-equivalent diameter is 513 \u00b1 6 km; the principal-axis values 284 \u00d7 266 \u00d7 224 \u00b1 6 km are explicitly semi-axes, not diameters.",
+          "The south-pole flattening, possible ancient basin, approximately 6.2-to-7.8-hour spin change and 6 \u00b1 1 percent excavated-volume interpretation are conditional models; the pole itself is not directly established by this page as observed terrain.",
+          "The roughly one-percent equatorial excavation, 60\u201390-km oblique projectile and 1.7 (+0.2, -0.4) Ga family evolution are simulation interpretations, not directly observed impact history or an independent radiometric age.",
+          "The authors distinguish the equatorial-family interpretation from southern-basin simulations that do not explain the present family.",
+          "The mass average (2.04 \u00b1 0.03) \u00d7 10^20 kg combined with shape-model volume yields bulk density 2.89 \u00b1 0.08 g/cm^3. Earlier Table 4 three-sigma convention remains explicit; this page does not establish local chemistry or porosity.",
+          "Ceres and Vesta density/basin comparisons are historical scientific comparisons, not permission to reuse either body\u2019s map."
+        ],
+        "limits": [
+          "No new angular or raster computation.",
+          "No ESO panel, raw-product, dated frame or photometric registration established.",
+          "No new dossier, embedding, catalogue, map, model, shape or codec change.",
+          "No fresh build, browser, standalone capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-maintext-composition-alternatives-preparation-2026-10-21.json",
+        "bytes": 2608,
+        "sha256": "bcc0c666412a2b92ec4e588369c3fedfad12c74a136cc3f352f45341ce5e46d5"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual preparation; no adoption",
+        "scope": "Manuscript PDF pages 7\u20138, lines 86\u2013110 and references 1\u20138",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-07.png",
+            "bytes": 254479,
+            "sha256": "48815a7acbf80895d4bc54b33fdb5740673a7f1c84609d03b5481d1e921e99c7"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-08.png",
+            "bytes": 213252,
+            "sha256": "7f7157149a1c5f9741c1de7291f6c76e87e28f09c09ed4915601cf1e1528804d"
+          }
+        ],
+        "findings": [
+          "Lower water-to-rock fraction and small interior porosity are interpretive assumptions behind the comparison with CM grain density 2.90 \u00b1 0.08 g/cm^3; neither local composition nor measured void fraction follows.",
+          "A common starting material with CM-like Ch/Cgh asteroids is a possible scenario. Visible/near-infrared spectral differences and later thermal/impact evolution remain part of that scenario.",
+          "Formation at 3\u20134 Ma after CAIs, failure to reach approximately 820 K silicate dehydration, homogeneous hydrated interior and partial water/silicate separation are conditional thermal-history interpretations, not present temperature, directly observed layers or active plumbing.",
+          "The cited bulk albedo 12\u201317 percent, Ch/Cgh comparison 6 \u00b1 2 percent and approximately 10-percent bright-spot enhancement are author-reported values; this inspection does not calibrate the ESO raster or infer local salt abundance.",
+          "The authors explicitly retain bright exogenic material and unresolved fresh-impact ejecta as alternative bright-spot explanations. Salt deposits are not uniquely established.",
+          "The page-8 Pallas\u2013Phaethon\u2013Geminid sodium connection is explicitly a hypothesis based on a proposed genealogical association, not direct Pallas sodium detection or confirmed genealogy.",
+          "References 1\u20138 are visually inventoried only; their appearance is not independent full-source verification or licence evidence."
+        ],
+        "limits": [
+          "No new angular or raster computation; no direct native-product, panel, epoch, frame or photometric crosswalk.",
+          "No dossier, embedding, catalogue, map, shape, model or codec change. Original sources remain unchanged.",
+          "No fresh test/build/browser, standalone-capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-method-reference-inventory-preparation-2026-10-21.json",
+        "bytes": 2442,
+        "sha256": "64725163b6f0aec1d9c21a31cb4028bf2f564daf22de1ddfd5c32b13f69894e0"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual reference inventory",
+        "scope": "Manuscript PDF pages 9\u201310, references 9\u201326",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-09.png",
+            "bytes": 218743,
+            "sha256": "f4fc14dfcdf5820cb7fb44e831fd3a92e60cfe83f4b3a7ddd1f6e6b894d2fbcf"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-10.png",
+            "bytes": 211885,
+            "sha256": "f2001c62659f474886801a3a4119eb5c4fb646487c157a25f37af63328a65b21"
+          }
+        ],
+        "referenceRoles": {
+          "9": "SPHERE ZIMPOL overview/performance simulation",
+          "10": "Julia-family impact-crater interpretation",
+          "11": "Adaptive-optics deconvolution proceedings",
+          "12": "MISTRAL myopic edge-preserving restoration method",
+          "13": "Vesta VLT/SPHERE comparison with mission observations",
+          "14": "Ceres Ezinu quadrangle cratering/subsurface-ice interpretation",
+          "15": "Vesta crater chronology and HED comparison",
+          "16": "Ceres cratering and crust/evolution",
+          "17": "Impact cratering textbook",
+          "18": "Asteroid-belt orbital and size distributions",
+          "19": "ADAM reconstruction method",
+          "20": "Vesta southern giant basins",
+          "21": "Meteorite density and porosity",
+          "22": "CM-parent compositional homogeneity",
+          "23": "Fayalite-recorded early aqueous activity",
+          "24": "WISE/NEOWISE asteroid analysis",
+          "25": "Ceres bright-spot sublimation interpretation",
+          "26": "Phaethon/Geminid origin model"
+        },
+        "limits": [
+          "Bibliographic entries were visually inspected; cited full sources were not fetched or independently assessed in this preparation.",
+          "Method citations do not reproduce the authors\u2019 PSF, reconstruction, density, thermal or cratering calculations.",
+          "Ceres/Vesta/Julia references do not establish Pallas terrain, chemistry, activity, calibrated colour or an interchangeable body map.",
+          "No source licence, figure redistribution permission, raw-product/pixel identity, epoch or frame transfer is established by a citation.",
+          "No production, dossier, native, map, model, shape, catalogue or codec change; no new build/browser/capacity claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-contributor-reference-preparation-2026-10-21.json",
+        "bytes": 2599,
+        "sha256": "cf59209fb70bf601c0f7af0ae1ce77210cec62ac3cd8a187c30bec457547374f"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual preparation",
+        "scope": "PDF pages 11\u201312: references 27\u201333, acknowledgements, author contributions and declarations",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-11.png",
+            "bytes": 228241,
+            "sha256": "fcf73e6145cea92397824dfcf7bed8cc8855a6a939adf545894464b340e400c6"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-12.png",
+            "bytes": 229404,
+            "sha256": "9ca711e86c8bd91f884675689cd6fae1791aa161937ba10eb39ec67b74df2689"
+          }
+        ],
+        "findings": [
+          "References 27\u201333 concern the proposed Pallas\u2013Phaethon dynamical connection and Geminid spectroscopy/thermal evolution. Bibliographic inspection does not independently verify their full results or establish Pallas sodium abundance.",
+          "Acknowledgements explicitly identify ESO programme 199.C-0074, principal investigator P. Vernazza, and use of the Keck Observatory Archive operated by Keck and NExScI. This does not establish an individual exposure or ESO publisher-panel crosswalk.",
+          "The printed contributions assign survey PI to P. Vernazza; design/operations to M. Marsset and P. Vernazza; SPHERE reduction/deconvolution to M. Marsset, P. Vernazza, R. F\u00e9tick and T. Fusco; crater analysis to A. Drouard.",
+          "M. Bro\u017e performed family analysis and N-body/SPH simulations; D. C. Richardson and E. Asphaug supplied some numerical codes. B. Carry and J. Hanu\u0161 retrieved earlier disk-resolved/integrated data.",
+          "M. Viikinkoski and J. Hanu\u0161 reconstructed the shape; N. Rambaux and L. Jorda analysed it; B. Carry supplied the mass estimate; J. C. Castillo-Rogez performed composition and thermophysical modelling. All forty authors and the separate ESO/MISTRAL publisher credit remain preserved.",
+          "Funding, no-competing-financial-interests declaration and historical correspondence information are not a Creative Commons grant or permission to redistribute manuscript figures/raw data."
+        ],
+        "limits": [
+          "No contact was made; no cited source was newly downloaded in this preparation.",
+          "No independently reproduced reconstruction, photometry, raw-product association or registration claim.",
+          "No dossier, embedding, catalogue, map, model, shape or codec change; no fresh test/build/browser/capacity claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-shape-dynamics-reference-preparation-2026-10-21.json",
+        "bytes": 2280,
+        "sha256": "7760eb48f157ba79188046819ac21afab217c623e4dd3997783f618bf69ba0a3"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual bibliography preparation",
+        "scope": "Manuscript PDF pages 37\u201338, references 41\u201357",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-37.png",
+            "bytes": 216444,
+            "sha256": "f9ff26ce05e31edf213062e83f487af4c4f1971a3d41216eebbf287b28fe2bf2"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-38.png",
+            "bytes": 214701,
+            "sha256": "92a9dffc0a746b8cda5877f157283ada13a8ef8fde353b0df6ad2cef1aa59a71"
+          }
+        ],
+        "findings": [
+          "References 41\u201344 concern shape reconstruction of asteroid (3) Juno, generalized projections, Hebe and Elektra; asteroid Juno is distinct from the spacecraft. These are method comparisons, not Pallas pixel or shape identity.",
+          "References 45\u201349 cover Keck instrumentation, asteroid nutation, Earth flattening, Ceres shape/gravity expansions and rotating-body equilibrium. Bibliographic presence does not reproduce a fit or establish Pallas hydrostatic equilibrium, spin history or body-frame registration.",
+          "Reference 51 names NEOWISE Diameters and Albedos V1.0, EAR-A-COMPIL-5-NEOWISEDIAM-V1.0 (2016). This is a cited historical version, not a newly fetched current catalogue or a Pallas local-reflectance calibration.",
+          "References 50 and 52\u201357 concern asteroid-family identification, colour confirmation, numerical integration, comet dynamics, Hilda-family history and diurnal/seasonal Yarkovsky theory. Citation scope does not prove unique Pallas genealogy, a present ephemeris or measured local thermal properties."
+        ],
+        "limits": [
+          "Full cited sources were not downloaded or independently verified in this preparation.",
+          "No licence, figure permission, raw-product, observation epoch, native-map or pixel crosswalk inferred.",
+          "Original manuscript bytes preserved; no production, catalogue, dossier, embedding, map, model, shape or codec change.",
+          "No fresh tests/build/browser/capacity or savings claim."
+        ]
+      }
+    },
+    {
+      "retainedPreparation": {
+        "path": "data/research-sources/pallas-impact-reference-preparation-2026-10-21.json",
+        "bytes": 2410,
+        "sha256": "fd84b4b2e2e5d3a00aec871cd77e07185534a3f300a50e84d246459956828daa"
+      },
+      "historicalPreparationRecord": {
+        "date": "2026-10-21",
+        "status": "research-only visual bibliography preparation",
+        "scope": "PDF pages 39\u201340, references 58\u201375",
+        "sources": [
+          {
+            "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+            "bytes": 3628905,
+            "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-39.png",
+            "bytes": 209860,
+            "sha256": "b864d42b339638750335a0f193295381903cf476c486ede724aa680d132f0804"
+          },
+          {
+            "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-40.png",
+            "bytes": 196313,
+            "sha256": "9d84fcdbd2b01617d65d1c9bfe91b3e697a822ad937b13fdaff2b61610faf6d7"
+          }
+        ],
+        "findings": [
+          "References 58\u201361 cover YORP with finite conductivity, meteorite transport, Pallas-family differences and family-shape modelling; citation presence is not independent verification of Pallas thermal parameters, current family membership or unique history.",
+          "References 62 and 65 visibly repeat the same Benz and Asphaug 1994 fracture method/test citation. The duplicate is retained as printed rather than counted as two independently verified methods.",
+          "References 63\u201370 cover collision modelling, SPH/N-body breakup, numerical dynamics, Tillotson equations of state, von Mises plasticity, Grady\u2013Kipp fracture and brittle-solid SPH. Material-law citations do not establish measured Pallas metal, oil-shale or local mineral composition.",
+          "References 71\u201374 concern collision probabilities, belt evolution, disruption and Julia-family interpretation. No current impact forecast, unique Pallas event or direct Julia/Pallas geography identity follows. Reference 74 repeats the Julia article already listed as reference 10.",
+          "Reference 75 concerns phyllosilicate absorption in asteroid reflectance spectra, not calibrated local fractions or a resolved colour map."
+        ],
+        "limits": [
+          "Bibliography visually inspected only; referenced full sources not fetched in this preparation.",
+          "No licence/figure permission, algorithm reproduction, raw-product/frame/epoch registration or native pixel crosswalk established.",
+          "No new dossier, embedding, catalogue, image/map, model/shape or codec change.",
+          "No fresh build/test/browser/capacity or savings claim."
+        ]
+      }
+    }
+  ],
+  "verifiedRetainedFiles": [
+    {
+      "path": "data/research-sources/pallas-publisher-supplement-response-2026-10-21.bin",
+      "bytes": 3975913,
+      "sha256": "92eec0f20a9b2ac63a38a1960f4c8f5fbbfb94d042e5a6b330b98e4ebc778769"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-01.png",
+      "bytes": 222869,
+      "sha256": "1d9d40417b80853c01d30a4d80040ee5f52553da80de6deeea06a72d02ce9d09"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-02.png",
+      "bytes": 207707,
+      "sha256": "99e79b8345960d95a9d63610626550c19b35018ef077adacd723074f4b5c8a6d"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-03.png",
+      "bytes": 186295,
+      "sha256": "b3bc8e4480509973a670309a374370d9e3b8deff5dc6e7dc2cf0131967f3285c"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-04.png",
+      "bytes": 12832,
+      "sha256": "8b4f318bfd187edcfd91b53e1596e52ee276aaea3e6dd157ab88b64cfbcea838"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-35.png",
+      "bytes": 168989,
+      "sha256": "1aa9d7250b7d76492db4a4050c35d449a2ce47c880ef86a558b9e300264cf0ef"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-36.png",
+      "bytes": 201141,
+      "sha256": "9d0a8c38bb894b0ccf90c5c328adbb2de52fde140324c3715861702e53cd4c71"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-37.png",
+      "bytes": 197095,
+      "sha256": "7f982e99a6c4dcecbd7f8188024b416dcbebb48c893f1aa2f9611e4462f636d8"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-38.png",
+      "bytes": 195915,
+      "sha256": "60e99cf7b011a80d35961a4abe6a8dd31ae0da09bc26be6007e7b53554727148"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-39.png",
+      "bytes": 184753,
+      "sha256": "97a3353f73282e5a924af5abd667bcd5e34dc61445ec3aa1e6e5b73444ca7907"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-40.png",
+      "bytes": 41745,
+      "sha256": "c20ad343b81643bed37d7d675ca38b869d0e2bcc12fd1e018d611fa319fa09c8"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-25.png",
+      "bytes": 127356,
+      "sha256": "3c6614b6cf64c2a16a6c3541521aa68e07e317d183c37b50c91b707cbd40d8df"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-26.png",
+      "bytes": 116629,
+      "sha256": "8aa40859eee6343f7e43b4a7e78e46416e702b765d87c4aa6beb705d8a5a6362"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-27.png",
+      "bytes": 118328,
+      "sha256": "73ff38a5b3d930e7a2929cdd415d37f8ebb69a9bcd5384dc7fd9c27ad608684b"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-28.png",
+      "bytes": 81016,
+      "sha256": "4931d41a0ac1e3705f9ff30f3b5bb81717cb966cfa43cdd5242c7c1bc5255421"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-31.png",
+      "bytes": 98588,
+      "sha256": "c4887cc1d184ff25cb0e5317619ffb1a513d41d626cf7bd565a3959723398ccc"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-13.png",
+      "bytes": 519748,
+      "sha256": "50084bc4941117d919c79057257d67f285cf573a9406cb29ce1bbb7612491c25"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-14.png",
+      "bytes": 127062,
+      "sha256": "1eab48ed55a315501edf6897c9f0d32f699de234eb6e03d3ce71a799a296f04a"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-15.png",
+      "bytes": 242780,
+      "sha256": "66ab00bea25cc4e876b26c3554b2bca28863fec915f83233046b935676405696"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-10.png",
+      "bytes": 302524,
+      "sha256": "8f758626bb824520b7257d6948328e168527dae7b20281051628303b94d8c030"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-11.png",
+      "bytes": 203562,
+      "sha256": "96406eb98511c9a484ab600a05c0eb230610ac47ef79b33f0df66fb9eeab87aa"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-12.png",
+      "bytes": 136541,
+      "sha256": "0c20d7fd865d64d7ccd043f27e04774a3261d37f279d71e004c86d31928ec740"
+    },
+    {
+      "path": "data/research-sources/pallas-orbi-primary-2026-10-21.bin",
+      "bytes": 3628905,
+      "sha256": "4391aa3f275b655450eb6c08f996bf7c42c6201880a60d322ff42c1216b341c0"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-41.png",
+      "bytes": 208526,
+      "sha256": "f19d47a5c3adeedf90f2a5b565b4bea6e84b908e8e92eac16b316be9ff69d77f"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-42.png",
+      "bytes": 205345,
+      "sha256": "632cf323d3ea1b488ba6c312e319f5f5dc49d48e8c70b0aab062aa2fe15323cb"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-43.png",
+      "bytes": 189670,
+      "sha256": "dceccf338d6f6f0e980cb40db85832d34617e361029fff9a2ec46703e4242764"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page24.png",
+      "bytes": 136066,
+      "sha256": "b9e82c2a2be8472327d7b67dc9d39aa27ff7007424396cbb7eaf3486c3bc679a"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page19.png",
+      "bytes": 231694,
+      "sha256": "8e11a17884a015c5339a03545738d3e1b7214b4a7e3219d15778584b365e6b7c"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page20.png",
+      "bytes": 200256,
+      "sha256": "ea5c4d6f4f5c8149f8a9d60f5f7c0e40a4776a2c0783e73b97eb893ba6dd9634"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page21.png",
+      "bytes": 137459,
+      "sha256": "a96a0ed7cc1768dedd9ead7c637316463e0abda3b89f7f579b738576b281da84"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/supplement-page08.png",
+      "bytes": 287349,
+      "sha256": "60c221b7c2b0b607bb6824d1a2ef0f083d680f45091a465db49aaf1a544db3ac"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-06.png",
+      "bytes": 258274,
+      "sha256": "b8e6e6a9aff605ba0896ed4d21577b56b155d6078f8ca45696e08b51910e513c"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-07.png",
+      "bytes": 254479,
+      "sha256": "48815a7acbf80895d4bc54b33fdb5740673a7f1c84609d03b5481d1e921e99c7"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-08.png",
+      "bytes": 213252,
+      "sha256": "7f7157149a1c5f9741c1de7291f6c76e87e28f09c09ed4915601cf1e1528804d"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-09.png",
+      "bytes": 218743,
+      "sha256": "f4fc14dfcdf5820cb7fb44e831fd3a92e60cfe83f4b3a7ddd1f6e6b894d2fbcf"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-10.png",
+      "bytes": 211885,
+      "sha256": "f2001c62659f474886801a3a4119eb5c4fb646487c157a25f37af63328a65b21"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-11.png",
+      "bytes": 228241,
+      "sha256": "fcf73e6145cea92397824dfcf7bed8cc8855a6a939adf545894464b340e400c6"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/main-12.png",
+      "bytes": 229404,
+      "sha256": "9ca711e86c8bd91f884675689cd6fae1791aa161937ba10eb39ec67b74df2689"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-37.png",
+      "bytes": 216444,
+      "sha256": "f9ff26ce05e31edf213062e83f487af4c4f1971a3d41216eebbf287b28fe2bf2"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-38.png",
+      "bytes": 214701,
+      "sha256": "92a9dffc0a746b8cda5877f157283ada13a8ef8fde353b0df6ad2cef1aa59a71"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-39.png",
+      "bytes": 209860,
+      "sha256": "b864d42b339638750335a0f193295381903cf476c486ede724aa680d132f0804"
+    },
+    {
+      "path": "data/research-sources/pallas-primary-visual-preparation-2026-10-21/references-40.png",
+      "bytes": 196313,
+      "sha256": "9d84fcdbd2b01617d65d1c9bfe91b3e697a822ad937b13fdaff2b61610faf6d7"
+    }
+  ],
+  "openWork": [
+    "Exact ESO raw exposure/filter/coadd/panel transform and science-pixel crosswalk; no calibrated visible colour, photometry, chemistry map or complete registered geography.",
+    "Remaining primary/supplement visual pages, final-paper licence/version, current independent physical/orbit references and digital shape/frame/coverage audit.",
+    "Independent ADAM/SPH/thermal/calibration reproduction and source code/kernel versions; no inference of present liquid, activity, ocean, biology or measured local fractions.",
+    "Phaethon family association remains debated; Phaethon14\u00b14percent albedo is not Pallas albedo. Historical mission suggestions are not a current-status claim.",
+    "Substantial conforming lossless standalone capacity before further asset embedding; independent local/observer views remain unprepared. No other-body maps or analogue skins."
+  ],
+  "preservation": {
+    "baseline": "231c02a",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "22e69f710cffddaaec0babae56733ec7dc3ea207d453b54eda3bcfba1f2cbe93",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15988986,
+      "headroomBytes": 11014,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false
+  },
+  "validation": {
+    "tests": {
+      "passed": 711,
+      "skipped": 1,
+      "failed": 0,
+      "environment": "OPENAI_API_KEY removed for missing-key voice fallback"
+    },
+    "productionBuild": "passed",
+    "fullBuild": "passed;15,988,986-byte artifact leaves11,014bytes under hard16,000,000 gate",
+    "queue": "Regenerated;569 entries unchanged",
+    "sourceAudit": "40 authors;42 source/render records plus19 preparation records verified;41 prior formal retained-file hashes preserved",
+    "browser": "No fresh browser, route, all-image/model-load or complete HTML restoration claim",
+    "interbuildVariation": "Readable snapshot changed; live-feed variation unaudited. No compression/research savings attribution.",
+    "logs": [
+      {
+        "path": "/tmp/fidelity-pallas-complete-tests.log",
+        "bytes": 62947,
+        "sha256": "8de028a4444046cfd9a5f5039c54023b15be5566ae2237aa86c63f494ca89a1a"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-complete-production.log",
+        "bytes": 1014,
+        "sha256": "2a1bf393bcbc4168b6c9719c217e8cc66576a4eea516f7e6c878c5d11cbb4d1c"
+      },
+      {
+        "path": "/tmp/fidelity-pallas-complete-full.log",
+        "bytes": 2837,
+        "sha256": "5dac186244ffd9db38fae6049ed8e538a819ee9fa22ffe8c7141a2e68320b01e"
+      }
+    ]
+  }
+}
