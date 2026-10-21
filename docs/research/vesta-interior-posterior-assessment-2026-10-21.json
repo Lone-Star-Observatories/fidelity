@@ -1,0 +1,92 @@
+{
+  "status": "Research-only targeted interior posterior, data/code and licence audit; complete PDF/text retained, pages3,4,9,10 visually inspected. Other methods/extended-page visual audit remains open. No108th dossier, embedding or production change.",
+  "url": "https://www.nature.com/articles/s41550-025-02533-7.pdf",
+  "retrievedAt": "2026-10-21T00:15:09.374633+00:00",
+  "pdf": {
+    "path": "data/research-sources/vesta-park-2025-primary-response-2026-10-21.bin",
+    "bytes": 5986421,
+    "sha256": "1d39d33c3af99a230cf4152aa3f5725a81c319f3e09e4e1e8a205d04e08dbe91",
+    "parsedPages": 21,
+    "note": "file utility reported 29 pages; pypdf page-tree reports 21. Do not claim 29 inspected pages."
+  },
+  "text": {
+    "path": "data/research-sources/vesta-park-2025-primary-2026-10-21.txt",
+    "bytes": 71488,
+    "sha256": "bb6d08188a1f32c56ac84dde628e6e2dcd67cbf7128cdc79938f949daff25008"
+  },
+  "initialRead": {
+    "publication": "2025-04-23; June2025 issue824\u2013834, not new acquisition",
+    "polarMOI": "0.4208\u00b10.0047 inferred from Doppler and imaging",
+    "meanMOI": "0.3734\u00b10.0027, normalized using265km reference radius; not catalogue physical radius",
+    "limits": "Nonunique interior inverse problem; assumptions/priors and alternative origin scenarios require full audit. Historical Russell2012 interior retained."
+  },
+  "visualPreparation": {
+    "page": 3,
+    "printedPage": 826,
+    "path": "data/research-sources/vesta-park-primary-page3-2026-10-21.png",
+    "sha256": "9405127289028f95f762a577323689f38b2b75077ac82665a21c70026d181585",
+    "verified": "Figure2 labels median and5\u201395% quantiles, not1sigma errors: crust47(+12,-13)km, mantle169(+32,-80)km, core45(+87,-32)km. Three constant-density layers, monotonic density prior and150km maximumcore. Posterior model not direct interior photograph or unique solution. Only this page visually inspected this turn; otherpages remain pending."
+  },
+  "page4VisualPreparation": {
+    "path": "data/research-sources/vesta-park-primary-page4-2026-10-21.png",
+    "sha256": "9d430c86dbd55daceadbd410c3eaef93d8f9aa0408fd7a8f36c7944a54adc94b",
+    "printedPage": 827,
+    "verified": "Median and5\u201395% interval core45(+87,-32)km; thickcrust>80km alternative33(+100,-21)km. Coreless case not excluded under alternate ellipsoidal-mantle inversion. These are conditional posteriors, not measured core dimensions or unique history. Chondrite comparison points are model comparisons, not local chemistry or skins. Full methods/data/code/extended figures audit remains pending."
+  },
+  "dataCodePreparation": {
+    "basis": "Printed832 visually inspected, together with833 licence/credits; no numerical reproduction.",
+    "data": "Authors cite Dawn Vesta Gravity Science and Framing Camera PDS data; derived SPC DSK and associated files at DOI10.17189/1520119. Repository landing reference alone does not identify exact2025 shape bytes or establish equality with existing SPG texture/DTM.",
+    "code": "MONTE suite referenced at https://montepy.jpl.nasa.gov/; no code downloaded/executed, no independent gravity/inertia/MCMC reproduction claimed.",
+    "open": "Exact derivedDSK product/version/hash, rawUTC/filter/controlpoint association, kernel loading precedence and physical registration remain open. Existing Russell2012 interior and all existing Vesta map/DEM bytes retained."
+  },
+  "date": "2026-10-21",
+  "authors": [
+    "R. S. Park",
+    "A. I. Ermakov",
+    "A. S. Konopliv",
+    "A. T. Vaughan",
+    "N. Rambaux",
+    "B. G. Bills",
+    "J. C. Castillo-Rogez",
+    "R. R. Fu",
+    "S. A. Jacobson",
+    "S. T. Stewart",
+    "M. J. Toplis"
+  ],
+  "licence": {
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "basis": "Publisher PDF printed833 explicitly CC BY4; third-party credit exceptions apply. No figure embedded; raw PDS/code licences not inferred."
+  },
+  "preservation": "Historical Russell2012 layered interior retained as an alternative; inferred density/core posteriors do not establish local composition, terrain, visible colour or unique origin. No new angular/raster computation.",
+  "additionalVisualChecks": [
+    {
+      "path": "data/research-sources/vesta-park-primary-audit-2026-10-21-09.png",
+      "sha256": "1d420d9841affb66bd98b12b7f48bccecec39ca6c376462fd95f81d98ac406f1"
+    },
+    {
+      "path": "data/research-sources/vesta-park-primary-audit-2026-10-21-10.png",
+      "sha256": "7ba4e1082f627976ac06cecbefe03eb8b45fd9f5000eea0c9a3b29bf703da280"
+    }
+  ],
+  "validation": {
+    "retainedSourceAndGeneratedHashesChecked": 484,
+    "nativeCardsExactBytesAndMime": 86,
+    "baseline": "c3c83b5",
+    "priorDossiersDeepEqual": 107,
+    "dossiers": 107,
+    "priorMoonsDeepEqual": 63,
+    "moons": 63,
+    "trackedPublicByteEqual": 744,
+    "queueEntries": 569,
+    "unchangedQueueEntries": 569,
+    "addedImages": [],
+    "htmlBytes": 15966410,
+    "headroomBytes": 33590,
+    "exactCompleteReadableJson": true,
+    "readableSha256": "140f510b95aac91acb485033daaa532225695cdcee5ba8289ef2bf5aee04d269",
+    "applicationSha256": "05980170c5599fc8e5397207fd2d85dd14bad860dc5441152920a4f841e9c1c9",
+    "freshBrowserClaim": false,
+    "tests": "710pass1skip; production/full builds pass",
+    "snapshotDifference": "87 saved leaves:62 Horizons date-window entries and25 src/time/disk/credit feedfields across8solar bands; no research/compression savings attribution."
+  }
+}
