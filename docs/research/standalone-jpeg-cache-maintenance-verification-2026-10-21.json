@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-21",
+  "issue": "#3",
+  "status": "Corrected optional native JPEG cache maintenance CLI arguments; runtime unchanged",
+  "problem": "libjxl 0.11.1 rejects combined -e9; an uncached JPEG could not be encoded by the optional maintenance script.",
+  "change": "Pass effort as separate -e and 9 arguments.",
+  "isolatedVerification": {
+    "pass": true,
+    "method": "Run a temporary copy of the actual generator with an empty temporary manifest and one JPEG from the complete snapshot; native djxl and bundled reconstruction WASM verify exact original JPEG bytes. Production cache unchanged.",
+    "cliVersion": "0.11.1",
+    "harnessCorrection": "Initial temporary harness supplied a filesystem path where a URL base was required; corrected to file URL before successful run."
+  },
+  "browserPreparation": {
+    "assessment": "Current full standalone browser integrity preparation",
+    "date": "2026-10-21",
+    "commit": "15bb6e506cabac337ab39ce9a22b3f4c92781675",
+    "browser": "Codex in-app browser (iab); Chrome connector unavailable",
+    "servedAt": "http://127.0.0.1:8939",
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "htmlBytes": 15983010,
+    "htmlSha256": "7e1aa1cedaabffd4a44a077c546fae9b0f1d6375cb815ffe69a3c5f7b68d27f3",
+    "readableSha256": "562447f242676301eb99eb435813fc92d7c4fa7bd64da9a675c40d2186afaf68",
+    "browserReadableSha256": "562447f242676301eb99eb435813fc92d7c4fa7bd64da9a675c40d2186afaf68",
+    "uniqueImages": 360,
+    "decodedImages": 360,
+    "applicationCanvases": 8,
+    "bothNewCacheOriginalHashesPresent": true,
+    "scope": "Actual browser executes complete snapshot restoration and image decoding; application initialized. Temporary audit module appended by local server.",
+    "limitations": [
+      "No fresh route, model-load, CSS/application hash restoration, unsupported-browser or event-worker verification.",
+      "This preparation does not establish net HTML savings or sufficient capacity for Pallas integration.",
+      "No source, public asset, dossier, production codec or catalogue change."
+    ],
+    "cleanup": "Temporary browser tab closed and local audit server stopped."
+  },
+  "frozenCacheComparison": {
+    "date": "2026-10-21",
+    "snapshotSha256": "562447f242676301eb99eb435813fc92d7c4fa7bd64da9a675c40d2186afaf68",
+    "results": [
+      {
+        "label": "prior60",
+        "count": 60,
+        "containerBytes": 20755126,
+        "brotliBytes": 14326488,
+        "outerGzipBytes": 14328608,
+        "transportBytes": 14371948,
+        "exactFullJsonInverse": true
+      },
+      {
+        "label": "current62",
+        "count": 62,
+        "containerBytes": 20738520,
+        "brotliBytes": 14311724,
+        "outerGzipBytes": 14313839,
+        "transportBytes": 14357340,
+        "exactFullJsonInverse": true
+      }
+    ],
+    "transportReductionBytes": 14608,
+    "limits": "Same frozen complete JSON, prior60 vs adopted62 cache only. Transport delta excludes HTML wrappers; not net interbuild/live-feed attribution. Bundled WASM and Brotli exact full original JSON inverses pass in Node; no new browser or savings beyond this frozen comparison. Production unchanged by this screen."
+  },
+  "limits": [
+    "Browser evidence applies to the explicitly hashed pre-maintenance-fix artifact, not a later rebuilt snapshot with live-feed variation.",
+    "No new dossier, embedding, native resampling, map/model/shape or runtime codec change.",
+    "Pallas original/master/preview assets remain prepared, not integrated; larger additive batches still require lossless capacity."
+  ],
+  "validation": {
+    "baseline": "89f18f3",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "scripts/build-standalone.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "5950945b5c5d8d8a4fbbb3a675567662b08c4bbd694e104cc9d5b5434d8f118d",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15983674,
+      "headroomBytes": 16326,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false,
+    "testsPassed": 711,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullBuildExactJsonInverse": "pass",
+    "queue": 569,
+    "publicFilesAndCacheManifestExactAgainst": "15bb6e5"
+  }
+}

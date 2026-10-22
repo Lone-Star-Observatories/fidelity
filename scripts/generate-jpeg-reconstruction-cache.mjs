@@ -26,7 +26,7 @@ try {
     }
     const source = path.join(work, 'input.jpg'), output = path.join(work, 'output.jxl'), restored = path.join(work, 'restored.jpg');
     fs.writeFileSync(source, jpeg);
-    execFileSync(encoder, [source, output, '--lossless_jpeg=1', '-e9'], { stdio: 'pipe' });
+    execFileSync(encoder, [source, output, '--lossless_jpeg=1', '-e', '9'], { stdio: 'pipe' });
     execFileSync(decoder, [output, restored], { stdio: 'pipe' });
     assert.deepEqual(fs.readFileSync(restored), jpeg);
     const packed = fs.readFileSync(output); assert.deepEqual(Buffer.from(reconstruct(packed, jpeg.length)), jpeg);
