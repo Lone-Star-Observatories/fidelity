@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-22",
+  "bodyId": "hygiea",
+  "status": "Independent illustration preparation only; no109th dossier or embedding",
+  "records": {
+    "hygiea-10-illustration-specification-preparation-2026-10-22.json": {
+      "status": "Specification preparation only; no generated image, dossier or embedding",
+      "bodyId": "hygiea",
+      "designation": "10 Hygiea (A849 GA)",
+      "scienceRecord": {
+        "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+        "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+      },
+      "generationScope": "Two independent hypothetical local views, no resolved globe or shape adoption. No source images supplied as terrain.",
+      "sharedConstraints": [
+        "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+        "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+        "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+        "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+        "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+        "No spacecraft Juno association; target is asteroid10 Hygiea.",
+        "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+      ],
+      "views": [
+        {
+          "role": "surfaceImage",
+          "prompt": "Create an independent research-guided scientific hypothetical illustration of a very low camera view above an imagined local surface of asteroid (10) Hygiea. Landscape 16:9. Subdued neutral dark grey regolith with gently rolling low relief, scattered modest irregular stones and fine grains, a few shallow small depressions, restrained oblique lighting and a black sky. No visible astronomical disks, spacecraft, people, buildings, atmosphere or active phenomena. Invent every local feature independently; do not copy any real body map or observed planetary photograph. Neither native SPHERE brightness patterns nor fitted ADAM facets are local terrain templates. Chemistry, grain size, porosity, colour, horizon attitude, illumination and exposure are unmeasured artistic choices. Add a simple dark footer with two crisp readable lines: \"IMAGINED LOCAL VIEW \u2014 (10) HYGIEA\" and \"INVENTED TERRAIN / COLOUR / LIGHT \u2014 NO REGISTERED SITE\". Do not portray a survivable human landing."
+        },
+        {
+          "role": "skyImage",
+          "prompt": "Create a second independent scientific hypothetical observer illustration looking along a different imagined horizon of asteroid (10) Hygiea, landscape 16:9. Show only a low strip of dark neutral grey invented regolith and a few independent angular stones beneath an expansive black sky. The Sun stays entirely outside the frame; no planets, moons, stars as disks, spacecraft, people or artificial structures. Use restrained low side light and a visibly different composition from the local view. All relief, rocks, grain size, chemistry, colour, attitude, light and exposure are invented; black sky is an artistic assumption and is not evidence about atmosphere. Do not borrow any observed asteroid or planetary map or SPHERE image brightness pattern. No dated or physically registered viewpoint and no angular-size claim. Add a crisp readable two-line dark footer: \"IMAGINED SKY FROM (10) HYGIEA\" and \"UNREGISTERED VIEW / INVENTED TERRAIN, COLOUR AND LIGHT\". No active plume, exposed ocean, biology or survivable landing."
+        }
+      ],
+      "productionChange": false,
+      "generationExecuted": false,
+      "accessUpdate": {
+        "date": "2026-10-22",
+        "esoTerms": "Web503 again; no downloaded response or licence/hash claim. Do not repeatedly retry unchanged endpoint.",
+        "esoRelease": "Web503 again; no downloaded response or date/product inference."
+      }
+    },
+    "hygiea-10-local-view-preparation-2026-10-22.json": {
+      "status": "Research preparation only; no dossier, embedding, master or preview",
+      "bodyId": "hygiea",
+      "role": "surfaceImage",
+      "tool": "built-in image_gen",
+      "prompt": "Create an independent research-guided scientific hypothetical illustration of a very low camera view above an imagined local surface of asteroid (10) Hygiea. Landscape 16:9. Subdued neutral dark grey regolith with gently rolling low relief, scattered modest irregular stones and fine grains, a few shallow small depressions, restrained oblique lighting and a black sky. No visible astronomical disks, spacecraft, people, buildings, atmosphere or active phenomena. Invent every local feature independently; do not copy any real body map or observed planetary photograph. Neither native SPHERE brightness patterns nor fitted ADAM facets are local terrain templates. Chemistry, grain size, porosity, colour, horizon attitude, illumination and exposure are unmeasured artistic choices. Add a simple dark footer with two crisp readable lines: \"IMAGINED LOCAL VIEW \u2014 (10) HYGIEA\" and \"INVENTED TERRAIN / COLOUR / LIGHT \u2014 NO REGISTERED SITE\". Do not portray a survivable human landing.",
+      "constraints": [
+        "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+        "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+        "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+        "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+        "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+        "No spacecraft Juno association; target is asteroid10 Hygiea.",
+        "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+      ],
+      "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-5abfe5dd-5657-4eb9-951b-a110a6c01435.png",
+      "researchCopy": "data/research-sources/hygiea-10-generated-surfaceImage-original-2026-10-22.png",
+      "bytes": 2735230,
+      "sha256": "25accb291aeeb5ff37c97c83a3e0dfee3397ace1c2d383e60f272505717d9807",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "visualInspection": "Full image inspected. Both footer lines readable. Invented neutral-grey rolling relief, stones, grains and shallow depression; black sky with no astronomical disk. No angular-size calculation or calibration claim. No observed map supplied.",
+      "scienceRecord": {
+        "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+        "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+      },
+      "productionChange": false,
+      "remaining": [
+        "Independent sky view",
+        "Original-preserving masters/previews",
+        "Standalone lossless headroom before additive dossier"
+      ]
+    },
+    "hygiea-10-sky-view-preparation-2026-10-22.json": {
+      "status": "Research preparation only; no dossier, embedding, master or preview",
+      "bodyId": "hygiea",
+      "role": "skyImage",
+      "tool": "built-in image_gen",
+      "prompt": "Create a second independent scientific hypothetical observer illustration looking along a different imagined horizon of asteroid (10) Hygiea, landscape 16:9. Show only a low strip of dark neutral grey invented regolith and a few independent angular stones beneath an expansive black sky. The Sun stays entirely outside the frame; no planets, moons, stars as disks, spacecraft, people or artificial structures. Use restrained low side light and a visibly different composition from the local view. All relief, rocks, grain size, chemistry, colour, attitude, light and exposure are invented; black sky is an artistic assumption and is not evidence about atmosphere. Do not borrow any observed asteroid or planetary map or SPHERE image brightness pattern. No dated or physically registered viewpoint and no angular-size claim. Add a crisp readable two-line dark footer: \"IMAGINED SKY FROM (10) HYGIEA\" and \"UNREGISTERED VIEW / INVENTED TERRAIN, COLOUR AND LIGHT\". No active plume, exposed ocean, biology or survivable landing.",
+      "constraints": [
+        "All local terrain, craters, stones, grains, chemistry, fractions, colour, lighting, exposure and attitude are invented.",
+        "Dark neutral grey is an artistic hypothesis; C taxonomy, IRAS albedo and bulk-density interpretations are not local mineral abundances.",
+        "Do not reuse or transform any observed Moon, Mars, Ceres, Vesta, Pallas or other body map. Do not interpret deconvolution brightness structures as local rocks.",
+        "No dated site, current ephemeris, registered landmark, atmospheric absence, plume, liquid ocean, biology or survivable landing claim.",
+        "No Sun or other astronomical disk in frame; no angular/raster-size calculation or calibration claim.",
+        "No spacecraft Juno association; target is asteroid10 Hygiea.",
+        "Keep both clear footer lines inside frame; generated originals and default output must be preserved before any master/preview creation."
+      ],
+      "defaultOriginal": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e72c22e6-a604-4caa-af4e-d7c6b07708c4.png",
+      "researchCopy": "data/research-sources/hygiea-10-generated-skyImage-original-2026-10-22.png",
+      "bytes": 1168408,
+      "sha256": "ece57f82eddff83353d73efa90bea35a2827a14535ec816aa6346d9e27d40a44",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "visualInspection": "Full image inspected: both footer lines readable. Low strip of invented neutral-grey terrain and stones beneath expansive black sky. Sun and all astronomical disks absent from frame; no angular/raster-size or calibrated colour claim. Black sky does not establish atmospheric absence.",
+      "scienceRecord": {
+        "path": "docs/research/hygiea-primary-native-assessment-2026-10-22.json",
+        "sha256": "85307d8211b8f16767cd9b0f6c3cf5369e6f77ea3c8304aee5b7a0dbd28e9f0a"
+      },
+      "productionChange": false,
+      "remaining": [
+        "Original-preserving masters/previews",
+        "Standalone lossless headroom before additive dossier"
+      ]
+    },
+    "hygiea-10-master-preview-preparation-2026-10-22.json": {
+      "status": "Research preparation only; originals unchanged, no embedding or new dossier",
+      "assets": [
+        {
+          "role": "surfaceImage",
+          "kind": "master",
+          "path": "data/research-sources/hygiea-10-surfaceImage-master-2026-10-22.jpg",
+          "bytes": 313524,
+          "sha256": "19a446f0e669a12e318a6c3d2c28384cc8d52c210ad178e71dfa1c50233b237c",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+        },
+        {
+          "role": "surfaceImage",
+          "kind": "preview",
+          "path": "data/research-sources/hygiea-10-surfaceImage-preview-2026-10-22.jpg",
+          "bytes": 9722,
+          "sha256": "0a44f157f22d23e0f90a48819543f471be6a34e6550a58768ec52347d126dc65",
+          "dimensions": [
+            256,
+            144
+          ],
+          "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+        },
+        {
+          "role": "skyImage",
+          "kind": "master",
+          "path": "data/research-sources/hygiea-10-skyImage-master-2026-10-22.jpg",
+          "bytes": 128435,
+          "sha256": "17dcb3282e8bc3a529ee45d9b88ffa92b58454087512d264ee0aabaacb0a5987",
+          "dimensions": [
+            1536,
+            864
+          ],
+          "encoding": "JPEG quality85, Lanczos resize from preserved generated original, optimize=True"
+        },
+        {
+          "role": "skyImage",
+          "kind": "preview",
+          "path": "data/research-sources/hygiea-10-skyImage-preview-2026-10-22.jpg",
+          "bytes": 4454,
+          "sha256": "1d22b7d46dfe218cf4c30f2eb88be6b1a0a3c575a45d3aeb69a639587084466f",
+          "dimensions": [
+            256,
+            144
+          ],
+          "encoding": "JPEG quality80, Lanczos resize from preserved generated original, optimize=True"
+        }
+      ],
+      "limits": [
+        "Generated illustration derivatives only; no native science transformed.",
+        "Both original/footer inspection records and full prompts retained separately.",
+        "Small preview footers require explicit IMAGINED card labels.",
+        "All terrain/chemistry/colour/lighting/attitude invented; no registered site or angular calibration."
+      ],
+      "productionChange": false,
+      "visualInspection": "Both full masters and both previews visually inspected. Master footer lines readable; preview annotation too small for reliable reading, requiring explicit IMAGINED card labels. No astronomical disk or angular calibration claim.",
+      "twoPreviewRawJpegBytes": 14176,
+      "budgetMeaning": "Raw generated-preview JPEG bytes only, not WebP80 embedding or standalone increment; native/text/wrapper overhead additional."
+    }
+  },
+  "preservedRecordHashes": {
+    "hygiea-10-illustration-specification-preparation-2026-10-22.json": "e580f2be30179f5e0f3db638fc5952e9d4e7967c3b62ea1b3d388ba95326f103",
+    "hygiea-10-local-view-preparation-2026-10-22.json": "ec9a1b18da4af3c498d5fe144bb2762939b9365693a3123a7886d092d17eff77",
+    "hygiea-10-sky-view-preparation-2026-10-22.json": "ad65b625391f2e0c52f589362f8dd17e292f47b7532d8433d3232daf81d3222e",
+    "hygiea-10-master-preview-preparation-2026-10-22.json": "1a5be7fddbff4ec15b2ce379ebc8274b9b2f153341c96d85bba9accf4d6f98e3"
+  },
+  "limitations": [
+    "No resolved globe, native map, model, shape, catalogue or codec adoption.",
+    "All local terrain, chemistry, colour, illumination, attitude and exposure invented. No observed-body analogue skin used.",
+    "Sun and astronomical disks off frame; no angular/raster-size calibration claim. Black sky is not evidence of atmospheric absence.",
+    "Original/default PNGs preserved; generated JPEG derivatives only. Small preview footers need explicit IMAGINED card labels.",
+    "Two previews total14176rawJPEGbytes, not standalone increment; native science, text and wrappers additional. Lossless headroom remains necessary."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0,
+      "environment": "OPENAI_API_KEY unset for missing-key voice test"
+    },
+    "productionBuild": "pass",
+    "standaloneBuild": "pass",
+    "preservation": {
+      "baseline": "13a0c19",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "2654599a87b552534a3eef6c6a5b47b259fe7cf45c8604084400601df7edab40",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15984338,
+        "headroomBytes": 15662,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    },
+    "queueTasks": 569,
+    "freshBrowserClaim": false,
+    "interbuildSavingsAttribution": false
+  },
+  "retainedAssetFilesVerified": 8
+}
