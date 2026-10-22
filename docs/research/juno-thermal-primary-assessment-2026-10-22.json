@@ -1,0 +1,570 @@
+{
+  "date": "2026-10-22",
+  "issue": "#3",
+  "status": "Research-only targeted primary-methods and appendix audit; not a delivered dossier or adopted thermal map.",
+  "body": {
+    "name": "(3) Juno",
+    "catalogueId": "sbjuno-3",
+    "notSpacecraftJuno": true
+  },
+  "paper": {
+    "title": "Thermal and Dielectric Properties of Juno’s Regolith at One Millimeter Wavelength",
+    "authors": [
+      "Jian-Yang Li (李荐扬)",
+      "Timothy N. Titus",
+      "Arielle Moullet",
+      "Henry H. Hsieh"
+    ],
+    "arxiv": "https://arxiv.org/abs/2602.12071v1",
+    "doi": "https://doi.org/10.3847/PSJ/ae468f",
+    "manuscriptSubmissionUtc": "2026-02-12T15:31:43Z",
+    "crossrefPrintDate": "2026-03-01",
+    "crossrefOnlineDate": "2026-03-25",
+    "retainedPdfPages": 21,
+    "publishedPageCountNotAssignedToManuscript": true
+  },
+  "reviewScope": {
+    "completeTextExtracted": true,
+    "textReview": "Introduction and section 2, targeted discussion subsections and conclusion/acknowledgments, supplementary caption and Table A1; not every reference or independent equations/model reproduction.",
+    "visuallyInspectedPages": [
+      1,
+      3,
+      5,
+      15,
+      16,
+      20,
+      21
+    ],
+    "notAllPagesVisuallyInspected": true,
+    "extractionWarnings": "pypdf reported wrong-pointing object offsets; extraction completed. Equations have text-extraction artefacts; selected pages rendered separately and inspected. Original response bytes retained without repair."
+  },
+  "observations": {
+    "epoch": "2014-10-19",
+    "instrument": "ALMA",
+    "wavelength": "1.29 mm / 233 GHz; often rounded 1.3 mm",
+    "input": "Ten published disk-integrated flux-density measurements from ALMA Partnership et al. 2015; about 60 percent of rotation. Not a new 2026 image or independent reduction.",
+    "dataId": "ADS/JAO.ALMA#2011.0.00013.SV",
+    "rawProductAndOutreachStillCrosswalkOpen": true
+  },
+  "modelAssumptions": {
+    "uniformity": "Uniform albedo and thermal properties; one layer without vertical thermal/dielectric-property gradients.",
+    "shape": "Viikinkoski et al. 2015 DAMIT triangular plate shape and pole adopted by authors, not independently registered here.",
+    "code": "KRC thermophysical calculation plus radiative transfer; not rerun.",
+    "assumedBondAlbedo": 0.09,
+    "initialDensityKgM3": 1300,
+    "initialSpecificHeatJKgK": 630,
+    "heliocentricAu": 2.07,
+    "geocentricAu": 1.97,
+    "scaleCaution": "Publisher inputs, not new skyGeometry or raster calculations, not current ephemeris."
+  },
+  "reportedResults": {
+    "thermalInertia": "13 ± 10 J m^-2 K^-1 s^-0.5",
+    "equivalentEmissivity": "0.8 ± 0.1",
+    "indexOfRefraction": "1.8 ± 0.3",
+    "lossTangent": "0.4 ± 0.3",
+    "statisticalMeaning": "Weighted averages and weighted standard deviations over 19 acceptable models; authors explicitly say not necessarily statistical confidence levels. Equivalent emissivity weakly constrained.",
+    "effectiveEmissivityDistinct": "0.88 ± 0.05 at 1.3 mm, calculated with assumed smooth bolometric emissivity 0.95; not the fitted equivalent emissivity or visible albedo.",
+    "porosity": "About 45 percent inferred through laboratory dielectric relationships, versus much larger porosity required by ordinary-chondrite thermal-contact models. Not a direct local measurement.",
+    "grainAndRepulsion": "Tens-of-micrometre grain interpretation and repulsive reduction of contact proposed to reconcile models, not detected grain sizes, electrostatic field or observed mechanism.",
+    "geography": "Disk-integrated model cannot uniquely distinguish topography, roughness and thermal/dielectric variation; no local chemistry, calibrated visible colour or registered terrain."
+  },
+  "literalManuscriptDifferences": [
+    {
+      "pages": [
+        5,
+        21
+      ],
+      "finding": "Section 2 states four equivalent emissivity values 0.7–1.0, but Table A1 includes 0.6 rows (reduced chi-squared 2.23 and 2.58).",
+      "disposition": "Preserve literal discrepancy; cause and version-of-record comparison open; no table repair."
+    },
+    {
+      "pages": [
+        5,
+        15,
+        21
+      ],
+      "finding": "Section 2 prose suggests thermal inertia below 25 tiu, while conclusion accepts 5–40 tiu and Table A1 includes two 40-tiu rows.",
+      "disposition": "Keep alternatives; not a revised upper limit or catalogue update."
+    },
+    {
+      "pages": [
+        20,
+        21
+      ],
+      "finding": "Caption says a few emissivity-1 solutions are not included; table retains four emissivity-1 rows with empty roughness cells.",
+      "disposition": "Wording/omission referent unresolved; preserve blank cells, do not remove rows or infer zero roughness."
+    }
+  ],
+  "licences": {
+    "arxivV1SpecificRecord": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "crossrefVersionOfRecordMetadata": "https://creativecommons.org/licenses/by/4.0/",
+    "publisherDirectResponse": "HTTP 200 anti-bot verification redirect; retained response hash is not a paper/licence hash.",
+    "versionCaution": "Different version-specific terms preserved; final publisher licence notice and third-party figure exceptions not independently verified. No figure or supplementary animation embedded.",
+    "outreachTermsSeparate": true
+  },
+  "credits": {
+    "data": "ALMA is a partnership of ESO (member states), NSF (USA), NINS (Japan), NRC (Canada), MOST and ASIAA (Taiwan), KASI (Republic of Korea), in cooperation with Chile; Joint ALMA Observatory operated by ESO, AUI/NRAO and NAOJ. NRAO operated by Associated Universities, Inc. under cooperative agreement with NSF.",
+    "funding": "NASA SSO NNX15AE02G; SSERVI16 NNH16ZDA001N / SSERVI-TREX to Planetary Science Institute.",
+    "notTransferredToUnrelatedMaps": true
+  },
+  "openWork": [
+    "Version-of-record full text, equation and table comparison.",
+    "Independent KRC/radiative-transfer reproduction, raw data calibration and shape/phase registration.",
+    "Detailed laboratory-source and all-reference audit.",
+    "Lossless standalone capacity before additive Pallas/Juno dossiers; no external blocker asserted."
+  ],
+  "preservation": {
+    "noNewDossier": true,
+    "noNewEmbedding": true,
+    "noNativeResampling": true,
+    "catalogueMapModelShapeCodecsUnchanged": true,
+    "noFreshBrowserClaim": true
+  },
+  "preparations": [
+    {
+      "date": "2026-10-22",
+      "scope": "Research-only acquisition preparation for later Juno thermal paper; no full-text review, licence adoption or local-material inference",
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2602.12071v1",
+          "finalUrl": "https://arxiv.org/abs/2602.12071v1",
+          "httpStatus": 200,
+          "contentType": "text/html; charset=utf-8",
+          "path": "data/research-sources/juno-3-thermal-2026-record-2026-10-22.html",
+          "bytes": 43813,
+          "sha256": "91c96244db8a6b8d93091894620557e754c30eca074a6267f798bdd6c539666f"
+        },
+        {
+          "url": "https://arxiv.org/html/2602.12071v1",
+          "error": "HTTP Error 404: Not Found",
+          "noContentHashClaim": true
+        }
+      ],
+      "discovery": {
+        "arxiv": "2602.12071v1",
+        "doi": "10.3847/PSJ/ae468f",
+        "authors": [
+          "Jian-Yang Li",
+          "Timothy N. Titus",
+          "Arielle Moullet",
+          "Henry H. Hsieh"
+        ],
+        "status": "Indexed discovery metadata, exact fetched records require review"
+      },
+      "limits": [
+        "2026 publication does not establish a new observing epoch or newer resolved photograph.",
+        "Model-dependent porosity/grain/thermal values must remain distinct from measured local regolith, calibrated colour and registered terrain.",
+        "No paper/figure licence assumed; existing ALMA outreach terms are not this paper licence.",
+        "No production assets, dossiers, model/map/shape/catalogue or codecs changed; no fresh test/build/browser claim."
+      ]
+    },
+    {
+      "retrievedAt": "2026-10-22T16:53:00.344536+00:00",
+      "scope": "Publication and specific-record licence-link acquisition only; not full paper review or figure permission assessment.",
+      "records": [
+        {
+          "url": "https://api.crossref.org/works/10.3847/PSJ/ae468f",
+          "path": "data/research-sources/juno-3-thermal-2026-crossref-2026-10-22.json",
+          "status": 200,
+          "finalUrl": "https://api.crossref.org/works/10.3847/PSJ/ae468f",
+          "contentType": "application/json",
+          "bytes": 20299,
+          "sha256": "19a6878cf3e0d2af9265225a450f96d6d80c02ea5ad593be99a215d3e016adfd"
+        },
+        {
+          "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "path": "data/research-sources/juno-3-thermal-2026-record-licence-2026-10-22.html",
+          "status": 200,
+          "finalUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "contentType": "text/html",
+          "bytes": 36788,
+          "sha256": "0389dccad7bdfebd9b7294ccd1582d8197b450295ff5263bafa41763e5f40b27"
+        }
+      ],
+      "limitations": [
+        "arXiv record links CC BY-NC-ND 4.0; not CC BY.",
+        "Crossref dates are publication metadata, not observation dates.",
+        "No paper figure, image, model, catalogue value, local material fraction or calibrated geography adopted.",
+        "All production assets and dossiers unchanged."
+      ]
+    },
+    {
+      "retrievedAt": "2026-10-22T17:05:45.256659+00:00",
+      "scope": "Version-specific publication and licence metadata preparation only.",
+      "doi": "10.3847/psj/ae468f",
+      "authors": [
+        {
+          "ORCID": "https://orcid.org/0000-0003-3841-9977",
+          "authenticated-orcid": false,
+          "given": "Jian-Yang 荐扬",
+          "family": "Li 李",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-0700-4875",
+          "authenticated-orcid": true,
+          "given": "Timothy N.",
+          "family": "Titus",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Arielle",
+          "family": "Moullet",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-7225-9271",
+          "authenticated-orcid": true,
+          "given": "Henry H.",
+          "family": "Hsieh",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        }
+      ],
+      "publicationDates": {
+        "published": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              1
+            ]
+          ]
+        },
+        "published-online": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              25
+            ]
+          ]
+        },
+        "published-print": {
+          "date-parts": [
+            [
+              2026,
+              3,
+              1
+            ]
+          ]
+        }
+      },
+      "crossrefLicenceEntries": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2026,
+                3,
+                25
+              ]
+            ],
+            "date-time": "2026-03-25T00:00:00Z",
+            "timestamp": 1774396800000
+          },
+          "content-version": "vor",
+          "delay-in-days": 24,
+          "URL": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "start": {
+            "date-parts": [
+              [
+                2026,
+                3,
+                25
+              ]
+            ],
+            "date-time": "2026-03-25T00:00:00Z",
+            "timestamp": 1774396800000
+          },
+          "content-version": "tdm",
+          "delay-in-days": 24,
+          "URL": "https://iopscience.iop.org/info/page/text-and-data-mining"
+        },
+        {
+          "start": {
+            "date-parts": [
+              [
+                2026,
+                3,
+                25
+              ]
+            ],
+            "date-time": "2026-03-25T00:00:00Z",
+            "timestamp": 1774396800000
+          },
+          "content-version": "vor",
+          "delay-in-days": 24,
+          "URL": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        {
+          "start": {
+            "date-parts": [
+              [
+                2026,
+                3,
+                25
+              ]
+            ],
+            "date-time": "2026-03-25T00:00:00Z",
+            "timestamp": 1774396800000
+          },
+          "content-version": "vor",
+          "delay-in-days": 24,
+          "URL": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ],
+      "specificArxivRecordLicence": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "publisherResponse": {
+        "url": "https://iopscience.iop.org/article/10.3847/PSJ/ae468f",
+        "status": 200,
+        "finalUrl": "https://validate.perfdrive.com/fb803c746e9148689b3984a31fccd902/?ssa=750e0142-70a5-4d30-a5d3-c8e2c3de6c97&ssb=34697272227&ssc=https%3A%2F%2Fiopscience.iop.org%2Farticle%2F10.3847%2FPSJ%2Fae468f&ssi=0131b3ae-cnvj-4776-be0a-accd2bb0b652&ssk=botmanager_support@radware.com&ssm=61897434025981215101878692689934&ssn=bd20043fae01903dbc6efdbd464f43799742bc1f62ee-21c1-475b-b1eb0b&sso=d80c40c8-dd28b0541bef9020beb3751b1113d496dfc8fb9bf20d5b56&ssp=51498329891792654883179262942668267&ssq=74470548874411616859488744892482653026391&ssr=MTA3LjIwMC4xMTYuMTgx&sst=Mozilla/5.0&ssu=&ssv=&ssw=&ssx=eyJ1em14IjoiN2ZjMDAwZWY1Njc3YjMtOTcxOC00NTRhLTk4NTYtNTkzYThmNTk0ODczMS0xNzkyNjg4NzQ0ODU5MC0wMGE2MmU2ZTM4ZDViMGY3YWNkMTAiLCJyZCI6ImlvcC5vcmciLCJfX3V6bWYiOiI3ZjkwMDBiYzFmNjJlZS0yMWMxLTQ3NWItYjBjOC1kZDI4YjA1NDFiZWYxLTE3OTI2ODg3NDQ4NTkwLTAwNWVhMmUyNTIyNzYxYWY3NTYxMCJ9",
+        "path": "data/research-sources/juno-3-thermal-2026-publisher-response-2026-10-22.html",
+        "bytes": 14375,
+        "sha256": "3832e9d8e9c9dd0ae8ac2dc2b7caea20c566859a69c11e6f63a0dca41ac12910",
+        "contentType": "text/html; charset=UTF-8",
+        "classification": "HTTP 200 anti-bot verification redirect, not article full text or licence notice",
+        "hashScope": "verification response bytes only; not paper or licence hash"
+      },
+      "limitations": [
+        "Crossref reports CC BY 4.0 for version of record; the retained arXiv v1 record links CC BY-NC-ND 4.0. Preserve version-specific terms rather than applying either blanket licence.",
+        "Publisher full text and its licence notice have not been verified in this preparation.",
+        "March 1 print and March 25 online metadata are separate publication conventions, not observation dates.",
+        "No full-paper review, figure permission, raw-data licence, calibrated geography or local material inference claimed.",
+        "No production asset, dossier, catalogue, model or codec changed."
+      ]
+    },
+    {
+      "retrievedAt": "2026-10-22T17:20:41.441042+00:00",
+      "scope": "Alternate text-source acquisition only, pending content review.",
+      "records": [
+        {
+          "url": "https://ar5iv.labs.arxiv.org/html/2602.12071",
+          "status": 200,
+          "finalUrl": "https://arxiv.org/abs/2602.12071",
+          "path": "data/research-sources/juno-3-thermal-2026-ar5iv-response-2026-10-22.html",
+          "bytes": 44962,
+          "sha256": "eb4e6f9411eaa7f3d0033d641cc5d2f34cd49ea6eb50e590c677143b1c1117af",
+          "contentType": "text/html; charset=utf-8",
+          "classification": "Redirect to abstract record, not full-paper HTML"
+        },
+        {
+          "url": "https://export.arxiv.org/api/query?id_list=2602.12071",
+          "status": 200,
+          "finalUrl": "https://export.arxiv.org/api/query?id_list=2602.12071",
+          "path": "data/research-sources/juno-3-thermal-2026-export-record-2026-10-22.xml",
+          "bytes": 3227,
+          "sha256": "ab43217154f97b094d18efabdbaf73ce35bd37432f64b713214f966b2f2487f5",
+          "contentType": "application/atom+xml; charset=utf-8"
+        }
+      ],
+      "limitations": [
+        "No full-paper or figure review claimed.",
+        "Preserve arXiv v1 CC BY-NC-ND 4.0 separately from Crossref version-of-record CC BY 4.0 metadata.",
+        "No production image, dossier, catalogue, model, shape or codec changed."
+      ],
+      "atomMetadata": {
+        "id": "http://arxiv.org/abs/2602.12071v1",
+        "published": "2026-02-12T15:31:43Z",
+        "updated": "2026-02-12T15:31:43Z",
+        "title": "Thermal and Dielectric Properties of Juno's Regolith at One Millimeter Wavelength",
+        "authors": [
+          "Jian-Yang Li",
+          "Timothy N. Titus",
+          "Arielle Moullet",
+          "Henry H. Hsieh"
+        ],
+        "scope": "Record metadata only; published/updated timestamps are manuscript submission metadata, not observing epochs."
+      }
+    },
+    {
+      "retrievedAt": "2026-10-22T17:35:44.702586+00:00",
+      "url": "https://arxiv.org/src/2602.12071v1",
+      "scope": "Author source acquisition preparation; no paper review or production adoption.",
+      "status": 200,
+      "finalUrl": "https://arxiv.org/src/2602.12071v1",
+      "contentType": "application/pdf",
+      "bytes": 1299446,
+      "sha256": "42da2ad5b8b46782f07b4b7e0d00998a9a3bdb41d59838ed7474814114808acb",
+      "path": "data/research-sources/juno-3-thermal-2026-source-2026-10-22.response",
+      "classification": "Source endpoint returned PDF content type and PDF magic header, not a source tar archive. Original response retained unchanged; full text and visual review pending.",
+      "limitations": [
+        "Specific arXiv v1 record licence CC BY-NC-ND 4.0 remains distinct from Crossref version-of-record CC BY 4.0 metadata.",
+        "No image, figure, catalogue parameter, local composition, calibrated map or model adopted.",
+        "All delivered dossiers and production assets unchanged."
+      ],
+      "pdfMagicHeaderVerified": true
+    }
+  ],
+  "retainedFiles": [
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-acquisition-preparation-2026-10-22.json",
+      "bytes": 1477,
+      "sha256": "1bd2f14580761cb2f75d4254d8d9bb6cdd85f35d296e9930c52a16a97d4e3834"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-publication-link-preparation-2026-10-22.json",
+      "bytes": 1323,
+      "sha256": "24158e3abd7c8969a9d3acb165bebb4c0f6df1a5b486110d529dafbcf3455bd8"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-version-terms-preparation-2026-10-22.json",
+      "bytes": 5309,
+      "sha256": "167b1976e9c6277b6eb0575e20e9456e9aefb3f4ce0b7a0dbba431bf8e0b4fb8"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-alternate-acquisition-preparation-2026-10-22.json",
+      "bytes": 1800,
+      "sha256": "ac715cd03972e47a49db16063133dcb99ab484297c59801452285b06b66f0054"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-source-acquisition-preparation-2026-10-22.json",
+      "bytes": 1014,
+      "sha256": "7beaff24e74df1f3979a6183ed2dc117ff884249f2dca00d8c57eda89a9323be"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-source-2026-10-22.response",
+      "bytes": 1299446,
+      "sha256": "42da2ad5b8b46782f07b4b7e0d00998a9a3bdb41d59838ed7474814114808acb"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-primary-text-2026-10-22.txt",
+      "bytes": 50735,
+      "sha256": "e7b65c2ff278885ffe5a0d27a4f6349f70ed7ca9c1b25e73feda59abc36ce59b"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-record-2026-10-22.html",
+      "bytes": 43813,
+      "sha256": "91c96244db8a6b8d93091894620557e754c30eca074a6267f798bdd6c539666f"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-crossref-2026-10-22.json",
+      "bytes": 20299,
+      "sha256": "19a6878cf3e0d2af9265225a450f96d6d80c02ea5ad593be99a215d3e016adfd"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-record-licence-2026-10-22.html",
+      "bytes": 36788,
+      "sha256": "0389dccad7bdfebd9b7294ccd1582d8197b450295ff5263bafa41763e5f40b27"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-publisher-response-2026-10-22.html",
+      "bytes": 14375,
+      "sha256": "3832e9d8e9c9dd0ae8ac2dc2b7caea20c566859a69c11e6f63a0dca41ac12910"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-ar5iv-response-2026-10-22.html",
+      "bytes": 44962,
+      "sha256": "eb4e6f9411eaa7f3d0033d641cc5d2f34cd49ea6eb50e590c677143b1c1117af"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-export-record-2026-10-22.xml",
+      "bytes": 3227,
+      "sha256": "ab43217154f97b094d18efabdbaf73ce35bd37432f64b713214f966b2f2487f5"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-01.png",
+      "bytes": 303086,
+      "sha256": "580dc78b8084e31151244283945bc80fc5f252422eeaa007068b55db3ba6823b"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-03.png",
+      "bytes": 439376,
+      "sha256": "016aa799b8ca07c6d60de3f47631a558813a8a630f510f404d8036271648c9de"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-05.png",
+      "bytes": 421099,
+      "sha256": "a8f274a633d4fff8fcf5f48756308e0718e908acd4704e3ecb882b36a4b6fa5f"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-15.png",
+      "bytes": 450108,
+      "sha256": "56c6146d3d3104fa67f727a7c8c023aae74cb6cc9346cf9a62da753202e0f8db"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-16.png",
+      "bytes": 421631,
+      "sha256": "ebef8e6dbedc2744ab4f37d70053c3921162363897d356a67a211db5aab13e42"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-20.png",
+      "bytes": 53362,
+      "sha256": "6d3c15c90d56f32df72ce8da25864021efc73e34563c63dd30092704f0b0dfc4"
+    },
+    {
+      "path": "data/research-sources/juno-3-thermal-2026-review-21.png",
+      "bytes": 210221,
+      "sha256": "95d75d2a84b18ec4aaefdc63370ef87e6acd30735fc417342299233ea5990e87"
+    }
+  ],
+  "validation": {
+    "retainedFileHashChecks": 20,
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15986330,
+      "headroomBytes": 13670,
+      "gateBytes": 16000000
+    },
+    "noFreshBrowserClaim": true,
+    "preservationAudit": {
+      "baseline": "7bd00d6",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "bfbed0f08a72a8e375bbd64ff2e5c3c86029b028d3235c0052e0593e20e9c377",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15986330,
+        "headroomBytes": 13670,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    },
+    "interbuildDifference": "Live-feed variation unaudited; no asset/compression savings attribution or fresh browser-restoration claim."
+  }
+}
