@@ -1,0 +1,510 @@
+{
+  "date": "2026-10-22",
+  "issue": "#3",
+  "bodyId": "juno-3",
+  "identity": "Asteroid (3) Juno, distinct from spacecraft Juno",
+  "status": "Research-only DAMIT786 source and mesh audit; no model adoption or dossier109",
+  "reference": {
+    "url": "https://damit.cuni.cz/references/view/158",
+    "modelUrl": "https://damit.cuni.cz/projects/damit/asteroid_models/view/786",
+    "doi": "10.1051/0004-6361/201526626",
+    "authors": [
+      "M. Viikinkoski",
+      "M. Kaasalainen",
+      "J. Ďurech",
+      "B. Carry",
+      "M. Marsset",
+      "T. Fusco",
+      "C. Dumas",
+      "W. J. Merline",
+      "B. Yang",
+      "J. Berthier",
+      "P. Kervella",
+      "P. Vernazza"
+    ],
+    "creditLimitation": "Names retained from reference metadata; original article and corrigendum full visual audit remains open. DAMIT global CC BY4 except-otherwise notice is not a blanket paper/third-party licence."
+  },
+  "assessments": [
+    {
+      "status": "Research preparation only; no production adoption or dossier109",
+      "body": "(3) Juno, asteroid; not spacecraft Juno",
+      "sources": [
+        {
+          "path": "data/research-sources/juno-3-damit786-documentation-2026-10-21.html",
+          "bytes": 40661,
+          "sha256": "f2d8ea579dec1624756aa6b7ca35f8afa5885fe53636b262e0b35290e3da844a"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-original-spin-2026-10-21.txt",
+          "bytes": 35,
+          "sha256": "e0c57caeda8da34b7134a342d0069c2ec226fc8216815c0e60cf8f6b07864e51"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-generated-spin-2026-10-21.txt",
+          "bytes": 39,
+          "sha256": "58a34ff4101436444c9e13e9762d4eb0760a9e6cdb57e3a1500c42a7a335e247"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+          "bytes": 49727,
+          "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+        }
+      ],
+      "documentationFindings": {
+        "spinTxt": "Ecliptic J2000 pole longitude/latitude in degrees; sidereal period in hours; initial JD and rotation angle in degrees.",
+        "IAUspinTxt": "Equatorial pole alpha0/delta0 in degrees and rotation rate in degrees/day; second line initial epoch and prime-meridian W0. Prime meridian is positive x.",
+        "comparison": "Original IAUspin values 109/43/1198.413766 and generated spin values 105/21/7.20953 use different pole frames and rate versus period conventions. No numerical frame conversion, equivalence proof, registration, or discrepancy repair performed. Initial epochs/angles remain distinct.",
+        "shapeTxt": "Publisher describes vertex/facet counts, xyz vertices, facet indices anticlockwise as viewed from outside, and co-rotating-to-ecliptic rotation convention. This is documentation, not independent mesh/winding/accuracy validation.",
+        "size": "calibrated_size=1 denotes real-scaled kilometres; equivalent diameter is equal-volume-sphere diameter and its error is estimated, not local shape error or three measured axes. Model786 page reports 248 and 5; no catalogue update.",
+        "visualization": "Pregenerated image scattering law is chosen for visualization without physical meaning; second sky-projection image uses artificial illumination. Not calibrated visible colour or surface material."
+      },
+      "limitations": [
+        "Separate shape file retained unchanged but not yet parsed or adopted. Model HTML also contains geometry; no claim that geometry bytes were absent.",
+        "Full paper and corrected Figure4 association, source-specific licensing exceptions, model processing lineage, physical frame accuracy and current scene registration remain open.",
+        "No new angular/raster computation, image generation, embedding, source resampling, model conversion, public asset change or codec change.",
+        "All existing original/default PNGs, masters, native bytes, source manifests and provenance preserved."
+      ]
+    },
+    {
+      "status": "Ignored research preparation only; no model adoption or dossier109",
+      "body": "asteroid (3) Juno",
+      "source": {
+        "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+        "bytes": 49727,
+        "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+      },
+      "diagnostics": {
+        "declaredVertices": 902,
+        "declaredFacets": 1800,
+        "recordsExact": true,
+        "allIndicesWithinOneBasedRange": true,
+        "referencedVertices": 902,
+        "unusedVertices": 0,
+        "uniqueUndirectedEdges": 2700,
+        "edgeMultiplicityHistogram": {
+          "2": 2700
+        },
+        "allTwoFacetEdgesOppositeDirections": true,
+        "referencedGraphComponents": 1,
+        "eulerCharacteristic": 2,
+        "duplicateUnorderedFacetIndexTriples": 0,
+        "storedDecimalCollinearFacets": 0
+      },
+      "limits": [
+        "Combinatorial/index and stored-coordinate diagnostics only; not self-intersection, outward physical orientation, manifold vertex-link, physical accuracy or frame validation.",
+        "No physical volume, radius, density, angular or raster computation.",
+        "DAMIT documentation and spin conventions remain as recorded in juno-3-damit-conventions-preparation-2026-10-21.json; no current scene registration or pole conversion adopted.",
+        "Original source bytes retained unchanged; no welding, conversion, embedding, public asset, catalogue or runtime codec change."
+      ]
+    },
+    {
+      "status": "Research preparation only; no model conversion/adoption/embedding or dossier109",
+      "body": "asteroid (3) Juno",
+      "source": {
+        "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+        "bytes": 49727,
+        "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+      },
+      "diagnostics": {
+        "referencedVertexLinksChecked": 902,
+        "linksNotSingleConnectedDegreeTwoCycles": 0,
+        "badVertexIndices": [],
+        "exactDecimalDuplicateCoordinateRecords": 0,
+        "declaredVertices": 902,
+        "declaredFacets": 1800
+      },
+      "interpretation": "Together with prior edge/index diagnostics, vertex links satisfy the checked local combinatorial cycle condition. Stored decimal coordinates have no exact duplicate records. This does not establish physical shape accuracy, self-intersection absence, near-contact clearance, outward physical frame, current pole/prime-meridian registration, illumination or photometric calibration.",
+      "preservation": "Original bytes unchanged. No science parameters, catalogue, public files, masters, generated originals, native images, application models or runtime codecs changed.",
+      "next": "Retain model-specific credits and licensing exceptions; audit original paper/corrigendum and source association before any application adoption."
+    },
+    {
+      "status": "Research preparation only",
+      "bodyId": "juno-3",
+      "sources": [
+        {
+          "path": "data/research-sources/juno-3-damit786-generated-shape-2026-10-21.obj",
+          "sha256": "4a415dea813f25b977d1c02832f653dcd0efb65cb43d419bdf170f98633341f9"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+          "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+        }
+      ],
+      "orderedDecimalVertexEquality": true,
+      "orderedFacetIndexEquality": true,
+      "vertexCount": 902,
+      "facetCount": 1800,
+      "limits": [
+        "Equality is of stored decimal coordinate values and ordered index triples, not whole-file byte equality.",
+        "No independent physical accuracy, self-intersection absence, source observational fit, frame/pole/prime-meridian registration or photometric validation.",
+        "No application adoption, embedding, conversion, catalogue or codec change; original files unchanged."
+      ]
+    },
+    {
+      "status": "Research preparation only; no production adoption",
+      "bodyId": "juno-3",
+      "sources": [
+        {
+          "path": "data/research-sources/juno-3-damit-model786-2026-10-21.html",
+          "sha256": "bc02d8fc9515627ce3471929b9d33a186f5d07089325a6fa6f045cc2de65ebc4"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+          "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+        }
+      ],
+      "diagnostics": {
+        "embeddedVertexCount": 902,
+        "embeddedFaceCount": 1800,
+        "orderedDecimalVerticesEqualSource": true,
+        "zeroBasedFacesPlusOneEqualOrderedSource": true
+      },
+      "limits": [
+        "Only array literals parsed after removing trailing commas; publisher JavaScript not executed. Initial strict JSON parsing rejected the trailing comma; extraction corrected before recording.",
+        "Raw HTML invalid UTF8 bytes preserved; replacement decoding for extraction is not source repair or whole-file identity.",
+        "Crosswalk does not establish observational product identity, physical accuracy, spin registration, photometry or licence.",
+        "No public/native/model/master/codec change, embedding or dossier109."
+      ]
+    },
+    {
+      "status": "Research preparation only; no production adoption or dossier109",
+      "body": "(3) Juno asteroid, not spacecraft",
+      "createdUtc": "2026-10-22T05:57:40.312517+00:00",
+      "inputs": [
+        {
+          "path": "data/research-sources/juno-3-damit786-original-spin-2026-10-21.txt",
+          "bytes": 35,
+          "sha256": "e0c57caeda8da34b7134a342d0069c2ec226fc8216815c0e60cf8f6b07864e51"
+        },
+        {
+          "path": "data/research-sources/juno-3-damit786-generated-spin-2026-10-21.txt",
+          "bytes": 39,
+          "sha256": "58a34ff4101436444c9e13e9762d4eb0760a9e6cdb57e3a1500c42a7a335e247"
+        }
+      ],
+      "method": "Exact decimal arithmetic; rate conversion only, no angular size/raster computation or coordinate-frame transform. 360 degrees per rotation times 24 hours per day divided by sidereal period hours.",
+      "diagnostic": {
+        "generatedPeriodHours": "7.20953",
+        "originalRateDegreesPerDay": "1198.413766",
+        "periodImpliedRateDegreesPerDay": "1198.4137662233183023026466357723735111720181482011",
+        "differenceDegreesPerDay": "2.233183023026466357723735111720181482011E-7",
+        "impliedRateRoundedToOriginalSixDecimals": "1198.413766",
+        "matchesOriginalAtStoredPrecision": true
+      },
+      "limitations": [
+        "Stored rate and period agree under unit conversion at original six-decimal precision; this does not establish complete spin-file equivalence.",
+        "Equatorial versus ecliptic pole conventions, distinct initial epochs and prime-meridian angles remain separate; no frame conversion or epoch propagation was performed.",
+        "No uncertainty, physical accuracy, current attitude/scene registration, source processing lineage, licence, or calibrated geography established.",
+        "All source bytes, public assets, original PNGs, masters, native science, maps/models/shapes, manifests, production codecs and dossier registry unchanged."
+      ]
+    },
+    {
+      "status": "Research preparation only; no adoption or dossier109",
+      "body": "(3) Juno asteroid, not spacecraft",
+      "createdUtc": "2026-10-22T06:12:43.929213+00:00",
+      "source": {
+        "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+        "bytes": 49727,
+        "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+      },
+      "method": "Exact stored decimal coordinates converted to a common integer grid; ordered origin-relative 3x3 determinant for each original one-based facet. No coordinate welding, resampling or model conversion.",
+      "coordinateDecimalPlaces": 6,
+      "facets": 1800,
+      "orderedOriginRelativeDeterminantSigns": {
+        "positive": 1800
+      },
+      "limitations": [
+        "This is an algebraic source-coordinate orientation diagnostic, not a physical volume/radius/density calculation.",
+        "Does not establish self-intersection absence, near-contact clearance, physical outward direction, body-frame registration, uncertainty or surface accuracy.",
+        "Original shape, OBJ and spin bytes and all production assets, maps/models, fields, provenance and codecs remain unchanged."
+      ]
+    },
+    {
+      "url": "https://trepo.tuni.fi/bitstream/handle/10024/213090/viikinkoski_1358.pdf?isAllowed=y&sequence=1",
+      "retrievedUtc": "2026-10-22T05:44:24.146224+00:00",
+      "purpose": "Author institutional thesis acquisition; includes Juno shape paper/corrigendum references. Research only.",
+      "status": 200,
+      "finalUrl": "https://trepo.tuni.fi/bitstream/handle/10024/213090/viikinkoski_1358.pdf?isAllowed=y&sequence=1",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 7440,
+      "sha256": "1b38b786f707fbf16b58d4b728d313b47bf7b3f68c25690f69642cb1d7306c9d",
+      "isPdf": false,
+      "path": "data/research-sources/juno-3-viikinkoski-thesis-response-2026-10-22.bin",
+      "limitation": "Acquisition only; no full-text/visual inspection, paper licence or model adoption established."
+    }
+  ],
+  "retainedFileInventory": [
+    {
+      "path": "data/research-sources/juno-3-alma-caption-2026-10-21.html",
+      "bytes": 184012,
+      "sha256": "98da40404e9d3b4baf5213ed0182eb7f8d4e5df816c842e1ed1e2dc9f94dbd2c"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-imaging-methods-preparation-2026-10-21.json",
+      "bytes": 2747,
+      "sha256": "cb42f53ead1cca499366010124628f55ac869def8458d0c2e2d41d1f33fdd9af"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-native-2026-10-21.jpg",
+      "bytes": 28245,
+      "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-native-acquisition-preparation-2026-10-21.json",
+      "bytes": 826,
+      "sha256": "a50c36d11e073d344c6ad932c8c624add069485e52a54cc82c241ccc5ae574b4"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-observations-preparation-2026-10-21.json",
+      "bytes": 1869,
+      "sha256": "60a8a5e6bc1462f94cb62fc34e3b816a8619c59261183af4e53ee542b5edf742"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+      "bytes": 179938,
+      "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-licence-2026-10-21.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-record-2026-10-21.html",
+      "bytes": 57218,
+      "sha256": "fb9683f800122fc235bb1ffbc1db1a7e4461daea4500d6b89e0f0111c6bfba42"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-record-preparation-2026-10-21.json",
+      "bytes": 2325,
+      "sha256": "f6307039dcbd7696965d6d3506fc455f4aafd4e6c82ff525a8bb7a1f6cf27126"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-text-2026-10-21.txt",
+      "bytes": 47931,
+      "sha256": "7272e4a2358dc8e8b5db8aad58f8f852f6a4669c4fbd4d443cd1f4a27fbaf57e"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-still-preparation-2026-10-21.json",
+      "bytes": 2570,
+      "sha256": "5d35f24ec58ce4b0a2cbec3fc5ddcbea512735569dff64866004baedd06c7b95"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-terms-2026-10-21.html",
+      "bytes": 179615,
+      "sha256": "87eb26feee9eceef665ff23d6c1f6fb5370fa60dd34764701d1416de15d493b5"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-thermal-interpretation-preparation-2026-10-21.json",
+      "bytes": 3522,
+      "sha256": "b12c82100b055c2264bc261ce714d5649101efa7e71676bd5a08b2341dc63607"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-conventions-preparation-2026-10-21.json",
+      "bytes": 2937,
+      "sha256": "949d2b26f78e2d315ac4d526ecb7f1e35d5d890a729a89f0297fee5f42678b03"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-model786-2026-10-21.html",
+      "bytes": 119058,
+      "sha256": "bc02d8fc9515627ce3471929b9d33a186f5d07089325a6fa6f045cc2de65ebc4"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-model786-acquisition-preparation-2026-10-21.json",
+      "bytes": 3959,
+      "sha256": "588a2a292f2d47b3eb69034a76fbcaf414f0c4eab5f9dbe9f0058d8611a05b52"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-model786-text-2026-10-21.txt",
+      "bytes": 87605,
+      "sha256": "2dfdde0406517245ba89476af3b928b59dd1b4f76992141a9d446bd674d953c7"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-reference-158-2026-10-21.html",
+      "bytes": 13631,
+      "sha256": "cf962d907f9df5703fdbd8249cd434617bcf8919a1746d75eab6922aa8108009"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-reference-acquisition-preparation-2026-10-21.json",
+      "bytes": 697,
+      "sha256": "9702ad0c9dbd9e07217ec3af094ac5e52b085665eb2121db5638e787c3945a15"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-reference158-models-2026-10-21.html",
+      "bytes": 7884,
+      "sha256": "76f333002ba786570bb57788c5f98f355d5410ddb4fecf6e4cf9b9f1a1d87582"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit-related-models-preparation-2026-10-21.json",
+      "bytes": 820,
+      "sha256": "b8fc08d7e570c6b7417c5b16c2a7a7ff088fbc5781f5ed5825a1990e5b9d9aa6"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-coordinate-orientation-preparation-2026-10-22.json",
+      "bytes": 1144,
+      "sha256": "d92e776f172c4ff8537f6a21f74cb7ed8b43a77532ab03a8e62bdc90ee65a858"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-documentation-2026-10-21.html",
+      "bytes": 40661,
+      "sha256": "f2d8ea579dec1624756aa6b7ca35f8afa5885fe53636b262e0b35290e3da844a"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-embedded-mesh-crosswalk-preparation-2026-10-21.json",
+      "bytes": 1196,
+      "sha256": "880d83591e6a2892b6550526ee34f14e22f6bbb79270dcae4a06e4fb044fa348"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-files-acquisition-preparation-2026-10-21.json",
+      "bytes": 2524,
+      "sha256": "d5101990bb920a923713337fa9dca1843e151bb4a592b4195147f42b258d63a5"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-generated-shape-2026-10-21.obj",
+      "bytes": 55122,
+      "sha256": "4a415dea813f25b977d1c02832f653dcd0efb65cb43d419bdf170f98633341f9"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-generated-spin-2026-10-21.txt",
+      "bytes": 39,
+      "sha256": "58a34ff4101436444c9e13e9762d4eb0760a9e6cdb57e3a1500c42a7a335e247"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-local-topology-preparation-2026-10-21.json",
+      "bytes": 1327,
+      "sha256": "28d68247bb48a0234a108d60e2c737ce561bb789d645d10111121b0c589e7410"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-mesh-preparation-2026-10-21.json",
+      "bytes": 1405,
+      "sha256": "cf8fd0c428cf64b7bd1420cd119d02ea6e1d6cf42907098cfa74281b6055f9e3"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-obj-acquisition-preparation-2026-10-21.json",
+      "bytes": 807,
+      "sha256": "08f6cee3cf62bd2edbf5453120896d181240203049c43d8df403790a2971ff55"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-obj-crosswalk-preparation-2026-10-21.json",
+      "bytes": 967,
+      "sha256": "139145861c32642e81b35f31ba903a6cc2dcc95f4c02b67b47caf08566dea651"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-original-shape-2026-10-21.txt",
+      "bytes": 49727,
+      "sha256": "1430f0186c7dfaa35104eff861b0c04963cd615348ab7b0110b738cbb37c07d5"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-original-spin-2026-10-21.txt",
+      "bytes": 35,
+      "sha256": "e0c57caeda8da34b7134a342d0069c2ec226fc8216815c0e60cf8f6b07864e51"
+    },
+    {
+      "path": "data/research-sources/juno-3-damit786-spin-rate-crosswalk-preparation-2026-10-22.json",
+      "bytes": 1858,
+      "sha256": "355f8e5a28de0e22faa2fca84379f041948c650fb7f2fa41054ec34bebcea679"
+    },
+    {
+      "path": "data/research-sources/juno-3-preparation-index-2026-10-22.json",
+      "bytes": 9455,
+      "sha256": "735a282eb1a4c13fcb937e373487a0cf1919dce06a3055f9e1850db851902599"
+    },
+    {
+      "path": "data/research-sources/juno-3-publisher-link-preparation-2026-10-21.json",
+      "bytes": 2454,
+      "sha256": "ce893b06c306fe364f0ad485cfa16a4fa86c944a80851231530aa77d3a273bbd"
+    },
+    {
+      "path": "data/research-sources/juno-3-shape-corrigendum-discovery-preparation-2026-10-21.json",
+      "bytes": 1570,
+      "sha256": "c5e0ef2a98ab7f3874d21b7c062f2eceb9e8e5b4d679c11046ea78d75e863fe3"
+    },
+    {
+      "path": "data/research-sources/juno-3-shape-institutional-acquisition-preparation-2026-10-21.json",
+      "bytes": 734,
+      "sha256": "7987f6ffccf0bc64ec7c597ec8a05c0fede9096fc3229bd8fd314bbe7b303c04"
+    },
+    {
+      "path": "data/research-sources/juno-3-shape-institutional-response-2026-10-21.bin",
+      "bytes": 7263,
+      "sha256": "cb97f9da7d56d484305119353df49f0027a014e0afcc2794f5d119cff405da1a"
+    },
+    {
+      "path": "data/research-sources/juno-3-shape-publisher-acquisition-preparation-2026-10-21.json",
+      "bytes": 241,
+      "sha256": "3b3df0079238529310298ead1822b37eff96c58cf3d05821d733808aca88090f"
+    },
+    {
+      "path": "data/research-sources/juno-3-shape-source-acquisition-preparation-2026-10-21.json",
+      "bytes": 631,
+      "sha256": "b47fb29a244a8b4a50525f8f5caebc64167dc7213cdfbd9dd430a9bb73d5d8e6"
+    },
+    {
+      "path": "data/research-sources/juno-3-viikinkoski-thesis-acquisition-preparation-2026-10-22.json",
+      "bytes": 776,
+      "sha256": "ec789a7f2792570b4fafd4ed4b91948a7e82881ff171c87f63bad6f5582579b4"
+    },
+    {
+      "path": "data/research-sources/juno-3-viikinkoski-thesis-response-2026-10-22.bin",
+      "bytes": 7440,
+      "sha256": "1b38b786f707fbf16b58d4b728d313b47bf7b3f68c25690f69642cb1d7306c9d"
+    }
+  ],
+  "conclusions": [
+    "902 vertices and1800 facets agree in ordered stored Decimal coordinates and facet indices across original shape.txt, generated OBJ and HTML geometry (HTML indices zero-based). All original files retained unchanged.",
+    "All902 vertex links form connected degree-two cycles;2700 edges each have two opposite-directed facets. No duplicate unordered facet-index triples or stored-coordinate collinear triangles. All1800 exact origin-relative determinants positive. These algebraic/combinatorial diagnostics do not prove self-intersection absence, physical outward orientation, physical accuracy or registration.",
+    "Generated7.20953-hour period implies1198.413766 degrees/day at original six-decimal precision. This rate agreement does not establish equivalence of equatorial/ecliptic poles, distinct epochs or prime-meridian angles.",
+    "DAMIT calibrated-size flag and248±5km equal-volume diameter are publisher model metadata, not local uncertainty or measured axes; no catalogue update. Visualization lighting/scattering is artificial and not calibrated visible colour.",
+    "Institutional thesis endpoint returned7440-byte HTML, not PDF; retained response hash is not a paper hash. Original paper/corrected Figure4, source-specific licence exceptions, processing lineage and raw observation/product crosswalk remain open."
+  ],
+  "preservation": {
+    "productionChanges": false,
+    "newDossier": false,
+    "newEmbedding": false,
+    "modelConversion": false,
+    "angularOrRasterComputation": false,
+    "baseline": "83e46b8",
+    "validation": {
+      "baseline": "83e46b8",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "c0e5703149f3aa65e283fa0adfa505a2cb581e4f2ee88e492d511131be4281b1",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15985998,
+        "headroomBytes": 14002,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    }
+  },
+  "validation": {
+    "tests": {
+      "passed": 711,
+      "skipped": 1,
+      "failed": 0
+    },
+    "productionBuild": "pass",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15985998,
+      "headroomBytes": 14002,
+      "gateBytes": 16000000
+    },
+    "queueEntries": 569,
+    "retainedResearchFilesHashVerified": 43,
+    "freshBrowserClaim": false,
+    "interbuildSavingsAttribution": false,
+    "note": "Full builder exact inverse guards pass. Live-feed variation not attributed to research or compression."
+  }
+}
