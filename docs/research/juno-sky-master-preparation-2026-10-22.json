@@ -1,0 +1,272 @@
+{
+  "date": "2026-10-22",
+  "bodyId": "juno-3",
+  "status": "Research-only independent sky original and original-preserving master/preview preparation; no109th dossier or embedding",
+  "tool": "Built-in image_gen, no reference images",
+  "skyPrompt": "Use case: scientific-educational. Asset type: hypothetical asteroid observer illustration for Fidelity. Asteroid (3) Juno, not the spacecraft. Create a fully independent invented landscape; do not use an existing body texture or any ALMA image as terrain. Broad neutral charcoal-grey palette is artistic, not calibrated S-type colour or measured composition. Sparse subdued irregular blocks and shallow relief are invented; no distinctive named craters or mapped features. No spacecraft, people, trees, ocean, exposed interior, plume or atmosphere. Black sky is an artistic assumption, not proof of atmospheric absence. Solar illumination comes from off frame; exposure, shadows and colour are artistic. Wide 16:9 composition. Two clearly legible footer lines in a dark band: \"IMAGINED SKY FROM ASTEROID (3) JUNO\" and \"Terrain, materials, horizon and lighting are hypothetical; no dated site registration.\" Frame a broad low, gently uneven invented horizon with modest fractured slabs at the bottom and a large empty black sky. Sun entirely off frame, no other visible astronomical disks, no star field or numerical scale. This is a hypothetical observer orientation, not a mapped surface normal or spin phase.",
+  "skyDefaultOriginal": {
+    "path": "/Users/ageer/.codex/generated_images/01a12427-4081-7cb2-b7d8-f78ad50ccbfe/exec-e2b81c06-fa5f-4dca-8603-f70fe2f85a87.png",
+    "bytes": 1575985,
+    "sha256": "dbe28d238b5fe692677a7681a5ec4036f50ff01b6f5ffd3c76ceecd6c97412f7",
+    "width": 1672,
+    "height": 941,
+    "format": "PNG"
+  },
+  "skyResearchOriginal": {
+    "path": "data/research-sources/juno-3-generated-skyImage-original-2026-10-22.png",
+    "bytes": 1575985,
+    "sha256": "dbe28d238b5fe692677a7681a5ec4036f50ff01b6f5ffd3c76ceecd6c97412f7",
+    "width": 1672,
+    "height": 941,
+    "format": "PNG"
+  },
+  "visualInspection": {
+    "skyOriginalInspected": true,
+    "bothFooterLinesReadable": true,
+    "inventedLowHorizonAndFracturedSlabs": true,
+    "noAstronomicalDisk": true,
+    "noAngularRasterDiameterClaim": true
+  },
+  "assets": [
+    {
+      "role": "surfaceImage",
+      "files": [
+        {
+          "path": "data/research-sources/juno-3-generated-surfaceImage-original-2026-10-22.png",
+          "bytes": 2391949,
+          "sha256": "0ba36a645fabfff1511fd733e3ad0f0b4d6561fd373de1297d3fe766fca60f98",
+          "width": 1672,
+          "height": 941,
+          "format": "PNG"
+        },
+        {
+          "path": "data/research-sources/juno-3-surfaceImage-master-2026-10-22.jpg",
+          "bytes": 263207,
+          "sha256": "6d6bf7530051b15343fe473755c5ccdb7e3bfc3cc73f128afea39b658aaf0def",
+          "width": 1536,
+          "height": 864,
+          "format": "JPEG",
+          "encoding": "JPEG quality85, Lanczos resize from preserved original, optimize=True",
+          "inspection": "Visually inspected. Both footer lines readable in master; tiny preview text requires explicit IMAGINED card labels."
+        },
+        {
+          "path": "data/research-sources/juno-3-surfaceImage-preview-2026-10-22.jpg",
+          "bytes": 10174,
+          "sha256": "71ce48c6546e7351cb7fdc7488d9c1f5d6eb8bde7a9c7a65260186cc774d7e0d",
+          "width": 256,
+          "height": 144,
+          "format": "JPEG",
+          "encoding": "JPEG quality80, Lanczos resize from preserved original, optimize=True",
+          "inspection": "Visually inspected. Both footer lines readable in master; tiny preview text requires explicit IMAGINED card labels."
+        }
+      ]
+    },
+    {
+      "role": "skyImage",
+      "files": [
+        {
+          "path": "data/research-sources/juno-3-generated-skyImage-original-2026-10-22.png",
+          "bytes": 1575985,
+          "sha256": "dbe28d238b5fe692677a7681a5ec4036f50ff01b6f5ffd3c76ceecd6c97412f7",
+          "width": 1672,
+          "height": 941,
+          "format": "PNG"
+        },
+        {
+          "path": "data/research-sources/juno-3-skyImage-master-2026-10-22.jpg",
+          "bytes": 180660,
+          "sha256": "f65a4a2e06c381a7c4b6bddf69f7a86b1ecbdbf860bb33b3d2fa2e31908354de",
+          "width": 1536,
+          "height": 864,
+          "format": "JPEG",
+          "encoding": "JPEG quality85, Lanczos resize from preserved original, optimize=True",
+          "inspection": "Visually inspected. Both footer lines readable in master; tiny preview text requires explicit IMAGINED card labels."
+        },
+        {
+          "path": "data/research-sources/juno-3-skyImage-preview-2026-10-22.jpg",
+          "bytes": 5543,
+          "sha256": "e724964813b42ed99d9486c6047766b2d35854bd1eb325a103d4c1842a638249",
+          "width": 256,
+          "height": 144,
+          "format": "JPEG",
+          "encoding": "JPEG quality80, Lanczos resize from preserved original, optimize=True",
+          "inspection": "Visually inspected. Both footer lines readable in master; tiny preview text requires explicit IMAGINED card labels."
+        }
+      ]
+    }
+  ],
+  "sourceSpecification": {
+    "date": "2026-10-22",
+    "bodyId": "juno-3",
+    "identity": "Asteroid 3 Juno (A804 RA), SPK 20000003; distinct from spacecraft Juno",
+    "status": "Research-only illustration specification; no image generated or embedded",
+    "sources": [
+      {
+        "path": "data/research-sources/juno-3-jpl-physical-reference-preparation-2026-10-22.json",
+        "bytes": 6967,
+        "sha256": "c5b6eff65c6f3a859efc04c0ea91f2f4e699e9d8b641b302319f3edf012f68b6"
+      },
+      {
+        "path": "data/research-sources/juno-3-catalogue-source-crosswalk-preparation-2026-10-22.json",
+        "bytes": 4553,
+        "sha256": "5e02473b0f57fc3d54573b61912bf913a03926141e6c6b65b78a25574c7bd839"
+      },
+      {
+        "path": "data/research-sources/juno-3-observer-geometry-preparation-2026-10-22.json",
+        "bytes": 3678,
+        "sha256": "dd2cd5a570bb0718447294656605c8d1e915f419530c6cd689b8b22ba4a7e373"
+      },
+      {
+        "path": "docs/research/juno-damit-mesh-assessment-2026-10-22.json",
+        "bytes": 25198,
+        "sha256": "5a1cca6e4f05d09a3cbb9cbb40712582d444e3e8aa85407837f0d6eb9d697e3d"
+      },
+      {
+        "path": "docs/research/juno-alma-native-methods-assessment-2026-10-22.json",
+        "bytes": 58083,
+        "sha256": "fb9fee9a11abd69846bdfd20fac5e336277fdff95d8a4994b25034f997f15907"
+      }
+    ],
+    "geometry": {
+      "date": "2026-10-22",
+      "status": "Research-only hypothetical asteroid Juno solar observer geometry; no generated or embedded illustration",
+      "body": "3 Juno (A804 RA)",
+      "sourceFiles": [
+        {
+          "path": "data/research-sources/juno-3-jpl-sbdb-full-precision-2026-10-22.json",
+          "bytes": 6179,
+          "sha256": "f860f42f9494f3a7240c129eb3e7e15a0e5f0b6b75db116254955faf82a269b7"
+        },
+        {
+          "path": "src/astro/appearance.js",
+          "bytes": 1394,
+          "sha256": "79b46122e0dae4469115f8fc9c6d5ae00b903bce4ffb539fa50ddcc4d66b30eb"
+        }
+      ],
+      "inputs": {
+        "solarRadiusNominalKm": 695700,
+        "temperatureK": 5772,
+        "horizontalFovDeg": 90,
+        "widthPixels": 1672,
+        "orbitEpochAsReturned": "2461200.5",
+        "referenceFrame": "JPL returned J2000 osculating orbit; scalar a/q/ad only used here"
+      },
+      "cases": [
+        {
+          "sourceElement": {
+            "label": "a",
+            "name": "a",
+            "value": "2.670989527103278",
+            "sigma": "1.4745E-9",
+            "title": "semi-major axis",
+            "units": "au"
+          },
+          "assumedDistanceAU": 2.670989527103278,
+          "angularDiameterDeg": 0.19951578150011084,
+          "centreDiscWidthFraction": 0.001741105407786922,
+          "targetPixelsAt1672": 2.9111282418197337
+        },
+        {
+          "sourceElement": {
+            "title": "perihelion distance",
+            "units": "au",
+            "label": "q",
+            "value": "1.98801754864507",
+            "sigma": "1.2039E-8",
+            "name": "q"
+          },
+          "assumedDistanceAU": 1.98801754864507,
+          "angularDiameterDeg": 0.26805838812356797,
+          "centreDiscWidthFraction": 0.0023392549970485143,
+          "targetPixelsAt1672": 3.911234355065116
+        },
+        {
+          "sourceElement": {
+            "units": "au",
+            "title": "aphelion distance",
+            "value": "3.353961505561487",
+            "sigma": "1.8515E-9",
+            "name": "ad",
+            "label": "Q"
+          },
+          "assumedDistanceAU": 3.353961505561487,
+          "angularDiameterDeg": 0.15888806818620438,
+          "centreDiscWidthFraction": 0.001386560854568223,
+          "targetPixelsAt1672": 2.3183297488380687
+        }
+      ],
+      "limits": [
+        "All angular/raster sizes computed through skyGeometry. Semimajor axis and osculating perihelion/aphelion are separate representative heliocentric scales, not a current ephemeris, surface normal, dated observing site, uncertainty envelope or joint fitted observer scene.",
+        "Sun intended off frame. No image generated, no raster diameter measured. Irradiance/blackbody colour helper outputs discarded: no calibrated photometry, spectral transfer, exposure, adaptation, thermal or local chemistry inference.",
+        "JPL radiometric effective diameter 246.596±10.594 km, DAMIT equal-volume diameter 248±5 km and historical ALMA uniform-brightness disk fit 259±4 km remain distinct estimators; no common error model or catalogue correction adopted. Body shape, altitude, local horizon, slope, attitude, phase and physical registration remain unverified. No catalogue or model change.",
+        "JPL rotation period 7.21 h is explicitly synodic; DAMIT 7.20953 h is sidereal. Numerical proximity does not establish identical conventions, a spin phase or prime-meridian transform. Asteroid 3 Juno must remain distinct from the Jupiter spacecraft Juno.",
+        "A future independent hypothetical local/observer illustration requires IMAGINED labels; no observed-body analog skins, dated terrain claim, exposed interior, atmosphere/plume/ocean/biology or survivable landing implication.",
+        "Current108dossiers/native bytes/originalPNG/masters/maps/models/shapes/provenance/codecs untouched; no109th dossier, new embedding, capacity saving or fresh test/build/browser claim."
+      ]
+    },
+    "specifications": [
+      {
+        "role": "surfaceImage",
+        "prompt": "Use case: scientific-educational. Asset type: hypothetical asteroid observer illustration for Fidelity. Asteroid (3) Juno, not the spacecraft. Create a fully independent invented landscape; do not use an existing body texture or any ALMA image as terrain. Broad neutral charcoal-grey palette is artistic, not calibrated S-type colour or measured composition. Sparse subdued irregular blocks and shallow relief are invented; no distinctive named craters or mapped features. No spacecraft, people, trees, ocean, exposed interior, plume or atmosphere. Black sky is an artistic assumption, not proof of atmospheric absence. Solar illumination comes from off frame; exposure, shadows and colour are artistic. Wide 16:9 composition. Two clearly legible footer lines in a dark band: \"IMAGINED LOCAL VIEW — ASTEROID (3) JUNO\" and \"Terrain, materials, colour and lighting are hypothetical; no observed site registration.\" Frame a low close view across coarse grains, small angular fragments and a few subdued larger blocks; keep the composition restrained rather than dramatic. No visible astronomical disk, star field or numerical scale.",
+        "angularClaim": "None: no astronomical disk depicted."
+      },
+      {
+        "role": "skyImage",
+        "prompt": "Use case: scientific-educational. Asset type: hypothetical asteroid observer illustration for Fidelity. Asteroid (3) Juno, not the spacecraft. Create a fully independent invented landscape; do not use an existing body texture or any ALMA image as terrain. Broad neutral charcoal-grey palette is artistic, not calibrated S-type colour or measured composition. Sparse subdued irregular blocks and shallow relief are invented; no distinctive named craters or mapped features. No spacecraft, people, trees, ocean, exposed interior, plume or atmosphere. Black sky is an artistic assumption, not proof of atmospheric absence. Solar illumination comes from off frame; exposure, shadows and colour are artistic. Wide 16:9 composition. Two clearly legible footer lines in a dark band: \"IMAGINED SKY FROM ASTEROID (3) JUNO\" and \"Terrain, materials, horizon and lighting are hypothetical; no dated site registration.\" Frame a broad low, gently uneven invented horizon with modest fractured slabs at the bottom and a large empty black sky. Sun entirely off frame, no other visible astronomical disks, no star field or numerical scale. This is a hypothetical observer orientation, not a mapped surface normal or spin phase.",
+        "angularClaim": "Sun intentionally off frame. Separate a/q/ad geometry recorded for context only; no raster diameter or dated illumination adopted."
+      }
+    ],
+    "limits": [
+      "Use each scene as a hypothetical independently invented illustration, not a map or registered view of any observed Juno site. All production dossiers, native imagery, models, maps, original PNGs and masters remain unchanged.",
+      "No native millimetre brightness structure, DAMIT facet pattern, ALMA residual or analogue-body skin is transferred into local terrain or visible colour.",
+      "No new scientific measurement, physical registration, capacity saving, test/build result or browser verification claimed."
+    ]
+  },
+  "limits": [
+    "All terrain, grains, blocks, fractures, relief, chemistry, fractions, visible colour, horizon, attitude, phase, lighting and exposure invented. No observed-body analog skin or ALMA/DAMIT pattern used as terrain.",
+    "Black sky is an artistic assumption, not measured atmospheric absence. No dated site, local chemistry, physical surface-normal/spin-phase registration, exposed interior, plume, ocean, biology or survivable landing implication.",
+    "Sun entirely off frame; representative skyGeometry a/q/ad distances are not a current ephemeris, joint observer solution or uncertainty envelope. No new raster diameter measurement.",
+    "Master/preview JPEGs are generated-illustration derivatives, not transformations of native scientific imagery. Both full original/default PNGs retained. Small preview footer legibility requires explicit IMAGINED card labels.",
+    "Current108dossiers/public/native/map/model/shape/catalogue/codecs unchanged. No109th dossier or new embedding; capacity recovery remains open."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0,
+      "environment": "OPENAI_API_KEY unset for missing-key voice test"
+    },
+    "productionBuild": "pass",
+    "standaloneBuild": "pass",
+    "preservation": {
+      "baseline": "15ccc14",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "6b282b8b3bcce1a888c7666423fb8fb2452155a79f855d1a3cf240522fb09f4f",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15983342,
+        "headroomBytes": 16658,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    },
+    "retainedFileRecordsVerified": 15,
+    "queueTasks": 569,
+    "freshBrowserClaim": false
+  },
+  "budget": {
+    "twoPreviewRawJpegBytes": 15717,
+    "meaning": "Raw generated-preview JPEG bytes only, not standalone increment, WebP80 embedding size or capacity-saving claim. Native imagery/text/wrappers remain additional."
+  }
+}
