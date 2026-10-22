@@ -1,0 +1,1666 @@
+{
+  "date": "2026-10-22",
+  "issue": "#3",
+  "bodyId": "juno-3",
+  "identity": "Asteroid (3) Juno, distinct from spacecraft Juno",
+  "status": "Research-only native source and targeted primary HTML methods audit; no new dossier or embedding",
+  "scope": "Retains outreach native JPEG/caption/terms, complete primary record credit, targeted observations/results/discussion HTML review and literal tables. Not PDF/figure visual review, complete references review or independent calibration reproduction.",
+  "native": {
+    "date": "2026-10-21",
+    "bodyId": "juno-3",
+    "status": "Native still acquired and visually inspected; research only",
+    "acquisition": [
+      {
+        "url": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+        "finalUrl": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+        "status": 200,
+        "contentType": "image/jpeg",
+        "path": "data/research-sources/juno-3-alma-native-2026-10-21.jpg",
+        "bytes": 28245,
+        "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+      },
+      {
+        "url": "https://www.almaobservatory.org/en/copyright-notice/",
+        "finalUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "path": "data/research-sources/juno-3-alma-terms-2026-10-21.html",
+        "bytes": 179615,
+        "sha256": "87eb26feee9eceef665ff23d6c1f6fb5370fa60dd34764701d1416de15d493b5"
+      }
+    ],
+    "credit": "ALMA (NRAO/ESO/NAOJ)",
+    "releaseDate": "2015-04-07",
+    "observationDate": "2014-10-19",
+    "observationScope": "Publisher associates ten images over four hours with the sequence; exact still UTC/exposure/raw-product association not yet verified.",
+    "termsUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+    "termsAssessment": "Publisher general CC BY 4.0 with full visible credit/active links and exceptions; scientific papers/code/other texts excluded. No paper or raw-data blanket licence inferred.",
+    "visualInspection": "Blurred grayscale disk with a bright region against a dark background. Beam, brightness transfer and image reconstruction can affect morphology; not resolved regolith or calibrated visible colour.",
+    "limits": [
+      "2016/06 URL path is not observation or original publication date.",
+      "No derived angular/raster measurement, brightness temperature, local composition fraction or registered globe.",
+      "No image embedded, new dossier/catalogue/map/model/shape/codec change; all earlier originals/masters/native records preserved.",
+      "No exhaustive newest-observation claim; later SPHERE and primary method/raw-product audits pending."
+    ],
+    "captionResponse": {
+      "url": "https://www.almaobservatory.org/en/press-releases/asteroid-juno-seen-traveling-through-space-in-new-alma-images-and-animation/",
+      "status": 200,
+      "path": "data/research-sources/juno-3-alma-caption-2026-10-21.html",
+      "bytes": 184012,
+      "sha256": "98da40404e9d3b4baf5213ed0182eb7f8d4e5df816c842e1ed1e2dc9f94dbd2c"
+    }
+  },
+  "publication": {
+    "doi": "10.1088/2041-8205/808/1/L2",
+    "arxiv": "1503.02650v2",
+    "recordAuthors": [
+      "Partnership, ALMA",
+      "Hunter, T. R.",
+      "Kneissl, R.",
+      "Moullet, A.",
+      "Brogan, C. L.",
+      "Fomalont, E. B.",
+      "Vlahakis, C.",
+      "Asaki, Y.",
+      "Barkats, D.",
+      "Dent, W. R. F.",
+      "Hills, R.",
+      "Hirota, A.",
+      "Hodge, J. A.",
+      "Impellizzeri, C. M. V.",
+      "Liuzzo, E.",
+      "Lucas, R.",
+      "Marcelino, N.",
+      "Matsushita, S.",
+      "Nakanishi, K.",
+      "Perez, L. M.",
+      "Phillips, N.",
+      "Richards, A. M. S.",
+      "Toledo, I.",
+      "Aladro, R.",
+      "Broguiere, D.",
+      "Cortes, J. R.",
+      "Cortes, P. C.",
+      "Espada, D.",
+      "Galarza, F.",
+      "Garcia-Appadoo, D.",
+      "Guzman-Ramirez, L.",
+      "Hales, A. S.",
+      "Humphreys, E. M.",
+      "Jung, T.",
+      "Kameno, S.",
+      "Laing, R. A.",
+      "Leon, S.",
+      "Marconi, G.",
+      "Mignano, A.",
+      "Nikolic, B.",
+      "Nyman, L. -A.",
+      "Radiszcz, M.",
+      "Remijan, A.",
+      "Rodon, J. A.",
+      "Sawada, T.",
+      "Takahashi, S.",
+      "Tilanus, R. P. J.",
+      "Vilaro, B. Vila",
+      "Watson, L. C.",
+      "Wiklind, T.",
+      "de Gregorio-Monsalvo, I.",
+      "Di Francesco, J.",
+      "Mangum, J.",
+      "Francke, H.",
+      "Gallardo, J.",
+      "Garcia, J.",
+      "Gonzalez, S.",
+      "Hill, T.",
+      "Kaminski, T.",
+      "Kurono, Y.",
+      "Lopez, C.",
+      "Morales, F.",
+      "Plarre, K.",
+      "Randall, S.",
+      "van kempen, T.",
+      "Videla, L.",
+      "Villard, E.",
+      "Andreani, P.",
+      "Hibbard, J. E.",
+      "Tatematsu, K."
+    ],
+    "creditScope": "All70 citation_author entries retained, including ALMA Partnership; differing UI author-count wording not reconciled.",
+    "licence": "Specific arXiv nonexclusive distribution, not CC BY. Outreach CC BY4 terms exclude scientific papers/code and do not assign raw-data or paper permissions."
+  },
+  "findings": [
+    "2014-10-19 observations span09:15–13:38UT;2015-04-07 outreach release and2016/06 file path are separate dates. Exact still exposure/UTC/raw product remains open.",
+    "233GHz millimetre thermal reconstruction, matched42mas beam, self-calibration and CLEAN affect morphology; not calibrated visible colour, resolved regolith or registered geography. Publisher beam/scale numbers not independently recomputed.",
+    "259±4km uniform-brightness disk fit and modelled2–4percent size bias remain distinct from axes/equal-volume shape metadata/current catalogue. No radius correction adopted.",
+    "Relative thermal residuals, emissivity/subsurface and analogue-dependent thermal-inertia interpretations do not measure local chemistry, density, porosity or terrain. No analogue skin reuse.",
+    "Literal HTML Table1 row2 MJD difference gives54minutes while elapsed column says36; other rows include rounding/minute differences. Independent cell extraction confirms inputs. Cause/semantics/typeset cross-check open; no silent epoch or phase repair.",
+    "DAMIT artificial illumination and historical phase/prime-meridian conventions do not register the publisher still; putative AO-crater association remains conditional."
+  ],
+  "preparations": [
+    {
+      "path": "data/research-sources/juno-3-alma-imaging-methods-preparation-2026-10-21.json",
+      "record": {
+        "date": "2026-10-21",
+        "bodyId": "juno-3",
+        "status": "Targeted observations/imaging/size-methods research preparation; no production change",
+        "source": {
+          "url": "https://arxiv.org/html/1503.02650v2",
+          "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+          "bytes": 179938,
+          "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30",
+          "extractedTextPath": "data/research-sources/juno-3-alma-primary-text-2026-10-21.txt",
+          "extractedTextSha256": "7272e4a2358dc8e8b5db8aad58f8f852f6a4669c4fbd4d443cd1f4a27fbaf57e"
+        },
+        "scope": [
+          "Observations section",
+          "Results III.1 viewing geometry",
+          "III.2 images and Figure2 caption",
+          "III.3 initial size-fitting methods and historical diameter alternatives"
+        ],
+        "findings": [
+          "Matched-resolution images are Gaussian-smoothed to a circular42mas beam. Original beams vary; these are publisher values, not independently recomputed raster scales.",
+          "Multiscale CLEAN and phase/amplitude self-calibration affect reconstructed morphology. Direct visibility modelling requires compatible antenna phase solutions; no calibration independently reproduced.",
+          "Figure2 faceted DAMIT panels use artificial lighting and quoted12percent scale uncertainty; they are models, not ALMA geography or local terrain.",
+          "Centroid uses uniformly weighted pixels above5sigma; integrated flux above3sigma. Brightness-temperature calculations use Planck conversion and CLEAN-component median; systematic6percent flux uncertainty excluded from several table errors. No visible-colour or local kinetic-temperature transfer.",
+          "259±4km is a uniform-brightness elliptical-disk size fit convolved with the42mas beam. Authors flag uniform brightness as physically imperfect; this is not a direct three-axis shape measurement or current catalogue update.",
+          "Primary Table1 literal MJD and elapsed-minute columns retained in original HTML; no timing repair or still-to-epoch assignment adopted.",
+          "Historical phase zero points, inferred pole, old DAMIT model and literature diameter alternatives are separate fits; no scene attitude/rotation registration adopted."
+        ],
+        "open": [
+          "Remainder of size section, DAMIT comparison, surface-features/discussion/conclusions and references audit",
+          "Original PDF visual/table verification",
+          "Exact publisher JPEG/raw-product/epoch crosswalk",
+          "Later SPHERE shape and current JPL alternatives"
+        ],
+        "licence": "arXiv perpetual nonexclusive distribution; not CC BY; outreach image terms separate. No paper figure embedded.",
+        "preservation": "All existing originals/masters/native/public/dossiers/maps/models/codecs preserved. No109th dossier or new embedding."
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-literal-table-inventory-preparation-2026-10-22.json",
+      "record": {
+        "status": "Research preparation only; literal HTML tables, no calibration adoption",
+        "bodyId": "juno-3",
+        "source": {
+          "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+          "url": "https://arxiv.org/html/1503.02650v2",
+          "bytes": 179938,
+          "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+        },
+        "method": "HTMLParser collects th/td text in S3.T1/S3.T2, whitespace normalized only. Multirow headers, footnotes and duplicated MathML/TeX representations remain literal. Ten Table1 data rows independently equal the prior cell cross-check.",
+        "tables": {
+          "S3.T1": [
+            [
+              {
+                "type": "th",
+                "text": "Image"
+              },
+              {
+                "type": "th",
+                "text": "Epoch"
+              },
+              {
+                "type": "th",
+                "text": "Elapsed time"
+              },
+              {
+                "type": "th",
+                "text": "Elevation"
+              },
+              {
+                "type": "th",
+                "text": "Rotation phase"
+              }
+            ],
+            [
+              {
+                "type": "th",
+                "text": "#"
+              },
+              {
+                "type": "th",
+                "text": "(MJD)"
+              },
+              {
+                "type": "th",
+                "text": "(minutes)"
+              },
+              {
+                "type": "th",
+                "text": "(°)"
+              },
+              {
+                "type": "th",
+                "text": "ϕ1\\phi_{\\rm 1}aaPhase with respect to ψ0\\psi_{\\rm 0} of the Drummond & Christou [25] triaxial model using the rotation period of 0.300397125 days [35]. In the 8.5-year interval, the phase accumulated uncertainty is ±0.01\\pm 0.01."
+              },
+              {
+                "type": "th",
+                "text": "ϕ2\\phi_{\\rm 2}bbPhase with respect to AO observations of Baliunas et al. [4] (zero point taken to be 50371.24167) using the same rotation period. In the 18-year interval, the accumulated phase uncertainty is ±0.02\\pm 0.02."
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "0"
+              },
+              {
+                "type": "td",
+                "text": "56949.39167"
+              },
+              {
+                "type": "td",
+                "text": "0"
+              },
+              {
+                "type": "td",
+                "text": "53.2"
+              },
+              {
+                "type": "td",
+                "text": "0.33"
+              },
+              {
+                "type": "td",
+                "text": "0.18"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "1"
+              },
+              {
+                "type": "td",
+                "text": "56949.40417"
+              },
+              {
+                "type": "td",
+                "text": "18"
+              },
+              {
+                "type": "td",
+                "text": "55.7"
+              },
+              {
+                "type": "td",
+                "text": "0.37"
+              },
+              {
+                "type": "td",
+                "text": "0.22"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "2"
+              },
+              {
+                "type": "td",
+                "text": "56949.42917"
+              },
+              {
+                "type": "td",
+                "text": "36"
+              },
+              {
+                "type": "td",
+                "text": "59.5"
+              },
+              {
+                "type": "td",
+                "text": "0.45"
+              },
+              {
+                "type": "td",
+                "text": "0.30"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "3"
+              },
+              {
+                "type": "td",
+                "text": "56949.44167"
+              },
+              {
+                "type": "td",
+                "text": "73"
+              },
+              {
+                "type": "td",
+                "text": "60.5"
+              },
+              {
+                "type": "td",
+                "text": "0.49"
+              },
+              {
+                "type": "td",
+                "text": "0.35"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "4"
+              },
+              {
+                "type": "td",
+                "text": "56949.46667"
+              },
+              {
+                "type": "td",
+                "text": "110"
+              },
+              {
+                "type": "td",
+                "text": "60.5"
+              },
+              {
+                "type": "td",
+                "text": "0.58"
+              },
+              {
+                "type": "td",
+                "text": "0.43"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "5"
+              },
+              {
+                "type": "td",
+                "text": "56949.48056"
+              },
+              {
+                "type": "td",
+                "text": "128"
+              },
+              {
+                "type": "td",
+                "text": "59.4"
+              },
+              {
+                "type": "td",
+                "text": "0.62"
+              },
+              {
+                "type": "td",
+                "text": "0.47"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "6"
+              },
+              {
+                "type": "td",
+                "text": "56949.51111"
+              },
+              {
+                "type": "td",
+                "text": "173"
+              },
+              {
+                "type": "td",
+                "text": "54.7"
+              },
+              {
+                "type": "td",
+                "text": "0.72"
+              },
+              {
+                "type": "td",
+                "text": "0.58"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "7"
+              },
+              {
+                "type": "td",
+                "text": "56949.52500"
+              },
+              {
+                "type": "td",
+                "text": "192"
+              },
+              {
+                "type": "td",
+                "text": "51.9"
+              },
+              {
+                "type": "td",
+                "text": "0.77"
+              },
+              {
+                "type": "td",
+                "text": "0.62"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "8"
+              },
+              {
+                "type": "td",
+                "text": "56949.54861"
+              },
+              {
+                "type": "td",
+                "text": "226"
+              },
+              {
+                "type": "td",
+                "text": "46.1"
+              },
+              {
+                "type": "td",
+                "text": "0.85"
+              },
+              {
+                "type": "td",
+                "text": "0.70"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "9"
+              },
+              {
+                "type": "td",
+                "text": "56949.56111"
+              },
+              {
+                "type": "td",
+                "text": "244"
+              },
+              {
+                "type": "td",
+                "text": "42.6"
+              },
+              {
+                "type": "td",
+                "text": "0.89"
+              },
+              {
+                "type": "td",
+                "text": "0.74"
+              }
+            ]
+          ],
+          "S3.T2": [
+            [
+              {
+                "type": "th",
+                "text": "Image"
+              },
+              {
+                "type": "th",
+                "text": "Centroid of JunoaaSee section § III.2 for details of the centroid calculation. The systematic uncertainty is estimated to be 3 mas. All coordinates are in the ICRF of the ICRS (Epoch J2000.0)."
+              },
+              {
+                "type": "th",
+                "text": "OffsetbbOffset of centroid with respect to the phase center of the image, which follows the JPL Horizons ephemeris."
+              },
+              {
+                "type": "th",
+                "text": "Integrated"
+              },
+              {
+                "type": "th",
+                "text": "Peak"
+              },
+              {
+                "type": "th",
+                "text": "TBT_{\\rm B}"
+              },
+              {
+                "type": "th",
+                "text": "TBT_{\\rm B} Peak"
+              },
+              {
+                "type": "th",
+                "text": "Elliptical disk model"
+              }
+            ],
+            [
+              {
+                "type": "th",
+                "text": "#"
+              },
+              {
+                "type": "th",
+                "text": "Absolute position"
+              },
+              {
+                "type": "th",
+                "text": "Δ​α\\Delta\\alpha, Δ​δ\\Delta\\delta"
+              },
+              {
+                "type": "th",
+                "text": "Flux densityc,dc,dfootnotemark:"
+              },
+              {
+                "type": "th",
+                "text": "Intensityd,ed,efootnotemark:"
+              },
+              {
+                "type": "th",
+                "text": "PeakddThe systematic flux calibration uncertainty of 6% is not included."
+              },
+              {
+                "type": "th",
+                "text": "Mediand,fd,ffootnotemark:"
+              },
+              {
+                "type": "th",
+                "text": "Position"
+              },
+              {
+                "type": "th",
+                "text": "ParametersggMajor axis, minor axes and position angle east of north. The fit uncertainty on the major and minor axes is 3 mas."
+              }
+            ],
+            [
+              {
+                "type": "th",
+                "text": ""
+              },
+              {
+                "type": "th",
+                "text": "α\\alpha (J2000)"
+              },
+              {
+                "type": "th",
+                "text": "δ\\delta (J2000)"
+              },
+              {
+                "type": "th",
+                "text": "mas, mas"
+              },
+              {
+                "type": "th",
+                "text": "mJy"
+              },
+              {
+                "type": "th",
+                "text": "mJy beam-1"
+              },
+              {
+                "type": "th",
+                "text": "K"
+              },
+              {
+                "type": "th",
+                "text": "K"
+              },
+              {
+                "type": "th",
+                "text": "mas, mas"
+              },
+              {
+                "type": "th",
+                "text": "mas×\\timesmas (°)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "0"
+              },
+              {
+                "type": "td",
+                "text": "08 14 46.8474"
+              },
+              {
+                "type": "td",
+                "text": "+06 19 08.554"
+              },
+              {
+                "type": "td",
+                "text": "+59, -5"
+              },
+              {
+                "type": "td",
+                "text": "199.7±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "17.0±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "222±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "213"
+              },
+              {
+                "type": "td",
+                "text": "-9, -5"
+              },
+              {
+                "type": "td",
+                "text": "200×\\times157 (+47±\\pm3)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "1"
+              },
+              {
+                "type": "td",
+                "text": "08 14 47.8979"
+              },
+              {
+                "type": "td",
+                "text": "+06 19 02.586"
+              },
+              {
+                "type": "td",
+                "text": "+55, +4"
+              },
+              {
+                "type": "td",
+                "text": "198.1±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "16.8±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "220±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "208"
+              },
+              {
+                "type": "td",
+                "text": "-20, +21"
+              },
+              {
+                "type": "td",
+                "text": "199×\\times159 (+37±\\pm3)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "2"
+              },
+              {
+                "type": "td",
+                "text": "08 14 49.9975"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 50.632"
+              },
+              {
+                "type": "td",
+                "text": "+52, +14"
+              },
+              {
+                "type": "td",
+                "text": "199.2±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "16.5±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "216±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "202"
+              },
+              {
+                "type": "td",
+                "text": "-22, +36"
+              },
+              {
+                "type": "td",
+                "text": "196×\\times165 (+16±\\pm4)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "3"
+              },
+              {
+                "type": "td",
+                "text": "08 14 51.0474"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 44.645"
+              },
+              {
+                "type": "td",
+                "text": "+62, +13"
+              },
+              {
+                "type": "td",
+                "text": "200.6±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "16.6±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "218±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "200"
+              },
+              {
+                "type": "td",
+                "text": "+8, -3"
+              },
+              {
+                "type": "td",
+                "text": "192×\\times169 (+0±\\pm6)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "4"
+              },
+              {
+                "type": "td",
+                "text": "08 14 53.1449"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 32.674"
+              },
+              {
+                "type": "td",
+                "text": "+63, +23"
+              },
+              {
+                "type": "td",
+                "text": "202.9±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "16.3±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "214±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "197"
+              },
+              {
+                "type": "td",
+                "text": "+7, +7"
+              },
+              {
+                "type": "td",
+                "text": "191×\\times175 (-47±\\pm8)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "5"
+              },
+              {
+                "type": "td",
+                "text": "08 14 54.3100"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 26.017"
+              },
+              {
+                "type": "td",
+                "text": "+63, +26"
+              },
+              {
+                "type": "td",
+                "text": "201.8±\\pm1.4"
+              },
+              {
+                "type": "td",
+                "text": "16.2±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "213±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "196"
+              },
+              {
+                "type": "td",
+                "text": "+27, +34"
+              },
+              {
+                "type": "td",
+                "text": "194×\\times173 (-67±\\pm6)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "6"
+              },
+              {
+                "type": "td",
+                "text": "08 14 56.8740"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 11.357"
+              },
+              {
+                "type": "td",
+                "text": "+62, +31"
+              },
+              {
+                "type": "td",
+                "text": "195.8±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "15.7±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "207±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "186"
+              },
+              {
+                "type": "td",
+                "text": "+38, +9"
+              },
+              {
+                "type": "td",
+                "text": "200×\\times170 (-99±\\pm4)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "7"
+              },
+              {
+                "type": "td",
+                "text": "08 14 58.0396"
+              },
+              {
+                "type": "td",
+                "text": "+06 18 04.685"
+              },
+              {
+                "type": "td",
+                "text": "+55, +30"
+              },
+              {
+                "type": "td",
+                "text": "196.1±\\pm1.5"
+              },
+              {
+                "type": "td",
+                "text": "15.8±\\pm0.09"
+              },
+              {
+                "type": "td",
+                "text": "208±\\pm1"
+              },
+              {
+                "type": "td",
+                "text": "188"
+              },
+              {
+                "type": "td",
+                "text": "+40, +10"
+              },
+              {
+                "type": "td",
+                "text": "200×\\times169 (-108±\\pm4)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "8"
+              },
+              {
+                "type": "td",
+                "text": "08 15 00.0242"
+              },
+              {
+                "type": "td",
+                "text": "+06 17 53.355"
+              },
+              {
+                "type": "td",
+                "text": "+62, +47"
+              },
+              {
+                "type": "td",
+                "text": "188.4±\\pm1.8"
+              },
+              {
+                "type": "td",
+                "text": "16.3±\\pm0.11"
+              },
+              {
+                "type": "td",
+                "text": "215±\\pm2"
+              },
+              {
+                "type": "td",
+                "text": "187"
+              },
+              {
+                "type": "td",
+                "text": "+33, +13"
+              },
+              {
+                "type": "td",
+                "text": "192×\\times167 (-126±\\pm5)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "9"
+              },
+              {
+                "type": "td",
+                "text": "08 15 01.0759"
+              },
+              {
+                "type": "td",
+                "text": "+06 17 47.339"
+              },
+              {
+                "type": "td",
+                "text": "+64, +43"
+              },
+              {
+                "type": "td",
+                "text": "181.6±\\pm2.0"
+              },
+              {
+                "type": "td",
+                "text": "16.4±\\pm0.12"
+              },
+              {
+                "type": "td",
+                "text": "215±\\pm2"
+              },
+              {
+                "type": "td",
+                "text": "179"
+              },
+              {
+                "type": "td",
+                "text": "+31, +2"
+              },
+              {
+                "type": "td",
+                "text": "187×\\times168 (-137±\\pm6)"
+              }
+            ],
+            [
+              {
+                "type": "td",
+                "text": "MedianhhWhere listed, the uncertainty is the median absolute deviation from the median."
+              },
+              {
+                "type": "td",
+                "text": ".."
+              },
+              {
+                "type": "td",
+                "text": ".."
+              },
+              {
+                "type": "td",
+                "text": "+60.5, +24.5"
+              },
+              {
+                "type": "td",
+                "text": "198.7±\\pm2.7"
+              },
+              {
+                "type": "td",
+                "text": "16.4±\\pm0.2"
+              },
+              {
+                "type": "td",
+                "text": "215±\\pm3"
+              },
+              {
+                "type": "td",
+                "text": "197±\\pm9"
+              },
+              {
+                "type": "td",
+                "text": ".."
+              },
+              {
+                "type": "td",
+                "text": "194 ×\\times 169"
+              }
+            ]
+          ]
+        },
+        "limits": [
+          "Not typeset PDF visual verification or independent ALMA processing reproduction.",
+          "Table1 timing mismatch unresolved; no epoch, phase or native still association repaired.",
+          "Table2 flux, fitted dimensions and brightness temperatures retain publisher reduction/model assumptions, not local chemistry, calibrated visible colour or physical registration.",
+          "No angular/raster computation, public/native alteration, embedding, new dossier, catalogue or codec change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-native-acquisition-preparation-2026-10-21.json",
+      "record": [
+        {
+          "url": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+          "finalUrl": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+          "status": 200,
+          "contentType": "image/jpeg",
+          "path": "data/research-sources/juno-3-alma-native-2026-10-21.jpg",
+          "bytes": 28245,
+          "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+        },
+        {
+          "url": "https://www.almaobservatory.org/en/copyright-notice/",
+          "finalUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "path": "data/research-sources/juno-3-alma-terms-2026-10-21.html",
+          "bytes": 179615,
+          "sha256": "87eb26feee9eceef665ff23d6c1f6fb5370fa60dd34764701d1416de15d493b5"
+        }
+      ]
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-observations-preparation-2026-10-21.json",
+      "record": {
+        "date": "2026-10-21",
+        "bodyId": "juno-3",
+        "scope": "Targeted primary HTML observations-section preparation, not complete paper/figure audit",
+        "sources": [
+          {
+            "url": "https://arxiv.org/html/1503.02650v2",
+            "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+            "status": 200,
+            "bytes": 179938,
+            "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+          },
+          {
+            "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+            "path": "data/research-sources/juno-3-alma-primary-licence-2026-10-21.html",
+            "status": 200,
+            "bytes": 1415,
+            "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+          }
+        ],
+        "observations": {
+          "date": "2014-10-19",
+          "startUT": "09:15",
+          "endUT": "13:38",
+          "schedulingBlocks": 5,
+          "nominalContinuumGHz": 233,
+          "spectralWindowCentresGHz": [
+            224,
+            226,
+            240,
+            242
+          ],
+          "casaVersion": "4.2.2",
+          "fluxScaleAccuracyPublisherPercent": 6,
+          "epochConstruction": "Each block split in half; ten individually imaged datasets, approximately18min duration and10min on-source per half. Robust weighting zero, phase-only self-calibration."
+        },
+        "limits": [
+          "Exact publisher still-to-epoch/raw-product crosswalk remains open; time span is not a still exposure timestamp.",
+          "Flux uncertainty/self-calibration are publisher methods, not independently reproduced or visible-colour calibration.",
+          "Paper arXiv nonexclusive distribution licence is not CC BY; ALMA outreach image licence remains separate.",
+          "No angular/raster calculation, source transformation, embedding/dossier/catalogue/map/model/codec change.",
+          "Historical claims and brightness-temperature/local regolith interpretations require full methods/results audit before use."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-record-preparation-2026-10-21.json",
+      "record": {
+        "date": "2026-10-21",
+        "bodyId": "juno-3",
+        "scope": "Primary record metadata preparation only, not full-paper methods audit",
+        "url": "https://arxiv.org/abs/1503.02650v2",
+        "status": 200,
+        "path": "data/research-sources/juno-3-alma-primary-record-2026-10-21.html",
+        "bytes": 57218,
+        "sha256": "fb9683f800122fc235bb1ffbc1db1a7e4461daea4500d6b89e0f0111c6bfba42",
+        "authors": [
+          "Partnership, ALMA",
+          "Hunter, T. R.",
+          "Kneissl, R.",
+          "Moullet, A.",
+          "Brogan, C. L.",
+          "Fomalont, E. B.",
+          "Vlahakis, C.",
+          "Asaki, Y.",
+          "Barkats, D.",
+          "Dent, W. R. F.",
+          "Hills, R.",
+          "Hirota, A.",
+          "Hodge, J. A.",
+          "Impellizzeri, C. M. V.",
+          "Liuzzo, E.",
+          "Lucas, R.",
+          "Marcelino, N.",
+          "Matsushita, S.",
+          "Nakanishi, K.",
+          "Perez, L. M.",
+          "Phillips, N.",
+          "Richards, A. M. S.",
+          "Toledo, I.",
+          "Aladro, R.",
+          "Broguiere, D.",
+          "Cortes, J. R.",
+          "Cortes, P. C.",
+          "Espada, D.",
+          "Galarza, F.",
+          "Garcia-Appadoo, D.",
+          "Guzman-Ramirez, L.",
+          "Hales, A. S.",
+          "Humphreys, E. M.",
+          "Jung, T.",
+          "Kameno, S.",
+          "Laing, R. A.",
+          "Leon, S.",
+          "Marconi, G.",
+          "Mignano, A.",
+          "Nikolic, B.",
+          "Nyman, L. -A.",
+          "Radiszcz, M.",
+          "Remijan, A.",
+          "Rodon, J. A.",
+          "Sawada, T.",
+          "Takahashi, S.",
+          "Tilanus, R. P. J.",
+          "Vilaro, B. Vila",
+          "Watson, L. C.",
+          "Wiklind, T.",
+          "de Gregorio-Monsalvo, I.",
+          "Di Francesco, J.",
+          "Mangum, J.",
+          "Francke, H.",
+          "Gallardo, J.",
+          "Garcia, J.",
+          "Gonzalez, S.",
+          "Hill, T.",
+          "Kaminski, T.",
+          "Kurono, Y.",
+          "Lopez, C.",
+          "Morales, F.",
+          "Plarre, K.",
+          "Randall, S.",
+          "van kempen, T.",
+          "Videla, L.",
+          "Villard, E.",
+          "Andreani, P.",
+          "Hibbard, J. E.",
+          "Tatematsu, K."
+        ],
+        "licenseLinkCandidates": [
+          "http://arxiv.org/licenses/nonexclusive-distrib/1.0/"
+        ],
+        "limits": [
+          "Publisher imagery CC BY 4 does not assign paper/raw-data licence.",
+          "Abstract brightness-temperature and geometric-diameter estimates not transferred to local material/visible colour/axes or current catalogue.",
+          "Exact publisher still/raw image identity, processing/calibration, full paper and later SPHERE audit remain open.",
+          "No dossier, embedding or production inputs changed."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-still-preparation-2026-10-21.json",
+      "record": {
+        "date": "2026-10-21",
+        "bodyId": "juno-3",
+        "status": "Native still acquired and visually inspected; research only",
+        "acquisition": [
+          {
+            "url": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+            "finalUrl": "https://www.almaobservatory.org/wp-content/uploads/2016/06/150327_ALMA_juno_02-1.jpg",
+            "status": 200,
+            "contentType": "image/jpeg",
+            "path": "data/research-sources/juno-3-alma-native-2026-10-21.jpg",
+            "bytes": 28245,
+            "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+          },
+          {
+            "url": "https://www.almaobservatory.org/en/copyright-notice/",
+            "finalUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+            "status": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "path": "data/research-sources/juno-3-alma-terms-2026-10-21.html",
+            "bytes": 179615,
+            "sha256": "87eb26feee9eceef665ff23d6c1f6fb5370fa60dd34764701d1416de15d493b5"
+          }
+        ],
+        "credit": "ALMA (NRAO/ESO/NAOJ)",
+        "releaseDate": "2015-04-07",
+        "observationDate": "2014-10-19",
+        "observationScope": "Publisher associates ten images over four hours with the sequence; exact still UTC/exposure/raw-product association not yet verified.",
+        "termsUrl": "https://www.almaobservatory.org/en/copyright-notice/",
+        "termsAssessment": "Publisher general CC BY 4.0 with full visible credit/active links and exceptions; scientific papers/code/other texts excluded. No paper or raw-data blanket licence inferred.",
+        "visualInspection": "Blurred grayscale disk with a bright region against a dark background. Beam, brightness transfer and image reconstruction can affect morphology; not resolved regolith or calibrated visible colour.",
+        "limits": [
+          "2016/06 URL path is not observation or original publication date.",
+          "No derived angular/raster measurement, brightness temperature, local composition fraction or registered globe.",
+          "No image embedded, new dossier/catalogue/map/model/shape/codec change; all earlier originals/masters/native records preserved.",
+          "No exhaustive newest-observation claim; later SPHERE and primary method/raw-product audits pending."
+        ],
+        "captionResponse": {
+          "url": "https://www.almaobservatory.org/en/press-releases/asteroid-juno-seen-traveling-through-space-in-new-alma-images-and-animation/",
+          "status": 200,
+          "path": "data/research-sources/juno-3-alma-caption-2026-10-21.html",
+          "bytes": 184012,
+          "sha256": "98da40404e9d3b4baf5213ed0182eb7f8d4e5df816c842e1ed1e2dc9f94dbd2c"
+        }
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-table1-cell-crosscheck-preparation-2026-10-22.json",
+      "record": {
+        "status": "Research preparation only; independent literal HTML cell extraction confirms earlier timing diagnostic inputs; no production change",
+        "source": {
+          "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+          "bytes": 179938,
+          "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+        },
+        "method": "Python HTMLParser extracts six td cells from each row within figure S3.T1; verifies first three columns against saved Decimal arithmetic diagnostic. No script execution, phase propagation or repair.",
+        "rows": [
+          [
+            "0",
+            "56949.39167",
+            "0",
+            "53.2",
+            "0.33",
+            "0.18"
+          ],
+          [
+            "1",
+            "56949.40417",
+            "18",
+            "55.7",
+            "0.37",
+            "0.22"
+          ],
+          [
+            "2",
+            "56949.42917",
+            "36",
+            "59.5",
+            "0.45",
+            "0.30"
+          ],
+          [
+            "3",
+            "56949.44167",
+            "73",
+            "60.5",
+            "0.49",
+            "0.35"
+          ],
+          [
+            "4",
+            "56949.46667",
+            "110",
+            "60.5",
+            "0.58",
+            "0.43"
+          ],
+          [
+            "5",
+            "56949.48056",
+            "128",
+            "59.4",
+            "0.62",
+            "0.47"
+          ],
+          [
+            "6",
+            "56949.51111",
+            "173",
+            "54.7",
+            "0.72",
+            "0.58"
+          ],
+          [
+            "7",
+            "56949.52500",
+            "192",
+            "51.9",
+            "0.77",
+            "0.62"
+          ],
+          [
+            "8",
+            "56949.54861",
+            "226",
+            "46.1",
+            "0.85",
+            "0.70"
+          ],
+          [
+            "9",
+            "56949.56111",
+            "244",
+            "42.6",
+            "0.89",
+            "0.74"
+          ]
+        ],
+        "verifiedRows": 10,
+        "limits": [
+          "Literal HTML discrepancy is retained; typeset PDF/raw table and cause remain open.",
+          "No outreach still epoch, product identity, calibration, catalogue or scene registration inferred.",
+          "All production assets and codecs unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-table1-time-diagnostic-preparation-2026-10-22.json",
+      "record": {
+        "status": "Research preparation only; no catalogue, timing or image registration adopted",
+        "bodyId": "juno-3",
+        "source": {
+          "url": "https://arxiv.org/html/1503.02650v2",
+          "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+          "bytes": 179938,
+          "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+        },
+        "scope": "Literal rendered HTML Table1 arithmetic check; PDF/typeset/raw epoch association remains open.",
+        "method": "Decimal subtraction of listed MJD values relative to row0, multiplied by1440 minutes/day. No time-scale conversion, angular/raster calculation, spin phase propagation or correction.",
+        "rows": [
+          {
+            "image": 0,
+            "literalMjd": "56949.39167",
+            "literalElapsedMinutes": 0,
+            "mjdDifferenceMinutes": "0.00000",
+            "differenceFromLiteralElapsedMinutes": "0.00000"
+          },
+          {
+            "image": 1,
+            "literalMjd": "56949.40417",
+            "literalElapsedMinutes": 18,
+            "mjdDifferenceMinutes": "18.00000",
+            "differenceFromLiteralElapsedMinutes": "0.00000"
+          },
+          {
+            "image": 2,
+            "literalMjd": "56949.42917",
+            "literalElapsedMinutes": 36,
+            "mjdDifferenceMinutes": "54.00000",
+            "differenceFromLiteralElapsedMinutes": "18.00000"
+          },
+          {
+            "image": 3,
+            "literalMjd": "56949.44167",
+            "literalElapsedMinutes": 73,
+            "mjdDifferenceMinutes": "72.00000",
+            "differenceFromLiteralElapsedMinutes": "-1.00000"
+          },
+          {
+            "image": 4,
+            "literalMjd": "56949.46667",
+            "literalElapsedMinutes": 110,
+            "mjdDifferenceMinutes": "108.00000",
+            "differenceFromLiteralElapsedMinutes": "-2.00000"
+          },
+          {
+            "image": 5,
+            "literalMjd": "56949.48056",
+            "literalElapsedMinutes": 128,
+            "mjdDifferenceMinutes": "128.00160",
+            "differenceFromLiteralElapsedMinutes": "0.00160"
+          },
+          {
+            "image": 6,
+            "literalMjd": "56949.51111",
+            "literalElapsedMinutes": 173,
+            "mjdDifferenceMinutes": "171.99360",
+            "differenceFromLiteralElapsedMinutes": "-1.00640"
+          },
+          {
+            "image": 7,
+            "literalMjd": "56949.52500",
+            "literalElapsedMinutes": 192,
+            "mjdDifferenceMinutes": "191.99520",
+            "differenceFromLiteralElapsedMinutes": "-0.00480"
+          },
+          {
+            "image": 8,
+            "literalMjd": "56949.54861",
+            "literalElapsedMinutes": 226,
+            "mjdDifferenceMinutes": "225.99360",
+            "differenceFromLiteralElapsedMinutes": "-0.00640"
+          },
+          {
+            "image": 9,
+            "literalMjd": "56949.56111",
+            "literalElapsedMinutes": 244,
+            "mjdDifferenceMinutes": "243.99360",
+            "differenceFromLiteralElapsedMinutes": "-0.00640"
+          }
+        ],
+        "limits": [
+          "Rendered HTML values differ from treating elapsed column as exact time since row0: row2 gives54.00000 minutes from MJD but literal elapsed36.",
+          "Column semantics and rounding have not been audited against typeset PDF/original table source; mismatch cause unverified.",
+          "Do not silently repair epochs, transfer phase zero points, infer outreach still epoch or claim raw-product/calibration association.",
+          "All original bytes, production assets, dossiers, native maps/models/shapes, provenance and codecs unchanged."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-thermal-interpretation-preparation-2026-10-21.json",
+      "record": {
+        "date": "2026-10-21",
+        "bodyId": "juno-3",
+        "status": "Ignored targeted primary interpretation preparation; no production change",
+        "source": {
+          "url": "https://arxiv.org/html/1503.02650v2",
+          "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+          "bytes": 179938,
+          "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30",
+          "textPath": "data/research-sources/juno-3-alma-primary-text-2026-10-21.txt",
+          "textSha256": "7272e4a2358dc8e8b5db8aad58f8f852f6a4669c4fbd4d443cd1f4a27fbaf57e"
+        },
+        "scope": [
+          "Remainder of III.3 size methods",
+          "III.4 DAMIT comparison",
+          "III.5 surface brightness residuals",
+          "IV discussion",
+          "V conclusions and acknowledgements"
+        ],
+        "findings": [
+          "Uniform-brightness fitting may underestimate mean physical size by approximately 2–4 percent according to the authors. Detailed shape comparison requires thermal modelling; no catalogue size or shape adopted.",
+          "DAMIT comparison uses artificial illumination and a publisher 16.4-minute light-time correction. ALMA major axes approximately 6 percent smaller than model maxima are within quoted 12 percent model-scale uncertainty. Qualitative discrepancies do not establish registered geography.",
+          "Residual images subtract a uniform template derived from CLEAN-component medians and convolve with a 42mas beam. Figure3 residuals of approximately ±30K are relative to a median, not absolute visible colour, local composition or directly measured regolith kinetic temperature.",
+          "Thermal discussion assumes Bond albedo .09 and combines distinct optical/infrared inputs. Equilibrium 188–223K and STM 286K versus observed maximum 222±13K depend on rotation, beaming and emissivity assumptions. Effective emissivity near .8 can include subsurface sounding; no unique local emissivity or thermal profile measured.",
+          "Illustrative thermal inertia46 and skin depth2.8mm use borrowed Vesta regolith density and porous lunar conductivity/heat capacity. These are analogue-dependent model inputs, not Juno local density, chemistry, porosity or skin-depth measurements; no analogue imagery or skin reuse permitted.",
+          "Longitude-dependent thermal-inertia interpretation assumes constant conductivity. Density/heat-capacity variations and comparisons with other asteroids remain interpretations, not measured local fractions or maps.",
+          "Association of a putative adaptive-optics crater depends on an unspecified north/south orientation in an earlier reconstruction. Neither crater location nor impact history registered to the ALMA still.",
+          "Authors call for future complete-rotation, multi-phase and multiwavelength thermophysical modelling. Future 2018 resolution forecasts are not new observations. Acknowledged dataset identifier ADS/JAO.ALMA#2011.0.00013.SV is not an independently verified still-to-raw-product crosswalk."
+        ],
+        "licence": "Specific arXiv nonexclusive distribution, not CC BY; outreach JPEG terms remain separate. No paper figure embedded.",
+        "open": [
+          "Original PDF and figure/table visual verification",
+          "Complete references audit",
+          "CASA/visibility/thermal-model reproduction",
+          "Exact publisher JPEG epoch/exposure/raw-product association",
+          "Later SPHERE shape and current JPL alternatives"
+        ],
+        "preservation": "All production dossiers, originals, masters, native images, maps, models, fields, provenance and codecs untouched. No dossier109 or embedding; no test/build/browser claim."
+      }
+    }
+  ],
+  "retainedSourceInventory": [
+    {
+      "path": "data/research-sources/juno-3-alma-caption-2026-10-21.html",
+      "bytes": 184012,
+      "sha256": "98da40404e9d3b4baf5213ed0182eb7f8d4e5df816c842e1ed1e2dc9f94dbd2c"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-imaging-methods-preparation-2026-10-21.json",
+      "bytes": 2747,
+      "sha256": "cb42f53ead1cca499366010124628f55ac869def8458d0c2e2d41d1f33fdd9af"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-literal-table-inventory-preparation-2026-10-22.json",
+      "bytes": 18200,
+      "sha256": "b53b002a374a1579ef8b066dc3f2e012a2bf24d8fa5dd20d1a469cd79c2fd213"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-native-2026-10-21.jpg",
+      "bytes": 28245,
+      "sha256": "5f3f480dde719a2c4fbe869c920bf2f76ad9ffe21f87e38e2654e10750455193"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-native-acquisition-preparation-2026-10-21.json",
+      "bytes": 826,
+      "sha256": "a50c36d11e073d344c6ad932c8c624add069485e52a54cc82c241ccc5ae574b4"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-observations-preparation-2026-10-21.json",
+      "bytes": 1869,
+      "sha256": "60a8a5e6bc1462f94cb62fc34e3b816a8619c59261183af4e53ee542b5edf742"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-html-2026-10-21.html",
+      "bytes": 179938,
+      "sha256": "f4e21e02fc3209447ec0da04b19349a8191d7d9dd44eab575ef776ac93be8f30"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-licence-2026-10-21.html",
+      "bytes": 1415,
+      "sha256": "1991765e2079370736d4dedf217375799ad19aab6700ebdf42ae3dd84690067a"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-record-2026-10-21.html",
+      "bytes": 57218,
+      "sha256": "fb9683f800122fc235bb1ffbc1db1a7e4461daea4500d6b89e0f0111c6bfba42"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-record-preparation-2026-10-21.json",
+      "bytes": 2325,
+      "sha256": "f6307039dcbd7696965d6d3506fc455f4aafd4e6c82ff525a8bb7a1f6cf27126"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-primary-text-2026-10-21.txt",
+      "bytes": 47931,
+      "sha256": "7272e4a2358dc8e8b5db8aad58f8f852f6a4669c4fbd4d443cd1f4a27fbaf57e"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-still-preparation-2026-10-21.json",
+      "bytes": 2570,
+      "sha256": "5d35f24ec58ce4b0a2cbec3fc5ddcbea512735569dff64866004baedd06c7b95"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-table1-cell-crosscheck-preparation-2026-10-22.json",
+      "bytes": 1850,
+      "sha256": "5926d52a15fcf292a4ea3f1c9fcae138957b90b1741d45508b1d39206e673bf1"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-table1-time-diagnostic-preparation-2026-10-22.json",
+      "bytes": 3237,
+      "sha256": "07fe496b6905a18846e029a376303b329b8c5e38b5797555852742a151d7cb1c"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-terms-2026-10-21.html",
+      "bytes": 179615,
+      "sha256": "87eb26feee9eceef665ff23d6c1f6fb5370fa60dd34764701d1416de15d493b5"
+    },
+    {
+      "path": "data/research-sources/juno-3-alma-thermal-interpretation-preparation-2026-10-21.json",
+      "bytes": 3522,
+      "sha256": "b12c82100b055c2264bc261ce714d5649101efa7e71676bd5a08b2341dc63607"
+    }
+  ],
+  "open": [
+    "Typeset PDF and figure/table visual review; complete references audit",
+    "CASA/visibility/thermal-model independent reproduction",
+    "Exact outreach JPEG/raw epoch/exposure/processing crosswalk",
+    "Later shape-paper/corrigendum source audit and physical attitude/prime-meridian registration",
+    "Source-specific paper/raw product terms; outreach licence not transferred"
+  ],
+  "historicalRecordPolicy": "Earlier preparation scope remains historical; later targeted interpretation/cell checks supersede only the explicitly checked items.",
+  "preservation": "No public/native/original/master/map/model/shape/catalogue/runtime codec change; all108 delivered dossiers retained.",
+  "validation": {
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0,
+      "environment": "OPENAI_API_KEY unset for expected missing-key voice tests"
+    },
+    "productionBuild": "pass",
+    "fullBuild": "pass",
+    "queueTasks": 569,
+    "preservation": {
+      "baseline": "a6546ef",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "34841c1d97016731c9120ce8e79afb63b562a5cabb41b612c0ea8716e34fd59a",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15985666,
+        "headroomBytes": 14334,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    },
+    "retainedResearchFilesHashVerified": 16,
+    "fullBuilderExactInverseGuards": "pass",
+    "freshBrowserClaim": false,
+    "interbuildSavingsAttribution": false
+  }
+}
