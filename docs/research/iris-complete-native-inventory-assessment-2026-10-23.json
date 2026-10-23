@@ -1,0 +1,2037 @@
+{
+  "date": "2026-10-23",
+  "issue": "#3",
+  "body": "(7) Iris",
+  "status": "Research-only complete retained CDS product inventory and Keck/NaCo integrity audit; no production adoption",
+  "credits": {
+    "CDSFullPrintedAuthorBlock": "Hanus J., Marsset, M., Vernazza, P., Viikinkoski, M., Drouard, A., Broz M.,\n    Carry B., Fetick R., Marchis F., Jorda L., Fusco T., Birlan M.,\n    Santana-Ros T., Podlewska-Gaca E., Jehin E., Ferrais M., Grice J.,\n    Bartczak P., Berthier J., Castillo-Rogez J., Cipriani F., Colas F.,\n    Dudzinski G., Dumas C., Durech J., Kaasalainen M., Kryszczynska A.,\n    Lamy P., Le Coroller H., Marciniak A., Michalowski T., Michel P.,\n    Pajuelo M., Tanga P., Vachier F., Vigan A., Witasse O., Yang B.",
+    "acknowledgement": "Josef Hanus; Patricia Vannier [CDS], ReadMe28Mar2019",
+    "instruments": "Keck/NIRC2, VLT/NaCo, VLT/SPHERE/ZIMPOL; first acquired product header ESO-PARANAL, SPHERE,7Iris",
+    "note": "Author and institutional credits do not establish a licence; no generic ESO/Commons licence transferred to this derived product."
+  },
+  "completeInventory": {
+    "path": "data/research-sources/iris-7-cds-complete-inventory-preparation-2026-10-22.json",
+    "sha256": "31a41fd3a42923003cafb5657f7fc546d6d18ceb126104d6d6ee87040d6afaf3",
+    "record": {
+      "status": "Research-only complete retained CDS inventory crosscheck; formal consolidated audit pending",
+      "inventory": {
+        "path": "data/research-sources/iris-7-cds-list-response-2026-10-22.dat",
+        "sha256": "09be1ab36c22885b62a1ba4a7a9ca9ecbd7e80ed2c5c60e0f3c129b41bad7ec7"
+      },
+      "rows": [
+        {
+          "file": "10_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-10_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "f375d4508b4634b94ab71a62bd392af9ba612fd1b55a6002ad78e7f8e6c534a8"
+        },
+        {
+          "file": "10_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-10_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "a9e43b146b87d873d5f7d9b84c2738ec19bf3479a9a36649d2ea008c55eca5b1"
+        },
+        {
+          "file": "11_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-11_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "fc254a09bc8c55f4679eb54862405b6b179f94f68378d38211cfa87776c6d732"
+        },
+        {
+          "file": "11_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-11_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "2a537b92a0e632e78c4eee682411f35223023f29a35e921c0d288360fc6caa78"
+        },
+        {
+          "file": "12_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-12_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "e5d6ff89e85f7086664d4bad4b75b906adf7aa17fffbc14fae5ea00ebcffd691"
+        },
+        {
+          "file": "12_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-12_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "a050c5e09b749ebf0a695549b5f0c8f4ffb2ceb8a82a5c57e313197135f00135"
+        },
+        {
+          "file": "13_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-13_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "5af3625a4a79acee4f45c859ebb1e3b832e9e906b62d1e9c622830a7ea92b0f2"
+        },
+        {
+          "file": "13_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-13_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "8e55a274fadf397d7e6d644a76e35c4fbcf833429a1f1d1e112985b0c1701170"
+        },
+        {
+          "file": "14_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-14_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "3fd3360ac03539b86b189187ea77469c058754bdba760c3d06e07840ccfdc5d6"
+        },
+        {
+          "file": "14_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-14_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "ab746d9c5eec59d33e29c1b43f91c6df1db4cf7a2f30878845efec74fad3afcc"
+        },
+        {
+          "file": "15_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-15_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "ed5e7f3f048d110fac66dd6d86633247b6d83e1382405b1ae304e88ea5ad0b16"
+        },
+        {
+          "file": "15_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-15_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "f86c10a0524597ff9b9f9e029c2361a7e46c38d7da00dc2a49df59bb45fef307"
+        },
+        {
+          "file": "16_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-16_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "2b902672c2f4ea320b405e7a9e16f48b27c7d18ab10a13428e66d639fec37bcd"
+        },
+        {
+          "file": "16_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-16_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "ba20a4e333d8174af63f37270f837a74a8cdb5badfd1d46d17683a879440c3ce"
+        },
+        {
+          "file": "17_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-17_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "f217f53edd9bd815e93faeefbc7cec4ade9ea7635dad8a61b306717c4c309303"
+        },
+        {
+          "file": "17_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-17_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "4c0a300d3fe6eaca00f2050280c889ddc62b514a9855237fa1f1bf2661ef7bdd"
+        },
+        {
+          "file": "18_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-18_KRobj-original-2026-10-22.fits",
+          "bytes": 267840,
+          "sha256": "bb9972f35c44ffa7cb4258003c1cdc8f48e1f374cbc8bbf747cae65268f39e25"
+        },
+        {
+          "file": "18_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-18_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "14f36a3ef476813bf5a512a9d997cd758f6baf7532ae45614eede9c28eaa2b7d"
+        },
+        {
+          "file": "19_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-19_KRobj-original-2026-10-22.fits",
+          "bytes": 267840,
+          "sha256": "befdcff92b4480f53f49a99b655dee260cf5125f7c187f11fbb6fda240758abe"
+        },
+        {
+          "file": "19_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-19_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "50b8367f277166a45d2c3d0e3524d9dc2bfdc5d04a2a300f07c6e4acabfbfdb2"
+        },
+        {
+          "file": "1_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-1_KRobj-original-2026-10-22.fits",
+          "bytes": 112320,
+          "sha256": "99e87d73d2ba2f17983871f68f11addf184c71c5ee34b43599a9dede2439eaf2"
+        },
+        {
+          "file": "1_NRobj.fits",
+          "path": "data/research-sources/iris-7-cds-1_NRobj-original-2026-10-22.fits",
+          "bytes": 115200,
+          "sha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b"
+        },
+        {
+          "file": "1_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674"
+        },
+        {
+          "file": "20_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-20_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "c062353a9351ad08bda44b9de6d437dfc33ea79f69f9ad8f0f2e07071eb2f8c4"
+        },
+        {
+          "file": "21_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-21_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "d2facb74ddf074c82f2f35a85a79920a543cca1ecf92ce5f40ffab91342d4a32"
+        },
+        {
+          "file": "22_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-22_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "7032da892dc1104d67b91a0b50fb56770159c3953be88697cf5a949bba24517b"
+        },
+        {
+          "file": "23_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-23_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "f989970900228884a76b4069932aaf4f028562eaf2b87afd958292f986570603"
+        },
+        {
+          "file": "24_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-24_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "c203ab47756be3d9d946b343cc252f64071fdb9cb2bbcd1690ff5a777c300996"
+        },
+        {
+          "file": "25_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-25_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "3b027dd55980aedc00eb842f28de55381d544b7c22cbd281e0d48fd6a0ffd648"
+        },
+        {
+          "file": "2_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-2_KRobj-original-2026-10-22.fits",
+          "bytes": 112320,
+          "sha256": "7e16b93710ffd0342958d8756e42a94c4789e83c6f01c8132c6cf4d9348277a1"
+        },
+        {
+          "file": "2_NRobj.fits",
+          "path": "data/research-sources/iris-7-cds-2_NRobj-original-2026-10-22.fits",
+          "bytes": 115200,
+          "sha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40"
+        },
+        {
+          "file": "2_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-2_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "abea9da1655f6b27d444f69615e03b7d2764d7e8e0b3e5045818b9630219cc99"
+        },
+        {
+          "file": "3_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-3_KRobj-original-2026-10-22.fits",
+          "bytes": 112320,
+          "sha256": "49d31fce1555292ddb536c33dba0520551708bb0a895d1bbe4bf55edaf0ca7a8"
+        },
+        {
+          "file": "3_NRobj.fits",
+          "path": "data/research-sources/iris-7-cds-3_NRobj-original-2026-10-22.fits",
+          "bytes": 115200,
+          "sha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac"
+        },
+        {
+          "file": "3_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-3_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "6eba68e122e79b1ec784ddc216b517873c4142dc6463c89d64fa96d242b79b52"
+        },
+        {
+          "file": "4_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-4_KRobj-original-2026-10-22.fits",
+          "bytes": 112320,
+          "sha256": "020f1e30b70cd8cefadc5deb9bb57b2fb12b5bb975fdc40778e0b5bdd0836493"
+        },
+        {
+          "file": "4_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-4_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "ffcde424752f7b000410a3369035002e0af8a93d36303e0a32cbf4432a4bfd10"
+        },
+        {
+          "file": "5_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-5_KRobj-original-2026-10-22.fits",
+          "bytes": 112320,
+          "sha256": "7514dec0f413221b5ddf66ec618a21bfd7346ccb568e6750cb5824f1749f10c1"
+        },
+        {
+          "file": "5_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-5_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "5e1911e0d682b6c263c17e841c2dccab34407b756829f6e8acc9ac539022edc7"
+        },
+        {
+          "file": "6_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-6_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "4c995d741766ac4176a50adfd6a5cde79485e90fe5106155bdedb0a1ab638029"
+        },
+        {
+          "file": "6_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-6_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "b0a89dbe313772cc7df4ba938021811fdcc5a125efe9525804758a9d1b983b74"
+        },
+        {
+          "file": "7_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-7_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "d7c2f36476b8d30e60ce40562e76c2ff732d32cccefdd6042749ab3abf4b9d29"
+        },
+        {
+          "file": "7_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-7_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "12662381b7802ff2504e84689a767934fa43ed196f24c5832a020f056c7876b8"
+        },
+        {
+          "file": "8_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-8_KRobj-original-2026-10-22.fits",
+          "bytes": 1054080,
+          "sha256": "e535f0420e943f4804fcb23934c05abd96e5cde8580a3d0fa929b43589710719"
+        },
+        {
+          "file": "8_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-8_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "d32939d2d7257b97f16200e8982e2160238a886db7c4f1b71ef59536d5106c91"
+        },
+        {
+          "file": "9_KRobj.fits",
+          "path": "data/research-sources/iris-7-cds-9_KRobj-original-2026-10-22.fits",
+          "bytes": 293760,
+          "sha256": "eaa998601d6d5435489435a3a5974ef04e65b8fd1333ad8c6826cad587f53027"
+        },
+        {
+          "file": "9_SRobj.fits",
+          "path": "data/research-sources/iris-7-cds-9_SRobj-original-2026-10-22.fits",
+          "bytes": 593280,
+          "sha256": "38ccf29876198e81793f688894d558d2869ea7029b65084f561aa043183b0edd"
+        }
+      ],
+      "summary": {
+        "inventoryUniqueProducts": 47,
+        "retainedProducts": 47,
+        "totalRetainedBytes": 20560320,
+        "sphereProducts": 25,
+        "keckProducts": 19,
+        "nacoProducts": 3
+      },
+      "keckNacoPreparations": [
+        {
+          "path": "data/research-sources/iris-7-cds-keck-naco-acquisition-preparation-2026-10-22.json",
+          "sha256": "3b93ff312164de91e61d71ecb1579ca148d999eb31c49a86afecd5a5b90592da"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-keck-naco-header-preparation-2026-10-22.json",
+          "sha256": "72ce7468e18348d989f173b3c4319aa86e6b31b1c788bcd5d16d0f62d9c6fdc2"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-keck-naco-extent-preparation-2026-10-22.json",
+          "sha256": "3d5e0a0f8659e899400464432d4614e148ec115854506c76905e2cc76e4816f5"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-keck-naco-checksum-preparation-2026-10-22.json",
+          "sha256": "a7dfb89f47c5935f6a819541b8584687af1734caedb6beacbae6173789ecfaf6"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-keck-naco-time-card-preparation-2026-10-22.json",
+          "sha256": "d5aea45cb4d7347b9912bc45e7a61f190534fe34a48d44e5f174cbed0a45e498"
+        }
+      ],
+      "limits": [
+        "Inventory filename membership and exact hashes do not establish raw exposure identity, full processing lineage, calibrated reflectance, frame registration or reuse permission.",
+        "These are deconvolved publisher products; poor-quality consistency-check inputs must not silently become validated terrain.",
+        "No production asset, native bytes, catalogue, model, codec or dossier changed. No new browser or build validation claimed."
+      ]
+    }
+  },
+  "preparations": [
+    {
+      "path": "data/research-sources/iris-7-cds-keck-naco-acquisition-preparation-2026-10-22.json",
+      "sha256": "3b93ff312164de91e61d71ecb1579ca148d999eb31c49a86afecd5a5b90592da",
+      "record": {
+        "status": "Research-only remaining22 CDS deconvolved product acquisition; visual/header/calibration audit pending",
+        "inventory": {
+          "path": "data/research-sources/iris-7-cds-list-response-2026-10-22.dat",
+          "sha256": "09be1ab36c22885b62a1ba4a7a9ca9ecbd7e80ed2c5c60e0f3c129b41bad7ec7"
+        },
+        "files": [
+          {
+            "file": "1_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/1_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-1_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 112320,
+            "sha256": "99e87d73d2ba2f17983871f68f11addf184c71c5ee34b43599a9dede2439eaf2",
+            "inventoryRow": "336.79549+00.12068 0.00994 150 150 2002-08-05               112 1_KRobj.fits  Keck/Nirc2, Project ID: N10N2"
+          },
+          {
+            "file": "2_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/2_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-2_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 112320,
+            "sha256": "7e16b93710ffd0342958d8756e42a94c4789e83c6f01c8132c6cf4d9348277a1",
+            "inventoryRow": "336.79549+00.12068 0.00994 150 150 2002-08-05               112 2_KRobj.fits  Keck/Nirc2, Project ID: N10N2"
+          },
+          {
+            "file": "3_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/3_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-3_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 112320,
+            "sha256": "49d31fce1555292ddb536c33dba0520551708bb0a895d1bbe4bf55edaf0ca7a8",
+            "inventoryRow": "336.79549+00.12068 0.00994 150 150 2002-08-05               112 3_KRobj.fits  Keck/Nirc2, Project ID: N10N2"
+          },
+          {
+            "file": "4_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/4_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-4_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 112320,
+            "sha256": "020f1e30b70cd8cefadc5deb9bb57b2fb12b5bb975fdc40778e0b5bdd0836493",
+            "inventoryRow": "336.78760+00.12293 0.00994 150 150 2002-08-05               112 4_KRobj.fits  Keck/Nirc2, Project ID: N10N2"
+          },
+          {
+            "file": "5_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/5_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-5_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 112320,
+            "sha256": "7514dec0f413221b5ddf66ec618a21bfd7346ccb568e6750cb5824f1749f10c1",
+            "inventoryRow": "336.78760+00.12293 0.00994 150 150 2002-08-05               112 5_KRobj.fits  Keck/Nirc2, Project ID: N10N2"
+          },
+          {
+            "file": "6_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/6_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-6_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "4c995d741766ac4176a50adfd6a5cde79485e90fe5106155bdedb0a1ab638029",
+            "inventoryRow": "326.43076-03.06408 0.00995 256 256 2002-09-27               290 6_KRobj.fits  Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "7_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/7_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-7_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "d7c2f36476b8d30e60ce40562e76c2ff732d32cccefdd6042749ab3abf4b9d29",
+            "inventoryRow": "349.95602+00.74268 0.00995 256 256 2002-12-29               290 7_KRobj.fits  Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "8_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/8_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-8_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 1054080,
+            "sha256": "e535f0420e943f4804fcb23934c05abd96e5cde8580a3d0fa929b43589710719",
+            "inventoryRow": "                           512 512                         1032 8_KRobj.fits  Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "9_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/9_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-9_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "eaa998601d6d5435489435a3a5974ef04e65b8fd1333ad8c6826cad587f53027",
+            "inventoryRow": "047.70481+23.31594 0.00995 256 256 2006-11-17               290 9_KRobj.fits  Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "10_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/10_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-10_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "f375d4508b4634b94ab71a62bd392af9ba612fd1b55a6002ad78e7f8e6c534a8",
+            "inventoryRow": "047.70386+23.31649 0.00995 256 256 2006-11-17               290 10_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "11_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/11_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-11_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "fc254a09bc8c55f4679eb54862405b6b179f94f68378d38211cfa87776c6d732",
+            "inventoryRow": "047.70356+23.31621 0.00995 256 256 2006-11-17               290 11_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "12_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/12_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-12_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "e5d6ff89e85f7086664d4bad4b75b906adf7aa17fffbc14fae5ea00ebcffd691",
+            "inventoryRow": "047.69726+23.31234 0.00995 256 256 2006-11-17               290 12_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "13_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/13_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-13_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "5af3625a4a79acee4f45c859ebb1e3b832e9e906b62d1e9c622830a7ea92b0f2",
+            "inventoryRow": "047.69756+23.31262 0.00995 256 256 2006-11-17               290 13_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "14_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/14_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-14_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "3fd3360ac03539b86b189187ea77469c058754bdba760c3d06e07840ccfdc5d6",
+            "inventoryRow": "047.69726+23.31234 0.00995 256 256 2006-11-17               290 14_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "15_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/15_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-15_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "ed5e7f3f048d110fac66dd6d86633247b6d83e1382405b1ae304e88ea5ad0b16",
+            "inventoryRow": "047.69126+23.30865 0.00995 256 256 2006-11-17               290 15_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "16_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/16_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-16_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "2b902672c2f4ea320b405e7a9e16f48b27c7d18ab10a13428e66d639fec37bcd",
+            "inventoryRow": "047.69126+23.30865 0.00995 256 256 2006-11-17               290 16_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "17_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/17_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-17_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 293760,
+            "sha256": "f217f53edd9bd815e93faeefbc7cec4ade9ea7635dad8a61b306717c4c309303",
+            "inventoryRow": "047.69126+23.30865 0.00995 256 256 2006-11-17               290 17_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "18_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/18_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-18_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 267840,
+            "sha256": "bb9972f35c44ffa7cb4258003c1cdc8f48e1f374cbc8bbf747cae65268f39e25",
+            "inventoryRow": "                           256 256                          264 18_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "19_KRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/19_KRobj.fits",
+            "path": "data/research-sources/iris-7-cds-19_KRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 267840,
+            "sha256": "befdcff92b4480f53f49a99b655dee260cf5125f7c187f11fbb6fda240758abe",
+            "inventoryRow": "                           256 256                          264 19_KRobj.fits Keck/Nirc2, reference Viikinkoski et al. (2017A&A...607A.117V)"
+          },
+          {
+            "file": "1_NRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/1_NRobj.fits",
+            "path": "data/research-sources/iris-7-cds-1_NRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 115200,
+            "sha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b",
+            "inventoryRow": "132.73762+13.04575 0.0133  128 128 2010-12-13T06:05:38.49   115 1_NRobj.fits  VLT/NaCo, Project ID: 086.C-0785"
+          },
+          {
+            "file": "2_NRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/2_NRobj.fits",
+            "path": "data/research-sources/iris-7-cds-2_NRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 115200,
+            "sha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40",
+            "inventoryRow": "132.73660+13.04339 0.0133  128 128 2010-12-13T06:55:02.82   115 2_NRobj.fits  VLT/NaCo, Project ID: 086.C-0785"
+          },
+          {
+            "file": "3_NRobj.fits",
+            "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/3_NRobj.fits",
+            "path": "data/research-sources/iris-7-cds-3_NRobj-original-2026-10-22.fits",
+            "httpStatus": 200,
+            "bytes": 115200,
+            "sha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac",
+            "inventoryRow": "132.69553+12.98250 0.0133  128 128 2010-12-14T05:24:30.39   115 3_NRobj.fits  VLT/NaCo, Project ID: 086.C-0785"
+          }
+        ],
+        "limits": [
+          "Original downloads retained unchanged; no native display, geography, calibrated colour, processing chain or reuse licence adopted.",
+          "Inventory date-only or missing dates remain as published; no inferred raw UTC.",
+          "No production/public/registry/catalogue/map/model/shape/codec changes or fresh tests/build/browser claim."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-keck-naco-header-preparation-2026-10-22.json",
+      "sha256": "72ce7468e18348d989f173b3c4319aa86e6b31b1c788bcd5d16d0f62d9c6fdc2",
+      "record": {
+        "status": "Research-only retained22product stored-array/header diagnostic preparation; whole contact sheet visually inspected",
+        "input": {
+          "path": "data/research-sources/iris-7-cds-keck-naco-acquisition-preparation-2026-10-22.json",
+          "sha256": "3b93ff312164de91e61d71ecb1579ca148d999eb31c49a86afecd5a5b90592da"
+        },
+        "rows": [
+          {
+            "file": "1_KRobj.fits",
+            "sourceSha256": "99e87d73d2ba2f17983871f68f11addf184c71c5ee34b43599a9dede2439eaf2",
+            "headerPath": "data/research-sources/iris-7-cds-1_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "3f2003b38d7393d33a5b4b9d08f7133f150c46696b3b613bb9c0c44bfdbc85d6",
+            "bitpix": -32,
+            "dimensions": [
+              150,
+              150
+            ],
+            "dataOffset": 20160,
+            "finiteSamples": 22500,
+            "totalSamples": 22500,
+            "storedMinimum": 0.0,
+            "storedMaximum": 0.9963661432266235,
+            "objectCard": "Iris",
+            "instrumentCard": null,
+            "dateObsCard": "2002-08-05",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "2_KRobj.fits",
+            "sourceSha256": "7e16b93710ffd0342958d8756e42a94c4789e83c6f01c8132c6cf4d9348277a1",
+            "headerPath": "data/research-sources/iris-7-cds-2_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "06c5f0efbd863e2b15f7af82d3463dcd217ac0967b6f7f4260b3cf160ab265e1",
+            "bitpix": -32,
+            "dimensions": [
+              150,
+              150
+            ],
+            "dataOffset": 20160,
+            "finiteSamples": 22500,
+            "totalSamples": 22500,
+            "storedMinimum": 0.0,
+            "storedMaximum": 0.9949881434440613,
+            "objectCard": "Iris",
+            "instrumentCard": null,
+            "dateObsCard": "2002-08-05",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "3_KRobj.fits",
+            "sourceSha256": "49d31fce1555292ddb536c33dba0520551708bb0a895d1bbe4bf55edaf0ca7a8",
+            "headerPath": "data/research-sources/iris-7-cds-3_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "1d7b7815e550dbcdce6fa86fffa71d99cf4d3dd64ce9dc35e3365f72fcb1ff78",
+            "bitpix": -32,
+            "dimensions": [
+              150,
+              150
+            ],
+            "dataOffset": 20160,
+            "finiteSamples": 22500,
+            "totalSamples": 22500,
+            "storedMinimum": 0.0,
+            "storedMaximum": 0.991500198841095,
+            "objectCard": "Iris",
+            "instrumentCard": null,
+            "dateObsCard": "2002-08-05",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "4_KRobj.fits",
+            "sourceSha256": "020f1e30b70cd8cefadc5deb9bb57b2fb12b5bb975fdc40778e0b5bdd0836493",
+            "headerPath": "data/research-sources/iris-7-cds-4_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "08b3f6d372f7af95dfc4364f1238b34cc57696b636c52577a99763924beca359",
+            "bitpix": -32,
+            "dimensions": [
+              150,
+              150
+            ],
+            "dataOffset": 20160,
+            "finiteSamples": 22500,
+            "totalSamples": 22500,
+            "storedMinimum": 0.0,
+            "storedMaximum": 0.9891483187675476,
+            "objectCard": "Iris",
+            "instrumentCard": null,
+            "dateObsCard": "2002-08-05",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "5_KRobj.fits",
+            "sourceSha256": "7514dec0f413221b5ddf66ec618a21bfd7346ccb568e6750cb5824f1749f10c1",
+            "headerPath": "data/research-sources/iris-7-cds-5_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "5759cc00c9775ef88537e0e08478d483779b92b2ec4fd93a1fa8ce2290b576b3",
+            "bitpix": -32,
+            "dimensions": [
+              150,
+              150
+            ],
+            "dataOffset": 20160,
+            "finiteSamples": 22500,
+            "totalSamples": 22500,
+            "storedMinimum": 0.0,
+            "storedMaximum": 0.9852849245071411,
+            "objectCard": "Iris",
+            "instrumentCard": null,
+            "dateObsCard": "2002-08-05",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "6_KRobj.fits",
+            "sourceSha256": "4c995d741766ac4176a50adfd6a5cde79485e90fe5106155bdedb0a1ab638029",
+            "headerPath": "data/research-sources/iris-7-cds-6_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "cdc371e895a160f37e8e725e40bc49316ef69f45501273a088585439470d15f5",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 566098.25,
+            "objectCard": "a7",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2002-09-27",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "7_KRobj.fits",
+            "sourceSha256": "d7c2f36476b8d30e60ce40562e76c2ff732d32cccefdd6042749ab3abf4b9d29",
+            "headerPath": "data/research-sources/iris-7-cds-7_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "3034c416b394017976a6a87fc16477847cf9254f011e8893821bc2e2ae3ed36f",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 734513.9375,
+            "objectCard": "AO calibration",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2002-12-29",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "8_KRobj.fits",
+            "sourceSha256": "e535f0420e943f4804fcb23934c05abd96e5cde8580a3d0fa929b43589710719",
+            "headerPath": "data/research-sources/iris-7-cds-8_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "e06c5097054a33bbc056fa01da60219863d75a3b290033fc759294475b83705a",
+            "bitpix": -32,
+            "dimensions": [
+              512,
+              512
+            ],
+            "dataOffset": 2880,
+            "finiteSamples": 262144,
+            "totalSamples": 262144,
+            "storedMinimum": 0.0,
+            "storedMaximum": 1038865.75,
+            "objectCard": null,
+            "instrumentCard": null,
+            "dateObsCard": null,
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "9_KRobj.fits",
+            "sourceSha256": "eaa998601d6d5435489435a3a5974ef04e65b8fd1333ad8c6826cad587f53027",
+            "headerPath": "data/research-sources/iris-7-cds-9_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "e5fba745435ddee8f651445fbbce1c873608907a09a9577f2ee069c70590c84f",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 186996.71875,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "10_KRobj.fits",
+            "sourceSha256": "f375d4508b4634b94ab71a62bd392af9ba612fd1b55a6002ad78e7f8e6c534a8",
+            "headerPath": "data/research-sources/iris-7-cds-10_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "d82f643c57b9f52b4b74af042ac0b0d3cd3a50cabd6d021b35086fd9462c74fb",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 59473.48828125,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "11_KRobj.fits",
+            "sourceSha256": "fc254a09bc8c55f4679eb54862405b6b179f94f68378d38211cfa87776c6d732",
+            "headerPath": "data/research-sources/iris-7-cds-11_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "39376a2664a1aade5e94cd64841dfa44b3a7776db56a9cc7dcb5cdcf706fb685",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 177305.671875,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "12_KRobj.fits",
+            "sourceSha256": "e5d6ff89e85f7086664d4bad4b75b906adf7aa17fffbc14fae5ea00ebcffd691",
+            "headerPath": "data/research-sources/iris-7-cds-12_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "8b01fd3a9ee652590737f5fd25a0c6546f47b3cfbc3d06701b3875f44f3bad60",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 130634.734375,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "13_KRobj.fits",
+            "sourceSha256": "5af3625a4a79acee4f45c859ebb1e3b832e9e906b62d1e9c622830a7ea92b0f2",
+            "headerPath": "data/research-sources/iris-7-cds-13_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "15d41b28c4356d4e7ee578236e150d27417a42d82af45d53a7bbb1340fa77f97",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 6916.84326171875,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "14_KRobj.fits",
+            "sourceSha256": "3fd3360ac03539b86b189187ea77469c058754bdba760c3d06e07840ccfdc5d6",
+            "headerPath": "data/research-sources/iris-7-cds-14_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "1f08df5760e4ca4846f2093c67fe7f4c18517a501fff2f21ab9bc6e0a817ab54",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 108280.796875,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "15_KRobj.fits",
+            "sourceSha256": "ed5e7f3f048d110fac66dd6d86633247b6d83e1382405b1ae304e88ea5ad0b16",
+            "headerPath": "data/research-sources/iris-7-cds-15_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "5fe4818360fe7f1830a6ac04cb045263f85b2dac26a4a16e22e97e71dd35881e",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 56882.90234375,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "16_KRobj.fits",
+            "sourceSha256": "2b902672c2f4ea320b405e7a9e16f48b27c7d18ab10a13428e66d639fec37bcd",
+            "headerPath": "data/research-sources/iris-7-cds-16_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "426bda0eb6471c690bd3308c6664944386b49bba9ab38ec8823ac63a89c230b6",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 6519.345703125,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "17_KRobj.fits",
+            "sourceSha256": "f217f53edd9bd815e93faeefbc7cec4ade9ea7635dad8a61b306717c4c309303",
+            "headerPath": "data/research-sources/iris-7-cds-17_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "4993ceb4d650196303254eb7dc57338ddd1f2d0d2c1cc32fe90686788c0b6f14",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 28800,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 22468.169921875,
+            "objectCard": "iris",
+            "instrumentCard": "NIRC2",
+            "dateObsCard": "2006-11-17",
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "18_KRobj.fits",
+            "sourceSha256": "bb9972f35c44ffa7cb4258003c1cdc8f48e1f374cbc8bbf747cae65268f39e25",
+            "headerPath": "data/research-sources/iris-7-cds-18_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "4ba49ffd7a05e0d3e6d985457716d1d8a8fdb8b13c55aadab680fcfe54f370ce",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 2880,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 94144.34375,
+            "objectCard": null,
+            "instrumentCard": null,
+            "dateObsCard": null,
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "19_KRobj.fits",
+            "sourceSha256": "befdcff92b4480f53f49a99b655dee260cf5125f7c187f11fbb6fda240758abe",
+            "headerPath": "data/research-sources/iris-7-cds-19_KRobj-original-2026-10-22.header.txt",
+            "headerSha256": "4ba49ffd7a05e0d3e6d985457716d1d8a8fdb8b13c55aadab680fcfe54f370ce",
+            "bitpix": -32,
+            "dimensions": [
+              256,
+              256
+            ],
+            "dataOffset": 2880,
+            "finiteSamples": 65536,
+            "totalSamples": 65536,
+            "storedMinimum": 0.0,
+            "storedMaximum": 71148.15625,
+            "objectCard": null,
+            "instrumentCard": null,
+            "dateObsCard": null,
+            "dateCard": null,
+            "bunitCard": null
+          },
+          {
+            "file": "1_NRobj.fits",
+            "sourceSha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b",
+            "headerPath": "data/research-sources/iris-7-cds-1_NRobj-original-2026-10-22.header.txt",
+            "headerSha256": "c9797712434537b94491d4987f7d4960bf1b1bbac34a85e036b46999b1c55dcb",
+            "bitpix": -32,
+            "dimensions": [
+              128,
+              128
+            ],
+            "dataOffset": 48960,
+            "finiteSamples": 16384,
+            "totalSamples": 16384,
+            "storedMinimum": 2.6967486022044795e-08,
+            "storedMaximum": 0.9964587092399597,
+            "objectCard": "Iris",
+            "instrumentCard": "NAOS+CONICA",
+            "dateObsCard": "2010-12-13T06:05:38.49",
+            "dateCard": "2010-12-13T06:05:41.1880",
+            "bunitCard": null
+          },
+          {
+            "file": "2_NRobj.fits",
+            "sourceSha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40",
+            "headerPath": "data/research-sources/iris-7-cds-2_NRobj-original-2026-10-22.header.txt",
+            "headerSha256": "fc82c424a435efbc933b37461578d2c49040663cd198eae7503832dac10b7fda",
+            "bitpix": -32,
+            "dimensions": [
+              128,
+              128
+            ],
+            "dataOffset": 48960,
+            "finiteSamples": 16384,
+            "totalSamples": 16384,
+            "storedMinimum": 6.156485028441239e-07,
+            "storedMaximum": 0.9898582100868225,
+            "objectCard": "Iris",
+            "instrumentCard": "NAOS+CONICA",
+            "dateObsCard": "2010-12-13T06:55:02.82",
+            "dateCard": "2010-12-13T06:55:05.5230",
+            "bunitCard": null
+          },
+          {
+            "file": "3_NRobj.fits",
+            "sourceSha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac",
+            "headerPath": "data/research-sources/iris-7-cds-3_NRobj-original-2026-10-22.header.txt",
+            "headerSha256": "bbacd57cf24b7ab16c22a4700a2b70f1bddd9184cfdda705b74438f31641d97b",
+            "bitpix": -32,
+            "dimensions": [
+              128,
+              128
+            ],
+            "dataOffset": 48960,
+            "finiteSamples": 16384,
+            "totalSamples": 16384,
+            "storedMinimum": 8.912586054066196e-06,
+            "storedMaximum": 0.9945933818817139,
+            "objectCard": "Iris",
+            "instrumentCard": "NAOS+CONICA",
+            "dateObsCard": "2010-12-14T05:24:30.39",
+            "dateCard": "2010-12-14T05:24:39.1082",
+            "bunitCard": null
+          }
+        ],
+        "diagnostic": {
+          "path": "data/research-sources/iris-7-cds-keck-naco-contact-diagnostic-2026-10-22.png",
+          "sha256": "e2907c24b2bf441c5775386a55554f39d06be17ecbddc6453259a453e5d4a2f9",
+          "display": "Whole arrays in stored row order, no resampling; individual min/max8bit grayscale and filename labels. Per-image normalization not comparable photometry. No angular/raster size measurement or north/east/body registration.",
+          "visuallyInspected": true,
+          "visualNotes": "Whole contact sheet inspected: small bright disk/outline varies, several concentric halos/ringing and diffuse backgrounds, isolated structures. These are not assigned to craters, terrain, satellites, calibrated reflectance or local chemistry. Tool display downscaled whole contact sheet; no fine per-pixel review or angular measurement claimed."
+        },
+        "limits": [
+          "Header cards may be absent or inherited; no inferred raw UTC, instrument, filter, physical unit or processing history.",
+          "Finiteness does not establish valid science/special pixels, calibrated visibleRGB, terrain or local chemistry.",
+          "All original FITS unchanged; no production/public/registry/map/model/shape/catalogue/codec changes or fresh tests/build/browser claim."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-keck-naco-extent-preparation-2026-10-22.json",
+      "sha256": "3d5e0a0f8659e899400464432d4614e148ec115854506c76905e2cc76e4816f5",
+      "record": {
+        "status": "Research-only retained-file extent and metadata presence preparation; no production adoption",
+        "input": {
+          "path": "data/research-sources/iris-7-cds-keck-naco-acquisition-preparation-2026-10-22.json",
+          "sha256": "3b93ff312164de91e61d71ecb1579ca148d999eb31c49a86afecd5a5b90592da"
+        },
+        "rows": [
+          {
+            "file": "1_KRobj.fits",
+            "sourceSha256": "99e87d73d2ba2f17983871f68f11addf184c71c5ee34b43599a9dede2439eaf2",
+            "bytes": 112320,
+            "headerPaddedBytes": 20160,
+            "storedArrayBytes": 90000,
+            "primaryHduPaddedEnd": 112320,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-08-05",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "2_KRobj.fits",
+            "sourceSha256": "7e16b93710ffd0342958d8756e42a94c4789e83c6f01c8132c6cf4d9348277a1",
+            "bytes": 112320,
+            "headerPaddedBytes": 20160,
+            "storedArrayBytes": 90000,
+            "primaryHduPaddedEnd": 112320,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-08-05",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "3_KRobj.fits",
+            "sourceSha256": "49d31fce1555292ddb536c33dba0520551708bb0a895d1bbe4bf55edaf0ca7a8",
+            "bytes": 112320,
+            "headerPaddedBytes": 20160,
+            "storedArrayBytes": 90000,
+            "primaryHduPaddedEnd": 112320,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-08-05",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "4_KRobj.fits",
+            "sourceSha256": "020f1e30b70cd8cefadc5deb9bb57b2fb12b5bb975fdc40778e0b5bdd0836493",
+            "bytes": 112320,
+            "headerPaddedBytes": 20160,
+            "storedArrayBytes": 90000,
+            "primaryHduPaddedEnd": 112320,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-08-05",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "5_KRobj.fits",
+            "sourceSha256": "7514dec0f413221b5ddf66ec618a21bfd7346ccb568e6750cb5824f1749f10c1",
+            "bytes": 112320,
+            "headerPaddedBytes": 20160,
+            "storedArrayBytes": 90000,
+            "primaryHduPaddedEnd": 112320,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-08-05",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "6_KRobj.fits",
+            "sourceSha256": "4c995d741766ac4176a50adfd6a5cde79485e90fe5106155bdedb0a1ab638029",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-09-27",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "7_KRobj.fits",
+            "sourceSha256": "d7c2f36476b8d30e60ce40562e76c2ff732d32cccefdd6042749ab3abf4b9d29",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2002-12-29",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "8_KRobj.fits",
+            "sourceSha256": "e535f0420e943f4804fcb23934c05abd96e5cde8580a3d0fa929b43589710719",
+            "bytes": 1054080,
+            "headerPaddedBytes": 2880,
+            "storedArrayBytes": 1048576,
+            "primaryHduPaddedEnd": 1054080,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": null,
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          },
+          {
+            "file": "9_KRobj.fits",
+            "sourceSha256": "eaa998601d6d5435489435a3a5974ef04e65b8fd1333ad8c6826cad587f53027",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "10_KRobj.fits",
+            "sourceSha256": "f375d4508b4634b94ab71a62bd392af9ba612fd1b55a6002ad78e7f8e6c534a8",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "11_KRobj.fits",
+            "sourceSha256": "fc254a09bc8c55f4679eb54862405b6b179f94f68378d38211cfa87776c6d732",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "12_KRobj.fits",
+            "sourceSha256": "e5d6ff89e85f7086664d4bad4b75b906adf7aa17fffbc14fae5ea00ebcffd691",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "13_KRobj.fits",
+            "sourceSha256": "5af3625a4a79acee4f45c859ebb1e3b832e9e906b62d1e9c622830a7ea92b0f2",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "14_KRobj.fits",
+            "sourceSha256": "3fd3360ac03539b86b189187ea77469c058754bdba760c3d06e07840ccfdc5d6",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "15_KRobj.fits",
+            "sourceSha256": "ed5e7f3f048d110fac66dd6d86633247b6d83e1382405b1ae304e88ea5ad0b16",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "16_KRobj.fits",
+            "sourceSha256": "2b902672c2f4ea320b405e7a9e16f48b27c7d18ab10a13428e66d639fec37bcd",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "17_KRobj.fits",
+            "sourceSha256": "f217f53edd9bd815e93faeefbc7cec4ade9ea7635dad8a61b306717c4c309303",
+            "bytes": 293760,
+            "headerPaddedBytes": 28800,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 293760,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2006-11-17",
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": null
+            }
+          },
+          {
+            "file": "18_KRobj.fits",
+            "sourceSha256": "bb9972f35c44ffa7cb4258003c1cdc8f48e1f374cbc8bbf747cae65268f39e25",
+            "bytes": 267840,
+            "headerPaddedBytes": 2880,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 267840,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": null,
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          },
+          {
+            "file": "19_KRobj.fits",
+            "sourceSha256": "befdcff92b4480f53f49a99b655dee260cf5125f7c187f11fbb6fda240758abe",
+            "bytes": 267840,
+            "headerPaddedBytes": 2880,
+            "storedArrayBytes": 262144,
+            "primaryHduPaddedEnd": 267840,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": null,
+              "CHECKSUM": null,
+              "DATASUM": null,
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          },
+          {
+            "file": "1_NRobj.fits",
+            "sourceSha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b",
+            "bytes": 115200,
+            "headerPaddedBytes": 48960,
+            "storedArrayBytes": 65536,
+            "primaryHduPaddedEnd": 115200,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2010-12-13T06:05:38.49",
+              "CHECKSUM": "Ge4kGc2kGc2kGc2k",
+              "DATASUM": "2928833315",
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          },
+          {
+            "file": "2_NRobj.fits",
+            "sourceSha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40",
+            "bytes": 115200,
+            "headerPaddedBytes": 48960,
+            "storedArrayBytes": 65536,
+            "primaryHduPaddedEnd": 115200,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2010-12-13T06:55:02.82",
+              "CHECKSUM": "Md3bMZ2aMb2aMZ2a",
+              "DATASUM": "233075291",
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          },
+          {
+            "file": "3_NRobj.fits",
+            "sourceSha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac",
+            "bytes": 115200,
+            "headerPaddedBytes": 48960,
+            "storedArrayBytes": 65536,
+            "primaryHduPaddedEnd": 115200,
+            "trailingBytes": 0,
+            "dataPaddingByteValues": [
+              0
+            ],
+            "cards": {
+              "DATE-OBS": "2010-12-14T05:24:30.39",
+              "CHECKSUM": "RGE3SDC1RDC1RDC1",
+              "DATASUM": "1276791814",
+              "BSCALE": null,
+              "BZERO": null,
+              "BUNIT": null,
+              "EXTEND": "T"
+            }
+          }
+        ],
+        "summary": {
+          "products": 22,
+          "allPrimaryHduExtentsExactlyFileLength": true,
+          "checksumCardsPresent": 3,
+          "datasumCardsPresent": 3
+        },
+        "limits": [
+          "Absent checksum cards do not establish corruption or checksum verification.",
+          "Exact extent is retained-byte structure only, not calibration, raw lineage, special-pixel validity, precise observation time, frame registration or reuse permission.",
+          "File-structure dimensions are not angular/raster-scale measurements. No native bytes changed; no dossier, embedding or codec change."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-keck-naco-checksum-preparation-2026-10-22.json",
+      "sha256": "a7dfb89f47c5935f6a819541b8584687af1734caedb6beacbae6173789ecfaf6",
+      "record": {
+        "status": "Research-only checksum preparation for three products carrying checksum cards; remaining19 have no checksum claim",
+        "input": {
+          "path": "data/research-sources/iris-7-cds-keck-naco-extent-preparation-2026-10-22.json",
+          "sha256": "3d5e0a0f8659e899400464432d4614e148ec115854506c76905e2cc76e4816f5"
+        },
+        "rows": [
+          {
+            "file": "1_NRobj.fits",
+            "sourceSha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b",
+            "declaredDatasum": "2928833315",
+            "computedDatasum": 2928833315,
+            "datasumMatches": true,
+            "wholeFileOnesComplementSum": 4294967295,
+            "wholeFileValid": true,
+            "independent16bitLaneSum": 4294967295,
+            "implementationsAgree": true
+          },
+          {
+            "file": "2_NRobj.fits",
+            "sourceSha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40",
+            "declaredDatasum": "233075291",
+            "computedDatasum": 233075291,
+            "datasumMatches": true,
+            "wholeFileOnesComplementSum": 4294967295,
+            "wholeFileValid": true,
+            "independent16bitLaneSum": 4294967295,
+            "implementationsAgree": true
+          },
+          {
+            "file": "3_NRobj.fits",
+            "sourceSha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac",
+            "declaredDatasum": "1276791814",
+            "computedDatasum": 1276791814,
+            "datasumMatches": true,
+            "wholeFileOnesComplementSum": 4294967295,
+            "wholeFileValid": true,
+            "independent16bitLaneSum": 4294967295,
+            "implementationsAgree": true
+          }
+        ],
+        "limits": [
+          "Two arithmetic implementations agreeing with header checksums establishes retained-file consistency only, not raw detector integrity, calibration, exposure identity, frame registration or reuse permission.",
+          "No independent FITS astronomy library validation. No production asset, dossier or codec changed."
+        ]
+      }
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-keck-naco-time-card-preparation-2026-10-22.json",
+      "sha256": "d5aea45cb4d7347b9912bc45e7a61f190534fe34a48d44e5f174cbed0a45e498",
+      "record": {
+        "status": "Research-only observation-time precision and selected inherited-card inventory; no new time inferred",
+        "input": {
+          "path": "data/research-sources/iris-7-cds-keck-naco-header-preparation-2026-10-22.json",
+          "sha256": "72ce7468e18348d989f173b3c4319aa86e6b31b1c788bcd5d16d0f62d9c6fdc2"
+        },
+        "rows": [
+          {
+            "file": "1_KRobj.fits",
+            "sourceSha256": "99e87d73d2ba2f17983871f68f11addf184c71c5ee34b43599a9dede2439eaf2",
+            "headerSha256": "3f2003b38d7393d33a5b4b9d08f7133f150c46696b3b613bb9c0c44bfdbc85d6",
+            "dateObsCard": "2002-08-05",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0416.fits        ' / Original File name                             ",
+              "OBJECT  = 'Iris              ' / Object name                                    ",
+              "ITIME   =                0.182 / Integration time per coadd                     ",
+              "COADDS  =                   10 / Number of coadds                               ",
+              "FWINAME = 'J                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'J + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-08-05        ' / universal date of observation                  ",
+              "PSF_TIME= '15:00   '           /PSF Time                                        "
+            ]
+          },
+          {
+            "file": "2_KRobj.fits",
+            "sourceSha256": "7e16b93710ffd0342958d8756e42a94c4789e83c6f01c8132c6cf4d9348277a1",
+            "headerSha256": "06c5f0efbd863e2b15f7af82d3463dcd217ac0967b6f7f4260b3cf160ab265e1",
+            "dateObsCard": "2002-08-05",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0421.fits        ' / Original File name                             ",
+              "OBJECT  = 'Iris              ' / Object name                                    ",
+              "ITIME   =                0.182 / Integration time per coadd                     ",
+              "COADDS  =                   10 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-08-05        ' / universal date of observation                  ",
+              "PSF_TIME= '15:03   '           /PSF Time                                        "
+            ]
+          },
+          {
+            "file": "3_KRobj.fits",
+            "sourceSha256": "49d31fce1555292ddb536c33dba0520551708bb0a895d1bbe4bf55edaf0ca7a8",
+            "headerSha256": "1d7b7815e550dbcdce6fa86fffa71d99cf4d3dd64ce9dc35e3365f72fcb1ff78",
+            "dateObsCard": "2002-08-05",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0426.fits        ' / Original File name                             ",
+              "OBJECT  = 'Iris              ' / Object name                                    ",
+              "ITIME   =                0.182 / Integration time per coadd                     ",
+              "COADDS  =                   10 / Number of coadds                               ",
+              "FWINAME = 'Kp                ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'Kp + clear        ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-08-05        ' / universal date of observation                  ",
+              "PSF_TIME= '15:06   '           /PSF Time                                        "
+            ]
+          },
+          {
+            "file": "4_KRobj.fits",
+            "sourceSha256": "020f1e30b70cd8cefadc5deb9bb57b2fb12b5bb975fdc40778e0b5bdd0836493",
+            "headerSha256": "08b3f6d372f7af95dfc4364f1238b34cc57696b636c52577a99763924beca359",
+            "dateObsCard": "2002-08-05",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0446.fits        ' / Original File name                             ",
+              "OBJECT  = 'Iris              ' / Object name                                    ",
+              "ITIME   =                0.182 / Integration time per coadd                     ",
+              "COADDS  =                   10 / Number of coadds                               ",
+              "FWINAME = 'Kp                ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'Kp + clear        ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-08-05        ' / universal date of observation                  ",
+              "PSF_TIME= '15:06   '           /PSF Time                                        "
+            ]
+          },
+          {
+            "file": "5_KRobj.fits",
+            "sourceSha256": "7514dec0f413221b5ddf66ec618a21bfd7346ccb568e6750cb5824f1749f10c1",
+            "headerSha256": "5759cc00c9775ef88537e0e08478d483779b92b2ec4fd93a1fa8ce2290b576b3",
+            "dateObsCard": "2002-08-05",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0451.fits        ' / Original File name                             ",
+              "OBJECT  = 'Iris              ' / Object name                                    ",
+              "ITIME   =                0.182 / Integration time per coadd                     ",
+              "COADDS  =                   10 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-08-05        ' / universal date of observation                  ",
+              "PSF_TIME= '15:03   '           /PSF Time                                        "
+            ]
+          },
+          {
+            "file": "6_KRobj.fits",
+            "sourceSha256": "4c995d741766ac4176a50adfd6a5cde79485e90fe5106155bdedb0a1ab638029",
+            "headerSha256": "cdc371e895a160f37e8e725e40bc49316ef69f45501273a088585439470d15f5",
+            "dateObsCard": "2002-09-27",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0298.fits        ' / Original File name                             ",
+              "OBJECT  = 'a7                ' / Object name                                    ",
+              "ITIME   =                0.360 / Integration time per coadd                     ",
+              "COADDS  =                   50 / Number of coadds                               ",
+              "FWINAME = 'Kp                ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'Kp + clear        ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-09-27        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=               18.000 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-04-18T17:12:08' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '09:54:13.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "7_KRobj.fits",
+            "sourceSha256": "d7c2f36476b8d30e60ce40562e76c2ff732d32cccefdd6042749ab3abf4b9d29",
+            "headerSha256": "3034c416b394017976a6a87fc16477847cf9254f011e8893821bc2e2ae3ed36f",
+            "dateObsCard": "2002-12-29",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0025.fits        ' / Original File name                             ",
+              "OBJECT  = 'AO calibration    ' / Object name                                    ",
+              "ITIME   =                0.845 / Integration time per coadd                     ",
+              "COADDS  =                   40 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2002-12-29        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=               33.800 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-04-19T06:32:43' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '04:35:14.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "8_KRobj.fits",
+            "sourceSha256": "e535f0420e943f4804fcb23934c05abd96e5cde8580a3d0fa929b43589710719",
+            "headerSha256": "e06c5097054a33bbc056fa01da60219863d75a3b290033fc759294475b83705a",
+            "dateObsCard": null,
+            "precisionClass": "absent",
+            "selectedOriginalCards": []
+          },
+          {
+            "file": "9_KRobj.fits",
+            "sourceSha256": "eaa998601d6d5435489435a3a5974ef04e65b8fd1333ad8c6826cad587f53027",
+            "headerSha256": "e5fba745435ddee8f651445fbbce1c873608907a09a9577f2ee069c70590c84f",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0012.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.181 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'K                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'K + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.181 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:24:33' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '07:06:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "10_KRobj.fits",
+            "sourceSha256": "f375d4508b4634b94ab71a62bd392af9ba612fd1b55a6002ad78e7f8e6c534a8",
+            "headerSha256": "d82f643c57b9f52b4b74af042ac0b0d3cd3a50cabd6d021b35086fd9462c74fb",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0021.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.100 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.100 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:26:39' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '07:13:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "11_KRobj.fits",
+            "sourceSha256": "fc254a09bc8c55f4679eb54862405b6b179f94f68378d38211cfa87776c6d732",
+            "headerSha256": "39376a2664a1aade5e94cd64841dfa44b3a7776db56a9cc7dcb5cdcf706fb685",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0035.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.200 / Integration time per coadd                     ",
+              "COADDS  =                   20 / Number of coadds                               ",
+              "FWINAME = 'J                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'J + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                4.000 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:29:41' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '07:18:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "12_KRobj.fits",
+            "sourceSha256": "e5d6ff89e85f7086664d4bad4b75b906adf7aa17fffbc14fae5ea00ebcffd691",
+            "headerSha256": "8b01fd3a9ee652590737f5fd25a0c6546f47b3cfbc3d06701b3875f44f3bad60",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0067.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.110 / Integration time per coadd                     ",
+              "COADDS  =                   20 / Number of coadds                               ",
+              "FWINAME = 'Kp                ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'Kp + clear        ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                2.200 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:36:44' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '07:53:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "13_KRobj.fits",
+            "sourceSha256": "5af3625a4a79acee4f45c859ebb1e3b832e9e906b62d1e9c622830a7ea92b0f2",
+            "headerSha256": "15d41b28c4356d4e7ee578236e150d27417a42d82af45d53a7bbb1340fa77f97",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0075.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.100 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.100 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:38:30' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '07:57:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "14_KRobj.fits",
+            "sourceSha256": "3fd3360ac03539b86b189187ea77469c058754bdba760c3d06e07840ccfdc5d6",
+            "headerSha256": "1f08df5760e4ca4846f2093c67fe7f4c18517a501fff2f21ab9bc6e0a817ab54",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0083.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.120 / Integration time per coadd                     ",
+              "COADDS  =                   20 / Number of coadds                               ",
+              "FWINAME = 'J                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'J + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                2.400 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:40:15' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '08:02:31.01'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "15_KRobj.fits",
+            "sourceSha256": "ed5e7f3f048d110fac66dd6d86633247b6d83e1382405b1ae304e88ea5ad0b16",
+            "headerSha256": "5fe4818360fe7f1830a6ac04cb045263f85b2dac26a4a16e22e97e71dd35881e",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0123.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.080 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'Kp                ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'Kp + clear        ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.080 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:48:57' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '08:24:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "16_KRobj.fits",
+            "sourceSha256": "2b902672c2f4ea320b405e7a9e16f48b27c7d18ab10a13428e66d639fec37bcd",
+            "headerSha256": "426bda0eb6471c690bd3308c6664944386b49bba9ab38ec8823ac63a89c230b6",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0130.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.080 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'H                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'H + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.080 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:50:33' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '08:27:31.00'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "17_KRobj.fits",
+            "sourceSha256": "f217f53edd9bd815e93faeefbc7cec4ade9ea7635dad8a61b306717c4c309303",
+            "headerSha256": "4993ceb4d650196303254eb7dc57338ddd1f2d0d2c1cc32fe90686788c0b6f14",
+            "dateObsCard": "2006-11-17",
+            "precisionClass": "date-only",
+            "selectedOriginalCards": [
+              "FILENAME= 'n0138.fits        ' / Original File name                             ",
+              "OBJECT  = 'iris              ' / Object name                                    ",
+              "ITIME   =                0.100 / Integration time per coadd                     ",
+              "COADDS  =                    1 / Number of coadds                               ",
+              "FWINAME = 'J                 ' / inner filter wheel's named pos                 ",
+              "FILTER  = 'J + clear         ' / composite filter name (both wh                 ",
+              "DATE-OBS= '2006-11-17        ' / universal date of observation                  ",
+              "INSTRUME= 'NIRC2   '           / Added by KOA                                   ",
+              "ELAPTIME=                0.100 / ITIME * COADDS (added by KOA)                  ",
+              "DQA_DATE= '2012-05-07T03:52:19' / Date of DQA run                               ",
+              "GUIDTIME= 'null    '           / UT of logged GUIDFWHM value                    ",
+              "WXTIME  = '08:30:31.01'        / UT of logged weather keyword values            "
+            ]
+          },
+          {
+            "file": "18_KRobj.fits",
+            "sourceSha256": "bb9972f35c44ffa7cb4258003c1cdc8f48e1f374cbc8bbf747cae65268f39e25",
+            "headerSha256": "4ba49ffd7a05e0d3e6d985457716d1d8a8fdb8b13c55aadab680fcfe54f370ce",
+            "dateObsCard": null,
+            "precisionClass": "absent",
+            "selectedOriginalCards": []
+          },
+          {
+            "file": "19_KRobj.fits",
+            "sourceSha256": "befdcff92b4480f53f49a99b655dee260cf5125f7c187f11fbb6fda240758abe",
+            "headerSha256": "4ba49ffd7a05e0d3e6d985457716d1d8a8fdb8b13c55aadab680fcfe54f370ce",
+            "dateObsCard": null,
+            "precisionClass": "absent",
+            "selectedOriginalCards": []
+          },
+          {
+            "file": "1_NRobj.fits",
+            "sourceSha256": "60ac011f19082c95bc97c0f34f02fe91ee47894d32ba295d33d517aa0f80321b",
+            "headerSha256": "c9797712434537b94491d4987f7d4960bf1b1bbac34a85e036b46999b1c55dcb",
+            "dateObsCard": "2010-12-13T06:05:38.49",
+            "precisionClass": "timestamp-string",
+            "selectedOriginalCards": [
+              "DATE    = '2010-12-13T06:05:41.1880'    / Date the file was written             ",
+              "INSTRUME= 'NAOS+CONICA'                 / Instrument used                       ",
+              "OBJECT  = 'Iris    '                    / Target description                    ",
+              "EXPTIME =            1.0000000          / Integration time                      ",
+              "DATE-OBS= '2010-12-13T06:05:38.49' / Observing date                             ",
+              "PSF_TIME= '07:15   '           /PSF Time                                        ",
+              "CUBETIME=                   50 /Time needed to clean the cube (s)               "
+            ]
+          },
+          {
+            "file": "2_NRobj.fits",
+            "sourceSha256": "b50823309332b8fc96d3c71cc242c1e2e556f329bea521f12798a1975ce48a40",
+            "headerSha256": "fc82c424a435efbc933b37461578d2c49040663cd198eae7503832dac10b7fda",
+            "dateObsCard": "2010-12-13T06:55:02.82",
+            "precisionClass": "timestamp-string",
+            "selectedOriginalCards": [
+              "DATE    = '2010-12-13T06:55:05.5230'    / Date the file was written             ",
+              "INSTRUME= 'NAOS+CONICA'                 / Instrument used                       ",
+              "OBJECT  = 'Iris    '                    / Target description                    ",
+              "EXPTIME =            1.0000000          / Integration time                      ",
+              "DATE-OBS= '2010-12-13T06:55:02.82' / Observing date                             ",
+              "PSF_TIME= '07:15   '           /PSF Time                                        ",
+              "CUBETIME=                   53 /Time needed to clean the cube (s)               "
+            ]
+          },
+          {
+            "file": "3_NRobj.fits",
+            "sourceSha256": "3a9ea8af41268dfb0f4f4a94c1973779494f722e53fa6a8699c025f714b512ac",
+            "headerSha256": "bbacd57cf24b7ab16c22a4700a2b70f1bddd9184cfdda705b74438f31641d97b",
+            "dateObsCard": "2010-12-14T05:24:30.39",
+            "precisionClass": "timestamp-string",
+            "selectedOriginalCards": [
+              "DATE    = '2010-12-14T05:24:39.1082'    / Date the file was written             ",
+              "INSTRUME= 'NAOS+CONICA'                 / Instrument used                       ",
+              "OBJECT  = 'Iris    '                    / Target description                    ",
+              "EXPTIME =            1.0000000          / Integration time                      ",
+              "DATE-OBS= '2010-12-14T05:24:30.39' / Observing date                             ",
+              "PSF_TIME= '05:39   '           /PSF Time                                        ",
+              "CUBETIME=                   53 /Time needed to clean the cube (s)               "
+            ]
+          }
+        ],
+        "precisionCounts": {
+          "date-only": 16,
+          "absent": 3,
+          "timestamp-string": 3
+        },
+        "limits": [
+          "Missing DATE-OBS remains unknown. Date-only cards are not midnight UTC timestamps. Timestamp strings are retained without independent clock-system or raw-product association validation.",
+          "Selected filter/instrument/exposure cards are inherited metadata, not an independently verified deconvolution input, calibrated colour, integration total or raw archive crosswalk.",
+          "No source header repair, production change, image embedding, new dossier, angular/raster computation or licence assertion."
+        ]
+      }
+    }
+  ],
+  "findings": [
+    "All47 listed deconvolved products retained unchanged:25SPHERE,19Keck,3NaCo;20,560,320bytes total.",
+    "Remaining22 float32 primary-HDU extents exactly span their files. ThreeNaCo checksum cards agree with data sums and whole-file checks in two arithmetic implementations. NineteenKeck files lack checksum cards; no checksum validation is asserted for them.",
+    "DATE-OBS precision:16date-only,3absent,3timestamp strings. Dates are not silently expanded to midnightUTC; inherited strings are not independently verified raw observation clocks.",
+    "Whole22-cell grayscale contact diagnostic visually inspected previously; per-cell normalization is not comparable photometry, calibrated colour, terrain validation or body-frame registration."
+  ],
+  "limits": [
+    "No independent astronomy-library FITS validation. Finite stored arrays do not establish special-pixel validity or science normalization.",
+    "CDS distinguishes reconstruction inputs from poor-quality consistency checks; no blanket validated geography claim.",
+    "Product-specific reuse terms, raw archive/PSF lineage, phase/frame and JPEG/crop association remain open. Full credits retained; archive availability is not a CC licence.",
+    "All original/default generated PNGs, masters and native scientific bytes preserved. No109th dossier, embedding, map/model/shape/catalogue or codec change."
+  ],
+  "validation": {
+    "tests": {
+      "pass": 711,
+      "skip": 1,
+      "fail": 0
+    },
+    "productionBuildPass": true,
+    "preservation": {
+      "baseline": "d5cc1a1",
+      "publicFilesByteEqual": 749,
+      "productionInputsExact": [
+        "src/data/bespoke.js",
+        "src/data/moons.js",
+        "src/data/snapshot-codec.js",
+        "scripts/build-standalone.js",
+        "docs/research/bespoke-queue.json"
+      ],
+      "dossiers": 108,
+      "moonEntries": 63,
+      "nativeCardsExactBytesAndMime": 87,
+      "currentReadableSha256": "38170f3c06bad859f30c7aa845224cb06e79eff95814b9038dc121b9f8937ca9",
+      "fullBuild": {
+        "pass": true,
+        "htmlBytes": 15982678,
+        "headroomBytes": 17322,
+        "gateBytes": 16000000
+      },
+      "freshBrowserClaim": false,
+      "completeCurrentFullHtmlRestorationClaim": false
+    }
+  }
+}
