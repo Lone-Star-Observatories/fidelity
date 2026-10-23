@@ -14,3 +14,23 @@ test('startup envelope restores exact Unicode module source without consuming sc
   assert.ok(result.html.includes('fidelity-startup-data'));
   assert.ok(result.html.includes('gzip decompression support'));
 });
+
+test('complete notices restore before the unsupported-gzip message and remain readable', async () => {
+  const { runInNewContext } = await import('node:vm');
+  const notices = 'Copyright — complete notices\n<https://example.test> </script> $&\n\u0000';
+  const codec = await readFile(new URL('../src/data/snapshot-codec.js', import.meta.url), 'utf8');
+  const result = await packStandaloneBootstrap('throw Error("must not launch");', codec, notices);
+  const el = result.html.match(/id="fidelity-notice-data"[^>]*data-encoding="([^"]+)" data-byte-length="(\d+)">([\s\S]*?)<\/script>/);
+  const elements = {
+    'fidelity-notice-data': { dataset: { encoding: el[1], byteLength: el[2] }, textContent: el[3] },
+    'fidelity-third-party-notices': {}, 'fidelity-readable-notices': {}, 'fidelity-notices': {},
+  };
+  const body = { append(el) { this.retained = el; } };
+  const module = result.html.match(/<script type="module">([\s\S]*?)<\/script>/)[1];
+  await runInNewContext(`(async()=>{${module}})()`, { document: { body, getElementById: id => elements[id] }, TextEncoder, TextDecoder, Uint8Array, Uint16Array, Uint32Array, ArrayBuffer });
+  assert.equal(elements['fidelity-third-party-notices'].textContent, notices);
+  assert.equal(elements['fidelity-readable-notices'].textContent, notices);
+  assert.equal(body.retained, elements['fidelity-notices']);
+  assert.match(body.textContent, /gzip decompression support/);
+  assert.ok(result.html.includes('Third-party notices'));
+});

@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-23",
+  "issue": 3,
+  "status": "Adopted lossless notice envelope with readable native-gzip-independent access",
+  "implementation": [
+    "Complete Brotli and JPEG XL notices plus full fflate MIT licence, gzip level 9, existing strict UTF16LE-v2 packed transport. No notice text removed, reordered or paraphrased. Prior HTML escape-only less-than substitution is reversed so textContent now equals original source files.",
+    "Existing Three.js-bundled fflate 0.8.2 gunzip decoder restores notices before native gzip capability check. Complete text populates inert notice element and readable scrollable details control. On unsupported browser, the existing gzip message remains and readable details is reattached.",
+    "Snapshot, application, CSS, startup transports and independent Brotli decoders remain unchanged; Blob module import/revoke and legacy decoders preserved."
+  ],
+  "licenceSource": {
+    "url": "https://raw.githubusercontent.com/101arrowz/fflate/v0.8.2/LICENSE",
+    "path": "docs/licenses/standalone-fflate.txt",
+    "sha256": "805f6cb28bb8b6d3a0badd83c93bccd9671fa01a3b4b92b7042b0743325ac243",
+    "copyright": "Copyright (c) 2023 Arjun Barrett",
+    "terms": "Full MIT notice retained unchanged"
+  },
+  "transport": {
+    "status": "pass",
+    "noticeSha256": "182198278a4818c85af1f28202b5e65156d4ed605fe68c457dc08055f1a58b2f",
+    "noticeUtf8Bytes": 107903,
+    "priorNoticeEscapedTextPreserved": true,
+    "applicationExactBeforeAfter": true,
+    "applicationSha256": "2dac96d3c778c445b34f57f05f7d3d0fba1c3ede2b6b5a23aac7803c5e14cfa4",
+    "htmlBytes": 15790252,
+    "headroom": 209748,
+    "rawScriptHashes": {
+      "fidelity-stylesheet-data": "d87f25bfa0f75b82b859e4ed94d4c2a660eb34ce777f6fb10f046d50b0a5514a",
+      "fidelity-snapshot-data": "5716744b5735c1136634891a2eb78a40110d5e160dcc9b97597458edd4439816",
+      "fidelity-application-data": "eb8b06cd3a53f274d833885c1359b89bf5a0ce1b9e99ee1075a3ec2426bfcd05",
+      "fidelity-notice-data": "33dd954e08029ad9fb4501eb2c8c9439ff9c1244a7db7450f5b3280e6921c8d4",
+      "fidelity-third-party-notices": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "fidelity-startup-data": "390dd65c211ca9ba0976d7a3db0b3a14dca969e334987a263144f29e9983e185"
+    },
+    "frozenPriorLayoutHtmlBytes": 15982678,
+    "frozenLayoutSavingBytes": 192426,
+    "frozenComparison": "Same current HTML snapshot/application/CSS/startup payloads; restore previous plain notices and previous outer loader. Notice placement changes byte location, not byte count."
+  },
+  "preservation": {
+    "baseline": "bc76772",
+    "publicFilesByteEqual": 749,
+    "productionInputsExact": [
+      "src/data/bespoke.js",
+      "src/data/moons.js",
+      "src/data/snapshot-codec.js",
+      "docs/research/bespoke-queue.json"
+    ],
+    "dossiers": 108,
+    "moonEntries": 63,
+    "nativeCardsExactBytesAndMime": 87,
+    "currentReadableSha256": "0b39f0e5c2e765438c5135f017fdf02feb84221a8e7e10dede8eb79f8fc040cf",
+    "fullBuild": {
+      "pass": true,
+      "htmlBytes": 15790252,
+      "headroomBytes": 209748,
+      "gateBytes": 16000000
+    },
+    "freshBrowserClaim": false,
+    "completeCurrentFullHtmlRestorationClaim": false
+  },
+  "browser": {
+    "browser": "Codex in-app browser",
+    "status": "pass",
+    "charset": "UTF-16LE",
+    "readableSha256": "0b39f0e5c2e765438c5135f017fdf02feb84221a8e7e10dede8eb79f8fc040cf",
+    "uniqueImages": 360,
+    "decoded": 360,
+    "canvases": 8,
+    "rawHashes": {
+      "fidelity-stylesheet-data": "d87f25bfa0f75b82b859e4ed94d4c2a660eb34ce777f6fb10f046d50b0a5514a",
+      "fidelity-snapshot-data": "5716744b5735c1136634891a2eb78a40110d5e160dcc9b97597458edd4439816",
+      "fidelity-application-data": "eb8b06cd3a53f274d833885c1359b89bf5a0ce1b9e99ee1075a3ec2426bfcd05",
+      "fidelity-notice-data": "33dd954e08029ad9fb4501eb2c8c9439ff9c1244a7db7450f5b3280e6921c8d4",
+      "fidelity-startup-data": "390dd65c211ca9ba0976d7a3db0b3a14dca969e334987a263144f29e9983e185"
+    },
+    "noticeSha256": "182198278a4818c85af1f28202b5e65156d4ed605fe68c457dc08055f1a58b2f",
+    "unsupportedGzipNoticesExact": true,
+    "limits": [
+      "Other engines not tested; no fresh all-route or model-loading claim."
+    ]
+  },
+  "validation": {
+    "testsPassed": 712,
+    "testsSkipped": 1,
+    "productionBuild": "pass",
+    "fullStandaloneBuild": "pass",
+    "queueTasks": 569
+  },
+  "limits": [
+    "Other browser engines not tested. No fresh all-route, event-worker or all-model-loading claim.",
+    "Readable snapshot differs from previous build due to refreshed upstream feed data; no change to dossiers, maps, native bytes, models or catalogue. Frozen HTML layout comparison holds current packed inputs constant.",
+    "No new dossier or native imagery embedded; all original PNGs, masters and research provenance preserved. Backlog remains active."
+  ]
+}
