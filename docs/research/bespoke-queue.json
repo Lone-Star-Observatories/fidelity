@@ -1056,10 +1056,11 @@
       "parent": null,
       "kind": "asteroid",
       "scope": "Solar System catalogue",
-      "nativeImagery": "no local native map; research native imagery",
-      "research": "queued",
-      "surface": "native imagery assessment, then bespoke if missing",
-      "sky": "queued"
+      "nativeImagery": "No registered globe or digital shape adopted. ALMA thermal brightness context is separate from independently imagined local/sky illustrations. Asteroid3 Juno is distinct from spacecraft Juno.",
+      "research": "initial dossier delivered; refinement open",
+      "surface": "independent hypothetical terrain delivered; resolved globe remains pending",
+      "sky": "hypothetical image delivered; photometric calibration remains approximate",
+      "visualId": "juno-3"
     },
     {
       "id": "sol-psyche",

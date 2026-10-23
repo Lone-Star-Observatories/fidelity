@@ -21,7 +21,7 @@ for(const b of [{name:'Weywot',parent:'quaoar',source:'https://arxiv.org/abs/251
 for(const p of planets.rows)entries.set(`exo-${key(p.pl_name)}`,{id:`exo-${key(p.pl_name)}`,name:p.pl_name,parent:p.hostname,kind:'exoplanet',distancePc:p.sy_dist,scope:'20 closest NASA archive planets',source:planets.source,nativeImagery:'unchecked; distinguish direct image of point source from resolved surface',archiveConstraints:p});
 for(const s of stars.rows)entries.set(`star-${key(s.OBJ_NAME)}`,{id:`star-${key(s.OBJ_NAME)}`,name:s.COMMON_NAME||s.OBJ_NAME,catalogueName:s.OBJ_NAME,kind:s.OBJ_CAT==='WD'?'white dwarf':'star',distancePc:s.distancePc,scope:'20 nearest stellar components in Gaia-era 10 pc v2 snapshot; current ranking verification queued',source:stars.source,nativeImagery:'unchecked; point-source photograph does not resolve photosphere',catalogueConstraints:s});
 for(const entry of entries.values()) {
- const visual=bodyVisualFor(entry);
+ const visual=bodyVisualFor({...entry,id:entry.bodyId??entry.id});
  entry.research=visual?'initial dossier delivered; refinement open':'queued';
  const mapPending=[...MOONS,...SMALL_BODIES].find(body=>body.id===entry.bodyId)?.surfacePending;
  entry.surface=visual?.surfaceMap?'bespoke hypothetical map delivered':visual?.surfaceImage?(mapPending?'independent hypothetical terrain delivered; resolved globe remains pending':'native globe preserved; bespoke terrain detail delivered'):'native imagery assessment, then bespoke if missing';

@@ -321,5 +321,6 @@
     "queueTasks": 569,
     "retainedSourceHashChecks": 81,
     "scienceCodecChange": false
-  }
+  },
+  "queueCorrection": "Post-import verification caught prefixed taskIDsol-juno-3 versus cataloguebodyIDjuno-3: queue builder now forwards bodyId as lookupid, preserving numbered/name/HD/Gl lookup. Only asteroidJuno queue row changed. Regression assertion verifies delivered visualId/status. Full713tests1skip pass again. Application/HTMLinputs unchanged after this queue-only correction; existing final build/browser evidence remains applicable."
 }
