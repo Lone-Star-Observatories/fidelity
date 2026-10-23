@@ -1,0 +1,409 @@
+{
+  "date": "2026-10-22",
+  "issue": "#3",
+  "body": "(7) Iris",
+  "status": "Research-only direct native scientific product and source-lineage audit; no dossier109 or production adoption",
+  "primaryAssessment": "docs/research/iris-primary-shape-uncertainty-assessment-2026-10-22.json",
+  "credits": {
+    "CDSFullPrintedAuthorBlock": "Hanus J., Marsset, M., Vernazza, P., Viikinkoski, M., Drouard, A., Broz M.,\n    Carry B., Fetick R., Marchis F., Jorda L., Fusco T., Birlan M.,\n    Santana-Ros T., Podlewska-Gaca E., Jehin E., Ferrais M., Grice J.,\n    Bartczak P., Berthier J., Castillo-Rogez J., Cipriani F., Colas F.,\n    Dudzinski G., Dumas C., Durech J., Kaasalainen M., Kryszczynska A.,\n    Lamy P., Le Coroller H., Marciniak A., Michalowski T., Michel P.,\n    Pajuelo M., Tanga P., Vachier F., Vigan A., Witasse O., Yang B.",
+    "acknowledgement": "Josef Hanus; Patricia Vannier [CDS], ReadMe28Mar2019",
+    "instruments": "Keck/NIRC2, VLT/NaCo, VLT/SPHERE/ZIMPOL; first acquired product header ESO-PARANAL, SPHERE,7Iris",
+    "note": "Author and institutional credits do not establish a licence; no generic ESO/Commons licence transferred to this derived product."
+  },
+  "sources": [
+    {
+      "path": "data/research-sources/iris-7-native-discovery-preparation-2026-10-22.json",
+      "bytes": 2128,
+      "sha256": "79df1b73ba99b82325b4cbd55e8fe3e46f87c1374f8069b225159d884a3ee3fa"
+    },
+    {
+      "path": "data/research-sources/iris-7-sbag-presentation-acquisition-preparation-2026-10-22.json",
+      "bytes": 5691,
+      "sha256": "e6a379134660405ab29b16c42aa8eae92b715492e7a20b1f24f27f4df167dcc2"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-dataset-discovery-preparation-2026-10-22.json",
+      "bytes": 3733,
+      "sha256": "22cb5be7a4601d0c3a4259448e2c3e4c15b1a159266f0d68c5f64821f3e94ccf"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-first-sphere-preparation-2026-10-22.json",
+      "bytes": 3435,
+      "sha256": "ba2ba33767a7d03537729facd370380eda19cae9198d807a86a79efbdc82239c"
+    },
+    {
+      "path": "data/research-sources/iris-7-vernazza-sbag2019-presentation-2026-10-22.pdf",
+      "bytes": 10769559,
+      "sha256": "f776996c509d614a857c5d5fce53c958b4438627775477d3996d9888ec64cab9"
+    },
+    {
+      "path": "data/research-sources/iris-7-vernazza-sbag2019-presentation-2026-10-22.txt",
+      "bytes": 6811,
+      "sha256": "eaadc7b4c1748e363fd8028bc5886a5330d4bfc8e014180764ed3121b3e6328f"
+    },
+    {
+      "path": "data/research-sources/iris-7-sbag-visual-preparation-2026-10-22-09.png",
+      "bytes": 101112,
+      "sha256": "45222ab60a7627da2f26805f55776ac29b31917df5be6ba7cf640f4e6755e83c"
+    },
+    {
+      "path": "data/research-sources/iris-7-sbag-visual-preparation-2026-10-22-16.png",
+      "bytes": 160676,
+      "sha256": "f2bc98f78a51d1871b2d82b2dc8df26354e07542e3d59bf5e5633d989f76d087"
+    },
+    {
+      "path": "data/research-sources/iris-7-tampere-dataset-record-response-2026-10-22.html",
+      "bytes": 39724,
+      "sha256": "6a493b1e3f9e4b18de80a8f9913d05ebec2140c9cf12dc5a23925486df846a1a"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-readme-response-2026-10-22.txt",
+      "bytes": 5289,
+      "sha256": "48a29f4792aada133c2e7d9e8a560e3e5f1faf6a8e347f95d5b30cd753a0bf7f"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-list-response-2026-10-22.dat",
+      "bytes": 5847,
+      "sha256": "09be1ab36c22885b62a1ba4a7a9ca9ecbd7e80ed2c5c60e0f3c129b41bad7ec7"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.fits",
+      "bytes": 593280,
+      "sha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.header.txt",
+      "bytes": 66582,
+      "sha256": "d541126120b594522f682b62a28d8176aa48ba9923580204a0c8cd47a5492536"
+    },
+    {
+      "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.diagnostic.png",
+      "bytes": 13955,
+      "sha256": "3e4e3a72709bd39808485a724168fc3e9fd827e97928c99019d2453a886bb108"
+    }
+  ],
+  "preparations": [
+    {
+      "date": "2026-10-22",
+      "body": "(7) Iris",
+      "status": "Native-source discovery preparation only; no acquisition or production adoption",
+      "candidates": [
+        {
+          "url": "https://commons.wikimedia.org/wiki/File:Iris_asteroid_eso.jpg",
+          "role": "Secondary discovery lead only",
+          "notes": [
+            "400x400 JPEG described as 2017Oct10/11 SPHERE/ZIMPOL MISTRAL imagery, credited ESO/Vernazza et al.; exact selected epoch, crop/rendition lineage and full contributor crosswalk unverified.",
+            "Page cites a Sky & Telescope article and primary paper/presentation rather than an original ESO public-image URL. Generic ESO CC BY4 template is not independently verified product-specific permission for this file.",
+            "No image downloaded or hash invented; do not adopt calibrated colour, terrain, raw timestamp or licence from the secondary page."
+          ]
+        },
+        {
+          "url": "https://www.lpi.usra.edu/sbag/meetings/jan2019/presentations/Wednesday-AM/Vernazza.pdf",
+          "role": "Linked presentation lead, not yet acquired/reviewed; no hash, figure permission or exact source claim."
+        },
+        {
+          "url": "https://www.aanda.org/articles/aa/full_html/2019/04/aa34541-18/aa34541-18.html",
+          "role": "Primary publisher full HTML attempted",
+          "access": "Web tool HTTP403; no response-byte hash, full publisher review or permission claim."
+        }
+      ],
+      "knownPrimary": "docs/research/iris-primary-shape-uncertainty-assessment-2026-10-22.json",
+      "next": [
+        "Resolve direct publisher/author image lineage and product-specific terms before native integration.",
+        "Independent imagined local/sky preparations may use reviewed Iris science while labelling all terrain, chemistry, colour and illumination invented; no analogue skin, derived shape facets or deconvolution artifacts as observed terrain.",
+        "Capacity recovery remains needed before adding a dossier; no new dossier/image/embedding/catalogue/map/model/shape/codec change."
+      ],
+      "preservation": "All existing source bytes and production assets retained. No fresh tests/build/browser claim for discovery preparation."
+    },
+    {
+      "date": "2026-10-22",
+      "status": "Acquired original presentation; targeted visual review of pages9/16 only, no native-product or permission adoption",
+      "url": "https://www.lpi.usra.edu/sbag/meetings/jan2019/presentations/Wednesday-AM/Vernazza.pdf",
+      "pdf": {
+        "path": "data/research-sources/iris-7-vernazza-sbag2019-presentation-2026-10-22.pdf",
+        "bytes": 10769559,
+        "sha256": "f776996c509d614a857c5d5fce53c958b4438627775477d3996d9888ec64cab9",
+        "pages": 22
+      },
+      "text": {
+        "path": "data/research-sources/iris-7-vernazza-sbag2019-presentation-2026-10-22.txt",
+        "sha256": "eaadc7b4c1748e363fd8028bc5886a5330d4bfc8e014180764ed3121b3e6328f"
+      },
+      "irisTextHits": [
+        {
+          "page": 7,
+          "text": " \n \n•  After 3 semesters of observations: 94h out of 124h allocated executed \n     \n•  Good rotational coverage (≥ 4 epochs) for 30 asteroids (2 Pallas, 3 Juno, 4 Vesta, \n6 Hebe, 7 Iris, 9 Metis, 10 Hygiea, 12 Victoria, 13 Egeria, 15 Eunomia, 16 \nPsyche, 19 Fortuna, 22 Kalliope, 30 Urania, 41 Daphne, 45 Eugenia, 51 Nemausa, \n52 Europa, 63 Ausonia, 87 Sylvia, 88 Thisbe, 89 Julia, 173 Ino, 187 Lamberta, \n216 Kleopatra, 324 Bamberga, 476 Hedwig, 511 Davida, 596 Scheila and 704 \nInteramnia ) \n \n•  Publications: 4 papers published in A&A (Vernazza et al. on 89 Julia; Viikinkoski \net al. on 16 Psyche, Carry et al. on 41 Daphne, Fetick et al. on 4 Vesta). 1 paper \nsubmitted to A&A (Hanus et al. on 7 Iris) \nCurrent\t\r  status\t\r  "
+        },
+        {
+          "page": 9,
+          "text": " \n \nRosetta\t\r  versus\t\r  VLT/SPHERE/ZIMPOL\t\r  \n1 Ceres \n21 Lutetia (seen at a \ndistance of ~7x104 km) \n7 Iris (seen at a distance \nof ~1.35x108 km) \nD~100km \nD~200km "
+        },
+        {
+          "page": 16,
+          "text": " \n \nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) "
+        },
+        {
+          "page": 17,
+          "text": " \n \n- High-resolution model (ADAM software), only southern hemisphere is reliable, the \nridge is a modeling artifact \n- Density: 2.7 g/cm3  (compatible with LL condrites and ~16% macroporosity) \nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) "
+        },
+        {
+          "page": 18,
+          "text": " \n \nRadar model of Ostro+ 2010, only southern hemisphere was sampled \nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) \n"
+        },
+        {
+          "page": 19,
+          "text": " \n \n- Several consistent features – impact craters \n- 20-40 km in diameter (8) \n- We measured the depth from images (e.g., Xanthos) \n- Depth/size ratio (~0.4) larger than for other rocky asteroids \nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) "
+        },
+        {
+          "page": 20,
+          "text": " \n \n- Oblate spheroid with a large equatorial excavation (~10% of the volume) \n- Ancient impact? Or a near miss collision (hit-and-run)?  \n- No recent family, preserved small craters \nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) "
+        },
+        {
+          "page": 21,
+          "text": " \n \n- 100 collisional evolutions of Iris simulated for 4 Gyr by the Boulder code \n(Morbidelli et al. 2009)\n- We count the largest impacts (0-2) and impacts creating craters >20 km (5-20)\n- We have ~8 craters on the southern hemisphere, which seems consistent with \nthe collisional model\nFirst\t\r  results:\t\r  (7) Iris’s shape as evidence of an ancient \nlarge impact? (Hanus et al., submitted to A&A) "
+        }
+      ],
+      "limits": [
+        "Hosting and PDF text do not establish a separately distributable native Iris product or product-specific image licence.",
+        "Presentation date is not observation date. Exact selected epoch, crop, processing and full contributor crosswalk remain open.",
+        "No image extracted, embedded, assigned as geography or used as an analogue skin. No angular/raster calculation.",
+        "Original source bytes preserved. No fresh tests/build/browser claim; production inputs unchanged.",
+        "PDF reader reported wrong-pointing objects18/22; extraction and targeted renders succeeded, but this is not whole-document structural validation or all-page review."
+      ],
+      "visualReview": {
+        "pages": [
+          9,
+          16
+        ],
+        "observations": [
+          "Page9 explicitly places Lutetia left and Iris right. Lutetia is not an Iris source or permitted analogue skin. Printed approximate diameters/distances are presentation estimates, not new measurements or angular/raster calculations.",
+          "Page16 shows four monochrome Iris views under a submitted-paper heading. No individual timestamps, raw identifiers, full image credits or product-specific terms are visible on this page.",
+          "Neither targeted page establishes original public-file lineage, calibrated visible colour, registered geography or a licence for extracting/reusing the image. No image extracted or embedded."
+        ],
+        "renders": [
+          {
+            "path": "data/research-sources/iris-7-sbag-visual-preparation-2026-10-22-09.png",
+            "bytes": 101112,
+            "sha256": "45222ab60a7627da2f26805f55776ac29b31917df5be6ba7cf640f4e6755e83c"
+          },
+          {
+            "path": "data/research-sources/iris-7-sbag-visual-preparation-2026-10-22-16.png",
+            "bytes": 160676,
+            "sha256": "f2bc98f78a51d1871b2d82b2dc8df26354e07542e3d59bf5e5633d989f76d087"
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "body": "(7) Iris",
+      "status": "Direct institutional/CDS dataset discovery and inventory preparation only; no FITS downloaded or image adoption",
+      "sources": [
+        {
+          "url": "https://researchportal.tuni.fi/en/datasets/asteroid-7-iris-deconvolved-disk-resolved-images/",
+          "httpStatus": 200,
+          "role": "Institutional metadata links DOI10.26093/cds/vizier.36240121; date made available24Apr2019 is not observation date"
+        },
+        {
+          "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/ReadMe",
+          "httpStatus": 200
+        },
+        {
+          "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/list.dat",
+          "httpStatus": 200
+        }
+      ],
+      "files": [
+        {
+          "path": "data/research-sources/iris-7-tampere-dataset-record-response-2026-10-22.html",
+          "bytes": 39724,
+          "sha256": "6a493b1e3f9e4b18de80a8f9913d05ebec2140c9cf12dc5a23925486df846a1a"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-readme-response-2026-10-22.txt",
+          "bytes": 5289,
+          "sha256": "48a29f4792aada133c2e7d9e8a560e3e5f1faf6a8e347f95d5b30cd753a0bf7f"
+        },
+        {
+          "path": "data/research-sources/iris-7-cds-list-response-2026-10-22.dat",
+          "bytes": 5847,
+          "sha256": "09be1ab36c22885b62a1ba4a7a9ca9ecbd7e80ed2c5c60e0f3c129b41bad7ec7"
+        }
+      ],
+      "inventory": {
+        "listedRows": 47,
+        "uniqueFilenames": 47,
+        "filenames": [
+          "1_KRobj.fits",
+          "2_KRobj.fits",
+          "3_KRobj.fits",
+          "4_KRobj.fits",
+          "5_KRobj.fits",
+          "6_KRobj.fits",
+          "7_KRobj.fits",
+          "8_KRobj.fits",
+          "9_KRobj.fits",
+          "10_KRobj.fits",
+          "11_KRobj.fits",
+          "12_KRobj.fits",
+          "13_KRobj.fits",
+          "14_KRobj.fits",
+          "15_KRobj.fits",
+          "16_KRobj.fits",
+          "17_KRobj.fits",
+          "18_KRobj.fits",
+          "19_KRobj.fits",
+          "1_NRobj.fits",
+          "2_NRobj.fits",
+          "3_NRobj.fits",
+          "1_SRobj.fits",
+          "2_SRobj.fits",
+          "3_SRobj.fits",
+          "4_SRobj.fits",
+          "5_SRobj.fits",
+          "6_SRobj.fits",
+          "7_SRobj.fits",
+          "8_SRobj.fits",
+          "9_SRobj.fits",
+          "10_SRobj.fits",
+          "11_SRobj.fits",
+          "12_SRobj.fits",
+          "13_SRobj.fits",
+          "14_SRobj.fits",
+          "15_SRobj.fits",
+          "16_SRobj.fits",
+          "17_SRobj.fits",
+          "18_SRobj.fits",
+          "19_SRobj.fits",
+          "20_SRobj.fits",
+          "21_SRobj.fits",
+          "22_SRobj.fits",
+          "23_SRobj.fits",
+          "24_SRobj.fits",
+          "25_SRobj.fits"
+        ],
+        "SPHERE": 25
+      },
+      "review": [
+        "ReadMe credits all38 article authors; retained verbatim source record rather than substituting a shortened processing credit.",
+        "ReadMe describes deconvolved Keck/NIRC2, VLT/NaCo and SPHERE/ZIMPOL products ordered as TableC2; poor-quality data affected by deconvolution artifacts were consistency checks only.",
+        "List contains25 SPHERE filenames and observation-date strings. Declared arcsec/pixel values are publisher metadata, not independently verified calibration or a new raster calculation.",
+        "Dataset can support a future exact epoch/product audit; public 400pxJPEG/presentation crop and dataset-pixel identity remain unverified."
+      ],
+      "limits": [
+        "No FITS header/data verification, raw archive crosswalk, source-pixel comparison or new observation-time standard claim.",
+        "No FITS image fetched, hash invented, image rendered/extracted/embedded, shape/map/catalogue/codec change or109th dossier.",
+        "Dataset availability does not establish calibrated visible colour, local chemistry, resolved complete geography, scene registration or product-specific reuse terms.",
+        "No fresh tests/build/browser claim; tracked production files unchanged. All existing sources and assets preserved."
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "status": "Research-only first listed SPHERE FITS acquisition/header and numeric diagnostic preparation; no production adoption",
+      "body": "(7) Iris",
+      "sourceUrl": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/624/A121/fits/1_SRobj.fits",
+      "source": {
+        "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.fits",
+        "bytes": 593280,
+        "sha256": "3486c0ec412906f8513d6004b1088ef8e93bbf7e848b43e8c98c1be287038674"
+      },
+      "header": {
+        "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.header.txt",
+        "sha256": "d541126120b594522f682b62a28d8176aa48ba9923580204a0c8cd47a5492536",
+        "cardsThroughEND": 822,
+        "selectedCards": [
+          "BITPIX  =                  -64 / IEEE double precision floating point           ",
+          "NAXIS   =                    2 / number of data axes                            ",
+          "NAXIS1  =                  256 /Number of positions along axis 1                ",
+          "NAXIS2  =                  256 /Number of positions along axis 2                ",
+          "DATE    = '2017-10-10T08:36:01' / file creation date (YYYY-MM-DDThh:mm:ss UT)   ",
+          "ORIGIN  = 'ESO-PARANAL'        / European Southern Observatory                  ",
+          "INSTRUME= 'SPHERE  '           / Instrument used.                               ",
+          "OBJECT  = '7 Iris  '           / Original target.                               ",
+          "DATE-OBS= '2017-10-10T03:56:12.859' / Observing date                            ",
+          "HIERARCH ESO INS3 OPTI5 NAME = 'N_R     ' / ZIMPOL filter in arm 1              ",
+          "HIERARCH ESO INS3 OPTI6 NAME = 'N_R     ' / ZIMPOL filter in arm 2              "
+        ]
+      },
+      "dataDiagnostic": {
+        "offset": 66240,
+        "storedType": "big-endian IEEEfloat64",
+        "shape": [
+          256,
+          256
+        ],
+        "finite": 65536,
+        "minimum": 0.34354650517794894,
+        "maximum": 12712.579690004897,
+        "display": "All stored samples linearly mapped min/max to8bit grayscale in stored row order; no photometric calibration, astronomical orientation or special-pixel interpretation",
+        "path": "data/research-sources/iris-7-cds-1_SRobj-original-2026-10-22.diagnostic.png",
+        "sha256": "3e4e3a72709bd39808485a724168fc3e9fd827e97928c99019d2453a886bb108"
+      },
+      "limits": [
+        "CDS ReadMe identifies these as deconvolved disk-resolved products, not unchanged detector raw exposures.",
+        "Header DATE-OBS2017-10-10T03:56:12.859 matches list.dat firstSPHERE entry; DATE2017-10-10T08:36:01 is labelled file creation, not another acquisition. Header semantics and raw product linkage not independently validated.",
+        "No conversion of header coordinates/pixel scale into new angular/raster claims. No image crop, native JPEG identity, source colour/chemistry, shape frame, PSF or scene-registration adoption.",
+        "Full38-author source credit retained in CDSReadMe/earlier primary assessment; product-specific terms and original raw archive association remain open.",
+        "No new dossier, image embedding, catalogue, map, model, shape or codec change; no fresh tests/build/browser claim. OriginalFITS and header preserved."
+      ],
+      "visualReview": "Whole256square diagnostic inspected: central soft monochrome disk and low-level rectangular/background structure; display structure not adopted as terrain, stars, surface chemistry, calibrated visible colour or complete geography. No disk diameter measured."
+    }
+  ],
+  "findings": [
+    "Institutional dataset record links DOI10.26093/cds/vizier.36240121; direct CDSReadMe/list contain47unique product filenames including25SPHERE products. ReadMe explicitly distinguishes selected reconstruction inputs from poor-quality consistency-check images affected by deconvolution artifacts.",
+    "Unchanged first listed SPHERE product593280bytes retains256x256big-endianfloat64 samples. All65536samples finite in a stored-data diagnostic; finiteness is not special-pixel, flux-calibration, PSF, radiometric or astrometric validation.",
+    "DATE-OBS2017-10-10T03:56:12.859 matches list.dat; DATE2017-10-10T08:36:01 is file creation. Both arms labelledN_R. These inherited headers are not an independently verified detector raw-product crosswalk or complete processing history.",
+    "Whole min/max grayscale diagnostic visually inspected. Stored array orientation/brightness display is arbitrary, no measured disk diameter/angular calculation, visibleRGB, local chemistry or registered terrain claim.",
+    "Original22-page SBAG presentation retained. Targeted pages9/16 visually inspected: Iris identified separately from Lutetia; four Iris views lack individual timestamp/raw-product/terms identification on that slide. No figure extraction, crop identity or reuse licence inferred.",
+    "Retained header also names ARCFILE=SPHER.2017-10-10T03:56:12.859.fits, program199.C-0074(B), templateSPHERE_zimpol_i_obs. This is an inherited archive identifier, not a fetched/byte-verified raw exposure or proven end-to-end processing chain."
+  ],
+  "open": [
+    "Acquire/verify remaining scientific products only as needed for exact selected-epoch and processing audit;47-product inventory is not47downloaded/verifiedFITSfiles.",
+    "Original raw identifiers, time-standard semantics, PSF/deconvolution history, calibrated radiometry, north/east/body frame, global coverage and nativeJPEG/crop pixel lineage remain open.",
+    "Product-specific reuse terms remain open; public archive availability and article/ESO general licences do not automatically establish permission for this derived image.",
+    "No source map/shape/observer registration adoption. Competing2019/2020shape/uncertainty findings and all prior limitations remain.",
+    "Recover substantial conforming lossless standalone headroom before additive dossiers; no pruning/resampling/native-byte change."
+  ],
+  "preservation": {
+    "productionChange": false,
+    "newDossier": false,
+    "newEmbedding": false,
+    "newCatalogueMapModelShapeCodec": false,
+    "freshBrowserClaim": false,
+    "validation": {
+      "tests": {
+        "pass": 711,
+        "skip": 1,
+        "fail": 0
+      },
+      "productionBuild": "pass",
+      "queueRegenerated": 569,
+      "preservationAudit": {
+        "baseline": "b8ca636",
+        "publicFilesByteEqual": 749,
+        "productionInputsExact": [
+          "src/data/bespoke.js",
+          "src/data/moons.js",
+          "src/data/snapshot-codec.js",
+          "scripts/build-standalone.js",
+          "docs/research/bespoke-queue.json"
+        ],
+        "dossiers": 108,
+        "moonEntries": 63,
+        "nativeCardsExactBytesAndMime": 87,
+        "currentReadableSha256": "6e5e87ffafc09ec050e33ce2cbb043496f1c68a36e98785035b319d901fb85ba",
+        "fullBuild": {
+          "pass": true,
+          "htmlBytes": 15983342,
+          "headroomBytes": 16658,
+          "gateBytes": 16000000
+        },
+        "freshBrowserClaim": false,
+        "completeCurrentFullHtmlRestorationClaim": false
+      },
+      "sourceHashesVerified": 14,
+      "freshBrowserClaim": false,
+      "interbuildSavingsAttribution": false
+    }
+  }
+}
